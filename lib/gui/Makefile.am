@@ -5,5 +5,5 @@ INCLUDES = \
 noinst_LIBRARIES = libenigma_gui.a
 
 libenigma_gui_a_SOURCES = \
-	ebutton.cpp elabel.cpp eslider.cpp ewidget.cpp ewidgetdesktop.cpp ewindow.cpp ewindowstyle.cpp 
+	ebutton.cpp elabel.cpp eslider.cpp ewidget.cpp ewidgetdesktop.cpp ewindow.cpp ewindowstyle.cpp elistbox.cpp
 

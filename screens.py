@@ -27,6 +27,7 @@ class testDialog(Screen):
 		b.onClick = [ self.testDialogClick ]
 		self["okbutton"] = b
 		self["title"] = Header("Test Dialog - press ok to leave!")
+		self["menu"] = MenuList()
 		
 		self.tries = 0
 

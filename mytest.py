@@ -100,7 +100,12 @@ class Session:
 			self.currentWindow = None
 
 	def keyEvent(self, code):
-		self.currentDialog.data["okbutton"]["instance"].push()
+		print "code " + str(code)
+		if code == 32:
+			self.currentDialog.data["okbutton"]["instance"].push()
+		
+		if code >= 0x30 and code <= 0x39:
+			self.currentDialog.data["menu"]["instance"].moveSelection(code - 0x31)
 
 	def close(self):
 		self.delayTimer.start(0, 1)

@@ -57,17 +57,43 @@ void eWindowStyleSimple::paintBackground(gPainter &painter, const ePoint &offset
 	painter.clear();
 }
 
-void eWindowStyleSimple::setForegroundStyle(gPainter &painter)
+void eWindowStyleSimple::setStyle(gPainter &painter, int what)
 {
-	painter.setForegroundColor(gColor(0x1F));
+	switch (what)
+	{
+	case styleLabel:
+		painter.setForegroundColor(gColor(0x1F));
+		break;
+	case styleListboxSelected:
+		painter.setForegroundColor(gColor(0x1F));
+		painter.setBackgroundColor(gColor(0x1A));
+		break;
+	case styleListboxNormal:
+		painter.setForegroundColor(gColor(0x1C));
+		painter.setBackgroundColor(m_background_color);
+		break;
+	}
 }
 
-void eWindowStyleSimple::drawButtonFrame(gPainter &painter, const eRect &frame)
+void eWindowStyleSimple::drawFrame(gPainter &painter, const eRect &frame, int what)
 {
-	painter.setForegroundColor(m_border_color_tl);
+	gColor c1, c2;
+	switch (what)
+	{
+	case frameButton:
+		c1 = m_border_color_tl;
+		c2 = m_border_color_br;
+		break;
+	case frameListboxEntry:
+		c1 = m_border_color_br;
+		c2 = m_border_color_tl;
+		break;
+	}
+	
+	painter.setForegroundColor(c2);
 	painter.line(frame.topLeft1(), frame.topRight1());
 	painter.line(frame.topRight1(), frame.bottomRight1());
-	painter.setForegroundColor(m_border_color_br);
+	painter.setForegroundColor(c1);
 	painter.line(frame.bottomRight1(), frame.bottomLeft1());
 	painter.line(frame.bottomLeft1(), frame.topLeft1());
 }
