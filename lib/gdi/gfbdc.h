@@ -28,8 +28,8 @@ public:
 	void saveSettings();
 	
 	gFBDC();
-	~gFBDC();
-	static gFBDC *getInstance();
+	virtual ~gFBDC();
+	static int getInstance(ePtr<gFBDC> &ptr) { if (!instance) return -1; ptr = instance; return 0; }
 	int islocked() { return fb->islocked(); }
 };
 

@@ -9,7 +9,7 @@
 
 // eServiceFactoryMP3
 
-eServiceFactoryMP3::eServiceFactoryMP3(): ref(0)
+eServiceFactoryMP3::eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
 	
@@ -58,7 +58,7 @@ void eServiceMP3::test_end()
 	stop();
 }
 
-eServiceMP3::eServiceMP3(const char *filename): ref(0), filename(filename), test(eApp)
+eServiceMP3::eServiceMP3(const char *filename): filename(filename), test(eApp)
 {
 	m_state = stIdle;
 	eDebug("SERVICEMP3 construct!");

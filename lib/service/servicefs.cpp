@@ -13,7 +13,7 @@
 
 // eServiceFactoryFS
 
-eServiceFactoryFS::eServiceFactoryFS(): ref(0)
+eServiceFactoryFS::eServiceFactoryFS()
 {
 	ePtr<eServiceCenter> sc;
 	
@@ -56,7 +56,7 @@ RESULT eServiceFactoryFS::list(const eServiceReference &ref, ePtr<iListableServi
 
 DEFINE_REF(eServiceFS);
 
-eServiceFS::eServiceFS(const char *path): ref(0), path(path)
+eServiceFS::eServiceFS(const char *path): path(path)
 {
 }
 

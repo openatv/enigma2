@@ -29,9 +29,6 @@ fbClass::fbClass(const char *fb)
 	cmap.blue=blue;
 	cmap.transp=trans;
 
-	int state=0;
-	eConfig::getInstance()->getKey("/ezap/osd/showConsoleOnFB", state);
-
 	fd=open(fb, O_RDWR);
 	if (fd<0)
 	{
@@ -62,7 +59,7 @@ fbClass::fbClass(const char *fb)
 		goto nolfb;
 	}
 
-	showConsole(state);
+	showConsole(1);
 	return;
 nolfb:
 	lfb=0;
@@ -86,8 +83,8 @@ int fbClass::showConsole(int state)
 
 int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 {
-	screeninfo.xres_virtual=screeninfo.xres=nxRes;
-	screeninfo.yres_virtual=screeninfo.yres=nyRes;
+/*	screeninfo.xres_virtual=screeninfo.xres=nxRes;
+	screeninfo.yres_virtual=screeninfo.yres=nyRes; */
 	screeninfo.height=0;
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;

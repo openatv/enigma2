@@ -11,7 +11,7 @@ class eConnection: public virtual iObject, public Connection
 public:
 DEFINE_REF(eConnection);
 public:
-	eConnection(iObject *owner, const Connection &conn): Connection(conn), ref(0), m_owner(owner) { };
+	eConnection(iObject *owner, const Connection &conn): Connection(conn), m_owner(owner) { };
 	virtual ~eConnection() { disconnect(); }
 };
 

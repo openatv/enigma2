@@ -32,7 +32,7 @@ eString eServiceReference::toString() const
 
 eServiceCenter *eServiceCenter::instance;
 
-eServiceCenter::eServiceCenter(): ref(0)
+eServiceCenter::eServiceCenter()
 {
 	if (!instance)
 	{

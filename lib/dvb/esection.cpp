@@ -30,7 +30,7 @@ void eGTable::timeout()
 }
 
 eGTable::eGTable():
-		ref(0), m_timeout(0), error(0)
+		m_timeout(0), error(0)
 {
 }
 

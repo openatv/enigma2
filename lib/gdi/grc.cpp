@@ -1,5 +1,5 @@
 // for debugging use:
-// #define SYNC_PAINT
+ #define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
@@ -7,7 +7,6 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
-#include <lib/gdi/lcd.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
@@ -29,16 +28,18 @@ gRC::gRC(): queue(2048), queuelock(MAXSIZE)
 	instance=this;
 	queuelock.lock(MAXSIZE);
 #ifndef SYNC_PAINT
-	eDebug(pthread_create(&the_thread, 0, thread_wrapper, this)?"RC thread couldn't be created":"RC thread createted successfully");
+	int res = pthread_create(&the_thread, 0, thread_wrapper, this);
+	if (res)
+		eFatal("RC thread couldn't be created");
+	else
+		eDebug("RC thread createted successfully");
 #endif
 }
 
+DEFINE_REF(gRC);
+
 gRC::~gRC()
 {
-	fbClass::getInstance()->lock();
-#ifndef DISABLE_LCD
-	eDBoxLCD::getInstance()->lock();
-#endif
 	instance=0;
 
 	gOpcode o;
@@ -82,7 +83,7 @@ gPainter::gPainter(gDC *dc, eRect rect): m_dc(dc), m_rc(gRC::getInstance())
 {
 //	ASSERT(!gPainter_instances);
 	gPainter_instances++;
-	begin(rect);
+//	begin(rect);
 }
 
 gPainter::~gPainter()
@@ -171,7 +172,7 @@ void gPainter::clear()
 	m_rc->submit(o);
 }
 
-void gPainter::blit(gPixmap *pixmap, ePoint pos, gRegion *clip, int flags)
+void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
 	gOpcode o;
 
@@ -181,7 +182,6 @@ void gPainter::blit(gPixmap *pixmap, ePoint pos, gRegion *clip, int flags)
 	o.parm.blit  = new gOpcode::para::pblit;
 	o.parm.blit->pixmap = pixmap;
 	o.parm.blit->position = pos;
-	clip->AddRef();
 	o.parm.blit->clip = clip;
 	o.flags=flags;
 	m_rc->submit(o);
@@ -195,7 +195,9 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 	o.dc = m_dc.grabRef();
 	gPalette *p=new gPalette;
 	
+	o.parm.setPalette = new gOpcode::para::psetPalette;
 	p->data=new gRGB[len];
+	
 	memcpy(p->data, colors, len*sizeof(gRGB));
 	p->start=start;
 	p->colors=len;
@@ -224,7 +226,7 @@ void gPainter::line(ePoint start, ePoint end)
 	m_rc->submit(o);
 }
 
-void gPainter::setLogicalZero(ePoint val)
+void gPainter::setOffset(ePoint val)
 {
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
@@ -235,10 +237,10 @@ void gPainter::setLogicalZero(ePoint val)
 	m_rc->submit(o);
 }
 
-void gPainter::moveLogicalZero(ePoint rel)
+void gPainter::moveOffset(ePoint rel)
 {
 	gOpcode o;
-	o.opcode=gOpcode::moveOffset;
+	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
 	o.parm.setOffset = new gOpcode::para::psetOffset;
 	o.parm.setOffset->rel = 1;
@@ -246,13 +248,23 @@ void gPainter::moveLogicalZero(ePoint rel)
 	m_rc->submit(o);
 }
 
-void gPainter::resetLogicalZero()
+void gPainter::resetOffset()
 {
 	gOpcode o;
-	o.opcode=gOpcode::moveOffset;
+	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
 	o.parm.setOffset = new gOpcode::para::psetOffset;
 	o.parm.setOffset->value = ePoint(0, 0);
+	m_rc->submit(o);
+}
+
+void gPainter::resetClip(const gRegion &region)
+{
+	gOpcode o;
+	o.opcode = gOpcode::setClip;
+	o.dc = m_dc.grabRef();
+	o.parm.clip = new gOpcode::para::psetClip;
+	o.parm.clip->region = region;
 	m_rc->submit(o);
 }
 
@@ -262,8 +274,7 @@ void gPainter::clip(const gRegion &region)
 	o.opcode = gOpcode::addClip;
 	o.dc = m_dc.grabRef();
 	o.parm.clip = new gOpcode::para::psetClip;
-	o.parm.clip->region = new gRegion(region);
-	o.parm.clip->region->AddRef();
+	o.parm.clip->region = region;
 	m_rc->submit(o);
 }
 
@@ -297,53 +308,74 @@ gDC::~gDC()
 
 void gDC::exec(gOpcode *o)
 {
-#if 0
-	switch(o->opcode)
+	switch (o->opcode)
 	{
+	case gOpcode::setBackgroundColor:
+		m_background_color = o->parm.setColor->color;
+		delete o->parm.setColor;
+		break;
+	case gOpcode::setForegroundColor:
+		m_foreground_color = o->parm.setColor->color;
+		delete o->parm.setColor;
+		break;
+	case gOpcode::setFont:
+		m_current_font = o->parm.setFont->font;
+		o->parm.setFont->font->Release();
+		delete o->parm.setFont;
+		break;
 	case gOpcode::renderText:
 	{
-		ePtr<eTextPara> para = new eTextPara(o->parm.renderText.area);
+		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
 		para->setFont(m_current_font);
-		para->renderString(*o->parm.renderText.text, o->parm.renderText.flags);
-		para->blit(*this, ePoint(0, 0), m_foregroundColor, m_backgroundColor);
-		delete o->parm.renderText->text;
+		para->renderString(o->parm.renderText->text, o->parm.renderText->flags);
+		para->blit(*this, ePoint(0, 0), getRGB(m_foreground_color), getRGB(m_background_color));
+		delete o->parm.renderText;
 		break;
 	}
 	case gOpcode::renderPara:
 	{
-		o->parm.renderPara.textpara->blit(*this, o->parm.renderPara.offset, m_foregroundColor, m_backgroundColor);
-		o->parm.renderPara.textpara.Release();
+		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset, getRGB(m_foreground_color), getRGB(m_background_color));
+		o->parm.renderPara->textpara->Release();
+		delete o->parm.renderPara;
 		break;
 	}
 	case gOpcode::fill:
-		m_pixmap->fill(o->parm.fill.area, m_foregroundColor);
+	{
+		eRect area = o->parm.fill->area;
+		area.moveBy(m_current_offset);
+		gRegion clip = m_current_clip & area;
+		m_pixmap->fill(clip, m_foreground_color);
+		delete o->parm.fill;
+		break;
+	}
+	case gOpcode::clear:
+		m_pixmap->fill(m_current_clip, m_background_color);
 		delete o->parm.fill;
 		break;
 	case gOpcode::blit:
 	{
 		gRegion clip;
-		if (o->parm.blit.clip)
+		if (!o->parm.blit->clip.isValid())
 		{
-			clip.intersect(o->parm.blit.clip, clip);
-			o->parm.blit.clip->Release();
+			clip.intersect(gRegion(o->parm.blit->clip), clip);
 		} else
 			clip = m_current_clip;
-		pixmap->blit(*o->parm.blit.pixmap, o->parm.blit.pos, clip, o->parm.blit.flags);
-		o->parm.blit.pixmap->Release();
+		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, o->parm.blit->flags);
+		o->parm.blit->pixmap->Release();
+		delete o->parm.blit;
 		break;
 	}
 	case gOpcode::setPalette:
-#if 0
-		if (o->parm.setPalette->palette->start>pixmap->surface->clut.colors)
-			o->parm.setPalette->palette->start=pixmap->surface->clut.colors;
-		if (o->parm.setPalette->palette->colors>(pixmap->surface->clut.colors-o->parm.setPalette->palette->start))
-			o->parm.setPalette->palette->colors=pixmap->surface->clut.colors-o->parm.setPalette->palette->start;
+		if (o->parm.setPalette->palette->start > m_pixmap->surface->clut.colors)
+			o->parm.setPalette->palette->start = m_pixmap->surface->clut.colors;
+		if (o->parm.setPalette->palette->colors > (m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start))
+			o->parm.setPalette->palette->colors = m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start;
 		if (o->parm.setPalette->palette->colors)
-			memcpy(pixmap->surface->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
+			memcpy(m_pixmap->surface->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
+		
 		delete[] o->parm.setPalette->palette->data;
 		delete o->parm.setPalette->palette;
 		delete o->parm.setPalette;
-#endif
 		break;
 	case gOpcode::mergePalette:
 #if 0
@@ -353,23 +385,40 @@ void gDC::exec(gOpcode *o)
 #endif
 		break;
 	case gOpcode::line:
-#if 0
-		pixmap->line(o->parm.line->start, o->parm.line->end, o->parm.line->color);
+	{
+		ePoint start = o->parm.line->start + m_current_offset, end = o->parm.line->end + m_current_offset;
+		m_pixmap->line(m_current_clip, start, end, m_foreground_color);
 		delete o->parm.line;
-#endif
 		break;
-	case gOpcode::setBackgroundColor:
-		m_backgroundColor = o->parm.setColor.color;
+	}
+	case gOpcode::addClip:
+		m_clip_stack.push(m_current_clip);
+		o->parm.clip->region.moveBy(m_current_offset);
+		m_current_clip &= o->parm.clip->region;
+		delete o->parm.clip;
 		break;
-	case gOpcode::setForegroundColor:
-		m_foregroundColor = o->parm.setColor.color;
+	case gOpcode::setClip:
+		o->parm.clip->region.moveBy(m_current_offset);
+		m_current_clip = o->parm.clip->region & eRect(ePoint(0, 0), m_pixmap->getSize());
+		delete o->parm.clip;
 		break;
-	case gOpcode::clip:
+	case gOpcode::popClip:
+		if (!m_clip_stack.empty())
+		{
+			m_current_clip = m_clip_stack.top();
+			m_clip_stack.pop();
+		}
+		break;
+	case gOpcode::setOffset:
+		if (o->parm.setOffset->rel)
+			m_current_offset += o->parm.setOffset->value;
+		else
+			m_current_offset  = o->parm.setOffset->value;
+		delete o->parm.setOffset;
 		break;
 	default:
 		eFatal("illegal opcode %d. expect memory leak!", o->opcode);
 	}
-#endif
 }
 
 gRGB gDC::getRGB(gColor col)
@@ -386,4 +435,5 @@ gRGB gDC::getRGB(gColor col)
 
 DEFINE_REF(gDC);
 
-eAutoInitP0<gRC> init_grc(eAutoInitNumbers::graphic, "gRC");
+eAutoInitPtr<gRC> init_grc(eAutoInitNumbers::graphic, "gRC");
+

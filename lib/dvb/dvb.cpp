@@ -8,7 +8,7 @@ DEFINE_REF(eDVBResourceManager);
 
 eDVBResourceManager *eDVBResourceManager::instance;
 
-eDVBResourceManager::eDVBResourceManager(): ref(0)
+eDVBResourceManager::eDVBResourceManager()
 {
 	avail = 1;
 	busy = 0;

@@ -20,6 +20,7 @@ void eFatal(const char* fmt, ...)
 	va_end(ap);
 	logOutput(lvlFatal, buf);
 	fprintf(stderr, "%s\n",buf );
+#if 0
 	if (!infatal)
 	{
 		infatal=1;
@@ -27,6 +28,8 @@ void eFatal(const char* fmt, ...)
 		msg.show();
 		msg.exec();
 	}
+#endif
+
 	_exit(0);
 }
 
