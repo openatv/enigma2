@@ -105,3 +105,34 @@ void eWindowStyleSimple::drawFrame(gPainter &painter, const eRect &frame, int wh
 	painter.line(frame.bottomRight1(), frame.bottomLeft1());
 	painter.line(frame.bottomLeft1(), frame.topLeft1());
 }
+
+DEFINE_REF(eWindowStyleSkinned);
+
+eWindowStyleSkinned::eWindowStyleSkinned()
+{
+}
+
+void eWindowStyleSkinned::handleNewSize(eWindow *wnd, const eSize &size)
+{
+}
+
+void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
+{
+}
+
+void eWindowStyleSkinned::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)
+{
+}
+
+void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
+{
+}
+
+void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)
+{
+}
+
+void eWindowStyleSkinned::drawBorder(gPainter &painter, const eSize &size, const struct borderSet &border, int where)
+{
+}
+

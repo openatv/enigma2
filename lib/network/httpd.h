@@ -41,7 +41,7 @@ typedef ePtr<eHTTPDataSource> eHTTPDataSourcePtr;
 
 class eHTTPError: public eHTTPDataSource
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPError);
 private:
 	int errcode;
 public:

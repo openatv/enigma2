@@ -7,7 +7,7 @@ class eDVBScan;
 
 class eComponentScan: public Object, public iObject
 {
-DECLARE_REF;
+DECLARE_REF(eComponentScan);
 private:
 	void scanEvent(int event);
 	ePtr<eConnection> m_scan_event_connection;

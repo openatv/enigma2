@@ -5,8 +5,6 @@
 #include <lib/base/eptrlist.h> /* for eSmartPtrList */
 #include <lib/gui/ewindowstyle.h> /* for eWindowStyle */
 
-class eWindowStyle;
-
 class eWidget
 {
 	friend class eWidgetDesktop;

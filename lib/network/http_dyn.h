@@ -5,7 +5,7 @@
 
 class eHTTPDyn: public eHTTPDataSource
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPDyn);
 private:
 	std::string result;
 	int wptr, size;
@@ -17,11 +17,11 @@ public:
 
 class eHTTPDynPathResolver: public iHTTPPathResolver
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPDynPathResolver);
 private:
-	struct eHTTPDynEntry
+	struct eHTTPDynEntry: public iObject
 	{
-		DECLARE_REF;
+		DECLARE_REF(eHTTPDynEntry);
 	public:
 		std::string request, path;
 		std::string (*function)(std::string request, std::string path, std::string opt, eHTTPConnection *content);

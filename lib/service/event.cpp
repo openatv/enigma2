@@ -8,8 +8,7 @@ DEFINE_REF(eServiceEvent);
 RESULT eServiceEvent::parseFrom(Event *evt)
 {
 	m_begin = 0; 	// ich bin FAUL
-	m_duration = evt->getDuration();
-	
+	m_duration = (evt->getDuration() & 0xFF) + ((evt->getDuration() >> 8) & 0xFF) * 60 + ((evt->getDuration() >> 16) & 0xFF) * 24 * 60;
 	
 	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
 	{
@@ -24,4 +23,7 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 		}
 		}
 	}
+	return 0;
 }
+
+DEFINE_REF(eDebugClass);

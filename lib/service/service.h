@@ -11,7 +11,7 @@ typedef ePtr<eServiceCenter> eServiceCenterPtr;
 
 class eServiceCenter: public iServiceHandler
 {
-DECLARE_REF;
+DECLARE_REF(eServiceCenter);
 private:
 	std::map<int,iServiceHandlerPtr> handler;
 	static eServiceCenter *instance;

@@ -21,6 +21,7 @@ public:
 		   anyway. */
 #ifndef SWIG	
 protected:
+	iListboxContent();
 	friend class eListbox;
 	virtual void cursorHome()=0;
 	virtual void cursorEnd()=0;
@@ -72,12 +73,8 @@ public:
 		pageDown,
 		justCheck
 	};
-protected:
-	int event(int event, void *data=0, void *data2=0);
-	void recalcSize();
-private:
-	friend class iListboxContent;
-	
+
+#ifndef SWIG
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */
 	void entryAdded(int index);
 		/* entryRemoved: an entry with the given index was removed. */
@@ -86,11 +83,18 @@ private:
 	void entryChanged(int index);
 		/* the complete list changed. you should not attemp to keep the current index. */
 	void entryReset();
+
+protected:
+	int event(int event, void *data=0, void *data2=0);
+	void recalcSize();
 	
+private:
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
 	ePtr<iListboxContent> m_content;
+#endif
+
 };
 
 #endif

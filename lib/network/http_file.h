@@ -5,7 +5,7 @@
 
 class eHTTPFile: public eHTTPDataSource
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPFile);
 private:	
 	int fd, size;
 	const char *mime;
@@ -20,7 +20,7 @@ public:
 
 class eHTTPFilePathResolver: public iHTTPPathResolver
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPFilePathResolver);
 public:
 	struct eHTTPFilePath
 	{

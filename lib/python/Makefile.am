@@ -9,3 +9,9 @@ libenigma_python_a_SOURCES = \
 
 enigma_python_wrap.cxx: enigma_python.i
 	swig -I$(top_srcdir)/ -c++ -python enigma_python.i
+
+enigma_python.i: enigma_iobject.i
+
+enigma_iobject.i:
+	find ../../.. -name "*.cpp" | xargs grep -h "DEFINE_REF" > enigma_iobject.i
+	

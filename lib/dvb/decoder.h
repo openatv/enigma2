@@ -6,7 +6,7 @@
 
 class eDVBAudio: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(eDVBAudio);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux;
@@ -19,7 +19,7 @@ public:
 
 class eDVBVideo: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(eDVBVideo);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux;
@@ -32,7 +32,7 @@ public:
 
 class eTSMPEGDecoder: public iTSMPEGDecoder
 {
-DECLARE_REF;
+DECLARE_REF(eTSMPEGDecoder);
 private:
 	ePtr<eDVBDemux> m_demux;
 	ePtr<eDVBAudio> m_audio;

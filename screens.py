@@ -25,6 +25,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 	# never call this directly - it will be called from the session!
 	def doClose(self):
 		GUISkin.close(self)
+		
+		for (name, val) in self.items():
+			print "%s -> %d" % (name, sys.getrefcount(val))
+			del self[name]
 	
 	def close(self, retval=None):
 		self.session.close()
@@ -89,11 +93,20 @@ class channelSelection(Screen):
 		self["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:PREMIERE"))
 		
 		self["okbutton"] = Button("ok", [self.channelSelected])
+		
+		class ChannelActionMap(ActionMap):
+			def action(self, context, action):
+				if action[:7] == "bouquet":
+					print "setting root to " + action[8:]
+					self.csel["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
+				else:
+					ActionMap.action(self, context, action)
 
-		self["actions"] = ActionMap("ChannelSelectActions", 
+		self["actions"] = ChannelActionMap("ChannelSelectActions", 
 			{
 				"selectChannel": self.channelSelected,
 			})
+		self["actions"].csel = self
 
 	def channelSelected(self):
 		self.session.nav.playService(self["list"].getCurrent())
@@ -109,13 +122,17 @@ class infoBar(Screen):
 				"switchChannel": self.switchChannel,
 				"mainMenu": self.mainMenu
 			})
-		self["channelSwitcher"] = Button("switch Channel", [self.switchChannel])
 		self["okbutton"] = Button("mainMenu", [self.mainMenu])
+		
+		self["CurrentTime"] = Clock()
 		
 		self["ServiceName"] = ServiceName(self.session.nav)
 		
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
 		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
+
+		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
+		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 	
 	def mainMenu(self):
 		self.session.open(mainMenu)
@@ -135,7 +152,6 @@ class clockDisplay(Screen):
 		b.onClick = [ self.okbutton ]
 		self["okbutton"] = b
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
-
 
 class serviceScan(Screen):
 	def ok(self):

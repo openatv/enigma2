@@ -8,7 +8,7 @@ class eServiceCenter;
 
 class eListboxServiceContent: public virtual iListboxContent
 {
-	DECLARE_REF;
+	DECLARE_REF(eListboxServiceContent);
 public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);

@@ -6,7 +6,7 @@
 
 class eListboxTestContent: public virtual iListboxContent
 {
-	DECLARE_REF;
+	DECLARE_REF(eListboxTestContent);
 public:
 
 #ifndef SWIG
@@ -37,7 +37,7 @@ private:
 
 class eListboxStringContent: public virtual iListboxContent
 {
-	DECLARE_REF;
+	DECLARE_REF(eListboxStringContent);
 public:
 	eListboxStringContent();
 	void setList(std::list<std::string> &list);
@@ -75,7 +75,7 @@ private:
 
 class eListboxPythonStringContent: public virtual iListboxContent
 {
-	DECLARE_REF;
+	DECLARE_REF(eListboxPythonStringContent);
 public:
 	eListboxPythonStringContent();
 	~eListboxPythonStringContent();

@@ -29,6 +29,10 @@ iListboxContent::~iListboxContent()
 {
 }
 
+iListboxContent::iListboxContent(): m_listbox(0)
+{
+}
+
 void iListboxContent::setListbox(eListbox *lb)
 {
 	m_listbox = lb;

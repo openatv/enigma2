@@ -22,11 +22,17 @@ eListbox::~eListbox()
 void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
+	if (content)
+		m_content->setListbox(this);
 	entryReset();
 }
 
 void eListbox::moveSelection(int dir)
 {
+		/* refuse to do anything without a valid list. */
+	if (!m_content)
+		return;
+		
 		/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
 	int oldsel = m_selected;
@@ -98,6 +104,8 @@ int eListbox::event(int event, void *data, void *data2)
 	{
 		ePtr<eWindowStyle> style;
 		
+		if (!m_content)
+			return eWidget::event(event, data, data2);
 		assert(m_content);
 		recalcSize(); // move to event
 		
@@ -183,9 +191,10 @@ void eListbox::entryChanged(int index)
 
 void eListbox::entryReset()
 {
-	invalidate();
 	if (m_content)
 		m_content->cursorHome();
 	m_top = 0;
 	m_selected = 0;
+	invalidate();
+	eDebug("inval!");
 }

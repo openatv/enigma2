@@ -6,7 +6,7 @@
 
 class eDVBFrontendParameters: public iDVBFrontendParameters
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBFrontendParameters);
 	union
 	{
 		eDVBFrontendParametersSatellite sat;
@@ -33,7 +33,7 @@ public:
 
 class eDVBFrontend: public iDVBFrontend, public Object
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBFrontend);
 	int m_type;
 	int m_fd;
 #if HAVE_DVB_API_VERSION < 3

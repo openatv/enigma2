@@ -171,40 +171,7 @@ public:
 	void setRequested(int req) { requested=req; }
 };
 
-				// ... und Timer
-/**
- * \brief Gives a callback after a specified timeout.
- *
- * This class emits the signal \c eTimer::timeout after the specified timeout.
- */
-class eTimer
-{
-	eMainloop &context;
-	timeval nextActivation;
-	long interval;
-	bool bSingleShot;
-	bool bActive;
-public:
-	/**
-	 * \brief Constructs a timer.
-	 *
-	 * The timer is not yet active, it has to be started with \c start.
-	 * \param context The thread from which the signal should be emitted.
-	 */
-	eTimer(eMainloop *context): context(*context), bActive(false) { }
-	~eTimer()	{ if (bActive) stop(); }
-
-	PSignal0<void> timeout;
-	void activate();
-
-	bool isActive()	{ return bActive; }
-	timeval &getNextActivation() { return nextActivation; }
-
-	void start(long msec, bool singleShot=false);
-	void stop();
-	void changeInterval(long msek);
-	bool operator<(const eTimer& t) const	{		return nextActivation < t.nextActivation;		}
-};
+class eTimer;
 
 			// werden in einer mainloop verarbeitet
 class eMainloop
@@ -231,6 +198,7 @@ public:
 	void exit_loop();
 };
 
+
 /**
  * \brief The application class.
  *
@@ -250,4 +218,40 @@ public:
 		eApp = 0;
 	}
 };
+
+				// ... und Timer
+/**
+ * \brief Gives a callback after a specified timeout.
+ *
+ * This class emits the signal \c eTimer::timeout after the specified timeout.
+ */
+class eTimer
+{
+	eMainloop &context;
+	timeval nextActivation;
+	long interval;
+	bool bSingleShot;
+	bool bActive;
+public:
+	/**
+	 * \brief Constructs a timer.
+	 *
+	 * The timer is not yet active, it has to be started with \c start.
+	 * \param context The thread from which the signal should be emitted.
+	 */
+	eTimer(eMainloop *context = eApp): context(*context), bActive(false) { }
+	~eTimer()	{ if (bActive) stop(); }
+
+	PSignal0<void> timeout;
+	void activate();
+
+	bool isActive()	{ return bActive; }
+	timeval &getNextActivation() { return nextActivation; }
+
+	void start(long msec, bool singleShot=false);
+	void stop();
+	void changeInterval(long msek);
+	bool operator<(const eTimer& t) const	{		return nextActivation < t.nextActivation;		}
+};
+
 #endif

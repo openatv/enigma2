@@ -160,7 +160,7 @@ class eDVBChannelQuery;
 
 class eDVBService: public iStaticServiceInformation
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBService);
 public:
 	eDVBService();
 	std::string m_service_name;
@@ -194,7 +194,7 @@ public:
 
 class eDVBChannelQuery: public iObject
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBChannelQuery);
 public:
 	enum
 	{

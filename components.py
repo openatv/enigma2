@@ -159,7 +159,8 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 
 # "funktionalitaet"	
 	def doClock(self):
-		self.setText("clock: " + time.asctime())
+		t = time.localtime()
+		self.setText("%2d:%02d:%02d" % (t[3], t[4], t[5]))
 
 # realisierung als GUI
 	def createWidget(self, parent, skindata):
@@ -270,6 +271,7 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)
+		del self.instance
 
 class ServiceList(HTMLComponent, GUIComponent):
 	def __init__(self):
@@ -316,18 +318,24 @@ class ServiceScan:
 		self.progressbar = progressbar
 		self.text = text
 		self.scan = eComponentScan()
+		self.state = self.Idle
+		self.scanStatusChanged()
+		
+	def execBegin(self):
+		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		if self.scan.start():
 			self.state = self.Error
 		else:
 			self.state = self.Running
-		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.scanStatusChanged()
+	
+	def execEnd(self):
+		self.scan.statusChanged.get().remove(self.scanStatusChanged)
+		if not self.isDone():
+			print "*** warning *** scan was not finished!"
 
 	def isDone(self):
 		return self.state == self.Done
-
-	def fix(self):
-		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 	
 class ActionMap:
 	def __init__(self, context, actions = { }, prio=0):
@@ -376,6 +384,9 @@ class PerServiceDisplay(GUIComponent, VariableText):
 class EventInfo(PerServiceDisplay):
 	Now = 0
 	Next = 1
+	Now_Duration = 2
+	Next_Duration = 3
+	
 	def __init__(self, navcore, now_or_next):
 		# listen to evUpdatedEventInfo and evStopService
 		# note that evStopService will be called once to establish a known state
@@ -392,10 +403,12 @@ class EventInfo(PerServiceDisplay):
 		
 		if not self.navcore.getCurrentService(service):
 			if not service.info(info):
-				print "got info !"
 				ev = eServiceEventPtr()
-				info.getEvent(ev, self.now_or_next)
-				self.setText(ev.m_event_name)
+				info.getEvent(ev, self.now_or_next & 1)
+				if self.now_or_next & 2:
+					self.setText("%d min" % (ev.m_duration / 60))
+				else:
+					self.setText(ev.m_event_name)
 		print "new event info in EventInfo! yeah!"
 
 	def stopEvent(self):

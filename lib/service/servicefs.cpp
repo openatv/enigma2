@@ -14,7 +14,7 @@
 
 class eStaticServiceFSInformation: public iStaticServiceInformation
 {
-	DECLARE_REF;
+	DECLARE_REF(eStaticServiceFSInformation);
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 };

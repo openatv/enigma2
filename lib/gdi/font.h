@@ -79,7 +79,7 @@ class eLCD;
 
 class eTextPara: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(eTextPara);
 private:
  	ePtr<Font> current_font, replacement_font;
 	FT_Face current_face, replacement_face;
@@ -139,7 +139,7 @@ public:
 
 class Font: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(Font);
 public:
 	FTC_Image_Desc font;
 	fontRenderClass *renderer;

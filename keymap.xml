@@ -19,6 +19,10 @@
 	
 	<map context="ChannelSelectActions">
 		<key id=" " mapto="selectChannel" flags="mr" />
+		
+		<!-- yes, this is flexible as hell. -->
+		<key id="p" mapto="bouquet:PREMIERE" flags="m" />
+		<key id="d" mapto="bouquet:Das Erste" flags="m" />
 	</map>
 	<map context="WindowActions">
 		

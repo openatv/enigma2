@@ -8,7 +8,7 @@
 
 class pNavigation: public iObject, public Object
 {
-DECLARE_REF;
+DECLARE_REF(pNavigation);
 public:
 	PSignal1<void, int> m_event;
 	

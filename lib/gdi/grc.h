@@ -124,7 +124,7 @@ struct gOpcode
 		/* gRC is the singleton which controls the fifo and dispatches commands */
 class gRC: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(gRC);
 private:
 	static gRC *instance;
 	
@@ -212,7 +212,7 @@ public:
 
 class gDC: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(gDC);
 protected:
 	ePtr<gPixmap> m_pixmap;
 
