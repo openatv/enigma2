@@ -7,6 +7,22 @@
 template<class T>
 class ePtr
 {
+		/* read doc/iObject about the ePtrHelper */
+	template<class T1>
+	class ePtrHelper
+	{
+		T1 *m_obj;
+	public:
+		inline ePtrHelper(T1 *obj): m_obj(obj)
+		{
+			m_obj->AddRef();
+		}
+		inline ~ePtrHelper()
+		{
+			m_obj->Release();
+		}
+		inline T1* operator->() { return m_obj; }
+	};
 protected:
 	T *ptr;
 public:
@@ -51,7 +67,12 @@ public:
 			ptr->Release();
 	}
 	T* &ptrref() { assert(!ptr); return ptr; }
-	T* operator->() { assert(ptr); return ptr; }
+	ePtrHelper<T> operator->() { assert(ptr); return ePtrHelper<T>(ptr); }
+
+			/* for const objects, we don't need the helper, as they can't */
+			/* be changed outside the program flow. at least this is */
+			/* what the compiler assumes, so in case you're using const */
+			/* ePtrs note that they have to be const. */
 	const T* operator->() const { assert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
 };
