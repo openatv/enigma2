@@ -1,5 +1,6 @@
 from enigma import *
 import time
+import sys
 
 # some helper classes first:
 class HTMLComponent:
@@ -20,12 +21,72 @@ class HTMLSkin:
 		return res
 
 class GUISkin:
-	data = { }
+	def __init__(self):
+		self.data = { }
+	
 	def createGUIScreen(self, parent):
 		for (name, val) in self.items():
 			self.data[name] = { }
 			val.GUIcreate(self.data[name], parent, None)
+	
+	def deleteGUIScreen(self):
+		for (name, val) in self.items():
+			w = self.data[name]["instance"]
+			val.GUIdelete(self.data[name])
+			del self.data[name]
+			
+			# note: you'll probably run into this assert. if this happens, don't panic!
+			# yes, it's evil. I told you that programming in python is just fun, and 
+			# suddently, you have to care about things you don't even know.
+			#
+			# but calm down, the solution is easy, at least on paper:
+			#
+			# Each Component, which is a GUIComponent, owns references to each
+			# instantiated eWidget (namely in screen.data[name]["instance"], in case
+			# you care.)
+			# on deleteGUIscreen, all eWidget *must* (!) be deleted (otherwise,
+			# well, problems appear. I don't want to go into details too much,
+			# but this would be a memory leak anyway.)
+			# The assert beyond checks for that. It asserts that the corresponding
+			# eWidget is about to be removed (i.e., that the refcount becomes 0 after
+			# running deleteGUIscreen).
+			# (You might wonder why the refcount is checked for 2 and not for 1 or 0 -
+			# one reference is still hold by the local variable 'w', another one is
+			# hold be the function argument to sys.getrefcount itself. So only if it's
+			# 2 at this point, the object will be destroyed after leaving deleteGUIscreen.)
+			#
+			# Now, how to fix this problem? You're holding a reference somewhere. (References
+			# can only be hold from Python, as eWidget itself isn't related to the c++
+			# way of having refcounted objects. So it must be in python.)
+			#
+			# It could be possible that you're calling deleteGUIscreen trough a call of
+			# a PSignal. For example, you could try to call session.close() in response
+			# to a Button::click. This will fail. (It wouldn't work anyway, as you would
+			# remove a dialog while running it. It never worked - enigma1 just set a 
+			# per-mainloop variable on eWidget::close() to leave the exec()...)
+			# That's why Session supports delayed closes. Just call Session.close() and
+			# it will work.
+			#
+			# Another reason is that you just stored the data["instance"] somewhere. or
+			# added it into a notifier list and didn't removed it.
+			#
+			# If you can't help yourself, just ask me. I'll be glad to help you out.
+			# Sorry for not keeping this code foolproof. I really wanted to archive
+			# that, but here I failed miserably. All I could do was to add this assert.
+			assert sys.getrefcount(w) == 2, "too many refs hold to " + str(w)
+	
+	def close(self):
+		self.deleteGUIScreen()
+		del self.data
 
+# note: components can be used in multiple screens, so we have kind of
+# two contexts: first the per-component one (self), then the per-screen (i.e.:
+# per eWidget one), called "priv". In "priv", for example, the instance
+# of the eWidget is stored.
+
+
+# GUI components have a "notifier list" of associated eWidgets to one component
+# (as said - one component instance can be used at multiple screens)
 class GUIComponent:
 	""" GUI component """
 
@@ -38,6 +99,16 @@ class GUIComponent:
 		self.notifier.append(i)
 		if self.notifierAdded:
 			self.notifierAdded(i)
+	
+	# GUIdelete must delete *all* references to the current component!
+	def GUIdelete(self, priv):
+		g = priv["instance"]
+		self.notifier.remove(g)
+		self.GUIdeleteInstance(g)
+		del priv["instance"]
+
+	def GUIdeleteInstance(self, priv):
+		pass
 
 class VariableText:
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
@@ -107,19 +178,11 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 		self.setText(text)
 		self.onClick = [ ]
 	
-	def clicked(self):
+	def push(self):
 		for x in self.onClick:
 			x()
 		return 0
-
-	def GUIcreate(self, priv, parent, skindata):
-		GUIComponent.GUIcreate(self, priv,parent, skindata)
-		priv["instance"].selected.get().append(self.clicked)
 	
-	def click(self):
-		for x in self.onClick:
-			x()
-
 # html:	
 	def produceHTML(self):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
@@ -127,8 +190,11 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 # GUI:
 	def GUIcreateInstance(self, priv, parent, skindata):
 		g = eButton(parent)
-#		g.clicked = [ self.click ]
+		g.selected.get().append(self.push)
 		return g
+	
+	def GUIdeleteInstance(self, g):
+		g.selected.get().remove(self.push)
 
 class Header(HTMLComponent, GUIComponent, VariableText):
 
@@ -155,4 +221,3 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 		g = eSlider(parent)
 		g.setRange(0, 100)
 		return g
-

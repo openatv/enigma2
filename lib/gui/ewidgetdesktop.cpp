@@ -42,11 +42,10 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 
 void eWidgetDesktop::recalcClipRegions()
 {
-	gRegion screen = gRegion(eRect(ePoint(0, 0), m_screen_size));
+	m_background_region = gRegion(eRect(ePoint(0, 0), m_screen_size));
 	
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
-		calcWidgetClipRegion(*i, screen);
-//	dumpRegion(screen);
+		calcWidgetClipRegion(*i, m_background_region);
 }
 
 void eWidgetDesktop::invalidate(const gRegion &region)
@@ -56,12 +55,33 @@ void eWidgetDesktop::invalidate(const gRegion &region)
 	m_dirty_region |= region;
 }
 
+void eWidgetDesktop::setBackgroundColor(gColor col)
+{
+	m_background_color = col;
+	
+		/* if there's something visible from the background, redraw it with the new color. */
+	if (m_dc && m_background_region.valid() && !m_background_region.empty())
+	{
+			/* todo: split out "setBackgroundColor / clear"... maybe? */
+		gPainter painter(m_dc);
+		painter.resetClip(m_background_region);
+		painter.setBackgroundColor(m_background_color);
+		painter.clear();
+	}
+}
+
 void eWidgetDesktop::paint()
 {
 	gPainter painter(m_dc);
 		/* walk all root windows. */
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 		i->doPaint(painter, m_dirty_region);
+	m_dirty_region &= m_background_region;
+	
+	painter.resetClip(m_dirty_region);
+	painter.setBackgroundColor(m_background_color);
+	painter.clear();
+	
 	m_dirty_region = gRegion();
 }
 

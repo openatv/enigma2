@@ -29,7 +29,6 @@ screens["global"](components)
 
 # test our screens
 components["$001"] = screens["testDialog"]()
-components["$002"] = screens["clockDisplay"](components["clock"])
 
 print "*** classes:"
 dump(screens)
@@ -55,24 +54,65 @@ class GUIOutputDevice(OutputDevice):
 	def create(self, comp):
 		comp.createGUIScreen(self.parent)
 
-def runScreenTest():
-	desktop = getDesktop()
-
-	wnd = eWindow(desktop)
-	mainwnd = wnd
-	wnd.setTitle("Screen from python!")
-	wnd.move(ePoint(300, 100))
-	wnd.resize(eSize(300, 300))
-
-	gui = GUIOutputDevice()
-	gui.parent = wnd
-	gui.create(components["$002"])
-
-	applyGUIskin(components["$002"], None, "clockDialog")
-
-	wnd.show()
+class Session:
+	def __init__(self):
+		self.desktop = None
+		self.delayTimer = eTimer()
+		self.delayTimer.timeout.get().append(self.processDelay)
 	
-#	components["$002"].data["okbutton"]["instance"].push()
+	def processDelay(self):
+		components[self.screenname].close()
+		if self.currentWindow != None:
+			self.currentWindow.hide()
+		
+		del components[self.screenname]
+		del self.currentWindow
+		
+
+	def open(self, screenname, screen):
+		components[screenname] = screen
+		self.screenname = screenname
+		screen.session = self
+		
+		if self.desktop != None:
+			self.currentWindow = wnd = eWindow(self.desktop)
+			wnd.setTitle("Screen from python!")
+			wnd.move(ePoint(300, 100))
+			wnd.resize(eSize(300, 300))
+
+			gui = GUIOutputDevice()
+			gui.parent = wnd
+			gui.create(components["$002"])
+
+		 	applyGUIskin(components["$002"], None, "clockDialog")
+
+			wnd.show()
+		else:
+			self.currentWindow = None
+
+	def close(self):
+		self.delayTimer.start(0, 1)
+
+def runScreenTest():
+	session = Session()
+	session.desktop = getDesktop()
+	
+#	components["$002"] = screens["clockDisplay"](components["clock"])
+
+	session.open("$002", screens["clockDisplay"](components["clock"]))
+
+	
+	def blub():
+#		x = components["$002"]
+		components["$002"].data["okbutton"]["instance"].push()
+#		dump(components)
+#		print "session, close screen " + str(sys.getrefcount(x))
+#		session.close()
+		
+	tmr = eTimer()
+	tmr.timeout.get().append(blub)
+	tmr.start(4000, 1)
+	
 	runMainloop()
 	
 	return 0

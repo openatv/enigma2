@@ -105,6 +105,7 @@ int main(int argc, char **argv)
 	eWidgetDesktop dsk(eSize(720, 576));
 	
 	wdsk = &dsk;
+	dsk.setBackgroundColor(gColor(0));
 	dsk.setDC(my_dc);
 #endif
 
