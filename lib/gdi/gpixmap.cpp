@@ -246,7 +246,7 @@ gColor gPalette::findColor(const gRGB &rgb) const
 	return best_choice;
 }
 
-gPixmap::gPixmap()
+gPixmap::gPixmap(): ref(0)
 {
 }
 

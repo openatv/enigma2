@@ -493,9 +493,6 @@ eSkin::~eSkin()
 
 	for (std::map<eString, ePtr<gPixmap> >::iterator it(images.begin()); it != images.end(); it++)
 		delete it->second;	
-
-	if (paldummy)
-		delete paldummy;
 }
 
 int eSkin::load(const char *filename)
