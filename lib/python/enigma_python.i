@@ -52,6 +52,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/eslider.h>
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
+#include <lib/gui/elistboxcontent.h>
 
 extern void runMainloop();
 
@@ -81,6 +82,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gui/eslider.h>
 %include <lib/gui/ewidgetdesktop.h>
 %include <lib/gui/elistbox.h>
+%include <lib/gui/elistboxcontent.h>
 
 template<class R> class PSignal0
 {
