@@ -126,6 +126,6 @@ RESULT eDVBSectionReader::stop()
 
 RESULT eDVBSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eConnection> &conn)
 {
-	conn = new eConnection(read.connect(r));
+	conn = new eConnection(this, read.connect(r));
 	return 0;
 }
