@@ -10,7 +10,8 @@ void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
 	invalidate();
-	m_content->cursorHome();
+	if (m_content)
+		m_content->cursorHome();
 	m_top = 0;
 	m_selected = 0;
 }

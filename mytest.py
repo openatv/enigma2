@@ -70,7 +70,7 @@ class Session:
 		self.currentDialog = None
 	
 	def processDelay(self):
-		self.currentDialog.close()
+		self.currentDialog.doClose()
 		if self.currentWindow != None:
 			self.currentWindow.hide()
 		
