@@ -8,15 +8,34 @@ def doGlobal(screen):
 class Screen(dict, HTMLSkin, GUISkin):
 	""" bla """
 	
-	def close(self):
+	# never call this directly - it will be called from the session!
+	def doClose(self):
 		GUISkin.close(self)
+	
+	def close(self, retval=None):
+		self.session.close()
 	
 # a test dialog
 class testDialog(Screen):
 	def testDialogClick(self):
-		self["title"].setText(self["menu"].getCurrent())
-
-		self.tries += 1
+		selection = self["menu"].getCurrent()
+		selection[1]()
+	
+	def goMain(self):
+#		self.close(0)
+		self["title"].setText("you selected the main menu!");
+		
+	def goEmu(self):
+#		self.close(1)
+		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!");
+	
+	def goTimeshift(self):
+#		self.close(2)
+		self["title"].setText("JUST PRESS THE YELLOW BUTTON!");
+	
+	def goHDTV(self):
+#		self.close(3)
+		self["title"].setText("HDTV GREEN FLASHES: ENABLED");
 
 	def __init__(self):
 		GUISkin.__init__(self)
@@ -24,10 +43,23 @@ class testDialog(Screen):
 		b.onClick = [ self.testDialogClick ]
 		self["okbutton"] = b
 		self["title"] = Header("Test Dialog - press ok to leave!")
-		self["menu"] = MenuList()
-		
-		self.tries = 0
+		self["menu"] = MenuList(
+			[
+				("MAIN MENU", self.goMain), 
+				("EMU SETUP", self.goEmu),
+				("TIMESHIFT SETUP", self.goTimeshift),
+				("HDTV PIP CONFIG", self.goHDTV)
+			])
 
+
+class MainMenu(Screen):
+	def __init__(self):
+		GUISkin.__init__(self)
+		
+		self["ok"] = Button("ok")
+		self["ok"].onClick = [ self.close ]
+
+	
 # a clock display dialog
 class clockDisplay(Screen):
 	def okbutton(self):

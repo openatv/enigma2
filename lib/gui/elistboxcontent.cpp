@@ -337,6 +337,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		PyObject *item = PyList_GetItem(m_list, m_cursor); // borrowed reference!
 		painter.setFont(fnt);
+
+			/* the user can supply tuples, in this case the first one will be displayed. */		
+		if (PyTuple_Check(item))
+			item = PyTuple_GetItem(item, 0);
 		
 		const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
 		
