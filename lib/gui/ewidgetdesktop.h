@@ -13,7 +13,9 @@ class eWidgetDesktop: public Object
 public: // weil debug
 	eSize m_screen_size;
 	gRegion m_dirty_region;
+	gRegion m_background_region;
 	ePtr<gDC> m_dc;
+	gColor m_background_color;
 public:
 	eWidgetDesktop(eSize screen);
 	~eWidgetDesktop();
@@ -24,6 +26,8 @@ public:
 	void invalidate(const gRegion &region);
 	void paint();
 	void setDC(gDC *dc);
+	
+	void setBackgroundColor(gColor col);
 	
 	void setRedrawTask(eMainloop &ml);
 private:

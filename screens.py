@@ -1,4 +1,5 @@
 from components import *
+import sys
 
 # some screens
 def doGlobal(screen):
@@ -6,6 +7,9 @@ def doGlobal(screen):
 
 class Screen(dict, HTMLSkin, GUISkin):
 	""" bla """
+	
+	def close(self):
+		GUISkin.close(self)
 	
 # a test dialog
 class testDialog(Screen):
@@ -24,9 +28,11 @@ class testDialog(Screen):
 class clockDisplay(Screen):
 	def okbutton(self):
 		print "clockDisplay close"
+		
+		self.session.close()
 	
 	def __init__(self, clock):
-		HTMLSkin.__init__(self, ("title", "theClock", "okbutton"))
+		GUISkin.__init__(self)
 		self["theClock"] = clock
 		b = Button("bye")
 		b.onClick = [ self.okbutton ]

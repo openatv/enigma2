@@ -10,7 +10,7 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 	
 	if (m_parent)
 		m_vis = wVisShow;
-	
+		
 	if (m_parent)
 	{
 		m_parent->m_childs.push_back(this);
@@ -109,7 +109,17 @@ void eWidget::show()
 
 void eWidget::hide()
 {
+		/* TODO: when hiding an upper level widget, widgets get hidden but keep the */
+		/* wVisShow flag (because when the widget is shown again, the widgets must */
+		/* become visible again. */
+	if (!(m_vis & wVisShow))
+		return;
 	m_vis &= ~wVisShow;
+	
+		/* this is a workaround to the above problem. when we are in the delete phase, 
+		   don't hide childs. */
+	if (!(m_parent || m_desktop))
+		return;
 
 		/* TODO: optimize here to only recalc what's required. possibly merge with show. */
 	eWidget *root = this;
@@ -137,8 +147,12 @@ void eWidget::destruct()
 
 eWidget::~eWidget()
 {
+	hide();
+	
 	if (m_parent)
 		m_parent->m_childs.remove(this);
+
+	m_parent = 0;
 
 		/* destroy all childs */
 	ePtrList<eWidget>::iterator i(m_childs.begin());
