@@ -147,7 +147,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 
 		eRect srcarea=area;
 		srcarea.moveBy(-pos.x(), -pos.y());
-
+		
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;

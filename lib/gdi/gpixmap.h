@@ -128,4 +128,6 @@ public:
 	virtual ~gPixmap();
 };
 
+TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
+
 #endif

@@ -44,8 +44,11 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/service.h>
 #include <lib/service/event.h>
 
+#include <lib/gdi/gpixmap.h>
+
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
+#include <lib/gui/epixmap.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -59,6 +62,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/nav/pcore.h>
 #include <lib/actions/action.h>
 #include <lib/gdi/gfont.h>
+#include <lib/gdi/epng.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -90,12 +94,16 @@ extern PSignal1<void,int> &keyPressedSignal();
 %immutable eComponentScan::statusChanged;
 %immutable pNavigation::m_event;
 
+
+%include <lib/gdi/gpixmap.h>
+
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
 %include <lib/gdi/region.h>
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
+%include <lib/gui/epixmap.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>
 %include <lib/gui/eslider.h>
@@ -108,6 +116,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/nav/pcore.h>
 %include <lib/actions/action.h>
 %include <lib/gdi/gfont.h>
+%include <lib/gdi/epng.h>
 
 /**************  eptr  **************/
 

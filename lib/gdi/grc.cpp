@@ -188,7 +188,7 @@ void gPainter::clear()
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
 	gOpcode o;
-
+	
 	o.opcode=gOpcode::blit;
 	o.dc = m_dc.grabRef();
 	pixmap->AddRef();
@@ -398,11 +398,16 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::blit:
 	{
 		gRegion clip;
-		if (!o->parm.blit->clip.valid())
+				// this code should be checked again but i'm too tired now
+		
+		o->parm.blit->position += m_current_offset;
+		
+		if (o->parm.blit->clip.valid())
 		{
 			clip.intersect(gRegion(o->parm.blit->clip), clip);
 		} else
 			clip = m_current_clip;
+		
 		m_pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, clip, o->parm.blit->flags);
 		o->parm.blit->pixmap->Release();
 		delete o->parm.blit;

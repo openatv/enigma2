@@ -31,6 +31,7 @@ dom = xml.dom.minidom.parseString(
 			<widget name="Event_Now_Duration" position="440,40" size="80,30" valign="top" halign="left" />
 			<widget name="Event_Next_Duration" position="440,90" size="80,30" valign="top" halign="left" />
 			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial:20" />
+<!--			<ePixmap position="70,0" size="300,30" pixmap="info-bg.png" /> -->
 		</screen>
 		<screen name="channelSelection" position="100,80" size="500,240" title="Channel Selection">
 			<widget name="list" position="20,50" size="300,150" />
@@ -88,6 +89,11 @@ def applyAttributes(guiObject, node):
 				guiObject.setText(value)
 			elif attrib == 'font':
 				guiObject.setFont(parseFont(value))
+			elif attrib == "pixmap":
+				ptr = gPixmapPtr()
+				if loadPNG(ptr, value):
+					raise "loading PNG failed!"
+				guiObject.setPixmap(ptr.__deref__())
 			elif attrib == "valign":
 				try:
 					guiObject.setVAlign(
@@ -147,8 +153,10 @@ def applyGUIskin(screen, skin, name):
 	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
 		if widget.tagName == "eLabel":
 			guiObject = eLabel(screen.instance)
+		elif widget.tagName == "ePixmap":
+			guiObject = ePixmap(screen.instance)
 		else:
-			raise "unsupported stuff : %s" % widget.tagName
+			raise str("unsupported stuff : %s" % widget.tagName)
 		
 		applyAttributes(guiObject, widget)
 		guiObject.thisown = 0
