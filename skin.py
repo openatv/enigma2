@@ -14,14 +14,18 @@ dom = xml.dom.minidom.parseString(
 	"""
 	<skin>
 		<screen name="testDialog">
-			<widget name="okbutton" position="10,120" size="280,40" />
+			<widget name="okbutton" position="10,190" size="280,50" />
 			<widget name="title" position="10,10" size="280,20" />
-			<widget name="menu" position="10,30" size="280,90" />
+			<widget name="menu" position="10,30" size="280,140" />
 		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
 			<widget name="title" position="10,120" size="280,50" />
 			<widget name="theClock" position="10,60" size="280,50" />
+		</screen>
+		<screen name="mainMenu" position="300,100" size="300,300">
+			<widget name="title" position="10,10" size="280,80" />
+			<widget name="okbutton" position="10,190" size="280,50" />
 		</screen>
 	</skin>
 """)
@@ -61,17 +65,19 @@ def applyGUIskin(screen, skin, name):
 		if x.getAttribute('name') == name:
 			myscreen = x
 	
-	assert myscreen != None, "no skin for screen " + name + " found!"
-	
-	print "ok, found screen.."
+	assert myscreen != None, "no skin for screen '" + name + "' found!"
 	
 	# now walk all widgets
 	for widget in myscreen.getElementsByTagName("widget"):
-		name = widget.getAttribute('name')
-		if name == None:
+		wname = widget.getAttribute('name')
+		if wname == None:
 			print "widget has no name!"
 			continue
 		
 		# get corresponding gui object
-		guiObject = screen.data[name]["instance"]
+		try:
+			guiObject = screen.data[wname]["instance"]
+		except:
+			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+		
 		applyAttributes(guiObject, widget)

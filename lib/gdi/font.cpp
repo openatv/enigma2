@@ -60,12 +60,12 @@ static gLookup &getColor(const gPalette &pal, const gRGB &start, const gRGB &end
 	if (i != colorcache.end())
 		return i->second;
 	gLookup &n=colorcache.insert(std::pair<fntColorCacheKey,gLookup>(key,gLookup())).first->second;
-	eDebug("[FONT] creating new font color cache entry %02x%02x%02x%02x .. %02x%02x%02x%02x", start.a, start.r, start.g, start.b,
-		end.a, end.r, end.g, end.b);
+//	eDebug("[FONT] creating new font color cache entry %02x%02x%02x%02x .. %02x%02x%02x%02x", start.a, start.r, start.g, start.b,
+//		end.a, end.r, end.g, end.b);
 	n.build(16, pal, start, end);
-	for (int i=0; i<16; i++)
-		eDebugNoNewLine("%02x|%02x%02x%02x%02x ", (int)n.lookup[i], pal.data[n.lookup[i]].a, pal.data[n.lookup[i]].r, pal.data[n.lookup[i]].g, pal.data[n.lookup[i]].b);
-	eDebug("");
+//	for (int i=0; i<16; i++)
+//		eDebugNoNewLine("%02x|%02x%02x%02x%02x ", (int)n.lookup[i], pal.data[n.lookup[i]].a, pal.data[n.lookup[i]].r, pal.data[n.lookup[i]].g, pal.data[n.lookup[i]].b);
+//	eDebug("");
 	return n;
 }
 

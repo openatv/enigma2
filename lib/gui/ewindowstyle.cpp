@@ -24,7 +24,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 
 void eWindowStyleSimple::handleNewSize(eWindow *wnd, const eSize &size)
 {
-	eDebug("handle new size: %d x %d", size.width(), size.height());
+//	eDebug("handle new size: %d x %d", size.width(), size.height());
 	
 	eWidget *child = wnd->child();
 	
