@@ -1,6 +1,7 @@
 #ifndef __dvb_frontend_h
 #define __dvb_frontend_h
 
+#include <config.h>
 #include <lib/dvb/idvb.h>
 
 class eDVBFrontendParameters: public iDVBFrontendParameters
@@ -35,6 +36,9 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	DECLARE_REF;
 	int m_type;
 	int m_fd;
+#if HAVE_DVB_API_VERSION < 3
+	int m_secfd;
+#endif
 	int m_state;
 	Signal1<void,iDVBFrontend*> m_stateChanged;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;

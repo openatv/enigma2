@@ -1,8 +1,25 @@
+#include <config.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
+#if HAVE_DVB_API_VERSION < 3 
+#define audioStatus audio_status
+#define videoStatus video_status
+#define pesType pes_type
+#define playState play_state
+#define audioStreamSource_t audio_stream_source_t
+#define videoStreamSource_t video_stream_source_t
+#define streamSource stream_source
+#define dmxPesFilterParams dmx_pes_filter_params
+#define DMX_PES_VIDEO DMX_PES_VIDEO0
+#define DMX_PES_AUDIO DMX_PES_AUDIO0
+#include <ost/dmx.h>
+#include <ost/video.h>
+#include <ost/audio.h>
+#else
 #include <linux/dvb/audio.h>
 #include <linux/dvb/video.h>
 #include <linux/dvb/dmx.h>
+#endif
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -14,11 +31,19 @@ DEFINE_REF(eDVBAudio);
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux)
 {
 	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/audio%d", demux->adapter, dev);	
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux->adapter, dev);
+#endif
 	m_fd = ::open(filename, O_RDWR);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
+#endif	
 	m_fd_demux = ::open(filename, O_RDWR);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
@@ -30,11 +55,10 @@ int eDVBAudio::startPid(int pid)
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
-	
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_AUDIO0;
+	pes.pes_type = DMX_PES_AUDIO;  // DMX_PES_AUDIO0
 	pes.flags    = 0;
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
@@ -73,11 +97,19 @@ DEFINE_REF(eDVBVideo);
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 {
 	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/video%d", demux->adapter, dev);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux->adapter, dev);
+#endif
 	m_fd = ::open(filename, O_RDWR);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
+#endif
 	m_fd_demux = ::open(filename, O_RDWR);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
@@ -92,7 +124,8 @@ int eDVBVideo::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_VIDEO0;
+	pes.pes_type = DMX_PES_VIDEO;
+	pes.pes_type = 
 	pes.flags    = 0;
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{

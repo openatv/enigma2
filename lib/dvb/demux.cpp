@@ -1,10 +1,16 @@
+#include <config.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <errno.h>
 #include <unistd.h>
 
+#if HAVE_DVB_API_VERSION < 3
+#include <ost/dmx.h>
+#else
 #include <linux/dvb/dmx.h>
+#endif
+
 #include "crc32.h"
 
 #include <lib/base/eerror.h>
@@ -61,7 +67,11 @@ void eDVBSectionReader::data(int)
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
 	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
+#endif
 	fd = ::open(filename, O_RDWR);
 	
 	if (fd >= 0)
@@ -92,11 +102,18 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	if (fd < 0)
 		return -ENODEV;
 
+#if HAVE_DVB_API_VERSION < 3
+	dmxSctFilterParams sct;
+#else
 	dmx_sct_filter_params sct;
-	
+#endif
 	sct.pid     = mask.pid;
 	sct.timeout = 0;
+#if HAVE_DVB_API_VERSION < 3
+	sct.flags   = 0;
+#else
 	sct.flags   = DMX_IMMEDIATE_START;
+#endif
 	if (mask.flags & eDVBSectionFilterMask::rfCRC)
 	{
 		sct.flags |= DMX_CHECK_CRC;
@@ -106,11 +123,25 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
+#if HAVE_DVB_API_VERSION >= 3
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
+#endif
 	
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
 	if (!res)
+	{
+#if HAVE_DVB_API_VERSION < 3
+		res = ::ioctl(fd, DMX_SET_NEGFILTER_MASK, mask.mode);
+		if (!res)
+		{
+			res = ::ioctl(fd, DMX_START, 0);
+			if (!res)
+				active = 1;
+		}
+#else
 		active = 1;
+#endif
+	}
 	return res;
 }
 
