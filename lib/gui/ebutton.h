@@ -2,12 +2,13 @@
 #define __lib_gui_ebutton_h
 
 #include <lib/gui/elabel.h>
+#include <lib/python/connections.h>
 
 class eButton: public eLabel
 {
 public:
 	eButton(eWidget *parent);
-//	Signal0<void> selected;
+	PSignal0<void> selected;
 
 	void push();
 protected:

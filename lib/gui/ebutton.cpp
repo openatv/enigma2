@@ -6,7 +6,7 @@ eButton::eButton(eWidget *parent): eLabel(parent)
 
 void eButton::push()
 {
-//	selected();
+	selected();
 }
 
 int eButton::event(int event, void *data, void *data2)
