@@ -2,6 +2,9 @@
 
 eButton::eButton(eWidget *parent): eLabel(parent)
 {
+		/* default to center alignment */
+	m_valign = alignCenter;
+	m_halign = alignCenter;
 }
 
 void eButton::push()

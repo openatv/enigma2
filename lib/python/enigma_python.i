@@ -58,6 +58,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/components/scan.h>
 #include <lib/nav/pcore.h>
 #include <lib/actions/action.h>
+#include <lib/gdi/gfont.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -106,6 +107,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/components/scan.h>
 %include <lib/nav/pcore.h>
 %include <lib/actions/action.h>
+%include <lib/gdi/gfont.h>
 
 /**************  eptr  **************/
 

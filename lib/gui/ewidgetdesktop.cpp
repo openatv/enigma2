@@ -82,6 +82,8 @@ void eWidgetDesktop::paint()
 	painter.setBackgroundColor(m_background_color);
 	painter.clear();
 	
+	painter.flush();
+	
 	m_dirty_region = gRegion();
 }
 
