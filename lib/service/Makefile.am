@@ -4,5 +4,6 @@ INCLUDES = \
 noinst_LIBRARIES = libenigma_service.a
 
 libenigma_service_a_SOURCES = \
-	listboxservice.cpp service.cpp servicemp3.cpp servicedvb.cpp servicefs.cpp
+	listboxservice.cpp service.cpp servicemp3.cpp servicedvb.cpp servicefs.cpp \
+	event.cpp
 	

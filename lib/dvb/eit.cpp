@@ -1,0 +1,50 @@
+#include <lib/dvb/eit.h>
+#include <lib/dvb/specs.h>
+#include <lib/base/eerror.h>
+#include <lib/service/event.h>
+
+void eDVBServiceEITHandler::EITready(int error)
+{
+	if (!error)
+	{
+		ePtr<eTable<EventInformationTable> > ptr;
+		if (!m_EIT.getCurrent(ptr))
+		{
+			int a = 0;
+			for (EventInformationTableConstIterator i = ptr->getSections().begin();
+				i != ptr->getSections().end(); ++i)
+			{
+				for (EventConstIterator ev = (*i)->getEvents()->begin(); ev != (*i)->getEvents()->end(); ++ev)
+				{
+					ePtr<eServiceEvent> evt = new eServiceEvent();
+					evt->parseFrom(*ev);
+					if (!a)
+						m_event_now = evt;
+					else
+						m_event_next = evt;
+					++a;
+				}
+			}
+		}
+	}
+
+	m_eit_changed();
+}
+
+eDVBServiceEITHandler::eDVBServiceEITHandler()
+{
+	CONNECT(m_EIT.tableReady, eDVBServiceEITHandler::EITready);
+}
+
+void eDVBServiceEITHandler::start(iDVBDemux *demux, int sid)
+{
+	m_EIT.begin(eApp, eDVBEITSpec(sid), demux);
+}
+
+RESULT eDVBServiceEITHandler::getEvent(ePtr<eServiceEvent> &event, int nownext)
+{
+	event = nownext ? m_event_next : m_event_now;
+	if (!event)
+		return -1;
+	return 0;
+}

@@ -8,6 +8,7 @@
 #include <lib/dvb_si/nit.h>
 #include <lib/dvb_si/bat.h>
 #include <lib/dvb_si/pat.h>
+#include <lib/dvb_si/eit.h>
 
 struct eDVBPMTSpec
 {
@@ -98,6 +99,27 @@ public:
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
+	}
+	operator eDVBTableSpec &()
+	{
+		return m_spec;
+	}
+};
+
+class eDVBEITSpec
+{
+	eDVBTableSpec m_spec;
+public:
+		/* this is for now&next on actual transponder. */
+	eDVBEITSpec(int sid)
+	{
+		m_spec.pid     = EventInformationTable::PID;
+		m_spec.tid     = EventInformationTable::TID;
+		m_spec.tidext  = sid;
+		m_spec.timeout = EventInformationTable::TIMEOUT;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
+			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
 	}
 	operator eDVBTableSpec &()
 	{

@@ -4,5 +4,5 @@ INCLUDES = \
 noinst_LIBRARIES = libenigma_dvb.a
 
 libenigma_dvb_a_SOURCES = dvb.cpp demux.cpp frontend.cpp esection.cpp db.cpp \
-		sec.cpp scan.cpp crc32.cpp pmt.cpp decoder.cpp
+		sec.cpp scan.cpp crc32.cpp pmt.cpp decoder.cpp eit.cpp
 		

@@ -120,4 +120,13 @@ RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInfor
 	return -1;
 }
 
+#include <lib/service/event.h>
+
+RESULT iServiceInformation::getEvent(ePtr<eServiceEvent> &evt, int m_nownext)
+{	
+	evt = 0;
+	return -1;
+}
+
+
 eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");

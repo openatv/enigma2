@@ -5,6 +5,7 @@
 #include <lib/dvb/idvb.h>
 
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/eit.h>
 
 class eServiceFactoryDVB: public iServiceHandler
 {
@@ -42,9 +43,12 @@ private:
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
 	
-	eDVBServicePMTHandler m_serviceHandler;
+	eDVBServicePMTHandler m_service_handler;
+	eDVBServiceEITHandler m_event_handler;
 	
 	eDVBServicePlay(const eServiceReference &ref);
+	
+	void gotNewEvent();
 	
 	void serviceEvent(int event);
 public:
@@ -59,6 +63,7 @@ public:
 	
 		// iServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
+	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 };
 
 #endif
