@@ -82,6 +82,10 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		VariableText.__init__(self)
 		GUIComponent.__init__(self)
 		self.doClock()
+		
+		self.clockTimer = eTimer()
+		self.clockTimer.timeout.get().append(self.doClock)
+		self.clockTimer.start(1000)
 
 # "funktionalitaet"	
 	def doClock(self):

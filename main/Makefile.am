@@ -1,5 +1,6 @@
 INCLUDES = \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir)/include \
+	-I/usr/include/python2.3
 
 bin_PROGRAMS = enigma2
 

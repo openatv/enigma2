@@ -9,6 +9,7 @@
 #include <time.h>
 
 #include <lib/base/eptrlist.h>
+#include <lib/python/connections.h>
 #include <libsig_comp.h>
 
 class eApplication;
@@ -158,7 +159,7 @@ public:
 	eSocketNotifier(eMainloop *context, int fd, int req, bool startnow=true);
 	~eSocketNotifier();
 
-	Signal1<void, int> activated;
+	PSignal1<void, int> activated;
 	void activate(int what) { /*emit*/ activated(what); }
 
 	void start();
@@ -193,7 +194,7 @@ public:
 	eTimer(eMainloop *context): context(*context), bActive(false) { }
 	~eTimer()	{ if (bActive) stop(); }
 
-	Signal0<void> timeout;
+	PSignal0<void> timeout;
 	void activate();
 
 	bool isActive()	{ return bActive; }

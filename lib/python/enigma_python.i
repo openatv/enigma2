@@ -1,6 +1,43 @@
+/*
+  NOTE: you have two options when adding classes so that
+  they are callable *from* python.
+  
+   - either you %include the header file
+   - or you re-declare it
+   
+  In both cases, you must #include the required
+  header file (i.e. the header file itself), otherwise
+  enigma_python_wrap.cxx won't build.
+  
+	In case you import the whole header file,
+	please make sure that no unimportant stuff
+	is wrapped, as this makes the wrapper stuff
+	much more complex and it can probably break 
+	very easily because of missing typemaps etc.
+	
+	you could make use of dizzy macros to ensure
+	that some stuff is left out when parsed as SWIG
+	definitions, but be sure to not modify the binary 
+	representation. DON'T USE #ifdef SWIG_COMPILE
+	for leaving out stuff (unless you *really* know
+	what you are doing,of course!). you WILL break it.
+		
+	The better way (with more work) is to re-declare
+	the class. It won't be compiled, so you can
+	leave out stuff as you like.
+
+
+
+Oh, things like "operator= is private in this context" etc.
+is usually caused by not marking PSignals as immutable.
+
+*/
+
+
 %module enigma
 %{
 #define SWIG_COMPILE
+#include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
 #include <lib/base/econfig.h>
@@ -14,6 +51,8 @@
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/eslider.h>
 #include <lib/python/connections.h>
+
+extern void runMainloop();
 %}
 
 #define DEBUG
@@ -69,3 +108,22 @@ public:
 	$1 = $input->get();
 }
 
+
+/**************  base  **************/
+
+%immutable eTimer::timeout;
+
+class eTimer
+{
+public:
+	eTimer(eMainloop *context = eApp);
+	PSignal0<void> timeout;
+
+	void start(long msec, bool singleShot=false);
+	void stop();
+	void changeInterval(long msek);
+};
+
+/**************  debug  **************/
+
+void runMainloop();
