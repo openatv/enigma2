@@ -9,6 +9,7 @@ enigma2_SOURCES = \
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/base/libenigma_base.a \
+	$(top_builddir)/lib/components/libenigma_components.a \
 	$(top_builddir)/lib/driver/libenigma_driver.a \
 	$(top_builddir)/lib/dvb/libenigma_dvb.a \
 	$(top_builddir)/lib/dvb_si/libenigma_dvb_si.a \

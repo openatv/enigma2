@@ -1,5 +1,6 @@
 from components import *
 import sys
+from enigma import quitMainloop
 
 # some screens
 def doGlobal(screen):
@@ -26,6 +27,9 @@ class mainMenu(Screen):
 	def goHDTV(self):
 		self["title"].setText("HDTV GREEN FLASHES: ENABLED")
 	
+	def goScan(self):
+		self.session.open(serviceScan())
+	
 	def goClock(self):
 		self.session.open(clockDisplay(Clock()))
 
@@ -42,6 +46,9 @@ class mainMenu(Screen):
 		self["title"] = Header("Main Menu! - press ok to leave!")
 		self["menu"] = MenuList(
 			[
+				("Close Main Menu", self.close),
+				("Service Scan", self.goScan),
+				("Quit", quitMainloop),
 				("EMU SETUP", self.goEmu),
 				("TIMESHIFT SETUP", self.goTimeshift),
 				("HDTV PIP CONFIG", self.goHDTV),
@@ -95,3 +102,18 @@ class clockDisplay(Screen):
 		self["okbutton"] = b
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
 
+
+class serviceScan(Screen):
+	def ok(self):
+		if self["scan"].isDone():
+			self.close()
+	
+	def __init__(self):
+		GUISkin.__init__(self)
+		
+		self["scan_progress"] = ProgressBar()
+		self["scan_state"] = Label("scan state")
+		self["scan"] = ServiceScan(self["scan_progress"], self["scan_state"])
+
+		self["okbutton"] = Button("ok", [self.ok])
+		self["okbutton"].disable()

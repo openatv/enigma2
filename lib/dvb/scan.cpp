@@ -298,7 +298,7 @@ void eDVBScan::start(const std::list<ePtr<iDVBFrontendParameters> > &known_trans
 	nextChannel();
 }
 
-void eDVBScan::insertInto(eDVBDB *db)
+void eDVBScan::insertInto(iDVBChannelList *db)
 {
 	for (std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> >::const_iterator 
 			ch(m_new_channels.begin()); ch != m_new_channels.end(); ++ch)
@@ -376,4 +376,11 @@ RESULT eDVBScan::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &c
 {
 	connection = new eConnection(this, m_event.connect(event));
 	return 0;
+}
+
+void eDVBScan::getStats(int &transponders_done, int &transponders_total, int &services)
+{
+	transponders_done = m_ch_scanned.size() + m_ch_unavailable.size();
+	transponders_total = m_ch_toScan.size() + transponders_done;
+	services = m_new_services.size();
 }

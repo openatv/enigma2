@@ -59,14 +59,17 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/service/listboxservice.h>
+#include <lib/components/scan.h>
 
 extern void runMainloop();
+extern void quitMainloop();
 
 extern PSignal1<void,int> &keyPressedSignal();
 %}
 
 RefCount(eListboxPythonStringContent)
 RefCount(eListboxServiceContent)
+RefCount(eComponentScan)
 
 #define DEBUG
 %include "stl.i"
@@ -78,7 +81,10 @@ RefCount(eListboxServiceContent)
 %include <lib/service/service.h>
 %template(eServiceCenterPtr) ePtr<eServiceCenter>;
 
+
+// TODO: embed these...
 %immutable eButton::selected;
+%immutable eComponentScan::statusChanged;
 
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
@@ -93,6 +99,7 @@ RefCount(eListboxServiceContent)
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>
 %include <lib/service/listboxservice.h>
+%include <lib/components/scan.h>
 
 template<class R> class PSignal0
 {
@@ -143,5 +150,6 @@ public:
 /**************  debug  **************/
 
 void runMainloop();
+void quitMainloop();
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();

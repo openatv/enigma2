@@ -20,10 +20,10 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 	}
 	
 		/* set console mode */
-	struct termios t,ot;
+	struct termios t;
 	tcgetattr(handle, &t);
-	t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
 	ot = t;
+	t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
 	tcsetattr(handle, TCSANOW,&t);
 }
 

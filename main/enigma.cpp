@@ -76,69 +76,35 @@ void keyEvent(const eRCKey &key)
 }
 
 /************************************************/
+#include <unistd.h>
+#include <lib/components/scan.h>
+#include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
-#include <lib/dvb/isection.h>
-#include <lib/dvb/esection.h>
-#include <lib/dvb_si/pmt.h>
-#include <lib/dvb/scan.h>
-#include <unistd.h>
 
 class eMain: public eApplication, public Object
 {
 	eInit init;
 	
-	ePtr<eDVBScan> m_scan;
-
 	ePtr<eDVBResourceManager> m_mgr;
-	ePtr<iDVBChannel> m_channel;
 	ePtr<eDVBDB> m_dvbdb;
 
-	void scanEvent(int evt)
-	{
-		eDebug("scan event %d!", evt);
-		if (evt == eDVBScan::evtFinish)
-		{
-			m_scan->insertInto(m_dvbdb);
-			quit(0);
-		}
-	}
-	ePtr<eConnection> m_scan_event_connection;
+	ePtr<eComponentScan> m_scan;
+	
 public:
 	eMain()
 	{
 		init.setRunlevel(eAutoInitNumbers::main);
 
-#if 0
+				/* TODO: put into init */
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
+		
+		m_mgr->setChannelList(m_dvbdb);
+		
+//		m_scan = new eComponentScan();
+//		m_scan->start();
 
-		eDVBFrontendParametersSatellite fesat;
-		
-		fesat.frequency = 11817000; // 12070000;
-		fesat.symbol_rate = 27500000;
-		fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation::Vertical;
-		fesat.fec = eDVBFrontendParametersSatellite::FEC::f3_4;
-		fesat.inversion = eDVBFrontendParametersSatellite::Inversion::Off;
-		fesat.orbital_position = 192;
-
-		eDVBFrontendParameters *fe = new eDVBFrontendParameters();
-		
-		fe->setDVBS(fesat);
-
-		if (m_mgr->allocateRawChannel(m_channel))
-			eDebug("shit it failed!");
-
-		eDebug("starting scan...");
-		
-		std::list<ePtr<iDVBFrontendParameters> > list;
-		
-		list.push_back(fe);
-		
-		m_scan = new eDVBScan(m_channel);
-		m_scan->start(list);
-		m_scan->connectEvent(slot(*this, &eMain::scanEvent), m_scan_event_connection);
-#endif
 	}
 	
 	~eMain()
@@ -212,4 +178,9 @@ eWidgetDesktop *getDesktop()
 void runMainloop()
 {
 	eApp->exec();
+}
+
+void quitMainloop()
+{
+	eApp->quit(0);
 }

@@ -39,6 +39,6 @@ lib/nav/Makefile
 lib/network/Makefile
 lib/python/Makefile
 lib/service/Makefile
+lib/components/Makefile
 main/Makefile
 ])
-
