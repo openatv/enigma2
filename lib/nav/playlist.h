@@ -5,11 +5,12 @@
 #include <lib/base/object.h>
 #include <lib/service/iservice.h>
 
-class ePlaylist: public virtual iObject, public std::list<eServiceReference>
+class ePlaylist: public iObject, public std::list<eServiceReference>
 {
 DECLARE_REF;
 public:
 	ePlaylist();
+	virtual ~ePlaylist();
 	std::list<eServiceReference>::iterator m_current;
 };
 
