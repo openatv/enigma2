@@ -66,6 +66,8 @@ public:
 		if (ptr)
 			ptr->Release();
 	}
+	
+	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
 	T* &ptrref() { assert(!ptr); return ptr; }
 	ePtrHelper<T> operator->() { assert(ptr); return ePtrHelper<T>(ptr); }
 

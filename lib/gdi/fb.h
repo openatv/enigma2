@@ -13,7 +13,6 @@ class fbClass
 	fb_cmap cmap;
 	__u16 red[256], green[256], blue[256], trans[256];
 	static fbClass *instance;
-	
 	int locked;
 public:
 	unsigned char *lfb;
@@ -38,6 +37,7 @@ public:
 	
 	int lock();
 	void unlock();
+	int islocked() { return locked; }
 };
 
 #endif

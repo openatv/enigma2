@@ -3,7 +3,7 @@
 
 #include "grc.h"
 
-gImage *loadPNG(const char *filename);
+int loadPNG(ePtr<gPixmap> &pixmap, const char *filename);
 int savePNG(const char *filename, gPixmap *pixmap);
 
 #endif

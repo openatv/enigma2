@@ -88,6 +88,8 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 {
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
 	screeninfo.yres_virtual=screeninfo.yres=nyRes;
+	screeninfo.height=0;
+	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
 	screeninfo.bits_per_pixel=nbpp;
 	if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
@@ -131,7 +133,7 @@ int fbClass::PutCMAP()
 
 void fbClass::Box(int x, int y, int width, int height, int color, int backcolor)
 {
-	if (width<=2)
+	if (width<=2 || locked)
 		return;
 	int offset=y*stride+x/2;
 	int first=0xF0|((color&0xF0)>>4);
@@ -149,6 +151,8 @@ void fbClass::Box(int x, int y, int width, int height, int color, int backcolor)
 
 void fbClass::NBox(int x, int y, int width, int height, int color)
 {
+	if (locked)
+		return;
 	int offset=y*stride+x/2;
 	int halfwidth=width/2;
 	for (int ay=y; ay<(y+height); ay++)
@@ -160,6 +164,8 @@ void fbClass::NBox(int x, int y, int width, int height, int color)
 
 void fbClass::VLine(int x, int y, int sy, int color)
 {
+	if (locked)
+		return;
 	int offset=y*stride+x/2;
 	while (sy--)
 	{

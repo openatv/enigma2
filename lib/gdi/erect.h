@@ -9,6 +9,7 @@
 
 class eRect // rectangle class
 {
+	friend class gRegion;
 public:
 	eRect()	{ x1 = y1 = x2 = y2 = 0; }
 	eRect( const ePoint &topleft, const ePoint &bottomright );

@@ -7,6 +7,7 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
+#include <lib/gdi/lcd.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
@@ -22,7 +23,7 @@ void *gRC::thread_wrapper(void *ptr)
 
 gRC *gRC::instance=0;
 
-gRC::gRC(): queuelock(MAXSIZE), queue(2048)
+gRC::gRC(): queue(2048), queuelock(MAXSIZE)
 {
 	ASSERT(!instance);
 	instance=this;
@@ -34,11 +35,18 @@ gRC::gRC(): queuelock(MAXSIZE), queue(2048)
 
 gRC::~gRC()
 {
+	fbClass::getInstance()->lock();
+#ifndef DISABLE_LCD
+	eDBoxLCD::getInstance()->lock();
+#endif
+	instance=0;
+
 	gOpcode o;
-	o.dc=0;
 	o.opcode=gOpcode::shutdown;
 	submit(o);
-	instance=0;
+	eDebug("waiting for gRC thread shutdown");
+	pthread_join(the_thread, 0);
+	eDebug("gRC thread has finished");
 }
 
 void *gRC::thread()
@@ -54,6 +62,7 @@ void *gRC::thread()
 		if (o.opcode==gOpcode::shutdown)
 			break;
 		o.dc->exec(&o);
+		o.dc->Release();
 		queue.dequeue();
 	}
 #ifndef SYNC_PAINT
@@ -62,17 +71,15 @@ void *gRC::thread()
 	return 0;
 }
 
-gRC &gRC::getInstance()
+gRC *gRC::getInstance()
 {
-	return *instance;
+	return instance;
 }
 
 static int gPainter_instances;
 
-gPainter::gPainter(gDC &dc, eRect rect): dc(dc), rc(gRC::getInstance()), foregroundColor(0), backgroundColor(0)
+gPainter::gPainter(gDC *dc, eRect rect): m_dc(dc), m_rc(gRC::getInstance())
 {
-	if (rect.isNull())
-		rect=eRect(ePoint(0, 0), dc.getSize());
 //	ASSERT(!gPainter_instances);
 	gPainter_instances++;
 	begin(rect);
@@ -84,265 +91,299 @@ gPainter::~gPainter()
 	gPainter_instances--;
 }
 
-void gPainter::begin(const eRect &rect)
-{
-	gOpcode o;
-	dc.lock();
-	o.dc=&dc;
-	o.opcode=gOpcode::begin;
-	o.parm.begin=new gOpcode::para::pbegin(rect);
-//	cliparea=std::stack<eRect, std::list<eRect> >();
-	cliparea=std::stack<eRect>();
-	cliparea.push(rect);
-	setLogicalZero(cliparea.top().topLeft());
-	rc.submit(o);
-}
-
 void gPainter::setBackgroundColor(const gColor &color)
 {
-	backgroundColor=color;
+	gOpcode o;
+	o.opcode = gOpcode::setBackgroundColor;
+	o.dc = m_dc.grabRef();
+	o.parm.setColor = new gOpcode::para::psetColor;
+	o.parm.setColor->color = color;
+	
+	m_rc->submit(o);
 }
 
 void gPainter::setForegroundColor(const gColor &color)
 {
-	foregroundColor=color;
+	gOpcode o;
+	o.opcode = gOpcode::setForegroundColor;
+	o.dc = m_dc.grabRef();
+	o.parm.setColor = new gOpcode::para::psetColor;
+	o.parm.setColor->color = color;
+	
+	m_rc->submit(o);
 }
 
-void gPainter::setFont(const gFont &mfont)
+void gPainter::setFont(gFont *font)
 {
-	font=mfont;
+	gOpcode o;
+	o.opcode = gOpcode::setFont;
+	o.dc = m_dc.grabRef();
+	font->AddRef();
+	o.parm.setFont = new gOpcode::para::psetFont;
+	o.parm.setFont->font = font;
+	
+	m_rc->submit(o);
 }
 
 void gPainter::renderText(const eRect &pos, const std::string &string, int flags)
 {
-	eRect area=pos;
-	area.moveBy(logicalZero.x(), logicalZero.y());
-
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::renderText;
-	o.parm.renderText=new gOpcode::para::prenderText(font, area, string, dc.getRGB(foregroundColor), dc.getRGB(backgroundColor));
-	o.flags=flags;
-	rc.submit(o);
+	o.dc = m_dc.grabRef();
+	o.parm.renderText = new gOpcode::para::prenderText;
+	o.parm.renderText->area = pos;
+	o.parm.renderText->text = string;
+	o.parm.renderText->flags = flags;
+	m_rc->submit(o);
 }
 
-void gPainter::renderPara(eTextPara &para, ePoint offset)
+void gPainter::renderPara(eTextPara *para, ePoint offset)
 {
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::renderPara;
-	o.parm.renderPara=new gOpcode::para::prenderPara(logicalZero+offset, para.grab(), dc.getRGB(foregroundColor), dc.getRGB(backgroundColor));
-	rc.submit(o);
+	o.dc = m_dc.grabRef();
+	o.parm.renderPara = new gOpcode::para::prenderPara;
+	o.parm.renderPara->offset = offset;
+
+ 	para->AddRef();
+	o.parm.renderPara->textpara = para;
+	m_rc->submit(o);
 }
 
 void gPainter::fill(const eRect &area)
 {
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::fill;
-	eRect a=area;
-	a.moveBy(logicalZero.x(), logicalZero.y());
-	a&=cliparea.top();
-	
-	o.parm.fill=new gOpcode::para::pfill(a, foregroundColor);
-	rc.submit(o);
+
+	o.dc = m_dc.grabRef();
+	o.parm.fill = new gOpcode::para::pfillRect;
+	o.parm.fill->area = area;
+	m_rc->submit(o);
 }
 
 void gPainter::clear()
 {
 	gOpcode o;
-	o.dc=&dc;
-	o.opcode=gOpcode::fill;
-	o.parm.fill=new gOpcode::para::pfill(cliparea.top(), backgroundColor);
-	rc.submit(o);
+	o.opcode=gOpcode::clear;
+	o.dc = m_dc.grabRef();
+	o.parm.fill = new gOpcode::para::pfillRect;
+	o.parm.fill->area = eRect();
+	m_rc->submit(o);
 }
+
+void gPainter::blit(gPixmap *pixmap, ePoint pos, gRegion *clip, int flags)
+{
+	gOpcode o;
+
+	o.opcode=gOpcode::blit;
+	o.dc = m_dc.grabRef();
+	pixmap->AddRef();
+	o.parm.blit  = new gOpcode::para::pblit;
+	o.parm.blit->pixmap = pixmap;
+	o.parm.blit->position = pos;
+	clip->AddRef();
+	o.parm.blit->clip = clip;
+	o.flags=flags;
+	m_rc->submit(o);
+}
+
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::setPalette;
+	o.dc = m_dc.grabRef();
 	gPalette *p=new gPalette;
 	
 	p->data=new gRGB[len];
 	memcpy(p->data, colors, len*sizeof(gRGB));
 	p->start=start;
 	p->colors=len;
-	o.parm.setPalette=new gOpcode::para::psetPalette(p);
-	rc.submit(o);
+	o.parm.setPalette->palette = p;
+	m_rc->submit(o);
 }
 
 void gPainter::mergePalette(gPixmap *target)
 {
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::mergePalette;
-	o.parm.mergePalette=new gOpcode::para::pmergePalette(target);
-	rc.submit(o);
+	o.dc = m_dc.grabRef();
+	target->AddRef();
+	o.parm.mergePalette->target = target;
+	m_rc->submit(o);
 }
 
 void gPainter::line(ePoint start, ePoint end)
 {
 	gOpcode o;
-	o.dc=&dc;
 	o.opcode=gOpcode::line;
-	o.parm.line=new gOpcode::para::pline(start+logicalZero, end+logicalZero, foregroundColor);
-	rc.submit(o);
+	o.dc = m_dc.grabRef();
+	o.parm.line = new gOpcode::para::pline;
+	o.parm.line->start = start;
+	o.parm.line->end = end;
+	m_rc->submit(o);
 }
 
-void gPainter::setLogicalZero(ePoint rel)
+void gPainter::setLogicalZero(ePoint val)
 {
-	logicalZero=rel;
+	gOpcode o;
+	o.opcode=gOpcode::setOffset;
+	o.dc = m_dc.grabRef();
+	o.parm.setOffset = new gOpcode::para::psetOffset;
+	o.parm.setOffset->rel = 0;
+	o.parm.setOffset->value = val;
+	m_rc->submit(o);
 }
 
 void gPainter::moveLogicalZero(ePoint rel)
 {
-	logicalZero+=rel;
+	gOpcode o;
+	o.opcode=gOpcode::moveOffset;
+	o.dc = m_dc.grabRef();
+	o.parm.setOffset = new gOpcode::para::psetOffset;
+	o.parm.setOffset->rel = 1;
+	o.parm.setOffset->value = rel;
+	m_rc->submit(o);
 }
 
 void gPainter::resetLogicalZero()
 {
-	logicalZero.setX(0);
-	logicalZero.setY(0);
+	gOpcode o;
+	o.opcode=gOpcode::moveOffset;
+	o.dc = m_dc.grabRef();
+	o.parm.setOffset = new gOpcode::para::psetOffset;
+	o.parm.setOffset->value = ePoint(0, 0);
+	m_rc->submit(o);
 }
 
-void gPainter::clip(eRect clip)
+void gPainter::clip(const gRegion &region)
 {
 	gOpcode o;
-	o.dc=&dc;
-	o.opcode=gOpcode::clip;
-	clip.moveBy(logicalZero.x(), logicalZero.y());
-	cliparea.push(cliparea.top()&clip);
-	o.parm.clip=new gOpcode::para::pclip(cliparea.top());
-
-	rc.submit(o);
+	o.opcode = gOpcode::addClip;
+	o.dc = m_dc.grabRef();
+	o.parm.clip = new gOpcode::para::psetClip;
+	o.parm.clip->region = new gRegion(region);
+	o.parm.clip->region->AddRef();
+	m_rc->submit(o);
 }
 
 void gPainter::clippop()
 {
-	ASSERT (cliparea.size()>1);
 	gOpcode o;
-	o.dc=&dc;
-	o.opcode=gOpcode::clip;
-	cliparea.pop();
-	o.parm.clip=new gOpcode::para::pclip(cliparea.top());
-	rc.submit(o);
+	o.opcode = gOpcode::popClip;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
 }
 
 void gPainter::flush()
 {
-	gOpcode o;
-	o.dc=&dc;
-	o.opcode=gOpcode::flush;
-	rc.submit(o);
 }
 
 void gPainter::end()
 {
-	gOpcode o;
-	o.dc=&dc;
-	o.opcode=gOpcode::end;
-	rc.submit(o);
+}
+
+gDC::gDC()
+{
+}
+
+gDC::gDC(gPixmap *pixmap): m_pixmap(pixmap)
+{
 }
 
 gDC::~gDC()
 {
 }
 
-gPixmapDC::gPixmapDC(): pixmap(0)
+void gDC::exec(gOpcode *o)
 {
-}
-
-gPixmapDC::gPixmapDC(gPixmap *pixmap): pixmap(pixmap)
-{
-}
-
-gPixmapDC::~gPixmapDC()
-{
-	dclock.lock();
-}
-
-void gPixmapDC::exec(gOpcode *o)
-{
+#if 0
 	switch(o->opcode)
 	{
-	case gOpcode::begin:
-		clip=o->parm.begin->area;
-		delete o->parm.begin;
-		break;
 	case gOpcode::renderText:
 	{
-		eTextPara *para=new eTextPara(o->parm.renderText->area);
-		para->setFont(o->parm.renderText->font);
-		para->renderString(o->parm.renderText->text, o->flags);
-		para->blit(*this, ePoint(0, 0), o->parm.renderText->backgroundColor, o->parm.renderText->foregroundColor);
-		para->destroy();
-		delete o->parm.renderText;
+		ePtr<eTextPara> para = new eTextPara(o->parm.renderText.area);
+		para->setFont(m_current_font);
+		para->renderString(*o->parm.renderText.text, o->parm.renderText.flags);
+		para->blit(*this, ePoint(0, 0), m_foregroundColor, m_backgroundColor);
+		delete o->parm.renderText->text;
 		break;
 	}
 	case gOpcode::renderPara:
 	{
-		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset, o->parm.renderPara->backgroundColor, o->parm.renderPara->foregroundColor);
-		o->parm.renderPara->textpara->destroy();
-		delete o->parm.renderPara;
+		o->parm.renderPara.textpara->blit(*this, o->parm.renderPara.offset, m_foregroundColor, m_backgroundColor);
+		o->parm.renderPara.textpara.Release();
 		break;
 	}
 	case gOpcode::fill:
-		pixmap->fill(o->parm.fill->area, o->parm.fill->color);
+		m_pixmap->fill(o->parm.fill.area, m_foregroundColor);
 		delete o->parm.fill;
 		break;
 	case gOpcode::blit:
 	{
-		if (o->parm.blit->clip.isNull())
-			o->parm.blit->clip=clip;
-		else
-			o->parm.blit->clip&=clip;
-		pixmap->blit(*o->parm.blit->pixmap, o->parm.blit->position, o->parm.blit->clip, o->flags);
-		delete o->parm.blit;
+		gRegion clip;
+		if (o->parm.blit.clip)
+		{
+			clip.intersect(o->parm.blit.clip, clip);
+			o->parm.blit.clip->Release();
+		} else
+			clip = m_current_clip;
+		pixmap->blit(*o->parm.blit.pixmap, o->parm.blit.pos, clip, o->parm.blit.flags);
+		o->parm.blit.pixmap->Release();
 		break;
 	}
 	case gOpcode::setPalette:
-		if (o->parm.setPalette->palette->start>pixmap->clut.colors)
-			o->parm.setPalette->palette->start=pixmap->clut.colors;
-		if (o->parm.setPalette->palette->colors>(pixmap->clut.colors-o->parm.setPalette->palette->start))
-			o->parm.setPalette->palette->colors=pixmap->clut.colors-o->parm.setPalette->palette->start;
+#if 0
+		if (o->parm.setPalette->palette->start>pixmap->surface->clut.colors)
+			o->parm.setPalette->palette->start=pixmap->surface->clut.colors;
+		if (o->parm.setPalette->palette->colors>(pixmap->surface->clut.colors-o->parm.setPalette->palette->start))
+			o->parm.setPalette->palette->colors=pixmap->surface->clut.colors-o->parm.setPalette->palette->start;
 		if (o->parm.setPalette->palette->colors)
-			memcpy(pixmap->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
+			memcpy(pixmap->surface->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
 		delete[] o->parm.setPalette->palette->data;
 		delete o->parm.setPalette->palette;
 		delete o->parm.setPalette;
+#endif
 		break;
 	case gOpcode::mergePalette:
+#if 0
 		pixmap->mergePalette(*o->parm.blit->pixmap);
+		o->parm.blit->pixmap->unlock();
 		delete o->parm.blit;
+#endif
 		break;
 	case gOpcode::line:
+#if 0
 		pixmap->line(o->parm.line->start, o->parm.line->end, o->parm.line->color);
 		delete o->parm.line;
+#endif
+		break;
+	case gOpcode::setBackgroundColor:
+		m_backgroundColor = o->parm.setColor.color;
+		break;
+	case gOpcode::setForegroundColor:
+		m_foregroundColor = o->parm.setColor.color;
 		break;
 	case gOpcode::clip:
-		clip=o->parm.clip->clip;
-		delete o->parm.clip;
-		break;
-	case gOpcode::end:
-		unlock();
-	case gOpcode::flush:
 		break;
 	default:
 		eFatal("illegal opcode %d. expect memory leak!", o->opcode);
 	}
+#endif
 }
 
-gRGB gPixmapDC::getRGB(gColor col)
+gRGB gDC::getRGB(gColor col)
 {
-	if ((!pixmap) || (!pixmap->clut.data))
+	if ((!m_pixmap) || (!m_pixmap->surface->clut.data))
 		return gRGB(col, col, col);
 	if (col<0)
 	{
 		eFatal("bla transp");
 		return gRGB(0, 0, 0, 0xFF);
 	}
-	return pixmap->clut.data[col];
+	return m_pixmap->surface->clut.data[col];
 }
+
+DEFINE_REF(gDC);
 
 eAutoInitP0<gRC> init_grc(eAutoInitNumbers::graphic, "gRC");

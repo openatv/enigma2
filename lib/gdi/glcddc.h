@@ -4,20 +4,21 @@
 #define __glcddc_h
 
 #include "grc.h"
+#include <lib/gdi/lcd.h>
 
-class eLCD;
-
-class gLCDDC: public gPixmapDC
+class gLCDDC: public gDC
 {
 	eLCD *lcd;
 	static gLCDDC *instance;
 	int update;
 	void exec(gOpcode *opcode);
+	gSurface surface;
 public:
 	gLCDDC(eLCD *lcd);
 	~gLCDDC();
 	void setUpdate(int update);
 	static gLCDDC *getInstance();
+	int islocked() { return lcd->islocked(); }
 };
 
 

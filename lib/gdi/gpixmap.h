@@ -3,11 +3,10 @@
 
 #include <pthread.h>
 #include <lib/base/estring.h>
+#include <lib/base/object.h>
+#include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
-#include <lib/base/elock.h>
-
-#include <lib/base/object.h>
 
 struct gColor
 {
@@ -71,6 +70,7 @@ struct gLookup
 	gColor *lookup;
 	gLookup(int size, const gPalette &pal, const gRGB &start, const gRGB &end);
 	gLookup();
+	~gLookup() { delete [] lookup; }
 	void build(int size, const gPalette &pal, const gRGB &start, const gRGB &end);
 };
 
@@ -80,8 +80,11 @@ struct gLookup
  * The font is specified by a name and a size.
  * \c gFont is part of the \ref gdi.
  */
-struct gFont
+class gFont: public virtual iObject
 {
+DECLARE_REF;
+public:
+
 	eString family;
 	int pointSize;
 	
@@ -95,12 +98,9 @@ struct gFont
 	{
 	}
 	
-	enum
+	virtual ~gFont()
 	{
-		tRegular, tFixed
-	};
-	
-	gFont(int type, int pointSize);
+	}
 	
 	gFont()
 		:pointSize(0)
@@ -108,16 +108,35 @@ struct gFont
 	}
 };
 
+struct gSurface
+{
+	int type;
+	int x, y, bpp, bypp, stride;
+	gPalette clut;
+	
+	void *data;
+	virtual ~gSurface();
+};
+
+struct gSurfaceSystem: gSurface
+{
+	gSurfaceSystem(eSize size, int bpp);
+	~gSurfaceSystem();
+};
+
 struct gPixmap: public iObject
 {
 DECLARE_REF;
 public:
-	int x, y, bpp, bypp, stride;
-	void *data;
+	gSurface *surface;
 	
-	gPalette clut;
+	eLock contentlock;
+	int final;
 	
-	eSize getSize() const { return eSize(x, y); }
+	gPixmap *lock();
+	void unlock();
+	
+	eSize getSize() const { return eSize(surface->x, surface->y); }
 	
 	void fill(const eRect &area, const gColor &color);
 	
@@ -129,14 +148,10 @@ public:
 	
 	void mergePalette(const gPixmap &target);
 	void line(ePoint start, ePoint end, gColor color);
-	gPixmap();
+	void finalLock();
+	gPixmap(gSurface *surface);
+	gPixmap(eSize, int bpp);
 	virtual ~gPixmap();
-};
-
-struct gImage: gPixmap
-{
-	gImage(eSize size, int bpp);
-	~gImage();
 };
 
 #endif
