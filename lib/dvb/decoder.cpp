@@ -125,7 +125,6 @@ int eDVBVideo::startPid(int pid)
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
 	pes.pes_type = DMX_PES_VIDEO;
-	pes.pes_type = 
 	pes.flags    = 0;
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
