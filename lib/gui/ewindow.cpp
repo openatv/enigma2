@@ -37,7 +37,7 @@ int eWindow::event(int event, void *data, void *data2)
 		if (!getStyle(style))
 		{
 			const eSize &new_size = *static_cast<eSize*>(data);
-			eDebug("eWindow::evtWillChangeSize to %d %d", new_size.width(), new_size.height());
+//			eDebug("eWindow::evtWillChangeSize to %d %d", new_size.width(), new_size.height());
 			style->handleNewSize(this, new_size);
 		}
 		break;

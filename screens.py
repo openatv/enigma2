@@ -22,20 +22,22 @@ class testDialog(Screen):
 		selection[1]()
 	
 	def goMain(self):
-#		self.close(0)
-		self["title"].setText("you selected the main menu!");
+		self.session.open(screens["mainMenu"]())
 		
 	def goEmu(self):
 #		self.close(1)
-		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!");
+		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!")
 	
 	def goTimeshift(self):
 #		self.close(2)
-		self["title"].setText("JUST PRESS THE YELLOW BUTTON!");
+		self["title"].setText("JUST PRESS THE YELLOW BUTTON!")
 	
 	def goHDTV(self):
 #		self.close(3)
-		self["title"].setText("HDTV GREEN FLASHES: ENABLED");
+		self["title"].setText("HDTV GREEN FLASHES: ENABLED")
+	
+	def goClock(self):
+		self.session.open(screens["clockDisplay"](Clock()))
 
 	def __init__(self):
 		GUISkin.__init__(self)
@@ -48,23 +50,22 @@ class testDialog(Screen):
 				("MAIN MENU", self.goMain), 
 				("EMU SETUP", self.goEmu),
 				("TIMESHIFT SETUP", self.goTimeshift),
-				("HDTV PIP CONFIG", self.goHDTV)
+				("HDTV PIP CONFIG", self.goHDTV),
+				("wie spaet ists?!", self.goClock)
 			])
 
-
-class MainMenu(Screen):
+class mainMenu(Screen):
 	def __init__(self):
 		GUISkin.__init__(self)
 		
-		self["ok"] = Button("ok")
-		self["ok"].onClick = [ self.close ]
+		self["title"] = Header("this is the\nMAIN MENU !!!");
+		self["okbutton"] = Button("ok")
+		self["okbutton"].onClick = [ self.close ]
 
 	
 # a clock display dialog
 class clockDisplay(Screen):
 	def okbutton(self):
-		print "clockDisplay close"
-		
 		self.session.close()
 	
 	def __init__(self, clock):
@@ -75,9 +76,10 @@ class clockDisplay(Screen):
 		self["okbutton"] = b
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
 
-# defined screens
+# defined screens (evtl. kann man sich das sparen, ich seh den sinn gerade nicht mehr)
 screens = {
 	"global": doGlobal,
 	"testDialog": testDialog,
-	"clockDisplay": clockDisplay }
+	"clockDisplay": clockDisplay ,
+	"mainMenu": mainMenu }
 

@@ -34,15 +34,6 @@ components = {}
 # do global
 screens["global"](components)
 
-# test our screens
-components["$001"] = screens["testDialog"]()
-
-#print "*** classes:"
-#dump(screens)
-#
-#print "*** instances:"
-#dump(components)
-
 # display
 
 class OutputDevice:
@@ -68,6 +59,8 @@ class Session:
 		self.delayTimer.timeout.get().append(self.processDelay)
 		
 		self.currentDialog = None
+		
+		self.dialogStack = [ ]
 	
 	def processDelay(self):
 		self.currentDialog.doClose()
@@ -77,9 +70,15 @@ class Session:
 		del self.currentDialog
 		del self.currentWindow
 		
-		self.open(screens["testDialog"]())
-
+		if len(self.dialogStack):
+			(self.currentDialog, self.currentWindow) = self.dialogStack.pop()
+			self.currentWindow.show()
+	
 	def open(self, screen):
+		if self.currentDialog:
+			self.dialogStack.append((self.currentDialog, self.currentWindow))
+			self.currentWindow.hide()
+		
 		self.currentDialog = screen
 		screen.session = self
 		
@@ -114,8 +113,8 @@ def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
 	
-	session.open(screens["clockDisplay"](components["clock"]))
-#	session.open(screens["testDialog"]())
+#	session.open(screens["clockDisplay"](components["clock"]))
+	session.open(screens["testDialog"]())
 
 	# simple reason for this helper function: we want to call the currently
 	# active "okbutton", even when we changed the dialog

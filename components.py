@@ -60,7 +60,7 @@ class GUISkin:
 			# way of having refcounted objects. So it must be in python.)
 			#
 			# It could be possible that you're calling deleteGUIscreen trough a call of
-			# a PSignal. For example, you could try to call session.close() in response
+			# a PSignal. For example, you could try to call screen.doClose() in response
 			# to a Button::click. This will fail. (It wouldn't work anyway, as you would
 			# remove a dialog while running it. It never worked - enigma1 just set a 
 			# per-mainloop variable on eWidget::close() to leave the exec()...)
