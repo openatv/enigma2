@@ -27,13 +27,20 @@ public:
 	{
 		eDebug("mich gibts nu!");
 		
+			/* Resourcemanager erstellen */
 		m_mgr = new eDVBResourceManager();
-		
+	
+		/* Dummy DVB-Channellist anlegen.. */
+			
+			/* Datenbank erstellen */
 		m_dvbdb = new eDVBDB();
+			/* als Primary datenbank setzen */
 		m_mgr->setChannelList(m_dvbdb);
 		
+			/* testtransponder adden */
 		eDVBChannelID chid(1,2,3);
 		
+			/* frontenddaten... */
 		eDVBFrontendParametersSatellite fesat;
 		
 		fesat.frequency = 12070000;
@@ -46,15 +53,18 @@ public:
 		eDVBFrontendParameters *fe = new eDVBFrontendParameters();
 		
 		fe->setDVBS(fesat);
-		
+			/* Zur Kanalliste hinzufuegen.. */
 		m_dvbdb->addChannelToList(chid, fe);
 		
+			/* Channel allokieren... tunen startet hier, sofern noetig */
 		if (m_mgr->allocateChannel(chid, m_channel))
 			eDebug("shit it failed!");
 		
 		if (m_channel)
 		{
+				/* Auf State-Change listenen */
 			m_channel->connectStateChange(slot(*this, &eMain::channelStateChanged), m_state_change_connection);
+				/* Initial provozieren */
 			channelStateChanged(m_channel);
 		}
 	}
@@ -62,20 +72,25 @@ public:
 	void channelStateChanged(iDVBChannel *channel)
 	{
 		int state;
+			/* Channelstate holen */
 		channel->getState(state);
 		eDebug("channel state is now %d", state);
 		
+			/* Wenn Wechsel von nicht-ok auf ok (das erste mal) */
 		if ((m_last_channel_state != iDVBChannel::state_ok)
 			 && (state == iDVBChannel::state_ok) && (!m_demux))
 		{
 			eDebug("we'll start tuning!");
+				/* Demux holen */
 			if (m_channel)
 				if (m_channel->getDemux(m_demux))
 					eDebug("shit it failed.. again.");
 		
 			if (m_demux)
 			{
+					/* auf table ready connecten */
 				CONNECT(m_table.tableReady, eMain::tableReady);
+					/* und section lesen beginnen */
 				m_table.begin(this, eDVBPMTSpec(0x20, 0x33f6), m_demux);
 			}
 		}
@@ -85,9 +100,12 @@ public:
 	
 	void tableReady(int)
 	{
+			/* table "fertig" (wie auch immer) */
 		ePtr<eTable<ProgramMapTable> > ptr;
+				/* erfolgreich? */
 		if (!m_table.getCurrent(ptr))
 		{
+				/* dumpen ... */
 			ProgramMapTableConstIterator i;
 			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
@@ -95,6 +113,7 @@ public:
 				eDebug("pcr pid: %x", pmt.getPcrPid());
 			}
 			eDebug("program map ...");
+				/* und raus */
 			quit(0);
 		}
 		eDebug("table ready.");
