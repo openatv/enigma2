@@ -16,6 +16,8 @@ public:
 	std::set<int> m_ca;
 	std::map<int,int> m_cache;
 	virtual ~eDVBService();
+	
+	eDVBService &operator=(const eDVBService &);
 };
 
 class ServiceDescriptionTable;

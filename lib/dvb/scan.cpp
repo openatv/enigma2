@@ -13,10 +13,15 @@
 #include <lib/base/eerror.h>
 #include <errno.h>
 
+#define SCAN_eDebug(x...)
+#define SCAN_eDebugNoNewLine(x...)
+
+DEFINE_REF(eDVBScan);
+
 eDVBScan::eDVBScan(iDVBChannel *channel): m_channel(channel)
 {
 	if (m_channel->getDemux(m_demux))
-		eDebug("scan: failed to allocate demux!");
+		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
 }
 
@@ -126,7 +131,7 @@ RESULT eDVBScan::startFilter()
 
 void eDVBScan::SDTready(int err)
 {
-	eDebug("got sdt");
+	SCAN_eDebug("got sdt");
 	m_ready |= readySDT;
 	if (!err)
 		m_ready |= validSDT;
@@ -135,7 +140,7 @@ void eDVBScan::SDTready(int err)
 
 void eDVBScan::NITready(int err)
 {
-	eDebug("got nit, err %d", err);
+	SCAN_eDebug("got nit, err %d", err);
 	m_ready |= readyNIT;
 	if (!err)
 		m_ready |= validNIT;
@@ -144,7 +149,7 @@ void eDVBScan::NITready(int err)
 
 void eDVBScan::BATready(int err)
 {
-	eDebug("got bat");
+	SCAN_eDebug("got bat");
 	m_ready |= readyBAT;
 	if (!err)
 		m_ready |= validBAT;
@@ -204,7 +209,7 @@ void eDVBScan::channelDone()
 			(**m_SDT->getSections().begin()).getTransportStreamId(),
 			hash);
 		
-		eDebug("SDT: ");
+		SCAN_eDebug("SDT: ");
 		ServiceDescriptionTableConstIterator i;
 		for (i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
 			processSDT(dvbnamespace, **i);
@@ -213,7 +218,7 @@ void eDVBScan::channelDone()
 	
 	if (m_ready & validNIT)
 	{
-		eDebug("dumping NIT");
+		SCAN_eDebug("dumping NIT");
 		NetworkInformationTableConstIterator i;
 		for (i = m_NIT->getSections().begin(); i != m_NIT->getSections().end(); ++i)
 		{
@@ -222,7 +227,7 @@ void eDVBScan::channelDone()
 			for (TransportStreamInfoConstIterator tsinfo(tsinfovec.begin()); 
 				tsinfo != tsinfovec.end(); ++tsinfo)
 			{
-				eDebug("TSID: %04x ONID: %04x", (*tsinfo)->getTransportStreamId(),
+				SCAN_eDebug("TSID: %04x ONID: %04x", (*tsinfo)->getTransportStreamId(),
 					(*tsinfo)->getOriginalNetworkId());
 				
 				eOriginalNetworkID onid = (*tsinfo)->getOriginalNetworkId();
@@ -237,7 +242,7 @@ void eDVBScan::channelDone()
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
 						SatelliteDeliverySystemDescriptor &d = (SatelliteDeliverySystemDescriptor&)**desc;
-						eDebug("%d kHz, %d%d%d.%d%c %s MOD:%d %d symb/s, fec %d", 
+						SCAN_eDebug("%d kHz, %d%d%d.%d%c %s MOD:%d %d symb/s, fec %d", 
 								d.getFrequency(), 
 								(d.getOrbitalPosition()>>12)&0xF,
 								(d.getOrbitalPosition()>>8)&0xF,
@@ -265,7 +270,7 @@ void eDVBScan::channelDone()
 						break;
 					}
 					default:
-						eDebug("descr<%x>", (*desc)->getTag());
+						SCAN_eDebug("descr<%x>", (*desc)->getTag());
 						break;
 					}
 				}
@@ -277,7 +282,7 @@ void eDVBScan::channelDone()
 	
 	if ((m_ready  & readyAll) != readyAll)
 		return;
-	eDebug("channel done!");
+	SCAN_eDebug("channel done!");
 	m_ch_scanned.push_back(m_ch_current);
 	nextChannel();
 }
@@ -312,12 +317,12 @@ void eDVBScan::insertInto(eDVBDB *db)
 RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionTable &sdt)
 {
 	const ServiceDescriptionVector &services = *sdt.getDescriptions();
-	eDebug("ONID: %04x", sdt.getOriginalNetworkId());
+	SCAN_eDebug("ONID: %04x", sdt.getOriginalNetworkId());
 	eDVBChannelID chid(dvbnamespace, sdt.getTransportStreamId(), sdt.getOriginalNetworkId());
 	
 	for (ServiceDescriptionConstIterator s(services.begin()); s != services.end(); ++s)
 	{
-		eDebugNoNewLine("SID %04x: ", (*s)->getServiceId());
+		SCAN_eDebugNoNewLine("SID %04x: ", (*s)->getServiceId());
 
 		eServiceReferenceDVB ref;
 		ePtr<eDVBService> service = new eDVBService;
@@ -338,7 +343,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			case SERVICE_DESCRIPTOR:
 			{
 				ServiceDescriptor &d = (ServiceDescriptor&)**desc;
-				eDebug("name '%s', provider_name '%s'", d.getServiceName().c_str(), d.getServiceProviderName().c_str());
+				SCAN_eDebug("name '%s', provider_name '%s'", d.getServiceName().c_str(), d.getServiceProviderName().c_str());
 				service->m_service_name = d.getServiceName();
 				service->m_provider_name = d.getServiceProviderName();
 				break;
@@ -347,17 +352,17 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			{
 				CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
 				const CaSystemIdVector &caids = *d.getCaSystemIds();
-				eDebugNoNewLine("CA ");
+				SCAN_eDebugNoNewLine("CA ");
 				for (CaSystemIdVector::const_iterator i(caids.begin()); i != caids.end(); ++i)
 				{
-					eDebugNoNewLine("%04x ", *i);
+					SCAN_eDebugNoNewLine("%04x ", *i);
 					service->m_ca.insert(*i);
 				}
-				eDebug("");
+				SCAN_eDebug("");
 				break;
 			}
 			default:
-				eDebug("descr<%x>", (*desc)->getTag());
+				SCAN_eDebug("descr<%x>", (*desc)->getTag());
 				break;
 			}
 		}

@@ -22,7 +22,8 @@ void eGTable::sectionRead(const __u8 *d)
 
 void eGTable::timeout()
 {
-	eDebug("timeout!");
+	printf("timeout!\n");
+//	eDebug("timeout!");
 	m_reader->stop();
 	ready = 1;
 	error = -1;

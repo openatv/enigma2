@@ -3,6 +3,8 @@
 
 #include <lib/service/iservice.h>
 
+class eServiceMP3Info ;
+
 class eServiceFactoryMP3: public iServiceHandler
 {
 DECLARE_REF;
@@ -15,6 +17,18 @@ public:
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
+	RESULT info(const eServiceReference &, ePtr<iServiceInformation> &ptr);
+private:
+	ePtr<eServiceMP3Info> m_service_info;
+};
+
+class eServiceMP3Info: public iServiceInformation
+{
+	DECLARE_REF;
+	friend class eServiceFactoryMP3;
+	eServiceMP3Info();
+public:
+	RESULT getName(const eServiceReference &ref, std::string &name);
 };
 
 class eServiceMP3: public iPlayableService, public iPauseableService, public iServiceInformation, public Object
@@ -48,7 +62,7 @@ public:
 	RESULT getIServiceInformation(ePtr<iServiceInformation>&);
 	
 		// iServiceInformation
-	RESULT getName(std::string &name);
+	RESULT getName(const eServiceReference &ref, std::string &name);
 };
 
 #endif

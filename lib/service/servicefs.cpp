@@ -11,6 +11,21 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+
+class eServiceFSInformation: public iServiceInformation
+{
+	DECLARE_REF;
+public:
+	RESULT getName(const eServiceReference &ref, std::string &name);
+};
+
+DEFINE_REF(eServiceFSInformation);
+
+RESULT eServiceFSInformation::getName(const eServiceReference &ref, std::string &name)
+{
+	name = ref.path;
+}
+
 // eServiceFactoryFS
 
 eServiceFactoryFS::eServiceFactoryFS()
@@ -20,6 +35,8 @@ eServiceFactoryFS::eServiceFactoryFS()
 	eServiceCenter::getInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryFS::id, this);
+	
+	m_service_information = new eServiceFSInformation();
 }
 
 eServiceFactoryFS::~eServiceFactoryFS()
@@ -49,6 +66,12 @@ RESULT eServiceFactoryFS::record(const eServiceReference &ref, ePtr<iRecordableS
 RESULT eServiceFactoryFS::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
 {
 	ptr = new eServiceFS(ref.path.c_str());
+	return 0;
+}
+
+RESULT eServiceFactoryFS::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+{
+	ptr = m_service_information;
 	return 0;
 }
 

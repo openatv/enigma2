@@ -25,15 +25,12 @@ class testDialog(Screen):
 		self.session.open(screens["mainMenu"]())
 		
 	def goEmu(self):
-#		self.close(1)
 		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!")
 	
 	def goTimeshift(self):
-#		self.close(2)
 		self["title"].setText("JUST PRESS THE YELLOW BUTTON!")
 	
 	def goHDTV(self):
-#		self.close(3)
 		self["title"].setText("HDTV GREEN FLASHES: ENABLED")
 	
 	def goClock(self):
@@ -45,14 +42,17 @@ class testDialog(Screen):
 		b.onClick = [ self.testDialogClick ]
 		self["okbutton"] = b
 		self["title"] = Header("Test Dialog - press ok to leave!")
-		self["menu"] = MenuList(
-			[
-				("MAIN MENU", self.goMain), 
-				("EMU SETUP", self.goEmu),
-				("TIMESHIFT SETUP", self.goTimeshift),
-				("HDTV PIP CONFIG", self.goHDTV),
-				("wie spaet ists?!", self.goClock)
-			])
+#		self["menu"] = MenuList(
+#			[
+#				("MAIN MENU", self.goMain), 
+#				("EMU SETUP", self.goEmu),
+#				("TIMESHIFT SETUP", self.goTimeshift),
+#				("HDTV PIP CONFIG", self.goHDTV),
+#				("wie spaet ists?!", self.goClock)
+#			])
+		self["menu"] = ServiceList()
+		
+		self["menu"].setRoot(eServiceReference("2:0:1:0:0:0:0:0:0:0:/"))
 
 class mainMenu(Screen):
 	def __init__(self):

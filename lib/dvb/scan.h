@@ -8,6 +8,8 @@
 
 class eDVBScan: public Object, public iObject
 {
+DECLARE_REF;
+private:
 		/* chid helper functions: */
 		
 		/* heuristically determine if onid/tsid is valid */

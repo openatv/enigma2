@@ -6,10 +6,9 @@
 
 class eConnection: public iObject, public Connection
 {
-	int ref;
+DECLARE_REF;
+private:
 	ePtr<iObject> m_owner;
-public:
-DEFINE_REF(eConnection);
 public:
 	eConnection(iObject *owner, const Connection &conn): Connection(conn), m_owner(owner) { };
 	virtual ~eConnection() { disconnect(); }

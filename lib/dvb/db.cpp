@@ -17,6 +17,16 @@ eDVBService::~eDVBService()
 {
 }
 
+eDVBService &eDVBService::operator=(const eDVBService &s)
+{
+	m_service_name = s.m_service_name;
+	m_provider_name = s.m_provider_name;
+	m_flags = s.m_flags;
+	m_ca = s.m_ca;
+	m_cache = s.m_cache;
+	return *this;
+}
+
 DEFINE_REF(eDVBDB);
 
 eDVBDB::eDVBDB()
@@ -67,7 +77,7 @@ eDVBDB::eDVBDB()
 			{
 				eDVBFrontendParametersSatellite sat;
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion;
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion);
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &inversion, &orbital_position);
 				sat.frequency = frequency;
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
@@ -209,15 +219,15 @@ eDVBDB::~eDVBDB()
 		const eServiceReferenceDVB &s = i->first;
 		fprintf(f, "%04x:%08x:%04x:%04x:%d:%d\n", 
 				s.getServiceID().get(), s.getDVBNamespace().get(), 
-				s.getOriginalNetworkID().get(), s.getTransportStreamID().get(),
+				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(), 
 				s.getServiceType(),
 				0);
 		
 		fprintf(f, "%s\n", i->second->m_service_name.c_str());
-		fprintf(f, "p=%s", i->second->m_provider_name.c_str());
+		fprintf(f, "p:%s", i->second->m_provider_name.c_str());
 		for (std::set<int>::const_iterator ca(i->second->m_ca.begin());
 			ca != i->second->m_ca.end(); ++ca)
-			fprintf(f, ",C=%04x", *ca);
+			fprintf(f, ",C:%04x", *ca);
 		fprintf(f, "\n");
 		services++;
 	}

@@ -14,6 +14,11 @@ typedef int RESULT;
 
 class iObject
 {
+private:
+		/* we don't allow the default operator here, as it would break the refcount. */
+	void operator=(const iObject &);
+protected:
+	virtual ~iObject() { }
 public:
 	virtual void AddRef()=0;
 	virtual void Release()=0;
@@ -25,6 +30,11 @@ class oRefCount
 public:
 	oRefCount(): ref(0) { }
 	operator int&() { return ref; }
+	~oRefCount() { 
+#ifdef OBJECT_DEBUG
+		if (ref) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, ref); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
+#endif
+	}
 };
 
 #define DECLARE_REF private: oRefCount ref; public: void AddRef(); void Release();

@@ -90,6 +90,17 @@ RESULT eServiceCenter::list(const eServiceReference &ref, ePtr<iListableService>
 	return i->second->list(ref, ptr);
 }
 
+RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+{
+	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
+	if (i == handler.end())
+	{
+		ptr = 0;
+		return -1;
+	}
+	return i->second->info(ref, ptr);
+}
+
 RESULT eServiceCenter::addServiceFactory(int id, iServiceHandler *hnd)
 {
 	handler.insert(std::pair<int,ePtr<iServiceHandler> >(id, hnd));
@@ -100,6 +111,13 @@ RESULT eServiceCenter::removeServiceFactory(int id)
 {
 	handler.erase(id);
 	return 0;
+}
+
+	/* default handlers */
+RESULT iServiceHandler::info(const eServiceReference &, ePtr<iServiceInformation> &ptr)
+{
+	ptr = 0;
+	return -1;
 }
 
 eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");

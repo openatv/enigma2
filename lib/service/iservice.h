@@ -142,10 +142,15 @@ public:
 	}
 };
 
+	/* the reason we have the servicereference as additional argument is
+	   that we don't have to create one object for every entry in a possibly
+	   large list, provided that no state information is nessesary to deliver
+	   the required information. Anyway - ref *must* be the same as the argument
+	   to the info() or getIServiceInformation call! */
 class iServiceInformation: public iObject
 {
 public:
-	virtual RESULT getName(std::string &name)=0;
+	virtual RESULT getName(const eServiceReference &ref, std::string &name)=0;
 };
 
 typedef ePtr<iServiceInformation> iServiceInformationPtr;
@@ -203,6 +208,7 @@ public:
 	virtual RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr)=0;
 	virtual RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr)=0;
 	virtual RESULT list(const eServiceReference &, ePtr<iListableService> &ptr)=0;
+	virtual RESULT info(const eServiceReference &, ePtr<iServiceInformation> &ptr);
 };
 
 typedef ePtr<iServiceHandler> iServiceHandlerPtr;

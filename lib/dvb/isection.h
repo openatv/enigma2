@@ -48,6 +48,7 @@ public:
 	virtual RESULT start(const eDVBSectionFilterMask &mask)=0;
 	virtual RESULT stop()=0;
 	virtual RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn)=0;
+	virtual ~iDVBSectionReader() { };
 };
 
 #endif

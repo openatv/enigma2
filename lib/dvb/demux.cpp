@@ -74,6 +74,8 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 #endif
 	fd = ::open(filename, O_RDWR);
 	
+	eDebug("eDVBSectionReader has fd %d", fd);
+	
 	if (fd >= 0)
 	{
 		notifier=new eSocketNotifier(context, fd, eSocketNotifier::Read);

@@ -241,3 +241,19 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def GUIdeleteInstance(self, g):
 		g.setContent(None)
+
+class ServiceList(HTMLComponent, GUIComponent):
+	def __init__(self):
+		GUIComponent.__init__(self)
+		self.l = eListboxServiceContent()
+
+	def GUIcreateInstance(self, priv, parent, skindata):
+		g = eListbox(parent)
+		g.setContent(self.l)
+		return g
+	
+	def GUIdeleteInstance(self, g):
+		g.setContent(None)
+
+	def setRoot(self, root):
+		self.l.setRoot(root)

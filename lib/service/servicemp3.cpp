@@ -16,6 +16,8 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	eServiceCenter::getInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryMP3::id, this);
+
+	m_service_info = new eServiceMP3Info();
 }
 
 eServiceFactoryMP3::~eServiceFactoryMP3()
@@ -49,8 +51,35 @@ RESULT eServiceFactoryMP3::list(const eServiceReference &, ePtr<iListableService
 	return -1;
 }
 
-// eServiceMP3
+RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+{
+	ptr = m_service_info;
+	return 0;
+}
 
+// eServiceMP3Info
+
+
+// eServiceMP3Info is seperated from eServiceMP3 to give information
+// about unopened files.
+
+// probably eServiceMP3 should use this class as well, and eServiceMP3Info
+// should have a database backend where ID3-files etc. are cached.
+// this would allow listing the mp3 database based on certain filters.
+
+DEFINE_REF(eServiceMP3Info)
+
+eServiceMP3Info::eServiceMP3Info()
+{
+}
+
+RESULT eServiceMP3Info::getName(const eServiceReference &ref, std::string &name)
+{
+	name = "MP3 file: " + ref.path;
+	return 0;
+}
+
+// eServiceMP3
 
 void eServiceMP3::test_end()
 {
@@ -113,7 +142,7 @@ RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }
 
 RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&i) { i = this; return 0; }
 
-RESULT eServiceMP3::getName(std::string &name)
+RESULT eServiceMP3::getName(const eServiceReference &ref, std::string &name)
 {
 	name = "MP3 File: " + filename;
 	return 0;
