@@ -21,6 +21,8 @@
 #include <lib/python/python.h>
 #include <lib/python/connections.h>
 
+#include <lib/driver/rc.h>
+
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -69,6 +71,19 @@ void print(int i)
 	printf("C++ says: it's a %d!!!\n", i);
 }
 
+PSignal1<void,int> keyPressed;
+
+PSignal1<void,int> &keyPressedSignal()
+{
+	return keyPressed;
+}
+
+void keyEvent(const eRCKey &key)
+{
+	if (!key.flags)
+		keyPressed(key.code);
+}
+
 int main(int argc, char **argv)
 {
 #ifdef OBJECT_DEBUG
@@ -111,6 +126,8 @@ int main(int argc, char **argv)
 
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
+	
+	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 	
 	ePython python;
 	

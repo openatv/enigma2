@@ -6,6 +6,13 @@ import time
 from screens import *
 from skin import applyGUIskin
 
+
+def CONNECT(slot, fnc):
+	slot.get().append(fnc)
+
+def DISCONNECT(slot, fnc):
+	slot.get().remove(fnc)
+
 # A screen is a function which instanciates all components of a screen into a temporary component.
 # Thus, the global stuff is a screen, too.
 # In a screen, components can either be instanciated from the class-tree, cloned (copied) or
@@ -92,6 +99,9 @@ class Session:
 		else:
 			self.currentWindow = None
 
+	def keyEvent(self, code):
+		self.currentDialog.data["okbutton"]["instance"].push()
+
 	def close(self):
 		self.delayTimer.start(0, 1)
 
@@ -106,12 +116,15 @@ def runScreenTest():
 	# active "okbutton", even when we changed the dialog
 	#
 	# more complicated reason: we don't want to hold a reference.
-	def blub():
-		session.currentDialog.data["okbutton"]["instance"].push()
-	
-	tmr = eTimer()
-	tmr.timeout.get().append(blub)
-	tmr.start(4000, 0)
+#	def blub():
+#		session.currentDialog.data["okbutton"]["instance"].push()	
+#		session.currentDialog["okbutton"].setText("hello!")
+#	
+#	tmr = eTimer()
+#	CONNECT(tmr.timeout, blub)
+#	tmr.start(4000, 0)
+#	
+	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	runMainloop()
 	
