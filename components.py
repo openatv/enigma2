@@ -27,12 +27,18 @@ class GUISkin:
 	def createGUIScreen(self, parent):
 		for (name, val) in self.items():
 			self.data[name] = { }
-			val.GUIcreate(self.data[name], parent, None)
+			if isinstance(val, GUIComponent):
+				val.GUIcreate(self.data[name], parent, None)
 	
 	def deleteGUIScreen(self):
 		for (name, val) in self.items():
-			w = self.data[name]["instance"]
-			val.GUIdelete(self.data[name])
+			if isinstance(val, GUIComponent):
+				w = self.data[name]["instance"]
+				val.GUIdelete(self.data[name])
+			try:
+				val.fix()
+			except:
+				pass
 			del self.data[name]
 			
 			# note: you'll probably run into this assert. if this happens, don't panic!
@@ -185,7 +191,13 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 			x()
 		return 0
 	
-# html:	
+	def disable(self):
+		pass
+	
+	def enable(self):
+		pass
+
+# html:
 	def produceHTML(self):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
 
@@ -197,6 +209,21 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 	
 	def GUIdeleteInstance(self, g):
 		g.selected.get().remove(self.push)
+
+class Label(HTMLComponent, GUIComponent, VariableText):
+	def __init__(self, text=""):
+		GUIComponent.__init__(self)
+		VariableText.__init__(self)
+		self.setText(text)
+	
+# html:	
+	def produceHTML(self):
+		return self.getText()
+
+# GUI:
+	def GUIcreateInstance(self, priv, parent, skindata):
+		g = eLabel(parent)
+		return g
 
 class Header(HTMLComponent, GUIComponent, VariableText):
 
@@ -224,6 +251,17 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 		g.setRange(0, 100)
 		return g
 
+# a general purpose progress bar
+class ProgressBar(HTMLComponent, GUIComponent, VariableValue):
+	def __init__(self):
+		GUIComponent.__init__(self)
+		VariableValue.__init__(self)
+
+	def GUIcreateInstance(self, priv, parent, skindata):
+		g = eSlider(parent)
+		g.setRange(0, 100)
+		return g
+	
 class MenuList(HTMLComponent, GUIComponent):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
@@ -256,3 +294,42 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setRoot(self, root):
 		self.l.setRoot(root)
+
+class ServiceScan:
+	
+	Idle = 1
+	Running = 2
+	Done = 3
+	Error = 4
+		
+	def scanStatusChanged(self):
+		if self.state == self.Running:
+			self.progressbar.setValue(self.scan.getProgress())
+			if self.scan.isDone():
+				self.state = self.Done
+			else:
+				self.text.setText("scan in progress - %d %% done!\n%d services found!" % (self.scan.getProgress(), self.scan.getNumServices()))
+		
+		if self.state == self.Done:
+			self.text.setText("scan done!")
+		
+		if self.state == self.Error:
+			self.text.setText("ERROR - failed to scan!")
+	
+	def __init__(self, progressbar, text):
+		self.progressbar = progressbar
+		self.text = text
+		self.scan = eComponentScan()
+		if self.scan.start():
+			self.state = self.Error
+		else:
+			self.state = self.Running
+		self.scan.statusChanged.get().append(self.scanStatusChanged)
+		self.scanStatusChanged()
+
+	def isDone(self):
+		return self.state == self.Done
+
+	def fix(self):
+		self.scan.statusChanged.get().remove(self.scanStatusChanged)
+	

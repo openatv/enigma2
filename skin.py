@@ -23,12 +23,17 @@ dom = xml.dom.minidom.parseString(
 			<widget name="title" position="10,120" size="280,50" />
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
-		<screen name="infoBar" position="100,100" size="500,400" title="InfoBar">
+		<screen name="infoBar" position="100,100" size="300,400" title="InfoBar">
 			<widget name="channelSwitcher" position="10,190" size="280,50" />
 		</screen>
 		<screen name="channelSelection" position="300,100" size="300,300" title="Channel Selection">
 			<widget name="okbutton" position="10,190" size="280,50" />
 			<widget name="list" position="10,30" size="280,140" />
+		</screen>
+		<screen name="serviceScan" position="150,100" size="300,200" title="Service Scan">
+			<widget name="scan_progress" position="10,10" size="280,50" />
+			<widget name="scan_state" position="10,60" size="280,30" />
+			<widget name="okbutton" position="10,100" size="280,40" />
 		</screen>
 	</skin>
 """)

@@ -4,6 +4,8 @@
 #include <lib/dvb_si/nit.h>
 #include <lib/dvb_si/sdt.h>
 #include <lib/dvb_si/bat.h>
+#include <lib/dvb/isection.h>
+#include <lib/dvb/esection.h>
 #include <lib/dvb/db.h>
 
 class eDVBScan: public Object, public iObject
@@ -65,7 +67,9 @@ public:
 
 	enum { evtUpdate, evtFinish };
   RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
-	void insertInto(eDVBDB *db);
+	void insertInto(iDVBChannelList *db);
+	
+	void getStats(int &transponders_done, int &transponders_total, int &services);
 };
 
 #endif

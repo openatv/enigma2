@@ -1,4 +1,3 @@
-	/* written by: Felix Domke <tmbinc@elitedvb.net> */
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 

@@ -223,8 +223,14 @@ public:
 class iDVBChannelList: public iObject
 {
 public:
+	virtual RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)=0;
+	virtual RESULT removeChannel(const eDVBChannelID &id)=0;
+	
 	virtual RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm)=0;
+	
+	virtual RESULT addService(const eServiceReferenceDVB &service, eDVBService *service)=0;
 	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
+
 	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query)=0;
 };
 
