@@ -52,11 +52,13 @@ protected:
 			else
 				printf("-");
 				
-		printf(" %d/%d\n", avail.size(), max);
+		printf(" %d/%d TID %02x\n", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
+		{
+			printf("done!\n");
 			return 1;
-		else
+		} else
 			return 0;
 	}
 public:

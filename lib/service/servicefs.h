@@ -15,6 +15,9 @@ public:
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
+	RESULT info(const eServiceReference &, ePtr<iServiceInformation> &ptr);
+private:
+	ePtr<iServiceInformation> m_service_information;
 };
 
 class eServiceFS: public iListableService

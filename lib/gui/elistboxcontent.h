@@ -2,11 +2,15 @@
 #define __lib_gui_elistboxcontent_h
 
 #include <lib/python/python.h>
+#include <lib/gui/elistbox.h>
 
 class eListboxTestContent: public virtual iListboxContent
 {
 	DECLARE_REF;
 public:
+
+#ifndef SWIG
+protected:
 	void cursorHome();
 	void cursorEnd();
 	int cursorMove(int count=1);
@@ -28,6 +32,7 @@ public:
 private:
 	int m_cursor, m_saved_cursor;
 	eSize m_size;
+#endif
 };
 
 class eListboxStringContent: public virtual iListboxContent
@@ -35,6 +40,9 @@ class eListboxStringContent: public virtual iListboxContent
 	DECLARE_REF;
 public:
 	eListboxStringContent();
+	void setList(std::list<std::string> &list);
+#ifndef SWI
+protected:
 	
 	void cursorHome();
 	void cursorEnd();
@@ -54,8 +62,6 @@ public:
 	
 		/* the following functions always refer to the selected item */
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	
-	void setList(std::list<std::string> &list);
 private:
 	typedef std::list<std::string> list;
 	
@@ -66,6 +72,7 @@ private:
 	int m_size;
 	
 	eSize m_itemsize;
+#endif
 };
 
 class eListboxPythonStringContent: public virtual iListboxContent
@@ -74,6 +81,11 @@ class eListboxPythonStringContent: public virtual iListboxContent
 public:
 	eListboxPythonStringContent();
 	~eListboxPythonStringContent();
+
+	void setList(PyObject *list);
+	PyObject *getCurrentSelection();
+#ifndef SWIG
+protected:
 	void cursorHome();
 	void cursorEnd();
 	int cursorMove(int count=1);
@@ -92,15 +104,12 @@ public:
 	
 		/* the following functions always refer to the selected item */
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	
-	void setList(PyObject *list);
-	
-	PyObject *getCurrentSelection();
-	
+
 private:
 	PyObject *m_list;
 	int m_cursor, m_saved_cursor;
 	eSize m_itemsize;
+#endif
 };
 
 #endif

@@ -45,7 +45,7 @@ public:
 	RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr);
 	
 		// iServiceInformation
-	RESULT getName(std::string &name);
+	RESULT getName(const eServiceReference &ref, std::string &name);
 };
 
 #endif

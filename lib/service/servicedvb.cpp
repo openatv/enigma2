@@ -158,7 +158,7 @@ RESULT eDVBServicePlay::getIServiceInformation(ePtr<iServiceInformation> &ptr)
 	return 0;
 }
 
-RESULT eDVBServicePlay::getName(std::string &name)
+RESULT eDVBServicePlay::getName(const eServiceReference &ref, std::string &name)
 {
 	name = "DVB service";
 	return 0;

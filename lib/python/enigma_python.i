@@ -58,6 +58,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/service/listboxservice.h>
 
 extern void runMainloop();
 
@@ -90,6 +91,7 @@ RefCount(eListboxPythonStringContent)
 %include <lib/gui/ewidgetdesktop.h>
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>
+%include <lib/service/listboxservice.h>
 
 template<class R> class PSignal0
 {

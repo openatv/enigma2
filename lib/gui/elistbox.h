@@ -19,7 +19,9 @@ public:
 		   to stay on the same data, however when the current
 		   item is removed, this won't work. you'll be notified
 		   anyway. */
-		  
+#ifndef SWIG	
+protected:
+	friend class eListbox;
 	virtual void cursorHome()=0;
 	virtual void cursorEnd()=0;
 	virtual int cursorMove(int count=1)=0;
@@ -39,6 +41,7 @@ public:
 	
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)=0;
+#endif
 };
 
 class eListbox: public eWidget
