@@ -1,3 +1,4 @@
+#include <config.h>
 #include <lib/dvb/dvb.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
@@ -5,7 +6,12 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#if HAVE_DVB_API_VERSION < 3
+#include <ost/frontend.h>
+#include <ost/sec.h>
+#else
 #include <linux/dvb/frontend.h>
+#endif
 
 #include <lib/dvb_si/satellite_delivery_system_descriptor.h>
 #include <lib/dvb_si/cable_delivery_system_descriptor.h>
@@ -190,14 +196,34 @@ DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 {
+#if HAVE_DVB_API_VERSION < 3
+	char sec_filename[128];
+#endif
 	char filename[128];
+
 	int result;
-	dvb_frontend_info fe_info;
-	
+
 	m_sn = 0;
 	m_timeout = 0;
-	
+
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(sec_filename, "/dev/dvb/card%d/sec%d", adap, fe);
+	m_secfd = ::open(sec_filename, O_RDWR);
+	if (m_secfd < 0)
+	{
+		eWarning("failed! (%s) %m", sec_filename);
+		ok = 0;
+		return;
+	}
+	else
+		eDebug("m_secfd is %d", m_secfd);
+
+	FrontendInfo fe_info;
+	sprintf(filename, "/dev/dvb/card%d/frontend%d", adap, fe);
+#else
+	dvb_frontend_info fe_info;	
 	sprintf(filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
+#endif
 	eDebug("opening frontend.");
 	m_fd = ::open(filename, O_RDWR|O_NONBLOCK);
 	if (m_fd < 0)
@@ -206,7 +232,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 		ok = 0;
 		return;
 	}
-	
+
 	result = ::ioctl(m_fd, FE_GET_INFO, &fe_info);
 	
 	if (result < 0) {
@@ -262,7 +288,11 @@ void eDVBFrontend::feEvent(int w)
 {
 	while (1)
 	{
+#if HAVE_DVB_API_VERSION < 3
+		FrontendEvent event;
+#else
 		dvb_frontend_event event;
+#endif
 		int res;
 		int state;
 		res = ::ioctl(m_fd, FE_GET_EVENT, &event);
@@ -278,9 +308,13 @@ void eDVBFrontend::feEvent(int w)
 		
 		if (w < 0)
 			continue;
-		
+
+#if HAVE_DVB_API_VERSION < 3
+		if (event.type == FE_COMPLETION_EV)
+#else
 		eDebug("fe event: status %x, inversion %s", event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
 		if (event.status & FE_HAS_LOCK)
+#endif
 		{
 			state = stateLock;
 		} else
@@ -327,8 +361,12 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (m_type == -1)
 		return -ENODEV;
 
+#if HAVE_DVB_API_VERSION < 3
+	FrontendParameters parm;
+#else
 	dvb_frontend_parameters parm;
-	
+#endif
+
 	feEvent(-1);
 	
 	switch (m_type)
@@ -351,8 +389,11 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		res = m_sec->prepare(*this, parm, feparm);
 		if (res)
 			return res;
-		
+#if HAVE_DVB_API_VERSION < 3
+		eDebug("tuning to %d mhz", parm.Frequency/1000);
+#else
 		eDebug("tuning to %d mhz", parm.frequency/1000);
+#endif
 		break;
 	}
 	case feCable:
@@ -397,8 +438,12 @@ RESULT eDVBFrontend::connectStateChange(const Slot1<void,iDVBFrontend*> &stateCh
 
 RESULT eDVBFrontend::setVoltage(int voltage)
 {
+#if HAVE_DVB_API_VERSION < 3
+	secVoltage vlt;
+#else
 	fe_sec_voltage_t vlt;
-	
+#endif
+
 	switch (voltage)
 	{
 	case voltageOff:
@@ -413,8 +458,11 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 	default:
 		return -ENODEV;
 	}
-	
+#if HAVE_DVB_API_VERSION < 3
+	return ::ioctl(m_secfd, SEC_SET_VOLTAGE, vlt);
+#else
 	return ::ioctl(m_fd, FE_SET_VOLTAGE, vlt);
+#endif
 }
 
 RESULT eDVBFrontend::getState(int &state)
@@ -425,8 +473,12 @@ RESULT eDVBFrontend::getState(int &state)
 
 RESULT eDVBFrontend::setTone(int t)
 {
+#if HAVE_DVB_API_VERSION < 3
+	secToneMode_t tone;
+#else
 	fe_sec_tone_mode_t tone;
-	
+#endif
+
 	switch (t)
 	{
 	case toneOn:
@@ -438,12 +490,48 @@ RESULT eDVBFrontend::setTone(int t)
 	default:
 		return -ENODEV;
 	}
-	
-	return ::ioctl(m_fd, FE_SET_TONE, tone);	
+#if HAVE_DVB_API_VERSION < 3	
+	return ::ioctl(m_secfd, SEC_SET_TONE, tone);
+#else	
+	return ::ioctl(m_fd, FE_SET_TONE, tone);
+#endif
 }
 
 RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 {
+#if HAVE_DVB_API_VERSION < 3
+	secCmdSequence seq;
+	secCommand cmd;
+
+	cmd.type = SEC_CMDTYPE_DISEQC_RAW;
+	cmd.u.diseqc.cmdtype = diseqc.data[0];
+	eDebug("cmdtype is %02x", diseqc.data[0]);
+	cmd.u.diseqc.addr = diseqc.data[1];
+	eDebug("cmdaddr is %02x", diseqc.data[1]);
+	cmd.u.diseqc.cmd = diseqc.data[2];
+	eDebug("cmd is %02x", diseqc.data[2]);
+	cmd.u.diseqc.numParams = diseqc.len-3;
+	eDebug("numparams %d", diseqc.len-3);
+
+	memcpy(cmd.u.diseqc.params, diseqc.data+3, diseqc.len-3);
+	for (int i=0; i < diseqc.len-3; ++i )
+		eDebugNoNewLine("%02x ", diseqc.data[3+i]);
+	eDebug("");
+
+	seq.continuousTone = SEC_TONE_OFF;
+	seq.voltage = SEC_VOLTAGE_13;
+	seq.miniCommand = SEC_MINI_NONE;
+	seq.commands=&cmd;
+	seq.numCommands=1;
+
+
+	if ( ioctl(m_secfd, SEC_SEND_SEQUENCE, &seq) < 0 )
+	{
+		eDebug("SEC_SEND_SEQUENCE failed ( %m )");
+		return -EINVAL;
+	}
+	return 0;
+#else
 	struct dvb_diseqc_master_cmd cmd;
 	if (::ioctl(m_fd, FE_SET_TONE, SEC_TONE_OFF))
 		return -EINVAL;
@@ -454,6 +542,7 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	if (::ioctl(m_fd, FE_DISEQC_SEND_MASTER_CMD, &cmd))
 		return -EINVAL;
 	usleep(15 * 1000);
+#endif
 	eDebug("diseqc ok");
 	return 0;
 }
