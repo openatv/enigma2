@@ -1,8 +1,6 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 
-DEFINE_REF(gFont);
-
 gLookup::gLookup()
 	:size(0), lookup(0)
 {
@@ -107,7 +105,7 @@ void gPixmap::unlock()
 
 void gPixmap::fill(const gRegion &region, const gColor &color)
 {
-	int i;
+	unsigned int i;
 	for (i=0; i<region.rects.size(); ++i)
 	{
 		const eRect &area = region.rects[i];
@@ -139,7 +137,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 
 void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag)
 {
-	for (int i=0; i<clip.rects.size(); ++i)
+	for (unsigned int i=0; i<clip.rects.size(); ++i)
 	{
 		eRect area=eRect(pos, src.getSize());
 		area&=clip.rects[i];
@@ -269,11 +267,27 @@ static inline int sgn(int a)
 
 void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 {
-	__u8 *srf = (__u8*)surface->data;
+	__u8 *srf8 = 0;
+	__u32 *srf32 = 0; 
 	int stride = surface->stride;
 	
 	if (clip.rects.empty())
 		return;
+		
+	__u32 col;
+	if (surface->bpp == 8)
+	{
+		srf8 = (__u8*)surface->data;
+	} else if (surface->bpp == 32)
+	{
+		srf32 = (__u32*)surface->data;
+		
+		if (surface->clut.data && color < surface->clut.colors)
+			col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+		else
+			col=0x10101*color;
+		col^=0xFF000000;			
+	}
 	
 	int xa = start.x(), ya = start.y(), xb = dst.x(), yb = dst.y();
 	int dx, dy, x, y, s1, s2, e, temp, swap, i;
@@ -292,6 +306,7 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 	} else
 		swap=0;
 	e = 2*dy-dx;
+	
 	int lasthit = 0;
 	for(i=1; i<=dx; i++)
 	{
@@ -328,7 +343,11 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 			} while (!clip.rects[a].contains(x, y));
 			lasthit = a;
 		}
-		srf[y * stride + x] = color;
+		
+		if (srf8)
+			srf8[y * stride + x] = color;
+		if (srf32)
+			srf32[y * stride/4 + x] = col;
 fail:
 		while (e>=0)
 		{

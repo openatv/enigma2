@@ -14,7 +14,7 @@ dom = xml.dom.minidom.parseString(
 	"""
 	<skin>
 		<screen name="mainMenu" position="300,100" size="300,300" title="real main menu">
-			<widget name="okbutton" position="10,190" size="280,50" />
+			<widget name="okbutton" position="10,190" size="280,50" font="Arial:20" valign="center" halign="center" />
 			<widget name="title" position="10,10" size="280,20" />
 			<widget name="menu" position="10,30" size="280,140" />
 		</screen>
@@ -44,6 +44,12 @@ dom = xml.dom.minidom.parseString(
 """)
 
 
+def elementsWithTag(el, tag):
+	for x in el:
+		if x.nodeType != xml.dom.minidom.Element.nodeType:
+			continue
+		if x.tagName == tag:
+			yield x
 
 def parsePosition(str):
 	x, y = str.split(',')
@@ -52,6 +58,10 @@ def parsePosition(str):
 def parseSize(str):
 	x, y = str.split(',')
 	return eSize(int(x), int(y))
+
+def parseFont(str):
+	name, size = str.split(':')
+	return gFont(name, int(size))
 
 def applyAttributes(guiObject, node):
 	# walk all attributes
@@ -65,33 +75,58 @@ def applyAttributes(guiObject, node):
 		value = str(a.value)
 		
 		# and set attributes
-		if attrib == 'position':
-			guiObject.move(parsePosition(value))
-		elif attrib == 'size':
-			guiObject.resize(parseSize(value))
-		elif attrib == 'title':
-			guiObject.setTitle(value)
-		elif attrib != 'name':
-			print "unsupported attribute " + attrib + "=" + value
+		try:
+			if attrib == 'position':
+				guiObject.move(parsePosition(value))
+			elif attrib == 'size':
+				guiObject.resize(parseSize(value))
+			elif attrib == 'title':
+				guiObject.setTitle(value)
+			elif attrib == 'font':
+				guiObject.setFont(parseFont(value))
+			elif attrib == "valign":
+				try:
+					guiObject.setVAlign(
+						{ "top": guiObject.alignTop,
+							"center": guiObject.alignCenter,
+							"bottom": guiObject.alignBottom
+						}[value])
+				except KeyError:
+					print "valign must be either top, center or bottom!"
+			elif attrib == "halign":
+				try:
+					guiObject.setHAlign(
+						{ "left": guiObject.alignLeft,
+							"center": guiObject.alignCenter,
+							"right": guiObject.alignRight,
+							"block": guiObject.alignBlock
+						}[value])
+				except KeyError:
+					print "halign must be either left, center, right or block!"
+			elif attrib != 'name':
+				print "unsupported attribute " + attrib + "=" + value
+		except AttributeError:
+			print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
 
 def applyGUIskin(screen, parent, skin, name):
 	
 	myscreen = None
 	
 	# first, find the corresponding screen element
-	skin = dom.getElementsByTagName("skin")[0]
-	screens = skin.getElementsByTagName("screen")
-	del skin
-	for x in screens:
+	skin = dom.childNodes[0]
+	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
+	
+	for x in elementsWithTag(skin.childNodes, "screen"):
 		if x.getAttribute('name') == name:
 			myscreen = x
+	del skin
 	
 	assert myscreen != None, "no skin for screen '" + name + "' found!"
 	
 	applyAttributes(parent, myscreen)
 	
 	# now walk all widgets
-	for widget in myscreen.getElementsByTagName("widget"):
+	for widget in elementsWithTag(myscreen.childNodes, "widget"):
 		wname = widget.getAttribute('name')
 		if wname == None:
 			print "widget has no name!"

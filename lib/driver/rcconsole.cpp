@@ -112,7 +112,7 @@ class eRCConsoleInit
 	eRCConsoleDriver driver;
 	eRCConsole device;
 public:
-	eRCConsoleInit(): driver("/dev/vc/0"), device(&driver)
+	eRCConsoleInit(): driver("/dev/stdin"), device(&driver)
 	{
 	}
 };

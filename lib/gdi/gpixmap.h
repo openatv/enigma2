@@ -81,40 +81,6 @@ struct gLookup
 	void build(int size, const gPalette &pal, const gRGB &start, const gRGB &end);
 };
 
-/**
- * \brief A softreference to a font.
- *
- * The font is specified by a name and a size.
- * \c gFont is part of the \ref gdi.
- */
-class gFont: public iObject
-{
-DECLARE_REF(gFont);
-public:
-
-	std::string family;
-	int pointSize;
-	
-	/**
-	 * \brief Constructs a font with the given name and size.
-	 * \param family The name of the font, for example "NimbusSansL-Regular Sans L Regular".
-	 * \param pointSize the size of the font in PIXELS.
-	 */
-	gFont(const std::string &family, int pointSize):
-			family(family), pointSize(pointSize)
-	{
-	}
-	
-	virtual ~gFont()
-	{
-	}
-	
-	gFont()
-		:pointSize(0)
-	{
-	}
-};
-
 struct gSurface
 {
 	int type;

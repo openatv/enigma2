@@ -17,6 +17,7 @@
 #include <lib/gdi/erect.h>
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
+#include <lib/gdi/gfont.h>
 
 class eTextPara;
 
@@ -43,6 +44,8 @@ struct gOpcode
 		setOffset,
 		
 		setClip, addClip, popClip,
+		
+		flush,
 		
 		end,shutdown
 	} opcode;
@@ -178,10 +181,16 @@ public:
 	enum
 	{
 			// todo, make mask. you cannot align both right AND center AND block ;)
+		RT_HALIGN_LEFT = 0,  /* default */
 		RT_HALIGN_RIGHT = 1,
 		RT_HALIGN_CENTER = 2,
 		RT_HALIGN_BLOCK = 4,
-		RT_VALIGN_CENTER = 8
+		
+		RT_VALIGN_TOP = 0,  /* default */
+		RT_VALIGN_CENTER = 8,
+		RT_VALIGN_BOTTOM = 16,
+		
+		RT_WRAP = 32
 	};
 	void renderText(const eRect &position, const std::string &string, int flags=0);
 	

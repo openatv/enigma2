@@ -110,6 +110,27 @@ void eWindowStyleSimple::drawFrame(gPainter &painter, const eRect &frame, int wh
 	painter.line(frame.bottomLeft1(), frame.topLeft1());
 }
 
+RESULT eWindowStyleSimple::getFont(int what, ePtr<gFont> &fnt)
+{
+	fnt = 0;
+	switch (what)
+	{
+	case fontStatic:
+		fnt = new gFont("Arial", 12);
+		break;
+	case fontButton:
+		fnt = new gFont("Arial", 20);
+		break;
+	case fontTitlebar:
+		fnt = new gFont("Arial", 25);
+		break;
+	default:
+		return -1;
+	}
+	return 0;
+}
+
+#if 0
 DEFINE_REF(eWindowStyleSkinned);
 
 eWindowStyleSkinned::eWindowStyleSkinned()
@@ -140,3 +161,4 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eSize &size, const
 {
 }
 
+#endif

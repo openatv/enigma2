@@ -302,6 +302,10 @@ void gPainter::clippop()
 
 void gPainter::flush()
 {
+	gOpcode o;
+	o.opcode = gOpcode::flush;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
 }
 
 void gPainter::end()
@@ -340,15 +344,16 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::renderText:
 	{
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
+		int flags = o->parm.renderText->flags;
 		assert(m_current_font);
 		para->setFont(m_current_font);
-		para->renderString(o->parm.renderText->text, 0);
+		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0);
 		
-		if (o->parm.renderText->flags & gPainter::RT_HALIGN_RIGHT)
+		if (flags & gPainter::RT_HALIGN_RIGHT)
 			para->realign(eTextPara::dirRight);
-		else if (o->parm.renderText->flags & gPainter::RT_HALIGN_CENTER)
+		else if (flags & gPainter::RT_HALIGN_CENTER)
 			para->realign(eTextPara::dirCenter);
-		else if (o->parm.renderText->flags & gPainter::RT_HALIGN_BLOCK)
+		else if (flags & gPainter::RT_HALIGN_BLOCK)
 			para->realign(eTextPara::dirBlock);
 		
 		ePoint offset = m_current_offset;
@@ -453,6 +458,8 @@ void gDC::exec(gOpcode *o)
 		else
 			m_current_offset  = o->parm.setOffset->value;
 		delete o->parm.setOffset;
+		break;
+	case gOpcode::flush:
 		break;
 	default:
 		eFatal("illegal opcode %d. expect memory leak!", o->opcode);

@@ -27,8 +27,15 @@ public:
 		frameButton,
 		frameListboxEntry
 	};
+	
+	enum {
+		fontStatic,
+		fontButton,
+		fontTitlebar
+	};
+	
+	virtual RESULT getFont(int what, ePtr<gFont> &font) = 0;
 	virtual ~eWindowStyle() = 0;
-
 };
 
 class eWindowStyleSimple: public eWindowStyle
@@ -46,8 +53,10 @@ public:
 	void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size);
 	void setStyle(gPainter &painter, int what);
 	void drawFrame(gPainter &painter, const eRect &frame, int what);
+	RESULT getFont(int what, ePtr<gFont> &font);
 };
 
+#if 0
 class eWindowStyleSkinned: public eWindowStyle
 {
 	DECLARE_REF(eWindowStyleSkinned);
@@ -86,5 +95,6 @@ private:
 	
 	void drawBorder(gPainter &painter, const eSize &size, const struct borderSet &border, int where);
 };
+#endif
 
 #endif
