@@ -1,17 +1,11 @@
 from enigma import *
+from tools import *
 
 import sys
 import time
 
 from screens import *
 from skin import applyGUIskin
-
-
-def CONNECT(slot, fnc):
-	slot.get().append(fnc)
-
-def DISCONNECT(slot, fnc):
-	slot.get().remove(fnc)
 
 # A screen is a function which instanciates all components of a screen into a temporary component.
 # Thus, the global stuff is a screen, too.
@@ -118,6 +112,8 @@ class Session:
 def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
+	
+	session.nav = pNavigation()
 	
 	session.open(infoBar())
 

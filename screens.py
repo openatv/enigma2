@@ -73,7 +73,7 @@ class channelSelection(Screen):
 		self["okbutton"] = Button("ok", [self.channelSelected, self.close])
 
 	def channelSelected(self):
-#		print "channel selected!"
+		self.session.nav.playService(self["list"].getCurrent())
 		pass
 
 class infoBar(Screen):

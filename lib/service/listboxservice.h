@@ -12,6 +12,7 @@ class eListboxServiceContent: public virtual iListboxContent
 public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
+	void getCurrent(eServiceReference &ref);
 
 protected:
 	void cursorHome();
