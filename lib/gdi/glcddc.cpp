@@ -1,7 +1,6 @@
 #ifndef DISABLE_LCD
 
 #include <lib/gdi/glcddc.h>
-#include <lib/gdi/lcd.h>
 
 gLCDDC *gLCDDC::instance;
 
@@ -11,21 +10,20 @@ gLCDDC::gLCDDC(eLCD *lcd): lcd(lcd)
 	
 	update=1;
 
-	pixmap=new gPixmap();
-	pixmap->x=lcd->size().width();
-	pixmap->y=lcd->size().height();
-	pixmap->bpp=8;
-	pixmap->bypp=1;
-	pixmap->stride=lcd->stride();
-	pixmap->data=lcd->buffer();
-	
-	pixmap->clut.colors=256;
-	pixmap->clut.data=0;
+	surface.x=lcd->size().width();
+	surface.y=lcd->size().height();
+	surface.bpp=8;
+	surface.bypp=1;
+	surface.stride=lcd->stride();
+	surface.data=lcd->buffer();
+
+	surface.clut.colors=256;
+	surface.clut.data=0;
+	m_pixmap = new gPixmap(&surface);
 }
 
 gLCDDC::~gLCDDC()
 {
-	delete pixmap;
 	instance=0;
 }
 
@@ -33,12 +31,12 @@ void gLCDDC::exec(gOpcode *o)
 {
 	switch (o->opcode)
 	{
-	case gOpcode::flush:
+//	case gOpcode::flush:
 	case gOpcode::end:
 		if (update)
 			lcd->update();
 	default:
-		gPixmapDC::exec(o);
+		gDC::exec(o);
 		break;
 	}
 }

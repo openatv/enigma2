@@ -10,11 +10,11 @@
 #include <dbox/fp.h>
 #include <dbox/lcd-ks0713.h>
 
-#include <lib/gdi/esize.h>
-#include <lib/base/init.h>
-#include <lib/base/init_num.h>
+#include <lib/base/esize.h>
+#include <lib/system/init.h>
+#include <lib/system/init_num.h>
 #include <lib/gdi/glcddc.h>
-#include <lib/base/econfig.h>
+#include <lib/system/econfig.h>
 
 eDBoxLCD *eDBoxLCD::instance;
 
@@ -41,16 +41,16 @@ int eLCD::lock()
 
 void eLCD::unlock()
 {
-  read( lcdfd, NULL, 0);
-  if ( errno == 9 )
-  {
-    eDebug("reopen lcd");
-    lcdfd=open("/dev/dbox/lcd0", O_RDWR);  // reopen device
-  }
-  else
-    eDebug("do not reopen lcd.. errno = %d", errno);
+	read( lcdfd, NULL, 0);
+	if ( errno == 9 )
+	{
+		eDebug("reopen lcd");
+		lcdfd=open("/dev/dbox/lcd0", O_RDWR);  // reopen device
+	}
+	else
+		eDebug("do not reopen lcd.. errno = %d", errno);
     
-  locked=0;
+	locked=0;
 }
 
 /* void eLCD::line(ePoint start, ePoint dst, int color)
@@ -165,7 +165,10 @@ int eDBoxLCD::switchLCD(int state)
 eDBoxLCD::~eDBoxLCD()
 {
 	if (lcdfd>0)
+	{
 		close(lcdfd);
+		lcdfd=0;
+	}
 }
 
 eDBoxLCD *eDBoxLCD::getInstance()
@@ -175,25 +178,22 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-	if (!locked)
+	unsigned char raw[120*8];
+	int x, y, yy;
+	for (y=0; y<8; y++)
 	{
-		unsigned char raw[120*8];
-		int x, y, yy;
-		for (y=0; y<8; y++)
+		for (x=0; x<120; x++)
 		{
-			for (x=0; x<120; x++)
+			int pix=0;
+			for (yy=0; yy<8; yy++)
 			{
-				int pix=0;
-				for (yy=0; yy<8; yy++)
-				{
-					pix|=(_buffer[(y*8+yy)*128+x]>=108)<<yy;
-				}
-				raw[y*120+x]=(pix^inverted);
+				pix|=(_buffer[(y*8+yy)*128+x]>=108)<<yy;
 			}
+			raw[y*120+x]=(pix^inverted);
 		}
-		if (lcdfd>0)
-			write(lcdfd, raw, 120*8);
 	}
+	if (lcdfd>0)
+		write(lcdfd, raw, 120*8);
 }
 
 class eDBoxLCDHardware
@@ -209,4 +209,5 @@ public:
 eAutoInitP0<eDBoxLCDHardware> init_eDBoxLCDHardware(eAutoInitNumbers::lowlevel, "d-Box LCD Hardware");
 
 #endif //DISABLE_LCD
+
 #endif

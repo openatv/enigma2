@@ -5,7 +5,7 @@
 #include "gpixmap.h"
 #include "grc.h"
 
-class gFBDC: public gPixmapDC
+class gFBDC: public gDC
 {
 	fbClass *fb;
 	static gFBDC *instance;
@@ -14,6 +14,7 @@ class gFBDC: public gPixmapDC
 	int brightness, gamma, alpha;
 	void calcRamp();
 	void setPalette();
+	gSurface surface;
 public:
 	void reloadSettings();
 	void setAlpha(int alpha);
@@ -29,6 +30,7 @@ public:
 	gFBDC();
 	~gFBDC();
 	static gFBDC *getInstance();
+	int islocked() { return fb->islocked(); }
 };
 
 

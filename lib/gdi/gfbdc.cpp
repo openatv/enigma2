@@ -15,26 +15,28 @@ gFBDC::gFBDC()
 		eFatal("no framebuffer available");
 
 	fb->SetMode(720, 576, 8);
+
 	for (int y=0; y<576; y++)																		 // make whole screen transparent
 		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
 
-	pixmap=new gPixmap();
-	pixmap->x=720;
-	pixmap->y=576;
-	pixmap->bpp=8;
-	pixmap->bypp=1;
-	pixmap->stride=fb->Stride();
-	pixmap->data=fb->lfb;
+	surface.type = 0;
+	surface.x = 720;
+	surface.y = 576;
+	surface.bpp = 8;
+	surface.bypp = 1;
+	surface.stride = fb->Stride();
+	surface.data = fb->lfb;
+	surface.clut.colors=256;
+	surface.clut.data=new gRGB[surface.clut.colors];
 	
-	pixmap->clut.colors=256;
-	pixmap->clut.data=new gRGB[pixmap->clut.colors];
-	memset(pixmap->clut.data, 0, sizeof(*pixmap->clut.data)*pixmap->clut.colors);
+	m_pixmap = new gPixmap(&surface);
+	
+	memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
 	reloadSettings();
 }
 
 gFBDC::~gFBDC()
 {
-	delete pixmap;
 	delete fb;
 	instance=0;
 }
@@ -72,10 +74,7 @@ void gFBDC::calcRamp()
 			d=255;
 		ramp[i]=d;
 
-/*		if ( eDVB::getInstance()->getmID == 1 )
-			rampalpha[i]=i*alpha/65535;
-		else*/
-			rampalpha[i]=i*alpha/256;
+		rampalpha[i]=i*alpha/256;
 	}
 
 	rampalpha[255]=255; // transparent BLEIBT bitte so.
@@ -83,15 +82,15 @@ void gFBDC::calcRamp()
 
 void gFBDC::setPalette()
 {
-	if (!pixmap->clut.data)
+	if (!surface.clut.data)
 		return;
 	
 	for (int i=0; i<256; ++i)
 	{
-		fb->CMAP()->red[i]=ramp[pixmap->clut.data[i].r]<<8;
-		fb->CMAP()->green[i]=ramp[pixmap->clut.data[i].g]<<8;
-		fb->CMAP()->blue[i]=ramp[pixmap->clut.data[i].b]<<8;
-		fb->CMAP()->transp[i]=rampalpha[pixmap->clut.data[i].a]<<8;
+		fb->CMAP()->red[i]=ramp[surface.clut.data[i].r]<<8;
+		fb->CMAP()->green[i]=ramp[surface.clut.data[i].g]<<8;
+		fb->CMAP()->blue[i]=ramp[surface.clut.data[i].b]<<8;
+		fb->CMAP()->transp[i]=rampalpha[surface.clut.data[i].a]<<8;
 		if (!fb->CMAP()->red[i])
 			fb->CMAP()->red[i]=0x100;
 	}
@@ -104,12 +103,12 @@ void gFBDC::exec(gOpcode *o)
 	{
 	case gOpcode::setPalette:
 	{
-		gPixmapDC::exec(o);
+		gDC::exec(o);
 		setPalette();
 		break;
 	}
 	default:
-		gPixmapDC::exec(o);
+		gDC::exec(o);
 		break;
 	}
 }
@@ -163,4 +162,4 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-eAutoInitP0<gFBDC> init_gFBDC(eAutoInitNumbers::graphic+1, "GFBDC");
+eAutoInitP0<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");

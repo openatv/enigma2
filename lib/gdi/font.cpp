@@ -192,13 +192,15 @@ float fontRenderClass::getLineHeight(const gFont& font)
 {
 	if (!instance)
 		return 0;
-	Font *fnt = getFont( font.family.c_str(), font.pointSize);
+	ePtr<Font> fnt;
+	getFont(fnt, font.family.c_str(), font.pointSize);
 	if (!fnt)
 		return 0;
 	singleLock s(ftlock);
 	FT_Face current_face;
 	if (FTC_Manager_Lookup_Size(cacheManager, &fnt->font.font, &current_face, &fnt->size)<0)
 	{
+		delete fnt;
 		eDebug("FTC_Manager_Lookup_Size failed!");
 		return 0;
 	}
@@ -212,20 +214,32 @@ float fontRenderClass::getLineHeight(const gFont& font)
 fontRenderClass::~fontRenderClass()
 {
 	singleLock s(ftlock);
+	while(font)
+	{
+		fontListEntry *f=font;
+		font=font->next;
+		delete f;
+	}
 //	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten. 
 //	FTC_Manager_Done(cacheManager);
 //	FT_Done_FreeType(library);
 }
 
-Font *fontRenderClass::getFont(const eString &face, int size, int tabwidth)
+int fontRenderClass::getFont(ePtr<Font> &font, const eString &face, int size, int tabwidth)
 {
 	FTC_FaceID id=getFaceID(face);
 	if (!id)
-		return 0;
-	return new Font(this, id, size * ((fontListEntry*)id)->scale / 100, tabwidth);
+	{
+		font = 0;
+		return -1;
+	}
+	font = new Font(this, id, size * ((fontListEntry*)id)->scale / 100, tabwidth);
+	return 0;
 }
 
-Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): tabwidth(tw)
+DEFINE_REF(Font);
+
+Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): ref(0), tabwidth(tw)
 {
 	renderer=render;
 	font.font.face_id=faceid;
@@ -248,18 +262,6 @@ Font::~Font()
 {
 }
 
-void Font::lock()
-{
-	ref++;
-}
-
-void Font::unlock()
-{
-	ref--;
-	if (!ref)
-		delete this;
-}
-
 int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags)
 {
 	FTC_SBit glyph;
@@ -276,33 +278,36 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		)
 	{
 		int cnt = 0;
-		glyphString::iterator i(glyphs.end());
-		--i;
-		while (i != glyphs.begin())
+		glyphString::reverse_iterator i(glyphs.rbegin());
+		while (i != glyphs.rend())
 		{
 			if (i->flags&(GS_ISSPACE|GS_ISFIRST))
 				break;
 			cnt++;
-			--i;
+			++i;
 		} 
-		if (i != glyphs.begin() && ((i->flags&(GS_ISSPACE|GS_ISFIRST))==GS_ISSPACE) && (++i != glyphs.end()))		// skip space
+		if (i != glyphs.rend()
+			&& ((i->flags&(GS_ISSPACE|GS_ISFIRST))==GS_ISSPACE)
+			&& cnt )
 		{
+			--i;
 			int linelength=cursor.x()-i->x;
 			i->flags|=GS_ISFIRST;
 			ePoint offset=ePoint(i->x, i->y);
 			newLine(rflags);
 			offset-=cursor;
-			while (i != glyphs.end())		// rearrange them into the next line
+			do
 			{
 				i->x-=offset.x();
 				i->y-=offset.y();
 				i->bbox.moveBy(-offset.x(), -offset.y());
-				++i;
 			}
-			cursor+=ePoint(linelength, 0);	// put the cursor after that line
-		} else
+			while (i-- != glyphs.rbegin()); // rearrange them into the next line
+			cursor+=ePoint(linelength, 0);  // put the cursor after that line
+		}
+		else
 		{
-	    if (cnt)
+			if (cnt)
 			{
 				newLine(rflags);
 				flags|=GS_ISFIRST;
@@ -320,8 +325,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	}
 
 	pGlyph ng;
-
-	ng.bbox.setLeft( (flags&GS_ISFIRST|glyphs.empty()?cursor.x():cursor.x()-1) + glyph->left );
+	ng.bbox.setLeft( (flags&GS_ISFIRST|cursor.x()-1)+glyph->left );
 	ng.bbox.setTop( cursor.y() - glyph->top );
 	ng.bbox.setWidth( glyph->width );
 	ng.bbox.setHeight( glyph->height );
@@ -329,11 +333,9 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	xadvance+=kern;
 
 	ng.x=cursor.x()+kern;
-
 	ng.y=cursor.y();
 	ng.w=xadvance;
 	ng.font=current_font;
-	ng.font->lock();
 	ng.glyph_index=glyphIndex;
 	ng.flags=flags;
 	glyphs.push_back(ng);
@@ -351,8 +353,10 @@ void eTextPara::calc_bbox()
 	boundBox.setBottom( -32000 );
 	// and grow the string bbox
 
-	for (	glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
+	for ( glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 	{
+		if ( i->flags & GS_ISSPACE )
+			continue;
 		if ( i->bbox.left() < boundBox.left() )
 			boundBox.setLeft( i->bbox.left() );
 		if ( i->bbox.top() < boundBox.top() )
@@ -363,7 +367,8 @@ void eTextPara::calc_bbox()
 			boundBox.setBottom( i->bbox.bottom() );
 	}
 //	eDebug("boundBox left = %i, top = %i, right = %i, bottom = %i", boundBox.left(), boundBox.top(), boundBox.right(), boundBox.bottom() );
-	bboxValid=1;
+	if ( glyphs.size() )
+		bboxValid=1;
 }
 
 void eTextPara::newLine(int flags)
@@ -402,15 +407,16 @@ eTextPara *eTextPara::grab()
 	return this;
 }
 
-void eTextPara::setFont(const gFont &font)
+void eTextPara::setFont(const gFont *font)
 {
 	if (refcnt)
 		eFatal("mod. after lock");
-	Font *fnt=fontRenderClass::getInstance()->getFont(font.family.c_str(), font.pointSize);
+	ePtr<Font> fnt, replacement;
+	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize);
 	if (!fnt)
-		eWarning("FONT '%s' MISSING!", font.family.c_str());
-	setFont(fnt,
-		fontRenderClass::getInstance()->getFont(replacement_facename.c_str(), font.pointSize));
+		eWarning("FONT '%s' MISSING!", font->family.c_str());
+	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize);
+	setFont(fnt, replacement);
 }
 
 eString eTextPara::replacement_facename;
@@ -421,8 +427,6 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 		eFatal("mod. after lock");
 	if (!fnt)
 		return;
-	if (current_font && !current_font->ref)
-		delete current_font;
 	current_font=fnt;
 	replacement_font=replacement;
 	singleLock s(ftlock);
@@ -483,7 +487,7 @@ int eTextPara::renderString(const eString &string, int rflags)
 	std::vector<unsigned long> uc_string, uc_visual;
 	uc_string.reserve(string.length());
 	
-	std::string::const_iterator p(string.begin());
+	eString::const_iterator p(string.begin());
 
 	while(p != string.end())
 	{
@@ -546,11 +550,14 @@ int eTextPara::renderString(const eString &string, int rflags)
 
 	glyphs.reserve(uc_visual.size());
 	
+	int nextflags = 0;
+	
 	for (std::vector<unsigned long>::const_iterator i(uc_visual.begin());
 		i != uc_visual.end(); ++i)
 	{
 		int isprintable=1;
-		int flags=0;
+		int flags = nextflags;
+		nextflags = 0;
 		if (!(rflags&RS_DIRECT))
 		{
 			switch (*i)
@@ -584,7 +591,7 @@ tab:		isprintable=0;
 			case '\n':
 newline:isprintable=0;
 				newLine(rflags);
-				flags|=GS_ISFIRST;
+				nextflags|=GS_ISFIRST;
 				break;
 			case '\r':
 			case 0x86: case 0xE086:
@@ -625,7 +632,7 @@ nprint:	isprintable=0;
 	return 0;
 }
 
-void eTextPara::blit(gPixmapDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground)
+void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground)
 {
 	singleLock s(ftlock);
 	
@@ -644,30 +651,31 @@ void eTextPara::blit(gPixmapDC &dc, const ePoint &offset, const gRGB &background
 
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
+	gSurface *surface = target->surface;
 
 	register int opcode;
 	gColor *lookup8=0;
 	__u32 lookup32[16];
 		
-	if (target->bpp == 8)
+	if (surface->bpp == 8)
 	{
-		if (target->clut.data)
+		if (surface->clut.data)
 		{
-			lookup8=getColor(target->clut, background, foreground).lookup;
+			lookup8=getColor(surface->clut, background, foreground).lookup;
 			opcode=0;
 		} else
 			opcode=1;
-	} else if (target->bpp == 32)
+	} else if (surface->bpp == 32)
 	{
 		opcode=3;
-		if (target->clut.data)
+		if (surface->clut.data)
 		{
-			lookup8=getColor(target->clut, background, foreground).lookup;
+			lookup8=getColor(surface->clut, background, foreground).lookup;
 			for (int i=0; i<16; ++i)
-				lookup32[i]=((target->clut.data[lookup8[i]].a<<24)|
-					(target->clut.data[lookup8[i]].r<<16)|
-					(target->clut.data[lookup8[i]].g<<8)|
-					(target->clut.data[lookup8[i]].b))^0xFF000000;
+				lookup32[i]=((surface->clut.data[lookup8[i]].a<<24)|
+					(surface->clut.data[lookup8[i]].r<<16)|
+					(surface->clut.data[lookup8[i]].g<<8)|
+					(surface->clut.data[lookup8[i]].b))^0xFF000000;
 		} else
 		{
 			for (int i=0; i<16; ++i)
@@ -675,14 +683,15 @@ void eTextPara::blit(gPixmapDC &dc, const ePoint &offset, const gRGB &background
 		}
 	} else
 	{
-		eWarning("can't render to %dbpp", target->bpp);
+		eWarning("can't render to %dbpp", surface->bpp);
 		return;
 	}
 	
-	eRect clip(0, 0, target->x, target->y);
-	clip&=dc.getClip();
+	gRegion area(eRect(0, 0, surface->x, surface->y));
+	gRegion clip;
+	clip.intersect(area, dc.getClip());
 
-	int buffer_stride=target->stride;
+	int buffer_stride=surface->stride;
 
 	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 	{
@@ -691,25 +700,25 @@ void eTextPara::blit(gPixmapDC &dc, const ePoint &offset, const gRGB &background
 			continue;
 		int rx=i->x+glyph_bitmap->left + offset.x();
 		int ry=i->y-glyph_bitmap->top  + offset.y();
-		__u8 *d=(__u8*)(target->data)+buffer_stride*ry+rx*target->bypp;
+		__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
 		__u8 *s=glyph_bitmap->buffer;
 		register int sx=glyph_bitmap->width;
 		int sy=glyph_bitmap->height;
-		if ((sy+ry) >= clip.bottom())
-			sy=clip.bottom()-ry;
-		if ((sx+rx) >= clip.right())
-			sx=clip.right()-rx;
-		if (rx < clip.left())
+		if ((sy+ry) >= clip.extends.bottom())
+			sy=clip.extends.bottom()-ry;
+		if ((sx+rx) >= clip.extends.right())
+			sx=clip.extends.right()-rx;
+		if (rx < clip.extends.left())
 		{
-			int diff=clip.left()-rx;
+			int diff=clip.extends.left()-rx;
 			s+=diff;
 			sx-=diff;
 			rx+=diff;
-			d+=diff*target->bypp;
+			d+=diff*surface->bypp;
 		}
-		if (ry < clip.top())
+		if (ry < clip.extends.top())
 		{
-			int diff=clip.top()-ry;
+			int diff=clip.extends.top()-ry;
 			s+=diff*glyph_bitmap->pitch;
 			sy-=diff;
 			ry+=diff;
@@ -789,6 +798,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 			linelength+=c->w;
 			num++;
 		}
+
 		if (!num)		// line mit nur einem space
 			continue;
 
@@ -846,8 +856,8 @@ void eTextPara::clear()
 {
 	singleLock s(ftlock);
 
-	for (glyphString::iterator i(glyphs.begin()); i!=glyphs.end(); ++i)
-		i->font->unlock();
+	current_font = 0;
+	replacement_font = 0;
 
 	glyphs.clear();
 }

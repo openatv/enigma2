@@ -23,6 +23,7 @@ protected:
 public:
 	int lock();
 	void unlock();
+	int islocked() { return locked; }
 
 	eLCD(eSize size);
 	virtual ~eLCD();

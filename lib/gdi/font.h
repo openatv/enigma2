@@ -1,24 +1,24 @@
 #ifndef __FONT_H
 #define __FONT_H
 
-#include <freetype/freetype.h>
-#include <freetype/ftcache.h>
-#include <freetype/cache/ftcglyph.h>
-#include <freetype/cache/ftcimage.h>
-#include <freetype/cache/ftcmanag.h>
-#include <freetype/cache/ftcsbits.h>
-#include <freetype/cache/ftlru.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include FT_CACHE_H
+#include FT_CACHE_IMAGE_H
+#include FT_CACHE_SMALL_BITMAPS_H
 #include <vector>
+
 
 #include <lib/gdi/fb.h>
 #include <lib/gdi/esize.h>
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
 #include <lib/base/estring.h>
+#include <lib/base/object.h> 
 
 class FontRenderClass;
 class Font;
-class gPixmapDC;
+class gDC;
 class gFont;
 class gRGB;
 
@@ -49,7 +49,7 @@ public:
 	static fontRenderClass *getInstance();
 	FT_Error FTC_Face_Requester(FTC_FaceID	face_id,
 															FT_Face*		aface);
-	Font *getFont(const eString &face, int size, int tabwidth=-1);
+	int getFont(ePtr<Font> &font, const eString &face, int size, int tabwidth=-1);
 	fontRenderClass();
 	~fontRenderClass();
 };
@@ -66,7 +66,7 @@ public:
 struct pGlyph
 {
 	int x, y, w;
-	Font *font;
+	ePtr<Font> font;
 	FT_ULong glyph_index;
 	int flags;
 	eRect bbox;
@@ -77,9 +77,11 @@ typedef std::vector<pGlyph> glyphString;
 class Font;
 class eLCD;
 
-class eTextPara
+class eTextPara: public iObject
 {
-	Font *current_font, *replacement_font;
+DECLARE_REF;
+private:
+ 	ePtr<Font> current_font, replacement_font;
 	FT_Face current_face, replacement_face;
 	int use_kerning;
 	int previous;
@@ -104,19 +106,19 @@ public:
 			area(area), cursor(start), maximum(0, 0), left(start.x()), refcnt(0), bboxValid(0)
 	{
 	}
-	~eTextPara();
+	virtual ~eTextPara();
 	
 	static void setReplacementFont(eString font) { replacement_facename=font; }
 
 	void destroy();
 	eTextPara *grab();
 
-	void setFont(const gFont &font);
+	void setFont(const gFont *font);
 	int renderString(const eString &string, int flags=0);
 
 	void clear();
 
-	void blit(gPixmapDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground);
+	void blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground);
 
 	enum
 	{
@@ -139,12 +141,12 @@ public:
 	}
 };
 
-class Font
+class Font: public iObject
 {
+DECLARE_REF;
 public:
 	FTC_Image_Desc font;
 	fontRenderClass *renderer;
-	int ref;
 	FT_Error getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit);
 	FT_Face face;
 	FT_Size size;
@@ -152,10 +154,7 @@ public:
 	int tabwidth;
 	int height;
 	Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tabwidth);
-	~Font();
-	
-	void lock();
-	void unlock();	// deletes if ref==0
+	virtual ~Font();
 };
 
 extern fontRenderClass *font;

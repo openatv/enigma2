@@ -40,7 +40,7 @@ class eSkin
 	
 	gRGB *palette;
 	int maxcolors;
-	ePtr<gImage> paldummy;
+	ePtr<gPixmap> paldummy;
 	int *colorused;
 	
 	static std::map< eString, tWidgetCreator > widget_creator;
@@ -68,7 +68,7 @@ public:
 	void parseSkins();
 	
 	int build(eWidget *widget, const char *name);
-	void setPalette(gPixmapDC *pal);
+	void setPalette(gPixmap *pal);
 
 	gColor queryColor(const eString &name);
 	gColor queryScheme(const eString &name) const;
