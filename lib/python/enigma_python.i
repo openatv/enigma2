@@ -66,6 +66,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %}
 
 RefCount(eListboxPythonStringContent)
+RefCount(eListboxServiceContent)
 
 #define DEBUG
 %include "stl.i"

@@ -147,13 +147,21 @@ public:
 	   large list, provided that no state information is nessesary to deliver
 	   the required information. Anyway - ref *must* be the same as the argument
 	   to the info() or getIServiceInformation call! */
-class iServiceInformation: public iObject
+class iStaticServiceInformation: public iObject
 {
 public:
 	virtual RESULT getName(const eServiceReference &ref, std::string &name)=0;
 };
 
-typedef ePtr<iServiceInformation> iServiceInformationPtr;
+TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
+
+class iServiceInformation: public iStaticServiceInformation
+{
+public:
+	
+};
+
+TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
 
 class iPauseableService: public iObject
 {
@@ -162,7 +170,7 @@ public:
 	virtual RESULT unpause()=0;
 };
 
-typedef ePtr<iPauseableService> iPauseableServicePtr;
+TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);
 
 class iPlayableService: public iObject
 {
@@ -176,8 +184,8 @@ public:
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
-	virtual RESULT getIPausableService(ePtr<iPauseableService> &ptr)=0;
-	virtual RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr)=0;
+	virtual RESULT pause(ePtr<iPauseableService> &ptr)=0;
+	virtual RESULT info(ePtr<iServiceInformation> &ptr)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
@@ -189,10 +197,9 @@ public:
 	virtual RESULT stop()=0;
 };
 
-typedef ePtr<iRecordableService> iRecordableServicePtr;
+TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
 // TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
-typedef std::list<eServiceReference> eServiceReferenceList;
 
 class iListableService: public iObject
 {
@@ -208,9 +215,9 @@ public:
 	virtual RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr)=0;
 	virtual RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr)=0;
 	virtual RESULT list(const eServiceReference &, ePtr<iListableService> &ptr)=0;
-	virtual RESULT info(const eServiceReference &, ePtr<iServiceInformation> &ptr);
+	virtual RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 };
 
-typedef ePtr<iServiceHandler> iServiceHandlerPtr;
+TEMPLATE_TYPEDEF(ePtr<iServiceHandler>, iServiceHandlerPtr);
 
 #endif

@@ -174,11 +174,11 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		return self.getText()
 
 class Button(HTMLComponent, GUIComponent, VariableText):
-	def __init__(self, text=""):
+	def __init__(self, text="", onClick = [ ]):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.setText(text)
-		self.onClick = [ ]
+		self.onClick = onClick
 	
 	def push(self):
 		for x in self.onClick:
@@ -223,7 +223,6 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 		g = eSlider(parent)
 		g.setRange(0, 100)
 		return g
-
 
 class MenuList(HTMLComponent, GUIComponent):
 	def __init__(self, list):

@@ -32,7 +32,7 @@ def dump(dir, p = ""):
 components = {}
 
 # do global
-screens["global"](components)
+doGlobal(components)
 
 # display
 
@@ -84,15 +84,15 @@ class Session:
 		
 		if self.desktop != None:
 			self.currentWindow = wnd = eWindow(self.desktop)
-			wnd.setTitle("Screen from python!")
-			wnd.move(ePoint(300, 100))
-			wnd.resize(eSize(300, 300))
+#			wnd.setTitle("Screen from python!")
+#			wnd.move(ePoint(300, 100))
+#			wnd.resize(eSize(300, 300))
 
 			gui = GUIOutputDevice()
 			gui.parent = wnd
 			gui.create(self.currentDialog)
 
-		 	applyGUIskin(self.currentDialog, None, screen.__class__.__name__)
+		 	applyGUIskin(self.currentDialog, wnd, None, screen.__class__.__name__)
 
 			wnd.show()
 		else:
@@ -102,9 +102,15 @@ class Session:
 #		print "code " + str(code)
 		if code == 32:
 			self.currentDialog.data["okbutton"]["instance"].push()
+
+		if code == 33:
+			self.currentDialog.data["channelSwitcher"]["instance"].push()
 		
 		if code >= 0x30 and code <= 0x39:
-			self.currentDialog.data["menu"]["instance"].moveSelection(code - 0x31)
+			try:
+				self.currentDialog.data["menu"]["instance"].moveSelection(code - 0x31)
+			except:
+				self.currentDialog.data["list"]["instance"].moveSelection(code - 0x31)
 
 	def close(self):
 		self.delayTimer.start(0, 1)
@@ -113,21 +119,8 @@ def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
 	
-#	session.open(screens["clockDisplay"](components["clock"]))
-	session.open(screens["testDialog"]())
+	session.open(infoBar())
 
-	# simple reason for this helper function: we want to call the currently
-	# active "okbutton", even when we changed the dialog
-	#
-	# more complicated reason: we don't want to hold a reference.
-#	def blub():
-#		session.currentDialog.data["okbutton"]["instance"].push()	
-#		session.currentDialog["okbutton"].setText("hello!")
-#	
-#	tmr = eTimer()
-#	CONNECT(tmr.timeout, blub)
-#	tmr.start(4000, 0)
-#	
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	runMainloop()

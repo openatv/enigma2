@@ -102,7 +102,7 @@ RESULT eNavigation::pause(int dop)
 	if (!m_runningService)
 		return -1;
 	ePtr<iPauseableService> p;
-	if (m_runningService->getIPausableService(p))
+	if (m_runningService->pause(p))
 		return -2;
 	if (dop)
 		return p->pause();

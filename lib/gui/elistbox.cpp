@@ -1,3 +1,4 @@
+	/* written by: Felix Domke <tmbinc@elitedvb.net> */
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 
@@ -9,11 +10,7 @@ eListbox::eListbox(eWidget *parent): eWidget(parent)
 void eListbox::setContent(iListboxContent *content)
 {
 	m_content = content;
-	invalidate();
-	if (m_content)
-		m_content->cursorHome();
-	m_top = 0;
-	m_selected = 0;
+	entryReset();
 }
 
 void eListbox::moveSelection(int dir)
@@ -46,6 +43,8 @@ void eListbox::moveSelection(int dir)
 		if (m_top < 0)
 			m_top = 0;
 		break;
+	case justCheck:
+		break;
 	}
 	
 		/* note that we could be on an invalid cursor position, but we don't
@@ -54,6 +53,7 @@ void eListbox::moveSelection(int dir)
 	
 		/* now, look wether the current selection is out of screen */
 	m_selected = m_content->cursorGet();
+	
 	if (m_selected < m_top)
 	{
 		m_top -= m_items_per_page;
@@ -64,11 +64,12 @@ void eListbox::moveSelection(int dir)
 			/* m_top should be always valid here as it's selected */
 		m_top += m_items_per_page;
 	}
-	
+
 	if (m_top != oldtop)
 		invalidate();
-	else
+	else if (m_selected != oldsel)
 	{
+		
 			/* redraw the old and newly selected */
 		gRegion inv = eRect(0, m_itemheight * (m_selected-m_top), size().width(), m_itemheight);
 		inv |= eRect(0, m_itemheight * (oldsel-m_top), size().width(), m_itemheight);
@@ -118,4 +119,58 @@ void eListbox::recalcSize()
 	m_itemheight = 20;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
+}
+
+void eListbox::entryAdded(int index)
+{
+		/* manage our local pointers. when the entry was added before the current position, we have to advance. */
+		
+		/* we need to check <= - when the new entry has the (old) index of the cursor, the cursor was just moved down. */
+	if (index <= m_selected)
+		++m_selected;
+	if (index <= m_top)
+		++m_top;
+		
+		/* we have to check wether our current cursor is gone out of the screen. */
+		/* moveSelection will check for this case */
+	moveSelection(justCheck);
+	
+		/* now, check if the new index is visible. */
+	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
+	{
+			/* todo, calc exact invalidation... */
+		invalidate();
+	}
+}
+
+void eListbox::entryRemoved(int index)
+{
+	if (index == m_selected)
+		m_selected = m_content->cursorGet();
+
+	moveSelection(justCheck);
+	
+	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
+	{
+			/* todo, calc exact invalidation... */
+		invalidate();
+	}
+}
+
+void eListbox::entryChanged(int index)
+{
+	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
+	{
+		gRegion inv = eRect(0, m_itemheight * (index-m_top), size().width(), m_itemheight);
+		invalidate(inv);
+	}
+}
+
+void eListbox::entryReset()
+{
+	invalidate();
+	if (m_content)
+		m_content->cursorHome();
+	m_top = 0;
+	m_selected = 0;
 }

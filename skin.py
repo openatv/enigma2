@@ -13,7 +13,7 @@ def dump(x, i=0):
 dom = xml.dom.minidom.parseString(
 	"""
 	<skin>
-		<screen name="testDialog">
+		<screen name="mainMenu" position="300,100" size="300,300" title="real main menu">
 			<widget name="okbutton" position="10,190" size="280,50" />
 			<widget name="title" position="10,10" size="280,20" />
 			<widget name="menu" position="10,30" size="280,140" />
@@ -23,9 +23,12 @@ dom = xml.dom.minidom.parseString(
 			<widget name="title" position="10,120" size="280,50" />
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
-		<screen name="mainMenu" position="300,100" size="300,300">
-			<widget name="title" position="10,10" size="280,80" />
+		<screen name="infoBar" position="100,100" size="500,400" title="InfoBar">
+			<widget name="channelSwitcher" position="10,190" size="280,50" />
+		</screen>
+		<screen name="channelSelection" position="300,100" size="300,300" title="Channel Selection">
 			<widget name="okbutton" position="10,190" size="280,50" />
+			<widget name="list" position="10,30" size="280,140" />
 		</screen>
 	</skin>
 """)
@@ -45,15 +48,23 @@ def applyAttributes(guiObject, node):
 	for p in range(node.attributes.length):
 		a = node.attributes.item(p)
 		
+		# convert to string (was: unicode)
+		attrib = str(a.name)
+		# TODO: proper UTF8 translation?! (for value)
+		# TODO: localization? as in e1?
+		value = str(a.value)
+		
 		# and set attributes
-		if a.name == 'position':
-			guiObject.move(parsePosition(a.value))
-		elif a.name == 'size':
-			guiObject.resize(parseSize(a.value))
-		elif a.name != 'name':
-			print "unsupported attribute " + a.name
+		if attrib == 'position':
+			guiObject.move(parsePosition(value))
+		elif attrib == 'size':
+			guiObject.resize(parseSize(value))
+		elif attrib == 'title':
+			guiObject.setTitle(value)
+		elif attrib != 'name':
+			print "unsupported attribute " + attrib + "=" + value
 
-def applyGUIskin(screen, skin, name):
+def applyGUIskin(screen, parent, skin, name):
 	
 	myscreen = None
 	
@@ -66,6 +77,8 @@ def applyGUIskin(screen, skin, name):
 			myscreen = x
 	
 	assert myscreen != None, "no skin for screen '" + name + "' found!"
+	
+	applyAttributes(parent, myscreen)
 	
 	# now walk all widgets
 	for widget in myscreen.getElementsByTagName("widget"):

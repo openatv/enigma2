@@ -29,6 +29,10 @@ iListboxContent::~iListboxContent()
 {
 }
 
+void iListboxContent::setListbox(eListbox *lb)
+{
+	m_listbox = lb;
+}
 
 DEFINE_REF(eListboxTestContent);
 
@@ -203,11 +207,6 @@ int eListboxStringContent::size()
 	return m_size;
 }
 	
-RESULT eListboxStringContent::connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection)
-{
-	return 0;
-}
-
 void eListboxStringContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
@@ -316,11 +315,6 @@ int eListboxPythonStringContent::size()
 	return PyList_Size(m_list);
 }
 	
-RESULT eListboxPythonStringContent::connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection)
-{
-	return 0;
-}
-
 void eListboxPythonStringContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
