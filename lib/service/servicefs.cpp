@@ -109,4 +109,4 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 	return 0;
 }
 
-eAutoInitP0<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");
+eAutoInitPtr<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");

@@ -180,7 +180,7 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 
 RESULT eDVBChannel::connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(m_stateChanged.connect(stateChange));
+	connection = new eConnection(this, m_stateChanged.connect(stateChange));
 	return 0;
 }
 

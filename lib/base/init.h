@@ -3,6 +3,7 @@
 
 #include <list>
 #include <utility>
+#include <lib/base/object.h>
 
 class eAutoInit;
 
@@ -89,6 +90,37 @@ public:
 		eInit::add(rl, this);
 	}
 	~eAutoInitP0()
+	{
+		eInit::remove(rl, this);
+	}
+};
+
+template<class T1> class
+eAutoInitPtr: protected eAutoInit
+{
+	ePtr<T1> t;
+	void initNow()
+	{
+		t = new T1();
+	}
+	void closeNow()
+	{
+		t = 0;
+	}
+public:
+	operator T1*()
+	{
+		return t;
+	}
+	T1 *operator->()
+	{
+		return t;
+	}
+	eAutoInitPtr(int runl, char *description): eAutoInit(runl, description)
+	{
+		eInit::add(rl, this);
+	}
+	~eAutoInitPtr()
 	{
 		eInit::remove(rl, this);
 	}

@@ -11,7 +11,11 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	switch (event)
 	{
 	case iPlayableService::evEnd:
-			/* our running main service stopped. */
+			/* at first, kill the running service */
+		m_event(this, evStopService);
+		m_runningService = 0;
+		m_service_event_conn = 0;
+			/* our running main service stopped. remove it from playlist */
 		if (!m_playlist.empty())
 			m_playlist.erase(m_playlist.begin());
 		if (!m_playlist.empty())
@@ -33,6 +37,7 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 
 RESULT eNavigation::playService(const eServiceReference &service)
 {
+	assert(m_servicehandler);
 	RESULT res = m_servicehandler->play(service, m_runningService);
 	if (m_runningService)
 	{
@@ -53,7 +58,7 @@ RESULT eNavigation::enqueueService(const eServiceReference &service)
 
 RESULT eNavigation::connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(m_event.connect(event));
+	connection = new eConnection(this, m_event.connect(event));
 	return 0;
 }
 
@@ -76,8 +81,9 @@ RESULT eNavigation::pause(int dop)
 		return p->unpause();
 }
 
-eNavigation::eNavigation(iServiceHandler *serviceHandler)
+eNavigation::eNavigation(iServiceHandler *serviceHandler): ref(0)
 {
+	assert(serviceHandler);
 	m_servicehandler = serviceHandler;
 }
 
