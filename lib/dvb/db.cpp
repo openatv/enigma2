@@ -9,7 +9,7 @@
 
 DEFINE_REF(eDVBService);
 
-eDVBService::eDVBService(): ref(0)
+eDVBService::eDVBService()
 {
 }
 

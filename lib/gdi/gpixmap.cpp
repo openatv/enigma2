@@ -1,4 +1,5 @@
 #include <lib/gdi/gpixmap.h>
+#include <lib/gdi/region.h>
 
 gLookup::gLookup()
 	:size(0), lookup(0)
@@ -102,121 +103,130 @@ void gPixmap::unlock()
 	contentlock.unlock(1);
 }
 
-void gPixmap::fill(const eRect &area, const gColor &color)
+void gPixmap::fill(const gRegion &region, const gColor &color)
 {
-	if ((area.height()<=0) || (area.width()<=0))
-		return;
-	if (surface->bpp == 8)
-		for (int y=area.top(); y<area.bottom(); y++)
-			memset(((__u8*)surface->data)+y*surface->stride+area.left(), color.color, area.width());
-	else if (surface->bpp == 32)
-		for (int y=area.top(); y<area.bottom(); y++)
+	int i;
+	for (i=0; i<region.rects.size(); ++i)
+	{
+		const eRect &area = region.rects[i];
+		if ((area.height()<=0) || (area.width()<=0))
+			continue;
+		if (surface->bpp == 8)
 		{
-			__u32 *dst=(__u32*)(((__u8*)surface->data)+y*surface->stride+area.left()*surface->bypp);
-			int x=area.width();
-			__u32 col;
+			for (int y=area.top(); y<area.bottom(); y++)
+		 		memset(((__u8*)surface->data)+y*surface->stride+area.left(), color.color, area.width());
+		} else if (surface->bpp == 32)
+			for (int y=area.top(); y<area.bottom(); y++)
+			{
+				__u32 *dst=(__u32*)(((__u8*)surface->data)+y*surface->stride+area.left()*surface->bypp);
+				int x=area.width();
+				__u32 col;
 
-			if (surface->clut.data && color < surface->clut.colors)
-				col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
-			else
-				col=0x10101*color;
-			col^=0xFF000000;			
-			while (x--)
-				*dst++=col;
-		}
-	else
-		eWarning("couldn't fill %d bpp", surface->bpp);
+				if (surface->clut.data && color < surface->clut.colors)
+					col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+				else
+					col=0x10101*color;
+				col^=0xFF000000;			
+				while (x--)
+					*dst++=col;
+			}
+		else
+			eWarning("couldn't fill %d bpp", surface->bpp);
+	}
 }
 
-void gPixmap::blit(const gPixmap &src, ePoint pos, const eRect &clip, int flag)
+void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag)
 {
-	eRect area=eRect(pos, src.getSize());
-	area&=clip;
-	area&=eRect(ePoint(0, 0), getSize());
-	if ((area.width()<0) || (area.height()<0))
-		return;
-
-	eRect srcarea=area;
-	srcarea.moveBy(-pos.x(), -pos.y());
-
-	if ((surface->bpp == 8) && (src.surface->bpp==8))
+	for (int i=0; i<clip.rects.size(); ++i)
 	{
-		__u8 *srcptr=(__u8*)src.surface->data;
-		__u8 *dstptr=(__u8*)surface->data;
+		eRect area=eRect(pos, src.getSize());
+		area&=clip.rects[i];
+		area&=eRect(ePoint(0, 0), getSize());
+		if ((area.width()<0) || (area.height()<0))
+			continue;
+
+		eRect srcarea=area;
+		srcarea.moveBy(-pos.x(), -pos.y());
+
+		if ((surface->bpp == 8) && (src.surface->bpp==8))
+		{
+			__u8 *srcptr=(__u8*)src.surface->data;
+			__u8 *dstptr=(__u8*)surface->data;
 	
-		srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
-		dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
-		for (int y=0; y<area.height(); y++)
-		{
-			if (flag & blitAlphaTest)
+			srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
+			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
+			for (int y=0; y<area.height(); y++)
 			{
-  	      // no real alphatest yet
-				int width=area.width();
-				unsigned char *src=(unsigned char*)srcptr;
-				unsigned char *dst=(unsigned char*)dstptr;
-					// use duff's device here!
-				while (width--)
+				if (flag & blitAlphaTest)
 				{
-					if (!*src)
+  		      // no real alphatest yet
+					int width=area.width();
+					unsigned char *src=(unsigned char*)srcptr;
+					unsigned char *dst=(unsigned char*)dstptr;
+						// use duff's device here!
+					while (width--)
 					{
-						src++;
-						dst++;
-					} else
-						*dst++=*src++;
-				}
-			} else
-				memcpy(dstptr, srcptr, area.width()*surface->bypp);
-			srcptr+=src.surface->stride;
-			dstptr+=surface->stride;
-		}
-	} else if ((surface->bpp == 32) && (src.surface->bpp==8))
-	{
-		__u8 *srcptr=(__u8*)src.surface->data;
-		__u8 *dstptr=(__u8*)surface->data; // !!
-		__u32 pal[256];
-		
-		for (int i=0; i<256; ++i)
-		{
-			if (src.surface->clut.data && (i<src.surface->clut.colors))
-				pal[i]=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
-			else
-				pal[i]=0x010101*i;
-			pal[i]^=0xFF000000;
-		}
+						if (!*src)
+						{
+							src++;
+							dst++;
+						} else
+							*dst++=*src++;
+					}
+				} else
+					memcpy(dstptr, srcptr, area.width()*surface->bypp);
+				srcptr+=src.surface->stride;
+				dstptr+=surface->stride;
+			}
+		} else if ((surface->bpp == 32) && (src.surface->bpp==8))
+		{	
+			__u8 *srcptr=(__u8*)src.surface->data;
+			__u8 *dstptr=(__u8*)surface->data; // !!
+			__u32 pal[256];
+
+			for (int i=0; i<256; ++i)
+			{
+				if (src.surface->clut.data && (i<src.surface->clut.colors))
+					pal[i]=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
+				else
+					pal[i]=0x010101*i;
+				pal[i]^=0xFF000000;
+			}
 	
-		srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
-		dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
-		for (int y=0; y<area.height(); y++)
-		{
-			if (flag & blitAlphaTest)
+			srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
+			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
+			for (int y=0; y<area.height(); y++)
 			{
-  	      // no real alphatest yet
-				int width=area.width();
-				unsigned char *src=(unsigned char*)srcptr;
-				__u32 *dst=(__u32*)dstptr;
-					// use duff's device here!
-				while (width--)
+				if (flag & blitAlphaTest)
 				{
-					if (!*src)
+	  	      // no real alphatest yet
+					int width=area.width();
+					unsigned char *src=(unsigned char*)srcptr;
+					__u32 *dst=(__u32*)dstptr;
+						// use duff's device here!
+					while (width--)
 					{
-						src++;
-						dst++;
-					} else
+						if (!*src)
+						{
+							src++;
+							dst++;
+						} else
+							*dst++=pal[*src++];
+					}
+				} else
+				{
+					int width=area.width();
+					unsigned char *src=(unsigned char*)srcptr;
+					__u32 *dst=(__u32*)dstptr;
+					while (width--)
 						*dst++=pal[*src++];
 				}
-			} else
-			{
-				int width=area.width();
-				unsigned char *src=(unsigned char*)srcptr;
-				__u32 *dst=(__u32*)dstptr;
-				while (width--)
-					*dst++=pal[*src++];
+				srcptr+=src.surface->stride;
+				dstptr+=surface->stride;
 			}
-			srcptr+=src.surface->stride;
-			dstptr+=surface->stride;
-		}
-	} else
-		eFatal("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+		} else
+			eFatal("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+	}
 }
 
 void gPixmap::mergePalette(const gPixmap &target)
@@ -245,26 +255,91 @@ void gPixmap::mergePalette(const gPixmap &target)
 	delete [] lookup;
 }
 
-void gPixmap::line(ePoint start, ePoint dst, gColor color)
+static inline int sgn(int a)
 {
-int Ax=start.x(),
-Ay=start.y(), Bx=dst.x(),
-By=dst.y(); int dX, dY, fbXincr,
-fbYincr, fbXYincr, dPr, dPru, P; __u8
-*AfbAddr = &((__u8*)surface->data)[Ay*surface->stride+Ax*surface->bypp]; __u8
-*BfbAddr = &((__u8*)surface->data)[By*surface->stride+Bx*surface->bypp]; fbXincr=
-surface->bypp; if ( (dX=Bx-Ax) >= 0) goto AFTERNEGX; dX=-dX;
-fbXincr=-1; AFTERNEGX: fbYincr=surface->stride; if ( (dY=By 
--Ay) >= 0) goto AFTERNEGY; fbYincr=-surface->stride; dY=-dY;AFTERNEGY: 
-fbXYincr = fbXincr+fbYincr; if (dY > dX) goto YisIndependent; dPr = dY+ 
-dY; P = -dX; dPru = P+P; dY = dX>>1; XLOOP: *AfbAddr=color; *BfbAddr=color; if ((P+=dPr) > 0)
-goto RightAndUp;  AfbAddr+=fbXincr; BfbAddr-=fbXincr; if ((dY=dY-1) > 0) goto XLOOP; *AfbAddr=color; if ((dX & 1)
-== 0) return;  *BfbAddr=color; return; RightAndUp: AfbAddr+=fbXYincr; BfbAddr-=fbXYincr; P+=dPru; if ((dY=dY-1) >
-0) goto XLOOP;  *AfbAddr=color; if ((dX & 1) == 0) return; *BfbAddr=color; return; YisIndependent: dPr = dX+dX; P
-= -dY; dPru = P+P; dX = dY>>1; YLOOP: *AfbAddr=color; *BfbAddr=color; if ((P+=dPr) > 0) goto RightAndUp2; AfbAddr
-+=fbYincr;  BfbAddr-=fbYincr; if ((dX=dX-1) > 0) goto YLOOP; *AfbAddr=color; if ((dY & 1) == 0) return; *BfbAddr=
-color;return; RightAndUp2: AfbAddr+=fbXYincr; BfbAddr-=fbXYincr; P+=dPru; if ((dX=dX-1) > 0) goto YLOOP; *AfbAddr
-=color; if((dY & 1) == 0) return; *BfbAddr=color; return;
+	if (a < 0)
+		return -1;
+	else if (!a)
+		return 0;
+	else
+		return 1;
+}
+
+void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
+{
+	__u8 *srf = (__u8*)surface->data;
+	int stride = surface->stride;
+	
+	if (clip.rects.empty())
+		return;
+	
+	int xa = start.x(), ya = start.y(), xb = dst.x(), yb = dst.y();
+	int dx, dy, x, y, s1, s2, e, temp, swap, i;
+	dy=abs(yb-ya);
+	dx=abs(xb-xa);
+	s1=sgn(xb-xa);
+	s2=sgn(yb-ya);
+	x=xa;
+	y=ya;
+	if (dy>dx)
+	{
+		temp=dx;
+		dx=dy;
+		dy=temp;
+		swap=1;
+	} else
+		swap=0;
+	e = 2*dy-dx;
+	int lasthit = 0;
+	for(i=1; i<=dx; i++)
+	{
+				/* i don't like this clipping loop, but the only */
+				/* other choice i see is to calculate the intersections */
+				/* before iterating through the pixels. */
+				
+				/* one could optimize this because of the ordering */
+				/* of the bands. */
+				
+		lasthit = 0;
+		int a = lasthit;
+		
+			/* if last pixel was invisble, first check bounding box */
+		if (a == -1)
+		{
+				/* check if we just got into the bbox again */
+			if (clip.extends.contains(x, y))
+				lasthit = a = 0;
+			else
+				goto fail;
+		} else if (!clip.rects[a].contains(x, y))
+		{
+			do
+			{
+				++a;
+				if (a == clip.rects.size())
+					a = 0;
+				if (a == lasthit)
+				{
+					goto fail;
+					lasthit = -1;
+				}
+			} while (!clip.rects[a].contains(x, y));
+			lasthit = a;
+		}
+		srf[y * stride + x] = color;
+fail:
+		while (e>=0)
+		{
+			if (swap==1) x+=s1;
+			else y+=s2;
+			e-=2*dx;
+		}
+    if (swap==1)
+    	y+=s2;
+		else
+			x+=s1;
+		e+=2*dy;
+	}
 }
 
 gColor gPalette::findColor(const gRGB &rgb) const

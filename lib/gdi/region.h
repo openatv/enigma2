@@ -4,9 +4,8 @@
 #include <lib/base/object.h>
 #include <vector>
 
-class gRegion: public virtual iObject
+class gRegion
 {
-DECLARE_REF;
 private:
 	inline void FindBand(
 			std::vector<eRect>::const_iterator r,
@@ -77,9 +76,18 @@ public:
 	gRegion();
 	virtual ~gRegion();
 
+	gRegion operator&(const gRegion &r2) const;
+	gRegion operator-(const gRegion &r2) const;
+	gRegion operator|(const gRegion &r2) const;
+	gRegion &operator&=(const gRegion &r2);
+	gRegion &operator-=(const gRegion &r2);
+	gRegion &operator|=(const gRegion &r2);
+	
 	void intersect(const gRegion &r1, const gRegion &r2);
 	void subtract(const gRegion &r1, const gRegion &r2);
 	void merge(const gRegion &r1, const gRegion &r2);
+	
+	void moveBy(ePoint offset);
 };
 
 #endif

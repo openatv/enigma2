@@ -113,11 +113,6 @@ void gFBDC::exec(gOpcode *o)
 	}
 }
 
-gFBDC *gFBDC::getInstance()
-{
-	return instance;
-}
-
 void gFBDC::setAlpha(int a)
 {
 	alpha=a;
@@ -162,4 +157,4 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-eAutoInitP0<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
+eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");

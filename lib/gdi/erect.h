@@ -71,6 +71,14 @@ public:
 		y2 += dy;
 	}
 
+	void moveBy(ePoint r)
+	{
+		x1 += r.x();
+		y1 += r.y();
+		x2 += r.x();
+		y2 += r.y();
+	}
+
 	void setRect( int x, int y, int w, int h );
 	void setCoords( int x1, int y1, int x2, int y2 );
 
@@ -224,7 +232,7 @@ inline eSize eRect::size() const
 
 inline bool eRect::contains( int x, int y) const
 {
-	return x >= x1 && x < x2 && y >= y1 && y < y2;
+	return (x >= x1) && (x < x2) && (y >= y1) && (y < y2);
 }
 
 #endif // eRect_H

@@ -73,7 +73,7 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 	eFatal("nyi");
 }
 
-eDVBFrontendParameters::eDVBFrontendParameters(): ref(0), m_type(-1)
+eDVBFrontendParameters::eDVBFrontendParameters(): m_type(-1)
 {
 }
 
@@ -188,7 +188,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 
 DEFINE_REF(eDVBFrontend);
 
-eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): ref(0), m_type(-1)
+eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 {
 	char filename[128];
 	int result;

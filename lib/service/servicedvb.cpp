@@ -8,7 +8,7 @@
 
 DEFINE_REF(eServiceFactoryDVB)
 
-eServiceFactoryDVB::eServiceFactoryDVB(): ref(0)
+eServiceFactoryDVB::eServiceFactoryDVB()
 {
 	ePtr<eServiceCenter> sc;
 	
@@ -46,7 +46,7 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &, ePtr<iListableService
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref): 
-	ref(0), m_reference(ref)
+	m_reference(ref)
 {
 	CONNECT(m_serviceHandler.serviceEvent, eDVBServicePlay::serviceEvent);
 	eDebug("DVB start (play)");

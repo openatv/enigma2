@@ -109,7 +109,7 @@ RESULT eNavigation::pause(int dop)
 		return p->unpause();
 }
 
-eNavigation::eNavigation(iServiceHandler *serviceHandler): ref(0)
+eNavigation::eNavigation(iServiceHandler *serviceHandler)
 {
 	assert(serviceHandler);
 	m_servicehandler = serviceHandler;

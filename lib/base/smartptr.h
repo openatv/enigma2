@@ -43,21 +43,21 @@ public:
 	}
 	ePtr &operator=(T *c)
 	{
+		if (c)
+			c->AddRef();
 		if (ptr)
 			ptr->Release();
 		ptr=c;
-		if (ptr)
-			ptr->AddRef();
 		return *this;
 	}
 	
 	ePtr &operator=(ePtr<T> &c)
 	{
+		if (c.ptr)
+			c.ptr->AddRef();
 		if (ptr)
 			ptr->Release();
 		ptr=c.ptr;
-		if (ptr)
-			ptr->AddRef();
 		return *this;
 	}
 	

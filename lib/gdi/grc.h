@@ -40,9 +40,9 @@ struct gOpcode
 		setBackgroundColor,
 		setForegroundColor,
 		
-		setOffset, moveOffset,
+		setOffset,
 		
-		addClip, popClip,
+		setClip, addClip, popClip,
 		
 		end,shutdown
 	} opcode;
@@ -83,7 +83,7 @@ struct gOpcode
 			gPixmap *pixmap;
 			ePoint position;
 			int flags;
-			gRegion *clip;
+			eRect clip;
 		} *blit;
 
 		struct pmergePalette
@@ -98,7 +98,7 @@ struct gOpcode
 
 		struct psetClip
 		{
-			gRegion *region;
+			gRegion region;
 		} *clip;
 		
 		struct psetColor
@@ -138,7 +138,7 @@ public:
 		static int collected=0;
 		queue.enqueue(o);
 		collected++;
-		if (o.opcode==gOpcode::end||o.opcode==gOpcode::shutdown)
+//		if (o.opcode==gOpcode::end||o.opcode==gOpcode::shutdown)
 		{
 			queuelock.unlock(collected);
 #ifdef SYNC_PAINT
@@ -176,17 +176,18 @@ public:
 	
 	void clear();
 	
-	void blit(gPixmap *pixmap, ePoint pos, gRegion *clip = 0, int flags=0);
+	void blit(gPixmap *pixmap, ePoint pos, const eRect &what=eRect(), int flags=0);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void mergePalette(gPixmap *target);
 	
 	void line(ePoint start, ePoint end);
 
-	void setLogicalZero(ePoint abs);
-	void moveLogicalZero(ePoint rel);
-	void resetLogicalZero();
+	void setOffset(ePoint abs);
+	void moveOffset(ePoint rel);
+	void resetOffset();
 	
+	void resetClip(const gRegion &clip);
 	void clip(const gRegion &clip);
 	void clippop();
 
@@ -199,18 +200,19 @@ DECLARE_REF;
 protected:
 	ePtr<gPixmap> m_pixmap;
 
-	ePtr<gRegion> m_clip_region;
-	gColor m_foregroundColor, m_backgroundColor;
+	gColor m_foreground_color, m_background_color;
 	ePtr<gFont> m_current_font;
 	ePoint m_current_offset;
+	
+	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;
 	
 public:
-	void exec(gOpcode *opcode);
+	virtual void exec(gOpcode *opcode);
 	gDC(gPixmap *pixmap);
 	gDC();
 	virtual ~gDC();
-	gRegion &getClip() { return *m_clip_region; }
+	gRegion &getClip() { return m_current_clip; }
 	int getPixmap(ePtr<gPixmap> &pm) { pm = m_pixmap; return 0; }
 	gRGB getRGB(gColor col);
 	virtual eSize getSize() { return m_pixmap->getSize(); }

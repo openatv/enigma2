@@ -1,6 +1,7 @@
 #include <lib/gdi/erect.h>
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/region.h>
+#include <lib/base/eerror.h>
 
 #undef max
 #define max(a,b)  ((a) > (b) ? (a) : (b))
@@ -87,7 +88,7 @@ void gRegion::appendNonO(std::vector<eRect>::const_iterator r,
 	rects.reserve(rects.size() + newRects);
 	do {
 		assert(r->x1 < r->x2);
-		rects.push_back(eRect(r->x1, y1, r->x2, y2));
+		rects.push_back(eRect(r->x1, y1, r->x2 - r->x1, y2 - y1));
 		r++;
 	} while (r != rEnd);
 }
@@ -110,7 +111,7 @@ void gRegion::intersectO(
 		x2 = min(r1->x2, r2->x2);
 		
 		if (x1 < x2)
-			rects.push_back(eRect(x1, y1, x2, y2));
+			rects.push_back(eRect(x1, y1, x2 - x1, y2 - y1));
 		if (r1->x2 == x2)
 			r1++;
 		if (r2->x2 == x2)
@@ -145,7 +146,7 @@ void gRegion::subtractO(
 				++r2;
 		} else if (r2->x1 < r1->x2) {
 			assert(x1<r2->x1);
-			rects.push_back(eRect(x1, y1, r2->x1, y2));
+			rects.push_back(eRect(x1, y1, r2->x1 - x1, y2 - y1));
 			x1 = r2->x2;
 			if (x1 >= r1->x2) {
 				++r1;
@@ -156,7 +157,7 @@ void gRegion::subtractO(
 		} else
 		{
 			if (r1->x2 > x1)
-				rects.push_back(eRect(x1, y1, r1->x2, y2));
+				rects.push_back(eRect(x1, y1, r1->x2 - x1, y2 - y1));
 			++r1;
 			if (r1 != r1End)
 				x1 = r1->x1;
@@ -165,7 +166,7 @@ void gRegion::subtractO(
 	while (r1 != r1End)
 	{
 		assert(x1<r1->x2);
-		rects.push_back(eRect(x1, y1, r1->x2, y2));
+		rects.push_back(eRect(x1, y1, r1->x2 - x1, y2 - y1));
 		++r1;
 		if (r1 != r1End)
 			x1 = r1->x1;
@@ -180,7 +181,7 @@ void gRegion::subtractO(
 		if (x2 < r->x2) x2 = r->x2;                             \
 	} else {                                                  \
 		/* Add current rectangle, start new one */              \
-		rects.push_back(eRect(x1, y1, x2, y2));                 \
+		rects.push_back(eRect(x1, y1, x2 - x1, y2 - y1));       \
 		x1 = r->x1;                                             \
 		x2 = r->x2;                                             \
 	}                                                         \
@@ -225,7 +226,7 @@ void gRegion::mergeO(
 			MERGERECT(r2);
 		} while (r2 != r2End);
 	}
-	rects.push_back(eRect(x1, y1, x2, y2));
+	rects.push_back(eRect(x1, y1, x2 - x1, y2 - y1));
 }
 
 void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int &overlap)
@@ -318,10 +319,24 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 		coalesce(prevBand, curBand);
 		AppendRegions(r2BandEnd, r2End);
 	}
+	extends = eRect();
+
+	for (int a=0; a<rects.size(); ++a)
+		extends = extends | eRect(rects[0].topLeft(), rects[rects.size()-1].bottomRight());
 }
 	
 void gRegion::intersect(const gRegion &r1, const gRegion &r2)
 {
+	if (r1.rects.empty())
+	{
+		*this = r2;
+		return;
+	}
+	if (r2.rects.empty())
+	{
+		*this = r1;
+		return;
+	}
 	int overlap;
 	// TODO: handle trivial reject
 	regionOp(r1, r2, OP_INTERSECT, overlap);
@@ -329,6 +344,11 @@ void gRegion::intersect(const gRegion &r1, const gRegion &r2)
 
 void gRegion::subtract(const gRegion &r1, const gRegion &r2)
 {
+	if (r1.rects.empty() || r2.rects.empty())
+	{
+		*this = r1;
+		return;
+	}
 	int overlap;
 	// TODO: handle trivial reject
 	regionOp(r1, r2, OP_SUBTRACT, overlap);
@@ -336,8 +356,68 @@ void gRegion::subtract(const gRegion &r1, const gRegion &r2)
 	
 void gRegion::merge(const gRegion &r1, const gRegion &r2)
 {
+	if (r1.rects.empty())
+	{
+		*this = r2;
+		return;
+	}
+	if (r2.rects.empty())
+	{
+		*this = r1;
+		return;
+	}
 	int overlap;
 	// TODO: handle trivial reject
 	regionOp(r1, r2, OP_UNION, overlap);
+}
+
+gRegion gRegion::operator&(const gRegion &r2) const
+{
+	gRegion res;
+	res.intersect(*this, r2);
+	return res;
+}
+
+gRegion gRegion::operator-(const gRegion &r2) const 
+{
+	gRegion res;
+	res.subtract(*this, r2);
+	return res;
+}
+
+gRegion gRegion::operator|(const gRegion &r2) const
+{
+	gRegion res;
+	res.merge(*this, r2);
+	return res;
+}
+
+gRegion &gRegion::operator&=(const gRegion &r2)
+{
+	gRegion res;
+	res.intersect(*this, r2);
+	return *this = res;
+}
+
+gRegion &gRegion::operator-=(const gRegion &r2)
+{
+	gRegion res;
+	res.subtract(*this, r2);
+	return *this = res;
+}
+
+gRegion &gRegion::operator|=(const gRegion &r2)
+{
+	gRegion res;
+	res.merge(*this, r2);
+	return *this = res;
+}
+
+void gRegion::moveBy(ePoint offset)
+{
+	extends.moveBy(offset);
+	int i;
+	for (i=0; i<rects.size(); ++i)
+		rects[i].moveBy(offset);
 }
 

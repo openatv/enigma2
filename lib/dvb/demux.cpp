@@ -13,7 +13,7 @@
 #include <lib/dvb/esection.h>
 #include <lib/dvb/decoder.h>
 
-eDVBDemux::eDVBDemux(int adapter, int demux): adapter(adapter), demux(demux), ref(0)
+eDVBDemux::eDVBDemux(int adapter, int demux): adapter(adapter), demux(demux)
 {
 }
 
@@ -58,7 +58,7 @@ void eDVBSectionReader::data(int)
 	read(data);
 }
 
-eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): ref(0), demux(demux)
+eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);

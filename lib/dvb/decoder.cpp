@@ -10,7 +10,7 @@
 
 DEFINE_REF(eDVBAudio);
 
-eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): ref(0), m_demux(demux)
+eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux->adapter, dev);
@@ -69,7 +69,7 @@ eDVBAudio::~eDVBAudio()
 
 DEFINE_REF(eDVBVideo);
 
-eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): ref(0), m_demux(demux)
+eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux->adapter, dev);

@@ -23,15 +23,22 @@ struct gColor
 
 struct gRGB
 {
-	int b, g, r, a;
+	unsigned char b, g, r, a;
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
 	gRGB(unsigned long val): b(val&0xFF), g((val>>8)&0xFF), r((val>>16)&0xFF), a((val>>24)&0xFF)		// ARGB
 	{
 	}
-	gRGB()
+	gRGB(): b(0), g(0), r(0), a(0)
 	{
+	}
+	void operator=(unsigned long val)
+	{
+		b = val&0xFF;
+		g = (val>>8)&0xFF;
+		r = (val>>16)&0xFF;
+		a = (val>>24)&0xFF;
 	}
 	bool operator < (const gRGB &c) const
 	{
@@ -127,6 +134,18 @@ struct gSurfaceSystem: gSurface
 struct gPixmap: public iObject
 {
 DECLARE_REF;
+private:
+	friend class gDC;
+	void fill(const gRegion &clip, const gColor &color);
+	
+	enum
+	{
+		blitAlphaTest=1
+	};
+	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
+	
+	void mergePalette(const gPixmap &target);
+	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 public:
 	gSurface *surface;
 	
@@ -138,17 +157,6 @@ public:
 	
 	eSize getSize() const { return eSize(surface->x, surface->y); }
 	
-	void fill(const eRect &area, const gColor &color);
-	
-	enum
-	{
-		blitAlphaTest=1
-	};
-	void blit(const gPixmap &src, ePoint pos, const eRect &clip=eRect(), int flags=0);
-	
-	void mergePalette(const gPixmap &target);
-	void line(ePoint start, ePoint end, gColor color);
-	void finalLock();
 	gPixmap(gSurface *surface);
 	gPixmap(eSize, int bpp);
 	virtual ~gPixmap();

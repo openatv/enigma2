@@ -239,7 +239,7 @@ int fontRenderClass::getFont(ePtr<Font> &font, const eString &face, int size, in
 
 DEFINE_REF(Font);
 
-Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): ref(0), tabwidth(tw)
+Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): tabwidth(tw)
 {
 	renderer=render;
 	font.font.face_id=faceid;
@@ -249,7 +249,6 @@ Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): ref(0
 	height=isize;
 	if (tabwidth==-1)
 		tabwidth=8*isize;
-	ref=0;
 //	font.image_type |= ftc_image_flag_autohinted;
 }
 
@@ -261,6 +260,8 @@ FT_Error Font::getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit)
 Font::~Font()
 {
 }
+
+DEFINE_REF(eTextPara);
 
 int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags)
 {

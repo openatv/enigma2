@@ -4,7 +4,7 @@
 
 DEFINE_REF(eDVBSatelliteEquipmentControl);
 
-eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(): ref(0)
+eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
 }
 
