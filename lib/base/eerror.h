@@ -9,12 +9,12 @@
 
 void eFatal(const char* fmt, ...);
 
-class eString;
-
 enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 
-extern Signal2<void, int, const eString&> logOutput;
+#ifndef SWIG
+extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
+#endif
 
 #ifdef ASSERT
 #undef ASSERT
@@ -24,7 +24,9 @@ extern int logOutputConsole;
     void eDebug(const char* fmt, ...);
     void eDebugNoNewLine(const char* fmt, ...);
     void eWarning(const char* fmt, ...);
+#ifndef SWIG
     #define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
+#endif
 #else
     inline void eDebug(const char* fmt, ...)
     {

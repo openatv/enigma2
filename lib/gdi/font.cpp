@@ -101,7 +101,7 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 	return 0;
 }																																																																
 
-FTC_FaceID fontRenderClass::getFaceID(const eString &face)
+FTC_FaceID fontRenderClass::getFaceID(const std::string &face)
 {
 	for (fontListEntry *f=font; f; f=f->next)
 	{
@@ -117,7 +117,7 @@ FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_in
 	return res;
 }
 
-eString fontRenderClass::AddFont(const eString &filename, const eString &name, int scale)
+std::string fontRenderClass::AddFont(const std::string &filename, const std::string &name, int scale)
 {
 	eDebugNoNewLine("[FONT] adding font %s...", filename.c_str());
 	fflush(stdout);
@@ -225,7 +225,7 @@ fontRenderClass::~fontRenderClass()
 //	FT_Done_FreeType(library);
 }
 
-int fontRenderClass::getFont(ePtr<Font> &font, const eString &face, int size, int tabwidth)
+int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth)
 {
 	FTC_FaceID id=getFaceID(face);
 	if (!id)
@@ -400,7 +400,7 @@ void eTextPara::setFont(const gFont *font)
 	setFont(fnt, replacement);
 }
 
-eString eTextPara::replacement_facename;
+std::string eTextPara::replacement_facename;
 
 void eTextPara::setFont(Font *fnt, Font *replacement)
 {
@@ -437,7 +437,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 void
 shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
-int eTextPara::renderString(const eString &string, int rflags)
+int eTextPara::renderString(const std::string &string, int rflags)
 {
 	singleLock s(ftlock);
 	
@@ -463,7 +463,7 @@ int eTextPara::renderString(const eString &string, int rflags)
 	std::vector<unsigned long> uc_string, uc_visual;
 	uc_string.reserve(string.length());
 	
-	eString::const_iterator p(string.begin());
+	std::string::const_iterator p(string.begin());
 
 	while(p != string.end())
 	{

@@ -2,7 +2,7 @@
 #define __lib_dvb_iservice_h
 
 #include <lib/base/object.h>
-#include <lib/base/estring.h>
+#include <string>
 #include <connection.h>
 #include <list>
 
@@ -41,7 +41,7 @@ public:
 	inline int getSortKey() const { return (flags & hasSortKey) ? data[3] : ((flags & sort1) ? 1 : 0); }
 
 	int data[8];
-	eString path;
+	std::string path;
 
 	eServiceReference()
 		: type(idInvalid), flags(0)
@@ -93,13 +93,13 @@ public:
 		data[3]=data3;
 		data[4]=data4;
 	}
-	eServiceReference(int type, int flags, const eString &path)
+	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
 	{
 		memset(data, 0, sizeof(data));
 	}
-	eServiceReference(const eString &string);
-	eString toString() const;
+	eServiceReference(const std::string &string);
+	std::string toString() const;
 	bool operator==(const eServiceReference &c) const
 	{
 		if (type != c.type)
@@ -137,8 +137,10 @@ public:
 class iServiceInformation: public iObject
 {
 public:
-	virtual RESULT getName(eString &name)=0;
+	virtual RESULT getName(std::string &name)=0;
 };
+
+typedef ePtr<iServiceInformation> iServiceInformationPtr;
 
 class iPauseableService: public iObject
 {
@@ -146,6 +148,8 @@ public:
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
 };
+
+typedef ePtr<iPauseableService> iPauseableServicePtr;
 
 class iPlayableService: public iObject
 {
@@ -163,6 +167,8 @@ public:
 	virtual RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr)=0;
 };
 
+typedef ePtr<iPlayableService> iPlayableServicePtr;
+
 class iRecordableService: public iObject
 {
 public:
@@ -170,11 +176,15 @@ public:
 	virtual RESULT stop()=0;
 };
 
+typedef ePtr<iRecordableService> iRecordableServicePtr;
+
 class iListableService: public iObject
 {
 public:
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
 };
+
+typedef ePtr<iListableService> iListableServicePtr;
 
 class iServiceHandler: public iObject
 {
@@ -183,5 +193,7 @@ public:
 	virtual RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr)=0;
 	virtual RESULT list(const eServiceReference &, ePtr<iListableService> &ptr)=0;
 };
+
+typedef ePtr<iServiceHandler> iServiceHandlerPtr;
 
 #endif

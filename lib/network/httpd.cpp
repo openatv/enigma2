@@ -2,6 +2,7 @@
 #include <lib/network/httpd.h>
 
 #include <sys/socket.h>
+#include <lib/base/estring.h>
 #include <error.h>
 #include <errno.h>
 #include <time.h>
@@ -26,7 +27,7 @@ int eHTTPDataSource::doWrite(int)
 
 eHTTPError::eHTTPError(eHTTPConnection *c, int errcode): eHTTPDataSource(c), errcode(errcode)
 {
-	eString error="unknown error";
+	std::string error="unknown error";
 	switch (errcode)
 	{
 	case 400: error="Bad Request"; break;
@@ -44,9 +45,9 @@ eHTTPError::eHTTPError(eHTTPConnection *c, int errcode): eHTTPDataSource(c), err
 
 int eHTTPError::doWrite(int w)
 {
-	eString html;
-	html+="<html><head><title>Error "+eString().setNum(connection->code)+"</title></head>"+
-		"<body><h1>Error "+eString().setNum(errcode)+": "+connection->code_descr+"</h1></body></html>\n";
+	std::string html;
+	html+="<html><head><title>Error " + getNum(connection->code) + "</title></head>"+
+		"<body><h1>Error " + getNum(errcode) + ": " + connection->code_descr + "</h1></body></html>\n";
 	connection->writeBlock(html.c_str(), html.length());
 	return -1;
 }
@@ -266,7 +267,7 @@ int eHTTPConnection::processLocalState()
 #ifdef DEBUG_HTTPD
 			eDebug("local request");
 #endif
-			eString req=request+" "+requestpath+" "+httpversion+"\r\n";
+			std::string req=request+" "+requestpath+" "+httpversion+"\r\n";
 			writeBlock(req.c_str(), req.length());
 			localstate=stateHeader;
 			remotestate=stateResponse;
@@ -277,7 +278,7 @@ int eHTTPConnection::processLocalState()
 #ifdef DEBUG_HTTPD
 			eDebug("local Response");
 #endif
-			writeString( (httpversion + " " + eString().setNum(code)+" " + code_descr + "\r\n").c_str() );
+			writeString( (httpversion + " " + getNum(code) + " " + code_descr + "\r\n").c_str() );
 			localstate=stateHeader;
 			local_header["Connection"]="close";
 			break;
@@ -323,7 +324,7 @@ int eHTTPConnection::processLocalState()
 			// move to stateClose
 			if (remote_header.find("Connection") != remote_header.end())
 			{
-				eString &connection=remote_header["Connection"];
+				std::string &connection=remote_header["Connection"];
 				if (connection == "keep-alive")
 					localstate=stateWait;
 				else
@@ -387,7 +388,7 @@ int eHTTPConnection::processRemoteState()
 #ifdef DEBUG_HTTPD
 			eDebug("stateRequest");
 #endif
-			eString line;
+			std::string line;
 			if (!getLine(line))
 			{
 				done=1;
@@ -412,16 +413,16 @@ int eHTTPConnection::processRemoteState()
 					return -1;
 				break;
 			}
-			request=line.left(del[0]);
-			requestpath=line.mid(del[0]+1, (del[1]==-1)?-1:(del[1]-del[0]-1));
+			request=line.substr(0, del[0]);
+			requestpath=line.substr(del[0]+1, (del[1]==-1)?-1:(del[1]-del[0]-1));
 			if (del[1]!=-1)
 			{
 				is09=0;
-				httpversion=line.mid(del[1]+1);
+				httpversion=line.substr(del[1]+1);
 			} else
 				is09=1;
 
-			if (is09 || (httpversion.left(7) != "HTTP/1.") || httpversion.size()!=8)
+			if (is09 || (httpversion.substr(0, 7) != "HTTP/1.") || httpversion.size()!=8)
 			{
 				remotestate=stateData;
 				done=0;
@@ -437,7 +438,7 @@ int eHTTPConnection::processRemoteState()
 #ifdef DEBUG_HTTPD
 			eDebug("state response..");
 #endif
-			eString line;
+			std::string line;
 			if (!getLine(line))
 			{
 				done=1;
@@ -454,10 +455,10 @@ int eHTTPConnection::processRemoteState()
 				code=-1;
 			else
 			{
-				httpversion=line.left(del[0]);
-				code=atoi(line.mid(del[0]+1, (del[1]==-1)?-1:(del[1]-del[0]-1)).c_str());
+				httpversion=line.substr(0, del[0]);
+				code=atoi(line.substr(del[0]+1, (del[1]==-1)?-1:(del[1]-del[0]-1)).c_str());
 				if (del[1] != -1)
-					code_descr=line.mid(del[1]+1);
+					code_descr=line.substr(del[1]+1);
 				else
 					code_descr="";
 			}
@@ -470,7 +471,7 @@ int eHTTPConnection::processRemoteState()
 #ifdef DEBUG_HTTPD
 			eDebug("remote stateHeader");
 #endif
-			eString line;
+			std::string line;
 			if (!getLine(line))
 			{
 				done=1;
@@ -519,9 +520,9 @@ int eHTTPConnection::processRemoteState()
 			} else
 			{
 				int del=line.find(":");
-				eString name=line.left(del), value=line.mid(del+1);
+				std::string name=line.substr(0, del), value=line.substr(del+1);
 				if (value[0]==' ')
-					value=value.mid(1);
+					value=value.substr(1);
 				remote_header[std::string(name)]=std::string(value);
 			}
 			done=1;
@@ -583,7 +584,7 @@ void eHTTPConnection::writeString(const char *data)
 	writeBlock(data, strlen(data));
 }
 
-int eHTTPConnection::getLine(eString &line)
+int eHTTPConnection::getLine(std::string &line)
 {
 	if (!canReadLine())
 		return 0;

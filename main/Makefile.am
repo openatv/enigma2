@@ -14,6 +14,7 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/dvb_si/libenigma_dvb_si.a \
 	$(top_builddir)/lib/gdi/libenigma_gdi.a \
 	$(top_builddir)/lib/gui/libenigma_gui.a \
+	$(top_builddir)/lib/python/libenigma_python.a \
 	$(top_builddir)/lib/nav/libenigma_nav.a \
 	$(top_builddir)/lib/network/libenigma_network.a \
 	$(top_builddir)/lib/service/libenigma_service.a
@@ -25,7 +26,7 @@ enigma2_LDADD = \
 	@MAD_LIBS@ \
 	@PNG_LIBS@ \
 	@SIGC_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv
+	-ldl -lpthread -lcrypt -lresolv -lpython2.3
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 	@rm -f enigma2$(EXEEXT)

@@ -1,6 +1,6 @@
 #include <lib/network/http_dyn.h>
 
-eHTTPDyn::eHTTPDyn(eHTTPConnection *c, eString result): eHTTPDataSource(c), result(result)
+eHTTPDyn::eHTTPDyn(eHTTPConnection *c, std::string result): eHTTPDataSource(c), result(result)
 {
 	wptr=0;
 	char buffer[10];
@@ -34,18 +34,18 @@ eHTTPDynPathResolver::eHTTPDynPathResolver()
 #warning autodelete removed
 }
 
-void eHTTPDynPathResolver::addDyn(eString request, eString path, eString (*function)(eString, eString, eString, eHTTPConnection*))
+void eHTTPDynPathResolver::addDyn(std::string request, std::string path, std::string (*function)(std::string, std::string, std::string, eHTTPConnection*))
 {
 	dyn.push_back(new eHTTPDynEntry(request, path, function));
 }
 
-eHTTPDataSource *eHTTPDynPathResolver::getDataSource(eString request, eString path, eHTTPConnection *conn)
+eHTTPDataSource *eHTTPDynPathResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
 {
-	eString p, opt;
-	if (path.find('?')!=eString::npos)
+	std::string p, opt;
+	if (path.find('?')!=std::string::npos)
 	{
-		p=path.left(path.find('?'));
-		opt=path.mid(path.find('?')+1);
+		p=path.substr(0, path.find('?'));
+		opt=path.substr(path.find('?')+1);
 	}	else
 	{
 		p=path;
@@ -55,9 +55,9 @@ eHTTPDataSource *eHTTPDynPathResolver::getDataSource(eString request, eString pa
 		if ((i->path==p) && (i->request==request))
 		{
 			conn->code=-1;
-			eString s=i->function(request, path, opt, conn);
+			std::string s=i->function(request, path, opt, conn);
 
-			if (s)
+			if (!s.empty())
 				return new eHTTPDyn(conn, s);
 
 			return new eHTTPError(conn, 500);

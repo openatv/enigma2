@@ -113,7 +113,7 @@ RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }
 
 RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&i) { i = this; return 0; }
 
-RESULT eServiceMP3::getName(eString &name)
+RESULT eServiceMP3::getName(std::string &name)
 {
 	name = "MP3 File: " + filename;
 	return 0;

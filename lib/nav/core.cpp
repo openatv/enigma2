@@ -1,4 +1,5 @@
 #include <lib/nav/core.h>
+#include <lib/base/eerror.h>
 
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {

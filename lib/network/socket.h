@@ -10,7 +10,7 @@
 
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
-#include <lib/base/estring.h>
+#include <string>
 #include <libsig_comp.h>
 #include <lib/base/buffer.h>
 
@@ -32,7 +32,7 @@ public:
 	eSocket(eMainloop *ml);
 	eSocket(int socket, int issocket, eMainloop *ml);
 	~eSocket();
-	int connectToHost(eString hostname, int port);
+	int connectToHost(std::string hostname, int port);
 	int getDescriptor();
 	int writeBlock(const char *data, unsigned int len);
 	int setSocket(int socketfd, int issocket, eMainloop *ml);
@@ -40,7 +40,7 @@ public:
 	int readBlock(char *data, unsigned int maxlen);
 	int bytesAvailable();
 	bool canReadLine();
-	eString readLine();
+	std::string readLine();
 	void close();
 			// flow control: start/stop data delivery into read buffer.
 	void enableRead();

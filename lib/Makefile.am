@@ -1,1 +1,1 @@
-SUBDIRS = base  dvb dvb_si gdi network service driver nav content gui
+SUBDIRS = base  dvb dvb_si gdi network service driver nav content gui python

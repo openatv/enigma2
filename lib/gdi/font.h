@@ -13,7 +13,7 @@
 #include <lib/gdi/esize.h>
 #include <lib/gdi/epoint.h>
 #include <lib/gdi/erect.h>
-#include <lib/base/estring.h>
+#include <string>
 #include <lib/base/object.h> 
 
 class FontRenderClass;
@@ -29,7 +29,7 @@ class fontRenderClass
 	fbClass *fb;
 	struct fontListEntry
 	{
-		eString filename, face;
+		std::string filename, face;
 		int scale; // 100 is 1:1
 		fontListEntry *next;
 		~fontListEntry();
@@ -40,16 +40,16 @@ class fontRenderClass
 	FTC_Image_Cache	imageCache;					/* the glyph image cache					 */
 	FTC_SBit_Cache	 sbitsCache;				/* the glyph small bitmaps cache	 */
 
-	FTC_FaceID getFaceID(const eString &face);
+	FTC_FaceID getFaceID(const std::string &face);
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit);
 	static fontRenderClass *instance;
 public:
 	float getLineHeight(const gFont& font);
-	eString AddFont(const eString &filename, const eString &name, int scale);
+	std::string AddFont(const std::string &filename, const std::string &name, int scale);
 	static fontRenderClass *getInstance();
 	FT_Error FTC_Face_Requester(FTC_FaceID	face_id,
 															FT_Face*		aface);
-	int getFont(ePtr<Font> &font, const eString &face, int size, int tabwidth=-1);
+	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth=-1);
 	fontRenderClass();
 	~fontRenderClass();
 };
@@ -85,7 +85,7 @@ private:
 	FT_Face current_face, replacement_face;
 	int use_kerning;
 	int previous;
-	static eString replacement_facename;
+	static std::string replacement_facename;
 
 	eRect area;
 	ePoint cursor;
@@ -107,10 +107,10 @@ public:
 	}
 	virtual ~eTextPara();
 	
-	static void setReplacementFont(eString font) { replacement_facename=font; }
+	static void setReplacementFont(std::string font) { replacement_facename=font; }
 
 	void setFont(const gFont *font);
-	int renderString(const eString &string, int flags=0);
+	int renderString(const std::string &string, int flags=0);
 
 	void clear();
 

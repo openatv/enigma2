@@ -11,7 +11,7 @@
 #include <stack>
 #include <list>
 
-#include <lib/base/estring.h>
+#include <string>
 #include <lib/base/ringbuffer.h>
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
@@ -58,7 +58,7 @@ struct gOpcode
 		struct prenderText
 		{
 			eRect area;
-			eString text;
+			std::string text;
 			int flags;
 		} *renderText;
 

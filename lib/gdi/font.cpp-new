@@ -434,7 +434,7 @@ void eTextPara::setFont(Font *fnt)
 	use_kerning=FT_HAS_KERNING(current_face);
 }
 
-int eTextPara::renderString(const eString &string, int rflags)
+int eTextPara::renderString(const std::string &string, int rflags)
 {
 	eLocker lock(ftlock);
 	

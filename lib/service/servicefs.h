@@ -21,7 +21,7 @@ class eServiceFS: public iListableService
 {
 DECLARE_REF;
 private:
-	eString path;
+	std::string path;
 	friend class eServiceFactoryFS;
 	eServiceFS(const char *path);
 public:

@@ -1,3 +1,4 @@
+#include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>

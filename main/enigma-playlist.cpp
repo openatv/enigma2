@@ -112,7 +112,7 @@ public:
 				eDebug("failed to get iserviceinformation");
 				break;
 			}
-			eString name;
+			std::string name;
 			m_serviceInformation->getName(name);
 			eDebug("NEW running service: %s", name.c_str());
 			break;
