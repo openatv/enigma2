@@ -1,0 +1,8 @@
+INCLUDES = \
+	-I$(top_srcdir)/include
+
+noinst_LIBRARIES = libenigma_dvb.a
+
+libenigma_dvb_a_SOURCES = dvb.cpp demux.cpp frontend.cpp esection.cpp db.cpp \
+		sec.cpp scan.cpp crc32.cpp pmt.cpp decoder.cpp
+		
