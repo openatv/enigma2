@@ -24,6 +24,8 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			if (m_channel->getDemux(m_demux))
 				eDebug("shit it failed.. again.");
 		
+		serviceEvent(eventTuned);
+		
 		if (m_demux)
 		{	
 			eDebug("ok ... now we start!!");

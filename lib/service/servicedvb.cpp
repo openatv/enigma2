@@ -134,7 +134,8 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref): 
 	m_reference(ref)
 {
-	CONNECT(m_serviceHandler.serviceEvent, eDVBServicePlay::serviceEvent);
+	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
+	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 	eDebug("DVB start (play)");
 }
 
@@ -143,16 +144,41 @@ eDVBServicePlay::~eDVBServicePlay()
 	eDebug("DVB stop (play)");
 }
 
+void eDVBServicePlay::gotNewEvent()
+{
+		// debug only
+	ePtr<eServiceEvent> m_event_now, m_event_next;
+	getEvent(m_event_now, 0);
+	getEvent(m_event_next, 1);
+
+	if (m_event_now)
+		eDebug("now running: %s (%d seconds :)", m_event_now->m_event_name.c_str(), m_event_now->m_duration);
+	if (m_event_next)
+		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
+}
+
 void eDVBServicePlay::serviceEvent(int event)
 {
 	eDebug("service event %d", event);
 	switch (event)
 	{
+	case eDVBServicePMTHandler::eventTuned:
+	{
+		ePtr<iDVBDemux> m_demux;
+		if (!m_service_handler.getDemux(m_demux))
+		{
+//			eventStartedEventAcquisition
+			m_event_handler.start(m_demux, ((eServiceReferenceDVB&)m_reference).getServiceID().get());
+		} else
+			eDebug("no event data available :( ");
+//			eventNoEvent
+		break;
+	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
 		int vpid = -1, apid = -1, pcrpid = -1;
 		eDVBServicePMTHandler::program program;
-		if (m_serviceHandler.getProgramInfo(program))
+		if (m_service_handler.getProgramInfo(program))
 			eDebug("getting program info failed.");
 		else
 		{
@@ -196,7 +222,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (!m_decoder)
 		{
 			ePtr<iDVBDemux> demux;
-			m_serviceHandler.getDemux(demux);
+			m_service_handler.getDemux(demux);
 			if (demux)
 				demux->getMPEGDecoder(m_decoder);
 		}
@@ -208,7 +234,7 @@ void eDVBServicePlay::serviceEvent(int event)
 			m_decoder->setSyncPCR(pcrpid);
 			m_decoder->start();
 		}
-				
+		
 		break;
 	}
 	}
@@ -217,7 +243,7 @@ void eDVBServicePlay::serviceEvent(int event)
 RESULT eDVBServicePlay::start()
 {
 	eDebug("starting DVB service");
-	return m_serviceHandler.tune((eServiceReferenceDVB&)m_reference);
+	return m_service_handler.tune((eServiceReferenceDVB&)m_reference);
 }
 
 RESULT eDVBServicePlay::stop()
@@ -248,6 +274,11 @@ RESULT eDVBServicePlay::getName(const eServiceReference &ref, std::string &name)
 {
 	name = "DVB service";
 	return 0;
+}
+
+RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
+{
+	return m_event_handler.getEvent(evt, nownext);
 }
 
 DEFINE_REF(eDVBServicePlay)

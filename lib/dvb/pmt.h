@@ -26,7 +26,6 @@ class eDVBServicePMTHandler: public Object
 
 	void PMTready(int error);
 	void PATready(int error);
-
 public:
 	eDVBServicePMTHandler();
 	
@@ -36,7 +35,8 @@ public:
 		eventNoPAT,        // no pat could be received (timeout)
 		eventNoPATEntry,   // no pat entry for the corresponding SID could be found
 		eventNoPMT,        // no pmt could be received (timeout)
-		eventNewProgramInfo // we just received a PMT
+		eventNewProgramInfo, // we just received a PMT
+		eventTuned         // a channel was sucessfully (re-)tuned in, you may start additional filters now
 	};
 
 	Signal1<void,int> serviceEvent;

@@ -155,10 +155,12 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
 
+class eServiceEvent;
+
 class iServiceInformation: public iStaticServiceInformation
 {
 public:
-	
+	virtual RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
@@ -179,7 +181,10 @@ public:
 	enum
 	{
 		evStart,
-		evEnd
+		evEnd,
+		
+		// when iServiceInformation is implemented:
+		evNewEvent
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
