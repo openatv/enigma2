@@ -9,11 +9,7 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 public:
 	DECLARE_REF;
 	eDVBSatelliteEquipmentControl();
-#if HAVE_DVB_API_VERSION < 3
-	RESULT prepare(iDVBFrontend &frontend, FrontendParameters &parm, eDVBFrontendParametersSatellite &sat);
-#else
-	RESULT prepare(iDVBFrontend &frontend, struct dvb_frontend_parameters &parm, eDVBFrontendParametersSatellite &sat);
-#endif
+	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat);
 };
 
 #endif

@@ -2,8 +2,16 @@
 #include <lib/dvb/sec.h>
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
+#define INVERSION Inversion
+#define FREQUENCY Frequency
+#define FEC_INNER FEC_inner
+#define SYMBOLRATE SymbolRate
 #else
 #include <linux/dvb/frontend.h>
+#define INVERSION inversion
+#define FREQUENCY frequency
+#define FEC_INNER fec_inner
+#define SYMBOLRATE symbol_rate
 #endif
 #include <lib/base/eerror.h>
 
@@ -13,11 +21,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
 }
 
-#if HAVE_DVB_API_VERSION < 3
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FrontendParameters &parm, eDVBFrontendParametersSatellite &sat)
-#else
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, struct dvb_frontend_parameters &parm, eDVBFrontendParametersSatellite &sat)
-#endif
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
 {
 	int hi;
 	eDebug("(very) ugly and hardcoded eDVBSatelliteEquipmentControl");
@@ -28,43 +32,23 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, struct dvb
 		hi = 0;
 	
 	if (hi)
-#if HAVE_DVB_API_VERSION < 3
-		parm.Frequency = sat.frequency - 10600000;
-#else
-		parm.frequency = sat.frequency - 10600000;
-#endif
+		parm.FREQUENCY = sat.frequency - 10600000;
 	else
-#if HAVE_DVB_API_VERSION < 3
-		parm.Frequency = sat.frequency -  9750000;
-#else
-		parm.frequency = sat.frequency -  9750000;
-#endif
+		parm.FREQUENCY = sat.frequency -  9750000;
 	
 //	frontend.sentDiseqc(...);
 
-#if HAVE_DVB_API_VERSION < 3
-	parm.Inversion = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
-#else
-	parm.inversion = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
-#endif
+	parm.INVERSION = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
 
 	switch (sat.fec)
 	{
 //		case 1:
 //		case ...:
 	default:
-#if HAVE_DVB_API_VERSION < 3
-		parm.u.qpsk.FEC_inner = FEC_AUTO;
-#else
-		parm.u.qpsk.fec_inner = FEC_AUTO;
-#endif
+		parm.u.qpsk.FEC_INNER = FEC_AUTO;
 		break;
 	}
-#if HAVE_DVB_API_VERSION < 3
-	parm.u.qpsk.SymbolRate = sat.symbol_rate;
-#else
-	parm.u.qpsk.symbol_rate = sat.symbol_rate;
-#endif
+	parm.u.qpsk.SYMBOLRATE = sat.symbol_rate;
 
 	frontend.setVoltage((sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Vertical) ? iDVBFrontend::voltage13 : iDVBFrontend::voltage18);
 
