@@ -94,7 +94,7 @@ def applyGUIskin(screen, parent, skin, name):
 		
 		# get corresponding gui object
 		try:
-			guiObject = screen.data[wname]["instance"]
+			guiObject = screen[wname].instance
 		except:
 			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 		
