@@ -3,6 +3,7 @@
 
 #include <lib/base/object.h>
 #include <lib/service/iservice.h>
+#include <lib/nav/playlist.h>
 #include <connection.h>
 
 class eNavigation: public iObject, public Object
@@ -15,20 +16,22 @@ private:
 	ePtr<eConnection> m_service_event_conn;
 	void serviceEvent(iPlayableService* service, int event);
 	
-	std::list<eServiceReference> m_playlist;
+	ePtr<ePlaylist> m_playlist;
 public:
 	enum
 	{
 		evStopService,  /** the "current" service was just stopped and likes to be deallocated (clear refs!) */
-		evNewService, /** a new "current" service was just started */
-		evPlayFailed,
-		evPlaylistDone
+		evNewService,   /** a new "current" service was just started */
+		evPlayFailed,   /** the next service (in playlist) or the one given in playService failed to play */
+		evPlaylistDone  /** the last service in the playlist was just played */
 	};
+	
 	RESULT playService(const eServiceReference &service);
 	RESULT enqueueService(const eServiceReference &service);
 	RESULT connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr<eConnection> &connection);
 /*	int connectServiceEvent(const Slot1<void,iPlayableService*,int> &event, ePtr<eConnection> &connection); */
 	RESULT getCurrentService(ePtr<iPlayableService> &service);
+	RESULT getPlaylist(ePtr<ePlaylist> &playlist);
 	
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler);
