@@ -101,16 +101,16 @@ class Session:
 	def keyEvent(self, code):
 #		print "code " + str(code)
 		if code == 32:
-			self.currentDialog.data["okbutton"]["instance"].push()
+			self.currentDialog["okbutton"].instance.push()
 
 		if code == 33:
-			self.currentDialog.data["channelSwitcher"]["instance"].push()
+			self.currentDialog["channelSwitcher"].instance.push()
 		
 		if code >= 0x30 and code <= 0x39:
 			try:
-				self.currentDialog.data["menu"]["instance"].moveSelection(code - 0x31)
+				self.currentDialog["menu"].instance.moveSelection(code - 0x31)
 			except:
-				self.currentDialog.data["list"]["instance"].moveSelection(code - 0x31)
+				self.currentDialog["list"].instance.moveSelection(code - 0x31)
 
 	def close(self):
 		self.delayTimer.start(0, 1)
