@@ -33,6 +33,11 @@ is usually caused by not marking PSignals as immutable.
 
 */
 
+%define RefCount(...)
+%typemap(newfree) __VA_ARGS__ * { eDebug("adding ref"); $1->AddRef(); }
+%extend __VA_ARGS__  { ~__VA_ARGS__() { eDebug("removing ref!"); self->Release(); } }
+%ignore __VA_ARGS__::~__VA_ARGS__();
+%enddef
 
 %module enigma
 %{
@@ -58,6 +63,8 @@ extern void runMainloop();
 
 extern PSignal1<void,int> &keyPressedSignal();
 %}
+
+RefCount(eListboxPythonStringContent)
 
 #define DEBUG
 %include "stl.i"
