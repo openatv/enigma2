@@ -97,12 +97,20 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		return self.getText()
 
 class Button(HTMLComponent, GUIComponent, VariableText):
-	onClick = {}
-	
 	def __init__(self, text=""):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.setText(text)
+		self.onClick = [ ]
+	
+	def clicked(self):
+		for x in self.onClick:
+			x()
+		return 0
+
+	def GUIcreate(self, priv, parent, skindata):
+		GUIComponent.GUIcreate(self, priv,parent, skindata)
+		priv["instance"].selected.get().append(self.clicked)
 	
 	def click(self):
 		for x in self.onClick:

@@ -108,6 +108,8 @@ def test():
 #	button.resize(eSize(80, 50)) 
 
 	wnd.show()
+	
+	components["$002"].data["okbutton"]["instance"].push()	
 
 	for x in range(200):
 		time.sleep(0.1)
@@ -116,7 +118,7 @@ def test():
 			r = 200 - x
 		else:
 			r = x
-		components["$002"]["okbutton"].setValue(r)
+#		components["$002"]["okbutton"].setValue(r)
 		desktop.paint()
 	
 #	
@@ -131,3 +133,15 @@ def test():
 	
 	
 	return 0
+
+def testI2(a):
+	print "PYTHON says: it's a " + str(a) + "!!!"
+	return 0
+
+def testI(a = 0):
+	print "magic integer is " + str(a)
+	
+	list = testsignal.get()
+	print "list -> " + str(list)
+	list.append(testI2)
+	return 1
