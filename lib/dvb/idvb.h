@@ -6,7 +6,8 @@
 #include <ost/frontend.h>
 #define FRONTENDPARAMETERS FrontendParameters
 #else
-#define FRONTENDPARAMETERS struct frontend_parameters
+#include <linux/dvb/frontend.h>
+#define FRONTENDPARAMETERS struct dvb_frontend_parameters
 #endif
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
