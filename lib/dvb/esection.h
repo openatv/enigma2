@@ -4,7 +4,7 @@
 #include <lib/dvb/isection.h>
 #include <set>
 
-class eGTable: public virtual iObject, public Object
+class eGTable: public iObject, public Object
 {
 DECLARE_REF;
 private:

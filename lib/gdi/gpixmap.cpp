@@ -1,6 +1,8 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 
+DEFINE_REF(gFont);
+
 gLookup::gLookup()
 	:size(0), lookup(0)
 {

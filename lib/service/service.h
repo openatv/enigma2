@@ -5,7 +5,7 @@
 #include <lib/base/object.h>
 #include <lib/service/iservice.h>
 
-class eServiceCenter: public virtual iServiceHandler, public virtual iObject
+class eServiceCenter: public iServiceHandler
 {
 DECLARE_REF;
 private:

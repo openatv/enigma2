@@ -151,8 +151,8 @@ eRect& eRect::operator&=(const eRect &r)
 
 eRect eRect::operator|(const eRect &r) const
 {
-	if ( isValid() ) {
-	if ( r.isValid() ) {
+	if ( valid() ) {
+	if ( r.valid() ) {
 		eRect tmp;
 		tmp.setLeft(   MIN( x1, r.x1 ) );
 		tmp.setRight(  MAX( x2, r.x2 ) );

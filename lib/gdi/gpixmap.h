@@ -87,7 +87,7 @@ struct gLookup
  * The font is specified by a name and a size.
  * \c gFont is part of the \ref gdi.
  */
-class gFont: public virtual iObject
+class gFont: public iObject
 {
 DECLARE_REF;
 public:

@@ -20,7 +20,7 @@ public:
 
 class ServiceDescriptionTable;
 
-class eDVBDB: public virtual iDVBChannelList
+class eDVBDB: public iDVBChannelList
 {
 DECLARE_REF;
 private:

@@ -614,7 +614,7 @@ eHTTPD::eHTTPD(int port, eMainloop *ml): eServerSocket(port, ml), ml(ml)
 		eDebug("[NET] httpd server FAILED on port %d", port);
 	else
 		eDebug("[NET] httpd server started on port %d", port);
-	resolver.setAutoDelete(true);
+#warning resolver autodelete removed
 }
 
 eHTTPConnection::~eHTTPConnection()

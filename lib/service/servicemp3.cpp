@@ -75,7 +75,7 @@ DEFINE_REF(eServiceMP3);
 
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(this, m_event.connect(event));
+	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
 }
 

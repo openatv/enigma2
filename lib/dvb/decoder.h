@@ -4,7 +4,7 @@
 #include <lib/base/object.h>
 #include <lib/dvb/demux.h>
 
-class eDVBAudio: public virtual iObject
+class eDVBAudio: public iObject
 {
 DECLARE_REF;
 private:
@@ -17,7 +17,7 @@ public:
 	virtual ~eDVBAudio();
 };
 
-class eDVBVideo: public virtual iObject
+class eDVBVideo: public iObject
 {
 DECLARE_REF;
 private:
@@ -30,7 +30,7 @@ public:
 	virtual ~eDVBVideo();
 };
 
-class eTSMPEGDecoder: public virtual iTSMPEGDecoder
+class eTSMPEGDecoder: public iTSMPEGDecoder
 {
 DECLARE_REF;
 private:

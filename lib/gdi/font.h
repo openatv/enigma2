@@ -92,7 +92,6 @@ private:
 	eSize maximum;
 	int left;
 	glyphString glyphs;
-	int refcnt;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags);
 	void newLine(int flags);
@@ -103,15 +102,12 @@ private:
 public:
 	eTextPara(eRect area, ePoint start=ePoint(-1, -1))
 		: current_font(0), replacement_font(0), current_face(0), replacement_face(0),
-			area(area), cursor(start), maximum(0, 0), left(start.x()), refcnt(0), bboxValid(0)
+			area(area), cursor(start), maximum(0, 0), left(start.x()), bboxValid(0)
 	{
 	}
 	virtual ~eTextPara();
 	
 	static void setReplacementFont(eString font) { replacement_facename=font; }
-
-	void destroy();
-	eTextPara *grab();
 
 	void setFont(const gFont *font);
 	int renderString(const eString &string, int flags=0);

@@ -90,6 +90,8 @@ RESULT eDVBResourceManager::removeChannel(const eDVBChannelID &chid, eDVBChannel
 	return -ENOENT;
 }
 
+DEFINE_REF(eDVBChannel);
+
 eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, int adapter, int frontend, int demux): eDVBDemux(adapter, demux), m_state(state_idle), m_mgr(mgr)
 {
 	if (frontend >= 0)
@@ -180,7 +182,7 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 
 RESULT eDVBChannel::connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(this, m_stateChanged.connect(stateChange));
+	connection = new eConnection((iDVBChannel*)this, m_stateChanged.connect(stateChange));
 	return 0;
 }
 

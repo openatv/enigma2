@@ -3,7 +3,7 @@
 
 #include <lib/service/iservice.h>
 
-class eServiceFactoryFS: public virtual iServiceHandler, public virtual iObject
+class eServiceFactoryFS: public iServiceHandler
 {
 DECLARE_REF;
 public:
@@ -17,7 +17,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eServiceFS: public virtual iListableService, public virtual iObject
+class eServiceFS: public iListableService
 {
 DECLARE_REF;
 private:

@@ -45,9 +45,11 @@ gRC::~gRC()
 	gOpcode o;
 	o.opcode=gOpcode::shutdown;
 	submit(o);
+#ifndef SYNC_PAINT
 	eDebug("waiting for gRC thread shutdown");
 	pthread_join(the_thread, 0);
 	eDebug("gRC thread has finished");
+#endif
 }
 
 void *gRC::thread()
@@ -254,6 +256,7 @@ void gPainter::resetOffset()
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
 	o.parm.setOffset = new gOpcode::para::psetOffset;
+	o.parm.setOffset->rel = 0;
 	o.parm.setOffset->value = ePoint(0, 0);
 	m_rc->submit(o);
 }
@@ -326,15 +329,16 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::renderText:
 	{
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
+		assert(m_current_font);
 		para->setFont(m_current_font);
 		para->renderString(o->parm.renderText->text, o->parm.renderText->flags);
-		para->blit(*this, ePoint(0, 0), getRGB(m_foreground_color), getRGB(m_background_color));
+		para->blit(*this, m_current_offset, getRGB(m_foreground_color), getRGB(m_background_color));
 		delete o->parm.renderText;
 		break;
 	}
 	case gOpcode::renderPara:
 	{
-		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset, getRGB(m_foreground_color), getRGB(m_background_color));
+		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset + m_current_offset, getRGB(m_foreground_color), getRGB(m_background_color));
 		o->parm.renderPara->textpara->Release();
 		delete o->parm.renderPara;
 		break;
@@ -355,7 +359,7 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::blit:
 	{
 		gRegion clip;
-		if (!o->parm.blit->clip.isValid())
+		if (!o->parm.blit->clip.valid())
 		{
 			clip.intersect(gRegion(o->parm.blit->clip), clip);
 		} else

@@ -58,7 +58,7 @@ eHTTPFile::~eHTTPFile()
 
 eHTTPFilePathResolver::eHTTPFilePathResolver()
 {
-	translate.setAutoDelete(true);
+#warning autodelete removed
 }
 
 

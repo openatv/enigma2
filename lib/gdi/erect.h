@@ -11,7 +11,8 @@ class eRect // rectangle class
 {
 	friend class gRegion;
 public:
-	eRect()	{ x1 = y1 = x2 = y2 = 0; }
+			/* eRect() constructs an INVALID rectangle. */
+	eRect()	{ x1 = y1 = 0; x2 = y2 = -1; }
 	eRect( const ePoint &topleft, const ePoint &bottomright );
 
 	// we use this contructor very often... do it inline...
@@ -25,9 +26,8 @@ public:
 
 	eRect( int left, int top, int width, int height );
 
-	bool isNull()	const;
-	bool isEmpty()	const;
-	bool isValid()	const;
+	bool empty()	const;
+	bool valid()	const;
 	eRect normalize()	const;
 
 	int left()	const;
@@ -103,7 +103,10 @@ public:
 
 	friend bool operator==( const eRect &, const eRect & );
 	friend bool operator!=( const eRect &, const eRect & );
-
+	
+	static eRect emptyRect() { return eRect(0, 0, 0, 0); }
+	static eRect invalidRect() { return eRect(); }
+	
 private:
 	int x1;
 	int y1;
@@ -114,28 +117,6 @@ private:
 bool operator==( const eRect &, const eRect & );
 bool operator!=( const eRect &, const eRect & );
 
-
-/*****************************************************************************
-  eRect stream functions
- *****************************************************************************/
-namespace std
-{
-	inline ostream &operator<<( ostream & s, const eRect & r )
-	{
-		s << r.left()  << r.top()
-		  << r.right() << r.bottom();
-
-		return s;
-	}
-
-	inline istream &operator>>( istream & s, eRect & r )
-	{
-		int x1, y1, x2, y2;
-		s >> x1 >> y1 >> x2 >> y2;
-		r.setCoords( x1, y1, x2, y2 );
-		return s;
-	}
-}
 
 /*****************************************************************************
   eRect inline member functions
@@ -149,13 +130,10 @@ inline eRect::eRect( int left, int top, int width, int height )
 	y2 = top+height;
 }
 
-inline bool eRect::isNull() const
-{ return x2 == x1 && y2 == y1; }
+inline bool eRect::empty() const
+{ return x1 == x2 && y1 == y2; }
 
-inline bool eRect::isEmpty() const
-{ return x1 >= x2 || y1 >= y2; }
-
-inline bool eRect::isValid() const
+inline bool eRect::valid() const
 { return x1 <= x2 && y1 <= y2; }
 
 inline int eRect::left() const

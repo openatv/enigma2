@@ -6,7 +6,7 @@
 
 #include <lib/dvb/pmt.h>
 
-class eServiceFactoryDVB: public virtual iServiceHandler, public virtual iObject
+class eServiceFactoryDVB: public iServiceHandler
 {
 DECLARE_REF;
 public:
@@ -20,7 +20,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eDVBServicePlay: public virtual iPlayableService, public virtual iObject, public Object, public virtual iServiceInformation
+class eDVBServicePlay: public iPlayableService, public Object, public iServiceInformation
 {
 DECLARE_REF;
 private:

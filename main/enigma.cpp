@@ -5,135 +5,17 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
-#include <lib/dvb/dvb.h>
-#include <lib/dvb/db.h>
-#include <lib/dvb/isection.h>
-#include <lib/dvb/esection.h>
-#include <lib/dvb_si/pmt.h>
-#include <lib/dvb/scan.h>
 #include <unistd.h>
 
-#include <lib/service/iservice.h>
-#include <lib/nav/core.h>
+#include <lib/gdi/grc.h>
+#include <lib/gdi/gfbdc.h>
+#include <lib/gdi/font.h> 
 
-class eMain: public eApplication, public Object
-{
-	eInit init;
-	
-	ePtr<eDVBResourceManager> m_mgr;
-	ePtr<iDVBChannel> m_channel;
-	ePtr<eDVBDB> m_dvbdb;
+#include <lib/gui/ewidget.h>
+#include <lib/gui/ewidgetdesktop.h>
+#include <lib/gui/elabel.h>
 
-	ePtr<iPlayableService> m_playservice;
-	ePtr<eNavigation> m_nav;
-	ePtr<eConnection> m_conn_event;
-	ePtr<iServiceInformation> m_serviceInformation;
-public:
-	eMain()
-	{
-		init.setRunlevel(eAutoInitNumbers::main);
-		m_dvbdb = new eDVBDB();
-		m_mgr = new eDVBResourceManager();
-		m_mgr->setChannelList(m_dvbdb);
-		
-		ePtr<eServiceCenter> service_center;
-		eServiceCenter::getInstance(service_center);
-
-		assert(service_center);
-		m_nav = new eNavigation(service_center);
-#if 0
-		if (service_center)
-		{
-			eServiceReference ref("2:0:1:0:0:0:0:0:0:0:/");
-			ePtr<iListableService> lst;
-			if (service_center->list(ref, lst))
-				eDebug("no list available!");
-			else
-			{
-				std::list<eServiceReference> list;
-				if (lst->getContent(list))
-					eDebug("list itself SUCKED AROUND!!!");
-				else
-					for (std::list<eServiceReference>::const_iterator i(list.begin());
-						i != list.end(); ++i)
-						eDebug("%s", i->toString().c_str());
-			}
-		}
-#endif		
-		m_nav->connectEvent(slot(*this, &eMain::event), m_conn_event);
-		
-//		eServiceReference ref("1:0:1:6de2:44d:1:c00000:0:0:0:");
-		eServiceReference ref("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp3");
-		eServiceReference ref1("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp31");
-		eServiceReference ref2("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp32");
-		
-		if (m_nav->enqueueService(ref))
-			eDebug("play sucked around!");
-		else
-			eDebug("play r00lz!");
-
-		m_nav->enqueueService(ref1);
-		m_nav->enqueueService(ref2);
-		m_nav->enqueueService(ref1);
-	}
-	
-	void event(eNavigation *nav, int ev)
-	{
-		assert(nav);
-		
-		ePtr<ePlaylist> playlist;
-		nav->getPlaylist(playlist);
-		if (playlist)
-		{
-			eDebug("PLAYLIST:");
-			ePlaylist::iterator i;
-			for (i=playlist->begin(); i != playlist->end(); ++i)
-				eDebug("%s %s", i == playlist->m_current ? "-->" : "   ", i->toString().c_str());
-		}
-		
-		switch (ev)
-		{
-		case eNavigation::evStopService:
-				/* very important: the old service should be deallocated, so clear *all* references to it */
-			m_serviceInformation = 0;
-			eDebug("STOP service!");
-			break;
-		case eNavigation::evNewService:
-		{
-			ePtr<iPlayableService> service;
-			nav->getCurrentService(service);
-			if (!service)
-			{
-				eDebug("no running service!");
-				break;
-			}
-			if (service->getIServiceInformation(m_serviceInformation))
-			{
-				eDebug("failed to get iserviceinformation");
-				break;
-			}
-			eString name;
-			m_serviceInformation->getName(name);
-			eDebug("NEW running service: %s", name.c_str());
-			break;
-		}
-		case eNavigation::evPlayFailed:
-			eDebug("play failed!");
-			break;
-		case eNavigation::evPlaylistDone:
-			eDebug("playlist done");
-			quit();
-			break;
-		default:
-			eDebug("Navigation event %d", ev);
-			break;
-		}
-	}
-	
-	~eMain()
-	{
-	}
-};
+#include <lib/gui/ewindow.h>
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -144,14 +26,143 @@ void object_dump()
 }
 #endif
 
+void dumpRegion(const gRegion &region)
+{
+	fprintf(stderr, "extends: %d %d -> %d %d (%d rects)\n", 
+		region.extends.left(), region.extends.top(),
+		region.extends.right(), region.extends.bottom(), region.rects.size());
+	for (int y=0; y<region.extends.bottom(); ++y)
+	{
+		for (int x=0; x<region.extends.right(); ++x)
+		{
+			unsigned char res = ' ';
+			for (unsigned int i=0; i < region.rects.size(); ++i)
+				if (region.rects[i].contains(ePoint(x, y)))
+					res = '0' + i;
+			fprintf(stderr, "%c", res);
+		}
+		fprintf(stderr, "\n");
+	}
+}
+
 int main()
 {
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
 
-	eMain app;
-	int res = app.exec();
-	eDebug("after exec");
-	return res;
+	eInit init;
+
+	init.setRunlevel(eAutoInitNumbers::main);
+	ePtr<gFBDC> my_dc;
+	gFBDC::getInstance(my_dc);
+#if 1
+
+	gPainter p(my_dc);
+	
+	gRGB pal[256];
+	pal[0] = 0;
+	pal[1] = 0xff00ff;
+	pal[2] = 0xffFFff;
+	pal[3] = 0x00ff00;
+	
+	for (int a=0; a<0x10; ++a)
+		pal[a | 0x10] = (0x111111 * a) | 0xFF;
+	p.setPalette(pal, 0, 256);
+
+	fontRenderClass::getInstance()->AddFont("/dbox2/cdkroot/share/fonts/arial.ttf", "Arial", 100);
+
+#if 0
+	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
+	
+	 
+	gRegion c;
+	eDebug("0");
+	int i;
+	
+	c |= eRect(0, 20, 100, 10);
+	c |= eRect(0, 50, 100, 10);
+	c |= eRect(10, 10, 80, 100);
+	
+	c -= eRect(20, 20, 40, 40);
+	
+	p.setForegroundColor(gColor(3));
+	p.fill(eRect(0, 0, 100, 100));
+	p.fill(eRect(200, 0, 100, 100));
+	
+	for (int a=0; a<c.rects.size(); ++a)
+		eDebug("%d %d -> %d %d", c.rects[a].left(), c.rects[a].top(), c.rects[a].right(), c.rects[a].bottom());
+	eDebug("extends: %d %d %d %d", c.extends.left(), c.extends.top(), c.extends.right(), c.extends.bottom());
+	p.setOffset(ePoint(100, 100));
+	p.clip(c);
+
+	p.setBackgroundColor(gColor(1));
+	p.clear();
+	p.setForegroundColor(gColor(2));
+	p.line(ePoint(0, 0), ePoint(220, 190));
+	p.clippop();
+
+	p.setBackgroundColor(gColor(0x1f));
+	p.setForegroundColor(gColor(0x10));
+
+	ePtr<gFont> fnt = new gFont("Arial", 70);
+	p.setFont(fnt);
+	p.renderText(eRect(100, 100, 500, 200), "Hello welt!");
+#else
+
+
+	eWidgetDesktop dsk(eSize(720, 576));
+	dsk.setDC(my_dc);
+
+	eWindow *bla = new eWindow(&dsk);
+	
+	bla->move(ePoint(100, 100));
+	bla->resize(eSize(200, 200));
+	bla->show();
+
+	eLabel *blablub = new eLabel(bla->child());
+	blablub->setText("hello world");
+	blablub->move(ePoint(0, 0));
+	blablub->resize(eSize(400,400));
+
+#if 0
+	eWidget *bla2 = new eWidget(0);
+	dsk.addRootWidget(bla2, 0);
+	
+	bla2->move(ePoint(160, 160));
+	bla2->resize(eSize(200, 200));
+	bla2->show();
+#endif
+
+	dsk.recalcClipRegions();
+
+//	dumpRegion(bla->m_visible_region);
+//	dumpRegion(bla2->m_visible_region);
+//	dumpRegion(blablub->m_visible_region);
+	
+	eDebug("painting!");
+
+	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
+	dsk.paint();
+#endif
+
+#else
+
+	extern void contentTest();
+
+	eDebug("Contenttest");
+	contentTest();
+
+#endif
+
+	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
+//	p.clear();
+	sleep(1);
+	
+//	blablub->setText("123");
+//	dumpRegion(blablub->m_visible_region);
+//	dumpRegion(dsk.m_dirty_region);
+	dsk.paint();
+	
+	return 0;
 }

@@ -2,6 +2,7 @@
 #define __lib_gdi_region_h
 
 #include <lib/base/object.h>
+#include <lib/gdi/erect.h>
 #include <vector>
 
 class gRegion
@@ -88,6 +89,11 @@ public:
 	void merge(const gRegion &r1, const gRegion &r2);
 	
 	void moveBy(ePoint offset);
+	
+	bool empty() const { return extends.empty(); }
+	bool valid() const { return extends.valid(); }
+	
+	static gRegion invalidRegion() { return gRegion(eRect::invalidRect()); }
 };
 
 #endif

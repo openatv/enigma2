@@ -134,20 +134,20 @@ public:
 	}
 };
 
-class iServiceInformation: public virtual iObject
+class iServiceInformation: public iObject
 {
 public:
 	virtual RESULT getName(eString &name)=0;
 };
 
-class iPauseableService: public virtual iObject
+class iPauseableService: public iObject
 {
 public:
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
 };
 
-class iPlayableService: public virtual iObject
+class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
 public:
@@ -163,20 +163,20 @@ public:
 	virtual RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr)=0;
 };
 
-class iRecordableService: public virtual iObject
+class iRecordableService: public iObject
 {
 public:
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 };
 
-class iListableService: public virtual iObject
+class iListableService: public iObject
 {
 public:
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
 };
 
-class iServiceHandler: public virtual iObject
+class iServiceHandler: public iObject
 {
 public:
 	virtual RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr)=0;
