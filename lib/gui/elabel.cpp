@@ -20,8 +20,8 @@ int eLabel::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 		ePtr<gFont> fnt = new gFont("Arial", 14);
 		painter.setFont(fnt);
-		style->setForegroundStyle(painter);
-		painter.renderText(eRect(0, 0, size().width(), size().height()), m_text);
+		style->setStyle(painter, eWindowStyle::styleLabel);
+		painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, gPainter::RT_HALIGN_CENTER|gPainter::RT_VALIGN_CENTER);
 		
 		return 0;
 	}

@@ -342,8 +342,23 @@ void gDC::exec(gOpcode *o)
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
 		assert(m_current_font);
 		para->setFont(m_current_font);
-		para->renderString(o->parm.renderText->text, o->parm.renderText->flags);
-		para->blit(*this, m_current_offset, getRGB(m_background_color), getRGB(m_foreground_color));
+		para->renderString(o->parm.renderText->text, 0);
+		
+		if (o->parm.renderText->flags & gPainter::RT_HALIGN_RIGHT)
+			para->realign(eTextPara::dirRight);
+		else if (o->parm.renderText->flags & gPainter::RT_HALIGN_CENTER)
+			para->realign(eTextPara::dirCenter);
+		else if (o->parm.renderText->flags & gPainter::RT_HALIGN_BLOCK)
+			para->realign(eTextPara::dirBlock);
+		
+		ePoint offset = m_current_offset;
+		
+		if (o->parm.renderText->flags & gPainter::RT_VALIGN_CENTER)
+		{
+			eRect bbox = para->getBoundBox();
+			offset += ePoint(0, (o->parm.renderText->area.height() - bbox.height()) / 2);
+		}
+		para->blit(*this, offset, getRGB(m_background_color), getRGB(m_foreground_color));
 		delete o->parm.renderText;
 		break;
 	}

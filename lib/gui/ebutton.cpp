@@ -21,7 +21,7 @@ int eButton::event(int event, void *data, void *data2)
 		getStyle(style);
 		
 		eLabel::event(event, data, data2);
-		style->drawButtonFrame(painter, eRect(ePoint(0, 0), size()));
+		style->drawFrame(painter, eRect(ePoint(0, 0), size()), eWindowStyle::frameButton);
 		
 		return 0;
 	}

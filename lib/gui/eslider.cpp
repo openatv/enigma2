@@ -16,7 +16,7 @@ int eSlider::event(int event, void *data, void *data2)
 		
 		getStyle(style);
 		style->paintBackground(painter, ePoint(0, 0), size());
-		style->setForegroundStyle(painter);
+		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
 		painter.fill(m_currently_filled);
 		
 		return 0;

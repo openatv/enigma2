@@ -97,8 +97,10 @@ class GUIComponent:
 		i = self.GUIcreateInstance(self, parent, skindata)
 		priv["instance"] = i
 		self.notifier.append(i)
-		if self.notifierAdded:
+		try:
 			self.notifierAdded(i)
+		except:
+			pass
 	
 	# GUIdelete must delete *all* references to the current component!
 	def GUIdelete(self, priv):
@@ -220,4 +222,12 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 	def GUIcreateInstance(self, priv, parent, skindata):
 		g = eSlider(parent)
 		g.setRange(0, 100)
+		return g
+
+class MenuList(HTMLComponent, GUIComponent):
+	def __init__(self):
+		GUIComponent.__init__(self)
+	
+	def GUIcreateInstance(self, priv, parent, skindata):
+		g = eListbox(parent)
 		return g
