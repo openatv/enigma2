@@ -40,7 +40,7 @@ class eSkin
 	
 	gRGB *palette;
 	int maxcolors;
-	gImage *paldummy;
+	ePtr<gImage> paldummy;
 	int *colorused;
 	
 	static std::map< eString, tWidgetCreator > widget_creator;
