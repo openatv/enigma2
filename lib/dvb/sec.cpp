@@ -25,7 +25,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, struct dvb
 	
 //	frontend.sentDiseqc(...);
 
-	parm.inversion = sat.inversion ? INVERSION_ON : INVERSION_OFF;
+	parm.inversion = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
 
 	switch (sat.fec)
 	{
