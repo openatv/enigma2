@@ -37,11 +37,11 @@ screens["global"](components)
 # test our screens
 components["$001"] = screens["testDialog"]()
 
-print "*** classes:"
-dump(screens)
-
-print "*** instances:"
-dump(components)
+#print "*** classes:"
+#dump(screens)
+#
+#print "*** instances:"
+#dump(components)
 
 # display
 
@@ -100,7 +100,7 @@ class Session:
 			self.currentWindow = None
 
 	def keyEvent(self, code):
-		print "code " + str(code)
+#		print "code " + str(code)
 		if code == 32:
 			self.currentDialog.data["okbutton"]["instance"].push()
 		
