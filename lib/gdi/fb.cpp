@@ -59,7 +59,7 @@ fbClass::fbClass(const char *fb)
 		goto nolfb;
 	}
 
-	showConsole(0);
+//	showConsole(0);
 	return;
 nolfb:
 	lfb=0;

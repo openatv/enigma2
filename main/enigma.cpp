@@ -19,6 +19,7 @@
 #include <lib/gui/ewindow.h>
 
 #include <lib/python/python.h>
+#include <lib/python/connections.h>
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -28,11 +29,6 @@ void object_dump()
 	printf("%d items left\n", object_total_remaining);
 }
 #endif
-using namespace std;
-	void print(const string &str, const char *c)
-	{
-		printf("%s (%s)\n", str.c_str(), c);
-	}
 
 void dumpRegion(const gRegion &region)
 {
@@ -65,6 +61,13 @@ public:
 };
 
 eWidgetDesktop *wdsk;
+
+// typedef struct _object PyObject;
+
+void print(int i)
+{
+	printf("C++ says: it's a %d!!!\n", i);
+}
 
 int main(int argc, char **argv)
 {
@@ -103,63 +106,15 @@ int main(int argc, char **argv)
 	
 	wdsk = &dsk;
 	dsk.setDC(my_dc);
-
-	eWindow *wnd = new eWindow(&dsk);
-	wnd->move(ePoint(100, 100));
-	wnd->resize(eSize(200, 200));
-	wnd->show();
-
-	eLabel *label = new eButton(wnd);
-	label->setText("Hello!!");
-	label->move(ePoint(40, 40));
-	label->resize(eSize(100, 40));
-
-	label = new eButton(wnd);
-	label->setText("2nd!!");
-	label->move(ePoint(40, 90));
-	label->resize(eSize(100, 40));
-
-#if 0	
-	eWidget *bla2 = new eWidget(0);
-	dsk.addRootWidget(bla2, 0);
-	
-	bla2->move(ePoint(160, 160));
-	bla2->resize(eSize(200, 200));
-	bla2->show();
 #endif
 
-//	dsk.recalcClipRegions();
-//	dsk.paint();
-//	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
-
-//	dumpRegion(wnd->m_visible_region);
-//	dumpRegion(label->m_visible_region);
-//	dumpRegion(label->m_visible_region);
+		/* redrawing is done in an idle-timer, so we have to set the context */
+	dsk.setRedrawTask(main);
 	
-	eDebug("painting!");
-	
-
 	ePython python;
 	
-	printf("about to execute TEST :)\n");
-	python.execute("mytest", "test");
-
-	sleep(2);
-#endif
-
-#if 0
-
-		// connections mit parametern: geht! :)
-	using namespace std;
-	using namespace SigC;
-
-	
-	Signal1<void,const string &> printer;
-	int i;
-	for (i=1; i<argc; ++i)
-		printer.connect(bind(slot(print), argv[i]));
-	printer("hello world\n");
-#endif
+	printf("executing main\n");
+	python.execute("mytest", "__main__");
 
 	return 0;
 }
@@ -169,3 +124,7 @@ eWidgetDesktop *getDesktop()
 	return wdsk;
 }
 
+void runMainloop()
+{
+	eApp->exec();
+}

@@ -1,5 +1,6 @@
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/ewidget.h>
+#include <lib/base/ebase.h>
 
 void eWidgetDesktop::addRootWidget(eWidget *root, int top)
 {
@@ -50,6 +51,8 @@ void eWidgetDesktop::recalcClipRegions()
 
 void eWidgetDesktop::invalidate(const gRegion &region)
 {
+	if (m_timer && m_dirty_region.empty())
+		m_timer->start(0, 1); // start singleshot redraw timer
 	m_dirty_region |= region;
 }
 
@@ -67,7 +70,23 @@ void eWidgetDesktop::setDC(gDC *dc)
 	m_dc = dc;
 }
 
-eWidgetDesktop::eWidgetDesktop(eSize size): m_screen_size(size)
+void eWidgetDesktop::setRedrawTask(eMainloop &ml)
+{
+	if (m_mainloop)
+	{
+		delete m_timer;
+		m_timer = 0;
+		m_mainloop = 0;
+	}
+	m_mainloop = &ml;
+	m_timer = new eTimer(m_mainloop);
+	CONNECT(m_timer->timeout, eWidgetDesktop::paint);
+	
+	if (!m_dirty_region.empty())
+		m_timer->start(0, 1);
+}
+
+eWidgetDesktop::eWidgetDesktop(eSize size): m_screen_size(size), m_mainloop(0), m_timer(0)
 {
 }
 

@@ -103,7 +103,7 @@ void ePython::call(PyObject *pFunc, PyObject *pArgs)
 		pValue = PyObject_CallObject(pFunc, pArgs);
  		if (pValue != NULL)
 		{
-			printf("Result of call: %ld\n", PyInt_AsLong(pValue));
+//			printf("Result of call: %ld\n", PyInt_AsLong(pValue));
 			Py_DECREF(pValue);
 		} else
 		{

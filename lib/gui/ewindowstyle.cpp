@@ -53,7 +53,6 @@ void eWindowStyleSimple::paintWindowDecoration(eWindow *wnd, gPainter &painter, 
 
 void eWindowStyleSimple::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)
 {
-	eDebug("eWindowStyleSimple::paintBackground");
 	painter.setBackgroundColor(m_background_color);
 	painter.clear();
 }

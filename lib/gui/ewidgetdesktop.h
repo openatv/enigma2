@@ -5,8 +5,10 @@
 #include <lib/base/eptrlist.h>
 
 class eWidget;
+class eMainloop;
+class eTimer;
 
-class eWidgetDesktop
+class eWidgetDesktop: public Object
 {
 public: // weil debug
 	eSize m_screen_size;
@@ -22,9 +24,14 @@ public:
 	void invalidate(const gRegion &region);
 	void paint();
 	void setDC(gDC *dc);
+	
+	void setRedrawTask(eMainloop &ml);
 private:
 	ePtrList<eWidget> m_root;
 	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);
+	
+	eMainloop *m_mainloop;
+	eTimer *m_timer;
 };
 
 #endif

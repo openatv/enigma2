@@ -2,6 +2,7 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <lib/base/eerror.h>
 
@@ -50,7 +51,8 @@ void eTimer::start(long msek, bool singleShot)
 }
 
 void eTimer::stop()
-{
+{	
+	eDebug("stop timer");
 	if (bActive)
 	{
 		bActive=false;
@@ -74,7 +76,7 @@ void eTimer::changeInterval(long msek)
 	context.addTimer(this);				// add Timer to context TimerList
 }
 
-void eTimer::activate()   // Internal Funktion... called from eApplication
+void eTimer::activate()   // Internal Function... called from eApplication
 {
 	timeval now;
 	gettimeofday(&now, 0);
@@ -107,16 +109,47 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 
 void eMainloop::processOneEvent()
 {
-// process pending timers...
+		/* notes:
+		  - we should use epoll(4)
+		  - timer are checked twice. there was a strong reason for it, but i can't remember. (FIXME)
+		  - for each time, we gettimeofday() and check wether the timer should fire.
+		    we should do this all better - we know how long the poll last, so we know which
+		    timers should fire. Problem is that a timer handler could have required so
+		    much time that another timer fired.
+		    
+		    A probably structure could look
+		    
+		    while (1)
+		    {
+			    time = gettimeofday()
+			    timeout = calculate_pending_timers(time);
+		    
+		      doPoll(timeout or infinite);
+		    	
+		    	if (poll_had_results)
+		    		handle_poll_handler();
+		    	else
+				    fire_timers(time + timeout)
+			  }
+			  
+			  the gettimeofday() call is required because fire_timers could last more
+			  than nothing.
+			  
+			  when poll did no timeout, we don't handle timers, as this will be done
+			  in the next iteration (without adding overhead - we had to get the new
+			  time anyway
+		*/
+
+		// first, process pending timers...
 	long usec=0;
 
 	while (TimerList && (usec = timeout_usec( TimerList.begin()->getNextActivation() ) ) <= 0 )
 		TimerList.begin()->activate();
 
+		// build the poll aray
 	int fdAnz = notifiers.size();
 	pollfd* pfd = new pollfd[fdAnz];  // make new pollfd array
 
-// fill pfd array
 	std::map<int,eSocketNotifier*>::iterator it(notifiers.begin());
 	for (int i=0; i < fdAnz; i++, it++)
 	{
@@ -124,11 +157,11 @@ void eMainloop::processOneEvent()
 		pfd[i].events = it->second->getRequested();
 	}
 
-	int ret=poll(pfd, fdAnz, TimerList ? usec / 1000 : -1);  // milli .. not micro seks
+		// to the poll. When there are no timers, we have an infinite timeout
+	int ret=poll(pfd, fdAnz, TimerList ? usec / 1000 : -1);  // convert to us
 
 	if (ret>0)
 	{
-//		eDebug("bin aussem poll raus und da war was");
 		for (int i=0; i < fdAnz ; i++)
 		{
 			if( notifiers.find(pfd[i].fd) == notifiers.end())
@@ -143,13 +176,17 @@ void eMainloop::processOneEvent()
 				if (!--ret)
 					break;
 			} else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-				eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd,pfd[i].revents);
+				eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d) -> FIX YOUR CODE", pfd[i].fd,pfd[i].revents);
 		}
-	}
-	else if (ret<0)
-		eDebug("poll made error");
+	} else if (ret<0)
+	{
+			/* when we got a signal, we get EINTR. we do not care, 
+			   because we check current time in timers anyway. */
+		if (errno != EINTR)
+			eDebug("poll made error (%m)");
+	} 
 
-		// check Timers...
+		// check timer...
 	while ( TimerList && timeout_usec( TimerList.begin()->getNextActivation() ) <= 0 )
 		TimerList.begin()->activate();
 
@@ -167,6 +204,8 @@ int eMainloop::exec()
 	return retval;
 }
 
+	/* use with care! better: don't use it anymore. it was used for gui stuff, but 
+		 doesn't allow multiple paths (or active dialogs, if you want it that way.) */
 void eMainloop::enter_loop()
 {
 	loop_level++;
