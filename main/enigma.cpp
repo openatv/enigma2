@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include <lib/service/iservice.h>
+#include <lib/nav/core.h>
 
 class eMain: public eApplication, public Object
 {
@@ -24,6 +25,8 @@ class eMain: public eApplication, public Object
 	ePtr<eDVBDB> m_dvbdb;
 
 	ePtr<iPlayableService> m_playservice;
+	ePtr<eNavigation> m_nav;
+	ePtr<eConnection> m_conn_event;
 public:
 	eMain()
 	{
@@ -35,6 +38,8 @@ public:
 		ePtr<eServiceCenter> service_center;
 		eServiceCenter::getInstance(service_center);
 
+		m_nav = new eNavigation(service_center);
+#if 1
 		if (service_center)
 		{
 			eServiceReference ref("2:0:1:0:0:0:0:0:0:0:/");
@@ -52,17 +57,58 @@ public:
 						eDebug("%s", i->toString().c_str());
 			}
 		}
+#endif		
+		m_nav->connectEvent(slot(*this, &eMain::event), m_conn_event);
 		
-		eServiceReference ref("1:0:1:6de2:44d:1:c00000:0:0:0:");
+//		eServiceReference ref("1:0:1:6de2:44d:1:c00000:0:0:0:");
+		eServiceReference ref("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp3");
+		eServiceReference ref1("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp31");
+		eServiceReference ref2("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp32");
 		
-		if (service_center)
+		if (m_nav->enqueueService(ref))
+			eDebug("play sucked around!");
+		else
+			eDebug("play r00lz!");
+
+		m_nav->enqueueService(ref1);
+		m_nav->enqueueService(ref2);
+		m_nav->enqueueService(ref1);
+	}
+	
+	void event(eNavigation *nav, int ev)
+	{
+		switch (ev)
 		{
-			if (service_center->play(ref, m_playservice))
-				eDebug("play sucked around!");
-			else
-				eDebug("play r00lz!");
-		} else
-			eDebug("no service center: no play.");
+		case eNavigation::evNewService:
+		{
+			ePtr<iPlayableService> service;
+			nav->getCurrentService(service);
+			if (!service)
+			{
+				eDebug("no running service!");
+				break;
+			}
+			ePtr<iServiceInformation> s;
+			if (service->getIServiceInformation(s))
+			{
+				eDebug("failed to get iserviceinformation");
+				break;
+			}
+			eString name;
+			s->getName(name);
+			eDebug("NEW running service: %s", name.c_str());
+			break;
+		}
+		case eNavigation::evPlayFailed:
+			eDebug("play failed!");
+			break;
+		case eNavigation::evPlaylistDone:
+			eDebug("playlist done");
+			break;
+		default:
+			eDebug("Navigation event %d", ev);
+			break;
+		}
 	}
 	
 	~eMain()

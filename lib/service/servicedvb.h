@@ -20,7 +20,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eDVBServicePlay: public virtual iPlayableService, public virtual iObject, public Object
+class eDVBServicePlay: public virtual iPlayableService, public virtual iObject, public Object, public virtual iServiceInformation
 {
 DECLARE_REF;
 private:
@@ -38,8 +38,14 @@ public:
 	virtual ~eDVBServicePlay();
 
 		// iPlayableService
+	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
+	RESULT stop();
 	RESULT getIPausableService(ePtr<iPauseableService> &ptr);
+	RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr);
+	
+		// iServiceInformation
+	RESULT getName(eString &name);
 };
 
 #endif

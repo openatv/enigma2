@@ -3,6 +3,7 @@
 
 #include <lib/base/object.h>
 #include <lib/base/estring.h>
+#include <connection.h>
 #include <list>
 
 class eServiceReference
@@ -133,6 +134,12 @@ public:
 	}
 };
 
+class iServiceInformation: public virtual iObject
+{
+public:
+	virtual RESULT getName(eString &name)=0;
+};
+
 class iPauseableService: public virtual iObject
 {
 public:
@@ -144,9 +151,16 @@ class iPlayableService: public virtual iObject
 {
 	friend class iServiceHandler;
 public:
-		// it's PRIVATE to the class factory
+	enum
+	{
+		evStart,
+		evEnd
+	};
+	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
+	virtual RESULT stop()=0;
 	virtual RESULT getIPausableService(ePtr<iPauseableService> &ptr)=0;
+	virtual RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr)=0;
 };
 
 class iRecordableService: public virtual iObject

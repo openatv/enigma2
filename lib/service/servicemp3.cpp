@@ -1,5 +1,6 @@
 #include <lib/base/eerror.h>
 #include <lib/base/object.h>
+#include <lib/base/ebase.h>
 #include <string>
 #include <lib/service/servicemp3.h>
 #include <lib/service/service.h>
@@ -31,15 +32,8 @@ DEFINE_REF(eServiceFactoryMP3)
 	// iServiceHandler
 RESULT eServiceFactoryMP3::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
-	RESULT res;
 		// check resources...
 	ptr = new eServiceMP3(ref.path.c_str());
-	res = ptr->start();
-	if (res)
-	{
-		ptr = 0;
-		return res;
-	}
 	return 0;
 }
 
@@ -57,33 +51,65 @@ RESULT eServiceFactoryMP3::list(const eServiceReference &, ePtr<iListableService
 
 // eServiceMP3
 
-eServiceMP3::eServiceMP3(const char *filename): filename(filename), ref(0)
+
+void eServiceMP3::test_end()
 {
-	printf("MP3: %s start\n", filename);
+	eDebug("end of mp3!");
+	stop();
+}
+
+eServiceMP3::eServiceMP3(const char *filename): ref(0), filename(filename), test(eApp)
+{
+	m_state = stIdle;
 }
 
 eServiceMP3::~eServiceMP3()
 {
-	printf("MP3: %s stop\n", filename.c_str());
+	if (m_state == stRunning)
+		stop();
 }
+
+DEFINE_REF(eServiceMP3);	
+
+RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(m_event.connect(event));
+	return 0;
+}
+
+RESULT eServiceMP3::start()
+{
+	assert(m_state == stIdle);
 	
-void eServiceMP3::AddRef()
-{
-	++ref;
+	m_state = stRunning;
+
+	printf("mp3 starts\n");
+	printf("MP3: %s start\n", filename.c_str());
+	test.start(10000, 1);
+	CONNECT(test.timeout, eServiceMP3::test_end);
+	m_event(this, evStart);
+	return 0;
 }
 
-void eServiceMP3::Release()
+RESULT eServiceMP3::stop()
 {
-	if (!--ref)
-		delete this;
+	assert(m_state != stIdle);
+	if (m_state == stStopped)
+		return -1;
+	test.stop();
+	printf("MP3: %s stop\n", filename.c_str());
+	m_state = stStopped;
+	m_event(this, evEnd);
+	return 0;
 }
 
-RESULT eServiceMP3::start() { printf("mp3 starts\n"); return 0; }
 RESULT eServiceMP3::getIPausableService(ePtr<iPauseableService> &ptr) { ptr=this; return 0; }
 
 		// iPausableService
 RESULT eServiceMP3::pause() { printf("mp3 pauses!\n"); return 0; }
 RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }
+
+RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&) { return -1; }
 
 
 eAutoInitP0<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");

@@ -17,26 +17,35 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eServiceMP3: public virtual iPlayableService, public virtual iPauseableService, public virtual iObject
+class eServiceMP3: public virtual iPlayableService, public virtual iPauseableService, public virtual iObject, public Object
 {
+DECLARE_REF;
+private:
 	friend class eServiceFactoryMP3;
 	std::string filename;
 	eServiceMP3(const char *filename);	
-	int ref;
+	eTimer test;
+	void test_end();
+	Signal2<void,iPlayableService*,int> m_event;
+	enum
+	{
+		stIdle, stRunning, stStopped,
+	};
+	int m_state;
 public:
 	virtual ~eServiceMP3();
 
-		// iObject
-	void AddRef();
-	void Release();
-
 		// iPlayableService
+	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
+	RESULT stop();
 	RESULT getIPausableService(ePtr<iPauseableService> &ptr);
 
 		// iPausableService
 	RESULT pause();
 	RESULT unpause();
+	
+	RESULT getIServiceInformation(ePtr<iServiceInformation>&);
 };
 
 #endif
