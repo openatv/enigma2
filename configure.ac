@@ -30,7 +30,6 @@ AC_OUTPUT([
 Makefile
 lib/Makefile
 lib/base/Makefile
-lib/content/Makefile
 lib/driver/Makefile
 lib/dvb/Makefile
 lib/dvb_si/Makefile
