@@ -59,19 +59,21 @@ class Session:
 		self.desktop = None
 		self.delayTimer = eTimer()
 		self.delayTimer.timeout.get().append(self.processDelay)
+		
+		self.currentDialog = None
 	
 	def processDelay(self):
-		components[self.screenname].close()
+		self.currentDialog.close()
 		if self.currentWindow != None:
 			self.currentWindow.hide()
 		
-		del components[self.screenname]
+		del self.currentDialog
 		del self.currentWindow
 		
+		self.open(screens["testDialog"]())
 
-	def open(self, screenname, screen):
-		components[screenname] = screen
-		self.screenname = screenname
+	def open(self, screen):
+		self.currentDialog = screen
 		screen.session = self
 		
 		if self.desktop != None:
@@ -82,9 +84,9 @@ class Session:
 
 			gui = GUIOutputDevice()
 			gui.parent = wnd
-			gui.create(components["$002"])
+			gui.create(self.currentDialog)
 
-		 	applyGUIskin(components["$002"], None, "clockDialog")
+		 	applyGUIskin(self.currentDialog, None, screen.__class__.__name__)
 
 			wnd.show()
 		else:
@@ -97,21 +99,19 @@ def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
 	
-#	components["$002"] = screens["clockDisplay"](components["clock"])
+	session.open(screens["clockDisplay"](components["clock"]))
+#	session.open(screens["testDialog"]())
 
-	session.open("$002", screens["clockDisplay"](components["clock"]))
-
-	
+	# simple reason for this helper function: we want to call the currently
+	# active "okbutton", even when we changed the dialog
+	#
+	# more complicated reason: we don't want to hold a reference.
 	def blub():
-#		x = components["$002"]
-		components["$002"].data["okbutton"]["instance"].push()
-#		dump(components)
-#		print "session, close screen " + str(sys.getrefcount(x))
-#		session.close()
-		
+		session.currentDialog.data["okbutton"]["instance"].push()
+	
 	tmr = eTimer()
 	tmr.timeout.get().append(blub)
-	tmr.start(4000, 1)
+	tmr.start(4000, 0)
 	
 	runMainloop()
 	

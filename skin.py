@@ -11,11 +11,21 @@ def dump(x, i=0):
 		None
 
 dom = xml.dom.minidom.parseString(
-	"<screen name=\"clockDialog\" position=\"300,100\" size=\"300,300\"> \
-		<widget name=\"okbutton\" position=\"10,10\" size=\"280,40\" /> \
-		<widget name=\"theClock\" position=\"10,60\" size=\"280,50\" /> \
-		<widget name=\"title\" position=\"10,120\" size=\"280,50\" /> \
-	</screen>")
+	"""
+	<skin>
+		<screen name="testDialog">
+			<widget name="okbutton" position="10,10" size="280,40" />
+			<widget name="title" position="10,120" size="280,50" />
+		</screen>
+		<screen name="clockDisplay" position="300,100" size="300,300">
+			<widget name="okbutton" position="10,10" size="280,40" />
+			<widget name="title" position="10,120" size="280,50" />
+			<widget name="theClock" position="10,60" size="280,50" />
+		</screen>
+	</skin>
+""")
+
+
 
 def parsePosition(str):
 	x, y = str.split(',')
@@ -43,14 +53,16 @@ def applyGUIskin(screen, skin, name):
 	myscreen = None
 	
 	# first, find the corresponding screen element
-	screens = dom.getElementsByTagName("screen")
+	skin = dom.getElementsByTagName("skin")[0]
+	screens = skin.getElementsByTagName("screen")
+	del skin
 	for x in screens:
 		if x.getAttribute('name') == name:
 			myscreen = x
 	
-	if myscreen == None:
-		print "no skin for screen " + name + " found!"
-		return;
+	assert myscreen != None, "no skin for screen " + name + " found!"
+	
+	print "ok, found screen.."
 	
 	# now walk all widgets
 	for widget in myscreen.getElementsByTagName("widget"):
