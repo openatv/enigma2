@@ -16,8 +16,6 @@
 #include <lib/service/iservice.h>
 #include <lib/nav/core.h>
 
-#include <main/cli.h>
-
 class eMain: public eApplication, public Object
 {
 	eInit init;
@@ -152,20 +150,6 @@ int main()
 	atexit(object_dump);
 #endif
 
-#if 0
-	eCLI cli;
-	eString res;
-	
-	while (1)
-	{
-		char line[1024];
-		if (!fgets(line, 1024, stdin))
-			break;
-		line[strlen(line)-1]=0;
-		int rn = cli.doCommand(res, line);
-		eDebug("%s%d", res.c_str(), rn);
-	}
-#endif
 	eMain app;
 	int res = app.exec();
 	eDebug("after exec");
