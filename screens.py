@@ -15,14 +15,21 @@ class Screen(dict, HTMLSkin, GUISkin):
 class testDialog(Screen):
 	def testDialogClick(self):
 		print "test dialog clicked!"
-		self["title"].setText("bla")
+		if self.tries == 0:
+			self["title"].setText("Hihi - no, this doesn't work!")
+		else:
+			self["title"].setText("You tried it %d times without success now!" % self.tries )
+
+		self.tries += 1
 
 	def __init__(self):
-		HTMLSkin.__init__(self, ("title", "okbutton"))
+		GUISkin.__init__(self)
 		b = Button("ok")
 		b.onClick = [ self.testDialogClick ]
 		self["okbutton"] = b
 		self["title"] = Header("Test Dialog - press ok to leave!")
+		
+		self.tries = 0
 
 # a clock display dialog
 class clockDisplay(Screen):
