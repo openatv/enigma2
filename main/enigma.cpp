@@ -16,6 +16,8 @@
 #include <lib/service/iservice.h>
 #include <lib/nav/core.h>
 
+#include <main/cli.h>
+
 class eMain: public eApplication, public Object
 {
 	eInit init;
@@ -79,6 +81,18 @@ public:
 	
 	void event(eNavigation *nav, int ev)
 	{
+		assert(nav);
+		
+		ePtr<ePlaylist> playlist;
+		nav->getPlaylist(playlist);
+		if (playlist)
+		{
+			eDebug("PLAYLIST:");
+			ePlaylist::iterator i;
+			for (i=playlist->begin(); i != playlist->end(); ++i)
+				eDebug("%s %s", i == playlist->m_current ? "-->" : "   ", i->toString().c_str());
+		}
+		
 		switch (ev)
 		{
 		case eNavigation::evStopService:
@@ -136,6 +150,21 @@ int main()
 {
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
+#endif
+
+#if 0
+	eCLI cli;
+	eString res;
+	
+	while (1)
+	{
+		char line[1024];
+		if (!fgets(line, 1024, stdin))
+			break;
+		line[strlen(line)-1]=0;
+		int rn = cli.doCommand(res, line);
+		eDebug("%s%d", res.c_str(), rn);
+	}
 #endif
 	eMain app;
 	int res = app.exec();
