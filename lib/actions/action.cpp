@@ -1,0 +1,178 @@
+#include <lib/actions/action.h>
+#include <lib/base/init.h>
+#include <lib/base/init_num.h>
+#include <lib/actions/actionids.h>
+
+/*
+
+  THIS CODE SUCKS.
+
+we need:
+ - contexts that aren't compared as strings,
+ - maybe a lookup "device,key,flags" -> actions? (lazy validation, on bindAction)
+ - devices as ids
+ - seperate native from python keys? (currently, if an action wasn't found, it's ignored.)
+ 
+Sorry. I spent 3 days on thinking how this could be made better, and it just DID NOT WORKED OUT.
+
+If you have a better idea, please tell me.
+
+ */
+
+DEFINE_REF(eActionMap);
+
+eActionMap *eActionMap::instance;
+
+eActionMap::eActionMap()
+{
+	instance = this;
+}
+
+eActionMap::~eActionMap()
+{
+	instance = 0;
+}
+
+RESULT eActionMap::getInstance(ePtr<eActionMap> &ptr)
+{
+	ptr = instance;
+	if (!ptr)
+		return -1;
+	return 0;
+}
+
+#if 0
+void eActionMap::getInstance(eActionMap **ptr)
+{
+	*ptr = instance;
+}
+#endif
+
+void eActionMap::bindAction(const std::string &context, int priority, int id, eWidget *widget)
+{
+	eActionBinding bnd;
+	
+	bnd.m_context = context;
+	bnd.m_widget = widget;
+	bnd.m_fnc = 0;
+	bnd.m_id = id;
+	m_bindings.insert(std::pair<int,eActionBinding>(priority, bnd));
+}
+
+void eActionMap::bindAction(const std::string &context, int priority, PyObject *function)
+{
+	eActionBinding bnd;
+	
+	bnd.m_context = context;
+	bnd.m_widget = 0;
+	Py_INCREF(function);
+	bnd.m_fnc = function;
+	m_bindings.insert(std::pair<int,eActionBinding>(priority, bnd));
+}
+
+void eActionMap::unbindAction(eWidget *widget, int id)
+{
+	for (std::multimap<int, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
+		if ((i->second.m_widget == widget) && (i->second.m_id == id))
+		{
+			m_bindings.erase(i);
+			return;
+		}
+}
+
+void eActionMap::unbindAction(const std::string &context, PyObject *function)
+{
+	for (std::multimap<int, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
+	{
+		if (i->second.m_fnc && (PyObject_Compare(i->second.m_fnc, function) == 0))
+		{
+			Py_DECREF(i->second.m_fnc);
+			m_bindings.erase(i);
+			return;
+		}
+	}
+	eFatal("unbindAction with illegal python reference");
+}
+
+
+void eActionMap::bindKey(const std::string &device, int key, int flags, const std::string &context, const std::string &action)
+{
+		// first, search the actionlist table
+	unsigned int i;
+	for (i=0; i<sizeof(actions)/sizeof(*actions); ++i)
+	{
+		if ((actions[i].m_context == context) && (actions[i].m_action == action))
+		{
+				// we found a native action.
+			eNativeKeyBinding bind;
+			bind.m_device = 0;
+			bind.m_key = key;
+			bind.m_flags = flags;
+			bind.m_action = actions[i].m_id;
+			m_native_keys.insert(std::pair<std::string,eNativeKeyBinding>(context, bind));
+			return;
+		}
+	}
+	
+		// we didn't find the action, so it must be a pythonAction
+	ePythonKeyBinding bind;
+
+	bind.m_device = 0;
+	bind.m_key = key;
+	bind.m_flags = flags;
+	bind.m_action = action;
+	m_python_keys.insert(std::pair<std::string,ePythonKeyBinding>(context, bind));
+}
+
+void eActionMap::keyPressed(int device, int key, int flags)
+{
+		/* iterate active contexts. */
+	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin()); c != m_bindings.end();)
+	{
+		std::multimap<int,eActionBinding>::const_iterator i = c;
+		++c;
+			/* is this a native context? */
+		if (i->second.m_widget)
+		{
+			std::multimap<std::string,eNativeKeyBinding>::const_iterator
+				k = m_native_keys.lower_bound(i->second.m_context),
+				e = m_native_keys.upper_bound(i->second.m_context);
+			
+			for (; k != e; ++k)
+			{
+				if (
+					// (k->second.m_device == m_device) &&
+					(k->second.m_key == key) &&
+					((k->second.m_flags & flags)==flags))
+				{
+					if (i->second.m_widget->event(eWidget::evtAction, 0, (void*)k->second.m_action))
+						return;
+				}
+			}
+		} else if (i->second.m_fnc)
+		{
+			std::multimap<std::string,ePythonKeyBinding>::const_iterator
+				k = m_python_keys.lower_bound(i->second.m_context),
+				e = m_python_keys.upper_bound(i->second.m_context);
+				
+			for (; k != e;)
+			{
+				if (
+					// (k->second.m_device == m_device) &&
+					(k->second.m_key == key) &&
+					((k->second.m_flags & flags)==flags))
+				{
+					PyObject *pArgs = PyTuple_New(2);
+					PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));
+					PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
+					++k;
+					ePython::call(i->second.m_fnc, pArgs);
+					Py_DECREF(pArgs);
+				} else
+					++k;
+			}
+		}
+	}
+}
+
+eAutoInitPtr<eActionMap> init_eActionMap(eAutoInitNumbers::actions, "eActionMap");
