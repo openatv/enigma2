@@ -50,9 +50,9 @@ private:
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_cursor;
 	ePtr<eDVBDB> m_db;
 	ePtr<eDVBChannelQuery> m_query;
-	eServiceReferenceDVB m_source;
+	eServiceReference m_source;
 public:
-	eDVBDBQuery(eDVBDB *db, const eServiceReferenceDVB &source, eDVBChannelQuery *query);
+	eDVBDBQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 	virtual RESULT getNextResult(eServiceReferenceDVB &ref);
 };
 

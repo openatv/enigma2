@@ -330,14 +330,15 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 
 RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q)
 {
-	query = new eDVBDBQuery(this, q);
+	query = new eDVBDBQuery(this, eServiceReference(), q);
 	return 0;
 }
 
 DEFINE_REF(eDVBDBQuery);
 
-eDVBDBQuery::eDVBDBQuery(eDVBDB *db, eDVBChannelQuery *query): m_db(db), m_query(query)
+eDVBDBQuery::eDVBDBQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query): m_db(db), m_query(query)
 {
+		// TODO: use SOURCE ...
 	m_cursor = m_db->m_services.begin();
 }
 
@@ -486,11 +487,9 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 	return 0;
 }
 
-RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, const eServiceReferenceDVB &source, std::string query)
+RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 {
 	std::list<std::string> tokens;
-	
-	m_source = source;
 	
 	std::string current_token;
 	
