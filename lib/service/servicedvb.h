@@ -9,7 +9,7 @@
 
 class eServiceFactoryDVB: public iServiceHandler
 {
-DECLARE_REF;
+DECLARE_REF(eServiceFactoryDVB);
 public:
 	eServiceFactoryDVB();
 	virtual ~eServiceFactoryDVB();
@@ -24,7 +24,7 @@ public:
 
 class eDVBServiceList: public iListableService
 {
-DECLARE_REF;
+DECLARE_REF(eDVBServiceList);
 private:
 	eServiceReference m_parent;
 	friend class eServiceFactoryDVB;
@@ -36,7 +36,7 @@ public:
 
 class eDVBServicePlay: public iPlayableService, public Object, public iServiceInformation
 {
-DECLARE_REF;
+DECLARE_REF(eDVBServicePlay);
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;

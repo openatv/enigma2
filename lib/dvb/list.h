@@ -3,7 +3,7 @@
 
 class eDVBTransponderList: iDVBChannelList
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBTransponderList);
 private:
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > channels;
 public:

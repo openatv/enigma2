@@ -3,6 +3,7 @@
 
 void eListboxServiceContent::setRoot(const eServiceReference &root)
 {
+	m_list.clear();
 	m_root = root;
 	
 	assert(m_service_center);
@@ -16,6 +17,9 @@ void eListboxServiceContent::setRoot(const eServiceReference &root)
 
 	m_size = m_list.size();
 	cursorHome();
+	
+	if (m_listbox)
+		m_listbox->entryReset();
 }
 
 void eListboxServiceContent::getCurrent(eServiceReference &ref)

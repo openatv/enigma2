@@ -71,7 +71,7 @@ int xmlrpc_checkArgs(std::string args, std::vector<eXMLRPCVariant>&, ePtrList<eX
 
 class eHTTPXMLRPCResolver: public iHTTPPathResolver
 {
-	DECLARE_REF;
+	DECLARE_REF(eHTTPXMLRPCResolver);
 public:
 	eHTTPXMLRPCResolver();
 	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);

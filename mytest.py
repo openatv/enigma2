@@ -17,11 +17,23 @@ from skin import applyGUIskin
 # we thus have one (static) hierarchy of screens (classes, not instances)
 # and one with the instanciated components itself (both global and dynamic)
 
+had = dict()
+
 def dump(dir, p = ""):
 	if isinstance(dir, dict):
 		for (entry, val) in dir.items():
-			dump(val, p + "/" + entry)
-	print p + ":" + str(dir.__class__)
+			dump(val, p + "(dict)/" + entry)
+	if hasattr(dir, "__dict__"):
+		for name, value in dir.__dict__.items():
+			if not had.has_key(str(value)):
+				had[str(value)] = 1
+				dump(value, p + "/" + str(name))
+			else:
+				print p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)"
+	else:
+		print p + ":" + str(dir)
+
+# + ":" + str(dir.__class__)
 
 # defined components
 components = {}
@@ -61,6 +73,8 @@ class Session:
 		self.execEnd()
 		self.currentDialog.doClose()
 		
+		dump(self.currentDialog)
+		print sys.getrefcount(self.currentDialog)
 		del self.currentDialog
 		del self.currentWindow
 		
@@ -137,3 +151,20 @@ keymapparser.readKeymap()
 runScreenTest()
 
 # now, run the mainloop
+
+#pt = eDebugClassPtr()
+#eDebugClass.getDebug(pt, 12)
+#p = pt.__deref__()
+#print pt.x
+#print p.x
+#print "removing ptr..."
+#pt = 0
+#print "now"
+#print "p is " + str(p)
+#print p.x
+#p = 0
+#
+#bla = eDebugClass()
+#bla = eDebugClass(2)
+#
+

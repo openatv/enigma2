@@ -89,7 +89,7 @@ struct gLookup
  */
 class gFont: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(gFont);
 public:
 
 	std::string family;
@@ -133,7 +133,7 @@ struct gSurfaceSystem: gSurface
 
 struct gPixmap: public iObject
 {
-DECLARE_REF;
+DECLARE_REF(gPixmap);
 private:
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);

@@ -32,14 +32,9 @@ Oh, things like "operator= is private in this context" etc.
 is usually caused by not marking PSignals as immutable. 
 */
 
-%define RefCount(...)
-%typemap(newfree) __VA_ARGS__ * { eDebug("adding ref"); $1->AddRef(); }
-%extend __VA_ARGS__  { ~__VA_ARGS__() { eDebug("removing ref!"); self->Release(); } }
-%ignore __VA_ARGS__::~__VA_ARGS__();
-%enddef
-
 %module enigma
 %{
+
 #define SWIG_COMPILE
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
@@ -54,6 +49,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewidgetdesktop.h>
+#include <lib/gui/ewindowstyle.h>
 #include <lib/gui/eslider.h>
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
@@ -69,9 +65,10 @@ extern void quitMainloop();
 extern PSignal1<void,int> &keyPressedSignal();
 %}
 
-RefCount(eListboxPythonStringContent)
-RefCount(eListboxServiceContent)
-RefCount(eComponentScan)
+%feature("ref")   iObject "$this->AddRef(); eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); "
+%feature("unref") iObject "$this->Release(); eDebug(\"Release! %s:%d\", __FILE__, __LINE__); "
+
+%newobject eDebugClassPtr::operator->;
 
 #define DEBUG
 %include "typemaps.i"
@@ -82,6 +79,7 @@ RefCount(eComponentScan)
 %include <lib/base/smartptr.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
+
 %template(eServiceCenterPtr) ePtr<eServiceCenter>;
 %include <lib/service/event.h>
 
@@ -103,6 +101,7 @@ RefCount(eComponentScan)
 %include <lib/gui/ewidgetdesktop.h>
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>
+%include <lib/gui/ewindowstyle.h>
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
 %include <lib/nav/pcore.h>
@@ -111,7 +110,6 @@ RefCount(eComponentScan)
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
-RefCount(eActionMap)
 %apply eActionMapPtr OUTPUT { eActionMapPtr &ptr }
 %apply eActionMap* *OUTPUT { eActionMap **ptr }
 
@@ -169,3 +167,4 @@ void runMainloop();
 void quitMainloop();
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();
+

@@ -23,15 +23,17 @@ dom = xml.dom.minidom.parseString(
 			<widget name="title" position="10,120" size="280,50" />
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
-		<screen name="infoBar" position="100,100" size="300,400" title="InfoBar">
-			<widget name="channelSwitcher" position="10,190" size="280,50" />
+		<screen name="infoBar" position="80,350" size="540,150" title="InfoBar">
+			<widget name="CurrentTime" position="10,10" size="40,30" />
 			<widget name="ServiceName" position="50,20" size="200,30" />
-			<widget name="Event_Now" position="50,50" size="200,30" />
-			<widget name="Event_Next" position="50,80" size="200,30" />
+			<widget name="Event_Now" position="100,40" size="300,30" />
+			<widget name="Event_Next" position="100,90" size="300,30" />
+			<widget name="Event_Now_Duration" position="440,40" size="80,30" />
+			<widget name="Event_Next_Duration" position="440,90" size="80,30" />
 		</screen>
-		<screen name="channelSelection" position="300,100" size="300,300" title="Channel Selection">
-			<widget name="okbutton" position="10,190" size="280,50" />
-			<widget name="list" position="10,30" size="280,140" />
+		<screen name="channelSelection" position="100,80" size="500,240" title="Channel Selection">
+			<widget name="list" position="20,50" size="300,150" />
+			<widget name="okbutton" position="340,50" size="140,30" />
 		</screen>
 		<screen name="serviceScan" position="150,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="280,50" />

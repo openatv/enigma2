@@ -8,7 +8,7 @@ class ServiceDescriptionTable;
 
 class eDVBDB: public iDVBChannelList
 {
-DECLARE_REF;
+DECLARE_REF(eDVBDB);
 	friend class eDVBDBQuery;
 private:
 	struct channel
@@ -37,7 +37,7 @@ public:
 	// we have to add a possibility to invalidate here.
 class eDVBDBQuery: public iDVBChannelListQuery
 {
-DECLARE_REF;
+DECLARE_REF(eDVBDBQuery);
 private:
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_cursor;
 	ePtr<eDVBDB> m_db;

@@ -11,7 +11,7 @@ class eDVBDemux: public iDVBDemux
 	friend class eDVBAudio;
 	friend class eDVBVideo;
 public:
-	DECLARE_REF
+	DECLARE_REF(eDVBDemux);
 	eDVBDemux(int adapter, int demux);
 	virtual ~eDVBDemux();
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
@@ -20,7 +20,7 @@ public:
 
 class eDVBSectionReader: public iDVBSectionReader, public Object
 {
-	DECLARE_REF
+	DECLARE_REF(eDVBSectionReader);
 private:
 	int fd;
 	Signal1<void, const __u8*> read;

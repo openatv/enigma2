@@ -8,7 +8,7 @@
 
 class eNavigation: public iObject, public Object
 {
-	DECLARE_REF;
+	DECLARE_REF(eNavigation);
 private:
 	ePtr<iPlayableService> m_runningService;
 	ePtr<iServiceHandler> m_servicehandler;

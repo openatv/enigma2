@@ -7,7 +7,7 @@ class eStaticServiceMP3Info;
 
 class eServiceFactoryMP3: public iServiceHandler
 {
-DECLARE_REF;
+DECLARE_REF(eServiceFactoryMP3);
 public:
 	eServiceFactoryMP3();
 	virtual ~eServiceFactoryMP3();
@@ -24,7 +24,7 @@ private:
 
 class eStaticServiceMP3Info: public iServiceInformation
 {
-	DECLARE_REF;
+	DECLARE_REF(eStaticServiceMP3Info);
 	friend class eServiceFactoryMP3;
 	eStaticServiceMP3Info();
 public:
@@ -33,7 +33,7 @@ public:
 
 class eServiceMP3: public iPlayableService, public iPauseableService, public iServiceInformation, public Object
 {
-DECLARE_REF;
+DECLARE_REF(eServiceMP3);
 private:
 	friend class eServiceFactoryMP3;
 	std::string filename;

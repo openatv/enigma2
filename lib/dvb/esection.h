@@ -6,7 +6,7 @@
 
 class eGTable: public iObject, public Object
 {
-DECLARE_REF;
+DECLARE_REF(eGTable);
 private:
 	ePtr<iDVBSectionReader> m_reader;
 	eDVBTableSpec m_table;

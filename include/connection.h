@@ -6,7 +6,7 @@
 
 class eConnection: public iObject, public Connection
 {
-DECLARE_REF;
+DECLARE_REF(eConnection);
 private:
 	ePtr<iObject> m_owner;
 public:

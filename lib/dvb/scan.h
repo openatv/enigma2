@@ -10,7 +10,7 @@
 
 class eDVBScan: public Object, public iObject
 {
-DECLARE_REF;
+DECLARE_REF(eDVBScan);
 private:
 		/* chid helper functions: */
 		

@@ -10,7 +10,7 @@ class eDVBChannel;
 
 class eDVBResourceManager: public iDVBResourceManager
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 	struct adapter
 	{
@@ -40,7 +40,7 @@ public:
 
 class eDVBChannel: public iDVBChannel, public eDVBDemux, public Object
 {
-	DECLARE_REF;
+	DECLARE_REF(eDVBChannel);
 private:
 	ePtr<eDVBFrontend> m_frontend;
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
