@@ -90,7 +90,7 @@ RESULT eServiceCenter::list(const eServiceReference &ref, ePtr<iListableService>
 	return i->second->list(ref, ptr);
 }
 
-RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
@@ -114,7 +114,7 @@ RESULT eServiceCenter::removeServiceFactory(int id)
 }
 
 	/* default handlers */
-RESULT iServiceHandler::info(const eServiceReference &, ePtr<iServiceInformation> &ptr)
+RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr = 0;
 	return -1;

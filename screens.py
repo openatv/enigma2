@@ -15,15 +15,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 	def close(self, retval=None):
 		self.session.close()
 	
-# a test dialog
-class testDialog(Screen):
-	def testDialogClick(self):
-		selection = self["menu"].getCurrent()
-		selection[1]()
+class mainMenu(Screen):
 	
-	def goMain(self):
-		self.session.open(screens["mainMenu"]())
-		
 	def goEmu(self):
 		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!")
 	
@@ -34,35 +27,61 @@ class testDialog(Screen):
 		self["title"].setText("HDTV GREEN FLASHES: ENABLED")
 	
 	def goClock(self):
-		self.session.open(screens["clockDisplay"](Clock()))
+		self.session.open(clockDisplay(Clock()))
+
+	def okbuttonClick(self):
+		selection = self["menu"].getCurrent()
+		selection[1]()
 
 	def __init__(self):
 		GUISkin.__init__(self)
 		b = Button("ok")
-		b.onClick = [ self.testDialogClick ]
-		self["okbutton"] = b
-		self["title"] = Header("Test Dialog - press ok to leave!")
-#		self["menu"] = MenuList(
-#			[
-#				("MAIN MENU", self.goMain), 
-#				("EMU SETUP", self.goEmu),
-#				("TIMESHIFT SETUP", self.goTimeshift),
-#				("HDTV PIP CONFIG", self.goHDTV),
-#				("wie spaet ists?!", self.goClock)
-#			])
-		self["menu"] = ServiceList()
-		
-		self["menu"].setRoot(eServiceReference("2:0:1:0:0:0:0:0:0:0:/"))
 
-class mainMenu(Screen):
+		b.onClick = [ self.okbuttonClick ]
+		self["okbutton"] = b
+		self["title"] = Header("Main Menu! - press ok to leave!")
+		self["menu"] = MenuList(
+			[
+				("EMU SETUP", self.goEmu),
+				("TIMESHIFT SETUP", self.goTimeshift),
+				("HDTV PIP CONFIG", self.goHDTV),
+				("wie spaet ists?!", self.goClock)
+			])
+
+#class mainMenu(Screen):
+#	def __init__(self):
+#		GUISkin.__init__(self)
+#		
+#		self["title"] = Header("this is the\nMAIN MENU !!!");
+#		self["okbutton"] = Button("ok")
+#		self["okbutton"].onClick = [ self.close ]
+
+class channelSelection(Screen):
 	def __init__(self):
 		GUISkin.__init__(self)
 		
-		self["title"] = Header("this is the\nMAIN MENU !!!");
-		self["okbutton"] = Button("ok")
-		self["okbutton"].onClick = [ self.close ]
+		self["list"] = ServiceList()
+		self["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:PREMIERE"))
+		
+		self["okbutton"] = Button("ok", [self.channelSelected, self.close])
 
+	def channelSelected(self):
+#		print "channel selected!"
+		pass
+
+class infoBar(Screen):
+	def __init__(self):
+		GUISkin.__init__(self)
+		
+		self["channelSwitcher"] = Button("switch Channel", [self.switchChannel])
+		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 	
+	def mainMenu(self):
+		self.session.open(mainMenu())
+		
+	def switchChannel(self):
+		self.session.open(channelSelection())
+
 # a clock display dialog
 class clockDisplay(Screen):
 	def okbutton(self):
@@ -75,11 +94,4 @@ class clockDisplay(Screen):
 		b.onClick = [ self.okbutton ]
 		self["okbutton"] = b
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
-
-# defined screens (evtl. kann man sich das sparen, ich seh den sinn gerade nicht mehr)
-screens = {
-	"global": doGlobal,
-	"testDialog": testDialog,
-	"clockDisplay": clockDisplay ,
-	"mainMenu": mainMenu }
 

@@ -12,16 +12,16 @@
 #include <unistd.h>
 
 
-class eServiceFSInformation: public iServiceInformation
+class eStaticServiceFSInformation: public iStaticServiceInformation
 {
 	DECLARE_REF;
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 };
 
-DEFINE_REF(eServiceFSInformation);
+DEFINE_REF(eStaticServiceFSInformation);
 
-RESULT eServiceFSInformation::getName(const eServiceReference &ref, std::string &name)
+RESULT eStaticServiceFSInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	name = ref.path;
 }
@@ -36,7 +36,7 @@ eServiceFactoryFS::eServiceFactoryFS()
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryFS::id, this);
 	
-	m_service_information = new eServiceFSInformation();
+	m_service_information = new eStaticServiceFSInformation();
 }
 
 eServiceFactoryFS::~eServiceFactoryFS()
@@ -69,7 +69,7 @@ RESULT eServiceFactoryFS::list(const eServiceReference &ref, ePtr<iListableServi
 	return 0;
 }
 
-RESULT eServiceFactoryFS::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+RESULT eServiceFactoryFS::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr = m_service_information;
 	return 0;

@@ -17,7 +17,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryMP3::id, this);
 
-	m_service_info = new eServiceMP3Info();
+	m_service_info = new eStaticServiceMP3Info();
 }
 
 eServiceFactoryMP3::~eServiceFactoryMP3()
@@ -51,29 +51,29 @@ RESULT eServiceFactoryMP3::list(const eServiceReference &, ePtr<iListableService
 	return -1;
 }
 
-RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iServiceInformation> &ptr)
+RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr = m_service_info;
 	return 0;
 }
 
-// eServiceMP3Info
+// eStaticServiceMP3Info
 
 
-// eServiceMP3Info is seperated from eServiceMP3 to give information
+// eStaticServiceMP3Info is seperated from eServiceMP3 to give information
 // about unopened files.
 
-// probably eServiceMP3 should use this class as well, and eServiceMP3Info
+// probably eServiceMP3 should use this class as well, and eStaticServiceMP3Info
 // should have a database backend where ID3-files etc. are cached.
 // this would allow listing the mp3 database based on certain filters.
 
-DEFINE_REF(eServiceMP3Info)
+DEFINE_REF(eStaticServiceMP3Info)
 
-eServiceMP3Info::eServiceMP3Info()
+eStaticServiceMP3Info::eStaticServiceMP3Info()
 {
 }
 
-RESULT eServiceMP3Info::getName(const eServiceReference &ref, std::string &name)
+RESULT eStaticServiceMP3Info::getName(const eServiceReference &ref, std::string &name)
 {
 	name = "MP3 file: " + ref.path;
 	return 0;
@@ -134,13 +134,13 @@ RESULT eServiceMP3::stop()
 	return 0;
 }
 
-RESULT eServiceMP3::getIPausableService(ePtr<iPauseableService> &ptr) { ptr=this; return 0; }
+RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr) { ptr=this; return 0; }
 
 		// iPausableService
 RESULT eServiceMP3::pause() { printf("mp3 pauses!\n"); return 0; }
 RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }
 
-RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&i) { i = this; return 0; }
+RESULT eServiceMP3::info(ePtr<iServiceInformation>&i) { i = this; return 0; }
 
 RESULT eServiceMP3::getName(const eServiceReference &ref, std::string &name)
 {

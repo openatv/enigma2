@@ -23,7 +23,7 @@ public:
 	RESULT play(const eServiceReference &, iPlayableServicePtr &ptr);
 	RESULT record(const eServiceReference &, iRecordableServicePtr &ptr);
 	RESULT list(const eServiceReference &, iListableServicePtr &ptr);
-	RESULT info(const eServiceReference &, ePtr<iServiceInformation> &ptr);
+	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 	
 		// eServiceCenter
 	static RESULT getInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }

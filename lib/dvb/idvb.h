@@ -139,7 +139,7 @@ struct eServiceReferenceDVB: public eServiceReference
 		setTransportStreamID(chid.transport_stream_id);
 	}
 	
-	void getChannelID(eDVBChannelID &chid)
+	void getChannelID(eDVBChannelID &chid) const
 	{
 		chid = eDVBChannelID(getDVBNamespace(), getTransportStreamID(), getOriginalNetworkID());
 	}
@@ -151,14 +151,81 @@ struct eServiceReferenceDVB: public eServiceReference
 };
 
 
+////////////////// TODO: we need an interface here, but what exactly?
+
+#include <set>
+// btw, still implemented in db.cpp. FIX THIS, TOO.
+
+class eDVBChannelQuery;
+
+class eDVBService: public iStaticServiceInformation
+{
+	DECLARE_REF;
+public:
+	eDVBService();
+	std::string m_service_name;
+	std::string m_provider_name;
+	
+	int m_flags;
+	std::set<int> m_ca;
+	std::map<int,int> m_cache;
+	virtual ~eDVBService();
+	
+	eDVBService &operator=(const eDVBService &);
+	
+	// iStaticServiceInformation
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	
+	// for filtering:
+	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
+};
+
+//////////////////
+
 class iDVBChannel;
 class iDVBDemux;
 class iDVBFrontendParameters;
+
+class iDVBChannelListQuery: public iObject
+{
+public:
+	virtual RESULT getNextResult(eServiceReferenceDVB &ref)=0;
+};
+
+class eDVBChannelQuery: public iObject
+{
+	DECLARE_REF;
+public:
+	enum
+	{
+		tName,
+		tProvider,
+		tType,
+		tBouquet,
+		tSatellitePosition,
+		tChannelID,
+		tAND,
+		tOR
+	};
+	
+	int m_type;
+	int m_inverse;
+	
+	std::string m_string;
+	int m_int;
+	eDVBChannelID m_channelid;
+	
+	static RESULT compile(ePtr<eDVBChannelQuery> &res, std::string query);
+	
+	ePtr<eDVBChannelQuery> m_p1, m_p2;
+};
 
 class iDVBChannelList: public iObject
 {
 public:
 	virtual RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm)=0;
+	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
+	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query)=0;
 };
 
 class iDVBResourceManager: public iObject

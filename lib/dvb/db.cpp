@@ -27,6 +27,52 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 	return *this;
 }
 
+RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
+{
+	name = m_service_name;
+}
+
+int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query)
+{
+	int res = 0;
+	switch (query.m_type)
+	{
+	case eDVBChannelQuery::tName:
+		res = m_service_name.find(query.m_string) != std::string::npos;
+		break;
+	case eDVBChannelQuery::tProvider:
+		res = m_provider_name.find(query.m_string) != std::string::npos;
+		break;
+	case eDVBChannelQuery::tType:
+		res = ref.getServiceType() == query.m_int;
+		break;
+	case eDVBChannelQuery::tBouquet:
+		res = 0;
+		break;
+	case eDVBChannelQuery::tSatellitePosition:
+		res = (ref.getDVBNamespace().get() >> 16) == query.m_int;
+		break;
+	case eDVBChannelQuery::tChannelID:
+	{
+		eDVBChannelID chid;
+		ref.getChannelID(chid);
+		res = chid == query.m_channelid;
+		break;
+	}
+	case eDVBChannelQuery::tAND:
+		res = checkFilter(ref, *query.m_p1) && checkFilter(ref, *query.m_p2);
+		break;
+	case eDVBChannelQuery::tOR:
+		res = checkFilter(ref, *query.m_p1) || checkFilter(ref, *query.m_p2);
+		break;
+	}
+
+	if (query.m_inverse)
+		return !res;
+	else
+		return res;
+}
+
 DEFINE_REF(eDVBDB);
 
 eDVBDB::eDVBDB()
@@ -282,3 +328,42 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 	return 0;
 }
 
+RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q)
+{
+	query = new eDVBDBQuery(this, q);
+	return 0;
+}
+
+DEFINE_REF(eDVBDBQuery);
+
+eDVBDBQuery::eDVBDBQuery(eDVBDB *db, eDVBChannelQuery *query): m_db(db), m_query(query)
+{
+	m_cursor = m_db->m_services.begin();
+}
+
+RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
+{
+	while (m_cursor != m_db->m_services.end())
+	{
+		ref = m_cursor->first;
+		
+		int res = (!m_query) || m_cursor->second->checkFilter(ref, *m_query);
+
+		++m_cursor;
+		
+		if (res)
+			return 0;
+	}
+	return 1;
+}
+
+RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
+{
+	res = new eDVBChannelQuery();
+	res->m_type = eDVBChannelQuery::tName;
+	res->m_inverse = 0;
+	res->m_string = query;
+	return 0;
+}
+
+DEFINE_REF(eDVBChannelQuery);

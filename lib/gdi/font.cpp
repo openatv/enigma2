@@ -467,7 +467,7 @@ int eTextPara::renderString(const std::string &string, int rflags)
 
 	while(p != string.end())
 	{
-		unsigned int unicode=*p++;
+		unsigned int unicode=(unsigned char)*p++;
 
 		if (unicode & 0x80) // we have (hopefully) UTF8 here, and we assume that the encoding is VALID
 		{

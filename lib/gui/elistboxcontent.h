@@ -55,8 +55,6 @@ protected:
 	void cursorRestore();
 	int size();
 	
-	RESULT connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection);
-	
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);
 	

@@ -18,6 +18,19 @@ public:
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
+	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
+};
+
+class eDVBServiceList: public iListableService
+{
+DECLARE_REF;
+private:
+	eServiceReference m_parent;
+	friend class eServiceFactoryDVB;
+	eDVBServiceList(const eServiceReference &parent);
+public:
+	virtual ~eDVBServiceList();
+	RESULT getContent(std::list<eServiceReference> &list);
 };
 
 class eDVBServicePlay: public iPlayableService, public Object, public iServiceInformation
@@ -41,8 +54,8 @@ public:
 	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
-	RESULT getIPausableService(ePtr<iPauseableService> &ptr);
-	RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr);
+	RESULT pause(ePtr<iPauseableService> &ptr);
+	RESULT info(ePtr<iServiceInformation> &ptr);
 	
 		// iServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);

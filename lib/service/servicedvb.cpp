@@ -6,6 +6,9 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 
+#include <lib/dvb/dvb.h>
+#include <lib/dvb/db.h>
+
 DEFINE_REF(eServiceFactoryDVB)
 
 eServiceFactoryDVB::eServiceFactoryDVB()
@@ -26,6 +29,53 @@ eServiceFactoryDVB::~eServiceFactoryDVB()
 		sc->removeServiceFactory(eServiceFactoryDVB::id);
 }
 
+DEFINE_REF(eDVBServiceList);
+
+eDVBServiceList::eDVBServiceList(const eServiceReference &parent): m_parent(parent)
+{
+}
+
+eDVBServiceList::~eDVBServiceList()
+{
+}
+
+RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
+{
+	ePtr<iDVBChannelList> db;
+	ePtr<eDVBResourceManager> res;
+	
+	int err;
+	if ((err = eDVBResourceManager::getInstance(res)) != 0)
+	{
+		eDebug("no resource manager");
+		return err;
+	}
+	if ((err = res->getChannelList(db)) != 0)
+	{
+		eDebug("no channel list");
+		return err;
+	}
+	
+	ePtr<iDVBChannelListQuery> query;
+	
+	ePtr<eDVBChannelQuery> q;
+	
+	if (m_parent.path.size())
+		eDVBChannelQuery::compile(q, m_parent.path);
+	
+	if ((err = db->startQuery(query, q)) != 0)
+	{
+		eDebug("startQuery failed");
+		return err;
+	}
+	
+	eServiceReferenceDVB ref;
+	
+	while (!query->getNextResult(ref))
+		list.push_back(ref);
+	return 0;
+}
+
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 		// check resources...
@@ -39,10 +89,46 @@ RESULT eServiceFactoryDVB::record(const eServiceReference &, ePtr<iRecordableSer
 	return -1;
 }
 
-RESULT eServiceFactoryDVB::list(const eServiceReference &, ePtr<iListableService> &ptr)
+RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
+{
+	ptr = new eDVBServiceList(ref);
+	return 0;
+}
+
+RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr = 0;
-	return -1;
+			// TODO: handle the listing itself
+	// if (ref.... == -1) .. return "... bouquets ...";
+	// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
+			// TODO: cache
+	ePtr<iDVBChannelList> db;
+	ePtr<eDVBResourceManager> res;
+	
+	int err;
+	if ((err = eDVBResourceManager::getInstance(res)) != 0)
+	{
+		eDebug("no resource manager");
+		return err;
+	}
+	if ((err = res->getChannelList(db)) != 0)
+	{
+		eDebug("no channel list");
+		return err;
+	}
+	
+	ePtr<eDVBService> service;
+
+		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
+	if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
+	{
+		eDebug("getService failed!");
+		return err;
+	}
+	
+		/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
+	ptr = service;
+	return 0;
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref): 
@@ -145,14 +231,14 @@ RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &ev
 	return -1;
 }
 
-RESULT eDVBServicePlay::getIPausableService(ePtr<iPauseableService> &ptr)
+RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
 		// not yet possible, maybe later...
 	ptr = 0;
 	return -1;
 }
 
-RESULT eDVBServicePlay::getIServiceInformation(ePtr<iServiceInformation> &ptr)
+RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
 {
 	ptr = this;
 	return 0;
