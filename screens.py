@@ -31,7 +31,6 @@ class clockDisplay(Screen):
 		b = Button("bye")
 		b.onClick = [ self.okbutton ]
 		self["okbutton"] = b
-		#VolumeBar()
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
 
 # defined screens
