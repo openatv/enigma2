@@ -161,19 +161,19 @@ public:
 		// Creates an vector and copys all elements to this vector
 		// returns a pointer to this new vector ( the reserved memory must deletet from the receiver !! )
 		std::vector<T>* v=new std::vector<T>();
-		v->reserve( size() );
+		v->reserve( std::list<T>::size() );
     for ( std_list_T_iterator it( std::list<T*>::begin() ); it != std::list<T*>::end(); it++)
 			v->push_back( **it );
 
 		return v;
 	}
 
-	inline iterator insert_in_order( T* e )
-	{
-		// added a new item to the list... in order
-		// returns a iterator to the new item
-		return insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e ), e );
-	}
+//	inline iterator insert_in_order( T* e )
+//	{
+//		// added a new item to the list... in order
+//		// returns a iterator to the new item
+//		return insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e ), e );
+//	}
 
 };
 
@@ -392,7 +392,7 @@ inline void ePtrList<T>::sort()
 {		
 //	Sorts all items in the list.
 // 	The type T must have a operator <.
-	std::list<T*>::sort(ePtrList<T>::less());
+	std::list<T*>::sort(typename ePtrList<T>::less());
 }	
 
 /////////////////// ePtrList remove(T*) /////////////////////////
@@ -624,14 +624,14 @@ template <class T>
 ePtrList<T>::operator bool()	
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
-	return !empty();	
+	return !std::list<T*>::empty();	
 }
 
 template <class T>
 bool ePtrList<T>::operator!()	
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
-	return empty();	
+	return std::list<T*>::empty();	
 }
 
 template <class T>
@@ -791,19 +791,19 @@ public:
 		// Creates an vector and copys all elements to this vector
 		// returns a pointer to this new vector ( the reserved memory must deletet from the receiver !! )
 		std::vector<T>* v=new std::vector<T>();
-		v->reserve( size() );
+		v->reserve( std::list<T>::size() );
     for ( std_list_T_iterator it( std::list<ePtr<T> >::begin() ); it != std::list<ePtr<T> >::end(); it++)
 			v->push_back( **it );
 
 		return v;
 	}
 
-	inline iterator insert_in_order( T* e )
-	{
-		// added a new item to the list... in order
-		// returns a iterator to the new item
-		return insert( std::lower_bound( std::list<ePtr<T> >::begin(), std::list<ePtr<T> >::end(), e ), e );
-	}
+//	inline iterator insert_in_order( T* e )
+//	{
+//		// added a new item to the list... in order
+//		// returns a iterator to the new item
+//		return insert( std::lower_bound( std::list<ePtr<T> >::begin(), std::list<ePtr<T> >::end(), e ), e );
+//	}
 
 };
 
@@ -1255,14 +1255,14 @@ template <class T>
 eSmartPtrList<T>::operator bool()	
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
-	return !empty();	
+	return !std::list<T>::empty();	
 }
 
 template <class T>
 bool eSmartPtrList<T>::operator!()	
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
-	return empty();	
+	return std::list<T>::empty();	
 }
 
 #endif // _E_PTRLIST
