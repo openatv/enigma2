@@ -69,8 +69,9 @@ void xmlrpc_addMethod(std::string methodName, int (*)(std::vector<eXMLRPCVariant
 void xmlrpc_fault(ePtrList<eXMLRPCVariant> &res, int faultCode, std::string faultString);
 int xmlrpc_checkArgs(std::string args, std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant> &res);
 
-class eHTTPXMLRPCResolver: public eHTTPPathResolver
+class eHTTPXMLRPCResolver: public iHTTPPathResolver
 {
+	DECLARE_REF;
 public:
 	eHTTPXMLRPCResolver();
 	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);

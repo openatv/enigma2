@@ -5,6 +5,8 @@
 
 class eHTTPFile: public eHTTPDataSource
 {
+	DECLARE_REF;
+private:	
 	int fd, size;
 	const char *mime;
 	int method;
@@ -16,8 +18,10 @@ public:
 	void haveData(void *data, int len);
 };
 
-class eHTTPFilePathResolver: public eHTTPPathResolver
+class eHTTPFilePathResolver: public iHTTPPathResolver
 {
+	DECLARE_REF;
+public:
 	struct eHTTPFilePath
 	{
 		std::string path;
@@ -30,7 +34,7 @@ class eHTTPFilePathResolver: public eHTTPPathResolver
 	ePtrList<eHTTPFilePath> translate;
 public:
 	eHTTPFilePathResolver();
-	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);
+	RESULT getDataSource(eHTTPDataSourcePtr &ptr, std::string request, std::string path, eHTTPConnection *conn);
 	void addTranslation(std::string path, std::string root, int auth);
 };
 

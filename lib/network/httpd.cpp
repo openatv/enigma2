@@ -2,11 +2,15 @@
 #include <lib/network/httpd.h>
 
 #include <sys/socket.h>
+#include <lib/base/smartptr.h>
 #include <lib/base/estring.h>
 #include <error.h>
 #include <errno.h>
 #include <time.h>
 #include <ctype.h>
+
+#include <lib/network/http_dyn.h>
+#include <lib/network/http_file.h>
 
 eHTTPDataSource::eHTTPDataSource(eHTTPConnection *c): connection(c)
 {
@@ -24,6 +28,8 @@ int eHTTPDataSource::doWrite(int)
 {
 	return 0;
 }
+
+DEFINE_REF(eHTTPError);
 
 eHTTPError::eHTTPError(eHTTPConnection *c, int errcode): eHTTPDataSource(c), errcode(errcode)
 {
@@ -71,6 +77,7 @@ eHTTPConnection::eHTTPConnection(int socket, int issocket, eHTTPD *parent, int p
 
 void eHTTPConnection::destruct()
 {
+	eDebug("destruct, this %p!", this);
 	gotHangup();
 	delete this;
 }
@@ -108,11 +115,7 @@ void eHTTPConnection::gotHangup()
 {
 	if (data && remotestate == stateData)
 		data->haveData(0, 0);
-	if (data)
-	{
-		delete data;
-		data=0;
-	}
+	data = 0;
 	transferDone(0);
 
 	localstate=stateWait;
@@ -345,10 +348,8 @@ int eHTTPConnection::processLocalState()
 #endif
 			if (persistent)
 			{
-				if (data)
-					delete data;
-				data=0;
-				localstate=stateWait;
+				data = 0;
+				localstate = stateWait;
 			} else
 				close();		// bye, bye, remote
 			return 1;
@@ -401,8 +402,7 @@ int eHTTPConnection::processRemoteState()
 			del[1]=line.find(" ", del[0]+1);
 			if (del[0]==-1)
 			{
-				if (data)
-					delete data;
+				data = 0;
 				eDebug("request buggy");
 				httpversion="HTTP/1.0";
 				data=new eHTTPError(this, 400);
@@ -490,20 +490,17 @@ int eHTTPConnection::processRemoteState()
 
 				if (parent)
 				{
-					for (ePtrList<eHTTPPathResolver>::iterator i(parent->resolver); i != parent->resolver.end(); ++i)
-					{
-						if ((data=i->getDataSource(request, requestpath, this)))
+					for (eSmartPtrList<iHTTPPathResolver>::iterator i(parent->resolver); i != parent->resolver.end(); ++i)
+						if (!(i->getDataSource(data, request, requestpath, this)))
 							break;
-					}
 					localstate=stateResponse;		// can be overridden by dataSource
 				} else
 					data=createDataSource(this);
 
 				if (!data)
 				{
-					if (data)
-						delete data;
-					data=new eHTTPError(this, 404);
+					data = 0;
+					data = new eHTTPError(this, 404);
 				}
 
 				if (content_length || 		// if content-length is set, we have content
@@ -600,11 +597,7 @@ int eHTTPConnection::getLine(std::string &line)
 
 void eHTTPConnection::gotError(int err)
 {
-	if (data)
-	{
-		delete data;
-		data=0;
-	}
+	data = 0;
 	transferDone(err);
 	delete this;
 }
@@ -615,15 +608,13 @@ eHTTPD::eHTTPD(int port, eMainloop *ml): eServerSocket(port, ml), ml(ml)
 		eDebug("[NET] httpd server FAILED on port %d", port);
 	else
 		eDebug("[NET] httpd server started on port %d", port);
-#warning resolver autodelete removed
 }
 
 eHTTPConnection::~eHTTPConnection()
 {
+	eDebug("HTTP connection destruct");
 	if ((!persistent) && (state()!=Idle))
 		eWarning("~eHTTPConnection, status still %d", state());
-	if (data)
-		delete data;
 }
 
 void eHTTPD::newConnection(int socket)

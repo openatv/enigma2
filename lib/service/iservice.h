@@ -6,6 +6,14 @@
 #include <connection.h>
 #include <list>
 
+#ifdef SWIG
+#define TEMPLATE_TYPEDEF(x, y) \
+%template(y) x; \
+typedef x y
+#else
+#define TEMPLATE_TYPEDEF(x, y) typedef x y
+#endif
+
 class eServiceReference
 {
 public:
@@ -167,7 +175,7 @@ public:
 	virtual RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr)=0;
 };
 
-typedef ePtr<iPlayableService> iPlayableServicePtr;
+TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 
 class iRecordableService: public iObject
 {
@@ -178,13 +186,16 @@ public:
 
 typedef ePtr<iRecordableService> iRecordableServicePtr;
 
+// TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
+typedef std::list<eServiceReference> eServiceReferenceList;
+
 class iListableService: public iObject
 {
 public:
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
 };
 
-typedef ePtr<iListableService> iListableServicePtr;
+TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
 
 class iServiceHandler: public iObject
 {

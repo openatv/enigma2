@@ -164,6 +164,17 @@ void gPainter::fill(const eRect &area)
 	m_rc->submit(o);
 }
 
+void gPainter::fill(const gRegion &region)
+{
+	gOpcode o;
+	o.opcode=gOpcode::fillRegion;
+
+	o.dc = m_dc.grabRef();
+	o.parm.fillRegion = new gOpcode::para::pfillRegion;
+	o.parm.fillRegion->region = region;
+	m_rc->submit(o);
+}
+
 void gPainter::clear()
 {
 	gOpcode o;
@@ -332,13 +343,13 @@ void gDC::exec(gOpcode *o)
 		assert(m_current_font);
 		para->setFont(m_current_font);
 		para->renderString(o->parm.renderText->text, o->parm.renderText->flags);
-		para->blit(*this, m_current_offset, getRGB(m_foreground_color), getRGB(m_background_color));
+		para->blit(*this, m_current_offset, getRGB(m_background_color), getRGB(m_foreground_color));
 		delete o->parm.renderText;
 		break;
 	}
 	case gOpcode::renderPara:
 	{
-		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset + m_current_offset, getRGB(m_foreground_color), getRGB(m_background_color));
+		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset + m_current_offset, getRGB(m_background_color), getRGB(m_foreground_color));
 		o->parm.renderPara->textpara->Release();
 		delete o->parm.renderPara;
 		break;
@@ -350,6 +361,14 @@ void gDC::exec(gOpcode *o)
 		gRegion clip = m_current_clip & area;
 		m_pixmap->fill(clip, m_foreground_color);
 		delete o->parm.fill;
+		break;
+	}
+	case gOpcode::fillRegion:
+	{
+		o->parm.fillRegion->region.moveBy(m_current_offset);
+		gRegion clip = m_current_clip & o->parm.fillRegion->region;
+		m_pixmap->fill(clip, m_foreground_color);
+		delete o->parm.fillRegion;
 		break;
 	}
 	case gOpcode::clear:

@@ -52,6 +52,18 @@ public:
 	ePoint bottomRight() const;
 	ePoint topRight()	 const;
 	ePoint bottomLeft()	 const;
+
+		/* the sole intention of these functions
+		   is to allow painting frames without 
+		   messing around with the coordinates.
+		   they point to the last pixel included
+		   in the rectangle (which means that 1 is
+		   subtracted from the right and bottom 
+		   coordinates  */
+	ePoint topLeft1()	 const;
+	ePoint bottomRight1() const;
+	ePoint topRight1()	 const;
+	ePoint bottomLeft1()	 const;
 	ePoint center()	 const;
 
 	void rect( int *x, int *y, int *w, int *h ) const;
@@ -195,6 +207,18 @@ inline ePoint eRect::topRight() const
 
 inline ePoint eRect::bottomLeft() const
 { return ePoint(x1, y2); }
+
+inline ePoint eRect::topLeft1() const
+{ return ePoint(x1, y1); }
+
+inline ePoint eRect::bottomRight1() const
+{ return ePoint(x2-1, y2-1); }
+
+inline ePoint eRect::topRight1() const
+{ return ePoint(x2-1, y1); }
+
+inline ePoint eRect::bottomLeft1() const
+{ return ePoint(x1, y2-1); }
 
 inline ePoint eRect::center() const
 { return ePoint((x1+x2)/2, (y1+y2)/2); }

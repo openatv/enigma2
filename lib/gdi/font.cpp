@@ -63,9 +63,9 @@ static gLookup &getColor(const gPalette &pal, const gRGB &start, const gRGB &end
 	eDebug("[FONT] creating new font color cache entry %02x%02x%02x%02x .. %02x%02x%02x%02x", start.a, start.r, start.g, start.b,
 		end.a, end.r, end.g, end.b);
 	n.build(16, pal, start, end);
-/*	for (int i=0; i<16; i++)
+	for (int i=0; i<16; i++)
 		eDebugNoNewLine("%02x|%02x%02x%02x%02x ", (int)n.lookup[i], pal.data[n.lookup[i]].a, pal.data[n.lookup[i]].r, pal.data[n.lookup[i]].g, pal.data[n.lookup[i]].b);
-	eDebug("");*/
+	eDebug("");
 	return n;
 }
 
@@ -675,6 +675,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			continue;
 		int rx=i->x+glyph_bitmap->left + offset.x();
 		int ry=i->y-glyph_bitmap->top  + offset.y();
+		
 		__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
 		__u8 *s=glyph_bitmap->buffer;
 		register int sx=glyph_bitmap->width;
@@ -706,6 +707,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				{
 					register __u8 *td=d;
 					register int ax;
+					
 					for (ax=0; ax<sx; ax++)
 					{	
 						register int b=(*s++)>>4;

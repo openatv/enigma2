@@ -6,6 +6,8 @@
 #include <shadow.h>
 #include <pwd.h>
 
+DEFINE_REF(eHTTPFile);
+
 eHTTPFile::eHTTPFile(eHTTPConnection *c, int _fd, int method, const char *mime): eHTTPDataSource(c), method(method)
 {
 	fd=_fd;
@@ -58,7 +60,6 @@ eHTTPFile::~eHTTPFile()
 
 eHTTPFilePathResolver::eHTTPFilePathResolver()
 {
-#warning autodelete removed
 }
 
 
@@ -138,7 +139,9 @@ static int checkAuth(const std::string cauth)
 	return 0;
 }
 
-eHTTPDataSource *eHTTPFilePathResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
+DEFINE_REF(eHTTPFilePathResolver);
+
+RESULT eHTTPFilePathResolver::getDataSource(eHTTPDataSourcePtr &ptr, std::string request, std::string path, eHTTPConnection *conn)
 {
 	int method;
 	eDebug("request = %s, path = %s", request.c_str(), path.c_str());
@@ -147,9 +150,15 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(std::string request, std::
 	else if (request == "PUT")
 		method=eHTTPFile::methodPUT;
 	else
-		return new eHTTPError(conn, 405); // method not allowed
+	{
+		ptr = new eHTTPError(conn, 405); // method not allowed
+		return 0;
+	}
 	if (path.find("../")!=std::string::npos)		// evil hax0r
-		return new eHTTPError(conn, 403);
+	{
+		ptr = new eHTTPError(conn, 403);
+		return 0;
+	}
 	if (path[0] != '/')		// prepend '/'
 		path.insert(0,"/");
 	if (path[path.length()-1]=='/')
@@ -171,7 +180,8 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(std::string request, std::
 				if ((i == conn->remote_header.end()) || checkAuth(i->second))
 				{
 					conn->local_header["WWW-Authenticate"]="Basic realm=\"dreambox\"";
-					return new eHTTPError(conn, 401); // auth req'ed
+					ptr = new eHTTPError(conn, 401); // auth req'ed
+					return 0;
 				}
 			}
 
@@ -215,7 +225,10 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(std::string request, std::
 			break;
 		}
 	}
-	return data;
+	if (!data)
+		return -1;
+	ptr = data;
+	return 0;
 }
 
 void eHTTPFilePathResolver::addTranslation(std::string path, std::string root, int authorized)

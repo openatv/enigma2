@@ -5,10 +5,18 @@
 
 eWindow::eWindow(eWidgetDesktop *desktop): eWidget(0)
 {
+	setStyle(new eWindowStyleSimple());
+
+		/* we are the parent for the child window. */
+		/* as we are in the constructor, this is thread safe. */
+	m_child = this;
 	m_child = new eWidget(this);
 	desktop->addRootWidget(this, 0);
-	
-	m_style = new eWindowStyleSimple();
+}
+
+eWindow::~eWindow()
+{
+	getDesktop()->removeRootWidget(this);
 }
 
 void eWindow::setTitle(const std::string &string)
@@ -25,18 +33,25 @@ int eWindow::event(int event, void *data, void *data2)
 	{
 	case evtWillChangeSize:
 	{
-		const eSize &new_size = *static_cast<eSize*>(data);
-		eDebug("eWindow::evtWillChangeSize to %d %d", new_size.width(), new_size.height());
-		if (m_style)
-			m_style->handleNewSize(this, new_size);
+		ePtr<eWindowStyle> style;
+		if (!getStyle(style))
+		{
+			const eSize &new_size = *static_cast<eSize*>(data);
+			eDebug("eWindow::evtWillChangeSize to %d %d", new_size.width(), new_size.height());
+			style->handleNewSize(this, new_size);
+		}
 		break;
 	}
 	case evtPaint:
 	{
-		gPainter &painter = *static_cast<gPainter*>(data2);
-		painter.setBackgroundColor(gColor(0x18));
-		painter.clear();
-		break;
+		ePtr<eWindowStyle> style;
+		if (!getStyle(style))
+		{
+			gPainter &painter = *static_cast<gPainter*>(data2);
+			style->paintWindowDecoration(this, painter, m_title);
+		} else
+			eDebug("no style :(");
+		return 0;
 	}
 	default:
 		break;

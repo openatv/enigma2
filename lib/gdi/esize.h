@@ -1,8 +1,6 @@
 #ifndef ESIZE_H
 #define ESIZE_H
 
-#include <iostream>
-
 #define MIN(a,b) (a < b ? a : b)
 #define MAX(a,b) (a > b ? a : b)
 
@@ -50,26 +48,6 @@ private:
     int wd;
     int ht;
 };
-
-
-/*****************************************************************************
-  eSize stream functions
- *****************************************************************************/
-
-namespace std
-{
-	inline ostream &operator<<( ostream &s, const eSize &sz )
-	{
-		s << sz.width() << sz.height();
-		return s;
-	}
-
-	inline istream &operator>>( istream &s, eSize &sz )
-	{
-		s >> sz.rwidth() >> sz.rheight();
-	  return s;
-	}
-}
 
 
 /*****************************************************************************

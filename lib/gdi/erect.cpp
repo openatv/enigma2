@@ -1,5 +1,4 @@
 #include <lib/gdi/erect.h>
-#include <iostream>
 
 /*****************************************************************************
   eRect member functions

@@ -11,6 +11,7 @@ class eWindow: public eWidget
 	friend class eWindowStyle;
 public:
 	eWindow(eWidgetDesktop *desktop);
+	~eWindow();
 	void setTitle(const std::string &string);
 	eWidget *child() { return m_child; }
 protected:
@@ -22,7 +23,6 @@ protected:
 private:
 	std::string m_title;
 	eWidget *m_child;
-	ePtr<eWindowStyle> m_style;
 };
 
 #endif

@@ -11,15 +11,18 @@ int eLabel::event(int event, void *data, void *data2)
 	{
 	case evtPaint:
 	{
+		ePtr<eWindowStyle> style;
+		
+		getStyle(style);
+		
+		eWidget::event(event, data, data2);
+
 		gPainter &painter = *(gPainter*)data2;
-		ePtr<gFont> fnt = new gFont("Arial", 70);
+		ePtr<gFont> fnt = new gFont("Arial", 14);
 		painter.setFont(fnt);
-		painter.setBackgroundColor(gColor(0x10));
-		painter.setForegroundColor(gColor(0x1f));
-		painter.clear();
-		painter.setBackgroundColor(gColor(0x1f));
-		painter.setForegroundColor(gColor(0x10));
+		style->setForegroundStyle(painter);
 		painter.renderText(eRect(0, 0, size().width(), size().height()), m_text);
+		
 		return 0;
 	}
 	case evtChangedText:

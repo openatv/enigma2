@@ -5,6 +5,8 @@
 
 class eHTTPDyn: public eHTTPDataSource
 {
+	DECLARE_REF;
+private:
 	std::string result;
 	int wptr, size;
 public:
@@ -13,10 +15,14 @@ public:
 	int doWrite(int);
 };
 
-class eHTTPDynPathResolver: public eHTTPPathResolver
+class eHTTPDynPathResolver: public iHTTPPathResolver
 {
+	DECLARE_REF;
+private:
 	struct eHTTPDynEntry
 	{
+		DECLARE_REF;
+	public:
 		std::string request, path;
 		std::string (*function)(std::string request, std::string path, std::string opt, eHTTPConnection *content);
 		
@@ -24,11 +30,11 @@ class eHTTPDynPathResolver: public eHTTPPathResolver
 		{
 		}
 	};
-	ePtrList<eHTTPDynEntry> dyn;
+	eSmartPtrList<eHTTPDynEntry> dyn;
 public:
 	void addDyn(std::string request, std::string path, std::string (*function)(std::string, std::string, std::string, eHTTPConnection *conn));
 	eHTTPDynPathResolver();
-	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);
+	RESULT getDataSource(eHTTPDataSourcePtr &ptr, std::string request, std::string path, eHTTPConnection *conn);
 };
 
 #endif

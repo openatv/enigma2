@@ -8,6 +8,7 @@ namespace eAutoInitNumbers
 	{
 		configuration=0,
 		lowlevel=configuration+increment,
+		network=lowlevel,
 		graphic=lowlevel+increment,
 		skin=graphic+increment,
 		rc=skin+increment,
