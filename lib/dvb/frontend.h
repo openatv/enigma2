@@ -1,0 +1,61 @@
+#ifndef __dvb_frontend_h
+#define __dvb_frontend_h
+
+#include <lib/dvb/idvb.h>
+
+class eDVBFrontendParameters: public virtual iDVBFrontendParameters
+{
+	DECLARE_REF;
+	union
+	{
+		eDVBFrontendParametersSatellite sat;
+		eDVBFrontendParametersCable cable;
+		eDVBFrontendParametersTerrestrial terrestrial;
+	};
+	int m_type;
+public:
+	eDVBFrontendParameters();
+	
+	RESULT getSystem(int &type) const;
+	RESULT getDVBS(eDVBFrontendParametersSatellite &p) const;
+	RESULT getDVBC(eDVBFrontendParametersCable &p) const;
+	RESULT getDVBT(eDVBFrontendParametersTerrestrial &p) const;
+
+	RESULT setDVBS(eDVBFrontendParametersSatellite &p);
+	RESULT setDVBC(eDVBFrontendParametersCable &p);
+	RESULT setDVBT(eDVBFrontendParametersTerrestrial &p);
+	
+	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &diff) const;
+	
+	RESULT getHash(unsigned long &hash) const;
+};
+
+class eDVBFrontend: public virtual iDVBFrontend, public Object
+{
+	DECLARE_REF;
+	int m_type;
+	int m_fd;
+	int m_state;
+	Signal1<void,iDVBFrontend*> m_stateChanged;
+	ePtr<iDVBSatelliteEquipmentControl> m_sec;
+	eSocketNotifier *m_sn;
+	int m_tuning;
+	eTimer *m_timeout;
+	
+	void feEvent(int);
+	void timeout();
+public:
+	eDVBFrontend(int adap, int fe, int &ok);	
+	virtual ~eDVBFrontend();
+
+	RESULT getFrontendType(int &type);
+	RESULT tune(const iDVBFrontendParameters &where);
+	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
+	RESULT getState(int &state);
+	RESULT setTone(int tone);
+	RESULT setVoltage(int voltage);
+	RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc);
+	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
+};
+
+#endif
