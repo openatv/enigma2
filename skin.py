@@ -25,6 +25,9 @@ dom = xml.dom.minidom.parseString(
 		</screen>
 		<screen name="infoBar" position="100,100" size="300,400" title="InfoBar">
 			<widget name="channelSwitcher" position="10,190" size="280,50" />
+			<widget name="ServiceName" position="50,20" size="200,30" />
+			<widget name="Event_Now" position="50,50" size="200,30" />
+			<widget name="Event_Next" position="50,80" size="200,30" />
 		</screen>
 		<screen name="channelSelection" position="300,100" size="300,300" title="Channel Selection">
 			<widget name="okbutton" position="10,190" size="280,50" />

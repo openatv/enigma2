@@ -73,6 +73,8 @@ public:
 		evtWillChangePosition, /* new size is eRect *data */
 		evtWillChangeSize,
 		
+		evtAction,
+		
 		evtUserWidget,
 	};
 	virtual int event(int event, void *data = 0, void *data2 = 0);

@@ -10,16 +10,16 @@ DEFINE_REF(eWindowStyleSimple);
 
 eWindowStyleSimple::eWindowStyleSimple()
 {
-	m_border_left = m_border_right = m_border_bottom = 1;
+	m_border_left = m_border_right = m_border_bottom = 2;
 	m_border_top = 30;
 
 	m_fnt = new gFont("Arial", 25);
 	
-	m_border_color_tl = gColor(0x14);
-	m_border_color_br = gColor(0x1c);
+	m_border_color_tl = gColor(0x1f);
+	m_border_color_br = gColor(0x14);
 	m_title_color_back = gColor(0x20);
 	m_title_color = gColor(0x2f);
-	m_background_color = gColor(0x18);
+	m_background_color = gColor(0x19);
 }
 
 void eWindowStyleSimple::handleNewSize(eWindow *wnd, const eSize &size)
@@ -36,19 +36,27 @@ void eWindowStyleSimple::handleNewSize(eWindow *wnd, const eSize &size)
 
 void eWindowStyleSimple::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
 {
+	painter.setForegroundColor(m_title_color_back);
+	painter.fill(eRect(2, 2, wnd->size().width() - 4, m_border_top - 4));
 	painter.setBackgroundColor(m_title_color_back);
 	painter.setForegroundColor(m_title_color);
-	painter.clear();
 	painter.setFont(m_fnt);
-	painter.renderText(eRect(1, 1, wnd->size().width() - 2, m_border_top - 2), title);
+	painter.renderText(eRect(3, 3, wnd->size().width() - 6, m_border_top - 6), title);
 
 	eRect frame(ePoint(0, 0), wnd->size());
-	painter.setForegroundColor(m_border_color_tl);
+
+	painter.setForegroundColor(m_background_color);
 	painter.line(frame.topLeft1(), frame.topRight1());
-	painter.line(frame.topRight1(), frame.bottomRight1());
+	painter.line(frame.topLeft1(), frame.bottomLeft1());
+	painter.setForegroundColor(m_border_color_tl);
+	painter.line(frame.topLeft1()+eSize(1,1), frame.topRight1()+eSize(0,1));
+	painter.line(frame.topLeft1()+eSize(1,1), frame.bottomLeft1()+eSize(1,0));
+
 	painter.setForegroundColor(m_border_color_br);
-	painter.line(frame.bottomRight1(), frame.bottomLeft1());
-	painter.line(frame.bottomLeft1(), frame.topLeft1());
+	painter.line(frame.bottomLeft()+eSize(1,-1), frame.bottomRight()+eSize(0,-1));
+	painter.line(frame.topRight1()+eSize(-1,1), frame.bottomRight1()+eSize(-1, 0));
+	painter.line(frame.bottomLeft()+eSize(1,-2), frame.bottomRight()+eSize(0,-2));
+	painter.line(frame.topRight1()+eSize(-0,1), frame.bottomRight1()+eSize(-0, 0));
 }
 
 void eWindowStyleSimple::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)

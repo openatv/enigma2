@@ -14,11 +14,10 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	case iPlayableService::evEnd:
 		assert(m_playlist); /* we need to have a playlist */
 		
-			/* at first, kill the running service */
-		m_event(this, evStopService);
-		m_runningService = 0;
-		m_service_event_conn = 0;
-			/* our running main service stopped. identify what to do next. */
+		/* at first, kill the running service */
+		stopService();
+		
+		/* our running main service stopped. identify what to do next. */
 			
 			/* unless the playlist current position is invalid (because there was */
 			/* playlist, for example when the service was engaged with playService */
@@ -41,6 +40,9 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	case iPlayableService::evStart:
 		m_event(this, evNewService);
 		break;
+	case iPlayableService::evUpdatedEventInfo:
+		m_event(this, evUpdatedEventInfo);
+		break;
 	default:
 		break;
 	}
@@ -48,6 +50,8 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 
 RESULT eNavigation::playService(const eServiceReference &service)
 {
+	stopService();
+	
 	assert(m_servicehandler);
 	RESULT res = m_servicehandler->play(service, m_runningService);
 	if (m_runningService)
@@ -94,6 +98,20 @@ RESULT eNavigation::getPlaylist(ePtr<ePlaylist> &playlist)
 	if (!m_playlist)
 		return -1;
 	playlist = m_playlist;
+	return 0;
+}
+
+RESULT eNavigation::stopService(void)
+{
+		/* check if there is a running service... */
+	if (!m_runningService)
+		return 1;
+			/* send stop event */
+	m_event(this, evStopService);
+
+		/* kill service. */
+	m_runningService = 0;
+	m_service_event_conn = 0;
 	return 0;
 }
 

@@ -78,7 +78,7 @@ void eRCConsoleDriver::keyPressed(int)
 #endif
 		if (code != -1)
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
-				(*i)->handleCode(code);
+				(*i)->handleCode(code | 0x8000);
 	}
 }
 

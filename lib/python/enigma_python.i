@@ -29,8 +29,7 @@
 
 
 Oh, things like "operator= is private in this context" etc.
-is usually caused by not marking PSignals as immutable.
-
+is usually caused by not marking PSignals as immutable. 
 */
 
 %define RefCount(...)
@@ -48,6 +47,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/econfig.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
+#include <lib/service/event.h>
 
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
@@ -61,6 +61,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/listboxservice.h>
 #include <lib/components/scan.h>
 #include <lib/nav/pcore.h>
+#include <lib/actions/action.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -73,6 +74,7 @@ RefCount(eListboxServiceContent)
 RefCount(eComponentScan)
 
 #define DEBUG
+%include "typemaps.i"
 %include "stl.i"
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
@@ -81,12 +83,13 @@ RefCount(eComponentScan)
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
 %template(eServiceCenterPtr) ePtr<eServiceCenter>;
+%include <lib/service/event.h>
 
 
 // TODO: embed these...
 %immutable eButton::selected;
 %immutable eComponentScan::statusChanged;
-%immutable pNavigation::event;
+%immutable pNavigation::m_event;
 
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
@@ -103,6 +106,16 @@ RefCount(eComponentScan)
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
 %include <lib/nav/pcore.h>
+%include <lib/actions/action.h>
+
+/**************  eptr  **************/
+
+%template(eActionMapPtr) ePtr<eActionMap>;
+RefCount(eActionMap)
+%apply eActionMapPtr OUTPUT { eActionMapPtr &ptr }
+%apply eActionMap* *OUTPUT { eActionMap **ptr }
+
+/**************  signals  **************/
 
 template<class R> class PSignal0
 {

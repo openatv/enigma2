@@ -20,23 +20,29 @@ void eComponentScan::scanEvent(int evt)
 		if ((err = eDVBResourceManager::getInstance(res)) != 0)
 		{
 			eDebug("no resource manager");
-			return;
-		}
-		if ((err = res->getChannelList(db)) != 0)
+			m_failed = 2;
+		} else if ((err = res->getChannelList(db)) != 0)
 		{
+			m_failed = 3;
 			eDebug("no channel list");
-			return;
+		} else
+		{
+			m_scan->insertInto(db);
+			eDebug("scan done!");
 		}
-		
-		m_scan->insertInto(db);
-		
-		eDebug("scan done!");
+	}
+	
+	if (evt == eDVBScan::evtFail)
+	{
+		eDebug("scan failed.");
+		m_failed = 1;
+		m_done = 1;
 	}
 	
 	statusChanged();
 }
 
-eComponentScan::eComponentScan(): m_done(-1)
+eComponentScan::eComponentScan(): m_done(-1), m_failed(0)
 {
 }
 
@@ -77,8 +83,8 @@ int eComponentScan::start()
 	list.push_back(fe);
 	
 	m_scan = new eDVBScan(channel);
-	m_scan->start(list);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
+	m_scan->start(list);
 
 	return 0;
 }
