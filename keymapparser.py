@@ -52,6 +52,13 @@ def readKeymap():
 				
 				if len(id) == 1:
 					keyid = ord(id) | 0x8000
+				elif id[0] == '\\':
+					if id[1] == 'x':
+						keyid = int(id[2:], 0x10) | 0x8000
+					elif id[1] == 'd':
+						keyid = int(id[2:]) | 0x8000
+					else:
+						raise "key id '" + str(id) + "' is neither hex nor dec"
 				else:
 					try:
 						keyid = KEYIDS[id]

@@ -4,6 +4,7 @@
 #include <lib/gui/elistbox.h>
 #include <lib/service/iservice.h>
 
+#include <set>
 class eServiceCenter;
 
 class eListboxServiceContent: public virtual iListboxContent
@@ -13,6 +14,14 @@ public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
 	void getCurrent(eServiceReference &ref);
+	
+		/* support for marked services */
+	void initMarked();
+	void addMarked(const eServiceReference &ref);
+	void removeMarked(const eServiceReference &ref);
+	int isMarked(const eServiceReference &ref);
+	int lookupService(const eServiceReference &ref);
+
 
 protected:
 	void cursorHome();
@@ -44,6 +53,9 @@ private:
 	ePtr<eServiceCenter> m_service_center;
 	
 	eServiceReference m_root;
+	
+		/* support for marked services */
+	std::set<eServiceReference> m_marked;
 };
 
 #endif

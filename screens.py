@@ -58,9 +58,10 @@ class mainMenu(Screen):
 		Screen.__init__(self, session)
 		b = Button("ok")
 
-		self["actions"] = ActionMap("MainMenuActions", 
+		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				"selected": self.okbuttonClick
+				"ok": self.okbuttonClick,
+				"cancel": self.close
 			})
 
 		b.onClick = [ self.okbuttonClick ]
@@ -90,24 +91,33 @@ class channelSelection(Screen):
 		Screen.__init__(self, session)
 		
 		self["list"] = ServiceList()
-		self["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:PREMIERE"))
+		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(provider=="ARD") && (type == 1)"""))
 		
 		self["okbutton"] = Button("ok", [self.channelSelected])
 		
 		class ChannelActionMap(ActionMap):
-			def action(self, context, action):
+			def action(self, contexts, action):
 				if action[:7] == "bouquet":
 					print "setting root to " + action[8:]
 					self.csel["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
-					ActionMap.action(self, context, action)
+					ActionMap.action(self, contexts, action)
 
-		self["actions"] = ChannelActionMap("ChannelSelectActions", 
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions"], 
 			{
-				"selectChannel": self.channelSelected,
+				"cancel": self.close,
+				"ok": self.channelSelected,
+				"mark": self.doMark
 			})
 		self["actions"].csel = self
 
+	def doMark(self):
+		ref = self["list"].getCurrent()
+		if self["list"].isMarked(ref):
+			self["list"].removeMarked(ref)
+		else:
+			self["list"].addMarked(ref)
+		
 	def channelSelected(self):
 		self.session.nav.playService(self["list"].getCurrent())
 		self.close()
@@ -117,7 +127,7 @@ class infoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["actions"] = ActionMap("InfobarActions", 
+		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
 				"switchChannel": self.switchChannel,
 				"mainMenu": self.mainMenu

@@ -196,5 +196,4 @@ void eListbox::entryReset()
 	m_top = 0;
 	m_selected = 0;
 	invalidate();
-	eDebug("inval!");
 }

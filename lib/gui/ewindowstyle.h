@@ -17,7 +17,8 @@ public:
 	enum {
 		styleLabel,
 		styleListboxSelected,
-		styleListboxNormal
+		styleListboxNormal,
+		styleListboxMarked
 	};
 	
 	virtual void drawFrame(gPainter &painter, const eRect &frame, int type) = 0;
