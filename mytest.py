@@ -66,7 +66,6 @@ def test():
 	wnd.setTitle("python")
 	wnd.move(ePoint(300, 100))
 	wnd.resize(eSize(300, 300))
-	wnd.show()
 
 	gui = GUIOutputDevice()
 	gui.parent = wnd
@@ -108,6 +107,8 @@ def test():
 #	button.move(ePoint(200, 10))
 #	button.resize(eSize(80, 50)) 
 
+	wnd.show()
+
 	for x in range(200):
 		time.sleep(0.1)
 		components["clock"].doClock()
@@ -115,7 +116,7 @@ def test():
 			r = 200 - x
 		else:
 			r = x
-#		components["$002"]["okbutton"].setValue(r)
+		components["$002"]["okbutton"].setValue(r)
 		desktop.paint()
 	
 #	
@@ -126,6 +127,7 @@ def test():
 #	print "delete wnd"
 #	del wnd
 #	print "bye"
+
 	
 	
 	return 0

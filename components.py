@@ -35,9 +35,7 @@ class GUIComponent:
 	def GUIcreate(self, priv, parent, skindata):
 		i = self.GUIcreateInstance(self, parent, skindata)
 		priv["instance"] = i
-		print str(self) + " notifier list before " + str(self.notifier)
 		self.notifier.append(i)
-		print str(self) + " notifier list now " + str(self.notifier)
 		if self.notifierAdded:
 			self.notifierAdded(i)
 
@@ -53,7 +51,6 @@ class VariableText:
 	def setText(self, text):
 		if self.message != text:
 			self.message = text
-			print self.notifier
 			for x in self.notifier:
 				x.setText(self.message)
 
