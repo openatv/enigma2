@@ -1,3 +1,4 @@
+#if 0
 #ifndef DISABLE_LCD
 
 #include <lib/gdi/lcd.h>
@@ -208,3 +209,4 @@ public:
 eAutoInitP0<eDBoxLCDHardware> init_eDBoxLCDHardware(eAutoInitNumbers::lowlevel, "d-Box LCD Hardware");
 
 #endif //DISABLE_LCD
+#endif
