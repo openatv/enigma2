@@ -18,6 +18,14 @@ void eListboxServiceContent::setRoot(const eServiceReference &root)
 	cursorHome();
 }
 
+void eListboxServiceContent::getCurrent(eServiceReference &ref)
+{
+	if (cursorValid())
+		ref = *m_cursor;
+	else
+		ref = eServiceReference();
+}
+
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()

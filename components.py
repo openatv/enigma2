@@ -22,24 +22,21 @@ class HTMLSkin:
 
 class GUISkin:
 	def __init__(self):
-		self.data = { }
+		pass
 	
 	def createGUIScreen(self, parent):
 		for (name, val) in self.items():
-			self.data[name] = { }
 			if isinstance(val, GUIComponent):
-				val.GUIcreate(self.data[name], parent, None)
+				val.GUIcreate(parent, None)
 	
 	def deleteGUIScreen(self):
 		for (name, val) in self.items():
 			if isinstance(val, GUIComponent):
-				w = self.data[name]["instance"]
-				val.GUIdelete(self.data[name])
+				val.GUIdelete()
 			try:
 				val.fix()
 			except:
 				pass
-			del self.data[name]
 			
 			# note: you'll probably run into this assert. if this happens, don't panic!
 			# yes, it's evil. I told you that programming in python is just fun, and 
@@ -79,80 +76,68 @@ class GUISkin:
 			# If you can't help yourself, just ask me. I'll be glad to help you out.
 			# Sorry for not keeping this code foolproof. I really wanted to archive
 			# that, but here I failed miserably. All I could do was to add this assert.
-			assert sys.getrefcount(w) == 2, "too many refs hold to " + str(w)
+#			assert sys.getrefcount(w) == 2, "too many refs hold to " + str(w)
 	
 	def close(self):
 		self.deleteGUIScreen()
-		del self.data
 
-# note: components can be used in multiple screens, so we have kind of
-# two contexts: first the per-component one (self), then the per-screen (i.e.:
-# per eWidget one), called "priv". In "priv", for example, the instance
-# of the eWidget is stored.
-
-
-# GUI components have a "notifier list" of associated eWidgets to one component
-# (as said - one component instance can be used at multiple screens)
 class GUIComponent:
 	""" GUI component """
 
 	def __init__(self):
-		self.notifier = [ ]
-	
-	def GUIcreate(self, priv, parent, skindata):
-		i = self.GUIcreateInstance(self, parent, skindata)
-		priv["instance"] = i
-		self.notifier.append(i)
-		try:
-			self.notifierAdded(i)
-		except:
-			pass
-	
-	# GUIdelete must delete *all* references to the current component!
-	def GUIdelete(self, priv):
-		g = priv["instance"]
-		self.notifier.remove(g)
-		self.GUIdeleteInstance(g)
-		del priv["instance"]
-
-	def GUIdeleteInstance(self, priv):
 		pass
-
+	
 class VariableText:
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
 	
 	def __init__(self):
 		self.message = ""
+		self.instance = None
 	
-	def notifierAdded(self, notifier):
-		notifier.setText(self.message)
-
 	def setText(self, text):
-		if self.message != text:
-			self.message = text
-			for x in self.notifier:
-				x.setText(self.message)
+		self.message = text
+		if self.instance:
+			self.instance.setText(self.message)
 
 	def getText(self):
 		return self.message
+	
+	def GUIcreate(self, parent, skindata):
+		self.instance = self.createWidget(parent, skindata)
+		self.instance.setText(self.message)
+	
+	def GUIdelete(self):
+		self.removeWidget(self.instance)
+		del self.instance
+	
+	def removeWidget(self, instance):
+		pass
 
 class VariableValue:
 	"""VariableValue can be used for components which have a variable value (like eSlider), based on any widget with setValue call"""
 	
 	def __init__(self):
 		self.value = 0
+		self.instance = None
 	
-	def notifierAdded(self, notifier):
-		notifier.setValue(self.value)
-
 	def setValue(self, value):
-		if self.value != value:
-			self.value = value
-			for x in self.notifier:
-				x.setValue(self.value)
+		self.value = value
+		if self.instance:
+			self.instance.setValue(self.value)
 
 	def getValue(self):
 		return self.value
+		
+	def GUIcreate(self, parent, skindata):
+		self.instance = self.createWidget(parent, skindata)
+		self.instance.setValue(self.value)
+	
+	def GUIdelete(self):
+		self.removeWidget(self.instance)
+		del self.instance
+	
+	def removeWidget(self, instance):
+		pass
 
 # now some "real" components:
 
@@ -171,14 +156,16 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		self.setText("clock: " + time.asctime())
 
 # realisierung als GUI
-	def GUIcreateInstance(self, priv, parent, skindata):
-		g = eLabel(parent)
-		return g
+	def createWidget(self, parent, skindata):
+		return eLabel(parent)
+
+	def removeWidget(self, w):
+		del self.clockTimer
 
 # ...und als HTML:
 	def produceHTML(self):
 		return self.getText()
-
+		
 class Button(HTMLComponent, GUIComponent, VariableText):
 	def __init__(self, text="", onClick = [ ]):
 		GUIComponent.__init__(self)
@@ -192,9 +179,11 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 		return 0
 	
 	def disable(self):
+#		self.instance.hide()
 		pass
 	
 	def enable(self):
+#		self.instance.show()
 		pass
 
 # html:
@@ -202,13 +191,13 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
 
 # GUI:
-	def GUIcreateInstance(self, priv, parent, skindata):
+	def createWidget(self, parent, skindata):
 		g = eButton(parent)
 		g.selected.get().append(self.push)
 		return g
-	
-	def GUIdeleteInstance(self, g):
-		g.selected.get().remove(self.push)
+
+	def removeWidget(self, w):
+		w.selected.get().remove(self.push)
 
 class Label(HTMLComponent, GUIComponent, VariableText):
 	def __init__(self, text=""):
@@ -221,10 +210,9 @@ class Label(HTMLComponent, GUIComponent, VariableText):
 		return self.getText()
 
 # GUI:
-	def GUIcreateInstance(self, priv, parent, skindata):
-		g = eLabel(parent)
-		return g
-
+	def createWidget(self, parent, skindata):
+		return eLabel(parent)
+	
 class Header(HTMLComponent, GUIComponent, VariableText):
 
 	def __init__(self, message):
@@ -235,9 +223,8 @@ class Header(HTMLComponent, GUIComponent, VariableText):
 	def produceHTML(self):
 		return "<h2>" + self.getText() + "</h2>\n"
 
-	def GUIcreateInstance(self, priv, parent, skindata):
+	def createWidget(self, parent, skindata):
 		g = eLabel(parent)
-		g.setText(self.message)
 		return g
 
 class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
@@ -246,18 +233,18 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)
 
-	def GUIcreateInstance(self, priv, parent, skindata):
+	def createWidget(self, parent, skindata):
 		g = eSlider(parent)
 		g.setRange(0, 100)
 		return g
-
+		
 # a general purpose progress bar
 class ProgressBar(HTMLComponent, GUIComponent, VariableValue):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)
 
-	def GUIcreateInstance(self, priv, parent, skindata):
+	def createWidget(self, parent, skindata):
 		g = eSlider(parent)
 		g.setRange(0, 100)
 		return g
@@ -271,26 +258,29 @@ class MenuList(HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 	
-	def GUIcreateInstance(self, priv, parent, skindata):
-		g = eListbox(parent)
-		g.setContent(self.l)
-		return g
+	def GUIcreate(self, parent, skindata):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
 	
-	def GUIdeleteInstance(self, g):
-		g.setContent(None)
+	def GUIdelete(self):
+		self.instance.setContent(None)
 
 class ServiceList(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
-
-	def GUIcreateInstance(self, priv, parent, skindata):
-		g = eListbox(parent)
-		g.setContent(self.l)
-		return g
 	
-	def GUIdeleteInstance(self, g):
-		g.setContent(None)
+	def getCurrent(self):
+		r = eServiceReference()
+		self.l.getCurrent(r)
+		return r
+
+	def GUIcreate(self, parent, skindata):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+	
+	def GUIdelete(self):
+		del self.instance
 
 	def setRoot(self, root):
 		self.l.setRoot(root)

@@ -60,6 +60,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/elistboxcontent.h>
 #include <lib/service/listboxservice.h>
 #include <lib/components/scan.h>
+#include <lib/nav/pcore.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -85,6 +86,7 @@ RefCount(eComponentScan)
 // TODO: embed these...
 %immutable eButton::selected;
 %immutable eComponentScan::statusChanged;
+%immutable pNavigation::event;
 
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
@@ -100,6 +102,7 @@ RefCount(eComponentScan)
 %include <lib/gui/elistboxcontent.h>
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
+%include <lib/nav/pcore.h>
 
 template<class R> class PSignal0
 {
