@@ -153,4 +153,5 @@ int main()
 	eMain app;
 	int res = app.exec();
 	eDebug("after exec");
+	return res;
 }
