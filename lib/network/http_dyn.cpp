@@ -1,5 +1,6 @@
 #include <lib/network/http_dyn.h>
 
+DEFINE_REF(eHTTPDyn);
 eHTTPDyn::eHTTPDyn(eHTTPConnection *c, std::string result): eHTTPDataSource(c), result(result)
 {
 	wptr=0;
@@ -29,9 +30,11 @@ int eHTTPDyn::doWrite(int hm)
 	return (size > wptr) ? 1 : -1;
 }
 
+DEFINE_REF(eHTTPDynPathResolver);
+DEFINE_REF(eHTTPDynPathResolver::eHTTPDynEntry);
+
 eHTTPDynPathResolver::eHTTPDynPathResolver()
 {
-#warning autodelete removed
 }
 
 void eHTTPDynPathResolver::addDyn(std::string request, std::string path, std::string (*function)(std::string, std::string, std::string, eHTTPConnection*))
@@ -39,7 +42,7 @@ void eHTTPDynPathResolver::addDyn(std::string request, std::string path, std::st
 	dyn.push_back(new eHTTPDynEntry(request, path, function));
 }
 
-eHTTPDataSource *eHTTPDynPathResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
+RESULT eHTTPDynPathResolver::getDataSource(eHTTPDataSourcePtr &ptr, std::string request, std::string path, eHTTPConnection *conn)
 {
 	std::string p, opt;
 	if (path.find('?')!=std::string::npos)
@@ -51,16 +54,21 @@ eHTTPDataSource *eHTTPDynPathResolver::getDataSource(std::string request, std::s
 		p=path;
 		opt="";
 	}
-	for (ePtrList<eHTTPDynEntry>::iterator i(dyn); i != dyn.end(); ++i)
+	for (eSmartPtrList<eHTTPDynEntry>::iterator i(dyn); i != dyn.end(); ++i)
 		if ((i->path==p) && (i->request==request))
 		{
 			conn->code=-1;
 			std::string s=i->function(request, path, opt, conn);
 
 			if (!s.empty())
-				return new eHTTPDyn(conn, s);
+			{
+				ptr = new eHTTPDyn(conn, s);
+				return 0;
+			}
 
-			return new eHTTPError(conn, 500);
+			ptr = new eHTTPError(conn, 500);
+			return 0;
 		}
-	return 0;
+	ptr = 0;
+	return -1;
 }

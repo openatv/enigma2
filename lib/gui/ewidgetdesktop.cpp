@@ -11,6 +11,11 @@ void eWidgetDesktop::addRootWidget(eWidget *root, int top)
 	root->m_desktop = this;
 }
 
+void eWidgetDesktop::removeRootWidget(eWidget *root)
+{
+	m_root.remove(root);
+}
+
 void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible)
 {
 		/* start with our clip region, clipped with the parent's */

@@ -7,7 +7,7 @@ class eButton: public eLabel
 {
 public:
 	eButton(eWidget *parent);
-	Signal0<void> selected;
+//	Signal0<void> selected;
 
 	void push();
 protected:

@@ -269,6 +269,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 
 eSocket::eSocket(eMainloop *ml): readbuffer(32768), writebuffer(32768), rsn(0)
 {
+	ASSERT(ml);
 	int s=socket(AF_INET, SOCK_STREAM, 0);
 #if 0
 	eDebug("[SOCKET]: initalized socket %d", socketdesc);

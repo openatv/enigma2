@@ -1,8 +1,6 @@
 #ifndef EPOINT_H
 #define EPOINT_H
 
-#include <iostream>
-
 #ifndef ABS
 #define ABS(x) ( x>0 ? x : -x )
 #endif
@@ -35,7 +33,9 @@ public:
 	friend inline bool	 operator==( const ePoint &, const ePoint & );
 	friend inline bool	 operator!=( const ePoint &, const ePoint & );
 	friend inline ePoint operator+( const ePoint &, const ePoint & );
+	friend inline ePoint operator+( const ePoint &, const eSize & );
 	friend inline ePoint operator-( const ePoint &, const ePoint & );
+	friend inline ePoint operator-( const ePoint &, const eSize & );
 	friend inline ePoint operator*( const ePoint &, int );
 	friend inline ePoint operator*( int, const ePoint & );
 	friend inline ePoint operator*( const ePoint &, double );
@@ -52,25 +52,6 @@ private:
 inline int ePoint::manhattanLength() const
 {
 	return ABS(x())+ABS(y());
-}
-
-
-/*****************************************************************************
-  ePoint stream functions
- *****************************************************************************/
-namespace std
-{
-	inline ostream &operator<<( ostream & s, const ePoint & p )
-	{
-		s << p.x() << p.y();
-		return s;
-	}
-
-	inline istream &operator>>( istream & s, ePoint & p )
-	{
-		s >> p.rx() >> p.ry();
-	  return s;
-	}
 }
 
 
@@ -128,6 +109,12 @@ inline ePoint operator+( const ePoint &p1, const ePoint &p2 )
 
 inline ePoint operator-( const ePoint &p1, const ePoint &p2 )
 { return ePoint(p1.xp-p2.xp, p1.yp-p2.yp); }
+
+inline ePoint operator+( const ePoint &p1, const eSize &p2 )
+{ return ePoint(p1.xp+p2.width(), p1.yp+p2.height()); }
+
+inline ePoint operator-( const ePoint &p1, const eSize &p2 )
+{ return ePoint(p1.xp-p2.width(), p1.yp-p2.height()); }
 
 inline ePoint operator*( const ePoint &p, int c )
 { return ePoint(p.xp*c, p.yp*c); }

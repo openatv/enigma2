@@ -29,7 +29,7 @@ struct gOpcode
 		renderPara,
 		setFont,
 		
-		fill, clear,
+		fill, fillRegion, clear,
 		blit,
 
 		setPalette,
@@ -54,6 +54,11 @@ struct gOpcode
 		{
 			eRect area;
 		} *fill;
+
+		struct pfillRegion
+		{
+			gRegion region;
+		} *fillRegion;
 
 		struct prenderText
 		{
@@ -173,6 +178,7 @@ public:
 	void renderPara(eTextPara *para, ePoint offset=ePoint(0, 0));
 
 	void fill(const eRect &area);
+	void fill(const gRegion &area);
 	
 	void clear();
 	

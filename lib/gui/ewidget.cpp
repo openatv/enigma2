@@ -3,34 +3,68 @@
 
 extern void dumpRegion(const gRegion &region);
 
-eWidget::eWidget(eWidget *parent): m_parent(parent)
+eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 {
 	m_vis = 0;
 	m_desktop = 0;
 	
-	if (parent)
+	if (m_parent)
 		m_vis = wVisShow;
 	
-	if (parent)
-		parent->m_childs.push_back(this);
+	if (m_parent)
+	{
+		m_parent->m_childs.push_back(this);
+		m_parent->getStyle(m_style);
+	}
 }
 
 void eWidget::move(ePoint pos)
 {
+	if (m_position == pos)
+		return;
+	
 	m_position = pos;
 	
+		/* we invalidate before and after the move to
+		   cause a correct redraw. The area which is
+		   included both before and after isn't redrawn
+		   twice because a invalidate doesn't immediately
+		   redraws the region. */
+	invalidate();
 	event(evtChangedPosition);
+	recalcClipRegionsWhenVisible();	
+	invalidate();
 }
 
 void eWidget::resize(eSize size)
 {
+		/* same strategy as with move: we first check if
+		   the size changed at all, and if it did, we
+		   invalidate both the old and new area. 
+		   TODO: check if either the old or new area
+		   fits into the other completely, and invalidate
+		   only once. */
+	eSize old_size = m_size;
 	event(evtWillChangeSize, &size);
+	if (old_size == m_size)
+		return;
+
+	invalidate();
 	event(evtChangedSize);
+	recalcClipRegionsWhenVisible();	
+	invalidate();
 }
 
 void eWidget::invalidate(const gRegion &region)
 {
-	gRegion res = /* region & */ m_visible_with_childs;
+		/* we determine the area to redraw, and re-position this
+		   area to the absolute position, and then call the
+		   desktop's invalidate() with that, which adds this
+		   area into the dirty region. */
+	gRegion res = m_visible_with_childs;
+	if (region.valid())
+		res &= region;
+
 	if (res.empty())
 		return;
 	
@@ -103,10 +137,14 @@ void eWidget::destruct()
 
 eWidget::~eWidget()
 {
+	if (m_parent)
+		m_parent->m_childs.remove(this);
+
 		/* destroy all childs */
 	ePtrList<eWidget>::iterator i(m_childs.begin());
 	while (i != m_childs.end())
 	{
+		(*i)->m_parent = 0;
 		delete *i;
 		i = m_childs.erase(i);
 	}
@@ -129,10 +167,30 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 		/* check if there's anything for us to paint */
 	region &= m_visible_region;
 	
-	painter.resetClip(region);
-	event(evtPaint, &region, &painter);
+	if (!region.empty())
+	{
+		painter.resetClip(region);
+		event(evtPaint, &region, &painter);
+	}
 	
 	painter.moveOffset(-position());
+}
+
+void eWidget::recalcClipRegionsWhenVisible()
+{
+	eWidget *t = this;
+	do
+	{
+		if (!(t->m_vis & wVisShow))
+			break;
+		if (t->m_desktop)
+		{
+			t->m_desktop->recalcClipRegions();
+			break;
+		}
+		t = t->m_parent;
+		assert(t);
+	} while(1);
 }
 
 int eWidget::event(int event, void *data, void *data2)
@@ -141,12 +199,13 @@ int eWidget::event(int event, void *data, void *data2)
 	{
 	case evtPaint:
 	{
-		static int counter = 0x18;
 		gPainter &painter = *(gPainter*)data2;
-//		eDebug("eWidget::evtPaint %d", counter);
+		
+//		eDebug("eWidget::evtPaint");
 //		dumpRegion(*(gRegion*)data);
-		painter.setBackgroundColor(gColor(++counter));
-		painter.clear();
+		ePtr<eWindowStyle> style;
+		if (!getStyle(style))
+			style->paintBackground(painter, ePoint(0, 0), size());
 		break;
 	}
 	case evtKey:

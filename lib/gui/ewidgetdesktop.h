@@ -16,6 +16,7 @@ public:
 	eWidgetDesktop(eSize screen);
 	~eWidgetDesktop();
 	void addRootWidget(eWidget *root, int top);
+	void removeRootWidget(eWidget *root);
 	void recalcClipRegions();
 	
 	void invalidate(const gRegion &region);

@@ -4,6 +4,7 @@
 #include <asm/types.h>
 #include <map>
 
+#include <lib/base/object.h>
 #include <lib/base/eptrlist.h>
 #include <lib/base/ebase.h>
 #include <string>
@@ -15,14 +16,17 @@ class eHTTPConnection;
 class eHTTPDataSource;
 class eHTTPD;
 
-class eHTTPPathResolver
+class eHTTPDataSource;
+typedef ePtr<eHTTPDataSource> eHTTPDataSourcePtr;
+
+class iHTTPPathResolver: public iObject
 {
 public:
-	virtual ~eHTTPPathResolver() {}; 
-	virtual eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn)=0;
+	virtual ~iHTTPPathResolver() {}; 
+	virtual RESULT getDataSource(eHTTPDataSourcePtr &source, std::string request, std::string path, eHTTPConnection *conn)=0;
 };
 
-class eHTTPDataSource
+class eHTTPDataSource: public iObject
 {
 protected:
 	eHTTPConnection *connection;
@@ -33,8 +37,12 @@ public:
 	virtual int doWrite(int bytes);	// number of written bytes, -1 for "no more"
 };
 
+typedef ePtr<eHTTPDataSource> eHTTPDataSourcePtr;
+
 class eHTTPError: public eHTTPDataSource
 {
+	DECLARE_REF;
+private:
 	int errcode;
 public:
 	eHTTPError(eHTTPConnection *c, int errcode);
@@ -53,7 +61,7 @@ class eHTTPConnection: public eSocket
 	int processRemoteState();
 	void writeString(const char *data);
 	
-	eHTTPDataSource *data;
+	eHTTPDataSourcePtr data;
 	eHTTPD *parent;
 	
 	int buffersize;
@@ -110,14 +118,14 @@ public:
 class eHTTPD: public eServerSocket
 {
 	friend class eHTTPConnection;
-	ePtrList<eHTTPPathResolver> resolver;
+	eSmartPtrList<iHTTPPathResolver> resolver;
 	eMainloop *ml;
 public:
 	eHTTPD(int port, eMainloop *ml);
 	void newConnection(int socket);
 
-	void addResolver(eHTTPPathResolver *r) { resolver.push_back(r); }
-	void removeResolver(eHTTPPathResolver *r) { resolver.remove(r); }
+	void addResolver(iHTTPPathResolver *r) { resolver.push_back(r); }
+	void removeResolver(iHTTPPathResolver *r) { resolver.remove(r); }
 };
 
 #endif

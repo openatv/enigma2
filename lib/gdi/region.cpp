@@ -325,6 +325,8 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 
 	for (unsigned int a = 0; a<rects.size(); ++a)
 		extends = extends | rects[a];
+	if (!extends.valid())
+		extends = eRect::emptyRect();
 }
 	
 void gRegion::intersect(const gRegion &r1, const gRegion &r2)

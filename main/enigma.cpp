@@ -14,6 +14,7 @@
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/elabel.h>
+#include <lib/gui/ebutton.h>
 
 #include <lib/gui/ewindow.h>
 
@@ -27,6 +28,11 @@ void object_dump()
 	printf("%d items left\n", object_total_remaining);
 }
 #endif
+using namespace std;
+	void print(const string &str, const char *c)
+	{
+		printf("%s (%s)\n", str.c_str(), c);
+	}
 
 void dumpRegion(const gRegion &region)
 {
@@ -47,20 +53,31 @@ void dumpRegion(const gRegion &region)
 	}
 }
 
-int main()
+
+class eMain: public eApplication, public Object
+{
+	eInit init;
+public:
+	eMain()
+	{
+		init.setRunlevel(eAutoInitNumbers::main);
+	}
+};
+
+eWidgetDesktop *wdsk;
+
+int main(int argc, char **argv)
 {
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
-	eInit init;
-	
-	init.setRunlevel(eAutoInitNumbers::main);
 
-		// gui stuff
-#if 0
+
+#if 1
+	eMain main;
+
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
-#if 1
 
 	gPainter p(my_dc);
 	
@@ -71,65 +88,38 @@ int main()
 	pal[3] = 0x00ff00;
 	
 	for (int a=0; a<0x10; ++a)
-		pal[a | 0x10] = (0x111111 * a) | 0xFF;
+		pal[a | 0x10] = 0x111111 * a;
+	for (int a=0; a<0x10; ++a)
+		pal[a | 0x20] = (0x111100 * a) | 0xFF;
+	for (int a=0; a<0x10; ++a)
+		pal[a | 0x30] = (0x110011 * a) | 0xFF00;
+	for (int a=0; a<0x10; ++a)
+		pal[a | 0x40] = (0x001111 * a) | 0xFF0000;
 	p.setPalette(pal, 0, 256);
 
 	fontRenderClass::getInstance()->AddFont("/dbox2/cdkroot/share/fonts/arial.ttf", "Arial", 100);
 
-#if 0
-	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
-	
-	 
-	gRegion c;
-	eDebug("0");
-	int i;
-	
-	c |= eRect(0, 20, 100, 10);
-	c |= eRect(0, 50, 100, 10);
-	c |= eRect(10, 10, 80, 100);
-	
-	c -= eRect(20, 20, 40, 40);
-	
-	p.setForegroundColor(gColor(3));
-	p.fill(eRect(0, 0, 100, 100));
-	p.fill(eRect(200, 0, 100, 100));
-	
-	for (int a=0; a<c.rects.size(); ++a)
-		eDebug("%d %d -> %d %d", c.rects[a].left(), c.rects[a].top(), c.rects[a].right(), c.rects[a].bottom());
-	eDebug("extends: %d %d %d %d", c.extends.left(), c.extends.top(), c.extends.right(), c.extends.bottom());
-	p.setOffset(ePoint(100, 100));
-	p.clip(c);
-
-	p.setBackgroundColor(gColor(1));
-	p.clear();
-	p.setForegroundColor(gColor(2));
-	p.line(ePoint(0, 0), ePoint(220, 190));
-	p.clippop();
-
-	p.setBackgroundColor(gColor(0x1f));
-	p.setForegroundColor(gColor(0x10));
-
-	ePtr<gFont> fnt = new gFont("Arial", 70);
-	p.setFont(fnt);
-	p.renderText(eRect(100, 100, 500, 200), "Hello welt!");
-#else
-
-
 	eWidgetDesktop dsk(eSize(720, 576));
+	
+	wdsk = &dsk;
 	dsk.setDC(my_dc);
 
-	eWindow *bla = new eWindow(&dsk);
-	
-	bla->move(ePoint(100, 100));
-	bla->resize(eSize(200, 200));
-	bla->show();
+	eWindow *wnd = new eWindow(&dsk);
+	wnd->move(ePoint(100, 100));
+	wnd->resize(eSize(200, 200));
+	wnd->show();
 
-	eLabel *blablub = new eLabel(bla->child());
-	blablub->setText("hello world");
-	blablub->move(ePoint(0, 0));
-	blablub->resize(eSize(400,400));
+	eLabel *label = new eButton(wnd);
+	label->setText("Hello!!");
+	label->move(ePoint(40, 40));
+	label->resize(eSize(100, 40));
 
-#if 0
+	label = new eButton(wnd);
+	label->setText("2nd!!");
+	label->move(ePoint(40, 90));
+	label->resize(eSize(100, 40));
+
+#if 0	
 	eWidget *bla2 = new eWidget(0);
 	dsk.addRootWidget(bla2, 0);
 	
@@ -138,43 +128,44 @@ int main()
 	bla2->show();
 #endif
 
-	dsk.recalcClipRegions();
+//	dsk.recalcClipRegions();
+//	dsk.paint();
+//	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
 
-//	dumpRegion(bla->m_visible_region);
-//	dumpRegion(bla2->m_visible_region);
-//	dumpRegion(blablub->m_visible_region);
+//	dumpRegion(wnd->m_visible_region);
+//	dumpRegion(label->m_visible_region);
+//	dumpRegion(label->m_visible_region);
 	
 	eDebug("painting!");
-
-	dsk.invalidate(gRegion(eRect(0, 0, 720, 576)));
-	dsk.paint();
-#endif
-
-#else
-
-	extern void contentTest();
-
-	eDebug("Contenttest");
-	contentTest();
-
-#endif
-
-	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
-//	p.clear();
-	sleep(1);
 	
-//	blablub->setText("123");
-//	dumpRegion(blablub->m_visible_region);
-//	dumpRegion(dsk.m_dirty_region);
-	dsk.paint();
-	
-
-#endif
 
 	ePython python;
 	
 	printf("about to execute TEST :)\n");
 	python.execute("mytest", "test");
 
+	sleep(2);
+#endif
+
+#if 0
+
+		// connections mit parametern: geht! :)
+	using namespace std;
+	using namespace SigC;
+
+	
+	Signal1<void,const string &> printer;
+	int i;
+	for (i=1; i<argc; ++i)
+		printer.connect(bind(slot(print), argv[i]));
+	printer("hello world\n");
+#endif
+
 	return 0;
 }
+
+eWidgetDesktop *getDesktop()
+{
+	return wdsk;
+}
+
