@@ -71,16 +71,16 @@ class Session:
 	
 	def processDelay(self):
 		self.execEnd()
-		self.currentDialog.doClose()
 		
-		dump(self.currentDialog)
-		print sys.getrefcount(self.currentDialog)
-		del self.currentDialog
-		del self.currentWindow
+		if self.currentDialog.isTmp:
+			self.currentDialog.doClose()
 		
-		if len(self.dialogStack):
-			(self.currentDialog, self.currentWindow) = self.dialogStack.pop()
-			self.execBegin()
+			dump(self.currentDialog)
+			print sys.getrefcount(self.currentDialog)
+			del self.currentDialog
+			del self.currentWindow
+		
+		self.popCurrent()
 			
 	def execBegin(self):
 			self.currentDialog.execBegin()
@@ -91,27 +91,43 @@ class Session:
 			self.currentWindow.hide()
 	
 	def create(self, screen, arguments):
+		# creates an instance of 'screen' (which is a class)
 		return screen(self, *arguments)
 	
-	def open(self, screen, *arguments):
+	def instantiateDialog(self, screen, *arguments):
+		dlg = self.create(screen, arguments)
+		assert self.desktop != None
+		wnd = eWindow(self.desktop)
+
+		gui = GUIOutputDevice()
+		gui.parent = wnd
+		gui.create(dlg)
+
+		applyGUIskin(dlg, wnd, None, dlg.skinName)
+	 	
+		return (dlg, wnd)
+	 
+	def pushCurrent(self):
 		if self.currentDialog:
 			self.dialogStack.append((self.currentDialog, self.currentWindow))
 			self.execEnd()
-		
-		self.currentDialog = self.create(screen, arguments)
-		
-		if self.desktop != None:
-			self.currentWindow = eWindow(self.desktop)
-
-			gui = GUIOutputDevice()
-			gui.parent = self.currentWindow
-			gui.create(self.currentDialog)
-
-		 	applyGUIskin(self.currentDialog, self.currentWindow, None, self.currentDialog.skinName)
-
+	
+	def popCurrent(self):
+		if len(self.dialogStack):
+			(self.currentDialog, self.currentWindow) = self.dialogStack.pop()
 			self.execBegin()
-		else:
-			self.currentWindow = None
+	
+	def execDialog(self, dialog):
+		self.pushCurrent()
+		(self.currentDialog, self.currentWindow) = dialog
+		self.currentDialog.isTmp = False
+		self.execBegin()
+
+	def open(self, screen, *arguments):
+		self.pushCurrent()
+		(self.currentDialog, self.currentWindow) = self.instantiateDialog(screen, *arguments)
+		self.currentDialog.isTmp = True
+		self.execBegin()
 
 	def keyEvent(self, code):
 #		print "code " + str(code)
