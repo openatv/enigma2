@@ -361,11 +361,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (m_type == -1)
 		return -ENODEV;
 
-#if HAVE_DVB_API_VERSION < 3
-	FrontendParameters parm;
-#else
-	dvb_frontend_parameters parm;
-#endif
+	FRONTENDPARAMETERS parm;
 
 	feEvent(-1);
 	

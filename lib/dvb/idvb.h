@@ -4,6 +4,9 @@
 #include <config.h>
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
+#define FRONTENDPARAMETERS FrontendParameters
+#else
+#define FRONTENDPARAMETERS struct frontend_parameters
 #endif
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
@@ -271,11 +274,7 @@ public:
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
-#if HAVE_DVB_API_VERSION < 3
-	virtual RESULT prepare(iDVBFrontend &frontend, FrontendParameters &parm, eDVBFrontendParametersSatellite &sat)=0;
-#else
-	virtual RESULT prepare(iDVBFrontend &frontend, struct dvb_frontend_parameters &parm, eDVBFrontendParametersSatellite &sat)=0;
-#endif
+	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)=0;
 };
 
 struct eDVBCIRouting
