@@ -28,15 +28,8 @@ eServiceFactoryDVB::~eServiceFactoryDVB()
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
-	RESULT res;
 		// check resources...
 	ptr = new eDVBServicePlay(ref);
-	res = ptr->start();
-	if (res)
-	{
-		ptr = 0;
-		return res;
-	}
 	return 0;
 }
 
@@ -138,8 +131,18 @@ void eDVBServicePlay::serviceEvent(int event)
 RESULT eDVBServicePlay::start()
 {
 	eDebug("starting DVB service");
-	m_serviceHandler.tune((eServiceReferenceDVB&)m_reference);
+	return m_serviceHandler.tune((eServiceReferenceDVB&)m_reference);
+}
+
+RESULT eDVBServicePlay::stop()
+{
+	eDebug("stopping..");
 	return 0;
+}
+
+RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+{
+	return -1;
 }
 
 RESULT eDVBServicePlay::getIPausableService(ePtr<iPauseableService> &ptr)
@@ -147,6 +150,18 @@ RESULT eDVBServicePlay::getIPausableService(ePtr<iPauseableService> &ptr)
 		// not yet possible, maybe later...
 	ptr = 0;
 	return -1;
+}
+
+RESULT eDVBServicePlay::getIServiceInformation(ePtr<iServiceInformation> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+RESULT eDVBServicePlay::getName(eString &name)
+{
+	name = "DVB service";
+	return 0;
 }
 
 DEFINE_REF(eDVBServicePlay)
