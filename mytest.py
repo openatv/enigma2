@@ -1,6 +1,7 @@
 from enigma import *
 from tools import *
 
+
 import sys
 import time
 
@@ -57,38 +58,44 @@ class Session:
 		self.dialogStack = [ ]
 	
 	def processDelay(self):
+		self.execEnd()
 		self.currentDialog.doClose()
-		if self.currentWindow != None:
-			self.currentWindow.hide()
 		
 		del self.currentDialog
 		del self.currentWindow
 		
 		if len(self.dialogStack):
 			(self.currentDialog, self.currentWindow) = self.dialogStack.pop()
+			self.execBegin()
+			
+	def execBegin(self):
+			self.currentDialog.execBegin()
 			self.currentWindow.show()
+		
+	def execEnd(self):
+			self.currentDialog.execEnd()
+			self.currentWindow.hide()
 	
-	def open(self, screen):
+	def create(self, screen, arguments):
+		return screen(self, *arguments)
+	
+	def open(self, screen, *arguments):
 		if self.currentDialog:
 			self.dialogStack.append((self.currentDialog, self.currentWindow))
-			self.currentWindow.hide()
+			self.execEnd()
 		
-		self.currentDialog = screen
-		screen.session = self
+		self.currentDialog = self.create(screen, arguments)
 		
 		if self.desktop != None:
-			self.currentWindow = wnd = eWindow(self.desktop)
-#			wnd.setTitle("Screen from python!")
-#			wnd.move(ePoint(300, 100))
-#			wnd.resize(eSize(300, 300))
+			self.currentWindow = eWindow(self.desktop)
 
 			gui = GUIOutputDevice()
-			gui.parent = wnd
+			gui.parent = self.currentWindow
 			gui.create(self.currentDialog)
 
-		 	applyGUIskin(self.currentDialog, wnd, None, screen.__class__.__name__)
+		 	applyGUIskin(self.currentDialog, self.currentWindow, None, self.currentDialog.skinName)
 
-			wnd.show()
+			self.execBegin()
 		else:
 			self.currentWindow = None
 
@@ -115,7 +122,7 @@ def runScreenTest():
 	
 	session.nav = pNavigation()
 	
-	session.open(infoBar())
+	session.open(infoBar)
 
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
@@ -123,6 +130,8 @@ def runScreenTest():
 	
 	return 0
 
+import keymapparser
+keymapparser.readKeymap()
 
 # first, setup a screen
 runScreenTest()

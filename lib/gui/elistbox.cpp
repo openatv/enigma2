@@ -1,9 +1,22 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/actions/action.h>
 
 eListbox::eListbox(eWidget *parent): eWidget(parent)
 {
 	setContent(new eListboxStringContent());
+
+	ePtr<eActionMap> ptr;
+	eActionMap::getInstance(ptr);
+	
+	ptr->bindAction("ListboxActions", 0, 0, this);
+}
+
+eListbox::~eListbox()
+{
+	ePtr<eActionMap> ptr;
+	eActionMap::getInstance(ptr);
+	ptr->unbindAction(this, 0);
 }
 
 void eListbox::setContent(iListboxContent *content)
@@ -108,6 +121,9 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		return 0;
 	}
+	case evtAction:
+		moveSelection((int)data2);
+		return 1;
 	default:
 		return eWidget::event(event, data, data2);
 	}

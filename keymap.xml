@@ -1,0 +1,26 @@
+<keymap>
+	<map context="ListboxActions">
+		<device name="keyboard">
+			<key id="a" mapto="up" flags="mr" />
+			<key id="b" mapto="down" flags="mr" />
+		</device>
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="1" mapto="moveUp" flags="mr" />
+		<key id="2" mapto="moveDown" flags="mr" />
+	</map>
+	<map context="InfobarActions">
+		<key id="m" mapto="mainMenu" flags="mr" />
+		<key id="c" mapto="switchChannel" flags="mr" />
+	</map>
+	<map context="MainMenuActions">
+		<key id=" " mapto="selected" flags="mr" />
+	</map>
+	
+	<map context="ChannelSelectActions">
+		<key id=" " mapto="selectChannel" flags="mr" />
+	</map>
+	<map context="WindowActions">
+		
+	</map>
+</keymap>

@@ -29,6 +29,7 @@ TUXBOX_APPS_GETTEXT
 AC_OUTPUT([
 Makefile
 lib/Makefile
+lib/actions/Makefile
 lib/base/Makefile
 lib/driver/Makefile
 lib/dvb/Makefile

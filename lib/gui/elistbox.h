@@ -50,14 +50,26 @@ class eListbox: public eWidget
 {
 public:
 	eListbox(eWidget *parent);
+	~eListbox();
 	void setContent(iListboxContent *content);
 	
-	void moveSelection(int how);
-	enum {
+/*	enum Movement {
 		moveUp,
 		moveDown,
 		moveTop,
 		moveEnd,
+		justCheck
+	}; */
+	
+	void moveSelection(int how);
+
+	enum ListboxActions {
+		moveUp,
+		moveDown,
+		moveTop,
+		moveEnd,
+		pageUp,
+		pageDown,
 		justCheck
 	};
 protected:

@@ -8,6 +8,7 @@ enigma2_SOURCES = \
 	enigma.cpp 
 
 enigma2_LDADD_WHOLE = \
+	$(top_builddir)/lib/actions/libenigma_actions.a \
 	$(top_builddir)/lib/base/libenigma_base.a \
 	$(top_builddir)/lib/components/libenigma_components.a \
 	$(top_builddir)/lib/driver/libenigma_driver.a \

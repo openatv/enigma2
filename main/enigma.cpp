@@ -25,6 +25,8 @@
 
 #include <lib/driver/rc.h>
 
+#include <lib/actions/action.h>
+
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -71,8 +73,11 @@ PSignal1<void,int> &keyPressedSignal()
 
 void keyEvent(const eRCKey &key)
 {
-	if (!key.flags)
-		keyPressed(key.code);
+	ePtr<eActionMap> ptr;
+	eActionMap::getInstance(ptr);
+	ptr->keyPressed(0, key.code, key.flags);
+//	if (!key.flags)
+//		keyPressed(key.code);
 }
 
 /************************************************/
@@ -163,7 +168,9 @@ int main(int argc, char **argv)
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 	
 	printf("executing main\n");
+
 	python.execute("mytest", "__main__");
+
 
 //	eApp->exec();
 

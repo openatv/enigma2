@@ -65,7 +65,7 @@ public:
 	
 	void start(const std::list<ePtr<iDVBFrontendParameters> > &known_transponders);
 
-	enum { evtUpdate, evtFinish };
+	enum { evtUpdate, evtFinish, evtFail };
   RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
 	void insertInto(iDVBChannelList *db);
 	

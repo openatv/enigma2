@@ -6,14 +6,6 @@
 #include <connection.h>
 #include <list>
 
-#ifdef SWIG
-#define TEMPLATE_TYPEDEF(x, y) \
-%template(y) x; \
-typedef x y
-#else
-#define TEMPLATE_TYPEDEF(x, y) typedef x y
-#endif
-
 class eServiceReference
 {
 public:
@@ -184,7 +176,7 @@ public:
 		evEnd,
 		
 		// when iServiceInformation is implemented:
-		evNewEvent
+		evUpdatedEventInfo
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;

@@ -1,5 +1,5 @@
-#ifndef __service_ievent_h
-#define __service_ievent_h
+#ifndef __lib_service_event_h
+#define __lib_service_event_h
 
 #include <time.h>
 #include <lib/base/object.h>
@@ -17,5 +17,7 @@ public:
 	
 	RESULT parseFrom(Event *evt);
 };
+
+TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 
 #endif

@@ -146,6 +146,7 @@ eDVBServicePlay::~eDVBServicePlay()
 
 void eDVBServicePlay::gotNewEvent()
 {
+#if 0
 		// debug only
 	ePtr<eServiceEvent> m_event_now, m_event_next;
 	getEvent(m_event_now, 0);
@@ -155,6 +156,8 @@ void eDVBServicePlay::gotNewEvent()
 		eDebug("now running: %s (%d seconds :)", m_event_now->m_event_name.c_str(), m_event_now->m_duration);
 	if (m_event_next)
 		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
+#endif
+	m_event((iPlayableService*)this, evUpdatedEventInfo);
 }
 
 void eDVBServicePlay::serviceEvent(int event)
@@ -254,7 +257,8 @@ RESULT eDVBServicePlay::stop()
 
 RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
-	return -1;
+	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
+	return 0;
 }
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)

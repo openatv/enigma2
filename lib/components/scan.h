@@ -13,7 +13,7 @@ private:
 	ePtr<eConnection> m_scan_event_connection;
 	ePtr<eDVBScan> m_scan;
 	
-	int m_done;
+	int m_done, m_failed;
 public:
 	eComponentScan();
 	~eComponentScan();

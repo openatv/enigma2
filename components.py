@@ -86,7 +86,13 @@ class GUIComponent:
 
 	def __init__(self):
 		pass
+		
+	def execBegin(self):
+		pass
 	
+	def execEnd(self):
+		pass
+
 class VariableText:
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
 	
@@ -323,3 +329,93 @@ class ServiceScan:
 	def fix(self):
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 	
+class ActionMap:
+	def __init__(self, context, actions = { }, prio=0):
+		self.actions = actions
+		self.context = context
+		self.prio = prio
+		self.p = eActionMapPtr()
+		eActionMap.getInstance(self.p)
+
+	def execBegin(self):
+		self.p.bindAction(self.context, self.prio, self.action)
+	
+	def execEnd(self):
+		self.p.unbindAction(self.context, self.action)
+	
+	def action(self, context, action):
+		try:
+			self.actions[action]()
+		except KeyError:
+			print "unknown action %s/%s! typo in keymap?" % (context, action)
+
+class PerServiceDisplay(GUIComponent, VariableText):
+	"""Mixin for building components which display something which changes on navigation events, for example "service name" """
+	
+	def __init__(self, navcore, eventmap):
+		GUIComponent.__init__(self)
+		VariableText.__init__(self)
+		self.eventmap = eventmap
+		navcore.m_event.get().append(self.event)
+		self.navcore = navcore
+
+		# start with stopped state, so simulate that
+		self.event(pNavigation.evStopService)
+
+	def event(self, ev):
+		# loop up if we need to handle this event
+		if self.eventmap.has_key(ev):
+			# call handler
+			self.eventmap[ev]()
+	
+	def createWidget(self, parent, skindata):
+		# by default, we use a label to display our data.
+		g = eLabel(parent)
+		return g
+
+class EventInfo(PerServiceDisplay):
+	Now = 0
+	Next = 1
+	def __init__(self, navcore, now_or_next):
+		# listen to evUpdatedEventInfo and evStopService
+		# note that evStopService will be called once to establish a known state
+		PerServiceDisplay.__init__(self, navcore, 
+			{ 
+				pNavigation.evUpdatedEventInfo: self.ourEvent, 
+				pNavigation.evStopService: self.stopEvent 
+			})
+		self.now_or_next = now_or_next
+
+	def ourEvent(self):
+		info = iServiceInformationPtr()
+		service = iPlayableServicePtr()
+		
+		if not self.navcore.getCurrentService(service):
+			if not service.info(info):
+				print "got info !"
+				ev = eServiceEventPtr()
+				info.getEvent(ev, self.now_or_next)
+				self.setText(ev.m_event_name)
+		print "new event info in EventInfo! yeah!"
+
+	def stopEvent(self):
+			self.setText("waiting for event data...");
+
+class ServiceName(PerServiceDisplay):
+	def __init__(self, navcore):
+		PerServiceDisplay.__init__(self, navcore,
+			{
+				pNavigation.evNewService: self.newService,
+				pNavigation.evStopService: self.stopEvent
+			})
+
+	def newService(self):
+		info = iServiceInformationPtr()
+		service = iPlayableServicePtr()
+		
+		if not self.navcore.getCurrentService(service):
+			if not service.info(info):
+				self.setText("no name known, but it should be here :)")
+	
+	def stopEvent(self):
+			self.setText("");
