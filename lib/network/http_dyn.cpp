@@ -31,7 +31,7 @@ int eHTTPDyn::doWrite(int hm)
 
 eHTTPDynPathResolver::eHTTPDynPathResolver()
 {
-	dyn.setAutoDelete(true);
+#warning autodelete removed
 }
 
 void eHTTPDynPathResolver::addDyn(eString request, eString path, eString (*function)(eString, eString, eString, eHTTPConnection*))

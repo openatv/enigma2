@@ -3,7 +3,7 @@
 
 #include <lib/dvb/idvb.h>
 
-class eDVBFrontendParameters: public virtual iDVBFrontendParameters
+class eDVBFrontendParameters: public iDVBFrontendParameters
 {
 	DECLARE_REF;
 	union
@@ -30,7 +30,7 @@ public:
 	RESULT getHash(unsigned long &hash) const;
 };
 
-class eDVBFrontend: public virtual iDVBFrontend, public Object
+class eDVBFrontend: public iDVBFrontend, public Object
 {
 	DECLARE_REF;
 	int m_type;

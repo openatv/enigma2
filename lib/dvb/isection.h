@@ -42,7 +42,7 @@ struct eDVBTableSpec
 	int flags;
 };
 
-class iDVBSectionReader: public virtual iObject
+class iDVBSectionReader: public iObject
 {
 public:
 	virtual RESULT start(const eDVBSectionFilterMask &mask)=0;

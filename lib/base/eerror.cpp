@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <lib/gui/emessage.h>
+#include <lib/base/estring.h>
+
+// #include <lib/gui/emessage.h>
 
 int infatal=0;
 

@@ -147,13 +147,13 @@ class iDVBChannel;
 class iDVBDemux;
 class iDVBFrontendParameters;
 
-class iDVBChannelList: public virtual iObject
+class iDVBChannelList: public iObject
 {
 public:
 	virtual RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm)=0;
 };
 
-class iDVBResourceManager: public virtual iObject
+class iDVBResourceManager: public iObject
 {
 public:
 	/*
@@ -214,7 +214,7 @@ struct eDVBFrontendParametersTerrestrial
 	void set(const TerrestrialDeliverySystemDescriptor  &);
 };
 
-class iDVBFrontendParameters: public virtual iObject
+class iDVBFrontendParameters: public iObject
 {
 public:
 	virtual RESULT getSystem(int &type) const = 0;
@@ -236,7 +236,7 @@ struct eDVBDiseqcCommand
 
 class iDVBSatelliteEquipmentControl;
 
-class iDVBFrontend: public virtual iObject
+class iDVBFrontend: public iObject
 {
 public:
 	enum {
@@ -275,7 +275,7 @@ struct eDVBCIRouting
 	int enabled;
 };
 
-class iDVBChannel: public virtual iObject
+class iDVBChannel: public iObject
 {
 public:
 	enum
@@ -302,7 +302,7 @@ public:
 class iDVBSectionReader;
 class iTSMPEGDecoder;
 
-class iDVBDemux: public virtual iObject
+class iDVBDemux: public iObject
 {
 public:
 	virtual RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)=0;

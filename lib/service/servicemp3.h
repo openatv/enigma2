@@ -3,7 +3,7 @@
 
 #include <lib/service/iservice.h>
 
-class eServiceFactoryMP3: public virtual iServiceHandler, public virtual iObject
+class eServiceFactoryMP3: public iServiceHandler
 {
 DECLARE_REF;
 public:
@@ -17,7 +17,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eServiceMP3: public virtual iPlayableService, public virtual iPauseableService, public virtual iServiceInformation, public virtual iObject, public Object
+class eServiceMP3: public iPlayableService, public iPauseableService, public iServiceInformation, public Object
 {
 DECLARE_REF;
 private:

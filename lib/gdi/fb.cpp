@@ -59,7 +59,7 @@ fbClass::fbClass(const char *fb)
 		goto nolfb;
 	}
 
-	showConsole(1);
+	showConsole(0);
 	return;
 nolfb:
 	lfb=0;
@@ -121,6 +121,7 @@ fbClass::~fbClass()
 		ioctl(fd, FBIOPUT_VSCREENINFO, &oldscreen);
 	if (lfb)
 		munmap(lfb, available);
+	showConsole(1);
 }
 
 int fbClass::PutCMAP()

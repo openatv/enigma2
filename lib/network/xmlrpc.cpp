@@ -256,7 +256,8 @@ static eXMLRPCVariant *fromXML(XMLTreeNode *n)
 	} else if (!strcmp(n->GetType(), "array"))
 	{
 		ePtrList<eXMLRPCVariant> l;
-		l.setAutoDelete(true);
+		#warning autodelete removed
+//		l.setAutoDelete(true);
 		n=n->GetChild();
 		if (strcmp(data, "data"))
 			return 0;
@@ -312,7 +313,8 @@ int eXMLRPCResponse::doCall()
 	}
 
 	ePtrList<eXMLRPCVariant> params;
-	params.setAutoDelete(true);
+//	params.setAutoDelete(true);
+#warning params autodelete remove
 	
 	for (XMLTreeNode *c=methodCall->GetChild(); c; c=c->GetNext())
 	{
@@ -342,7 +344,8 @@ int eXMLRPCResponse::doCall()
 		"<methodResponse>";
 	
 	ePtrList<eXMLRPCVariant> ret;
-	ret.setAutoDelete(true);
+//	ret.setAutoDelete(true);
+#warning autodelete removed
 
 	int (*proc)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant> &)=rpcproc[methodName];
 	int fault;

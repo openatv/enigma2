@@ -4,7 +4,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/isection.h>
 
-class eDVBDemux: public virtual iDVBDemux
+class eDVBDemux: public iDVBDemux
 {
 	int adapter, demux;
 	friend class eDVBSectionReader;
@@ -18,7 +18,7 @@ public:
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
 };
 
-class eDVBSectionReader: public virtual iDVBSectionReader, public Object
+class eDVBSectionReader: public iDVBSectionReader, public Object
 {
 	DECLARE_REF
 private:

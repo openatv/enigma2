@@ -4,7 +4,7 @@
 #include <libsig_comp.h>
 #include <lib/base/object.h>
 
-class eConnection: public virtual iObject, public Connection
+class eConnection: public iObject, public Connection
 {
 	int ref;
 	ePtr<iObject> m_owner;

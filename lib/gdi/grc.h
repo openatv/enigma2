@@ -117,7 +117,7 @@ struct gOpcode
 };
 
 		/* gRC is the singleton which controls the fifo and dispatches commands */
-class gRC: public virtual iObject
+class gRC: public iObject
 {
 DECLARE_REF;
 private:

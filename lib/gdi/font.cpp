@@ -388,30 +388,10 @@ void eTextPara::newLine(int flags)
 eTextPara::~eTextPara()
 {
 	clear();
-	if (refcnt>=0)
-		eFatal("verdammt man der war noch gelockt :/\n");
-}
-
-void eTextPara::destroy()
-{
-	singleLock s(refcntlck);
-
-	if (!refcnt--)
-		delete this;
-}
-
-eTextPara *eTextPara::grab()
-{
-	singleLock s(refcntlck);
-
-	refcnt++;
-	return this;
 }
 
 void eTextPara::setFont(const gFont *font)
 {
-	if (refcnt)
-		eFatal("mod. after lock");
 	ePtr<Font> fnt, replacement;
 	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize);
 	if (!fnt)
@@ -424,8 +404,6 @@ eString eTextPara::replacement_facename;
 
 void eTextPara::setFont(Font *fnt, Font *replacement)
 {
-	if (refcnt)
-		eFatal("mod. after lock");
 	if (!fnt)
 		return;
 	current_font=fnt;
@@ -463,9 +441,6 @@ int eTextPara::renderString(const eString &string, int rflags)
 {
 	singleLock s(ftlock);
 	
-	if (refcnt)
-		eFatal("mod. after lock");
-
 	if (!current_font)
 		return -1;
 		
@@ -689,8 +664,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	}
 	
 	gRegion area(eRect(0, 0, surface->x, surface->y));
-	gRegion clip;
-	clip.intersect(area, dc.getClip());
+	gRegion clip = dc.getClip() & area;
 
 	int buffer_stride=surface->stride;
 

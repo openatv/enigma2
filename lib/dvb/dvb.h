@@ -8,7 +8,7 @@
 
 class eDVBChannel;
 
-class eDVBResourceManager: public virtual iDVBResourceManager
+class eDVBResourceManager: public iDVBResourceManager
 {
 	DECLARE_REF;
 	int avail, busy;
@@ -38,8 +38,10 @@ public:
 	RESULT removeChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 };
 
-class eDVBChannel: public virtual iDVBChannel, public virtual eDVBDemux, public Object
+class eDVBChannel: public iDVBChannel, public eDVBDemux, public Object
 {
+	DECLARE_REF;
+private:
 	ePtr<eDVBFrontend> m_frontend;
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
 	eDVBChannelID m_channel_id;

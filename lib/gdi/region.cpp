@@ -26,10 +26,11 @@
 
 gRegion::gRegion(const eRect &rect) : extends(rect)
 {
-	rects.push_back(rect);
+	if (rect.valid() && !rect.empty())
+		rects.push_back(rect);
 }
 
-gRegion::gRegion()
+gRegion::gRegion() : extends(eRect::emptyRect())
 {
 }
 
@@ -265,8 +266,8 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 				bot = min(r1->y2, r2y1);
 				if (top != bot) {
 					curBand = rects.size();
-						appendNonO(r1, r1BandEnd, top, bot);
-						coalesce(prevBand, curBand);
+					appendNonO(r1, r1BandEnd, top, bot);
+					coalesce(prevBand, curBand);
 				}
 			}
 			ytop = r2y1;
@@ -319,22 +320,24 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 		coalesce(prevBand, curBand);
 		AppendRegions(r2BandEnd, r2End);
 	}
+	
 	extends = eRect();
 
-	for (int a=0; a<rects.size(); ++a)
-		extends = extends | eRect(rects[0].topLeft(), rects[rects.size()-1].bottomRight());
+	for (unsigned int a = 0; a<rects.size(); ++a)
+		extends = extends | rects[a];
 }
 	
 void gRegion::intersect(const gRegion &r1, const gRegion &r2)
 {
+		/* in case one region is empty, the resulting regions is empty, too. */
 	if (r1.rects.empty())
 	{
-		*this = r2;
+		*this = r1;
 		return;
 	}
 	if (r2.rects.empty())
 	{
-		*this = r1;
+		*this = r2;
 		return;
 	}
 	int overlap;
@@ -416,7 +419,7 @@ gRegion &gRegion::operator|=(const gRegion &r2)
 void gRegion::moveBy(ePoint offset)
 {
 	extends.moveBy(offset);
-	int i;
+	unsigned int i;
 	for (i=0; i<rects.size(); ++i)
 		rects[i].moveBy(offset);
 }

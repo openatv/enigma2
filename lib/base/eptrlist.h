@@ -59,16 +59,10 @@ public:
 	inline operator bool();
 	inline bool operator!();
 
-// added methods for autodelete implementation
-	inline void setAutoDelete(bool b);
-	inline bool isAutoDelete();
-
 // added compare struct ... to sort
 	struct less;
 private:
 	iterator cur;
-	bool autoDelete;
-
 public:
 	iterator ePtrList<T>::begin()
 	{				
@@ -122,9 +116,6 @@ public:
 	{
 	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
 	//  If current is equal to the item that was removed, current is set to the next item in the list
-		if (autoDelete && *it)
-			delete *it;                             	
-
 		if (cur == it)
 			return cur = std::list<T*>::erase(it);
 		else
@@ -377,7 +368,7 @@ public:
 /////////////////// Default Constructor /////////////////////////////
 template <class T>
 ePtrList<T>::ePtrList()
-    :cur(std::list<T*>::begin()), autoDelete(false)		
+    :cur(std::list<T*>::begin())
 {		
 
 }
@@ -385,26 +376,15 @@ ePtrList<T>::ePtrList()
 /////////////////// Copy Constructor /////////////////////////////
 template <class T>
 ePtrList<T>::ePtrList(const ePtrList& e)
-	:std::list<T*>(e), cur(e.cur), autoDelete( false )
+	:std::list<T*>(e), cur(e.cur)
 {		
-	if ( e.autoDelete )	
-		if ( e.size() )
-			eDebug("Warning !! We make a Copy of a non empty ePtrList, with autoDelete enabled"
-						 "We disable autoDelete in the new ePtrList !!");
-		else
-			autoDelete=true;
 }
 
 /////////////////// ePtrList Destructor /////////////////////////////
 template <class T>
 inline ePtrList<T>::~ePtrList()
 {
-// if autoDelete is enabled, delete is called for all elements in the list
-	if (autoDelete)
-		for (std_list_T_iterator it(std::list<T*>::begin()); it != std::list<T*>::end(); it++)
-			delete *it;
 }
-
 
 /////////////////// ePtrList sort() /////////////////////////
 template <class T>
@@ -655,22 +635,6 @@ bool ePtrList<T>::operator!()
 }
 
 template <class T>
-void ePtrList<T>::setAutoDelete(bool b)
-{
-//	switched autoDelete on or off
-// 	if autoDelete is true, than the pointer list controls the heap memory behind the pointer itself
-//	the list calls delete for the item before it removed from the list
-	autoDelete=b;	
-}
-
-template <class T>
-bool ePtrList<T>::isAutoDelete()
-{
-// returns a bool that contains the state of autoDelete
-	return autoDelete;
-}
-
-template <class T>
 class eSmartPtrList : public std::list<ePtr<T> >
 {
 public:
@@ -724,16 +688,10 @@ public:
 	inline operator bool();
 	inline bool operator!();
 
-// added methods for autodelete implementation
-	inline void setAutoDelete(bool b);
-	inline bool isAutoDelete();
-
 // added compare struct ... to sort
 	struct less;
 private:
 	iterator cur;
-	bool autoDelete;
-
 public:
 	iterator eSmartPtrList<T>::begin()
 	{				
@@ -787,8 +745,6 @@ public:
 	{
 	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
 	//  If current is equal to the item that was removed, current is set to the next item in the list
-		if (autoDelete && *it)
-			delete *it;                             	
 
 		if (cur == it)
 			return cur = std::list<ePtr<T> >::erase(it);
@@ -1042,7 +998,7 @@ public:
 /////////////////// Default Constructor /////////////////////////////
 template <class T>
 eSmartPtrList<T>::eSmartPtrList()
-    :cur(std::list<ePtr<T> >::begin()), autoDelete(false)		
+    :cur(std::list<ePtr<T> >::begin())
 {		
 
 }
@@ -1050,24 +1006,14 @@ eSmartPtrList<T>::eSmartPtrList()
 /////////////////// Copy Constructor /////////////////////////////
 template <class T>
 eSmartPtrList<T>::eSmartPtrList(const eSmartPtrList& e)
-	:std::list<ePtr<T> >(e), cur(e.cur), autoDelete( false )
+	:std::list<ePtr<T> >(e), cur(e.cur)
 {		
-	if ( e.autoDelete )	
-		if ( e.size() )
-			eDebug("Warning !! We make a Copy of a non empty eSmartPtrList, with autoDelete enabled"
-						 "We disable autoDelete in the new eSmartPtrList !!");
-		else
-			autoDelete=true;
 }
 
 /////////////////// eSmartPtrList Destructor /////////////////////////////
 template <class T>
 inline eSmartPtrList<T>::~eSmartPtrList()
 {
-// if autoDelete is enabled, delete is called for all elements in the list
-	if (autoDelete)
-		for (std_list_T_iterator it(std::list<ePtr<T> >::begin()); it != std::list<ePtr<T> >::end(); it++)
-			delete *it;
 }
 
 
@@ -1317,22 +1263,6 @@ bool eSmartPtrList<T>::operator!()
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
 	return empty();	
-}
-
-template <class T>
-void eSmartPtrList<T>::setAutoDelete(bool b)
-{
-//	switched autoDelete on or off
-// 	if autoDelete is true, than the pointer list controls the heap memory behind the pointer itself
-//	the list calls delete for the item before it removed from the list
-	autoDelete=b;	
-}
-
-template <class T>
-bool eSmartPtrList<T>::isAutoDelete()
-{
-// returns a bool that contains the state of autoDelete
-	return autoDelete;
 }
 
 #endif // _E_PTRLIST
