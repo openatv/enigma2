@@ -228,6 +228,18 @@ class MenuList(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 	
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+	
 	def GUIcreateInstance(self, priv, parent, skindata):
 		g = eListbox(parent)
+		# BIG BIG HACK. :( we have to ensure that the eListboxPythonStringContent doesn't get destroyed.
+		# we really have to take a look at the GC stuff
+		self.l = eListboxPythonStringContent()
+		self.l.setList(["Test Object 1", "Item #2", "Item #3", "nun kommt eine Zahl:", 15, "Bla fasel", "lulabla"])
+		g.setContent(self.l)
 		return g
+	
+	def GUIdeleteInstance(self, g):
+		g.setContent(None)
+		del self.l

@@ -7,6 +7,8 @@
 class iListboxContent: public iObject
 {
 public:
+	virtual ~iListboxContent()=0;
+	
 		/* indices go from 0 to size().
 		   the end is reached when the cursor is on size(), 
 		   i.e. one after the last entry (this mimics 
@@ -61,6 +63,5 @@ private:
 	int m_items_per_page;
 	ePtr<iListboxContent> m_content;
 };
-
 
 #endif

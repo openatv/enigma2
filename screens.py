@@ -14,10 +14,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 # a test dialog
 class testDialog(Screen):
 	def testDialogClick(self):
-		if self.tries == 0:
-			self["title"].setText("Hihi - no, this doesn't work!")
-		else:
-			self["title"].setText("You tried it %d times without success now!" % self.tries )
+		self["title"].setText(self["menu"].getCurrent())
 
 		self.tries += 1
 
