@@ -1,5 +1,7 @@
 #include <lib/driver/rcinput.h>
 
+#include <lib/base/eerror.h>
+
 #include <sys/ioctl.h>
 #include <linux/input.h>
 #include <sys/stat.h>

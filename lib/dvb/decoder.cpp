@@ -1,3 +1,4 @@
+#include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
 #include <linux/dvb/audio.h>
 #include <linux/dvb/video.h>

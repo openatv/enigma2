@@ -74,7 +74,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 		if (!(strcmp(e->d_name, ".") && strcmp(e->d_name, "..")))
 			continue;
 		
-		eString filename;
+		std::string filename;
 		
 		filename = path;
 		filename += e->d_name;

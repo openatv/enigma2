@@ -4,13 +4,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <lib/base/estring.h>
+#include <string>
 
 // #include <lib/gui/emessage.h>
 
 int infatal=0;
 
-Signal2<void, int, const eString&> logOutput;
+Signal2<void, int, const std::string&> logOutput;
 int logOutputConsole=1;
 
 void eFatal(const char* fmt, ...)
@@ -43,7 +43,7 @@ void eDebug(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	logOutput(lvlDebug, eString(buf) + "\n");
+	logOutput(lvlDebug, std::string(buf) + "\n");
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
 }
@@ -67,7 +67,7 @@ void eWarning(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	logOutput(lvlWarning, eString(buf) + "\n");
+	logOutput(lvlWarning, std::string(buf) + "\n");
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
 }

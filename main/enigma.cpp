@@ -17,6 +17,8 @@
 
 #include <lib/gui/ewindow.h>
 
+#include <lib/python/python.h>
+
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -50,10 +52,12 @@ int main()
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
-
 	eInit init;
-
+	
 	init.setRunlevel(eAutoInitNumbers::main);
+
+		// gui stuff
+#if 0
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
 #if 1
@@ -164,5 +168,13 @@ int main()
 //	dumpRegion(dsk.m_dirty_region);
 	dsk.paint();
 	
+
+#endif
+
+	ePython python;
+	
+	printf("about to execute TEST :)\n");
+	python.execute("mytest", "test");
+
 	return 0;
 }

@@ -7,22 +7,6 @@
 template<class T>
 class ePtr
 {
-		/* read doc/iObject about the ePtrHelper */
-	template<class T1>
-	class ePtrHelper
-	{
-		T1 *m_obj;
-	public:
-		inline ePtrHelper(T1 *obj): m_obj(obj)
-		{
-			m_obj->AddRef();
-		}
-		inline ~ePtrHelper()
-		{
-			m_obj->Release();
-		}
-		inline T1* operator->() { return m_obj; }
-	};
 protected:
 	T *ptr;
 public:
@@ -69,15 +53,62 @@ public:
 	
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
 	T* &ptrref() { assert(!ptr); return ptr; }
+	T* operator->() const { assert(ptr); return ptr; }
+	operator T*() const { return this->ptr; }
+};
+
+
+
+#ifndef SWIG
+template<class T>
+class eMutablePtr: public ePtr<T>
+{
+		/* read doc/iObject about the ePtrHelper */
+	template<class T1>
+	class ePtrHelper
+	{
+		T1 *m_obj;
+	public:
+		inline ePtrHelper(T1 *obj): m_obj(obj)
+		{
+			m_obj->AddRef();
+		}
+		inline ~ePtrHelper()
+		{
+			m_obj->Release();
+		}
+		inline T1* operator->() { return m_obj; }
+	};
+protected:
+	T *ptr;
+public:
+	eMutablePtr(): ePtr<T>(0)
+	{
+	}
+	
+	eMutablePtr(T *c): ePtr<T>(c)
+	{
+	}
+
+	eMutablePtr(const eMutablePtr &c): ePtr<T>(c)
+	{
+	}
+	
+	eMutablePtr &operator=(T *c)
+	{
+		ePtr<T>::operator=(c);
+		return *this;
+	}
+	
+	
 	ePtrHelper<T> operator->() { assert(ptr); return ePtrHelper<T>(ptr); }
 
 			/* for const objects, we don't need the helper, as they can't */
 			/* be changed outside the program flow. at least this is */
 			/* what the compiler assumes, so in case you're using const */
-			/* ePtrs note that they have to be const. */
+			/* eMutablePtrs note that they have to be const. */
 	const T* operator->() const { assert(ptr); return ptr; }
-	operator T*() const { return this->ptr; }
 };
-
+#endif
 
 #endif

@@ -2,7 +2,7 @@
 #define __gpixmap_h
 
 #include <pthread.h>
-#include <lib/base/estring.h>
+#include <string>
 #include <lib/base/object.h>
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
@@ -92,7 +92,7 @@ class gFont: public iObject
 DECLARE_REF;
 public:
 
-	eString family;
+	std::string family;
 	int pointSize;
 	
 	/**
@@ -100,7 +100,7 @@ public:
 	 * \param family The name of the font, for example "NimbusSansL-Regular Sans L Regular".
 	 * \param pointSize the size of the font in PIXELS.
 	 */
-	gFont(const eString &family, int pointSize):
+	gFont(const std::string &family, int pointSize):
 			family(family), pointSize(pointSize)
 	{
 	}

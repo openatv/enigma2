@@ -20,18 +20,18 @@ class eHTTPFilePathResolver: public eHTTPPathResolver
 {
 	struct eHTTPFilePath
 	{
-		eString path;
-		eString root;
+		std::string path;
+		std::string root;
 		int authorized; // must be authorized (1 means read, 2 write)
-		eHTTPFilePath(eString path, eString root, int authorized): path(path), root(root), authorized(authorized)
+		eHTTPFilePath(std::string path, std::string root, int authorized): path(path), root(root), authorized(authorized)
 		{
 		}
 	};
 	ePtrList<eHTTPFilePath> translate;
 public:
 	eHTTPFilePathResolver();
-	eHTTPDataSource *getDataSource(eString request, eString path, eHTTPConnection *conn);
-	void addTranslation(eString path, eString root, int auth);
+	eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn);
+	void addTranslation(std::string path, std::string root, int auth);
 };
 
 #endif

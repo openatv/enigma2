@@ -6,7 +6,7 @@
 
 #include <lib/base/ebase.h>
 #include <libsig_comp.h>
-#include <lib/base/estring.h>
+#include <string>
 
 class eRCInput;
 class eRCDriver;
@@ -22,7 +22,7 @@ class eRCDevice: public Object
 protected:
 	eRCInput *input;
 	eRCDriver *driver;
-	eString id;
+	std::string id;
 public:
 	/**
 	 * \brief Constructs a new remote control.
@@ -30,7 +30,7 @@ public:
 	 * \param id The identifier of the RC, for use in settings.
 	 * \param input The \ref eRCDriver where this remote gets its codes from.
 	 */
-	eRCDevice(eString id, eRCDriver *input);
+	eRCDevice(std::string id, eRCDriver *input);
 	~eRCDevice();
 	/**
 	 * \brief Handles a device specific code.
@@ -45,7 +45,7 @@ public:
 	 * \result The description.
 	 */
 	virtual const char *getDescription() const=0;
-	const eString getIdentifier() const { return id; }
+	const std::string getIdentifier() const { return id; }
 	/**
 	 * \brief Get a description for a specific key.
 	 * \param key The key to get the description for.
@@ -116,7 +116,7 @@ protected:
 	eSocketNotifier *sn;
 	void keyPressed(int);
 public:
-	eString getDeviceName();
+	std::string getDeviceName();
 	eRCInputEventDriver(const char *filename);
 	~eRCInputEventDriver();
 };
@@ -179,13 +179,13 @@ class eRCInput: public Object
 public:
 	struct lstr
 	{
-		bool operator()(const eString &a, const eString &b) const
+		bool operator()(const std::string &a, const std::string &b) const
 		{
 			return a<b;
 		}
 	};
 protected:
-	std::map<eString,eRCDevice*,lstr> devices;
+	std::map<std::string,eRCDevice*,lstr> devices;
 public:
 	Signal1<void, const eRCKey&> keyEvent;
 	enum
@@ -213,10 +213,10 @@ public:
 		/*emit*/ keyEvent(key);
 	}
 	
-	void addDevice(const eString &id, eRCDevice *dev);
-	void removeDevice(const eString &id);
-	eRCDevice *getDevice(const eString &id);
-	std::map<eString,eRCDevice*,lstr> &getDevices();
+	void addDevice(const std::string &id, eRCDevice *dev);
+	void removeDevice(const std::string &id);
+	eRCDevice *getDevice(const std::string &id);
+	std::map<std::string,eRCDevice*,lstr> &getDevices();
 	
 	static eRCInput *getInstance() { return instance; }
 	

@@ -64,7 +64,7 @@ eHTTPFilePathResolver::eHTTPFilePathResolver()
 
 static char _base64[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-static int unbase64(eString &dst, const eString string)
+static int unbase64(std::string &dst, const std::string string)
 {
 	dst="";
 	char c[4];
@@ -124,21 +124,21 @@ int CheckUnixPassword(const char *user, const char *pass)
 	return !!strcmp(cres, cpwd);
 }
 
-static int checkAuth(const eString cauth)
+static int checkAuth(const std::string cauth)
 {
-	eString auth;
-	if (cauth.left(6) != "Basic ")
+	std::string auth;
+	if (cauth.substr(0, 6) != "Basic ")
 		return -1;
-	if (unbase64(auth, cauth.mid(6)))
+	if (unbase64(auth, cauth.substr(6)))
 		return -1;
-	eString username=auth.left(auth.find(":"));
-	eString password=auth.mid(auth.find(":")+1);
+	std::string username=auth.substr(0, auth.find(":"));
+	std::string password=auth.substr(auth.find(":")+1);
 	if (CheckUnixPassword(username.c_str(), password.c_str()))
 		return -1;
 	return 0;
 }
 
-eHTTPDataSource *eHTTPFilePathResolver::getDataSource(eString request, eString path, eHTTPConnection *conn)
+eHTTPDataSource *eHTTPFilePathResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
 {
 	int method;
 	eDebug("request = %s, path = %s", request.c_str(), path.c_str());
@@ -148,7 +148,7 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(eString request, eString p
 		method=eHTTPFile::methodPUT;
 	else
 		return new eHTTPError(conn, 405); // method not allowed
-	if (path.find("../")!=eString::npos)		// evil hax0r
+	if (path.find("../")!=std::string::npos)		// evil hax0r
 		return new eHTTPError(conn, 403);
 	if (path[0] != '/')		// prepend '/'
 		path.insert(0,"/");
@@ -158,11 +158,11 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(eString request, eString p
 	eHTTPDataSource *data=0;
 	for (ePtrList<eHTTPFilePath>::iterator i(translate); i != translate.end(); ++i)
 	{
-		if (i->root==path.left(i->root.length()))
+		if (i->root==path.substr(0, i->root.length()))
 		{
-			eString newpath=i->path+path.mid(i->root.length());
+			std::string newpath=i->path+path.substr(i->root.length());
 			if (newpath.find('?'))
-				newpath=newpath.left(newpath.find('?'));
+				newpath=newpath.substr(0, newpath.find('?'));
 			eDebug("translated %s to %s", path.c_str(), newpath.c_str());
 
 			if (i->authorized & ((method==eHTTPFile::methodGET)?1:2))
@@ -194,7 +194,7 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(eString request, eString p
 				break;
 			}
 			
-			eString ext=path.mid(path.rfind('.'));
+			std::string ext=path.substr(path.rfind('.'));
 			const char *mime="text/unknown";
 			if ((ext==".html") || (ext==".htm"))
 				mime="text/html";
@@ -218,7 +218,7 @@ eHTTPDataSource *eHTTPFilePathResolver::getDataSource(eString request, eString p
 	return data;
 }
 
-void eHTTPFilePathResolver::addTranslation(eString path, eString root, int authorized)
+void eHTTPFilePathResolver::addTranslation(std::string path, std::string root, int authorized)
 {
 	if (path[path.length()-1]!='/')
 		path+='/';

@@ -43,16 +43,16 @@ void eSocket::inject(const char *data, int len)
 		readyRead_();
 }
 
-eString eSocket::readLine()
+std::string eSocket::readLine()
 {
 	int size=readbuffer.searchchr('\n');
 	if (size == -1)
-		return eString();
+		return std::string();
 	size++; // ich will auch das \n
 	char buffer[size+1];
 	buffer[size]=0;
 	readbuffer.read(buffer, size);
-	return eString(buffer);
+	return std::string(buffer);
 }
 
 bool eSocket::canReadLine()
@@ -225,7 +225,7 @@ int eSocket::getDescriptor()
 	return socketdesc;
 }
 
-int eSocket::connectToHost(eString hostname, int port)
+int eSocket::connectToHost(std::string hostname, int port)
 {
 	struct hostent *server;
 	int res;

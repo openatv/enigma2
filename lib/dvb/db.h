@@ -9,8 +9,8 @@ class eDVBService: public iObject
 	DECLARE_REF;
 public:
 	eDVBService();
-	eString m_service_name;
-	eString m_provider_name;
+	std::string m_service_name;
+	std::string m_provider_name;
 	
 	int m_flags;
 	std::set<int> m_ca;

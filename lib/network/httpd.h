@@ -6,7 +6,7 @@
 
 #include <lib/base/eptrlist.h>
 #include <lib/base/ebase.h>
-#include <lib/base/estring.h>
+#include <string>
 #include <lib/base/eerror.h>
 #include <lib/network/socket.h>
 #include <lib/network/serversocket.h>
@@ -19,7 +19,7 @@ class eHTTPPathResolver
 {
 public:
 	virtual ~eHTTPPathResolver() {}; 
-	virtual eHTTPDataSource *getDataSource(eString request, eString path, eHTTPConnection *conn)=0;
+	virtual eHTTPDataSource *getDataSource(std::string request, std::string path, eHTTPConnection *conn)=0;
 };
 
 class eHTTPDataSource
@@ -47,7 +47,7 @@ class eHTTPConnection: public eSocket
 {
 	void doError(int error);
 	
-	int getLine(eString &line);
+	int getLine(std::string &line);
 	
 	int processLocalState();
 	int processRemoteState();
@@ -93,13 +93,13 @@ public:
 	~eHTTPConnection();
 	
 		// stateRequest
-	eString request, requestpath, httpversion;
+	std::string request, requestpath, httpversion;
 	int is09;
 	
 		// stateResponse
 	
 	int code;
-	eString code_descr;
+	std::string code_descr;
 	
 	std::map<std::string,std::string> remote_header, local_header;
 	

@@ -1,8 +1,10 @@
+#include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 
-eServiceReference::eServiceReference(const eString &string)
+eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c=string.c_str();
 	int pathl=-1;
@@ -18,13 +20,16 @@ eServiceReference::eServiceReference(const eString &string)
 		path=c+pathl;
 }
 
-eString eServiceReference::toString() const
+std::string eServiceReference::toString() const
 {
-	eString ret;
-	ret+=eString().sprintf("%d:", type);
-	ret+=eString().sprintf("%d", flags);
+	std::string ret;
+	ret += getNum(type);
+	ret += ":";
+	ret += getNum(flags);
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
-		ret+=":"+eString().sprintf("%x", data[i]);
+	{
+		ret+=":"+ getNum(data[i], 0x10);
+	}
 	ret+=":"+path;
 	return ret;
 }

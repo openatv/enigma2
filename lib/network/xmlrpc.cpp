@@ -1,9 +1,10 @@
 #ifndef DISABLE_NETWORK
 
 #include <lib/network/xmlrpc.h>
+#include <lib/base/estring.h>
 
 
-static std::map<eString, int (*)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&)> rpcproc;
+static std::map<std::string, int (*)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&)> rpcproc;
 
 void eXMLRPCVariant::zero()
 {
@@ -17,7 +18,7 @@ void eXMLRPCVariant::zero()
 //	_base64=0;
 }
 
-eXMLRPCVariant::eXMLRPCVariant(std::map<eString,eXMLRPCVariant*> *__struct)
+eXMLRPCVariant::eXMLRPCVariant(std::map<std::string,eXMLRPCVariant*> *__struct)
 {
 	zero();
 	_struct=__struct;
@@ -41,7 +42,7 @@ eXMLRPCVariant::eXMLRPCVariant(bool *__boolean)
 	_boolean=__boolean;
 }
 
-eXMLRPCVariant::eXMLRPCVariant(eString *__string)
+eXMLRPCVariant::eXMLRPCVariant(std::string *__string)
 {
 	zero();
 	_string=__string;
@@ -73,15 +74,15 @@ eXMLRPCVariant::eXMLRPCVariant(const eXMLRPCVariant &c)
 	if (c._boolean)
 		_boolean=new bool(*c._boolean);
 	if (c._string)
-		_string=new eString(*c._string);
+		_string=new std::string(*c._string);
 	if (c._double)
 		_double=new double(*c._double);
 	// datetime, base64
 	if (c._struct)
 	{
-		_struct=new std::map<eString,eXMLRPCVariant*>;
-		for (std::map<eString,eXMLRPCVariant*>::iterator b(c._struct->begin()); b != c._struct->end(); ++b)
-			_struct->insert(std::pair<eString,eXMLRPCVariant*>(b->first, new eXMLRPCVariant(*b->second)));
+		_struct=new std::map<std::string,eXMLRPCVariant*>;
+		for (std::map<std::string,eXMLRPCVariant*>::iterator b(c._struct->begin()); b != c._struct->end(); ++b)
+			_struct->insert(std::pair<std::string,eXMLRPCVariant*>(b->first, new eXMLRPCVariant(*b->second)));
 	}
 	if (c._array)
 		_array = new std::vector<eXMLRPCVariant>(*c._array);
@@ -91,7 +92,7 @@ eXMLRPCVariant::~eXMLRPCVariant()
 {
 	if (_struct)
 	{
-		for (std::map<eString,eXMLRPCVariant*>::iterator i(_struct->begin()); i != _struct->end(); ++i)
+		for (std::map<std::string,eXMLRPCVariant*>::iterator i(_struct->begin()); i != _struct->end(); ++i)
 			delete i->second;
 
 		delete _struct;
@@ -112,7 +113,7 @@ eXMLRPCVariant::~eXMLRPCVariant()
 		delete _base64;*/
 }
 
-std::map<eString,eXMLRPCVariant*> *eXMLRPCVariant::getStruct()
+std::map<std::string,eXMLRPCVariant*> *eXMLRPCVariant::getStruct()
 {
 	return _struct;
 }
@@ -132,7 +133,7 @@ bool *eXMLRPCVariant::getBoolean()
 	return _boolean;
 }
 
-eString *eXMLRPCVariant::getString()
+std::string *eXMLRPCVariant::getString()
 {
 	return _string;
 }
@@ -152,61 +153,62 @@ double *eXMLRPCVariant::getDouble()
 	return _base64;
 } */
 
-void eXMLRPCVariant::toXML(eString &result)
+void eXMLRPCVariant::toXML(std::string &result)
 {
 	if (getArray())
 	{
-		static eString s1("<value><array><data>");
+		static std::string s1("<value><array><data>");
 		result+=s1;
 		for (unsigned int i=0; i<getArray()->size(); i++)
 		{
-			static eString s("  ");
+			static std::string s("  ");
 			result+=s;
 			(*getArray())[i].toXML(result);
-			static eString s1("\n");
+			static std::string s1("\n");
 			result+=s1;
 		}
-		static eString s2("</data></array></value>\n");
+		static std::string s2("</data></array></value>\n");
 		result+=s2;
 	} else if (getStruct())
 	{
-		static eString s1("<value><struct>");
+		static std::string s1("<value><struct>");
 		result+=s1;
-		for (std::map<eString,eXMLRPCVariant*>::iterator i(_struct->begin()); i != _struct->end(); ++i)
+		for (std::map<std::string,eXMLRPCVariant*>::iterator i(_struct->begin()); i != _struct->end(); ++i)
 		{
-			static eString s1("  <member><name>");
+			static std::string s1("  <member><name>");
 			result+=s1;
 			result+=i->first;
-			static eString s2("</name>");
+			static std::string s2("</name>");
 			result+=s2;
 			i->second->toXML(result);
-			static eString s3("</member>\n");
+			static std::string s3("</member>\n");
 			result+=s3;
 		}
-		static eString s2("</struct></value>\n");
+		static std::string s2("</struct></value>\n");
 		result+=s2;
 	} else if (getI4())
 	{
-		static eString s1("<value><i4>");
+		static std::string s1("<value><i4>");
 		result+=s1;
-		result+=eString().setNum(*getI4());
-		static eString s2("</i4></value>");
+		result+=getNum(*getI4());
+		static std::string s2("</i4></value>");
 		result+=s2;
 	} else if (getBoolean())
 	{
-		static eString s0("<value><boolean>0</boolean></value>");
-		static eString s1("<value><boolean>1</boolean></value>");
+		static std::string s0("<value><boolean>0</boolean></value>");
+		static std::string s1("<value><boolean>1</boolean></value>");
 		result+=(*getBoolean())?s1:s0;
 	} else if (getString())
 	{
-		static eString s1("<value><string>");
-		static eString s2("</string></value>");
+		static std::string s1("<value><string>");
+		static std::string s2("</string></value>");
 		result+=s1;
 		result+=*getString();
 		result+=s2;
 	} else if (getDouble())
 	{
-		result+=eString().sprintf("<value><double>%lf</double></value>", *getDouble());
+//		result+=std::string().sprintf("<value><double>%lf</double></value>", *getDouble());
+#warning double support removed
 	}	else
 		eFatal("couldn't append");
 }
@@ -224,11 +226,11 @@ static eXMLRPCVariant *fromXML(XMLTreeNode *n)
 	else if (!strcmp(n->GetType(), "boolean"))
 		return new eXMLRPCVariant(new bool(atoi(data)));
 	else if (!strcmp(n->GetType(), "string"))
-		return new eXMLRPCVariant(new eString(data));
+		return new eXMLRPCVariant(new std::string(data));
 	else if (!strcmp(n->GetType(), "double"))
 		return new eXMLRPCVariant(new double(atof(data)));
 	else if (!strcmp(n->GetType(), "struct")) {
-		std::map<eString,eXMLRPCVariant*> *s=new std::map<eString,eXMLRPCVariant*>;
+		std::map<std::string,eXMLRPCVariant*> *s=new std::map<std::string,eXMLRPCVariant*>;
 		for (n=n->GetChild(); n; n=n->GetNext())
 		{
 			if (strcmp(data, "member"))
@@ -236,12 +238,12 @@ static eXMLRPCVariant *fromXML(XMLTreeNode *n)
 				delete s;
 				return 0;
 			}
-			eString name=0;
+			std::string name=0;
 			eXMLRPCVariant *value;
 			for (XMLTreeNode *v=n->GetChild(); v; v=v->GetNext())
 			{
 				if (!strcmp(v->GetType(), "name"))
-					name=eString(v->GetData());
+					name=std::string(v->GetData());
 				else if (!strcmp(v->GetType(), "value"))
 					value=fromXML(v);
 			}
@@ -292,7 +294,7 @@ int eXMLRPCResponse::doCall()
 	eDebug("doing call");
 	result="";
 		// get method name
-	eString methodName=0;
+	std::string methodName=0;
 	
 	if (connection->remote_header["Content-Type"]!="text/xml")
 	{
@@ -319,7 +321,7 @@ int eXMLRPCResponse::doCall()
 	for (XMLTreeNode *c=methodCall->GetChild(); c; c=c->GetNext())
 	{
 		if (!strcmp(c->GetType(), "methodName"))
-			methodName=eString(c->GetData());
+			methodName=std::string(c->GetData());
 		else if (!strcmp(c->GetType(), "params"))
 		{
 			for (XMLTreeNode *p=c->GetChild(); p; p=p->GetNext())
@@ -441,24 +443,24 @@ void xmlrpc_initialize(eHTTPD *httpd)
 	httpd->addResolver(new eHTTPXMLRPCResolver);
 }
 
-void xmlrpc_addMethod(eString methodName, int (*proc)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&))
+void xmlrpc_addMethod(std::string methodName, int (*proc)(std::vector<eXMLRPCVariant>&, ePtrList<eXMLRPCVariant>&))
 {
 	rpcproc[methodName]=proc;
 }
 
-void xmlrpc_fault(ePtrList<eXMLRPCVariant> &res, int faultCode, eString faultString)
+void xmlrpc_fault(ePtrList<eXMLRPCVariant> &res, int faultCode, std::string faultString)
 {
-	std::map<eString,eXMLRPCVariant*> *s=new std::map<eString,eXMLRPCVariant*>;
+	std::map<std::string,eXMLRPCVariant*> *s=new std::map<std::string,eXMLRPCVariant*>;
 	s->INSERT("faultCode", new eXMLRPCVariant(new __s32(faultCode)));
-	s->INSERT("faultString", new eXMLRPCVariant(new eString(faultString)));
+	s->INSERT("faultString", new eXMLRPCVariant(new std::string(faultString)));
 	res.push_back(new eXMLRPCVariant(s));
 }
 
-int xmlrpc_checkArgs(eString args, std::vector<eXMLRPCVariant> &parm, ePtrList<eXMLRPCVariant> &res)
+int xmlrpc_checkArgs(std::string args, std::vector<eXMLRPCVariant> &parm, ePtrList<eXMLRPCVariant> &res)
 {
 	if (parm.size() != args.length())
 	{
-	 	xmlrpc_fault(res, -500, eString().sprintf("parameter count mismatch (found %d, expected %d)", parm.size(), args.length()));
+	 	xmlrpc_fault(res, -500, std::string().sprintf("parameter count mismatch (found %d, expected %d)", parm.size(), args.length()));
 		return 1;
 	}
 	
@@ -499,7 +501,7 @@ int xmlrpc_checkArgs(eString args, std::vector<eXMLRPCVariant> &parm, ePtrList<e
 				continue;
 			break;
 		}
-		xmlrpc_fault(res, -501, eString().sprintf("parameter type mismatch, expected %c as #%d", args[i], i));
+		xmlrpc_fault(res, -501, std::string().sprintf("parameter type mismatch, expected %c as #%d", args[i], i));
 		return 1;
 	}
 	return 0;
@@ -509,7 +511,7 @@ eHTTPXMLRPCResolver::eHTTPXMLRPCResolver()
 {
 }
 
-eHTTPDataSource *eHTTPXMLRPCResolver::getDataSource(eString request, eString path, eHTTPConnection *conn)
+eHTTPDataSource *eHTTPXMLRPCResolver::getDataSource(std::string request, std::string path, eHTTPConnection *conn)
 {
 	if ((path=="/RPC2") && (request=="POST"))
 		return new eXMLRPCResponse(conn);

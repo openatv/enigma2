@@ -45,7 +45,7 @@ public:
 	RESULT getIServiceInformation(ePtr<iServiceInformation> &ptr);
 	
 		// iServiceInformation
-	RESULT getName(eString &name);
+	RESULT getName(std::string &name);
 };
 
 #endif

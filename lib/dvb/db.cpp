@@ -126,7 +126,7 @@ eDVBDB::eDVBDB()
 		if (strlen(line))
 			line[strlen(line)-1]=0;
 
-		eString str=line;
+		std::string str=line;
 
 		if (str[1]!=':')	// old ... (only service_provider)
 		{
@@ -136,15 +136,15 @@ eDVBDB::eDVBDB()
 			{
 				unsigned int c=str.find(',');
 				char p=str[0];
-				eString v;
-				if (c == eString::npos)
+				std::string v;
+				if (c == std::string::npos)
 				{
-					v=str.mid(2);
+					v=str.substr(2);
 					str="";
 				} else
 				{
-					v=str.mid(2, c-2);
-					str=str.mid(c+1);
+					v=str.substr(2, c-2);
+					str=str.substr(c+1);
 				}
 //				eDebug("%c ... %s", p, v.c_str());
 				if (p == 'p')

@@ -40,7 +40,7 @@ int eRCDevice::getKeyCompatibleCode(const eRCKey &) const
 	return -1;
 }
 
-eRCDevice::eRCDevice(eString id, eRCDriver *driver): driver(driver), id(id)
+eRCDevice::eRCDevice(std::string id, eRCDriver *driver): driver(driver), id(id)
 {
 	input=driver->getInput();
 	driver->addCodeListener(this);
@@ -127,7 +127,7 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 	}
 }
 
-eString eRCInputEventDriver::getDeviceName()
+std::string eRCInputEventDriver::getDeviceName()
 {
 	char name[128]="";
 	if (handle >= 0)
@@ -214,30 +214,30 @@ void eRCInput::setFile(int newh)
 	handle=newh;
 }
 
-void eRCInput::addDevice(const eString &id, eRCDevice *dev)
+void eRCInput::addDevice(const std::string &id, eRCDevice *dev)
 {
-	devices.insert(std::pair<eString,eRCDevice*>(id, dev));
+	devices.insert(std::pair<std::string,eRCDevice*>(id, dev));
 }
 
-void eRCInput::removeDevice(const eString &id)
+void eRCInput::removeDevice(const std::string &id)
 {
 	devices.erase(id);
 }
 
-eRCDevice *eRCInput::getDevice(const eString &id)
+eRCDevice *eRCInput::getDevice(const std::string &id)
 {
-	std::map<eString,eRCDevice*>::iterator i=devices.find(id);
+	std::map<std::string,eRCDevice*>::iterator i=devices.find(id);
 	if (i == devices.end())
 	{
 		eDebug("failed, possible choices are:");
-		for (std::map<eString,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)	
+		for (std::map<std::string,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)	
 			eDebug("%s", i->first.c_str());
 		return 0;
 	}
 	return i->second;
 }
 
-std::map<eString,eRCDevice*,eRCInput::lstr> &eRCInput::getDevices()
+std::map<std::string,eRCDevice*,eRCInput::lstr> &eRCInput::getDevices()
 {
 	return devices;
 }

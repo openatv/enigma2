@@ -1,27 +1,12 @@
-#include <lib/base/estring.h>
+#include <string>
 #include <ctype.h>
 #include <limits.h>
 #include <lib/base/elock.h>
+#include <lib/base/eerror.h>
 
 static pthread_mutex_t lock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
-///////////////////////////////////////// eString sprintf /////////////////////////////////////////////////
-eString& eString::sprintf(char *fmt, ...)
-{
-	singleLock s(lock);
-// Implements the normal sprintf method, to use format strings with eString
-// The max length of the result string is 1024 char.
-	static char buf[1024];
-	va_list ap;
-	va_start(ap, fmt);
-	std::vsnprintf(buf, 1024, fmt, ap);
-	va_end(ap);
-	assign(buf);
-	return *this;
-}
-
-///////////////////////////////////////// eString setNum(uint, uint) ///////////////////////////////////////
-eString& eString::setNum(int val, int sys)
+std::string getNum(int val, int sys)
 {
 //	Returns a string that contain the value val as string
 //	if sys == 16 than hexadezimal if sys == 10 than decimal
@@ -32,91 +17,9 @@ eString& eString::setNum(int val, int sys)
 	else if (sys == 16)
 		std::snprintf(buf, 12, "%X", val);		
 	
-	assign(buf);
-	return *this;
-}
-
-///////////////////////////////////////// eString replaceChars(char, char) /////////////////////////////
-eString& eString::removeChars(char fchar)
-{
-//	Remove all chars that equal to fchar, and returns a reference to itself
-	unsigned int index=0;
-
-	while ( ( index = find(fchar, index) ) != npos )
-		erase(index, 1);
-
-	return *this;
-}
-
-/////////////////////////////////////// eString upper() ////////////////////////////////////////////////
-eString& eString::upper()
-{
-//	convert all lowercase characters to uppercase, and returns a reference to itself
-	for (iterator it = begin(); it != end(); it++)
-		switch(*it)
-		{
-			case 'a' ... 'z' :
-				*it -= 32;
-			break;
-
-			case 'ä' :
-				*it = 'Ä';
-			break;
-			
-			case 'ü' :
-				*it = 'Ü';
-			break;
-			
-			case 'ö' :
-				*it = 'Ö';
-			break;
-		}
-
-	return *this;
-}
-
-eString& eString::strReplace(const char* fstr, const eString& rstr)
-{
-//	replace all occurrence of fstr with rstr and, and returns a reference to itself
-	unsigned int index=0;
-	unsigned int fstrlen = strlen(fstr);
-	int rstrlen=rstr.size();
-
-	while ( ( index = find(fstr, index) ) != npos )
-	{
-		replace(index, fstrlen, rstr);
-		index+=rstrlen;
-	}
-	
-	return *this;
-}
-
-int strnicmp(const char *s1, const char *s2, int len)
-{
-//	makes a case insensitive string compare with len Chars
-	while ( *s1 && *s2 && len-- )
-		if ( tolower(*s1) != tolower(*s2) )
-			return tolower(*s1) < tolower(*s2) ? -1 : 1;
-		else
-			s1++, s2++;
-
-	return 0;
-}
-
-/////////////////////////////////////// eString icompare(const eString&) ////////////////////////////////////////////////
-int eString::icompare(const eString& s)
-{
-//	makes a case insensitive string compare
-	std::string::const_iterator p = begin(),
-															p2 = s.begin();
-
-	while ( p != end() && p2 != s.end() )
-		if ( tolower(*p) != tolower(*p2) )
-			return tolower(*p) < tolower(*p2) ? -1 : 1;
-		else
-			p++, p2++;
-
-	return length() == s.length() ? 0 : length() < s.length() ? -1 : 1;
+	std::string res;
+	res.assign(buf);
+	return res;
 }
 
 		// 8859-x to dvb coding tables. taken from www.unicode.org/Public/MAPPINGS/ISO8859/
@@ -278,7 +181,7 @@ static inline unsigned int recode(unsigned char d, int cp)
 	}
 }
 
-eString convertDVBUTF8(unsigned char *data, int len, int table)
+std::string convertDVBUTF8(unsigned char *data, int len, int table)
 {
 	int i;
 	if (!len)
@@ -349,12 +252,12 @@ eString convertDVBUTF8(unsigned char *data, int len, int table)
 	}
 	if ( t != bytesneeded)
 		eFatal("t: %d, bytesneeded: %d", t, bytesneeded);
-	return eString().assign((char*)res, t);
+	return std::string().assign((char*)res, t);
 }
 
-eString convertUTF8DVB(const eString &string)
+std::string convertUTF8DVB(const std::string &string)
 {
-	eString ss=eString();
+	std::string ss=std::string();
 	
 	int len=string.length();
 	for(int i=0;i<len;i++){
@@ -383,7 +286,7 @@ eString convertUTF8DVB(const eString &string)
 	return ss;
 }
 
-eString convertLatin1UTF8(const eString &string)
+std::string convertLatin1UTF8(const std::string &string)
 {
 	unsigned int bytesneeded=0, t=0, i;
 	
@@ -432,10 +335,10 @@ eString convertLatin1UTF8(const eString &string)
 	}
 	if ( t != bytesneeded)
 		eFatal("t: %d, bytesneeded: %d", t, bytesneeded);
-	return eString().assign((char*)res, t);
+	return std::string().assign((char*)res, t);
 }
 
-int isUTF8(const eString &string)
+int isUTF8(const std::string &string)
 {
 	unsigned int len=string.size();
 	
