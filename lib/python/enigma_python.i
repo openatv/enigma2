@@ -53,6 +53,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/python/connections.h>
 
 extern void runMainloop();
+
+extern PSignal1<void,int> &keyPressedSignal();
 %}
 
 #define DEBUG
@@ -127,3 +129,5 @@ public:
 /**************  debug  **************/
 
 void runMainloop();
+%immutable keyPressed;
+PSignal1<void,int> &keyPressedSignal();
