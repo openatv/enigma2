@@ -75,20 +75,20 @@ class Session:
 		if self.currentDialog.isTmp:
 			self.currentDialog.doClose()
 		
-			dump(self.currentDialog)
 			print sys.getrefcount(self.currentDialog)
+			del self.currentDialog.instance
+			dump(self.currentDialog)
 			del self.currentDialog
-			del self.currentWindow
 		
 		self.popCurrent()
 			
 	def execBegin(self):
 			self.currentDialog.execBegin()
-			self.currentWindow.show()
+			self.currentDialog.instance.show()
 		
 	def execEnd(self):
 			self.currentDialog.execEnd()
-			self.currentWindow.hide()
+			self.currentDialog.instance.hide()
 	
 	def create(self, screen, arguments):
 		# creates an instance of 'screen' (which is a class)
@@ -97,35 +97,35 @@ class Session:
 	def instantiateDialog(self, screen, *arguments):
 		dlg = self.create(screen, arguments)
 		assert self.desktop != None
-		wnd = eWindow(self.desktop)
+		dlg.instance = eWindow(self.desktop)
 
 		gui = GUIOutputDevice()
-		gui.parent = wnd
+		gui.parent = dlg.instance
 		gui.create(dlg)
 
-		applyGUIskin(dlg, wnd, None, dlg.skinName)
+		applyGUIskin(dlg, None, dlg.skinName)
 	 	
-		return (dlg, wnd)
+		return dlg
 	 
 	def pushCurrent(self):
 		if self.currentDialog:
-			self.dialogStack.append((self.currentDialog, self.currentWindow))
+			self.dialogStack.append(self.currentDialog)
 			self.execEnd()
 	
 	def popCurrent(self):
 		if len(self.dialogStack):
-			(self.currentDialog, self.currentWindow) = self.dialogStack.pop()
+			self.currentDialog = self.dialogStack.pop()
 			self.execBegin()
 	
 	def execDialog(self, dialog):
 		self.pushCurrent()
-		(self.currentDialog, self.currentWindow) = dialog
+		self.currentDialog = dialog
 		self.currentDialog.isTmp = False
 		self.execBegin()
 
 	def open(self, screen, *arguments):
 		self.pushCurrent()
-		(self.currentDialog, self.currentWindow) = self.instantiateDialog(screen, *arguments)
+		self.currentDialog = self.instantiateDialog(screen, *arguments)
 		self.currentDialog.isTmp = True
 		self.execBegin()
 

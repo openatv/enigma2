@@ -26,10 +26,11 @@ dom = xml.dom.minidom.parseString(
 		<screen name="infoBar" position="80,350" size="540,150" title="InfoBar">
 			<widget name="CurrentTime" position="10,10" size="40,30" />
 			<widget name="ServiceName" position="50,20" size="200,30" />
-			<widget name="Event_Now" position="100,40" size="300,30" />
-			<widget name="Event_Next" position="100,90" size="300,30" />
-			<widget name="Event_Now_Duration" position="440,40" size="80,30" />
-			<widget name="Event_Next_Duration" position="440,90" size="80,30" />
+			<widget name="Event_Now" position="100,40" size="300,30" valign="top" halign="left" />
+			<widget name="Event_Next" position="100,90" size="300,30" valign="top" halign="left" />
+			<widget name="Event_Now_Duration" position="440,40" size="80,30" valign="top" halign="left" />
+			<widget name="Event_Next_Duration" position="440,90" size="80,30" valign="top" halign="left" />
+			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial:20" />
 		</screen>
 		<screen name="channelSelection" position="100,80" size="500,240" title="Channel Selection">
 			<widget name="list" position="20,50" size="300,150" />
@@ -43,12 +44,13 @@ dom = xml.dom.minidom.parseString(
 	</skin>
 """)
 
-
+# filters all elements of childNode with the specified function
+# example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")
 def elementsWithTag(el, tag):
 	for x in el:
 		if x.nodeType != xml.dom.minidom.Element.nodeType:
 			continue
-		if x.tagName == tag:
+		if tag(x.tagName):
 			yield x
 
 def parsePosition(str):
@@ -82,6 +84,8 @@ def applyAttributes(guiObject, node):
 				guiObject.resize(parseSize(value))
 			elif attrib == 'title':
 				guiObject.setTitle(value)
+			elif attrib == 'text':
+				guiObject.setText(value)
 			elif attrib == 'font':
 				guiObject.setFont(parseFont(value))
 			elif attrib == "valign":
@@ -108,25 +112,24 @@ def applyAttributes(guiObject, node):
 		except AttributeError:
 			print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
 
-def applyGUIskin(screen, parent, skin, name):
-	
+def applyGUIskin(screen, skin, name):
 	myscreen = None
 	
 	# first, find the corresponding screen element
 	skin = dom.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
 	
-	for x in elementsWithTag(skin.childNodes, "screen"):
+	for x in elementsWithTag(skin.childNodes, lambda x: x == "screen"):
 		if x.getAttribute('name') == name:
 			myscreen = x
 	del skin
 	
 	assert myscreen != None, "no skin for screen '" + name + "' found!"
 	
-	applyAttributes(parent, myscreen)
+	applyAttributes(screen.instance, myscreen)
 	
 	# now walk all widgets
-	for widget in elementsWithTag(myscreen.childNodes, "widget"):
+	for widget in elementsWithTag(myscreen.childNodes, lambda x: x == "widget"):
 		wname = widget.getAttribute('name')
 		if wname == None:
 			print "widget has no name!"
@@ -139,3 +142,13 @@ def applyGUIskin(screen, parent, skin, name):
 			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 		
 		applyAttributes(guiObject, widget)
+
+	# now walk additional objects
+	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
+		if widget.tagName == "eLabel":
+			guiObject = eLabel(screen.instance)
+		else:
+			raise "unsupported stuff : %s" % widget.tagName
+		
+		applyAttributes(guiObject, widget)
+		guiObject.thisown = 0
