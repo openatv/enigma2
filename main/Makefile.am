@@ -21,7 +21,6 @@ enigma2_LDADD_WHOLE = \
 
 enigma2_LDADD = \
 	@FREETYPE_LIBS@ \
-	@XMLTREE_LIBS@ \
 	@ID3TAG_LIBS@ \
 	@MAD_LIBS@ \
 	@PNG_LIBS@ \

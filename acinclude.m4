@@ -142,28 +142,41 @@ AC_SUBST(DRIVER)
 
 AC_DEFUN([TUXBOX_APPS_DVB],[
 AC_ARG_WITH(dvbincludes,
-	[  --with-dvbincludes=PATH  path for dvb includes[[NONE]]],
+	[  --with-dvbincludes=PATH  path for dvb includes [[NONE]]],
 	[DVBINCLUDES="$withval"],[DVBINCLUDES=""])
 
-orig_CPPFLAGS=$CPPFLAGS
 if test "$DVBINCLUDES"; then
-	CPPFLAGS="-I$DVBINCLUDES"
-else
-	CPPFLAGS=""
+	CPPFLAGS="$CPPFLAGS -I$DVBINCLUDES"
 fi
-AC_CHECK_HEADERS(linux/dvb/version.h,[DVB_VERSION_H="yes"])
-AC_CHECK_HEADERS(ost/dmx.h,[OST_DMX_H="yes"])
-if test "$DVB_VERSION_H"; then
-	AC_MSG_NOTICE([found dvb version 2 or later])
-elif test "$OST_DMX_H"; then
+
+AC_CHECK_HEADERS(ost/dmx.h,[
+	DVB_API_VERSION=1
 	AC_MSG_NOTICE([found dvb version 1])
+])
+
+if test -z "$DVB_API_VERSION"; then
+AC_CHECK_HEADERS(linux/dvb/version.h,[
+	AC_LANG_PREPROC_REQUIRE()
+	AC_REQUIRE([AC_PROG_EGREP])
+	AC_LANG_CONFTEST([AC_LANG_SOURCE([[
+#include <linux/dvb/version.h>
+version DVB_API_VERSION
+	]])])
+	DVB_API_VERSION=`(eval "$ac_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD | $EGREP "^version" | sed "s,version\ ,,"`
+	rm -f conftest*
+
+	AC_MSG_NOTICE([found dvb version $DVB_API_VERSION])
+])
+fi
+
+if test "$DVB_API_VERSION"; then
+	AC_DEFINE(HAVE_DVB,1,[Define to 1 if you have the dvb includes])
+	AC_DEFINE_UNQUOTED(HAVE_DVB_API_VERSION,$DVB_API_VERSION,[Define to the version of the dvb api])
 else
 	AC_MSG_ERROR([can't find dvb headers])
 fi
-DVB_VERSION_H=
-OST_DMX_H=
-CPPFLAGS="$orig_CPPFLAGS -I$DVBINCLUDES"
 ])
+
 
 AC_DEFUN(_TUXBOX_APPS_LIB_CONFIG,[
 AC_PATH_PROG($1_CONFIG,$2,no)
