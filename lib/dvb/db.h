@@ -6,6 +6,12 @@
 
 class ServiceDescriptionTable;
 
+struct eDVBBouquet
+{
+	std::vector<eServiceReferenceDVB> m_services;
+	int lookupService(eServiceReferenceDVB &ref);
+};
+
 class eDVBDB: public iDVBChannelList
 {
 DECLARE_REF(eDVBDB);
@@ -19,6 +25,8 @@ private:
 	std::map<eDVBChannelID, channel> m_channels;
 	
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
+	
+	std::map<eServiceReference, eDVBBouquet> m_bouquets;
 public:
 	eDVBDB();
 	virtual ~eDVBDB();
@@ -30,7 +38,7 @@ public:
 	
 	RESULT addService(const eServiceReferenceDVB &service, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
-
+	
 	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query);
 };
 
@@ -42,8 +50,9 @@ private:
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_cursor;
 	ePtr<eDVBDB> m_db;
 	ePtr<eDVBChannelQuery> m_query;
+	eServiceReferenceDVB m_source;
 public:
-	eDVBDBQuery(eDVBDB *db, eDVBChannelQuery *query);
+	eDVBDBQuery(eDVBDB *db, const eServiceReferenceDVB &source, eDVBChannelQuery *query);
 	virtual RESULT getNextResult(eServiceReferenceDVB &ref);
 };
 

@@ -277,7 +277,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
-	
+		
 	def getCurrent(self):
 		r = eServiceReference()
 		self.l.getCurrent(r)
@@ -292,6 +292,19 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setRoot(self, root):
 		self.l.setRoot(root)
+		
+		# mark stuff
+	def clearMarked(self):
+		self.l.clearMarked()
+	
+	def isMarked(self, ref):
+		return self.l.isMarked(ref)
+
+	def addMarked(self, ref):
+		self.l.addMarked(ref)
+	
+	def removeMarked(self, ref):
+		self.l.removeMarked(ref)
 
 class ServiceScan:
 	
@@ -338,20 +351,23 @@ class ServiceScan:
 		return self.state == self.Done
 	
 class ActionMap:
-	def __init__(self, context, actions = { }, prio=0):
+	def __init__(self, contexts = [ ], actions = { }, prio=0):
 		self.actions = actions
-		self.context = context
+		self.contexts = contexts
 		self.prio = prio
 		self.p = eActionMapPtr()
 		eActionMap.getInstance(self.p)
 
 	def execBegin(self):
-		self.p.bindAction(self.context, self.prio, self.action)
+		for ctx in self.contexts:
+			self.p.bindAction(ctx, self.prio, self.action)
 	
 	def execEnd(self):
-		self.p.unbindAction(self.context, self.action)
+		for ctx in self.contexts:
+			self.p.unbindAction(ctx, self.action)
 	
 	def action(self, context, action):
+		print " ".join(("action -> ", context, action))
 		try:
 			self.actions[action]()
 		except KeyError:

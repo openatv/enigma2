@@ -30,6 +30,43 @@ void eListboxServiceContent::getCurrent(eServiceReference &ref)
 		ref = eServiceReference();
 }
 
+void eListboxServiceContent::initMarked()
+{
+	m_marked.clear();
+}
+
+void eListboxServiceContent::addMarked(const eServiceReference &ref)
+{
+	m_marked.insert(ref);
+	if (m_listbox)
+		m_listbox->entryChanged(lookupService(ref));
+}
+
+void eListboxServiceContent::removeMarked(const eServiceReference &ref)
+{
+	m_marked.erase(ref);
+	if (m_listbox)
+		m_listbox->entryChanged(lookupService(ref));
+}
+
+int eListboxServiceContent::isMarked(const eServiceReference &ref)
+{
+	return m_marked.find(ref) != m_marked.end();
+}
+
+int eListboxServiceContent::lookupService(const eServiceReference &ref)
+{
+		/* shortcut for cursor */
+	if (ref == *m_cursor)
+		return m_cursor_number;
+		/* otherwise, search in the list.. */
+	int index = 0;
+	for (list::const_iterator i(m_list.begin()); i != m_list.end(); ++i, ++index);
+	
+		/* this is ok even when the index was not found. */
+	return index;
+}
+
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
@@ -118,7 +155,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 {
 	ePtr<gFont> fnt = new gFont("Arial", 14);
 	painter.clip(eRect(offset, m_itemsize));
-	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+	if (cursorValid() && isMarked(*m_cursor))
+		style.setStyle(painter, eWindowStyle::styleListboxMarked);
+	else
+		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
 	
 	if (cursorValid())

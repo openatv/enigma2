@@ -80,6 +80,10 @@ void eWindowStyleSimple::setStyle(gPainter &painter, int what)
 		painter.setForegroundColor(gColor(0x1C));
 		painter.setBackgroundColor(m_background_color);
 		break;
+	case styleListboxMarked:
+		painter.setForegroundColor(gColor(0x2F));
+		painter.setBackgroundColor(gColor(0x2A));
+		break;
 	}
 }
 

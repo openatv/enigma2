@@ -13,16 +13,16 @@
 		<key id="m" mapto="mainMenu" flags="mr" />
 		<key id="c" mapto="switchChannel" flags="mr" />
 	</map>
-	<map context="MainMenuActions">
-		<key id=" " mapto="selected" flags="mr" />
-	</map>
 	
 	<map context="ChannelSelectActions">
-		<key id=" " mapto="selectChannel" flags="mr" />
-		
+		<key id="m" mapto="mark" flags="m" />
 		<!-- yes, this is flexible as hell. -->
-		<key id="p" mapto="bouquet:PREMIERE" flags="m" />
-		<key id="d" mapto="bouquet:Das Erste" flags="m" />
+		<key id="p" mapto="bouquet:(provider == PREMIERE)" flags="m" />
+		<key id="d" mapto="bouquet:(provider == ARD)" flags="m" />
+	</map>
+	<map context="OkCancelActions">
+		<key id="\x0a" mapto="ok" flags="mr" />
+		<key id="\x1b" mapto="cancel" flags="mr" />
 	</map>
 	<map context="WindowActions">
 		

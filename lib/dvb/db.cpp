@@ -357,13 +357,192 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 	return 1;
 }
 
-RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
+/* (<name|provider|type|bouquet|satpos|chid> <==|...> <"string"|int>)[AND (..)] */
+
+	/* never, NEVER write a parser in C++! */
+RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::const_iterator begin, std::list<std::string>::const_iterator end)
 {
+	std::list<std::string>::const_iterator end_of_exp;
+	if (*begin == "(")
+	{
+		end_of_exp = begin;
+		while (end_of_exp != end)
+			if (*end_of_exp == ")")
+				break;
+			else
+				++end_of_exp;
+	
+		if (end_of_exp == end)
+		{
+			eDebug("expression parse: end of expression while searching for closing brace");
+			return -1;
+		}
+		
+		++begin;
+		// begin..end_of_exp
+		int r = parseExpression(res, begin, end_of_exp);
+		if (r)
+			return r;
+		++end_of_exp;
+		
+			/* we had only one sub expression */
+		if (end_of_exp == end)
+			return 1;
+		
+			/* otherwise we have an operator here.. */
+		
+		ePtr<eDVBChannelQuery> r2 = res;
+		res = new eDVBChannelQuery();
+		res->m_p1 = r2;
+		res->m_inverse = 0;
+		r2 = 0;
+		
+		if (*end_of_exp == "||")
+			res->m_type = eDVBChannelQuery::tOR;
+		else if (*end_of_exp == "&&")
+			res->m_type = eDVBChannelQuery::tAND;
+		else
+		{
+			eDebug("found operator %s, but only && and || are allowed!", end_of_exp->c_str());
+			res = 0;
+			return 1;
+		}
+		
+		++end_of_exp;
+		
+		return parseExpression(res->m_p2, end_of_exp, end);
+	}
+	
+	// "begin" <op> "end"
+	std::string type, op, val;
+	
+	res = new eDVBChannelQuery();
+	
+	int cnt = 0;
+	while (begin != end)
+	{
+		switch (cnt)
+		{
+		case 0:
+			type = *begin;
+			break;
+		case 1:
+			op = *begin;
+			break;
+		case 2:
+			val = *begin;
+			break;
+		case 3:
+			eDebug("malformed query: got '%s', but expected only <type> <op> <val>", begin->c_str());
+			return 1;
+		}
+		++begin;
+		++cnt;
+	}
+	
+	if (cnt != 3)
+	{
+		eDebug("malformed query: missing stuff");
+		res = 0;
+		return 1;
+	}
+	
+	if (type == "name")
+		res->m_type = eDVBChannelQuery::tName;
+	else if (type == "provider")
+		res->m_type = eDVBChannelQuery::tProvider;
+	else if (type == "type")
+		res->m_type = eDVBChannelQuery::tType;
+	else if (type == "bouquet")
+		res->m_type = eDVBChannelQuery::tBouquet;
+	else if (type == "satellitePosition")
+		res->m_type = eDVBChannelQuery::tSatellitePosition;
+	else if (type == "channelID")
+		res->m_type = eDVBChannelQuery::tChannelID;
+	else
+	{
+		eDebug("malformed query: invalid type %s", type.c_str());
+		res = 0;
+		return 1;
+	}
+	
+	eDebug("type is %d, nice!", res->m_type);
+	
+	if (op == "==")
+		res->m_inverse = 0;
+	else if (op == "!=")
+		res->m_inverse = 1;
+	else
+	{
+		eDebug("invalid operator %s", op.c_str());
+		res = 0;
+		return 1;
+	}
+	
+	res->m_string = val;
+	res->m_int = atoi(val.c_str());
+//	res->m_channelid = eDVBChannelID(val);
+	
+	return 0;
+}
+
+RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, const eServiceReferenceDVB &source, std::string query)
+{
+	std::list<std::string> tokens;
+	
+	m_source = source;
+	
+	std::string current_token;
+	
+//	eDebug("splitting %s....", query.c_str());
+	unsigned int i = 0;
+	const char *splitchars="()";
+	int quotemode = 0, lastsplit = 0, lastalnum = 0;
+	while (i <= query.size())
+	{
+		int c = (i < query.size()) ? query[i] : ' ';
+		++i;
+		
+		int issplit = !!strchr(splitchars, c);
+		int isaln = isalnum(c);
+		int iswhite = c == ' ';
+		int isquot = c == '\"';
+		
+		if (quotemode)
+		{
+			iswhite = issplit = 0;
+			isaln = lastalnum;
+		}
+		
+		if (issplit || iswhite || isquot || lastsplit || (lastalnum != isaln))
+		{
+			if (current_token.size())
+				tokens.push_back(current_token);
+			current_token.clear();
+		}
+		
+		if (!(iswhite || isquot))
+			current_token += c;
+		
+		if (isquot)
+			quotemode = !quotemode;
+		lastsplit = issplit;
+		lastalnum = isaln;
+	}
+	
+//	for (std::list<std::string>::const_iterator a(tokens.begin()); a != tokens.end(); ++a)
+//	{
+//		printf("%s\n", a->c_str());
+//	}
+	
+		/* now we recursivly parse that. */
+	return  parseExpression(res, tokens.begin(), tokens.end());
+/*	
 	res = new eDVBChannelQuery();
 	res->m_type = eDVBChannelQuery::tName;
 	res->m_inverse = 0;
 	res->m_string = query;
-	return 0;
+	return 0; */
 }
 
 DEFINE_REF(eDVBChannelQuery);
