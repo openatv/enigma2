@@ -369,6 +369,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 
 RESULT eDVBScan::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(m_event.connect(event));
+	connection = new eConnection(this, m_event.connect(event));
 	return 0;
 }

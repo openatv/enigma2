@@ -32,16 +32,22 @@ eString eServiceReference::toString() const
 
 eServiceCenter *eServiceCenter::instance;
 
-eServiceCenter::eServiceCenter()
+eServiceCenter::eServiceCenter(): ref(0)
 {
 	if (!instance)
+	{
+		eDebug("settings instance.");
 		instance = this;
+	}
 }
 
 eServiceCenter::~eServiceCenter()
 {
 	if (instance == this)
+	{
+		eDebug("clear instance");
 		instance = 0;
+	}
 }
 
 DEFINE_REF(eServiceCenter);
@@ -91,4 +97,4 @@ RESULT eServiceCenter::removeServiceFactory(int id)
 	return 0;
 }
 
-eAutoInitP0<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");
+eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");

@@ -61,10 +61,12 @@ void eServiceMP3::test_end()
 eServiceMP3::eServiceMP3(const char *filename): ref(0), filename(filename), test(eApp)
 {
 	m_state = stIdle;
+	eDebug("SERVICEMP3 construct!");
 }
 
 eServiceMP3::~eServiceMP3()
 {
+	eDebug("SERVICEMP3 destruct!");
 	if (m_state == stRunning)
 		stop();
 }
@@ -73,7 +75,7 @@ DEFINE_REF(eServiceMP3);
 
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(m_event.connect(event));
+	connection = new eConnection(this, m_event.connect(event));
 	return 0;
 }
 
@@ -85,7 +87,7 @@ RESULT eServiceMP3::start()
 
 	printf("mp3 starts\n");
 	printf("MP3: %s start\n", filename.c_str());
-	test.start(10000, 1);
+	test.start(1000, 1);
 	CONNECT(test.timeout, eServiceMP3::test_end);
 	m_event(this, evStart);
 	return 0;
@@ -109,7 +111,12 @@ RESULT eServiceMP3::getIPausableService(ePtr<iPauseableService> &ptr) { ptr=this
 RESULT eServiceMP3::pause() { printf("mp3 pauses!\n"); return 0; }
 RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }
 
-RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&) { return -1; }
+RESULT eServiceMP3::getIServiceInformation(ePtr<iServiceInformation>&i) { i = this; return 0; }
 
+RESULT eServiceMP3::getName(eString &name)
+{
+	name = "MP3 File: " + filename;
+	return 0;
+}
 
-eAutoInitP0<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");
+eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");

@@ -4,6 +4,10 @@
 
 DEFINE_REF(eDVBSatelliteEquipmentControl);
 
+eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(): ref(0)
+{
+}
+
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, struct dvb_frontend_parameters &parm, eDVBFrontendParametersSatellite &sat)
 {
 	int hi;

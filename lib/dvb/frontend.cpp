@@ -391,7 +391,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 RESULT eDVBFrontend::connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(m_stateChanged.connect(stateChange));
+	connection = new eConnection(this, m_stateChanged.connect(stateChange));
 	return 0;
 }
 

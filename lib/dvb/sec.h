@@ -7,6 +7,7 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
 public:
 	DECLARE_REF;
+	eDVBSatelliteEquipmentControl();
 	RESULT prepare(iDVBFrontend &frontend, struct dvb_frontend_parameters &parm, eDVBFrontendParametersSatellite &sat);
 };
 

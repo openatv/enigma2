@@ -166,4 +166,4 @@ RESULT eDVBServicePlay::getName(eString &name)
 
 DEFINE_REF(eDVBServicePlay)
 
-eAutoInitP0<eServiceFactoryDVB> init_eServiceFactoryDVB(eAutoInitNumbers::service+1, "eServiceFactoryDVB");
+eAutoInitPtr<eServiceFactoryDVB> init_eServiceFactoryDVB(eAutoInitNumbers::service+1, "eServiceFactoryDVB");

@@ -6,7 +6,7 @@
 #include <lib/dvb_si/bat.h>
 #include <lib/dvb/db.h>
 
-class eDVBScan: public Object
+class eDVBScan: public Object, public virtual iObject
 {
 		/* chid helper functions: */
 		

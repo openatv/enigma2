@@ -19,7 +19,8 @@ private:
 public:
 	enum
 	{
-		evNewService,
+		evStopService,  /** the "current" service was just stopped and likes to be deallocated (clear refs!) */
+		evNewService, /** a new "current" service was just started */
 		evPlayFailed,
 		evPlaylistDone
 	};

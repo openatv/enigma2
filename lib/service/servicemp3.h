@@ -17,7 +17,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 };
 
-class eServiceMP3: public virtual iPlayableService, public virtual iPauseableService, public virtual iObject, public Object
+class eServiceMP3: public virtual iPlayableService, public virtual iPauseableService, public virtual iServiceInformation, public virtual iObject, public Object
 {
 DECLARE_REF;
 private:
@@ -46,6 +46,9 @@ public:
 	RESULT unpause();
 	
 	RESULT getIServiceInformation(ePtr<iServiceInformation>&);
+	
+		// iServiceInformation
+	RESULT getName(eString &name);
 };
 
 #endif

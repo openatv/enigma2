@@ -27,6 +27,7 @@ class eMain: public eApplication, public Object
 	ePtr<iPlayableService> m_playservice;
 	ePtr<eNavigation> m_nav;
 	ePtr<eConnection> m_conn_event;
+	ePtr<iServiceInformation> m_serviceInformation;
 public:
 	eMain()
 	{
@@ -38,8 +39,9 @@ public:
 		ePtr<eServiceCenter> service_center;
 		eServiceCenter::getInstance(service_center);
 
+		assert(service_center);
 		m_nav = new eNavigation(service_center);
-#if 1
+#if 0
 		if (service_center)
 		{
 			eServiceReference ref("2:0:1:0:0:0:0:0:0:0:/");
@@ -79,6 +81,11 @@ public:
 	{
 		switch (ev)
 		{
+		case eNavigation::evStopService:
+				/* very important: the old service should be deallocated, so clear *all* references to it */
+			m_serviceInformation = 0;
+			eDebug("STOP service!");
+			break;
 		case eNavigation::evNewService:
 		{
 			ePtr<iPlayableService> service;
@@ -88,14 +95,13 @@ public:
 				eDebug("no running service!");
 				break;
 			}
-			ePtr<iServiceInformation> s;
-			if (service->getIServiceInformation(s))
+			if (service->getIServiceInformation(m_serviceInformation))
 			{
 				eDebug("failed to get iserviceinformation");
 				break;
 			}
 			eString name;
-			s->getName(name);
+			m_serviceInformation->getName(name);
 			eDebug("NEW running service: %s", name.c_str());
 			break;
 		}
@@ -104,6 +110,7 @@ public:
 			break;
 		case eNavigation::evPlaylistDone:
 			eDebug("playlist done");
+			quit();
 			break;
 		default:
 			eDebug("Navigation event %d", ev);
@@ -113,7 +120,6 @@ public:
 	
 	~eMain()
 	{
-		
 	}
 };
 
@@ -127,10 +133,11 @@ void object_dump()
 #endif
 
 int main()
-{	
+{
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
 	eMain app;
-	return app.exec();
+	int res = app.exec();
+	eDebug("after exec");
 }
