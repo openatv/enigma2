@@ -130,8 +130,12 @@ int eListbox::event(int event, void *data, void *data2)
 		return 0;
 	}
 	case evtAction:
-		moveSelection((int)data2);
-		return 1;
+		if (isVisible())
+		{
+			moveSelection((int)data2);
+			return 1;
+		}
+		break;
 	default:
 		return eWidget::event(event, data, data2);
 	}

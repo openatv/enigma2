@@ -33,6 +33,10 @@ public:
 	int getStyle(ePtr<eWindowStyle> &style) { if (!m_style) return 1; style = m_style; return 0; }
 	void setStyle(eWindowStyle *style) { m_style = style; }
 	
+		/* untested code */
+	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
+		/* ... */
+	
 private:
 	eWidgetDesktop *m_desktop;
 
