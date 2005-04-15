@@ -14,6 +14,13 @@ public:
 	~eWindow();
 	void setTitle(const std::string &string);
 	eWidget *child() { return m_child; }
+	
+	enum {
+		wfNoBorder = 1
+	};
+	
+	void setFlag(int flags);
+	void clearFlag(int flags);
 protected:
 	enum eWindowEvents
 	{
@@ -23,6 +30,7 @@ protected:
 private:
 	std::string m_title;
 	eWidget *m_child;
+	int m_flags;
 };
 
 #endif

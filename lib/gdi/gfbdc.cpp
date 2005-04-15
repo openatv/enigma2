@@ -157,4 +157,4 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
+// eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");

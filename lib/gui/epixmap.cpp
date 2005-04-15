@@ -1,4 +1,6 @@
 #include <lib/gui/epixmap.h>
+#include <lib/gdi/epng.h>
+#include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent): eWidget(parent)
 {
@@ -7,6 +9,15 @@ ePixmap::ePixmap(eWidget *parent): eWidget(parent)
 void ePixmap::setPixmap(gPixmap *pixmap)
 {
 	m_pixmap = pixmap;
+	event(evtChangedPixmap);
+}
+
+void ePixmap::setPixmapFromFile(const char *filename)
+{
+	loadPNG(m_pixmap, filename);
+	
+		// TODO
+	getDesktop()->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);
 }
 

@@ -139,9 +139,9 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 {
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
 	{
-		eRect area=eRect(pos, src.getSize());
+		eRect area=eRect(pos, src.size());
 		area&=clip.rects[i];
-		area&=eRect(ePoint(0, 0), getSize());
+		area&=eRect(ePoint(0, 0), size());
 		if ((area.width()<0) || (area.height()<0))
 			continue;
 
@@ -153,7 +153,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data;
 	
-			srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
+			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			for (int y=0; y<area.height(); y++)
 			{
@@ -193,7 +193,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 				pal[i]^=0xFF000000;
 			}
 	
-			srcptr+=srcarea.left()*surface->bypp+srcarea.top()*src.surface->stride;
+			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			for (int y=0; y<area.height(); y++)
 			{
@@ -231,8 +231,10 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 
 void gPixmap::mergePalette(const gPixmap &target)
 {
+	eDebug("merge palette! %p %p", surface, target.surface);
 	if ((!surface->clut.colors) || (!target.surface->clut.colors))
 		return;
+#if 0
 	gColor *lookup=new gColor[surface->clut.colors];
 
 	for (int i=0; i<surface->clut.colors; i++)
@@ -253,6 +255,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 	}
 	
 	delete [] lookup;
+#endif
 }
 
 static inline int sgn(int a)

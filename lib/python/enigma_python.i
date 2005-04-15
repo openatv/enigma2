@@ -53,6 +53,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/ewindowstyle.h>
+#include <lib/gui/ewindowstyleskinned.h>
 #include <lib/gui/eslider.h>
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
@@ -94,9 +95,6 @@ extern PSignal1<void,int> &keyPressedSignal();
 %immutable eComponentScan::statusChanged;
 %immutable pNavigation::m_event;
 
-
-%include <lib/gdi/gpixmap.h>
-
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
@@ -111,6 +109,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>
 %include <lib/gui/ewindowstyle.h>
+%include <lib/gui/ewindowstyleskinned.h>
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
 %include <lib/nav/pcore.h>
@@ -118,6 +117,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gdi/gfont.h>
 %include <lib/gdi/epng.h>
 
+%include <lib/gdi/gpixmap.h>
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
@@ -155,7 +155,6 @@ public:
 %typemap(out) PSignal0V {
 	$1 = $input->get();
 }
-
 
 /**************  base  **************/
 

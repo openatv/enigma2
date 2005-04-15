@@ -83,14 +83,6 @@ class mainMenu(Screen):
 				("wie spaet ists?!", self.goClock)
 			])
 
-#class mainMenu(Screen):
-#	def __init__(self):
-#		GUISkin.__init__(self)
-#		
-#		self["title"] = Header("this is the\nMAIN MENU !!!");
-#		self["okbutton"] = Button("ok")
-#		self["okbutton"].onClick = [ self.close ]
-
 class channelSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

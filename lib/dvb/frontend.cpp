@@ -261,7 +261,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 		ok = 0;
 		return;
 	}
-	eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+feSatellite*9);
+	eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*9);
 	ok = 1;
 
 	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
@@ -365,6 +365,8 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	feEvent(-1);
 	
+	eDebug("eDVBFrontend::tune. type: %d", m_type);
+	
 	switch (m_type)
 	{
 	case feSatellite:
@@ -403,10 +405,68 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	{
 		eDVBFrontendParametersTerrestrial feparm;
 		if (where.getDVBT(feparm))
+		{
+			eDebug("no -T data");
 			return -EINVAL;
-		eFatal("terrestrial tuning nyi");
+		}
+		parm.frequency = feparm.frequency;
+		
+		switch (feparm.bandwidth)
+		{
+		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz:
+			parm.u.ofdm.bandwidth = BANDWIDTH_8_MHZ;
+			break;
+		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz:
+			parm.u.ofdm.bandwidth = BANDWIDTH_7_MHZ;
+			break;
+		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz:
+			parm.u.ofdm.bandwidth = BANDWIDTH_6_MHZ;
+			break;
+		case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
+			parm.u.ofdm.bandwidth = BANDWIDTH_AUTO;
+			break;
+		default:
+			eWarning("invalid OFDM bandwith");
+			return -EINVAL;
+		}
+		
+		parm.u.ofdm.code_rate_HP = FEC_AUTO;
+		parm.u.ofdm.code_rate_LP = FEC_AUTO;
+		
+		switch (feparm.modulation)
+		{
+		case eDVBFrontendParametersTerrestrial::Modulation::QPSK:
+			parm.u.ofdm.constellation = QPSK;
+			break;
+		case eDVBFrontendParametersTerrestrial::Modulation::QAM16:
+			parm.u.ofdm.constellation = QAM_16;
+			break;
+		case eDVBFrontendParametersTerrestrial::Modulation::Auto:
+			parm.u.ofdm.constellation = QAM_AUTO;
+			break;
+		}
+		
+		switch (feparm.transmission_mode)
+		{
+		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k:
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_2K;
+			break;
+		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k:
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_8K;
+			break;
+		case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto:
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_AUTO;
+			break;
+		}
+		
+		parm.u.ofdm.guard_interval = GUARD_INTERVAL_AUTO;
+		parm.u.ofdm.hierarchy_information = HIERARCHY_AUTO;
+		parm.inversion = INVERSION_AUTO;
+		break;
 	}
 	}
+	
+	eDebug("setting frontend..\n");
 	
 	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
 	{

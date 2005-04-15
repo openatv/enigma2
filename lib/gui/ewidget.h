@@ -33,6 +33,8 @@ public:
 	int getStyle(ePtr<eWindowStyle> &style) { if (!m_style) return 1; style = m_style; return 0; }
 	void setStyle(eWindowStyle *style) { m_style = style; }
 	
+	void setBackgroundColor(const gRGB &col);
+	
 		/* untested code */
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
 		/* ... */
@@ -56,6 +58,9 @@ private:
 	
 	void doPaint(gPainter &painter, const gRegion &region);
 	void recalcClipRegionsWhenVisible();
+	
+	gRGB m_background_color;
+	int m_have_background_color;
 protected:
 	virtual ~eWidget();
 public:

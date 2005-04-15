@@ -7,6 +7,7 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 {
 	m_vis = 0;
 	m_desktop = 0;
+	m_have_background_color = 0;
 	
 	if (m_parent)
 		m_vis = wVisShow;
@@ -45,10 +46,12 @@ void eWidget::resize(eSize size)
 		   fits into the other completely, and invalidate
 		   only once. */
 	eSize old_size = m_size;
-	event(evtWillChangeSize, &size);
+	eSize offset = eSize(0, 0);
+	event(evtWillChangeSize, &size, &offset);
 	if (old_size == m_size)
 		return;
-
+	move(position() + offset);
+	
 	invalidate();
 	event(evtChangedSize);
 	recalcClipRegionsWhenVisible();	
@@ -145,6 +148,13 @@ void eWidget::destruct()
 	delete this;
 }
 
+void eWidget::setBackgroundColor(const gRGB &col)
+{
+	eDebug("set background color in ewidget!");
+	m_background_color = col;
+	m_have_background_color = 1;
+}
+
 eWidget::~eWidget()
 {
 	hide();
@@ -217,9 +227,16 @@ int eWidget::event(int event, void *data, void *data2)
 		
 //		eDebug("eWidget::evtPaint");
 //		dumpRegion(*(gRegion*)data);
-		ePtr<eWindowStyle> style;
-		if (!getStyle(style))
-			style->paintBackground(painter, ePoint(0, 0), size());
+		if (!m_have_background_color)
+		{
+			ePtr<eWindowStyle> style;
+			if (!getStyle(style))
+				style->paintBackground(painter, ePoint(0, 0), size());
+		} else
+		{
+			painter.setBackgroundColor(m_background_color);
+			painter.clear();
+		}
 		break;
 	}
 	case evtKey:

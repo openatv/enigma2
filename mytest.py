@@ -103,7 +103,7 @@ class Session:
 		gui.parent = dlg.instance
 		gui.create(dlg)
 
-		applyGUIskin(dlg, None, dlg.skinName)
+		applyGUIskin(dlg, None, dlg.skinName, self.desktop)
 	 	
 		return dlg
 	 
@@ -162,6 +162,8 @@ def runScreenTest():
 
 import keymapparser
 keymapparser.readKeymap()
+import skin
+skin.loadSkin()
 
 # first, setup a screen
 runScreenTest()

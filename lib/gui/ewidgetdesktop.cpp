@@ -108,6 +108,21 @@ void eWidgetDesktop::setRedrawTask(eMainloop &ml)
 		m_timer->start(0, 1);
 }
 
+void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
+{
+	eDebug("widgetDesktop: make compatible pixmap of %p\n", &pm);
+	if (!m_dc)
+	{
+		eWarning("eWidgetDesktop: no DC to make pixmap compatible with!");
+		return;
+	}
+	eDebug("painter..");
+	gPainter painter(m_dc);
+	eDebug("merge!");
+	painter.mergePalette(&pm);
+	eDebug("gone!");
+}
+
 eWidgetDesktop::eWidgetDesktop(eSize size): m_screen_size(size), m_mainloop(0), m_timer(0)
 {
 }

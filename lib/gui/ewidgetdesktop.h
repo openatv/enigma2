@@ -30,6 +30,8 @@ public:
 	void setBackgroundColor(gColor col);
 	
 	void setRedrawTask(eMainloop &ml);
+	
+	void makeCompatiblePixmap(gPixmap &pm);
 private:
 	ePtrList<eWidget> m_root;
 	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);

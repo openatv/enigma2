@@ -59,7 +59,9 @@ int eComponentScan::start()
 	ePtr<eDVBResourceManager> mgr;
 	
 	eDVBResourceManager::getInstance(mgr);
-	
+
+	eDVBFrontendParameters *fe = new eDVBFrontendParameters();
+#if 0	
 	eDVBFrontendParametersSatellite fesat;
 		
 	fesat.frequency = 11817000; // 12070000;
@@ -69,9 +71,20 @@ int eComponentScan::start()
 	fesat.inversion = eDVBFrontendParametersSatellite::Inversion::Off;
 	fesat.orbital_position = 192;
 
-	eDVBFrontendParameters *fe = new eDVBFrontendParameters();
 	
 	fe->setDVBS(fesat);
+#endif
+
+	eDVBFrontendParametersTerrestrial fet;
+	fet.frequency = 626000000;
+	fet.inversion = eDVBFrontendParametersTerrestrial::Inversion::Unknown;
+	fet.bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz;
+	fet.code_rate_HP = fet.code_rate_LP = eDVBFrontendParametersTerrestrial::FEC::fAuto;
+	fet.modulation = eDVBFrontendParametersTerrestrial::Modulation::QAM16;
+	fet.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k;
+	fet.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32;
+	fet.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy::HNone;
+	fe->setDVBT(fet);
 	
 	ePtr<iDVBChannel> channel;
 

@@ -38,7 +38,7 @@ public:
 	{
 		m_spec.pid     = ServiceDescriptionTable::PID;
 		m_spec.tid     = ServiceDescriptionTable::TID;
-		m_spec.timeout = ServiceDescriptionTable::TIMEOUT;
+		m_spec.timeout = 20000; // ServiceDescriptionTable::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;

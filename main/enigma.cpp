@@ -1,3 +1,4 @@
+#define SDLDC
 #include <stdio.h>
 #include <libsig_comp.h>
 #include <lib/base/ebase.h>
@@ -9,6 +10,7 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
+#include <lib/gdi/sdl.h>
 #include <lib/gdi/font.h> 
 
 #include <lib/gui/ewidget.h>
@@ -132,8 +134,13 @@ int main(int argc, char **argv)
 	eMain main;
 
 #if 1
+#ifdef SDLDC
+	ePtr<gSDLDC> my_dc;
+	gSDLDC::getInstance(my_dc);
+#else
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
+#endif
 
 	gPainter p(my_dc);
 	
@@ -151,9 +158,13 @@ int main(int argc, char **argv)
 		pal[a | 0x30] = (0x110011 * a) | 0xFF00;
 	for (int a=0; a<0x10; ++a)
 		pal[a | 0x40] = (0x001111 * a) | 0xFF0000;
+	
+	pal[0x50] = 0x586D88;
+	pal[0x51] = 0x4075a7;
+	
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont("/dbox2/cdkroot/share/fonts/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont("/home/tmbinc/enigma2/fonts/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
