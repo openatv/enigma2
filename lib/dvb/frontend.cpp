@@ -9,6 +9,16 @@
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
 #include <ost/sec.h>
+#define QAM_AUTO				(Modulation)6
+#define TRANSMISSION_MODE_AUTO	(TransmitMode)2
+#define BANDWIDTH_AUTO			(BandWidth)3
+#define GUARD_INTERVAL_AUTO		(GuardInterval)4
+#define HIERARCHY_AUTO			(Hierarchy)4
+#define constellation Constellation
+#define guard_interval guardInterval
+#define hierarchy_information HierarchyInformation
+#define code_rate_HP HP_CodeRate
+#define code_rate_LP LP_CodeRate
 #else
 #include <linux/dvb/frontend.h>
 #endif
@@ -409,21 +419,45 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			eDebug("no -T data");
 			return -EINVAL;
 		}
+#if HAVE_DVB_API_VERSION < 3
+		parm.Frequency = feparm.frequency;
+#else
 		parm.frequency = feparm.frequency;
-		
+#endif
+
 		switch (feparm.bandwidth)
 		{
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz:
-			parm.u.ofdm.bandwidth = BANDWIDTH_8_MHZ;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.bandWidth =
+#else
+			parm.u.ofdm.bandwidth =
+#endif
+				BANDWIDTH_8_MHZ;
 			break;
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz:
-			parm.u.ofdm.bandwidth = BANDWIDTH_7_MHZ;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.bandWidth =
+#else
+			parm.u.ofdm.bandwidth =
+#endif
+				BANDWIDTH_7_MHZ;
 			break;
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz:
-			parm.u.ofdm.bandwidth = BANDWIDTH_6_MHZ;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.bandWidth =
+#else
+			parm.u.ofdm.bandwidth =
+#endif
+				BANDWIDTH_6_MHZ;
 			break;
 		case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
-			parm.u.ofdm.bandwidth = BANDWIDTH_AUTO;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.bandWidth =
+#else
+			parm.u.ofdm.bandwidth =
+#endif
+				BANDWIDTH_AUTO;
 			break;
 		default:
 			eWarning("invalid OFDM bandwith");
@@ -449,19 +483,39 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		switch (feparm.transmission_mode)
 		{
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k:
-			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_2K;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.TransmissionMode =
+#else
+			parm.u.ofdm.transmission_mode =
+#endif
+				TRANSMISSION_MODE_2K;
 			break;
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k:
-			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_8K;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.TransmissionMode =
+#else
+			parm.u.ofdm.transmission_mode =
+#endif
+				TRANSMISSION_MODE_8K;
 			break;
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto:
-			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_AUTO;
+#if HAVE_DVB_API_VERSION < 3
+			parm.u.ofdm.TransmissionMode =
+#else
+			parm.u.ofdm.transmission_mode =
+#endif
+				TRANSMISSION_MODE_AUTO;
 			break;
 		}
 		
 		parm.u.ofdm.guard_interval = GUARD_INTERVAL_AUTO;
 		parm.u.ofdm.hierarchy_information = HIERARCHY_AUTO;
-		parm.inversion = INVERSION_AUTO;
+#if HAVE_DVB_API_VERSION < 3
+		parm.Inversion =
+#else
+		parm.inversion =
+#endif
+			INVERSION_AUTO;
 		break;
 	}
 	}
