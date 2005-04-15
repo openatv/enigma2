@@ -135,7 +135,7 @@ int eListbox::event(int event, void *data, void *data2)
 			moveSelection((int)data2);
 			return 1;
 		}
-		break;
+		return 0;
 	default:
 		return eWidget::event(event, data, data2);
 	}

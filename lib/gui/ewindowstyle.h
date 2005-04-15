@@ -10,7 +10,7 @@ class gFont;
 class eWindowStyle: public iObject
 {
 public:
-	virtual void handleNewSize(eWindow *wnd, const eSize &size) = 0;
+	virtual void handleNewSize(eWindow *wnd, eSize &size, eSize &offset) = 0;
 	virtual void paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title) = 0;
 	virtual void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size) = 0;
 	virtual void setStyle(gPainter &painter, int what) = 0;
@@ -38,6 +38,22 @@ public:
 	virtual ~eWindowStyle() = 0;
 };
 
+class eWindowStyleManager: public iObject
+{
+	DECLARE_REF(eWindowStyleManager);
+public:
+	eWindowStyleManager();
+	~eWindowStyleManager();
+	void getStyle(ePtr<eWindowStyle> &style);
+	void setStyle(eWindowStyle *style);
+	static int getInstance(ePtr<eWindowStyleManager> &mgr) { mgr = m_instance; if (!mgr) return -1; return 0; }
+private:
+	static eWindowStyleManager *m_instance;
+	ePtr<eWindowStyle> m_current_style;
+};
+
+TEMPLATE_TYPEDEF(ePtr<eWindowStyleManager>, eWindowStyleManagerPtr);
+
 class eWindowStyleSimple: public eWindowStyle
 {
 	DECLARE_REF(eWindowStyleSimple);
@@ -48,53 +64,12 @@ private:
 	int m_border_top, m_border_left, m_border_right, m_border_bottom;
 public:
 	eWindowStyleSimple();
-	void handleNewSize(eWindow *wnd, const eSize &size);
+	void handleNewSize(eWindow *wnd, eSize &size, eSize &offset);
 	void paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title);
 	void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size);
 	void setStyle(gPainter &painter, int what);
 	void drawFrame(gPainter &painter, const eRect &frame, int what);
 	RESULT getFont(int what, ePtr<gFont> &font);
 };
-
-#if 0
-class eWindowStyleSkinned: public eWindowStyle
-{
-	DECLARE_REF(eWindowStyleSkinned);
-public:
-	eWindowStyleSkinned();
-	void handleNewSize(eWindow *wnd, const eSize &size);
-	void paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title);
-	void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size);
-	void setStyle(gPainter &painter, int what);
-	void drawFrame(gPainter &painter, const eRect &frame, int what);
-	
-	enum {
-		bsWindow,
-		bsButton,
-#ifndef SWIG
-		bsMax
-#endif
-	};
-	
-	enum {
-		bpTopLeft     =     1,
-		bpTop         =     2,
-		bpTopRight    =     4,
-		bpLeft        =     8,
-		bpRight       =  0x10,
-		bpBottomLeft  =  0x20,
-		bpBottom      =  0x40,
-		bpBottomRight =  0x80,
-		bpBackground  = 0x100
-	};
-private:
-	struct borderSet
-	{
-		ePtr<gPixmap> m_pixmap[9];
-	};
-	
-	void drawBorder(gPainter &painter, const eSize &size, const struct borderSet &border, int where);
-};
-#endif
 
 #endif

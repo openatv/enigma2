@@ -1,5 +1,5 @@
 // for debugging use:
-// #define SYNC_PAINT
+#define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
@@ -116,6 +116,28 @@ void gPainter::setForegroundColor(const gColor &color)
 	m_rc->submit(o);
 }
 
+void gPainter::setBackgroundColor(const gRGB &color)
+{
+	gOpcode o;
+	o.opcode = gOpcode::setBackgroundColorRGB;
+	o.dc = m_dc.grabRef();
+	o.parm.setColorRGB = new gOpcode::para::psetColorRGB;
+	o.parm.setColorRGB->color = color;
+	
+	m_rc->submit(o);
+}
+
+void gPainter::setForegroundColor(const gRGB &color)
+{
+	gOpcode o;
+	o.opcode = gOpcode::setForegroundColorRGB;
+	o.dc = m_dc.grabRef();
+	o.parm.setColorRGB = new gOpcode::para::psetColorRGB;
+	o.parm.setColorRGB->color = color;
+	
+	m_rc->submit(o);
+}
+
 void gPainter::setFont(gFont *font)
 {
 	gOpcode o;
@@ -221,9 +243,10 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 void gPainter::mergePalette(gPixmap *target)
 {
 	gOpcode o;
-	o.opcode=gOpcode::mergePalette;
+	o.opcode = gOpcode::mergePalette;
 	o.dc = m_dc.grabRef();
 	target->AddRef();
+	o.parm.mergePalette = new gOpcode::para::pmergePalette;
 	o.parm.mergePalette->target = target;
 	m_rc->submit(o);
 }
@@ -336,6 +359,14 @@ void gDC::exec(gOpcode *o)
 		m_foreground_color = o->parm.setColor->color;
 		delete o->parm.setColor;
 		break;
+	case gOpcode::setBackgroundColorRGB:
+		m_background_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		delete o->parm.setColorRGB;
+		break;
+	case gOpcode::setForegroundColorRGB:
+		m_foreground_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		delete o->parm.setColorRGB;
+		break;
 	case gOpcode::setFont:
 		m_current_font = o->parm.setFont->font;
 		o->parm.setFont->font->Release();
@@ -404,7 +435,8 @@ void gDC::exec(gOpcode *o)
 		
 		if (o->parm.blit->clip.valid())
 		{
-			clip.intersect(gRegion(o->parm.blit->clip), clip);
+			o->parm.blit->clip.moveBy(m_current_offset);
+			clip.intersect(gRegion(o->parm.blit->clip), m_current_clip);
 		} else
 			clip = m_current_clip;
 		
@@ -426,12 +458,10 @@ void gDC::exec(gOpcode *o)
 		delete o->parm.setPalette;
 		break;
 	case gOpcode::mergePalette:
-#if 0
-		pixmap->mergePalette(*o->parm.blit->pixmap);
-		o->parm.blit->pixmap->unlock();
-		delete o->parm.blit;
-#endif
-		break;
+		m_pixmap->mergePalette(*o->parm.mergePalette->target);
+		o->parm.mergePalette->target->Release();
+		delete o->parm.mergePalette;
+		break; 
 	case gOpcode::line:
 	{
 		ePoint start = o->parm.line->start + m_current_offset, end = o->parm.line->end + m_current_offset;
@@ -447,7 +477,7 @@ void gDC::exec(gOpcode *o)
 		break;
 	case gOpcode::setClip:
 		o->parm.clip->region.moveBy(m_current_offset);
-		m_current_clip = o->parm.clip->region & eRect(ePoint(0, 0), m_pixmap->getSize());
+		m_current_clip = o->parm.clip->region & eRect(ePoint(0, 0), m_pixmap->size());
 		delete o->parm.clip;
 		break;
 	case gOpcode::popClip:

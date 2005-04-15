@@ -2,9 +2,34 @@
 #include <lib/gdi/esize.h>
 #include <lib/gui/ewindow.h>
 #include <lib/gui/ewindowstyle.h>
-
+#include <lib/base/init.h>
+#include <lib/base/init_num.h>
 
 eWindowStyle::~eWindowStyle() {}
+
+DEFINE_REF(eWindowStyleManager);
+
+eWindowStyleManager::eWindowStyleManager()
+{
+	m_instance = this;
+}
+
+eWindowStyleManager::~eWindowStyleManager()
+{
+	m_instance = 0;
+}
+
+void eWindowStyleManager::getStyle(ePtr<eWindowStyle> &style)
+{
+	style = m_current_style;
+}
+
+void eWindowStyleManager::setStyle(eWindowStyle *style)
+{
+	m_current_style = style;
+}
+
+eWindowStyleManager *eWindowStyleManager::m_instance;
 
 DEFINE_REF(eWindowStyleSimple);
 
@@ -22,7 +47,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 	m_background_color = gColor(0x19);
 }
 
-void eWindowStyleSimple::handleNewSize(eWindow *wnd, const eSize &size)
+void eWindowStyleSimple::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
 //	eDebug("handle new size: %d x %d", size.width(), size.height());
 	
@@ -130,35 +155,4 @@ RESULT eWindowStyleSimple::getFont(int what, ePtr<gFont> &fnt)
 	return 0;
 }
 
-#if 0
-DEFINE_REF(eWindowStyleSkinned);
-
-eWindowStyleSkinned::eWindowStyleSkinned()
-{
-}
-
-void eWindowStyleSkinned::handleNewSize(eWindow *wnd, const eSize &size)
-{
-}
-
-void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
-{
-}
-
-void eWindowStyleSkinned::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)
-{
-}
-
-void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
-{
-}
-
-void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)
-{
-}
-
-void eWindowStyleSkinned::drawBorder(gPainter &painter, const eSize &size, const struct borderSet &border, int where)
-{
-}
-
-#endif
+eAutoInitPtr<eWindowStyleManager> init_eWindowStyleManager(eAutoInitNumbers::skin, "eWindowStyleManager");

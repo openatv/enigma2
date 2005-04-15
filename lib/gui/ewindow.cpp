@@ -2,10 +2,26 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 #include <lib/gui/ewindowstyle.h>
+#include <lib/gui/ewindowstyleskinned.h>
+
+#include <lib/gdi/epng.h>
 
 eWindow::eWindow(eWidgetDesktop *desktop): eWidget(0)
 {
-	setStyle(new eWindowStyleSimple());
+	m_flags = 0;
+		/* ask style manager for current style */
+	ePtr<eWindowStyleManager> mgr;
+	eWindowStyleManager::getInstance(mgr);
+	
+	ePtr<eWindowStyle> style;
+	if (mgr)
+		mgr->getStyle(style);
+	
+		/* when there is either no style manager or no style, revert to simple style. */
+	if (!style)
+		style = new eWindowStyleSimple();
+	
+	setStyle(style);
 
 		/* we are the parent for the child window. */
 		/* as we are in the constructor, this is thread safe. */
@@ -27,30 +43,49 @@ void eWindow::setTitle(const std::string &string)
 	event(evtTitleChanged);
 }
 
+void eWindow::setFlag(int flags)
+{
+	m_flags |= flags;
+}
+
+void eWindow::clearFlag(int flags)
+{
+	m_flags &= ~flags;
+}
+
 int eWindow::event(int event, void *data, void *data2)
 {
 	switch (event)
 	{
 	case evtWillChangeSize:
 	{
-		ePtr<eWindowStyle> style;
-		if (!getStyle(style))
+		eSize &new_size = *static_cast<eSize*>(data);
+		eSize &offset = *static_cast<eSize*>(data2);
+		if (!(m_flags & wfNoBorder))
 		{
-			const eSize &new_size = *static_cast<eSize*>(data);
+			ePtr<eWindowStyle> style;
+			if (!getStyle(style))
+			{
 //			eDebug("eWindow::evtWillChangeSize to %d %d", new_size.width(), new_size.height());
-			style->handleNewSize(this, new_size);
+				style->handleNewSize(this, new_size, offset);
+			}
+		} else
+		{
+			m_child->resize(new_size);
 		}
 		break;
 	}
 	case evtPaint:
 	{
-		ePtr<eWindowStyle> style;
-		if (!getStyle(style))
+		if (!(m_flags & wfNoBorder))
 		{
-			gPainter &painter = *static_cast<gPainter*>(data2);
-			style->paintWindowDecoration(this, painter, m_title);
-		} else
-			eDebug("no style :(");
+			ePtr<eWindowStyle> style;
+			if (!getStyle(style))
+			{
+				gPainter &painter = *static_cast<gPainter*>(data2);
+				style->paintWindowDecoration(this, painter, m_title);
+			}
+		}
 		return 0;
 	}
 	default:

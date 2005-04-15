@@ -41,6 +41,9 @@ struct gOpcode
 		setBackgroundColor,
 		setForegroundColor,
 		
+		setBackgroundColorRGB,
+		setForegroundColorRGB,
+		
 		setOffset,
 		
 		setClip, addClip, popClip,
@@ -114,6 +117,11 @@ struct gOpcode
 			gColor color;
 		} *setColor;
 		
+		struct psetColorRGB
+		{
+			gRGB color;
+		} *setColorRGB;
+		
 		struct psetOffset
 		{
 			ePoint value;
@@ -175,6 +183,9 @@ public:
 
 	void setBackgroundColor(const gColor &color);
 	void setForegroundColor(const gColor &color);
+
+	void setBackgroundColor(const gRGB &color);
+	void setForegroundColor(const gRGB &color);
 
 	void setFont(gFont *font);
 		/* flags only THESE: */
@@ -240,7 +251,7 @@ public:
 	gRegion &getClip() { return m_current_clip; }
 	int getPixmap(ePtr<gPixmap> &pm) { pm = m_pixmap; return 0; }
 	gRGB getRGB(gColor col);
-	virtual eSize getSize() { return m_pixmap->getSize(); }
+	virtual eSize size() { return m_pixmap->size(); }
 };
 
 #endif

@@ -9,6 +9,7 @@ public:
 	ePixmap(eWidget *parent);
 	
 	void setPixmap(gPixmap *pixmap);
+	void setPixmapFromFile(const char *filename);
 protected:
 	ePtr<gPixmap> m_pixmap;
 	int event(int event, void *data=0, void *data2=0);

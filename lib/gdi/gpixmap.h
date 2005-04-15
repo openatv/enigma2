@@ -97,8 +97,9 @@ struct gSurfaceSystem: gSurface
 	~gSurfaceSystem();
 };
 
-struct gPixmap: public iObject
+class gPixmap: public iObject
 {
+private:
 DECLARE_REF(gPixmap);
 private:
 	friend class gDC;
@@ -121,7 +122,7 @@ public:
 	gPixmap *lock();
 	void unlock();
 	
-	eSize getSize() const { return eSize(surface->x, surface->y); }
+	eSize size() const { return eSize(surface->x, surface->y); }
 	
 	gPixmap(gSurface *surface);
 	gPixmap(eSize, int bpp);
