@@ -8,7 +8,9 @@ DEFINE_REF(eWindowStyleSkinned);
 
 eWindowStyleSkinned::eWindowStyleSkinned()
 {
-	m_background_color = gRGB(0x808080);
+	// m_background_color = gRGB(0x808080);
+	
+	// TODO: initialize colors!!
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
@@ -37,7 +39,7 @@ void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter,
 
 void eWindowStyleSkinned::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)
 {
-	painter.setBackgroundColor(m_background_color);
+	painter.setBackgroundColor(m_color[colBackground]);
 	painter.clear();
 }
 
@@ -46,19 +48,19 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 	switch (what)
 	{
 	case styleLabel:
-		painter.setForegroundColor(gColor(0x1F));
+		painter.setForegroundColor(m_color[colLabelForeground]);
 		break;
 	case styleListboxSelected:
-		painter.setForegroundColor(gColor(0x1F));
-		painter.setBackgroundColor(gColor(0x1A));
+		painter.setForegroundColor(m_color[colListboxSelectedForeground]);
+		painter.setBackgroundColor(m_color[colListboxSelectedBackground]);
 		break;
 	case styleListboxNormal:
-		painter.setForegroundColor(gColor(0x1C));
-		painter.setBackgroundColor(m_background_color);
+		painter.setForegroundColor(m_color[colListboxForeground]);
+		painter.setBackgroundColor(m_color[colListboxBackground]);
 		break;
 	case styleListboxMarked:
-		painter.setForegroundColor(gColor(0x2F));
-		painter.setBackgroundColor(gColor(0x2A));
+		painter.setForegroundColor(m_color[colListboxMarkedForeground]);
+		painter.setBackgroundColor(m_color[colListboxMarkedBackground]);
 		break;
 	}
 }
@@ -240,9 +242,9 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 		m_border[bs].m_border_right, m_border[bs].m_border_bottom); 
 }
 
-void eWindowStyleSkinned::setDefaultBackgroundColor(const gRGB &back)
+void eWindowStyleSkinned::setColor(int what, const gRGB &col)
 {
-	m_background_color = back;
-	eDebug("set default background color!");
+	if ((what < colMax) && (what >= 0))
+		m_color[what] = col;
 }
 

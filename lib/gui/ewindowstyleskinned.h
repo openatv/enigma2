@@ -52,7 +52,19 @@ public:
 	
 	void setPixmap(int bs, int bp, gPixmap &pixmap);
 	
-	void setDefaultBackgroundColor(const gRGB &back);
+	enum {
+		colBackground,
+		colLabelForeground,
+		colListboxBackground,
+		colListboxForeground,
+		colListboxSelectedBackground,
+		colListboxSelectedForeground,
+		colListboxMarkedBackground,
+		colListboxMarkedForeground,
+		colMax
+	};
+	
+	void setColor(int what, const gRGB &back);
 	
 private:
 	struct borderSet
@@ -63,7 +75,7 @@ private:
 	
 	borderSet m_border[bsMax];
 	
-	gRGB m_background_color;
+	gRGB m_color[colMax];
 	
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where);
 };

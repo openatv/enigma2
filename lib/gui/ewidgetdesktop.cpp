@@ -55,7 +55,7 @@ void eWidgetDesktop::invalidate(const gRegion &region)
 	m_dirty_region |= region;
 }
 
-void eWidgetDesktop::setBackgroundColor(gColor col)
+void eWidgetDesktop::setBackgroundColor(gRGB col)
 {
 	m_background_color = col;
 	
@@ -68,6 +68,13 @@ void eWidgetDesktop::setBackgroundColor(gColor col)
 		painter.setBackgroundColor(m_background_color);
 		painter.clear();
 	}
+}
+
+void eWidgetDesktop::setPalette(gPixmap &pm)
+{
+	ASSERT(m_dc);
+	gPainter painter(m_dc);
+	painter.setPalette(&pm);
 }
 
 void eWidgetDesktop::paint()
