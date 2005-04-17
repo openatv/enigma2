@@ -162,6 +162,7 @@ class clockDisplay(Screen):
 
 class serviceScan(Screen):
 	def ok(self):
+		print "ok"
 		if self["scan"].isDone():
 			self.close()
 	

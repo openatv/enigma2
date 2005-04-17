@@ -2,6 +2,9 @@ from enigma import *
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 
+
+colorNames = dict()
+
 def dump(x, i=0):
 	print " " * i + str(x)
 	try:
@@ -12,8 +15,21 @@ def dump(x, i=0):
 
 dom = xml.dom.minidom.parseString(
 	"""<skin>
+	
+		<colors>
+			<color name="white" value="#ffffff" />
+			<color name="black" value="#000000" />
+			<color name="dark"  value="#294a6b" />
+		</colors>
 		<windowstyle type="skinned">
-			<color name="defaultBackground" color="#4075a7" />
+			<color name="Background" color="#4075a7" />
+			<color name="LabelForeground" color="#ffffff" />
+			<color name="ListboxBackground" color="#4075a7" />
+			<color name="ListboxForeground" color="#ffffff" />
+			<color name="ListboxSelectedBackground" color="#80ff80" />
+			<color name="ListboxSelectedForeground" color="#ffffff" />
+			<color name="ListboxMarkedBackground" color="#ff0000" />
+			<color name="ListboxMarkedForeground" color="#ffffff" />
 			<borderset name="bsWindow">
 				<pixmap pos="bpTopLeft"     filename="data/b_w_tl.png" />
 				<pixmap pos="bpTop"         filename="data/b_w_t.png"  />
@@ -36,14 +52,14 @@ dom = xml.dom.minidom.parseString(
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
 		<screen name="infoBar" position="0,380" size="720,151" title="InfoBar" flags="wfNoBorder">
-			<ePixmap position="0,0" size="720,151" pixmap="info-bg.png" />
+			<ePixmap position="0,0" size="720,151" pixmap="data/info-bg.png" />
 			
-			<widget name="ServiceName" position="69,30" size="427,26" valign="center" font="Arial;32" />
-			<widget name="CurrentTime" position="575,10" size="66,30" />
-			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;29" backgroundColor="#586D88" />
-			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;29" />
-			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;26" />
-			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;26" />
+			<widget name="ServiceName" position="69,30" size="427,26" valign="center" font="Arial;32" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="66,30" backgroundColor="dark" font="Arial;16" />
+			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;29" backgroundColor="dark" />
+			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;29" backgroundColor="dark" />
+			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;26" backgroundColor="dark" />
+			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;26" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
 		<screen name="channelSelection" position="100,80" size="500,240" title="Channel Selection">
@@ -86,7 +102,10 @@ def parseFont(str):
 
 def parseColor(str):
 	if str[0] != '#':
-		raise "color must be #aarrggbb"
+		try:
+			return colorNames[str]
+		except:
+			raise ("color '%s' must be #aarrggbb or valid named color" % (str))
 	return gRGB(int(str[1:], 0x10))
 
 def applyAttributes(guiObject, node, desktop):
@@ -168,6 +187,16 @@ def loadSkin():
 	skin = dom.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
 	
+	for c in elementsWithTag(skin.childNodes, "colors"):
+		for color in elementsWithTag(c.childNodes, "color"):
+			name = str(color.getAttribute("name"))
+			color = str(color.getAttribute("value"))
+			
+			if not len(color):
+				raise ("need color and name, got %s %s" % (name, color))
+				
+			colorNames[name] = parseColor(color)
+	
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
 		
@@ -183,10 +212,10 @@ def loadSkin():
 			type = str(color.getAttribute("name"))
 			color = parseColor(color.getAttribute("color"))
 			
-			if type == "defaultBackground":
-				style.setDefaultBackgroundColor(color)
-			else:
-				raise "unknown color %s" % (type)
+			try:
+				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
+			except:
+				raise ("Unknown color %s" % (type))
 			
 		x = eWindowStyleManagerPtr()
 		eWindowStyleManager.getInstance(x)

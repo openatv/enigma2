@@ -388,6 +388,8 @@ gColor gPalette::findColor(const gRGB &rgb) const
 		ttd+=td;
 		if (ttd>=difference)
 			continue;
+		if (!ttd)
+			return t;
 		difference=ttd;
 		best_choice=t;
 	}

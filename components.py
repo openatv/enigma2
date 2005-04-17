@@ -348,7 +348,8 @@ class ServiceScan:
 			print "*** warning *** scan was not finished!"
 
 	def isDone(self):
-		return self.state == self.Done
+		print "state is %d " % (self.state)
+		return self.state == self.Done or self.state == self.Error
 	
 class ActionMap:
 	def __init__(self, contexts = [ ], actions = { }, prio=0):
@@ -406,12 +407,12 @@ class EventInfo(PerServiceDisplay):
 	def __init__(self, navcore, now_or_next):
 		# listen to evUpdatedEventInfo and evStopService
 		# note that evStopService will be called once to establish a known state
+		self.now_or_next = now_or_next
 		PerServiceDisplay.__init__(self, navcore, 
 			{ 
 				pNavigation.evUpdatedEventInfo: self.ourEvent, 
 				pNavigation.evStopService: self.stopEvent 
 			})
-		self.now_or_next = now_or_next
 
 	def ourEvent(self):
 		info = iServiceInformationPtr()
@@ -428,7 +429,8 @@ class EventInfo(PerServiceDisplay):
 		print "new event info in EventInfo! yeah!"
 
 	def stopEvent(self):
-			self.setText("waiting for event data...");
+		self.setText(
+			("waiting for event data...", "", "--:--",  "--:--")[self.now_or_next]);
 
 class ServiceName(PerServiceDisplay):
 	def __init__(self, navcore):

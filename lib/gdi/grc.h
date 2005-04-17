@@ -215,6 +215,7 @@ public:
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &what=eRect(), int flags=0);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
+	void setPalette(gPixmap *source);
 	void mergePalette(gPixmap *target);
 	
 	void line(ePoint start, ePoint end);

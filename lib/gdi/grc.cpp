@@ -240,6 +240,12 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 	m_rc->submit(o);
 }
 
+void gPainter::setPalette(gPixmap *source)
+{
+	ASSERT(source);
+	setPalette(source->surface->clut.data, source->surface->clut.start, source->surface->clut.colors);
+}
+
 void gPainter::mergePalette(gPixmap *target)
 {
 	gOpcode o;

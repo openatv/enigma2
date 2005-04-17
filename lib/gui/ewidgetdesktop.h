@@ -15,7 +15,7 @@ public: // weil debug
 	gRegion m_dirty_region;
 	gRegion m_background_region;
 	ePtr<gDC> m_dc;
-	gColor m_background_color;
+	gRGB m_background_color;
 public:
 	eWidgetDesktop(eSize screen);
 	~eWidgetDesktop();
@@ -27,7 +27,9 @@ public:
 	void paint();
 	void setDC(gDC *dc);
 	
-	void setBackgroundColor(gColor col);
+	void setBackgroundColor(gRGB col);
+	
+	void setPalette(gPixmap &pm);
 	
 	void setRedrawTask(eMainloop &ml);
 	
