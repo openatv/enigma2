@@ -29,6 +29,8 @@
 
 #include <lib/actions/action.h>
 
+#include <lib/gdi/epng.h>
+
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -142,35 +144,24 @@ int main(int argc, char **argv)
 	gFBDC::getInstance(my_dc);
 #endif
 
-	gPainter p(my_dc);
-	
-	gRGB pal[256];
-	pal[0] = 0;
-	pal[1] = 0xff00ff;
-	pal[2] = 0xffFFff;
-	pal[3] = 0x00ff00;
-	
-	for (int a=0; a<0x10; ++a)
-		pal[a | 0x10] = 0x111111 * a;
-	for (int a=0; a<0x10; ++a)
-		pal[a | 0x20] = (0x111100 * a) | 0xFF;
-	for (int a=0; a<0x10; ++a)
-		pal[a | 0x30] = (0x110011 * a) | 0xFF00;
-	for (int a=0; a<0x10; ++a)
-		pal[a | 0x40] = (0x001111 * a) | 0xFF0000;
-	
-	pal[0x50] = 0x586D88;
-	pal[0x51] = 0x4075a7;
-	
-	p.setPalette(pal, 0, 256);
-
 	fontRenderClass::getInstance()->AddFont("/home/tmbinc/enigma2/fonts/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
 	wdsk = &dsk;
-	dsk.setBackgroundColor(gColor(0));
+
+
 	dsk.setDC(my_dc);
+
+	ePtr<gPixmap> m_pm;
+	loadPNG(m_pm, "data/info-bg.png");
+	if (!m_pm)
+	{
+		eDebug("can't load info-bg :)");
+	} else
+		dsk.setPalette(*m_pm);
+
+	dsk.setBackgroundColor(gRGB(0,0,0,0));
 #endif
 
 		/* redrawing is done in an idle-timer, so we have to set the context */
@@ -181,7 +172,6 @@ int main(int argc, char **argv)
 	printf("executing main\n");
 
 	python.execute("mytest", "__main__");
-
 
 //	eApp->exec();
 
