@@ -89,7 +89,10 @@ int eComponentScan::start()
 	ePtr<iDVBChannel> channel;
 
 	if (mgr->allocateRawChannel(channel))
+	{
 		eDebug("scan: allocating raw channel failed!");
+		return -1;
+	}
 
 	std::list<ePtr<iDVBFrontendParameters> > list;
 		
@@ -98,7 +101,7 @@ int eComponentScan::start()
 	m_scan = new eDVBScan(channel);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
 	m_scan->start(list);
-
+	
 	return 0;
 }
 
@@ -125,4 +128,9 @@ int eComponentScan::getNumServices()
 int eComponentScan::isDone()
 {
 	return m_done;
+}
+
+int eComponentScan::getError()
+{
+	return m_failed;
 }

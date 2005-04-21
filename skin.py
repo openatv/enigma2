@@ -69,7 +69,6 @@ dom = xml.dom.minidom.parseString(
 		<screen name="serviceScan" position="150,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="280,50" />
 			<widget name="scan_state" position="10,60" size="280,30" />
-			<widget name="okbutton" position="10,100" size="280,40" />
 		</screen>
 	</skin>""")
 

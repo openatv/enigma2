@@ -166,6 +166,9 @@ class serviceScan(Screen):
 		if self["scan"].isDone():
 			self.close()
 	
+	def cancel(self):
+		print "cancel not yet implemented ;)"
+	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
@@ -173,5 +176,9 @@ class serviceScan(Screen):
 		self["scan_state"] = Label("scan state")
 		self["scan"] = ServiceScan(self["scan_progress"], self["scan_state"])
 
-		self["okbutton"] = Button("ok", [self.ok])
-		self["okbutton"].disable()
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"ok": self.ok,
+				"cancel": self.cancel
+			})
+
