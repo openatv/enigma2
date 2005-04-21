@@ -26,8 +26,10 @@ public:
 		/* get number of services */
 	int getNumServices();
 	
-		/* true when done. */
+		/* true when done or error */
 	int isDone();
+	
+	int getError();
 	
 	int start();
 };

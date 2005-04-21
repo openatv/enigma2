@@ -312,12 +312,25 @@ class ServiceScan:
 	Running = 2
 	Done = 3
 	Error = 4
+	
+	Errors = { 
+		1: "error while scanning",
+		2: "no resource manager",
+		3: "no channel list"
+		}
+		
 		
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
 			if self.scan.isDone():
-				self.state = self.Done
+				errcode = self.scan.getError()
+				
+				if errcode == 0:
+					self.state = self.Done
+				else:
+					self.state = self.Error
+					self.errorcode = errcode
 			else:
 				self.text.setText("scan in progress - %d %% done!\n%d services found!" % (self.scan.getProgress(), self.scan.getNumServices()))
 		
@@ -325,7 +338,7 @@ class ServiceScan:
 			self.text.setText("scan done!")
 		
 		if self.state == self.Error:
-			self.text.setText("ERROR - failed to scan!")
+			self.text.setText("ERROR - failed to scan (%s)!" % (self.Errors[self.errorcode]) )
 	
 	def __init__(self, progressbar, text):
 		self.progressbar = progressbar
@@ -336,10 +349,10 @@ class ServiceScan:
 		
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
+		self.state = self.Running
 		if self.scan.start():
 			self.state = self.Error
-		else:
-			self.state = self.Running
+
 		self.scanStatusChanged()
 	
 	def execEnd(self):
