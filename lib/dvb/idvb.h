@@ -363,6 +363,10 @@ struct eDVBDiseqcCommand
 {
 	int len;
 	__u8 data[MAX_DISEQC_LENGTH];
+#if HAVE_DVB_API_VERSION < 3
+	int tone;
+	int voltage;
+#endif
 };
 
 class iDVBSatelliteEquipmentControl;

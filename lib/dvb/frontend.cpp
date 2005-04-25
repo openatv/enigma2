@@ -628,12 +628,22 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 		eDebugNoNewLine("%02x ", diseqc.data[3+i]);
 	eDebug("");
 
-	seq.continuousTone = SEC_TONE_OFF;
-	seq.voltage = SEC_VOLTAGE_13;
+	seq.continuousTone = diseqc.tone == toneOn ? SEC_TONE_ON : SEC_TONE_OFF;
+	switch ( diseqc.voltage )
+	{
+		case voltageOff:
+			seq.voltage = SEC_VOLTAGE_OFF;
+			break;
+		case voltage13:
+			seq.voltage = SEC_VOLTAGE_13;
+			break;
+		case voltage18:
+			seq.voltage = SEC_VOLTAGE_18;
+			break;
+	}
 	seq.miniCommand = SEC_MINI_NONE;
 	seq.commands=&cmd;
 	seq.numCommands=1;
-
 
 	if ( ioctl(m_secfd, SEC_SEND_SEQUENCE, &seq) < 0 )
 	{
