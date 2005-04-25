@@ -111,6 +111,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 			surface->clut.data=0;
 			surface->clut.colors=0;
 		}
+		surface->clut.start=0;
 		png_read_end(png_ptr, end_info);
 	} else
 		result=0;
