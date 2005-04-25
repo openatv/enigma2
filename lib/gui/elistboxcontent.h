@@ -82,6 +82,7 @@ public:
 
 	void setList(PyObject *list);
 	PyObject *getCurrentSelection();
+	int getCurrentSelectionIndex() { return m_cursor; }
 #ifndef SWIG
 protected:
 	void cursorHome();
@@ -101,13 +102,23 @@ protected:
 	void setSize(const eSize &size);
 	
 		/* the following functions always refer to the selected item */
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 
-private:
+protected:
 	PyObject *m_list;
 	int m_cursor, m_saved_cursor;
 	eSize m_itemsize;
 #endif
+};
+
+class eListboxPythonConfigContent: public eListboxPythonStringContent
+{
+public:
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	void invalidateEntry(int index);
+	void setSeperation(int sep) { m_seperation = sep; }
+private:
+	int m_seperation;
 };
 
 #endif
