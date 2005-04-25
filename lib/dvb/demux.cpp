@@ -7,6 +7,9 @@
 
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
+#ifndef DMX_SET_NEGFILTER_MASK
+	#define DMX_SET_NEGFILTER_MASK   _IOW('o',48,uint8_t *)
+#endif
 #else
 #include <linux/dvb/dmx.h>
 #endif
