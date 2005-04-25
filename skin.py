@@ -46,6 +46,9 @@ dom = xml.dom.minidom.parseString(
 			<widget name="title" position="10,10" size="280,20" />
 			<widget name="menu" position="10,30" size="280,140" />
 		</screen>
+		<screen name="configTest" position="300,100" size="300,300" title="config menu">
+			<widget name="config" position="10,30" size="280,140" />
+		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
 			<widget name="title" position="10,120" size="280,50" />

@@ -378,3 +378,54 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 }
 
 //////////////////////////////////////
+
+void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
+{
+	ePtr<gFont> fnt = new gFont("Arial", 14);
+	ePtr<gFont> fnt2 = new gFont("Arial", 16);
+	painter.clip(eRect(offset, m_itemsize));
+	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+	painter.clear();
+
+	if (m_list && cursorValid())
+	{
+		PyObject *item = PyList_GetItem(m_list, m_cursor); // borrowed reference!
+		PyObject *text = 0, *value = 0;
+		painter.setFont(fnt);
+
+			/* the user can supply tuples, in this case the first one will be displayed. */		
+		if (PyTuple_Check(item))
+		{
+			text = PyTuple_GetItem(item, 0);
+			value = PyTuple_GetItem(item, 1);
+		}
+		
+		text = PyObject_Str(text);
+		value = PyObject_Str(value);
+		
+		const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
+		const char *string_val = (value && PyString_Check(value)) ? PyString_AsString(value) : "<not-a-string>";
+		
+		eSize item_left = eSize(m_seperation, m_itemsize.height());
+		eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
+		
+		painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
+		
+		painter.setFont(fnt2);
+		painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), string_val, gPainter::RT_HALIGN_RIGHT);
+		
+		Py_XDECREF(text);
+		Py_XDECREF(value);
+		
+		if (selected)
+			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
+	}
+	
+	painter.clippop();
+}
+
+void eListboxPythonConfigContent::invalidateEntry(int index)
+{
+	m_listbox->entryChanged(index);
+}
+

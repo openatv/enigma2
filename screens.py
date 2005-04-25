@@ -38,10 +38,29 @@ class Screen(dict, HTMLSkin, GUISkin):
 	def close(self, retval=None):
 		self.session.close()
 
+class configTest(Screen):
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		
+
+		self["config"] = ConfigList(
+			[
+				configEntry("HKEY_LOCAL_ENIGMA/IMPORTANT/USER_ANNOYING_STUFF/SDTV/FLASHES/GREEN"),
+				configEntry("HKEY_LOCAL_ENIGMA/IMPORTANT/USER_ANNOYING_STUFF/HDTV/FLASHES/GREEN"),
+			])
+
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"ok": self["config"].toggle,
+				"cancel": self.close
+			})
+		
+
 class mainMenu(Screen):
 	
-	def goEmu(self):
-		self["title"].setText("EMUs ARE ILLEGAL AND NOT SUPPORTED!")
+	def goSetup(self):
+		self.session.open(configTest)
 	
 	def goTimeshift(self):
 		self["title"].setText("JUST PRESS THE YELLOW BUTTON!")
@@ -77,7 +96,7 @@ class mainMenu(Screen):
 				("Close Main Menu", self.close),
 				("Service Scan", self.goScan),
 				("Quit", quitMainloop),
-				("EMU SETUP", self.goEmu),
+				("setup", self.goSetup),
 				("TIMESHIFT SETUP", self.goTimeshift),
 				("HDTV PIP CONFIG", self.goHDTV),
 				("wie spaet ists?!", self.goClock)

@@ -38,6 +38,8 @@ class GUISkin:
 			except:
 				pass
 			
+			# DIESER KOMMENTAR IST NUTZLOS UND MITTLERWEILE VERALTET! (glaub ich)
+			# BITTE NICHT LESEN!
 			# note: you'll probably run into this assert. if this happens, don't panic!
 			# yes, it's evil. I told you that programming in python is just fun, and 
 			# suddently, you have to care about things you don't even know.
@@ -264,6 +266,62 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
+	
+	def GUIcreate(self, parent, skindata):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+	
+	def GUIdelete(self):
+		self.instance.setContent(None)
+		del self.instance
+
+
+#  temp stuff :)
+class configBoolean:
+	def __init__(self, reg):
+		self.reg = reg
+		self.val = 0
+	
+	def toggle(self):
+		self.val += 1
+		self.val %= 3
+	
+	def __str__(self):
+		return ("NO", "YES", "MAYBE")[self.val]
+
+class configValue:
+	def __init__(self, obj):
+		self.obj = obj
+		
+	def __str__(self):
+		return self.obj
+
+def configEntry(obj):
+	# das hier ist ein zugriff auf die registry...
+	if obj == "HKEY_LOCAL_ENIGMA/IMPORTANT/USER_ANNOYING_STUFF/SDTV/FLASHES/GREEN":
+		return ("SDTV green flashes", configBoolean(obj))
+	elif obj == "HKEY_LOCAL_ENIGMA/IMPORTANT/USER_ANNOYING_STUFF/HDTV/FLASHES/GREEN":
+		return ("HDTV reen flashes", configBoolean(obj))
+	else:
+		return ("invalid", "")
+
+class ConfigList(HTMLComponent, GUIComponent):
+	def __init__(self, list):
+		GUIComponent.__init__(self)
+		self.l = eListboxPythonConfigContent()
+		self.l.setList(list)
+		self.l.setSeperation(100)
+	
+	def toggle(self):
+		selection = self.getCurrent()
+		selection[1].toggle()
+		self.invalidateCurrent()
+	
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+	
+	def invalidateCurrent(self):
+		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
 	
 	def GUIcreate(self, parent, skindata):
 		self.instance = eListbox(parent)
