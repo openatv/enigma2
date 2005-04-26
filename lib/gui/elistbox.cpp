@@ -107,7 +107,6 @@ int eListbox::event(int event, void *data, void *data2)
 		if (!m_content)
 			return eWidget::event(event, data, data2);
 		assert(m_content);
-		recalcSize(); // move to event
 		
 		getStyle(style);
 		
@@ -129,6 +128,10 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		return 0;
 	}
+	case evtChangedSize:
+		recalcSize();
+		return eWidget::event(event, data, data2);
+		
 	case evtAction:
 		if (isVisible())
 		{
