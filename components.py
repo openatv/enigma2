@@ -340,6 +340,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 		r = eServiceReference()
 		self.l.getCurrent(r)
 		return r
+		
+	def moveUp(self):
+		self.instance.moveSelection(self.instance.moveUp)
+
+	def moveDown(self):
+		self.instance.moveSelection(self.instance.moveDown)
 
 	def GUIcreate(self, parent, skindata):
 		self.instance = eListbox(parent)
