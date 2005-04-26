@@ -17,9 +17,14 @@ dom = xml.dom.minidom.parseString(
 	"""<skin>
 	
 		<colors>
-			<color name="white" value="#ffffff" />
-			<color name="black" value="#000000" />
-			<color name="dark"  value="#294a6b" />
+			<color name="white" 	value="#ffffff" />
+			<color name="black" 	value="#000000" />
+			<color name="dark"  	value="#294a6b" />
+			
+			<color name="red" 		value="#ff0000" />
+			<color name="green" 	value="#00ff00" />
+			<color name="blue" 		value="#0000ff" />
+			<color name="yellow"	value="#c0c000" />
 		</colors>
 		<windowstyle type="skinned">
 			<color name="Background" color="#4075a7" />
@@ -41,10 +46,27 @@ dom = xml.dom.minidom.parseString(
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
 		</windowstyle>
-		<screen name="mainMenu" position="300,100" size="300,300" title="real main menu">
-			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />
+		<screen name="Menu" position="300,100" size="300,300" title="real main menu">
+<!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
 			<widget name="title" position="10,10" size="280,20" />
-			<widget name="menu" position="10,30" size="280,140" />
+			<widget name="menu" position="10,30" size="280,200" />
+		</screen>
+		<screen name="ScartLoopThrough" position="0,0" size="720,576">
+		</screen>
+		<screen name="ConfigMenu" position="300,100" size="300,300" title="real main menu">
+			<widget name="txt_var_1" position="20,20" size="100,20" />
+			<widget name="btn_var_1" position="110,20" size="200,20" />
+			<widget name="txt_var_2" position="20,60" size="100,20" />
+			<widget name="btn_var_2" position="110,60" size="200,20" />
+		</screen>
+		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
+			<widget name="okbutton" position="20,245" size="205,40" />
+			<widget name="txt_alpha" position="20,20" size="110,20" />
+			<widget name="sld_alpha" position="150,20" size="290,20" />
+			<widget name="txt_brightness" position="20,60" size="120,20" />
+			<widget name="sld_brightness" position="150,20" size="290,20" />
+			<widget name="txt_gamma" position="20,100" size="120,20" />
+			<widget name="sld_gamma" position="150,100" size="290,20" />
 		</screen>
 		<screen name="configTest" position="300,100" size="300,300" title="config menu">
 			<widget name="config" position="10,30" size="280,140" />
@@ -65,9 +87,13 @@ dom = xml.dom.minidom.parseString(
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;26" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
-		<screen name="channelSelection" position="100,80" size="500,240" title="Channel Selection">
-			<widget name="list" position="20,50" size="300,150" />
-			<widget name="okbutton" position="340,50" size="140,30" />
+		<screen name="channelSelection" position="90,100" size="560,420" title="Channel Selection">
+			<widget name="list" position="0,50" size="560,340" />
+<!--			<widget name="okbutton" position="340,50" size="140,30" />-->
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" />
 		</screen>
 		<screen name="serviceScan" position="150,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="280,50" />
