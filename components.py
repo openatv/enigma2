@@ -378,12 +378,12 @@ class ServiceScan:
 	Error = 4
 	
 	Errors = { 
+		0: "error starting scanning",
 		1: "error while scanning",
 		2: "no resource manager",
 		3: "no channel list"
 		}
-		
-		
+	
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
@@ -414,8 +414,10 @@ class ServiceScan:
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.state = self.Running
-		if self.scan.start():
+		err = self.scan.start()
+		if err:
 			self.state = self.Error
+			self.errorcode = 0
 
 		self.scanStatusChanged()
 	
@@ -446,9 +448,9 @@ class ActionMap:
 	
 	def action(self, context, action):
 		print " ".join(("action -> ", context, action))
-		try:
+		if self.actions.has_key(action):
 			self.actions[action]()
-		except KeyError:
+		else:
 			print "unknown action %s/%s! typo in keymap?" % (context, action)
 
 class PerServiceDisplay(GUIComponent, VariableText):
@@ -527,3 +529,4 @@ class ServiceName(PerServiceDisplay):
 	
 	def stopEvent(self):
 			self.setText("");
+
