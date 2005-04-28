@@ -116,7 +116,7 @@ class VariableText:
 	
 	def GUIdelete(self):
 		self.removeWidget(self.instance)
-		del self.instance
+		self.instance = None
 	
 	def removeWidget(self, instance):
 		pass
@@ -142,7 +142,7 @@ class VariableValue:
 	
 	def GUIdelete(self):
 		self.removeWidget(self.instance)
-		del self.instance
+		self.instance = None
 	
 	def removeWidget(self, instance):
 		pass
@@ -273,7 +273,7 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)
-		del self.instance
+		self.instance = None
 
 
 #  temp stuff :)
@@ -329,7 +329,7 @@ class ConfigList(HTMLComponent, GUIComponent):
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)
-		del self.instance
+		self.instance = None
 
 class ServiceList(HTMLComponent, GUIComponent):
 	def __init__(self):
@@ -352,7 +352,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.instance.setContent(self.l)
 	
 	def GUIdelete(self):
-		del self.instance
+		self.instance = None
 
 	def setRoot(self, root):
 		self.l.setRoot(root)
@@ -500,11 +500,11 @@ class EventInfo(PerServiceDisplay):
 		if not self.navcore.getCurrentService(service):
 			if not service.info(info):
 				ev = eServiceEventPtr()
-				info.getEvent(ev, self.now_or_next & 1)
-				if self.now_or_next & 2:
-					self.setText("%d min" % (ev.m_duration / 60))
-				else:
-					self.setText(ev.m_event_name)
+				if info.getEvent(ev, self.now_or_next & 1) == 0:
+					if self.now_or_next & 2:
+						self.setText("%d min" % (ev.m_duration / 60))
+					else:
+						self.setText(ev.m_event_name)
 		print "new event info in EventInfo! yeah!"
 
 	def stopEvent(self):
