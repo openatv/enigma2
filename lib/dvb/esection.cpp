@@ -98,7 +98,6 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	
 	if (m_table.flags & eDVBTableSpec::tfHaveTimeout)
 	{
-		eDebug("have timeout, %d", m_table.timeout);
 		if (m_timeout)
 			delete m_timeout;
 		m_timeout = new eTimer(eApp);
