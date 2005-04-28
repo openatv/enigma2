@@ -9,6 +9,8 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 
+#include <lib/service/servicedvbrecord.h>
+
 DEFINE_REF(eServiceFactoryDVB)
 
 eServiceFactoryDVB::eServiceFactoryDVB()
@@ -83,9 +85,9 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 	return 0;
 }
 
-RESULT eServiceFactoryDVB::record(const eServiceReference &, ePtr<iRecordableService> &ptr)
+RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr = 0;
+	ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref);
 	return -1;
 }
 

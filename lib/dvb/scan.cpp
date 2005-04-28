@@ -13,8 +13,8 @@
 #include <lib/base/eerror.h>
 #include <errno.h>
 
-#define SCAN_eDebug(x...)
-#define SCAN_eDebugNoNewLine(x...)
+#define SCAN_eDebug(x...) eDebug(x)
+#define SCAN_eDebugNoNewLine(x...) eDebugNoNewLine(x)
 
 DEFINE_REF(eDVBScan);
 

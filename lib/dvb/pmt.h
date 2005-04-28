@@ -2,6 +2,7 @@
 #define __lib_dvb_dvbmid_h
 
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/dvb.h>
 #include <lib/dvb/isection.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb_si/pmt.h>
@@ -18,7 +19,7 @@ class eDVBServicePMTHandler: public Object
 	eAUTable<eTable<ProgramAssociationTable> > m_PAT;
 
 	ePtr<iDVBChannel> m_channel;
-	ePtr<iDVBResourceManager> m_resourceManager;
+	ePtr<eDVBResourceManager> m_resourceManager;
 	ePtr<iDVBDemux> m_demux;
 	
 	void channelStateChanged(iDVBChannel *);

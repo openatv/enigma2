@@ -4,6 +4,37 @@
 #include <lib/dvb/sec.h>
 #include <errno.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+DEFINE_REF(eDVBRegisteredFrontend);
+DEFINE_REF(eDVBRegisteredDemux);
+
+DEFINE_REF(eDVBAllocatedFrontend);
+
+eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(fe)
+{
+	m_fe->m_inuse++;
+}
+
+eDVBAllocatedFrontend::~eDVBAllocatedFrontend()
+{
+	--m_fe->m_inuse;
+}
+
+DEFINE_REF(eDVBAllocatedDemux);
+
+eDVBAllocatedDemux::eDVBAllocatedDemux(eDVBRegisteredDemux *demux): m_demux(demux)
+{
+	m_demux->m_inuse++;
+}
+
+eDVBAllocatedDemux::~eDVBAllocatedDemux()
+{
+	--m_demux->m_inuse;
+}
+
 DEFINE_REF(eDVBResourceManager);
 
 eDVBResourceManager *eDVBResourceManager::instance;
@@ -15,12 +46,170 @@ eDVBResourceManager::eDVBResourceManager()
 	m_sec = new eDVBSatelliteEquipmentControl;
 	if (!instance)
 		instance = this;
+		
+		/* search available adapters... */
+
+		// add linux devices
+	
+	int num_adapter = 0;
+	while (eDVBAdapterLinux::exist(num_adapter))
+	{
+		addAdapter(new eDVBAdapterLinux(num_adapter));
+		num_adapter++;
+	}
+	
+	eDebug("found %d adapter, %d frontends and %d demux", 
+		m_adapter.size(), m_frontend.size(), m_demux.size());
+}
+
+
+DEFINE_REF(eDVBAdapterLinux);
+eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
+{
+		// scan frontends
+	int num_fe = 0;
+	
+	eDebug("scanning for frontends..");
+	while (1)
+	{
+		struct stat s;
+		char filename[128];
+		sprintf(filename, "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
+		if (stat(filename, &s))
+			break;
+		ePtr<eDVBFrontend> fe;
+
+		int ok = 0;
+		fe = new eDVBFrontend(m_nr, num_fe, ok);
+		if (ok)
+			m_frontend.push_back(fe);
+		++num_fe;
+	}
+	
+		// scan demux
+	int num_demux = 0;
+	while (1)
+	{
+		struct stat s;
+		char filename[128];
+		sprintf(filename, "/dev/dvb/adapter%d/demux%d", m_nr, num_demux);
+		if (stat(filename, &s))
+			break;
+		ePtr<eDVBDemux> demux;
+		
+		demux = new eDVBDemux(m_nr, num_demux);
+		m_demux.push_back(demux);
+			
+		++num_demux;
+	}
+}
+
+int eDVBAdapterLinux::getNumDemux()
+{
+	return m_demux.size();
+}
+
+RESULT eDVBAdapterLinux::getDemux(ePtr<eDVBDemux> &demux, int nr)
+{
+	eSmartPtrList<eDVBDemux>::iterator i(m_demux.begin());
+	while (nr && (i != m_demux.end()))
+	{
+		--nr;
+		++i;
+	}
+	
+	if (i != m_demux.end())
+		demux = *i;
+	else
+		return -1;
+		
+	return 0;
+}
+
+int eDVBAdapterLinux::getNumFrontends()
+{
+	return m_frontend.size();
+}
+
+RESULT eDVBAdapterLinux::getFrontend(ePtr<eDVBFrontend> &fe, int nr)
+{
+	eSmartPtrList<eDVBFrontend>::iterator i(m_frontend.begin());
+	while (nr && (i != m_frontend.end()))
+	{
+		--nr;
+		++i;
+	}
+	
+	if (i != m_frontend.end())
+		fe = *i;
+	else
+		return -1;
+		
+	return 0;
+}
+
+int eDVBAdapterLinux::exist(int nr)
+{
+	struct stat s;
+	char filename[128];
+	sprintf(filename, "/dev/dvb/adapter%d", nr);
+	if (!stat(filename, &s))
+		return 1;
+	return 0;
 }
 
 eDVBResourceManager::~eDVBResourceManager()
 {
 	if (instance == this)
 		instance = 0;
+
+}
+
+void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
+{
+	int num_fe = adapter->getNumFrontends();
+	int num_demux = adapter->getNumDemux();
+	
+	m_adapter.push_back(adapter);
+	
+	int i;
+	for (i=0; i<num_demux; ++i)
+	{
+		ePtr<eDVBDemux> demux;
+		if (!adapter->getDemux(demux, i))
+			m_demux.push_back(new eDVBRegisteredDemux(demux, adapter));
+	}
+
+	for (i=0; i<num_fe; ++i)
+	{
+		ePtr<eDVBFrontend> frontend;
+		if (!adapter->getFrontend(frontend, i))
+			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
+	}
+}
+
+RESULT eDVBResourceManager::allocateFrontend(const eDVBChannelID &chid, ePtr<eDVBAllocatedFrontend> &fe)
+{
+		/* find first unused frontend. we ignore compatibility for now. */
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+		if (!i->m_inuse)
+		{
+			fe = new eDVBAllocatedFrontend(i);
+			return 0;
+		}
+	return -1;
+}
+
+RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux)
+{
+		/* find first unused demux which is on same adapter as frontend */
+	for (eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin()); i != m_demux.end(); ++i)
+		if ((!i->m_inuse) && (i->m_adapter == fe->m_adapter))
+		{
+			demux = new eDVBAllocatedDemux(i);
+			return 0;
+		}
+	return -1;
 }
 
 RESULT eDVBResourceManager::setChannelList(iDVBChannelList *list)
@@ -41,30 +230,70 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 
 RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, ePtr<iDVBChannel> &channel)
 {
+		/* first, check if a channel is already existing. */
+	
+	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end();)
+	{
+		if (i->m_channel_id == channelid)
+		{
+			channel = i->m_channel;
+			return 0;
+		}
+	}
+	
+		/* no currently available channel is tuned to this channelid. create a new one, if possible. */
+		
+		/* allocate a frontend. */
+	
+	ePtr<eDVBAllocatedFrontend> fe;
+	
+	if (allocateFrontend(channelid, fe))
+		return errNoFrontend;
+	
+	ePtr<eDVBAllocatedDemux> demux;
+	
+	if (allocateDemux(*fe, demux))
+		return errNoDemux;
+	
 	RESULT res;
 	eDVBChannel *ch;
-	channel = ch = new eDVBChannel(this, 0, 0, 0);
+	ch = new eDVBChannel(this, fe, demux);
 
-	ePtr<iDVBFrontend> fe;
-	if (!channel->getFrontend(fe))
-		fe->setSEC(m_sec);
+	ePtr<iDVBFrontend> myfe;
+	if (!ch->getFrontend(myfe))
+		myfe->setSEC(m_sec);
 
 	res = ch->setChannel(channelid);
 	if (res)
 	{
 		channel = 0;
-		return res;
+		return errChidNotFound;
 	}
+	
+	channel = ch;
 	return 0;
 }
 
 RESULT eDVBResourceManager::allocateRawChannel(ePtr<iDVBChannel> &channel)
 {
-	channel = new eDVBChannel(this, 0, 0, 0);
-	ePtr<iDVBFrontend> fe;
-	if (!channel->getFrontend(fe))
-		fe->setSEC(m_sec);
+	ePtr<eDVBAllocatedFrontend> fe;
 	
+	if (allocateFrontend(eDVBChannelID(), fe))
+		return errNoFrontend;
+	
+	ePtr<eDVBAllocatedDemux> demux;
+	
+	if (allocateDemux(*fe, demux))
+		return errNoDemux;
+	
+	eDVBChannel *ch;
+	ch = new eDVBChannel(this, fe, demux);
+
+	ePtr<iDVBFrontend> myfe;
+	if (!ch->getFrontend(myfe))
+		myfe->setSEC(m_sec);
+
+	channel = ch;
 	return 0;
 }
 
@@ -76,15 +305,23 @@ RESULT eDVBResourceManager::allocatePVRChannel(int caps)
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
 	eDebug("add channel %p", ch);
-	m_active_channels.insert(std::pair<eDVBChannelID,eDVBChannel*>(chid, ch));
+	m_active_channels.push_back(active_channel(chid, ch));
 	return 0;
 }
 
-RESULT eDVBResourceManager::removeChannel(const eDVBChannelID &chid, eDVBChannel *)
+RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 {
-	int cnt = m_active_channels.erase(chid);
-	eDebug("remove channel: removed %d channels", cnt);
-	ASSERT(cnt <= 1);
+	int cnt = 0;
+	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end();)
+	{
+		if (i->m_channel == ch)
+		{
+			i = m_active_channels.erase(i);
+			++cnt;
+		} else
+			++i;
+	}
+	ASSERT(cnt == 1);
 	if (cnt == 1)
 		return 0;
 	return -ENOENT;
@@ -92,26 +329,19 @@ RESULT eDVBResourceManager::removeChannel(const eDVBChannelID &chid, eDVBChannel
 
 DEFINE_REF(eDVBChannel);
 
-eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, int adapter, int frontend, int demux): eDVBDemux(adapter, demux), m_state(state_idle), m_mgr(mgr)
+eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend, eDVBAllocatedDemux *demux): m_state(state_idle), m_mgr(mgr)
 {
-	if (frontend >= 0)
-	{
-		int ok;
-		m_frontend = new eDVBFrontend(adapter, frontend, ok);
-		if (!ok)
-		{
-			eDebug("warning, frontend failed");
-			m_frontend = 0;
-			return;
-		}
-		m_frontend->connectStateChange(slot(*this, &eDVBChannel::frontendStateChanged), m_conn_frontendStateChanged);
-	}
+	m_frontend = frontend;
+	m_demux = demux;
+	
+	if (m_frontend)
+		m_frontend->get().connectStateChange(slot(*this, &eDVBChannel::frontendStateChanged), m_conn_frontendStateChanged);
 }
 
 eDVBChannel::~eDVBChannel()
 {
 	if (m_channel_id)
-		m_mgr->removeChannel(m_channel_id, this);
+		m_mgr->removeChannel(this);
 }
 
 void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
@@ -145,6 +375,12 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 
 RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 {
+	if (m_channel_id)
+		m_mgr->removeChannel(this);
+		
+	if (!channelid)
+		return 0;
+
 	ePtr<iDVBChannelList> list;
 	
 	if (m_mgr->getChannelList(list))
@@ -155,7 +391,6 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 	
 	eDebug("tuning to chid: ns: %08x tsid %04x onid %04x",
 		channelid.dvbnamespace.get(), channelid.transport_stream_id.get(), channelid.original_network_id.get());
-		
 
 	ePtr<iDVBFrontendParameters> feparm;
 	if (list->getChannelFrontendData(channelid, feparm))
@@ -171,13 +406,10 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 		return -ENODEV;
 	}
 	
-	if (m_channel_id)
-		m_mgr->removeChannel(m_channel_id, this);
 	m_channel_id = channelid;
-	m_mgr->addChannel(m_channel_id, this);
+	m_mgr->addChannel(channelid, this);
 	m_state = state_tuning;
-	eDebug("%p", &*feparm);
-	return m_frontend->tune(*feparm);
+	return m_frontend->get().tune(*feparm);
 }
 
 RESULT eDVBChannel::connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
@@ -199,13 +431,13 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 
 RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux)
 {
-	demux = this;
+	demux = &m_demux->get();
 	return 0;
 }
 
 RESULT eDVBChannel::getFrontend(ePtr<iDVBFrontend> &frontend)
 {
-	frontend = m_frontend;
+	frontend = &m_frontend->get();
 	if (frontend)
 		return 0;
 	else

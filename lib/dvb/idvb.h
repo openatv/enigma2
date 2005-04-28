@@ -234,24 +234,6 @@ public:
 	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query)=0;
 };
 
-class iDVBResourceManager: public iObject
-{
-public:
-	/*
-			solange rumloopen bis eine resource gefunden wurde, die eine frequenz
-			tunen will
-			
-			wenn natuerlich sowas schon vorhanden ist, dann einfach ne ref darauf
-			geben. (zwei services auf dem gleichen transponder teilen sich einen
-			channel)
-	*/
-	virtual RESULT setChannelList(iDVBChannelList *list)=0;
-	virtual RESULT getChannelList(ePtr<iDVBChannelList> &list)=0;
-	virtual RESULT allocateChannel(const eDVBChannelID &channel, ePtr<iDVBChannel> &channel)=0;
-	virtual RESULT allocateRawChannel(ePtr<iDVBChannel> &channel)=0;
-	virtual RESULT allocatePVRChannel(int caps)=0;
-};
-
 class SatelliteDeliverySystemDescriptor;
 class CableDeliverySystemDescriptor;
 class TerrestrialDeliverySystemDescriptor;
