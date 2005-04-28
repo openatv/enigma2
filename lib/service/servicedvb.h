@@ -1,5 +1,5 @@
-#ifndef __servicemp3_h
-#define __servicemp3_h
+#ifndef __servicedvb_h
+#define __servicedvb_h
 
 #include <lib/service/iservice.h>
 #include <lib/dvb/idvb.h>
