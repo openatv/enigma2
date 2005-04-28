@@ -47,6 +47,9 @@ class Screen(dict, HTMLSkin, GUISkin):
 mdom = xml.dom.minidom.parseString(
         """
 	<menu text="Mainmenu" title="the real Mainmenu">
+		<item text="Standby debug">quitMainloop()</item>
+		<item text="Automatic Scan">self.openDialog(serviceScan)</item>
+
 		<item text="TV-Mode">self.setModeTV()</item>
 		<item text="Radio-Mode">self.setModeRadio()</item>
 		<item text="File-Mode">self.setModeFile()</item>
@@ -89,7 +92,6 @@ mdom = xml.dom.minidom.parseString(
 			<item text="Standby"></item>
 			<item text="Sleep Timer">self.goSetup()</item>
 		</menu>
-		<item text="Standby debug">quitMainloop()</item>
 	</menu>""")
 
 def getText(nodelist):
@@ -323,7 +325,7 @@ class infoBar(Screen):
 		Screen.__init__(self, session)
 
 		#instantiate forever
-		self["ServiceList"] = self.session.instantiateDialog(channelSelection)
+		self.servicelist = self.session.instantiateDialog(channelSelection)
 		
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
@@ -351,13 +353,13 @@ class infoBar(Screen):
 		self.session.open(Menu, menu, menu.childNodes)
 
 	def switchChannel(self):	
-		self.session.execDialog(self["ServiceList"])
+		self.session.execDialog(self.servicelist)
 
 	def	zapUp(self):
-		self["ServiceList"].zapUp()
+		self.servicelist.zapUp()
 
 	def	zapDown(self):
-		self["ServiceList"].zapDown()
+		self.servicelist.zapDown()
 
 # a clock display dialog
 class clockDisplay(Screen):
