@@ -77,6 +77,14 @@ struct eDVBChannelID
 	eDVBNamespace dvbnamespace;
 	eTransportStreamID transport_stream_id;
 	eOriginalNetworkID original_network_id;
+	
+	bool operator==(const eDVBChannelID &c) const
+	{
+		return dvbnamespace == c.dvbnamespace &&
+			transport_stream_id == c.transport_stream_id &&
+			original_network_id == c.original_network_id;
+	}
+	
 	bool operator<(const eDVBChannelID &c) const
 	{
 		if (dvbnamespace < c.dvbnamespace)
@@ -417,12 +425,14 @@ public:
 };
 
 class iDVBSectionReader;
+class iDVBTSRecorder;
 class iTSMPEGDecoder;
 
 class iDVBDemux: public iObject
 {
 public:
 	virtual RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)=0;
+	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder)=0;
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader)=0;
 };
 

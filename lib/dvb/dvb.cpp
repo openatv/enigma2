@@ -232,10 +232,13 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, ePtr
 {
 		/* first, check if a channel is already existing. */
 	
-	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end();)
+//	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
+	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
 	{
+//		eDebug("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
 		if (i->m_channel_id == channelid)
 		{
+//			eDebug("found shared channel..");
 			channel = i->m_channel;
 			return 0;
 		}
