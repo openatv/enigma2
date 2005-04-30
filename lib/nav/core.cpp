@@ -115,6 +115,31 @@ RESULT eNavigation::stopService(void)
 	return 0;
 }
 
+RESULT eNavigation::recordService(const eServiceReference &service)
+{
+	if (m_recordingService)
+		endRecording();
+	
+	assert(m_servicehandler);
+	RESULT res = m_servicehandler->record(service, m_recordingService);
+	if (m_recordingService)
+	{
+		res = m_recordingService->start();
+	}
+	if (res)
+		m_recordingService = 0;
+	return res;
+}
+
+RESULT eNavigation::endRecording()
+{
+	if (!m_recordingService)
+		return -1;
+	m_recordingService->stop();
+	m_recordingService = 0;
+	return 0;
+}
+
 RESULT eNavigation::pause(int dop)
 {
 	if (!m_runningService)
