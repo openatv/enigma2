@@ -6,6 +6,7 @@
 
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/eit.h>
+#include <set>
 
 #include <lib/service/servicedvb.h>
 
@@ -22,6 +23,11 @@ private:
 	eDVBServicePMTHandler m_service_handler;
 	eServiceReferenceDVB m_ref;
 	void serviceEvent(int event);
+	
+	ePtr<iDVBTSRecorder> m_record;
+	
+	int m_recording;
+	std::set<int> m_pids_active;
 };
 
 #endif
