@@ -32,3 +32,9 @@ void eThread::kill()
 	pthread_join(the_thread, 0);
 	eDebug("ok");
 }
+
+void eThread::sendSignal(int sig)
+{
+	if (alive)
+		pthread_kill(the_thread, sig);
+}

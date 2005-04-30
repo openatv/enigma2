@@ -17,6 +17,7 @@ public:
 
 	virtual void thread()=0;
 	
+	void sendSignal(int sig);
 	void kill();
 };
 
