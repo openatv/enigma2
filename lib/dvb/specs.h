@@ -2,7 +2,7 @@
 #define __lib_dvb_specs_h
 
 #include <lib/dvb/idvb.h>
-#include <lib/dvb/isection.h>
+#include <lib/dvb/idemux.h>
 #include <lib/dvb_si/pmt.h>
 #include <lib/dvb_si/sdt.h>
 #include <lib/dvb_si/nit.h>

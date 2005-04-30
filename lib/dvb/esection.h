@@ -1,7 +1,7 @@
 #ifndef __esection_h
 #define __esection_h
 
-#include <lib/dvb/isection.h>
+#include <lib/dvb/idemux.h>
 #include <set>
 
 class eGTable: public iObject, public Object
