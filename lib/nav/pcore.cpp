@@ -21,6 +21,16 @@ RESULT pNavigation::playService(const eServiceReference &service)
 	return m_core->playService(service);
 }
 
+RESULT pNavigation::recordService(const eServiceReference &service)
+{
+	return m_core->recordService(service);
+}
+
+RESULT pNavigation::endRecording()
+{
+	return m_core->endRecording();
+}
+
 RESULT pNavigation::enqueueService(const eServiceReference &service)
 {
 	return m_core->enqueueService(service);
