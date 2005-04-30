@@ -1,5 +1,5 @@
 /*
- * $Id: pmt.h,v 1.1 2003-10-17 15:36:38 tmbinc Exp $
+ * $Id: pmt.h,v 1.2 2005-04-30 17:57:48 tmbinc Exp $
  *
  * (C) 2002-2003 Andreas Oberritter <obi@saftware.de>
  *
@@ -62,7 +62,7 @@ class ProgramMapTable : public LongCrcTable, public DescriptorContainer
 		~ProgramMapTable(void);
 
 		static const enum TableId TID = TID_PMT;
-		static const uint32_t TIMEOUT = 600;
+		static const uint32_t TIMEOUT = 6000;
 
 		uint16_t getPcrPid(void) const;
 		const ElementaryStreamInfoVector *getEsInfo(void) const;
