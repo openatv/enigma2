@@ -146,11 +146,59 @@ class Session:
 	def close(self):
 		self.delayTimer.start(0, 1)
 
+# TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
+class Navigation:
+	def __init__(self):
+		self.pnav = pNavigation()
+		self.pnav.m_event.get().append(self.callEvent)
+		self.event = [ ]
+		self.currentlyPlayingService = None
+
+	def callEvent(self, i):
+		for x in self.event:
+			x(i)
+	
+	def playService(self, ref):
+		self.currentlyPlayingServiceReference = None
+		if not self.pnav.playService(ref):
+			self.currentlyPlayingServiceReference = ref
+			return 0
+		return 1
+	
+	def getCurrentlyPlayingServiceReference(self):
+		return self.currentlyPlayingServiceReference
+	
+	def recordService(self, ref):
+		print "recording service: %s" % (str(ref))
+		print self.pnav.recordService
+		return self.pnav.recordService(ref)
+	
+	def endRecording(self):
+		return self.pnav.endRecording()
+	
+	def enqueueService(self, ref):
+		return self.pnav.enqueueService(ref)
+	
+	def getCurrentService(self):
+		service = iPlayableServicePtr()
+		if self.pnav.getCurrentService(service):
+			return None
+		return service
+	
+	def getPlaylist(self):
+		playlist = ePlaylistPtr()
+		if self.pnav.getPlaylist(playlist):
+			return None
+		return playlist
+	
+	def pause(self, p):
+		return self.pnav.pause(p)
+
 def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
 	
-	session.nav = pNavigation()
+	session.nav = Navigation()
 	
 	session.open(infoBar)
 
