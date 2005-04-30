@@ -4,7 +4,7 @@
 #include <lib/dvb_si/nit.h>
 #include <lib/dvb_si/sdt.h>
 #include <lib/dvb_si/bat.h>
-#include <lib/dvb/isection.h>
+#include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/db.h>
 

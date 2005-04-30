@@ -44,6 +44,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 
 void eDVBServicePMTHandler::PATready(int)
 {
+	eDebug("got PAT");
 	ePtr<eTable<ProgramAssociationTable> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
@@ -67,6 +68,7 @@ void eDVBServicePMTHandler::PATready(int)
 
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 {
+	eDebug("got PMT");
 	ePtr<eTable<ProgramMapTable> > ptr;
 	
 	program.videoStreams.clear();

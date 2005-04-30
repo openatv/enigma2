@@ -1,7 +1,7 @@
 #ifndef __lib_dvb_eit_h
 #define __lib_dvb_eit_h
 
-#include <lib/dvb/isection.h>
+#include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb_si/eit.h>
 #include <lib/service/event.h>

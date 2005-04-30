@@ -3,7 +3,7 @@
 
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
-#include <lib/dvb/isection.h>
+#include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb_si/pmt.h>
 #include <lib/dvb_si/pat.h>
