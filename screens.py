@@ -306,7 +306,7 @@ class channelSelection(Screen):
 			self["list"].removeMarked(ref)
 		else:
 			self["list"].addMarked(ref)
-		
+			
 	def channelSelected(self):
 		self.session.nav.playService(self["list"].getCurrent())
 		self.close()
@@ -332,7 +332,8 @@ class infoBar(Screen):
 				"switchChannel": self.switchChannel,
 				"mainMenu": self.mainMenu,
 				"zapUp": self.zapUp,
-				"zapDown": self.zapDown
+				"zapDown": self.zapDown,
+				"instantRecord": self.instantRecord
 			})
 		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -345,6 +346,8 @@ class infoBar(Screen):
 
 		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
 		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
+		
+		self.recording = 0
 	
 	def mainMenu(self):
 		print "loading mainmenu XML..."
@@ -360,6 +363,14 @@ class infoBar(Screen):
 
 	def	zapDown(self):
 		self.servicelist.zapDown()
+		
+	def instantRecord(self):
+		if self.recording:
+			self.session.nav.endRecording()
+			self.recording = 0
+		else:
+			self.session.nav.recordService(self.session.nav.getCurrentlyPlayingServiceReference())
+			self.recording = 1
 
 # a clock display dialog
 class clockDisplay(Screen):
