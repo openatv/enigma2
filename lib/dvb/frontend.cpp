@@ -613,20 +613,26 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	secCmdSequence seq;
 	secCommand cmd;
 
-	cmd.type = SEC_CMDTYPE_DISEQC_RAW;
-	cmd.u.diseqc.cmdtype = diseqc.data[0];
-	eDebug("cmdtype is %02x", diseqc.data[0]);
-	cmd.u.diseqc.addr = diseqc.data[1];
-	eDebug("cmdaddr is %02x", diseqc.data[1]);
-	cmd.u.diseqc.cmd = diseqc.data[2];
-	eDebug("cmd is %02x", diseqc.data[2]);
-	cmd.u.diseqc.numParams = diseqc.len-3;
-	eDebug("numparams %d", diseqc.len-3);
+	if ( len > 3 )
+	{
+		seq.numCommands=1;
+		cmd.type = SEC_CMDTYPE_DISEQC_RAW;
+		cmd.u.diseqc.cmdtype = diseqc.data[0];
+		eDebug("cmdtype is %02x", diseqc.data[0]);
+		cmd.u.diseqc.addr = diseqc.data[1];
+		eDebug("cmdaddr is %02x", diseqc.data[1]);
+		cmd.u.diseqc.cmd = diseqc.data[2];
+		eDebug("cmd is %02x", diseqc.data[2]);
+		cmd.u.diseqc.numParams = diseqc.len-3;
+		eDebug("numparams %d", diseqc.len-3);
 
-	memcpy(cmd.u.diseqc.params, diseqc.data+3, diseqc.len-3);
-	for (int i=0; i < diseqc.len-3; ++i )
-		eDebugNoNewLine("%02x ", diseqc.data[3+i]);
-	eDebug("");
+		memcpy(cmd.u.diseqc.params, diseqc.data+3, diseqc.len-3);
+		for (int i=0; i < diseqc.len-3; ++i )
+			eDebugNoNewLine("%02x ", diseqc.data[3+i]);
+		eDebug("");
+	}
+	else
+		seq.numCommands=0;
 
 	seq.continuousTone = diseqc.tone == toneOn ? SEC_TONE_ON : SEC_TONE_OFF;
 	switch ( diseqc.voltage )
@@ -643,7 +649,6 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	}
 	seq.miniCommand = SEC_MINI_NONE;
 	seq.commands=&cmd;
-	seq.numCommands=1;
 
 	if ( ioctl(m_secfd, SEC_SEND_SEQUENCE, &seq) < 0 )
 	{
@@ -652,6 +657,8 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	}
 	return 0;
 #else
+	if ( !diseqc.len )
+		return 0;
 	struct dvb_diseqc_master_cmd cmd;
 	if (::ioctl(m_fd, FE_SET_TONE, SEC_TONE_OFF))
 		return -EINVAL;

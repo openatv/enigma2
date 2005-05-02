@@ -349,8 +349,9 @@ public:
 
 #define MAX_DISEQC_LENGTH  16
 
-struct eDVBDiseqcCommand
+class eDVBDiseqcCommand
 {
+public:
 	int len;
 	__u8 data[MAX_DISEQC_LENGTH];
 #if HAVE_DVB_API_VERSION < 3
