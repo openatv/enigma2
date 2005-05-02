@@ -19,64 +19,120 @@ DEFINE_REF(eDVBSatelliteEquipmentControl);
 
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
+	m_lnblist.push_back(eDVBSatelliteLNBParameters());
+	eDVBSatelliteLNBParameters &lnb_ref = m_lnblist.front();
+	eDVBSatelliteParameters &astra1 = lnb_ref.m_satellites[192];
+	eDVBSatelliteDiseqcParameters &diseqc_ref = astra1.m_diseqc_parameters;
+	eDVBSatelliteSwitchParameters &switch_ref = astra1.m_switch_parameters;
+
+	lnb_ref.m_lof_hi = 10600000;
+	lnb_ref.m_lof_lo = 9750000;
+	lnb_ref.m_lof_threshold = 11700000;
+
+	diseqc_ref.m_diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
+	diseqc_ref.m_commited_cmd = eDVBSatelliteDiseqcParameters::BB;
+	diseqc_ref.m_repeats = 0;
+	diseqc_ref.m_seq_repeat = false;
+	diseqc_ref.m_swap_cmds = false;
+	diseqc_ref.m_toneburst_param = eDVBSatelliteDiseqcParameters::NO;
+	diseqc_ref.m_uncommitted_cmd = 0;
+	diseqc_ref.m_use_fast = 1;
+
+	switch_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
+	switch_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
 }
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
 {
-	int hi;
-	eDebug("(very) ugly and hardcoded eDVBSatelliteEquipmentControl");
-
-	if (sat.frequency > 11700000)
-		hi = 1;
-	else
-		hi = 0;
-	
-	if (hi)
-		parm.FREQUENCY = sat.frequency - 10600000;
-	else
-		parm.FREQUENCY = sat.frequency -  9750000;
-	
-//	frontend.sentDiseqc(...);
-
-	parm.INVERSION = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
-
-	switch (sat.fec)
+	std::list<eDVBSatelliteLNBParameters>::iterator it = m_lnblist.begin();
+	for (;it != m_lnblist.end(); ++it )
 	{
-//		case 1:
-//		case ...:
-	default:
-		parm.u.qpsk.FEC_INNER = FEC_AUTO;
-		break;
-	}
-	parm.u.qpsk.SYMBOLRATE = sat.symbol_rate;
+		eDVBSatelliteLNBParameters &lnb_param = *it;
+		std::map<int, eDVBSatelliteParameters>::iterator sit =
+			lnb_param.m_satellites.find(sat.orbital_position);
+		if ( sit != lnb_param.m_satellites.end())
+		{
+			int hi=0;
+			int voltage = iDVBFrontend::voltageOff;
+			int tone = iDVBFrontend::toneOff;
 
-	eDVBDiseqcCommand diseqc;
+			eDVBSatelliteDiseqcParameters &di_param = sit->second.m_diseqc_parameters;
+			eDVBSatelliteSwitchParameters &sw_param = sit->second.m_switch_parameters;
+
+			if ( sat.frequency > lnb_param.m_lof_threshold )
+				hi = 1;
+
+			if (hi)
+				parm.FREQUENCY = sat.frequency - lnb_param.m_lof_hi;
+			else
+				parm.FREQUENCY = sat.frequency - lnb_param.m_lof_lo;
+
+			parm.INVERSION = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
+
+			switch (sat.fec)
+			{
+		//		case 1:
+		//		case ...:
+			default:
+				parm.u.qpsk.FEC_INNER = FEC_AUTO;
+				break;
+			}
+
+			parm.u.qpsk.SYMBOLRATE = sat.symbol_rate;
+
+			if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_14V
+				|| ( sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Vertical
+					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
+				voltage = iDVBFrontend::voltage13;
+			else if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_18V
+				|| ( sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal
+					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
+				voltage = iDVBFrontend::voltage18;
+
+			if ( (sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::ON)
+				|| ( sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::HILO && hi ) )
+				tone = iDVBFrontend::toneOn;
+			else if ( (sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::OFF)
+				|| ( sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::HILO && !hi ) )
+				tone = iDVBFrontend::toneOff;
+
+			eDVBDiseqcCommand diseqc;
 
 #if HAVE_DVB_API_VERSION < 3
-	diseqc.voltage = sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Vertical ? iDVBFrontend::voltage13 : iDVBFrontend::voltage18;
-	diseqc.tone = hi ? iDVBFrontend::toneOn : iDVBFrontend::toneOff;
+			diseqc.voltage = voltage;
+			diseqc.tone = tone;
 #else
-	frontend.setVoltage(sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Vertical ? iDVBFrontend::voltage13 : iDVBFrontend::voltage18);
+			frontend.setVoltage(voltage);
 #endif
 
-	diseqc.len = 4;
-	diseqc.data[0] = 0xe0;
-	diseqc.data[1] = 0x10;
-	diseqc.data[2] = 0x38;
-	diseqc.data[3] = 0xF0;
+			if ( di_param.m_commited_cmd < eDVBSatelliteDiseqcParameters::NO )
+			{
+				diseqc.len = 4;
+				diseqc.data[0] = 0xe0;
+				diseqc.data[1] = 0x10;
+				diseqc.data[2] = 0x38;
+				diseqc.data[3] = di_param.m_commited_cmd;
 
-	if (hi)
-		diseqc.data[3] |= 1;
+				if (hi)
+					diseqc.data[3] |= 1;
 
-	if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
-		diseqc.data[3] |= 2;
+				if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
+					diseqc.data[3] |= 2;
+			}
+			else
+				diseqc.len = 0;
 
-	frontend.sendDiseqc(diseqc);
+			frontend.sendDiseqc(diseqc);
 
 #if HAVE_DVB_API_VERSION > 2
-	frontend.setTone(hi ? iDVBFrontend::toneOn : iDVBFrontend::toneOff);
+			frontend.setTone(tone);
 #endif
+			return 0;
+		}
+	}
 
-	return 0;
+	eDebug("not found satellite configuration for orbital position (%d)", sat.orbital_position );
+
+	return -1;
 }
 
