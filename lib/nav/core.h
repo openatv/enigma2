@@ -12,8 +12,6 @@ class eNavigation: public iObject, public Object
 private:
 	ePtr<iPlayableService> m_runningService;
 	
-	ePtr<iRecordableService> m_recordingService;
-	
 	ePtr<iServiceHandler> m_servicehandler;
 	Signal2<void,eNavigation*,int> m_event;
 	ePtr<eConnection> m_service_event_conn;
@@ -38,8 +36,7 @@ public:
 	RESULT getPlaylist(ePtr<ePlaylist> &playlist);
 	RESULT stopService(void);
 	
-	RESULT recordService(const eServiceReference &service);
-	RESULT endRecording();
+	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service);
 	
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler);
