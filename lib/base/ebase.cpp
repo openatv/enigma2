@@ -52,7 +52,6 @@ void eTimer::start(long msek, bool singleShot)
 
 void eTimer::stop()
 {	
-	eDebug("stop timer");
 	if (bActive)
 	{
 		bActive=false;
