@@ -1,6 +1,7 @@
 from enigma import *
 from tools import *
 
+import RecordTimer
 
 import sys
 import time
@@ -153,6 +154,8 @@ class Navigation:
 		self.pnav.m_event.get().append(self.callEvent)
 		self.event = [ ]
 		self.currentlyPlayingService = None
+		
+		self.RecordTimer = RecordTimer.RecordTimer()
 
 	def callEvent(self, i):
 		for x in self.event:
@@ -169,12 +172,14 @@ class Navigation:
 		return self.currentlyPlayingServiceReference
 	
 	def recordService(self, ref):
+		service = iRecordableServicePtr()
 		print "recording service: %s" % (str(ref))
-		print self.pnav.recordService
-		return self.pnav.recordService(ref)
-	
-	def endRecording(self):
-		return self.pnav.endRecording()
+		if self.pnav.recordService(ref, service):
+			print "record returned non-zero"
+			return None
+		else:
+			print "ok, recordService didn't fail"
+			return service
 	
 	def enqueueService(self, ref):
 		return self.pnav.enqueueService(ref)
@@ -193,6 +198,11 @@ class Navigation:
 	
 	def pause(self, p):
 		return self.pnav.pause(p)
+	
+	def recordWithTimer(self, begin, end, ref, epg):
+		entry = RecordTimer.RecordTimerEntry(begin, end, self, ref, epg)
+		self.RecordTimer.record(entry)
+		return entry
 
 def runScreenTest():
 	session = Session()

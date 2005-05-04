@@ -6,6 +6,7 @@ import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
+import time
 
 # some screens
 def doGlobal(screen):
@@ -347,7 +348,7 @@ class infoBar(Screen):
 		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
 		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 		
-		self.recording = 0
+		self.recording = None
 	
 	def mainMenu(self):
 		print "loading mainmenu XML..."
@@ -365,12 +366,25 @@ class infoBar(Screen):
 		self.servicelist.zapDown()
 		
 	def instantRecord(self):
-		if self.recording:
-			self.session.nav.endRecording()
-			self.recording = 0
+		if self.recording != None:
+			print "remove entry"
+			self.session.nav.RecordTimer.removeEntry(self.recording)
+			self.recording = None
 		else:
-			self.session.nav.recordService(self.session.nav.getCurrentlyPlayingServiceReference())
-			self.recording = 1
+			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			
+			# try to get event info
+			epg = None
+			service = self.session.nav.getCurrentService()
+			if service != None:
+				info = iServiceInformationPtr()
+				if not service.info(info):
+					ev = eServiceEventPtr()
+					if info.getEvent(ev, 0) == 0:
+						epg = ev
+
+			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg)
+			print "got entry: %s" % (str(self.recording))
 
 # a clock display dialog
 class clockDisplay(Screen):
@@ -406,4 +420,3 @@ class serviceScan(Screen):
 				"ok": self.ok,
 				"cancel": self.cancel
 			})
-
