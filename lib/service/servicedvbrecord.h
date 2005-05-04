@@ -14,9 +14,12 @@ class eDVBServiceRecord: public iRecordableService, public Object
 {
 DECLARE_REF(eDVBServiceRecord);
 public:
+	RESULT prepare();
 	RESULT start();
 	RESULT stop();
 private:
+	enum { stateIdle, statePrepared, stateRecording };
+	int m_state, m_want_record;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	
@@ -28,6 +31,9 @@ private:
 	
 	int m_recording;
 	std::set<int> m_pids_active;
+	
+	int doPrepare();
+	int doRecord();
 };
 
 #endif

@@ -24,8 +24,7 @@ public:
 	pNavigation();
 	
 	RESULT playService(const eServiceReference &service);
-	RESULT recordService(const eServiceReference &service);
-	RESULT endRecording();
+	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service);
 	
 	RESULT enqueueService(const eServiceReference &service);
 	RESULT getCurrentService(ePtr<iPlayableService> &service);

@@ -88,7 +88,7 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
 	ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref);
-	return -1;
+	return 0;
 }
 
 RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
