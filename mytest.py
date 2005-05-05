@@ -1,12 +1,13 @@
 from enigma import *
 from tools import *
 
+import Screens.InfoBar
+
 import RecordTimer
 
 import sys
 import time
 
-from screens import *
 from skin import applyGUIskin
 
 # A screen is a function which instanciates all components of a screen into a temporary component.
@@ -35,12 +36,6 @@ def dump(dir, p = ""):
 		print p + ":" + str(dir)
 
 # + ":" + str(dir.__class__)
-
-# defined components
-components = {}
-
-# do global
-doGlobal(components)
 
 # display
 
@@ -210,7 +205,7 @@ def runScreenTest():
 	
 	session.nav = Navigation()
 	
-	session.open(infoBar)
+	session.open(Screens.InfoBar.InfoBar)
 
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
