@@ -8,6 +8,14 @@
 
 // #include <lib/gui/emessage.h>
 
+#ifdef MEMLEAK_CHECK
+AllocList *allocList;
+pthread_mutex_t memLock =
+	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+#else
+	#include <lib/base/elock.h>
+#endif
+
 int infatal=0;
 
 Signal2<void, int, const std::string&> logOutput;
