@@ -74,7 +74,11 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+		sprintf(filename, "/dev/dvb/card%d/frontend%d", m_nr, num_fe);
+#else
 		sprintf(filename, "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
+#endif
 		if (stat(filename, &s))
 			break;
 		ePtr<eDVBFrontend> fe;
@@ -92,7 +96,11 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 	{
 		struct stat s;
 		char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+		sprintf(filename, "/dev/dvb/card%d/demux%d", m_nr, num_demux);
+#else
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", m_nr, num_demux);
+#endif
 		if (stat(filename, &s))
 			break;
 		ePtr<eDVBDemux> demux;
@@ -152,7 +160,11 @@ int eDVBAdapterLinux::exist(int nr)
 {
 	struct stat s;
 	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d", nr);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d", nr);
+#endif
 	if (!stat(filename, &s))
 		return 1;
 	return 0;
