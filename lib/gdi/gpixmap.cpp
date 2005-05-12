@@ -74,15 +74,8 @@ gSurfaceSystem::gSurfaceSystem(eSize size, int _bpp)
 		bypp=(bpp+7)/8;
 	}
 	stride=x*bypp;
-	if (bpp==8)
-	{
-		clut.colors=256;
-		clut.data=new gRGB[clut.colors];
-	} else
-	{
-		clut.colors=0;
-		clut.data=0;
-	}
+	clut.colors=0;
+	clut.data=0;
 	data=malloc(x*y*bypp);
 }
 
