@@ -2,6 +2,7 @@
 #define __lib_base_thread_h
 
 #include <pthread.h>
+#include <signal.h>
 
 class eThread
 {
