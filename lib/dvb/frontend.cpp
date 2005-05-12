@@ -613,7 +613,7 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	secCmdSequence seq;
 	secCommand cmd;
 
-	if ( len > 3 )
+	if ( diseqc.len > 3 )
 	{
 		seq.numCommands=1;
 		cmd.type = SEC_CMDTYPE_DISEQC_RAW;
