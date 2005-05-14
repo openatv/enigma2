@@ -73,6 +73,8 @@ public:
 		pageDown,
 		justCheck
 	};
+	
+	void setItemHeight(int h);
 
 #ifndef SWIG
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */

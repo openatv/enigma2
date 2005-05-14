@@ -2,6 +2,7 @@ from enigma import *
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 
+from Tools.XMLTools import elementsWithTag
 
 colorNames = dict()
 
@@ -71,6 +72,9 @@ dom = xml.dom.minidom.parseString(
 		<screen name="configTest" position="300,100" size="300,300" title="config menu">
 			<widget name="config" position="10,30" size="280,140" />
 		</screen>
+		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">
+			<widget name="timerlist" position="10,30" size="400,300" />
+		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
 			<widget name="title" position="10,120" size="280,50" />
@@ -99,22 +103,15 @@ dom = xml.dom.minidom.parseString(
 			<widget name="scan_progress" position="10,10" size="280,50" />
 			<widget name="scan_state" position="10,60" size="280,30" />
 		</screen>
+		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
+			<widget name="description" position="10,10" size="580,40" />
+			<widget name="lbegin" position="405,102" size="103,30" />
+			<widget name="lend" position="405,158" size="103,30" />
+			<widget name="begin" position="508,105" size="72,35" font="Arial;30" />
+			<widget name="end" position="508,150" size="72,35" font="Arial;30" />
+			<widget name="apply" position="10,240" size="250,35" />
+		</screen>
 	</skin>""")
-
-# filters all elements of childNode with the specified function
-# example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")
-def elementsWithTag(el, tag):
-
-	# fiiixme! (works but isn't nice)
-	if tag.__class__ == "".__class__:
-		str = tag
-		tag = lambda x: x == str
-		
-	for x in el:
-		if x.nodeType != xml.dom.minidom.Element.nodeType:
-			continue
-		if tag(x.tagName):
-			yield x
 
 def parsePosition(str):
 	x, y = str.split(',')

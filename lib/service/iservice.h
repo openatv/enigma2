@@ -143,6 +143,9 @@ class iStaticServiceInformation: public iObject
 {
 public:
 	virtual RESULT getName(const eServiceReference &ref, std::string &name)=0;
+
+		// FOR SWIG
+	std::string getName(const eServiceReference &ref) { std::string temp; getName(ref, temp); return temp; }
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);

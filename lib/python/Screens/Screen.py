@@ -29,7 +29,6 @@ class Screen(dict, HTMLSkin, GUISkin):
 		
 		del self.session
 		for (name, val) in self.items():
-			print "%s -> %d" % (name, sys.getrefcount(val))
 			del self[name]
 	
 	def close(self, retval=None):

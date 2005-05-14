@@ -25,6 +25,7 @@ public:
 protected:
 	ePtr<gFont> m_font;
 	int m_valign, m_halign;
+	std::string m_text;
 	int event(int event, void *data=0, void *data2=0);
 private:
 	enum eLabelEvent
@@ -33,7 +34,6 @@ private:
 		evtChangedFont,
 		evtChangedAlignment
 	};
-	std::string m_text;
 };
 
 #endif

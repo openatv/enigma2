@@ -377,6 +377,11 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 	return r;
 }
 
+void eListboxPythonStringContent::invalidateEntry(int index)
+{
+	m_listbox->entryChanged(index);
+}
+
 //////////////////////////////////////
 
 void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -424,8 +429,117 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	painter.clippop();
 }
 
-void eListboxPythonConfigContent::invalidateEntry(int index)
+//////////////////////////////////////
+
+void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	m_listbox->entryChanged(index);
+	painter.clip(eRect(offset, m_itemsize));
+	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+	painter.clear();
+
+	if (m_list && cursorValid())
+	{
+		PyObject *items = PyList_GetItem(m_list, m_cursor); // borrowed reference!
+		
+		if (!items)
+		{
+			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
+			painter.clippop();
+			return;
+		}
+		
+		if (!PyList_Check(items))
+		{
+			eDebug("eListboxPythonMultiContent: list entry %d is not a list", m_cursor);
+			painter.clippop();
+			return;
+		}
+		
+		int size = PyList_Size(items);
+		for (int i = 0; i < size; ++i)
+		{
+			PyObject *item = PyList_GetItem(items, i); // borrowed reference!
+			
+			if (!item)
+			{
+				eDebug("eListboxPythonMultiContent: ?");
+				painter.clippop();
+				return;
+			}
+			
+			
+			PyObject *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
+		
+			/*
+				we have a list of tuples:
+				
+				(x, y, width, height, fnt, flags, "bla" ),
+				
+			 */
+			
+			if (!PyTuple_Check(item))
+			{
+				eDebug("eListboxPythonMultiContent did not receive a tuple.");
+				painter.clippop();
+				return;
+			}
+		
+			px = PyTuple_GetItem(item, 0);
+			py = PyTuple_GetItem(item, 1);
+			pwidth = PyTuple_GetItem(item, 2);
+			pheight = PyTuple_GetItem(item, 3);
+			pfnt = PyTuple_GetItem(item, 4);
+			pflags = PyTuple_GetItem(item, 5);
+			pstring = PyTuple_GetItem(item, 6);
+			
+			if (!(px && py && pwidth && pheight && pfnt && pstring))
+			{
+				eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, fnt, flags, string[, ...])");
+				painter.clippop();
+				return;
+			}
+	
+			pstring = PyObject_Str(pstring);
+			
+			const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
+			
+			int x = PyInt_AsLong(px);
+			int y = PyInt_AsLong(py);
+			int width = PyInt_AsLong(pwidth);
+			int height = PyInt_AsLong(pheight);
+			int flags = PyInt_AsLong(pflags);
+			
+			int fnt = PyInt_AsLong(pfnt);
+			
+			if (m_font.find(fnt) == m_font.end())
+			{
+				eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
+				Py_XDECREF(pstring);
+				painter.clippop();
+				return;
+			}
+			
+			eRect r = eRect(x, y, width, height);
+			r.moveBy(offset);
+			
+			painter.setFont(m_font[fnt]);
+			
+			painter.renderText(r, string, flags);
+	
+			Py_XDECREF(pstring);
+			
+			if (selected)
+				style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
+		}
+	}
+	
+	painter.clippop();
 }
 
+void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
+{
+	if (font)
+		m_font[fnt] = font;
+	else
+		m_font.erase(fnt);
+}

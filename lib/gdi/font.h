@@ -130,9 +130,16 @@ public:
 
 		return boundBox;
 	}
+	
+	const int size() const
+	{
+		return glyphs.size();
+	}
 
 	const eRect& getGlyphBBox(int num) const
 	{
+		assert(num >= 0);
+		assert(num < (int)glyphs.size());
 		return glyphs[num].bbox;
 	}
 };

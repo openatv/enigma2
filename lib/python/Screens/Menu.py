@@ -11,6 +11,8 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from ConfigMenu import *
 
+from TimerEdit import *
+
 from enigma import quitMainloop
 
 import xml.dom.minidom
@@ -32,7 +34,7 @@ mdom = xml.dom.minidom.parseString(
 		<item text="Radio-Mode">self.setModeRadio()</item>
 		<item text="File-Mode">self.setModeFile()</item>
 		<item text="Scart">self.openDialog(ScartLoopThrough)</item>
-		<item text="Timer"></item>
+		<item text="Timer">self.openDialog(TimerEditList)</item>
 		<menu text="Setup">
 			<menu text="Service Organising">
 				<item text="New Bouquets"></item>

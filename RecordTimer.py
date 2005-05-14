@@ -1,66 +1,123 @@
-from timer import *
 import time
+import codecs
+
+from timer import *
+import xml.dom.minidom
+
+import NavigationInstance
+
+from Tools.XMLTools import elementsWithTag
+from ServiceReference import ServiceReference
 
 class RecordTimerEntry(TimerEntry):
-	def __init__(self, begin, end, nav, serviceref, epg):
-		TimerEntry.__init__(self, begin, end)
-		self.ServiceRef = serviceref
-		self.EpgData = epg
-		self.Timer = None
-		self.Nav = nav
-		self.RecordService = None
+	def __init__(self, begin, end, serviceref, epg):
+		TimerEntry.__init__(self, int(begin), int(end))
+		
+		assert isinstance(serviceref, ServiceReference)
+		
+		self.service_ref = serviceref
+		
+		print self.service_ref.getServiceName()
+		self.epg_data = epg
+		self.timer = None
+		self.record_service = None
 		
 		# build filename from epg
 		
 		# pff das geht noch nicht...
-		if epg == None:
-			self.Filename = "recording.ts"
-		else:
-			self.Filename = "record_" + str(epg.m_event_name) + ".ts"
-		
-		print "------------ record filename: %s" % (self.Filename)
+#		if epg == None:
+#			self.Filename = "recording.ts"
+#		else:
+#			self.Filename = "record_" + str(epg.m_event_name) + ".ts"
+#		
+#		print "------------ record filename: %s" % (self.Filename)
 		
 	def activate(self, event):
 		if event == self.EventPrepare:
-			self.RecordService = self.Nav.recordService(self.ServiceRef)
-			if self.RecordService == None:
+			self.record_service = NavigationInstance.instance.recordService(self.service_ref)
+			if self.record_service == None:
 				print "timer record failed."
 			else:	
-				self.RecordService.prepare()
-		elif self.RecordService == None:
+				self.record_service.prepare()
+		elif self.record_service == None:
 			if event != self.EventAbort:
 				print "timer record start failed, can't finish recording."
 		elif event == self.EventStart:
-			self.RecordService.start()
+			self.record_service.start()
 			print "timer started!"
 		elif event == self.EventEnd or event == self.EventAbort:
-			self.RecordService.stop()
-			self.RecordService = None
+			self.record_service.stop()
+			self.record_service = None
 			print "Timer successfully ended"
+
+
+def createTimer(xml):
+	begin = int(xml.getAttribute("begin"))
+	end = int(xml.getAttribute("end"))
+	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
+	epgdata = xml.getAttribute("epgdata")
+	#filename = xml.getAttribute("filename")
+	return RecordTimerEntry(begin, end, serviceref, epgdata)
 
 class RecordTimer(Timer):
 	def __init__(self):
 		Timer.__init__(self)
 		
+		self.Filename = "timers.xml"
+		
+#		try:
+		self.loadTimer()
+#		except:
+#			print "unable to load timers from file!"
+	
 	def loadTimer(self):
-		print "TODO: load timers from xml"
+		
+		# TODO: PATH!
+		doc = xml.dom.minidom.parse(self.Filename)
+		
+		root = doc.childNodes[0]
+		for timer in elementsWithTag(root.childNodes, "timer"):
+			self.record(createTimer(timer))
 	
 	def saveTimer(self):
-		print "TODO: save timers to xml"
+		doc = xml.dom.minidom.Document()
+		root_element = doc.createElement('timers')
+		doc.appendChild(root_element)
+		root_element.appendChild(doc.createTextNode("\n"))
+		
+		for timer in self.timer_list + self.processed_timers:
+			t = doc.createTextNode("\t")
+			root_element.appendChild(t)
+			t = doc.createElement('timer')
+			t.setAttribute("begin", str(timer.begin))
+			t.setAttribute("end", str(timer.end))
+			t.setAttribute("serviceref", str(timer.service_ref))
+			#t.setAttribute("epgdata", timer.)
+			root_element.appendChild(t)
+			t = doc.createTextNode("\n")
+			root_element.appendChild(t)
+		
+		file = open(self.Filename, "w")
+		doc.writexml(codecs.getwriter('UTF-8')(file))
+		file.close()
 	
 	def record(self, entry):
 		entry.Timer = self
 		self.addTimerEntry(entry)
 
 	def removeEntry(self, entry):
-		if entry.State == TimerEntry.StateRunning:
+		if entry.state == TimerEntry.StateRunning:
 			entry.End = time.time()
 			print "aborting timer"
-		elif entry.State != TimerEntry.StateEnded:
+		elif entry.state != TimerEntry.StateEnded:
 			entry.activate(TimerEntry.EventAbort)
-			self.TimerList.remove(entry)
+			self.timer_list.remove(entry)
 			print "timer did not yet start - removing"
 		else:
 			print "timer did already end - doing nothing."
 
 		self.calcNextActivation()
+
+
+	def shutdown(self):
+		self.saveTimer()
