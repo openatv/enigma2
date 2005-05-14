@@ -3,10 +3,12 @@ from tools import *
 
 import Screens.InfoBar
 
-import RecordTimer
-
 import sys
 import time
+
+import ServiceReference
+
+from Navigation import Navigation
 
 from skin import applyGUIskin
 
@@ -126,78 +128,11 @@ class Session:
 		self.execBegin()
 
 	def keyEvent(self, code):
-#		print "code " + str(code)
-		if code == 32:
-			self.currentDialog["okbutton"].instance.push()
-
-		if code == 33:
-			self.currentDialog["channelSwitcher"].instance.push()
-		
-		if code >= 0x30 and code <= 0x39:
-			try:
-				self.currentDialog["menu"].instance.moveSelection(code - 0x31)
-			except:
-				self.currentDialog["list"].instance.moveSelection(code - 0x31)
+		print "code " + str(code)
 
 	def close(self):
 		self.delayTimer.start(0, 1)
 
-# TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
-class Navigation:
-	def __init__(self):
-		self.pnav = pNavigation()
-		self.pnav.m_event.get().append(self.callEvent)
-		self.event = [ ]
-		self.currentlyPlayingService = None
-		
-		self.RecordTimer = RecordTimer.RecordTimer()
-
-	def callEvent(self, i):
-		for x in self.event:
-			x(i)
-	
-	def playService(self, ref):
-		self.currentlyPlayingServiceReference = None
-		if not self.pnav.playService(ref):
-			self.currentlyPlayingServiceReference = ref
-			return 0
-		return 1
-	
-	def getCurrentlyPlayingServiceReference(self):
-		return self.currentlyPlayingServiceReference
-	
-	def recordService(self, ref):
-		service = iRecordableServicePtr()
-		print "recording service: %s" % (str(ref))
-		if self.pnav.recordService(ref, service):
-			print "record returned non-zero"
-			return None
-		else:
-			print "ok, recordService didn't fail"
-			return service
-	
-	def enqueueService(self, ref):
-		return self.pnav.enqueueService(ref)
-	
-	def getCurrentService(self):
-		service = iPlayableServicePtr()
-		if self.pnav.getCurrentService(service):
-			return None
-		return service
-	
-	def getPlaylist(self):
-		playlist = ePlaylistPtr()
-		if self.pnav.getPlaylist(playlist):
-			return None
-		return playlist
-	
-	def pause(self, p):
-		return self.pnav.pause(p)
-	
-	def recordWithTimer(self, begin, end, ref, epg):
-		entry = RecordTimer.RecordTimerEntry(begin, end, self, ref, epg)
-		self.RecordTimer.record(entry)
-		return entry
 
 def runScreenTest():
 	session = Session()
@@ -210,6 +145,8 @@ def runScreenTest():
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	runMainloop()
+	
+	session.nav.shutdown()
 	
 	return 0
 

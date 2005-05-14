@@ -1,0 +1,54 @@
+from Screen import Screen
+from Components.TimerList import TimerList, TimerEntry
+from Components.ActionMap import ActionMap
+from Components.TimeInput import TimeInput
+from Components.Label import Label
+from Components.Button import Button
+
+class TimerEdit(Screen):
+	def __init__(self, session, entry):
+		Screen.__init__(self, session)
+
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"ok": self.apply,
+				"cancel": self.close
+			})
+		
+		self.entry = entry
+		# begin, end, description, service
+		self["begin"] = TimeInput()
+		self["end"] = TimeInput()
+		
+		self["lbegin"] = Label("Begin")
+		self["lend"] = Label("End")
+		
+		self["description"] = Label("bla")
+# TextInput()
+		self["apply"] = Button("Apply")
+		self["service"] = Button()
+	
+	def apply(self):
+		print "applied!"
+	
+class TimerEditList(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		
+		list = [ ]
+		for timer in session.nav.RecordTimer.timer_list:
+			list.append(TimerEntry(timer, 0))
+		
+		for timer in session.nav.RecordTimer.processed_timers:
+			list.append(TimerEntry(timer, 1))
+		
+		self["timerlist"] = TimerList(list)
+
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"ok": self.openEdit,
+				"cancel": self.close
+			})
+
+	def openEdit(self):
+		self.session.open(TimerEdit, self["timerlist"].getCurrent())

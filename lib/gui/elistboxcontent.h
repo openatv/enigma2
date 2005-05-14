@@ -103,6 +103,7 @@ protected:
 	
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	void invalidateEntry(int index);
 
 protected:
 	PyObject *m_list;
@@ -115,10 +116,19 @@ class eListboxPythonConfigContent: public eListboxPythonStringContent
 {
 public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	void invalidateEntry(int index);
 	void setSeperation(int sep) { m_seperation = sep; }
 private:
 	int m_seperation;
+};
+
+class eListboxPythonMultiContent: public eListboxPythonStringContent
+{
+public:
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	
+	void setFont(int fnt, gFont *fnt);
+private:
+	std::map<int, ePtr<gFont> > m_font;
 };
 
 #endif

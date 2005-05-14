@@ -48,6 +48,7 @@ is usually caused by not marking PSignals as immutable.
 
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
+#include <lib/gui/einput.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
@@ -92,6 +93,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 
 // TODO: embed these...
 %immutable eButton::selected;
+%immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
 %immutable pNavigation::m_event;
 
@@ -101,6 +103,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gdi/region.h>
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
+%include <lib/gui/einput.h>
 %include <lib/gui/epixmap.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>

@@ -14,47 +14,47 @@ class TimerEntry:
 	StateEnded   = 3
 	
 	def __init__(self, begin, end):
-		self.Begin = begin
-		self.Prepare = 10
-		self.End = end
-		self.State = 0
+		self.begin = begin
+		self.prepare_time = 10
+		self.end = end
+		self.state = 0
 	
 	def getTime(self):
-		if self.State == 0:
-			return self.Begin - self.Prepare
-		elif self.State == 1:
-			return self.Begin
+		if self.state == 0:
+			return self.begin - self.prepare_time
+		elif self.state == 1:
+			return self.begin
 		else:
-			return self.End 
+			return self.end 
 	
 	def __lt__(self, o):
 		return self.getTime() < o.getTime()
 	
 	def activate(self, event):
-		print "timer %s got activated (%d)!" % (self.Description, event)
+		print "timer %s got activated (%d)!" % (self.description, event)
 
 class Timer:
 
 	MaxWaitTime = 100
 
 	def __init__(self):
-		self.TimerList = [ ]
-		self.ProcessedTimers = [ ]
+		self.timer_list = [ ]
+		self.processed_timers = [ ]
 		
-		self.Timer = eTimer()
-		self.Timer.timeout.get().append(self.calcNextActivation)
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.calcNextActivation)
 		
 		self.calcNextActivation()
 	
 	def addTimerEntry(self, entry):
-		bisect.insort(self.TimerList, entry)
+		bisect.insort(self.timer_list, entry)
 		self.calcNextActivation()
 	
 	def setNextActivation(self, when):
 		delay = int((when - time()) * 1000)
 		print "next activation: %d (in %d seconds)" % (when, delay)
 		
-		self.Timer.start(delay, 1)
+		self.timer.start(delay, 1)
 		self.next = when
 
 	def calcNextActivation(self):
@@ -63,28 +63,28 @@ class Timer:
 		min = int(time()) + self.MaxWaitTime
 		
 		# calculate next activation point
-		if len(self.TimerList):
-			w = self.TimerList[0].getTime()
+		if len(self.timer_list):
+			w = self.timer_list[0].getTime()
 			if w < min:
 				min = w
 		
 		self.setNextActivation(min)
 	
 	def doActivate(self, w):
-		w.activate(w.State)
-		self.TimerList.remove(w)
-		w.State += 1
-		if w.State < TimerEntry.StateEnded:
-			bisect.insort(self.TimerList, w)
+		w.activate(w.state)
+		self.timer_list.remove(w)
+		w.state += 1
+		if w.state < TimerEntry.StateEnded:
+			bisect.insort(self.timer_list, w)
 		else:
-			bisect.insort(self.ProcessedTimers, w)
+			bisect.insort(self.processed_timers, w)
 	
 	def processActivation(self):
 		t = int(time()) + 1
 		
 		# we keep on processing the first entry until it goes into the future.
-		while len(self.TimerList) and self.TimerList[0].getTime() < t:
-			self.doActivate(self.TimerList[0])
+		while len(self.timer_list) and self.timer_list[0].getTime() < t:
+			self.doActivate(self.timer_list[0])
 
 #t = Timer()
 #base = time() + 5

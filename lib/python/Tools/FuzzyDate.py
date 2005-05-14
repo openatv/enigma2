@@ -1,0 +1,39 @@
+import time
+
+def FuzzyTime(t):
+	d = time.localtime(t)
+	nt = time.time()
+	n = time.localtime()
+	
+	if d[:3] == n[:3]:
+		# same day
+		date = "Today"
+	elif ((t - nt) < 7*86400) and (nt < t):
+		# same week
+		date = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[d[6]]
+	elif d[0] == n[0]:
+		# same year
+		date = "%d.%d." % (d[2], d[1])
+	else:
+		date = "%d.%d.%d" % (d[2], d[1], d[0])
+	
+	timeres = "%d:%02d" % (d[3], d[4])
+	
+	return (date, timeres)
+
+if __name__ == "__main__":
+	print "now:    %s %s" % FuzzyDate(time.time())
+	print "1 day:  %s %s" % FuzzyDate(time.time() + 86400)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *2)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *3)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *4)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *5)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *6)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *7)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *8)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *9)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *10)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *11)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *12)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *13)
+	print "2 days: %s %s" % FuzzyDate(time.time() + 86400 *14)

@@ -9,6 +9,8 @@ eListbox::eListbox(eWidget *parent): eWidget(parent)
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	
+	m_itemheight = 20;
+	
 	ptr->bindAction("ListboxActions", 0, 0, this);
 }
 
@@ -146,9 +148,17 @@ int eListbox::event(int event, void *data, void *data2)
 
 void eListbox::recalcSize()
 {
-	m_itemheight = 20;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
+}
+
+void eListbox::setItemHeight(int h)
+{
+	if (h)
+		m_itemheight = h;
+	else
+		m_itemheight = 20;
+	recalcSize();
 }
 
 void eListbox::entryAdded(int index)

@@ -9,6 +9,15 @@
 		<key id="1" mapto="moveUp" flags="mr" />
 		<key id="2" mapto="moveDown" flags="mr" />
 	</map>
+	
+	<map context="InputActions">
+		<key id="1" mapto="moveLeft" flags="mr" />
+		<key id="2" mapto="moveRight" flags="mr" />
+		<key id="3" mapto="moveHome" flags="mr" />
+		<key id="4" mapto="moveEnd" flags="mr" />
+		<key id="5" mapto="deleteChar" flags="mr" />
+	</map>
+
 	<map context="InfobarActions">
 		<key id="m" mapto="mainMenu" flags="mr" />
 		<key id="c" mapto="switchChannel" flags="mr" />
