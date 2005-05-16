@@ -143,7 +143,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				if (
 					// (k->second.m_device == m_device) &&
 					(k->second.m_key == key) &&
-					((k->second.m_flags & flags)==flags))
+					(k->second.m_flags & (1<<flags)))
 				{
 					if (i->second.m_widget->event(eWidget::evtAction, 0, (void*)k->second.m_action))
 						return;
@@ -160,7 +160,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				if (
 					// (k->second.m_device == m_device) &&
 					(k->second.m_key == key) &&
-					((k->second.m_flags & flags)==flags))
+					(k->second.m_flags & (1<<flags)))
 				{
 					PyObject *pArgs = PyTuple_New(2);
 					PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));

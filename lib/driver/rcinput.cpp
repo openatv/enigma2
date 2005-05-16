@@ -117,11 +117,36 @@ int eRCDeviceInputDev::getKeyCompatibleCode(const eRCKey &key) const
 
 class eInputDeviceInit
 {
-	eRCInputEventDriver driver;
-	eRCDeviceInputDev deviceInputDev;
+	ePtrList<eRCInputEventDriver> m_drivers;
+	ePtrList<eRCDeviceInputDev> m_devices;
 public:
-	eInputDeviceInit(): driver("/dev/input/event0"), deviceInputDev(&driver)
+	eInputDeviceInit()
 	{
+		int i = 0;
+		while (1)
+		{
+			struct stat s;
+			char filename[128];
+			sprintf(filename, "/dev/input/event%d", i);
+			if (stat(filename, &s))
+				break;
+			eRCInputEventDriver *p;
+			m_drivers.push_back(p = new eRCInputEventDriver(filename));
+			m_devices.push_back(new eRCDeviceInputDev(p));
+			++i;
+		}
+		eDebug("Found %d input devices!", i);
+	}
+	
+	~eInputDeviceInit()
+	{
+		while (m_drivers.size())
+		{
+			delete m_devices.back();
+			m_devices.pop_back();
+			delete m_drivers.back();
+			m_drivers.pop_back();
+		}
 	}
 };
 
