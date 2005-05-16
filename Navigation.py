@@ -1,0 +1,82 @@
+from enigma import *
+import RecordTimer
+
+import NavigationInstance
+import ServiceReference
+
+# TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
+class Navigation:
+	def __init__(self):
+		if NavigationInstance.instance is not None:
+			raise NavigationInstance.instance
+		
+		NavigationInstance.instance = self
+		self.ServiceHandler = eServiceCenterPtr()
+		eServiceCenter.getInstance(self.ServiceHandler)
+
+		import Navigation as Nav
+		Nav.navcore = self
+		
+		print "Navcore instance set!"
+		print Nav.navcore
+		
+		self.pnav = pNavigation()
+		self.pnav.m_event.get().append(self.callEvent)
+		self.event = [ ]
+		self.currentlyPlayingService = None
+		
+		self.RecordTimer = RecordTimer.RecordTimer()
+
+	def callEvent(self, i):
+		for x in self.event:
+			x(i)
+	
+	def playService(self, ref):
+		self.currentlyPlayingServiceReference = None
+		if not self.pnav.playService(ref):
+			self.currentlyPlayingServiceReference = ref
+			return 0
+		return 1
+	
+	def getCurrentlyPlayingServiceReference(self):
+		return self.currentlyPlayingServiceReference
+	
+	def recordService(self, ref):
+		print "recording service: %s" % (str(ref))
+		if isinstance(ref, ServiceReference.ServiceReference):
+			ref = ref.ref
+		service = iRecordableServicePtr()
+		if self.pnav.recordService(ref, service):
+			print "record returned non-zero"
+			return None
+		else:
+			print "ok, recordService didn't fail"
+			return service
+	
+	def enqueueService(self, ref):
+		return self.pnav.enqueueService(ref)
+	
+	def getCurrentService(self):
+		service = iPlayableServicePtr()
+		if self.pnav.getCurrentService(service):
+			return None
+		return service
+	
+	def getPlaylist(self):
+		playlist = ePlaylistPtr()
+		if self.pnav.getPlaylist(playlist):
+			return None
+		return playlist
+	
+	def pause(self, p):
+		return self.pnav.pause(p)
+	
+	def recordWithTimer(self, begin, end, ref, epg):
+		if isinstance(ref, eServiceReference):
+			ref = ServiceReference.ServiceReference(ref)
+		entry = RecordTimer.RecordTimerEntry(begin, end, ref, epg)
+		self.RecordTimer.record(entry)
+		return entry
+	
+	def shutdown(self):
+		self.RecordTimer.shutdown()
