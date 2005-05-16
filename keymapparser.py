@@ -38,7 +38,7 @@ def readKeymap():
 				id = x.getAttribute("id")
 				flags = x.getAttribute("flags")
 				
-				flag_ascii_to_id = lambda x: {'m':1,'r':2,'b':4}[x]
+				flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4}[x]
 				
 #				try:
 				flags = sum(map(flag_ascii_to_id, flags))
@@ -66,7 +66,7 @@ def readKeymap():
 						raise "key id '" + str(id) + "' is illegal"
 
 				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
-				p.bindKey(device, keyid, 7, context, mapto)
+				p.bindKey(device, keyid, flags, context, mapto)
 		
 		parseKeys("generic", cmap)
 		
