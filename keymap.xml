@@ -30,16 +30,20 @@
 
 	<map context="InfobarActions">
 		<key id="m" mapto="mainMenu" flags="mr" />
-		<key id="c" mapto="switchChannel" flags="mr" />
+		<key id="c" mapto="switchChannelDown" flags="mr" />
 		<key id="r" mapto="instantRecord" flags="m" />
 		<key id="1" mapto="zapUp" flags="mr" />
 		<key id="2" mapto="zapDown" flags="mr" />
-
 		<key id="KEY_M" mapto="mainMenu" flags="mr" />
-		<key id="KEY_C" mapto="switchChannel" flags="mr" />
+		<key id="KEY_C" mapto="switchChannelDown" flags="mr" />
 		<key id="KEY_R" mapto="instantRecord" flags="m" />
 		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
 		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
+    <key id="KEY_UP" mapto="switchChannelUp" flags="mr" />
+    <key id="KEY_DOWN" mapto="switchChannelDown" flags="mr" />
+    <key id="KEY_MENU" mapto="mainMenu" flags="mr" />
+    <key id="KEY_OK" mapto="toggleShow" flags="mr" />
+    <key id="KEY_EXIT" mapto="hide" flags="mr" />
 	</map>
 	
 	<map context="ChannelSelectActions">
@@ -58,6 +62,10 @@
 	<map context="OkCancelActions">
 		<key id="\x0a" mapto="ok" flags="mr" />
 		<key id="\x1b" mapto="cancel" flags="mr" />
+
+		<!-- use this on rcu, ok? -->
+    <key id="KEY_OK" mapto="ok" flags="mr" />
+    <key id="KEY_EXIT" mapto="cancel" flags="mr" />
 
 		<key id="KEY_ENTER" mapto="ok" flags="mr" />
 		<key id="KEY_ESC" mapto="cancel" flags="mr" />
