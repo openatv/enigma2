@@ -1,5 +1,7 @@
 from PerServiceDisplay import *
 
+from enigma import iServiceInformationPtr, eServiceEventPtr
+
 class EventInfo(PerServiceDisplay):
 	Now = 0
 	Next = 1
