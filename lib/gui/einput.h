@@ -20,7 +20,8 @@ public:
 		moveRight, 
 		moveHome, 
 		moveEnd,
-		deleteChar
+		deleteForward,
+		deleteBackward
 	};
 	
 	void setContent(eInputContent *cnt);
@@ -47,6 +48,12 @@ public:
 		dirUser
 	};
 	virtual void moveCursor(int dir)=0;
+	
+	enum {
+		deleteForward, deleteBackward
+	};
+	virtual void deleteChar(int dir)=0;
+	
 		/* no movement keys except stuff like '.' or so*/
 	virtual int haveKey(int code)=0;
 	
@@ -64,6 +71,7 @@ public:
 	void getDisplay(std::string &res, int &cursor);
 	void moveCursor(int dir);
 	int haveKey(int code);
+	void deleteChar(int dir);
 	int isValid();
 	
 private:

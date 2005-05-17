@@ -1,6 +1,7 @@
 #include <lib/gui/einput.h>
 #include <lib/gdi/font.h>
 #include <lib/actions/action.h>
+#include <linux/input.h>
 
 eInput::eInput(eWidget *parent): eLabel(parent)
 {
@@ -11,6 +12,9 @@ eInput::eInput(eWidget *parent): eLabel(parent)
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	ptr->bindAction("InputActions", 0, 0, this);
+	
+		// bind all keys
+	ptr->bindAction("", 0, 1, this);
 }
 
 eInput::~eInput()
@@ -18,6 +22,7 @@ eInput::~eInput()
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	ptr->unbindAction(this, 0);
+	ptr->unbindAction(this, 1);
 }
 
 void eInput::setContent(eInputContent *content)
@@ -88,13 +93,24 @@ int eInput::event(int event, void *data, void *data2)
 			case moveEnd:
 				m_content->moveCursor(eInputContent::dirEnd);
 				break;
-			case deleteChar:
-				// not yet
+			case deleteForward:
+				m_content->deleteChar(eInputContent::deleteForward);
+				break;
+			case deleteBackward:
+				m_content->deleteChar(eInputContent::deleteBackward);
 				break;
 			}
 			return 1;
 		}
 		return 0;
+	case evtKey:
+	{
+		int key = (int)data;
+		int flags = (int)data2;
+		if (m_content && !(flags & 1))
+			m_content->haveKey(key);
+		break;
+	}
 	default:
 		break;
 	}
@@ -165,9 +181,61 @@ void eInputContentNumber::moveCursor(int dir)
 
 int eInputContentNumber::haveKey(int code)
 {
-	insertDigit(m_cursor, code);
-	recalcLen();
+	int have_digit = -1;
+
+#define ASCII(x) (x | 0x8000)
+#define DIGIT(x) case KEY_##x: case KEY_KP##x: case ASCII(x|0x30): have_digit=x; break;
+	switch (code)
+	{
+	DIGIT(0);
+	DIGIT(1);
+	DIGIT(2);
+	DIGIT(3);
+	DIGIT(4);
+	DIGIT(5);
+	DIGIT(6);
+	DIGIT(7);
+	DIGIT(8);
+	DIGIT(9);
+	}
+	
+	if (have_digit != -1)
+	{
+		insertDigit(m_cursor, have_digit);
+		m_cursor++;
+		
+		recalcLen();
+		
+				// can happen when 0 -> x
+		if (m_cursor > m_len)
+			m_cursor = m_len;
+ 
+		if (m_input)
+			m_input->invalidate();
+	}
 	return 0;
+}
+
+void eInputContentNumber::deleteChar(int dir)
+{
+	if (dir == deleteForward)
+	{
+		eDebug("forward");
+		if (m_cursor != m_len)
+			++m_cursor;
+		else
+			return;
+	}
+		/* backward delete at begin */
+	if (!m_cursor)
+		return;
+	insertDigit(m_cursor, -1);
+	
+	if (m_len > 1)
+		m_cursor--;
+	recalcLen();
+	if (m_input)
+		m_input->invalidate();
 }
 
 int eInputContentNumber::isValid()
@@ -194,14 +262,22 @@ void eInputContentNumber::insertDigit(int pos, int dig)
 		/* get stuff left from cursor */
 	int exp = 1;
 	int i;
-	for (i = 0; i < (m_len - pos - 1); ++i)
+	for (i = 0; i < (m_len - pos); ++i)
 		exp *= 10;
 	
 		/* now it's 1...max */
 	int left = m_value / exp;
 	int right = m_value % exp;
-	left *= 10;
-	left += dig;
+	
+	if (dig >= 0)
+	{
+		left *= 10;
+		left += dig;
+	} else if (dig == -1) /* delete */
+	{
+		left /= 10;
+	}
+	
 	left *= exp;
 	left += right;
 	m_value = left;
