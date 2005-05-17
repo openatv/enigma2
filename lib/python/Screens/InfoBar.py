@@ -22,11 +22,14 @@ class InfoBar(Screen):
 		
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
-				"switchChannel": self.switchChannel,
+				"switchChannelUp": self.switchChannelUp,
+				"switchChannelDown": self.switchChannelDown,
 				"mainMenu": self.mainMenu,
 				"zapUp": self.zapUp,
 				"zapDown": self.zapDown,
-				"instantRecord": self.instantRecord
+				"instantRecord": self.instantRecord,
+				"hide": self.hide,
+				"toggleShow": self.toggleShow
 			})
 		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -48,14 +51,30 @@ class InfoBar(Screen):
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
 		self.session.open(Menu, menu, menu.childNodes)
 
-	def switchChannel(self):	
+	def switchChannelUp(self):	
+		self.servicelist.moveUp()
 		self.session.execDialog(self.servicelist)
 
+	def switchChannelDown(self):	
+		self.servicelist.moveDown()
+		self.session.execDialog(self.servicelist)
+
+	def hide(self):	
+		self.instance.hide()
+
+	def toggleShow(self):
+		if self.instance.isVisible():
+			self.instance.hide()
+		else:
+			self.instance.show()
+
 	def	zapUp(self):
-		self.servicelist.zapUp()
+		self.servicelist.moveUp()
+		self.servicelist.zap()
 
 	def	zapDown(self):
-		self.servicelist.zapDown()
+		self.servicelist.moveDown()
+		self.servicelist.zap()
 		
 	def instantRecord(self):
 		if self.recording != None:
