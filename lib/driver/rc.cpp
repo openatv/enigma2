@@ -35,11 +35,6 @@
  *  actions. have fun.
  */
 
-int eRCDevice::getKeyCompatibleCode(const eRCKey &) const
-{
-	return -1;
-}
-
 eRCDevice::eRCDevice(std::string id, eRCDriver *driver): driver(driver), id(id)
 {
 	input=driver->getInput();
