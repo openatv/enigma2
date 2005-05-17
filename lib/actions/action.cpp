@@ -134,42 +134,61 @@ void eActionMap::keyPressed(int device, int key, int flags)
 			/* is this a native context? */
 		if (i->second.m_widget)
 		{
-			std::multimap<std::string,eNativeKeyBinding>::const_iterator
-				k = m_native_keys.lower_bound(i->second.m_context),
-				e = m_native_keys.upper_bound(i->second.m_context);
-			
-			for (; k != e; ++k)
+				/* is this a named context, i.e. not the wildcard? */
+			if (i->second.m_context.size())
 			{
-				if (
-					// (k->second.m_device == m_device) &&
-					(k->second.m_key == key) &&
-					(k->second.m_flags & (1<<flags)))
+				std::multimap<std::string,eNativeKeyBinding>::const_iterator
+					k = m_native_keys.lower_bound(i->second.m_context),
+					e = m_native_keys.upper_bound(i->second.m_context);
+				
+				for (; k != e; ++k)
 				{
-					if (i->second.m_widget->event(eWidget::evtAction, 0, (void*)k->second.m_action))
-						return;
+					if (
+						// (k->second.m_device == m_device) &&
+						(k->second.m_key == key) &&
+						(k->second.m_flags & (1<<flags)))
+					{
+						if (i->second.m_widget->event(eWidget::evtAction, 0, (void*)k->second.m_action))
+							return;
+					}
 				}
+			} else
+			{
+					/* wildcard - get any keys. */
+				if (i->second.m_widget->event(eWidget::evtKey, (void*)key, (void*)flags))
+					return;
 			}
 		} else if (i->second.m_fnc)
 		{
-			std::multimap<std::string,ePythonKeyBinding>::const_iterator
-				k = m_python_keys.lower_bound(i->second.m_context),
-				e = m_python_keys.upper_bound(i->second.m_context);
-				
-			for (; k != e;)
+			if (i->second.m_context.size())
 			{
-				if (
-					// (k->second.m_device == m_device) &&
-					(k->second.m_key == key) &&
-					(k->second.m_flags & (1<<flags)))
+				std::multimap<std::string,ePythonKeyBinding>::const_iterator
+					k = m_python_keys.lower_bound(i->second.m_context),
+					e = m_python_keys.upper_bound(i->second.m_context);
+				
+				for (; k != e;)
 				{
-					PyObject *pArgs = PyTuple_New(2);
-					PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));
-					PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
-					++k;
-					ePython::call(i->second.m_fnc, pArgs);
-					Py_DECREF(pArgs);
-				} else
-					++k;
+					if (
+						// (k->second.m_device == m_device) &&
+						(k->second.m_key == key) &&
+						(k->second.m_flags & (1<<flags)))
+					{
+						PyObject *pArgs = PyTuple_New(2);
+						PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));
+						PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
+						++k;
+						ePython::call(i->second.m_fnc, pArgs);
+						Py_DECREF(pArgs);
+					} else
+						++k;
+				}
+			} else
+			{
+				PyObject *pArgs = PyTuple_New(2);
+				PyTuple_SetItem(pArgs, 0, PyInt_FromLong(key));
+				PyTuple_SetItem(pArgs, 1, PyInt_FromLong(flags));
+				ePython::call(i->second.m_fnc, pArgs);
+				Py_DECREF(pArgs);
 			}
 		}
 	}
