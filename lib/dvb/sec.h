@@ -3,6 +3,77 @@
 
 #include <config.h>
 #include <lib/dvb/idvb.h>
+#include <list>
+
+class eSecCommand
+{
+public:
+	enum {
+		NONE, SLEEP, SET_VOLTAGE, SET_TONE, SEND_DISEQC, SEND_TONEBURST, IF_LOCK_GOTO, IF_NOT_LOCK_GOTO, SET_FRONTEND
+	};
+	int cmd;
+	union
+	{
+		int voltage;
+		int tone;
+		int toneburst;
+		int msec;
+		eDVBDiseqcCommand diseqc;
+	};
+	eSecCommand( int cmd, int val )
+		:cmd(cmd), voltage(val)
+	{}
+	eSecCommand( int cmd, eDVBDiseqcCommand diseqc )
+		:cmd(cmd), diseqc(diseqc)
+	{}
+	eSecCommand()
+		:cmd(NONE)
+	{}
+};
+
+class eSecCommandList
+{
+	std::list<eSecCommand> secSequence;
+	std::list<eSecCommand>::iterator cur;
+public:
+	eSecCommandList()
+		:cur(secSequence.end())
+	{
+	}
+	void push_front(const eSecCommand &cmd)
+	{
+		secSequence.push_front(cmd);
+	}
+	void push_back(const eSecCommand &cmd)
+	{
+		secSequence.push_back(cmd);
+	}
+	void clear()
+	{
+		secSequence.clear();
+		cur=secSequence.end();
+	}
+	inline std::list<eSecCommand>::iterator &current()
+	{
+		return cur;
+	}
+	inline std::list<eSecCommand>::iterator begin()
+	{
+		return secSequence.begin();
+	}
+	inline std::list<eSecCommand>::iterator end()
+	{
+		return secSequence.end();
+	}
+	int size() const
+	{
+		return secSequence.size();
+	}
+	operator bool() const
+	{
+		return secSequence.size();
+	}
+};
 
 class eDVBSatelliteDiseqcParameters
 {

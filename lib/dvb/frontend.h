@@ -3,6 +3,9 @@
 
 #include <config.h>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/sec.h>
+
+class eSecCommandList;
 
 class eDVBFrontendParameters: public iDVBFrontendParameters
 {
@@ -39,15 +42,20 @@ class eDVBFrontend: public iDVBFrontend, public Object
 #if HAVE_DVB_API_VERSION < 3
 	int m_secfd;
 #endif
+	FRONTENDPARAMETERS parm;
 	int m_state;
 	Signal1<void,iDVBFrontend*> m_stateChanged;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	eSocketNotifier *m_sn;
 	int m_tuning;
 	eTimer *m_timeout;
-	
+	eTimer *m_tuneTimer;
+
 	void feEvent(int);
 	void timeout();
+	eSecCommandList m_sec_sequence;
+	void tuneLoop();  // called by m_tuneTimer
+	void setFrontend();
 public:
 	eDVBFrontend(int adap, int fe, int &ok);	
 	virtual ~eDVBFrontend();
@@ -59,7 +67,9 @@ public:
 	RESULT setTone(int tone);
 	RESULT setVoltage(int voltage);
 	RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc);
+	RESULT sendToneburst(int burst);
 	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
+	RESULT setSecSequence(const eSecCommandList &list);
 };
 
 #endif

@@ -361,6 +361,7 @@ public:
 };
 
 class iDVBSatelliteEquipmentControl;
+class eSecCommandList;
 
 class iDVBFrontend: public iObject
 {
@@ -387,7 +388,9 @@ public:
 	};
 	virtual RESULT setVoltage(int voltage)=0;
 	virtual RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc)=0;
+	virtual RESULT sendToneburst(int burst)=0;
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
+	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 };
 
 class iDVBSatelliteEquipmentControl: public iObject
