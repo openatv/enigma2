@@ -47,11 +47,12 @@ class ChannelSelection(Screen):
 		self.close()
 
 	#called from infoBar
-	def zapUp(self):
-		self["list"].moveUp()
+	def zap(self):
 		self.session.nav.playService(self["list"].getCurrent())
 
-	def zapDown(self):
+	def moveUp(self):
+		self["list"].moveUp()
+
+	def moveDown(self):
 		self["list"].moveDown()
-		self.session.nav.playService(self["list"].getCurrent())
 
