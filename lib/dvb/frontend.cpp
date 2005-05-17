@@ -277,10 +277,13 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
 	CONNECT(m_sn->activated, eDVBFrontend::feEvent);
 	m_sn->start();
-	
+
 	m_timeout = new eTimer(eApp);
 	CONNECT(m_timeout->timeout, eDVBFrontend::timeout);
-	
+
+	m_tuneTimer = new eTimer(eApp);
+	CONNECT(m_tuneTimer->timeout, eDVBFrontend::tuneLoop);
+
 	return;
 }
 
@@ -358,6 +361,59 @@ void eDVBFrontend::timeout()
 		m_tuning = 0;
 }
 
+void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
+{
+	int delay=0;
+	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
+	{
+		switch (m_sec_sequence.current()->cmd)
+		{
+			case eSecCommand::SLEEP:
+				delay = m_sec_sequence.current()->msec;
+				break;
+			case eSecCommand::SET_VOLTAGE:
+				setVoltage(m_sec_sequence.current()->voltage);
+				break;
+			case eSecCommand::SET_TONE:
+				setTone(m_sec_sequence.current()->tone);
+				break;
+			case eSecCommand::SEND_DISEQC:
+				sendDiseqc(m_sec_sequence.current()->diseqc);
+				break;
+			case eSecCommand::SEND_TONEBURST:
+				sendToneburst(m_sec_sequence.current()->toneburst);
+				break;
+			case eSecCommand::SET_FRONTEND:
+				setFrontend();
+				break;
+			case eSecCommand::IF_LOCK_GOTO:
+			case eSecCommand::IF_NOT_LOCK_GOTO:
+			default:
+				eDebug("unhandled sec command");
+		}
+		m_sec_sequence.current()++;
+		m_tuneTimer->start(delay,true);
+	}
+}
+
+void eDVBFrontend::setFrontend()
+{
+	eDebug("setting frontend..\n");
+	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
+	{
+		perror("FE_SET_FRONTEND failed");
+		return;
+	}
+
+	if (m_state != stateTuning)
+	{
+		m_tuning = 1;
+		m_state = stateTuning;
+		m_stateChanged(this);
+	}
+	m_timeout->start(5000, 1); // 5 sec timeout. TODO: symbolrate dependent
+}
+
 RESULT eDVBFrontend::getFrontendType(int &t)
 {
 	if (m_type == -1)
@@ -371,12 +427,12 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (m_type == -1)
 		return -ENODEV;
 
-	FRONTENDPARAMETERS parm;
-
 	feEvent(-1);
-	
+
+	m_sec_sequence.clear();
+
 	eDebug("eDVBFrontend::tune. type: %d", m_type);
-	
+
 	switch (m_type)
 	{
 	case feSatellite:
@@ -519,23 +575,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		break;
 	}
 	}
-	
-	eDebug("setting frontend..\n");
-	
-	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
-	{
-		perror("FE_SET_FRONTEND failed");
-		return errno;
-	}
-	
-	if (m_state != stateTuning)
-	{
-		m_tuning = 1;
-		m_state = stateTuning;
-		m_stateChanged(this);
-	}
-	
-	m_timeout->start(5000, 1); // 5 sec timeout. TODO: symbolrate dependent
+
+	m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 0) );
+	m_tuneTimer->start(0,true);
+	m_sec_sequence.current() = m_sec_sequence.begin();
 
 	return 0;
 }
@@ -607,75 +650,56 @@ RESULT eDVBFrontend::setTone(int t)
 #endif
 }
 
+#if HAVE_DVB_API_VERSION < 3 && !defined(SEC_DISEQC_SEND_MASTER_CMD)
+	#define SEC_DISEQC_SEND_MASTER_CMD _IOW('o', 97, struct secCommand *)
+#endif
+
 RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 {
 #if HAVE_DVB_API_VERSION < 3
-	secCmdSequence seq;
-	secCommand cmd;
-
-	if ( diseqc.len > 3 )
-	{
-		seq.numCommands=1;
-		cmd.type = SEC_CMDTYPE_DISEQC_RAW;
-		cmd.u.diseqc.cmdtype = diseqc.data[0];
-		eDebug("cmdtype is %02x", diseqc.data[0]);
-		cmd.u.diseqc.addr = diseqc.data[1];
-		eDebug("cmdaddr is %02x", diseqc.data[1]);
-		cmd.u.diseqc.cmd = diseqc.data[2];
-		eDebug("cmd is %02x", diseqc.data[2]);
-		cmd.u.diseqc.numParams = diseqc.len-3;
-		eDebug("numparams %d", diseqc.len-3);
-
-		memcpy(cmd.u.diseqc.params, diseqc.data+3, diseqc.len-3);
-		for (int i=0; i < diseqc.len-3; ++i )
-			eDebugNoNewLine("%02x ", diseqc.data[3+i]);
-		eDebug("");
-	}
-	else
-		seq.numCommands=0;
-
-	seq.continuousTone = diseqc.tone == toneOn ? SEC_TONE_ON : SEC_TONE_OFF;
-	switch ( diseqc.voltage )
-	{
-		case voltageOff:
-			seq.voltage = SEC_VOLTAGE_OFF;
-			break;
-		case voltage13:
-			seq.voltage = SEC_VOLTAGE_13;
-			break;
-		case voltage18:
-			seq.voltage = SEC_VOLTAGE_18;
-			break;
-	}
-	seq.miniCommand = SEC_MINI_NONE;
-	seq.commands=&cmd;
-
-	if ( ioctl(m_secfd, SEC_SEND_SEQUENCE, &seq) < 0 )
-	{
-		eDebug("SEC_SEND_SEQUENCE failed ( %m )");
-		return -EINVAL;
-	}
-	return 0;
+	struct secCommand cmd;
+	cmd.type = SEC_CMDTYPE_DISEQC_RAW;
+	cmd.u.diseqc.cmdtype = diseqc.data[0];
+	cmd.u.diseqc.addr = diseqc.data[1];
+	cmd.u.diseqc.cmd = diseqc.data[2];
+	cmd.u.diseqc.numParams = diseqc.len-3;
+	memcpy(cmd.u.diseqc.params, diseqc.data+3, diseqc.len-3);
+	if (::ioctl(m_secfd, SEC_DISEQC_SEND_MASTER_CMD, &cmd))
 #else
-	if ( !diseqc.len )
-		return 0;
 	struct dvb_diseqc_master_cmd cmd;
-	if (::ioctl(m_fd, FE_SET_TONE, SEC_TONE_OFF))
-		return -EINVAL;
-	usleep(15 * 1000);
 	memcpy(cmd.msg, diseqc.data, diseqc.len);
 	cmd.msg_len = diseqc.len;
-	
 	if (::ioctl(m_fd, FE_DISEQC_SEND_MASTER_CMD, &cmd))
-		return -EINVAL;
-	usleep(15 * 1000);
 #endif
-	eDebug("diseqc ok");
+		return -EINVAL;
+	return 0;
+}
+
+#if HAVE_DVB_API_VERSION < 3 && !defined(SEC_DISEQC_SEND_BURST)
+	#define SEC_DISEQC_SEND_BURST _IO('o', 96)
+#endif
+RESULT eDVBFrontend::sendToneburst(int burst)
+{
+#if HAVE_DVB_API_VERSION < 3
+	secMiniCmd cmd = SEC_MINI_NONE;
+	if ( burst == eDVBSatelliteDiseqcParameters::A )
+		cmd = SEC_MINI_A;
+	else if ( burst == eDVBSatelliteDiseqcParameters::B )
+		cmd = SEC_MINI_B;
+	if (::ioctl(m_secfd, SEC_DISEQC_SEND_BURST, cmd))
+		return -EINVAL;
+#endif
 	return 0;
 }
 
 RESULT eDVBFrontend::setSEC(iDVBSatelliteEquipmentControl *sec)
 {
 	m_sec = sec;
+	return 0;
+}
+
+RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
+{
+	m_sec_sequence = list;
 	return 0;
 }

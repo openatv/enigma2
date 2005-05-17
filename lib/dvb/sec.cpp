@@ -1,13 +1,11 @@
 #include <config.h>
 #include <lib/dvb/sec.h>
 #if HAVE_DVB_API_VERSION < 3
-#include <ost/frontend.h>
 #define INVERSION Inversion
 #define FREQUENCY Frequency
 #define FEC_INNER FEC_inner
 #define SYMBOLRATE SymbolRate
 #else
-#include <linux/dvb/frontend.h>
 #define INVERSION inversion
 #define FREQUENCY frequency
 #define FEC_INNER fec_inner
@@ -25,7 +23,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	eDVBSatelliteDiseqcParameters &diseqc_ref = astra1.m_diseqc_parameters;
 	eDVBSatelliteSwitchParameters &switch_ref = astra1.m_switch_parameters;
 
-	lnb_ref.m_lof_hi = 10600000;
+	lnb_ref.m_lof_hi = 10607000;
 	lnb_ref.m_lof_lo = 9750000;
 	lnb_ref.m_lof_threshold = 11700000;
 
@@ -96,37 +94,58 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				|| ( sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::HILO && !hi ) )
 				tone = iDVBFrontend::toneOff;
 
-			eDVBDiseqcCommand diseqc;
+			eSecCommandList sec_sequence;
 
-#if HAVE_DVB_API_VERSION < 3
-			diseqc.voltage = voltage;
-			diseqc.tone = tone;
-#else
-			frontend.setVoltage(voltage);
-#endif
-
-			if ( di_param.m_commited_cmd < eDVBSatelliteDiseqcParameters::NO )
+			if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )
 			{
-				diseqc.len = 4;
-				diseqc.data[0] = 0xe0;
-				diseqc.data[1] = 0x10;
-				diseqc.data[2] = 0x38;
-				diseqc.data[3] = di_param.m_commited_cmd;
+				eDebug("rotor...");
+			}
+			else if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
+			{
+				if ( di_param.m_commited_cmd < eDVBSatelliteDiseqcParameters::SENDNO ||
+					di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
+				{
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );
+				}
 
-				if (hi)
-					diseqc.data[3] |= 1;
+				if ( di_param.m_commited_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
+				{
+					eDVBDiseqcCommand diseqc;
+					diseqc.len = 4;
+					diseqc.data[0] = 0xe0;
+					diseqc.data[1] = 0x10;
+					diseqc.data[2] = 0x38;
+					diseqc.data[3] = 0xF0 | (di_param.m_commited_cmd << 2);
 
-				if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
-					diseqc.data[3] |= 2;
+					if (hi)
+						diseqc.data[3] |= 1;
+
+					if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
+						diseqc.data[3] |= 2;
+
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );
+				}
+
+				if ( di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
+				{
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );
+				}
 			}
 			else
-				diseqc.len = 0;
+			{
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
+			}
 
-			frontend.sendDiseqc(diseqc);
+			sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
+			sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
 
-#if HAVE_DVB_API_VERSION > 2
-			frontend.setTone(tone);
-#endif
+			frontend.setSecSequence(sec_sequence);
+
 			return 0;
 		}
 	}
