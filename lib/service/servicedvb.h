@@ -20,6 +20,8 @@ public:
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
+private:
+	RESULT lookupService(ePtr<eDVBService> &ptr, const eServiceReference &ref);
 };
 
 class eDVBServiceList: public iListableService
@@ -41,12 +43,14 @@ private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
 	
+	ePtr<eDVBService> m_dvb_service;
+	
 	ePtr<iTSMPEGDecoder> m_decoder;
 	
 	eDVBServicePMTHandler m_service_handler;
 	eDVBServiceEITHandler m_event_handler;
 	
-	eDVBServicePlay(const eServiceReference &ref);
+	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
 	
 	void gotNewEvent();
 	
@@ -63,7 +67,7 @@ public:
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	
 		// iServiceInformation
-	RESULT getName(const eServiceReference &ref, std::string &name);
+	RESULT getName(std::string &name);
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 };
 

@@ -152,9 +152,12 @@ TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
 
 class eServiceEvent;
 
-class iServiceInformation: public iStaticServiceInformation
+class iServiceInformation: public iObject
 {
 public:
+	virtual RESULT getName(std::string &name)=0;
+		// FOR SWIG
+	std::string getName() { std::string temp; getName(temp); return temp; }
 	virtual RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 };
 
