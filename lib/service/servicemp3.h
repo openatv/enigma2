@@ -22,7 +22,7 @@ private:
 	ePtr<eStaticServiceMP3Info> m_service_info;
 };
 
-class eStaticServiceMP3Info: public iServiceInformation
+class eStaticServiceMP3Info: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceMP3Info);
 	friend class eServiceFactoryMP3;
@@ -62,7 +62,7 @@ public:
 	RESULT info(ePtr<iServiceInformation>&);
 	
 		// iServiceInformation
-	RESULT getName(const eServiceReference &ref, std::string &name);
+	RESULT getName(std::string &name);
 };
 
 #endif

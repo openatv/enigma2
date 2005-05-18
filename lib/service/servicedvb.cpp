@@ -80,8 +80,12 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
+	ePtr<eDVBService> service;
+	int r = lookupService(service, ref);
+	if (r)
+		service = 0;
 		// check resources...
-	ptr = new eDVBServicePlay(ref);
+	ptr = new eDVBServicePlay(ref, service);
 	return 0;
 }
 
@@ -99,7 +103,17 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr = 0;
+	ePtr<eDVBService> service;
+	int r = lookupService(service, ref);
+	if (r)
+		return r;
+		/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
+	ptr = service;
+	return 0;
+}
+
+RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServiceReference &ref)
+{
 			// TODO: handle the listing itself
 	// if (ref.... == -1) .. return "... bouquets ...";
 	// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
@@ -119,22 +133,18 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 		return err;
 	}
 	
-	ePtr<eDVBService> service;
-
 		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
 	if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
 	{
 		eDebug("getService failed!");
 		return err;
 	}
-	
-		/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
-	ptr = service;
+
 	return 0;
 }
 
-eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref): 
-	m_reference(ref)
+eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
+	m_reference(ref), m_dvb_service(service)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
@@ -248,6 +258,7 @@ void eDVBServicePlay::serviceEvent(int event)
 RESULT eDVBServicePlay::start()
 {
 	eDebug("starting DVB service");
+	m_event(this, evStart);
 	return m_service_handler.tune((eServiceReferenceDVB&)m_reference);
 }
 
@@ -276,9 +287,12 @@ RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
 	return 0;
 }
 
-RESULT eDVBServicePlay::getName(const eServiceReference &ref, std::string &name)
+RESULT eDVBServicePlay::getName(std::string &name)
 {
-	name = "DVB service";
+	if (m_dvb_service)
+		m_dvb_service->getName(m_reference, name);
+	else
+		name = "DVB service";
 	return 0;
 }
 
