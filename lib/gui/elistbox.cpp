@@ -51,17 +51,39 @@ void eListbox::moveSelection(int dir)
 		if (!m_content->cursorValid())
 			m_content->cursorMove(-1);
 		break;
+	case pageUp:
+		if (m_content->cursorGet() >= m_items_per_page)
+		{
+			m_content->cursorMove(-m_items_per_page);
+			m_top -= m_items_per_page;
+			if (m_top < 0)
+				m_top = 0;
+		} else
+		{
+			m_top = 0;
+			m_content->cursorHome();
+		}
+		break;
 	case moveTop:
 		m_content->cursorHome();
 		m_top = 0; /* align with top, speeds up process */
 		break;
+
+	case pageDown:
+		m_content->cursorMove(m_items_per_page);
+		if (m_content->cursorValid())
+			break;
+				/* fall through */
 	case moveEnd:
 			/* move to last existing one ("end" is already invalid) */
 		m_content->cursorEnd(); m_content->cursorMove(-1); 
-		
-		m_top = m_content->cursorGet() - m_items_per_page + 1;
-		if (m_top < 0)
-			m_top = 0;
+			/* current selection invisible? */
+		if (m_top + m_items_per_page <= m_content->cursorGet())
+		{
+			m_top = m_content->cursorGet() - m_items_per_page + 1;
+			if (m_top < 0)
+				m_top = 0;
+		}
 		break;
 	case justCheck:
 		break;
