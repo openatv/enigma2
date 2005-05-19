@@ -391,6 +391,8 @@ public:
 	virtual RESULT sendToneburst(int burst)=0;
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
+	virtual RESULT getData(int num, int &data)=0;
+	virtual RESULT setData(int num, int val)=0;
 };
 
 class iDVBSatelliteEquipmentControl: public iObject

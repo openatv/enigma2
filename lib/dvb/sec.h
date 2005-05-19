@@ -79,7 +79,7 @@ class eDVBSatelliteDiseqcParameters
 {
 public:
 	enum { AA=0, AB=1, BA=2, BB=3, SENDNO=4 /* and 0xF0 .. 0xFF*/  };	// DiSEqC Parameter
-	int m_commited_cmd;
+	int m_committed_cmd;
 
 	enum t_diseqc_mode { NONE=0, V1_0=1, V1_1=2, V1_2=3, SMATV=4 };	// DiSEqC Mode
 	t_diseqc_mode m_diseqc_mode;
