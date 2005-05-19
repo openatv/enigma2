@@ -63,6 +63,8 @@ public:
 #define GS_ISFIRST  2
 #define GS_USED			4
 
+#define GS_INVERT   8
+
 struct pGlyph
 {
 	int x, y, w;
@@ -141,6 +143,20 @@ public:
 		assert(num >= 0);
 		assert(num < (int)glyphs.size());
 		return glyphs[num].bbox;
+	}
+	
+	void setGlyphFlag(int g, int f)
+	{
+		assert(g >= 0);
+		assert(g < (int)glyphs.size());
+		glyphs[g].flags |= f;
+	}
+
+	void clearGlyphFlag(int g, int f)
+	{
+		assert(g >= 0);
+		assert(g < (int)glyphs.size());
+		glyphs[g].flags |= f;
 	}
 };
 

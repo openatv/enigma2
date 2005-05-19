@@ -630,14 +630,22 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gSurface *surface = target->surface;
 
 	register int opcode;
-	gColor *lookup8=0;
-	__u32 lookup32[16];
-		
+
+	gColor *lookup8, lookup8_invert[16];
+	gColor *lookup8_normal=0;
+
+	__u32 lookup32_normal[16], lookup32_invert[16], *lookup32;
+	
 	if (surface->bpp == 8)
 	{
 		if (surface->clut.data)
 		{
-			lookup8=getColor(surface->clut, background, foreground).lookup;
+			lookup8_normal=getColor(surface->clut, background, foreground).lookup;
+			
+			int i;
+			for (i=0; i<16; ++i)
+				lookup8_invert[i] = lookup8_normal[i^0xF];
+			
 			opcode=0;
 		} else
 			opcode=1;
@@ -648,15 +656,17 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		{
 			lookup8=getColor(surface->clut, background, foreground).lookup;
 			for (int i=0; i<16; ++i)
-				lookup32[i]=((surface->clut.data[lookup8[i]].a<<24)|
+				lookup32_normal[i]=((surface->clut.data[lookup8[i]].a<<24)|
 					(surface->clut.data[lookup8[i]].r<<16)|
 					(surface->clut.data[lookup8[i]].g<<8)|
 					(surface->clut.data[lookup8[i]].b))^0xFF000000;
 		} else
 		{
 			for (int i=0; i<16; ++i)
-				lookup32[i]=(0x010101*i)|0xFF000000;
+				lookup32_normal[i]=(0x010101*i)|0xFF000000;
 		}
+		for (int i=0; i<16; ++i)
+			lookup32_invert[i]=lookup32_normal[i^0xF];
 	} else
 	{
 		eWarning("can't render to %dbpp", surface->bpp);
@@ -667,9 +677,19 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gRegion clip = dc.getClip() & area;
 
 	int buffer_stride=surface->stride;
-
+	
 	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 	{
+		if (!(i->flags & GS_INVERT))
+		{
+			lookup8 = lookup8_normal;
+			lookup32 = lookup32_normal;
+		} else
+		{
+			lookup8 = lookup8_invert;
+			lookup32 = lookup32_invert;
+		}
+		
 		static FTC_SBit glyph_bitmap;
 		if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
 			continue;
