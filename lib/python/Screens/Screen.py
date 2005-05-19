@@ -34,3 +34,5 @@ class Screen(dict, HTMLSkin, GUISkin):
 	def close(self, retval=None):
 		self.session.close()
 
+	def setFocus(self, o):
+		self.instance.setFocus(o.instance)
