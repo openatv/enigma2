@@ -27,6 +27,8 @@
 		<key id="KEY_END" mapto="moveEnd" flags="mr" />
 		<key id="KEY_DELETE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_BACKSPACE" mapto="deleteBackward" flags="mr" />
+		
+		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
 	</map>
 
 	<map context="InfobarActions">
@@ -73,5 +75,17 @@
 	</map>
 	<map context="WindowActions">
 		
+	</map>
+	
+	<map context="ShortcutActions">
+		<key id="KEY_F1" mapto="red" flags="mr" />
+		<key id="KEY_F2" mapto="yellow" flags="mr" />
+		<key id="KEY_F3" mapto="green" flags="mr" />
+		<key id="KEY_F4" mapto="blue" flags="mr" />
+
+		<key id="KEY_RED" mapto="red" flags="mr" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="mr" />
+		<key id="KEY_GREEN" mapto="green" flags="mr" />
+		<key id="KEY_BLUE" mapto="blue" flags="mr" />
 	</map>
 </keymap>
