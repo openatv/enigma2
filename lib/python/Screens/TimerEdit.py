@@ -15,6 +15,12 @@ class TimerEdit(Screen):
 				"cancel": self.close
 			})
 		
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+			{
+				"red": self.beginFocus,
+				"yellow": self.endFocus
+			})
+		
 		self.entry = entry
 		# begin, end, description, service
 		self["begin"] = TimeInput()
@@ -27,6 +33,12 @@ class TimerEdit(Screen):
 # TextInput()
 		self["apply"] = Button("Apply")
 		self["service"] = Button()
+	
+	def beginFocus(self):
+		self.setFocus(self["begin"])
+	
+	def endFocus(self):
+		self.setFocus(self["end"])
 	
 	def apply(self):
 		print "applied!"
