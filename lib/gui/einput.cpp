@@ -9,20 +9,20 @@ eInput::eInput(eWidget *parent): eLabel(parent)
 	m_valign = alignCenter;
 	m_halign = alignCenter;
 
-	ePtr<eActionMap> ptr;
-	eActionMap::getInstance(ptr);
-	ptr->bindAction("InputActions", 0, 0, this);
-	
-		// bind all keys
-	ptr->bindAction("", 0, 1, this);
+	m_mode = 0;
 }
 
 eInput::~eInput()
 {
-	ePtr<eActionMap> ptr;
-	eActionMap::getInstance(ptr);
-	ptr->unbindAction(this, 0);
-	ptr->unbindAction(this, 1);
+	mayKillFocus();
+}
+
+void eInput::setOverwriteMode(int m)
+{
+	int om = m_mode;
+	m_mode = m;
+	if (om != m_mode)
+		invalidate();
 }
 
 void eInput::setContent(eInputContent *content)
@@ -58,19 +58,30 @@ int eInput::event(int event, void *data, void *data2)
 		eDebug("cursor is %d", cursor);
 		para->setFont(m_font);
 		para->renderString(text, 0);
-		
 		int glyphs = para->size();
-		eRect bbox;
-		if (cursor < glyphs)
+		
+		if (m_mode && cursor < glyphs)
 		{
-			bbox = para->getGlyphBBox(cursor);
-			bbox = eRect(bbox.left()-1, 0, 2, size().height());
+				/* in overwrite mode, when not at end of line, invert the current cursor position. */
+			para->setGlyphFlag(cursor, GS_INVERT);
+			eRect bbox = para->getGlyphBBox(cursor);
+			bbox = eRect(bbox.left(), 0, bbox.width() + 2, size().height());
+			painter.fill(bbox);
 		} else
 		{
-			bbox = para->getGlyphBBox(cursor - 1);
-			bbox = eRect(bbox.right(), 0, 2, size().height());
+				/* otherwise, insert small cursor */
+			eRect bbox;
+			if (cursor < glyphs)
+			{
+				bbox = para->getGlyphBBox(cursor);
+				bbox = eRect(bbox.left()-1, 0, 2, size().height());
+			} else
+			{
+				bbox = para->getGlyphBBox(cursor - 1);
+				bbox = eRect(bbox.right(), 0, 2, size().height());
+			}
+			painter.fill(bbox);
 		}
-		painter.fill(bbox);
 		
 		painter.renderPara(para, ePoint(0, 0));
 		
@@ -99,6 +110,9 @@ int eInput::event(int event, void *data, void *data2)
 			case deleteBackward:
 				m_content->deleteChar(eInputContent::deleteBackward);
 				break;
+			case toggleOverwrite:
+				setOverwriteMode(!m_mode);
+				break;
 			}
 			return 1;
 		}
@@ -107,8 +121,27 @@ int eInput::event(int event, void *data, void *data2)
 	{
 		int key = (int)data;
 		int flags = (int)data2;
-		if (m_content && !(flags & 1))
-			m_content->haveKey(key);
+		if (m_content && !(flags & 1)) // only make/repeat, no break
+			return m_content->haveKey(key, m_mode);
+		break;
+	}
+	case evtFocusGot:
+	{
+		eDebug("focus got in %p", this);
+		ePtr<eActionMap> ptr;
+		eActionMap::getInstance(ptr);
+		ptr->bindAction("InputActions", 0, 0, this);
+			// bind all keys
+		ptr->bindAction("", 0, 1, this);
+		break;
+	}
+	case evtFocusLost:
+	{
+		eDebug("focus lostin %p", this);
+		ePtr<eActionMap> ptr;
+		eActionMap::getInstance(ptr);
+		ptr->unbindAction(this, 0);
+		ptr->unbindAction(this, 1);
 		break;
 	}
 	default:
@@ -179,7 +212,7 @@ void eInputContentNumber::moveCursor(int dir)
 			m_input->invalidate();
 }
 
-int eInputContentNumber::haveKey(int code)
+int eInputContentNumber::haveKey(int code, int overwrite)
 {
 	int have_digit = -1;
 
@@ -197,11 +230,16 @@ int eInputContentNumber::haveKey(int code)
 	DIGIT(7);
 	DIGIT(8);
 	DIGIT(9);
+	default:
+		return 0;
 	}
 	
 	if (have_digit != -1)
 	{
 		insertDigit(m_cursor, have_digit);
+			/* if overwrite and not end of line, erase char first. */
+		if (overwrite && m_cursor < m_len)
+			insertDigit(m_cursor + 1, -1);
 		m_cursor++;
 		
 		recalcLen();
@@ -212,6 +250,7 @@ int eInputContentNumber::haveKey(int code)
  
 		if (m_input)
 			m_input->invalidate();
+		return 1;
 	}
 	return 0;
 }
