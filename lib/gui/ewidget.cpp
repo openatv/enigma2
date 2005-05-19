@@ -17,6 +17,9 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 		m_parent->m_childs.push_back(this);
 		m_parent->getStyle(m_style);
 	}
+
+	m_current_focus = 0;
+	m_focus_owner = 0;
 }
 
 void eWidget::move(ePoint pos)
@@ -155,6 +158,14 @@ void eWidget::setBackgroundColor(const gRGB &col)
 	m_have_background_color = 1;
 }
 
+void eWidget::mayKillFocus()
+{
+	setFocus(0);
+		/* when we have the focus, remove it first. */
+	if (m_focus_owner)
+		m_focus_owner->setFocus(0);
+}
+
 eWidget::~eWidget()
 {
 	hide();
@@ -249,9 +260,28 @@ int eWidget::event(int event, void *data, void *data2)
 		m_clip_region = gRegion(eRect(ePoint(0, 0),  m_size));
 		break;
 	}
+	case evtFocusGot:
+		m_focus_owner = (eWidget*)data;
+		break;
+	case evtFocusLost:
+		eDebug("unhandled focus lost in %p", this);
+		m_focus_owner = 0;
+		break;
 	default:
 		return -1;
 	}
 	return 0;
+}
+
+void eWidget::setFocus(eWidget *focus)
+{
+	eDebug("setFocus in %p to %p, was %p", this, focus, m_current_focus);
+	if (m_current_focus)
+		m_current_focus->event(evtFocusLost, this);
+	
+	m_current_focus = focus;
+
+	if (m_current_focus)
+		m_current_focus->event(evtFocusGot, this);
 }
 

@@ -61,8 +61,11 @@ private:
 	
 	gRGB m_background_color;
 	int m_have_background_color;
+	
+	eWidget *m_current_focus, *m_focus_owner;
 protected:
 	virtual ~eWidget();
+	void mayKillFocus();
 public:
 
 		// all in local space!
@@ -82,9 +85,13 @@ public:
 		
 		evtAction,
 		
+		evtFocusGot,
+		evtFocusLost,
+		
 		evtUserWidget,
 	};
 	virtual int event(int event, void *data = 0, void *data2 = 0);
+	void setFocus(eWidget *focus);
 };
 
 extern eWidgetDesktop *getDesktop();
