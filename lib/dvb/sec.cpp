@@ -28,7 +28,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	lnb_ref.m_lof_threshold = 11700000;
 
 	diseqc_ref.m_diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
-	diseqc_ref.m_committed_cmd = eDVBSatelliteDiseqcParameters::BB;
+	diseqc_ref.m_committed_cmd = eDVBSatelliteDiseqcParameters::AA;
 	diseqc_ref.m_repeats = 0;
 	diseqc_ref.m_seq_repeat = false;
 	diseqc_ref.m_swap_cmds = false;
