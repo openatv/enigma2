@@ -51,9 +51,16 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	eTimer *m_timeout;
 	eTimer *m_tuneTimer;
 
+	eSecCommandList m_sec_sequence;
+
+	int m_data[4]; /* when satellite frontend then
+		data[0] = lastcsw -> state of the committed switch
+		data[1] = lastucsw -> state of the uncommitted switch
+		data[2] = lastToneburst -> current state of toneburst switch
+		data[3] = prevRotorPos -> current Rotor Position */
+
 	void feEvent(int);
 	void timeout();
-	eSecCommandList m_sec_sequence;
 	void tuneLoop();  // called by m_tuneTimer
 	void setFrontend();
 public:
@@ -70,6 +77,8 @@ public:
 	RESULT sendToneburst(int burst);
 	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
 	RESULT setSecSequence(const eSecCommandList &list);
+	RESULT getData(int num, int &data);
+	RESULT setData(int num, int val);
 };
 
 #endif

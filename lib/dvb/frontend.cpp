@@ -284,6 +284,8 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
 	m_tuneTimer = new eTimer(eApp);
 	CONNECT(m_tuneTimer->timeout, eDVBFrontend::tuneLoop);
 
+	memset(m_data, 0xFFFF, sizeof(m_data));
+
 	return;
 }
 
@@ -656,6 +658,8 @@ RESULT eDVBFrontend::setTone(int t)
 
 RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 {
+	eDebug("send %02x %02x %02x %02x",
+		diseqc.data[0], diseqc.data[1], diseqc.data[2], diseqc.data[3]);
 #if HAVE_DVB_API_VERSION < 3
 	struct secCommand cmd;
 	cmd.type = SEC_CMDTYPE_DISEQC_RAW;
@@ -703,3 +707,24 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 	m_sec_sequence = list;
 	return 0;
 }
+
+RESULT eDVBFrontend::getData(int num, int &data)
+{
+	if ( num < 4 )
+	{
+		data = m_data[num];
+		return 0;
+	}
+	return -EINVAL;
+}
+
+RESULT eDVBFrontend::setData(int num, int val)
+{
+	if ( num < 4 )
+	{
+		m_data[num] = val;
+		return 0;
+	}
+	return -EINVAL;
+}
+
