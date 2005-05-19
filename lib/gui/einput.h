@@ -21,13 +21,17 @@ public:
 		moveHome, 
 		moveEnd,
 		deleteForward,
-		deleteBackward
+		deleteBackward,
+		toggleOverwrite
 	};
 	
 	void setContent(eInputContent *cnt);
 	
+	void setOverwriteMode(int o);
+	
 	int getNumber();
 protected:
+	int m_mode;
 	ePtr<eInputContent> m_content;
 	int event(int event, void *data=0, void *data2=0);
 };
@@ -55,7 +59,7 @@ public:
 	virtual void deleteChar(int dir)=0;
 	
 		/* no movement keys except stuff like '.' or so*/
-	virtual int haveKey(int code)=0;
+	virtual int haveKey(int code, int overwrite)=0;
 	
 	virtual int isValid()=0;
 protected:
@@ -70,7 +74,7 @@ public:
 
 	void getDisplay(std::string &res, int &cursor);
 	void moveCursor(int dir);
-	int haveKey(int code);
+	int haveKey(int code, int overwrite);
 	void deleteChar(int dir);
 	int isValid();
 	
