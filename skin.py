@@ -162,7 +162,6 @@ def applyAttributes(guiObject, node, desktop):
 					raise "loading PNG failed!"
 				x = ptr
 				ptr = ptr.__deref__()
-				print desktop
 				desktop.makeCompatiblePixmap(ptr)
 				guiObject.setPixmap(ptr)
 #				guiObject.setPixmapFromFile(value)
@@ -200,7 +199,7 @@ def applyAttributes(guiObject, node, desktop):
 		except AttributeError:
 			print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
 
-def loadSkin():
+def loadSkin(desktop):
 	print "loading skin..."
 	
 	def getPNG(x):
@@ -231,7 +230,11 @@ def loadSkin():
 				bpName = str(pixmap.getAttribute("pos"))
 				filename = str(pixmap.getAttribute("filename"))
 				
-				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], getPNG(filename))
+				png = getPNG(filename)
+				
+				# adapt palette
+				desktop.makeCompatiblePixmap(png)
+				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 
 		for color in elementsWithTag(windowstyle.childNodes, "color"):
 			type = str(color.getAttribute("name"))

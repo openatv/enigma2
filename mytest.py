@@ -153,7 +153,7 @@ def runScreenTest():
 import keymapparser
 keymapparser.readKeymap()
 import skin
-skin.loadSkin()
+skin.loadSkin(getDesktop())
 
 # first, setup a screen
 runScreenTest()
