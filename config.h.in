@@ -3,7 +3,7 @@
 /* where to find the config files */
 #undef CONFIGDIR
 
-/* where to find data like icons */
+/* where to find data */
 #undef DATADIR
 
 /* Enable debug messages */
@@ -18,6 +18,12 @@
 
 /* where games data is stored */
 #undef GAMESDIR
+
+/* Define to 1 if you have the dvb includes */
+#undef HAVE_DVB
+
+/* Define to the version of the dvb api */
+#undef HAVE_DVB_API_VERSION
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -55,6 +61,9 @@
 /* where to find the internal libs */
 #undef LIBDIR
 
+/* where to find locales */
+#undef LOCALEDIR
+
 /* Name of package */
 #undef PACKAGE
 
@@ -79,11 +88,14 @@
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
 
-/* where to find the ucodes (firmware) */
-#undef UCODEDIR
+/* where to find tuxbox data */
+#undef TUXBOXDATADIR
 
 /* Version number of package */
 #undef VERSION
+
+/* where to find zoneinfo db */
+#undef ZONEINFODIR
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 #undef _FILE_OFFSET_BITS

@@ -710,7 +710,7 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 
 RESULT eDVBFrontend::getData(int num, int &data)
 {
-	if ( num < 4 )
+	if ( num < 5 )
 	{
 		data = m_data[num];
 		return 0;
@@ -720,7 +720,7 @@ RESULT eDVBFrontend::getData(int num, int &data)
 
 RESULT eDVBFrontend::setData(int num, int val)
 {
-	if ( num < 4 )
+	if ( num < 5 )
 	{
 		m_data[num] = val;
 		return 0;

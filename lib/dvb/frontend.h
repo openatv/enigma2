@@ -53,11 +53,12 @@ class eDVBFrontend: public iDVBFrontend, public Object
 
 	eSecCommandList m_sec_sequence;
 
-	int m_data[4]; /* when satellite frontend then
+	int m_data[5]; /* when satellite frontend then
 		data[0] = lastcsw -> state of the committed switch
 		data[1] = lastucsw -> state of the uncommitted switch
 		data[2] = lastToneburst -> current state of toneburst switch
-		data[3] = prevRotorPos -> current Rotor Position */
+		data[3] = lastRotorCmd -> last sent rotor cmd
+		data[4] = curRotorPos -> current Rotor Position */
 
 	void feEvent(int);
 	void timeout();

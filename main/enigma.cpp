@@ -1,4 +1,3 @@
-#define SDLDC
 #include <stdio.h>
 #include <libsig_comp.h>
 #include <lib/base/ebase.h>
@@ -10,7 +9,9 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
+#ifdef SDLDC
 #include <lib/gdi/sdl.h>
+#endif
 #include <lib/gdi/font.h> 
 
 #include <lib/gui/ewidget.h>
@@ -144,7 +145,7 @@ int main(int argc, char **argv)
 	gFBDC::getInstance(my_dc);
 #endif
 
-	fontRenderClass::getInstance()->AddFont("/home/tmbinc/enigma2/fonts/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont("/usr/share/fonts/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	

@@ -1,5 +1,7 @@
 #include <config.h>
 #include <lib/dvb/sec.h>
+#include <lib/dvb/rotor_calc.h>
+
 #if HAVE_DVB_API_VERSION < 3
 #define INVERSION Inversion
 #define FREQUENCY Frequency
@@ -23,7 +25,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	eDVBSatelliteDiseqcParameters &diseqc_ref = astra1.m_diseqc_parameters;
 	eDVBSatelliteSwitchParameters &switch_ref = astra1.m_switch_parameters;
 
-	lnb_ref.m_lof_hi = 10607000;
+	lnb_ref.m_lof_hi = 10600000;
 	lnb_ref.m_lof_lo = 9750000;
 	lnb_ref.m_lof_threshold = 11700000;
 
@@ -52,6 +54,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		{
 			eDVBSatelliteDiseqcParameters &di_param = sit->second.m_diseqc_parameters;
 			eDVBSatelliteSwitchParameters &sw_param = sit->second.m_switch_parameters;
+			eDVBSatelliteRotorParameters &rotor_param = sit->second.m_rotor_parameters;
 			int hi=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
@@ -61,12 +64,14 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				lastcsw = -1,
 				lastucsw = -1,
 				lastToneburst = -1,
+				lastRotorCmd = -1,
 				curRotorPos = -1;
 
 			frontend.getData(0, lastcsw);
 			frontend.getData(1, lastucsw);
 			frontend.getData(2, lastToneburst);
-			frontend.getData(3, curRotorPos);
+			frontend.getData(3, lastRotorCmd);
+			frontend.getData(4, curRotorPos);
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
 				hi = 1;
@@ -220,15 +225,112 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						}
 						else
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );
+
+						frontend.setData(0, csw);
+						frontend.setData(1, ucsw);
 					}
-				}
-				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 && curRotorPos != sat.orbital_position )
-				{
 				}
 				if ( (changed_burst || send_diseqc) && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
 				{
 					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );
+					frontend.setData(2, di_param.m_toneburst_param);
+				}
+				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )
+				{
+					int RotorCmd=0;
+					bool useGotoXX = false;
+
+					std::map<int,int,eDVBSatelliteRotorParameters::Orbital_Position_Compare>::iterator it =
+						rotor_param.m_rotor_position_table.find( sat.orbital_position );
+
+					if (it != rotor_param.m_rotor_position_table.end())  // position for selected sat found ?
+						RotorCmd=it->second;
+					else  // entry not in table found
+					{
+						eDebug("Entry for %d,%d° not in Rotor Table found... i try gotoXX°", sat.orbital_position / 10, sat.orbital_position % 10 );
+						useGotoXX = true;
+
+						int satDir = sat.orbital_position < 0 ?
+							eDVBSatelliteRotorParameters::WEST :
+							eDVBSatelliteRotorParameters::EAST;
+
+						double	SatLon = abs(sat.orbital_position)/10.00,
+							 	SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
+						 		SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
+
+						if ( rotor_param.m_gotoxx_parameters.m_la_direction == eDVBSatelliteRotorParameters::SOUTH )
+							SiteLat = -SiteLat;
+
+						if ( rotor_param.m_gotoxx_parameters.m_lo_direction == eDVBSatelliteRotorParameters::WEST )
+							SiteLon = 360 - SiteLon;
+
+						if (satDir == eDVBSatelliteRotorParameters::WEST )
+							SatLon = 360 - SatLon;
+
+						eDebug("siteLatitude = %lf, siteLongitude = %lf, %lf degrees", SiteLat, SiteLon, SatLon );
+						double satHourAngle =
+							calcSatHourangle( SatLon, SiteLat, SiteLon );
+						eDebug("PolarmountHourAngle=%lf", satHourAngle );
+
+						static int gotoXTable[10] =
+							{ 0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E };
+
+						if (SiteLat >= 0) // Northern Hemisphere
+						{
+							int tmp=(int)round( fabs( 180 - satHourAngle ) * 10.0 );
+							RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+
+							if (satHourAngle < 180) // the east
+								RotorCmd |= 0xE000;
+							else					// west
+								RotorCmd |= 0xD000;
+						}
+						else // Southern Hemisphere
+						{
+							if (satHourAngle < 180) // the east
+							{
+								int tmp=(int)round( fabs( satHourAngle ) * 10.0 );
+								RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+								RotorCmd |= 0xD000;
+							}
+							else					// west
+							{          
+								int tmp=(int)round( fabs( 360 - satHourAngle ) * 10.0 );
+								RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+								RotorCmd |= 0xE000;
+							}
+						}
+						eDebug("RotorCmd = %04x", RotorCmd);
+					}
+					if ( RotorCmd != lastRotorCmd )
+					{
+						eDVBDiseqcCommand diseqc;
+						diseqc.data[0] = 0xE0;
+						diseqc.data[1] = 0x31;		// positioner
+						if ( useGotoXX )
+						{
+							diseqc.len = 5;
+							diseqc.data[2] = 0x6E;	// drive to angular position
+							diseqc.data[3] = ((RotorCmd & 0xFF00) / 0x100);
+							diseqc.data[4] = RotorCmd & 0xFF;
+						}
+						else
+						{
+							diseqc.len = 4;
+							diseqc.data[2] = 0x6B;	// goto stored sat position
+							diseqc.data[3] = RotorCmd;
+						}
+						if ( rotor_param.m_inputpower_parameters.m_use )
+						{ // use measure rotor input power to detect rotor state
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+							frontend.setData(3, RotorCmd);
+							frontend.setData(4, sat.orbital_position);
+						}
+						else
+							eFatal("rotor turning without inputpowermeasure not implemented yet");
+					}
 				}
 			}
 			else
