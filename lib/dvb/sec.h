@@ -9,7 +9,9 @@ class eSecCommand
 {
 public:
 	enum {
-		NONE, SLEEP, SET_VOLTAGE, SET_TONE, SEND_DISEQC, SEND_TONEBURST, IF_LOCK_GOTO, IF_NOT_LOCK_GOTO, SET_FRONTEND
+		NONE, SLEEP, SET_VOLTAGE, SET_TONE,
+		SEND_DISEQC, SEND_TONEBURST, IF_LOCK_GOTO, IF_NOT_LOCK_GOTO,
+		MEASURE_IDLE_INPUTPOWER, SET_FRONTEND
 	};
 	int cmd;
 	union
@@ -20,6 +22,9 @@ public:
 		int msec;
 		eDVBDiseqcCommand diseqc;
 	};
+	eSecCommand( int cmd )
+		:cmd(cmd)
+	{}
 	eSecCommand( int cmd, int val )
 		:cmd(cmd), voltage(val)
 	{}

@@ -68,7 +68,7 @@ int main()
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont("/dbox2/cdkroot/share/fonts/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont("/usr/share/fonts/arial.ttf", "Arial", 100);
 
 	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
 	
