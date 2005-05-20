@@ -332,6 +332,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.bbox.setHeight( glyph->height );
 
 	xadvance+=kern;
+	ng.bbox.setWidth(xadvance);
 
 	ng.x=cursor.x()+kern;
 	ng.y=cursor.y();
