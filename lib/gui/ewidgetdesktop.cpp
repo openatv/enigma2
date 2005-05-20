@@ -123,15 +123,21 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 		eWarning("eWidgetDesktop: no DC to make pixmap compatible with!");
 		return;
 	}
-	eDebug("painter..");
-	gPainter painter(m_dc);
-	eDebug("merge!");
-	painter.mergePalette(&pm);
-	eDebug("gone!");
+
+	ePtr<gDC> pixmap_dc = new gDC(&pm);
+	gPainter pixmap_painter(pixmap_dc);
+	
+	ePtr<gPixmap> target_pixmap;
+	m_dc->getPixmap(target_pixmap);
+	
+	assert(target_pixmap);
+	
+	pixmap_painter.mergePalette(target_pixmap);
 }
 
 eWidgetDesktop::eWidgetDesktop(eSize size): m_screen_size(size), m_mainloop(0), m_timer(0)
 {
+	m_dirty_region = gRegion(eRect(ePoint(0, 0), m_screen_size));
 }
 
 eWidgetDesktop::~eWidgetDesktop()
