@@ -153,9 +153,13 @@ void eWidget::destruct()
 
 void eWidget::setBackgroundColor(const gRGB &col)
 {
-	eDebug("set background color in ewidget!");
 	m_background_color = col;
 	m_have_background_color = 1;
+}
+
+void eWidget::clearBackgroundColor()
+{
+	m_have_background_color = 0;
 }
 
 void eWidget::mayKillFocus()
@@ -264,7 +268,6 @@ int eWidget::event(int event, void *data, void *data2)
 		m_focus_owner = (eWidget*)data;
 		break;
 	case evtFocusLost:
-		eDebug("unhandled focus lost in %p", this);
 		m_focus_owner = 0;
 		break;
 	default:

@@ -34,6 +34,7 @@ public:
 	void setStyle(eWindowStyle *style) { m_style = style; }
 	
 	void setBackgroundColor(const gRGB &col);
+	void clearBackgroundColor();
 	
 		/* untested code */
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
