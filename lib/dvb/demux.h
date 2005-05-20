@@ -12,6 +12,7 @@ class eDVBDemux: public iDVBDemux
 	friend class eDVBSectionReader;
 	friend class eDVBAudio;
 	friend class eDVBVideo;
+	friend class eDVBPCR;
 	friend class eDVBTSRecorder;
 public:
 	DECLARE_REF(eDVBDemux);
