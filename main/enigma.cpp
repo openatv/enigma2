@@ -161,7 +161,7 @@ int main(int argc, char **argv)
 	} else
 		dsk.setPalette(*m_pm);
 
-	dsk.setBackgroundColor(gRGB(0,0,0,0));
+	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
 #endif
 
 		/* redrawing is done in an idle-timer, so we have to set the context */
