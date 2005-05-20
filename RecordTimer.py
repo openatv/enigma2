@@ -10,7 +10,7 @@ from Tools.XMLTools import elementsWithTag
 from ServiceReference import ServiceReference
 
 class RecordTimerEntry(TimerEntry):
-	def __init__(self, begin, end, serviceref, epg):
+	def __init__(self, begin, end, serviceref, epg, description):
 		TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
@@ -19,6 +19,7 @@ class RecordTimerEntry(TimerEntry):
 		
 		print self.service_ref.getServiceName()
 		self.epg_data = epg
+		self.description = description
 		self.timer = None
 		self.record_service = None
 		
@@ -55,9 +56,10 @@ def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
 	end = int(xml.getAttribute("end"))
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
+	description = xml.getAttribute("description")
 	epgdata = xml.getAttribute("epgdata")
 	#filename = xml.getAttribute("filename")
-	return RecordTimerEntry(begin, end, serviceref, epgdata)
+	return RecordTimerEntry(begin, end, serviceref, epgdata, description)
 
 class RecordTimer(Timer):
 	def __init__(self):
@@ -93,6 +95,7 @@ class RecordTimer(Timer):
 			t.setAttribute("end", str(timer.end))
 			t.setAttribute("serviceref", str(timer.service_ref))
 			#t.setAttribute("epgdata", timer.)
+			t.setAttribute("description", timer.description)
 			root_element.appendChild(t)
 			t = doc.createTextNode("\n")
 			root_element.appendChild(t)

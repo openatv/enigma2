@@ -93,7 +93,6 @@ class InfoBar(Screen):
 					ev = eServiceEventPtr()
 					if info.getEvent(ev, 0) == 0:
 						epg = ev
-
-			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg)
-			print "got entry: %s" % (str(self.recording))
+			# fix me, description. 
+			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
 
