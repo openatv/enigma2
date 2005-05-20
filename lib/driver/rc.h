@@ -166,6 +166,7 @@ class eRCInput: public Object
 	int locked;	
 	int handle;
 	static eRCInput *instance;
+	int keyboardMode;
 
 public:
 	struct lstr
@@ -189,6 +190,30 @@ public:
 	bool open();
 
 	void setFile(int handle);
+
+	/* This is only relevant for "keyboard"-styled input devices,
+	   i.e. not plain remote controls. It's up to the input device
+	   driver to decide wheter an input device is a keyboard or
+	   not.
+	   
+	   kmNone will ignore all Ascii Characters sent from the 
+	   keyboard/console driver, only give normal keycodes to the
+	   application.
+	   
+	   kmAscii will filter out all keys which produce ascii characters,
+	   and send them instead. Note that Modifiers like shift will still
+	   be send. Control keys which produce escape codes are send using
+	   normal keycodes. 
+	   
+	   kmAll will ignore all keycodes, and send everything as ascii,
+	   including escape codes. Pretty much useless, since you should
+	   lock the console and pass this as the console fd for making the
+	   tc* stuff working.
+	*/
+	
+	enum { kmNone, kmAscii, kmAll };
+	void setKeyboardMode(int mode) { keyboardMode = mode; }
+	int  getKeyboardMode() { return keyboardMode; }
 
 	void keyPressed(const eRCKey &key)
 	{
