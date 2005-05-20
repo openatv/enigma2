@@ -2,8 +2,6 @@ AC_DEFUN(TUXBOX_APPS,[
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
-INSTALL="$INSTALL -p"
-
 AC_GNU_SOURCE
 AC_SYS_LARGEFILE
 
@@ -12,7 +10,7 @@ AC_ARG_WITH(target,
 	[TARGET="$withval"],[TARGET="native"])
 
 AC_ARG_WITH(targetprefix,
-	[  --with-targetprefix=PATH  prefix relative to target root (only applicable in cdk mode)],
+	[  --with-targetprefix=PATH  prefix relative to target root [[PREFIX[for native], /[for cdk]]]],
 	[targetprefix="$withval"],[targetprefix="NONE"])
 
 AC_ARG_WITH(debug,
@@ -24,11 +22,7 @@ if test "$DEBUG" = "yes"; then
 	AC_DEFINE(DEBUG,1,[Enable debug messages])
 fi
 
-AC_MSG_CHECKING(target)
-
 if test "$TARGET" = "native"; then
-	AC_MSG_RESULT(native)
-
 	if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
 		CFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
 		CXXFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
@@ -36,10 +30,13 @@ if test "$TARGET" = "native"; then
 	if test "$prefix" = "NONE"; then
 		prefix=/usr/local
 	fi
-	targetprefix=$prefix
+	if test "$targetprefix" = "NONE"; then
+		targetprefix="\${prefix}"
+		_targetprefix="${prefix}"
+	else
+		_targetprefix="$targetprefix"
+	fi
 elif test "$TARGET" = "cdk"; then
-	AC_MSG_RESULT(cdk)
-
 	if test "$CC" = "" -a "$CXX" = ""; then
 		CC=powerpc-tuxbox-linux-gnu-gcc CXX=powerpc-tuxbox-linux-gnu-g++
 	fi
@@ -48,22 +45,37 @@ elif test "$TARGET" = "cdk"; then
 		CXXFLAGS="-Wall -Os -mcpu=823 -pipe $DEBUG_CFLAGS"
 	fi
 	if test "$prefix" = "NONE"; then
-		AC_MSG_ERROR(invalid prefix, you need to specify one in cdk mode)
+		prefix=/dbox2/cdkroot
 	fi
 	if test "$targetprefix" = "NONE"; then
 		targetprefix=""
+		_targetprefix=""
+	else
+		_targetprefix="$targetprefix"
 	fi
 	if test "$host_alias" = ""; then
 		cross_compiling=yes
 		host_alias=powerpc-tuxbox-linux-gnu
 	fi
 else
-	AC_MSG_RESULT(none)
 	AC_MSG_ERROR([invalid target $TARGET, choose on from native,cdk]);
 fi
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
+
+targetdatadir="\${targetprefix}/share"
+_targetdatadir="${_targetprefix}/share"
+targetsysconfdir="\${targetprefix}/etc"
+_targetsysconfdir="${_targetprefix}/etc"
+targetlocalstatedir="\${targetprefix}/var"
+_targetlocalstatedir="${_targetprefix}/var"
+targetlibdir="\${targetprefix}/lib"
+_targetlibdir="${_targetprefix}/lib"
+AC_SUBST(targetprefix)
+AC_SUBST(targetdatadir)
+AC_SUBST(targetsysconfdir)
+AC_SUBST(targetlocalstatedir)
 
 check_path () {
 	return $(perl -e "if(\"$1\"=~m#^/usr/(local/)?bin#){print \"0\"}else{print \"1\";}")
@@ -71,84 +83,45 @@ check_path () {
 
 ])
 
-AC_DEFUN(TUXBOX_APPS_DIRECTORY_ONE,[
-AC_ARG_WITH($1,[  $6$7 [[PREFIX$4$5]]],[
-	_$2=$withval
-	if test "$TARGET" = "cdk"; then
-		$2=`eval echo "${targetprefix}$withval"`
-	else
-		$2=$withval
-	fi
-],[
-	$2="\${$3}$5"
-	if test "$TARGET" = "cdk"; then
-		_$2=`eval echo "${target$3}$5"`
-	else
-		_$2=`eval echo "${$3}$5"`
-	fi
-])
-
-dnl automake <= 1.6 don't support this
-dnl AC_SUBST($2)
-AC_DEFINE_UNQUOTED($2,"$_$2",$7)
-])
-
 AC_DEFUN(TUXBOX_APPS_DIRECTORY,[
 AC_REQUIRE([TUXBOX_APPS])
 
-if test "$TARGET" = "cdk"; then
-	datadir="\${prefix}/share"
-	tuxboxdatadir="\${prefix}/share/tuxbox"
-	zoneinfodir="\${datadir}/zoneinfo"
-	sysconfdir="\${prefix}/etc"
-	localstatedir="\${prefix}/var"
-	localedir="\${prefix}/var"
-	libdir="\${prefix}/lib"
-	targetdatadir="\${targetprefix}/share"
-	targetsysconfdir="\${targetprefix}/etc"
-	targetlocalstatedir="\${targetprefix}/var"
-	targetlibdir="\${targetprefix}/lib"
-fi
-
-TUXBOX_APPS_DIRECTORY_ONE(configdir,CONFIGDIR,sysconfdir,/etc,,
-	[--with-configdir=PATH   ],[where to find the config files])
-
-TUXBOX_APPS_DIRECTORY_ONE(datadir,DATADIR,datadir,/share,,
-	[--with-datadir=PATH     ],[where to find data])
-
-TUXBOX_APPS_DIRECTORY_ONE(localedir,LOCALEDIR,datadir,/share,/locale,
-	[--with-localedir=PATH ],[where to find locales])
-
-TUXBOX_APPS_DIRECTORY_ONE(fontdir,FONTDIR,datadir,/share,/fonts,
-	[--with-fontdir=PATH     ],[where to find the fonts])
-
-TUXBOX_APPS_DIRECTORY_ONE(gamesdir,GAMESDIR,localstatedir,/var,/tuxbox/games,
-	[--with-gamesdir=PATH    ],[where games data is stored])
-
-TUXBOX_APPS_DIRECTORY_ONE(libdir,LIBDIR,libdir,/lib,/tuxbox,
-	[--with-libdir=PATH      ],[where to find the internal libs])
-
-TUXBOX_APPS_DIRECTORY_ONE(plugindir,PLUGINDIR,libdir,/lib,/tuxbox/plugins,
-	[--with-plugindir=PATH   ],[where to find the plugins])
-
-TUXBOX_APPS_DIRECTORY_ONE(tuxboxdatadir,TUXBOXDATADIR,datadir,/share,/tuxbox,
-	[--with-tuxboxdatadir=PATH],[where to find tuxbox data])
-
-TUXBOX_APPS_DIRECTORY_ONE(zoneinfodir,ZONEINFODIR,datadir,/share,/zoneinfo,
-	[--with-zoneinfodir=PATH ],[where to find zoneinfo db])
-])
-
-dnl automake <= 1.6 needs this specifications
+CONFIGDIR="\${localstatedir}/tuxbox/config"
+_CONFIGDIR="${_targetlocalstatedir}/tuxbox/config"
 AC_SUBST(CONFIGDIR)
+AC_DEFINE_UNQUOTED(CONFIGDIR,"$_CONFIGDIR",[where to find the config files])
+
+DATADIR="\${datadir}/tuxbox"
+_DATADIR="${_targetdatadir}/tuxbox"
 AC_SUBST(DATADIR)
-AC_SUBST(ZONEINFODIR)
+AC_DEFINE_UNQUOTED(DATADIR,"$_DATADIR",[where to find data like icons])
+
+FONTDIR="\${datadir}/fonts"
+_FONTDIR="${_targetdatadir}/fonts"
 AC_SUBST(FONTDIR)
+AC_DEFINE_UNQUOTED(FONTDIR,"$_FONTDIR",[where to find the fonts])
+
+GAMESDIR="\${localstatedir}/tuxbox/games"
+_GAMESDIR="${_targetlocalstatedir}/tuxbox/games"
 AC_SUBST(GAMESDIR)
+AC_DEFINE_UNQUOTED(GAMESDIR,"$_GAMESDIR",[where games data is stored])
+
+LIBDIR="\${libdir}/tuxbox"
+_LIBDIR="${_targetlibdir}/tuxbox"
 AC_SUBST(LIBDIR)
-AC_SUBST(LOCALEDIR)
+AC_SUBST(_LIBDIR)
+AC_DEFINE_UNQUOTED(LIBDIR,"$_LIBDIR",[where to find the internal libs])
+
+PLUGINDIR="\${libdir}/tuxbox/plugins"
+_PLUGINDIR="${_targetlibdir}/tuxbox/plugins"
 AC_SUBST(PLUGINDIR)
-AC_SUBST(TUXBOXDATADIR)
-dnl end workaround
+AC_DEFINE_UNQUOTED(PLUGINDIR,"$_PLUGINDIR",[where to find the plugins])
+
+UCODEDIR="\${localstatedir}/tuxbox/ucodes"
+_UCODEDIR="${_targetlocalstatedir}/tuxbox/ucodes"
+AC_SUBST(UCODEDIR)
+AC_DEFINE_UNQUOTED(UCODEDIR,"$_UCODEDIR",[where to find the ucodes (firmware)])
+])
 
 AC_DEFUN(TUXBOX_APPS_ENDIAN,[
 AC_CHECK_HEADERS(endian.h)
@@ -156,19 +129,15 @@ AC_C_BIGENDIAN
 ])
 
 AC_DEFUN(TUXBOX_APPS_DRIVER,[
-#AC_ARG_WITH(driver,
-#	[  --with-driver=PATH      path for driver sources [[NONE]]],
-#	[DRIVER="$withval"],[DRIVER=""])
-#
-#if test -d "$DRIVER/include"; then
-#	AC_DEFINE(HAVE_DBOX2_DRIVER,1,[Define to 1 if you have the dbox2 driver sources])
-#else
-#	AC_MSG_ERROR([can't find driver sources])
-#fi
+AC_ARG_WITH(driver,
+	[  --with-driver=PATH      path for driver sources[[NONE]]],
+	[DRIVER="$withval"],[DRIVER=""])
 
-#AC_SUBST(DRIVER)
-
-#CPPFLAGS="$CPPFLAGS -I$DRIVER/include"
+if test -z "$DRIVER"; then
+	AC_MSG_ERROR([can't find driver sources])
+fi
+CPPFLAGS="$CPPFLAGS -I$DRIVER/include"
+AC_SUBST(DRIVER)
 ])
 
 AC_DEFUN([TUXBOX_APPS_DVB],[
@@ -208,6 +177,7 @@ else
 fi
 ])
 
+
 AC_DEFUN(_TUXBOX_APPS_LIB_CONFIG,[
 AC_PATH_PROG($1_CONFIG,$2,no)
 if test "$$1_CONFIG" != "no"; then
@@ -242,7 +212,16 @@ fi
 ])
 
 AC_DEFUN(_TUXBOX_APPS_LIB_PKGCONFIG,[
-PKG_CHECK_MODULES($1,$2)
+AC_REQUIRE([TUXBOX_APPS_PKGCONFIG])
+AC_MSG_CHECKING(for package $2)
+if PKG_CONFIG_PATH="${prefix}/lib/pkgconfig" $PKG_CONFIG --exists "$2" ; then
+	AC_MSG_RESULT(yes)
+	$1_CFLAGS=$(PKG_CONFIG_PATH="${prefix}/lib/pkgconfig" $PKG_CONFIG --cflags "$2")
+	$1_LIBS=$(PKG_CONFIG_PATH="${prefix}/lib/pkgconfig" $PKG_CONFIG --libs "$2")
+else
+	AC_MSG_RESULT(no)
+fi
+
 AC_SUBST($1_CFLAGS)
 AC_SUBST($1_LIBS)
 ])
@@ -369,7 +348,8 @@ AC_SUBST(DUMMYPOFILES)
 AC_SUBST(CATALOGS)
 ])
 
-dnl backward compatiblity
+
+
 AC_DEFUN([AC_GNU_SOURCE],
 [AH_VERBATIM([_GNU_SOURCE],
 [/* Enable GNU extensions on systems that have them.  */
@@ -379,15 +359,5 @@ AC_DEFUN([AC_GNU_SOURCE],
 AC_BEFORE([$0], [AC_COMPILE_IFELSE])dnl
 AC_BEFORE([$0], [AC_RUN_IFELSE])dnl
 AC_DEFINE([_GNU_SOURCE])
-])
-
-AC_DEFUN([AC_PROG_EGREP],
-[AC_CACHE_CHECK([for egrep], [ac_cv_prog_egrep],
-   [if echo a | (grep -E '(a|b)') >/dev/null 2>&1
-    then ac_cv_prog_egrep='grep -E'
-    else ac_cv_prog_egrep='egrep'
-    fi])
- EGREP=$ac_cv_prog_egrep
- AC_SUBST([EGREP])
 ])
 

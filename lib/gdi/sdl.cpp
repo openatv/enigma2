@@ -82,6 +82,4 @@ void gSDLDC::exec(gOpcode *o)
 	}
 }
 
-#ifdef SDLDC
 eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");
-#endif
