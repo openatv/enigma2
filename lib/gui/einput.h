@@ -1,12 +1,12 @@
 #ifndef __lib_gui_einput_h
 #define __lib_gui_einput_h
 
-#include <lib/gui/elabel.h>
+#include <lib/gui/ewidget.h>
 #include <lib/python/connections.h>
 
 class eInputContent;
 
-class eInput: public eLabel
+class eInput: public eWidget
 {
 public:
 	eInput(eWidget *parent);
@@ -22,16 +22,18 @@ public:
 		moveEnd,
 		deleteForward,
 		deleteBackward,
-		toggleOverwrite
+		toggleOverwrite,
+		accept
 	};
 	
 	void setContent(eInputContent *cnt);
 	
 	void setOverwriteMode(int o);
 	
-	int getNumber();
+	void setFont(gFont *font);
 protected:
-	int m_mode;
+	ePtr<gFont> m_font;
+	int m_mode, m_have_focus;
 	ePtr<eInputContent> m_content;
 	int event(int event, void *data=0, void *data2=0);
 };
@@ -62,31 +64,9 @@ public:
 	virtual int haveKey(int code, int overwrite)=0;
 	
 	virtual int isValid()=0;
+	virtual void validate()=0;
 protected:
 	eInput *m_input;
-};
-
-class eInputContentNumber: public eInputContent
-{
-	DECLARE_REF(eInputContentNumber);
-public:
-	eInputContentNumber(int cur, int min, int max);
-
-	void getDisplay(std::string &res, int &cursor);
-	void moveCursor(int dir);
-	int haveKey(int code, int overwrite);
-	void deleteChar(int dir);
-	int isValid();
-	
-private:
-	void recalcLen();
-	
-	void insertDigit(int pos, int dig);
-	
-	int m_value;
-	int m_cursor, m_len;
-	
-	int m_min, m_max;
 };
 
 #endif
