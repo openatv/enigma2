@@ -154,10 +154,10 @@ int main(int argc, char **argv)
 	dsk.setDC(my_dc);
 
 	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, "data/info-bg.png");
+	loadPNG(m_pm, "data/pal.png");
 	if (!m_pm)
 	{
-		eDebug("can't load info-bg :)");
+		eFatal("hi ghost, please copy pal.png into your ./data, thanks!");
 	} else
 		dsk.setPalette(*m_pm);
 
