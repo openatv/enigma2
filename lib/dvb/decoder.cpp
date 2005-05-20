@@ -160,24 +160,76 @@ eDVBVideo::~eDVBVideo()
 		::close(m_fd_demux);
 }
 
+DEFINE_REF(eDVBPCR);
+
+eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
+{
+	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
+#else
+	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
+#endif
+	m_fd_demux = ::open(filename, O_RDWR);
+	if (m_fd_demux < 0)
+		eWarning("%s: %m", filename);
+}
+
+int eDVBPCR::startPid(int pid)
+{
+	if (m_fd_demux < 0)
+		return -1;
+	dmx_pes_filter_params pes;
+
+	pes.pid      = pid;
+	pes.input    = DMX_IN_FRONTEND;
+	pes.output   = DMX_OUT_DECODER;
+	pes.pes_type = DMX_PES_PCR;
+	pes.flags    = 0;
+	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
+	{
+		eWarning("video: DMX_SET_PES_FILTER: %m");
+		return -errno;
+	}
+	if (::ioctl(m_fd_demux, DMX_START, &pes) < 0)
+	{
+		eWarning("video: DMX_START: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+void eDVBPCR::stop()
+{
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+		eWarning("video: DMX_STOP: %m");
+}
+
+eDVBPCR::~eDVBPCR()
+{
+	if (m_fd_demux >= 0)
+		::close(m_fd_demux);
+}
+
 DEFINE_REF(eTSMPEGDecoder);
 
 int eTSMPEGDecoder::setState()
 {
 	int res = 0;
 	eDebug("changed %x", m_changed);
-	if (m_changed & changeAudio)
+
+	if (m_changed & changePCR)
 	{
-		if (m_audio)
-			m_audio->stop();
-		m_audio = 0;
-		m_audio = new eDVBAudio(m_demux, 0);
-		if (m_audio->startPid(m_apid))
+		if (m_pcr)
+			m_pcr->stop();
+		m_pcr = 0;
+		m_pcr = new eDVBPCR(m_demux);
+		if (m_pcr->startPid(m_pcrpid))
 		{
-			eWarning("audio: startpid failed!");
+			eWarning("video: startpid failed!");
 			res = -1;
 		}
-		m_changed &= ~changeAudio;
+		m_changed &= ~changePCR;
 	}
 	if (m_changed & changeVideo)
 	{
@@ -191,6 +243,19 @@ int eTSMPEGDecoder::setState()
 			res = -1;
 		}
 		m_changed &= ~changeVideo;
+	}
+	if (m_changed & changeAudio)
+	{
+		if (m_audio)
+			m_audio->stop();
+		m_audio = 0;
+		m_audio = new eDVBAudio(m_demux, 0);
+		if (m_audio->startPid(m_apid))
+		{
+			eWarning("audio: startpid failed!");
+			res = -1;
+		}
+		m_changed &= ~changeAudio;
 	}
 	return res;
 }
@@ -231,7 +296,7 @@ RESULT eTSMPEGDecoder::setSyncPCR(int pcrpid)
 {
 	if (m_pcrpid != pcrpid)
 	{
-		m_changed |= changeAudio;
+		m_changed |= changePCR;
 		m_pcrpid = pcrpid;
 	}
 	return -1;
