@@ -15,12 +15,6 @@
 	</map>
 	
 	<map context="InputActions">
-		<key id="1" mapto="moveLeft" flags="mr" />
-		<key id="2" mapto="moveRight" flags="mr" />
-		<key id="3" mapto="moveHome" flags="mr" />
-		<key id="4" mapto="moveEnd" flags="mr" />
-		<key id="5" mapto="deleteChar" flags="mr" />
-		
 		<key id="KEY_LEFT" mapto="moveLeft" flags="mr" />
 		<key id="KEY_RIGHT" mapto="moveRight" flags="mr" />
 		<key id="KEY_HOME" mapto="moveHome" flags="mr" />
@@ -29,6 +23,7 @@
 		<key id="KEY_BACKSPACE" mapto="deleteBackward" flags="mr" />
 		
 		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
+		<key id="KEY_ENTER" mapto="accept" flags="m" />
 	</map>
 
 	<map context="InfobarActions">
