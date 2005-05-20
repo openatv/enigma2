@@ -227,7 +227,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 	eDebug("merge palette! %p %p", surface, target.surface);
 	if ((!surface->clut.colors) || (!target.surface->clut.colors))
 		return;
-#if 0
+
 	gColor *lookup=new gColor[surface->clut.colors];
 
 	for (int i=0; i<surface->clut.colors; i++)
@@ -248,7 +248,6 @@ void gPixmap::mergePalette(const gPixmap &target)
 	}
 	
 	delete [] lookup;
-#endif
 }
 
 static inline int sgn(int a)
