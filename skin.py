@@ -32,7 +32,7 @@ dom = xml.dom.minidom.parseString(
 			<color name="LabelForeground" color="#ffffff" />
 			<color name="ListboxBackground" color="#4075a7" />
 			<color name="ListboxForeground" color="#ffffff" />
-			<color name="ListboxSelectedBackground" color="#80ff80" />
+			<color name="ListboxSelectedBackground" color="#404080" />
 			<color name="ListboxSelectedForeground" color="#ffffff" />
 			<color name="ListboxMarkedBackground" color="#ff0000" />
 			<color name="ListboxMarkedForeground" color="#ffffff" />
@@ -104,11 +104,11 @@ dom = xml.dom.minidom.parseString(
 			<widget name="scan_state" position="10,60" size="280,30" />
 		</screen>
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
-			<widget name="description" position="10,10" size="580,40" />
-			<widget name="lbegin" position="405,102" size="103,30" />
-			<widget name="lend" position="405,158" size="103,30" />
-			<widget name="begin" position="508,105" size="72,35" font="Arial;30" />
-			<widget name="end" position="508,150" size="72,35" font="Arial;30" />
+			<widget name="description" position="10,10" size="580,40" font="Arial;25"/>
+			<widget name="lbegin" position="405,102" size="103,30" font="Arial;25" />
+			<widget name="lend" position="405,158" size="103,30" font="Arial;25" />
+			<widget name="begin" position="508,105" size="72,35" font="Arial;25" />
+			<widget name="end" position="508,150" size="72,35" font="Arial;25" />
 			<widget name="apply" position="10,240" size="250,35" />
 		</screen>
 	</skin>""")
