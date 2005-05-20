@@ -42,30 +42,30 @@ void eRCConsoleDriver::keyPressed(int)
 	char *d = data;
 	int num = read(handle, data, 16);
 	int code;
-#if 0	
+
 	int km = input->getKeyboardMode();
 
 	if (km == eRCInput::kmNone)
 		return;
-#endif
+
 	while (num--)
 	{
-#if 0
 		if (km == eRCInput::kmAll)
-#endif
 			code = *d++;
-#if 0
 		else
 		{
 			if (*d == 27) // escape code
 			{
-				while (num)
+					/* skip all this stuff */
+				return;
+
+/*				while (num)
 				{
 					num--;
 					if (*++d != '[')
 						break;
 				}
-				code = -1;
+				code = -1; */
 			} else
 				code = *d;
 			++d;
@@ -75,7 +75,7 @@ void eRCConsoleDriver::keyPressed(int)
 			if (code == 0x7F)		/* delete */
 				code = -1;
 		}
-#endif
+
 		if (code != -1)
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
 				(*i)->handleCode(code | 0x8000);
@@ -104,7 +104,7 @@ const char *eRCConsole::getKeyDescription(const eRCKey &key) const
 
 int eRCConsole::getKeyCompatibleCode(const eRCKey &key) const
 {
-	return key.code; // | KEY_ASCII;
+	return key.code;
 }
 
 class eRCConsoleInit
