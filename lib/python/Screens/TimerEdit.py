@@ -4,6 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
+from Components.TextInput import TextInput
 
 class TimerEdit(Screen):
 	def __init__(self, session, entry):
@@ -18,7 +19,8 @@ class TimerEdit(Screen):
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
 			{
 				"red": self.beginFocus,
-				"yellow": self.endFocus
+				"yellow": self.endFocus,
+				"green": self.descFocus
 			})
 		
 		self.entry = entry
@@ -29,16 +31,20 @@ class TimerEdit(Screen):
 		self["lbegin"] = Label("Begin")
 		self["lend"] = Label("End")
 		
-		self["description"] = Label("bla")
-# TextInput()
+		self["description"] = TextInput()
 		self["apply"] = Button("Apply")
 		self["service"] = Button()
+		
+		self["description"].setText(entry.description);
 	
 	def beginFocus(self):
 		self.setFocus(self["begin"])
 	
 	def endFocus(self):
 		self.setFocus(self["end"])
+	
+	def descFocus(self):
+		self.setFocus(self["description"])
 	
 	def apply(self):
 		print "applied!"
@@ -63,4 +69,4 @@ class TimerEditList(Screen):
 			})
 
 	def openEdit(self):
-		self.session.open(TimerEdit, self["timerlist"].getCurrent())
+		self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
