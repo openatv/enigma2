@@ -49,6 +49,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/einput.h>
+#include <lib/gui/einputstring.h>
+#include <lib/gui/einputnumber.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/ewindow.h>
@@ -104,6 +106,8 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
 %include <lib/gui/einput.h>
+%include <lib/gui/einputstring.h>
+%include <lib/gui/einputnumber.h>
 %include <lib/gui/epixmap.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>
