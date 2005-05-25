@@ -380,7 +380,7 @@ public:
 	};
 	virtual RESULT getState(int &state)=0;
 	enum {
-		toneOn, toneOff
+		toneOff, toneOn
 	};
 	virtual RESULT setTone(int tone)=0;
 	enum {

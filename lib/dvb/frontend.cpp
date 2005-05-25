@@ -375,17 +375,25 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_VOLTAGE:
 				setVoltage(m_sec_sequence.current()->voltage);
+				eDebug("setVoltage %d", m_sec_sequence.current()->voltage);
 				break;
 			case eSecCommand::SET_TONE:
 				setTone(m_sec_sequence.current()->tone);
+				eDebug("setTone %d", m_sec_sequence.current()->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sendDiseqc(m_sec_sequence.current()->diseqc);
+				eDebugNoNewLine("sendDiseqc: ");
+				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
+				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
+				eDebug("");
 				break;
 			case eSecCommand::SEND_TONEBURST:
 				sendToneburst(m_sec_sequence.current()->toneburst);
+				eDebug("sendToneburst: %d", m_sec_sequence.current()->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
+				eDebug("setFrontend");
 				setFrontend();
 				break;
 			case eSecCommand::IF_LOCK_GOTO:
@@ -578,7 +586,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	}
 	}
 
-	m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 0) );
+	m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 	m_tuneTimer->start(0,true);
 	m_sec_sequence.current() = m_sec_sequence.begin();
 
@@ -658,8 +666,6 @@ RESULT eDVBFrontend::setTone(int t)
 
 RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 {
-	eDebug("send %02x %02x %02x %02x",
-		diseqc.data[0], diseqc.data[1], diseqc.data[2], diseqc.data[3]);
 #if HAVE_DVB_API_VERSION < 3
 	struct secCommand cmd;
 	cmd.type = SEC_CMDTYPE_DISEQC_RAW;
