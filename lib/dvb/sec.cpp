@@ -127,6 +127,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				tone = iDVBFrontend::toneOff;
 
 			eSecCommandList sec_sequence;
+			bool setVoltage=true;
 
 			if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 			{
@@ -166,6 +167,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 30) );  // standard says 15 msek here
+					setVoltage=false;
 				}
 
 				if ( send_diseqc )
@@ -333,7 +335,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					}
 				}
 			}
-			else
+
+			if ( setVoltage )
 			{
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
