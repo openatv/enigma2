@@ -363,6 +363,62 @@ void eDVBFrontend::timeout()
 		m_tuning = 0;
 }
 
+#ifndef FP_IOCTL_GET_ID
+#define FP_IOCTL_GET_ID 0
+#endif
+int eDVBFrontend::readInputpower()
+{
+	int power=0;
+//	if ( eSystemInfo::getInstance()->canMeasureLNBCurrent() )
+	{
+//		switch ( eSystemInfo::getInstance()->getHwType() )
+		{
+//			case eSystemInfo::DM7000:
+//			case eSystemInfo::DM7020:
+			{
+				// open front prozessor
+				int fp=::open("/dev/dbox/fp0", O_RDWR);
+				if (fp < 0)
+				{
+					eDebug("couldn't open fp");
+					return -1;
+				}
+				static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
+				if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
+				{
+					eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
+					return -1;
+				}
+				::close(fp);
+//				break;
+			}
+//			default:
+//				eDebug("Inputpower read for platform %d not yet implemented", eSystemInfo::getInstance()->getHwType());
+		}
+	}
+	return power;
+}
+
+bool eDVBFrontend::setSecSequencePos(int steps)
+{
+	eDebug("set sequence pos %d", steps);
+	if (!steps)
+		return false;
+	while( steps > 0 )
+	{
+		if (m_sec_sequence.current() != m_sec_sequence.end())
+			++m_sec_sequence.current();
+		--steps;
+	}
+	while( steps < 0 )
+	{
+		if (m_sec_sequence.current() != m_sec_sequence.begin() && m_sec_sequence.current() != m_sec_sequence.end())
+			--m_sec_sequence.current();
+		--steps;
+	}
+	return true;
+}
+
 void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 {
 	int delay=0;
@@ -371,14 +427,19 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		switch (m_sec_sequence.current()->cmd)
 		{
 			case eSecCommand::SLEEP:
-				delay = m_sec_sequence.current()->msec;
+				delay = m_sec_sequence.current()++->msec;
+				eDebug("sleep %dms\n", delay);
+				break;
+			case eSecCommand::GOTO:
+				if ( !setSecSequencePos(m_sec_sequence.current()->steps) )
+					++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_VOLTAGE:
-				setVoltage(m_sec_sequence.current()->voltage);
+				setVoltage(m_sec_sequence.current()++->voltage);
 				eDebug("setVoltage %d", m_sec_sequence.current()->voltage);
 				break;
 			case eSecCommand::SET_TONE:
-				setTone(m_sec_sequence.current()->tone);
+				setTone(m_sec_sequence.current()++->tone);
 				eDebug("setTone %d", m_sec_sequence.current()->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
@@ -387,21 +448,49 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
 				eDebug("");
+				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
-				sendToneburst(m_sec_sequence.current()->toneburst);
+				sendToneburst(m_sec_sequence.current()++->toneburst);
 				eDebug("sendToneburst: %d", m_sec_sequence.current()->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
 				eDebug("setFrontend");
 				setFrontend();
+				++m_sec_sequence.current();
 				break;
-			case eSecCommand::IF_LOCK_GOTO:
-			case eSecCommand::IF_NOT_LOCK_GOTO:
+			case eSecCommand::MEASURE_IDLE_INPUTPOWER:
+				m_idleInputpower = readInputpower();
+				eDebug("idleInputpower is %d", m_idleInputpower);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
+				m_runningInputpower = readInputpower();
+				eDebug("runningInputpower is %d", m_runningInputpower);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::SET_TIMEOUT:
+				m_timeoutCount = m_sec_sequence.current()++->val;
+				eDebug("set timeout %d", m_timeoutCount);
+				break;
+			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
+				m_data[5] = m_data[3];
+				m_data[6] = m_data[4];
+				eDebug("update current rotorparams %d", m_timeoutCount);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::IF_TIMEOUT_GOTO:
+				if (!m_timeoutCount)
+					setSecSequencePos(m_sec_sequence.current()->steps);
+				else
+					++m_sec_sequence.current();
+				break;
+			case eSecCommand::IF_RUNNING_GOTO:
+			case eSecCommand::IF_STOPPED_GOTO:
 			default:
+				++m_sec_sequence.current();
 				eDebug("unhandled sec command");
 		}
-		m_sec_sequence.current()++;
 		m_tuneTimer->start(delay,true);
 	}
 }
