@@ -70,8 +70,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			frontend.getData(0, lastcsw);
 			frontend.getData(1, lastucsw);
 			frontend.getData(2, lastToneburst);
-			frontend.getData(3, lastRotorCmd);
-			frontend.getData(4, curRotorPos);
+			frontend.getData(5, lastRotorCmd);
+			frontend.getData(6, curRotorPos);
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
 				hi = 1;
@@ -325,8 +325,23 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						}
 						if ( rotor_param.m_inputpower_parameters.m_use )
 						{ // use measure rotor input power to detect rotor state
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage18) ); // always turn with high voltage
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50sec after voltage change
 							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 8) );  // 2 seconds rotor start timout
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_RUNNING_GOTO, +3 ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +8 ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 240) );  // 1 minute running timeout
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_STOPPED_GOTO, +3 ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
 							frontend.setData(3, RotorCmd);
 							frontend.setData(4, sat.orbital_position);
 						}

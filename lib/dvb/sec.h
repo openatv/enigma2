@@ -9,13 +9,18 @@ class eSecCommand
 {
 public:
 	enum {
-		NONE, SLEEP, SET_VOLTAGE, SET_TONE,
-		SEND_DISEQC, SEND_TONEBURST, IF_LOCK_GOTO, IF_NOT_LOCK_GOTO,
-		MEASURE_IDLE_INPUTPOWER, SET_FRONTEND
+		NONE, SLEEP, SET_VOLTAGE, SET_TONE, GOTO,
+		SEND_DISEQC, SEND_TONEBURST, SET_FRONTEND,
+		MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
+		IF_TIMEOUT_GOTO, IF_RUNNING_GOTO, IF_STOPPED_GOTO,
+		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT, 
 	};
 	int cmd;
 	union
 	{
+		int val;
+		int steps;
+		int timeout;
 		int voltage;
 		int tone;
 		int toneburst;
@@ -26,7 +31,7 @@ public:
 		:cmd(cmd)
 	{}
 	eSecCommand( int cmd, int val )
-		:cmd(cmd), voltage(val)
+		:cmd(cmd), val(val)
 	{}
 	eSecCommand( int cmd, eDVBDiseqcCommand diseqc )
 		:cmd(cmd), diseqc(diseqc)
