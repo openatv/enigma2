@@ -11,11 +11,18 @@ public:
 	enum {
 		NONE, SLEEP, SET_VOLTAGE, SET_TONE, GOTO,
 		SEND_DISEQC, SEND_TONEBURST, SET_FRONTEND,
-		MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
-		IF_TIMEOUT_GOTO, IF_RUNNING_GOTO, IF_STOPPED_GOTO,
-		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT, 
+	 	MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
+		IF_TIMEOUT_GOTO, IF_INPUTPOWER_DELTA_GOTO,
+		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT
 	};
 	int cmd;
+	struct rotor
+	{
+		int deltaA;   // difference in mA between running and stopped rotor
+		int okcount;  // counter
+		int steps;    // goto steps
+		int direction;
+	};
 	union
 	{
 		int val;
@@ -25,6 +32,7 @@ public:
 		int tone;
 		int toneburst;
 		int msec;
+		rotor measure;
 		eDVBDiseqcCommand diseqc;
 	};
 	eSecCommand( int cmd )
@@ -35,6 +43,9 @@ public:
 	{}
 	eSecCommand( int cmd, eDVBDiseqcCommand diseqc )
 		:cmd(cmd), diseqc(diseqc)
+	{}
+	eSecCommand( int cmd, rotor measure )
+		:cmd(cmd), measure(measure)
 	{}
 	eSecCommand()
 		:cmd(NONE)
@@ -145,7 +156,16 @@ public:
 	std::map< int, int, Orbital_Position_Compare > m_rotor_position_table;
 	/* mapping orbitalposition <-> number stored in rotor */
 
-	void setDefaultOptions(); // set default rotor options
+	void setDefaultOptions() // set default rotor options
+	{
+		m_inputpower_parameters.m_use = true;
+		m_inputpower_parameters.m_threshold = 60;
+		m_gotoxx_parameters.m_can_use = true;
+		m_gotoxx_parameters.m_lo_direction = EAST;
+		m_gotoxx_parameters.m_la_direction = NORTH;
+		m_gotoxx_parameters.m_longitude = 0.0;
+		m_gotoxx_parameters.m_latitude = 0.0;
+	}
 };
 
 class eDVBSatelliteParameters
