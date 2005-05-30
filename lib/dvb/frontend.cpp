@@ -414,7 +414,7 @@ bool eDVBFrontend::setSecSequencePos(int steps)
 	{
 		if (m_sec_sequence.current() != m_sec_sequence.begin() && m_sec_sequence.current() != m_sec_sequence.end())
 			--m_sec_sequence.current();
-		--steps;
+		++steps;
 	}
 	return true;
 }
@@ -428,19 +428,19 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		{
 			case eSecCommand::SLEEP:
 				delay = m_sec_sequence.current()++->msec;
-				eDebug("sleep %dms\n", delay);
+				eDebug("sleep %dms", delay);
 				break;
 			case eSecCommand::GOTO:
 				if ( !setSecSequencePos(m_sec_sequence.current()->steps) )
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_VOLTAGE:
-				setVoltage(m_sec_sequence.current()++->voltage);
 				eDebug("setVoltage %d", m_sec_sequence.current()->voltage);
+				setVoltage(m_sec_sequence.current()++->voltage);
 				break;
 			case eSecCommand::SET_TONE:
-				setTone(m_sec_sequence.current()++->tone);
 				eDebug("setTone %d", m_sec_sequence.current()->tone);
+				setTone(m_sec_sequence.current()++->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sendDiseqc(m_sec_sequence.current()->diseqc);
@@ -451,8 +451,8 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
-				sendToneburst(m_sec_sequence.current()++->toneburst);
 				eDebug("sendToneburst: %d", m_sec_sequence.current()->toneburst);
+				sendToneburst(m_sec_sequence.current()++->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
 				eDebug("setFrontend");
@@ -476,7 +476,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
 				m_data[5] = m_data[3];
 				m_data[6] = m_data[4];
-				eDebug("update current rotorparams %d", m_timeoutCount);
+				eDebug("update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::IF_TIMEOUT_GOTO:
@@ -485,8 +485,37 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				else
 					++m_sec_sequence.current();
 				break;
-			case eSecCommand::IF_RUNNING_GOTO:
-			case eSecCommand::IF_STOPPED_GOTO:
+			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
+			{
+				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
+				const char *txt = cmd.direction ? "running" : "stopped";
+				eDebug("waiting for rotor %s", txt);
+				eDebug("%s %d, idle %d, delta %d",
+					txt,
+					m_runningInputpower,
+					m_idleInputpower,
+					cmd.deltaA);
+				if ( (cmd.direction && abs(m_runningInputpower - m_idleInputpower) >= cmd.deltaA)
+					|| (!cmd.direction && abs(m_runningInputpower - m_idleInputpower) <= cmd.deltaA) )
+				{
+					++cmd.okcount;
+					eDebug("rotor %s step %d ok", txt, cmd.okcount);
+					if ( cmd.okcount > 1 )
+					{
+						eDebug("rotor is %s", txt);
+						if (setSecSequencePos(cmd.steps))
+							break;
+					}
+				}
+				else
+				{
+					eDebug("rotor not %s... reset counter.. increase timeout", txt);
+					--m_timeoutCount;
+					cmd.okcount=0;
+				}
+				++m_sec_sequence.current();
+				break;
+			}
 			default:
 				++m_sec_sequence.current();
 				eDebug("unhandled sec command");
@@ -805,7 +834,7 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 
 RESULT eDVBFrontend::getData(int num, int &data)
 {
-	if ( num < 5 )
+	if ( num < 7 )
 	{
 		data = m_data[num];
 		return 0;
@@ -815,7 +844,7 @@ RESULT eDVBFrontend::getData(int num, int &data)
 
 RESULT eDVBFrontend::setData(int num, int val)
 {
-	if ( num < 5 )
+	if ( num < 7 )
 	{
 		m_data[num] = val;
 		return 0;

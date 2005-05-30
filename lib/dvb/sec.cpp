@@ -332,13 +332,19 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 8) );  // 2 seconds rotor start timout
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_RUNNING_GOTO, +3 ) );
+							eSecCommand::rotor cmd;
+							cmd.direction=1;  // check for running rotor
+							cmd.deltaA=rotor_param.m_inputpower_parameters.m_threshold;
+							cmd.steps=+3;
+							cmd.okcount=0;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +8 ) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 240) );  // 1 minute running timeout
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_STOPPED_GOTO, +3 ) );
+							cmd.direction=0;  // check for stopped rotor
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
