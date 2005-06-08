@@ -187,7 +187,7 @@ public:
 	eMainloop():app_quit_now(0),loop_level(0),retval(0){	}
  	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
-	void addTimer(eTimer* e)	{		TimerList.push_back(e);		TimerList.sort();	}
+	void addTimer(eTimer* e)	{		TimerList.insert_in_order(e);	}
 	void removeTimer(eTimer* e)	{		TimerList.remove(e);	}
 
 	int looplevel() { return loop_level; }

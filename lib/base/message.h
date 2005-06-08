@@ -18,7 +18,7 @@ class eMessagePump
 	int ismt;
 public:
 	eMessagePump(int mt=0);
-	~eMessagePump();
+	virtual ~eMessagePump();
 	int send(const void *data, int len);
 	int recv(void *data, int len); // blockierend
 	int getInputFD() const;
@@ -56,9 +56,10 @@ public:
 	~eFixedMessagePump()
 	{
 		delete sn;
+		sn=0;
 	}
-	void start() { sn->start(); }
-	void stop() { sn->stop(); }
+	void start() { if (sn) sn->start(); }
+	void stop() { if (sn) sn->stop(); }
 };
 
 #endif

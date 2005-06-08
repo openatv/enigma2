@@ -3,6 +3,7 @@
 
 #include <list>
 #include <vector>
+#include <algorithm>
 #include <lib/base/smartptr.h>
 
 template <class T>
@@ -64,55 +65,55 @@ public:
 private:
 	iterator cur;
 public:
-	iterator ePtrList<T>::begin()
+	iterator begin()
 	{				
 	//	makes implicit type conversion form std::list::iterator to ePtrList::iterator
 		return std::list<T*>::begin();		
 	}
 
-	iterator ePtrList<T>::end()
+	iterator end()
 	{				
 	//	makes implicit type conversion form std::list::iterator to ePtrList::iterator
 		return std::list<T*>::end();		
 	}
 
-	const_iterator ePtrList<T>::begin() const
+	const_iterator begin() const
 	{				
 	//	makes implicit type conversion form std::list::const_iterator to ePtrList::const_iterator
 		return std::list<T*>::begin();		
 	}
 
-	const_iterator ePtrList<T>::end() const
+	const_iterator end() const
 	{				
 	//	makes implicit type conversion form std::list::const_iterator to ePtrList::const_iterator
 		return std::list<T*>::end();		
 	}
 
-	reverse_iterator ePtrList<T>::rbegin()
+	reverse_iterator rbegin()
 	{				
 	//	makes implicit type conversion form std::list::reverse:_iterator to ePtrList::reverse_iterator
 		return std::list<T*>::rbegin();		
 	}
 
-	reverse_iterator ePtrList<T>::rend()
+	reverse_iterator rend()
 	{				
 	//	makes implicit type conversion form std::list::reverse_iterator to ePtrList::reverse_iterator
 		return std::list<T*>::rend();		
 	}
 
-	const_reverse_iterator ePtrList<T>::rbegin() const
+	const_reverse_iterator rbegin() const
 	{				
 	//	makes implicit type conversion form std::list::const_reverse_iterator to ePtrList::const_reverse_iterator
 		return std::list<T*>::rbegin();		
 	}
 
-	const_reverse_iterator ePtrList<T>::rend() const
+	const_reverse_iterator rend() const
 	{				
 	//	makes implicit type conversion form std::list::const_reverse_iterator to ePtrList::const_reverse_iterator
 		return std::list<T*>::rend();		
 	}
 
-	iterator ePtrList<T>::erase(iterator it)
+	iterator erase(iterator it)
 	{
 	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
 	//  If current is equal to the item that was removed, current is set to the next item in the list
@@ -122,7 +123,7 @@ public:
 			return std::list<T*>::erase(it);
 	}
 
-	iterator ePtrList<T>::erase(iterator from, iterator to)
+	iterator erase(iterator from, iterator to)
 	{
 	// 	Remove all items between the to iterators from and to
 	//	If auto-deletion is enabled, than the list call delete for all removed items
@@ -168,12 +169,12 @@ public:
 		return v;
 	}
 
-//	inline iterator insert_in_order( T* e )
-//	{
-//		// added a new item to the list... in order
-//		// returns a iterator to the new item
-//		return insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e ), e );
-//	}
+	inline iterator insert_in_order( T* e )
+	{
+		// added a new item to the list... in order
+		// returns a iterator to the new item
+		return insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
+	}
 
 };
 
@@ -693,55 +694,55 @@ public:
 private:
 	iterator cur;
 public:
-	iterator eSmartPtrList<T>::begin()
+	iterator begin()
 	{				
 	//	makes implicit type conversion form std::list::iterator to eSmartPtrList::iterator
 		return std::list<ePtr<T> >::begin();		
 	}
 
-	iterator eSmartPtrList<T>::end()
+	iterator end()
 	{				
 	//	makes implicit type conversion form std::list::iterator to eSmartPtrList::iterator
 		return std::list<ePtr<T> >::end();		
 	}
 
-	const_iterator eSmartPtrList<T>::begin() const
+	const_iterator begin() const
 	{				
 	//	makes implicit type conversion form std::list::const_iterator to eSmartPtrList::const_iterator
 		return std::list<ePtr<T> >::begin();		
 	}
 
-	const_iterator eSmartPtrList<T>::end() const
+	const_iterator end() const
 	{				
 	//	makes implicit type conversion form std::list::const_iterator to eSmartPtrList::const_iterator
 		return std::list<ePtr<T> >::end();		
 	}
 
-	reverse_iterator eSmartPtrList<T>::rbegin()
+	reverse_iterator rbegin()
 	{				
 	//	makes implicit type conversion form std::list::reverse:_iterator to eSmartPtrList::reverse_iterator
 		return std::list<ePtr<T> >::rbegin();		
 	}
 
-	reverse_iterator eSmartPtrList<T>::rend()
+	reverse_iterator rend()
 	{				
 	//	makes implicit type conversion form std::list::reverse_iterator to eSmartPtrList::reverse_iterator
 		return std::list<ePtr<T> >::rend();		
 	}
 
-	const_reverse_iterator eSmartPtrList<T>::rbegin() const
+	const_reverse_iterator rbegin() const
 	{				
 	//	makes implicit type conversion form std::list::const_reverse_iterator to eSmartPtrList::const_reverse_iterator
 		return std::list<ePtr<T> >::rbegin();		
 	}
 
-	const_reverse_iterator eSmartPtrList<T>::rend() const
+	const_reverse_iterator rend() const
 	{				
 	//	makes implicit type conversion form std::list::const_reverse_iterator to eSmartPtrList::const_reverse_iterator
 		return std::list<ePtr<T> >::rend();		
 	}
 
-	iterator eSmartPtrList<T>::erase(iterator it)
+	iterator erase(iterator it)
 	{
 	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
 	//  If current is equal to the item that was removed, current is set to the next item in the list
@@ -752,7 +753,7 @@ public:
 			return std::list<ePtr<T> >::erase(it);
 	}
 
-	iterator eSmartPtrList<T>::erase(iterator from, iterator to)
+	iterator erase(iterator from, iterator to)
 	{
 	// 	Remove all items between the to iterators from and to
 	//	If auto-deletion is enabled, than the list call delete for all removed items
@@ -798,12 +799,12 @@ public:
 		return v;
 	}
 
-//	inline iterator insert_in_order( T* e )
-//	{
-//		// added a new item to the list... in order
-//		// returns a iterator to the new item
-//		return insert( std::lower_bound( std::list<ePtr<T> >::begin(), std::list<ePtr<T> >::end(), e ), e );
-//	}
+	inline iterator insert_in_order( T* e )
+	{
+		// added a new item to the list... in order
+		// returns a iterator to the new item
+		return insert( std::lower_bound( std::list<ePtr<T> >::begin(), e, std::list<ePtr<T> >::end()), e );
+	}
 
 };
 
@@ -1099,27 +1100,6 @@ inline void eSmartPtrList<T>::push_front(T* x)
 	std::list<ePtr<T> >::push_front(x);
 	first();	
 }
-
-/////////////////// eSmartPtrList take() ////////////////////
-//template <class T>
-//inline T* eSmartPtrList<T>::take()
-//{
-//// Takes the current item out of the list without deleting it (even if auto-deletion is enabled).
-//// Returns a pointer to the item taken out of the list, or null if the index is out of range.
-//// The item after the taken item becomes the new current list item if the taken item is not the last item in the list. If the last item is taken, the new last item becomes the current item.
-//// The current item is set to null if the list becomes empty.
-//	T* tmp = *cur;
-//	cur = std::list<T*>::erase(cur);
-//	return tmp;
-//}
-
-/////////////////// eSmartPtrList take(T*) ////////////////////
-//template <class T>
-//inline void eSmartPtrList<T>::take(T* t)
-//{
-//// Takes all item with T* out of the list without deleting it (even if auto-deletion is enabled).
-//	std::list<T*>::remove(t);
-//}
 
 /////////////////// eSmartPtrList setCurrent(T*) ////////////////////
 template <class T>
