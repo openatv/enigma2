@@ -120,23 +120,22 @@ int eIOBuffer::fromfile(int fd, int len)
 	while (len)
 	{
 		int tc=len;
-		int r;
+		int r=0;
 		if (buffer.empty() || (allocationsize == buffer.back().len))
 			addblock();
 		if (tc > allocationsize-buffer.back().len)
 			tc=allocationsize-buffer.back().len;
 		r=::read(fd, buffer.back().data+buffer.back().len, tc);
 		buffer.back().len+=r;
-		len-=r;
-		if (r < 0)
+		if (r < 0 && errno != EWOULDBLOCK )
+			eDebug("couldn't read: %m");
+		else
 		{
-			if (errno != EWOULDBLOCK)
-				eDebug("read: %m");
-			r=0;
+			len-=r;
+			re+=r;
+			if (r != tc)
+				break;
 		}
-		re+=r;
-		if (r != tc)
-			break;
 	}
 	return re;
 }

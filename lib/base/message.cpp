@@ -17,25 +17,19 @@ eMessagePump::~eMessagePump()
 
 int eMessagePump::send(const void *data, int len)
 {
-	if (ismt)
-		content.lock(len);
-	return ::write(fd[1], data, len)<0;
+	int wr = ::write(fd[1], data, len);
+	if (ismt && wr > 0)
+		content.lock(wr);
+	return wr<0;
 }
 
 int eMessagePump::recv(void *data, int len)
 {
 	unsigned char*dst=(unsigned char*)data;
-	while (len)
-	{
-		if (ismt)
-			content.unlock(len);
-		int r=::read(fd[0], dst, len);
-		if (r<0)
-			return r;
-		dst+=r;
-		len-=r;
-	}
-	return 0;
+	int recv=::read(fd[0], dst, len);
+	if (recv > 0 && ismt)
+		content.unlock(recv);
+	return recv;
 }
 
 int eMessagePump::getInputFD() const
