@@ -132,10 +132,14 @@ class eDVBResourceManager: public iObject
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	static eDVBResourceManager *instance;
-
+	
 	friend class eDVBChannel;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
+	
+	Signal1<void,eDVBChannel*> m_channelAdded;
+	Signal1<void,eDVBChannel*> m_channelRemoved;
+	Signal1<void,iDVBChannel*> m_channelRunning;
 public:
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
@@ -156,6 +160,9 @@ public:
 	RESULT allocateRawChannel(ePtr<iDVBChannel> &channel);
 	RESULT allocatePVRChannel(int caps);
 
+	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
+	RESULT connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
+	RESULT connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 };
 
 class eDVBChannel: public iDVBChannel, public Object
@@ -181,7 +188,8 @@ public:
 
 		/* only for managed channels - effectively tunes to the channelid. should not be used... */
 	RESULT setChannel(const eDVBChannelID &id);
-	
+	eDVBChannelID getChannelID() { return m_channel_id; }
+
 	RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
 	RESULT getState(int &state);
 

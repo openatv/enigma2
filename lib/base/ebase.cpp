@@ -5,6 +5,7 @@
 #include <errno.h>
 
 #include <lib/base/eerror.h>
+#include <lib/base/elock.h>
 
 eSocketNotifier::eSocketNotifier(eMainloop *context, int fd, int requested, bool startnow): context(*context), fd(fd), state(0), requested(requested)
 {
@@ -43,15 +44,32 @@ void eTimer::start(long msek, bool singleShot)
 	bActive = true;
 	bSingleShot = singleShot;
 	interval = msek;
- 	gettimeofday(&nextActivation, 0);		
-//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+	gettimeofday(&nextActivation, 0);
+	nextActivation.tv_sec -= context.getTimerOffset();
 	nextActivation += (msek<0 ? 0 : msek);
+//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+//	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
+	context.addTimer(this);
+}
+
+void eTimer::startLongTimer( int seconds )
+{
+	if (bActive)
+		stop();
+
+	bActive = bSingleShot = true;
+	interval = 0;
+	gettimeofday(&nextActivation, 0);
+	nextActivation.tv_sec -= context.getTimerOffset();
+//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+	if ( seconds > 0 )
+		nextActivation.tv_sec += seconds;
 //	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
 	context.addTimer(this);
 }
 
 void eTimer::stop()
-{	
+{
 	if (bActive)
 	{
 		bActive=false;
@@ -67,7 +85,7 @@ void eTimer::changeInterval(long msek)
 		nextActivation -= interval;  // sub old interval
 	}
 	else
-		bActive=true;	// then activate Timer
+		bActive=true; // then activate Timer
 
 	interval = msek;   			 			// set new Interval
 	nextActivation += interval;		// calc nextActivation
@@ -75,12 +93,8 @@ void eTimer::changeInterval(long msek)
 	context.addTimer(this);				// add Timer to context TimerList
 }
 
-void eTimer::activate()   // Internal Function... called from eApplication
+void eTimer::activate()   // Internal Funktion... called from eApplication
 {
-	timeval now;
-	gettimeofday(&now, 0);
-//	eDebug("this = %p\nnow sec = %d, usec = %d\nnextActivation sec = %d, usec = %d", this, now.tv_sec, now.tv_usec, nextActivation.tv_sec, nextActivation.tv_usec );
-//	eDebug("Timer emitted");
 	context.removeTimer(this);
 
 	if (!bSingleShot)
@@ -94,7 +108,27 @@ void eTimer::activate()   // Internal Function... called from eApplication
 	/*emit*/ timeout();
 }
 
+inline void eTimer::recalc( int offset )
+{
+	nextActivation.tv_sec += offset;
+}
+
 // mainloop
+ePtrList<eMainloop> eMainloop::existing_loops;
+
+void eMainloop::setTimerOffset( int difference )
+{
+	singleLock s(recalcLock);
+	if (!TimerList)
+		timer_offset=0;
+	else
+	{
+		if ( timer_offset )
+			eDebug("time_offset %d avail.. add new offset %d than new is %d",
+			timer_offset, difference, timer_offset+difference);
+		timer_offset+=difference;
+	}
+}
 
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
@@ -115,25 +149,25 @@ void eMainloop::processOneEvent()
 		    we should do this all better - we know how long the poll last, so we know which
 		    timers should fire. Problem is that a timer handler could have required so
 		    much time that another timer fired.
-		    
+
 		    A probably structure could look
-		    
+
 		    while (1)
 		    {
 			    time = gettimeofday()
 			    timeout = calculate_pending_timers(time);
-		    
+
 		      doPoll(timeout or infinite);
-		    	
+
 		    	if (poll_had_results)
 		    		handle_poll_handler();
 		    	else
 				    fire_timers(time + timeout)
 			  }
-			  
+
 			  the gettimeofday() call is required because fire_timers could last more
 			  than nothing.
-			  
+
 			  when poll did no timeout, we don't handle timers, as this will be done
 			  in the next iteration (without adding overhead - we had to get the new
 			  time anyway
@@ -142,13 +176,18 @@ void eMainloop::processOneEvent()
 		// first, process pending timers...
 	long usec=0;
 
+	if ( TimerList )
+		doRecalcTimers();
 	while (TimerList && (usec = timeout_usec( TimerList.begin()->getNextActivation() ) ) <= 0 )
+	{
 		TimerList.begin()->activate();
+		doRecalcTimers();
+	}
 
-		// build the poll aray
 	int fdAnz = notifiers.size();
-	pollfd* pfd = new pollfd[fdAnz];  // make new pollfd array
+	pollfd pfd[fdAnz];
 
+// fill pfd array
 	std::map<int,eSocketNotifier*>::iterator it(notifiers.begin());
 	for (int i=0; i < fdAnz; i++, it++)
 	{
@@ -157,10 +196,11 @@ void eMainloop::processOneEvent()
 	}
 
 		// to the poll. When there are no timers, we have an infinite timeout
-	int ret=poll(pfd, fdAnz, TimerList ? usec / 1000 : -1);  // convert to us
+	int ret=poll(pfd, fdAnz, TimerList ? usec / 1000 : -1);  // convert to ms
 
 	if (ret>0)
 	{
+	//		eDebug("bin aussem poll raus und da war was");
 		for (int i=0; i < fdAnz ; i++)
 		{
 			if( notifiers.find(pfd[i].fd) == notifiers.end())
@@ -171,74 +211,75 @@ void eMainloop::processOneEvent()
 			if ( pfd[i].revents & req )
 			{
 				notifiers[pfd[i].fd]->activate(pfd[i].revents);
-
 				if (!--ret)
 					break;
-			} else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-				eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d) -> FIX YOUR CODE", pfd[i].fd,pfd[i].revents);
+			}
+			else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
+				eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd,pfd[i].revents);
 		}
-	} else if (ret<0)
+	}
+	else if (ret<0)
 	{
-			/* when we got a signal, we get EINTR. we do not care, 
+			/* when we got a signal, we get EINTR. we do not care,
 			   because we check current time in timers anyway. */
 		if (errno != EINTR)
-			eDebug("poll made error (%m)");
-	} 
-
-		// check timer...
-	while ( TimerList && timeout_usec( TimerList.begin()->getNextActivation() ) <= 0 )
-		TimerList.begin()->activate();
-
-	delete [] pfd;
+			eDebug("poll made error");
+	}
 }
-
 
 int eMainloop::exec()
 {
 	if (!loop_level)
 	{
 		app_quit_now = false;
+		app_exit_loop = false;
 		enter_loop();
 	}
 	return retval;
 }
 
-	/* use with care! better: don't use it anymore. it was used for gui stuff, but 
-		 doesn't allow multiple paths (or active dialogs, if you want it that way.) */
 void eMainloop::enter_loop()
 {
 	loop_level++;
-
 	// Status der vorhandenen Loop merken
 	bool old_exit_loop = app_exit_loop;
-	
+
 	app_exit_loop = false;
 
 	while (!app_exit_loop && !app_quit_now)
-	{
 		processOneEvent();
-	}
 
 	// wiederherstellen der vorherigen app_exit_loop
 	app_exit_loop = old_exit_loop;
 
-	loop_level--;
+	--loop_level;
 
 	if (!loop_level)
 	{
-			// do something here on exit the last loop
+		// do something here on exit the last loop
 	}
 }
 
 void eMainloop::exit_loop()  // call this to leave the current loop
 {
-	app_exit_loop = true;	
+	app_exit_loop = true;
 }
 
 void eMainloop::quit( int ret )   // call this to leave all loops
 {
 	retval=ret;
 	app_quit_now = true;
+}
+
+inline void eMainloop::doRecalcTimers()
+{
+	singleLock s(recalcLock);
+	if ( timer_offset )
+	{
+		for (ePtrList<eTimer>::iterator it(TimerList); it != TimerList.end(); ++it )
+			it->recalc( timer_offset );
+		timer_offset=0;
+	}
 }
 
 eApplication* eApp = 0;
