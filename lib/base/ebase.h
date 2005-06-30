@@ -176,6 +176,8 @@ class eTimer;
 			// werden in einer mainloop verarbeitet
 class eMainloop
 {
+	friend class eTimer;
+	friend class eSocketNotifier;
 	std::map<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> TimerList;
 	bool app_exit_loop;
@@ -183,21 +185,36 @@ class eMainloop
 	int loop_level;
 	void processOneEvent();
 	int retval;
+	int timer_offset;
+	pthread_mutex_t recalcLock;
+	inline void doRecalcTimers();
+	inline void addSocketNotifier(eSocketNotifier *sn);
+	inline void removeSocketNotifier(eSocketNotifier *sn);
+	inline void addTimer(eTimer* e)	{		TimerList.insert_in_order(e);	}
+	inline void removeTimer(eTimer* e)	{		TimerList.remove(e);	}
 public:
-	eMainloop():app_quit_now(0),loop_level(0),retval(0){	}
- 	void addSocketNotifier(eSocketNotifier *sn);
-	void removeSocketNotifier(eSocketNotifier *sn);
-	void addTimer(eTimer* e)	{		TimerList.insert_in_order(e);	}
-	void removeTimer(eTimer* e)	{		TimerList.remove(e);	}
-
+	static ePtrList<eMainloop> existing_loops;
+	eMainloop()
+		:app_quit_now(0),loop_level(0),retval(0),timer_offset(0)
+	{
+		existing_loops.push_back(this);
+		pthread_mutex_init(&recalcLock, 0);
+	}
+	~eMainloop()
+	{
+		existing_loops.remove(this);
+		pthread_mutex_destroy(&recalcLock);
+	}
 	int looplevel() { return loop_level; }
-	
+
 	int exec();  // recursive enter the loop
 	void quit(int ret=0); // leave all pending loops (recursive leave())
 	void enter_loop();
 	void exit_loop();
+	void setTimerOffset( int );
+	int getTimerOffset() { return timer_offset; }
+	bool isAppQuitNowSet() { return app_quit_now; }
 };
-
 
 /**
  * \brief The application class.
@@ -227,11 +244,13 @@ public:
  */
 class eTimer
 {
+	friend class eMainloop;
 	eMainloop &context;
 	timeval nextActivation;
 	long interval;
 	bool bSingleShot;
 	bool bActive;
+	inline void recalc(int);
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -239,19 +258,19 @@ public:
 	 * The timer is not yet active, it has to be started with \c start.
 	 * \param context The thread from which the signal should be emitted.
 	 */
-	eTimer(eMainloop *context = eApp): context(*context), bActive(false) { }
-	~eTimer()	{ if (bActive) stop(); }
+	eTimer(eMainloop *context=eApp): context(*context), bActive(false) { }
+	~eTimer() { if (bActive) stop(); }
 
 	PSignal0<void> timeout;
 	void activate();
 
-	bool isActive()	{ return bActive; }
+	bool isActive() { return bActive; }
 	timeval &getNextActivation() { return nextActivation; }
 
-	void start(long msec, bool singleShot=false);
+	void start(long msec, bool b=false);
 	void stop();
 	void changeInterval(long msek);
-	bool operator<(const eTimer& t) const	{		return nextActivation < t.nextActivation;		}
+	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
+	void startLongTimer( int seconds );
 };
-
 #endif

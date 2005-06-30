@@ -321,6 +321,7 @@ RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *c
 {
 	eDebug("add channel %p", ch);
 	m_active_channels.push_back(active_channel(chid, ch));
+	/* emit */ m_channelAdded(ch);
 	return 0;
 }
 
@@ -333,6 +334,7 @@ RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 		{
 			i = m_active_channels.erase(i);
 			++cnt;
+			/* emit */ m_channelRemoved(ch);
 		} else
 			++i;
 	}
@@ -340,6 +342,24 @@ RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 	if (cnt == 1)
 		return 0;
 	return -ENOENT;
+}
+
+RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection)
+{
+	connection = new eConnection((eDVBResourceManager*)this, m_channelAdded.connect(channelAdded));
+	return 0;
+}
+
+RESULT eDVBResourceManager::connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection)
+{
+	connection = new eConnection((eDVBResourceManager*)this, m_channelRemoved.connect(channelRemoved));
+	return 0;
+}
+
+RESULT eDVBResourceManager::connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRunning, ePtr<eConnection> &connection)
+{
+	connection = new eConnection((eDVBResourceManager*)this, m_channelRunning.connect(channelRunning));
+	return 0;
 }
 
 DEFINE_REF(eDVBChannel);

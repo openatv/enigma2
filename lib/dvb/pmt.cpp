@@ -27,8 +27,11 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		serviceEvent(eventTuned);
 		
 		if (m_demux)
-		{	
+		{
 			eDebug("ok ... now we start!!");
+
+			/* emit */ m_resourceManager->m_channelRunning(channel);
+
 			m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
 		}
 	}

@@ -22,8 +22,7 @@ void eGTable::sectionRead(const __u8 *d)
 
 void eGTable::timeout()
 {
-	printf("timeout!\n");
-//	eDebug("timeout!");
+	eDebug("timeout!");
 	m_reader->stop();
 	ready = 1;
 	error = -1;
@@ -58,7 +57,7 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	if (m_table.flags & eDVBTableSpec::tfHaveTID)
 	{
 		mask.data[0] = m_table.tid;
-		mask.mask[0] = 0xFF;
+		mask.mask[0] = mask.pid == 0x14 ? 0xFC : 0xFF;
 	}
 	
 	if (m_table.flags & eDVBTableSpec::tfHaveTIDExt)

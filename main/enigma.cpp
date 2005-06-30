@@ -90,6 +90,7 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
+#include <lib/dvb/dvbtime.h>
 
 class eMain: public eApplication, public Object
 {
@@ -97,9 +98,9 @@ class eMain: public eApplication, public Object
 	
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<eDVBDB> m_dvbdb;
-
+	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
 	ePtr<eComponentScan> m_scan;
-	
+
 public:
 	eMain()
 	{
@@ -108,7 +109,7 @@ public:
 				/* TODO: put into init */
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
-		
+		m_locale_time_handler = new eDVBLocalTimeHandler();
 		m_mgr->setChannelList(m_dvbdb);
 		
 //		m_scan = new eComponentScan();
