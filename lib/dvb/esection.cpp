@@ -57,15 +57,26 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	if (m_table.flags & eDVBTableSpec::tfHaveTID)
 	{
 		mask.data[0] = m_table.tid;
-		mask.mask[0] = mask.pid == 0x14 ? 0xFC : 0xFF;
+		if (m_table.flags & eDVBTableSpec::tfHaveTIDMask)
+			mask.mask[0] = m_table.tid_mask;
+		else
+			mask.mask[0] = 0xFF;
 	}
-	
+
 	if (m_table.flags & eDVBTableSpec::tfHaveTIDExt)
 	{
 		mask.data[1] = m_table.tidext >> 8;
 		mask.data[2] = m_table.tidext;
-		mask.mask[1] = 0xFF;
-		mask.mask[2] = 0xFF;
+		if (m_table.flags & eDVBTableSpec::tfHaveTIDExtMask)
+		{
+			mask.mask[1] = m_table.tidext_mask >> 8;
+			mask.mask[2] = m_table.tidext_mask;
+		}
+		else
+		{
+			mask.mask[1] = 0xFF;
+			mask.mask[2] = 0xFF;
+		}
 	}
 	
 	if (!(m_table.flags & eDVBTableSpec::tfAnyVersion))
