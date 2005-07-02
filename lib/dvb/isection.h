@@ -21,7 +21,7 @@ struct eDVBSectionFilterMask
 
 struct eDVBTableSpec
 {
-	int pid, tid, tidext;
+	int pid, tid, tidext, tid_mask, tidext_mask;
 	int version;
 	int timeout;        /* timeout in ms */
 	enum
@@ -38,6 +38,8 @@ struct eDVBTableSpec
 		tfHaveTIDExt=16,
 		tfCheckCRC=32,
 		tfHaveTimeout=64,
+		tfHaveTIDMask=128,
+		tfHaveTIDExtMask=256
 	};
 	int flags;
 };
