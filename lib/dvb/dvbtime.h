@@ -7,6 +7,15 @@
 
 class eDVBChannel;
 
+inline int fromBCD(int bcd)
+{
+	if ((bcd&0xF0)>=0xA0)
+		return -1;
+	if ((bcd&0xF)>=0xA)
+		return -1;
+	return ((bcd&0xF0)>>4)*10+(bcd&0xF);
+}
+
 time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5);
 
 class TDT: public eGTable
@@ -45,8 +54,8 @@ public:
 	PSignal0<void> m_timeUpdated;
 	eDVBLocalTimeHandler();
 	~eDVBLocalTimeHandler();
-	bool ready() { return m_time_ready; }
-	int difference() { return m_time_difference; }
+	bool ready() const { return m_time_ready; }
+	int difference() const { return m_time_difference; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
 };
 

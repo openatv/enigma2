@@ -39,15 +39,6 @@ time_t getRTC()
 	return rtc_time != prev_time ? rtc_time : 0;
 }
 
-int fromBCD(int bcd)
-{
-	if ((bcd&0xF0)>=0xA0)
-		return -1;
-	if ((bcd&0xF)>=0xA)
-		return -1;
-	return ((bcd&0xF0)>>4)*10+(bcd&0xF);
-}
-
 time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5)
 {
 	tm t;
