@@ -19,6 +19,8 @@ import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
+from Tools import XMLTools
+
 # some screens
 def doGlobal(screen):
 	screen["clock"] = Clock()
@@ -73,13 +75,6 @@ mdom = xml.dom.minidom.parseString(
 			<item text="Sleep Timer">self.goSetup()</item>
 		</menu>
 	</menu>""")
-
-def getText(nodelist):
-	rc = ""
-	for node in nodelist:
-		if node.nodeType == node.TEXT_NODE:
-			rc = rc + node.data
-	return rc
 
 def getValbyAttr(x, attr):
 	for p in range(x.attributes.length):
@@ -159,6 +154,7 @@ class Menu(Screen):
 		self.session.open(clockDisplay, Clock())
 
 	def okbuttonClick(self):
+		print "okbuttonClick"
 		selection = self["menu"].getCurrent()
 		selection[1]()
 
@@ -178,7 +174,7 @@ class Menu(Screen):
 	def addItem(self, destList, node):
 		ItemText = getValbyAttr(node, "text")
 		if ItemText != "":																	#check for name
-			b = getText(node.childNodes)
+			b = XMLTools.mergeText(node.childNodes)
 			if b != "":																				#check for function
 				destList.append((ItemText,boundFunction(self.evalText,b)))
 			else:

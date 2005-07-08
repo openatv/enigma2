@@ -1,4 +1,4 @@
 __all__ = ["ChannelSelection", "ClockDisplay", "ConfigMenu", 
-	"InfoBar", "Menu", "ScartLoopThrough", "Screen", "ServiceScan",
+	"InfoBar", "MessageBox", "Menu", "ScartLoopThrough", "Screen", "ServiceScan",
 	"TimerEdit"]
 

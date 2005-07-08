@@ -2,7 +2,7 @@ from enigma import *
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 
-from Tools.XMLTools import elementsWithTag
+from Tools.XMLTools import elementsWithTag, mergeText
 
 colorNames = dict()
 
@@ -46,11 +46,12 @@ dom = xml.dom.minidom.parseString(
 				<pixmap pos="bpBottom"      filename="data/b_w_b.png"  />
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
-		</windowstyle>
+		</windowstyle> """ """
 		<screen name="Menu" position="300,100" size="300,300" title="real main menu">
 <!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
 			<widget name="title" position="10,10" size="280,20" />
 			<widget name="menu" position="10,30" size="280,200" />
+			
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -104,12 +105,37 @@ dom = xml.dom.minidom.parseString(
 			<widget name="scan_state" position="10,60" size="280,30" />
 		</screen>
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
-			<widget name="description" position="10,10" size="580,40" font="Arial;25"/>
-			<widget name="lbegin" position="405,102" size="103,30" font="Arial;25" />
-			<widget name="lend" position="405,158" size="103,30" font="Arial;25" />
+			<widget name="description" position="10,10" size="580,40" font="Arial;25" />
+			<widget name="lbegin" position="405,102" size="103,30" font="Arial;25" foregroundColor="red" />
+			<widget name="lend" position="405,158" size="103,30" font="Arial;25" foregroundColor="green" />
 			<widget name="begin" position="508,105" size="72,35" font="Arial;25" />
 			<widget name="end" position="508,150" size="72,35" font="Arial;25" />
 			<widget name="apply" position="10,240" size="250,35" />
+		</screen>
+		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
+			<widget name="text" position="0,0" size="500,0" font="Arial;25" />
+			<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrated applets.
+from enigma import eSize, ePoint
+
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self["text"].getSize()
+
+# y size still must be fixed in font stuff...
+textsize = (textsize[0], textsize[1] + 20)
+wsize = (textsize[0] + 20, textsize[1] + 20)
+
+# resize 
+self.instance.resize(eSize(*wsize))
+
+# resize label
+self["text"].instance.resize(eSize(*textsize))
+
+# center window
+newwidth = wsize[0]
+self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+			</applet>
 		</screen>
 	</skin>""")
 
@@ -133,7 +159,7 @@ def parseColor(str):
 			raise ("color '%s' must be #aarrggbb or valid named color" % (str))
 	return gRGB(int(str[1:], 0x10))
 
-def applyAttributes(guiObject, node, desktop):
+def collectAttributes(skinAttributes, node):
 	# walk all attributes
 	for p in range(node.attributes.length):
 		a = node.attributes.item(p)
@@ -144,60 +170,70 @@ def applyAttributes(guiObject, node, desktop):
 		# TODO: localization? as in e1?
 		value = str(a.value)
 		
-		# and set attributes
-		try:
-			if attrib == 'position':
-				guiObject.move(parsePosition(value))
-			elif attrib == 'size':
-				guiObject.resize(parseSize(value))
-			elif attrib == 'title':
-				guiObject.setTitle(value)
-			elif attrib == 'text':
-				guiObject.setText(value)
-			elif attrib == 'font':
-				guiObject.setFont(parseFont(value))
-			elif attrib == "pixmap":
-				ptr = gPixmapPtr()
-				if loadPNG(ptr, value):
-					raise "loading PNG failed!"
-				x = ptr
-				ptr = ptr.__deref__()
-				desktop.makeCompatiblePixmap(ptr)
-				guiObject.setPixmap(ptr)
-#				guiObject.setPixmapFromFile(value)
-			elif attrib == "valign":
+		skinAttributes[attrib] = value
+
+def applySingleAttribute(guiObject, desktop, attrib, value):		
+	# and set attributes
+	try:
+		if attrib == 'position':
+			guiObject.move(parsePosition(value))
+		elif attrib == 'size':
+			guiObject.resize(parseSize(value))
+		elif attrib == 'title':
+			guiObject.setTitle(value)
+		elif attrib == 'text':
+			guiObject.setText(value)
+		elif attrib == 'font':
+			guiObject.setFont(parseFont(value))
+		elif attrib == "pixmap":
+			ptr = gPixmapPtr()
+			if loadPNG(ptr, value):
+				raise "loading PNG failed!"
+			x = ptr
+			ptr = ptr.__deref__()
+			desktop.makeCompatiblePixmap(ptr)
+			guiObject.setPixmap(ptr)
+			# guiObject.setPixmapFromFile(value)
+		elif attrib == "valign":
+			try:
+				guiObject.setVAlign(
+					{ "top": guiObject.alignTop,
+						"center": guiObject.alignCenter,
+						"bottom": guiObject.alignBottom
+					}[value])
+			except KeyError:
+				print "valign must be either top, center or bottom!"
+		elif attrib == "halign":
+			try:
+				guiObject.setHAlign(
+					{ "left": guiObject.alignLeft,
+						"center": guiObject.alignCenter,
+						"right": guiObject.alignRight,
+						"block": guiObject.alignBlock
+					}[value])
+			except KeyError:
+				print "halign must be either left, center, right or block!"
+		elif attrib == "flags":
+			flags = value.split(',')
+			for f in flags:
 				try:
-					guiObject.setVAlign(
-						{ "top": guiObject.alignTop,
-							"center": guiObject.alignCenter,
-							"bottom": guiObject.alignBottom
-						}[value])
+					fv = eWindow.__dict__[f]
+					guiObject.setFlag(fv)
 				except KeyError:
-					print "valign must be either top, center or bottom!"
-			elif attrib == "halign":
-				try:
-					guiObject.setHAlign(
-						{ "left": guiObject.alignLeft,
-							"center": guiObject.alignCenter,
-							"right": guiObject.alignRight,
-							"block": guiObject.alignBlock
-						}[value])
-				except KeyError:
-					print "halign must be either left, center, right or block!"
-			elif attrib == "flags":
-				flags = value.split(',')
-				for f in flags:
-					try:
-						fv = eWindow.__dict__[f]
-						guiObject.setFlag(fv)
-					except KeyError:
-						print "illegal flag %s!" % f
-			elif attrib == "backgroundColor":
-				guiObject.setBackgroundColor(parseColor(value))
-			elif attrib != 'name':
-				print "unsupported attribute " + attrib + "=" + value
-		except AttributeError:
-			print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
+					print "illegal flag %s!" % f
+		elif attrib == "backgroundColor":
+			guiObject.setBackgroundColor(parseColor(value))
+		elif attrib == "foregroundColor":
+			guiObject.setForegroundColor(parseColor(value))
+		elif attrib != 'name':
+			print "unsupported attribute " + attrib + "=" + value
+	except int:
+# AttributeError:
+		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
+
+def applyAllAttributes(guiObject, desktop, attributes):
+	for (attrib, value) in attributes.items():
+		applySingleAttribute(guiObject, desktop, attrib, value)
 
 def loadSkin(desktop):
 	print "loading skin..."
@@ -249,7 +285,7 @@ def loadSkin(desktop):
 		eWindowStyleManager.getInstance(x)
 		x.setStyle(style)
 
-def applyGUIskin(screen, skin, name, desktop):
+def readSkin(screen, skin, name, desktop):
 	myscreen = None
 	
 	# first, find the corresponding screen element
@@ -261,8 +297,11 @@ def applyGUIskin(screen, skin, name, desktop):
 	del skin
 	
 	assert myscreen != None, "no skin for screen '" + name + "' found!"
+
+	screen.skinAttributes = { }	
+	collectAttributes(screen.skinAttributes, myscreen)
 	
-	applyAttributes(screen.instance, myscreen, desktop)
+	screen.additionalWidgets = [ ]
 	
 	# now walk all widgets
 	for widget in elementsWithTag(myscreen.childNodes, "widget"):
@@ -273,20 +312,43 @@ def applyGUIskin(screen, skin, name, desktop):
 		
 		# get corresponding gui object
 		try:
-			guiObject = screen[wname].instance
+			attributes = screen[wname].skinAttributes = { }
 		except:
 			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 		
-		applyAttributes(guiObject, widget, desktop)
+		collectAttributes(attributes, widget)
 
 	# now walk additional objects
 	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
+		if widget.tagName == "applet":
+			codeText = mergeText(widget.childNodes).strip()
+			type = widget.getAttribute('type')
+
+			code = compile(codeText, "skin applet", "exec")
+			
+			if type == "onLayoutFinish":
+				screen.onLayoutFinish.append(code)
+			else:
+				raise str("applet type '%s' unknown!" % type)
+			
+			continue
+		
+		class additionalWidget:
+			pass
+		
+		w = additionalWidget()
+		
 		if widget.tagName == "eLabel":
-			guiObject = eLabel(screen.instance)
+			w.widget = eLabel
 		elif widget.tagName == "ePixmap":
-			guiObject = ePixmap(screen.instance)
+			w.widget = ePixmap
 		else:
 			raise str("unsupported stuff : %s" % widget.tagName)
 		
-		applyAttributes(guiObject, widget, desktop	)
-		guiObject.thisown = 0
+		w.skinAttributes = { }
+		collectAttributes(w.skinAttributes, widget)
+		
+		# applyAttributes(guiObject, widget, desktop)
+		# guiObject.thisown = 0
+		print screen.additionalWidgets
+		screen.additionalWidgets.append(w)

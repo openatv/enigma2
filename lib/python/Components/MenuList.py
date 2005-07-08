@@ -12,7 +12,7 @@ class MenuList(HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 	
-	def GUIcreate(self, parent, skindata):
+	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
 	

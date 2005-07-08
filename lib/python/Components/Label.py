@@ -15,6 +15,10 @@ class Label(HTMLComponent, GUIComponent, VariableText):
 		return self.getText()
 
 # GUI:
-	def createWidget(self, parent, skindata):
+	def createWidget(self, parent):
 		return eLabel(parent)
 	
+	def getSize(self):
+		s = self.instance.calculateSize()
+		return (s.width(), s.height())
+

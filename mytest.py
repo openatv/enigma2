@@ -10,7 +10,7 @@ import ServiceReference
 
 from Navigation import Navigation
 
-from skin import applyGUIskin
+from skin import readSkin, applyAllAttributes
 
 # A screen is a function which instanciates all components of a screen into a temporary component.
 # Thus, the global stuff is a screen, too.
@@ -54,8 +54,8 @@ html = HTMLOutputDevice()
 
 class GUIOutputDevice(OutputDevice):
 	parent = None
-	def create(self, comp):
-		comp.createGUIScreen(self.parent)
+	def create(self, comp, desktop):
+		comp.createGUIScreen(self.parent, desktop)
 
 class Session:
 	def __init__(self):
@@ -75,7 +75,7 @@ class Session:
 		
 			print sys.getrefcount(self.currentDialog)
 			del self.currentDialog.instance
-			dump(self.currentDialog)
+#			dump(self.currentDialog)
 			del self.currentDialog
 		
 		self.popCurrent()
@@ -93,16 +93,20 @@ class Session:
 		return screen(self, *arguments)
 	
 	def instantiateDialog(self, screen, *arguments):
+		# create dialog
 		dlg = self.create(screen, arguments)
+		
+		# read skin data
+		readSkin(dlg, None, dlg.skinName, self.desktop)
+
+		# create GUI view of this dialog
 		assert self.desktop != None
 		dlg.instance = eWindow(self.desktop)
-
+		applyAllAttributes(dlg.instance, self.desktop, dlg.skinAttributes)
 		gui = GUIOutputDevice()
 		gui.parent = dlg.instance
-		gui.create(dlg)
-
-		applyGUIskin(dlg, None, dlg.skinName, self.desktop)
-	 	
+		gui.create(dlg, self.desktop)
+		
 		return dlg
 	 
 	def pushCurrent(self):

@@ -23,7 +23,7 @@ class PerServiceDisplay(GUIComponent, VariableText):
 			# call handler
 			self.eventmap[ev]()
 	
-	def createWidget(self, parent, skindata):
+	def createWidget(self, parent):
 		# by default, we use a label to display our data.
 		g = eLabel(parent)
 		return g

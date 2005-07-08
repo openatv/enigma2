@@ -6,6 +6,8 @@ from Components.Button import Button
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 
+from Screens.MessageBox import MessageBox
+
 from enigma import *
 
 import time
@@ -31,7 +33,7 @@ class InfoBar(Screen):
 				"hide": self.hide,
 				"toggleShow": self.toggleShow
 			})
-		self["okbutton"] = Button("mainMenu", [self.mainMenu])
+#		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
 		self["CurrentTime"] = Clock()
 		
@@ -77,6 +79,9 @@ class InfoBar(Screen):
 		self.servicelist.zap()
 		
 	def instantRecord(self):
+		self.session.open(MessageBox, "this would be an instant recording! do you really know what you're doing?!")
+		return
+	
 		if self.recording != None:
 			print "remove entry"
 			self.session.nav.RecordTimer.removeEntry(self.recording)

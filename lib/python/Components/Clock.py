@@ -24,7 +24,7 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		self.setText("%2d:%02d:%02d" % (t[3], t[4], t[5]))
 
 # realisierung als GUI
-	def createWidget(self, parent, skindata):
+	def createWidget(self, parent):
 		return eLabel(parent)
 
 	def removeWidget(self, w):
