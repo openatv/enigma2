@@ -22,12 +22,20 @@ public:
 	
 	void setVAlign(int align);
 	void setHAlign(int align);
+	
+	void setForegroundColor(const gRGB &col);
+	void clearForegroundColor();
+	
+	eSize calculateSize();
 protected:
 	ePtr<gFont> m_font;
 	int m_valign, m_halign;
 	std::string m_text;
 	int event(int event, void *data=0, void *data2=0);
 private:
+	int m_have_foreground_color;
+	gRGB m_foreground_color;
+	
 	enum eLabelEvent
 	{
 		evtChangedText = evtUserWidget,
