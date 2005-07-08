@@ -1,3 +1,5 @@
+import skin
+
 class VariableValue:
 	"""VariableValue can be used for components which have a variable value (like eSlider), based on any widget with setValue call"""
 	
@@ -13,8 +15,8 @@ class VariableValue:
 	def getValue(self):
 		return self.value
 		
-	def GUIcreate(self, parent, skindata):
-		self.instance = self.createWidget(parent, skindata)
+	def GUIcreate(self, parent):
+		self.instance = self.createWidget(parent)
 		self.instance.setValue(self.value)
 	
 	def GUIdelete(self):

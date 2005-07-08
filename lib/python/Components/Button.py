@@ -29,7 +29,7 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
 
 # GUI:
-	def createWidget(self, parent, skindata):
+	def createWidget(self, parent):
 		g = eButton(parent)
 		g.selected.get().append(self.push)
 		return g
