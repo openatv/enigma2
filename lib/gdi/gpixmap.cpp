@@ -224,7 +224,6 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 
 void gPixmap::mergePalette(const gPixmap &target)
 {
-	eDebug("merge palette! %p %p", surface, target.surface);
 	if ((!surface->clut.colors) || (!target.surface->clut.colors))
 		return;
 
