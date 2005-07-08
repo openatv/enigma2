@@ -1,4 +1,5 @@
 #include <lib/gui/elabel.h>
+#include <lib/gdi/font.h>
 
 eLabel::eLabel(eWidget *parent): eWidget(parent)
 {
@@ -10,6 +11,8 @@ eLabel::eLabel(eWidget *parent): eWidget(parent)
 		/* default to topleft alignment */
 	m_valign = alignTop;
 	m_halign = alignLeft;
+	
+	m_have_foreground_color = 0;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -27,6 +30,9 @@ int eLabel::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 		painter.setFont(m_font);
 		style->setStyle(painter, eWindowStyle::styleLabel);
+		
+		if (m_have_foreground_color)
+			painter.setForegroundColor(m_foreground_color);
 		
 		int flags = 0;
 		if (m_valign == alignTop)
@@ -84,4 +90,26 @@ void eLabel::setHAlign(int align)
 {
 	m_halign = align;
 	event(evtChangedAlignment);
+}
+
+void eLabel::setForegroundColor(const gRGB &col)
+{
+	m_foreground_color = col;
+	m_have_foreground_color = 1;
+}
+
+void eLabel::clearForegroundColor()
+{
+	m_have_foreground_color = 0;
+}
+
+eSize eLabel::calculateSize()
+{
+	ePtr<eTextPara> p = new eTextPara(eRect(0, 0, size().width(), size().height()));
+	
+	p->setFont(m_font);
+	p->renderString(m_text, RS_WRAP);
+	
+	eRect bbox = p->getBoundBox();
+	return bbox.size();
 }
