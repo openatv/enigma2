@@ -240,7 +240,7 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 }
 
 
-RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, ePtr<iDVBChannel> &channel)
+RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel)
 {
 		/* first, check if a channel is already existing. */
 	
@@ -289,7 +289,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, ePtr
 	return 0;
 }
 
-RESULT eDVBResourceManager::allocateRawChannel(ePtr<iDVBChannel> &channel)
+RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 {
 	ePtr<eDVBAllocatedFrontend> fe;
 	
@@ -383,6 +383,11 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 {
 	eDebug("fe state changed!");
 	int state, ourstate = 0;
+	
+		/* if we are already in shutdown, don't change state. */
+	if (m_state == state_release)
+		return;
+	
 	if (fe->getState(state))
 		return;
 	
@@ -404,6 +409,20 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	if (ourstate != m_state)
 	{
 		m_state = ourstate;
+		m_stateChanged(this);
+	}
+}
+
+void eDVBChannel::AddUse()
+{
+	++m_use_count;
+}
+
+void eDVBChannel::ReleaseUse()
+{
+	if (!--m_use_count)
+	{
+		m_state = state_release;
 		m_stateChanged(this);
 	}
 }

@@ -66,6 +66,81 @@ public:
 };
 
 
+template<class T>
+class eUsePtr
+{
+protected:
+	T *ptr;
+public:
+	T &operator*() { return *ptr; }
+	eUsePtr(): ptr(0)
+	{
+	}
+	eUsePtr(T *c): ptr(c)
+	{
+		if (c)
+		{
+			c->AddRef();
+			c->AddUse();
+		}
+	}
+	eUsePtr(const eUsePtr &c)
+	{
+		ptr=c.ptr;
+		if (ptr)
+		{
+			ptr->AddRef();
+			ptr->AddUse();
+		}
+	}
+	eUsePtr &operator=(T *c)
+	{
+		if (c)
+		{
+			c->AddRef();
+			c->AddUse();
+		}
+		if (ptr)
+		{
+			ptr->ReleaseUse();
+			ptr->Release();
+		}
+		ptr=c;
+		return *this;
+	}
+	
+	eUsePtr &operator=(eUsePtr<T> &c)
+	{
+		if (c.ptr)
+		{
+			c.ptr->AddRef();
+			c.ptr->AddUse();
+		}
+		if (ptr)
+		{
+			ptr->ReleaseUse();
+			ptr->Release();
+		}
+		ptr=c.ptr;
+		return *this;
+	}
+	
+	~eUsePtr()
+	{
+		if (ptr)
+		{
+			ptr->ReleaseUse();
+			ptr->Release();
+		}
+	}
+	
+	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); ptr->AddUse(); return ptr; }
+	T* &ptrref() { assert(!ptr); return ptr; }
+	T* operator->() const { assert(ptr); return ptr; }
+	operator T*() const { return this->ptr; }
+};
+
+
 
 #ifndef SWIG
 template<class T>

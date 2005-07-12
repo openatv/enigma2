@@ -86,7 +86,7 @@ int eComponentScan::start()
 	fet.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy::HNone;
 	fe->setDVBT(fet);
 #endif
-	ePtr<iDVBChannel> channel;
+	eUsePtr<iDVBChannel> channel;
 
 	if (mgr->allocateRawChannel(channel))
 	{
