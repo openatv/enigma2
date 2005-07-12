@@ -414,7 +414,8 @@ public:
 		state_idle,        /* not yet tuned */
 		state_tuning,      /* currently tuning (first time) */
 		state_unavailable, /* currently unavailable, will be back without further interaction */
-		state_ok           /* ok */
+		state_ok,          /* ok */
+		state_release      /* channel is being shut down. */
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT getState(int &state)=0;
@@ -428,6 +429,10 @@ public:
 	
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual RESULT getFrontend(ePtr<iDVBFrontend> &frontend)=0;
+	
+		/* use count handling */
+	virtual void AddUse() = 0;
+	virtual void ReleaseUse() = 0;
 };
 
 class iDVBSectionReader;
