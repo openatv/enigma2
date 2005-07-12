@@ -76,7 +76,10 @@ void eDVBSectionReader::data(int)
 		if ((c = crc32((unsigned)-1, data, r)))
 			eFatal("crc32 failed! is %x\n", c);
 	}
-	read(data);
+	if (active)
+		read(data);
+	else
+		eDebug("data.. but not active");
 }
 
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
@@ -166,7 +169,8 @@ RESULT eDVBSectionReader::stop()
 {
 	if (!active)
 		return -1;
-	
+
+	active=0;
 	::ioctl(fd, DMX_STOP);
 	
 	return 0;

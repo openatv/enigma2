@@ -641,7 +641,7 @@ void eEPGCache::startCache(const eServiceReferenceDVB& ref)
 	else
 	{
 		ePtr<iDVBDemux> demux;
-		res_mgr->allocateChannel(chid, m_currentChannel);
+//		res_mgr->allocateChannel(chid, m_currentChannel);
 		if ( m_currentChannel->getDemux(demux) )
 		{
 			eDebug("[eEPGCache] no demux!!");

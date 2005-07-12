@@ -129,18 +129,14 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 	if (!res_mgr)
 		eDebug("[eDVBLocalTimerHandler] no resource manager !!!!!!!");
 	else
-	{
 		res_mgr->connectChannelAdded(slot(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
-		res_mgr->connectChannelRemoved(slot(*this,&eDVBLocalTimeHandler::DVBChannelRemoved), m_chanRemovedConn);
-		res_mgr->connectChannelRunning(slot(*this,&eDVBLocalTimeHandler::DVBChannelRunning), m_chanRunningConn);
-	}
 }
 
 eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 {
 	instance=0;
-	for (std::map<iDVBChannel*, TDT*>::iterator it=m_active_tables.begin(); it != m_active_tables.end(); ++it)
-		delete it->second;
+	for (std::map<iDVBChannel*, channel_data>::iterator it=m_knownChannels.begin(); it != m_knownChannels.end(); ++it)
+		delete it->second.tdt;
 }
 
 void eDVBLocalTimeHandler::readTimeOffsetData( const char* filename )
@@ -347,52 +343,55 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 
 	if ( restart_tdt )
 	{
-		std::map<iDVBChannel*, TDT*>::iterator it =
-			m_active_tables.find(chan);
-		if ( it != m_active_tables.end() )
+		std::map<iDVBChannel*, channel_data>::iterator it =
+			m_knownChannels.find(chan);
+		if ( it != m_knownChannels.end() )
 		{
-			delete it->second;
-			it->second = new TDT(chan);
-			it->second->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
+			delete it->second.tdt;
+			it->second.tdt = new TDT(chan);
+			it->second.tdt->startTimer(60*1000);  // restart TDT for this transponder in 60min
 		}
 	}
-
 }
 
 void eDVBLocalTimeHandler::DVBChannelAdded(eDVBChannel *chan)
 {
-	eDebug("[eDVBLocalTimerHandler] add channel %p", chan);
 	if ( chan )
 	{
-		std::map<iDVBChannel*, TDT*>::iterator it =
-			m_active_tables.find(chan);
-		if ( it != m_active_tables.end() )
-		{
-			delete it->second;
-			it->second = new TDT(chan);
-		}
-		else
-			m_active_tables[chan] = new TDT(chan);
+		eDebug("[eDVBLocalTimerHandler] add channel %p", chan);
+		std::pair<std::map<iDVBChannel*, channel_data>::iterator, bool> tmp =
+			m_knownChannels.insert( std::pair<iDVBChannel*, channel_data>(chan, channel_data()) );
+		tmp.first->second.tdt = new TDT(chan);
+		tmp.first->second.channel = chan;
+		chan->connectStateChange(slot(*this, &eDVBLocalTimeHandler::DVBChannelStateChanged), tmp.first->second.m_stateChangedConn);
 	}
 }
 
-void eDVBLocalTimeHandler::DVBChannelRemoved(eDVBChannel *chan)
+void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 {
-	eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
-	std::map<iDVBChannel*, TDT*>::iterator it =
-		m_active_tables.find(chan);
-	if ( it != m_active_tables.end() )
+	std::map<iDVBChannel*, channel_data>::iterator it =
+		m_knownChannels.find(chan);
+	if ( it != m_knownChannels.end() )
 	{
-		delete it->second;
-		m_active_tables.erase(it);
+		int state=0;
+		chan->getState(state);
+		switch (state)
+		{
+			case iDVBChannel::state_idle:
+				break;
+			case iDVBChannel::state_tuning:
+				break;
+			case iDVBChannel::state_unavailable:
+				break;
+			case iDVBChannel::state_ok:
+				eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
+				it->second.tdt->start();
+				break;
+			case iDVBChannel::state_release:
+				eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
+				delete it->second.tdt;
+				m_knownChannels.erase(it);
+				break;
+		}
 	}
-}
-
-void eDVBLocalTimeHandler::DVBChannelRunning(iDVBChannel *chan)
-{
-	eDebug("[eDVBLocalTimerHandler] start channel %p", chan);
-	std::map<iDVBChannel*, TDT*>::iterator it =
-		m_active_tables.find(chan);
-	if ( it != m_active_tables.end() )
-		it->second->start();
 }

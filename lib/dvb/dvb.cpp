@@ -334,7 +334,6 @@ RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 		{
 			i = m_active_channels.erase(i);
 			++cnt;
-			/* emit */ m_channelRemoved(ch);
 		} else
 			++i;
 	}
@@ -347,18 +346,6 @@ RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((eDVBResourceManager*)this, m_channelAdded.connect(channelAdded));
-	return 0;
-}
-
-RESULT eDVBResourceManager::connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection)
-{
-	connection = new eConnection((eDVBResourceManager*)this, m_channelRemoved.connect(channelRemoved));
-	return 0;
-}
-
-RESULT eDVBResourceManager::connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRunning, ePtr<eConnection> &connection)
-{
-	connection = new eConnection((eDVBResourceManager*)this, m_channelRunning.connect(channelRunning));
 	return 0;
 }
 
