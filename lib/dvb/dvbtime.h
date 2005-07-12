@@ -33,19 +33,22 @@ public:
 
 class eDVBLocalTimeHandler: public Object
 {
+	struct channel_data
+	{
+		TDT *tdt;
+		ePtr<eDVBChannel> channel;
+		ePtr<eConnection> m_stateChangedConn;
+	};
 	friend class TDT;
 	DECLARE_REF(eDVBLocalTimeHandler)
-	std::map<iDVBChannel*, TDT*> m_active_tables;
+	std::map<iDVBChannel*, channel_data> m_knownChannels;
 	std::map<eDVBChannelID,int> m_timeOffsetMap;
 	ePtr<eConnection> m_chanAddedConn;
-	ePtr<eConnection> m_chanRemovedConn;
-	ePtr<eConnection> m_chanRunningConn;
 	bool m_time_ready;
 	int m_time_difference;
 	int m_last_tp_time_difference;
 	void DVBChannelAdded(eDVBChannel*);
-	void DVBChannelRemoved(eDVBChannel*);
-	void DVBChannelRunning(iDVBChannel*);
+	void DVBChannelStateChanged(iDVBChannel*);
 	void readTimeOffsetData(const char*);
 	void writeTimeOffsetData(const char*);
 	void updateTime(time_t tp_time, eDVBChannel*);

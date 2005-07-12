@@ -182,7 +182,8 @@ private:
 	
 	void frontendStateChanged(iDVBFrontend*fe);
 	ePtr<eConnection> m_conn_frontendStateChanged;
-	
+
+	friend class eUsePtr<eDVBChannel>;
 		/* use count */
 	oRefCount m_use_count;
 	void AddUse();
