@@ -20,7 +20,7 @@ private:
 	eDVBNamespace buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash);
 	
 		/* scan resources */	
-	ePtr<iDVBChannel> m_channel;
+	eUsePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
 	
 		/* infrastructure */

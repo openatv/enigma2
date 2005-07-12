@@ -156,8 +156,8 @@ public:
 	};
 	
 		/* allocate channel... */
-	RESULT allocateChannel(const eDVBChannelID &channelid, ePtr<iDVBChannel> &channel);
-	RESULT allocateRawChannel(ePtr<iDVBChannel> &channel);
+	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
+	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel);
 	RESULT allocatePVRChannel(int caps);
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
@@ -182,6 +182,11 @@ private:
 	
 	void frontendStateChanged(iDVBFrontend*fe);
 	ePtr<eConnection> m_conn_frontendStateChanged;
+	
+		/* use count */
+	oRefCount m_use_count;
+	void AddUse();
+	void ReleaseUse();
 public:
 	eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend, eDVBAllocatedDemux *demux);
 	virtual ~eDVBChannel();
