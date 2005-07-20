@@ -67,7 +67,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/actions/action.h>
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/epng.h>
-#include <lib/dvb/epgcache.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -124,7 +123,6 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/actions/action.h>
 %include <lib/gdi/gfont.h>
 %include <lib/gdi/epng.h>
-%include <lib/dvb/epgcache.h>
 
 %include <lib/gdi/gpixmap.h>
 /**************  eptr  **************/
