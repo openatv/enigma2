@@ -14,24 +14,26 @@ int eventData::CacheSize=0;
 eEPGCache* eEPGCache::instance;
 pthread_mutex_t eEPGCache::cache_lock=
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+pthread_mutex_t eEPGCache::channel_map_lock=
+	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
 DEFINE_REF(eEPGCache)
 
 eEPGCache::eEPGCache()
-	:messages(this,1), back_messages(this,1) ,paused(0)
-	,CleanTimer(this), zapTimer(this), abortTimer(this)
+	:messages(this,1), cleanTimer(this)//, paused(0)
 {
 	eDebug("[EPGC] Initialized EPGCache");
-	isRunning=0;
 
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
-	CONNECT(back_messages.recv_msg, eEPGCache::gotBackMessage);
-//	CONNECT(eDVB::getInstance()->switchedService, eEPGCache::enterService);
-//	CONNECT(eDVB::getInstance()->leaveService, eEPGCache::leaveService);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
-	CONNECT(zapTimer.timeout, eEPGCache::startEPG);
-	CONNECT(CleanTimer.timeout, eEPGCache::cleanLoop);
-	CONNECT(abortTimer.timeout, eEPGCache::abortNonAvail);
+	CONNECT(cleanTimer.timeout, eEPGCache::cleanLoop);
+
+	ePtr<eDVBResourceManager> res_mgr;
+	eDVBResourceManager::getInstance(res_mgr);
+	if (!res_mgr)
+		eDebug("[eEPGCache] no resource manager !!!!!!!");
+	else
+		res_mgr->connectChannelAdded(slot(*this,&eEPGCache::DVBChannelAdded), m_chanAddedConn);
 	instance=this;
 }
 
@@ -46,7 +48,109 @@ void eEPGCache::timeUpdated()
 		messages.send(Message(Message::timeChanged));
 }
 
-int eEPGCache::sectionRead(const __u8 *data, int source)
+void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
+{
+	if ( chan )
+	{
+		eDebug("[eEPGCache] add channel %p", chan);
+		channel_data *data = new channel_data(this);
+		data->channel = chan;
+		singleLock s(channel_map_lock);
+		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
+		chan->connectStateChange(slot(*this, &eEPGCache::DVBChannelStateChanged), data->m_stateChangedConn);
+	}
+}
+
+void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
+{
+	singleLock s(channel_map_lock);
+	channelMapIterator it =
+		m_knownChannels.find(chan);
+	if ( it == m_knownChannels.end() )
+		eDebug("[eEPGCache] will start non existing channel %p !!!", chan);
+	else
+	{
+		channel_data &data = *it->second;
+		ePtr<eDVBResourceManager> res_mgr;
+		if ( eDVBResourceManager::getInstance( res_mgr ) )
+			eDebug("[eEPGCache] no res manager!!");
+		else
+		{
+			ePtr<iDVBDemux> demux;
+			if ( data.channel->getDemux(demux) )
+			{
+				eDebug("[eEPGCache] no demux!!");
+				return;
+			}
+			else
+			{
+				RESULT res;
+				data.m_NowNextReader = new eDVBSectionReader( demux, this, res );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
+					return;
+				}
+				data.m_NowNextReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_NowNextConn);
+				data.m_ScheduleReader = new eDVBSectionReader( demux, this, res );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
+					return;
+				}
+				data.m_ScheduleReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_ScheduleConn);
+				data.m_ScheduleOtherReader = new eDVBSectionReader( demux, this, res );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
+					return;
+				}
+				data.m_ScheduleOtherReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_ScheduleOtherConn);
+				messages.send(Message(Message::startChannel, chan));
+				// -> gotMessage -> changedService
+			}
+		}
+	}
+}
+
+void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
+{
+	channelMapIterator it =
+		m_knownChannels.find(chan);
+	if ( it != m_knownChannels.end() )
+	{
+		int state=0;
+		chan->getState(state);
+		switch (state)
+		{
+			case iDVBChannel::state_idle:
+				break;
+			case iDVBChannel::state_tuning:
+				break;
+			case iDVBChannel::state_unavailable:
+				break;
+			case iDVBChannel::state_ok:
+			{
+				eDebug("[eEPGCache] channel %p running", chan);
+				DVBChannelRunning(chan);
+				break;
+			}
+			case iDVBChannel::state_release:
+			{
+				eDebug("[eEPGCache] remove channel %p", chan);
+				messages.send(Message(Message::leaveChannel, chan));
+				while(!it->second->can_delete)
+					usleep(1000);
+				delete it->second;
+				m_knownChannels.erase(it);
+				// -> gotMessage -> abortEPG
+				break;
+			}
+		}
+	}
+}
+
+int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 {
 	eit_t *eit = (eit_t*) data;
 
@@ -71,22 +175,9 @@ int eEPGCache::sectionRead(const __u8 *data, int source)
 	time_t now = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 
 	if ( TM != 3599 && TM > -1)
-	{
-		switch(source)
-		{
-		case NOWNEXT:
-			haveData |= 2;
-			break;
-		case SCHEDULE:
-			haveData |= 1;
-			break;
-		case SCHEDULE_OTHER:
-			haveData |= 4;
-			break;
-		}
-	}
+		channel->haveData |= source;
 
-	Lock();
+	singleLock s(cache_lock);
 	// hier wird immer eine eventMap zurück gegeben.. entweder eine vorhandene..
 	// oder eine durch [] erzeugte
 	std::pair<eventMap,timeMap> &servicemap = eventDB[service];
@@ -129,6 +220,7 @@ int eEPGCache::sectionRead(const __u8 *data, int source)
 			{
 				if ( source > ev_it->second->type )  // update needed ?
 					goto next; // when not.. the skip this entry
+
 // search this event in timemap
 				timeMap::iterator tm_it_tmp = 
 					servicemap.second.find(ev_it->second->getStartTime());
@@ -161,7 +253,6 @@ int eEPGCache::sectionRead(const __u8 *data, int source)
 
 			if ( tm_it != servicemap.second.end() )
 			{
-
 // i think, if event is not found on eventmap, but found on timemap updating nevertheless demands
 #if 0
 				if ( source > tm_it->second->type && tm_erase_count == 0 ) // update needed ?
@@ -263,67 +354,13 @@ next:
 		eit_event=(eit_event_struct*)(((__u8*)eit_event)+eit_event_size);
 	}
 
-	tmpMap::iterator it = temp.find( service );
-	if ( it != temp.end() )
-	{
-		if ( source > it->second.second )
-		{
-			it->second.first=now;
-			it->second.second=source;
-		}
-	}
-	else
-		temp[service] = std::pair< time_t, int> (now, source);
-
-	Unlock();
-
 	return 0;
-}
-
-bool eEPGCache::finishEPG()
-{
-	if (!isRunning)  // epg ready
-	{
-		eDebug("[EPGC] stop caching events");
-		zapTimer.start(UPDATE_INTERVAL, 1);
-		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
-
-		singleLock l(cache_lock);
-		tmpMap::iterator It = temp.begin();
-		abortTimer.stop();
-
-		while (It != temp.end())
-		{
-//			eDebug("sid = %02x, onid = %02x, type %d", It->first.sid, It->first.onid, It->second.second );
-			if ( It->second.second == SCHEDULE
-				|| ( It->second.second == NOWNEXT && !(haveData&1) ) 
-				)
-			{
-//				eDebug("ADD to last updated Map");
-				serviceLastUpdated[It->first]=It->second.first;
-			}
-			if ( eventDB.find( It->first ) == eventDB.end() )
-			{
-//				eDebug("REMOVE from update Map");
-				temp.erase(It++);
-			}
-			else
-				It++;
-		}
-		if (!eventDB[current_service].first.empty())
-			/*emit*/ EPGAvail(1);
-
-		/*emit*/ EPGUpdated();
-
-		return true;
-	}
-	return false;
 }
 
 void eEPGCache::flushEPG(const uniqueEPGKey & s)
 {
 	eDebug("[EPGC] flushEPG %d", (int)(bool)s);
-	Lock();
+	singleLock l(cache_lock);
 	if (s)  // clear only this service
 	{
 		eventCache::iterator it = eventDB.find(s);
@@ -336,10 +373,8 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 				delete i->second;
 			evMap.clear();
 			eventDB.erase(it);
-			updateMap::iterator u = serviceLastUpdated.find(s);
-			if ( u != serviceLastUpdated.end() )
-				serviceLastUpdated.erase(u);
-			startEPG();
+
+			// TODO .. search corresponding channel for removed service and remove this channel from lastupdated map
 		}
 	}
 	else // clear complete EPG Cache
@@ -354,24 +389,19 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 			evMap.clear();
 			tmMap.clear();
 		}
-		serviceLastUpdated.clear();
 		eventDB.clear();
-		startEPG();
+		channelLastUpdated.clear();
+		singleLock m(channel_map_lock);
+		for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			it->second->startEPG();
 	}
 	eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
-	Unlock();
 }
 
 void eEPGCache::cleanLoop()
 {
 	singleLock s(cache_lock);
-	if ( isRunning )
-	{
-		CleanTimer.start(5000,true);
-		eDebug("[EPGC] schedule cleanloop");
-		return;
-	}
-	if (!eventDB.empty() && !paused )
+	if (!eventDB.empty())
 	{
 		eDebug("[EPGC] start cleanloop");
 		const eit_event_struct* cur_event;
@@ -403,51 +433,25 @@ void eEPGCache::cleanLoop()
 					delete It->second;
 					DBIt->second.second.erase(It++);
 //					eDebug("[EPGC] delete old event (timeMap)");
-
-					// add this (changed) service to temp map...
-					if ( temp.find(DBIt->first) == temp.end() )
-						temp[DBIt->first]=std::pair<time_t, int>(now, NOWNEXT);
 				}
 				else
 					++It;
 			}
-			if ( DBIt->second.second.size() < 2 )  
-			// less than two events for this service in cache.. 
-			{
-				updateMap::iterator u = serviceLastUpdated.find(DBIt->first);
-				if ( u != serviceLastUpdated.end() )
-				{
-					// remove from lastupdated map.. 
-					serviceLastUpdated.erase(u);
-					// current service?
-					if ( DBIt->first == current_service )
-					{
-					// immediate .. after leave cleanloop 
-					// update epgdata for this service
-						zapTimer.start(0,true);
-					}
-				}
-			}
 		}
-
-		if (temp.size())
-			/*emit*/ EPGUpdated();
-
 		eDebug("[EPGC] stop cleanloop");
 		eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
 	}
-	CleanTimer.start(CLEAN_INTERVAL,true);
+	cleanTimer.start(CLEAN_INTERVAL,true);
 }
 
 eEPGCache::~eEPGCache()
 {
 	messages.send(Message::quit);
 	kill(); // waiting for thread shutdown
-	Lock();
+	singleLock s(cache_lock);
 	for (eventCache::iterator evIt = eventDB.begin(); evIt != eventDB.end(); evIt++)
 		for (eventMap::iterator It = evIt->second.first.begin(); It != evIt->second.first.end(); It++)
 			delete It->second;
-	Unlock();
 }
 
 Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, bool plain)
@@ -526,250 +530,6 @@ Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, boo
 	return 0;
 }
 
-void eEPGCache::pauseEPG()
-{
-	if (!paused)
-	{
-		abortEPG();
-		eDebug("[EPGC] paused]");
-		paused=1;
-	}
-}
-
-void eEPGCache::restartEPG()
-{
-	if (paused)
-	{
-		isRunning=0;
-		eDebug("[EPGC] restarted");
-		paused--;
-		if (paused)
-		{
-			paused = 0;
-			startEPG();   // updateEPG
-		}
-		cleanLoop();
-	}
-}
-
-void eEPGCache::startEPG()
-{
-	if (paused)  // called from the updateTimer during pause...
-	{
-		paused++;
-		return;
-	}
-	if (eDVBLocalTimeHandler::getInstance()->ready())
-	{
-		Lock();
-		temp.clear();
-		Unlock();
-		eDebug("[EPGC] start caching events");
-		state=0;
-		haveData=0;
-
-		eDVBSectionFilterMask mask;
-		memset(&mask, 0, sizeof(mask));
-		mask.pid = 0x12;
-		mask.flags = eDVBSectionFilterMask::rfCRC;
-
-		mask.data[0] = 0x4E;
-		mask.mask[0] = 0xFE;
-		m_NowNextReader->start(mask);
-		isRunning |= 1;
-
-		mask.data[0] = 0x50;
-		mask.mask[0] = 0xF0;
-		m_ScheduleReader->start(mask);
-		isRunning |= 2;
-
-		mask.data[0] = 0x60;
-		mask.mask[0] = 0xF0;
-		m_ScheduleOtherReader->start(mask);
-		isRunning |= 4;
-
-		abortTimer.start(5000,true);
-	}
-	else
-	{
-		eDebug("[EPGC] wait for clock update");
-		zapTimer.start(1000, 1); // restart Timer
-	}
-}
-
-void eEPGCache::abortNonAvail()
-{
-	if (!state)
-	{
-		if ( !(haveData&2) && (isRunning&2) )
-		{
-			eDebug("[EPGC] abort non avail nownext reading");
-			isRunning &= ~2;
-			if ( m_NowNextReader )
-				m_NowNextReader->stop();
-		}
-		if ( !(haveData&1) && (isRunning&1) )
-		{
-			eDebug("[EPGC] abort non avail schedule reading");
-			isRunning &= ~1;
-			m_ScheduleReader->stop();
-		}
-		if ( !(haveData&4) && (isRunning&4) )
-		{
-			eDebug("[EPGC] abort non avail schedule_other reading");
-			isRunning &= ~4;
-			m_ScheduleOtherReader->stop();
-		}
-		abortTimer.start(20000, true);
-	}
-	++state;
-}
-
-void eEPGCache::startCache(const eServiceReferenceDVB& ref)
-{
-	if ( m_currentChannel )
-	{
-		next_service = ref;
-		leaveChannel(m_currentChannel);
-		return;
-	}
-	eDVBChannelID chid;
-	ref.getChannelID( chid );
-	ePtr<eDVBResourceManager> res_mgr;
-	if ( eDVBResourceManager::getInstance( res_mgr ) )
-		eDebug("[eEPGCache] no res manager!!");
-	else
-	{
-		ePtr<iDVBDemux> demux;
-//		res_mgr->allocateChannel(chid, m_currentChannel);
-		if ( m_currentChannel->getDemux(demux) )
-		{
-			eDebug("[eEPGCache] no demux!!");
-			goto error4;
-		}
-		else
-		{
-			RESULT res;
-			m_NowNextReader = new eDVBSectionReader( demux, this, res );
-			if ( res )
-			{
-				eDebug("[eEPGCache] couldnt initialize nownext reader!!");
-				goto error3;
-			}
-			m_NowNextReader->connectRead(slot(*this, &eEPGCache::readNowNextData), m_NowNextConn);
-			m_ScheduleReader = new eDVBSectionReader( demux, this, res );
-			if ( res )
-			{
-				eDebug("[eEPGCache] couldnt initialize schedule reader!!");
-				goto error2;
-			}
-			m_ScheduleReader->connectRead(slot(*this, &eEPGCache::readScheduleData), m_ScheduleConn);
-			m_ScheduleOtherReader = new eDVBSectionReader( demux, this, res );
-			if ( res )
-			{
-				eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
-				goto error1;
-			}
-			m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::readScheduleOtherData), m_ScheduleOtherConn);
-			messages.send(Message(Message::startService, ref));
-			// -> gotMessage -> changedService
-		}
-	}
-	return;
-error1:
-	m_ScheduleOtherReader=0;
-	m_ScheduleOtherConn=0;
-error2:
-	m_ScheduleReader=0;
-	m_ScheduleConn=0;
-error3:
-	m_NowNextReader=0;
-	m_NowNextConn=0;
-error4:
-	m_currentChannel=0;
-}
-
-void eEPGCache::leaveChannel(iDVBChannel * chan)
-{
-	if ( chan && chan == m_currentChannel )
-	{
-		messages.send(Message(Message::leaveChannel, chan));
-	// -> gotMessage -> abortEPG
-	}
-}
-
-void eEPGCache::changedService(const uniqueEPGKey &service)
-{
-	current_service = service;
-	updateMap::iterator It = serviceLastUpdated.find( current_service );
-
-	int update;
-
-// check if this is a subservice and this is only a dbox2
-// then we dont start epgcache on subservice change..
-// ever and ever..
-
-//	if ( !err || err == -ENOCASYS )
-	{
-		update = ( It != serviceLastUpdated.end() ? ( UPDATE_INTERVAL - ( (time(0)+eDVBLocalTimeHandler::getInstance()->difference()-It->second) * 1000 ) ) : ZAP_DELAY );
-
-		if (update < ZAP_DELAY)
-			update = ZAP_DELAY;
-
-		zapTimer.start(update, 1);
-		if (update >= 60000)
-			eDebug("[EPGC] next update in %i min", update/60000);
-		else if (update >= 1000)
-			eDebug("[EPGC] next update in %i sec", update/1000);
-	}
-
-	Lock();
-	bool empty=eventDB[current_service].first.empty();
-	Unlock();
-
-	if (!empty)
-	{
-		eDebug("[EPGC] yet cached");
-		/*emit*/ EPGAvail(1);
-	}
-	else
-	{
-		eDebug("[EPGC] not cached yet");
-		/*emit*/ EPGAvail(0);
-	}
-}
-
-void eEPGCache::abortEPG()
-{
-	abortTimer.stop();
-	zapTimer.stop();
-	if (isRunning)
-	{
-		if (isRunning & 1)
-		{
-			isRunning &= ~1;
-			if ( m_ScheduleReader )
-				m_ScheduleReader->stop();
-		}
-		if (isRunning & 2)
-		{
-			isRunning &= ~2;
-			if ( m_NowNextReader )
-				m_NowNextReader->stop();
-		}
-		if (isRunning & 4)
-		{
-			isRunning &= ~4;
-			if ( m_ScheduleOtherReader )
-				m_ScheduleOtherReader->stop();
-		}
-		eDebug("[EPGC] abort caching events !!");
-		Lock();
-		temp.clear();
-		Unlock();
-	}
-}
-
 void eEPGCache::gotMessage( const Message &msg )
 {
 	switch (msg.type)
@@ -777,19 +537,24 @@ void eEPGCache::gotMessage( const Message &msg )
 		case Message::flush:
 			flushEPG(msg.service);
 			break;
-		case Message::startService:
-			changedService(msg.service);
+		case Message::startChannel:
+		{
+			singleLock s(channel_map_lock);
+			channelMapIterator channel =
+				m_knownChannels.find(msg.channel);
+			if ( channel != m_knownChannels.end() )
+				channel->second->startChannel();
 			break;
+		}
 		case Message::leaveChannel:
-			abortEPG();
-			back_messages.send(Message(Message::leaveChannelFinished));
+		{
+			singleLock s(channel_map_lock);
+			channelMapIterator channel =
+				m_knownChannels.find(msg.channel);
+			if ( channel != m_knownChannels.end() )
+				channel->second->abortEPG();
 			break;
-		case Message::pause:
-			pauseEPG();
-			break;
-		case Message::restart:
-			restartEPG();
-			break;
+		}
 		case Message::quit:
 			quit(0);
 			break;
@@ -798,31 +563,6 @@ void eEPGCache::gotMessage( const Message &msg )
 			break;
 		default:
 			eDebug("unhandled EPGCache Message!!");
-			break;
-	}
-}
-
-void eEPGCache::gotBackMessage( const Message &msg )
-{
-	switch (msg.type)
-	{
-		case Message::leaveChannelFinished:
-			m_ScheduleOtherReader=0;
-			m_ScheduleOtherConn=0;
-			m_ScheduleReader=0;
-			m_ScheduleConn=0;
-			m_NowNextReader=0;
-			m_NowNextConn=0;
-			m_currentChannel=0;
-			eDebug("[eEPGC] channel leaved");
-			if (next_service)
-			{
-				startCache(next_service);
-				next_service = eServiceReferenceDVB();
-			}
-			break;
-		default:
-			eDebug("unhandled EPGCache BackMessage!!");
 			break;
 	}
 }
@@ -955,3 +695,165 @@ RESULT eEPGCache::getInstance(ePtr<eEPGCache> &ptr)
 	return 0;
 }
 
+eEPGCache::channel_data::channel_data(eEPGCache *ml)
+	:cache(ml)
+	,abortTimer(ml), zapTimer(ml)
+	,state(0), isRunning(0), haveData(0), can_delete(1)
+{
+	CONNECT(zapTimer.timeout, eEPGCache::channel_data::startEPG);
+	CONNECT(abortTimer.timeout, eEPGCache::channel_data::abortNonAvail);
+}
+
+bool eEPGCache::channel_data::finishEPG()
+{
+	if (!isRunning)  // epg ready
+	{
+		eDebug("[EPGC] stop caching events");
+		zapTimer.start(UPDATE_INTERVAL, 1);
+		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
+
+		singleLock l(cache->cache_lock);
+		cache->channelLastUpdated[channel->getChannelID()] = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+		can_delete=1;
+		return true;
+	}
+	return false;
+}
+
+void eEPGCache::channel_data::startEPG()
+{
+	eDebug("[EPGC] start caching events");
+	state=0;
+	haveData=0;
+	can_delete=0;
+
+	eDVBSectionFilterMask mask;
+	memset(&mask, 0, sizeof(mask));
+	mask.pid = 0x12;
+	mask.flags = eDVBSectionFilterMask::rfCRC;
+
+	mask.data[0] = 0x4E;
+	mask.mask[0] = 0xFE;
+	m_NowNextReader->start(mask);
+	isRunning |= NOWNEXT;
+
+	mask.data[0] = 0x50;
+	mask.mask[0] = 0xF0;
+	m_ScheduleReader->start(mask);
+	isRunning |= SCHEDULE;
+
+	mask.data[0] = 0x60;
+	mask.mask[0] = 0xF0;
+	m_ScheduleOtherReader->start(mask);
+	isRunning |= SCHEDULE_OTHER;
+
+	abortTimer.start(5000,true);
+}
+
+void eEPGCache::channel_data::abortNonAvail()
+{
+	if (!state)
+	{
+		if ( !(haveData&eEPGCache::NOWNEXT) && (isRunning&eEPGCache::NOWNEXT) )
+		{
+			eDebug("[EPGC] abort non avail nownext reading");
+			isRunning &= ~eEPGCache::NOWNEXT;
+			if ( m_NowNextReader )
+				m_NowNextReader->stop();
+		}
+		if ( !(haveData&eEPGCache::SCHEDULE) && (isRunning&eEPGCache::SCHEDULE) )
+		{
+			eDebug("[EPGC] abort non avail schedule reading");
+			isRunning &= ~SCHEDULE;
+			m_ScheduleReader->stop();
+		}
+		if ( !(haveData&eEPGCache::SCHEDULE_OTHER) && (isRunning&eEPGCache::SCHEDULE_OTHER) )
+		{
+			eDebug("[EPGC] abort non avail schedule_other reading");
+			isRunning &= ~SCHEDULE_OTHER;
+			m_ScheduleOtherReader->stop();
+		}
+		if ( isRunning )
+			abortTimer.start(20000, true);
+		else
+			finishEPG();
+	}
+	++state;
+}
+
+void eEPGCache::channel_data::startChannel()
+{
+	updateMap::iterator It = cache->channelLastUpdated.find( channel->getChannelID() );
+
+	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (time(0)+eDVBLocalTimeHandler::getInstance()->difference()-It->second) * 1000 ) ) : ZAP_DELAY );
+
+	if (update < ZAP_DELAY)
+		update = ZAP_DELAY;
+
+	zapTimer.start(update, 1);
+	if (update >= 60000)
+		eDebug("[EPGC] next update in %i min", update/60000);
+	else if (update >= 1000)
+		eDebug("[EPGC] next update in %i sec", update/1000);
+}
+
+void eEPGCache::channel_data::abortEPG()
+{
+	abortTimer.stop();
+	zapTimer.stop();
+	if (isRunning)
+	{
+		eDebug("[EPGC] abort caching events !!");
+		if (isRunning & eEPGCache::SCHEDULE)
+		{
+			isRunning &= eEPGCache::SCHEDULE;
+			if ( m_ScheduleReader )
+				m_ScheduleReader->stop();
+		}
+		if (isRunning & eEPGCache::NOWNEXT)
+		{
+			isRunning &= ~eEPGCache::NOWNEXT;
+			if ( m_NowNextReader )
+				m_NowNextReader->stop();
+		}
+		if (isRunning & SCHEDULE_OTHER)
+		{
+			isRunning &= ~eEPGCache::SCHEDULE_OTHER;
+			if ( m_ScheduleOtherReader )
+				m_ScheduleOtherReader->stop();
+		}
+		can_delete=1;
+	}
+}
+
+void eEPGCache::channel_data::readData( const __u8 *data)
+{
+	if (!data)
+		eDebug("get Null pointer from section reader !!");
+	else
+	{
+		int source = data[0] > 0x5F ? eEPGCache::SCHEDULE_OTHER : data[0] > 0x4F ? eEPGCache::SCHEDULE : eEPGCache::NOWNEXT;
+		if ( state == 2 )
+		{
+			iDVBSectionReader *reader=NULL;
+			switch (source)
+			{
+				case eEPGCache::SCHEDULE_OTHER:
+					reader=m_ScheduleOtherReader;
+					break;
+				case eEPGCache::SCHEDULE:
+					reader=m_ScheduleReader;
+					break;
+				case eEPGCache::NOWNEXT:
+					reader=m_NowNextReader;
+					break;
+			}
+			reader->stop();
+			isRunning &= ~source;
+			if (!isRunning)
+				finishEPG();
+		}
+		else
+			cache->sectionRead(data, source, this);
+	}
+}

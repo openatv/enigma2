@@ -1,8 +1,6 @@
 #ifndef __epgcache_h_
 #define __epgcache_h_
 
-#ifndef SWIG
-
 #include <vector>
 #include <list>
 #include <ext/hash_map>
@@ -75,15 +73,16 @@ struct uniqueEPGKey
 //timeMap is sorted by beginTime
 #define timeMap std::map<time_t, eventData*>
 
+#define channelMapIterator std::map<iDVBChannel*, channel_data*>::iterator
+
 #define tmpMap std::map<uniqueEPGKey, std::pair<time_t, int> >
+#define updateMap std::map<eDVBChannelID, time_t>
 
 #if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
 	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, __gnu_cxx::hash<uniqueEPGKey>, uniqueEPGKey::equal>
-	#define updateMap __gnu_cxx::hash_map<uniqueEPGKey, time_t, __gnu_cxx::hash<uniqueEPGKey>, uniqueEPGKey::equal >
 	namespace __gnu_cxx
 #else // for older gcc use following
 	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, std::hash<uniqueEPGKey>, uniqueEPGKey::equal >
-	#define updateMap std::hash_map<uniqueEPGKey, time_t, std::hash<uniqueEPGKey>, uniqueEPGKey::equal >
 	namespace std
 #endif
 {
@@ -91,9 +90,7 @@ template<> struct hash<uniqueEPGKey>
 {
 	inline size_t operator()( const uniqueEPGKey &x) const
 	{
-		int v=(x.onid^x.sid);
-		v^=v>>8;
-		return v&0xFF;
+		return (x.tsid << 16) | x.onid;
 	}
 };
 }
@@ -139,32 +136,44 @@ public:
 			EITdata[4], EITdata[5], EITdata[6]);
 	}
 };
-#else
-	#include <lib/base/smartptr.h>
-#endif
 
 class eEPGCache: public eMainloop, private eThread, public Object
 {
 	DECLARE_REF(eEPGCache)
+	struct channel_data: public Object
+	{
+		channel_data(eEPGCache*);
+		eEPGCache *cache;
+		eTimer abortTimer, zapTimer;
+		__u8 state, isRunning, haveData, can_delete;
+		ePtr<eDVBChannel> channel;
+		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
+		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
+		void readData(const __u8 *data);
+		void startChannel();
+		void startEPG();
+		bool finishEPG();
+		void abortEPG();
+		void abortNonAvail();
+	};
 public:
-#ifndef SWIG
-	enum {NOWNEXT, SCHEDULE, SCHEDULE_OTHER};
+	enum {NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4};
 	struct Message
 	{
 		enum
 		{
 			flush,
-			startService,
+			startChannel,
 			leaveChannel,
 			pause,
 			restart,
 			updated,
 			isavail,
 			quit,
-			timeChanged,
-			leaveChannelFinished
+			timeChanged
 		};
 		int type;
+		iDVBChannel *channel;
 		uniqueEPGKey service;
 		union {
 			int err;
@@ -177,78 +186,53 @@ public:
 			:type(type) {}
 		Message(int type, bool b)
 			:type(type), avail(b) {}
+		Message(int type, iDVBChannel *channel, int err=0)
+			:type(type), channel(channel), err(err) {}
 		Message(int type, const eServiceReferenceDVB& service, int err=0)
 			:type(type), service(service), err(err) {}
 		Message(int type, time_t time)
 			:type(type), time(time) {}
 	};
 	eFixedMessagePump<Message> messages;
-	eFixedMessagePump<Message> back_messages;
 private:
-	static pthread_mutex_t cache_lock;
-	eServiceReferenceDVB next_service;
-	uniqueEPGKey current_service;
-	int paused;
-
-	int state;
-	__u8 isRunning, haveData;
-
-	ePtr<iDVBChannel> m_currentChannel;
-	ePtr<eConnection> m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
-	ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
-
-	int sectionRead(const __u8 *data, int source);
-	void readNowNextData(const __u8 *data);
-	void readScheduleData(const __u8 *data);
-	void readScheduleOtherData(const __u8 *data);
-
+	friend class channel_data;
 	static eEPGCache *instance;
 
+	eTimer cleanTimer;
+	std::map<iDVBChannel*, channel_data*> m_knownChannels;
+	ePtr<eConnection> m_chanAddedConn;
+
 	eventCache eventDB;
-	updateMap serviceLastUpdated;
-	tmpMap temp;
-	eTimer CleanTimer;
-	eTimer zapTimer;
-	eTimer abortTimer;
-	bool finishEPG();
-	void abortNonAvail();
-	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
-	void startEPG();
+	updateMap channelLastUpdated;
+	static pthread_mutex_t cache_lock, channel_map_lock;
 
-	void changedService(const uniqueEPGKey &);
-	void abortEPG();
+	void thread();  // thread function
 
-	void cleanLoop();
-	void pauseEPG();
-	void restartEPG();
-	void thread();
-	void gotMessage(const Message &message);
-	void gotBackMessage(const Message &message);
-	void timeUpdated();
+// called from epgcache thread
 	void save();
 	void load();
-	void leaveChannel(iDVBChannel *);
-#endif
+	int sectionRead(const __u8 *data, int source, channel_data *channel);
+	void gotMessage(const Message &message);
+	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
+	void cleanLoop();
+
+// called from main thread
+	void timeUpdated();
+	void DVBChannelAdded(eDVBChannel*);
+	void DVBChannelStateChanged(iDVBChannel*);
+	void DVBChannelRunning(iDVBChannel *);
 public:
 	static RESULT getInstance(ePtr<eEPGCache> &ptr);
-	// called from other thread context !!
-	void startCache(const eServiceReferenceDVB &);
-	Event *lookupEvent(const eServiceReferenceDVB &service, int event_id, bool plain=false );
-	Event *lookupEvent(const eServiceReferenceDVB &service, time_t=0, bool plain=false );
-#ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
 
+	// called from main thread
 	inline void Lock();
 	inline void Unlock();
-
+	Event *lookupEvent(const eServiceReferenceDVB &service, int event_id, bool plain=false );
+	Event *lookupEvent(const eServiceReferenceDVB &service, time_t=0, bool plain=false );
 	const eventMap* getEventMap(const eServiceReferenceDVB &service);
 	const timeMap* getTimeMap(const eServiceReferenceDVB &service);
-	tmpMap* getUpdatedMap() { return &temp; }
-
-	Signal1<void, bool> EPGAvail;
-	Signal0<void> EPGUpdated;
-#endif
 };
 
 TEMPLATE_TYPEDEF(ePtr<eEPGCache>,eEPGCachePtr);
@@ -269,30 +253,6 @@ inline const timeMap* eEPGCache::getTimeMap(const eServiceReferenceDVB &service)
 		return &(It->second.second);
 	else
 		return 0;
-}
-
-inline void eEPGCache::readNowNextData( const __u8 *data)
-{
-	if ( !data || state == 2 )
-		m_NowNextReader->stop();
-	else
-		sectionRead(data, eEPGCache::NOWNEXT);
-}
-
-inline void eEPGCache::readScheduleData(const __u8 *data)
-{
-	if ( !data || state == 2 )
-		m_ScheduleReader->stop();
-	else
-		sectionRead(data, eEPGCache::SCHEDULE);
-}
-
-inline void eEPGCache::readScheduleOtherData(const __u8 *data)
-{
-	if ( !data || state == 2 )
-		m_ScheduleOtherReader->stop();
-	else
-		sectionRead(data, eEPGCache::SCHEDULE_OTHER);
 }
 
 inline void eEPGCache::Lock()
