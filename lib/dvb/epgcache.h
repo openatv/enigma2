@@ -4,12 +4,8 @@
 #include <vector>
 #include <list>
 #include <ext/hash_map>
+#include <ext/hash_set>
 
-// check if gcc version >= 3.4
-#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || __GNUC__ == 4 )
-#else
-#include <ext/stl_hash_fun.h>
-#endif
 #include <errno.h>
 
 #include <lib/dvb/eit.h>
@@ -74,26 +70,39 @@ struct uniqueEPGKey
 #define timeMap std::map<time_t, eventData*>
 
 #define channelMapIterator std::map<iDVBChannel*, channel_data*>::iterator
-
-#define tmpMap std::map<uniqueEPGKey, std::pair<time_t, int> >
 #define updateMap std::map<eDVBChannelID, time_t>
 
-#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
-	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, __gnu_cxx::hash<uniqueEPGKey>, uniqueEPGKey::equal>
-	namespace __gnu_cxx
-#else // for older gcc use following
-	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, std::hash<uniqueEPGKey>, uniqueEPGKey::equal >
-	namespace std
-#endif
+struct hash_32
 {
-template<> struct hash<uniqueEPGKey>
+	inline size_t operator()( const __u32 &x) const
+	{
+		return (x >> 8)&0xFFFF;
+	}
+};
+
+struct equal_32
+{
+	inline size_t operator()(const __u32 &x, const __u32 &y) const
+	{
+		return x == y;
+	}
+};
+
+struct hash_uniqueEPGKey
 {
 	inline size_t operator()( const uniqueEPGKey &x) const
 	{
-		return (x.tsid << 16) | x.onid;
+		return (x.onid << 16) | x.tsid;
 	}
 };
-}
+
+#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
+	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
+	#define tidMap __gnu_cxx::hash_set<__u32, hash_32, equal_32>
+#else // for older gcc use following
+	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal >
+	#define tidMap std::hash_map<__u32, hash_32, equal_32>
+#endif
 
 class eventData
 {
@@ -149,6 +158,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
+		tidMap seenSections, calcedSections;
 		void readData(const __u8 *data);
 		void startChannel();
 		void startEPG();
@@ -211,7 +221,7 @@ private:
 // called from epgcache thread
 	void save();
 	void load();
-	int sectionRead(const __u8 *data, int source, channel_data *channel);
+	void sectionRead(const __u8 *data, int source, channel_data *channel);
 	void gotMessage(const Message &message);
 	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
 	void cleanLoop();
