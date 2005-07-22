@@ -84,22 +84,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 			}
 			else
 			{
-				RESULT res;
-				data.m_NowNextReader = new eDVBSectionReader( demux, this, res );
+				RESULT res = demux->createSectionReader( this, data.m_NowNextReader );
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
 					return;
 				}
 				data.m_NowNextReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_NowNextConn);
-				data.m_ScheduleReader = new eDVBSectionReader( demux, this, res );
+				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
 					return;
 				}
 				data.m_ScheduleReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_ScheduleConn);
-				data.m_ScheduleOtherReader = new eDVBSectionReader( demux, this, res );
+				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
@@ -150,16 +149,15 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
-int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
+void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 {
 	eit_t *eit = (eit_t*) data;
 
 	int len=HILO(eit->section_length)-1;//+3-4;
 	int ptr=EIT_SIZE;
 	if ( ptr >= len )
-		return 0;
+		return;
 
-	//
 	// This fixed the EPG on the Multichoice irdeto systems
 	// the EIT packet is non-compliant.. their EIT packet stinks
 	if ( data[ptr-1] < 0x40 )
@@ -171,7 +169,6 @@ int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	int duration;
 
 	time_t TM = parseDVBtime( eit_event->start_time_1, eit_event->start_time_2,	eit_event->start_time_3, eit_event->start_time_4, eit_event->start_time_5);
-// FIXME !!! TIME CORRECTION !
 	time_t now = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 
 	if ( TM != 3599 && TM > -1)
@@ -211,7 +208,7 @@ int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			int ev_erase_count = 0;
 			int tm_erase_count = 0;
 
-// search in eventmap
+			// search in eventmap
 			eventMap::iterator ev_it =
 				servicemap.first.find(event_id);
 
@@ -221,7 +218,7 @@ int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 				if ( source > ev_it->second->type )  // update needed ?
 					goto next; // when not.. the skip this entry
 
-// search this event in timemap
+				// search this event in timemap
 				timeMap::iterator tm_it_tmp = 
 					servicemap.second.find(ev_it->second->getStartTime());
 
@@ -246,20 +243,20 @@ int eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 				}
 			}
 
-// search in timemap, for check of a case if new time has coincided with time of other event 
-// or event was is not found in eventmap
+			// search in timemap, for check of a case if new time has coincided with time of other event 
+			// or event was is not found in eventmap
 			timeMap::iterator tm_it =
 				servicemap.second.find(TM);
 
 			if ( tm_it != servicemap.second.end() )
 			{
-// i think, if event is not found on eventmap, but found on timemap updating nevertheless demands
+				// i think, if event is not found on eventmap, but found on timemap updating nevertheless demands
 #if 0
 				if ( source > tm_it->second->type && tm_erase_count == 0 ) // update needed ?
 					goto next; // when not.. the skip this entry
 #endif
 
-// search this time in eventmap
+				// search this time in eventmap
 				eventMap::iterator ev_it_tmp = 
 					servicemap.first.find(tm_it->second->getEventID());
 
@@ -341,8 +338,8 @@ next:
 			i=0;
 			for (timeMap::iterator it(servicemap.second.begin())
 				; it != servicemap.second.end(); ++it )
-			fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n", 
-				i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
+					fprintf(f, "%d(key %d) -> time %d, event_id %d, data %p\n", 
+						i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
 			fclose(f);
 
 			eFatal("(1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d", 
@@ -353,8 +350,6 @@ next:
 		ptr += eit_event_size;
 		eit_event=(eit_event_struct*)(((__u8*)eit_event)+eit_event_size);
 	}
-
-	return 0;
 }
 
 void eEPGCache::flushEPG(const uniqueEPGKey & s)
@@ -711,7 +706,8 @@ bool eEPGCache::channel_data::finishEPG()
 		eDebug("[EPGC] stop caching events");
 		zapTimer.start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
-
+		seenSections.clear();
+		calcedSections.clear();
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 		can_delete=1;
@@ -726,6 +722,8 @@ void eEPGCache::channel_data::startEPG()
 	state=0;
 	haveData=0;
 	can_delete=0;
+	seenSections.clear();
+	calcedSections.clear();
 
 	eDVBSectionFilterMask mask;
 	memset(&mask, 0, sizeof(mask));
@@ -747,7 +745,7 @@ void eEPGCache::channel_data::startEPG()
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
-	abortTimer.start(5000,true);
+	abortTimer.start(7000,true);
 }
 
 void eEPGCache::channel_data::abortNonAvail()
@@ -774,9 +772,14 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_ScheduleOtherReader->stop();
 		}
 		if ( isRunning )
-			abortTimer.start(20000, true);
+			abortTimer.start(50000, true);
 		else
-			finishEPG();
+		{
+			++state;
+			seenSections.clear();
+			calcedSections.clear();
+			can_delete=1;
+		}
 	}
 	++state;
 }
@@ -799,6 +802,8 @@ void eEPGCache::channel_data::startChannel()
 
 void eEPGCache::channel_data::abortEPG()
 {
+	seenSections.clear();
+	calcedSections.clear();
 	abortTimer.stop();
 	zapTimer.stop();
 	if (isRunning)
@@ -833,7 +838,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	else
 	{
 		int source = data[0] > 0x5F ? eEPGCache::SCHEDULE_OTHER : data[0] > 0x4F ? eEPGCache::SCHEDULE : eEPGCache::NOWNEXT;
-		if ( state == 2 )
+		if ( state == 1 && calcedSections == seenSections || state > 1 )
 		{
 			iDVBSectionReader *reader=NULL;
 			switch (source)
@@ -854,6 +859,33 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				finishEPG();
 		}
 		else
-			cache->sectionRead(data, source, this);
+		{
+			eit_t *eit = (eit_t*) data;
+			__u32 sectionNo = data[0] << 24;
+			sectionNo |= data[3] << 16;
+			sectionNo |= data[4] << 8;
+			sectionNo |= eit->section_number;
+
+			tidMap::iterator it =
+				seenSections.find(sectionNo);
+
+			if ( it == seenSections.end() )
+			{
+				seenSections.insert(sectionNo);
+				__u32 tmpval = sectionNo & 0xFFFFFF00;
+				__u8 incr = source == NOWNEXT ? 1 : 8;
+				for ( int i = 0; i <= eit->last_section_number; i+=incr )
+				{
+					if ( i == eit->section_number )
+					{
+						for (int x=i; x <= eit->segment_last_section_number; ++x)
+							calcedSections.insert(tmpval|(x&0xFF));
+					}
+					else
+						calcedSections.insert(tmpval|(i&0xFF));
+				}
+				cache->sectionRead(data, source, this);
+			}
+		}
 	}
 }
