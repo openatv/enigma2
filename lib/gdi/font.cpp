@@ -331,31 +331,39 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.bbox.setWidth( glyph->width );
 	ng.bbox.setHeight( glyph->height );
 
-	xadvance+=kern;
+	xadvance += kern;
 	ng.bbox.setWidth(xadvance);
 
-	ng.x=cursor.x()+kern;
-	ng.y=cursor.y();
-	ng.w=xadvance;
-	ng.font=current_font;
-	ng.glyph_index=glyphIndex;
-	ng.flags=flags;
+	ng.x = cursor.x()+kern;
+	ng.y = cursor.y();
+	ng.w = xadvance;
+	ng.font = current_font;
+	ng.glyph_index = glyphIndex;
+	ng.flags = flags;
 	glyphs.push_back(ng);
 
-	cursor+=ePoint(xadvance, 0);
-	previous=glyphIndex;
+	cursor += ePoint(xadvance, 0);
+	previous = glyphIndex;
 	return 0;
 }
 
 void eTextPara::calc_bbox()
 {
-	boundBox.setLeft( 32000 );
-	boundBox.setTop( 32000 );
-	boundBox.setRight( -32000 );         // for each glyph image, compute its bounding box, translate it,
-	boundBox.setBottom( -32000 );
-	// and grow the string bbox
+	if (!glyphs.size())
+	{
+		bboxValid = 0;
+		boundBox = eRect();
+		return;
+	}
+	
+	bboxValid = 1;
 
-	for ( glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
+	glyphString::iterator i(glyphs.begin());
+	
+	boundBox = i->bbox; 
+	++i;
+
+	for (i ; i != glyphs.end(); ++i)
 	{
 		if ( i->flags & GS_ISSPACE )
 			continue;
@@ -369,8 +377,6 @@ void eTextPara::calc_bbox()
 			boundBox.setBottom( i->bbox.bottom() );
 	}
 //	eDebug("boundBox left = %i, top = %i, right = %i, bottom = %i", boundBox.left(), boundBox.top(), boundBox.right(), boundBox.bottom() );
-	if ( glyphs.size() )
-		bboxValid=1;
 }
 
 void eTextPara::newLine(int flags)
