@@ -13,7 +13,7 @@ from enigma import *
 import time
 
 # hack alert!
-from Menu import *
+from Menu import MainMenu, mdom
 
 class InfoBar(Screen):
 	def __init__(self, session):
@@ -51,7 +51,7 @@ class InfoBar(Screen):
 		print "loading mainmenu XML..."
 		menu = mdom.childNodes[0]
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
-		self.session.open(Menu, menu, menu.childNodes)
+		self.session.open(MainMenu, menu, menu.childNodes)
 
 	def switchChannelUp(self):	
 		self.servicelist.moveUp()

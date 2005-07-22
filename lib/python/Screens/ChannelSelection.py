@@ -5,17 +5,63 @@ from Components.ActionMap import ActionMap
 
 from enigma import eServiceReference
 
+from Screens.Menu import FixedMenu
+
+import xml.dom.minidom
+
+class ChannelContextMenu(FixedMenu):
+	def __init__(self, session, csel):
+		self.csel = csel
+		
+		menu = [("back", self.close)]
+		
+		if csel.movemode:
+			menu.append(("disable move mode", self.moveMode))
+		else:
+			menu.append(("enable move mode", self.moveMode))
+
+		if csel.bouquet_mark_edit:
+			menu.append(("end bouquet edit", self.bouquetMarkEnd))
+			menu.append(("abort bouquet edit", self.bouquetMarkAbort))
+		else:
+			menu.append(("edit bouquet...", self.bouquetMarkStart))
+		
+		FixedMenu.__init__(self, session, "Channel Selection", menu)
+		self.skinName = "Menu"
+
+	def moveMode(self):
+		self.csel.setMoveMode(self.csel.movemode)
+		self.close()
+	
+	def bouquetMarkStart(self):
+		self.csel.startMarkedEdit()
+		self.close()
+	
+	def bouquetMarkEnd(self):
+		self.csel.endMarkedEdit(abort=False)
+		self.close()
+
+	def bouquetMarkAbort(self):
+		self.csel.endMarkedEdit(abort=True)
+		self.close()
+ 
 class ChannelSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
+		
+		self.movemode = False
+		self.bouquet_mark_edit = False
+		
+		## FIXME
+		self.__marked = [ ]
+		
 		self["key_red"] = Button("red")
 		self["key_green"] = Button("green")
 		self["key_yellow"] = Button("yellow")
 		self["key_blue"] = Button("blue")
 		
 		self["list"] = ServiceList()
-		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(provider=="ARD") && (type == 1)"""))
+		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		
@@ -31,17 +77,46 @@ class ChannelSelection(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.channelSelected,
-				"mark": self.doMark
+				"mark": self.doMark,
+				"contextMenu": self.doContext
 			})
 		self["actions"].csel = self
 
+	#  marked edit mode
+	
+	def startMarkedEdit(self):
+		self.bouquet_mark_edit = True
+		self.clearMarks()
+		
+		# TODO
+		marked = self.__marked
+		
+		l = self["list"]
+		for x in marked:
+			print "mark: " + str(x)
+			l.addMarked(x)
+		
+	def endMarkedEdit(self, abort):
+		self.bouquet_mark_edit = True
+		new_marked = self["list"].getMarked()
+		self.__marked = new_marked
+		self.clearMarks()
+		self.bouquet_mark_edit = False
+
+	def clearMarks(self):
+		self["list"].clearMarks()
+	
 	def doMark(self):
+		if not self.bouquet_mark_edit:
+			return
+		
 		ref = self["list"].getCurrent()
 		if self["list"].isMarked(ref):
 			self["list"].removeMarked(ref)
 		else:
 			self["list"].addMarked(ref)
-			
+	
+	# ...
 	def channelSelected(self):
 		self.session.nav.playService(self["list"].getCurrent())
 		self.close()
@@ -56,3 +131,9 @@ class ChannelSelection(Screen):
 	def moveDown(self):
 		self["list"].moveDown()
 
+	def doContext(self):
+		self.session.open(ChannelContextMenu, self)
+
+	def setMoveMode(self, mode):
+		self.movemode = mode
+	
