@@ -9,6 +9,8 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 	m_desktop = 0;
 	m_have_background_color = 0;
 	
+	m_client_offset = eSize(0, 0);
+	
 	if (m_parent)
 		m_vis = wVisShow;
 		
@@ -24,10 +26,10 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 
 void eWidget::move(ePoint pos)
 {
+	m_position = pos + m_client_offset;
+	
 	if (m_position == pos)
 		return;
-	
-	m_position = pos;
 	
 		/* we invalidate before and after the move to
 		   cause a correct redraw. The area which is
@@ -49,11 +51,13 @@ void eWidget::resize(eSize size)
 		   fits into the other completely, and invalidate
 		   only once. */
 	eSize old_size = m_size;
-	eSize offset = eSize(0, 0);
-	event(evtWillChangeSize, &size, &offset);
+	eSize old_offset = m_client_offset;
+	m_client_offset = eSize(0, 0);
+	event(evtWillChangeSize, &size, &m_client_offset);
 	if (old_size == m_size)
 		return;
-	move(position() + offset);
+	
+	move(position() - old_offset);
 	
 	invalidate();
 	event(evtChangedSize);
@@ -278,7 +282,6 @@ int eWidget::event(int event, void *data, void *data2)
 
 void eWidget::setFocus(eWidget *focus)
 {
-	eDebug("setFocus in %p to %p, was %p", this, focus, m_current_focus);
 	if (m_current_focus)
 		m_current_focus->event(evtFocusLost, this);
 	
