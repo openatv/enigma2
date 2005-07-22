@@ -53,6 +53,8 @@ private:
 	ePtrList<eWidget> m_childs;
 	ePoint m_position;
 	eSize m_size;
+		/* will be accounted when there's a client offset */
+	eSize m_client_offset;
 	eWidget *m_parent;
 	
 	ePtr<eWindowStyle> m_style;

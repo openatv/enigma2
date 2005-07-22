@@ -70,9 +70,7 @@ int eWindow::event(int event, void *data, void *data2)
 				style->handleNewSize(this, new_size, offset);
 			}
 		} else
-		{
 			m_child->resize(new_size);
-		}
 		break;
 	}
 	case evtPaint:
