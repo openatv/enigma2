@@ -20,9 +20,13 @@ public:
 	void addMarked(const eServiceReference &ref);
 	void removeMarked(const eServiceReference &ref);
 	int isMarked(const eServiceReference &ref);
+	
+		/* this is NOT thread safe! */
+	void markedQueryStart();
+	int markedQueryNext(eServiceReference &ref);
+
 	int lookupService(const eServiceReference &ref);
-
-
+	
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -56,6 +60,8 @@ private:
 	
 		/* support for marked services */
 	std::set<eServiceReference> m_marked;
+	
+	std::set<eServiceReference>::const_iterator m_marked_iterator;
 };
 
 #endif

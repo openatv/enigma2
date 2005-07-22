@@ -54,6 +54,19 @@ int eListboxServiceContent::isMarked(const eServiceReference &ref)
 	return m_marked.find(ref) != m_marked.end();
 }
 
+void eListboxServiceContent::markedQueryStart()
+{
+	m_marked_iterator = m_marked.begin();
+}
+
+int eListboxServiceContent::markedQueryNext(eServiceReference &ref)
+{
+	if (m_marked_iterator == m_marked.end())
+		return -1;
+	ref = *m_marked_iterator++;
+	return 0;
+}
+
 int eListboxServiceContent::lookupService(const eServiceReference &ref)
 {
 		/* shortcut for cursor */
