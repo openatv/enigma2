@@ -29,7 +29,7 @@ void eFatal(const char* fmt, ...)
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	logOutput(lvlFatal, buf);
-	fprintf(stderr, "%s\n",buf );
+	fprintf(stderr, "FATAL: %s\n",buf );
 #if 0
 	if (!infatal)
 	{
