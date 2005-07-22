@@ -6,7 +6,7 @@
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
-#include <libmd5sum.h>
+// #include <libmd5sum.h>
 #include <lib/base/eerror.h>
 
 int eventData::CacheSize=0;
@@ -573,6 +573,7 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
+#if 0
 	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
@@ -622,10 +623,12 @@ void eEPGCache::load()
 		}
 		fclose(f);
 	}
+#endif
 }
 
 void eEPGCache::save()
 {
+#if 0
 	struct statfs s;
 	off64_t tmp;
 	if (statfs("/hdd", &s)<0)
@@ -680,6 +683,7 @@ void eEPGCache::save()
 			}
 		}
 	}
+#endif
 }
 
 RESULT eEPGCache::getInstance(ePtr<eEPGCache> &ptr)
