@@ -32,6 +32,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 		# mark stuff
 	def clearMarked(self):
 		self.l.clearMarked()
+		
+	def clearMarks(self):
+		self.l.initMarked()
 	
 	def isMarked(self, ref):
 		return self.l.isMarked(ref)
@@ -42,3 +45,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def removeMarked(self, ref):
 		self.l.removeMarked(ref)
 
+	def getMarked(self):
+		i = self.l
+		i.markedQueryStart()
+		ref = eServiceReference()
+		marked = [ ]
+		while i.markedQueryNext(ref) == 0:
+			marked.append(ref)
+			ref = eServiceReference()
+
+		return marked

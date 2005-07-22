@@ -81,8 +81,8 @@ dom = xml.dom.minidom.parseString(
 			<widget name="title" position="10,120" size="280,50" />
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
-		<screen name="InfoBar" position="0,380" size="720,151" title="InfoBar" flags="wfNoBorder">
-			<ePixmap position="0,0" size="720,151" pixmap="data/info-bg.png" />
+		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
+			<ePixmap position="0,0" size="720,148" pixmap="data/info-bg.png" />
 			
 			<widget name="ServiceName" position="69,30" size="427,26" valign="center" font="Arial;32" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="66,30" backgroundColor="dark" font="Arial;16" />
@@ -170,7 +170,7 @@ def collectAttributes(skinAttributes, node):
 		# TODO: localization? as in e1?
 		value = str(a.value)
 		
-		skinAttributes[attrib] = value
+		skinAttributes.append((attrib, value))
 
 def applySingleAttribute(guiObject, desktop, attrib, value):		
 	# and set attributes
@@ -232,7 +232,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
 
 def applyAllAttributes(guiObject, desktop, attributes):
-	for (attrib, value) in attributes.items():
+	for (attrib, value) in attributes:
 		applySingleAttribute(guiObject, desktop, attrib, value)
 
 def loadSkin(desktop):
@@ -298,7 +298,7 @@ def readSkin(screen, skin, name, desktop):
 	
 	assert myscreen != None, "no skin for screen '" + name + "' found!"
 
-	screen.skinAttributes = { }	
+	screen.skinAttributes = [ ]
 	collectAttributes(screen.skinAttributes, myscreen)
 	
 	screen.additionalWidgets = [ ]
@@ -312,7 +312,7 @@ def readSkin(screen, skin, name, desktop):
 		
 		# get corresponding gui object
 		try:
-			attributes = screen[wname].skinAttributes = { }
+			attributes = screen[wname].skinAttributes = [ ]
 		except:
 			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 		
@@ -345,7 +345,7 @@ def readSkin(screen, skin, name, desktop):
 		else:
 			raise str("unsupported stuff : %s" % widget.tagName)
 		
-		w.skinAttributes = { }
+		w.skinAttributes = [ ]
 		collectAttributes(w.skinAttributes, widget)
 		
 		# applyAttributes(guiObject, widget, desktop)

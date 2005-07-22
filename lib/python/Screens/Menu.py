@@ -122,37 +122,7 @@ class configOSD(Screen):
 		self["sld_gamma"] = ProgressBar()
 		self["sld_gamma"].setValue(50)
 
-
-
-
 class Menu(Screen):
-	#add file load functions for the xml-file
-	#remove old code (i.e. goScan / goClock...)
-
-	def openDialog(self, dialog):
-		self.session.open(dialog)
-
-	def goSetup(self):
-		self.session.open(configTest)
-	
-	def setModeTV(self):
-		print "set Mode to TV"
-		pass
-
-	def setModeRadio(self):
-		print "set Mode to Radio"
-		pass
-
-	def setModeFile(self):
-		print "set Mode to File"
-		pass
-
-	def goScan(self):
-		self.session.open(ServiceScan)
-	
-	def goClock(self):
-		self.session.open(clockDisplay, Clock())
-
 	def okbuttonClick(self):
 		print "okbuttonClick"
 		selection = self["menu"].getCurrent()
@@ -206,3 +176,53 @@ class Menu(Screen):
 			a = getValbyAttr(parent, "text")
 		self["title"] = Header(a)
 
+class FixedMenu(Screen):
+	def okbuttonClick(self):
+		selection = self["menu"].getCurrent()
+		selection[1]()
+
+	def __init__(self, session, title, list):
+		Screen.__init__(self, session)
+		
+		self["menu"] = MenuList(list)	
+							
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"ok": self.okbuttonClick,
+				"cancel": self.close
+			})
+		
+		self["title"] = Header(title)
+
+
+class MainMenu(Menu):
+	#add file load functions for the xml-file
+	#remove old code (i.e. goScan / goClock...)
+	
+	def __init__(self, *x):
+		Menu.__init__(self, *x)
+		self.skinName = "Menu"
+
+	def openDialog(self, dialog):
+		self.session.open(dialog)
+
+	def goSetup(self):
+		self.session.open(configTest)
+	
+	def setModeTV(self):
+		print "set Mode to TV"
+		pass
+
+	def setModeRadio(self):
+		print "set Mode to Radio"
+		pass
+
+	def setModeFile(self):
+		print "set Mode to File"
+		pass
+
+	def goScan(self):
+		self.session.open(ServiceScan)
+	
+	def goClock(self):
+		self.session.open(clockDisplay, Clock())
