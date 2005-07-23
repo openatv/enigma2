@@ -31,6 +31,7 @@ public:
 template <class T>
 queueRingBuffer<T>::queueRingBuffer( unsigned int max )
 {
+	count = 0;
 	// constructor for queues based on ring buffers
 	// create the first link
 	T initialvalue;
