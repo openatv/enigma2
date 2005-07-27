@@ -2,6 +2,8 @@ INCLUDES = \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/src
 
+SUBDIRS = Components Tools Screens
+
 noinst_LIBRARIES = libenigma_python.a
 
 libenigma_python_a_SOURCES = \
@@ -9,3 +11,8 @@ libenigma_python_a_SOURCES = \
 
 enigma_python_wrap.cxx: enigma_python.i
 	swig -I$(top_srcdir)/ -c++ -python enigma_python.i
+
+installdir = $(LIBDIR)/enigma2/python
+
+install_DATA = \
+	enigma.py
