@@ -83,8 +83,8 @@ int fbClass::showConsole(int state)
 
 int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 {
-/*	screeninfo.xres_virtual=screeninfo.xres=nxRes;
-	screeninfo.yres_virtual=screeninfo.yres=nyRes; */
+	screeninfo.xres_virtual=screeninfo.xres=nxRes;
+	screeninfo.yres_virtual=screeninfo.yres=nyRes;
 	screeninfo.height=0;
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
