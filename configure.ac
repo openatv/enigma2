@@ -46,6 +46,9 @@ lib/gui/Makefile
 lib/nav/Makefile
 lib/network/Makefile
 lib/python/Makefile
+lib/python/Components/Makefile
+lib/python/Screens/Makefile
+lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
 main/Makefile

@@ -2,3 +2,8 @@ AUTOMAKE_OPTIONS = gnu
 
 SUBDIRS = lib main
 
+installdir = $(LIBDIR)/enigma2/python
+
+install_DATA = \
+	Navigation.py NavigationInstance.py RecordTimer.py ServiceReference.py \
+	keyids.py keymapparser.py mytest.py skin.py timer.py tools.py
