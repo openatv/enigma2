@@ -1,12 +1,14 @@
-#include <lib/dvb/idvb.h>
 #include <lib/base/eerror.h>
+#include <lib/base/filepush.h>
+#include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
-#include <errno.h>
 
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 DEFINE_REF(eDVBRegisteredFrontend);
 DEFINE_REF(eDVBRegisteredDemux);
@@ -214,9 +216,9 @@ RESULT eDVBResourceManager::allocateFrontend(const eDVBChannelID &chid, ePtr<eDV
 
 RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux)
 {
-		/* find first unused demux which is on same adapter as frontend */
+		/* find first unused demux which is on same adapter as frontend (or any, if PVR) */
 	for (eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin()); i != m_demux.end(); ++i)
-		if ((!i->m_inuse) && (i->m_adapter == fe->m_adapter))
+		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
 			demux = new eDVBAllocatedDemux(i);
 			return 0;
@@ -312,9 +314,19 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 	return 0;
 }
 
-RESULT eDVBResourceManager::allocatePVRChannel(int caps)
+
+RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
-	return -1; // will nicht, mag nicht, und das interface ist auch kaputt
+	ePtr<eDVBAllocatedDemux> demux;
+	
+	if (allocateDemux(0, demux))
+		return errNoDemux;
+	
+	eDVBChannel *ch;
+	ch = new eDVBChannel(this, 0, demux);
+	
+	channel = ch;
+	return 0;
 }
 
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
@@ -355,6 +367,8 @@ eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *fronte
 {
 	m_frontend = frontend;
 	m_demux = demux;
+
+	m_pvr_thread = 0;
 	
 	if (m_frontend)
 		m_frontend->get().connectStateChange(slot(*this, &eDVBChannel::frontendStateChanged), m_conn_frontendStateChanged);
@@ -364,6 +378,12 @@ eDVBChannel::~eDVBChannel()
 {
 	if (m_channel_id)
 		m_mgr->removeChannel(this);
+	
+	if (m_pvr_thread)
+	{
+		m_pvr_thread->stop();
+		delete m_pvr_thread;
+	}
 }
 
 void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
@@ -483,4 +503,41 @@ RESULT eDVBChannel::getFrontend(ePtr<iDVBFrontend> &frontend)
 		return 0;
 	else
 		return -ENODEV;
+}
+
+RESULT eDVBChannel::playFile(const char *file)
+{
+	ASSERT(!m_frontend);
+	if (m_pvr_thread)
+	{
+		m_pvr_thread->stop();
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+	}
+	
+		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
+		   THEN DO A REAL FIX HERE! */
+	
+	
+		/* (this codepath needs to be improved anyway.) */
+	int dest = open("/dev/misc/pvr", O_WRONLY);
+	if (dest < 0)
+	{
+		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)");
+		return -ENODEV;
+	}
+	
+	int source = open(file, O_RDONLY);
+	if (source < 0)
+	{
+		eDebug("can't open PVR source file %s (%m)", file);
+		close(dest);
+		return -ENOENT;
+	}
+
+	m_state = state_ok;
+	m_stateChanged(this);
+	
+	m_pvr_thread = new eFilePushThread();
+	m_pvr_thread->start(source, dest);
 }

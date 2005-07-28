@@ -435,6 +435,19 @@ public:
 	virtual void ReleaseUse() = 0;
 };
 
+class iDVBPVRChannel: public iDVBChannel
+{
+public:
+	enum
+	{
+		state_eof = state_release + 1  /* end-of-file reached. */
+	};
+	
+		/* FIXME: there are some very ugly buffer-end and ... related problems */
+		/* so this is VERY UGLY. */
+	virtual RESULT playFile(const char *file) = 0;
+};
+
 class iDVBSectionReader;
 class iDVBTSRecorder;
 class iTSMPEGDecoder;
