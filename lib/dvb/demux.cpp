@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <signal.h>
 
-#include <lib/base/thread.h>
 
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
@@ -20,6 +19,7 @@
 #include "crc32.h"
 
 #include <lib/base/eerror.h>
+#include <lib/base/filepush.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
@@ -184,98 +184,12 @@ RESULT eDVBSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eCo
 
 DEFINE_REF(eDVBTSRecorder);
 
-class eDVBTSRecorderThread: public eThread
-{
-public:
-	eDVBTSRecorderThread();
-	void thread();
-	void stop();
-	void start(int sourcefd, int destfd);
-private:
-	int m_stop;
-	unsigned char m_buffer[65536];
-	int m_buf_start, m_buf_end;
-	int m_fd_source, m_fd_dest;
-};
-
-eDVBTSRecorderThread::eDVBTSRecorderThread()
-{
-	m_stop = 0;
-	m_buf_start = m_buf_end = 0;
-}
-
-static void signal_handler(int x)
-{
-}
-
-void eDVBTSRecorderThread::thread()
-{
-	eDebug("RECORDING THREAD START");
-		// this is race. FIXME.
-	
-		/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
-	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it :/
-	act.sa_flags = 0;
-	sigaction(SIGUSR1, &act, 0);
-	
-		/* m_stop must be evaluated after each syscall. */
-	while (!m_stop)
-	{
-			/* first try flushing the bufptr */
-		if (m_buf_start != m_buf_end)
-		{
-				// TODO: take care of boundaries.
-			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
-			if (w <= 0)
-			{
-				if (errno == -EINTR)
-					continue;
-				eDebug("eDVBTSRecorder *write error* - not yet handled");
-				// ... we would stop the thread
-			}
-			printf("TSRECORD: wrote %d bytes\n", w);
-			m_buf_start += w;
-			continue;
-		}
-			
-			/* now fill our buffer. */
-		m_buf_start = 0;
-		m_buf_end = read(m_fd_source, m_buffer, sizeof(m_buffer));
-		if (m_buf_end < 0)
-		{
-			m_buf_end = 0;
-			if (errno == EINTR)
-				continue;
-			eDebug("eDVBTSRecorder *read error* - not yet handled");
-		}
-		printf("TSRECORD: read %d bytes\n", m_buf_end);
-	}
-	
-	eDebug("RECORDING THREAD STOP");
-}
-
-void eDVBTSRecorderThread::start(int fd_source, int fd_dest)
-{
-	m_fd_source = fd_source;
-	m_fd_dest = fd_dest;
-	m_stop = 0;
-	run();
-}
-
-void eDVBTSRecorderThread::stop()
-{
-	m_stop = 1;
-	sendSignal(SIGUSR1);
-	kill();
-}
-
 eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
 {
 	m_running = 0;
 	m_format = 0;
 	m_target_fd = -1;
-	m_thread = new eDVBTSRecorderThread();
+	m_thread = new eFilePushThread();
 	m_demux->m_dvr_busy = 1;
 }
 
