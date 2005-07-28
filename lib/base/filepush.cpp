@@ -38,7 +38,7 @@ void eFilePushThread::thread()
 				eDebug("eFilePushThread *write error* - not yet handled");
 				// ... we would stop the thread
 			}
-			printf("FILEPUSH: wrote %d bytes\n", w);
+//			printf("FILEPUSH: wrote %d bytes\n", w);
 			m_buf_start += w;
 			continue;
 		}
@@ -53,7 +53,12 @@ void eFilePushThread::thread()
 				continue;
 			eDebug("eFilePushThread *read error* - not yet handled");
 		}
-		printf("FILEPUSH: read %d bytes\n", m_buf_end);
+		if (m_buf_end == 0)
+		{
+			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
+			break;
+		}
+//		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
 	
 	eDebug("FILEPUSH THREAD STOP");
