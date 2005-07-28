@@ -43,7 +43,7 @@ public:
 	RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn);
 };
 
-class eDVBTSRecorderThread;
+class eFilePushThread;
 
 class eDVBTSRecorder: public iDVBTSRecorder, public Object
 {
@@ -68,7 +68,7 @@ private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
 	
-	eDVBTSRecorderThread *m_thread;
+	eFilePushThread *m_thread;
 	
 	std::map<int,int> m_pids;
 	Signal1<void,int> m_event;
