@@ -158,14 +158,17 @@ public:
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
 	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel);
-	RESULT allocatePVRChannel(int caps);
+	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
 	RESULT connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 	RESULT connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 };
 
-class eDVBChannel: public iDVBChannel, public Object
+class eFilePushThread;
+
+	/* iDVBPVRChannel includes iDVBChannel. don't panic. */
+class eDVBChannel: public iDVBPVRChannel, public Object
 {
 	DECLARE_REF(eDVBChannel);
 private:
@@ -182,6 +185,9 @@ private:
 	
 	void frontendStateChanged(iDVBFrontend*fe);
 	ePtr<eConnection> m_conn_frontendStateChanged;
+	
+		/* for PVR playback */
+	eFilePushThread *m_pvr_thread;
 
 	friend class eUsePtr<eDVBChannel>;
 		/* use count */
@@ -193,6 +199,7 @@ public:
 	virtual ~eDVBChannel();
 
 		/* only for managed channels - effectively tunes to the channelid. should not be used... */
+		/* cannot be used for PVR channels. */
 	RESULT setChannel(const eDVBChannelID &id);
 	eDVBChannelID getChannelID() { return m_channel_id; }
 
@@ -202,6 +209,9 @@ public:
 	RESULT setCIRouting(const eDVBCIRouting &routing);
 	RESULT getDemux(ePtr<iDVBDemux> &demux);
 	RESULT getFrontend(ePtr<iDVBFrontend> &frontend);
+	
+		/* iDVBPVRChannel */
+	RESULT playFile(const char *file);
 };
 
 #endif

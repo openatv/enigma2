@@ -131,13 +131,26 @@ int eDVBServicePMTHandler::getDemux(ePtr<iDVBDemux> &demux)
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 {
 	RESULT res;
-	m_channel = 0;
-	m_channelStateChanged_connection = 0;
 	m_reference = ref;
-	eDVBChannelID chid;
-	ref.getChannelID(chid);
-	res = m_resourceManager->allocateChannel(chid, m_channel);
-	eDebug("eDVBServicePMTHandler: tune %d", res);
+	
+//	ref.path = "/viva.ts"; // hrhr.
+	
+		/* is this a normal (non PVR) channel? */
+	if (ref.path.empty())
+	{
+		eDVBChannelID chid;
+		ref.getChannelID(chid);
+		res = m_resourceManager->allocateChannel(chid, m_channel);
+	} else
+	{
+		eDebug("alloc PVR");
+			/* allocate PVR */
+		res = m_resourceManager->allocatePVRChannel(m_pvr_channel);
+		if (res)
+			eDebug("allocatePVRChannel failed!\n");
+		m_channel = m_pvr_channel;
+	}
+	
 	if (m_channel)
 	{
 		m_channel->connectStateChange(
@@ -146,5 +159,9 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		m_last_channel_state = -1;
 		channelStateChanged(m_channel);
 	}
+	
+	if (m_pvr_channel)
+		m_pvr_channel->playFile(ref.path.c_str());
+	
 	return res;
 }

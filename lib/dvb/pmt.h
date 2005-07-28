@@ -19,6 +19,7 @@ class eDVBServicePMTHandler: public Object
 	eAUTable<eTable<ProgramAssociationTable> > m_PAT;
 
 	eUsePtr<iDVBChannel> m_channel;
+	eUsePtr<iDVBPVRChannel> m_pvr_channel;
 	ePtr<eDVBResourceManager> m_resourceManager;
 	ePtr<iDVBDemux> m_demux;
 	
