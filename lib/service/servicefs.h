@@ -27,10 +27,14 @@ private:
 	std::string path;
 	friend class eServiceFactoryFS;
 	eServiceFS(const char *path);
+	
+	int m_list_valid;
+	std::list<eServiceReference> m_list;
 public:
 	virtual ~eServiceFS();
 	
 	RESULT getContent(std::list<eServiceReference> &list);
+	RESULT getNext(eServiceReference &ptr);
 };
 
 #endif

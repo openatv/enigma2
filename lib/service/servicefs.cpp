@@ -81,6 +81,7 @@ DEFINE_REF(eServiceFS);
 
 eServiceFS::eServiceFS(const char *path): path(path)
 {
+	m_list_valid = 0;
 }
 
 eServiceFS::~eServiceFS()
@@ -129,6 +130,24 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 			list.push_back(service);
 		}
 	}
+	return 0;
+}
+
+RESULT eServiceFS::getNext(eServiceReference &ptr)
+{
+	if (!m_list_valid)
+	{
+		m_list_valid = 1;
+		int res = getContent(m_list);
+		if (res)
+			return res;
+	}
+	
+	if (!m_list.size())
+		return -ERANGE;
+	
+	ptr = m_list.front();
+	m_list.pop_front();
 	return 0;
 }
 

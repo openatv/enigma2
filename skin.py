@@ -92,13 +92,16 @@ dom = xml.dom.minidom.parseString(
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;26" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
-		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
+ 		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
 			<widget name="list" position="0,50" size="560,340" />
 <!--			<widget name="okbutton" position="340,50" size="140,30" />-->
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" />
+		</screen>
+ 		<screen name="MovieSelection" position="150,100" size="400,420" title="Select-a-movie">
+			<widget name="list" position="0,50" size="400,300" />
 		</screen>
 		<screen name="ServiceScan" position="150,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="280,50" />

@@ -7,6 +7,7 @@ from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 
 from Screens.MessageBox import MessageBox
+from Screens.MovieSelection import MovieSelection
 
 from enigma import *
 
@@ -31,7 +32,8 @@ class InfoBar(Screen):
 				"zapDown": self.zapDown,
 				"instantRecord": self.instantRecord,
 				"hide": self.hide,
-				"toggleShow": self.toggleShow
+				"toggleShow": self.toggleShow,
+				"showMovies": self.showMovies,
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -100,4 +102,6 @@ class InfoBar(Screen):
 						epg = ev
 			# fix me, description. 
 			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
-
+	
+	def showMovies(self):
+		self.session.open(MovieSelection)

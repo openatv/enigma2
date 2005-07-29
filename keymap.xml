@@ -42,6 +42,7 @@
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_OK" mapto="toggleShow" flags="mr" />
 		<key id="KEY_EXIT" mapto="hide" flags="mr" />
+		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
 	</map>
 	
 	<map context="ChannelSelectActions">
@@ -59,15 +60,15 @@
 		<key id="KEY_A" mapto="bouquet:" flags="m" />
 	</map>
 	<map context="OkCancelActions">
-		<key id="\x0a" mapto="ok" flags="mr" />
-		<key id="\x1b" mapto="cancel" flags="mr" />
+		<key id="\x0a" mapto="ok" flags="m" />
+		<key id="\x1b" mapto="cancel" flags="m" />
 
 		<!-- use this on rcu, ok? -->
-		<key id="KEY_OK" mapto="ok" flags="mr" />
-		<key id="KEY_EXIT" mapto="cancel" flags="mr" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 
-		<key id="KEY_ENTER" mapto="ok" flags="mr" />
-		<key id="KEY_ESC" mapto="cancel" flags="mr" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
 	<map context="WindowActions">
 		
