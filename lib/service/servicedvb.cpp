@@ -10,6 +10,31 @@
 #include <lib/dvb/db.h>
 
 #include <lib/service/servicedvbrecord.h>
+#include <lib/dvb/metaparser.h>
+
+class eStaticServiceDVBPVRInformation: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceDVBPVRInformation);
+	eServiceReference m_ref;
+	eDVBMetaParser m_parser;
+public:
+	eStaticServiceDVBPVRInformation(const eServiceReference &ref);
+	RESULT getName(const eServiceReference &ref, std::string &name);
+};
+
+DEFINE_REF(eStaticServiceDVBPVRInformation);
+
+eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceReference &ref)
+{
+	m_ref = ref;
+	m_parser.parseFile(ref.path);
+}
+
+RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
+{
+	ASSERT(ref == m_ref);
+	name = m_parser.m_name.size() ? m_parser.m_name : ref.path;
+}
 
 DEFINE_REF(eServiceFactoryDVB)
 
@@ -109,13 +134,21 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-	ePtr<eDVBService> service;
-	int r = lookupService(service, ref);
-	if (r)
-		return r;
-		/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
-	ptr = service;
-	return 0;
+		/* do we have a PVR service? */
+	if (ref.path.size())
+	{
+		ptr = new eStaticServiceDVBPVRInformation(ref);
+		return 0;
+	} else
+	{
+		ePtr<eDVBService> service;
+		int r = lookupService(service, ref);
+		if (r)
+			return r;
+			/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
+		ptr = service;
+		return 0;
+	}
 }
 
 RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServiceReference &ref)

@@ -2,6 +2,7 @@
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
+#include <lib/dvb/metaparser.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 {
@@ -143,6 +144,13 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		res = m_resourceManager->allocateChannel(chid, m_channel);
 	} else
 	{
+		eDVBMetaParser parser;
+		
+		if (parser.parseFile(ref.path))
+			eWarning("no .meta file found, trying original service ref.");
+		else
+			m_reference = parser.m_ref;
+		
 		eDebug("alloc PVR");
 			/* allocate PVR */
 		res = m_resourceManager->allocatePVRChannel(m_pvr_channel);
