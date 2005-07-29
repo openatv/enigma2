@@ -208,7 +208,11 @@ TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 class iListableService: public iObject
 {
 public:
+		/* legacy interface: get a list */
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
+	
+		/* new, shiny interface: streaming. */
+	virtual RESULT getNext(eServiceReference &ptr)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);

@@ -78,6 +78,12 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
 	return 0;
 }
 
+RESULT eDVBServiceList::getNext(eServiceReference &)
+{
+		/* implement me */
+	return -1;
+}
+
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 	ePtr<eDVBService> service;

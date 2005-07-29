@@ -34,6 +34,7 @@ private:
 public:
 	virtual ~eDVBServiceList();
 	RESULT getContent(std::list<eServiceReference> &list);
+	RESULT getNext(eServiceReference &ptr);
 };
 
 class eDVBServicePlay: public iPlayableService, public Object, public iServiceInformation
