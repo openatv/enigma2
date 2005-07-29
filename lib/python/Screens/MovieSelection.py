@@ -13,7 +13,7 @@ class MovieSelection(Screen):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
-		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:/"))
+		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:/hdd/movies/"))
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		
@@ -25,5 +25,5 @@ class MovieSelection(Screen):
 		self["actions"].csel = self
 
 	def movieSelected(self):
-#		self.session.nav.playService(self["list"].getCurrent())
+		self.session.nav.playService(self["list"].getCurrent()[0])
 		self.close()

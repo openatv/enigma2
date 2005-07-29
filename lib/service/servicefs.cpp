@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <lib/service/servicefs.h>
 #include <lib/service/service.h>
+#include <lib/service/servicedvb.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <dirent.h>
@@ -121,13 +122,15 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 			list.push_back(service);
 		} else
 		{
-			eServiceReference service(eServiceFactoryFS::id, 
-				eServiceReference::isDirectory|
-				eServiceReference::canDescent|eServiceReference::mustDescent|
-				eServiceReference::shouldSort|eServiceReference::sort1,
-				filename);
-			service.data[0] = 0;
-			list.push_back(service);
+				/* FIIIIIX ME */
+			if (filename.substr(filename.size()-3) == ".ts")
+			{
+				eServiceReference service(eServiceFactoryDVB::id,
+					0,
+					filename);
+				service.data[0] = 0;
+				list.push_back(service);
+			}
 		}
 	}
 	return 0;
