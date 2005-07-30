@@ -382,6 +382,8 @@ eDVBChannel::~eDVBChannel()
 	if (m_pvr_thread)
 	{
 		m_pvr_thread->stop();
+		::close(m_pvr_fd_src);
+		::close(m_pvr_fd_dst);
 		delete m_pvr_thread;
 	}
 }
@@ -520,18 +522,18 @@ RESULT eDVBChannel::playFile(const char *file)
 	
 	
 		/* (this codepath needs to be improved anyway.) */
-	int dest = open("/dev/misc/pvr", O_WRONLY);
-	if (dest < 0)
+	m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
+	if (m_pvr_fd_dst < 0)
 	{
 		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)");
 		return -ENODEV;
 	}
 	
-	int source = open(file, O_RDONLY);
-	if (source < 0)
+	m_pvr_fd_src = open(file, O_RDONLY);
+	if (m_pvr_fd_src < 0)
 	{
-		eDebug("can't open PVR source file %s (%m)", file);
-		close(dest);
+		eDebug("can't open PVR m_pvr_fd_src file %s (%m)", file);
+		close(m_pvr_fd_dst);
 		return -ENOENT;
 	}
 
@@ -539,5 +541,5 @@ RESULT eDVBChannel::playFile(const char *file)
 	m_stateChanged(this);
 	
 	m_pvr_thread = new eFilePushThread();
-	m_pvr_thread->start(source, dest);
+	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
 }

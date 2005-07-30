@@ -188,6 +188,7 @@ private:
 	
 		/* for PVR playback */
 	eFilePushThread *m_pvr_thread;
+	int m_pvr_fd_src, m_pvr_fd_dst;
 
 	friend class eUsePtr<eDVBChannel>;
 		/* use count */
