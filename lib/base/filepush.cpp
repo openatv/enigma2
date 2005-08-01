@@ -56,6 +56,11 @@ void eFilePushThread::thread()
 		if (m_buf_end == 0)
 		{
 			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
+			if (!lseek(m_fd_source, 0, SEEK_SET))
+			{
+				eDebug("(looping)");
+				continue;
+			}
 			break;
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
