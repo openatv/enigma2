@@ -707,11 +707,14 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
-		eDebug("[EPGC] stop caching events");
+		eDebug("[EPGC] stop caching events(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
 		zapTimer.start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
-		seenSections.clear();
-		calcedSections.clear();
+		for (int i=0; i < 3; ++i)
+		{
+			seenSections[i].clear();
+			calcedSections[i].clear();
+		}
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 		can_delete=1;
@@ -722,12 +725,15 @@ bool eEPGCache::channel_data::finishEPG()
 
 void eEPGCache::channel_data::startEPG()
 {
-	eDebug("[EPGC] start caching events");
+	eDebug("[EPGC] start caching events(%d)", eDVBLocalTimeHandler::getInstance()->difference()+time(0));
 	state=0;
 	haveData=0;
 	can_delete=0;
-	seenSections.clear();
-	calcedSections.clear();
+	for (int i=0; i < 3; ++i)
+	{
+		seenSections[i].clear();
+		calcedSections[i].clear();
+	}
 
 	eDVBSectionFilterMask mask;
 	memset(&mask, 0, sizeof(mask));
@@ -780,8 +786,11 @@ void eEPGCache::channel_data::abortNonAvail()
 		else
 		{
 			++state;
-			seenSections.clear();
-			calcedSections.clear();
+			for (int i=0; i < 3; ++i)
+			{
+				seenSections[i].clear();
+				calcedSections[i].clear();
+			}
 			can_delete=1;
 		}
 	}
@@ -806,8 +815,11 @@ void eEPGCache::channel_data::startChannel()
 
 void eEPGCache::channel_data::abortEPG()
 {
-	seenSections.clear();
-	calcedSections.clear();
+	for (int i=0; i < 3; ++i)
+	{
+		seenSections[i].clear();
+		calcedSections[i].clear();
+	}
 	abortTimer.stop();
 	zapTimer.stop();
 	if (isRunning)
@@ -841,22 +853,40 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 		eDebug("get Null pointer from section reader !!");
 	else
 	{
-		int source = data[0] > 0x5F ? eEPGCache::SCHEDULE_OTHER : data[0] > 0x4F ? eEPGCache::SCHEDULE : eEPGCache::NOWNEXT;
+		int source;
+		int map;
+		iDVBSectionReader *reader=NULL;
+		switch(data[0])
+		{
+			case 0x4E ... 0x4F:
+				reader=m_NowNextReader;
+				source=eEPGCache::NOWNEXT;
+				map=0;
+				break;
+			case 0x50 ... 0x5F:
+				reader=m_ScheduleReader;
+				source=eEPGCache::SCHEDULE;
+				map=1;
+				break;
+			case 0x60 ... 0x6F:
+				reader=m_ScheduleOtherReader;
+				source=eEPGCache::SCHEDULE_OTHER;
+				map=2;
+				break;
+		}
+		tidMap &seenSections = this->seenSections[map];
+		tidMap &calcedSections = this->calcedSections[map];
 		if ( state == 1 && calcedSections == seenSections || state > 1 )
 		{
-			iDVBSectionReader *reader=NULL;
+			eDebugNoNewLine("[EPGC] ");
 			switch (source)
 			{
-				case eEPGCache::SCHEDULE_OTHER:
-					reader=m_ScheduleOtherReader;
-					break;
-				case eEPGCache::SCHEDULE:
-					reader=m_ScheduleReader;
-					break;
-				case eEPGCache::NOWNEXT:
-					reader=m_NowNextReader;
-					break;
+				case eEPGCache::NOWNEXT: eDebugNoNewLine("nownext");break;
+				case eEPGCache::SCHEDULE: eDebugNoNewLine("schedule");break;
+				case eEPGCache::SCHEDULE_OTHER: eDebugNoNewLine("schedule other");break;
+				default: eDebugNoNewLine("unknown");break;
 			}
+			eDebug(" finished(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
 			reader->stop();
 			isRunning &= ~source;
 			if (!isRunning)
