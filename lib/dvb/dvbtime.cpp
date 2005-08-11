@@ -104,7 +104,6 @@ void TDT::start()
 		spec.flags= eDVBTableSpec::tfAnyVersion |
 					eDVBTableSpec::tfHaveTID |
 					eDVBTableSpec::tfHaveTIDMask |
-					eDVBTableSpec::tfCheckCRC |
 					eDVBTableSpec::tfHaveTimeout;
 		if ( demux )
 			eGTable::start( demux, spec );
