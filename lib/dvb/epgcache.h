@@ -158,7 +158,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
-		tidMap seenSections, calcedSections;
+		tidMap seenSections[3], calcedSections[3];
 		void readData(const __u8 *data);
 		void startChannel();
 		void startEPG();
