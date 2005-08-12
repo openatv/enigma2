@@ -18,7 +18,6 @@ AC_ARG_WITH(libsdl,
 	[[withsdl=$withval]],
 	[[withsdl=yes]]
 )
-AC_DEFINE_UNQUOTED([WITH_SDL],[$withsdl],[With SDL])
 		
 TUXBOX_APPS_DVB
 #TUXBOX_APPS_DRIVER
@@ -34,6 +33,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
 
 if test "$withsdl" = "yes" ; then
 	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
+	AC_DEFINE_UNQUOTED([WITH_SDL],[$withsdl],[With SDL])
 fi
 
 # fixme: decent python stuff
