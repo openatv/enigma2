@@ -22,6 +22,7 @@ protected:
 	unsigned short session_nb;
 	virtual int receivedAPDU(const unsigned char *tag, const void *data, int len) = 0;
 	void eDVBCISession::sendAPDU(const unsigned char *tag, const void *data=0,int len=0);
+	void eDVBCISession::sendSPDU(unsigned char tag, const void *data, int len,const void *apdu=0, int alen=0);
 public:
 	enum { stateInCreation, stateBusy, stateInDeletion, stateStarted, statePrivate};
 	
