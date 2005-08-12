@@ -14,14 +14,14 @@ public:
 	bool thread_running() { return alive; }
 	eThread();
 	virtual ~eThread();
-	
-	void run(int prio=0,int policy=0);
+
+	void run(int prio=0, int policy=0);
 
 	virtual void thread()=0;
 	virtual void thread_finished() { }
-
 	void sendSignal(int sig);
-	void kill(bool hard=false);
+
+	void kill(bool sendcancel=false);
 };
 
 #endif
