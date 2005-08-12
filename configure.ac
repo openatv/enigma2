@@ -41,6 +41,7 @@ lib/base/Makefile
 lib/driver/Makefile
 lib/dvb/Makefile
 lib/dvb_si/Makefile
+lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
 lib/nav/Makefile
