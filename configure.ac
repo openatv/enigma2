@@ -33,7 +33,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
 #TUXBOX_APPS_LIB_PKGCONFIG(XMLTREE,tuxbox-xmltree)
 
 if test "$withsdl" = "yes" ; then
-	TUXBOX_APPS_LIB_PKGCONFIG(SDL,sdl-config)
+	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
 fi
 
 # fixme: decent python stuff
