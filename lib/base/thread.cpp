@@ -20,15 +20,21 @@ void *eThread::wrapper(void *ptr)
 	p->thread();
 	pthread_exit(0);
 	pthread_cleanup_pop(0);
+	return 0;
 }
 
 eThread::eThread()
-	:alive(0)
+	:the_thread(0), alive(0)
 {
 }
 
 void eThread::run( int prio, int policy )
 {
+	if (alive)
+	{
+		eDebug("thread already running !!");
+		return;
+	}
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 	if (prio||policy)
@@ -38,7 +44,12 @@ void eThread::run( int prio, int policy )
 		pthread_attr_setschedpolicy(&attr, policy );
 		pthread_attr_setschedparam(&attr, &p);
 	}
-	pthread_create(&the_thread, &attr, wrapper, this);
+	if ( pthread_create(&the_thread, &attr, wrapper, this) )
+	{
+		eDebug("couldn't create new thread");
+		return;
+	}
+	pthread_attr_destroy(&attr);
 	usleep(1000);
 	int timeout=20;
 	while(!alive && timeout--)
@@ -52,36 +63,26 @@ void eThread::run( int prio, int policy )
 
 eThread::~eThread()
 {
-	if ( alive )
-		kill();
+	kill();
 }
 
 void eThread::sendSignal(int sig)
 {
 	if ( alive )
 		pthread_kill( the_thread, sig );
-	else 
+	else
 		eDebug("send signal to non running thread");
 }
 
-void eThread::kill(bool hard)
+void eThread::kill(bool sendcancel)
 {
-	if ( !alive )
-	{
-		eDebug("kill.. but thread don't running");
+	if (!the_thread)
 		return;
-	}
-
-	if ( hard )
+	if ( alive && sendcancel )
 	{
-		eDebug("killing the thread...");
+		eDebug("send cancel to thread");
 		pthread_cancel(the_thread);
-		alive=0;
 	}
-	else
-	{
-		eDebug("waiting for thread shutdown...");
-		pthread_join(the_thread, 0);
-		eDebug("ok");
-	}
+	eDebug("thread joined %d", pthread_join(the_thread, 0));
+	the_thread=0;
 }
