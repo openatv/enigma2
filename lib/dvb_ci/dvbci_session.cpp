@@ -5,6 +5,7 @@
 #include <lib/dvb_ci/dvbci_appmgr.h>
 #include <lib/dvb_ci/dvbci_camgr.h>
 #include <lib/dvb_ci/dvbci_datetimemgr.h>
+#include <lib/dvb_ci/dvbci_mmi.h>
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
@@ -143,7 +144,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		printf("DATE-TIME\n");
 		break;
 	case 0x00400041:
-//		session=new eDVBCIMMISession;
+		session=new eDVBCIMMISession;
 		printf("MMI\n");
 		break;
 	case 0x00100041:
