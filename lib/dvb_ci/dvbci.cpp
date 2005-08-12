@@ -44,20 +44,22 @@ void eDVBCISlot::data(int)
 	if(r < 0)
 		eWarning("ERROR reading from CI - %m\n");
 
-	if(!se) {
+	if(state != stateInserted) {
+		state = stateInserted;
 		eDebug("ci inserted");
-		se = new eDVBCISession(this);
-	
+
 		/* enable HUP to detect removal or errors */
 		notifier_event->start();
 	}
 
 	if(r > 0)
-		se->receiveData(data, r);
+		eDVBCISession::receiveData(this, data, r);
 }
 
 void eDVBCISlot::event(int)
 {
+	state = stateRemoved;
+
 	eDebug("CI removed");
 	
 	/* kill the TransportConnection */
@@ -66,7 +68,7 @@ void eDVBCISlot::event(int)
 	notifier_event->stop();
 }
 
-eDVBCISlot::eDVBCISlot(eMainloop *context, int nr): se(0)
+eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 {
 	char filename[128];
 

@@ -1,11 +1,7 @@
 /* DVB CI Transport Connection */
 
 #include <lib/dvb_ci/dvbci_session.h>
-
-eDVBCISession::eDVBCISession(eDVBCISlot *cislot)
-{
-	slot = cislot;
-}
+#include <lib/dvb_ci/dvbci_resmgr.h>
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
@@ -47,6 +43,17 @@ int eDVBCISession::parseLengthField(const unsigned char *pkt, int &len)
 	return (pkt[0] & 0x7F) + 1;
 }
 
+void eDVBCISession::sendAPDU(const unsigned char *tag, const void *data, int len)
+{
+	unsigned char pkt[len+3+4];
+	int l;
+	memcpy(pkt, tag, 3);
+	l=buildLengthField(pkt+3, len);
+	if (data)
+		memcpy(pkt+3+l, data, len);
+	sendSPDU(0x90, 0, 0, pkt, len+3+l);
+}
+
 void eDVBCISession::sendSPDU(eDVBCISlot *slot, unsigned char tag, const void *data, int len, unsigned short session_nb, const void *apdu,int alen)
 {
 	unsigned char pkt[4096];
@@ -75,6 +82,21 @@ void eDVBCISession::sendOpenSessionResponse(eDVBCISlot *slot, unsigned char sess
 	sendSPDU(slot, 0x92, pkt, 5, session_nb);
 }
 
+void eDVBCISession::recvCreateSessionResponse(const unsigned char *data)
+{
+	status = data[0];
+	state = stateStarted;
+	action = 1;
+	printf("create Session Response, status %x\n", status);
+}
+
+void eDVBCISession::recvCloseSessionRequest(const unsigned char *data)
+{
+	state = stateInDeletion;
+	action = 1;
+	printf("close Session Request\n");
+}
+
 eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status)
 {
 	eDVBCISession *session;
@@ -97,7 +119,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	switch (tag)
 	{
 	case 0x00010041:
-//		session=new eDVBCIResourceManagerSession;
+		session=new eDVBCIResourceManagerSession;
 		printf("RESOURCE MANAGER\n");
 		break;
 	case 0x00020041:
@@ -150,7 +172,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	return session;
 }
 
-void eDVBCISession::receiveData(const unsigned char *ptr, size_t len)
+void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size_t len)
 {
 	const unsigned char *pkt = (const unsigned char*)ptr;
 	unsigned char tag = *pkt++;
@@ -173,4 +195,72 @@ void eDVBCISession::receiveData(const unsigned char *ptr, size_t len)
 			session->action=1;
 		}
 	}
+	else
+	{
+		unsigned session_nb;
+		session_nb=pkt[hlen-2]<<8;
+		session_nb|=pkt[hlen-1]&0xFF;
+		
+		if ((!session_nb) || (session_nb >= SLMS))
+		{
+			printf("PROTOCOL: illegal session number %x\n", session_nb);
+			return;
+		}
+		
+		session=sessions[session_nb-1];
+		if (!session)
+		{
+			printf("PROTOCOL: data on closed session %x\n", session_nb);
+			return;
+		}
+
+		switch (tag)
+		{
+		case 0x90:
+			break;
+		case 0x94:
+			session->recvCreateSessionResponse(pkt);
+			break;
+		case 0x95:
+			printf("recvCloseSessionRequest\n");
+			session->recvCloseSessionRequest(pkt);
+			break;
+		default:
+			printf("INTERNAL: nyi, tag %02x.\n", tag);
+			return;
+		}
+	}
+	
+	hlen += llen + 1; // lengthfield and tag
+
+	pkt = ((const unsigned char*)ptr) + hlen;
+	len -= hlen;
+
+	if (session)
+		while (len > 0)
+		{
+			int alen;
+			const unsigned char *tag=pkt;
+			pkt+=3; // tag
+			len-=3;
+			hlen=parseLengthField(pkt, alen);
+			pkt+=hlen;
+			len-=hlen;
+
+			//if (eDVBCIModule::getInstance()->workarounds_active & eDVBCIModule::workaroundMagicAPDULength)
+			//{
+			//	if (((len-alen) > 0) && ((len - alen) < 3))
+			//	{
+			//		printf("WORKAROUND: applying work around MagicAPDULength\n");
+			//		alen=len;
+			//	}
+			//}
+			if (session->receivedAPDU(tag, pkt, alen))
+				session->action = 1;
+			pkt+=alen;
+			len-=alen;
+		}
+		
+	if (len)
+		printf("PROTOCOL: warning, TL-Data has invalid length\n");
 }

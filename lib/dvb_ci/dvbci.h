@@ -5,7 +5,7 @@
 
 class eDVBCISession;
 
-class eDVBCISlot: public Object
+class eDVBCISlot: public iObject, public Object
 {
 DECLARE_REF(eDVBCISlot);
 private:
@@ -14,8 +14,9 @@ private:
 	eSocketNotifier *notifier_data;
 	void event(int);
 	eSocketNotifier *notifier_event;
-	
-	eDVBCISession *se;
+
+	int state;
+	enum {stateRemoved, stateInserted};	
 public:
 	eDVBCISlot(eMainloop *context, int nr);
 	virtual ~eDVBCISlot();
