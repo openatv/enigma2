@@ -2,6 +2,8 @@
 
 #include <lib/dvb_ci/dvbci_session.h>
 #include <lib/dvb_ci/dvbci_resmgr.h>
+#include <lib/dvb_ci/dvbci_appmgr.h>
+#include <lib/dvb_ci/dvbci_camgr.h>
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
@@ -52,6 +54,11 @@ void eDVBCISession::sendAPDU(const unsigned char *tag, const void *data, int len
 	if (data)
 		memcpy(pkt+3+l, data, len);
 	sendSPDU(0x90, 0, 0, pkt, len+3+l);
+}
+
+void eDVBCISession::sendSPDU(unsigned char tag, const void *data, int len, const void *apdu, int alen)
+{
+	sendSPDU(slot, tag, data, len, session_nb, apdu, alen);
 }
 
 void eDVBCISession::sendSPDU(eDVBCISlot *slot, unsigned char tag, const void *data, int len, unsigned short session_nb, const void *apdu,int alen)
@@ -123,11 +130,11 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		printf("RESOURCE MANAGER\n");
 		break;
 	case 0x00020041:
-//		session=eDVBCIModule::getInstance()->application_manager = new eDVBCIApplicationManagerSession;
+		session=slot->application_manager = new eDVBCIApplicationManagerSession;
 		printf("APPLICATION MANAGER\n");
 		break;
 	case 0x00030041:
-//		session=eDVBCIModule::getInstance()->ca_manager=new eDVBCICAManagerSession;
+		session=slot->ca_manager=new eDVBCICAManagerSession;
 		printf("CA MANAGER\n");
 		break;
 	case 0x00240041:

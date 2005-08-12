@@ -4,6 +4,8 @@
 #include <lib/base/ebase.h>
 
 class eDVBCISession;
+class eDVBCIApplicationManagerSession;
+class eDVBCICAManagerSession;
 
 class eDVBCISlot: public iObject, public Object
 {
@@ -22,6 +24,9 @@ public:
 	virtual ~eDVBCISlot();
 	
 	int eDVBCISlot::write(const unsigned char *data, size_t len);
+	
+	eDVBCIApplicationManagerSession *application_manager;
+	eDVBCICAManagerSession *ca_manager;
 };
 
 class eDVBCIInterfaces
