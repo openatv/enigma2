@@ -348,7 +348,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 		{
 			delete it->second.tdt;
 			it->second.tdt = new TDT(chan);
-			it->second.tdt->startTimer(60*1000);  // restart TDT for this transponder in 60min
+			it->second.tdt->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
 		}
 	}
 }
