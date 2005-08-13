@@ -24,6 +24,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			else
 				for (int i=0; i<len; i++)
 					printf("%02x ", ((const unsigned char*)data)[i]);
+
 			if (state == stateFirstProfileEnquiry)
 			{
 				// profile change
@@ -35,6 +36,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			printf("unknown APDU tag 9F 80 %02x\n", tag[2]);
 		}
 	}
+	
 	return 0;
 }
 
@@ -46,7 +48,7 @@ int eDVBCIResourceManagerSession::doAction()
 	{
 		const unsigned char tag[3]={0x9F, 0x80, 0x10}; // profile enquiry
 		sendAPDU(tag);
-		state=stateFirstProfileEnquiry;
+		state = stateFirstProfileEnquiry;
 		return 0;
 	}
 	case stateFirstProfileEnquiry:
@@ -56,6 +58,11 @@ int eDVBCIResourceManagerSession::doAction()
 		state=stateProfileChange;
 		return 0;
 	}
+  case stateProfileChange:
+  {
+    printf("bla kaputt\n");
+    break;
+  }
 	case stateProfileEnquiry:
 	{
 		const unsigned char tag[3]={0x9F, 0x80, 0x11};

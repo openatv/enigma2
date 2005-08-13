@@ -40,3 +40,31 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 	}
 	return 0;
 }
+
+int eDVBCIApplicationManagerSession::doAction()
+{
+  switch (state)
+  {
+  case stateStarted:
+  {
+    const unsigned char tag[3]={0x9F, 0x80, 0x20}; // application manager info e    sendAPDU(tag);
+		sendAPDU(tag);
+    state=stateFinal;
+    return 1;
+  }
+  case stateFinal:
+    printf("in final state.\n");
+		wantmenu = 0;
+    if (wantmenu)
+    {
+      printf("wantmenu: sending Tenter_menu\n");
+      const unsigned char tag[3]={0x9F, 0x80, 0x22};  // Tenter_menu
+      sendAPDU(tag);
+      wantmenu=0;
+      return 0;
+    } else
+      return 0;
+  default:
+    return 0;
+  }
+}
