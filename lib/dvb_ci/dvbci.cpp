@@ -30,7 +30,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		++num_ci;
 	}
 
-	eDebug("done, found %d common interfaces");
+	eDebug("done, found %d common interface slots");
 }
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
@@ -40,18 +40,17 @@ eDVBCIInterfaces::~eDVBCIInterfaces()
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res;
-	int i;
-	
-	printf("< ");
-	for(i=0;i<len;i++)
-		printf("%02x ",data[i]);
-	printf("\n");
+	//int i;
+	//printf("< ");
+	//for(i=0;i<len;i++)
+	//	printf("%02x ",data[i]);
+	//printf("\n");
 
 	res = ::write(fd, data, len);
 
-	printf("write() %d\n",res);
+	//printf("write() %d\n",res);
 
-	notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
+	notifier->setRequested(eSocketNotifier::Read | eSocketNotifier::Priority | eSocketNotifier::Write);
 
 	return res;
 }
@@ -71,37 +70,29 @@ void eDVBCISlot::data(int what)
 	__u8 data[4096];
 	int r;
 	r = ::read(fd, data, 4096);
-	//if(r < 0)
-	//	eWarning("ERROR reading from CI - %m\n");
 
 	if(state != stateInserted) {
 		state = stateInserted;
 		eDebug("ci inserted");
-
-		/* enable HUP to detect removal or errors */
-		//notifier_event->start();
+		/* enable PRI to detect removal or errors */
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 	}
 
 	if(r > 0) {
-		int i;
-		printf("> ");
-		for(i=0;i<r;i++)
-			printf("%02x ",data[i]);
-		printf("\n");
-		//eDebug("ci talks to us");
+		//int i;
+		//printf("> ");
+		//for(i=0;i<r;i++)
+		//	printf("%02x ",data[i]);
+		//printf("\n");
 		eDVBCISession::receiveData(this, data, r);
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 		return;
 	}
 
 	if(what == eSocketNotifier::Write) {
-		printf("pollall\n");
 		if(eDVBCISession::pollAll() == 0) {
-			printf("disable pollout\n");
 			notifier->setRequested(eSocketNotifier::Read | eSocketNotifier::Priority);
 		}
-		return;
 	}
 }
 
