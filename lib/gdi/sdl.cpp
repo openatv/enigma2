@@ -1,3 +1,5 @@
+#ifdef WITH_SDL
+
 #include <lib/gdi/sdl.h>
 
 #include <lib/base/init.h>
@@ -83,3 +85,5 @@ void gSDLDC::exec(gOpcode *o)
 }
 
 eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");
+
+#endif
