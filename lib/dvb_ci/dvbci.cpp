@@ -51,14 +51,14 @@ int eDVBCISlot::send(const unsigned char *data, size_t len)
 
 	printf("write() %d\n",res);
 
-	notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
+	notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 
 	return res;
 }
 
 void eDVBCISlot::data(int what)
 {
-	if(what == eSocketNotifier::Hungup) {
+	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
 			printf("ci removed\n");
@@ -80,7 +80,7 @@ void eDVBCISlot::data(int what)
 
 		/* enable HUP to detect removal or errors */
 		//notifier_event->start();
-		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
+		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 	}
 
 	if(r > 0) {
@@ -91,7 +91,7 @@ void eDVBCISlot::data(int what)
 		printf("\n");
 		//eDebug("ci talks to us");
 		eDVBCISession::receiveData(this, data, r);
-		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
+		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 		return;
 	}
 
@@ -99,7 +99,7 @@ void eDVBCISlot::data(int what)
 		printf("pollall\n");
 		if(eDVBCISession::pollAll() == 0) {
 			printf("disable pollout\n");
-			notifier->setRequested(eSocketNotifier::Read | eSocketNotifier::Hungup);
+			notifier->setRequested(eSocketNotifier::Read | eSocketNotifier::Priority);
 		}
 		return;
 	}
@@ -119,7 +119,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 	if (fd >= 0)
 	{
-		notifier = new eSocketNotifier(context, fd, eSocketNotifier::Read | eSocketNotifier::Hungup);
+		notifier = new eSocketNotifier(context, fd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(notifier->activated, eDVBCISlot::data);
 	} else
 	{
