@@ -84,12 +84,13 @@ dom = xml.dom.minidom.parseString(
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" size="720,148" pixmap="data/info-bg.png" />
 			
-			<widget name="ServiceName" position="69,30" size="427,26" valign="center" font="Arial;32" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,10" size="66,30" backgroundColor="dark" font="Arial;16" />
-			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;29" backgroundColor="dark" />
-			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;29" backgroundColor="dark" />
-			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;26" backgroundColor="dark" />
-			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;26" backgroundColor="dark" />
+			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="80,30" backgroundColor="dark" font="Arial;19" />
+			<widget name="Volume" position="575,45" size="100,5" backgroundColor="dark" />
+			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
  		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
