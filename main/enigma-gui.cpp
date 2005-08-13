@@ -67,7 +67,7 @@ int main()
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont("/dbox2/cdkroot/share/fonts/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	dsk.setDC(my_dc);
