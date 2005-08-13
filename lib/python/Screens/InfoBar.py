@@ -1,6 +1,7 @@
 from Screen import Screen
 from ChannelSelection import ChannelSelection
 from Components.Clock import Clock
+from Components.VolumeBar import VolumeBar
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.ServiceName import ServiceName
@@ -22,7 +23,8 @@ class InfoBar(Screen):
 
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		
+		self.volumeBar = VolumeBar()		
+
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
 				"switchChannelUp": self.switchChannelUp,
@@ -30,14 +32,20 @@ class InfoBar(Screen):
 				"mainMenu": self.mainMenu,
 				"zapUp": self.zapUp,
 				"zapDown": self.zapDown,
+				"volumeUp": self.volUp,
+				"volumeDown": self.volDown,
+				"volumeMute": self.volMute,
 				"instantRecord": self.instantRecord,
 				"hide": self.hide,
 				"toggleShow": self.toggleShow,
 				"showMovies": self.showMovies,
+				"quit": self.quit
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
 		self["CurrentTime"] = Clock()
+
+		self["Volume"] = self.volumeBar
 		
 		self["ServiceName"] = ServiceName(self.session.nav)
 		
@@ -79,6 +87,21 @@ class InfoBar(Screen):
 	def	zapDown(self):
 		self.servicelist.moveDown()
 		self.servicelist.zap()
+
+	def	volUp(self):
+		eDVBVolumecontrol.getInstance().volumeUp()
+		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+
+	def	volDown(self):
+		eDVBVolumecontrol.getInstance().volumeDown()
+		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+
+	def	volMute(self):
+		eDVBVolumecontrol.getInstance().volumeToggleMute()
+		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+
+	def	quit(self):
+		quitMainloop()
 		
 	def instantRecord(self):
 		self.session.open(MessageBox, "this would be an instant recording! do you really know what you're doing?!")
@@ -105,3 +128,4 @@ class InfoBar(Screen):
 	
 	def showMovies(self):
 		self.session.open(MovieSelection)
+
