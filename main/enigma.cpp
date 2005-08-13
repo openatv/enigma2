@@ -152,7 +152,7 @@ int main(int argc, char **argv)
 	gFBDC::getInstance(my_dc);
 #endif
 
-	fontRenderClass::getInstance()->AddFont("/home/tmbinc/enigma2/fonts/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
