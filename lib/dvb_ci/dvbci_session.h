@@ -23,7 +23,10 @@ protected:
 	virtual int receivedAPDU(const unsigned char *tag, const void *data, int len) = 0;
 	void eDVBCISession::sendAPDU(const unsigned char *tag, const void *data=0,int len=0);
 	void eDVBCISession::sendSPDU(unsigned char tag, const void *data, int len,const void *apdu=0, int alen=0);
+	virtual doAction()=0;
+	void handleClose();
 public:
+	int poll() { if (action) { action=doAction(); return 1; } return 0; }
 	enum { stateInCreation, stateBusy, stateInDeletion, stateStarted, statePrivate};
 	
 	static int parseLengthField(const unsigned char *pkt, int &len);
@@ -33,6 +36,8 @@ public:
 	
 	int getState() { return state; }
 	int getStatus() { return status; }
+	
+	static int pollAll();
 };
 
 #endif

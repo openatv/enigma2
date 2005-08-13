@@ -1,5 +1,8 @@
 #include <fcntl.h>
 
+#include <lib/base/init.h>
+#include <lib/base/init_num.h>
+
 #include <lib/base/eerror.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_session.h>
@@ -9,6 +12,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	int num_ci = 0;
 
 	eDebug("scanning for common interfaces..");
+
 	while (1)
 	{
 		struct stat s;
@@ -29,44 +33,79 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	eDebug("done, found %d common interfaces");
 }
 
-int eDVBCISlot::write(const unsigned char *data, size_t len)
+eDVBCIInterfaces::~eDVBCIInterfaces()
 {
-	return ::write(fd, data, len);
 }
 
-void eDVBCISlot::data(int)
+int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
-	eDebug("ci talks to us");
+	int res;
+	int i;
+	
+	printf("< ");
+	for(i=0;i<len;i++)
+		printf("%02x ",data[i]);
+	printf("\n");
+
+	res = ::write(fd, data, len);
+
+	printf("write() %d\n",res);
+
+	notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
+
+	return res;
+}
+
+void eDVBCISlot::data(int what)
+{
+	if(what == eSocketNotifier::Hungup) {
+		if(state != stateRemoved) {
+			state = stateRemoved;
+			printf("ci removed\n");
+			notifier->setRequested(eSocketNotifier::Read);
+		}
+		return;
+	}
+
 
 	__u8 data[4096];
 	int r;
 	r = ::read(fd, data, 4096);
-	if(r < 0)
-		eWarning("ERROR reading from CI - %m\n");
+	//if(r < 0)
+	//	eWarning("ERROR reading from CI - %m\n");
 
 	if(state != stateInserted) {
 		state = stateInserted;
 		eDebug("ci inserted");
 
 		/* enable HUP to detect removal or errors */
-		notifier_event->start();
+		//notifier_event->start();
+		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
 	}
 
-	if(r > 0)
+	if(r > 0) {
+		int i;
+		printf("> ");
+		for(i=0;i<r;i++)
+			printf("%02x ",data[i]);
+		printf("\n");
+		//eDebug("ci talks to us");
 		eDVBCISession::receiveData(this, data, r);
+		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Hungup|eSocketNotifier::Write);
+		return;
+	}
+
+	if(what == eSocketNotifier::Write) {
+		printf("pollall\n");
+		if(eDVBCISession::pollAll() == 0) {
+			printf("disable pollout\n");
+			notifier->setRequested(eSocketNotifier::Read | eSocketNotifier::Hungup);
+		}
+		return;
+	}
 }
 
-void eDVBCISlot::event(int)
-{
-	state = stateRemoved;
-
-	eDebug("CI removed");
-	
-	/* kill the TransportConnection */
-	
-	/* we know about and disable HUP */
-	notifier_event->stop();
-}
+DEFINE_REF(eDVBCISlot);
 
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 {
@@ -80,15 +119,16 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 	if (fd >= 0)
 	{
-		//read callback
-		notifier_data = new eSocketNotifier(context, fd, eSocketNotifier::Read);
-		CONNECT(notifier_data->activated, eDVBCISlot::data);
-		//remove callback
-		notifier_event = new eSocketNotifier(context, fd, eSocketNotifier::Hungup);
-		CONNECT(notifier_event->activated, eDVBCISlot::event);
+		notifier = new eSocketNotifier(context, fd, eSocketNotifier::Read | eSocketNotifier::Hungup);
+		CONNECT(notifier->activated, eDVBCISlot::data);
 	} else
 	{
 		perror(filename);
 	}
 }
 
+eDVBCISlot::~eDVBCISlot()
+{
+}
+
+eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");

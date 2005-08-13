@@ -13,17 +13,15 @@ DECLARE_REF(eDVBCISlot);
 private:
 	int fd;
 	void data(int);
-	eSocketNotifier *notifier_data;
-	void event(int);
-	eSocketNotifier *notifier_event;
+	eSocketNotifier *notifier;
 
 	int state;
 	enum {stateRemoved, stateInserted};	
 public:
 	eDVBCISlot(eMainloop *context, int nr);
-	virtual ~eDVBCISlot();
+	~eDVBCISlot();
 	
-	int eDVBCISlot::write(const unsigned char *data, size_t len);
+	int send(const unsigned char *data, size_t len);
 	
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
@@ -31,11 +29,12 @@ public:
 
 class eDVBCIInterfaces
 {
+DECLARE_REF(eDVBCIInterfaces);
 private:
 	eSmartPtrList<eDVBCISlot>	m_slots;
 public:
 	eDVBCIInterfaces();
-	virtual ~eDVBCIInterfaces();
+	~eDVBCIInterfaces();
 };
 
 #endif
