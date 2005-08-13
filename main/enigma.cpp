@@ -1,4 +1,6 @@
+#ifdef WITH_SDL
 #define SDLDC
+#endif
 #include <stdio.h>
 #include <libsig_comp.h>
 #include <lib/base/ebase.h>
@@ -10,7 +12,9 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
+#ifdef WITH_SDL
 #include <lib/gdi/sdl.h>
+#endif
 #include <lib/gdi/font.h> 
 
 #include <lib/gui/ewidget.h>
