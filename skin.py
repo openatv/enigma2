@@ -20,7 +20,7 @@ dom = xml.dom.minidom.parseString(
 		<colors>
 			<color name="white" 	value="#ffffff" />
 			<color name="black" 	value="#000000" />
-			<color name="dark"  	value="#294a6b" />
+			<color name="dark"  	value="#20294a6b" />
 			
 			<color name="red" 		value="#ff0000" />
 			<color name="green" 	value="#00ff00" />
