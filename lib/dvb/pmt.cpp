@@ -1,4 +1,4 @@
-#include <lib/base/eerror.h>
+ #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
@@ -6,9 +6,7 @@
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 {
-	ePtr<eDVBResourceManager> mgr;
-	eDVBResourceManager::getInstance(mgr);
-	m_resourceManager = mgr;
+	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
 }
@@ -34,6 +32,9 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			/* emit */ m_resourceManager->m_channelRunning(channel);
 
 			m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
+
+			if ( m_service && !m_service->cacheEmpty() )
+				serviceEvent(eventNewProgramInfo);
 		}
 	}
 }
@@ -74,11 +75,11 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 {
 	eDebug("got PMT");
 	ePtr<eTable<ProgramMapTable> > ptr;
-	
+
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
-	
+
 	if (!m_PMT.getCurrent(ptr))
 	{
 		ProgramMapTableConstIterator i;
@@ -116,8 +117,46 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			}
 		}
 		return 0;
-	} else
-		return -1;
+	}
+	else if ( m_service && !m_service->cacheEmpty() )
+	{
+		int vpid = m_service->getCachePID(eDVBService::cVPID),
+			apid_ac3 = m_service->getCachePID(eDVBService::cAPID),
+			apid_mpeg = m_service->getCachePID(eDVBService::cAC3PID),
+			pcrpid = m_service->getCachePID(eDVBService::cPCRPID),
+			cnt=0;
+		if ( vpid != -1 )
+		{
+			videoStream s;
+			s.pid = vpid;
+			program.videoStreams.push_back(s);
+			++cnt;
+		}
+		if ( apid_ac3 != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atAC3;
+			s.pid = apid_ac3;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( apid_mpeg != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atMPEG;
+			s.pid = apid_mpeg;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( pcrpid != -1 )
+		{
+			++cnt;
+			program.pcrPid = pcrpid;
+		}
+		if ( cnt )
+			return 0;
+	}
+	return -1;
 }
 
 int eDVBServicePMTHandler::getDemux(ePtr<iDVBDemux> &demux)
@@ -167,9 +206,13 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		m_last_channel_state = -1;
 		channelStateChanged(m_channel);
 	}
-	
+
 	if (m_pvr_channel)
 		m_pvr_channel->playFile(ref.path.c_str());
-	
+
+	ePtr<iDVBChannelList> db;
+	if (!m_resourceManager->getChannelList(db))
+		db->getService((eServiceReferenceDVB&)m_reference, m_service);
+
 	return res;
 }

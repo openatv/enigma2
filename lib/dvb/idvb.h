@@ -170,6 +170,15 @@ class eDVBService: public iStaticServiceInformation
 {
 	DECLARE_REF(eDVBService);
 public:
+	enum cacheID
+	{
+		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cacheMax
+	};
+
+	int getCachePID(cacheID);
+	void setCachePID(cacheID, int);
+	bool cacheEmpty() { return m_cache.empty(); }
+
 	eDVBService();
 	std::string m_service_name;
 	std::string m_provider_name;
