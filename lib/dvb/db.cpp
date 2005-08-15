@@ -74,6 +74,19 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		return res;
 }
 
+int eDVBService::getCachePID(cacheID id)
+{
+	std::map<int, int>::iterator it = m_cache.find(id);
+	if ( it != m_cache.end() )
+		return it->second;
+	return -1;
+}
+
+void eDVBService::setCachePID(cacheID id, int pid)
+{
+	m_cache[id] = pid;
+}
+
 DEFINE_REF(eDVBDB);
 
 eDVBDB::eDVBDB()

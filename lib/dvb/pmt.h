@@ -11,7 +11,7 @@
 class eDVBServicePMTHandler: public Object
 {
 	eServiceReferenceDVB m_reference;
-//	ePtr<eDVBService> m_service;
+	ePtr<eDVBService> m_service;
 
 	int m_last_channel_state;
 	
