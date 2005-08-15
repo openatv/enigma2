@@ -65,12 +65,11 @@ int eDVBAudio::startPid(int pid)
 		eWarning("audio: DMX_SET_PES_FILTER: %m");
 		return -errno;
 	}
-	if (::ioctl(m_fd_demux, DMX_START, &pes) < 0)
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eWarning("audio: DMX_START: %m");
 		return -errno;
 	}
-	
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eWarning("audio: AUDIO_PLAY: %m");
 	return 0;
@@ -80,9 +79,19 @@ void eDVBAudio::stop()
 {
 	if (::ioctl(m_fd, AUDIO_STOP) < 0)
 		eWarning("audio: AUDIO_STOP: %m");
+#if HAVE_DVB_API_VERSION > 2
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+		eWarning("audio: DMX_STOP: %m");
+#endif
+}
+	
+#if HAVE_DVB_API_VERSION < 3
+void eDVBAudio::stopPid()
+{
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
 		eWarning("audio: DMX_STOP: %m");
 }
+#endif
 	
 eDVBAudio::~eDVBAudio()
 {
@@ -117,6 +126,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 	
 int eDVBVideo::startPid(int pid)
 {	
+	eDebug("setting video pid to %x", pid);
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
@@ -131,12 +141,11 @@ int eDVBVideo::startPid(int pid)
 		eWarning("video: DMX_SET_PES_FILTER: %m");
 		return -errno;
 	}
-	if (::ioctl(m_fd_demux, DMX_START, &pes) < 0)
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eWarning("video: DMX_START: %m");
 		return -errno;
 	}
-	
 	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
 		eWarning("video: VIDEO_PLAY: %m");
 	else
@@ -148,10 +157,20 @@ void eDVBVideo::stop()
 {
 	if (::ioctl(m_fd, VIDEO_STOP) < 0)
 		eWarning("video: VIDEO_STOP: %m");
+#if HAVE_DVB_API_VERSION > 2
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+		eWarning("video: DMX_STOP: %m");
+#endif
+}
+
+#if HAVE_DVB_API_VERSION < 3
+void eDVBVideo::stopPid()
+{
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
 		eWarning("video: DMX_STOP: %m");
 }
-	
+#endif
+
 eDVBVideo::~eDVBVideo()
 {
 	if (m_fd >= 0)
@@ -177,6 +196,7 @@ eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
 
 int eDVBPCR::startPid(int pid)
 {
+	eDebug("setting pcr pid to %x", pid);
 	if (m_fd_demux < 0)
 		return -1;
 	dmx_pes_filter_params pes;
@@ -191,7 +211,7 @@ int eDVBPCR::startPid(int pid)
 		eWarning("video: DMX_SET_PES_FILTER: %m");
 		return -errno;
 	}
-	if (::ioctl(m_fd_demux, DMX_START, &pes) < 0)
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eWarning("video: DMX_START: %m");
 		return -errno;
@@ -217,7 +237,57 @@ int eTSMPEGDecoder::setState()
 {
 	int res = 0;
 	eDebug("changed %x", m_changed);
-
+#if HAVE_DVB_API_VERSION < 3
+	if (m_changed & changeAudio && m_audio)
+		m_audio->stopPid();
+	if (m_changed & changeVideo && m_video)
+		m_video->stopPid();
+	if (m_changed & changePCR && m_pcr)
+	{
+		m_pcr->stop();
+		m_pcr=0;
+	}
+	if (m_changed & changeAudio && m_audio)
+	{
+		m_audio->stop();
+		m_audio=0;
+	}
+	if (m_changed & changeVideo && m_video)
+	{
+		m_video->stop();
+		m_video=0;
+	}
+	if (m_changed & changePCR)
+	{
+		m_pcr = new eDVBPCR(m_demux);
+		if (m_pcr->startPid(m_pcrpid))
+		{
+			eWarning("video: startpid failed!");
+			res = -1;
+		}
+		m_changed &= ~changePCR;
+	}
+	if (m_changed & changeVideo)
+	{
+		m_video = new eDVBVideo(m_demux, 0);
+		if (m_video->startPid(m_vpid))
+		{
+			eWarning("video: startpid failed!");
+			res = -1;
+		}
+		m_changed &= ~changeVideo;
+	}
+	if (m_changed & changeAudio)
+	{
+		m_audio = new eDVBAudio(m_demux, 0);
+		if (m_audio->startPid(m_apid))
+		{
+			eWarning("audio: startpid failed!");
+			res = -1;
+		}
+		m_changed &= ~changeAudio;
+	}
+#else
 	if (m_changed & changePCR)
 	{
 		if (m_pcr)
@@ -257,10 +327,11 @@ int eTSMPEGDecoder::setState()
 		}
 		m_changed &= ~changeAudio;
 	}
+#endif
 	return res;
 }
 
-eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux)
+eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0)
 {
 }
 

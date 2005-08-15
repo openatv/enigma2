@@ -14,6 +14,10 @@ public:
 	eDVBAudio(eDVBDemux *demux, int dev);
 	int startPid(int pid);
 	void stop();
+#if HAVE_DVB_API_VERSION < 3
+	void start();
+	void stopPid();
+#endif
 	virtual ~eDVBAudio();
 };
 
@@ -27,6 +31,10 @@ public:
 	eDVBVideo(eDVBDemux *demux, int dev);
 	int startPid(int pid);
 	void stop();
+#if HAVE_DVB_API_VERSION < 3
+	void start();
+	void stopPid();
+#endif
 	virtual ~eDVBVideo();
 };
 
