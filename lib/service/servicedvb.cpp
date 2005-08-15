@@ -287,6 +287,12 @@ void eDVBServicePlay::serviceEvent(int event)
 			m_decoder->setAudioPID(apid, 0);
 			m_decoder->setSyncPCR(pcrpid);
 			m_decoder->start();
+// how we can do this better?
+// update cache pid when the user changed the audio track or video track
+// TODO handling of difference audio types.. default audio types..
+			m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
+			m_dvb_service->setCachePID(eDVBService::cAPID, apid);
+			m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
 		}
 		
 		break;
