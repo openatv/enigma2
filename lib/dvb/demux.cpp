@@ -74,7 +74,10 @@ void eDVBSectionReader::data(int)
 			// this check should never happen unless the driver is crappy!
 		unsigned int c;
 		if ((c = crc32((unsigned)-1, data, r)))
-			eFatal("crc32 failed! is %x\n", c);
+		{
+			eDebug("crc32 failed! is %x\n", c);
+			return;
+		}
 	}
 	if (active)
 		read(data);
