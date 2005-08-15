@@ -873,6 +873,9 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				source=eEPGCache::SCHEDULE_OTHER;
 				map=2;
 				break;
+			default:
+				eDebug("[EPGC] unknown table_id !!!");
+				return;
 		}
 		tidMap &seenSections = this->seenSections[map];
 		tidMap &calcedSections = this->calcedSections[map];
@@ -887,7 +890,8 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				default: eDebugNoNewLine("unknown");break;
 			}
 			eDebug(" finished(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
-			reader->stop();
+			if ( reader )
+				reader->stop();
 			isRunning &= ~source;
 			if (!isRunning)
 				finishEPG();
