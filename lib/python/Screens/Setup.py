@@ -1,5 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.config import configEntry
+from Components.ConfigList import ConfigList
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
@@ -27,8 +29,7 @@ def getValbyAttr(x, attr):
 
 class Setup(Screen):
 
-	def createDialog(self, childNode):
-		print "createDialog"
+	def addItems(self, list, childNode):
 		for x in childNode:
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
@@ -37,6 +38,7 @@ class Setup(Screen):
 				b = XMLTools.mergeText(x.childNodes);
 				print "item " + ItemText + " " + b
 				#add to configlist
+				list.append(configEntry(ItemText))
 				
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -44,7 +46,9 @@ class Setup(Screen):
 		print "request setup for " + setup
 		
 		entries = setupdom.childNodes
-		
+
+		list = []
+				
 		for x in entries:             #walk through the actual nodelist
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
@@ -52,8 +56,10 @@ class Setup(Screen):
 				ItemText = getValbyAttr(x, "key")
 				if ItemText != setup:
 					continue
-				self.createDialog(x.childNodes);
-				
+				self.addItems(list, x.childNodes);
+		
+		#check for list.entries > 0 else self.close
+		self["config"] = ConfigList(list)
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
