@@ -83,6 +83,7 @@ public:
 	void setList(PyObject *list);
 	PyObject *getCurrentSelection();
 	int getCurrentSelectionIndex() { return m_cursor; }
+	void invalidateEntry(int index);
 #ifndef SWIG
 protected:
 	void cursorHome();
@@ -103,7 +104,6 @@ protected:
 	
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	void invalidateEntry(int index);
 
 protected:
 	PyObject *m_list;
