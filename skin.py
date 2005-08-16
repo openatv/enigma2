@@ -62,6 +62,7 @@ dom = xml.dom.minidom.parseString(
 			<widget name="btn_var_2" position="110,60" size="200,20" />
 		</screen>
 		<screen name="Setup" position="140,125" size="460,350" title="RCU Setup">
+			<widget name="config" position="10,30" size="280,140" />
 		</screen>
 		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
 			<widget name="okbutton" position="20,245" size="205,40" />
