@@ -517,9 +517,10 @@ RESULT eDVBChannel::playFile(const char *file)
 		m_pvr_thread = 0;
 	}
 	
+	m_tstools.openFile(file);
+	
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
-	
 	
 		/* (this codepath needs to be improved anyway.) */
 	m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
@@ -536,10 +537,29 @@ RESULT eDVBChannel::playFile(const char *file)
 		close(m_pvr_fd_dst);
 		return -ENOENT;
 	}
-
+	
 	m_state = state_ok;
 	m_stateChanged(this);
 	
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
+}
+
+RESULT eDVBChannel::getLength(pts_t &len)
+{
+	return m_tstools.calcLen(len);
+}
+
+RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
+{
+#if 0
+	off_t begin = 0;
+		/* getPTS for offset 0 is cached, so it doesn't harm. */
+	int r = m_tstools.getPTS(begin, pos);
+	if (r)
+		return r;
+	
+	// DMX_GET_STC 
+#endif
+	return 0;
 }

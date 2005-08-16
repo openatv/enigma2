@@ -11,6 +11,7 @@
 
 #include <lib/service/servicedvbrecord.h>
 #include <lib/dvb/metaparser.h>
+#include <lib/dvb/tstools.h>
 
 class eStaticServiceDVBPVRInformation: public iStaticServiceInformation
 {
@@ -20,6 +21,7 @@ class eStaticServiceDVBPVRInformation: public iStaticServiceInformation
 public:
 	eStaticServiceDVBPVRInformation(const eServiceReference &ref);
 	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
 };
 
 DEFINE_REF(eStaticServiceDVBPVRInformation);
@@ -34,6 +36,22 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 {
 	ASSERT(ref == m_ref);
 	name = m_parser.m_name.size() ? m_parser.m_name : ref.path;
+}
+
+int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
+{
+	ASSERT(ref == m_ref);
+	
+	eDVBTSTools tstools;
+	
+	if (tstools.openFile(ref.path.c_str()))
+		return 0;
+
+	pts_t len;
+	if (tstools.calcLen(len))
+		return 0;
+
+	return len / 90000;
 }
 
 DEFINE_REF(eServiceFactoryDVB)
@@ -185,6 +203,8 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
 	m_reference(ref), m_dvb_service(service)
 {
+	m_is_pvr = !ref.path.empty();
+	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 	eDebug("DVB start (play)");
@@ -285,7 +305,10 @@ void eDVBServicePlay::serviceEvent(int event)
 		{
 			m_decoder->setVideoPID(vpid);
 			m_decoder->setAudioPID(apid, 0);
-			m_decoder->setSyncPCR(pcrpid);
+			if (m_is_pvr)
+				m_decoder->setSyncPCR(pcrpid);
+			else
+				m_decoder->setSyncPCR(-1);
 			m_decoder->start();
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track

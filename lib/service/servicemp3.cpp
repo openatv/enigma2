@@ -79,6 +79,11 @@ RESULT eStaticServiceMP3Info::getName(const eServiceReference &ref, std::string 
 	return 0;
 }
 
+int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
 // eServiceMP3
 
 void eServiceMP3::test_end()

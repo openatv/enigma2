@@ -192,6 +192,7 @@ public:
 	
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
 	
 	// for filtering:
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
@@ -444,6 +445,8 @@ public:
 	virtual void ReleaseUse() = 0;
 };
 
+typedef unsigned long long pts_t;
+
 class iDVBPVRChannel: public iDVBChannel
 {
 public:
@@ -455,6 +458,11 @@ public:
 		/* FIXME: there are some very ugly buffer-end and ... related problems */
 		/* so this is VERY UGLY. */
 	virtual RESULT playFile(const char *file) = 0;
+	
+	virtual RESULT getLength(pts_t &len) = 0;
+	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
+	
+	// seekTo ...
 };
 
 class iDVBSectionReader;

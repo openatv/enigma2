@@ -57,6 +57,8 @@ private:
 	
 	void serviceEvent(int event);
 	Signal2<void,iPlayableService*,int> m_event;
+	
+	int m_is_pvr;
 public:
 	virtual ~eDVBServicePlay();
 

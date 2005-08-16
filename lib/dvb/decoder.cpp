@@ -293,11 +293,14 @@ int eTSMPEGDecoder::setState()
 		if (m_pcr)
 			m_pcr->stop();
 		m_pcr = 0;
-		m_pcr = new eDVBPCR(m_demux);
-		if (m_pcr->startPid(m_pcrpid))
+		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
 		{
-			eWarning("video: startpid failed!");
-			res = -1;
+			m_pcr = new eDVBPCR(m_demux);
+			if (m_pcr->startPid(m_pcrpid))
+			{
+				eWarning("video: startpid failed!");
+				res = -1;
+			}
 		}
 		m_changed &= ~changePCR;
 	}
@@ -370,7 +373,7 @@ RESULT eTSMPEGDecoder::setSyncPCR(int pcrpid)
 		m_changed |= changePCR;
 		m_pcrpid = pcrpid;
 	}
-	return -1;
+	return 0;
 }
 
 RESULT eTSMPEGDecoder::setSyncMaster(int who)

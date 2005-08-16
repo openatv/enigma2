@@ -4,6 +4,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
+#include <lib/dvb/tstools.h>
 #include <connection.h>
 
 class eDVBChannel;
@@ -171,30 +172,6 @@ class eFilePushThread;
 class eDVBChannel: public iDVBPVRChannel, public Object
 {
 	DECLARE_REF(eDVBChannel);
-private:
-	ePtr<eDVBAllocatedFrontend> m_frontend;
-	ePtr<eDVBAllocatedDemux> m_demux;
-	
-	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
-	eDVBChannelID m_channel_id;
-	Signal1<void,iDVBChannel*> m_stateChanged;
-	int m_state;
-
-			/* for channel list */
-	ePtr<eDVBResourceManager> m_mgr;
-	
-	void frontendStateChanged(iDVBFrontend*fe);
-	ePtr<eConnection> m_conn_frontendStateChanged;
-	
-		/* for PVR playback */
-	eFilePushThread *m_pvr_thread;
-	int m_pvr_fd_src, m_pvr_fd_dst;
-
-	friend class eUsePtr<eDVBChannel>;
-		/* use count */
-	oRefCount m_use_count;
-	void AddUse();
-	void ReleaseUse();
 public:
 	eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend, eDVBAllocatedDemux *demux);
 	virtual ~eDVBChannel();
@@ -213,6 +190,34 @@ public:
 	
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
+	RESULT getLength(pts_t &len);
+	RESULT getCurrentPosition(pts_t &pos);
+
+private:
+	ePtr<eDVBAllocatedFrontend> m_frontend;
+	ePtr<eDVBAllocatedDemux> m_demux;
+	
+	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
+	eDVBChannelID m_channel_id;
+	Signal1<void,iDVBChannel*> m_stateChanged;
+	int m_state;
+
+			/* for channel list */
+	ePtr<eDVBResourceManager> m_mgr;
+	
+	void frontendStateChanged(iDVBFrontend*fe);
+	ePtr<eConnection> m_conn_frontendStateChanged;
+	
+		/* for PVR playback */
+	eFilePushThread *m_pvr_thread;
+	int m_pvr_fd_src, m_pvr_fd_dst;
+	eDVBTSTools m_tstools;
+
+	friend class eUsePtr<eDVBChannel>;
+		/* use count */
+	oRefCount m_use_count;
+	void AddUse();
+	void ReleaseUse();
 };
 
 #endif

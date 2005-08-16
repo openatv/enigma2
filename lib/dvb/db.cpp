@@ -33,6 +33,11 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 	return 0;
 }
 
+int eDVBService::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
 int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query)
 {
 	int res = 0;
