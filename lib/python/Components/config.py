@@ -27,3 +27,18 @@ def configEntry(obj):
 	else:
 		return ("invalid", "")
 
+class config:
+	def __init__(self):
+		pass
+	def Slider(self):		 # ok???
+		pass	
+
+class configElement:
+	def __init__(self, configPath, control, defaultValue):
+		self.configPath = configPath
+		self.value = 0	#read from registry else use default
+		self.controlType = control
+		self.notifierList = [ ]
+	def addNotifier(self, notifier):
+		self.notifierList.append(notifier);
+		notifier(self);
