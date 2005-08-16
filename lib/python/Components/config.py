@@ -27,11 +27,17 @@ def configEntry(obj):
 	else:
 		return ("invalid", "")
 
-class config:
+class Config:
 	def __init__(self):
 		pass
 	def Slider(self):		 # ok???
 		pass	
+
+config = Config();
+
+class ConfigSubsection:
+	def __init__(self):
+		pass
 
 class configElement:
 	def __init__(self, configPath, control, defaultValue):
