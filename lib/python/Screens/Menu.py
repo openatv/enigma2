@@ -4,6 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.Header import Header
 
 # hack ... must be made dynamic
+from Screens.Setup import Setup
 from ServiceScan import ServiceScan
 from ScartLoopThrough import ScartLoopThrough
 from Components.Button import Button
@@ -31,6 +32,9 @@ mdom = xml.dom.minidom.parseString(
 	<menu text="Mainmenu" title="the real Mainmenu">
 		<item text="Standby debug">quitMainloop()</item>
 		<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
+
+		<item text="Blub1">self.openSetup("rc")</item>
+		<item text="Blub2">self.openSetup("blasel")</item>
 
 		<item text="TV-Mode">self.setModeTV()</item>
 		<item text="Radio-Mode">self.setModeRadio()</item>
@@ -134,6 +138,12 @@ class Menu(Screen):
 	def nothing(self):																	#dummy
 		pass
 
+	def openDialog(self, dialog):				# in every layer needed
+		self.session.open(dialog)
+
+	def openSetup(self, dialog):
+		self.session.open(setup, dialog)
+
 	def addMenu(self, destList, node):
 		MenuTitle = getValbyAttr(node, "text")
 		if MenuTitle != "":																	#check for title
@@ -205,6 +215,9 @@ class MainMenu(Menu):
 
 	def openDialog(self, dialog):
 		self.session.open(dialog)
+
+	def openSetup(self, dialog):
+		self.session.open(Setup, dialog)
 
 	def goSetup(self):
 		self.session.open(configTest)
