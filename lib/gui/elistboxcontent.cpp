@@ -379,7 +379,8 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 
 void eListboxPythonStringContent::invalidateEntry(int index)
 {
-	m_listbox->entryChanged(index);
+	if (m_listbox)
+		m_listbox->entryChanged(index);
 }
 
 //////////////////////////////////////
