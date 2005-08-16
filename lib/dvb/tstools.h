@@ -8,10 +8,11 @@
  * thus we're not evaluating PES headers, not adaption fields.
  */
 
+typedef unsigned long long pts_t;
+
 class eDVBTSTools
 {
 public:
-	typedef unsigned long long pts_t;
 	eDVBTSTools();
 	~eDVBTSTools();
 
@@ -37,6 +38,5 @@ private:
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;
 };
-
 
 #endif

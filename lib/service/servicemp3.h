@@ -29,6 +29,7 @@ class eStaticServiceMP3Info: public iStaticServiceInformation
 	eStaticServiceMP3Info();
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
 };
 
 class eServiceMP3: public iPlayableService, public iPauseableService, public iServiceInformation, public Object

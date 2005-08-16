@@ -48,8 +48,6 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 {
 	if (m_fd < 0)
 		return -1;
-	if (m_pid < 0)
-		return -1;
 
 	offset -= offset % 188;
 	
@@ -82,8 +80,9 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 		
 //		printf("PID %04x, PUSI %d\n", pid, pusi);
 		
-		if (pid != m_pid)
-			continue;
+		if (m_pid >= 0)
+			if (pid != m_pid)
+				continue;
 		if (!pusi)
 			continue;
 		

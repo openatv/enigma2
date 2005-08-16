@@ -134,6 +134,8 @@ public:
 	}
 };
 
+typedef unsigned long long pts_t;
+
 	/* the reason we have the servicereference as additional argument is
 	   that we don't have to create one object for every entry in a possibly
 	   large list, provided that no state information is nessesary to deliver
@@ -143,6 +145,9 @@ class iStaticServiceInformation: public iObject
 {
 public:
 	virtual RESULT getName(const eServiceReference &ref, std::string &name)=0;
+	
+		// doesn't need to be implemented, should return -1 then.
+	virtual int getLength(const eServiceReference &ref)=0;
 
 		// FOR SWIG
 	std::string getName(const eServiceReference &ref) { std::string temp; getName(ref, temp); return temp; }

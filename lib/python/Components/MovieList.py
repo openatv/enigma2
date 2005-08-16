@@ -34,10 +34,16 @@ def MovieListEntry(serviceref, serviceHandler):
 		del info
 		return
 	
+	len = info.getLength(serviceref)
+	if len:
+		len = "%d:%02d" % (len / 60, len % 60)
+	else:
+		len = "?:??"
+	
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
 	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "Toller Film"))
 	res.append((0, 50, 200, 20, 1, RT_HALIGN_LEFT, "Aufgenommen: irgendwann"))
-	res.append((200, 50, 200, 20, 1, RT_HALIGN_RIGHT, "1232MB"))
+	res.append((200, 50, 200, 20, 1, RT_HALIGN_RIGHT, len))
 	
 	return res
 

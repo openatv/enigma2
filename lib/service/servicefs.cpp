@@ -18,6 +18,7 @@ class eStaticServiceFSInformation: public iStaticServiceInformation
 	DECLARE_REF(eStaticServiceFSInformation);
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref) { return -1; }
 };
 
 DEFINE_REF(eStaticServiceFSInformation);
