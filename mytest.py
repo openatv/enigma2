@@ -12,6 +12,7 @@ from Navigation import Navigation
 
 from skin import readSkin, applyAllAttributes
 
+
 # A screen is a function which instanciates all components of a screen into a temporary component.
 # Thus, the global stuff is a screen, too.
 # In a screen, components can either be instanciated from the class-tree, cloned (copied) or
@@ -158,6 +159,9 @@ import keymapparser
 keymapparser.readKeymap()
 import skin
 skin.loadSkin(getDesktop())
+
+import Components.InputDevice
+Components.InputDevice.InitInputDevices()
 
 # first, setup a screen
 runScreenTest()
