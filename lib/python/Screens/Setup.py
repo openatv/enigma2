@@ -1,6 +1,8 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.config import config				#global config instance
 from Components.config import configEntry
+from Components.config import configBoolean
 from Components.ConfigList import ConfigList
 
 import xml.dom.minidom
@@ -38,7 +40,7 @@ class Setup(Screen):
 				b = XMLTools.mergeText(x.childNodes);
 				print "item " + ItemText + " " + b
 				#add to configlist
-				list.append(configEntry(ItemText))
+				list.append( (ItemText, config.getControlType(b) ) )
 				
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -63,6 +65,6 @@ class Setup(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				#"ok": self.inc,
+				"ok": self["config"].toggle,
 				"cancel": self.close
 			})
