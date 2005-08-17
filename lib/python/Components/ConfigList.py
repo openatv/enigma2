@@ -15,6 +15,11 @@ class ConfigList(HTMLComponent, GUIComponent):
 		selection = self.getCurrent()
 		selection[1].toggle()
 		self.invalidateCurrent()
+
+	def handleKey(self, key):
+		selection = self.getCurrent()
+		selection[1].handleKey(key)
+		self.invalidateCurrent()
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
