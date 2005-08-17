@@ -26,6 +26,13 @@
 		<key id="KEY_ENTER" mapto="accept" flags="m" />
 	</map>
 
+	<map context="SetupActions">
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+	</map>
+
 	<map context="InfobarActions">
 		<key id="m" mapto="mainMenu" flags="mr" />
 		<key id="c" mapto="switchChannelDown" flags="mr" />
