@@ -1,6 +1,7 @@
 #ifndef __lib_dvb_iservice_h
 #define __lib_dvb_iservice_h
 
+#include <lib/python/swig.h>
 #include <lib/base/object.h>
 #include <string>
 #include <connection.h>
@@ -177,6 +178,16 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);
 
+class iSeekableService: public iObject
+{
+public:
+	virtual RESULT getLength(pts_t &SWIG_OUTPUT)=0;
+	virtual RESULT seekTo(pts_t to)=0;
+	virtual RESULT getPlayPosition(pts_t &SWIG_OUTPUT)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
+
 class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
@@ -192,6 +203,7 @@ public:
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
+	virtual RESULT seek(ePtr<iSeekableService> &ptr)=0;
 	virtual RESULT pause(ePtr<iPauseableService> &ptr)=0;
 	virtual RESULT info(ePtr<iServiceInformation> &ptr)=0;
 };

@@ -55,6 +55,7 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
+	RESULT seek(ePtr<iSeekableService> &ptr);
 
 		// iPausableService
 	RESULT pause();

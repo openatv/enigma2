@@ -168,6 +168,15 @@ int eDVBServicePMTHandler::getDemux(ePtr<iDVBDemux> &demux)
 		return -1;
 }
 
+int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
+{
+	pvr_channel = m_pvr_channel;
+	if (pvr_channel)
+		return 0;
+	else
+		return -1;
+}
+
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 {
 	RESULT res;

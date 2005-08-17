@@ -37,7 +37,7 @@ public:
 	RESULT getNext(eServiceReference &ptr);
 };
 
-class eDVBServicePlay: public iPlayableService, public Object, public iServiceInformation
+class eDVBServicePlay: public iPlayableService, iSeekableService, public Object, public iServiceInformation
 {
 DECLARE_REF(eDVBServicePlay);
 private:
@@ -66,9 +66,15 @@ public:
 	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
+	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	
+		// iSeekableService
+	RESULT getLength(pts_t &len);
+	RESULT seekTo(pts_t to);
+	RESULT getPlayPosition(pts_t &pos);
+
 		// iServiceInformation
 	RESULT getName(std::string &name);
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
