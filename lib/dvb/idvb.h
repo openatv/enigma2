@@ -459,7 +459,7 @@ public:
 		/* so this is VERY UGLY. */
 	virtual RESULT playFile(const char *file) = 0;
 	
-	virtual RESULT getLength(pts_t &len) = 0;
+	virtual RESULT getLength(pts_t &pts) = 0;
 	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
 	
 	// seekTo ...
@@ -475,6 +475,7 @@ public:
 	virtual RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)=0;
 	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder)=0;
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader)=0;
+	virtual RESULT getSTC(pts_t &pts)=0;
 };
 
 class iTSMPEGDecoder: public iObject

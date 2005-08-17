@@ -552,14 +552,39 @@ RESULT eDVBChannel::getLength(pts_t &len)
 
 RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 {
-#if 0
 	off_t begin = 0;
 		/* getPTS for offset 0 is cached, so it doesn't harm. */
 	int r = m_tstools.getPTS(begin, pos);
 	if (r)
+	{
+		eDebug("tstools getpts(0) failed!");
 		return r;
+	}
 	
-	// DMX_GET_STC 
-#endif
+	pts_t now;
+	
+	r = m_demux->get().getSTC(now);
+
+	if (r)
+	{
+		eDebug("demux getSTC failed");
+		return -1;
+	}
+	
+	eDebug("STC: %08llx PTS: %08llx, diff %lld", now, pos, now - pos);
+	
+		/* when we are less than 10 seconds before the start, return 0. */
+		/* (we're just waiting for the timespam to start) */
+	if ((now < pos) && ((pos - now) < 90000 * 10))
+	{
+		pos = 0;
+		return 0;
+	}
+	
+	if (now < pos) /* wrap around */
+		pos = now + ((pts_t)1)<<33 - pos;
+	else
+		pos = now - pos;
+	
 	return 0;
 }

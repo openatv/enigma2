@@ -59,6 +59,38 @@ RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder)
 	return 0;
 }
 
+RESULT eDVBDemux::getSTC(pts_t &pts)
+{
+	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", adapter, demux);
+#else
+	sprintf(filename, "/dev/dvb/adapter%d/demux%d", adapter, demux);
+#endif
+	int fd = ::open(filename, O_RDWR);
+	
+	if (fd < 0)
+		return -ENODEV;
+
+	struct dmx_stc stc;
+	stc.num = 0;
+	stc.base = 1;
+	
+	if (ioctl(fd, DMX_GET_STC, &stc) < 0)
+	{
+		::close(fd);
+		return -1;
+	}
+	
+	pts = stc.stc;
+	eDebug("got demux stc: %08llx", pts);
+	
+	::close(fd);
+	
+	return 0;
+}
+
+
 void eDVBSectionReader::data(int)
 {
 	__u8 data[4096]; // max. section size

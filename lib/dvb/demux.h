@@ -21,6 +21,7 @@ public:
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
 	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
+	RESULT getSTC(pts_t &pts);
 };
 
 class eDVBSectionReader: public iDVBSectionReader, public Object

@@ -313,9 +313,14 @@ void eDVBServicePlay::serviceEvent(int event)
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track
 // TODO handling of difference audio types.. default audio types..
-			m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
-			m_dvb_service->setCachePID(eDVBService::cAPID, apid);
-			m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
+				
+				/* don't worry about non-existing services, nor pvr services */
+			if (m_dvb_service && !m_is_pvr)
+			{
+				m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
+				m_dvb_service->setCachePID(eDVBService::cAPID, apid);
+				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
+			}
 		}
 		
 		break;
@@ -325,9 +330,10 @@ void eDVBServicePlay::serviceEvent(int event)
 
 RESULT eDVBServicePlay::start()
 {
+	int r;
 	eDebug("starting DVB service");
+	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference);
 	m_event(this, evStart);
-	return m_service_handler.tune((eServiceReferenceDVB&)m_reference);
 }
 
 RESULT eDVBServicePlay::stop()
@@ -347,6 +353,46 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 		// not yet possible, maybe later...
 	ptr = 0;
 	return -1;
+}
+
+RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
+{
+	if (m_is_pvr)
+	{
+		ptr = this;
+		return 0;
+	}
+	
+	ptr = 0;
+	return -1;
+}
+
+RESULT eDVBServicePlay::getLength(pts_t &len)
+{
+	ePtr<iDVBPVRChannel> pvr_channel;
+	
+	if (m_service_handler.getPVRChannel(pvr_channel))
+	{
+		eDebug("getPVRChannel failed!");
+		return -1;
+	}
+	
+	return pvr_channel->getLength(len);
+}
+
+RESULT eDVBServicePlay::seekTo(pts_t to)
+{
+	return -1;
+}
+
+RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
+{
+	ePtr<iDVBPVRChannel> pvr_channel;
+	
+	if (m_service_handler.getPVRChannel(pvr_channel))
+		return -1;
+	
+	return pvr_channel->getCurrentPosition(pos);
 }
 
 RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)

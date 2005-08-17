@@ -66,6 +66,7 @@ public:
 	
 	int getProgramInfo(struct program &program);
 	int getDemux(ePtr<iDVBDemux> &demux);
+	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	
 	int tune(eServiceReferenceDVB &ref);	
 };

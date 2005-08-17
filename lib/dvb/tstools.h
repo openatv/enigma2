@@ -1,6 +1,7 @@
 #ifndef __lib_dvb_tstools_h
 #define __lib_dvb_tstools_h
 
+#include <config.h>
 #include <sys/types.h>
 
 /*
