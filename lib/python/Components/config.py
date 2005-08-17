@@ -30,18 +30,27 @@ def configEntry(obj):
 class Config:
 	def __init__(self):
 		pass
-	def Slider(self,reg):		 # ok???
-		pass	
-	def getControlType(self, reg):
-		print "getControlType " + reg
-
-		#find the correct type in class-members
-		if reg == "blasel":
-			return configBoolean(reg)
-
-		return configBoolean(reg)
 		
 config = Config();
+
+class ConfigSlider:
+	def __init__(self, parent):
+		self.parent = parent
+		self.val = parent.value
+	def handleKey(self, key):
+		if key == 1:
+			self.val = self.val - 1
+		if key == 2:
+			self.val = self.val + 1
+			
+		if self.val < 0:
+			self.val = 0	
+
+		if self.val > 10:
+			self.val = 10	
+			
+	def __str__(self):			#needed by configlist
+		return ("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100")[self.val]
 
 class ConfigSubsection:
 	def __init__(self):
