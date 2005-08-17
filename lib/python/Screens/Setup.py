@@ -37,10 +37,19 @@ class Setup(Screen):
 				continue
 			elif x.tagName == 'item':
 				ItemText = getValbyAttr(x, "text")
-				b = XMLTools.mergeText(x.childNodes);
-				print "item " + ItemText + " " + b
+				b = eval(XMLTools.mergeText(x.childNodes));
+				print "item " + ItemText + " " + b.configPath
+				if b == "":
+					continue
 				#add to configlist
-				list.append( (ItemText, config.getControlType(b) ) )
+				list.append( (ItemText, b.controlType(b) ) )
+
+	def keyOk(self):
+		self["config"].handleKey(0)
+	def keyLeft(self):
+		self["config"].handleKey(1)
+	def keyRight(self):
+		self["config"].handleKey(2)
 				
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -61,10 +70,13 @@ class Setup(Screen):
 				self.addItems(list, x.childNodes);
 		
 		#check for list.entries > 0 else self.close
+		
 		self["config"] = ConfigList(list)
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["SetupActions"], 
 			{
-				"ok": self["config"].toggle,
-				"cancel": self.close
+				"cancel": self.close,
+				"ok": self.keyOk,
+				"left": self.keyLeft,
+				"right": self.keyRight
 			})
