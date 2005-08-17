@@ -3,14 +3,7 @@
 
 #include "object.h"
 #include <stdio.h>
-
-#ifdef SWIG
-#define TEMPLATE_TYPEDEF(x, y) \
-%template(y) x; \
-typedef x y
-#else
-#define TEMPLATE_TYPEDEF(x, y) typedef x y
-#endif
+#include <lib/python/swig.h>
 
 template<class T>
 class ePtr
