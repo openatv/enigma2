@@ -5,7 +5,11 @@ from enigma import eTimer
 from enigma import pNavigation, iSeekableServicePtr
 
 class ServicePosition(PerServiceDisplay):
-	def __init__(self, navcore):
+	TYPE_LENGTH = 0,
+	TYPE_POSITION = 1,
+	TYPE_REMAINING = 2
+	
+	def __init__(self, navcore, type):
 		self.updateTimer = eTimer()
 		self.updateTimer.timeout.get().append(self.update)
 		PerServiceDisplay.__init__(self, navcore,
@@ -13,32 +17,55 @@ class ServicePosition(PerServiceDisplay):
 				pNavigation.evNewService: self.newService,
 				pNavigation.evStopService: self.stopEvent
 			})
+		self.type = type
+#		self.setType(type)
 
 	def newService(self):
+		self.setType(self.type)
+	
+	def setType(self, type):
+		self.type = type
+		
 		seek = iSeekableServicePtr()
 		service = self.navcore.getCurrentService()
 		
 		self.updateTimer.stop()
+		self.available = 0
 		
 		if service != None:
 			if not service.seek(seek):
-				self.updateTimer.start(500)
-		
+				if self.type != self.TYPE_LENGTH:
+					self.updateTimer.start(500)
+				
+				self.length = self.get(self.TYPE_LENGTH)
+				self.available = 1
+
+		self.update()
 	
-	def update(self):
+	def get(self, what):
 		seek = iSeekableServicePtr()
 		service = self.navcore.getCurrentService()
 		
-		l = -1
-		
 		if service != None:
 			if not service.seek(seek):
-				# r = seek.getLength()
-				r = seek.getPlayPosition()
+				if what == self.TYPE_LENGTH:
+					r = seek.getLength()
+				elif what == self.TYPE_POSITION:
+					r = seek.getPlayPosition()
 				if not r[0]:
-					l = r[1] / 90000
-
-		if l != -1:
+					return r[1] / 90000
+		
+		return -1
+	
+	def update(self):
+		if self.available:
+			if self.type == self.TYPE_LENGTH:
+				l = self.length
+			elif self.type == self.TYPE_POSITION:
+				l = self.get(self.TYPE_POSITION)
+			elif self.type == self.TYPE_REMAINING:
+				l = self.length - self.get(self.TYPE_POSITION)
+			
 			self.setText("%d:%02d" % (l/60, l%60))
 		else:
 			self.setText("-:--")
