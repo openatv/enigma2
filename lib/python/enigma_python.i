@@ -83,6 +83,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 #define DEBUG
 %include "typemaps.i"
 %include "stl.i"
+%include <lib/python/swig.h>
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
 %include <lib/base/econfig.h>
