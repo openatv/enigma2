@@ -50,7 +50,13 @@ class Setup(Screen):
 		self["config"].handleKey(1)
 	def keyRight(self):
 		self["config"].handleKey(2)
-				
+
+	def keySave(self):
+		print "save requested"
+		for x in self["config"]:
+			selection =	self["config"].getCurrent()
+			selection.save()
+
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
 
@@ -78,5 +84,6 @@ class Setup(Screen):
 				"cancel": self.close,
 				"ok": self.keyOk,
 				"left": self.keyLeft,
-				"right": self.keyRight
+				"right": self.keyRight,
+				"save": self.keySave
 			})
