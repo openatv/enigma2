@@ -5,6 +5,8 @@
 #include <lib/base/eptrlist.h> /* for eSmartPtrList */
 #include <lib/gui/ewindowstyle.h> /* for eWindowStyle */
 
+class eWidgetDesktop;class eWidgetDesktop;
+
 class eWidget
 {
 	friend class eWidgetDesktop;
@@ -73,6 +75,7 @@ public:
 
 		// all in local space!
 	gRegion	m_clip_region, m_visible_region, m_visible_with_childs;
+	struct eWidgetDesktopCompBuffer *m_comp_buffer;
 	
 	enum eWidgetEvent
 	{
