@@ -395,34 +395,74 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (m_list && cursorValid())
 	{
+			/* get current list item */
 		PyObject *item = PyList_GetItem(m_list, m_cursor); // borrowed reference!
 		PyObject *text = 0, *value = 0;
 		painter.setFont(fnt);
 
-			/* the user can supply tuples, in this case the first one will be displayed. */		
+			/* the first tuple element is a string for the left side.
+			   the second one will be called, and the result shall be an tuple.
+			   
+			   of this tuple,
+			   the first one is the type (string).
+			   the second one is the value. */
 		if (PyTuple_Check(item))
 		{
+				/* handle left part. get item from tuple, convert to string, display. */
+				
 			text = PyTuple_GetItem(item, 0);
+			text = PyObject_Str(text);
+			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
+			eSize item_left = eSize(m_seperation, m_itemsize.height());
+			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
+			painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
+			Py_XDECREF(text);
+			
+				/* now, handle the value. get 2nd part from tuple*/
 			value = PyTuple_GetItem(item, 1);
+			if (value)
+					/* CallObject will call __call__ which should return the value tuple */
+				value = PyObject_CallObject(value, 0);
+			
+				/*  check if this is really a tuple */
+			if (PyTuple_Check(value))
+			{
+					/* convert type to string */
+				PyObject *type = PyTuple_GetItem(value, 0);
+				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
+				
+				if (atype)
+				{
+					if (!strcmp(atype, "text"))
+					{
+						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
+						painter.setFont(fnt2);
+						painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, gPainter::RT_HALIGN_RIGHT);
+
+							/* pvalue is borrowed */
+					} else if (!strcmp(atype, "slider"))
+					{
+						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						
+							/* convert value to Long. fallback to -1 on error. */
+						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
+						
+							/* calc. slider length */
+						int width = item_right.width() * value / 100;
+						int height = item_right.height();
+						
+							/* draw slider */
+						painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
+						
+							/* pvalue is borrowed */
+					}
+				}
+				Py_XDECREF(type);
+			}
+				/* value is borrowed */
 		}
-		
-		text = PyObject_Str(text);
-		value = PyObject_Str(value);
-		
-		const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-		const char *string_val = (value && PyString_Check(value)) ? PyString_AsString(value) : "<not-a-string>";
-		
-		eSize item_left = eSize(m_seperation, m_itemsize.height());
-		eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
-		
-		painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
-		
-		painter.setFont(fnt2);
-		painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), string_val, gPainter::RT_HALIGN_RIGHT);
-		
-		Py_XDECREF(text);
-		Py_XDECREF(value);
-		
+
 		if (selected)
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 	}
