@@ -305,7 +305,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		{
 			m_decoder->setVideoPID(vpid);
 			m_decoder->setAudioPID(apid, 0);
-			if (m_is_pvr)
+			if (!m_is_pvr)
 				m_decoder->setSyncPCR(pcrpid);
 			else
 				m_decoder->setSyncPCR(-1);
