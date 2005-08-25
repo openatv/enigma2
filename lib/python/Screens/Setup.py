@@ -42,7 +42,11 @@ class Setup(Screen):
 				if b == "":
 					continue
 				#add to configlist
-				list.append( (ItemText, b.controlType(b) ) )
+				item = b.controlType(b)
+				
+				# the first b is the item itself, ignored by the configList.
+				# the second one is converted to string.
+				list.append( (ItemText, item) )
 
 	def keyOk(self):
 		self["config"].handleKey(0)

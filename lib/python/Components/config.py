@@ -48,9 +48,9 @@ class ConfigSlider:
 
 		if self.val > 10:
 			self.val = 10	
-			
-	def __str__(self):			#needed by configlist
-		return ("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100")[self.val]
+	
+	def __call__(self):			#needed by configlist
+		return ("slider", self.val * 10)
 
 class ConfigSubsection:
 	def __init__(self):
