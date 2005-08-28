@@ -97,7 +97,7 @@ dom = xml.dom.minidom.parseString(
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
  		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
-			<widget name="list" position="0,50" size="560,340" />
+			<widget name="list" position="0,50" size="560,320" />
 <!--			<widget name="okbutton" position="340,50" size="140,30" />-->
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" />

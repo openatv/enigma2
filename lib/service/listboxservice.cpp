@@ -80,10 +80,39 @@ int eListboxServiceContent::lookupService(const eServiceReference &ref)
 	return index;
 }
 
+void eListboxServiceContent::setVisualMode(int mode)
+{
+	m_visual_mode = mode;
+	
+	if (m_visual_mode == visModeSimple)
+	{
+		m_element_position[celServiceName] = eRect(ePoint(0, 0), m_itemsize);
+		m_element_font[celServiceName] = new gFont("Arial", 14);
+		m_element_position[celServiceNumber] = eRect();
+		m_element_font[celServiceNumber] = 0;
+		m_element_position[celIcon] = eRect();
+		m_element_position[celServiceInfo] = eRect();
+		m_element_font[celServiceInfo] = 0;
+	}
+}
+
+void eListboxServiceContent::setElementPosition(int element, eRect where)
+{
+	if ((element >= 0) && (element < celElements))
+		m_element_position[element] = where;
+}
+
+void eListboxServiceContent::setElementFont(int element, gFont *font)
+{
+	if ((element >= 0) && (element < celElements))
+		m_element_font[element] = font;
+}
+
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
 {
+	m_visual_mode = visModeSimple;
 	m_size = 0;
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
@@ -162,11 +191,11 @@ int eListboxServiceContent::size()
 void eListboxServiceContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
+	setVisualMode(m_visual_mode);
 }
 
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 14);
 	painter.clip(eRect(offset, m_itemsize));
 	if (cursorValid() && isMarked(*m_cursor))
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
@@ -176,19 +205,47 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	
 	if (cursorValid())
 	{
-		painter.setFont(fnt);
-		
-		ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
-		
-			/* get name of service */
+			/* get service information */
 		ePtr<iStaticServiceInformation> service_info;
 		m_service_center->info(*m_cursor, service_info);
-		std::string name = "<n/a>";
 		
-		if (service_info)
-			service_info->getName(*m_cursor, name);
-		
-		painter.renderText(eRect(text_offset, m_itemsize), name);
+		for (int e = 0; e < celElements; ++e)
+		{
+			if (!m_element_font[e])
+				continue;
+			painter.setFont(m_element_font[e]);
+			
+			std::string text = "<n/a>";
+			
+			switch (e)
+			{
+			case celServiceName:
+			{
+				if (service_info)
+					service_info->getName(*m_cursor, text);
+				break;
+			}
+			case celServiceNumber:
+			{
+				char bla[10];
+				sprintf(bla, "%d", m_cursor_number + 1);
+				text = bla;
+				break;
+			}
+			case celServiceInfo:
+			{
+				text = "now&next";
+				break;
+			}
+			case celIcon:
+				continue;
+			}
+			
+			eRect area = m_element_position[e];
+			area.moveBy(offset.x(), offset.y());
+			
+			painter.renderText(area, text);
+		}
 		
 		if (selected)
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
