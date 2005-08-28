@@ -21,7 +21,8 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 # "funktionalitaet"	
 	def doClock(self):
 		t = time.localtime()
-		self.setText("%2d:%02d:%02d" % (t[3], t[4], t[5]))
+		#HACK use timezone settings
+		self.setText("%2d:%02d:%02d" % (t[3] + 2, t[4], t[5]))
 
 # realisierung als GUI
 	def createWidget(self, parent):

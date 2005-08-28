@@ -1,5 +1,5 @@
 #ifdef WITH_SDL
-
+#error
 #include <lib/gdi/sdl.h>
 
 #include <lib/base/init.h>

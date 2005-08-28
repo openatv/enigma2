@@ -64,7 +64,7 @@ class TimerEditList(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				"ok": self.openEdit,
+#				"ok": self.openEdit,
 				"cancel": self.close
 			})
 

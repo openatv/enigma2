@@ -106,8 +106,8 @@ class InfoBar(Screen):
 		quitMainloop()
 		
 	def instantRecord(self):
-		self.session.open(MessageBox, "this would be an instant recording! do you really know what you're doing?!")
-		return
+		#self.session.open(MessageBox, "this would be an instant recording! do you really know what you're doing?!")
+		#return
 	
 		if self.recording != None:
 			print "remove entry"

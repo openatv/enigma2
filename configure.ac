@@ -10,7 +10,7 @@ AC_PROG_RANLIB
 
 AC_ARG_WITH(pythonincdir,
 	[  --with-pythonincdir=NAME dir [[...]]],
-	[PYTHON_INCDIR="$withval"],[PYTHON_INCDIR="/usr/include/python2.3"])
+	[PYTHON_INCDIR="$withval"],[PYTHON_INCDIR="/usr/include/python2.4"])
 AC_SUBST(PYTHON_INCDIR)
 
 AC_ARG_WITH(libsdl,
@@ -30,14 +30,13 @@ TUXBOX_APPS_LIB_PKGCONFIG(MAD,mad)
 TUXBOX_APPS_LIB_PKGCONFIG(PNG,libpng)
 TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
 #TUXBOX_APPS_LIB_PKGCONFIG(XMLTREE,tuxbox-xmltree)
-
 if test "$withsdl" = "yes" ; then
 	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
 	AC_DEFINE_UNQUOTED([WITH_SDL],[$withsdl],[With SDL])
 fi
 
 # fixme: decent python stuff
-CPPFLAGS="$CPPFLAGS $MD5SUM_CFLAGS $FREETYPE_CFLAGS $FRIBIDI_CFLAGS $ID3TAG_CFLAGS $MAD_CFLAGS $PLUGINS_CFLAGS $PNG_CFLAGS $SIGC_CFLAGS $XMLTREE_CFLAGS $SDL_CFLAGS -I$PYTHON_INCDIR -DHAVE_CPP_FILT -DMEMLEAK_CHECK"
+CPPFLAGS="$CPPFLAGS $MD5SUM_CFLAGS $FREETYPE_CFLAGS $FRIBIDI_CFLAGS $ID3TAG_CFLAGS $MAD_CFLAGS $PLUGINS_CFLAGS $PNG_CFLAGS $SIGC_CFLAGS $XMLTREE_CFLAGS -I$PYTHON_INCDIR -DHAVE_CPP_FILT -DMEMLEAK_CHECK"
 CXXFLAGS="$CXXFLAGS -fno-rtti -fno-exceptions -Wall"
 LDFLAGS="$LDFLAGS -rdynamic"
 
@@ -50,8 +49,8 @@ lib/actions/Makefile
 lib/base/Makefile
 lib/driver/Makefile
 lib/dvb/Makefile
-lib/dvb_si/Makefile
 lib/dvb_ci/Makefile
+lib/dvb_si/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
 lib/nav/Makefile

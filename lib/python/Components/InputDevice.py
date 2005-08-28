@@ -17,8 +17,8 @@ class inputDevices:
 
 def InitInputDevices():
 	config.inputDevices = ConfigSubsection();
-	config.inputDevices.repeat = configElement("config.inputDevices.repeat", ConfigSlider, 3);
-	config.inputDevices.delay = configElement("config.inputDevices.delay", ConfigSlider, 3);
+	config.inputDevices.repeat = configElement("config.inputDevices.repeat", ConfigSlider, 5, "");
+	config.inputDevices.delay = configElement("config.inputDevices.delay", ConfigSlider, 4, "");
 
 	#this instance anywhere else needed?	
 	iDevices = inputDevices();	

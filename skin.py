@@ -47,22 +47,25 @@ dom = xml.dom.minidom.parseString(
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
 		</windowstyle> """ """
-		<screen name="Menu" position="300,100" size="300,300" title="real main menu">
+		<screen name="Menu" position="300,100" size="300,200" title="real main menu">
 <!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
 			<widget name="title" position="10,10" size="280,20" />
 			<widget name="menu" position="10,30" size="280,200" />
-			
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
-		<screen name="ConfigMenu" position="300,100" size="300,300" title="real main menu">
-			<widget name="txt_var_1" position="20,20" size="100,20" />
-			<widget name="btn_var_1" position="110,20" size="200,20" />
-			<widget name="txt_var_2" position="20,60" size="100,20" />
-			<widget name="btn_var_2" position="110,60" size="200,20" />
+		<screen name="Setup" position="140,125" size="460,220" title="Setup">
+			<widget name="config" position="10,30" size="420,120" />
+			<widget name="ok" position="140,180" size="38,20" font="Arial;20" backgroundColor="green" />
+			<widget name="cancel" position="240,180" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
-		<screen name="Setup" position="140,125" size="460,350" title="RCU Setup">
-			<widget name="config" position="10,30" size="280,140" />
+		<screen name="About" position="140,125" size="360,200" title="Setup">
+			<widget name="text" position="10,30" size="420,40" font="Arial;20"/>
+			<widget name="tuner" position="10,80" size="420,20"/>
+			<widget name="tunerA" position="10,100" size="420,20"/>
+			<widget name="tunerB" position="10,120" size="420,20"/>
+			<widget name="hdd" position="10,150" size="420,20"/>
+			<widget name="hddA" position="10,170" size="420,20"/>
 		</screen>
 		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
 			<widget name="okbutton" position="20,245" size="205,40" />
@@ -74,7 +77,7 @@ dom = xml.dom.minidom.parseString(
 			<widget name="sld_gamma" position="150,100" size="290,20" />
 		</screen>
 		<screen name="configTest" position="300,100" size="300,300" title="config menu">
-			<widget name="config" position="10,30" size="280,140" />
+			<widget name="config" position="10,30" size="420,220" />
 		</screen>
 		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">
 			<widget name="timerlist" position="10,30" size="400,300" />
@@ -88,7 +91,7 @@ dom = xml.dom.minidom.parseString(
 			<ePixmap position="0,0" size="720,148" pixmap="data/info-bg.png" />
 			
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,10" size="80,30" backgroundColor="dark" font="Arial;19" />
+			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Volume" position="575,45" size="100,5" backgroundColor="dark" />
 			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;22" backgroundColor="dark" />
 			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;22" backgroundColor="dark" />
@@ -107,9 +110,9 @@ dom = xml.dom.minidom.parseString(
  		<screen name="MovieSelection" position="150,100" size="400,420" title="Select-a-movie">
 			<widget name="list" position="0,50" size="400,300" />
 		</screen>
-		<screen name="ServiceScan" position="150,100" size="300,200" title="Service Scan">
-			<widget name="scan_progress" position="10,10" size="280,50" />
-			<widget name="scan_state" position="10,60" size="280,30" />
+		<screen name="ServiceScan" position="150,100" size="300,90" title="Service Scan">
+			<widget name="scan_progress" position="10,10" size="300,20" />
+			<widget name="scan_state" position="10,40" size="280,30" />
 		</screen>
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
 			<widget name="description" position="10,10" size="580,40" font="Arial;25" />
