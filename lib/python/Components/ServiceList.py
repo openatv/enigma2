@@ -4,6 +4,10 @@ from GUIComponent import *
 from enigma import *
 
 class ServiceList(HTMLComponent, GUIComponent):
+
+	MODE_NORMAL = 0
+	MODE_FAVOURITES = 1
+	
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
@@ -55,3 +59,17 @@ class ServiceList(HTMLComponent, GUIComponent):
 			ref = eServiceReference()
 
 		return marked
+
+	def setMode(self, mode):
+		if mode == self.MODE_NORMAL:
+			self.instance.setItemHeight(20)
+			self.l.setVisualMode(eListboxServiceContent.visModeSimple)
+		else:
+			self.instance.setItemHeight(40)
+			
+			self.l.setElementFont(self.l.celServiceName, gFont("Arial", 30))
+			self.l.setElementPosition(self.l.celServiceName, eRect(40, 0, self.instance.size().width(), 40))
+			self.l.setElementFont(self.l.celServiceNumber, gFont("Arial", 20))
+			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 10, 40, 30))
+			
+			self.l.setVisualMode(eListboxServiceContent.visModeComplex)

@@ -69,7 +69,9 @@ class ChannelSelection(Screen):
 			def action(self, contexts, action):
 				if action[:7] == "bouquet":
 					print "setting root to " + action[8:]
-					self.csel["list"].setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
+					l = self.csel["list"]
+					l.setMode(l.MODE_NORMAL)
+					l.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
 					ActionMap.action(self, contexts, action)
 
@@ -78,7 +80,8 @@ class ChannelSelection(Screen):
 				"cancel": self.close,
 				"ok": self.channelSelected,
 				"mark": self.doMark,
-				"contextMenu": self.doContext
+				"contextMenu": self.doContext,
+				"showFavourites": self.showFavourites
 			})
 		self["actions"].csel = self
 
@@ -119,6 +122,7 @@ class ChannelSelection(Screen):
 	# ...
 	def channelSelected(self):
 		self.session.nav.playService(self["list"].getCurrent())
+		print "current: " + self["list"].getCurrent().toString()
 		self.close()
 
 	#called from infoBar
@@ -137,3 +141,7 @@ class ChannelSelection(Screen):
 	def setMoveMode(self, mode):
 		self.movemode = mode
 	
+	def showFavourites(self):
+		l = self["list" ]
+		l.setRoot(eServiceReference('1:0:1:0:0:0:0:0:0:0:(provider == "fav")'))
+		l.setMode(l.MODE_FAVOURITES)

@@ -27,6 +27,25 @@ public:
 
 	int lookupService(const eServiceReference &ref);
 	
+	enum {
+		visModeSimple,
+		visModeComplex
+	};
+	
+	void setVisualMode(int mode);
+	
+		/* only in complex mode: */
+	enum {
+		celServiceName,
+		celServiceNumber,
+		celIcon,
+		celServiceInfo, // "now" event
+		celElements
+	};
+	
+	void setElementPosition(int element, eRect where);
+	void setElementFont(int element, gFont *font);
+	
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -44,6 +63,11 @@ protected:
 	
 		/* the following functions always refer to the selected item */
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	
+	int m_visual_mode;
+		/* for complex mode */
+	eRect m_element_position[celElements];
+	ePtr<gFont> m_element_font[celElements];
 private:
 	typedef std::list<eServiceReference> list;
 	

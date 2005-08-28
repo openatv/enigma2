@@ -6,6 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
+from Components.ServicePosition import ServicePosition
 
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
@@ -43,7 +44,8 @@ class InfoBar(Screen):
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
-		self["CurrentTime"] = Clock()
+		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
+		# Clock()
 
 		self["Volume"] = self.volumeBar
 		
