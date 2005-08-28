@@ -12,6 +12,8 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from ConfigMenu import *
 
+from About import *
+
 from TimerEdit import *
 
 from enigma import quitMainloop
@@ -27,56 +29,50 @@ def doGlobal(screen):
 	screen["clock"] = Clock()
 
 
+#		<item text="TV-Mode">self.setModeTV()</item>
+#		<item text="Radio-Mode">self.setModeRadio()</item>
+#		<item text="File-Mode">self.setModeFile()</item>
+#		<item text="Scart">self.openDialog(ScartLoopThrough)</item>
+#			<item text="Sleep Timer"></item>
+
 mdom = xml.dom.minidom.parseString(
         """
-	<menu text="Mainmenu" title="the real Mainmenu">
+	<menu text="Mainmenu" title="Mainmenu">
 		<item text="Standby debug">quitMainloop()</item>
-		<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
-
-		<item text="Blub1">self.openSetup("rc")</item>
-		<item text="Blub2">self.openSetup("blasel")</item>
-
-		<item text="TV-Mode">self.setModeTV()</item>
-		<item text="Radio-Mode">self.setModeRadio()</item>
-		<item text="File-Mode">self.setModeFile()</item>
-		<item text="Scart">self.openDialog(ScartLoopThrough)</item>
 		<item text="Timer">self.openDialog(TimerEditList)</item>
 		<menu text="Setup">
-			<menu text="Service Organising">
+			<menu text="Service Organising -disabled-">
 				<item text="New Bouquets"></item>
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
-				<item text="Satelliteconfig"></item>
-				<item text="Satfinder"></item>
-				<item text="Rotor Control"></item>
-				<item text="Edit Transponder"></item>
+				<item text="Satelliteconfig">self.openSetup("satconfig")</item>
+				<item text="Satfinder -disabled-"></item>
+				<item text="Rotor Control -disabled-"></item>
+				<item text="Edit Transponder -disabled-"></item>
 				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
-				<item text="Automatic 'Multisat' Scan"></item>
-				<item text="Manual Scan"></item>
 			</menu>
 			<menu text="System">
-				<item text="Time Date"></item>
-				<item text="Video Audio"></item>
-				<item text="UHF Modulator"></item>
+				<item text="Timezone">self.openSetup("timezone")</item>
+				<item text="Video Audio">self.openSetup("avsetup")</item>
+				<item text="UHF Modulator">self.openSetup("rfmod")</item>
 				<item text="Harddisk"></item>
-				<item text="Keyboard"></item>
-				<item text="OSD">self.openDialog(configOSD)</item>
-				<item text="Language"></item>
-				<item text="LCD"></item>
+				<item text="Remote Control">self.openSetup("rc")</item>
+				<item text="Keyboard">self.openSetup("keyboard")</item>
+				<item text="OSD">self.openSetup("osd")</item>
+				<item text="LCD">self.openSetup("lcd")</item>
 			</menu>
 			<item text="Common Interface"></item>
-			<item text="Parental Control"></item>
-			<item text="Expert"></item>
+			<item text="Parental Control">self.openSetup("parental")</item>
+			<item text="Expert">self.openSetup("expert")</item>
 		</menu>
-		<item text="Games"></item>
-		<item text="Information"></item>
+		<item text="Games (not found)"></item>
+		<item text="Information">self.openDialog(About)</item>
 		<menu text="Standby">
-			<item text="PowerOff"></item>
-			<item text="Restart"></item>
-			<item text="Standby"></item>
-			<item text="Sleep Timer">self.goSetup()</item>
+			<item text="PowerOff">quitMainloop()</item>
+			<item text="Restart">quitMainloop()</item>
+			<item text="Standby">quitMainloop()</item>
 		</menu>
 	</menu>""")
 
@@ -142,7 +138,7 @@ class Menu(Screen):
 		self.session.open(dialog)
 
 	def openSetup(self, dialog):
-		self.session.open(setup, dialog)
+		self.session.open(Setup, dialog)
 
 	def addMenu(self, destList, node):
 		MenuTitle = getValbyAttr(node, "text")

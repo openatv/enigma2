@@ -172,6 +172,9 @@ skin.loadSkin(getDesktop())
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 
+import Components.SetupDevices
+Components.SetupDevices.InitSetupDevices()
+
 # first, setup a screen
 try:
 	runScreenTest()

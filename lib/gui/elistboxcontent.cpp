@@ -452,8 +452,11 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int width = item_right.width() * value / 100;
 						int height = item_right.height();
 						
+												
 							/* draw slider */
-						painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
+						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
+						//hack - make it customizable
+						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width, height-10));
 						
 							/* pvalue is borrowed */
 					}

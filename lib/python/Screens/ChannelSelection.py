@@ -55,10 +55,10 @@ class ChannelSelection(Screen):
 		## FIXME
 		self.__marked = [ ]
 		
-		self["key_red"] = Button("red")
-		self["key_green"] = Button("green")
-		self["key_yellow"] = Button("yellow")
-		self["key_blue"] = Button("blue")
+		self["key_red"] = Button("All")
+		self["key_green"] = Button("ARD")
+		self["key_yellow"] = Button("ZDF")
+		self["key_blue"] = Button("Custom")
 		
 		self["list"] = ServiceList()
 		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))

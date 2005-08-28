@@ -1,15 +1,31 @@
 #  temp stuff :)
 class configBoolean:
-	def __init__(self, reg):
-		self.reg = reg
-		self.val = 0
+	def __init__(self, parent):
+		self.parent = parent
+		self.val = parent.value
+		self.vals = parent.vals
+			
+	def handleKey(self, key):
+		if key == 1:
+			self.val = self.val - 1
+		if key == 2:
+			self.val = self.val + 1
+			
+		if self.val < 0:
+			self.val = 0	
+
+#		if self.val > 1:
+#			self.val = 1	
 	
-	def toggle(self):
-		self.val += 1
-		self.val %= 3
+	def __call__(self):			#needed by configlist
 	
-	def __str__(self):
-		return ("NO", "YES", "MAYBE")[self.val]
+		print len(self.vals)
+		print self.val
+			
+		if(self.val > (len(self.vals) - 1)):
+			self.val = len(self.vals) - 1
+	
+		return ("text",self.vals[self.val])
 
 class configValue:
 	def __init__(self, obj):
@@ -48,7 +64,6 @@ class ConfigSlider:
 
 		if self.val > 10:
 			self.val = 10	
-	
 	def __call__(self):			#needed by configlist
 		return ("slider", self.val * 10)
 
@@ -57,10 +72,12 @@ class ConfigSubsection:
 		pass
 
 class configElement:
-	def __init__(self, configPath, control, defaultValue):
+	def __init__(self, configPath, control, defaultValue, vals):
 		self.configPath = configPath
-		self.value = 0	#read from registry else use default
+#		self.value = 0	#read from registry else use default
+		self.value = defaultValue	#read from registry else use default
 		self.controlType = control
+		self.vals = vals
 		self.notifierList = [ ]
 	def addNotifier(self, notifier):
 		self.notifierList.append(notifier);

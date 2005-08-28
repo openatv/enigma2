@@ -1,4 +1,6 @@
+#undef WITH_SDL
 #ifdef WITH_SDL
+#error
 #define SDLDC
 #endif
 #include <stdio.h>
@@ -13,6 +15,7 @@
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
 #ifdef WITH_SDL
+#error
 #include <lib/gdi/sdl.h>
 #endif
 #include <lib/gdi/font.h> 

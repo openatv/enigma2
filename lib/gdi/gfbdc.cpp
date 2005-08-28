@@ -14,7 +14,7 @@ gFBDC::gFBDC()
 	if (!fb->Available())
 		eFatal("no framebuffer available");
 
-	fb->SetMode(720, 576, 8);
+	fb->SetMode(720, 576, 32);
 
 	for (int y=0; y<576; y++)																		 // make whole screen transparent
 		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
@@ -22,8 +22,8 @@ gFBDC::gFBDC()
 	surface.type = 0;
 	surface.x = 720;
 	surface.y = 576;
-	surface.bpp = 8;
-	surface.bypp = 1;
+	surface.bpp = 32;
+	surface.bypp = 4;
 	surface.stride = fb->Stride();
 	surface.data = fb->lfb;
 	surface.clut.colors=256;
