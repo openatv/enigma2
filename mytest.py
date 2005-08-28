@@ -1,6 +1,7 @@
 from enigma import *
 from tools import *
 
+import traceback
 import Screens.InfoBar
 
 import sys
@@ -95,7 +96,15 @@ class Session:
 	
 	def instantiateDialog(self, screen, *arguments):
 		# create dialog
-		dlg = self.create(screen, arguments)
+		
+		try:
+			dlg = self.create(screen, arguments)
+		except:
+			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
+			print '-'*60
+			traceback.print_exc(file=sys.stdout)
+			quitMainloop()
+			print '-'*60
 		
 		# read skin data
 		readSkin(dlg, None, dlg.skinName, self.desktop)
@@ -164,7 +173,14 @@ import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 
 # first, setup a screen
-runScreenTest()
+try:
+	runScreenTest()
+except:
+	print 'EXCEPTION IN PYTHON STARTUP CODE:'
+	print '-'*60
+	traceback.print_exc(file=sys.stdout)
+	quitMainloop()
+	print '-'*60
 
 # now, run the mainloop
 
