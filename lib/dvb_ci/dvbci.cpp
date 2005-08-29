@@ -30,7 +30,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		++num_ci;
 	}
 
-	eDebug("done, found %d common interface slots");
+	eDebug("done, found %d common interface slots", num_ci);
 }
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
