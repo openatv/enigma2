@@ -105,15 +105,17 @@ private:
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
 	
-	enum
-	{
-		blitAlphaTest=1
-	};
 	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
 	
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
 public:
+	enum
+	{
+		blitAlphaTest=1,
+		blitAlphaBlend=2
+	};
+
 	gSurface *surface;
 	
 	eLock contentlock;
