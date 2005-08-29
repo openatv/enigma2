@@ -71,6 +71,8 @@ private:
 	
 	void createBufferForWidget(eWidget *widget);
 	void removeBufferForWidget(eWidget *widget);
+	
+	void redrawComposition();
 };
 
 #endif
