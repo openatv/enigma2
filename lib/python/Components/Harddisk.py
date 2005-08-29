@@ -17,7 +17,7 @@ class Harddisk:
 
 		#perhaps this is easier?
 		self.prochdx = "/proc/ide/hd" + ("a","b","c","d","e","f","g","h")[index] + "/"
-		self.devidex = "/dev/ide/host" + str(host) + "/bus" + str(bus) + "/target" + str(target) + "/lun0/"
+		self.devidex = "/dev/ide/host" + str(host) + "/bus" + str(bus) + "/target" + str(target) + "/lun8/"
 
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
@@ -67,3 +67,16 @@ class Harddisk:
 				break
 		procfile.close()
 		return free		
+
+	def numPartitions(self):
+		try:
+			idedir = os.listdir(self.devidex)
+		except OSError:
+			return -1
+		numPart = -1
+		for filename in idedir:
+			if filename.startswith("disc"):
+				numPart += 1
+			if filename.startswith("part"):
+				numPart += 1
+		return numPart
