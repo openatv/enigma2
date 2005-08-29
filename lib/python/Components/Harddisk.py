@@ -22,10 +22,12 @@ class Harddisk:
 		line = procfile.readline()
 		procfile.close()
 		
-		if line == "":
+		try:
+			cap = int(line)
+		except:
 			return -1
-
-		return int(line)
+		
+		return cap	
 						
 	def model(self):
 		procfile = tryOpen(self.prochdx + "model")
