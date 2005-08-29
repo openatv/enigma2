@@ -171,6 +171,12 @@ void eWidgetDesktop::paint()
 	
 	if (m_comp_mode == cmImmediate)
 		paintBackground(&m_screen);
+	
+	if (m_comp_mode == cmBuffered)
+	{
+		eDebug("redraw composition");
+		redrawComposition();		
+	}
 }
 
 void eWidgetDesktop::setDC(gDC *dc)
@@ -240,7 +246,7 @@ eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0), m_timer(0)
 
 eWidgetDesktop::~eWidgetDesktop()
 {
-		/* destroy all buffer */
+		/* destroy all buffers */
 	setCompositionMode(-1);
 }
 
@@ -254,7 +260,8 @@ void eWidgetDesktop::createBufferForWidget(eWidget *widget)
 	comp->m_position = bbox.topLeft();
 	comp->m_dirty_region = gRegion(eRect(ePoint(0, 0), bbox.size()));
 	comp->m_screen_size = bbox.size();
-//	comp->m_dc = new .. ;
+		/* TODO: configurable bit depth. */
+	comp->m_dc = new gDC(new gPixmap(comp->m_screen_size, 32));
 }
 
 void eWidgetDesktop::removeBufferForWidget(eWidget *widget)
@@ -263,5 +270,18 @@ void eWidgetDesktop::removeBufferForWidget(eWidget *widget)
 	{
 		delete widget->m_comp_buffer;
 		widget->m_comp_buffer = 0;
+	}
+}
+
+void eWidgetDesktop::redrawComposition()
+{
+	gPainter p(m_screen.m_dc);
+
+	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
+	{
+		ePtr<gPixmap> pm;
+		ASSERT(i->m_comp_buffer);
+		i->m_comp_buffer->m_dc->getPixmap(pm);
+		p.blit(pm, i->m_comp_buffer->m_position, eRect(), gPixmap::blitAlphaTest);
 	}
 }
