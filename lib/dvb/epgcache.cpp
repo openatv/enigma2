@@ -10,6 +10,160 @@
 #include <lib/base/eerror.h>
 
 int eventData::CacheSize=0;
+descriptorMap eventData::descriptors;
+
+extern const uint32_t crc32_table[256];
+
+eventData::eventData(const eit_event_struct* e, int size, int type)
+	:ByteSize(size), type(type)
+{
+	if (!e)
+		return;
+	std::list<__u32> d;
+	__u8 *data = (__u8*)e;
+	int ptr=10;
+	int descriptors_length = (data[ptr++]&0x0F) << 8;
+	descriptors_length |= data[ptr++];
+	while ( descriptors_length > 0 )
+	{
+		int descr_len = data[ptr+1] + 2;
+		__u8 *descr = new __u8[descr_len];
+		unsigned int crc=0;
+		int cnt=0;
+		while(cnt < descr_len && descriptors_length > 0)
+		{
+			crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr]) & 0xff];
+			descr[cnt++] = data[ptr++];
+			--descriptors_length;
+		}
+		descriptorMap::iterator it =
+			descriptors.find(crc);
+		if ( it == descriptors.end() )
+		{
+			CacheSize+=descr_len;
+			descriptors[crc] = descriptorPair(1, descr);
+		}
+		else
+		{
+			++it->second.first;
+			delete [] descr;
+		}
+		d.push_back(crc);
+	}
+	ByteSize = 12+d.size()*4;
+	EITdata = new __u8[ByteSize];
+	CacheSize+=ByteSize;
+	memcpy(EITdata, (__u8*) e, 12);
+	__u32 *p = (__u32*)(EITdata+12);
+	for (std::list<__u32>::iterator it(d.begin()); it != d.end(); ++it)
+		*p++ = *it;
+}
+
+const eit_event_struct* eventData::get() const
+{
+	static __u8 *data=NULL;
+	if ( data )
+		delete [] data;
+
+	int bytes = 12;
+	std::list<__u8*> d;
+
+// cnt needed bytes
+	int tmp = ByteSize-12;
+	__u32 *p = (__u32*)(EITdata+12);
+	while(tmp>0)
+	{
+		descriptorMap::iterator it =
+			descriptors.find(*p++);
+		if ( it != descriptors.end() )
+		{
+			d.push_back(it->second.second);
+			bytes += it->second.second[1];
+		}
+		bytes += 2; // descr_type, descr_len
+		tmp-=4;
+	}
+
+// copy eit_event header to buffer
+	data = new __u8[bytes];
+	memcpy(data, EITdata, 12);
+
+	tmp=12;
+// copy all descriptors to buffer
+	for(std::list<__u8*>::iterator it(d.begin()); it != d.end(); ++it)
+	{
+		int b=(*it)[1]+2;
+		memcpy(data+tmp, *it, b);
+		tmp+=b;
+	}
+
+	return (eit_event_struct*)data;
+}
+
+eventData::~eventData()
+{
+	if ( ByteSize )
+	{
+		CacheSize-=ByteSize;
+		ByteSize-=12;
+		__u32 *d = (__u32*)(EITdata+12);
+		while(ByteSize)
+		{
+			descriptorMap::iterator it =
+				descriptors.find(*d++);
+			if ( it != descriptors.end() )
+			{
+				descriptorPair &p = it->second;
+				if (!--p.first) // no more used descriptor
+				{
+					CacheSize -= p.second[1]+2;
+					delete [] p.second;  	// free descriptor memory
+					descriptors.erase(it);	// remove entry from descriptor map
+				}
+			}
+			ByteSize-=4;
+		}
+		delete [] EITdata;
+	}
+}
+
+void eventData::load(FILE *f)
+{
+	int size=0;
+	int id=0;
+	__u8 header[2];
+	descriptorPair p;
+	fread(&size, sizeof(int), 1, f);
+	while(size)
+	{
+		fread(&id, sizeof(__u32), 1, f);
+		fread(&p.first, sizeof(int), 1, f);
+		fread(header, 2, 1, f);
+		int bytes = header[1]+2;
+		p.second = new __u8[bytes];
+		p.second[0] = header[0];
+		p.second[1] = header[1];
+		fread(p.second+2, bytes-2, 1, f);
+		descriptors[id]=p;
+		--size;
+		CacheSize+=bytes;
+	}
+}
+
+void eventData::save(FILE *f)
+{
+	int size=descriptors.size();
+	descriptorMap::iterator it(descriptors.begin());
+	fwrite(&size, sizeof(int), 1, f);
+	while(size)
+	{
+		fwrite(&it->first, sizeof(__u32), 1, f);
+		fwrite(&it->second.first, sizeof(int), 1, f);
+		fwrite(it->second.second, it->second.second[1]+2, 1, f);
+		++it;
+		--size;
+	}
+}
 
 eEPGCache* eEPGCache::instance;
 pthread_mutex_t eEPGCache::cache_lock=
@@ -399,20 +553,14 @@ void eEPGCache::cleanLoop()
 	if (!eventDB.empty())
 	{
 		eDebug("[EPGC] start cleanloop");
-		const eit_event_struct* cur_event;
-		int duration;
 
-// FIXME !!! TIME_CORRECTION
 		time_t now = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
 			for (timeMap::iterator It = DBIt->second.second.begin(); It != DBIt->second.second.end() && It->first < now;)
 			{
-				cur_event = (*It->second).get();
-				duration = fromBCD( cur_event->duration_1)*3600 + fromBCD(cur_event->duration_2)*60 + fromBCD(cur_event->duration_3);
-
-				if ( now > (It->first+duration) )  // outdated normal entry (nvod references to)
+				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
 				{
 					// remove entry from eventMap
 					eventMap::iterator b(DBIt->second.first.find(It->second->getEventID()));
@@ -449,7 +597,7 @@ eEPGCache::~eEPGCache()
 			delete It->second;
 }
 
-Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, bool plain)
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eventData *&result )
 {
 	singleLock s(cache_lock);
 	uniqueEPGKey key( service );
@@ -460,22 +608,19 @@ Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id,
 		eventMap::iterator i( It->second.first.find( event_id ));
 		if ( i != It->second.first.end() )
 		{
-			if ( service.getServiceType() == 4 ) // nvod ref
-				return lookupEvent( service, i->second->getStartTime(), plain );
-			else if ( plain )
-		// get plain data... not in Event Format !!!
-		// before use .. cast it to eit_event_struct*
-				return (Event*) i->second->get();
-			else
-				return new Event( (uint8_t*)i->second->get() /*, (It->first.tsid<<16)|It->first.onid*/ );
+			result = i->second;
+			return 0;
 		}
 		else
+		{
+			result = 0;
 			eDebug("event %04x not found in epgcache", event_id);
+		}
 	}
-	return 0;
+	return -1;
 }
 
-Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, bool plain )
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eventData *&result )
 // if t == 0 we search the current event...
 {
 	singleLock s(cache_lock);
@@ -494,35 +639,26 @@ Event *eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, boo
 			i--;
 			if ( i != It->second.second.end() )
 			{
-				const eit_event_struct* eit_event = i->second->get();
-				int duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
-				if ( t <= i->first+duration )
+				if ( t <= i->first+i->second->getDuration() )
 				{
-					if ( plain )
-						// get plain data... not in Event Format !!!
-						// before use .. cast it to eit_event_struct*
-						return (Event*) i->second->get();
-					return new Event( (uint8_t*)i->second->get() /*, (It->first.tsid<<16)|It->first.onid */ );
+					result = i->second;
+					return 0;
 				}
 			}
 		}
 
 		for ( eventMap::iterator i( It->second.first.begin() ); i != It->second.first.end(); i++)
 		{
-			const eit_event_struct* eit_event = i->second->get();
-			int duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
-			time_t begTime = parseDVBtime( eit_event->start_time_1, eit_event->start_time_2,	eit_event->start_time_3, eit_event->start_time_4,	eit_event->start_time_5);
+			int duration = i->second->getDuration();
+			time_t begTime = i->second->getStartTime();
 			if ( t >= begTime && t <= begTime+duration) // then we have found
 			{
-				if ( plain )
-					// get plain data... not in Event Format !!!
-					// before use .. cast it to eit_event_struct*
-					return (Event*) i->second->get();
-				return new Event( (uint8_t*)i->second->get()/*, (It->first.tsid<<16)|It->first.onid*/ );
+				result = i->second;
+				return 0;
 			}
 		}
 	}
-	return 0;
+	return -1;
 }
 
 void eEPGCache::gotMessage( const Message &msg )
@@ -595,33 +731,43 @@ void eEPGCache::load()
 		}
 		if ( md5ok )
 		{
-			fread( &size, sizeof(int), 1, f);
-			while(size--)
+			char text1[13];
+			fread( text1, 13, 1, f);
+			if ( !strncmp( text1, "ENIGMA_EPG_V2", 13) )
 			{
-				uniqueEPGKey key;
-				eventMap evMap;
-				timeMap tmMap;
-				int size=0;
-				fread( &key, sizeof(uniqueEPGKey), 1, f);
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
 				{
-					int len=0;
-					int type=0;
-					eventData *event=0;
-					fread( &type, sizeof(int), 1, f);
-					fread( &len, sizeof(int), 1, f);
-					event = new eventData(0, len, type);
-					fread( event->EITdata, len, 1, f);
-					evMap[ event->getEventID() ]=event;
-					tmMap[ event->getStartTime() ]=event;
-					++cnt;
+					uniqueEPGKey key;
+					eventMap evMap;
+					timeMap tmMap;
+					int size=0;
+					fread( &key, sizeof(uniqueEPGKey), 1, f);
+					fread( &size, sizeof(int), 1, f);
+					while(size--)
+					{
+						int len=0;
+						int type=0;
+						eventData *event=0;
+						fread( &type, sizeof(int), 1, f);
+						fread( &len, sizeof(int), 1, f);
+						event = new eventData(0, len, type);
+						event->EITdata = new __u8[len];
+						eventData::CacheSize+=len;
+						fread( event->EITdata, len, 1, f);
+						evMap[ event->getEventID() ]=event;
+						tmMap[ event->getStartTime() ]=event;
+						++cnt;
+					}
+					eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
 				}
-				eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
+				eventData::load(f);
+				eDebug("%d events read from /hdd/epg.dat", cnt);
 			}
-			eDebug("%d events read from /hdd/epg.dat.md5", cnt);
+			else
+				eDebug("[EPGC] don't read old epg database");
+			fclose(f);
 		}
-		fclose(f);
 	}
 #endif
 }
@@ -653,6 +799,8 @@ void eEPGCache::save()
 	int cnt=0;
 	if ( f )
 	{
+		const char *text = "ENIGMA_EPG_V2";
+		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
 		for (eventCache::iterator service_it(eventDB.begin()); service_it != eventDB.end(); ++service_it)
@@ -671,6 +819,7 @@ void eEPGCache::save()
 			}
 		}
 		eDebug("%d events written to /hdd/epg.dat", cnt);
+		eventData::save(f);
 		fclose(f);
 		unsigned char md5[16];
 		if (!md5_file("/hdd/epg.dat", 1, md5))
@@ -782,7 +931,7 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_ScheduleOtherReader->stop();
 		}
 		if ( isRunning )
-			abortTimer.start(50000, true);
+			abortTimer.start(90000, true);
 		else
 		{
 			++state;
@@ -910,6 +1059,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			if ( it == seenSections.end() )
 			{
 				seenSections.insert(sectionNo);
+				calcedSections.insert(sectionNo);
 				__u32 tmpval = sectionNo & 0xFFFFFF00;
 				__u8 incr = source == NOWNEXT ? 1 : 8;
 				for ( int i = 0; i <= eit->last_section_number; i+=incr )
