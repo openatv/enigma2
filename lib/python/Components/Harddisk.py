@@ -155,13 +155,14 @@ class HarddiskManager:
 		list = [ ]
 		for hd in self.hdd:
 			cap = hd.capacity() / 1000 * 512 / 1000
+			print cap
 			hdd = hd.model() + " (" 
 			if hd.index & 1:
 				hdd += "slave"
 			else:	
 				hdd += "master"
 			if cap > 0:
-				hdd += ", %d,%d GB" % (cap/1024, cap%1024)
+				hdd += ", %d.%03d GB" % (cap/1024, cap%1024)
 			hdd += ")"
 
 			print hdd
