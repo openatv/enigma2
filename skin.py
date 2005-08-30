@@ -57,6 +57,12 @@ dom = xml.dom.minidom.parseString(
 		<screen name="HarddiskSelection" position="140,165" size="360,100">
 			<widget name="hddlist" position="20,10" size="320,80" />
 		</screen>
+		<screen name="HarddiskSetup" position="140,165" size="360,100">
+			<widget name="model" position="20,10" size="300,20" />
+			<widget name="capacity" position="20,30" size="300,20" />
+			<widget name="bus" position="20,50" size="300,20" />
+			<widget name="initialize" position="40,80" size="75,20" font="Arial;20" backgroundColor="red" />
+		</screen>
 		<screen name="Setup" position="140,125" size="460,220" title="Setup">
 			<widget name="config" position="10,30" size="420,120" />
 			<widget name="ok" position="140,180" size="38,20" font="Arial;20" backgroundColor="green" />
