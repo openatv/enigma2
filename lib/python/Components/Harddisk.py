@@ -7,6 +7,9 @@ def tryOpen(filename):
 		return ""
 	return procFile
 
+def num2prochdx(num):
+	return "/proc/ide/hd" + ("a","b","c","d","e","f","g","h","i")[num] + "/"
+
 class Harddisk:
 	def __init__(self, index):
 		self.index = index
@@ -15,10 +18,11 @@ class Harddisk:
 		bus = (self.index & 2)
 		target = (self.index & 1)
 
-		#perhaps this is easier?
-		self.prochdx = "/proc/ide/hd" + ("a","b","c","d","e","f","g","h")[index] + "/"
-		self.devidex = "/dev/ide/host" + str(host) + "/bus" + str(bus) + "/target" + str(target) + "/lun8/"
+		self.prochdx = num2prochdx(index)
+		self.devidex = "/dev/ide/host%d/bus%d/target%d/lun0/" % (host, bus, target)
 
+	def hdindex(self):
+		return self.index
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
 		
@@ -44,7 +48,7 @@ class Harddisk:
 		line = procfile.readline()
 		procfile.close()
 
-		return line
+		return line.strip()
 
 	def free(self):
 		procfile = tryOpen("/proc/mounts")
@@ -80,3 +84,46 @@ class Harddisk:
 			if filename.startswith("part"):
 				numPart += 1
 		return numPart
+
+
+def existHDD(num):
+	mediafile = tryOpen(num2prochdx(num) + "media")
+
+	if mediafile == "":
+		return -1
+
+	line = mediafile.readline()
+	mediafile.close()
+	
+	if line.startswith("disk"):
+		return 1
+	
+	return -1
+
+class HarddiskManager:
+	def __init__(self):
+		hddNum = 0
+		self.hdd = [ ]
+		while 1:
+			if existHDD(hddNum) == 1:
+				self.hdd.append(Harddisk(hddNum))
+			hddNum += 1
+			
+			if hddNum > 8:
+				break
+		
+	def HDDList(self):
+		list = [ ]
+		for hd in self.hdd:
+			cap = hd.capacity() / 1000 * 512 / 1000
+			hdd = hd.model() + " (" 
+			if hd.index & 1:
+				hdd += "slave"
+			else:	
+				hdd += "master"
+			if cap > 0:
+				hdd += ", %d,%d GB" % (cap/1024, cap%1024)
+			hdd += ")"
+
+			list.append((hdd, hd))
+		return list
