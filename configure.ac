@@ -44,6 +44,7 @@ TUXBOX_APPS_GETTEXT
 
 AC_OUTPUT([
 Makefile
+data/Makefile
 lib/Makefile
 lib/actions/Makefile
 lib/base/Makefile
