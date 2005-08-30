@@ -36,46 +36,18 @@ def doGlobal(screen):
 #		<item text="Scart">self.openDialog(ScartLoopThrough)</item>
 #			<item text="Sleep Timer"></item>
 
-mdom = xml.dom.minidom.parseString(
-        """
-	<menu text="Mainmenu" title="Mainmenu">
-		<item text="Standby debug">quitMainloop()</item>
-		<item text="Timer">self.openDialog(TimerEditList)</item>
-		<menu text="Setup">
-			<menu text="Service Organising -disabled-">
-				<item text="New Bouquets"></item>
-				<item text="Add to Bouquets"></item>
-				<item text="Edit Bouquets"></item>
-			</menu>
-			<menu text="Service Searching">
-				<item text="Satelliteconfig">self.openSetup("satconfig")</item>
-				<item text="Satfinder -disabled-"></item>
-				<item text="Rotor Control -disabled-"></item>
-				<item text="Edit Transponder -disabled-"></item>
-				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
-			</menu>
-			<menu text="System">
-				<item text="Timezone">self.openSetup("timezone")</item>
-				<item text="Video Audio">self.openSetup("avsetup")</item>
-				<item text="UHF Modulator">self.openSetup("rfmod")</item>
-				<item text="Harddisk">self.openDialog(HarddiskSelection)</item>
-				<item text="Remote Control">self.openSetup("rc")</item>
-				<item text="Keyboard">self.openSetup("keyboard")</item>
-				<item text="OSD">self.openSetup("osd")</item>
-				<item text="LCD">self.openSetup("lcd")</item>
-			</menu>
-			<item text="Common Interface"></item>
-			<item text="Parental Control">self.openSetup("parental")</item>
-			<item text="Expert">self.openSetup("expert")</item>
-		</menu>
-		<item text="Games (not found)"></item>
-		<item text="Information">self.openDialog(About)</item>
-		<menu text="Standby">
-			<item text="PowerOff">quitMainloop()</item>
-			<item text="Restart">quitMainloop()</item>
-			<item text="Standby">quitMainloop()</item>
-		</menu>
-	</menu>""")
+
+# read the skin
+try:
+	# first we search in the current path
+	menufile = file('data/menu.xml', 'r')
+except:
+	# if not found in the current path, we use the global datadir-path
+	menufile = file('/usr/share/enigma2/menu.xml', 'r')
+mdom = xml.dom.minidom.parseString(menufile.read())
+menufile.close()
+
+
 
 def getValbyAttr(x, attr):
 	for p in range(x.attributes.length):
