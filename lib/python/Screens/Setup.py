@@ -15,13 +15,12 @@ from Tools import XMLTools
 # read the setupmenu
 try:
 	# first we search in the current path
-	setupfile = file('data/menu.xml', 'r')
+	setupfile = file('data/setup.xml', 'r')
 except:
 	# if not found in the current path, we use the global datadir-path
 	setupfile = file('/usr/share/enigma2/setup.xml', 'r')
 setupdom = xml.dom.minidom.parseString(setupfile.read())
 setupfile.close()
-
 
 def getValbyAttr(x, attr):
 	for p in range(x.attributes.length):
