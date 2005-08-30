@@ -25,11 +25,17 @@ class Harddisk:
 		return self.index
 
 	def bus(self):
-		#TODO: add the host
-		if self.index & 1:
-			return "Slave"
+		ret = ""
+
+		if self.index & 2:
+			ret = "External (CF) - "
 		else:
-			return "Master"
+			ret = "Internal - "
+		
+		if self.index & 1:
+			return ret + "Slave"
+		else:
+			return ret + "Master"
 
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
