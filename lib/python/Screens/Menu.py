@@ -7,6 +7,7 @@ from Components.Header import Header
 from Screens.Setup import Setup
 from ServiceScan import ServiceScan
 from ScartLoopThrough import ScartLoopThrough
+from HarddiskSetup import HarddiskSelection
 from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
@@ -57,7 +58,7 @@ mdom = xml.dom.minidom.parseString(
 				<item text="Timezone">self.openSetup("timezone")</item>
 				<item text="Video Audio">self.openSetup("avsetup")</item>
 				<item text="UHF Modulator">self.openSetup("rfmod")</item>
-				<item text="Harddisk"></item>
+				<item text="Harddisk">self.openDialog(HarddiskSelection)</item>
 				<item text="Remote Control">self.openSetup("rc")</item>
 				<item text="Keyboard">self.openSetup("keyboard")</item>
 				<item text="OSD">self.openSetup("osd")</item>
