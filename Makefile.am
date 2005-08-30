@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = gnu
 
-SUBDIRS = lib main
+SUBDIRS = lib main data
 
 installdir = $(LIBDIR)/enigma2/python
 
