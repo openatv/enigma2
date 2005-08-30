@@ -1,0 +1,142 @@
+<skin>
+	
+		<colors>
+			<color name="white" 	value="#ffffff" />
+			<color name="black" 	value="#000000" />
+			<color name="dark"  	value="#20294a6b" />
+			
+			<color name="red" 		value="#ff0000" />
+			<color name="green" 	value="#00ff00" />
+			<color name="blue" 		value="#0000ff" />
+			<color name="yellow"	value="#c0c000" />
+		</colors>
+		<windowstyle type="skinned">
+			<color name="Background" color="#4075a7" />
+			<color name="LabelForeground" color="#ffffff" />
+			<color name="ListboxBackground" color="#4075a7" />
+			<color name="ListboxForeground" color="#ffffff" />
+			<color name="ListboxSelectedBackground" color="#404080" />
+			<color name="ListboxSelectedForeground" color="#ffffff" />
+			<color name="ListboxMarkedBackground" color="#ff0000" />
+			<color name="ListboxMarkedForeground" color="#ffffff" />
+			<borderset name="bsWindow">
+				<pixmap pos="bpTopLeft"     filename="data/b_w_tl.png" />
+				<pixmap pos="bpTop"         filename="data/b_w_t.png"  />
+				<pixmap pos="bpTopRight"    filename="data/b_w_tr.png" />
+				<pixmap pos="bpLeft"        filename="data/b_w_l.png"  />
+				<pixmap pos="bpRight"       filename="data/b_w_r.png"  />
+				<pixmap pos="bpBottomLeft"  filename="data/b_w_bl.png" />
+				<pixmap pos="bpBottom"      filename="data/b_w_b.png"  />
+				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
+			</borderset>
+		</windowstyle> """ """
+		<screen name="Menu" position="300,100" size="300,200" title="real main menu">
+<!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
+			<widget name="title" position="10,10" size="280,20" />
+			<widget name="menu" position="10,30" size="280,200" />
+		</screen>
+		<screen name="ScartLoopThrough" position="0,0" size="720,576">
+		</screen>
+		<screen name="HarddiskSelection" position="140,165" size="360,100">
+			<widget name="hddlist" position="20,10" size="320,80" />
+		</screen>
+		<screen name="HarddiskSetup" position="140,165" size="360,100">
+			<widget name="model" position="20,10" size="300,20" />
+			<widget name="capacity" position="20,30" size="300,20" />
+			<widget name="bus" position="20,50" size="300,20" />
+			<widget name="initialize" position="40,80" size="75,20" font="Arial;20" backgroundColor="red" />
+		</screen>
+		<screen name="Setup" position="140,125" size="460,220" title="Setup">
+			<widget name="config" position="10,30" size="420,120" />
+			<widget name="ok" position="140,180" size="38,20" font="Arial;20" backgroundColor="green" />
+			<widget name="cancel" position="240,180" size="70,20" font="Arial;20" backgroundColor="red" />
+		</screen>
+		<screen name="About" position="140,125" size="360,200" title="Setup">
+			<widget name="text" position="10,30" size="420,40" font="Arial;20"/>
+			<widget name="tuner" position="10,80" size="420,20"/>
+			<widget name="tunerA" position="10,100" size="420,20"/>
+			<widget name="tunerB" position="10,120" size="420,20"/>
+			<widget name="hdd" position="10,150" size="420,20"/>
+			<widget name="hddA" position="10,170" size="420,20"/>
+		</screen>
+		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
+			<widget name="okbutton" position="20,245" size="205,40" />
+			<widget name="txt_alpha" position="20,20" size="110,20" />
+			<widget name="sld_alpha" position="150,20" size="290,20" />
+			<widget name="txt_brightness" position="20,60" size="120,20" />
+			<widget name="sld_brightness" position="150,20" size="290,20" />
+			<widget name="txt_gamma" position="20,100" size="120,20" />
+			<widget name="sld_gamma" position="150,100" size="290,20" />
+		</screen>
+		<screen name="configTest" position="300,100" size="300,300" title="config menu">
+			<widget name="config" position="10,30" size="420,220" />
+		</screen>
+		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">
+			<widget name="timerlist" position="10,30" size="400,300" />
+		</screen>
+		<screen name="clockDisplay" position="300,100" size="300,300">
+			<widget name="okbutton" position="10,10" size="280,40" />
+			<widget name="title" position="10,120" size="280,50" />
+			<widget name="theClock" position="10,60" size="280,50" />
+		</screen>
+		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
+			<ePixmap position="0,0" size="720,148" pixmap="data/info-bg.png" />
+			
+			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
+			<widget name="Volume" position="575,45" size="100,5" backgroundColor="dark" />
+			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
+<!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
+		</screen>
+ 		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
+			<widget name="list" position="0,50" size="560,320" />
+<!--			<widget name="okbutton" position="340,50" size="140,30" />-->
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" />
+		</screen>
+ 		<screen name="MovieSelection" position="150,100" size="400,420" title="Select-a-movie">
+			<widget name="list" position="0,50" size="400,300" />
+		</screen>
+		<screen name="ServiceScan" position="150,100" size="300,90" title="Service Scan">
+			<widget name="scan_progress" position="10,10" size="300,20" />
+			<widget name="scan_state" position="10,40" size="280,30" />
+		</screen>
+		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
+			<widget name="description" position="10,10" size="580,40" font="Arial;25" />
+			<widget name="lbegin" position="405,102" size="103,30" font="Arial;25" foregroundColor="red" />
+			<widget name="lend" position="405,158" size="103,30" font="Arial;25" foregroundColor="green" />
+			<widget name="begin" position="508,105" size="72,35" font="Arial;25" />
+			<widget name="end" position="508,150" size="72,35" font="Arial;25" />
+			<widget name="apply" position="10,240" size="250,35" />
+		</screen>
+		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
+			<widget name="text" position="0,0" size="500,0" font="Arial;25" />
+			<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrated applets.
+from enigma import eSize, ePoint
+
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self["text"].getSize()
+
+# y size still must be fixed in font stuff...
+textsize = (textsize[0], textsize[1] + 20)
+wsize = (textsize[0] + 20, textsize[1] + 20)
+
+# resize 
+self.instance.resize(eSize(*wsize))
+
+# resize label
+self["text"].instance.resize(eSize(*textsize))
+
+# center window
+newwidth = wsize[0]
+self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+			</applet>
+		</screen>
+	</skin>
