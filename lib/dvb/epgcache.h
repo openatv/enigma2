@@ -72,22 +72,6 @@ struct uniqueEPGKey
 #define channelMapIterator std::map<iDVBChannel*, channel_data*>::iterator
 #define updateMap std::map<eDVBChannelID, time_t>
 
-struct hash_32
-{
-	inline size_t operator()( const __u32 &x) const
-	{
-		return (x >> 8)&0xFFFF;
-	}
-};
-
-struct equal_32
-{
-	inline size_t operator()(const __u32 &x, const __u32 &y) const
-	{
-		return x == y;
-	}
-};
-
 struct hash_uniqueEPGKey
 {
 	inline size_t operator()( const uniqueEPGKey &x) const
@@ -96,12 +80,11 @@ struct hash_uniqueEPGKey
 	}
 };
 
+#define tidMap std::set<__u32>
 #if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
 	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
-	#define tidMap __gnu_cxx::hash_set<__u32, hash_32, equal_32>
 #else // for older gcc use following
 	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal >
-	#define tidMap std::hash_map<__u32, hash_32, equal_32>
 #endif
 
 #define descriptorPair std::pair<int,__u8*>
