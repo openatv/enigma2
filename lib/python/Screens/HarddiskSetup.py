@@ -27,6 +27,7 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddInitialize(self):
+		#some protection for the exhibition (IFA 2005)
 		if self.hdd.getIndex() == 2:		#CF
 			print "not a good idea!"
 			self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
@@ -49,5 +50,3 @@ class HarddiskSelection(Screen):
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
 		self.session.open(HarddiskSetup, selection[1])
-		print "ok"
-		pass
