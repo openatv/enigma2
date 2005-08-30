@@ -21,6 +21,9 @@ class Harddisk:
 		self.prochdx = num2prochdx(index)
 		self.devidex = "/dev/ide/host%d/bus%d/target%d/lun0/" % (host, bus, target)
 
+	def index(self):
+		return self.index
+
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
 		
