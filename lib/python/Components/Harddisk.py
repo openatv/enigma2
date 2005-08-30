@@ -24,11 +24,18 @@ class Harddisk:
 	def getIndex(self):
 		return self.index
 
+	def bus(self):
+		#TODO: add the host
+		if self.index & 1:
+			return "Slave"
+		else:
+			return "Master"
+
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
 		
 		if procfile == "":
-			return -1
+			return ""
 
 		line = procfile.readline()
 		procfile.close()
@@ -36,10 +43,12 @@ class Harddisk:
 		try:
 			cap = int(line)
 		except:
-			return -1
+			return ""
 		
-		return cap	
-						
+		cap = cap / 1000 * 512 / 1000
+		
+		return "%d.%03d GB" % (cap/1024, cap%1024)
+								
 	def model(self):
 		procfile = tryOpen(self.prochdx + "model")
 		
@@ -157,28 +166,15 @@ class HarddiskManager:
 	def HDDList(self):
 		list = [ ]
 		for hd in self.hdd:
-			cap = hd.capacity() / 1000 * 512 / 1000
-			print cap
 			hdd = hd.model() + " (" 
-			if hd.index & 1:
-				hdd += "slave"
-			else:	
-				hdd += "master"
-			if cap > 0:
-				hdd += ", %d.%03d GB" % (cap/1024, cap%1024)
+			hdd += hd.bus()
+			cap = hd.capacity()	
+			if cap != "":
+				hdd += ", " + cap
 			hdd += ")"
-
-			print hdd
-			
-#			if hd.index == 0:
-#				if hd.initialize() == 0:
-#					print "hdd status ok"
-#				else:
-#					print "hdd status ok"
-
 			list.append((hdd, hd))
-		return list
 
+		return list
 
 harddiskmanager = HarddiskManager()
 
