@@ -16,11 +16,14 @@ def dump(x, i=0):
 
 # read the skin
 try:
-	skinfile = file('/usr/share/enigma2/skin.xml', 'r')
-	dom = xml.dom.minidom.parseString(skinfile.read())
-	skinfile.close()
+	# first we search in the current path
+	skinfile = file('data/skin.xml', 'r')
 except:
-	print "Error opening skin.xml"
+	# if not found in the current path, we use the global datadir-path
+	skinfile = file('/usr/share/enigma2/skin.xml', 'r')
+dom = xml.dom.minidom.parseString(skinfile.read())
+skinfile.close()
+
 
 def parsePosition(str):
 	x, y = str.split(',')
