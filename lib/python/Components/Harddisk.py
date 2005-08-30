@@ -150,7 +150,7 @@ class HarddiskManager:
 			
 			if hddNum > 8:
 				break
-		
+
 	def HDDList(self):
 		list = [ ]
 		for hd in self.hdd:
@@ -175,3 +175,8 @@ class HarddiskManager:
 
 			list.append((hdd, hd))
 		return list
+
+
+harddiskmanager = HarddiskManager()
+
+
