@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Harddisk import harddiskmanager			#global harddiskmanager
 from Components.MenuList import MenuList
 from Components.Label import Label
+from Screens.MessageBox import MessageBox
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd):
@@ -14,8 +15,10 @@ class HarddiskSetup(Screen):
 
 		self["model"] = Label("Model: " + hdd.model())
 		self["capacity"] = Label(capstr)
+
+		idx = hdd.getIndex()
 		
-		if hdd.index & 1:
+		if idx & 1:
 			busstr = "Slave"
 		else:	
 			busstr = "Master"
@@ -35,7 +38,12 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddInitialize(self):
-		self.hdd.initialize()
+		if self.hdd.getIndex() == 2:		#CF
+			print "not a good idea!"
+			self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
+		else:	
+			pass
+			#self.hdd.initialize()
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
