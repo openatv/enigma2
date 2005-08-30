@@ -21,8 +21,6 @@ class Harddisk:
 		self.prochdx = num2prochdx(index)
 		self.devidex = "/dev/ide/host%d/bus%d/target%d/lun0/" % (host, bus, target)
 
-	def hdindex(self):
-		return self.index
 	def capacity(self):
 		procfile = tryOpen(self.prochdx + "capacity")
 		
@@ -85,7 +83,48 @@ class Harddisk:
 				numPart += 1
 		return numPart
 
+	def unmount(self):
+		cmd = "/bin/umount " + self.devidex + "part*"
+		os.system(cmd)
 
+	def createPartition(self):
+		cmd = "/sbin/sfdisk -f " + self.devidex + "disc"
+		sfdisk = os.popen(cmd, "w")
+		sfdisk.write("0,\n;\n;\n;\ny\n")
+		sfdisk.close()
+		return 0
+
+	def mkfs(self):
+		cmd = "/sbin/mkfs.ext3 -T largefile -m0 " + self.devidex + "part1"
+		res = os.system(cmd)
+		return (res >> 8)
+
+	def mount(self):
+		cmd = "/bin/mount -t ext3 " + self.devidex + "part1 /hdd"
+		res = os.system(cmd)
+		return (res >> 8)
+
+	def createMovieFolder(self):
+		res = os.system("mkdir /hdd/movie")
+		return (res >> 8)
+		
+	def initialize(self):
+		self.unmount()
+
+		if self.createPartition() != 0:
+			return -1
+
+		if self.mkfs() != 0:
+			return -2
+
+		if self.mount() != 0:
+			return -3
+
+		if self.createMovieFolder() != 0:
+			return -4
+		
+		return 0
+		
 def existHDD(num):
 	mediafile = tryOpen(num2prochdx(num) + "media")
 
@@ -124,6 +163,14 @@ class HarddiskManager:
 			if cap > 0:
 				hdd += ", %d,%d GB" % (cap/1024, cap%1024)
 			hdd += ")"
+
+			print hdd
+			
+#			if hd.index == 0:
+#				if hd.initialize() == 0:
+#					print "hdd status ok"
+#				else:
+#					print "hdd status ok"
 
 			list.append((hdd, hd))
 		return list
