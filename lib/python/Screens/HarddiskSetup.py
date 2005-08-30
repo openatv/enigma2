@@ -10,20 +10,9 @@ class HarddiskSetup(Screen):
 		Screen.__init__(self, session)
 		self.hdd = hdd
 		
-		cap = hdd.capacity() / 1000 * 512 / 1000
-		capstr = "Capacity: %d.%03d GB" % (cap / 1000, cap % 1000)
-
 		self["model"] = Label("Model: " + hdd.model())
-		self["capacity"] = Label(capstr)
-
-		idx = hdd.getIndex()
-		
-		if idx & 1:
-			busstr = "Slave"
-		else:	
-			busstr = "Master"
-		
-		self["bus"] = Label("Bus: " + busstr)
+		self["capacity"] = Label("Capacity: " + hdd.capacity())
+		self["bus"] = Label("Bus: " + hdd.bus())
 		self["initialize"] = Label("Initialize")
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -42,7 +31,7 @@ class HarddiskSetup(Screen):
 			print "not a good idea!"
 			self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
 		else:	
-			pass
+			print "this will start the initialize now!"
 			#self.hdd.initialize()
 
 class HarddiskSelection(Screen):
