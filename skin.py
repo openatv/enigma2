@@ -54,6 +54,8 @@ dom = xml.dom.minidom.parseString(
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
+		<screen name="HarddiskSelection" position="140,125" size="460,220">
+		</screen>
 		<screen name="Setup" position="140,125" size="460,220" title="Setup">
 			<widget name="config" position="10,30" size="420,120" />
 			<widget name="ok" position="140,180" size="38,20" font="Arial;20" backgroundColor="green" />
