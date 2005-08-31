@@ -1,11 +1,19 @@
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/ewidget.h>
 #include <lib/base/ebase.h>
+#include <lib/gdi/grc.h>
+
+extern void dumpRegion(const gRegion &region);
 
 void eWidgetDesktop::addRootWidget(eWidget *root, int top)
 {
 	assert(!root->m_desktop);
-	if (!top)
+	
+		/* buffered mode paints back-to-front, while immediate mode is front-to-back. */
+	if (m_comp_mode == cmBuffered)
+		top = !top;
+	
+	if (top)
 		m_root.push_back(root);
 	else
 		m_root.push_front(root);
@@ -23,13 +31,25 @@ void eWidgetDesktop::removeRootWidget(eWidget *root)
 	m_root.remove(root);
 }
 
-void eWidgetDesktop::calcWidgetClipRegion(struct eWidgetDesktopCompBuffer *comp, eWidget *widget, gRegion &parent_visible)
+int eWidgetDesktop::movedWidget(eWidget *root)
+{
+	if ((m_comp_mode == cmBuffered) && (root->m_comp_buffer))
+	{
+		root->m_comp_buffer->m_position = root->position();
+		redrawComposition(0);
+		return 0;
+	}
+	
+	return -1;
+}
+
+void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible)
 {
 		/* start with our clip region, clipped with the parent's */
 	if (widget->m_vis & eWidget::wVisShow)
 	{
 		widget->m_visible_region = widget->m_clip_region;
-		widget->m_visible_region.moveBy(widget->position() - comp->m_position);
+		widget->m_visible_region.moveBy(widget->position());
 		widget->m_visible_region &= parent_visible; // in parent space!
 			/* TODO: check transparency here! */
 
@@ -38,42 +58,71 @@ void eWidgetDesktop::calcWidgetClipRegion(struct eWidgetDesktopCompBuffer *comp,
 
 			/* now prepare for recursing to childs */
 		widget->m_visible_region.moveBy(-widget->position());            // now in local space
-
 	} else
 		widget->m_visible_region = gRegion();
 
 	widget->m_visible_with_childs = widget->m_visible_region;
 	
 	for (ePtrList<eWidget>::iterator i(widget->m_childs.begin()); i != widget->m_childs.end(); ++i)
-		calcWidgetClipRegion(comp, *i, widget->m_visible_region);
+		if (i->m_vis & eWidget::wVisShow)
+			calcWidgetClipRegion(*i, widget->m_visible_region);
 }
 
-void eWidgetDesktop::recalcClipRegions()
+void eWidgetDesktop::recalcClipRegions(eWidget *root)
 {
 	if (m_comp_mode == cmImmediate)
+	{
+		gRegion background_before = m_screen.m_background_region;
+		
 		m_screen.m_background_region = gRegion(eRect(ePoint(0, 0), m_screen.m_screen_size));
 	
-	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
-	{
-		eWidgetDesktopCompBuffer *comp = (m_comp_mode == cmImmediate) ? &m_screen : i->m_comp_buffer;
-		
-		if (m_comp_mode != cmImmediate)
+		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 		{
-			if (!comp)
-			{
-	 			createBufferForWidget(*i);
-	 			comp = i->m_comp_buffer;
-	 		}
-	 		
-			comp->m_background_region = gRegion(eRect(ePoint(0, 0), comp->m_screen_size));
+			if (!(i->m_vis & eWidget::wVisShow))
+				continue;
+			
+			gRegion visible_before = i->m_visible_with_childs;
+
+			calcWidgetClipRegion(*i, m_screen.m_background_region);
+			
+			gRegion redraw = (i->m_visible_with_childs - visible_before) | (visible_before - i->m_visible_with_childs);
+
+			redraw.moveBy(i->position());
+			
+			invalidate(redraw);
 		}
 		
-		calcWidgetClipRegion(comp, *i, comp->m_background_region);
+		gRegion redraw = (background_before - m_screen.m_background_region) | (m_screen.m_background_region - background_before);
+		invalidate(redraw);
+	} else
+	{
+		if ((!root->m_comp_buffer) || (root->size() != root->m_comp_buffer->m_screen_size))
+			createBufferForWidget(root);
+
+		eWidgetDesktopCompBuffer *comp = root->m_comp_buffer;
+
+	 	gRegion visible_before = root->m_visible_with_childs;
+	 	 
+		comp->m_background_region = gRegion(eRect(comp->m_position, comp->m_screen_size));
+		
+		gRegion visible_new = root->m_visible_with_childs - visible_before;
+		gRegion visible_lost = visible_before - root->m_visible_with_childs;
+		visible_new.moveBy(root->position());
+		visible_lost.moveBy(root->position());
+		
+			/* this sucks, obviously. */
+		invalidate(visible_new);
+		invalidate(visible_lost);
+		
+		calcWidgetClipRegion(root, comp->m_background_region);
 	}
 }
 
 void eWidgetDesktop::invalidate(const gRegion &region)
 {
+	if (region.empty())
+		return;
+	
 	if (m_timer && !m_require_redraw)
 		m_timer->start(0, 1); // start singleshot redraw timer
 	
@@ -84,10 +133,12 @@ void eWidgetDesktop::invalidate(const gRegion &region)
 	else
 		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 		{
+			if (!(i->m_vis & eWidget::wVisShow))
+				continue;
+			
 			eWidgetDesktopCompBuffer *comp = i->m_comp_buffer;
 			
 			gRegion mregion = region;
-			mregion.moveBy(-comp->m_position);
 			comp->m_dirty_region |= mregion;
 		}
 }
@@ -118,7 +169,7 @@ void eWidgetDesktop::setBackgroundColor(gRGB col)
 
 void eWidgetDesktop::setPalette(gPixmap &pm)
 {
-	if (m_comp_mode == cmImmediate)
+//	if (m_comp_mode == cmImmediate)
 	{
 		ASSERT(m_screen.m_dc);
 		gPainter painter(m_screen.m_dc);
@@ -160,9 +211,14 @@ void eWidgetDesktop::paint()
 	{
 		eWidgetDesktopCompBuffer *comp = (m_comp_mode == cmImmediate) ? &m_screen : i->m_comp_buffer;
 		
+		if (!(i->m_vis & eWidget::wVisShow))
+			continue;
+		
 		{
 			gPainter painter(comp->m_dc);
+			painter.moveOffset(-comp->m_position);
 			i->doPaint(painter, comp->m_dirty_region);
+			painter.resetOffset();
 		}
 
 		if (m_comp_mode != cmImmediate)
@@ -175,13 +231,15 @@ void eWidgetDesktop::paint()
 	if (m_comp_mode == cmBuffered)
 	{
 		eDebug("redraw composition");
-		redrawComposition();		
+		redrawComposition(0);
 	}
 }
 
 void eWidgetDesktop::setDC(gDC *dc)
 {
 	m_screen.m_dc = dc;
+	if (m_comp_mode == cmBuffered)
+		redrawComposition(1);
 }
 
 void eWidgetDesktop::setRedrawTask(eMainloop &ml)
@@ -241,6 +299,7 @@ eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0), m_timer(0)
 	m_screen.m_screen_size = size;
 	m_require_redraw = 0;
 
+	CONNECT(gRC::getInstance()->notify, eWidgetDesktop::notify);
 	setCompositionMode(cmImmediate);
 }
 
@@ -256,12 +315,26 @@ void eWidgetDesktop::createBufferForWidget(eWidget *widget)
 	
 	eWidgetDesktopCompBuffer *comp = widget->m_comp_buffer = new eWidgetDesktopCompBuffer;
 	
-	eRect bbox = widget->m_clip_region.extends;
+	eDebug("create buffer for widget, %d x %d\n", widget->size().width(), widget->size().height());
+	
+	eRect bbox = eRect(widget->position(), widget->size());
 	comp->m_position = bbox.topLeft();
 	comp->m_dirty_region = gRegion(eRect(ePoint(0, 0), bbox.size()));
 	comp->m_screen_size = bbox.size();
 		/* TODO: configurable bit depth. */
-	comp->m_dc = new gDC(new gPixmap(comp->m_screen_size, 32));
+	
+		/* clone palette. FIXME. */
+	ePtr<gPixmap> pm = new gPixmap(comp->m_screen_size, 32, 1), pm_screen;
+	pm->surface->clut.data = new gRGB[256];
+	pm->surface->clut.colors = 256;
+	pm->surface->clut.start = 0;
+	
+	
+	m_screen.m_dc->getPixmap(pm_screen);
+	
+	memcpy(pm->surface->clut.data, pm_screen->surface->clut.data, 256 * sizeof(gRGB));
+
+	comp->m_dc = new gDC(pm);
 }
 
 void eWidgetDesktop::removeBufferForWidget(eWidget *widget)
@@ -273,15 +346,41 @@ void eWidgetDesktop::removeBufferForWidget(eWidget *widget)
 	}
 }
 
-void eWidgetDesktop::redrawComposition()
+void eWidgetDesktop::redrawComposition(int notified)
 {
+	if (m_comp_mode != cmBuffered)
+		return;
+	
+	assert(m_screen.m_dc);
+	
 	gPainter p(m_screen.m_dc);
-
+	p.resetClip(eRect(ePoint(0, 0), m_screen.m_screen_size));
+	p.setBackgroundColor(m_screen.m_background_color);
+	p.clear();
+	
 	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 	{
+		if (!i->isVisible())
+			continue;
 		ePtr<gPixmap> pm;
 		ASSERT(i->m_comp_buffer);
 		i->m_comp_buffer->m_dc->getPixmap(pm);
-		p.blit(pm, i->m_comp_buffer->m_position, eRect(), gPixmap::blitAlphaTest);
+		p.blit(pm, i->m_comp_buffer->m_position, eRect(), gPixmap::blitAlphaBlend);
 	}
+
+		// flip activates on next vsync. 	
+	p.flip();
+	p.waitVSync();
+
+	if (notified)
+		p.notify();
+
+	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
+		if (i->m_animation.m_active)
+			i->m_animation.tick(1);
+}
+
+void eWidgetDesktop::notify()
+{
+	redrawComposition(1);
 }

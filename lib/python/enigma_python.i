@@ -57,6 +57,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewidgetdesktop.h>
 #include <lib/gui/ewindowstyle.h>
 #include <lib/gui/ewindowstyleskinned.h>
+#include <lib/gui/ewidgetanimation.h>
 #include <lib/gui/eslider.h>
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
@@ -119,6 +120,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gui/elistboxcontent.h>
 %include <lib/gui/ewindowstyle.h>
 %include <lib/gui/ewindowstyleskinned.h>
+%include <lib/gui/ewidgetanimation.h>
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
 %include <lib/nav/pcore.h>

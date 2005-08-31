@@ -19,7 +19,7 @@ public:
 		m_spec.pid     = pid;
 		m_spec.tid     = ProgramMapTable::TID;
 		m_spec.tidext  = sid;
-		m_spec.timeout = ProgramMapTable::TIMEOUT;
+		m_spec.timeout = 20000; // ProgramMapTable::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt | 
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
@@ -95,7 +95,7 @@ public:
 	{
 		m_spec.pid     = ProgramAssociationTable::PID;
 		m_spec.tid     = ProgramAssociationTable::TID;
-		m_spec.timeout = ProgramAssociationTable::TIMEOUT;
+		m_spec.timeout = 20000; // ProgramAssociationTable::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;

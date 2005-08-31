@@ -428,18 +428,18 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		{
 			case eSecCommand::SLEEP:
 				delay = m_sec_sequence.current()++->msec;
-				eDebug("sleep %dms", delay);
+				eDebug("[SEC] sleep %dms", delay);
 				break;
 			case eSecCommand::GOTO:
 				if ( !setSecSequencePos(m_sec_sequence.current()->steps) )
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_VOLTAGE:
-				eDebug("setVoltage %d", m_sec_sequence.current()->voltage);
+				eDebug("[SEC] setVoltage %d", m_sec_sequence.current()->voltage);
 				setVoltage(m_sec_sequence.current()++->voltage);
 				break;
 			case eSecCommand::SET_TONE:
-				eDebug("setTone %d", m_sec_sequence.current()->tone);
+				eDebug("[SEC] setTone %d", m_sec_sequence.current()->tone);
 				setTone(m_sec_sequence.current()++->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
@@ -447,36 +447,36 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				eDebugNoNewLine("sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
-				eDebug("");
+				eDebug("[SEC] ");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
-				eDebug("sendToneburst: %d", m_sec_sequence.current()->toneburst);
+				eDebug("[SEC] sendToneburst: %d", m_sec_sequence.current()->toneburst);
 				sendToneburst(m_sec_sequence.current()++->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
-				eDebug("setFrontend");
+				eDebug("[SEC] setFrontend");
 				setFrontend();
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::MEASURE_IDLE_INPUTPOWER:
 				m_idleInputpower = readInputpower();
-				eDebug("idleInputpower is %d", m_idleInputpower);
+				eDebug("[SEC] idleInputpower is %d", m_idleInputpower);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
 				m_runningInputpower = readInputpower();
-				eDebug("runningInputpower is %d", m_runningInputpower);
+				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_TIMEOUT:
 				m_timeoutCount = m_sec_sequence.current()++->val;
-				eDebug("set timeout %d", m_timeoutCount);
+				eDebug("[SEC] set timeout %d", m_timeoutCount);
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
 				m_data[5] = m_data[3];
 				m_data[6] = m_data[4];
-				eDebug("update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
+				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::IF_TIMEOUT_GOTO:
@@ -489,8 +489,8 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			{
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
 				const char *txt = cmd.direction ? "running" : "stopped";
-				eDebug("waiting for rotor %s", txt);
-				eDebug("%s %d, idle %d, delta %d",
+				eDebug("[SEC] waiting for rotor %s", txt);
+				eDebug("[SEC] %s %d, idle %d, delta %d",
 					txt,
 					m_runningInputpower,
 					m_idleInputpower,
@@ -499,17 +499,17 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					|| (!cmd.direction && abs(m_runningInputpower - m_idleInputpower) <= cmd.deltaA) )
 				{
 					++cmd.okcount;
-					eDebug("rotor %s step %d ok", txt, cmd.okcount);
+					eDebug("[SEC] rotor %s step %d ok", txt, cmd.okcount);
 					if ( cmd.okcount > 1 )
 					{
-						eDebug("rotor is %s", txt);
+						eDebug("[SEC] rotor is %s", txt);
 						if (setSecSequencePos(cmd.steps))
 							break;
 					}
 				}
 				else
 				{
-					eDebug("rotor not %s... reset counter.. increase timeout", txt);
+					eDebug("[SEC] rotor not %s... reset counter.. increase timeout", txt);
 					--m_timeoutCount;
 					cmd.okcount=0;
 				}
@@ -518,7 +518,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			}
 			default:
 				++m_sec_sequence.current();
-				eDebug("unhandled sec command");
+				eDebug("[SEC] unhandled sec command");
 		}
 		m_tuneTimer->start(delay,true);
 	}

@@ -83,10 +83,8 @@ RESULT eDVBDemux::getSTC(pts_t &pts)
 	}
 	
 	pts = stc.stc;
-	eDebug("got demux stc: %08llx", pts);
 	
 	::close(fd);
-	
 	return 0;
 }
 

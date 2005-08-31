@@ -52,6 +52,7 @@ void dumpRegion(const gRegion &region)
 	fprintf(stderr, "extends: %d %d -> %d %d (%d rects)\n", 
 		region.extends.left(), region.extends.top(),
 		region.extends.right(), region.extends.bottom(), region.rects.size());
+#if 0
 	for (int y=0; y<region.extends.bottom(); ++y)
 	{
 		for (int x=0; x<region.extends.right(); ++x)
@@ -64,6 +65,8 @@ void dumpRegion(const gRegion &region)
 		}
 		fprintf(stderr, "\n");
 	}
+#endif
+
 }
 
 eWidgetDesktop *wdsk;
@@ -159,8 +162,9 @@ int main(int argc, char **argv)
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
+//	dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+	
 	wdsk = &dsk;
-
 
 	dsk.setDC(my_dc);
 

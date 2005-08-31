@@ -35,7 +35,14 @@ public:
 	~eWidgetDesktop();
 	void addRootWidget(eWidget *root, int top);
 	void removeRootWidget(eWidget *root);
-	void recalcClipRegions();
+	
+		/* try to move widget content. */
+		/* returns -1 if there's no move support. */
+		/* call this after recalcClipRegions for that widget. */
+		/* you probably want to invalidate if -1 was returned. */
+	int movedWidget(eWidget *root);
+	
+	void recalcClipRegions(eWidget *root);
 	
 	void invalidate(const gRegion &region);
 	void paint();
@@ -58,7 +65,7 @@ public:
 	void setCompositionMode(int mode);
 private:
 	ePtrList<eWidget> m_root;
-	void calcWidgetClipRegion(eWidgetDesktopCompBuffer *comp, eWidget *widget, gRegion &parent_visible);
+	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);
 	void paintBackground(eWidgetDesktopCompBuffer *comp);
 	
 	eMainloop *m_mainloop;
@@ -72,7 +79,8 @@ private:
 	void createBufferForWidget(eWidget *widget);
 	void removeBufferForWidget(eWidget *widget);
 	
-	void redrawComposition();
+	void redrawComposition(int notifed);
+	void notify();
 };
 
 #endif

@@ -1,3 +1,3 @@
-set solib-absolute-prefix /dbox2/cdkroot
-target remote 10.0.0.82:1234
+set solib-absolute-prefix /home/tmbinc/mips/target
+target remote 10.0.0.203:1234
 continue

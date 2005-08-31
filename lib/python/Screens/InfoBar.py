@@ -19,6 +19,11 @@ import time
 from Menu import MainMenu, mdom
 
 class InfoBar(Screen):
+	STATE_HIDDEN = 0
+	STATE_HIDING = 1
+	STATE_SHOWING = 2
+	STATE_SHOWN = 3
+	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -58,6 +63,8 @@ class InfoBar(Screen):
 		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 		
 		self.recording = None
+		
+		self.pos = 0
 	
 	def mainMenu(self):
 		print "loading mainmenu XML..."
@@ -78,9 +85,11 @@ class InfoBar(Screen):
 
 	def toggleShow(self):
 		if self.instance.isVisible():
-			self.instance.hide()
+#			self.instance.hide()
+			self.startHide()
 		else:
-			self.instance.show()
+#			self.instance.show()
+			self.startShow()
 
 	def	zapUp(self):
 		self.servicelist.moveUp()
@@ -97,6 +106,12 @@ class InfoBar(Screen):
 	def	volDown(self):
 		eDVBVolumecontrol.getInstance().volumeDown()
 		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		
+	def startShow(self):
+		self.instance.m_animation.startMoveAnimation(ePoint(0, 500), ePoint(0, 380), 100)
+	
+	def startHide(self):
+		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 500), 100)
 
 	def	volMute(self):
 		eDVBVolumecontrol.getInstance().volumeToggleMute()
