@@ -1,0 +1,106 @@
+<keymap>
+	<map context="ListboxActions">
+		<device name="keyboard">
+			<key id="a" mapto="up" flags="mr" />
+			<key id="b" mapto="down" flags="mr" />
+		</device>
+		<key id="KEY_UP" mapto="moveUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="moveDown" flags="mr" />
+		<key id="KEY_HOME" mapto="moveTop" flags="mr" />
+		<key id="KEY_END" mapto="moveEnd" flags="mr" />
+		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
+		
+		<key id="1" mapto="moveUp" flags="mr" />
+		<key id="2" mapto="moveDown" flags="mr" />
+	</map>
+	
+	<map context="InputActions">
+		<key id="KEY_LEFT" mapto="moveLeft" flags="mr" />
+		<key id="KEY_RIGHT" mapto="moveRight" flags="mr" />
+		<key id="KEY_HOME" mapto="moveHome" flags="mr" />
+		<key id="KEY_END" mapto="moveEnd" flags="mr" />
+		<key id="KEY_DELETE" mapto="deleteForward" flags="mr" />
+		<key id="KEY_BACKSPACE" mapto="deleteBackward" flags="mr" />
+		
+		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
+		<key id="KEY_ENTER" mapto="accept" flags="m" />
+	</map>
+
+	<map context="SetupActions">
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_RED" mapto="cancel" flags="m" />
+		<key id="KEY_GREEN" mapto="cancel" flags="m" />
+	</map>
+
+	<map context="InfobarActions">
+		<key id="m" mapto="mainMenu" flags="mr" />
+		<key id="c" mapto="switchChannelDown" flags="mr" />
+		<key id="r" mapto="instantRecord" flags="m" />
+		<key id="KEY_RED" mapto="instantRecord" flags="m" />
+		<key id="1" mapto="zapUp" flags="mr" />
+		<key id="2" mapto="zapDown" flags="mr" />
+		<key id="KEY_M" mapto="mainMenu" flags="mr" />
+		<key id="KEY_C" mapto="switchChannelDown" flags="mr" />
+		<key id="KEY_R" mapto="instantRecord" flags="m" />
+		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
+		<key id="KEY_UP" mapto="switchChannelUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="mr" />
+		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
+		<key id="KEY_OK" mapto="toggleShow" flags="m" />
+		<key id="KEY_EXIT" mapto="hide" flags="m" />
+		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
+		<key id="KEY_POWER" mapto="quit" flags="m" />
+	</map>
+	
+	<map context="ChannelSelectActions">
+		<key id="m" mapto="mark" flags="m" />
+		<!-- yes, this is flexible as hell. -->
+		<key id="p" mapto="bouquet:(provider == PREMIERE)" flags="m" />
+		<key id="d" mapto="bouquet:(provider == ARD)" flags="m" />
+		<key id="a" mapto="bouquet:" flags="m" />
+		
+		<key id="KEY_C" mapto="contextMenu" flags="m" />
+		<key id="KEY_M" mapto="mark" flags="m" />
+		<!-- yes, this is flexible as hell. -->
+		<key id="KEY_RED" mapto="bouquet:(provider == PREMIERE)" flags="m" />
+		<key id="KEY_D" mapto="bouquet:(provider == ARD)" flags="m" />
+		<key id="KEY_A" mapto="bouquet:" flags="m" />
+		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
+	</map>
+	<map context="OkCancelActions">
+		<key id="\x0a" mapto="ok" flags="m" />
+		<key id="\x1b" mapto="cancel" flags="m" />
+
+		<!-- use this on rcu, ok? -->
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+	</map>
+	<map context="WindowActions">
+		
+	</map>
+	
+	<map context="ShortcutActions">
+		<key id="KEY_F1" mapto="red" flags="mr" />
+		<key id="KEY_F2" mapto="yellow" flags="mr" />
+		<key id="KEY_F3" mapto="green" flags="mr" />
+		<key id="KEY_F4" mapto="blue" flags="mr" />
+
+		<key id="KEY_RED" mapto="red" flags="mr" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="mr" />
+		<key id="KEY_GREEN" mapto="green" flags="mr" />
+		<key id="KEY_BLUE" mapto="blue" flags="mr" />
+	</map>
+</keymap>

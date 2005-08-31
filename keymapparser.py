@@ -9,12 +9,14 @@ def readKeymap():
 	enigma.eActionMap.getInstance(p)
 	assert p
 	
-	filename = "keymap.xml"
-	
+	filename1 = "data/keymap.xml"
+	filename2 = "/usr/share/enigma2/keymap.xml"
+		
 	try:
-		source = open(filename)
+		source = open(filename1)
 	except:
-		raise "couldn't open keymap.xml!"
+		source = open(filename2)
+#		raise "couldn't open keymap.xml!"
 	
 	try:
 		dom = xml.dom.minidom.parse(source)
