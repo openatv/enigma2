@@ -172,6 +172,9 @@ skin.loadSkin(getDesktop())
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 
+import Components.AVSwitch
+Components.AVSwitch.InitAVSwitch()
+
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
