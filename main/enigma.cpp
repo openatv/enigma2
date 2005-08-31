@@ -148,6 +148,8 @@ int main(int argc, char **argv)
 
 	ePython python;
 	eMain main;
+	
+	int double_buffer = 0;
 
 #if 1
 #ifdef SDLDC
@@ -156,13 +158,19 @@ int main(int argc, char **argv)
 #else
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
+	
+	double_buffer = my_dc->haveDoubleBuffering();
 #endif
 
 	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
-	dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+	if (double_buffer)
+	{
+		eDebug(" - double buffering found, enable buffered graphics mode.");
+		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+	}
 	
 	wdsk = &dsk;
 

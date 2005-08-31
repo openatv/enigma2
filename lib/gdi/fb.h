@@ -15,11 +15,15 @@ class fbClass
 	static fbClass *instance;
 	int locked;
 	
+	int m_number_of_pages;
 public:
 	unsigned char *lfb;
 	int showConsole(int state);
 	int SetMode(unsigned int xRes, unsigned int yRes, unsigned int bpp);
 	int Available() { return available; }
+	
+	int getNumPages() { return m_number_of_pages; }
+	
 	int setOffset(int off);
 	int waitVSync();
 	unsigned int Stride() { return stride; }

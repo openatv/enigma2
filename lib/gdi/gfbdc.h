@@ -15,6 +15,7 @@ class gFBDC: public gDC
 	void calcRamp();
 	void setPalette();
 	gSurface surface, surface_back;
+	int m_enable_double_buffering;
 public:
 	void reloadSettings();
 	void setAlpha(int alpha);
@@ -24,6 +25,8 @@ public:
 	int getAlpha() { return alpha; }
 	int getBrightness() { return brightness; }
 	int getGamma() { return gamma; }
+	
+	int haveDoubleBuffering() { return m_enable_double_buffering; }
 	
 	void saveSettings();
 	
