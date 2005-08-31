@@ -58,7 +58,7 @@ class ChannelSelection(Screen):
 		self["key_red"] = Button("All")
 		self["key_green"] = Button("ARD")
 		self["key_yellow"] = Button("ZDF")
-		self["key_blue"] = Button("Custom")
+		self["key_blue"] = Button("Favourites")
 		
 		self["list"] = ServiceList()
 		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
