@@ -126,6 +126,8 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 
 void eActionMap::keyPressed(int device, int key, int flags)
 {
+	std::list<std::pair<PyObject*,PyObject*> > call_list;
+	
 		/* iterate active contexts. */
 	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin()); c != m_bindings.end();)
 	{
@@ -177,8 +179,8 @@ void eActionMap::keyPressed(int device, int key, int flags)
 						PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));
 						PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
 						++k;
-						ePython::call(i->second.m_fnc, pArgs);
-						Py_DECREF(pArgs);
+						Py_INCREF(i->second.m_fnc);
+						call_list.push_back(std::pair<PyObject*,PyObject*>(i->second.m_fnc, pArgs));
 					} else
 						++k;
 				}
@@ -187,10 +189,17 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				PyObject *pArgs = PyTuple_New(2);
 				PyTuple_SetItem(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SetItem(pArgs, 1, PyInt_FromLong(flags));
-				ePython::call(i->second.m_fnc, pArgs);
-				Py_DECREF(pArgs);
+				Py_INCREF(i->second.m_fnc);
+				call_list.push_back(std::pair<PyObject*,PyObject*>(i->second.m_fnc, pArgs));
 			}
 		}
+	}
+
+	for (std::list<std::pair<PyObject*,PyObject*> >::iterator i(call_list.begin()); i != call_list.end(); ++i)
+	{
+		ePython::call(i->first, i->second);
+		Py_DECREF(i->first);
+		Py_DECREF(i->second);
 	}
 }
 
