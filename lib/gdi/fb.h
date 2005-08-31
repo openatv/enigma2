@@ -14,11 +14,14 @@ class fbClass
 	__u16 red[256], green[256], blue[256], trans[256];
 	static fbClass *instance;
 	int locked;
+	
 public:
 	unsigned char *lfb;
 	int showConsole(int state);
 	int SetMode(unsigned int xRes, unsigned int yRes, unsigned int bpp);
 	int Available() { return available; }
+	int setOffset(int off);
+	int waitVSync();
 	unsigned int Stride() { return stride; }
 	fb_cmap *CMAP() { return &cmap; }
 
@@ -30,11 +33,6 @@ public:
 				// low level gfx stuff
 	int PutCMAP();
 
-				// gfx stuff (colors are 8bit!)
-	void Box(int x, int y, int width, int height, int color, int backcolor=0);
-	void NBox(int x, int y, int width, int height, int color);
-	void VLine(int x, int y, int sy, int color);
-	
 	int lock();
 	void unlock();
 	int islocked() { return locked; }
