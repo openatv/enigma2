@@ -1,21 +1,30 @@
-from Screen import *
+#from Screen import *
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Header import Header
 
 # hack ... must be made dynamic
-from Screens.Setup import Setup
-from ServiceScan import ServiceScan
-from ScartLoopThrough import ScartLoopThrough
-from HarddiskSetup import HarddiskSelection
-from Components.Button import Button
-from Components.Label import Label
-from Components.ProgressBar import ProgressBar
-from ConfigMenu import *
+#from Screens.Setup import Setup
+#from ServiceScan import ServiceScan
+#from ScartLoopThrough import ScartLoopThrough
+#from HarddiskSetup import HarddiskSelection
+#from Components.Button import Button
+#from Components.Label import Label
+#from Components.ProgressBar import ProgressBar
+#from ConfigMenu import *
 
-from About import *
+#from About import *
 
-from TimerEdit import *
+#from Network import *
+
+#from TimerEdit import *
+
+# hack.... dynamically importing all screens
+from __init__ import __all__
+for i in __all__:
+	print "import " + i
+	if (i is not "Menu" ):
+		exec "from " + i + " import *"
 
 from enigma import quitMainloop
 
@@ -37,7 +46,7 @@ def doGlobal(screen):
 #			<item text="Sleep Timer"></item>
 
 
-# read the skin
+# read the menu
 try:
 	# first we search in the current path
 	menufile = file('data/menu.xml', 'r')
