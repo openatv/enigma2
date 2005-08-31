@@ -51,7 +51,8 @@ class InfoBar(Screen):
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
-		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
+		self["CurrentTime"] = Clock()
+		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 		# Clock()
 
 		self["Volume"] = self.volumeBar
