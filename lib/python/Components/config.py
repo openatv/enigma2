@@ -11,7 +11,7 @@ class configBoolean:
 			self.parent.value = len(self.parent.vals) - 1
 
 	def cancel(self):
-		print "cancel"
+		self.parent.reload()
 
 	def save(self):
 		print "save"
@@ -58,7 +58,7 @@ class ConfigSlider:
 		self.parent = parent
 
 	def cancel(self):
-		print "slider - cancel"
+		self.parent.reload()
 
 	def save(self):
 		print "slider - save"
