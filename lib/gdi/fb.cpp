@@ -10,6 +10,11 @@
 #include <lib/base/econfig.h>
 #include <lib/gdi/fb.h>
 
+#ifndef FBIO_WAITFORVSYNC
+#define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
+#endif
+
+
 fbClass *fbClass::instance;
 
 fbClass *fbClass::getInstance()
@@ -59,7 +64,7 @@ fbClass::fbClass(const char *fb)
 		goto nolfb;
 	}
 
-//	showConsole(0);
+	showConsole(0);
 	return;
 nolfb:
 	lfb=0;
@@ -84,7 +89,7 @@ int fbClass::showConsole(int state)
 int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 {
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
-	screeninfo.yres_virtual=screeninfo.yres=nyRes;
+	screeninfo.yres_virtual=(screeninfo.yres=nyRes)*2;
 	screeninfo.height=0;
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
@@ -115,6 +120,19 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	return 0;
 }
 
+int fbClass::setOffset(int off)
+{
+	screeninfo.xoffset = 0;
+	screeninfo.yoffset = off;
+	return ioctl(fd, FBIOPAN_DISPLAY, &screeninfo);
+}
+
+int fbClass::waitVSync()
+{
+	int c = 0;
+	return ioctl(fd, FBIO_WAITFORVSYNC, &c);
+}
+
 fbClass::~fbClass()
 {
 	if (available)
@@ -127,49 +145,6 @@ fbClass::~fbClass()
 int fbClass::PutCMAP()
 {
 	return ioctl(fd, FBIOPUTCMAP, &cmap);
-}
-
-void fbClass::Box(int x, int y, int width, int height, int color, int backcolor)
-{
-	if (width<=2 || locked)
-		return;
-	int offset=y*stride+x/2;
-	int first=0xF0|((color&0xF0)>>4);
-	int last= 0xF0|((backcolor&0xF0)>>4);
-	color=(color&0xF)*0x11;
-	int halfwidth=width/2;
-	for (int ay=y; ay<(y+height); ay++)
-	{
-		lfb[offset]=first;
-		memset(lfb+offset+1, color, halfwidth-2);
-		lfb[offset+halfwidth-1]=last;
-		offset+=stride;
-	}
-}
-
-void fbClass::NBox(int x, int y, int width, int height, int color)
-{
-	if (locked)
-		return;
-	int offset=y*stride+x/2;
-	int halfwidth=width/2;
-	for (int ay=y; ay<(y+height); ay++)
-	{
-		memset(lfb+offset, color, halfwidth);
-		offset+=stride;
-	}
-}
-
-void fbClass::VLine(int x, int y, int sy, int color)
-{
-	if (locked)
-		return;
-	int offset=y*stride+x/2;
-	while (sy--)
-	{
-		lfb[offset]=color;
-		offset+=stride;
-	}
 }
 
 int fbClass::lock()
