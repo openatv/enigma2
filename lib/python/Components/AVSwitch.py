@@ -1,0 +1,47 @@
+from config import *
+
+class AVSwitch:
+	def __init__(self):
+		pass
+
+	def setColorFormat(self, value):
+		print "colorformat"
+		print value
+		
+	def setAspectRatio(self, value):
+		print "aspectratio"
+		print value
+
+	def setSystem(self, value):
+		print "system"
+		print value
+
+	def setWSS(self, value):
+		print "wss"
+		print value
+
+def InitAVSwitch():
+	config.av = ConfigSubsection();
+	config.av.colorformat = configElement("1", configBoolean, 1, ("CVBS", "RGB", "S-Video") );
+	config.av.aspectratio = configElement("2", configBoolean, 0, ("4:3 Letterbox", "4:3 PanScan", "16:9", "16:9 always") );
+	config.av.tvsystem = configElement("3", configBoolean, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
+	config.av.wss = configElement("4", configBoolean, 0, ("Enable", "Disable") );
+	config.av.defaultac3 = configElement("5", configBoolean, 1, ("Enable", "Disable") );
+	config.av.vcrswitch = configElement("6", configBoolean, 0, ("Enable", "Disable") );
+
+	iAVSwitch = AVSwitch()
+
+	def setColorFormat(configElement):
+		iAVSwitch.setColorFormat(configElement.value);
+	def setAspectRatio(configElement):
+		iAVSwitch.setAspectRatio(configElement.value);
+	def setSystem(configElement):
+		iAVSwitch.setSystem(configElement.value);
+	def setWSS(configElement):
+		iAVSwitch.setWSS(configElement.value);
+
+	# this will call the "setup-val" initial
+	config.av.colorformat.addNotifier(setColorFormat);
+	config.av.aspectratio.addNotifier(setAspectRatio);
+	config.av.tvsystem.addNotifier(setSystem);
+	config.av.wss.addNotifier(setWSS);
