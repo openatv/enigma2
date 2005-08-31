@@ -14,7 +14,7 @@ class gFBDC: public gDC
 	int brightness, gamma, alpha;
 	void calcRamp();
 	void setPalette();
-	gSurface surface;
+	gSurface surface, surface_back;
 public:
 	void reloadSettings();
 	void setAlpha(int alpha);

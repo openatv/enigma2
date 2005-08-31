@@ -88,13 +88,12 @@ struct gSurface
 	gPalette clut;
 	
 	void *data;
-	virtual ~gSurface();
-};
+	int data_phys;
+	int offset; // only for backbuffers
 
-struct gSurfaceSystem: gSurface
-{
-	gSurfaceSystem(eSize size, int bpp);
-	~gSurfaceSystem();
+	gSurface();
+	gSurface(eSize size, int bpp, int accel);
+	~gSurface();
 };
 
 class gPixmap: public iObject
@@ -127,7 +126,7 @@ public:
 	eSize size() const { return eSize(surface->x, surface->y); }
 	
 	gPixmap(gSurface *surface);
-	gPixmap(eSize, int bpp);
+	gPixmap(eSize, int bpp, int accel = 0);
 	virtual ~gPixmap();
 };
 

@@ -4,6 +4,10 @@
 #include <lib/base/init_num.h>
 #include <lib/base/econfig.h>
 
+#include <lib/gdi/accel.h>
+
+#include <time.h>
+
 gFBDC *gFBDC::instance;
 
 gFBDC::gFBDC()
@@ -26,8 +30,34 @@ gFBDC::gFBDC()
 	surface.bypp = 4;
 	surface.stride = fb->Stride();
 	surface.data = fb->lfb;
-	surface.clut.colors=256;
-	surface.clut.data=new gRGB[surface.clut.colors];
+	surface.offset = 0;
+	
+	surface.data_phys = 50*1024*1024; // FIXME
+	
+	surface_back.type = 0;
+	surface_back.x = 720;
+	surface_back.y = 576;
+	surface_back.bpp = 32;
+	surface_back.bypp = 4;
+	surface_back.stride = fb->Stride();
+	surface_back.offset = surface.y;
+
+	int fb_size = surface.stride * surface.y;
+
+	surface_back.data = fb->lfb + fb_size;
+	surface_back.data_phys = surface.data_phys + fb_size;
+	
+	fb_size *= 2;
+	
+	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
+	
+	if (gAccel::getInstance())
+		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
+	
+	surface.clut.colors = 256;
+	surface.clut.data = new gRGB[surface.clut.colors];
+	
+	surface_back.clut = surface.clut;
 	
 	m_pixmap = new gPixmap(&surface);
 	
@@ -38,6 +68,8 @@ gFBDC::gFBDC()
 gFBDC::~gFBDC()
 {
 	delete fb;
+	
+	delete[] surface.clut.data;
 	instance=0;
 }
 
@@ -91,8 +123,6 @@ void gFBDC::setPalette()
 		fb->CMAP()->green[i]=ramp[surface.clut.data[i].g]<<8;
 		fb->CMAP()->blue[i]=ramp[surface.clut.data[i].b]<<8;
 		fb->CMAP()->transp[i]=rampalpha[surface.clut.data[i].a]<<8;
-		if (!fb->CMAP()->red[i])
-			fb->CMAP()->red[i]=0x100;
 	}
 	fb->PutCMAP();
 }
@@ -105,6 +135,29 @@ void gFBDC::exec(gOpcode *o)
 	{
 		gDC::exec(o);
 		setPalette();
+		break;
+	}
+	case gOpcode::flip:
+	{
+		gSurface s(surface);
+		surface = surface_back;
+		surface_back = s;
+		
+		fb->setOffset(surface_back.offset);
+		break;
+	}
+	case gOpcode::waitVSync:
+	{
+		static timeval l;
+		timeval now;
+		gettimeofday(&now, 0);
+		
+		int diff = (now.tv_sec - l.tv_sec) * 1000 + (now.tv_usec - l.tv_usec) / 1000;
+		eDebug("%d ms latency (%d fps)", diff, 1000 / diff ?: 1);
+		
+		l = now;
+		
+		fb->waitVSync();
 		break;
 	}
 	default:
@@ -161,4 +214,3 @@ void gFBDC::reloadSettings()
 #ifndef SDLDC
 eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
 #endif
-
