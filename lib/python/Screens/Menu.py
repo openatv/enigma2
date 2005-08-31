@@ -2,15 +2,15 @@
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Header import Header
+from Components.Button import Button
+from Components.Label import Label
+from Components.ProgressBar import ProgressBar
 
 # hack ... must be made dynamic
 #from Screens.Setup import Setup
 #from ServiceScan import ServiceScan
 #from ScartLoopThrough import ScartLoopThrough
 #from HarddiskSetup import HarddiskSelection
-#from Components.Button import Button
-#from Components.Label import Label
-#from Components.ProgressBar import ProgressBar
 #from ConfigMenu import *
 
 #from About import *
