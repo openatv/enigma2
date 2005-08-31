@@ -5,20 +5,16 @@ class AVSwitch:
 		pass
 
 	def setColorFormat(self, value):
-		print "colorformat"
-		print value
+		print "colorformat:" + str(value)
 		
 	def setAspectRatio(self, value):
-		print "aspectratio"
-		print value
+		print "aspectratio:" + str(value)
 
 	def setSystem(self, value):
-		print "system"
-		print value
+		print "system:" + str(value)
 
 	def setWSS(self, value):
-		print "wss"
-		print value
+		print "wss:" + str(value)
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
