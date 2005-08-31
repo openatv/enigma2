@@ -4,6 +4,7 @@
 #include <lib/gdi/grc.h> /* for gRegion */
 #include <lib/base/eptrlist.h> /* for eSmartPtrList */
 #include <lib/gui/ewindowstyle.h> /* for eWindowStyle */
+#include <lib/gui/ewidgetanimation.h>
 
 class eWidgetDesktop;class eWidgetDesktop;
 
@@ -42,6 +43,7 @@ public:
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
 		/* ... */
 	
+	eWidgetAnimation m_animation;
 private:
 	eWidgetDesktop *m_desktop;
 

@@ -36,7 +36,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	diseqc_ref.m_swap_cmds = false;
 	diseqc_ref.m_toneburst_param = eDVBSatelliteDiseqcParameters::NO;
 	diseqc_ref.m_uncommitted_cmd = 0;
-	diseqc_ref.m_use_fast = 1;
+	diseqc_ref.m_use_fast = 0;
 
 	switch_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
 	switch_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;

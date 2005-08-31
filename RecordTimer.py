@@ -67,10 +67,10 @@ class RecordTimer(Timer):
 		
 		self.Filename = "timers.xml"
 		
-#		try:
-		self.loadTimer()
-#		except:
-#			print "unable to load timers from file!"
+		try:
+			self.loadTimer()
+		except:
+			print "unable to load timers from file!"
 	
 	def loadTimer(self):
 		

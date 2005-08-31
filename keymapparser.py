@@ -44,7 +44,7 @@ def readKeymap():
 				
 #				try:
 				flags = sum(map(flag_ascii_to_id, flags))
-				print "-> " + str(flags)
+#				print "-> " + str(flags)
 #				except:
 #					raise str("%s: illegal flags '%s' specificed in context %s, id '%s'" % (filename, flags, context, id))
 				
@@ -67,7 +67,7 @@ def readKeymap():
 					except:
 						raise "key id '" + str(id) + "' is illegal"
 
-				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
+#				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
 				p.bindKey(device, keyid, flags, context, mapto)
 		
 		parseKeys("generic", cmap)

@@ -571,8 +571,7 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 		return -1;
 	}
 	
-	eDebug("STC: %08llx PTS: %08llx, diff %lld", now, pos, now - pos);
-	
+//	eDebug("STC: %08llx PTS: %08llx, diff %lld", now, pos, now - pos);
 		/* when we are less than 10 seconds before the start, return 0. */
 		/* (we're just waiting for the timespam to start) */
 	if ((now < pos) && ((pos - now) < 90000 * 10))

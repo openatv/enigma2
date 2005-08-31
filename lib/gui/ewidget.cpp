@@ -3,7 +3,7 @@
 
 extern void dumpRegion(const gRegion &region);
 
-eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
+eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->child() : 0)
 {
 	m_vis = 0;
 	m_desktop = 0;
@@ -13,7 +13,7 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 	
 	if (m_parent)
 		m_vis = wVisShow;
-		
+	
 	if (m_parent)
 	{
 		m_parent->m_childs.push_back(this);
@@ -26,20 +26,19 @@ eWidget::eWidget(eWidget *parent): m_parent(parent ? parent->child() : 0)
 
 void eWidget::move(ePoint pos)
 {
-	m_position = pos + m_client_offset;
+	pos = pos + m_client_offset;
 	
 	if (m_position == pos)
 		return;
+
+	m_position = pos;
 	
-		/* we invalidate before and after the move to
-		   cause a correct redraw. The area which is
-		   included both before and after isn't redrawn
-		   twice because a invalidate doesn't immediately
-		   redraws the region. */
-	invalidate();
 	event(evtChangedPosition);
-	recalcClipRegionsWhenVisible();	
-	invalidate();
+	recalcClipRegionsWhenVisible();
+	
+		/* try native move if supported. */
+	if ((m_vis & wVisShow) && ((!m_desktop) || m_desktop->movedWidget(this)))
+		invalidate();
 }
 
 void eWidget::resize(eSize size)
@@ -110,7 +109,7 @@ void eWidget::show()
 		abspos += root->position();
 	}
 
-	root->m_desktop->recalcClipRegions();
+	root->m_desktop->recalcClipRegions(root);
 
 	gRegion abs = m_visible_with_childs;
 	abs.moveBy(abspos);
@@ -144,7 +143,7 @@ void eWidget::hide()
 	gRegion abs = m_visible_with_childs;
 	abs.moveBy(abspos);
 
-	root->m_desktop->recalcClipRegions();
+	root->m_desktop->recalcClipRegions(root);
 	root->m_desktop->invalidate(abs);
 }
 
@@ -228,7 +227,7 @@ void eWidget::recalcClipRegionsWhenVisible()
 			break;
 		if (t->m_desktop)
 		{
-			t->m_desktop->recalcClipRegions();
+			t->m_desktop->recalcClipRegions(t);
 			break;
 		}
 		t = t->m_parent;
