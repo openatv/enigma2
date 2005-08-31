@@ -149,13 +149,20 @@ void gFBDC::exec(gOpcode *o)
 	case gOpcode::waitVSync:
 	{
 		static timeval l;
+		static int t;
 		timeval now;
-		gettimeofday(&now, 0);
 		
-		int diff = (now.tv_sec - l.tv_sec) * 1000 + (now.tv_usec - l.tv_usec) / 1000;
-		eDebug("%d ms latency (%d fps)", diff, 1000 / diff ?: 1);
+		if (t == 1000)
+		{
+			gettimeofday(&now, 0);
 		
-		l = now;
+			int diff = (now.tv_sec - l.tv_sec) * 1000 + (now.tv_usec - l.tv_usec) / 1000;
+			eDebug("%d ms latency (%d fps)", diff, t * 1000 / (diff ? diff : 1));
+			l = now;
+			t = 0;
+		}
+		
+		++t;
 		
 		fb->waitVSync();
 		break;

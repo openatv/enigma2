@@ -162,7 +162,7 @@ int main(int argc, char **argv)
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	
-//	dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
+	dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
 	
 	wdsk = &dsk;
 
