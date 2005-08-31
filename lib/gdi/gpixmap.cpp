@@ -1,5 +1,6 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
+#include <lib/gdi/accel.h>
 
 gLookup::gLookup()
 	:size(0), lookup(0)
@@ -48,41 +49,79 @@ void gLookup::build(int _size, const gPalette &pal, const gRGB &start, const gRG
 	}
 }
 
-gSurface::~gSurface()
+gSurface::gSurface()
 {
+	x = 0;
+	y = 0;
+	bpp = 0;
+	bypp = 0;
+	stride = 0;
+	data = 0;
+	data_phys = 0;
+	clut.colors = 0;
+	clut.data = 0;
+	type = 0;
 }
 
-gSurfaceSystem::gSurfaceSystem(eSize size, int _bpp)
+gSurface::gSurface(eSize size, int _bpp, int accel)
 {
-	x=size.width();
-	y=size.height();
-	bpp=_bpp;
+	x = size.width();
+	y = size.height();
+	bpp = _bpp;
+
 	switch (bpp)
 	{
 	case 8:
-		bypp=1;
+		bypp = 1;
 		break;
 	case 15:
 	case 16:
-		bypp=2;
+		bypp = 2;
 		break;
 	case 24:		// never use 24bit mode
 	case 32:
-		bypp=4;
+		bypp = 4;
 		break;
 	default:
-		bypp=(bpp+7)/8;
+		bypp = (bpp+7)/8;
 	}
-	stride=x*bypp;
-	clut.colors=0;
-	clut.data=0;
-	data=malloc(x*y*bypp);
+
+	stride = x*bypp;
+	
+	data = 0;
+	data_phys = 0;
+	
+	if (accel)
+	{
+		stride += 63;
+		stride &=~63;
+		
+		if (gAccel::getInstance())
+			eDebug("accel memory: %d", gAccel::getInstance()->accelAlloc(data, data_phys, y * stride));
+		else
+			eDebug("no accel available");
+	}
+	
+	clut.colors = 0;
+	clut.data = 0;
+
+	if (!data)
+		data = malloc(y * stride);
+	
+	type = 1;
 }
 
-gSurfaceSystem::~gSurfaceSystem()
+gSurface::~gSurface()
 {
-	free(data);
-	delete[] clut.data;
+	if (type)
+	{
+		if (data_phys)
+			gAccel::getInstance()->accelFree(data_phys);
+		else
+			free(data);
+
+		delete[] clut.data;
+	}
 }
 
 gPixmap *gPixmap::lock()
@@ -104,26 +143,34 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 		const eRect &area = region.rects[i];
 		if ((area.height()<=0) || (area.width()<=0))
 			continue;
+
 		if (surface->bpp == 8)
 		{
 			for (int y=area.top(); y<area.bottom(); y++)
 		 		memset(((__u8*)surface->data)+y*surface->stride+area.left(), color.color, area.width());
 		} else if (surface->bpp == 32)
+		{
+			__u32 col;
+
+			if (surface->clut.data && color < surface->clut.colors)
+				col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
+			else
+				col=0x10101*color;
+			
+			col^=0xFF000000;			
+
+			if (surface->data_phys && gAccel::getInstance())
+				if (!gAccel::getInstance()->fill(surface,  area, col))
+					continue;
+
 			for (int y=area.top(); y<area.bottom(); y++)
 			{
 				__u32 *dst=(__u32*)(((__u8*)surface->data)+y*surface->stride+area.left()*surface->bypp);
 				int x=area.width();
-				__u32 col;
-
-				if (surface->clut.data && color < surface->clut.colors)
-					col=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
-				else
-					col=0x10101*color;
-				col^=0xFF000000;			
 				while (x--)
 					*dst++=col;
 			}
-		else
+		}	else
 			eWarning("couldn't fill %d bpp", surface->bpp);
 	}
 }
@@ -140,6 +187,10 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 
 		eRect srcarea=area;
 		srcarea.moveBy(-pos.x(), -pos.y());
+		
+		if ((surface->data_phys && src.surface->data_phys) && (gAccel::getInstance()))
+			if (!gAccel::getInstance()->blit(surface, src.surface, area.topLeft(), srcarea, flag))
+				continue;
 		
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
@@ -170,6 +221,64 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 					memcpy(dstptr, srcptr, area.width()*surface->bypp);
 				srcptr+=src.surface->stride;
 				dstptr+=surface->stride;
+			}
+		} else if ((surface->bpp == 32) && (src.surface->bpp==32))
+		{
+			__u32 *srcptr=(__u32*)src.surface->data;
+			__u32 *dstptr=(__u32*)surface->data;
+	
+			srcptr+=srcarea.left()+srcarea.top()*src.surface->stride/4;
+			dstptr+=area.left()+area.top()*surface->stride/4;
+			for (int y=0; y<area.height(); y++)
+			{
+				if (flag & blitAlphaTest)
+				{
+					int width=area.width();
+					unsigned long *src=(unsigned long*)srcptr;
+					unsigned long *dst=(unsigned long*)dstptr;
+
+					while (width--)
+					{
+						if (!((*src)&0xFF000000))
+						{
+							src++;
+							dst++;
+						} else
+							*dst++=*src++;
+					}
+				} else if (flag & blitAlphaBlend)
+				{
+					// uh oh. this is only until hardware accel is working.
+					
+					int width=area.width();
+							// ARGB color space!
+					unsigned char *src=(unsigned char*)srcptr;
+					unsigned char *dst=(unsigned char*)dstptr;
+
+#define BLEND(x, y, a) (y + ((x-y) * a)/256)
+					while (width--)
+					{
+						unsigned char sa = src[3];
+						unsigned char sr = src[2];
+						unsigned char sg = src[1];
+						unsigned char sb = src[0];
+
+						unsigned char da = dst[3];
+						unsigned char dr = dst[2];
+						unsigned char dg = dst[1];
+						unsigned char db = dst[0];
+						
+						dst[3] = BLEND(0xFF, da, sa);
+						dst[2] = BLEND(sr, dr, sa);
+						dst[1] = BLEND(sg, dg, sa);
+						dst[0] = BLEND(sb, db, sa);
+						
+						src += 4; dst += 4;
+					}
+				} else
+					memcpy(dstptr, srcptr, area.width()*surface->bypp);
+				srcptr+=src.surface->stride/4;
+				dstptr+=surface->stride/4;
 			}
 		} else if ((surface->bpp == 32) && (src.surface->bpp==8))
 		{	
@@ -397,8 +506,8 @@ gPixmap::gPixmap(gSurface *surface): surface(surface)
 {
 }
 
-gPixmap::gPixmap(eSize size, int bpp)
+gPixmap::gPixmap(eSize size, int bpp, int accel)
 {
-	surface = new gSurfaceSystem(size, bpp);
+	surface = new gSurface(size, bpp, accel);
 }
 

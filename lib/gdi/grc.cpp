@@ -22,17 +22,18 @@ void *gRC::thread_wrapper(void *ptr)
 
 gRC *gRC::instance=0;
 
-gRC::gRC(): queue(2048), queuelock(MAXSIZE)
+gRC::gRC(): queue(2048), m_notify_pump(eApp, 0), queuelock(MAXSIZE)
 {
 	ASSERT(!instance);
 	instance=this;
 	queuelock.lock(MAXSIZE);
+	CONNECT(m_notify_pump.recv_msg, gRC::recv_notify);
 #ifndef SYNC_PAINT
 	int res = pthread_create(&the_thread, 0, thread_wrapper, this);
 	if (res)
 		eFatal("RC thread couldn't be created");
 	else
-		eDebug("RC thread createted successfully");
+		eDebug("RC thread created successfully");
 #endif
 }
 
@@ -64,7 +65,11 @@ void *gRC::thread()
 		gOpcode& o(queue.current());
 		if (o.opcode==gOpcode::shutdown)
 			break;
-		o.dc->exec(&o);
+		if (o.opcode==gOpcode::notify)
+		{
+			m_notify_pump.send(1);
+		} else
+			o.dc->exec(&o);
 		o.dc->Release();
 		queue.dequeue();
 	}
@@ -72,6 +77,11 @@ void *gRC::thread()
 	pthread_exit(0);
 #endif
 	return 0;
+}
+
+void gRC::recv_notify(const int &i)
+{
+	notify();
 }
 
 gRC *gRC::getInstance()
@@ -218,7 +228,7 @@ void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 	o.parm.blit->pixmap = pixmap;
 	o.parm.blit->position = pos;
 	o.parm.blit->clip = clip;
-	o.flags=flags;
+	o.parm.blit->flags=flags;
 	m_rc->submit(o);
 }
 
@@ -333,6 +343,30 @@ void gPainter::flush()
 {
 	gOpcode o;
 	o.opcode = gOpcode::flush;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
+}
+
+void gPainter::waitVSync()
+{
+	gOpcode o;
+	o.opcode = gOpcode::waitVSync;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
+}
+
+void gPainter::flip()
+{
+	gOpcode o;
+	o.opcode = gOpcode::flip;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
+}
+
+void gPainter::notify()
+{
+	gOpcode o;
+	o.opcode = gOpcode::notify;
 	o.dc = m_dc.grabRef();
 	m_rc->submit(o);
 }
@@ -500,6 +534,10 @@ void gDC::exec(gOpcode *o)
 			m_current_offset  = o->parm.setOffset->value;
 		delete o->parm.setOffset;
 		break;
+	case gOpcode::waitVSync:
+		break;
+	case gOpcode::flip:
+		break;
 	case gOpcode::flush:
 		break;
 	default:
@@ -522,4 +560,3 @@ gRGB gDC::getRGB(gColor col)
 DEFINE_REF(gDC);
 
 eAutoInitPtr<gRC> init_grc(eAutoInitNumbers::graphic, "gRC");
-

@@ -14,6 +14,7 @@
 #include <string>
 #include <lib/base/ringbuffer.h>
 #include <lib/base/elock.h>
+#include <lib/base/message.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
@@ -49,6 +50,10 @@ struct gOpcode
 		setClip, addClip, popClip,
 		
 		flush,
+		
+		waitVSync,
+		flip,
+		notify,
 		
 		end,shutdown
 	} opcode;
@@ -128,15 +133,14 @@ struct gOpcode
 			int rel;
 		} *setOffset;
 	} parm;
-
-	int flags;
 };
 
 		/* gRC is the singleton which controls the fifo and dispatches commands */
-class gRC: public iObject
+class gRC: public iObject, public Object
 {
 DECLARE_REF(gRC);
 private:
+	friend class gPainter;
 	static gRC *instance;
 	
 	static void *thread_wrapper(void *ptr);
@@ -144,6 +148,9 @@ private:
 	void *thread();
 
 	queueRingBuffer<gOpcode> queue;
+	
+	eFixedMessagePump<int> m_notify_pump;
+	void recv_notify(const int &i);
 public:
 	eLock queuelock;
 	gRC();
@@ -163,6 +170,8 @@ public:
 			collected=0;
 		}
 	}
+
+	Signal0<void> notify;
 
 	static gRC *getInstance();
 };
@@ -229,6 +238,10 @@ public:
 	void clippop();
 
 	void flush();
+	
+	void waitVSync();
+	void flip();
+	void notify();
 };
 
 class gDC: public iObject
