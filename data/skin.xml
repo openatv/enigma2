@@ -123,7 +123,7 @@
 			<widget name="apply" position="10,240" size="250,35" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
-			<widget name="text" position="0,0" size="500,0" font="Arial;25" />
+			<widget name="text" position="0,0" size="650,0" font="Arial;22" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrated applets.
 from enigma import eSize, ePoint
