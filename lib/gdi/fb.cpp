@@ -94,12 +94,24 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
 	screeninfo.bits_per_pixel=nbpp;
+	
 	if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
-		perror("FBIOPUT_VSCREENINFO");
-		printf("fb failed\n");
-		return -1;
-	}
+		// try single buffering
+		screeninfo.yres_virtual=screeninfo.yres=nyRes;
+		
+		if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
+		{
+			perror("FBIOPUT_VSCREENINFO");
+			printf("fb failed\n");
+			return -1;
+		}
+		eDebug(" - double buffering not available.");
+	} else
+		eDebug(" - double buffering available!");
+	
+	m_number_of_pages = screeninfo.yres_virtual / nyRes;
+	
 	if ((screeninfo.xres!=nxRes) && (screeninfo.yres!=nyRes) && (screeninfo.bits_per_pixel!=nbpp))
 	{
 		eDebug("SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",

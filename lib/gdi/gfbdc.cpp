@@ -34,20 +34,24 @@ gFBDC::gFBDC()
 	
 	surface.data_phys = 50*1024*1024; // FIXME
 	
-	surface_back.type = 0;
-	surface_back.x = 720;
-	surface_back.y = 576;
-	surface_back.bpp = 32;
-	surface_back.bypp = 4;
-	surface_back.stride = fb->Stride();
-	surface_back.offset = surface.y;
-
 	int fb_size = surface.stride * surface.y;
 
-	surface_back.data = fb->lfb + fb_size;
-	surface_back.data_phys = surface.data_phys + fb_size;
+	if (fb->getNumPages() > 1)
+	{
+		m_enable_double_buffering = 1;
+		surface_back.type = 0;
+		surface_back.x = 720;
+		surface_back.y = 576;
+		surface_back.bpp = 32;
+		surface_back.bypp = 4;
+		surface_back.stride = fb->Stride();
+		surface_back.offset = surface.y;
+		surface_back.data = fb->lfb + fb_size;
+		surface_back.data_phys = surface.data_phys + fb_size;
 	
-	fb_size *= 2;
+		fb_size *= 2;
+	} else
+		m_enable_double_buffering = 0;
 	
 	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
 	
@@ -139,11 +143,14 @@ void gFBDC::exec(gOpcode *o)
 	}
 	case gOpcode::flip:
 	{
-		gSurface s(surface);
-		surface = surface_back;
-		surface_back = s;
+		if (m_enable_double_buffering)
+		{
+			gSurface s(surface);
+			surface = surface_back;
+			surface_back = s;
 		
-		fb->setOffset(surface_back.offset);
+			fb->setOffset(surface_back.offset);
+		}
 		break;
 	}
 	case gOpcode::waitVSync:
