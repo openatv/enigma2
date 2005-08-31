@@ -1,4 +1,5 @@
 from config import *
+import os
 
 class AVSwitch:
 	def __init__(self):
@@ -6,6 +7,7 @@ class AVSwitch:
 
 	def setColorFormat(self, value):
 		print "colorformat:" + str(value)
+		os.system("scart " + str(value))
 		
 	def setAspectRatio(self, value):
 		print "aspectratio:" + str(value)
