@@ -45,3 +45,5 @@ def InitAVSwitch():
 	config.av.aspectratio.addNotifier(setAspectRatio);
 	config.av.tvsystem.addNotifier(setSystem);
 	config.av.wss.addNotifier(setWSS);
+
+
