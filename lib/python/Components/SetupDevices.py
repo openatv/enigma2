@@ -12,13 +12,13 @@ def InitSetupDevices():
 	config.rc = ConfigSubsection();
 	config.rc.map = configElement("", configBoolean, 0, ("Default", "Classic") );
 
-	config.av = ConfigSubsection();
-	config.av.colorformat = configElement("", configBoolean, 1, ("CVBS", "RGB", "S-Video") );
-	config.av.aspectratio = configElement("", configBoolean, 0, ("4:3 Letterbox", "4:3 PanScan", "16:9", "16:9 always") );
-	config.av.tvsystem = configElement("", configBoolean, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
-	config.av.wss = configElement("", configBoolean, 0, ("Enable", "Disable") );
-	config.av.defaultac3 = configElement("", configBoolean, 1, ("Enable", "Disable") );
-	config.av.vcrswitch = configElement("", configBoolean, 0, ("Enable", "Disable") );
+#	config.av = ConfigSubsection();
+#	config.av.colorformat = configElement("", configBoolean, 1, ("CVBS", "RGB", "S-Video") );
+#	config.av.aspectratio = configElement("", configBoolean, 0, ("4:3 Letterbox", "4:3 PanScan", "16:9", "16:9 always") );
+#	config.av.tvsystem = configElement("", configBoolean, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
+#	config.av.wss = configElement("", configBoolean, 0, ("Enable", "Disable") );
+#	config.av.defaultac3 = configElement("", configBoolean, 1, ("Enable", "Disable") );
+#	config.av.vcrswitch = configElement("", configBoolean, 0, ("Enable", "Disable") );
 
 	config.rfmod = ConfigSubsection();
 	config.rfmod.enable = configElement("", configBoolean, 1, ("Enable", "Disable") );
