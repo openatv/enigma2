@@ -60,9 +60,15 @@ class Setup(Screen):
 
 	def keySave(self):
 		print "save requested"
-		for x in self["config"]:
-			selection =	self["config"].getCurrent()
-			selection.save()
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+
+	def keyCancel(self):
+		print "cancel requested"
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -93,7 +99,7 @@ class Setup(Screen):
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
-				"cancel": self.close,
+				"cancel": self.keyCancel,
 				"ok": self.keyOk,
 				"left": self.keyLeft,
 				"right": self.keyRight,
