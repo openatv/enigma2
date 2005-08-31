@@ -2,30 +2,34 @@
 class configBoolean:
 	def __init__(self, parent):
 		self.parent = parent
-		self.val = parent.value
-		self.vals = parent.vals
-			
+		
+	def checkValues(self):
+		if self.parent.value < 0:
+			self.parent.value = 0	
+
+		if(self.parent.value >= (len(self.parent.vals) - 1)):
+			self.parent.value = len(self.parent.vals) - 1
+
+	def cancel(self):
+		print "cancel"
+
+	def save(self):
+		print "save"
+
 	def handleKey(self, key):
 		if key == 1:
-			self.val = self.val - 1
+			self.parent.value = self.parent.value - 1
 		if key == 2:
-			self.val = self.val + 1
-			
-		if self.val < 0:
-			self.val = 0	
+			self.parent.value = self.parent.value + 1
+		
+		self.checkValues()			
 
-#		if self.val > 1:
-#			self.val = 1	
-	
+		self.parent.change()	
+
 	def __call__(self):			#needed by configlist
+		self.checkValues()			
 	
-		print len(self.vals)
-		print self.val
-			
-		if(self.val > (len(self.vals) - 1)):
-			self.val = len(self.vals) - 1
-	
-		return ("text",self.vals[self.val])
+		return ("text", self.parent.vals[self.parent.value])
 
 class configValue:
 	def __init__(self, obj):
@@ -52,20 +56,32 @@ config = Config();
 class ConfigSlider:
 	def __init__(self, parent):
 		self.parent = parent
-		self.val = parent.value
+
+	def cancel(self):
+		print "slider - cancel"
+
+	def save(self):
+		print "slider - save"
+
+	def checkValues(self):
+		if self.parent.value < 0:
+			self.parent.value = 0	
+
+		if self.parent.value > 10:
+			self.parent.value = 10	
+
 	def handleKey(self, key):
 		if key == 1:
-			self.val = self.val - 1
+			self.parent.value = self.parent.value - 1
 		if key == 2:
-			self.val = self.val + 1
-			
-		if self.val < 0:
-			self.val = 0	
+			self.parent.value = self.parent.value + 1
+					
+		self.checkValues()	
+		self.parent.change()	
 
-		if self.val > 10:
-			self.val = 10	
 	def __call__(self):			#needed by configlist
-		return ("slider", self.val * 10)
+		self.checkValues()	
+		return ("slider", self.parent.value * 10)
 
 class ConfigSubsection:
 	def __init__(self):
@@ -76,9 +92,15 @@ class configElement:
 		self.configPath = configPath
 #		self.value = 0	#read from registry else use default
 		self.value = defaultValue	#read from registry else use default
+		self.defaultValue = defaultValue
 		self.controlType = control
 		self.vals = vals
 		self.notifierList = [ ]
 	def addNotifier(self, notifier):
 		self.notifierList.append(notifier);
 		notifier(self);
+	def change(self):
+		for notifier in self.notifierList:
+			notifier(self)
+	def reload(self):
+		self.value = self.defaultValue	#HACK :-)
