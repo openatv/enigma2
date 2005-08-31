@@ -3,6 +3,7 @@
 #include <limits.h>
 #include <lib/base/elock.h>
 #include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 
 static pthread_mutex_t lock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
@@ -181,7 +182,12 @@ static inline unsigned int recode(unsigned char d, int cp)
 	}
 }
 
-std::string convertDVBUTF8(unsigned char *data, int len, int table)
+std::string convertDVBUTF8(const std::string &s, int table)
+{
+	return convertDVBUTF8((const unsigned char*)s.c_str(), s.size(), table);
+}
+
+std::string convertDVBUTF8(const unsigned char *data, int len, int table)
 {
 	int i;
 	if (!len)

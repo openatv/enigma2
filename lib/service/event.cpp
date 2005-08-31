@@ -1,4 +1,5 @@
 #include <lib/service/event.h>
+#include <lib/base/estring.h>
 #include <lib/dvb_si/eit.h>
 #include <lib/dvb_si/short_event_descriptor.h>
 #include <lib/dvb_si/descriptor_tag.h>
@@ -17,8 +18,8 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 		case SHORT_EVENT_DESCRIPTOR:
 		{
 			const ShortEventDescriptor *sed = (ShortEventDescriptor*)*desc;
-			m_event_name = sed->getEventName();
-			m_description = sed->getText();
+			m_event_name = convertDVBUTF8(sed->getEventName());
+			m_description = convertDVBUTF8(sed->getText());
 			break;
 		}
 		}

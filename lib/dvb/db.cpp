@@ -2,6 +2,7 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/frontend.h>
 #include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 #include <lib/dvb_si/sdt.h>
 #include <lib/dvb_si/descriptor_tag.h>
 #include <lib/dvb_si/service_descriptor.h>
@@ -29,7 +30,7 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	name = m_service_name;
+	name = convertDVBUTF8(m_service_name);
 	return 0;
 }
 
