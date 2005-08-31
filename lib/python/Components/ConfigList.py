@@ -10,6 +10,7 @@ class ConfigList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonConfigContent()
 		self.l.setList(list)
 		self.l.setSeperation(100)
+		self.list = list
 	
 	def toggle(self):
 		selection = self.getCurrent()
@@ -20,7 +21,7 @@ class ConfigList(HTMLComponent, GUIComponent):
 		selection = self.getCurrent()
 		selection[1].handleKey(key)
 		self.invalidateCurrent()
-	
+
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 	
