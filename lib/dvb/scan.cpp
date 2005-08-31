@@ -104,6 +104,7 @@ RESULT eDVBScan::nextChannel()
 	m_channel_state = iDVBChannel::state_idle;
 	if (fe->tune(*m_ch_current))
 	{
+		return nextChannel();
 		m_event(evtFail);
 		return -EINVAL;
 	}
