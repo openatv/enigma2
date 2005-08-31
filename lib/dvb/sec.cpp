@@ -21,8 +21,8 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
 	m_lnblist.push_back(eDVBSatelliteLNBParameters());
 	eDVBSatelliteLNBParameters &lnb_ref = m_lnblist.front();
+	eDVBSatelliteDiseqcParameters &diseqc_ref = lnb_ref.m_diseqc_parameters;
 	eDVBSatelliteParameters &astra1 = lnb_ref.m_satellites[192];
-	eDVBSatelliteDiseqcParameters &diseqc_ref = astra1.m_diseqc_parameters;
 	eDVBSatelliteSwitchParameters &switch_ref = astra1.m_switch_parameters;
 
 	lnb_ref.m_lof_hi = 10600000;
@@ -48,11 +48,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 	for (;it != m_lnblist.end(); ++it )
 	{
 		eDVBSatelliteLNBParameters &lnb_param = *it;
+		eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 		std::map<int, eDVBSatelliteParameters>::iterator sit =
 			lnb_param.m_satellites.find(sat.orbital_position);
 		if ( sit != lnb_param.m_satellites.end())
 		{
-			eDVBSatelliteDiseqcParameters &di_param = sit->second.m_diseqc_parameters;
+
 			eDVBSatelliteSwitchParameters &sw_param = sit->second.m_switch_parameters;
 			eDVBSatelliteRotorParameters &rotor_param = sit->second.m_rotor_parameters;
 			int hi=0,

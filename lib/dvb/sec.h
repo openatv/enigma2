@@ -171,7 +171,6 @@ public:
 class eDVBSatelliteParameters
 {
 public:
-	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
 	eDVBSatelliteSwitchParameters m_switch_parameters;
 };
@@ -189,6 +188,7 @@ public:
 	bool m_increased_voltage; // use increased voltage ( 14/18V )
 
 	std::map<int, eDVBSatelliteParameters> m_satellites;
+	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 };
 
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
