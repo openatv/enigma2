@@ -36,7 +36,7 @@ int eWidgetDesktop::movedWidget(eWidget *root)
 	if ((m_comp_mode == cmBuffered) && (root->m_comp_buffer))
 	{
 		root->m_comp_buffer->m_position = root->position();
-		redrawComposition(0);
+//		redrawComposition(0);
 		return 0;
 	}
 	
@@ -96,6 +96,11 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 		invalidate(redraw);
 	} else
 	{
+		if (!root->m_vis & eWidget::wVisShow)
+		{
+			removeBufferForWidget(root);
+			return;
+		}
 		if ((!root->m_comp_buffer) || (root->size() != root->m_comp_buffer->m_screen_size))
 			createBufferForWidget(root);
 
@@ -203,7 +208,6 @@ void eWidgetDesktop::paintBackground(eWidgetDesktopCompBuffer *comp)
 
 void eWidgetDesktop::paint()
 {
-	eDebug("paint");
 	m_require_redraw = 0;
 	
 		/* walk all root windows. */
@@ -230,8 +234,7 @@ void eWidgetDesktop::paint()
 	
 	if (m_comp_mode == cmBuffered)
 	{
-		eDebug("redraw composition");
-		redrawComposition(0);
+//		redrawComposition(0);
 	}
 }
 

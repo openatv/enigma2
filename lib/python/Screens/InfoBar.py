@@ -30,6 +30,8 @@ class InfoBar(Screen):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		self.volumeBar = VolumeBar()		
+		
+		self.state = self.STATE_HIDDEN
 
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
@@ -84,7 +86,7 @@ class InfoBar(Screen):
 		self.instance.hide()
 
 	def toggleShow(self):
-		if self.instance.isVisible():
+		if self.state == self.STATE_SHOWN:
 #			self.instance.hide()
 			self.startHide()
 		else:
@@ -108,10 +110,12 @@ class InfoBar(Screen):
 		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		
 	def startShow(self):
-		self.instance.m_animation.startMoveAnimation(ePoint(0, 500), ePoint(0, 380), 100)
+		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
+		self.state = self.STATE_SHOWN
 	
 	def startHide(self):
-		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 500), 100)
+		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
+		self.state = self.STATE_HIDDEN
 
 	def	volMute(self):
 		eDVBVolumecontrol.getInstance().volumeToggleMute()

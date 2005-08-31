@@ -191,6 +191,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 		if ((surface->data_phys && src.surface->data_phys) && (gAccel::getInstance()))
 			if (!gAccel::getInstance()->blit(surface, src.surface, area.topLeft(), srcarea, flag))
 				continue;
+		flag &= ~ blitAlphaBlend;
 		
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
