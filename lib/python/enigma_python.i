@@ -73,6 +73,7 @@ is usually caused by not marking PSignals as immutable.
 extern void runMainloop();
 extern void quitMainloop();
 extern void setLCD(const char *c);
+extern void setLCDClock(const char *c);
 
 extern PSignal1<void,int> &keyPressedSignal();
 %}
@@ -189,6 +190,7 @@ public:
 void runMainloop();
 void quitMainloop();
 void setLCD(const char*);
+void setLCDClock(const char*);
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();
 
