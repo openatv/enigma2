@@ -9,10 +9,10 @@ class inputDevices:
 	def __init__(self):
 		pass
 	def setRepeat(self, value):
-		print "setup rc repeat"
+		#print "setup rc repeat"
 		pass
 	def setDelay(self, value):
-		print "setup rc delay"
+		#print "setup rc delay"
 		pass
 
 def InitInputDevices():
