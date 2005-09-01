@@ -14,6 +14,7 @@
 
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
+#include <lib/gdi/glcddc.h>
 #ifdef WITH_SDL
 #error
 #include <lib/gdi/sdl.h>
@@ -69,7 +70,7 @@ void dumpRegion(const gRegion &region)
 
 }
 
-eWidgetDesktop *wdsk;
+eWidgetDesktop *wdsk, *lcddsk;
 
 // typedef struct _object PyObject;
 
@@ -111,7 +112,7 @@ class eMain: public eApplication, public Object
 	ePtr<eDVBDB> m_dvbdb;
 	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
 	ePtr<eComponentScan> m_scan;
-	ePtr<eEPGCache> m_epgcache;
+//	ePtr<eEPGCache> m_epgcache;
 
 public:
 	eMain()
@@ -122,7 +123,7 @@ public:
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
 		m_locale_time_handler = new eDVBLocalTimeHandler();
-		m_epgcache = new eEPGCache();
+//		m_epgcache = new eEPGCache();
 		m_mgr->setChannelList(m_dvbdb);
 		
 //		m_scan = new eComponentScan();
@@ -162,9 +163,13 @@ int main(int argc, char **argv)
 	double_buffer = my_dc->haveDoubleBuffering();
 #endif
 
+	ePtr<gLCDDC> my_lcd_dc;
+	gLCDDC::getInstance(my_lcd_dc);
+
 	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
+	eWidgetDesktop dsk_lcd(eSize(132, 64));
 	
 	if (double_buffer)
 	{
@@ -173,8 +178,10 @@ int main(int argc, char **argv)
 	}
 	
 	wdsk = &dsk;
+	lcddsk = &dsk_lcd;
 
 	dsk.setDC(my_dc);
+	dsk_lcd.setDC(my_lcd_dc);
 
 	ePtr<gPixmap> m_pm;
 	loadPNG(m_pm, "data/pal.png");
@@ -189,6 +196,21 @@ int main(int argc, char **argv)
 
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
+	dsk_lcd.setRedrawTask(main);
+
+	eWindow *lcd_win = new eWindow(&dsk_lcd);
+	
+	lcd_win->setFlag(eWindow::wfNoBorder);
+	
+	lcd_win->move(ePoint(0, 0));
+	lcd_win->resize(eSize(132, 64));
+	
+	eLabel *lcd_label = new eLabel(lcd_win);
+	lcd_label->move(ePoint(0, 0));
+	lcd_label->resize(eSize(132, 64));
+	lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
+
+	lcd_win->show();
 	
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 	

@@ -1,5 +1,3 @@
-#ifndef DISABLE_LCD
-
 #ifndef __lcd_h
 #define __lcd_h
 
@@ -41,7 +39,6 @@ class eDBoxLCD: public eLCD
 	unsigned char inverted;
 public:
 	static eDBoxLCD *getInstance();
-	int switchLCD(int state);
 	int setLCDParameter(int brightness, int contrast);
 	void setInverted( unsigned char );
 	eDBoxLCD();
@@ -50,5 +47,3 @@ public:
 };
 
 #endif
-
-#endif //DISABLE_LCD

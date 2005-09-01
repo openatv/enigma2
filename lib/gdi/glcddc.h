@@ -1,5 +1,3 @@
-#ifndef DISABLE_LCD
-
 #ifndef __glcddc_h
 #define __glcddc_h
 
@@ -14,14 +12,11 @@ class gLCDDC: public gDC
 	void exec(gOpcode *opcode);
 	gSurface surface;
 public:
-	gLCDDC(eLCD *lcd);
+	gLCDDC();
 	~gLCDDC();
 	void setUpdate(int update);
-	static gLCDDC *getInstance();
+	static int getInstance(ePtr<gLCDDC> &ptr) { if (!instance) return -1; ptr = instance; return 0; }
 	int islocked() { return lcd->islocked(); }
 };
 
-
 #endif
-
-#endif //DISABLE_LCD

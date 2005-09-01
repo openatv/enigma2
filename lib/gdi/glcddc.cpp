@@ -1,11 +1,13 @@
-#ifndef DISABLE_LCD
-
 #include <lib/gdi/glcddc.h>
+#include <lib/gdi/lcd.h>
+#include <lib/base/init.h>
+#include <lib/base/init_num.h>
 
 gLCDDC *gLCDDC::instance;
 
-gLCDDC::gLCDDC(eLCD *lcd): lcd(lcd)
+gLCDDC::gLCDDC()
 {
+	lcd = new eDBoxLCD();
 	instance=this;
 	
 	update=1;
@@ -24,16 +26,18 @@ gLCDDC::gLCDDC(eLCD *lcd): lcd(lcd)
 
 gLCDDC::~gLCDDC()
 {
+	delete lcd;
 	instance=0;
 }
 
 void gLCDDC::exec(gOpcode *o)
 {
+	eDebug("gLCDDC exec!!! %d", o->opcode);
 	switch (o->opcode)
 	{
-//	case gOpcode::flush:
-	case gOpcode::end:
-		if (update)
+	case gOpcode::flush:
+		eDebug("END! WRITE!");
+//		if (update)
 			lcd->update();
 	default:
 		gDC::exec(o);
@@ -41,14 +45,9 @@ void gLCDDC::exec(gOpcode *o)
 	}
 }
 
-gLCDDC *gLCDDC::getInstance()
-{
-	return instance;
-}
-
 void gLCDDC::setUpdate(int u)
 {
 	update=u;
 }
 
-#endif //DISABLE_LCD
+eAutoInitPtr<gLCDDC> init_gLCDDC(eAutoInitNumbers::graphic-1, "gLCDDC");
