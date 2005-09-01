@@ -1,8 +1,10 @@
 #undef WITH_SDL
+
 #ifdef WITH_SDL
 #error
 #define SDLDC
 #endif
+
 #include <stdio.h>
 #include <libsig_comp.h>
 #include <lib/base/ebase.h>
@@ -15,6 +17,7 @@
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
 #include <lib/gdi/glcddc.h>
+
 #ifdef WITH_SDL
 #error
 #include <lib/gdi/sdl.h>
@@ -139,7 +142,7 @@ public:
 
 /************************************************/
 
-eLabel *lcd_label;
+eLabel *lcd_label, *lcd_clock;
 
 int main(int argc, char **argv)
 {
@@ -207,9 +210,19 @@ int main(int argc, char **argv)
 	lcd_win->resize(eSize(132, 64));
 	
 	lcd_label = new eLabel(lcd_win);
-	lcd_label->move(ePoint(0, 0));
-	lcd_label->resize(eSize(132, 64));
-	lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
+	lcd_label->move(ePoint(0, 10));
+	lcd_label->resize(eSize(132, 36));
+	ePtr<gFont> font = new gFont("Arial", 16);
+	lcd_label->setFont(font);
+
+	lcd_clock = new eLabel(lcd_win);
+	lcd_clock->move(ePoint(50, 46));
+	lcd_clock->resize(eSize(132, 20));
+	//ePtr<gFont> clkfont = new gFont("Arial", 18);
+	lcd_clock->setFont(font);
+
+	//lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
+	//lcd_clock->setText("88:88:88");
 
 	lcd_win->show();
 	
@@ -242,4 +255,9 @@ void quitMainloop()
 void setLCD(const char *string)
 {
 	lcd_label->setText(string);
+}
+
+void setLCDClock(const char *string)
+{
+	lcd_clock->setText(string);
 }
