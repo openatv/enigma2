@@ -1,27 +1,37 @@
 class configFile:
 	def __init__(self):
-		pass
-
-	def openFile(self):
+		self.configElements = { }
 		try:
 			self.file = open("config")
 		except IOError:
-			self.file = ""
-
-	def getKey(self, key, dataType):
-		self.openFile()			#good idea? (open every time we need it?) else we have to seek
+			print "cannot open config file"
+			return 
+		
 		while 1:
 			line = self.file.readline()
 			if line == "":
 				break
-			if line.startswith(key):
-				x = line.find("=")
-				if x > -1:
-					self.file.close()
-					return dataType(line[x + 1:])
-
+			self.addElement(line)
 		self.file.close()
-		return ""
+
+	def addElement(self, line):
+		x = line.find("=")
+		if x > -1:
+			self.configElements[line[:x]] = line[x + 1:]
+	
+	def getKey(self, key):
+		return self.configElements[key]
+
+	def setKey(self, key, value):
+		self.configElements[key] = value
+
+	def save(self):
+		fileHandle = open("config", "w")
+		
+		for x in self.configElements:
+			fileHandle.write(x + "=" + self.configElements[x] + "\n")
+
+		fileHandle.close()		
 
 class configBoolean:
 	def __init__(self, parent):
@@ -38,7 +48,7 @@ class configBoolean:
 		self.parent.reload()
 
 	def save(self):
-		print "save bool"
+		self.parent.save()
 
 	def handleKey(self, key):
 		if key == 1:
@@ -64,23 +74,6 @@ class configValue:
 class Config:
 	def __init__(self):
 		pass
-
-	def saveLine(self, file, element):
-		#FIXME can handle INTs only
-		line = element.configPath + "=" + str(element.value) + "\n"
-		file.write(line)
-
-	def save(self):
-		fileHandle = open("config", "w")
-		
-		for groupElement in self.__dict__.items():
-			for element in groupElement[1].__dict__.items():
-				self.saveLine(fileHandle, element[1])
-		
-		fileHandle.close()		
-		
-		while 1:
-			pass	
 		
 config = Config();
 configfile = configFile()
@@ -93,7 +86,7 @@ class ConfigSlider:
 		self.parent.reload()
 
 	def save(self):
-		print "slider - save"
+		self.parent.save()
 
 	def checkValues(self):
 		if self.parent.value < 0:
@@ -120,23 +113,32 @@ class ConfigSubsection:
 		pass
 
 class configElement:
-	def dataType(self, control):
+	def datafromFile(self, control, data):
 		if control == ConfigSlider:
-			return int;
+			return int(data);
 		elif control == configBoolean:
-			return int;
+			return int(data);
+		else: 
+			return ""	
+
+	def datatoFile(self, control, data):
+		if control == ConfigSlider:
+			return str(data);
+		elif control == configBoolean:
+			return str(data);
 		else: 
 			return ""	
 
 	def loadData(self):
 		try:
-			value = configfile.getKey(self.configPath, self.dataType(self.controlType))
+			value = self.datafromFile(self.controlType, configfile.getKey(self.configPath))
 		except:		
 			value = ""
 
 		if value == "":
 			print "value not found - using default"
 			self.value = self.defaultValue
+			self.save()		#add missing value to dict
 		else:
 			self.value = value
 			print "value ok"
@@ -156,3 +158,5 @@ class configElement:
 			notifier(self)
 	def reload(self):
 		self.loadData()
+	def save(self):
+		configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
