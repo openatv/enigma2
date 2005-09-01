@@ -21,7 +21,7 @@ class LCD:
 
 def InitSetupDevices():
 	config.timezone = ConfigSubsection();
-	config.timezone.val = configElement("", configBoolean, 1, ("GMT", "GMT+1", "GMT+2", "GMT+3", "GMT+4", "GMT+5", "GMT+6", "GMT+7", "GMT+8", "GMT+9") );
+	config.timezone.val = configElement("config.timezone.val", configBoolean, 1, ("GMT", "GMT+1", "GMT+2", "GMT+3", "GMT+4", "GMT+5", "GMT+6", "GMT+7", "GMT+8", "GMT+9") );
 
 	config.rc = ConfigSubsection();
 	config.rc.map = configElement("config.rc.map", configBoolean, 0, ("Default", "Classic") );
