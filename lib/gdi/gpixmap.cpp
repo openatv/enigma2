@@ -469,6 +469,10 @@ fail:
 
 gColor gPalette::findColor(const gRGB &rgb) const
 {
+		/* grayscale? */
+	if (!data)
+		return (rgb.r + rgb.g + rgb.b) / 3;
+	
 	int difference=1<<30, best_choice=0;
 	for (int t=0; t<colors; t++)
 	{
