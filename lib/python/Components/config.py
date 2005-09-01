@@ -1,5 +1,6 @@
 class configFile:
 	def __init__(self):
+		self.changed = 0
 		self.configElements = { }
 		try:
 			self.file = open("config")
@@ -23,13 +24,26 @@ class configFile:
 		return self.configElements[key]
 
 	def setKey(self, key, value):
+		self.changed = 1
 		self.configElements[key] = value
 
 	def save(self):
+		if self.changed == 0:		#no changes, so no write to disk needed
+			return
+			
 		fileHandle = open("config", "w")
 		
 		for x in self.configElements:
-			fileHandle.write(x + "=" + self.configElements[x])
+			wstr = x + "=" + self.configElements[x]
+			
+			if wstr[len(wstr) - 1] != '\n':
+				wstr = wstr + "\n"
+			
+			#	fileHandle.write(wstr)
+			#else:
+			#	fileHandle.write(wstr + "\n")
+
+			fileHandle.write(wstr)
 
 		fileHandle.close()		
 
