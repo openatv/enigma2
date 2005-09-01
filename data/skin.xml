@@ -30,10 +30,10 @@
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
 		</windowstyle> """ """
-		<screen name="Menu" position="300,100" size="300,200" title="real main menu">
+		<screen name="Menu" position="300,100" size="300,250" title="real main menu">
 <!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
-			<widget name="title" position="10,10" size="280,20" />
-			<widget name="menu" position="10,30" size="280,200" />
+			<widget name="title" position="10,10" size="280,20" font="Arial;18" />
+			<widget name="menu" position="10,40" size="280,200" />
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -93,8 +93,8 @@
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Volume" position="575,45" size="100,5" backgroundColor="dark" />
-			<widget name="Event_Now" position="273,68" size="282,30" font="Arial;22" backgroundColor="dark" />
-			<widget name="Event_Next" position="273,98" size="282,30" font="Arial;22" backgroundColor="dark" />
+			<widget name="Event_Now" position="273,68" size="282,22" font="Arial;20" backgroundColor="dark" />
+			<widget name="Event_Next" position="273,98" size="282,22" font="Arial;20" backgroundColor="dark" />
 			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;22" backgroundColor="dark" />
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
