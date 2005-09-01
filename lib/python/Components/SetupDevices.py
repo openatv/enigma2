@@ -1,9 +1,23 @@
+import os
+
 from config import config				#global config instance
 
 from config import configElement
 from config import ConfigSubsection
 from config import ConfigSlider
 from config import configBoolean
+
+#temp. class for exhibition
+
+class LCD:
+	def __init__(self):
+		pass
+
+	def setBright(self, value):
+		os.system("lcddimm " + str(value * 10))
+
+	def setContrast(self, value):
+		os.system("lcdcontrast " + str(value * 6))
 
 def InitSetupDevices():
 	config.timezone = ConfigSubsection();
@@ -39,8 +53,20 @@ def InitSetupDevices():
 
 	config.lcd = ConfigSubsection();
 	config.lcd.bright = configElement("", ConfigSlider, 7, "");
+	config.lcd.contrast = configElement("", ConfigSlider, 2, "");
 	config.lcd.standby = configElement("", ConfigSlider, 1, "");
 	config.lcd.invert = configElement("", configBoolean, 1, ("Enable", "Disable") );
+
+	ilcd = LCD()
+
+	def setLCDbright(configElement):
+		ilcd.setBright(configElement.value);
+
+	def setLCDcontrast(configElement):
+		ilcd.setContrast(configElement.value);
+
+	config.lcd.bright.addNotifier(setLCDbright);
+	config.lcd.contrast.addNotifier(setLCDcontrast);
 
 	config.parental = ConfigSubsection();
 	config.parental.lock = configElement("", configBoolean, 1, ("Enable", "Disable") );
