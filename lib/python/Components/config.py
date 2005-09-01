@@ -29,7 +29,7 @@ class configFile:
 		fileHandle = open("config", "w")
 		
 		for x in self.configElements:
-			fileHandle.write(x + "=" + self.configElements[x] + "\n")
+			fileHandle.write(x + "=" + self.configElements[x])
 
 		fileHandle.close()		
 
