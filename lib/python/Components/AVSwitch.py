@@ -44,7 +44,3 @@ def InitAVSwitch():
 	config.av.tvsystem.addNotifier(setSystem);
 	config.av.wss.addNotifier(setWSS);
 
-
-	config.save()
-	
-
