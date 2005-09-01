@@ -139,6 +139,7 @@ public:
 
 /************************************************/
 
+eLabel *lcd_label;
 
 int main(int argc, char **argv)
 {
@@ -205,7 +206,7 @@ int main(int argc, char **argv)
 	lcd_win->move(ePoint(0, 0));
 	lcd_win->resize(eSize(132, 64));
 	
-	eLabel *lcd_label = new eLabel(lcd_win);
+	lcd_label = new eLabel(lcd_win);
 	lcd_label->move(ePoint(0, 0));
 	lcd_label->resize(eSize(132, 64));
 	lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
@@ -236,4 +237,9 @@ void runMainloop()
 void quitMainloop()
 {
 	eApp->quit(0);
+}
+
+void setLCD(const char *string)
+{
+	lcd_label->setText(string);
 }
