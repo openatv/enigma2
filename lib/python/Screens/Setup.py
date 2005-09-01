@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config				#global config instance
-from Components.config import configEntry
+#from Components.config import configEntry
 from Components.config import configBoolean
 from Components.ConfigList import ConfigList
 from Components.Label import Label
