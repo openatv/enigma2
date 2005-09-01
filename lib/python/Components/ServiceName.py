@@ -1,6 +1,7 @@
 from PerServiceDisplay import *
 
-from enigma import pNavigation, iServiceInformationPtr
+#from enigma import pNavigation, iServiceInformationPtr
+from enigma import *
 
 class ServiceName(PerServiceDisplay):
 	def __init__(self, navcore):
@@ -17,6 +18,7 @@ class ServiceName(PerServiceDisplay):
 		if service != None:
 			if not service.info(info):
 				self.setText(info.getName())
+				setLCD(info.getName())
 	
 	def stopEvent(self):
 			self.setText("");
