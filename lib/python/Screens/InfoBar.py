@@ -7,6 +7,7 @@ from Components.Button import Button
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 from Components.ServicePosition import ServicePosition
+from Components.config import configfile
 
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
@@ -123,6 +124,7 @@ class InfoBar(Screen):
 		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
 
 	def	quit(self):
+		configfile.save()
 		quitMainloop()
 		
 	def instantRecord(self):
