@@ -12,6 +12,10 @@ class configFile:
 			line = self.file.readline()
 			if line == "":
 				break
+			
+			if line.startswith("#"):		#skip comments
+				continue	
+				
 			self.addElement(line)
 		self.file.close()
 
@@ -38,10 +42,6 @@ class configFile:
 			
 			if wstr[len(wstr) - 1] != '\n':
 				wstr = wstr + "\n"
-			
-			#	fileHandle.write(wstr)
-			#else:
-			#	fileHandle.write(wstr + "\n")
 
 			fileHandle.write(wstr)
 
@@ -155,7 +155,6 @@ class configElement:
 			self.save()		#add missing value to dict
 		else:
 			self.value = value
-			print "value ok"
 
 	def __init__(self, configPath, control, defaultValue, vals):
 		self.configPath = configPath
