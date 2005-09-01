@@ -32,11 +32,9 @@ gLCDDC::~gLCDDC()
 
 void gLCDDC::exec(gOpcode *o)
 {
-	eDebug("gLCDDC exec!!! %d", o->opcode);
 	switch (o->opcode)
 	{
 	case gOpcode::flush:
-		eDebug("END! WRITE!");
 //		if (update)
 			lcd->update();
 	default:
