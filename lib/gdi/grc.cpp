@@ -373,6 +373,10 @@ void gPainter::notify()
 
 void gPainter::end()
 {
+	gOpcode o;
+	o.opcode = gOpcode::flush;
+	o.dc = m_dc.grabRef();
+	m_rc->submit(o);
 }
 
 gDC::gDC()
