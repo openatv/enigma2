@@ -20,6 +20,7 @@ class ActionMap:
 		print " ".join(("action -> ", context, action))
 		if self.actions.has_key(action):
 			self.actions[action]()
+			return 1
 		else:
 			print "unknown action %s/%s! typo in keymap?" % (context, action)
-
+			return 0
