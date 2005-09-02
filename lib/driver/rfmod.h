@@ -1,33 +1,24 @@
-#ifdef ENABLE_RFMOD
+#ifndef __rfmod_h
+#define __rfmod_h
 
-#ifndef __erfmod_h
-#define __erfmod_h
-
-#include <lib/base/ebase.h>
-
-class eRFmod: public Object
+class eRFmod
 {
 	static eRFmod *instance;
-
-	int rfmodfd;
-	int channel,soundsubcarrier,soundenable,finetune;
-
+	
+	int fd;
+protected:	
 public:
 	eRFmod();
 	~eRFmod();
 
-	void init();
-
 	static eRFmod *getInstance();
 
-	int save();
-
-	int setChannel(int channel);
-	int setSoundSubCarrier(int val);
-	int setSoundEnable(int val);
-	int setFinetune(int val);
-	int setTestPattern(int val);
+	void setFunction(int val);						//0=Enable 1=Disable
+	void setTestmode(int val);						//0=Enable 1=Disable
+	void setSoundFunction(int val);				//0=Enable 1=Disable
+	void setSoundCarrier(int val);
+	void setChannel(int val);
+	void setFinetune(int val);
 };
-#endif
 
-#endif // ENABLE_RFMOD
+#endif
