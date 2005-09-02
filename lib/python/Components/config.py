@@ -233,6 +233,7 @@ class configElement:
 		self.controlType = control
 		self.vals = vals
 		self.notifierList = [ ]
+		self.enabled = True
 		self.loadData()		
 	def addNotifier(self, notifier):
 		self.notifierList.append(notifier);

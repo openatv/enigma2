@@ -51,11 +51,14 @@ class Setup(Screen):
 				list.append( (ItemText, item) )
 
 	def keyOk(self):
-		self["config"].handleKey(config.choseElement)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.choseElement)
 	def keyLeft(self):
-		self["config"].handleKey(config.prevElement)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.prevElement)
 	def keyRight(self):
-		self["config"].handleKey(config.nextElement)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.nextElement)
 
 	def keySave(self):
 		print "save requested"
