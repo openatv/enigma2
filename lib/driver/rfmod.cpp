@@ -66,6 +66,7 @@ void eRFmod::setChannel(int val)
 
 void eRFmod::setFinetune(int val)
 {
+	ioctl(fd, IOCTL_SET_FINETUNE, &val);
 }
 
 //FIXME: correct "run/startlevel"
