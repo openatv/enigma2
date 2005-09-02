@@ -136,6 +136,7 @@ public:
 	
 	~eMain()
 	{
+		m_dvbdb->save();
 		m_scan = 0;
 	}
 };
