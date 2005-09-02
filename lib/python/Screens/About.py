@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.Harddisk import Harddisk
 
 
 class About(Screen):
@@ -14,7 +15,7 @@ class About(Screen):
 		self["tunerB"] = Label("   Tuner B: Fujitsu QST (DVB-S)")
 
 		self["hdd"] = Label("Detected HDD:")
-		self["hddA"] = Label("   not found")
+		self["hddA"] = Label(Harddisk(0).model())
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
