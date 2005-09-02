@@ -6,19 +6,6 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 
-# hack ... must be made dynamic
-#from Screens.Setup import Setup
-#from ServiceScan import ServiceScan
-#from ScartLoopThrough import ScartLoopThrough
-#from HarddiskSetup import HarddiskSelection
-#from ConfigMenu import *
-
-#from About import *
-
-#from Network import *
-
-#from TimerEdit import *
-
 # hack.... dynamically importing all screens
 from __init__ import __all__
 for i in __all__:
@@ -74,35 +61,6 @@ class boundFunction:
 		self.args = args
 	def __call__(self):
 		self.fnc(*self.args)
-
-class configOSD(Screen):
-	#this needs focus handling - so not useable
-
-	def okbuttonClick(self):
-		self.close
- 
-	def __init__(self, session):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions"], 
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.close
-			})
-
-		self["okbutton"] = Button("Save")
-
-		self["txt_alpha"] = Label("Alpha:")
-		self["sld_alpha"] = ProgressBar()
-		self["sld_alpha"].setValue(50)
-
-		self["txt_brightness"] = Label("Brightness:")
-		self["sld_brightness"] = ProgressBar()
-		self["sld_brightness"].setValue(50)
-
-		self["txt_gamma"] = Label("Contrast:")
-		self["sld_gamma"] = ProgressBar()
-		self["sld_gamma"].setValue(50)
 
 class Menu(Screen):
 	def okbuttonClick(self):
@@ -185,7 +143,6 @@ class FixedMenu(Screen):
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
-	#remove old code (i.e. goScan / goClock...)
 	
 	def __init__(self, *x):
 		Menu.__init__(self, *x)
@@ -197,9 +154,6 @@ class MainMenu(Menu):
 	def openSetup(self, dialog):
 		self.session.open(Setup, dialog)
 
-	def goSetup(self):
-		self.session.open(configTest)
-	
 	def setModeTV(self):
 		print "set Mode to TV"
 		pass
@@ -211,9 +165,3 @@ class MainMenu(Menu):
 	def setModeFile(self):
 		print "set Mode to File"
 		pass
-
-	def goScan(self):
-		self.session.open(ServiceScan)
-	
-	def goClock(self):
-		self.session.open(clockDisplay, Clock())
