@@ -16,7 +16,7 @@ class About(Screen):
 
 		self["hdd"] = Label("Detected HDD:")
 		hdd = Harddisk(0)
-		self["hddA"] = Label("%s (%s)" % (hdd.model(), hdd.capacity()))
+		self["hddA"] = Label("%s (%s, %d MB free)" % (hdd.model(), hdd.capacity(),hdd.free()))
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
