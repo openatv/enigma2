@@ -103,4 +103,4 @@ class Setup(Screen):
 				"left": self.keyLeft,
 				"right": self.keyRight,
 				"save": self.keySave
-			}, 1)
+			}, -1)
