@@ -104,7 +104,10 @@ int ePython::call(PyObject *pFunc, PyObject *pArgs)
 		pValue = PyObject_CallObject(pFunc, pArgs);
  		if (pValue != NULL)
 		{
-			res = PyInt_AsLong(pValue);
+			if (PyInt_Check(pValue))
+				res = PyInt_AsLong(pValue);
+			else
+				res = 0;
 			Py_DECREF(pValue);
 		} else
 		{
