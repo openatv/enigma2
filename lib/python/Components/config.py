@@ -115,7 +115,6 @@ class configSequence:
 		self.parent.change()	
 
 	def __call__(self):			#needed by configlist
-		print "__CALL__"
 		value = ""
 		mPos = self.markedPos
 		print mPos
@@ -127,8 +126,7 @@ class configSequence:
 				
 			diff = 	self.parent.vals[1] - len(str(i))
 			if diff > 0:
-				#how about alignment?
-				value += "           "[0:diff]		#how is this done correct?
+				value += " " * diff
 			value += 	str(i)
 		
 		value = value[0:mPos] + "_" + value[mPos + 1:]
