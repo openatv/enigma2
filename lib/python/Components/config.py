@@ -65,9 +65,9 @@ class configBoolean:
 		self.parent.save()
 
 	def handleKey(self, key):
-		if key == 1:
+		if key == config.prevElement:
 			self.parent.value = self.parent.value - 1
-		if key == 2:
+		if key == config.nextElement:
 			self.parent.value = self.parent.value + 1
 		
 		self.checkValues()			
@@ -87,8 +87,10 @@ class configValue:
 
 class Config:
 	def __init__(self):
-		pass
-		
+		self.choseElement = 0
+		self.prevElement = 1
+		self.nextElement = 2
+						
 config = Config();
 configfile = configFile()
 
@@ -110,9 +112,9 @@ class ConfigSlider:
 			self.parent.value = 10	
 
 	def handleKey(self, key):
-		if key == 1:
+		if key == config.prevElement:
 			self.parent.value = self.parent.value - 1
-		if key == 2:
+		if key == config.nextElement:
 			self.parent.value = self.parent.value + 1
 					
 		self.checkValues()	
