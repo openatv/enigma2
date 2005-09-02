@@ -77,6 +77,42 @@ class configBoolean:
 	def __call__(self):			#needed by configlist
 		self.checkValues()			
 		return ("text", self.parent.vals[self.parent.value])
+		
+class configSequence:
+	def __init__(self, parent):
+		self.parent = parent
+		
+	def checkValues(self):
+		pass
+#		if self.parent.value < 0:
+#			self.parent.value = 0	
+#
+#		if(self.parent.value >= (len(self.parent.vals) - 1)):
+#			self.parent.value = len(self.parent.vals) - 1
+#
+	def cancel(self):
+		self.parent.reload()
+
+	def save(self):
+		self.parent.save()
+
+	def handleKey(self, key):
+		if key == config.prevElement:
+			self.parent.value = self.parent.value - 1
+		if key == config.nextElement:
+			self.parent.value = self.parent.value + 1
+		
+		self.checkValues()			
+
+		self.parent.change()	
+
+	def __call__(self):			#needed by configlist
+		value = ""
+		for i in self.parent.value:
+			if (value != ""):
+				value += self.parent.vals[0]
+			value += str(i)
+		return ("text", value)
 
 class configValue:
 	def __init__(self, obj):

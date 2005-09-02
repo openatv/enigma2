@@ -8,4 +8,4 @@ install_DATA = \
 	EventInfo.py Label.py ServiceScan.py VolumeBar.py                       \
 	GUIComponent.py MenuList.py TextInput.py __init__.py MovieList.py				\
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py						\
-	AVSwitch.py VariableIP.py IPAddress.py IPNameserver.py IPGateway.py
+	AVSwitch.py VariableIP.py IPAddress.py IPNameserver.py IPGateway.py Network.py
