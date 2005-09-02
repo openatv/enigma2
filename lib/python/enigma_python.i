@@ -69,6 +69,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/epng.h>
 #include <lib/dvb/volume.h>
+#include <lib/driver/avswitch.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -130,6 +131,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/gdi/gfont.h>
 %include <lib/gdi/epng.h>
 %include <lib/dvb/volume.h>
+%include <lib/driver/avswitch.h>
 
 %include <lib/gdi/gpixmap.h>
 /**************  eptr  **************/
