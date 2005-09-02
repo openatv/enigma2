@@ -17,10 +17,6 @@ eAVSwitch::eAVSwitch()
 	instance = this;
 	
 	avsfd = open("/dev/dbox/avs0", O_RDWR);
-	
-	//enable colors on thedoc's tv 
-	ioctl(avsfd, 0x1000 | 35, 2);
-	ioctl(avsfd, 0x1000 | 9, 1);
 }
 
 eAVSwitch::~eAVSwitch()
