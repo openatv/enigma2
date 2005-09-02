@@ -60,12 +60,12 @@
 			<widget name="hddA" position="10,170" size="420,20"/>
 		</screen>
 		<screen name="Network" position="140,125" size="360,200" title="Network">
-			<widget name="text" position="10,30" size="420,40" font="Arial;20"/>
-			<widget name="tuner" position="10,80" size="420,20"/>
-			<widget name="tunerA" position="10,100" size="420,20"/>
-			<widget name="tunerB" position="10,120" size="420,20"/>
-			<widget name="hdd" position="10,150" size="420,20"/>
-			<widget name="hddA" position="10,170" size="420,20"/>
+			<widget name="textip" position="10,30" size="150,20" font="Arial;18"/>
+			<widget name="textgateway" position="10,50" size="150,20" font="Arial;18"/>
+			<widget name="textnameserver" position="10,70" size="150,20" font="Arial;18"/>
+			<widget name="ip" position="160,30" size="200,20" font="Arial;18"/>
+			<widget name="gateway" position="160,50" size="200,20" font="Arial;18"/>
+			<widget name="nameserver" position="160,70" size="200,20" font="Arial;18"/>
 		</screen>
 		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
 			<widget name="okbutton" position="20,245" size="205,40" />
