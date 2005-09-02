@@ -1,13 +1,14 @@
 from config import *
 import os
+from enigma import *
 
 class AVSwitch:
 	def __init__(self):
 		pass
 
 	def setColorFormat(self, value):
-		print "colorformat:" + str(value)
-		os.system("scart " + str(value))
+		#print "colorformat:" + str(value)
+		eAVSwitch.getInstance().setColorFormat(value)
 		
 	def setAspectRatio(self, value):
 		print "aspectratio:" + str(value)
