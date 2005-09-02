@@ -28,6 +28,8 @@ private:
 	
 	std::map<eServiceReference, eDVBBouquet> m_bouquets;
 public:
+	void load();
+	void save();
 	eDVBDB();
 	virtual ~eDVBDB();
 	
