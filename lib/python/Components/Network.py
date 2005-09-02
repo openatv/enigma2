@@ -23,10 +23,10 @@ class Network:
 		
 def InitNetwork():
 	config.network = ConfigSubsection()
-	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], ("."))
-	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], ("."))
-	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], ("."))
-	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], (":"))
+	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (("."), 3))
+	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (("."), 3))
+	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (("."), 3))
+	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), 2))
 
 	iNetwork = Network()
 

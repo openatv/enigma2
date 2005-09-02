@@ -81,15 +81,17 @@ class configBoolean:
 class configSequence:
 	def __init__(self, parent):
 		self.parent = parent
+		self.markedPos = 0
 		
 	def checkValues(self):
-		pass
-#		if self.parent.value < 0:
-#			self.parent.value = 0	
-#
-#		if(self.parent.value >= (len(self.parent.vals) - 1)):
-#			self.parent.value = len(self.parent.vals) - 1
-#
+		maxPos = len(self.parent.value) * self.parent.vals[1] 
+		print maxPos
+			
+		if self.markedPos >= maxPos:
+			self.markedPos = maxPos - 1
+		if self.markedPos < 0:
+			self.markedPos = 0
+			
 	def cancel(self):
 		self.parent.reload()
 
@@ -97,21 +99,39 @@ class configSequence:
 		self.parent.save()
 
 	def handleKey(self, key):
+		#this will no change anything on the value itself
+		#so we can handle it here in gui element
 		if key == config.prevElement:
-			self.parent.value = self.parent.value - 1
+			self.markedPos -= 1
 		if key == config.nextElement:
-			self.parent.value = self.parent.value + 1
+			self.markedPos += 1
 		
 		self.checkValues()			
+		
+		print "markPos:",
+		print self.markedPos
 
+		#FIXME: dont call when press left/right
 		self.parent.change()	
 
 	def __call__(self):			#needed by configlist
+		print "__CALL__"
 		value = ""
+		mPos = self.markedPos
+		print mPos
 		for i in self.parent.value:
-			if value != "":
-				value += self.parent.vals
-			value += str(i)
+			if value != "":	#fixme no heading separator possible
+				value += self.parent.vals[0]
+				if mPos >= len(value) - 1:
+					mPos += 1
+				
+			diff = 	self.parent.vals[1] - len(str(i))
+			if diff > 0:
+				#how about alignment?
+				value += "           "[0:diff]		#how is this done correct?
+			value += 	str(i)
+		
+		value = value[0:mPos] + "_" + value[mPos + 1:]
 		return ("text", value)
 
 class configValue:
@@ -172,7 +192,7 @@ class configElement:
 			return int(data);
 		elif control == configSequence:
 			list = [ ]
-			part = data.split(self.vals)
+			part = data.split(self.vals[0])
 			for x in part:
 				list.append(int(x))
 			return list
@@ -188,7 +208,7 @@ class configElement:
 			value = ""
 			for i in data:
 				if value !="":
-					value += self.vals
+					value += self.vals[0]
 				value += str(i)
 			return value
 		else: 
