@@ -24,7 +24,7 @@ public:
 	ePython();
 	~ePython();
 	int execute(const std::string &pythonfile, const std::string &funcname);
-	static void call(PyObject *pFunc, PyObject *args);
+	static int call(PyObject *pFunc, PyObject *args);
 	static PyObject *resolve(const std::string &pythonfile, const std::string &funcname);
 private:
 };

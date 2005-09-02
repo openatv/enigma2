@@ -95,21 +95,23 @@ int ePython::execute(const std::string &pythonfile, const std::string &funcname)
 	return 0;
 }
 
-void ePython::call(PyObject *pFunc, PyObject *pArgs)
+int ePython::call(PyObject *pFunc, PyObject *pArgs)
 {
+	int res = -1;
 	PyObject *pValue;
 	if (pFunc && PyCallable_Check(pFunc))
 	{
 		pValue = PyObject_CallObject(pFunc, pArgs);
  		if (pValue != NULL)
 		{
-//			printf("Result of call: %ld\n", PyInt_AsLong(pValue));
+			res = PyInt_AsLong(pValue);
 			Py_DECREF(pValue);
 		} else
 		{
 		 	PyErr_Print();
 		}
 	}
+	return res;
 }
 
 PyObject *ePython::resolve(const std::string &pythonfile, const std::string &funcname)
