@@ -15,7 +15,8 @@ class About(Screen):
 		self["tunerB"] = Label("   Tuner B: Fujitsu QST (DVB-S)")
 
 		self["hdd"] = Label("Detected HDD:")
-		self["hddA"] = Label(Harddisk(0).model())
+		hdd = Harddisk(0)
+		self["hddA"] = Label("%s (%s)" % (hdd.model(), hdd.capacity()))
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
