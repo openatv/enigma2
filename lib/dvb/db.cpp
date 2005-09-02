@@ -95,7 +95,7 @@ void eDVBService::setCachePID(cacheID id, int pid)
 
 DEFINE_REF(eDVBDB);
 
-eDVBDB::eDVBDB()
+void eDVBDB::load()
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen("lamedb", "rt");
@@ -115,7 +115,7 @@ eDVBDB::eDVBDB()
 		fclose(f);
 		return;
 	}
-	
+
 	// clear all transponders
 
 	while (!feof(f))
@@ -129,10 +129,10 @@ eDVBDB::eDVBDB()
 		if (original_network_id == -1)
 			continue;
 		eDVBChannelID channelid = eDVBChannelID(
-			eDVBNamespace(dvb_namespace), 
-			eTransportStreamID(transport_stream_id), 
+			eDVBNamespace(dvb_namespace),
+			eTransportStreamID(transport_stream_id),
 			eOriginalNetworkID(original_network_id));
-		
+
 		ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 		while (!feof(f))
 		{
@@ -169,9 +169,9 @@ eDVBDB::eDVBDB()
 		eDebug("services invalid, no services");
 		return;
 	}
-	
+
 	// clear all services
-	
+
 	int count=0;
 
 	while (!feof(f))
@@ -186,7 +186,7 @@ eDVBDB::eDVBDB()
 		if (service_number == -1)
 			continue;
 		ePtr<eDVBService> s = new eDVBService;
-		eServiceReferenceDVB ref = 
+		eServiceReferenceDVB ref =
 						eServiceReferenceDVB(
 						eDVBNamespace(dvb_namespace),
 						eTransportStreamID(transport_stream_id),
@@ -244,18 +244,17 @@ eDVBDB::eDVBDB()
 	}
 
 	eDebug("loaded %d services", count);
-	
+
 	fclose(f);
-	
 }
 
-eDVBDB::~eDVBDB()
+void eDVBDB::save()
 {
 	eDebug("---- saving lame channel db");
 	FILE *f=fopen("lamedb", "wt");
 	int channels=0, services=0;
 	if (!f)
-		eFatal("couldn't save lame channel db!"); 
+		eFatal("couldn't save lame channel db!");
 	fprintf(f, "eDVB services /3/\n");
 	fprintf(f, "transponders\n");
 	for (std::map<eDVBChannelID, channel>::const_iterator i(m_channels.begin());
@@ -263,13 +262,13 @@ eDVBDB::~eDVBDB()
 	{
 		const eDVBChannelID &chid = i->first;
 		const channel &ch = i->second;
-		
+
 		fprintf(f, "%08x:%04x:%04x\n", chid.dvbnamespace.get(),
 				chid.transport_stream_id.get(), chid.original_network_id.get());
 		eDVBFrontendParametersSatellite sat;
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
-			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n", 
+			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
 				sat.frequency, sat.symbol_rate,
 				sat.polarisation, sat.fec, sat.inversion,
 				sat.orbital_position);
@@ -278,28 +277,46 @@ eDVBDB::~eDVBDB()
 		channels++;
 	}
 	fprintf(f, "end\nservices\n");
-	
+
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator i(m_services.begin());
 		i != m_services.end(); ++i)
 	{
 		const eServiceReferenceDVB &s = i->first;
-		fprintf(f, "%04x:%08x:%04x:%04x:%d:%d\n", 
-				s.getServiceID().get(), s.getDVBNamespace().get(), 
-				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(), 
+		fprintf(f, "%04x:%08x:%04x:%04x:%d:%d\n",
+				s.getServiceID().get(), s.getDVBNamespace().get(),
+				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(),
 				s.getServiceType(),
 				0);
-		
+
 		fprintf(f, "%s\n", i->second->m_service_name.c_str());
 		fprintf(f, "p:%s", i->second->m_provider_name.c_str());
+
+		// write cached pids
+		for (std::map<int,int>::const_iterator ca(i->second->m_cache.begin());
+			ca != i->second->m_cache.end(); ++ca)
+			fprintf(f, ",c:%02d%04x", ca->first, ca->second);
+
+		// write cached ca pids
 		for (std::set<int>::const_iterator ca(i->second->m_ca.begin());
 			ca != i->second->m_ca.end(); ++ca)
 			fprintf(f, ",C:%04x", *ca);
+
 		fprintf(f, "\n");
 		services++;
 	}
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
 	fclose(f);
+}
+
+eDVBDB::eDVBDB()
+{
+	load();
+}
+
+eDVBDB::~eDVBDB()
+{
+//	save();
 }
 
 RESULT eDVBDB::addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)
