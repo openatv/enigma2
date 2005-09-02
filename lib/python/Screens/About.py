@@ -3,7 +3,6 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Harddisk import Harddisk
 
-
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
