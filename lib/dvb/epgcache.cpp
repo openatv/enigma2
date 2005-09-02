@@ -981,7 +981,7 @@ void eEPGCache::channel_data::abortEPG()
 		eDebug("[EPGC] abort caching events !!");
 		if (isRunning & eEPGCache::SCHEDULE)
 		{
-			isRunning &= eEPGCache::SCHEDULE;
+			isRunning &= ~eEPGCache::SCHEDULE;
 			m_ScheduleReader->stop();
 			m_ScheduleConn=0;
 		}
