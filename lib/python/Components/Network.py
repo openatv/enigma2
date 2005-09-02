@@ -8,7 +8,7 @@ class Network:
 		
 	def setIPAddress(self, ip):
 		print ip
-		#os.system("echo ifconfig eth0 %d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3]))
+		os.system("echo ifconfig eth0 %d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3]))
 
 	def setIPGateway(self, ip):
 		os.system("echo route add default gw %d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3]))
@@ -18,25 +18,32 @@ class Network:
 		resolvconf.write("nameserver %d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3]))
 		resolvconf.close()
 		
+	def setMACAddress(self, mac):
+		os.system("echo ifconfig eth0 %02x:%02x:%02x:%02x:%02x:%02x" % (mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]))
+		
 def InitNetwork():
-	config.network = ConfigSubsection();
-	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (".") );
-	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (".") );
-	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (".") );
+	config.network = ConfigSubsection()
+	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], ("."))
+	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], ("."))
+	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], ("."))
+	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], (":"))
 
 	iNetwork = Network()
 
 	def setIPAddress(configElement):
-		iNetwork.setIPAddress(configElement.value);
+		iNetwork.setIPAddress(configElement.value)
 
 	def setIPGateway(configElement):
-		iNetwork.setIPGateway(configElement.value);
+		iNetwork.setIPGateway(configElement.value)
 		
 	def setIPNameserver(configElement):
-		iNetwork.setIPNameserver(configElement.value);
+		iNetwork.setIPNameserver(configElement.value)
 
+	def setMACAddress(configElement):
+		iNetwork.setMACAddress(configElement.value)
 
 	# this will call the "setup-val" initial
-	config.network.ip.addNotifier(setIPAddress);
-	config.network.gateway.addNotifier(setIPGateway);
-	config.network.dns.addNotifier(setIPNameserver);		
+	config.network.ip.addNotifier(setIPAddress)
+	config.network.gateway.addNotifier(setIPGateway)
+	config.network.dns.addNotifier(setIPNameserver)
+	config.network.mac.addNotifier(setMACAddress)
