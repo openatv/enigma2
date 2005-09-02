@@ -115,7 +115,7 @@ class eMain: public eApplication, public Object
 	ePtr<eDVBDB> m_dvbdb;
 	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
 	ePtr<eComponentScan> m_scan;
-//	ePtr<eEPGCache> m_epgcache;
+	ePtr<eEPGCache> m_epgcache;
 
 public:
 	eMain()
@@ -126,7 +126,7 @@ public:
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
 		m_locale_time_handler = new eDVBLocalTimeHandler();
-//		m_epgcache = new eEPGCache();
+		m_epgcache = new eEPGCache();
 		m_mgr->setChannelList(m_dvbdb);
 		
 //		m_scan = new eComponentScan();
