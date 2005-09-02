@@ -129,7 +129,7 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 	
 	if (fd >= 0)
 	{
-		notifier=new eSocketNotifier(context, fd, eSocketNotifier::Read);
+		notifier=new eSocketNotifier(context, fd, eSocketNotifier::Read, false);
 		CONNECT(notifier->activated, eDVBSectionReader::data);
 		res = 0;
 	} else
@@ -155,6 +155,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	if (fd < 0)
 		return -ENODEV;
 
+	notifier->start();
 #if HAVE_DVB_API_VERSION < 3
 	dmxSctFilterParams sct;
 #else
@@ -205,7 +206,8 @@ RESULT eDVBSectionReader::stop()
 
 	active=0;
 	::ioctl(fd, DMX_STOP);
-	
+	notifier->stop();
+
 	return 0;
 }
 
