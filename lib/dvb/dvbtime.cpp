@@ -81,7 +81,7 @@ int TDT::createTable(int nr, const __u8 *data, unsigned int max)
 	if ( data && data[0] == 0x70 || data[0] == 0x73 )
 	{
 		int length = ((data[1] & 0x0F) << 8) | data[2];
-		if ( length >= 8 )
+		if ( length >= 5 )
 		{
 			time_t tptime = parseDVBtime(data[3], data[4], data[5], data[6], data[7]);
 			eDVBLocalTimeHandler::getInstance()->updateTime(tptime, chan);
