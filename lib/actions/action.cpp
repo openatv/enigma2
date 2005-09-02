@@ -124,9 +124,18 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 	m_python_keys.insert(std::pair<std::string,ePythonKeyBinding>(context, bind));
 }
 
+struct call_entry
+{
+	PyObject *m_fnc, *m_arg;
+	eWidget *m_widget;
+	void *m_widget_arg;
+	call_entry(PyObject *fnc, PyObject *arg): m_fnc(fnc), m_arg(arg) { }
+	call_entry(eWidget *widget, void *arg): m_widget(widget), m_widget_arg(arg) { }
+};
+
 void eActionMap::keyPressed(int device, int key, int flags)
 {
-	std::list<std::pair<PyObject*,PyObject*> > call_list;
+	std::list<call_entry> call_list;
 	
 		/* iterate active contexts. */
 	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin()); c != m_bindings.end();)
@@ -147,12 +156,9 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				{
 					if (
 						// (k->second.m_device == m_device) &&
-						(k->second.m_key == key) &&
-						(k->second.m_flags & (1<<flags)))
-					{
-						if (i->second.m_widget->event(eWidget::evtAction, 0, (void*)k->second.m_action))
-							return;
-					}
+							(k->second.m_key == key) &&
+							(k->second.m_flags & (1<<flags)))
+						call_list.push_back(call_entry(i->second.m_widget, (void*)k->second.m_action));
 				}
 			} else
 			{
@@ -180,7 +186,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 						PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
 						++k;
 						Py_INCREF(i->second.m_fnc);
-						call_list.push_back(std::pair<PyObject*,PyObject*>(i->second.m_fnc, pArgs));
+						call_list.push_back(call_entry(i->second.m_fnc, pArgs));
 					} else
 						++k;
 				}
@@ -190,16 +196,26 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				PyTuple_SetItem(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SetItem(pArgs, 1, PyInt_FromLong(flags));
 				Py_INCREF(i->second.m_fnc);
-				call_list.push_back(std::pair<PyObject*,PyObject*>(i->second.m_fnc, pArgs));
+				call_list.push_back(call_entry(i->second.m_fnc, pArgs));
 			}
 		}
 	}
 
-	for (std::list<std::pair<PyObject*,PyObject*> >::iterator i(call_list.begin()); i != call_list.end(); ++i)
+	int res = 0;
+			/* we need to iterate over all to not loose a reference */
+	for (std::list<call_entry>::iterator i(call_list.begin()); i != call_list.end(); ++i)
 	{
-		ePython::call(i->first, i->second);
-		Py_DECREF(i->first);
-		Py_DECREF(i->second);
+		if (i->m_fnc)
+		{
+			if (!res)
+				res = ePython::call(i->m_fnc, i->m_arg);
+			Py_DECREF(i->m_fnc);
+			Py_DECREF(i->m_arg);
+		} else if (i->m_widget)
+		{
+			if (!res)
+				res = i->m_widget->event(eWidget::evtAction, 0, (void*)i->m_widget_arg);
+		}
 	}
 }
 
