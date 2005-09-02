@@ -109,8 +109,8 @@ class configSequence:
 	def __call__(self):			#needed by configlist
 		value = ""
 		for i in self.parent.value:
-			if (value != ""):
-				value += self.parent.vals[0]
+			if value != "":
+				value += self.parent.vals
 			value += str(i)
 		return ("text", value)
 
@@ -170,6 +170,12 @@ class configElement:
 			return int(data);
 		elif control == configBoolean:
 			return int(data);
+		elif control == configSequence:
+			list = [ ]
+			part = data.split(self.vals)
+			for x in part:
+				list.append(int(x))
+			return list
 		else: 
 			return ""	
 
@@ -178,6 +184,13 @@ class configElement:
 			return str(data);
 		elif control == configBoolean:
 			return str(data);
+		elif control == configSequence:
+			value = ""
+			for i in data:
+				if value !="":
+					value += self.vals
+				value += str(i)
+			return value
 		else: 
 			return ""	
 
