@@ -175,6 +175,9 @@ Components.InputDevice.InitInputDevices()
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
 
+import Components.Network
+Components.Network.InitNetwork()
+
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 

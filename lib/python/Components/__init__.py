@@ -5,5 +5,5 @@ __all__ = ["ActionMap", "Button", "Clock", "ConfigList", "EventInfo",
 	"ServiceName", "ServiceScan", "VariableText", "VariableValue", "VolumeBar",
 	"components", "config", "TimerList", "TimeInput", "MovieList", 
 	"InputDevice",	"ServicePosition", "IPAddress", "VariableIP", "IPGateway",
-	"IPNameserver" ]
+	"IPNameserver", "Network" ]
 
