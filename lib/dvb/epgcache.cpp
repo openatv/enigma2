@@ -244,21 +244,21 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					eDebug("[eEPGCache] couldnt initialize nownext reader!!");
 					return;
 				}
-				data.m_NowNextReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_NowNextConn);
+
 				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize schedule reader!!");
 					return;
 				}
-				data.m_ScheduleReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_ScheduleConn);
+
 				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
 					return;
 				}
-				data.m_ScheduleOtherReader->connectRead(slot(data, &eEPGCache::channel_data::readData), data.m_ScheduleOtherConn);
+
 				messages.send(Message(Message::startChannel, chan));
 				// -> gotMessage -> changedService
 			}
@@ -891,16 +891,19 @@ void eEPGCache::channel_data::startEPG()
 
 	mask.data[0] = 0x4E;
 	mask.mask[0] = 0xFE;
+	m_NowNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_NowNextConn);
 	m_NowNextReader->start(mask);
 	isRunning |= NOWNEXT;
 
 	mask.data[0] = 0x50;
 	mask.mask[0] = 0xF0;
+	m_ScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleConn);
 	m_ScheduleReader->start(mask);
 	isRunning |= SCHEDULE;
 
 	mask.data[0] = 0x60;
 	mask.mask[0] = 0xF0;
+	m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
@@ -915,20 +918,22 @@ void eEPGCache::channel_data::abortNonAvail()
 		{
 			eDebug("[EPGC] abort non avail nownext reading");
 			isRunning &= ~eEPGCache::NOWNEXT;
-			if ( m_NowNextReader )
-				m_NowNextReader->stop();
+			m_NowNextReader->stop();
+			m_NowNextConn=0;
 		}
 		if ( !(haveData&eEPGCache::SCHEDULE) && (isRunning&eEPGCache::SCHEDULE) )
 		{
 			eDebug("[EPGC] abort non avail schedule reading");
 			isRunning &= ~SCHEDULE;
 			m_ScheduleReader->stop();
+			m_ScheduleConn=0;
 		}
 		if ( !(haveData&eEPGCache::SCHEDULE_OTHER) && (isRunning&eEPGCache::SCHEDULE_OTHER) )
 		{
 			eDebug("[EPGC] abort non avail schedule_other reading");
 			isRunning &= ~SCHEDULE_OTHER;
 			m_ScheduleOtherReader->stop();
+			m_ScheduleOtherConn=0;
 		}
 		if ( isRunning )
 			abortTimer.start(90000, true);
@@ -977,20 +982,20 @@ void eEPGCache::channel_data::abortEPG()
 		if (isRunning & eEPGCache::SCHEDULE)
 		{
 			isRunning &= eEPGCache::SCHEDULE;
-			if ( m_ScheduleReader )
-				m_ScheduleReader->stop();
+			m_ScheduleReader->stop();
+			m_ScheduleConn=0;
 		}
 		if (isRunning & eEPGCache::NOWNEXT)
 		{
 			isRunning &= ~eEPGCache::NOWNEXT;
-			if ( m_NowNextReader )
-				m_NowNextReader->stop();
+			m_NowNextReader->stop();
+			m_NowNextConn=0;
 		}
 		if (isRunning & SCHEDULE_OTHER)
 		{
 			isRunning &= ~eEPGCache::SCHEDULE_OTHER;
-			if ( m_ScheduleOtherReader )
-				m_ScheduleOtherReader->stop();
+			m_ScheduleOtherReader->stop();
+			m_ScheduleOtherConn=0;
 		}
 		can_delete=1;
 	}
@@ -1033,9 +1038,18 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			eDebugNoNewLine("[EPGC] ");
 			switch (source)
 			{
-				case eEPGCache::NOWNEXT: eDebugNoNewLine("nownext");break;
-				case eEPGCache::SCHEDULE: eDebugNoNewLine("schedule");break;
-				case eEPGCache::SCHEDULE_OTHER: eDebugNoNewLine("schedule other");break;
+				case eEPGCache::NOWNEXT:
+					m_NowNextConn=0;
+					eDebugNoNewLine("nownext");
+					break;
+				case eEPGCache::SCHEDULE:
+					m_ScheduleConn=0;
+					eDebugNoNewLine("schedule");
+					break;
+				case eEPGCache::SCHEDULE_OTHER:
+					m_ScheduleOtherConn=0;
+					eDebugNoNewLine("schedule other");
+					break;
 				default: eDebugNoNewLine("unknown");break;
 			}
 			eDebug(" finished(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
