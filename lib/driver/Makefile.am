@@ -4,5 +4,5 @@ INCLUDES = \
 noinst_LIBRARIES = libenigma_driver.a
 
 libenigma_driver_a_SOURCES = \
-	rc.cpp rcinput.cpp rcconsole.cpp
+	rc.cpp rcinput.cpp rcconsole.cpp avswitch.cpp
 	
