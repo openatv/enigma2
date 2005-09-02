@@ -33,6 +33,11 @@ class InfoBar(Screen):
 		self.volumeBar = VolumeBar()		
 		
 		self.state = self.STATE_HIDDEN
+		
+		self.hideTimer = eTimer()
+		self.hideTimer.timeout.get().append(self.doTimerHide)
+		#self.hideTimer.start(1000)
+
 
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
@@ -87,13 +92,23 @@ class InfoBar(Screen):
 	def hide(self):	
 		self.instance.hide()
 
+	def doTimerHide(self):
+		if self.state == self.STATE_SHOWN:
+			self.instance.hide()
+			self.state = self.STATE_HIDDEN
+
 	def toggleShow(self):
 		if self.state == self.STATE_SHOWN:
-#			self.instance.hide()
-			self.startHide()
+			self.instance.hide()
+			#pls check animation support, sorry
+#			self.startHide()
+			self.state = self.STATE_HIDDEN
 		else:
-#			self.instance.show()
-			self.startShow()
+			self.instance.show()
+#			self.startShow()
+			self.state = self.STATE_SHOWN
+			#TODO: make it customizable
+			self.hideTimer.start(5000)
 
 	def	zapUp(self):
 		self.servicelist.moveUp()
