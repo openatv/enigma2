@@ -35,7 +35,7 @@ class Network:
 		
 def InitNetwork():
 	config.network = ConfigSubsection()
-	config.network.dhcp = configElement("config.network.dhcp", configBoolean, 0, ("no", "yes"))
+	config.network.dhcp = configElement("config.network.dhcp", configSelection, 0, ("no", "yes"))
 	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (("."), 3))
 	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (("."), 3))
 	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (("."), 3))

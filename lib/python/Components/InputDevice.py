@@ -3,7 +3,7 @@ from config import config				#global config instance
 from config import configElement
 from config import ConfigSubsection
 from config import ConfigSlider
-from config import configBoolean
+from config import configSelection
 
 class inputDevices:
 	def __init__(self):

@@ -47,7 +47,7 @@ class configFile:
 
 		fileHandle.close()		
 
-class configBoolean:
+class configSelection:
 	def __init__(self, parent):
 		self.parent = parent
 		
@@ -186,7 +186,7 @@ class configElement:
 	def datafromFile(self, control, data):
 		if control == ConfigSlider:
 			return int(data);
-		elif control == configBoolean:
+		elif control == configSelection:
 			return int(data);
 		elif control == configSequence:
 			list = [ ]
@@ -200,7 +200,7 @@ class configElement:
 	def datatoFile(self, control, data):
 		if control == ConfigSlider:
 			return str(data);
-		elif control == configBoolean:
+		elif control == configSelection:
 			return str(data);
 		elif control == configSequence:
 			value = ""
