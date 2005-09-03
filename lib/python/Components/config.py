@@ -128,7 +128,8 @@ class configSequence:
 			if diff > 0:
 				value += " " * diff
 			value += 	str(i)
-		
+# or the above code if you have to spare ink
+#		value = ((len(self.parent.value) * ("%0" + str(self.parent.vals[1]) + "d" + self.parent.vals[0]))[0:-1]) % tuple(self.parent.value)
 		value = value[0:mPos] + "_" + value[mPos + 1:]
 		return ("text", value)
 
@@ -203,11 +204,13 @@ class configElement:
 		elif control == configSelection:
 			return str(data);
 		elif control == configSequence:
-			value = ""
-			for i in data:
-				if value !="":
-					value += self.vals[0]
-				value += str(i)
+			value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
+#			just in case you don't understand the above, here an equivalent:
+#			value = ""
+#			for i in data:
+#				if value !="":
+#					value += self.vals[0]
+#				value += str(i)
 			return value
 		else: 
 			return ""	
