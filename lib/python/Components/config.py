@@ -74,8 +74,8 @@ class configSelection:
 
 		self.parent.change()	
 
-	def __call__(self):			#needed by configlist
-		self.checkValues()			
+	def __call__(self, selected):			#needed by configlist
+		self.checkValues()
 		return ("text", self.parent.vals[self.parent.value])
 		
 class configSequence:
@@ -114,24 +114,25 @@ class configSequence:
 		#FIXME: dont call when press left/right
 		self.parent.change()	
 
-	def __call__(self):			#needed by configlist
+	def __call__(self, selected):			#needed by configlist
 		value = ""
 		mPos = self.markedPos
 		print mPos
 		for i in self.parent.value:
-			if value != "":	#fixme no heading separator possible
+			if len(value):	#fixme no heading separator possible
 				value += self.parent.vals[0]
 				if mPos >= len(value) - 1:
 					mPos += 1
 				
 			diff = 	self.parent.vals[1] - len(str(i))
 			if diff > 0:
+				# if this helps?!
 				value += " " * diff
 			value += 	str(i)
-# or the above code if you have to spare ink
-#		value = ((len(self.parent.value) * ("%0" + str(self.parent.vals[1]) + "d" + self.parent.vals[0]))[0:-1]) % tuple(self.parent.value)
-		value = value[0:mPos] + "_" + value[mPos + 1:]
-		return ("text", value)
+
+			# only mark cursor when we are selected
+			# (this code is heavily ink optimized!)
+		return ("mtext"[1-selected:], value, [mPos])
 
 class configValue:
 	def __init__(self, obj):
@@ -175,8 +176,8 @@ class ConfigSlider:
 		self.checkValues()	
 		self.parent.change()	
 
-	def __call__(self):			#needed by configlist
-		self.checkValues()	
+	def __call__(self, selected):			#needed by configlist
+		self.checkValues()
 		return ("slider", self.parent.value * 10)
 
 class ConfigSubsection:

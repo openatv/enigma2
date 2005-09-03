@@ -132,7 +132,6 @@ PyObject *ePython::resolve(const std::string &pythonfile, const std::string &fun
 		pFunc = PyDict_GetItemString(pDict, funcname.c_str());
 		Py_XINCREF(pFunc);
 		Py_DECREF(pModule);
-		eDebug("resolved to %p", pFunc);
 		return pFunc;
 	} else
 	{
