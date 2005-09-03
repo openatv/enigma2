@@ -39,9 +39,9 @@ def InitRFmod():
 	def setSoundCarrier(configElement):
 		iRFmod.setSoundCarrier(configElement.value);
 	def setChannel(configElement):
-		iRFmod.setChannel(configElement.value);
+		iRFmod.setChannel(configElement.value +  30);
 	def setFinetune(configElement):
-		iRFmod.setFinetune(configElement.value);
+		iRFmod.setFinetune(configElement.value - 5);
 
 	# this will call the "setup-val" initial
 	config.rfmod.enable.addNotifier(setFunction);
