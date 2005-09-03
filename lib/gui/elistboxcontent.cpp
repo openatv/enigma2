@@ -1,5 +1,6 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/gdi/font.h>
 #include <Python.h>
 
 /*
@@ -421,8 +422,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* now, handle the value. get 2nd part from tuple*/
 			value = PyTuple_GetItem(item, 1);
 			if (value)
+			{
+				PyObject *args = PyTuple_New(1);
+				PyTuple_SetItem(args, 0, PyInt_FromLong(selected));
+				
 					/* CallObject will call __call__ which should return the value tuple */
-				value = PyObject_CallObject(value, 0);
+				value = PyObject_CallObject(value, args);
+
+				Py_DECREF(args);
+					/* the PyInt was stolen. */
+			}
 			
 				/*  check if this is really a tuple */
 			if (PyTuple_Check(value))
@@ -459,6 +468,48 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						painter.fill(eRect(offset.x() + m_seperation, offset.y() + 5, width, height-10));
 						
 							/* pvalue is borrowed */
+					} else if (!strcmp(atype, "mtext"))
+					{
+						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
+						
+						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(m_seperation, 0), item_right));
+						para->setFont(fnt2);
+						para->renderString(text, 0);
+						para->realign(eTextPara::dirRight);
+						int glyphs = para->size();
+						
+						PyObject *plist = 0;
+						
+						if (PyTuple_Size(value) >= 3)
+							plist = PyTuple_GetItem(value, 2);
+						
+						int entries = 0;
+
+						if (plist && PyList_Check(plist))
+							entries = PyList_Size(plist);
+						
+						for (int i = 0; i < entries; ++i)
+						{
+							PyObject *entry = PyList_GetItem(plist, i);
+							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
+							
+							if ((num < 0) || (num >= glyphs))
+								eWarning("glyph index %d in PythonConfigList out of bounds!");
+							else
+							{
+								para->setGlyphFlag(num, GS_INVERT);
+								eRect bbox;
+								bbox = para->getGlyphBBox(num);
+								bbox = eRect(bbox.left(), offset.y(), bbox.width(), m_itemsize.height());
+								painter.fill(bbox);
+							}
+								/* entry is borrowed */
+						}
+						
+						painter.renderPara(para, ePoint(0, 0));
+							/* pvalue is borrowed */
+							/* plist is 0 or borrowed */
 					}
 				}
 				Py_XDECREF(type);
