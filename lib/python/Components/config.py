@@ -65,9 +65,9 @@ class configSelection:
 		self.parent.save()
 
 	def handleKey(self, key):
-		if key == config.prevElement:
+		if key == config.key["prevElement"]:
 			self.parent.value = self.parent.value - 1
-		if key == config.nextElement:
+		if key == config.key["nextElement"]:
 			self.parent.value = self.parent.value + 1
 		
 		self.checkValues()			
@@ -101,9 +101,27 @@ class configSequence:
 	def handleKey(self, key):
 		#this will no change anything on the value itself
 		#so we can handle it here in gui element
-		if key == config.prevElement:
+		if key == config.key["prevElement"]:
 			self.markedPos -= 1
-		if key == config.nextElement:
+		if key == config.key["nextElement"]:
+			self.markedPos += 1
+		
+		if key >= config.key["0"] and key <= config.key["9"]:
+			number = 9 - config.key["9"] + key
+			# length of numberblock
+			numberLen = len(str(self.parent.vals[1][1]))
+			# position in the block
+			posinblock = self.markedPos % numberLen
+			# blocknumber
+			blocknumber = self.markedPos / numberLen
+			
+			oldvalue = self.parent.value[blocknumber]
+			olddec = oldvalue % 10 ** (numberLen - posinblock) - (oldvalue % 10 ** (numberLen - posinblock - 1))
+			newvalue = oldvalue - olddec + (10 ** (numberLen - posinblock - 1) * number)
+			
+			print "You actually pressed a number (" + str(number) + ") which will be added at block number " + str(blocknumber) + " on position " + str(posinblock)
+			print "Old value: " + str(oldvalue) + " olddec: " + str(olddec) + " newvalue: " + str(newvalue)
+			self.parent.value[blocknumber] = newvalue
 			self.markedPos += 1
 		
 		self.checkValues()			
@@ -117,18 +135,19 @@ class configSequence:
 	def __call__(self, selected):			#needed by configlist
 		value = ""
 		mPos = self.markedPos
-		print mPos
+		print "Positon: " + str(mPos)
 		for i in self.parent.value:
 			if len(value):	#fixme no heading separator possible
 				value += self.parent.vals[0]
 				if mPos >= len(value) - 1:
 					mPos += 1
 				
-			diff = 	self.parent.vals[1] - len(str(i))
-			if diff > 0:
-				# if this helps?!
-				value += " " * diff
-			value += 	str(i)
+			#diff = 	self.parent.vals[1] - len(str(i))
+			#if diff > 0:
+				## if this helps?!
+				#value += " " * diff
+			print (("%0" + str(len(str(self.parent.vals[1][1]))) + "d") % i)
+			value += ("%0" + str(len(str(self.parent.vals[1][1]))) + "d") % i
 
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
@@ -143,10 +162,20 @@ class configValue:
 
 class Config:
 	def __init__(self):
-		self.choseElement = 0
-		self.prevElement = 1
-		self.nextElement = 2
-						
+		self.key = { "choseElement": 0,
+					 "prevElement": 1,
+					 "nextElement": 2,
+					 "0": 10,
+					 "1": 11,
+					 "2": 12,
+					 "3": 13,
+					 "4": 14,
+					 "5": 15,
+					 "6": 16,
+					 "7": 17,
+					 "8": 18,
+					 "9": 19 }
+		
 config = Config();
 configfile = configFile()
 
@@ -168,9 +197,9 @@ class ConfigSlider:
 			self.parent.value = 10	
 
 	def handleKey(self, key):
-		if key == config.prevElement:
+		if key == config.key["prevElement"]:
 			self.parent.value = self.parent.value - 1
-		if key == config.nextElement:
+		if key == config.key["nextElement"]:
 			self.parent.value = self.parent.value + 1
 					
 		self.checkValues()	

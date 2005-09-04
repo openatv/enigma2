@@ -52,13 +52,13 @@ class Setup(Screen):
 
 	def keyOk(self):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.choseElement)
+			self["config"].handleKey(config.key["choseElement"])
 	def keyLeft(self):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.prevElement)
+			self["config"].handleKey(config.key["prevElement"])
 	def keyRight(self):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.nextElement)
+			self["config"].handleKey(config.key["nextElement"])
 
 	def keySave(self):
 		print "save requested"
@@ -71,6 +71,36 @@ class Setup(Screen):
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
+		
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.key[str(number)])
+
+
+	# TODO ugly as hell. any better ideas?
+	def keyNumber1(self):
+		self.keyNumberGlobal(1)
+	def keyNumber2(self):
+		self.keyNumberGlobal(2)
+	def keyNumber3(self):
+		self.keyNumberGlobal(3)
+	def keyNumber4(self):
+		self.keyNumberGlobal(4)
+	def keyNumber5(self):
+		self.keyNumberGlobal(5)
+	def keyNumber6(self):
+		self.keyNumberGlobal(6)
+	def keyNumber7(self):
+		self.keyNumberGlobal(7)
+	def keyNumber8(self):
+		self.keyNumberGlobal(8)
+	def keyNumber9(self):
+		self.keyNumberGlobal(9)
+	def keyNumber0(self):
+		self.keyNumberGlobal(0)
+
+
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -105,5 +135,16 @@ class Setup(Screen):
 				"ok": self.keyOk,
 				"left": self.keyLeft,
 				"right": self.keyRight,
-				"save": self.keySave
+				"save": self.keySave,
+				"1": self.keyNumber1,
+				"2": self.keyNumber2,
+				"3": self.keyNumber3,
+				"4": self.keyNumber4,
+				"5": self.keyNumber5,
+				"6": self.keyNumber6,
+				"7": self.keyNumber7,
+				"8": self.keyNumber8,
+				"9": self.keyNumber9,
+				"0": self.keyNumber0
+				
 			}, -1)

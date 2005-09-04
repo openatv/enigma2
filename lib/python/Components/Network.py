@@ -6,7 +6,7 @@ class Network:
 	def __init__(self):
 		pass
 		
-	def updateNetworkConfig(self):
+	def writeNetworkConfig(self):
 		# fixme restarting and updating the network too often. possible fix: check current config and execute only if changed :/
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces.tmp', 'w')
@@ -20,6 +20,7 @@ class Network:
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
 		fp.close()
 
+	def activateNetworkConfig(self):
 		import os
 		os.system("/etc/init.d/networking restart")
 		
@@ -45,19 +46,43 @@ class Network:
 	def setMACAddress(self, mac):
 		os.system("echo ifconfig eth0 ether %02x:%02x:%02x:%02x:%02x:%02x" % tuple(mac))
 		
+	def setIPAddress(self, ip):
+		os.system("echo ifconfig eth0 %d.%d.%d.%d" % tuple(ip))
+		self.writeNetworkConfig()
+
+	def setGateway(self, ip):
+		os.system("echo route add default gw %d.%d.%d.%d" % tuple(ip))
+		self.writeNetworkConfig()
+		
+	def setNetmask(self, ip):
+		os.system("echo ifconfig eth0 netmask %d.%d.%d.%d" % tuple(ip))		
+		self.writeNetworkConfig()		
+
 def InitNetwork():
 	config.network = ConfigSubsection()
 	config.network.dhcp = configElement("config.network.dhcp", configSelection, 0, ("no", "yes"))
-	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (("."), 3))
-	config.network.netmask = configElement("config.network.netmask", configSequence, [255,255,255,0], (("."), 3))	
-	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (("."), 3))
-	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (("."), 3))
-	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), 2))
+	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (("."), (1,255)))
+	config.network.netmask = configElement("config.network.netmask", configSequence, [255,255,255,0], (("."), (1,255)))
+	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (("."), (1,255)))
+	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (("."), (1,255)))
+	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
+	
+	#FIXME using this till other concept for this is implemented
+	config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
 
 	iNetwork = Network()
 
-	def updateNetworkConfig(configElement):
-		iNetwork.updateNetworkConfig()
+	def writeNetworkConfig(configElement):
+		iNetwork.writeNetworkConfig()
+		
+	def setIPAddress(configElement):
+		iNetwork.setIPAddress(configElement.value)
+
+	def setGateway(configElement):
+		iNetwork.setGateway(configElement.value)
+
+	def setNetmask(configElement):
+		iNetwork.setNetmask(configElement.value)		
 
 	def setDHCP(configElement):
 		iNetwork.setDHCP(configElement.value)
@@ -68,10 +93,15 @@ def InitNetwork():
 	def setMACAddress(configElement):
 		iNetwork.setMACAddress(configElement.value)
 
+	def activateNetworkConfig(configElement):
+		iNetwork.activateNetworkConfig()
+
+
 	# this will call the "setup-val" initial
 	config.network.dhcp.addNotifier(setDHCP)
-	config.network.ip.addNotifier(updateNetworkConfig)
-	config.network.netmask.addNotifier(updateNetworkConfig)	
-	config.network.gateway.addNotifier(updateNetworkConfig)
+	config.network.ip.addNotifier(setIPAddress)
+	config.network.netmask.addNotifier(setNetmask)	
+	config.network.gateway.addNotifier(setGateway)
 	config.network.dns.addNotifier(setIPNameserver)
 	config.network.mac.addNotifier(setMACAddress)
+	config.network.activate.addNotifier(activateNetworkConfig)
