@@ -142,16 +142,29 @@ typedef unsigned long long pts_t;
 	   large list, provided that no state information is nessesary to deliver
 	   the required information. Anyway - ref *must* be the same as the argument
 	   to the info() or getIServiceInformation call! */
+
+	/* About the usage of SWIG_VOID:
+	   SWIG_VOID(real_returntype_t) hides a return value from swig. This is used for
+	   the "superflouus" RESULT return values.
+	   
+	   Python code has to check the returned pointer against 0. This works,
+	   as all functions returning instances in smartpointers AND having a 
+	   RESULT have to BOTH return non-zero AND set the pointer to zero.
+	   
+	   Python code thus can't check for the reason, but the reason isn't
+	   user-servicable anyway. If you want to return a real reason which
+	   goes beyong "it just doesn't work", use extra variables for this,
+	   not the RESULT.
+	   
+	   Hide the result only if there is another way to check for failure! */
+	   
 class iStaticServiceInformation: public iObject
 {
 public:
-	virtual RESULT getName(const eServiceReference &ref, std::string &name)=0;
+	virtual SWIG_VOID(RESULT) getName(const eServiceReference &ref, std::string &SWIG_OUTPUT)=0;
 	
 		// doesn't need to be implemented, should return -1 then.
 	virtual int getLength(const eServiceReference &ref)=0;
-
-		// FOR SWIG
-	std::string getName(const eServiceReference &ref) { std::string temp; getName(ref, temp); return temp; }
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
@@ -161,10 +174,8 @@ class eServiceEvent;
 class iServiceInformation: public iObject
 {
 public:
-	virtual RESULT getName(std::string &name)=0;
-		// FOR SWIG
-	std::string getName() { std::string temp; getName(temp); return temp; }
-	virtual RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
+	virtual SWIG_VOID(RESULT) getName(std::string &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) getEvent(ePtr<eServiceEvent> &SWIG_OUTPUT, int nownext);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
@@ -203,9 +214,9 @@ public:
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
-	virtual RESULT seek(ePtr<iSeekableService> &ptr)=0;
-	virtual RESULT pause(ePtr<iPauseableService> &ptr)=0;
-	virtual RESULT info(ePtr<iServiceInformation> &ptr)=0;
+	virtual SWIG_VOID(RESULT) seek(ePtr<iSeekableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
@@ -229,7 +240,7 @@ public:
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
 	
 		/* new, shiny interface: streaming. */
-	virtual RESULT getNext(eServiceReference &ptr)=0;
+	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
@@ -237,10 +248,10 @@ TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
 class iServiceHandler: public iObject
 {
 public:
-	virtual RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr)=0;
-	virtual RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr)=0;
-	virtual RESULT list(const eServiceReference &, ePtr<iListableService> &ptr)=0;
-	virtual RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
+	virtual SWIG_VOID(RESULT) play(const eServiceReference &, ePtr<iPlayableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) record(const eServiceReference &, ePtr<iRecordableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) list(const eServiceReference &, ePtr<iListableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) info(const eServiceReference &, ePtr<iStaticServiceInformation> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceHandler>, iServiceHandlerPtr);

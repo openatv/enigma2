@@ -12,11 +12,13 @@ class ServiceName(PerServiceDisplay):
 			})
 
 	def newService(self):
-		info = iServiceInformationPtr()
 		service = self.navcore.getCurrentService()
 		
-		if service != None:
-			if not service.info(info):
+		print service
+		
+		if service is not None:
+			info = service.info()
+			if info is not None:
 				self.setText(info.getName())
 				setLCD(info.getName())
 	

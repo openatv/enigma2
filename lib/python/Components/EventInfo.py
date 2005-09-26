@@ -23,7 +23,8 @@ class EventInfo(PerServiceDisplay):
 		service = self.navcore.getCurrentService()
 		
 		if service != None:
-			if not service.info(info):
+			info = service.info()
+			if info is not None: 
 				ev = eServiceEventPtr()
 				if info.getEvent(ev, self.now_or_next & 1) == 0:
 					if self.now_or_next & 2:
