@@ -43,6 +43,7 @@ private:
 	
 	std::list<ePtr<iDVBFrontendParameters> > m_ch_toScan, m_ch_scanned, m_ch_unavailable;
 	ePtr<iDVBFrontendParameters> m_ch_current;
+	eDVBChannelID m_chid_current;
 	
 	ePtr<eTable<ServiceDescriptionTable> > m_SDT;
 	ePtr<eTable<NetworkInformationTable> > m_NIT;
@@ -52,7 +53,8 @@ private:
 	void NITready(int err);
 	void BATready(int err);
 	
-	void addChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
+	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
+	void addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 	int  sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2) const;
 	
 	void channelDone();
