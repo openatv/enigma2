@@ -1,5 +1,5 @@
 // for debugging use:
-#define SYNC_PAINT
+// #define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
@@ -55,6 +55,7 @@ gRC::~gRC()
 
 void *gRC::thread()
 {
+	int need_notify = 0;
 #ifndef SYNC_PAINT
 	while (1)
 #else
@@ -66,12 +67,17 @@ void *gRC::thread()
 		if (o.opcode==gOpcode::shutdown)
 			break;
 		if (o.opcode==gOpcode::notify)
-		{
-			m_notify_pump.send(1);
-		} else
+			need_notify = 1;
+		else
 			o.dc->exec(&o);
 		o.dc->Release();
 		queue.dequeue();
+
+		if ((!queue.size()) && need_notify)
+		{
+			need_notify = 0;
+			m_notify_pump.send(1);
+		}
 	}
 #ifndef SYNC_PAINT
 	pthread_exit(0);
