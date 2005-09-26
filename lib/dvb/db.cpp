@@ -95,6 +95,7 @@ void eDVBService::setCachePID(cacheID id, int pid)
 
 DEFINE_REF(eDVBDB);
 
+	/* THIS CODE IS BAD. it should be replaced by somethine better. */
 void eDVBDB::load()
 {
 	eDebug("---- opening lame channel db");
@@ -153,8 +154,23 @@ void eDVBDB::load()
 				// ...
 //				t.setSatellite(frequency, symbol_rate, polarisation, fec, sat, inversion);
 				feparm->setDVBS(sat);
-			}
-			if (line[1]=='c')
+			} else if (line[1]=='t')
+			{
+				eDVBFrontendParametersTerrestrial ter;
+				int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode, guard_interval, hierarchy, inversion;
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation, &transmission_mode, &guard_interval, &hierarchy, &inversion);
+				ter.frequency = frequency;
+				ter.bandwidth = bandwidth;
+				ter.code_rate_HP = code_rate_HP;
+				ter.code_rate_LP = code_rate_LP;
+				ter.modulation = modulation;
+				ter.transmission_mode = transmission_mode;
+				ter.guard_interval = guard_interval;
+				ter.hierarchy = hierarchy;
+				ter.inversion = inversion;
+				
+				feparm->setDVBT(ter);
+			} else if (line[1]=='c')
 			{
 				int frequency, symbol_rate, inversion=0, modulation=3;
 				sscanf(line+2, "%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation);
@@ -266,12 +282,20 @@ void eDVBDB::save()
 		fprintf(f, "%08x:%04x:%04x\n", chid.dvbnamespace.get(),
 				chid.transport_stream_id.get(), chid.original_network_id.get());
 		eDVBFrontendParametersSatellite sat;
+		eDVBFrontendParametersTerrestrial ter;
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
 			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
 				sat.frequency, sat.symbol_rate,
 				sat.polarisation, sat.fec, sat.inversion,
 				sat.orbital_position);
+		}
+		if (!ch.m_frontendParameters->getDVBT(ter))
+		{
+			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d\n",
+				ter.frequency, ter.bandwidth, ter.code_rate_HP,
+				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
+				ter.guard_interval, ter.hierarchy, ter.inversion);
 		}
 		fprintf(f, "/\n");
 		channels++;
