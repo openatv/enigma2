@@ -93,6 +93,8 @@ RESULT eDVBScan::nextChannel()
 	}
 	
 	m_ch_current = m_ch_toScan.front();
+	m_chid_current = eDVBChannelID();
+	
 	m_ch_toScan.pop_front();
 	
 	if (m_channel->getFrontend(fe))
@@ -163,12 +165,15 @@ void eDVBScan::BATready(int err)
 	channelDone();
 }
 
-void eDVBScan::addChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
+void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
 {
 		/* add it to the list of known channels. */
 	if (chid)
 		m_new_channels.insert(std::pair<eDVBChannelID,ePtr<iDVBFrontendParameters> >(chid, feparm));
-	
+}
+
+void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
+{
 		/* check if we don't already have that channel ... */
 		
 		/* ... in the list of channels to scan */
@@ -271,7 +276,7 @@ void eDVBScan::channelDone()
 						
 						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
 
-						addChannel(
+						addChannelToScan(
 								eDVBChannelID(ns, tsid, onid),
 								feparm);
 						break;
@@ -290,6 +295,33 @@ void eDVBScan::channelDone()
 	if ((m_ready  & readyAll) != readyAll)
 		return;
 	SCAN_eDebug("channel done!");
+	
+		/* if we had services on this channel, we declare
+		   this channels as "known good". add it.
+		   
+		   (TODO: not yet implemented)
+		   a NIT entry could have possible overridden
+		   our frontend data with more exact data.
+		   
+		   (TODO: not yet implemented)
+		   the tuning process could have lead to more
+		   exact data than the user entered.
+		   
+		   The channel id was probably corrected
+		   by the data written in the SDT. this is
+		   important, as "initial transponder lists"
+		   usually don't have valid CHIDs (and that's
+		   good).
+		   
+		   These are the reasons for adding the transponder
+		   here, and not before.
+		*/
+	
+	if (!m_chid_current)
+		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
+	else
+		addKnownGoodChannel(m_chid_current, m_ch_current);
+	
 	m_ch_scanned.push_back(m_ch_current);
 	nextChannel();
 }
@@ -326,6 +358,10 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	const ServiceDescriptionVector &services = *sdt.getDescriptions();
 	SCAN_eDebug("ONID: %04x", sdt.getOriginalNetworkId());
 	eDVBChannelID chid(dvbnamespace, sdt.getTransportStreamId(), sdt.getOriginalNetworkId());
+	
+		/* save correct CHID for this channel if this is an ACTUAL_SDT */
+	if (sdt.getTableId() == TID_SDT_ACTUAL)
+		m_chid_current = chid;
 	
 	for (ServiceDescriptionConstIterator s(services.begin()); s != services.end(); ++s)
 	{
