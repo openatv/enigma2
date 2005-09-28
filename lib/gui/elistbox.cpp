@@ -9,7 +9,7 @@ eListbox::eListbox(eWidget *parent): eWidget(parent)
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	
-	m_itemheight = 20;
+	m_itemheight = 25;
 	
 	ptr->bindAction("ListboxActions", 0, 0, this);
 }

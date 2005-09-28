@@ -327,7 +327,7 @@ void eListboxPythonStringContent::setSize(const eSize &size)
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 14);
+	ePtr<gFont> fnt = new gFont("Arial", 20);
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
