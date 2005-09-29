@@ -428,13 +428,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				
 					/* CallObject will call __call__ which should return the value tuple */
 				value = PyObject_CallObject(value, args);
+				
+				if (PyErr_Occurred())
+					PyErr_Print();
 
 				Py_DECREF(args);
 					/* the PyInt was stolen. */
 			}
 			
 				/*  check if this is really a tuple */
-			if (PyTuple_Check(value))
+			if (value && PyTuple_Check(value))
 			{
 					/* convert type to string */
 				PyObject *type = PyTuple_GetItem(value, 0);
@@ -513,7 +516,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					}
 				}
 				Py_XDECREF(type);
-			}
+			} else
+				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
 				/* value is borrowed */
 		}
 
