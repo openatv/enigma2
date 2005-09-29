@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 
 from enigma import eServiceReference
 
-from Screens.Menu import FixedMenu
+from Screens.FixedMenu import FixedMenu
 
 import xml.dom.minidom
 
