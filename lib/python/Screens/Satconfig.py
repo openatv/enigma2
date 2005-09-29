@@ -14,7 +14,7 @@ class setupSelection:
 			self.parent.value = self.parent.value + 1
 
 	def __call__(self, selected):     #needed by configlist
-		print "value" + self.parent.value
+		print "value" + str(self.parent.value)
 		return ("text", self.parent.vals[self.parent.value])
 
 class setupElement:
