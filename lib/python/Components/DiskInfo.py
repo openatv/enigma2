@@ -1,0 +1,32 @@
+from GUIComponent import *
+from VariableText import *
+import os
+
+from enigma import eLabel
+
+# TODO: Harddisk.py has similiar functions, but only similiar.
+# fix this to use same code
+class DiskInfo(GUIComponent, VariableText):
+	FREE = 0
+	USED = 1
+	SIZE = 2
+	
+	def __init__(self, path, type):
+		GUIComponent.__init__(self)
+		VariableText.__init__(self)
+		self.type = type
+		self.path = path
+		self.update()
+	
+	def update(self):
+		try:
+			stat = os.statvfs(self.path)
+		except OSError:
+			return -1
+		
+		if self.type == self.FREE:
+			free = stat.f_bfree / 1000 * stat.f_bsize / 1000
+			self.setText("%dMB free diskspace" % (free))
+
+	def createWidget(self, parent):
+		return eLabel(parent)
