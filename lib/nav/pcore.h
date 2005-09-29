@@ -27,8 +27,8 @@ public:
 	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service);
 	
 	RESULT enqueueService(const eServiceReference &service);
-	RESULT getCurrentService(ePtr<iPlayableService> &service);
-	RESULT getPlaylist(ePtr<ePlaylist> &playlist);
+	SWIG_VOID(RESULT) getCurrentService(ePtr<iPlayableService> &SWIG_OUTPUT);
+	SWIG_VOID(RESULT) getPlaylist(ePtr<ePlaylist> &SWIG_OUTPUT);
 	
 	RESULT pause(int p);
 private:
