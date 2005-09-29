@@ -56,6 +56,8 @@ public:
 	T* &ptrref() { assert(!ptr); return ptr; }
 	T* operator->() const { assert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
+	
+	operator bool() const { return !!this->ptr; }
 };
 
 
