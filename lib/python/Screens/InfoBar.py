@@ -155,16 +155,16 @@ class InfoBar(Screen):
 			
 			# try to get event info
 			epg = None
-			service = self.session.nav.getCurrentService()
-			if service != None:
-				info = iServiceInformationPtr()
-				if not service.info(info):
-					ev = eServiceEventPtr()
-					if info.getEvent(ev, 0) == 0:
-						epg = ev
+			try:
+				service = self.session.nav.getCurrentService()
+				info = service.info()
+				ev = info.getEvent(0)
+				epg = ev
+			except:
+				pass
+			
 			# fix me, description. 
 			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
 	
 	def showMovies(self):
 		self.session.open(MovieSelection)
-

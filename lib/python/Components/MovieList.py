@@ -83,9 +83,8 @@ class MovieList(HTMLComponent, GUIComponent):
 
 		movieList = [ ]
 		while 1:
-			s = eServiceReference()
-			if list.getNext(s):
-				del s
+			s = list.getNext()
+			if not s.valid():
 				del list
 				break
 			movieList.append(s)

@@ -25,13 +25,12 @@ class EventInfo(PerServiceDisplay):
 		if service != None:
 			info = service.info()
 			if info is not None: 
-				ev = eServiceEventPtr()
-				if info.getEvent(ev, self.now_or_next & 1) == 0:
+				ev = info.getEvent(self.now_or_next & 1)
+				if ev is not None:
 					if self.now_or_next & 2:
 						self.setText("%d min" % (ev.m_duration / 60))
 					else:
 						self.setText(ev.m_event_name)
-		print "new event info in EventInfo! yeah!"
 
 	def stopEvent(self):
 		self.setText(
