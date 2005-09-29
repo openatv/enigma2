@@ -131,9 +131,16 @@ public:
 	}
 	operator bool() const
 	{
+		return valid();
+	}
+	
+	int valid() const
+	{
 		return type != idInvalid;
 	}
 };
+
+SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);
 
 typedef unsigned long long pts_t;
 
@@ -170,6 +177,8 @@ public:
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
 
 class eServiceEvent;
+
+TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 
 class iServiceInformation: public iObject
 {
@@ -245,6 +254,18 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
 
+class iServiceOfflineOperations: public iObject
+{
+public:
+		/* to delete a service, forever. */
+	virtual RESULT deleteFromDisk(int simulate=1)=0;
+	
+		/* for transferring a service... */
+	virtual SWIG_VOID(RESULT) getListOfFilenames(std::list<std::string> &SWIG_OUTPUT)=0;
+	
+		// TODO: additional stuff, like a conversion interface?
+};
+
 class iServiceHandler: public iObject
 {
 public:
@@ -252,6 +273,7 @@ public:
 	virtual SWIG_VOID(RESULT) record(const eServiceReference &, ePtr<iRecordableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) list(const eServiceReference &, ePtr<iListableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(const eServiceReference &, ePtr<iStaticServiceInformation> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceHandler>, iServiceHandlerPtr);

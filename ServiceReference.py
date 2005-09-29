@@ -10,17 +10,14 @@ class ServiceReference(eServiceReference):
 		self.ref = ref
 
 	def getStaticServiceInformation(self):
-		info = iStaticServiceInformationPtr()
-		if NavigationInstance.instance.ServiceHandler.info(self.ref, info):
-			info = None
-		return info
+		return NavigationInstance.instance.ServiceHandler.info(self.ref)
 	
 	def __str__(self):
 		return self.ref.toString()
 	
 	def getServiceName(self):
 		info = self.getStaticServiceInformation()
-		if not info:
+		if info is not None:
 			return None
 		
 		return info.getName(self.ref)

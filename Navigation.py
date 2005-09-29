@@ -57,9 +57,11 @@ class Navigation:
 		return self.pnav.enqueueService(ref)
 	
 	def getCurrentService(self):
-		service = iPlayableServicePtr()
-		if self.pnav.getCurrentService(service):
+		service = self.pnav.getCurrentService()
+		
+		if service is None:
 			return None
+		
 		return service
 	
 	def getPlaylist(self):
