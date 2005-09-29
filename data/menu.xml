@@ -1,6 +1,7 @@
 <menu text="Mainmenu" title="Mainmenu">
 		<!--<item text="Standby debug">quitMainloop()</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
+		<item text="Satelliteconfig">self.openDialog(Satconfig)</item>
 		<item text="Radio"></item>
 		<item text="Timer">self.openDialog(TimerEditList)</item>
 		<item text="Information">self.openDialog(About)</item>
@@ -12,7 +13,8 @@
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
-				<item text="Satelliteconfig">self.openSetup("satconfig")</item>
+				<item text="Satelliteconfig">self.openDialog(Satconfig)</item>
+				<!--<item text="Satelliteconfig">self.openSetup("satconfig")</item>-->
 				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
 				<item text="Manual Scan">self.openDialog(ServiceScan)</item>
 				<item text="Rotor Control"></item>
