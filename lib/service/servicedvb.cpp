@@ -54,6 +54,55 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	return len / 90000;
 }
 
+
+
+class eDVBPVRServiceOfflineOperations: public iServiceOfflineOperations
+{
+	DECLARE_REF(eDVBPVRServiceOfflineOperations);
+	eServiceReferenceDVB m_ref;
+public:
+	eDVBPVRServiceOfflineOperations(const eServiceReference &ref);
+	
+	RESULT deleteFromDisk(int simulate);
+	RESULT getListOfFilenames(std::list<std::string> &);
+};
+
+DEFINE_REF(eDVBPVRServiceOfflineOperations);
+
+eDVBPVRServiceOfflineOperations::eDVBPVRServiceOfflineOperations(const eServiceReference &ref): m_ref((const eServiceReferenceDVB&)ref)
+{
+}
+
+RESULT eDVBPVRServiceOfflineOperations::deleteFromDisk(int simulate)
+{
+	if (simulate)
+		return 0;
+	else
+	{
+		std::list<std::string> res;
+		if (getListOfFilenames(res))
+			return -1;
+		
+				/* TODO: deferred removing.. */
+		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
+		{
+			eDebug("Removing %s...", i->c_str());
+			::unlink(i->c_str());
+		}
+		
+		return 0;
+	}
+}
+
+RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string> &res)
+{
+	res.clear();
+	res.push_back(m_ref.path);
+	return 0;
+}
+
+
+
 DEFINE_REF(eServiceFactoryDVB)
 
 eServiceFactoryDVB::eServiceFactoryDVB()
@@ -167,6 +216,12 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 		ptr = service;
 		return 0;
 	}
+}
+
+RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
+{
+	ptr = 0;
+	return -1;
 }
 
 RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServiceReference &ref)

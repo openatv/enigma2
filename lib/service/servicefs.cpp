@@ -12,7 +12,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-
 class eStaticServiceFSInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceFSInformation);
@@ -75,6 +74,12 @@ RESULT eServiceFactoryFS::info(const eServiceReference &ref, ePtr<iStaticService
 {
 	ptr = m_service_information;
 	return 0;
+}
+
+RESULT eServiceFactoryFS::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
+{
+	ptr = 0;
+	return -1;
 }
 
 // eServiceFS
@@ -148,7 +153,10 @@ RESULT eServiceFS::getNext(eServiceReference &ptr)
 	}
 	
 	if (!m_list.size())
+	{
+		ptr = eServiceReference();
 		return -ERANGE;
+	}
 	
 	ptr = m_list.front();
 	m_list.pop_front();

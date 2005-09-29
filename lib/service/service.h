@@ -24,6 +24,7 @@ public:
 	RESULT record(const eServiceReference &, iRecordableServicePtr &ptr);
 	RESULT list(const eServiceReference &, iListableServicePtr &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
+	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
 	
 		// eServiceCenter
 	static RESULT getInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }
