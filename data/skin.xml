@@ -30,10 +30,9 @@
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
 		</windowstyle> """ """
-		<screen name="Menu" position="300,100" size="300,280" title="real main menu">
-<!--			<widget name="okbutton" position="10,190" size="280,50" font="Arial;20" valign="center" halign="center" />-->
-			<widget name="title" position="10,10" size="280,25" font="Arial;23" />
-			<widget name="menu" position="10,45" size="280,250" />
+		<screen name="Menu" position="210,150" size="300,220" title="real main menu">
+			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
+			<widget name="menu" position="10,55" size="280,150" />
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -46,18 +45,19 @@
 			<widget name="bus" position="20,50" size="300,20" />
 			<widget name="initialize" position="40,80" size="75,20" font="Arial;20" backgroundColor="red" />
 		</screen>
-		<screen name="Setup" position="140,125" size="460,220" title="Setup">
-			<widget name="config" position="10,30" size="420,120" />
-			<widget name="ok" position="140,180" size="38,20" font="Arial;20" backgroundColor="green" />
-			<widget name="cancel" position="240,180" size="70,20" font="Arial;20" backgroundColor="red" />
+		<screen name="Setup" position="140,125" size="460,280" title="Setup">
+			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
+			<widget name="config" position="10,50" size="420,150" />
+			<widget name="ok" position="140,230" size="38,20" font="Arial;20" backgroundColor="green" />
+			<widget name="cancel" position="240,230" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
-		<screen name="About" position="140,125" size="360,200" title="About">
-			<widget name="text" position="10,30" size="420,40" font="Arial;20"/>
-			<widget name="tuner" position="10,80" size="420,20"/>
-			<widget name="tunerA" position="10,100" size="420,20"/>
-			<widget name="tunerB" position="10,120" size="420,20"/>
-			<widget name="hdd" position="10,150" size="420,20"/>
-			<widget name="hddA" position="10,170" size="420,20"/>
+		<screen name="About" position="140,125" size="360,250" title="About">
+			<widget name="text" position="10,30" size="420,40" font="Arial;18"/>
+			<widget name="tuner" position="10,80" size="420,20" font="Arial;18"/>
+			<widget name="tunerA" position="10,100" size="420,20" font="Arial;18"/>
+			<widget name="tunerB" position="10,120" size="420,20" font="Arial;18"/>
+			<widget name="hdd" position="10,170" size="420,20" font="Arial;18"/>
+			<widget name="hddA" position="10,190" size="420,20" font="Arial;18"/>
 		</screen>
 		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
 			<widget name="okbutton" position="20,270" size="205,40" />
@@ -71,7 +71,8 @@
 		<screen name="configTest" position="300,100" size="300,300" title="config menu">
 			<widget name="config" position="10,30" size="420,220" />
 		</screen>
-		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">
+<!--		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">-->
+		<screen name="TimerEditList" position="160,100" size="420,330" title="Timer Editor">
 			<widget name="timerlist" position="10,30" size="400,300" />
 		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
@@ -102,9 +103,9 @@
  		<screen name="MovieSelection" position="150,100" size="400,420" title="Select-a-movie">
 			<widget name="list" position="0,50" size="400,300" />
 		</screen>
-		<screen name="ServiceScan" position="150,100" size="300,90" title="Service Scan">
+		<screen name="ServiceScan" position="200,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="300,20" />
-			<widget name="scan_state" position="10,40" size="280,30" />
+			<widget name="scan_state" position="10,40" size="280,60" font="Arial;20" />
 		</screen>
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
 			<widget name="description" position="10,10" size="580,40" font="Arial;25" />
