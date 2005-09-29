@@ -109,7 +109,7 @@ eServiceFactoryDVB::eServiceFactoryDVB()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryDVB::id, this);
 }
@@ -118,7 +118,7 @@ eServiceFactoryDVB::~eServiceFactoryDVB()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryDVB::id);
 }

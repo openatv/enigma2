@@ -33,7 +33,7 @@ eServiceFactoryFS::eServiceFactoryFS()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryFS::id, this);
 	
@@ -44,7 +44,7 @@ eServiceFactoryFS::~eServiceFactoryFS()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryFS::id);
 }

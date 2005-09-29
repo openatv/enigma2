@@ -27,7 +27,8 @@ public:
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
 	
 		// eServiceCenter
-	static RESULT getInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }
+	static RESULT getPrivInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }
+	static RESULT getInstance(iServiceHandlerPtr &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
 	RESULT addServiceFactory(int id, iServiceHandler *hnd);
 	RESULT removeServiceFactory(int id);
 };
