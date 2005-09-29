@@ -5,7 +5,6 @@
 #include <lib/service/iservice.h>
 
 #include <set>
-class eServiceCenter;
 
 class eListboxServiceContent: public virtual iListboxContent
 {
@@ -78,7 +77,7 @@ private:
 	int m_size;
 	
 	eSize m_itemsize;
-	ePtr<eServiceCenter> m_service_center;
+	ePtr<iServiceHandler> m_service_center;
 	
 	eServiceReference m_root;
 	

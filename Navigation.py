@@ -12,7 +12,7 @@ class Navigation:
 		
 		NavigationInstance.instance = self
 		self.ServiceHandler = eServiceCenterPtr()
-		eServiceCenter.getInstance(self.ServiceHandler)
+		self.ServiceHandler = eServiceCenter.getInstance()
 
 		import Navigation as Nav
 		Nav.navcore = self

@@ -7,7 +7,7 @@ DEFINE_REF(pNavigation);
 
 pNavigation::pNavigation()
 {
-	ePtr<eServiceCenter> service_center;
+	ePtr<iServiceHandler> service_center;
 	eServiceCenter::getInstance(service_center);
 
 	assert(service_center);

@@ -16,10 +16,12 @@ typedef x y; \
 #ifdef SWIG
 #define SWIG_INPUT INPUT
 #define SWIG_OUTPUT OUTPUT
+#define SWIG_NAMED_OUTPUT(x) OUTPUT
 #define SWIG_VOID(x) void
 #else
 #define SWIG_INPUT
 #define SWIG_OUTPUT
+#define SWIG_NAMED_OUTPUT(x) x
 #define SWIG_VOID(x) x
 #endif
 

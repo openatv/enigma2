@@ -13,7 +13,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryMP3::id, this);
 
@@ -24,7 +24,7 @@ eServiceFactoryMP3::~eServiceFactoryMP3()
 {
 	ePtr<eServiceCenter> sc;
 	
-	eServiceCenter::getInstance(sc);
+	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->removeServiceFactory(eServiceFactoryMP3::id);
 }
