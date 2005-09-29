@@ -56,8 +56,8 @@ class ChannelSelection(Screen):
 		self.__marked = [ ]
 		
 		self["key_red"] = Button("All")
-		self["key_green"] = Button("ARD")
-		self["key_yellow"] = Button("ZDF")
+		self["key_green"] = Button("Provider")
+		self["key_yellow"] = Button("Satellite")
 		self["key_blue"] = Button("Favourites")
 		
 		self["list"] = ServiceList()
