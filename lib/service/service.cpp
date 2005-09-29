@@ -101,6 +101,17 @@ RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iStaticServiceInf
 	return i->second->info(ref, ptr);
 }
 
+RESULT eServiceCenter::offlineOperations(const eServiceReference &ref, ePtr<iServiceOfflineOperations> &ptr)
+{
+	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
+	if (i == handler.end())
+	{
+		ptr = 0;
+		return -1;
+	}
+	return i->second->offlineOperations(ref, ptr);
+}
+
 RESULT eServiceCenter::addServiceFactory(int id, iServiceHandler *hnd)
 {
 	handler.insert(std::pair<int,ePtr<iServiceHandler> >(id, hnd));

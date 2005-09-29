@@ -57,6 +57,13 @@ RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iStaticServic
 	return 0;
 }
 
+RESULT eServiceFactoryMP3::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
+{
+	ptr = 0;
+	return -1;
+}
+
+
 // eStaticServiceMP3Info
 
 
