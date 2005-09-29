@@ -121,10 +121,13 @@ class Setup(Screen):
 				if ItemText != setup:
 					continue
 				self.addItems(list, x.childNodes);
+				myTitle = getValbyAttr(x, "title")
 		
 		#check for list.entries > 0 else self.close
 		
 		self["config"] = ConfigList(list)
+
+		self["title"] = Label(myTitle);
 
 		self["ok"] = Label("OK")
 		self["cancel"] = Label("Cancel")
