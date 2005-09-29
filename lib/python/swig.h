@@ -6,9 +6,12 @@
 %template(y) x; \
 typedef x y; \
 %typemap_output_ptr(x);
+#define SWIG_ALLOW_OUTPUT_SIMPLE(x) %typemap_output_simple(x);
 #else
 #define TEMPLATE_TYPEDEF(x, y) typedef x y
+#define SWIG_ALLOW_OUTPUT_SIMPLE(x) 
 #endif
+
 
 #ifdef SWIG
 #define SWIG_INPUT INPUT

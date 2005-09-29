@@ -83,9 +83,10 @@ extern PSignal1<void,int> &keyPressedSignal();
 %feature("ref")   iObject "$this->AddRef(); eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); "
 %feature("unref") iObject "$this->Release(); eDebug(\"Release! %s:%d\", __FILE__, __LINE__); "
 
+
 /* this magic allows smartpointer to be used as OUTPUT arguments, i.e. call-by-reference-styled return value. */
 
-%define %typemap_output_ptr(Type)
+%define %typemap_output_simple(Type)
  %typemap(in,numinputs=0) Type *OUTPUT ($*1_ltype temp),
               Type &OUTPUT ($*1_ltype temp)
    "$1 = new Type;";
@@ -95,7 +96,17 @@ extern PSignal1<void,int> &keyPressedSignal();
    "$result = t_output_helper($result, (SWIG_NewPointerObj((void*)($1), $1_descriptor, 1)));"
 %enddef
 
-%newobject eDebugClassPtr::operator->;
+%define %typemap_output_ptr(Type)
+ %typemap(in,numinputs=0) Type *OUTPUT ($*1_ltype temp),
+              Type &OUTPUT ($*1_ltype temp)
+   "$1 = new Type;";
+ %fragment("t_out_helper"{Type},"header",
+     fragment="t_output_helper") {}
+ %typemap(argout,fragment="t_out_helper"{Type}) Type *OUTPUT, Type &OUTPUT
+		// generate None if smartpointer is NULL
+   "$result = t_output_helper($result, ((*$1) ? SWIG_NewPointerObj((void*)($1), $1_descriptor, 1) : (Py_INCREF(Py_None), Py_None)));"
+%enddef
+
 
 #define DEBUG
 %include "typemaps.i"
