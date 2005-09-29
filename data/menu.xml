@@ -1,18 +1,23 @@
 <menu text="Mainmenu" title="Mainmenu">
-		<item text="Standby debug">quitMainloop()</item>
+		<!--<item text="Standby debug">quitMainloop()</item>
+		<item text="Networksetup">self.openSetup("network")</item>-->
+		<item text="Radio"></item>
 		<item text="Timer">self.openDialog(TimerEditList)</item>
+		<item text="Information">self.openDialog(About)</item>
+		<item text="Games / Plugins"></item>
 		<menu text="Setup">
-			<menu text="Service Organising -disabled-">
+			<menu text="Service Organising">
 				<item text="New Bouquets"></item>
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
 				<item text="Satelliteconfig">self.openSetup("satconfig")</item>
-				<item text="Satfinder -disabled-"></item>
-				<item text="Rotor Control -disabled-"></item>
-				<item text="Edit Transponder -disabled-"></item>
 				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
+				<item text="Manual Scan">self.openDialog(ServiceScan)</item>
+				<item text="Rotor Control"></item>
+				<item text="Edit Transponder"></item>
+				<!--<item text="Satfinder"></item>-->
 			</menu>
 			<menu text="System">
 				<item text="Timezone">self.openSetup("timezone")</item>
@@ -29,11 +34,10 @@
 			<item text="Parental Control">self.openSetup("parental")</item>
 			<item text="Expert">self.openSetup("expert")</item>
 		</menu>
-		<item text="Games (not found)"></item>
-		<item text="Information">self.openDialog(About)</item>
-		<menu text="Standby">
-			<item text="PowerOff">quitMainloop()</item>
-			<item text="Restart">quitMainloop()</item>
+		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
+		<menu text="Standby / Restart">
 			<item text="Standby">quitMainloop()</item>
+			<item text="Restart">quitMainloop()</item>
+			<item text="Deep Standby">quitMainloop()</item>
 		</menu>
 	</menu>
