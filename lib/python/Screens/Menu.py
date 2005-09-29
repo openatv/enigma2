@@ -1,4 +1,4 @@
-#from Screen import *
+from Screen import *
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Header import Header
@@ -6,18 +6,13 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 
-# hack.... dynamically importing all screens
-from __init__ import __all__
-for i in __all__:
-	print "import " + i
-	if (i is not "Menu" ):
-		exec "from " + i + " import *"
-
 from enigma import quitMainloop
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
+
+from Screens.Satconfig import Satconfig
 
 from Tools import XMLTools
 
@@ -121,25 +116,6 @@ class Menu(Screen):
 		if a == "":														#if empty use name
 			a = getValbyAttr(parent, "text")
 		self["title"] = Header(a)
-
-class FixedMenu(Screen):
-	def okbuttonClick(self):
-		selection = self["menu"].getCurrent()
-		selection[1]()
-
-	def __init__(self, session, title, list):
-		Screen.__init__(self, session)
-		
-		self["menu"] = MenuList(list)	
-							
-		self["actions"] = ActionMap(["OkCancelActions"], 
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.close
-			})
-		
-		self["title"] = Header(title)
-
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
