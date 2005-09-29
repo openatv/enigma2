@@ -22,7 +22,7 @@ class Network:
 
 	def activateNetworkConfig(self):
 		import os
-		os.system("/etc/init.d/networking restart")
+		#os.system("/etc/init.d/networking restart")
 		
 	def setDHCP(self, useDHCP):
 		if (useDHCP):
@@ -39,12 +39,14 @@ class Network:
 			config.network.dns.enabled = True
 					
 	def setIPNameserver(self, ip):
+		return
 		resolvconf = file('/etc/resolv.conf', 'w')
 		resolvconf.write("nameserver %d.%d.%d.%d" % tuple(ip))
 		resolvconf.close()
 		
 	def setMACAddress(self, mac):
-		os.system("echo ifconfig eth0 ether %02x:%02x:%02x:%02x:%02x:%02x" % tuple(mac))
+		#os.system("echo ifconfig eth0 ether %02x:%02x:%02x:%02x:%02x:%02x" % tuple(mac))
+		pass
 		
 	def setIPAddress(self, ip):
 		os.system("echo ifconfig eth0 %d.%d.%d.%d" % tuple(ip))
@@ -68,7 +70,8 @@ def InitNetwork():
 	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
 	
 	#FIXME using this till other concept for this is implemented
-	config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
+	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
+	config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes", "you are my hero"))
 
 	iNetwork = Network()
 
