@@ -8,13 +8,51 @@
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
 
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/un.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+class eDVBServicePMTHandler;
+
+class eDVBCAService: public Object
+{
+	eDVBServicePMTHandler &m_parent;
+	int m_sock, m_clilen;
+	struct sockaddr_un m_servaddr;
+	unsigned int m_sendstate;
+	unsigned char *m_capmt;
+	eTimer m_retryTimer;
+	void sendCAPMT();
+	void Connect();
+public:
+	eDVBCAService( eDVBServicePMTHandler &parent )
+		:m_parent(parent), m_sendstate(0), m_capmt(NULL), m_retryTimer(eApp)
+	{
+		CONNECT(m_retryTimer.timeout, eDVBCAService::sendCAPMT);
+		Connect();
+//		eDebug("[eDVBCAHandler] new service %s", service.toString().c_str() );
+	}
+	~eDVBCAService()
+	{
+		delete [] m_capmt;
+		::close(m_sock);
+//		eDebug("[eDVBCAHandler] leave service %s", me.toString().c_str() );
+	}
+	void buildCAPMT();
+};
+
 class eDVBServicePMTHandler: public Object
 {
+	friend class eDVBCAService;
 	eServiceReferenceDVB m_reference;
 	ePtr<eDVBService> m_service;
 
 	int m_last_channel_state;
-	
+	uint16_t m_pmt_pid;
+	eDVBCAService *m_ca_servicePtr;
+
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
 
@@ -30,6 +68,7 @@ class eDVBServicePMTHandler: public Object
 	void PATready(int error);
 public:
 	eDVBServicePMTHandler();
+	~eDVBServicePMTHandler();
 	
 	enum
 	{
