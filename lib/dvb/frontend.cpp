@@ -23,9 +23,9 @@
 #include <linux/dvb/frontend.h>
 #endif
 
-#include <lib/dvb_si/satellite_delivery_system_descriptor.h>
-#include <lib/dvb_si/cable_delivery_system_descriptor.h>
-#include <lib/dvb_si/terrestrial_delivery_system_descriptor.h>
+#include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/cable_delivery_system_descriptor.h>
+#include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 
 void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescriptor &descriptor)
 {

@@ -4,7 +4,7 @@
 #include <lib/dvb/idvb.h>
 #include <set>
 
-class ServiceDescriptionTable;
+class ServiceDescriptionSection;
 
 struct eDVBBouquet
 {

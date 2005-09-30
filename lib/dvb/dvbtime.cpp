@@ -97,10 +97,10 @@ void TDT::start()
 	if ( chan )
 	{
 		eDVBTableSpec spec;
-		spec.pid = TimeAndDateTable::PID;
-		spec.tid = TimeAndDateTable::TID;
+		spec.pid = TimeAndDateSection::PID;
+		spec.tid = TimeAndDateSection::TID;
 		spec.tid_mask = 0xFC;
-		spec.timeout = TimeAndDateTable::TIMEOUT;
+		spec.timeout = TimeAndDateSection::TIMEOUT;
 		spec.flags= eDVBTableSpec::tfAnyVersion |
 					eDVBTableSpec::tfHaveTID |
 					eDVBTableSpec::tfHaveTIDMask |

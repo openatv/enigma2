@@ -7,7 +7,7 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/isection.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb_si/pmt.h>
+#include <dvbsi++/program_map_section.h>
 #include <lib/dvb/specs.h>
 #include <unistd.h>
 
@@ -16,7 +16,7 @@ class eMain: public eApplication, public Object
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
-	eAUTable<eTable<ProgramMapTable> > m_table;
+	eAUTable<eTable<ProgramMapSection> > m_table;
 	
 	ePtr<eDVBDB> m_dvbdb;
 	
@@ -101,15 +101,15 @@ public:
 	void tableReady(int)
 	{
 			/* table "fertig" (wie auch immer) */
-		ePtr<eTable<ProgramMapTable> > ptr;
+		ePtr<eTable<ProgramMapSection> > ptr;
 				/* erfolgreich? */
 		if (!m_table.getCurrent(ptr))
 		{
 				/* dumpen ... */
-			ProgramMapTableConstIterator i;
+			ProgramMapSectionConstIterator i;
 			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
-				const ProgramMapTable &pmt = **i;
+				const ProgramMapSection &pmt = **i;
 				eDebug("pcr pid: %x", pmt.getPcrPid());
 			}
 			eDebug("program map ...");

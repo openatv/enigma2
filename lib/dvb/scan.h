@@ -1,9 +1,9 @@
 #ifndef __lib_dvb_scan_h
 #define __lib_dvb_scan_h
 
-#include <lib/dvb_si/nit.h>
-#include <lib/dvb_si/sdt.h>
-#include <lib/dvb_si/bat.h>
+#include <dvbsi++/network_information_section.h>
+#include <dvbsi++/service_description_section.h>
+#include <dvbsi++/bouquet_association_section.h>
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/db.h>
@@ -45,9 +45,9 @@ private:
 	ePtr<iDVBFrontendParameters> m_ch_current;
 	eDVBChannelID m_chid_current;
 	
-	ePtr<eTable<ServiceDescriptionTable> > m_SDT;
-	ePtr<eTable<NetworkInformationTable> > m_NIT;
-	ePtr<eTable<BouquetAssociationTable> > m_BAT;
+	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
+	ePtr<eTable<NetworkInformationSection> > m_NIT;
+	ePtr<eTable<BouquetAssociationSection> > m_BAT;
 	
 	void SDTready(int err);
 	void NITready(int err);
@@ -60,7 +60,7 @@ private:
 	void channelDone();
 	
 	Signal1<void,int> m_event;
-	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionTable &sdt);
+	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
 public:
 	eDVBScan(iDVBChannel *channel);
 	~eDVBScan();

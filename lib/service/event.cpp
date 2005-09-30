@@ -1,8 +1,8 @@
 #include <lib/service/event.h>
 #include <lib/base/estring.h>
-#include <lib/dvb_si/eit.h>
-#include <lib/dvb_si/short_event_descriptor.h>
-#include <lib/dvb_si/descriptor_tag.h>
+#include <dvbsi++/event_information_section.h>
+#include <dvbsi++/short_event_descriptor.h>
+#include <dvbsi++/descriptor_tag.h>
 
 DEFINE_REF(eServiceEvent);
 

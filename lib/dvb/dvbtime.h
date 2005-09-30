@@ -3,7 +3,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb_si/tdt.h>
+#include <dvbsi++/time_date_section.h>
 
 class eDVBChannel;
 

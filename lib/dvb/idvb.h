@@ -476,6 +476,7 @@ public:
 	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder)=0;
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader)=0;
 	virtual RESULT getSTC(pts_t &pts)=0;
+	virtual RESULT getCADemuxID(uint8_t &id)=0;
 };
 
 class iTSMPEGDecoder: public iObject

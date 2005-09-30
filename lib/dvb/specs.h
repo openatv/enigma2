@@ -3,12 +3,12 @@
 
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/idemux.h>
-#include <lib/dvb_si/pmt.h>
-#include <lib/dvb_si/sdt.h>
-#include <lib/dvb_si/nit.h>
-#include <lib/dvb_si/bat.h>
-#include <lib/dvb_si/pat.h>
-#include <lib/dvb_si/eit.h>
+#include <dvbsi++/program_map_section.h>
+#include <dvbsi++/service_description_section.h>
+#include <dvbsi++/network_information_section.h>
+#include <dvbsi++/bouquet_association_section.h>
+#include <dvbsi++/program_association_section.h>
+#include <dvbsi++/event_information_section.h>
 
 struct eDVBPMTSpec
 {
@@ -17,9 +17,9 @@ public:
 	eDVBPMTSpec(int pid, int sid)
 	{
 		m_spec.pid     = pid;
-		m_spec.tid     = ProgramMapTable::TID;
+		m_spec.tid     = ProgramMapSection::TID;
 		m_spec.tidext  = sid;
-		m_spec.timeout = 20000; // ProgramMapTable::TIMEOUT;
+		m_spec.timeout = 20000; // ProgramMapSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt | 
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
@@ -36,9 +36,9 @@ struct eDVBSDTSpec
 public:
 	eDVBSDTSpec()
 	{
-		m_spec.pid     = ServiceDescriptionTable::PID;
-		m_spec.tid     = ServiceDescriptionTable::TID;
-		m_spec.timeout = 20000; // ServiceDescriptionTable::TIMEOUT;
+		m_spec.pid     = ServiceDescriptionSection::PID;
+		m_spec.tid     = ServiceDescriptionSection::TID;
+		m_spec.timeout = 20000; // ServiceDescriptionSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
@@ -55,9 +55,9 @@ struct eDVBNITSpec
 public:
 	eDVBNITSpec()
 	{
-		m_spec.pid     = NetworkInformationTable::PID;
-		m_spec.tid     = NetworkInformationTable::TID;
-		m_spec.timeout = NetworkInformationTable::TIMEOUT;
+		m_spec.pid     = NetworkInformationSection::PID;
+		m_spec.tid     = NetworkInformationSection::TID;
+		m_spec.timeout = NetworkInformationSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
@@ -74,9 +74,9 @@ struct eDVBBATSpec
 public:
 	eDVBBATSpec()
 	{
-		m_spec.pid     = BouquetAssociationTable::PID;
-		m_spec.tid     = BouquetAssociationTable::TID;
-		m_spec.timeout = BouquetAssociationTable::TIMEOUT;
+		m_spec.pid     = BouquetAssociationSection::PID;
+		m_spec.tid     = BouquetAssociationSection::TID;
+		m_spec.timeout = BouquetAssociationSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
@@ -93,9 +93,9 @@ struct eDVBPATSpec
 public:
 	eDVBPATSpec()
 	{
-		m_spec.pid     = ProgramAssociationTable::PID;
-		m_spec.tid     = ProgramAssociationTable::TID;
-		m_spec.timeout = 20000; // ProgramAssociationTable::TIMEOUT;
+		m_spec.pid     = ProgramAssociationSection::PID;
+		m_spec.tid     = ProgramAssociationSection::TID;
+		m_spec.timeout = 20000; // ProgramAssociationSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
@@ -113,10 +113,10 @@ public:
 		/* this is for now&next on actual transponder. */
 	eDVBEITSpec(int sid)
 	{
-		m_spec.pid     = EventInformationTable::PID;
-		m_spec.tid     = EventInformationTable::TID;
+		m_spec.pid     = EventInformationSection::PID;
+		m_spec.tid     = EventInformationSection::TID;
 		m_spec.tidext  = sid;
-		m_spec.timeout = EventInformationTable::TIMEOUT;
+		m_spec.timeout = EventInformationSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
