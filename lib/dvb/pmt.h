@@ -5,8 +5,8 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb_si/pmt.h>
-#include <lib/dvb_si/pat.h>
+#include <dvbsi++/program_map_section.h>
+#include <dvbsi++/program_association_section.h>
 
 class eDVBServicePMTHandler: public Object
 {
@@ -15,8 +15,8 @@ class eDVBServicePMTHandler: public Object
 
 	int m_last_channel_state;
 	
-	eAUTable<eTable<ProgramMapTable> > m_PMT;
-	eAUTable<eTable<ProgramAssociationTable> > m_PAT;
+	eAUTable<eTable<ProgramMapSection> > m_PMT;
+	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
 
 	eUsePtr<iDVBChannel> m_channel;
 	eUsePtr<iDVBPVRChannel> m_pvr_channel;

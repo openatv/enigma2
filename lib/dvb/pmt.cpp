@@ -50,14 +50,14 @@ void eDVBServicePMTHandler::PMTready(int error)
 void eDVBServicePMTHandler::PATready(int)
 {
 	eDebug("got PAT");
-	ePtr<eTable<ProgramAssociationTable> > ptr;
+	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
 		int pmtpid = -1;
-		ProgramAssociationTableConstIterator i;
+		std::vector<ProgramAssociationSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 		{
-			const ProgramAssociationTable &pat = **i;
+			const ProgramAssociationSection &pat = **i;
 			ProgramAssociationConstIterator program;
 			for (program = pat.getPrograms()->begin(); program != pat.getPrograms()->end(); ++program)
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
@@ -74,7 +74,7 @@ void eDVBServicePMTHandler::PATready(int)
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 {
 	eDebug("got PMT");
-	ePtr<eTable<ProgramMapTable> > ptr;
+	ePtr<eTable<ProgramMapSection> > ptr;
 
 	program.videoStreams.clear();
 	program.audioStreams.clear();
@@ -82,10 +82,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 	if (!m_PMT.getCurrent(ptr))
 	{
-		ProgramMapTableConstIterator i;
+		std::vector<ProgramMapSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 		{
-			const ProgramMapTable &pmt = **i;
+			const ProgramMapSection &pmt = **i;
 			program.pcrPid = pmt.getPcrPid();
 			
 			ElementaryStreamInfoConstIterator es;

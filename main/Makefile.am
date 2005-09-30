@@ -1,6 +1,5 @@
 INCLUDES = \
-	-I$(top_srcdir)/include \
-	-I/usr/include/python2.3
+	-I$(top_srcdir)/include
 
 bin_PROGRAMS = enigma2
 
@@ -13,7 +12,6 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/components/libenigma_components.a \
 	$(top_builddir)/lib/driver/libenigma_driver.a \
 	$(top_builddir)/lib/dvb/libenigma_dvb.a \
-	$(top_builddir)/lib/dvb_si/libenigma_dvb_si.a \
 	$(top_builddir)/lib/dvb_ci/libenigma_dvb_ci.a \
 	$(top_builddir)/lib/gdi/libenigma_gdi.a \
 	$(top_builddir)/lib/gui/libenigma_gui.a \
@@ -28,6 +26,7 @@ enigma2_LDADD = \
 	@MAD_LIBS@ \
 	@PNG_LIBS@ \
 	@SIGC_LIBS@ \
+	@DVBSI_LIBS@ \
 	-ldl -lpthread -lcrypt -lresolv -lpython2.4
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)

@@ -7,11 +7,11 @@ void eDVBServiceEITHandler::EITready(int error)
 {
 	if (!error)
 	{
-		ePtr<eTable<EventInformationTable> > ptr;
+		ePtr<eTable<EventInformationSection> > ptr;
 		if (!m_EIT.getCurrent(ptr))
 		{
 			int a = 0;
-			for (EventInformationTableConstIterator i = ptr->getSections().begin();
+			for (std::vector<EventInformationSection*>::const_iterator i = ptr->getSections().begin();
 				i != ptr->getSections().end(); ++i)
 			{
 				for (EventConstIterator ev = (*i)->getEvents()->begin(); ev != (*i)->getEvents()->end(); ++ev)

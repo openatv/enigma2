@@ -14,6 +14,7 @@ class eDVBDemux: public iDVBDemux
 	friend class eDVBVideo;
 	friend class eDVBPCR;
 	friend class eDVBTSRecorder;
+	friend class eDVBCAService;
 public:
 	DECLARE_REF(eDVBDemux);
 	eDVBDemux(int adapter, int demux);
@@ -22,6 +23,7 @@ public:
 	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
 	RESULT getSTC(pts_t &pts);
+	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 };
 
 class eDVBSectionReader: public iDVBSectionReader, public Object

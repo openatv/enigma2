@@ -9,7 +9,7 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/isection.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb_si/pmt.h>
+#include <dvbsi++/program_map_section.h>
 #include <lib/dvb/scan.h>
 #include <unistd.h>
 

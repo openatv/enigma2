@@ -1,11 +1,11 @@
 #include <lib/dvb/idvb.h>
-#include <lib/dvb_si/sdt.h>
-#include <lib/dvb_si/nit.h>
-#include <lib/dvb_si/bat.h>
-#include <lib/dvb_si/descriptor_tag.h>
-#include <lib/dvb_si/service_descriptor.h>
-#include <lib/dvb_si/satellite_delivery_system_descriptor.h>
-#include <lib/dvb_si/ca_identifier_descriptor.h>
+#include <dvbsi++/service_description_section.h>
+#include <dvbsi++/network_information_section.h>
+#include <dvbsi++/bouquet_association_section.h>
+#include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/service_descriptor.h>
+#include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/ca_identifier_descriptor.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/scan.h>
@@ -119,18 +119,18 @@ RESULT eDVBScan::startFilter()
 {
 	assert(m_demux);
 	
-	m_SDT = new eTable<ServiceDescriptionTable>();
+	m_SDT = new eTable<ServiceDescriptionSection>();
 	if (m_SDT->start(m_demux, eDVBSDTSpec()))
 		return -1;
 	CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
 
 	m_NIT = 0;
-	m_NIT = new eTable<NetworkInformationTable>();
+	m_NIT = new eTable<NetworkInformationSection>();
 	if (m_NIT->start(m_demux, eDVBNITSpec()))
 		return -1;
 	CONNECT(m_NIT->tableReady, eDVBScan::NITready);
 	
-	m_BAT = new eTable<BouquetAssociationTable>();
+	m_BAT = new eTable<BouquetAssociationSection>();
 	if (m_BAT->start(m_demux, eDVBBATSpec()))
 		return -1;
 	CONNECT(m_BAT->tableReady, eDVBScan::BATready);
@@ -222,7 +222,7 @@ void eDVBScan::channelDone()
 			hash);
 		
 		SCAN_eDebug("SDT: ");
-		ServiceDescriptionTableConstIterator i;
+		std::vector<ServiceDescriptionSection*>::const_iterator i;
 		for (i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
 			processSDT(dvbnamespace, **i);
 		m_ready &= ~validSDT;
@@ -231,10 +231,10 @@ void eDVBScan::channelDone()
 	if (m_ready & validNIT)
 	{
 		SCAN_eDebug("dumping NIT");
-		NetworkInformationTableConstIterator i;
+		std::vector<NetworkInformationSection*>::const_iterator i;
 		for (i = m_NIT->getSections().begin(); i != m_NIT->getSections().end(); ++i)
 		{
-			const TransportStreamInfoVector &tsinfovec = *(*i)->getTsInfo();
+			const TransportStreamInfoList &tsinfovec = *(*i)->getTsInfo();
 			
 			for (TransportStreamInfoConstIterator tsinfo(tsinfovec.begin()); 
 				tsinfo != tsinfovec.end(); ++tsinfo)
@@ -353,9 +353,9 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 	}
 }
 
-RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionTable &sdt)
+RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt)
 {
-	const ServiceDescriptionVector &services = *sdt.getDescriptions();
+	const ServiceDescriptionList &services = *sdt.getDescriptions();
 	SCAN_eDebug("ONID: %04x", sdt.getOriginalNetworkId());
 	eDVBChannelID chid(dvbnamespace, sdt.getTransportStreamId(), sdt.getOriginalNetworkId());
 	
@@ -394,9 +394,9 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			case CA_IDENTIFIER_DESCRIPTOR:
 			{
 				CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
-				const CaSystemIdVector &caids = *d.getCaSystemIds();
+				const CaSystemIdList &caids = *d.getCaSystemIds();
 				SCAN_eDebugNoNewLine("CA ");
-				for (CaSystemIdVector::const_iterator i(caids.begin()); i != caids.end(); ++i)
+				for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 				{
 					SCAN_eDebugNoNewLine("%04x ", *i);
 					service->m_ca.insert(*i);

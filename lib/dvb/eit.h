@@ -3,13 +3,13 @@
 
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb_si/eit.h>
+#include <dvbsi++/event_information_section.h>
 #include <lib/service/event.h>
 
 class eDVBServiceEITHandler: public Object
 {
 	ePtr<iDVBDemux> m_demux;
-	eAUTable<eTable<EventInformationTable> > m_EIT;
+	eAUTable<eTable<EventInformationSection> > m_EIT;
 	void EITready(int error);
 	
 	RESULT parseEvent(ePtr<eServiceEvent> &serviceevent, const Event &dvbevent);

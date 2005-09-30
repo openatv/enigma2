@@ -3,10 +3,10 @@
 #include <lib/dvb/frontend.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
-#include <lib/dvb_si/sdt.h>
-#include <lib/dvb_si/descriptor_tag.h>
-#include <lib/dvb_si/service_descriptor.h>
-#include <lib/dvb_si/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/service_description_section.h>
+#include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/service_descriptor.h>
+#include <dvbsi++/satellite_delivery_system_descriptor.h>
 
 DEFINE_REF(eDVBService);
 
