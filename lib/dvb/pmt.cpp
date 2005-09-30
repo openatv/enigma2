@@ -1,14 +1,21 @@
- #include <lib/base/eerror.h>
+#include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
+#include <dvbsi++/ca_program_map_section.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
+	:m_pmt_pid(0xFFFF), m_ca_servicePtr(0)
 {
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+}
+
+eDVBServicePMTHandler::~eDVBServicePMTHandler()
+{
+	delete m_ca_servicePtr;
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
@@ -44,7 +51,13 @@ void eDVBServicePMTHandler::PMTready(int error)
 	if (error)
 		serviceEvent(eventNoPMT);
 	else
+	{
 		serviceEvent(eventNewProgramInfo);
+		if (!m_pvr_channel && !m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
+			m_ca_servicePtr = new eDVBCAService(*this);
+		if (m_ca_servicePtr)
+			m_ca_servicePtr->buildCAPMT();
+	}
 }
 
 void eDVBServicePMTHandler::PATready(int)
@@ -66,7 +79,10 @@ void eDVBServicePMTHandler::PATready(int)
 		if (pmtpid == -1)
 			serviceEvent(eventNoPATEntry);
 		else
+		{
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
+			m_pmt_pid = pmtpid;
+		}
 	} else
 		serviceEvent(eventNoPAT);
 }
@@ -224,4 +240,125 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
 	return res;
+}
+
+void eDVBCAService::Connect()
+{
+	memset(&m_servaddr, 0, sizeof(struct sockaddr_un));
+	m_servaddr.sun_family = AF_UNIX;
+	strcpy(m_servaddr.sun_path, "/tmp/camd.socket");
+	m_clilen = sizeof(m_servaddr.sun_family) + strlen(m_servaddr.sun_path);
+	m_sock = socket(PF_UNIX, SOCK_STREAM, 0);
+	connect(m_sock, (struct sockaddr *) &m_servaddr, m_clilen);
+	fcntl(m_sock, F_SETFL, O_NONBLOCK);
+	int val=1;
+	setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
+}
+
+void eDVBCAService::buildCAPMT()
+{
+	ePtr<eTable<ProgramMapSection> > ptr;
+
+	if (m_parent.m_PMT.getCurrent(ptr))
+		return;
+
+	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+	if ( i != ptr->getSections().end() )
+	{
+		CaProgramMapSection capmt(*i++, m_capmt == NULL ? 0x03 /*only*/: 0x05 /*update*/, 0x01 );
+
+		while( i != ptr->getSections().end() )
+		{
+			eDebug("append");
+			capmt.append(*i++);
+		}
+
+		// add our private descriptors to capmt
+		uint8_t tmp[10];
+
+		tmp[0]=0x84;  // pmt pid
+		tmp[1]=0x02;
+		tmp[2]=m_parent.m_pmt_pid>>8;
+		tmp[3]=m_parent.m_pmt_pid&0xFF;
+		capmt.injectDescriptor(tmp, false);
+
+		tmp[0] = 0x82; // demux
+		tmp[1] = 0x02;
+		m_parent.m_demux->getCADemuxID(tmp[2]);  // descramble on demux
+		m_parent.m_demux->getCADemuxID(tmp[3]);  // get section data from demux1
+		capmt.injectDescriptor(tmp, false);
+
+		tmp[0] = 0x81; // dvbnamespace
+		tmp[1] = 0x08;
+		tmp[2] = m_parent.m_reference.getDVBNamespace().get()>>24;
+		tmp[3]=(m_parent.m_reference.getDVBNamespace().get()>>16)&0xFF;
+		tmp[4]=(m_parent.m_reference.getDVBNamespace().get()>>8)&0xFF;
+		tmp[5]=m_parent.m_reference.getDVBNamespace().get()&0xFF;
+		tmp[6]=m_parent.m_reference.getTransportStreamID().get()>>8;
+		tmp[7]=m_parent.m_reference.getTransportStreamID().get()&0xFF;
+		tmp[8]=m_parent.m_reference.getOriginalNetworkID().get()>>8;
+		tmp[9]=m_parent.m_reference.getOriginalNetworkID().get()&0xFF;
+		capmt.injectDescriptor(tmp, false);
+
+		if ( !m_capmt )
+			m_capmt = new uint8_t[2048];
+
+		capmt.writeToBuffer(m_capmt);
+	}
+
+	if ( m_sendstate != 0xFFFFFFFF )
+		m_sendstate=0;
+	sendCAPMT();
+}
+
+void eDVBCAService::sendCAPMT()
+{
+	if ( m_sendstate && m_sendstate != 0xFFFFFFFF ) // broken pipe retry
+	{
+		::close(m_sock);
+		Connect();
+	}
+
+	int wp=0;
+	if ( m_capmt[3] & 0x80 )
+	{
+		int i=0;
+		int lenbytes = m_capmt[3] & ~0x80;
+		while(i < lenbytes)
+			wp |= (m_capmt[4+i] << (8 * i++));
+		wp+=4;
+		wp+=lenbytes;
+	}
+	else
+	{
+		wp = m_capmt[3];
+		wp+=4;
+	}
+
+	if ( write(m_sock, m_capmt, wp) == wp )
+	{
+		m_sendstate=0xFFFFFFFF;
+		eDebug("[eDVBCAHandler] send %d bytes",wp);
+#if 1
+		for(int i=0;i<wp;i++)
+			eDebugNoNewLine("%02x ", m_capmt[i]);
+		eDebug("");
+#endif
+	}
+	else
+	{
+		switch(m_sendstate)
+		{
+			case 0xFFFFFFFF:
+				++m_sendstate;
+				m_retryTimer.start(0,true);
+				eDebug("[eDVBCAHandler] send failed .. immediate retry");
+				break;
+			default:
+				m_retryTimer.start(5000,true);
+				eDebug("[eDVBCAHandler] send failed .. retry in 5 sec");
+				break;
+		}
+		++m_sendstate;
+	}
 }
