@@ -284,8 +284,8 @@ void eDVBCAService::buildCAPMT()
 
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
-		m_parent.m_demux->getCADemuxID(tmp[2]);  // descramble on demux
-		m_parent.m_demux->getCADemuxID(tmp[3]);  // get section data from demux1
+		m_parent.m_demux->getCADemuxID(tmp[3]); // read section data from demux number
+		tmp[2] = 1 << tmp[3];			// descramble bitmask
 		capmt.injectDescriptor(tmp, false);
 
 		tmp[0] = 0x81; // dvbnamespace
