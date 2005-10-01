@@ -30,10 +30,10 @@
 				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
 			</borderset>
 		</windowstyle> """ """
-		<screen name="Menu" position="210,150" size="300,220" title="real main menu">
+		<screen name="Menu" position="210,150" size="300,235" title="real main menu">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
 			<!--<widget name="menu" position="10,55" size="280,150" font="Arial;23" />-->
-			<widget name="menu" position="10,55" size="280,150"/>
+			<widget name="menu" position="10,55" size="280,175"/>
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -48,12 +48,16 @@
 		</screen>
 		<screen name="Setup" position="140,125" size="460,280" title="Setup">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
-			<widget name="config" position="10,50" size="420,150" />
-			<widget name="ok" position="140,230" size="38,20" font="Arial;20" backgroundColor="green" />
-			<widget name="cancel" position="240,230" size="70,20" font="Arial;20" backgroundColor="red" />
+			<widget name="config" position="10,50" size="420,175" />
+			<widget name="ok" position="140,240" size="38,20" font="Arial;20" backgroundColor="green" />
+			<widget name="cancel" position="240,240" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
 		<screen name="Satconfig" position="140,125" size="460,280" title="Satconfig">
 			<widget name="config" position="10,50" size="420,150" />
+		</screen>
+		<screen name="PluginBrowser" position="190,125" size="360,250" title="Plugins">
+			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
+			<widget name="pluginlist" position="10,50" size="320,200" />
 		</screen>
 		<screen name="About" position="140,125" size="360,250" title="About">
 			<widget name="text" position="10,30" size="420,40" font="Arial;18"/>
