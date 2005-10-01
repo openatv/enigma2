@@ -5,7 +5,7 @@
 		<item text="Radio"></item>
 		<item text="Timer">self.openDialog(TimerEditList)</item>
 		<item text="Information">self.openDialog(About)</item>
-		<item text="Games / Plugins"></item>
+		<item text="Games / Plugins">self.openDialog(PluginBrowser)</item>
 		<menu text="Setup">
 			<menu text="Service Organising">
 				<item text="New Bouquets"></item>
@@ -13,8 +13,8 @@
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
-				<item text="Satelliteconfig">self.openDialog(Satconfig)</item>
-				<!--<item text="Satelliteconfig">self.openSetup("satconfig")</item>-->
+				<!--<item text="Satelliteconfig">self.openDialog(Satconfig)</item>-->
+				<item text="Satelliteconfig">self.openSetup("satconfig")</item>
 				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
 				<item text="Manual Scan">self.openDialog(ServiceScan)</item>
 				<item text="Rotor Control"></item>

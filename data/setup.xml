@@ -59,12 +59,13 @@
 			<item text="Hide error windows">config.expert.hideerrors</item>
 			<item text="Auto show inforbar">config.expert.autoinfo</item>
 		</setup>
-		<setup key="satconfig" title="Sat/Dish Setup">
-			<item text="Tuner-A Control">config.sat.diseqcA</item>
-			<item text="Tuner-A Position">config.sat.posA</item>
-			<item text="Tuner-A Sat">config.sat.satA</item>
-			<item text="Tuner-B Control">config.sat.diseqcB</item>
-			<item text="Tuner-A Position">config.sat.posB</item>
-			<item text="Tuner-B Sat">config.sat.satB</item>
+		<setup key="satconfig" title="Sat / Dish Setup">
+			<item text="Tuner-Slot">config.sat.tunerslot</item>
+			<item text="Configmode">config.sat.configmode</item>
+			<item text="DiSEqC">config.sat.diseqc</item>
+			<item text="Longitude">config.sat.diseqca</item>
+			<item text="Latitude">config.sat.diseqcb</item>
+			<item text="use power delta" >config.sat.diseqcc</item>
+			<!--<item text="DiSEqC D">config.sat.diseqcd</item>-->
 		</setup>
 </setupxml>
