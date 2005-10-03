@@ -20,14 +20,14 @@
 			<color name="ListboxMarkedBackground" color="#ff0000" />
 			<color name="ListboxMarkedForeground" color="#ffffff" />
 			<borderset name="bsWindow">
-				<pixmap pos="bpTopLeft"     filename="data/b_w_tl.png" />
-				<pixmap pos="bpTop"         filename="data/b_w_t.png"  />
-				<pixmap pos="bpTopRight"    filename="data/b_w_tr.png" />
-				<pixmap pos="bpLeft"        filename="data/b_w_l.png"  />
-				<pixmap pos="bpRight"       filename="data/b_w_r.png"  />
-				<pixmap pos="bpBottomLeft"  filename="data/b_w_bl.png" />
-				<pixmap pos="bpBottom"      filename="data/b_w_b.png"  />
-				<pixmap pos="bpBottomRight" filename="data/b_w_br.png" />
+				<pixmap pos="bpTopLeft"     filename="/usr/share/enigma2/b_w_tl.png" />
+				<pixmap pos="bpTop"         filename="/usr/share/enigma2/b_w_t.png"  />
+				<pixmap pos="bpTopRight"    filename="/usr/share/enigma2/b_w_tr.png" />
+				<pixmap pos="bpLeft"        filename="/usr/share/enigma2/b_w_l.png"  />
+				<pixmap pos="bpRight"       filename="/usr/share/enigma2/b_w_r.png"  />
+				<pixmap pos="bpBottomLeft"  filename="/usr/share/enigma2/b_w_bl.png" />
+				<pixmap pos="bpBottom"      filename="/usr/share/enigma2/b_w_b.png"  />
+				<pixmap pos="bpBottomRight" filename="/usr/share/enigma2/b_w_br.png" />
 			</borderset>
 		</windowstyle> """ """
 		<screen name="Menu" position="210,150" size="300,235" title="real main menu">
@@ -89,7 +89,7 @@
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" size="720,148" pixmap="data/info-bg.png" />
+			<ePixmap position="0,0" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 			
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
