@@ -151,6 +151,10 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+	// set pythonpath if unset
+	setenv("PYTHONPATH", LIBDIR "/enigma2/python", 0);
+	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
+
 
 	ePython python;
 	eMain main;
@@ -189,10 +193,10 @@ int main(int argc, char **argv)
 	dsk_lcd.setDC(my_lcd_dc);
 
 	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, "data/pal.png");
+	loadPNG(m_pm, DATADIR "/enigma2/pal.png");
 	if (!m_pm)
 	{
-		eFatal("hi ghost, please copy pal.png into your ./data, thanks!");
+		eFatal("pal.png not found!");
 	} else
 		dsk.setPalette(*m_pm);
 
