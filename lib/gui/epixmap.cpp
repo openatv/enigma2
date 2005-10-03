@@ -14,11 +14,7 @@ void ePixmap::setPixmap(gPixmap *pixmap)
 
 void ePixmap::setPixmapFromFile(const char *filename)
 {
-	// use direct filename for absolute path or relative to enigma2 DATADIR otherwise
-	if (filename[0] == '/')
-		loadPNG(m_pixmap, filename);
-	else
-		loadPNG(m_pixmap, strcat(DATADIR "/enigma2/", filename));
+	loadPNG(m_pixmap, filename);
 		
 		// TODO
 	getDesktop()->makeCompatiblePixmap(*m_pixmap);
