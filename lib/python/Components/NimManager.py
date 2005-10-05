@@ -5,6 +5,11 @@ from config import ConfigSubsection
 from config import ConfigSlider
 from config import configSelection
 
+import xml.dom.minidom
+from xml.dom import EMPTY_NAMESPACE
+from skin import elementsWithTag
+from Tools import XMLTools
+
 class nimSlot:
 	def __init__(self, slotid, nimtype, name):
 		self.slotid = slotid
@@ -12,6 +17,18 @@ class nimSlot:
 		self.name = name
 
 class NimManager:
+	def readSatsfromFile(self):
+		self.satellites = { }
+		#FIXME: path ok???
+		satfile = file('/etc/tuxbox/satellites.xml', 'r')
+		satdom = xml.dom.minidom.parseString(satfile.read())
+		satfile.close()
+
+		for entries in elementsWithTag(satdom.childNodes, "satellites"):
+			for x in elementsWithTag(entries.childNodes, "sat"):
+				#print "found sat " + x.getAttribute('name') + " " + str(x.getAttribute('position'))
+				self.satellites[x.getAttribute('position')] = x.getAttribute('name')
+
 	def getNimType(self, slotID):
 		#FIXME get it from /proc
 		if slotID == 0:
@@ -36,6 +53,8 @@ class NimManager:
 												"DVB-S": 0,
 												"DVB-C": 1,
 												"DVB-T": 2}
+												
+		self.readSatsfromFile()										
 												
 		self.nimCount = self.getNimSocketCount()
 
@@ -70,10 +89,9 @@ def InitNimManager(nimmgr):
 		cname = nimmgr.getConfigPrefix(x)
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
+			#use custom configElement which can handle a dict (for sats)
 			config.Nims[x].configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
 			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 0, ("Single", "Toneburst A/B", "DiSEqC A/B"));
-			config.Nims[x].diseqcMode = configElement(cname + "toneburstA",configSelection, 0, ("Astra", "Hotbird"));
-			config.Nims[x].diseqcMode = configElement(cname + "toneburstB",configSelection, 0, ("Astra", "Hotbird"));
 			config.Nims[x].diseqcMode = configElement(cname + "diseqcA",configSelection, 0, ("Astra", "Hotbird"));
 			config.Nims[x].diseqcMode = configElement(cname + "diseqcB",configSelection, 0, ("Astra", "Hotbird"));
 			config.Nims[x].diseqcMode = configElement(cname + "diseqcC",configSelection, 0, ("Astra", "Hotbird"));
