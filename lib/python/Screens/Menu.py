@@ -12,7 +12,7 @@ import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
-from Screens.Satconfig import Satconfig
+from Screens.Satconfig import NimSelection
 
 from Tools import XMLTools
 
