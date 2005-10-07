@@ -384,6 +384,12 @@ void eListboxPythonStringContent::invalidateEntry(int index)
 		m_listbox->entryChanged(index);
 }
 
+void eListboxPythonStringContent::invalidate()
+{
+	if (m_listbox)
+		m_listbox->entryReset();
+}
+
 //////////////////////////////////////
 
 void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)

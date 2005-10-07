@@ -49,6 +49,7 @@ class NimSetup(Screen):
 		#???
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+		self["config"].l.invalidate()
 		
 	def newConfig(self):	
 		if self["config"].getCurrent()[0] == "Diseqcmode":
