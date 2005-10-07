@@ -27,7 +27,7 @@ class ConfigList(HTMLComponent, GUIComponent):
 	
 	def invalidateCurrent(self):
 		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
-	
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
