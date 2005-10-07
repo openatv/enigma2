@@ -95,5 +95,6 @@ class NimSelection(Screen):
 
 	def okbuttonClick(self):
 		selection = self["nimlist"].getCurrent()
-		self.session.open(NimSetup, selection[1])
-		pass
+		if selection[1].nimType != -1:	#unknown/empty
+			self.session.open(NimSetup, selection[1])
+	
