@@ -4,6 +4,7 @@ from config import configElement
 from config import ConfigSubsection
 from config import ConfigSlider
 from config import configSelection
+from config import configSatlist
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
@@ -27,7 +28,11 @@ class NimManager:
 		for entries in elementsWithTag(satdom.childNodes, "satellites"):
 			for x in elementsWithTag(entries.childNodes, "sat"):
 				#print "found sat " + x.getAttribute('name') + " " + str(x.getAttribute('position'))
-				self.satellites[x.getAttribute('position')] = x.getAttribute('name')
+				tpos = x.getAttribute('position')
+				tname = x.getAttribute('name')
+				#tname.encode('utf8')
+				self.satellites[tpos] = tname
+				self.satList.append( (tname, tpos) )
 
 	def getNimType(self, slotID):
 		#FIXME get it from /proc
@@ -53,6 +58,7 @@ class NimManager:
 												"DVB-S": 0,
 												"DVB-C": 1,
 												"DVB-T": 2}
+		self.satList = [ ]										
 												
 		self.readSatsfromFile()										
 												
@@ -91,11 +97,11 @@ def InitNimManager(nimmgr):
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			#use custom configElement which can handle a dict (for sats)
 			config.Nims[x].configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 0, ("Single", "Toneburst A/B", "DiSEqC A/B"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcA",configSelection, 0, ("Astra", "Hotbird"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcB",configSelection, 0, ("Astra", "Hotbird"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcC",configSelection, 0, ("Astra", "Hotbird"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcD",configSelection, 0, ("Astra", "Hotbird"));
+			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 0, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D"));
+			config.Nims[x].diseqcA = configElement(cname + "diseqcA",configSatlist, 0, nimmgr.satList);
+			config.Nims[x].diseqcB = configElement(cname + "diseqcB",configSatlist, 0, nimmgr.satList);
+			config.Nims[x].diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
+			config.Nims[x].diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
 		else:
 			print "pls add support for this frontend type!"		
 
