@@ -84,6 +84,7 @@ public:
 	PyObject *getCurrentSelection();
 	int getCurrentSelectionIndex() { return m_cursor; }
 	void invalidateEntry(int index);
+	void invalidate();
 #ifndef SWIG
 protected:
 	void cursorHome();
