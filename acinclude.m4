@@ -431,4 +431,4 @@ AC_DEFUN([AC_PYTHON_DEVEL],[
         #
         python_site=`echo $python_path | sed "s/config/site-packages/"`
         AC_SUBST([PYTHON_SITE_PKG],[$python_site])
-)]
+])
