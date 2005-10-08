@@ -28,9 +28,8 @@ class NimManager:
 	def readSatsfromFile(self):
 		self.satellites = { }
 		#FIXME: path ok???
-		satfile = file('/etc/tuxbox/satellites.xml', 'r')
-		satdom = xml.dom.minidom.parseString(satfile.read())
-		satfile.close()
+		satdom = xml.dom.minidom.parse('/etc/tuxbox/satellites.xml')
+
 
 		for entries in elementsWithTag(satdom.childNodes, "satellites"):
 			for x in elementsWithTag(entries.childNodes, "sat"):
