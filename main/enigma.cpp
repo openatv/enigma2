@@ -180,11 +180,11 @@ int main(int argc, char **argv)
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));
 	
-	if (double_buffer)
+/*	if (double_buffer)
 	{
 		eDebug(" - double buffering found, enable buffered graphics mode.");
 		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
-	}
+	} */
 	
 	wdsk = &dsk;
 	lcddsk = &dsk_lcd;
