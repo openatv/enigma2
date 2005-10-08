@@ -28,12 +28,12 @@ class HarddiskSetup(Screen):
 
 	def hddInitialize(self):
 		#some protection for the exhibition (IFA 2005)
-		if self.hdd.getIndex() == 2:		#CF
-			print "not a good idea!"
-			self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
-		else:	
-			print "this will start the initialize now!"
-			#self.hdd.initialize()
+		#if self.hdd.getIndex() == 2:		#CF
+		#	print "not a good idea!"
+		#	self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
+		#else:	
+		print "this will start the initialize now!"
+		self.hdd.initialize()
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
