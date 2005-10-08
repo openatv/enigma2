@@ -13,6 +13,7 @@ from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
 from Screens.Satconfig import NimSelection
+from Screens.Setup import *
 
 from Tools import XMLTools
 
