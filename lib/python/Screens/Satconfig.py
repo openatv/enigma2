@@ -7,20 +7,19 @@ from Components.NimManager import nimmanager
 
 class NimSetup(Screen):
 	def createSimpleSetup(self, nim, list, mode):
-		print "request for diseqcmode:" + str(mode)
-		
+
 		b = config.Nims[nim.slotid].diseqcA
 		item = b.controlType(b)
-		if mode == 0:
+		if mode == 0:			#single Sat
 			list.append( ("Satellite", item) )
-		else:
+		else:							# > 1 Sats
 			list.append( ("Port A", item) )
 		
-		if mode >= 1:
+		if mode >= 1:			# > 1 Sats
 			b = config.Nims[nim.slotid].diseqcB
 			item = b.controlType(b)
 			list.append( ("Port B", item) )
-			if mode >= 3:
+			if mode >= 3:		# > 2 Sats
 				b = config.Nims[nim.slotid].diseqcC
 				item = b.controlType(b)
 				list.append( ("Port C", item) )
@@ -30,7 +29,6 @@ class NimSetup(Screen):
 				list.append( ("Port D", item) )
 				
 	def createSetup(self):
-		print "createSetup"
 		self.list = [ ]
 		
 		b = config.Nims[self.nim.slotid].configMode
@@ -63,14 +61,24 @@ class NimSetup(Screen):
 		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 
+	def keySave(self):
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+
+	def keyCancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
 	def __init__(self, session, nim):
 		Screen.__init__(self, session)
 		self.nim = nim
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
-			"ok": self.close,
-			"cancel": self.close,
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
 			"left": self.keyLeft,
 			"right": self.keyRight
 		}, -1)
