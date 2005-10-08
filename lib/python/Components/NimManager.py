@@ -138,6 +138,7 @@ def InitNimManager(nimmgr):
 			config.Nims[x].diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
 			config.Nims[x].diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
 			
+			#perhaps the instance of the slot is more useful?
 			config.Nims[x].configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
 			config.Nims[x].diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
 			config.Nims[x].diseqcA.addNotifier(boundFunction(nimPortAChanged,x))
