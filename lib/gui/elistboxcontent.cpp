@@ -365,6 +365,10 @@ void eListboxPythonStringContent::setList(PyObject *list)
 		m_list = list;
 		Py_INCREF(m_list);
 	}
+
+	//always invalidate when we get a new list
+	if (m_listbox)
+		m_listbox->invalidate();
 }
 
 PyObject *eListboxPythonStringContent::getCurrentSelection()
@@ -387,7 +391,7 @@ void eListboxPythonStringContent::invalidateEntry(int index)
 void eListboxPythonStringContent::invalidate()
 {
 	if (m_listbox)
-		m_listbox->entryReset();
+		m_listbox->invalidate();
 }
 
 //////////////////////////////////////
