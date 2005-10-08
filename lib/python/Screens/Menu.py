@@ -12,7 +12,6 @@ import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
-from Screens.Satconfig import NimSelection
 from Screens.Setup import *
 
 from Tools import XMLTools
@@ -33,12 +32,11 @@ def doGlobal(screen):
 try:
 	# first we search in the current path
 	menufile = file('data/menu.xml', 'r')
-except:
+except IOError:
 	# if not found in the current path, we use the global datadir-path
 	menufile = file('/usr/share/enigma2/menu.xml', 'r')
 mdom = xml.dom.minidom.parseString(menufile.read())
 menufile.close()
-
 
 
 def getValbyAttr(x, attr):
@@ -64,14 +62,26 @@ class Menu(Screen):
 		selection = self["menu"].getCurrent()
 		selection[1]()
 
-	def evalText(self, text):
-		eval(text)
+	def execText(self, text):
+		exec text
 		
+	def runScreen(self, arg):
+		# arg[0] is the module (as string)
+		# arg[1] is Screen inside this module 
+		#        plus possible arguments, as 
+		#        string (as we want to reference 
+		#        stuff which is just imported)
+		# FIXME. somehow.
+		if arg[0] != "":
+			exec "from Screens." + arg[0] + " import *"
+		
+		self.openDialog(*eval(arg[1]))
+
 	def nothing(self):																	#dummy
 		pass
 
-	def openDialog(self, dialog):				# in every layer needed
-		self.session.open(dialog)
+	def openDialog(self, *dialog):				# in every layer needed
+		self.session.open(*dialog)
 
 	def openSetup(self, dialog):
 		self.session.open(Setup, dialog)
@@ -86,11 +96,33 @@ class Menu(Screen):
 	def addItem(self, destList, node):
 		ItemText = getValbyAttr(node, "text")
 		if ItemText != "":																	#check for name
-			b = XMLTools.mergeText(node.childNodes)
-			if b != "":																				#check for function
-				destList.append((ItemText,boundFunction(self.evalText,b)))
-			else:
-				destList.append((ItemText,self.nothing))				#use dummy as function
+			for x in node.childNodes:
+				if x.nodeType != xml.dom.minidom.Element.nodeType:
+					continue
+				elif x.tagName == 'screen':
+					module = getValbyAttr(x, "module")
+					screen = getValbyAttr(x, "screen")
+
+					if len(screen) == 0:
+						screen = module
+					
+					# check for arguments. they will be appended to the 
+					# openDialog call
+					args = XMLTools.mergeText(x.childNodes)
+					screen += ", " + args
+					
+					destList.append((ItemText, boundFunction(self.runScreen, (module, screen))))
+					return
+				elif x.tagName == 'code':
+					destList.append((ItemText, boundFunction(self.execText, XMLTools.mergeText(x.childNodes))))
+					return
+				elif x.tagName == 'setup':
+					id = getValbyAttr(x, "id")
+					destList.append((ItemText, boundFunction(self.openSetup, id)))
+					return
+			
+			destList.append((ItemText,self.nothing))
+
 
 	def __init__(self, session, parent, childNode):
 		Screen.__init__(self, session)

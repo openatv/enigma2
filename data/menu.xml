@@ -1,11 +1,25 @@
 <menu text="Mainmenu" title="Mainmenu">
+
+<!-- the following types are allowed:
+	<screen [module="mod"] [screen="classname"]>[arguments]</screen> 
+		executes Screen called "classname" from module "Screen.mod"
+		if no module is given, Screen must be globally available.
+		if no screen is given, module is used as screen class name.
+		arguments must be comma seperated (will be fed to eval), and can
+			use stuff from module
+		(of course you must specify at least one of module, screen.)
+	<setup id="id" />
+		opens a setup with specified id
+	<code> .. code .. </code>
+		"exec"s code
+-->
 		<!--<item text="Standby debug">quitMainloop()</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
-		<item text="Satelliteconfig">self.openDialog(NimSelection)</item>
-		<item text="Radio"></item>
-		<item text="Timer">self.openDialog(TimerEditList)</item>
-		<item text="Information">self.openDialog(About)</item>
-		<item text="Games / Plugins">self.openDialog(PluginBrowser)</item>
+		<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
+		<item text="Radio"><code>print "radio mode"</code></item>
+		<item text="Timer"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		<item text="Information"><screen module="About" /></item>
+		<item text="Games / Plugins"><screen module="PluginBrowser" /></item>
 		<menu text="Setup">
 			<menu text="Service Organising">
 				<item text="New Bouquets"></item>
@@ -13,33 +27,33 @@
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
-				<item text="Satelliteconfig">self.openDialog(Satconfig)</item>
+				<item text="Satelliteconfig"><screen module="Satconfig" /></item>
 				<!--<item text="Satelliteconfig">self.openSetup("satconfig")</item>-->
-				<item text="Automatic Scan">self.openDialog(ServiceScan)</item>
-				<item text="Manual Scan">self.openDialog(ServiceScan)</item>
+				<item text="Automatic Scan"><screen name="ServiceScan" /></item>
+				<item text="Manual Scan"><screen name="ServiceScan" /></item>
 				<item text="Rotor Control"></item>
 				<item text="Edit Transponder"></item>
 				<!--<item text="Satfinder"></item>-->
 			</menu>
 			<menu text="System">
-				<item text="Timezone">self.openSetup("timezone")</item>
-				<item text="Video Audio">self.openSetup("avsetup")</item>
-				<item text="UHF Modulator">self.openSetup("rfmod")</item>
-				<item text="Harddisk">self.openDialog(HarddiskSelection)</item>
-				<item text="Remote Control">self.openSetup("rc")</item>
-				<item text="Keyboard">self.openSetup("keyboard")</item>
-				<item text="OSD">self.openSetup("osd")</item>
-				<item text="LCD">self.openSetup("lcd")</item>
-				<item text="Networksetup">self.openSetup("network")</item>
+				<item text="Timezone"><setup id="timezone" /></item>
+				<item text="Video Audio"><setup id="avsetup" /></item>
+				<item text="UHF Modulator"><setup id="rfmod" /></item>
+				<item text="Harddisk"><screen module="HarddiskSelection" /></item>
+				<item text="Remote Control"><setup id="rc" /></item>
+				<item text="Keyboard"><setup id="keyboard" /></item>
+				<item text="OSD"><setup id="osd" /></item>
+				<item text="LCD"><setup id="lcd" /></item>
+				<item text="Networksetup"><setup id="network" /></item>
 			</menu>
 			<item text="Common Interface"></item>
-			<item text="Parental Control">self.openSetup("parental")</item>
-			<item text="Expert">self.openSetup("expert")</item>
+			<item text="Parental Control"><setup id="parental" /></item>
+			<item text="Expert"><setup id="expert" /></item>
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart">
-			<item text="Standby">quitMainloop()</item>
-			<item text="Restart">quitMainloop()</item>
-			<item text="Deep Standby">quitMainloop()</item>
+			<item text="Standby"><code>quitMainloop()</code></item>
+			<item text="Restart"><code>quitMainloop()</code></item>
+			<item text="Deep Standby"><code>quitMainloop()</code></item>
 		</menu>
-	</menu>
+</menu>
