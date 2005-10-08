@@ -1,6 +1,6 @@
 installdir = $(LIBDIR)/enigma2/python/Components
 
-install_DATA = \
+install_PYTHON = \
 	ActionMap.py GUISkin.py PerServiceDisplay.py TimeInput.py components.py \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \
 	Clock.py HTMLSkin.py ServiceList.py VariableText.py                     \
