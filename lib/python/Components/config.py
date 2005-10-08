@@ -249,6 +249,23 @@ class ConfigSubsection:
 		pass
 
 class configElement:
+
+	def getIndexbyEntry(self, data):
+		cnt = 0;
+		tcnt = -1; #for defaultval
+		for x in self.vals:
+			if int(x[1]) == int(data):
+					print "return entry"
+					return cnt
+			if int(x[1]) == int(self.defaultValue):
+					tcnt = cnt
+			cnt += 1
+		if tcnt != -1:
+			print "return default"
+			return tcnt			
+		print "return fix"
+		return 0
+
 	def datafromFile(self, control, data):
 		if control == ConfigSlider:
 			return int(data);
@@ -260,6 +277,8 @@ class configElement:
 			for x in part:
 				list.append(int(x))
 			return list
+		elif control == configSatlist:
+			return self.getIndexbyEntry(data)
 		else: 
 			return ""	
 
@@ -277,6 +296,9 @@ class configElement:
 #					value += self.vals[0]
 #				value += str(i)
 			return value
+		elif control == configSatlist:
+			print "value is " + str(self.value)
+			return str(self.vals[self.value][1]);
 		else: 
 			return ""	
 
@@ -286,9 +308,16 @@ class configElement:
 		except:		
 			value = ""
 
+		print "get value " + str(value)
+
 		if value == "":
 			print "value not found - using default"
-			self.value = self.defaultValue
+
+			if self.controlType == configSatlist:
+				self.value = self.getIndexbyEntry(self.defaultValue)
+			else:	
+				self.value = self.defaultValue
+
 			self.save()		#add missing value to dict
 		else:
 			self.value = value
