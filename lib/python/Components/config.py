@@ -89,9 +89,6 @@ class configSatlist:
 		if(self.parent.value >= (len(self.parent.vals) - 1)):
 			self.parent.value = len(self.parent.vals) - 1
 			
-		print "value" + str(self.parent.value)
-		print "name " + self.parent.vals[self.parent.value][0]
-
 	def cancel(self):
 		self.parent.reload()
 
@@ -255,16 +252,13 @@ class configElement:
 		tcnt = -1; #for defaultval
 		for x in self.vals:
 			if int(x[1]) == int(data):
-					print "return entry"
 					return cnt
 			if int(x[1]) == int(self.defaultValue):
 					tcnt = cnt
 			cnt += 1
 		if tcnt != -1:
-			print "return default"
 			return tcnt			
-		print "return fix"
-		return 0
+		return 0	#prevent bigger then array
 
 	def datafromFile(self, control, data):
 		if control == ConfigSlider:
@@ -297,7 +291,6 @@ class configElement:
 #				value += str(i)
 			return value
 		elif control == configSatlist:
-			print "value is " + str(self.value)
 			return str(self.vals[self.value][1]);
 		else: 
 			return ""	
@@ -307,8 +300,6 @@ class configElement:
 			value = self.datafromFile(self.controlType, configfile.getKey(self.configPath))
 		except:		
 			value = ""
-
-		print "get value " + str(value)
 
 		if value == "":
 			print "value not found - using default"
@@ -321,6 +312,9 @@ class configElement:
 			self.save()		#add missing value to dict
 		else:
 			self.value = value
+			
+		#is this right? activate settings after load/cancel and use default	
+		self.change()
 
 	def __init__(self, configPath, control, defaultValue, vals):
 		self.configPath = configPath
