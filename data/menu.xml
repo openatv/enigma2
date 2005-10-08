@@ -29,8 +29,8 @@
 			<menu text="Service Searching">
 				<item text="Satelliteconfig"><screen module="Satconfig" /></item>
 				<!--<item text="Satelliteconfig">self.openSetup("satconfig")</item>-->
-				<item text="Automatic Scan"><screen name="ServiceScan" /></item>
-				<item text="Manual Scan"><screen name="ServiceScan" /></item>
+				<item text="Automatic Scan"><screen module="ServiceScan" /></item>
+				<item text="Manual Scan"><screen module="ServiceScan" /></item>
 				<item text="Rotor Control"></item>
 				<item text="Edit Transponder"></item>
 				<!--<item text="Satfinder"></item>-->
