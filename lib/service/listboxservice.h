@@ -45,6 +45,8 @@ public:
 	void setElementPosition(int element, eRect where);
 	void setElementFont(int element, gFont *font);
 	
+	void sort();
+	
 protected:
 	void cursorHome();
 	void cursorEnd();

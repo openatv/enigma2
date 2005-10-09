@@ -21,6 +21,7 @@ eDVBService::~eDVBService()
 eDVBService &eDVBService::operator=(const eDVBService &s)
 {
 	m_service_name = s.m_service_name;
+	m_service_name_sort = s.m_service_name_sort;
 	m_provider_name = s.m_provider_name;
 	m_flags = s.m_flags;
 	m_ca = s.m_ca;
@@ -30,7 +31,7 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	name = convertDVBUTF8(m_service_name);
+	name = m_service_name;
 	return 0;
 }
 
@@ -45,7 +46,7 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 	switch (query.m_type)
 	{
 	case eDVBChannelQuery::tName:
-		res = m_service_name.find(query.m_string) != std::string::npos;
+		res = m_service_name_sort.find(query.m_string) != std::string::npos;
 		break;
 	case eDVBChannelQuery::tProvider:
 		res = m_provider_name.find(query.m_string) != std::string::npos;
@@ -213,7 +214,11 @@ void eDVBDB::load()
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
-		s->m_service_name=line;
+
+		s->m_service_name = line;
+		s->m_service_name_sort = removeDVBChars(line);
+		makeUpper(s->m_service_name_sort);
+
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
@@ -416,10 +421,62 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 		if (res)
 			return 0;
 	}
+	
+	ref = eServiceReferenceDVB();
 	return 1;
 }
 
-/* (<name|provider|type|bouquet|satpos|chid> <==|...> <"string"|int>)[AND (..)] */
+int eDVBDBQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
+{
+	ePtr<eDVBService> a_service, b_service;
+	
+	int sortmode = m_query ? m_query->m_sort : eDVBChannelQuery::tName;
+	
+	if ((sortmode == eDVBChannelQuery::tName) || (sortmode == eDVBChannelQuery::tProvider))
+	{
+		if (m_db->getService(a, a_service))
+			return 1;
+		if (m_db->getService(b, b_service))
+			return 1;
+	}
+	
+	switch (sortmode)
+	{
+	case eDVBChannelQuery::tName:
+		return a_service->m_service_name_sort < b_service->m_service_name_sort;
+	case eDVBChannelQuery::tProvider:
+		return a_service->m_provider_name < b_service->m_provider_name;
+	case eDVBChannelQuery::tType:
+		return a.getServiceType() < b.getServiceType();
+	case eDVBChannelQuery::tBouquet:
+		return 1;
+	case eDVBChannelQuery::tSatellitePosition:
+		return (a.getDVBNamespace().get() >> 16) < (b.getDVBNamespace().get() >> 16);
+	default:
+		return 1;
+	}
+	return 0;
+}
+
+/* (<name|provider|type|bouquet|satpos|chid> <==|...> <"string"|int>)[||,&& (..)] */
+
+static int decodeType(const std::string &type)
+{
+	if (type == "name")
+		return eDVBChannelQuery::tName;
+	else if (type == "provider")
+		return eDVBChannelQuery::tProvider;
+	else if (type == "type")
+		return eDVBChannelQuery::tType;
+	else if (type == "bouquet")
+		return eDVBChannelQuery::tBouquet;
+	else if (type == "satellitePosition")
+		return eDVBChannelQuery::tSatellitePosition;
+	else if (type == "channelID")
+		return eDVBChannelQuery::tChannelID;
+	else
+		return -1;
+}
 
 	/* never, NEVER write a parser in C++! */
 RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::const_iterator begin, std::list<std::string>::const_iterator end)
@@ -449,12 +506,16 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		
 			/* we had only one sub expression */
 		if (end_of_exp == end)
-			return 1;
+		{
+			eDebug("only one sub expression");
+			return 0;
+		}
 		
 			/* otherwise we have an operator here.. */
 		
 		ePtr<eDVBChannelQuery> r2 = res;
 		res = new eDVBChannelQuery();
+		res->m_sort = 0;
 		res->m_p1 = r2;
 		res->m_inverse = 0;
 		r2 = 0;
@@ -479,6 +540,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 	std::string type, op, val;
 	
 	res = new eDVBChannelQuery();
+	res->m_sort = 0;
 	
 	int cnt = 0;
 	while (begin != end)
@@ -509,26 +571,14 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		return 1;
 	}
 	
-	if (type == "name")
-		res->m_type = eDVBChannelQuery::tName;
-	else if (type == "provider")
-		res->m_type = eDVBChannelQuery::tProvider;
-	else if (type == "type")
-		res->m_type = eDVBChannelQuery::tType;
-	else if (type == "bouquet")
-		res->m_type = eDVBChannelQuery::tBouquet;
-	else if (type == "satellitePosition")
-		res->m_type = eDVBChannelQuery::tSatellitePosition;
-	else if (type == "channelID")
-		res->m_type = eDVBChannelQuery::tChannelID;
-	else
+	res->m_type = decodeType(type);
+	
+	if (res->m_type == -1)
 	{
 		eDebug("malformed query: invalid type %s", type.c_str());
 		res = 0;
 		return 1;
 	}
-	
-	eDebug("type is %d, nice!", res->m_type);
 	
 	if (op == "==")
 		res->m_inverse = 0;
@@ -554,7 +604,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	
 	std::string current_token;
 	
-//	eDebug("splitting %s....", query.c_str());
+	eDebug("splitting %s....", query.c_str());
 	unsigned int i = 0;
 	const char *splitchars="()";
 	int quotemode = 0, lastsplit = 0, lastalnum = 0;
@@ -594,15 +644,45 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 //	{
 //		printf("%s\n", a->c_str());
 //	}
+
+	int sort = eDVBChannelQuery::tName;
+		/* check for "ORDER BY ..." */
+	if (tokens.size() > 2)
+	{
+		std::list<std::string>::iterator i = tokens.end();
+		--i; --i; --i;
+		if (*i == "ORDER")
+		{
+			++i;
+			if (*i == "BY")
+			{
+				++i;
+				sort = decodeType(*i);
+				tokens.pop_back(); // ...
+				tokens.pop_back(); // BY
+				tokens.pop_back(); // ORDER
+			} else
+				sort = -1;
+		}
+	}
+	
+	if (sort == -1)
+	{	
+		eWarning("ORDER BY .. string invalid.");
+		res = 0;
+		return -1;
+	}
+	
+	eDebug("sort by %d", sort);
 	
 		/* now we recursivly parse that. */
-	return  parseExpression(res, tokens.begin(), tokens.end());
-/*	
-	res = new eDVBChannelQuery();
-	res->m_type = eDVBChannelQuery::tName;
-	res->m_inverse = 0;
-	res->m_string = query;
-	return 0; */
+	int r = parseExpression(res, tokens.begin(), tokens.end());
+	
+	if (res)
+		res->m_sort = sort;
+
+	eDebug("return: %d", r);
+	return r;
 }
 
 DEFINE_REF(eDVBChannelQuery);

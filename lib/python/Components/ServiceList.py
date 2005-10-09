@@ -32,6 +32,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setRoot(self, root):
 		self.l.setRoot(root)
+		self.l.sort()
 		
 		# mark stuff
 	def clearMarked(self):

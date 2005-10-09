@@ -250,9 +250,28 @@ public:
 	
 		/* new, shiny interface: streaming. */
 	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;
+	
+		/* use this for sorting. output is not sorted because of either
+		 - performance reasons: the whole list must be buffered or
+		 - the interface would be restricted to a list. streaming
+		   (as well as a future "active" extension) won't be possible.
+		*/
+	virtual int compareLessEqual(const eServiceReference &, const eServiceReference &)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
+
+	/* a helper class which can be used as argument to stl's sort(). */
+class iListableServiceCompare
+{
+	ePtr<iListableService> m_list;
+public:
+	iListableServiceCompare(iListableService *list): m_list(list) { }
+	bool operator()(const eServiceReference &a, const eServiceReference &b)
+	{
+		return m_list->compareLessEqual(a, b);
+	}
+};
 
 class iServiceOfflineOperations: public iObject
 {

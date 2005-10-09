@@ -163,4 +163,16 @@ RESULT eServiceFS::getNext(eServiceReference &ptr)
 	return 0;
 }
 
+int eServiceFS::compareLessEqual(const eServiceReference &a, const eServiceReference &b)
+{
+		/* directories first */
+	if ((a.flags & ~b.flags) & eServiceReference::isDirectory)
+		return 1;
+	else if ((~a.flags & b.flags) & eServiceReference::isDirectory)
+		return 0;
+		/* sort by filename */
+	else
+		return a.path < b.path;
+}
+
 eAutoInitPtr<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");

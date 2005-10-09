@@ -36,6 +36,7 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 {
 	ASSERT(ref == m_ref);
 	name = m_parser.m_name.size() ? m_parser.m_name : ref.path;
+	return 0;
 }
 
 int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
@@ -133,7 +134,7 @@ eDVBServiceList::~eDVBServiceList()
 {
 }
 
-RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
+RESULT eDVBServiceList::startQuery()
 {
 	ePtr<iDVBChannelList> db;
 	ePtr<eDVBResourceManager> res;
@@ -150,30 +151,50 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
 		return err;
 	}
 	
-	ePtr<iDVBChannelListQuery> query;
-	
 	ePtr<eDVBChannelQuery> q;
 	
 	if (m_parent.path.size())
+	{
 		eDVBChannelQuery::compile(q, m_parent.path);
+		if (!q)
+		{
+			eDebug("compile query failed");
+			return err;
+		}
+	}
 	
-	if ((err = db->startQuery(query, q)) != 0)
+	if ((err = db->startQuery(m_query, q)) != 0)
 	{
 		eDebug("startQuery failed");
 		return err;
 	}
-	
+
+	return 0;
+}
+
+RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
+{
 	eServiceReferenceDVB ref;
 	
-	while (!query->getNextResult(ref))
+	if (!m_query)
+		return -1;
+	
+	while (!m_query->getNextResult(ref))
 		list.push_back(ref);
 	return 0;
 }
 
-RESULT eDVBServiceList::getNext(eServiceReference &)
+RESULT eDVBServiceList::getNext(eServiceReference &ref)
 {
-		/* implement me */
-	return -1;
+	if (!m_query)
+		return -1;
+	
+	return m_query->getNextResult((eServiceReferenceDVB&)ref);
+}
+
+int eDVBServiceList::compareLessEqual(const eServiceReference &a, const eServiceReference &b)
+{
+	return m_query->compareLessEqual((const eServiceReferenceDVB&)a, (const eServiceReferenceDVB&)b);
 }
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
@@ -195,7 +216,14 @@ RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordable
 
 RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
 {
-	ptr = new eDVBServiceList(ref);
+	ePtr<eDVBServiceList> list = new eDVBServiceList(ref);
+	if (list->startQuery())
+	{
+		ptr = 0;
+		return -1;
+	}
+	
+	ptr = list;
 	return 0;
 }
 
@@ -389,6 +417,7 @@ RESULT eDVBServicePlay::start()
 	eDebug("starting DVB service");
 	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference);
 	m_event(this, evStart);
+	return 0;
 }
 
 RESULT eDVBServicePlay::stop()
@@ -459,8 +488,11 @@ RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_dvb_service)
+	{
 		m_dvb_service->getName(m_reference, name);
-	else
+		if (name.empty())
+			name = "(...)";
+	} else
 		name = "DVB service";
 	return 0;
 }
