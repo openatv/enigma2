@@ -11,6 +11,7 @@
 #include <lib/dvb/scan.h>
 #include <lib/dvb/frontend.h>
 #include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 #include <errno.h>
 
 #define SCAN_eDebug(x...) eDebug(x)
@@ -386,9 +387,9 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			case SERVICE_DESCRIPTOR:
 			{
 				ServiceDescriptor &d = (ServiceDescriptor&)**desc;
-				SCAN_eDebug("name '%s', provider_name '%s'", d.getServiceName().c_str(), d.getServiceProviderName().c_str());
-				service->m_service_name = d.getServiceName();
-				service->m_provider_name = d.getServiceProviderName();
+				service->m_service_name = convertDVBUTF8(d.getServiceName());
+				service->m_provider_name = convertDVBUTF8(d.getServiceProviderName());
+				SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 				break;
 			}
 			case CA_IDENTIFIER_DESCRIPTOR:
