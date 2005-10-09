@@ -11,6 +11,9 @@ from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 from Tools import XMLTools
 
+from xml.sax import make_parser
+from xml.sax.handler import ContentHandler
+
 class boundFunction:
 	def __init__(self, fnc, *args):
 		self.fnc = fnc
@@ -25,20 +28,41 @@ class nimSlot:
 		self.name = name
 
 class NimManager:
-	def readSatsfromFile(self):
-		self.satellites = { }
-		#FIXME: path ok???
-		satdom = xml.dom.minidom.parse('/etc/tuxbox/satellites.xml')
-
-
-		for entries in elementsWithTag(satdom.childNodes, "satellites"):
-			for x in elementsWithTag(entries.childNodes, "sat"):
-				#print "found sat " + x.getAttribute('name') + " " + str(x.getAttribute('position'))
-				tpos = x.getAttribute('position')
-				tname = x.getAttribute('name')
-				#tname.encode('utf8')
+	class parseSats(ContentHandler):
+		def __init__(self, satList, satellites):
+			self.isPointsElement, self.isReboundsElement = 0, 0
+			self.satList = satList
+			self.satellites = satellites
+	
+		def startElement(self, name, attrs):
+			if (name == "sat"):
+				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
+				tpos = attrs.get('position',"")
+				tname = attrs.get('name',"")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
+
+	def readSatsfromFile(self):
+		self.satellites = { }
+
+		#FIXME: path ok???
+		print "Reading satellites.xml"
+		parser = make_parser()
+		satHandler = self.parseSats(self.satList, self.satellites)
+		parser.setContentHandler(satHandler)
+		parser.parse('/etc/tuxbox/satellites.xml')
+    
+		#satdom = xml.dom.minidom.parse('/etc/tuxbox/satellites.xml')
+
+
+		#for entries in elementsWithTag(satdom.childNodes, "satellites"):
+			#for x in elementsWithTag(entries.childNodes, "sat"):
+				##print "found sat " + x.getAttribute('name') + " " + str(x.getAttribute('position'))
+				#tpos = x.getAttribute('position')
+				#tname = x.getAttribute('name')
+				##tname.encode('utf8')
+				#self.satellites[tpos] = tname
+				#self.satList.append( (tname, tpos) )
 
 	def getNimType(self, slotID):
 		#FIXME get it from /proc
@@ -69,7 +93,7 @@ class NimManager:
 		self.readSatsfromFile()										
 												
 		self.nimCount = self.getNimSocketCount()
-
+		
 		self.nimslots = [ ]
 		x = 0
 		while x < self.nimCount:
