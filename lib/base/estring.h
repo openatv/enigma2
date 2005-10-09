@@ -15,4 +15,7 @@ std::string convertDVBUTF8(const std::string &s, int table=5);
 std::string convertLatin1UTF8(const std::string &string);
 int isUTF8(const std::string &string);
 
+std::string removeDVBChars(const std::string &s);
+void makeUpper(std::string &s);
+
 #endif // __E_STRING__

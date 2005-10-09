@@ -23,7 +23,7 @@ std::string getNum(int val, int sys)
 	return res;
 }
 
-		// 8859-x to dvb coding tables. taken from www.unicode.org/Public/MAPPINGS/ISO8859/
+		// 8859-x to ucs coding tables. taken from www.unicode.org/Public/MAPPINGS/ISO8859/
 static unsigned long c88595[128]={
 0x0080, 0x0081, 0x0082, 0x0083, 0x0084, 0x0085, 0x0086, 0x0087, 0x0088, 0x0089, 0x008a, 0x008b, 0x008c, 0x008d, 0x008e, 0x008f, 
 0x0090, 0x0091, 0x0092, 0x0093, 0x0094, 0x0095, 0x0096, 0x0097, 0x0098, 0x0099, 0x009a, 0x009b, 0x009c, 0x009d, 0x009e, 0x009f, 
@@ -375,3 +375,36 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
+std::string removeDVBChars(const std::string &s)
+{
+	std::string res;
+	
+	int len = s.length();
+	
+	for(int i = 0; i < len-1; i++)
+	{
+		unsigned char c1 = s[i];
+		unsigned int c;
+		
+			/* UTF8? decode (but only simple) */
+		if(c1 > 0x80)
+		{
+			unsigned char c2 = s[i + 1];
+			c = ((c1&0x3F)<<6) + (c2&0x3F);
+			if ((c >= 0x80) && (c <= 0x9F))
+			{
+				++i; /* skip 2nd utf8 char */
+				continue;
+			}
+		}
+		
+		res += s[i];
+	}
+	
+	return res;
+}
+
+void makeUpper(std::string &s)
+{
+	std::transform(s.begin(), s.end(), s.begin(), (int(*)(int)) toupper);
+}
