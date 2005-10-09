@@ -28,14 +28,17 @@ private:
 class eDVBServiceList: public iListableService
 {
 DECLARE_REF(eDVBServiceList);
-private:
-	eServiceReference m_parent;
-	friend class eServiceFactoryDVB;
-	eDVBServiceList(const eServiceReference &parent);
 public:
 	virtual ~eDVBServiceList();
 	RESULT getContent(std::list<eServiceReference> &list);
 	RESULT getNext(eServiceReference &ptr);
+	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
+private:
+	RESULT startQuery();
+	eServiceReference m_parent;
+	friend class eServiceFactoryDVB;
+	eDVBServiceList(const eServiceReference &parent);
+	ePtr<iDVBChannelListQuery> m_query;
 };
 
 class eDVBServicePlay: public iPlayableService, iSeekableService, public Object, public iServiceInformation

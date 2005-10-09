@@ -180,7 +180,8 @@ public:
 	bool cacheEmpty() { return m_cache.empty(); }
 
 	eDVBService();
-	std::string m_service_name;
+		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
+	std::string m_service_name, m_service_name_sort;
 	std::string m_provider_name;
 	
 	int m_flags;
@@ -194,7 +195,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
 	
-	// for filtering:
+		/* for filtering: */
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
 };
 
@@ -208,6 +209,7 @@ class iDVBChannelListQuery: public iObject
 {
 public:
 	virtual RESULT getNextResult(eServiceReferenceDVB &ref)=0;
+	virtual int compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)=0;
 };
 
 class eDVBChannelQuery: public iObject
@@ -232,6 +234,9 @@ public:
 	std::string m_string;
 	int m_int;
 	eDVBChannelID m_channelid;
+	
+		/* sort is only valid in root, and must be from the enum above. */
+	int m_sort;
 	
 	static RESULT compile(ePtr<eDVBChannelQuery> &res, std::string query);
 	

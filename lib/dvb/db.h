@@ -56,6 +56,8 @@ private:
 public:
 	eDVBDBQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 	virtual RESULT getNextResult(eServiceReferenceDVB &ref);
+	
+	int compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b);
 };
 
 #endif

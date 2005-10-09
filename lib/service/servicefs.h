@@ -36,6 +36,7 @@ public:
 	
 	RESULT getContent(std::list<eServiceReference> &list);
 	RESULT getNext(eServiceReference &ptr);
+	int compareLessEqual(const eServiceReference &, const eServiceReference &);
 };
 
 #endif
