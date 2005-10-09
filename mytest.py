@@ -182,7 +182,6 @@ import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
 import Components.NimManager
-#Components.NimManager.InitNimManager()
 
 # first, setup a screen
 try:
