@@ -63,28 +63,3 @@ def InitSetupDevices():
 	config.expert.skipconfirm = configElement("config.expert.skipconfirm", configSelection, 1, ("Enable", "Disable") );
 	config.expert.hideerrors = configElement("config.expert.hideerrors", configSelection, 1, ("Enable", "Disable") );
 	config.expert.autoinfo = configElement("config.expert.autoinfo", configSelection, 1, ("Enable", "Disable") );
-
-	config.sat = ConfigSubsection();
-	config.sat.satA = configElement("config.sat.satA", configSelection, 1, ("Disabled" ,"Astra 19.2", "Hotbird 13.0") );
-	config.sat.satB = configElement("config.sat.satB", configSelection, 0, ("Disabled" ,"Astra 19.2", "Hotbird 13.0") );
-	config.sat.diseqcA = configElement("config.sat.diseqcA", configSelection, 3, ("no DiSEqC", "DiSEqC 1.0", "DiSEqC 1.1", "DiSEqC 1.2") );
-	config.sat.diseqcB = configElement("config.sat.diseqcB", configSelection, 0, ("no DiSEqC", "DiSEqC 1.0", "DiSEqC 1.1", "DiSEqC 1.2") );
-	config.sat.posA = configElement("config.sat.posA", configSelection, 0, ("DiSEqC A", "DiSEqC B", "DiSEqC C", "DiSEqC D") );
-	config.sat.posB = configElement("config.sat.posB", configSelection, 1, ("DiSEqC A", "DiSEqC B", "DiSEqC C", "DiSEqC D") );
-
-	#config.blasel = ConfigSubsection();
-	#config.blasel.val = configElement("", configSelection, 0, ("bunt", "s/w", "gruen") );
-	#config.inputDevices.delay = configElement("config.inputDevices.delay", ConfigSlider, 3);
-
-	#this instance anywhere else needed?	
-	#iDevices = inputDevices();	
-	
-	#def inputDevicesRepeatChanged(configElement):
-	#	iDevices.setRepeat(configElement.value);
-
-	#def inputDevicesDelayChanged(configElement):
-	#	iDevices.setDelay(configElement.value);
-
-	# this will call the "setup-val" initial
-	#config.inputDevices.repeat.addNotifier(inputDevicesRepeatChanged);
-	#config.inputDevices.delay.addNotifier(inputDevicesDelayChanged);
