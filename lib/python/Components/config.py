@@ -334,3 +334,8 @@ class configElement:
 		self.loadData()
 	def save(self):
 		configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
+
+def getConfigListEntry(description, element):
+	b = element
+	item = b.controlType(b)
+	return ((description, item))
