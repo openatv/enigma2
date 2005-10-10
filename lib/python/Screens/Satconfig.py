@@ -4,43 +4,31 @@ from Components.ConfigList import ConfigList
 from Components.config import *
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
+from Components.config import getConfigListEntry
 
 class NimSetup(Screen):
 	def createSimpleSetup(self, nim, list, mode):
 
-		b = config.Nims[nim.slotid].diseqcA
-		item = b.controlType(b)
 		if mode == 0:			#single Sat
-			list.append( ("Satellite", item) )
+			list.append(getConfigListEntry("Satellite", config.Nims[nim.slotid].diseqcA))
 		else:							# > 1 Sats
-			list.append( ("Port A", item) )
+			list.append(getConfigListEntry("Port A", config.Nims[nim.slotid].diseqcA))
 		
 		if mode >= 1:			# > 1 Sats
-			b = config.Nims[nim.slotid].diseqcB
-			item = b.controlType(b)
-			list.append( ("Port B", item) )
+			list.append(getConfigListEntry("Port B", config.Nims[nim.slotid].diseqcB))
 			if mode >= 3:		# > 2 Sats
-				b = config.Nims[nim.slotid].diseqcC
-				item = b.controlType(b)
-				list.append( ("Port C", item) )
-
-				b = config.Nims[nim.slotid].diseqcD
-				item = b.controlType(b)
-				list.append( ("Port D", item) )
+				list.append(getConfigListEntry("Port C", config.Nims[nim.slotid].diseqcC))
+				list.append(getConfigListEntry("Port D", config.Nims[nim.slotid].diseqcD))
 				
 	def createSetup(self):
 		self.list = [ ]
 		
-		b = config.Nims[self.nim.slotid].configMode
-		item = b.controlType(b)
-		self.list.append( ("Configmode", item) )
+		self.list.append(getConfigListEntry("Configmode", config.Nims[self.nim.slotid].configMode))
 		
-		if b.value == 0:			#simple setup
-			b = config.Nims[self.nim.slotid].diseqcMode
-			item = b.controlType(b)
-			self.list.append( ("Diseqcmode", item) )
+		if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
+			self.list.append(getConfigListEntry("Diseqcmode", config.Nims[self.nim.slotid].diseqcMode))
 		
-			self.createSimpleSetup(self.nim, self.list, b.value)
+			self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
 		else:	
 			print "FIXME: implement advanced mode"
 
