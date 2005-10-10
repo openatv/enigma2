@@ -11,7 +11,7 @@ class ServiceScan(Screen):
 			self.close()
 	
 	def cancel(self):
-		print "cancel not yet implemented ;)"
+		self.close()
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
