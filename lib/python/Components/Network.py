@@ -1,6 +1,7 @@
 from config import *
 
 import os
+from socket import *
 
 class Network:
 	def __init__(self):
@@ -61,17 +62,22 @@ class Network:
 		self.writeNetworkConfig()		
 
 def InitNetwork():
+	ipstr = gethostbyname(gethostname()).split('.')
+	ip = []
+	for i in ipstr:
+		ip.append(int(i))
+
 	config.network = ConfigSubsection()
-	config.network.dhcp = configElement("config.network.dhcp", configSelection, 0, ("no", "yes"))
-	config.network.ip = configElement("config.network.ip", configSequence, [192,168,1,45], (("."), (1,255)))
-	config.network.netmask = configElement("config.network.netmask", configSequence, [255,255,255,0], (("."), (1,255)))
-	config.network.gateway = configElement("config.network.gateway", configSequence, [192,168,1,3], (("."), (1,255)))
-	config.network.dns = configElement("config.network.dns", configSequence, [192,168,1,3], (("."), (1,255)))
-	config.network.mac = configElement("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
+	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, ("no", "yes"))
+	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, (("."), (1,255)))
+	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], (("."), (1,255)))
+	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], (("."), (1,255)))
+	config.network.dns = configElement_nonSave("config.network.dns", configSequence, [192,168,1,3], (("."), (1,255)))
+	config.network.mac = configElement_nonSave("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
 	
 	#FIXME using this till other concept for this is implemented
 	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
-	config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes", "you are my hero"))
+	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes", "you are my hero"))
 
 	iNetwork = Network()
 
@@ -96,9 +102,6 @@ def InitNetwork():
 	def setMACAddress(configElement):
 		iNetwork.setMACAddress(configElement.value)
 
-	def activateNetworkConfig(configElement):
-		iNetwork.activateNetworkConfig()
-
 
 	# this will call the "setup-val" initial
 	config.network.dhcp.addNotifier(setDHCP)
@@ -107,4 +110,3 @@ def InitNetwork():
 	config.network.gateway.addNotifier(setGateway)
 	config.network.dns.addNotifier(setIPNameserver)
 	config.network.mac.addNotifier(setMACAddress)
-	config.network.activate.addNotifier(activateNetworkConfig)
