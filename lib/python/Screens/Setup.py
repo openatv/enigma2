@@ -139,15 +139,14 @@ class Setup(Screen):
 				"left": self.keyLeft,
 				"right": self.keyRight,
 				"save": self.keySave,
-				"1": self.keyNumber1,
-				"2": self.keyNumber2,
-				"3": self.keyNumber3,
-				"4": self.keyNumber4,
-				"5": self.keyNumber5,
-				"6": self.keyNumber6,
-				"7": self.keyNumber7,
-				"8": self.keyNumber8,
-				"9": self.keyNumber9,
-				"0": self.keyNumber0
-				
+	            "1": self.keyNumber1,
+	            "2": self.keyNumber2,
+	            "3": self.keyNumber3,
+	            "4": self.keyNumber4,
+	            "5": self.keyNumber5,
+	            "6": self.keyNumber6,
+	            "7": self.keyNumber7,
+	            "8": self.keyNumber8,
+	            "9": self.keyNumber9,
+	            "0": self.keyNumber0
 			}, -1)
