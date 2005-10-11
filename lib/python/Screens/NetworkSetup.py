@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList
 from Components.config import config
 from Components.config import getConfigListEntry
+from Components.Network import iNetwork
 
 class NetworkSetup(Screen):
     def __init__(self, session):
@@ -85,6 +86,9 @@ class NetworkSetup(Screen):
     def keySave(self):
         #for x in self["config"].list:
             #x[1].save()
+        
+        iNetwork.writeNetworkConfig()    
+        iNetwork.activateNetworkConfig()
         self.close()
 
     def keyCancel(self):
