@@ -58,7 +58,8 @@ class ScanSetup(Screen):
         
         # multi sat scan
         if (config.scan.type.value == 2):
-            pass
+            for sat in nimmanager.satList:
+                self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))                
                 
         self["config"].list = self.list
         self["config"].l.setList(self.list)
