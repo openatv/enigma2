@@ -10,7 +10,7 @@ class Network:
 	def writeNetworkConfig(self):
 		# fixme restarting and updating the network too often. possible fix: check current config and execute only if changed :/
 		# fixme using interfaces.tmp instead of interfaces for now
-		fp = file('/etc/network/interfaces.tmp', 'w')
+		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto eth0\n")
 		if (config.network.dhcp.value == "yes"):
 			fp.write("iface eth0 inet dhcp\n")
@@ -21,9 +21,46 @@ class Network:
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
 		fp.close()
 
+	def loadNetworkConfig(self):
+		try:
+			# parse the interfaces-file
+			fp = file('/etc/network/interfaces', 'r')
+			interfaces = fp.readlines()
+			ifaces = {}
+			currif = ""
+			for i in interfaces:
+				split = i.strip().split(' ')
+				if (split[0] == "iface"):
+					currif = split[1]
+					ifaces[currif] = {}
+					if (len(split) == 4 and split[3] == "dhcp"):
+						ifaces[currif]["dhcp"] = "yes"
+					else:
+						ifaces[currif]["dhcp"] = "no"
+				if (currif != ""):
+					if (split[0] == "address"):
+						ifaces[currif]["address"] = map(int, split[1].split('.'))
+					if (split[0] == "netmask"):
+						ifaces[currif]["netmask"] = map(int, split[1].split('.'))
+					if (split[0] == "gateway"):
+						ifaces[currif]["gateway"] = map(int, split[1].split('.'))										
+			
+			# set this config
+			if (ifaces.has_key("eth0")):
+				if (ifaces["eth0"]["dhcp"] == "yes"):
+					config.network.dhcp.value = 1
+				else:
+					config.network.dhcp.value = 0
+				if (ifaces["eth0"].has_key("address")): config.network.ip.value = ifaces["eth0"]["address"]
+				if (ifaces["eth0"].has_key("netmask")): config.network.netmask.value = ifaces["eth0"]["netmask"]
+				if (ifaces["eth0"].has_key("gateway")): config.network.gateway.value = ifaces["eth0"]["gateway"]
+			fp.close()
+		except:
+			pass
+
 	def activateNetworkConfig(self):
 		import os
-		#os.system("/etc/init.d/networking restart")
+		os.system("/etc/init.d/networking restart")
 		
 	def setDHCP(self, useDHCP):
 		if (useDHCP):
@@ -50,23 +87,26 @@ class Network:
 		pass
 		
 	def setIPAddress(self, ip):
-		os.system("echo ifconfig eth0 %d.%d.%d.%d" % tuple(ip))
-		self.writeNetworkConfig()
+		pass
+		#os.system("echo ifconfig eth0 %d.%d.%d.%d" % tuple(ip))
+		#self.writeNetworkConfig()
 
 	def setGateway(self, ip):
-		os.system("echo route add default gw %d.%d.%d.%d" % tuple(ip))
-		self.writeNetworkConfig()
+		pass
+		#os.system("echo route add default gw %d.%d.%d.%d" % tuple(ip))
+		#self.writeNetworkConfig()
 		
 	def setNetmask(self, ip):
-		os.system("echo ifconfig eth0 netmask %d.%d.%d.%d" % tuple(ip))		
-		self.writeNetworkConfig()		
+		pass
+		#os.system("echo ifconfig eth0 netmask %d.%d.%d.%d" % tuple(ip))		
+		#self.writeNetworkConfig()		
+
+
+iNetwork = Network()
 
 def InitNetwork():
-	ipstr = gethostbyname(gethostname()).split('.')
-	ip = []
-	for i in ipstr:
-		ip.append(int(i))
-
+	ip = map (int, gethostbyname(gethostname()).split('.'))
+		
 	config.network = ConfigSubsection()
 	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, ("no", "yes"))
 	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, (("."), (1,255)))
@@ -74,12 +114,13 @@ def InitNetwork():
 	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], (("."), (1,255)))
 	config.network.dns = configElement_nonSave("config.network.dns", configSequence, [192,168,1,3], (("."), (1,255)))
 	config.network.mac = configElement_nonSave("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
+
+	iNetwork.loadNetworkConfig()
 	
 	#FIXME using this till other concept for this is implemented
 	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
 	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes", "you are my hero"))
 
-	iNetwork = Network()
 
 	def writeNetworkConfig(configElement):
 		iNetwork.writeNetworkConfig()
