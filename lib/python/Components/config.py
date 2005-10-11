@@ -37,7 +37,9 @@ class configFile:
 			
 		fileHandle = open("config", "w")
 		
-		for x in self.configElements:
+		keys = self.configElements.keys()
+		keys.sort()
+		for x in keys:
 			wstr = x + "=" + self.configElements[x]
 			
 			if wstr[len(wstr) - 1] != '\n':
