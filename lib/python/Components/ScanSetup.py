@@ -41,3 +41,8 @@ def InitScanSetup():
     config.scan.ter.transmission = configElement("config.scan.ter.transmission", configSelection, 0, ("Auto", "2K", "8K"))
     config.scan.ter.guard = configElement("config.scan.ter.guard", configSelection, 0, ("Auto", "1/4", "1/8", "1/16", "1/32"))
     config.scan.ter.hierarchy = configElement("config.scan.ter.hierarchy", configSelection, 0, ("Auto", "1", "2", "4"))
+    
+    config.scan.scansat = {}
+    for sat in nimmanager.satList:
+        #print sat[1]
+        config.scan.scansat[sat[1]] = configElement("config.scan.scansat[" + str(sat[1]) + "]", configSelection, 0, ("yes", "no"))
