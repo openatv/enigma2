@@ -47,8 +47,8 @@ class NetworkSetup(Screen):
         self.newConfig()
 
     def keySave(self):
-        for x in self["config"].list:
-            x[1].save()
+        #for x in self["config"].list:
+            #x[1].save()
         self.close()
 
     def keyCancel(self):
