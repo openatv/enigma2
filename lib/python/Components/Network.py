@@ -26,6 +26,8 @@ class Network:
 			# parse the interfaces-file
 			fp = file('/etc/network/interfaces', 'r')
 			interfaces = fp.readlines()
+			fp.close()
+			
 			ifaces = {}
 			currif = ""
 			for i in interfaces:
@@ -43,8 +45,24 @@ class Network:
 					if (split[0] == "netmask"):
 						ifaces[currif]["netmask"] = map(int, split[1].split('.'))
 					if (split[0] == "gateway"):
-						ifaces[currif]["gateway"] = map(int, split[1].split('.'))										
+						ifaces[currif]["gateway"] = map(int, split[1].split('.'))									
 			
+			# parse the resolv.conf-file
+			fp = file('/etc/network/interfaces', 'r')
+			resolv = fp.readlines()
+			fp.close()
+		except:
+			pass
+			
+		try:
+			for i in resolv:
+				split = i.strip().split(' ')
+				if (split[0] == "nameserver"):
+					config.network.nameserver.value = map(int, split[1].split('.'))
+		except:
+			pass
+		
+		try:
 			# set this config
 			if (ifaces.has_key("eth0")):
 				if (ifaces["eth0"]["dhcp"] == "yes"):
@@ -54,7 +72,6 @@ class Network:
 				if (ifaces["eth0"].has_key("address")): config.network.ip.value = ifaces["eth0"]["address"]
 				if (ifaces["eth0"].has_key("netmask")): config.network.netmask.value = ifaces["eth0"]["netmask"]
 				if (ifaces["eth0"].has_key("gateway")): config.network.gateway.value = ifaces["eth0"]["gateway"]
-			fp.close()
 		except:
 			pass
 
@@ -105,7 +122,13 @@ class Network:
 iNetwork = Network()
 
 def InitNetwork():
-	ip = map (int, gethostbyname(gethostname()).split('.'))
+	try:
+		ip = [0, 0, 0, 0]
+		print gethostbyname(gethostname())
+		ip = gethostbyname(gethostname()).split('.')
+		print ip
+	except:
+		print "[Network.py] Could not get current ip (not necessarily an error)"
 		
 	config.network = ConfigSubsection()
 	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, ("no", "yes"))
