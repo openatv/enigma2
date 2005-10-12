@@ -1,8 +1,4 @@
-from config import config
-from config import ConfigSubsection
-from config import configElement_nonSave
-from config import configSelection
-from config import configSequence
+from config import *
 from Components.NimManager import nimmanager
 
 def InitScanSetup():
@@ -18,21 +14,21 @@ def InitScanSetup():
     config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
     
     # sat
-    config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [12187], (("."), (10000,14000)))
+    config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [12187], configsequencearg.get("INTEGER", (10000, 14000)))
     config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 0, ("off", "on"))
-    config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], (("."), (1,30000)))
+    config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 30000)))
     config.scan.sat.polarzation = configElement_nonSave("config.scan.sat.polarzation", configSelection, 0, ("horizontal", "vertical"))
     config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
 
     # cable
-    config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], (("."), (10000,14000)))
+    config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
     config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("off", "on"))
     config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
     config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
-    config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], (("."), (1,30000)))
+    config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
     
     # terrestial
-    config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], (("."), (10000,14000)))
+    config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
     config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("off", "on"))
     config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, ("Auto", "6 MHz", "7MHz", "8MHz"))
     config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
