@@ -94,4 +94,5 @@ class NetworkSetup(Screen):
     def keyCancel(self):
         for x in self["config"].list:
             x[1].cancel()
-        self.close()        
+        iNetwork.loadNetworkConfig()
+        self.close()
