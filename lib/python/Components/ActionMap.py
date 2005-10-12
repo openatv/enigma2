@@ -24,3 +24,13 @@ class ActionMap:
 		else:
 			print "unknown action %s/%s! typo in keymap?" % (context, action)
 			return 0
+
+			
+class NumberActionMap(ActionMap):
+	def action(self, contexts, action):
+		numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		if (action in numbers):
+			self.actions[action](int(action))
+			return 1
+		else:
+			return ActionMap.action(self, contexts, action)			
