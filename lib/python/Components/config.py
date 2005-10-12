@@ -111,14 +111,33 @@ class configSatlist:
 		self.checkValues()
 		#fixme
 		return ("text", str(self.parent.vals[self.parent.value][0]))
+
+class configSequenceArg:
+	def get(self, type, args = ()):
+		# configsequencearg.get ("IP")
+		if (type == "IP"):
+			return (("."), [(1,255),(1,255),(1,255),(1,255)])
+		# configsequencearg.get ("MAC")
+		if (type == "MAC"):
+			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)])
+		# configsequencearg.get("INTEGER", (min, max)) => x with min <= x <= max
+		if (type == "INTEGER"):
+			return ((":"), [args])
+		# configsequencearg.get("FLOAT", [(min,max),(min1,max1)]) => x.y with min <= x <= max and min1 <= y <= max1
+		if (type == "FLOAT"):
+			return (("."), args)
+
+configsequencearg = configSequenceArg()
 		
 class configSequence:
 	def __init__(self, parent):
 		self.parent = parent
 		self.markedPos = 0
-		
+		self.seperator = self.parent.vals[0]
+		self.valueBounds = self.parent.vals[1]
+
 	def checkValues(self):
-		maxPos = len(self.parent.value) * len(self.parent.vals[1]) + len(self.parent.value)
+		maxPos = len(self.parent.value) * len(self.valueBounds) + len(self.parent.value)
 			
 		if self.markedPos >= maxPos:
 			self.markedPos = maxPos - 1
@@ -142,7 +161,7 @@ class configSequence:
 		if key >= config.key["0"] and key <= config.key["9"]:
 			number = 9 - config.key["9"] + key
 			# length of numberblock
-			numberLen = len(str(self.parent.vals[1][1]))
+			numberLen = len(str(self.valueBounds[0][1]))
 			# position in the block
 			posinblock = self.markedPos % numberLen
 			# blocknumber
@@ -171,16 +190,16 @@ class configSequence:
 		print "Positon: " + str(mPos)
 		for i in self.parent.value:
 			if len(value):	#fixme no heading separator possible
-				value += self.parent.vals[0]
+				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
 				
-			#diff = 	self.parent.vals[1] - len(str(i))
+			#diff = 	self.valueBounds - len(str(i))
 			#if diff > 0:
 				## if this helps?!
 				#value += " " * diff
-			print (("%0" + str(len(str(self.parent.vals[1][1]))) + "d") % i)
-			value += ("%0" + str(len(str(self.parent.vals[1][1]))) + "d") % i
+			print (("%0" + str(len(str(self.valueBounds[0][1]))) + "d") % i)
+			value += ("%0" + str(len(str(self.valueBounds[0][1]))) + "d") % i
 
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)

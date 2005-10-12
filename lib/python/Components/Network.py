@@ -132,11 +132,11 @@ def InitNetwork():
 		
 	config.network = ConfigSubsection()
 	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, ("no", "yes"))
-	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, (("."), (1,255)))
-	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], (("."), (1,255)))
-	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], (("."), (1,255)))
-	config.network.dns = configElement_nonSave("config.network.dns", configSequence, [192,168,1,3], (("."), (1,255)))
-	config.network.mac = configElement_nonSave("config.network.mac", configSequence, [00,11,22,33,44,55], ((":"), (1,255)))
+	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, configsequencearg.get("IP"))
+	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], configsequencearg.get("IP"))
+	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], configsequencearg.get("IP"))
+	config.network.dns = configElement_nonSave("config.network.dns", configSequence, [192,168,1,3], configsequencearg.get("IP"))
+	config.network.mac = configElement_nonSave("config.network.mac", configSequence, [00,11,22,33,44,55], configsequencearg.get("MAC"))
 
 	iNetwork.loadNetworkConfig()
 	
