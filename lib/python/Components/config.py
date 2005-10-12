@@ -118,8 +118,7 @@ class configSequence:
 		self.markedPos = 0
 		
 	def checkValues(self):
-		maxPos = len(self.parent.value) * self.parent.vals[1] 
-		print maxPos
+		maxPos = len(self.parent.value) * len(self.parent.vals[1]) + len(self.parent.value)
 			
 		if self.markedPos >= maxPos:
 			self.markedPos = maxPos - 1
