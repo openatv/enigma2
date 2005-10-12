@@ -4,6 +4,7 @@ from config import configElement
 from config import ConfigSubsection
 from config import ConfigSlider
 from config import configSelection
+from config import configSequence
 from config import configSatlist
 
 import xml.dom.minidom
@@ -155,11 +156,13 @@ def InitNimManager(nimmgr):
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			config.Nims[x].configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D"));
+			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D", "Positioner"));
 			config.Nims[x].diseqcA = configElement(cname + "diseqcA",configSatlist, 192, nimmgr.satList);
 			config.Nims[x].diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
 			config.Nims[x].diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
 			config.Nims[x].diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
+			config.Nims[x].longitude = configElement(cname + "longitude",configSequence, [0,0], (("."), (1,999)));
+			config.Nims[x].latitude = configElement(cname + "latitude",configSequence, [0,0], (("."), (1,999)));
 			
 			#perhaps the instance of the slot is more useful?
 			config.Nims[x].configMode.addNotifier(boundFunction(nimConfigModeChanged,x))

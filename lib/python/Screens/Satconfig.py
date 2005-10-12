@@ -19,7 +19,11 @@ class NimSetup(Screen):
 			if mode >= 3:		# > 2 Sats
 				list.append(getConfigListEntry("Port C", config.Nims[nim.slotid].diseqcC))
 				list.append(getConfigListEntry("Port D", config.Nims[nim.slotid].diseqcD))
-				
+	def createPositionerSetup(self, nim, list):
+		list.append(getConfigListEntry("Longitude", config.Nims[nim.slotid].longitude))
+		list.append(getConfigListEntry("Latitude", config.Nims[nim.slotid].latitude))
+		pass
+	
 	def createSetup(self):
 		self.list = [ ]
 		
@@ -28,7 +32,10 @@ class NimSetup(Screen):
 		if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
 			self.list.append(getConfigListEntry("Diseqcmode", config.Nims[self.nim.slotid].diseqcMode))
 		
-			self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
+			if (0 <= config.Nims[self.nim.slotid].diseqcMode.value < 4):
+				self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
+			if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
+				self.createPositionerSetup(self.nim, self.list)
 		else:	
 			print "FIXME: implement advanced mode"
 
