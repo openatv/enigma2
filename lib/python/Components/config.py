@@ -116,7 +116,7 @@ class configSequenceArg:
 	def get(self, type, args = ()):
 		# configsequencearg.get ("IP")
 		if (type == "IP"):
-			return (("."), [(1,255),(1,255),(1,255),(1,255)])
+			return (("."), [(1,255),(0,255),(0,255),(0,255)])
 		# configsequencearg.get ("MAC")
 		if (type == "MAC"):
 			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)])
@@ -141,6 +141,16 @@ class configSequence:
 		num = 0
 		for i in self.parent.value:
 			maxPos += len(str(self.valueBounds[num][1]))
+			while (self.valueBounds[num][0] > self.parent.value[num]):
+				self.parent.value[num] += 1
+
+			while (self.valueBounds[num][1] < self.parent.value[num]):
+				self.parent.value[num] -= 1
+				
+#			if (self.valueBounds[num][0] <= i <= self.valueBounds[num][1]):
+				#pass
+			#else:
+				#self.parent.value[num] = self.valueBounds[num][0]
 			num += 1
 		
 		if self.markedPos >= maxPos:
