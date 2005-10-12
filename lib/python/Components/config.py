@@ -137,8 +137,12 @@ class configSequence:
 		self.valueBounds = self.parent.vals[1]
 
 	def checkValues(self):
-		maxPos = len(self.parent.value) * len(self.valueBounds) + len(self.parent.value)
-			
+		maxPos = 0
+		num = 0
+		for i in self.parent.value:
+			maxPos += len(str(self.valueBounds[num][1]))
+			num += 1
+		
 		if self.markedPos >= maxPos:
 			self.markedPos = maxPos - 1
 		if self.markedPos < 0:
@@ -188,6 +192,7 @@ class configSequence:
 		value = ""
 		mPos = self.markedPos
 		print "Positon: " + str(mPos)
+		num = 0;
 		for i in self.parent.value:
 			if len(value):	#fixme no heading separator possible
 				value += self.seperator
@@ -198,9 +203,9 @@ class configSequence:
 			#if diff > 0:
 				## if this helps?!
 				#value += " " * diff
-			print (("%0" + str(len(str(self.valueBounds[0][1]))) + "d") % i)
-			value += ("%0" + str(len(str(self.valueBounds[0][1]))) + "d") % i
-
+			print (("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i)
+			value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
+			num += 1
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
 		return ("mtext"[1-selected:], value, [mPos])
