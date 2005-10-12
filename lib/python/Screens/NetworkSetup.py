@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.config import config
 from Components.config import getConfigListEntry
@@ -9,22 +9,22 @@ class NetworkSetup(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         
-        self["actions"] = ActionMap(["SetupActions"],
+        self["actions"] = NumberActionMap(["SetupActions"],
         {
             "ok": self.keySave,
             "cancel": self.keyCancel,
             "left": self.keyLeft,
             "right": self.keyRight,
-            "1": self.keyNumber1,
-            "2": self.keyNumber2,
-            "3": self.keyNumber3,
-            "4": self.keyNumber4,
-            "5": self.keyNumber5,
-            "6": self.keyNumber6,
-            "7": self.keyNumber7,
-            "8": self.keyNumber8,
-            "9": self.keyNumber9,
-            "0": self.keyNumber0
+            "1": self.keyNumberGlobal,
+            "2": self.keyNumberGlobal,
+            "3": self.keyNumberGlobal,
+            "4": self.keyNumberGlobal,
+            "5": self.keyNumberGlobal,
+            "6": self.keyNumberGlobal,
+            "7": self.keyNumberGlobal,
+            "8": self.keyNumberGlobal,
+            "9": self.keyNumberGlobal,
+            "0": self.keyNumberGlobal
         }, -1)
 
         self.list = []
@@ -62,27 +62,6 @@ class NetworkSetup(Screen):
         if (self["config"].getCurrent()[1].parent.enabled == True):
             self["config"].handleKey(config.key[str(number)])
         
-    def keyNumber1(self):
-        self.keyNumberGlobal(1)
-    def keyNumber2(self):
-        self.keyNumberGlobal(2)
-    def keyNumber3(self):
-        self.keyNumberGlobal(3)
-    def keyNumber4(self):
-        self.keyNumberGlobal(4)
-    def keyNumber5(self):
-        self.keyNumberGlobal(5)
-    def keyNumber6(self):
-        self.keyNumberGlobal(6)
-    def keyNumber7(self):
-        self.keyNumberGlobal(7)
-    def keyNumber8(self):
-        self.keyNumberGlobal(8)
-    def keyNumber9(self):
-        self.keyNumberGlobal(9)
-    def keyNumber0(self):
-        self.keyNumberGlobal(0)        
-
     def keySave(self):
         #for x in self["config"].list:
             #x[1].save()
