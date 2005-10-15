@@ -231,7 +231,7 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 		else
 		{
 			ePtr<iDVBDemux> demux;
-			if ( data.channel->getDemux(demux) )
+			if ( data.channel->getDemux(demux, 0) )
 			{
 				eDebug("[eEPGCache] no demux!!");
 				return;

@@ -434,13 +434,15 @@ public:
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT getState(int &state)=0;
+	
+		/* demux capabilities */
 	enum
 	{
-		cap_decode,
-		cap_ci
+		capDecode = 1,
+		/* capCI = 2 */
 	};
 	virtual RESULT setCIRouting(const eDVBCIRouting &routing)=0;
-	virtual RESULT getDemux(ePtr<iDVBDemux> &demux)=0;
+	virtual RESULT getDemux(ePtr<iDVBDemux> &demux, int cap=0)=0;
 	
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual RESULT getFrontend(ePtr<iDVBFrontend> &frontend)=0;

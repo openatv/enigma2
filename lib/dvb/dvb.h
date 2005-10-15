@@ -117,7 +117,7 @@ class eDVBResourceManager: public iObject
 	RESULT allocateFrontend(const eDVBChannelID &chid, ePtr<eDVBAllocatedFrontend> &fe);
 	
 			/* allocate a demux able to filter on the selected frontend. */
-	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux);
+	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
 	
 	struct active_channel
 	{
@@ -173,7 +173,7 @@ class eDVBChannel: public iDVBPVRChannel, public Object
 {
 	DECLARE_REF(eDVBChannel);
 public:
-	eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend, eDVBAllocatedDemux *demux);
+	eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend);
 	virtual ~eDVBChannel();
 
 		/* only for managed channels - effectively tunes to the channelid. should not be used... */
@@ -185,7 +185,7 @@ public:
 	RESULT getState(int &state);
 
 	RESULT setCIRouting(const eDVBCIRouting &routing);
-	RESULT getDemux(ePtr<iDVBDemux> &demux);
+	RESULT getDemux(ePtr<iDVBDemux> &demux, int cap);
 	RESULT getFrontend(ePtr<iDVBFrontend> &frontend);
 	
 		/* iDVBPVRChannel */
@@ -195,7 +195,7 @@ public:
 
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
-	ePtr<eDVBAllocatedDemux> m_demux;
+	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
 	
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
 	eDVBChannelID m_channel_id;

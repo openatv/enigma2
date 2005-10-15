@@ -66,8 +66,10 @@ class eDVBServicePMTHandler: public Object
 
 	void PMTready(int error);
 	void PATready(int error);
+	
+	int m_record;
 public:
-	eDVBServicePMTHandler();
+	eDVBServicePMTHandler(int record);
 	~eDVBServicePMTHandler();
 	
 	enum

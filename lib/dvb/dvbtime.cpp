@@ -68,7 +68,7 @@ TDT::TDT(eDVBChannel *chan)
 	CONNECT(tableReady, TDT::ready);
 	CONNECT(m_interval_timer.timeout, TDT::start);
 	if (chan)
-		chan->getDemux(demux);
+		chan->getDemux(demux, 0);
 }
 
 void TDT::ready(int error)
