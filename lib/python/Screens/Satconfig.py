@@ -1,4 +1,5 @@
 from Screen import Screen
+from Components.ActionMap import NumberActionMap
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList
 from Components.config import *
@@ -56,6 +57,11 @@ class NimSetup(Screen):
 		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.key[str(number)])
+
 	def keySave(self):
 		for x in self["config"].list:
 			x[1].save()
@@ -70,12 +76,22 @@ class NimSetup(Screen):
 		Screen.__init__(self, session)
 		self.nim = nim
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
 			"left": self.keyLeft,
-			"right": self.keyRight
+			"right": self.keyRight,
+			"1": self.keyNumberGlobal,
+            "2": self.keyNumberGlobal,
+            "3": self.keyNumberGlobal,
+            "4": self.keyNumberGlobal,
+            "5": self.keyNumberGlobal,
+            "6": self.keyNumberGlobal,
+            "7": self.keyNumberGlobal,
+            "8": self.keyNumberGlobal,
+            "9": self.keyNumberGlobal,
+            "0": self.keyNumberGlobal
 		}, -1)
 
 		self.list = [ ]
