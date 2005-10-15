@@ -309,11 +309,14 @@ int eTSMPEGDecoder::setState()
 		if (m_video)
 			m_video->stop();
 		m_video = 0;
-		m_video = new eDVBVideo(m_demux, 0);
-		if (m_video->startPid(m_vpid))
+		if ((m_vpid >= 0) && (m_vpid < 0x1FFF))
 		{
-			eWarning("video: startpid failed!");
-			res = -1;
+			m_video = new eDVBVideo(m_demux, 0);
+			if (m_video->startPid(m_vpid))
+			{
+				eWarning("video: startpid failed!");
+				res = -1;
+			}
 		}
 		m_changed &= ~changeVideo;
 	}
@@ -322,11 +325,14 @@ int eTSMPEGDecoder::setState()
 		if (m_audio)
 			m_audio->stop();
 		m_audio = 0;
-		m_audio = new eDVBAudio(m_demux, 0);
-		if (m_audio->startPid(m_apid))
+		if ((m_apid >= 0) && (m_apid < 0x1FFF))
 		{
-			eWarning("audio: startpid failed!");
-			res = -1;
+			m_audio = new eDVBAudio(m_demux, 0);
+			if (m_audio->startPid(m_apid))
+			{
+				eWarning("audio: startpid failed!");
+				res = -1;
+			}
 		}
 		m_changed &= ~changeAudio;
 	}
