@@ -110,17 +110,26 @@ class CiMmi(Screen):
 				"0": self.keyNumberGlobal
 			}, -1)
 
-#just for testing - we need an cimanager? (or not?)
 class CiSelection(Screen):
 	def okbuttonClick(self):
-		#generate menu / list
-		list = [ ]
-		list.append( ("TEXT", "CA-Info") )
-		list.append( ("TEXT", "Card Status") )
-		list.append( ("PIN", 6, "Card Pin") )
-		self.session.open(CiMmi, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
+	
+		if self["entries"].getCurrent()[1] == 0:		#reset
+			print "ci reset requested"
+			pass
+		if self["entries"].getCurrent()[1] == 1:		#init
+			print "ci init requested"
+			pass
+		if self["entries"].getCurrent()[1] == 2:		#mmi open
+			#ci->getInstance().mmiOpen() and wait for list of elments ???
+			#generate menu / list
+			list = [ ]
+			list.append( ("TEXT", "CA-Info") )
+			list.append( ("TEXT", "Card Status") )
+			list.append( ("PIN", 6, "Card Pin") )
+			self.session.open(CiMmi, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
 		
 	def __init__(self, session):
+		#FIXME support for one ci only
 		Screen.__init__(self, session)
 		
 		self["actions"] = ActionMap(["OkCancelActions"], 
@@ -128,3 +137,10 @@ class CiSelection(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.close
 			})
+			
+		list = [ ]
+		list.append( ("Reset", 0) )	
+		list.append( ("Init", 1) )	
+		#add timer for "app-manager name" ?
+		list.append( ("Irdeto Blasel SE", 2) )	
+		self["entries"] = CiEntryList(list)
