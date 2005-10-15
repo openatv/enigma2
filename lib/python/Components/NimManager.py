@@ -177,8 +177,8 @@ def InitNimManager(nimmgr):
 			config.Nims[x].diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
 			config.Nims[x].diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
 			config.Nims[x].diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
-			config.Nims[x].longitude = configElement(cname + "longitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(1,90),(1,999)]));
-			config.Nims[x].latitude = configElement(cname + "latitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(1,90),(1,999)]));
+			config.Nims[x].longitude = configElement(cname + "longitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			config.Nims[x].latitude = configElement(cname + "latitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			
 			#perhaps the instance of the slot is more useful?
 			config.Nims[x].configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
