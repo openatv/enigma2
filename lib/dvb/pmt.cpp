@@ -5,9 +5,10 @@
 #include <lib/dvb/metaparser.h>
 #include <dvbsi++/ca_program_map_section.h>
 
-eDVBServicePMTHandler::eDVBServicePMTHandler()
+eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	:m_pmt_pid(0xFFFF), m_ca_servicePtr(0)
 {
+	m_record = record;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
@@ -27,8 +28,8 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		&& (state == iDVBChannel::state_ok) && (!m_demux))
 	{
 		if (m_channel)
-			if (m_channel->getDemux(m_demux))
-				eDebug("shit it failed.. again.");
+			if (m_channel->getDemux(m_demux, m_record ? 0 : iDVBChannel::capDecode))
+				eDebug("Allocating a demux for now tuned-in channel failed.");
 		
 		serviceEvent(eventTuned);
 		
@@ -197,8 +198,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 {
 	RESULT res;
 	m_reference = ref;
-	
-//	ref.path = "/viva.ts"; // hrhr.
 	
 		/* is this a normal (non PVR) channel? */
 	if (ref.path.empty())

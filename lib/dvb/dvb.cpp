@@ -214,15 +214,29 @@ RESULT eDVBResourceManager::allocateFrontend(const eDVBChannelID &chid, ePtr<eDV
 	return -1;
 }
 
-RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux)
+RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap)
 {
-		/* find first unused demux which is on same adapter as frontend (or any, if PVR) */
-	for (eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin()); i != m_demux.end(); ++i)
+		/* find first unused demux which is on same adapter as frontend (or any, if PVR)
+		   never use the first one unless we need a decoding demux. */
+
+	eDebug("allocate demux");
+	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
+	
+	if (i == m_demux.end())
+		return -1;
+		
+		/* FIXME: hardware demux policy */
+	if (!(cap & iDVBChannel::capDecode))
+		++i;
+	
+	for (; i != m_demux.end(); ++i)
 		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
 			demux = new eDVBAllocatedDemux(i);
+			eDebug("demux found");
 			return 0;
 		}
+	eDebug("demux not found");
 	return -1;
 }
 
@@ -267,14 +281,15 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	if (allocateFrontend(channelid, fe))
 		return errNoFrontend;
 	
-	ePtr<eDVBAllocatedDemux> demux;
-	
-	if (allocateDemux(*fe, demux))
-		return errNoDemux;
+// will be allocated on demand:
+//	ePtr<eDVBAllocatedDemux> demux;
+//	
+//	if (allocateDemux(*fe, demux))
+//		return errNoDemux;
 	
 	RESULT res;
 	eDVBChannel *ch;
-	ch = new eDVBChannel(this, fe, demux);
+	ch = new eDVBChannel(this, fe);
 
 	ePtr<iDVBFrontend> myfe;
 	if (!ch->getFrontend(myfe))
@@ -298,13 +313,13 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 	if (allocateFrontend(eDVBChannelID(), fe))
 		return errNoFrontend;
 	
-	ePtr<eDVBAllocatedDemux> demux;
-	
-	if (allocateDemux(*fe, demux))
-		return errNoDemux;
+//	ePtr<eDVBAllocatedDemux> demux;
+	//
+//	if (allocateDemux(*fe, demux))
+//		return errNoDemux;
 	
 	eDVBChannel *ch;
-	ch = new eDVBChannel(this, fe, demux);
+	ch = new eDVBChannel(this, fe);
 
 	ePtr<iDVBFrontend> myfe;
 	if (!ch->getFrontend(myfe))
@@ -319,11 +334,11 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
 	
-	if (allocateDemux(0, demux))
-		return errNoDemux;
+//	if (allocateDemux(0, demux))
+//		return errNoDemux;
 	
 	eDVBChannel *ch;
-	ch = new eDVBChannel(this, 0, demux);
+	ch = new eDVBChannel(this, 0);
 	
 	channel = ch;
 	return 0;
@@ -363,10 +378,9 @@ RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &
 
 DEFINE_REF(eDVBChannel);
 
-eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend, eDVBAllocatedDemux *demux): m_state(state_idle), m_mgr(mgr)
+eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend): m_state(state_idle), m_mgr(mgr)
 {
 	m_frontend = frontend;
-	m_demux = demux;
 
 	m_pvr_thread = 0;
 	
@@ -492,9 +506,19 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 	return -1;
 }
 
-RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux)
+RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
-	demux = &m_demux->get();
+	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
+	
+	if (!our_demux)
+	{
+		demux = 0;
+		
+		if (m_mgr->allocateDemux(m_frontend ? (eDVBRegisteredFrontend*)*m_frontend : (eDVBRegisteredFrontend*)0, our_demux, cap))
+			return 0;
+	}
+	
+	demux = *our_demux;
 	return 0;
 }
 
@@ -543,6 +567,8 @@ RESULT eDVBChannel::playFile(const char *file)
 	
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
+
+	return 0;
 }
 
 RESULT eDVBChannel::getLength(pts_t &len)
@@ -552,6 +578,9 @@ RESULT eDVBChannel::getLength(pts_t &len)
 
 RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 {
+	if (!m_decoder_demux)
+		return -1;
+	
 	off_t begin = 0;
 		/* getPTS for offset 0 is cached, so it doesn't harm. */
 	int r = m_tstools.getPTS(begin, pos);
@@ -563,7 +592,7 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 	
 	pts_t now;
 	
-	r = m_demux->get().getSTC(now);
+	r = m_decoder_demux->get().getSTC(now);
 
 	if (r)
 	{
