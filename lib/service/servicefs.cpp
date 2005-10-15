@@ -139,6 +139,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 			}
 		}
 	}
+	closedir(d);
 	return 0;
 }
 
