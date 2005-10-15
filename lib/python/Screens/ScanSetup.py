@@ -4,6 +4,8 @@ from Components.ConfigList import ConfigList
 from Components.config import config
 from Components.config import getConfigListEntry
 from Components.NimManager import nimmanager
+from Components.Label import Label
+from Components.ScanSetup import InitScanSetup
 
 class ScanSetup(Screen):
     def __init__(self, session):
@@ -20,8 +22,11 @@ class ScanSetup(Screen):
         self.list = []
         self["config"] = ConfigList(self.list)
         self.createSetup()
+
+        self["introduction"] = Label("Press OK to start the scan")
         
     def createSetup(self):
+        #InitScanSetup()
         self.list = []
         
         self.list.append(getConfigListEntry("Type of scan", config.scan.type))
@@ -53,8 +58,12 @@ class ScanSetup(Screen):
                 self.list.append(getConfigListEntry("Hierarchy mode", config.scan.ter.hierarchy))
 
         # single satellite scan
+        print "NIM: ", config.scan.nims.value
+        print config.scan.satselection
         if (config.scan.type.value == 1):
-            pass
+            print config.scan.satselection[config.scan.nims.value]
+            self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
+            
         
         # multi sat scan
         if (config.scan.type.value == 2):

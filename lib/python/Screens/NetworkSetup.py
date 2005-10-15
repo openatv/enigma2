@@ -4,6 +4,7 @@ from Components.ConfigList import ConfigList
 from Components.config import config
 from Components.config import getConfigListEntry
 from Components.Network import iNetwork
+from Components.Label import Label
 
 class NetworkSetup(Screen):
     def __init__(self, session):
@@ -30,6 +31,8 @@ class NetworkSetup(Screen):
         self.list = []
         self["config"] = ConfigList(self.list)
         self.createSetup()
+        
+        self["introduction"] = Label("Press OK to activate the settings.")
         
     def createSetup(self):
         self.list = []

@@ -119,6 +119,20 @@ class NimManager:
 				nimText += ("DVB-S", "DVB-C", "DVB-T")[slot.nimType] + ")"
 			list.append((nimText, slot))
 		return list
+	
+	def getSatListForNim(self, slotid):
+		print "slotid:", slotid
+		list = []
+		print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
+		print "diseqcA:", config.Nims[slotid].diseqcA.value
+		if (config.Nims[slotid].diseqcMode.value <= 3):
+			list.append(self.satList[config.Nims[slotid].diseqcA.value])
+		if (0 < config.Nims[slotid].diseqcMode.value <= 3):
+			list.append(self.satList[config.Nims[slotid].diseqcB.value])
+		if (config.Nims[slotid].diseqcMode.value == 3):
+			list.append(self.satList[config.Nims[slotid].diseqcC.value])
+			list.append(self.satList[config.Nims[slotid].diseqcD.value])
+		return list
 
 	#callbacks for c++ config
 	def nimConfigModeChanged(self, slotid, mode):
