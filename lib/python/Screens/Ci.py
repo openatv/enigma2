@@ -57,7 +57,10 @@ class CiMmi(Screen):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
 			list.append( (entry[1], index) )
 		if entry[0] == "PIN":
-			x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("INTEGER", (0, ((10**entry[1])-1))))
+			# masked pins:
+			x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "-")))
+			# unmasked pins:
+			# x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))			
 			list.append( getConfigListEntry(entry[2],x) )
 
 	def okbuttonClick(self):
