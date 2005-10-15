@@ -5,7 +5,7 @@
 
 DEFINE_REF(eDVBServiceRecord);
 
-eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
+eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref), m_service_handler(1)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);
 	m_state = stateIdle;
@@ -34,8 +34,9 @@ void eDVBServiceRecord::serviceEvent(int event)
 }
 
 
-RESULT eDVBServiceRecord::prepare()
+RESULT eDVBServiceRecord::prepare(const char *filename)
 {
+	m_filename = filename;
 	if (m_state == stateIdle)
 		return m_service_handler.tune(m_ref);
 	else
@@ -73,8 +74,9 @@ int eDVBServiceRecord::doPrepare()
 		/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
-		::remove("recordings.ts");
-		int fd = ::open("recording.ts", O_WRONLY|O_CREAT, 0644);
+		eDebug("Recording to %s...", m_filename.c_str());
+		::remove(m_filename.c_str());
+		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT, 0644);
 		if (fd == -1)
 		{
 			eDebug("eDVBServiceRecord - can't open hardcoded recording file!");

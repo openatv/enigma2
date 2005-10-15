@@ -284,7 +284,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service)
+	m_reference(ref), m_dvb_service(service), m_service_handler(0)
 {
 	m_is_pvr = !ref.path.empty();
 	
