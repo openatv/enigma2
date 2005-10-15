@@ -81,6 +81,8 @@ private:
 	
 	void redrawComposition(int notifed);
 	void notify();
+	
+	void clearVisibility(eWidget *widget);
 };
 
 #endif
