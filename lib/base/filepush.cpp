@@ -1,6 +1,7 @@
 #include <lib/base/filepush.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
+#include <fcntl.h>
 
 eFilePushThread::eFilePushThread()
 {
@@ -14,6 +15,7 @@ static void signal_handler(int x)
 
 void eFilePushThread::thread()
 {
+	off_t dest_pos = 0;
 	eDebug("FILEPUSH THREAD START");
 		// this is a race. FIXME.
 	
@@ -23,6 +25,7 @@ void eFilePushThread::thread()
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, 0);
 	
+	dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
 		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
@@ -38,6 +41,10 @@ void eFilePushThread::thread()
 				eDebug("eFilePushThread *write error* - not yet handled");
 				// ... we would stop the thread
 			}
+
+			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
+
+			dest_pos += w;
 //			printf("FILEPUSH: wrote %d bytes\n", w);
 			m_buf_start += w;
 			continue;
