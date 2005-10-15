@@ -124,30 +124,49 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_swap(m_list.end())
 {
-	m_visual_mode = visModeSimple;
-	m_size = 0;
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
 }
 
 void eListboxServiceContent::cursorHome()
 {
+	list::iterator old = m_cursor;
+
 	m_cursor = m_list.begin();
 	m_cursor_number = 0;
+
+	if ( m_current_marked && m_saved_cursor == m_list.end() )
+		std::iter_swap( old, m_cursor );
 }
 
 void eListboxServiceContent::cursorEnd()
 {
+	if ( m_current_marked && m_saved_cursor == m_list.end() && m_cursor != m_list.end() )
+		m_swap = m_cursor;
 	m_cursor = m_list.end();
 	m_cursor_number = m_size;
 }
 
+int eListboxServiceContent::setCurrentMarked(bool state)
+{
+	bool prev = m_current_marked;
+	m_current_marked = state;
+
+	if (state != prev && m_listbox)
+		m_listbox->entryChanged(m_cursor_number);
+
+	return 0;
+}
+
 int eListboxServiceContent::cursorMove(int count)
 {
+	list::iterator old = m_cursor;
+
 	if (count > 0)
 	{
-		while (count && (m_cursor != m_list.end()))
+		while(count && (m_cursor != m_list.end()))
 		{
 			++m_cursor;
 			++m_cursor_number;
@@ -162,7 +181,20 @@ int eListboxServiceContent::cursorMove(int count)
 			++count;
 		}
 	}
-	
+
+	if ( m_current_marked && m_saved_cursor == m_list.end() )
+	{
+		if ( m_cursor == m_list.end() )
+			m_swap = old;
+		else if ( old == m_list.end() )
+		{
+			std::iter_swap( m_swap, m_cursor );
+			m_swap = m_list.end();
+		}
+		else
+			std::iter_swap( old, m_cursor );
+	}
+
 	return 0;
 }
 
@@ -194,6 +226,7 @@ void eListboxServiceContent::cursorRestore()
 {
 	m_cursor = m_saved_cursor;
 	m_cursor_number = m_saved_cursor_number;
+	m_saved_cursor = m_list.end();
 }
 
 int eListboxServiceContent::size()
@@ -210,7 +243,10 @@ void eListboxServiceContent::setSize(const eSize &size)
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	painter.clip(eRect(offset, m_itemsize));
-	if (cursorValid() && isMarked(*m_cursor))
+
+	if (m_current_marked && selected)
+		style.setStyle(painter, eWindowStyle::styleListboxMarked);
+	else if (cursorValid() && isMarked(*m_cursor))
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);

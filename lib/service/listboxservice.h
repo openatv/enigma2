@@ -47,6 +47,8 @@ public:
 	
 	void sort();
 	
+	int setCurrentMarked(bool);
+	
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -82,11 +84,15 @@ private:
 	ePtr<iServiceHandler> m_service_center;
 	
 	eServiceReference m_root;
-	
+
 		/* support for marked services */
 	std::set<eServiceReference> m_marked;
 	
 	std::set<eServiceReference>::const_iterator m_marked_iterator;
+
+		/* support for movemode */
+	bool m_current_marked;
+	list::iterator m_swap;
 };
 
 #endif

@@ -49,6 +49,7 @@ class ChannelSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
+		self.entry_marked = False
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
@@ -121,9 +122,17 @@ class ChannelSelection(Screen):
 	
 	# ...
 	def channelSelected(self):
-		self.session.nav.playService(self["list"].getCurrent())
-		print "current: " + self["list"].getCurrent().toString()
-		self.close()
+		if not (self.movemode):
+			self.session.nav.playService(self["list"].getCurrent())
+			print "current: " + self["list"].getCurrent().toString()
+			self.close()
+		else:
+			if self.entry_marked:
+				self["list"].setCurrentMarked(False)
+				self.entry_marked = False
+			else:
+				self["list"].setCurrentMarked(True)
+				self.entry_marked = True
 
 	#called from infoBar
 	def zap(self):
@@ -139,7 +148,10 @@ class ChannelSelection(Screen):
 		self.session.open(ChannelContextMenu, self)
 
 	def setMoveMode(self, mode):
-		self.movemode = mode
+		if mode:
+			self.movemode = False
+		else:
+			self.movemode = True
 	
 	def showFavourites(self):
 		l = self["list" ]
