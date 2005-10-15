@@ -55,6 +55,14 @@
 		<screen name="NimSelection" position="140,165" size="360,100">
 			<widget name="nimlist" position="20,10" size="320,75" />
 		</screen>
+		<screen name="CiSelection" position="140,165" size="360,100">
+		</screen>
+		<screen name="CiMmi" position="140,165" size="360,260">
+			<widget name="title" position="10,0" size="320,25" font="Arial;23" />
+			<widget name="subtitle" position="10,35" size="320,25" font="Arial;23" />
+			<widget name="entries" position="20,70" size="320,150" />
+			<widget name="bottom" position="20,230" size="320,25" font="Arial;23" />
+		</screen>
 		<screen name="NimSetup" position="140,165" size="360,180">
 			<widget name="config" position="20,10" size="320,150" />
 		</screen>
