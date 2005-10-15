@@ -14,7 +14,7 @@ class eDVBServiceRecord: public iRecordableService, public Object
 {
 DECLARE_REF(eDVBServiceRecord);
 public:
-	RESULT prepare();
+	RESULT prepare(const char *filename);
 	RESULT start();
 	RESULT stop();
 private:
@@ -31,6 +31,7 @@ private:
 	
 	int m_recording;
 	std::set<int> m_pids_active;
+	std::string m_filename;
 	
 	int doPrepare();
 	int doRecord();

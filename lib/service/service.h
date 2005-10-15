@@ -28,7 +28,7 @@ public:
 	
 		// eServiceCenter
 	static RESULT getPrivInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }
-	static RESULT getInstance(iServiceHandlerPtr &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
+	static SWIG_VOID(RESULT) getInstance(iServiceHandlerPtr &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
 	RESULT addServiceFactory(int id, iServiceHandler *hnd);
 	RESULT removeServiceFactory(int id);
 };

@@ -233,7 +233,7 @@ TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 class iRecordableService: public iObject
 {
 public:
-	virtual RESULT prepare()=0;
+	virtual RESULT prepare(const char *filename)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 };
