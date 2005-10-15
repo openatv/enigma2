@@ -20,9 +20,9 @@ class TimerEntry:
 		self.state = 0
 	
 	def getTime(self):
-		if self.state == 0:
+		if self.state == self.StateWait:
 			return self.begin - self.prepare_time
-		elif self.state == 1:
+		elif self.state == self.StatePrepare:
 			return self.begin
 		else:
 			return self.end 
@@ -52,7 +52,7 @@ class Timer:
 	
 	def setNextActivation(self, when):
 		delay = int((when - time()) * 1000)
-		print "next activation: %d (in %d seconds)" % (when, delay)
+		print "next activation: %d (in %d ms)" % (when, delay)
 		
 		self.timer.start(delay, 1)
 		self.next = when
@@ -69,6 +69,10 @@ class Timer:
 				min = w
 		
 		self.setNextActivation(min)
+	
+	def timeChanged(self, timer):
+		self.timer_list.remove(timer)
+		bisect.insort(self.timer_list, timer)
 	
 	def doActivate(self, w):
 		w.activate(w.state)

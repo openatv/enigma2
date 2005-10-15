@@ -1,7 +1,9 @@
 import time
 import codecs
+#from time import datetime
+from Tools import Directories
 
-from timer import *
+import timer
 import xml.dom.minidom
 
 import NavigationInstance
@@ -9,19 +11,38 @@ import NavigationInstance
 from Tools.XMLTools import elementsWithTag
 from ServiceReference import ServiceReference
 
-class RecordTimerEntry(TimerEntry):
+class RecordTimerEntry(timer.TimerEntry):
 	def __init__(self, begin, end, serviceref, epg, description):
-		TimerEntry.__init__(self, int(begin), int(end))
+		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
 		
 		self.service_ref = serviceref
 		
-		print self.service_ref.getServiceName()
-		self.epg_data = epg
+		if epg is not None:
+			self.epg_data = ""
+			#str(epg.m_event_name)
+		else:
+			self.epg_data = ""
+		
 		self.description = description
 		self.timer = None
 		self.record_service = None
+		
+	def calculateFilename(self):
+		service_name = self.service_ref.getServiceName()
+#		begin_date = datetime.fromtimestamp(begin).strf...
+		begin_date = ""
+		if self.epg_data is not None:
+			description = " - " + self.epg_data
+		else:
+			description = ""
+		
+		print begin_date
+		print service_name
+		print description
+		self.Filename = Directories.getRecordingFilename(service_name)
+		#begin_date + " - " + service_name + description)
 		
 		# build filename from epg
 		
@@ -32,14 +53,21 @@ class RecordTimerEntry(TimerEntry):
 #			self.Filename = "record_" + str(epg.m_event_name) + ".ts"
 #		
 #		print "------------ record filename: %s" % (self.Filename)
-		
+	
+	
 	def activate(self, event):
 		if event == self.EventPrepare:
+			self.calculateFilename()
 			self.record_service = NavigationInstance.instance.recordService(self.service_ref)
 			if self.record_service == None:
 				print "timer record failed."
 			else:	
-				self.record_service.prepare()
+				self.record_service.prepare(self.Filename + ".ts")
+				f = open(self.Filename + ".ts.meta", "w")
+				f.write(str(self.service_ref) + "\n")
+				f.write(self.epg_data + "\n")
+				del f
+				
 		elif self.record_service == None:
 			if event != self.EventAbort:
 				print "timer record start failed, can't finish recording."
@@ -61,11 +89,11 @@ def createTimer(xml):
 	#filename = xml.getAttribute("filename")
 	return RecordTimerEntry(begin, end, serviceref, epgdata, description)
 
-class RecordTimer(Timer):
+class RecordTimer(timer.Timer):
 	def __init__(self):
-		Timer.__init__(self)
+		timer.Timer.__init__(self)
 		
-		self.Filename = "timers.xml"
+		self.Filename = Directories.resolveFilename(Directories.SCOPE_USERETC, "timers.xml")
 		
 		try:
 			self.loadTimer()
@@ -109,11 +137,11 @@ class RecordTimer(Timer):
 		self.addTimerEntry(entry)
 
 	def removeEntry(self, entry):
-		if entry.state == TimerEntry.StateRunning:
-			entry.End = time.time()
-			print "aborting timer"
-		elif entry.state != TimerEntry.StateEnded:
-			entry.activate(TimerEntry.EventAbort)
+		if entry.state == timer.TimerEntry.StateRunning:
+			entry.end = time.time()
+			self.timeChanged(entry)
+		elif entry.state != timer.TimerEntry.StateEnded:
+			entry.activate(timer.TimerEntry.EventAbort)
 			self.timer_list.remove(entry)
 			print "timer did not yet start - removing"
 		else:
