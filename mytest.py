@@ -183,9 +183,6 @@ Components.SetupDevices.InitSetupDevices()
 
 import Components.NimManager
 
-import Components.ScanSetup
-Components.ScanSetup.InitScanSetup()
-
 # first, setup a screen
 try:
 	runScreenTest()
