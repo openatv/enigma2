@@ -66,6 +66,8 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 	for (ePtrList<eWidget>::iterator i(widget->m_childs.begin()); i != widget->m_childs.end(); ++i)
 		if (i->m_vis & eWidget::wVisShow)
 			calcWidgetClipRegion(*i, widget->m_visible_region);
+		else
+			clearVisibility(*i);
 }
 
 void eWidgetDesktop::recalcClipRegions(eWidget *root)
@@ -79,7 +81,10 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 		for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); ++i)
 		{
 			if (!(i->m_vis & eWidget::wVisShow))
+			{
+				clearVisibility(i);
 				continue;
+			}
 			
 			gRegion visible_before = i->m_visible_with_childs;
 
@@ -94,10 +99,11 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 		
 		gRegion redraw = (background_before - m_screen.m_background_region) | (m_screen.m_background_region - background_before);
 		invalidate(redraw);
-	} else
+	} else if (m_comp_mode == cmBuffered)
 	{
 		if (!root->m_vis & eWidget::wVisShow)
 		{
+			clearVisibility(root);
 			removeBufferForWidget(root);
 			return;
 		}
@@ -386,4 +392,11 @@ void eWidgetDesktop::redrawComposition(int notified)
 void eWidgetDesktop::notify()
 {
 	redrawComposition(1);
+}
+
+void eWidgetDesktop::clearVisibility(eWidget *widget)
+{
+	widget->m_visible_with_childs = gRegion();
+	for (ePtrList<eWidget>::iterator i(widget->m_childs.begin()); i != widget->m_childs.end(); ++i)
+		clearVisibility(*i);
 }
