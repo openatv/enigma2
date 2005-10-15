@@ -272,7 +272,7 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 	if (m_comp_mode != cmImmediate)
 		return;
 	
-	eDebug("widgetDesktop: make compatible pixmap of %p\n", &pm);
+//	eDebug("widgetDesktop: make compatible pixmap of %p", &pm);
 	if (!m_screen.m_dc)
 	{
 		eWarning("eWidgetDesktop: no DC to make pixmap compatible with!");

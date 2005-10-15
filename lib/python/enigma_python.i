@@ -80,8 +80,8 @@ extern void setLCDClock(const char *c);
 extern PSignal1<void,int> &keyPressedSignal();
 %}
 
-%feature("ref")   iObject "$this->AddRef(); eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); "
-%feature("unref") iObject "$this->Release(); eDebug(\"Release! %s:%d\", __FILE__, __LINE__); "
+%feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
+%feature("unref") iObject "$this->Release(); /* eDebug(\"Release! %s:%d\", __FILE__, __LINE__); */ "
 
 
 /* this magic allows smartpointer to be used as OUTPUT arguments, i.e. call-by-reference-styled return value. */
