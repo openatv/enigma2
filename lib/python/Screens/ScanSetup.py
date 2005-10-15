@@ -1,15 +1,19 @@
 from Screen import Screen
+from Components.config import *
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList
 from Components.config import config
 from Components.config import getConfigListEntry
 from Components.NimManager import nimmanager
 from Components.Label import Label
-from Components.ScanSetup import InitScanSetup
 
 class ScanSetup(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
+        
+        self.updateSatList()
+        self.createConfig()
+
         
         self["actions"] = ActionMap(["SetupActions"],
         {
@@ -18,15 +22,19 @@ class ScanSetup(Screen):
             "left": self.keyLeft,
             "right": self.keyRight
         }, -1)
-
+                
         self.list = []
         self["config"] = ConfigList(self.list)
         self.createSetup()
 
         self["introduction"] = Label("Press OK to start the scan")
-        
+
+    def updateSatList(self):
+        self.satList = []
+        for slot in nimmanager.nimslots:
+            self.satList.append(nimmanager.getSatListForNim(slot.slotid))
+            
     def createSetup(self):
-        #InitScanSetup()
         self.list = []
         
         self.list.append(getConfigListEntry("Type of scan", config.scan.type))
@@ -58,9 +66,9 @@ class ScanSetup(Screen):
                 self.list.append(getConfigListEntry("Hierarchy mode", config.scan.ter.hierarchy))
 
         # single satellite scan
-        print "NIM: ", config.scan.nims.value
         print config.scan.satselection
         if (config.scan.type.value == 1):
+            self.updateSatList()
             print config.scan.satselection[config.scan.nims.value]
             self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
             
@@ -79,6 +87,54 @@ class ScanSetup(Screen):
             self.createSetup()
         if self["config"].getCurrent()[0] == "Tuner":
             self.createSetup()
+            
+    def createConfig(self):
+            config.scan = ConfigSubsection()
+            config.scan.sat = ConfigSubsection()
+            config.scan.cab = ConfigSubsection()
+            config.scan.ter = ConfigSubsection()        
+        
+            config.scan.type = configElement_nonSave("config.scan.type", configSelection, 0, ("Single transponder", "Single satellite", "Multisat"))
+            nimList = [ ]
+            for nim in nimmanager.nimList():
+                nimList.append(nim[0])
+            nimList.append("all")
+            config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
+            
+            # sat
+            config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [12187], configsequencearg.get("INTEGER", (10000, 14000)))
+            config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 0, ("off", "on"))
+            config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 30000)))
+            config.scan.sat.polarzation = configElement_nonSave("config.scan.sat.polarzation", configSelection, 0, ("horizontal", "vertical"))
+            config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
+        
+            # cable
+            config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
+            config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("off", "on"))
+            config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
+            config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
+            config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
+            
+            # terrestial
+            config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
+            config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("off", "on"))
+            config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, ("Auto", "6 MHz", "7MHz", "8MHz"))
+            config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
+            config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
+            config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
+            config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 0, ("Auto", "2K", "8K"))
+            config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 0, ("Auto", "1/4", "1/8", "1/16", "1/32"))
+            config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 0, ("Auto", "1", "2", "4"))
+            
+            config.scan.scansat = {}
+            for sat in nimmanager.satList:
+                #print sat[1]
+                config.scan.scansat[sat[1]] = configElement_nonSave("config.scan.scansat[" + str(sat[1]) + "]", configSelection, 0, ("yes", "no"))
+                
+            config.scan.satselection = []
+            slotid = 0
+            for slot in nimmanager.nimslots:
+                config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, 0, self.satList[slot.slotid]))
         
     def keyLeft(self):
         self["config"].handleKey(config.key["prevElement"])
