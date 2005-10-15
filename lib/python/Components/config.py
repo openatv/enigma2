@@ -337,7 +337,7 @@ class configElement:
 			value = ""
 
 		if value == "":
-			print "value not found - using default"
+			#print "value not found - using default"
 
 			if self.controlType == configSatlist:
 				self.value = self.getIndexbyEntry(self.defaultValue)
