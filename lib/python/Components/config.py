@@ -116,16 +116,20 @@ class configSequenceArg:
 	def get(self, type, args = ()):
 		# configsequencearg.get ("IP")
 		if (type == "IP"):
-			return (("."), [(1,255),(0,255),(0,255),(0,255)])
+			return (("."), [(1,255),(0,255),(0,255),(0,255)], "")
 		# configsequencearg.get ("MAC")
 		if (type == "MAC"):
-			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)])
+			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], "")
 		# configsequencearg.get("INTEGER", (min, max)) => x with min <= x <= max
 		if (type == "INTEGER"):
-			return ((":"), [args])
+			return ((":"), [args], "")
+		# configsequencearg.get("PINCODE", (number, "*")) => pin with number = length of pincode and "*" as numbers shown as stars
+		# configsequencearg.get("PINCODE", (number, "")) => pin with number = length of pincode and numbers shown
+		if (type == "PINCODE"):
+			return ((":"), [(0, (10**args[0])-1)], args[1])
 		# configsequencearg.get("FLOAT", [(min,max),(min1,max1)]) => x.y with min <= x <= max and min1 <= y <= max1
 		if (type == "FLOAT"):
-			return (("."), args)
+			return (("."), args, "")
 
 configsequencearg = configSequenceArg()
 		
@@ -135,6 +139,7 @@ class configSequence:
 		self.markedPos = 0
 		self.seperator = self.parent.vals[0]
 		self.valueBounds = self.parent.vals[1]
+		self.censorChar = self.parent.vals[2]
 
 	def checkValues(self):
 		maxPos = 0
@@ -214,7 +219,10 @@ class configSequence:
 				## if this helps?!
 				#value += " " * diff
 			print (("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i)
-			value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
+			if (self.censorChar == ""):
+				value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
+			else:
+				value += (self.censorChar * len(str(self.valueBounds[num][1])))
 			num += 1
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
