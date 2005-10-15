@@ -61,6 +61,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		return marked
 
+	def setCurrentMarked(self, state):
+		self.l.setCurrentMarked(state)
+
 	def setMode(self, mode):
 		if mode == self.MODE_NORMAL:
 			self.instance.setItemHeight(20)
