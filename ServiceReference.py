@@ -17,7 +17,7 @@ class ServiceReference(eServiceReference):
 	
 	def getServiceName(self):
 		info = self.getStaticServiceInformation()
-		if info is not None:
+		if info is None:
 			return None
 		
 		return info.getName(self.ref)

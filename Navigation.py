@@ -11,8 +11,8 @@ class Navigation:
 			raise NavigationInstance.instance
 		
 		NavigationInstance.instance = self
-		self.ServiceHandler = eServiceCenterPtr()
 		self.ServiceHandler = eServiceCenter.getInstance()
+		print self.ServiceHandler
 
 		import Navigation as Nav
 		Nav.navcore = self
@@ -45,8 +45,9 @@ class Navigation:
 		print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
-		service = iRecordableServicePtr()
-		if self.pnav.recordService(ref, service):
+		service = self.pnav.recordService(ref)
+		
+		if service is None:
 			print "record returned non-zero"
 			return None
 		else:
