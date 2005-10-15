@@ -7,8 +7,6 @@ from enigma import eServiceReference, eServiceCenter, \
 	eServiceCenterPtr, iListableServicePtr, \
 	iStaticServiceInformationPtr
 
-
-
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
 RT_HALIGN_CENTER = 2
@@ -27,11 +25,10 @@ RT_WRAP = 32
 def MovieListEntry(serviceref, serviceHandler):
 	res = [ serviceref ]
 
-	info = iStaticServiceInformationPtr()
-
-	if serviceHandler.info(serviceref, info):
+	info = serviceHandler.info(serviceref)
+	
+	if info is None:
 		# ignore service which refuse to info
-		del info
 		return
 	
 	len = info.getLength(serviceref)
@@ -74,11 +71,10 @@ class MovieList(HTMLComponent, GUIComponent):
 		
 		self.list = [ ]
 		
-		serviceHandler = eServiceCenterPtr()
-		eServiceCenter.getInstance(serviceHandler)
-		list = iListableServicePtr()
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(root)
 		
-		if serviceHandler.list(root, list):
+		if list is None:
 			raise "listing of movies failed"
 
 		movieList = [ ]
