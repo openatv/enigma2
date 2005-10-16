@@ -16,6 +16,7 @@ class eApplication;
 
 extern eApplication* eApp;
 
+	/* TODO: remove these inlines. */
 static inline bool operator<( const timeval &t1, const timeval &t2 )
 {
 	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_usec < t2.tv_usec);
@@ -113,20 +114,9 @@ static inline timeval operator-=( timeval &t1, const long msek )
 	return t1;
 }
 
-static inline timeval timeout_timeval ( const timeval & orig )
+static inline int timeval_to_usec(const timeval &t1)
 {
-	timeval now;
-  gettimeofday(&now,0);
-
-	return orig-now;
-}
-
-static inline long timeout_usec ( const timeval & orig )
-{
-	timeval now;
-  gettimeofday(&now,0);
-
-	return (orig-now).tv_sec*1000000 + (orig-now).tv_usec;
+	return t1.tv_sec*1000000 + t1.tv_usec;
 }
 
 class eMainloop;
@@ -179,7 +169,7 @@ class eMainloop
 	friend class eTimer;
 	friend class eSocketNotifier;
 	std::map<int, eSocketNotifier*> notifiers;
-	ePtrList<eTimer> TimerList;
+	ePtrList<eTimer> m_timer_list;
 	bool app_exit_loop;
 	bool app_quit_now;
 	int loop_level;
@@ -187,12 +177,13 @@ class eMainloop
 	int retval;
 	int timer_offset;
 	pthread_mutex_t recalcLock;
-	inline void doRecalcTimers();
-	inline void addSocketNotifier(eSocketNotifier *sn);
-	inline void removeSocketNotifier(eSocketNotifier *sn);
-	inline void addTimer(eTimer* e)	{		TimerList.insert_in_order(e);	}
-	inline void removeTimer(eTimer* e)	{		TimerList.remove(e);	}
 public:
+	void addTimeOffset(int offset);
+ 	void addSocketNotifier(eSocketNotifier *sn);
+	void removeSocketNotifier(eSocketNotifier *sn);
+	void addTimer(eTimer* e);
+	void removeTimer(eTimer* e);
+
 	static ePtrList<eMainloop> existing_loops;
 	eMainloop()
 		:app_quit_now(0),loop_level(0),retval(0),timer_offset(0)
@@ -207,13 +198,11 @@ public:
 	}
 	int looplevel() { return loop_level; }
 
+		/* OBSOLETE. DONT USE. */
 	int exec();  // recursive enter the loop
 	void quit(int ret=0); // leave all pending loops (recursive leave())
 	void enter_loop();
 	void exit_loop();
-	void setTimerOffset( int );
-	int getTimerOffset() { return timer_offset; }
-	bool isAppQuitNowSet() { return app_quit_now; }
 };
 
 /**
@@ -250,7 +239,6 @@ class eTimer
 	long interval;
 	bool bSingleShot;
 	bool bActive;
-	inline void recalc(int);
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -272,5 +260,6 @@ public:
 	void changeInterval(long msek);
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
 	void startLongTimer( int seconds );
+	void addTimeOffset(int);
 };
 #endif
