@@ -45,7 +45,6 @@ void eTimer::start(long msek, bool singleShot)
 	bSingleShot = singleShot;
 	interval = msek;
 	gettimeofday(&nextActivation, 0);
-	nextActivation.tv_sec -= context.getTimerOffset();
 	nextActivation += (msek<0 ? 0 : msek);
 //	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
 //	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
@@ -60,7 +59,6 @@ void eTimer::startLongTimer( int seconds )
 	bActive = bSingleShot = true;
 	interval = 0;
 	gettimeofday(&nextActivation, 0);
-	nextActivation.tv_sec -= context.getTimerOffset();
 //	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
 	if ( seconds > 0 )
 		nextActivation.tv_sec += seconds;
@@ -108,27 +106,13 @@ void eTimer::activate()   // Internal Funktion... called from eApplication
 	/*emit*/ timeout();
 }
 
-inline void eTimer::recalc( int offset )
+void eTimer::addTimeOffset( int offset )
 {
 	nextActivation.tv_sec += offset;
 }
 
 // mainloop
 ePtrList<eMainloop> eMainloop::existing_loops;
-
-void eMainloop::setTimerOffset( int difference )
-{
-	singleLock s(recalcLock);
-	if (!TimerList)
-		timer_offset=0;
-	else
-	{
-		if ( timer_offset )
-			eDebug("time_offset %d avail.. add new offset %d than new is %d",
-			timer_offset, difference, timer_offset+difference);
-		timer_offset+=difference;
-	}
-}
 
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
@@ -173,58 +157,88 @@ void eMainloop::processOneEvent()
 			  time anyway
 		*/
 
-		// first, process pending timers...
-	long usec=0;
-
-	if ( TimerList )
-		doRecalcTimers();
-	while (TimerList && (usec = timeout_usec( TimerList.begin()->getNextActivation() ) ) <= 0 )
+		/* get current time */
+	timeval now;
+	gettimeofday(&now, 0);
+	
+	int poll_timeout = -1; /* infinite in case of empty timer list */
+	
+	if (m_timer_list)
 	{
-		TimerList.begin()->activate();
-		doRecalcTimers();
+		poll_timeout = timeval_to_usec(m_timer_list.begin()->getNextActivation() - now);
+			/* if current timer already passed, don't delay infinite. */
+		if (poll_timeout < 0)
+			poll_timeout = 0;
+			
+			/* convert us to ms */
+		poll_timeout /= 1000;
 	}
+	
+	int ret = 0;
 
-	int fdAnz = notifiers.size();
-	pollfd pfd[fdAnz];
-
-// fill pfd array
-	std::map<int,eSocketNotifier*>::iterator it(notifiers.begin());
-	for (int i=0; i < fdAnz; i++, it++)
+	if (poll_timeout)
 	{
-		pfd[i].fd = it->first;
-		pfd[i].events = it->second->getRequested();
-	}
+			// build the poll aray
+		int fdcount = notifiers.size();
+		pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
 
-		// to the poll. When there are no timers, we have an infinite timeout
-	int ret=poll(pfd, fdAnz, TimerList ? usec / 1000 : -1);  // convert to ms
-
-	if (ret>0)
-	{
-	//		eDebug("bin aussem poll raus und da war was");
-		for (int i=0; i < fdAnz ; i++)
+		std::map<int,eSocketNotifier*>::iterator it(notifiers.begin());
+		for (int i=0; i < fdcount; i++, it++)
 		{
-			if( notifiers.find(pfd[i].fd) == notifiers.end())
-				continue;
-
-			int req = notifiers[pfd[i].fd]->getRequested();
-
-			if ( pfd[i].revents & req )
-			{
-				notifiers[pfd[i].fd]->activate(pfd[i].revents);
-				if (!--ret)
-					break;
-			}
-			else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-				eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd,pfd[i].revents);
+			pfd[i].fd = it->first;
+			pfd[i].events = it->second->getRequested();
 		}
+
+		ret = poll(pfd, fdcount, poll_timeout);
+
+			/* ret > 0 means that there are some active poll entries. */
+		if (ret > 0)
+		{
+			for (int i=0; i < fdcount ; i++)
+			{
+				if (notifiers.find(pfd[i].fd) == notifiers.end())
+					continue;
+				
+				int req = notifiers[pfd[i].fd]->getRequested();
+				
+				if (pfd[i].revents & req)
+				{
+					notifiers[pfd[i].fd]->activate(pfd[i].revents);
+				
+					if (!--ret)
+						break;
+				} else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
+					eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d) -> FIX YOUR CODE", pfd[i].fd,pfd[i].revents);
+			}
+		} else if (ret < 0)
+		{
+				/* when we got a signal, we get EINTR. we do not care, 
+				   because we check current time in timers anyway. */
+			if (errno != EINTR)
+				eDebug("poll made error (%m)");
+			else
+				ret = 0;
+		}
+		delete [] pfd;
 	}
-	else if (ret<0)
+	
+		/* when we not processed anything, check timers. */
+	if (!ret)
 	{
-			/* when we got a signal, we get EINTR. we do not care,
-			   because we check current time in timers anyway. */
-		if (errno != EINTR)
-			eDebug("poll made error");
+			/* process all timers which are ready. first remove them out of the list. */
+		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() < now))
+			m_timer_list.begin()->activate();
 	}
+}
+
+void eMainloop::addTimer(eTimer* e)
+{
+	m_timer_list.insert_in_order(e);
+}
+
+void eMainloop::removeTimer(eTimer* e)
+{
+	m_timer_list.remove(e);
 }
 
 int eMainloop::exec()
@@ -271,15 +285,11 @@ void eMainloop::quit( int ret )   // call this to leave all loops
 	app_quit_now = true;
 }
 
-inline void eMainloop::doRecalcTimers()
+void eMainloop::addTimeOffset(int offset)
 {
 	singleLock s(recalcLock);
-	if ( timer_offset )
-	{
-		for (ePtrList<eTimer>::iterator it(TimerList); it != TimerList.end(); ++it )
-			it->recalc( timer_offset );
-		timer_offset=0;
-	}
+	for (ePtrList<eTimer>::iterator it(m_timer_list); it != m_timer_list.end(); ++it )
+		it->addTimeOffset(offset);
 }
 
 eApplication* eApp = 0;
