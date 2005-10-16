@@ -13,16 +13,6 @@ from Navigation import Navigation
 
 from skin import readSkin, applyAllAttributes
 
-
-# A screen is a function which instanciates all components of a screen into a temporary component.
-# Thus, the global stuff is a screen, too.
-# In a screen, components can either be instanciated from the class-tree, cloned (copied) or
-# "linked" from the instance tree.
-# A screen itself lives as the container of the components, so a screen is a component, too.
-
-# we thus have one (static) hierarchy of screens (classes, not instances)
-# and one with the instanciated components itself (both global and dynamic)
-
 had = dict()
 
 def dump(dir, p = ""):
@@ -72,6 +62,9 @@ class Session:
 	def processDelay(self):
 		self.execEnd()
 		
+		callback = self.currentDialog.callback
+		retval = self.currentDialog.returnValue
+		
 		if self.currentDialog.isTmp:
 			self.currentDialog.doClose()
 		
@@ -79,9 +72,13 @@ class Session:
 			del self.currentDialog.instance
 #			dump(self.currentDialog)
 			del self.currentDialog
+		else:
+			del self.currentDialog.callback
 		
 		self.popCurrent()
-			
+		if callback is not None:
+			callback(*retval)
+
 	def execBegin(self):
 			self.currentDialog.execBegin()
 			self.currentDialog.instance.show()
@@ -128,23 +125,30 @@ class Session:
 		if len(self.dialogStack):
 			self.currentDialog = self.dialogStack.pop()
 			self.execBegin()
-	
+
 	def execDialog(self, dialog):
 		self.pushCurrent()
 		self.currentDialog = dialog
 		self.currentDialog.isTmp = False
+		self.currentDialog.callback = None # would cause re-entrancy problems.
 		self.execBegin()
+
+	def openWithCallback(self, callback, screen, *arguments):
+		self.open(screen, *arguments)
+		self.currentDialog.callback = callback
 
 	def open(self, screen, *arguments):
 		self.pushCurrent()
 		self.currentDialog = self.instantiateDialog(screen, *arguments)
 		self.currentDialog.isTmp = True
+		self.currentDialog.callback = None
 		self.execBegin()
 
 	def keyEvent(self, code):
 		print "code " + str(code)
 
-	def close(self):
+	def close(self, *retval):
+		self.currentDialog.returnValue = retval
 		self.delayTimer.start(0, 1)
 
 

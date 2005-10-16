@@ -31,8 +31,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 		for (name, val) in self.items():
 			del self[name]
 	
-	def close(self, retval=None):
-		self.session.close()
+	def close(self, *retval):
+		self.session.close(*retval)
 
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)

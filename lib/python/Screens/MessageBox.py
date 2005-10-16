@@ -10,6 +10,12 @@ class MessageBox(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				"cancel": self.close
+				"cancel": self.cancel,
+				"ok": self.ok
 			})
-
+	
+	def cancel(self):
+		self.close(False)
+	
+	def ok(self):
+		self.close(True)
