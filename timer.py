@@ -1,5 +1,5 @@
 import bisect
-from time import *
+import time
 from enigma import *
 
 class TimerEntry:
@@ -31,10 +31,19 @@ class TimerEntry:
 		return self.getTime() < o.getTime()
 	
 	def activate(self, event):
-		print "timer %s got activated (%d)!" % (self.description, event)
+		print "[timer.py] timer %s got activated (%d)!" % (self.description, event)
 
 class Timer:
 
+	# the time between "polls". We do this because
+	# we want to account for time jumps etc.
+	# of course if they occur <100s before starting,
+	# it's not good. thus, you have to repoll when
+	# you change the time.
+	#
+	# this is just in case. We don't want the timer 
+	# hanging. we use this "edge-triggered-polling-scheme"
+	# anyway, so why don't make it a bit more fool-proof?
 	MaxWaitTime = 100
 
 	def __init__(self):
@@ -47,12 +56,17 @@ class Timer:
 		self.calcNextActivation()
 	
 	def addTimerEntry(self, entry):
-		bisect.insort(self.timer_list, entry)
-		self.calcNextActivation()
+		# we either go trough Prepare/Start/End-state if the timer is still running,
+		# or skip it when it's alrady past the end.
+		if entry.end > time.time():
+			bisect.insort(self.timer_list, entry)
+			self.calcNextActivation()
+		else:
+			bisect.insort(self.process_timers, entry)
 	
 	def setNextActivation(self, when):
-		delay = int((when - time()) * 1000)
-		print "next activation: %d (in %d ms)" % (when, delay)
+		delay = int((when - time.time()) * 1000)
+		print "[timer.py] next activation: %d (in %d ms)" % (when, delay)
 		
 		self.timer.start(delay, 1)
 		self.next = when
@@ -60,7 +74,7 @@ class Timer:
 	def calcNextActivation(self):
 		self.processActivation()
 	
-		min = int(time()) + self.MaxWaitTime
+		min = int(time.time()) + self.MaxWaitTime
 		
 		# calculate next activation point
 		if len(self.timer_list):
@@ -84,15 +98,8 @@ class Timer:
 			bisect.insort(self.processed_timers, w)
 	
 	def processActivation(self):
-		t = int(time()) + 1
+		t = int(time.time()) + 1
 		
 		# we keep on processing the first entry until it goes into the future.
 		while len(self.timer_list) and self.timer_list[0].getTime() < t:
 			self.doActivate(self.timer_list[0])
-
-#t = Timer()
-#base = time() + 5
-#t.addTimerEntry(TimerEntry(base+10, base+20, None, None, "test #1: 10 - 20"))
-#t.addTimerEntry(TimerEntry(base+10, base+30, None, None, "test #2: 10 - 30"))
-#t.addTimerEntry(TimerEntry(base+15, base+20, None, None, "test #3: 15 - 20"))
-#t.addTimerEntry(TimerEntry(base+20, base+35, None, None, "test #4: 20 - 35"))
