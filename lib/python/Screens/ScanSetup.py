@@ -1,4 +1,5 @@
 from Screen import Screen
+from ServiceScan import *
 from Components.config import *
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
@@ -17,7 +18,7 @@ class ScanSetup(Screen):
         
         self["actions"] = NumberActionMap(["SetupActions"],
         {
-            "ok": self.keySave,
+            "ok": self.keyGo,
             "cancel": self.keyCancel,
             "left": self.keyLeft,
             "right": self.keyRight,
@@ -159,10 +160,12 @@ class ScanSetup(Screen):
         if (self["config"].getCurrent()[1].parent.enabled == True):
             self["config"].handleKey(config.key[str(number)])
 
-    def keySave(self):
+    def keyGo(self):
         for x in self["config"].list:
             x[1].save()
-        self.close()
+        self.session.openWithCallback(self.keyCancel, ServiceScan)        
+
+        #self.close()
 
     def keyCancel(self):
         for x in self["config"].list:
