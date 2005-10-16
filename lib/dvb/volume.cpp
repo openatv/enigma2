@@ -68,8 +68,8 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	leftVol = checkVolume(left);
 	rightVol = checkVolume(right);
 	
-	left = 63 - leftVol / 100.0 * 63.0;
-	right = 63 - rightVol / 100.0 * 63.0;
+	left = 63 - leftVol * 63 / 100;
+	right = 63 - rightVol * 63 / 100;
 	
 #if HAVE_DVB_API_VERSION < 3   
 		audioMixer_t mixer;
