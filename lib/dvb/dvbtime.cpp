@@ -212,7 +212,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 					settimeofday(&tnow,0);
 					for (ePtrList<eMainloop>::iterator it(eMainloop::existing_loops)
 						;it != eMainloop::existing_loops.end(); ++it)
-						it->setTimerOffset(m_time_difference);
+						it->addTimeOffset(m_time_difference);
 					m_time_difference=0;
 				}
 				else if ( !m_time_difference )
@@ -333,7 +333,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 			settimeofday(&tnow,0);
 			for (ePtrList<eMainloop>::iterator it(eMainloop::existing_loops)
 				;it != eMainloop::existing_loops.end(); ++it)
-				it->setTimerOffset(m_time_difference);
+				it->addTimeOffset(m_time_difference);
 			m_time_difference=0;
 		}
 
