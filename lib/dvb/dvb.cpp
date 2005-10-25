@@ -616,3 +616,14 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 	
 	return 0;
 }
+
+RESULT eDVBChannel::seekTo(pts_t &pts)
+{
+	m_pvr_thread->pause();
+	if (m_decoder_demux)
+		m_decoder_demux->get().flush();
+		/* demux will also flush all decoder.. */
+//	m_pvr_thread->seek(pts);
+	m_pvr_thread->resume();
+}
+

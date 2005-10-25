@@ -192,6 +192,7 @@ public:
 	RESULT playFile(const char *file);
 	RESULT getLength(pts_t &len);
 	RESULT getCurrentPosition(pts_t &pos);
+	RESULT seekTo(pts_t &pts);
 
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
