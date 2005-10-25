@@ -92,6 +92,12 @@ void eDVBAudio::stopPid()
 		eWarning("audio: DMX_STOP: %m");
 }
 #endif
+
+void eDVBAudio::flush()
+{
+	if (::ioctl(m_fd, AUDIO_CLEAR_BUFFER) < 0)
+		eDebug("audio: AUDIO_CLEAR_BUFFER: %m");
+}
 	
 eDVBAudio::~eDVBAudio()
 {
@@ -171,6 +177,12 @@ void eDVBVideo::stopPid()
 }
 #endif
 
+void eDVBVideo::flush()
+{
+	if (::ioctl(m_fd, VIDEO_CLEAR_BUFFER) < 0)
+		eDebug("video: VIDEO_CLEAR_BUFFER: %m");
+}
+	
 eDVBVideo::~eDVBVideo()
 {
 	if (m_fd >= 0)
@@ -342,6 +354,7 @@ int eTSMPEGDecoder::setState()
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0)
 {
+	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
@@ -420,4 +433,25 @@ RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 RESULT eTSMPEGDecoder::setZoom(int what)
 {
 	return -1;
+}
+
+RESULT eTSMPEGDecoder::flush()
+{
+	if (m_audio)
+		m_audio->flush();
+	if (m_video)
+		m_video->flush();
+	return 0;
+}
+
+void eTSMPEGDecoder::demux_event(int event)
+{
+	switch (event)
+	{
+	case eDVBDemux::evtFlush:
+		flush();
+		break;
+	default:
+		break;
+	}
 }
