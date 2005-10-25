@@ -2,6 +2,7 @@
 #define __lib_base_filepush_h
 
 #include <lib/base/thread.h>
+#include <sys/types.h>
 
 class eFilePushThread: public eThread
 {
@@ -10,6 +11,11 @@ public:
 	void thread();
 	void stop();
 	void start(int sourcefd, int destfd);
+	
+	void pause();
+	void seek(off_t where);
+	void resume();
+	
 private:
 	int m_stop;
 	unsigned char m_buffer[65536];

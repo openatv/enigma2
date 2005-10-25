@@ -34,6 +34,7 @@ void eFilePushThread::thread()
 		{
 				// TODO: take care of boundaries.
 			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+			eDebug("wrote %d bytes", w);
 			if (w <= 0)
 			{
 				if (errno == -EINTR)
@@ -42,6 +43,7 @@ void eFilePushThread::thread()
 				// ... we would stop the thread
 			}
 
+				/* this should flush all written pages to disk. */
 			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
 
 			dest_pos += w;
@@ -80,8 +82,7 @@ void eFilePushThread::start(int fd_source, int fd_dest)
 {
 	m_fd_source = fd_source;
 	m_fd_dest = fd_dest;
-	m_stop = 0;
-	run();
+	resume();
 }
 
 void eFilePushThread::stop()
@@ -89,4 +90,20 @@ void eFilePushThread::stop()
 	m_stop = 1;
 	sendSignal(SIGUSR1);
 	kill();
+}
+
+void eFilePushThread::pause()
+{
+	stop();
+}
+
+void eFilePushThread::seek(off_t where)
+{
+	::lseek(m_fd_source, where, SEEK_SET);
+}
+
+void eFilePushThread::resume()
+{
+	m_stop = 0;
+	run();
 }
