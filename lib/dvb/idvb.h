@@ -468,6 +468,7 @@ public:
 	
 	virtual RESULT getLength(pts_t &pts) = 0;
 	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
+	virtual RESULT seekTo(pts_t &pts) = 0;
 	
 	// seekTo ...
 };
@@ -484,6 +485,7 @@ public:
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader)=0;
 	virtual RESULT getSTC(pts_t &pts)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;
+	virtual RESULT flush()=0;
 };
 
 class iTSMPEGDecoder: public iObject
