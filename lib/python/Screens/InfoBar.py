@@ -141,30 +141,42 @@ class InfoBar(Screen):
 	def	quit(self):
 		configfile.save()
 		quitMainloop()
+	
+	def stopCurrentRecording(self):	
+		print "remove entry"
+		self.session.nav.RecordTimer.removeEntry(self.recording)
+		self.recording = None
+	
+	def startInstantRecording(self):
+		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
+			
+		# try to get event info
+		epg = None
+		try:
+			service = self.session.nav.getCurrentService()
+			info = service.info()
+			ev = info.getEvent(0)
+			epg = ev
+		except:
+			pass
 		
-	def instantRecord(self):
-		#self.session.open(MessageBox, "this would be an instant recording! do you really know what you're doing?!")
-		#return
-	
+		# fix me, description. 
+		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
+
+	def recordQuestionCallback(self, answer):
+		if answer == False:
+			return
+		
 		if self.recording != None:
-			print "remove entry"
-			self.session.nav.RecordTimer.removeEntry(self.recording)
-			self.recording = None
+			self.stopCurrentRecording()
 		else:
-			serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			
-			# try to get event info
-			epg = None
-			try:
-				service = self.session.nav.getCurrentService()
-				info = service.info()
-				ev = info.getEvent(0)
-				epg = ev
-			except:
-				pass
-			
-			# fix me, description. 
-			self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
-	
+			self.startInstantRecording()
+
+	def instantRecord(self):
+		if self.recording != None:
+			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Do you want to stop the current\n(instant) recording?")
+		else:
+			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Start recording?")
+
 	def showMovies(self):
 		self.session.open(MovieSelection)
