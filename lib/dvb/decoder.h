@@ -18,6 +18,7 @@ public:
 	void start();
 	void stopPid();
 #endif
+	void flush();
 	virtual ~eDVBAudio();
 };
 
@@ -35,6 +36,7 @@ public:
 	void start();
 	void stopPid();
 #endif
+	void flush();
 	virtual ~eDVBVideo();
 };
 
@@ -51,7 +53,7 @@ public:
 	virtual ~eDVBPCR();
 };
 
-class eTSMPEGDecoder: public iTSMPEGDecoder
+class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
 {
 DECLARE_REF(eTSMPEGDecoder);
 private:
@@ -68,6 +70,9 @@ private:
 	};
 	int m_changed;
 	int setState();
+	ePtr<eConnection> m_demux_event;
+	
+	void demux_event(int event);
 public:
 	enum { pidNone = -1 };
 	eTSMPEGDecoder(eDVBDemux *demux, int decoder);
@@ -83,5 +88,6 @@ public:
 	RESULT setPictureSkipMode(int what);
 	RESULT setSlowMotion(int repeat);
 	RESULT setZoom(int what);
+	RESULT flush();
 };
 #endif

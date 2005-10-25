@@ -88,6 +88,19 @@ RESULT eDVBDemux::getSTC(pts_t &pts)
 	return 0;
 }
 
+RESULT eDVBDemux::flush()
+{
+	// FIXME: implement flushing the PVR queue here.
+	
+	m_event(evtFlush);
+	return 0;
+}
+
+RESULT eDVBDemux::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn)
+{
+	conn = new eConnection(this, m_event.connect(event));
+	return 0;
+}
 
 void eDVBSectionReader::data(int)
 {
