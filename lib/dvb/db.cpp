@@ -145,7 +145,7 @@ void eDVBDB::load()
 			{
 				eDVBFrontendParametersSatellite sat;
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion;
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &inversion, &orbital_position);
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion);
 				sat.frequency = frequency;
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
@@ -292,8 +292,8 @@ void eDVBDB::save()
 		{
 			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
 				sat.frequency, sat.symbol_rate,
-				sat.polarisation, sat.fec, sat.inversion,
-				sat.orbital_position);
+				sat.polarisation, sat.fec, sat.orbital_position,
+				sat.inversion);
 		}
 		if (!ch.m_frontendParameters->getDVBT(ter))
 		{
