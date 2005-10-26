@@ -62,9 +62,10 @@ class eDVBFrontend: public iDVBFrontend, public Object
 		data[5] = curRotorCmd
 		data[6] = curRotorPos */
 
-	int m_idleInputpower;
+	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
 	int m_timeoutCount; // needed for timeout
+	int m_curVoltage;
 
 	void feEvent(int);
 	void timeout();

@@ -8,12 +8,15 @@
 class eSecCommand
 {
 public:
+	enum { modeStatic, modeDynamic };
 	enum {
 		NONE, SLEEP, SET_VOLTAGE, SET_TONE, GOTO,
 		SEND_DISEQC, SEND_TONEBURST, SET_FRONTEND,
 	 	MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
 		IF_TIMEOUT_GOTO, IF_INPUTPOWER_DELTA_GOTO,
-		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT
+		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT,
+		IF_IDLE_INPUTPOWER_AVAIL_GOTO, SET_POWER_LIMITING_MODE,
+		IF_VOLTAGE_GOTO
 	};
 	int cmd;
 	struct rotor
@@ -22,6 +25,11 @@ public:
 		int okcount;  // counter
 		int steps;    // goto steps
 		int direction;
+	};
+	struct pair
+	{
+		int voltage;
+		int steps;
 	};
 	union
 	{
@@ -32,8 +40,10 @@ public:
 		int tone;
 		int toneburst;
 		int msec;
+		int mode;
 		rotor measure;
 		eDVBDiseqcCommand diseqc;
+		pair compare;
 	};
 	eSecCommand( int cmd )
 		:cmd(cmd)
@@ -46,6 +56,9 @@ public:
 	{}
 	eSecCommand( int cmd, rotor measure )
 		:cmd(cmd), measure(measure)
+	{}
+	eSecCommand( int cmd, pair compare )
+		:cmd(cmd), compare(compare)
 	{}
 	eSecCommand()
 		:cmd(NONE)
