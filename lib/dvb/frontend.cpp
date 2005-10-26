@@ -204,7 +204,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 
 DEFINE_REF(eDVBFrontend);
 
-eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1)
+eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_curVoltage(-1)
 {
 #if HAVE_DVB_API_VERSION < 3
 	char sec_filename[128];
@@ -435,8 +435,9 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_VOLTAGE:
-				eDebug("[SEC] setVoltage %d", m_sec_sequence.current()->voltage);
-				setVoltage(m_sec_sequence.current()++->voltage);
+				int voltage = m_sec_sequence.current()++->voltage;
+				eDebug("[SEC] setVoltage %d", voltage);
+				setVoltage(voltage);
 				break;
 			case eSecCommand::SET_TONE:
 				eDebug("[SEC] setTone %d", m_sec_sequence.current()->tone);
@@ -444,10 +445,10 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sendDiseqc(m_sec_sequence.current()->diseqc);
-				eDebugNoNewLine("sendDiseqc: ");
+				eDebugNoNewLine("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
-				eDebug("[SEC] ");
+				eDebug("");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
@@ -460,10 +461,17 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::MEASURE_IDLE_INPUTPOWER:
-				m_idleInputpower = readInputpower();
-				eDebug("[SEC] idleInputpower is %d", m_idleInputpower);
-				++m_sec_sequence.current();
+			{
+				int idx = m_sec_sequence.current()++->val;
+				if ( idx == 0 || idx == 1 )
+				{
+					m_idleInputpower[idx] = readInputpower();
+					eDebug("[SEC] idleInputpower[%d] is %d", idx, m_idleInputpower[idx]);
+				}
+				else
+					eDebug("[SEC] idleInputpower measure index(%d) out of bound !!!", idx);
 				break;
+			}
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
 				m_runningInputpower = readInputpower();
 				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
@@ -481,26 +489,57 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::IF_TIMEOUT_GOTO:
 				if (!m_timeoutCount)
+				{
+					eDebug("[SEC] rotor timout");
 					setSecSequencePos(m_sec_sequence.current()->steps);
+				}
 				else
 					++m_sec_sequence.current();
 				break;
+			case eSecCommand::SET_POWER_LIMITING_MODE:
+			{
+				int fd=::open("/dev/i2c/0", O_RDWR);
+				unsigned char data[2];
+				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
+				if(::read(fd, data, 1) != 1)
+					eDebug("[SEC] error read lnbp (%m)");
+				if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+				{
+					data[0] |= 0x90;  // enable static current limiting
+					eDebug("[SEC] set static current limiting");
+				}
+				else
+				{
+					data[0] &= ~0x90;  // enable dynamic current limiting
+					eDebug("[SEC] set dynamic current limiting");
+				}
+				if(::write(fd, data, 1) != 1)
+					eDebug("[SEC] error write lnbp (%m)");
+				::close(fd);
+				++m_sec_sequence.current();
+				break;
+			}
+			case eSecCommand::IF_IDLE_INPUTPOWER_AVAIL_GOTO:
+				if (m_idleInputpower[0] && m_idleInputpower[1] && setSecSequencePos(m_sec_sequence.current()->steps))
+					break;
+				++m_sec_sequence.current();
+				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
 			{
+				int idleInputpower = m_idleInputpower[m_curVoltage == iDVBFrontend::voltage13 ? 0 : 1];
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
 				const char *txt = cmd.direction ? "running" : "stopped";
-				eDebug("[SEC] waiting for rotor %s", txt);
-				eDebug("[SEC] %s %d, idle %d, delta %d",
+				eDebug("[SEC] waiting for rotor %s %d, idle %d, delta %d",
 					txt,
 					m_runningInputpower,
-					m_idleInputpower,
+					idleInputpower,
 					cmd.deltaA);
-				if ( (cmd.direction && abs(m_runningInputpower - m_idleInputpower) >= cmd.deltaA)
-					|| (!cmd.direction && abs(m_runningInputpower - m_idleInputpower) <= cmd.deltaA) )
+				if ( (cmd.direction && abs(m_runningInputpower - idleInputpower) >= cmd.deltaA)
+					|| (!cmd.direction && abs(m_runningInputpower - idleInputpower) <= cmd.deltaA) )
 				{
 					++cmd.okcount;
 					eDebug("[SEC] rotor %s step %d ok", txt, cmd.okcount);
-					if ( cmd.okcount > 1 )
+					if ( cmd.okcount > 6 )
 					{
 						eDebug("[SEC] rotor is %s", txt);
 						if (setSecSequencePos(cmd.steps))
@@ -513,6 +552,14 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					--m_timeoutCount;
 					cmd.okcount=0;
 				}
+				++m_sec_sequence.current();
+				break;
+			}
+			case eSecCommand::IF_VOLTAGE_GOTO:
+			{
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				if ( compare.voltage == m_curVoltage && setSecSequencePos(compare.steps) )
+					break;
 				++m_sec_sequence.current();
 				break;
 			}
@@ -725,6 +772,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 	fe_sec_voltage_t vlt;
 #endif
 
+	m_curVoltage=voltage;
 	switch (voltage)
 	{
 	case voltageOff:
