@@ -96,6 +96,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
+	program.pmtPid = m_pmt_pid < 0x1fff ? m_pmt_pid : -1;
 
 	if (!m_PMT.getCurrent(ptr))
 	{

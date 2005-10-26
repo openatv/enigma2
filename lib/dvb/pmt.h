@@ -103,6 +103,7 @@ public:
 		std::vector<audioStream> audioStreams;
 		// ca info
 		int pcrPid;
+		int pmtPid;
 	};
 	
 	int getProgramInfo(struct program &program);
