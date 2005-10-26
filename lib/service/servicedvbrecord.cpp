@@ -120,6 +120,11 @@ int eDVBServiceRecord::doRecord()
 	{
 		std::set<int> pids_to_record;
 		
+		pids_to_record.insert(0); // PAT
+		
+		if (program.pmtPid != -1)
+			pids_to_record.insert(program.pmtPid); // PMT
+		
 		eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
