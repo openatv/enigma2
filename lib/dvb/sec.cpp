@@ -22,8 +22,19 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	m_lnblist.push_back(eDVBSatelliteLNBParameters());
 	eDVBSatelliteLNBParameters &lnb_ref = m_lnblist.front();
 	eDVBSatelliteDiseqcParameters &diseqc_ref = lnb_ref.m_diseqc_parameters;
-	eDVBSatelliteParameters &astra1 = lnb_ref.m_satellites[192];
-	eDVBSatelliteSwitchParameters &switch_ref = astra1.m_switch_parameters;
+	eDVBSatelliteRotorParameters &rotor_ref = lnb_ref.m_rotor_parameters;
+
+	eDVBSatelliteRotorParameters::eDVBSatelliteRotorInputpowerParameters &rotor_input_ref = rotor_ref.m_inputpower_parameters;
+	eDVBSatelliteRotorParameters::eDVBSatelliteRotorGotoxxParameters &rotor_gotoxx_ref = rotor_ref.m_gotoxx_parameters;
+
+	rotor_input_ref.m_use = true;
+	rotor_input_ref.m_threshold = 50;
+
+	rotor_gotoxx_ref.m_can_use = true;
+	rotor_gotoxx_ref.m_lo_direction = eDVBSatelliteRotorParameters::EAST;
+	rotor_gotoxx_ref.m_la_direction = eDVBSatelliteRotorParameters::NORTH;
+	rotor_gotoxx_ref.m_longitude = 8.683;
+	rotor_gotoxx_ref.m_latitude = 51.017;
 
 	lnb_ref.m_lof_hi = 10600000;
 	lnb_ref.m_lof_lo = 9750000;
@@ -38,8 +49,17 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	diseqc_ref.m_uncommitted_cmd = 0;
 	diseqc_ref.m_use_fast = 0;
 
-	switch_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
-	switch_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
+	eDVBSatelliteSwitchParameters &hotbird_ref = lnb_ref.m_satellites[130];
+	hotbird_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
+	hotbird_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
+
+	eDVBSatelliteSwitchParameters &astra_ref = lnb_ref.m_satellites[192];
+	astra_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
+	astra_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
+
+	eDVBSatelliteSwitchParameters &tuerksat_ref = lnb_ref.m_satellites[420];
+	tuerksat_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
+	tuerksat_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
 }
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
@@ -49,13 +69,14 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 	{
 		eDVBSatelliteLNBParameters &lnb_param = *it;
 		eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
-		std::map<int, eDVBSatelliteParameters>::iterator sit =
+		eDVBSatelliteRotorParameters &rotor_param = lnb_param.m_rotor_parameters;
+
+		std::map<int, eDVBSatelliteSwitchParameters>::iterator sit =
 			lnb_param.m_satellites.find(sat.orbital_position);
 		if ( sit != lnb_param.m_satellites.end())
 		{
+			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 
-			eDVBSatelliteSwitchParameters &sw_param = sit->second.m_switch_parameters;
-			eDVBSatelliteRotorParameters &rotor_param = sit->second.m_rotor_parameters;
 			int hi=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
