@@ -122,17 +122,22 @@ class ChannelSelection(Screen):
 	
 	# ...
 	def channelSelected(self):
-		if not (self.movemode):
-			self.session.nav.playService(self["list"].getCurrent())
-			print "current: " + self["list"].getCurrent().toString()
-			self.close()
-		else:
+		ref = self["list"].getCurrent()
+		if self.movemode:
 			if self.entry_marked:
 				self["list"].setCurrentMarked(False)
 				self.entry_marked = False
 			else:
 				self["list"].setCurrentMarked(True)
 				self.entry_marked = True
+		elif (ref.flags & 7) == 7:
+			l = self["list"]
+			l.setMode(l.MODE_NORMAL)
+			l.setRoot(ref)
+		else:
+			self.session.nav.playService(ref)
+			print "current: " + ref.toString()
+			self.close()
 
 	#called from infoBar
 	def zap(self):

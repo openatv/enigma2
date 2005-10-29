@@ -15,6 +15,13 @@
 #include <libsig_comp.h>
 #include <connection.h>
 
+struct eBouquet
+{
+	std::string m_bouquet_name;
+	std::string m_path;
+	std::list<eServiceReference> m_services;
+};
+
 		// bitte KEINE operator int() definieren, sonst bringt das ganze nix!
 struct eTransportStreamID
 {
@@ -237,6 +244,7 @@ public:
 	
 		/* sort is only valid in root, and must be from the enum above. */
 	int m_sort;
+	std::string m_bouquet_name;
 	
 	static RESULT compile(ePtr<eDVBChannelQuery> &res, std::string query);
 	
@@ -254,7 +262,9 @@ public:
 	virtual RESULT addService(const eServiceReferenceDVB &service, eDVBService *service)=0;
 	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
 
-	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query)=0;
+	virtual RESULT getBouquet(const eServiceReference &ref, const eBouquet* &bouquet)=0;
+
+	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source)=0;
 };
 
 class SatelliteDeliverySystemDescriptor;

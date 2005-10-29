@@ -31,7 +31,10 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	name = m_service_name;
+	if ( ref.name.length() )
+		name = ref.name;
+	else
+		name = m_service_name;
 	return 0;
 }
 
@@ -338,9 +341,114 @@ void eDVBDB::save()
 	fclose(f);
 }
 
+void eDVBDB::loadBouquet(const char *path)
+{
+	std::string bouquet_name = path;
+	if (!bouquet_name.length())
+	{
+		eDebug("Bouquet load failed.. no path given..");
+		return;
+	}
+	unsigned int pos = bouquet_name.rfind('/');
+	if ( pos != std::string::npos )
+		bouquet_name.erase(0, pos+1);
+	if (bouquet_name.empty())
+	{
+		eDebug("Bouquet load failed.. no filename given..");
+		return;
+	}
+	eBouquet &bouquet = m_bouquets[bouquet_name];
+	bouquet.m_path = path;
+	std::list<eServiceReference> &list = bouquet.m_services;
+	list.clear();
+
+	eDebug("loading bouquet... %s", path);
+	FILE *fp=fopen(path, "rt");
+	int entries=0;
+	if (!fp)
+	{
+		eDebug("failed to open.");
+		return;
+	}
+	char line[256];
+	bool read_descr=false;
+	eServiceReference *e = NULL;
+	while (1)
+	{
+		if (!fgets(line, 256, fp))
+			break;
+		line[strlen(line)-1]=0;
+		if (strlen(line) && line[strlen(line)-1]=='\r')
+			line[strlen(line)-1]=0;
+		if (!line[0])
+			break;
+		if (line[0]=='#')
+		{
+			if (!strncmp(line, "#SERVICE ", 9) || !strncmp(line, "#SERVICE: ", 10))
+			{
+				int offs = line[8] == ':' ? 10 : 9;
+				eServiceReference tmp(line+offs);
+				if (tmp.type != eServiceReference::idDVB)
+				{
+					eDebug("only DVB Bouquets supported");
+					continue;
+				}
+				if ( (tmp.flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
+				{
+					std::string str = tmp.path;
+					unsigned int pos = str.rfind('/');
+					if ( pos != std::string::npos )
+						str.erase(0, pos+1);
+					if (str.empty())
+					{
+						eDebug("Bouquet load failed.. no filename given..");
+						continue;
+					}
+					loadBouquet(tmp.path.c_str());
+					char buf[256];
+					snprintf(buf, 256, "(type == %d) FROM BOUQUET \"%s\" ORDER BY bouquet", tmp.data[0], str.c_str());
+					tmp.path = buf;
+					eDebug("read bouquet %s", tmp.toString().c_str());
+				}
+				list.push_back(tmp);
+				e = &list.back();
+				read_descr=true;
+				++entries;
+			}
+			else if (read_descr && !strncmp(line, "#DESCRIPTION ", 13))
+			{
+				e->name = line+13;
+				read_descr=false;
+			}
+			else if (!strncmp(line, "#NAME ", 6))
+				bouquet.m_bouquet_name=line+6;
+			continue;
+		}
+	}
+	fclose(fp);
+	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
+}
+
+void eDVBDB::saveBouquet(const char *path)
+{
+
+}
+
+void eDVBDB::loadBouquets()
+{
+	loadBouquet("bouquets.tv");
+	loadBouquet("bouquets.radio");
+}
+
+void eDVBDB::saveBouquets()
+{
+
+}
+
 eDVBDB::eDVBDB()
 {
 	load();
+	loadBouquets();
 }
 
 eDVBDB::~eDVBDB()
@@ -394,39 +502,62 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 	return 0;
 }
 
-RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q)
+RESULT eDVBDB::getBouquet(const eServiceReference &ref, const eBouquet* &bouquet)
 {
-	query = new eDVBDBQuery(this, eServiceReference(), q);
+	std::string str = ref.path;
+	if (str.empty())
+	{
+		eDebug("getBouquet failed.. no path given!");
+		return -1;
+	}
+	unsigned int pos = str.find("FROM BOUQUET \"");
+	if ( pos != std::string::npos )
+	{
+		str.erase(0, pos+14);
+		eDebug("str now %s", str.c_str());
+		pos = str.find('"');
+		if ( pos != std::string::npos )
+			str.erase(pos);
+		else
+			str.clear();
+		eDebug("str now %s", str.c_str());
+	}
+	if (str.empty())
+	{
+		eDebug("getBouquet failed.. couldn't parse bouquet name");
+		return -1;
+	}
+	std::map<std::string, eBouquet>::iterator i =
+		m_bouquets.find(str);
+	if (i == m_bouquets.end())
+	{
+		bouquet = 0;
+		return -ENOENT;
+	}
+	bouquet = &i->second;
 	return 0;
 }
 
-DEFINE_REF(eDVBDBQuery);
-
-eDVBDBQuery::eDVBDBQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query): m_db(db), m_query(query)
+RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source)
 {
-		// TODO: use SOURCE ...
-	m_cursor = m_db->m_services.begin();
-}
-
-RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
-{
-	while (m_cursor != m_db->m_services.end())
+	if ( q && q->m_bouquet_name.length() )
 	{
-		ref = m_cursor->first;
-		
-		int res = (!m_query) || m_cursor->second->checkFilter(ref, *m_query);
-
-		++m_cursor;
-		
-		if (res)
-			return 0;
+		eDebug("bouquet");
+		query = new eDVBDBBouquetQuery(this, source, q);
 	}
-	
-	ref = eServiceReferenceDVB();
-	return 1;
+	else
+		query = new eDVBDBQuery(this, source, q);
+	return 0;
 }
 
-int eDVBDBQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
+DEFINE_REF(eDVBDBQueryBase);
+
+eDVBDBQueryBase::eDVBDBQueryBase(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:m_db(db), m_query(query), m_source(source)
+{
+}
+
+int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
 {
 	ePtr<eDVBService> a_service, b_service;
 	
@@ -449,13 +580,66 @@ int eDVBDBQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServiceR
 	case eDVBChannelQuery::tType:
 		return a.getServiceType() < b.getServiceType();
 	case eDVBChannelQuery::tBouquet:
-		return 1;
+		return 0;
 	case eDVBChannelQuery::tSatellitePosition:
 		return (a.getDVBNamespace().get() >> 16) < (b.getDVBNamespace().get() >> 16);
 	default:
 		return 1;
 	}
 	return 0;
+}
+
+eDVBDBQuery::eDVBDBQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:eDVBDBQueryBase(db, source, query)
+{
+	m_cursor = m_db->m_services.begin();
+}
+
+RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
+{
+	while (m_cursor != m_db->m_services.end())
+	{
+		ref = m_cursor->first;
+
+		int res = (!m_query) || m_cursor->second->checkFilter(ref, *m_query);
+
+		++m_cursor;
+
+		if (res)
+			return 0;
+	}
+
+	ref = eServiceReferenceDVB();
+	return 1;
+}
+
+eDVBDBBouquetQuery::eDVBDBBouquetQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:eDVBDBQueryBase(db, source, query), m_cursor(db->m_bouquets[query->m_bouquet_name].m_services.begin())
+{
+}
+
+RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
+{
+	eBouquet &bouquet = m_db->m_bouquets[m_query->m_bouquet_name];
+	std::list<eServiceReference> &list = bouquet.m_services;
+	while (m_cursor != list.end())
+	{
+		ref = *((eServiceReferenceDVB*)&(*m_cursor));
+
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
+			m_db->m_services.find(ref);
+
+		int res = (!m_query) || it == m_db->m_services.end() || it->second->checkFilter(ref, *m_query);
+
+		++m_cursor;
+
+		if (res)
+			return 0;
+	}
+
+	ref = eServiceReferenceDVB();
+
+	return 1;
 }
 
 /* (<name|provider|type|bouquet|satpos|chid> <==|...> <"string"|int>)[||,&& (..)] */
@@ -603,7 +787,8 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	std::list<std::string> tokens;
 	
 	std::string current_token;
-	
+	std::string bouquet_name;
+
 	eDebug("splitting %s....", query.c_str());
 	unsigned int i = 0;
 	const char *splitchars="()";
@@ -647,27 +832,42 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 
 	int sort = eDVBChannelQuery::tName;
 		/* check for "ORDER BY ..." */
-	if (tokens.size() > 2)
+
+	while (tokens.size() > 2)
 	{
-		std::list<std::string>::iterator i = tokens.end();
-		--i; --i; --i;
-		if (*i == "ORDER")
+		std::list<std::string>::iterator it = tokens.end();
+		--it; --it; --it;
+		if (*it == "ORDER")
 		{
-			++i;
-			if (*i == "BY")
+			++it;
+			if (*it == "BY")
 			{
-				++i;
-				sort = decodeType(*i);
+				++it;
+				sort = decodeType(*it);
 				tokens.pop_back(); // ...
 				tokens.pop_back(); // BY
 				tokens.pop_back(); // ORDER
 			} else
 				sort = -1;
 		}
+		else if (*it == "FROM")
+		{
+			++it;
+			if (*it == "BOUQUET")
+			{
+				++it;
+				bouquet_name = *it;
+				tokens.pop_back(); // ...
+				tokens.pop_back(); // FROM
+				tokens.pop_back(); // BOUQUET
+			}
+		}
+		else
+			break;
 	}
-	
+
 	if (sort == -1)
-	{	
+	{
 		eWarning("ORDER BY .. string invalid.");
 		res = 0;
 		return -1;
@@ -679,7 +879,10 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	int r = parseExpression(res, tokens.begin(), tokens.end());
 	
 	if (res)
+	{
 		res->m_sort = sort;
+		res->m_bouquet_name = bouquet_name;
+	}
 
 	eDebug("return: %d", r);
 	return r;
