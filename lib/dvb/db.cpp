@@ -408,7 +408,6 @@ void eDVBDB::loadBouquet(const char *path)
 					char buf[256];
 					snprintf(buf, 256, "(type == %d) FROM BOUQUET \"%s\" ORDER BY bouquet", tmp.data[0], str.c_str());
 					tmp.path = buf;
-					eDebug("read bouquet %s", tmp.toString().c_str());
 				}
 				list.push_back(tmp);
 				e = &list.back();
@@ -514,13 +513,11 @@ RESULT eDVBDB::getBouquet(const eServiceReference &ref, const eBouquet* &bouquet
 	if ( pos != std::string::npos )
 	{
 		str.erase(0, pos+14);
-		eDebug("str now %s", str.c_str());
 		pos = str.find('"');
 		if ( pos != std::string::npos )
 			str.erase(pos);
 		else
 			str.clear();
-		eDebug("str now %s", str.c_str());
 	}
 	if (str.empty())
 	{
