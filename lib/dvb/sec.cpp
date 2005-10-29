@@ -20,10 +20,11 @@ DEFINE_REF(eDVBSatelliteEquipmentControl);
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
 	m_lnblist.push_back(eDVBSatelliteLNBParameters());
-	eDVBSatelliteLNBParameters &lnb_ref = m_lnblist.front();
-	eDVBSatelliteDiseqcParameters &diseqc_ref = lnb_ref.m_diseqc_parameters;
-	eDVBSatelliteRotorParameters &rotor_ref = lnb_ref.m_rotor_parameters;
+	eDVBSatelliteLNBParameters &lnb1_ref = m_lnblist.back();
+	eDVBSatelliteDiseqcParameters &diseqc1_ref = lnb1_ref.m_diseqc_parameters;
 
+/*
+	eDVBSatelliteRotorParameters &rotor_ref = lnb1_ref.m_rotor_parameters;
 	eDVBSatelliteRotorParameters::eDVBSatelliteRotorInputpowerParameters &rotor_input_ref = rotor_ref.m_inputpower_parameters;
 	eDVBSatelliteRotorParameters::eDVBSatelliteRotorGotoxxParameters &rotor_gotoxx_ref = rotor_ref.m_gotoxx_parameters;
 
@@ -34,32 +35,47 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	rotor_gotoxx_ref.m_lo_direction = eDVBSatelliteRotorParameters::EAST;
 	rotor_gotoxx_ref.m_la_direction = eDVBSatelliteRotorParameters::NORTH;
 	rotor_gotoxx_ref.m_longitude = 8.683;
-	rotor_gotoxx_ref.m_latitude = 51.017;
+	rotor_gotoxx_ref.m_latitude = 51.017;*/
 
-	lnb_ref.m_lof_hi = 10600000;
-	lnb_ref.m_lof_lo = 9750000;
-	lnb_ref.m_lof_threshold = 11700000;
+	lnb1_ref.m_lof_hi = 10600000;
+	lnb1_ref.m_lof_lo = 9750000;
+	lnb1_ref.m_lof_threshold = 11700000;
 
-	diseqc_ref.m_diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
-	diseqc_ref.m_committed_cmd = eDVBSatelliteDiseqcParameters::AA;
-	diseqc_ref.m_repeats = 0;
-	diseqc_ref.m_seq_repeat = false;
-	diseqc_ref.m_swap_cmds = false;
-	diseqc_ref.m_toneburst_param = eDVBSatelliteDiseqcParameters::NO;
-	diseqc_ref.m_uncommitted_cmd = 0;
-	diseqc_ref.m_use_fast = 0;
+	diseqc1_ref.m_diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
+	diseqc1_ref.m_committed_cmd = eDVBSatelliteDiseqcParameters::AA;
+	diseqc1_ref.m_repeats = 0;
+	diseqc1_ref.m_seq_repeat = false;
+	diseqc1_ref.m_swap_cmds = false;
+	diseqc1_ref.m_toneburst_param = eDVBSatelliteDiseqcParameters::NO;
+	diseqc1_ref.m_uncommitted_cmd = 0;
+	diseqc1_ref.m_use_fast = 0;
 
-	eDVBSatelliteSwitchParameters &hotbird_ref = lnb_ref.m_satellites[130];
-	hotbird_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
-	hotbird_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
-
-	eDVBSatelliteSwitchParameters &astra_ref = lnb_ref.m_satellites[192];
+	eDVBSatelliteSwitchParameters &astra_ref = lnb1_ref.m_satellites[192];
 	astra_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
 	astra_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
 
-	eDVBSatelliteSwitchParameters &tuerksat_ref = lnb_ref.m_satellites[420];
-	tuerksat_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
-	tuerksat_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
+// HOTBIRD
+
+	m_lnblist.push_back(eDVBSatelliteLNBParameters());
+	eDVBSatelliteLNBParameters &lnb2_ref = m_lnblist.back();
+	eDVBSatelliteDiseqcParameters &diseqc2_ref = lnb2_ref.m_diseqc_parameters;
+
+	lnb2_ref.m_lof_hi = 10600000;
+	lnb2_ref.m_lof_lo = 9750000;
+	lnb2_ref.m_lof_threshold = 11700000;
+
+	diseqc2_ref.m_diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
+	diseqc2_ref.m_committed_cmd = eDVBSatelliteDiseqcParameters::AB;
+	diseqc2_ref.m_repeats = 0;
+	diseqc2_ref.m_seq_repeat = false;
+	diseqc2_ref.m_swap_cmds = false;
+	diseqc1_ref.m_toneburst_param = eDVBSatelliteDiseqcParameters::NO;
+	diseqc2_ref.m_uncommitted_cmd = 0;
+	diseqc2_ref.m_use_fast = 0;
+
+	eDVBSatelliteSwitchParameters &hotbird_ref = lnb2_ref.m_satellites[130];
+	hotbird_ref.m_22khz_signal = eDVBSatelliteSwitchParameters::HILO;
+	hotbird_ref.m_voltage_mode = eDVBSatelliteSwitchParameters::HV;
 }
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
