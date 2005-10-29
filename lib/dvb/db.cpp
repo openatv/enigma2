@@ -541,10 +541,7 @@ RESULT eDVBDB::getBouquet(const eServiceReference &ref, const eBouquet* &bouquet
 RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source)
 {
 	if ( q && q->m_bouquet_name.length() )
-	{
-		eDebug("bouquet");
 		query = new eDVBDBBouquetQuery(this, source, q);
-	}
 	else
 		query = new eDVBDBQuery(this, source, q);
 	return 0;
