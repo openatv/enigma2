@@ -13,6 +13,80 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/tstools.h>
 
+class eStaticServiceDVBInformation: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceDVBInformation);
+public:
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
+};
+
+DEFINE_REF(eStaticServiceDVBInformation);
+
+RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::string &name)
+{
+	if ( ref.name.length() )
+	{
+		name = ref.name;
+		return 0;
+	}
+	else
+		return -1;
+}
+
+int eStaticServiceDVBInformation::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
+class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceDVBBouquetInformation);
+public:
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
+};
+
+DEFINE_REF(eStaticServiceDVBBouquetInformation);
+
+RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref, std::string &name)
+{
+	ePtr<iDVBChannelList> db;
+	ePtr<eDVBResourceManager> res;
+
+	int err;
+	if ((err = eDVBResourceManager::getInstance(res)) != 0)
+	{
+		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. no resource manager!");
+		return err;
+	}
+	if ((err = res->getChannelList(db)) != 0)
+	{
+		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. no channel list!");
+		return err;
+	}
+
+	const eBouquet *bouquet=0;
+	if ((err = db->getBouquet(ref, bouquet)) != 0)
+	{
+		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. getBouquet failed!");
+		return -1;
+	}
+
+	if ( bouquet && bouquet->m_bouquet_name.length() )
+	{
+		name = "[Bouquet] " + bouquet->m_bouquet_name;
+		return 0;
+	}
+	else
+		return -1;
+}
+
+int eStaticServiceDVBBouquetInformation::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
 class eStaticServiceDVBPVRInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBPVRInformation);
@@ -163,7 +237,7 @@ RESULT eDVBServiceList::startQuery()
 		}
 	}
 	
-	if ((err = db->startQuery(m_query, q)) != 0)
+	if ((err = db->startQuery(m_query, q, m_parent)) != 0)
 	{
 		eDebug("startQuery failed");
 		return err;
@@ -230,18 +304,25 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 		/* do we have a PVR service? */
-	if (ref.path.size())
+	if (ref.flags & eServiceReference::flagDirectory) // bouquet
+	{
+		ptr = new eStaticServiceDVBBouquetInformation;
+		return 0;
+	}
+	else if (ref.path.size())
 	{
 		ptr = new eStaticServiceDVBPVRInformation(ref);
 		return 0;
-	} else
+	}
+	else
 	{
 		ePtr<eDVBService> service;
 		int r = lookupService(service, ref);
 		if (r)
-			return r;
+			ptr = new eStaticServiceDVBInformation;
+		else
 			/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
-		ptr = service;
+			ptr = service;
 		return 0;
 	}
 }

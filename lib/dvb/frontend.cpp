@@ -6,6 +6,10 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#ifndef I2C_SLAVE_FORCE
+#define I2C_SLAVE_FORCE	0x0706
+#endif
+
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
 #include <ost/sec.h>
