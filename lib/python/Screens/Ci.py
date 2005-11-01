@@ -33,7 +33,6 @@ class CiEntryList(HTMLComponent, GUIComponent):
 			self.invalidateCurrent()
 		except:	
 			pass	
-			
 
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -57,14 +56,27 @@ class CiMmi(Screen):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
 			list.append( (entry[1], index) )
 		if entry[0] == "PIN":
-			# masked pins:
-			x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "-")))
-			# unmasked pins:
-			# x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))			
-			list.append( getConfigListEntry(entry[2],x) )
+			if entry[3] == 1:
+				# masked pins:
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "-")))
+			else:				
+				# unmasked pins:
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))			
+				
+			self.pin = getConfigListEntry(entry[2],x)
+			list.append( self.pin )
 
 	def okbuttonClick(self):
-		print "actual:" + str(self["entries"].getCurrentIndex())
+		if self.tag == 0:	#ENQ
+			print "enq- answer pin:" +  str(self.pin[1].parent.value[0])
+			#ci[self.slotid]->getInstance().mmiEnqAnswer(self.pin[1].parent.value[0])
+		elif self.tag == 1:	#Menu
+			print "answer - actual:" + str(self["entries"].getCurrentIndex())
+			#ci[self.slotid]->getInstance().mmiAnswer(self["entries"].getCurrentIndex())
+		elif self.tag == 2:	#List
+			print "answer on List - send 0"
+			#ci[self.slotid]->getInstance().mmiAnswer(0)
+		self.close()
 
 	def keyNumberGlobal(self, number):
 		self["entries"].handleKey(config.key[str(number)])
@@ -79,10 +91,12 @@ class CiMmi(Screen):
 		print "keyCancel"
 		self.close()
 		
-	def __init__(self, session, slotid, title, subtitle, bottom, entries):
+		#tag is 0=ENQ 1=Menu 2=List
+	def __init__(self, session, slotid, tag, title, subtitle, bottom, entries):
 		Screen.__init__(self, session)
 
 		self.slotid = slotid
+		self.tag = tag
 		self["title"] = Label(title)
 		self["subtitle"] = Label(subtitle)
 		self["bottom"] = Label(bottom)
@@ -128,8 +142,8 @@ class CiSelection(Screen):
 			list = [ ]
 			list.append( ("TEXT", "CA-Info") )
 			list.append( ("TEXT", "Card Status") )
-			list.append( ("PIN", 6, "Card Pin") )
-			self.session.open(CiMmi, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
+			list.append( ("PIN", 6, "Card Pin", 1) )
+			self.session.open(CiMmi, 0, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
 		
 	def __init__(self, session):
 		#FIXME support for one ci only
@@ -142,8 +156,8 @@ class CiSelection(Screen):
 			})
 			
 		list = [ ]
-		list.append( ("Reset", 0) )	
-		list.append( ("Init", 1) )	
+		list.append( ("Reset", 0) )
+		list.append( ("Init", 1) )
 		#add timer for "app-manager name" ?
-		list.append( ("Irdeto Blasel SE", 2) )	
+		list.append( ("Irdeto Blasel SE", 2) )
 		self["entries"] = CiEntryList(list)
