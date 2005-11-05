@@ -22,43 +22,22 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 {
 	clear();
 
-#undef ROTOR
-
 // ASTRA
 	addLNB();
 	setLNBTunerMask(1);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11750000);
-#ifdef ROTOR
 	setLNBLOFH(10600000);
-	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_2);
-#else
-	setLNBLOFH(10607000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
-#endif
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
 	setRepeats(0);
-#ifdef ROTOR
 	setCommittedCommand(eDVBSatelliteDiseqcParameters::AA);
-#else
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::BB);
-#endif
 	setCommandOrder(0); // committed, toneburst
-	setFastDiSEqC(true);
-#ifdef ROTOR
-	setLongitude(8.683);
-	setLatitude(51.017);
-	setLoDirection(eDVBSatelliteRotorParameters::EAST);
-	setLaDirection(eDVBSatelliteRotorParameters::NORTH);
-	setUseInputpower(true);
-	setInputpowerDelta(50);
-#endif
+	setFastDiSEqC(false);
 	addSatellite(192);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-#ifdef ROTOR
-	setRotorPosNum(0); // use gotoXX
-#else
+
 // HOTBIRD
 	addLNB();
 	setLNBTunerMask(1);
@@ -70,14 +49,10 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	setRepeats(0);
 	setCommittedCommand(eDVBSatelliteDiseqcParameters::AB);
 	setCommandOrder(0); // committed, toneburst
-	setFastDiSEqC(true);
-#endif
+	setFastDiSEqC(false);
 	addSatellite(130);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-#ifdef ROTOR
-	setRotorPosNum(0); // use gotoXX
-#endif
 }
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
