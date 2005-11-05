@@ -113,7 +113,7 @@ class eDVBSatelliteDiseqcParameters
 {
 public:
 	enum { AA=0, AB=1, BA=2, BB=3, SENDNO=4 /* and 0xF0 .. 0xFF*/  };	// DiSEqC Parameter
-	int m_committed_cmd;
+	__u8 m_committed_cmd;
 
 	enum t_diseqc_mode { NONE=0, V1_0=1, V1_1=2, V1_2=3, SMATV=4 };	// DiSEqC Mode
 	t_diseqc_mode m_diseqc_mode;
@@ -121,11 +121,19 @@ public:
 	enum t_toneburst_param { NO=0, A=1, B=2 };
 	t_toneburst_param m_toneburst_param;
 
-	int m_repeats;	// for cascaded switches
+	__u8 m_repeats;	// for cascaded switches
 	bool m_use_fast;	// send no DiSEqC on H/V or Lo/Hi change
 	bool m_seq_repeat;	// send the complete DiSEqC Sequence twice...
-	bool m_swap_cmds;	// swaps the committed & uncommitted cmd
-	int m_uncommitted_cmd;	// state of the 4 uncommitted switches..
+	__u8 m_command_order;
+	/* 	diseqc 1.0)
+			0) commited, toneburst
+			1) toneburst, committed
+		diseqc > 1.0)
+			2) committed, uncommitted, toneburst
+			3) toneburst, committed, uncommitted
+			4) uncommitted, committed, toneburst
+			5) toneburst, uncommitted, committed */
+	__u8 m_uncommitted_cmd;	// state of the 4 uncommitted switches..
 };
 
 class eDVBSatelliteSwitchParameters
@@ -135,6 +143,7 @@ public:
 	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3 }; // 14/18 V
 	t_voltage_mode m_voltage_mode;
 	t_22khz_signal m_22khz_signal;
+	__u8 m_rotorPosNum; // 0 is disable.. then use gotoxx
 };
 
 class eDVBSatelliteRotorParameters
@@ -142,38 +151,28 @@ class eDVBSatelliteRotorParameters
 public:
 	enum { NORTH, SOUTH, EAST, WEST };
 
+	eDVBSatelliteRotorParameters() { setDefaultOptions(); }
+
 	struct eDVBSatelliteRotorInputpowerParameters
 	{
 		bool m_use;	// can we use rotor inputpower to detect rotor running state ?
-		int m_threshold;	// threshold between running and stopped rotor
+		__u8 m_delta;	// delta between running and stopped rotor
 	};
 	eDVBSatelliteRotorInputpowerParameters m_inputpower_parameters;
 
 	struct eDVBSatelliteRotorGotoxxParameters
 	{
-		bool m_can_use;	// rotor support gotoXX cmd ?
-		int m_lo_direction;	// EAST, WEST
-		int m_la_direction;	// NORT, SOUTH
+		__u8 m_lo_direction;	// EAST, WEST
+		__u8 m_la_direction;	// NORT, SOUTH
 		double m_longitude;	// longitude for gotoXX° function
 		double m_latitude;	// latitude for gotoXX° function
 	};
 	eDVBSatelliteRotorGotoxxParameters m_gotoxx_parameters;
 
-	struct Orbital_Position_Compare
-	{
-		inline bool operator()(const int &i1, const int &i2) const
-		{
-			return abs(i1-i2) < 6 ? false: i1 < i2;
-		}
-	};
-	std::map< int, int, Orbital_Position_Compare > m_rotor_position_table;
-	/* mapping orbitalposition <-> number stored in rotor */
-
 	void setDefaultOptions() // set default rotor options
 	{
 		m_inputpower_parameters.m_use = true;
-		m_inputpower_parameters.m_threshold = 60;
-		m_gotoxx_parameters.m_can_use = true;
+		m_inputpower_parameters.m_delta = 60;
 		m_gotoxx_parameters.m_lo_direction = EAST;
 		m_gotoxx_parameters.m_la_direction = NORTH;
 		m_gotoxx_parameters.m_longitude = 0.0;
@@ -186,6 +185,8 @@ class eDVBSatelliteLNBParameters
 public:
 	enum t_12V_relais_state { OFF=0, ON };
 	t_12V_relais_state m_12V_relais_state;	// 12V relais output on/off
+
+	__u8 tuner_mask; // useable by tuner ( 1 | 2 | 4...)
 
 	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
 				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
@@ -200,11 +201,43 @@ public:
 
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
-	std::list<eDVBSatelliteLNBParameters> m_lnblist;
+	eDVBSatelliteLNBParameters m_lnbs[128]; // i think its enough
+	int m_lnbidx; // current index for set parameters
+	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 public:
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	eDVBSatelliteEquipmentControl();
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat);
+
+	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
+	RESULT clear();
+/* LNB Specific Parameters */
+	RESULT addLNB();
+	RESULT setLNBTunerMask(int tunermask);
+	RESULT setLNBLOFL(int lofl);
+	RESULT setLNBLOFH(int lofh);
+	RESULT setLNBThreshold(int threshold);
+	RESULT setLNBIncreasedVoltage(bool onoff);
+/* DiSEqC Specific Parameters */
+	RESULT setDiSEqCMode(int diseqcmode);
+	RESULT setToneburst(int toneburst);
+	RESULT setRepeats(int repeats);
+	RESULT setCommittedCommand(int command);
+	RESULT setUncommittedCommand(int command);
+	RESULT setCommandOrder(int order);
+	RESULT setFastDiSEqC(bool onoff);
+/* Rotor Specific Parameters */
+	RESULT setLongitude(float longitude);
+	RESULT setLatitude(float latitude);
+	RESULT setLoDirection(int direction);
+	RESULT setLaDirection(int direction);
+	RESULT setUseInputpower(bool onoff);
+	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
+/* Satellite Specific Parameters */
+	RESULT addSatellite(int orbital_position);
+	RESULT setVoltageMode(int mode);
+	RESULT setToneMode(int mode);
+	RESULT setRotorPosNum(int rotor_pos_num);
 };
 
 #endif
