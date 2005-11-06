@@ -5,6 +5,7 @@
 #include <lib/dvb/idvb.h>
 #include <list>
 
+#ifndef SWIG
 class eSecCommand
 {
 public:
@@ -198,18 +199,24 @@ public:
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
 };
+#endif
 
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
+#ifndef SWIG
+	static eDVBSatelliteEquipmentControl *instance;
 	eDVBSatelliteLNBParameters m_lnbs[128]; // i think its enough
 	int m_lnbidx; // current index for set parameters
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
+#endif
 public:
+#ifndef SWIG
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	eDVBSatelliteEquipmentControl();
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat);
-
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
+#endif
+	static eDVBSatelliteEquipmentControl *getInstance() { return instance; }
 	RESULT clear();
 /* LNB Specific Parameters */
 	RESULT addLNB();
@@ -226,6 +233,7 @@ public:
 	RESULT setUncommittedCommand(int command);
 	RESULT setCommandOrder(int order);
 	RESULT setFastDiSEqC(bool onoff);
+	RESULT setSeqRepeat(bool onoff); // send the complete switch sequence twice (without rotor command)
 /* Rotor Specific Parameters */
 	RESULT setLongitude(float longitude);
 	RESULT setLatitude(float latitude);
