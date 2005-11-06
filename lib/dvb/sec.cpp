@@ -17,9 +17,14 @@
 
 DEFINE_REF(eDVBSatelliteEquipmentControl);
 
+eDVBSatelliteEquipmentControl *eDVBSatelliteEquipmentControl::instance;
+
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	:m_lnbidx(-1), m_curSat(m_lnbs[0].m_satellites.end())
 {
+	if (!instance)
+		instance = this;
+
 	clear();
 
 // ASTRA
@@ -27,13 +32,14 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	setLNBTunerMask(1);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11750000);
-	setLNBLOFH(10600000);
+	setLNBLOFH(10607000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
 	setRepeats(0);
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::AA);
+	setCommittedCommand(eDVBSatelliteDiseqcParameters::BB);
 	setCommandOrder(0); // committed, toneburst
 	setFastDiSEqC(false);
+	setSeqRepeat(false);
 	addSatellite(192);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
@@ -50,6 +56,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	setCommittedCommand(eDVBSatelliteDiseqcParameters::AB);
 	setCommandOrder(0); // committed, toneburst
 	setFastDiSEqC(false);
+	setSeqRepeat(false);
 	addSatellite(130);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
@@ -183,86 +190,89 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					compare.steps = +3;
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // voltage already correct ?
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) ); 
-				}
-
-				if ( di_param.m_command_order & 1 && // toneburst at begin of sequence
-					changed_burst && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
-				{
-					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-					frontend.setData(2, di_param.m_toneburst_param);
 				}
 
-				if ( send_diseqc )
+				for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
 				{
-					int loops=0;
-
-					if ( send_csw )
-						++loops;
-					if ( send_ucsw )
-						++loops;
-
-					for ( int i=0; i < di_param.m_repeats; ++i )
-						loops *= 2;
-
-					for ( int i = 0; i < loops;)  // fill commands...
+					if ( di_param.m_command_order & 1 && // toneburst at begin of sequence
+						changed_burst && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
 					{
-						eDVBDiseqcCommand diseqc;
-						diseqc.len = 4;
-						diseqc.data[0] = i ? 0xE1 : 0xE0;
-						diseqc.data[1] = 0x10;
-
-						if ( !send_csw || (send_ucsw && (di_param.m_command_order & 4) ) )
-						{
-							diseqc.data[2] = 0x39;
-							diseqc.data[3] = ucsw;
-						}
-						else
-						{
-							diseqc.data[2] = 0x38;
-							diseqc.data[3] = csw;
-						}
-						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-
-						i++;
-						if ( i < loops )
-						{
-							int cmd=0;
-							if (diseqc.data[2] == 0x38 && send_ucsw)
-								cmd=0x39;
-							else if (diseqc.data[2] == 0x39 && send_csw)
-								cmd=0x38;
-							if (cmd)
-							{
-								static int delay = (120 - 54) / 2;  // standard says 100msek between two repeated commands
-								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
-								diseqc.data[2]=cmd;
-								diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
-								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-								++i;
-								if ( i < loops )
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
-								else
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-							}
-							else  // delay 120msek when no command is in repeat gap
-								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 120) );
-						}
-						else
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-
-						frontend.setData(0, csw);
-						frontend.setData(1, ucsw);
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+						frontend.setData(2, di_param.m_toneburst_param);
 					}
-				}
 
-				if ( !(di_param.m_command_order & 1) && // toneburst at end of sequence
-					(changed_burst || send_diseqc) && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
-				{
-					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-					frontend.setData(2, di_param.m_toneburst_param);
+					if ( send_diseqc )
+					{
+						int loops=0;
+
+						if ( send_csw )
+							++loops;
+						if ( send_ucsw )
+							++loops;
+
+						for ( int i=0; i < di_param.m_repeats; ++i )
+							loops *= 2;
+
+						for ( int i = 0; i < loops;)  // fill commands...
+						{
+							eDVBDiseqcCommand diseqc;
+							diseqc.len = 4;
+							diseqc.data[0] = i ? 0xE1 : 0xE0;
+							diseqc.data[1] = 0x10;
+
+							if ( !send_csw || (send_ucsw && (di_param.m_command_order & 4) ) )
+							{
+								diseqc.data[2] = 0x39;
+								diseqc.data[3] = ucsw;
+							}
+							else
+							{
+								diseqc.data[2] = 0x38;
+								diseqc.data[3] = csw;
+							}
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+							i++;
+							if ( i < loops )
+							{
+								int cmd=0;
+								if (diseqc.data[2] == 0x38 && send_ucsw)
+									cmd=0x39;
+								else if (diseqc.data[2] == 0x39 && send_csw)
+									cmd=0x38;
+								if (cmd)
+								{
+									static int delay = (120 - 54) / 2;  // standard says 100msek between two repeated commands
+									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
+									diseqc.data[2]=cmd;
+									diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
+									sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+									++i;
+									if ( i < loops )
+										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
+									else
+										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+								}
+								else  // delay 120msek when no command is in repeat gap
+									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 120) );
+							}
+							else
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+
+							frontend.setData(0, csw);
+							frontend.setData(1, ucsw);
+						}
+					}
+
+					if ( !(di_param.m_command_order & 1) && // toneburst at end of sequence
+						(changed_burst || send_diseqc) && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
+					{
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+						frontend.setData(2, di_param.m_toneburst_param);
+					}
 				}
 
 				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )
@@ -282,8 +292,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							eDVBSatelliteRotorParameters::EAST;
 
 						double	SatLon = abs(sat.orbital_position)/10.00,
-							 	SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
-						 		SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
+								SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
+								SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
 
 						if ( rotor_param.m_gotoxx_parameters.m_la_direction == eDVBSatelliteRotorParameters::SOUTH )
 							SiteLat = -SiteLat;
@@ -336,12 +346,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							// override first voltage change
 							*(++(++sec_sequence.begin()))=eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13);
 							// wait 1 second after first switch diseqc command
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 1000) );  
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 1000) );
 						}
 						else  // no other diseqc commands before
 						{
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );  // wait 50msec after voltage change
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );  // wait 15msec after tone change
 							eSecCommand::pair compare;
 							compare.voltage = voltage;
 							compare.steps = +3;
@@ -392,7 +402,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							cmd.steps=+3;
 							cmd.okcount=0;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +11 ) );  // timeout ?
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +10 ) );  // timeout .. we assume now the rotor is already at the correct position
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
 ////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 2400) );  // 2 minutes running timeout
@@ -404,7 +414,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							cmd.direction=0;  // check for stopped rotor
 							cmd.steps=+3;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ?
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ? this should never happen
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
@@ -566,6 +576,15 @@ RESULT eDVBSatelliteEquipmentControl::setFastDiSEqC(bool onoff)
 {
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_use_fast=onoff;
+	else
+		return -ENOENT;
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::setSeqRepeat(bool onoff)
+{
+	if ( currentLNBValid() )
+		m_lnbs[m_lnbidx].m_diseqc_parameters.m_seq_repeat = onoff;
 	else
 		return -ENOENT;
 	return 0;
