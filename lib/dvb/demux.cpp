@@ -192,6 +192,8 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
 #if HAVE_DVB_API_VERSION >= 3
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
+	if (::ioctl(fd, DMX_SET_BUFFER_SIZE, 8192*8) < 0)
+		eDebug("DMX_SET_BUFFER_SIZE failed(%m)");
 #endif
 	
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
