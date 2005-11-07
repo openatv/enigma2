@@ -1,3 +1,5 @@
+from time import *
+
 class configFile:
 	def __init__(self):
 		self.changed = 0
@@ -80,6 +82,38 @@ class configSelection:
 		self.checkValues()
 		return ("text", self.parent.vals[self.parent.value])
 
+class configDateTime:
+	def __init__(self, parent):
+		self.parent = parent
+		
+	def checkValues(self):
+		pass
+#		if self.parent.value < 0:
+			#self.parent.value = 0	
+
+		#if(self.parent.value >= (len(self.parent.vals) - 1)):
+			#self.parent.value = len(self.parent.vals) - 1
+
+	def cancel(self):
+		self.parent.reload()
+
+	def save(self):
+		self.parent.save()
+
+	def handleKey(self, key):
+		if key == config.key["prevElement"]:
+			self.parent.value = self.parent.value - self.parent.vals[1]
+		if key == config.key["nextElement"]:
+			self.parent.value = self.parent.value + self.parent.vals[1]
+		
+		self.checkValues()			
+
+		self.parent.change()	
+
+	def __call__(self, selected):			#needed by configlist
+		self.checkValues()
+		return ("text", strftime(self.parent.vals[0], localtime(self.parent.value)))
+	
 class configSatlist:
 	def __init__(self, parent):
 		self.parent = parent
@@ -308,6 +342,8 @@ class configElement:
 			return int(data);
 		elif control == configSelection:
 			return int(data);
+		elif control == configDateTime:
+			return int(data);
 		elif control == configSequence:
 			list = [ ]
 			part = data.split(self.vals[0])
@@ -323,6 +359,8 @@ class configElement:
 		if control == ConfigSlider:
 			return str(data);
 		elif control == configSelection:
+			return str(data);
+		elif control == configDateTime:
 			return str(data);
 		elif control == configSequence:
 			value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
