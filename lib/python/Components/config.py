@@ -106,7 +106,7 @@ class configDateTime:
 		if key == config.key["nextElement"]:
 			self.parent.value = self.parent.value + self.parent.vals[1]
 		
-		self.checkValues()			
+		self.checkValues()
 
 		self.parent.change()	
 
