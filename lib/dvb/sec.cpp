@@ -32,11 +32,11 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	setLNBTunerMask(1);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11750000);
-	setLNBLOFH(10607000);
+	setLNBLOFH(10600000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
 	setRepeats(0);
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::BB);
+	setCommittedCommand(eDVBSatelliteDiseqcParameters::AA);
 	setCommandOrder(0); // committed, toneburst
 	setFastDiSEqC(false);
 	setSeqRepeat(false);
