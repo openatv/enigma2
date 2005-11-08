@@ -22,7 +22,7 @@ RT_WRAP = 32
 #  | <Service>     <Name of the Timer>  |
 #  | <start>                     <end>  |
 #
-def TimerEntry(timer, processed):
+def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
 
