@@ -1,10 +1,11 @@
 from Screen import Screen
-from Components.TimerList import TimerList, TimerEntry
+from Components.TimerList import TimerList, TimerEntryComponent
 from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
 from Components.TextInput import TextInput
+from TimerEntry import TimerEntry
 
 class TimerEdit(Screen):
 	def __init__(self, session, entry):
@@ -55,10 +56,10 @@ class TimerEditList(Screen):
 		
 		list = [ ]
 		for timer in session.nav.RecordTimer.timer_list:
-			list.append(TimerEntry(timer, 0))
+			list.append(TimerEntryComponent(timer, 0))
 		
 		for timer in session.nav.RecordTimer.processed_timers:
-			list.append(TimerEntry(timer, 1))
+			list.append(TimerEntryComponent(timer, 1))
 		
 		self["timerlist"] = TimerList(list)
 
@@ -69,4 +70,5 @@ class TimerEditList(Screen):
 			})
 
 	def openEdit(self):
-		self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
+		self.session.open(TimerEntry, self["timerlist"].getCurrent()[0])
+		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])

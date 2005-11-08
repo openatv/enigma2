@@ -7,10 +7,10 @@ from Components.Label import Label
 from time import *
 
 class TimerEntry(Screen):
-    def __init__(self, session):
+    def __init__(self, session, timer):
         Screen.__init__(self, session)
         
-        self.createConfig()
+        self.createConfig(timer)
         
         self["actions"] = NumberActionMap(["SetupActions"],
         {
@@ -36,19 +36,23 @@ class TimerEntry(Screen):
 
         self["introduction"] = Label("Press OK to start the scan")
 
-    def createConfig(self):
+    def createConfig(self, timer):
             config.timerentry = ConfigSubsection()
 
-            config.timerentry.date = configElement_nonSave("config.timerentry.date", configDateTime, time(), ("%d.%B %Y", 86400))
-            config.timerentry.time = configElement_nonSave("config.timerentry.time", configDateTime, time(), ("%H:%M", 60))
-            config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configDateTime, time(), ("%A", 86400))
+            config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, timer.begin, ("%d.%B %Y", 86400))
+            config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configDateTime, timer.begin, ("%H:%M", 60))
+            config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, timer.end, ("%d.%B %Y", 86400))
+            config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configDateTime, timer.end, ("%H:%M", 60))            
+            #config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configDateTime, time(), ("%A", 86400))
 
     def createSetup(self):
         self.list = []
         
-        self.list.append(getConfigListEntry("Date", config.timerentry.date))
-        self.list.append(getConfigListEntry("Time", config.timerentry.time))
-        self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
+        self.list.append(getConfigListEntry("StartDate", config.timerentry.startdate))
+        self.list.append(getConfigListEntry("StartTime", config.timerentry.starttime))
+        self.list.append(getConfigListEntry("EndDate", config.timerentry.enddate))
+        self.list.append(getConfigListEntry("EndTime", config.timerentry.endtime))
+#        self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
         
         self["config"].list = self.list
         self["config"].l.setList(self.list)
