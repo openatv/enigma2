@@ -62,7 +62,7 @@ class Timer:
 			bisect.insort(self.timer_list, entry)
 			self.calcNextActivation()
 		else:
-			bisect.insort(self.process_timers, entry)
+			bisect.insort(self.processed_timers, entry)
 	
 	def setNextActivation(self, when):
 		delay = int((when - time.time()) * 1000)
