@@ -25,9 +25,11 @@ RT_WRAP = 32
 def TimerEntry(timer, processed):
 	res = [ timer ]
 	
+
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
 	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "%s, %s" % FuzzyTime(timer.begin)))
-	
+
+	res.append((200, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))	
 	if processed:
 		res.append((200, 30, 200, 20, 1, RT_HALIGN_RIGHT, FuzzyTime(timer.end)[1]))
 	else:
