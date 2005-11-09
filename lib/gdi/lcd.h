@@ -39,7 +39,8 @@ class eDBoxLCD: public eLCD
 	unsigned char inverted;
 public:
 	static eDBoxLCD *getInstance();
-	int setLCDParameter(int brightness, int contrast);
+	int eDBoxLCD::setLCDContrast(int contrast);
+	int eDBoxLCD::setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
 	eDBoxLCD();
 	~eDBoxLCD();

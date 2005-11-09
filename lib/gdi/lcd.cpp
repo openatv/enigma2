@@ -64,11 +64,6 @@ eDBoxLCD::eDBoxLCD(): eLCD(eSize(128, 64))
 	{
 		int i=LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
-		int lcdbrightness=0, lcdcontrast=0;
-
-		lcdbrightness=130;
-		lcdcontrast=32;
-		setLCDParameter(lcdbrightness, lcdcontrast);
 		inverted=0;
 	}
 }
@@ -79,7 +74,7 @@ void eDBoxLCD::setInverted(unsigned char inv)
 	update();	
 }
 
-int eDBoxLCD::setLCDParameter(int brightness, int contrast)
+int eDBoxLCD::setLCDContrast(int contrast)
 {
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
@@ -92,12 +87,22 @@ int eDBoxLCD::setLCDParameter(int brightness, int contrast)
 	{
 		eDebug("[LCD] can't set lcd contrast");
 	}
+	return(0);
+}
+
+int eDBoxLCD::setLCDBrightness(int brightness)
+{
+	int fp;
+	if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
+	{
+		eDebug("[LCD] can't open /dev/dbox/fp0");
+		return(-1);
+	}
 
 	if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness))
 	{
 		eDebug("[LCD] can't set lcd brightness");
 	}
-	eDebug("[LCD] set brightness %d, contrast %d", brightness, contrast);
 	return(0);
 }
 
