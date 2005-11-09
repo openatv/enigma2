@@ -401,7 +401,8 @@ public:
 		stateIdle = 0,
 		stateTuning = 1,
 		stateFailed = 2,
-		stateLock = 3
+		stateLock = 3,
+		stateLostLock = 4,
 	};
 	virtual RESULT getState(int &state)=0;
 	enum {
@@ -438,6 +439,7 @@ public:
 	{
 		state_idle,        /* not yet tuned */
 		state_tuning,      /* currently tuning (first time) */
+		state_failed,      /* tuning failed. */
 		state_unavailable, /* currently unavailable, will be back without further interaction */
 		state_ok,          /* ok */
 		state_release      /* channel is being shut down. */

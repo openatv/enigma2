@@ -221,6 +221,7 @@ public:
 		evStart,
 		evEnd,
 		
+		evTuneFailed,
 		// when iServiceInformation is implemented:
 		evUpdatedEventInfo
 	};

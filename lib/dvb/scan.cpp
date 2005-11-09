@@ -69,11 +69,12 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 	{
 		startFilter();
 		m_channel_state = state;
-	} else if (state == iDVBChannel::state_unavailable)
+	} else if (state == iDVBChannel::state_failed)
 	{
 		m_ch_unavailable.push_back(m_ch_current);
 		nextChannel();
 	}
+			/* unavailable will timeout, anyway. */
 }
 
 RESULT eDVBScan::nextChannel()

@@ -408,6 +408,12 @@ void eDVBServicePlay::serviceEvent(int event)
 //			eventNoEvent
 		break;
 	}
+	case eDVBServicePMTHandler::eventTuneFailed:
+	{
+		eDebug("DVB service failed to tune");
+		m_event((iPlayableService*)this, evTuneFailed);
+		break;
+	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
 		int vpid = -1, apid = -1, pcrpid = -1;
@@ -493,6 +499,7 @@ RESULT eDVBServicePlay::start()
 	int r;
 	eDebug("starting DVB service");
 	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference);
+	eDebug("tune result: %d", r);
 	m_event(this, evStart);
 	return 0;
 }

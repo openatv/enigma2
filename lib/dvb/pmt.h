@@ -75,6 +75,7 @@ public:
 	enum
 	{
 		eventNoResources,  // a requested resource couldn't be allocated
+		eventTuneFailed,   // tune failed
 		eventNoPAT,        // no pat could be received (timeout)
 		eventNoPATEntry,   // no pat entry for the corresponding SID could be found
 		eventNoPMT,        // no pmt could be received (timeout)
