@@ -182,8 +182,14 @@ Components.AVSwitch.InitAVSwitch()
 import Components.Network
 Components.Network.InitNetwork()
 
+import Components.Lcd
+Components.Lcd.InitLcd()
+
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
+
+import Components.RFmod
+Components.RFmod.InitRFmod()
 
 import Components.NimManager
 
