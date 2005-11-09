@@ -36,7 +36,6 @@ class SecConfigure:
 		eDVBSatelliteEquipmentControl.getInstance().setDiSEqCMode(diseqcmode)
 		eDVBSatelliteEquipmentControl.getInstance().setToneburst(toneburstmode)
 		eDVBSatelliteEquipmentControl.getInstance().setCommittedCommand(diseqcpos)
-
 		#print "set orbpos to:" + str(orbpos)
 		eDVBSatelliteEquipmentControl.getInstance().addSatellite(orbpos)
 
@@ -61,7 +60,6 @@ class SecConfigure:
 						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 0, 1, 1)
 						self.addLNBSimple(x, int(config.Nims[x].diseqcC.vals[config.Nims[x].diseqcC.value][1]), 0, 1, 2)
 						self.addLNBSimple(x, int(config.Nims[x].diseqcD.vals[config.Nims[x].diseqcD.value][1]), 0, 1, 3)
-						pass
 					elif config.Nims[x].diseqcMode.value == 4:		#Positioner
 						print "FIXME: positioner suppport"
 					pass
