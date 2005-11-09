@@ -11,7 +11,7 @@
 
 int eventData::CacheSize=0;
 descriptorMap eventData::descriptors;
-
+__u8 eventData::data[4108];
 extern const uint32_t crc32_table[256];
 
 eventData::eventData(const eit_event_struct* e, int size, int type)
@@ -19,57 +19,52 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 {
 	if (!e)
 		return;
-	std::list<__u32> d;
+
+	__u32 descr[65];
+	__u32 *pdescr=descr;
+
 	__u8 *data = (__u8*)e;
 	int ptr=10;
 	int descriptors_length = (data[ptr++]&0x0F) << 8;
 	descriptors_length |= data[ptr++];
 	while ( descriptors_length > 0 )
 	{
-		int descr_len = data[ptr+1] + 2;
-		__u8 *descr = new __u8[descr_len];
-		unsigned int crc=0;
+		__u8 *descr = data+ptr;
+		int descr_len = descr[1]+2;
+
+		__u32 crc = 0;
 		int cnt=0;
-		while(cnt < descr_len && descriptors_length > 0)
-		{
-			crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr]) & 0xff];
-			descr[cnt++] = data[ptr++];
-			--descriptors_length;
-		}
+		while(cnt++ < descr_len)
+			crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
+
 		descriptorMap::iterator it =
 			descriptors.find(crc);
 		if ( it == descriptors.end() )
 		{
 			CacheSize+=descr_len;
-			descriptors[crc] = descriptorPair(1, descr);
+			__u8 *d = new __u8[descr_len];
+			memcpy(d, descr, descr_len);
+			descriptors[crc] = descriptorPair(1, d);
 		}
 		else
-		{
 			++it->second.first;
-			delete [] descr;
-		}
-		d.push_back(crc);
+
+		*pdescr++=crc;
+		descriptors_length -= descr_len;
 	}
-	ByteSize = 12+d.size()*4;
+	ByteSize = 12+((pdescr-descr)*4);
 	EITdata = new __u8[ByteSize];
 	CacheSize+=ByteSize;
 	memcpy(EITdata, (__u8*) e, 12);
-	__u32 *p = (__u32*)(EITdata+12);
-	for (std::list<__u32>::iterator it(d.begin()); it != d.end(); ++it)
-		*p++ = *it;
+	memcpy(EITdata+12, descr, ByteSize-12);
 }
 
 const eit_event_struct* eventData::get() const
 {
-	static __u8 *data=NULL;
-	if ( data )
-		delete [] data;
-
-	int bytes = 12;
-	std::list<__u8*> d;
-
-// cnt needed bytes
+	int pos = 12;
 	int tmp = ByteSize-12;
+
+	memcpy(data, EITdata, 12);
 	__u32 *p = (__u32*)(EITdata+12);
 	while(tmp>0)
 	{
@@ -77,27 +72,14 @@ const eit_event_struct* eventData::get() const
 			descriptors.find(*p++);
 		if ( it != descriptors.end() )
 		{
-			d.push_back(it->second.second);
-			bytes += it->second.second[1];
+			int b = it->second.second[1]+2;
+			memcpy(data+pos, it->second.second, b );
+			pos += b;
 		}
-		bytes += 2; // descr_type, descr_len
 		tmp-=4;
 	}
 
-// copy eit_event header to buffer
-	data = new __u8[bytes];
-	memcpy(data, EITdata, 12);
-
-	tmp=12;
-// copy all descriptors to buffer
-	for(std::list<__u8*>::iterator it(d.begin()); it != d.end(); ++it)
-	{
-		int b=(*it)[1]+2;
-		memcpy(data+tmp, *it, b);
-		tmp+=b;
-	}
-
-	return (eit_event_struct*)data;
+	return (const eit_event_struct*)data;
 }
 
 eventData::~eventData()
@@ -116,8 +98,8 @@ eventData::~eventData()
 				descriptorPair &p = it->second;
 				if (!--p.first) // no more used descriptor
 				{
-					CacheSize -= p.second[1]+2;
-					delete [] p.second;  	// free descriptor memory
+					CacheSize -= it->second.second[1];
+					delete [] it->second.second;  	// free descriptor memory
 					descriptors.erase(it);	// remove entry from descriptor map
 				}
 			}
@@ -597,70 +579,6 @@ eEPGCache::~eEPGCache()
 			delete It->second;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eventData *&result )
-{
-	singleLock s(cache_lock);
-	uniqueEPGKey key( service );
-
-	eventCache::iterator It = eventDB.find( key );
-	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached?
-	{
-		eventMap::iterator i( It->second.first.find( event_id ));
-		if ( i != It->second.first.end() )
-		{
-			result = i->second;
-			return 0;
-		}
-		else
-		{
-			result = 0;
-			eDebug("event %04x not found in epgcache", event_id);
-		}
-	}
-	return -1;
-}
-
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eventData *&result )
-// if t == 0 we search the current event...
-{
-	singleLock s(cache_lock);
-	uniqueEPGKey key(service);
-
-	// check if EPG for this service is ready...
-	eventCache::iterator It = eventDB.find( key );
-	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
-	{
-		if (!t)
-			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
-
-		timeMap::iterator i = It->second.second.lower_bound(t);
-		if ( i != It->second.second.end() )
-		{
-			i--;
-			if ( i != It->second.second.end() )
-			{
-				if ( t <= i->first+i->second->getDuration() )
-				{
-					result = i->second;
-					return 0;
-				}
-			}
-		}
-
-		for ( eventMap::iterator i( It->second.first.begin() ); i != It->second.first.end(); i++)
-		{
-			int duration = i->second->getDuration();
-			time_t begTime = i->second->getStartTime();
-			if ( t >= begTime && t <= begTime+duration) // then we have found
-			{
-				result = i->second;
-				return 0;
-			}
-		}
-	}
-	return -1;
-}
-
 void eEPGCache::gotMessage( const Message &msg )
 {
 	switch (msg.type)
@@ -733,7 +651,7 @@ void eEPGCache::load()
 		{
 			char text1[13];
 			fread( text1, 13, 1, f);
-			if ( !strncmp( text1, "ENIGMA_EPG_V2", 13) )
+			if ( !strncmp( text1, "ENIGMA_EPG_V4", 13) )
 			{
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
@@ -746,11 +664,11 @@ void eEPGCache::load()
 					fread( &size, sizeof(int), 1, f);
 					while(size--)
 					{
-						int len=0;
-						int type=0;
+						__u8 len=0;
+						__u8 type=0;
 						eventData *event=0;
-						fread( &type, sizeof(int), 1, f);
-						fread( &len, sizeof(int), 1, f);
+						fread( &type, sizeof(__u8), 1, f);
+						fread( &len, sizeof(__u8), 1, f);
 						event = new eventData(0, len, type);
 						event->EITdata = new __u8[len];
 						eventData::CacheSize+=len;
@@ -799,7 +717,7 @@ void eEPGCache::save()
 	int cnt=0;
 	if ( f )
 	{
-		const char *text = "ENIGMA_EPG_V2";
+		const char *text = "ENIGMA_EPG_V4";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
@@ -811,9 +729,9 @@ void eEPGCache::save()
 			fwrite( &size, sizeof(int), 1, f);
 			for (timeMap::iterator time_it(timemap.begin()); time_it != timemap.end(); ++time_it)
 			{
-				int len = time_it->second->ByteSize;
-				fwrite( &time_it->second->type, sizeof(int), 1, f );
-				fwrite( &len, sizeof(int), 1, f);
+				__u8 len = time_it->second->ByteSize;
+				fwrite( &time_it->second->type, sizeof(__u8), 1, f );
+				fwrite( &len, sizeof(__u8), 1, f);
 				fwrite( time_it->second->EITdata, len, 1, f);
 				++cnt;
 			}
@@ -1090,4 +1008,199 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			}
 		}
 	}
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eventData *&result )
+// if t == 0 we search the current event...
+{
+	singleLock s(cache_lock);
+	uniqueEPGKey key(service);
+
+	// check if EPG for this service is ready...
+	eventCache::iterator It = eventDB.find( key );
+	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
+	{
+		if (!t)
+			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+
+// TODO: optimize this.. why we here search first in timemap.. and then in eventmap??
+		timeMap::iterator i = It->second.second.lower_bound(t);
+		if ( i != It->second.second.end() )
+		{
+			if ( i != It->second.second.end() )
+			{
+				if ( t <= i->first+i->second->getDuration() )
+				{
+					result = i->second;
+					return 0;
+				}
+			}
+		}
+
+		for ( eventMap::iterator i( It->second.first.begin() ); i != It->second.first.end(); i++)
+		{
+			int duration = i->second->getDuration();
+			time_t begTime = i->second->getStartTime();
+			if ( t >= begTime && t <= begTime+duration) // then we have found
+			{
+				result = i->second;
+				return 0;
+			}
+		}
+	}
+	return -1;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eit_event_struct *&result )
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, t, data);
+	if ( !ret && data )
+		result = data->get();
+	return ret;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, Event *& result )
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, t, data);
+	if ( !ret && data )
+		result = new Event((uint8_t*)data->get());
+	return ret;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, ePtr<eServiceEvent> &result )
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, t, data);
+	if ( !ret && data )
+	{
+		Event ev((uint8_t*)data->get());
+		result = new eServiceEvent();
+		ret = result->parseFrom(&ev);
+	}
+	return ret;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eventData *&result )
+{
+	singleLock s(cache_lock);
+	uniqueEPGKey key( service );
+
+	eventCache::iterator It = eventDB.find( key );
+	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached?
+	{
+		eventMap::iterator i( It->second.first.find( event_id ));
+		if ( i != It->second.first.end() )
+		{
+			result = i->second;
+			return 0;
+		}
+		else
+		{
+			result = 0;
+			eDebug("event %04x not found in epgcache", event_id);
+		}
+	}
+	return -1;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eit_event_struct *&result)
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, event_id, data);
+	if ( !ret && data )
+		result = data->get();
+	return ret;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, Event *& result)
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, event_id, data);
+	if ( !ret && data )
+		result = new Event((uint8_t*)data->get());
+	return ret;
+}
+
+RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, ePtr<eServiceEvent> &result)
+{
+	singleLock s(cache_lock);
+	const eventData *data=0;
+	RESULT ret = lookupEvent(service, event_id, data);
+	if ( !ret && data )
+	{
+		Event ev((uint8_t*)data->get());
+		result = new eServiceEvent();
+		ret = result->parseFrom(&ev);
+	}
+	return ret;
+}
+
+RESULT eEPGCache::startTimeQuery(const eServiceReferenceDVB &service, time_t begin, int minutes)
+{
+	eventCache::iterator It = eventDB.find( service );
+	if ( It != eventDB.end() && It->second.second.size() )
+	{
+		m_timemap_end = minutes != -1 ? It->second.second.upper_bound(begin+minutes*60) : It->second.second.end();
+		if ( begin != -1 )
+		{
+			m_timemap_cursor = It->second.second.lower_bound(begin);
+			if ( m_timemap_cursor != It->second.second.end() && m_timemap_cursor != It->second.second.begin() )
+			{
+				timeMap::iterator it = m_timemap_cursor;
+				--it;
+				if ( (it->second->getStartTime() + it->second->getDuration()) > begin )
+					m_timemap_cursor = it;
+			}
+		}
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eEPGCache::getNextTimeEntry(const eventData *& result)
+{
+	if ( m_timemap_cursor != m_timemap_end )
+	{
+		result = m_timemap_cursor++->second;
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eEPGCache::getNextTimeEntry(const eit_event_struct *&result)
+{
+	if ( m_timemap_cursor != m_timemap_end )
+	{
+		result = m_timemap_cursor++->second->get();
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eEPGCache::getNextTimeEntry(Event *&result)
+{
+	if ( m_timemap_cursor != m_timemap_end )
+	{
+		result = new Event((uint8_t*)m_timemap_cursor++->second->get());
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
+{
+	if ( m_timemap_cursor != m_timemap_end )
+	{
+		Event ev((uint8_t*)m_timemap_cursor++->second->get());
+		result = new eServiceEvent();
+		return result->parseFrom(&ev);
+	}
+	return -1;
 }
