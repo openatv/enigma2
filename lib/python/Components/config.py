@@ -427,5 +427,3 @@ def getConfigListEntry(description, element):
 	b = element
 	item = b.controlType(b)
 	return ((description, item))
-
-	
