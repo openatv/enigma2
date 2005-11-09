@@ -65,6 +65,7 @@ class NimSetup(Screen):
 	def keySave(self):
 		for x in self["config"].list:
 			x[1].save()
+		nimmanager.sec.update()	
 		self.close()
 
 	def keyCancel(self):
