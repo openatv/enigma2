@@ -21,46 +21,48 @@ from xml.sax.handler import ContentHandler
 class SecConfigure:
 	def addLNBSimple(self, slotid, orbpos, toneburstmode, diseqcmode, diseqcpos):
 		#simple defaults
-		eDVBSatelliteEquipmentControl.getInstance().addLNB()
-		eDVBSatelliteEquipmentControl.getInstance().setLNBTunerMask(1 << slotid)
-		eDVBSatelliteEquipmentControl.getInstance().setLNBLOFL(9750000)
-		eDVBSatelliteEquipmentControl.getInstance().setLNBLOFH(10600000)
-		eDVBSatelliteEquipmentControl.getInstance().setLNBThreshold(11750000)
-		eDVBSatelliteEquipmentControl.getInstance().setRepeats(0)
-		eDVBSatelliteEquipmentControl.getInstance().setFastDiSEqC(0)
-		eDVBSatelliteEquipmentControl.getInstance().setSeqRepeat(0)
-		eDVBSatelliteEquipmentControl.getInstance().setVoltageMode(0) #HV
-		eDVBSatelliteEquipmentControl.getInstance().setToneMode(0)		#HILO
-		eDVBSatelliteEquipmentControl.getInstance().setCommandOrder(0)
+		sec = eDVBSatelliteEquipmentControl.getInstance()
+		sec.addLNB()
+		sec.setLNBTunerMask(1 << slotid)
+		sec.setLNBLOFL(9750000)
+		sec.setLNBLOFH(10600000)
+		sec.setLNBThreshold(11750000)
+		sec.setRepeats(0)
+		sec.setFastDiSEqC(0)
+		sec.setSeqRepeat(0)
+		sec.setVoltageMode(0) #HV
+		sec.setToneMode(0)		#HILO
+		sec.setCommandOrder(0)
 		#user values
-		eDVBSatelliteEquipmentControl.getInstance().setDiSEqCMode(diseqcmode)
-		eDVBSatelliteEquipmentControl.getInstance().setToneburst(toneburstmode)
-		eDVBSatelliteEquipmentControl.getInstance().setCommittedCommand(diseqcpos)
+		sec.setDiSEqCMode(diseqcmode)
+		sec.setToneburst(toneburstmode)
+		sec.setCommittedCommand(diseqcpos)
 		#print "set orbpos to:" + str(orbpos)
-		eDVBSatelliteEquipmentControl.getInstance().addSatellite(orbpos)
+		sec.addSatellite(orbpos)
 
 	def update(self):
 		eDVBSatelliteEquipmentControl.getInstance().clear()
 
 		for slot in self.NimManager.nimslots:
 			x = slot.slotid
+			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
-				print "slot: " + str(x) + " configmode: " + str(config.Nims[x].configMode.value)
-				if config.Nims[x].configMode.value == 0:		#simple config
-					if config.Nims[x].diseqcMode.value == 0:			#single
-						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 0, 4)
-					elif config.Nims[x].diseqcMode.value == 1:		#Toneburst A/B
-						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 1, 0, 4)
-						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 1, 0, 4)
-					elif config.Nims[x].diseqcMode.value == 2:		#DiSEqC A/B
-						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 1, 0)
-						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 0, 1, 1)
-					elif config.Nims[x].diseqcMode.value == 3:		#DiSEqC A/B/C/D
-						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 1, 0)
-						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 0, 1, 1)
-						self.addLNBSimple(x, int(config.Nims[x].diseqcC.vals[config.Nims[x].diseqcC.value][1]), 0, 1, 2)
-						self.addLNBSimple(x, int(config.Nims[x].diseqcD.vals[config.Nims[x].diseqcD.value][1]), 0, 1, 3)
-					elif config.Nims[x].diseqcMode.value == 4:		#Positioner
+				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
+				if nim.configMode.value == 0:		#simple config
+					if nim.diseqcMode.value == 0:			#single
+						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 0, 4)
+					elif nim.diseqcMode.value == 1:		#Toneburst A/B
+						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 1, 0, 4)
+						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 1, 0, 4)
+					elif nim.diseqcMode.value == 2:		#DiSEqC A/B
+						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 1, 0)
+						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 0, 1, 1)
+					elif nim.diseqcMode.value == 3:		#DiSEqC A/B/C/D
+						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 1, 0)
+						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 0, 1, 1)
+						self.addLNBSimple(x, int(nim.diseqcC.vals[nim.diseqcC.value][1]), 0, 1, 2)
+						self.addLNBSimple(x, int(nim.diseqcD.vals[nim.diseqcD.value][1]), 0, 1, 3)
+					elif nim.diseqcMode.value == 4:		#Positioner
 						print "FIXME: positioner suppport"
 					pass
 				else:																	#advanced config
@@ -215,24 +217,25 @@ def InitNimManager(nimmgr):
 	for slot in nimmgr.nimslots:
 		x = slot.slotid
 		cname = nimmgr.getConfigPrefix(x)
+		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			config.Nims[x].configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
-			config.Nims[x].diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D", "Positioner"));
-			config.Nims[x].diseqcA = configElement(cname + "diseqcA",configSatlist, 192, nimmgr.satList);
-			config.Nims[x].diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
-			config.Nims[x].diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
-			config.Nims[x].diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
-			config.Nims[x].longitude = configElement(cname + "longitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			config.Nims[x].latitude = configElement(cname + "latitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
+			nim.diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D", "Positioner"));
+			nim.diseqcA = configElement(cname + "diseqcA",configSatlist, 192, nimmgr.satList);
+			nim.diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
+			nim.diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
+			nim.diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
+			nim.longitude = configElement(cname + "longitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.latitude = configElement(cname + "latitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			
 			#perhaps the instance of the slot is more useful?
-			config.Nims[x].configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
-			config.Nims[x].diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
-			config.Nims[x].diseqcA.addNotifier(boundFunction(nimPortAChanged,x))
-			config.Nims[x].diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
-			config.Nims[x].diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
-			config.Nims[x].diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
+			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
+			nim.diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
+			nim.diseqcA.addNotifier(boundFunction(nimPortAChanged,x))
+			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
+			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
+			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
 		else:
 			print "pls add support for this frontend type!"		
 			
