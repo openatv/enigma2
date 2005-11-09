@@ -8,6 +8,7 @@ from config import configSequence
 from config import configsequencearg
 from config import configSatlist
 
+from enigma import *
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
@@ -17,6 +18,60 @@ from Tools import XMLTools
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+class SecConfigure:
+	def addLNBSimple(self, slotid, orbpos, toneburstmode, diseqcmode, diseqcpos):
+		#simple defaults
+		eDVBSatelliteEquipmentControl.getInstance().addLNB()
+		eDVBSatelliteEquipmentControl.getInstance().setLNBTunerMask(1 << slotid)
+		eDVBSatelliteEquipmentControl.getInstance().setLNBLOFL(9750000)
+		eDVBSatelliteEquipmentControl.getInstance().setLNBLOFH(10600000)
+		eDVBSatelliteEquipmentControl.getInstance().setLNBThreshold(11750000)
+		eDVBSatelliteEquipmentControl.getInstance().setRepeats(0)
+		eDVBSatelliteEquipmentControl.getInstance().setFastDiSEqC(0)
+		eDVBSatelliteEquipmentControl.getInstance().setSeqRepeat(0)
+		eDVBSatelliteEquipmentControl.getInstance().setVoltageMode(0) #HV
+		eDVBSatelliteEquipmentControl.getInstance().setToneMode(0)		#HILO
+		eDVBSatelliteEquipmentControl.getInstance().setCommandOrder(0)
+		#user values
+		eDVBSatelliteEquipmentControl.getInstance().setDiSEqCMode(diseqcmode)
+		eDVBSatelliteEquipmentControl.getInstance().setToneburst(toneburstmode)
+		eDVBSatelliteEquipmentControl.getInstance().setCommittedCommand(diseqcpos)
+
+		#print "set orbpos to:" + str(orbpos)
+		eDVBSatelliteEquipmentControl.getInstance().addSatellite(orbpos)
+
+	def update(self):
+		eDVBSatelliteEquipmentControl.getInstance().clear()
+
+		for slot in self.NimManager.nimslots:
+			x = slot.slotid
+			if slot.nimType == self.NimManager.nimType["DVB-S"]:
+				print "slot: " + str(x) + " configmode: " + str(config.Nims[x].configMode.value)
+				if config.Nims[x].configMode.value == 0:		#simple config
+					if config.Nims[x].diseqcMode.value == 0:			#single
+						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 0, 4)
+					elif config.Nims[x].diseqcMode.value == 1:		#Toneburst A/B
+						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 1, 0, 4)
+						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 1, 0, 4)
+					elif config.Nims[x].diseqcMode.value == 2:		#DiSEqC A/B
+						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 1, 0)
+						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 0, 1, 1)
+					elif config.Nims[x].diseqcMode.value == 3:		#DiSEqC A/B/C/D
+						self.addLNBSimple(x, int(config.Nims[x].diseqcA.vals[config.Nims[x].diseqcA.value][1]), 0, 1, 0)
+						self.addLNBSimple(x, int(config.Nims[x].diseqcB.vals[config.Nims[x].diseqcB.value][1]), 0, 1, 1)
+						self.addLNBSimple(x, int(config.Nims[x].diseqcC.vals[config.Nims[x].diseqcC.value][1]), 0, 1, 2)
+						self.addLNBSimple(x, int(config.Nims[x].diseqcD.vals[config.Nims[x].diseqcD.value][1]), 0, 1, 3)
+						pass
+					elif config.Nims[x].diseqcMode.value == 4:		#Positioner
+						print "FIXME: positioner suppport"
+					pass
+				else:																	#advanced config
+					print "FIXME add support for advanced config"
+		
+	def __init__(self, nimmgr):
+		self.NimManager = nimmgr
+		self.update()
+		
 class boundFunction:
 	def __init__(self, fnc, *args):
 		self.fnc = fnc
@@ -48,24 +103,11 @@ class NimManager:
 	def readSatsfromFile(self):
 		self.satellites = { }
 
-		#FIXME: path ok???
 		print "Reading satellites.xml"
 		parser = make_parser()
 		satHandler = self.parseSats(self.satList, self.satellites)
 		parser.setContentHandler(satHandler)
 		parser.parse('/etc/tuxbox/satellites.xml')
-    
-		#satdom = xml.dom.minidom.parse('/etc/tuxbox/satellites.xml')
-
-
-		#for entries in elementsWithTag(satdom.childNodes, "satellites"):
-			#for x in elementsWithTag(entries.childNodes, "sat"):
-				##print "found sat " + x.getAttribute('name') + " " + str(x.getAttribute('position'))
-				#tpos = x.getAttribute('position')
-				#tname = x.getAttribute('name')
-				##tname.encode('utf8')
-				#self.satellites[tpos] = tname
-				#self.satList.append( (tname, tpos) )
 
 	def getNimType(self, slotID):
 		#FIXME get it from /proc
@@ -121,10 +163,10 @@ class NimManager:
 		return list
 	
 	def getSatListForNim(self, slotid):
-		print "slotid:", slotid
+		#print "slotid:", slotid
 		list = []
-		print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
-		print "diseqcA:", config.Nims[slotid].diseqcA.value
+		#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
+		#print "diseqcA:", config.Nims[slotid].diseqcA.value
 		if (config.Nims[slotid].diseqcMode.value <= 3):
 			list.append(self.satList[config.Nims[slotid].diseqcA.value])
 		if (0 < config.Nims[slotid].diseqcMode.value <= 3):
@@ -136,17 +178,23 @@ class NimManager:
 
 	#callbacks for c++ config
 	def nimConfigModeChanged(self, slotid, mode):
-		print "nimConfigModeChanged set to " + str(mode)
+		#print "nimConfigModeChanged set to " + str(mode)
+		pass
 	def nimDiseqcModeChanged(self, slotid, mode):
-		print "nimDiseqcModeChanged set to " + str(mode)
+		#print "nimDiseqcModeChanged set to " + str(mode)
+		pass
 	def nimPortAChanged(self, slotid, val):
-		print "nimDiseqcA set to " + str(val)
+		#print "nimDiseqcA set to " + str(val)
+		pass
 	def nimPortBChanged(self, slotid, val):
-		print "nimDiseqcB set to " + str(val)
+		#print "nimDiseqcB set to " + str(val)
+		pass
 	def nimPortCChanged(self, slotid, val):
-		print "nimDiseqcC set to " + str(val)
+		#print "nimDiseqcC set to " + str(val)
+		pass
 	def nimPortDChanged(self, slotid, val):
-		print "nimDiseqcD set to " + str(val)
+		#print "nimDiseqcD set to " + str(val)
+		pass
 
 
 def InitNimManager(nimmgr):
@@ -189,5 +237,7 @@ def InitNimManager(nimmgr):
 			config.Nims[x].diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
 		else:
 			print "pls add support for this frontend type!"		
+			
+	nimmgr.sec = SecConfigure(nimmgr)
 
 nimmanager = NimManager()
