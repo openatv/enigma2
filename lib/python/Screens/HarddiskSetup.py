@@ -27,19 +27,19 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddInitialize(self):
-		#some protection for the exhibition (IFA 2005)
-		#if self.hdd.getIndex() == 2:		#CF
-		#	print "not a good idea!"
-		#	self.session.open(MessageBox, "not a good idea - this will kill our rootfs!")
-		#else:	
 		print "this will start the initialize now!"
 		self.hdd.initialize()
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
-		self["hddlist"] = MenuList(harddiskmanager.HDDList())
+		
+		if harddiskmanager.HDDCount() == 0:
+			tlist = []
+			tlist.append(("no HDD found", 0))
+			self["hddlist"] = MenuList(tlist)
+		else:			
+			self["hddlist"] = MenuList(harddiskmanager.HDDList())
 		
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -49,4 +49,5 @@ class HarddiskSelection(Screen):
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
-		self.session.open(HarddiskSetup, selection[1])
+		if selection[1] != 0:
+			self.session.open(HarddiskSetup, selection[1])
