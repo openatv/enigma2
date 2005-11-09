@@ -44,6 +44,11 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			if ( m_service && !m_service->cacheEmpty() )
 				serviceEvent(eventNewProgramInfo);
 		}
+	} else if ((m_last_channel_state != iDVBChannel::state_failed) && 
+			(state == iDVBChannel::state_failed))
+	{
+		eDebug("tune failed.");
+		serviceEvent(eventTuneFailed);
 	}
 }
 
@@ -206,6 +211,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		eDVBChannelID chid;
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel);
+		eDebug("allocate Channel: res %d", res);
 	} else
 	{
 		eDVBMetaParser parser;
@@ -230,6 +236,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 			m_channelStateChanged_connection);
 		m_last_channel_state = -1;
 		channelStateChanged(m_channel);
+	} else
+	{
+		serviceEvent(eventTuneFailed);
+		return res;
 	}
 
 	if (m_pvr_channel)

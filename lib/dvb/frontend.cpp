@@ -341,7 +341,12 @@ void eDVBFrontend::feEvent(int w)
 			if (m_tuning)
 				state = stateTuning;
 			else
-				state = stateFailed;
+			{
+				state = stateLostLock;
+
+				if (m_state != stateLostLock)
+					eDebug("FIXME: we lost lock, so we might have to retune.");
+			}
 		}
 		if (m_state != state)
 		{
@@ -363,6 +368,7 @@ void eDVBFrontend::timeout()
 			m_state = state;
 			m_stateChanged(this);
 		}
+		m_tuning = 0;
 	} else
 		m_tuning = 0;
 }
@@ -609,8 +615,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	feEvent(-1);
 
 	m_sec_sequence.clear();
-
-	eDebug("eDVBFrontend::tune. type: %d", m_type);
 
 	switch (m_type)
 	{

@@ -176,7 +176,6 @@ eDVBResourceManager::~eDVBResourceManager()
 {
 	if (instance == this)
 		instance = 0;
-
 }
 
 void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
@@ -288,7 +287,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 //		return errNoDemux;
 	
 	RESULT res;
-	eDVBChannel *ch;
+	ePtr<eDVBChannel> ch;
 	ch = new eDVBChannel(this, fe);
 
 	ePtr<iDVBFrontend> myfe;
@@ -346,7 +345,6 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
-	eDebug("add channel %p", ch);
 	m_active_channels.push_back(active_channel(chid, ch));
 	/* emit */ m_channelAdded(ch);
 	return 0;
@@ -404,7 +402,6 @@ eDVBChannel::~eDVBChannel()
 
 void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 {
-	eDebug("fe state changed!");
 	int state, ourstate = 0;
 	
 		/* if we are already in shutdown, don't change state. */
@@ -422,10 +419,14 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	{
 		eDebug("OURSTATE: tuning");
 		ourstate = state_tuning;
+	} else if (state == iDVBFrontend::stateLostLock)
+	{
+		eDebug("OURSTATE: lost lock");
+		ourstate = state_unavailable;
 	} else if (state == iDVBFrontend::stateFailed)
 	{
-		eDebug("OURSTATE: failed/unavailable");
-		ourstate = state_unavailable;
+		eDebug("OURSTATE: failed");
+		ourstate = state_failed;
 	} else
 		eFatal("state unknown");
 	
@@ -475,7 +476,6 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 		eDebug("channel not found!");
 		return -ENOENT;
 	}
-	eDebug("allocateChannel: channel found..");
 	
 	if (!m_frontend)
 	{
