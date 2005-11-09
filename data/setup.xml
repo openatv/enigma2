@@ -1,7 +1,7 @@
 <setupxml>
 		<setup key="rc" title="RC Menu">
-			<item text="Repeat Rate">config.inputDevices.repeat</item>
-			<item text="Delay Rate">config.inputDevices.delay</item>
+			<item text="Repeat">config.inputDevices.repeat</item>
+			<item text="Delay">config.inputDevices.delay</item>
 			<item text="Keymap">config.rc.map</item>
 		</setup>
 		<setup key="timezone" title="Timezone">
@@ -24,7 +24,7 @@
 <!--			<item text="MAC Address">config.network.mac</item>-->
 			<item text="Activate network settings">config.network.activate</item>
 		</setup>
-		<setup key="rfmod" title="UHF Modulator">
+		<setup key="RFmod" title="UHF Modulator">
 			<item text="Modulator">config.rfmod.enable</item>
 			<item text="Testmode">config.rfmod.test</item>
 			<item text="Sound">config.rfmod.sound</item>
