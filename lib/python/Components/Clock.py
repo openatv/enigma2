@@ -7,6 +7,8 @@ from VariableText import *
 
 from enigma import *
 
+from config import config
+
 import time
 # now some "real" components:
 
@@ -23,8 +25,8 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 # "funktionalitaet"	
 	def doClock(self):
 		t = time.localtime()
-		#HACK use timezone settings
-		timestr = "%2d:%02d:%02d" % (t[3] + 2, t[4], t[5])
+		hour = (t[3] + config.timezone.val.value) % 24;
+		timestr = "%2d:%02d:%02d" % (hour, t[4], t[5])
 		self.setText(timestr)
 		setLCDClock(timestr)
 
