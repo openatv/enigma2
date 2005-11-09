@@ -169,6 +169,12 @@ class HarddiskManager:
 			if hddNum > 8:
 				break
 
+	def HDDCount(self):
+		cnt = 0
+		for hd in self.hdd:
+			cnt = cnt + 1
+		return cnt	
+
 	def HDDList(self):
 		list = [ ]
 		for hd in self.hdd:
