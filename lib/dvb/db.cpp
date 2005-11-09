@@ -685,7 +685,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 			/* we had only one sub expression */
 		if (end_of_exp == end)
 		{
-			eDebug("only one sub expression");
+//			eDebug("only one sub expression");
 			return 0;
 		}
 		
@@ -783,7 +783,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	std::string current_token;
 	std::string bouquet_name;
 
-	eDebug("splitting %s....", query.c_str());
+//	eDebug("splitting %s....", query.c_str());
 	unsigned int i = 0;
 	const char *splitchars="()";
 	int quotemode = 0, lastsplit = 0, lastalnum = 0;
@@ -867,7 +867,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 		return -1;
 	}
 	
-	eDebug("sort by %d", sort);
+//	eDebug("sort by %d", sort);
 	
 		/* now we recursivly parse that. */
 	int r = parseExpression(res, tokens.begin(), tokens.end());
@@ -878,7 +878,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 		res->m_bouquet_name = bouquet_name;
 	}
 
-	eDebug("return: %d", r);
+//	eDebug("return: %d", r);
 	return r;
 }
 
