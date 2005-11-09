@@ -188,7 +188,7 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 {
 	if ( chan )
 	{
-		eDebug("[eEPGCache] add channel %p", chan);
+//		eDebug("[eEPGCache] add channel %p", chan);
 		channel_data *data = new channel_data(this);
 		data->channel = chan;
 		singleLock s(channel_map_lock);
@@ -258,12 +258,6 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 		chan->getState(state);
 		switch (state)
 		{
-			case iDVBChannel::state_idle:
-				break;
-			case iDVBChannel::state_tuning:
-				break;
-			case iDVBChannel::state_unavailable:
-				break;
 			case iDVBChannel::state_ok:
 			{
 				eDebug("[eEPGCache] channel %p running", chan);
