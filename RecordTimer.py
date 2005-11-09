@@ -38,9 +38,9 @@ class RecordTimerEntry(timer.TimerEntry):
 		else:
 			description = ""
 		
-		print begin_date
-		print service_name
-		print description
+		print "begin_date: " + str(begin_date)
+		print "service_name: " + str(service_name)
+		print "description: " + str(description)
 		self.Filename = Directories.getRecordingFilename(service_name)
 		#begin_date + " - " + service_name + description)
 		

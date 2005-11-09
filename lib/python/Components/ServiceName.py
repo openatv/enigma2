@@ -14,8 +14,6 @@ class ServiceName(PerServiceDisplay):
 	def newService(self):
 		service = self.navcore.getCurrentService()
 		
-		print service
-		
 		if service is not None:
 			info = service.info()
 			if info is not None:
