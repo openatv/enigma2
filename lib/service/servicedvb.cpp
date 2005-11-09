@@ -371,12 +371,10 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
-	eDebug("DVB start (play)");
 }
 
 eDVBServicePlay::~eDVBServicePlay()
 {
-	eDebug("DVB stop (play)");
 }
 
 void eDVBServicePlay::gotNewEvent()
@@ -397,7 +395,6 @@ void eDVBServicePlay::gotNewEvent()
 
 void eDVBServicePlay::serviceEvent(int event)
 {
-	eDebug("service event %d", event);
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
@@ -407,8 +404,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		{
 //			eventStartedEventAcquisition
 			m_event_handler.start(m_demux, ((eServiceReferenceDVB&)m_reference).getServiceID().get());
-		} else
-			eDebug("no event data available :( ");
+		}
 //			eventNoEvent
 		break;
 	}

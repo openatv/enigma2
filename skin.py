@@ -236,5 +236,4 @@ def readSkin(screen, skin, name, desktop):
 		
 		# applyAttributes(guiObject, widget, desktop)
 		# guiObject.thisown = 0
-		print screen.additionalWidgets
 		screen.additionalWidgets.append(w)

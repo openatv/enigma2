@@ -69,7 +69,6 @@ class ChannelSelection(Screen):
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
 				if action[:7] == "bouquet":
-					print "setting root to " + action[8:]
 					l = self.csel["list"]
 					l.setMode(l.MODE_NORMAL)
 					l.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
@@ -97,7 +96,6 @@ class ChannelSelection(Screen):
 		
 		l = self["list"]
 		for x in marked:
-			print "mark: " + str(x)
 			l.addMarked(x)
 		
 	def endMarkedEdit(self, abort):
@@ -136,7 +134,6 @@ class ChannelSelection(Screen):
 			l.setRoot(ref)
 		else:
 			self.session.nav.playService(ref)
-			print "current: " + ref.toString()
 			self.close()
 
 	#called from infoBar

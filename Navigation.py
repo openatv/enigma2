@@ -12,13 +12,9 @@ class Navigation:
 		
 		NavigationInstance.instance = self
 		self.ServiceHandler = eServiceCenter.getInstance()
-		print self.ServiceHandler
 
 		import Navigation as Nav
 		Nav.navcore = self
-		
-		print "Navcore instance set!"
-		print Nav.navcore
 		
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.callEvent)
@@ -51,7 +47,6 @@ class Navigation:
 			print "record returned non-zero"
 			return None
 		else:
-			print "ok, recordService didn't fail"
 			return service
 	
 	def enqueueService(self, ref):

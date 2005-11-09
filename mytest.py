@@ -68,7 +68,6 @@ class Session:
 		if self.currentDialog.isTmp:
 			self.currentDialog.doClose()
 		
-			print sys.getrefcount(self.currentDialog)
 			del self.currentDialog.instance
 #			dump(self.currentDialog)
 			del self.currentDialog
