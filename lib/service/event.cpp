@@ -52,7 +52,7 @@ std::string ISOtbl[MAX_LANG][2] =
 };
 
 /* search for the presence of language from given EIT event descriptors*/
-bool eServiceEvent::language_exists(Event *evt, std::string lang)
+bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 {
 	bool retval=0;
 	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
@@ -104,11 +104,11 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 	std::string country="de_DE";  // TODO use local data here
 	for (int i=0; i < MAX_LANG; i++)
 		if (country==ISOtbl[i][0])
-			if (language_exists(evt,ISOtbl[i][1]))
+			if (loadLanguage(evt,ISOtbl[i][1]))
 				return 0;
-	if (language_exists(evt,"eng"))
+	if (loadLanguage(evt,"eng"))
 		return 0;
-	if (language_exists(evt,std::string()))
+	if (loadLanguage(evt,std::string()))
 		return 0;
 	return 0;
 }

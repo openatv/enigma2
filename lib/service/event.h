@@ -15,7 +15,7 @@ public:
 	std::string m_event_name, m_short_description, m_extended_description;
 	// .. additional info
 
-	bool language_exists(Event *event, std::string lang);
+	bool loadLanguage(Event *event, std::string lang);
 	RESULT parseFrom(Event *evt);
 };
 
