@@ -72,6 +72,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/sec.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/rfmod.h>
+#include <lib/gdi/lcd.h>
 
 extern void runMainloop();
 extern void quitMainloop();
@@ -159,6 +160,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %include <lib/dvb/sec.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/rfmod.h>
+%include <lib/gdi/lcd.h>
 
 %include <lib/gdi/gpixmap.h>
 /**************  eptr  **************/
