@@ -443,7 +443,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		}
 	}
 
-	eDebug("not found satellite configuration for orbital position (%d)", sat.orbital_position );
+	eDebug("found no satellite configuration for orbital position (%d)", sat.orbital_position );
 
 	return -1;
 }
