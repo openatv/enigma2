@@ -8,4 +8,5 @@ install_PYTHON = \
 	EventInfo.py Label.py ServiceScan.py VolumeBar.py                       \
 	GUIComponent.py MenuList.py TextInput.py __init__.py MovieList.py				\
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py						\
-	AVSwitch.py Network.py RFmod.py DiskInfo.py NimManager.py Lcd.py EpgList.py
+	AVSwitch.py Network.py RFmod.py DiskInfo.py NimManager.py Lcd.py				\
+	EpgList.py
