@@ -1,4 +1,5 @@
 from Screen import Screen
+from EpgSelection import EPGSelection
 from ChannelSelection import ChannelSelection
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap
@@ -58,7 +59,8 @@ class InfoBar(Screen):
 				"hide": self.hide,
 				"toggleShow": self.toggleShow,
 				"showMovies": self.showMovies,
-				"quit": self.quit
+				"quit": self.quit,
+				"showEPGList": self.showEPGList
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -152,8 +154,13 @@ class InfoBar(Screen):
 			self.muteDialog.instance.show()
 		else:
 			self.muteDialog.instance.hide()
-			
-	def	quit(self):
+
+	def showEPGList(self):
+# TODO hier irgendwie EPGSelection benutzen und setRoot benutzen um nen service zu uebergeben
+# self.session.nav.getCurrentlyPlayingServiceReference() sollte das wohl sein
+		print "hier soll mal ne EPGList aufgehen"
+
+	def quit(self):
 		configfile.save()
 		quitMainloop()
 	
