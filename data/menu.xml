@@ -30,7 +30,8 @@
 			</menu>
 			<menu text="Service Searching">
 				<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
-				<item text="Automatic Scan"><screen module="ServiceScan" /></item>
+				<item text="Automatic Scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
+				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
 				<item text="Manual Scan"><screen module="ServiceScan" /></item>
 				<item text="Rotor Control"></item>
 				<item text="Edit Transponder"></item>
