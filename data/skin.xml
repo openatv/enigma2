@@ -74,9 +74,9 @@
 			<widget name="config" position="20,10" size="460,350" />
 			<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />
 		</screen>
-		<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
-			<widget name="config" position="20,10" size="460,350" />
-			<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />
+		<screen name="TimerEntry" position="390,100" size="250,400" title="Timer entry">
+			<widget name="config" position="5,10" size="240,350" />
+			<widget name="introduction" position="20,360" size="250,30" font="Arial;23" />
 		</screen>
 		<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
 			<widget name="config" position="10,50" size="420,175" />
@@ -107,8 +107,8 @@
 			<widget name="config" position="10,30" size="420,220" />
 		</screen>
 <!--		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">-->
-		<screen name="TimerEditList" position="160,100" size="420,330" title="Timer Editor">
-			<widget name="timerlist" position="10,30" size="400,300" />
+		<screen name="TimerEditList" position="70,100" size="300,400" title="Timer Editor">
+			<widget name="timerlist" position="10,30" size="280,300" />
 		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
@@ -120,12 +120,16 @@
 			
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
-			<widget name="Volume" position="575,45" size="100,5" backgroundColor="dark" />
 			<widget name="Event_Now" position="273,68" size="282,22" font="Arial;20" backgroundColor="dark" />
 			<widget name="Event_Next" position="273,98" size="282,22" font="Arial;20" backgroundColor="dark" />
 			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;22" backgroundColor="dark" />
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
+		</screen>
+		<screen name="Volume" flags="wfNoBorder" position="140,125" size="180,60" title="Volume">
+			<ePixmap position="0,0" size="180,60" pixmap="/usr/share/enigma2/volumeslider-fs8.png" />
+			
+			<widget name="Volume" position="8,38" size="164,11" backgroundColor="dark" />
 		</screen>
  		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
 			<widget name="list" position="0,50" size="560,320" />
