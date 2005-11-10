@@ -183,7 +183,7 @@ class CiSelection(Screen):
 			self.list.append( ("init module", 2) )
 		elif self.state == 2:		#module ready
 			#get appname		
-			appname = "Dreamcrypt SuperCAM"
+			appname = eDVBCI_UI.getInstance().getAppName(0)
 			self.list.append( (appname, 2) )
 
 		self["entries"] .list = self.list
