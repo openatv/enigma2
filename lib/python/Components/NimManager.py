@@ -39,9 +39,14 @@ class SecConfigure:
 		sec.setCommittedCommand(diseqcpos)
 		#print "set orbpos to:" + str(orbpos)
 		sec.addSatellite(orbpos)
+		self.satList.append(orbpos)
+
+	def getSatList(self):
+		return self.satList
 
 	def update(self):
 		eDVBSatelliteEquipmentControl.getInstance().clear()
+		self.satList = []
 
 		for slot in self.NimManager.nimslots:
 			x = slot.slotid
@@ -99,6 +104,12 @@ class NimManager:
 				tname = attrs.get('name',"")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
+
+	def getConfiguredSats(self):
+		return self.sec.getSatList()
+
+	def getSatDescription(self, pos):
+		return self.satellites[str(pos)]
 
 	def readSatsfromFile(self):
 		self.satellites = { }
