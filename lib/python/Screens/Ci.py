@@ -10,7 +10,49 @@ from Components.HTMLComponent import *
 from Components.GUIComponent import *
 from Components.config import *
 
-from enigma import eListbox, eListboxPythonConfigContent
+#from enigma import eListbox, eListboxPythonConfigContent
+from enigma import *
+
+#use this class to synchronize all ci to/from user communications
+class CiWait(Screen):
+	def cancel(self):
+		#stop pending requests
+		self.Timer.stop()
+		self.close()
+
+	def TimerCheck(self):
+		#special cases to prevent to fast resets/inits
+		if self.lastQuery == 0:
+			self.cancel()
+		elif self.lastQuery == 1:
+			self.cancel()
+
+	def __init__(self, session, slot, query):
+		Screen.__init__(self, session)
+
+		self["message"] = Label("waiting for CI...")
+
+		self["actions"] = ActionMap(["OkCancelActions"], 
+			{
+				"cancel": self.cancel
+			})
+			
+		self.lastQuery = query
+
+		self.Timer = eTimer()
+		self.Timer.timeout.get().append(self.TimerCheck)
+
+		if query == 0:									#reset
+			self.Timer.start(1000)				#block 1 second
+			print "reset"
+		if query == 1:									#init
+			self.Timer.start(1000)				#block 1 second
+			print "init"
+		if query == 2:									#mmi-open
+			print "mmi open"
+		if query == 3:									#mmi-answer
+			print "mmi answer"
+			
 
 class CiEntryList(HTMLComponent, GUIComponent):
 	def __init__(self, list):
@@ -127,23 +169,48 @@ class CiMmi(Screen):
 				"0": self.keyNumberGlobal
 			}, -1)
 
+
 class CiSelection(Screen):
-	def okbuttonClick(self):
+	def createMenu(self):
+		self.list = [ ]
+		self.list.append( ("Reset", 0) )
+		self.list.append( ("Init", 1) )
+		
+		self.state = eDVBCI_UI.getInstance().getState(0)
+		if self.state == 0:			#no module
+			self.list.append( ("no module found", 2) )
+		elif self.state == 1:		#module in init
+			self.list.append( ("init module", 2) )
+		elif self.state == 2:		#module ready
+			#get appname		
+			appname = "Dreamcrypt SuperCAM"
+			self.list.append( (appname, 2) )
+
+		self["entries"] .list = self.list
+		self["entries"] .l.setList(self.list)
+
+	def TimerCheck(self):
+		state = eDVBCI_UI.getInstance().getState(0)
+		if self.state != state:
+			print "something happens"
+			self.state = state
+			self.createMenu()
 	
-		if self["entries"].getCurrent()[1] == 0:		#reset
-			print "ci reset requested"
-			pass
-		if self["entries"].getCurrent()[1] == 1:		#init
-			print "ci init requested"
-			pass
-		if self["entries"].getCurrent()[1] == 2:		#mmi open
-			#ci->getInstance().mmiOpen() and wait for list of elments ???
-			#generate menu / list
-			list = [ ]
-			list.append( ("TEXT", "CA-Info") )
-			list.append( ("TEXT", "Card Status") )
-			list.append( ("PIN", 6, "Card Pin", 1) )
-			self.session.open(CiMmi, 0, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
+	def okbuttonClick(self):
+		if self.state == 2:
+			#FIXME: find out the correct slot
+			self.session.open(CiWait, 0, self["entries"].getCurrent()[1])
+
+		#generate menu / list
+		#list = [ ]
+		#list.append( ("TEXT", "CA-Info") )
+		#list.append( ("TEXT", "Card Status") )
+		#list.append( ("PIN", 6, "Card Pin", 1) )
+		#self.session.open(CiMmi, 0, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
+
+	def cancel(self):
+		self.Timer.stop()
+		self.close()
 		
 	def __init__(self, session):
 		#FIXME support for one ci only
@@ -152,12 +219,13 @@ class CiSelection(Screen):
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.close
+				"cancel": self.cancel
 			})
-			
-		list = [ ]
-		list.append( ("Reset", 0) )
-		list.append( ("Init", 1) )
-		#add timer for "app-manager name" ?
-		list.append( ("Irdeto Blasel SE", 2) )
+
+		self.list = [ ]
 		self["entries"] = CiEntryList(list)
+		self.createMenu()
+
+		self.Timer = eTimer()
+		self.Timer.timeout.get().append(self.TimerCheck)
+		self.Timer.start(1000)
