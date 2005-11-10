@@ -10,7 +10,7 @@ from Screens.FixedMenu import FixedMenu
 import xml.dom.minidom
 
 class EPGSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, root):
 		Screen.__init__(self, session)
 
 		self["list"] = EPGList()
@@ -26,6 +26,7 @@ class EPGSelection(Screen):
 				"ok": self.eventSelected,
 			})
 		self["actions"].csel = self
+		setRoot(root)
 
 	def eventSelected(self):
 		ref = self["list"].getCurrent()
