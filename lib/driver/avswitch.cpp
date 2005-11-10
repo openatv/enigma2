@@ -95,7 +95,7 @@ void eAVSwitch::setVideomode(int mode)
 	char *ntsc="ntsc";
 	int fd;
 	
-	return 0;
+	return;
 	//FIXME: bug in driver (cannot set PAL)
 	if((fd = open("/proc/stb/video/videomode", O_WRONLY)) < 0) {
 		printf("cannot open /proc/stb/video/videomode\n");
