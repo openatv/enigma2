@@ -120,8 +120,7 @@ class InfoBar(Screen):
 	def	volUp(self):
 		eDVBVolumecontrol.getInstance().volumeUp()
 		self.volumeDialog.instance.show()
-		# FIXME: help wanted :)
-		self.volumeDialog.instance.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
 		self.hideVolTimer.start(3000)
@@ -129,7 +128,6 @@ class InfoBar(Screen):
 	def	volDown(self):
 		eDVBVolumecontrol.getInstance().volumeDown()
 		self.volumeDialog.instance.show()
-		# FIXME: help wanted :)
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
