@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#include <string>
+
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/econfig.h>
@@ -34,6 +36,22 @@ eDVBCI_UI *eDVBCI_UI::getInstance()
 int eDVBCI_UI::getState(int slot)
 {
 	return state[slot];	//exploit me ;)
+}
+
+void eDVBCI_UI::setState(int slot, int newState)
+{
+	state[slot] = newState;
+}
+
+std::string eDVBCI_UI::getAppName(int slot)
+{
+	return appName;
+}
+
+void eDVBCI_UI::setAppName(int slot, const char *name)
+{
+	printf("set name to -%c-\n", name);
+	appName = name;
 }
 
 //FIXME: correct "run/startlevel"
