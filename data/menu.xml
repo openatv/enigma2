@@ -16,7 +16,6 @@
 		<!--<item text="Standby debug">quitMainloop()</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
 		<item text="CI"><screen module="Ci" screen="CiSelection" /></item>
-		<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
 		<item text="Scanconfiguration"><screen module="ScanSetup" screen="ScanSetup" /></item>
 		<item text="Timerentry"><screen module="TimerEntry" screen="TimerEntry" /></item>
 		<item text="Radio"><code>print "radio mode"</code></item>
@@ -30,8 +29,7 @@
 				<item text="Edit Bouquets"></item>
 			</menu>
 			<menu text="Service Searching">
-				<item text="Satelliteconfig"><screen module="Satconfig" /></item>
-				<!--<item text="Satelliteconfig">self.openSetup("satconfig")</item>-->
+				<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item text="Automatic Scan"><screen module="ServiceScan" /></item>
 				<item text="Manual Scan"><screen module="ServiceScan" /></item>
 				<item text="Rotor Control"></item>
