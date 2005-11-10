@@ -11,10 +11,15 @@ void eListboxEPGContent::setRoot(const eServiceReference &root)
 		m_root = root;
 
 		epg->Lock();
-		epg->startTimeQuery(root);
-		ePtr<eServiceEvent> ptr;
-		while( !epg->getNextTimeEntry(ptr) )
-			m_list.push_back(ptr);
+		if (!epg->startTimeQuery(root))
+		{
+			ePtr<eServiceEvent> ptr;
+			while( !epg->getNextTimeEntry(ptr) )
+				m_list.push_back(ptr);
+		}
+		else
+			eDebug("startTimeQuery failed %s", root.toString().c_str());
+		epg->Unlock();
 
 		m_size = m_list.size();
 		cursorHome();
@@ -144,12 +149,12 @@ void eListboxEPGContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
 	eSize s = m_itemsize;
-	s.setWidth((size.width()/4)-10);
+	s.setWidth(size.width()/20*5);
 	m_element_position[celBeginTime] = eRect(ePoint(0, 0), s);
-	m_element_font[celBeginTime] = new gFont("Arial", 14);
-	s.setWidth(size.width()/4*3);
-	m_element_position[celTitle] = eRect(ePoint(size.width()/4, 0), s);
-	m_element_font[celTitle] = new gFont("Arial", 14);
+	m_element_font[celBeginTime] = new gFont("Arial", 20);
+	s.setWidth(size.width()/20*15);
+	m_element_position[celTitle] = eRect(ePoint(size.width()/20*5, 0), s);
+	m_element_font[celTitle] = new gFont("Arial", 20);
 }
 
 void eListboxEPGContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
