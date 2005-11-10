@@ -105,7 +105,7 @@ void eAVSwitch::setVideomode(int mode)
 		case 0:
 			write(fd, pal, strlen(pal));
 			break;
-		case 3:
+		case 1:
 			write(fd, ntsc, strlen(ntsc));
 			break;
 	}	
