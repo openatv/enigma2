@@ -15,7 +15,7 @@
 -->
 		<!--<item text="Standby debug">quitMainloop()</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
-		<item text="CI"><screen module="Ci" screen="CiSelection" /></item>
+		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
 		<item text="Scanconfiguration"><screen module="ScanSetup" screen="ScanSetup" /></item>
 		<item text="Timerentry"><screen module="TimerEntry" screen="TimerEntry" /></item>
 		<item text="Radio"><code>print "radio mode"</code></item>
@@ -42,12 +42,12 @@
 				<item text="UHF Modulator"><setup id="RFmod" /></item>
 				<item text="Harddisk"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				<item text="Remote Control"><setup id="rc" /></item>
-				<item text="Keyboard"><setup id="keyboard" /></item>
+				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<item text="OSD"><setup id="osd" /></item>
 				<item text="LCD"><setup id="lcd" /></item>
-				<item text="Networksetup"><screen module="NetworkSetup" screen="NetworkSetup" /></item>
+				<item text="Network"><screen module="NetworkSetup" screen="NetworkSetup" /></item>
 			</menu>
-			<item text="Common Interface"></item>
+			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
 			<item text="Parental Control"><setup id="parental" /></item>
 			<item text="Expert"><setup id="expert" /></item>
 		</menu>
