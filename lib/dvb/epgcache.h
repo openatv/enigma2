@@ -1,6 +1,8 @@
 #ifndef __epgcache_h_
 #define __epgcache_h_
 
+#ifndef SWIG
+
 #include <vector>
 #include <list>
 #include <ext/hash_map>
@@ -30,10 +32,10 @@ class eServiceReferenceDVB;
 struct uniqueEPGKey
 {
 	int sid, onid, tsid;
-	uniqueEPGKey( const eServiceReferenceDVB &ref )
-		:sid( ref.type != eServiceReference::idInvalid ? ref.getServiceID().get() : -1 )
-		,onid( ref.type != eServiceReference::idInvalid ? ref.getOriginalNetworkID().get() : -1 )
-		,tsid( ref.type != eServiceReference::idInvalid ? ref.getTransportStreamID().get() : -1 )
+	uniqueEPGKey( const eServiceReference &ref )
+		:sid( ref.type != eServiceReference::idInvalid ? ((eServiceReferenceDVB&)ref).getServiceID().get() : -1 )
+		,onid( ref.type != eServiceReference::idInvalid ? ((eServiceReferenceDVB&)ref).getOriginalNetworkID().get() : -1 )
+		,tsid( ref.type != eServiceReference::idInvalid ? ((eServiceReferenceDVB&)ref).getTransportStreamID().get() : -1 )
 	{
 	}
 	uniqueEPGKey()
@@ -91,26 +93,32 @@ struct hash_uniqueEPGKey
 #define descriptorPair std::pair<int,__u8*>
 #define descriptorMap std::map<__u32, descriptorPair >
 
+#endif // SWIG
+
 class eventData
 {
- 	friend class eEPGCache;
+#ifndef SWIG
+	friend class eEPGCache;
 private:
 	__u8* EITdata;
 	__u8 ByteSize;
+	__u8 type;
 	static descriptorMap descriptors;
 	static __u8 data[4108];
-public:
-	__u8 type;
 	static int CacheSize;
 	static void load(FILE *);
 	static void save(FILE *);
-	eventData(const eit_event_struct* e, int size, int type);
+#endif // SWIG
+public:
+	eventData(const eit_event_struct* e=NULL, int size=0, int type=0);
 	~eventData();
+#ifndef SWIG
 	const eit_event_struct* get() const;
 	operator const eit_event_struct*() const
 	{
 		return get();
 	}
+#endif
 	int getEventID()
 	{
 		return (EITdata[0] << 8) | EITdata[1];
@@ -122,11 +130,12 @@ public:
 	int getDuration()
 	{
 		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
-	}
+ }
 };
 
 class eEPGCache: public eMainloop, private eThread, public Object
 {
+#ifndef SWIG
 	DECLARE_REF(eEPGCache)
 	struct channel_data: public Object
 	{
@@ -177,7 +186,7 @@ public:
 			:type(type), avail(b) {}
 		Message(int type, iDVBChannel *channel, int err=0)
 			:type(type), channel(channel), err(err) {}
-		Message(int type, const eServiceReferenceDVB& service, int err=0)
+		Message(int type, const eServiceReference& service, int err=0)
 			:type(type), service(service), err(err) {}
 		Message(int type, time_t time)
 			:type(type), time(time) {}
@@ -212,8 +221,9 @@ private:
 	void DVBChannelRunning(iDVBChannel *);
 
 	timeMap::iterator m_timemap_cursor, m_timemap_end;
+#endif // SWIG
 public:
-	static RESULT getInstance(ePtr<eEPGCache> &ptr);
+	static RESULT getInstance(eEPGCache *&ptr);
 	eEPGCache();
 	~eEPGCache();
 
@@ -222,35 +232,36 @@ public:
 	inline void Unlock();
 
 	// at moment just for one service..
-	inline RESULT startTimeQuery(const eServiceReferenceDVB &service, time_t begin=-1, int minutes=-1);
+	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);
 
 	// eventData's are plain entrys out of the cache.. it's not safe to use them after cache unlock
 	// but its faster in use... its not allowed to delete this pointers via delete or free..
-	RESULT lookupEvent(const eServiceReferenceDVB &service, int event_id, const eventData *&);
-	RESULT lookupEvent(const eServiceReferenceDVB &service, time_t , const eventData *&);
+	RESULT lookupEvent(const eServiceReference &service, int event_id, const eventData *&);
+	RESULT lookupEvent(const eServiceReference &service, time_t , const eventData *&);
 	RESULT getNextTimeEntry(const eventData *&);
 
+#ifndef SWIG
 	// eit_event_struct's are plain dvb eit_events .. it's not safe to use them after cache unlock
 	// its not allowed to delete this pointers via delete or free..
-	RESULT lookupEvent(const eServiceReferenceDVB &service, int event_id, const eit_event_struct *&);
-	RESULT lookupEvent(const eServiceReferenceDVB &service, time_t , const eit_event_struct *&);
+	RESULT lookupEvent(const eServiceReference &service, int event_id, const eit_event_struct *&);
+	RESULT lookupEvent(const eServiceReference &service, time_t , const eit_event_struct *&);
 	RESULT getNextTimeEntry(const eit_event_struct *&);
 
 	// Event's are parsed epg events.. it's safe to use them after cache unlock
 	// after use this Events must be deleted (memleaks)
-	RESULT lookupEvent(const eServiceReferenceDVB &service, int event_id, Event* &);
-	RESULT lookupEvent(const eServiceReferenceDVB &service, time_t, Event* &);
+	RESULT lookupEvent(const eServiceReference &service, int event_id, Event* &);
+	RESULT lookupEvent(const eServiceReference &service, time_t, Event* &);
 	RESULT getNextTimeEntry(Event *&);
+#endif
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
 	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
-	RESULT lookupEvent(const eServiceReferenceDVB &service, int event_id, ePtr<eServiceEvent> &);
-	RESULT lookupEvent(const eServiceReferenceDVB &service, time_t , ePtr<eServiceEvent> &);
+	RESULT lookupEvent(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &);
+	RESULT lookupEvent(const eServiceReference &service, time_t , ePtr<eServiceEvent> &);
 	RESULT getNextTimeEntry(ePtr<eServiceEvent> &);
 };
 
-TEMPLATE_TYPEDEF(ePtr<eEPGCache>,eEPGCachePtr);
-
+#ifndef SWIG
 inline void eEPGCache::Lock()
 {
 	pthread_mutex_lock(&cache_lock);
@@ -260,5 +271,6 @@ inline void eEPGCache::Unlock()
 {
 	pthread_mutex_unlock(&cache_lock);
 }
+#endif
 
 #endif

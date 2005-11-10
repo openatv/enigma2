@@ -15,7 +15,7 @@ __u8 eventData::data[4108];
 extern const uint32_t crc32_table[256];
 
 eventData::eventData(const eit_event_struct* e, int size, int type)
-	:ByteSize(size), type(type)
+	:ByteSize(size&0xFF), type(type&0xFF)
 {
 	if (!e)
 		return;
@@ -747,7 +747,7 @@ void eEPGCache::save()
 #endif
 }
 
-RESULT eEPGCache::getInstance(ePtr<eEPGCache> &ptr)
+RESULT eEPGCache::getInstance(eEPGCache *&ptr)
 {
 	ptr = instance;
 	if (!ptr)
@@ -1004,7 +1004,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	}
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eventData *&result )
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, const eventData *&result )
 // if t == 0 we search the current event...
 {
 	singleLock s(cache_lock);
@@ -1045,7 +1045,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, con
 	return -1;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, const eit_event_struct *&result )
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, const eit_event_struct *&result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1055,7 +1055,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, con
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, Event *& result )
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, Event *& result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1065,7 +1065,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, Eve
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, ePtr<eServiceEvent> &result )
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1079,7 +1079,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, time_t t, ePt
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eventData *&result )
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, const eventData *&result )
 {
 	singleLock s(cache_lock);
 	uniqueEPGKey key( service );
@@ -1102,7 +1102,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id,
 	return -1;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, const eit_event_struct *&result)
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, const eit_event_struct *&result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1112,7 +1112,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id,
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, Event *& result)
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, Event *& result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1122,7 +1122,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id,
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id, ePtr<eServiceEvent> &result)
+RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
@@ -1136,7 +1136,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReferenceDVB &service, int event_id,
 	return ret;
 }
 
-RESULT eEPGCache::startTimeQuery(const eServiceReferenceDVB &service, time_t begin, int minutes)
+RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
 	eventCache::iterator It = eventDB.find( service );
 	if ( It != eventDB.end() && It->second.second.size() )
