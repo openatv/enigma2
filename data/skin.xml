@@ -77,6 +77,12 @@
 			<widget name="config" position="20,10" size="460,350" />
 			<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />
 		</screen>
+		<screen name="ScanSimple" position="150,100" size="400,300" title="Service scan">
+			<widget name="header" position="20,10" size="280,25" font="Arial;23"/>
+			<widget name="config" position="20,45" size="360,200" />
+			<widget name="footer" position="20,250" size="360,25" font="Arial;23"/>
+			<!--<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />-->
+		</screen>
 		<screen name="TimerEntry" position="390,100" size="250,400" title="Timer entry">
 			<widget name="config" position="5,10" size="240,350" />
 			<widget name="introduction" position="20,360" size="250,30" font="Arial;23" />
