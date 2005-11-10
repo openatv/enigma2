@@ -11,13 +11,16 @@ class AVSwitch:
 		eAVSwitch.getInstance().setColorFormat(value)
 		
 	def setAspectRatio(self, value):
-		print "aspectratio:" + str(value)
+		#print "aspectratio:" + str(value)
+		eAVSwitch.getInstance().setAspectRatio(value)
 
 	def setSystem(self, value):
 		print "system:" + str(value)
+		eAVSwitch.getInstance().setVideomode(value)
 
 	def setWSS(self, value):
-		print "wss:" + str(value)
+		#print "wss:" + str(value)
+		pass
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
