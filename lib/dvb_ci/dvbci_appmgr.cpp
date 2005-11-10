@@ -1,6 +1,7 @@
 /* DVB CI Application Manager */
 
 #include <lib/dvb_ci/dvbci_appmgr.h>
+#include <lib/dvb_ci/dvbci_ui.h>
 
 int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
@@ -28,9 +29,15 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 				printf("warning, invalid length (%d vs %d)\n", dl+6, len);
 				dl=len-6;
 			}
+			char str[dl + 1];
+			memcpy(str, data + 6, dl);
+			str[dl] = '\0';
 			for (int i = 0; i < dl; ++i)
 				printf("%c", ((unsigned char*)data)[i+6]);
 			printf("\n");
+			
+			eDVBCI_UI::getInstance()->setState(0,2);
+			eDVBCI_UI::getInstance()->setAppName(0,str);
 			break;
 		}
 		default:
