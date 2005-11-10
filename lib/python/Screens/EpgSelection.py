@@ -26,7 +26,7 @@ class EPGSelection(Screen):
 				"ok": self.eventSelected,
 			})
 		self["actions"].csel = self
-		setRoot(root)
+		self.setRoot(root)
 
 	def eventSelected(self):
 		ref = self["list"].getCurrent()
