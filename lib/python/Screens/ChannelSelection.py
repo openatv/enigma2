@@ -154,7 +154,10 @@ class ChannelSelection(Screen):
 			self.movemode = False
 		else:
 			self.movemode = True
-	
+
+	def getCurrent(self):
+		return self["list"].getCurrent()
+
 	def showFavourites(self):
 		l = self["list" ]
 		l.setRoot(eServiceReference('1:0:1:0:0:0:0:0:0:0:(provider == "fav")'))
