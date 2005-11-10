@@ -11,6 +11,7 @@ from Components.config import configfile
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
 from Screens.Volume import Volume
+from Screens.Mute import Mute
 
 from enigma import *
 
@@ -34,6 +35,7 @@ class InfoBar(Screen):
 		self.state = self.STATE_HIDDEN
 		
 		self.volumeDialog = self.session.instantiateDialog(Volume)
+		self.muteDialog = self.session.instantiateDialog(Mute)
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
@@ -144,11 +146,13 @@ class InfoBar(Screen):
 
 	def	volMute(self):
 		eDVBVolumecontrol.getInstance().volumeToggleMute()
-		#self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.hideVolTimer.start(3000)
-
+		
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.muteDialog.instance.show()
+		else:
+			self.muteDialog.instance.hide()
+			
 	def	quit(self):
 		configfile.save()
 		quitMainloop()
