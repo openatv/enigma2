@@ -38,7 +38,9 @@ class InfoBar(Screen):
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
 		#self.hideTimer.start(1000)
-
+		
+		self.hideVolTimer = eTimer()
+		self.hideVolTimer.timeout.get().append(self.volHide)
 
 		self["actions"] = ActionMap( [ "InfobarActions" ], 
 			{
@@ -121,16 +123,12 @@ class InfoBar(Screen):
 		eDVBVolumecontrol.getInstance().volumeUp()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.hideVolTimer = eTimer()
-		self.hideVolTimer.timeout.get().append(self.volHide)
 		self.hideVolTimer.start(3000)
 
 	def	volDown(self):
 		eDVBVolumecontrol.getInstance().volumeDown()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.hideVolTimer = eTimer()
-		self.hideVolTimer.timeout.get().append(self.volHide)
 		self.hideVolTimer.start(3000)
 		
 	def volHide(self):
@@ -146,7 +144,10 @@ class InfoBar(Screen):
 
 	def	volMute(self):
 		eDVBVolumecontrol.getInstance().volumeToggleMute()
-		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		#self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volumeDialog.instance.show()
+		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.hideVolTimer.start(3000)
 
 	def	quit(self):
 		configfile.save()
