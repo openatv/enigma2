@@ -86,15 +86,15 @@ class NimSetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"1": self.keyNumberGlobal,
-            "2": self.keyNumberGlobal,
-            "3": self.keyNumberGlobal,
-            "4": self.keyNumberGlobal,
-            "5": self.keyNumberGlobal,
-            "6": self.keyNumberGlobal,
-            "7": self.keyNumberGlobal,
-            "8": self.keyNumberGlobal,
-            "9": self.keyNumberGlobal,
-            "0": self.keyNumberGlobal
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
 		}, -1)
 
 		self.list = [ ]
