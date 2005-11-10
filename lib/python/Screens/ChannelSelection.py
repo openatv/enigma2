@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
-
+from EpgSelection import EPGSelection
 from enigma import eServiceReference
 
 from Screens.FixedMenu import FixedMenu
@@ -81,12 +81,15 @@ class ChannelSelection(Screen):
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
-				"showFavourites": self.showFavourites
+				"showFavourites": self.showFavourites,
+				"showEPGList": self.showEPGList
 			})
 		self["actions"].csel = self
 
+	def showEPGList(self):
+		self.session.open(EPGSelection, self["list"].getCurrent())
+
 	#  marked edit mode
-	
 	def startMarkedEdit(self):
 		self.bouquet_mark_edit = True
 		self.clearMarks()
@@ -154,9 +157,6 @@ class ChannelSelection(Screen):
 			self.movemode = False
 		else:
 			self.movemode = True
-
-	def getCurrent(self):
-		return self["list"].getCurrent()
 
 	def showFavourites(self):
 		l = self["list" ]

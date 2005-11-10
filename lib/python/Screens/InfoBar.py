@@ -215,8 +215,6 @@ class InfoBar(Screen):
 			self.muteDialog.instance.hide()
 
 	def showEPGList(self):
-# TODO hier irgendwie EPGSelection benutzen und setRoot benutzen um nen service zu uebergeben
-# self.session.nav.getCurrentlyPlayingServiceReference() sollte das wohl sein
 		self.session.open(EPGSelection, self.session.nav.getCurrentlyPlayingServiceReference())
 
 	def quit(self):
