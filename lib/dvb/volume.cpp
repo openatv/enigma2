@@ -90,6 +90,17 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 		
 		printf("Setvolume: %d %d\n", leftVol, rightVol);
 		printf("Setvolume: %d %d\n", left, right);		
+		
+	//HACK?
+	FILE *f;
+	if((f = fopen("/proc/stb/avs/0/volume", "wb")) < 0) {
+		printf("cannot open /proc/stb/avs/0/volume\n");
+		return;
+	}
+	
+	fprintf(f, "%d", left);
+
+	fclose(f);
 }
 
 int eDVBVolumecontrol::getVolume()
