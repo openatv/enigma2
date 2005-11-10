@@ -171,3 +171,43 @@ class ScanSetup(Screen):
         for x in self["config"].list:
             x[1].cancel()
         self.close()
+
+class ScanSimple(Screen):
+
+	def keyOK(self):
+		print "start scan for sats:"
+		for x in self.list:
+			if x[1].parent.value == 0:
+				print "   " + str(x[1].parent.configPath)
+		
+	def keyCancel(self):
+		self.close()
+
+	def keyLeft(self):
+		self["config"].handleKey(config.key["prevElement"])
+
+	def keyRight(self):
+		self["config"].handleKey(config.key["nextElement"])
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["actions"] = ActionMap(["SetupActions"],
+		{
+			"ok": self.keyOK,
+			"cancel": self.keyCancel,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+		}, -1)
+                
+		self.list = []
+		
+		SatList = nimmanager.getConfiguredSats()
+
+		for x in SatList:
+			sat = configElement_nonSave(x, configSelection, 0, ("Enable", "Disable"))
+			self.list.append(getConfigListEntry(nimmanager.getSatDescription(x), sat))
+
+		self["config"] = ConfigList(self.list)
+		self["header"] = Label("Automatic Scan")
+		self["footer"] = Label("Press OK to scan")
