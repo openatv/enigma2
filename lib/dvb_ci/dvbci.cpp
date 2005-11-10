@@ -7,6 +7,8 @@
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_session.h>
 
+#include <lib/dvb_ci/dvbci_ui.h>
+
 eDVBCIInterfaces::eDVBCIInterfaces()
 {
 	int num_ci = 0;
@@ -62,6 +64,8 @@ void eDVBCISlot::data(int what)
 			state = stateRemoved;
 			printf("ci removed\n");
 			notifier->setRequested(eSocketNotifier::Read);
+			//HACK
+			eDVBCI_UI::getInstance()->setState(0,0);
 		}
 		return;
 	}
@@ -74,6 +78,10 @@ void eDVBCISlot::data(int what)
 	if(state != stateInserted) {
 		state = stateInserted;
 		eDebug("ci inserted");
+
+		//HACK
+		eDVBCI_UI::getInstance()->setState(0,1);
+
 		/* enable PRI to detect removal or errors */
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Write);
 	}
