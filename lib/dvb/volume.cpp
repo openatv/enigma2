@@ -93,7 +93,7 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 		
 	//HACK?
 	FILE *f;
-	if((f = fopen("/proc/stb/avs/0/volume", "wb")) < 0) {
+	if((f = fopen("/proc/stb/avs/0/volume", "wb")) == NULL) {
 		printf("cannot open /proc/stb/avs/0/volume\n");
 		return;
 	}
