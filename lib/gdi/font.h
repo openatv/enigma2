@@ -1,13 +1,14 @@
 #ifndef __FONT_H
 #define __FONT_H
 
+#ifndef SWIG
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_CACHE_H
 #include FT_CACHE_IMAGE_H
 #include FT_CACHE_SMALL_BITMAPS_H
 #include <vector>
-
 
 #include <lib/gdi/fb.h>
 #include <lib/gdi/esize.h>
@@ -22,8 +23,10 @@ class gDC;
 class gFont;
 class gRGB;
 
+#endif
 class fontRenderClass
 { 
+#ifndef SWIG
 	friend class Font;
 	friend class eTextPara;
 	fbClass *fb;
@@ -43,16 +46,20 @@ class fontRenderClass
 	FTC_FaceID getFaceID(const std::string &face);
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit);
 	static fontRenderClass *instance;
+#endif
 public:
 	float getLineHeight(const gFont& font);
-	std::string AddFont(const std::string &filename, const std::string &name, int scale);
 	static fontRenderClass *getInstance();
-	FT_Error FTC_Face_Requester(FTC_FaceID	face_id,
-															FT_Face*		aface);
+#ifndef SWIG
+	std::string AddFont(const std::string &filename, const std::string &name, int scale);
+	FT_Error FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface);
 	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth=-1);
+#endif
 	fontRenderClass();
 	~fontRenderClass();
 };
+
+#ifndef SWIG
 
 #define RS_WRAP		1
 #define RS_DOT		2
@@ -177,5 +184,7 @@ public:
 };
 
 extern fontRenderClass *font;
+
+#endif  // !SWIG
 
 #endif

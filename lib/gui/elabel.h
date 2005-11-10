@@ -9,7 +9,8 @@ public:
 	eLabel(eWidget *parent);
 	void setText(const std::string &string);
 	void setFont(gFont *font);
-	
+	gFont* eLabel::getFont();
+
 	enum
 	{
 		alignLeft,

@@ -43,9 +43,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/event.h>
-
+#include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
-
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/einput.h>
@@ -134,6 +133,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 %immutable eComponentScan::statusChanged;
 %immutable pNavigation::m_event;
 
+%include <lib/gdi/font.h>
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
