@@ -4,4 +4,4 @@ install_PYTHON = \
 	ChannelSelection.py ClockDisplay.py ConfigMenu.py InfoBar.py Menu.py    \
 	MessageBox.py ScartLoopThrough.py Screen.py ServiceScan.py TimerEdit.py \
 	MovieSelection.py Setup.py About.py HarddiskSetup.py FixedMenu.py \
-	Satconfig.py ScanSetup.py NetworkSetup.py Ci.py TimerEntry.py Volume.py __init__.py
+	Satconfig.py ScanSetup.py NetworkSetup.py Ci.py TimerEntry.py Volume.py Mute.py __init__.py
