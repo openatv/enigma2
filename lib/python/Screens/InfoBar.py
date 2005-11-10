@@ -1,7 +1,6 @@
 from Screen import Screen
 from ChannelSelection import ChannelSelection
 from Components.Clock import Clock
-from Components.VolumeBar import VolumeBar
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.ServiceName import ServiceName
@@ -11,6 +10,7 @@ from Components.config import configfile
 
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
+from Screens.Volume import Volume
 
 from enigma import *
 
@@ -30,9 +30,10 @@ class InfoBar(Screen):
 
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		self.volumeBar = VolumeBar()		
 		
 		self.state = self.STATE_HIDDEN
+		
+		self.volumeDialog = self.session.instantiateDialog(Volume)
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
@@ -61,8 +62,6 @@ class InfoBar(Screen):
 		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 		# Clock()
 
-		self["Volume"] = self.volumeBar
-		
 		self["ServiceName"] = ServiceName(self.session.nav)
 		
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
@@ -120,12 +119,23 @@ class InfoBar(Screen):
 
 	def	volUp(self):
 		eDVBVolumecontrol.getInstance().volumeUp()
-		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volumeDialog.instance.show()
+		#self.volumeDialog.instance.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.hideVolTimer = eTimer()
+		self.hideVolTimer.timeout.get().append(self.volHide)
+		self.hideVolTimer.start(3000)
 
 	def	volDown(self):
 		eDVBVolumecontrol.getInstance().volumeDown()
-		self.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		#self.volumeDialog.instance.volumeBar.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volumeDialog.instance.show()
+		self.hideVolTimer = eTimer()
+		self.hideVolTimer.timeout.get().append(self.volHide)
+		self.hideVolTimer.start(3000)
 		
+	def volHide(self):
+		self.volumeDialog.instance.hide()
+
 	def startShow(self):
 		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
 		self.state = self.STATE_SHOWN

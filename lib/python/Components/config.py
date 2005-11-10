@@ -154,6 +154,9 @@ class configSequenceArg:
 		# configsequencearg.get ("MAC")
 		if (type == "MAC"):
 			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], "")
+		# configsequencearg.get ("CLOCK")
+		if (type == "CLOCK"):
+			return ((":"), [(0,23),(0,59)], "")
 		# configsequencearg.get("INTEGER", (min, max)) => x with min <= x <= max
 		if (type == "INTEGER"):
 			return ((":"), [args], "")
