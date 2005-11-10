@@ -7,11 +7,9 @@ class AVSwitch:
 		pass
 
 	def setColorFormat(self, value):
-		#print "colorformat:" + str(value)
 		eAVSwitch.getInstance().setColorFormat(value)
 		
 	def setAspectRatio(self, value):
-		#print "aspectratio:" + str(value)
 		eAVSwitch.getInstance().setAspectRatio(value)
 
 	def setSystem(self, value):
@@ -26,10 +24,11 @@ def InitAVSwitch():
 	config.av = ConfigSubsection();
 	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, ("CVBS", "RGB", "S-Video") );
 	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, ("4:3 Letterbox", "4:3 PanScan", "16:9", "16:9 always") );
-	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
+	#config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
+	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "NTSC") );
 	config.av.wss = configElement("config.av.wss", configSelection, 0, ("Enable", "Disable") );
 	config.av.defaultac3 = configElement("config.av.defaultac3", configSelection, 1, ("Enable", "Disable") );
-	config.av.vcrswitch = configElement("config.av.vcrswitch", configSelection, 0, ("Enable", "Disable") );
+	config.av.vcrswitch = configElement("config.av.vcrswitch", configSelection, 1, ("Enable", "Disable") );
 
 	iAVSwitch = AVSwitch()
 
