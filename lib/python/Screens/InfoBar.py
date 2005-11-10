@@ -217,7 +217,7 @@ class InfoBar(Screen):
 	def showEPGList(self):
 # TODO hier irgendwie EPGSelection benutzen und setRoot benutzen um nen service zu uebergeben
 # self.session.nav.getCurrentlyPlayingServiceReference() sollte das wohl sein
-		print "hier soll mal ne EPGList aufgehen"
+		self.session.open(EPGSelection)
 
 	def quit(self):
 		configfile.save()
