@@ -5,7 +5,6 @@ class eAVSwitch
 {
 	static eAVSwitch *instance;
 	
-	int avsfd;
 protected:	
 public:
 	eAVSwitch();
@@ -14,6 +13,8 @@ public:
 	static eAVSwitch *getInstance();
 
 	void setColorFormat(int format);
+	void setAspectRatio(int ratio);
+	void setVideomode(int mode);
 };
 
 #endif
