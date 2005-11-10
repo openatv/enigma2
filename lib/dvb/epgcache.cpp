@@ -1153,6 +1153,8 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 					m_timemap_cursor = it;
 			}
 		}
+		else
+			m_timemap_cursor = It->second.second.begin();
 		return 0;
 	}
 	return -1;
