@@ -51,9 +51,11 @@
 	<map context="InfobarActions">
 		<key id="m" mapto="mainMenu" flags="mr" />
 		<key id="c" mapto="switchChannelDown" flags="mr" />
-		<key id="r" mapto="instantRecord" flags="m" />
+<!--		<key id="r" mapto="instantRecord" flags="m" /> -->
+		<key id="r" mapto="showEPGList" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
-		<key id="KEY_RED" mapto="instantRecord" flags="m" />
+<!--		<key id="KEY_RED" mapto="instantRecord" flags="m" /> -->
+		<key id="KEY_RED" mapto="showEPGList" flags="m" />
 		<key id="1" mapto="zapUp" flags="mr" />
 		<key id="2" mapto="zapDown" flags="mr" />
 		<key id="KEY_M" mapto="mainMenu" flags="mr" />
