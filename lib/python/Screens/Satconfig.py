@@ -54,7 +54,9 @@ class NimSetup(Screen):
 		self.newConfig()
 
 	def keyRight(self):
-		self["config"].handleKey(config.key["nextElement"])
+		#forbid to enable advanced mode until its ready
+		if self["config"].getCurrent()[0] != "Configmode":
+			self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 
 	def keyNumberGlobal(self, number):
