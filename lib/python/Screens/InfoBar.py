@@ -3,11 +3,13 @@ from EpgSelection import EPGSelection
 from ChannelSelection import ChannelSelection
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from Components.Button import Button
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 from Components.ServicePosition import ServicePosition
 from Components.config import configfile
+from Components.Label import Label
 
 from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
@@ -20,6 +22,48 @@ import time
 
 # hack alert!
 from Menu import MainMenu, mdom
+
+class NumberZap(Screen):
+	def quit(self):
+		self.Timer.stop()
+		self.close()
+
+	def keyOK(self):
+		self.Timer.stop()
+		print "do the action here"
+		self.close()
+
+	def keyNumberGlobal(self, number):
+		self.Timer.start(3000)		#reset timer
+		self.field = self.field + str(number)
+		self["number"].setText(self.field)
+
+	def __init__(self, session, number):
+		Screen.__init__(self, session)
+		self.field = str(number)
+		
+		self["number"] = Label(self.field)
+
+		self["actions"] = NumberActionMap( [ "SetupActions" ], 
+			{
+				"cancel": self.quit,
+				"ok": self.keyOK,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal
+			})
+
+		self.Timer = eTimer()
+		self.Timer.timeout.get().append(self.keyOK)
+		self.Timer.start(3000)
+
 
 class InfoBar(Screen):
 	STATE_HIDDEN = 0
@@ -45,7 +89,8 @@ class InfoBar(Screen):
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
 
-		self["actions"] = ActionMap( [ "InfobarActions" ], 
+		#self["actions"] = ActionMap( [ "InfobarActions" ], 
+		self["actions"] = NumberActionMap( [ "InfobarActions" ], 
 			{
 				"switchChannelUp": self.switchChannelUp,
 				"switchChannelDown": self.switchChannelDown,
@@ -60,6 +105,16 @@ class InfoBar(Screen):
 				"toggleShow": self.toggleShow,
 				"showMovies": self.showMovies,
 				"quit": self.quit,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal,
 				"showEPGList": self.showEPGList
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
@@ -85,6 +140,10 @@ class InfoBar(Screen):
 		menu = mdom.childNodes[0]
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
 		self.session.open(MainMenu, menu, menu.childNodes)
+
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		self.session.open(NumberZap, number)
 
 	def switchChannelUp(self):	
 		self.servicelist.moveUp()
