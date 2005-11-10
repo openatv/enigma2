@@ -24,10 +24,10 @@ class LCD:
 
 def InitLcd():
 	config.lcd = ConfigSubsection();
-	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 7, "");
-	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 2, "");
+	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 10, "");
+	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 10, "");
 	config.lcd.standby = configElement("config.lcd.standby", ConfigSlider, 1, "");
-	config.lcd.invert = configElement("config.lcd.invert", configSelection, 1, ("Disable", "Enable") );
+	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, ("Disable", "Enable") );
 
 	ilcd = LCD()
 
