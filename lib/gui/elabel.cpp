@@ -80,6 +80,11 @@ void eLabel::setFont(gFont *font)
 	event(evtChangedFont);
 }
 
+gFont* eLabel::getFont()
+{
+	return m_font;
+}
+
 void eLabel::setVAlign(int align)
 {
 	m_valign = align;
