@@ -2,4 +2,5 @@ __all__ = ["ChannelSelection", "ClockDisplay", "ConfigMenu",
 	"InfoBar", "MessageBox", "Menu", "MovieSelection", 
 	"ScartLoopThrough", "Screen", "ServiceScan", "About",
 	"TimerEdit", "Setup", "HarddiskSetup", "FixedMenu",
-	"Satconfig", "Scanconfig", "Ci.py", "Volume.py", "Mute.py" ]
+	"Satconfig", "Scanconfig", "Ci.py", "Volume.py", "Mute.py",
+	"EpgSelection"]
