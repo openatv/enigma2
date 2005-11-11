@@ -189,6 +189,12 @@ class ScanSimple(Screen):
 	def keyRight(self):
 		self["config"].handleKey(config.key["nextElement"])
 
+	def Satexists(self, tlist, pos):
+		for x in tlist:
+			if x == pos:
+				return 1
+		return 0
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -201,12 +207,15 @@ class ScanSimple(Screen):
 		}, -1)
                 
 		self.list = []
+		tlist = []
 		
 		SatList = nimmanager.getConfiguredSats()
 
 		for x in SatList:
-			sat = configElement_nonSave(x, configSelection, 0, ("Enable", "Disable"))
-			self.list.append(getConfigListEntry(nimmanager.getSatDescription(x), sat))
+			if self.Satexists(tlist, x) == 0:
+				tlist.append(x)
+				sat = configElement_nonSave(x, configSelection, 0, ("Enable", "Disable"))
+				self.list.append(getConfigListEntry(nimmanager.getSatDescription(x), sat))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label("Automatic Scan")
