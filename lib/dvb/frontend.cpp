@@ -637,9 +637,9 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (res)
 			return res;
 #if HAVE_DVB_API_VERSION < 3
-		eDebug("tuning to %d mhz", parm.Frequency/100);
+		eDebug("tuning to %d mhz", parm.Frequency/1000);
 #else
-		eDebug("tuning to %d mhz", parm.frequency/100);
+		eDebug("tuning to %d mhz", parm.frequency/1000);
 #endif
 		break;
 	}
