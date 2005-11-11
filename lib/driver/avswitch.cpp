@@ -65,28 +65,24 @@ void eAVSwitch::setAspectRatio(int ratio)
 	3-16:9 forced
 	*/
 	
-	char *any="any";
-	char *norm="4:3";
-	char *wide="16:9";
-	int fd;
+	char *aspect[] = {"4:3", "4:3", "any", "16:9"};
+	char *policy[] = {"letterbox", "panscan", "bestfit", "panscan"};
 
+	int fd;
 	if((fd = open("/proc/stb/video/aspect", O_WRONLY)) < 0) {
 		printf("cannot open /proc/stb/video/aspect\n");
 		return;
 	}
-	switch(ratio) {
-		case 0:
-			write(fd, any, strlen(any));
-			break;
-		case 1:
-			write(fd, norm, strlen(norm));
-			break;
-		case 2:
-		case 3:
-			write(fd, wide, strlen(wide));
-			break;
-	}	
+	write(fd, aspect[ratio], strlen(aspect[ratio]));
 	close(fd);
+
+	if((fd = open("/proc/stb/video/policy", O_WRONLY)) < 0) {
+		printf("cannot open /proc/stb/video/policy\n");
+		return;
+	}
+	write(fd, policy[ratio], strlen(policy[ratio]));
+	close(fd);
+
 }
 
 void eAVSwitch::setVideomode(int mode)
