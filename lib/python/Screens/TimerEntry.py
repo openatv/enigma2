@@ -40,6 +40,7 @@ class TimerEntry(Screen):
             config.timerentry = ConfigSubsection()
 
             config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, 0, ("once", "repeated"))
+            config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, timer.description, (configText.extendableSize,))
             config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, timer.begin, ("%d.%B %Y", 86400))
             config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(timer.begin))), int(strftime("%M", localtime(timer.begin)))], configsequencearg.get("CLOCK"))
             #config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configDateTime, timer.begin, ("%H:%M", 60))
@@ -50,6 +51,7 @@ class TimerEntry(Screen):
 
     def createSetup(self):
         self.list = []
+        self.list.append(getConfigListEntry("Description", config.timerentry.description))
         self.list.append(getConfigListEntry("TimerType", config.timerentry.type))
         
         if (config.timerentry.type.value == 0):

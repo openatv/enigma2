@@ -265,6 +265,53 @@ class configSequence:
 			# (this code is heavily ink optimized!)
 		return ("mtext"[1-selected:], value, [mPos])
 
+class configText:
+	# used as first parameter
+	# is the text of a fixed size or is the user able to extend the length of the text
+	extendableSize = 1
+	fixedSize = 2
+
+	def __init__(self, parent):
+		self.parent = parent
+		self.markedPos = 0
+		self.mode = self.parent.vals[0]
+
+	def checkValues(self):
+		if (self.markedPos < 0):
+			self.markedPos = 0
+		if (self.markedPos >= len(self.parent.value)):
+			self.markedPos = len(self.parent.value) - 1
+			
+	def cancel(self):
+		self.parent.reload()
+
+	def save(self):
+		self.parent.save()
+
+	def handleKey(self, key):
+		#this will no change anything on the value itself
+		#so we can handle it here in gui element
+		if key == config.key["prevElement"]:
+			self.markedPos -= 1
+		if key == config.key["nextElement"]:
+			self.markedPos += 1
+			if (self.mode == self.extendableSize):
+				if (self.markedPos >= len(self.parent.value)):
+					self.parent.value = self.parent.value.ljust(len(self.parent.value) + 1)
+			
+		
+		if key >= config.key["0"] and key <= config.key["9"]:
+			number = 9 - config.key["9"] + key
+
+			self.parent.value = self.parent.value[0:self.markedPos] + str(number) + self.parent.value[self.markedPos + 1:]
+		
+		self.checkValues()			
+		
+		self.parent.change()	
+
+	def __call__(self, selected):			#needed by configlist
+		return ("mtext"[1-selected:], str(self.parent.value), [self.markedPos])
+		
 class configValue:
 	def __init__(self, obj):
 		self.obj = obj
@@ -342,11 +389,13 @@ class configElement:
 
 	def datafromFile(self, control, data):
 		if control == ConfigSlider:
-			return int(data);
+			return int(data)
 		elif control == configSelection:
-			return int(data);
+			return int(data)
 		elif control == configDateTime:
-			return int(data);
+			return int(data)
+		elif control == configText:
+			return str(data)
 		elif control == configSequence:
 			list = [ ]
 			part = data.split(self.vals[0])
@@ -360,11 +409,14 @@ class configElement:
 
 	def datatoFile(self, control, data):
 		if control == ConfigSlider:
-			return str(data);
+			return str(data)
 		elif control == configSelection:
-			return str(data);
+			return str(data)
 		elif control == configDateTime:
-			return str(data);
+			return str(data)
+		elif control == configText:
+			return str(data.strip())
+
 		elif control == configSequence:
 			value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
 #			just in case you don't understand the above, here an equivalent:
