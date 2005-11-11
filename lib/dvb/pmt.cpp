@@ -279,7 +279,7 @@ void eDVBCAService::buildCAPMT()
 
 		while( i != ptr->getSections().end() )
 		{
-			eDebug("append");
+//			eDebug("append");
 			capmt.append(*i++);
 		}
 
@@ -362,11 +362,11 @@ void eDVBCAService::sendCAPMT()
 			case 0xFFFFFFFF:
 				++m_sendstate;
 				m_retryTimer.start(0,true);
-				eDebug("[eDVBCAHandler] send failed .. immediate retry");
+//				eDebug("[eDVBCAHandler] send failed .. immediate retry");
 				break;
 			default:
 				m_retryTimer.start(5000,true);
-				eDebug("[eDVBCAHandler] send failed .. retry in 5 sec");
+//				eDebug("[eDVBCAHandler] send failed .. retry in 5 sec");
 				break;
 		}
 		++m_sendstate;
