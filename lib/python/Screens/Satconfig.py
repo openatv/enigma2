@@ -9,12 +9,11 @@ from Components.config import getConfigListEntry
 
 class NimSetup(Screen):
 	def createSimpleSetup(self, nim, list, mode):
-
 		if mode == 0:			#single Sat
 			list.append(getConfigListEntry("Satellite", config.Nims[nim.slotid].diseqcA))
 		else:							# > 1 Sats
 			list.append(getConfigListEntry("Port A", config.Nims[nim.slotid].diseqcA))
-		
+
 		if mode >= 1:			# > 1 Sats
 			list.append(getConfigListEntry("Port B", config.Nims[nim.slotid].diseqcB))
 			if mode >= 3:		# > 2 Sats
@@ -78,7 +77,7 @@ class NimSetup(Screen):
 	def __init__(self, session, nim):
 		Screen.__init__(self, session)
 		self.nim = nim
-
+		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySave,
