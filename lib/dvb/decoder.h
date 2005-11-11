@@ -19,6 +19,8 @@ public:
 	void stopPid();
 #endif
 	void flush();
+	void freeze();
+	void unfreeze();
 	virtual ~eDVBAudio();
 };
 

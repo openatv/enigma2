@@ -98,6 +98,18 @@ void eDVBAudio::flush()
 	if (::ioctl(m_fd, AUDIO_CLEAR_BUFFER) < 0)
 		eDebug("audio: AUDIO_CLEAR_BUFFER: %m");
 }
+
+void eDVBAudio::freeze()
+{
+	if (::ioctl(m_fd, AUDIO_PAUSE) < 0)
+		eDebug("video: AUDIO_PAUSE: %m");
+}
+	
+void eDVBAudio::unfreeze()
+{
+	if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
+		eDebug("video: AUDIO_CONTINUE: %m");
+}
 	
 eDVBAudio::~eDVBAudio()
 {
@@ -421,8 +433,10 @@ RESULT eTSMPEGDecoder::freeze(int cont)
 {
 	if (m_video)
 		m_video->freeze();
-	else
-		return -1;
+
+	if (m_audio)
+		m_audio->freeze();
+	
 	return 0;
 }
 
@@ -430,8 +444,10 @@ RESULT eTSMPEGDecoder::unfreeze()
 {
 	if (m_video)
 		m_video->unfreeze();
-	else
-		return -1;
+
+	if (m_audio)
+		m_audio->unfreeze();
+	
 	return 0;
 }
 
