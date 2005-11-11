@@ -183,6 +183,18 @@ void eDVBVideo::flush()
 		eDebug("video: VIDEO_CLEAR_BUFFER: %m");
 }
 	
+void eDVBVideo::freeze()
+{
+	if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
+		eDebug("video: VIDEO_FREEZE: %m");
+}
+	
+void eDVBVideo::unfreeze()
+{
+	if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
+		eDebug("video: VIDEO_CONTINUE: %m");
+}
+	
 eDVBVideo::~eDVBVideo()
 {
 	if (m_fd >= 0)
@@ -407,12 +419,20 @@ RESULT eTSMPEGDecoder::start()
 
 RESULT eTSMPEGDecoder::freeze(int cont)
 {
-	return -1;
+	if (m_video)
+		m_video->freeze();
+	else
+		return -1;
+	return 0;
 }
 
 RESULT eTSMPEGDecoder::unfreeze()
 {
-	return -1;
+	if (m_video)
+		m_video->unfreeze();
+	else
+		return -1;
+	return 0;
 }
 
 RESULT eTSMPEGDecoder::setSinglePictureMode(int when)

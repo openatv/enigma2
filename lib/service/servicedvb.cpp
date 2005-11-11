@@ -365,7 +365,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service), m_service_handler(0)
+	m_reference(ref), m_dvb_service(service), m_service_handler(0), m_is_paused(0)
 {
 	m_is_pvr = !ref.path.empty();
 	
@@ -518,7 +518,12 @@ RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &ev
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
-		// not yet possible, maybe later...
+	if (m_is_pvr)
+	{
+		ptr = this;
+		return 0;
+	}
+
 	ptr = 0;
 	return -1;
 }
@@ -546,6 +551,26 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 	}
 	
 	return pvr_channel->getLength(len);
+}
+
+RESULT eDVBServicePlay::pause()
+{
+	if (!m_is_paused && m_decoder)
+	{
+		m_is_paused = 1;
+		return m_decoder->freeze(0);
+	} else
+		return -1;
+}
+
+RESULT eDVBServicePlay::unpause()
+{
+	if (m_is_paused && m_decoder)
+	{
+		m_is_paused = 0;
+		return m_decoder->unfreeze();
+	} else
+		return -1;
 }
 
 RESULT eDVBServicePlay::seekTo(pts_t to)
