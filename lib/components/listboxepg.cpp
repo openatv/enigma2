@@ -29,12 +29,16 @@ void eListboxEPGContent::setRoot(const eServiceReference &root)
 	}
 }
 
-void eListboxEPGContent::getCurrent(ePtr<eServiceEvent>& evt)
+RESULT eListboxEPGContent::getCurrent(ePtr<eServiceEvent> &evt)
 {
 	if (cursorValid())
+	{
 		evt = *m_cursor;
+		return 0;
+	}
 	else
 		evt = 0;
+	return -1;
 }
 
 void eListboxEPGContent::setElementPosition(int element, eRect where)
@@ -151,10 +155,10 @@ void eListboxEPGContent::setSize(const eSize &size)
 	eSize s = m_itemsize;
 	s.setWidth(size.width()/20*5);
 	m_element_position[celBeginTime] = eRect(ePoint(0, 0), s);
-	m_element_font[celBeginTime] = new gFont("Arial", 20);
+	m_element_font[celBeginTime] = new gFont("Arial", 22);
 	s.setWidth(size.width()/20*15);
 	m_element_position[celTitle] = eRect(ePoint(size.width()/20*5, 0), s);
-	m_element_font[celTitle] = new gFont("Arial", 20);
+	m_element_font[celTitle] = new gFont("Arial", 22);
 }
 
 void eListboxEPGContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -178,13 +182,7 @@ void eListboxEPGContent::paint(gPainter &painter, eWindowStyle &style, const ePo
 			{
 			case celBeginTime:
 			{
-				tm t;
-				localtime_r(&(*m_cursor)->m_begin, &t);
-				char tmp[13];
-				snprintf(tmp, 13, "%02d.%02d, %02d:%02d",
-					t.tm_mday, t.tm_mon+1,
-					t.tm_hour, t.tm_min);
-				text=tmp;
+				text=(*m_cursor)->getBeginTimeString();
 				break;
 			}
 			case celTitle:
