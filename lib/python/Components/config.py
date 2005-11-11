@@ -1,4 +1,5 @@
 from time import *
+from Tools.NumericalTextInput import *
 
 class configFile:
 	def __init__(self):
@@ -275,6 +276,7 @@ class configText:
 		self.parent = parent
 		self.markedPos = 0
 		self.mode = self.parent.vals[0]
+		self.textInput = NumericalTextInput(self.nextEntry)
 
 	def checkValues(self):
 		if (self.markedPos < 0):
@@ -287,6 +289,10 @@ class configText:
 
 	def save(self):
 		self.parent.save()
+		
+	def nextEntry(self):
+		print "Next entry"
+		self.handleKey(config.key["nextElement"])
 
 	def handleKey(self, key):
 		#this will no change anything on the value itself
@@ -298,12 +304,11 @@ class configText:
 			if (self.mode == self.extendableSize):
 				if (self.markedPos >= len(self.parent.value)):
 					self.parent.value = self.parent.value.ljust(len(self.parent.value) + 1)
-			
-		
+	
 		if key >= config.key["0"] and key <= config.key["9"]:
 			number = 9 - config.key["9"] + key
 
-			self.parent.value = self.parent.value[0:self.markedPos] + str(number) + self.parent.value[self.markedPos + 1:]
+			self.parent.value = self.parent.value[0:self.markedPos] + str(self.textInput.getKey(number)) + self.parent.value[self.markedPos + 1:]
 		
 		self.checkValues()			
 		
