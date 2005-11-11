@@ -18,6 +18,13 @@ from Tools import XMLTools
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+def tryOpen(filename):
+	try:
+		procFile = open(filename)
+	except IOError:
+		return ""
+	return procFile
+
 class SecConfigure:
 	def addLNBSimple(self, slotid, orbpos, toneburstmode, diseqcmode, diseqcpos):
 		#simple defaults
@@ -122,6 +129,30 @@ class NimManager:
 
 	def getNimType(self, slotID):
 		#FIXME get it from /proc
+		nimfile = tryOpen("/proc/bus/nim_sockets")
+
+		if nimfile == "":
+			return self.nimType["empty/unknown"]
+
+		while 1:		
+			line = nimfile.readline()
+			if line == "":
+				break
+			if line.startswith("NIM Socket"):
+				parts = line.strip().split(" ")
+				id = int(parts[2][:1])
+				if id == slotID:
+					line = nimfile.readline()
+					if line == "":
+						break
+					if line.startswith("   Type:"):
+						nimfile.close()
+						return self.nimType["DVB-S"]
+					else:
+						break	
+		nimfile.close()
+		return self.nimType["empty/unknown"]
+		
 		if slotID == 0:
 			return self.nimType["DVB-S"]
 		elif slotID == 1:
