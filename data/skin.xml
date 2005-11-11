@@ -147,15 +147,15 @@
 			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
 		</screen>
  		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
-			<widget name="list" position="0,50" size="560,320" />
+			<widget name="list" position="10,50" size="540,320" />
 <!--			<widget name="okbutton" position="340,50" size="140,30" />-->
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
 		</screen>
-		<screen name="EPGSelection" position="90,100" size="560,400" title="EPG Selection">
-			<widget name="list" position="0,0" size="560,400" />
+		<screen name="EPGSelection" position="90,100" size="560,415" title="EPG Selection">
+			<widget name="list" position="10,5" size="550,400" />
 		</screen>
 		<screen name="EventView" position="100,100" size="520,380" title="Eventview">
 			<widget name="epg_description" position="10,5" size="480,335" font="Arial;22" />
