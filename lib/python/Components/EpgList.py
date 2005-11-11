@@ -9,9 +9,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l = eListboxEPGContent()
 
 	def getCurrent(self):
-		r = eServiceEventPtr()
-		self.l.getCurrent(r)
-		return r
+		evt = self.l.getCurrent()
+		return evt
 
 	def moveUp(self):
 		self.instance.moveSelection(self.instance.moveUp)
