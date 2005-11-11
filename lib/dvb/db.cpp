@@ -31,10 +31,12 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	if ( ref.name.length() )
+	if (!ref.name.empty())
 		name = ref.name;
-	else
+	else if (!m_service_name.empty())
 		name = m_service_name;
+	else
+		name = "(...)";
 	return 0;
 }
 
@@ -155,8 +157,6 @@ void eDVBDB::load()
 				sat.fec = fec;
 				sat.orbital_position = orbital_position;
 				sat.inversion = inversion;
-				// ...
-//				t.setSatellite(frequency, symbol_rate, polarisation, fec, sat, inversion);
 				feparm->setDVBS(sat);
 			} else if (line[1]=='t')
 			{
@@ -221,7 +221,13 @@ void eDVBDB::load()
 		s->m_service_name = line;
 		s->m_service_name_sort = removeDVBChars(line);
 		makeUpper(s->m_service_name_sort);
-
+		while ((!s->m_service_name_sort.empty()) && s->m_service_name_sort[0] == ' ')
+			s->m_service_name_sort.erase(0, 1);
+		
+			/* put unnamed services at the end, not at the beginning. */
+		if (s->m_service_name_sort.empty())
+			s->m_service_name_sort = "\xFF";
+		
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
