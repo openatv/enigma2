@@ -595,13 +595,13 @@ std::string removeDVBChars(const std::string &s)
 	
 	int len = s.length();
 	
-	for(int i = 0; i < len-1; i++)
+	for(int i = 0; i < len; i++)
 	{
 		unsigned char c1 = s[i];
 		unsigned int c;
 		
 			/* UTF8? decode (but only simple) */
-		if(c1 > 0x80)
+		if((c1 > 0x80) && (i < len-1))
 		{
 			unsigned char c2 = s[i + 1];
 			c = ((c1&0x3F)<<6) + (c2&0x3F);
