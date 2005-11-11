@@ -132,7 +132,14 @@ class NimManager:
 		nimfile = tryOpen("/proc/bus/nim_sockets")
 
 		if nimfile == "":
-			return self.nimType["empty/unknown"]
+			# FIXME: remove this in the final version
+			# check if we have a device for 7020 comp?atibility reasons
+			try:
+				open("/dev/dvb/card0/frontend" + str(slotID))
+				return self.nimType["DVB-S"]
+			except IOError:
+				return self.nimType["empty/unknown"]
+
 
 		while 1:		
 			line = nimfile.readline()
