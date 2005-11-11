@@ -115,7 +115,10 @@ class InfoBar(Screen):
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal,
-				"showEPGList": self.showEPGList
+				"showEPGList": self.showEPGList,
+				
+				"pauseService": self.pauseService,
+				"unPauseService": self.unPauseService,
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -240,7 +243,7 @@ class InfoBar(Screen):
 			pass
 		
 		# fix me, description. 
-		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 30, serviceref, epg, "instant record")
+		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600, serviceref, epg, "instant record")
 
 	def recordQuestionCallback(self, answer):
 		if answer == False:
@@ -259,3 +262,9 @@ class InfoBar(Screen):
 
 	def showMovies(self):
 		self.session.open(MovieSelection)
+
+	def pauseService(self):
+		self.session.nav.pause(1)
+		
+	def unPauseService(self):
+		self.session.nav.pause(0)

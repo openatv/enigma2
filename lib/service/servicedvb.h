@@ -41,9 +41,33 @@ private:
 	ePtr<iDVBChannelListQuery> m_query;
 };
 
-class eDVBServicePlay: public iPlayableService, iSeekableService, public Object, public iServiceInformation
+class eDVBServicePlay: public iPlayableService, public iPauseableService, public iSeekableService, public Object, public iServiceInformation
 {
 DECLARE_REF(eDVBServicePlay);
+public:
+	virtual ~eDVBServicePlay();
+
+		// iPlayableService
+	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT start();
+	RESULT stop();
+	RESULT seek(ePtr<iSeekableService> &ptr);
+	RESULT pause(ePtr<iPauseableService> &ptr);
+	RESULT info(ePtr<iServiceInformation> &ptr);
+	
+		// iPauseableService
+	RESULT pause();
+	RESULT unpause();
+	
+		// iSeekableService
+	RESULT getLength(pts_t &len);
+	RESULT seekTo(pts_t to);
+	RESULT getPlayPosition(pts_t &pos);
+
+		// iServiceInformation
+	RESULT getName(std::string &name);
+	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
+
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
@@ -62,26 +86,7 @@ private:
 	void serviceEvent(int event);
 	Signal2<void,iPlayableService*,int> m_event;
 	
-	int m_is_pvr;
-public:
-	virtual ~eDVBServicePlay();
-
-		// iPlayableService
-	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
-	RESULT start();
-	RESULT stop();
-	RESULT seek(ePtr<iSeekableService> &ptr);
-	RESULT pause(ePtr<iPauseableService> &ptr);
-	RESULT info(ePtr<iServiceInformation> &ptr);
-	
-		// iSeekableService
-	RESULT getLength(pts_t &len);
-	RESULT seekTo(pts_t to);
-	RESULT getPlayPosition(pts_t &pos);
-
-		// iServiceInformation
-	RESULT getName(std::string &name);
-	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
+	int m_is_pvr, m_is_paused;
 };
 
 #endif
