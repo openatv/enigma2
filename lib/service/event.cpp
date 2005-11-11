@@ -78,6 +78,15 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 					m_extended_description += convertDVBUTF8(eed->getText());
 					retval=1;
 				}
+				const ExtendedEventList *itemlist = eed->getItems();
+				const ExtendedEventConstIterator it = itemlist->begin();
+				int num=0;
+				while(it != itemlist->end())
+				{
+					eDebug("%d %s : %s", ++num,
+						convertDVBUTF8((*it)->getItem()).c_str(),
+						convertDVBUTF8((*it)->getItemDescription()).c_str());
+				}
 				// TODO handling for extended event items? ( producer... )
 				break;
 			}
@@ -92,7 +101,7 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 {
 	uint16_t stime_mjd = evt->getStartTimeMjd();
 	uint32_t stime_bcd = evt->getStartTimeBcd();
-	uint16_t duration = evt->getDuration();
+	uint32_t duration = evt->getDuration();
 	m_begin = parseDVBtime(
 		stime_mjd >> 8,
 		stime_mjd&0xFF,
@@ -100,7 +109,7 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 		(stime_bcd >> 8)&0xFF,
 		stime_bcd & 0xFF
 	);
-	m_duration = ((duration & 0xFF) + (duration >> 8) & 0xFF) * 24 * 60;
+	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
 	std::string country="de_DE";  // TODO use local data here
 	for (int i=0; i < MAX_LANG; i++)
 		if (country==ISOtbl[i][0])
@@ -111,6 +120,17 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 	if (loadLanguage(evt,std::string()))
 		return 0;
 	return 0;
+}
+
+std::string eServiceEvent::getBeginTimeString()
+{
+	tm t;
+	localtime_r(&m_begin, &t);
+	char tmp[13];
+	snprintf(tmp, 13, "%02d.%02d, %02d:%02d",
+		t.tm_mday, t.tm_mon+1,
+		t.tm_hour, t.tm_min);
+	return std::string(tmp, 12);
 }
 
 DEFINE_REF(eDebugClass);
