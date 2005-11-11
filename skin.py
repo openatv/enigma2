@@ -80,6 +80,14 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			desktop.makeCompatiblePixmap(ptr)
 			guiObject.setPixmap(ptr)
 			# guiObject.setPixmapFromFile(value)
+		elif attrib == "orientation": # used by eSlider
+			try:
+				guiObject.setOrientation(
+					{ "orVertical": guiObject.orVertical,
+						"orHorizontal": guiObject.orHorizontal
+					}[value])
+			except KeyError:
+				print "oprientation must be either orVertical or orHorizontal!"
 		elif attrib == "valign":
 			try:
 				guiObject.setVAlign(
