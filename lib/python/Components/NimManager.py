@@ -124,6 +124,8 @@ class NimManager:
 		#FIXME get it from /proc
 		if slotID == 0:
 			return self.nimType["DVB-S"]
+		elif slotID == 1:
+			return self.nimType["DVB-S"]
 		else:
 			return self.nimType["empty/unknown"]
 
@@ -195,9 +197,10 @@ class NimManager:
 		#print "nimDiseqcModeChanged set to " + str(mode)
 		pass
 	def nimPortAChanged(self, slotid, val):
-		#print "nimDiseqcA set to " + str(val)
+		#print "nimDiseqcA set to " + str(slotid) + " val:" + str(val)
 		pass
 	def nimPortBChanged(self, slotid, val):
+		#print "nimDiseqcA set to " + str(slotid) + " val:" + str(val)
 		#print "nimDiseqcB set to " + str(val)
 		pass
 	def nimPortCChanged(self, slotid, val):
@@ -209,8 +212,10 @@ class NimManager:
 
 
 def InitNimManager(nimmgr):
-	config.Nims = [ConfigSubsection()] * nimmgr.nimCount
-
+	config.Nims = []
+	for x in range(nimmgr.nimCount):
+		config.Nims.append(ConfigSubsection())
+		
 	def nimConfigModeChanged(slotid, configElement):
 		nimmgr.nimConfigModeChanged(slotid, configElement.value)
 	def nimDiseqcModeChanged(slotid, configElement):
@@ -243,13 +248,13 @@ def InitNimManager(nimmgr):
 			#perhaps the instance of the slot is more useful?
 			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
 			nim.diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
-			nim.diseqcA.addNotifier(boundFunction(nimPortAChanged,x))
+			nim.diseqcA.addNotifier(boundFunction(nimPortAChanged,int(x)))
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
 		else:
 			print "pls add support for this frontend type!"		
-			
+
 	nimmgr.sec = SecConfigure(nimmgr)
 
 nimmanager = NimManager()
