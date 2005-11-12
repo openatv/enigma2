@@ -298,13 +298,17 @@ class configText:
 		#this will no change anything on the value itself
 		#so we can handle it here in gui element
 		if key == config.key["prevElement"]:
+			self.textInput.nextKey()
 			self.markedPos -= 1
+
 		if key == config.key["nextElement"]:
+			self.textInput.nextKey()
 			self.markedPos += 1
 			if (self.mode == self.extendableSize):
 				if (self.markedPos >= len(self.parent.value)):
 					self.parent.value = self.parent.value.ljust(len(self.parent.value) + 1)
-	
+			
+				
 		if key >= config.key["0"] and key <= config.key["9"]:
 			number = 9 - config.key["9"] + key
 
