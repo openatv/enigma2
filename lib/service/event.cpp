@@ -79,15 +79,12 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 					retval=1;
 				}
 				const ExtendedEventList *itemlist = eed->getItems();
-				const ExtendedEventConstIterator it = itemlist->begin();
-				int num=0;
-				while(it != itemlist->end())
+				for (ExtendedEventConstIterator it = itemlist->begin(); it != itemlist->end(); ++it)
 				{
-					eDebug("%d %s : %s", ++num,
-						convertDVBUTF8((*it)->getItem()).c_str(),
-						convertDVBUTF8((*it)->getItemDescription()).c_str());
+					m_extended_description += convertDVBUTF8((*it)->getItemDescription());
+					m_extended_description += ' ';
+					m_extended_description += convertDVBUTF8((*it)->getItem());
 				}
-				// TODO handling for extended event items? ( producer... )
 				break;
 			}
 			default:
