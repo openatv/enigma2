@@ -37,7 +37,6 @@ class EPGSelection(Screen):
 	def eventSelected(self):
 		event = self["list"].getCurrent()
 		self.session.open(EventView, event, self.eventViewCallback)
-#		self.close()
 	
 	def setRoot(self, root):
 		self["list"].setRoot(root)
