@@ -6,6 +6,9 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.TextInput import TextInput
 from TimerEntry import TimerEntry
+from RecordTimer import RecordTimerEntry
+from time import *
+from ServiceReference import ServiceReference
 
 class TimerEdit(Screen):
 	def __init__(self, session, entry):
@@ -81,7 +84,36 @@ class TimerEditList(Screen):
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
 		
 	def removeTimer(self):
-		pass
+		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
 	
 	def addTimer(self):
-		pass
+		begin = time()
+		end = time() + 60
+		
+		epg = None
+		try:
+			service = self.session.nav.getCurrentService()
+			info = service.info()
+			ev = info.getEvent(0)
+			epg = ev
+		except:
+			pass
+		
+		if (epg == None):
+			description = "unknown event"
+		else:
+			description = ev.getEventName()
+			# FIXME we need a timestamp here:
+			begin = ev.getBeginTime()
+			
+			print begin
+			print ev.getDuration()
+			end = begin + ev.getDuration()
+
+
+		# FIXME only works if already playing a service
+		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
+		
+		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		self.session.open(TimerEntry, newEntry)
+		
