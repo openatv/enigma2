@@ -9,50 +9,8 @@ from TimerEntry import TimerEntry
 from RecordTimer import RecordTimerEntry
 from time import *
 from ServiceReference import ServiceReference
+from Components.config import *
 
-class TimerEdit(Screen):
-	def __init__(self, session, entry):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["OkCancelActions"], 
-			{
-				"ok": self.apply,
-				"cancel": self.close
-			})
-		
-		self["shortcuts"] = ActionMap(["ShortcutActions"],
-			{
-				"red": self.beginFocus,
-				"yellow": self.endFocus,
-				"green": self.descFocus
-			})
-		
-		self.entry = entry
-		# begin, end, description, service
-		self["begin"] = TimeInput()
-		self["end"] = TimeInput()
-		
-		self["lbegin"] = Label("Begin")
-		self["lend"] = Label("End")
-		
-		self["description"] = TextInput()
-		self["apply"] = Button("Apply")
-		self["service"] = Button()
-		
-		self["description"].setText(entry.description);
-	
-	def beginFocus(self):
-		self.setFocus(self["begin"])
-	
-	def endFocus(self):
-		self.setFocus(self["end"])
-	
-	def descFocus(self):
-		self.setFocus(self["description"])
-	
-	def apply(self):
-		print "applied!"
-	
 class TimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -76,17 +34,18 @@ class TimerEditList(Screen):
 				"ok": self.openEdit,
 				"cancel": self.close,
 				"red": self.removeTimer,
-				"green": self.addTimer
+				"green": self.addCurrentTimer
 			})
 
 	def openEdit(self):
-		self.session.open(TimerEntry, self["timerlist"].getCurrent()[0])
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
 		
 	def removeTimer(self):
+		# FIXME doesn't work...
 		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
 	
-	def addTimer(self):
+	def addCurrentTimer(self):
 		begin = time()
 		end = time() + 60
 		
@@ -114,6 +73,20 @@ class TimerEditList(Screen):
 		# FIXME only works if already playing a service
 		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
 		
-		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
-		self.session.open(TimerEntry, newEntry)
+		self.addTimer(begin, end, serviceref, epg, description)
 		
+	def addTimer(self, begin, end, serviceref, epg, description):
+		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+		
+	def finishedEdit(self, answer):
+		if (answer[0]):
+			print "Edited timer"
+		else:
+			print "Timeredit aborted"
+
+	def finishedAdd(self, answer):
+		if (answer[0]):
+			print "Added timer"
+		else:
+			print "Timeredit aborted"		

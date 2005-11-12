@@ -5,12 +5,14 @@ from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from time import *
+from datetime import *
 
 class TimerEntry(Screen):
     def __init__(self, session, timer):
         Screen.__init__(self, session)
-        
-        self.createConfig(timer)
+        self.timer = timer;
+                
+        self.createConfig()
         
         self["actions"] = NumberActionMap(["SetupActions"],
         {
@@ -34,21 +36,19 @@ class TimerEntry(Screen):
         self["config"] = ConfigList(self.list)
         self.createSetup()
 
-        self["introduction"] = Label("Press OK to start the scan")
-
-    def createConfig(self, timer):
+    def createConfig(self):
             config.timerentry = ConfigSubsection()
 
             config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, 0, ("once", "repeated"))
-            config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, timer.description, (configText.extendableSize,))
+            config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize,))
 
             config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, 0, ("daily", "weekly", "Mon-Fri", "user-defined"))
 
-            config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, timer.begin, ("%d.%B %Y", 86400))
-            config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(timer.begin))), int(strftime("%M", localtime(timer.begin)))], configsequencearg.get("CLOCK"))
+            config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, ("%d.%B %Y", 86400))
+            config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(self.timer.begin))), int(strftime("%M", localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
 
-            config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, timer.end, ("%d.%B %Y", 86400))
-            config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(timer.end))), int(strftime("%M", localtime(timer.end)))], configsequencearg.get("CLOCK"))
+            config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, ("%d.%B %Y", 86400))
+            config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(self.timer.end))), int(strftime("%M", localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
             
             config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configDateTime, time(), ("%A", 86400))
             
@@ -61,7 +61,7 @@ class TimerEntry(Screen):
             config.timerentry.sunday = configElement_nonSave("config.timerentry.sunday", configSelection, 0, ("yes", "no"))
             
             # FIXME some service-chooser needed here
-            config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(timer.service_ref.getServiceName())),))
+            config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(self.timer.service_ref.getServiceName())),))
             
     def createSetup(self):
         self.list = []
@@ -123,14 +123,17 @@ class TimerEntry(Screen):
         if (self["config"].getCurrent()[1].parent.enabled == True):
             self["config"].handleKey(config.key[str(number)])
 
-    def keyGo(self):
-        for x in self["config"].list:
-            x[1].save()
-        self.session.openWithCallback(self.keyCancel, ServiceScan)        
+    def getTimestamp(self, date, time):
+        d = localtime(date) # for gettin indexes 0(year), 1(month) and 2(day)
+        dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, time[0], time[1])
+        print dt
+        return int(mktime(dt.timetuple()))
 
-        #self.close()
+    def keyGo(self):        
+        if (config.timerentry.type.value == 0): # once
+            self.timer.begin = self.getTimestamp(config.timerentry.startdate.value, config.timerentry.starttime.value)
+            self.timer.end = self.getTimestamp(config.timerentry.enddate.value, config.timerentry.endtime.value)
+        self.close((True, self.timer))
 
     def keyCancel(self):
-        for x in self["config"].list:
-            x[1].cancel()
-        self.close()
+        self.close((False,))
