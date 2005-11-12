@@ -77,7 +77,7 @@ class configSelection:
 		
 		self.checkValues()			
 
-		self.parent.change()	
+		self.parent.change()
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
@@ -393,7 +393,7 @@ class configElement:
 					tcnt = cnt
 			cnt += 1
 		if tcnt != -1:
-			return tcnt			
+			return tcnt
 		return 0	#prevent bigger then array
 
 	def datafromFile(self, control, data):

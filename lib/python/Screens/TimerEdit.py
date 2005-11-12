@@ -51,6 +51,7 @@ class TimerEditList(Screen):
 		# FIXME doesn't work...
 		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
 		self.fillTimerList()
+		self["timerlist"].l.invalidate()
 	
 	def addCurrentTimer(self):
 		begin = time()
