@@ -120,6 +120,7 @@ void eDVBVolumecontrol::volumeMute()
 {
 	int fd = openMixer();
 #ifdef HAVE_DVB_API_VERSION	
+	printf("ioctl AUDIO_SET_MUTE,1 %d\n",fd);
 	ioctl(fd, AUDIO_SET_MUTE, true);
 #endif
 	closeMixer(fd);
@@ -130,6 +131,7 @@ void eDVBVolumecontrol::volumeUnMute()
 {
 	int fd = openMixer();
 #ifdef HAVE_DVB_API_VERSION
+	printf("ioctl AUDIO_SET_MUTE,0\n");
 	ioctl(fd, AUDIO_SET_MUTE, false);
 #endif
 	closeMixer(fd);
