@@ -1,4 +1,6 @@
 from PerServiceDisplay import *
+from time import strftime
+from time import localtime
 
 from enigma import iServiceInformationPtr, eServiceEventPtr
 
@@ -7,6 +9,8 @@ class EventInfo(PerServiceDisplay):
 	Next = 1
 	Now_Duration = 2
 	Next_Duration = 3
+	Now_StartTime = 4
+	Next_StartTime = 5
 	
 	def __init__(self, navcore, now_or_next):
 		# listen to evUpdatedEventInfo and evStopService
@@ -27,12 +31,14 @@ class EventInfo(PerServiceDisplay):
 			if info is not None: 
 				ev = info.getEvent(self.now_or_next & 1)
 				if ev is not None:
-					if self.now_or_next & 2:
-						self.setText("%d min" % (ev.m_duration / 60))
-					else:
-						self.setText(ev.m_event_name)
+					if (self.Now_Duration <= self.now_or_next <= self.Next_Duration):
+						self.setText("%d min" % (ev.getDuration() / 60))
+					if (self.Now_StartTime <= self.now_or_next <= self.Next_StartTime):
+						self.setText(strftime("%H:%M", localtime(ev.getBeginTime())))
+					if (self.Now <= self.now_or_next <= self.Next):
+						self.setText(ev.getEventName())
 
 	def stopEvent(self):
 		self.setText(
-			("waiting for event data...", "", "--:--",  "--:--")[self.now_or_next]);
+			("waiting for event data...", "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
 
