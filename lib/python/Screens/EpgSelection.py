@@ -5,6 +5,10 @@ from Components.ActionMap import ActionMap
 from Screens.EventView import EventView
 from enigma import eServiceReference, eServiceEventPtr
 from Screens.FixedMenu import FixedMenu
+from RecordTimer import RecordTimerEntry
+from TimerEdit import TimerEditList
+from TimerEntry import TimerEntry
+from ServiceReference import ServiceReference
 
 import xml.dom.minidom
 
@@ -22,6 +26,7 @@ class EPGSelection(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.eventSelected,
+				"timerAdd": self.timerAdd
 			})
 		self["actions"].csel = self
 		self.setRoot(root)
@@ -38,6 +43,33 @@ class EPGSelection(Screen):
 		event = self["list"].getCurrent()
 		self.session.open(EventView, event, self.eventViewCallback)
 	
+	def timerAdd(self):
+		epg = self["list"].getCurrent()
+		
+		if (epg == None):
+			description = "unknown event"
+		else:
+			description = epg.getEventName()
+			# FIXME we need a timestamp here:
+			begin = epg.getBeginTime()
+			
+			print begin
+			print epg.getDuration()
+			end = begin + epg.getDuration()
+
+
+		# FIXME only works if already playing a service
+		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
+		
+		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+	
+	def timerEditFinished(self, answer):
+		if (answer[0]):
+			self.session.nav.RecordTimer.record(answer[1])
+		else:
+			print "Timeredit aborted"	
+			
 	def setRoot(self, root):
 		self["list"].setRoot(root)
 

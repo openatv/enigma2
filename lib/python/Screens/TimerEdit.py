@@ -73,11 +73,10 @@ class TimerEditList(Screen):
 		# FIXME only works if already playing a service
 		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
 		
-		self.addTimer(begin, end, serviceref, epg, description)
+		self.addTimer(RecordTimerEntry(begin, end, serviceref, epg, description))
 		
-	def addTimer(self, begin, end, serviceref, epg, description):
-		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
-		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+	def addTimer(self, timer):
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 		
 	def finishedEdit(self, answer):
 		if (answer[0]):
