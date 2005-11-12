@@ -56,4 +56,6 @@ class TimerList(HTMLComponent, GUIComponent):
 		self.instance.setContent(None)
 		self.instance = None
 
+	def invalidate(self):
+		self.l.invalidate()
 
