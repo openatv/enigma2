@@ -159,13 +159,6 @@ class NimManager:
 						break	
 		nimfile.close()
 		return self.nimType["empty/unknown"]
-		
-		if slotID == 0:
-			return self.nimType["DVB-S"]
-		elif slotID == 1:
-			return self.nimType["DVB-S"]
-		else:
-			return self.nimType["empty/unknown"]
 
 	def getNimName(self, slotID):
 		#FIXME get it from /proc
