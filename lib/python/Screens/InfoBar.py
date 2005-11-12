@@ -15,6 +15,7 @@ from Screens.MessageBox import MessageBox
 from Screens.MovieSelection import MovieSelection
 from Screens.Volume import Volume
 from Screens.Mute import Mute
+from Screens.Standby import Standby
 
 from enigma import *
 
@@ -37,6 +38,8 @@ class NumberZap(Screen):
 		self.Timer.start(3000)		#reset timer
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
+		if len(self.field) >= 4:
+			self.keyOK()
 
 	def __init__(self, session, number):
 		Screen.__init__(self, session)
@@ -221,8 +224,9 @@ class InfoBar(Screen):
 		self.session.open(EPGSelection, self.session.nav.getCurrentlyPlayingServiceReference())
 
 	def quit(self):
-		configfile.save()
-		quitMainloop()
+		self.session.open(Standby)
+		#configfile.save()
+		#quitMainloop()
 	
 	def stopCurrentRecording(self):	
 		print "remove entry"
