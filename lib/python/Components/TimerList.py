@@ -29,11 +29,11 @@ def TimerEntryComponent(timer, processed):
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
 	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "%s, %s" % FuzzyTime(timer.begin)))
 
-	res.append((200, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))	
+	res.append((300, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))	
 	if processed:
-		res.append((200, 30, 200, 20, 1, RT_HALIGN_RIGHT, FuzzyTime(timer.end)[1]))
+		res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, FuzzyTime(timer.end)[1]))
 	else:
-		res.append((200, 30, 200, 20, 1, RT_HALIGN_RIGHT, "done"))
+		res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, "done"))
 	return res
 
 class TimerList(HTMLComponent, GUIComponent):

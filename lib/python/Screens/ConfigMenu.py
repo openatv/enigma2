@@ -13,7 +13,7 @@ class ConfigMenu(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				#"ok": self.okbuttonClick,
+				"ok": self.okbuttonClick,
 				"cancel": self.close
 			})
 
