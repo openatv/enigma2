@@ -2,16 +2,16 @@ from enigma import *
 
 class NumericalTextInput:
     mapping = []
-    mapping.append ("abcABC") # 0
-    mapping.append ("abcABC") # 1
-    mapping.append ("abcABC") # 2
-    mapping.append ("defDEF") # 3
-    mapping.append ("ghiGHI") # 4
-    mapping.append ("jklJKL") # 5
-    mapping.append ("mnoMNO") # 6
-    mapping.append ("pqrsPQRS") # 7
-    mapping.append ("tuvTUV") # 8
-    mapping.append ("wxyzWXYZ") # 9
+    mapping.append (".,?'\"0") # 0
+    mapping.append (" 1") # 1
+    mapping.append ("abc2ABC") # 2
+    mapping.append ("def3DEF") # 3
+    mapping.append ("ghi4GHI") # 4
+    mapping.append ("jkl5JKL") # 5
+    mapping.append ("mno6MNO") # 6
+    mapping.append ("pqrs7PQRS") # 7
+    mapping.append ("tuv8TUV") # 8
+    mapping.append ("wxyz9WXYZ") # 9
 
 
     
