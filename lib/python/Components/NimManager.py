@@ -214,17 +214,19 @@ class NimManager:
 		return list
 	
 	def getSatListForNim(self, slotid):
-		#print "slotid:", slotid
 		list = []
-		#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
-		#print "diseqcA:", config.Nims[slotid].diseqcA.value
-		if (config.Nims[slotid].diseqcMode.value <= 3):
-			list.append(self.satList[config.Nims[slotid].diseqcA.value])
-		if (0 < config.Nims[slotid].diseqcMode.value <= 3):
-			list.append(self.satList[config.Nims[slotid].diseqcB.value])
-		if (config.Nims[slotid].diseqcMode.value == 3):
-			list.append(self.satList[config.Nims[slotid].diseqcC.value])
-			list.append(self.satList[config.Nims[slotid].diseqcD.value])
+		if (self.getNimType(slotid) != self.nimType["empty/unknown"]):
+			#print "slotid:", slotid
+			
+			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
+			#print "diseqcA:", config.Nims[slotid].diseqcA.value
+			if (config.Nims[slotid].diseqcMode.value <= 3):
+				list.append(self.satList[config.Nims[slotid].diseqcA.value])
+			if (0 < config.Nims[slotid].diseqcMode.value <= 3):
+				list.append(self.satList[config.Nims[slotid].diseqcB.value])
+			if (config.Nims[slotid].diseqcMode.value == 3):
+				list.append(self.satList[config.Nims[slotid].diseqcC.value])
+				list.append(self.satList[config.Nims[slotid].diseqcD.value])
 		return list
 
 	#callbacks for c++ config
