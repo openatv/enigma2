@@ -86,12 +86,29 @@ class ScanSetup(Screen):
         
         # multi sat scan
         if (config.scan.type.value == 2):
-            for sat in nimmanager.satList:
-                self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))                
+            # if (norotor)
+            tlist = []
+            SatList = nimmanager.getSatListForNim(config.scan.nims.value)
+
+            for x in SatList:
+                if self.Satexists(tlist, x[1]) == 0:
+                    tlist.append(x[1])
+                    sat = configElement_nonSave(x[1], configSelection, 0, ("Enable", "Disable"))
+                    self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
+            
+            # if (rotor):
+           # for sat in nimmanager.satList:
+            #    self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))                
                 
         self["config"].list = self.list
         self["config"].l.setList(self.list)
         
+    def Satexists(self, tlist, pos):
+        for x in tlist:
+            if x == pos:
+                return 1
+        return 0    
+    
     def newConfig(self):
         print self["config"].getCurrent()
         if self["config"].getCurrent()[0] == "Type of scan":
