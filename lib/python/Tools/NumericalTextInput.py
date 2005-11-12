@@ -2,7 +2,7 @@ from enigma import *
 
 class NumericalTextInput:
     mapping = []
-    mapping.append (".,?'\"0") # 0
+    mapping.append (".,?'\"0-()@/:_") # 0
     mapping.append (" 1") # 1
     mapping.append ("abc2ABC") # 2
     mapping.append ("def3DEF") # 3
@@ -12,9 +12,6 @@ class NumericalTextInput:
     mapping.append ("pqrs7PQRS") # 7
     mapping.append ("tuv8TUV") # 8
     mapping.append ("wxyz9WXYZ") # 9
-
-
-    
                                 
     def __init__(self, nextFunction):
         self.nextFunction = nextFunction
