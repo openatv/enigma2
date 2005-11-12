@@ -21,7 +21,7 @@ public:
 	bool loadLanguage(Event *event, std::string lang);
 	RESULT parseFrom(Event *evt);
 #endif
-	time_t getBeginTime() { return m_begin; }
+	long getBeginTime() { return (long)m_begin; }
 	int getDuration() { return m_duration; }
 	std::string getEventName() { return m_event_name; }
 	std::string getShortDescription() { return m_short_description; }
