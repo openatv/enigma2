@@ -115,9 +115,12 @@
 		<screen name="configTest" position="300,100" size="300,300" title="config menu">
 			<widget name="config" position="10,30" size="420,220" />
 		</screen>
-<!--		<screen name="TimerEditList" position="160,100" size="420,430" title="Timer Editor">-->
-		<screen name="TimerEditList" position="70,100" size="500,400" title="Timer Editor">
-			<widget name="timerlist" position="10,30" size="480,300" />
+		<screen name="TimerEditList" position="70,100" size="560,400" title="Timer Editor">
+			<widget name="timerlist" position="10,50" size="520,300" />
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
 		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />

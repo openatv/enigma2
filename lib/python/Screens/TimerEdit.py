@@ -62,13 +62,26 @@ class TimerEditList(Screen):
 			list.append(TimerEntryComponent(timer, 1))
 		
 		self["timerlist"] = TimerList(list)
+		
+		self["key_red"] = Button("Delete")
+		self["key_green"] = Button("Add")
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions"], 
 			{
 				"ok": self.openEdit,
-				"cancel": self.close
+				"cancel": self.close,
+				"red": self.removeTimer,
+				"green": self.addTimer
 			})
 
 	def openEdit(self):
 		self.session.open(TimerEntry, self["timerlist"].getCurrent()[0])
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
+		
+	def removeTimer(self):
+		pass
+	
+	def addTimer(self):
+		pass
