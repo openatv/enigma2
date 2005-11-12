@@ -16,12 +16,9 @@ class TimerEditList(Screen):
 		Screen.__init__(self, session)
 		
 		list = [ ]
-		for timer in session.nav.RecordTimer.timer_list:
-			list.append(TimerEntryComponent(timer, 0))
-		
-		for timer in session.nav.RecordTimer.processed_timers:
-			list.append(TimerEntryComponent(timer, 1))
-		
+		self.list = list
+		self.fillTimerList()
+
 		self["timerlist"] = TimerList(list)
 		
 		self["key_red"] = Button("Delete")
@@ -37,6 +34,15 @@ class TimerEditList(Screen):
 				"green": self.addCurrentTimer
 			})
 
+	def fillTimerList(self):
+		del self.list[:]
+		
+		for timer in self.session.nav.RecordTimer.timer_list:
+			self.list.append(TimerEntryComponent(timer, 0))
+		
+		for timer in self.session.nav.RecordTimer.processed_timers:
+			self.list.append(TimerEntryComponent(timer, 1))
+
 	def openEdit(self):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
@@ -44,6 +50,7 @@ class TimerEditList(Screen):
 	def removeTimer(self):
 		# FIXME doesn't work...
 		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
+		self.fillTimerList()
 	
 	def addCurrentTimer(self):
 		begin = time()
@@ -81,11 +88,13 @@ class TimerEditList(Screen):
 	def finishedEdit(self, answer):
 		if (answer[0]):
 			print "Edited timer"
+			self.fillTimerList()
 		else:
 			print "Timeredit aborted"
-
+			
 	def finishedAdd(self, answer):
 		if (answer[0]):
 			self.session.nav.RecordTimer.record(answer[1])
+			self.fillTimerList()
 		else:
 			print "Timeredit aborted"		
