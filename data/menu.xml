@@ -18,7 +18,12 @@
 		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
 		<item text="Radio"><code>print "radio mode"</code></item>
 		<item text="Timer"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		<item text="Information"><screen module="About" /></item>
+
+		<menu text="Information">
+			<item text="Service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+			<item text="About..."><screen module="About" /></item>
+		</menu>
+
 		<item text="Games / Plugins"><screen module="PluginBrowser" /></item>
 		<menu text="Setup">
 			<menu text="Service Organising">
