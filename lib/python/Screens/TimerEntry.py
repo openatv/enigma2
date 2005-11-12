@@ -41,14 +41,17 @@ class TimerEntry(Screen):
 
             config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, 0, ("once", "repeated"))
             config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, timer.description, (configText.extendableSize,))
+
             config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, 0, ("daily", "weekly", "Mon-Fri", "user-defined"))
+
             config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, timer.begin, ("%d.%B %Y", 86400))
             config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(timer.begin))), int(strftime("%M", localtime(timer.begin)))], configsequencearg.get("CLOCK"))
-            #config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configDateTime, timer.begin, ("%H:%M", 60))
+
             config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, timer.end, ("%d.%B %Y", 86400))
             config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(timer.end))), int(strftime("%M", localtime(timer.end)))], configsequencearg.get("CLOCK"))
-#            config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configDateTime, timer.end, ("%H:%M", 60))            
+            
             config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configDateTime, time(), ("%A", 86400))
+            
             config.timerentry.monday = configElement_nonSave("config.timerentry.monday", configSelection, 0, ("yes", "no"))
             config.timerentry.tuesday = configElement_nonSave("config.timerentry.tuesday", configSelection, 0, ("yes", "no"))
             config.timerentry.wednesday = configElement_nonSave("config.timerentry.wednesday", configSelection, 0, ("yes", "no"))
@@ -56,6 +59,9 @@ class TimerEntry(Screen):
             config.timerentry.friday = configElement_nonSave("config.timerentry.friday", configSelection, 0, ("yes", "no"))
             config.timerentry.saturday = configElement_nonSave("config.timerentry.saturday", configSelection, 0, ("yes", "no"))
             config.timerentry.sunday = configElement_nonSave("config.timerentry.sunday", configSelection, 0, ("yes", "no"))
+            
+            # FIXME some service-chooser needed here
+            config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(timer.service_ref.getServiceName())),))
             
     def createSetup(self):
         self.list = []
@@ -91,6 +97,8 @@ class TimerEntry(Screen):
         if (config.timerentry.type.value == 0): # once
             self.list.append(getConfigListEntry("EndDate", config.timerentry.enddate))
         self.list.append(getConfigListEntry("EndTime", config.timerentry.endtime))
+        
+        self.list.append(getConfigListEntry("Channel", config.timerentry.service))        
         
         self["config"].list = self.list
         self["config"].l.setList(self.list)
