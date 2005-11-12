@@ -206,10 +206,8 @@ float fontRenderClass::getLineHeight(const gFont& font)
 	}
 	int linegap=current_face->size->metrics.height-(current_face->size->metrics.ascender+current_face->size->metrics.descender);
 	float height=(current_face->size->metrics.ascender+current_face->size->metrics.descender+linegap)/64.0;
-	delete fnt;
 	return height;
 }
-
 
 fontRenderClass::~fontRenderClass()
 {
