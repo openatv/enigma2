@@ -104,6 +104,9 @@
 		<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;bouquets.tv&quot; ORDER BY bouquet" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
 	</map>
+	<map context="EPGSelectActions">
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
 	<map context="EventViewActions">
 		<key id="KEY_UP" mapto="pageUp" flags="m" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="m" />
