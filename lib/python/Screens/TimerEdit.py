@@ -87,6 +87,6 @@ class TimerEditList(Screen):
 
 	def finishedAdd(self, answer):
 		if (answer[0]):
-			print "Added timer"
+			self.session.nav.RecordTimer.record(answer[1])
 		else:
 			print "Timeredit aborted"		
