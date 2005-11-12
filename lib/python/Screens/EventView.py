@@ -1,28 +1,23 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.ProgressBar import ProgressBar
+from Components.ScrollLabel import ScrollLabel
 from enigma import eWidget, eServiceEventPtr, eLabel
 
 class EventView(Screen):
-	def __init__(self, session, Event, callback):
+	def __init__(self, session, Event, callback=None):
 		Screen.__init__(self, session)
-
 		self.cbFunc = callback
-		print self.cbFunc
-
-		self["epg_description"] = Label()
+		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
-		self["scrollbar"] = ProgressBar()
 		self["duration"] = Label()
-
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"scrollUp": self.scrollUp,
-				"scrollDown": self.scrollDown,
+				"pageUp": self.pageUp,
+				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent
 			})
@@ -46,8 +41,8 @@ class EventView(Screen):
 		self["channel"].setText("Unknown Service")
 		self["duration"].setText("%d min"%(event.getDuration()/60))
 
-	def scrollUp(self):
-		print "scrollUp"
-
-	def scrollDown(self):
-		print "scrollDown"
+	def pageUp(self):
+		self["epg_description"].pageUp()
+	
+	def pageDown(self):
+		self["epg_description"].pageDown()

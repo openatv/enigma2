@@ -161,11 +161,10 @@
 			<widget name="list" position="10,5" size="550,400" />
 		</screen>
 		<screen name="EventView" position="100,100" size="520,380" title="Eventview">
-			<widget name="epg_description" position="10,5" size="480,335" font="Arial;22" />
+			<widget name="epg_description" position="10,5" size="500,335" font="Arial;22" />
 			<widget name="datetime" position="10,345" size="130,30" font="Arial;22" />
 			<widget name="duration" position="140,345" size="100,30" font="Arial;22" />
 			<widget name="channel" position="240,345" size="270,30" font="Arial;22" />
-			<widget name="scrollbar" position="490,5" size="20,335" orientation="orVertical" />
 		</screen>
 		<screen name="MovieSelection" position="150,100" size="400,420" title="Select-a-movie">
 			<widget name="list" position="0,50" size="400,300" />
