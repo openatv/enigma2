@@ -131,6 +131,9 @@ class InfoBar(Screen):
 
 		self["ServiceName"] = ServiceName(self.session.nav)
 		
+		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
+		self["Event_Next_StartTime"] = EventInfo(self.session.nav, EventInfo.Next_StartTime)
+				
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
 		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
 
