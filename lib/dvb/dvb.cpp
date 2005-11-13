@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
 
 DEFINE_REF(eDVBRegisteredFrontend);
 DEFINE_REF(eDVBRegisteredDemux);
@@ -638,10 +639,29 @@ RESULT eDVBChannel::seekTo(pts_t &pts)
 
 RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
 {
+			/* when seeking, we have to ensure that all buffers are flushed.
+			   there are basically 3 buffers:
+			   a.) the filepush's internal buffer
+			   b.) the PVR buffer (before demux)
+			   c.) the ratebuffer (after demux)
+			   
+			   it's important to clear them in the correct order, otherwise
+			   the ratebuffer (for example) would immediately refill from
+			   the not-yet-flushed PVR buffer.
+			*/
 	eDebug("eDVBChannel: seekToPosition .. %llx", r);
 	m_pvr_thread->pause();
+
+		/* flush internal filepush buffer */
+	m_pvr_thread->flush();
+
+		/* HACK: flush PVR buffer */
+	::ioctl(m_pvr_fd_dst, 0);
+	
+		/* flush ratebuffers (video, audio) */
 	if (m_decoder_demux)
 		m_decoder_demux->get().flush();
+
 		/* demux will also flush all decoder.. */
 	m_pvr_thread->seek(relative ? SEEK_CUR : SEEK_SET, r);
 	m_pvr_thread->resume();
