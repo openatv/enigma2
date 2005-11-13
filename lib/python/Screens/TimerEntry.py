@@ -63,6 +63,21 @@ class TimerEntry(Screen):
             # FIXME some service-chooser needed here
             config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(self.timer.service_ref.getServiceName())),))
             
+            config.timerentry.startdate.addNotifier(self.checkDate)
+            config.timerentry.enddate.addNotifier(self.checkDate)
+
+    def checkDate(self, configElement):
+        if (configElement.getConfigPath() == "config.timerentry.startdate"):
+            if (config.timerentry.enddate.value < config.timerentry.startdate.value):
+                config.timerentry.enddate.value = config.timerentry.startdate.value
+                config.timerentry.enddate.change()
+                #FIXME invalidate the config-entry... for redrawing purposes - HOW?
+        if (configElement.getConfigPath() == "config.timerentry.enddate"):
+            if (config.timerentry.enddate.value < config.timerentry.startdate.value):
+                config.timerentry.startdate.value = config.timerentry.enddate.value
+                config.timerentry.startdate.change()
+                #FIXME invalidate the config-entry... for redrawing purposes - HOW?
+
     def createSetup(self):
         self.list = []
         self.list.append(getConfigListEntry("Description", config.timerentry.description))
