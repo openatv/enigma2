@@ -66,7 +66,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setMode(self, mode):
 		if mode == self.MODE_NORMAL:
-			self.instance.setItemHeight(20)
+			self.instance.setItemHeight(25)
 			self.l.setVisualMode(eListboxServiceContent.visModeSimple)
 		else:
 			self.instance.setItemHeight(40)
