@@ -71,12 +71,12 @@ class TimerEntry(Screen):
             if (config.timerentry.enddate.value < config.timerentry.startdate.value):
                 config.timerentry.enddate.value = config.timerentry.startdate.value
                 config.timerentry.enddate.change()
-                #FIXME invalidate the config-entry... for redrawing purposes - HOW?
+                self["config"].invalidate(config.timerentry.enddate)
         if (configElement.getConfigPath() == "config.timerentry.enddate"):
             if (config.timerentry.enddate.value < config.timerentry.startdate.value):
                 config.timerentry.startdate.value = config.timerentry.enddate.value
                 config.timerentry.startdate.change()
-                #FIXME invalidate the config-entry... for redrawing purposes - HOW?
+                self["config"].invalidate(config.timerentry.startdate)
 
     def createSetup(self):
         self.list = []
