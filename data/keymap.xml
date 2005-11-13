@@ -54,8 +54,7 @@
 <!--		<key id="r" mapto="instantRecord" flags="m" /> -->
 		<key id="r" mapto="showEPGList" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
-<!--		<key id="KEY_RED" mapto="instantRecord" flags="m" /> -->
-		<key id="KEY_RED" mapto="showEPGList" flags="m" />
+		<key id="KEY_RED" mapto="instantRecord" flags="m" />
 		<key id="1" mapto="zapUp" flags="mr" />
 		<key id="2" mapto="zapDown" flags="mr" />
 		<key id="KEY_M" mapto="mainMenu" flags="mr" />
@@ -94,7 +93,6 @@
 		<key id="p" mapto="bouquet:(provider == PREMIERE) &amp;&amp; (type == 1)" flags="m" />
 		<key id="d" mapto="bouquet:(provider == ARD) &amp;&amp; (type == 1)" flags="m" />
 		<key id="a" mapto="bouquet:" flags="m" />
-		<key id="KEY_C" mapto="contextMenu" flags="m" />
 		<key id="KEY_M" mapto="mark" flags="m" />
 		<key id="KEY_D" mapto="bouquet:(provider == ARD)" flags="m" />
 		<key id="KEY_A" mapto="bouquet:" flags="m" />
@@ -141,5 +139,8 @@
 	</map>
 	<map context="StandbyActions">
 		<key id="KEY_POWER" mapto="power" flags="m" />
+	</map>
+	<map context="ContextMenuActions">
+ 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 	</map>
 </keymap>
