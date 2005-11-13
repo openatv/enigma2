@@ -207,6 +207,8 @@ class iSeekableService: public iObject
 public:
 	virtual RESULT getLength(pts_t &SWIG_OUTPUT)=0;
 	virtual RESULT seekTo(pts_t to)=0;
+	enum { dirForward = +1, dirBackward = -1 };
+	virtual RESULT seekRelative(int direction, pts_t to)=0;
 	virtual RESULT getPlayPosition(pts_t &SWIG_OUTPUT)=0;
 };
 
@@ -289,6 +291,8 @@ public:
 	
 		// TODO: additional stuff, like a conversion interface?
 };
+
+TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
 
 class iServiceHandler: public iObject
 {
