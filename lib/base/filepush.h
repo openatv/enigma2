@@ -13,7 +13,7 @@ public:
 	void start(int sourcefd, int destfd);
 	
 	void pause();
-	void seek(off_t where);
+	void seek(int whence, off_t where);
 	void resume();
 	
 private:
