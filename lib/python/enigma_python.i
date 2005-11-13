@@ -113,6 +113,7 @@ extern PSignal1<void,int> &keyPressedSignal();
 
 
 #define DEBUG
+typedef long time_t;
 %include "typemaps.i"
 %include "stl.i"
 %include <lib/python/swig.h>

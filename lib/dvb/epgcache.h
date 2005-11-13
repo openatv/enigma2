@@ -237,7 +237,7 @@ public:
 	// eventData's are plain entrys out of the cache.. it's not safe to use them after cache unlock
 	// but its faster in use... its not allowed to delete this pointers via delete or free..
 	RESULT lookupEvent(const eServiceReference &service, int event_id, const eventData *&);
-	RESULT lookupEvent(const eServiceReference &service, time_t , const eventData *&);
+	RESULT lookupEvent(const eServiceReference &service, time_t, const eventData *&);
 	RESULT getNextTimeEntry(const eventData *&);
 
 #ifndef SWIG

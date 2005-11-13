@@ -2,13 +2,12 @@
 #define __lib_service_event_h
 
 #ifndef PYTHON
-
 #include <time.h>
 #include <lib/base/object.h>
 #include <string>
 class Event;
-
 #endif
+
 class eServiceEvent: public iObject
 {
 DECLARE_REF(eServiceEvent);
@@ -21,7 +20,7 @@ public:
 	bool loadLanguage(Event *event, std::string lang);
 	RESULT parseFrom(Event *evt);
 #endif
-	long getBeginTime() { return (long)m_begin; }
+	time_t getBeginTime() { return m_begin; }
 	int getDuration() { return m_duration; }
 	std::string getEventName() { return m_event_name; }
 	std::string getShortDescription() { return m_short_description; }
