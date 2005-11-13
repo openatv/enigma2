@@ -66,7 +66,7 @@ RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref
 		return err;
 	}
 
-	const eBouquet *bouquet=0;
+	eBouquet *bouquet=0;
 	if ((err = db->getBouquet(ref, bouquet)) != 0)
 	{
 		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. getBouquet failed!");
@@ -280,10 +280,9 @@ RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 		if (eDVBResourceManager::getInstance(resm) || resm->getChannelList(db))
 			return -1;
 
-			// FIXME!
-		if (db->getBouquet(m_parent, (const eBouquet*&)m_bouquet) != 0)
+		if (db->getBouquet(m_parent, m_bouquet) != 0)
 			return -1;
-		
+
 		res = this;
 		
 		return 0;
@@ -294,24 +293,23 @@ RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 
 RESULT eDVBServiceList::addService(eServiceReference &ref)
 {
-	ASSERT(m_bouquet);
-//	return m_bouquet->addService(ref);
-	return -1;
+	if (!m_bouquet)
+		return -1;
+	return m_bouquet->addService(ref);
 }
 
 RESULT eDVBServiceList::removeService(eServiceReference &ref)
 {
-	ASSERT(m_bouquet);
-//	return m_bouquet->removeService(ref);
-	return -1;
+	if (!m_bouquet)
+		return -1;
+	return m_bouquet->removeService(ref);
 }
 
 RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
 {
-	ASSERT(m_bouquet);
-	
-//	return m_bouquet->moveService(ref, pos);
-	return -1;
+	if (!m_bouquet)
+		return -1;
+	return m_bouquet->moveService(ref, pos);
 }
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)

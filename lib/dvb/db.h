@@ -45,7 +45,7 @@ public:
 
 	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source);
 
-	RESULT getBouquet(const eServiceReference &ref, const eBouquet* &bouquet);
+	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 };
 
 	// we have to add a possibility to invalidate here.

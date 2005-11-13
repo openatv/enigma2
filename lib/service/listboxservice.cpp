@@ -155,7 +155,37 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 	m_current_marked = state;
 
 	if (state != prev && m_listbox)
+	{
 		m_listbox->entryChanged(m_cursor_number);
+		if (!state)
+		{
+			ePtr<iListableService> lst;
+			if (m_service_center->list(m_root, lst))
+				eDebug("no list available!");
+			else
+			{
+				ePtr<iMutableServiceList> list;
+				if (lst->startEdit(list))
+					eDebug("no editable list");
+				else
+				{
+					eServiceReference ref;
+					getCurrent(ref);
+					if(!ref)
+						eDebug("no valid service selected");
+					else
+					{
+						int pos = cursorGet();
+						eDebugNoNewLine("move %s to %d ", ref.toString().c_str(), pos);
+						if (list->moveService(ref, cursorGet()))
+							eDebug("failed");
+						else
+							eDebug("ok");
+					}
+				}
+			}
+		}
+	}
 
 	return 0;
 }

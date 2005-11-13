@@ -19,7 +19,12 @@ struct eBouquet
 {
 	std::string m_bouquet_name;
 	std::string m_path;
-	std::list<eServiceReference> m_services;
+	typedef std::list<eServiceReference> list;
+	list m_services;
+// the following three methods are implemented in db.cpp
+	RESULT addService(const eServiceReference &);
+	RESULT removeService(const eServiceReference &);
+	RESULT moveService(const eServiceReference &, unsigned int);
 };
 
 		// bitte KEINE operator int() definieren, sonst bringt das ganze nix!
@@ -262,7 +267,7 @@ public:
 	virtual RESULT addService(const eServiceReferenceDVB &service, eDVBService *service)=0;
 	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
 
-	virtual RESULT getBouquet(const eServiceReference &ref, const eBouquet* &bouquet)=0;
+	virtual RESULT getBouquet(const eServiceReference &ref,  eBouquet* &bouquet)=0;
 
 	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source)=0;
 };
