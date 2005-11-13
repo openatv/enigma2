@@ -10,6 +10,48 @@
 
 DEFINE_REF(eDVBService);
 
+// the following three methodes are declared in idvb.h
+RESULT eBouquet::addService(const eServiceReference &ref)
+{
+	list::iterator it =
+		std::find(m_services.begin(), m_services.end(), ref);
+	if ( it != m_services.end() )
+		return -1;
+	m_services.push_back(ref);
+	return 0;
+}
+
+RESULT eBouquet::removeService(const eServiceReference &ref)
+{
+	list::iterator it =
+		std::find(m_services.begin(), m_services.end(), ref);
+	if ( it == m_services.end() )
+		return -1;
+	m_services.erase(it);
+	return 0;
+}
+
+RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
+{
+	if ( pos < 0 || pos >= m_services.size() )
+		return -1;
+	list::iterator source=m_services.end();
+	list::iterator dest=m_services.end();
+	for (list::iterator it(m_services.begin()); it != m_services.end(); ++it)
+	{
+		if (dest == m_services.end() && !pos--)
+			dest = it;
+		if (*it == ref)
+			source = it;
+		if (dest != m_services.end() && source != m_services.end())
+			break;
+	}
+	if (dest == m_services.end() || source == m_services.end() || source == dest)
+		return -1;
+	std::iter_swap(source,dest);
+	return 0;
+}
+
 eDVBService::eDVBService()
 {
 }
@@ -507,7 +549,7 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 	return 0;
 }
 
-RESULT eDVBDB::getBouquet(const eServiceReference &ref, const eBouquet* &bouquet)
+RESULT eDVBDB::getBouquet(const eServiceReference &ref, eBouquet* &bouquet)
 {
 	std::string str = ref.path;
 	if (str.empty())
