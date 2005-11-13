@@ -157,8 +157,7 @@ class InfoBar(Screen):
 
 	def powertimer(self):	
 		print "PowerOff - Now!"
-		configfile.save()
-		quitMainloop()
+		self.quit()
 	
 	def powerdown(self):
 		self.powerKeyTimer.start(3000)
@@ -248,10 +247,10 @@ class InfoBar(Screen):
 		else:
 			print 'no epg for service', ref.toString()
 
-	#def quit(self):
-	#	self.session.open(Standby, self)
-		#configfile.save()
-		#quitMainloop()
+	def quit(self):
+		#	self.session.open(Standby, self)
+		configfile.save()
+		quitMainloop()
 	
 	def stopCurrentRecording(self):	
 		print "remove entry"
