@@ -469,6 +469,10 @@ class configElement:
 		self.notifierList = [ ]
 		self.enabled = True
 		self.loadData()		
+		
+	def getConfigPath(self):
+		return self.configPath
+	
 	def addNotifier(self, notifier):
 		self.notifierList.append(notifier);
 		notifier(self);
