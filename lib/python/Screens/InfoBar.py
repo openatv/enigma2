@@ -91,6 +91,9 @@ class InfoBar(Screen):
 		
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
+		
+		self.powerKeyTimer = eTimer()
+		self.powerKeyTimer.timeout.get().append(self.powertimer)
 
 		#self["actions"] = ActionMap( [ "InfobarActions" ], 
 		self["actions"] = NumberActionMap( [ "InfobarActions" ], 
@@ -107,7 +110,9 @@ class InfoBar(Screen):
 				"hide": self.hide,
 				"toggleShow": self.toggleShow,
 				"showMovies": self.showMovies,
-				"quit": self.quit,
+				#"quit": self.quit,
+				"powerdown": self.powerdown,
+				"powerup": self.powerup,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -149,6 +154,18 @@ class InfoBar(Screen):
 		menu = mdom.childNodes[0]
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
 		self.session.open(MainMenu, menu, menu.childNodes)
+
+	def powertimer(self):	
+		print "PowerOff - Now!"
+		configfile.save()
+		quitMainloop()
+	
+	def powerdown(self):
+		self.powerKeyTimer.start(3000)
+
+	def powerup(self):
+		self.powerKeyTimer.stop()
+		self.session.open(Standby, self)
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
@@ -231,8 +248,8 @@ class InfoBar(Screen):
 		else:
 			print 'no epg for service', ref.toString()
 
-	def quit(self):
-		self.session.open(Standby)
+	#def quit(self):
+	#	self.session.open(Standby, self)
 		#configfile.save()
 		#quitMainloop()
 	
@@ -280,3 +297,4 @@ class InfoBar(Screen):
 		
 	def unPauseService(self):
 		self.session.nav.pause(0)
+
