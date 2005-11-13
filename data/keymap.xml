@@ -106,10 +106,10 @@
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 	</map>
 	<map context="EventViewActions">
-		<key id="KEY_UP" mapto="pageUp" flags="m" />
-		<key id="KEY_DOWN" mapto="pageDown" flags="m" />
-		<key id="KEY_LEFT" mapto="prevEvent" flags="m" />
-		<key id="KEY_RIGHT" mapto="nextEvent" flags="m" />
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_LEFT" mapto="prevEvent" flags="mr" />
+		<key id="KEY_RIGHT" mapto="nextEvent" flags="mr" />
 	</map>
 	<map context="OkCancelActions">
 		<key id="\x0a" mapto="ok" flags="m" />
