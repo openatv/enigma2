@@ -1,3 +1,4 @@
+#include <config.h>
 #include <lib/base/filepush.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
@@ -97,9 +98,9 @@ void eFilePushThread::pause()
 	stop();
 }
 
-void eFilePushThread::seek(off_t where)
+void eFilePushThread::seek(int whence, off_t where)
 {
-	::lseek(m_fd_source, where, SEEK_SET);
+	::lseek(m_fd_source, where, whence);
 }
 
 void eFilePushThread::resume()
