@@ -5,13 +5,15 @@ from Components.ActionMap import ActionMap
 from Components.MovieList import MovieList
 from Components.DiskInfo import DiskInfo
 
+from Screens.MessageBox import MessageBox
 from Screens.FixedMenu import FixedMenu
 
-from enigma import eServiceReference
+from enigma import eServiceReference, eServiceCenter
 
 class ChannelContextMenu(FixedMenu):
-	def __init__(self, session, csel):
+	def __init__(self, session, csel, service):
 		self.csel = csel
+		self.service = service
 		
 		menu = [("back", self.close), ("delete...", self.delete)]
 		
@@ -19,8 +21,37 @@ class ChannelContextMenu(FixedMenu):
 		self.skinName = "Menu"
 
 	def delete(self):
-		print "deleting ALL SERVICES! HA HA HA!"
-		pass
+		serviceHandler = eServiceCenter.getInstance()
+		offline = serviceHandler.offlineOperations(self.service)
+		result = False
+		if offline is not None:
+			# simulate first
+			if not offline.deleteFromDisk(1):
+				result = True
+		
+		if result == True:
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, "Do you really want to delete this recording?")
+		else:
+			self.session.openWithCallback(self.close, MessageBox, "You cannot delete this!")
+
+	def deleteConfirmed(self, confirmed):
+		if not confirmed:
+			return self.close()
+			
+		serviceHandler = eServiceCenter.getInstance()
+		offline = serviceHandler.offlineOperations(self.service)
+		result = False
+		if offline is not None:
+			# really delete!
+			if not offline.deleteFromDisk(0):
+				result = True
+		
+		if result == False:
+			self.session.openWithCallback(self.close, MessageBox, "Delete failed!")
+		else:
+			self.csel["list"].reload()
+			self.close()
+		
  
 class MovieSelection(Screen):
 	def __init__(self, session):
@@ -42,9 +73,12 @@ class MovieSelection(Screen):
 			})
 		self["actions"].csel = self
 
+	def getCurrent(self):
+		return self["list"].getCurrent()[0]
+
 	def movieSelected(self):
-		self.session.nav.playService(self["list"].getCurrent()[0])
+		self.session.nav.playService(self.getCurrent())
 		self.close()
 
 	def doContext(self):
-		self.session.open(ChannelContextMenu, self)
+		self.session.open(ChannelContextMenu, self, self.getCurrent())
