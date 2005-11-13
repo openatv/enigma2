@@ -62,6 +62,7 @@ public:
 		// iSeekableService
 	RESULT getLength(pts_t &len);
 	RESULT seekTo(pts_t to);
+	RESULT seekRelative(int direction, pts_t to);
 	RESULT getPlayPosition(pts_t &pos);
 
 		// iServiceInformation

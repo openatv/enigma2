@@ -173,10 +173,9 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 {
 	res.clear();
 	res.push_back(m_ref.path);
+	res.push_back(m_ref.path + ".meta");
 	return 0;
 }
-
-
 
 DEFINE_REF(eServiceFactoryDVB)
 
@@ -227,7 +226,7 @@ RESULT eDVBServiceList::startQuery()
 	
 	ePtr<eDVBChannelQuery> q;
 	
-	if (m_parent.path.size())
+	if (!m_parent.path.empty())
 	{
 		eDVBChannelQuery::compile(q, m_parent.path);
 		if (!q)
@@ -284,8 +283,15 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 
 RESULT eServiceFactoryDVB::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref);
-	return 0;
+	if (ref.path.empty())
+	{
+		ptr = new eDVBServiceRecord((eServiceReferenceDVB&)ref);
+		return 0;
+	} else
+	{
+		ptr = 0;
+		return -1;
+	}
 }
 
 RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
@@ -309,7 +315,7 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 		ptr = new eStaticServiceDVBBouquetInformation;
 		return 0;
 	}
-	else if (ref.path.size())
+	else if (!ref.path.empty())
 	{
 		ptr = new eStaticServiceDVBPVRInformation(ref);
 		return 0;
@@ -327,10 +333,17 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 	}
 }
 
-RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
+RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &ref, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
-	return -1;
+	if (ref.path.empty())
+	{
+		ptr = 0;
+		return -1;
+	} else
+	{
+		ptr = new eDVBPVRServiceOfflineOperations(ref);
+		return 0;
+	}
 }
 
 RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServiceReference &ref)
@@ -576,6 +589,18 @@ RESULT eDVBServicePlay::unpause()
 RESULT eDVBServicePlay::seekTo(pts_t to)
 {
 	return -1;
+}
+
+RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
+{
+	eDebug("eDVBServicePlay::seekRelative: jump %d, %lld", direction, to);
+
+	ePtr<iDVBPVRChannel> pvr_channel;
+	
+	if (m_service_handler.getPVRChannel(pvr_channel))
+		return -1;
+	
+	return pvr_channel->seekToPosition(SEEK_CUR, to);
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
