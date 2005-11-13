@@ -87,7 +87,7 @@ void eListboxServiceContent::setVisualMode(int mode)
 	if (m_visual_mode == visModeSimple)
 	{
 		m_element_position[celServiceName] = eRect(ePoint(0, 0), m_itemsize);
-		m_element_font[celServiceName] = new gFont("Arial", 14);
+		m_element_font[celServiceName] = new gFont("Arial", 23);
 		m_element_position[celServiceNumber] = eRect();
 		m_element_font[celServiceNumber] = 0;
 		m_element_position[celIcon] = eRect();
