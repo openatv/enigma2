@@ -193,6 +193,7 @@ public:
 	RESULT getLength(pts_t &len);
 	RESULT getCurrentPosition(pts_t &pos);
 	RESULT seekTo(pts_t &pts);
+	RESULT seekToPosition(int relative, const off_t &off);
 
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;

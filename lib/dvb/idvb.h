@@ -481,8 +481,7 @@ public:
 	virtual RESULT getLength(pts_t &pts) = 0;
 	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
 	virtual RESULT seekTo(pts_t &pts) = 0;
-	
-	// seekTo ...
+	virtual RESULT seekToPosition(int relative, const off_t &pts) = 0;
 };
 
 class iDVBSectionReader;

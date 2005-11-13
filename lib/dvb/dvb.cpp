@@ -619,11 +619,30 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 
 RESULT eDVBChannel::seekTo(pts_t &pts)
 {
+#if 0
+	eDebug("eDVBChannel: seekTo .. %llx", pts);
 	m_pvr_thread->pause();
 	if (m_decoder_demux)
 		m_decoder_demux->get().flush();
 		/* demux will also flush all decoder.. */
-//	m_pvr_thread->seek(pts);
+	
+	off_t r;
+	
+	if (!m_tstools.getPosition(pts, r));
+		m_pvr_thread->seek(r);
+	else
+		eDebug("getPosition failed!");
 	m_pvr_thread->resume();
+#endif
 }
 
+RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
+{
+	eDebug("eDVBChannel: seekToPosition .. %llx", r);
+	m_pvr_thread->pause();
+	if (m_decoder_demux)
+		m_decoder_demux->get().flush();
+		/* demux will also flush all decoder.. */
+	m_pvr_thread->seek(relative ? SEEK_CUR : SEEK_SET, r);
+	m_pvr_thread->resume();
+}
