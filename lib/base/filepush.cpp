@@ -7,7 +7,7 @@
 eFilePushThread::eFilePushThread()
 {
 	m_stop = 0;
-	m_buf_start = m_buf_end = 0;
+	flush();
 }
 
 static void signal_handler(int x)
@@ -108,3 +108,9 @@ void eFilePushThread::resume()
 	m_stop = 0;
 	run();
 }
+
+void eFilePushThread::flush()
+{
+	m_buf_start = m_buf_end = 0;
+}
+
