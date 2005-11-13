@@ -75,7 +75,7 @@ class ChannelSelection(Screen):
 				else:
 					ActionMap.action(self, contexts, action)
 
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions"], 
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"], 
 			{
 				"cancel": self.close,
 				"ok": self.channelSelected,
