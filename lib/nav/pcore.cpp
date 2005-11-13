@@ -46,6 +46,11 @@ RESULT pNavigation::pause(int p)
 	return m_core->pause(p);
 }
 
+RESULT pNavigation::stopService()
+{
+	return m_core->stopService();
+}
+
 void pNavigation::navEvent(eNavigation *nav, int event)
 {
 		/* just relay the events here. */

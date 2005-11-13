@@ -29,6 +29,7 @@ public:
 	RESULT enqueueService(const eServiceReference &service);
 	SWIG_VOID(RESULT) getCurrentService(ePtr<iPlayableService> &SWIG_OUTPUT);
 	SWIG_VOID(RESULT) getPlaylist(ePtr<ePlaylist> &SWIG_OUTPUT);
+	RESULT stopService();
 	
 	RESULT pause(int p);
 private:
