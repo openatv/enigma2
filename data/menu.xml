@@ -16,7 +16,7 @@
 		<!--<item text="Standby debug">quitMainloop()</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
 		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
-		<item text="Radio"><code>print "radio mode"</code></item>
+		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
 		<item text="Timer"><screen module="TimerEdit" screen="TimerEditList" /></item>
 
 		<menu text="Information">
@@ -26,18 +26,18 @@
 
 		<item text="Games / Plugins"><screen module="PluginBrowser" /></item>
 		<menu text="Setup">
-			<menu text="Service Organising">
+			<!--<menu text="Service Organising">
 				<item text="New Bouquets"></item>
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
-			</menu>
+			</menu>-->
 			<menu text="Service Searching">
 				<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item text="Automatic Scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
 				<item text="Manual Scan"><screen module="ScanSetup" /></item>
-				<item text="Rotor Control"></item>
-				<item text="Edit Transponder"></item>
+				<!--<item text="Rotor Control"></item>
+				<item text="Edit Transponder"></item>-->
 				<!--<item text="Satfinder"></item>-->
 			</menu>
 			<menu text="System">
@@ -52,7 +52,7 @@
 				<item text="Network"><screen module="NetworkSetup" screen="NetworkSetup" /></item>
 			</menu>
 			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
-			<item text="Parental Control"><setup id="parental" /></item>
+			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<item text="Expert"><setup id="expert" /></item>
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
