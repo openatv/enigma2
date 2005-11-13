@@ -291,8 +291,7 @@ class configText:
 		self.parent.save()
 		
 	def nextEntry(self):
-		print "Next entry"
-		self.handleKey(config.key["nextElement"])
+		self.parent.vals[1]()
 
 	def handleKey(self, key):
 		#this will no change anything on the value itself
