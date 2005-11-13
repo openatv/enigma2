@@ -223,7 +223,7 @@ private:
 	timeMap::iterator m_timemap_cursor, m_timemap_end;
 #endif // SWIG
 public:
-	static RESULT getInstance(eEPGCache *&ptr);
+	static eEPGCache *getInstance() { return instance; }
 	eEPGCache();
 	~eEPGCache();
 
@@ -257,7 +257,7 @@ public:
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
 	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
 	RESULT lookupEvent(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &);
-	RESULT lookupEvent(const eServiceReference &service, time_t , ePtr<eServiceEvent> &);
+	RESULT lookupEvent(const eServiceReference &service, time_t, ePtr<eServiceEvent> &);
 	RESULT getNextTimeEntry(ePtr<eServiceEvent> &);
 };
 
