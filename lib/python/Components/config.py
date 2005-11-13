@@ -291,7 +291,8 @@ class configText:
 		self.parent.save()
 		
 	def nextEntry(self):
-		self.parent.vals[1]()
+		print self.parent
+		self.parent.vals[1](self.parent.getConfigPath())
 
 	def handleKey(self, key):
 		#this will no change anything on the value itself

@@ -40,7 +40,7 @@ class TimerEntry(Screen):
             config.timerentry = ConfigSubsection()
 
             config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, 0, ("once", "repeated"))
-            config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRight))
+            config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
             config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, 0, ("daily", "weekly", "Mon-Fri", "user-defined"))
 
@@ -128,6 +128,12 @@ class TimerEntry(Screen):
     def keyLeft(self):
         self["config"].handleKey(config.key["prevElement"])
         self.newConfig()
+
+    def keyRightCallback(self, configPath):
+        currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
+        # check if we are still on the same config entry
+        if (currentConfigPath == configPath):
+            self.keyRight()
 
     def keyRight(self):
         self["config"].handleKey(config.key["nextElement"])
