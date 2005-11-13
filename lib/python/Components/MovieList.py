@@ -70,6 +70,7 @@ class MovieList(HTMLComponent, GUIComponent):
 		# nice list
 		
 		self.list = [ ]
+		self.root = root
 		
 		serviceHandler = eServiceCenter.getInstance()
 		list = serviceHandler.list(root)
@@ -88,3 +89,7 @@ class MovieList(HTMLComponent, GUIComponent):
 		# now process them...
 		for ref in movieList:
 			self.list.append(MovieListEntry(ref, serviceHandler))
+
+	def reload(self):
+		self.load(self.root)
+		self.l.setList(self.list)
