@@ -17,6 +17,8 @@ from Screens.Volume import Volume
 from Screens.Mute import Mute
 from Screens.Standby import Standby
 
+from ServiceReference import ServiceReference
+
 from enigma import *
 
 import time
@@ -127,6 +129,9 @@ class InfoBar(Screen):
 				
 				"pauseService": self.pauseService,
 				"unPauseService": self.unPauseService,
+				
+				"seekFwd": self.seekFwd,
+				"seekBack": self.seekBack,
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -296,4 +301,19 @@ class InfoBar(Screen):
 		
 	def unPauseService(self):
 		self.session.nav.pause(0)
+	
+	def doSeek(self, dir, seektime):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return
+		
+		seekable = service.seek()
+		if seekable is None:
+			return
+		seekable.seekRelative(dir, 90 * seektime)
 
+	def seekFwd(self):
+		self.doSeek(+1, 10000)
+	
+	def seekBack(self):
+		self.doSeek(-1, 10000)
