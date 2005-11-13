@@ -41,7 +41,7 @@ class EPGSelection(Screen):
 
 	def eventSelected(self):
 		event = self["list"].getCurrent()
-		self.session.open(EventView, event, self.eventViewCallback)
+		self.session.open(EventView, event, self.currentService, self.eventViewCallback)
 	
 	def timerAdd(self):
 		epg = self["list"].getCurrent()
@@ -69,8 +69,9 @@ class EPGSelection(Screen):
 			self.session.nav.RecordTimer.record(answer[1])
 		else:
 			print "Timeredit aborted"	
-			
+
 	def setRoot(self, root):
+		self.currentService=ServiceReference(root)
 		self["list"].setRoot(root)
 
 	def moveUp(self):

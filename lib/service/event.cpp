@@ -81,6 +81,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 				const ExtendedEventList *itemlist = eed->getItems();
 				for (ExtendedEventConstIterator it = itemlist->begin(); it != itemlist->end(); ++it)
 				{
+					m_extended_description += '\n';
 					m_extended_description += convertDVBUTF8((*it)->getItemDescription());
 					m_extended_description += ' ';
 					m_extended_description += convertDVBUTF8((*it)->getItem());
