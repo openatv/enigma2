@@ -747,14 +747,6 @@ void eEPGCache::save()
 #endif
 }
 
-RESULT eEPGCache::getInstance(eEPGCache *&ptr)
-{
-	ptr = instance;
-	if (!ptr)
-		return -1;
-	return 0;
-}
-
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	:cache(ml)
 	,abortTimer(ml), zapTimer(ml)

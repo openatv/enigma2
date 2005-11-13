@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
-from enigma import eServiceReference
+from enigma import eServiceReference, eEPGCache, eEPGCachePtr
 
 from Screens.FixedMenu import FixedMenu
 
@@ -87,7 +87,12 @@ class ChannelSelection(Screen):
 		self["actions"].csel = self
 
 	def showEPGList(self):
-		self.session.open(EPGSelection, self["list"].getCurrent())
+		ref=self["list"].getCurrent()
+		ptr=eEPGCache.getInstance()
+		if ptr.startTimeQuery(ref) != -1:
+			self.session.open(EPGSelection, ref)
+		else:
+			print 'no epg for service', ref.toString()
 
 	#  marked edit mode
 	def startMarkedEdit(self):

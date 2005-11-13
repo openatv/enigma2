@@ -4,8 +4,8 @@
 
 void eListboxEPGContent::setRoot(const eServiceReference &root)
 {
-	eEPGCache *epg=NULL;
-	if ( !eEPGCache::getInstance(epg) )
+	eEPGCache *epg=eEPGCache::getInstance();
+	if ( epg )
 	{
 		m_list.clear();
 		m_root = root;

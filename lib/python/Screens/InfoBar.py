@@ -224,7 +224,12 @@ class InfoBar(Screen):
 			self.muteDialog.instance.hide()
 
 	def showEPGList(self):
-		self.session.open(EPGSelection, self.session.nav.getCurrentlyPlayingServiceReference())
+		ref=self.session.nav.getCurrentlyPlayingServiceReference()
+		ptr=eEPGCache.getInstance()
+		if ptr.startTimeQuery(ref) != -1:
+			self.session.open(EPGSelection, ref)
+		else:
+			print 'no epg for service', ref.toString()
 
 	def quit(self):
 		self.session.open(Standby)
