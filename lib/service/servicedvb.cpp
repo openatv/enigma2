@@ -270,6 +270,50 @@ int eDVBServiceList::compareLessEqual(const eServiceReference &a, const eService
 	return m_query->compareLessEqual((const eServiceReferenceDVB&)a, (const eServiceReferenceDVB&)b);
 }
 
+RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
+{
+	if (m_parent.flags & eServiceReference::flagDirectory) // bouquet
+	{
+		ePtr<iDVBChannelList> db;
+		ePtr<eDVBResourceManager> resm;
+
+		if (eDVBResourceManager::getInstance(resm) || resm->getChannelList(db))
+			return -1;
+
+			// FIXME!
+		if (db->getBouquet(m_parent, (const eBouquet*&)m_bouquet) != 0)
+			return -1;
+		
+		res = this;
+		
+		return 0;
+	}
+	res = 0;
+	return -1;
+}
+
+RESULT eDVBServiceList::addService(eServiceReference &ref)
+{
+	ASSERT(m_bouquet);
+//	return m_bouquet->addService(ref);
+	return -1;
+}
+
+RESULT eDVBServiceList::removeService(eServiceReference &ref)
+{
+	ASSERT(m_bouquet);
+//	return m_bouquet->removeService(ref);
+	return -1;
+}
+
+RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
+{
+	ASSERT(m_bouquet);
+	
+//	return m_bouquet->moveService(ref, pos);
+	return -1;
+}
+
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 	ePtr<eDVBService> service;

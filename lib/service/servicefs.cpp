@@ -176,4 +176,10 @@ int eServiceFS::compareLessEqual(const eServiceReference &a, const eServiceRefer
 		return a.path < b.path;
 }
 
+RESULT eServiceFS::startEdit(ePtr<iMutableServiceList> &res)
+{
+	res = 0;
+	return -1;
+}
+
 eAutoInitPtr<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");

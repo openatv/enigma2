@@ -25,7 +25,9 @@ private:
 	RESULT lookupService(ePtr<eDVBService> &ptr, const eServiceReference &ref);
 };
 
-class eDVBServiceList: public iListableService
+class eBouquet;
+
+class eDVBServiceList: public iListableService, public iMutableServiceList
 {
 DECLARE_REF(eDVBServiceList);
 public:
@@ -33,12 +35,20 @@ public:
 	RESULT getContent(std::list<eServiceReference> &list);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
+	
+	RESULT startEdit(ePtr<iMutableServiceList> &);
+	RESULT addService(eServiceReference &ref);
+	RESULT removeService(eServiceReference &ref);
+	RESULT moveService(eServiceReference &ref, int pos);
 private:
 	RESULT startQuery();
 	eServiceReference m_parent;
 	friend class eServiceFactoryDVB;
 	eDVBServiceList(const eServiceReference &parent);
 	ePtr<iDVBChannelListQuery> m_query;
+	
+		/* for editing purposes. WARNING: lifetime issue! */
+	eBouquet *m_bouquet;
 };
 
 class eDVBServicePlay: public iPlayableService, public iPauseableService, public iSeekableService, public Object, public iServiceInformation

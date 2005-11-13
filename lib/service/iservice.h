@@ -249,6 +249,20 @@ TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
 // TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
 
+class iMutableServiceList: public iObject
+{
+public:
+		/* adds a service to a list */
+	virtual RESULT addService(eServiceReference &ref)=0;
+		/* removes a service from a list */
+	virtual RESULT removeService(eServiceReference &ref)=0;
+		/* moves a service in a list, only if list suppports a specific sort method. */
+		/* pos is the new, absolute position from 0..size-1 */
+	virtual RESULT moveService(eServiceReference &ref, int pos)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iMutableServiceList>, iMutableServiceListPtr);
+
 class iListableService: public iObject
 {
 public:
@@ -264,6 +278,8 @@ public:
 		   (as well as a future "active" extension) won't be possible.
 		*/
 	virtual int compareLessEqual(const eServiceReference &, const eServiceReference &)=0;
+	
+	virtual SWIG_VOID(RESULT) startEdit(ePtr<iMutableServiceList> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
