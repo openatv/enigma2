@@ -71,7 +71,7 @@ class ChannelSelection(Screen):
 				if action[:7] == "bouquet":
 					l = self.csel["list"]
 					l.setMode(l.MODE_NORMAL)
-					l.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
+					l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
 					ActionMap.action(self, contexts, action)
 
