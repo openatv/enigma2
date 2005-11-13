@@ -16,6 +16,9 @@ public:
 	void seek(int whence, off_t where);
 	void resume();
 	
+		/* flushes the internal readbuffer */ 
+	void flush();
+	
 private:
 	int m_stop;
 	unsigned char m_buffer[65536];
