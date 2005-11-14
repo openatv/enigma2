@@ -1,5 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.config import config
 from enigma import *
 
 class Standby(Screen):
@@ -9,6 +10,7 @@ class Standby(Screen):
 		eAVSwitch.getInstance().setInput(0)
 		self.infobar.servicelist.zap()
 		self.leaveMute()
+		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.bright.value * 20)
 		self.close()
 
 	def setMute(self):
@@ -36,8 +38,6 @@ class Standby(Screen):
 		self.setMute()
 		self.session.nav.stopService()
 		eAVSwitch.getInstance().setInput(1)
-
-		
-		#stop/pause? playing services
-		#switch off avs
+		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
+	
 		
