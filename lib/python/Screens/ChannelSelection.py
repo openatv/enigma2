@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eEPGCachePtr
+from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr
 
 from Screens.FixedMenu import FixedMenu
 
@@ -14,29 +14,32 @@ class ChannelContextMenu(FixedMenu):
 		self.csel = csel
 		
 		menu = [("back", self.close)]
-		
-		if csel.movemode:
-			menu.append(("disable move mode", self.moveMode))
-		else:
-			menu.append(("enable move mode", self.moveMode))
 
-		if csel.bouquet_mark_edit:
-			menu.append(("end bouquet edit", self.bouquetMarkEnd))
-			menu.append(("abort bouquet edit", self.bouquetMarkAbort))
-		else:
-			menu.append(("edit bouquet...", self.bouquetMarkStart))
-		
+		if csel.mutableList is not None:
+			if not csel.bouquet_mark_edit:
+				if csel.movemode:
+					menu.append(("disable move mode", self.toggleMoveMode))
+				else:
+					menu.append(("enable move mode", self.toggleMoveMode))
+
+			if not csel.movemode:
+				if csel.bouquet_mark_edit:
+					menu.append(("end bouquet edit", self.bouquetMarkEnd))
+					menu.append(("abort bouquet edit", self.bouquetMarkAbort))
+				else:
+					menu.append(("edit bouquet...", self.bouquetMarkStart))
+
 		FixedMenu.__init__(self, session, "Channel Selection", menu)
 		self.skinName = "Menu"
 
-	def moveMode(self):
-		self.csel.setMoveMode(self.csel.movemode)
+	def toggleMoveMode(self):
+		self.csel.toggleMoveMode()
 		self.close()
-	
+
 	def bouquetMarkStart(self):
 		self.csel.startMarkedEdit()
 		self.close()
-	
+
 	def bouquetMarkEnd(self):
 		self.csel.endMarkedEdit(abort=False)
 		self.close()
@@ -62,17 +65,21 @@ class ChannelSelection(Screen):
 		self["key_blue"] = Button("Favourites")
 		
 		self["list"] = ServiceList()
-		self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
+		self.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
 				if action[:7] == "bouquet":
-					l = self.csel["list"]
-					l.setMode(l.MODE_NORMAL)
+					l = self.csel
 					l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
+					if action == "cancel":
+						l = self.csel
+						if l.movemode: #movemode active?
+							l.channelSelected() # unmark
+							l.toggleMoveMode() # disable move mode
 					ActionMap.action(self, contexts, action)
 
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"], 
@@ -81,8 +88,7 @@ class ChannelSelection(Screen):
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
-				"showFavourites": self.showFavourites,
-				"showEPGList": self.showEPGList
+			    "showEPGList": self.showEPGList
 			})
 		self["actions"].csel = self
 
@@ -94,39 +100,62 @@ class ChannelSelection(Screen):
 		else:
 			print 'no epg for service', ref.toString()
 
-	#  marked edit mode
+#  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self):
-		self.bouquet_mark_edit = True
-		self.clearMarks()
-		
-		# TODO
-		marked = self.__marked
-		
 		l = self["list"]
-		for x in marked:
-			l.addMarked(x)
-		
+		# add all services from the current list to internal marked set in listboxservicecontent
+		if self.mutableList is not None:
+			self.bouquetRoot = l.getRoot()
+			self.clearMarks() # this clears the internal marked set in the listboxservicecontent
+			self.bouquet_mark_edit = True
+			self.__marked = l.getRootServices()
+			for x in self.__marked:
+				l.addMarked(eServiceReference(x))
+
 	def endMarkedEdit(self, abort):
-		self.bouquet_mark_edit = True
-		new_marked = self["list"].getMarked()
-		self.__marked = new_marked
+		l = self["list"]
+		if not abort and self.mutableList is not None:
+			new_marked = set(l.getMarked())
+			old_marked = set(self.__marked)
+			removed = old_marked - new_marked
+			added = new_marked - old_marked
+			changed = False
+			for x in removed:
+				changed = True
+				self.mutableList.removeService(eServiceReference(x))
+			for x in added:
+				changed = True
+				self.mutableList.addService(eServiceReference(x))
+			if changed:
+				l.setRoot(self.bouquetRoot)
+		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
+		self.bouquetRoot = None
+
+	def setRoot(self, root):
+		if not self.movemode:
+			if not self.bouquet_mark_edit:
+				serviceHandler = eServiceCenter.getInstance()
+				list = serviceHandler.list(root)
+				if list is not None:
+					self.mutableList = list.startEdit()
+				else:
+					self.mutableList = None
+			self["list"].setRoot(root)
 
 	def clearMarks(self):
 		self["list"].clearMarks()
-	
+
 	def doMark(self):
 		if not self.bouquet_mark_edit:
 			return
-		
 		ref = self["list"].getCurrent()
 		if self["list"].isMarked(ref):
 			self["list"].removeMarked(ref)
 		else:
 			self["list"].addMarked(ref)
-	
-	# ...
+
 	def channelSelected(self):
 		ref = self["list"].getCurrent()
 		if self.movemode:
@@ -137,9 +166,9 @@ class ChannelSelection(Screen):
 				self["list"].setCurrentMarked(True)
 				self.entry_marked = True
 		elif (ref.flags & 7) == 7:
-			l = self["list"]
-			l.setMode(l.MODE_NORMAL)
-			l.setRoot(ref)
+			self.setRoot(ref)
+		elif self.bouquet_mark_edit:
+			self.doMark()
 		else:
 			self.session.nav.playService(ref)
 			self.close()
@@ -157,13 +186,8 @@ class ChannelSelection(Screen):
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self)
 
-	def setMoveMode(self, mode):
-		if mode:
+	def toggleMoveMode(self):
+		if self.movemode:
 			self.movemode = False
 		else:
 			self.movemode = True
-
-	def showFavourites(self):
-		l = self["list" ]
-		l.setRoot(eServiceReference('1:0:1:0:0:0:0:0:0:0:(provider == "fav")'))
-		l.setMode(l.MODE_FAVOURITES)
