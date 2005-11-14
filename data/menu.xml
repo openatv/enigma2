@@ -13,7 +13,7 @@
 	<code> .. code .. </code>
 		"exec"s code
 -->
-		<!--<item text="Standby debug">quitMainloop()</item>
+		<!--<item text="Standby debug">quitMainloop(0)</item>
 		<item text="Networksetup">self.openSetup("network")</item>-->
 		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
 		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
@@ -57,8 +57,8 @@
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart">
-			<item text="Standby"><code>quitMainloop()</code></item>
-			<item text="Restart"><code>quitMainloop()</code></item>
-			<item text="Deep Standby"><code>quitMainloop()</code></item>
+			<item text="Standby"><code>quitMainloop(0)</code></item>
+			<item text="Restart"><code>quitMainloop(2)</code></item>
+			<item text="Deep Standby"><code>quitMainloop(1)</code></item>
 		</menu>
 </menu>
