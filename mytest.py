@@ -99,7 +99,7 @@ class Session:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
 			print '-'*60
 			traceback.print_exc(file=sys.stdout)
-			quitMainloop()
+			quitMainloop(5)
 			print '-'*60
 		
 		# read skin data
@@ -199,7 +199,7 @@ except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
 	traceback.print_exc(file=sys.stdout)
-	quitMainloop()
+	quitMainloop(5)
 	print '-'*60
 
 # now, run the mainloop
