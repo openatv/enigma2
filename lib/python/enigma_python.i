@@ -77,7 +77,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb_ci/dvbci_ui.h>
 
 extern void runMainloop();
-extern void quitMainloop();
+extern void quitMainloop(int exit_code);
 extern void setLCD(const char *c);
 extern void setLCDClock(const char *c);
 
@@ -226,7 +226,7 @@ public:
 /**************  debug  **************/
 
 void runMainloop();
-void quitMainloop();
+void quitMainloop(int exit_code);
 void setLCD(const char*);
 void setLCDClock(const char*);
 %immutable keyPressed;
