@@ -95,7 +95,6 @@ void eDVBServicePMTHandler::PATready(int)
 
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 {
-	eDebug("got PMT");
 	ePtr<eTable<ProgramMapSection> > ptr;
 
 	program.videoStreams.clear();
