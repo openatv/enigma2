@@ -693,7 +693,7 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 			return 0;
 	}
 
-	ref = (eServiceReferenceDVB&)eServiceReference();
+	ref.type = eServiceReference::idInvalid;
 
 	return 1;
 }
@@ -722,7 +722,7 @@ RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 			return 0;
 	}
 
-	ref = (eServiceReferenceDVB&)eServiceReference();
+	ref.type = eServiceReference::idInvalid;
 
 	return 1;
 }
