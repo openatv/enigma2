@@ -78,6 +78,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 					m_extended_description += convertDVBUTF8(eed->getText());
 					retval=1;
 				}
+#if 0
 				const ExtendedEventList *itemlist = eed->getItems();
 				for (ExtendedEventConstIterator it = itemlist->begin(); it != itemlist->end(); ++it)
 				{
@@ -86,12 +87,15 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 					m_extended_description += ' ';
 					m_extended_description += convertDVBUTF8((*it)->getItem());
 				}
+#endif
 				break;
 			}
 			default:
 				break;
 		}
 	}
+	if ( m_extended_description.find(m_short_description) == 0 )
+		m_short_description="";
 	return retval;
 }
 
