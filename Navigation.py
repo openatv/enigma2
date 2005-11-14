@@ -60,6 +60,9 @@ class Navigation:
 		
 		return service
 	
+	def stopService(self):
+		self.pnav.stopService()
+	
 	def getPlaylist(self):
 		playlist = ePlaylistPtr()
 		if self.pnav.getPlaylist(playlist):
