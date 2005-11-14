@@ -16,6 +16,7 @@ from Screens.MovieSelection import MovieSelection
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from Screens.Standby import Standby
+from Screens.AudioSelection import AudioSelection
 
 from ServiceReference import ServiceReference
 
@@ -328,7 +329,5 @@ class InfoBar(Screen):
 		service = self.session.nav.getCurrentService()
 		audio = service.audioTracks()
 		n = audio.getNumberOfTracks()
-		print "AUDIO TRACKS:"
-		for x in range(n):
-			i = audio.getTrackInfo(x)
-			print i.getDescription()
+		if n > 0:
+			self.session.open(AudioSelection, audio)
