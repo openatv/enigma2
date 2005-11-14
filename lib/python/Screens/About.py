@@ -21,8 +21,10 @@ class About(Screen):
 
 		self["hdd"] = Label("Detected HDD:")
 		hdd = Harddisk(0)
-		self["hddA"] = Label("%s (%s, %d MB free)" % (hdd.model(), hdd.capacity(),hdd.free()))
-		#self["hddA"] = Label("Seagate 398 GByte (323 GByte free)")
+		if hdd.model() != "":
+			self["hddA"] = Label("%s (%s, %d MB free)" % (hdd.model(), hdd.capacity(),hdd.free()))
+		else:			
+			self["hddA"] = Label("none")
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
