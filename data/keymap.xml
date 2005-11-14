@@ -54,7 +54,7 @@
 <!--		<key id="r" mapto="instantRecord" flags="m" /> -->
 		<key id="r" mapto="showEPGList" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
-		<key id="KEY_RED" mapto="instantRecord" flags="m" />
+<!--		<key id="KEY_RED" mapto="instantRecord" flags="m" /> -->
 		<key id="1" mapto="zapUp" flags="mr" />
 		<key id="2" mapto="zapDown" flags="mr" />
 		<key id="KEY_M" mapto="mainMenu" flags="mr" />
@@ -68,6 +68,7 @@
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
+		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
@@ -86,6 +87,9 @@
 		
 		<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
 		<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
+		
+		<key id="KEY_RED" mapto="seekBack" flags="m" />
+		<key id="KEY_BLUE" mapto="seekFwd" flags="m" />
 	</map>
 	
 	<map context="ChannelSelectActions">
