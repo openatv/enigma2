@@ -15,6 +15,8 @@ public:
 	void setColorFormat(int format);
 	void setAspectRatio(int ratio);
 	void setVideomode(int mode);
+	void setInput(int val);
+
 };
 
 #endif

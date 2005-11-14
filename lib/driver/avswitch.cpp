@@ -26,6 +26,27 @@ eAVSwitch *eAVSwitch::getInstance()
 	return instance;
 }
 
+void eAVSwitch::setInput(int val)
+{
+	/*
+	0-encoder
+	1-scart
+	2-aux
+	*/
+
+	char *input[] = {"encoder", "scart", "aux"};
+
+	int fd;
+	
+	if((fd = open("/proc/stb/avs/0/input", O_WRONLY)) < 0) {
+		printf("cannot open /proc/stb/avs/0/input\n");
+		return;
+	}
+
+	write(fd, input[val], strlen(input[val]));
+	close(fd);
+}
+
 void eAVSwitch::setColorFormat(int format)
 {
 	/*
