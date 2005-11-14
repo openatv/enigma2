@@ -54,5 +54,11 @@ void eDVBCI_UI::setAppName(int slot, const char *name)
 	appName = name;
 }
 
+void eDVBCI_UI::setReset(int slot)
+{
+	printf("reset requested on slot %d\n", slot);
+	//we have to call the eDVBCISlot here
+}
+
 //FIXME: correct "run/startlevel"
 eAutoInitP0<eDVBCI_UI> init_dvbciui(eAutoInitNumbers::rc, "DVB-CI UI");
