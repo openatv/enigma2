@@ -196,6 +196,8 @@ class ScanSimple(Screen):
 		for x in self.list:
 			if x[1].parent.value == 0:
 				print "   " + str(x[1].parent.configPath)
+
+		self.session.openWithCallback(self.keyCancel, ServiceScan)        
 		
 	def keyCancel(self):
 		self.close()
