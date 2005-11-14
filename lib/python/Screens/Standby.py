@@ -6,6 +6,7 @@ class Standby(Screen):
 	def Power(self):
 		print "leave standby"
 		#start last played service
+		eAVSwitch.getInstance().setInput(0)
 		self.infobar.servicelist.zap()
 		self.leaveMute()
 		self.close()
@@ -34,6 +35,8 @@ class Standby(Screen):
 
 		self.setMute()
 		self.session.nav.stopService()
+		eAVSwitch.getInstance().setInput(1)
+
 		
 		#stop/pause? playing services
 		#switch off avs
