@@ -5,4 +5,5 @@ install_PYTHON = \
 	MessageBox.py ScartLoopThrough.py Screen.py ServiceScan.py TimerEdit.py \
 	MovieSelection.py Setup.py About.py HarddiskSetup.py FixedMenu.py \
 	Satconfig.py ScanSetup.py NetworkSetup.py Ci.py TimerEntry.py Volume.py \
-	EpgSelection.py EventView.py Mute.py Standby.py ServiceInfo.py __init__.py
+	EpgSelection.py EventView.py Mute.py Standby.py ServiceInfo.py \
+	AudioSelection.py __init__.py
