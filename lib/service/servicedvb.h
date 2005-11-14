@@ -52,7 +52,9 @@ private:
 	eBouquet *m_bouquet;
 };
 
-class eDVBServicePlay: public iPlayableService, public iPauseableService, public iSeekableService, public Object, public iServiceInformation
+class eDVBServicePlay: public iPlayableService, public iPauseableService, 
+		public iSeekableService, public Object, public iServiceInformation, 
+		public iAudioTrackSelection
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -65,6 +67,7 @@ public:
 	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT info(ePtr<iServiceInformation> &ptr);
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	
 		// iPauseableService
 	RESULT pause();
@@ -79,6 +82,11 @@ public:
 		// iServiceInformation
 	RESULT getName(std::string &name);
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
+
+		// iAudioTrackSelection	
+	int getNumberOfTracks();
+	RESULT selectTrack(unsigned int i);
+	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
 
 private:
 	friend class eServiceFactoryDVB;

@@ -57,6 +57,7 @@ public:
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT seek(ePtr<iSeekableService> &ptr);
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 
 		// iPausableService
 	RESULT pause();
