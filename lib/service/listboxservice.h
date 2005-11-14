@@ -48,13 +48,14 @@ public:
 	void sort();
 
 	int setCurrentMarked(bool);
-	int cursorSet(int n);
-	int cursorGet();
+
 protected:
 	void cursorHome();
 	void cursorEnd();
 	int cursorMove(int count=1);
 	int cursorValid();
+	int cursorSet(int n);
+	int cursorGet();
 
 	void cursorSave();
 	void cursorRestore();
