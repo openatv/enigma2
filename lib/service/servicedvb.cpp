@@ -478,7 +478,7 @@ void eDVBServicePlay::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
-		int vpid = -1, apid = -1, pcrpid = -1;
+		int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1;
 		eDVBServicePMTHandler::program program;
 		if (m_service_handler.getProgramInfo(program))
 			eDebug("getting program info failed.");
@@ -509,7 +509,10 @@ void eDVBServicePlay::serviceEvent(int event)
 					i != program.audioStreams.end(); ++i)
 				{
 					if (apid == -1)
+					{
 						apid = i->pid;
+						apidtype = i->type;
+					}
 					if (i != program.audioStreams.begin())
 						eDebugNoNewLine(", ");
 					eDebugNoNewLine("%04x", i->pid);
@@ -532,7 +535,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_decoder)
 		{
 			m_decoder->setVideoPID(vpid);
-			m_decoder->setAudioPID(apid, 0);
+			m_decoder->setAudioPID(apid, apidtype);
 			if (!m_is_pvr)
 				m_decoder->setSyncPCR(pcrpid);
 			else
@@ -649,7 +652,8 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	if (m_service_handler.getPVRChannel(pvr_channel))
 		return -1;
 	
-	return pvr_channel->seekToPosition(SEEK_CUR, to);
+			/* this is of couse wrong: PTS values don't match with bytes. */
+	return pvr_channel->seekToPosition(SEEK_CUR, direction * to);
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
@@ -663,6 +667,12 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 }
 
 RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+RESULT eDVBServicePlay::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 {
 	ptr = this;
 	return 0;
@@ -683,6 +693,55 @@ RESULT eDVBServicePlay::getName(std::string &name)
 RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
 {
 	return m_event_handler.getEvent(evt, nownext);
+}
+
+int eDVBServicePlay::getNumberOfTracks()
+{
+	eDVBServicePMTHandler::program program;
+	if (m_service_handler.getProgramInfo(program))
+		return 0;
+	return program.audioStreams.size();
+}
+
+RESULT eDVBServicePlay::selectTrack(unsigned int i)
+{
+	eDVBServicePMTHandler::program program;
+
+	if (m_service_handler.getProgramInfo(program))
+		return -1;
+	
+	if (i >= program.audioStreams.size())
+		return -2;
+	
+	if (!m_decoder)
+		return -3;
+	
+	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
+		return -4;
+	
+	return 0;
+}
+
+RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
+{
+	eDVBServicePMTHandler::program program;
+
+	if (m_service_handler.getProgramInfo(program))
+		return -1;
+	
+	if (i >= program.audioStreams.size())
+		return -2;
+	
+	if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atMPEG)
+		info.m_description = "MPEG";
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAC3)
+		info.m_description = "AC3";
+	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
+		info.m_description = "DTS";
+	else
+		info.m_description = "???";
+	
+	return 0;
 }
 
 DEFINE_REF(eDVBServicePlay)

@@ -149,6 +149,8 @@ RESULT eServiceMP3::stop()
 RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr) { ptr=this; return 0; }
 RESULT eServiceMP3::seek(ePtr<iSeekableService> &ptr) { ptr = 0; return -1; }
 
+RESULT eServiceMP3::audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; };
+
 		// iPausableService
 RESULT eServiceMP3::pause() { printf("mp3 pauses!\n"); return 0; }
 RESULT eServiceMP3::unpause() { printf("mp3 unpauses!\n"); return 0; }

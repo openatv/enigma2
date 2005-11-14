@@ -214,6 +214,24 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
+struct iAudioTrackInfo
+{
+	std::string m_description;
+	std::string getDescription() { return m_description; }
+};
+
+SWIG_ALLOW_OUTPUT_SIMPLE(iAudioTrackInfo);
+
+class iAudioTrackSelection: public iObject
+{
+public:
+	virtual int getNumberOfTracks()=0;
+	virtual RESULT selectTrack(unsigned int i)=0;
+	virtual SWIG_VOID(RESULT) getTrackInfo(struct iAudioTrackInfo &SWIG_OUTPUT, unsigned int n)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
+
 class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
@@ -233,6 +251,7 @@ public:
 	virtual SWIG_VOID(RESULT) seek(ePtr<iSeekableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
