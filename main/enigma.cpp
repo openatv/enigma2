@@ -145,6 +145,8 @@ public:
 
 eLabel *lcd_label, *lcd_clock;
 
+int exit_code;
+
 int main(int argc, char **argv)
 {
 #ifdef OBJECT_DEBUG
@@ -239,7 +241,7 @@ int main(int argc, char **argv)
 
 //	eApp->exec();
 
-	return 0;
+	return exit_code;
 }
 
 eWidgetDesktop *getDesktop()
@@ -249,12 +251,12 @@ eWidgetDesktop *getDesktop()
 
 void runMainloop()
 {
-	eApp->exec();
+	exit_code = eApp->exec();
 }
 
-void quitMainloop()
+void quitMainloop(int exitCode)
 {
-	eApp->quit(0);
+	eApp->quit(exitCode);
 }
 
 void setLCD(const char *string)
