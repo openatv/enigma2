@@ -120,30 +120,48 @@ void eDVBVolumecontrol::volumeMute()
 {
 	int fd = openMixer();
 #ifdef HAVE_DVB_API_VERSION	
-	printf("ioctl AUDIO_SET_MUTE,1 %d\n",fd);
 	ioctl(fd, AUDIO_SET_MUTE, true);
 #endif
 	closeMixer(fd);
 	muted = true;
+
+	//HACK?
+	FILE *f;
+	if((f = fopen("/proc/stb/adc/j1_mute", "wb")) == NULL) {
+		printf("cannot open /proc/stb/adc/j1_mute\n");
+		return;
+	}
+	
+	fprintf(f, "%d", 1);
+
+	fclose(f);
 }
 
 void eDVBVolumecontrol::volumeUnMute()
 {
 	int fd = openMixer();
 #ifdef HAVE_DVB_API_VERSION
-	printf("ioctl AUDIO_SET_MUTE,0\n");
 	ioctl(fd, AUDIO_SET_MUTE, false);
 #endif
 	closeMixer(fd);
 	muted = false;
+
+	//HACK?
+	FILE *f;
+	if((f = fopen("/proc/stb/adc/j1_mute", "wb")) == NULL) {
+		printf("cannot open /proc/stb/adc/j1_mute\n");
+		return;
+	}
+	
+	fprintf(f, "%d", 0);
+
+	fclose(f);
 }
 
 void eDVBVolumecontrol::volumeToggleMute()
 {
-	printf("Mute\n");
 	if (isMuted())
 		volumeUnMute();
 	else
 		volumeMute();
-		
 }
