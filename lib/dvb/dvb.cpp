@@ -635,6 +635,7 @@ RESULT eDVBChannel::seekTo(pts_t &pts)
 		eDebug("getPosition failed!");
 	m_pvr_thread->resume();
 #endif
+	return 0;
 }
 
 RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
@@ -665,4 +666,5 @@ RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
 		/* demux will also flush all decoder.. */
 	m_pvr_thread->seek(relative ? SEEK_CUR : SEEK_SET, r);
 	m_pvr_thread->resume();
+	return 0;
 }
