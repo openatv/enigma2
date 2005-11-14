@@ -165,11 +165,15 @@ class InfoBar(Screen):
 		self.quit()
 	
 	def powerdown(self):
+		self.standbyblocked = 0
 		self.powerKeyTimer.start(3000)
 
 	def powerup(self):
 		self.powerKeyTimer.stop()
-		self.session.open(Standby, self)
+		if self.standbyblocked == 0:
+			self.standbyblocked = 1
+			self.session.open(Standby, self)
+			
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
