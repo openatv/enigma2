@@ -21,6 +21,7 @@ public:
 	void setState(int slot, int state);
 	std::string getAppName(int slot);
 	void setAppName(int slot, const char *name);
+	void setReset(int slot);
 };
 
 #endif
