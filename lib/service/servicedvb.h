@@ -37,6 +37,7 @@ public:
 	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
 	
 	RESULT startEdit(ePtr<iMutableServiceList> &);
+	RESULT flushChanges();
 	RESULT addService(eServiceReference &ref);
 	RESULT removeService(eServiceReference &ref);
 	RESULT moveService(eServiceReference &ref, int pos);

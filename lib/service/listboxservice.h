@@ -13,13 +13,13 @@ public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
 	void getCurrent(eServiceReference &ref);
-	
+
 		/* support for marked services */
 	void initMarked();
 	void addMarked(const eServiceReference &ref);
 	void removeMarked(const eServiceReference &ref);
 	int isMarked(const eServiceReference &ref);
-	
+
 		/* this is NOT thread safe! */
 	void markedQueryStart();
 	int markedQueryNext(eServiceReference &ref);
@@ -46,17 +46,16 @@ public:
 	void setElementFont(int element, gFont *font);
 	
 	void sort();
-	
+
 	int setCurrentMarked(bool);
-	
+	int cursorSet(int n);
+	int cursorGet();
 protected:
 	void cursorHome();
 	void cursorEnd();
 	int cursorMove(int count=1);
 	int cursorValid();
-	int cursorSet(int n);
-	int cursorGet();
-	
+
 	void cursorSave();
 	void cursorRestore();
 	int size();
@@ -87,7 +86,6 @@ private:
 
 		/* support for marked services */
 	std::set<eServiceReference> m_marked;
-	
 	std::set<eServiceReference>::const_iterator m_marked_iterator;
 
 		/* support for movemode */

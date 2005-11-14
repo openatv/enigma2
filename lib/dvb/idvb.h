@@ -21,7 +21,8 @@ struct eBouquet
 	std::string m_path;
 	typedef std::list<eServiceReference> list;
 	list m_services;
-// the following three methods are implemented in db.cpp
+// the following four methods are implemented in db.cpp
+	RESULT flushChanges();
 	RESULT addService(const eServiceReference &);
 	RESULT removeService(const eServiceReference &);
 	RESULT moveService(const eServiceReference &, unsigned int);

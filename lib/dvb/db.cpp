@@ -10,7 +10,6 @@
 
 DEFINE_REF(eDVBService);
 
-// the following three methodes are declared in idvb.h
 RESULT eBouquet::addService(const eServiceReference &ref)
 {
 	list::iterator it =
@@ -387,6 +386,49 @@ void eDVBDB::save()
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
 	fclose(f);
+}
+
+RESULT eBouquet::flushChanges()
+{
+	FILE *f=fopen(m_path.c_str(), "wt");
+	if (!f)
+		return -1;
+	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
+		goto err;
+	for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
+	{
+		eServiceReference tmp = *i;
+		std::string str = tmp.path;
+		if ( (i->flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
+		{
+			unsigned int p1 = str.find("FROM BOUQUET \"");
+			if (p1 == std::string::npos)
+			{
+				eDebug("doof... kaputt");
+				continue;
+			}
+			str.erase(0, p1+14);
+			p1 = str.find("\"");
+			if (p1 == std::string::npos)
+			{
+				eDebug("doof2... kaputt");
+				continue;
+			}
+			str.erase(p1);
+			tmp.path=str;
+		}
+		if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
+			goto err;
+		if ( i->name.length() )
+			if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
+				goto err;
+	}
+	fclose(f);
+	return 0;
+err:
+	fclose(f);
+	eDebug("couldn't write file %s", m_path.c_str());
+	return -1;
 }
 
 void eDVBDB::loadBouquet(const char *path)

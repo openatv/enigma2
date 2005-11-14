@@ -252,6 +252,8 @@ TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 class iMutableServiceList: public iObject
 {
 public:
+		/* flush changes */
+	virtual RESULT flushChanges()=0;
 		/* adds a service to a list */
 	virtual RESULT addService(eServiceReference &ref)=0;
 		/* removes a service from a list */
