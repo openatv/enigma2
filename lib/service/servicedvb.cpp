@@ -312,6 +312,13 @@ RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
 	return m_bouquet->moveService(ref, pos);
 }
 
+RESULT eDVBServiceList::flushChanges()
+{
+	if (!m_bouquet)
+		return -1;
+	return m_bouquet->flushChanges();
+}
+
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 	ePtr<eDVBService> service;

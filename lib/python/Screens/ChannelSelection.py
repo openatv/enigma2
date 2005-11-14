@@ -29,16 +29,23 @@ class ChannelContextMenu(FixedMenu):
 				else:
 					menu.append(("edit bouquet...", self.bouquetMarkStart))
 
+			if not csel.bouquet_mark_edit and not csel.movemode:
+				menu.append(("remove service", self.removeCurrentService))
+
 		FixedMenu.__init__(self, session, "Channel Selection", menu)
 		self.skinName = "Menu"
+
+	def removeCurrentService(self):
+		self.close()
+		self.csel.removeCurrentService()
 
 	def toggleMoveMode(self):
 		self.csel.toggleMoveMode()
 		self.close()
 
 	def bouquetMarkStart(self):
-		self.csel.startMarkedEdit()
 		self.close()
+		self.csel.startMarkedEdit()
 
 	def bouquetMarkEnd(self):
 		self.csel.endMarkedEdit(abort=False)
@@ -80,6 +87,8 @@ class ChannelSelection(Screen):
 						if l.movemode: #movemode active?
 							l.channelSelected() # unmark
 							l.toggleMoveMode() # disable move mode
+						elif l.bouquet_mark_edit:
+							l.endMarkedEdit(True) # abort edit mode
 					ActionMap.action(self, contexts, action)
 
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"], 
@@ -112,6 +121,16 @@ class ChannelSelection(Screen):
 			for x in self.__marked:
 				l.addMarked(eServiceReference(x))
 
+	def removeCurrentService(self):
+		l = self["list"]
+		ref=l.getCurrent()
+		if ref.valid() and self.mutableList is not None:
+			self.mutableList.removeService(ref)
+			pos = l.cursorGet()
+			self.mutableList.flushChanges() #FIXME dont flush on each single removed service
+			self.setRoot(l.getRoot())
+#			l.cursorSet(pos) #whats going wrong here????
+
 	def endMarkedEdit(self, abort):
 		l = self["list"]
 		if not abort and self.mutableList is not None:
@@ -127,7 +146,8 @@ class ChannelSelection(Screen):
 				changed = True
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
-				l.setRoot(self.bouquetRoot)
+				self.mutableList.flushChanges()
+				self.setRoot(self.bouquetRoot)
 		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
@@ -189,5 +209,6 @@ class ChannelSelection(Screen):
 	def toggleMoveMode(self):
 		if self.movemode:
 			self.movemode = False
+			self.mutableList.flushChanges() # FIXME add check if changes was made
 		else:
 			self.movemode = True

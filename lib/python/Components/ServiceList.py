@@ -52,6 +52,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setRoot(root)
 		self.l.sort()
 
+	def cursorGet(self):
+		return self.l.cursorGet()
+
+	def cursorSet(self, val):
+		self.l.cursorSet(val)
+
 # stuff for multiple marks (edit mode / later multiepg)
 	def clearMarks(self):
 		self.l.initMarked()
