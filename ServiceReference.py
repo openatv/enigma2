@@ -8,16 +8,29 @@ class ServiceReference(eServiceReference):
 		if isinstance(ref, str):
 			ref = eServiceReference(ref)
 		self.ref = ref
+		self.serviceHandler = eServiceCenter.getInstance()
 
-	def getStaticServiceInformation(self):
-		return NavigationInstance.instance.ServiceHandler.info(self.ref)
-	
 	def __str__(self):
 		return self.ref.toString()
 	
 	def getServiceName(self):
-		info = self.getStaticServiceInformation()
+		info = self.info()
 		if info is None:
 			return None
 		
 		return info.getName(self.ref)
+
+	def play(self):
+		return self.serviceHandler.info(self.ref)
+	
+	def record(self):
+		return self.serviceHandler.record(self.ref)
+	
+	def list(self):
+		return self.serviceHandler.list(self)
+	
+	def info(self):
+		return self.serviceHandler.info(self)
+
+	def offlineOperations(self):
+		return self.serviceHandler.offlineOperations(self.ref)
