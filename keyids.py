@@ -294,4 +294,6 @@ KEYIDS = {
 "KEY_INS_LINE": 450, 
 "KEY_DEL_LINE": 451, 
 "KEY_MAX": 511, 
+"BTN_0": 256, 
+"BTN_1": 257, 
 }
