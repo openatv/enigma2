@@ -6,11 +6,15 @@ from enigma import *
 class Standby(Screen):
 	def Power(self):
 		print "leave standby"
-		#start last played service
+		#set input to encoder
 		eAVSwitch.getInstance().setInput(0)
+		#start last played service
 		self.infobar.servicelist.zap()
+		#unmute adc
 		self.leaveMute()
+		#set brightness of lcd
 		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.bright.value * 20)
+		#kill me
 		self.close()
 
 	def setMute(self):
@@ -35,9 +39,12 @@ class Standby(Screen):
 			"power": self.Power
 		})
 
+		#mute adc
 		self.setMute()
+		#stop actual played dvb-service
 		self.session.nav.stopService()
+		#set input to vcr scart
 		eAVSwitch.getInstance().setInput(1)
+		#set lcd brightness to standby value
 		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
 	
-		
