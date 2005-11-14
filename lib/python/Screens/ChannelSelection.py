@@ -126,10 +126,8 @@ class ChannelSelection(Screen):
 		ref=l.getCurrent()
 		if ref.valid() and self.mutableList is not None:
 			self.mutableList.removeService(ref)
-			pos = l.cursorGet()
 			self.mutableList.flushChanges() #FIXME dont flush on each single removed service
 			self.setRoot(l.getRoot())
-#			l.cursorSet(pos) #whats going wrong here????
 
 	def endMarkedEdit(self, abort):
 		l = self["list"]
@@ -208,6 +206,8 @@ class ChannelSelection(Screen):
 
 	def toggleMoveMode(self):
 		if self.movemode:
+			if self.entry_marked:
+				self.channelSelected() # unmark current entry
 			self.movemode = False
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 		else:
