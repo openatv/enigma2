@@ -10,7 +10,6 @@ from Components.HTMLComponent import *
 from Components.GUIComponent import *
 from Components.config import *
 
-#from enigma import eListbox, eListboxPythonConfigContent
 from enigma import *
 
 #use this class to synchronize all ci to/from user communications
@@ -45,6 +44,7 @@ class CiWait(Screen):
 		if query == 0:									#reset
 			self.Timer.start(1000)				#block 1 second
 			print "reset"
+			eDVBCI_UI.getInstance().setReset(0)
 		if query == 1:									#init
 			self.Timer.start(1000)				#block 1 second
 			print "init"
