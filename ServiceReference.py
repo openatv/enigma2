@@ -27,10 +27,10 @@ class ServiceReference(eServiceReference):
 		return self.serviceHandler.record(self.ref)
 	
 	def list(self):
-		return self.serviceHandler.list(self)
+		return self.serviceHandler.list(self.ref)
 	
 	def info(self):
-		return self.serviceHandler.info(self)
+		return self.serviceHandler.info(self.ref)
 
 	def offlineOperations(self):
 		return self.serviceHandler.offlineOperations(self.ref)
