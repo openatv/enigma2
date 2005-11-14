@@ -132,6 +132,8 @@ class InfoBar(Screen):
 				
 				"seekFwd": self.seekFwd,
 				"seekBack": self.seekBack,
+				
+				"audioSelection": self.audioSelection,
 			})
 #		self["okbutton"] = Button("mainMenu", [self.mainMenu])
 		
@@ -259,7 +261,7 @@ class InfoBar(Screen):
 	def quit(self):
 		#	self.session.open(Standby, self)
 		configfile.save()
-		quitMainloop()
+		quitMainloop(0)
 	
 	def stopCurrentRecording(self):	
 		print "remove entry"
@@ -321,3 +323,12 @@ class InfoBar(Screen):
 	
 	def seekBack(self):
 		self.doSeek(-1, 10000)
+
+	def audioSelection(self):
+		service = self.session.nav.getCurrentService()
+		audio = service.audioTracks()
+		n = audio.getNumberOfTracks()
+		print "AUDIO TRACKS:"
+		for x in range(n):
+			i = audio.getTrackInfo(x)
+			print i.getDescription()
