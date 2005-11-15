@@ -7,7 +7,24 @@ from Components.config import config
 from Components.config import getConfigListEntry
 from Components.NimManager import nimmanager
 from Components.Label import Label
+from enigma import eDVBFrontendParametersSatellite
 
+def getInitialTransponderList(tlist, pos):
+	list = nimmanager.getTransponders(pos)
+	
+	for x in list:
+		if x[0] == 0:		#SAT
+			parm = eDVBFrontendParametersSatellite()
+			parm.frequency = x[1]
+			parm.symbol_rate = x[2]
+			parm.polarisation = x[3] # eDVBFrontendParametersSatellite.Polarisation.Verti      
+			#parm.fec = x[4]		 # eDVBFrontendParametersSatellite.FEC.f3_4;
+			parm.fec = 6		 # eDVBFrontendParametersSatellite.FEC.f3_4;
+			#parm.inversion = 1 #eDVBFrontendParametersSatellite.Inversion.Off;
+			parm.inversion = 2 #eDVBFrontendParametersSatellite.Inversion.Off;
+			parm.orbital_position = pos
+			tlist.append(parm)
+		
 class ScanSetup(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -180,7 +197,8 @@ class ScanSetup(Screen):
     def keyGo(self):
         for x in self["config"].list:
             x[1].save()
-        self.session.openWithCallback(self.keyCancel, ServiceScan)        
+				#tlist = [ ]		
+        self.session.openWithCallback(self.keyCancel, ServiceScan, [ ])        
 
         #self.close()
 
@@ -193,11 +211,13 @@ class ScanSimple(Screen):
 
 	def keyOK(self):
 		print "start scan for sats:"
+		tlist = [ ]
 		for x in self.list:
 			if x[1].parent.value == 0:
 				print "   " + str(x[1].parent.configPath)
-
-		self.session.openWithCallback(self.keyCancel, ServiceScan)        
+				getInitialTransponderList(tlist, x[1].parent.configPath)
+				
+		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist)        
 		
 	def keyCancel(self):
 		self.close()
