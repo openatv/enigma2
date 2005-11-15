@@ -328,7 +328,7 @@ void eDVBScan::channelDone()
 	nextChannel();
 }
 
-void eDVBScan::start(const std::list<ePtr<iDVBFrontendParameters> > &known_transponders)
+void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders)
 {
 	m_ch_toScan.clear();
 	m_ch_scanned.clear();

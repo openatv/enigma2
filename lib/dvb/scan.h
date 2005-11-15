@@ -65,7 +65,7 @@ public:
 	eDVBScan(iDVBChannel *channel);
 	~eDVBScan();
 	
-	void start(const std::list<ePtr<iDVBFrontendParameters> > &known_transponders);
+	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders);
 
 	enum { evtUpdate, evtFinish, evtFail };
   RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
