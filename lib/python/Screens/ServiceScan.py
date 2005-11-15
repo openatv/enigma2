@@ -13,14 +13,14 @@ class ServiceScan(Screen):
 	def cancel(self):
 		self.close()
 	
-	def __init__(self, session):
+	def __init__(self, session, transponders):
 		Screen.__init__(self, session)
 		
 		self.session.nav.stopService()
 		
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label("scan state")
-		self["scan"] = CScan(self["scan_progress"], self["scan_state"])
+		self["scan"] = CScan(self["scan_progress"], self["scan_state"], transponders)
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
