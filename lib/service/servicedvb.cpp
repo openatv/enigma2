@@ -652,8 +652,9 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	if (m_service_handler.getPVRChannel(pvr_channel))
 		return -1;
 	
-			/* this is of couse wrong: PTS values don't match with bytes. */
-	return pvr_channel->seekToPosition(SEEK_CUR, direction * to);
+	to *= direction;
+	
+	return pvr_channel->seekTo(1, to);
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
