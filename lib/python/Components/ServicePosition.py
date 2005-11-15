@@ -33,7 +33,7 @@ class ServicePosition(PerServiceDisplay):
 		self.available = 0
 		
 		if service != None:
-			seek = service.seek(seek)
+			seek = service.seek()
 			if seek != None:
 				if self.type != self.TYPE_LENGTH:
 					self.updateTimer.start(500)
@@ -47,7 +47,7 @@ class ServicePosition(PerServiceDisplay):
 		service = self.navcore.getCurrentService()
 		
 		if service != None:
-			seek = service.seek(seek)
+			seek = service.seek()
 			if seek != None:
 				if what == self.TYPE_LENGTH:
 					r = seek.getLength()
