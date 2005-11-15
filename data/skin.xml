@@ -150,6 +150,15 @@
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
 <!--			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" /> -->
 		</screen>
+
+		<screen name="MoviePlayer" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
+			<ePixmap position="0,0" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
+			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
+			<eLabel position="70,0" size="300,30" text=".oO skin Oo." font="Arial;20" />
+		</screen>
+
+
 		<screen name="NumberZap" flags="wfNoBorder" position="300,120" size="120,60">
 			<widget name="number" position="30,15" size="80,25" font="Arial;23" />
 		</screen>
@@ -161,8 +170,8 @@
 		<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute">
 			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
 		</screen>
- 		<screen name="ChannelSelection" position="90,100" size="560,420" title="Channel Selection">
-			<widget name="list" position="10,50" size="540,325" />
+ 		<screen name="ChannelSelection" position="90,100" size="560,450" title="Channel Selection">
+			<widget name="list" position="10,50" size="540,400" />
 <!--			<widget name="okbutton" position="340,50" size="140,30" />-->
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
@@ -197,7 +206,7 @@
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
 			<widget name="text" position="0,0" size="650,0" font="Arial;22" />
 			<applet type="onLayoutFinish">
-# this should be factored out into some helper code, but currently demonstrated applets.
+# this should be factored out into some helper code, but currently demonstrates applets.
 from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()
