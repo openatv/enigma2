@@ -233,6 +233,10 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
 			demux = new eDVBAllocatedDemux(i);
+			if (fe)
+				demux->get().setSourceFrontend(fe->m_frontend->getID());
+			else
+				demux->get().setSourcePVR(0);
 			eDebug("demux found");
 			return 0;
 		}

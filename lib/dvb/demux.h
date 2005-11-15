@@ -6,6 +6,25 @@
 
 class eDVBDemux: public iDVBDemux
 {
+	DECLARE_REF(eDVBDemux);
+public:
+	enum {
+		evtFlush
+	};
+	eDVBDemux(int adapter, int demux);
+	virtual ~eDVBDemux();
+	
+	RESULT setSourceFrontend(int fenum);
+	RESULT setSourcePVR(int pvrnum);
+	
+	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
+	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
+	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
+	RESULT getSTC(pts_t &pts);
+	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
+	RESULT flush();
+	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
+private:
 	int adapter, demux;
 	
 	int m_dvr_busy;
@@ -16,20 +35,8 @@ class eDVBDemux: public iDVBDemux
 	friend class eDVBTSRecorder;
 	friend class eDVBCAService;
 	Signal1<void, int> m_event;
-public:
-	enum {
-		evtFlush
-	};
-	DECLARE_REF(eDVBDemux);
-	eDVBDemux(int adapter, int demux);
-	virtual ~eDVBDemux();
-	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
-	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
-	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
-	RESULT getSTC(pts_t &pts);
-	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
-	RESULT flush();
-	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
+	
+	int openDemux(void);
 };
 
 class eDVBSectionReader: public iDVBSectionReader, public Object
