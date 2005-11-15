@@ -67,7 +67,7 @@ class MovieSelection(Screen):
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ContextMenuActions"],
 			{
-				"cancel": self.close,
+				"cancel": self.abort,
 				"ok": self.movieSelected,
 				"contextMenu": self.doContext,
 			})
@@ -77,8 +77,10 @@ class MovieSelection(Screen):
 		return self["list"].getCurrent()[0]
 
 	def movieSelected(self):
-		self.session.nav.playService(self.getCurrent())
-		self.close()
+		self.close(self.getCurrent())
 
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self, self.getCurrent())
+
+	def abort(self):
+		self.close(None)

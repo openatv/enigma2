@@ -5,15 +5,12 @@ from Components.Label import Label
 from Components.config import configfile
 from ChannelSelection import ChannelSelection
 
-
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
-from Components.ServicePosition import ServicePosition
 
 from EpgSelection import EPGSelection
 
 from Screens.MessageBox import MessageBox
-from Screens.MovieSelection import MovieSelection
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from Screens.Standby import Standby
@@ -219,7 +216,7 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 
-		self["ChannelSelectActions"] = ActionMap( ["InfoBarChannelSelection"],
+		self["ChannelSelectActions"] = ActionMap( ["InfobarChannelSelection"],
 			{
 				"switchChannelUp": self.switchChannelUp,
 				"switchChannelDown": self.switchChannelDown,
@@ -246,7 +243,7 @@ class InfoBarChannelSelection:
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
-		self["MenuActions"] = ActionMap( [ "InfoBarMenuActions" ], 
+		self["MenuActions"] = ActionMap( [ "InfobarMenuActions" ], 
 			{
 				"mainMenu": self.mainMenu,
 			})
@@ -327,7 +324,7 @@ class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
 	start/stop instant records"""
 	def __init__(self):
-		self["InstnantRecordActions"] = ActionMap( [ "InfoBarInstantRecord" ],
+		self["InstnantRecordActions"] = ActionMap( [ "InfobarInstantRecord" ],
 			{
 				"instantRecord": self.instantRecord,
 			})
@@ -367,3 +364,19 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Do you want to stop the current\n(instant) recording?")
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Start recording?")
+
+from Screens.AudioSelection import AudioSelection
+
+class InfoBarAudioSelection:
+	def __init__(self):
+		self["AudioSelectionAction"] = ActionMap( [ "InfobarAudioSelectionActions" ], 
+			{
+				"audioSelection": self.audioSelection,
+			})
+
+	def audioSelection(self):
+		service = self.session.nav.getCurrentService()
+		audio = service.audioTracks()
+		n = audio.getNumberOfTracks()
+		if n > 0:
+			self.session.open(AudioSelection, audio)
