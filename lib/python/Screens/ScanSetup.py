@@ -18,10 +18,10 @@ def getInitialTransponderList(tlist, pos):
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
 			parm.polarisation = x[3] # eDVBFrontendParametersSatellite.Polarisation.Verti      
-			#parm.fec = x[4]		 # eDVBFrontendParametersSatellite.FEC.f3_4;
-			parm.fec = 6		 # eDVBFrontendParametersSatellite.FEC.f3_4;
-			#parm.inversion = 1 #eDVBFrontendParametersSatellite.Inversion.Off;
-			parm.inversion = 2 #eDVBFrontendParametersSatellite.Inversion.Off;
+			#parm.fec = x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
+			parm.fec = 6					# AUTO
+			#parm.inversion = 1 	#eDVBFrontendParametersSatellite.Inversion.Off;
+			parm.inversion = 2 		#AUTO
 			parm.orbital_position = pos
 			tlist.append(parm)
 		
