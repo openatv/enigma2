@@ -201,22 +201,3 @@ except:
 	traceback.print_exc(file=sys.stdout)
 	quitMainloop(5)
 	print '-'*60
-
-# now, run the mainloop
-
-#pt = eDebugClassPtr()
-#eDebugClass.getDebug(pt, 12)
-#p = pt.__deref__()
-#print pt.x
-#print p.x
-#print "removing ptr..."
-#pt = 0
-#print "now"
-#print "p is " + str(p)
-#print p.x
-#p = 0
-#
-#bla = eDebugClass()
-#bla = eDebugClass(2)
-#
-
