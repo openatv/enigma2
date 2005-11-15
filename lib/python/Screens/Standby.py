@@ -9,7 +9,9 @@ class Standby(Screen):
 		#set input to encoder
 		eAVSwitch.getInstance().setInput(0)
 		#start last played service
-		self.infobar.servicelist.zap()
+		#self.infobar.servicelist.zap()
+		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+		
 		#unmute adc
 		self.leaveMute()
 		#set brightness of lcd
