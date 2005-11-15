@@ -9,7 +9,7 @@
  * thus we're not evaluating PES headers, not adaption fields.
  */
 
-typedef unsigned long long pts_t;
+typedef long long pts_t;
 
 class eDVBTSTools
 {
@@ -26,10 +26,14 @@ public:
 		/* get first PTS *after* the given offset. */
 	int getPTS(off_t &offset, pts_t &pts);
 	
+	int getPosition(off_t &offset, pts_t &pts);
+	
 	void calcBegin();
 	void calcEnd();
 	
 	int calcLen(pts_t &len);
+	
+	int calcBitrate(); /* in bits/sec */
 	
 private:
 	int m_fd, m_pid;
