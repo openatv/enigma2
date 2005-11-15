@@ -556,7 +556,7 @@ void eDVBDB::loadBouquets()
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
 	}
-	if ( m_bouquets.find("userbouquets.favourites.radio") == m_bouquets.end() )
+	if ( m_bouquets.find("userbouquet.favourites.radio") == m_bouquets.end() )
 	{
 		eBouquet &b = m_bouquets["userbouquet.favourites.radio"];
 		b.m_path = "userbouquet.favourites.radio";
