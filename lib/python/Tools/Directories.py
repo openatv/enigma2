@@ -42,7 +42,6 @@ def getRecordingFilename(basename):
 		path = "/hdd/movies/" + filename
 		if i > 0:
 			path += str(i)
-#		if os.glob(path + "*").size() == 0:
-#			return path
-		return path
+		if os.glob(path + "*").size() == 0:
+			return path
 		i+=1
