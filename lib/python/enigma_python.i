@@ -71,6 +71,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/volume.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/frontendparms.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/rfmod.h>
 #include <lib/gdi/lcd.h>
@@ -164,6 +165,7 @@ typedef long time_t;
 %include <lib/dvb/volume.h>
 %include <lib/dvb/sec.h>
 %include <lib/dvb/epgcache.h>
+%include <lib/dvb/frontendparms.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/rfmod.h>
 %include <lib/gdi/lcd.h>
@@ -173,8 +175,6 @@ typedef long time_t;
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
-%apply eActionMapPtr OUTPUT { eActionMapPtr &ptr }
-%apply eActionMap* *OUTPUT { eActionMap **ptr }
 
 /**************  signals  **************/
 
