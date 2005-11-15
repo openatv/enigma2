@@ -44,9 +44,6 @@ class configFile:
 		keys.sort()
 		for x in keys:
 			wstr = x + "=" + self.configElements[x] + "\n"
-			
-			if wstr[len(wstr) - 1] != '\n':
-				wstr = wstr + "\n"
 
 			fileHandle.write(wstr)
 
