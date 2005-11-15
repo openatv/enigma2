@@ -2,7 +2,8 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-from Components.config import configfile
+from Components.config import configfile, configsequencearg
+from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
 
 from Components.ServiceName import ServiceName
@@ -26,8 +27,10 @@ from Menu import MainMenu, mdom
 class InfoBarVolumeControl:
 	"""Volume control, handles volUp, volDown, volMute actions and display 
 	a corresponding dialog"""
-	
 	def __init__(self):
+		config.audio = ConfigSubsection()
+		config.audio.volume = configElement("config.audio.volume", configSequence, [5], configsequencearg.get("INTEGER", (0, 100)))
+
 		self["VolumeActions"] = ActionMap( ["InfobarVolumeActions"] ,
 			{
 				"volumeUp": self.volUp,
@@ -40,17 +43,27 @@ class InfoBarVolumeControl:
 
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
+
+		vol = config.audio.volume.value[0]
+		self.volumeDialog.setValue(vol)
+		eDVBVolumecontrol.getInstance().setVolume(vol, vol)
 	
+	def volSave(self):
+		config.audio.volume.value = eDVBVolumecontrol.getInstance().getVolume()
+		config.audio.volume.save()
+		
 	def	volUp(self):
 		eDVBVolumecontrol.getInstance().volumeUp()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volSave()
 		self.hideVolTimer.start(3000)
 
 	def	volDown(self):
 		eDVBVolumecontrol.getInstance().volumeDown()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volSave()
 		self.hideVolTimer.start(3000)
 		
 	def volHide(self):
