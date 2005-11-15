@@ -2,6 +2,7 @@
 #define __lib_components_scan_h
 
 #include <lib/base/object.h>
+#include <lib/dvb/idvb.h>
 
 class eDVBScan;
 
@@ -9,11 +10,14 @@ class eComponentScan: public Object, public iObject
 {
 DECLARE_REF(eComponentScan);
 private:
+#ifndef SWIG
 	void scanEvent(int event);
 	ePtr<eConnection> m_scan_event_connection;
 	ePtr<eDVBScan> m_scan;
 	
 	int m_done, m_failed;
+	eSmartPtrList<iDVBFrontendParameters> m_initial;
+#endif
 public:
 	eComponentScan();
 	~eComponentScan();
@@ -31,6 +35,10 @@ public:
 	
 	int getError();
 	
+	void clear();
+	void addInitial(const eDVBFrontendParametersSatellite &p);
+	void addInitial(const eDVBFrontendParametersCable &p);
+	void addInitial(const eDVBFrontendParametersTerrestrial &p);
 	int start();
 };
 
