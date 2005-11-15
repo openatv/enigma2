@@ -57,8 +57,7 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 		for x in InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection:
 			x.__init__(self)
 
-		self["CurrentTime"] = Clock()
-		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
+		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 		
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.playService(service)
