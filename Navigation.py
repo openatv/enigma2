@@ -30,6 +30,10 @@ class Navigation:
 	
 	def playService(self, ref):
 		self.currentlyPlayingServiceReference = None
+		if ref is None:
+			self.stopService()
+			return 0
+		
 		if not self.pnav.playService(ref):
 			self.currentlyPlayingServiceReference = ref
 			return 0
