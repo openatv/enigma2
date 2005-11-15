@@ -50,8 +50,38 @@ eComponentScan::~eComponentScan()
 {
 }
 
+void eComponentScan::clear()
+{
+	m_initial.clear();
+}
+
+void eComponentScan::addInitial(const eDVBFrontendParametersSatellite &p)
+{
+	ePtr<eDVBFrontendParameters> parm = new eDVBFrontendParameters();
+	parm->setDVBS(p);
+	m_initial.push_back(parm);
+}
+
+void eComponentScan::addInitial(const eDVBFrontendParametersCable &p)
+{
+	ePtr<eDVBFrontendParameters> parm = new eDVBFrontendParameters();
+	parm->setDVBC(p);
+	m_initial.push_back(parm);
+}
+
+void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
+{
+	ePtr<eDVBFrontendParameters> parm = new eDVBFrontendParameters();
+	parm->setDVBT(p);
+	m_initial.push_back(parm);
+}
+
+
 int eComponentScan::start()
 {
+	if (m_initial.empty())
+		return -2;
+
 	if (m_done != -1)
 		return -1;
 	
@@ -60,7 +90,8 @@ int eComponentScan::start()
 	
 	eDVBResourceManager::getInstance(mgr);
 
-	eDVBFrontendParameters *fe = new eDVBFrontendParameters();
+#if 0 
+	ePtr<eDVBFrontendParameters> fe = new eDVBFrontendParameters();
 #if 1
 	eDVBFrontendParametersSatellite fesat;
 		
@@ -86,6 +117,8 @@ int eComponentScan::start()
 	fet.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy::HNone;
 	fe->setDVBT(fet);
 #endif
+#endif
+
 	eUsePtr<iDVBChannel> channel;
 
 	if (mgr->allocateRawChannel(channel))
@@ -96,11 +129,9 @@ int eComponentScan::start()
 
 	std::list<ePtr<iDVBFrontendParameters> > list;
 		
-	list.push_back(fe);
-	
 	m_scan = new eDVBScan(channel);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
-	m_scan->start(list);
+	m_scan->start(m_initial);
 	
 	return 0;
 }

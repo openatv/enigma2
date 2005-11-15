@@ -1,4 +1,4 @@
-from enigma import eComponentScan
+from enigma import eComponentScan, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
 
 class ServiceScan:
 	
@@ -40,6 +40,30 @@ class ServiceScan:
 		self.scan = eComponentScan()
 		self.state = self.Idle
 		self.scanStatusChanged()
+		
+		
+		if 1:
+			parm = eDVBFrontendParametersSatellite()
+
+			parm.frequency = 11817000
+			parm.symbol_rate = 27500000
+			parm.polarisation = 1 # eDVBFrontendParametersSatellite.Polarisation.Vertical
+			parm.fec = 3 # eDVBFrontendParametersSatellite.FEC.f3_4;
+			parm.inversion = 1 #eDVBFrontendParametersSatellite.Inversion.Off;
+			parm.orbital_position = 192
+		else:
+			parm = eDVBFrontendParametersTerrestrial()
+			
+			parm.frequency = 626000000;
+			parm.inversion = 2  # eDVBFrontendParametersTerrestrial.Inversion.Unknown;
+			parm.bandwidth = 0  #eDVBFrontendParametersTerrestrial.Bandwidth.Bw8MHz;
+			parm.code_rate_HP = parm.code_rate_LP = 6 #eDVBFrontendParametersTerrestrial.FEC.fAuto;
+			parm.modulation = 1 #eDVBFrontendParametersTerrestrial.Modulation.QAM16;
+			parm.transmission_mode = 1 # eDVBFrontendParametersTerrestrial.TransmissionMode.TM8k;
+			parm.guard_interval = 0 # eDVBFrontendParametersTerrestrial.GuardInterval.GI_1_32;
+			parm.hierarchy = 0 #eDVBFrontendParametersTerrestrial.Hierarchy.HNone;
+		
+		self.scan.addInitial(parm)
 		
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
