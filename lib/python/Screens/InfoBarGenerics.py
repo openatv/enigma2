@@ -185,16 +185,7 @@ class InfoBarPowerKey:
 			self.session.open(Standby, self)
 
 	def quit(self):
-		#	self.session.open(Standby, self)
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		if ref is not None:
-			refstr = ref.toString()
-		else:
-			refstr = ""	
-		
-		#configfile.save()
 		quitMainloop(0)
-
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
