@@ -4,6 +4,21 @@ from Components.Harddisk import harddiskmanager			#global harddiskmanager
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
+from enigma import eTimer
+
+class HarddiskWait(Screen):
+	def doInit(self):
+		self.timer.stop()
+		self.hdd.initialize()
+		self.close()
+
+	def __init__(self, session, hdd):
+		Screen.__init__(self, session)
+		self.hdd = hdd
+		self["wait"] = Label("Initializing Harddisk...");
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.doInit)
+		self.timer.start(100)
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd):
@@ -26,9 +41,12 @@ class HarddiskSetup(Screen):
 			"red": self.hddInitialize
 		})
 
+	def hddReady(self):
+		self.close()
+
 	def hddInitialize(self):
 		print "this will start the initialize now!"
-		self.hdd.initialize()
+		self.session.openWithCallback(self.hddReady, HarddiskWait, self.hdd)
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):
