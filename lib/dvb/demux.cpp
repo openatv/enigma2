@@ -34,7 +34,34 @@ eDVBDemux::~eDVBDemux()
 {
 }
 
+int eDVBDemux::openDemux(void)
+{
+	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	snprintf(filename, 128, "/dev/dvb/card%d/demux%d", adapter, demux);
+#else
+	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", adapter, demux);
+#endif
+	return ::open(filename, O_RDWR);
+}
+
 DEFINE_REF(eDVBDemux)
+
+RESULT eDVBDemux::setSourceFrontend(int fenum)
+{
+	int fd = openDemux();
+	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_FRONT0 + fenum);
+	::close(fd);
+	return res;
+}
+
+RESULT eDVBDemux::setSourcePVR(int pvrnum)
+{
+	int fd = openDemux();
+	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_DVR0 + pvrnum);
+	::close(fd);
+	return res;
+}
 
 RESULT eDVBDemux::createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)
 {
@@ -61,13 +88,7 @@ RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder)
 
 RESULT eDVBDemux::getSTC(pts_t &pts)
 {
-	char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-	sprintf(filename, "/dev/dvb/card%d/demux%d", adapter, demux);
-#else
-	sprintf(filename, "/dev/dvb/adapter%d/demux%d", adapter, demux);
-#endif
-	int fd = ::open(filename, O_RDWR);
+	int fd = openDemux();
 	
 	if (fd < 0)
 		return -ENODEV;
@@ -131,14 +152,7 @@ void eDVBSectionReader::data(int)
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux)
 {
 	char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
-#else
-	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-#endif
-	fd = ::open(filename, O_RDWR);
-	
-	eDebug("eDVBSectionReader has fd %d", fd);
+	fd = demux->openDemux();
 	
 	if (fd >= 0)
 	{
@@ -345,16 +359,10 @@ RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnecti
 
 RESULT eDVBTSRecorder::startPID(int pid)
 {
-	char filename[128];
-#if HAVE_DVB_API_VERSION < 3
-	snprintf(filename, 128, "/dev/dvb/card%d/demux%d", m_demux->adapter, m_demux->demux);
-#else
-	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
-#endif
-	int fd = ::open(filename, O_RDWR);
+	int fd = m_demux->openDemux();
 	if (fd < 0)
 	{
-		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);
+		eDebug("FAILED to open demux in ts recoder (%m)");
 		return -1;
 	}
 
