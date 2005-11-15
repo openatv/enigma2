@@ -3,53 +3,95 @@ from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, eTimer
+from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
 from Components.config import config, configElement, ConfigSubsection, configText
 
 from Screens.FixedMenu import FixedMenu
 
 import xml.dom.minidom
 
+class BouquetSelector(FixedMenu):
+	def __init__(self, session, bouquets, parent):
+		self.parent=parent
+		entrys = [ ]
+		for x in bouquets:
+			entrys.append((x[0], self.bouquetSelected, x[1]))
+		FixedMenu.__init__(self, session, "Bouquetlist", entrys)
+		self.skinName = "Menu"
+
+	def bouquetSelected(self):
+		self.parent.addCurrentServiceToBouquet(self["menu"].getCurrent()[2])
+		self.close()
+
 class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel):
 		self.csel = csel
-		
+
 		menu = [ ]
-		
-		if csel.mutableList is not None:
-			if not csel.bouquet_mark_edit:
-				if csel.movemode:
-					menu.append(("disable move mode", self.toggleMoveMode))
-				else:
-					menu.append(("enable move mode", self.toggleMoveMode))
 
-			if not csel.movemode:
-				if csel.bouquet_mark_edit:
-					menu.append(("end bouquet edit", self.bouquetMarkEnd))
-					menu.append(("abort bouquet edit", self.bouquetMarkAbort))
-				else:
-					menu.append(("edit bouquet...", self.bouquetMarkStart))
+		#HACK
+		inBouquetRootList = csel["list"].getRoot().toString().find('FROM BOUQUET "bouquets.') != -1
+		inBouquet = csel.getMutableList() is not None
 
-			if not csel.bouquet_mark_edit and not csel.movemode:
+		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
+			menu.append(("add service to bouquet", self.addServiceToBouquetSelected))
+			if inBouquet:
 				menu.append(("remove service", self.removeCurrentService))
-			menu.append(("back", self.close))
-		else:
-			menu.append(("back", self.close))
+
+		if inBouquet: # current list is editable?
+			if not csel.bouquet_mark_edit:
+				if not csel.movemode:
+					menu.append(("enable move mode", self.toggleMoveMode))
+					if not inBouquetRootList: 
+						menu.append(("enable bouquet edit", self.bouquetMarkStart))
+				else:
+					menu.append(("disable move mode", self.toggleMoveMode))
+			elif not inBouquetRootList: 
+				menu.append(("end bouquet edit", self.bouquetMarkEnd))
+				menu.append(("abort bouquet edit", self.bouquetMarkAbort))
+
+		menu.append(("back", self.close))
 
 		FixedMenu.__init__(self, session, "Channel Selection", menu)
 		self.skinName = "Menu"
 
-	def removeCurrentService(self):
+	def addServiceToBouquetSelected(self):
+		bouquets = [ ]
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(self.csel.bouquet_root)
+		if not list is None:
+			while 1:
+				s = list.getNext()
+				if not s.valid():
+					break
+				if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+					info = serviceHandler.info(s)
+					if not info is None:
+						str = info.getName(s)
+						bouquets.append((str, s))
+		cnt = len(bouquets)
+		if cnt > 1: # show bouquet list
+			self.session.open(BouquetSelector, bouquets, self)
+		elif cnt == 1: # add to only one existing bouquet
+			self.addCurrentServiceToBouquet(bouquet[0][1])
+		else: #no bouquets in root.. so assume only one favourite list is used
+			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
+
+	def addCurrentServiceToBouquet(self, dest):
+		self.csel.addCurrentServiceToBouquet(dest)
 		self.close()
+
+	def removeCurrentService(self):
 		self.csel.removeCurrentService()
+		self.close()
 
 	def toggleMoveMode(self):
 		self.csel.toggleMoveMode()
 		self.close()
 
 	def bouquetMarkStart(self):
-		self.close()
 		self.csel.startMarkedEdit()
+		self.close()
 
 	def bouquetMarkEnd(self):
 		self.csel.endMarkedEdit(abort=False)
@@ -73,24 +115,24 @@ class ChannelSelection(Screen):
 		config.tv = ConfigSubsection();
 		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
-		
+
 		self.entry_marked = False
 		self.movemode = False
 		self.bouquet_mark_edit = False
-		
-		## FIXME
+		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+		self.mutableList = None
+
 		self.__marked = [ ]
-		
+
 		self["key_red"] = Button("All")
 		self["key_green"] = Button("Provider")
 		self["key_yellow"] = Button("Satellite")
 		self["key_blue"] = Button("Favourites")
 		
 		self["list"] = ServiceList()
-		
+
 		if config.tv.lastroot.value == "":
-			self.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
-		
+			self["list"].setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 
 		self.lastServiceTimer = eTimer()
@@ -102,8 +144,10 @@ class ChannelSelection(Screen):
 				if action[:7] == "bouquet":
 					l = self.csel
 					list = l["list"]
-					list.setMode(list.MODE_NORMAL)
-					l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
+					if action.find("FROM BOUQUET") != -1:
+						l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
+					else:
+						l.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
 					if action == "cancel":
 						l = self.csel
@@ -133,25 +177,29 @@ class ChannelSelection(Screen):
 		else:
 			print 'no epg for service', ref.toString()
 
+	def getMutableList(self, root=eServiceReference()):
+		if not self.mutableList is None:
+			return self.mutableList
+		serviceHandler = eServiceCenter.getInstance()
+		if not root.valid():
+			root=self["list"].getRoot()
+		list = serviceHandler.list(root)
+		mutableList = None
+		if list is not None:
+			mutableList = list.startEdit()
+		return mutableList
+
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self):
+		self.mutableList = self.getMutableList()
 		l = self["list"]
 		# add all services from the current list to internal marked set in listboxservicecontent
-		if self.mutableList is not None:
-			self.bouquetRoot = l.getRoot()
-			self.clearMarks() # this clears the internal marked set in the listboxservicecontent
-			self.bouquet_mark_edit = True
-			self.__marked = l.getRootServices()
-			for x in self.__marked:
-				l.addMarked(eServiceReference(x))
-
-	def removeCurrentService(self):
-		l = self["list"]
-		ref=l.getCurrent()
-		if ref.valid() and self.mutableList is not None:
-			self.mutableList.removeService(ref)
-			self.mutableList.flushChanges() #FIXME dont flush on each single removed service
-			self.setRoot(l.getRoot())
+		self.bouquetRoot = l.getRoot()
+		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
+		self.bouquet_mark_edit = True
+		self.__marked = l.getRootServices()
+		for x in self.__marked:
+			l.addMarked(eServiceReference(x))
 
 	def endMarkedEdit(self, abort):
 		l = self["list"]
@@ -169,36 +217,52 @@ class ChannelSelection(Screen):
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
 				self.mutableList.flushChanges()
-				#self.setRoot(self.bouquetRoot)
-				self.showFavourites()
+				self.setRoot(self.bouquetRoot)
+				#self.showFavourites()
 		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
 		self.bouquetRoot = None
-
-	def setRoot(self, root):
-		if not self.movemode:
-			if not self.bouquet_mark_edit:
-				serviceHandler = eServiceCenter.getInstance()
-				list = serviceHandler.list(root)
-				if list is not None:
-					self.mutableList = list.startEdit()
-				else:
-					self.mutableList = None
-			self.saveRoot(root)
-			self["list"].setRoot(root)
+		self.mutableList = None
 
 	def clearMarks(self):
 		self["list"].clearMarks()
 
 	def doMark(self):
-		if not self.bouquet_mark_edit:
-			return
 		ref = self["list"].getCurrent()
 		if self["list"].isMarked(ref):
 			self["list"].removeMarked(ref)
 		else:
 			self["list"].addMarked(ref)
+
+	def removeCurrentService(self):
+		l = self["list"]
+		ref = l.getCurrent()
+		mutableList = self.getMutableList()
+		if ref.valid() and mutableList is not None:
+			if mutableList.removeService(ref) == 0:
+				mutableList.flushChanges() #FIXME dont flush on each single removed service
+				self.setRoot(l.getRoot())
+
+	def addCurrentServiceToBouquet(self, dest):
+		mutableList = self.getMutableList(dest)
+		if not mutableList is None:
+			if mutableList.addService(self["list"].getCurrent()) == 0:
+				mutableList.flushChanges()
+		self.close()
+
+	def setRoot(self, root):
+		if not self.movemode: # dont change root when movemode is enabled
+			list = self["list"]
+
+			#HACK
+			inBouquetRootList = root.toString().find('FROM BOUQUET "bouquets.') != -1
+
+			if not inBouquetRootList and ((root.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+				list.setMode(list.MODE_FAVOURITES)
+			else:
+				list.setMode(list.MODE_NORMAL)
+			list.setRoot(root)
 
 	def channelSelected(self):
 		ref = self["list"].getCurrent()
@@ -238,13 +302,13 @@ class ChannelSelection(Screen):
 				self.channelSelected() # unmark current entry
 			self.movemode = False
 			self.mutableList.flushChanges() # FIXME add check if changes was made
+			self.mutableList = None
 		else:
+			self.mutableList = self.getMutableList()
 			self.movemode = True
 
 	def showFavourites(self):
-		self.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
-		list = self["list"]
-		list.setMode(list.MODE_FAVOURITES)
+		self.setRoot(self.bouquet_root)
 
 	def saveRoot(self, root):
 		if root is not None:
