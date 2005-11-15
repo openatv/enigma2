@@ -20,6 +20,7 @@ class Navigation:
 		self.pnav.m_event.get().append(self.callEvent)
 		self.event = [ ]
 		self.currentlyPlayingService = None
+		self.currentlyPlayingServiceReference = None
 		
 		self.RecordTimer = RecordTimer.RecordTimer()
 
