@@ -45,14 +45,17 @@
 		<screen name="AudioSelection" position="210,150" size="300,170">
 			<widget name="tracks" position="20,10" size="260,150" />
 		</screen>
+		<screen name="HarddiskWait" position="140,165" size="360,60">
+			<widget name="wait" position="20,10" size="320,25" font="Arial;23"/>
+		</screen>
 		<screen name="HarddiskSelection" position="140,165" size="360,100">
 			<widget name="hddlist" position="20,10" size="320,75" />
 		</screen>
-		<screen name="HarddiskSetup" position="140,165" size="360,100">
-			<widget name="model" position="20,10" size="300,20" />
-			<widget name="capacity" position="20,30" size="300,20" />
-			<widget name="bus" position="20,50" size="300,20" />
-			<widget name="initialize" position="40,80" size="75,20" font="Arial;20" backgroundColor="red" />
+		<screen name="HarddiskSetup" position="140,165" size="420,160">
+			<widget name="model" position="20,10" size="380,25" font="Arial;23"  />
+			<widget name="capacity" position="20,40" size="380,25" font="Arial;23"  />
+			<widget name="bus" position="20,70" size="380,25" font="Arial;23"  />
+			<widget name="initialize" position="40,110" size="100,28" font="Arial;25" backgroundColor="red" />
 		</screen>
 		<screen name="Setup" position="140,125" size="460,280" title="Setup">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
