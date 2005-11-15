@@ -1,4 +1,6 @@
+#include <config.h>
 #include <lib/dvb/tstools.h>
+#include <lib/base/eerror.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -148,3 +150,21 @@ int eDVBTSTools::calcLen(pts_t &len)
 	return 0;
 }
 
+int eDVBTSTools::calcBitrate()
+{
+	calcBegin(); calcEnd();
+	if (!(m_begin_valid && m_end_valid))
+		return -1;
+
+	pts_t len_in_pts = m_pts_end - m_pts_begin;
+	off_t len_in_bytes = m_offset_end - m_offset_begin;
+	
+	if (!len_in_pts)
+		return -1;
+	
+	unsigned long long bitrate = len_in_bytes * 90000 * 8 / len_in_pts;
+	if ((bitrate < 10000) || (bitrate > 100000000))
+		return -1;
+	
+	return bitrate;
+}
