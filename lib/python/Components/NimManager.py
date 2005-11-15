@@ -99,10 +99,11 @@ class nimSlot:
 
 class NimManager:
 	class parseSats(ContentHandler):
-		def __init__(self, satList, satellites):
+		def __init__(self, satList, satellites, transponders):
 			self.isPointsElement, self.isReboundsElement = 0, 0
 			self.satList = satList
 			self.satellites = satellites
+			self.transponders = transponders
 	
 		def startElement(self, name, attrs):
 			if (name == "sat"):
@@ -111,6 +112,21 @@ class NimManager:
 				tname = attrs.get('name',"")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
+				self.parsedSat = int(tpos)
+			elif (name == "transponder"):
+				freq = int(attrs.get('frequency',""))
+				sr = int(attrs.get('symbol_rate',""))
+				pol = int(attrs.get('polarization',""))
+				fec = int(attrs.get('fec_inner',""))
+				if self.parsedSat in self.transponders:
+					pass
+				else:
+					self.transponders[self.parsedSat] = [ ]
+
+				self.transponders[self.parsedSat].append((0, freq, sr, pol, fec))
+
+	def getTransponders(self, pos):
+		return self.transponders[pos]
 
 	def getConfiguredSats(self):
 		return self.sec.getSatList()
@@ -120,10 +136,11 @@ class NimManager:
 
 	def readSatsfromFile(self):
 		self.satellites = { }
+		self.transponders = { }
 
 		print "Reading satellites.xml"
 		parser = make_parser()
-		satHandler = self.parseSats(self.satList, self.satellites)
+		satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
 		parser.setContentHandler(satHandler)
 		parser.parse('/etc/tuxbox/satellites.xml')
 
@@ -180,7 +197,7 @@ class NimManager:
 		self.satList = [ ]										
 												
 		self.readSatsfromFile()										
-												
+		
 		self.nimCount = self.getNimSocketCount()
 		
 		self.nimslots = [ ]
