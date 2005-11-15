@@ -427,7 +427,11 @@ class configElement:
 			return str(data.strip())
 
 		elif control == configSequence:
-			value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
+			print data
+			try:
+				value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
+			except:	
+				value = str(data)	
 #			just in case you don't understand the above, here an equivalent:
 #			value = ""
 #			for i in data:
