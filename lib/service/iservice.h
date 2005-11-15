@@ -146,7 +146,7 @@ public:
 
 SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);
 
-typedef unsigned long long pts_t;
+typedef long long pts_t;
 
 	/* the reason we have the servicereference as additional argument is
 	   that we don't have to create one object for every entry in a possibly

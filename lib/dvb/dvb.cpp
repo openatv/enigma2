@@ -618,27 +618,34 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 	return 0;
 }
 
-RESULT eDVBChannel::seekTo(pts_t &pts)
+RESULT eDVBChannel::seekTo(int relative, pts_t &pts)
 {
-#if 0
-	eDebug("eDVBChannel: seekTo .. %llx", pts);
-	m_pvr_thread->pause();
-	if (m_decoder_demux)
-		m_decoder_demux->get().flush();
-		/* demux will also flush all decoder.. */
+	int bitrate = m_tstools.calcBitrate(); /* in bits/s */
 	
-	off_t r;
+	if (bitrate == -1)
+		return -1;
 	
-	if (!m_tstools.getPosition(pts, r));
-		m_pvr_thread->seek(r);
-	else
-		eDebug("getPosition failed!");
-	m_pvr_thread->resume();
-#endif
+	if (relative)
+	{
+		pts_t now;
+		if (getCurrentPosition(now))
+		{
+			eDebug("seekTo: getCurrentPosition failed!");
+			return -1;
+		}
+		pts += now;
+	}
+	
+	if (pts < 0)
+		pts = 0;
+	
+	off_t offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
+	
+	seekToPosition(offset);
 	return 0;
 }
 
-RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
+RESULT eDVBChannel::seekToPosition(const off_t &r)
 {
 			/* when seeking, we have to ensure that all buffers are flushed.
 			   there are basically 3 buffers:
@@ -664,7 +671,7 @@ RESULT eDVBChannel::seekToPosition(int relative, const off_t &r)
 		m_decoder_demux->get().flush();
 
 		/* demux will also flush all decoder.. */
-	m_pvr_thread->seek(relative ? SEEK_CUR : SEEK_SET, r);
+	m_pvr_thread->seek(SEEK_SET, r);
 	m_pvr_thread->resume();
 	return 0;
 }

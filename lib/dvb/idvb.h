@@ -470,7 +470,8 @@ public:
 	virtual void ReleaseUse() = 0;
 };
 
-typedef unsigned long long pts_t;
+	/* signed, so we can express deltas. */
+typedef long long pts_t;
 
 class iDVBPVRChannel: public iDVBChannel
 {
@@ -486,8 +487,8 @@ public:
 	
 	virtual RESULT getLength(pts_t &pts) = 0;
 	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
-	virtual RESULT seekTo(pts_t &pts) = 0;
-	virtual RESULT seekToPosition(int relative, const off_t &pts) = 0;
+	virtual RESULT seekTo(int relative, pts_t &pts) = 0;
+	virtual RESULT seekToPosition(const off_t &pts) = 0;
 };
 
 class iDVBSectionReader;
