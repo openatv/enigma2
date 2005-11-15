@@ -154,6 +154,9 @@ def loadSkin(desktop):
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
 		
+		style.setTitleFont(gFont("Arial", 13));
+		style.setTitleOffset(eSize(3, 3));
+		
 		for borderset in elementsWithTag(windowstyle.childNodes, "borderset"):
 			bsName = str(borderset.getAttribute("name"))
 			for pixmap in elementsWithTag(borderset.childNodes, "pixmap"):

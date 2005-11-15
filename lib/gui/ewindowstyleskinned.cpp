@@ -35,6 +35,14 @@ void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset
 void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
 {
 	drawBorder(painter, eRect(ePoint(0, 0), wnd->size()), m_border[bsWindow], bpAll);
+	
+	if (m_fnt)
+	{
+		painter.setBackgroundColor(m_color[colWindowTitleBackground]);
+		painter.setForegroundColor(m_color[colWindowTitleForeground]);
+		painter.setFont(m_fnt);
+		painter.renderText(eRect(m_title_offset.width(), m_title_offset.height(), wnd->size().width() - m_title_offset.width(), m_border[bsWindow].m_border_top - m_title_offset.height()), title);
+	}
 }
 
 void eWindowStyleSkinned::paintBackground(gPainter &painter, const ePoint &offset, const eSize &size)
@@ -246,5 +254,15 @@ void eWindowStyleSkinned::setColor(int what, const gRGB &col)
 {
 	if ((what < colMax) && (what >= 0))
 		m_color[what] = col;
+}
+
+void eWindowStyleSkinned::setTitleOffset(const eSize &offset)
+{
+	m_title_offset = offset;
+}
+
+void eWindowStyleSkinned::setTitleFont(gFont *fnt)
+{
+	m_fnt = fnt;
 }
 

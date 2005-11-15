@@ -61,10 +61,16 @@ public:
 		colListboxSelectedForeground,
 		colListboxMarkedBackground,
 		colListboxMarkedForeground,
+		
+		colWindowTitleForeground,
+		colWindowTitleBackground,
 		colMax
 	};
 	
 	void setColor(int what, const gRGB &back);
+	
+	void setTitleOffset(const eSize &offset);
+	void setTitleFont(gFont *fnt);
 	
 private:
 	struct borderSet
@@ -76,6 +82,9 @@ private:
 	borderSet m_border[bsMax];
 	
 	gRGB m_color[colMax];
+	
+	eSize m_title_offset;
+	ePtr<gFont> m_fnt;
 	
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where);
 };
