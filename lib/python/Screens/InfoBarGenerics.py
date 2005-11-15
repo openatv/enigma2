@@ -133,8 +133,8 @@ class NumberZap(Screen):
 		if len(self.field) >= 4:
 			self.keyOK()
 
-	def __init__(self, number):
-		Screen.__init__(self)
+	def __init__(self, session, number):
+		Screen.__init__(self, session)
 		self.field = str(number)
 		
 		self["number"] = Label(self.field)
