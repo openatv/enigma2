@@ -106,7 +106,8 @@
 		<key id="KEY_RED" mapto="bouquet:(type == 1) || (type == 17)" flags="m" />
 		<key id="KEY_GREEN" mapto="bouquet:(provider == ARD) &amp;&amp; (type == 1)" flags="m" />
 		<key id="KEY_YELLOW" mapto="bouquet:(provider == ZDF) &amp;&amp; (type == 1)" flags="m" />
-		<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;bouquets.tv&quot; ORDER BY bouquet" flags="m" />
+		<!--<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;bouquets.tv&quot; ORDER BY bouquet" flags="m" />-->
+		<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;userbouquet.favourites.tv&quot; ORDER BY bouquet" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
 	</map>
 	<map context="EPGSelectActions">
