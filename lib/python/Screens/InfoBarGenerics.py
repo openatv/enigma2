@@ -18,6 +18,8 @@ from Screens.Standby import Standby
 #from enigma import eTimer, eDVBVolumecontrol, quitMainloop
 from enigma import *
 
+import time
+
 # hack alert!
 from Menu import MainMenu, mdom
 
@@ -184,7 +186,13 @@ class InfoBarPowerKey:
 
 	def quit(self):
 		#	self.session.open(Standby, self)
-		configfile.save()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref is not None:
+			refstr = ref.toString()
+		else:
+			refstr = ""	
+		
+		#configfile.save()
 		quitMainloop(0)
 
 
