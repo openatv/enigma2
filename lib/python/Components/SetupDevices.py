@@ -33,11 +33,3 @@ def InitSetupDevices():
 	config.expert.skipconfirm = configElement("config.expert.skipconfirm", configSelection, 1, ("Enable", "Disable") );
 	config.expert.hideerrors = configElement("config.expert.hideerrors", configSelection, 1, ("Enable", "Disable") );
 	config.expert.autoinfo = configElement("config.expert.autoinfo", configSelection, 1, ("Enable", "Disable") );
-
-	#here?
-	config.tv = ConfigSubsection();
-	config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
-	
-	config.tv.lastservice.value = "blasel"
-	config.tv.lastservice.save()
-
