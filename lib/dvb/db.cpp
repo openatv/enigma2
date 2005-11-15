@@ -51,6 +51,49 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 	return 0;
 }
 
+RESULT eBouquet::flushChanges()
+{
+	FILE *f=fopen(m_path.c_str(), "wt");
+	if (!f)
+		return -1;
+	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
+		goto err;
+	for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
+	{
+		eServiceReference tmp = *i;
+		std::string str = tmp.path;
+		if ( (i->flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
+		{
+			unsigned int p1 = str.find("FROM BOUQUET \"");
+			if (p1 == std::string::npos)
+			{
+				eDebug("doof... kaputt");
+				continue;
+			}
+			str.erase(0, p1+14);
+			p1 = str.find("\"");
+			if (p1 == std::string::npos)
+			{
+				eDebug("doof2... kaputt");
+				continue;
+			}
+			str.erase(p1);
+			tmp.path=str;
+		}
+		if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
+			goto err;
+		if ( i->name.length() )
+			if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
+				goto err;
+	}
+	fclose(f);
+	return 0;
+err:
+	fclose(f);
+	eDebug("couldn't write file %s", m_path.c_str());
+	return -1;
+}
+
 eDVBService::eDVBService()
 {
 }
@@ -388,49 +431,6 @@ void eDVBDB::save()
 	fclose(f);
 }
 
-RESULT eBouquet::flushChanges()
-{
-	FILE *f=fopen(m_path.c_str(), "wt");
-	if (!f)
-		return -1;
-	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
-		goto err;
-	for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
-	{
-		eServiceReference tmp = *i;
-		std::string str = tmp.path;
-		if ( (i->flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
-		{
-			unsigned int p1 = str.find("FROM BOUQUET \"");
-			if (p1 == std::string::npos)
-			{
-				eDebug("doof... kaputt");
-				continue;
-			}
-			str.erase(0, p1+14);
-			p1 = str.find("\"");
-			if (p1 == std::string::npos)
-			{
-				eDebug("doof2... kaputt");
-				continue;
-			}
-			str.erase(p1);
-			tmp.path=str;
-		}
-		if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
-			goto err;
-		if ( i->name.length() )
-			if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
-				goto err;
-	}
-	fclose(f);
-	return 0;
-err:
-	fclose(f);
-	eDebug("couldn't write file %s", m_path.c_str());
-	return -1;
-}
-
 void eDVBDB::loadBouquet(const char *path)
 {
 	std::string bouquet_name = path;
@@ -458,6 +458,18 @@ void eDVBDB::loadBouquet(const char *path)
 	if (!fp)
 	{
 		eDebug("failed to open.");
+		if ( strstr(path, "bouquets.tv") )
+		{
+			eDebug("recreate bouquets.tv");
+			bouquet.m_bouquet_name="Bouquets (TV)";
+			bouquet.flushChanges();
+		}
+		else if ( strstr(path, "bouquets.radio") )
+		{
+			eDebug("recreate bouquets.radio");
+			bouquet.m_bouquet_name="Bouquets (Radio)";
+			bouquet.flushChanges();
+		}
 		return;
 	}
 	char line[256];
@@ -527,6 +539,39 @@ void eDVBDB::loadBouquets()
 {
 	loadBouquet("bouquets.tv");
 	loadBouquet("bouquets.radio");
+// create default bouquets when missing
+	if ( m_bouquets.find("userbouquet.favourites.tv") == m_bouquets.end() )
+	{
+		eBouquet &b = m_bouquets["userbouquet.favourites.tv"];
+		b.m_path = "userbouquet.favourites.tv";
+		b.m_bouquet_name = "Favourites (TV)";
+		b.flushChanges();
+		eServiceReference ref;
+		memset(ref.data, 0, sizeof(ref.data));
+		ref.type=1;
+		ref.flags=7;
+		ref.data[0]=1;
+		ref.path="(type == 1) FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet";
+		eBouquet &parent = m_bouquets["bouquets.tv"];
+		parent.m_services.push_back(ref);
+		parent.flushChanges();
+	}
+	if ( m_bouquets.find("userbouquets.favourites.radio") == m_bouquets.end() )
+	{
+		eBouquet &b = m_bouquets["userbouquet.favourites.radio"];
+		b.m_path = "userbouquet.favourites.radio";
+		b.m_bouquet_name = "Favourites (Radio)";
+		b.flushChanges();
+		eServiceReference ref;
+		memset(ref.data, 0, sizeof(ref.data));
+		ref.type=1;
+		ref.flags=7;
+		ref.data[0]=1;
+		ref.path="(type == 2) FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet";
+		eBouquet &parent = m_bouquets["bouquets.radio"];
+		parent.m_services.push_back(ref);
+		parent.flushChanges();
+	}
 }
 
 void eDVBDB::saveBouquets()
