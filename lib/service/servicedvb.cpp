@@ -718,6 +718,9 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 	
 	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
 		return -4;
+
+	if (m_decoder->start())
+		return -5;
 	
 	return 0;
 }
