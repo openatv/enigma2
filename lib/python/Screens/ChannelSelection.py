@@ -13,8 +13,8 @@ class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel):
 		self.csel = csel
 		
-		menu = [("back", self.close)]
-
+		menu = [ ]
+		
 		if csel.mutableList is not None:
 			if not csel.bouquet_mark_edit:
 				if csel.movemode:
@@ -31,6 +31,9 @@ class ChannelContextMenu(FixedMenu):
 
 			if not csel.bouquet_mark_edit and not csel.movemode:
 				menu.append(("remove service", self.removeCurrentService))
+			menu.append(("back", self.close))
+		else:
+			menu.append(("back", self.close))
 
 		FixedMenu.__init__(self, session, "Channel Selection", menu)
 		self.skinName = "Menu"
@@ -80,6 +83,8 @@ class ChannelSelection(Screen):
 			def action(self, contexts, action):
 				if action[:7] == "bouquet":
 					l = self.csel
+					list = l["list"]
+					list.setMode(list.MODE_NORMAL)
 					l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
 				else:
 					if action == "cancel":
@@ -97,7 +102,8 @@ class ChannelSelection(Screen):
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
-			    "showEPGList": self.showEPGList
+				"showFavourites": self.showFavourites,
+		    "showEPGList": self.showEPGList
 			})
 		self["actions"].csel = self
 
@@ -145,7 +151,8 @@ class ChannelSelection(Screen):
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
 				self.mutableList.flushChanges()
-				self.setRoot(self.bouquetRoot)
+				#self.setRoot(self.bouquetRoot)
+				self.showFavourites()
 		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
@@ -212,3 +219,8 @@ class ChannelSelection(Screen):
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 		else:
 			self.movemode = True
+
+	def showFavourites(self):
+		self.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
+		list = self["list"]
+		list.setMode(list.MODE_FAVOURITES)
