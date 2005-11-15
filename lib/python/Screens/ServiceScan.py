@@ -16,6 +16,8 @@ class ServiceScan(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
+		self.session.nav.stopService()
+		
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label("scan state")
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"])
