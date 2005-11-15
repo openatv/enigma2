@@ -12,7 +12,7 @@
 eDVBCIInterfaces::eDVBCIInterfaces()
 {
 	int num_ci = 0;
-
+	
 	eDebug("scanning for common interfaces..");
 
 	while (1)
@@ -70,7 +70,6 @@ void eDVBCISlot::data(int what)
 		return;
 	}
 
-
 	__u8 data[4096];
 	int r;
 	r = ::read(fd, data, 4096);
@@ -115,6 +114,8 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	fd = ::open(filename, O_RDWR | O_NONBLOCK);
 
 	eDebug("eDVBCISlot has fd %d", fd);
+	
+	state = stateInserted;
 
 	if (fd >= 0)
 	{
