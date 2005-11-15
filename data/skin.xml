@@ -35,26 +35,26 @@
 		</windowstyle> """ """
 		<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
 		</screen>
-		<screen name="Menu" position="210,150" size="300,235" title="real main menu">
+		<screen name="Menu" position="210,150" size="300,235" title="Main menu">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
 			<!--<widget name="menu" position="10,55" size="280,150" font="Arial;23" />-->
 			<widget name="menu" position="10,55" size="280,175"/>
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
-		<screen name="ServiceInfo" position="180,120" size="360,330">
+		<screen name="ServiceInfo" position="180,120" size="360,330" title="Serviceinfo">
 			<widget name="infolist" position="20,10" size="320,325" />
 		</screen>
-		<screen name="AudioSelection" position="210,150" size="300,170">
+		<screen name="AudioSelection" position="210,150" size="300,170" title="Audio">
 			<widget name="tracks" position="20,10" size="260,150" />
 		</screen>
 		<screen name="HarddiskWait" position="140,165" size="360,60">
 			<widget name="wait" position="20,10" size="320,25" font="Arial;23"/>
 		</screen>
-		<screen name="HarddiskSelection" position="140,165" size="360,100">
+		<screen name="HarddiskSelection" position="140,165" size="360,100" title="Select HDD">
 			<widget name="hddlist" position="20,10" size="320,75" />
 		</screen>
-		<screen name="HarddiskSetup" position="140,165" size="420,160">
+		<screen name="HarddiskSetup" position="140,165" size="420,160" title="Harddisk">
 			<widget name="model" position="20,10" size="380,25" font="Arial;23"  />
 			<widget name="capacity" position="20,40" size="380,25" font="Arial;23"  />
 			<widget name="bus" position="20,70" size="380,25" font="Arial;23"  />
@@ -66,13 +66,13 @@
 			<widget name="ok" position="140,240" size="38,20" font="Arial;20" backgroundColor="green" />
 			<widget name="cancel" position="240,240" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
-		<screen name="NimSelection" position="140,165" size="360,100">
+		<screen name="NimSelection" position="140,165" size="360,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="320,75" />
 		</screen>
-		<screen name="CiWait" position="140,165" size="360,50">
+		<screen name="CiWait" position="140,165" size="360,50" title="Common Interface">
 			<widget name="message" position="20,10" size="320,25" font="Arial;23" />
 		</screen>
-		<screen name="CiSelection" position="140,165" size="360,100">
+		<screen name="CiSelection" position="140,165" size="360,100" title="Common Interface">
 			<widget name="entries" position="20,10" size="320,75" />
 		</screen>
 		<screen name="CiMmi" position="140,165" size="360,260">
@@ -81,7 +81,7 @@
 			<widget name="entries" position="20,70" size="320,150" />
 			<widget name="bottom" position="20,230" size="320,25" font="Arial;23" />
 		</screen>
-		<screen name="NimSetup" position="140,165" size="360,180">
+		<screen name="NimSetup" position="140,165" size="360,180" title="Satconfig">
 			<widget name="config" position="20,10" size="320,150" />
 		</screen>
 		<screen name="Satconfig" position="140,125" size="460,280" title="Satconfig">
