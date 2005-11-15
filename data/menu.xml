@@ -57,7 +57,7 @@
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart">
-			<item text="Standby"><code>quitMainloop(0)</code></item>
+			<!--<item text="Standby"><code>quitMainloop(0)</code></item>-->
 			<item text="Restart"><code>quitMainloop(2)</code></item>
 			<item text="Deep Standby"><code>quitMainloop(1)</code></item>
 		</menu>
