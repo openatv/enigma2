@@ -48,32 +48,50 @@
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
 
-	<map context="InfobarActions">
-		<key id="m" mapto="mainMenu" flags="mr" />
-		<key id="c" mapto="switchChannelDown" flags="mr" />
-<!--		<key id="r" mapto="instantRecord" flags="m" /> -->
-		<key id="r" mapto="showEPGList" flags="m" />
+	<map context="InfobarEPGActions">
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
-<!--		<key id="KEY_RED" mapto="instantRecord" flags="m" /> -->
-		<key id="1" mapto="zapUp" flags="mr" />
-		<key id="2" mapto="zapDown" flags="mr" />
-		<key id="KEY_M" mapto="mainMenu" flags="mr" />
-		<key id="KEY_C" mapto="switchChannelDown" flags="mr" />
+	</map>
+	
+	<map context="InfoBarInstantRecord">
 		<key id="KEY_R" mapto="instantRecord" flags="m" />
+	</map>
+
+	<map context="InfoBarChannelSelection">
 		<key id="KEY_LEFT" mapto="zapUp" flags="mr" />
 		<key id="KEY_RIGHT" mapto="zapDown" flags="mr" />
 		<key id="KEY_UP" mapto="switchChannelUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="mr" />
+
+		<key id="BTN_0" mapto="zapUp" flags="mr" />
+		<key id="BTN_1" mapto="zapDown" flags="mr" />
+	</map>
+	
+	<map context="InfoBarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
+	</map>
+	
+	<map context="InfobarShowHideActions">
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
+	</map>
+
+	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
+	</map>
+
+	<map context="InfobarVolumeActions">
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
+	</map>
+	
+	<map context="PowerKeyActions">
 		<key id="KEY_POWER" mapto="powerdown" flags="m" />
 		<key id="KEY_POWER" mapto="powerup" flags="b" />
+	</map>
+	
+	<map context="NumberZapActions">
 		<key id="KEY_1" mapto="1" flags="m" />
 		<key id="KEY_2" mapto="2" flags="m" />
 		<key id="KEY_3" mapto="3" flags="m" />
@@ -84,10 +102,10 @@
 		<key id="KEY_8" mapto="8" flags="m" />
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
+	</map>
+	
 
-		<key id="BTN_0" mapto="zapUp" flags="mr" />
-		<key id="BTN_1" mapto="zapDown" flags="mr" />
-		
+	<map context="InfobarPVRActions">
 		<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
 		<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
 		<key id="KEY_RED" mapto="seekBack" flags="m" />
@@ -107,18 +125,21 @@
 		<key id="KEY_GREEN" mapto="bouquet:(provider == ARD) &amp;&amp; (type == 1)" flags="m" />
 		<key id="KEY_YELLOW" mapto="bouquet:(provider == ZDF) &amp;&amp; (type == 1)" flags="m" />
 		<!--<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;bouquets.tv&quot; ORDER BY bouquet" flags="m" />-->
-		<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;userbouquet.favourites.tv&quot; ORDER BY bouquet" flags="m" />
+		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
 	</map>
+
 	<map context="EPGSelectActions">
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 	</map>
+
 	<map context="EventViewActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_LEFT" mapto="prevEvent" flags="mr" />
 		<key id="KEY_RIGHT" mapto="nextEvent" flags="mr" />
 	</map>
+
 	<map context="OkCancelActions">
 		<key id="\x0a" mapto="ok" flags="m" />
 		<key id="\x1b" mapto="cancel" flags="m" />
@@ -130,6 +151,7 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
+
 	<map context="WindowActions">
 		
 	</map>
