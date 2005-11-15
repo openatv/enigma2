@@ -4,6 +4,7 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr
+from Components.config import config
 
 from Screens.FixedMenu import FixedMenu
 
@@ -196,11 +197,13 @@ class ChannelSelection(Screen):
 			self.doMark()
 		else:
 			self.session.nav.playService(ref)
+			self.saveChannel()
 			self.close()
 
 	#called from infoBar
 	def zap(self):
 		self.session.nav.playService(self["list"].getCurrent())
+		self.saveChannel()
 
 	def moveUp(self):
 		self["list"].moveUp()
@@ -224,3 +227,12 @@ class ChannelSelection(Screen):
 		self.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
 		list = self["list"]
 		list.setMode(list.MODE_FAVOURITES)
+
+	def saveChannel(self):
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref is not None:
+			refstr = ref.toString()
+		else:
+			refstr = ""
+		config.tv.lastservice.value = refstr
+		config.tv.lastservice.save()
