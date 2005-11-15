@@ -123,7 +123,7 @@ class Harddisk:
 		return (res >> 8)
 
 	def createMovieFolder(self):
-		res = os.system("mkdir /hdd/movie")
+		res = os.system("mkdir /hdd/movies")
 		return (res >> 8)
 		
 	def initialize(self):
