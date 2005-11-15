@@ -63,12 +63,15 @@ class ChannelSelection(Screen):
 	def lastService(self):
 		self.lastServiceTimer.stop()
 		#zap to last running tv service
-		config.tv = ConfigSubsection();
-		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		#config for lastservice
+		config.tv = ConfigSubsection();
+		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
+
 		
 		self.entry_marked = False
 		self.movemode = False
