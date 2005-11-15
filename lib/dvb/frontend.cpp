@@ -131,21 +131,21 @@ RESULT eDVBFrontendParameters::getDVBT(eDVBFrontendParametersTerrestrial &p) con
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::setDVBS(eDVBFrontendParametersSatellite &p)
+RESULT eDVBFrontendParameters::setDVBS(const eDVBFrontendParametersSatellite &p)
 {
 	sat = p;
 	m_type = iDVBFrontend::feSatellite;
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::setDVBC(eDVBFrontendParametersCable &p)
+RESULT eDVBFrontendParameters::setDVBC(const eDVBFrontendParametersCable &p)
 {
 	cable = p;
 	m_type = iDVBFrontend::feCable;
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::setDVBT(eDVBFrontendParametersTerrestrial &p)
+RESULT eDVBFrontendParameters::setDVBT(const eDVBFrontendParametersTerrestrial &p)
 {
 	terrestrial = p;
 	m_type = iDVBFrontend::feTerrestrial;
@@ -208,7 +208,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 
 DEFINE_REF(eDVBFrontend);
 
-eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_curVoltage(-1)
+eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_curVoltage(-1)
 {
 #if HAVE_DVB_API_VERSION < 3
 	char sec_filename[128];
