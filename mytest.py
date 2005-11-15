@@ -13,6 +13,8 @@ from Navigation import Navigation
 
 from skin import readSkin, applyAllAttributes
 
+from Components.config import configfile
+
 had = dict()
 
 def dump(dir, p = ""):
@@ -162,6 +164,8 @@ def runScreenTest():
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	runMainloop()
+	
+	configfile.save()
 	
 	session.nav.shutdown()
 	
