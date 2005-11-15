@@ -288,7 +288,7 @@ void eMainloop::quit( int ret )   // call this to leave all loops
 void eMainloop::addTimeOffset(int offset)
 {
 	singleLock s(recalcLock);
-	for (ePtrList<eTimer>::iterator it(m_timer_list); it != m_timer_list.end(); ++it )
+	for (ePtrList<eTimer>::iterator it = m_timer_list.begin(); it != m_timer_list.end(); ++it )
 		it->addTimeOffset(offset);
 }
 
