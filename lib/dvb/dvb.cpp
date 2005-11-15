@@ -491,7 +491,18 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 	m_channel_id = channelid;
 	m_mgr->addChannel(channelid, this);
 	m_state = state_tuning;
-	return m_frontend->get().tune(*feparm);
+			/* if tuning fails, shutdown the channel immediately. */
+	int res;
+	res = m_frontend->get().tune(*feparm);
+	
+	if (res)
+	{
+		m_state = state_release;
+		m_stateChanged(this);
+		return res;
+	}
+	
+	return 0;
 }
 
 RESULT eDVBChannel::connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
