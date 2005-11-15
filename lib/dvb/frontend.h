@@ -25,9 +25,9 @@ public:
 	RESULT getDVBC(eDVBFrontendParametersCable &p) const;
 	RESULT getDVBT(eDVBFrontendParametersTerrestrial &p) const;
 
-	RESULT setDVBS(eDVBFrontendParametersSatellite &p);
-	RESULT setDVBC(eDVBFrontendParametersCable &p);
-	RESULT setDVBT(eDVBFrontendParametersTerrestrial &p);
+	RESULT setDVBS(const eDVBFrontendParametersSatellite &p);
+	RESULT setDVBC(const eDVBFrontendParametersCable &p);
+	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
 	
 	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &diff) const;
 	
@@ -38,6 +38,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 {
 	DECLARE_REF(eDVBFrontend);
 	int m_type;
+	int m_fe;
 	int m_fd;
 #if HAVE_DVB_API_VERSION < 3
 	int m_secfd;
@@ -89,6 +90,8 @@ public:
 	RESULT setSecSequence(const eSecCommandList &list);
 	RESULT getData(int num, int &data);
 	RESULT setData(int num, int val);
+	
+	int getID() { return m_fe; }
 };
 
 #endif
