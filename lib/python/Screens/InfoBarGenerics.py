@@ -20,6 +20,7 @@ from Screens.Standby import Standby
 from enigma import *
 
 import time
+import os
 
 # hack alert!
 from Menu import MainMenu, mdom
@@ -372,6 +373,12 @@ class InfoBarInstantRecord:
 			self.startInstantRecording()
 
 	def instantRecord(self):
+		try:
+			stat = os.stat("/hdd/movies")
+		except:
+			self.session.open(MessageBox, "No HDD found!")
+			return
+	
 		if self.recording != None:
 			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Do you want to stop the current\n(instant) recording?")
 		else:
