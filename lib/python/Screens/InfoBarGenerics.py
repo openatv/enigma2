@@ -323,10 +323,10 @@ class InfoBarPVR:
 		seekable.seekRelative(dir, 90 * seektime)
 
 	def seekFwd(self):
-		self.doSeek(+1, 10000)
+		self.doSeek(+1, 60000)
 	
 	def seekBack(self):
-		self.doSeek(-1, 10000)
+		self.doSeek(-1, 60000)
 
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
