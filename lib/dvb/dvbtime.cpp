@@ -210,9 +210,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 					gettimeofday(&tnow,0);
 					tnow.tv_sec=rtc_time;
 					settimeofday(&tnow,0);
-					for (ePtrList<eMainloop>::iterator it(eMainloop::existing_loops)
-						;it != eMainloop::existing_loops.end(); ++it)
-						it->addTimeOffset(m_time_difference);
+					eMainloop::addTimeOffset(m_time_difference);
 					m_time_difference=0;
 				}
 				else if ( !m_time_difference )

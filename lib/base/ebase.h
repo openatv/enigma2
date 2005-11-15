@@ -175,10 +175,9 @@ class eMainloop
 	int loop_level;
 	void processOneEvent();
 	int retval;
-	int timer_offset;
 	pthread_mutex_t recalcLock;
 public:
-	void addTimeOffset(int offset);
+	static void addTimeOffset(int offset);
  	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
@@ -186,7 +185,7 @@ public:
 
 	static ePtrList<eMainloop> existing_loops;
 	eMainloop()
-		:app_quit_now(0),loop_level(0),retval(0),timer_offset(0)
+		:app_quit_now(0),loop_level(0),retval(0)
 	{
 		existing_loops.push_back(this);
 		pthread_mutex_init(&recalcLock, 0);

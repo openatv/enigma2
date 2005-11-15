@@ -165,6 +165,7 @@ void eMainloop::processOneEvent()
 	
 	if (m_timer_list)
 	{
+		singleLock s(recalcLock);
 		poll_timeout = timeval_to_usec(m_timer_list.begin()->getNextActivation() - now);
 			/* if current timer already passed, don't delay infinite. */
 		if (poll_timeout < 0)
@@ -225,6 +226,8 @@ void eMainloop::processOneEvent()
 		/* when we not processed anything, check timers. */
 	if (!ret)
 	{
+		singleLock s(recalcLock);
+
 			/* process all timers which are ready. first remove them out of the list. */
 		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() < now))
 			m_timer_list.begin()->activate();
@@ -287,9 +290,13 @@ void eMainloop::quit( int ret )   // call this to leave all loops
 
 void eMainloop::addTimeOffset(int offset)
 {
-	singleLock s(recalcLock);
-	for (ePtrList<eTimer>::iterator it = m_timer_list.begin(); it != m_timer_list.end(); ++it )
-		it->addTimeOffset(offset);
+	for (ePtrList<eMainloop>::iterator it(eMainloop::existing_loops)
+		;it != eMainloop::existing_loops.end(); ++it)
+	{
+		singleLock s(it->recalcLock);
+		for (ePtrList<eTimer>::iterator tit = it->m_timer_list.begin(); tit != it->m_timer_list.end(); ++tit )
+			tit->addTimeOffset(offset);
+	}
 }
 
 eApplication* eApp = 0;
