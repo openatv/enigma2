@@ -34,7 +34,7 @@ class ServiceScan:
 		if self.state == self.Error:
 			self.text.setText("ERROR - failed to scan (%s)!" % (self.Errors[self.errorcode]) )
 	
-	def __init__(self, progressbar, text):
+	def __init__(self, progressbar, text, transponders):
 		self.progressbar = progressbar
 		self.text = text
 		self.scan = eComponentScan()
@@ -63,7 +63,10 @@ class ServiceScan:
 			parm.guard_interval = 0 # eDVBFrontendParametersTerrestrial.GuardInterval.GI_1_32;
 			parm.hierarchy = 0 #eDVBFrontendParametersTerrestrial.Hierarchy.HNone;
 		
-		self.scan.addInitial(parm)
+		for x in transponders:
+			self.scan.addInitial(x)
+		
+		#self.scan.addInitial(parm)
 		
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
