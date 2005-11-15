@@ -18,7 +18,8 @@ from Screens.Volume import Volume
 from Screens.Mute import Mute
 from Screens.Standby import Standby
 
-from enigma import eTimer, eDVBVolumecontrol, quitMainloop
+#from enigma import eTimer, eDVBVolumecontrol, quitMainloop
+from enigma import *
 
 # hack alert!
 from Menu import MainMenu, mdom
