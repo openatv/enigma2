@@ -4,7 +4,7 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr
-from Components.config import config
+from Components.config import config, configElement, ConfigSubsection, configText
 
 from Screens.FixedMenu import FixedMenu
 
@@ -79,7 +79,15 @@ class ChannelSelection(Screen):
 		self.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
+
+		config.tv = ConfigSubsection();
+		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		
+		print "lastservice:"  + config.tv.lastservice.value
+		ref = eServiceReference(config.tv.lastservice.value)
+		print ref
+		self.session.nav.playService(ref)
+
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
 				if action[:7] == "bouquet":
