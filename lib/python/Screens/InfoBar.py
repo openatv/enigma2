@@ -3,6 +3,7 @@ from Screen import Screen
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap
 from Screens.AudioSelection import AudioSelection
+from Screens.MovieSelection import MovieSelection
 
 from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
