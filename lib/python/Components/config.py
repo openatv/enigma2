@@ -25,7 +25,7 @@ class configFile:
 	def addElement(self, line):
 		x = line.find("=")
 		if x > -1:
-			self.configElements[line[:x]] = line[x + 1:]
+			self.configElements[line[:x]] = line[x + 1:-1]
 	
 	def getKey(self, key):
 		return self.configElements[key]
@@ -43,7 +43,7 @@ class configFile:
 		keys = self.configElements.keys()
 		keys.sort()
 		for x in keys:
-			wstr = x + "=" + self.configElements[x]
+			wstr = x + "=" + self.configElements[x] + "\n"
 			
 			if wstr[len(wstr) - 1] != '\n':
 				wstr = wstr + "\n"
@@ -441,6 +441,7 @@ class configElement:
 			return ""	
 
 	def loadData(self):
+		#print "load:" + self.configPath
 		try:
 			value = self.datafromFile(self.controlType, configfile.getKey(self.configPath))
 		except:		
@@ -456,6 +457,7 @@ class configElement:
 
 			self.save()		#add missing value to dict
 		else:
+			#print "set val:" + str(value)
 			self.value = value
 			
 		#is this right? activate settings after load/cancel and use default	
