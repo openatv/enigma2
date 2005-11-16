@@ -197,8 +197,12 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 	for (i=0; i<num_fe; ++i)
 	{
 		ePtr<eDVBFrontend> frontend;
+
 		if (!adapter->getFrontend(frontend, i))
+		{
+			frontend->setSEC(m_sec);
 			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
+		}
 	}
 }
 
@@ -313,10 +317,6 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	ePtr<eDVBChannel> ch;
 	ch = new eDVBChannel(this, fe);
 
-	ePtr<iDVBFrontend> myfe;
-	if (!ch->getFrontend(myfe))
-		myfe->setSEC(m_sec);
-
 	res = ch->setChannel(channelid);
 	if (res)
 	{
@@ -342,10 +342,6 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 	
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, fe);
-
-	ePtr<iDVBFrontend> myfe;
-	if (!ch->getFrontend(myfe))
-		myfe->setSEC(m_sec);
 
 	channel = ch;
 	return 0;
