@@ -200,8 +200,8 @@ class ScanSetup(Screen):
 		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		print "orbpos: " + str(orbital_position)
 		parm = eDVBFrontendParametersSatellite()
-		parm.frequency = frequency
-		parm.symbol_rate = symbol_rate
+		parm.frequency = frequency * 1000
+		parm.symbol_rate = symbol_rate * 1000
 		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti      
 		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
@@ -213,13 +213,14 @@ class ScanSetup(Screen):
     def keyGo(self):
         tlist = []
         if (config.scan.type.value == 0): # single transponder scan
-			self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
-								    	  config.scan.sat.symbolrate.value[0],
-								    	  config.scan.sat.polarization.value,
-								    	  config.scan.sat.fec.value,
-								    	  config.scan.sat.inversion.value,
-								    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
-		
+        	if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+				self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
+									    	  config.scan.sat.symbolrate.value[0],
+									    	  config.scan.sat.polarization.value,
+									    	  config.scan.sat.fec.value,
+									    	  config.scan.sat.inversion.value,
+									    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+			
         for x in self["config"].list:
             x[1].save()
 				
