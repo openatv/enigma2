@@ -52,15 +52,17 @@ class Timer:
 		
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.calcNextActivation)
+		self.lastActivation = time.time()
 		
 		self.calcNextActivation()
 	
-	def addTimerEntry(self, entry):
+	def addTimerEntry(self, entry, noRecalc=0):
 		# we either go trough Prepare/Start/End-state if the timer is still running,
 		# or skip it when it's alrady past the end.
 		if entry.end > time.time():
 			bisect.insort(self.timer_list, entry)
-			self.calcNextActivation()
+			if not noRecalc:
+				self.calcNextActivation()
 		else:
 			bisect.insort(self.processed_timers, entry)
 	
@@ -72,7 +74,15 @@ class Timer:
 		self.next = when
 
 	def calcNextActivation(self):
+		if self.lastActivation > time.time():
+			print "[timer.py] timewarp - re-evaluating all processed timers."
+			tl = self.processed_timers
+			self.processed_timers = [ ]
+			for x in tl:
+				self.addTimerEntry(x, noRecalc=1)
+		
 		self.processActivation()
+		self.lastActivation = time.time()
 	
 		min = int(time.time()) + self.MaxWaitTime
 		
@@ -86,7 +96,7 @@ class Timer:
 	
 	def timeChanged(self, timer):
 		self.timer_list.remove(timer)
-		bisect.insort(self.timer_list, timer)
+		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
 		w.activate(w.state)

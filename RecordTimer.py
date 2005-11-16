@@ -25,6 +25,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		else:
 			self.epg_data = ""
 		
+		self.dontSave = False
 		self.description = description
 		self.timer = None
 		self.record_service = None
@@ -101,7 +102,6 @@ class RecordTimer(timer.Timer):
 			print "unable to load timers from file!"
 	
 	def loadTimer(self):
-		
 		# TODO: PATH!
 		doc = xml.dom.minidom.parse(self.Filename)
 		
@@ -116,6 +116,10 @@ class RecordTimer(timer.Timer):
 		root_element.appendChild(doc.createTextNode("\n"))
 		
 		for timer in self.timer_list + self.processed_timers:
+			# some timers (instant records) don't want to be saved.
+			# skip them
+			if timer.dontSave:
+				continue
 			t = doc.createTextNode("\t")
 			root_element.appendChild(t)
 			t = doc.createElement('timer')
@@ -127,9 +131,10 @@ class RecordTimer(timer.Timer):
 			root_element.appendChild(t)
 			t = doc.createTextNode("\n")
 			root_element.appendChild(t)
-		
+
 		file = open(self.Filename, "w")
 		doc.writexml(codecs.getwriter('UTF-8')(file))
+		file.write("\n")
 		file.close()
 	
 	def record(self, entry):
@@ -143,12 +148,13 @@ class RecordTimer(timer.Timer):
 		elif entry.state != timer.TimerEntry.StateEnded:
 			entry.activate(timer.TimerEntry.EventAbort)
 			self.timer_list.remove(entry)
+			self.calcNextActivation()
 			print "timer did not yet start - removing"
 		else:
 			print "timer did already end - doing nothing."
-
-		self.calcNextActivation()
-
+		
+		# now the timer should be in the processed_timers list. remove it from there.
+		self.processed_timers.remove(entry)
 
 	def shutdown(self):
 		self.saveTimer()
