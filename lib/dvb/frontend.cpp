@@ -908,7 +908,16 @@ RESULT eDVBFrontend::setData(int num, int val)
 	return -EINVAL;
 }
 
-int eDVBFrontend::isCompatibleWith(const eDVBChannelID &chid)
+int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
-	return 1;
+	if (m_type != eDVBFrontend::feSatellite)
+		return 1;
+
+	ASSERT(m_sec);
+
+	eDVBFrontendParametersSatellite sat_parm;
+
+	ASSERT(!feparm->getDVBS(sat_parm));
+
+	return m_sec->canTune(sat_parm, this, m_fe ? m_fe << 1 : 1);
 }

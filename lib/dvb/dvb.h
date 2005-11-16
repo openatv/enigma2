@@ -114,7 +114,7 @@ class eDVBResourceManager: public iObject
 			   there might be a priority given to certain frontend/chid 
 			   combinations. this will be evaluated here. */
 			   
-	RESULT allocateFrontend(const eDVBChannelID &chid, ePtr<eDVBAllocatedFrontend> &fe);
+	RESULT allocateFrontend(ePtr<iDVBFrontendParameters> &feparm, ePtr<eDVBAllocatedFrontend> &fe);
 	
 			/* allocate a demux able to filter on the selected frontend. */
 	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
@@ -178,7 +178,7 @@ public:
 
 		/* only for managed channels - effectively tunes to the channelid. should not be used... */
 		/* cannot be used for PVR channels. */
-	RESULT setChannel(const eDVBChannelID &id);
+	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
 
 	RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);

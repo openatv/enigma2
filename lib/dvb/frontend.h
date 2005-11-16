@@ -91,7 +91,7 @@ public:
 	RESULT getData(int num, int &data);
 	RESULT setData(int num, int val);
 	
-	int isCompatibleWith(const eDVBChannelID &chid);
+	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	
 	int getID() { return m_fe; }
 };

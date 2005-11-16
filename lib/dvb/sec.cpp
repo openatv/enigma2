@@ -62,6 +62,40 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl()
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
 }
 
+int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
+{
+	int ret=0;
+
+	for (int idx=0; idx <= m_lnbidx; ++idx )
+	{
+		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
+		if ( lnb_param.tuner_mask & frontend_id ) // lnb for correct tuner?
+		{
+			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
+			eDVBSatelliteRotorParameters &rotor_param = lnb_param.m_rotor_parameters;
+
+			std::map<int, eDVBSatelliteSwitchParameters>::iterator sit =
+				lnb_param.m_satellites.find(sat.orbital_position);
+			if ( sit != lnb_param.m_satellites.end())
+			{
+				int curRotorPos = -1;
+				fe->getData(6, curRotorPos);
+
+				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
+				{
+					if ( curRotorPos == sat.orbital_position )
+						ret=20;
+					else
+						ret=10;
+				}
+				else if (!ret)
+					ret=40;
+			}
+		}
+	}
+	return ret;
+}
+
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
 {
 	for (int idx=0; idx <= m_lnbidx; ++idx )
