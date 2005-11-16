@@ -90,7 +90,11 @@ class Session:
 	
 	def create(self, screen, arguments):
 		# creates an instance of 'screen' (which is a class)
-		return screen(self, *arguments)
+		try:
+			return screen(self, *arguments)
+		except TypeError, x:
+			errstr = "Screen %s(%s): %s" % (str(screen), str(arguments), str(x))
+			raise TypeError(errstr)
 	
 	def instantiateDialog(self, screen, *arguments):
 		# create dialog
