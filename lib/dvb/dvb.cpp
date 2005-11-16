@@ -225,19 +225,23 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	if (i == m_demux.end())
 		return -1;
 		
+	int n=0;
 		/* FIXME: hardware demux policy */
 	if (!(cap & iDVBChannel::capDecode))
-		++i;
+		++i, ++n;
 	
-	for (; i != m_demux.end(); ++i)
+	for (; i != m_demux.end(); ++i, ++n)
 		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
+			if ((cap & iDVBChannel::capDecode) && n)
+				continue;
+			
 			demux = new eDVBAllocatedDemux(i);
 			if (fe)
 				demux->get().setSourceFrontend(fe->m_frontend->getID());
 			else
 				demux->get().setSourcePVR(0);
-			eDebug("demux found");
+			eDebug("demux (%d) found (fe id: %d)", n, fe->m_frontend->getID());
 			return 0;
 		}
 	eDebug("demux not found");
@@ -351,7 +355,7 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
 	m_active_channels.push_back(active_channel(chid, ch));
-	/* emit */ m_channelAdded(ch);
+//	/* emit */ m_channelAdded(ch);
 	return 0;
 }
 
@@ -524,6 +528,7 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 
 RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
+	eDebug("get %d demux", cap);
 	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
 	
 	if (!our_demux)
@@ -531,10 +536,15 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 		demux = 0;
 		
 		if (m_mgr->allocateDemux(m_frontend ? (eDVBRegisteredFrontend*)*m_frontend : (eDVBRegisteredFrontend*)0, our_demux, cap))
-			return 0;
+			return -1;
+		
 	}
 	
 	demux = *our_demux;
+	if (cap & capDecode)
+	{
+		our_demux = 0;
+	}
 	return 0;
 }
 
