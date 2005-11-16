@@ -42,6 +42,8 @@ def getRecordingFilename(basename):
 		path = "/hdd/movies/" + filename
 		if i > 0:
 			path += str(i)
-		if os.glob(path + "*").size() == 0:
+		try:
+			open(path + ".ts")
+			i += 1
+		except IOError:
 			return path
-		i+=1
