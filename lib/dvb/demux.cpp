@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <signal.h>
 
-
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
 #ifndef DMX_SET_NEGFILTER_MASK
@@ -49,18 +48,24 @@ DEFINE_REF(eDVBDemux)
 
 RESULT eDVBDemux::setSourceFrontend(int fenum)
 {
+#if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
 	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_FRONT0 + fenum);
 	::close(fd);
 	return res;
+#endif
+	return 0;
 }
 
 RESULT eDVBDemux::setSourcePVR(int pvrnum)
 {
+#if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
 	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_DVR0 + pvrnum);
 	::close(fd);
 	return res;
+#endif
+	return 0;
 }
 
 RESULT eDVBDemux::createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)
