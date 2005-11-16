@@ -96,11 +96,13 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	return ret;
 }
 
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id)
 {
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
+		if (!(lnb_param.tuner_mask & frontend_id)) // lnb for correct tuner?
+			continue;
 		eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 		eDVBSatelliteRotorParameters &rotor_param = lnb_param.m_rotor_parameters;
 

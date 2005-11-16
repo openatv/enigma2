@@ -633,7 +633,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			return -ENOENT;
 		}
 		
-		res = m_sec->prepare(*this, parm, feparm);
+		res = m_sec->prepare(*this, parm, feparm, m_fe ? 1 << m_fe : 1);
 		if (res)
 			return res;
 #if HAVE_DVB_API_VERSION < 3
@@ -919,5 +919,5 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 
 	ASSERT(!feparm->getDVBS(sat_parm));
 
-	return m_sec->canTune(sat_parm, this, m_fe ? m_fe << 1 : 1);
+	return m_sec->canTune(sat_parm, this, m_fe ? 1 << m_fe : 1);
 }
