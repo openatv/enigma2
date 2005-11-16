@@ -10,6 +10,7 @@ from Components.Label import Label
 from enigma import eDVBFrontendParametersSatellite
 
 def getInitialTransponderList(tlist, pos):
+	print pos
 	list = nimmanager.getTransponders(pos)
 	
 	for x in list:
@@ -264,6 +265,19 @@ class ScanSetup(Screen):
 									    	  config.scan.sat.fec.value,
 									    	  config.scan.sat.inversion.value,
 									    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+
+        if (config.scan.type.value == 1):
+        	getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
+
+		if (config.scan.type.value == 2): # multi sat scan
+			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
+
+			for x in self.list:
+				if x[1].parent.value == 0:
+					print "   " + str(x[1].parent.configPath)
+					getInitialTransponderList(tlist, x[1].parent.configPath)
+
+
         for x in self["config"].list:
             x[1].save()
 				
