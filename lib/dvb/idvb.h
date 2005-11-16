@@ -29,7 +29,16 @@ struct eBouquet
 	RESULT moveService(const eServiceReference &, unsigned int);
 };
 
-		// bitte KEINE operator int() definieren, sonst bringt das ganze nix!
+		/* these structures have by intention no operator int() defined.
+		   the reason of these structures is to avoid mixing for example
+		   a onid and a tsid (as there's no general order for them).
+		   
+		   defining an operator int() would implicitely convert values
+		   between them over the constructor with the int argument.
+		   
+		   'explicit' doesn't here - eTransportStreamID(eOriginalNetworkID(n)) 
+		   would still work. */
+
 struct eTransportStreamID
 {
 private:
@@ -197,6 +206,8 @@ public:
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
 	std::string m_service_name, m_service_name_sort;
 	std::string m_provider_name;
+	
+	void genSortName();
 	
 	int m_flags;
 	std::set<int> m_ca;
