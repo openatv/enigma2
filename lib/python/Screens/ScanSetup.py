@@ -243,6 +243,7 @@ class ScanSetup(Screen):
 
 	def keyGo(self):
 		tlist = []
+		flags = 0
 		if (config.scan.type.value == 0): # single transponder scan
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
 				self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
@@ -266,8 +267,9 @@ class ScanSetup(Screen):
 											  config.scan.sat.inversion.value,
 											  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
 
-		if (config.scan.type.value == 1):
+		if (config.scan.type.value == 1): # single sat scan
 			getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
+		flags |= eComponentScan.scanNetworkSearch
 
 		if (config.scan.type.value == 2): # multi sat scan
 			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
@@ -276,13 +278,12 @@ class ScanSetup(Screen):
 				if x[1].parent.value == 0:
 					print "   " + str(x[1].parent.configPath)
 					getInitialTransponderList(tlist, x[1].parent.configPath)
-
+		flags |= eComponentScan.scanNetworkSearch
 
 		for x in self["config"].list:
 			x[1].save()
 
-		flags = 0
-		flags |= eComponentScan.scanNetworkSearch
+
 		# flags |= eComponentScan.scanSearchBAT
 		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, flags)
 
