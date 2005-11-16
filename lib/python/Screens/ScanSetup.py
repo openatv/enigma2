@@ -74,8 +74,9 @@ class ScanSetup(Screen):
                 self.list.append(getConfigListEntry("Frequency", config.scan.sat.frequency))
                 self.list.append(getConfigListEntry("Inversion", config.scan.sat.inversion))
                 self.list.append(getConfigListEntry("Symbolrate", config.scan.sat.symbolrate))
-                self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarzation))
+                self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarization))
                 self.list.append(getConfigListEntry("FEC", config.scan.sat.fec))
+            	self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
             if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
                 self.list.append(getConfigListEntry("Frequency", config.scan.cab.frequency))
                 self.list.append(getConfigListEntry("Inversion", config.scan.cab.inversion))
@@ -147,22 +148,23 @@ class ScanSetup(Screen):
             config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
             
             # sat
-            config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [12187], configsequencearg.get("INTEGER", (10000, 14000)))
-            config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 0, ("off", "on"))
+            config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (10000, 14000)))
+            config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, ("on", "off", "auto"))
             config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 30000)))
-            config.scan.sat.polarzation = configElement_nonSave("config.scan.sat.polarzation", configSelection, 0, ("horizontal", "vertical"))
-            config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
-        
+            config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, ("horizontal", "vertical",  "circular left", "circular right"))
+            config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "auto"))
+
+                    
             # cable
             config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-            config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("off", "on"))
+            config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("auto", "off", "on"))
             config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
             config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
             config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
             
             # terrestial
             config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-            config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("off", "on"))
+            config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("auto", "off", "on"))
             config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, ("Auto", "6 MHz", "7MHz", "8MHz"))
             config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
             config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
@@ -193,12 +195,36 @@ class ScanSetup(Screen):
         print "You pressed number " + str(number)
         if (self["config"].getCurrent()[1].parent.enabled == True):
             self["config"].handleKey(config.key[str(number)])
+            
+    def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
+		print "orbpos: " + str(orbital_position)
+		parm = eDVBFrontendParametersSatellite()
+		parm.frequency = frequency
+		parm.symbol_rate = symbol_rate
+		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti      
+		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
+		#parm.fec = 6					# AUTO
+		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
+		#parm.inversion = 2 		#AUTO
+		parm.orbital_position = int(orbital_position)
+		tlist.append(parm)
 
     def keyGo(self):
+        tlist = []
+        if (config.scan.type.value == 0): # single transponder scan
+			self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
+								    	  config.scan.sat.symbolrate.value[0],
+								    	  config.scan.sat.polarization.value,
+								    	  config.scan.sat.fec.value,
+								    	  config.scan.sat.inversion.value,
+								    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+		
         for x in self["config"].list:
             x[1].save()
-				#tlist = [ ]		
-        self.session.openWithCallback(self.keyCancel, ServiceScan, [ ])        
+				
+		
+        self.session.openWithCallback(self.keyCancel, ServiceScan, tlist)        
 
         #self.close()
 
