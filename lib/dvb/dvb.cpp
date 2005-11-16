@@ -354,7 +354,7 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
 	m_active_channels.push_back(active_channel(chid, ch));
-//	/* emit */ m_channelAdded(ch);
+	/* emit */ m_channelAdded(ch);
 	return 0;
 }
 
