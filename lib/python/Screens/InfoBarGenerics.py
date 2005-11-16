@@ -362,6 +362,7 @@ class InfoBarInstantRecord:
 		
 		# fix me, description. 
 		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600, serviceref, epg, "instant record")
+		self.recording.dontSave = True
 
 	def recordQuestionCallback(self, answer):
 		if answer == False:

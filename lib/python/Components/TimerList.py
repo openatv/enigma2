@@ -4,7 +4,7 @@ from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
-
+from timer import TimerEntry
 
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
@@ -20,20 +20,31 @@ RT_WRAP = 32
 
 #
 #  | <Service>     <Name of the Timer>  |
-#  | <start>                     <end>  |
+#  | <start, end>              <state>  |
 #
 def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
 
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
-	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "%s, %s" % FuzzyTime(timer.begin)))
+	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:])))
 
-	res.append((300, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))	
-	if processed:
-		res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, FuzzyTime(timer.end)[1]))
+	res.append((300, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))
+	
+	if not processed:
+		if timer.state == TimerEntry.StateWait:
+			state = "waiting"
+		elif timer.state == TimerEntry.StatePrepare:
+			state = "about to start"
+		elif timer.state == TimerEntry.StateRunning:
+			state = "recording..."
+		else:
+			state = "<unknown>"
 	else:
-		res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, "done"))
+		state = "done!"
+	
+	res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, state))
+	
 	return res
 
 class TimerList(HTMLComponent, GUIComponent):
