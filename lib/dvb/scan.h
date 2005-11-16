@@ -31,12 +31,12 @@ private:
 	RESULT nextChannel();
 	
 	RESULT startFilter();	
-	enum { readySDT=1, readyNIT=2, readyBAT=4, readyAll=7,
+	enum { readySDT=1, readyNIT=2, readyBAT=4,
 	       validSDT=8, validNIT=16, validBAT=32};
 
 		/* scan state variables */
 	int m_channel_state;
-	int m_ready;
+	int m_ready, m_ready_all;
 	
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
@@ -61,11 +61,14 @@ private:
 	
 	Signal1<void,int> m_event;
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
+	
+	int m_flags;
 public:
 	eDVBScan(iDVBChannel *channel);
 	~eDVBScan();
 	
-	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders);
+	enum { scanNetworkSearch = 1, scanSearchBAT = 2 };
+	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
 	enum { evtUpdate, evtFinish, evtFail };
   RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);

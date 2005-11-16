@@ -34,34 +34,37 @@ class ServiceScan:
 		if self.state == self.Error:
 			self.text.setText("ERROR - failed to scan (%s)!" % (self.Errors[self.errorcode]) )
 	
-	def __init__(self, progressbar, text, transponders):
+	def __init__(self, progressbar, text, transponders, flags):
 		self.progressbar = progressbar
 		self.text = text
 		self.scan = eComponentScan()
 		self.state = self.Idle
+		self.flags = flags
 		self.scanStatusChanged()
 		
-		
-		if 1:
-			parm = eDVBFrontendParametersSatellite()
-
-			parm.frequency = 11817000
-			parm.symbol_rate = 27500000
-			parm.polarisation = 1 # eDVBFrontendParametersSatellite.Polarisation.Vertical
-			parm.fec = 3 # eDVBFrontendParametersSatellite.FEC.f3_4;
-			parm.inversion = 1 #eDVBFrontendParametersSatellite.Inversion.Off;
-			parm.orbital_position = 192
-		else:
-			parm = eDVBFrontendParametersTerrestrial()
-			
-			parm.frequency = 626000000;
-			parm.inversion = 2  # eDVBFrontendParametersTerrestrial.Inversion.Unknown;
-			parm.bandwidth = 0  #eDVBFrontendParametersTerrestrial.Bandwidth.Bw8MHz;
-			parm.code_rate_HP = parm.code_rate_LP = 6 #eDVBFrontendParametersTerrestrial.FEC.fAuto;
-			parm.modulation = 1 #eDVBFrontendParametersTerrestrial.Modulation.QAM16;
-			parm.transmission_mode = 1 # eDVBFrontendParametersTerrestrial.TransmissionMode.TM8k;
-			parm.guard_interval = 0 # eDVBFrontendParametersTerrestrial.GuardInterval.GI_1_32;
-			parm.hierarchy = 0 #eDVBFrontendParametersTerrestrial.Hierarchy.HNone;
+#		if 1:
+#			parm = eDVBFrontendParametersSatellite()
+#
+#			parm.frequency = 11817000
+#			parm.symbol_rate = 27500000
+#			parm.polarisation = 1 # eDVBFrontendParametersSatellite.Polarisation.Vertical
+#			parm.fec = 3 # eDVBFrontendParametersSatellite.FEC.f3_4;
+#			parm.inversion = 1 #eDVBFrontendParametersSatellite.Inversion.Off;
+#			parm.orbital_position = 192
+#			self.scan.addInitial(parm)
+#		else:
+#				# until we have a terrestrial.xml:
+#			for x in [490000000, 530000000, 546000000, 570000000, 626000000]:
+#				parm = eDVBFrontendParametersTerrestrial()
+#				parm.frequency = x
+#				parm.inversion = 2  # eDVBFrontendParametersTerrestrial.Inversion.Unknown;
+#				parm.bandwidth = 0  #eDVBFrontendParametersTerrestrial.Bandwidth.Bw8MHz;
+#				parm.code_rate_HP = parm.code_rate_LP = 6 #eDVBFrontendParametersTerrestrial.FEC.fAuto;
+#				parm.modulation = 1 #eDVBFrontendParametersTerrestrial.Modulation.QAM16;
+#				parm.transmission_mode = 1 # eDVBFrontendParametersTerrestrial.TransmissionMode.TM8k;
+#				parm.guard_interval = 0 # eDVBFrontendParametersTerrestrial.GuardInterval.GI_1_32;
+#				parm.hierarchy = 0 #eDVBFrontendParametersTerrestrial.Hierarchy.HNone;
+#				self.scan.addInitial(parm)
 		
 		for x in transponders:
 			self.scan.addInitial(x)
@@ -71,7 +74,7 @@ class ServiceScan:
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.state = self.Running
-		err = self.scan.start()
+		err = self.scan.start(self.flags)
 		if err:
 			self.state = self.Error
 			self.errorcode = 0
