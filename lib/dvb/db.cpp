@@ -113,6 +113,18 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 	return *this;
 }
 
+void eDVBService::genSortName()
+{
+	m_service_name_sort = removeDVBChars(m_service_name);
+	makeUpper(m_service_name_sort);
+	while ((!m_service_name_sort.empty()) && m_service_name_sort[0] == ' ')
+		m_service_name_sort.erase(0, 1);
+	
+		/* put unnamed services at the end, not at the beginning. */
+	if (m_service_name_sort.empty())
+		m_service_name_sort = "\xFF";
+}
+
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
 	if (!ref.name.empty())
@@ -303,15 +315,8 @@ void eDVBDB::load()
 			line[strlen(line)-1]=0;
 
 		s->m_service_name = line;
-		s->m_service_name_sort = removeDVBChars(line);
-		makeUpper(s->m_service_name_sort);
-		while ((!s->m_service_name_sort.empty()) && s->m_service_name_sort[0] == ' ')
-			s->m_service_name_sort.erase(0, 1);
-		
-			/* put unnamed services at the end, not at the beginning. */
-		if (s->m_service_name_sort.empty())
-			s->m_service_name_sort = "\xFF";
-		
+		s->genSortName();
+		 
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
