@@ -206,15 +206,15 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 	}
 }
 
-RESULT eDVBResourceManager::allocateFrontend(const eDVBChannelID &chid, ePtr<eDVBAllocatedFrontend> &fe)
+RESULT eDVBResourceManager::allocateFrontend(ePtr<iDVBFrontendParameters> &feparm, ePtr<eDVBAllocatedFrontend> &fe)
 {
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
-	
+
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (!i->m_inuse)
 		{
-			int c = i->m_frontend->isCompatibleWith(chid);
+			int c = i->m_frontend->isCompatibleWith(feparm);
 			if (c > bestval)
 			{
 				c = bestval;
@@ -298,13 +298,26 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		}
 	}
 	
-		/* no currently available channel is tuned to this channelid. create a new one, if possible. */
-		
-		/* allocate a frontend. */
+	/* no currently available channel is tuned to this channelid. create a new one, if possible. */
+
+	if (!m_list)
+	{
+		eDebug("no channel list set!");
+		return -ENOENT;
+	}
+
+	ePtr<iDVBFrontendParameters> feparm;
+	if (m_list->getChannelFrontendData(channelid, feparm))
+	{
+		eDebug("channel not found!");
+		return -ENOENT;
+	}
+
+	/* allocate a frontend. */
 	
 	ePtr<eDVBAllocatedFrontend> fe;
 	
-	if (allocateFrontend(channelid, fe))
+	if (allocateFrontend(feparm, fe))
 		return errNoFrontend;
 	
 // will be allocated on demand:
@@ -312,12 +325,12 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 //	
 //	if (allocateDemux(*fe, demux))
 //		return errNoDemux;
-	
+
 	RESULT res;
 	ePtr<eDVBChannel> ch;
 	ch = new eDVBChannel(this, fe);
 
-	res = ch->setChannel(channelid);
+	res = ch->setChannel(channelid, feparm);
 	if (res)
 	{
 		channel = 0;
@@ -331,8 +344,10 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 {
 	ePtr<eDVBAllocatedFrontend> fe;
-	
-	if (allocateFrontend(eDVBChannelID(), fe))
+
+#warning FIXME allocateRawChannel
+
+//	if (allocateFrontend(eDVBChannelID(), fe))
 		return errNoFrontend;
 	
 //	ePtr<eDVBAllocatedDemux> demux;
@@ -470,7 +485,7 @@ void eDVBChannel::ReleaseUse()
 	}
 }
 
-RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
+RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontendParameters> &feparm)
 {
 	if (m_channel_id)
 		m_mgr->removeChannel(this);
@@ -478,24 +493,6 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid)
 	if (!channelid)
 		return 0;
 
-	ePtr<iDVBChannelList> list;
-	
-	if (m_mgr->getChannelList(list))
-	{
-		eDebug("no channel list set!");
-		return -ENOENT;
-	}
-	
-	eDebug("tuning to chid: ns: %08x tsid %04x onid %04x",
-		channelid.dvbnamespace.get(), channelid.transport_stream_id.get(), channelid.original_network_id.get());
-
-	ePtr<iDVBFrontendParameters> feparm;
-	if (list->getChannelFrontendData(channelid, feparm))
-	{
-		eDebug("channel not found!");
-		return -ENOENT;
-	}
-	
 	if (!m_frontend)
 	{
 		eDebug("no frontend to tune!");

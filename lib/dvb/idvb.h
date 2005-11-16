@@ -346,13 +346,14 @@ public:
 	virtual RESULT setData(int num, int val)=0;
 	
 		/* 0 means: not compatible. other values are a priority. */
-	virtual int isCompatibleWith(const eDVBChannelID &chid)=0;
+	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
 };
 
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
 	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat)=0;
+	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id)=0;
 };
 
 struct eDVBCIRouting
