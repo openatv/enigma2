@@ -241,7 +241,6 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				demux->get().setSourceFrontend(fe->m_frontend->getID());
 			else
 				demux->get().setSourcePVR(0);
-			eDebug("demux (%d) found (fe id: %d)", n, fe->m_frontend->getID());
 			return 0;
 		}
 	eDebug("demux not found");
