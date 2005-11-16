@@ -77,7 +77,7 @@ void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
 }
 
 
-int eComponentScan::start()
+int eComponentScan::start(int flags)
 {
 	if (m_initial.empty())
 		return -2;
@@ -89,35 +89,6 @@ int eComponentScan::start()
 	ePtr<eDVBResourceManager> mgr;
 	
 	eDVBResourceManager::getInstance(mgr);
-
-#if 0 
-	ePtr<eDVBFrontendParameters> fe = new eDVBFrontendParameters();
-#if 1
-	eDVBFrontendParametersSatellite fesat;
-		
-	fesat.frequency = 11817000; // 12070000;
-	fesat.symbol_rate = 27500000;
-	fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation::Vertical;
-	fesat.fec = eDVBFrontendParametersSatellite::FEC::f3_4;
-	fesat.inversion = eDVBFrontendParametersSatellite::Inversion::Off;
-	fesat.orbital_position = 192;
-
-	
-	fe->setDVBS(fesat);
-
-#else
-	eDVBFrontendParametersTerrestrial fet;
-	fet.frequency = 626000000;
-	fet.inversion = eDVBFrontendParametersTerrestrial::Inversion::Unknown;
-	fet.bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz;
-	fet.code_rate_HP = fet.code_rate_LP = eDVBFrontendParametersTerrestrial::FEC::fAuto;
-	fet.modulation = eDVBFrontendParametersTerrestrial::Modulation::QAM16;
-	fet.transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k;
-	fet.guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32;
-	fet.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy::HNone;
-	fe->setDVBT(fet);
-#endif
-#endif
 
 	eUsePtr<iDVBChannel> channel;
 
@@ -131,7 +102,7 @@ int eComponentScan::start()
 		
 	m_scan = new eDVBScan(channel);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
-	m_scan->start(m_initial);
+	m_scan->start(m_initial, flags);
 	
 	return 0;
 }

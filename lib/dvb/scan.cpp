@@ -83,7 +83,17 @@ RESULT eDVBScan::nextChannel()
 
 	m_SDT = 0; m_BAT = 0; m_NIT = 0;
 
-	m_ready = readyBAT;
+	m_ready = 0;
+	
+		/* check what we need */
+	m_ready_all = readySDT;
+	
+	if (m_flags & scanNetworkSearch)
+		m_ready_all |= readyNIT;
+	
+	if (m_flags & scanSearchBAT)
+		m_ready_all |= readyBAT;
+	
 	if (m_ch_toScan.empty())
 	{
 		eDebug("no channels left to scan.");
@@ -121,21 +131,35 @@ RESULT eDVBScan::startFilter()
 {
 	assert(m_demux);
 	
-	m_SDT = new eTable<ServiceDescriptionSection>();
-	if (m_SDT->start(m_demux, eDVBSDTSpec()))
-		return -1;
-	CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
+			/* only start required filters filter */
+	
+	m_SDT = 0;
+
+	if (m_ready_all & readySDT)
+	{
+		m_SDT = new eTable<ServiceDescriptionSection>();
+		if (m_SDT->start(m_demux, eDVBSDTSpec()))
+			return -1;
+		CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
+	}
 
 	m_NIT = 0;
-	m_NIT = new eTable<NetworkInformationSection>();
-	if (m_NIT->start(m_demux, eDVBNITSpec()))
-		return -1;
-	CONNECT(m_NIT->tableReady, eDVBScan::NITready);
-	
-	m_BAT = new eTable<BouquetAssociationSection>();
-	if (m_BAT->start(m_demux, eDVBBATSpec()))
-		return -1;
-	CONNECT(m_BAT->tableReady, eDVBScan::BATready);
+	if (m_ready_all & readyNIT)
+	{
+		m_NIT = new eTable<NetworkInformationSection>();
+		if (m_NIT->start(m_demux, eDVBNITSpec()))
+			return -1;
+		CONNECT(m_NIT->tableReady, eDVBScan::NITready);
+	}
+
+	m_BAT = 0;
+	if (m_ready_all & readyBAT)
+	{
+		m_BAT = new eTable<BouquetAssociationSection>();
+		if (m_BAT->start(m_demux, eDVBBATSpec()))
+			return -1;
+		CONNECT(m_BAT->tableReady, eDVBScan::BATready);
+	}
 	
 	return 0;
 }
@@ -277,10 +301,15 @@ void eDVBScan::channelDone()
 						feparm->getHash(hash);
 						
 						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-
-						addChannelToScan(
-								eDVBChannelID(ns, tsid, onid),
-								feparm);
+						
+						if (m_chid_current && ((ns.get() ^ m_chid_current.dvbnamespace.get()) & 0xFFFF0000))
+							eDebug("dropping this transponder, it's on another satellite.");
+						else
+						{
+							addChannelToScan(
+									eDVBChannelID(ns, tsid, onid),
+									feparm);
+						}
 						break;
 					}
 					default:
@@ -294,7 +323,7 @@ void eDVBScan::channelDone()
 		m_ready &= ~validNIT;
 	}
 	
-	if ((m_ready  & readyAll) != readyAll)
+	if ((m_ready  & m_ready_all) != m_ready_all)
 		return;
 	SCAN_eDebug("channel done!");
 	
@@ -328,8 +357,9 @@ void eDVBScan::channelDone()
 	nextChannel();
 }
 
-void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders)
+void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags)
 {
+	m_flags = flags;
 	m_ch_toScan.clear();
 	m_ch_scanned.clear();
 	m_ch_unavailable.clear();
@@ -389,12 +419,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			{
 				ServiceDescriptor &d = (ServiceDescriptor&)**desc;
 				service->m_service_name = convertDVBUTF8(d.getServiceName());
-				service->m_service_name_sort = convertDVBUTF8(d.getServiceName());
-
-				service->m_service_name_sort = removeDVBChars(service->m_service_name);
-				makeUpper(service->m_service_name_sort);
-					while ((!service->m_service_name_sort.empty()) && service->m_service_name_sort[0] == ' ')
-				service->m_service_name_sort.erase(0, 1);
+				service->genSortName();
 
 				service->m_provider_name = convertDVBUTF8(d.getServiceProviderName());
 				SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
