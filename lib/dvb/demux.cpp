@@ -50,7 +50,11 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
-	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_FRONT0 + fenum);
+	
+	int n = DMX_SOURCE_FRONT0 + fenum;
+	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
+	if (res)
+		eDebug("DMX_SET_SOURCE failed! - %m");
 	::close(fd);
 	return res;
 #endif
@@ -61,7 +65,8 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	int fd = openDemux();
-	int res = ::ioctl(fd, DMX_SET_SOURCE, DMX_SOURCE_DVR0 + pvrnum);
+	int n = DMX_SOURCE_DVR0 + pvrnum;
+	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	::close(fd);
 	return res;
 #endif
