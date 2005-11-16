@@ -30,29 +30,28 @@ eDVBScan::~eDVBScan()
 {
 }
 
-int eDVBScan::isValidONIDTSID(eOriginalNetworkID onid, eTransportStreamID tsid)
+int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid)
 {
 	switch (onid.get())
 	{
 	case 0:
-	case 0xFFFF:
 	case 0x1111:
 		return 0;
 	case 1:
-		return tsid>1;
+		return orbital_position == 192;
 	case 0x00B1:
 		return tsid != 0x00B0;
 	case 0x0002:
-		return tsid != 0x07E8;
+		return abs(orbital_position-282) < 6;
 	default:
-		return 1;
+		return onid.get() < 0xFF00;
 	}
 }
 
 eDVBNamespace eDVBScan::buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash)
 {
 		// on valid ONIDs, ignore frequency ("sub network") part
-	if (isValidONIDTSID(onid, tsid))
+	if (isValidONIDTSID((hash >> 16) & 0xFFFF, onid, tsid))
 		hash &= ~0xFFFF;
 	return eDVBNamespace(hash);
 }

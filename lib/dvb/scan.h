@@ -15,7 +15,7 @@ private:
 		/* chid helper functions: */
 		
 		/* heuristically determine if onid/tsid is valid */
-	int isValidONIDTSID(eOriginalNetworkID onid, eTransportStreamID tsid);
+	int isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid);
 		/* build dvb namespace */
 	eDVBNamespace buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash);
 	
