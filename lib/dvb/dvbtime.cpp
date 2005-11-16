@@ -62,8 +62,8 @@ time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5)
 	return timegm(&t);
 }
 
-TDT::TDT(eDVBChannel *chan)
-	:chan(chan)
+TDT::TDT(eDVBChannel *chan, int update_count)
+	:chan(chan), update_count(update_count)
 {
 	CONNECT(tableReady, TDT::ready);
 	CONNECT(m_interval_timer.timeout, TDT::start);
@@ -73,7 +73,7 @@ TDT::TDT(eDVBChannel *chan)
 
 void TDT::ready(int error)
 {
-	eDVBLocalTimeHandler::getInstance()->updateTime(error, chan);
+	eDVBLocalTimeHandler::getInstance()->updateTime(error, chan, ++update_count);
 }
 
 int TDT::createTable(int nr, const __u8 *data, unsigned int max)
@@ -84,7 +84,7 @@ int TDT::createTable(int nr, const __u8 *data, unsigned int max)
 		if ( length >= 5 )
 		{
 			time_t tptime = parseDVBtime(data[3], data[4], data[5], data[6], data[7]);
-			eDVBLocalTimeHandler::getInstance()->updateTime(tptime, chan);
+			eDVBLocalTimeHandler::getInstance()->updateTime(tptime, chan, update_count);
 			error=0;
 			return 1;
 		}
@@ -173,10 +173,10 @@ void eDVBLocalTimeHandler::writeTimeOffsetData( const char* filename )
 	}
 }
 
-void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
+void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int update_count )
 {
 	bool restart_tdt = false;
-	if (!tp_time )
+	if (!tp_time)
 		restart_tdt = true;
 	else if (tp_time == -1)
 	{
@@ -237,6 +237,8 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 		int enigma_diff = tp_time-nowTime;
 
 		int new_diff=0;
+
+		bool updated = m_time_ready;
 
 		if ( m_time_ready )  // ref time ready?
 		{
@@ -304,7 +306,8 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 		time_t t = nowTime+new_diff;
 		m_last_tp_time_difference=tp_time-t;
 
-		if (!new_diff)
+		if (!new_diff &&
+			updated) // overrride this check on first received TDT
 		{
 			eDebug("[eDVBLocalTimerHandler] not changed");
 			return;
@@ -320,7 +323,15 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", m_time_difference );
 
 //		if ( eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7020 )  TODO !!
+		if ( !update_count )
+		{
+			// set rtc to calced transponder time when the first tdt is received on this
+			// transponder
 			setRTC(t);
+			eDebug("[eDVBLocalTimerHandler] update RTC");
+		}
+		else
+			eDebug("[eDVBLocalTimerHandler] don't update RTC");
 
 		if ( abs(m_time_difference) > 59 )
 		{
@@ -342,9 +353,10 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan )
 			m_knownChannels.find(chan);
 		if ( it != m_knownChannels.end() )
 		{
-			delete it->second.tdt;
-			it->second.tdt = new TDT(chan);
+			TDT *prev_tdt = it->second.tdt;
+			it->second.tdt = new TDT(chan, prev_tdt->getUpdateCount());
 			it->second.tdt->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
+			delete prev_tdt;
 		}
 	}
 }

@@ -25,10 +25,12 @@ class TDT: public eGTable
 	eTimer m_interval_timer;
 	int createTable(int nr, const __u8 *data, unsigned int max);
 	void ready(int);
+	int update_count;
 public:
-	TDT(eDVBChannel *chan);
+	TDT(eDVBChannel *chan, int update_count=0);
 	void start();
 	void startTimer(int interval);
+	int getUpdateCount() { return update_count; }
 };
 
 class eDVBLocalTimeHandler: public Object
@@ -51,7 +53,7 @@ class eDVBLocalTimeHandler: public Object
 	void DVBChannelStateChanged(iDVBChannel*);
 	void readTimeOffsetData(const char*);
 	void writeTimeOffsetData(const char*);
-	void updateTime(time_t tp_time, eDVBChannel*);
+	void updateTime(time_t tp_time, eDVBChannel*, int updateCount);
 	static eDVBLocalTimeHandler *instance;
 public:
 	PSignal0<void> m_timeUpdated;
