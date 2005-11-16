@@ -389,6 +389,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			{
 				ServiceDescriptor &d = (ServiceDescriptor&)**desc;
 				service->m_service_name = convertDVBUTF8(d.getServiceName());
+				service->m_service_name_sort = convertDVBUTF8(d.getServiceName());
+
+				service->m_service_name_sort = removeDVBChars(service->m_service_name);
+				makeUpper(service->m_service_name_sort);
+					while ((!service->m_service_name_sort.empty()) && service->m_service_name_sort[0] == ' ')
+				service->m_service_name_sort.erase(0, 1);
+
 				service->m_provider_name = convertDVBUTF8(d.getServiceProviderName());
 				SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 				break;
