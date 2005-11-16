@@ -204,13 +204,28 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 
 RESULT eDVBResourceManager::allocateFrontend(const eDVBChannelID &chid, ePtr<eDVBAllocatedFrontend> &fe)
 {
-		/* find first unused frontend. we ignore compatibility for now. */
+	ePtr<eDVBRegisteredFrontend> best;
+	int bestval = 0;
+	
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (!i->m_inuse)
 		{
-			fe = new eDVBAllocatedFrontend(i);
-			return 0;
+			int c = i->m_frontend->isCompatibleWith(chid);
+			if (c > bestval)
+			{
+				c = bestval;
+				best = i;
+			}
 		}
+
+	if (best)
+	{
+		fe = new eDVBAllocatedFrontend(best);
+		return 0;
+	}
+	
+	fe = 0;
+	
 	return -1;
 }
 

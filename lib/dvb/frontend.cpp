@@ -908,3 +908,7 @@ RESULT eDVBFrontend::setData(int num, int val)
 	return -EINVAL;
 }
 
+int eDVBFrontend::isCompatibleWith(const eDVBChannelID &chid)
+{
+	return 1;
+}

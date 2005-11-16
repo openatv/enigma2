@@ -333,6 +333,9 @@ public:
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 	virtual RESULT getData(int num, int &data)=0;
 	virtual RESULT setData(int num, int val)=0;
+	
+		/* 0 means: not compatible. other values are a priority. */
+	virtual int isCompatibleWith(const eDVBChannelID &chid)=0;
 };
 
 class iDVBSatelliteEquipmentControl: public iObject
