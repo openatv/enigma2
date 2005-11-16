@@ -71,12 +71,12 @@ class ScanSetup(Screen):
         # single transponder scan
         if (config.scan.type.value == 0):
             if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+            	self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
                 self.list.append(getConfigListEntry("Frequency", config.scan.sat.frequency))
                 self.list.append(getConfigListEntry("Inversion", config.scan.sat.inversion))
                 self.list.append(getConfigListEntry("Symbolrate", config.scan.sat.symbolrate))
                 self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarization))
                 self.list.append(getConfigListEntry("FEC", config.scan.sat.fec))
-            	self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
             if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
                 self.list.append(getConfigListEntry("Frequency", config.scan.cab.frequency))
                 self.list.append(getConfigListEntry("Inversion", config.scan.cab.inversion))
@@ -210,6 +210,36 @@ class ScanSetup(Screen):
 		parm.orbital_position = int(orbital_position)
 		tlist.append(parm)
 
+	# FIXME use correct parameters
+    def addCabTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
+		print "orbpos: " + str(orbital_position)
+		parm = eDVBFrontendParametersCable()
+		parm.frequency = frequency * 1000
+		parm.symbol_rate = symbol_rate * 1000
+		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti      
+		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
+		#parm.fec = 6					# AUTO
+		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
+		#parm.inversion = 2 		#AUTO
+		parm.orbital_position = int(orbital_position)
+		tlist.append(parm)
+
+	# FIXME use correct parameters
+    def addTerTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
+		print "orbpos: " + str(orbital_position)
+		parm = eDVBFrontendParametersTerrestrial()
+		parm.frequency = frequency * 1000
+		parm.symbol_rate = symbol_rate * 1000
+		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti      
+		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
+		#parm.fec = 6					# AUTO
+		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
+		#parm.inversion = 2 		#AUTO
+		parm.orbital_position = int(orbital_position)
+		tlist.append(parm)		
+
     def keyGo(self):
         tlist = []
         if (config.scan.type.value == 0): # single transponder scan
@@ -220,7 +250,20 @@ class ScanSetup(Screen):
 									    	  config.scan.sat.fec.value,
 									    	  config.scan.sat.inversion.value,
 									    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
-			
+        	if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
+									    	  config.scan.cab.symbolrate.value[0],
+									    	  config.scan.cab.polarization.value,
+									    	  config.scan.cab.fec.value,
+									    	  config.scan.cab.inversion.value,
+									    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])			
+        	if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+				self.addTerTransponder(tlist, config.scan.sat.frequency.value[0],
+									    	  config.scan.sat.symbolrate.value[0],
+									    	  config.scan.sat.polarization.value,
+									    	  config.scan.sat.fec.value,
+									    	  config.scan.sat.inversion.value,
+									    	  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
         for x in self["config"].list:
             x[1].save()
 				
