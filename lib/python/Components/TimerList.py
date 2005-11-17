@@ -2,6 +2,7 @@ from HTMLComponent import *
 from GUIComponent import *
 
 from Tools.FuzzyDate import FuzzyTime
+import time
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from timer import TimerEntry
@@ -25,7 +26,6 @@ RT_WRAP = 32
 def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
-
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
 	repeatedtext = ""
 	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
@@ -39,8 +39,6 @@ def TimerEntryComponent(timer, processed):
 					repeatedtext += days[x]
 					count += 1
 				flags = flags >> 1
-		print [FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]]
-		print (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:])
 		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
 	else:
 		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
