@@ -27,8 +27,10 @@ class Timezones:
 		
 	def activateTimezone(self, index):
 		os.environ['TZ'] = self.timezones[index][1]
-		# FIXME we need a tzset
-		#time.tzset()
+		try:
+			time.tzset()
+		except:
+			print "Timezone NOT set because your python has problems with time.tzset()"
 		
 	def getTimezoneList(self):
 		list = []
