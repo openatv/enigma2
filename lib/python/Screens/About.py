@@ -11,7 +11,7 @@ class About(Screen):
 		
 		self["text"] = Label("Enigma v2.0b")
 
-		self["tuner"] = Label("Detected NIMs:")
+		self["tuner"] = Label(_("Detected NIMs:"))
 		
 		nims = nimmanager.nimList()
 		count = 0
@@ -19,12 +19,12 @@ class About(Screen):
 			self["tuner" + str(count)] = Label(i[0])
 			count += 1
 
-		self["hdd"] = Label("Detected HDD:")
+		self["hdd"] = Label(_("Detected HDD:"))
 		hdd = Harddisk(0)
 		if hdd.model() != "":
-			self["hddA"] = Label("%s (%s, %d MB free)" % (hdd.model(), hdd.capacity(),hdd.free()))
+			self["hddA"] = Label(_("%s (%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
 		else:			
-			self["hddA"] = Label("none")
+			self["hddA"] = Label(_("none"))
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{

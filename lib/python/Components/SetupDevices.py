@@ -18,10 +18,10 @@ def InitSetupDevices():
 	config.timezone.val.addNotifier(timezoneNotifier)
 
 	config.rc = ConfigSubsection();
-	config.rc.map = configElement("config.rc.map", configSelection, 0, ("Default", "Classic") );
+	config.rc.map = configElement("config.rc.map", configSelection, 0, (_("Default"), _("Classic")) );
 
 	config.keyboard = ConfigSubsection();
-	config.keyboard.keymap = configElement("config.keyboard.keymap", configSelection, 1, ("English", "German") );
+	config.keyboard.keymap = configElement("config.keyboard.keymap", configSelection, 1, (_("English"), _("German")) );
 
 	config.osd = ConfigSubsection();
 	config.osd.alpha = configElement("config.osd.alpha", ConfigSlider, 0, "");
@@ -35,13 +35,13 @@ def InitSetupDevices():
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection();
-	config.parental.lock = configElement("config.parental.lock", configSelection, 1, ("Enable", "Disable") );
-	config.parental.setuplock = configElement("config.parental.setuplock", configSelection, 1, ("Enable", "Disable") );
+	config.parental.lock = configElement("config.parental.lock", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.parental.setuplock = configElement("config.parental.setuplock", configSelection, 1, (_("Enable"), _("Disable")) );
 
 	config.expert = ConfigSubsection();
 	config.expert.splitsize = configElement("config.expert.splitsize", configSelection, 1, ("0.5Gbyte", "1.0 GByte", "1.5 GByte", "2.0 GByte") );
-	config.expert.satpos = configElement("config.expert.satpos", configSelection, 1, ("Enable", "Disable") );
-	config.expert.fastzap = configElement("config.expert.fastzap", configSelection, 0, ("Enable", "Disable") );
-	config.expert.skipconfirm = configElement("config.expert.skipconfirm", configSelection, 1, ("Enable", "Disable") );
-	config.expert.hideerrors = configElement("config.expert.hideerrors", configSelection, 1, ("Enable", "Disable") );
-	config.expert.autoinfo = configElement("config.expert.autoinfo", configSelection, 1, ("Enable", "Disable") );
+	config.expert.satpos = configElement("config.expert.satpos", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.expert.fastzap = configElement("config.expert.fastzap", configSelection, 0, (_("Enable"), _("Disable")) );
+	config.expert.skipconfirm = configElement("config.expert.skipconfirm", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.expert.hideerrors = configElement("config.expert.hideerrors", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.expert.autoinfo = configElement("config.expert.autoinfo", configSelection, 1, (_("Enable"), _("Disable")) );

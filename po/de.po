@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-17 22:11+0100\n"
+"POT-Creation-Date: 2005-11-17 22:41+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,14 +16,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../lib/python/Screens/EventView.py:58
+#, python-format
+msgid "%d min"
+msgstr ""
+
+#: ../lib/python/Screens/About.py:25
+#, python-format
+msgid "%s (%s, %d MB free)"
+msgstr ""
+
+#: ../lib/python/Screens/HarddiskSetup.py:30
+msgid "Bus: "
+msgstr "Personennahverkehr: "
+
+#: ../lib/python/Screens/HarddiskSetup.py:29
+msgid "Capacity: "
+msgstr "Kapazitaet: "
+
+#: ../lib/python/Components/SetupDevices.py:21
+msgid "Classic"
+msgstr "klassisch"
+
 #: ../lib/python/Screens/Satconfig.py:30 ../lib/python/Screens/Satconfig.py:48
+#: ../lib/python/Screens/Satconfig.py:57
 msgid "Configmode"
 msgstr "Konfigurationsmodus"
+
+#: ../lib/python/Components/SetupDevices.py:21
+msgid "Default"
+msgstr "Standard"
+
+#: ../lib/python/Screens/About.py:22
+msgid "Detected HDD:"
+msgstr "Erkannte Festplatten:"
+
+#: ../lib/python/Screens/About.py:14
+msgid "Detected NIMs:"
+msgstr "Erkannte Tuner:"
+
+#: ../lib/python/Components/SetupDevices.py:38
+#: ../lib/python/Components/SetupDevices.py:39
+#: ../lib/python/Components/SetupDevices.py:43
+#: ../lib/python/Components/SetupDevices.py:44
+#: ../lib/python/Components/SetupDevices.py:45
+#: ../lib/python/Components/SetupDevices.py:46
+#: ../lib/python/Components/SetupDevices.py:47
+msgid "Disable"
+msgstr "Aus"
 
 #: ../lib/python/Screens/Satconfig.py:33 ../lib/python/Screens/Satconfig.py:46
 msgid "Diseqcmode"
 msgstr "Diseqc-Modus"
 
+#: ../lib/python/Components/SetupDevices.py:38
+#: ../lib/python/Components/SetupDevices.py:39
+#: ../lib/python/Components/SetupDevices.py:43
+#: ../lib/python/Components/SetupDevices.py:44
+#: ../lib/python/Components/SetupDevices.py:45
+#: ../lib/python/Components/SetupDevices.py:46
+#: ../lib/python/Components/SetupDevices.py:47
+msgid "Enable"
+msgstr "Ein"
+
+#: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:9
 msgid "English"
 msgstr "Englisch"
@@ -36,6 +92,7 @@ msgstr "Frequenz"
 msgid "Gateway"
 msgstr ""
 
+#: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:10
 msgid "German"
 msgstr "Deutsch"
@@ -44,17 +101,29 @@ msgstr "Deutsch"
 msgid "IP Address"
 msgstr "IP Adresse"
 
+#: ../lib/python/Screens/HarddiskSetup.py:31
+msgid "Initialize"
+msgstr "Initialisiere"
+
+#: ../lib/python/Screens/HarddiskSetup.py:18
+msgid "Initializing Harddisk..."
+msgstr "Initialisiere Festplatte..."
+
 #: ../lib/python/Screens/ScanSetup.py:77
 msgid "Inversion"
 msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:24
 msgid "Latitude"
-msgstr ""
+msgstr "Breitengrad"
 
 #: ../lib/python/Screens/Satconfig.py:23
 msgid "Longitude"
-msgstr "Breitengrad"
+msgstr "Laengengrad"
+
+#: ../lib/python/Screens/HarddiskSetup.py:28
+msgid "Model: "
+msgstr "Modell: "
 
 #: ../lib/python/Screens/NetworkSetup.py:45
 msgid "Nameserver"
@@ -87,3 +156,19 @@ msgstr "Satellit"
 #: ../lib/python/Screens/ScanSetup.py:78
 msgid "Symbolrate"
 msgstr ""
+
+#: ../lib/python/Screens/HarddiskSetup.py:57
+msgid "no HDD found"
+msgstr "keine Festplatte gefunden"
+
+#: ../lib/python/Screens/About.py:27
+msgid "none"
+msgstr ""
+
+#: ../lib/python/Screens/EventView.py:43
+msgid "unknown service"
+msgstr "unbekannter Dienst"
+
+#: ../lib/python/Screens/Ci.py:32
+msgid "waiting for CI..."
+msgstr "warte auf das CI..."

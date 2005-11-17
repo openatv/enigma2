@@ -29,7 +29,7 @@ class CiWait(Screen):
 	def __init__(self, session, slot, query):
 		Screen.__init__(self, session)
 
-		self["message"] = Label("waiting for CI...")
+		self["message"] = Label(_("waiting for CI..."))
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{

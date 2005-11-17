@@ -23,8 +23,12 @@ enigma2.pot:
 			../lib/python/Screens/ScanSetup.py \
 			../lib/python/Screens/NetworkSetup.py \
 			../lib/python/Screens/Satconfig.py \
-			../lib/python/Components/Language.py \
-			../data/menu.xml 
+			../lib/python/Screens/EventView.py \
+			../lib/python/Screens/Ci.py \
+			../lib/python/Screens/About.py \
+			../lib/python/Screens/HarddiskSetup.py \
+			../lib/python/Components/SetupDevices.py \
+			../lib/python/Components/Language.py 
 			
 
 

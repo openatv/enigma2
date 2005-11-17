@@ -54,7 +54,7 @@ class NimSetup(Screen):
 
 	def keyRight(self):
 		#forbid to enable advanced mode until its ready
-		if self["config"].getCurrent()[0] != "Configmode":
+		if self["config"].getCurrent()[0] != _("Configmode"):
 			self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 
