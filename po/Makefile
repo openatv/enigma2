@@ -1,8 +1,8 @@
 #GETTEXT=./pygettext.py
 GETTEXT=xgettext
 
-MSGFMT = ./msgfmt.py
-#MSGFMT = msgfmt
+#MSGFMT = ./msgfmt.py
+MSGFMT = msgfmt
 
 LANGS := de en
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
