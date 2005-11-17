@@ -11,11 +11,11 @@ class ActionMap:
 	def execBegin(self):
 		for ctx in self.contexts:
 			self.p.bindAction(ctx, self.prio, self.action)
-	
+
 	def execEnd(self):
 		for ctx in self.contexts:
 			self.p.unbindAction(ctx, self.action)
-	
+
 	def action(self, context, action):
 		print " ".join(("action -> ", context, action))
 		if self.actions.has_key(action):
@@ -25,7 +25,6 @@ class ActionMap:
 			print "unknown action %s/%s! typo in keymap?" % (context, action)
 			return 0
 
-			
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -33,4 +32,4 @@ class NumberActionMap(ActionMap):
 			self.actions[action](int(action))
 			return 1
 		else:
-			return ActionMap.action(self, contexts, action)			
+			return ActionMap.action(self, contexts, action)
