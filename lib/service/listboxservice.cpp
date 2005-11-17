@@ -22,6 +22,18 @@ void eListboxServiceContent::setRoot(const eServiceReference &root)
 		m_listbox->entryReset();
 }
 
+void eListboxServiceContent::setCurrent(const eServiceReference &ref)
+{
+	int index=0;
+	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i, ++index)
+		if ( *i == ref )
+		{
+			m_cursor = i;
+			m_cursor_number = index;
+			break;
+		}
+}
+
 void eListboxServiceContent::getCurrent(eServiceReference &ref)
 {
 	if (cursorValid())
@@ -124,7 +136,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_swap(m_list.end())
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_swap(m_list.end()), m_numberoffset(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
@@ -307,7 +319,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			case celServiceNumber:
 			{
 				char bla[10];
-				sprintf(bla, "%d", m_cursor_number + 1);
+				sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
 				text = bla;
 				break;
 			}

@@ -13,6 +13,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l = eListboxServiceContent()
 		self.root = None
 
+	def setCurrent(self, ref):
+		self.l.setCurrent(ref)
+
 	def getCurrent(self):
 		r = eServiceReference()
 		self.l.getCurrent(r)
@@ -46,6 +49,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 				else:
 					break
 		return dest
+
+	def setNumberOffset(self, offset):
+		self.l.setNumberOffset(offset)
 
 	def setRoot(self, root):
 		self.root = root
