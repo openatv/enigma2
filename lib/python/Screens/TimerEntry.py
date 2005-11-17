@@ -40,17 +40,35 @@ class TimerEntry(Screen):
 	def createConfig(self):
 			config.timerentry = ConfigSubsection()
 			
-			type = 0
-			repeated = 0
-			if (self.timer.repeated != 0):
+			# calculate default values
+			day = []
+			for x in range(0,7):
+				day.append(1)
+			if (self.timer.repeated != 0): # repeated
 				type = 1 # repeated
 				if (self.timer.repeated == 31): # Mon-Fri
 					repeated = 2 # Mon - Fri
 				elif (self.timer.repeated == 127): # daily
 					repeated = 0 # daily
 				else:
+					flags = self.timer.repeated
 					repeated = 3 # user-defined
-
+					count = 0
+					for x in range(0, 6):
+						if (flags == 1): # weekly
+							weekday = x
+						if (flags & 1 == 1): # set user-defined flags
+							day[x] = 0
+							count += 1
+						else:
+							day[x] = 1
+						flags = flags >> 1
+					if (count == 1):
+						repeated = 1 # weekly
+			else: # once
+				type = 0
+				repeated = 0
+			
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, ("once", "repeated"))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
@@ -64,13 +82,10 @@ class TimerEntry(Screen):
 
 			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, 0, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 
-			config.timerentry.monday = configElement_nonSave("config.timerentry.monday", configSelection, 0, ("yes", "no"))
-			config.timerentry.tuesday = configElement_nonSave("config.timerentry.tuesday", configSelection, 0, ("yes", "no"))
-			config.timerentry.wednesday = configElement_nonSave("config.timerentry.wednesday", configSelection, 0, ("yes", "no"))
-			config.timerentry.thursday = configElement_nonSave("config.timerentry.thursday", configSelection, 0, ("yes", "no"))
-			config.timerentry.friday = configElement_nonSave("config.timerentry.friday", configSelection, 0, ("yes", "no"))
-			config.timerentry.saturday = configElement_nonSave("config.timerentry.saturday", configSelection, 0, ("yes", "no"))
-			config.timerentry.sunday = configElement_nonSave("config.timerentry.sunday", configSelection, 0, ("yes", "no"))
+			config.timerentry.day = []
+			for x in range(0,7):
+				config.timerentry.day.append(configElement_nonSave("config.timerentry.day[" + str(x) + "]", configSelection, day[x], ("yes", "no")))
+
 
 			# FIXME some service-chooser needed here
 			config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(self.timer.service_ref.getServiceName())),))
@@ -107,13 +122,13 @@ class TimerEntry(Screen):
 				self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
 
 			if (config.timerentry.repeated.value == 3): # user-defined
-				self.list.append(getConfigListEntry("Monday", config.timerentry.monday))
-				self.list.append(getConfigListEntry("Tuesday", config.timerentry.tuesday))
-				self.list.append(getConfigListEntry("Wednesday", config.timerentry.wednesday))
-				self.list.append(getConfigListEntry("Thursday", config.timerentry.thursday))
-				self.list.append(getConfigListEntry("Friday", config.timerentry.friday))
-				self.list.append(getConfigListEntry("Saturday", config.timerentry.saturday))
-				self.list.append(getConfigListEntry("Sunday", config.timerentry.sunday))
+				self.list.append(getConfigListEntry("Monday", config.timerentry.day[0]))
+				self.list.append(getConfigListEntry("Tuesday", config.timerentry.day[1]))
+				self.list.append(getConfigListEntry("Wednesday", config.timerentry.day[2]))
+				self.list.append(getConfigListEntry("Thursday", config.timerentry.day[3]))
+				self.list.append(getConfigListEntry("Friday", config.timerentry.day[4]))
+				self.list.append(getConfigListEntry("Saturday", config.timerentry.day[5]))
+				self.list.append(getConfigListEntry("Sunday", config.timerentry.day[6]))
 
 			#self.list.append(getConfigListEntry("StartDate", config.timerentry.startdate))
 #		self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
@@ -187,13 +202,9 @@ class TimerEntry(Screen):
 				self.timer.setRepeated(4) # Fri
 				
 			if (config.timerentry.repeated.value == 3): # user-defined
-				if (config.timerentry.monday.value == 0): self.timer.setRepeated(0)
-				if (config.timerentry.tuesday.value == 0): self.timer.setRepeated(1)
-				if (config.timerentry.wednesday.value == 0): self.timer.setRepeated(2)
-				if (config.timerentry.thursday.value == 0): self.timer.setRepeated(3)
-				if (config.timerentry.friday.value == 0): self.timer.setRepeated(4)
-				if (config.timerentry.saturday.value == 0): self.timer.setRepeated(5)
-				if (config.timerentry.sunday.value == 0): self.timer.setRepeated(6)
+				for x in range(0,7):
+					if (config.timerentry.day[x].value == 0): self.timer.setRepeated(x)
+
 				
 
 		self.close((True, self.timer))
