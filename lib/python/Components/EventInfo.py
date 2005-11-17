@@ -40,5 +40,5 @@ class EventInfo(PerServiceDisplay):
 
 	def stopEvent(self):
 		self.setText(
-			("waiting for event data...", "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
+			(_("waiting for event data..."), "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
 

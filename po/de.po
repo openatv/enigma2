@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-17 22:47+0100\n"
+"POT-Creation-Date: 2005-11-17 22:59+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -25,6 +25,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
+
+#: ../lib/python/Screens/TimerEdit.py:25
+msgid "Add"
+msgstr ""
 
 #: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Bus: "
@@ -45,6 +49,11 @@ msgstr "Konfigurationsmodus"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
+msgstr "Standard"
+
+#: ../lib/python/Screens/TimerEdit.py:24
+#, fuzzy
+msgid "Delete"
 msgstr "Standard"
 
 #: ../lib/python/Screens/About.py:22
@@ -166,6 +175,10 @@ msgstr ""
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
+#: ../lib/python/Components/Network.py:134
+msgid "no"
+msgstr "nein"
+
 #: ../lib/python/Screens/HarddiskSetup.py:57
 msgid "no HDD found"
 msgstr "keine Festplatte gefunden"
@@ -181,3 +194,13 @@ msgstr "unbekannter Dienst"
 #: ../lib/python/Screens/Ci.py:32
 msgid "waiting for CI..."
 msgstr "warte auf das CI..."
+
+#: ../lib/python/Components/EventInfo.py:43
+#, fuzzy
+msgid "waiting for event data..."
+msgstr "warte auf Programmdaten..."
+
+#: ../lib/python/Components/Network.py:15
+#: ../lib/python/Components/Network.py:134
+msgid "yes"
+msgstr "ja"

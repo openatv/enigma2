@@ -21,8 +21,8 @@ class TimerEditList(Screen):
 
 		self["timerlist"] = TimerList(list)
 		
-		self["key_red"] = Button("Delete")
-		self["key_green"] = Button("Add")
+		self["key_red"] = Button(_("Delete"))
+		self["key_green"] = Button(_("Add"))
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
 
