@@ -5,6 +5,7 @@ from config import ConfigSubsection
 from config import ConfigSlider
 from config import configSelection
 from config import configText
+from Components.Timezones import timezones
 
 def InitSetupDevices():
 	config.timezone = ConfigSubsection();
