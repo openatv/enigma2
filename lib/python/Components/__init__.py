@@ -6,4 +6,4 @@ __all__ = ["ActionMap", "Button", "Clock", "ConfigList", "EventInfo",
 	"components", "config", "TimerList", "TimeInput", "MovieList", 
 	"InputDevice",	"ServicePosition", "IPAddress", "VariableIP", "IPGateway",
 	"IPNameserver", "Network", "RFmon", "DiskInfo", "NimManager", "TimerEntry",
-	"Lcd", "EpgList" "ScrollLabel"]
+	"Lcd", "EpgList" "ScrollLabel", "Timezones"]
