@@ -86,9 +86,12 @@ def createTimer(xml):
 	end = int(xml.getAttribute("end"))
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
 	description = xml.getAttribute("description")
+	repeated = xml.getAttribute("repeated")
 	epgdata = xml.getAttribute("epgdata")
 	#filename = xml.getAttribute("filename")
-	return RecordTimerEntry(begin, end, serviceref, epgdata, description)
+	entry = RecordTimerEntry(begin, end, serviceref, epgdata, description)
+	entry.repeated = int(repeated)
+	return entry
 
 class RecordTimer(timer.Timer):
 	def __init__(self):
@@ -126,6 +129,7 @@ class RecordTimer(timer.Timer):
 			t.setAttribute("begin", str(timer.begin))
 			t.setAttribute("end", str(timer.end))
 			t.setAttribute("serviceref", str(timer.service_ref))
+			t.setAttribute("repeated", str(timer.repeated))			
 			#t.setAttribute("epgdata", timer.)
 			t.setAttribute("description", timer.description)
 			root_element.appendChild(t)

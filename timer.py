@@ -18,6 +18,9 @@ class TimerEntry:
 		self.prepare_time = 10
 		self.end = end
 		self.state = 0
+		self.resetRepeated()
+		
+	def resetRepeated(self):
 		self.repeated = int(0)
 		
 	def setRepeated(self, day):
