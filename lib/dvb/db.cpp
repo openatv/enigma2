@@ -641,6 +641,12 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 	return 0;
 }
 
+RESULT eDVBDB::flush()
+{
+	save();
+	return 0;
+}
+
 RESULT eDVBDB::getBouquet(const eServiceReference &ref, eBouquet* &bouquet)
 {
 	std::string str = ref.path;

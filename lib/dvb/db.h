@@ -42,6 +42,7 @@ public:
 	
 	RESULT addService(const eServiceReferenceDVB &service, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
+	RESULT flush();
 
 	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source);
 
