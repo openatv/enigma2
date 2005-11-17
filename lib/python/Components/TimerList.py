@@ -27,7 +27,23 @@ def TimerEntryComponent(timer, processed):
 	
 
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
-	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:])))
+	repeatedtext = ""
+	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
+	if (timer.repeated != 0):
+		flags = timer.repeated
+		count = 0
+		for x in range(0, 7):
+				if (flags & 1 == 1):
+					if (count != 0):
+						repeatedtext += ", "
+					repeatedtext += days[x]
+					count += 1
+				flags = flags >> 1
+		print [FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]]
+		print (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:])
+		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+	else:
+		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
 	res.append((300, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.description))
 	
