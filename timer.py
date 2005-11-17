@@ -146,11 +146,13 @@ class Timer:
 		if w.state < TimerEntry.StateEnded:
 			bisect.insort(self.timer_list, w)
 		else:
-			bisect.insort(self.processed_timers, w)
 			if (w.repeated != 0):
 				w.processRepeated()
 				w.state = TimerEntry.StateWait
 				self.addTimerEntry(w)
+			else:
+				bisect.insort(self.processed_timers, w)
+
 	
 	def processActivation(self):
 		t = int(time.time()) + 1

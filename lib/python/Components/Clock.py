@@ -25,8 +25,7 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 # "funktionalitaet"	
 	def doClock(self):
 		t = time.localtime()
-		hour = (t[3] + config.timezone.val.value) % 24;
-		timestr = "%2d:%02d:%02d" % (hour, t[4], t[5])
+		timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		self.setText(timestr)
 		setLCDClock(timestr)
 
