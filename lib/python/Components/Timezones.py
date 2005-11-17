@@ -4,6 +4,8 @@ from xml.sax.handler import ContentHandler
 import os
 import time
 
+from enigma import *
+
 class Timezones:
 	class parseTimezones(ContentHandler):
 		def __init__(self, timezones):
@@ -30,7 +32,7 @@ class Timezones:
 		try:
 			time.tzset()
 		except:
-			print "Timezone NOT set because your python has problems with time.tzset()"
+			etimezone()
 		
 	def getTimezoneList(self):
 		list = []
