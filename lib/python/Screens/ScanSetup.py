@@ -72,10 +72,10 @@ class ScanSetup(Screen):
 		# single transponder scan
 		if (config.scan.type.value == 0):
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
-				self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
-				self.list.append(getConfigListEntry("Frequency", config.scan.sat.frequency))
-				self.list.append(getConfigListEntry("Inversion", config.scan.sat.inversion))
-				self.list.append(getConfigListEntry("Symbolrate", config.scan.sat.symbolrate))
+				self.list.append(getConfigListEntry(_('Satellite'), config.scan.satselection[config.scan.nims.value]))
+				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
+				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
+				self.list.append(getConfigListEntry(_('Symbolrate'), config.scan.sat.symbolrate))
 				self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarization))
 				self.list.append(getConfigListEntry("FEC", config.scan.sat.fec))
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
