@@ -1,6 +1,9 @@
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+import os
+import time
+
 class Timezones:
 	class parseTimezones(ContentHandler):
 		def __init__(self, timezones):
@@ -8,18 +11,11 @@ class Timezones:
 			self.timezones = timezones
 	
 		def startElement(self, name, attrs):
-			print "Name: " + str(name)
 			if (name == "zone"):
-				self.timezones[attrs.get('name',"")] = attrs.get('zone',"")
-				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-				#tpos = attrs.get('position',"")
-				#tname = attrs.get('name',"")
-				#self.satellites[tpos] = tname
-				#self.satList.append( (tname, tpos) )
-				#self.parsedSat = int(tpos)
+				self.timezones.append((attrs.get('name',""), attrs.get('zone',"")))
 	
 	def __init__(self):
-		self.timezones = {}
+		self.timezones = []
 		
 		self.readTimezonesFromFile()
 
@@ -29,5 +25,19 @@ class Timezones:
 		parser.setContentHandler(timezonesHandler)
 		parser.parse('/etc/timezone.xml')
 		
+	def activateTimezone(self, index):
+		os.environ['TZ'] = self.timezones[index][1]
+		# FIXME we need a tzset
+		#time.tzset()
+		
+	def getTimezoneList(self):
+		list = []
+		for x in self.timezones:
+			list.append(str(x[0]))
+		return list
+	
+	def getDefaultTimezone(self):
+		# TODO return something more useful - depending on country-settings?
+		return 27
 
 timezones = Timezones()
