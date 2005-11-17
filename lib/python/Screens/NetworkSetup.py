@@ -37,7 +37,7 @@ class NetworkSetup(Screen):
     def createSetup(self):
         self.list = []
         
-        self.list.append(getConfigListEntry("Use DHCP", config.network.dhcp))
+        self.list.append(getConfigListEntry(_("Use DHCP"), config.network.dhcp))
         if (config.network.dhcp.value == 0):
             self.list.append(getConfigListEntry(_('IP Address'), config.network.ip))
             self.list.append(getConfigListEntry(_('Netmask'), config.network.netmask))
@@ -49,7 +49,7 @@ class NetworkSetup(Screen):
         
     def newConfig(self):
         print self["config"].getCurrent()
-        if self["config"].getCurrent()[0] == "Use DHCP":
+        if self["config"].getCurrent()[0] == _("Use DHCP"):
             self.createSetup()
 
     def keyLeft(self):

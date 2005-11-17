@@ -63,7 +63,7 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 		self.session.nav.playService(service)
 
 	def leavePlayer(self):
-		self.session.openWithCallback(self.leavePlayerConfirmed, MessageBox, "Stop playing this movie?")
+		self.session.openWithCallback(self.leavePlayerConfirmed, MessageBox, _("Stop playing this movie?"))
 	
 	def leavePlayerConfirmed(self, answer):
 		if answer == True:
