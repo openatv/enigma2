@@ -5,7 +5,6 @@ from Components.ActionMap import ActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
 from Components.config import config, configElement, ConfigSubsection, configText
-
 from Screens.FixedMenu import FixedMenu
 
 import xml.dom.minidom
@@ -119,7 +118,7 @@ class ChannelSelection(Screen):
 		self.entry_marked = False
 		self.movemode = False
 		self.bouquet_mark_edit = False
-		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 		self.mutableList = None
 
 		self.__marked = [ ]
@@ -251,6 +250,70 @@ class ChannelSelection(Screen):
 				mutableList.flushChanges()
 		self.close()
 
+	def findService(self, serviceHandler, num, bouquet):
+		list = serviceHandler.list(bouquet)
+		if not list is None:
+			while num > 0:
+				s = list.getNext()
+				if not s.valid():
+					break
+				if s.flags != 0: #assume normal dvb service have no flags set
+					continue
+				num = num - 1;
+			if num == 0:
+				return s, 0
+		return None, num
+
+	def zapToNumber(self, number):
+		bouquet = None
+		service = None
+		serviceHandler = eServiceCenter.getInstance()
+		if self.bouquet_root.toString().find('FROM BOUQUET "bouquets.') == -1:
+			service, number = self.findService(serviceHandler, number, self.bouquet_root)
+			bouquet = self.bouquet_root
+		else:
+			list = serviceHandler.list(self.bouquet_root)
+			if not list is None:
+				while number:
+					s = list.getNext()
+					if not s.valid():
+						break
+					bouquet = s
+					service, number = self.findService(serviceHandler, number, s)
+		if not service is None:
+			self.session.nav.playService(service)
+			if not bouquet is None:
+				if self["list"].getRoot() != bouquet:
+					self.setRoot(bouquet)
+				self.setCurrent(service)
+
+	def setCurrent(self, service):
+		self["list"].setCurrent(service)
+
+	def getBouquetNumOffset(self, bouquet):
+		if self.bouquet_root.toString().find('FROM BOUQUET "bouquets.') == -1:
+			return 0
+		offset=0
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(self.bouquet_root)
+		if not list is None:
+			while 1:
+				s = list.getNext()
+				if not s.valid() or s == bouquet:
+					break
+				if ((s.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
+					continue
+				slist = serviceHandler.list(s)
+				if not slist is None:
+					while 1:
+						ss = slist.getNext()
+						if not ss.valid():
+							break
+						if ss.flags != 0:
+							continue
+						offset = offset + 1
+		return offset
+
 	def setRoot(self, root):
 		if not self.movemode: # dont change root when movemode is enabled
 			list = self["list"]
@@ -260,6 +323,8 @@ class ChannelSelection(Screen):
 
 			if not inBouquetRootList and ((root.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
 				list.setMode(list.MODE_FAVOURITES)
+				offset = self.getBouquetNumOffset(root)
+				list.setNumberOffset(offset)
 			else:
 				list.setMode(list.MODE_NORMAL)
 			list.setRoot(root)

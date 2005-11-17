@@ -134,12 +134,11 @@ class InfoBarShowHide:
 class NumberZap(Screen):
 	def quit(self):
 		self.Timer.stop()
-		self.close()
+		self.close(0)
 
 	def keyOK(self):
 		self.Timer.stop()
-		print "do the action here"
-		self.close()
+		self.close(int(self["number"].getText()))
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000)		#reset timer
@@ -221,8 +220,13 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
-		self.session.open(NumberZap, number)
+#		print "You pressed number " + str(number)
+		self.session.openWithCallback(self.numberEntered, NumberZap, number)
+
+	def numberEntered(self, retval):
+#		print self.servicelist
+		if retval > 0:
+			self.servicelist.zapToNumber(retval)
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial 

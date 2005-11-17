@@ -25,7 +25,8 @@ public:
 	int markedQueryNext(eServiceReference &ref);
 
 	int lookupService(const eServiceReference &ref);
-	
+	void setCurrent(const eServiceReference &ref);
+
 	enum {
 		visModeSimple,
 		visModeComplex
@@ -49,6 +50,7 @@ public:
 
 	int setCurrentMarked(bool);
 
+	void setNumberOffset(int offset) { m_numberoffset = offset; }
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -92,6 +94,8 @@ private:
 		/* support for movemode */
 	bool m_current_marked;
 	list::iterator m_swap;
+
+	int m_numberoffset;
 };
 
 #endif
