@@ -28,6 +28,7 @@ void eComponentScan::scanEvent(int evt)
 		} else
 		{
 			m_scan->insertInto(db);
+			db->flush();
 			eDebug("scan done!");
 		}
 	}
