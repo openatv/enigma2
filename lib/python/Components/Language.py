@@ -16,8 +16,11 @@ class Language:
 			print "Language " + str(name) + " not found"
 
 	def activateLanguage(self, index):
-		print "Activating language " + str(self.lang[index][0])
-		self.lang[index][1].install()
+		try:
+			print "Activating language " + str(self.lang[index][0])
+			self.lang[index][1].install()
+		except:
+			print "Selected language does not exist!"
 		
 	def getLanguageList(self):
 		list = []
