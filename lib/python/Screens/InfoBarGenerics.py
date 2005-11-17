@@ -9,12 +9,14 @@ from ChannelSelection import ChannelSelection
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 
+from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
 
 from Screens.MessageBox import MessageBox
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from Screens.Standby import Standby
+from Screens.EventView import EventView
 
 #from enigma import eTimer, eDVBVolumecontrol, quitMainloop
 from enigma import *
@@ -280,10 +282,31 @@ class InfoBarEPG:
 		ptr=eEPGCache.getInstance()
 		if ptr.startTimeQuery(ref) != -1:
 			self.session.open(EPGSelection, ref)
-		else:
+		else: # try to show now/next
 			print 'no epg for service', ref.toString()
+			try:
+				self.epglist = [ ]
+				service = self.session.nav.getCurrentService()
+				info = service.info()
+				ptr=info.getEvent(0)
+				if ptr:
+					self.epglist.append(ptr)
+				ptr=info.getEvent(1)
+				if ptr:
+					self.epglist.append(ptr)
+				if len(self.epglist) > 0:
+					self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
+			except:
+				pass
 
-class InfoBarEvent:	
+	def eventViewCallback(self, setEvent, val): #used for now/next displaying
+		if len(self.epglist) > 1:
+			tmp = self.epglist[0]
+			self.epglist[0]=self.epglist[1]
+			self.epglist[1]=tmp
+			setEvent(self.epglist[0])
+
+class InfoBarEvent:
 	"""provides a current/next event info display"""
 	def __init__(self):
 		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
