@@ -26,6 +26,9 @@ RT_WRAP = 32
 def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
+	print time.strftime("%c", time.localtime(timer.begin))
+	print time.strftime("%c", time.localtime(timer.end))
+		
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
 	repeatedtext = ""
 	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
