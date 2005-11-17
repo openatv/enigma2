@@ -4,8 +4,8 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
-from time import *
-from datetime import *
+import time
+import datetime
 from math import log
 
 class TimerEntry(Screen):
@@ -55,7 +55,7 @@ class TimerEntry(Screen):
 					flags = self.timer.repeated
 					repeated = 3 # user-defined
 					count = 0
-					for x in range(0, 6):
+					for x in range(0, 7):
 						if (flags == 1): # weekly
 							print "Set to weekday " + str(x)
 							weekday = x
@@ -77,10 +77,10 @@ class TimerEntry(Screen):
 			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, ("daily", "weekly", "Mon-Fri", "user-defined"))
 
 			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, ("%d.%B %Y", 86400))
-			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(self.timer.begin))), int(strftime("%M", localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
+			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
 
 			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, ("%d.%B %Y", 86400))
-			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(self.timer.end))), int(strftime("%M", localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
+			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.end))), int(time.strftime("%M", time.localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
 
 			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, weekday, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 
@@ -173,9 +173,9 @@ class TimerEntry(Screen):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
 			self["config"].handleKey(config.key[str(number)])
 
-	def getTimestamp(self, date, time):
-		d = localtime(date) # for gettin indexes 0(year), 1(month) and 2(day)
-		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, time[0], time[1])
+	def getTimestamp(self, date, mytime):
+		d = time.localtime(date)
+		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
 		print dt
 		return int(mktime(dt.timetuple()))
 
@@ -187,29 +187,22 @@ class TimerEntry(Screen):
 			self.timer.end = self.getTimestamp(config.timerentry.enddate.value, config.timerentry.endtime.value)
 		if (config.timerentry.type.value == 1): # repeated
 			if (config.timerentry.repeated.value == 0): # daily
-				self.timer.setRepeated(0) # Mon
-				self.timer.setRepeated(1) # Tue
-				self.timer.setRepeated(2) # Wed
-				self.timer.setRepeated(3) # Thu
-				self.timer.setRepeated(4) # Fri
-				self.timer.setRepeated(5) # Sat
-				self.timer.setRepeated(6) # Sun
+				for x in range(0,7):
+					self.timer.setRepeated(x)
 
 			if (config.timerentry.repeated.value == 1): # weekly
 				self.timer.setRepeated(config.timerentry.weekday.value)
 				
 			if (config.timerentry.repeated.value == 2): # Mon-Fri
-				self.timer.setRepeated(0) # Mon
-				self.timer.setRepeated(1) # Tue
-				self.timer.setRepeated(2) # Wed
-				self.timer.setRepeated(3) # Thu
-				self.timer.setRepeated(4) # Fri
+				for x in range(0,5):
+					self.timer.setRepeated(x)
 				
 			if (config.timerentry.repeated.value == 3): # user-defined
 				for x in range(0,7):
 					if (config.timerentry.day[x].value == 0): self.timer.setRepeated(x)
 
-				
+			self.timer.begin = self.getTimestamp(time.time(), config.timerentry.starttime.value)
+			self.timer.end = self.getTimestamp(time.time(), config.timerentry.endtime.value)				
 
 		self.close((True, self.timer))
 

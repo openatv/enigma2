@@ -27,6 +27,26 @@ class TimerEntry:
 		self.repeated |= (2 ** day)
 		print "Repeated: " + str(self.repeated)
 		
+	# update self.begin and self.end according to the self.repeated-flags
+	def processRepeated(self):
+		if (self.repeated != 0):
+			now = time.time()
+			
+			day = []
+			flags = self.repeated
+			for x in range(0, 7):
+				if (flags & 1 == 1):
+					day.append(0)
+				else:
+					day.append(1)
+				flags = flags >> 1
+
+			while ((day[time.localtime(self.begin).tm_wday] != 0) and (self.end > now)):
+				self.begin += 86400
+				self.end += 86400
+			
+					
+		
 	def getTime(self):
 		if self.state == self.StateWait:
 			return self.begin - self.prepare_time
@@ -65,8 +85,11 @@ class Timer:
 		self.calcNextActivation()
 	
 	def addTimerEntry(self, entry, noRecalc=0):
+		entry.processRepeated()
+
 		# we either go trough Prepare/Start/End-state if the timer is still running,
 		# or skip it when it's alrady past the end.
+		
 		if entry.end > time.time():
 			bisect.insort(self.timer_list, entry)
 			if not noRecalc:
