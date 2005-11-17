@@ -29,19 +29,26 @@ class TimerEntry:
 		
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self):
+		print "Processing repeated"
 		if (self.repeated != 0):
-			now = time.time()
+			now = int(time.time())
+			print "Now: " + str(now)
 			
 			day = []
 			flags = self.repeated
 			for x in range(0, 7):
 				if (flags & 1 == 1):
 					day.append(0)
+					print "Day " + str(x)
 				else:
 					day.append(1)
 				flags = flags >> 1
 
-			while ((day[time.localtime(self.begin).tm_wday] != 0) and (self.end > now)):
+			print time.localtime(self.begin).tm_wday
+			print day
+			print str(now) + " " + str(self.end) + " " + str(self.begin)
+			while ((day[time.localtime(self.begin).tm_wday] != 0) and (self.end < now)):
+				print str(now) + " " + str(self.end) + " " + str(self.begin)
 				self.begin += 86400
 				self.end += 86400
 			
