@@ -6,6 +6,7 @@ from Components.NimManager import nimmanager
 from Components.Label import Label
 from time import *
 from datetime import *
+from math import log
 
 class TimerEntry(Screen):
 	def __init__(self, session, timer):
@@ -38,11 +39,22 @@ class TimerEntry(Screen):
 
 	def createConfig(self):
 			config.timerentry = ConfigSubsection()
+			
+			type = 0
+			repeated = 0
+			if (self.timer.repeated != 0):
+				type = 1 # repeated
+				if (self.timer.repeated == 31): # Mon-Fri
+					repeated = 2 # Mon - Fri
+				elif (self.timer.repeated == 127): # daily
+					repeated = 0 # daily
+				else:
+					repeated = 3 # user-defined
 
-			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, 0, ("once", "repeated"))
+			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, ("once", "repeated"))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
-			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, 0, ("daily", "weekly", "Mon-Fri", "user-defined"))
+			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, ("daily", "weekly", "Mon-Fri", "user-defined"))
 
 			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, ("%d.%B %Y", 86400))
 			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(strftime("%H", localtime(self.timer.begin))), int(strftime("%M", localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
@@ -50,7 +62,7 @@ class TimerEntry(Screen):
 			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, ("%d.%B %Y", 86400))
 			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(self.timer.end))), int(strftime("%M", localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
 
-			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configDateTime, time(), ("%A", 86400))
+			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, 0, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 
 			config.timerentry.monday = configElement_nonSave("config.timerentry.monday", configSelection, 0, ("yes", "no"))
 			config.timerentry.tuesday = configElement_nonSave("config.timerentry.tuesday", configSelection, 0, ("yes", "no"))
@@ -62,7 +74,7 @@ class TimerEntry(Screen):
 
 			# FIXME some service-chooser needed here
 			config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(self.timer.service_ref.getServiceName())),))
-
+			
 			config.timerentry.startdate.addNotifier(self.checkDate)
 			config.timerentry.enddate.addNotifier(self.checkDate)
 
@@ -154,6 +166,36 @@ class TimerEntry(Screen):
 		if (config.timerentry.type.value == 0): # once
 			self.timer.begin = self.getTimestamp(config.timerentry.startdate.value, config.timerentry.starttime.value)
 			self.timer.end = self.getTimestamp(config.timerentry.enddate.value, config.timerentry.endtime.value)
+		if (config.timerentry.type.value == 1): # repeated
+			if (config.timerentry.repeated.value == 0): # daily
+				self.timer.setRepeated(0) # Mon
+				self.timer.setRepeated(1) # Tue
+				self.timer.setRepeated(2) # Wed
+				self.timer.setRepeated(3) # Thu
+				self.timer.setRepeated(4) # Fri
+				self.timer.setRepeated(5) # Sat
+				self.timer.setRepeated(6) # Sun
+
+			if (config.timerentry.repeated.value == 1): # weekly
+				self.timer.setRepeated(config.timerentry.weekday.value)
+				
+			if (config.timerentry.repeated.value == 2): # Mon-Fri
+				self.timer.setRepeated(0) # Mon
+				self.timer.setRepeated(1) # Tue
+				self.timer.setRepeated(2) # Wed
+				self.timer.setRepeated(3) # Thu
+				self.timer.setRepeated(4) # Fri
+				
+			if (config.timerentry.repeated.value == 3): # user-defined
+				if (config.timerentry.monday.value == 0): self.timer.setRepeated(0)
+				if (config.timerentry.tuesday.value == 0): self.timer.setRepeated(1)
+				if (config.timerentry.wednesday.value == 0): self.timer.setRepeated(2)
+				if (config.timerentry.thursday.value == 0): self.timer.setRepeated(3)
+				if (config.timerentry.friday.value == 0): self.timer.setRepeated(4)
+				if (config.timerentry.saturday.value == 0): self.timer.setRepeated(5)
+				if (config.timerentry.sunday.value == 0): self.timer.setRepeated(6)
+				
+
 		self.close((True, self.timer))
 
 	def keyCancel(self):

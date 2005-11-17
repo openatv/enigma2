@@ -18,7 +18,12 @@ class TimerEntry:
 		self.prepare_time = 10
 		self.end = end
 		self.state = 0
-	
+		self.repeated = int(0)
+		
+	def setRepeated(self, day):
+		self.repeated |= (2 ** day)
+		print "Repeated: " + str(self.repeated)
+		
 	def getTime(self):
 		if self.state == self.StateWait:
 			return self.begin - self.prepare_time
