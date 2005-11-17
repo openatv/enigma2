@@ -30,25 +30,31 @@ class TimerEntry:
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self):
 		print "ProcessRepeated"
+		print time.strftime("%c", time.localtime(self.begin))
+		print time.strftime("%c", time.localtime(self.end))
 		if (self.repeated != 0):
-			now = int(time.time())
+			now = int(time.time()) + 1
 			
 			day = []
 			flags = self.repeated
 			for x in range(0, 7):
 				if (flags & 1 == 1):
 					day.append(0)
+					print "Day: " + str(x)
 				else:
 					day.append(1)
 				flags = flags >> 1
 
-			while ((day[time.localtime(self.begin).tm_wday] != 0) and (self.end < now)):
-				print str(now) + " " + str(self.end) + " " + str(self.begin)
+			print time.strftime("%c", time.localtime(now))
+			print time.strftime("%c", time.localtime(self.begin))
+			print time.strftime("%c", time.localtime(self.end))
+			print str(time.localtime(self.begin).tm_wday)
+			while ((day[time.localtime(self.begin).tm_wday] != 0) or ((day[time.localtime(self.begin).tm_wday] == 0) and self.end < now)):
+				print time.strftime("%c", time.localtime(self.begin))
+				print time.strftime("%c", time.localtime(self.end))
 				self.begin += 86400
 				self.end += 86400
-			
-					
-		
+
 	def getTime(self):
 		if self.state == self.StateWait:
 			return self.begin - self.prepare_time
@@ -128,29 +134,23 @@ class Timer:
 		self.setNextActivation(min)
 	
 	def timeChanged(self, timer):
-		try:
-			self.timer_list.remove(timer)
-		except:
-			pass
+		self.timer_list.remove(timer)
+
 		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
 		w.activate(w.state)
-		try:
-			self.timer_list.remove(w)
-		except:
-			pass
+		self.timer_list.remove(w)
 
 		w.state += 1
 		if w.state < TimerEntry.StateEnded:
 			bisect.insort(self.timer_list, w)
 		else:
-			if (w.repeated == 0):
-				bisect.insort(self.processed_timers, w)
-			else:
+			bisect.insort(self.processed_timers, w)
+			if (w.repeated != 0):
 				w.processRepeated()
 				w.state = TimerEntry.StateWait
-				self.timeChanged(w)
+				self.addTimerEntry(w)
 	
 	def processActivation(self):
 		t = int(time.time()) + 1
