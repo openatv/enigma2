@@ -14,8 +14,10 @@ def readKeymap():
 		
 	try:
 		source = open(filename1)
+		filename = filename1
 	except:
 		source = open(filename2)
+		filename = filename2
 #		raise "couldn't open keymap.xml!"
 	
 	try:
