@@ -8,8 +8,13 @@ from config import configText
 from Components.Timezones import timezones
 
 def InitSetupDevices():
+	
+	def timezoneNotifier(configElement):
+		timezones.activateTimezone(configElement.value)
+		
 	config.timezone = ConfigSubsection();
-	config.timezone.val = configElement("config.timezone.val", configSelection, 1, ("GMT", "GMT+1", "GMT+2", "GMT+3", "GMT+4", "GMT+5", "GMT+6", "GMT+7", "GMT+8", "GMT+9") );
+	config.timezone.val = configElement("config.timezone.val", configSelection, timezones.getDefaultTimezone(), timezones.getTimezoneList());
+	config.timezone.val.addNotifier(timezoneNotifier)
 
 	config.rc = ConfigSubsection();
 	config.rc.map = configElement("config.rc.map", configSelection, 0, ("Default", "Classic") );
