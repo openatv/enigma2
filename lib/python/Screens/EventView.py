@@ -43,12 +43,16 @@ class EventView(Screen):
 			self["channel"].setText("unknown service")
 
 	def setEvent(self, event):
-#		FIXME .. how to set eWindow titlebar?
-#		self.instance.setTitle(event.getEventName())
-		text = event.getShortDescription()
-		if len(text) > 0:
-			text = text + '\n\n'
-		text = text + event.getExtendedDescription()
+		text = event.getEventName()
+		short = event.getShortDescription()
+		ext = event.getExtendedDescription()
+		if len(short) > 0 and short != text:
+			text = text + '\n\n' + short
+		if len(ext) > 0:
+			if len(text) > 0:
+				text = text + '\n\n'
+			text = text + ext
+#		self.session.currentDialog.instance.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
 		self["duration"].setText("%d min"%(event.getDuration()/60))
