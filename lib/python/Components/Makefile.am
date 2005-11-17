@@ -9,4 +9,4 @@ install_PYTHON = \
 	GUIComponent.py MenuList.py TextInput.py __init__.py MovieList.py				\
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py						\
 	AVSwitch.py Network.py RFmod.py DiskInfo.py NimManager.py Lcd.py				\
-	EpgList.py ScrollLabel.py Timezones.py
+	EpgList.py ScrollLabel.py Timezones.py Language.py

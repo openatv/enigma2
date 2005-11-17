@@ -6,6 +6,7 @@ from config import ConfigSlider
 from config import configSelection
 from config import configText
 from Components.Timezones import timezones
+from Components.Language import language
 
 def InitSetupDevices():
 	
@@ -26,7 +27,12 @@ def InitSetupDevices():
 	config.osd.alpha = configElement("config.osd.alpha", ConfigSlider, 0, "");
 	config.osd.bright = configElement("config.osd.bright", ConfigSlider, 5, "");
 	config.osd.contrast = configElement("config.osd.contrast", ConfigSlider, 5, "");
-	config.osd.language = configElement("config.osd.language", configSelection, 0, ("English", "English US") );
+	
+	def languageNotifier(configElement):
+		language.activateLanguage(configElement.value)
+	
+	config.osd.language = configElement("config.osd.language", configSelection, 0, language.getLanguageList() );
+	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection();
 	config.parental.lock = configElement("config.parental.lock", configSelection, 1, ("Enable", "Disable") );

@@ -1,6 +1,8 @@
 from enigma import *
 from tools import *
 
+from Components.Language import language
+
 import traceback
 import Screens.InfoBar
 

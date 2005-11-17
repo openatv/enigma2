@@ -39,10 +39,10 @@ class NetworkSetup(Screen):
         
         self.list.append(getConfigListEntry("Use DHCP", config.network.dhcp))
         if (config.network.dhcp.value == 0):
-            self.list.append(getConfigListEntry("IP Address", config.network.ip))
-            self.list.append(getConfigListEntry("Netmask", config.network.netmask))
-            self.list.append(getConfigListEntry("Gateway", config.network.gateway))
-            self.list.append(getConfigListEntry("Nameserver", config.network.dns))
+            self.list.append(getConfigListEntry(_('IP Address'), config.network.ip))
+            self.list.append(getConfigListEntry(_('Netmask'), config.network.netmask))
+            self.list.append(getConfigListEntry(_('Gateway'), config.network.gateway))
+            self.list.append(getConfigListEntry(_('Nameserver'), config.network.dns))
         
         self["config"].list = self.list
         self["config"].l.setList(self.list)

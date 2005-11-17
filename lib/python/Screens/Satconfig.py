@@ -10,27 +10,27 @@ from Components.config import getConfigListEntry
 class NimSetup(Screen):
 	def createSimpleSetup(self, nim, list, mode):
 		if mode == 0:			#single Sat
-			list.append(getConfigListEntry("Satellite", config.Nims[nim.slotid].diseqcA))
+			list.append(getConfigListEntry(_("Satellite"), config.Nims[nim.slotid].diseqcA))
 		else:							# > 1 Sats
-			list.append(getConfigListEntry("Port A", config.Nims[nim.slotid].diseqcA))
+			list.append(getConfigListEntry(_("Port A"), config.Nims[nim.slotid].diseqcA))
 
 		if mode >= 1:			# > 1 Sats
-			list.append(getConfigListEntry("Port B", config.Nims[nim.slotid].diseqcB))
+			list.append(getConfigListEntry(_("Port B"), config.Nims[nim.slotid].diseqcB))
 			if mode >= 3:		# > 2 Sats
-				list.append(getConfigListEntry("Port C", config.Nims[nim.slotid].diseqcC))
-				list.append(getConfigListEntry("Port D", config.Nims[nim.slotid].diseqcD))
+				list.append(getConfigListEntry(_("Port C"), config.Nims[nim.slotid].diseqcC))
+				list.append(getConfigListEntry(_("Port D"), config.Nims[nim.slotid].diseqcD))
 	def createPositionerSetup(self, nim, list):
-		list.append(getConfigListEntry("Longitude", config.Nims[nim.slotid].longitude))
-		list.append(getConfigListEntry("Latitude", config.Nims[nim.slotid].latitude))
+		list.append(getConfigListEntry(_("Longitude"), config.Nims[nim.slotid].longitude))
+		list.append(getConfigListEntry(_("Latitude"), config.Nims[nim.slotid].latitude))
 		pass
 	
 	def createSetup(self):
 		self.list = [ ]
 		
-		self.list.append(getConfigListEntry("Configmode", config.Nims[self.nim.slotid].configMode))
+		self.list.append(getConfigListEntry(_("Configmode"), config.Nims[self.nim.slotid].configMode))
 		
 		if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
-			self.list.append(getConfigListEntry("Diseqcmode", config.Nims[self.nim.slotid].diseqcMode))
+			self.list.append(getConfigListEntry(_("Diseqcmode"), config.Nims[self.nim.slotid].diseqcMode))
 		
 			if (0 <= config.Nims[self.nim.slotid].diseqcMode.value < 4):
 				self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
@@ -43,9 +43,9 @@ class NimSetup(Screen):
 		self["config"].l.setList(self.list)
 		
 	def newConfig(self):	
-		if self["config"].getCurrent()[0] == "Diseqcmode":
+		if self["config"].getCurrent()[0] == _("Diseqcmode"):
 			self.createSetup()
-		if self["config"].getCurrent()[0] == "Configmode":
+		if self["config"].getCurrent()[0] == _("Configmode"):
 			self.createSetup()
 		
 	def keyLeft(self):
