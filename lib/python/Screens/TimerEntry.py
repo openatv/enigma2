@@ -42,6 +42,7 @@ class TimerEntry(Screen):
 			
 			# calculate default values
 			day = []
+			weekday = 0
 			for x in range(0,7):
 				day.append(1)
 			if (self.timer.repeated != 0): # repeated
@@ -56,6 +57,7 @@ class TimerEntry(Screen):
 					count = 0
 					for x in range(0, 6):
 						if (flags == 1): # weekly
+							print "Set to weekday " + str(x)
 							weekday = x
 						if (flags & 1 == 1): # set user-defined flags
 							day[x] = 0
@@ -80,7 +82,7 @@ class TimerEntry(Screen):
 			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, ("%d.%B %Y", 86400))
 			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(strftime("%H", localtime(self.timer.end))), int(strftime("%M", localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
 
-			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, 0, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, weekday, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
 
 			config.timerentry.day = []
 			for x in range(0,7):
@@ -178,6 +180,8 @@ class TimerEntry(Screen):
 		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):
+		self.timer.resetRepeated()
+		
 		if (config.timerentry.type.value == 0): # once
 			self.timer.begin = self.getTimestamp(config.timerentry.startdate.value, config.timerentry.starttime.value)
 			self.timer.end = self.getTimestamp(config.timerentry.enddate.value, config.timerentry.endtime.value)
