@@ -23,11 +23,21 @@ class Timezones:
 
 	def readTimezonesFromFile(self):
 		parser = make_parser()
-		timezonesHandler = self.parseTimezones(self.timezones)
-		parser.setContentHandler(timezonesHandler)
-		parser.parse('/etc/timezone.xml')
+		
+		try:
+			timezonesHandler = self.parseTimezones(self.timezones)
+			parser.setContentHandler(timezonesHandler)
+			parser.parse('/etc/timezone.xml')
+		except:
+			pass
+		
+		if len(self.timezones) == 0:
+			self.timezones = [("UTC", "UTC")]
 		
 	def activateTimezone(self, index):
+		if len(self.timezones) <= index:
+			return
+		
 		os.environ['TZ'] = self.timezones[index][1]
 		try:
 			time.tzset()
