@@ -29,24 +29,19 @@ class TimerEntry:
 		
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self):
-		print "Processing repeated"
+		print "ProcessRepeated"
 		if (self.repeated != 0):
 			now = int(time.time())
-			print "Now: " + str(now)
 			
 			day = []
 			flags = self.repeated
 			for x in range(0, 7):
 				if (flags & 1 == 1):
 					day.append(0)
-					print "Day " + str(x)
 				else:
 					day.append(1)
 				flags = flags >> 1
 
-			print time.localtime(self.begin).tm_wday
-			print day
-			print str(now) + " " + str(self.end) + " " + str(self.begin)
 			while ((day[time.localtime(self.begin).tm_wday] != 0) and (self.end < now)):
 				print str(now) + " " + str(self.end) + " " + str(self.begin)
 				self.begin += 86400
@@ -133,17 +128,29 @@ class Timer:
 		self.setNextActivation(min)
 	
 	def timeChanged(self, timer):
-		self.timer_list.remove(timer)
+		try:
+			self.timer_list.remove(timer)
+		except:
+			pass
 		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
 		w.activate(w.state)
-		self.timer_list.remove(w)
+		try:
+			self.timer_list.remove(w)
+		except:
+			pass
+
 		w.state += 1
 		if w.state < TimerEntry.StateEnded:
 			bisect.insort(self.timer_list, w)
 		else:
-			bisect.insort(self.processed_timers, w)
+			if (w.repeated == 0):
+				bisect.insort(self.processed_timers, w)
+			else:
+				w.processRepeated()
+				w.state = TimerEntry.StateWait
+				self.timeChanged(w)
 	
 	def processActivation(self):
 		t = int(time.time()) + 1
