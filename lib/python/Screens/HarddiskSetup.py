@@ -15,7 +15,7 @@ class HarddiskWait(Screen):
 	def __init__(self, session, hdd):
 		Screen.__init__(self, session)
 		self.hdd = hdd
-		self["wait"] = Label("Initializing Harddisk...");
+		self["wait"] = Label(_("Initializing Harddisk..."));
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.doInit)
 		self.timer.start(100)
@@ -25,10 +25,10 @@ class HarddiskSetup(Screen):
 		Screen.__init__(self, session)
 		self.hdd = hdd
 		
-		self["model"] = Label("Model: " + hdd.model())
-		self["capacity"] = Label("Capacity: " + hdd.capacity())
-		self["bus"] = Label("Bus: " + hdd.bus())
-		self["initialize"] = Label("Initialize")
+		self["model"] = Label(_("Model: ") + hdd.model())
+		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
+		self["bus"] = Label(_("Bus: ") + hdd.bus())
+		self["initialize"] = Label(_("Initialize"))
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -54,7 +54,7 @@ class HarddiskSelection(Screen):
 		
 		if harddiskmanager.HDDCount() == 0:
 			tlist = []
-			tlist.append(("no HDD found", 0))
+			tlist.append((_("no HDD found"), 0))
 			self["hddlist"] = MenuList(tlist)
 		else:			
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())

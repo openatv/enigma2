@@ -40,7 +40,7 @@ class EventView(Screen):
 		if name is not None:
 			self["channel"].setText(name)
 		else:
-			self["channel"].setText("unknown service")
+			self["channel"].setText(_("unknown service"))
 
 	def setEvent(self, event):
 		text = event.getEventName()
@@ -55,7 +55,7 @@ class EventView(Screen):
 #		self.session.currentDialog.instance.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
-		self["duration"].setText("%d min"%(event.getDuration()/60))
+		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 
 	def pageUp(self):
 		self["epg_description"].pageUp()
