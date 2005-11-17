@@ -12,7 +12,7 @@ class Network:
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto eth0\n")
-		if (config.network.dhcp.value == "yes"):
+		if (config.network.dhcp.value == _("yes")):
 			fp.write("iface eth0 inet dhcp\n")
 		else:
 			fp.write("iface eth0 inet static\n")
@@ -131,7 +131,7 @@ def InitNetwork():
 		print "[Network.py] Could not get current ip (not necessarily an error)"
 		
 	config.network = ConfigSubsection()
-	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, ("no", "yes"))
+	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, (_("no"), _("yes")))
 	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, configsequencearg.get("IP"))
 	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], configsequencearg.get("IP"))
 	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], configsequencearg.get("IP"))
