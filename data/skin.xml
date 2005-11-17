@@ -173,9 +173,8 @@
 		<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute">
 			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
 		</screen>
- 		<screen name="ChannelSelection" position="90,100" size="560,450" title="Channel Selection">
-			<widget name="list" position="10,50" size="540,400" />
-<!--			<widget name="okbutton" position="340,50" size="140,30" />-->
+ 		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
+			<widget name="list" position="10,45" size="540,364" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
