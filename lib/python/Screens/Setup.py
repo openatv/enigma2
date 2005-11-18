@@ -38,7 +38,7 @@ class Setup(Screen):
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
 			elif x.tagName == 'item':
-				ItemText = getValbyAttr(x, "text")
+				ItemText = _(getValbyAttr(x, "text"))
 				b = eval(XMLTools.mergeText(x.childNodes));
 				print "item " + ItemText + " " + b.configPath
 				if b == "":

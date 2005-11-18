@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import os
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -12,14 +13,19 @@ class parseXML(ContentHandler):
 		if (attrs.has_key('text')):
 			attrlist[attrs.get('text', "")] = "foo"
 
-sys.argv[1]
-
 parser = make_parser()
 
 attrlist = {}		
+
 contentHandler = parseXML(attrlist)
 parser.setContentHandler(contentHandler)
-parser.parse(sys.argv[1])
+
+dir = os.listdir(sys.argv[1])
+for x in dir:
+	if (str(x[-4:]) == ".xml"):
+		parser.parse(sys.argv[1] + str(x))
+
+#parser.parse(sys.argv[1])
 
 for k, v in attrlist.items():
 	print
