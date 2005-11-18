@@ -1,4 +1,5 @@
 #include <lib/dvb_ci/dvbci_ui.h>
+#include <lib/dvb_ci/dvbci.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -56,8 +57,7 @@ void eDVBCI_UI::setAppName(int slot, const char *name)
 
 void eDVBCI_UI::setReset(int slot)
 {
-	printf("reset requested on slot %d\n", slot);
-	//we have to call the eDVBCISlot here
+	eDVBCIInterfaces().getInstance()->reset(slot);
 }
 
 //FIXME: correct "run/startlevel"
