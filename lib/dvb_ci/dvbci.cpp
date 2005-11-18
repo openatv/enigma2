@@ -10,6 +10,8 @@
 #include <lib/dvb_ci/dvbci_session.h>
 
 #include <lib/dvb_ci/dvbci_ui.h>
+#include <lib/dvb_ci/dvbci_appmgr.h>
+#include <lib/dvb_ci/dvbci_mmi.h>
 
 eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 
@@ -91,6 +93,16 @@ int eDVBCIInterfaces::startMMI(int slotid)
 	return slot->startMMI();
 }
 
+int eDVBCIInterfaces::stopMMI(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->stopMMI();
+}
+
 int eDVBCIInterfaces::answerMMI(int slotid, int answer, char *value)
 {
 	eDVBCISlot *slot;
@@ -128,6 +140,9 @@ void eDVBCISlot::data(int what)
 			notifier->setRequested(eSocketNotifier::Read);
 			//HACK
 			eDVBCI_UI::getInstance()->setState(0,0);
+			//FIXME; do in deconstructor of the appmgr class			
+			application_manager = 0;
+			mmi_session = 0;
 		}
 		return;
 	}
@@ -170,6 +185,9 @@ DEFINE_REF(eDVBCISlot);
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 {
 	char filename[128];
+	
+	application_manager = 0;
+	mmi_session = 0;
 
 	slotid = nr;
 
@@ -218,6 +236,20 @@ int eDVBCISlot::initialize()
 int eDVBCISlot::startMMI()
 {
 	printf("edvbcislot: startMMI()\n");
+	
+	if(application_manager)
+		application_manager->startMMI();
+	
+	return 0;
+}
+
+int eDVBCISlot::stopMMI()
+{
+	printf("edvbcislot: stopMMI()\n");
+
+	if(mmi_session)
+		mmi_session->stopMMI();
+	
 	return 0;
 }
 

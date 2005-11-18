@@ -6,6 +6,7 @@
 class eDVBCISession;
 class eDVBCIApplicationManagerSession;
 class eDVBCICAManagerSession;
+class eDVBCIMMISession;
 
 class eDVBCISlot: public iObject, public Object
 {
@@ -26,11 +27,13 @@ public:
 	
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
+	eDVBCIMMISession *mmi_session;
 	
 	int getSlotID();
 	int reset();
 	int initialize();
 	int startMMI();
+	int stopMMI();
 	int answerMMI(int answer, char *value);
 };
 
@@ -50,6 +53,7 @@ public:
 	int reset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);
+	int stopMMI(int slot);
 	int answerMMI(int slot, int answer, char *value);
 };
 
