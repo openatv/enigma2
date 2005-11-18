@@ -13,6 +13,7 @@ class eDVBCIApplicationManagerSession: public eDVBCISession
 	int doAction();
 public:
 	int enterMenu();
+	int startMMI();
 };
 
 #endif
