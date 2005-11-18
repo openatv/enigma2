@@ -65,6 +65,11 @@ int eDVBCI_UI::startMMI(int slot)
 	eDVBCIInterfaces::getInstance()->startMMI(slot);
 }
 
+int eDVBCI_UI::stopMMI(int slot)
+{
+	eDVBCIInterfaces::getInstance()->stopMMI(slot);
+}
+
 int eDVBCI_UI::initialize(int slot)
 {
 	eDVBCIInterfaces::getInstance()->initialize(slot);

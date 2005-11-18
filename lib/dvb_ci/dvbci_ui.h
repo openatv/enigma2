@@ -24,6 +24,7 @@ public:
 	void setReset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);
+	int stopMMI(int slot);
 	int answerMMI(int slot, int answer, char *val);
 };
 
