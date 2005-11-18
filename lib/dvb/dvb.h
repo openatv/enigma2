@@ -106,15 +106,16 @@ class eDVBResourceManager: public iObject
 	
 	void addAdapter(iDVBAdapter *adapter);
 	
-			/* allocates a frontend able to tune to channelID "chid".
+			/* allocates a frontend able to tune to frontend paramters 'feperm'.
 			   the frontend must be tuned lateron. there is no guarante
-			   that tuning will suceed - it just means that if this frontend
+			   that tuning will succeed - it just means that if this frontend
 			   can't tune, no other frontend could do it.
 			   
 			   there might be a priority given to certain frontend/chid 
 			   combinations. this will be evaluated here. */
 			   
-	RESULT allocateFrontend(ePtr<iDVBFrontendParameters> &feparm, ePtr<eDVBAllocatedFrontend> &fe);
+	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm);
+	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int index);
 	
 			/* allocate a demux able to filter on the selected frontend. */
 	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
@@ -158,7 +159,7 @@ public:
 	
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
-	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel);
+	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);

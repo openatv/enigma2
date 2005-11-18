@@ -206,7 +206,7 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 	}
 }
 
-RESULT eDVBResourceManager::allocateFrontend(ePtr<iDVBFrontendParameters> &feparm, ePtr<eDVBAllocatedFrontend> &fe)
+RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm)
 {
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
@@ -230,6 +230,19 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	
 	fe = 0;
 	
+	return -1;
+}
+
+RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int nr)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i, --nr)
+		if ((!nr) && !i->m_inuse)
+		{
+			fe = new eDVBAllocatedFrontend(i);
+			return 0;
+		}
+	
+	fe = 0;
 	return -1;
 }
 
@@ -317,15 +330,9 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	
 	ePtr<eDVBAllocatedFrontend> fe;
 	
-	if (allocateFrontend(feparm, fe))
+	if (allocateFrontend(fe, feparm))
 		return errNoFrontend;
 	
-// will be allocated on demand:
-//	ePtr<eDVBAllocatedDemux> demux;
-//	
-//	if (allocateDemux(*fe, demux))
-//		return errNoDemux;
-
 	RESULT res;
 	ePtr<eDVBChannel> ch;
 	ch = new eDVBChannel(this, fe);
@@ -341,19 +348,12 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	return 0;
 }
 
-RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
+RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index)
 {
 	ePtr<eDVBAllocatedFrontend> fe;
 
-#warning FIXME allocateRawChannel
-
-//	if (allocateFrontend(eDVBChannelID(), fe))
+	if (allocateFrontendByIndex(fe, frontend_index))
 		return errNoFrontend;
-	
-//	ePtr<eDVBAllocatedDemux> demux;
-	//
-//	if (allocateDemux(*fe, demux))
-//		return errNoDemux;
 	
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, fe);
@@ -366,9 +366,6 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel)
 RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
-	
-//	if (allocateDemux(0, demux))
-//		return errNoDemux;
 	
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, 0);

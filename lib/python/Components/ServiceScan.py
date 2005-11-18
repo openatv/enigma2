@@ -34,11 +34,12 @@ class ServiceScan:
 		if self.state == self.Error:
 			self.text.setText("ERROR - failed to scan (%s)!" % (self.Errors[self.errorcode]) )
 	
-	def __init__(self, progressbar, text, transponders, flags):
+	def __init__(self, progressbar, text, transponders, feid, flags):
 		self.progressbar = progressbar
 		self.text = text
 		self.scan = eComponentScan()
 		self.state = self.Idle
+		self.feid = feid
 		self.flags = flags
 		self.scanStatusChanged()
 		
@@ -74,7 +75,7 @@ class ServiceScan:
 	def execBegin(self):
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.state = self.Running
-		err = self.scan.start(self.flags)
+		err = self.scan.start(self.feid, self.flags)
 		if err:
 			self.state = self.Error
 			self.errorcode = 0
