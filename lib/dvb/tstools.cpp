@@ -10,7 +10,7 @@ eDVBTSTools::eDVBTSTools()
 {
 	m_fd = -1;
 	m_pid = -1;
-	m_maxrange = 1*1024*1024;
+	m_maxrange = 256*1024;
 	
 	m_begin_valid = 0;
 	m_end_valid = 0;
@@ -92,7 +92,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 		unsigned char *pes;
 		
 			/* check for adaption field */
-		if (block[3] & 0x10)
+		if (block[3] & 0x20)
 			pes = block + block[4] + 4 + 1;
 		else
 			pes = block + 4;
@@ -112,7 +112,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 			return 0;
 		}
 	}
-
+	
 	return -1;
 }
 
@@ -133,11 +133,22 @@ void eDVBTSTools::calcEnd()
 	if (m_fd < 0)	
 		return;
 	
-	if (!m_end_valid)
+	m_offset_end = lseek(m_fd, 0, SEEK_END);
+	
+	int maxiter = 10;
+	
+	while (!m_end_valid)
 	{
-		m_offset_end = lseek(m_fd, 0, SEEK_END) - m_maxrange;
+		if (!--maxiter)
+			return;
+		
+		m_offset_end -= m_maxrange;
+		if (m_offset_end < 0)
+			m_offset_end = 0;
 		if (!getPTS(m_offset_end, m_pts_end))
 			m_end_valid = 1;
+		if (!m_offset_end)
+			return;
 	}
 }
 
