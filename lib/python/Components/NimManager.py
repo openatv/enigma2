@@ -286,8 +286,8 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode",configSelection, 0, ("Simple", "Advanced"));
-			nim.diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, ("Single", "Toneburst A/B", "DiSEqC A/B", "DiSEqC A/B/C/D", "Positioner"));
+			nim.configMode = configElement(cname + "configMode",configSelection, 0, (_("Simple"), _("Advanced")));
+			nim.diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA",configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
 			nim.diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
