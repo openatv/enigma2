@@ -16,7 +16,7 @@ default: enigma2.pot $(LANGPO) merge $(LANGMO)
 	cp en.mo en/LC_MESSAGES/enigma2.mo
 
 merge:
-	msgmerge -U de.po enigma2.pot
+	msgmerge -N -U de.po enigma2.pot
 
 enigma2.pot:
 	$(GETTEXT)	-d enigma2 -s -o enigma2.pot \
@@ -33,7 +33,7 @@ enigma2.pot:
 			../lib/python/Components/Language.py \
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py 
-			
+	./xml2po.py	../data/menu.xml >> enigma2.pot
 
 
 %.mo: %.po
