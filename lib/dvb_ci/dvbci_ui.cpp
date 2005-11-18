@@ -65,5 +65,15 @@ int eDVBCI_UI::startMMI(int slot)
 	eDVBCIInterfaces::getInstance()->startMMI(slot);
 }
 
+int eDVBCI_UI::initialize(int slot)
+{
+	eDVBCIInterfaces::getInstance()->initialize(slot);
+}
+
+int eDVBCI_UI::answerMMI(int slot, int answer, char *value=0)
+{
+	eDVBCIInterfaces::getInstance()->answerMMI(slot, answer, value);
+}
+
 //FIXME: correct "run/startlevel"
 eAutoInitP0<eDVBCI_UI> init_dvbciui(eAutoInitNumbers::rc, "DVB-CI UI");

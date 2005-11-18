@@ -71,6 +71,16 @@ int eDVBCIInterfaces::reset(int slotid)
 	return slot->reset();
 }
 
+int eDVBCIInterfaces::initialize(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->initialize();
+}
+
 int eDVBCIInterfaces::startMMI(int slotid)
 {
 	eDVBCISlot *slot;
@@ -79,6 +89,16 @@ int eDVBCIInterfaces::startMMI(int slotid)
 		return -1;
 	
 	return slot->startMMI();
+}
+
+int eDVBCIInterfaces::answerMMI(int slotid, int answer, char *value)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->answerMMI(answer, value);
 }
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
@@ -189,9 +209,21 @@ int eDVBCISlot::reset()
 	return 0;
 }
 
+int eDVBCISlot::initialize()
+{
+	printf("edvbcislot: initialize()\n");
+	return 0;
+}
+
 int eDVBCISlot::startMMI()
 {
 	printf("edvbcislot: startMMI()\n");
+	return 0;
+}
+
+int eDVBCISlot::answerMMI(int answer, char *value)
+{
+	printf("edvbcislot: answerMMI()\n");
 	return 0;
 }
 
