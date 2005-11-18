@@ -11,6 +11,7 @@ class eDVBCISlot: public iObject, public Object
 {
 DECLARE_REF(eDVBCISlot);
 private:
+	int slotid;
 	int fd;
 	void data(int);
 	eSocketNotifier *notifier;
@@ -25,16 +26,25 @@ public:
 	
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
+	
+	int getSlotID();
+	int reset();
 };
 
 class eDVBCIInterfaces
 {
 DECLARE_REF(eDVBCIInterfaces);
+	static eDVBCIInterfaces *instance;
 private:
 	eSmartPtrList<eDVBCISlot>	m_slots;
+	eDVBCISlot *getSlot(int slotid);
 public:
 	eDVBCIInterfaces();
 	~eDVBCIInterfaces();
+
+	static eDVBCIInterfaces *getInstance();
+	
+	int reset(int slot);
 };
 
 #endif
