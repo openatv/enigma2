@@ -22,7 +22,9 @@ public:
 	std::string getAppName(int slot);
 	void setAppName(int slot, const char *name);
 	void setReset(int slot);
+	int initialize(int slot);
 	int startMMI(int slot);
+	int answerMMI(int slot, int answer, char *val);
 };
 
 #endif
