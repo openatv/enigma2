@@ -269,7 +269,7 @@ class ScanSetup(Screen):
 
 		if (config.scan.type.value == 1): # single sat scan
 			getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
-		flags |= eComponentScan.scanNetworkSearch
+			flags |= eComponentScan.scanNetworkSearch
 
 		if (config.scan.type.value == 2): # multi sat scan
 			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
@@ -278,14 +278,14 @@ class ScanSetup(Screen):
 				if x[1].parent.value == 0:
 					print "   " + str(x[1].parent.configPath)
 					getInitialTransponderList(tlist, x[1].parent.configPath)
-		flags |= eComponentScan.scanNetworkSearch
+			flags |= eComponentScan.scanNetworkSearch
 
 		for x in self["config"].list:
 			x[1].save()
 
-
+		feid = 0 # insert correct frontend id here (should be user-selectable)
 		# flags |= eComponentScan.scanSearchBAT
-		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, flags)
+		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, feid, flags)
 
 		#self.close()
 
@@ -304,7 +304,8 @@ class ScanSimple(Screen):
 				print "   " + str(x[1].parent.configPath)
 				getInitialTransponderList(tlist, x[1].parent.configPath)
 
-		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, eComponentScan.scanNetworkSearch)
+		feid = 0 # FIXME
+		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
 
 	def keyCancel(self):
 		self.close()

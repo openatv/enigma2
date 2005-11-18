@@ -78,7 +78,7 @@ void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
 }
 
 
-int eComponentScan::start(int flags)
+int eComponentScan::start(int feid, int flags)
 {
 	if (m_initial.empty())
 		return -2;
@@ -93,9 +93,9 @@ int eComponentScan::start(int flags)
 
 	eUsePtr<iDVBChannel> channel;
 
-	if (mgr->allocateRawChannel(channel))
+	if (mgr->allocateRawChannel(channel, feid))
 	{
-		eDebug("scan: allocating raw channel failed!");
+		eDebug("scan: allocating raw channel (on frontend %d) failed!", feid);
 		return -1;
 	}
 

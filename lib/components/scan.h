@@ -42,7 +42,7 @@ public:
 	
 		/* please keep the flags in sync with lib/dvb/scan.h ! */
 	enum { scanNetworkSearch=1 };
-	int start(int flags=0);
+	int start(int feid, int flags=0);
 };
 
 #endif
