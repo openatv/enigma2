@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-18 04:47+0100\n"
+"POT-Creation-Date: 2005-11-18 04:59+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,287 +16,293 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../lib/python/Screens/EventView.py:58
-#, python-format
-msgid "%d min"
+#: ../data/setup.xml
+msgid "Invert"
 msgstr ""
 
-#: ../lib/python/Screens/About.py:25
-#, python-format
-msgid "%s (%s, %d MB free)"
-msgstr "%s (%s, %d MB frei)"
-
-#: ../lib/python/Screens/TimerEdit.py:25
-msgid "Add"
+#: ../data/setup.xml
+msgid "Hide error windows"
 msgstr ""
 
-#: ../lib/python/Screens/HarddiskSetup.py:30
-msgid "Bus: "
-msgstr "Personennahverkehr: "
-
-#: ../lib/python/Screens/HarddiskSetup.py:29
-msgid "Capacity: "
-msgstr "Kapazitaet: "
-
-#: ../lib/python/Components/SetupDevices.py:21
-msgid "Classic"
-msgstr "klassisch"
-
-#: ../lib/python/Screens/Satconfig.py:30 ../lib/python/Screens/Satconfig.py:48
-#: ../lib/python/Screens/Satconfig.py:57
-msgid "Configmode"
-msgstr "Konfigurationsmodus"
-
-#: ../lib/python/Components/SetupDevices.py:21
-msgid "Default"
-msgstr "Standard"
-
-#: ../lib/python/Screens/TimerEdit.py:24
-#, fuzzy
-msgid "Delete"
-msgstr "Standard"
-
-#: ../lib/python/Screens/About.py:22
-msgid "Detected HDD:"
-msgstr "Erkannte Festplatten:"
-
-#: ../lib/python/Screens/About.py:14
-msgid "Detected NIMs:"
-msgstr "Erkannte Tuner:"
-
-#: ../lib/python/Components/SetupDevices.py:38
-#: ../lib/python/Components/SetupDevices.py:39
-#: ../lib/python/Components/SetupDevices.py:43
-#: ../lib/python/Components/SetupDevices.py:44
-#: ../lib/python/Components/SetupDevices.py:45
-#: ../lib/python/Components/SetupDevices.py:46
-#: ../lib/python/Components/SetupDevices.py:47
-msgid "Disable"
-msgstr "Aus"
-
-#: ../lib/python/Screens/Satconfig.py:33 ../lib/python/Screens/Satconfig.py:46
-msgid "Diseqcmode"
-msgstr "Diseqc-Modus"
-
-#: ../lib/python/Components/SetupDevices.py:38
-#: ../lib/python/Components/SetupDevices.py:39
-#: ../lib/python/Components/SetupDevices.py:43
-#: ../lib/python/Components/SetupDevices.py:44
-#: ../lib/python/Components/SetupDevices.py:45
-#: ../lib/python/Components/SetupDevices.py:46
-#: ../lib/python/Components/SetupDevices.py:47
-msgid "Enable"
-msgstr "Ein"
-
-#: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:9
-msgid "English"
-msgstr "Englisch"
-
-#: ../lib/python/Screens/ScanSetup.py:76
-msgid "Frequency"
-msgstr "Frequenz"
-
-#: ../lib/python/Screens/NetworkSetup.py:44
-msgid "Gateway"
+#: ../data/setup.xml
+msgid "Delay"
 msgstr ""
 
-#: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:10
-msgid "German"
-msgstr "Deutsch"
-
-#: ../lib/python/Screens/NetworkSetup.py:42
-msgid "IP Address"
-msgstr "IP Adresse"
-
-#: ../lib/python/Screens/HarddiskSetup.py:31
-msgid "Initialize"
-msgstr "Initialisiere"
-
-#: ../lib/python/Screens/HarddiskSetup.py:18
-msgid "Initializing Harddisk..."
-msgstr "Initialisiere Festplatte..."
-
-#: ../lib/python/Screens/ScanSetup.py:77
-msgid "Inversion"
+#: ../data/setup.xml
+msgid "WSS"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:24
+#: ../data/setup.xml
+msgid "use power delta"
+msgstr ""
+
+#: ../data/setup.xml
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: ../lib/python/Screens/Satconfig.py:23
-msgid "Longitude"
-msgstr "Laengengrad"
-
-#: ../lib/python/Screens/HarddiskSetup.py:28
-msgid "Model: "
-msgstr "Modell: "
-
-#: ../lib/python/Screens/NetworkSetup.py:45
-msgid "Nameserver"
+#: ../data/setup.xml
+msgid "Setup Lock"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:43
+#: ../data/setup.xml
+msgid "Soundcarrier"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Color Format"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Channel"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Repeat"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Language"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Keyboard Map"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "TV System"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Show Satposition"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Aspect Ratio"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "DiSEqC"
+msgstr ""
+
+#: ../data/setup.xml
 msgid "Netmask"
 msgstr "Netzmaske"
 
-#: ../lib/python/Screens/Satconfig.py:15
-msgid "Port A"
+#: ../data/setup.xml
+msgid "Contrast"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:18
-msgid "Port B"
+#: ../data/setup.xml
+msgid "Alpha"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:20
-msgid "Port C"
+#: ../data/setup.xml
+msgid "Parental Lock"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:21
-msgid "Port D"
+#: ../data/setup.xml
+msgid "AC3 default"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:75 ../lib/python/Screens/Satconfig.py:13
-msgid "Satellite"
-msgstr "Satellit"
-
-#: ../lib/python/Screens/InfoBar.py:72
-msgid "Stop playing this movie?"
+#: ../data/setup.xml
+msgid "Sound"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:78
-msgid "Symbolrate"
+#: ../data/setup.xml
+msgid "Fast zapping"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:40
-#: ../lib/python/Screens/NetworkSetup.py:52
+#: ../data/setup.xml
+msgid "Modulator"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Brightness"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Standby"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Finetune"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Activate network settings"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "Longitude"
+msgstr "Laengengrad"
+
+#: ../data/setup.xml
+msgid "Configmode"
+msgstr "Konfigurationsmodus"
+
+#: ../data/setup.xml
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
-#: ../lib/python/Components/Network.py:134
-msgid "no"
-msgstr "nein"
-
-#: ../lib/python/Screens/HarddiskSetup.py:57
-msgid "no HDD found"
-msgstr "keine Festplatte gefunden"
-
-#: ../lib/python/Screens/About.py:27
-msgid "none"
+#: ../data/setup.xml
+msgid "Keymap"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:43
-msgid "unknown service"
-msgstr "unbekannter Dienst"
-
-#: ../lib/python/Screens/Ci.py:32
-msgid "waiting for CI..."
-msgstr "warte auf das CI..."
-
-#: ../lib/python/Components/EventInfo.py:43
-#, fuzzy
-msgid "waiting for event data..."
-msgstr "warte auf Programmdaten..."
-
-#: ../lib/python/Components/Network.py:15
-#: ../lib/python/Components/Network.py:134
-msgid "yes"
-msgstr "ja"
-
-#: ../data/menu.xml
-msgid "Mainmenu"
-msgstr "Hauptmenue"
-
-#: ../data/menu.xml
-msgid "Timer"
-msgstr "Zeitgesteuerte Aufnamen"
-
-#: ../data/menu.xml
-msgid "Information"
+#: ../data/setup.xml
+msgid "Testmode"
 msgstr ""
 
-#: ../data/menu.xml
-msgid "Service"
+#: ../data/setup.xml
+msgid "Tuner-Slot"
 msgstr ""
 
-#: ../data/menu.xml
-msgid "About..."
-msgstr "Ueber..."
-
-#: ../data/menu.xml
-msgid "Games / Plugins"
-msgstr "Spiele / Erweiterungen"
-
-#: ../data/menu.xml
-msgid "Setup"
-msgstr "Einstellungen"
-
-#: ../data/menu.xml
-msgid "Service Searching"
-msgstr "Kanalsuche"
-
-#: ../data/menu.xml
-msgid "Satelliteconfig"
-msgstr "Satelliteneinstellungen"
-
-#: ../data/menu.xml
-msgid "Automatic Scan"
-msgstr "Automatische Suche"
-
-#: ../data/menu.xml
-msgid "Manual Scan"
-msgstr "Manuelle Suche"
-
-#: ../data/menu.xml
-msgid "System"
+#: ../data/setup.xml
+msgid "Nameserver"
 msgstr ""
 
-#: ../data/menu.xml
+#: ../data/setup.xml
+msgid "VCR Switch"
+msgstr ""
+
+#: ../data/setup.xml
+msgid "IP Address"
+msgstr "IP Adresse"
+
+#: ../data/setup.xml
+msgid "Skip confirmations"
+msgstr ""
+
+#: ../data/setup.xml
 msgid "Timezone"
 msgstr "Zeitzone"
 
-#: ../data/menu.xml
-msgid "Video Audio"
+#: ../data/setup.xml
+msgid "Record Splitsize"
 msgstr ""
 
-#: ../data/menu.xml
-msgid "UHF Modulator"
+#: ../data/setup.xml
+msgid "Gateway"
 msgstr ""
 
-#: ../data/menu.xml
-msgid "Harddisk"
-msgstr "Festplatte"
-
-#: ../data/menu.xml
-msgid "OSD"
+#: ../data/setup.xml
+msgid "Auto show inforbar"
 msgstr ""
 
-#: ../data/menu.xml
-msgid "LCD"
-msgstr ""
+#~ msgid "%s (%s, %d MB free)"
+#~ msgstr "%s (%s, %d MB frei)"
 
-#: ../data/menu.xml
-msgid "Network"
-msgstr "Netzwerk"
+#~ msgid "Bus: "
+#~ msgstr "Personennahverkehr: "
 
-#: ../data/menu.xml
-msgid "Common Interface"
-msgstr ""
+#~ msgid "Capacity: "
+#~ msgstr "Kapazitaet: "
 
-#: ../data/menu.xml
-msgid "Expert"
-msgstr "Experten"
+#~ msgid "Classic"
+#~ msgstr "klassisch"
 
-#: ../data/menu.xml
-msgid "Standby / Restart"
-msgstr "Standby / Neustart"
+#~ msgid "Default"
+#~ msgstr "Standard"
 
-#: ../data/menu.xml
-msgid "Restart"
-msgstr "Neustart"
+#, fuzzy
+#~ msgid "Delete"
+#~ msgstr "Standard"
 
-#: ../data/menu.xml
-msgid "Deep Standby"
-msgstr "Tiefschlaf"
+#~ msgid "Detected HDD:"
+#~ msgstr "Erkannte Festplatten:"
+
+#~ msgid "Detected NIMs:"
+#~ msgstr "Erkannte Tuner:"
+
+#~ msgid "Disable"
+#~ msgstr "Aus"
+
+#~ msgid "Diseqcmode"
+#~ msgstr "Diseqc-Modus"
+
+#~ msgid "Enable"
+#~ msgstr "Ein"
+
+#~ msgid "English"
+#~ msgstr "Englisch"
+
+#~ msgid "Frequency"
+#~ msgstr "Frequenz"
+
+#~ msgid "German"
+#~ msgstr "Deutsch"
+
+#~ msgid "Initialize"
+#~ msgstr "Initialisiere"
+
+#~ msgid "Initializing Harddisk..."
+#~ msgstr "Initialisiere Festplatte..."
+
+#~ msgid "Model: "
+#~ msgstr "Modell: "
+
+#~ msgid "Satellite"
+#~ msgstr "Satellit"
+
+#~ msgid "no"
+#~ msgstr "nein"
+
+#~ msgid "no HDD found"
+#~ msgstr "keine Festplatte gefunden"
+
+#~ msgid "unknown service"
+#~ msgstr "unbekannter Dienst"
+
+#~ msgid "waiting for CI..."
+#~ msgstr "warte auf das CI..."
+
+#, fuzzy
+#~ msgid "waiting for event data..."
+#~ msgstr "warte auf Programmdaten..."
+
+#~ msgid "yes"
+#~ msgstr "ja"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Hauptmenue"
+
+#~ msgid "Timer"
+#~ msgstr "Zeitgesteuerte Aufnamen"
+
+#~ msgid "About..."
+#~ msgstr "Ueber..."
+
+#~ msgid "Games / Plugins"
+#~ msgstr "Spiele / Erweiterungen"
+
+#~ msgid "Setup"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Service Searching"
+#~ msgstr "Kanalsuche"
+
+#~ msgid "Satelliteconfig"
+#~ msgstr "Satelliteneinstellungen"
+
+#~ msgid "Automatic Scan"
+#~ msgstr "Automatische Suche"
+
+#~ msgid "Manual Scan"
+#~ msgstr "Manuelle Suche"
+
+#~ msgid "Harddisk"
+#~ msgstr "Festplatte"
+
+#~ msgid "Network"
+#~ msgstr "Netzwerk"
+
+#~ msgid "Expert"
+#~ msgstr "Experten"
+
+#~ msgid "Standby / Restart"
+#~ msgstr "Standby / Neustart"
+
+#~ msgid "Restart"
+#~ msgstr "Neustart"
+
+#~ msgid "Deep Standby"
+#~ msgstr "Tiefschlaf"
