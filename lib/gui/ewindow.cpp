@@ -86,6 +86,12 @@ int eWindow::event(int event, void *data, void *data2)
 		}
 		return 0;
 	}
+	case evtTitleChanged:
+			/* m_visible_region contains, in contrast to m_visible_with_childs,
+			   only the decoration. though repainting the whole decoration is bad,
+			   repainting the whole window is even worse. */
+		invalidate(m_visible_region);
+		break;
 	default:
 		break;
 	}
