@@ -71,7 +71,7 @@ public:
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
 	enum { evtUpdate, evtFinish, evtFail };
-  RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
 	void insertInto(iDVBChannelList *db);
 	
 	void getStats(int &transponders_done, int &transponders_total, int &services);
