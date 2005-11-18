@@ -8,9 +8,14 @@ class eDVBCIMMISession: public eDVBCISession
 	enum {
 		stateDisplayReply=statePrivate, stateFakeOK, stateIdle
 	};
+	
 	int receivedAPDU(const unsigned char *tag, const void *data, int len);
 	int doAction();
+	eDVBCISlot *slot;
 public:
+	eDVBCIMMISession(eDVBCISlot *tslot);
+	~eDVBCIMMISession();
+	int stopMMI();
 };
 
 #endif
