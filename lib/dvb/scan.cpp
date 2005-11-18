@@ -104,7 +104,6 @@ RESULT eDVBScan::nextChannel()
 	}
 	
 	m_ch_current = m_ch_toScan.front();
-	m_chid_current = eDVBChannelID();
 	
 	m_ch_toScan.pop_front();
 	
@@ -113,7 +112,18 @@ RESULT eDVBScan::nextChannel()
 		m_event(evtFail);
 		return -ENOTSUP;
 	}
-	
+
+	int fetype;
+	fe->getFrontendType(fetype);
+	if ( fetype == iDVBFrontend::feSatellite)
+	{
+		eDVBFrontendParametersSatellite p;
+		m_ch_current->getDVBS(p);
+		m_chid_current = eDVBChannelID(p.orbital_position << 16, -1, -1);
+	}
+	else
+		m_chid_current = eDVBChannelID();
+
 	m_channel_state = iDVBChannel::state_idle;
 	if (fe->tune(*m_ch_current))
 	{
@@ -301,7 +311,8 @@ void eDVBScan::channelDone()
 						
 						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
 						
-						if (m_chid_current && ((ns.get() ^ m_chid_current.dvbnamespace.get()) & 0xFFFF0000))
+						if ( m_chid_current.dvbnamespace.get() != -1 &&
+							((ns.get() ^ m_chid_current.dvbnamespace.get()) & 0xFFFF0000))
 							eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
