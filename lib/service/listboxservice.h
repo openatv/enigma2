@@ -93,7 +93,6 @@ private:
 
 		/* support for movemode */
 	bool m_current_marked;
-	list::iterator m_swap;
 
 	int m_numberoffset;
 };

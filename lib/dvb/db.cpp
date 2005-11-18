@@ -34,20 +34,31 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 {
 	if ( pos < 0 || pos >= m_services.size() )
 		return -1;
+	++pos;
 	list::iterator source=m_services.end();
 	list::iterator dest=m_services.end();
+	bool forward = false;
 	for (list::iterator it(m_services.begin()); it != m_services.end(); ++it)
 	{
-		if (dest == m_services.end() && !pos--)
+		if (dest == m_services.end() && !--pos)
 			dest = it;
 		if (*it == ref)
+		{
 			source = it;
+			forward = pos>0;
+		}
 		if (dest != m_services.end() && source != m_services.end())
 			break;
 	}
 	if (dest == m_services.end() || source == m_services.end() || source == dest)
 		return -1;
-	std::iter_swap(source,dest);
+	while (source != dest)
+	{
+		if (forward)
+			std::iter_swap(source++, source);
+		else
+			std::iter_swap(source--, source);
+	}
 	return 0;
 }
 
