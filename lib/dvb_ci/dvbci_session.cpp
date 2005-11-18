@@ -148,8 +148,8 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		printf("DATE-TIME\n");
 		break;
 	case 0x00400041:
-		session=new eDVBCIMMISession;
-		printf("MMI\n");
+		session = new eDVBCIMMISession(slot);
+		printf("MMI - create session\n");
 		break;
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
@@ -309,3 +309,8 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	if (len)
 		printf("PROTOCOL: warning, TL-Data has invalid length\n");
 }
+
+eDVBCISession::~eDVBCISession()
+{
+}
+

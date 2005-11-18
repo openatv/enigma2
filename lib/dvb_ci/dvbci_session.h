@@ -26,6 +26,9 @@ protected:
 	virtual int doAction()=0;
 	void handleClose();
 public:
+	virtual ~eDVBCISession();
+
+
 	int poll() { if (action) { action=doAction(); return 1; } return 0; }
 	enum { stateInCreation, stateBusy, stateInDeletion, stateStarted, statePrivate};
 	
@@ -38,6 +41,7 @@ public:
 	int getStatus() { return status; }
 	
 	static int pollAll();
+	
 };
 
 #endif
