@@ -34,6 +34,7 @@ enigma2.pot:
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py 
 	./xml2po.py	../data/menu.xml >> enigma2.pot
+	./xml2po.py	../data/setup.xml >> enigma2.pot
 
 
 %.mo: %.po
