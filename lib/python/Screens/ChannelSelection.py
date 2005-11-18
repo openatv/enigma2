@@ -116,7 +116,8 @@ class ChannelSelection(Screen):
 		self.entry_marked = False
 		self.movemode = False
 		self.bouquet_mark_edit = False
-		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 		self.mutableList = None
 
 		self.__marked = [ ]
