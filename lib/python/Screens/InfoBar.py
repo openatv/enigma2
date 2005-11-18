@@ -12,13 +12,16 @@ from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarPVR, InfoBarInstantRecord, \
 	InfoBarAudioSelection
 
+from Screens.HelpMenu import HelpableScreen, HelpMenu
+
 from enigma import *
 
 import time
 
 class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
-	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection):
+	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection,
+	HelpableScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -28,16 +31,19 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 				"showMovies": self.showMovies,
 			})
 		
-		for x in InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
-			InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
-			InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection:
+		for x in HelpableScreen, \
+				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
+				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
+				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection:
 			x.__init__(self)
+
+		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
 
 		self["CurrentTime"] = Clock()
 
 	def showMovies(self):
 		self.session.openWithCallback(self.movieSelected, MovieSelection)
-	
+
 	def movieSelected(self, service):
 		if service is not None:
 			self.session.open(MoviePlayer, service)

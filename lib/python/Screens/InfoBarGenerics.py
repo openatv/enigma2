@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.config import configfile, configsequencearg
@@ -235,12 +235,12 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 
-		self["ChannelSelectActions"] = ActionMap( ["InfobarChannelSelection"],
+		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": self.switchChannelUp,
 				"switchChannelDown": self.switchChannelDown,
-				"zapUp": self.zapUp,
-				"zapDown": self.zapDown,
+				"zapUp": (self.zapUp, _("next channel")),
+				"zapDown": (self.zapDown, _("previous channel")),
 			})
 			
 	def switchChannelUp(self):	
@@ -276,9 +276,9 @@ class InfoBarMenu:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
-		self["EPGActions"] = ActionMap( [ "InfobarEPGActions" ], 
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
-				"showEPGList": self.showEPGList,
+				"showEPGList": (self.showEPGList, _("show EPG...")),
 			})
 
 	def showEPGList(self):
