@@ -96,11 +96,16 @@ class InfoBarShowHide:
 				"hide": self.hide,
 			})
 
-		self.state = self.STATE_HIDDEN
+		self.state = self.STATE_SHOWN
+		
+		self.onClose.append(self.delHideTimer)
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
-		#self.hideTimer.start(1000)
+		self.hideTimer.start(1000)
+
+	def delHideTimer(self):
+		del self.hideTimer
 
 	def hide(self):	
 		self.instance.hide()
