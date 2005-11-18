@@ -410,9 +410,14 @@ public:
 	virtual RESULT playFile(const char *file) = 0;
 	
 	virtual RESULT getLength(pts_t &pts) = 0;
-	virtual RESULT getCurrentPosition(pts_t &pos) = 0;
-	virtual RESULT seekTo(int relative, pts_t &pts) = 0;
-	virtual RESULT seekToPosition(const off_t &pts) = 0;
+	
+		/* we explicitely ask for the decoding demux here because a channel
+		   can be shared between multiple decoders.
+		   Of couse skipping doesn't make much sense 
+		   then, but getCurrentPosition does. */
+	virtual RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos) = 0;
+	virtual RESULT seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts) = 0;
+	virtual RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &pts) = 0;
 };
 
 class iDVBSectionReader;

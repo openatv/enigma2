@@ -654,7 +654,12 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	
 	to *= direction;
 	
-	return pvr_channel->seekTo(1, to);
+	ePtr<iDVBDemux> demux;
+	m_service_handler.getDemux(demux);
+	if (!demux)
+		return -1;
+	
+	return pvr_channel->seekTo(demux, 1, to);
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
@@ -664,7 +669,12 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	if (m_service_handler.getPVRChannel(pvr_channel))
 		return -1;
 	
-	return pvr_channel->getCurrentPosition(pos);
+	ePtr<iDVBDemux> demux;
+	m_service_handler.getDemux(demux);
+	if (!demux)
+		return -1;
+	
+	return pvr_channel->getCurrentPosition(demux, pos);
 }
 
 RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)

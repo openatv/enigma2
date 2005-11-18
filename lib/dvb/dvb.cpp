@@ -583,7 +583,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
 	if (m_pvr_fd_dst < 0)
 	{
-		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)");
+		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
 		return -ENODEV;
 	}
 	
@@ -609,9 +609,9 @@ RESULT eDVBChannel::getLength(pts_t &len)
 	return m_tstools.calcLen(len);
 }
 
-RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
+RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos)
 {
-	if (!m_decoder_demux)
+	if (!decoding_demux)
 		return -1;
 	
 	off_t begin = 0;
@@ -625,7 +625,7 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 	
 	pts_t now;
 	
-	r = m_decoder_demux->get().getSTC(now);
+	r = decoding_demux->getSTC(now);
 
 	if (r)
 	{
@@ -650,7 +650,7 @@ RESULT eDVBChannel::getCurrentPosition(pts_t &pos)
 	return 0;
 }
 
-RESULT eDVBChannel::seekTo(int relative, pts_t &pts)
+RESULT eDVBChannel::seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts)
 {
 	int bitrate = m_tstools.calcBitrate(); /* in bits/s */
 	
@@ -660,7 +660,7 @@ RESULT eDVBChannel::seekTo(int relative, pts_t &pts)
 	if (relative)
 	{
 		pts_t now;
-		if (getCurrentPosition(now))
+		if (getCurrentPosition(decoding_demux, now))
 		{
 			eDebug("seekTo: getCurrentPosition failed!");
 			return -1;
@@ -673,11 +673,11 @@ RESULT eDVBChannel::seekTo(int relative, pts_t &pts)
 	
 	off_t offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
 	
-	seekToPosition(offset);
+	seekToPosition(decoding_demux, offset);
 	return 0;
 }
 
-RESULT eDVBChannel::seekToPosition(const off_t &r)
+RESULT eDVBChannel::seekToPosition(iDVBDemux *decoding_demux, const off_t &r)
 {
 			/* when seeking, we have to ensure that all buffers are flushed.
 			   there are basically 3 buffers:
@@ -699,8 +699,8 @@ RESULT eDVBChannel::seekToPosition(const off_t &r)
 	::ioctl(m_pvr_fd_dst, 0);
 	
 		/* flush ratebuffers (video, audio) */
-	if (m_decoder_demux)
-		m_decoder_demux->get().flush();
+	if (decoding_demux)
+		decoding_demux->flush();
 
 		/* demux will also flush all decoder.. */
 	m_pvr_thread->seek(SEEK_SET, r);
