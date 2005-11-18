@@ -44,12 +44,13 @@ class CiWait(Screen):
 		if query == 0:									#reset
 			self.Timer.start(1000)				#block 1 second
 			print "reset"
-			eDVBCI_UI.getInstance().setReset(0)
+			eDVBCI_UI.getInstance().setReset(slot)
 		if query == 1:									#init
 			self.Timer.start(1000)				#block 1 second
 			print "init"
 		if query == 2:									#mmi-open
 			print "mmi open"
+			eDVBCI_UI.getInstance().startMMI(slot)
 		if query == 3:									#mmi-answer
 			print "mmi answer"
 			
