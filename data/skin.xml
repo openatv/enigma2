@@ -207,6 +207,7 @@
 		</screen>
 		<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
 			<widget name="list" position="100,100" size="550,375" />
+			<eLabel position="500,40" size="220,60" text="help..." font="Arial;50" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
 			<widget name="text" position="0,0" size="650,0" font="Arial;22" />

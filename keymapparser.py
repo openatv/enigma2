@@ -3,6 +3,9 @@ import enigma
 
 from keyids import KEYIDS;
 
+# these are only informational (for help)...
+from Tools.KeyBindings import addKeyBinding
+
 def readKeymap():
 
 	p = enigma.eActionMapPtr()
@@ -71,6 +74,7 @@ def readKeymap():
 
 #				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
 				p.bindKey(device, keyid, flags, context, mapto)
+				addKeyBinding(keyid, context, mapto)
 		
 		parseKeys("generic", cmap)
 		
