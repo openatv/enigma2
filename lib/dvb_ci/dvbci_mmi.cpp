@@ -2,6 +2,17 @@
 
 #include <lib/dvb_ci/dvbci_mmi.h>
 
+eDVBCIMMISession::eDVBCIMMISession(eDVBCISlot *tslot)
+{
+	slot = tslot;
+	slot->mmi_session = this;
+}
+
+eDVBCIMMISession::~eDVBCIMMISession()
+{
+	slot->mmi_session = 0;
+}
+
 int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, int len)
 {
 	printf("SESSION(%d)/MMI %02x %02x %02x: ", session_nb, tag[0], tag[1],tag[2]);
@@ -88,5 +99,14 @@ int eDVBCIMMISession::doAction()
 		break;
 	}
 	return 0;
+}
+
+int eDVBCIMMISession::stopMMI()
+{
+	printf("eDVBCIMMISession::stopMMI()\n");
+
+	unsigned char tag[]={0x9f, 0x88, 0x00};
+	unsigned char data[]={0x00};
+	sendAPDU(tag, data, 1);
 }
 
