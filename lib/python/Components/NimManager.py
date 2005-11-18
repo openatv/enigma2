@@ -214,9 +214,9 @@ class NimManager:
 	def nimList(self):
 		list = [ ]
 		for slot in self.nimslots:
-			nimText = "Socket " + ("A", "B", "C", "D")[slot.slotid] + ": "
+			nimText = _("Socket ") + ("A", "B", "C", "D")[slot.slotid] + ": "
 			if slot.nimType == -1:
-				nimText += "empty/unknown"
+				nimText += _("empty/unknown")
 			else:
 				nimText += slot.name + " ("	
 				nimText += ("DVB-S", "DVB-C", "DVB-T")[slot.nimType] + ")"
