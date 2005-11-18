@@ -11,6 +11,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.session = session
 		GUISkin.__init__(self)
 		
+		# in order to support screens *without* a help,
+		# we need the list in every screen. how ironic.
+		self.helpList = [ ]
+		
 	def execBegin(self):
 #		assert self.session == None, "a screen can only exec one per time"
 #		self.session = session
@@ -25,6 +29,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 	
 	# never call this directly - it will be called from the session!
 	def doClose(self):
+		# fixup circular references
+		del self.helpList
 		GUISkin.close(self)
 		
 		del self.session
