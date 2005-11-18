@@ -136,7 +136,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_swap(m_list.end()), m_numberoffset(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
@@ -144,21 +144,44 @@ eListboxServiceContent::eListboxServiceContent()
 
 void eListboxServiceContent::cursorHome()
 {
-	list::iterator old = m_cursor;
-
-	m_cursor = m_list.begin();
-	m_cursor_number = 0;
-
-	if ( m_current_marked && m_saved_cursor == m_list.end() )
-		std::iter_swap( old, m_cursor );
+	if (m_current_marked && m_saved_cursor == m_list.end())
+	{
+		while (m_cursor_number)
+		{
+			std::iter_swap(m_cursor--, m_cursor);
+			--m_cursor_number;
+			if (m_listbox && m_cursor_number)
+				m_listbox->entryChanged(m_cursor_number);
+		}
+	}
+	else
+	{
+		m_cursor = m_list.begin();
+		m_cursor_number = 0;
+	}
 }
 
 void eListboxServiceContent::cursorEnd()
 {
-	if ( m_current_marked && m_saved_cursor == m_list.end() && m_cursor != m_list.end() )
-		m_swap = m_cursor;
-	m_cursor = m_list.end();
-	m_cursor_number = m_size;
+	if (m_current_marked && m_saved_cursor == m_list.end())
+	{
+		while (m_cursor != m_list.end())
+		{
+			list::iterator prev = m_cursor++;
+			++m_cursor_number;
+			if ( prev != m_list.end() && m_cursor != m_list.end() )
+			{
+				std::iter_swap(m_cursor, prev);
+				if ( m_listbox )
+					m_listbox->entryChanged(m_cursor_number);
+			}
+		}
+	}
+	else
+	{
+		m_cursor = m_list.end();
+		m_cursor_number = m_size;
+	}
 }
 
 int eListboxServiceContent::setCurrentMarked(bool state)
@@ -204,39 +227,36 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 
 int eListboxServiceContent::cursorMove(int count)
 {
-	list::iterator old = m_cursor;
-
+	int prev = m_cursor_number, last = m_cursor_number + count;
 	if (count > 0)
 	{
-		while(count && (m_cursor != m_list.end()))
+		while(count && m_cursor != m_list.end())
 		{
-			++m_cursor;
+			list::iterator prev_it = m_cursor++;
+			if ( m_current_marked && m_cursor != m_list.end() && m_saved_cursor == m_list.end() )
+			{
+				std::iter_swap(prev_it, m_cursor);
+				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
+					m_listbox->entryChanged(m_cursor_number);
+			}
 			++m_cursor_number;
 			--count;
-		}
+	}
 	} else if (count < 0)
 	{
-		while (count && (m_cursor != m_list.begin()))
+		while (count && m_cursor != m_list.begin())
 		{
-			--m_cursor;
+			list::iterator prev_it = m_cursor--;
+			if ( m_current_marked && m_cursor != m_list.end() && prev_it != m_list.end() && m_saved_cursor == m_list.end() )
+			{
+				std::iter_swap(prev_it, m_cursor);
+				if ( m_listbox && prev != m_cursor_number && last != m_cursor_number )
+					m_listbox->entryChanged(m_cursor_number);
+			}
 			--m_cursor_number;
 			++count;
 		}
 	}
-
-	if ( m_current_marked && m_saved_cursor == m_list.end() )
-	{
-		if ( m_cursor == m_list.end() )
-			m_swap = old;
-		else if ( old == m_list.end() )
-		{
-			std::iter_swap( m_swap, m_cursor );
-			m_swap = m_list.end();
-		}
-		else
-			std::iter_swap( old, m_cursor );
-	}
-
 	return 0;
 }
 
