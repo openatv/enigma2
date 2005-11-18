@@ -283,7 +283,7 @@ class ScanSetup(Screen):
 		for x in self["config"].list:
 			x[1].save()
 
-		feid = 0 # insert correct frontend id here (should be user-selectable)
+		feid = config.scan.nims.value
 		# flags |= eComponentScan.scanSearchBAT
 		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, feid, flags)
 
