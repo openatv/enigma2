@@ -535,11 +535,6 @@ void eDVBDB::loadBouquet(const char *path)
 	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
 }
 
-void eDVBDB::saveBouquet(const char *path)
-{
-
-}
-
 void eDVBDB::loadBouquets()
 {
 	loadBouquet("bouquets.tv");
@@ -577,11 +572,6 @@ void eDVBDB::loadBouquets()
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
 	}
-}
-
-void eDVBDB::saveBouquets()
-{
-
 }
 
 eDVBDB::eDVBDB()

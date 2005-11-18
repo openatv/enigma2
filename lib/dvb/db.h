@@ -28,9 +28,7 @@ public:
 	void save();
 
 	void loadBouquet(const char *path);
-	void saveBouquet(const char *path);
 	void loadBouquets();
-	void saveBouquets();
 
 	eDVBDB();
 	virtual ~eDVBDB();
