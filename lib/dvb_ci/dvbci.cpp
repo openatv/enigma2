@@ -140,9 +140,6 @@ void eDVBCISlot::data(int what)
 			notifier->setRequested(eSocketNotifier::Read);
 			//HACK
 			eDVBCI_UI::getInstance()->setState(0,0);
-			//FIXME; do in deconstructor of the appmgr class			
-			application_manager = 0;
-			mmi_session = 0;
 		}
 		return;
 	}
@@ -185,10 +182,10 @@ DEFINE_REF(eDVBCISlot);
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 {
 	char filename[128];
-	
+
 	application_manager = 0;
 	mmi_session = 0;
-
+	
 	slotid = nr;
 
 	sprintf(filename, "/dev/ci%d", nr);
