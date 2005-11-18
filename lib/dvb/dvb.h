@@ -191,11 +191,11 @@ public:
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
 	RESULT getLength(pts_t &len);
-	RESULT getCurrentPosition(pts_t &pos);
-	RESULT seekTo(int relative, pts_t &pts);
+	RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos);
+	RESULT seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts);
 			/* seeking to relative positions won't work - 
 			   there is an unknown amount of buffers in between */
-	RESULT seekToPosition(const off_t &off);
+	RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &off);
 
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;

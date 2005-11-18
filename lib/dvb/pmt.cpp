@@ -12,10 +12,12 @@ eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	eDebug("new PMT handler record: %d", m_record);
 }
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
 {
+	eDebug("delete PMT handler record: %d", m_record);
 	delete m_ca_servicePtr;
 }
 
