@@ -36,6 +36,7 @@ enigma2.pot:
 			../lib/python/Screens/TimerEdit.py \
 			../lib/python/Components/SetupDevices.py \
 			../lib/python/Components/Language.py \
+			../lib/python/Components/NimManager.py \
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py 
 	./xml2po.py	../data/ >> enigma2.pot
