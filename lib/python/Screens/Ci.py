@@ -17,6 +17,10 @@ class CiWait(Screen):
 	def cancel(self):
 		#stop pending requests
 		self.Timer.stop()
+
+		if self.lastQuery == 2:
+			eDVBCI_UI.getInstance().stopMMI(self.slot)
+
 		self.close()
 
 	def TimerCheck(self):
@@ -25,6 +29,9 @@ class CiWait(Screen):
 			self.cancel()
 		elif self.lastQuery == 1:
 			self.cancel()
+		else:
+			if eDVBCI_UI.getInstance().getState(self.slot) != 2:	#module removed
+				self.cancel()
 
 	def __init__(self, session, slot, query):
 		Screen.__init__(self, session)
@@ -37,16 +44,16 @@ class CiWait(Screen):
 			})
 			
 		self.lastQuery = query
+		self.slot = slot
 
 		self.Timer = eTimer()
 		self.Timer.timeout.get().append(self.TimerCheck)
+		self.Timer.start(1000)					#check and block 1 second
 
 		if query == 0:									#reset
-			self.Timer.start(1000)				#block 1 second
 			print "reset"
 			eDVBCI_UI.getInstance().setReset(slot)
 		if query == 1:									#init
-			self.Timer.start(1000)				#block 1 second
 			print "init"
 			eDVBCI_UI.getInstance().initialize(slot)
 		if query == 2:									#mmi-open
