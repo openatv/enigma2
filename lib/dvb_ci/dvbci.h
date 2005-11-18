@@ -29,6 +29,7 @@ public:
 	
 	int getSlotID();
 	int reset();
+	int startMMI();
 };
 
 class eDVBCIInterfaces
@@ -45,6 +46,7 @@ public:
 	static eDVBCIInterfaces *getInstance();
 	
 	int reset(int slot);
+	int startMMI(int slot);
 };
 
 #endif

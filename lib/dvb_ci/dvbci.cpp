@@ -55,6 +55,8 @@ eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
 	for(eSmartPtrList<eDVBCISlot>::iterator i(m_slots.begin()); i != m_slots.end(); ++i)
 		if(i->getSlotID() == slotid)
 			return i;
+
+	printf("FIXME: request for unknown slot\n");
 			
 	return 0;
 }
@@ -63,12 +65,20 @@ int eDVBCIInterfaces::reset(int slotid)
 {
 	eDVBCISlot *slot;
 
-	if( (slot = getSlot(slotid)) == 0 ) {
-		printf("FIXME: request for unknown slot\n");
-		return 0;
-	}
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
 	
 	return slot->reset();
+}
+
+int eDVBCIInterfaces::startMMI(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->startMMI();
 }
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
@@ -176,6 +186,12 @@ int eDVBCISlot::reset()
 
 	ioctl(fd, 0);
 
+	return 0;
+}
+
+int eDVBCISlot::startMMI()
+{
+	printf("edvbcislot: startMMI()\n");
 	return 0;
 }
 
