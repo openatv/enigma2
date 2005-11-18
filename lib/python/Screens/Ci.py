@@ -48,11 +48,13 @@ class CiWait(Screen):
 		if query == 1:									#init
 			self.Timer.start(1000)				#block 1 second
 			print "init"
+			eDVBCI_UI.getInstance().initialize(slot)
 		if query == 2:									#mmi-open
 			print "mmi open"
 			eDVBCI_UI.getInstance().startMMI(slot)
 		if query == 3:									#mmi-answer
 			print "mmi answer"
+			eDVBCI_UI.getInstance().answerMMI(slot, 0, 0)
 			
 
 class CiEntryList(HTMLComponent, GUIComponent):
