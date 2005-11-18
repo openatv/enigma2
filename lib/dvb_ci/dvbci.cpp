@@ -1,7 +1,9 @@
 #include <fcntl.h>
+#include <sys/ioctl.h>
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/ebase.h>
 
 #include <lib/base/eerror.h>
 #include <lib/dvb_ci/dvbci.h>
@@ -9,9 +11,13 @@
 
 #include <lib/dvb_ci/dvbci_ui.h>
 
+eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
+
 eDVBCIInterfaces::eDVBCIInterfaces()
 {
 	int num_ci = 0;
+	
+	instance = this;
 	
 	eDebug("scanning for common interfaces..");
 
@@ -37,6 +43,32 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
 {
+}
+
+eDVBCIInterfaces *eDVBCIInterfaces::getInstance()
+{
+	return instance;
+}
+
+eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
+{
+	for(eSmartPtrList<eDVBCISlot>::iterator i(m_slots.begin()); i != m_slots.end(); ++i)
+		if(i->getSlotID() == slotid)
+			return i;
+			
+	return 0;
+}
+
+int eDVBCIInterfaces::reset(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 ) {
+		printf("FIXME: request for unknown slot\n");
+		return 0;
+	}
+	
+	return slot->reset();
 }
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
@@ -109,6 +141,8 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 {
 	char filename[128];
 
+	slotid = nr;
+
 	sprintf(filename, "/dev/ci%d", nr);
 
 	fd = ::open(filename, O_RDWR | O_NONBLOCK);
@@ -129,6 +163,20 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
+}
+
+int eDVBCISlot::getSlotID()
+{
+	return slotid;
+}
+
+int eDVBCISlot::reset()
+{
+	printf("edvbcislot: reset requested\n");
+
+	ioctl(fd, 0);
+
+	return 0;
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");
