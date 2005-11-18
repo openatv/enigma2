@@ -87,14 +87,14 @@ class Menu(Screen):
 		self.session.open(Setup, dialog)
 
 	def addMenu(self, destList, node):
-		MenuTitle = getValbyAttr(node, "text")
+		MenuTitle = _(getValbyAttr(node, "text"))
 		if MenuTitle != "":																	#check for title
 			a = boundFunction(self.session.open, Menu, node, node.childNodes)
 			#TODO add check if !empty(node.childNodes)
 			destList.append((MenuTitle, a))
 		
 	def addItem(self, destList, node):
-		ItemText = getValbyAttr(node, "text")
+		ItemText = _(getValbyAttr(node, "text"))
 		if ItemText != "":																	#check for name
 			for x in node.childNodes:
 				if x.nodeType != xml.dom.minidom.Element.nodeType:
@@ -147,7 +147,7 @@ class Menu(Screen):
 		
 		a = getValbyAttr(parent, "title")
 		if a == "":														#if empty use name
-			a = getValbyAttr(parent, "text")
+			a = _(getValbyAttr(parent, "text"))
 		self["title"] = Header(a)
 
 class MainMenu(Menu):
