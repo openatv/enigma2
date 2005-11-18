@@ -2,6 +2,8 @@ from GUIComponent import *
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 
+from Tools.KeyBindings import queryKeyBinding, getKeyDescription
+
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
 
 class HelpMenuList(GUIComponent):
@@ -13,17 +15,30 @@ class HelpMenuList(GUIComponent):
 		
 		l = [ ]
 		for (actionmap, context, actions) in list:
-			
-			print "actionmap:"  + str(actionmap)
-			print "context: " + str(context)
-			print "actions: " + str(actions)
-			
 			for (action, help) in actions:
 				entry = [ ]
 				
 				entry.append( (actionmap, context, action) )
-				entry.append( (0, 36, 200, 20, 1, 0, "you can also press a secret button") )
+				buttons = queryKeyBinding(context, action)
+				buttonstring = ""
+	
+				first = True
+				for n in buttons:
+					name = getKeyDescription(n)
+					if name is None:
+						continue
+
+					if not first:
+						buttonstring += ", or "
+
+					first = False
+					buttonstring += name
+
+				if not first:
+					buttonstring = "You can also press " + buttonstring + "."
+
 				entry.append( (0, 0, 200, 36, 0, 0, help) )
+				entry.append( (0, 40, 200, 20, 1, 0, buttonstring) )
 				
 				l.append(entry)
 		

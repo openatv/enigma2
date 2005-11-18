@@ -179,10 +179,12 @@ class InfoBarPowerKey:
 	def __init__(self):
 		self.powerKeyTimer = eTimer()
 		self.powerKeyTimer.timeout.get().append(self.powertimer)
-		self["PowerKeyActions"] = ActionMap( ["PowerKeyActions"],
+		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
 			{
 				"powerdown": self.powerdown,
 				"powerup": self.powerup,
+				"discreteStandby": (self.standby, "Go standby"),
+				"discretePowerOff": (self.quit, "Go to deep standby"),
 			})
 
 	def powertimer(self):	
@@ -197,10 +199,14 @@ class InfoBarPowerKey:
 		self.powerKeyTimer.stop()
 		if self.standbyblocked == 0:
 			self.standbyblocked = 1
-			self.session.open(Standby, self)
+			self.standby()
+
+	def standby(self):
+		self.session.open(Standby, self)
 
 	def quit(self):
-		quitMainloop(0)
+		# halt
+		quitMainloop(1)
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
@@ -262,9 +268,9 @@ class InfoBarChannelSelection:
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
-		self["MenuActions"] = ActionMap( [ "InfobarMenuActions" ], 
+		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions", 
 			{
-				"mainMenu": self.mainMenu,
+				"mainMenu": (self.mainMenu, "Enter main menu..."),
 			})
 
 	def mainMenu(self):
@@ -329,13 +335,13 @@ class InfoBarServiceName:
 class InfoBarPVR:
 	"""handles PVR specific actions like seeking, pause"""
 	def __init__(self):
-		self["PVRActions"] = ActionMap( [ "InfobarPVRActions" ], 
+		self["PVRActions"] = HelpableActionMap(self, "InfobarPVRActions", 
 			{
-				"pauseService": self.pauseService,
-				"unPauseService": self.unPauseService,
+				"pauseService": (self.pauseService, "pause"),
+				"unPauseService": (self.unPauseService, "continue"),
 				
-				"seekFwd": self.seekFwd,
-				"seekBack": self.seekBack,
+				"seekFwd": (self.seekFwd, "skip forward"),
+				"seekBack": (self.seekBack, "skip backward"),
 			})
 		
 	def pauseService(self):
@@ -364,9 +370,9 @@ class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
 	start/stop instant records"""
 	def __init__(self):
-		self["InstnantRecordActions"] = ActionMap( [ "InfobarInstantRecord" ],
+		self["InstnantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"instantRecord": self.instantRecord,
+				"instantRecord": (self.instantRecord, "Instant Record..."),
 			})
 		self.recording = None
 
@@ -416,9 +422,9 @@ from Screens.AudioSelection import AudioSelection
 
 class InfoBarAudioSelection:
 	def __init__(self):
-		self["AudioSelectionAction"] = ActionMap( [ "InfobarAudioSelectionActions" ], 
+		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", 
 			{
-				"audioSelection": self.audioSelection,
+				"audioSelection": (self.audioSelection, "Audio Options..."),
 			})
 
 	def audioSelection(self):
