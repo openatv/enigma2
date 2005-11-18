@@ -57,7 +57,12 @@ void eDVBCI_UI::setAppName(int slot, const char *name)
 
 void eDVBCI_UI::setReset(int slot)
 {
-	eDVBCIInterfaces().getInstance()->reset(slot);
+	eDVBCIInterfaces::getInstance()->reset(slot);
+}
+
+int eDVBCI_UI::startMMI(int slot)
+{
+	eDVBCIInterfaces::getInstance()->startMMI(slot);
 }
 
 //FIXME: correct "run/startlevel"
