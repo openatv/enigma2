@@ -17,32 +17,41 @@ class CiWait(Screen):
 	def cancel(self):
 		#stop pending requests
 		self.Timer.stop()
-
-		if self.lastQuery == 2:
-			eDVBCI_UI.getInstance().stopMMI(self.slot)
-
 		self.close()
+
+	def Keycancel(self):
+		if self.lastQuery >= 2:
+			eDVBCI_UI.getInstance().stopMMI(self.slot)
+		self.parent.mmistate = 0
+		self.cancel()
 
 	def TimerCheck(self):
 		#special cases to prevent to fast resets/inits
-		if self.lastQuery == 0:
-			self.cancel()
-		elif self.lastQuery == 1:
-			self.cancel()
+		if self.lastQuery == 0:			#reset requested
+			self.Keycancel()
+		elif self.lastQuery == 1:		#init requested
+			self.Keycancel()
+		elif self.lastQuery == 4:		#close requested
+			self.Keycancel()
 		else:
 			if eDVBCI_UI.getInstance().getState(self.slot) != 2:	#module removed
-				self.cancel()
+				self.Keycancel()
+			else:	
+				if eDVBCI_UI.getInstance().availableMMI(self.slot) == 1:	#data?
+					self.parent.mmistate = 2	#request screen
+					self.cancel()
 
-	def __init__(self, session, slot, query):
+	def __init__(self, session, parent, slot, query):
 		Screen.__init__(self, session)
 
 		self["message"] = Label(_("waiting for CI..."))
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
-				"cancel": self.cancel
+				"cancel": self.Keycancel
 			})
-			
+		
+		self.parent = parent	
 		self.lastQuery = query
 		self.slot = slot
 
@@ -51,17 +60,27 @@ class CiWait(Screen):
 		self.Timer.start(1000)					#check and block 1 second
 
 		if query == 0:									#reset
-			print "reset"
+			#print "reset"
 			eDVBCI_UI.getInstance().setReset(slot)
 		if query == 1:									#init
-			print "init"
+			#print "init"
 			eDVBCI_UI.getInstance().initialize(slot)
 		if query == 2:									#mmi-open
-			print "mmi open"
+			#print "mmi open"
 			eDVBCI_UI.getInstance().startMMI(slot)
 		if query == 3:									#mmi-answer
-			print "mmi answer"
-			eDVBCI_UI.getInstance().answerMMI(slot, 0, 0)
+			#print "mmi answer"
+			if self.parent.answertype == 0: #ENQ
+				eDVBCI_UI.getInstance().answerEnq(slot, self.parent.answertype, self.parent.answer)
+			elif self.parent.answertype == 1: #ENQ cancel
+				eDVBCI_UI.getInstance().answerEnq(slot, self.parent.answertype, "")
+			elif self.parent.answertype == 2: #Menu
+				eDVBCI_UI.getInstance().answerMenu(slot, self.parent.answer)
+			elif self.parent.answertype == 3: #List
+				eDVBCI_UI.getInstance().answerMenu(slot, self.parent.answer)
+		if query == 4:									#mmi-close
+			#print "mmi close"
+			pass
 			
 
 class CiEntryList(HTMLComponent, GUIComponent):
@@ -104,9 +123,9 @@ class CiEntryList(HTMLComponent, GUIComponent):
 		self.instance = None
 
 class CiMmi(Screen):
-	def addEntry(self, list, entry, index):
+	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
-			list.append( (entry[1], index) )
+			list.append( (entry[1], entry[2]) )
 		if entry[0] == "PIN":
 			if entry[3] == 1:
 				# masked pins:
@@ -118,17 +137,39 @@ class CiMmi(Screen):
 			self.pin = getConfigListEntry(entry[2],x)
 			list.append( self.pin )
 
-	def okbuttonClick(self):
-		if self.tag == 0:	#ENQ
-			print "enq- answer pin:" +  str(self.pin[1].parent.value[0])
-			#ci[self.slotid]->getInstance().mmiEnqAnswer(self.pin[1].parent.value[0])
-		elif self.tag == 1:	#Menu
-			print "answer - actual:" + str(self["entries"].getCurrentIndex())
-			#ci[self.slotid]->getInstance().mmiAnswer(self["entries"].getCurrentIndex())
-		elif self.tag == 2:	#List
-			print "answer on List - send 0"
-			#ci[self.slotid]->getInstance().mmiAnswer(0)
+	def closeMMI(self, cancel):
+		if self.tag == "ENQ":
+			#print "enq- answer pin:" +  str(self.pin[1].parent.value[0])
+			if cancel == 0:
+				self.parent.answertype = 0
+				self.parent.answer = str(self.pin[1].parent.value[0])
+			else:	
+				self.parent.answertype = 1
+				self.parent.answer = 0
+		elif self.tag == "MENU":
+			#print "answer - actual:" + str(self["entries"].getCurrent()[1])
+			self.parent.answertype = 2
+			if cancel == 0:
+				self.parent.answer = self["entries"].getCurrent()[1]
+			else:	
+				self.parent.answer = 0
+		elif self.tag == "LIST":
+			#print "answer on List"
+			self.parent.answertype = 3
+			if cancel == 0:
+				self.parent.answer = self["entries"].getCurrent()[1]
+			else:	
+				self.parent.answer = 0
+
+		self.parent.mmistate = 4	#request wait
 		self.close()
+
+	def okbuttonClick(self):
+		self.closeMMI(0)
+
+	def keyCancel(self):
+		print "keyCancel"
+		self.closeMMI(1)
 
 	def keyNumberGlobal(self, number):
 		self["entries"].handleKey(config.key[str(number)])
@@ -139,25 +180,32 @@ class CiMmi(Screen):
 	def keyRight(self):
 		self["entries"].handleKey(config.key["nextElement"])
 
-	def keyCancel(self):
-		print "keyCancel"
-		self.close()
-		
-		#tag is 0=ENQ 1=Menu 2=List
-	def __init__(self, session, slotid, tag, title, subtitle, bottom, entries):
+	def __init__(self, session, parent, slotid, appname, entries):
 		Screen.__init__(self, session)
 
+		self.parent = parent
 		self.slotid = slotid
-		self.tag = tag
-		self["title"] = Label(title)
-		self["subtitle"] = Label(subtitle)
-		self["bottom"] = Label(bottom)
-				
+		self.tag = entries[0][0]
+		
+		#else the skins fails
+		self["title"] = Label("")
+		self["subtitle"] = Label("")
+		self["bottom"] = Label("")
+
 		list = [ ]
-		cnt = 0
+		
 		for entry in entries:
-			self.addEntry(list, entry, cnt)
-			cnt = cnt + 1
+			if entry[0] == "TITLE":
+				self["title"] = Label(entry[1])
+			elif entry[0] == "SUBTITLE":
+				self["subtitle"] = Label(entry[1])
+			elif entry[0] == "BOTTOM":
+				self["bottom"] = Label(entry[1])				
+			elif entry[0] == "TEXT":
+				self.addEntry(list, entry)
+			elif entry[0] == "PIN":
+				self.addEntry(list, entry)
+
 		self["entries"] = CiEntryList(list)
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -202,14 +250,40 @@ class CiSelection(Screen):
 	def TimerCheck(self):
 		state = eDVBCI_UI.getInstance().getState(0)
 		if self.state != state:
-			print "something happens"
+			#print "something happens"
 			self.state = state
 			self.createMenu()
 	
+	def ciWaitAnswer(self):
+		#FIXME: handling for correct slot
+		#print "ciWaitAnswer with self.mmistate = " + str(self.mmistate)
+
+		if self.mmistate == 0:		
+			#print "do nothing"
+			pass
+		elif self.mmistate == 1:			#wait requested
+			#print "wait requested"
+			self.session.openWithCallback(self.ciWaitAnswer, CiWait, self, 0, self["entries"].getCurrent()[1])
+		elif self.mmistate == 2:			#open screen requested
+			#print "open screen requested"
+			self.answertype = -1
+			self.answer = ""
+			appname = eDVBCI_UI.getInstance().getAppName(0)
+			list = eDVBCI_UI.getInstance().getMMIScreen(self.slot)
+			self.session.openWithCallback(self.ciWaitAnswer, CiMmi, self, self.slot, appname, list)
+		elif self.mmistate == 3:			#close mmi requested
+			#print "close mmi requested"
+			self.session.openWithCallback(self.ciWaitAnswer, CiWait, self, 0, 4)
+		elif self.mmistate == 4:			#mmi answer requested
+			#print "mmi answer requested"
+			self.session.openWithCallback(self.ciWaitAnswer, CiWait, self, 0, 3)
+		
 	def okbuttonClick(self):
+		self.slot = 0
+	
 		if self.state == 2:
-			#FIXME: find out the correct slot
-			self.session.open(CiWait, 0, self["entries"].getCurrent()[1])
+			self.mmistate = 1
+			self.ciWaitAnswer()
 
 		#generate menu / list
 		#list = [ ]
