@@ -6,7 +6,7 @@
 #include <dvbsi++/ca_program_map_section.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
-	:m_pmt_pid(0xFFFF), m_ca_servicePtr(0)
+	:m_ca_servicePtr(0)
 {
 	m_record = record;
 	eDVBResourceManager::getInstance(m_resourceManager);
@@ -18,7 +18,15 @@ eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
 {
 	eDebug("delete PMT handler record: %d", m_record);
-	delete m_ca_servicePtr;
+	if (m_ca_servicePtr)
+	{
+		eDebug("unregister caservice");
+		uint8_t demux_num;
+		m_demux->getCADemuxID(demux_num);
+		ePtr<eTable<ProgramMapSection> > ptr;
+		m_PMT.getCurrent(ptr);
+		eDVBCAService::unregister_demux(m_reference, demux_num, ptr);
+	}
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
@@ -62,9 +70,19 @@ void eDVBServicePMTHandler::PMTready(int error)
 	{
 		serviceEvent(eventNewProgramInfo);
 		if (!m_pvr_channel && !m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
-			m_ca_servicePtr = new eDVBCAService(*this);
+		{
+			uint8_t demux_num;
+			m_demux->getCADemuxID(demux_num);
+			eDVBCAService::register_demux(m_reference, demux_num, m_ca_servicePtr);
+		}
 		if (m_ca_servicePtr)
-			m_ca_servicePtr->buildCAPMT();
+		{
+			ePtr<eTable<ProgramMapSection> > ptr;
+			if (!m_PMT.getCurrent(ptr))
+				m_ca_servicePtr->buildCAPMT(ptr);
+			else
+				eDebug("eDVBServicePMTHandler cannot call buildCAPMT");
+		}
 	}
 }
 
@@ -87,10 +105,7 @@ void eDVBServicePMTHandler::PATready(int)
 		if (pmtpid == -1)
 			serviceEvent(eventNoPATEntry);
 		else
-		{
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
-			m_pmt_pid = pmtpid;
-		}
 	} else
 		serviceEvent(eventNoPAT);
 }
@@ -102,10 +117,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
-	program.pmtPid = m_pmt_pid < 0x1fff ? m_pmt_pid : -1;
 
 	if (!m_PMT.getCurrent(ptr))
 	{
+		eDVBTableSpec table_spec;
+		ptr->getSpec(table_spec);
+		program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
 		std::vector<ProgramMapSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 		{
@@ -253,6 +270,103 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 	return res;
 }
 
+std::map<eServiceReferenceDVB, eDVBCAService*> eDVBCAService::exist;
+
+eDVBCAService::eDVBCAService()
+	:m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eApp)
+{
+	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
+	CONNECT(m_retryTimer.timeout, eDVBCAService::sendCAPMT);
+	Connect();
+}
+
+eDVBCAService::~eDVBCAService()
+{
+	eDebug("[eDVBCAService] free service %s", m_service.toString().c_str());
+	::close(m_sock);
+}
+
+RESULT eDVBCAService::register_demux( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice )
+{
+	CAServiceMap::iterator it = exist.find(ref);
+	if ( it != exist.end() )
+		caservice = it->second;
+	else
+	{
+		caservice = (exist[ref]=new eDVBCAService());
+		caservice->m_service = ref;
+		eDebug("[eDVBCAHandler] new service %s", ref.toString().c_str() );
+	}
+// search free demux entry
+	int iter=0, max_demux_slots = sizeof(caservice->m_used_demux);
+
+	while ( iter < max_demux_slots && caservice->m_used_demux[iter] != 0xFF )
+		++iter;
+
+	if ( iter < max_demux_slots )
+	{
+		caservice->m_used_demux[iter] = demux_num & 0xFF;
+		eDebug("[eDVBCAHandler] add demux %d to slot %d service %s", demux_num, iter, ref.toString().c_str());
+	}
+	else
+	{
+		eDebug("[eDVBCAHandler] no more demux slots free for service %s!!", ref.toString().c_str());
+		return -1;
+	}
+	return 0;
+}
+
+RESULT eDVBCAService::unregister_demux( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr )
+{
+	CAServiceMap::iterator it = exist.find(ref);
+	if ( it == exist.end() )
+	{
+		eDebug("[eDVBCAHandler] try to unregister non registered %s", ref.toString().c_str());
+		return -1;
+	}
+	else
+	{
+		eDVBCAService *caservice = it->second;
+		bool freed = false;
+		int iter = 0,
+			used_demux_slots = 0,
+			max_demux_slots = sizeof(caservice->m_used_demux)/sizeof(int);
+		while ( iter < max_demux_slots )
+		{
+			if ( caservice->m_used_demux[iter] != 0xFF )
+			{
+				if ( !freed && caservice->m_used_demux[iter] == demux_num )
+				{
+					eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, caservice->m_used_demux[iter], caservice->m_service.toString().c_str() );
+					caservice->m_used_demux[iter] = 0xFF;
+					freed=true;
+				}
+				else
+					++used_demux_slots;
+			}
+			++iter;
+		}
+		if (!freed)
+		{
+			eDebug("[eDVBCAService] couldn't free demux slot for demux %d", demux_num);
+			return -1;
+		}
+		if (!used_demux_slots)  // no more used.. so we remove it
+		{
+			delete it->second;
+			exist.erase(it);
+		}
+		else
+		{
+			if (ptr)
+				it->second->buildCAPMT(ptr);
+			else
+				eDebug("[eDVBCAHandler] can not send updated demux info");
+		}
+	}
+	return 0;
+}
+
 void eDVBCAService::Connect()
 {
 	memset(&m_servaddr, 0, sizeof(struct sockaddr_un));
@@ -266,17 +380,54 @@ void eDVBCAService::Connect()
 	setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
 }
 
-void eDVBCAService::buildCAPMT()
+void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 {
-	ePtr<eTable<ProgramMapSection> > ptr;
-
-	if (m_parent.m_PMT.getCurrent(ptr))
+	if (!ptr)
 		return;
 
-	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+	eDVBTableSpec table_spec;
+	ptr->getSpec(table_spec);
+
+	int pmtpid = table_spec.pid,
+		pmt_version = table_spec.version;
+
+	uint8_t demux_mask = 0;
+	uint8_t first_demux_num = 0xFF;
+
+	int iter=0, max_demux_slots = sizeof(m_used_demux);
+	while ( iter < max_demux_slots )
+	{
+		if ( m_used_demux[iter] != 0xFF )
+		{
+			if ( first_demux_num == 0xFF )
+				first_demux_num = m_used_demux[iter];
+			demux_mask |= (1 << m_used_demux[iter]);
+		}
+		++iter;
+	}
+
+	if ( first_demux_num == 0xFF )
+	{
+		eDebug("[eDVBCAService] no demux found for service %s", m_service.toString().c_str() );
+		return;
+	}
+
+	eDebug("demux %d mask %02x prevhash %08x", first_demux_num, demux_mask, m_prev_build_hash);
+
+	unsigned int build_hash = (pmtpid << 16);
+	build_hash |= (demux_mask << 8);
+	build_hash |= (pmt_version&0xFF);
+
+	if ( build_hash == m_prev_build_hash )
+	{
+		eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
+		return;
+	}
+
+	const std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
 	if ( i != ptr->getSections().end() )
 	{
-		CaProgramMapSection capmt(*i++, m_capmt == NULL ? 0x03 /*only*/: 0x05 /*update*/, 0x01 );
+		CaProgramMapSection capmt(*i++, m_prev_build_hash ? 0x05 /*update*/ : 0x03 /*only*/, 0x01 );
 
 		while( i != ptr->getSections().end() )
 		{
@@ -289,33 +440,32 @@ void eDVBCAService::buildCAPMT()
 
 		tmp[0]=0x84;  // pmt pid
 		tmp[1]=0x02;
-		tmp[2]=m_parent.m_pmt_pid>>8;
-		tmp[3]=m_parent.m_pmt_pid&0xFF;
+		tmp[2]=pmtpid>>8;
+		tmp[3]=pmtpid&0xFF;
 		capmt.injectDescriptor(tmp, false);
 
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
-		m_parent.m_demux->getCADemuxID(tmp[3]); // read section data from demux number
-		tmp[2] = 1 << tmp[3];			// descramble bitmask
+		tmp[3] = first_demux_num; // read section data from demux number
+		tmp[2] = demux_mask;	// descramble bitmask
 		capmt.injectDescriptor(tmp, false);
 
 		tmp[0] = 0x81; // dvbnamespace
 		tmp[1] = 0x08;
-		tmp[2] = m_parent.m_reference.getDVBNamespace().get()>>24;
-		tmp[3]=(m_parent.m_reference.getDVBNamespace().get()>>16)&0xFF;
-		tmp[4]=(m_parent.m_reference.getDVBNamespace().get()>>8)&0xFF;
-		tmp[5]=m_parent.m_reference.getDVBNamespace().get()&0xFF;
-		tmp[6]=m_parent.m_reference.getTransportStreamID().get()>>8;
-		tmp[7]=m_parent.m_reference.getTransportStreamID().get()&0xFF;
-		tmp[8]=m_parent.m_reference.getOriginalNetworkID().get()>>8;
-		tmp[9]=m_parent.m_reference.getOriginalNetworkID().get()&0xFF;
+		tmp[2] = m_service.getDVBNamespace().get()>>24;
+		tmp[3]=(m_service.getDVBNamespace().get()>>16)&0xFF;
+		tmp[4]=(m_service.getDVBNamespace().get()>>8)&0xFF;
+		tmp[5]=m_service.getDVBNamespace().get()&0xFF;
+		tmp[6]=m_service.getTransportStreamID().get()>>8;
+		tmp[7]=m_service.getTransportStreamID().get()&0xFF;
+		tmp[8]=m_service.getOriginalNetworkID().get()>>8;
+		tmp[9]=m_service.getOriginalNetworkID().get()&0xFF;
 		capmt.injectDescriptor(tmp, false);
-
-		if ( !m_capmt )
-			m_capmt = new uint8_t[2048];
 
 		capmt.writeToBuffer(m_capmt);
 	}
+
+	m_prev_build_hash = build_hash;
 
 	if ( m_sendstate != 0xFFFFFFFF )
 		m_sendstate=0;
