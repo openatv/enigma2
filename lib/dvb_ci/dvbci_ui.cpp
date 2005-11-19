@@ -151,6 +151,9 @@ int eDVBCI_UI::mmiScreenFinish(int slot)
 
 PyObject *eDVBCI_UI::getMMIScreen(int slot)
 {
+	if(mmiScreenReady != 1)
+		return Py_None;
+		
 	mmiScreenReady = 0;
 
 	return mmiScreen;
