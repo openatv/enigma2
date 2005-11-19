@@ -16,6 +16,8 @@ public:
 	eDVBCIMMISession(eDVBCISlot *tslot);
 	~eDVBCIMMISession();
 	int stopMMI();
+	int answerText(int answer);
+
 };
 
 #endif
