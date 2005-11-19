@@ -2,6 +2,7 @@
 #define __dvbci_ui_h
 
 #include <string>
+#include <Python.h>
 
 #define MAX_SLOTS	2	
 
@@ -25,7 +26,19 @@ public:
 	int initialize(int slot);
 	int startMMI(int slot);
 	int stopMMI(int slot);
-	int answerMMI(int slot, int answer, char *val);
+	int availableMMI(int slot);
+
+	int answerMenu(int slot, int answer);
+	int answerEnq(int slot, int answer, char *val);
+
+	PyObject *eDVBCI_UI::getMMIScreen(int slot);
+	PyObject *mmiScreen;
+	int mmiTuplePos;
+	int mmiScreenReady;
+	
+	int mmiScreenBegin(int slot, int listmenu);
+	int mmiScreenAddText(int slot, int type, char *value);
+	int mmiScreenFinish(int slot);
 };
 
 #endif

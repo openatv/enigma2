@@ -1,6 +1,7 @@
 /* DVB CI MMI */
 
 #include <lib/dvb_ci/dvbci_mmi.h>
+#include <lib/dvb_ci/dvbci_ui.h>
 
 /*
 PyObject *list = PyList_New(len);
@@ -47,10 +48,18 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 		{
 			unsigned char *d=(unsigned char*)data;
 			unsigned char *max=((unsigned char*)d) + len;
+			int pos = 0;
 			printf("Tmenu_last\n");
 			if (d > max)
 				break;
 			int n=*d++;
+			
+			//FIXME: slotid
+			if(tag[2] == 0x09)
+				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 0);
+			else
+				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 1);
+			
 			if (n == 0xFF)
 				n=0;
 			else
@@ -67,10 +76,19 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				printf("%d bytes text\n", textlen);
 				if ((d+textlen) > max)
 					break;
+					
+				char str[textlen + 1];
+				memcpy(str, ((char*)d), textlen);
+				str[textlen] = '\0';
+				
+				eDVBCI_UI::getInstance()->mmiScreenAddText(0, pos++, str);
+					
 				while (textlen--)
 					printf("%c", *d++);
 				printf("\n");
 			}
+			//FIXME: slotid
+			eDVBCI_UI::getInstance()->mmiScreenFinish(0);
 			break;
 		}
 		default:
@@ -119,6 +137,16 @@ int eDVBCIMMISession::stopMMI()
 
 	unsigned char tag[]={0x9f, 0x88, 0x00};
 	unsigned char data[]={0x00};
+	sendAPDU(tag, data, 1);
+}
+
+int eDVBCIMMISession::answerText(int answer)
+{
+	printf("eDVBCIMMISession::answerText(%d)\n",answer);
+
+	unsigned char tag[]={0x9f, 0x88, 0x0B};
+	unsigned char data[]={0x00};
+	data[0] = answer & 0xff;
 	sendAPDU(tag, data, 1);
 }
 

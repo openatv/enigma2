@@ -34,7 +34,8 @@ public:
 	int initialize();
 	int startMMI();
 	int stopMMI();
-	int answerMMI(int answer, char *value);
+	int answerText(int answer);
+	int answerEnq(int answer, char *value);
 };
 
 class eDVBCIInterfaces
@@ -54,7 +55,8 @@ public:
 	int initialize(int slot);
 	int startMMI(int slot);
 	int stopMMI(int slot);
-	int answerMMI(int slot, int answer, char *value);
+	int answerText(int slot, int answer);
+	int answerEnq(int slot, int answer, char *value);
 };
 
 #endif
