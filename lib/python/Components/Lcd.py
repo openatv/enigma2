@@ -19,6 +19,8 @@ class LCD:
 		pass
 
 	def setInverted(self, value):
+		if value:
+			value = 255
 		eDBoxLCD.getInstance().setInverted(value)
 		pass
 
