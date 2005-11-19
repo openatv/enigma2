@@ -1,6 +1,7 @@
 #ifndef __lib_dvb_dvbmid_h
 #define __lib_dvb_dvbmid_h
 
+#include <map>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/idemux.h>
@@ -16,31 +17,29 @@
 
 class eDVBServicePMTHandler;
 
+typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
+
 class eDVBCAService: public Object
 {
-	eDVBServicePMTHandler &m_parent;
-	int m_sock, m_clilen;
+	eServiceReferenceDVB m_service;
+	uint8_t m_used_demux[10];
+	unsigned int m_prev_build_hash;
+
+	int m_sock, m_clilen; 
 	struct sockaddr_un m_servaddr;
 	unsigned int m_sendstate;
-	unsigned char *m_capmt;
+	unsigned char m_capmt[2048];
 	eTimer m_retryTimer;
 	void sendCAPMT();
 	void Connect();
+
+	static CAServiceMap exist;
+	eDVBCAService();
+	~eDVBCAService();
 public:
-	eDVBCAService( eDVBServicePMTHandler &parent )
-		:m_parent(parent), m_sendstate(0), m_capmt(NULL), m_retryTimer(eApp)
-	{
-		CONNECT(m_retryTimer.timeout, eDVBCAService::sendCAPMT);
-		Connect();
-//		eDebug("[eDVBCAHandler] new service %s", service.toString().c_str() );
-	}
-	~eDVBCAService()
-	{
-		delete [] m_capmt;
-		::close(m_sock);
-//		eDebug("[eDVBCAHandler] leave service %s", me.toString().c_str() );
-	}
-	void buildCAPMT();
+	static RESULT register_demux( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice );
+	static RESULT unregister_demux( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr );
+	void buildCAPMT(eTable<ProgramMapSection> *ptr);
 };
 
 class eDVBServicePMTHandler: public Object
@@ -50,7 +49,6 @@ class eDVBServicePMTHandler: public Object
 	ePtr<eDVBService> m_service;
 
 	int m_last_channel_state;
-	uint16_t m_pmt_pid;
 	eDVBCAService *m_ca_servicePtr;
 
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
