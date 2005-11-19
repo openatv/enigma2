@@ -155,7 +155,9 @@ class NumberZap(Screen):
 	def __init__(self, session, number):
 		Screen.__init__(self, session)
 		self.field = str(number)
-		
+
+		self["channel"] = Label(_("Channel:"))
+
 		self["number"] = Label(self.field)
 
 		self["actions"] = NumberActionMap( [ "SetupActions" ], 
