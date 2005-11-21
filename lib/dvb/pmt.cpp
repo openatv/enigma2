@@ -424,7 +424,7 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		return;
 	}
 
-	const std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
 	if ( i != ptr->getSections().end() )
 	{
 		CaProgramMapSection capmt(*i++, m_prev_build_hash ? 0x05 /*update*/ : 0x03 /*only*/, 0x01 );
