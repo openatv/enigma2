@@ -166,6 +166,9 @@ class NimManager:
 				self.nimTypes[lastsocket] = str(line.strip()[6:])
 			elif line.strip().startswith("Name:"):
 				self.nimNames[lastsocket] = str(line.strip()[6:])
+			elif line.strip().startswith("empty"):
+				self.nimNames[lastsocket] = _("N/A")
+				self.nimTypes[lastsocket] = "empty/unknown"
 
 		nimfile.close()
 		
