@@ -125,6 +125,61 @@ class NimManager:
 
 				self.transponders[self.parsedSat].append((0, freq, sr, pol, fec))
 
+	class parseCables(ContentHandler):
+		def __init__(self, cablesList, transponders):
+			self.isPointsElement, self.isReboundsElement = 0, 0
+			self.cablesList = cablesList
+			self.transponders = transponders
+	
+		def startElement(self, name, attrs):
+			if (name == "cable"):
+				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
+				tname = attrs.get('name',"")
+				self.cablesList.append(str(tname))
+				self.parsedCab = str(tname)
+			elif (name == "transponder"):
+				freq = int(attrs.get('frequency',""))
+				sr = int(attrs.get('symbol_rate',""))
+				mod = int(attrs.get('modulation',""))
+				fec = int(attrs.get('fec_inner',""))
+				if self.parsedCab in self.transponders:
+					pass
+				else:
+					self.transponders[self.parsedCab] = [ ]
+
+				self.transponders[self.parsedCab].append((0, freq, sr, mod, fec))
+
+	class parseTerrestrials(ContentHandler):
+		def __init__(self, terrestrialsList, transponders):
+			self.isPointsElement, self.isReboundsElement = 0, 0
+			self.terrestrialsList = terrestrialsList
+			self.transponders = transponders
+	
+		def startElement(self, name, attrs):
+			if (name == "terrestrial"):
+				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
+				tname = attrs.get('name',"")
+				tflags = attrs.get('flags',"")
+				self.terrestrialsList.append((tname, tflags))
+				self.parsedTer = str(tname)
+			elif (name == "transponder"):
+				# TODO finish this!
+				freq = int(attrs.get('centre_frequency',""))
+				bw = int(attrs.get('bandwidth',""))
+				const = int(attrs.get('constellation',""))
+				crh = int(attrs.get('code_rate_hp',""))
+				crl = int(attrs.get('code_rate_lp',""))
+				guard = int(attrs.get('guard_interval',""))
+				transm = int(attrs.get('transmission_mode',""))
+				hierarchy = int(attrs.get('hierarchy_information',""))
+				inv = int(attrs.get('inversion',""))
+				if self.parsedTer in self.transponders:
+					pass
+				else:
+					self.transponders[self.parsedTer] = [ ]
+
+				self.transponders[self.parsedTer].append((0, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
+
 	def getTransponders(self, pos):
 		return self.transponders[pos]
 
@@ -137,16 +192,31 @@ class NimManager:
 	def readSatsfromFile(self):
 		self.satellites = { }
 		self.transponders = { }
+		self.transponderscable = { }
+		self.transpondersterrestrial = { }		
 
-		print "Reading satellites.xml"
-		parser = make_parser()
-		satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
-		parser.setContentHandler(satHandler)
-		parser.parse('/etc/tuxbox/satellites.xml')
+		if (self.hasNimType(self.nimType["DVB-S"])):
+			print "Reading satellites.xml"
+			parser = make_parser()
+			satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
+			parser.setContentHandler(satHandler)
+			parser.parse('/etc/tuxbox/satellites.xml')
+		if (self.hasNimType(self.nimType["DVB-C"])):
+			print "Reading cables.xml"
+			cabHandler = self.parseCables(self.cablesList, self.transponderscable)
+			parser.setContentHandler(cabHandler)
+			parser.parse('/etc/tuxbox/cables.xml')
+
+		if (self.hasNimType(self.nimType["DVB-T"])):
+			print "Reading terrestrial.xml"
+			terHandler = self.parseTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
+			parser.setContentHandler(terHandler)
+			parser.parse('/etc/tuxbox/terrestrial.xml')
 		
 	def parseProc(self):
 		self.nimTypes = {}
 		self.nimNames = {}		
+		self.nimSocketCount = 0
 		nimfile = tryOpen("/proc/bus/nim_sockets")
 
 		if nimfile == "":
@@ -162,6 +232,7 @@ class NimManager:
 				parts = line.strip().split(" ")
 				id = int(parts[2][:1])
 				lastsocket = int(id)
+				self.nimSocketCount += 1
 			elif line.strip().startswith("Type:"):
 				self.nimTypes[lastsocket] = str(line.strip()[6:])
 			elif line.strip().startswith("Name:"):
@@ -180,8 +251,13 @@ class NimManager:
 		return self.nimNames[slotID]
 
 	def getNimSocketCount(self):
-		#FIXME get it from /proc
-		return 2
+		return self.nimSocketCount
+	
+	def hasNimType(self, chktype):
+		for id, type in self.nimTypes.items():
+			if (chktype == self.nimType[str(type)]):
+				return True
+		return False
 
 	def getConfigPrefix(self, slotid):
 		return "config.Nim" + ("A","B","C","D")[slotid] + "."
@@ -192,13 +268,15 @@ class NimManager:
 												"DVB-S": 0,
 												"DVB-C": 1,
 												"DVB-T": 2}
-		self.satList = [ ]										
+		self.satList = [ ]
+		self.cablesList = []
+		self.terrestrialsList = []
 												
-		self.readSatsfromFile()										
+		self.parseProc()
+
+		self.readSatsfromFile()							
 		
 		self.nimCount = self.getNimSocketCount()
-		
-		self.parseProc()
 		
 		self.nimslots = [ ]
 		x = 0
