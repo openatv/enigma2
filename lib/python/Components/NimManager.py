@@ -302,6 +302,10 @@ def InitNimManager(nimmgr):
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
+		elif slot.nimType == nimmgr.nimType["DVB-C"]:
+			pass
+		elif slot.nimType == nimmgr.nimType["DVB-T"]:
+			pass
 		else:
 			print "pls add support for this frontend type!"		
 
