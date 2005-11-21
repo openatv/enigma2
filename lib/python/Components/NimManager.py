@@ -143,43 +143,38 @@ class NimManager:
 		satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
 		parser.setContentHandler(satHandler)
 		parser.parse('/etc/tuxbox/satellites.xml')
-
-	def getNimType(self, slotID):
-		#FIXME get it from /proc
+		
+	def parseProc(self):
+		self.nimTypes = {}
+		self.nimNames = {}		
 		nimfile = tryOpen("/proc/bus/nim_sockets")
 
 		if nimfile == "":
-			# FIXME: remove this in the final version
-			# check if we have a device for 7020 comp?atibility reasons
-			try:
-				open("/dev/dvb/card0/frontend" + str(slotID))
-				return self.nimType["DVB-S"]
-			except IOError:
 				return self.nimType["empty/unknown"]
-
+			
+		lastsocket = -1
 
 		while 1:		
 			line = nimfile.readline()
 			if line == "":
 				break
-			if line.startswith("NIM Socket"):
+			if line.strip().startswith("NIM Socket"):
 				parts = line.strip().split(" ")
 				id = int(parts[2][:1])
-				if id == slotID:
-					line = nimfile.readline()
-					if line == "":
-						break
-					if line.startswith("   Type:"):
-						nimfile.close()
-						return self.nimType["DVB-S"]
-					else:
-						break	
+				lastsocket = int(id)
+			elif line.strip().startswith("Type:"):
+				self.nimTypes[lastsocket] = str(line.strip()[6:])
+			elif line.strip().startswith("Name:"):
+				self.nimNames[lastsocket] = str(line.strip()[6:])
+
 		nimfile.close()
-		return self.nimType["empty/unknown"]
+		
+
+	def getNimType(self, slotID):
+		return self.nimType[self.nimTypes[slotID]]
 
 	def getNimName(self, slotID):
-		#FIXME get it from /proc
-		return "Alps BSBE1"
+		return self.nimNames[slotID]
 
 	def getNimSocketCount(self):
 		#FIXME get it from /proc
@@ -199,6 +194,8 @@ class NimManager:
 		self.readSatsfromFile()										
 		
 		self.nimCount = self.getNimSocketCount()
+		
+		self.parseProc()
 		
 		self.nimslots = [ ]
 		x = 0
