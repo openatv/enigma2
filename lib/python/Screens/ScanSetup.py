@@ -182,14 +182,14 @@ class ScanSetup(Screen):
 
 			# terrestial
 			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("Auto", "off", "on"))
-			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, ("Auto", "6 MHz", "7MHz", "8MHz"))
-			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
-			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
-			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
-			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 0, ("Auto", "2K", "8K"))
-			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 0, ("Auto", "1/4", "1/8", "1/16", "1/32"))
-			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 0, ("Auto", "1", "2", "4"))
+			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, ("off", "on", "Auto"))
+			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 3, ("8MHz", "7MHz", "6MHz", "Auto"))
+			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "Auto"))
+			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 6, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "Auto"))
+			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 2, ("QPSK", "QAM16", "Auto"))
+			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 2, ("2K", "8K", "Auto"))
+			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 4, ("1/32", "1/16", "1/8", "1/4", "Auto"))
+			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 4, ("None", "1", "2", "4", "Auto"))
 
 			config.scan.scansat = {}
 			for sat in nimmanager.satList:
