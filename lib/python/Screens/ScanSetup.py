@@ -67,25 +67,57 @@ class ScanSetup(Screen):
 	def createSetup(self):
 		self.list = []
 
-		self.list.append(getConfigListEntry("Type of scan", config.scan.type))
-		self.list.append(getConfigListEntry("Tuner", config.scan.nims))
+		self.list.append(getConfigListEntry(_("Tuner"), config.scan.nims))
+		
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+			self.list.append(getConfigListEntry(_("Type of scan"), config.scan.type))
+		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+			self.list.append(getConfigListEntry(_("Type of scan"), config.scan.typecable))
+		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+			self.list.append(getConfigListEntry(_("Type of scan"), config.scan.typeterrestrial))
 
-		# single transponder scan
-		if (config.scan.type.value == 0):
-			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+			if (config.scan.type.value == 0): # single transponder scan
 				self.list.append(getConfigListEntry(_('Satellite'), config.scan.satselection[config.scan.nims.value]))
 				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
 				self.list.append(getConfigListEntry(_('Symbolrate'), config.scan.sat.symbolrate))
 				self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarization))
 				self.list.append(getConfigListEntry("FEC", config.scan.sat.fec))
-			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+			if (config.scan.type.value == 1): # single satellite scan
+				self.updateSatList()
+				print config.scan.satselection[config.scan.nims.value]
+				self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
+			if (config.scan.type.value == 2): # multi sat scan
+				# if (norotor)
+				tlist = []
+				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
+	
+				for x in SatList:
+					if self.Satexists(tlist, x[1]) == 0:
+						tlist.append(x[1])
+						sat = configElement_nonSave(x[1], configSelection, 0, ("Enable", "Disable"))
+						self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
+	
+				# if (rotor):
+    			   # for sat in nimmanager.satList:
+				#	self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))
+
+
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+			if (config.scan.typecable.value == 0): # single transponder
 				self.list.append(getConfigListEntry("Frequency", config.scan.cab.frequency))
 				self.list.append(getConfigListEntry("Inversion", config.scan.cab.inversion))
 				self.list.append(getConfigListEntry("Symbolrate", config.scan.cab.symbolrate))
 				self.list.append(getConfigListEntry("Modulation", config.scan.cab.modulation))
 				self.list.append(getConfigListEntry("FEC", config.scan.cab.fec))
-			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+			if (config.scan.typecable.value == 1): # complete
+				pass
+	
+				
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+			if (config.scan.typeterrestrial.value == 0): # single transponder
 				self.list.append(getConfigListEntry("Frequency", config.scan.ter.frequency))
 				self.list.append(getConfigListEntry("Inversion", config.scan.ter.inversion))
 				self.list.append(getConfigListEntry("Bandwidth", config.scan.ter.bandwidth))
@@ -95,30 +127,11 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry("Transmission mode", config.scan.ter.transmission))
 				self.list.append(getConfigListEntry("Guard interval mode", config.scan.ter.guard))
 				self.list.append(getConfigListEntry("Hierarchy mode", config.scan.ter.hierarchy))
-
-		# single satellite scan
-		print config.scan.satselection
-		if (config.scan.type.value == 1):
-			self.updateSatList()
-			print config.scan.satselection[config.scan.nims.value]
-			self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
+			if (config.scan.typeterrestrial.value == 1): # complete
+				pass
 
 
-		# multi sat scan
-		if (config.scan.type.value == 2):
-			# if (norotor)
-			tlist = []
-			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
 
-			for x in SatList:
-				if self.Satexists(tlist, x[1]) == 0:
-					tlist.append(x[1])
-					sat = configElement_nonSave(x[1], configSelection, 0, ("Enable", "Disable"))
-					self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
-
-			# if (rotor):
-		   # for sat in nimmanager.satList:
-			#	self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -131,9 +144,9 @@ class ScanSetup(Screen):
 
 	def newConfig(self):
 		print self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == "Type of scan":
+		if self["config"].getCurrent()[0] == _("Type of scan"):
 			self.createSetup()
-		if self["config"].getCurrent()[0] == "Tuner":
+		if self["config"].getCurrent()[0] == _("Tuner"):
 			self.createSetup()
 
 	def createConfig(self):
@@ -143,6 +156,9 @@ class ScanSetup(Screen):
 			config.scan.ter = ConfigSubsection()
 
 			config.scan.type = configElement_nonSave("config.scan.type", configSelection, 0, ("Single transponder", "Single satellite", "Multisat"))
+			config.scan.typecable = configElement_nonSave("config.scan.typecable", configSelection, 0, ("Single transponder", "Complete"))
+			config.scan.typeterrestrial = configElement_nonSave("config.scan.typeterrestrial", configSelection, 0, ("Single transponder", "Complete"))
+
 			nimList = [ ]
 			for nim in nimmanager.nimList():
 				nimList.append(nim[0])
