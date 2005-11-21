@@ -61,7 +61,8 @@ class ScanSetup(Screen):
 	def updateSatList(self):
 		self.satList = []
 		for slot in nimmanager.nimslots:
-			self.satList.append(nimmanager.getSatListForNim(slot.slotid))
+			if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
+				self.satList.append(nimmanager.getSatListForNim(slot.slotid))
 
 	def createSetup(self):
 		self.list = []
@@ -182,7 +183,8 @@ class ScanSetup(Screen):
 			config.scan.satselection = []
 			slotid = 0
 			for slot in nimmanager.nimslots:
-				config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, 0, self.satList[slot.slotid]))
+				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
+					config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, 0, self.satList[slot.slotid]))
 
 	def keyLeft(self):
 		self["config"].handleKey(config.key["prevElement"])
