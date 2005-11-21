@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-21 16:28+0100\n"
+"POT-Creation-Date: 2005-11-21 19:10+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,13 +30,17 @@ msgstr ""
 msgid "Add"
 msgstr "Hinzufuegen"
 
-#: ../lib/python/Components/NimManager.py:289
+#: ../lib/python/Components/NimManager.py:367
 msgid "Advanced"
 msgstr "Erweitert"
 
 #: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Bus: "
 msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:44
+msgid "Cable provider"
+msgstr "Kabelanbieter"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Capacity: "
@@ -46,8 +50,8 @@ msgstr "Kapazitaet"
 msgid "Classic"
 msgstr "klassisch"
 
-#: ../lib/python/Screens/Satconfig.py:30 ../lib/python/Screens/Satconfig.py:48
-#: ../lib/python/Screens/Satconfig.py:57 ../data/
+#: ../lib/python/Screens/Satconfig.py:31 ../lib/python/Screens/Satconfig.py:55
+#: ../lib/python/Screens/Satconfig.py:64 ../data/
 msgid "Configmode"
 msgstr "Konfigurationsmodus"
 
@@ -67,11 +71,11 @@ msgstr "Erkannte Festplatten"
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Components/NimManager.py:368
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Components/NimManager.py:368
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
@@ -85,7 +89,7 @@ msgstr ""
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/Satconfig.py:33 ../lib/python/Screens/Satconfig.py:46
+#: ../lib/python/Screens/Satconfig.py:34 ../lib/python/Screens/Satconfig.py:53
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
@@ -145,6 +149,10 @@ msgstr "Laengengrad"
 msgid "Model: "
 msgstr "Modell:"
 
+#: ../lib/python/Components/NimManager.py:241
+msgid "N/A"
+msgstr ""
+
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Nameserver"
 msgstr ""
@@ -169,7 +177,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Components/NimManager.py:368
 msgid "Positioner"
 msgstr "Motor"
 
@@ -177,15 +185,15 @@ msgstr "Motor"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Components/NimManager.py:289
+#: ../lib/python/Components/NimManager.py:367
 msgid "Simple"
 msgstr "Einfach"
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Components/NimManager.py:368
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Components/NimManager.py:217
+#: ../lib/python/Components/NimManager.py:295
 msgid "Socket "
 msgstr "Sockel "
 
@@ -197,7 +205,11 @@ msgstr "Das Abspielen dieses Films beenden?"
 msgid "Symbolrate"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Screens/Satconfig.py:46
+msgid "Terrestrial provider"
+msgstr "Region"
+
+#: ../lib/python/Components/NimManager.py:368
 msgid "Toneburst A/B"
 msgstr ""
 
@@ -206,7 +218,7 @@ msgstr ""
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
-#: ../lib/python/Components/NimManager.py:219
+#: ../lib/python/Components/NimManager.py:297
 msgid "empty/unknown"
 msgstr ""
 

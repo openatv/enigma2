@@ -364,14 +364,14 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode",configSelection, 0, (_("Simple"), _("Advanced")));
-			nim.diseqcMode = configElement(cname + "diseqcMode",configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
-			nim.diseqcA = configElement(cname + "diseqcA",configSatlist, 192, nimmgr.satList);
-			nim.diseqcB = configElement(cname + "diseqcB",configSatlist, 130, nimmgr.satList);
-			nim.diseqcC = configElement(cname + "diseqcC",configSatlist, 0, nimmgr.satList);
-			nim.diseqcD = configElement(cname + "diseqcD",configSatlist, 0, nimmgr.satList);
-			nim.longitude = configElement(cname + "longitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.latitude = configElement(cname + "latitude",configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Advanced")));
+			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
+			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
+			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
+			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
+			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
+			nim.longitude = configElement(cname + "longitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.latitude = configElement(cname + "latitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			
 			#perhaps the instance of the slot is more useful?
 			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
@@ -381,9 +381,9 @@ def InitNimManager(nimmgr):
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
-			pass
+			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
-			pass
+			nim.cable = configElement(cname + "terrestrial", configSelection, 0, nimmgr.terrestrialsList);
 		else:
 			print "pls add support for this frontend type!"		
 

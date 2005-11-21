@@ -39,6 +39,12 @@ class NimSetup(Screen):
 					self.createPositionerSetup(self.nim, self.list)
 			else:	
 				print "FIXME: implement advanced mode"
+		
+		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
+			self.list.append(getConfigListEntry(_("Cable provider"), config.Nims[self.nim.slotid].cable))
+		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-T"]):
+			self.list.append(getConfigListEntry(_("Terrestrial provider"), config.Nims[self.nim.slotid].terrestrial))
+
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
