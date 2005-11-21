@@ -182,7 +182,7 @@ class ScanSetup(Screen):
 
 			# terrestial
 			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("auto", "off", "on"))
+			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 0, ("Auto", "off", "on"))
 			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, ("Auto", "6 MHz", "7MHz", "8MHz"))
 			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
 			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
@@ -230,18 +230,16 @@ class ScanSetup(Screen):
 		tlist.append(parm)
 
 	# FIXME use correct parameters
-	def addCabTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position):
-		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
-		print "orbpos: " + str(orbital_position)
+	def addCabTransponder(self, tlist, frequency, symbol_rate, modulation, fec, inversion):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(modulation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		parm = eDVBFrontendParametersCable()
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti	
+		parm.modulation = modulation # eDVBFrontendParametersSatellite.Polarisation.Verti	
 		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
 		#parm.inversion = 2 		#AUTO
-		parm.orbital_position = int(orbital_position)
 		tlist.append(parm)
 
 	# FIXME use correct parameters
@@ -273,10 +271,9 @@ class ScanSetup(Screen):
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
 				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
 											  config.scan.cab.symbolrate.value[0],
-											  config.scan.cab.polarization.value,
+											  config.scan.cab.modulation.value,
 											  config.scan.cab.fec.value,
-											  config.scan.cab.inversion.value,
-											  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+											  config.scan.cab.inversion.value)
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 				self.addTerTransponder(tlist, config.scan.sat.frequency.value[0],
 											  config.scan.sat.symbolrate.value[0],
