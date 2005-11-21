@@ -27,17 +27,18 @@ class NimSetup(Screen):
 	def createSetup(self):
 		self.list = [ ]
 		
-		self.list.append(getConfigListEntry(_("Configmode"), config.Nims[self.nim.slotid].configMode))
-		
-		if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
-			self.list.append(getConfigListEntry(_("Diseqcmode"), config.Nims[self.nim.slotid].diseqcMode))
-		
-			if (0 <= config.Nims[self.nim.slotid].diseqcMode.value < 4):
-				self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
-			if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
-				self.createPositionerSetup(self.nim, self.list)
-		else:	
-			print "FIXME: implement advanced mode"
+		if (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-S"]):
+			self.list.append(getConfigListEntry(_("Configmode"), config.Nims[self.nim.slotid].configMode))
+			
+			if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
+				self.list.append(getConfigListEntry(_("Diseqcmode"), config.Nims[self.nim.slotid].diseqcMode))
+			
+				if (0 <= config.Nims[self.nim.slotid].diseqcMode.value < 4):
+					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
+				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
+					self.createPositionerSetup(self.nim, self.list)
+			else:	
+				print "FIXME: implement advanced mode"
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
