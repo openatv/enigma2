@@ -140,7 +140,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		printf("APPLICATION MANAGER\n");
 		break;
 	case 0x00030041:
-		session=slot->ca_manager=new eDVBCICAManagerSession;
+		session = new eDVBCICAManagerSession(slot);
 		printf("CA MANAGER\n");
 		break;
 	case 0x00240041:

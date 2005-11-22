@@ -14,7 +14,11 @@ class eDVBCICAManagerSession: public eDVBCISession
 	int receivedAPDU(const unsigned char *tag, const void *data, int len);
 	int doAction();
 public:
+	eDVBCICAManagerSession(eDVBCISlot *tslot);
+	~eDVBCICAManagerSession();
+
 	const std::vector<uint16_t> &getCAIDs() const { return caids; }
+	int sendCAPMT(unsigned char *pmt, int len);
 };
 
 #endif
