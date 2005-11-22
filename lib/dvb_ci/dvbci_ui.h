@@ -27,6 +27,7 @@ public:
 	int startMMI(int slot);
 	int stopMMI(int slot);
 	int availableMMI(int slot);
+	int getMMIState(int slot);
 
 	int answerMenu(int slot, int answer);
 	int answerEnq(int slot, int answer, char *val);
