@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 11:23+0100\n"
+"POT-Creation-Date: 2005-11-22 20:49+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../lib/python/Screens/About.py:25
 #, python-format
 msgid "%s (%s, %d MB free)"
-msgstr ""
+msgstr "%s (%s, %d MB frei)"
 
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Add"
@@ -93,6 +93,11 @@ msgstr "Aus"
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
+#: ../lib/python/Components/ServiceScan.py:35
+#, python-format
+msgid "ERROR - failed to scan (%s)!"
+msgstr ""
+
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -143,7 +148,7 @@ msgstr "Breitengrad"
 
 #: ../lib/python/Screens/Satconfig.py:41
 msgid "Linked to"
-msgstr ""
+msgstr "Verbunden mit"
 
 #: ../lib/python/Components/NimManager.py:369
 msgid "Linked tuner"
@@ -270,6 +275,23 @@ msgstr "keine Festplatte gefunden"
 #: ../lib/python/Screens/About.py:27
 msgid "none"
 msgstr "keins"
+
+#: ../lib/python/Components/ServiceScan.py:32
+msgid "scan done!"
+msgstr "Suche beendet."
+
+#: ../lib/python/Components/ServiceScan.py:29
+#, python-format
+msgid ""
+"scan in progress - %d %% done!\n"
+"%d services found!"
+msgstr ""
+"Suche laeuft - %d %% erledigt!\n"
+"%d Kanaele gefunden!"
+
+#: ../lib/python/Screens/ServiceScan.py:22
+msgid "scan state"
+msgstr "Status"
 
 #: ../lib/python/Screens/EventView.py:43
 msgid "unknown service"
