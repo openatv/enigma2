@@ -404,6 +404,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 #if 1
 // begin calc capmt length
 			int wp=0;
+			int hlen;
 			if ( raw_data[3] & 0x80 )
 			{
 				int i=0;
@@ -412,11 +413,13 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 					wp |= (raw_data[4+i] << (8 * i++));
 				wp+=4;
 				wp+=lenbytes;
+				hlen = 4 + lenbytes;
 			}
 			else
 			{
 				wp = raw_data[3];
 				wp+=4;
+				hlen = 4;
 			}
 // end calc capmt length
 			if (!ca_manager)
@@ -429,7 +432,8 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 #endif
 			if (ca_manager)
 			{
-				// TODO SEND buffer to CI ( add session number, add tag )
+				//dont need tag and lenfield
+				ca_manager->sendCAPMT(raw_data + hlen, wp - hlen);
 				prev_sent_capmt_version = pmt_version;
 			}
 		}

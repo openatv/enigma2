@@ -2,6 +2,17 @@
 
 #include <lib/dvb_ci/dvbci_camgr.h>
 
+eDVBCICAManagerSession::eDVBCICAManagerSession(eDVBCISlot *tslot)
+{
+	slot = tslot;
+	slot->ca_manager = this;
+}
+
+eDVBCICAManagerSession::~eDVBCICAManagerSession()
+{
+	slot->ca_manager = 0;
+}
+
 int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *data, int len)
 {
 	printf("SESSION(%d)/CA %02x %02x %02x: ", session_nb, tag[0], tag[1],tag[2]);
@@ -47,3 +58,12 @@ int eDVBCICAManagerSession::doAction()
 		return 0;
 	}
 }
+
+int eDVBCICAManagerSession::sendCAPMT(unsigned char *data, int len)
+{
+	int i;
+	const unsigned char tag[3]={0x9F, 0x80, 0x32}; // ca_pmt
+
+  sendAPDU(tag, data, len);
+}
+
