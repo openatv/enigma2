@@ -684,7 +684,8 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 #else
 		parm.u.qam.modulation = mod;
 #endif
-		switch (feparm.modulation)
+
+		switch (feparm.inversion)
 		{		
 		case eDVBFrontendParametersCable::Inversion::On:
 			#if HAVE_DVB_API_VERSION < 3
@@ -709,41 +710,49 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			parm.inversion =
 			#endif
 				INVERSION_AUTO;
-			break;						
+			break;
 		}
+		
+		fe_code_rate_t fec_inner;
 		switch (feparm.fec_inner)
 		{		
 		case eDVBFrontendParametersCable::FEC::fNone:
-			parm.u.qam.fec_inner = FEC_NONE;
+			fec_inner = FEC_NONE;
 			break;
 		case eDVBFrontendParametersCable::FEC::f1_2:
-			parm.u.qam.fec_inner = FEC_1_2;
+			fec_inner = FEC_1_2;
 			break;
 		case eDVBFrontendParametersCable::FEC::f2_3:
-			parm.u.qam.fec_inner = FEC_2_3;
+			fec_inner = FEC_2_3;
 			break;
 		case eDVBFrontendParametersCable::FEC::f3_4:
-			parm.u.qam.fec_inner = FEC_3_4;
+			fec_inner = FEC_3_4;
 			break;
 		case eDVBFrontendParametersCable::FEC::f4_5:
-			parm.u.qam.fec_inner = FEC_4_5;
+			fec_inner = FEC_4_5;
 			break;
 		case eDVBFrontendParametersCable::FEC::f5_6:
-			parm.u.qam.fec_inner = FEC_5_6;
+			fec_inner = FEC_5_6;
 			break;
 		case eDVBFrontendParametersCable::FEC::f6_7:
-			parm.u.qam.fec_inner = FEC_6_7;
+			fec_inner = FEC_6_7;
 			break;
 		case eDVBFrontendParametersCable::FEC::f7_8:
-			parm.u.qam.fec_inner = FEC_7_8;
+			fec_inner = FEC_7_8;
 			break;
 		case eDVBFrontendParametersCable::FEC::f8_9:
-			parm.u.qam.fec_inner = FEC_8_9;
+			fec_inner = FEC_8_9;
 			break;
 		case eDVBFrontendParametersCable::FEC::fAuto:
-			parm.u.qam.fec_inner = FEC_AUTO;
+			fec_inner = FEC_AUTO;
 			break;
 		}
+#if HAVE_DVB_API_VERSION < 3
+		parm.u.qam.FEC_inner = fec_inner;
+#else
+		parm.u.qam.fec_inner = fec_inner;
+#endif
+
 		break;
 	}
 	case feTerrestrial:
