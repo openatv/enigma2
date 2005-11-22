@@ -189,10 +189,10 @@ class NimManager:
 		self.transponders = { }
 		self.transponderscable = { }
 		self.transpondersterrestrial = { }		
-
+		
+		parser = make_parser()
 		if (self.hasNimType(self.nimType["DVB-S"])):
 			print "Reading satellites.xml"
-			parser = make_parser()
 			satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
 			parser.setContentHandler(satHandler)
 			parser.parse('/etc/tuxbox/satellites.xml')
