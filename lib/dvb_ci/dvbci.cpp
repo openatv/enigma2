@@ -123,6 +123,16 @@ int eDVBCIInterfaces::answerEnq(int slotid, int answer, char *value)
 	return slot->answerEnq(answer, value);
 }
 
+int eDVBCIInterfaces::getMMIState(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->getMMIState();
+}
+
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res;
@@ -266,6 +276,14 @@ int eDVBCISlot::answerText(int answer)
 
 	if(mmi_session)
 		mmi_session->answerText(answer);
+
+	return 0;
+}
+
+int eDVBCISlot::getMMIState()
+{
+	if(mmi_session)
+		return 1;
 
 	return 0;
 }
