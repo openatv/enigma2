@@ -275,7 +275,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 		ok = 0;
 		return;
 	}
-	eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*9);
+	eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*10);
 	ok = 1;
 
 	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
