@@ -13,6 +13,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		
 		self.onClose = [ ]
 		self.onExecBegin = [ ]
+		self.onShown = [ ]
 		
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
@@ -25,6 +26,9 @@ class Screen(dict, HTMLSkin, GUISkin):
 #		self.session = session
 		for (name, val) in self.items():
 			val.execBegin()
+
+		for x in self.onShown:
+			x()
 	
 	def execEnd(self):
 		for (name, val) in self.items():
