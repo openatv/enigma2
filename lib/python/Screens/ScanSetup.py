@@ -175,9 +175,9 @@ class ScanSetup(Screen):
 
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("auto", "off", "on"))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("Auto", "16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM"))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("Auto", "1/2", "2/3", "3/4", "4/5", "5/6", "7/8", "8/9"))
+			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("off", "on", "Auto"))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM", "Auto"))
+			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("None", "1/2", "2/3", "3/4", "4/5", "5/6", "6/7", "7/8", "8/9", "Auto"))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
 
 			# terrestial

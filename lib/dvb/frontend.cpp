@@ -648,7 +648,96 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		eDVBFrontendParametersCable feparm;
 		if (where.getDVBC(feparm))
 			return -EINVAL;
-		eFatal("cable tuning nyi");
+#if HAVE_DVB_API_VERSION < 3
+		parm.Frequency = feparm.frequency;
+#else
+		parm.frequency = feparm.frequency;
+#endif
+
+		parm.u.qam.symbol_rate = feparm.symbol_rate;
+
+		switch (feparm.modulation)
+		{
+		case eDVBFrontendParametersCable::Modulation::QAM16:
+			parm.u.qam.modulation = QAM_16;
+			break;
+		case eDVBFrontendParametersCable::Modulation::QAM32:
+			parm.u.qam.modulation = QAM_32;
+			break;
+		case eDVBFrontendParametersCable::Modulation::QAM64:
+			parm.u.qam.modulation = QAM_64;
+			break;
+		case eDVBFrontendParametersCable::Modulation::QAM128:
+			parm.u.qam.modulation = QAM_128;
+			break;
+		case eDVBFrontendParametersCable::Modulation::QAM256:
+			parm.u.qam.modulation = QAM_256;
+			break;			
+		case eDVBFrontendParametersCable::Modulation::Auto:
+			parm.u.qam.modulation = QAM_AUTO;
+			break;			
+		}
+		switch (feparm.modulation)
+		{		
+		case eDVBFrontendParametersCable::Inversion::On:
+			#if HAVE_DVB_API_VERSION < 3
+			parm.Inversion =
+			#else
+			parm.inversion =
+			#endif
+				INVERSION_ON;
+			break;
+		case eDVBFrontendParametersCable::Inversion::Off:
+			#if HAVE_DVB_API_VERSION < 3
+			parm.Inversion =
+			#else
+			parm.inversion =
+			#endif
+				INVERSION_OFF;
+			break;
+		case eDVBFrontendParametersCable::Inversion::Unknown:
+			#if HAVE_DVB_API_VERSION < 3
+			parm.Inversion =
+			#else
+			parm.inversion =
+			#endif
+				INVERSION_AUTO;
+			break;						
+		}
+		switch (feparm.fec_inner)
+		{		
+		case eDVBFrontendParametersCable::FEC::fNone:
+			parm.u.qam.fec_inner = FEC_NONE;
+			break;
+		case eDVBFrontendParametersCable::FEC::f1_2:
+			parm.u.qam.fec_inner = FEC_1_2;
+			break;
+		case eDVBFrontendParametersCable::FEC::f2_3:
+			parm.u.qam.fec_inner = FEC_2_3;
+			break;
+		case eDVBFrontendParametersCable::FEC::f3_4:
+			parm.u.qam.fec_inner = FEC_3_4;
+			break;
+		case eDVBFrontendParametersCable::FEC::f4_5:
+			parm.u.qam.fec_inner = FEC_4_5;
+			break;
+		case eDVBFrontendParametersCable::FEC::f5_6:
+			parm.u.qam.fec_inner = FEC_5_6;
+			break;
+		case eDVBFrontendParametersCable::FEC::f6_7:
+			parm.u.qam.fec_inner = FEC_6_7;
+			break;
+		case eDVBFrontendParametersCable::FEC::f7_8:
+			parm.u.qam.fec_inner = FEC_7_8;
+			break;
+		case eDVBFrontendParametersCable::FEC::f8_9:
+			parm.u.qam.fec_inner = FEC_8_9;
+			break;
+		case eDVBFrontendParametersCable::FEC::fAuto:
+			parm.u.qam.fec_inner = FEC_AUTO;
+			break;
+		}
+		break;
 	}
 	case feTerrestrial:
 	{

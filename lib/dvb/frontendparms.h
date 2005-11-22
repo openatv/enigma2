@@ -34,6 +34,24 @@ struct eDVBFrontendParametersSatellite
 
 struct eDVBFrontendParametersCable
 {
+	struct Inversion
+	{
+		enum {
+			On, Off, Unknown
+		};
+	};
+	struct FEC
+	{
+		enum {
+			fNone, f1_2, f2_3, f3_4, f4_5, f5_6, f6_7, f7_8, f8_9, fAuto
+		};
+	};
+	struct Modulation {
+		enum {
+			QAM16, QAM32, QAM64, QAM128, QAM256, Auto
+		};
+	};
+		
 	unsigned int frequency, symbol_rate;
 	int modulation, inversion, fec_inner;
 #ifndef SWIG
