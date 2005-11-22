@@ -26,13 +26,13 @@ class ServiceScan:
 					self.state = self.Error
 					self.errorcode = errcode
 			else:
-				self.text.setText("scan in progress - %d %% done!\n%d services found!" % (self.scan.getProgress(), self.scan.getNumServices()))
+				self.text.setText(_("scan in progress - %d %% done!\n%d services found!") % (self.scan.getProgress(), self.scan.getNumServices()))
 		
 		if self.state == self.Done:
-			self.text.setText("scan done!")
+			self.text.setText(_("scan done!"))
 		
 		if self.state == self.Error:
-			self.text.setText("ERROR - failed to scan (%s)!" % (self.Errors[self.errorcode]) )
+			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
 	
 	def __init__(self, progressbar, text, transponders, feid, flags):
 		self.progressbar = progressbar
