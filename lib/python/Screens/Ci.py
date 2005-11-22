@@ -110,6 +110,10 @@ class CiMmi(Screen):
 		#module still there ?			
 		if eDVBCI_UI.getInstance().getState(self.slotid) != 2:
 			self.closeMmi()
+
+		#mmi session still active ?			
+		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
+			self.closeMmi()
 			
 		#new screen available?	
 		if eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
