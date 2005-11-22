@@ -1,4 +1,6 @@
 from Screen import Screen
+import ChannelSelection
+from ServiceReference import ServiceReference
 from Components.config import *
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
@@ -6,7 +8,6 @@ from Components.NimManager import nimmanager
 from Components.Label import Label
 import time
 import datetime
-from math import log
 
 class TimerEntry(Screen):
 	def __init__(self, session, timer):
@@ -146,7 +147,7 @@ class TimerEntry(Screen):
 			self.list.append(getConfigListEntry("EndDate", config.timerentry.enddate))
 		self.list.append(getConfigListEntry("EndTime", config.timerentry.endtime))
 
-		self.list.append(getConfigListEntry("Channel", config.timerentry.service))
+		self.list.append(getConfigListEntry(_("Channel"), config.timerentry.service))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -173,7 +174,13 @@ class TimerEntry(Screen):
 		self.newConfig()
 		
 	def keySelect(self):
-		pass
+		if self["config"].getCurrent()[0] == _("Channel"):
+			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
+
+	def finishedChannelSelection(self, args):
+		self.timer.service_ref = ServiceReference(args)
+		config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
+		self["config"].invalidate(config.timerentry.service)
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
