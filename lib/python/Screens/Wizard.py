@@ -21,7 +21,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 
 
-		self["text"] = Label(_("Welcome!\n\nYou can always press the help key!\n\nPlease Note: Make a service search first!"));
+		self["text"] = Label(_("Welcome!\n\nYou can always press the help key!\n\nPlease Note: Do a service search first!"));
 		
 		self["actions"] = HelpableActionMap(self, "OkCancelActions",
 			{
