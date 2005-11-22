@@ -374,3 +374,10 @@ class ChannelSelection(Screen):
 			refstr = ""
 		config.tv.lastservice.value = refstr
 		config.tv.lastservice.save()
+
+class SimpleChannelSelection(ChannelSelection):
+	def __init__(self, session, args):
+		ChannelSelection.__init__(self, session)
+		self.args = args
+		
+		
