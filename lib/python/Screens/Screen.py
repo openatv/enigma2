@@ -12,12 +12,15 @@ class Screen(dict, HTMLSkin, GUISkin):
 		GUISkin.__init__(self)
 		
 		self.onClose = [ ]
+		self.onExecBegin = [ ]
 		
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
 		self.helpList = [ ]
 		
 	def execBegin(self):
+		for x in self.onExecBegin:
+			x()
 #		assert self.session == None, "a screen can only exec one per time"
 #		self.session = session
 		for (name, val) in self.items():

@@ -90,6 +90,7 @@ class InfoBarShowHide:
 	STATE_SHOWN = 3
 	
 	def __init__(self):
+		print "INFOBARSHOWHIDE init"
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
 				"toggleShow": self.toggleShow,
@@ -98,19 +99,25 @@ class InfoBarShowHide:
 
 		self.state = self.STATE_SHOWN
 		
+		self.onExecBegin.append(self.show)
 		self.onClose.append(self.delHideTimer)
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
-		self.hideTimer.start(1000)
+		self.hideTimer.start(5000)
 
 	def delHideTimer(self):
 		del self.hideTimer
 
 	def hide(self):	
 		self.instance.hide()
+		
+	def show(self):
+		self.state = self.STATE_SHOWN
+		self.hideTimer.start(5000)
 
 	def doTimerHide(self):
+		self.hideTimer.stop()
 		if self.state == self.STATE_SHOWN:
 			self.instance.hide()
 			self.state = self.STATE_HIDDEN
@@ -120,14 +127,12 @@ class InfoBarShowHide:
 			self.instance.hide()
 			#pls check animation support, sorry
 #			self.startHide()
+			self.hideTimer.stop()
 			self.state = self.STATE_HIDDEN
-		else:
+		elif self.state == self.STATE_HIDDEN:
 			self.instance.show()
-#			self.startShow()
-			self.state = self.STATE_SHOWN
-			#TODO: make it customizable
-			self.hideTimer.start(5000)
-
+			self.show()
+			
 	def startShow(self):
 		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
 		self.state = self.STATE_SHOWN
