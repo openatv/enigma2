@@ -652,9 +652,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		parm.Frequency = feparm.frequency * 1000;
 #else
 		parm.frequency = feparm.frequency * 1000;
+		parm.u.qam.symbol_rate = feparm.symbol_rate;
 #endif
 
-		parm.u.qam.symbol_rate = feparm.symbol_rate;
+
 
 		switch (feparm.modulation)
 		{
