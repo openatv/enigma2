@@ -650,34 +650,40 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			return -EINVAL;
 #if HAVE_DVB_API_VERSION < 3
 		parm.Frequency = feparm.frequency * 1000;
+		parm.u.qam.SymbolRate = feparm.symbol_rate;
 #else
 		parm.frequency = feparm.frequency * 1000;
 		parm.u.qam.symbol_rate = feparm.symbol_rate;
 #endif
 
 
-
+		fe_modulation_t mod;
 		switch (feparm.modulation)
 		{
 		case eDVBFrontendParametersCable::Modulation::QAM16:
-			parm.u.qam.modulation = QAM_16;
+			mod = QAM_16;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM32:
-			parm.u.qam.modulation = QAM_32;
+			mod = QAM_32;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM64:
-			parm.u.qam.modulation = QAM_64;
+			mod = QAM_64;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM128:
-			parm.u.qam.modulation = QAM_128;
+			mod = QAM_128;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM256:
-			parm.u.qam.modulation = QAM_256;
+			mod = QAM_256;
 			break;			
 		case eDVBFrontendParametersCable::Modulation::Auto:
-			parm.u.qam.modulation = QAM_AUTO;
+			mod = QAM_AUTO;
 			break;			
 		}
+#if HAVE_DVB_API_VERSION < 3
+		parm.u.qam.QAM = mod;
+#else
+		parm.u.qam.modulation = mod;
+#endif
 		switch (feparm.modulation)
 		{		
 		case eDVBFrontendParametersCable::Inversion::On:
