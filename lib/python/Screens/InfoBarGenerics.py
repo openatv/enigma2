@@ -114,6 +114,7 @@ class InfoBarShowHide:
 		
 	def show(self):
 		self.state = self.STATE_SHOWN
+		self.hideTimer.stop()
 		self.hideTimer.start(5000)
 
 	def doTimerHide(self):
@@ -272,11 +273,15 @@ class InfoBarChannelSelection:
 	def	zapUp(self):
 		self.servicelist.moveUp()
 		self.servicelist.zap()
+		self.instance.show()
+		self.show()
 
 	def	zapDown(self):
 		self.servicelist.moveDown()
 		self.servicelist.zap()
-
+		self.instance.show()
+		self.show()
+		
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
