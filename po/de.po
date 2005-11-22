@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 02:41+0100\n"
+"POT-Creation-Date: 2005-11-22 11:23+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,15 +30,11 @@ msgstr ""
 msgid "Add"
 msgstr "Hinzufuegen"
 
-#: ../lib/python/Components/NimManager.py:362
-msgid "Advanced"
-msgstr "Erweitert"
-
 #: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Bus: "
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:44
+#: ../lib/python/Screens/Satconfig.py:46
 msgid "Cable provider"
 msgstr "Kabelanbieter"
 
@@ -54,8 +50,8 @@ msgstr "klassisch"
 msgid "Close this Screen..."
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:31 ../lib/python/Screens/Satconfig.py:55
-#: ../lib/python/Screens/Satconfig.py:64 ../data/
+#: ../lib/python/Screens/Satconfig.py:31 ../lib/python/Screens/Satconfig.py:57
+#: ../data/
 msgid "Configmode"
 msgstr "Konfigurationsmodus"
 
@@ -75,11 +71,11 @@ msgstr "Erkannte Festplatten"
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
-#: ../lib/python/Components/NimManager.py:363
+#: ../lib/python/Components/NimManager.py:370
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:363
+#: ../lib/python/Components/NimManager.py:370
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
@@ -93,7 +89,7 @@ msgstr ""
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/Satconfig.py:34 ../lib/python/Screens/Satconfig.py:53
+#: ../lib/python/Screens/Satconfig.py:34 ../lib/python/Screens/Satconfig.py:55
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
@@ -145,6 +141,14 @@ msgstr ""
 msgid "Latitude"
 msgstr "Breitengrad"
 
+#: ../lib/python/Screens/Satconfig.py:41
+msgid "Linked to"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:369
+msgid "Linked tuner"
+msgstr "Verbundene Tuner"
+
 #: ../lib/python/Screens/Satconfig.py:23 ../data/
 msgid "Longitude"
 msgstr "Laengengrad"
@@ -155,7 +159,7 @@ msgstr "Modell:"
 
 #: ../lib/python/Components/NimManager.py:236
 msgid "N/A"
-msgstr ""
+msgstr "Nicht verfuegbar"
 
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Nameserver"
@@ -181,7 +185,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:363
+#: ../lib/python/Components/NimManager.py:370
 msgid "Positioner"
 msgstr "Motor"
 
@@ -189,15 +193,19 @@ msgstr "Motor"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Components/NimManager.py:362
+#: ../lib/python/Components/NimManager.py:369
 msgid "Simple"
 msgstr "Einfach"
 
-#: ../lib/python/Components/NimManager.py:363
+#: ../lib/python/Components/NimManager.py:370
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Components/NimManager.py:290
+#: ../lib/python/Components/NimManager.py:381
+msgid "Slot "
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:297
 msgid "Socket "
 msgstr "Sockel "
 
@@ -209,11 +217,11 @@ msgstr "Das Abspielen dieses Films beenden?"
 msgid "Symbolrate"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:46
+#: ../lib/python/Screens/Satconfig.py:48
 msgid "Terrestrial provider"
 msgstr "Region"
 
-#: ../lib/python/Components/NimManager.py:363
+#: ../lib/python/Components/NimManager.py:370
 msgid "Toneburst A/B"
 msgstr ""
 
@@ -247,9 +255,9 @@ msgstr ""
 "\n"
 "Bitte zuerst eine Kanalsuche durchfuehren!"
 
-#: ../lib/python/Components/NimManager.py:292
+#: ../lib/python/Components/NimManager.py:299
 msgid "empty/unknown"
-msgstr ""
+msgstr "leer/unbekannt"
 
 #: ../lib/python/Components/Network.py:134
 msgid "no"
@@ -266,10 +274,6 @@ msgstr "keins"
 #: ../lib/python/Screens/EventView.py:43
 msgid "unknown service"
 msgstr "unbekannter Service"
-
-#: ../lib/python/Screens/Ci.py:47
-msgid "waiting for CI..."
-msgstr ""
 
 #: ../lib/python/Components/EventInfo.py:43
 msgid "waiting for event data..."
@@ -378,7 +382,7 @@ msgstr ""
 
 #: ../data/
 msgid "VCR Switch"
-msgstr ""
+msgstr "Videorekorderumschaltung"
 
 #: ../data/
 msgid "use power delta"
@@ -470,7 +474,7 @@ msgstr "Zeitzone"
 
 #: ../data/
 msgid "Message"
-msgstr ""
+msgstr "Nachricht"
 
 #: ../data/
 msgid "About..."
@@ -518,7 +522,7 @@ msgstr "Neustart"
 
 #: ../data/
 msgid "AC3 default"
-msgstr ""
+msgstr "AC3 standardmaessig"
 
 #: ../data/
 msgid "Timer entry"
@@ -651,3 +655,6 @@ msgstr "Ton"
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
+#~ msgid "Advanced"
+#~ msgstr "Erweitert"
