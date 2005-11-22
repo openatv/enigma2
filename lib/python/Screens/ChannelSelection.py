@@ -376,9 +376,9 @@ class ChannelSelection(Screen):
 		config.tv.lastservice.save()
 
 class SimpleChannelSelection(ChannelSelection):
-	def __init__(self, session, args):
+	def __init__(self, session, title):
 		ChannelSelection.__init__(self, session)
-		self.args = args
+		self.title = title
 		
 	def channelSelected(self): # just return selected service
 		ref = self.servicelist.getCurrent()

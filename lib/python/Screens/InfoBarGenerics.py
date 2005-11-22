@@ -90,7 +90,6 @@ class InfoBarShowHide:
 	STATE_SHOWN = 3
 	
 	def __init__(self):
-		print "INFOBARSHOWHIDE init"
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
 				"toggleShow": self.toggleShow,
