@@ -18,6 +18,8 @@ from Tools import XMLTools
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+from Tools.BoundFunction import boundFunction
+
 def tryOpen(filename):
 	try:
 		procFile = open(filename)
@@ -84,13 +86,6 @@ class SecConfigure:
 		self.NimManager = nimmgr
 		self.update()
 		
-class boundFunction:
-	def __init__(self, fnc, *args):
-		self.fnc = fnc
-		self.args = args
-	def __call__(self, *args):
-		self.fnc(*self.args + args)
-
 class nimSlot:
 	def __init__(self, slotid, nimtype, name):
 		self.slotid = slotid
