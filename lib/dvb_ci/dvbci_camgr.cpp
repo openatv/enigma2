@@ -18,7 +18,7 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 			for (int i=0; i<len; i+=2)
 			{
 				printf("%04x ", (((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
-				caids.insert((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
+				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
 			printf("\n");
 			break;

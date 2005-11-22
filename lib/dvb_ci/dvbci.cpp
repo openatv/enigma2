@@ -6,12 +6,15 @@
 #include <lib/base/ebase.h>
 
 #include <lib/base/eerror.h>
+#include <lib/dvb/pmt.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_session.h>
-
+#include <lib/dvb_ci/dvbci_camgr.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/dvb_ci/dvbci_appmgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
+
+#include <dvbsi++/ca_program_map_section.h>
 
 eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 
@@ -123,6 +126,80 @@ int eDVBCIInterfaces::answerEnq(int slotid, int answer, char *value)
 	return slot->answerEnq(answer, value);
 }
 
+void eDVBCIInterfaces::addPMTHandler(eDVBServicePMTHandler *pmthandler)
+{
+	CIPmtHandler new_handler(pmthandler);
+
+	eServiceReferenceDVB service;
+	pmthandler->getService(service);
+
+	PMTHandlerSet::iterator it = m_pmt_handlers.begin();
+	while (it != m_pmt_handlers.end())
+	{
+		eServiceReferenceDVB ref;
+		it->pmthandler->getService(ref);
+		if ( service == ref && it->usedby )
+			new_handler.usedby = it->usedby;
+		break;
+	}
+	m_pmt_handlers.insert(new_handler);
+}
+
+void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
+{
+	PMTHandlerSet::iterator it=m_pmt_handlers.find(pmthandler);
+	if (it != m_pmt_handlers.end())
+	{
+		eDVBCISlot *slot = it->usedby;
+		eDVBServicePMTHandler *pmthandler = it->pmthandler;
+		m_pmt_handlers.erase(it);
+		if (slot)
+		{
+			eServiceReferenceDVB removed_service;
+			pmthandler->getService(removed_service);
+			PMTHandlerSet::iterator it=m_pmt_handlers.begin();
+			while (it != m_pmt_handlers.end())
+			{
+				eServiceReferenceDVB ref;
+				it->pmthandler->getService(ref);
+				if (ref == removed_service)
+					break;
+				++it;
+			}
+			if ( it == m_pmt_handlers.end() && slot->getPrevSentCAPMTVersion() != 0xFF  )
+			{
+				std::vector<uint16_t> caids;
+				caids.push_back(0xFFFF);
+				slot->sendCAPMT(pmthandler, caids);
+			}
+		}
+	}
+}
+
+void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
+{
+	eDebug("[eDVBCIInterfaces] gotPMT");
+	PMTHandlerSet::iterator it=m_pmt_handlers.find(pmthandler);
+	eServiceReferenceDVB service;
+	if ( it != m_pmt_handlers.end() )
+	{
+		eDebug("[eDVBCIInterfaces] usedby %p", it->usedby);
+		if (!it->usedby)
+		{
+			// HACK this assigns ALL RUNNING SERVICES to the first free CI !!!
+			for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
+			{
+				eDVBCISlot **usedby = &it->usedby;
+				*usedby = ci_it;
+				(*usedby)->resetPrevSentCAPMTVersion();
+				break;
+			}
+		}
+		if (it->usedby)
+			it->usedby->sendCAPMT(pmthandler);
+	}
+}
+
 int eDVBCIInterfaces::getMMIState(int slotid)
 {
 	eDVBCISlot *slot;
@@ -205,6 +282,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 	application_manager = 0;
 	mmi_session = 0;
+	ca_manager = 0;
 	
 	slotid = nr;
 
@@ -292,6 +370,71 @@ int eDVBCISlot::answerEnq(int answer, char *value)
 {
 	printf("edvbcislot: answerMMI(%d,%s)\n", answer, value);
 	return 0;
+}
+
+int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<uint16_t> &ids)
+{
+	const std::vector<uint16_t> &caids = ids.empty() && ca_manager ? ca_manager->getCAIDs() : ids;
+	ePtr<eTable<ProgramMapSection> > ptr;
+	if (pmthandler->getPMT(ptr))
+		return -1;
+	else
+	{
+		eDVBTableSpec table_spec;
+		ptr->getSpec(table_spec);
+		int pmt_version = table_spec.version & 0x1F; // just 5 bits
+		if ( pmt_version == prev_sent_capmt_version )
+		{
+			eDebug("[eDVBCISlot] dont sent self capmt version twice");
+			return -1;
+		}
+		std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
+		if ( i == ptr->getSections().end() )
+			return -1;
+		else
+		{
+			unsigned char raw_data[2048];
+			CaProgramMapSection capmt(*i++, prev_sent_capmt_version != 0xFF ? 0x05 /*update*/ : 0x03 /*only*/, 0x01, caids );
+			while( i != ptr->getSections().end() )
+			{
+		//			eDebug("append");
+				capmt.append(*i++);
+			}
+			capmt.writeToBuffer(raw_data);
+#if 1
+// begin calc capmt length
+			int wp=0;
+			if ( raw_data[3] & 0x80 )
+			{
+				int i=0;
+				int lenbytes = raw_data[3] & ~0x80;
+				while(i < lenbytes)
+					wp |= (raw_data[4+i] << (8 * i++));
+				wp+=4;
+				wp+=lenbytes;
+			}
+			else
+			{
+				wp = raw_data[3];
+				wp+=4;
+			}
+// end calc capmt length
+			if (!ca_manager)
+				eDebug("no ca_manager !!! dump unfiltered capmt:");
+			else
+				eDebug("ca_manager %p dump capmt:", ca_manager);
+			for(int i=0;i<wp;i++)
+				eDebugNoNewLine("%02x ", raw_data[i]);
+			eDebug("");
+#endif
+			if (ca_manager)
+			{
+				// TODO SEND buffer to CI ( add session number, add tag )
+				prev_sent_capmt_version = pmt_version;
+			}
+		}
+	}
+	
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");

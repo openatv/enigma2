@@ -3,10 +3,13 @@
 
 #include <lib/base/ebase.h>
 
+#include <set>
+
 class eDVBCISession;
 class eDVBCIApplicationManagerSession;
 class eDVBCICAManagerSession;
 class eDVBCIMMISession;
+class eDVBServicePMTHandler;
 
 class eDVBCISlot: public iObject, public Object
 {
@@ -18,7 +21,8 @@ private:
 	eSocketNotifier *notifier;
 
 	int state;
-	enum {stateRemoved, stateInserted};	
+	enum {stateRemoved, stateInserted};
+	uint8_t prev_sent_capmt_version;
 public:
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
@@ -37,7 +41,28 @@ public:
 	int answerText(int answer);
 	int answerEnq(int answer, char *value);
 	int getMMIState();
+	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
+	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
+	void resetPrevSentCAPMTVersion() { prev_sent_capmt_version = 0xFF; }
 };
+
+struct CIPmtHandler
+{
+	eDVBServicePMTHandler *pmthandler;
+	eDVBCISlot *usedby;
+	CIPmtHandler()
+		:pmthandler(NULL), usedby(NULL)
+	{}
+	CIPmtHandler( const CIPmtHandler &x )
+		:pmthandler(x.pmthandler), usedby(x.usedby)
+	{}
+	CIPmtHandler( eDVBServicePMTHandler *ptr )
+		:pmthandler(ptr), usedby(NULL)
+	{}
+	bool operator<(const CIPmtHandler &x) const { return x.pmthandler < pmthandler; }
+};
+
+typedef std::set<CIPmtHandler> PMTHandlerSet;
 
 class eDVBCIInterfaces
 {
@@ -46,9 +71,15 @@ DECLARE_REF(eDVBCIInterfaces);
 private:
 	eSmartPtrList<eDVBCISlot>	m_slots;
 	eDVBCISlot *getSlot(int slotid);
+
+	PMTHandlerSet m_pmt_handlers; 
 public:
 	eDVBCIInterfaces();
 	~eDVBCIInterfaces();
+
+	void addPMTHandler(eDVBServicePMTHandler *pmthandler);
+	void removePMTHandler(eDVBServicePMTHandler *pmthandler);
+	void gotPMT(eDVBServicePMTHandler *pmthandler);
 
 	static eDVBCIInterfaces *getInstance();
 	

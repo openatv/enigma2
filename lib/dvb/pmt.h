@@ -108,8 +108,11 @@ public:
 	int getProgramInfo(struct program &program);
 	int getDemux(ePtr<iDVBDemux> &demux);
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
-	
-	int tune(eServiceReferenceDVB &ref);	
+	int getService(eServiceReferenceDVB &service) { service = m_reference; return 0; }
+	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
+	int getChannel(eUsePtr<iDVBChannel> &channel);
+
+	int tune(eServiceReferenceDVB &ref);
 };
 
 #endif
