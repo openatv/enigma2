@@ -25,7 +25,7 @@ eDVBServicePMTHandler::~eDVBServicePMTHandler()
 		m_demux->getCADemuxID(demux_num);
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAService::unregister_demux(m_reference, demux_num, ptr);
+		eDVBCAService::unregister_service(m_reference, demux_num, ptr);
 	}
 }
 
@@ -73,7 +73,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 		{
 			uint8_t demux_num;
 			m_demux->getCADemuxID(demux_num);
-			eDVBCAService::register_demux(m_reference, demux_num, m_ca_servicePtr);
+			eDVBCAService::register_service(m_reference, demux_num, m_ca_servicePtr);
 		}
 		if (m_ca_servicePtr)
 		{
@@ -286,7 +286,7 @@ eDVBCAService::~eDVBCAService()
 	::close(m_sock);
 }
 
-RESULT eDVBCAService::register_demux( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice )
+RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice )
 {
 	CAServiceMap::iterator it = exist.find(ref);
 	if ( it != exist.end() )
@@ -316,7 +316,7 @@ RESULT eDVBCAService::register_demux( const eServiceReferenceDVB &ref, int demux
 	return 0;
 }
 
-RESULT eDVBCAService::unregister_demux( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr )
+RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr )
 {
 	CAServiceMap::iterator it = exist.find(ref);
 	if ( it == exist.end() )
@@ -394,6 +394,7 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	uint8_t demux_mask = 0;
 	uint8_t first_demux_num = 0xFF;
 
+#if 1
 	int iter=0, max_demux_slots = sizeof(m_used_demux);
 	while ( iter < max_demux_slots )
 	{
@@ -405,6 +406,10 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		}
 		++iter;
 	}
+#else
+	demux_mask = 3;
+	first_demux_num = 0;
+#endif
 
 	if ( first_demux_num == 0xFF )
 	{
@@ -446,8 +451,8 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
-		tmp[3] = first_demux_num; // read section data from demux number
 		tmp[2] = demux_mask;	// descramble bitmask
+		tmp[3] = first_demux_num; // read section data from demux number
 		capmt.injectDescriptor(tmp, false);
 
 		tmp[0] = 0x81; // dvbnamespace

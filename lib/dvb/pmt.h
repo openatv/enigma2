@@ -37,8 +37,8 @@ class eDVBCAService: public Object
 	eDVBCAService();
 	~eDVBCAService();
 public:
-	static RESULT register_demux( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice );
-	static RESULT unregister_demux( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr );
+	static RESULT register_service( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice );
+	static RESULT unregister_service( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr );
 	void buildCAPMT(eTable<ProgramMapSection> *ptr);
 };
 
