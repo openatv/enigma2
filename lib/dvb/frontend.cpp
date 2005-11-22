@@ -649,9 +649,9 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (where.getDVBC(feparm))
 			return -EINVAL;
 #if HAVE_DVB_API_VERSION < 3
-		parm.Frequency = feparm.frequency;
+		parm.Frequency = feparm.frequency * 1000;
 #else
-		parm.frequency = feparm.frequency;
+		parm.frequency = feparm.frequency * 1000;
 #endif
 
 		parm.u.qam.symbol_rate = feparm.symbol_rate;

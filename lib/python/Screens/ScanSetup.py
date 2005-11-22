@@ -168,16 +168,15 @@ class ScanSetup(Screen):
 			# sat
 			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (10000, 14000)))
 			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, ("on", "off", "auto"))
-			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 30000)))
+			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 9999)))
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, ("horizontal", "vertical",  "circular left", "circular right"))
 			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "auto"))
 
-
 			# cable
-			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 0, ("off", "on", "Auto"))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, ("16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM", "Auto"))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, ("None", "1/2", "2/3", "3/4", "4/5", "5/6", "6/7", "7/8", "8/9", "Auto"))
+			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 9999)))
+			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, ("off", "on", "Auto"))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, ("16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM", "Auto"))
+			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 9, ("None", "1/2", "2/3", "3/4", "4/5", "5/6", "6/7", "7/8", "8/9", "Auto"))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
 
 			# terrestial
