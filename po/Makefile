@@ -37,6 +37,7 @@ enigma2.pot:
 			../lib/python/Screens/Wizard.py \
 			../lib/python/Screens/ServiceScan.py \
 			../lib/python/Components/ServiceScan.py \
+			../lib/python/Components/Lcd.py \
 			../lib/python/Components/SetupDevices.py \
 			../lib/python/Components/Language.py \
 			../lib/python/Components/NimManager.py \
