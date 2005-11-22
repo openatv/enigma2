@@ -645,6 +645,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	}
 	case feCable:
 	{
+#if HAVE_DVB_API_VERSION >= 3
 		eDVBFrontendParametersCable feparm;
 		if (where.getDVBC(feparm))
 			return -EINVAL;
@@ -752,7 +753,9 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 #else
 		parm.u.qam.fec_inner = fec_inner;
 #endif
-
+#else
+		eFatal("Old API not fully supported");
+#endif // old api
 		break;
 	}
 	case feTerrestrial:
