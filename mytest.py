@@ -16,6 +16,8 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Components.config import configfile
+from Screens.Wizard import listActiveWizards
+from Tools.BoundFunction import boundFunction
 
 had = dict()
 
@@ -94,9 +96,12 @@ class Session:
 		# creates an instance of 'screen' (which is a class)
 		try:
 			return screen(self, *arguments)
-		except TypeError, x:
-			errstr = "Screen %s(%s): %s" % (str(screen), str(arguments), str(x))
-			raise TypeError(errstr)
+		except:
+			errstr = "Screen %s(%s): %s" % (str(screen), str(arguments), sys.exc_info()[0])
+			print errstr
+			traceback.print_exc(file=sys.stdout)
+			quitMainloop(5)
+			
 	
 	def instantiateDialog(self, screen, *arguments):
 		# create dialog
@@ -132,6 +137,8 @@ class Session:
 		if len(self.dialogStack):
 			self.currentDialog = self.dialogStack.pop()
 			self.execBegin()
+		else:
+			self.currentDialog = None
 
 	def execDialog(self, dialog):
 		self.pushCurrent()
@@ -159,13 +166,28 @@ class Session:
 		self.delayTimer.start(0, 1)
 
 
+
 def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
 	
 	session.nav = Navigation()
 	
-	session.open(Screens.InfoBar.InfoBar)
+	screensToRun = listActiveWizards()
+	screensToRun.append(Screens.InfoBar.InfoBar)
+	
+	def runNextScreen(session, screensToRun, *result):
+		if result:
+			quitMainloop(result)
+
+		screen = screensToRun[0]
+		
+		if len(screensToRun):
+			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)
+		else:
+			session.open(screen)
+	
+	runNextScreen(session, screensToRun)
 
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
