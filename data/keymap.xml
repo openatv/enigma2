@@ -134,7 +134,7 @@
 		<key id="KEY_A" mapto="bouquet:" flags="m" />
 		<key id="KEY_RED" mapto="bouquet:(type == 1) || (type == 17) ORDER BY name" flags="m" />
 		<key id="KEY_GREEN" mapto="bouquet:(type == 1) || (type == 17) ORDER BY provider" flags="m" />
-		<key id="KEY_YELLOW" mapto="bouquet:(type == 1) || (type == 17) ORDER BY sat" flags="m" />
+		<key id="KEY_YELLOW" mapto="bouquet:(type == 1) || (type == 17) ORDER BY satellitePosition" flags="m" />
 		<!--<key id="KEY_BLUE" mapto="bouquet:(type == 1) FROM BOUQUET &quot;bouquets.tv&quot; ORDER BY bouquet" flags="m" />-->
 		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
