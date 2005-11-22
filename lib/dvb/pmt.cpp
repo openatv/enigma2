@@ -3,6 +3,7 @@
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
+#include <lib/dvb_ci/dvbci.h>
 #include <dvbsi++/ca_program_map_section.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
@@ -12,6 +13,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	eDebug("new PMT handler record: %d", m_record);
 }
 
@@ -27,6 +29,7 @@ eDVBServicePMTHandler::~eDVBServicePMTHandler()
 		m_PMT.getCurrent(ptr);
 		eDVBCAService::unregister_service(m_reference, demux_num, ptr);
 	}
+	eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
@@ -69,11 +72,15 @@ void eDVBServicePMTHandler::PMTready(int error)
 	else
 	{
 		serviceEvent(eventNewProgramInfo);
-		if (!m_pvr_channel && !m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
+		if (!m_pvr_channel)
 		{
-			uint8_t demux_num;
-			m_demux->getCADemuxID(demux_num);
-			eDVBCAService::register_service(m_reference, demux_num, m_ca_servicePtr);
+			eDVBCIInterfaces::getInstance()->gotPMT(this);
+			if(!m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
+			{
+				uint8_t demux_num;
+				m_demux->getCADemuxID(demux_num);
+				eDVBCAService::register_service(m_reference, demux_num, m_ca_servicePtr);
+			}
 		}
 		if (m_ca_servicePtr)
 		{
@@ -198,6 +205,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			return 0;
 	}
 	return -1;
+}
+
+int eDVBServicePMTHandler::getChannel(eUsePtr<iDVBChannel> &channel)
+{
+	channel = m_channel;
+	if (channel)
+		return 0;
+	else
+		return -1;
 }
 
 int eDVBServicePMTHandler::getDemux(ePtr<iDVBDemux> &demux)
