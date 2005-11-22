@@ -59,7 +59,7 @@ void eTimer::startLongTimer( int seconds )
 	bActive = bSingleShot = true;
 	interval = 0;
 	gettimeofday(&nextActivation, 0);
-//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_usec, seconds);
 	if ( seconds > 0 )
 		nextActivation.tv_sec += seconds;
 //	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
@@ -160,6 +160,7 @@ void eMainloop::processOneEvent()
 		/* get current time */
 	timeval now;
 	gettimeofday(&now, 0);
+	m_now_is_invalid = 0;
 	
 	int poll_timeout = -1; /* infinite in case of empty timer list */
 	
@@ -228,6 +229,11 @@ void eMainloop::processOneEvent()
 	{
 		singleLock s(recalcLock);
 
+			/* this will never change while we have the recalcLock */
+			/* we can savely return here, the timer will be re-checked soon. */
+		if (m_now_is_invalid)
+			return;
+
 			/* process all timers which are ready. first remove them out of the list. */
 		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() < now))
 			m_timer_list.begin()->activate();
@@ -294,6 +300,7 @@ void eMainloop::addTimeOffset(int offset)
 		;it != eMainloop::existing_loops.end(); ++it)
 	{
 		singleLock s(it->recalcLock);
+		it->m_now_is_invalid = 1;
 		for (ePtrList<eTimer>::iterator tit = it->m_timer_list.begin(); tit != it->m_timer_list.end(); ++tit )
 			tit->addTimeOffset(offset);
 	}

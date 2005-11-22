@@ -176,6 +176,8 @@ class eMainloop
 	void processOneEvent();
 	int retval;
 	pthread_mutex_t recalcLock;
+	
+	int m_now_is_invalid;
 public:
 	static void addTimeOffset(int offset);
  	void addSocketNotifier(eSocketNotifier *sn);
@@ -187,6 +189,7 @@ public:
 	eMainloop()
 		:app_quit_now(0),loop_level(0),retval(0)
 	{
+		m_now_is_invalid = 0;
 		existing_loops.push_back(this);
 		pthread_mutex_init(&recalcLock, 0);
 	}
