@@ -12,12 +12,16 @@ class TimerEntry(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer;
+		
+		self["ok"] = Label("OK")
+		self["cancel"] = Label("Cancel")
 
 		self.createConfig()
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
-			"ok": self.keyGo,
+			"ok": self.keySelect,
+			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
@@ -167,6 +171,9 @@ class TimerEntry(Screen):
 	def keyRight(self):
 		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
+		
+	def keySelect(self):
+		pass
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
