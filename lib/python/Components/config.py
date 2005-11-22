@@ -342,6 +342,7 @@ class Config:
 					 "9": 19 }
 		
 config = Config();
+
 configfile = configFile()
 
 class ConfigSlider:
@@ -498,3 +499,9 @@ def getConfigListEntry(description, element):
 	b = element
 	item = b.controlType(b)
 	return ((description, item))
+
+
+def configElementBoolean(name, default, texts=(_("Enable"), _("Disable"))):
+	return configElement(name, configSelection, default, texts)
+
+config.misc = ConfigSubsection()
