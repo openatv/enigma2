@@ -253,6 +253,13 @@ class NimManager:
 			if (chktype == self.nimType[str(type)]):
 				return True
 		return False
+	
+	def getNimListOfType(self, type, exception = -1):
+		list = []
+		for x in self.nimslots:
+			if ((x.nimType == type) and (x.slotid != exception)):
+				list.append(x.slotid)
+		return list
 
 	def getConfigPrefix(self, slotid):
 		return "config.Nim" + ("A","B","C","D")[slotid] + "."
@@ -367,7 +374,12 @@ def InitNimManager(nimmgr):
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
 			nim.longitude = configElement(cname + "longitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.latitude = configElement(cname + "latitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 1 - slot.slotid, (_("Slot A"), _("Slot B")));
+			
+			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
+			satNimListNames = []
+			for x in satNimList:
+				satNimListNames.append(nimmgr.getNimName(x))
+			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
 			
 			#perhaps the instance of the slot is more useful?
 			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
