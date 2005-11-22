@@ -29,7 +29,7 @@ def InitLcd():
 	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 10, "");
 	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 10, "");
 	config.lcd.standby = configElement("config.lcd.standby", ConfigSlider, 0, "");
-	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, ("Disable", "Enable") );
+	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, (_("Disable"), _("Enable")) );
 
 	ilcd = LCD()
 

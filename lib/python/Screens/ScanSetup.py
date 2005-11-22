@@ -63,9 +63,13 @@ class ScanSetup(Screen):
 		for slot in nimmanager.nimslots:
 			if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 				self.satList.append(nimmanager.getSatListForNim(slot.slotid))
-
+			else:
+				self.satList.append(None)
+				
 	def createSetup(self):
 		self.list = []
+
+		print "ID: " + str(config.scan.nims.value)
 
 		self.list.append(getConfigListEntry(_("Tuner"), config.scan.nims))
 		
@@ -83,12 +87,12 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
 				self.list.append(getConfigListEntry(_('Symbolrate'), config.scan.sat.symbolrate))
-				self.list.append(getConfigListEntry("Polarity", config.scan.sat.polarization))
-				self.list.append(getConfigListEntry("FEC", config.scan.sat.fec))
+				self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
+				self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
 			if (config.scan.type.value == 1): # single satellite scan
 				self.updateSatList()
 				print config.scan.satselection[config.scan.nims.value]
-				self.list.append(getConfigListEntry("Satellite", config.scan.satselection[config.scan.nims.value]))
+				self.list.append(getConfigListEntry(_("Satellite"), config.scan.satselection[config.scan.nims.value]))
 			if (config.scan.type.value == 2): # multi sat scan
 				# if (norotor)
 				tlist = []
@@ -97,7 +101,7 @@ class ScanSetup(Screen):
 				for x in SatList:
 					if self.Satexists(tlist, x[1]) == 0:
 						tlist.append(x[1])
-						sat = configElement_nonSave(x[1], configSelection, 0, ("Enable", "Disable"))
+						sat = configElement_nonSave(x[1], configSelection, 0, (_("Enable"), "Disable"))
 						self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
 	
 				# if (rotor):
@@ -199,8 +203,10 @@ class ScanSetup(Screen):
 			slotid = 0
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
+					print str(slot.slotid) + " : " + str(self.satList)
 					config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, 0, self.satList[slot.slotid]))
-
+				else:
+					config.scan.satselection.append(None)
 	def keyLeft(self):
 		self["config"].handleKey(config.key["prevElement"])
 		self.newConfig()
@@ -355,9 +361,9 @@ class ScanSimple(Screen):
 		for x in SatList:
 			if self.Satexists(tlist, x) == 0:
 				tlist.append(x)
-				sat = configElement_nonSave(x, configSelection, 0, ("Enable", "Disable"))
+				sat = configElement_nonSave(x, configSelection, 0, (_("Enable"), _("Disable")))
 				self.list.append(getConfigListEntry(nimmanager.getSatDescription(x), sat))
 
 		self["config"] = ConfigList(self.list)
-		self["header"] = Label("Automatic Scan")
-		self["footer"] = Label("Press OK to scan")
+		self["header"] = Label(_("Automatic Scan"))
+		self["footer"] = Label(_("Press OK to scan"))
