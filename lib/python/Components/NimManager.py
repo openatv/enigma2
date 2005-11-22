@@ -359,7 +359,7 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Advanced")));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Linked tuner"))) # _("Advanced")));
 			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
@@ -367,6 +367,7 @@ def InitNimManager(nimmgr):
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
 			nim.longitude = configElement(cname + "longitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.latitude = configElement(cname + "latitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 1 - slot.slotid, (_("Slot A"), _("Slot B")));
 			
 			#perhaps the instance of the slot is more useful?
 			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
