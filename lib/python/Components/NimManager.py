@@ -378,7 +378,7 @@ def InitNimManager(nimmgr):
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []
 			for x in satNimList:
-				satNimListNames.append(nimmgr.getNimName(x))
+				satNimListNames.append(_("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x))
 			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
 			
 			#perhaps the instance of the slot is more useful?
