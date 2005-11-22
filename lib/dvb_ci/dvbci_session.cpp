@@ -293,13 +293,13 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			len-=hlen;
 
 			//if (eDVBCIModule::getInstance()->workarounds_active & eDVBCIModule::workaroundMagicAPDULength)
-			//{
-			//	if (((len-alen) > 0) && ((len - alen) < 3))
-			//	{
-			//		printf("WORKAROUND: applying work around MagicAPDULength\n");
-			//		alen=len;
-			//	}
-			//}
+			{
+				if (((len-alen) > 0) && ((len - alen) < 3))
+				{
+					printf("WORKAROUND: applying work around MagicAPDULength\n");
+					alen=len;
+				}
+			}
 			if (session->receivedAPDU(tag, pkt, alen))
 				session->action = 1;
 			pkt+=alen;
