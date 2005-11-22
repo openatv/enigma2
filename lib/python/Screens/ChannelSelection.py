@@ -158,7 +158,7 @@ class ChannelSelection(Screen):
 
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
 			{
-				"cancel": self.close,
+				"cancel": self.doClose,
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
@@ -374,11 +374,19 @@ class ChannelSelection(Screen):
 			refstr = ""
 		config.tv.lastservice.value = refstr
 		config.tv.lastservice.save()
+		
+	def doClose(self):
+		self.close()
 
 class SimpleChannelSelection(ChannelSelection):
 	def __init__(self, session, title):
 		ChannelSelection.__init__(self, session)
 		self.title = title
+		self.onShown.append(self.onExecCallback)
+
+	def onExecCallback(self):
+		print "onExecCallback"
+		self.session.currentDialog.instance.setTitle(self.title)
 		
 	def channelSelected(self): # just return selected service
 		ref = self.servicelist.getCurrent()
@@ -386,4 +394,7 @@ class SimpleChannelSelection(ChannelSelection):
 		
 	def doContext(self): # don't show context menu
 		pass
+	
+	def doClose(self):
+		self.close(None)
 		
