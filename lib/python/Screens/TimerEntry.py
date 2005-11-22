@@ -178,10 +178,9 @@ class TimerEntry(Screen):
 			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
 
 	def finishedChannelSelection(self, args):
-		if (args != None):
-			self.timer.service_ref = ServiceReference(args)
-			config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
-			self["config"].invalidate(config.timerentry.service)
+		self.timer.service_ref = ServiceReference(args)
+		config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
+		self["config"].invalidate(config.timerentry.service)
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
