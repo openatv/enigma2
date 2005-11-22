@@ -158,7 +158,7 @@ class ChannelSelection(Screen):
 
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
 			{
-				"cancel": self.doClose,
+				"cancel": self.cancel,
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
@@ -375,7 +375,7 @@ class ChannelSelection(Screen):
 		config.tv.lastservice.value = refstr
 		config.tv.lastservice.save()
 		
-	def doClose(self):
+	def cancel(self):
 		self.close()
 
 class SimpleChannelSelection(ChannelSelection):
@@ -395,6 +395,6 @@ class SimpleChannelSelection(ChannelSelection):
 	def doContext(self): # don't show context menu
 		pass
 	
-	def doClose(self):
+	def cancel(self):
 		self.close(None)
 		
