@@ -380,4 +380,10 @@ class SimpleChannelSelection(ChannelSelection):
 		ChannelSelection.__init__(self, session)
 		self.args = args
 		
+	def channelSelected(self): # just return selected service
+		ref = self.servicelist.getCurrent()
+		self.close(ref)
+		
+	def doContext(self): # don't show context menu
+		pass
 		
