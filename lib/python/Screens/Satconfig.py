@@ -37,7 +37,9 @@ class NimSetup(Screen):
 					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
 				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
 					self.createPositionerSetup(self.nim, self.list)
-			else:	
+			elif config.Nims[self.nim.slotid].configMode.value == 1: # linked tuner
+				self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
+			elif config.Nims[self.nim.slotid].configMode.value == 2: # advanced mode
 				print "FIXME: implement advanced mode"
 		
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
@@ -61,8 +63,8 @@ class NimSetup(Screen):
 
 	def keyRight(self):
 		#forbid to enable advanced mode until its ready
-		if self["config"].getCurrent()[0] != _("Configmode"):
-			self["config"].handleKey(config.key["nextElement"])
+		#if self["config"].getCurrent()[0] != _("Configmode"):
+		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 
 	def keyNumberGlobal(self, number):
