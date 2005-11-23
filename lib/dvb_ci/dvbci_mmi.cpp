@@ -43,8 +43,37 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				printf("kann ich nicht. aber das sag ich dem modul nicht.\n");
 			state=stateDisplayReply;
 			return 1;
-		case 0x09:
-		case 0x0c:
+		case 0x07:		//Tmenu_enq
+		{
+			unsigned char *d=(unsigned char*)data;
+			unsigned char *max=((unsigned char*)d) + len;
+			int textlen = len - 2;
+			int i;
+
+			printf("in enq\n");
+			
+			if ((d+2) > max)
+				break;
+				
+			int blind = *d++ & 1;
+			int alen = *d++;
+
+			printf("%d bytes text\n", textlen);
+			if ((d+textlen) > max)
+				break;
+			
+			char str[textlen + 1];
+			memcpy(str, ((char*)d), textlen);
+			str[textlen] = '\0';
+			
+			printf("enq-text: %s\n",str);
+			
+			eDVBCI_UI::getInstance()->mmiScreenEnq(0, blind, alen, str);
+
+			break;		
+		}
+		case 0x09:		//Tmenu_last
+		case 0x0c:		//Tlist_last
 		{
 			unsigned char *d=(unsigned char*)data;
 			unsigned char *max=((unsigned char*)d) + len;
@@ -55,9 +84,9 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			int n=*d++;
 			
 			//FIXME: slotid
-			if(tag[2] == 0x09)
+			if(tag[2] == 0x09)	//menu
 				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 0);
-			else
+			else								//list
 				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 1);
 			
 			if (n == 0xFF)
@@ -147,6 +176,15 @@ int eDVBCIMMISession::answerText(int answer)
 	unsigned char tag[]={0x9f, 0x88, 0x0B};
 	unsigned char data[]={0x00};
 	data[0] = answer & 0xff;
+	sendAPDU(tag, data, 1);
+}
+
+int eDVBCIMMISession::cancelEnq()
+{
+	printf("eDVBCIMMISession::cancelEnq()\n");
+
+	unsigned char tag[]={0x9f, 0x88, 0x08};
+	unsigned char data[]={0x00};
 	sendAPDU(tag, data, 1);
 }
 

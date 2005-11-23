@@ -17,6 +17,7 @@ public:
 	~eDVBCIMMISession();
 	int stopMMI();
 	int answerText(int answer);
+	int cancelEnq();
 
 };
 
