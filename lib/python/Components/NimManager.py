@@ -50,11 +50,15 @@ class SecConfigure:
 		sec.addSatellite(orbpos)
 		self.satList.append(orbpos)
 
+	def linkNIMs(self, nim1, nim2):
+		eDVBSatelliteEquipmentControl.getInstance().setTunerLinked(nim1, nim2)
+
 	def getSatList(self):
 		return self.satList
 
 	def update(self):
 		eDVBSatelliteEquipmentControl.getInstance().clear()
+		
 		self.satList = []
 
 		for slot in self.NimManager.nimslots:
@@ -62,7 +66,10 @@ class SecConfigure:
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if nim.configMode.value == 0:		#simple config
+				if nim.configMode.value == 1:
+					self.linkNIMs(x, nim.linkedTo.value)
+					nim = config.Nims[nim.linkedTo.value]
+				if nim.configMode.value == 0 or nim.configMode.value == 1:		#simple config
 					if nim.diseqcMode.value == 0:			#single
 						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 0, 4)
 					elif nim.diseqcMode.value == 1:		#Toneburst A/B
@@ -327,12 +334,10 @@ class NimManager:
 		if (mode == 1): # linked
 			if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
 				print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
-				self.sec.setTunerLinked(slotid, nimmgr.getConfigPrefix(slotid).value)
 			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
 	def nimLinkedToChanged(self, slotid, val):
 		print "Linking slot " + str(slotid) + " to " + str(val)
-		self.sec.setTunerLinked(slotid, val)
-		# TODO call c++ to link nim in slot slotid with nim in slot val
+
 	def nimDiseqcModeChanged(self, slotid, mode):
 		#print "nimDiseqcModeChanged set to " + str(mode)
 		pass
