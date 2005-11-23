@@ -56,7 +56,7 @@ class ScanSetup(Screen):
 		self["config"] = ConfigList(self.list)
 		self.createSetup()
 
-		self["introduction"] = Label("Press OK to start the scan")
+		self["introduction"] = Label(_("Press OK to start the scan"))
 
 	def updateSatList(self):
 		self.satList = []
@@ -101,7 +101,7 @@ class ScanSetup(Screen):
 				for x in SatList:
 					if self.Satexists(tlist, x[1]) == 0:
 						tlist.append(x[1])
-						sat = configElement_nonSave(x[1], configSelection, 0, (_("Enable"), "Disable"))
+						sat = configElement_nonSave(x[1], configSelection, 0, (_("Enable"), _("Disable")))
 						self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
 	
 				# if (rotor):
@@ -111,31 +111,27 @@ class ScanSetup(Screen):
 
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
 			if (config.scan.typecable.value == 0): # single transponder
-				self.list.append(getConfigListEntry("Frequency", config.scan.cab.frequency))
-				self.list.append(getConfigListEntry("Inversion", config.scan.cab.inversion))
-				self.list.append(getConfigListEntry("Symbolrate", config.scan.cab.symbolrate))
-				self.list.append(getConfigListEntry("Modulation", config.scan.cab.modulation))
-				self.list.append(getConfigListEntry("FEC", config.scan.cab.fec))
+				self.list.append(getConfigListEntry(_("Frequency"), config.scan.cab.frequency))
+				self.list.append(getConfigListEntry(_("Inversion"), config.scan.cab.inversion))
+				self.list.append(getConfigListEntry(_("Symbolrate"), config.scan.cab.symbolrate))
+				self.list.append(getConfigListEntry(_("Modulation"), config.scan.cab.modulation))
+				self.list.append(getConfigListEntry(_("FEC"), config.scan.cab.fec))
 			if (config.scan.typecable.value == 1): # complete
 				pass
-	
 				
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if (config.scan.typeterrestrial.value == 0): # single transponder
-				self.list.append(getConfigListEntry("Frequency", config.scan.ter.frequency))
-				self.list.append(getConfigListEntry("Inversion", config.scan.ter.inversion))
-				self.list.append(getConfigListEntry("Bandwidth", config.scan.ter.bandwidth))
-				self.list.append(getConfigListEntry("Code rate high", config.scan.ter.fechigh))
-				self.list.append(getConfigListEntry("Code rate low", config.scan.ter.feclow))
-				self.list.append(getConfigListEntry("Modulation", config.scan.ter.modulation))
-				self.list.append(getConfigListEntry("Transmission mode", config.scan.ter.transmission))
-				self.list.append(getConfigListEntry("Guard interval mode", config.scan.ter.guard))
-				self.list.append(getConfigListEntry("Hierarchy mode", config.scan.ter.hierarchy))
+				self.list.append(getConfigListEntry(_("Frequency"), config.scan.ter.frequency))
+				self.list.append(getConfigListEntry(_("Inversion"), config.scan.ter.inversion))
+				self.list.append(getConfigListEntry(_("Bandwidth"), config.scan.ter.bandwidth))
+				self.list.append(getConfigListEntry(_("Code rate high"), config.scan.ter.fechigh))
+				self.list.append(getConfigListEntry(_("Code rate low"), config.scan.ter.feclow))
+				self.list.append(getConfigListEntry(_("Modulation"), config.scan.ter.modulation))
+				self.list.append(getConfigListEntry(_("Transmission mode"), config.scan.ter.transmission))
+				self.list.append(getConfigListEntry(_("Guard interval mode"), config.scan.ter.guard))
+				self.list.append(getConfigListEntry(_("Hierarchy mode"), config.scan.ter.hierarchy))
 			if (config.scan.typeterrestrial.value == 1): # complete
 				pass
-
-
-
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -171,33 +167,33 @@ class ScanSetup(Screen):
 
 			# sat
 			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, ("on", "off", "auto"))
+			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, (_("on"), _("off"), _("Auto")))
 			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 9999)))
-			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, ("horizontal", "vertical",  "circular left", "circular right"))
+			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (_("horizontal"), _("vertical"),  _("circular left"), _("circular right")))
 			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "auto"))
 
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 9999)))
-			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, ("off", "on", "Auto"))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, ("16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM", "Auto"))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 9, ("None", "1/2", "2/3", "3/4", "4/5", "5/6", "6/7", "7/8", "8/9", "Auto"))
+			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, (_("off"), _("on"), _("Auto")))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, ("16-QAM", "32-QAM", "64-QAM", "128-QAM", "256-QAM", _("Auto")))
+			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 9, (_("None"), "1/2", "2/3", "3/4", "4/5", "5/6", "6/7", "7/8", "8/9", _("Auto")))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 30000)))
 
 			# terrestial
 			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
-			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, ("off", "on", "Auto"))
-			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 3, ("8MHz", "7MHz", "6MHz", "Auto"))
-			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "Auto"))
-			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 6, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "Auto"))
-			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 2, ("QPSK", "QAM16", "Auto"))
-			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 2, ("2K", "8K", "Auto"))
-			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 4, ("1/32", "1/16", "1/8", "1/4", "Auto"))
-			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 4, ("None", "1", "2", "4", "Auto"))
+			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, (_("off"), _("on"), _("Auto")))
+			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 3, ("8MHz", "7MHz", "6MHz", _("Auto")))
+			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, (_("None"), "1/2", "2/3", "3/4", "5/6", "7/8", _("Auto")))
+			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 6, (_("None"), "1/2", "2/3", "3/4", "5/6", "7/8", _("Auto")))
+			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 2, ("QPSK", "QAM16", _("Auto")))
+			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 2, ("2K", "8K", _("Auto")))
+			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 4, ("1/32", "1/16", "1/8", "1/4", _("Auto")))
+			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 4, (_("None"), "1", "2", "4", _("Auto")))
 
 			config.scan.scansat = {}
 			for sat in nimmanager.satList:
 				#print sat[1]
-				config.scan.scansat[sat[1]] = configElement_nonSave("config.scan.scansat[" + str(sat[1]) + "]", configSelection, 0, ("yes", "no"))
+				config.scan.scansat[sat[1]] = configElement_nonSave("config.scan.scansat[" + str(sat[1]) + "]", configSelection, 0, (_("yes"), _("no")))
 
 			config.scan.satselection = []
 			slotid = 0
