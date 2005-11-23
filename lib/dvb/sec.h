@@ -201,6 +201,8 @@ public:
 };
 #endif
 
+class eDVBRegisteredFrontend;
+
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
 #ifndef SWIG
@@ -208,11 +210,12 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eDVBSatelliteLNBParameters m_lnbs[128]; // i think its enough
 	int m_lnbidx; // current index for set parameters
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
+	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
 #endif
 public:
-#ifndef SWIG
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
-	eDVBSatelliteEquipmentControl();
+	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
+#ifndef SWIG
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id);
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
@@ -247,6 +250,8 @@ public:
 	RESULT setVoltageMode(int mode);
 	RESULT setToneMode(int mode);
 	RESULT setRotorPosNum(int rotor_pos_num);
+/* Tuner Specific Parameters */
+	RESULT setTunerLinked(int from, int to);
 };
 
 #endif

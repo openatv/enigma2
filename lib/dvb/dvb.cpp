@@ -46,7 +46,7 @@ eDVBResourceManager::eDVBResourceManager()
 {
 	avail = 1;
 	busy = 0;
-	m_sec = new eDVBSatelliteEquipmentControl;
+	m_sec = new eDVBSatelliteEquipmentControl(m_frontend);
 	if (!instance)
 		instance = this;
 		
@@ -200,6 +200,8 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 
 		if (!adapter->getFrontend(frontend, i))
 		{
+			frontend->setTone(iDVBFrontend::toneOff);
+			frontend->setVoltage(iDVBFrontend::voltageOff);
 			frontend->setSEC(m_sec);
 			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
 		}
