@@ -288,7 +288,9 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 	m_tuneTimer = new eTimer(eApp);
 	CONNECT(m_tuneTimer->timeout, eDVBFrontend::tuneLoop);
 
-	memset(m_data, 0xFFFF, sizeof(m_data));
+	int entries = sizeof(m_data) / sizeof(int);
+	for (int i=0; i<entries; ++i)
+		m_data[i] = -1;
 
 	return;
 }
@@ -656,8 +658,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		parm.frequency = feparm.frequency * 1000;
 		parm.u.qam.symbol_rate = feparm.symbol_rate;
 #endif
-
-
 		fe_modulation_t mod;
 		switch (feparm.modulation)
 		{
@@ -685,7 +685,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 #else
 		parm.u.qam.modulation = mod;
 #endif
-
 		switch (feparm.inversion)
 		{		
 		case eDVBFrontendParametersCable::Inversion::On:
@@ -998,7 +997,7 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 
 RESULT eDVBFrontend::getData(int num, int &data)
 {
-	if ( num < 7 )
+	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
 	{
 		data = m_data[num];
 		return 0;
@@ -1008,7 +1007,7 @@ RESULT eDVBFrontend::getData(int num, int &data)
 
 RESULT eDVBFrontend::setData(int num, int val)
 {
-	if ( num < 7 )
+	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
 	{
 		m_data[num] = val;
 		return 0;
