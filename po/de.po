@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-23 00:56+0100\n"
+"POT-Creation-Date: 2005-11-23 12:33+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,6 +19,11 @@ msgstr ""
 #: ../lib/python/Screens/EventView.py:58
 #, python-format
 msgid "%d min"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:87
+msgid "%d.%B %Y"
 msgstr ""
 
 #: ../lib/python/Screens/About.py:25
@@ -57,13 +62,18 @@ msgstr ""
 msgid "Bus: "
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:46
+#: ../lib/python/Screens/Satconfig.py:52
 msgid "Cable provider"
 msgstr "Kabelanbieter"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Capacity: "
 msgstr "Kapazitaet"
+
+#: ../lib/python/Screens/TimerEntry.py:154
+#: ../lib/python/Screens/TimerEntry.py:181 ../data/
+msgid "Channel"
+msgstr "Kanal"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Classic"
@@ -81,7 +91,7 @@ msgstr ""
 msgid "Code rate low"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:31 ../lib/python/Screens/Satconfig.py:57
+#: ../lib/python/Screens/Satconfig.py:37 ../lib/python/Screens/Satconfig.py:63
 #: ../data/
 msgid "Configmode"
 msgstr "Konfigurationsmodus"
@@ -94,6 +104,10 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Loeschen"
 
+#: ../lib/python/Screens/TimerEntry.py:117
+msgid "Description"
+msgstr "Beschreibung"
+
 #: ../lib/python/Screens/About.py:22
 msgid "Detected HDD:"
 msgstr "Erkannte Festplatten"
@@ -102,11 +116,11 @@ msgstr "Erkannte Festplatten"
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
-#: ../lib/python/Components/NimManager.py:370
+#: ../lib/python/Components/NimManager.py:379
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:370
+#: ../lib/python/Components/NimManager.py:379
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
@@ -122,7 +136,7 @@ msgstr ""
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/Satconfig.py:34 ../lib/python/Screens/Satconfig.py:55
+#: ../lib/python/Screens/Satconfig.py:40 ../lib/python/Screens/Satconfig.py:61
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
@@ -130,6 +144,10 @@ msgstr "Diseqcmodus"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
+
+#: ../lib/python/Components/NimManager.py:386
+msgid "East"
+msgstr "Ost"
 
 #: ../lib/python/Screens/ScanSetup.py:104
 #: ../lib/python/Screens/ScanSetup.py:360 ../lib/python/Components/Lcd.py:32
@@ -142,6 +160,14 @@ msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 #: ../lib/python/Components/SetupDevices.py:47
 msgid "Enable"
 msgstr "Ein"
+
+#: ../lib/python/Screens/TimerEntry.py:149
+msgid "End"
+msgstr "Ende"
+
+#: ../lib/python/Screens/TimerEntry.py:152
+msgid "EndTime"
+msgstr "Endzeit"
 
 #: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:9
@@ -156,8 +182,15 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:87
 #: ../lib/python/Screens/ScanSetup.py:114
 #: ../lib/python/Screens/ScanSetup.py:124
+#: ../lib/python/Screens/TimerEntry.py:123
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Frequency"
 msgstr "Frequenz"
+
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:136
+msgid "Friday"
+msgstr "Freitag"
 
 #: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Gateway"
@@ -194,19 +227,19 @@ msgstr "Initialisiere Festplatte..."
 msgid "Inversion"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:24 ../data/
+#: ../lib/python/Screens/Satconfig.py:28 ../data/
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: ../lib/python/Screens/Satconfig.py:41
+#: ../lib/python/Screens/Satconfig.py:47
 msgid "Linked to"
 msgstr "Verbunden mit"
 
-#: ../lib/python/Components/NimManager.py:369
+#: ../lib/python/Components/NimManager.py:378
 msgid "Linked tuner"
 msgstr "Verbundene Tuner"
 
-#: ../lib/python/Screens/Satconfig.py:23 ../data/
+#: ../lib/python/Screens/Satconfig.py:26 ../data/
 msgid "Longitude"
 msgstr "Laengengrad"
 
@@ -218,6 +251,15 @@ msgstr "Modell:"
 #: ../lib/python/Screens/ScanSetup.py:129
 msgid "Modulation"
 msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:82
+msgid "Mon-Fri"
+msgstr "Montag bis Freitag"
+
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:132
+msgid "Monday"
+msgstr "Montag"
 
 #: ../lib/python/Components/NimManager.py:236
 msgid "N/A"
@@ -238,9 +280,13 @@ msgstr "Netzmaske"
 msgid "None"
 msgstr "Keins"
 
+#: ../lib/python/Components/NimManager.py:388
+msgid "North"
+msgstr "Nord"
+
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
-msgstr ""
+msgstr "Polaritaet"
 
 #: ../lib/python/Screens/Satconfig.py:15
 msgid "Port A"
@@ -258,9 +304,13 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:370
+#: ../lib/python/Components/NimManager.py:379
 msgid "Positioner"
 msgstr "Motor"
+
+#: ../lib/python/Screens/Satconfig.py:24
+msgid "Positioner mode"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:365
 msgid "Press OK to scan"
@@ -275,15 +325,24 @@ msgstr "Zum Starten der Suche OK druecken."
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Components/NimManager.py:369
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:137
+msgid "Saturday"
+msgstr "Samstag"
+
+#: ../lib/python/Screens/TimerEntry.py:182
+msgid "Select channel to record from"
+msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
+
+#: ../lib/python/Components/NimManager.py:378
 msgid "Simple"
 msgstr "Einfach"
 
-#: ../lib/python/Components/NimManager.py:370
+#: ../lib/python/Components/NimManager.py:379
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Components/NimManager.py:381
+#: ../lib/python/Components/NimManager.py:392
 msgid "Slot "
 msgstr ""
 
@@ -291,26 +350,58 @@ msgstr ""
 msgid "Socket "
 msgstr "Sockel "
 
+#: ../lib/python/Components/NimManager.py:388
+msgid "South"
+msgstr "Sued"
+
+#: ../lib/python/Screens/TimerEntry.py:144
+msgid "Start"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:147
+msgid "StartTime"
+msgstr "Startzeit"
+
 #: ../lib/python/Screens/InfoBar.py:72
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
+
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:138
+msgid "Sunday"
+msgstr "Sonntag"
 
 #: ../lib/python/Screens/ScanSetup.py:89
 #: ../lib/python/Screens/ScanSetup.py:116
 msgid "Symbolrate"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:48
+#: ../lib/python/Screens/Satconfig.py:54
 msgid "Terrestrial provider"
 msgstr "Region"
 
-#: ../lib/python/Components/NimManager.py:370
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:135
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: ../lib/python/Screens/TimerEntry.py:118
+#: ../lib/python/Screens/TimerEntry.py:161
+msgid "TimerType"
+msgstr "Timer-Art"
+
+#: ../lib/python/Components/NimManager.py:379
 msgid "Toneburst A/B"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:130
 msgid "Transmission mode"
 msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:133
+msgid "Tuesday"
+msgstr "Dienstag"
 
 #: ../lib/python/Screens/ScanSetup.py:74
 #: ../lib/python/Screens/ScanSetup.py:149
@@ -323,10 +414,23 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Art der Suche"
 
+#: ../lib/python/Components/NimManager.py:384
+msgid "USALS"
+msgstr ""
+
 #: ../lib/python/Screens/NetworkSetup.py:40
 #: ../lib/python/Screens/NetworkSetup.py:52 ../data/
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
+
+#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:134
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: ../lib/python/Screens/TimerEntry.py:129
+msgid "Weekday"
+msgstr "Wochentag"
 
 #: ../lib/python/Screens/Wizard.py:24
 msgid ""
@@ -342,6 +446,10 @@ msgstr ""
 "\n"
 "Bitte zuerst eine Kanalsuche durchfuehren!"
 
+#: ../lib/python/Components/NimManager.py:386
+msgid "West"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "circular left"
 msgstr ""
@@ -349,6 +457,10 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "circular right"
 msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:82
+msgid "daily"
+msgstr "taeglich"
 
 #: ../lib/python/Components/NimManager.py:299
 msgid "empty/unknown"
@@ -358,7 +470,12 @@ msgstr "leer/unbekannt"
 msgid "horizontal"
 msgstr ""
 
+#: ../lib/python/Components/NimManager.py:384
+msgid "manual"
+msgstr "manuell"
+
 #: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/TimerEntry.py:94
 #: ../lib/python/Components/Network.py:134
 msgid "no"
 msgstr "nein"
@@ -383,6 +500,14 @@ msgstr "aus"
 msgid "on"
 msgstr "an"
 
+#: ../lib/python/Screens/TimerEntry.py:79
+msgid "once"
+msgstr "einmalig"
+
+#: ../lib/python/Screens/TimerEntry.py:79
+msgid "repeated"
+msgstr "wiederholend"
+
 #: ../lib/python/Components/ServiceScan.py:32
 msgid "scan done!"
 msgstr "Suche beendet."
@@ -404,6 +529,10 @@ msgstr "Status"
 msgid "unknown service"
 msgstr "unbekannter Service"
 
+#: ../lib/python/Screens/TimerEntry.py:82
+msgid "user-defined"
+msgstr "benutzerdefiniert"
+
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "vertical"
 msgstr "vertikal"
@@ -412,7 +541,12 @@ msgstr "vertikal"
 msgid "waiting for event data..."
 msgstr "warte auf Programmdaten..."
 
+#: ../lib/python/Screens/TimerEntry.py:82
+msgid "weekly"
+msgstr "woechentlich"
+
 #: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/TimerEntry.py:94
 #: ../lib/python/Components/Network.py:15
 #: ../lib/python/Components/Network.py:134
 msgid "yes"
@@ -741,10 +875,6 @@ msgstr "Hauptmenue"
 #: ../data/
 msgid "Volume"
 msgstr "Lautstaerke"
-
-#: ../data/
-msgid "Channel"
-msgstr "Kanal"
 
 #: ../data/
 msgid "Alpha"

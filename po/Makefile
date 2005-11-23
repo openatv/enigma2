@@ -34,6 +34,7 @@ enigma2.pot:
 			../lib/python/Screens/HarddiskSetup.py \
 			../lib/python/Screens/InfoBar.py \
 			../lib/python/Screens/TimerEdit.py \
+			../lib/python/Screens/TimerEntry.py \
 			../lib/python/Screens/Wizard.py \
 			../lib/python/Screens/ServiceScan.py \
 			../lib/python/Components/ServiceScan.py \

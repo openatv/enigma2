@@ -375,15 +375,17 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Linked tuner"))) # _("Advanced")));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Linked tuner"))) # "Advanced"));
 			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
-			nim.longitude = configElement(cname + "longitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.latitude = configElement(cname + "latitude", configSequence, [0,0], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			
+			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (_("USALS"), _("manual")));
+			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (_("East"), _("West")))
+			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (_("North"), _("South")))
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []
 			for x in satNimList:
