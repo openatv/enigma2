@@ -12,9 +12,48 @@ from Components.config import *
 
 from enigma import *
 
+class CiConfigList(HTMLComponent, GUIComponent):
+	def __init__(self, list):
+		GUIComponent.__init__(self)
+		self.l = eListboxPythonConfigContent()
+		self.l.setList(list)
+		self.l.setSeperation(100)
+		self.list = list
+
+	def toggle(self):
+		pass
+
+	def handleKey(self, key):
+		selection = self.getCurrent()
+		selection[1].handleKey(key)
+		self.invalidateCurrent()
+
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+
+	def invalidateCurrent(self):
+		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
+
+	def invalidate(self, entry):
+		i = 0
+		for x in self.list:
+			if (entry.getConfigPath() == x[1].parent.getConfigPath()):
+				self.l.invalidateEntry(i)
+			i += 1
+		pass
+
+	def GUIcreate(self, parent):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+
+	def GUIdelete(self):
+		self.instance.setContent(None)
+		self.instance = None
+
 class CiMmi(Screen):
 	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
+			#list.append( (entry[1], entry[2]) )
 			list.append( (entry[1], entry[2]) )
 		if entry[0] == "PIN":
 			if entry[3] == 1:
@@ -23,8 +62,9 @@ class CiMmi(Screen):
 			else:				
 				# unmasked pins:
 				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))			
-				
-			self.pin = getConfigListEntry(entry[2],x)
+			
+			list.append( (entry[2], 0) )	
+			self.pin = getConfigListEntry("",x)
 			list.append( self.pin )
 
 	def okbuttonClick(self):
@@ -39,6 +79,11 @@ class CiMmi(Screen):
 			print "answer LIST"
 			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
 			self.showWait()	
+		elif self.tag == "ENQ":
+			print "answer ENQ"
+			#eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			self.showWait()	
+
 
 	def closeMmi(self):
 		self.Timer.stop()
@@ -53,6 +98,9 @@ class CiMmi(Screen):
 			self.showWait()	
 		elif self.tag == "LIST":
 			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			self.showWait()	
+		elif self.tag == "ENQ":
+			eDVBCI_UI.getInstance().cancelEnq(self.slotid)
 			self.showWait()	
 		else:
 			print "give cancel action to ci"	
@@ -137,6 +185,7 @@ class CiMmi(Screen):
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
 		self["entries"] = MenuList([ ])
+		#self["entries"] = CiConfigList([ ])
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 			{
