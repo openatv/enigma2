@@ -81,9 +81,8 @@ class CiMmi(Screen):
 			self.showWait()	
 		elif self.tag == "ENQ":
 			print "answer ENQ"
-			#eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			eDVBCI_UI.getInstance().answerEnq(self.slotid, str(self.pin[1].parent.value))
 			self.showWait()	
-
 
 	def closeMmi(self):
 		self.Timer.stop()
