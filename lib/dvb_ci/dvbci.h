@@ -39,7 +39,8 @@ public:
 	int startMMI();
 	int stopMMI();
 	int answerText(int answer);
-	int answerEnq(int answer, char *value);
+	int answerEnq(char *value);
+	int cancelEnq();
 	int getMMIState();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
@@ -88,7 +89,8 @@ public:
 	int startMMI(int slot);
 	int stopMMI(int slot);
 	int answerText(int slot, int answer);
-	int answerEnq(int slot, int answer, char *value);
+	int answerEnq(int slot, char *value);
+	int cancelEnq(int slot);
 	int getMMIState(int slot);
 };
 

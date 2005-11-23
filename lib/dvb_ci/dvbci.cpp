@@ -116,14 +116,24 @@ int eDVBCIInterfaces::answerText(int slotid, int answer)
 	return slot->answerText(answer);
 }
 
-int eDVBCIInterfaces::answerEnq(int slotid, int answer, char *value)
+int eDVBCIInterfaces::answerEnq(int slotid, char *value)
 {
 	eDVBCISlot *slot;
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 	
-	return slot->answerEnq(answer, value);
+	return slot->answerEnq(value);
+}
+
+int eDVBCIInterfaces::cancelEnq(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->cancelEnq();
 }
 
 void eDVBCIInterfaces::addPMTHandler(eDVBServicePMTHandler *pmthandler)
@@ -367,9 +377,19 @@ int eDVBCISlot::getMMIState()
 	return 0;
 }
 
-int eDVBCISlot::answerEnq(int answer, char *value)
+int eDVBCISlot::answerEnq(char *value)
 {
-	printf("edvbcislot: answerMMI(%d,%s)\n", answer, value);
+	printf("edvbcislot: answerENQ(%s)\n", value);
+	return 0;
+}
+
+int eDVBCISlot::cancelEnq()
+{
+	printf("edvbcislot: cancelENQ\n");
+
+	if(mmi_session)
+		mmi_session->cancelEnq();
+
 	return 0;
 }
 
