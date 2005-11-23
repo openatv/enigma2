@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 21:04+0100\n"
+"POT-Creation-Date: 2005-11-23 00:56+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,9 +30,28 @@ msgstr "%s (%s, %d MB frei)"
 msgid "Add"
 msgstr "Hinzufuegen"
 
-#: ../lib/python/Screens/ScanSetup.py:362 ../data/
+#: ../lib/python/Screens/ScanSetup.py:170
+#: ../lib/python/Screens/ScanSetup.py:177
+#: ../lib/python/Screens/ScanSetup.py:178
+#: ../lib/python/Screens/ScanSetup.py:179
+#: ../lib/python/Screens/ScanSetup.py:184
+#: ../lib/python/Screens/ScanSetup.py:185
+#: ../lib/python/Screens/ScanSetup.py:186
+#: ../lib/python/Screens/ScanSetup.py:187
+#: ../lib/python/Screens/ScanSetup.py:188
+#: ../lib/python/Screens/ScanSetup.py:189
+#: ../lib/python/Screens/ScanSetup.py:190
+#: ../lib/python/Screens/ScanSetup.py:191
+msgid "Auto"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:364 ../data/
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
+
+#: ../lib/python/Screens/ScanSetup.py:126
+msgid "Bandwidth"
+msgstr ""
 
 #: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Bus: "
@@ -52,6 +71,14 @@ msgstr "klassisch"
 
 #: ../lib/python/Screens/Wizard.py:28
 msgid "Close this Screen..."
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:127
+msgid "Code rate high"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:128
+msgid "Code rate low"
 msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:31 ../lib/python/Screens/Satconfig.py:57
@@ -83,7 +110,8 @@ msgstr ""
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:358 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:104
+#: ../lib/python/Screens/ScanSetup.py:360 ../lib/python/Components/Lcd.py:32
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -103,7 +131,8 @@ msgstr "Diseqcmodus"
 msgid "ERROR - failed to scan (%s)!"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:358 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:104
+#: ../lib/python/Screens/ScanSetup.py:360 ../lib/python/Components/Lcd.py:32
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -119,7 +148,14 @@ msgstr "Ein"
 msgid "English"
 msgstr "Englisch"
 
-#: ../lib/python/Screens/ScanSetup.py:83
+#: ../lib/python/Screens/ScanSetup.py:91
+#: ../lib/python/Screens/ScanSetup.py:118
+msgid "FEC"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:87
+#: ../lib/python/Screens/ScanSetup.py:114
+#: ../lib/python/Screens/ScanSetup.py:124
 msgid "Frequency"
 msgstr "Frequenz"
 
@@ -131,6 +167,14 @@ msgstr ""
 #: ../lib/python/Components/Language.py:10
 msgid "German"
 msgstr "Deutsch"
+
+#: ../lib/python/Screens/ScanSetup.py:131
+msgid "Guard interval mode"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:132
+msgid "Hierarchy mode"
+msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
@@ -144,7 +188,9 @@ msgstr "Initialisieren"
 msgid "Initializing Harddisk..."
 msgstr "Initialisiere Festplatte..."
 
-#: ../lib/python/Screens/ScanSetup.py:84
+#: ../lib/python/Screens/ScanSetup.py:88
+#: ../lib/python/Screens/ScanSetup.py:115
+#: ../lib/python/Screens/ScanSetup.py:125
 msgid "Inversion"
 msgstr ""
 
@@ -168,6 +214,11 @@ msgstr "Laengengrad"
 msgid "Model: "
 msgstr "Modell:"
 
+#: ../lib/python/Screens/ScanSetup.py:117
+#: ../lib/python/Screens/ScanSetup.py:129
+msgid "Modulation"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:236
 msgid "N/A"
 msgstr "Nicht verfuegbar"
@@ -179,6 +230,17 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:43 ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
+
+#: ../lib/python/Screens/ScanSetup.py:179
+#: ../lib/python/Screens/ScanSetup.py:186
+#: ../lib/python/Screens/ScanSetup.py:187
+#: ../lib/python/Screens/ScanSetup.py:191
+msgid "None"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:90
+msgid "Polarity"
+msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:15
 msgid "Port A"
@@ -200,11 +262,16 @@ msgstr ""
 msgid "Positioner"
 msgstr "Motor"
 
-#: ../lib/python/Screens/ScanSetup.py:363
+#: ../lib/python/Screens/ScanSetup.py:365
 msgid "Press OK to scan"
 msgstr "Zum Starten der Suche OK druecken."
 
-#: ../lib/python/Screens/ScanSetup.py:82 ../lib/python/Screens/Satconfig.py:13
+#: ../lib/python/Screens/ScanSetup.py:59
+msgid "Press OK to start the scan"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:86 ../lib/python/Screens/ScanSetup.py:95
+#: ../lib/python/Screens/Satconfig.py:13
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -228,7 +295,8 @@ msgstr "Sockel "
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/ScanSetup.py:85
+#: ../lib/python/Screens/ScanSetup.py:89
+#: ../lib/python/Screens/ScanSetup.py:116
 msgid "Symbolrate"
 msgstr ""
 
@@ -240,13 +308,17 @@ msgstr "Region"
 msgid "Toneburst A/B"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:70
+#: ../lib/python/Screens/ScanSetup.py:130
+msgid "Transmission mode"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:74
 #: ../lib/python/Screens/ScanSetup.py:149
 msgid "Tuner"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:73 ../lib/python/Screens/ScanSetup.py:75
-#: ../lib/python/Screens/ScanSetup.py:77
+#: ../lib/python/Screens/ScanSetup.py:77 ../lib/python/Screens/ScanSetup.py:79
+#: ../lib/python/Screens/ScanSetup.py:81
 #: ../lib/python/Screens/ScanSetup.py:147
 msgid "Type of scan"
 msgstr "Art der Suche"
@@ -270,10 +342,23 @@ msgstr ""
 "\n"
 "Bitte zuerst eine Kanalsuche durchfuehren!"
 
+#: ../lib/python/Screens/ScanSetup.py:172
+msgid "circular left"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:172
+msgid "circular right"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:299
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
 
+#: ../lib/python/Screens/ScanSetup.py:172
+msgid "horizontal"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Components/Network.py:134
 msgid "no"
 msgstr "nein"
@@ -285,6 +370,18 @@ msgstr "keine Festplatte gefunden"
 #: ../lib/python/Screens/About.py:27
 msgid "none"
 msgstr "keins"
+
+#: ../lib/python/Screens/ScanSetup.py:170
+#: ../lib/python/Screens/ScanSetup.py:177
+#: ../lib/python/Screens/ScanSetup.py:184
+msgid "off"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:170
+#: ../lib/python/Screens/ScanSetup.py:177
+#: ../lib/python/Screens/ScanSetup.py:184
+msgid "on"
+msgstr ""
 
 #: ../lib/python/Components/ServiceScan.py:32
 msgid "scan done!"
@@ -307,10 +404,15 @@ msgstr "Status"
 msgid "unknown service"
 msgstr "unbekannter Service"
 
+#: ../lib/python/Screens/ScanSetup.py:172
+msgid "vertical"
+msgstr ""
+
 #: ../lib/python/Components/EventInfo.py:43
 msgid "waiting for event data..."
 msgstr "warte auf Programmdaten..."
 
+#: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Components/Network.py:15
 #: ../lib/python/Components/Network.py:134
 msgid "yes"
