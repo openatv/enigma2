@@ -507,7 +507,7 @@ void eDVBCAService::sendCAPMT()
 		int i=0;
 		int lenbytes = m_capmt[3] & ~0x80;
 		while(i < lenbytes)
-			wp |= (m_capmt[4+i] << (8 * i++));
+			wp = (wp << 8) | m_capmt[4 + i++];
 		wp+=4;
 		wp+=lenbytes;
 	}
