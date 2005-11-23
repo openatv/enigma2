@@ -81,14 +81,42 @@ int eDVBCI_UI::answerMenu(int slot, int answer)
 	eDVBCIInterfaces::getInstance()->answerText(slot, answer);
 }
 
-int eDVBCI_UI::answerEnq(int slot, int answer, char *value)
+int eDVBCI_UI::answerEnq(int slot, char *value)
 {
-	eDVBCIInterfaces::getInstance()->answerEnq(slot, answer, value);
+	eDVBCIInterfaces::getInstance()->answerEnq(slot, value);
+}
+
+int eDVBCI_UI::cancelEnq(int slot)
+{
+	eDVBCIInterfaces::getInstance()->cancelEnq(slot);
 }
 
 int eDVBCI_UI::availableMMI(int slot)
 {
 	return mmiScreenReady;
+}
+
+int eDVBCI_UI::mmiScreenEnq(int slot, int blind, int answerLen, char *text)
+{
+	mmiScreenReady = 0;
+
+	mmiScreen = PyList_New(2);
+
+  PyObject *tuple = PyTuple_New(1);
+ 	PyTuple_SetItem(tuple, 0, PyString_FromString("ENQ"));
+  PyList_SetItem(mmiScreen, 0, tuple);
+
+  tuple = PyTuple_New(4);
+	
+	PyTuple_SetItem(tuple, 0, PyString_FromString("PIN"));
+  PyTuple_SetItem(tuple, 1, PyInt_FromLong(answerLen));
+	PyTuple_SetItem(tuple, 2, PyString_FromString(text));
+  PyTuple_SetItem(tuple, 3, PyInt_FromLong(blind));
+  PyList_SetItem(mmiScreen, 1, tuple);
+
+	mmiScreenReady = 1;
+
+	return 0;
 }
 
 int eDVBCI_UI::mmiScreenBegin(int slot, int listmenu)
@@ -100,10 +128,11 @@ int eDVBCI_UI::mmiScreenBegin(int slot, int listmenu)
 	mmiScreen = PyList_New(1);
 
   PyObject *tuple = PyTuple_New(1);
-	if(listmenu)
-	 	PyTuple_SetItem(tuple, 0, PyString_FromString("LIST"));
-	else	
+	if(listmenu == 0)				//menu
 	 	PyTuple_SetItem(tuple, 0, PyString_FromString("MENU"));
+	else 	//list
+	 	PyTuple_SetItem(tuple, 0, PyString_FromString("LIST"));
+		
   PyList_SetItem(mmiScreen, 0, tuple);
 	
 	mmiTuplePos = 1;
