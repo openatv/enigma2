@@ -61,9 +61,10 @@ int eDVBCICAManagerSession::doAction()
 
 int eDVBCICAManagerSession::sendCAPMT(unsigned char *data, int len)
 {
-	int i;
 	const unsigned char tag[3]={0x9F, 0x80, 0x32}; // ca_pmt
 
   sendAPDU(tag, data, len);
+	
+	return 0;
 }
 
