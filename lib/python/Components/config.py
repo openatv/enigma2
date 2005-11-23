@@ -78,7 +78,7 @@ class configSelection:
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
-		return ("text", self.parent.vals[self.parent.value])
+		return ("text", _(self.parent.vals[self.parent.value]))
 
 class configDateTime:
 	def __init__(self, parent):
