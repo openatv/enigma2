@@ -52,7 +52,7 @@ class SecConfigure:
 
 	def linkNIMs(self, nim1, nim2):
 		eDVBSatelliteEquipmentControl.getInstance().setTunerLinked(nim1, nim2)
-
+		
 	def getSatList(self):
 		return self.satList
 
@@ -69,7 +69,7 @@ class SecConfigure:
 				if nim.configMode.value == 1:
 					self.linkNIMs(x, nim.linkedTo.value)
 					nim = config.Nims[nim.linkedTo.value]
-				if nim.configMode.value == 0 or nim.configMode.value == 1:		#simple config
+				if nim.configMode.value == 0:		#simple config
 					if nim.diseqcMode.value == 0:			#single
 						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 0, 4)
 					elif nim.diseqcMode.value == 1:		#Toneburst A/B
