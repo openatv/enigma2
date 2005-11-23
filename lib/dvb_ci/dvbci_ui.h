@@ -30,13 +30,15 @@ public:
 	int getMMIState(int slot);
 
 	int answerMenu(int slot, int answer);
-	int answerEnq(int slot, int answer, char *val);
+	int answerEnq(int slot, char *val);
+	int cancelEnq(int slot);
 
 	PyObject *eDVBCI_UI::getMMIScreen(int slot);
 	PyObject *mmiScreen;
 	int mmiTuplePos;
 	int mmiScreenReady;
-	
+
+	int mmiScreenEnq(int slot, int blind, int answerLen, char *text);
 	int mmiScreenBegin(int slot, int listmenu);
 	int mmiScreenAddText(int slot, int type, char *value);
 	int mmiScreenFinish(int slot);
