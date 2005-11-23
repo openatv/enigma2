@@ -327,9 +327,11 @@ class NimManager:
 		if (mode == 1): # linked
 			if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
 				print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
+				self.sec.setTunerLinked(slotid, nimmgr.getConfigPrefix(slotid).value)
 			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
 	def nimLinkedToChanged(self, slotid, val):
 		print "Linking slot " + str(slotid) + " to " + str(val)
+		self.sec.setTunerLinked(slotid, val)
 		# TODO call c++ to link nim in slot slotid with nim in slot val
 	def nimDiseqcModeChanged(self, slotid, mode):
 		#print "nimDiseqcModeChanged set to " + str(mode)
