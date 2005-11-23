@@ -76,22 +76,22 @@ class TimerEntry(Screen):
 				type = 0
 				repeated = 0
 			
-			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, ("once", "repeated"))
+			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
-			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, ("daily", "weekly", "Mon-Fri", "user-defined"))
+			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, (_("daily"), _("weekly"), _("Mon-Fri"), _("user-defined")))
 
-			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, ("%d.%B %Y", 86400))
+			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, (_("%d.%B %Y"), 86400))
 			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
 
-			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, ("%d.%B %Y", 86400))
+			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, (_("%d.%B %Y"), 86400))
 			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.end))), int(time.strftime("%M", time.localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
 
-			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, weekday, ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, weekday, (_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday")))
 
 			config.timerentry.day = []
 			for x in range(0,7):
-				config.timerentry.day.append(configElement_nonSave("config.timerentry.day[" + str(x) + "]", configSelection, day[x], ("yes", "no")))
+				config.timerentry.day.append(configElement_nonSave("config.timerentry.day[" + str(x) + "]", configSelection, day[x], (_("yes"), _("no"))))
 
 
 			# FIXME some service-chooser needed here
@@ -114,38 +114,42 @@ class TimerEntry(Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry("Description", config.timerentry.description))
-		self.list.append(getConfigListEntry("TimerType", config.timerentry.type))
+		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
+		self.list.append(getConfigListEntry(_("TimerType"), config.timerentry.type))
 
 		if (config.timerentry.type.value == 0): # once
 			pass
 		else: # repeated
-			self.list.append(getConfigListEntry("Frequency", config.timerentry.repeated))
+			self.list.append(getConfigListEntry(_("Frequency"), config.timerentry.repeated))
 			if (config.timerentry.repeated.value == 0): # daily
 				pass
 			if (config.timerentry.repeated.value == 2): # Mon-Fri
 				pass
 			if (config.timerentry.repeated.value == 1): # weekly
-				self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
+				self.list.append(getConfigListEntry(_("Weekday"), config.timerentry.weekday))
 
 			if (config.timerentry.repeated.value == 3): # user-defined
-				self.list.append(getConfigListEntry("Monday", config.timerentry.day[0]))
-				self.list.append(getConfigListEntry("Tuesday", config.timerentry.day[1]))
-				self.list.append(getConfigListEntry("Wednesday", config.timerentry.day[2]))
-				self.list.append(getConfigListEntry("Thursday", config.timerentry.day[3]))
-				self.list.append(getConfigListEntry("Friday", config.timerentry.day[4]))
-				self.list.append(getConfigListEntry("Saturday", config.timerentry.day[5]))
-				self.list.append(getConfigListEntry("Sunday", config.timerentry.day[6]))
+				self.list.append(getConfigListEntry(_("Monday"), config.timerentry.day[0]))
+				self.list.append(getConfigListEntry(_("Tuesday"), config.timerentry.day[1]))
+				self.list.append(getConfigListEntry(_("Wednesday"), config.timerentry.day[2]))
+				self.list.append(getConfigListEntry(_("Thursday"), config.timerentry.day[3]))
+				self.list.append(getConfigListEntry(_("Friday"), config.timerentry.day[4]))
+				self.list.append(getConfigListEntry(_("Saturday"), config.timerentry.day[5]))
+				self.list.append(getConfigListEntry(_("Sunday"), config.timerentry.day[6]))
 
 			#self.list.append(getConfigListEntry("StartDate", config.timerentry.startdate))
 #		self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
 
 		if (config.timerentry.type.value == 0): # once
-			self.list.append(getConfigListEntry("StartDate", config.timerentry.startdate))
-		self.list.append(getConfigListEntry("StartTime", config.timerentry.starttime))
+			self.list.append(getConfigListEntry(_("Start"), config.timerentry.startdate))
+			self.list.append(getConfigListEntry("", config.timerentry.starttime))
+		else:
+			self.list.append(getConfigListEntry(_("StartTime"), config.timerentry.starttime))
 		if (config.timerentry.type.value == 0): # once
-			self.list.append(getConfigListEntry("EndDate", config.timerentry.enddate))
-		self.list.append(getConfigListEntry("EndTime", config.timerentry.endtime))
+			self.list.append(getConfigListEntry(_("End"), config.timerentry.enddate))
+			self.list.append(getConfigListEntry("", config.timerentry.endtime))
+		else:
+			self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
 
 		self.list.append(getConfigListEntry(_("Channel"), config.timerentry.service))
 
@@ -154,9 +158,9 @@ class TimerEntry(Screen):
 
 	def newConfig(self):
 		print self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == "TimerType":
+		if self["config"].getCurrent()[0] == _("TimerType"):
 			self.createSetup()
-		if self["config"].getCurrent()[0] == "Frequency":
+		if self["config"].getCurrent()[0] == _("Frequency"):
 			self.createSetup()
 
 	def keyLeft(self):

@@ -199,11 +199,11 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 			// HACK this assigns ALL RUNNING SERVICES to the first free CI !!!
 			for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
 			{
-				eDVBCISlot **usedby = &it->usedby;
+/*				eDVBCISlot **usedby = &it->usedby;
 				*usedby = ci_it;
 				(*usedby)->resetPrevSentCAPMTVersion();
 				break;
-				
+				*/
 			}
 		}
 		if (it->usedby)

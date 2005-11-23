@@ -19,10 +19,16 @@ class NimSetup(Screen):
 			if mode >= 3:		# > 2 Sats
 				list.append(getConfigListEntry(_("Port C"), config.Nims[nim.slotid].diseqcC))
 				list.append(getConfigListEntry(_("Port D"), config.Nims[nim.slotid].diseqcD))
+	
 	def createPositionerSetup(self, nim, list):
-		list.append(getConfigListEntry(_("Longitude"), config.Nims[nim.slotid].longitude))
-		list.append(getConfigListEntry(_("Latitude"), config.Nims[nim.slotid].latitude))
-		pass
+		list.append(getConfigListEntry(_("Positioner mode"), config.Nims[nim.slotid].positionerMode))
+		if (config.Nims[nim.slotid].positionerMode.value == 0): # USALS
+			list.append(getConfigListEntry(_("Longitude"), config.Nims[nim.slotid].longitude))
+			list.append(getConfigListEntry("", config.Nims[nim.slotid].longitudeOrientation))
+			list.append(getConfigListEntry(_("Latitude"), config.Nims[nim.slotid].latitude))
+			list.append(getConfigListEntry("", config.Nims[nim.slotid].latitudeOrientation))
+		elif (config.Nims[nim.slotid].positionerMode.value == 1): # manual
+			pass
 	
 	def createSetup(self):
 		self.list = [ ]
