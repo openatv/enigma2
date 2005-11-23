@@ -431,7 +431,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 				int i=0;
 				int lenbytes = raw_data[3] & ~0x80;
 				while(i < lenbytes)
-					wp |= (raw_data[4+i] << (8 * i++));
+					wp = (wp << 8) | raw_data[4 + i++];
 				wp+=4;
 				wp+=lenbytes;
 				hlen = 4 + lenbytes;
