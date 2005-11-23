@@ -321,8 +321,16 @@ class NimManager:
 
 	#callbacks for c++ config
 	def nimConfigModeChanged(self, slotid, mode):
-		#print "nimConfigModeChanged set to " + str(mode)
-		pass
+		if (mode != 1): # not linked
+			print "Unlinking slot " + str(slotid)
+			# TODO call c++ to unlink nim in slot slotid
+		if (mode == 1): # linked
+			if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
+				print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
+			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
+	def nimLinkedToChanged(self, slotid, val):
+		print "Linking slot " + str(slotid) + " to " + str(val)
+		# TODO call c++ to link nim in slot slotid with nim in slot val
 	def nimDiseqcModeChanged(self, slotid, mode):
 		#print "nimDiseqcModeChanged set to " + str(mode)
 		pass
@@ -340,7 +348,6 @@ class NimManager:
 		#print "nimDiseqcD set to " + str(val)
 		pass
 
-
 def InitNimManager(nimmgr):
 	config.Nims = []
 	for x in range(nimmgr.nimCount):
@@ -348,6 +355,8 @@ def InitNimManager(nimmgr):
 		
 	def nimConfigModeChanged(slotid, configElement):
 		nimmgr.nimConfigModeChanged(slotid, configElement.value)
+	def nimLinkedToChanged(slotid, configElement):
+		nimmgr.nimLinkedToChanged(slotid, configElement.value)
 	def nimDiseqcModeChanged(slotid, configElement):
 		nimmgr.nimDiseqcModeChanged(slotid, configElement.value)
 		
@@ -388,6 +397,7 @@ def InitNimManager(nimmgr):
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
+			nim.linkedTo.addNotifier(boundFunction(nimLinkedToChanged,x))
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
 			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
