@@ -213,9 +213,9 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
 #endif
 public:
-	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
 #ifndef SWIG
+	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id);
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
