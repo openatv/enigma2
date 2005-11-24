@@ -103,7 +103,7 @@ class Setup(Screen):
 		
 		self["config"] = ConfigList(list)
 
-		self["title"] = Label(myTitle);
+		self["title"] = Label(_(myTitle));
 
 		self["ok"] = Label("OK")
 		self["cancel"] = Label("Cancel")
