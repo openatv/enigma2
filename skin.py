@@ -66,7 +66,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'size':
 			guiObject.resize(parseSize(value))
 		elif attrib == 'title':
-			guiObject.setTitle(value)
+			guiObject.setTitle(_(value))
 		elif attrib == 'text':
 			guiObject.setText(value)
 		elif attrib == 'font':
