@@ -3,12 +3,14 @@
 
 #include <lib/gui/elistbox.h>
 #include <lib/service/iservice.h>
-
 #include <set>
+
+class eEPGCache;
 
 class eListboxServiceContent: public virtual iListboxContent
 {
 	DECLARE_REF(eListboxServiceContent);
+	eEPGCache *epgcache;
 public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
@@ -36,9 +38,9 @@ public:
 	
 		/* only in complex mode: */
 	enum {
-		celServiceName,
-		celServiceNumber,
 		celIcon,
+		celServiceNumber,
+		celServiceName,
 		celServiceInfo, // "now" event
 		celElements
 	};
