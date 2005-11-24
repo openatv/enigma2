@@ -13,7 +13,6 @@ eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
-	eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	eDebug("new PMT handler record: %d", m_record);
 }
 
@@ -28,8 +27,8 @@ eDVBServicePMTHandler::~eDVBServicePMTHandler()
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
 		eDVBCAService::unregister_service(m_reference, demux_num, ptr);
+		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 	}
-	eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
@@ -74,13 +73,14 @@ void eDVBServicePMTHandler::PMTready(int error)
 		serviceEvent(eventNewProgramInfo);
 		if (!m_pvr_channel)
 		{
-			eDVBCIInterfaces::getInstance()->gotPMT(this);
 			if(!m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
 			{
 				uint8_t demux_num;
 				m_demux->getCADemuxID(demux_num);
 				eDVBCAService::register_service(m_reference, demux_num, m_ca_servicePtr);
+				eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 			}
+			eDVBCIInterfaces::getInstance()->gotPMT(this);
 		}
 		if (m_ca_servicePtr)
 		{
