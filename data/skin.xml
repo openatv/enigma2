@@ -144,7 +144,7 @@
 		</screen>
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
-			
+						
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Arial;20" backgroundColor="dark" />
@@ -191,7 +191,12 @@
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
 		</screen>
 		<screen name="EPGSelection" position="90,100" size="560,415" title="EPG Selection">
-			<widget name="list" position="10,5" size="550,400" />
+			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Arial;21" />
+			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Arial;21" />
+			<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Arial;21" />
+			<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Arial;21" />
+
+			<widget name="list" position="10,40" size="550,370" />
 		</screen>
 		<screen name="EventView" position="100,100" size="520,380" title="Eventview">
 			<widget name="epg_description" position="10,5" size="500,335" font="Arial;22" />
