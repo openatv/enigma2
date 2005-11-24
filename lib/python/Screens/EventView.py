@@ -4,6 +4,8 @@ from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from enigma import eServiceEventPtr
 from ServiceReference import ServiceReference
+from RecordTimer import RecordTimerEntry
+from TimerEntry import TimerEntry
 
 class EventView(Screen):
 	def __init__(self, session, Event, Ref, callback=None):
@@ -21,7 +23,8 @@ class EventView(Screen):
 				"pageUp": self.pageUp,
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
-				"nextEvent": self.nextEvent
+				"nextEvent": self.nextEvent,
+				"timerAdd": self.timerAdd
 			})
 		self.setEvent(Event)
 		self.setService(Ref)
@@ -33,6 +36,33 @@ class EventView(Screen):
 	def nextEvent(self):
 		if self.cbFunc is not None:
 			self.cbFunc(self.setEvent, +1)
+			
+	def timerAdd(self):
+		epg = self.event
+		
+		if (epg == None):
+			description = "unknown event"
+		else:
+			description = epg.getEventName()
+			# FIXME we need a timestamp here:
+			begin = epg.getBeginTime()
+			
+			print begin
+			print epg.getDuration()
+			end = begin + epg.getDuration()
+
+
+		# FIXME only works if already playing a service
+		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
+		
+		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+
+	def timerEditFinished(self, answer):
+		if (answer[0]):
+			self.session.nav.RecordTimer.record(answer[1])
+		else:
+			print "Timeredit aborted"	
 
 	def setService(self, service):
 		self.currentService=service
@@ -43,6 +73,7 @@ class EventView(Screen):
 			self["channel"].setText(_("unknown service"))
 
 	def setEvent(self, event):
+		self.event = event
 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
