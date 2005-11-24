@@ -143,44 +143,69 @@ void eDVBCIInterfaces::addPMTHandler(eDVBServicePMTHandler *pmthandler)
 	eServiceReferenceDVB service;
 	pmthandler->getService(service);
 
-	PMTHandlerSet::iterator it = m_pmt_handlers.begin();
-	while (it != m_pmt_handlers.end())
+	eDebug("[eDVBCIInterfaces] addPMTHandler %s", service.toString().c_str());
+
+	// HACK the first service get the CI..
+	eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin());
+	for (; ci_it != m_slots.end(); ++ci_it)
 	{
-		eServiceReferenceDVB ref;
-		it->pmthandler->getService(ref);
-		if ( service == ref && it->usedby )
-			new_handler.usedby = it->usedby;
-		break;
+		if (ci_it->use_count)
+			continue;
+		ci_it->use_count=1;
+		new_handler.cislot = ci_it;
+		new_handler.cislot->resetPrevSentCAPMTVersion();
 	}
-	m_pmt_handlers.insert(new_handler);
+
+	if (ci_it == m_slots.end())
+	{
+		PMTHandlerList::iterator it = m_pmt_handlers.begin();
+		while (it != m_pmt_handlers.end())
+		{
+			eServiceReferenceDVB ref;
+			it->pmthandler->getService(ref);
+			if ( service == ref && it->cislot )
+			{
+				new_handler.cislot = it->cislot;
+				++new_handler.cislot->use_count;
+				break;
+			}
+			++it;
+		}
+	}
+
+	m_pmt_handlers.push_back(new_handler);
 }
 
 void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 {
-	PMTHandlerSet::iterator it=m_pmt_handlers.find(pmthandler);
+	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(),m_pmt_handlers.end(),pmthandler);
 	if (it != m_pmt_handlers.end())
 	{
-		eDVBCISlot *slot = it->usedby;
+		eDVBCISlot *slot = it->cislot;
 		eDVBServicePMTHandler *pmthandler = it->pmthandler;
 		m_pmt_handlers.erase(it);
-		if (slot)
+		if (slot && !--slot->use_count)
 		{
-			eServiceReferenceDVB removed_service;
-			pmthandler->getService(removed_service);
-			PMTHandlerSet::iterator it=m_pmt_handlers.begin();
+#if 0
+			eDebug("[eDVBCIInterfaces] remove last pmt handler for service %s send empty capmt");
+			std::vector<uint16_t> caids;
+			caids.push_back(0xFFFF);
+			slot->resetPrevSentCAPMTVersion();
+			slot->sendCAPMT(pmthandler, caids);
+#endif
+	// check if another service is running
+			it = m_pmt_handlers.begin();
 			while (it != m_pmt_handlers.end())
 			{
-				eServiceReferenceDVB ref;
-				it->pmthandler->getService(ref);
-				if (ref == removed_service)
+				if ( !it->cislot )
+				{
+					it->cislot = slot;
+					++slot->use_count;
+					slot->resetPrevSentCAPMTVersion();
+					slot->sendCAPMT(it->pmthandler);
 					break;
+				}
 				++it;
-			}
-			if ( it == m_pmt_handlers.end() && slot->getPrevSentCAPMTVersion() != 0xFF  )
-			{
-				std::vector<uint16_t> caids;
-				caids.push_back(0xFFFF);
-				slot->sendCAPMT(pmthandler, caids);
 			}
 		}
 	}
@@ -189,26 +214,10 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 {
 	eDebug("[eDVBCIInterfaces] gotPMT");
-	PMTHandlerSet::iterator it=m_pmt_handlers.find(pmthandler);
+	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(), m_pmt_handlers.end(), pmthandler);
 	eServiceReferenceDVB service;
-	if ( it != m_pmt_handlers.end() )
-	{
-		eDebug("[eDVBCIInterfaces] usedby %p", it->usedby);
-		if (!it->usedby)
-		{
-			// HACK this assigns ALL RUNNING SERVICES to the first free CI !!!
-			for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
-			{
-/*				eDVBCISlot **usedby = &it->usedby;
-				*usedby = ci_it;
-				(*usedby)->resetPrevSentCAPMTVersion();
-				break;
-				*/
-			}
-		}
-		if (it->usedby)
-			it->usedby->sendCAPMT(pmthandler);
-	}
+	if ( it != m_pmt_handlers.end() && it->cislot)
+		it->cislot->sendCAPMT(pmthandler);
 }
 
 int eDVBCIInterfaces::getMMIState(int slotid)
@@ -294,6 +303,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	application_manager = 0;
 	mmi_session = 0;
 	ca_manager = 0;
+	use_count = 0;
 	
 	slotid = nr;
 
