@@ -127,8 +127,8 @@ void eDVBVolumecontrol::volumeMute()
 
 	//HACK?
 	FILE *f;
-	if((f = fopen("/proc/stb/adc/j1_mute", "wb")) == NULL) {
-		printf("cannot open /proc/stb/adc/j1_mute\n");
+	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
+		printf("cannot open /proc/stb/audio/j1_mute\n");
 		return;
 	}
 	
@@ -148,8 +148,8 @@ void eDVBVolumecontrol::volumeUnMute()
 
 	//HACK?
 	FILE *f;
-	if((f = fopen("/proc/stb/adc/j1_mute", "wb")) == NULL) {
-		printf("cannot open /proc/stb/adc/j1_mute\n");
+	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
+		printf("cannot open /proc/stb/audio/j1_mute\n");
 		return;
 	}
 	
