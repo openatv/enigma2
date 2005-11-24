@@ -430,9 +430,9 @@ class InfoBarInstantRecord:
 			return
 	
 		if self.recording != None:
-			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Do you want to stop the current\n(instant) recording?")
+			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, "Start recording?")
+			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
 
 from Screens.AudioSelection import AudioSelection
 
