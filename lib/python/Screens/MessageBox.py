@@ -13,7 +13,7 @@ class MessageBox(Screen):
 		self["key_green"] = Button("OK")
 		self["key_red"] = Button("Exit")
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["MsgBoxActions"], 
 			{
 				"cancel": self.cancel,
 				"ok": self.ok

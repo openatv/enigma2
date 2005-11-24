@@ -157,14 +157,19 @@
 		<key id="\x1b" mapto="cancel" flags="m" />
 
 		<!-- use this on rcu, ok? -->
-		<key id="KEY_GREEN" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />		
-		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
+	</map>
+
+	<map context="MsgBoxActions">
+		<key id="KEY_GREEN" mapto="ok" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />		
+		<key id="KEY_RED" mapto="cancel" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 	</map>
 
 	<map context="WindowActions">
