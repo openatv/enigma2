@@ -1017,14 +1017,16 @@ RESULT eDVBFrontend::setData(int num, int val)
 
 int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
-	if (m_type != eDVBFrontend::feSatellite)
-		return 1;
+	int type;
+	if (feparm->getSystem(type) || type != m_type)
+		return 0;
 
-	ASSERT(m_sec);
-
-	eDVBFrontendParametersSatellite sat_parm;
-
-	ASSERT(!feparm->getDVBS(sat_parm));
-
-	return m_sec->canTune(sat_parm, this, 1 << m_fe);
+	if (m_type == eDVBFrontend::feSatellite)
+	{
+		ASSERT(m_sec);
+		eDVBFrontendParametersSatellite sat_parm;
+		ASSERT(!feparm->getDVBS(sat_parm));
+		return m_sec->canTune(sat_parm, this, 1 << m_fe);
+	}
+	return 1;
 }
