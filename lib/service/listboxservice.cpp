@@ -1,5 +1,7 @@
 #include <lib/service/listboxservice.h>
 #include <lib/service/service.h>
+#include <lib/gdi/font.h>
+#include <lib/dvb/epgcache.h>
 
 void eListboxServiceContent::setRoot(const eServiceReference &root)
 {
@@ -136,7 +138,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
+	:epgcache(eEPGCache::getInstance()), m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
@@ -324,38 +326,76 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		{
 			if (!m_element_font[e])
 				continue;
-			painter.setFont(m_element_font[e]);
-			
+			int flags=gPainter::RT_VALIGN_CENTER;
+
+			eRect area = m_element_position[e];
+
 			std::string text = "<n/a>";
-			
+
 			switch (e)
 			{
+			case celIcon:
+				// render icon here...
+				continue;
+			case celServiceNumber:
+			{
+				char bla[10];
+				sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
+				text = bla;
+				flags|=gPainter::RT_HALIGN_RIGHT;
+				break;
+			}
 			case celServiceName:
 			{
 				if (service_info)
 					service_info->getName(*m_cursor, text);
 				break;
 			}
-			case celServiceNumber:
-			{
-				char bla[10];
-				sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
-				text = bla;
-				break;
-			}
 			case celServiceInfo:
 			{
-				text = "now&next";
+				ePtr<eServiceEvent> evt;
+				time_t t=-1;
+				if ( !epgcache->lookupEventTime(*m_cursor, t, evt) )
+					text = '(' + evt->getEventName() + ')';
+				else
+					continue;
 				break;
 			}
-			case celIcon:
-				continue;
 			}
-			
-			eRect area = m_element_position[e];
-			area.moveBy(offset.x(), offset.y());
-			
-			painter.renderText(area, text);
+
+			eTextPara *para = new eTextPara(area);
+
+			para->setFont(m_element_font[e]);
+			para->renderString(text);
+
+			if (e == celServiceName)
+			{
+				eRect bbox = para->getBoundBox();
+				int name_width = bbox.width()+10;
+				m_element_position[celServiceInfo].setLeft(area.left()+name_width);
+				m_element_position[celServiceInfo].setTop(area.top());
+				m_element_position[celServiceInfo].setWidth(area.width()-name_width);
+				m_element_position[celServiceInfo].setHeight(area.height());
+			}
+
+			if (flags & gPainter::RT_HALIGN_RIGHT)
+				para->realign(eTextPara::dirRight);
+			else if (flags & gPainter::RT_HALIGN_CENTER)
+				para->realign(eTextPara::dirCenter);
+			else if (flags & gPainter::RT_HALIGN_BLOCK)
+				para->realign(eTextPara::dirBlock);
+
+			ePoint offs = offset;
+
+			if (flags & gPainter::RT_VALIGN_CENTER)
+			{
+				eRect bbox = para->getBoundBox();
+				int vcentered_top = (area.height() - bbox.height()) / 2;
+				int correction = vcentered_top - bbox.top();
+				offs += ePoint(0, correction);
+			}
+
+			painter.renderPara(para, offs);
 		}
 		
 		if (selected)
