@@ -996,7 +996,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	}
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, const eventData *&result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result )
 // if t == 0 we search the current event...
 {
 	singleLock s(cache_lock);
@@ -1037,31 +1037,31 @@ RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, const 
 	return -1;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, const eit_event_struct *&result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eit_event_struct *&result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data);
 	if ( !ret && data )
 		result = data->get();
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, Event *& result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Event *& result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data);
 	if ( !ret && data )
 		result = new Event((uint8_t*)data->get());
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result )
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data);
 	if ( !ret && data )
 	{
 		Event ev((uint8_t*)data->get());
@@ -1071,7 +1071,7 @@ RESULT eEPGCache::lookupEvent(const eServiceReference &service, time_t t, ePtr<e
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, const eventData *&result )
+RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, const eventData *&result )
 {
 	singleLock s(cache_lock);
 	uniqueEPGKey key( service );
@@ -1094,31 +1094,31 @@ RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, co
 	return -1;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, const eit_event_struct *&result)
+RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, event_id, data);
+	RESULT ret = lookupEventId(service, event_id, data);
 	if ( !ret && data )
 		result = data->get();
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, Event *& result)
+RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, Event *& result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, event_id, data);
+	RESULT ret = lookupEventId(service, event_id, data);
 	if ( !ret && data )
 		result = new Event((uint8_t*)data->get());
 	return ret;
 }
 
-RESULT eEPGCache::lookupEvent(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &result)
+RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &result)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEvent(service, event_id, data);
+	RESULT ret = lookupEventId(service, event_id, data);
 	if ( !ret && data )
 	{
 		Event ev((uint8_t*)data->get());
