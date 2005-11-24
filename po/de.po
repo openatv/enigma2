@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-23 12:33+0100\n"
+"POT-Creation-Date: 2005-11-24 03:42+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../lib/python/Screens/EventView.py:58
+#: ../lib/python/Screens/EventView.py:89
 #, python-format
 msgid "%d min"
 msgstr ""
@@ -75,6 +75,10 @@ msgstr "Kapazitaet"
 msgid "Channel"
 msgstr "Kanal"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:164
+msgid "Channel:"
+msgstr "Kanal:"
+
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Classic"
 msgstr "klassisch"
@@ -116,11 +120,11 @@ msgstr "Erkannte Festplatten"
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
-#: ../lib/python/Components/NimManager.py:379
+#: ../lib/python/Components/NimManager.py:386
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:379
+#: ../lib/python/Components/NimManager.py:386
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
@@ -140,12 +144,20 @@ msgstr "Aus"
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:433
+msgid ""
+"Do you want to stop the current\n"
+"(instant) recording?"
+msgstr ""
+"Die aktuelle Direktaufnahme\n"
+"abbrechen?"
+
 #: ../lib/python/Components/ServiceScan.py:35
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 
-#: ../lib/python/Components/NimManager.py:386
+#: ../lib/python/Components/NimManager.py:393
 msgid "East"
 msgstr "Ost"
 
@@ -235,7 +247,7 @@ msgstr "Breitengrad"
 msgid "Linked to"
 msgstr "Verbunden mit"
 
-#: ../lib/python/Components/NimManager.py:378
+#: ../lib/python/Components/NimManager.py:385
 msgid "Linked tuner"
 msgstr "Verbundene Tuner"
 
@@ -261,7 +273,7 @@ msgstr "Montag bis Freitag"
 msgid "Monday"
 msgstr "Montag"
 
-#: ../lib/python/Components/NimManager.py:236
+#: ../lib/python/Components/NimManager.py:243
 msgid "N/A"
 msgstr "Nicht verfuegbar"
 
@@ -280,7 +292,7 @@ msgstr "Netzmaske"
 msgid "None"
 msgstr "Keins"
 
-#: ../lib/python/Components/NimManager.py:388
+#: ../lib/python/Components/NimManager.py:395
 msgid "North"
 msgstr "Nord"
 
@@ -304,7 +316,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:379
+#: ../lib/python/Components/NimManager.py:386
 msgid "Positioner"
 msgstr "Motor"
 
@@ -334,29 +346,33 @@ msgstr "Samstag"
 msgid "Select channel to record from"
 msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 
-#: ../lib/python/Components/NimManager.py:378
+#: ../lib/python/Components/NimManager.py:385
 msgid "Simple"
 msgstr "Einfach"
 
-#: ../lib/python/Components/NimManager.py:379
+#: ../lib/python/Components/NimManager.py:386
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Components/NimManager.py:392
+#: ../lib/python/Components/NimManager.py:399
 msgid "Slot "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:297
+#: ../lib/python/Components/NimManager.py:304
 msgid "Socket "
 msgstr "Sockel "
 
-#: ../lib/python/Components/NimManager.py:388
+#: ../lib/python/Components/NimManager.py:395
 msgid "South"
 msgstr "Sued"
 
 #: ../lib/python/Screens/TimerEntry.py:144
 msgid "Start"
 msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:435
+msgid "Start recording?"
+msgstr "Aufnahme beginnen?"
 
 #: ../lib/python/Screens/TimerEntry.py:147
 msgid "StartTime"
@@ -390,7 +406,7 @@ msgstr "Donnerstag"
 msgid "TimerType"
 msgstr "Timer-Art"
 
-#: ../lib/python/Components/NimManager.py:379
+#: ../lib/python/Components/NimManager.py:386
 msgid "Toneburst A/B"
 msgstr ""
 
@@ -414,7 +430,7 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Art der Suche"
 
-#: ../lib/python/Components/NimManager.py:384
+#: ../lib/python/Components/NimManager.py:391
 msgid "USALS"
 msgstr ""
 
@@ -446,7 +462,7 @@ msgstr ""
 "\n"
 "Bitte zuerst eine Kanalsuche durchfuehren!"
 
-#: ../lib/python/Components/NimManager.py:386
+#: ../lib/python/Components/NimManager.py:393
 msgid "West"
 msgstr ""
 
@@ -462,7 +478,7 @@ msgstr ""
 msgid "daily"
 msgstr "taeglich"
 
-#: ../lib/python/Components/NimManager.py:299
+#: ../lib/python/Components/NimManager.py:306
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
 
@@ -470,9 +486,13 @@ msgstr "leer/unbekannt"
 msgid "horizontal"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:384
+#: ../lib/python/Components/NimManager.py:391
 msgid "manual"
 msgstr "manuell"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:260
+msgid "next channel"
+msgstr "n?chster Kanal"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/TimerEntry.py:94
@@ -504,6 +524,10 @@ msgstr "an"
 msgid "once"
 msgstr "einmalig"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:261
+msgid "previous channel"
+msgstr "vorheriger Kanal"
+
 #: ../lib/python/Screens/TimerEntry.py:79
 msgid "repeated"
 msgstr "wiederholend"
@@ -525,7 +549,11 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
-#: ../lib/python/Screens/EventView.py:43
+#: ../lib/python/Screens/InfoBarGenerics.py:303
+msgid "show EPG..."
+msgstr "zeige EPG..."
+
+#: ../lib/python/Screens/EventView.py:73
 msgid "unknown service"
 msgstr "unbekannter Service"
 
