@@ -21,6 +21,11 @@ class EPGSelection(Screen):
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
 					ActionMap.action(self, contexts, action)
+					
+		self["key_red"] = Button("")
+		self["key_green"] = Button(_("Add timer"))
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
 
 		self["actions"] = ChannelActionMap(["EPGSelectActions", "OkCancelActions"], 
 			{
