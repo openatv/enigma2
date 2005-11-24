@@ -2,6 +2,7 @@
 
 #include <lib/dvb_ci/dvbci_mmi.h>
 #include <lib/dvb_ci/dvbci_ui.h>
+#include <lib/base/estring.h>
 
 /*
 PyObject *list = PyList_New(len);
@@ -68,7 +69,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			
 			printf("enq-text: %s\n",str);
 			
-			eDVBCI_UI::getInstance()->mmiScreenEnq(0, blind, alen, str);
+			eDVBCI_UI::getInstance()->mmiScreenEnq(0, blind, alen, convertDVBUTF8(str).c_str());
 
 			break;		
 		}
@@ -110,7 +111,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				memcpy(str, ((char*)d), textlen);
 				str[textlen] = '\0';
 				
-				eDVBCI_UI::getInstance()->mmiScreenAddText(0, pos++, str);
+				eDVBCI_UI::getInstance()->mmiScreenAddText(0, pos++, convertDVBUTF8(str).c_str());
 					
 				while (textlen--)
 					printf("%c", *d++);
