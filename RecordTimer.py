@@ -142,10 +142,12 @@ class RecordTimer(timer.Timer):
 		file.close()
 	
 	def record(self, entry):
+		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
 
 	def removeEntry(self, entry):
+		print "[Timer] Remove " + str(entry)
 		if entry.state == timer.TimerEntry.StateRunning:
 			entry.end = time.time()
 			self.timeChanged(entry)
@@ -158,7 +160,10 @@ class RecordTimer(timer.Timer):
 			print "timer did already end - doing nothing."
 		
 		# now the timer should be in the processed_timers list. remove it from there.
-		self.processed_timers.remove(entry)
+		try:
+			self.processed_timers.remove(entry)
+		except:
+			pass
 
 	def shutdown(self):
 		self.saveTimer()
