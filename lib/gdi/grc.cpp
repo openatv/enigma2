@@ -442,7 +442,9 @@ void gDC::exec(gOpcode *o)
 		if (o->parm.renderText->flags & gPainter::RT_VALIGN_CENTER)
 		{
 			eRect bbox = para->getBoundBox();
-			offset += ePoint(0, (o->parm.renderText->area.height() - bbox.height()) / 2);
+			int vcentered_top = (o->parm.renderText->area.height() - bbox.height()) / 2;
+			int correction = vcentered_top - bbox.top();
+			offset += ePoint(0, correction);
 		}
 		para->blit(*this, offset, getRGB(m_background_color), getRGB(m_foreground_color));
 		delete o->parm.renderText;
