@@ -72,7 +72,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'font':
 			guiObject.setFont(parseFont(value))
 		elif attrib == 'zPosition':
-			guiObject.setZPosition(value)
+			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
 			ptr = gPixmapPtr()
 			if loadPNG(ptr, value):
