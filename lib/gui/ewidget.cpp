@@ -215,6 +215,7 @@ void eWidget::insertIntoParent()
 			m_parent->m_childs.insert(i, this);
 			return;
 		}
+		++i;
 	}
 }
 
