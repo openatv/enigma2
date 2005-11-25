@@ -227,6 +227,9 @@ void eMainloop::processOneEvent()
 		/* when we not processed anything, check timers. */
 	if (!ret)
 	{
+			/* we know that this time has passed. */
+		now += poll_timeout;
+		
 		singleLock s(recalcLock);
 
 			/* this will never change while we have the recalcLock */
@@ -235,7 +238,7 @@ void eMainloop::processOneEvent()
 			return;
 
 			/* process all timers which are ready. first remove them out of the list. */
-		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() < now))
+		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() <= now))
 			m_timer_list.begin()->activate();
 	}
 }
