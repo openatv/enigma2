@@ -22,6 +22,11 @@ static inline bool operator<( const timeval &t1, const timeval &t2 )
 	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_usec < t2.tv_usec);
 }
 
+static inline bool operator<=( const timeval &t1, const timeval &t2 )
+{
+	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_usec <= t2.tv_usec);
+}
+
 static inline timeval &operator+=( timeval &t1, const timeval &t2 )
 {
 	t1.tv_sec += t2.tv_sec;
