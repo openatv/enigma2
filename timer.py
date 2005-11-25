@@ -98,15 +98,15 @@ class Timer:
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
 
-		# we either go trough Prepare/Start/End-state if the timer is still running,
-		# or skip it when it's alrady past the end.
-		
-		if entry.end > time.time():
+		# when the timer has not yet started, and is already passed,
+		# don't go trough waiting/running/end-states, but sort it
+		# right into the processedTimers.
+		if entry.end <= time.time() and entry.state == TimerEntry.StateWait:
+			bisect.insort(self.processed_timers, entry)
+		else:
 			bisect.insort(self.timer_list, entry)
 			if not noRecalc:
 				self.calcNextActivation()
-		else:
-			bisect.insort(self.processed_timers, entry)
 	
 	def setNextActivation(self, when):
 		delay = int((when - time.time()) * 1000)
@@ -144,7 +144,7 @@ class Timer:
 	def doActivate(self, w):
 		w.activate(w.state)
 		self.timer_list.remove(w)
-
+		
 		w.state += 1
 		if w.state < TimerEntry.StateEnded:
 			bisect.insort(self.timer_list, w)
@@ -156,7 +156,6 @@ class Timer:
 			else:
 				bisect.insort(self.processed_timers, w)
 
-	
 	def processActivation(self):
 		t = int(time.time()) + 1
 		
