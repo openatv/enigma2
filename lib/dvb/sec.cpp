@@ -93,8 +93,12 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
 					band |= 2;
 
+				bool rotor=false;
+				bool diseqc=false;
+
 				if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 				{
+					diseqc=true;
 					if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
 					{
 						csw = 0xF0 | (csw << 2);
@@ -103,6 +107,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
 					{
+						rotor=true;
 						if ( curRotorPos == sat.orbital_position )
 							ret=20;
 						else
@@ -128,17 +133,27 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 					if (found && it->m_inuse)
 					{
-						int lastcsw = -1,
-							lastucsw = -1,
-							lastToneburst = -1,
-							curRotorPos = -1;
-						it->m_frontend->getData(0, lastcsw);
-						it->m_frontend->getData(1, lastucsw);
-						it->m_frontend->getData(2, lastToneburst);
-						it->m_frontend->getData(6, curRotorPos);
+						int ocsw = -1,
+							oucsw = -1,
+							oToneburst = -1,
+							oRotorPos = -1;
+						it->m_frontend->getData(0, ocsw);
+						it->m_frontend->getData(1, oucsw);
+						it->m_frontend->getData(2, oToneburst);
+						it->m_frontend->getData(6, oRotorPos);
 
-						if (csw != lastcsw || ucsw != lastucsw ||
-							toneburst != lastToneburst || curRotorPos != sat.orbital_position )
+						eDebug("compare csw %02x == lcsw %02x",
+							csw, ocsw);
+						if ( diseqc )
+							eDebug("compare ucsw %02x == lucsw %02x\ncompare toneburst %02x == oToneburst %02x",
+								ucsw, oucsw, toneburst, oToneburst);
+						if ( rotor )
+							eDebug("compare pos %d == current pos %d",
+								sat.orbital_position, oRotorPos);
+
+						if ( (csw != ocsw) ||
+							( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
+							( rotor && oRotorPos != sat.orbital_position ) )
 						{
 							eDebug("can not tune this transponder with linked tuner in use!!");
 							ret=0;
@@ -207,7 +222,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				{
 					eDebug("[SEC] frontend is linked with another one and the other is in use.. so we dont do SEC!!");
 					linked=true;
-					continue;
 				}
 			}
 
@@ -317,7 +331,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					{
 						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-						frontend.setData(2, di_param.m_toneburst_param);
 					}
 
 					if ( send_diseqc )
@@ -380,6 +393,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 							frontend.setData(0, csw);
 							frontend.setData(1, ucsw);
+							frontend.setData(2, di_param.m_toneburst_param);
 						}
 					}
 
@@ -535,8 +549,16 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-							frontend.setData(3, RotorCmd);
-							frontend.setData(4, sat.orbital_position);
+							if ( linked )
+							{
+								frontend.setData(5, RotorCmd);
+								frontend.setData(6, sat.orbital_position);
+							}
+							else
+							{
+								frontend.setData(3, RotorCmd);
+								frontend.setData(4, sat.orbital_position);
+							}
 						}
 						else
 							eFatal("rotor turning without inputpowermeasure not implemented yet");
@@ -545,6 +567,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			}
 			else
 				frontend.setData(0, band); // store band as csw .. needed for linked tuner handling
+
+			if ( linked )
+				return 0;
 
 			eSecCommand::pair compare;
 			compare.voltage = voltage;
