@@ -44,7 +44,8 @@ class NimSetup(Screen):
 				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
 					self.createPositionerSetup(self.nim, self.list)
 			elif config.Nims[self.nim.slotid].configMode.value == 1: # linked tuner
-				self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
+				#self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
+				pass
 			elif config.Nims[self.nim.slotid].configMode.value == 2: # advanced mode
 				print "FIXME: implement advanced mode"
 		
@@ -69,7 +70,12 @@ class NimSetup(Screen):
 
 	def keyRight(self):
 		#forbid to enable advanced mode until its ready
-		#if self["config"].getCurrent()[0] != _("Configmode"):
+		#perhaps its better to use an own element here
+		#this suckz .. how enable advanced config?
+		if self["config"].getCurrent()[0] == _("Configmode"):
+			if self.nim.slotid == 0:
+				return
+
 		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
 

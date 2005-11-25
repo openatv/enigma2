@@ -332,8 +332,10 @@ class NimManager:
 			print "Unlinking slot " + str(slotid)
 			# TODO call c++ to unlink nim in slot slotid
 		if (mode == 1): # linked
-			if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
-				print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
+			pass
+			#FIXME!!!
+			#if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
+			#	print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
 			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
 	def nimLinkedToChanged(self, slotid, val):
 		print "Linking slot " + str(slotid) + " to " + str(val)
@@ -382,7 +384,21 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Linked tuner"))) # "Advanced"));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Loopthrough to Socket A"))) # "Advanced"));
+			
+			#important - check if just the 2nd one is LT only and the first one is DVB-S
+			if nim.configMode.value == 1: #linked
+				if x == 0:										#first one can never be linked to anything
+					nim.configMode.value = 0		#reset to simple
+					nim.configMode.save()
+				else:
+					#FIXME: make it better
+					for y in nimmgr.nimslots:
+						if y.slotid == 0:
+							if y.nimType != nimmgr.nimType["DVB-S"]:
+								nim.configMode.value = 0		#reset to simple
+								nim.configMode.save()
+
 			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
