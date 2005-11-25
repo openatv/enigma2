@@ -27,6 +27,9 @@ class TimerEntry:
 		self.repeated |= (2 ** day)
 		print "Repeated: " + str(self.repeated)
 		
+	def isRunning(self):
+		return self.state == self.StateRunning
+		
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self):
 		print "ProcessRepeated"
