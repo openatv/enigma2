@@ -219,7 +219,7 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 			int c = i->m_frontend->isCompatibleWith(feparm);
 			if (c > bestval)
 			{
-				c = bestval;
+				bestval = c;
 				best = i;
 			}
 		}
