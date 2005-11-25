@@ -6,6 +6,7 @@ from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
 
+from Components.BlinkingPoint import BlinkingPoint
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 
@@ -386,15 +387,19 @@ class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
 	start/stop instant records"""
 	def __init__(self):
-		self["InstnantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
+		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"instantRecord": (self.instantRecord, "Instant Record..."),
 			})
 		self.recording = None
+		
+		self["BlinkingPoint"] = BlinkingPoint()
+		self.onShown.append(self["BlinkingPoint"].hidePoint)
 
 	def stopCurrentRecording(self):	
 		self.session.nav.RecordTimer.removeEntry(self.recording)
 		self.recording = None
+		self["BlinkingPoint"].stopBlinking()
 	
 	def startInstantRecording(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -412,6 +417,8 @@ class InfoBarInstantRecord:
 		# fix me, description. 
 		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600, serviceref, epg, "instant record")
 		self.recording.dontSave = True
+		
+		self["BlinkingPoint"].startBlinking()
 
 	def recordQuestionCallback(self, answer):
 		if answer == False:
