@@ -421,11 +421,17 @@ class InfoBarInstantRecord:
 		self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
 		#self["BlinkingPoint"].startBlinking()
 
+	def isInstantRecordRunning(self):
+		if self.recording != None:
+			if self.recording.isRunning():
+				return True
+		return False
+
 	def recordQuestionCallback(self, answer):
 		if answer == False:
 			return
 		
-		if self.recording != None:
+		if self.isInstantRecordRunning():
 			self.stopCurrentRecording()
 		else:
 			self.startInstantRecording()
@@ -437,7 +443,7 @@ class InfoBarInstantRecord:
 			self.session.open(MessageBox, "No HDD found!")
 			return
 	
-		if self.recording != None:
+		if self.isInstantRecordRunning():
 			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
