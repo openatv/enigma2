@@ -39,6 +39,8 @@ public:
 	void setBackgroundColor(const gRGB &col);
 	void clearBackgroundColor();
 	
+	void setZPosition(int z);
+	
 		/* untested code */
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
 		/* ... */
@@ -63,6 +65,7 @@ private:
 	
 	ePtr<eWindowStyle> m_style;
 	
+	void insertIntoParent();
 	void doPaint(gPainter &painter, const gRegion &region);
 	void recalcClipRegionsWhenVisible();
 	
@@ -70,6 +73,9 @@ private:
 	int m_have_background_color;
 	
 	eWidget *m_current_focus, *m_focus_owner;
+	
+	int m_z_position;
+	
 protected:
 	virtual ~eWidget();
 	void mayKillFocus();

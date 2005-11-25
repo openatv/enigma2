@@ -8,6 +8,7 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_vis = 0;
 	m_desktop = 0;
 	m_have_background_color = 0;
+	m_z_position = 0;
 	
 	m_client_offset = eSize(0, 0);
 	
@@ -16,7 +17,7 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	
 	if (m_parent)
 	{
-		m_parent->m_childs.push_back(this);
+		insertIntoParent();
 		m_parent->getStyle(m_style);
 	}
 
@@ -165,6 +166,17 @@ void eWidget::clearBackgroundColor()
 	m_have_background_color = 0;
 }
 
+void eWidget::setZPosition(int z)
+{
+	m_z_position = z;
+	if (!m_parent)
+		return;
+	
+	m_parent->m_childs.remove(this);
+	
+	insertIntoParent(); /* now at the new Z position */
+}
+
 void eWidget::mayKillFocus()
 {
 	setFocus(0);
@@ -189,6 +201,20 @@ eWidget::~eWidget()
 		(*i)->m_parent = 0;
 		delete *i;
 		i = m_childs.erase(i);
+	}
+}
+
+void eWidget::insertIntoParent()
+{
+	ePtrList<eWidget>::iterator i = m_parent->m_childs.begin();
+	
+	for(;;)
+	{
+		if ((i == m_parent->m_childs.end()) || (i->m_z_position > m_z_position))
+		{
+			m_parent->m_childs.insert(i, this);
+			return;
+		}
 	}
 }
 
