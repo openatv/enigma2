@@ -45,8 +45,8 @@ void eTimer::start(long msek, bool singleShot)
 	bSingleShot = singleShot;
 	interval = msek;
 	gettimeofday(&nextActivation, 0);
-	nextActivation += (msek<0 ? 0 : msek);
 //	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+	nextActivation += (msek<0 ? 0 : msek);
 //	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
 	context.addTimer(this);
 }
@@ -126,37 +126,6 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 
 void eMainloop::processOneEvent()
 {
-		/* notes:
-		  - we should use epoll(4)
-		  - timer are checked twice. there was a strong reason for it, but i can't remember. (FIXME)
-		  - for each time, we gettimeofday() and check wether the timer should fire.
-		    we should do this all better - we know how long the poll last, so we know which
-		    timers should fire. Problem is that a timer handler could have required so
-		    much time that another timer fired.
-
-		    A probably structure could look
-
-		    while (1)
-		    {
-			    time = gettimeofday()
-			    timeout = calculate_pending_timers(time);
-
-		      doPoll(timeout or infinite);
-
-		    	if (poll_had_results)
-		    		handle_poll_handler();
-		    	else
-				    fire_timers(time + timeout)
-			  }
-
-			  the gettimeofday() call is required because fire_timers could last more
-			  than nothing.
-
-			  when poll did no timeout, we don't handle timers, as this will be done
-			  in the next iteration (without adding overhead - we had to get the new
-			  time anyway
-		*/
-
 		/* get current time */
 	timeval now;
 	gettimeofday(&now, 0);
@@ -212,14 +181,15 @@ void eMainloop::processOneEvent()
 				} else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
 					eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d) -> FIX YOUR CODE", pfd[i].fd,pfd[i].revents);
 			}
+			
+			ret = 1; /* poll did not timeout. */
 		} else if (ret < 0)
 		{
-				/* when we got a signal, we get EINTR. we do not care, 
-				   because we check current time in timers anyway. */
+				/* when we got a signal, we get EINTR. */
 			if (errno != EINTR)
 				eDebug("poll made error (%m)");
 			else
-				ret = 0;
+				ret = -1; /* don't assume the timeout has passed when we got a signal */
 		}
 		delete [] pfd;
 	}
