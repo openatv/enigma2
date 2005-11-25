@@ -41,7 +41,7 @@ def getRecordingFilename(basename):
 	while True:
 		path = "/hdd/movies/" + filename
 		if i > 0:
-			path += str(i)
+			path += "_%03d" % i
 		try:
 			open(path + ".ts")
 			i += 1
