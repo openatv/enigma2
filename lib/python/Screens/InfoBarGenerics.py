@@ -6,7 +6,7 @@ from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
 
-from Components.BlinkingPoint import BlinkingPointConditional
+from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
 
@@ -393,14 +393,13 @@ class InfoBarInstantRecord:
 			})
 		self.recording = None
 		
-		self["BlinkingPoint"] = BlinkingPointConditional("/usr/share/enigma2/record.png")
+		self["BlinkingPoint"] = BlinkingPixmapConditional("/usr/share/enigma2/record.png")
 		self.onShown.append(self["BlinkingPoint"].hidePoint)
 
 	def stopCurrentRecording(self):	
 		self.session.nav.RecordTimer.removeEntry(self.recording)
 		self.recording = None
-		#self["BlinkingPoint"].stopBlinking()
-	
+			
 	def startInstantRecording(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 			
@@ -419,8 +418,7 @@ class InfoBarInstantRecord:
 		self.recording.dontSave = True
 		
 		self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
-		#self["BlinkingPoint"].startBlinking()
-
+		
 	def isInstantRecordRunning(self):
 		if self.recording != None:
 			if self.recording.isRunning():
