@@ -1,7 +1,7 @@
 from HTMLComponent import *
 from GUIComponent import *
 
-from Pixmap import Pixmap
+from Pixmap import *
 
 from enigma import *
 
@@ -60,34 +60,19 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 			self.hidePixmap()
 		self.timer.stop()
 		
-class BlinkingPixmapConditional(BlinkingPixmap):
+class BlinkingPixmapConditional(BlinkingPixmap, PixmapConditional):
 	def __init__(self):
 		BlinkingPixmap.__init__(self)
+		PixmapConditional.__init__(self)
 		
-		self.setConnect(None)
-		
-		self.conditionCheckTimer = eTimer()
-		self.conditionCheckTimer.timeout.get().append(self.conditionallyBlink)
-		self.conditionCheckTimer.start(1000)
-		
-	def setConnect(self, conditionalFunction):
-		self.conditionalFunction = conditionalFunction
-		
-	def conditionallyBlink(self):
-		try:
-			self.conditionalFunction() # check, if the conditionalfunction is still valid
-		except:
-			self.conditionalFunction = None
-			self.stopBlinking()
-			
-		if self.conditionalFunction != None:
-			if self.conditionalFunction(): # we shall blink
-				if self.blinking: # we are already blinking
-					pass
-				else: # we don't blink
-					self.startBlinking()
-			else: # we shall not blink
-				if self.blinking: # we are blinking
-					self.stopBlinking()
-				else: # we don't blink
-					pass
+	def activateCondition(self, condition):
+		if (condition):
+			if self.blinking: # we are already blinking
+				pass
+			else: # we don't blink
+				self.startBlinking()
+		else:
+			if self.blinking: # we are blinking
+				self.stopBlinking()
+			else: # we don't blink
+				pass
