@@ -5,6 +5,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <dvbsi++/ca_program_map_section.h>
+#include <dvbsi++/descriptor_tag.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	:m_ca_servicePtr(0)
@@ -156,6 +157,21 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				case 0x04: // MPEG 2 audio:
 					isaudio = 1;
 					audio.type = audioStream::atMPEG;
+					break;
+				case 0x06: // PES Private
+						/* PES private can contain AC-3, DTS or lots of other stuff.
+						   check descriptors to get the exact type. */
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+							desc != (*es)->getDescriptors()->end(); ++desc)
+					{
+						switch ((*desc)->getTag())
+						{
+						case AC3_DESCRIPTOR:
+							isaudio = 1;
+							audio.type = audioStream::atAC3;
+							break;
+						}
+					}
 					break;
 				}
 				if (isaudio)
