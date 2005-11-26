@@ -10,7 +10,7 @@ from Components.ServicePosition import ServicePosition
 from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarPVR, InfoBarInstantRecord, \
-	InfoBarAudioSelection
+	InfoBarAudioSelection, InfoBarAdditionalInfo
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -18,10 +18,10 @@ from enigma import *
 
 import time
 
-class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
-	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
-	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection,
-	HelpableScreen):
+class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
+	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
+	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
+	HelpableScreen, InfoBarAdditionalInfo):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -34,7 +34,8 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 		for x in HelpableScreen, \
 				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
-				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection:
+				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
+				InfoBarAdditionalInfo:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))

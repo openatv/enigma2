@@ -6,6 +6,7 @@ from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
 
+from Components.Pixmap import PixmapConditional
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
@@ -461,3 +462,17 @@ class InfoBarAudioSelection:
 		n = audio.getNumberOfTracks()
 		if n > 0:
 			self.session.open(AudioSelection, audio)
+
+class InfoBarAdditionalInfo:
+	def __init__(self):
+		self["DolbyActive"] = PixmapConditional()
+		# TODO: get the info from c++ somehow
+		self["DolbyActive"].setConnect(lambda: False)
+		
+		self["CryptActive"] = PixmapConditional()
+		# TODO: get the info from c++ somehow
+		self["CryptActive"].setConnect(lambda: False)
+		
+		self["FormatActive"] = PixmapConditional()
+		# TODO: get the info from c++ somehow
+		self["FormatActive"].setConnect(lambda: False)

@@ -146,6 +146,11 @@
 			<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 						
 			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,35" size="20,20" />
+
+			<widget name="CryptActive" pixmap="/usr/share/enigma2/crypt.png" position="570,40" size="12,15" />
+			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
+			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
+
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Arial;20" backgroundColor="dark" />

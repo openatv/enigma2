@@ -1,12 +1,18 @@
 import skin
+from GUIComponent import *
 
 from enigma import *
 
-class Pixmap:
+class Pixmap(GUIComponent):
 	"""Pixmap can be used for components which diplay a pixmap"""
 	
+	SHOWN = 0
+	HIDDEN = 1
+	
 	def __init__(self):
+		GUIComponent.__init__(self)
 		self.instance = None
+		self.state = self.SHOWN
 	
 	def GUIcreate(self, parent):
 		self.instance = self.createWidget(parent)
@@ -19,6 +25,22 @@ class Pixmap:
 		#pixmap = ePixmap(parent)
 		#pixmap.setPixmapFromFile(self.filename)
 		return ePixmap(parent)
+	
+	def createWidget(self, parent):
+		return self.getePixmap(parent)
+
+	def removeWidget(self, w):
+		pass
+	
+	def showPixmap(self):
+		print "Show pixmap"
+		self.state = self.SHOWN
+		self.instance.show()
+
+	def hidePixmap(self):
+		print "Hide pixmap"
+		self.state = self.HIDDEN
+		self.instance.hide()
 	
 	def removeWidget(self, instance):
 		pass
@@ -39,12 +61,14 @@ class PixmapConditional(Pixmap):
 		
 	def activateCondition(self, condition):
 		if (condition):
-			self.instance.show()
+			if (self.state == self.HIDDEN):
+				self.showPixmap()
 		else:
-			self.instance.hide()
+			if (self.state == self.SHOWN):
+				self.hidePixmap()
 
 	def update(self):
-		if (self.setConnect != None):
+		if (self.conditionalFunction != None):
 			try:
 				self.conditionalFunction() # check, if the conditionalfunction is still valid
 			except:
