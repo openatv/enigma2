@@ -396,7 +396,8 @@ class InfoBarInstantRecord:
 		
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
 		self.onShown.append(self["BlinkingPoint"].hidePixmap)
-
+		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
+		
 	def stopCurrentRecording(self):	
 		self.session.nav.RecordTimer.removeEntry(self.recording)
 		self.recording = None
@@ -418,7 +419,7 @@ class InfoBarInstantRecord:
 		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600, serviceref, epg, "instant record")
 		self.recording.dontSave = True
 		
-		self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
+		#self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
 		
 	def isInstantRecordRunning(self):
 		if self.recording != None:
