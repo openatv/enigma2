@@ -11,11 +11,9 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 	SHOWN = 0
 	HIDDEN = 1
 	
-	def __init__(self, filename):
+	def __init__(self):
 		Pixmap.__init__(self)
 		GUIComponent.__init__(self)
-		
-		self.filename = filename
 		
 		self.state = self.SHOWN
 		self.blinking = False
@@ -27,18 +25,18 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 	
 		
 	def createWidget(self, parent):
-		return self.getePixmap(parent, self.filename)
+		return self.getePixmap(parent)
 
 	def removeWidget(self, w):
 		pass
 	
-	def showPoint(self):
-		print "Show point"
+	def showPixmap(self):
+		print "Show pixmap"
 		self.state = self.SHOWN
 		self.instance.show()
 
-	def hidePoint(self):
-		print "Hide point"
+	def hidePixmap(self):
+		print "Hide pixmap"
 		self.state = self.HIDDEN
 		self.instance.hide()
 		
@@ -48,9 +46,9 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 	def blink(self):
 		if self.blinking == True:
 			if (self.state == self.SHOWN):
-				self.hidePoint()
+				self.hidePixmap()
 			elif (self.state == self.HIDDEN):
-				self.showPoint()
+				self.showPixmap()
 			
 	def startBlinking(self):
 		self.blinking = True
@@ -59,12 +57,12 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 	def stopBlinking(self):
 		self.blinking = False
 		if (self.state == self.SHOWN):
-			self.hidePoint()
+			self.hidePixmap()
 		self.timer.stop()
 		
 class BlinkingPixmapConditional(BlinkingPixmap):
-	def __init__(self, filename):
-		BlinkingPixmap.__init__(self, filename)
+	def __init__(self):
+		BlinkingPixmap.__init__(self)
 		
 		self.setConnect(None)
 		

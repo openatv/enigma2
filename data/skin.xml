@@ -145,7 +145,7 @@
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 						
-			<widget name="BlinkingPoint" position="430,35" size="20,20" />
+			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,35" size="20,20" />
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Arial;20" backgroundColor="dark" />

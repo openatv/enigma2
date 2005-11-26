@@ -393,8 +393,8 @@ class InfoBarInstantRecord:
 			})
 		self.recording = None
 		
-		self["BlinkingPoint"] = BlinkingPixmapConditional("/usr/share/enigma2/record.png")
-		self.onShown.append(self["BlinkingPoint"].hidePoint)
+		self["BlinkingPoint"] = BlinkingPixmapConditional()
+		self.onShown.append(self["BlinkingPoint"].hidePixmap)
 
 	def stopCurrentRecording(self):	
 		self.session.nav.RecordTimer.removeEntry(self.recording)
