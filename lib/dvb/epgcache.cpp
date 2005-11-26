@@ -1066,7 +1066,8 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 	{
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
-		ret = result->parseFrom(&ev);
+		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
+		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get());
 	}
 	return ret;
 }
@@ -1123,7 +1124,8 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 	{
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
-		ret = result->parseFrom(&ev);
+		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
+		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get());
 	}
 	return ret;
 }
@@ -1147,6 +1149,8 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 		else
 			m_timemap_cursor = It->second.second.begin();
+		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
+		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		return 0;
 	}
 	return -1;
@@ -1188,7 +1192,7 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	{
 		Event ev((uint8_t*)m_timemap_cursor++->second->get());
 		result = new eServiceEvent();
-		return result->parseFrom(&ev);
+		return result->parseFrom(&ev, currentQueryTsidOnid);
 	}
 	return -1;
 }

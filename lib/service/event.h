@@ -1,7 +1,7 @@
 #ifndef __lib_service_event_h
 #define __lib_service_event_h
 
-#ifndef PYTHON
+#ifndef SWIG
 #include <time.h>
 #include <lib/base/object.h>
 #include <string>
@@ -11,14 +11,16 @@ class Event;
 class eServiceEvent: public iObject
 {
 DECLARE_REF(eServiceEvent);
+#ifndef SWIG
+	bool loadLanguage(Event *event, std::string lang, int tsidonid);
+#endif
 public:
-#ifndef PYTHON
+#ifndef SWIG
 	time_t m_begin;
 	int m_duration;
 	std::string m_event_name, m_short_description, m_extended_description;
 	// .. additional info
-	bool loadLanguage(Event *event, std::string lang);
-	RESULT parseFrom(Event *evt);
+	RESULT parseFrom(Event *evt, int tsidonid=0);
 #endif
 	time_t getBeginTime() { return m_begin; }
 	int getDuration() { return m_duration; }
@@ -28,8 +30,8 @@ public:
 	std::string getBeginTimeString();
 };
 
-#ifndef PYTHON
 TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
+#ifndef SWIG
 
 class eDebugClass: public iObject
 {

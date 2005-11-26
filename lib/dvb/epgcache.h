@@ -221,6 +221,7 @@ private:
 	void DVBChannelRunning(iDVBChannel *);
 
 	timeMap::iterator m_timemap_cursor, m_timemap_end;
+	int currentQueryTsidOnid; // needed for getNextTimeEntry.. only valid until next startTimeQuery call
 #endif // SWIG
 public:
 	static eEPGCache *getInstance() { return instance; }
