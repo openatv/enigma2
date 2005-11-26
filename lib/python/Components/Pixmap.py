@@ -27,6 +27,8 @@ class PixmapConditional(Pixmap):
 	def __init__(self, withTimer = True):
 		Pixmap.__init__(self)
 		
+		self.setConnect(None)
+		
 		if (withTimer):
 			self.conditionCheckTimer = eTimer()
 			self.conditionCheckTimer.timeout.get().append(self.update)
@@ -37,15 +39,16 @@ class PixmapConditional(Pixmap):
 		
 	def activateCondition(self, condition):
 		if (condition):
-			self.instance.hide()
-		else:
 			self.instance.show()
+		else:
+			self.instance.hide()
 
 	def update(self):
-		try:
-			self.conditionalFunction() # check, if the conditionalfunction is still valid
-		except:
-			self.conditionalFunction = None
-			self.activateCondition(False)
+		if (self.setConnect != None):
+			try:
+				self.conditionalFunction() # check, if the conditionalfunction is still valid
+			except:
+				self.conditionalFunction = None
+				self.activateCondition(False)
 			
-		self.activateCondition(self.conditionalFunction())
+			self.activateCondition(self.conditionalFunction())
