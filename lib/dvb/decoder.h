@@ -11,8 +11,9 @@ private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux;
 public:
+	enum {aMPEG, aAC3, aDTS };
 	eDVBAudio(eDVBDemux *demux, int dev);
-	int startPid(int pid);
+	int startPid(int pid, int type);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
 	void start();

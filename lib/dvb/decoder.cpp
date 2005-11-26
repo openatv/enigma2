@@ -49,12 +49,12 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux)
 		eWarning("%s: %m", filename);
 }
 	
-int eDVBAudio::startPid(int pid)
+int eDVBAudio::startPid(int pid, int type)
 {	
-	eDebug("setting audio pid to %x", pid);
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
+
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
@@ -70,6 +70,27 @@ int eDVBAudio::startPid(int pid)
 		eWarning("audio: DMX_START: %m");
 		return -errno;
 	}
+	
+	int bypass = 0;
+	
+	switch (type)
+	{
+	case aMPEG:
+		bypass = 1;
+		break;
+	case aAC3:
+		bypass = 0;
+		break;
+		/*
+	case aDTS:
+		bypass = 2;
+		break;
+		*/
+	}
+	
+	if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
+		eWarning("audio: AUDIO_SET_BYPASS_MODE: %m");
+	
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eWarning("audio: AUDIO_PLAY: %m");
 	return 0;
@@ -144,11 +165,10 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 	
 int eDVBVideo::startPid(int pid)
 {	
-	eDebug("setting video pid to %x", pid);
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
-	
+
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
@@ -166,14 +186,12 @@ int eDVBVideo::startPid(int pid)
 	}
 	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
 		eWarning("video: VIDEO_PLAY: %m");
-	else
-		eDebug("video ok");
 	return 0;
 }
 	
 void eDVBVideo::stop()
 {
-	if (::ioctl(m_fd, VIDEO_STOP) < 0)
+	if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
 		eWarning("video: VIDEO_STOP: %m");
 #if HAVE_DVB_API_VERSION > 2
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
@@ -232,7 +250,6 @@ eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
 
 int eDVBPCR::startPid(int pid)
 {
-	eDebug("setting pcr pid to %x", pid);
 	if (m_fd_demux < 0)
 		return -1;
 	dmx_pes_filter_params pes;
@@ -272,7 +289,6 @@ DEFINE_REF(eTSMPEGDecoder);
 int eTSMPEGDecoder::setState()
 {
 	int res = 0;
-	eDebug("changed %x", m_changed);
 #if HAVE_DVB_API_VERSION < 3
 	if (m_changed & changeAudio && m_audio)
 		m_audio->stopPid();
@@ -298,7 +314,7 @@ int eTSMPEGDecoder::setState()
 		m_pcr = new eDVBPCR(m_demux);
 		if (m_pcr->startPid(m_pcrpid))
 		{
-			eWarning("video: startpid failed!");
+			eWarning("pcr: startpid failed!");
 			res = -1;
 		}
 		m_changed &= ~changePCR;
@@ -316,7 +332,7 @@ int eTSMPEGDecoder::setState()
 	if (m_changed & changeAudio)
 	{
 		m_audio = new eDVBAudio(m_demux, 0);
-		if (m_audio->startPid(m_apid))
+		if (m_audio->startPid(m_apid, m_atype))
 		{
 			eWarning("audio: startpid failed!");
 			res = -1;
@@ -334,7 +350,7 @@ int eTSMPEGDecoder::setState()
 			m_pcr = new eDVBPCR(m_demux);
 			if (m_pcr->startPid(m_pcrpid))
 			{
-				eWarning("video: startpid failed!");
+				eWarning("pcr: startpid failed!");
 				res = -1;
 			}
 		}
@@ -364,7 +380,7 @@ int eTSMPEGDecoder::setState()
 		if ((m_apid >= 0) && (m_apid < 0x1FFF))
 		{
 			m_audio = new eDVBAudio(m_demux, 0);
-			if (m_audio->startPid(m_apid))
+			if (m_audio->startPid(m_apid, m_atype))
 			{
 				eWarning("audio: startpid failed!");
 				res = -1;
