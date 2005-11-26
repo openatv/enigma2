@@ -162,7 +162,12 @@ class RecordTimer(timer.Timer):
 			self.timeChanged(entry)
 		elif entry.state != timer.TimerEntry.StateEnded:
 			entry.activate(timer.TimerEntry.EventAbort)
-			self.timer_list.remove(entry)
+			try: # FIXME: is needed, because after loading the timers, every timer (even already ended ones)
+				 # have the state EventWaiting..
+				self.timer_list.remove(entry)
+			except:
+				pass
+				
 			self.calcNextActivation()
 			print "timer did not yet start - removing"
 		else:
