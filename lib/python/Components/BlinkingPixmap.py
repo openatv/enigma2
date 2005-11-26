@@ -1,21 +1,13 @@
-from HTMLComponent import *
-from GUIComponent import *
-
 from Pixmap import *
 
 from enigma import *
 
 import time
 
-class BlinkingPixmap(GUIComponent, Pixmap):
-	SHOWN = 0
-	HIDDEN = 1
-	
+class BlinkingPixmap(Pixmap):
 	def __init__(self):
 		Pixmap.__init__(self)
-		GUIComponent.__init__(self)
 		
-		self.state = self.SHOWN
 		self.blinking = False
 		
 		self.setBlinkTime(500)
@@ -23,23 +15,6 @@ class BlinkingPixmap(GUIComponent, Pixmap):
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.blink)
 	
-		
-	def createWidget(self, parent):
-		return self.getePixmap(parent)
-
-	def removeWidget(self, w):
-		pass
-	
-	def showPixmap(self):
-		print "Show pixmap"
-		self.state = self.SHOWN
-		self.instance.show()
-
-	def hidePixmap(self):
-		print "Hide pixmap"
-		self.state = self.HIDDEN
-		self.instance.hide()
-		
 	def setBlinkTime(self, time):
 		self.blinktime = time
 		
@@ -67,12 +42,8 @@ class BlinkingPixmapConditional(BlinkingPixmap, PixmapConditional):
 		
 	def activateCondition(self, condition):
 		if (condition):
-			if self.blinking: # we are already blinking
-				pass
-			else: # we don't blink
+			if not self.blinking: # we are already blinking
 				self.startBlinking()
 		else:
 			if self.blinking: # we are blinking
 				self.stopBlinking()
-			else: # we don't blink
-				pass
