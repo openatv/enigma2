@@ -103,6 +103,13 @@ class RecordTimer(timer.Timer):
 			self.loadTimer()
 		except:
 			print "unable to load timers from file!"
+			
+	def isRecording(self):
+		isRunning = False
+		for timer in self.timer_list:
+			if timer.isRunning():
+				isRunning = True
+		return isRunning
 	
 	def loadTimer(self):
 		# TODO: PATH!
