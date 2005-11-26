@@ -22,3 +22,30 @@ class Pixmap:
 	
 	def removeWidget(self, instance):
 		pass
+
+class PixmapConditional(Pixmap):
+	def __init__(self, withTimer = True):
+		Pixmap.__init__(self)
+		
+		if (withTimer):
+			self.conditionCheckTimer = eTimer()
+			self.conditionCheckTimer.timeout.get().append(self.update)
+			self.conditionCheckTimer.start(1000)
+		
+	def setConnect(self, conditionalFunction):
+		self.conditionalFunction = conditionalFunction
+		
+	def activateCondition(self, condition):
+		if (condition):
+			self.instance.hide()
+		else:
+			self.instance.show()
+
+	def update(self):
+		try:
+			self.conditionalFunction() # check, if the conditionalfunction is still valid
+		except:
+			self.conditionalFunction = None
+			self.activateCondition(False)
+			
+		self.activateCondition(self.conditionalFunction())
