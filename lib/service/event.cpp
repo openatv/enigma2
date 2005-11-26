@@ -1,5 +1,6 @@
 #include <lib/service/event.h>
 #include <lib/base/estring.h>
+#include <lib/base/encoding.h>
 #include <lib/dvb/dvbtime.h>
 #include <dvbsi++/event_information_section.h>
 #include <dvbsi++/short_event_descriptor.h>
@@ -52,7 +53,7 @@ std::string ISOtbl[MAX_LANG][2] =
 };
 
 /* search for the presence of language from given EIT event descriptors*/
-bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
+bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 {
 	bool retval=0;
 	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
@@ -62,10 +63,12 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 			case SHORT_EVENT_DESCRIPTOR:
 			{
 				const ShortEventDescriptor *sed = (ShortEventDescriptor*)*desc;
-				if (lang.empty() || sed->getIso639LanguageCode() == lang)
+				const std::string &cc = sed->getIso639LanguageCode();
+				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
+				if (lang.empty() || cc == lang)
 				{
-					m_event_name = convertDVBUTF8(sed->getEventName());
-					m_short_description = convertDVBUTF8(sed->getText());
+					m_event_name = convertDVBUTF8(sed->getEventName(), table, tsidonid);
+					m_short_description = convertDVBUTF8(sed->getText(), table, tsidonid);
 					retval=1;
 				}
 				break;
@@ -73,9 +76,11 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 			case EXTENDED_EVENT_DESCRIPTOR:
 			{
 				const ExtendedEventDescriptor *eed = (ExtendedEventDescriptor*)*desc;
-				if (lang.empty() || eed->getIso639LanguageCode() == lang)
+				const std::string &cc = eed->getIso639LanguageCode();
+				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
+				if (lang.empty() || cc == lang)
 				{
-					m_extended_description += convertDVBUTF8(eed->getText());
+					m_extended_description += convertDVBUTF8(eed->getText(), table, tsidonid);
 					retval=1;
 				}
 #if 0
@@ -99,7 +104,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang)
 	return retval;
 }
 
-RESULT eServiceEvent::parseFrom(Event *evt)
+RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 {
 	uint16_t stime_mjd = evt->getStartTimeMjd();
 	uint32_t stime_bcd = evt->getStartTimeBcd();
@@ -115,11 +120,11 @@ RESULT eServiceEvent::parseFrom(Event *evt)
 	std::string country="de_DE";  // TODO use local data here
 	for (int i=0; i < MAX_LANG; i++)
 		if (country==ISOtbl[i][0])
-			if (loadLanguage(evt,ISOtbl[i][1]))
+			if (loadLanguage(evt, ISOtbl[i][1], tsidonid))
 				return 0;
-	if (loadLanguage(evt,"eng"))
+	if (loadLanguage(evt, "eng", tsidonid))
 		return 0;
-	if (loadLanguage(evt,std::string()))
+	if (loadLanguage(evt, std::string(), tsidonid))
 		return 0;
 	return 0;
 }

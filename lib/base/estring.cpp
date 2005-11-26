@@ -1,11 +1,9 @@
 #include <string>
 #include <ctype.h>
 #include <limits.h>
-#include <lib/base/elock.h>
 #include <lib/base/eerror.h>
+#include <lib/base/encoding.h>
 #include <lib/base/estring.h>
-
-static pthread_mutex_t lock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
 std::string getNum(int val, int sys)
 {
@@ -331,15 +329,8 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	int i=0, t=0;
 
-#if 0  // FIXME
 	if ( tsidonid )
-	{
-		std::map<int, int>::iterator it =
-			std::string::TransponderDefaultMapping.find(tsidonid);
-		if ( it != std::string::TransponderDefaultMapping.end() )
-			table = it->second;
-	}
-#endif
+		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
 	switch(data[0])
 	{
@@ -386,17 +377,18 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 	}
 
+	bool useTwoCharMapping =
+		tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid);
+
 	unsigned char res[2048];
 	while (i < len)
 	{
 		unsigned long code=0;
 
-#if 0  // FIXME
-		if ( i+1 < len && tsidonid &&
-			std::string::TransponderUseTwoCharMapping.find(tsidonid) != std::string::TransponderUseTwoCharMapping.end() &&
+		if ( useTwoCharMapping && i+1 < len &&
 			(code=doVideoTexSuppl(data[i], data[i+1])) )
 			i+=2;
-#endif
+
 		if (!code)
 			code=recode(data[i++], table);
 		if (!code)

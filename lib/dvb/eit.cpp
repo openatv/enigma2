@@ -14,10 +14,11 @@ void eDVBServiceEITHandler::EITready(int error)
 			for (std::vector<EventInformationSection*>::const_iterator i = ptr->getSections().begin();
 				i != ptr->getSections().end(); ++i)
 			{
-				for (EventConstIterator ev = (*i)->getEvents()->begin(); ev != (*i)->getEvents()->end(); ++ev)
+				const EventInformationSection *eit = *i;
+				for (EventConstIterator ev = eit->getEvents()->begin(); ev != eit->getEvents()->end(); ++ev)
 				{
 					ePtr<eServiceEvent> evt = new eServiceEvent();
-					evt->parseFrom(*ev);
+					evt->parseFrom(*ev,(eit->getTransportStreamId()<<16)|eit->getOriginalNetworkId());
 					if (!a)
 						m_event_now = evt;
 					else
