@@ -223,6 +223,8 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		#self["okbutton"] = Button("ok", [self.channelSelected])
+		
+		self.lastService = None
 
 		self.lastServiceTimer = eTimer()
 		self.lastServiceTimer.timeout.get().append(self.lastService)
