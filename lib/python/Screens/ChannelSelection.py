@@ -213,8 +213,10 @@ class ChannelSelectionBase(Screen):
 		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 
 		self["key_red"] = Button("All")
-		self["key_green"] = Button("Provider")
-		self["key_yellow"] = Button("Satellite")
+		#self["key_green"] = Button("Provider")
+		#self["key_yellow"] = Button("Satellite")
+		self["key_green"] = Button("")
+		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("Favourites")
 
 		self["list"] = ServiceList()
