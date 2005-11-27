@@ -55,10 +55,9 @@ class configSelection:
 		
 	def checkValues(self):
 		if self.parent.value < 0:
-			self.parent.value = 0	
-
-		if(self.parent.value >= (len(self.parent.vals) - 1)):
-			self.parent.value = len(self.parent.vals) - 1
+			self.parent.value = len(self.parent.vals) - 1	
+		elif(self.parent.value > (len(self.parent.vals) - 1)):
+			self.parent.value = 0
 
 	def cancel(self):
 		self.parent.reload()
