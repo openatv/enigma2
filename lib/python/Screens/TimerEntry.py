@@ -95,7 +95,12 @@ class TimerEntry(Screen):
 
 
 			# FIXME some service-chooser needed here
-			config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((str(self.timer.service_ref.getServiceName())),))
+			servicename = "N/A"
+			try: # no current service available?
+				servicename = str(self.timer.service_ref.getServiceName())
+			except:
+				pass
+			config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((servicename),))
 			
 			config.timerentry.startdate.addNotifier(self.checkDate)
 			config.timerentry.enddate.addNotifier(self.checkDate)
@@ -164,8 +169,11 @@ class TimerEntry(Screen):
 			self.createSetup()
 
 	def keyLeft(self):
-		self["config"].handleKey(config.key["prevElement"])
-		self.newConfig()
+		if self["config"].getCurrent()[0] == _("Channel"):
+			self.keySelect()
+		else:
+			self["config"].handleKey(config.key["prevElement"])
+			self.newConfig()
 
 	def keyRightCallback(self, configPath):
 		currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
@@ -174,8 +182,11 @@ class TimerEntry(Screen):
 			self.keyRight()
 
 	def keyRight(self):
-		self["config"].handleKey(config.key["nextElement"])
-		self.newConfig()
+		if self["config"].getCurrent()[0] == _("Channel"):
+			self.keySelect()
+		else:
+			self["config"].handleKey(config.key["nextElement"])
+			self.newConfig()
 		
 	def keySelect(self):
 		if self["config"].getCurrent()[0] == _("Channel"):
