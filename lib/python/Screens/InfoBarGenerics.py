@@ -246,7 +246,43 @@ class InfoBarNumberZap:
 	def numberEntered(self, retval):
 #		print self.servicelist
 		if retval > 0:
-			self.servicelist.zapToNumber(retval)
+			self.zapToNumber(retval)
+
+	def searchNumberHelper(self, serviceHandler, num, bouquet):
+		servicelist = serviceHandler.list(bouquet)
+		if not servicelist is None:
+			while num:
+				serviceIterator = servicelist.getNext()
+				if not serviceIterator.valid(): #check end of list
+					break
+				if serviceIterator.flags: #assume normal dvb service have no flags set
+					continue
+				num -= 1;
+			if not num: #found service with searched number ?
+				return serviceIterator, 0
+		return None, num
+
+	def zapToNumber(self, number):
+		bouquet = self.servicelist.bouquet_root
+		service = None
+		serviceHandler = eServiceCenter.getInstance()
+		if bouquet.toString().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
+			service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+		else:
+			bouquetlist = serviceHandler.list(bouquet)
+			if not bouquetlist is None:
+				while number:
+					bouquet = bouquetlist.getNext()
+					if not bouquet.valid(): #check end of list
+						break
+					if ((bouquet.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
+						continue
+					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+		if not service is None:
+			self.session.nav.playService(service) #play service
+			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
+				self.servicelist.setRoot(bouquet)
+			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial 
