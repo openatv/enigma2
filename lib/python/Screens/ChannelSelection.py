@@ -98,82 +98,13 @@ class ChannelContextMenu(FixedMenu):
 		self.csel.endMarkedEdit(abort=True)
 		self.close()
 
-class ChannelSelection(Screen):
-	def lastService(self):
-		self.lastServiceTimer.stop()
-		#zap to last running tv service
-		self.setRoot(eServiceReference(config.tv.lastroot.value))
-		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-
-		#config for lastservice
-		config.tv = ConfigSubsection();
-		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
-		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
-
+class ChannelSelectionEdit:
+	def __init__(self):
 		self.entry_marked = False
 		self.movemode = False
 		self.bouquet_mark_edit = False
-		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 		self.mutableList = None
-
 		self.__marked = [ ]
-
-		self["key_red"] = Button("All")
-		self["key_green"] = Button("Provider")
-		self["key_yellow"] = Button("Satellite")
-		self["key_blue"] = Button("Favourites")
-
-		self["list"] = ServiceList()
-		self.servicelist = self["list"]
-
-		if config.tv.lastroot.value == "":
-			self.servicelist.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
-		#self["okbutton"] = Button("ok", [self.channelSelected])
-
-		self.lastServiceTimer = eTimer()
-		self.lastServiceTimer.timeout.get().append(self.lastService)
-		self.lastServiceTimer.start(100)
-
-		class ChannelActionMap(ActionMap):
-			def action(self, contexts, action):
-				if action[:7] == "bouquet":
-					l = self.csel
-					if action.find("FROM BOUQUET") != -1:
-						l.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
-					else:
-						l.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
-				else:
-					if action == "cancel":
-						l = self.csel
-						if l.movemode: #movemode active?
-							l.channelSelected() # unmark
-							l.toggleMoveMode() # disable move mode
-						elif l.bouquet_mark_edit:
-							l.endMarkedEdit(True) # abort edit mode
-					ActionMap.action(self, contexts, action)
-
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
-			{
-				"cancel": self.cancel,
-				"ok": self.channelSelected,
-				"mark": self.doMark,
-				"contextMenu": self.doContext,
-				"showFavourites": self.showFavourites,
-				"showEPGList": self.showEPGList
-			})
-		self["actions"].csel = self
-
-	def showEPGList(self):
-		ref=self.servicelist.getCurrent()
-		ptr=eEPGCache.getInstance()
-		if ptr.startTimeQuery(ref) != -1:
-			self.session.open(EPGSelection, ref)
-		else:
-			print 'no epg for service', ref.toString()
 
 	def getMutableList(self, root=eServiceReference()):
 		if not self.mutableList is None:
@@ -245,41 +176,55 @@ class ChannelSelection(Screen):
 				mutableList.flushChanges()
 		self.close()
 
-	def searchNumberHelper(self, serviceHandler, num, bouquet):
-		servicelist = serviceHandler.list(bouquet)
-		if not servicelist is None:
-			while num:
-				serviceIterator = servicelist.getNext()
-				if not serviceIterator.valid(): #check end of list
-					break
-				if serviceIterator.flags: #assume normal dvb service have no flags set
-					continue
-				num -= 1;
-			if not num: #found service with searched number ?
-				return serviceIterator, 0
-		return None, num
-
-	def zapToNumber(self, number):
-		bouquet = self.bouquet_root
-		service = None
-		serviceHandler = eServiceCenter.getInstance()
-		if bouquet.toString().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
-			service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+	def toggleMoveMode(self):
+		if self.movemode:
+			if self.entry_marked:
+				self.toggleMoveMarked() # unmark current entry
+			self.movemode = False
+			self.mutableList.flushChanges() # FIXME add check if changes was made
+			self.mutableList = None
 		else:
-			bouquetlist = serviceHandler.list(bouquet)
-			if not bouquetlist is None:
-				while number:
-					bouquet = bouquetlist.getNext()
-					if not bouquet.valid(): #check end of list
-						break
-					if ((bouquet.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
-						continue
-					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
-		if not service is None:
-			self.session.nav.playService(service) #play service
-			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
-				self.setRoot(bouquet)
-			self.servicelist.setCurrent(service) #select the service in servicelist
+			self.mutableList = self.getMutableList()
+			self.movemode = True
+
+	def handleEditCancel(self):
+		if self.movemode: #movemode active?
+			self.channelSelected() # unmark
+			self.toggleMoveMode() # disable move mode
+		elif self.bouquet_mark_edit:
+			self.endMarkedEdit(True) # abort edit mode
+
+	def toggleMoveMarked(self):
+		if self.entry_marked:
+			self.servicelist.setCurrentMarked(False)
+			self.entry_marked = False
+		else:
+			self.servicelist.setCurrentMarked(True)
+			self.entry_marked = True
+
+	def doContext(self):
+		self.session.open(ChannelContextMenu, self)
+
+class ChannelSelectionBase(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+
+		self["key_red"] = Button("All")
+		self["key_green"] = Button("Provider")
+		self["key_yellow"] = Button("Satellite")
+		self["key_blue"] = Button("Favourites")
+
+		self["list"] = ServiceList()
+		self.servicelist = self["list"]
+
+		#self["okbutton"] = Button("ok", [self.channelSelected])
+
+		self.lastServiceTimer = eTimer()
+		self.lastServiceTimer.timeout.get().append(self.lastService)
+		self.lastServiceTimer.start(100)
 
 	def getBouquetNumOffset(self, bouquet):
 		if self.bouquet_root.toString().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
@@ -305,38 +250,14 @@ class ChannelSelection(Screen):
 						offsetCount += 1
 		return offsetCount
 
-	def setRoot(self, root):
-		if not self.movemode: # dont change root when movemode is enabled
-			inBouquetRootList = root.toString().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
-			if not inBouquetRootList and ((root.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
-				self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
-				self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
-			else:
-				self.servicelist.setMode(ServiceList.MODE_NORMAL)
-			self.servicelist.setRoot(root)
-
-	def channelSelected(self):
-		ref = self.servicelist.getCurrent()
-		if self.movemode:
-			if self.entry_marked:
-				self.servicelist.setCurrentMarked(False)
-				self.entry_marked = False
-			else:
-				self.servicelist.setCurrentMarked(True)
-				self.entry_marked = True
-		elif (ref.flags & 7) == 7:
-			self.setRoot(ref)
-		elif self.bouquet_mark_edit:
-			self.doMark()
+	def setRootBase(self, root):
+		inBouquetRootList = root.toString().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		if not inBouquetRootList and ((root.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
+			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
 		else:
-			self.session.nav.playService(ref)
-			self.saveChannel()
-			self.close()
-
-	#called from infoBar
-	def zap(self):
-		self.session.nav.playService(self.servicelist.getCurrent())
-		self.saveChannel()
+			self.servicelist.setMode(ServiceList.MODE_NORMAL)
+		self.servicelist.setRoot(root)
 
 	def moveUp(self):
 		self.servicelist.moveUp()
@@ -344,22 +265,88 @@ class ChannelSelection(Screen):
 	def moveDown(self):
 		self.servicelist.moveDown()
 
-	def doContext(self):
-		self.session.open(ChannelContextMenu, self)
-
-	def toggleMoveMode(self):
-		if self.movemode:
-			if self.entry_marked:
-				self.channelSelected() # unmark current entry
-			self.movemode = False
-			self.mutableList.flushChanges() # FIXME add check if changes was made
-			self.mutableList = None
-		else:
-			self.mutableList = self.getMutableList()
-			self.movemode = True
-
 	def showFavourites(self):
 		self.setRoot(self.bouquet_root)
+
+	def enterBouquet(self, action):
+		if action[:7] == "bouquet":
+			if action.find("FROM BOUQUET") != -1:
+				self.setRoot(eServiceReference("1:7:1:0:0:0:0:0:0:0:" + action[8:]))
+			else:
+				self.setRoot(eServiceReference("1:0:1:0:0:0:0:0:0:0:" + action[8:]))
+			return True
+		return False
+
+	def getRoot(self):
+		return self.servicelist.getRoot()
+
+	def getCurrentSelection(self):
+		return self.servicelist.getCurrent()
+
+	def setCurrentSelection(self, service):
+		self.servicelist.setCurrent(service)
+
+	def cancel(self):
+		self.close(None)
+
+class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
+	def __init__(self, session):
+		ChannelSelectionBase.__init__(self,session)
+		ChannelSelectionEdit.__init__(self)
+
+		#config for lastservice
+		config.tv = ConfigSubsection();
+		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
+		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
+
+		if config.tv.lastroot.value == "":
+			self.servicelist.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
+
+		class ChannelActionMap(ActionMap):
+			def action(self, contexts, action):
+				if not self.csel.enterBouquet(action):
+					if action == "cancel":
+						self.csel.handleEditCancel()
+					ActionMap.action(self, contexts, action)
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
+			{
+				"cancel": self.cancel,
+				"ok": self.channelSelected,
+				"mark": self.doMark,
+				"contextMenu": self.doContext,
+				"showFavourites": self.showFavourites,
+				"showEPGList": self.showEPGList
+			})
+		self["actions"].csel = self
+
+	def showEPGList(self):
+		ref=self.servicelist.getCurrent()
+		ptr=eEPGCache.getInstance()
+		if ptr.startTimeQuery(ref) != -1:
+			self.session.open(EPGSelection, ref)
+		else:
+			print 'no epg for service', ref.toString()
+
+	def channelSelected(self):
+		ref = self.servicelist.getCurrent()
+		if self.movemode:
+			self.toggleMoveMarked()
+		elif (ref.flags & 7) == 7:
+			self.setRoot(ref)
+		elif self.bouquet_mark_edit:
+			self.doMark()
+		else:
+			self.zap()
+			self.close(ref)
+
+	def setRoot(self, root):
+		if not self.movemode:
+			self.setRootBase(root)
+
+	#called from infoBar and channelSelected
+	def zap(self):
+		self.session.nav.playService(self.servicelist.getCurrent())
+		self.saveChannel()
 
 	def saveRoot(self, root):
 		if root is not None:
@@ -374,27 +361,39 @@ class ChannelSelection(Screen):
 			refstr = ""
 		config.tv.lastservice.value = refstr
 		config.tv.lastservice.save()
-		
-	def cancel(self):
-		self.close()
 
-class SimpleChannelSelection(ChannelSelection):
+	def lastService(self):
+		self.lastServiceTimer.stop()
+		#zap to last running tv service
+		self.setRoot(eServiceReference(config.tv.lastroot.value))
+		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+
+class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
-		ChannelSelection.__init__(self, session)
+		ChannelSelectionBase.__init__(self, session)
 		self.title = title
 		self.onShown.append(self.onExecCallback)
+
+		class ChannelActionMap(ActionMap):
+			def action(self, contexts, action):
+				if not self.csel.enterBouquet(action):
+					ActionMap.action(self, contexts, action)
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
+			{
+				"cancel": self.cancel,
+				"ok": self.channelSelected,
+				"showFavourites": self.showFavourites,
+			})
+		self["actions"].csel = self
 
 	def onExecCallback(self):
 		print "onExecCallback"
 		self.session.currentDialog.instance.setTitle(self.title)
-		
+
 	def channelSelected(self): # just return selected service
 		ref = self.servicelist.getCurrent()
 		self.close(ref)
-		
-	def doContext(self): # don't show context menu
-		pass
-	
-	def cancel(self):
-		self.close(None)
-		
+
+	def setRoot(self, root):
+		self.setRootBase(root)
+
