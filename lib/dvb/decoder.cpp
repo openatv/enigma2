@@ -340,22 +340,6 @@ int eTSMPEGDecoder::setState()
 		m_changed &= ~changeAudio;
 	}
 #else
-	if (m_changed & changePCR)
-	{
-		if (m_pcr)
-			m_pcr->stop();
-		m_pcr = 0;
-		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
-		{
-			m_pcr = new eDVBPCR(m_demux);
-			if (m_pcr->startPid(m_pcrpid))
-			{
-				eWarning("pcr: startpid failed!");
-				res = -1;
-			}
-		}
-		m_changed &= ~changePCR;
-	}
 	if (m_changed & changeVideo)
 	{
 		if (m_video)
@@ -371,6 +355,22 @@ int eTSMPEGDecoder::setState()
 			}
 		}
 		m_changed &= ~changeVideo;
+	}
+	if (m_changed & changePCR)
+	{
+		if (m_pcr)
+			m_pcr->stop();
+		m_pcr = 0;
+		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
+		{
+			m_pcr = new eDVBPCR(m_demux);
+			if (m_pcr->startPid(m_pcrpid))
+			{
+				eWarning("pcr: startpid failed!");
+				res = -1;
+			}
+		}
+		m_changed &= ~changePCR;
 	}
 	if (m_changed & changeAudio)
 	{
