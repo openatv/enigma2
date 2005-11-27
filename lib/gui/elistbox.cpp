@@ -142,7 +142,7 @@ int eListbox::event(int event, void *data, void *data2)
 		m_content->cursorSave();
 		m_content->cursorMove(m_top - m_selected);
 		
-		for (int y = 0, i = 0; i < m_items_per_page; y += m_itemheight, ++i)
+		for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
 		{
 			m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size());
 			m_content->cursorMove(+1);
