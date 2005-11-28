@@ -103,6 +103,7 @@ class Timer:
 		# right into the processedTimers.
 		if entry.end <= time.time() and entry.state == TimerEntry.StateWait:
 			bisect.insort(self.processed_timers, entry)
+			entry.state = TimerEntry.StateEnded
 		else:
 			bisect.insort(self.timer_list, entry)
 			if not noRecalc:
@@ -121,6 +122,8 @@ class Timer:
 			tl = self.processed_timers
 			self.processed_timers = [ ]
 			for x in tl:
+				# simulate a "waiting" state to give them a chance to re-occure
+				x.state = TimerEntry.StateWaiting
 				self.addTimerEntry(x, noRecalc=1)
 		
 		self.processActivation()
