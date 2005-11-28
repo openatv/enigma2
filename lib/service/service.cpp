@@ -139,5 +139,14 @@ RESULT iServiceInformation::getEvent(ePtr<eServiceEvent> &evt, int m_nownext)
 	return -1;
 }
 
+int iServiceInformation::getInfo(int w)
+{
+	return -1;
+}
+
+std::string iServiceInformation::getInfoString(int w)
+{
+	return "";
+}
 
 eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");

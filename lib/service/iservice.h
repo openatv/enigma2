@@ -184,6 +184,36 @@ class iServiceInformation: public iObject
 public:
 	virtual SWIG_VOID(RESULT) getName(std::string &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) getEvent(ePtr<eServiceEvent> &SWIG_OUTPUT, int nownext);
+
+	enum { 
+		sIsCrypted,  /* is encrypted (no indication if decrypt was possible) */
+		sAspect,     /* aspect ratio: 0=4:3, 1=16:9, 2=whatever we need */
+		sIsMultichannel, /* multichannel *available* (probably not selected) */
+		
+			/* "user serviceable info" - they are not reliable. Don't use them for anything except the service menu!
+			   that's also the reason why they are so globally defined. 
+			   
+			   
+			   again - if somebody EVER tries to use this information for anything else than simply displaying it,
+			   i will change this to return a user-readable text like "zero x zero three three" (and change the
+			   exact spelling in every version) to stop that!
+			*/
+		sVideoPID,
+		sAudioPID,
+		sPCRPID,
+		sPMTPID,
+		sTXTPID,
+		
+		sSID,
+		sONID,
+		sTSID,
+		sNamespace,
+		sProvider,
+	};
+	enum { resNA = -1, resIsString = -2 };
+
+	virtual int getInfo(int w);
+	virtual std::string getInfoString(int w);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
@@ -212,7 +242,10 @@ TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 struct iAudioTrackInfo
 {
 	std::string m_description;
+	std::string m_language; /* iso639 */
+	
 	std::string getDescription() { return m_description; }
+	std::string getLanguage() { return m_language; }
 };
 
 SWIG_ALLOW_OUTPUT_SIMPLE(iAudioTrackInfo);
@@ -227,6 +260,7 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
+
 class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
@@ -237,8 +271,9 @@ public:
 		evEnd,
 		
 		evTuneFailed,
-		// when iServiceInformation is implemented:
-		evUpdatedEventInfo
+			// when iServiceInformation is implemented:
+		evUpdatedEventInfo,
+		evUpdatedInfo,
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;

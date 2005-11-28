@@ -82,6 +82,8 @@ public:
 		// iServiceInformation
 	RESULT getName(std::string &name);
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
+	int getInfo(int w);
+	std::string getInfoString(int w);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();
@@ -107,6 +109,9 @@ private:
 	Signal2<void,iPlayableService*,int> m_event;
 	
 	int m_is_pvr, m_is_paused;
+	
+	int m_current_audio_stream;
+	int selectAudioStream(int n);
 };
 
 #endif
