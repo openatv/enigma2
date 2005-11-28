@@ -177,7 +177,10 @@ class RecordTimer(timer.Timer):
 		print "in processed: ", entry in self.processed_timers
 		print "in running: ", entry in self.timer_list
 		# now the timer should be in the processed_timers list. remove it from there.
-		self.processed_timers.remove(entry)
+		try:
+			self.processed_timers.remove(entry)
+		except:
+			pass
 
 	def shutdown(self):
 		self.saveTimer()
