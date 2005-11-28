@@ -5,11 +5,13 @@
 
 class ePixmap: public eWidget
 {
+	bool m_alphatest;
 public:
 	ePixmap(eWidget *parent);
 	
 	void setPixmap(gPixmap *pixmap);
 	void setPixmapFromFile(const char *filename);
+	void setAlphatest(bool alphatest);
 protected:
 	ePtr<gPixmap> m_pixmap;
 	int event(int event, void *data=0, void *data2=0);
