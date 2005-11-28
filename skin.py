@@ -126,6 +126,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setBackgroundColor(parseColor(value))
 		elif attrib == "foregroundColor":
 			guiObject.setForegroundColor(parseColor(value))
+		elif attrib == "selectionDisabled":
+			guiObject.setSelectionEnable(0)
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:

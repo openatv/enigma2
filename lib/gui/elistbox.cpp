@@ -10,6 +10,7 @@ eListbox::eListbox(eWidget *parent): eWidget(parent)
 	eActionMap::getInstance(ptr);
 	
 	m_itemheight = 25;
+	m_selection_enabled = 1;
 	
 	ptr->bindAction("ListboxActions", 0, 0, this);
 }
@@ -144,7 +145,7 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
 		{
-			m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size());
+			m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
 			m_content->cursorMove(+1);
 		}
 		
@@ -181,6 +182,14 @@ void eListbox::setItemHeight(int h)
 	else
 		m_itemheight = 20;
 	recalcSize();
+}
+
+void eListbox::setSelectionEnable(int en)
+{
+	if (m_selection_enabled == en)
+		return;
+	m_selection_enabled = en;
+	entryChanged(m_selected); /* redraw current entry */
 }
 
 void eListbox::entryAdded(int index)
