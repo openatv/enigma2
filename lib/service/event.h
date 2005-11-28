@@ -4,6 +4,7 @@
 #ifndef SWIG
 #include <time.h>
 #include <lib/base/object.h>
+#include <list>
 #include <string>
 class Event;
 #endif
@@ -16,6 +17,14 @@ DECLARE_REF(eServiceEvent);
 #endif
 public:
 #ifndef SWIG
+	struct linkage_service
+	{
+		uint16_t sid;
+		uint16_t onid;
+		uint16_t tsid;
+		std::string description;
+	};
+	std::list<linkage_service> m_linkage_services;
 	time_t m_begin;
 	int m_duration;
 	std::string m_event_name, m_short_description, m_extended_description;
