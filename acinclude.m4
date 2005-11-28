@@ -125,13 +125,13 @@ TUXBOX_APPS_DIRECTORY_ONE(fontdir,FONTDIR,datadir,/share,/fonts,
 TUXBOX_APPS_DIRECTORY_ONE(gamesdir,GAMESDIR,localstatedir,/var,/tuxbox/games,
 	[--with-gamesdir=PATH    ],[where games data is stored])
 
-TUXBOX_APPS_DIRECTORY_ONE(libdir,LIBDIR,libdir,/lib,/tuxbox,
+TUXBOX_APPS_DIRECTORY_ONE(libdir,LIBDIR,libdir,/lib,,
 	[--with-libdir=PATH      ],[where to find the internal libs])
 
 TUXBOX_APPS_DIRECTORY_ONE(plugindir,PLUGINDIR,libdir,/lib,/tuxbox/plugins,
 	[--with-plugindir=PATH   ],[where to find the plugins])
 
-TUXBOX_APPS_DIRECTORY_ONE(tuxboxdatadir,TUXBOXDATADIR,datadir,/share,/tuxbox,
+TUXBOX_APPS_DIRECTORY_ONE(tuxboxdatadir,TUXBOXDATADIR,datadir,/share,,
 	[--with-tuxboxdatadir=PATH],[where to find tuxbox data])
 
 TUXBOX_APPS_DIRECTORY_ONE(zoneinfodir,ZONEINFODIR,datadir,/share,/zoneinfo,
