@@ -6,7 +6,7 @@ from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
 
-from Components.Pixmap import PixmapConditional
+from Components.Pixmap import Pixmap, PixmapConditional
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo
@@ -513,3 +513,9 @@ class InfoBarAdditionalInfo:
 		self["FormatActive"] = PixmapConditional()
 		# TODO: get the info from c++ somehow
 		self["FormatActive"].setConnect(lambda: False)
+		
+		self["ButtonRed"] = Pixmap()
+		self["ButtonRedText"] = Label(_("Record"))
+		self["ButtonGreen"] = Pixmap()
+		self["ButtonYellow"] = Pixmap()
+		self["ButtonBlue"] = Pixmap()
