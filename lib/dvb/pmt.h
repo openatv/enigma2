@@ -93,7 +93,9 @@ public:
 		int pid;
 		enum { atMPEG, atAC3, atDTS };
 		int type; // mpeg2, ac3, dts, ...
-		// language code, ...
+		
+		int component_tag;
+		std::string language_code; /* iso-639, if available. */
 	};
 	
 	struct program

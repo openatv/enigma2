@@ -6,6 +6,8 @@
 #include <lib/dvb_ci/dvbci.h>
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/iso639_language_descriptor.h>
+#include <dvbsi++/component_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	:m_ca_servicePtr(0)
@@ -175,7 +177,30 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					break;
 				}
 				if (isaudio)
+				{
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+							desc != (*es)->getDescriptors()->end(); ++desc)
+					{
+						switch ((*desc)->getTag())
+						{
+						case ISO_639_LANGUAGE_DESCRIPTOR:
+						{
+							const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
+							
+								/* use last language code */
+							for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
+								audio.language_code = (*i)->getIso639LanguageCode();
+
+							break;
+						}
+						case COMPONENT_DESCRIPTOR:
+							audio.component_tag = ((ComponentDescriptor*)*desc)->getComponentTag();
+							break;
+						}
+					}
+
 					program.audioStreams.push_back(audio);
+				}
 				if (isvideo)
 					program.videoStreams.push_back(video);
 			}
