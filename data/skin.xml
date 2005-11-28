@@ -32,7 +32,7 @@
 				<pixmap pos="bpBottom"      filename="/usr/share/enigma2/b_w_b.png"  />
 				<pixmap pos="bpBottomRight" filename="/usr/share/enigma2/b_w_br.png" />
 			</borderset>
-		</windowstyle> """ """
+		</windowstyle>
 		<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
 		</screen>
 		<screen name="Menu" position="210,150" size="300,235" title="Main menu">
@@ -143,7 +143,7 @@
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
+			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 						
 			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,31" size="58,25" />
 
@@ -161,7 +161,7 @@
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
 
 			<widget name="ButtonRed" pixmap="/usr/share/enigma2/button_red.png" position="210,132" size="27,12" />
-			<widget name="ButtonRedText" position="240,132" size="75,22" font="Arial;13" backgroundColor="dark" />
+			<widget name="ButtonRedText" position="240,132" size="75,22" font="Arial;13" backgroundColor="dark" transparent="1" />
 			<widget name="ButtonGreen" pixmap="/usr/share/enigma2/button_green.png" position="320,132" size="27,12" />
 			<widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
 			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" />

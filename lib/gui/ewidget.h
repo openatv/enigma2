@@ -40,10 +40,13 @@ public:
 	void clearBackgroundColor();
 	
 	void setZPosition(int z);
+	void setTransparent(int transp);
 	
 		/* untested code */
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
 		/* ... */
+		
+	int isTransparent() { return m_vis & wVisTransparent; }
 	
 	eWidgetAnimation m_animation;
 private:

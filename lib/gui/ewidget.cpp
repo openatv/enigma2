@@ -177,6 +177,14 @@ void eWidget::setZPosition(int z)
 	insertIntoParent(); /* now at the new Z position */
 }
 
+void eWidget::setTransparent(int transp)
+{
+	if (transp)
+		m_vis |= wVisTransparent;
+	else
+		m_vis &=~wVisTransparent;
+}
+
 void eWidget::mayKillFocus()
 {
 	setFocus(0);
@@ -224,14 +232,11 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 	if (m_visible_with_childs.empty())
 		return;
 	
-	gRegion region = r;
+	gRegion region = r, childs = r;
 			/* we were in parent's space, now we are in local space */
 	region.moveBy(-position());
 	
 	painter.moveOffset(position());
-		/* walk all childs */
-	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
-		i->doPaint(painter, region);
 	
 		/* check if there's anything for us to paint */
 	region &= m_visible_region;
@@ -241,6 +246,11 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 		painter.resetClip(region);
 		event(evtPaint, &region, &painter);
 	}
+
+	childs.moveBy(-position());
+		/* walk all childs */
+	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
+		i->doPaint(painter, childs);
 	
 	painter.moveOffset(-position());
 }
@@ -272,15 +282,18 @@ int eWidget::event(int event, void *data, void *data2)
 		
 //		eDebug("eWidget::evtPaint");
 //		dumpRegion(*(gRegion*)data);
-		if (!m_have_background_color)
+		if (!isTransparent())
 		{
-			ePtr<eWindowStyle> style;
-			if (!getStyle(style))
-				style->paintBackground(painter, ePoint(0, 0), size());
-		} else
-		{
-			painter.setBackgroundColor(m_background_color);
-			painter.clear();
+			if (!m_have_background_color)
+			{
+				ePtr<eWindowStyle> style;
+				if (!getStyle(style))
+					style->paintBackground(painter, ePoint(0, 0), size());
+			} else
+			{
+				painter.setBackgroundColor(m_background_color);
+				painter.clear();
+			}
 		}
 		break;
 	}
