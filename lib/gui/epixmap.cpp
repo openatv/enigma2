@@ -2,8 +2,14 @@
 #include <lib/gdi/epng.h>
 #include <lib/gui/ewidgetdesktop.h>
 
-ePixmap::ePixmap(eWidget *parent): eWidget(parent)
+ePixmap::ePixmap(eWidget *parent)
+	:eWidget(parent), m_alphatest(false)
 {
+}
+
+void ePixmap::setAlphatest(bool alphatest)
+{
+	m_alphatest = alphatest;
 }
 
 void ePixmap::setPixmap(gPixmap *pixmap)
@@ -35,7 +41,7 @@ int ePixmap::event(int event, void *data, void *data2)
 		
 		gPainter &painter = *(gPainter*)data2;
 		if (m_pixmap)
-			painter.blit(m_pixmap, ePoint(0, 0));
+			painter.blit(m_pixmap, ePoint(0, 0), eRect(), m_alphatest?gPainter::BT_ALPHATEST:0);
 		
 		return 0;
 	}
