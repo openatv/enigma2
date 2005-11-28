@@ -76,6 +76,16 @@ int eDVBCIInterfaces::reset(int slotid)
 	return slot->reset();
 }
 
+int eDVBCIInterfaces::enableTS(int slotid, int enable)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+	
+	return slot->enableTS(enable);
+}
+
 int eDVBCIInterfaces::initialize(int slotid)
 {
 	eDVBCISlot *slot;
@@ -253,6 +263,7 @@ void eDVBCISlot::data(int what)
 	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
+			enableTS(0);
 			printf("ci removed\n");
 			notifier->setRequested(eSocketNotifier::Read);
 			//HACK
@@ -327,6 +338,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
+	enableTS(0);
 }
 
 int eDVBCISlot::getSlotID()
@@ -337,6 +349,8 @@ int eDVBCISlot::getSlotID()
 int eDVBCISlot::reset()
 {
 	printf("edvbcislot: reset requested\n");
+
+	enableTS(0);
 
 	ioctl(fd, 0);
 
@@ -471,5 +485,23 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 	}
 	
 }
+
+int eDVBCISlot::enableTS(int enable)
+{
+	printf("eDVBCISlot::enableTS(%d)\n", enable);
+
+	FILE *f;
+	if((f = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
+		printf("cannot open /proc/stb/audio/j1_mute\n");
+		return;
+	}
+
+	fprintf(f, "%s", enable?"CI":"A");
+
+	fclose(f);
+
+	return 0;
+}
+
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");

@@ -48,6 +48,9 @@ public:
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
 	void resetPrevSentCAPMTVersion() { prev_sent_capmt_version = 0xFF; }
+	
+	enableTS(int enable);
+
 };
 
 struct CIPmtHandler
@@ -95,6 +98,7 @@ public:
 	int answerEnq(int slot, char *value);
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
+	int enableTS(int slot, int enable);
 };
 
 #endif
