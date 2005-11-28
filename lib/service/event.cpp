@@ -5,6 +5,7 @@
 #include <dvbsi++/event_information_section.h>
 #include <dvbsi++/short_event_descriptor.h>
 #include <dvbsi++/extended_event_descriptor.h>
+#include <dvbsi++/linkage_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 
 DEFINE_REF(eServiceEvent);
@@ -60,6 +61,9 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 	{
 		switch ((*desc)->getTag())
 		{
+			case LINKAGE_DESCRIPTOR:
+				m_linkage_services.clear();
+				break;
 			case SHORT_EVENT_DESCRIPTOR:
 			{
 				const ShortEventDescriptor *sed = (ShortEventDescriptor*)*desc;
@@ -97,6 +101,31 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 			}
 			default:
 				break;
+		}
+	}
+	if ( retval == 1 )
+	{
+		for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
+		{
+			switch ((*desc)->getTag())
+			{
+				case LINKAGE_DESCRIPTOR:
+				{
+					const LinkageDescriptor  *ld = (LinkageDescriptor*)*desc;
+					if ( ld->getLinkageType() == 0xB0 )
+					{
+						linkage_service s;
+						s.onid = ld->getOriginalNetworkId();
+						s.tsid = ld->getTransportStreamId();
+						s.sid = ld->getServiceId();
+						const PrivateDataByteVector *privateData =
+							ld->getPrivateDataBytes();
+						s.description.assign((const char*)&((*privateData)[0]), privateData->size());
+						m_linkage_services.push_back(s);
+					}
+					break;
+				}
+			}
 		}
 	}
 	if ( m_extended_description.find(m_short_description) == 0 )
