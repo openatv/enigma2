@@ -75,6 +75,7 @@ public:
 	};
 	
 	void setItemHeight(int h);
+	void setSelectionEnable(int en);
 
 #ifndef SWIG
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */
@@ -89,11 +90,12 @@ public:
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void recalcSize();
-	
+
 private:
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
+	int m_selection_enabled;
 	ePtr<iListboxContent> m_content;
 #endif
 
