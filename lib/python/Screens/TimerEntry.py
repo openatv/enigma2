@@ -203,9 +203,14 @@ class TimerEntry(Screen):
 			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
 
 	def finishedChannelSelection(self, args):
-		self.timer.service_ref = ServiceReference(args)
-		config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
-		self["config"].invalidate(config.timerentry.service)
+		oldref = self.timer.service_ref
+		try:
+			self.timer.service_ref = ServiceReference(args)
+			config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
+			self["config"].invalidate(config.timerentry.service)
+		except:
+			print "you pressed cancel"
+			self.timer.service_ref = oldref
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
