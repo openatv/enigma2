@@ -155,6 +155,8 @@ class RecordTimer(timer.Timer):
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
+		
+		entry.repeated = False
 
 		if entry.state == timer.TimerEntry.StateRunning:
 			print "remove running timer."
