@@ -717,7 +717,7 @@ int eDVBServicePlay::getInfo(int w)
 	switch (w)
 	{
 	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
-	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.videoStreams[m_current_audio_stream].pid;
+	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[m_current_audio_stream].pid;
 	case sPCRPID: return program.pcrPid;
 	case sPMTPID: return program.pmtPid;
 	case sTXTPID: return -1;
