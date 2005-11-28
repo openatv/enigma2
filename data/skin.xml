@@ -159,14 +159,33 @@
 			<widget name="Event_Next" position="273,98" size="282,22" font="Arial;20" backgroundColor="dark" />
 			<widget name="Event_Now_Duration" position="555,68" size="70,26" font="Arial;22" backgroundColor="dark" />
 			<widget name="Event_Next_Duration" position="555,98" size="70,26" font="Arial;22" backgroundColor="dark" />
+
+			<widget name="ButtonRed" pixmap="/usr/share/enigma2/button_red.png" position="210,132" size="27,12" />
+			<widget name="ButtonRedText" position="240,132" size="75,22" font="Arial;13" backgroundColor="dark" />
+			<widget name="ButtonGreen" pixmap="/usr/share/enigma2/button_green.png" position="320,132" size="27,12" />
+			<widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
+			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" />
+			
 		</screen>
 
-		<screen name="MoviePlayer" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
-<!--			<ePixmap position="0,0" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
+		<screen name="MoviePlayer" flags="wfNoBorder" position="0,370" size="720,148" title="InfoBar">
+			<!--<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/movieplayer.png" />
+
+			<ePixmap position="50,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/rewindbutton.png" />
+			<ePixmap position="95,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/playbutton.png" />
+			<ePixmap position="140,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/pausebutton.png" />
+			<ePixmap position="185,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/forwardbutton.png" />
+			<ePixmap position="230,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/stopbutton.png" />
+			<ePixmap position="275,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/recordbutton.png" />
+
+			<widget name="ServiceName" position="250,75" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,85" size="90,30" backgroundColor="dark" font="Arial;19" />
+			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Arial;20" />
 -->
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
-			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Arial;20" />
+
+
 		</screen>
 
 
