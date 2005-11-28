@@ -535,6 +535,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		if (m_decoder)
 		{
 			m_decoder->setVideoPID(vpid);
+			m_current_audio_stream = 0;
 			m_decoder->setAudioPID(apid, apidtype);
 			if (!m_is_pvr)
 				m_decoder->setSyncPCR(pcrpid);
@@ -706,6 +707,43 @@ RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
 	return m_event_handler.getEvent(evt, nownext);
 }
 
+int eDVBServicePlay::getInfo(int w)
+{
+	eDVBServicePMTHandler::program program;
+
+	if (m_service_handler.getProgramInfo(program))
+		return -1;
+	
+	switch (w)
+	{
+	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.videoStreams[m_current_audio_stream].pid;
+	case sPCRPID: return program.pcrPid;
+	case sPMTPID: return program.pmtPid;
+	case sTXTPID: return -1;
+		
+	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
+	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
+	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
+	case sNamespace: return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
+	case sProvider: if (!m_dvb_service) return -1; return -2;
+	default:
+		return -1;
+	}
+}
+
+std::string eDVBServicePlay::getInfoString(int w)
+{	
+	switch (w)
+	{
+	case sProvider:
+		if (!m_dvb_service) return "";
+		return m_dvb_service->m_provider_name;
+	default:
+		return "";
+	}
+}
+
 int eDVBServicePlay::getNumberOfTracks()
 {
 	eDVBServicePMTHandler::program program;
@@ -716,24 +754,12 @@ int eDVBServicePlay::getNumberOfTracks()
 
 RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
-	eDVBServicePMTHandler::program program;
-
-	if (m_service_handler.getProgramInfo(program))
-		return -1;
-	
-	if (i >= program.audioStreams.size())
-		return -2;
-	
-	if (!m_decoder)
-		return -3;
-	
-	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
-		return -4;
+	int ret = selectAudioStream(i);
 
 	if (m_decoder->start())
 		return -5;
-	
-	return 0;
+
+	return ret;
 }
 
 RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
@@ -755,6 +781,30 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 	else
 		info.m_description = "???";
 	
+		/* CHECK here for component tag override. */
+	info.m_language = program.audioStreams[i].language_code;
+	
+	return 0;
+}
+
+int eDVBServicePlay::selectAudioStream(int i)
+{
+	eDVBServicePMTHandler::program program;
+
+	if (m_service_handler.getProgramInfo(program))
+		return -1;
+	
+	if (i >= program.audioStreams.size())
+		return -2;
+	
+	if (!m_decoder)
+		return -3;
+	
+	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
+		return -4;
+
+	m_current_audio_stream = i;
+
 	return 0;
 }
 
