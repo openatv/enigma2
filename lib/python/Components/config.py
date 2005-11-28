@@ -293,6 +293,8 @@ class configText:
 	def handleKey(self, key):
 		#this will no change anything on the value itself
 		#so we can handle it here in gui element
+		if key == config.key["delete"]:
+			self.parent.value = self.parent.value[0:self.markedPos] + self.parent.value[self.markedPos + 1:]
 		if key == config.key["prevElement"]:
 			self.textInput.nextKey()
 			self.markedPos -= 1
@@ -329,6 +331,7 @@ class Config:
 		self.key = { "choseElement": 0,
 					 "prevElement": 1,
 					 "nextElement": 2,
+					 "delete": 3,
 					 "0": 10,
 					 "1": 11,
 					 "2": 12,

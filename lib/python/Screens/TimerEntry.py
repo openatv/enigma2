@@ -19,13 +19,14 @@ class TimerEntry(Screen):
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "TextEntryActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"delete": self.keyDelete,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -175,6 +176,9 @@ class TimerEntry(Screen):
 			self["config"].handleKey(config.key["prevElement"])
 			self.newConfig()
 
+	def keyDelete(self):
+		self["config"].handleKey(config.key["delete"])
+			
 	def keyRightCallback(self, configPath):
 		currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
 		# check if we are still on the same config entry
