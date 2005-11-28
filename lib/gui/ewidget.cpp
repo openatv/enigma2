@@ -294,6 +294,10 @@ int eWidget::event(int event, void *data, void *data2)
 				painter.setBackgroundColor(m_background_color);
 				painter.clear();
 			}
+		} else
+		{
+			if (m_have_background_color)
+				painter.setBackgroundColor(m_background_color);
 		}
 		break;
 	}
