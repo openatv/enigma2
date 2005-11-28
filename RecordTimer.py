@@ -162,14 +162,13 @@ class RecordTimer(timer.Timer):
 			self.timeChanged(entry)
 		elif entry.state != timer.TimerEntry.StateEnded:
 			entry.activate(timer.TimerEntry.EventAbort)
-			try: # FIXME: is needed, because after loading the timers, every timer (even already ended ones)
-				 # have the state EventWaiting..
-				self.timer_list.remove(entry)
-			except:
-				pass
-				
+			self.timer_list.remove(entry)
+
 			self.calcNextActivation()
 			print "timer did not yet start - removing"
+
+			# the timer was aborted, and removed.
+			return
 		else:
 			print "timer did already end - doing nothing."
 		
@@ -177,10 +176,7 @@ class RecordTimer(timer.Timer):
 		print "in processed: ", entry in self.processed_timers
 		print "in running: ", entry in self.timer_list
 		# now the timer should be in the processed_timers list. remove it from there.
-		try:
-			self.processed_timers.remove(entry)
-		except:
-			pass
+		self.processed_timers.remove(entry)
 
 	def shutdown(self):
 		self.saveTimer()
