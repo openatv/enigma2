@@ -51,10 +51,10 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 		widget->m_visible_region = widget->m_clip_region;
 		widget->m_visible_region.moveBy(widget->position());
 		widget->m_visible_region &= parent_visible; // in parent space!
-			/* TODO: check transparency here! */
 
-			/* remove everything this widget will contain from parent's visible list */
-		parent_visible -= widget->m_visible_region; // will remove child regions too!
+		if (!widget->isTransparent())
+				/* remove everything this widget will contain from parent's visible list, unless widget is transparent. */
+			parent_visible -= widget->m_visible_region; // will remove child regions too!
 
 			/* now prepare for recursing to childs */
 		widget->m_visible_region.moveBy(-widget->position());            // now in local space
@@ -63,11 +63,22 @@ void eWidgetDesktop::calcWidgetClipRegion(eWidget *widget, gRegion &parent_visib
 
 	widget->m_visible_with_childs = widget->m_visible_region;
 	
-	for (ePtrList<eWidget>::iterator i(widget->m_childs.begin()); i != widget->m_childs.end(); ++i)
-		if (i->m_vis & eWidget::wVisShow)
-			calcWidgetClipRegion(*i, widget->m_visible_region);
-		else
-			clearVisibility(*i);
+			/* add childs in reverse (Z) order - we're going from front-to-bottom here. */
+	ePtrList<eWidget>::iterator i(widget->m_childs.end());
+	
+	for (;;)
+	{
+		if (i != widget->m_childs.end())
+		{
+			if (i->m_vis & eWidget::wVisShow)
+				calcWidgetClipRegion(*i, widget->m_visible_region);
+			else
+				clearVisibility(*i);
+		}
+		if (i == widget->m_childs.begin())
+			break;
+		--i;
+	}
 }
 
 void eWidgetDesktop::recalcClipRegions(eWidget *root)
