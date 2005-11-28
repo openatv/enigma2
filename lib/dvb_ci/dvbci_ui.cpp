@@ -43,6 +43,9 @@ int eDVBCI_UI::getState(int slot)
 void eDVBCI_UI::setState(int slot, int newState)
 {
 	state[slot] = newState;
+	
+	if(newState == 2)		//enable TS
+		eDVBCIInterfaces::getInstance()->enableTS(slot, 1);
 }
 
 std::string eDVBCI_UI::getAppName(int slot)
