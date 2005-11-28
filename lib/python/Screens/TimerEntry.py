@@ -219,6 +219,7 @@ class TimerEntry(Screen):
 		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):
+		self.timer.description = config.timerentry.description.value
 		self.timer.resetRepeated()
 		
 		if (config.timerentry.type.value == 0): # once
