@@ -493,7 +493,7 @@ int eDVBCISlot::enableTS(int enable)
 	FILE *f;
 	if((f = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
 		printf("cannot open /proc/stb/audio/j1_mute\n");
-		return;
+		return 0;
 	}
 
 	fprintf(f, "%s", enable?"CI":"A");
