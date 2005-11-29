@@ -72,7 +72,7 @@ int eDVBCIInterfaces::reset(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->reset();
 }
 
@@ -82,7 +82,19 @@ int eDVBCIInterfaces::enableTS(int slotid, int enable)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
+	if (enable)
+	{
+		slot->resetPrevSentCAPMTVersion();
+		PMTHandlerList::iterator it = m_pmt_handlers.begin();
+		while (it != m_pmt_handlers.end())
+		{
+			if ( it->cislot == slot )
+				slot->sendCAPMT(it->pmthandler);  // send capmt
+			++it;
+		}
+	}
+
 	return slot->enableTS(enable);
 }
 
@@ -92,7 +104,16 @@ int eDVBCIInterfaces::initialize(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
+	slot->resetPrevSentCAPMTVersion();
+	PMTHandlerList::iterator it = m_pmt_handlers.begin();
+	while (it != m_pmt_handlers.end())
+	{
+		if ( it->cislot == slot )
+			slot->sendCAPMT(it->pmthandler);  // send capmt
+		++it;
+	}
+
 	return slot->initialize();
 }
 
@@ -419,6 +440,11 @@ int eDVBCISlot::cancelEnq()
 
 int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<uint16_t> &ids)
 {
+	if (!ca_manager)
+	{
+		eDebug("no ca_manager (no CI plugged?)");
+		return -1;
+	}
 	const std::vector<uint16_t> &caids = ids.empty() && ca_manager ? ca_manager->getCAIDs() : ids;
 	ePtr<eTable<ProgramMapSection> > ptr;
 	if (pmthandler->getPMT(ptr))
@@ -467,20 +493,14 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 				hlen = 4;
 			}
 // end calc capmt length
-			if (!ca_manager)
-				eDebug("no ca_manager !!! dump unfiltered capmt:");
-			else
-				eDebug("ca_manager %p dump capmt:", ca_manager);
+			eDebug("ca_manager %p dump capmt:", ca_manager);
 			for(int i=0;i<wp;i++)
 				eDebugNoNewLine("%02x ", raw_data[i]);
 			eDebug("");
 #endif
-			if (ca_manager)
-			{
-				//dont need tag and lenfield
-				ca_manager->sendCAPMT(raw_data + hlen, wp - hlen);
-				prev_sent_capmt_version = pmt_version;
-			}
+			//dont need tag and lenfield
+			ca_manager->sendCAPMT(raw_data + hlen, wp - hlen);
+			prev_sent_capmt_version = pmt_version;
 		}
 	}
 	
@@ -492,7 +512,7 @@ int eDVBCISlot::enableTS(int enable)
 
 	FILE *f;
 	if((f = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
-		printf("cannot open /proc/stb/audio/j1_mute\n");
+		printf("cannot open /proc/stb/tsmux/input0\n");
 		return 0;
 	}
 
