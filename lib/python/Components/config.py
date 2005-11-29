@@ -260,8 +260,11 @@ class configSequence:
 			num += 1
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
-		return ("mtext"[1-selected:], value, [mPos])
-
+		if (self.parent.enabled == True):
+			return ("mtext"[1-selected:], value, [mPos])
+		else:
+			return ("text", value)
+		
 class configText:
 	# used as first parameter
 	# is the text of a fixed size or is the user able to extend the length of the text
