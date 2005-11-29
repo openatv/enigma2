@@ -14,6 +14,7 @@ class Network:
 		fp.write("auto eth0\n")
 		if (config.network.dhcp.value == _("yes")):
 			fp.write("iface eth0 inet dhcp\n")
+			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
 		else:
 			fp.write("iface eth0 inet static\n")
 			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
@@ -78,6 +79,7 @@ class Network:
 	def activateNetworkConfig(self):
 		import os
 		os.system("/etc/init.d/networking restart")
+		config.network.ip.value = self.getCurrentIP()
 		
 	def setDHCP(self, useDHCP):
 		if (useDHCP):
@@ -118,17 +120,20 @@ class Network:
 		#os.system("echo ifconfig eth0 netmask %d.%d.%d.%d" % tuple(ip))		
 		#self.writeNetworkConfig()		
 
+	def getCurrentIP(self):
+		ip = [0, 0, 0, 0]
+		try:
+			print gethostbyname(gethostname())
+			ip = gethostbyname(gethostname()).split('.')
+		except:
+			print "[Network.py] Could not get current ip (not necessarily an error)"
+		return ip
 
 iNetwork = Network()
 
 def InitNetwork():
-	try:
-		ip = [0, 0, 0, 0]
-		print gethostbyname(gethostname())
-		ip = gethostbyname(gethostname()).split('.')
-		print ip
-	except:
-		print "[Network.py] Could not get current ip (not necessarily an error)"
+	ip = iNetwork.getCurrentIP()
+
 		
 	config.network = ConfigSubsection()
 	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, (_("no"), _("yes")))
