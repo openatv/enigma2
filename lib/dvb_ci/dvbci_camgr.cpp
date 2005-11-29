@@ -31,8 +31,8 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 				printf("%04x ", (((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
-			slot->resendCAPMT();
 			printf("\n");
+			slot->resendCAPMT();
 			break;
 		default:
 			printf("unknown APDU tag 9F 80 %02x\n", tag[2]);
