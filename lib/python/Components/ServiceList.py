@@ -12,6 +12,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 		self.root = None
+		
+		self.mode = self.MODE_NORMAL
 
 	def setCurrent(self, ref):
 		self.l.setCurrent(ref)
@@ -30,6 +32,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
+		self.setMode(self.mode)
 	
 	def GUIdelete(self):
 		self.instance = None
@@ -86,6 +89,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setCurrentMarked(state)
 
 	def setMode(self, mode):
+		self.mode = mode
+
+		try:
+			self.instance
+		except:
+			return
+		
 		if mode == self.MODE_NORMAL:
 			self.instance.setItemHeight(28)
 			self.l.setVisualMode(eListboxServiceContent.visModeSimple)
