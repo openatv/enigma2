@@ -7,74 +7,74 @@ from Components.Network import iNetwork
 from Components.Label import Label
 
 class NetworkSetup(Screen):
-    def __init__(self, session):
-        Screen.__init__(self, session)
+	def __init__(self, session):
+		Screen.__init__(self, session)
         
-        self["actions"] = NumberActionMap(["SetupActions"],
-        {
-            "ok": self.keySave,
-            "cancel": self.keyCancel,
-            "left": self.keyLeft,
-            "right": self.keyRight,
-            "1": self.keyNumberGlobal,
-            "2": self.keyNumberGlobal,
-            "3": self.keyNumberGlobal,
-            "4": self.keyNumberGlobal,
-            "5": self.keyNumberGlobal,
-            "6": self.keyNumberGlobal,
-            "7": self.keyNumberGlobal,
-            "8": self.keyNumberGlobal,
-            "9": self.keyNumberGlobal,
-            "0": self.keyNumberGlobal
-        }, -1)
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
+		}, -1)
 
-        self.list = []
-        self["config"] = ConfigList(self.list)
-        self.createSetup()
+		self.list = []
+		self["config"] = ConfigList(self.list)
+		self.createSetup()
         
-        self["introduction"] = Label("Press OK to activate the settings.")
+		self["introduction"] = Label("Press OK to activate the settings.")
         
-    def createSetup(self):
-        self.list = []
+	def createSetup(self):
+		self.list = []
         
-        self.list.append(getConfigListEntry(_("Use DHCP"), config.network.dhcp))
-        if (config.network.dhcp.value == 0):
-            self.list.append(getConfigListEntry(_('IP Address'), config.network.ip))
-            self.list.append(getConfigListEntry(_('Netmask'), config.network.netmask))
-            self.list.append(getConfigListEntry(_('Gateway'), config.network.gateway))
-            self.list.append(getConfigListEntry(_('Nameserver'), config.network.dns))
+		self.list.append(getConfigListEntry(_("Use DHCP"), config.network.dhcp))
+		self.list.append(getConfigListEntry(_('IP Address'), config.network.ip))
+		if (config.network.dhcp.value == 0):
+			self.list.append(getConfigListEntry(_('Netmask'), config.network.netmask))
+			self.list.append(getConfigListEntry(_('Gateway'), config.network.gateway))
+			self.list.append(getConfigListEntry(_('Nameserver'), config.network.dns))
         
-        self["config"].list = self.list
-        self["config"].l.setList(self.list)
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
         
-    def newConfig(self):
-        print self["config"].getCurrent()
-        if self["config"].getCurrent()[0] == _("Use DHCP"):
-            self.createSetup()
+	def newConfig(self):
+		print self["config"].getCurrent()
+		if self["config"].getCurrent()[0] == _("Use DHCP"):
+			self.createSetup()
 
-    def keyLeft(self):
-        self["config"].handleKey(config.key["prevElement"])
-        self.newConfig()
+	def keyLeft(self):
+		self["config"].handleKey(config.key["prevElement"])
+		self.newConfig()
 
-    def keyRight(self):
-        self["config"].handleKey(config.key["nextElement"])
-        self.newConfig()
+	def keyRight(self):
+		self["config"].handleKey(config.key["nextElement"])
+		self.newConfig()
     
-    def keyNumberGlobal(self, number):
-        print "You pressed number " + str(number)
-        if (self["config"].getCurrent()[1].parent.enabled == True):
-            self["config"].handleKey(config.key[str(number)])
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.key[str(number)])
         
-    def keySave(self):
-        #for x in self["config"].list:
-            #x[1].save()
+	def keySave(self):
+		#for x in self["config"].list:
+			#x[1].save()
         
-        iNetwork.writeNetworkConfig()    
-        iNetwork.activateNetworkConfig()
-        self.close()
+		iNetwork.writeNetworkConfig()    
+		iNetwork.activateNetworkConfig()
+		self.close()
 
-    def keyCancel(self):
-        for x in self["config"].list:
-            x[1].cancel()
-        iNetwork.loadNetworkConfig()
-        self.close()
+	def keyCancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
+		iNetwork.loadNetworkConfig()
+		self.close()
