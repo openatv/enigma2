@@ -6,12 +6,12 @@
 eDVBCIApplicationManagerSession::eDVBCIApplicationManagerSession(eDVBCISlot *tslot)
 {
 	slot = tslot;
-	slot->application_manager	= this;
+	slot->setAppManager(this);
 }
 
 eDVBCIApplicationManagerSession::~eDVBCIApplicationManagerSession()
 {
-	slot = 0;
+	slot->setAppManager(NULL);
 }
 
 int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
