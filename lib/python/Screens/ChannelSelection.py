@@ -278,7 +278,7 @@ class ChannelSelectionBase(Screen):
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
 		print "You would go to character " + str(self.numericalTextInput.getKey(number))
-		pass
+		# TODO let the servicelist jump to the next entry strating with the chosen character
 
 	def enterBouquet(self, action):
 		if action[:7] == "bouquet":
@@ -329,15 +329,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 				"showFavourites": self.showFavourites,
 				"showEPGList": self.showEPGList,
 				"1": self.keyNumberGlobal,
-            	"2": self.keyNumberGlobal,
-            	"3": self.keyNumberGlobal,
-            	"4": self.keyNumberGlobal,
-            	"5": self.keyNumberGlobal,
-            	"6": self.keyNumberGlobal,
-            	"7": self.keyNumberGlobal,
-            	"8": self.keyNumberGlobal,
-            	"9": self.keyNumberGlobal,
-            	"0": self.keyNumberGlobal
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal
 			})
 		self["actions"].csel = self
 
@@ -406,15 +406,15 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"ok": self.channelSelected,
 				"showFavourites": self.showFavourites,
 				"1": self.keyNumberGlobal,
-            	"2": self.keyNumberGlobal,
-            	"3": self.keyNumberGlobal,
-            	"4": self.keyNumberGlobal,
-            	"5": self.keyNumberGlobal,
-            	"6": self.keyNumberGlobal,
-            	"7": self.keyNumberGlobal,
-            	"8": self.keyNumberGlobal,
-            	"9": self.keyNumberGlobal,
-            	"0": self.keyNumberGlobal
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal
 			})
 		self["actions"].csel = self
 
