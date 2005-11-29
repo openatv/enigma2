@@ -311,9 +311,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
 
-		if config.tv.lastroot.value == "":
-			self.servicelist.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
-
+		#if config.tv.lastroot.value == "":
+		#allways defaults to fav
+		#self.servicelist.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
+		self.showFavourites()
 		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
 
 		class ChannelActionMap(NumberActionMap):
@@ -366,6 +367,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 	def setRoot(self, root):
 		if not self.movemode:
 			self.setRootBase(root)
+			self.saveRoot(root)
 
 	#called from infoBar and channelSelected
 	def zap(self):
@@ -389,7 +391,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 	def lastService(self):
 		self.lastServiceTimer.stop()
 		#zap to last running tv service
-		self.setRoot(eServiceReference(config.tv.lastroot.value))
+		#self.setRoot(eServiceReference(config.tv.lastroot.value))
 		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
 
 class SimpleChannelSelection(ChannelSelectionBase):
