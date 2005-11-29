@@ -244,11 +244,13 @@ class NimManager:
 				self.nimTypes[lastsocket] = "empty/unknown"
 
 		nimfile.close()
-		
 
 	def getNimType(self, slotID):
-		return self.nimType[self.nimTypes[slotID]]
-
+		if slotID >= self.nimCount:
+			return "empty/unknown"
+		else:	
+			return self.nimType[self.nimTypes[slotID]]
+			
 	def getNimName(self, slotID):
 		return self.nimNames[slotID]
 
