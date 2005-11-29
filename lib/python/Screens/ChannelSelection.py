@@ -314,6 +314,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if config.tv.lastroot.value == "":
 			self.servicelist.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 
+		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
