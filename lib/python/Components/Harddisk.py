@@ -127,6 +127,8 @@ class Harddisk:
 		res = os.system("mkdir /hdd/movies")
 		return (res >> 8)
 		
+	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]
+
 	def initialize(self):
 		if self.unmount() != 0:
 			return -5
