@@ -103,7 +103,8 @@ class Harddisk:
 
 	def unmount(self):
 		cmd = "/bin/umount " + self.devidex + "part*"
-		os.system(cmd)
+		res = os.system(cmd)
+		return (res >> 8)
 
 	def createPartition(self):
 		cmd = "/sbin/sfdisk -f " + self.devidex + "disc"
@@ -127,7 +128,8 @@ class Harddisk:
 		return (res >> 8)
 		
 	def initialize(self):
-		self.unmount()
+		if self.unmount() != 0:
+			return -5
 
 		if self.createPartition() != 0:
 			return -1
