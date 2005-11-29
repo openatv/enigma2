@@ -24,6 +24,9 @@ private:
 	int state;
 	enum {stateRemoved, stateInserted};
 	uint8_t prev_sent_capmt_version;
+	eDVBCIApplicationManagerSession *application_manager;
+	eDVBCICAManagerSession *ca_manager;
+	eDVBCIMMISession *mmi_session;
 public:
 	int use_count;
 
@@ -31,11 +34,15 @@ public:
 	~eDVBCISlot();
 	
 	int send(const unsigned char *data, size_t len);
-	
-	eDVBCIApplicationManagerSession *application_manager;
-	eDVBCICAManagerSession *ca_manager;
-	eDVBCIMMISession *mmi_session;
-	
+
+	void setAppManager( eDVBCIApplicationManagerSession *session );
+	void setMMIManager( eDVBCIMMISession *session );
+	void setCAManager( eDVBCICAManagerSession *session );
+
+	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
+	eDVBCIMMISession *getMMIManager() { return mmi_session; }
+	eDVBCICAManagerSession *getCAManager() { return ca_manager; }
+
 	int getSlotID();
 	int reset();
 	int initialize();
@@ -45,6 +52,7 @@ public:
 	int answerEnq(char *value);
 	int cancelEnq();
 	int getMMIState();
+	void resendCAPMT();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
 	void resetPrevSentCAPMTVersion() { prev_sent_capmt_version = 0xFF; }
@@ -99,6 +107,7 @@ public:
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
 	int enableTS(int slot, int enable);
+	int sendCAPMT(int slot);
 };
 
 #endif

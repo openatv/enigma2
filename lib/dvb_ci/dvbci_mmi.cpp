@@ -19,12 +19,12 @@ return list;
 eDVBCIMMISession::eDVBCIMMISession(eDVBCISlot *tslot)
 {
 	slot = tslot;
-	slot->mmi_session = this;
+	slot->setMMIManager(this);
 }
 
 eDVBCIMMISession::~eDVBCIMMISession()
 {
-	slot->mmi_session = 0;
+	slot->setMMIManager(NULL);
 }
 
 int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, int len)

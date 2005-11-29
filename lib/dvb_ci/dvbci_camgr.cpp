@@ -5,12 +5,12 @@
 eDVBCICAManagerSession::eDVBCICAManagerSession(eDVBCISlot *tslot)
 {
 	slot = tslot;
-	slot->ca_manager = this;
+	slot->setCAManager(this);
 }
 
 eDVBCICAManagerSession::~eDVBCICAManagerSession()
 {
-	slot->ca_manager = 0;
+	slot->setCAManager(NULL);
 }
 
 int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *data, int len)
@@ -31,6 +31,7 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 				printf("%04x ", (((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
+			slot->resendCAPMT();
 			printf("\n");
 			break;
 		default:

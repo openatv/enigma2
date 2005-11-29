@@ -136,7 +136,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		printf("session: %p\n",session);
 		break;
 	case 0x00020041:
-		session=slot->application_manager = new eDVBCIApplicationManagerSession(slot);
+		session=new eDVBCIApplicationManagerSession(slot);
 		printf("APPLICATION MANAGER\n");
 		break;
 	case 0x00030041:

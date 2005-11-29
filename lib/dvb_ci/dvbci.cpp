@@ -83,18 +83,6 @@ int eDVBCIInterfaces::enableTS(int slotid, int enable)
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
-	if (enable)
-	{
-		slot->resetPrevSentCAPMTVersion();
-		PMTHandlerList::iterator it = m_pmt_handlers.begin();
-		while (it != m_pmt_handlers.end())
-		{
-			if ( it->cislot == slot )
-				slot->sendCAPMT(it->pmthandler);  // send capmt
-			++it;
-		}
-	}
-
 	return slot->enableTS(enable);
 }
 
@@ -110,11 +98,36 @@ int eDVBCIInterfaces::initialize(int slotid)
 	while (it != m_pmt_handlers.end())
 	{
 		if ( it->cislot == slot )
+		{
 			slot->sendCAPMT(it->pmthandler);  // send capmt
+			break;
+		}
 		++it;
 	}
 
 	return slot->initialize();
+}
+
+int eDVBCIInterfaces::sendCAPMT(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return -1;
+
+	slot->resetPrevSentCAPMTVersion();
+	PMTHandlerList::iterator it = m_pmt_handlers.begin();
+	while (it != m_pmt_handlers.end())
+	{
+		if ( it->cislot == slot )
+		{
+			slot->sendCAPMT(it->pmthandler);  // send capmt
+			return 0;
+		}
+		++it;
+	}
+
+	return -1;
 }
 
 int eDVBCIInterfaces::startMMI(int slotid)
@@ -213,7 +226,7 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 	if (it != m_pmt_handlers.end())
 	{
 		eDVBCISlot *slot = it->cislot;
-		eDVBServicePMTHandler *pmthandler = it->pmthandler;
+//		eDVBServicePMTHandler *pmthandler = it->pmthandler;
 		m_pmt_handlers.erase(it);
 		if (slot && !--slot->use_count)
 		{
@@ -362,6 +375,21 @@ eDVBCISlot::~eDVBCISlot()
 	enableTS(0);
 }
 
+void eDVBCISlot::setAppManager( eDVBCIApplicationManagerSession *session )
+{
+	application_manager=session;
+}
+
+void eDVBCISlot::setMMIManager( eDVBCIMMISession *session )
+{
+	mmi_session = session;
+}
+
+void eDVBCISlot::setCAManager( eDVBCICAManagerSession *session )
+{
+	ca_manager = session;
+}
+
 int eDVBCISlot::getSlotID()
 {
 	return slotid;
@@ -445,7 +473,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 		eDebug("no ca_manager (no CI plugged?)");
 		return -1;
 	}
-	const std::vector<uint16_t> &caids = ids.empty() && ca_manager ? ca_manager->getCAIDs() : ids;
+	const std::vector<uint16_t> &caids = ids.empty() ? ca_manager->getCAIDs() : ids;
 	ePtr<eTable<ProgramMapSection> > ptr;
 	if (pmthandler->getPMT(ptr))
 		return -1;
@@ -523,5 +551,9 @@ int eDVBCISlot::enableTS(int enable)
 	return 0;
 }
 
+void eDVBCISlot::resendCAPMT()
+{
+	eDVBCIInterfaces::getInstance()->sendCAPMT(slotid);
+}
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");
