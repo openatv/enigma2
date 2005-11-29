@@ -9,8 +9,8 @@ from enigma import eTimer
 class HarddiskWait(Screen):
 	def doInit(self):
 		self.timer.stop()
-		self.hdd.initialize()
-		self.close()
+		result = self.hdd.initialize()
+		self.close(result)
 
 	def __init__(self, session, hdd):
 		Screen.__init__(self, session)
@@ -41,9 +41,13 @@ class HarddiskSetup(Screen):
 			"red": self.hddInitialize
 		})
 
-	def hddReady(self):
-		self.close()
-
+	def hddReady(self, result):
+		print "Result: " + str(result)
+		if (result != 0):
+			self.session.open(MessageBox, _("Unable to initialize harddisk.\nPlease refer to the user-manual.\nError: ") + str(self.hdd.errorList[0 - result]))
+		else:
+			self.close()
+			
 	def hddInitialize(self):
 		print "this will start the initialize now!"
 		self.session.openWithCallback(self.hddReady, HarddiskWait, self.hdd)
