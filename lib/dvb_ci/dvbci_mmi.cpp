@@ -141,8 +141,9 @@ int eDVBCIMMISession::doAction()
 		unsigned char tag[]={0x9f, 0x88, 0x02};
 		unsigned char data[]={0x01, 0x01};
 		sendAPDU(tag, data, 2);
-		state=stateFakeOK;
-		return 1;
+		state=stateIdle;
+		//state=stateFakeOK;
+		//return 1;
 		break;
 	}
 	case stateFakeOK:
