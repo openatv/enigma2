@@ -169,6 +169,8 @@
 		</screen>
 
 		<screen name="MoviePlayer" flags="wfNoBorder" position="0,370" size="720,148" title="InfoBar">
+			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
+			<ePixmap position="200,60" zPosition="-1" size="433,57" pixmap="/usr/share/enigma2/dvr-buttons.png" />
 			<!--<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/movieplayer.png" />
 
 			<ePixmap position="50,40" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/rewindbutton.png" />
