@@ -1,11 +1,12 @@
 from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
-from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
 from Components.config import config, configElement, ConfigSubsection, configText
 from Screens.FixedMenu import FixedMenu
+from Tools.NumericalTextInput import NumericalTextInput
 
 import xml.dom.minidom
 
@@ -224,6 +225,8 @@ class ChannelSelectionBase(Screen):
 
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		
+		self.numericalTextInput = NumericalTextInput()
+		
 		self.lastService = None
 
 		self.lastServiceTimer = eTimer()
@@ -272,6 +275,11 @@ class ChannelSelectionBase(Screen):
 	def showFavourites(self):
 		self.setRoot(self.bouquet_root)
 
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		print "You would go to character " + str(self.numericalTextInput.getKey(number))
+		pass
+
 	def enterBouquet(self, action):
 		if action[:7] == "bouquet":
 			if action.find("FROM BOUQUET") != -1:
@@ -306,12 +314,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if config.tv.lastroot.value == "":
 			self.servicelist.setRoot(eServiceReference("""1:0:1:0:0:0:0:0:0:0:(type == 1)"""))
 
-		class ChannelActionMap(ActionMap):
+		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
 					if action == "cancel":
 						self.csel.handleEditCancel()
-					ActionMap.action(self, contexts, action)
+					NumberActionMap.action(self, contexts, action)
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
 			{
 				"cancel": self.cancel,
@@ -319,7 +327,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
 				"showFavourites": self.showFavourites,
-				"showEPGList": self.showEPGList
+				"showEPGList": self.showEPGList,
+				"1": self.keyNumberGlobal,
+            	"2": self.keyNumberGlobal,
+            	"3": self.keyNumberGlobal,
+            	"4": self.keyNumberGlobal,
+            	"5": self.keyNumberGlobal,
+            	"6": self.keyNumberGlobal,
+            	"7": self.keyNumberGlobal,
+            	"8": self.keyNumberGlobal,
+            	"9": self.keyNumberGlobal,
+            	"0": self.keyNumberGlobal
 			})
 		self["actions"].csel = self
 
@@ -387,6 +405,16 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
 				"showFavourites": self.showFavourites,
+				"1": self.keyNumberGlobal,
+            	"2": self.keyNumberGlobal,
+            	"3": self.keyNumberGlobal,
+            	"4": self.keyNumberGlobal,
+            	"5": self.keyNumberGlobal,
+            	"6": self.keyNumberGlobal,
+            	"7": self.keyNumberGlobal,
+            	"8": self.keyNumberGlobal,
+            	"9": self.keyNumberGlobal,
+            	"0": self.keyNumberGlobal
 			})
 		self["actions"].csel = self
 

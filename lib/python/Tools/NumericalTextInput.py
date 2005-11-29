@@ -13,7 +13,7 @@ class NumericalTextInput:
     mapping.append ("tuv8TUV") # 8
     mapping.append ("wxyz9WXYZ") # 9
                                 
-    def __init__(self, nextFunction):
+    def __init__(self, nextFunction = None):
         self.nextFunction = nextFunction
         self.Timer = eTimer()
         self.Timer.timeout.get().append(self.nextChar)
@@ -40,5 +40,6 @@ class NumericalTextInput:
         self.Timer.stop()
         print "Timer done"
         self.nextKey()
-        self.nextFunction()
+        if (self.nextFunction != None):
+        	self.nextFunction()
         
