@@ -14,7 +14,6 @@ class Network:
 		fp.write("auto eth0\n")
 		if (config.network.dhcp.value == _("yes")):
 			fp.write("iface eth0 inet dhcp\n")
-			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
 		else:
 			fp.write("iface eth0 inet static\n")
 			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
