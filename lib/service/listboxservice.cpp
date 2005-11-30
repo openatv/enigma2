@@ -55,8 +55,18 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 		m_service_center->info(*i, service_info);
 		service_info->getName(*i, text);
 //		printf("%c\n", text.c_str()[0]);
-		if (text.c_str()[0] == c)
-			return index;
+		int idx=0;
+		int len=text.length();
+		while ( idx <= len )
+		{
+			char cc = text[idx++];
+			if ( cc >= 33 && cc < 127)
+			{
+				if (cc == c)
+					return index;
+				break;
+			}
+		}
 	}
 	return 0;
 }
@@ -288,7 +298,6 @@ int eListboxServiceContent::cursorSet(int n)
 {
 	cursorHome();
 	cursorMove(n);
-	
 	return 0;
 }
 
