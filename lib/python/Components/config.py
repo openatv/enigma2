@@ -1,12 +1,13 @@
 from time import *
 from Tools.NumericalTextInput import *
+from Tools.Directories import *
 
 class configFile:
 	def __init__(self):
 		self.changed = 0
 		self.configElements = { }
 		try:
-			self.file = open("config")
+			self.file = open(resolveFilename(SCOPE_CONFIG, "config"))
 		except IOError:
 			print "cannot open config file"
 			return 
@@ -38,7 +39,7 @@ class configFile:
 		if self.changed == 0:		#no changes, so no write to disk needed
 			return
 			
-		fileHandle = open("config", "w")
+		fileHandle = open(resolveFilename(SCOPE_CONFIG, "config"), "w")
 		
 		keys = self.configElements.keys()
 		keys.sort()
