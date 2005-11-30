@@ -276,9 +276,10 @@ class ChannelSelectionBase(Screen):
 		self.setRoot(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
+		char = self.numericalTextInput.getKey(number)
 		print "You pressed number " + str(number)
-		print "You would go to character " + str(self.numericalTextInput.getKey(number))
-		# TODO let the servicelist jump to the next entry strating with the chosen character
+		print "You would go to character " + str(char)
+		self.servicelist.moveToChar(char)
 
 	def enterBouquet(self, action):
 		if action[:7] == "bouquet":

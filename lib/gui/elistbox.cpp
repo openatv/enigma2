@@ -121,6 +121,12 @@ void eListbox::moveSelection(int dir)
 	}
 }
 
+void eListbox::moveSelectionTo(int index)
+{
+	printf("Moving to listbox-entry with index %d\n", index);
+	// TODO: implement it
+}
+
 int eListbox::event(int event, void *data, void *data2)
 {
 	switch (event)

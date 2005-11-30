@@ -3,6 +3,8 @@ from GUIComponent import *
 
 from enigma import *
 
+from string import upper
+
 class ServiceList(HTMLComponent, GUIComponent):
 
 	MODE_NORMAL = 0
@@ -28,6 +30,16 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
+		
+	def moveToChar(self, char):
+		# TODO fill with life
+		print "Next char: "
+		index = self.l.getNextBeginningWithChar(char)
+		indexup = self.l.getNextBeginningWithChar(upper(char))
+		if (index > indexup):
+			index = indexup
+		self.instance.moveSelectionTo(index)
+		print "Moving to character " + str(char)
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
