@@ -28,7 +28,7 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
-	def addLNBSimple(self, slotid, diseqcmode, toneburstmode = 0, diseqcpos = 0, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, satList = None):
+	def addLNBSimple(self, slotid, diseqcmode, toneburstmode = 0, diseqcpos = 0, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0):
 		#simple defaults
 		sec = eDVBSatelliteEquipmentControl.getInstance()
 		sec.addLNB()
@@ -47,8 +47,25 @@ class SecConfigure:
 		sec.setToneburst(toneburstmode)
 		sec.setCommittedCommand(diseqcpos)
 		#print "set orbpos to:" + str(orbpos)
-		sec.addSatellite(orbpos)
-		self.satList.append(orbpos)
+
+		if (0 <= diseqcmode < 3):
+			sec.addSatellite(orbpos)
+			self.satList.append(orbpos)
+		elif (diseqcmode == 3): # diseqc 1.2
+			sec.setLatitude(latitude)
+			sec.setLaDirection(laDirection)
+			sec.setLongitude(longitude)
+			sec.setLoDirection(loDirection)
+			sec.setUseInputpower(True)
+			sec.setInputpowerDelta(50)
+			
+			for x in self.NimManager.satList:
+				print "Add sat " + str(x[1])
+				sec.addSatellite(int(x[1]))
+				sec.setVoltageMode(0)
+				sec.setToneMode(0)
+				self.satList.append(int(x[1]))
+				
 
 	def linkNIMs(self, nim1, nim2):
 		eDVBSatelliteEquipmentControl.getInstance().setTunerLinked(nim1, nim2)
@@ -84,7 +101,7 @@ class SecConfigure:
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcC.vals[nim.diseqcC.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 2)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcD.vals[nim.diseqcD.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 3)
 					elif nim.diseqcMode.value == 4:		#Positioner
-						print "FIXME: positioner suppport"
+						self.addLNBSimple(slotid = x, diseqcmode = 3, longitude = 0, loDirection = 0, latitude = 0, laDirection = 0)
 					pass
 				else:																	#advanced config
 					print "FIXME add support for advanced config"
@@ -401,7 +418,7 @@ def InitNimManager(nimmgr):
 								nim.configMode.value = 0		#reset to simple
 								nim.configMode.save()
 
-			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D")))#, _("Positioner")));
+			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
