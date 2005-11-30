@@ -400,10 +400,12 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		self.title = title
 		self.onShown.append(self.onExecCallback)
 
-		class ChannelActionMap(ActionMap):
+		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
-					ActionMap.action(self, contexts, action)
+					if action == "cancel":
+						self.csel.handleEditCancel()
+					NumberActionMap.action(self, contexts, action)
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
 			{
 				"cancel": self.cancel,
