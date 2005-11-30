@@ -28,7 +28,7 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
-	def addLNBSimple(self, slotid, orbpos, toneburstmode, diseqcmode, diseqcpos):
+	def addLNBSimple(self, slotid, diseqcmode, toneburstmode = 0, diseqcpos = 0, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, satList = None):
 		#simple defaults
 		sec = eDVBSatelliteEquipmentControl.getInstance()
 		sec.addLNB()
@@ -71,18 +71,18 @@ class SecConfigure:
 					nim = config.Nims[nim.linkedTo.value]
 				if nim.configMode.value == 0:		#simple config
 					if nim.diseqcMode.value == 0:			#single
-						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 0, 4)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 0, diseqcpos = 4)
 					elif nim.diseqcMode.value == 1:		#Toneburst A/B
-						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 1, 0, 4)
-						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 1, 0, 4)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 1, diseqcmode = 0, diseqcpos = 4)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 1, diseqcmode = 0, diseqcpos = 4)
 					elif nim.diseqcMode.value == 2:		#DiSEqC A/B
-						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 1, 0)
-						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 0, 1, 1)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 0)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 1)
 					elif nim.diseqcMode.value == 3:		#DiSEqC A/B/C/D
-						self.addLNBSimple(x, int(nim.diseqcA.vals[nim.diseqcA.value][1]), 0, 1, 0)
-						self.addLNBSimple(x, int(nim.diseqcB.vals[nim.diseqcB.value][1]), 0, 1, 1)
-						self.addLNBSimple(x, int(nim.diseqcC.vals[nim.diseqcC.value][1]), 0, 1, 2)
-						self.addLNBSimple(x, int(nim.diseqcD.vals[nim.diseqcD.value][1]), 0, 1, 3)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 0)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 1)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcC.vals[nim.diseqcC.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 2)
+						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcD.vals[nim.diseqcD.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 3)
 					elif nim.diseqcMode.value == 4:		#Positioner
 						print "FIXME: positioner suppport"
 					pass
