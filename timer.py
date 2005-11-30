@@ -15,7 +15,7 @@ class TimerEntry:
 	
 	def __init__(self, begin, end):
 		self.begin = begin
-		self.prepare_time = 10
+		self.prepare_time = 20
 		self.end = end
 		self.state = 0
 		self.resetRepeated()
