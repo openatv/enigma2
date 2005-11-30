@@ -343,6 +343,9 @@ class NimManager:
 			if (config.Nims[slotid].diseqcMode.value == 3):
 				list.append(self.satList[config.Nims[slotid].diseqcC.value])
 				list.append(self.satList[config.Nims[slotid].diseqcD.value])
+			if (config.Nims[slotid].diseqcMode.value == 4):
+				for x in self.satList:
+					list.append(x)
 		return list
 
 	#callbacks for c++ config
