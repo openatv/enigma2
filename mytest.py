@@ -69,11 +69,12 @@ class Session:
 		self.execEnd()
 		
 		callback = self.currentDialog.callback
+
 		retval = self.currentDialog.returnValue
-		
+
 		if self.currentDialog.isTmp:
 			self.currentDialog.doClose()
-		
+
 			del self.currentDialog.instance
 #			dump(self.currentDialog)
 			del self.currentDialog
@@ -85,12 +86,16 @@ class Session:
 			callback(*retval)
 
 	def execBegin(self):
-			self.currentDialog.execBegin()
-			self.currentDialog.instance.show()
+		c = self.currentDialog
+		c.execBegin()
+
+		# when execBegin opened a new dialog, don't bother showing the old one.
+		if c == self.currentDialog:
+			c.instance.show()
 		
 	def execEnd(self):
-			self.currentDialog.execEnd()
-			self.currentDialog.instance.hide()
+		self.currentDialog.execEnd()
+		self.currentDialog.instance.hide()
 	
 	def create(self, screen, arguments):
 		# creates an instance of 'screen' (which is a class)
@@ -148,15 +153,16 @@ class Session:
 		self.execBegin()
 
 	def openWithCallback(self, callback, screen, *arguments):
-		self.open(screen, *arguments)
-		self.currentDialog.callback = callback
+		dlg = self.open(screen, *arguments)
+		dlg.callback = callback
 
 	def open(self, screen, *arguments):
 		self.pushCurrent()
-		self.currentDialog = self.instantiateDialog(screen, *arguments)
-		self.currentDialog.isTmp = True
-		self.currentDialog.callback = None
+		dlg = self.currentDialog = self.instantiateDialog(screen, *arguments)
+		dlg.isTmp = True
+		dlg.callback = None
 		self.execBegin()
+		return dlg
 
 	def keyEvent(self, code):
 		print "code " + str(code)
@@ -164,8 +170,6 @@ class Session:
 	def close(self, *retval):
 		self.currentDialog.returnValue = retval
 		self.delayTimer.start(0, 1)
-
-
 
 def runScreenTest():
 	session = Session()
