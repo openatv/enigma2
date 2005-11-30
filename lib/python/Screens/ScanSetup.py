@@ -162,7 +162,7 @@ class ScanSetup(Screen):
 			nimList = [ ]
 			for nim in nimmanager.nimList():
 				nimList.append(nim[0])
-			nimList.append("all")
+			#nimList.append("all")
 			config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
 
 			# sat
