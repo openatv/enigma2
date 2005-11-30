@@ -36,8 +36,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		print "Next char: "
 		index = self.l.getNextBeginningWithChar(char)
 		indexup = self.l.getNextBeginningWithChar(upper(char))
-		if (index > indexup):
-			index = indexup
+		if indexup != 0:
+			if (index > indexup or index == 0):
+				index = indexup
+
 		self.instance.moveSelectionTo(index)
 		print "Moving to character " + str(char)
 
