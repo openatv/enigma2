@@ -401,7 +401,7 @@ def InitNimManager(nimmgr):
 								nim.configMode.value = 0		#reset to simple
 								nim.configMode.save()
 
-			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
+			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D")))#, _("Positioner")));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
