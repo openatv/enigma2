@@ -1,11 +1,12 @@
 import time
 import codecs
 #from time import datetime
-from Tools import Directories
+from Tools import Directories, Notifications
 
 import timer
 import xml.dom.minidom
 
+from Screens.MessageBox import MessageBox
 import NavigationInstance
 
 from Tools.XMLTools import elementsWithTag
@@ -63,12 +64,14 @@ class RecordTimerEntry(timer.TimerEntry):
 			if self.record_service == None:
 				print "timer record failed."
 			else:	
-				self.record_service.prepare(self.Filename + ".ts")
+				if self.record_service.prepare(self.Filename + ".ts"):
+					# error. 
+					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nReason: unknown."))
+
 				f = open(self.Filename + ".ts.meta", "w")
 				f.write(str(self.service_ref) + "\n")
 				f.write(self.epg_data + "\n")
 				del f
-				
 		elif self.record_service == None:
 			if event != self.EventAbort:
 				print "timer record start failed, can't finish recording."
@@ -80,6 +83,11 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.record_service = None
 			print "Timer successfully ended"
 
+	def failureCB(self, answer):
+		if answer == True:
+			print "kill user to record"
+		else:
+			print "user killed record"
 
 def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
@@ -156,6 +164,8 @@ class RecordTimer(timer.Timer):
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
 		
+		entry.repeated = False
+
 		entry.repeated = False
 
 		if entry.state == timer.TimerEntry.StateRunning:

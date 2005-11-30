@@ -20,6 +20,8 @@ from Screens.Mute import Mute
 from Screens.Standby import Standby
 from Screens.EventView import EventView
 
+from Tools import Notifications
+
 #from enigma import eTimer, eDVBVolumecontrol, quitMainloop
 from enigma import *
 
@@ -523,3 +525,23 @@ class InfoBarAdditionalInfo:
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonYellow"] = Pixmap()
 		self["ButtonBlue"] = Pixmap()
+
+class InfoBarNotifications:
+	def __init__(self):
+		self.onExecBegin.append(self.checkNotifications)
+		Notifications.notificationAdded.append(self.checkNotificationsIfExecing)
+	
+	def checkNotificationsIfExecing(self):
+		if self.execing:
+			self.checkNotifications()
+
+	def checkNotifications(self):
+		if len(Notifications.notifications):
+			n = Notifications.notifications[0]
+			Notifications.notifications = Notifications.notifications[1:]
+			print "open",n
+			cb = n[0]
+			if cb is not None:
+				self.session.openWithCallback(cb, *n[1:])
+			else:
+				self.session.open(*n[1:])
