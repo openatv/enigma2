@@ -101,7 +101,7 @@ class SecConfigure:
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcC.vals[nim.diseqcC.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 2)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcD.vals[nim.diseqcD.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 3)
 					elif nim.diseqcMode.value == 4:		#Positioner
-						self.addLNBSimple(slotid = x, diseqcmode = 3, longitude = 0, loDirection = 0, latitude = 0, laDirection = 0)
+						self.addLNBSimple(slotid = x, diseqcmode = 3, longitude = float(str(nim.longitude.value[0]) + "." + str(nim.longitude.value[1])), loDirection = nim.longitudeOrientation.value - 2, latitude = float(str(nim.latitude.value[0]) + "." + str(nim.latitude.value[1])), laDirection = nim.latitudeOrientation.value)
 					pass
 				else:																	#advanced config
 					print "FIXME add support for advanced config"
