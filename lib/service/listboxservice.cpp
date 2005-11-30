@@ -44,6 +44,23 @@ void eListboxServiceContent::getCurrent(eServiceReference &ref)
 		ref = eServiceReference();
 }
 
+int eListboxServiceContent::getNextBeginningWithChar(char c)
+{
+//	printf("Char: %c\n", c);
+	int index=0;
+	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i, ++index)
+	{
+		std::string text;
+		ePtr<iStaticServiceInformation> service_info;
+		m_service_center->info(*i, service_info);
+		service_info->getName(*i, text);
+//		printf("%c\n", text.c_str()[0]);
+		if (text.c_str()[0] == c)
+			return index;
+	}
+	return 0;
+}
+
 void eListboxServiceContent::initMarked()
 {
 	m_marked.clear();

@@ -63,6 +63,7 @@ public:
 	}; */
 	
 	void moveSelection(int how);
+	void moveSelectionTo(int index);
 
 	enum ListboxActions {
 		moveUp,

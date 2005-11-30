@@ -15,6 +15,8 @@ public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
 	void getCurrent(eServiceReference &ref);
+	
+	int getNextBeginningWithChar(char c);
 
 		/* support for marked services */
 	void initMarked();
