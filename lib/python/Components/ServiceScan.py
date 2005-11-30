@@ -86,8 +86,9 @@ class ServiceScan:
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		if not self.isDone():
 			print "*** warning *** scan was not finished!"
+		
+		del self.scan
 
 	def isDone(self):
 		print "state is %d " % (self.state)
 		return self.state == self.Done or self.state == self.Error
-	
