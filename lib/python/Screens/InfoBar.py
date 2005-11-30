@@ -7,10 +7,12 @@ from Components.Clock import Clock
 from Components.ActionMap import ActionMap
 from Components.ServicePosition import ServicePosition
 
+from Tools.Notifications import AddNotificationWithCallback
+
 from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarPVR, InfoBarInstantRecord, \
-	InfoBarAudioSelection, InfoBarAdditionalInfo
+	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -21,7 +23,7 @@ import time
 class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
-	HelpableScreen, InfoBarAdditionalInfo):
+	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -35,7 +37,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
-				InfoBarAdditionalInfo:
+				InfoBarAdditionalInfo, InfoBarNotifications:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
@@ -51,7 +53,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 
 class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
-		InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection, HelpableScreen):
+		InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
@@ -61,7 +63,7 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 				"leavePlayer": self.leavePlayer
 			})
 		
-		for x in HelpableScreen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection:
+		for x in HelpableScreen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection, InfoBarNotifications:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)

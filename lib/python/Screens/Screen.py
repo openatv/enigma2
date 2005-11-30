@@ -15,26 +15,40 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.onExecBegin = [ ]
 		self.onShown = [ ]
 		
+		self.execing = False
+		
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
 		self.helpList = [ ]
 		
 	def execBegin(self):
+		self.active_components = [ ]
 		for x in self.onExecBegin:
 			x()
+			if self.session.currentDialog != self:
+				return
+
 #		assert self.session == None, "a screen can only exec one per time"
 #		self.session = session
+
 		for (name, val) in self.items():
 			val.execBegin()
+			if self.session.currentDialog != self:
+				return
+			self.active_components.append(val)
 
+		self.execing = True
+	
 		for x in self.onShown:
 			x()
 	
 	def execEnd(self):
-		for (name, val) in self.items():
+#		for (name, val) in self.items():
+		for val in self.active_components:
 			val.execEnd()
 #		assert self.session != None, "execEnd on non-execing screen!"
 #		self.session = None
+		self.execing = False
 	
 	# never call this directly - it will be called from the session!
 	def doClose(self):
