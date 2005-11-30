@@ -105,7 +105,7 @@ class RecordTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
 		
-		self.Filename = Directories.resolveFilename(Directories.SCOPE_USERETC, "timers.xml")
+		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
 		
 		try:
 			self.loadTimer()
