@@ -56,36 +56,55 @@ class RecordTimerEntry(timer.TimerEntry):
 #		
 #		print "------------ record filename: %s" % (self.Filename)
 	
-	
+	def tryPrepare(self):
+		self.calculateFilename()
+		self.record_service = NavigationInstance.instance.recordService(self.service_ref)
+		if self.record_service == None:
+			return False
+		else:	
+			if self.record_service.prepare(self.Filename + ".ts"):
+				self.record_service = None
+				return False
+
+			f = open(self.Filename + ".ts.meta", "w")
+			f.write(str(self.service_ref) + "\n")
+			f.write(self.epg_data + "\n")
+			del f
+			return True
+
 	def activate(self, event):
 		if event == self.EventPrepare:
-			self.calculateFilename()
-			self.record_service = NavigationInstance.instance.recordService(self.service_ref)
-			if self.record_service == None:
-				print "timer record failed."
-			else:	
-				if self.record_service.prepare(self.Filename + ".ts"):
-					# error. 
-					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nReason: unknown."))
-
-				f = open(self.Filename + ".ts.meta", "w")
-				f.write(str(self.service_ref) + "\n")
-				f.write(self.epg_data + "\n")
-				del f
+			self.prepareOK = False
+			if self.tryPrepare():
+				self.prepareOK = True
+			else:
+				# error.
+				Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
 		elif self.record_service == None:
 			if event != self.EventAbort:
 				print "timer record start failed, can't finish recording."
 		elif event == self.EventStart:
-			self.record_service.start()
-			print "timer started!"
+			if self.prepareOK:
+				self.record_service.start()
+				print "timer started!"
+			else:
+				print "prepare failed, thus start failed, too."
 		elif event == self.EventEnd or event == self.EventAbort:
-			self.record_service.stop()
-			self.record_service = None
-			print "Timer successfully ended"
+			if self.prepareOK:
+				self.record_service.stop()
+				self.record_service = None
+				print "Timer successfully ended"
+			else:
+				print "prepare failed, thus nothing was recorded."
+
+	def abort():
+		# fixme
+		pass
 
 	def failureCB(self, answer):
 		if answer == True:
-			print "kill user to record"
+			NavigationInstance.instance.stopUserServices()
+			self.activate(self.EventPrepare)
 		else:
 			print "user killed record"
 
