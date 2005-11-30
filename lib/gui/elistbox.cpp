@@ -96,17 +96,16 @@ void eListbox::moveSelection(int dir)
 	
 		/* now, look wether the current selection is out of screen */
 	m_selected = m_content->cursorGet();
-	
-	if (m_selected < m_top)
+
+	while (m_selected < m_top)
 	{
 		m_top -= m_items_per_page;
 		if (m_top < 0)
 			m_top = 0;
-	} else if (m_selected >= m_top + m_items_per_page)
-	{
-			/* m_top should be always valid here as it's selected */
-		m_top += m_items_per_page;
 	}
+	while (m_selected >= m_top + m_items_per_page)
+		/* m_top should be always valid here as it's selected */
+		m_top += m_items_per_page;
 
 	if (m_top != oldtop)
 		invalidate();
