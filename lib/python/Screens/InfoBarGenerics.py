@@ -58,6 +58,8 @@ class InfoBarVolumeControl:
 		config.audio.volume.save()
 		
 	def	volUp(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.volMute()
 		eDVBVolumecontrol.getInstance().volumeUp()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
@@ -65,6 +67,8 @@ class InfoBarVolumeControl:
 		self.hideVolTimer.start(3000)
 
 	def	volDown(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.volMute()
 		eDVBVolumecontrol.getInstance().volumeDown()
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
