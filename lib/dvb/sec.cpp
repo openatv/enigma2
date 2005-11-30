@@ -28,6 +28,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 	clear();
 
+#if 0
 // ASTRA
 	addLNB();
 	setLNBTunerMask(3);
@@ -45,12 +46,12 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
 
-// HOTBIRD
+// Hotbird
 	addLNB();
 	setLNBTunerMask(3);
 	setLNBLOFL(9750000);
-	setLNBLOFH(10600000);
 	setLNBThreshold(11750000);
+	setLNBLOFH(10600000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
 	setRepeats(0);
@@ -61,6 +62,47 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addSatellite(130);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
+#endif
+
+// Rotor
+	addLNB();
+	setLNBTunerMask(3);
+	setLNBLOFL(9750000);
+	setLNBThreshold(11750000);
+	setLNBLOFH(10600000);
+	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_2);
+	setToneburst(eDVBSatelliteDiseqcParameters::NO);
+	setRepeats(0);
+	setCommittedCommand(eDVBSatelliteDiseqcParameters::AA);
+	setCommandOrder(0); // committed, toneburst
+	setFastDiSEqC(true);
+	setSeqRepeat(false);
+	setLaDirection(eDVBSatelliteRotorParameters::NORTH);
+	setLoDirection(eDVBSatelliteRotorParameters::EAST);
+	setLatitude(51.017);
+	setLongitude(8.683);
+	setUseInputpower(true);
+	setInputpowerDelta(50);
+
+	addSatellite(130);
+	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
+	setToneMode(eDVBSatelliteSwitchParameters::HILO);
+	setRotorPosNum(0);
+
+	addSatellite(192);
+	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
+	setToneMode(eDVBSatelliteSwitchParameters::HILO);
+	setRotorPosNum(0);
+
+	addSatellite(284);
+	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
+	setToneMode(eDVBSatelliteSwitchParameters::HILO);
+	setRotorPosNum(0);
+
+	addSatellite(420);
+	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
+	setToneMode(eDVBSatelliteSwitchParameters::HILO);
+	setRotorPosNum(1); // stored pos 1
 }
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
@@ -310,7 +352,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				{
 					send_diseqc = changed_csw;
 					if ( send_diseqc && di_param.m_use_fast && (csw & 0xF0) && (lastcsw & 0xF0) && ((csw / 4) == (lastcsw / 4)) )
+					{
+						frontend.setData(0, csw);  // needed for linked tuner handling
 						send_diseqc = false;
+					}
 				}
 
 				if ( send_diseqc || changed_burst )
