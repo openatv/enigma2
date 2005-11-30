@@ -124,7 +124,9 @@ void eListbox::moveSelection(int dir)
 void eListbox::moveSelectionTo(int index)
 {
 	printf("Moving to listbox-entry with index %d\n", index);
-	// TODO: implement it
+	m_content->cursorHome();
+	m_content->cursorMove(index);
+	moveSelection(justCheck);
 }
 
 int eListbox::event(int event, void *data, void *data2)
