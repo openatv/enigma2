@@ -65,6 +65,9 @@ class NimSetup(Screen):
 			self.createSetup()
 		
 	def keyLeft(self):
+		if self["config"].getCurrent()[0] == _("Configmode"):
+			if self.nim.slotid == 0:
+				return
 		self["config"].handleKey(config.key["prevElement"])
 		self.newConfig()
 
