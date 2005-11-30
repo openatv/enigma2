@@ -154,7 +154,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
 		printf("AuthSession\n");
-		break;
+//		break;
 	case 0x00200041:
 	default:
 		printf("unknown resource type %02x %02x %02x %02x\n", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
