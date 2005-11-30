@@ -29,7 +29,7 @@ class TimerEditList(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions"], 
 			{
 				"ok": self.openEdit,
-				"cancel": self.close,
+				"cancel": self.leave,
 				"red": self.removeTimer,
 				"green": self.addCurrentTimer
 			})
@@ -100,3 +100,7 @@ class TimerEditList(Screen):
 			self.fillTimerList()
 		else:
 			print "Timeredit aborted"		
+
+	def leave(self):
+		self.session.nav.RecordTimer.saveTimer()
+		self.close()
