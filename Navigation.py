@@ -86,3 +86,6 @@ class Navigation:
 	
 	def shutdown(self):
 		self.RecordTimer.shutdown()
+
+	def stopUserServices(self):
+		self.stopService()
