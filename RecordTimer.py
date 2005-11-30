@@ -30,6 +30,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.description = description
 		self.timer = None
 		self.record_service = None
+		self.wantStart = False
 		
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
@@ -80,16 +81,15 @@ class RecordTimerEntry(timer.TimerEntry):
 			else:
 				# error.
 				Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
-		elif self.record_service == None:
-			if event != self.EventAbort:
-				print "timer record start failed, can't finish recording."
 		elif event == self.EventStart:
 			if self.prepareOK:
 				self.record_service.start()
 				print "timer started!"
 			else:
 				print "prepare failed, thus start failed, too."
+				self.wantStart = True
 		elif event == self.EventEnd or event == self.EventAbort:
+			self.wantStart = False
 			if self.prepareOK:
 				self.record_service.stop()
 				self.record_service = None
@@ -105,6 +105,9 @@ class RecordTimerEntry(timer.TimerEntry):
 		if answer == True:
 			NavigationInstance.instance.stopUserServices()
 			self.activate(self.EventPrepare)
+			if self.wantStart:
+				print "post-activating record"
+				self.activate(self.EventStart)
 		else:
 			print "user killed record"
 
@@ -165,7 +168,7 @@ class RecordTimer(timer.Timer):
 			t.setAttribute("serviceref", str(timer.service_ref))
 			t.setAttribute("repeated", str(timer.repeated))			
 			#t.setAttribute("epgdata", timer.)
-			t.setAttribute("description", timer.description)
+			t.setAttribute("description", "no description") # timer.description)
 			root_element.appendChild(t)
 			t = doc.createTextNode("\n")
 			root_element.appendChild(t)
