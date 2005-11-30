@@ -33,12 +33,10 @@ class Pixmap(GUIComponent):
 		pass
 	
 	def showPixmap(self):
-		print "Show pixmap"
 		self.state = self.SHOWN
 		self.instance.show()
 
 	def hidePixmap(self):
-		print "Hide pixmap"
 		self.state = self.HIDDEN
 		self.instance.hide()
 	
