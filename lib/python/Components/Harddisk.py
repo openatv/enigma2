@@ -130,8 +130,7 @@ class Harddisk:
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]
 
 	def initialize(self):
-		if self.unmount() != 0:
-			return -5
+		self.unmount()
 
 		if self.createPartition() != 0:
 			return -1
