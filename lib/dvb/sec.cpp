@@ -21,14 +21,14 @@ DEFINE_REF(eDVBSatelliteEquipmentControl);
 eDVBSatelliteEquipmentControl *eDVBSatelliteEquipmentControl::instance;
 
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends)
-	:m_lnbidx(-1), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends)
+	:m_lnbidx(-1), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends), m_rotorMoving(false)
 {
 	if (!instance)
 		instance = this;
 
 	clear();
 
-#if 0
+#if 1
 // ASTRA
 	addLNB();
 	setLNBTunerMask(3);
@@ -62,7 +62,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addSatellite(130);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-#endif
+#else
 
 // Rotor
 	addLNB();
@@ -103,6 +103,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
 	setRotorPosNum(1); // stored pos 1
+#endif
 }
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
@@ -938,6 +939,10 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 
 bool eDVBSatelliteEquipmentControl::isRotorMoving()
 {
-	// TODO please fill with life
-	return false;
+	return m_rotorMoving;
+}
+
+void eDVBSatelliteEquipmentControl::setRotorMoving(bool b)
+{
+	m_rotorMoving=b;
 }
