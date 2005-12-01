@@ -292,9 +292,9 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 	for (int i=0; i<entries; ++i)
 		m_data[i] = -1;
 
-	m_data[7] = !m_fe;
+//	m_data[7] = !m_fe;
 
-	eDebug("m_data[7] = %d %d", m_data[7], m_fe);
+//	eDebug("m_data[7] = %d %d", m_data[7], m_fe);
 
 	return;
 }
@@ -384,34 +384,23 @@ void eDVBFrontend::timeout()
 #endif
 int eDVBFrontend::readInputpower()
 {
-	int power=0;
-//	if ( eSystemInfo::getInstance()->canMeasureLNBCurrent() )
+	int power=m_fe;
+
+	// open front prozessor
+	int fp=::open("/dev/dbox/fp0", O_RDWR);
+	if (fp < 0)
 	{
-//		switch ( eSystemInfo::getInstance()->getHwType() )
-		{
-//			case eSystemInfo::DM7000:
-//			case eSystemInfo::DM7020:
-			{
-				// open front prozessor
-				int fp=::open("/dev/dbox/fp0", O_RDWR);
-				if (fp < 0)
-				{
-					eDebug("couldn't open fp");
-					return -1;
-				}
-				static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
-				if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
-				{
-					eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
-					return -1;
-				}
-				::close(fp);
-//				break;
-			}
-//			default:
-//				eDebug("Inputpower read for platform %d not yet implemented", eSystemInfo::getInstance()->getHwType());
-		}
+		eDebug("couldn't open fp");
+		return -1;
 	}
+	static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
+	if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
+	{
+		eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
+		return -1;
+	}
+	::close(fp);
+
 	return power;
 }
 
@@ -515,7 +504,10 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
-				int fd=::open("/dev/i2c/0", O_RDWR);
+				int fd = m_fe ?
+					::open("/dev/i2c/1", O_RDWR) :
+					::open("/dev/i2c/0", O_RDWR);
+
 				unsigned char data[2];
 				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
 				if(::read(fd, data, 1) != 1)
