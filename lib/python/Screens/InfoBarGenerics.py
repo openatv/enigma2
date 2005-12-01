@@ -17,6 +17,7 @@ from EpgSelection import EPGSelection
 from Screens.MessageBox import MessageBox
 from Screens.Volume import Volume
 from Screens.Mute import Mute
+from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventView
 
@@ -88,6 +89,11 @@ class InfoBarVolumeControl:
 			self.muteDialog.instance.show()
 		else:
 			self.muteDialog.instance.hide()
+
+class InfoBarDish:
+	def __init__(self):
+		self.dishDialog = self.session.instantiateDialog(Dish)
+		self.onShown.append(self.dishDialog.instance.show)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start

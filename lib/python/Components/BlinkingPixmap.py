@@ -8,7 +8,7 @@ class BlinkingPixmap(Pixmap):
 	def __init__(self):
 		Pixmap.__init__(self)
 		
-		self.blinking = False
+		self.blinking = True
 		
 		self.setBlinkTime(500)
 
