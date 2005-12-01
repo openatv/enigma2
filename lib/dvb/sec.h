@@ -165,8 +165,8 @@ public:
 	{
 		__u8 m_lo_direction;	// EAST, WEST
 		__u8 m_la_direction;	// NORT, SOUTH
-		double m_longitude;	// longitude for gotoXX° function
-		double m_latitude;	// latitude for gotoXX° function
+		double m_longitude;	// longitude for gotoXX? function
+		double m_latitude;	// latitude for gotoXX? function
 	};
 	eDVBSatelliteRotorGotoxxParameters m_gotoxx_parameters;
 
@@ -252,6 +252,8 @@ public:
 	RESULT setRotorPosNum(int rotor_pos_num);
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
+	
+	bool isRotorMoving();
 };
 
 #endif

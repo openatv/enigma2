@@ -460,7 +460,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						RotorCmd=sw_param.m_rotorPosNum;
 					else  // we must calc gotoxx cmd
 					{
-						eDebug("Entry for %d,%d° not in Rotor Table found... i try gotoXX°", sat.orbital_position / 10, sat.orbital_position % 10 );
+						eDebug("Entry for %d,%d? not in Rotor Table found... i try gotoXX?", sat.orbital_position / 10, sat.orbital_position % 10 );
 						useGotoXX = true;
 
 						int satDir = sat.orbital_position < 0 ?
@@ -934,4 +934,9 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 		return 0;
 	}
 	return -1;
+}
+
+bool eDVBSatelliteEquipmentControl::isRotorMoving()
+{
+	return false;
 }

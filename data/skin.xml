@@ -9,6 +9,7 @@
 			<color name="green" 	value="#00ff00" />
 			<color name="blue" 		value="#0000ff" />
 			<color name="yellow"	value="#c0c000" />
+			<color name="transparent" 	value="#ffffffff" />
 		</colors>
 		<windowstyle type="skinned">
 			<color name="Background" color="#33294a6b" />
@@ -202,6 +203,10 @@
 		</screen>
 		<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute">
 			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
+		</screen>
+		<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish">
+			<widget name="transparent" zPosition="-1" position="0,0" size="100,107" backgroundColor="transparent" />
+			<widget name="Dishpixmap" pixmap="/usr/share/enigma2/dish.png" position="0,0" size="100,107" />
 		</screen>
  		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 			<widget name="list" position="10,45" size="540,364" />
