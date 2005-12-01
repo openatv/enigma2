@@ -375,7 +375,22 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	m_ch_unavailable.clear();
 	m_new_channels.clear();
 	m_new_services.clear();
-	m_ch_toScan.insert(m_ch_toScan.end(), known_transponders.begin(), known_transponders.end());
+
+	for (eSmartPtrList<iDVBFrontendParameters>::const_iterator i(known_transponders.begin()); i != known_transponders.end(); ++i)
+	{
+		bool exist=false;
+		for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator ii(m_ch_toScan.begin()); ii != m_ch_toScan.end(); ++ii)
+		{
+			if (sameChannel(*i, *ii))
+			{
+				exist=true;
+				break;
+			}
+		}
+		if (!exist)
+			m_ch_toScan.push_back(*i);
+	}
+
 	nextChannel();
 }
 
