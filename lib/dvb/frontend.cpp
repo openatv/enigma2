@@ -292,6 +292,10 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 	for (int i=0; i<entries; ++i)
 		m_data[i] = -1;
 
+	m_data[7] = !m_fe;
+
+	eDebug("m_data[7] = %d %d", m_data[7], m_fe);
+
 	return;
 }
 
@@ -333,7 +337,7 @@ void eDVBFrontend::feEvent(int w)
 #if HAVE_DVB_API_VERSION < 3
 		if (event.type == FE_COMPLETION_EV)
 #else
-		eDebug("fe event: status %x, inversion %s", event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
+		eDebug("(%d)fe event: status %x, inversion %s", m_fe, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
 		if (event.status & FE_HAS_LOCK)
 #endif
 		{
@@ -503,6 +507,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				if (!m_timeoutCount)
 				{
 					eDebug("[SEC] rotor timout");
+					m_sec->setRotorMoving(false);
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				}
 				else
@@ -553,6 +558,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					eDebug("[SEC] rotor %s step %d ok", txt, cmd.okcount);
 					if ( cmd.okcount > 6 )
 					{
+						m_sec->setRotorMoving(cmd.direction);
 						eDebug("[SEC] rotor is %s", txt);
 						if (setSecSequencePos(cmd.steps))
 							break;
@@ -611,6 +617,8 @@ RESULT eDVBFrontend::getFrontendType(int &t)
 
 RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
+	eDebug("(%d)tune", m_fe);
+
 	if (m_type == -1)
 		return -ENODEV;
 
@@ -1009,6 +1017,8 @@ RESULT eDVBFrontend::setData(int num, int val)
 {
 	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
 	{
+		if ( num == 0 )
+			eDebug("(%d) set csw %02x", m_fe, val);
 		m_data[num] = val;
 		return 0;
 	}

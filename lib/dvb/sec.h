@@ -211,6 +211,7 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	int m_lnbidx; // current index for set parameters
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
+	bool m_rotorMoving;
 #endif
 public:
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
@@ -252,7 +253,8 @@ public:
 	RESULT setRotorPosNum(int rotor_pos_num);
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
-	
+
+	void setRotorMoving(bool); // called from the frontend's
 	bool isRotorMoving();
 };
 

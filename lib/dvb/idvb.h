@@ -355,6 +355,7 @@ class iDVBSatelliteEquipmentControl: public iObject
 public:
 	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id)=0;
+	virtual void setRotorMoving(bool)=0;
 };
 
 struct eDVBCIRouting
