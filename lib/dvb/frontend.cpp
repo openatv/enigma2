@@ -229,9 +229,6 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 		ok = 0;
 		return;
 	}
-	else
-		eDebug("m_secfd is %d", m_secfd);
-
 	FrontendInfo fe_info;
 	sprintf(filename, "/dev/dvb/card%d/frontend%d", adap, fe);
 #else
@@ -384,7 +381,7 @@ void eDVBFrontend::timeout()
 #endif
 int eDVBFrontend::readInputpower()
 {
-	int power=m_fe;
+	int power=m_fe;  // this is needed for read inputpower from the correct tuner !
 
 	// open front prozessor
 	int fp=::open("/dev/dbox/fp0", O_RDWR);
@@ -1009,8 +1006,6 @@ RESULT eDVBFrontend::setData(int num, int val)
 {
 	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
 	{
-		if ( num == 0 )
-			eDebug("(%d) set csw %02x", m_fe, val);
 		m_data[num] = val;
 		return 0;
 	}
