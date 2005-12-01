@@ -46,6 +46,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 #		for (name, val) in self.items():
 		for val in self.active_components:
 			val.execEnd()
+		del self.active_components
 #		assert self.session != None, "execEnd on non-execing screen!"
 #		self.session = None
 		self.execing = False
