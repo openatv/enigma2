@@ -938,5 +938,6 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 
 bool eDVBSatelliteEquipmentControl::isRotorMoving()
 {
+	// TODO please fill with life
 	return false;
 }
