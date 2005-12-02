@@ -2,6 +2,7 @@
 #include <lib/service/service.h>
 #include <lib/gdi/font.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/pmt.h>
 
 void eListboxServiceContent::setRoot(const eServiceReference &root)
 {
@@ -165,10 +166,12 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:epgcache(eEPGCache::getInstance()), m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
+	:m_epgcache(eEPGCache::getInstance()), m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
+	if (eDVBResourceManager::getInstance(m_res_mgr))
+		eDebug("no resource manager");
 }
 
 void eListboxServiceContent::cursorHome()
@@ -334,12 +337,30 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 {
 	painter.clip(eRect(offset, m_itemsize));
 
+	bool tuneable=true;
+
+	if (m_res_mgr && cursorValid() && !((m_cursor->flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory))
+	{
+		if ( eDVBServicePMTHandler::getCount() > 1 )
+		{
+			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) *m_cursor;
+			eUsePtr<iDVBChannel> channel;
+			eDVBChannelID chid;
+			ref.getChannelID(chid);
+			tuneable = !m_res_mgr->allocateChannel(chid, channel, true);  // no real allocate channel..just fake
+		}
+	}
+
 	if (m_current_marked && selected)
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else if (cursorValid() && isMarked(*m_cursor))
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else
+	{
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+		if (!tuneable)
+			painter.setForegroundColor(gRGB(0xbbbbbb));
+	}
 	painter.clear();
 	
 	if (cursorValid())
@@ -381,7 +402,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			{
 				ePtr<eServiceEvent> evt;
 				time_t t=-1;
-				if ( !epgcache->lookupEventTime(*m_cursor, t, evt) )
+				if ( !m_epgcache->lookupEventTime(*m_cursor, t, evt) )
 					text = '(' + evt->getEventName() + ')';
 				else
 					continue;

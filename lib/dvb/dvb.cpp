@@ -297,7 +297,7 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 }
 
 
-RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel)
+RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool fake)
 {
 		/* first, check if a channel is already existing. */
 	
@@ -334,19 +334,22 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	
 	if (allocateFrontend(fe, feparm))
 		return errNoFrontend;
-	
-	RESULT res;
-	ePtr<eDVBChannel> ch;
-	ch = new eDVBChannel(this, fe);
 
-	res = ch->setChannel(channelid, feparm);
-	if (res)
+	if (!fake)
 	{
-		channel = 0;
-		return errChidNotFound;
-	}
+		RESULT res;
+		ePtr<eDVBChannel> ch;
+		ch = new eDVBChannel(this, fe);
+
+		res = ch->setChannel(channelid, feparm);
+		if (res)
+		{
+			channel = 0;
+			return errChidNotFound;
+		}
 	
-	channel = ch;
+		channel = ch;
+	}
 	return 0;
 }
 

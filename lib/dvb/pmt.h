@@ -66,7 +66,9 @@ class eDVBServicePMTHandler: public Object
 	void PATready(int error);
 	
 	int m_record;
+	static int m_count;
 public:
+	static int getCount() { return m_count; }
 	eDVBServicePMTHandler(int record);
 	~eDVBServicePMTHandler();
 	

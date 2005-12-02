@@ -156,9 +156,9 @@ public:
 		errNoDemux    = -2,
 		errChidNotFound = -3
 	};
-	
+
 		/* allocate channel... */
-	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
+	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool fake=false);
 	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 
