@@ -684,8 +684,17 @@ RESULT eDVBDB::getBouquet(const eServiceReference &ref, eBouquet* &bouquet)
 
 RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source)
 {
-	if ( q && q->m_bouquet_name.length() )
-		query = new eDVBDBBouquetQuery(this, source, q);
+	if ( source.path.find("FROM") != std::string::npos )
+	{
+		if ( source.path.find("BOUQUET") != std::string::npos )
+			query = new eDVBDBBouquetQuery(this, source, q);
+		else if ( source.path.find("SATELLITES") != std::string::npos )
+			query = new eDVBDBSatellitesQuery(this, source, q);
+		else if ( source.path.find("PROVIDERS") != std::string::npos )
+			query = new eDVBDBProvidersQuery(this, source, q);
+		else
+			eFatal("invalid query %s", source.toString().c_str());
+	}
 	else
 		query = new eDVBDBQuery(this, source, q);
 	return 0;
@@ -782,6 +791,118 @@ RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 	ref.type = eServiceReference::idInvalid;
 
 	return 1;
+}
+
+eDVBDBListQuery::eDVBDBListQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:eDVBDBQueryBase(db, source, query), m_cursor(m_list.end())
+{
+}
+
+RESULT eDVBDBListQuery::getNextResult(eServiceReferenceDVB &ref)
+{
+	if (m_cursor != m_list.end())
+	{
+		ref = *m_cursor++;
+		return 0;
+	}
+	ref.type = eServiceReference::idInvalid;
+	return 1;
+}
+
+int eDVBDBListQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
+{
+	if ( m_query->m_sort == eDVBChannelQuery::tSatellitePosition )
+		return (a.getDVBNamespace().get() >> 16) < (b.getDVBNamespace().get() >> 16);
+	return a.name < b.name;
+}
+
+eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:eDVBDBListQuery(db, source, query)
+{
+	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
+		it != m_db->m_services.end(); ++it)
+	{
+		int res = it->second->checkFilter(it->first, *query);
+		if (res)
+		{
+			unsigned int dvbnamespace = it->first.getDVBNamespace().get()&0xFFFF0000;
+			bool found=0;
+			for (std::list<eServiceReferenceDVB>::iterator i(m_list.begin()); i != m_list.end(); ++i)
+				if ( (i->getDVBNamespace().get()&0xFFFF0000) == dvbnamespace )
+				{
+					found=true;
+					break;
+				}
+			if (!found)
+			{
+				eServiceReferenceDVB ref;
+				ref.setDVBNamespace(dvbnamespace);
+				char buf[64];
+// TODO get real satellite name..
+// but i dont like to parse the satellites.xml here.. and in the python part
+				snprintf(buf, 64, "Services - %d", dvbnamespace>>16);
+				ref.name=buf;
+				snprintf(buf, 64, "(satellitePosition == %d) && ", dvbnamespace>>16);
+				ref.path=buf+source.path;
+				unsigned int pos=ref.path.find("FROM");
+				ref.flags=eServiceReference::flagDirectory;
+				ref.path.erase(pos);
+				ref.path+="ORDER BY name";
+//				eDebug("ref.path now %s", ref.path.c_str());
+				m_list.push_back(ref);
+
+				ref.path=buf+source.path;
+				pos=ref.path.find("FROM");
+				ref.path.erase(pos+5);
+				ref.path+="PROVIDERS ORDER BY name";
+//				eDebug("ref.path now %s", ref.path.c_str());
+				snprintf(buf, 64, "Providers - %d", dvbnamespace>>16);
+				ref.name=buf;
+				m_list.push_back(ref);
+			}
+		}
+	}
+	m_cursor=m_list.begin();
+}
+
+eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
+	:eDVBDBListQuery(db, source, query)
+{
+	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
+		it != m_db->m_services.end(); ++it)
+	{
+		int res = it->second->checkFilter(it->first, *query);
+		if (res)
+		{
+			bool found=0;
+
+			const char *provider_name = it->second->m_provider_name.length() ?
+				it->second->m_provider_name.c_str() :
+				"Unknown";
+
+			for (std::list<eServiceReferenceDVB>::iterator i(m_list.begin()); i != m_list.end(); ++i)
+				if (i->name == provider_name)
+				{
+					found=true;
+					break;
+				}
+			if (!found)
+			{
+				eServiceReferenceDVB ref;
+				char buf[64];
+				ref.name=provider_name;
+				snprintf(buf, 64, "(provider == \"%s\") && ", provider_name);
+				ref.path=buf+source.path;
+				unsigned int pos = ref.path.find("FROM");
+				ref.flags=eServiceReference::flagDirectory;
+				ref.path.erase(pos);
+				ref.path+="ORDER BY name";
+//				eDebug("ref.path now %s", ref.path.c_str());
+				m_list.push_back(ref);
+			}
+		}
+	}
+	m_cursor=m_list.begin();
 }
 
 /* (<name|provider|type|bouquet|satpos|chid> <==|...> <"string"|int>)[||,&& (..)] */
@@ -975,37 +1096,41 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	int sort = eDVBChannelQuery::tName;
 		/* check for "ORDER BY ..." */
 
-	while (tokens.size() > 2)
+	std::list<std::string>::iterator it = tokens.begin();
+	while (it != tokens.end())
 	{
-		std::list<std::string>::iterator it = tokens.end();
-		--it; --it; --it;
 		if (*it == "ORDER")
 		{
-			++it;
-			if (*it == "BY")
+			tokens.erase(it++);
+			if (it != tokens.end() && *it == "BY")
 			{
-				++it;
+				tokens.erase(it++);
 				sort = decodeType(*it);
-				tokens.pop_back(); // ...
-				tokens.pop_back(); // BY
-				tokens.pop_back(); // ORDER
+				tokens.erase(it++);
 			} else
 				sort = -1;
 		}
 		else if (*it == "FROM")
 		{
-			++it;
-			if (*it == "BOUQUET")
+			tokens.erase(it++);
+			if (it != tokens.end() && *it == "BOUQUET")
 			{
-				++it;
+				tokens.erase(it++);
 				bouquet_name = *it;
-				tokens.pop_back(); // ...
-				tokens.pop_back(); // FROM
-				tokens.pop_back(); // BOUQUET
+				tokens.erase(it++);
+			}
+			else if (it != tokens.end() && *it == "SATELLITES")
+				tokens.erase(it++);
+			else if (it != tokens.end() && *it == "PROVIDERS")
+				tokens.erase(it++);
+			else
+			{
+				eDebug("FROM unknown %s", (*it).c_str());
+				tokens.erase(it++);
 			}
 		}
 		else
-			break;
+			++it;
 	}
 
 	if (sort == -1)

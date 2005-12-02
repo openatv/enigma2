@@ -29,11 +29,12 @@ class ChannelContextMenu(FixedMenu):
 
 		menu = [ ]
 
-		inBouquetRootList = csel.servicelist.getRoot().toString().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		inBouquetRootList = csel.servicelist.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
 
 		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
-			menu.append(("add service to bouquet", self.addServiceToBouquetSelected))
+			if (csel.getCurrentSelection().type & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+				menu.append(("add service to bouquet", self.addServiceToBouquetSelected))
 			if inBouquet:
 				menu.append(("remove service", self.removeCurrentService))
 
@@ -41,11 +42,11 @@ class ChannelContextMenu(FixedMenu):
 			if not csel.bouquet_mark_edit:
 				if not csel.movemode:
 					menu.append(("enable move mode", self.toggleMoveMode))
-					if not inBouquetRootList: 
+					if not inBouquetRootList:
 						menu.append(("enable bouquet edit", self.bouquetMarkStart))
 				else:
 					menu.append(("disable move mode", self.toggleMoveMode))
-			elif not inBouquetRootList: 
+			elif not inBouquetRootList:
 				menu.append(("end bouquet edit", self.bouquetMarkEnd))
 				menu.append(("abort bouquet edit", self.bouquetMarkAbort))
 
@@ -210,23 +211,27 @@ class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		# this makes it much simple to implement a selectable radio or tv mode :)
+		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17)'
+		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
+
+		self.service_types = self.service_types_tv
+
 		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+		self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 
 		self["key_red"] = Button("All")
-		#self["key_green"] = Button("Provider")
-		#self["key_yellow"] = Button("Satellite")
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
+		self["key_green"] = Button("Satellites")
+		self["key_yellow"] = Button("Provider")
 		self["key_blue"] = Button("Favourites")
 
 		self["list"] = ServiceList()
 		self.servicelist = self["list"]
 
 		#self["okbutton"] = Button("ok", [self.channelSelected])
-		
+
 		self.numericalTextInput = NumericalTextInput()
-		
+
 		self.lastService = None
 
 		self.lastServiceTimer = eTimer()
@@ -234,7 +239,7 @@ class ChannelSelectionBase(Screen):
 		self.lastServiceTimer.start(100)
 
 	def getBouquetNumOffset(self, bouquet):
-		if self.bouquet_root.toString().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
+		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
 			return 0
 		offsetCount = 0
 		serviceHandler = eServiceCenter.getInstance()
@@ -258,8 +263,8 @@ class ChannelSelectionBase(Screen):
 		return offsetCount
 
 	def setRootBase(self, root):
-		inBouquetRootList = root.toString().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
-		if not inBouquetRootList and ((root.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+		inBouquetRootList = root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		if not inBouquetRootList and (root.getPath().find('FROM BOUQUET') != -1):
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
 			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
 		else:
@@ -271,6 +276,18 @@ class ChannelSelectionBase(Screen):
 
 	def moveDown(self):
 		self.servicelist.moveDown()
+
+	def showAllServices(self):
+		ref = eServiceReference('%s ORDER BY name'%(self.service_types))
+		self.setRoot(ref)
+
+	def showSatellites(self):
+		ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
+		self.setRoot(ref)
+
+	def showProviders(self):
+		ref = eServiceReference('%s FROM PROVIDERS ORDER BY name'%(self.service_types))
+		self.setRoot(ref)
 
 	def showFavourites(self):
 		self.setRoot(self.bouquet_root)
@@ -331,6 +348,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
 				"showFavourites": self.showFavourites,
+				"showAllServices": self.showAllServices,
+				"showProviders": self.showProviders,
+				"showSatellites": self.showSatellites,
 				"showEPGList": self.showEPGList,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,

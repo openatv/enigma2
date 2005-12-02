@@ -152,8 +152,8 @@ void eListboxServiceContent::setElementFont(int element, gFont *font)
 void eListboxServiceContent::sort()
 {
 	ePtr<iListableService> lst;
-  if (!m_service_center->list(m_root, lst))
-  {
+	if (!m_service_center->list(m_root, lst))
+	{
 		m_list.sort(iListableServiceCompare(lst));
 			/* FIXME: is this really required or can we somehow keep the current entry? */
 		cursorHome();

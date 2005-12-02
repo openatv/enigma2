@@ -43,10 +43,12 @@ public:
 
 	int data[8];
 	std::string path;
+	std::string getPath() { return path; }
 
 // only for override service names in bouquets or to give servicerefs a name which not have a
 // real existing service ( for dvb eServiceDVB )
 	std::string name;
+	std::string getName() { return name; }
 
 	eServiceReference()
 		: type(idInvalid), flags(0)

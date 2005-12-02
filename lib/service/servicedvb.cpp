@@ -359,9 +359,12 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 		/* do we have a PVR service? */
-	if (ref.flags & eServiceReference::flagDirectory) // bouquet
+	if ((ref.flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory) // bouquet
 	{
-		ptr = new eStaticServiceDVBBouquetInformation;
+		if ( !ref.name.empty() )
+			ptr = new eStaticServiceDVBInformation;
+		else
+			ptr = new eStaticServiceDVBBouquetInformation;
 		return 0;
 	}
 	else if (!ref.path.empty())
