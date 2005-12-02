@@ -12,6 +12,8 @@ class eDVBDB: public iDVBChannelList
 DECLARE_REF(eDVBDB);
 	friend class eDVBDBQuery;
 	friend class eDVBDBBouquetQuery;
+	friend class eDVBDBSatellitesQuery;
+	friend class eDVBDBProvidersQuery;
 private:
 	struct channel
 	{
@@ -52,13 +54,12 @@ class eDVBDBQueryBase: public iDVBChannelListQuery
 {
 DECLARE_REF(eDVBDBQueryBase);
 protected:
-	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_cursor;
 	ePtr<eDVBDB> m_db;
 	ePtr<eDVBChannelQuery> m_query;
 	eServiceReference m_source;
 public:
 	eDVBDBQueryBase(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
-	int compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b);
+	virtual int compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b);
 };
 
 class eDVBDBQuery: public eDVBDBQueryBase
@@ -75,6 +76,29 @@ class eDVBDBBouquetQuery: public eDVBDBQueryBase
 public:
 	eDVBDBBouquetQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 	RESULT getNextResult(eServiceReferenceDVB &ref);
+};
+
+class eDVBDBListQuery: public eDVBDBQueryBase
+{
+protected:
+	std::list<eServiceReferenceDVB> m_list;
+	std::list<eServiceReferenceDVB>::iterator m_cursor;
+public:
+	eDVBDBListQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
+	RESULT getNextResult(eServiceReferenceDVB &ref);
+	int compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b);
+};
+
+class eDVBDBSatellitesQuery: public eDVBDBListQuery
+{
+public:
+	eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
+};
+
+class eDVBDBProvidersQuery: public eDVBDBListQuery
+{
+public:
+	eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 };
 
 #endif
