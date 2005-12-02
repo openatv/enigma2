@@ -236,9 +236,9 @@
 			<widget name="duration" position="140,345" size="100,30" font="Arial;22" />
 			<widget name="channel" position="240,345" size="270,30" font="Arial;22" />
 		</screen>
-		<screen name="MovieSelection" position="50,50" size="620,476" title="Select-a-movie">
-			<widget name="list" position="0,30" size="600,375" />
-			<widget name="freeDiskSpace" position="0,440" size="400,30" />
+		<screen name="MovieSelection" position="90,98" size="560,415" title="Select-a-movie">
+			<widget name="list" position="0,0" size="560,375" />
+			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Arial;25" />
 		</screen>
 		<screen name="ServiceScan" position="200,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="300,20" />
