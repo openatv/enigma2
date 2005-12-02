@@ -184,7 +184,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						it->m_frontend->getData(1, oucsw);
 						it->m_frontend->getData(2, oToneburst);
 						it->m_frontend->getData(6, oRotorPos);
-
+#if 0
 						eDebug("compare csw %02x == lcsw %02x",
 							csw, ocsw);
 						if ( diseqc )
@@ -193,16 +193,16 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						if ( rotor )
 							eDebug("compare pos %d == current pos %d",
 								sat.orbital_position, oRotorPos);
-
+#endif
 						if ( (csw != ocsw) ||
 							( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
 							( rotor && oRotorPos != sat.orbital_position ) )
 						{
-							eDebug("can not tune this transponder with linked tuner in use!!");
+//							eDebug("can not tune this transponder with linked tuner in use!!");
 							ret=0;
 						}
-						else
-							eDebug("OK .. can tune this transponder with linked tuner in use :)");
+//						else
+//							eDebug("OK .. can tune this transponder with linked tuner in use :)");
 					}
 				}
 			}

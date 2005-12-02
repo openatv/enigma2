@@ -9,6 +9,8 @@
 #include <dvbsi++/iso639_language_descriptor.h>
 #include <dvbsi++/component_descriptor.h>
 
+int eDVBServicePMTHandler::m_count;
+
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	:m_ca_servicePtr(0)
 {
@@ -17,6 +19,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
 	eDebug("new PMT handler record: %d", m_record);
+	++m_count;
 }
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
@@ -32,6 +35,7 @@ eDVBServicePMTHandler::~eDVBServicePMTHandler()
 		eDVBCAService::unregister_service(m_reference, demux_num, ptr);
 		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 	}
+	--m_count;
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)

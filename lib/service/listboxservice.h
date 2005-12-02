@@ -1,6 +1,7 @@
 #ifndef __lib_service_listboxservice_h
 #define __lib_service_listboxservice_h
 
+#include <lib/dvb/dvb.h>
 #include <lib/gui/elistbox.h>
 #include <lib/service/iservice.h>
 #include <set>
@@ -10,7 +11,8 @@ class eEPGCache;
 class eListboxServiceContent: public virtual iListboxContent
 {
 	DECLARE_REF(eListboxServiceContent);
-	eEPGCache *epgcache;
+	eEPGCache *m_epgcache;
+	ePtr<eDVBResourceManager> m_res_mgr;
 public:
 	eListboxServiceContent();
 	void setRoot(const eServiceReference &ref);
