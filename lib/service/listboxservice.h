@@ -10,6 +10,8 @@ class eListboxServiceContent: public virtual iListboxContent
 	DECLARE_REF(eListboxServiceContent);
 public:
 	eListboxServiceContent();
+
+	void setIgnoreService( const eServiceReference &service );
 	void setRoot(const eServiceReference &ref);
 	void getCurrent(eServiceReference &ref);
 	
@@ -96,6 +98,8 @@ private:
 	bool m_current_marked;
 
 	int m_numberoffset;
+
+	eServiceReference m_is_playable_ignore;
 };
 
 #endif

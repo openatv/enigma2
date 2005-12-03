@@ -70,6 +70,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setNumberOffset(self, offset):
 		self.l.setNumberOffset(offset)
 
+	def setPlayableIgnoreService(self, ref):
+		self.l.setIgnoreService(ref)
+
 	def setRoot(self, root):
 		self.root = root
 		self.l.setRoot(root)

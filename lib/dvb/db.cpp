@@ -1,5 +1,6 @@
 #include <errno.h>
 #include <lib/dvb/db.h>
+#include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/base/eerror.h>
@@ -152,6 +153,21 @@ RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &
 {
 	time_t t=-1;
 	return eEPGCache::getInstance()->lookupEventTime(ref, t, ptr);
+}
+
+bool eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+{
+	ePtr<eDVBResourceManager> res_mgr;
+	if ( eDVBResourceManager::getInstance( res_mgr ) )
+		eDebug("isPlayble... no res manager!!");
+	else
+	{
+		eDVBChannelID chid, chid_ignore;
+		((const eServiceReferenceDVB&)ref).getChannelID(chid);
+		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
+		return res_mgr->canAllocateChannel(chid, chid_ignore);
+	}
+	return false;
 }
 
 int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query)

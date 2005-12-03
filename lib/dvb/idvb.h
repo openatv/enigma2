@@ -219,7 +219,8 @@ public:
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr);
-	
+	bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+
 		/* for filtering: */
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
 };
