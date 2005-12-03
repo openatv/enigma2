@@ -819,6 +819,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 int eDVBServicePlay::getFrontendInfo(int w)
 {
+	if (m_is_pvr)
+		return 0;
 	eUsePtr<iDVBChannel> channel;
 	if(m_service_handler.getChannel(channel))
 		return 0;
