@@ -58,6 +58,7 @@ public:
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
+	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
 
 		// iPausableService
 	RESULT pause();

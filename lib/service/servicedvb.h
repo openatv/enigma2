@@ -54,7 +54,7 @@ private:
 
 class eDVBServicePlay: public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
-		public iAudioTrackSelection
+		public iAudioTrackSelection, public iFrontendStatusInformation
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -68,6 +68,7 @@ public:
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
+	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
 	
 		// iPauseableService
 	RESULT pause();
@@ -89,6 +90,9 @@ public:
 	int getNumberOfTracks();
 	RESULT selectTrack(unsigned int i);
 	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
+
+		// iFrontendStatusInformation
+	int getFrontendInfo(int w);
 
 private:
 	friend class eServiceFactoryDVB;

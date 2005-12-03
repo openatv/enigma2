@@ -681,6 +681,12 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	return pvr_channel->getCurrentPosition(demux, pos);
 }
 
+RESULT eDVBServicePlay::frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
 {
 	ptr = this;
@@ -809,6 +815,17 @@ int eDVBServicePlay::selectAudioStream(int i)
 	m_current_audio_stream = i;
 
 	return 0;
+}
+
+int eDVBServicePlay::getFrontendInfo(int w)
+{
+	eUsePtr<iDVBChannel> channel;
+	if(m_service_handler.getChannel(channel))
+		return 0;
+	ePtr<iDVBFrontend> fe;
+	if(channel->getFrontend(fe))
+		return 0;
+	return fe->readFrontendData(w);
 }
 
 DEFINE_REF(eDVBServicePlay)

@@ -224,6 +224,19 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
 
+class iFrontendStatusInformation: public iObject
+{
+public:
+	enum {
+		bitErrorRate,
+		signalPower,
+		signalQuality
+	};
+	virtual int getFrontendInfo(int w)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iFrontendStatusInformation>, iFrontendStatusInformationPtr);
+
 class iPauseableService: public iObject
 {
 public:
@@ -287,6 +300,7 @@ public:
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
