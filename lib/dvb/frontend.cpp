@@ -376,6 +376,35 @@ void eDVBFrontend::timeout()
 		m_tuning = 0;
 }
 
+int eDVBFrontend::readFrontendData(int type)
+{
+	switch(type)
+	{
+		case bitErrorRate:
+		{
+			uint32_t ber=0;
+			if (ioctl(m_fd, FE_READ_BER, &ber) < 0 && errno != ERANGE)
+				eDebug("FE_READ_BER failed (%m)");
+			return ber;
+		}
+		case signalPower:
+		{
+			uint16_t snr=0;
+			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
+				eDebug("FE_READ_SNR failed (%m)");
+			return snr;
+		}
+		case signalQuality:
+		{
+			uint16_t strength=0;
+			if (ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
+				eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
+			return strength;
+		}
+	}
+	return 0;
+}
+
 #ifndef FP_IOCTL_GET_ID
 #define FP_IOCTL_GET_ID 0
 #endif

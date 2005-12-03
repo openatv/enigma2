@@ -91,7 +91,9 @@ public:
 	RESULT setSecSequence(const eSecCommandList &list);
 	RESULT getData(int num, int &data);
 	RESULT setData(int num, int val);
-	
+
+	int readFrontendData(int type); // bitErrorRate, signalPower, signalQuality
+
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	
 	int getID() { return m_fe; }
