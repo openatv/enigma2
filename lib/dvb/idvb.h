@@ -218,7 +218,7 @@ public:
 	
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
-	int getLength(const eServiceReference &ref);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr);
 	
 		/* for filtering: */
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);

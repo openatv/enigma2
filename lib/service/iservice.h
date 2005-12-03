@@ -3,6 +3,7 @@
 
 #include <lib/python/swig.h>
 #include <lib/base/object.h>
+#include <lib/service/event.h>
 #include <string>
 #include <connection.h>
 #include <list>
@@ -172,7 +173,8 @@ public:
 	virtual SWIG_VOID(RESULT) getName(const eServiceReference &ref, std::string &SWIG_OUTPUT)=0;
 	
 		// doesn't need to be implemented, should return -1 then.
-	virtual int getLength(const eServiceReference &ref)=0;
+	virtual int getLength(const eServiceReference &ref);
+	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);

@@ -296,8 +296,7 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 		return -ENOENT;
 }
 
-
-RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool fake)
+RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel)
 {
 		/* first, check if a channel is already existing. */
 	
@@ -335,21 +334,18 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	if (allocateFrontend(fe, feparm))
 		return errNoFrontend;
 
-	if (!fake)
-	{
-		RESULT res;
-		ePtr<eDVBChannel> ch;
-		ch = new eDVBChannel(this, fe);
+	RESULT res;
+	ePtr<eDVBChannel> ch;
+	ch = new eDVBChannel(this, fe);
 
-		res = ch->setChannel(channelid, feparm);
-		if (res)
-		{
-			channel = 0;
-			return errChidNotFound;
-		}
-	
-		channel = ch;
+	res = ch->setChannel(channelid, feparm);
+	if (res)
+	{
+		channel = 0;
+		return errChidNotFound;
 	}
+	channel = ch;
+
 	return 0;
 }
 
@@ -408,6 +404,82 @@ RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &
 {
 	connection = new eConnection((eDVBResourceManager*)this, m_channelAdded.connect(channelAdded));
 	return 0;
+}
+
+bool eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm, int used_tuner_mask)
+{
+	eDebug("canAllocateFrontend mask %08x", used_tuner_mask);
+	ePtr<eDVBRegisteredFrontend> best;
+	int bestval = 0;
+
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+		if ( !(used_tuner_mask & (1<<i->m_frontend->getID())) )
+		{
+			int c = i->m_frontend->isCompatibleWith(feparm);
+			if (c > bestval)
+				bestval = c;
+		}
+
+	return bestval>0;
+}
+
+bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid)
+{
+	return true;
+#if 0
+	int used_tuner_mask=0;
+
+		/* first, check if a channel is already existing. */
+//	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
+	int cnt=0;
+	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i, ++cnt)
+	{
+//		eDebug("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
+		if (i->m_channel_id == channelid)
+		{
+//			eDebug("found shared channel..");
+			return true;
+		}
+
+		eDebug("activeChannel %d, NonDecoderDemux %p, DecoderDemux %p",
+			cnt, i->m_channel->getNonDecoderDemux(), i->m_channel->getDecoderDemux() );
+		if ( i->m_channel->getNonDecoderDemux() )
+		{
+			ePtr<iDVBFrontend> fe;
+			if (!i->m_channel->getFrontend(fe))
+			{
+				if (fe)
+				{
+					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
+					{
+						if ( &(*fe) == &(*ii->m_frontend) )
+						{
+							used_tuner_mask |= (1 << ii->m_frontend->getID());
+							break;
+						}
+					}
+				}
+				else
+					eDebug("fe kaputt");
+			}
+		}
+	}
+
+	if (!m_list)
+	{
+		eDebug("no channel list set!");
+		return false;
+	}
+
+	ePtr<iDVBFrontendParameters> feparm;
+	if (m_list->getChannelFrontendData(channelid, feparm))
+	{
+		eDebug("channel not found!");
+		return false;
+	}
+
+	return canAllocateFrontend(feparm, used_tuner_mask);
+#endif
 }
 
 DEFINE_REF(eDVBChannel);

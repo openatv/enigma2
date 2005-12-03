@@ -166,12 +166,10 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_epgcache(eEPGCache::getInstance()), m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
-	if (eDVBResourceManager::getInstance(m_res_mgr))
-		eDebug("no resource manager");
 }
 
 void eListboxServiceContent::cursorHome()
@@ -339,17 +337,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 	bool tuneable=true;
 
+#if 0
 	if (m_res_mgr && cursorValid() && !((m_cursor->flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory))
 	{
-		if ( eDVBServicePMTHandler::getCount() > 1 )
-		{
-			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) *m_cursor;
-			eUsePtr<iDVBChannel> channel;
-			eDVBChannelID chid;
-			ref.getChannelID(chid);
-			tuneable = !m_res_mgr->allocateChannel(chid, channel, true);  // no real allocate channel..just fake
-		}
+		eServiceReferenceDVB &ref = (eServiceReferenceDVB&) *m_cursor;
+		eDVBChannelID chid;
+		ref.getChannelID(chid);
+		tuneable = m_res_mgr->canAllocateChannel(chid);
 	}
+#endif
 
 	if (m_current_marked && selected)
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
@@ -401,8 +397,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			case celServiceInfo:
 			{
 				ePtr<eServiceEvent> evt;
-				time_t t=-1;
-				if ( !m_epgcache->lookupEventTime(*m_cursor, t, evt) )
+				if ( !service_info->getEvent(*m_cursor, evt) )
 					text = '(' + evt->getEventName() + ')';
 				else
 					continue;

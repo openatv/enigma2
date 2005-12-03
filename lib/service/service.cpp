@@ -133,6 +133,17 @@ RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInfor
 
 #include <lib/service/event.h>
 
+RESULT iStaticServiceInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt)
+{
+	evt = 0;
+	return -1;
+}
+
+int iStaticServiceInformation::getLength(const eServiceReference &ref)
+{
+	return -1;
+}
+
 RESULT iServiceInformation::getEvent(ePtr<eServiceEvent> &evt, int m_nownext)
 {	
 	evt = 0;
