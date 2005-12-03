@@ -335,28 +335,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 {
 	painter.clip(eRect(offset, m_itemsize));
 
-	bool tuneable=true;
-
-#if 0
-	if (m_res_mgr && cursorValid() && !((m_cursor->flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory))
-	{
-		eServiceReferenceDVB &ref = (eServiceReferenceDVB&) *m_cursor;
-		eDVBChannelID chid;
-		ref.getChannelID(chid);
-		tuneable = m_res_mgr->canAllocateChannel(chid);
-	}
-#endif
-
 	if (m_current_marked && selected)
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else if (cursorValid() && isMarked(*m_cursor))
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else
-	{
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-		if (!tuneable)
-			painter.setForegroundColor(gRGB(0xbbbbbb));
-	}
 	painter.clear();
 	
 	if (cursorValid())
@@ -364,7 +348,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			/* get service information */
 		ePtr<iStaticServiceInformation> service_info;
 		m_service_center->info(*m_cursor, service_info);
-		
+
+		if (m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+			painter.setForegroundColor(gRGB(0xbbbbbb));
+
 		for (int e = 0; e < celElements; ++e)
 		{
 			if (!m_element_font[e])
@@ -447,3 +434,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	painter.clippop();
 }
 
+void eListboxServiceContent::setIgnoreService( const eServiceReference &service )
+{
+	m_is_playable_ignore=service;
+}

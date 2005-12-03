@@ -364,6 +364,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 				"0": self.keyNumberGlobal
 			})
 		self["actions"].csel = self
+		self.onShown.append(self.onShow)
+
+	def onShow(self):
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref.valid() and ref.getPath() == "":
+			self.servicelist.setPlayableIgnoreService(ref)
+		else:
+			self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def showEPGList(self):
 		ref=self.servicelist.getCurrent()
@@ -430,6 +438,9 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
 				"showFavourites": self.showFavourites,
+				"showAllServices": self.showAllServices,
+				"showProviders": self.showProviders,
+				"showSatellites": self.showSatellites,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -445,6 +456,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 
 	def onExecCallback(self):
 		print "onExecCallback"
+		self.showFavourites()
 		self.session.currentDialog.instance.setTitle(self.title)
 
 	def channelSelected(self): # just return selected service

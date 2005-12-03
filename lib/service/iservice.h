@@ -175,6 +175,8 @@ public:
 		// doesn't need to be implemented, should return -1 then.
 	virtual int getLength(const eServiceReference &ref);
 	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT);
+		// returns true when not implemented
+	virtual bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
@@ -263,7 +265,6 @@ public:
 };
 
 TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
-
 
 class iPlayableService: public iObject
 {

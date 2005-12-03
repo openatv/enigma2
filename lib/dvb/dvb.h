@@ -142,7 +142,7 @@ class eDVBResourceManager: public iObject
 	Signal1<void,eDVBChannel*> m_channelRemoved;
 	Signal1<void,iDVBChannel*> m_channelRunning;
 
-	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm, int used_tuner_mask);
+	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 public:
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
@@ -167,7 +167,7 @@ public:
 	RESULT connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 	RESULT connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 
-	bool canAllocateChannel(const eDVBChannelID &channelid);
+	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 };
 
 class eFilePushThread;
@@ -201,6 +201,7 @@ public:
 			   there is an unknown amount of buffers in between */
 	RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &off);
 
+	int getUseCount() { return m_use_count; }
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
