@@ -1,6 +1,7 @@
 #include <errno.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/frontend.h>
+#include <lib/dvb/epgcache.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <dvbsi++/service_description_section.h>
@@ -138,8 +139,8 @@ void eDVBService::genSortName()
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	if (!ref.name.empty())
-		name = ref.name;
+	if (!ref.name.empty())  
+		name = ref.name; // use renamed service name..
 	else if (!m_service_name.empty())
 		name = m_service_name;
 	else
@@ -147,9 +148,10 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 	return 0;
 }
 
-int eDVBService::getLength(const eServiceReference &ref)
+RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr)
 {
-	return -1;
+	time_t t=-1;
+	return eEPGCache::getInstance()->lookupEventTime(ref, t, ptr);
 }
 
 int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query)

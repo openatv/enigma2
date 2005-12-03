@@ -8,7 +8,6 @@
 #include <connection.h>
 
 class eDVBChannel;
-class eDVBChannel;
 
 	/* we do NOT handle resource conflicts here. instead, the allocateChannel
 	   fails, and the application has to see why the channel is allocated
@@ -142,6 +141,8 @@ class eDVBResourceManager: public iObject
 	Signal1<void,eDVBChannel*> m_channelAdded;
 	Signal1<void,eDVBChannel*> m_channelRemoved;
 	Signal1<void,iDVBChannel*> m_channelRunning;
+
+	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm, int used_tuner_mask);
 public:
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
@@ -158,13 +159,15 @@ public:
 	};
 
 		/* allocate channel... */
-	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool fake=false);
+	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
 	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
 	RESULT connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 	RESULT connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
+
+	bool canAllocateChannel(const eDVBChannelID &channelid);
 };
 
 class eFilePushThread;

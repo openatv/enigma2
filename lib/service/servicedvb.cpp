@@ -25,7 +25,7 @@ DEFINE_REF(eStaticServiceDVBInformation);
 
 RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::string &name)
 {
-	if ( ref.name.length() )
+	if ( !ref.name.empty() )
 	{
 		name = ref.name;
 		return 0;
@@ -358,25 +358,25 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-		/* do we have a PVR service? */
+	/* is a listable service? */
 	if ((ref.flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory) // bouquet
 	{
-		if ( !ref.name.empty() )
+		if ( !ref.name.empty() )  // satellites or providers list
 			ptr = new eStaticServiceDVBInformation;
-		else
+		else // a dvb bouquet
 			ptr = new eStaticServiceDVBBouquetInformation;
 		return 0;
 	}
-	else if (!ref.path.empty())
+	else if (!ref.path.empty()) /* do we have a PVR service? */
 	{
 		ptr = new eStaticServiceDVBPVRInformation(ref);
 		return 0;
 	}
-	else
+	else // normal dvb service
 	{
 		ePtr<eDVBService> service;
 		int r = lookupService(service, ref);
-		if (r)
+		if (r) // no eDVBService avail for this reference ( Linkage Services... )
 			ptr = new eStaticServiceDVBInformation;
 		else
 			/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
