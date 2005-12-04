@@ -368,7 +368,7 @@ void eDVBLocalTimeHandler::DVBChannelAdded(eDVBChannel *chan)
 //		eDebug("[eDVBLocalTimerHandler] add channel %p", chan);
 		std::pair<std::map<iDVBChannel*, channel_data>::iterator, bool> tmp =
 			m_knownChannels.insert( std::pair<iDVBChannel*, channel_data>(chan, channel_data()) );
-		tmp.first->second.tdt = new TDT(chan);
+		tmp.first->second.tdt = NULL;
 		tmp.first->second.channel = chan;
 		chan->connectStateChange(slot(*this, &eDVBLocalTimeHandler::DVBChannelStateChanged), tmp.first->second.m_stateChangedConn);
 	}
@@ -386,6 +386,7 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 		{
 			case iDVBChannel::state_ok:
 				eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
+				it->second.tdt = new TDT(chan);
 				it->second.tdt->start();
 				break;
 			case iDVBChannel::state_release:
