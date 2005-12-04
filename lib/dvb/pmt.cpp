@@ -350,7 +350,7 @@ RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int dem
 	{
 		caservice = (exist[ref]=new eDVBCAService());
 		caservice->m_service = ref;
-		eDebug("[eDVBCAHandler] new service %s", ref.toString().c_str() );
+		eDebug("[eDVBCAService] new service %s", ref.toString().c_str() );
 	}
 // search free demux entry
 	int iter=0, max_demux_slots = sizeof(caservice->m_used_demux);
@@ -361,11 +361,11 @@ RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int dem
 	if ( iter < max_demux_slots )
 	{
 		caservice->m_used_demux[iter] = demux_num & 0xFF;
-		eDebug("[eDVBCAHandler] add demux %d to slot %d service %s", demux_num, iter, ref.toString().c_str());
+		eDebug("[eDVBCAService] add demux %d to slot %d service %s", demux_num, iter, ref.toString().c_str());
 	}
 	else
 	{
-		eDebug("[eDVBCAHandler] no more demux slots free for service %s!!", ref.toString().c_str());
+		eDebug("[eDVBCAService] no more demux slots free for service %s!!", ref.toString().c_str());
 		return -1;
 	}
 	return 0;
@@ -376,7 +376,7 @@ RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int d
 	CAServiceMap::iterator it = exist.find(ref);
 	if ( it == exist.end() )
 	{
-		eDebug("[eDVBCAHandler] try to unregister non registered %s", ref.toString().c_str());
+		eDebug("[eDVBCAService] try to unregister non registered %s", ref.toString().c_str());
 		return -1;
 	}
 	else
@@ -416,7 +416,7 @@ RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int d
 			if (ptr)
 				it->second->buildCAPMT(ptr);
 			else
-				eDebug("[eDVBCAHandler] can not send updated demux info");
+				eDebug("[eDVBCAService] can not send updated demux info");
 		}
 	}
 	return 0;
@@ -559,7 +559,7 @@ void eDVBCAService::sendCAPMT()
 	if ( write(m_sock, m_capmt, wp) == wp )
 	{
 		m_sendstate=0xFFFFFFFF;
-		eDebug("[eDVBCAHandler] send %d bytes",wp);
+		eDebug("[eDVBCAService] send %d bytes",wp);
 #if 1
 		for(int i=0;i<wp;i++)
 			eDebugNoNewLine("%02x ", m_capmt[i]);
@@ -573,11 +573,11 @@ void eDVBCAService::sendCAPMT()
 			case 0xFFFFFFFF:
 				++m_sendstate;
 				m_retryTimer.start(0,true);
-//				eDebug("[eDVBCAHandler] send failed .. immediate retry");
+//				eDebug("[eDVBCAService] send failed .. immediate retry");
 				break;
 			default:
 				m_retryTimer.start(5000,true);
-//				eDebug("[eDVBCAHandler] send failed .. retry in 5 sec");
+//				eDebug("[eDVBCAService] send failed .. retry in 5 sec");
 				break;
 		}
 		++m_sendstate;
