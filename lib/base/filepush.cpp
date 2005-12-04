@@ -35,7 +35,7 @@ void eFilePushThread::thread()
 		{
 				// TODO: take care of boundaries.
 			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
-			eDebug("wrote %d bytes", w);
+//			eDebug("wrote %d bytes", w);
 			if (w <= 0)
 			{
 				if (errno == -EINTR)
