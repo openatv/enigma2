@@ -52,8 +52,6 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		{
 			eDebug("ok ... now we start!!");
 
-			/* emit */ m_resourceManager->m_channelRunning(channel);
-
 			m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
 
 			if ( m_service && !m_service->cacheEmpty() )

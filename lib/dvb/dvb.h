@@ -137,10 +137,8 @@ class eDVBResourceManager: public iObject
 	friend class eDVBChannel;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
-	
+
 	Signal1<void,eDVBChannel*> m_channelAdded;
-	Signal1<void,eDVBChannel*> m_channelRemoved;
-	Signal1<void,iDVBChannel*> m_channelRunning;
 
 	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 public:
@@ -164,8 +162,6 @@ public:
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-	RESULT connectChannelRemoved(const Slot1<void,eDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
-	RESULT connectChannelRunning(const Slot1<void,iDVBChannel*> &channelRemoved, ePtr<eConnection> &connection);
 
 	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 };
