@@ -54,7 +54,8 @@ private:
 
 class eDVBServicePlay: public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
-		public iAudioTrackSelection, public iFrontendStatusInformation
+		public iAudioTrackSelection, public iFrontendStatusInformation,
+		public iSubserviceList
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -69,7 +70,8 @@ public:
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
-	
+	RESULT subServices(ePtr<iSubserviceList> &ptr);
+
 		// iPauseableService
 	RESULT pause();
 	RESULT unpause();
@@ -93,6 +95,10 @@ public:
 
 		// iFrontendStatusInformation
 	int getFrontendInfo(int w);
+
+		// iSubserviceList
+	int getNumberOfSubservices();
+	RESULT getSubservice(eServiceReference &subservice, unsigned int n);
 
 private:
 	friend class eServiceFactoryDVB;

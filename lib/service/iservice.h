@@ -3,10 +3,11 @@
 
 #include <lib/python/swig.h>
 #include <lib/base/object.h>
-#include <lib/service/event.h>
 #include <string>
 #include <connection.h>
 #include <list>
+
+class eServiceEvent;
 
 class eServiceReference
 {
@@ -54,8 +55,8 @@ public:
 	eServiceReference()
 		: type(idInvalid), flags(0)
 	{
+		memset(data, 0, sizeof(data));
 	}
-
 	eServiceReference(int type, int flags)
 		: type(type), flags(flags)
 	{
@@ -181,8 +182,6 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
 
-class eServiceEvent;
-
 TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 
 class iServiceInformation: public iObject
@@ -279,6 +278,15 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
+class iSubserviceList: public iObject
+{
+public:
+	virtual int getNumberOfSubservices()=0;
+	virtual SWIG_VOID(RESULT) getSubservice(eServiceReference &SWIG_OUTPUT, unsigned int n)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iSubserviceList>, iSubserviceListPtr);
+
 class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
@@ -300,6 +308,7 @@ public:
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
 };
 

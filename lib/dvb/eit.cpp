@@ -42,6 +42,11 @@ void eDVBServiceEITHandler::start(iDVBDemux *demux, int sid)
 	m_EIT.begin(eApp, eDVBEITSpec(sid), demux);
 }
 
+void eDVBServiceEITHandler::startOther(iDVBDemux *demux, int sid)
+{
+	m_EIT.begin(eApp, eDVBEITSpecOther(sid), demux);
+}
+
 RESULT eDVBServiceEITHandler::getEvent(ePtr<eServiceEvent> &event, int nownext)
 {
 	event = nownext ? m_event_next : m_event_now;

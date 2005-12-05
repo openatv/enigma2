@@ -25,9 +25,40 @@ DEFINE_REF(eStaticServiceDVBInformation);
 
 RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::string &name)
 {
+	eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
 	if ( !ref.name.empty() )
 	{
-		name = ref.name;
+		if (service.getParentTransportStreamID().get()) // linkage subservice
+		{
+			ePtr<iServiceHandler> service_center;
+			if (!eServiceCenter::getInstance(service_center))
+			{
+				eServiceReferenceDVB parent = service;
+				parent.setTransportStreamID( service.getParentTransportStreamID() );
+				parent.setServiceID( service.getParentServiceID() );
+				parent.setParentTransportStreamID(eTransportStreamID(0));
+				parent.setParentServiceID(eServiceID(0));
+				parent.name="";
+				ePtr<iStaticServiceInformation> service_info;
+				if (!service_center->info(parent, service_info))
+				{
+					if (!service_info->getName(parent, name))
+					{
+						// just show short name
+						unsigned int pos = name.find("\xc2\x86");
+						if ( pos != std::string::npos )
+							name.erase(0, pos+2);
+						pos = name.find("\xc2\x87");
+						if ( pos != std::string::npos )
+							name.erase(pos);
+						name+=" - ";
+					}
+				}
+			}
+		}
+		else
+			name="";
+		name += ref.name;
 		return 0;
 	}
 	else
@@ -365,24 +396,19 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 			ptr = new eStaticServiceDVBInformation;
 		else // a dvb bouquet
 			ptr = new eStaticServiceDVBBouquetInformation;
-		return 0;
 	}
 	else if (!ref.path.empty()) /* do we have a PVR service? */
-	{
 		ptr = new eStaticServiceDVBPVRInformation(ref);
-		return 0;
-	}
 	else // normal dvb service
 	{
 		ePtr<eDVBService> service;
-		int r = lookupService(service, ref);
-		if (r) // no eDVBService avail for this reference ( Linkage Services... )
+		if (lookupService(service, ref)) // no eDVBService avail for this reference ( Linkage Services... )
 			ptr = new eStaticServiceDVBInformation;
 		else
 			/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
 			ptr = service;
-		return 0;
 	}
+	return 0;
 }
 
 RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &ref, ePtr<iServiceOfflineOperations> &ptr)
@@ -467,10 +493,16 @@ void eDVBServicePlay::serviceEvent(int event)
 		ePtr<iDVBDemux> m_demux;
 		if (!m_service_handler.getDemux(m_demux))
 		{
-//			eventStartedEventAcquisition
-			m_event_handler.start(m_demux, ((eServiceReferenceDVB&)m_reference).getServiceID().get());
+			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
+			int sid = ref.getParentServiceID().get();
+			if (!sid)
+				sid = ref.getServiceID().get();
+			if ( ref.getParentTransportStreamID().get() &&
+				ref.getParentTransportStreamID() != ref.getTransportStreamID() )
+				m_event_handler.startOther(m_demux, sid);
+			else
+				m_event_handler.start(m_demux, sid);
 		}
-//			eventNoEvent
 		break;
 	}
 	case eDVBServicePMTHandler::eventTuneFailed:
@@ -699,6 +731,12 @@ RESULT eDVBServicePlay::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 	return 0;
 }
 
+RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_dvb_service)
@@ -706,7 +744,10 @@ RESULT eDVBServicePlay::getName(std::string &name)
 		m_dvb_service->getName(m_reference, name);
 		if (name.empty())
 			name = "(...)";
-	} else
+	}
+	else if (!m_reference.name.empty())
+		eStaticServiceDVBInformation().getName(m_reference, name);
+	else
 		name = "DVB service";
 	return 0;
 }
@@ -839,6 +880,47 @@ int eDVBServicePlay::getFrontendInfo(int w)
 	if(channel->getFrontend(fe))
 		return 0;
 	return fe->readFrontendData(w);
+}
+
+int eDVBServicePlay::getNumberOfSubservices()
+{
+	ePtr<eServiceEvent> evt;
+	if (!m_event_handler.getEvent(evt, 0))
+		return evt->getNumOfLinkageServices();
+	return 0;
+}
+
+RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
+{
+	ePtr<eServiceEvent> evt;
+	if (!m_event_handler.getEvent(evt, 0))
+	{
+		if (!evt->getLinkageService(sub, n))
+		{
+			eServiceReferenceDVB &subservice = (eServiceReferenceDVB&) sub;
+			eServiceReferenceDVB &current = (eServiceReferenceDVB&) m_reference;
+			subservice.setDVBNamespace(current.getDVBNamespace());
+			if ( current.getParentTransportStreamID().get() )
+			{
+				subservice.setParentTransportStreamID( current.getParentTransportStreamID() );
+				subservice.setParentServiceID( current.getParentServiceID() );
+			}
+			else
+			{
+				subservice.setParentTransportStreamID( current.getTransportStreamID() );
+				subservice.setParentServiceID( current.getServiceID() );
+			}
+			if ( subservice.getParentTransportStreamID() == subservice.getTransportStreamID() &&
+				subservice.getParentServiceID() == subservice.getServiceID() )
+			{
+				subservice.setParentTransportStreamID( eTransportStreamID(0) );
+				subservice.setParentServiceID( eServiceID(0) );
+			}
+			return 0;
+		}
+	}
+	sub.type=eServiceReference::idInvalid;
+	return -1;
 }
 
 DEFINE_REF(eDVBServicePlay)

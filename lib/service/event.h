@@ -4,6 +4,7 @@
 #ifndef SWIG
 #include <time.h>
 #include <lib/base/object.h>
+#include <lib/service/iservice.h>
 #include <list>
 #include <string>
 class Event;
@@ -28,28 +29,18 @@ DECLARE_REF(eComponentData);
 
 TEMPLATE_TYPEDEF(ePtr<eComponentData>, eComponentDataPtr);
 
-struct linkage_service
-{
-	uint16_t m_sid;
-	uint16_t m_onid;
-	uint16_t m_tsid;
-	std::string m_description;
-};
-
 class eServiceEvent: public iObject
 {
-DECLARE_REF(eServiceEvent);
-#ifndef SWIG
+	DECLARE_REF(eServiceEvent);
 	bool loadLanguage(Event *event, std::string lang, int tsidonid);
 	std::list<eComponentData> m_component_data;
-#endif
-public:
-#ifndef SWIG
-	std::list<linkage_service> m_linkage_services;
+	std::list<eServiceReference> m_linkage_services;
 	time_t m_begin;
 	int m_duration;
 	std::string m_event_name, m_short_description, m_extended_description;
 	// .. additional info
+public:
+#ifndef SWIG
 	RESULT parseFrom(Event *evt, int tsidonid=0);
 #endif
 	time_t getBeginTime() const { return m_begin; }
@@ -59,6 +50,8 @@ public:
 	std::string getExtendedDescription() const { return m_extended_description; }
 	std::string getBeginTimeString() const;
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
+	int getNumOfLinkageServices() const { return m_linkage_services.size(); }
+	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, int num) const;
 };
 
 TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);

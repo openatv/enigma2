@@ -153,6 +153,12 @@ struct eServiceReferenceDVB: public eServiceReference
 	eDVBNamespace getDVBNamespace() const { return eDVBNamespace(data[4]); }
 	void setDVBNamespace(eDVBNamespace dvbnamespace) { data[4]=dvbnamespace.get(); }
 
+	eServiceID getParentServiceID() const { return eServiceID(data[5]); }
+	void setParentServiceID( eServiceID sid ) { data[5]=sid.get(); }
+
+	eTransportStreamID getParentTransportStreamID() const { return eTransportStreamID(data[6]); }
+	void setParentTransportStreamID( eTransportStreamID tsid ) { data[6]=tsid.get(); }
+
 	eServiceReferenceDVB(eDVBNamespace dvbnamespace, eTransportStreamID transport_stream_id, eOriginalNetworkID original_network_id, eServiceID service_id, int service_type)
 		:eServiceReference(eServiceReference::idDVB, 0)
 	{

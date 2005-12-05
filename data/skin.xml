@@ -49,6 +49,9 @@
 		<screen name="AudioSelection" position="210,150" size="300,170" title="Audio">
 			<widget name="tracks" position="20,10" size="260,150" />
 		</screen>
+		<screen name="SubserviceSelection" position="210,150" size="300,320" title="Subservices">
+			<widget name="subservices" position="20,10" size="260,300" />
+		</screen>
 		<screen name="HarddiskWait" position="140,165" size="360,60">
 			<widget name="wait" position="20,10" size="320,25" font="Arial;23"/>
 		</screen>
@@ -162,10 +165,11 @@
 			<widget name="Event_Next_Duration" position="555,98" size="150,26" font="Arial;22" backgroundColor="dark" />
 
 			<widget name="ButtonRed" pixmap="/usr/share/enigma2/button_red.png" position="210,132" size="27,12" />
-			<widget name="ButtonRedText" position="240,130" size="75,22" font="Arial;14" backgroundColor="blue" transparent="1" />
+			<widget name="ButtonRedText" position="240,130" size="85,22" font="Arial;14" backgroundColor="blue" transparent="1" />
 			<widget name="ButtonGreen" pixmap="/usr/share/enigma2/button_green.png" position="320,132" size="27,12" />
-			<widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
-			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" />
+			<widget name="ButtonGreenText" position="350,130" size="85,22" font="Arial;14" backgroundColor="blue" transparent="1" />
+			<!--widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
+			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" /-->
 			
 		</screen>
 
