@@ -789,9 +789,20 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "DTS";
 	else
 		info.m_description = "???";
-	
-		/* CHECK here for component tag override. */
-	info.m_language = program.audioStreams[i].language_code;
+
+	if (program.audioStreams[i].component_tag != -1)
+	{
+		ePtr<eServiceEvent> evt;
+		if (!m_event_handler.getEvent(evt, 0))
+		{
+			ePtr<eComponentData> data;
+			if (!evt->getComponentData(data, program.audioStreams[i].component_tag))
+				info.m_language = data->getText();
+		}
+	}
+
+	if (info.m_language.empty())
+		info.m_language = program.audioStreams[i].language_code;
 	
 	return 0;
 }
@@ -803,7 +814,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (m_service_handler.getProgramInfo(program))
 		return -1;
 	
-	if (i >= program.audioStreams.size())
+	if ((unsigned int)i >= program.audioStreams.size())
 		return -2;
 	
 	if (!m_decoder)

@@ -6,9 +6,11 @@
 #include <dvbsi++/short_event_descriptor.h>
 #include <dvbsi++/extended_event_descriptor.h>
 #include <dvbsi++/linkage_descriptor.h>
+#include <dvbsi++/component_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 
 DEFINE_REF(eServiceEvent);
+DEFINE_REF(eComponentData);
 
 const char MAX_LANG = 37;
 /* OSD language (see /share/locales/locales) to iso639 conversion table */
@@ -109,18 +111,30 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 		{
 			switch ((*desc)->getTag())
 			{
+				case COMPONENT_DESCRIPTOR:
+				{
+					const ComponentDescriptor *cp = (ComponentDescriptor*)*desc;
+					eComponentData data;
+					data.m_streamContent = cp->getStreamContent();
+					data.m_componentType = cp->getComponentType();
+					data.m_componentTag = cp->getComponentTag();
+					data.m_iso639LanguageCode = cp->getIso639LanguageCode();
+					data.m_text = convertDVBUTF8(cp->getText());
+					m_component_data.push_back(data);
+					break;
+				}
 				case LINKAGE_DESCRIPTOR:
 				{
 					const LinkageDescriptor  *ld = (LinkageDescriptor*)*desc;
 					if ( ld->getLinkageType() == 0xB0 )
 					{
 						linkage_service s;
-						s.onid = ld->getOriginalNetworkId();
-						s.tsid = ld->getTransportStreamId();
-						s.sid = ld->getServiceId();
+						s.m_onid = ld->getOriginalNetworkId();
+						s.m_tsid = ld->getTransportStreamId();
+						s.m_sid = ld->getServiceId();
 						const PrivateDataByteVector *privateData =
 							ld->getPrivateDataBytes();
-						s.description.assign((const char*)&((*privateData)[0]), privateData->size());
+						s.m_description.assign((const char*)&((*privateData)[0]), privateData->size());
 						m_linkage_services.push_back(s);
 					}
 					break;
@@ -158,7 +172,7 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	return 0;
 }
 
-std::string eServiceEvent::getBeginTimeString()
+std::string eServiceEvent::getBeginTimeString() const
 {
 	tm t;
 	localtime_r(&m_begin, &t);
@@ -167,6 +181,22 @@ std::string eServiceEvent::getBeginTimeString()
 		t.tm_mday, t.tm_mon+1,
 		t.tm_hour, t.tm_min);
 	return std::string(tmp, 12);
+}
+
+RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) const
+{
+	std::list<eComponentData>::const_iterator it =
+		m_component_data.begin();
+	for(;it != m_component_data.end(); ++it)
+	{
+		if ( it->m_componentTag == tagnum )
+		{
+			dest=new eComponentData(*it);
+			return 0;
+		}
+	}
+	dest=0;
+	return -1;
 }
 
 DEFINE_REF(eDebugClass);
