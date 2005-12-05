@@ -540,6 +540,9 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 //////////////////////////////////////
 
+	/* todo: make a real infrastructure here! */
+RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
+
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	painter.clip(eRect(offset, m_itemsize));
@@ -577,12 +580,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			}
 			
 			
-			PyObject *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
+			PyObject *px = 0, *py = 0, *pwidth = 0, *pheight = 0, *pfnt = 0, *pstring = 0, *pflags = 0;
 		
 			/*
 				we have a list of tuples:
 				
 				(x, y, width, height, fnt, flags, "bla" ),
+				
+				or, for a pixmap:
+				
+				(x, y, width, height, pixmap )
 				
 			 */
 			
@@ -592,56 +599,100 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				painter.clippop();
 				return;
 			}
-		
-			px = PyTuple_GetItem(item, 0);
-			py = PyTuple_GetItem(item, 1);
-			pwidth = PyTuple_GetItem(item, 2);
-			pheight = PyTuple_GetItem(item, 3);
-			pfnt = PyTuple_GetItem(item, 4);
-			pflags = PyTuple_GetItem(item, 5);
-			pstring = PyTuple_GetItem(item, 6);
 			
-			if (!(px && py && pwidth && pheight && pfnt && pstring))
+			int size = PyTuple_Size(item);
+			
+			if (size >= 5)
 			{
-				eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, fnt, flags, string[, ...])");
-				painter.clippop();
-				return;
+				px = PyTuple_GetItem(item, 0);
+				py = PyTuple_GetItem(item, 1);
+				pwidth = PyTuple_GetItem(item, 2);
+				pheight = PyTuple_GetItem(item, 3);
+			
+				pfnt = PyTuple_GetItem(item, 4); /* could also be an pixmap */
+				if (size >= 7)
+				{
+					pflags = PyTuple_GetItem(item, 5);
+					pstring = PyTuple_GetItem(item, 6);
+				}
 			}
-	
-			pstring = PyObject_Str(pstring);
 			
-			const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
+			ePtr<gPixmap> pixmap;
 			
-			int x = PyInt_AsLong(px);
-			int y = PyInt_AsLong(py);
-			int width = PyInt_AsLong(pwidth);
-			int height = PyInt_AsLong(pheight);
-			int flags = PyInt_AsLong(pflags);
-			
-			int fnt = PyInt_AsLong(pfnt);
-			
-			if (m_font.find(fnt) == m_font.end())
+				/* decide what type */
+			int type = -1;
+			if (pfnt)
 			{
-				eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
+				if (PyNumber_Check(pfnt)) /* font index */
+					type = 0;
+				else if (!SwigFromPython(pixmap, pfnt))
+					type = 1;
+			}
+			
+			switch (type)
+			{
+			case 0: // text
+			{
+				if (!(px && py && pwidth && pheight && pfnt && pstring))
+				{
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, fnt, flags, string[, ...])");
+					painter.clippop();
+					return;
+				}
+	
+				pstring = PyObject_Str(pstring);
+			
+				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
+			
+				int x = PyInt_AsLong(px);
+				int y = PyInt_AsLong(py);
+				int width = PyInt_AsLong(pwidth);
+				int height = PyInt_AsLong(pheight);
+				int flags = PyInt_AsLong(pflags);
+
+				int fnt = PyInt_AsLong(pfnt);
+
+				if (m_font.find(fnt) == m_font.end())
+				{
+					eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
+					Py_XDECREF(pstring);
+					painter.clippop();
+					return;
+				}
+				eRect r = eRect(x, y, width, height);
+				r.moveBy(offset);
+
+				painter.setFont(m_font[fnt]);
+
+				painter.renderText(r, string, flags);
+
 				Py_XDECREF(pstring);
+				break;
+			}
+			case 1: // pixmap
+			{
+				int x = PyInt_AsLong(px);
+				int y = PyInt_AsLong(py);
+				int width = PyInt_AsLong(pwidth);
+				int height = PyInt_AsLong(pheight);
+				
+				eRect r = eRect(x, y, width, height);
+				r.moveBy(offset);
+				
+				painter.blit(pixmap, r.topLeft(), r);
+				break;
+			}
+			default:
+				eWarning("eListboxPythonMultiContent received neither text nor pixmap entry");
 				painter.clippop();
 				return;
 			}
-			
-			eRect r = eRect(x, y, width, height);
-			r.moveBy(offset);
-			
-			painter.setFont(m_font[fnt]);
-			
-			painter.renderText(r, string, flags);
-	
-			Py_XDECREF(pstring);
-			
-			if (selected)
-				style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 		}
 	}
 	
+	if (selected)
+		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
+
 	painter.clippop();
 }
 

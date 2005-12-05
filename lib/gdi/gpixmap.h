@@ -4,6 +4,7 @@
 #include <pthread.h>
 #include <string>
 #include <lib/base/object.h>
+#include <lib/base/smartptr.h>
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
@@ -98,22 +99,17 @@ struct gSurface
 
 class gPixmap: public iObject
 {
-private:
-DECLARE_REF(gPixmap);
-private:
-	friend class gDC;
-	void fill(const gRegion &clip, const gColor &color);
-	
-	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
-	
-	void mergePalette(const gPixmap &target);
-	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
+	DECLARE_REF(gPixmap);
 public:
 	enum
 	{
 		blitAlphaTest=1,
 		blitAlphaBlend=2
 	};
+
+#ifndef SWIG
+	gPixmap(gSurface *surface);
+	gPixmap(eSize, int bpp, int accel = 0);
 
 	gSurface *surface;
 	
@@ -122,12 +118,24 @@ public:
 	
 	gPixmap *lock();
 	void unlock();
+#endif
+	virtual ~gPixmap();
 	
 	eSize size() const { return eSize(surface->x, surface->y); }
 	
-	gPixmap(gSurface *surface);
-	gPixmap(eSize, int bpp, int accel = 0);
-	virtual ~gPixmap();
+private:
+#ifndef SWIG
+	friend class gDC;
+	void fill(const gRegion &clip, const gColor &color);
+	
+	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
+	
+	void mergePalette(const gPixmap &target);
+	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
+#else
+	gPixmap();
+#endif
+
 };
 
 TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);

@@ -3,7 +3,7 @@
 
 #include <lib/gdi/gpixmap.h>
 
-int loadPNG(ePtr<gPixmap> &pixmap, const char *filename);
+SWIG_VOID(int) loadPNG(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename);
 int savePNG(const char *filename, gPixmap *pixmap);
 
 #endif

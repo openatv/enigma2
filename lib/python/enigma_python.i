@@ -137,6 +137,7 @@ typedef long time_t;
 %immutable pNavigation::m_event;
 
 %include <lib/gdi/font.h>
+%include <lib/gdi/gpixmap.h>
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
@@ -172,8 +173,6 @@ typedef long time_t;
 %include <lib/driver/etimezone.h>
 %include <lib/gdi/lcd.h>
 %include <lib/dvb_ci/dvbci_ui.h>
-
-%include <lib/gdi/gpixmap.h>
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
@@ -234,3 +233,18 @@ void setLCDClock(const char*);
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();
 
+%{
+RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
+{	
+	ePtr<gPixmap> *res;
+
+	res = 0;
+	result = 0;
+	if (SWIG_Python_ConvertPtr(obj, (void **)&res, SWIGTYPE_p_ePtrTgPixmap_t, SWIG_POINTER_EXCEPTION | 0))
+		return -1;
+	if (!res)
+		return -1;
+	result = *res;
+	return 0;
+}
+%}

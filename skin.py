@@ -74,13 +74,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
-			ptr = gPixmapPtr()
-			if loadPNG(ptr, value):
-				raise "loading PNG failed!"
-			x = ptr
-			ptr = ptr.__deref__()
-			desktop.makeCompatiblePixmap(ptr)
-			guiObject.setPixmap(ptr)
+			ptr = loadPNG(value)
+			desktop.makeCompatiblePixmap(ptr.__deref__())
+			guiObject.setPixmap(ptr.__deref__())
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
 			guiObject.setAlphatest(
@@ -143,12 +139,6 @@ def applyAllAttributes(guiObject, desktop, attributes):
 def loadSkin(desktop):
 	print "loading skin..."
 	
-	def getPNG(x):
-		g = gPixmapPtr()
-		loadPNG(g, x)
-		g = g.grabRef()
-		return g
-	
 	skin = dom.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
 	
@@ -174,11 +164,11 @@ def loadSkin(desktop):
 				bpName = str(pixmap.getAttribute("pos"))
 				filename = str(pixmap.getAttribute("filename"))
 				
-				png = getPNG(filename)
+				png = loadPNG(filename)
 				
 				# adapt palette
-				desktop.makeCompatiblePixmap(png)
-				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
+				desktop.makeCompatiblePixmap(png.__deref__())
+				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png.__deref__())
 
 		for color in elementsWithTag(windowstyle.childNodes, "color"):
 			type = str(color.getAttribute("name"))

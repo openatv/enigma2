@@ -71,6 +71,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 	if (color_type != 6)
 	{
 		result=new gPixmap(eSize(width, height), bit_depth);
+		eDebug("gPixmap at %p", (gPixmap*)result);
 		gSurface *surface = result->surface;
 	
 		png_bytep *rowptr=new png_bytep[height];
