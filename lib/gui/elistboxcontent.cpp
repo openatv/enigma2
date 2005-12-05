@@ -422,7 +422,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* handle left part. get item from tuple, convert to string, display. */
 				
 			text = PyTuple_GetItem(item, 0);
-			text = PyObject_Str(text);
+			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
 			eSize item_left = eSize(m_seperation, m_itemsize.height());
 			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
@@ -525,7 +525,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* plist is 0 or borrowed */
 					}
 				}
-				Py_XDECREF(type);
+					/* type is borrowed */
 			} else
 				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
 				/* value is borrowed */
