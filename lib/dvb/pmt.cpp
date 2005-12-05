@@ -7,7 +7,7 @@
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/iso639_language_descriptor.h>
-#include <dvbsi++/component_descriptor.h>
+#include <dvbsi++/stream_identifier_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
 	:m_ca_servicePtr(0)
@@ -143,6 +143,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				int isaudio = 0, isvideo = 0;
 				videoStream video;
 				audioStream audio;
+				audio.component_tag=-1;
 				
 				video.pid = (*es)->getPid();
 				audio.pid = (*es)->getPid();
@@ -191,8 +192,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 							break;
 						}
-						case COMPONENT_DESCRIPTOR:
-							audio.component_tag = ((ComponentDescriptor*)*desc)->getComponentTag();
+						case STREAM_IDENTIFIER_DESCRIPTOR:
+							audio.component_tag = ((StreamIdentifierDescriptor*)*desc)->getComponentTag();
 							break;
 						}
 					}
