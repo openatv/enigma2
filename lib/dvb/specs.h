@@ -127,4 +127,25 @@ public:
 	}
 };
 
+class eDVBEITSpecOther
+{
+	eDVBTableSpec m_spec;
+public:
+		/* this is for now&next on actual transponder. */
+	eDVBEITSpecOther(int sid)
+	{
+		m_spec.pid     = EventInformationSection::PID;
+		m_spec.tid     = TID_EIT_OTHER;
+		m_spec.tidext  = sid;
+		m_spec.timeout = EventInformationSection::TIMEOUT;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt |
+			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
+	}
+	operator eDVBTableSpec &()
+	{
+		return m_spec;
+	}
+};
+
 #endif

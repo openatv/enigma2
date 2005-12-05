@@ -19,6 +19,7 @@ public:
 	eDVBServiceEITHandler();
 	
 	void start(iDVBDemux *demux, int sid);
+	void startOther(iDVBDemux *demux, int sid);
 	
 	RESULT getEvent(ePtr<eServiceEvent> &event, int nownext);
 	

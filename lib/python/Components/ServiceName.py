@@ -17,8 +17,9 @@ class ServiceName(PerServiceDisplay):
 		if service is not None:
 			info = service.info()
 			if info is not None:
-				self.setText(info.getName())
-				setLCD(info.getName())
+				name = info.getName()
+				self.setText(name)
+				setLCD(name)
 	
 	def stopEvent(self):
 			self.setText("");

@@ -56,9 +56,11 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
-	RESULT seek(ePtr<iSeekableService> &ptr);
-	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
-	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
+		// not implemented (yet)
+	RESULT seek(ePtr<iSeekableService> &ptr) { ptr = 0; return -1; }
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
+	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr) { ptr = 0; return -1; }
+	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 
 		// iPausableService
 	RESULT pause();

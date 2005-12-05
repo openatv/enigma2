@@ -22,3 +22,8 @@ class Label(HTMLComponent, GUIComponent, VariableText):
 		s = self.instance.calculateSize()
 		return (s.width(), s.height())
 
+	def show(self):
+		self.instance.show()
+
+	def hide(self):
+		self.instance.hide()

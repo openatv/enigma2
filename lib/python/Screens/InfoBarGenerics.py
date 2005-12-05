@@ -512,6 +512,26 @@ class InfoBarAudioSelection:
 		if n > 0:
 			self.session.open(AudioSelection, audio)
 
+from Screens.SubserviceSelection import SubserviceSelection
+
+class InfoBarSubserviceSelection:
+	def __init__(self):
+		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
+			{
+				"subserviceSelection": (self.subserviceSelection, "Subservice list..."),
+			})
+
+	def subserviceSelection(self):
+		service = self.session.nav.getCurrentService()
+		subservices = service.subServices()
+		n = subservices.getNumberOfSubservices()
+		if n > 0:
+			self.session.openWithCallback(self.subserviceSelected, SubserviceSelection, subservices)
+
+	def subserviceSelected(self, service):
+		if not service is None:
+			self.session.nav.playService(service)
+
 class InfoBarAdditionalInfo:
 	def __init__(self):
 		self["DolbyActive"] = PixmapConditional()
@@ -529,8 +549,11 @@ class InfoBarAdditionalInfo:
 		self["ButtonRed"] = Pixmap()
 		self["ButtonRedText"] = Label(_("Record"))
 		self["ButtonGreen"] = Pixmap()
-		self["ButtonYellow"] = Pixmap()
-		self["ButtonBlue"] = Pixmap()
+		self["ButtonGreenText"] = Label(_("Subservices"))
+#		self["ButtonGreenText"].hide()
+#		self["ButtonGreen"].hidePixmap()
+#		self["ButtonYellow"] = Pixmap()
+#		self["ButtonBlue"] = Pixmap()
 
 class InfoBarNotifications:
 	def __init__(self):

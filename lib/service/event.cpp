@@ -2,6 +2,7 @@
 #include <lib/base/estring.h>
 #include <lib/base/encoding.h>
 #include <lib/dvb/dvbtime.h>
+#include <lib/dvb/idvb.h>
 #include <dvbsi++/event_information_section.h>
 #include <dvbsi++/short_event_descriptor.h>
 #include <dvbsi++/extended_event_descriptor.h>
@@ -119,7 +120,8 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 					data.m_componentType = cp->getComponentType();
 					data.m_componentTag = cp->getComponentTag();
 					data.m_iso639LanguageCode = cp->getIso639LanguageCode();
-					data.m_text = convertDVBUTF8(cp->getText());
+					int table=encodingHandler.getCountryCodeDefaultMapping(data.m_iso639LanguageCode);
+					data.m_text = convertDVBUTF8(cp->getText(),table,tsidonid);
 					m_component_data.push_back(data);
 					break;
 				}
@@ -128,14 +130,16 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 					const LinkageDescriptor  *ld = (LinkageDescriptor*)*desc;
 					if ( ld->getLinkageType() == 0xB0 )
 					{
-						linkage_service s;
-						s.m_onid = ld->getOriginalNetworkId();
-						s.m_tsid = ld->getTransportStreamId();
-						s.m_sid = ld->getServiceId();
-						const PrivateDataByteVector *privateData =
-							ld->getPrivateDataBytes();
-						s.m_description.assign((const char*)&((*privateData)[0]), privateData->size());
-						m_linkage_services.push_back(s);
+						eServiceReference ref;
+						ref.type = eServiceReference::idDVB;
+						eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB&) ref;
+						dvb_ref.setServiceType(1);
+						dvb_ref.setTransportStreamID(ld->getTransportStreamId());
+						dvb_ref.setOriginalNetworkID(ld->getOriginalNetworkId());
+						dvb_ref.setServiceID(ld->getServiceId());
+						const PrivateDataByteVector *privateData = ld->getPrivateDataBytes();
+						dvb_ref.name = convertDVBUTF8((const char*)&((*privateData)[0]), privateData->size(), 0, tsidonid);
+						m_linkage_services.push_back(ref);
 					}
 					break;
 				}
@@ -196,6 +200,21 @@ RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) c
 		}
 	}
 	dest=0;
+	return -1;
+}
+
+RESULT eServiceEvent::getLinkageService(eServiceReference &service, int num) const
+{
+	std::list<eServiceReference>::const_iterator it =
+		m_linkage_services.begin();
+	while( it != m_linkage_services.end() && num-- )
+		++it;
+	if ( it != m_linkage_services.end() )
+	{
+		service = *it;
+		return 0;
+	}
+	service.type = eServiceReference::idInvalid;
 	return -1;
 }
 
