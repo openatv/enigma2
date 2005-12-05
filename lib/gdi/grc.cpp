@@ -1,5 +1,5 @@
 // for debugging use:
-// #define SYNC_PAINT
+ #define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
@@ -226,6 +226,8 @@ void gPainter::clear()
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
 	gOpcode o;
+	
+	ASSERT(pixmap);
 	
 	o.opcode=gOpcode::blit;
 	o.dc = m_dc.grabRef();
