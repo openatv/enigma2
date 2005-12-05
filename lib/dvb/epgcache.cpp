@@ -1009,29 +1009,11 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 		if (!t)
 			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 
-// TODO: optimize this.. why we here search first in timemap.. and then in eventmap??
 		timeMap::iterator i = It->second.second.lower_bound(t);
-		if ( i != It->second.second.end() )
+		if ( i != It->second.second.end() && t <= i->first+i->second->getDuration() )
 		{
-			if ( i != It->second.second.end() )
-			{
-				if ( t <= i->first+i->second->getDuration() )
-				{
-					result = i->second;
-					return 0;
-				}
-			}
-		}
-
-		for ( eventMap::iterator i( It->second.first.begin() ); i != It->second.first.end(); i++)
-		{
-			int duration = i->second->getDuration();
-			time_t begTime = i->second->getStartTime();
-			if ( t >= begTime && t <= begTime+duration) // then we have found
-			{
-				result = i->second;
-				return 0;
-			}
+			result = i->second;
+			return 0;
 		}
 	}
 	return -1;
