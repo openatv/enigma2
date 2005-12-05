@@ -97,7 +97,9 @@ class eDVBResourceManager: public iObject
 {
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
-	
+
+	eUsePtr<iDVBChannel> m_cached_channel;
+
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;

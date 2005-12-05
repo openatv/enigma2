@@ -299,7 +299,19 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel)
 {
 		/* first, check if a channel is already existing. */
-	
+
+	if (m_cached_channel)
+	{
+		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
+		if(channelid==cache_chan->getChannelID())
+		{
+			eDebug("use cached_channel");
+			channel=m_cached_channel;
+			return 0;
+		}
+		m_cached_channel=0;
+	}
+
 //	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
 	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
 	{
@@ -344,7 +356,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		channel = 0;
 		return errChidNotFound;
 	}
-	channel = ch;
+	m_cached_channel = channel = ch;
 
 	return 0;
 }
@@ -444,7 +456,7 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 		if (i->m_channel_id == ignore)
 		{
 			eDVBChannel *channel = (eDVBChannel*) &(*i->m_channel);
-			if (channel->getUseCount() == 1)  // channel only used once..
+			if (channel == &(*m_cached_channel) ? channel->getUseCount() == 2 : channel->getUseCount() == 1)  // channel only used once..
 			{
 				ePtr<iDVBFrontend> fe;
 				if (!i->m_channel->getFrontend(fe))
