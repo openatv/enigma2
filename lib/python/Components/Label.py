@@ -34,3 +34,26 @@ class LabelConditional(Label, ConditionalWidget):
 	def __init__(self, text = "", withTimer = True):
 		ConditionalWidget.__init__(self, withTimer = withTimer)
 		Label.__init__(self, text = text)
+		
+class BlinkingLabel(Label, BlinkingWidget):
+	def __init__(self, text = ""):
+		Label.__init__(text = text)
+		BlinkingWidget.__init__()
+
+	def GUIcreate(self, parent):
+		LabelConditional.GUIcreate(self, parent)
+	
+	def GUIdelete(self):
+		LabelConditional.GUIcreate(self)
+		
+class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
+	def __init__(self, text = ""):
+		LabelConditional.__init__(self, text = text)
+		BlinkingWidgetConditional.__init__(self)
+		
+	def GUIcreate(self, parent):
+		LabelConditional.GUIcreate(self, parent)
+	
+	def GUIdelete(self):
+		LabelConditional.GUIcreate(self)
+		
