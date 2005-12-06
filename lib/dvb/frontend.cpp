@@ -208,76 +208,16 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 
 DEFINE_REF(eDVBFrontend);
 
-eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_curVoltage(-1)
+eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
+	:m_type(-1), m_fe(fe), m_timeout(0), m_tuneTimer(0), m_fd(-1)
+#if HAVE_DVB_API_VERSION < 3
+	,m_secfd(-1)
+#endif
 {
 #if HAVE_DVB_API_VERSION < 3
-	char sec_filename[128];
+	sprintf(m_sec_filename, "/dev/dvb/card%d/sec%d", adap, fe);
 #endif
-	char filename[128];
-
-	int result;
-
-	m_sn = 0;
-	m_timeout = 0;
-
-#if HAVE_DVB_API_VERSION < 3
-	sprintf(sec_filename, "/dev/dvb/card%d/sec%d", adap, fe);
-	m_secfd = ::open(sec_filename, O_RDWR);
-	if (m_secfd < 0)
-	{
-		eWarning("failed! (%s) %m", sec_filename);
-		ok = 0;
-		return;
-	}
-	FrontendInfo fe_info;
-	sprintf(filename, "/dev/dvb/card%d/frontend%d", adap, fe);
-#else
-	dvb_frontend_info fe_info;	
-	sprintf(filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
-#endif
-	eDebug("opening frontend.");
-	m_fd = ::open(filename, O_RDWR|O_NONBLOCK);
-	if (m_fd < 0)
-	{
-		eWarning("failed! (%s) %m", filename);
-		ok = 0;
-		return;
-	}
-
-	result = ::ioctl(m_fd, FE_GET_INFO, &fe_info);
-	
-	if (result < 0) {
-		eWarning("ioctl FE_GET_INFO failed");
-		::close(m_fd);
-		m_fd = -1;
-		ok = 0;
-		return;
-	}
-
-	switch (fe_info.type) 
-	{
-	case FE_QPSK:
-		m_type = feSatellite;
-		break;
-	case FE_QAM:
-		m_type = feCable;
-		break;
-	case FE_OFDM:
-		m_type = feTerrestrial;
-		break;
-	default:
-		eWarning("unknown frontend type.");
-		::close(m_fd);
-		m_fd = -1;
-		ok = 0;
-		return;
-	}
-	eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*10);
-	ok = 1;
-
-	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
-	CONNECT(m_sn->activated, eDVBFrontend::feEvent);
-	m_sn->start();
+	sprintf(m_filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
 
 	m_timeout = new eTimer(eApp);
 	CONNECT(m_timeout->timeout, eDVBFrontend::timeout);
@@ -289,21 +229,128 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok): m_type(-1), m_fe(fe), m_c
 	for (int i=0; i<entries; ++i)
 		m_data[i] = -1;
 
-//	m_data[7] = !m_fe;
+	ok = !openFrontend();
+	closeFrontend();
+}
 
-//	eDebug("m_data[7] = %d %d", m_data[7], m_fe);
+int eDVBFrontend::openFrontend()
+{
+	if (m_fd >= 0)
+		return -1;  // already opened
 
-	return;
+	m_state=0;
+	m_curVoltage=voltageOff;
+	m_tuning=0;
+
+#if HAVE_DVB_API_VERSION < 3
+	m_secfd = ::open(m_sec_filename, O_RDWR);
+	if (m_secfd < 0)
+	{
+		eWarning("failed! (%s) %m", m_sec_filename);
+		return -1;
+	}
+	FrontendInfo fe_info;
+#else
+	dvb_frontend_info fe_info;
+#endif
+	eDebug("opening frontend %d", m_fe);
+	m_fd = ::open(m_filename, O_RDWR|O_NONBLOCK);
+	if (m_fd < 0)
+	{
+		eWarning("failed! (%s) %m", m_filename);
+#if HAVE_DVB_API_VERSION < 3
+		::close(m_secfd);
+		m_secfd=-1;
+#endif
+		return -1;
+	}
+
+	if (m_type == -1)
+	{
+		if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
+		{
+			eWarning("ioctl FE_GET_INFO failed");
+			::close(m_fd);
+			m_fd = -1;
+#if HAVE_DVB_API_VERSION < 3
+			::close(m_secfd);
+			m_secfd=-1;
+#endif
+			return -1;
+		}
+
+		switch (fe_info.type)
+		{
+		case FE_QPSK:
+			m_type = iDVBFrontend::feSatellite;
+			break;
+		case FE_QAM:
+			m_type = iDVBFrontend::feCable;
+			break;
+		case FE_OFDM:
+			m_type = iDVBFrontend::feTerrestrial;
+			break;
+		default:
+			eWarning("unknown frontend type.");
+			::close(m_fd);
+			m_fd = -1;
+#if HAVE_DVB_API_VERSION < 3
+			::close(m_secfd);
+			m_secfd=-1;
+#endif
+			return -1;
+		}
+		eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*10);
+	}
+
+	setTone(iDVBFrontend::toneOff);
+	setVoltage(iDVBFrontend::voltageOff);
+
+	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
+	CONNECT(m_sn->activated, eDVBFrontend::feEvent);
+	m_sn->start();
+
+	return 0;
+}
+
+void eDVBFrontend::closeFrontend()
+{
+	if (!m_fe && m_data[7] != -1)
+	{
+		// try to close the first frontend.. but the second is linked to the first
+		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[7];
+		if (linked_fe->m_inuse)
+		{
+			eDebug("dont close frontend %d until the linked frontend %d is still in use",
+				m_fe, linked_fe->m_frontend->getID());
+			return;
+		}
+	}
+	eDebug("close frontend %d", m_fe);
+	if (m_fd >= 0)
+	{
+		::close(m_fd);
+		m_fd=-1;
+	}
+#if HAVE_DVB_API_VERSION < 3
+	if (m_secfd >= 0)
+	{
+		::close(m_secfd);
+		m_secfd=-1;
+	}
+#endif
+	delete m_sn;
+	m_sn=0;
+
+	setTone(iDVBFrontend::toneOff);
+	setVoltage(iDVBFrontend::voltageOff);
 }
 
 eDVBFrontend::~eDVBFrontend()
 {
-	if (m_fd >= 0)
-		::close(m_fd);
-	if (m_sn)
-		delete m_sn;
-	if (m_timeout)
-		delete m_timeout;
+	closeFrontend();
+	delete m_timeout;
+	delete m_tuneTimer;
 }
 
 void eDVBFrontend::feEvent(int w)
@@ -609,7 +656,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 
 void eDVBFrontend::setFrontend()
 {
-	eDebug("setting frontend..\n");
+	eDebug("setting frontend %d", m_fe);
 	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
 	{
 		perror("FE_SET_FRONTEND failed");
@@ -684,7 +731,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		parm.frequency = feparm.frequency * 1000;
 		parm.u.qam.symbol_rate = feparm.symbol_rate;
 #endif
-		fe_modulation_t mod;
+		fe_modulation_t mod=QAM_AUTO;
 		switch (feparm.modulation)
 		{
 		case eDVBFrontendParametersCable::Modulation::QAM16:
@@ -739,7 +786,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			break;
 		}
 		
-		fe_code_rate_t fec_inner;
+		fe_code_rate_t fec_inner=FEC_AUTO;
 		switch (feparm.fec_inner)
 		{		
 		case eDVBFrontendParametersCable::FEC::fNone:
@@ -907,6 +954,8 @@ RESULT eDVBFrontend::connectStateChange(const Slot1<void,iDVBFrontend*> &stateCh
 
 RESULT eDVBFrontend::setVoltage(int voltage)
 {
+	if (m_type != feSatellite)
+		return -1;
 #if HAVE_DVB_API_VERSION < 3
 	secVoltage vlt;
 #else
@@ -917,6 +966,8 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 	switch (voltage)
 	{
 	case voltageOff:
+		for (int i=0; i < 3; ++i)  // reset diseqc
+			m_data[i]=-1;
 		vlt = SEC_VOLTAGE_OFF;
 		break;
 	case voltage13:
@@ -943,6 +994,8 @@ RESULT eDVBFrontend::getState(int &state)
 
 RESULT eDVBFrontend::setTone(int t)
 {
+	if (m_type != feSatellite)
+		return -1;
 #if HAVE_DVB_API_VERSION < 3
 	secToneMode_t tone;
 #else

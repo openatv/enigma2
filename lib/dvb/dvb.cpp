@@ -18,12 +18,12 @@ DEFINE_REF(eDVBAllocatedFrontend);
 
 eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(fe)
 {
-	m_fe->m_inuse++;
+	m_fe->inc_use();
 }
 
 eDVBAllocatedFrontend::~eDVBAllocatedFrontend()
 {
-	--m_fe->m_inuse;
+	m_fe->dec_use();
 }
 
 DEFINE_REF(eDVBAllocatedDemux);
@@ -200,8 +200,6 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 
 		if (!adapter->getFrontend(frontend, i))
 		{
-			frontend->setTone(iDVBFrontend::toneOff);
-			frontend->setVoltage(iDVBFrontend::voltageOff);
 			frontend->setSEC(m_sec);
 			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
 		}
