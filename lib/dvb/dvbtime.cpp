@@ -386,7 +386,7 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 		{
 			case iDVBChannel::state_ok:
 				eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
-				it->second.tdt = new TDT(chan);
+				it->second.tdt = new TDT(it->second.channel);
 				it->second.tdt->start();
 				break;
 			case iDVBChannel::state_release:
