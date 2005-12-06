@@ -71,8 +71,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 		{
 			int i = 0;
 			while (i < 188)
+			{
 				if (block[i] == 0x47)
 					break;
+				++i;
+			}
 			offset = lseek(m_fd, i - 188, SEEK_CUR);
 			continue;
 		}
@@ -120,6 +123,7 @@ void eDVBTSTools::calcBegin()
 {
 	if (m_fd < 0)	
 		return;
+
 	if (!m_begin_valid)
 	{
 		m_offset_begin = 0;
