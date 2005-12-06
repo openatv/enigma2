@@ -368,7 +368,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 
 	def onShow(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		if ref != None and ref.valid() and ref.getPath() == "":
+		if ref.valid() and ref.getPath() == "":
 			self.servicelist.setPlayableIgnoreService(ref)
 		else:
 			self.servicelist.setPlayableIgnoreService(eServiceReference())
