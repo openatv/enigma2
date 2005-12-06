@@ -2,6 +2,8 @@ from HTMLComponent import *
 from GUIComponent import *
 from VariableText import *
 
+from ConditionalWidget import *
+
 from enigma import eLabel
 
 class Label(HTMLComponent, GUIComponent, VariableText):
@@ -27,3 +29,8 @@ class Label(HTMLComponent, GUIComponent, VariableText):
 
 	def hide(self):
 		self.instance.hide()
+
+class LabelConditional(ConditionalWidget, Label):
+	def __init__(self, text = "", withTimer = True):
+		ConditionalWidget.__init__(self, withTimer = withTimer)
+		Label.__init__(self, text = text)

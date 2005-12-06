@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
+from Components.Label import *
 from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
@@ -548,8 +548,11 @@ class InfoBarAdditionalInfo:
 		
 		self["ButtonRed"] = Pixmap()
 		self["ButtonRedText"] = Label(_("Record"))
-		self["ButtonGreen"] = Pixmap()
-		self["ButtonGreenText"] = Label(_("Subservices"))
+		self["ButtonGreen"] = PixmapConditional()
+		self["ButtonGreen"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
+#		self["ButtonGreenText"] = Label(text = _("Subservices"))
+		self["ButtonGreenText"] = LabelConditional(text = _("Subservices"), withTimer = True)
+		self["ButtonGreenText"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
 #		self["ButtonGreenText"].hide()
 #		self["ButtonGreen"].hidePixmap()
 #		self["ButtonYellow"] = Pixmap()
