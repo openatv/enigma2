@@ -30,7 +30,7 @@ class Label(HTMLComponent, GUIComponent, VariableText):
 	def hide(self):
 		self.instance.hide()
 
-class LabelConditional(ConditionalWidget, Label):
+class LabelConditional(Label, ConditionalWidget):
 	def __init__(self, text = "", withTimer = True):
 		ConditionalWidget.__init__(self, withTimer = withTimer)
 		Label.__init__(self, text = text)
