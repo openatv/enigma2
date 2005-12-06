@@ -443,7 +443,7 @@ class InfoBarInstantRecord:
 		self.recording = None
 		
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
-		self.onShown.append(self["BlinkingPoint"].hidePixmap)
+		self.onShown.append(self["BlinkingPoint"].hideWidget)
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
 		
 	def stopCurrentRecording(self):	

@@ -21,9 +21,9 @@ class BlinkingPixmap(Pixmap):
 	def blink(self):
 		if self.blinking == True:
 			if (self.state == self.SHOWN):
-				self.hidePixmap()
+				self.hideWidget()
 			elif (self.state == self.HIDDEN):
-				self.showPixmap()
+				self.showWidget()
 			
 	def startBlinking(self):
 		self.blinking = True
@@ -32,7 +32,7 @@ class BlinkingPixmap(Pixmap):
 	def stopBlinking(self):
 		self.blinking = False
 		if (self.state == self.SHOWN):
-			self.hidePixmap()
+			self.hideWidget()
 		self.timer.stop()
 		
 class BlinkingPixmapConditional(BlinkingPixmap, PixmapConditional):
