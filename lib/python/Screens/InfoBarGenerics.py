@@ -548,15 +548,17 @@ class InfoBarAdditionalInfo:
 		
 		self["ButtonRed"] = Pixmap()
 		self["ButtonRedText"] = Label(_("Record"))
+
 		self["ButtonGreen"] = PixmapConditional()
 		self["ButtonGreen"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
-#		self["ButtonGreenText"] = Label(text = _("Subservices"))
 		self["ButtonGreenText"] = LabelConditional(text = _("Subservices"), withTimer = True)
 		self["ButtonGreenText"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
-#		self["ButtonGreenText"].hide()
-#		self["ButtonGreen"].hidePixmap()
-#		self["ButtonYellow"] = Pixmap()
-#		self["ButtonBlue"] = Pixmap()
+
+		self["ButtonYellow"] = PixmapConditional()
+		self["ButtonYellow"].setConnect(lambda: False)
+
+		self["ButtonBlue"] = PixmapConditional()
+		self["ButtonBlue"].setConnect(lambda: False)
 
 class InfoBarNotifications:
 	def __init__(self):
