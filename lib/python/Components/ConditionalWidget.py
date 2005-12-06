@@ -48,11 +48,9 @@ class ConditionalWidget(Widget):
 	def activateCondition(self, condition):
 		if (condition):
 			if (self.state == self.HIDDEN):
-				print "update: " + str(self) + " SHOW"
 				self.showWidget()
 		else:
 			if (self.state == self.SHOWN):
-				print "update: " + str(self) + " HIDE"
 				self.hideWidget()
 
 	def update(self):
