@@ -57,11 +57,12 @@ class ConditionalWidget(Widget):
 		if (self.conditionalFunction != None):
 			try:
 				self.conditionalFunction() # check, if the conditionalfunction is still valid
+				self.activateCondition(self.conditionalFunction())
 			except:
 				self.conditionalFunction = None
 				self.activateCondition(False)
 			
-			self.activateCondition(self.conditionalFunction())
+
 
 			
 			
