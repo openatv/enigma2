@@ -20,6 +20,7 @@ from Screens.Mute import Mute
 from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventView
+from Components.Harddisk import harddiskmanager
 
 from Tools import Notifications
 
@@ -546,12 +547,16 @@ class InfoBarAdditionalInfo:
 		# TODO: get the info from c++ somehow
 		self["FormatActive"].setConnect(lambda: False)
 		
-		self["ButtonRed"] = Pixmap()
-		self["ButtonRedText"] = Label(_("Record"))
-
+		self["ButtonRed"] = PixmapConditional(withTimer = False)
+		self["ButtonRed"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
+		self.onShown.append(self["ButtonRed"].update)
+		self["ButtonRedText"] = LabelConditional(text = _("Record"), withTimer = False)
+		self["ButtonRedText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
+		self.onShown.append(self["ButtonRedText"].update)
+				
 		self["ButtonGreen"] = PixmapConditional()
 		self["ButtonGreen"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
-		self["ButtonGreenText"] = LabelConditional(text = _("Subservices"), withTimer = True)
+		self["ButtonGreenText"] = LabelConditional(text = _("Subservices"))
 		self["ButtonGreenText"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
 
 		self["ButtonYellow"] = PixmapConditional()
