@@ -20,4 +20,5 @@ class Pixmap(Widget):
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer = True):
 		ConditionalWidget.__init__(self)
+		Pixmap.__init__(self)
 

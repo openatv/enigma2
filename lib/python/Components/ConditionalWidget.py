@@ -31,9 +31,6 @@ class Widget(GUIComponent):
 		self.state = self.HIDDEN
 		self.instance.hide()
 	
-	def removeWidget(self, instance):
-		pass
-
 class ConditionalWidget(Widget):
 	def __init__(self, withTimer = True):
 		Widget.__init__(self)
@@ -51,9 +48,11 @@ class ConditionalWidget(Widget):
 	def activateCondition(self, condition):
 		if (condition):
 			if (self.state == self.HIDDEN):
+				print "update: " + str(self) + " SHOW"
 				self.showWidget()
 		else:
 			if (self.state == self.SHOWN):
+				print "update: " + str(self) + " HIDE"
 				self.hideWidget()
 
 	def update(self):
