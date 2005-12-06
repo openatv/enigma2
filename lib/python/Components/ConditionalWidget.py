@@ -40,7 +40,7 @@ class ConditionalWidget(Widget):
 		if (withTimer):
 			self.conditionCheckTimer = eTimer()
 			self.conditionCheckTimer.timeout.get().append(self.update)
-			self.conditionCheckTimer.start(1000)
+			self.conditionCheckTimer.start(500)
 		
 	def setConnect(self, conditionalFunction):
 		self.conditionalFunction = conditionalFunction
