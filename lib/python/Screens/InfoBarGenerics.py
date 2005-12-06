@@ -94,7 +94,7 @@ class InfoBarVolumeControl:
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
-		self.onShown.append(self.dishDialog.instance.show)
+		self.onShown.append(self.dishDialog.instance.hide)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
