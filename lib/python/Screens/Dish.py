@@ -13,4 +13,5 @@ class Dish(Screen):
 		self["transparent"] = Button("")
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		#self["Dishpixmap"] = Pixmap()
-		self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
+		self["Dishpixmap"].setConnect(lambda: False)
+		#self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
