@@ -1,6 +1,7 @@
 #ifndef __dvb_dvb_h
 #define __dvb_dvb_h
 
+#include <lib/base/ebase.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
@@ -14,14 +15,35 @@ class eDVBChannel;
 	   (and how to deallocate it). */
 class iDVBAdapter;
 
-class eDVBRegisteredFrontend: public iObject
+class eDVBRegisteredFrontend: public iObject, public Object
 {
-DECLARE_REF(eDVBRegisteredFrontend);
+	DECLARE_REF(eDVBRegisteredFrontend);
+	eTimer *disable;
+	void closeFrontend()
+	{
+		if (!m_inuse)
+			m_frontend->closeFrontend();
+	}
 public:
+	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
+		:disable(new eTimer(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
+	{
+		disable = new eTimer(eApp);
+		CONNECT(disable->timeout, eDVBRegisteredFrontend::closeFrontend);
+	}
+	void dec_use()
+	{
+		if (!--m_inuse)
+			disable->start(3000, true);
+	}
+	void inc_use()
+	{
+		if (++m_inuse == 1)
+			m_frontend->openFrontend();
+	}
 	iDVBAdapter *m_adapter;
 	ePtr<eDVBFrontend> m_frontend;
 	int m_inuse;
-	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap): m_adapter(adap), m_frontend(fe), m_inuse(0) { }
 };
 
 struct eDVBRegisteredDemux

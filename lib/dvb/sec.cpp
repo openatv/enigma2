@@ -163,27 +163,17 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				if (linked_to != -1)  // check for linked tuners..
 				{
-					bool found=false;
-					eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin());
-					for (; it != m_avail_frontends.end(); ++it)
-						if ( !linked_to )
-						{
-							found=true;
-							break;
-						}
-						else
-							--linked_to;
-
-					if (found && it->m_inuse)
+					eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_to;
+					if (linked_fe->m_inuse)
 					{
 						int ocsw = -1,
 							oucsw = -1,
 							oToneburst = -1,
 							oRotorPos = -1;
-						it->m_frontend->getData(0, ocsw);
-						it->m_frontend->getData(1, oucsw);
-						it->m_frontend->getData(2, oToneburst);
-						it->m_frontend->getData(6, oRotorPos);
+						linked_fe->m_frontend->getData(0, ocsw);
+						linked_fe->m_frontend->getData(1, oucsw);
+						linked_fe->m_frontend->getData(2, oToneburst);
+						linked_fe->m_frontend->getData(6, oRotorPos);
 #if 0
 						eDebug("compare csw %02x == lcsw %02x",
 							csw, ocsw);
@@ -251,19 +241,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			if (linked_to != -1)
 			{
-				bool found=false;
-				eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin());
-				for (; it != m_avail_frontends.end(); ++it)
-					if ( !linked_to )
-					{
-						found=true;
-						break;
-					}
-					else
-						--linked_to;
-				if (found && it->m_inuse)
+				eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_to;
+				if (linked_fe->m_inuse)
 				{
-					eDebug("[SEC] frontend is linked with another one and the other is in use.. so we dont do SEC!!");
+					eDebug("[SEC] frontend is linked with another and the other one is in use.. so we dont do SEC!!");
 					linked=true;
 				}
 			}
@@ -911,27 +892,20 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 	if (tu1 == tu2)
 		return -1;
 
-	eDVBFrontend *p1=NULL, *p2=NULL;
-	int tmp1=tu1, tmp2=tu2;
+	eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
 
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+	int cnt=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
 	{
-		if ( !tmp1 )
-			p1 = it->m_frontend;
-		else
-			--tmp1;
-		if (!tmp2)
-			p2 = it->m_frontend;
-		else
-			--tmp2;
+		if (cnt == tu1)
+			p1 = *it;
+		else if (cnt == tu2)
+			p2 = *it;
 	}
 	if (p1 && p2)
 	{
-		p1->setData(7, tu2);
-		p1->setTone(iDVBFrontend::toneOff);
-		p1->setVoltage(iDVBFrontend::voltageOff);
-
-		p2->setData(7, tu1);
+		p1->m_frontend->setData(7, (int)p2);  // this is evil..
+		p2->m_frontend->setData(7, (int)p1);
 		return 0;
 	}
 	return -1;

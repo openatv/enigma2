@@ -40,9 +40,12 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	int m_type;
 	int m_fe;
 	int m_fd;
+	char m_filename[128];
 #if HAVE_DVB_API_VERSION < 3
 	int m_secfd;
+	char m_secfilename[128];
 #endif
+
 	FRONTENDPARAMETERS parm;
 	int m_state;
 	Signal1<void,iDVBFrontend*> m_stateChanged;
@@ -93,10 +96,11 @@ public:
 	RESULT setData(int num, int val);
 
 	int readFrontendData(int type); // bitErrorRate, signalPower, signalQuality
-
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
-	
 	int getID() { return m_fe; }
+
+	int openFrontend();
+	void closeFrontend();
 };
 
 #endif
