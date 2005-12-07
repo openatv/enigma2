@@ -6,6 +6,7 @@ from Components.Slider import Slider
 from Components.ActionMap import HelpableActionMap
 from Components.config import config, configElementBoolean
 from Components.Pixmap import *
+from Components.MenuList import MenuList
 
 config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
 
@@ -13,7 +14,8 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 	skin = """
 		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="50,100" size="440,300" font="Arial;23" />
+			<widget name="text" position="50,100" size="440,200" font="Arial;23" />
+			<widget name="list" position="50,300" size="440,200" />
 			<widget name="step" position="50,50" size="440,25" font="Arial;23" />
 			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,50" size="154,475" transparent="1" alphatest="on"/>
@@ -24,6 +26,10 @@ class WelcomeWizard(Screen, HelpableScreen):
 	text = [_("Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step."), 
 			_("You can use the Up and Down buttons on your remote control to select your choice.\n\nWhat do you want to do?"),
 			_("Blub")]
+			
+	listEntries = [[],
+				    ["Use wizard to set up basic features", "Exit wizard"],
+					[]]
 
 	def __init__(self, session):
 		self.skin = WelcomeWizard.skin
@@ -39,13 +45,17 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown"].moveTo(557, 232, 100)
 		self["arrowup"] = MovingPixmap()
-
 		
 		self.onShown.append(self["arrowdown"].startMoving)
 
 		self["step"] = Label()
 				
 		self["stepslider"] = Slider(1, self.numSteps)
+		
+		self.list = []
+		#list.append(("Use wizard to set up basic features", None))
+		#list.append(("Exit wizard", None))
+		self["list"] = MenuList(self.list)
 
 		self.updateValues()
 		
@@ -58,6 +68,13 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["text"].setText(self.text[self.currStep - 1])
 		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 		self["stepslider"].setValue(self.currStep)
+		self.list = []
+		
+		print "Len list: " + str(len(self.listEntries[self.currStep - 1]))
+		if (len(self.listEntries[self.currStep - 1]) > 0):
+			for x in self.listEntries[self.currStep - 1]:
+				self.list.append((x, None))
+		self["list"].l.setList(self.list)
 		
 	def ok(self):
 		if (self.currStep == self.numSteps): # wizard finished
