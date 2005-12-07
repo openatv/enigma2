@@ -18,10 +18,11 @@ class WelcomeWizard(Screen, HelpableScreen):
 			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,50" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
 		</screen>"""
 		
-	text = [_("Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox."), 
-			_("Bla"),
+	text = [_("Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step."), 
+			_("You can use the Up and Down buttons on your remote control to select your choice.\n\nWhat do you want to do?"),
 			_("Blub")]
 
 	def __init__(self, session):
@@ -37,6 +38,8 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["rc"] = Pixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown"].moveTo(557, 232, 100)
+		self["arrowup"] = MovingPixmap()
+
 		
 		self.onShown.append(self["arrowdown"].startMoving)
 
@@ -64,6 +67,13 @@ class WelcomeWizard(Screen, HelpableScreen):
 		else:
 			self.currStep += 1
 			self.updateValues()
+			
+			if (self.currStep == 2):
+				self["arrowdown"].moveTo(557, 200, 100)
+				self["arrowup"].moveTo(557, 355, 100)
+				self["arrowdown"].startMoving()
+				self["arrowup"].startMoving()
+				
 
 def listActiveWizards():
 	wizards = [ ]
