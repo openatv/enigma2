@@ -333,16 +333,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		#allways defaults to fav
 		#self.servicelist.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
 
-		lastroot=eServiceReference(config.tv.lastroot.value)
-		if lastroot.valid():
-			self.setRoot(lastroot)
-		else:
-			self.showFavourites()
-
-		lastservice=eServiceReference(config.tv.lastservice.value)
-		if lastservice.valid():
-			self.session.nav.playService(lastservice)
-
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
@@ -376,8 +366,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		self.onLayoutFinish.append(self.onCreate)
 
 	def onCreate(self):
+		lastroot=eServiceReference(config.tv.lastroot.value)
+		if lastroot.valid():
+			self.setRoot(lastroot)
+		else:
+			self.showFavourites()
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
+			self.session.nav.playService(lastservice)
 			self.servicelist.setCurrent(lastservice)
 
 	def onShow(self):
