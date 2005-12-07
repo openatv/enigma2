@@ -232,12 +232,6 @@ class ChannelSelectionBase(Screen):
 
 		self.numericalTextInput = NumericalTextInput()
 
-		self.lastService = None
-
-		self.lastServiceTimer = eTimer()
-		self.lastServiceTimer.timeout.get().append(self.lastService)
-		self.lastServiceTimer.start(100)
-
 	def getBouquetNumOffset(self, bouquet):
 		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
 			return 0
@@ -329,10 +323,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
 
-		#if config.tv.lastroot.value == "":
-		#allways defaults to fav
-		#self.servicelist.setRoot(eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'))
-
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
@@ -363,14 +353,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			})
 		self["actions"].csel = self
 		self.onShown.append(self.onShow)
-		self.onLayoutFinish.append(self.onCreate)
+
+#		self.onLayoutFinish.append(self.onCreate)
+		self.lastChannelRootTimer = eTimer()
+		self.lastChannelRootTimer.timeout.get().append(self.onCreate)
+		self.lastChannelRootTimer.start(100,True)
 
 	def onCreate(self):
+		self.lastChannelRootTimer = None
 		lastroot=eServiceReference(config.tv.lastroot.value)
 		if lastroot.valid():
 			self.setRoot(lastroot)
 		else:
 			self.showFavourites()
+			self.saveRoot(self.getRoot())
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
 			self.session.nav.playService(lastservice)
@@ -384,7 +380,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def showEPGList(self):
-		ref=self.servicelist.getCurrent()
+		ref=self.getCurrentSelection()
 		ptr=eEPGCache.getInstance()
 		if ptr.startTimeQuery(ref) != -1:
 			self.session.open(EPGSelection, ref)
@@ -392,7 +388,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			print 'no epg for service', ref.toString()
 
 	def channelSelected(self):
-		ref = self.servicelist.getCurrent()
+		ref = self.getCurrentSelection()
 		if self.movemode:
 			self.toggleMoveMarked()
 		elif (ref.flags & 7) == 7:
@@ -406,11 +402,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 	def setRoot(self, root):
 		if not self.movemode:
 			self.setRootBase(root)
-			self.saveRoot(root)
 
 	#called from infoBar and channelSelected
 	def zap(self):
-		self.session.nav.playService(self.servicelist.getCurrent())
+		self.session.nav.playService(self.getCurrentSelection())
+		self.saveRoot(self.getRoot())
 		self.saveChannel()
 
 	def saveRoot(self, root):
@@ -427,11 +423,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		config.tv.lastservice.value = refstr
 		config.tv.lastservice.save()
 
-	def lastService(self):
-		self.lastServiceTimer.stop()
-		#zap to last running tv service
-		#self.setRoot(eServiceReference(config.tv.lastroot.value))
-		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+	def cancel(self):
+		self.close(None)
+		lastroot=eServiceReference(config.tv.lastroot.value)
+		lastservice=eServiceReference(config.tv.lastservice.value)
+		if lastroot.valid() and self.getRoot() != lastroot:
+			self.setRoot(lastroot)
+		if lastservice.valid() and self.getCurrentSelection() != lastservice:
+			self.servicelist.setCurrent(lastservice)
 
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
@@ -470,7 +469,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		self.session.currentDialog.instance.setTitle(self.title)
 
 	def channelSelected(self): # just return selected service
-		ref = self.servicelist.getCurrent()
+		ref = self.getCurrentSelection()
 		self.close(ref)
 
 	def setRoot(self, root):
