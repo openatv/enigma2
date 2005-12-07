@@ -180,11 +180,9 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
 	{
 		eRect area=eRect(pos, src.size());
-
-		if (!(flag & blitAlphaTest))  // HACK !!
-			area&=clip.rects[i];
-
+		area&=clip.rects[i];
 		area&=eRect(ePoint(0, 0), size());
+
 		if ((area.width()<0) || (area.height()<0))
 			continue;
 
