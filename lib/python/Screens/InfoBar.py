@@ -13,7 +13,7 @@ from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarPVR, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
-	InfoBarSubserviceSelection
+	InfoBarSubserviceSelection, InfoBarTuner
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -25,7 +25,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
-	InfoBarSubserviceSelection):
+	InfoBarSubserviceSelection, InfoBarTuner):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -39,7 +39,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
-				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection:
+				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarTuner:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
