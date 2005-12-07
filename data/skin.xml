@@ -148,14 +148,24 @@
 		</screen>
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
-						
+
+			<widget name="snr" text="SNR:" position="195,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="agc" text="AGC:" position="275,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="ber" text="BER:" position="355,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="snr_percent" position="234,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="agc_percent" position="314,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="ber_count" position="394,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="snr_progress" position="442,1" size="93,6" />
+			<widget name="agc_progress" position="442,8" size="93,6" />
+			<widget name="ber_progress" position="442,15" size="93,6" />
+
 			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,31" zPosition="2" size="58,25" />
 
 			<widget name="CryptActive" pixmap="/usr/share/enigma2/crypt.png" position="570,40" size="12,15" />
 			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
 			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
 
-			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
+			<widget name="ServiceName" position="69,26" size="427,34" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
 			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Arial;20" backgroundColor="dark" />
 			<widget name="Event_Next_StartTime" position="210,98" size="60,22" font="Arial;20" backgroundColor="dark" />
