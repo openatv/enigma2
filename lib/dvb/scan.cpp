@@ -231,7 +231,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 		return;
 
 		/* otherwise, add it to the todo list. */
-	m_ch_toScan.push_back(feparm);
+	m_ch_toScan.push_front(feparm); // better.. then the rotor not turning wild from east to west :)
 }
 
 int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2) const
