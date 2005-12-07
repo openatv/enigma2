@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Label import *
+from Components.ProgressBar import *
 from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
 from ChannelSelection import ChannelSelection
@@ -382,6 +383,48 @@ class InfoBarEPG:
 			self.epglist[0]=self.epglist[1]
 			self.epglist[1]=tmp
 			setEvent(self.epglist[0])
+
+from math import log
+
+class InfoBarTuner:
+	"""provides a snr/agc/ber display"""
+	def __init__(self):
+		self["snr"] = Label()
+		self["agc"] = Label()
+		self["ber"] = Label()
+		self["snr_percent"] = Label()
+		self["agc_percent"] = Label()
+		self["ber_count"] = Label()
+		self["snr_progress"] = ProgressBar()
+		self["agc_progress"] = ProgressBar()
+		self["ber_progress"] = ProgressBar()
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.updateTunerInfo)
+		self.timer.start(500)
+
+	def log2(self,val):
+		if not val:
+			return 0
+		return (long)(log(val)/log(2))
+
+	def updateTunerInfo(self):
+		if self.instance.isVisible():
+			service = self.session.nav.getCurrentService()
+			snr=0
+			agc=0
+			ber=0
+			if service is not None:
+				feinfo = service.frontendStatusInfo()
+				if feinfo is not None:
+					ber=feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
+					snr=feinfo.getFrontendInfo(iFrontendStatusInformation.signalPower)*100/65536
+					agc=feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality)*100/65536
+			self["snr_percent"].setText("%d%%"%(snr))
+			self["agc_percent"].setText("%d%%"%(agc))
+			self["ber_count"].setText("%d"%(ber))
+			self["snr_progress"].setValue(snr)
+			self["agc_progress"].setValue(agc)
+			self["ber_progress"].setValue(self.log2(ber))
 
 class InfoBarEvent:
 	"""provides a current/next event info display"""

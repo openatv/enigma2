@@ -11,7 +11,15 @@ class ProgressBar(HTMLComponent, GUIComponent, VariableValue):
 		VariableValue.__init__(self)
 
 	def createWidget(self, parent):
-		g = eSlider(parent)
-		g.setRange(0, 100)
-		return g
-	
+		self.g = eSlider(parent)
+		self.g.setRange(0, 100)
+		return self.g
+
+	def setRange(self, start, end):
+		self.g.setRange(start, end)
+
+	def setValue(self, value):
+		self.g.setValue(value)
+
+
+
