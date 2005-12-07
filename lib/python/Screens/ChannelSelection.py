@@ -360,7 +360,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		self.lastChannelRootTimer.start(100,True)
 
 	def onCreate(self):
-		self.lastChannelRootTimer = None
 		lastroot=eServiceReference(config.tv.lastroot.value)
 		if lastroot.valid():
 			self.setRoot(lastroot)
