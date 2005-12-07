@@ -380,7 +380,10 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
-	
+
+	if (m_cached_channel)
+		m_cached_channel=0;
+
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, 0);
 	
