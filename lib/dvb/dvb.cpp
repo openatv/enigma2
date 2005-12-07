@@ -363,6 +363,9 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 {
 	ePtr<eDVBAllocatedFrontend> fe;
 
+	if (m_cached_channel)
+		m_cached_channel=0;
+
 	if (allocateFrontendByIndex(fe, frontend_index))
 		return errNoFrontend;
 	
