@@ -100,7 +100,7 @@ public:
 	int getID() { return m_fe; }
 
 	int openFrontend();
-	void closeFrontend();
+	int closeFrontend();
 };
 
 #endif

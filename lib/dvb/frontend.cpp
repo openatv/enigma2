@@ -313,7 +313,7 @@ int eDVBFrontend::openFrontend()
 	return 0;
 }
 
-void eDVBFrontend::closeFrontend()
+int eDVBFrontend::closeFrontend()
 {
 	if (!m_fe && m_data[7] != -1)
 	{
@@ -323,7 +323,7 @@ void eDVBFrontend::closeFrontend()
 		{
 			eDebug("dont close frontend %d until the linked frontend %d is still in use",
 				m_fe, linked_fe->m_frontend->getID());
-			return;
+			return -1;
 		}
 	}
 	eDebug("close frontend %d", m_fe);
@@ -344,6 +344,7 @@ void eDVBFrontend::closeFrontend()
 
 	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
+	return 0;
 }
 
 eDVBFrontend::~eDVBFrontend()
