@@ -35,26 +35,58 @@ class MovingPixmap(Pixmap):
 		self.x = 0.0
 		self.y = 0.0
 		
+		self.clearPath()
+		
 		self.moveTimer = eTimer()
 		self.moveTimer.timeout.get().append(self.doMove)
 		
+	def clearPath(self, repeated = False):
+		if (self.moving):
+			self.moving = False
+			self.moveTimer.stop()
+			
+		self.path = []
+		self.currDest = 0
+		self.repeated = repeated
+		
+	def addMovePoint(self, x, y, time = 20):
+		self.path.append((x, y, time))
+	
 	def moveTo(self, x, y, time = 20):
-		self.time = time
-		self.destX = x
-		self.destY = y
-		self.stepX = (self.destX - self.x) / float(time)
-		self.stepY = (self.destY - self.y) / float(time)
+		self.clearPath()
+		self.addMovePoint(x, y, time)
 		
 	def startMoving(self):
 		if not self.moving:
+			self.time = self.path[self.currDest][2]
+			self.stepX = (self.path[self.currDest][0] - self.x) / float(self.time)
+			self.stepY = (self.path[self.currDest][1] - self.y) / float(self.time)
+
 			self.moving = True
-			self.moveTimer.start(10)
+			self.moveTimer.start(100)
+			
+	def stopMoving(self):
+		self.moving = False
+		self.moveTimer.stop()
 		
 	def doMove(self):
 		self.x += self.stepX
 		self.y += self.stepY
 		self.time -= 1
-		self.move(int(self.x), int(self.y))
+		try:
+			self.move(int(self.x), int(self.y))
+		except: # moving not possible... widget not there any more... stop moving
+			self.stopMoving()
+			
 		if (self.time == 0):
+			self.currDest += 1
 			self.moveTimer.stop()
 			self.moving = False
+			if (self.currDest >= len(self.path)): # end of path
+				if (self.repeated):
+					self.currDest = 0
+					self.moving = False
+					self.startMoving()
+			else:
+				self.moving = False
+				self.startMoving()
