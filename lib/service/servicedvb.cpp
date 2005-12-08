@@ -106,7 +106,7 @@ RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref
 
 	if ( bouquet && bouquet->m_bouquet_name.length() )
 	{
-		name = "[Bouquet] " + bouquet->m_bouquet_name;
+		name = bouquet->m_bouquet_name;
 		return 0;
 	}
 	else
