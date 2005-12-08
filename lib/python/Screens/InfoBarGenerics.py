@@ -459,6 +459,10 @@ class InfoBarPVR:
 	SEEK_STATE_BACK_32X = (0, 0, 0, -32)
 	SEEK_STATE_BACK_64X = (0, 0, 0, -64)
 	
+	SEEK_STATE_SM_HALF = (0, 0, 2, 0)
+	SEEK_STATE_SM_QUARTER = (0, 0, 4, 0)
+	SEEK_STATE_SM_EIGHTH = (0, 0, 8, 0)
+	
 	"""handles PVR specific actions like seeking, pause"""
 	def __init__(self):
 		self["PVRActions"] = HelpableActionMap(self, "InfobarPVRActions", 
@@ -476,7 +480,6 @@ class InfoBarPVR:
 		self.skipinterval = 500 # 500ms skip interval
 	
 	def seekTimerFired(self):
-		print "skip", self.skipmode
 		if self.skipmode > 0:
 			self.doSeek(+1, self.skipmode * self.skipinterval)
 		else:
@@ -492,7 +495,6 @@ class InfoBarPVR:
 			return
 		
 		pauseable = service.pause()
-		print "newstate: ", self.seekstate
 		
 		for i in range(4):
 			if oldstate[i] != self.seekstate[i]:
@@ -524,7 +526,7 @@ class InfoBarPVR:
 	def seekFwd(self):
 		lookup = {
 				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
 				self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
 				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
 				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
@@ -532,14 +534,17 @@ class InfoBarPVR:
 				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_64X,
 				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
 				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
+				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
+				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
 			}
 		self.setSeekState(lookup[self.seekstate]);
 	
 	def seekBack(self):
 		lookup = {
 				self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_4X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_BACK_4X,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
 				self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
 				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
 				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
@@ -547,7 +552,10 @@ class InfoBarPVR:
 				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
 				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
 				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_64X
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_64X,
+				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
+				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
 			}
 		self.setSeekState(lookup[self.seekstate]);
 
