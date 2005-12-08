@@ -4,6 +4,16 @@
 
 eDVBTextEncodingHandler encodingHandler;  // the one and only instance
 
+char toupper(char c)
+{
+	switch (c)
+	{
+		case 'a' ... 'z':
+			return c-32;
+	}
+	return c;
+}
+
 eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 {
 	const char * file=DATADIR "/enigma2/encoding.conf";
@@ -19,7 +29,13 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;
 			int tsid, onid, encoding;
 			if ( sscanf( line, "%s ISO8859-%d", countrycode, &encoding ) == 2 )
+			{
 				m_CountryCodeDefaultMapping[countrycode]=encoding;
+				countrycode[0]=toupper(countrycode[0]);
+				countrycode[1]=toupper(countrycode[1]);
+				countrycode[2]=toupper(countrycode[2]);
+				m_CountryCodeDefaultMapping[countrycode]=encoding;
+			}
 			else if ( (sscanf( line, "0x%x 0x%x ISO8859-%d", &tsid, &onid, &encoding ) == 3 )
 					||(sscanf( line, "%d %d ISO8859-%d", &tsid, &onid, &encoding ) == 3 ) )
 				m_TransponderDefaultMapping[(tsid<<16)|onid]=encoding;
