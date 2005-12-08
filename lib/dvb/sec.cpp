@@ -143,10 +143,9 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				{
 					diseqc=true;
 					if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
-					{
 						csw = 0xF0 | (csw << 2);
-						csw |= band;
-					}
+
+					csw |= band;
 
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
 					{
@@ -159,7 +158,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				}
 				else
 					csw = band;
-				
+
 				if (!ret)
 					ret=40;
 
@@ -312,10 +311,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 			{
 				if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
-				{
 					csw = 0xF0 | (csw << 2);
-					csw |= band;
-				}
+
+				csw |= band;
 
 				bool send_csw =
 					(di_param.m_committed_cmd != eDVBSatelliteDiseqcParameters::SENDNO);
@@ -329,20 +327,57 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					(di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO);
 				bool changed_burst = send_burst && toneburst != lastToneburst;
 
-				bool send_diseqc = changed_ucsw;
-				if (!send_diseqc)
-					send_diseqc = changed_burst && (send_ucsw || send_csw);
-				if (!send_diseqc)
+				int send_mask = 0; /*
+					1 must send csw
+					2 must send ucsw
+					4 send toneburst first
+					8 send toneburst at end */
+				if (changed_burst) // toneburst first and toneburst changed
 				{
-					send_diseqc = changed_csw;
-					if ( send_diseqc && di_param.m_use_fast && (csw & 0xF0) && (lastcsw & 0xF0) && ((csw / 4) == (lastcsw / 4)) )
+					if (di_param.m_command_order&1)
 					{
-						frontend.setData(0, csw);  // needed for linked tuner handling
-						send_diseqc = false;
+						send_mask |= 4;
+						if ( send_csw )
+							send_mask |= 1;
+						if ( send_ucsw )
+							send_mask |= 2;
+					}
+					else
+						send_mask |= 8;
+				}
+				if (changed_ucsw)
+				{
+					send_mask |= 2;
+					if ((di_param.m_command_order&4) && send_csw)
+						send_mask |= 1;
+					if (di_param.m_command_order==4 && send_burst)
+						send_mask |= 8;
+				}
+				if (changed_csw) 
+				{
+					if ( di_param.m_use_fast && (lastcsw & 0xF0) && ((csw / 4) == (lastcsw / 4)) )
+						eDebug("dont send committed cmd (fast diseqc)");
+					else
+					{
+						send_mask |= 1;
+						if (!(di_param.m_command_order&4) && send_ucsw)
+							send_mask |= 2;
+						if (!(di_param.m_command_order&1) && send_burst)
+							send_mask |= 8;
 					}
 				}
 
-				if ( send_diseqc || changed_burst )
+#if 0
+				eDebugNoNewLine("sendmask: ");
+				for (int i=3; i >= 0; --i)
+					if ( send_mask & (1<<i) )
+						eDebugNoNewLine("1");
+					else
+						eDebugNoNewLine("0");
+				eDebug("");
+#endif
+
+				if ( send_mask )
 				{
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 					eSecCommand::pair compare;
@@ -355,83 +390,72 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
 				{
-					if ( di_param.m_command_order & 1 && // toneburst at begin of sequence
-						changed_burst && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
+					if ( send_mask & 4 )
 					{
 						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
 					}
 
-					if ( send_diseqc )
+					int loops=0;
+
+					if ( send_mask & 1 )
+						++loops;
+					if ( send_mask & 2 )
+						++loops;
+
+					for ( int i=0; i < di_param.m_repeats; ++i )
+						loops *= 2;
+
+					for ( int i = 0; i < loops;)  // fill commands...
 					{
-						int loops=0;
-
-						if ( send_csw )
-							++loops;
-						if ( send_ucsw )
-							++loops;
-
-						for ( int i=0; i < di_param.m_repeats; ++i )
-							loops *= 2;
-
-						for ( int i = 0; i < loops;)  // fill commands...
+						eDVBDiseqcCommand diseqc;
+						diseqc.len = 4;
+						diseqc.data[0] = i ? 0xE1 : 0xE0;
+						diseqc.data[1] = 0x10;
+						if ( (send_mask & 2) && (di_param.m_command_order & 4) )
 						{
-							eDVBDiseqcCommand diseqc;
-							diseqc.len = 4;
-							diseqc.data[0] = i ? 0xE1 : 0xE0;
-							diseqc.data[1] = 0x10;
-
-							if ( !send_csw || (send_ucsw && (di_param.m_command_order & 4) ) )
-							{
-								diseqc.data[2] = 0x39;
-								diseqc.data[3] = ucsw;
-							}
-							else
-							{
-								diseqc.data[2] = 0x38;
-								diseqc.data[3] = csw;
-							}
-							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-
-							i++;
-							if ( i < loops )
-							{
-								int cmd=0;
-								if (diseqc.data[2] == 0x38 && send_ucsw)
-									cmd=0x39;
-								else if (diseqc.data[2] == 0x39 && send_csw)
-									cmd=0x38;
-								if (cmd)
-								{
-									static int delay = (120 - 54) / 2;  // standard says 100msek between two repeated commands
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
-									diseqc.data[2]=cmd;
-									diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
-									sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-									++i;
-									if ( i < loops )
-										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
-									else
-										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-								}
-								else  // delay 120msek when no command is in repeat gap
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 120) );
-							}
-							else
-								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-
-							frontend.setData(0, csw);
-							frontend.setData(1, ucsw);
-							frontend.setData(2, di_param.m_toneburst_param);
+							diseqc.data[2] = 0x39;
+							diseqc.data[3] = ucsw;
 						}
+						else if ( send_mask & 1 )
+						{
+							diseqc.data[2] = 0x38;
+							diseqc.data[3] = csw;
+						}
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+						i++;
+						if ( i < loops )
+						{
+							int cmd=0;
+							if (diseqc.data[2] == 0x38 && (send_mask & 2))
+								cmd=0x39;
+							else if (diseqc.data[2] == 0x39 && (send_mask & 1))
+								cmd=0x38;
+							if (cmd)
+							{
+								static int delay = (120 - 54) / 2;  // standard says 100msek between two repeated commands
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
+								diseqc.data[2]=cmd;
+								diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
+								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+								++i;
+								if ( i < loops )
+									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
+								else
+									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+							}
+							else  // delay 120msek when no command is in repeat gap
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 120) );
+						}
+						else
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
 					}
 
-					if ( !(di_param.m_command_order & 1) && // toneburst at end of sequence
-						(changed_burst || send_diseqc) && di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO )
+					if ( send_mask & 8 )  // toneburst at end of sequence
 					{
 						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-						frontend.setData(2, di_param.m_toneburst_param);
 					}
 				}
 
@@ -501,7 +525,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					}
 					if ( RotorCmd != lastRotorCmd )
 					{
-						if ( changed_burst || send_diseqc )
+						if ( send_mask )
 						{
 							// override first voltage change
 							*(++(++sec_sequence.begin()))=eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13);
@@ -595,7 +619,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				}
 			}
 			else
-				frontend.setData(0, band); // store band as csw .. needed for linked tuner handling
+				csw = band;
+
+			frontend.setData(0, csw);
+			frontend.setData(1, ucsw);
+			frontend.setData(2, di_param.m_toneburst_param);
 
 			if ( linked )
 				return 0;

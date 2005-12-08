@@ -1059,6 +1059,19 @@ RESULT eDVBFrontend::sendToneburst(int burst)
 		cmd = SEC_MINI_B;
 	if (::ioctl(m_secfd, SEC_DISEQC_SEND_BURST, cmd))
 		return -EINVAL;
+#else
+	fe_sec_mini_cmd_t cmd = SEC_MINI_A;
+	if ( burst == eDVBSatelliteDiseqcParameters::A )
+		cmd = SEC_MINI_A;
+	else if ( burst == eDVBSatelliteDiseqcParameters::B )
+		cmd = SEC_MINI_B;
+	else
+	{
+		eDebug("unknown toneburst!");
+		return -EINVAL;
+	}
+	if (::ioctl(m_fd, FE_DISEQC_SEND_BURST, cmd))
+		return -EINVAL;
 #endif
 	return 0;
 }
