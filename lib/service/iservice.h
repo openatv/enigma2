@@ -52,6 +52,8 @@ public:
 	std::string name;
 	std::string getName() { return name; }
 
+	void setName( const std::string &n ) { name=n; }
+
 	eServiceReference()
 		: type(idInvalid), flags(0)
 	{

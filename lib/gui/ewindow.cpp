@@ -43,6 +43,11 @@ void eWindow::setTitle(const std::string &string)
 	event(evtTitleChanged);
 }
 
+std::string eWindow::getTitle() const
+{
+	return m_title;
+}
+
 void eWindow::setFlag(int flags)
 {
 	m_flags |= flags;

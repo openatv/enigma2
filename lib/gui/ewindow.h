@@ -13,6 +13,7 @@ public:
 	eWindow(eWidgetDesktop *desktop);
 	~eWindow();
 	void setTitle(const std::string &string);
+	std::string getTitle() const;
 	eWidget *child() { return m_child; }
 	
 	enum {
