@@ -241,6 +241,10 @@ class iPauseableService: public iObject
 public:
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
+	
+		/* hm. */
+	virtual RESULT setSlowMotion(int ratio=0)=0;
+	virtual RESULT setFastForward(int ratio=0)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);

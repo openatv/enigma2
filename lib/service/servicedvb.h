@@ -75,7 +75,9 @@ public:
 		// iPauseableService
 	RESULT pause();
 	RESULT unpause();
-	
+	RESULT setSlowMotion(int ratio);
+	RESULT setFastForward(int ratio);
+    	
 		// iSeekableService
 	RESULT getLength(pts_t &len);
 	RESULT seekTo(pts_t to);
