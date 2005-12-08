@@ -474,6 +474,9 @@ public:
 		/** Continue after freeze. */
 	virtual RESULT unfreeze()=0;
 	
+		/** fast forward by skipping frames. 0 is disabled, 2 is twice-the-speed, ... */
+	virtual RESULT setFastForward(int skip=0)=0;
+	
 		// stop on .. Picture
 	enum { spm_I, spm_Ref, spm_Any };
 		/** Stop on specific decoded picture. For I-Frame display. */

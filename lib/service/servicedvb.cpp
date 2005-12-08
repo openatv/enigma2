@@ -629,6 +629,22 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 	return -1;
 }
 
+RESULT eDVBServicePlay::setSlowMotion(int ratio)
+{
+	if (m_decoder)
+		return m_decoder->setSlowMotion(ratio);
+	else
+		return -1;
+}
+
+RESULT eDVBServicePlay::setFastForward(int ratio)
+{
+	if (m_decoder)
+		m_decoder->setFastForward(ratio);
+	else
+		return -1;
+}
+    
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
 	if (m_is_pvr)

@@ -56,6 +56,9 @@ public:
 	RESULT start();
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
+	RESULT setSlowMotion(int ratio);
+	RESULT setFastForward(int ratio);
+
 		// not implemented (yet)
 	RESULT seek(ePtr<iSeekableService> &ptr) { ptr = 0; return -1; }
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }

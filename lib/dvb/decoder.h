@@ -31,6 +31,8 @@ DECLARE_REF(eDVBVideo);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux;
+	
+	int m_is_slow_motion, m_is_fast_forward;
 public:
 	eDVBVideo(eDVBDemux *demux, int dev);
 	int startPid(int pid);
@@ -41,6 +43,8 @@ public:
 #endif
 	void flush();
 	void freeze();
+	int setSlowMotion(int repeat);
+	int setFastForward(int skip);
 	void unfreeze();
 	virtual ~eDVBVideo();
 };
@@ -91,6 +95,7 @@ public:
 	RESULT unfreeze();
 	RESULT setSinglePictureMode(int when);
 	RESULT setPictureSkipMode(int what);
+	RESULT setFastForward(int frames_to_skip);
 	RESULT setSlowMotion(int repeat);
 	RESULT setZoom(int what);
 	RESULT flush();

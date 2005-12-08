@@ -125,7 +125,7 @@ void eDVBAudio::freeze()
 	if (::ioctl(m_fd, AUDIO_PAUSE) < 0)
 		eDebug("video: AUDIO_PAUSE: %m");
 }
-	
+
 void eDVBAudio::unfreeze()
 {
 	if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
@@ -191,12 +191,13 @@ int eDVBVideo::startPid(int pid)
 	
 void eDVBVideo::stop()
 {
-	if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
-		eWarning("video: VIDEO_STOP: %m");
 #if HAVE_DVB_API_VERSION > 2
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
 		eWarning("video: DMX_STOP: %m");
 #endif
+	eDebug("VIDEO_STOP");
+	if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
+		eWarning("video: VIDEO_STOP: %m");
 }
 
 #if HAVE_DVB_API_VERSION < 3
@@ -225,8 +226,24 @@ void eDVBVideo::unfreeze()
 		eDebug("video: VIDEO_CONTINUE: %m");
 }
 	
+int eDVBVideo::setSlowMotion(int repeat)
+{
+	m_is_slow_motion = repeat;
+	return ::ioctl(m_fd, VIDEO_SLOWMOTION, repeat);
+}
+
+int eDVBVideo::setFastForward(int skip)
+{
+	m_is_fast_forward = skip;
+	return ::ioctl(m_fd, VIDEO_FAST_FORWARD, skip);
+}
+	
 eDVBVideo::~eDVBVideo()
 {
+	if (m_is_slow_motion)
+		setSlowMotion(0);
+	if (m_is_fast_forward)
+		setFastForward(0);
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -342,11 +359,16 @@ int eTSMPEGDecoder::setState()
 #else
 	if (m_changed & changeVideo)
 	{
+		eDebug("VIDEO CHANGED (to %04x)", m_vpid);
 		if (m_video)
+		{	
+			eDebug("STOP");
 			m_video->stop();
+		}
 		m_video = 0;
 		if ((m_vpid >= 0) && (m_vpid < 0x1FFF))
 		{
+			eDebug("new video");
 			m_video = new eDVBVideo(m_demux, 0);
 			if (m_video->startPid(m_vpid))
 			{
@@ -395,6 +417,7 @@ int eTSMPEGDecoder::setState()
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0)
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
+	eDebug("eTSMPEGDecoder::eTSMPEGDecoder %p", this);
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
@@ -402,6 +425,7 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 	m_vpid = m_apid = m_pcrpid = pidNone;
 	m_changed = -1;
 	setState();
+	eDebug("~eTSMPEGDecoder %p", this);
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid)
@@ -477,9 +501,20 @@ RESULT eTSMPEGDecoder::setPictureSkipMode(int what)
 	return -1;
 }
 
+RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
+{
+	if (m_video)
+		return m_video->setFastForward(frames_to_skip);
+	else
+	 	return -1;
+}
+
 RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 {
-	return -1;
+	if (m_video)
+		return m_video->setSlowMotion(repeat);
+	else
+		return -1;
 }
 
 RESULT eTSMPEGDecoder::setZoom(int what)

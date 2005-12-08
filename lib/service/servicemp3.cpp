@@ -152,6 +152,16 @@ RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 	return 0;
 }
 
+RESULT eServiceMP3::setSlowMotion(int ratio)
+{
+	return -1;
+}
+
+RESULT eServiceMP3::setFastForward(int ratio)
+{
+	return -1;
+}
+  
 		// iPausableService
 RESULT eServiceMP3::pause()
 {
