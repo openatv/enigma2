@@ -43,7 +43,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["text"] = Label()
 		self["rc"] = Pixmap()
 		self["arrowdown"] = MovingPixmap()
-		self["arrowdown"].moveTo(557, 232, 100)
+		self["arrowdown"].moveTo(557, 232, 10)
 		self["arrowup"] = MovingPixmap()
 		
 		self.onShown.append(self["arrowdown"].startMoving)
@@ -85,11 +85,17 @@ class WelcomeWizard(Screen, HelpableScreen):
 			self.updateValues()
 			
 			if (self.currStep == 2):
-				self["arrowdown"].moveTo(557, 200, 100)
-				self["arrowup"].moveTo(557, 355, 100)
+				self["arrowdown"].moveTo(557, 200, 10)
+				self["arrowup"].moveTo(557, 355, 10)
 				self["arrowdown"].startMoving()
 				self["arrowup"].startMoving()
-				
+			if (self.currStep == 3):
+				self["arrowup"].moveTo(740, 355, 10)
+				self["arrowup"].startMoving()
+				self["arrowdown"].clearPath(True)
+				self["arrowdown"].addMovePoint(510, 300, 10)
+				self["arrowdown"].addMovePoint(610, 300, 10)
+				self["arrowdown"].startMoving()
 
 def listActiveWizards():
 	wizards = [ ]
