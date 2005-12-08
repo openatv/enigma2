@@ -445,6 +445,20 @@ class InfoBarServiceName:
 		self["ServiceName"] = ServiceName(self.session.nav)
 
 class InfoBarPVR:
+
+	# ispause, isff, issm, skip
+	SEEK_STATE_PLAY = (0, 0, 0, 0)
+	SEEK_STATE_PAUSE = (1, 0, 0, 0)
+	SEEK_STATE_FF_2X = (0, 2, 0, 0)
+	SEEK_STATE_FF_4X = (0, 4, 0, 0)
+	SEEK_STATE_FF_8X = (0, 8, 0, 0)
+	SEEK_STATE_FF_32X = (0, 0, 0, 32)
+	SEEK_STATE_FF_64X = (0, 0, 0, 64)
+	
+	SEEK_STATE_BACK_4X = (0, 0, 0, -4)
+	SEEK_STATE_BACK_32X = (0, 0, 0, -32)
+	SEEK_STATE_BACK_64X = (0, 0, 0, -64)
+	
 	"""handles PVR specific actions like seeking, pause"""
 	def __init__(self):
 		self["PVRActions"] = HelpableActionMap(self, "InfobarPVRActions", 
@@ -455,12 +469,47 @@ class InfoBarPVR:
 				"seekFwd": (self.seekFwd, "skip forward"),
 				"seekBack": (self.seekBack, "skip backward"),
 			})
+
+		self.seekstate = self.SEEK_STATE_PLAY
+		self.seekTimer = eTimer()
+		self.seekTimer.timeout.get().append(self.seekTimerFired)
+		self.skipinterval = 500 # 500ms skip interval
+	
+	def seekTimerFired(self):
+		print "skip", self.skipmode
+		if self.skipmode > 0:
+			self.doSeek(+1, self.skipmode * self.skipinterval)
+		else:
+			self.doSeek(-1, -self.skipmode * self.skipinterval)
+
+	def setSeekState(self, state):
+		oldstate = self.seekstate
 		
+		self.seekstate = state
+
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return
+		
+		pauseable = service.pause()
+		print "newstate: ", self.seekstate
+		
+		for i in range(4):
+			if oldstate[i] != self.seekstate[i]:
+				(self.session.nav.pause, pauseable.setFastForward, pauseable.setSlowMotion, self.setSkipMode)[i](self.seekstate[i])
+		
+	def setSkipMode(self, skipmode):
+		self.skipmode = skipmode
+		if skipmode == 0:
+			self.seekTimer.stop()
+		else:
+			self.seekTimer.start(500)
+	
 	def pauseService(self):
-		self.session.nav.pause(1)
+		self.setSeekState(self.SEEK_STATE_PAUSE);
 		
 	def unPauseService(self):
-		self.session.nav.pause(0)
+		self.setSeekState(self.SEEK_STATE_PLAY);
 	
 	def doSeek(self, dir, seektime):
 		service = self.session.nav.getCurrentService()
@@ -473,10 +522,34 @@ class InfoBarPVR:
 		seekable.seekRelative(dir, 90 * seektime)
 
 	def seekFwd(self):
-		self.doSeek(+1, 60000)
+		lookup = {
+				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
+				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
+				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
+				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
+				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_64X,
+				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X
+			}
+		self.setSeekState(lookup[self.seekstate]);
 	
 	def seekBack(self):
-		self.doSeek(-1, 60000)
+		lookup = {
+				self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_4X,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_BACK_4X,
+				self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
+				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
+				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
+				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
+				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
+				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_64X
+			}
+		self.setSeekState(lookup[self.seekstate]);
 
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
