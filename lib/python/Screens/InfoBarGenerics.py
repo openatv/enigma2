@@ -402,10 +402,12 @@ class InfoBarTuner:
 		self.timer.timeout.get().append(self.updateTunerInfo)
 		self.timer.start(500)
 
-	def log2(self,val):
+	def calc(self,val):
 		if not val:
 			return 0
-		return (long)(log(val)/log(2))
+		if val < 2500:
+			return (long)(log(val)/log(2))
+		return val*100/65535
 
 	def updateTunerInfo(self):
 		if self.instance.isVisible():
@@ -424,7 +426,7 @@ class InfoBarTuner:
 			self["ber_count"].setText("%d"%(ber))
 			self["snr_progress"].setValue(snr)
 			self["agc_progress"].setValue(agc)
-			self["ber_progress"].setValue(self.log2(ber))
+			self["ber_progress"].setValue(self.calc(ber))
 
 class InfoBarEvent:
 	"""provides a current/next event info display"""
