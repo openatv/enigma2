@@ -70,7 +70,6 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["stepslider"].setValue(self.currStep)
 		self.list = []
 		
-		print "Len list: " + str(len(self.listEntries[self.currStep - 1]))
 		if (len(self.listEntries[self.currStep - 1]) > 0):
 			for x in self.listEntries[self.currStep - 1]:
 				self.list.append((x, None))

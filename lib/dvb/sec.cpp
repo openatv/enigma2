@@ -157,6 +157,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							ret=10;
 					}
 				}
+				else
+					csw = band;
 				
 				if (!ret)
 					ret=40;
