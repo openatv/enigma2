@@ -35,18 +35,21 @@ class WelcomeWizard(Screen, HelpableScreen):
 			self.currContent = ""
 		
 		def startElement(self, name, attrs):
+			print name
 			self.currContent = name
 			if (name == "step"):
 				self.lastStep = int(attrs.get('number'))
-				self.wizard[self.lastStep] = {"text": "", "list": [], "config": None, "code": ""}
+				self.wizard[self.lastStep] = {"text": "", "list": [], "config": {"screen": None, "args": None }, "code": ""}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = str(attrs.get('value'))
 			elif (name == "listentry"):
 				self.wizard[self.lastStep]["list"].append(str(attrs.get('caption')))
 			elif (name == "config"):
 				exec "from Screens." + str(attrs.get('module')) + " import *"
-				self.wizard[self.lastStep]["config"] = eval(str(attrs.get('screen')))
-				
+				self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
+				if (attrs.has_key('args')):
+					print "has args"
+					self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
 		def endElement(self, name):
 			self.currContent = ""
 			if name == 'code':
@@ -105,9 +108,13 @@ class WelcomeWizard(Screen, HelpableScreen):
 				self.list.append((x, None))
 		self["list"].l.setList(self.list)
 		
-		if (self.wizard[self.currStep]["config"] != None):
-			print self.wizard[self.currStep]["config"]
-			self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"])
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			print self.wizard[self.currStep]["config"]["screen"]
+			if self.wizard[self.currStep]["config"]["args"] == None:
+				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+			else:
+				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
+
 			self["config"].l.setList(self.configInstance["config"].list)
 		else:
 			self["config"].l.setList([])

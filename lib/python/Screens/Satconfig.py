@@ -98,13 +98,10 @@ class NimSetup(Screen):
 			x[1].cancel()
 		self.close()
 
-	def __init__(self, session, nim = None):
+	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
 		
-		if nim == None:
-			self.nim = nimmanager.nimList()[0][1]
-		else:
-			self.nim = nim
+		self.nim = nimmanager.nimList()[slotid][1]
 		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
@@ -144,5 +141,5 @@ class NimSelection(Screen):
 	def okbuttonClick(self):
 		selection = self["nimlist"].getCurrent()
 		if selection[1].nimType != -1:	#unknown/empty
-			self.session.open(NimSetup, selection[1])
+			self.session.open(NimSetup, selection[1].slotid)
 	
