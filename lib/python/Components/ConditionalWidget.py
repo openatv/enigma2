@@ -30,6 +30,9 @@ class Widget(GUIComponent):
 	def hideWidget(self):
 		self.state = self.HIDDEN
 		self.instance.hide()
+		
+	def move(self, x, y):
+		self.instance.move(ePoint(int(x), int(y)))
 	
 class ConditionalWidget(Widget):
 	def __init__(self, withTimer = True):

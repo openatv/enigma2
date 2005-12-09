@@ -3,7 +3,7 @@ from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.Label import Label
 from Components.Slider import Slider
-from Components.ActionMap import HelpableActionMap
+from Components.ActionMap import HelpableActionMap, NumberActionMap
 from Components.config import config, configElementBoolean
 from Components.Pixmap import *
 from Components.MenuList import MenuList
@@ -19,13 +19,13 @@ class WelcomeWizard(Screen, HelpableScreen):
 	skin = """
 		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="50,100" size="440,200" font="Arial;23" />
-			<widget name="list" position="50,300" size="440,200" />
-			<widget name="config" position="50,300" zPosition="100" size="440,200" />			
+			<widget name="list" position="50,300" zPosition="1" size="440,200" />
+			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
 			<widget name="step" position="50,50" size="440,25" font="Arial;23" />
 			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
-			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" size="154,475" transparent="1" alphatest="on"/>
-			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
+			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="10" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="10" size="37,70" transparent="1" alphatest="on"/>
 		</screen>"""
 
 	class parseWizard(ContentHandler):
@@ -89,40 +89,33 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self.list = []
 		self["list"] = MenuList(self.list)
 
-		self.updateValues()
+		self.onShown.append(self.updateValues)
 		
-		self["actions"] = HelpableActionMap(self, "OkCancelActions",
-			{
-				"ok": (self.ok, _("Close this Screen...")),
-			})
-
-	def updateValues(self):
-		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
-		self["stepslider"].setValue(self.currStep)
-
-		self["text"].setText(self.wizard[self.currStep]["text"])
+		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
+		{
+			"ok": self.ok,
+			#"cancel": self.keyCancel,
+			"left": self.left,
+			"right": self.right,
+			#"up": self.up,
+			#"down": self.down,
+			#"1": self.keyNumberGlobal,
+			#"2": self.keyNumberGlobal,
+			#"3": self.keyNumberGlobal,
+			#"4": self.keyNumberGlobal,
+			#"5": self.keyNumberGlobal,
+			#"6": self.keyNumberGlobal,
+			#"7": self.keyNumberGlobal,
+			#"8": self.keyNumberGlobal,
+			#"9": self.keyNumberGlobal,
+			#"0": self.keyNumberGlobal
+		}, -1)
 		
-		self.list = []
-		if (len(self.wizard[self.currStep]["list"]) > 0):
-			for x in self.wizard[self.currStep]["list"]:
-				self.list.append((x, None))
-		self["list"].l.setList(self.list)
-		
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			print self.wizard[self.currStep]["config"]["screen"]
-			if self.wizard[self.currStep]["config"]["args"] == None:
-				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
-			else:
-				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
+		#self["actions"] = HelpableActionMap(self, "OkCancelActions",
+			#{
+				#"ok": (self.ok, _("Close this Screen...")),
+			#})
 
-			self["config"].l.setList(self.configInstance["config"].list)
-		else:
-			self["config"].l.setList([])
-
-		if self.wizard[self.currStep]["code"] != "":
-			print self.wizard[self.currStep]["code"]
-			exec(self.wizard[self.currStep]["code"])
-			
 	def ok(self):
 		if (self.currStep == self.numSteps): # wizard finished
 			config.misc.firstrun.value = 0;
@@ -131,6 +124,57 @@ class WelcomeWizard(Screen, HelpableScreen):
 		else:
 			self.currStep += 1
 			self.updateValues()
+
+	def left(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.keyLeft()
+		print "left"
+	
+	def right(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.keyRight()
+		print "right"
+
+	def up(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.handleKey("moveUp")
+		print "up"
+		
+	def down(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.handleKey("moveDown")
+		print "down"
+		
+	def updateValues(self):
+		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
+		self["stepslider"].setValue(self.currStep)
+
+		self["text"].setText(self.wizard[self.currStep]["text"])
+		
+		self["list"].instance.setZPosition(1)
+		self.list = []
+		if (len(self.wizard[self.currStep]["list"]) > 0):
+			self["list"].instance.setZPosition(2)
+			for x in self.wizard[self.currStep]["list"]:
+				self.list.append((x, None))
+		self["list"].l.setList(self.list)
+
+		self["config"].instance.setZPosition(1)
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self["config"].instance.setZPosition(2)
+			print self.wizard[self.currStep]["config"]["screen"]
+			if self.wizard[self.currStep]["config"]["args"] == None:
+				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+			else:
+				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
+			self["config"].l.setList(self.configInstance["config"].list)
+			self.configInstance["config"] = self["config"]
+		else:
+			self["config"].l.setList([])
+
+		if self.wizard[self.currStep]["code"] != "":
+			print self.wizard[self.currStep]["code"]
+			exec(self.wizard[self.currStep]["code"])
 
 def listActiveWizards():
 	wizards = [ ]

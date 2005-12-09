@@ -17,9 +17,6 @@ class Pixmap(Widget):
 	def removeWidget(self, w):
 		pass
 
-	def move(self, x, y):
-		self.instance.move(ePoint(int(x), int(y)))
-
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer = True):
 		ConditionalWidget.__init__(self)
