@@ -8,7 +8,6 @@ from Components.config import config, configElementBoolean
 from Components.Pixmap import *
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
-from Screens.ScanSetup import ScanSimple
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -64,38 +63,27 @@ class WelcomeWizard(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 
 		self.wizard = {}
-		print self.wizard
 		parser = make_parser()
 		print "Reading startwizard.xml"
 		wizardHandler = self.parseWizard(self.wizard)
 		parser.setContentHandler(wizardHandler)
 		parser.parse('/usr/share/enigma2/startwizard.xml')
 		
-		print self.wizard
-		
-		self.numSteps = 4
+		self.numSteps = len(self.wizard)
 		self.currStep = 1
 
 		self["text"] = Label()
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
-		self["arrowdown"].moveTo(557, 232, 10)
 		self["arrowup"] = MovingPixmap()
-		self["rc"].moveTo(500, 50, 10)
+
 		self["config"] = ConfigList([])
-		
-		self.onShown.append(self["arrowdown"].startMoving)
-		self.onShown.append(self["rc"].startMoving)
 
 		self["step"] = Label()
 				
 		self["stepslider"] = Slider(1, self.numSteps)
 		
-		#self.scanSetupDialog = self.session.instantiateDialog(ScanSimple)
-		
 		self.list = []
-		#list.append(("Use wizard to set up basic features", None))
-		#list.append(("Exit wizard", None))
 		self["list"] = MenuList(self.list)
 
 		self.updateValues()

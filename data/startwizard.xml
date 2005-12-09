@@ -1,6 +1,12 @@
 <wizard>
 		<step number="1">
 			<text value="Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step." />
+			<code>
+self["arrowdown"].moveTo(557, 232, 10)
+self["rc"].moveTo(500, 50, 10)		
+self["arrowdown"].startMoving()
+self["rc"].startMoving()
+			</code>
 		</step>
 		<step number="2">
 			<text value="Bla" />
@@ -25,7 +31,6 @@ self["arrowdown"].clearPath(True)
 self["arrowdown"].addMovePoint(510, 300, 10)
 self["arrowdown"].addMovePoint(610, 300, 10)
 self["arrowdown"].startMoving()
-self["config"].l.setList(self.scanSetupDialog["config"].list)
 			</code>
 		</step>
 		<step number="4">
