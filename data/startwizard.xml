@@ -1,0 +1,42 @@
+<wizard>
+		<step number="1">
+			<text value="Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step." />
+		</step>
+		<step number="2">
+			<text value="Bla" />
+			<list>
+				<listentry caption="Use wizard to set up basic features" />
+				<listentry caption="Exit wizard" />
+			</list>
+			<code>
+self["arrowdown"].moveTo(557, 200, 10)
+self["arrowup"].moveTo(557, 355, 10)
+self["arrowdown"].startMoving()
+self["arrowup"].startMoving()
+			</code>
+		</step>
+		<step number="3">
+			<text value="Bla" />
+			<config screen="ScanSimple" module="ScanSetup" />
+			<code>
+self["arrowup"].moveTo(740, 355, 10)
+self["arrowup"].startMoving()
+self["arrowdown"].clearPath(True)
+self["arrowdown"].addMovePoint(510, 300, 10)
+self["arrowdown"].addMovePoint(610, 300, 10)
+self["arrowdown"].startMoving()
+self["config"].l.setList(self.scanSetupDialog["config"].list)
+			</code>
+		</step>
+		<step number="4">
+			<text value="Bla" />
+			<code>
+self["arrowdown"].moveTo(740, 200, 10)
+self["arrowup"].moveTo(740, 355, 10)
+self["arrowdown"].startMoving()
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 600, 5)
+self["rc"].startMoving()
+			</code>
+		</step>	
+</wizard>
