@@ -97,8 +97,8 @@ class WelcomeWizard(Screen, HelpableScreen):
 			#"cancel": self.keyCancel,
 			"left": self.left,
 			"right": self.right,
-			#"up": self.up,
-			#"down": self.down,
+			"up": self.up,
+			"down": self.down,
 			#"1": self.keyNumberGlobal,
 			#"2": self.keyNumberGlobal,
 			#"3": self.keyNumberGlobal,
@@ -137,12 +137,16 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 	def up(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self.configInstance.handleKey("moveUp")
+			self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		elif (len(self.wizard[self.currStep]["list"]) > 0):
+			self["list"].instance.moveSelection(self["config"].instance.moveUp)
 		print "up"
 		
 	def down(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self.configInstance.handleKey("moveDown")
+			self["config"].instance.moveSelection(self["config"].instance.moveDown)
+		elif (len(self.wizard[self.currStep]["list"]) > 0):
+			self["list"].instance.moveSelection(self["config"].instance.moveDown)
 		print "down"
 		
 	def updateValues(self):
