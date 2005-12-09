@@ -44,8 +44,15 @@ self["arrowdown"].addMovePoint(510, 300, 10)
 self["arrowdown"].addMovePoint(610, 300, 10)
 self["arrowdown"].startMoving()
 			</code>
-		</step>		
+		</step>
 		<step number="5">
+			<text value="Do you want to do a service scan?" />
+			<list>
+				<listentry caption="Yes, scan now" step="next" />
+				<listentry caption="No, scan later manually" step="7" />
+			</list>
+		</step>
+		<step number="6">
 			<text value="Bla" />
 			<config screen="ScanSimple" module="ScanSetup" />
 			<code>
@@ -57,8 +64,8 @@ self["arrowdown"].addMovePoint(610, 300, 10)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
-		<step number="6">
-			<text value="Bla" />
+		<step number="7">
+			<text value="Thanx for using the wizard. Your box is now ready to use." />
 			<code>
 self["arrowdown"].moveTo(740, 200, 10)
 self["arrowup"].moveTo(740, 355, 10)
