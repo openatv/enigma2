@@ -11,8 +11,8 @@ self["rc"].startMoving()
 		<step number="2">
 			<text value="Bla" />
 			<list>
-				<listentry caption="Use wizard to set up basic features" />
-				<listentry caption="Exit wizard" />
+				<listentry caption="Use wizard to set up basic features" step="next" />
+				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
 self["arrowdown"].moveTo(557, 200, 10)

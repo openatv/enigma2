@@ -301,9 +301,11 @@ class ScanSetup(Screen):
 
 		feid = config.scan.nims.value
 		# flags |= eComponentScan.scanSearchBAT
-		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, feid, flags)
+		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, flags)
 
 		#self.close()
+	def doNothing(self):
+		pass
 
 	def keyCancel(self):
 		for x in self["config"].list:
@@ -312,7 +314,7 @@ class ScanSetup(Screen):
 
 class ScanSimple(Screen):
 
-	def keyOK(self):
+	def run(self):
 		print "start scan for sats:"
 		tlist = [ ]
 		for x in self.list:
@@ -321,8 +323,23 @@ class ScanSimple(Screen):
 				getInitialTransponderList(tlist, x[1].parent.configPath)
 
 		feid = 0 # FIXME
-		self.session.openWithCallback(self.keyCancel, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
+		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
+		
 
+	def keyGo(self):
+		print "start scan for sats:"
+		tlist = [ ]
+		for x in self.list:
+			if x[1].parent.value == 0:
+				print "   " + str(x[1].parent.configPath)
+				getInitialTransponderList(tlist, x[1].parent.configPath)
+
+		feid = 0 # FIXME
+		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
+
+	def doNothing(self):
+		pass
+	
 	def keyCancel(self):
 		self.close()
 
@@ -343,7 +360,7 @@ class ScanSimple(Screen):
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{
-			"ok": self.keyOK,
+			"ok": self.keyGo,
 			"cancel": self.keyCancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
