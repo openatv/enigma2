@@ -43,7 +43,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = str(attrs.get('value'))
 			elif (name == "listentry"):
-				self.wizard[self.lastStep]["list"].append(str(attrs.get('caption')))
+				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif (name == "config"):
 				exec "from Screens." + str(attrs.get('module')) + " import *"
 				self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
@@ -99,16 +99,16 @@ class WelcomeWizard(Screen, HelpableScreen):
 			"right": self.right,
 			"up": self.up,
 			"down": self.down,
-			#"1": self.keyNumberGlobal,
-			#"2": self.keyNumberGlobal,
-			#"3": self.keyNumberGlobal,
-			#"4": self.keyNumberGlobal,
-			#"5": self.keyNumberGlobal,
-			#"6": self.keyNumberGlobal,
-			#"7": self.keyNumberGlobal,
-			#"8": self.keyNumberGlobal,
-			#"9": self.keyNumberGlobal,
-			#"0": self.keyNumberGlobal
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
 		}, -1)
 		
 		#self["actions"] = HelpableActionMap(self, "OkCancelActions",
@@ -117,6 +117,18 @@ class WelcomeWizard(Screen, HelpableScreen):
 			#})
 
 	def ok(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.run()
+		
+		if (len(self.wizard[self.currStep]["list"]) > 0):
+			nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
+			if nextStep == "end":
+				self.currStep = self.numSteps
+			elif nextStep == "next":
+				pass
+			else:
+				self.currStep = int(nextStep) - 1
+
 		if (self.currStep == self.numSteps): # wizard finished
 			config.misc.firstrun.value = 0;
 			config.misc.firstrun.save()
@@ -125,6 +137,10 @@ class WelcomeWizard(Screen, HelpableScreen):
 			self.currStep += 1
 			self.updateValues()
 
+	def keyNumberGlobal(self, number):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.keyNumberGlobal(number)
+		
 	def left(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyLeft()
@@ -160,7 +176,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 		if (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.setZPosition(2)
 			for x in self.wizard[self.currStep]["list"]:
-				self.list.append((x, None))
+				self.list.append((x[0], None))
 		self["list"].l.setList(self.list)
 
 		self["config"].instance.setZPosition(1)

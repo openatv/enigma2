@@ -87,10 +87,13 @@ class NimSetup(Screen):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
 			self["config"].handleKey(config.key[str(number)])
 
-	def keySave(self):
+	def run(self):
 		for x in self["config"].list:
 			x[1].save()
 		nimmanager.sec.update()	
+
+	def keySave(self):
+		self.run()
 		self.close()
 
 	def keyCancel(self):
