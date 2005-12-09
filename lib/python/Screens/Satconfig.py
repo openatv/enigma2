@@ -98,9 +98,13 @@ class NimSetup(Screen):
 			x[1].cancel()
 		self.close()
 
-	def __init__(self, session, nim):
+	def __init__(self, session, nim = None):
 		Screen.__init__(self, session)
-		self.nim = nim
+		
+		if nim == None:
+			self.nim = nimmanager.nimList()[0][1]
+		else:
+			self.nim = nim
 		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
