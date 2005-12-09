@@ -9,7 +9,7 @@ self["rc"].startMoving()
 			</code>
 		</step>
 		<step number="2">
-			<text value="Bla" />
+			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
 				<listentry caption="Use wizard to set up basic features" step="next" />
 				<listentry caption="Exit wizard" step="end" />
@@ -53,7 +53,7 @@ self["arrowdown"].startMoving()
 			</list>
 		</step>
 		<step number="6">
-			<text value="Bla" />
+			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" />
 			<code>
 self["arrowup"].moveTo(740, 355, 10)
