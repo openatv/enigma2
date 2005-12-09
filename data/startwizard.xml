@@ -22,6 +22,30 @@ self["arrowup"].startMoving()
 			</code>
 		</step>
 		<step number="3">
+			<text value="Please set up tuner A" />
+			<config screen="NimSetup" module="Satconfig" />
+			<code>
+self["arrowup"].moveTo(740, 355, 10)
+self["arrowup"].startMoving()
+self["arrowdown"].clearPath(True)
+self["arrowdown"].addMovePoint(510, 300, 10)
+self["arrowdown"].addMovePoint(610, 300, 10)
+self["arrowdown"].startMoving()
+			</code>
+		</step>
+		<step number="4">
+			<text value="Please set up tuner B" />
+			<config screen="NimSetup" module="Satconfig" />
+			<code>
+self["arrowup"].moveTo(740, 355, 10)
+self["arrowup"].startMoving()
+self["arrowdown"].clearPath(True)
+self["arrowdown"].addMovePoint(510, 300, 10)
+self["arrowdown"].addMovePoint(610, 300, 10)
+self["arrowdown"].startMoving()
+			</code>
+		</step>		
+		<step number="5">
 			<text value="Bla" />
 			<config screen="ScanSimple" module="ScanSetup" />
 			<code>
@@ -33,7 +57,7 @@ self["arrowdown"].addMovePoint(610, 300, 10)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
-		<step number="4">
+		<step number="6">
 			<text value="Bla" />
 			<code>
 self["arrowdown"].moveTo(740, 200, 10)

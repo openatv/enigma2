@@ -106,6 +106,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 		self["list"].l.setList(self.list)
 		
 		if (self.wizard[self.currStep]["config"] != None):
+			print self.wizard[self.currStep]["config"]
 			self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"])
 			self["config"].l.setList(self.configInstance["config"].list)
 		else:
