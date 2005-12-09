@@ -7,6 +7,11 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import config, configElementBoolean
 from Components.Pixmap import *
 from Components.MenuList import MenuList
+from Components.ConfigList import ConfigList
+from Screens.ScanSetup import ScanSimple
+
+from xml.sax import make_parser
+from xml.sax.handler import ContentHandler
 
 config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
 
@@ -16,41 +21,77 @@ class WelcomeWizard(Screen, HelpableScreen):
 		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="50,100" size="440,200" font="Arial;23" />
 			<widget name="list" position="50,300" size="440,200" />
+			<widget name="config" position="50,300" zPosition="100" size="440,200" />			
 			<widget name="step" position="50,50" size="440,25" font="Arial;23" />
 			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
-			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,50" size="154,475" transparent="1" alphatest="on"/>
+			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="1" size="37,70" transparent="1" alphatest="on"/>
 		</screen>"""
-		
-	text = [_("Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step."), 
-			_("You can use the Up and Down buttons on your remote control to select your choice.\n\nWhat do you want to do?"),
-			_("Blub")]
-			
-	listEntries = [[],
-				    ["Use wizard to set up basic features", "Exit wizard"],
-					[]]
 
+	class parseWizard(ContentHandler):
+		def __init__(self, wizard):
+			self.isPointsElement, self.isReboundsElement = 0, 0
+			self.wizard = wizard
+			self.currContent = ""
+		
+		def startElement(self, name, attrs):
+			self.currContent = name
+			if (name == "step"):
+				self.lastStep = int(attrs.get('number'))
+				self.wizard[self.lastStep] = {"text": "", "list": [], "config": None, "code": ""}
+			elif (name == "text"):
+				self.wizard[self.lastStep]["text"] = str(attrs.get('value'))
+			elif (name == "listentry"):
+				self.wizard[self.lastStep]["list"].append(str(attrs.get('caption')))
+			elif (name == "config"):
+				exec "from Screens." + str(attrs.get('module')) + " import *"
+				self.wizard[self.lastStep]["config"] = eval(str(attrs.get('screen')))
+				
+		def endElement(self, name):
+			self.currContent = ""
+			if name == 'code':
+				self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"].strip()
+				
+		def characters(self, ch):
+			if self.currContent == "code":
+				 self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
+				
 	def __init__(self, session):
 		self.skin = WelcomeWizard.skin
-		self.numSteps = 3
-		self.currStep = 1
 
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
+		self.wizard = {}
+		print self.wizard
+		parser = make_parser()
+		print "Reading startwizard.xml"
+		wizardHandler = self.parseWizard(self.wizard)
+		parser.setContentHandler(wizardHandler)
+		parser.parse('/usr/share/enigma2/startwizard.xml')
+		
+		print self.wizard
+		
+		self.numSteps = 4
+		self.currStep = 1
 
 		self["text"] = Label()
-		self["rc"] = Pixmap()
+		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowdown"].moveTo(557, 232, 10)
 		self["arrowup"] = MovingPixmap()
+		self["rc"].moveTo(500, 50, 10)
+		self["config"] = ConfigList([])
 		
 		self.onShown.append(self["arrowdown"].startMoving)
+		self.onShown.append(self["rc"].startMoving)
 
 		self["step"] = Label()
 				
 		self["stepslider"] = Slider(1, self.numSteps)
+		
+		#self.scanSetupDialog = self.session.instantiateDialog(ScanSimple)
 		
 		self.list = []
 		#list.append(("Use wizard to set up basic features", None))
@@ -65,16 +106,27 @@ class WelcomeWizard(Screen, HelpableScreen):
 			})
 
 	def updateValues(self):
-		self["text"].setText(self.text[self.currStep - 1])
 		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 		self["stepslider"].setValue(self.currStep)
-		self.list = []
+
+		self["text"].setText(self.wizard[self.currStep]["text"])
 		
-		if (len(self.listEntries[self.currStep - 1]) > 0):
-			for x in self.listEntries[self.currStep - 1]:
+		self.list = []
+		if (len(self.wizard[self.currStep]["list"]) > 0):
+			for x in self.wizard[self.currStep]["list"]:
 				self.list.append((x, None))
 		self["list"].l.setList(self.list)
 		
+		if (self.wizard[self.currStep]["config"] != None):
+			self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"])
+			self["config"].l.setList(self.configInstance["config"].list)
+		else:
+			self["config"].l.setList([])
+
+		if self.wizard[self.currStep]["code"] != "":
+			print self.wizard[self.currStep]["code"]
+			exec(self.wizard[self.currStep]["code"])
+			
 	def ok(self):
 		if (self.currStep == self.numSteps): # wizard finished
 			config.misc.firstrun.value = 0;
@@ -83,19 +135,6 @@ class WelcomeWizard(Screen, HelpableScreen):
 		else:
 			self.currStep += 1
 			self.updateValues()
-			
-			if (self.currStep == 2):
-				self["arrowdown"].moveTo(557, 200, 10)
-				self["arrowup"].moveTo(557, 355, 10)
-				self["arrowdown"].startMoving()
-				self["arrowup"].startMoving()
-			if (self.currStep == 3):
-				self["arrowup"].moveTo(740, 355, 10)
-				self["arrowup"].startMoving()
-				self["arrowdown"].clearPath(True)
-				self["arrowdown"].addMovePoint(510, 300, 10)
-				self["arrowdown"].addMovePoint(610, 300, 10)
-				self["arrowdown"].startMoving()
 
 def listActiveWizards():
 	wizards = [ ]
