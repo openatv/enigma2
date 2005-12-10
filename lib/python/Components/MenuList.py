@@ -6,8 +6,9 @@ from enigma import eListboxPythonStringContent, eListbox
 class MenuList(HTMLComponent, GUIComponent):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
+		self.list = list
 		self.l = eListboxPythonStringContent()
-		self.l.setList(list)
+		self.l.setList(self.list)
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()

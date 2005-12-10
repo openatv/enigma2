@@ -39,7 +39,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 			self.currContent = name
 			if (name == "step"):
 				self.lastStep = int(attrs.get('number'))
-				self.wizard[self.lastStep] = {"text": "", "list": [], "config": {"screen": None, "args": None }, "code": ""}
+				self.wizard[self.lastStep] = {"text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": ""}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = str(attrs.get('value'))
 			elif (name == "listentry"):
@@ -50,6 +50,7 @@ class WelcomeWizard(Screen, HelpableScreen):
 				if (attrs.has_key('args')):
 					print "has args"
 					self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
+				self.wizard[self.lastStep]["config"]["type"] = str(attrs.get('type'))
 		def endElement(self, name):
 			self.currContent = ""
 			if name == 'code':
@@ -153,14 +154,14 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 	def up(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self["config"].instance.moveSelection(self["config"].instance.moveUp)
+			self[self.currConfig].instance.moveSelection(self[self.currConfig].instance.moveUp)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["config"].instance.moveUp)
 		print "up"
 		
 	def down(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self["config"].instance.moveSelection(self["config"].instance.moveDown)
+			self[self.currConfig].instance.moveSelection(self[self.currConfig].instance.moveDown)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["config"].instance.moveDown)
 		print "down"
@@ -181,14 +182,19 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 		self["config"].instance.setZPosition(1)
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self["config"].instance.setZPosition(2)
+			if self.wizard[self.currStep]["config"]["type"] == "ConfigList":
+				self.currConfig = "config"
+			elif self.wizard[self.currStep]["config"]["type"] == "MenuList":
+				self.currConfig = "list"
+
+			self[self.currConfig].instance.setZPosition(2)
 			print self.wizard[self.currStep]["config"]["screen"]
 			if self.wizard[self.currStep]["config"]["args"] == None:
 				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
 			else:
 				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
-			self["config"].l.setList(self.configInstance["config"].list)
-			self.configInstance["config"] = self["config"]
+			self[self.currConfig].l.setList(self.configInstance[self.currConfig].list)
+			self.configInstance[self.currConfig] = self[self.currConfig]
 		else:
 			self["config"].l.setList([])
 
