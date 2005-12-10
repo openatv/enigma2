@@ -1,6 +1,7 @@
 <wizard>
 		<step number="1">
 			<text value="Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step." />
+			<config screen="LanguageSelection" module="LanguageSelection" type="MenuList" />
 			<code>
 self["arrowdown"].moveTo(557, 232, 10)
 self["rc"].moveTo(500, 50, 10)		
@@ -23,7 +24,7 @@ self["arrowup"].startMoving()
 		</step>
 		<step number="3">
 			<text value="Please set up tuner A" />
-			<config screen="NimSetup" module="Satconfig" args="0" />
+			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
 self["arrowup"].moveTo(740, 355, 10)
 self["arrowup"].startMoving()
@@ -35,7 +36,7 @@ self["arrowdown"].startMoving()
 		</step>
 		<step number="4">
 			<text value="Please set up tuner B" />
-			<config screen="NimSetup" module="Satconfig" args="1" />
+			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 			<code>
 self["arrowup"].moveTo(740, 355, 10)
 self["arrowup"].startMoving()
@@ -54,7 +55,7 @@ self["arrowdown"].startMoving()
 		</step>
 		<step number="6">
 			<text value="What do you want to scan?" />
-			<config screen="ScanSimple" module="ScanSetup" />
+			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
 			<code>
 self["arrowup"].moveTo(740, 355, 10)
 self["arrowup"].startMoving()

@@ -70,6 +70,9 @@
 			<widget name="ok" position="140,240" size="38,20" font="Arial;20" backgroundColor="green" />
 			<widget name="cancel" position="240,240" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
+		<screen name="LanguageSelection" position="100,125" size="540,280" title="Language selection">
+			<widget name="list" position="10,50" size="520,175" />
+		</screen>
 		<screen name="NimSelection" position="140,165" size="400,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,75" />
 		</screen>
