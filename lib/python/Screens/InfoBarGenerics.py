@@ -69,7 +69,7 @@ class InfoBarVolumeControl:
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.volSave()
-		self.hideVolTimer.start(3000)
+		self.hideVolTimer.start(3000, True)
 
 	def	volDown(self):
 		if (eDVBVolumecontrol.getInstance().isMuted()):
@@ -78,7 +78,7 @@ class InfoBarVolumeControl:
 		self.volumeDialog.instance.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.volSave()
-		self.hideVolTimer.start(3000)
+		self.hideVolTimer.start(3000, True)
 		
 	def volHide(self):
 		self.volumeDialog.instance.hide()
@@ -119,7 +119,7 @@ class InfoBarShowHide:
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
-		self.hideTimer.start(5000)
+		self.hideTimer.start(5000, True)
 
 	def delHideTimer(self):
 		del self.hideTimer
@@ -129,8 +129,7 @@ class InfoBarShowHide:
 		
 	def show(self):
 		self.state = self.STATE_SHOWN
-		self.hideTimer.stop()
-		self.hideTimer.start(5000)
+		self.hideTimer.start(5000, True)
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
@@ -167,7 +166,7 @@ class NumberZap(Screen):
 		self.close(int(self["number"].getText()))
 
 	def keyNumberGlobal(self, number):
-		self.Timer.start(3000)		#reset timer
+		self.Timer.start(3000, True)		#reset timer
 		self.field = self.field + str(number)
 		self["number"].setText(self.field)
 		if len(self.field) >= 4:
@@ -199,7 +198,7 @@ class NumberZap(Screen):
 
 		self.Timer = eTimer()
 		self.Timer.timeout.get().append(self.keyOK)
-		self.Timer.start(3000)
+		self.Timer.start(3000, True)
 
 class InfoBarPowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -221,7 +220,7 @@ class InfoBarPowerKey:
 	
 	def powerdown(self):
 		self.standbyblocked = 0
-		self.powerKeyTimer.start(3000)
+		self.powerKeyTimer.start(3000, True)
 
 	def powerup(self):
 		self.powerKeyTimer.stop()
@@ -400,7 +399,7 @@ class InfoBarTuner:
 		self["ber_progress"] = ProgressBar()
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.updateTunerInfo)
-		self.timer.start(500)
+		self.timer.start(1000)
 
 	def calc(self,val):
 		if not val:
