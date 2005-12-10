@@ -12,7 +12,6 @@
 #include <list>
 
 #include <string>
-#include <lib/base/ringbuffer.h>
 #include <lib/base/elock.h>
 #include <lib/base/message.h>
 #include <lib/gdi/erect.h>
@@ -55,7 +54,7 @@ struct gOpcode
 		flip,
 		notify,
 		
-		end,shutdown
+		shutdown
 	} opcode;
 
 	gDC *dc;
@@ -135,6 +134,8 @@ struct gOpcode
 	} parm;
 };
 
+#define MAXSIZE 1024
+
 		/* gRC is the singleton which controls the fifo and dispatches commands */
 class gRC: public iObject, public Object
 {
@@ -142,34 +143,25 @@ DECLARE_REF(gRC);
 private:
 	friend class gPainter;
 	static gRC *instance;
-	
+
+#ifndef SYNC_PAINT
 	static void *thread_wrapper(void *ptr);
 	pthread_t the_thread;
+	pthread_mutex_t mutex;
+	pthread_cond_t cond;
+#endif
 	void *thread();
 
-	queueRingBuffer<gOpcode> queue;
-	
+	gOpcode queue[MAXSIZE];
+	int rp, wp;
+
 	eFixedMessagePump<int> m_notify_pump;
 	void recv_notify(const int &i);
 public:
-	eLock queuelock;
 	gRC();
 	virtual ~gRC();
 
-	void submit(const gOpcode &o)
-	{
-		static int collected=0;
-		queue.enqueue(o);
-		collected++;
-//		if (o.opcode==gOpcode::end||o.opcode==gOpcode::shutdown)
-		{
-			queuelock.unlock(collected);
-#ifdef SYNC_PAINT
-			thread();
-#endif
-			collected=0;
-		}
-	}
+	void submit(const gOpcode &o);
 
 	Signal0<void> notify;
 
