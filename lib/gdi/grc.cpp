@@ -1,5 +1,4 @@
 // for debugging use:
- #define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
@@ -10,25 +9,28 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
-#define MAXSIZE 1024
-
 #ifndef SYNC_PAINT
 void *gRC::thread_wrapper(void *ptr)
 {
-	nice(3);
 	return ((gRC*)ptr)->thread();
 }
 #endif
 
 gRC *gRC::instance=0;
 
-gRC::gRC(): queue(2048), m_notify_pump(eApp, 0), queuelock(MAXSIZE)
+gRC::gRC(): rp(0), wp(0)
+#ifdef SYNC_PAINT
+,m_notify_pump(eApp, 0)
+#else
+,m_notify_pump(eApp, 1)
+#endif
 {
 	ASSERT(!instance);
 	instance=this;
-	queuelock.lock(MAXSIZE);
 	CONNECT(m_notify_pump.recv_msg, gRC::recv_notify);
 #ifndef SYNC_PAINT
+	pthread_mutex_init(&mutex, 0);
+	pthread_cond_init(&cond, 0);
 	int res = pthread_create(&the_thread, 0, thread_wrapper, this);
 	if (res)
 		eFatal("RC thread couldn't be created");
@@ -53,30 +55,80 @@ gRC::~gRC()
 #endif
 }
 
+void gRC::submit(const gOpcode &o)
+{
+	while(1)
+	{
+#ifndef SYNC_PAINT
+		pthread_mutex_lock(&mutex);
+#endif
+		int tmp=wp;
+		tmp+=1;
+		if ( tmp == MAXSIZE )
+			tmp=0;
+		if ( tmp == rp )
+		{
+#ifndef SYNC_PAINT
+			pthread_mutex_unlock(&mutex);
+#else
+			thread();
+#endif
+			//printf("render buffer full...\n");
+			//fflush(stdout);
+			usleep(1000);  // wait 1 msec
+			continue;
+		}
+		int free=rp-wp;
+		if ( free <= 0 )
+			free+=MAXSIZE;
+		queue[wp++]=o;
+		if ( wp == MAXSIZE )
+			wp = 0;
+		if (o.opcode==gOpcode::flush||o.opcode==gOpcode::shutdown||o.opcode==gOpcode::notify)
+#ifndef SYNC_PAINT
+			pthread_cond_signal(&cond);  // wakeup gdi thread
+		pthread_mutex_unlock(&mutex);
+#else
+			thread(); // paint
+#endif
+		break;
+	}
+}
+
 void *gRC::thread()
 {
 	int need_notify = 0;
 #ifndef SYNC_PAINT
 	while (1)
-#else
-	while (queue.size())
-#endif
 	{
-		queuelock.lock(1);
-		gOpcode& o(queue.current());
-		if (o.opcode==gOpcode::shutdown)
-			break;
-		if (o.opcode==gOpcode::notify)
-			need_notify = 1;
-		else
-			o.dc->exec(&o);
-		o.dc->Release();
-		queue.dequeue();
-
-		if ((!queue.size()) && need_notify)
+		singleLock s(mutex);
+#else
+	while (rp != wp)
+	{
+#endif
+		if ( rp != wp )
 		{
-			need_notify = 0;
-			m_notify_pump.send(1);
+			gOpcode& o(queue[rp]);
+			if (o.opcode==gOpcode::shutdown)
+				break;
+			else if (o.opcode==gOpcode::notify)
+				need_notify = 1;
+			else
+				o.dc->exec(&o);
+			rp++;
+			if ( rp == MAXSIZE )
+				rp=0;
+		}
+		else
+		{
+			if (need_notify)
+			{
+				need_notify = 0;
+				m_notify_pump.send(1);
+			}
+#ifndef SYNC_PAINT
+			pthread_cond_wait(&cond, &mutex);
+#endif
 		}
 	}
 #ifndef SYNC_PAINT
