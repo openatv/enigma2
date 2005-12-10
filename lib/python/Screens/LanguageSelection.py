@@ -2,14 +2,17 @@ from Screen import Screen
 
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
+from Components.Language import language
 
 class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
 		self.list = []
-		self.list.append(("English", None))
-		self.list.append(("German", None))
+		list = language.getLanguageList()
+		for x in list:
+			self.list.append((x, None))
+
 		self["list"] = MenuList(self.list)
 		
 		self["actions"] = ActionMap(["OkCancelActions"], 
@@ -22,4 +25,4 @@ class LanguageSelection(Screen):
 		pass
 	
 	def run(self):
-		print "select the language here"
+		language.activateLanguage(self["list"].l.getCurrentSelectionIndex())
