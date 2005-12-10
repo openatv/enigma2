@@ -22,7 +22,8 @@ class LanguageSelection(Screen):
 		})
 		
 	def save(self):
-		pass
+		self.run()
+		self.close()
 	
 	def run(self):
 		language.activateLanguage(self["list"].l.getCurrentSelectionIndex())
