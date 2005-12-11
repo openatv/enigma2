@@ -12,10 +12,11 @@ class LanguageSelection(Screen):
 		Screen.__init__(self, session)
 		
 		self.list = []
-		list = language.getLanguageList()
-		for x in language.lang:
-			print x
-			self.list.append(LanguageEntryComponent(x[2], x[0]))
+		if len(language.lang) == 0: # no language available => display only english
+			self.list.append(LanguageEntryComponent("en", _("English")))
+		else:
+			for x in language.lang:
+				self.list.append(LanguageEntryComponent(x[2], x[0]))
 
 		self["list"] = LanguageList(self.list)
 		
