@@ -16,7 +16,8 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Components.config import configfile
-from Screens.Wizard import listActiveWizards
+from Screens.Wizard import wizardManager
+from Screens.StartWizard import *
 from Tools.BoundFunction import boundFunction
 
 had = dict()
@@ -177,7 +178,7 @@ def runScreenTest():
 	
 	session.nav = Navigation()
 	
-	screensToRun = listActiveWizards()
+	screensToRun = wizardManager.getWizards()
 	screensToRun.append(Screens.InfoBar.InfoBar)
 	
 	def runNextScreen(session, screensToRun, *result):
