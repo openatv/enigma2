@@ -18,7 +18,7 @@ RT_VALIGN_BOTTOM = 16
 
 def LanguageEntryComponent(file, name):
 	res = [ None ]
-	res.append((70, 0, 400, 30, 0, RT_HALIGN_LEFT, name))
+	res.append((70, 0, 400, 40, 0, RT_VALIGN_CENTER, name))
 	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/" + file + ".png"))
 	if png == None:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/missing.png"))
