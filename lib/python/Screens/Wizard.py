@@ -118,8 +118,12 @@ class WelcomeWizard(Screen, HelpableScreen):
 			#})
 
 	def ok(self):
+		print "OK"
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self.configInstance.run()
+			try: # don't die, if no run() is available
+				self.configInstance.run()
+			except:
+				print "Failed to run configInstance"
 		
 		if (len(self.wizard[self.currStep]["list"]) > 0):
 			nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
@@ -137,6 +141,8 @@ class WelcomeWizard(Screen, HelpableScreen):
 		else:
 			self.currStep += 1
 			self.updateValues()
+			
+		print "Now: " + str(self.currStep)
 
 	def keyNumberGlobal(self, number):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
@@ -154,23 +160,28 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 	def up(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self[self.currConfig].instance.moveSelection(self[self.currConfig].instance.moveUp)
+			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["config"].instance.moveUp)
 		print "up"
 		
 	def down(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self[self.currConfig].instance.moveSelection(self[self.currConfig].instance.moveDown)
+			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["config"].instance.moveDown)
 		print "down"
 		
 	def updateValues(self):
+		print "Updating values in step " + str(self.currStep)
 		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 		self["stepslider"].setValue(self.currStep)
 
 		self["text"].setText(self.wizard[self.currStep]["text"])
+
+		if self.wizard[self.currStep]["code"] != "":
+			print self.wizard[self.currStep]["code"]
+			exec(self.wizard[self.currStep]["code"])
 		
 		self["list"].instance.setZPosition(1)
 		self.list = []
@@ -182,25 +193,22 @@ class WelcomeWizard(Screen, HelpableScreen):
 
 		self["config"].instance.setZPosition(1)
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			if self.wizard[self.currStep]["config"]["type"] == "ConfigList":
-				self.currConfig = "config"
-			elif self.wizard[self.currStep]["config"]["type"] == "MenuList":
-				self.currConfig = "list"
-
-			self[self.currConfig].instance.setZPosition(2)
-			print self.wizard[self.currStep]["config"]["screen"]
-			if self.wizard[self.currStep]["config"]["args"] == None:
-				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+			if self.wizard[self.currStep]["config"]["type"] == "standalone":
+				print "Type is standalone"
+				self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
 			else:
-				self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
-			self[self.currConfig].l.setList(self.configInstance[self.currConfig].list)
-			self.configInstance[self.currConfig] = self[self.currConfig]
+				self["config"].instance.setZPosition(2)
+				print self.wizard[self.currStep]["config"]["screen"]
+				if self.wizard[self.currStep]["config"]["args"] == None:
+					self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+				else:
+					self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
+				self["config"].l.setList(self.configInstance["config"].list)
+				self.configInstance["config"] = self["config"]
 		else:
 			self["config"].l.setList([])
 
-		if self.wizard[self.currStep]["code"] != "":
-			print self.wizard[self.currStep]["code"]
-			exec(self.wizard[self.currStep]["code"])
+
 
 def listActiveWizards():
 	wizards = [ ]
