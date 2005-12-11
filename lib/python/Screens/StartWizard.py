@@ -1,6 +1,7 @@
 from Wizard import Wizard, wizardManager
 
 from Components.Pixmap import *
+from LanguageSelection import LanguageSelection
 
 class StartWizard(Wizard):
 	skin = """
@@ -24,4 +25,5 @@ class StartWizard(Wizard):
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		
+wizardManager.registerWizard(LanguageSelection)
 wizardManager.registerWizard(StartWizard)
