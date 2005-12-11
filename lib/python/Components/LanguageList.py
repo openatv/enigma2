@@ -1,0 +1,40 @@
+from HTMLComponent import *
+from GUIComponent import *
+
+from MenuList import MenuList
+
+from enigma import *
+
+RT_HALIGN_LEFT = 0
+RT_HALIGN_RIGHT = 1
+RT_HALIGN_CENTER = 2
+RT_HALIGN_BLOCK = 4
+
+RT_VALIGN_TOP = 0
+RT_VALIGN_CENTER = 8
+RT_VALIGN_BOTTOM = 16
+
+def LanguageEntryComponent(file, name):
+	res = [ None ]
+	res.append((70, 0, 400, 30, 0, RT_HALIGN_LEFT, name))
+	png = loadPNG("/usr/share/enigma2/countries/" + file + ".png")
+	if png == None:
+		png = loadPNG("/usr/share/enigma2/countries/missing.png")
+	res.append((0, 5, 60, 40, png))
+	
+	return res
+
+
+class LanguageList(HTMLComponent, GUIComponent, MenuList):
+	def __init__(self, list):
+		GUIComponent.__init__(self)
+		self.l = eListboxPythonMultiContent()
+		self.list = list
+		self.l.setList(list)
+		self.l.setFont(0, gFont("Arial", 25))
+	
+	def GUIcreate(self, parent):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+		self.instance.setItemHeight(50)
+

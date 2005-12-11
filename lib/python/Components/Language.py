@@ -11,7 +11,7 @@ class Language:
 
 	def addLanguage(self, name, lang):
 		try:
-			self.lang.append((_(name), gettext.translation('enigma2', '/enigma2/po', languages=[lang])))
+			self.lang.append((_(name), gettext.translation('enigma2', '/enigma2/po', languages=[lang]), lang))
 		except:
 			print "Language " + str(name) + " not found"
 
