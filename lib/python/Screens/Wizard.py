@@ -14,19 +14,7 @@ from xml.sax.handler import ContentHandler
 
 config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
 
-class WelcomeWizard(Screen, HelpableScreen):
-
-	skin = """
-		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="50,100" size="440,200" font="Arial;23" />
-			<widget name="list" position="50,300" zPosition="1" size="440,200" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
-			<widget name="step" position="50,50" size="440,25" font="Arial;23" />
-			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
-			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
-			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-		</screen>"""
+class Wizard(Screen, HelpableScreen):
 
 	class parseWizard(ContentHandler):
 		def __init__(self, wizard):
@@ -61,25 +49,20 @@ class WelcomeWizard(Screen, HelpableScreen):
 				 self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 				
 	def __init__(self, session):
-		self.skin = WelcomeWizard.skin
-
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
 		self.wizard = {}
 		parser = make_parser()
-		print "Reading startwizard.xml"
+		print "Reading " + self.xmlfile
 		wizardHandler = self.parseWizard(self.wizard)
 		parser.setContentHandler(wizardHandler)
-		parser.parse('/usr/share/enigma2/startwizard.xml')
+		parser.parse('/usr/share/enigma2/' + self.xmlfile)
 		
 		self.numSteps = len(self.wizard)
 		self.currStep = 1
 
 		self["text"] = Label()
-		self["rc"] = MovingPixmap()
-		self["arrowdown"] = MovingPixmap()
-		self["arrowup"] = MovingPixmap()
 
 		self["config"] = ConfigList([])
 
@@ -208,12 +191,17 @@ class WelcomeWizard(Screen, HelpableScreen):
 		else:
 			self["config"].l.setList([])
 
-
-
-def listActiveWizards():
-	wizards = [ ]
-
-	if config.misc.firstrun.value:
-		wizards.append(WelcomeWizard)
+class WizardManager:
+	def __init__(self):
+		self.wizards = []
 	
-	return wizards
+	def registerWizard(self, wizard):
+		self.wizards.append(wizard)
+	
+	def getWizards(self):
+		if config.misc.firstrun.value:
+			return self.wizards
+		else:
+			return []
+
+wizardManager = WizardManager()
