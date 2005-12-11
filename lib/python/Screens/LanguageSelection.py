@@ -15,13 +15,13 @@ class LanguageSelection(Screen):
 		self["list"] = LanguageList(self.list)
 		self.updateList()
 		
-		self["actions"] = ActionMap(["ListboxActions", "OkCancelActions"], 
+		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.save,
-			"cancel": self.close,
-			"moveUp": self.up,
-			"moveDown": self.down
-		})
+			"back": self.close,
+			"up": self.up,
+			"down": self.down
+		}, -1)
 		
 	def save(self):
 		self.run()
@@ -43,7 +43,11 @@ class LanguageSelection(Screen):
 		self["list"].l.setList(self.list)
 		
 	def up(self):
-		print "up"
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self.run()
+		self.updateList()
 		
 	def down(self):
-		print "down"
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self.run()
+		self.updateList()
