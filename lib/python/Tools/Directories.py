@@ -17,8 +17,8 @@ defaultPaths = {
 		SCOPE_FONTS: ("/usr/share/fonts/", PATH_DONTCREATE),
 		SCOPE_CONFIG: ("/etc/enigma2/", PATH_CREATE),
 
-		SCOPE_SKIN: ("/usr/share/tuxbox/enigma2/", PATH_DONTCREATE),
-		SCOPE_SKIN_IMAGE: ("/usr/share/tuxbox/enigma2/", PATH_DONTCREATE),
+		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
+		SCOPE_SKIN_IMAGE: ("/usr/share/enigma2/", PATH_DONTCREATE),
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
 	}

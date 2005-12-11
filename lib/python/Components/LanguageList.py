@@ -3,6 +3,8 @@ from GUIComponent import *
 
 from MenuList import MenuList
 
+from Tools.Directories import *
+
 from enigma import *
 
 RT_HALIGN_LEFT = 0
@@ -17,9 +19,9 @@ RT_VALIGN_BOTTOM = 16
 def LanguageEntryComponent(file, name):
 	res = [ None ]
 	res.append((70, 0, 400, 30, 0, RT_HALIGN_LEFT, name))
-	png = loadPNG("/usr/share/enigma2/countries/" + file + ".png")
+	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/" + file + ".png"))
 	if png == None:
-		png = loadPNG("/usr/share/enigma2/countries/missing.png")
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/missing.png"))
 	res.append((0, 5, 60, 40, png))
 	
 	return res
