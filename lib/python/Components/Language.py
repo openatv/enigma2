@@ -1,6 +1,8 @@
 import gettext
 import os
 
+from Tools.Directories import *
+
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', '/enigma2/po')
@@ -11,7 +13,7 @@ class Language:
 
 	def addLanguage(self, name, lang):
 		try:
-			self.lang.append((_(name), gettext.translation('enigma2', '/enigma2/po', languages=[lang]), lang))
+			self.lang.append((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang))
 		except:
 			print "Language " + str(name) + " not found"
 

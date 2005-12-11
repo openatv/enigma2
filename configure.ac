@@ -60,5 +60,6 @@ lib/python/Screens/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
+po/Makefile
 main/Makefile
 ])

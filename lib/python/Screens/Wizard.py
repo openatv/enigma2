@@ -29,7 +29,7 @@ class Wizard(Screen, HelpableScreen):
 				self.lastStep = int(attrs.get('number'))
 				self.wizard[self.lastStep] = {"text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": ""}
 			elif (name == "text"):
-				self.wizard[self.lastStep]["text"] = str(attrs.get('value'))
+				self.wizard[self.lastStep]["text"] = _(str(attrs.get('value')))
 			elif (name == "listentry"):
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif (name == "config"):
@@ -160,7 +160,7 @@ class Wizard(Screen, HelpableScreen):
 		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 		self["stepslider"].setValue(self.currStep)
 
-		self["text"].setText(self.wizard[self.currStep]["text"])
+		self["text"].setText(_(self.wizard[self.currStep]["text"]))
 
 		if self.wizard[self.currStep]["code"] != "":
 			print self.wizard[self.currStep]["code"]

@@ -7,6 +7,7 @@ SCOPE_SKIN = 3
 SCOPE_SKIN_IMAGE = 4
 SCOPE_USERETC = 5
 SCOPE_CONFIG = 6
+SCOPE_LANGUAGE = 7
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -16,6 +17,8 @@ defaultPaths = {
 		SCOPE_SYSETC: ("/etc/", PATH_DONTCREATE),
 		SCOPE_FONTS: ("/usr/share/fonts/", PATH_DONTCREATE),
 		SCOPE_CONFIG: ("/etc/enigma2/", PATH_CREATE),
+					    
+		SCOPE_LANGUAGE: ("/usr/share/enigma2/po/", PATH_CREATE),
 
 		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
 		SCOPE_SKIN_IMAGE: ("/usr/share/enigma2/", PATH_DONTCREATE),
