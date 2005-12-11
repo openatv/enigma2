@@ -4,7 +4,7 @@ from Screens.MovieSelection import MovieSelection
 from Screens.MessageBox import MessageBox
 
 from Components.Clock import Clock
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ServicePosition import ServicePosition
 
 from Tools.Notifications import AddNotificationWithCallback
@@ -30,9 +30,9 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap( [ "InfobarActions" ],
+		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
-				"showMovies": self.showMovies,
+				"showMovies": (self.showMovies, _("Play recorded movies..."))
 			})
 		
 		for x in HelpableScreen, \
@@ -60,9 +60,9 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
 		
-		self["actions"] = ActionMap( [ "MoviePlayerActions" ],
+		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": self.leavePlayer
+				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 		
 		for x in HelpableScreen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarPVR, InfoBarAudioSelection, InfoBarNotifications:
