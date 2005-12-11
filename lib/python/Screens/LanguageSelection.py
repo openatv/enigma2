@@ -4,6 +4,7 @@ from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.LanguageList import *
+from Components.config import config
 
 
 class LanguageSelection(Screen):
@@ -23,7 +24,6 @@ class LanguageSelection(Screen):
 			"ok": self.save,
 			"cancel": self.close
 		})
-		print "INIT LANGUAGESELECTION"
 		
 	def save(self):
 		self.run()
@@ -31,3 +31,5 @@ class LanguageSelection(Screen):
 	
 	def run(self):
 		language.activateLanguage(self["list"].l.getCurrentSelectionIndex())
+		config.osd.language.value = self["list"].l.getCurrentSelectionIndex()
+		config.osd.language.save()
