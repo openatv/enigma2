@@ -151,14 +151,14 @@ class Wizard(Screen, HelpableScreen):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
-			self["list"].instance.moveSelection(self["config"].instance.moveUp)
+			self["list"].instance.moveSelection(self["list"].instance.moveUp)
 		print "up"
 		
 	def down(self):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 		elif (len(self.wizard[self.currStep]["list"]) > 0):
-			self["list"].instance.moveSelection(self["config"].instance.moveDown)
+			self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		print "down"
 		
 	def updateValues(self):
