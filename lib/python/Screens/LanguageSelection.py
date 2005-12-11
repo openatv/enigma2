@@ -17,7 +17,7 @@ class LanguageSelection(Screen):
 		else:
 			for x in language.lang:
 				self.list.append(LanguageEntryComponent(x[2], x[0]))
-
+		
 		self["list"] = LanguageList(self.list)
 		
 		self["actions"] = ActionMap(["OkCancelActions"], 

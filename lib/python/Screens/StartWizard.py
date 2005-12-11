@@ -14,6 +14,7 @@ class StartWizard(Wizard):
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowup2" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 		</screen>"""
 	
 	def __init__(self, session):
@@ -24,6 +25,7 @@ class StartWizard(Wizard):
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
+		self["arrowup2"] = MovingPixmap()
 		
 wizardManager.registerWizard(LanguageSelection)
 wizardManager.registerWizard(StartWizard)

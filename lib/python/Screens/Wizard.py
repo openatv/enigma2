@@ -78,7 +78,7 @@ class Wizard(Screen, HelpableScreen):
 		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
 		{
 			"ok": self.ok,
-			#"cancel": self.keyCancel,
+			"back": self.back,
 			"left": self.left,
 			"right": self.right,
 			"up": self.up,
@@ -100,6 +100,12 @@ class Wizard(Screen, HelpableScreen):
 				#"ok": (self.ok, _("Close this Screen...")),
 			#})
 
+	def back(self):
+		self.currStep -= 1
+		if self.currStep < 1:
+			self.currStep = 1
+		self.updateValues()
+		
 	def ok(self):
 		print "OK"
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
@@ -171,7 +177,7 @@ class Wizard(Screen, HelpableScreen):
 		if (len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.setZPosition(2)
 			for x in self.wizard[self.currStep]["list"]:
-				self.list.append((x[0], None))
+				self.list.append((_(x[0]), None))
 		self["list"].l.setList(self.list)
 
 		self["config"].instance.setZPosition(1)

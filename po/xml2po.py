@@ -14,6 +14,10 @@ class parseXML(ContentHandler):
 			attrlist[attrs.get('text', "")] = "foo"
 		if (attrs.has_key('title')):
 			attrlist[attrs.get('title', "")] = "foo"
+		if (attrs.has_key('value')):
+			attrlist[attrs.get('value', "")] = "foo"
+		if (attrs.has_key('caption')):
+			attrlist[attrs.get('caption', "")] = "foo"
 
 parser = make_parser()
 

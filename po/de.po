@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-11 05:05+0100\n"
+"POT-Creation-Date: 2005-12-11 23:54+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -181,7 +181,7 @@ msgid "EndTime"
 msgstr "Endzeit"
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:9
+#: ../lib/python/Components/Language.py:11
 msgid "English"
 msgstr "Englisch"
 
@@ -208,7 +208,7 @@ msgid "Gateway"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:10
+#: ../lib/python/Components/Language.py:12
 msgid "German"
 msgstr "Deutsch"
 
@@ -290,6 +290,10 @@ msgstr "Keins"
 #: ../lib/python/Components/NimManager.py:433
 msgid "North"
 msgstr "Nord"
+
+#: ../lib/python/Screens/InfoBar.py:35
+msgid "Play recorded movies..."
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
@@ -377,7 +381,7 @@ msgstr "Aufnahme beginnen?"
 msgid "StartTime"
 msgstr "Startzeit"
 
-#: ../lib/python/Screens/Wizard.py:160
+#: ../lib/python/Screens/Wizard.py:166
 msgid "Step "
 msgstr ""
 
@@ -447,6 +451,9 @@ msgid ""
 "Please refer to the user-manual.\n"
 "Error: "
 msgstr ""
+"Konnte Festplatte nicht initialisieren..\n"
+"Bitte lesen Sie im Handbuch nach.\n"
+"Fehler: "
 
 #: ../lib/python/Screens/NetworkSetup.py:40
 #: ../lib/python/Screens/NetworkSetup.py:52 ../data/
@@ -484,6 +491,10 @@ msgstr "leer/unbekannt"
 
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "horizontal"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBar.py:65
+msgid "leave movie player..."
 msgstr ""
 
 #: ../lib/python/Components/NimManager.py:429
@@ -553,7 +564,7 @@ msgstr "Status"
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
-#: ../lib/python/Screens/Wizard.py:163
+#: ../lib/python/Screens/Wizard.py:169
 msgid "text"
 msgstr ""
 
@@ -629,6 +640,8 @@ msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
+"Mit den hoch/runter Tasten koennen Sie eine Option auswaehlen. Danach bitte "
+"OK druecken."
 
 #: ../data/
 msgid "Show Satposition"
@@ -643,8 +656,8 @@ msgid "#000000"
 msgstr ""
 
 #: ../data/
-msgid "Thanx for using the wizard. Your box is now ready to use."
-msgstr ""
+msgid "Use wizard to set up basic features"
+msgstr "Grundeinstellungen jetzt vornehmen"
 
 #: ../data/
 msgid "Sat / Dish Setup"
@@ -831,6 +844,10 @@ msgid "LCD Setup"
 msgstr "LCD Einstellung"
 
 #: ../data/
+msgid "No, scan later manually"
+msgstr ""
+
+#: ../data/
 msgid "Soundcarrier"
 msgstr "Tontraeger"
 
@@ -853,10 +870,6 @@ msgstr "Wiederholung"
 #: ../data/
 msgid "Network Setup"
 msgstr "Netzwerkeinstellungen"
-
-#: ../data/
-msgid "Please set up tuner A"
-msgstr ""
 
 #: ../data/
 msgid "#ffffffff"
@@ -891,6 +904,10 @@ msgid "InfoBar"
 msgstr ""
 
 #: ../data/
+msgid "Exit wizard"
+msgstr "Assistenten beenden"
+
+#: ../data/
 msgid "Serviceinfo"
 msgstr ""
 
@@ -911,6 +928,10 @@ msgid "Plugins"
 msgstr "Erweiterungen"
 
 #: ../data/
+msgid "Yes, scan now"
+msgstr ""
+
+#: ../data/
 msgid "Information"
 msgstr "Informationen"
 
@@ -920,7 +941,7 @@ msgstr "Menue"
 
 #: ../data/
 msgid "Please set up tuner B"
-msgstr ""
+msgstr "Einstellungen fuer Tuner B."
 
 #: ../data/
 msgid "Networksetup"
@@ -949,6 +970,16 @@ msgstr "Experteneinstellungen"
 #: ../data/
 msgid "Language"
 msgstr "Sprache"
+
+#: ../data/
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Mit den recht-/links-Tasten koennen Sie Optionen aendern.\n"
+"\n"
+"Einstellungen fuer Tuner A"
 
 #: ../data/
 msgid "Parental Control"
@@ -1006,6 +1037,11 @@ msgid ""
 "\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Willkommen auf Ihrer DM7025.\n"
+"\n"
+"This start-wizard will guide you through the basic setup of your Dreambox.\n"
+"\n"
+"Press the OK button on your remote control to move to the next step."
 
 #: ../data/
 msgid "Audio"
@@ -1020,33 +1056,9 @@ msgid "Do you want to do a service scan?"
 msgstr ""
 
 #: ../data/
+msgid "Thanx for using the wizard. Your box is now ready to use."
+msgstr ""
+
+#: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
-
-#~ msgid "Linked to"
-#~ msgstr "Verbunden mit"
-
-#~ msgid "Linked tuner"
-#~ msgstr "Verbundene Tuner"
-
-#~ msgid ""
-#~ "Welcome!\n"
-#~ "\n"
-#~ "You can always press the help key!\n"
-#~ "\n"
-#~ "Please Note: Do a service search first!"
-#~ msgstr ""
-#~ "Willkommen!\n"
-#~ "\n"
-#~ "Sie koennen jederzeit auf Help (Hilfe) druecken!\n"
-#~ "\n"
-#~ "Bitte zuerst eine Kanalsuche durchfuehren!"
-
-#~ msgid "waiting for event data..."
-#~ msgstr "warte auf Programmdaten..."
-
-#~ msgid "Expert"
-#~ msgstr "Experten"
-
-#~ msgid "Advanced"
-#~ msgstr "Erweitert"
