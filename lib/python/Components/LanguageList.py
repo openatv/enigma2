@@ -18,11 +18,11 @@ RT_VALIGN_BOTTOM = 16
 
 def LanguageEntryComponent(file, name):
 	res = [ None ]
-	res.append((70, 0, 400, 40, 0, RT_VALIGN_CENTER, name))
+	res.append((80, 10, 200, 50, 0, RT_HALIGN_LEFT , name))
 	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/" + file + ".png"))
 	if png == None:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/missing.png"))
-	res.append((0, 5, 60, 40, png))
+	res.append((10, 5, 60, 40, png))
 	
 	return res
 
@@ -33,7 +33,7 @@ class LanguageList(HTMLComponent, GUIComponent, MenuList):
 		self.l = eListboxPythonMultiContent()
 		self.list = list
 		self.l.setList(list)
-		self.l.setFont(0, gFont("Arial", 25))
+		self.l.setFont(0, gFont("Arial", 20))
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)

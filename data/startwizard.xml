@@ -2,9 +2,11 @@
 		<step number="1">
 			<text value="Hello User.\n\nThis start-wizard will guide you through the basic setup of your Dreambox.\n\nPress the OK button on your remote control to move to the next step." />
 			<code>
-self["arrowdown"].moveTo(557, 232, 10)
-self["rc"].moveTo(500, 50, 10)		
+self["arrowdown"].moveTo(557, 232, 1)
 self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 			</code>
 		</step>
@@ -15,34 +17,39 @@ self["rc"].startMoving()
 				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
-self["arrowdown"].moveTo(557, 200, 10)
-self["arrowup"].moveTo(557, 355, 10)
+self["arrowdown"].moveTo(557, 200, 1)
+self["arrowup"].moveTo(557, 355, 1)
 self["arrowdown"].startMoving()
 self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
 			</code>
 		</step>
 		<step number="3">
-			<text value="Please set up tuner A" />
+			<text value="Use the left and right buttons to change an option.\n\nPlease set up tuner A" />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
-self["arrowup"].moveTo(740, 355, 10)
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(525, 320, 1)
 self["arrowup"].startMoving()
-self["arrowdown"].clearPath(True)
-self["arrowdown"].addMovePoint(510, 300, 10)
-self["arrowdown"].addMovePoint(610, 300, 10)
+self["arrowup2"].moveTo(590, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
+
 			</code>
 		</step>
 		<step number="4">
 			<text value="Please set up tuner B" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 			<code>
-self["arrowup"].moveTo(740, 355, 10)
+self["rc"].moveTo(800, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(800, 310, 1)
 self["arrowup"].startMoving()
-self["arrowdown"].clearPath(True)
-self["arrowdown"].addMovePoint(510, 300, 10)
-self["arrowdown"].addMovePoint(610, 300, 10)
-self["arrowdown"].startMoving()
+self["arrowup2"].moveTo(800, 310, 1)
+self["arrowup2"].startMoving()
 			</code>
 		</step>
 		<step number="5">
@@ -55,24 +62,8 @@ self["arrowdown"].startMoving()
 		<step number="6">
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
-			<code>
-self["arrowup"].moveTo(740, 355, 10)
-self["arrowup"].startMoving()
-self["arrowdown"].clearPath(True)
-self["arrowdown"].addMovePoint(510, 300, 10)
-self["arrowdown"].addMovePoint(610, 300, 10)
-self["arrowdown"].startMoving()
-			</code>
 		</step>
 		<step number="7">
 			<text value="Thanx for using the wizard. Your box is now ready to use." />
-			<code>
-self["arrowdown"].moveTo(740, 200, 10)
-self["arrowup"].moveTo(740, 355, 10)
-self["arrowdown"].startMoving()
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 600, 5)
-self["rc"].startMoving()
-			</code>
 		</step>	
 </wizard>
