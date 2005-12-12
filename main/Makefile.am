@@ -17,7 +17,6 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/gui/libenigma_gui.a \
 	$(top_builddir)/lib/python/libenigma_python.a \
 	$(top_builddir)/lib/nav/libenigma_nav.a \
-	$(top_builddir)/lib/network/libenigma_network.a \
 	$(top_builddir)/lib/service/libenigma_service.a
 
 enigma2_LDADD = \
