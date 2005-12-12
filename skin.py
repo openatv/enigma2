@@ -130,6 +130,12 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setBorderColor(parseColor(value))
 		elif attrib == "borderWidth":
 			guiObject.setBorderWidth(int(value))
+		elif attrib == "scrollbarMode":
+			guiObject.setScrollbarMode(
+				{ "showOnDemand": guiObject.showOnDemand,
+					"showAlways": guiObject.showAlways,
+					"showNever": guiObject.showNever
+				}[value])
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:
