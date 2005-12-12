@@ -477,6 +477,10 @@ class InfoBarPVR:
 		self.seekTimer = eTimer()
 		self.seekTimer.timeout.get().append(self.seekTimerFired)
 		self.skipinterval = 500 # 500ms skip interval
+		self.onClose.append(self.delSeekTimer)
+	
+	def delSeekTimer(self):
+		del self.seekTimer
 	
 	def seekTimerFired(self):
 		if self.skipmode > 0:
