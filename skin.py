@@ -126,6 +126,10 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setSelectionEnable(0)
 		elif attrib == "transparent":
 			guiObject.setTransparent(int(value))
+		elif attrib == "borderColor":
+			guiObject.setBorderColor(parseColor(value))
+		elif attrib == "borderWidth":
+			guiObject.setBorderWidth(int(value))
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:

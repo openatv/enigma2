@@ -12,6 +12,8 @@ public:
 	void setRange(int min, int max);
 	enum { orHorizontal, orVertical };
 	void setOrientation(int orientation);
+	void setBorderWidth(int pixel);
+	void setBorderColor(const gRGB &color);
 protected:
 	int event(int event, void *data=0, void *data2=0);
 private:
@@ -19,9 +21,11 @@ private:
 	{
 		evtChangedSlider = evtUserWidget
 	};
-	int m_min, m_max, m_value, m_start, m_orientation;
+	bool m_have_border_color;
+	int m_min, m_max, m_value, m_start, m_orientation, m_border_width;
 	
 	gRegion m_currently_filled;
+	gRGB m_border_color;
 };
 
 #endif
