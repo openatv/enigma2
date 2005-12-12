@@ -1008,10 +1008,25 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	{
 		if (!t)
 			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
-
-		timeMap::iterator i = It->second.second.lower_bound(t);
-		if ( i != It->second.second.end() && t <= i->first+i->second->getDuration() )
+		timeMap::iterator i = It->second.second.lower_bound(t);  // find > or equal
+		if ( i != It->second.second.end() )
 		{
+			if ( i->second->getStartTime() != t )
+			{
+				timeMap::iterator x = i;
+				--x;
+				if ( x != It->second.second.end() )
+				{
+					time_t start_time = x->second->getStartTime();
+					if (t < start_time)
+						return -1;
+					if (t > (start_time+x->second->getDuration()))
+						return -1;
+					i = x;
+				}
+				else
+					return -1;
+			}
 			result = i->second;
 			return 0;
 		}
