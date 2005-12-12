@@ -1,4 +1,5 @@
 // for debugging use:
+// #define SYNC_PAINT
 #include <unistd.h>
 #ifndef SYNC_PAINT
 #include <pthread.h>
