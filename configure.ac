@@ -53,7 +53,6 @@ lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
 lib/nav/Makefile
-lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Screens/Makefile
