@@ -149,10 +149,9 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 	return 0;
 }
 
-RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr)
+RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time)
 {
-	time_t t=-1;
-	return eEPGCache::getInstance()->lookupEventTime(ref, t, ptr);
+	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
 }
 
 bool eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
