@@ -10,7 +10,7 @@ class StartWizard(Wizard):
 			<widget name="list" position="50,300" zPosition="1" size="440,200" />
 			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
 			<widget name="step" position="50,50" size="440,25" font="Arial;23" />
-			<widget name="stepslider" position="50,500" zPosition="1" size="440,20" backgroundColor="dark" />
+			<widget name="stepslider" position="50,500" zPosition="1" borderWidth="1" size="440,20" backgroundColor="dark" />
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
