@@ -31,6 +31,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.timer = None
 		self.record_service = None
 		self.wantStart = False
+		self.prepareOK = False
 		
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
