@@ -56,6 +56,10 @@ void eListbox::moveSelection(int dir)
 		/* refuse to do anything without a valid list. */
 	if (!m_content)
 		return;
+	
+		/* if our list does not have one entry, don't do anything. */
+	if (!m_items_per_page)
+		return;
 		
 		/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
@@ -120,13 +124,18 @@ void eListbox::moveSelection(int dir)
 
 	while (m_selected < m_top)
 	{
+		eDebug("%d < %d", m_selected, m_top);
 		m_top -= m_items_per_page;
 		if (m_top < 0)
 			m_top = 0;
 	}
+	
 	while (m_selected >= m_top + m_items_per_page)
+	{
+		eDebug("%d >= %d + %d", m_selected, m_top, m_items_per_page);
 		/* m_top should be always valid here as it's selected */
 		m_top += m_items_per_page;
+	}
 
 	if (m_top != oldtop)
 		invalidate();
@@ -139,6 +148,9 @@ void eListbox::moveSelection(int dir)
 		
 		invalidate(inv);
 	}
+
+	if (m_scrollbar_mode != showNever)
+		updateScrollBar();
 }
 
 void eListbox::moveSelectionTo(int index)
@@ -212,9 +224,6 @@ int eListbox::event(int event, void *data, void *data2)
 			return 0;
 		
 		gPainter &painter = *(gPainter*)data2;
-		
-		if (m_scrollbar_mode != showNever)
-			updateScrollBar();
 		
 		m_content->cursorSave();
 		m_content->cursorMove(m_top - m_selected);
@@ -329,5 +338,6 @@ void eListbox::entryReset()
 		m_content->cursorHome();
 	m_top = 0;
 	m_selected = 0;
+	moveSelection(justCheck);
 	invalidate();
 }
