@@ -427,9 +427,9 @@ def InitNimManager(nimmgr):
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
 			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (_("USALS"), _("manual")));
-			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,100),(0,999)]));
+			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (_("East"), _("West")))
-			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,100),(0,999)]));
+			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (_("North"), _("South")))
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []

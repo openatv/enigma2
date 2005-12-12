@@ -213,13 +213,26 @@ class configSequence:
 			self.markedPos += 1
 		
 		if key >= config.key["0"] and key <= config.key["9"]:
+			self.blockLen = []
+			for x in self.valueBounds:
+				self.blockLen.append(len(str(x[1])))
+				
+			pos = 0
+			blocknumber = 0
+			self.blockLenTotal = [0,]
+			for x in self.blockLen:
+				pos += self.blockLen[blocknumber]
+				self.blockLenTotal.append(pos)
+				if (pos - 1 >= self.markedPos):
+					pass
+				else:
+					blocknumber += 1
+					
 			number = 9 - config.key["9"] + key
 			# length of numberblock
-			numberLen = len(str(self.valueBounds[0][1]))
+			numberLen = len(str(self.valueBounds[blocknumber][1]))
 			# position in the block
-			posinblock = self.markedPos % numberLen
-			# blocknumber
-			blocknumber = self.markedPos / numberLen
+			posinblock = self.markedPos - self.blockLenTotal[blocknumber]
 			
 			oldvalue = self.parent.value[blocknumber]
 			olddec = oldvalue % 10 ** (numberLen - posinblock) - (oldvalue % 10 ** (numberLen - posinblock - 1))
