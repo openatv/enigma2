@@ -1136,12 +1136,19 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		if ( begin != -1 )
 		{
 			m_timemap_cursor = It->second.second.lower_bound(begin);
-			if ( m_timemap_cursor != It->second.second.end() && m_timemap_cursor != It->second.second.begin() )
+			if ( m_timemap_cursor != It->second.second.end() )
 			{
-				timeMap::iterator it = m_timemap_cursor;
-				--it;
-				if ( (it->second->getStartTime() + it->second->getDuration()) > begin )
-					m_timemap_cursor = it;
+				if ( m_timemap_cursor->second->getStartTime() != begin )
+				{
+					timeMap::iterator x = m_timemap_cursor;
+					--x;
+					if ( x != It->second.second.end() )
+					{
+						time_t start_time = x->second->getStartTime();
+						if ( begin > start_time && begin < (start_time+x->second->getDuration()))
+							m_timemap_cursor = x;
+					}
+				}
 			}
 		}
 		else
