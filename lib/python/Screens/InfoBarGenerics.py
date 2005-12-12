@@ -39,7 +39,7 @@ class InfoBarVolumeControl:
 	a corresponding dialog"""
 	def __init__(self):
 		config.audio = ConfigSubsection()
-		config.audio.volume = configElement("config.audio.volume", configSequence, [5], configsequencearg.get("INTEGER", (0, 100)))
+		config.audio.volume = configElement("config.audio.volume", configSequence, [100], configsequencearg.get("INTEGER", (0, 100)))
 
 		self["VolumeActions"] = ActionMap( ["InfobarVolumeActions"] ,
 			{
