@@ -120,12 +120,10 @@ class Network:
 		#self.writeNetworkConfig()		
 
 	def getCurrentIP(self):
-		ip = [0, 0, 0, 0]
-		try:
-			print gethostbyname(gethostname())
-			ip = gethostbyname(gethostname()).split('.')
-		except:
-			print "[Network.py] Could not get current ip (not necessarily an error)"
+		ip = [0,0,0,0]
+		for x in os.popen("ifconfig eth0 | grep 'inet addr:'", "r").readline().split(' '):
+			if x.split(':')[0] == "addr":
+				ip = x.split(':')[1].split('.')
 		print "[Network.py] got ip " + str(ip)
 		return ip
 
