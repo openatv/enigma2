@@ -4,7 +4,8 @@
 #include <lib/actions/action.h>
 
 eListbox::eListbox(eWidget *parent)
-	:eWidget(parent), m_prev_scrollbar_page(-1), m_content_changed(false), m_scrollbar(NULL)
+	:eWidget(parent), m_prev_scrollbar_page(-1), m_content_changed(false)
+	, m_scrollbar(NULL), m_scrollbar_mode(showNever)
 {
 	setContent(new eListboxStringContent());
 
@@ -149,8 +150,6 @@ void eListbox::moveSelectionTo(int index)
 
 void eListbox::updateScrollBar()
 {
-	if (!m_scrollbar)
-		return;
 	int entries = m_content->size();
 	if ( m_content_changed )
 	{
