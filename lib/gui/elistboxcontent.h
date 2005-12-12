@@ -85,6 +85,7 @@ public:
 	int getCurrentSelectionIndex() { return m_cursor; }
 	void invalidateEntry(int index);
 	void invalidate();
+	eSize getItemSize() { return m_itemsize; }
 #ifndef SWIG
 protected:
 	void cursorHome();

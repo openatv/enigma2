@@ -224,7 +224,7 @@ public:
 	
 	// iStaticServiceInformation
 	RESULT getName(const eServiceReference &ref, std::string &name);
-	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 	bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 
 		/* for filtering: */

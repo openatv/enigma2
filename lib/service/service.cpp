@@ -133,7 +133,7 @@ RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInfor
 
 #include <lib/service/event.h>
 
-RESULT iStaticServiceInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt)
+RESULT iStaticServiceInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
 {
 	evt = 0;
 	return -1;
