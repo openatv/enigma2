@@ -39,7 +39,7 @@
 		<screen name="Menu" position="210,150" size="300,235" title="Main menu">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
 			<!--<widget name="menu" position="10,55" size="280,150" font="Arial;23" />-->
-			<widget name="menu" position="10,55" size="280,175"/>
+			<widget name="menu" position="10,55" size="280,175" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -47,10 +47,10 @@
 			<widget name="infolist" position="20,10" size="360,325" selectionDisabled="1"/>
 		</screen>
 		<screen name="AudioSelection" position="210,150" size="300,170" title="Audio">
-			<widget name="tracks" position="20,10" size="260,150" />
+			<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
 		</screen>
-		<screen name="SubserviceSelection" position="210,150" size="300,320" title="Subservices">
-			<widget name="subservices" position="20,10" size="260,300" />
+		<screen name="SubserviceSelection" position="210,150" size="300,250" title="Subservices">
+			<widget name="subservices" position="20,10" size="260,300" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="HarddiskWait" position="140,165" size="360,60">
 			<widget name="wait" position="20,10" size="320,25" font="Arial;23"/>
@@ -66,12 +66,12 @@
 		</screen>
 		<screen name="Setup" position="100,125" size="540,280" title="Setup">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
-			<widget name="config" position="10,50" size="520,175" />
+			<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
 			<widget name="ok" position="140,240" size="38,20" font="Arial;20" backgroundColor="green" />
 			<widget name="cancel" position="240,240" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
 		<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
-			<widget name="list" position="10,0" size="190,240" />
+			<widget name="list" position="10,0" size="190,240" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="NimSelection" position="140,165" size="400,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,75" />
@@ -85,22 +85,22 @@
 		<screen name="CiMmi" position="140,165" size="360,260">
 			<widget name="title" position="10,0" size="320,25" font="Arial;23" />
 			<widget name="subtitle" position="10,35" size="320,25" font="Arial;23" />
-			<widget name="entries" position="20,70" size="320,150" />
+			<widget name="entries" position="20,70" size="320,150" scrollbarMode="showOnDemand" />
 			<widget name="bottom" position="20,230" size="320,25" font="Arial;23" />
 		</screen>
 		<screen name="NimSetup" position="140,165" size="360,250" title="Satconfig">
 			<widget name="config" position="20,10" size="320,220" />
 		</screen>
 		<screen name="Satconfig" position="140,125" size="460,280" title="Satconfig">
-			<widget name="config" position="10,50" size="420,150" />
+			<widget name="config" position="10,50" size="420,150" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="ScanSetup" position="90,100" size="520,400" title="Service scan">
-			<widget name="config" position="20,10" size="460,350" />
+			<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="20,360" size="350,30" font="Arial;23" />
 		</screen>
 		<screen name="ScanSimple" position="150,100" size="400,300" title="Service scan">
 			<widget name="header" position="20,10" size="280,25" font="Arial;23"/>
-			<widget name="config" position="20,45" size="360,200" />
+			<widget name="config" position="20,45" size="360,200" scrollbarMode="showOnDemand" />
 			<widget name="footer" position="20,250" size="360,25" font="Arial;23"/>
 			<!--<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />-->
 		</screen>
@@ -110,7 +110,7 @@
 			<widget name="cancel" position="240,365" size="70,20" font="Arial;20" backgroundColor="red" />
 		</screen>
 		<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
-			<widget name="config" position="10,50" size="420,175" />
+			<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="10,230" size="400,30" font="Arial;23" />
 		</screen>
 		<screen name="PluginBrowser" position="190,125" size="360,250" title="Plugins">
@@ -138,7 +138,7 @@
 			<widget name="config" position="10,30" size="420,220" />
 		</screen>
 		<screen name="TimerEditList" position="70,100" size="560,400" title="Timer Editor">
-			<widget name="timerlist" position="10,50" size="520,300" />
+			<widget name="timerlist" position="10,50" size="520,300" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
@@ -204,8 +204,6 @@
 -->
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
-
-
 		</screen>
 
 
@@ -226,26 +224,25 @@
 			<widget name="Dishpixmap" pixmap="/usr/share/enigma2/dish.png" position="0,0" size="100,107" />
 		</screen>
  		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
-			<widget name="list" position="10,45" size="540,364" />
+			<widget name="list" position="10,45" size="540,364" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
 		</screen>
 		<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
-			<widget name="list" position="10,45" size="540,364" />
+			<widget name="list" position="10,45" size="540,364" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
 		</screen>
 		<screen name="EPGSelection" position="90,100" size="560,415" title="EPG Selection">
+			<widget name="list" position="10,40" size="550,370" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Arial;21" />
 			<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Arial;21" />
-
-			<widget name="list" position="10,40" size="550,370" />
 		</screen>
 		<screen name="EventView" position="100,100" size="520,380" title="Eventview">
 			<widget name="epg_description" position="10,5" size="500,335" font="Arial;22" />
@@ -254,7 +251,7 @@
 			<widget name="channel" position="240,345" size="270,30" font="Arial;22" />
 		</screen>
 		<screen name="MovieSelection" position="90,98" size="560,415" title="Select-a-movie">
-			<widget name="list" position="0,0" size="560,375" />
+			<widget name="list" position="0,0" size="560,375" scrollbarMode="showOnDemand" />
 			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Arial;25" />
 		</screen>
 		<screen name="ServiceScan" position="200,100" size="300,200" title="Service Scan">
@@ -270,7 +267,7 @@
 			<widget name="apply" position="10,240" size="250,35" />
 		</screen>
 		<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
-			<widget name="list" position="100,100" size="550,375" />
+			<widget name="list" position="100,100" size="550,375" scrollbarMode="showOnDemand" />
 			<eLabel position="500,40" size="220,60" text="help..." font="Arial;50" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">

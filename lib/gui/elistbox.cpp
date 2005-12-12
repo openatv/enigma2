@@ -8,8 +8,6 @@ eListbox::eListbox(eWidget *parent)
 {
 	setContent(new eListboxStringContent());
 
-	setScrollbarMode(showOnDemand);   // Default show scrollbar on demand
-
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	
@@ -151,6 +149,8 @@ void eListbox::moveSelectionTo(int index)
 
 void eListbox::updateScrollBar()
 {
+	if (!m_scrollbar)
+		return;
 	int entries = m_content->size();
 	if ( m_content_changed )
 	{
