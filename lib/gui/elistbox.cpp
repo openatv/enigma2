@@ -1,10 +1,14 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/gui/eslider.h>
 #include <lib/actions/action.h>
 
-eListbox::eListbox(eWidget *parent): eWidget(parent)
+eListbox::eListbox(eWidget *parent)
+	:eWidget(parent), m_prev_scrollbar_page(-1), m_content_changed(false), m_scrollbar(NULL)
 {
 	setContent(new eListboxStringContent());
+
+	setScrollbarMode(showOnDemand);   // Default show scrollbar on demand
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
@@ -20,6 +24,24 @@ eListbox::~eListbox()
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	ptr->unbindAction(this, 0);
+}
+
+void eListbox::setScrollbarMode(int mode)
+{
+	m_scrollbar_mode = mode;
+	if ( m_scrollbar_mode == showNever && m_scrollbar )
+	{
+		delete m_scrollbar;
+		m_scrollbar=0;
+	}
+	else if (!m_scrollbar)
+	{
+		m_scrollbar = new eSlider(this);
+		m_scrollbar->hide();
+		m_scrollbar->setBorderWidth(1);
+		m_scrollbar->setOrientation(eSlider::orVertical);
+		m_scrollbar->setRange(0,100);
+	}
 }
 
 void eListbox::setContent(iListboxContent *content)
@@ -122,10 +144,55 @@ void eListbox::moveSelection(int dir)
 
 void eListbox::moveSelectionTo(int index)
 {
-	printf("Moving to listbox-entry with index %d\n", index);
 	m_content->cursorHome();
 	m_content->cursorMove(index);
 	moveSelection(justCheck);
+}
+
+void eListbox::updateScrollBar()
+{
+	int entries = m_content->size();
+	if ( m_content_changed )
+	{
+		int width = size().width();
+		int height = size().height();
+		m_content_changed = false;
+		if ( entries > m_items_per_page || m_scrollbar_mode == showAlways )
+		{
+			int sbarwidth=width/16;
+			if ( sbarwidth < 18 )
+				sbarwidth=18;
+			if ( sbarwidth > 22 )
+				sbarwidth=22;
+			m_scrollbar->move(ePoint(width-sbarwidth, 0));
+			m_scrollbar->resize(eSize(sbarwidth, height));
+			m_content->setSize(eSize(width-sbarwidth-5, m_itemheight));
+			if ( !m_scrollbar->isVisible() )
+				m_scrollbar->show();
+		}
+		else if ( m_scrollbar_mode != showAlways )
+		{
+			if ( m_scrollbar->isVisible() )
+			{
+				m_content->setSize(eSize(width, m_itemheight));
+				m_scrollbar->hide(); // why this hide dont work???
+			}
+		}
+	}
+	int curVisiblePage = m_top / m_items_per_page;
+	if ( m_scrollbar->isVisible() &&
+		m_prev_scrollbar_page != curVisiblePage)
+	{
+		m_prev_scrollbar_page = curVisiblePage;
+		int pages = entries / m_items_per_page;
+		if ( (pages*m_items_per_page) < entries )
+			++pages;
+		int start=(m_top*100)/(pages*m_items_per_page);
+		int vis=(m_items_per_page*100)/(pages*m_items_per_page);
+		if (vis < 3)
+			vis=3;
+		m_scrollbar->setStartEnd(start,start+vis);
+	}
 }
 
 int eListbox::event(int event, void *data, void *data2)
@@ -147,6 +214,9 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		gPainter &painter = *(gPainter*)data2;
 		
+		if (m_scrollbar_mode != showNever)
+			updateScrollBar();
+		
 		m_content->cursorSave();
 		m_content->cursorMove(m_top - m_selected);
 		
@@ -155,9 +225,16 @@ int eListbox::event(int event, void *data, void *data2)
 			m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
 			m_content->cursorMove(+1);
 		}
-		
+
+		if ( m_scrollbar && m_scrollbar->isVisible() )
+		{
+			painter.clip(eRect(m_scrollbar->position() - ePoint(5,0), eSize(5,m_scrollbar->size().height())));
+			painter.clear();
+			painter.clippop();
+		}
+
 		m_content->cursorRestore();
-		
+
 		return 0;
 	}
 	case evtChangedSize:
@@ -178,6 +255,7 @@ int eListbox::event(int event, void *data, void *data2)
 
 void eListbox::recalcSize()
 {
+	m_content_changed=true;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
 }
@@ -246,6 +324,8 @@ void eListbox::entryChanged(int index)
 
 void eListbox::entryReset()
 {
+	m_content_changed=true;
+	m_prev_scrollbar_page=-1;
 	if (m_content)
 		m_content->cursorHome();
 	m_top = 0;

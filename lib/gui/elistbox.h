@@ -4,6 +4,8 @@
 #include <lib/gui/ewidget.h>
 #include <connection.h>
 
+class eSlider;
+
 class iListboxContent: public iObject
 {
 public:
@@ -49,9 +51,18 @@ protected:
 
 class eListbox: public eWidget
 {
+	void updateScrollBar();
 public:
 	eListbox(eWidget *parent);
 	~eListbox();
+
+	enum {
+		showOnDemand,
+		showAlways,
+		showNever
+	};
+	void setScrollbarMode(int mode);
+
 	void setContent(iListboxContent *content);
 	
 /*	enum Movement {
@@ -93,13 +104,16 @@ protected:
 	void recalcSize();
 
 private:
+	int m_scrollbar_mode, m_prev_scrollbar_page;
+	bool m_content_changed;
+
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
 	int m_selection_enabled;
 	ePtr<iListboxContent> m_content;
+	eSlider *m_scrollbar;
 #endif
-
 };
 
 #endif
