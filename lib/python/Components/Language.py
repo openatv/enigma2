@@ -6,6 +6,7 @@ from Tools.Directories import *
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', '/enigma2/po')
+		self.activeLanguage = 0
 		self.lang = []
 		# FIXME make list dynamically
 		self.addLanguage(_("English"), "en")
@@ -21,6 +22,7 @@ class Language:
 		try:
 			print "Activating language " + str(self.lang[index][0])
 			self.lang[index][1].install()
+			self.activeLanguage = index
 		except:
 			print "Selected language does not exist!"
 		

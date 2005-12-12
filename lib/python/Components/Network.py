@@ -126,6 +126,7 @@ class Network:
 			ip = gethostbyname(gethostname()).split('.')
 		except:
 			print "[Network.py] Could not get current ip (not necessarily an error)"
+		print "[Network.py] got ip " + str(ip)
 		return ip
 
 iNetwork = Network()
