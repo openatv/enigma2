@@ -333,14 +333,17 @@ void eListbox::entryChanged(int index)
 	}
 }
 
-void eListbox::entryReset()
+void eListbox::entryReset(bool cursorHome)
 {
 	m_content_changed=true;
 	m_prev_scrollbar_page=-1;
-	if (m_content)
-		m_content->cursorHome();
-	m_top = 0;
-	m_selected = 0;
+	if ( cursorHome )
+	{
+		if (m_content)
+			m_content->cursorHome();
+		m_top = 0;
+		m_selected = 0;
+	}
 	moveSelection(justCheck);
 	invalidate();
 }
