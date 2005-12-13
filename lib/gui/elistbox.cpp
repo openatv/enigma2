@@ -28,12 +28,15 @@ eListbox::~eListbox()
 void eListbox::setScrollbarMode(int mode)
 {
 	m_scrollbar_mode = mode;
-	if ( m_scrollbar_mode == showNever && m_scrollbar )
+	if ( m_scrollbar )
 	{
-		delete m_scrollbar;
-		m_scrollbar=0;
+		if ( m_scrollbar_mode == showNever )
+		{
+			delete m_scrollbar;
+			m_scrollbar=0;
+		}
 	}
-	else if (!m_scrollbar)
+	else
 	{
 		m_scrollbar = new eSlider(this);
 		m_scrollbar->hide();
@@ -136,6 +139,8 @@ void eListbox::moveSelection(int dir)
 		/* m_top should be always valid here as it's selected */
 		m_top += m_items_per_page;
 
+	updateScrollBar();
+
 	if (m_top != oldtop)
 		invalidate();
 	else if (m_selected != oldsel)
@@ -147,9 +152,6 @@ void eListbox::moveSelection(int dir)
 		
 		invalidate(inv);
 	}
-
-	if (m_scrollbar_mode != showNever)
-		updateScrollBar();
 }
 
 void eListbox::moveSelectionTo(int index)
@@ -161,6 +163,8 @@ void eListbox::moveSelectionTo(int index)
 
 void eListbox::updateScrollBar()
 {
+	if (!m_content || m_scrollbar_mode == showNever )
+		return;
 	int entries = m_content->size();
 	if ( m_content_changed )
 	{
@@ -177,31 +181,29 @@ void eListbox::updateScrollBar()
 			m_scrollbar->move(ePoint(width-sbarwidth, 0));
 			m_scrollbar->resize(eSize(sbarwidth, height));
 			m_content->setSize(eSize(width-sbarwidth-5, m_itemheight));
-			if ( !m_scrollbar->isVisible() )
-				m_scrollbar->show();
+			m_scrollbar->show();
 		}
-		else if ( m_scrollbar_mode != showAlways )
+		else
 		{
-			if ( m_scrollbar->isVisible() )
-			{
-				m_content->setSize(eSize(width, m_itemheight));
-				m_scrollbar->hide(); // why this hide dont work???
-			}
+			m_content->setSize(eSize(width, m_itemheight));
+			m_scrollbar->hide();
 		}
 	}
-	int curVisiblePage = m_top / m_items_per_page;
-	if ( m_scrollbar->isVisible() &&
-		m_prev_scrollbar_page != curVisiblePage)
+	if ( m_items_per_page && entries )
 	{
-		m_prev_scrollbar_page = curVisiblePage;
-		int pages = entries / m_items_per_page;
-		if ( (pages*m_items_per_page) < entries )
-			++pages;
-		int start=(m_top*100)/(pages*m_items_per_page);
-		int vis=(m_items_per_page*100)/(pages*m_items_per_page);
-		if (vis < 3)
-			vis=3;
-		m_scrollbar->setStartEnd(start,start+vis);
+		int curVisiblePage = m_top / m_items_per_page;
+		if (m_prev_scrollbar_page != curVisiblePage)
+		{
+			m_prev_scrollbar_page = curVisiblePage;
+			int pages = entries / m_items_per_page;
+			if ( (pages*m_items_per_page) < entries )
+				++pages;
+			int start=(m_top*100)/(pages*m_items_per_page);
+			int vis=(m_items_per_page*100)/(pages*m_items_per_page);
+			if (vis < 3)
+				vis=3;
+			m_scrollbar->setStartEnd(start,start+vis);
+		}
 	}
 }
 
@@ -247,6 +249,7 @@ int eListbox::event(int event, void *data, void *data2)
 	case evtChangedSize:
 		recalcSize();
 		return eWidget::event(event, data, data2);
+		
 	case evtAction:
 		if (isVisible())
 		{
@@ -262,9 +265,10 @@ int eListbox::event(int event, void *data, void *data2)
 void eListbox::recalcSize()
 {
 	m_content_changed=true;
+	m_prev_scrollbar_page=-1;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
-	moveSelection(justCheck);
+	updateScrollBar();
 }
 
 void eListbox::setItemHeight(int h)
@@ -312,7 +316,7 @@ void eListbox::entryRemoved(int index)
 		m_selected = m_content->cursorGet();
 
 	moveSelection(justCheck);
-	
+
 	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
 	{
 			/* todo, calc exact invalidation... */
@@ -338,5 +342,6 @@ void eListbox::entryReset()
 	m_top = 0;
 	m_selected = 0;
 	moveSelection(justCheck);
+	updateScrollBar();
 	invalidate();
 }
