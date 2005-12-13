@@ -148,7 +148,7 @@ class configSequenceArg:
 	def get(self, type, args = ()):
 		# configsequencearg.get ("IP")
 		if (type == "IP"):
-			return (("."), [(1,255),(0,255),(0,255),(0,255)], "")
+			return (("."), [(0,255),(0,255),(0,255),(0,255)], "")
 		# configsequencearg.get ("MAC")
 		if (type == "MAC"):
 			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], "")
