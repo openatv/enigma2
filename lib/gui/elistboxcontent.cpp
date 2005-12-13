@@ -246,7 +246,7 @@ void eListboxStringContent::setList(std::list<std::string> &list)
 	m_list = list;
 	m_size = list.size();
 	cursorHome();
-	m_listbox->entryReset();
+	m_listbox->entryReset(false);
 }
 
 //////////////////////////////////////
@@ -368,7 +368,7 @@ void eListboxPythonStringContent::setList(PyObject *list)
 	}
 
 	if (m_listbox)
-		m_listbox->entryReset();
+		m_listbox->entryReset(false);
 }
 
 PyObject *eListboxPythonStringContent::getCurrentSelection()

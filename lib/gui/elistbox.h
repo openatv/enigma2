@@ -97,7 +97,7 @@ public:
 		/* entryChanged: the entry with the given index was changed and should be redrawn. */
 	void entryChanged(int index);
 		/* the complete list changed. you should not attemp to keep the current index. */
-	void entryReset();
+	void entryReset(bool cursorHome=true);
 
 protected:
 	int event(int event, void *data=0, void *data2=0);
