@@ -247,7 +247,6 @@ int eListbox::event(int event, void *data, void *data2)
 	case evtChangedSize:
 		recalcSize();
 		return eWidget::event(event, data, data2);
-		
 	case evtAction:
 		if (isVisible())
 		{
@@ -265,6 +264,7 @@ void eListbox::recalcSize()
 	m_content_changed=true;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
+	moveSelection(justCheck);
 }
 
 void eListbox::setItemHeight(int h)
