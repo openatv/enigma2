@@ -17,6 +17,8 @@ self["rc"].startMoving()
 				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
+self["arrowup2"].moveTo(800, 320, 1)
+self["arrowup2"].startMoving()
 self["arrowdown"].moveTo(557, 200, 1)
 self["arrowup"].moveTo(557, 355, 1)
 self["arrowdown"].startMoving()
