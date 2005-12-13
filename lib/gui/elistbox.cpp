@@ -5,7 +5,7 @@
 
 eListbox::eListbox(eWidget *parent)
 	:eWidget(parent), m_prev_scrollbar_page(-1), m_content_changed(false)
-	, m_scrollbar(NULL), m_scrollbar_mode(showNever)
+	, m_scrollbar_mode(showNever), m_scrollbar(NULL)
 {
 	setContent(new eListboxStringContent());
 
@@ -106,7 +106,11 @@ void eListbox::moveSelection(int dir)
 			/* current selection invisible? */
 		if (m_top + m_items_per_page <= m_content->cursorGet())
 		{
-			m_top = m_content->cursorGet() - m_items_per_page + 1;
+			int rest = m_content->size() % m_items_per_page;
+			if ( rest )
+				m_top = m_content->cursorGet() - rest + 1;
+			else
+				m_top = m_content->cursorGet() - m_items_per_page + 1;
 			if (m_top < 0)
 				m_top = 0;
 		}
@@ -124,18 +128,13 @@ void eListbox::moveSelection(int dir)
 
 	while (m_selected < m_top)
 	{
-		eDebug("%d < %d", m_selected, m_top);
 		m_top -= m_items_per_page;
 		if (m_top < 0)
 			m_top = 0;
 	}
-	
 	while (m_selected >= m_top + m_items_per_page)
-	{
-		eDebug("%d >= %d + %d", m_selected, m_top, m_items_per_page);
 		/* m_top should be always valid here as it's selected */
 		m_top += m_items_per_page;
-	}
 
 	if (m_top != oldtop)
 		invalidate();
