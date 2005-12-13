@@ -268,7 +268,7 @@ void eListbox::recalcSize()
 	m_prev_scrollbar_page=-1;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
-	updateScrollBar();
+	moveSelection(justCheck);
 }
 
 void eListbox::setItemHeight(int h)
@@ -342,6 +342,5 @@ void eListbox::entryReset()
 	m_top = 0;
 	m_selected = 0;
 	moveSelection(justCheck);
-	updateScrollBar();
 	invalidate();
 }
