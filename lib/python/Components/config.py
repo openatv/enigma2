@@ -266,9 +266,9 @@ class configSequence:
 			#if diff > 0:
 				## if this helps?!
 				#value += " " * diff
-			print (("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % int(i))
+			print (("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i)
 			if (self.censorChar == ""):
-				value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % int(i)
+				value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
 			else:
 				value += (self.censorChar * len(str(self.valueBounds[num][1])))
 			num += 1
