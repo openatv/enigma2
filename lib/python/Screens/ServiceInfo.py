@@ -51,8 +51,12 @@ class ServiceInfo(Screen):
 			self.info = service.info()
 		else:
 			self.info = None
-		
-		Labels = ( ("Name",  ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()),
+
+		if self.session.nav.getCurrentlyPlayingServiceReference() is not None:
+			name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+		else:
+			name = "N/A"
+		Labels = ( ("Name",  name),
 				   ("Provider", self.getValue(iServiceInformation.sProvider)),
 				   ("VideoPID", self.getValue(iServiceInformation.sVideoPID)),
 				   ("AudioPID", self.getValue(iServiceInformation.sAudioPID)),
