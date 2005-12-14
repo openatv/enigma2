@@ -39,7 +39,7 @@
 		<screen name="Menu" position="210,150" size="300,235" title="Main menu">
 			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
 			<!--<widget name="menu" position="10,55" size="280,150" font="Arial;23" />-->
-			<widget name="menu" position="10,55" size="280,175" scrollbarMode="showOnDemand" />
+			<widget name="menu" position="10,55" size="290,175" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
 		</screen>
@@ -224,7 +224,7 @@
 			<widget name="Dishpixmap" pixmap="/usr/share/enigma2/dish.png" position="0,0" size="100,107" />
 		</screen>
  		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
-			<widget name="list" position="10,45" size="540,364" scrollbarMode="showOnDemand" />
+			<widget name="list" position="10,45" size="550,364" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
