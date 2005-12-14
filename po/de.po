@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-14 23:43+0100\n"
+"POT-Creation-Date: 2005-12-15 00:08+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -191,6 +191,7 @@ msgstr "Ende"
 msgid "EndTime"
 msgstr "Endzeit"
 
+#: ../lib/python/Screens/LanguageSelection.py:38
 #: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:12
 msgid "English"
@@ -252,6 +253,10 @@ msgstr "Initialisiere Festplatte..."
 #: ../lib/python/Screens/ScanSetup.py:125
 msgid "Inversion"
 msgstr ""
+
+#: ../lib/python/Screens/LanguageSelection.py:44 ../data/
+msgid "Language selection"
+msgstr "Sprachauswahl"
 
 #: ../lib/python/Screens/Satconfig.py:28 ../data/
 msgid "Latitude"
@@ -404,9 +409,9 @@ msgstr "Aufnahme beginnen?"
 msgid "StartTime"
 msgstr "Startzeit"
 
-#: ../lib/python/Screens/Wizard.py:166
+#: ../lib/python/Screens/Wizard.py:168
 msgid "Step "
-msgstr ""
+msgstr "Schritt"
 
 #: ../lib/python/Screens/InfoBar.py:77
 msgid "Stop playing this movie?"
@@ -619,7 +624,7 @@ msgstr "Status"
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
-#: ../lib/python/Screens/Wizard.py:169 ../lib/python/Screens/Wizard.py:170
+#: ../lib/python/Screens/Wizard.py:171 ../lib/python/Screens/Wizard.py:172
 msgid "text"
 msgstr ""
 
@@ -709,6 +714,19 @@ msgstr ""
 #: ../data/
 msgid "Use wizard to set up basic features"
 msgstr "Grundeinstellungen jetzt vornehmen"
+
+#: ../data/
+msgid ""
+"Welcome.\n"
+"\n"
+"This start-wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
 msgid "Sat / Dish Setup"
@@ -859,20 +877,6 @@ msgid "LCD"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start-wizard will guide you through the basic setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"This start-wizard will guide you through the basic setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-
-#: ../data/
 msgid "Timezone"
 msgstr "Zeitzone"
 
@@ -918,10 +922,6 @@ msgstr "Tonträger"
 
 #: ../data/
 msgid "#0000ff"
-msgstr ""
-
-#: ../data/
-msgid "Language selection"
 msgstr ""
 
 #: ../data/

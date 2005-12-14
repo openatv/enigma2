@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import os
+import string
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -36,6 +37,7 @@ for x in dir:
 for k, v in attrlist.items():
 	print
 	print '#: ' + sys.argv[1]
+	string.replace(k, "\\n", "\"\n\"")
 	print 'msgid "' + str(k) + '"'
 	print 'msgstr ""'
 
