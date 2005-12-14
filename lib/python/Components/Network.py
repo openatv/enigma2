@@ -123,7 +123,7 @@ class Network:
 		ipstr = [0,0,0,0]
 		for x in os.popen("ifconfig eth0 | grep 'inet addr:'", "r").readline().split(' '):
 			if x.split(':')[0] == "addr":
-				ip = x.split(':')[1].split('.')
+				ipstr = x.split(':')[1].split('.')
 		ip = []
 		for x in ipstr:
 			ip.append(int(x))
