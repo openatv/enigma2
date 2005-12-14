@@ -217,16 +217,17 @@ int main(int argc, char **argv)
 	lcd_win->resize(eSize(132, 64));
 	
 	lcd_label = new eLabel(lcd_win);
-	lcd_label->move(ePoint(0, 10));
-	lcd_label->resize(eSize(132, 36));
-	ePtr<gFont> font = new gFont("Arial", 16);
+	lcd_label->move(ePoint(0, 4));
+	lcd_label->resize(eSize(132, 42));
+	ePtr<gFont> font = new gFont("Arial", 19);
+	//ePtr<gFont> font = new gFont("Arial", 16);
 	lcd_label->setFont(font);
 
 	lcd_clock = new eLabel(lcd_win);
 	lcd_clock->move(ePoint(50, 46));
-	lcd_clock->resize(eSize(132, 20));
-	//ePtr<gFont> clkfont = new gFont("Arial", 18);
-	lcd_clock->setFont(font);
+	lcd_clock->resize(eSize(132, 18));
+	ePtr<gFont> clkfont = new gFont("Arial", 16);
+	lcd_clock->setFont(clkfont);
 
 	//lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
 	//lcd_clock->setText("88:88:88");
