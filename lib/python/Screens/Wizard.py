@@ -1,5 +1,7 @@
 from Screen import Screen
 
+import string
+
 from Screens.HelpMenu import HelpableScreen
 from Components.Label import Label
 from Components.Slider import Slider
@@ -29,7 +31,7 @@ class Wizard(Screen, HelpableScreen):
 				self.lastStep = int(attrs.get('number'))
 				self.wizard[self.lastStep] = {"text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": ""}
 			elif (name == "text"):
-				self.wizard[self.lastStep]["text"] = _(str(attrs.get('value')))
+				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "listentry"):
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif (name == "config"):

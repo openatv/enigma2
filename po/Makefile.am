@@ -30,6 +30,7 @@ enigma2.pot:
 			../lib/python/Screens/Satconfig.py \
 			../lib/python/Screens/EventView.py \
 			../lib/python/Screens/Ci.py \
+			../lib/python/Screens/LanguageSelection.py \
 			../lib/python/Screens/About.py \
 			../lib/python/Screens/HarddiskSetup.py \
 			../lib/python/Screens/InfoBar.py \

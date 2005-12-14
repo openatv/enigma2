@@ -31,6 +31,7 @@ class LanguageSelection(Screen):
 		language.activateLanguage(self["list"].l.getCurrentSelectionIndex())
 		config.osd.language.value = self["list"].l.getCurrentSelectionIndex()
 		config.osd.language.save()
+		self.session.currentDialog.instance.setTitle(_("Language selection"))
 
 	def updateList(self):
 		self.list = []
@@ -41,7 +42,7 @@ class LanguageSelection(Screen):
 				self.list.append(LanguageEntryComponent(x[2], _(x[0])))
 		
 		self["list"].l.setList(self.list)
-		
+
 	def up(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveUp)
 		self.run()
