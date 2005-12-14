@@ -34,25 +34,25 @@ class ChannelContextMenu(FixedMenu):
 
 		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
 			if (csel.getCurrentSelection().type & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
-				menu.append(("add service to bouquet", self.addServiceToBouquetSelected))
+				menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
 			if inBouquet:
-				menu.append(("remove service", self.removeCurrentService))
+				menu.append((_("remove service"), self.removeCurrentService))
 
 		if inBouquet: # current list is editable?
 			if not csel.bouquet_mark_edit:
 				if not csel.movemode:
-					menu.append(("enable move mode", self.toggleMoveMode))
+					menu.append((_("enable move mode"), self.toggleMoveMode))
 					if not inBouquetRootList:
-						menu.append(("enable bouquet edit", self.bouquetMarkStart))
+						menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
 				else:
-					menu.append(("disable move mode", self.toggleMoveMode))
+					menu.append((_("disable move mode"), self.toggleMoveMode))
 			elif not inBouquetRootList:
-				menu.append(("end bouquet edit", self.bouquetMarkEnd))
-				menu.append(("abort bouquet edit", self.bouquetMarkAbort))
+				menu.append((_("end bouquet edit"), self.bouquetMarkEnd))
+				menu.append((_("abort bouquet edit"), self.bouquetMarkAbort))
 
-		menu.append(("back", self.close))
+		menu.append((_("back"), self.close))
 
-		FixedMenu.__init__(self, session, "Channel Selection", menu)
+		FixedMenu.__init__(self, session, _("Channel Selection"), menu)
 		self.skinName = "Menu"
 
 	def addServiceToBouquetSelected(self):
@@ -220,10 +220,10 @@ class ChannelSelectionBase(Screen):
 		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 		self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 
-		self["key_red"] = Button("All")
-		self["key_green"] = Button("Satellites")
-		self["key_yellow"] = Button("Provider")
-		self["key_blue"] = Button("Favourites")
+		self["key_red"] = Button(_("All"))
+		self["key_green"] = Button(_("Satellites"))
+		self["key_yellow"] = Button(_("Provider"))
+		self["key_blue"] = Button(_("Favourites"))
 
 		self["list"] = ServiceList()
 		self.servicelist = self["list"]
