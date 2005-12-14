@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-12-11 23:54+0100\n"
-"PO-Revision-Date: 2005-11-17 20:53+0100\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2005-12-14 03:29+0100\n"
+"Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
 
 #: ../lib/python/Screens/EventView.py:89
 #, python-format
@@ -33,7 +36,7 @@ msgstr "%s (%s, %d MB frei)"
 
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Add"
-msgstr "Hinzufuegen"
+msgstr "Hinzufügen"
 
 #: ../lib/python/Screens/ScanSetup.py:170
 #: ../lib/python/Screens/ScanSetup.py:177
@@ -50,7 +53,8 @@ msgstr "Hinzufuegen"
 msgid "Auto"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:381 ../data/
+#: ../lib/python/Screens/ScanSetup.py:381
+#: ../data/
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
 
@@ -68,12 +72,13 @@ msgstr "Kabelanbieter"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Capacity: "
-msgstr "Kapazitaet: "
+msgstr "Kapazität: "
 
 #: ../lib/python/Screens/TimerEntry.py:166
 #: ../lib/python/Screens/TimerEntry.py:179
 #: ../lib/python/Screens/TimerEntry.py:195
-#: ../lib/python/Screens/TimerEntry.py:202 ../data/
+#: ../lib/python/Screens/TimerEntry.py:202
+#: ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -93,8 +98,10 @@ msgstr ""
 msgid "Code rate low"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:37 ../lib/python/Screens/Satconfig.py:64
-#: ../lib/python/Screens/Satconfig.py:68 ../lib/python/Screens/Satconfig.py:78
+#: ../lib/python/Screens/Satconfig.py:37
+#: ../lib/python/Screens/Satconfig.py:64
+#: ../lib/python/Screens/Satconfig.py:68
+#: ../lib/python/Screens/Satconfig.py:78
 #: ../data/
 msgid "Configmode"
 msgstr "Konfigurationsmodus"
@@ -105,7 +112,7 @@ msgstr "Standard"
 
 #: ../lib/python/Screens/TimerEdit.py:24
 msgid "Delete"
-msgstr "Loeschen"
+msgstr "Löschen"
 
 #: ../lib/python/Screens/TimerEntry.py:129
 msgid "Description"
@@ -128,7 +135,8 @@ msgid "DiSEqC A/B/C/D"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:377
+#: ../lib/python/Components/Lcd.py:32
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -139,7 +147,8 @@ msgstr ""
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/Satconfig.py:40 ../lib/python/Screens/Satconfig.py:62
+#: ../lib/python/Screens/Satconfig.py:40
+#: ../lib/python/Screens/Satconfig.py:62
 msgid "Diseqcmode"
 msgstr "Diseqcmodus"
 
@@ -161,7 +170,8 @@ msgid "East"
 msgstr "Ost"
 
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:377
+#: ../lib/python/Components/Lcd.py:32
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -203,7 +213,8 @@ msgstr "Frequenz"
 msgid "Friday"
 msgstr "Freitag"
 
-#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:44
+#: ../data/
 msgid "Gateway"
 msgstr ""
 
@@ -220,7 +231,8 @@ msgstr ""
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:41 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:41
+#: ../data/
 msgid "IP Address"
 msgstr "IP Adresse"
 
@@ -238,13 +250,15 @@ msgstr "Initialisiere Festplatte..."
 msgid "Inversion"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:28 ../data/
+#: ../lib/python/Screens/Satconfig.py:28
+#: ../data/
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: ../lib/python/Screens/Satconfig.py:26 ../data/
+#: ../lib/python/Screens/Satconfig.py:26
+#: ../data/
 msgid "Longitude"
-msgstr "Laengengrad"
+msgstr "Längengrad"
 
 #: ../lib/python/Components/NimManager.py:409
 msgid "Loopthrough to Socket A"
@@ -270,13 +284,15 @@ msgstr "Montag"
 
 #: ../lib/python/Components/NimManager.py:260
 msgid "N/A"
-msgstr "Nicht verfuegbar"
+msgstr "Nicht verfügbar"
 
-#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:45
+#: ../data/
 msgid "Nameserver"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:43 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:43
+#: ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
 
@@ -297,7 +313,7 @@ msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
-msgstr "Polaritaet"
+msgstr "Polarität"
 
 #: ../lib/python/Screens/Satconfig.py:15
 msgid "Port A"
@@ -325,17 +341,18 @@ msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:382
 msgid "Press OK to scan"
-msgstr "Zum Starten der Suche OK druecken."
+msgstr "Zum Starten der Suche OK drücken."
 
 #: ../lib/python/Screens/ScanSetup.py:59
 msgid "Press OK to start the scan"
-msgstr "Zum Starten der Suche OK druecken."
+msgstr "Zum Starten der Suche OK drücken."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:678
 msgid "Record"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:86 ../lib/python/Screens/ScanSetup.py:95
+#: ../lib/python/Screens/ScanSetup.py:86
+#: ../lib/python/Screens/ScanSetup.py:95
 #: ../lib/python/Screens/Satconfig.py:13
 msgid "Satellite"
 msgstr "Satellit"
@@ -367,7 +384,7 @@ msgstr "Sockel "
 
 #: ../lib/python/Components/NimManager.py:433
 msgid "South"
-msgstr "Sued"
+msgstr "Süd"
 
 #: ../lib/python/Screens/TimerEntry.py:156
 msgid "Start"
@@ -389,7 +406,8 @@ msgstr ""
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:684 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:684
+#: ../data/
 msgid "Subservices"
 msgstr ""
 
@@ -435,7 +453,8 @@ msgstr "Dienstag"
 msgid "Tuner"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:77 ../lib/python/Screens/ScanSetup.py:79
+#: ../lib/python/Screens/ScanSetup.py:77
+#: ../lib/python/Screens/ScanSetup.py:79
 #: ../lib/python/Screens/ScanSetup.py:81
 #: ../lib/python/Screens/ScanSetup.py:147
 msgid "Type of scan"
@@ -456,7 +475,8 @@ msgstr ""
 "Fehler: "
 
 #: ../lib/python/Screens/NetworkSetup.py:40
-#: ../lib/python/Screens/NetworkSetup.py:52 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:52
+#: ../data/
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
@@ -483,7 +503,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:83
 msgid "daily"
-msgstr "taeglich"
+msgstr "täglich"
 
 #: ../lib/python/Components/NimManager.py:325
 msgid "empty/unknown"
@@ -553,8 +573,8 @@ msgid ""
 "scan in progress - %d %% done!\n"
 "%d services found!"
 msgstr ""
-"Suche laeuft - %d %% erledigt!\n"
-"%d Kanaele gefunden!"
+"Suche läuft - %d %% erledigt!\n"
+"%d Kanäle gefunden!"
 
 #: ../lib/python/Screens/ServiceScan.py:22
 msgid "scan state"
@@ -582,7 +602,7 @@ msgstr "vertikal"
 
 #: ../lib/python/Screens/TimerEntry.py:83
 msgid "weekly"
-msgstr "woechentlich"
+msgstr "wöchentlich"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/TimerEntry.py:95
@@ -636,12 +656,8 @@ msgid "Sound"
 msgstr "Ton"
 
 #: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Mit den hoch/runter Tasten koennen Sie eine Option auswaehlen. Danach bitte "
-"OK druecken."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Mit den hoch/runter Tasten können Sie eine Option auswählen. Danach bitte OK drücken."
 
 #: ../data/
 msgid "Show Satposition"
@@ -661,7 +677,7 @@ msgstr "Grundeinstellungen jetzt vornehmen"
 
 #: ../data/
 msgid "Sat / Dish Setup"
-msgstr "Sat-/Schuesseleinstellungen"
+msgstr "Sat-/Schüsseleinstellungen"
 
 #: ../data/
 msgid "#ffffff"
@@ -701,7 +717,7 @@ msgstr ""
 
 #: ../data/
 msgid "Record Splitsize"
-msgstr "Splitgroesse der Aufnamen"
+msgstr "Splitgrösse der Aufnamen"
 
 #: ../data/
 msgid "Auto show inforbar"
@@ -741,7 +757,7 @@ msgstr ""
 
 #: ../data/
 msgid "select Slot"
-msgstr "waehle Slot"
+msgstr "wähle Slot"
 
 #: ../data/
 msgid "Satconfig"
@@ -753,7 +769,7 @@ msgstr "Standby / Neustart"
 
 #: ../data/
 msgid "Main menu"
-msgstr "Hauptmenue"
+msgstr "Hauptmenü"
 
 #: ../data/
 msgid "EPG Selection"
@@ -817,7 +833,7 @@ msgstr "Nachricht"
 
 #: ../data/
 msgid "About..."
-msgstr "Ueber..."
+msgstr "Über..."
 
 #: ../data/
 msgid "#00ff00"
@@ -845,11 +861,11 @@ msgstr "LCD Einstellung"
 
 #: ../data/
 msgid "No, scan later manually"
-msgstr "Nein, spaeter suchen."
+msgstr "Nein, später suchen."
 
 #: ../data/
 msgid "Soundcarrier"
-msgstr "Tontraeger"
+msgstr "Tonträger"
 
 #: ../data/
 msgid "#0000ff"
@@ -881,7 +897,7 @@ msgstr "Neustart"
 
 #: ../data/
 msgid "AC3 default"
-msgstr "AC3 standardmaessig"
+msgstr "AC3 standardmässig"
 
 #: ../data/
 msgid "Timer entry"
@@ -893,7 +909,7 @@ msgstr ""
 
 #: ../data/
 msgid "Eventview"
-msgstr "Programmuebersicht"
+msgstr "Programmübersicht"
 
 #: ../data/
 msgid "Keymap"
@@ -921,7 +937,7 @@ msgstr "Jugendschutz"
 
 #: ../data/
 msgid "Skip confirmations"
-msgstr "Bestaetigungen ueberspringen"
+msgstr "Bestätigungen überspringen"
 
 #: ../data/
 msgid "Plugins"
@@ -937,11 +953,11 @@ msgstr "Informationen"
 
 #: ../data/
 msgid "Menu"
-msgstr "Menue"
+msgstr "Menü"
 
 #: ../data/
 msgid "Please set up tuner B"
-msgstr "Einstellungen fuer Tuner B."
+msgstr "Einstellungen für Tuner B."
 
 #: ../data/
 msgid "Networksetup"
@@ -949,7 +965,7 @@ msgstr "Netzwerkeinstellungen"
 
 #: ../data/
 msgid "Delay"
-msgstr "Verzoegerung"
+msgstr "Verzögerung"
 
 #: ../data/
 msgid "WSS"
@@ -961,7 +977,7 @@ msgstr "Setup Sperre"
 
 #: ../data/
 msgid "Aspect Ratio"
-msgstr "Breitenverhaeltnis"
+msgstr "Breitenverhältnis"
 
 #: ../data/
 msgid "Expert Setup"
@@ -977,9 +993,9 @@ msgid ""
 "\n"
 "Please set up tuner A"
 msgstr ""
-"Mit den recht-/links-Tasten koennen Sie Optionen aendern.\n"
+"Mit den recht-/links-Tasten können Sie Optionen ändern.\n"
 "\n"
-"Einstellungen fuer Tuner A"
+"Einstellungen für Tuner A"
 
 #: ../data/
 msgid "Parental Control"
@@ -987,11 +1003,11 @@ msgstr "Jugendschutz"
 
 #: ../data/
 msgid "Mainmenu"
-msgstr "Hauptmenue"
+msgstr "Hauptmenü"
 
 #: ../data/
 msgid "Volume"
-msgstr "Lautstaerke"
+msgstr "Lautstärke"
 
 #: ../data/
 msgid "Alpha"
@@ -999,7 +1015,7 @@ msgstr ""
 
 #: ../data/
 msgid "About"
-msgstr "Ueber"
+msgstr "Über"
 
 #: ../data/
 msgid "config menu"
@@ -1053,7 +1069,7 @@ msgstr ""
 
 #: ../data/
 msgid "Do you want to do a service scan?"
-msgstr "Jetzt nach Kanaelen suchen?"
+msgstr "Jetzt nach Kanälen suchen?"
 
 #: ../data/
 msgid "Thanx for using the wizard. Your box is now ready to use."
@@ -1062,3 +1078,4 @@ msgstr "Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
