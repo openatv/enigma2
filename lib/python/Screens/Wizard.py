@@ -166,6 +166,7 @@ class Wizard(Screen, HelpableScreen):
 		self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 		self["stepslider"].setValue(self.currStep)
 
+		print _(self.wizard[self.currStep]["text"])
 		self["text"].setText(_(self.wizard[self.currStep]["text"]))
 
 		if self.wizard[self.currStep]["code"] != "":
