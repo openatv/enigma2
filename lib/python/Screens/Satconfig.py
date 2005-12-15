@@ -34,7 +34,7 @@ class NimSetup(Screen):
 		self.list = [ ]
 		
 		if (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-S"]):
-			self.list.append(getConfigListEntry(_("Configmode"), config.Nims[self.nim.slotid].configMode))
+			self.list.append(getConfigListEntry(_("Configuration Mode"), config.Nims[self.nim.slotid].configMode))
 			
 			if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
 				self.list.append(getConfigListEntry(_("Diseqcmode"), config.Nims[self.nim.slotid].diseqcMode))
@@ -61,11 +61,11 @@ class NimSetup(Screen):
 	def newConfig(self):	
 		if self["config"].getCurrent()[0] == _("Diseqcmode"):
 			self.createSetup()
-		if self["config"].getCurrent()[0] == _("Configmode"):
+		if self["config"].getCurrent()[0] == _("Configuration Mode"):
 			self.createSetup()
 		
 	def keyLeft(self):
-		if self["config"].getCurrent()[0] == _("Configmode"):
+		if self["config"].getCurrent()[0] == _("Configuration Mode"):
 			if self.nim.slotid == 0:
 				return
 		self["config"].handleKey(config.key["prevElement"])
@@ -75,7 +75,7 @@ class NimSetup(Screen):
 		#forbid to enable advanced mode until its ready
 		#perhaps its better to use an own element here
 		#this suckz .. how enable advanced config?
-		if self["config"].getCurrent()[0] == _("Configmode"):
+		if self["config"].getCurrent()[0] == _("Configuration Mode"):
 			if self.nim.slotid == 0:
 				return
 
