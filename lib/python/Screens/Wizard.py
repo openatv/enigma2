@@ -76,6 +76,7 @@ class Wizard(Screen, HelpableScreen):
 		self["list"] = MenuList(self.list)
 
 		self.onShown.append(self.updateValues)
+		self.onClose.append(self.delReferences)
 		
 		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
 		{
@@ -199,6 +200,9 @@ class Wizard(Screen, HelpableScreen):
 				self.configInstance["config"] = self["config"]
 		else:
 			self["config"].l.setList([])
+
+	def delReferences(self):
+		del self.configInstance
 
 class WizardManager:
 	def __init__(self):
