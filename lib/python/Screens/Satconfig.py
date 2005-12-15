@@ -37,7 +37,7 @@ class NimSetup(Screen):
 			self.list.append(getConfigListEntry(_("Configuration Mode"), config.Nims[self.nim.slotid].configMode))
 			
 			if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
-				self.list.append(getConfigListEntry(_("Diseqcmode"), config.Nims[self.nim.slotid].diseqcMode))
+				self.list.append(getConfigListEntry(_("DiSEqC Mode"), config.Nims[self.nim.slotid].diseqcMode))
 			
 				if (0 <= config.Nims[self.nim.slotid].diseqcMode.value < 4):
 					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
@@ -59,7 +59,7 @@ class NimSetup(Screen):
 		self["config"].l.setList(self.list)
 		
 	def newConfig(self):	
-		if self["config"].getCurrent()[0] == _("Diseqcmode"):
+		if self["config"].getCurrent()[0] == _("DiSEqC Mode"):
 			self.createSetup()
 		if self["config"].getCurrent()[0] == _("Configuration Mode"):
 			self.createSetup()
