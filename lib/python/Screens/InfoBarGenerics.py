@@ -594,7 +594,7 @@ class InfoBarInstantRecord:
 			pass
 		
 		# fix me, description. 
-		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600, serviceref, epg, "instant record")
+		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600 * 10, serviceref, epg, "instant record")
 		self.recording.dontSave = True
 		
 		#self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
