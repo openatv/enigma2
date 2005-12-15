@@ -59,13 +59,13 @@ class TimerEntry(Screen):
 					repeated = 0 # daily
 				else:
 					flags = self.timer.repeated
-					repeated = 3 # user-defined
+					repeated = 3 # user defined
 					count = 0
 					for x in range(0, 7):
 						if (flags == 1): # weekly
 							print "Set to weekday " + str(x)
 							weekday = x
-						if (flags & 1 == 1): # set user-defined flags
+						if (flags & 1 == 1): # set user defined flags
 							day[x] = 0
 							count += 1
 						else:
@@ -80,7 +80,7 @@ class TimerEntry(Screen):
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
-			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, (_("daily"), _("weekly"), _("Mon-Fri"), _("user-defined")))
+			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, (_("daily"), _("weekly"), _("Mon-Fri"), _("user defined")))
 
 			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, (_("%d.%B %Y"), 86400))
 			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
@@ -127,7 +127,7 @@ class TimerEntry(Screen):
 	def createSetup(self):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
-		self.list.append(getConfigListEntry(_("TimerType"), config.timerentry.type))
+		self.list.append(getConfigListEntry(_("Timer Type"), config.timerentry.type))
 
 		if (config.timerentry.type.value == 0): # once
 			pass
@@ -140,7 +140,7 @@ class TimerEntry(Screen):
 			if (config.timerentry.repeated.value == 1): # weekly
 				self.list.append(getConfigListEntry(_("Weekday"), config.timerentry.weekday))
 
-			if (config.timerentry.repeated.value == 3): # user-defined
+			if (config.timerentry.repeated.value == 3): # user defined
 				self.list.append(getConfigListEntry(_("Monday"), config.timerentry.day[0]))
 				self.list.append(getConfigListEntry(_("Tuesday"), config.timerentry.day[1]))
 				self.list.append(getConfigListEntry(_("Wednesday"), config.timerentry.day[2]))
@@ -170,7 +170,7 @@ class TimerEntry(Screen):
 
 	def newConfig(self):
 		print self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == _("TimerType"):
+		if self["config"].getCurrent()[0] == _("Timer Type"):
 			self.createSetup()
 		if self["config"].getCurrent()[0] == _("Frequency"):
 			self.createSetup()
@@ -242,7 +242,7 @@ class TimerEntry(Screen):
 				for x in range(0,5):
 					self.timer.setRepeated(x)
 				
-			if (config.timerentry.repeated.value == 3): # user-defined
+			if (config.timerentry.repeated.value == 3): # user defined
 				for x in range(0,7):
 					if (config.timerentry.day[x].value == 0): self.timer.setRepeated(x)
 

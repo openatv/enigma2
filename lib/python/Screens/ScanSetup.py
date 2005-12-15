@@ -86,7 +86,7 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_('Satellite'), config.scan.satselection[config.scan.nims.value]))
 				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
-				self.list.append(getConfigListEntry(_('Symbolrate'), config.scan.sat.symbolrate))
+				self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
 				self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
 				self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
 			if (config.scan.type.value == 1): # single satellite scan
@@ -113,7 +113,7 @@ class ScanSetup(Screen):
 			if (config.scan.typecable.value == 0): # single transponder
 				self.list.append(getConfigListEntry(_("Frequency"), config.scan.cab.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), config.scan.cab.inversion))
-				self.list.append(getConfigListEntry(_("Symbolrate"), config.scan.cab.symbolrate))
+				self.list.append(getConfigListEntry(_("Symbol Rate"), config.scan.cab.symbolrate))
 				self.list.append(getConfigListEntry(_("Modulation"), config.scan.cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), config.scan.cab.fec))
 			if (config.scan.typecable.value == 1): # complete
