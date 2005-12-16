@@ -229,6 +229,8 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 	for (int i=0; i<entries; ++i)
 		m_data[i] = -1;
 
+	m_idleInputpower[0]=m_idleInputpower[1]=0;
+
 	ok = !openFrontend();
 	closeFrontend();
 }
