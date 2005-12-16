@@ -28,6 +28,10 @@ self["rc"].startMoving()
 			</code>
 		</step>
 		<step number="3">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = nimmanager.nimCount > 0
+			</condition>
 			<text value="Use the left and right buttons to change an option.\n\nPlease set up tuner A" />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
@@ -43,6 +47,10 @@ self["arrowdown"].startMoving()
 			</code>
 		</step>
 		<step number="4">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = nimmanager.nimCount > 1
+			</condition>
 			<text value="Please set up tuner B" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 			<code>
