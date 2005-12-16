@@ -1,6 +1,7 @@
 from Wizard import Wizard, wizardManager
 
 from Components.Pixmap import *
+
 from LanguageSelection import LanguageSelection
 
 class StartWizard(Wizard):
