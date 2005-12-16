@@ -16,7 +16,7 @@ struct eDVBFrontendParametersSatellite
 	struct Inversion
 	{
 		enum {
-			On, Off, Unknown
+			Off, On, Unknown
 		};
 	};
 	struct FEC

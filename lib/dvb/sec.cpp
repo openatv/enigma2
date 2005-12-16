@@ -28,7 +28,6 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 	clear();
 
-#if 1
 // ASTRA
 	addLNB();
 	setLNBTunerMask(3);
@@ -62,7 +61,6 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addSatellite(130);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-#else
 
 // Rotor
 	addLNB();
@@ -84,12 +82,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setUseInputpower(true);
 	setInputpowerDelta(50);
 
-	addSatellite(130);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-	setRotorPosNum(0);
-
-	addSatellite(192);
+	addSatellite(235);
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
 	setRotorPosNum(0);
@@ -103,7 +96,6 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
 	setToneMode(eDVBSatelliteSwitchParameters::HILO);
 	setRotorPosNum(1); // stored pos 1
-#endif
 }
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
@@ -261,7 +253,19 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
 				band |= 2;
 
-			parm.INVERSION = (!sat.inversion) ? INVERSION_ON : INVERSION_OFF;
+			switch (sat.inversion)
+			{
+				case eDVBFrontendParametersCable::Inversion::On:
+					parm.INVERSION = INVERSION_ON;
+					break;
+				case eDVBFrontendParametersCable::Inversion::Off:
+					parm.INVERSION = INVERSION_OFF;
+					break;
+				default:
+				case eDVBFrontendParametersCable::Inversion::Unknown:
+					parm.INVERSION = INVERSION_AUTO;
+					break;
+			}
 
 			switch (sat.fec)
 			{
