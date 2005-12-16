@@ -127,12 +127,14 @@ class TimerEntry(Screen):
 	def createSetup(self):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
-		self.list.append(getConfigListEntry(_("Timer Type"), config.timerentry.type))
+		self.timerTypeEntry = getConfigListEntry(_("Timer Type"), config.timerentry.type)
+		self.list.append(self.timerTypeEntry)
 
 		if (config.timerentry.type.value == 0): # once
 			pass
 		else: # repeated
-			self.list.append(getConfigListEntry(_("Frequency"), config.timerentry.repeated))
+			self.frequencyEntry = getConfigListEntry(_("Frequency"), config.timerentry.repeated)
+			self.list.append(self.frequencyEntry)
 			if (config.timerentry.repeated.value == 0): # daily
 				pass
 			if (config.timerentry.repeated.value == 2): # Mon-Fri
@@ -163,20 +165,21 @@ class TimerEntry(Screen):
 		else:
 			self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
 
-		self.list.append(getConfigListEntry(_("Channel"), config.timerentry.service))
+		self.channelEntry = getConfigListEntry(_("Channel"), config.timerentry.service)
+		self.list.append(self.channelEntry)
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
 		print self["config"].getCurrent()
-		if self["config"].getCurrent()[0] == _("Timer Type"):
+		if self["config"].getCurrent() == self.timerTypeEntry:
 			self.createSetup()
-		if self["config"].getCurrent()[0] == _("Frequency"):
+		if self["config"].getCurrent() == self.frequencyEntry:
 			self.createSetup()
 
 	def keyLeft(self):
-		if self["config"].getCurrent()[0] == _("Channel"):
+		if self["config"].getCurrent() == self.channelEntry:
 			self.keySelect()
 		else:
 			self["config"].handleKey(config.key["prevElement"])
@@ -192,14 +195,14 @@ class TimerEntry(Screen):
 			self.keyRight()
 
 	def keyRight(self):
-		if self["config"].getCurrent()[0] == _("Channel"):
+		if self["config"].getCurrent() == self.channelEntry:
 			self.keySelect()
 		else:
 			self["config"].handleKey(config.key["nextElement"])
 			self.newConfig()
 		
 	def keySelect(self):
-		if self["config"].getCurrent()[0] == _("Channel"):
+		if self["config"].getCurrent() == self.channelEntry:
 			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
 
 	def finishedChannelSelection(self, args):
