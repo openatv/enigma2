@@ -142,6 +142,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		channel_data(eEPGCache*);
 		eEPGCache *cache;
 		eTimer abortTimer, zapTimer;
+		int prevChannelState;
 		__u8 state, isRunning, haveData, can_delete;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;

@@ -370,6 +370,7 @@ void eDVBLocalTimeHandler::DVBChannelAdded(eDVBChannel *chan)
 			m_knownChannels.insert( std::pair<iDVBChannel*, channel_data>(chan, channel_data()) );
 		tmp.first->second.tdt = NULL;
 		tmp.first->second.channel = chan;
+		tmp.first->second.m_prevChannelState = -1;
 		chan->connectStateChange(slot(*this, &eDVBLocalTimeHandler::DVBChannelStateChanged), tmp.first->second.m_stateChangedConn);
 	}
 }
@@ -382,18 +383,24 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 	{
 		int state=0;
 		chan->getState(state);
-		switch (state)
+		if ( state != it->second.m_prevChannelState )
 		{
-			case iDVBChannel::state_ok:
-				eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
-				it->second.tdt = new TDT(it->second.channel);
-				it->second.tdt->start();
-				break;
-			case iDVBChannel::state_release:
-				eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
-				delete it->second.tdt;
-				m_knownChannels.erase(it);
-				break;
+			switch (state)
+			{
+				case iDVBChannel::state_ok:
+					eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
+					it->second.tdt = new TDT(it->second.channel);
+					it->second.tdt->start();
+					break;
+				case iDVBChannel::state_release:
+					eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
+					delete it->second.tdt;
+					m_knownChannels.erase(it);
+					break;
+				default: // ignore all other events
+					return;
+			}
+			it->second.m_prevChannelState = state;
 		}
 	}
 }

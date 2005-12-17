@@ -191,6 +191,7 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 //		eDebug("[eEPGCache] add channel %p", chan);
 		channel_data *data = new channel_data(this);
 		data->channel = chan;
+		data->prevChannelState = -1;
 		singleLock s(channel_map_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
 		chan->connectStateChange(slot(*this, &eEPGCache::DVBChannelStateChanged), data->m_stateChangedConn);
@@ -256,25 +257,31 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	{
 		int state=0;
 		chan->getState(state);
-		switch (state)
+		if ( it->second->prevChannelState != state )
 		{
-			case iDVBChannel::state_ok:
+			switch (state)
 			{
-				eDebug("[eEPGCache] channel %p running", chan);
-				DVBChannelRunning(chan);
-				break;
+				case iDVBChannel::state_ok:
+				{
+					eDebug("[eEPGCache] channel %p running", chan);
+					DVBChannelRunning(chan);
+					break;
+				}
+				case iDVBChannel::state_release:
+				{
+					eDebug("[eEPGCache] remove channel %p", chan);
+					messages.send(Message(Message::leaveChannel, chan));
+					while(!it->second->can_delete)
+						usleep(1000);
+					delete it->second;
+					m_knownChannels.erase(it);
+					// -> gotMessage -> abortEPG
+					break;
+				}
+				default: // ignore all other events
+					return;
 			}
-			case iDVBChannel::state_release:
-			{
-				eDebug("[eEPGCache] remove channel %p", chan);
-				messages.send(Message(Message::leaveChannel, chan));
-				while(!it->second->can_delete)
-					usleep(1000);
-				delete it->second;
-				m_knownChannels.erase(it);
-				// -> gotMessage -> abortEPG
-				break;
-			}
+			it->second->prevChannelState = state;
 		}
 	}
 }
