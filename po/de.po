@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-15 01:46+0100\n"
+"POT-Creation-Date: 2005-12-17 01:09+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -69,7 +69,7 @@ msgstr "Bandbreite"
 msgid "Bus: "
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:53
+#: ../lib/python/Screens/Satconfig.py:55
 msgid "Cable provider"
 msgstr "Kabelanbieter"
 
@@ -77,10 +77,7 @@ msgstr "Kabelanbieter"
 msgid "Capacity: "
 msgstr "Kapazität: "
 
-#: ../lib/python/Screens/TimerEntry.py:166
-#: ../lib/python/Screens/TimerEntry.py:179
-#: ../lib/python/Screens/TimerEntry.py:195
-#: ../lib/python/Screens/TimerEntry.py:202 ../data/
+#: ../lib/python/Screens/TimerEntry.py:168 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -104,9 +101,7 @@ msgstr ""
 msgid "Code rate low"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:37 ../lib/python/Screens/Satconfig.py:64
-#: ../lib/python/Screens/Satconfig.py:68 ../lib/python/Screens/Satconfig.py:78
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:37 ../data/
 msgid "Configuration Mode"
 msgstr "Konfigurationsmodus"
 
@@ -138,6 +133,10 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
+#: ../lib/python/Screens/Satconfig.py:41
+msgid "DiSEqC Mode"
+msgstr "DiSEqC-Modus"
+
 #: ../lib/python/Screens/ScanSetup.py:104
 #: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
 #: ../lib/python/Components/SetupDevices.py:38
@@ -149,10 +148,6 @@ msgstr "DiSEqC A/B/C/D"
 #: ../lib/python/Components/SetupDevices.py:47
 msgid "Disable"
 msgstr "Aus"
-
-#: ../lib/python/Screens/Satconfig.py:40 ../lib/python/Screens/Satconfig.py:62
-msgid "DiSEqC Mode"
-msgstr "DiSEqC-Modus"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:625
 msgid ""
@@ -183,11 +178,11 @@ msgstr "Ost"
 msgid "Enable"
 msgstr "Ein"
 
-#: ../lib/python/Screens/TimerEntry.py:161
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "End"
 msgstr "Ende"
 
-#: ../lib/python/Screens/TimerEntry.py:164
+#: ../lib/python/Screens/TimerEntry.py:166
 msgid "EndTime"
 msgstr "Endzeit"
 
@@ -209,17 +204,16 @@ msgstr "Favoriten"
 #: ../lib/python/Screens/ScanSetup.py:87
 #: ../lib/python/Screens/ScanSetup.py:114
 #: ../lib/python/Screens/ScanSetup.py:124
-#: ../lib/python/Screens/TimerEntry.py:135
-#: ../lib/python/Screens/TimerEntry.py:175
+#: ../lib/python/Screens/TimerEntry.py:136
 msgid "Frequency"
 msgstr "Frequenz"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:150
 msgid "Friday"
 msgstr "Freitag"
 
-#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
 msgstr ""
 
@@ -236,7 +230,7 @@ msgstr ""
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:41 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "IP-Adresse"
 
@@ -284,7 +278,7 @@ msgid "Mon-Fri"
 msgstr "Montag bis Freitag"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:144
+#: ../lib/python/Screens/TimerEntry.py:146
 msgid "Monday"
 msgstr "Montag"
 
@@ -292,11 +286,11 @@ msgstr "Montag"
 msgid "N/A"
 msgstr "Nicht verfügbar"
 
-#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:46 ../data/
 msgid "Nameserver"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:43 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
 
@@ -310,6 +304,10 @@ msgstr "Keins"
 #: ../lib/python/Components/NimManager.py:433
 msgid "North"
 msgstr "Nord"
+
+#: ../lib/python/Components/NimManager.py:409
+msgid "Nothing connected"
+msgstr "Nichts angeschlossen"
 
 #: ../lib/python/Screens/InfoBar.py:35
 msgid "Play recorded movies..."
@@ -369,11 +367,11 @@ msgid "Satellites"
 msgstr "Satelliten"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:149
+#: ../lib/python/Screens/TimerEntry.py:151
 msgid "Saturday"
 msgstr "Samstag"
 
-#: ../lib/python/Screens/TimerEntry.py:203
+#: ../lib/python/Screens/TimerEntry.py:206
 msgid "Select channel to record from"
 msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 
@@ -397,7 +395,7 @@ msgstr "Sockel "
 msgid "South"
 msgstr "Süd"
 
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Start"
 msgstr ""
 
@@ -405,11 +403,11 @@ msgstr ""
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
-#: ../lib/python/Screens/TimerEntry.py:159
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "StartTime"
 msgstr "Startzeit"
 
-#: ../lib/python/Screens/Wizard.py:168
+#: ../lib/python/Screens/Wizard.py:178
 msgid "Step "
 msgstr "Schritt "
 
@@ -422,7 +420,7 @@ msgid "Subservices"
 msgstr "Unterkanäle"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:150
+#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Sunday"
 msgstr "Sonntag"
 
@@ -431,18 +429,17 @@ msgstr "Sonntag"
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
-#: ../lib/python/Screens/Satconfig.py:55
+#: ../lib/python/Screens/Satconfig.py:57
 msgid "Terrestrial provider"
 msgstr "Region"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:147
+#: ../lib/python/Screens/TimerEntry.py:149
 msgid "Thursday"
 msgstr "Donnerstag"
 
 #: ../lib/python/Screens/TimerEntry.py:130
-#: ../lib/python/Screens/TimerEntry.py:173
-msgid "TimerType"
+msgid "Timer Type"
 msgstr "Timer-Art"
 
 #: ../lib/python/Components/NimManager.py:424
@@ -454,7 +451,7 @@ msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:145
+#: ../lib/python/Screens/TimerEntry.py:147
 msgid "Tuesday"
 msgstr "Dienstag"
 
@@ -483,17 +480,16 @@ msgstr ""
 "Bitte lesen Sie im Handbuch nach.\n"
 "Fehler: "
 
-#: ../lib/python/Screens/NetworkSetup.py:40
-#: ../lib/python/Screens/NetworkSetup.py:52 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
 #: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:146
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: ../lib/python/Screens/TimerEntry.py:141
+#: ../lib/python/Screens/TimerEntry.py:143
 msgid "Weekday"
 msgstr "Wochentag"
 
@@ -624,7 +620,7 @@ msgstr "Status"
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
-#: ../lib/python/Screens/Wizard.py:171 ../lib/python/Screens/Wizard.py:172
+#: ../lib/python/Screens/Wizard.py:181 ../lib/python/Screens/Wizard.py:182
 msgid "text"
 msgstr ""
 
@@ -654,6 +650,10 @@ msgstr "ja"
 #: ../data/
 msgid "Service"
 msgstr "Kanal"
+
+#: ../data/
+msgid "Network setup"
+msgstr "Netzwerkeinstellungen"
 
 #: ../data/
 msgid "Games / Plugins"
@@ -688,6 +688,10 @@ msgid "Deep Standby"
 msgstr "Ausschalten"
 
 #: ../data/
+msgid "Tuner Slot"
+msgstr ""
+
+#: ../data/
 msgid "Sound"
 msgstr "Ton"
 
@@ -716,19 +720,6 @@ msgid "Use wizard to set up basic features"
 msgstr "Grundeinstellungen jetzt vornehmen"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
-
-#: ../data/
 msgid "Sat / Dish Setup"
 msgstr "Sat-/Schüsseleinstellungen"
 
@@ -751,10 +742,6 @@ msgstr ""
 #: ../data/
 msgid "Harddisk"
 msgstr "Festplatte"
-
-#: ../data/
-msgid "What do you want to scan?"
-msgstr "Was wollen Sie scannen?"
 
 #: ../data/
 msgid "Keyboard Map"
@@ -794,6 +781,10 @@ msgstr "Videorekorderumschaltung"
 
 #: ../data/
 msgid "use power delta"
+msgstr ""
+
+#: ../data/
+msgid "Test mode"
 msgstr ""
 
 #: ../data/
@@ -846,10 +837,6 @@ msgstr "Helligkeit"
 
 #: ../data/
 msgid "Standby"
-msgstr ""
-
-#: ../data/
-msgid "Select a movie"
 msgstr ""
 
 #: ../data/
@@ -1005,10 +992,6 @@ msgid "Please set up tuner B"
 msgstr "Einstellungen für Tuner B."
 
 #: ../data/
-msgid "Network setup"
-msgstr "Netzwerkeinstellungen"
-
-#: ../data/
 msgid "Delay"
 msgstr "Verzögerung"
 
@@ -1051,12 +1034,29 @@ msgid "Mainmenu"
 msgstr "Hauptmenü"
 
 #: ../data/
+msgid "Select a movie"
+msgstr ""
+
+#: ../data/
 msgid "Volume"
 msgstr "Lautstärke"
 
 #: ../data/
 msgid "Alpha"
 msgstr ""
+
+#: ../data/
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
 msgid "About"
@@ -1083,12 +1083,8 @@ msgid "Video Audio"
 msgstr ""
 
 #: ../data/
-msgid "Test mode"
-msgstr ""
-
-#: ../data/
-msgid "Tuner Slot"
-msgstr ""
+msgid "What do you want to scan?"
+msgstr "Was wollen Sie scannen?"
 
 #: ../data/
 msgid "Audio"
@@ -1110,3 +1106,4 @@ msgstr ""
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+

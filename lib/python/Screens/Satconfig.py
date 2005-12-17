@@ -45,11 +45,11 @@ class NimSetup(Screen):
 					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
 				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
 					self.createPositionerSetup(self.nim, self.list)
-			elif config.Nims[self.nim.slotid].configMode.value == 1: # linked tuner
+			elif config.Nims[self.nim.slotid].configMode.value == 1: # nothing
 				#self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
 				pass
-			elif config.Nims[self.nim.slotid].configMode.value == 2: # advanced mode
-				print "FIXME: implement advanced mode"
+			elif config.Nims[self.nim.slotid].configMode.value == 2: # linked
+				pass
 		
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
 			self.list.append(getConfigListEntry(_("Cable provider"), config.Nims[self.nim.slotid].cable))
