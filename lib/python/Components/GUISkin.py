@@ -16,7 +16,7 @@ class GUISkin:
 
 		for w in self.additionalWidgets:
 			w.instance = w.widget(parent)
-			w.instance.thisown = 0
+			# w.instance.thisown = 0
 			applyAllAttributes(w.instance, desktop, w.skinAttributes)
 		
 		for f in self.onLayoutFinish:
