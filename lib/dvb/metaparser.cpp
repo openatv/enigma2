@@ -12,6 +12,8 @@ int eDVBMetaParser::parseFile(const std::string &tsname)
 
 	int linecnt = 0;
 	
+	m_time_create = 0;
+	
 	while (1)
 	{
 		char line[1024];
