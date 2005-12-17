@@ -6,15 +6,12 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.ActionMap import HelpableActionMap, NumberActionMap
-from Components.config import config, configElementBoolean
 from Components.Pixmap import *
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-
-config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
 
 class Wizard(Screen, HelpableScreen):
 
@@ -55,7 +52,7 @@ class Wizard(Screen, HelpableScreen):
 				 self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 			elif self.currContent == "condition":
 				 self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
-	def __init__(self, session):
+	def __init__(self, session, showSteps = True, showStepSlider = True):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
@@ -65,7 +62,10 @@ class Wizard(Screen, HelpableScreen):
 		wizardHandler = self.parseWizard(self.wizard)
 		parser.setContentHandler(wizardHandler)
 		parser.parse('/usr/share/enigma2/' + self.xmlfile)
-		
+
+		self.showSteps = showSteps
+		self.showStepSlider = showStepSlider
+
 		self.numSteps = len(self.wizard)
 		self.currStep = 1
 
@@ -73,9 +73,11 @@ class Wizard(Screen, HelpableScreen):
 
 		self["config"] = ConfigList([])
 
-		self["step"] = Label()
-				
-		self["stepslider"] = Slider(1, self.numSteps)
+		if self.showSteps:
+			self["step"] = Label()
+		
+		if self.showStepSlider:
+			self["stepslider"] = Slider(1, self.numSteps)
 		
 		self.list = []
 		self["list"] = MenuList(self.list)
@@ -113,6 +115,9 @@ class Wizard(Screen, HelpableScreen):
 			self.currStep = 1
 		self.updateValues()
 		
+	def markDone(self):
+		pass
+		
 	def ok(self):
 		print "OK"
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
@@ -131,8 +136,7 @@ class Wizard(Screen, HelpableScreen):
 				self.currStep = int(nextStep) - 1
 
 		if (self.currStep == self.numSteps): # wizard finished
-			config.misc.firstrun.value = 0;
-			config.misc.firstrun.save()
+			self.markDone()
 			self.session.close()
 		else:
 			self.currStep += 1
@@ -174,8 +178,10 @@ class Wizard(Screen, HelpableScreen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if self.condition:
-			self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
-			self["stepslider"].setValue(self.currStep)
+			if self.showSteps:
+				self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
+			if self.showStepSlider:
+				self["stepslider"].setValue(self.currStep)
 		
 			print _(self.wizard[self.currStep]["text"])
 			self["text"].setText(_(self.wizard[self.currStep]["text"]))
@@ -216,13 +222,14 @@ class WizardManager:
 	def __init__(self):
 		self.wizards = []
 	
-	def registerWizard(self, wizard):
-		self.wizards.append(wizard)
+	def registerWizard(self, wizard, precondition):
+		self.wizards.append((wizard, precondition))
 	
 	def getWizards(self):
-		if config.misc.firstrun.value:
-			return self.wizards
-		else:
-			return []
+		list = []
+		for x in self.wizards:
+			if x[1] == 1: # precondition
+				list.append(x[0])
+		return list
 
 wizardManager = WizardManager()
