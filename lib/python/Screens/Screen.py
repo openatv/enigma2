@@ -63,6 +63,9 @@ class Screen(dict, HTMLSkin, GUISkin):
 		del self.session
 		for (name, val) in self.items():
 			del self[name]
+		
+		# really delete all elements now
+		self.__dict__.clear()
 	
 	def close(self, *retval):
 		self.session.close(*retval)
