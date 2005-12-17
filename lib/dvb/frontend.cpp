@@ -177,8 +177,11 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			diff = 1<<29;
 		else if (sat.polarisation != osat.polarisation)
 			diff = 1<<28;
-		else 
+		else
+		{
 			diff = abs(sat.frequency - osat.frequency);
+			diff += abs(sat.symbol_rate - osat.symbol_rate);
+		}
 		return 0;
 	}
 	case iDVBFrontend::feCable:

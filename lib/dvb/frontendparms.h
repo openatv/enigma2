@@ -22,7 +22,7 @@ struct eDVBFrontendParametersSatellite
 	struct FEC
 	{
 		enum {
-			fNone, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto
+			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fNone
 		};
 	};
 	unsigned int frequency, symbol_rate;

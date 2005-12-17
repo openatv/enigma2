@@ -166,7 +166,7 @@ class NimManager:
 				else:
 					self.transponders[self.parsedCab] = [ ]
 
-				self.transponders[self.parsedCab].append((0, freq, sr, mod, fec))
+				self.transponders[self.parsedCab].append((1, freq, sr, mod, fec))
 
 	class parseTerrestrials(ContentHandler):
 		def __init__(self, terrestrialsList, transponders):
@@ -197,7 +197,7 @@ class NimManager:
 				else:
 					self.transponders[self.parsedTer] = [ ]
 
-				self.transponders[self.parsedTer].append((0, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
+				self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
 
 	def getTransponders(self, pos):
 		return self.transponders[pos]
