@@ -83,7 +83,7 @@ class SecConfigure:
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if nim.configMode.value == 1:
+				if nim.configMode.value == 2:
 					self.linkNIMs(x, nim.linkedTo.value)
 					nim = config.Nims[nim.linkedTo.value]
 				if nim.configMode.value == 0:		#simple config
@@ -350,10 +350,10 @@ class NimManager:
 
 	#callbacks for c++ config
 	def nimConfigModeChanged(self, slotid, mode):
-		if (mode != 1): # not linked
+		if (mode != 2): # not linked
 			print "Unlinking slot " + str(slotid)
 			# TODO call c++ to unlink nim in slot slotid
-		if (mode == 1): # linked
+		if (mode == 2): # linked
 			pass
 			#FIXME!!!
 			#if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
@@ -406,10 +406,10 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Loopthrough to Socket A"))) # "Advanced"));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Nothing connected"), _("Loopthrough to Socket A"))) # "Advanced"));
 			
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
-			if nim.configMode.value == 1: #linked
+			if nim.configMode.value == 2: #linked
 				if x == 0:										#first one can never be linked to anything
 					nim.configMode.value = 0		#reset to simple
 					nim.configMode.save()
