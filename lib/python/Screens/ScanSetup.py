@@ -19,8 +19,8 @@ def getInitialTransponderList(tlist, pos):
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
 			parm.polarisation = x[3] # eDVBFrontendParametersSatellite.Polarisation.Vertical
-			#parm.fec = x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
-			parm.fec = 6					# AUTO
+			parm.fec = x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
+			#parm.fec = 6					# AUTO
 			#parm.inversion = 1 	#eDVBFrontendParametersSatellite.Inversion.Off;
 			parm.inversion = 2 		#AUTO
 			parm.orbital_position = pos
@@ -170,7 +170,7 @@ class ScanSetup(Screen):
 			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, (_("off"), _("on"), _("Auto")))
 			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 99999)))
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (_("horizontal"), _("vertical"),  _("circular left"), _("circular right")))
-			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, ("None", "1/2", "2/3", "3/4", "5/6", "7/8", "auto"))
+			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, (_("Auto"), "1/2", "2/3", "3/4", "5/6", "7/8", _("None")))
 
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 9999)))
