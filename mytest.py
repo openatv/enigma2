@@ -75,8 +75,6 @@ class Session:
 
 		if self.currentDialog.isTmp:
 			self.currentDialog.doClose()
-
-			del self.currentDialog.instance
 #			dump(self.currentDialog)
 			del self.currentDialog
 		else:
@@ -121,6 +119,9 @@ class Session:
 			quitMainloop(5)
 			print '-'*60
 		
+		if dlg is None:
+			return
+
 		# read skin data
 		readSkin(dlg, None, dlg.skinName, self.desktop)
 
