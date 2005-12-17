@@ -40,6 +40,7 @@ class eDVBLocalTimeHandler: public Object
 		TDT *tdt;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn;
+		int m_prevChannelState;
 	};
 	friend class TDT;
 	DECLARE_REF(eDVBLocalTimeHandler)
