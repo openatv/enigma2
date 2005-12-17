@@ -12,8 +12,6 @@ class TutorialWizard(Wizard):
 	skin = """
 		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="50,100" size="440,200" font="Arial;23" />
-			<widget name="list" position="50,300" zPosition="1" size="440,200" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="/usr/share/enigma2/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
@@ -24,7 +22,7 @@ class TutorialWizard(Wizard):
 		self.skin = TutorialWizard.skin
 		self.xmlfile = "tutorialwizard.xml"
 		
-		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
+		Wizard.__init__(self, session, showSteps=False, showStepSlider=False, showList=False, showConfig=False)
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
