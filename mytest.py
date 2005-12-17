@@ -18,6 +18,7 @@ from skin import readSkin, applyAllAttributes
 from Components.config import configfile
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
+from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
 
 had = dict()
