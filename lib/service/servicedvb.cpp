@@ -127,6 +127,9 @@ public:
 	eStaticServiceDVBPVRInformation(const eServiceReference &ref);
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
+	
+	int getInfo(const eServiceReference &ref, int w);
+	std::string getInfoString(const eServiceReference &ref,int w);
 };
 
 DEFINE_REF(eStaticServiceDVBPVRInformation);
@@ -160,7 +163,32 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	return len / 90000;
 }
 
+int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sDescription:
+		return iServiceInformation::resIsString;
+	case iServiceInformation::sTimeCreate:
+		if (m_parser.m_time_create)
+			return m_parser.m_time_create;
+		else
+			return iServiceInformation::resNA;
+	default:
+		return iServiceInformation::resNA;
+	}
+}
 
+std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReference &ref,int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sDescription:
+		return m_parser.m_description;
+	default:
+		return "";
+	}
+}
 
 class eDVBPVRServiceOfflineOperations: public iServiceOfflineOperations
 {
@@ -459,6 +487,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_reference(ref), m_dvb_service(service), m_service_handler(0), m_is_paused(0)
 {
 	m_is_pvr = !ref.path.empty();
+	m_timeshift_enabled = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
@@ -619,14 +648,14 @@ RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &ev
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
-	if (m_is_pvr)
+	if (!m_is_pvr)
 	{
-		ptr = this;
-		return 0;
+		ptr = 0;
+		return -1;
 	}
 
-	ptr = 0;
-	return -1;
+	ptr = this;
+	return 0;
 }
 
 RESULT eDVBServicePlay::setSlowMotion(int ratio)
@@ -751,6 +780,17 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 {
 	ptr = this;
 	return 0;
+}
+
+RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
+{
+	if (m_timeshift_enabled || !m_is_pvr)
+	{
+		ptr = this;
+		return 0;
+	}
+	ptr = 0;
+	return -1;
 }
 
 RESULT eDVBServicePlay::getName(std::string &name)
@@ -937,6 +977,23 @@ RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
 	}
 	sub.type=eServiceReference::idInvalid;
 	return -1;
+}
+
+RESULT eDVBServicePlay::startTimeshift()
+{
+	if (m_timeshift_enabled)
+		return -1;
+	eDebug("TIMESHIFT - start!");
+	return 0;
+}
+
+RESULT eDVBServicePlay::stopTimeshift()
+{
+	if (!m_timeshift_enabled)
+		return -1;
+	m_timeshift_enabled = 0;
+	eDebug("timeshift disabled");
+	return 0;
 }
 
 DEFINE_REF(eDVBServicePlay)

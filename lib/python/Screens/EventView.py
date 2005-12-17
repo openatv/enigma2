@@ -4,7 +4,7 @@ from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from enigma import eServiceEventPtr
 from ServiceReference import ServiceReference
-from RecordTimer import RecordTimerEntry
+from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
 
 class EventView(Screen):
@@ -38,24 +38,7 @@ class EventView(Screen):
 			self.cbFunc(self.setEvent, +1)
 			
 	def timerAdd(self):
-		epg = self.event
-		
-		if (epg == None):
-			description = "unknown event"
-		else:
-			description = epg.getEventName()
-			# FIXME we need a timestamp here:
-			begin = epg.getBeginTime()
-			
-			print begin
-			print epg.getDuration()
-			end = begin + epg.getDuration()
-
-
-		# FIXME only works if already playing a service
-		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
-		
-		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		newEntry = RecordTimerEntry(self.currentService, *parseEvent(self.event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):

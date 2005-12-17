@@ -78,6 +78,7 @@ class TimerEntry(Screen):
 				repeated = 0
 			
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
+			config.timerentry.name = configElement_nonSave("config.timerentry.name", configText, self.timer.name, (configText.extendableSize, self.keyRightCallback))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
 
 			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, (_("daily"), _("weekly"), _("Mon-Fri"), _("user defined")))
@@ -126,6 +127,7 @@ class TimerEntry(Screen):
 
 	def createSetup(self):
 		self.list = []
+		self.list.append(getConfigListEntry(_("Name"), config.timerentry.name))
 		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
 		self.timerTypeEntry = getConfigListEntry(_("Timer Type"), config.timerentry.type)
 		self.list.append(self.timerTypeEntry)
@@ -227,6 +229,7 @@ class TimerEntry(Screen):
 		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):
+		self.timer.name = config.timerentry.name.value
 		self.timer.description = config.timerentry.description.value
 		self.timer.resetRepeated()
 		

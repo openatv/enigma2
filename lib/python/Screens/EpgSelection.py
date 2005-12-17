@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 from Screens.EventView import EventView
 from enigma import eServiceReference, eServiceEventPtr
 from Screens.FixedMenu import FixedMenu
-from RecordTimer import RecordTimerEntry
+from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
@@ -49,24 +49,15 @@ class EPGSelection(Screen):
 		self.session.open(EventView, event, self.currentService, self.eventViewCallback)
 	
 	def timerAdd(self):
-		epg = self["list"].getCurrent()
+		event = self["list"].getCurrent()
 		
-		if (epg == None):
-			description = "unknown event"
-		else:
-			description = epg.getEventName()
-			# FIXME we need a timestamp here:
-			begin = epg.getBeginTime()
-			
-			print begin
-			print epg.getDuration()
-			end = begin + epg.getDuration()
-
-
+		if event is None:
+			return
+		
 		# FIXME only works if already playing a service
 		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
 		
-		newEntry = RecordTimerEntry(begin, end, serviceref, epg, description)
+		newEntry = RecordTimerEntry(serviceref, *parseEvent(event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 	
 	def timerEditFinished(self, answer):

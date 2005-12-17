@@ -12,21 +12,34 @@ import NavigationInstance
 from Tools.XMLTools import elementsWithTag
 from ServiceReference import ServiceReference
 
+# ok, for descriptions etc we have:
+# service reference  (to get the service name)
+# name               (title)
+# description        (description)
+# event data         (ONLY for time adjustments etc.)
+
+
+# parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
+def parseEvent(ev):
+	name = ev.getEventName()
+	description = ev.getShortDescription()
+	begin = ev.getBeginTime()
+	end = begin + ev.getDuration()
+	eit = None
+	return (begin, end, name, description, eit)
+
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, begin, end, serviceref, epg, description):
+	def __init__(self, serviceref, begin, end, name, description, eit):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
 		
 		self.service_ref = serviceref
 		
-		if epg is not None:
-			self.epg_data = ""
-			#str(epg.m_event_name)
-		else:
-			self.epg_data = ""
+		self.eit = eit
 		
 		self.dontSave = False
+		self.name = name
 		self.description = description
 		self.timer = None
 		self.record_service = None
@@ -37,26 +50,15 @@ class RecordTimerEntry(timer.TimerEntry):
 		service_name = self.service_ref.getServiceName()
 #		begin_date = datetime.fromtimestamp(begin).strf...
 		begin_date = ""
-		if self.epg_data is not None:
-			description = " - " + self.epg_data
-		else:
-			description = ""
 		
-		print "begin_date: " + str(begin_date)
-		print "service_name: " + str(service_name)
-		print "description: " + str(description)
+		print "begin_date: ", begin_date
+		print "service_name: ", service_name
+		print "name:", self.name
+		print "description: ", self.description
+
 		self.Filename = Directories.getRecordingFilename(service_name)
 		#begin_date + " - " + service_name + description)
 		
-		# build filename from epg
-		
-		# pff das geht noch nicht...
-#		if epg == None:
-#			self.Filename = "recording.ts"
-#		else:
-#			self.Filename = "record_" + str(epg.m_event_name) + ".ts"
-#		
-#		print "------------ record filename: %s" % (self.Filename)
 	
 	def tryPrepare(self):
 		self.calculateFilename()
@@ -70,7 +72,9 @@ class RecordTimerEntry(timer.TimerEntry):
 
 			f = open(self.Filename + ".ts.meta", "w")
 			f.write(str(self.service_ref) + "\n")
-			f.write(self.epg_data + "\n")
+			f.write(self.name + "\n")
+			f.write(self.description + "\n")
+			f.write(str(self.begin) + "\n")
 			del f
 			return True
 
@@ -116,11 +120,12 @@ def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
 	end = int(xml.getAttribute("end"))
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
-	description = xml.getAttribute("description")
-	repeated = xml.getAttribute("repeated")
-	epgdata = xml.getAttribute("epgdata")
-	#filename = xml.getAttribute("filename")
-	entry = RecordTimerEntry(begin, end, serviceref, epgdata, description)
+	description = xml.getAttribute("description").encode("utf-8")
+	repeated = xml.getAttribute("repeated").encode("utf-8")
+	eit = xml.getAttribute("eit").encode("utf-8")
+	name = xml.getAttribute("name").encode("utf-8")
+	#filename = xml.getAttribute("filename").encode("utf-8")
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit)
 	entry.repeated = int(repeated)
 	return entry
 
@@ -132,7 +137,7 @@ class RecordTimer(timer.Timer):
 		
 		try:
 			self.loadTimer()
-		except:
+		except IOError:
 			print "unable to load timers from file!"
 			
 	def isRecording(self):
@@ -168,14 +173,16 @@ class RecordTimer(timer.Timer):
 			t.setAttribute("end", str(timer.end))
 			t.setAttribute("serviceref", str(timer.service_ref))
 			t.setAttribute("repeated", str(timer.repeated))			
-			#t.setAttribute("epgdata", timer.)
-			t.setAttribute("description", "no description") # timer.description)
+			t.setAttribute("name", timer.name)
+			t.setAttribute("description", timer.description)
+			t.setAttribute("eit", str(timer.eit))
+			
 			root_element.appendChild(t)
 			t = doc.createTextNode("\n")
 			root_element.appendChild(t)
 
 		file = open(self.Filename, "w")
-		doc.writexml(codecs.getwriter('UTF-8')(file))
+		doc.writexml(file)
 		file.write("\n")
 		file.close()
 	
@@ -187,8 +194,6 @@ class RecordTimer(timer.Timer):
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
 		
-		entry.repeated = False
-
 		entry.repeated = False
 
 		if entry.state == timer.TimerEntry.StateRunning:

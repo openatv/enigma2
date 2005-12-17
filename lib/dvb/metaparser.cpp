@@ -34,6 +34,9 @@ int eDVBMetaParser::parseFile(const std::string &tsname)
 		case 2:
 			m_description = line;
 			break;
+		case 3:
+			m_time_create = atoi(line);
+			break;
 		default:
 			break;
 		}
