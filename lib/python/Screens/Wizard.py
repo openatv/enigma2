@@ -52,7 +52,7 @@ class Wizard(Screen, HelpableScreen):
 				 self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 			elif self.currContent == "condition":
 				 self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
-	def __init__(self, session, showSteps = True, showStepSlider = True):
+	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
@@ -65,13 +65,16 @@ class Wizard(Screen, HelpableScreen):
 
 		self.showSteps = showSteps
 		self.showStepSlider = showStepSlider
+		self.showList = showList
+		self.showConfig = showConfig
 
 		self.numSteps = len(self.wizard)
 		self.currStep = 1
 
 		self["text"] = Label()
 
-		self["config"] = ConfigList([])
+		if showConfig:
+			self["config"] = ConfigList([])
 
 		if self.showSteps:
 			self["step"] = Label()
@@ -79,8 +82,9 @@ class Wizard(Screen, HelpableScreen):
 		if self.showStepSlider:
 			self["stepslider"] = Slider(1, self.numSteps)
 		
-		self.list = []
-		self["list"] = MenuList(self.list)
+		if self.showList:
+			self.list = []
+			self["list"] = MenuList(self.list)
 
 		self.onShown.append(self.updateValues)
 		
@@ -120,20 +124,22 @@ class Wizard(Screen, HelpableScreen):
 		
 	def ok(self):
 		print "OK"
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			try: # don't die, if no run() is available
-				self.configInstance.run()
-			except:
-				print "Failed to run configInstance"
+		if self.showConfig:
+			if (self.wizard[self.currStep]["config"]["screen"] != None):
+				try: # don't die, if no run() is available
+					self.configInstance.run()
+				except:
+					print "Failed to run configInstance"
 		
-		if (len(self.wizard[self.currStep]["list"]) > 0):
-			nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
-			if nextStep == "end":
-				self.currStep = self.numSteps
-			elif nextStep == "next":
-				pass
-			else:
-				self.currStep = int(nextStep) - 1
+		if self.showList:
+			if (len(self.wizard[self.currStep]["list"]) > 0):
+				nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
+				if nextStep == "end":
+					self.currStep = self.numSteps
+				elif nextStep == "next":
+					pass
+				else:
+					self.currStep = int(nextStep) - 1
 
 		if (self.currStep == self.numSteps): # wizard finished
 			self.markDone()
@@ -159,16 +165,16 @@ class Wizard(Screen, HelpableScreen):
 		print "right"
 
 	def up(self):
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
-			self["config"].instance.moveSelection(self["config"].instance.moveUp)
-		elif (len(self.wizard[self.currStep]["list"]) > 0):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
+				self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		elif (self.showList and len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
 		print "up"
 		
 	def down(self):
-		if (self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
-		elif (len(self.wizard[self.currStep]["list"]) > 0):
+		elif (self.showList and len(self.wizard[self.currStep]["list"]) > 0):
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		print "down"
 		
@@ -190,30 +196,32 @@ class Wizard(Screen, HelpableScreen):
 				print self.wizard[self.currStep]["code"]
 				exec(self.wizard[self.currStep]["code"])
 			
-			self["list"].instance.setZPosition(1)
-			self.list = []
-			if (len(self.wizard[self.currStep]["list"]) > 0):
-				self["list"].instance.setZPosition(2)
-				for x in self.wizard[self.currStep]["list"]:
-					self.list.append((_(x[0]), None))
-			self["list"].l.setList(self.list)
+			if self.showList:
+				self["list"].instance.setZPosition(1)
+				self.list = []
+				if (len(self.wizard[self.currStep]["list"]) > 0):
+					self["list"].instance.setZPosition(2)
+					for x in self.wizard[self.currStep]["list"]:
+						self.list.append((_(x[0]), None))
+				self["list"].l.setList(self.list)
 	
-			self["config"].instance.setZPosition(1)
-			if (self.wizard[self.currStep]["config"]["screen"] != None):
-				if self.wizard[self.currStep]["config"]["type"] == "standalone":
-					print "Type is standalone"
-					self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
-				else:
-					self["config"].instance.setZPosition(2)
-					print self.wizard[self.currStep]["config"]["screen"]
-					if self.wizard[self.currStep]["config"]["args"] == None:
-						self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+			if self.showConfig:
+				self["config"].instance.setZPosition(1)
+				if (self.wizard[self.currStep]["config"]["screen"] != None):
+					if self.wizard[self.currStep]["config"]["type"] == "standalone":
+						print "Type is standalone"
+						self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
 					else:
-						self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
-					self["config"].l.setList(self.configInstance["config"].list)
-					self.configInstance["config"] = self["config"]
-			else:
-				self["config"].l.setList([])
+						self["config"].instance.setZPosition(2)
+						print self.wizard[self.currStep]["config"]["screen"]
+						if self.wizard[self.currStep]["config"]["args"] == None:
+							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
+						else:
+							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
+						self["config"].l.setList(self.configInstance["config"].list)
+						self.configInstance["config"] = self["config"]
+				else:
+					self["config"].l.setList([])
 		else: # condition false
 				self.currStep += 1
 				self.updateValues()
