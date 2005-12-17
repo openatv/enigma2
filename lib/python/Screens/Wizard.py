@@ -107,11 +107,6 @@ class Wizard(Screen, HelpableScreen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		
-		#self["actions"] = HelpableActionMap(self, "OkCancelActions",
-			#{
-				#"ok": (self.ok, _("Close this Screen...")),
-			#})
 
 	def back(self):
 		self.currStep -= 1

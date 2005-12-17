@@ -1,5 +1,20 @@
 <wizard>
 		<step number="1">
-			<text value="Your dreambox is a very powerful digital receiver." />
+			<text value="By pressing the OK Button on your remote control, the info bar is being displayed." />
+			<code>
+from Screens.InfoBar import InfoBar
+self.infobardialog = self.session.instantiateDialog(InfoBar)
+self.infobardialog.hideTimer.stop()
+self.infobardialog.instance.show()
+			</code>
+		</step>
+		<step number="2">
+			<text value="By pressing the OK Button on your remote control, the info bar is being displayed." />
+			<code>
+from Screens.InfoBar import InfoBar
+self.infobardialog = self.session.instantiateDialog(InfoBar)
+self.infobardialog.hideTimer.stop()
+self.infobardialog.instance.show()
+			</code>
 		</step>
 </wizard>
