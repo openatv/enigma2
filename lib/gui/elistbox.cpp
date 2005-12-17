@@ -20,6 +20,9 @@ eListbox::eListbox(eWidget *parent)
 
 eListbox::~eListbox()
 {
+	if (m_scrollbar)
+		delete m_scrollbar;
+	
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	ptr->unbindAction(this, 0);

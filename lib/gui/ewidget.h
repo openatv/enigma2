@@ -72,6 +72,8 @@ private:
 	void doPaint(gPainter &painter, const gRegion &region);
 	void recalcClipRegionsWhenVisible();
 	
+	void parentRemoved();
+	
 	gRGB m_background_color;
 	int m_have_background_color;
 	

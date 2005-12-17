@@ -205,12 +205,11 @@ eWidget::~eWidget()
 
 	m_parent = 0;
 
-		/* destroy all childs */
+		/* tell all childs that the parent is not anymore existing */
 	ePtrList<eWidget>::iterator i(m_childs.begin());
 	while (i != m_childs.end())
 	{
-		(*i)->m_parent = 0;
-		delete *i;
+		(*i)->parentRemoved();
 		i = m_childs.erase(i);
 	}
 }
@@ -273,6 +272,11 @@ void eWidget::recalcClipRegionsWhenVisible()
 		t = t->m_parent;
 		assert(t);
 	} while(1);
+}
+
+void eWidget::parentRemoved()
+{
+	m_parent = 0;
 }
 
 int eWidget::event(int event, void *data, void *data2)

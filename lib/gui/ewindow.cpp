@@ -33,6 +33,7 @@ eWindow::eWindow(eWidgetDesktop *desktop): eWidget(0)
 eWindow::~eWindow()
 {
 	getDesktop()->removeRootWidget(this);
+	m_child->destruct();
 }
 
 void eWindow::setTitle(const std::string &string)
