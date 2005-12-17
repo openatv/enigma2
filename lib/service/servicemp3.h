@@ -64,7 +64,8 @@ public:
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
-
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
+	
 		// iPausableService
 	RESULT pause();
 	RESULT unpause();

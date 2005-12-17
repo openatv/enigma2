@@ -180,6 +180,9 @@ public:
 	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=0);
 		// returns true when not implemented
 	virtual bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+
+	virtual int getInfo(const eServiceReference &ref, int w);
+	virtual std::string getInfoString(const eServiceReference &ref,int w);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
@@ -216,6 +219,9 @@ public:
 		sTSID,
 		sNamespace,
 		sProvider,
+		
+		sDescription,
+		sTimeCreate,	// unix time or string
 	};
 	enum { resNA = -1, resIsString = -2 };
 
@@ -293,6 +299,15 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iSubserviceList>, iSubserviceListPtr);
 
+class iTimeshiftService: public iObject
+{
+public:
+	virtual RESULT startTimeshift()=0;
+	virtual RESULT stopTimeshift()=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
+
 class iPlayableService: public iObject
 {
 	friend class iServiceHandler;
@@ -316,6 +331,7 @@ public:
 	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);

@@ -77,10 +77,10 @@ class Navigation:
 	def pause(self, p):
 		return self.pnav.pause(p)
 	
-	def recordWithTimer(self, begin, end, ref, epg, description):
+	def recordWithTimer(self, ref, begin, end, name, description, eit):
 		if isinstance(ref, eServiceReference):
 			ref = ServiceReference.ServiceReference(ref)
-		entry = RecordTimer.RecordTimerEntry(begin, end, ref, epg, description)
+		entry = RecordTimer.RecordTimerEntry(ref, begin, end, name, description, eit)
 		self.RecordTimer.record(entry)
 		return entry
 	

@@ -155,6 +155,16 @@ RESULT iServiceInformation::getEvent(ePtr<eServiceEvent> &evt, int m_nownext)
 	return -1;
 }
 
+int iStaticServiceInformation::getInfo(const eServiceReference &ref, int w)
+{
+	return -1;
+}
+
+std::string iStaticServiceInformation::getInfoString(const eServiceReference &ref, int w)
+{
+	return "";
+}
+
 int iServiceInformation::getInfo(int w)
 {
 	return -1;

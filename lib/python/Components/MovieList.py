@@ -1,7 +1,8 @@
 from HTMLComponent import *
 from GUIComponent import *
+from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation
 
 from enigma import eServiceReference, eServiceCenter, \
 	eServiceCenterPtr, iListableServicePtr, \
@@ -38,8 +39,17 @@ def MovieListEntry(serviceref, serviceHandler):
 		len = "?:??"
 	
 	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
-	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, "Toller Film"))
-	res.append((0, 50, 200, 20, 1, RT_HALIGN_LEFT, "Aufgenommen: irgendwann"))
+	
+	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
+	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+	
+	begin_string = ""
+	if begin > 0:
+		t = FuzzyTime(begin)
+		begin_string = t[0] + ", " + t[1]
+	
+	res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, description))
+	res.append((0, 50, 200, 20, 1, RT_HALIGN_LEFT, begin_string))
 	res.append((200, 50, 200, 20, 1, RT_HALIGN_RIGHT, len))
 	
 	return res

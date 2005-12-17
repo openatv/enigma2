@@ -562,6 +562,8 @@ class InfoBarPVR:
 			}
 		self.setSeekState(lookup[self.seekstate]);
 
+from RecordTimer import parseEvent
+
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to 
 	start/stop instant records"""
@@ -582,19 +584,25 @@ class InfoBarInstantRecord:
 			
 	def startInstantRecording(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
-			
+		
 		# try to get event info
-		epg = None
+		event = None
 		try:
 			service = self.session.nav.getCurrentService()
 			info = service.info()
 			ev = info.getEvent(0)
-			epg = ev
+			event = ev
 		except:
 			pass
 		
+		if event is not None:
+			data = parseEvent(event)
+			data = (data[0], data[1] + 3600 * 10, data[2], data[3], data[4])
+		else:
+			data = (time.time(), time.time() + 3600 * 10, "instant record", "", None)
+		
 		# fix me, description. 
-		self.recording = self.session.nav.recordWithTimer(time.time(), time.time() + 3600 * 10, serviceref, epg, "instant record")
+		self.recording = self.session.nav.recordWithTimer(serviceref, *data)
 		self.recording.dontSave = True
 		
 		#self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())

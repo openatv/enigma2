@@ -55,7 +55,7 @@ private:
 class eDVBServicePlay: public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iFrontendStatusInformation,
-		public iSubserviceList
+		public iSubserviceList, public iTimeshiftService
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -71,6 +71,7 @@ public:
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 
 		// iPauseableService
 	RESULT pause();
@@ -102,6 +103,10 @@ public:
 	int getNumberOfSubservices();
 	RESULT getSubservice(eServiceReference &subservice, unsigned int n);
 
+		// iTimeshiftService
+	RESULT startTimeshift();
+	RESULT stopTimeshift();
+
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
@@ -120,7 +125,7 @@ private:
 	void serviceEvent(int event);
 	Signal2<void,iPlayableService*,int> m_event;
 	
-	int m_is_pvr, m_is_paused;
+	int m_is_pvr, m_is_paused, m_timeshift_enabled;
 	
 	int m_current_audio_stream;
 	int selectAudioStream(int n);
