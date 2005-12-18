@@ -78,8 +78,6 @@ class configSelection:
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
-		print "[config.py] orgstring: ", self.parent.vals[self.parent.value]
-		print "[config.py] translation: ", _(self.parent.vals[self.parent.value])
 		return ("text", _(self.parent.vals[self.parent.value]))
 
 class configDateTime:
