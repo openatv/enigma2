@@ -26,7 +26,7 @@ class Wizard(Screen, HelpableScreen):
 			self.currContent = name
 			if (name == "step"):
 				self.lastStep = int(attrs.get('number'))
-				self.wizard[self.lastStep] = {"condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": ""}
+				self.wizard[self.lastStep] = {"condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": ""}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "listentry"):
@@ -38,18 +38,29 @@ class Wizard(Screen, HelpableScreen):
 					print "has args"
 					self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
 				self.wizard[self.lastStep]["config"]["type"] = str(attrs.get('type'))
+			elif (name == "code"):
+				if attrs.has_key('pos') and str(attrs.get('pos')) == "after":
+					self.codeafter = True
+				else:
+					self.codeafter = False
 			elif (name == "condition"):
 				pass
 		def endElement(self, name):
 			self.currContent = ""
 			if name == 'code':
-				self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"].strip()
+				if self.codeafter:
+					self.wizard[self.lastStep]["codeafter"] = self.wizard[self.lastStep]["codeafter"].strip()
+				else:
+					self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"].strip()
 			elif name == 'condition':
 				self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"].strip()
 								
 		def characters(self, ch):
 			if self.currContent == "code":
-				 self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
+				if self.codeafter:
+					self.wizard[self.lastStep]["codeafter"] = self.wizard[self.lastStep]["codeafter"] + ch
+				else:
+					self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 			elif self.currContent == "condition":
 				 self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
@@ -140,6 +151,7 @@ class Wizard(Screen, HelpableScreen):
 			self.markDone()
 			self.session.close()
 		else:
+			self.runCode(self.wizard[self.currStep]["codeafter"])
 			self.currStep += 1
 			self.updateValues()
 			
@@ -173,6 +185,11 @@ class Wizard(Screen, HelpableScreen):
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		print "down"
 		
+	def runCode(self, code):
+		if code != "":
+			print code
+			exec(code)
+		
 	def updateValues(self):
 		print "Updating values in step " + str(self.currStep)
 		
@@ -187,9 +204,7 @@ class Wizard(Screen, HelpableScreen):
 			print _(self.wizard[self.currStep]["text"])
 			self["text"].setText(_(self.wizard[self.currStep]["text"]))
 	
-			if self.wizard[self.currStep]["code"] != "":
-				print self.wizard[self.currStep]["code"]
-				exec(self.wizard[self.currStep]["code"])
+			self.runCode(self.wizard[self.currStep]["code"])
 			
 			if self.showList:
 				self["list"].instance.setZPosition(1)

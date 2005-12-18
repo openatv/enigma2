@@ -7,14 +7,13 @@ self.infobardialog = self.session.instantiateDialog(InfoBar)
 self.infobardialog.hideTimer.stop()
 self.infobardialog.instance.show()
 			</code>
+			<code pos="after">
+self.infobardialog.instance.hide()
+del self.infobardialog
+			</code>
+
 		</step>
 		<step number="2">
-			<text value="By pressing the OK Button on your remote control, the info bar is being displayed." />
-			<code>
-from Screens.InfoBar import InfoBar
-self.infobardialog = self.session.instantiateDialog(InfoBar)
-self.infobardialog.hideTimer.stop()
-self.infobardialog.instance.show()
-			</code>
+			<text value="This is step number 2." />
 		</step>
 </wizard>
