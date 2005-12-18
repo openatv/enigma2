@@ -5,7 +5,7 @@ from Tools.Directories import *
 
 class Language:
 	def __init__(self):
-		gettext.install('enigma2', '/enigma2/po', unicode=1)
+		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
 		self.activeLanguage = 0
 		self.lang = []
 		# FIXME make list dynamically

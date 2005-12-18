@@ -43,7 +43,6 @@ self["arrowup2"].moveTo(590, 320, 1)
 self["arrowup2"].startMoving()
 self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
-
 			</code>
 		</step>
 		<step number="4">
@@ -54,6 +53,19 @@ self.condition = nimmanager.nimCount > 1
 			<text value="Please set up tuner B" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 			<code>
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(525, 320, 1)
+self["arrowup"].startMoving()
+self["arrowup2"].moveTo(590, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(740, 355, 1)
+self["arrowdown"].startMoving()
+			</code>
+		</step>
+		<step number="5">
+			<text value="Do you want to do a service scan?" />
+			<code>
 self["rc"].moveTo(800, 50, 1)
 self["rc"].startMoving()
 self["arrowup"].moveTo(800, 310, 1)
@@ -61,9 +73,6 @@ self["arrowup"].startMoving()
 self["arrowup2"].moveTo(800, 310, 1)
 self["arrowup2"].startMoving()
 			</code>
-		</step>
-		<step number="5">
-			<text value="Do you want to do a service scan?" />
 			<list>
 				<listentry caption="Yes, scan now" step="next" />
 				<listentry caption="No, scan later manually" step="7" />

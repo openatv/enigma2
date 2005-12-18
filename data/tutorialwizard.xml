@@ -1,5 +1,13 @@
 <wizard>
 		<step number="1">
+			<text value="Do you want to view a tutorial?" />
+			<list>
+				<listentry caption="Yes, view the tutorial" step="next" />
+				<listentry caption="No, just start my dreambox" step="end" />
+			</list>
+		</step>
+
+		<step number="2">
 			<text value="By pressing the OK Button on your remote control, the info bar is being displayed." />
 			<code>
 from Screens.InfoBar import InfoBar
@@ -13,7 +21,8 @@ del self.infobardialog
 			</code>
 
 		</step>
-		<step number="2">
+		
+		<step number="3">
 			<text value="This is step number 2." />
 		</step>
 </wizard>
