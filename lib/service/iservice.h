@@ -47,14 +47,14 @@ public:
 	std::string path;
 	std::string getPath() { return path; }
 
-	int getData(int num) const
+	int getData(unsigned int num) const
 	{
 		if ( num < sizeof(data)/sizeof(int) )
 			return data[num];
 		return 0;
 	}
 
-	void setData(int num, int val)
+	void setData(unsigned int num, int val)
 	{
 		if ( num < sizeof(data)/sizeof(int) )
 			data[num] = val;
