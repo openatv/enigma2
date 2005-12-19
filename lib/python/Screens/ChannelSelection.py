@@ -252,8 +252,8 @@ class ChannelSelectionBase(Screen):
 
 		self.service_types = self.service_types_tv
 
-		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		#self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
