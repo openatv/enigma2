@@ -128,6 +128,8 @@ class NimManager:
 			if (name == "sat"):
 				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
 				tpos = attrs.get('position',"")
+				if tpos < 0:
+					tpos = 3600 + tpos
 				tname = attrs.get('name',"")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
