@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-19 20:46+0100\n"
+"POT-Creation-Date: 2005-12-19 21:03+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -150,13 +150,17 @@ msgstr "DiSEqC-Modus"
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:647
+#: ../lib/python/Screens/InfoBarGenerics.py:658
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
 msgstr ""
 "Die aktuelle Direktaufnahme\n"
 "abbrechen?"
+
+#: ../lib/python/Screens/ChannelSelection.py:335
+msgid "E"
+msgstr "O"
 
 #: ../lib/python/Components/ServiceScan.py:40
 #, python-format
@@ -363,7 +367,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:704
+#: ../lib/python/Screens/InfoBarGenerics.py:715
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -413,7 +417,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:649
+#: ../lib/python/Screens/InfoBarGenerics.py:660
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -429,7 +433,7 @@ msgstr "Schritt "
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:710 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:721 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -497,6 +501,10 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
+
+#: ../lib/python/Screens/ChannelSelection.py:333
+msgid "W"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:92
 #: ../lib/python/Screens/TimerEntry.py:150
