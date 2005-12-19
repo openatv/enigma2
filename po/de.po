@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-19 01:24+0100\n"
+"POT-Creation-Date: 2005-12-19 20:46+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -38,7 +38,7 @@ msgstr "%s (%s, %d MB frei)"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../lib/python/Screens/ChannelSelection.py:223
+#: ../lib/python/Screens/ChannelSelection.py:258
 msgid "All"
 msgstr "Alle"
 
@@ -82,7 +82,7 @@ msgstr "Kapazität: "
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../lib/python/Screens/ChannelSelection.py:55 ../data/
+#: ../lib/python/Screens/ChannelSelection.py:67 ../data/
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
@@ -126,11 +126,11 @@ msgstr "Erkannte Festplatten"
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:426
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:426
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
@@ -150,7 +150,7 @@ msgstr "DiSEqC-Modus"
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:633
+#: ../lib/python/Screens/InfoBarGenerics.py:647
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -163,7 +163,7 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 
-#: ../lib/python/Components/NimManager.py:431
+#: ../lib/python/Components/NimManager.py:433
 msgid "East"
 msgstr "Ost"
 
@@ -198,7 +198,7 @@ msgstr "Englisch"
 msgid "FEC"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:226
+#: ../lib/python/Screens/ChannelSelection.py:261
 msgid "Favourites"
 msgstr "Favoriten"
 
@@ -261,7 +261,7 @@ msgstr "Breitengrad"
 msgid "Longitude"
 msgstr "Längengrad"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Components/NimManager.py:411
 msgid "Loopthrough to Socket A"
 msgstr "Verbunden mit Tuner A"
 
@@ -283,7 +283,7 @@ msgstr "Montag bis Freitag"
 msgid "Monday"
 msgstr "Montag"
 
-#: ../lib/python/Components/NimManager.py:260
+#: ../lib/python/Components/NimManager.py:262
 msgid "N/A"
 msgstr "Nicht verfügbar"
 
@@ -307,11 +307,11 @@ msgstr "Netzmaske"
 msgid "None"
 msgstr "Keins"
 
-#: ../lib/python/Components/NimManager.py:433
+#: ../lib/python/Components/NimManager.py:435
 msgid "North"
 msgstr "Nord"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Components/NimManager.py:411
 msgid "Nothing connected"
 msgstr "Nichts angeschlossen"
 
@@ -339,7 +339,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:426
 msgid "Positioner"
 msgstr "Rotor"
 
@@ -355,11 +355,15 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Press OK to start the scan"
 msgstr "Zum Starten der Suche OK drücken."
 
-#: ../lib/python/Screens/ChannelSelection.py:225
+#: ../lib/python/Screens/ChannelSelection.py:260
 msgid "Provider"
 msgstr "Provider"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:690
+#: ../lib/python/Screens/ChannelSelection.py:325
+msgid "Providers"
+msgstr "Anbieter"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:704
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -368,7 +372,7 @@ msgstr "Aufnahme"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Screens/ChannelSelection.py:224
+#: ../lib/python/Screens/ChannelSelection.py:259
 msgid "Satellites"
 msgstr "Satelliten"
 
@@ -381,23 +385,27 @@ msgstr "Samstag"
 msgid "Select channel to record from"
 msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Screens/ChannelSelection.py:327
+msgid "Services"
+msgstr "Kanäle"
+
+#: ../lib/python/Components/NimManager.py:411
 msgid "Simple"
 msgstr "Einfach"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:426
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Components/NimManager.py:437
+#: ../lib/python/Components/NimManager.py:439
 msgid "Slot "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:323
+#: ../lib/python/Components/NimManager.py:325
 msgid "Socket "
 msgstr "Sockel "
 
-#: ../lib/python/Components/NimManager.py:433
+#: ../lib/python/Components/NimManager.py:435
 msgid "South"
 msgstr "Süd"
 
@@ -405,7 +413,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:635
+#: ../lib/python/Screens/InfoBarGenerics.py:649
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -421,7 +429,7 @@ msgstr "Schritt "
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:696 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:710 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -448,7 +456,7 @@ msgstr "Donnerstag"
 msgid "Timer Type"
 msgstr "Timer-Art"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:426
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
@@ -472,7 +480,7 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Art der Suche"
 
-#: ../lib/python/Components/NimManager.py:429
+#: ../lib/python/Components/NimManager.py:431
 msgid "USALS"
 msgstr "USALS"
 
@@ -499,19 +507,39 @@ msgstr "Mittwoch"
 msgid "Weekday"
 msgstr "Wochentag"
 
-#: ../lib/python/Components/NimManager.py:431
+#: ../lib/python/Components/NimManager.py:433
 msgid "West"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:51
+#: ../lib/python/Screens/ChannelSelection.py:145
+msgid "[bouquet edit]"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:147
+msgid "[favourite edit]"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:224
+msgid "[move mode]"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:60
 msgid "abort bouquet edit"
 msgstr "Bouqueteditieren abbrechen"
 
-#: ../lib/python/Screens/ChannelSelection.py:37
+#: ../lib/python/Screens/ChannelSelection.py:63
+msgid "abort favourites edit"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:40
 msgid "add service to bouquet"
 msgstr "Zu Bouquet hinzufügen"
 
-#: ../lib/python/Screens/ChannelSelection.py:53
+#: ../lib/python/Screens/ChannelSelection.py:42
+msgid "add service to favourites"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:65
 msgid "back"
 msgstr "zurück"
 
@@ -527,25 +555,33 @@ msgstr ""
 msgid "daily"
 msgstr "täglich"
 
-#: ../lib/python/Screens/ChannelSelection.py:48
+#: ../lib/python/Screens/ChannelSelection.py:56
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
-#: ../lib/python/Components/NimManager.py:325
+#: ../lib/python/Components/NimManager.py:327
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
 
-#: ../lib/python/Screens/ChannelSelection.py:46
+#: ../lib/python/Screens/ChannelSelection.py:52
 msgid "enable bouquet edit"
 msgstr "Bouqueteditieren anschalten"
 
-#: ../lib/python/Screens/ChannelSelection.py:44
+#: ../lib/python/Screens/ChannelSelection.py:54
+msgid "enable favourite edit"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:49
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
 
-#: ../lib/python/Screens/ChannelSelection.py:50
+#: ../lib/python/Screens/ChannelSelection.py:59
 msgid "end bouquet edit"
 msgstr "Bouqueteditieren beenden"
+
+#: ../lib/python/Screens/ChannelSelection.py:62
+msgid "end favourites edit"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "horizontal"
@@ -555,7 +591,7 @@ msgstr ""
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
 
-#: ../lib/python/Components/NimManager.py:429
+#: ../lib/python/Components/NimManager.py:431
 msgid "manual"
 msgstr "manuell"
 
@@ -597,7 +633,7 @@ msgstr "einmalig"
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
-#: ../lib/python/Screens/ChannelSelection.py:39
+#: ../lib/python/Screens/ChannelSelection.py:44
 msgid "remove service"
 msgstr "Kanal löschen"
 
