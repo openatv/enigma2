@@ -7,6 +7,7 @@ from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, e
 from Components.config import config, configElement, ConfigSubsection, configText
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
+from Components.NimManager import nimmanager
 
 import xml.dom.minidom
 
@@ -34,7 +35,7 @@ class ChannelContextMenu(FixedMenu):
 		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
 
 		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
-			if (csel.getCurrentSelection().type & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+			if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
 				if haveBouquets:
 					menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
 				else:
@@ -251,8 +252,8 @@ class ChannelSelectionBase(Screen):
 
 		self.service_types = self.service_types_tv
 
-		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+		self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		#self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
@@ -290,14 +291,14 @@ class ChannelSelectionBase(Screen):
 						offsetCount += 1
 		return offsetCount
 
-	def setRootBase(self, root):
+	def setRootBase(self, root, justSet=False):
 		inBouquetRootList = root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		if not inBouquetRootList and (root.getPath().find('FROM BOUQUET') != -1):
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
 			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
-		self.servicelist.setRoot(root)
+		self.servicelist.setRoot(root, justSet)
 
 	def moveUp(self):
 		self.servicelist.moveUp()
@@ -311,7 +312,29 @@ class ChannelSelectionBase(Screen):
 
 	def showSatellites(self):
 		ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
-		self.setRoot(ref)
+		self.setRoot(ref, True)
+		serviceHandler = eServiceCenter.getInstance()
+		servicelist = serviceHandler.list(ref)
+		if not servicelist is None:
+			while True:
+				service = servicelist.getNext()
+				if not service.valid(): #check if end of list
+					break
+				orbpos = service.getData(4) >> 16
+				if service.getPath().find("FROM PROVIDER") != -1:
+					service_name = _("Providers")
+				else:
+					service_name = _("Services")
+				try:
+					service_name += ' - %s'%(nimmanager.getSatDescription(orbpos))
+					service.setName(str(service_name)) # why we need this cast?
+				except:
+					if orbpos > 1800: # west
+						service.setName("%s (%3.1fW)"%(str, (0 - (orbpos - 3600)) / 10.0))
+					else:
+						service.setName("%s (%3.1fE)"%(str, orbpos / 10.0))
+				self.servicelist.addService(service)
+		self.servicelist.finishFill()
 
 	def showProviders(self):
 		ref = eServiceReference('%s FROM PROVIDERS ORDER BY name'%(self.service_types))
@@ -432,9 +455,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			self.zap()
 			self.close(ref)
 
-	def setRoot(self, root):
+	def setRoot(self, root, justSet=False):
 		if not self.movemode:
-			self.setRootBase(root)
+			self.setRootBase(root, justSet)
 
 	#called from infoBar and channelSelected
 	def zap(self):

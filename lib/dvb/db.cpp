@@ -854,19 +854,12 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 			{
 				eServiceReferenceDVB ref;
 				ref.setDVBNamespace(dvbnamespace);
+				ref.flags=eServiceReference::flagDirectory;
 				char buf[64];
-// TODO get real satellite name..
-// but i dont like to parse the satellites.xml here.. and in the python part
-				int tpos = dvbnamespace>>16;
-				if (tpos > 1800) // west
-					snprintf(buf, 64, "Services (%3.1fW)", (0 - (tpos - 3600)) / 10.0);
-				else
-					snprintf(buf, 64, "Services (%3.1fE)", tpos / 10.0);
-				ref.name=buf;
 				snprintf(buf, 64, "(satellitePosition == %d) && ", dvbnamespace>>16);
+
 				ref.path=buf+source.path;
 				unsigned int pos=ref.path.find("FROM");
-				ref.flags=eServiceReference::flagDirectory;
 				ref.path.erase(pos);
 				ref.path+="ORDER BY name";
 //				eDebug("ref.path now %s", ref.path.c_str());
@@ -877,11 +870,6 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				ref.path.erase(pos+5);
 				ref.path+="PROVIDERS ORDER BY name";
 //				eDebug("ref.path now %s", ref.path.c_str());
-				if (tpos > 1800) // west
-					snprintf(buf, 64, "Providers (%3.1fW)", (0 - (tpos - 3600)) / 10.0);
-				else
-					snprintf(buf, 64, "Providers (%3.1fE)", tpos / 10.0);
-				ref.name=buf;
 				m_list.push_back(ref);
 			}
 		}

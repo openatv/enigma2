@@ -79,9 +79,17 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setPlayableIgnoreService(self, ref):
 		self.l.setIgnoreService(ref)
 
-	def setRoot(self, root):
+	def setRoot(self, root, justSet=False):
 		self.root = root
-		self.l.setRoot(root)
+		self.l.setRoot(root, justSet)
+		if not justSet:
+			self.l.sort()
+
+	def addService(self, service):
+		self.l.addService(service)
+
+	def finishFill(self):
+		self.l.FillFinished()
 		self.l.sort()
 
 # stuff for multiple marks (edit mode / later multiepg)
