@@ -29,7 +29,12 @@ class ServiceScan:
 				self.text.setText(_("scan in progress - %d %% done!\n%d services found!") % (self.scan.getProgress(), self.scan.getNumServices()))
 		
 		if self.state == self.Done:
-			self.text.setText(_("scan done!"))
+			if self.scan.getNumServices() == 1:
+				self.text.setText(_("scan done!\nOne service found!"))
+			elif self.scan.getNumServices() == 0:
+				self.text.setText(_("scan done!\nNo service found!"))
+			else:
+				self.text.setText(_("scan done!\n%d services found!") % (self.scan.getNumServices()))
 		
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
