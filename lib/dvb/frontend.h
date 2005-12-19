@@ -43,7 +43,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	char m_filename[128];
 #if HAVE_DVB_API_VERSION < 3
 	int m_secfd;
-	char m_secfilename[128];
+	char m_sec_filename[128];
 #endif
 
 	FRONTENDPARAMETERS parm;
