@@ -140,6 +140,8 @@ void eWidget::hide()
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
+		if (!root)
+			return;
 		abspos += root->position();
 	}
 	assert(root->m_desktop);

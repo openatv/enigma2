@@ -325,6 +325,12 @@ eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0), m_timer(0)
 
 eWidgetDesktop::~eWidgetDesktop()
 {
+		/* tell registered root windows that they no longer have a desktop. */
+	for (ePtrList<eWidget>::iterator i(m_root.begin()); i != m_root.end(); )
+	{
+		i->m_desktop = 0;
+		i = m_root.erase(i);
+	}
 		/* destroy all buffers */
 	setCompositionMode(-1);
 }
