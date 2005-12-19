@@ -492,6 +492,8 @@ public:
 	enum { zoom_Normal, zoom_PanScan, zoom_Letterbox, zoom_Fullscreen };
 		/** Set Zoom. mode *must* be fitting. */
 	virtual RESULT setZoom(int what)=0;
+	
+	virtual RESULT setTrickmode(int what) = 0;
 };
 
 #endif

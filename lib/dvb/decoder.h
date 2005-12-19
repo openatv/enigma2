@@ -78,6 +78,7 @@ private:
 		changePCR   = 4
 	};
 	int m_changed;
+	int m_is_ff, m_is_sm, m_is_trickmode;
 	int setState();
 	ePtr<eConnection> m_demux_event;
 	
@@ -99,5 +100,6 @@ public:
 	RESULT setSlowMotion(int repeat);
 	RESULT setZoom(int what);
 	RESULT flush();
+	RESULT setTrickmode(int what);
 };
 #endif

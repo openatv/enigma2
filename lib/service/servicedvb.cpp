@@ -669,7 +669,7 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 RESULT eDVBServicePlay::setFastForward(int ratio)
 {
 	if (m_decoder)
-		m_decoder->setFastForward(ratio);
+		return m_decoder->setFastForward(ratio);
 	else
 		return -1;
 }
@@ -756,6 +756,13 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 		return -1;
 	
 	return pvr_channel->getCurrentPosition(demux, pos);
+}
+
+RESULT eDVBServicePlay::setTrickmode(int trick=0)
+{
+	if (m_decoder)
+		m_decoder->setTrickmode(trick);
+	return 0;
 }
 
 RESULT eDVBServicePlay::frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr)
