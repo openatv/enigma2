@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-19 21:03+0100\n"
+"POT-Creation-Date: 2005-12-19 21:13+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -33,6 +33,14 @@ msgstr ""
 #, python-format
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
+
+#: ../RecordTimer.py:88
+msgid ""
+"A timer failed to record!\n"
+"Disable TV and try again?\n"
+msgstr ""
+"Timeraufnahme fehlgeschlagen.\n"
+"Fernsehprogramm ändern und erneut versuchen?\n"
 
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Add"
@@ -1200,5 +1208,3 @@ msgstr ""
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
 
-#~ msgid "scan done!"
-#~ msgstr "Suche beendet."
