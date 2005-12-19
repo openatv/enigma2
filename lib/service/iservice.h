@@ -278,6 +278,9 @@ public:
 	enum { dirForward = +1, dirBackward = -1 };
 	virtual RESULT seekRelative(int direction, pts_t to)=0;
 	virtual RESULT getPlayPosition(pts_t &SWIG_OUTPUT)=0;
+		/* if you want to do several seeks in a row, you can enable the trickmode. 
+		   audio will be switched off, sync will be disabled etc. */
+	virtual RESULT setTrickmode(int trick=0)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);

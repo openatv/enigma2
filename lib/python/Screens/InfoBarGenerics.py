@@ -509,6 +509,20 @@ class InfoBarPVR:
 			self.seekTimer.stop()
 		else:
 			self.seekTimer.start(500)
+		
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return
+		
+		seekable = service.seek()
+		if seekable is None:
+			return
+
+		if skipmode:
+			seekable.setTrickmode(1)
+		else:
+			seekable.setTrickmode(0)
+		
 	
 	def pauseService(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE);

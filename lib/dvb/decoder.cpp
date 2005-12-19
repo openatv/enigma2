@@ -306,6 +306,12 @@ DEFINE_REF(eTSMPEGDecoder);
 int eTSMPEGDecoder::setState()
 {
 	int res = 0;
+	
+	int noaudio = m_is_sm || m_is_ff || m_is_trickmode;
+	
+	if ((noaudio && m_audio) || (!m_audio && !noaudio))
+		m_changed |= changeAudio;
+	
 #if HAVE_DVB_API_VERSION < 3
 	if (m_changed & changeAudio && m_audio)
 		m_audio->stopPid();
@@ -399,7 +405,7 @@ int eTSMPEGDecoder::setState()
 		if (m_audio)
 			m_audio->stop();
 		m_audio = 0;
-		if ((m_apid >= 0) && (m_apid < 0x1FFF))
+		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
 		{
 			m_audio = new eDVBAudio(m_demux, 0);
 			if (m_audio->startPid(m_apid, m_atype))
@@ -417,7 +423,7 @@ int eTSMPEGDecoder::setState()
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0)
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
-	eDebug("eTSMPEGDecoder::eTSMPEGDecoder %p", this);
+	m_is_ff = m_is_sm = m_is_trickmode = 0;
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
@@ -425,7 +431,6 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 	m_vpid = m_apid = m_pcrpid = pidNone;
 	m_changed = -1;
 	setState();
-	eDebug("~eTSMPEGDecoder %p", this);
 }
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid)
@@ -503,6 +508,10 @@ RESULT eTSMPEGDecoder::setPictureSkipMode(int what)
 
 RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 {
+	m_is_ff = frames_to_skip != 0;
+	
+	setState();
+	
 	if (m_video)
 		return m_video->setFastForward(frames_to_skip);
 	else
@@ -511,6 +520,10 @@ RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 
 RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 {
+	m_is_sm = repeat != 0;
+	
+	setState();
+	
 	if (m_video)
 		return m_video->setSlowMotion(repeat);
 	else
@@ -541,4 +554,11 @@ void eTSMPEGDecoder::demux_event(int event)
 	default:
 		break;
 	}
+}
+
+RESULT eTSMPEGDecoder::setTrickmode(int what)
+{
+	m_is_trickmode = what;
+	setState();
+	return 0;
 }
