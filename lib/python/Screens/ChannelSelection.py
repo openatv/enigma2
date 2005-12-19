@@ -326,8 +326,8 @@ class ChannelSelectionBase(Screen):
 				else:
 					service_name = _("Services")
 				try:
-					service_name += ' - %s'%(nimmanager.getSatDescription(orbpos))
-					service.setName(str(service_name)) # why we need this cast?
+					service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
+					service.setName(service_name) # why we need this cast?
 				except:
 					if orbpos > 1800: # west
 						service.setName("%s (%3.1fW)"%(str, (0 - (orbpos - 3600)) / 10.0))
