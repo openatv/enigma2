@@ -453,10 +453,12 @@ class InfoBarPVR:
 	SEEK_STATE_FF_8X = (0, 8, 0, 0)
 	SEEK_STATE_FF_32X = (0, 0, 0, 32)
 	SEEK_STATE_FF_64X = (0, 0, 0, 64)
+	SEEK_STATE_FF_128X = (0, 0, 0, 128)
 	
 	SEEK_STATE_BACK_4X = (0, 0, 0, -4)
 	SEEK_STATE_BACK_32X = (0, 0, 0, -32)
 	SEEK_STATE_BACK_64X = (0, 0, 0, -64)
+	SEEK_STATE_BACK_128X = (0, 0, 0, -128)
 	
 	SEEK_STATE_SM_HALF = (0, 0, 2, 0)
 	SEEK_STATE_SM_QUARTER = (0, 0, 4, 0)
@@ -483,10 +485,14 @@ class InfoBarPVR:
 		del self.seekTimer
 	
 	def seekTimerFired(self):
-		if self.skipmode > 0:
-			self.doSeek(+1, self.skipmode * self.skipinterval)
-		else:
-			self.doSeek(-1, -self.skipmode * self.skipinterval)
+		self.seekbase += self.skipmode * self.skipinterval
+		
+		# check if we bounced against the beginning of the file
+		if self.seekbase < 0:
+			self.seekbase = 0;
+			self.setSeekState(self.SEEK_STATE_PLAY)
+			
+		self.doSeek(self.seekbase)
 
 	def setSeekState(self, state):
 		oldstate = self.seekstate
@@ -523,6 +529,7 @@ class InfoBarPVR:
 		else:
 			seekable.setTrickmode(0)
 		
+		self.seekbase = seekable.getPlayPosition()[1] / 90
 	
 	def pauseService(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE);
@@ -530,7 +537,7 @@ class InfoBarPVR:
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY);
 	
-	def doSeek(self, dir, seektime):
+	def doSeek(self, seektime):
 		service = self.session.nav.getCurrentService()
 		if service is None:
 			return
@@ -538,7 +545,7 @@ class InfoBarPVR:
 		seekable = service.seek()
 		if seekable is None:
 			return
-		seekable.seekRelative(dir, 90 * seektime)
+		seekable.seekTo(90 * seektime)
 
 	def seekFwd(self):
 		lookup = {
@@ -548,10 +555,12 @@ class InfoBarPVR:
 				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
 				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
 				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
-				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_64X,
+				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
+				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
 				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
 				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
 				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
+				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
 				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
 				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
 				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
@@ -567,9 +576,11 @@ class InfoBarPVR:
 				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
 				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
 				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
+				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
 				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
 				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_64X,
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
+				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
 				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
 				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
 				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
