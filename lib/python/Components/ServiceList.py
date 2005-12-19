@@ -43,6 +43,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.instance.moveSelectionTo(index)
 		print "Moving to character " + str(char)
 
+	def moveToIndex(self, index):
+		self.instance.moveSelectionTo(index)
+
+	def getCurrentIndex(self):
+		return self.instance.getCurrentIndex()
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
