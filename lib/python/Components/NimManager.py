@@ -127,9 +127,11 @@ class NimManager:
 		def startElement(self, name, attrs):
 			if (name == "sat"):
 				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-				tpos = attrs.get('position',"")
+				tpos = int(attrs.get('position',""))
 				if tpos < 0:
+					print "negative"
 					tpos = 3600 + tpos
+				print "[NimManager.py] tpos:", tpos
 				tname = attrs.get('name',"")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
