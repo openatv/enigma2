@@ -11,8 +11,11 @@ class eListboxServiceContent: public virtual iListboxContent
 public:
 	eListboxServiceContent();
 
+	void addService(const eServiceReference &ref);
+	void FillFinished();
+
 	void setIgnoreService( const eServiceReference &service );
-	void setRoot(const eServiceReference &ref);
+	void setRoot(const eServiceReference &ref, bool justSet=false);
 	void getCurrent(eServiceReference &ref);
 	
 	int getNextBeginningWithChar(char c);

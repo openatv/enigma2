@@ -3,12 +3,29 @@
 #include <lib/gdi/font.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/pmt.h>
+#include <lib/python/connections.h>
 
-void eListboxServiceContent::setRoot(const eServiceReference &root)
+void eListboxServiceContent::addService(const eServiceReference &service)
+{
+	m_list.push_back(service);
+}
+
+void eListboxServiceContent::FillFinished()
+{
+	m_size = m_list.size();
+	cursorHome();
+
+	if (m_listbox)
+		m_listbox->entryReset();
+}
+
+void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet)
 {
 	m_list.clear();
 	m_root = root;
-	
+
+	if (justSet)
+		return;
 	assert(m_service_center);
 	
 	ePtr<iListableService> lst;
@@ -18,11 +35,7 @@ void eListboxServiceContent::setRoot(const eServiceReference &root)
 		if (lst->getContent(m_list))
 			eDebug("getContent failed");
 
-	m_size = m_list.size();
-	cursorHome();
-	
-	if (m_listbox)
-		m_listbox->entryReset();
+	FillFinished();
 }
 
 void eListboxServiceContent::setCurrent(const eServiceReference &ref)

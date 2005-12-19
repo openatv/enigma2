@@ -47,6 +47,19 @@ public:
 	std::string path;
 	std::string getPath() { return path; }
 
+	int getData(int num) const
+	{
+		if ( num < sizeof(data)/sizeof(int) )
+			return data[num];
+		return 0;
+	}
+
+	void setData(int num, int val)
+	{
+		if ( num < sizeof(data)/sizeof(int) )
+			data[num] = val;
+	}
+
 // only for override service names in bouquets or to give servicerefs a name which not have a
 // real existing service ( for dvb eServiceDVB )
 	std::string name;
