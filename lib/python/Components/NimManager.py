@@ -208,7 +208,7 @@ class NimManager:
 		return self.sec.getSatList()
 
 	def getSatDescription(self, pos):
-		return self.satellites[str(pos)]
+		return self.satellites[pos]
 
 	def readSatsfromFile(self):
 		self.satellites = { }
