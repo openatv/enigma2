@@ -72,7 +72,8 @@ public:
 		moveEnd,
 		justCheck
 	}; */
-	
+
+	int getCurrentIndex();
 	void moveSelection(int how);
 	void moveSelectionTo(int index);
 

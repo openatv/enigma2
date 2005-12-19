@@ -159,9 +159,19 @@ void eListbox::moveSelection(int dir)
 
 void eListbox::moveSelectionTo(int index)
 {
-	m_content->cursorHome();
-	m_content->cursorMove(index);
-	moveSelection(justCheck);
+	if ( m_content )
+	{
+		m_content->cursorHome();
+		m_content->cursorMove(index);
+		moveSelection(justCheck);
+	}
+}
+
+int eListbox::getCurrentIndex()
+{
+	if ( m_content && m_content->cursorValid() )
+		return m_content->cursorGet();
+	return 0;
 }
 
 void eListbox::updateScrollBar()
