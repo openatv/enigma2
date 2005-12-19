@@ -330,9 +330,9 @@ class ChannelSelectionBase(Screen):
 					service.setName(service_name) # why we need this cast?
 				except:
 					if orbpos > 1800: # west
-						service.setName("%s (%3.1fW)"%(str, (0 - (orbpos - 3600)) / 10.0))
+						service.setName("%s (%3.1f" + _("W") + ")" %(str, (0 - (orbpos - 3600)) / 10.0))
 					else:
-						service.setName("%s (%3.1fE)"%(str, orbpos / 10.0))
+						service.setName("%s (%3.1f" + _("E") + ")" % (str, orbpos / 10.0))
 				self.servicelist.addService(service)
 		self.servicelist.finishFill()
 
