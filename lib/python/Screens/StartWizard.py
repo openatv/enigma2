@@ -10,7 +10,7 @@ config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
 class StartWizard(Wizard):
 	skin = """
 		<screen position="0,0" size="720,560" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="150,50" size="340,270" font="Arial;23" />
+			<widget name="text" position="153,50" size="340,270" font="Arial;23" />
 			<widget name="list" position="50,300" zPosition="1" size="440,200" />
 			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
 			<widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" />
