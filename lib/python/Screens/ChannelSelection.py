@@ -31,10 +31,14 @@ class ChannelContextMenu(FixedMenu):
 
 		inBouquetRootList = csel.servicelist.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
+		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
 
 		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
 			if (csel.getCurrentSelection().type & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
-				menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
+				if haveBouquets:
+					menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
+				else:
+					menu.append((_("add service to favourites"), self.addServiceToBouquetSelected))
 			if inBouquet:
 				menu.append((_("remove service"), self.removeCurrentService))
 
@@ -43,12 +47,19 @@ class ChannelContextMenu(FixedMenu):
 				if not csel.movemode:
 					menu.append((_("enable move mode"), self.toggleMoveMode))
 					if not inBouquetRootList:
-						menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
+						if haveBouquets:
+							menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
+						else:
+							menu.append((_("enable favourite edit"), self.bouquetMarkStart))
 				else:
 					menu.append((_("disable move mode"), self.toggleMoveMode))
 			elif not inBouquetRootList:
-				menu.append((_("end bouquet edit"), self.bouquetMarkEnd))
-				menu.append((_("abort bouquet edit"), self.bouquetMarkAbort))
+				if haveBouquets:
+					menu.append((_("end bouquet edit"), self.bouquetMarkEnd))
+					menu.append((_("abort bouquet edit"), self.bouquetMarkAbort))
+				else:
+					menu.append((_("end favourites edit"), self.bouquetMarkEnd))
+					menu.append((_("abort favourites edit"), self.bouquetMarkAbort))
 
 		menu.append((_("back"), self.close))
 
@@ -107,6 +118,8 @@ class ChannelSelectionEdit:
 		self.bouquet_mark_edit = False
 		self.mutableList = None
 		self.__marked = [ ]
+		self.saved_title = None
+		self.saved_root = None
 
 	def getMutableList(self, root=eServiceReference()):
 		if not self.mutableList is None:
@@ -125,10 +138,19 @@ class ChannelSelectionEdit:
 		# add all services from the current list to internal marked set in listboxservicecontent
 		self.bouquetRoot = self.servicelist.getRoot()
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
+		self.saved_title = self.instance.getTitle()
+		new_title = self.saved_title
+		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1:
+			new_title += ' ' + _("[bouquet edit]")
+		else:
+			new_title += ' ' + _("[favourite edit]")
+		self.instance.setTitle(new_title)
 		self.bouquet_mark_edit = True
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
+		self.saved_root = self.getRoot()
+		self.showAllServices()
 
 	def endMarkedEdit(self, abort):
 		if not abort and self.mutableList is not None:
@@ -145,13 +167,14 @@ class ChannelSelectionEdit:
 				self.mutableList.addService(eServiceReference(x))
 			if changed:
 				self.mutableList.flushChanges()
-				self.setRoot(self.bouquetRoot)
-				#self.showFavourites()
 		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
 		self.bouquetRoot = None
 		self.mutableList = None
+		self.instance.setTitle(self.saved_title)
+		self.saved_title = None
+		self.setRoot(self.saved_root)
 
 	def clearMarks(self):
 		self.servicelist.clearMarks()
@@ -168,8 +191,13 @@ class ChannelSelectionEdit:
 		mutableList = self.getMutableList()
 		if ref.valid() and mutableList is not None:
 			if not mutableList.removeService(ref):
+				currentIndex = self.servicelist.getCurrentIndex()
+				self.servicelist.moveDown()
+				if self.servicelist.getCurrentIndex() == currentIndex:
+					currentIndex -= 1
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.setRoot(self.servicelist.getRoot())
+				self.servicelist.moveToIndex(currentIndex)
 
 	def addCurrentServiceToBouquet(self, dest):
 		mutableList = self.getMutableList(dest)
@@ -185,9 +213,15 @@ class ChannelSelectionEdit:
 			self.movemode = False
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 			self.mutableList = None
+			self.instance.setTitle(self.saved_title)
+			self.saved_title = None
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
+			self.saved_title = self.instance.getTitle()
+			new_title = self.saved_title
+			new_title += ' ' + _("[move mode]");
+			self.instance.setTitle(new_title);
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?

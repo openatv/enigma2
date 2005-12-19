@@ -49,9 +49,14 @@ class ChannelContextMenu(FixedMenu):
 		if result == False:
 			self.session.openWithCallback(self.close, MessageBox, "Delete failed!")
 		else:
-			self.csel["list"].reload()
+			list = self.csel["list"]
+			currentIndex = list.getCurrentIndex()
+			list.moveDown()
+			if list.getCurrentIndex() == currentIndex:
+				currentIndex -= 1
+			list.reload()
+			list.moveToIndex(currentIndex)
 			self.close()
-		
  
 class MovieSelection(Screen):
 	def __init__(self, session):
