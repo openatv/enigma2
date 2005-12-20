@@ -40,7 +40,7 @@ void eFilePushThread::thread()
 			{
 				if (errno == -EINTR)
 					continue;
-				eDebug("eFilePushThread *write error* - not yet handled");
+				eDebug("eFilePushThread *write error* (%m) - not yet handled");
 				// ... we would stop the thread
 			}
 
