@@ -20,7 +20,7 @@ public:
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
 	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader);
-	RESULT getSTC(pts_t &pts);
+	RESULT getSTC(pts_t &pts, int num);
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 	RESULT flush();
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);

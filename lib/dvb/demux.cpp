@@ -96,7 +96,7 @@ RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder)
 	return 0;
 }
 
-RESULT eDVBDemux::getSTC(pts_t &pts)
+RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 {
 	int fd = openDemux();
 	
@@ -104,7 +104,7 @@ RESULT eDVBDemux::getSTC(pts_t &pts)
 		return -ENODEV;
 
 	struct dmx_stc stc;
-	stc.num = 0;
+	stc.num = num;
 	stc.base = 1;
 	
 	if (ioctl(fd, DMX_GET_STC, &stc) < 0)
