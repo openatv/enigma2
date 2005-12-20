@@ -680,7 +680,7 @@ RESULT eDVBChannel::playFile(const char *file)
 		return -ENODEV;
 	}
 	
-	m_pvr_fd_src = open(file, O_RDONLY);
+	m_pvr_fd_src = open(file, O_RDONLY|O_LARGEFILE);
 	if (m_pvr_fd_src < 0)
 	{
 		eDebug("can't open PVR m_pvr_fd_src file %s (%m)", file);
