@@ -65,7 +65,10 @@ RESULT eDVBServiceRecord::prepare(const char *filename)
 {
 	m_filename = filename;
 	if (m_state == stateIdle)
+	{
 		doPrepare();
+		return 0;
+	}
 	else
 		return -1;
 }
