@@ -48,6 +48,11 @@ def do_file(f, mode):
 		if t == "enum" and state == classstate + 1:
 			actionname = tokens.next()
 			
+			if actionname == "{":
+				while tokens.next() != "}":
+					pass
+				continue
+			
 			if actionname[-7:] == "Actions":
 				if tokens.next() != "{":
 					try:
