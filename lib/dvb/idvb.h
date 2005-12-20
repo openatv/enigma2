@@ -429,7 +429,7 @@ public:
 		   can be shared between multiple decoders.
 		   Of couse skipping doesn't make much sense 
 		   then, but getCurrentPosition does. */
-	virtual RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos) = 0;
+	virtual RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode) = 0;
 	virtual RESULT seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts) = 0;
 	virtual RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &pts) = 0;
 };
@@ -444,7 +444,7 @@ public:
 	virtual RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)=0;
 	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder)=0;
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader)=0;
-	virtual RESULT getSTC(pts_t &pts)=0;
+	virtual RESULT getSTC(pts_t &pts, int num=0)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;
 	virtual RESULT flush()=0;
 };

@@ -767,7 +767,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	if (!demux)
 		return -1;
 	
-	return pvr_channel->getCurrentPosition(demux, pos);
+	return pvr_channel->getCurrentPosition(demux, pos, 1);
 }
 
 RESULT eDVBServicePlay::setTrickmode(int trick)

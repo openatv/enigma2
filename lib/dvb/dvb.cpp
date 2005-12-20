@@ -702,7 +702,7 @@ RESULT eDVBChannel::getLength(pts_t &len)
 	return m_tstools.calcLen(len);
 }
 
-RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos)
+RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode)
 {
 	if (!decoding_demux)
 		return -1;
@@ -718,7 +718,8 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos)
 	
 	pts_t now;
 	
-	r = decoding_demux->getSTC(now);
+			/* TODO: this is a gross hack. */
+	r = decoding_demux->getSTC(now, mode ? 128 : 0);
 
 	if (r)
 	{
@@ -753,7 +754,7 @@ RESULT eDVBChannel::seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts)
 	if (relative)
 	{
 		pts_t now;
-		if (getCurrentPosition(decoding_demux, now))
+		if (getCurrentPosition(decoding_demux, now, 0))
 		{
 			eDebug("seekTo: getCurrentPosition failed!");
 			return -1;
