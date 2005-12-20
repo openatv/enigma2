@@ -65,10 +65,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename)
 {
 	m_filename = filename;
 	if (m_state == stateIdle)
-	{
-		doPrepare();
-		return 0;
-	}
+		return doPrepare();
 	else
 		return -1;
 }
@@ -106,7 +103,7 @@ int eDVBServiceRecord::doPrepare()
 	{
 		m_pids_active.clear();
 		m_state = statePrepared;
-		m_service_handler.tune(m_ref);
+		return m_service_handler.tune(m_ref);
 	}
 	return 0;
 }
