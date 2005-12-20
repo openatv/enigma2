@@ -24,7 +24,7 @@ void eDVBServiceRecord::serviceEvent(int event)
 		{
 			eDebug("Recording to %s...", m_filename.c_str());
 			::remove(m_filename.c_str());
-			int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT, 0644);
+			int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
 			if (fd == -1)
 			{
 				eDebug("eDVBServiceRecord - can't open hardcoded recording file!");
