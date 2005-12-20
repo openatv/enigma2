@@ -22,7 +22,6 @@ public:
 	};
 	int type;
 
-	int flags; // flags will NOT be compared.
 	enum
 	{
 		isDirectory=1,		// SHOULD enter  (implies mustDescent)
@@ -40,12 +39,16 @@ public:
 		hasSortKey=16,		// has a sort key in data[3]. not having a sort key implies 0.
 		sort1=32					// sort key is 1 instead of 0
 	};
+	int flags; // flags will NOT be compared.
 
 	inline int getSortKey() const { return (flags & hasSortKey) ? data[3] : ((flags & sort1) ? 1 : 0); }
 
+#ifndef SWIG
 	int data[8];
 	std::string path;
+#endif
 	std::string getPath() { return path; }
+	std::string setPath( const std::string &n ) { path=n; }
 
 	int getData(unsigned int num) const
 	{
@@ -62,9 +65,10 @@ public:
 
 // only for override service names in bouquets or to give servicerefs a name which not have a
 // real existing service ( for dvb eServiceDVB )
+#ifndef SWIG
 	std::string name;
+#endif
 	std::string getName() { return name; }
-
 	void setName( const std::string &n ) { name=n; }
 
 	eServiceReference()
@@ -72,6 +76,7 @@ public:
 	{
 		memset(data, 0, sizeof(data));
 	}
+#ifndef SWIG
 	eServiceReference(int type, int flags)
 		: type(type), flags(flags)
 	{
@@ -122,6 +127,7 @@ public:
 	{
 		memset(data, 0, sizeof(data));
 	}
+#endif
 	eServiceReference(const std::string &string);
 	std::string toString() const;
 	bool operator==(const eServiceReference &c) const
@@ -287,9 +293,10 @@ TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
 struct iAudioTrackInfo
 {
+#ifndef SWIG
 	std::string m_description;
 	std::string m_language; /* iso639 */
-	
+#endif
 	std::string getDescription() { return m_description; }
 	std::string getLanguage() { return m_language; }
 };
