@@ -2,6 +2,7 @@ from Screen import Screen
 
 from Screens.MovieSelection import MovieSelection
 from Screens.MessageBox import MessageBox
+from ServiceReference import ServiceReference
 
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap, HelpableActionMap
@@ -82,7 +83,8 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 			self.close()
 			
 	def showMovies(self):
-		self.session.openWithCallback(self.movieSelected, MovieSelection)
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
 
 	def movieSelected(self, service):
 		if service is not None:

@@ -1,6 +1,7 @@
 from HTMLComponent import *
 from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
+from ServiceReference import ServiceReference
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation
 
@@ -105,6 +106,15 @@ class MovieList(HTMLComponent, GUIComponent):
 		# now process them...
 		for ref in movieList:
 			self.list.append(MovieListEntry(ref, serviceHandler))
+			
+	def moveTo(self, serviceref):
+		found = 0
+		count = 0
+		for x in self.list:
+			if str(ServiceReference(x[0])) == str(ServiceReference(serviceref)):
+				found = count
+			count += 1
+		self.instance.moveSelectionTo(found)
 
 	def reload(self):
 		self.load(self.root)
