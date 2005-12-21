@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-19 21:13+0100\n"
+"POT-Creation-Date: 2005-12-21 00:56+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -122,6 +122,10 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Löschen"
 
+#: ../lib/python/Screens/MovieSelection.py:50
+msgid "Delete failed!"
+msgstr "Löschen fehlgeschlagen."
+
 #: ../lib/python/Screens/TimerEntry.py:131
 msgid "Description"
 msgstr "Beschreibung"
@@ -157,6 +161,10 @@ msgstr "DiSEqC-Modus"
 #: ../lib/python/Components/SetupDevices.py:47
 msgid "Disable"
 msgstr "Aus"
+
+#: ../lib/python/Screens/MovieSelection.py:33
+msgid "Do you really want to delete this recording?"
+msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:658
 msgid ""
@@ -294,6 +302,10 @@ msgstr "Montag bis Freitag"
 #: ../lib/python/Screens/TimerEntry.py:148
 msgid "Monday"
 msgstr "Montag"
+
+#: ../lib/python/Screens/MovieSelection.py:20
+msgid "Movie Menu"
+msgstr "Filmauswahl"
 
 #: ../lib/python/Components/NimManager.py:262
 msgid "N/A"
@@ -527,6 +539,10 @@ msgstr "Wochentag"
 msgid "West"
 msgstr ""
 
+#: ../lib/python/Screens/MovieSelection.py:35
+msgid "You cannot delete this!"
+msgstr "Sie können dies nicht löschen."
+
 #: ../lib/python/Screens/ChannelSelection.py:145
 msgid "[bouquet edit]"
 msgstr ""
@@ -555,6 +571,7 @@ msgstr "Zu Bouquet hinzufügen"
 msgid "add service to favourites"
 msgstr ""
 
+#: ../lib/python/Screens/MovieSelection.py:18
 #: ../lib/python/Screens/ChannelSelection.py:65
 msgid "back"
 msgstr "zurück"
@@ -570,6 +587,10 @@ msgstr ""
 #: ../lib/python/Screens/TimerEntry.py:84
 msgid "daily"
 msgstr "täglich"
+
+#: ../lib/python/Screens/MovieSelection.py:18
+msgid "delete..."
+msgstr "löschen..."
 
 #: ../lib/python/Screens/ChannelSelection.py:56
 msgid "disable move mode"
@@ -598,6 +619,10 @@ msgstr "Bouqueteditieren beenden"
 #: ../lib/python/Screens/ChannelSelection.py:62
 msgid "end favourites edit"
 msgstr ""
+
+#: ../lib/python/Components/DiskInfo.py:29
+msgid "free diskspace"
+msgstr "freier Festplattenspeicher"
 
 #: ../lib/python/Screens/ScanSetup.py:172
 msgid "horizontal"
@@ -1207,4 +1232,3 @@ msgstr ""
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
-

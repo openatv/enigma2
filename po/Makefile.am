@@ -33,6 +33,7 @@ enigma2.pot:
 			../lib/python/Screens/LanguageSelection.py \
 			../lib/python/Screens/About.py \
 			../lib/python/Screens/HarddiskSetup.py \
+			../lib/python/Screens/MovieSelection.py \
 			../lib/python/Screens/InfoBar.py \
 			../lib/python/Screens/TimerEdit.py \
 			../lib/python/Screens/TimerEntry.py \
@@ -40,6 +41,7 @@ enigma2.pot:
 			../lib/python/Screens/ServiceScan.py \
 			../lib/python/Screens/InfoBarGenerics.py \
 			../lib/python/Screens/ChannelSelection.py \
+			../lib/python/Components/DiskInfo.py \
 			../lib/python/Components/ServiceScan.py \
 			../lib/python/Components/Lcd.py \
 			../lib/python/Components/SetupDevices.py \
