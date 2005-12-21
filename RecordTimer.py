@@ -65,7 +65,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.record_service = NavigationInstance.instance.recordService(self.service_ref)
 		if self.record_service == None:
 			return False
-		else:	
+		else:
 			if self.record_service.prepare(self.Filename + ".ts"):
 				self.record_service = None
 				return False

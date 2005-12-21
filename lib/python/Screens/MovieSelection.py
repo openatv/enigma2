@@ -15,9 +15,9 @@ class ChannelContextMenu(FixedMenu):
 		self.csel = csel
 		self.service = service
 		
-		menu = [("back", self.close), ("delete...", self.delete)]
+		menu = [(_("back"), self.close), (_("delete..."), self.delete)]
 		
-		FixedMenu.__init__(self, session, "Movie Menu", menu)
+		FixedMenu.__init__(self, session, _("Movie Menu"), menu)
 		self.skinName = "Menu"
 
 	def delete(self):
@@ -30,9 +30,9 @@ class ChannelContextMenu(FixedMenu):
 				result = True
 		
 		if result == True:
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, "Do you really want to delete this recording?")
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete this recording?"))
 		else:
-			self.session.openWithCallback(self.close, MessageBox, "You cannot delete this!")
+			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"))
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
@@ -47,7 +47,7 @@ class ChannelContextMenu(FixedMenu):
 				result = True
 		
 		if result == False:
-			self.session.openWithCallback(self.close, MessageBox, "Delete failed!")
+			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"))
 		else:
 			list = self.csel["list"]
 			currentIndex = list.getCurrentIndex()
