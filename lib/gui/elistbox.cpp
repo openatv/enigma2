@@ -15,6 +15,8 @@ eListbox::eListbox(eWidget *parent)
 	m_itemheight = 25;
 	m_selection_enabled = 1;
 	
+	m_items_per_page = 0;
+	
 	ptr->bindAction("ListboxActions", 0, 0, this);
 }
 
@@ -281,6 +283,10 @@ void eListbox::recalcSize()
 	m_prev_scrollbar_page=-1;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
+
+	if (m_items_per_page < 0) /* TODO: whyever - our size could be invalid, or itemheigh could be wrongly specified. */
+ 		m_items_per_page = 0;
+
 	moveSelection(justCheck);
 }
 
