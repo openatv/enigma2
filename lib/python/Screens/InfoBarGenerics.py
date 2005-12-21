@@ -478,6 +478,9 @@ class InfoBarPVR:
 				
 				"seekFwd": (self.seekFwd, "skip forward"),
 				"seekBack": (self.seekBack, "skip backward"),
+							  
+				"up": (self.showMovies, "movie list"),
+				"down": (self.showMovies, "movie list")
 			})
 
 		self.seekstate = self.SEEK_STATE_PLAY
@@ -485,6 +488,12 @@ class InfoBarPVR:
 		self.seekTimer.timeout.get().append(self.seekTimerFired)
 		self.skipinterval = 500 # 500ms skip interval
 		self.onClose.append(self.delSeekTimer)
+	
+	def up(self):
+		pass
+	
+	def down(self):
+		pass
 	
 	def delSeekTimer(self):
 		del self.seekTimer
