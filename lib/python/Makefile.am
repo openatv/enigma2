@@ -2,7 +2,7 @@ INCLUDES = \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/src
 
-SUBDIRS = Components Tools Screens
+SUBDIRS = Components Tools Screens Plugins
 
 noinst_LIBRARIES = libenigma_python.a
 
