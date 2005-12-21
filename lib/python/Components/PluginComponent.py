@@ -27,7 +27,10 @@ class PluginComponent:
 		return list
 	
 	def runPlugin(self, plugin, session):
-		exec "import " + self.prefix + plugin[2]
-		eval(self.prefix + plugin[2]).main(session)
+		try:
+			exec "import " + self.prefix + plugin[2]
+			eval(self.prefix + plugin[2]).main(session)
+		except:
+			print "exec of plugin failed!"
 
 plugins = PluginComponent()
