@@ -21,6 +21,7 @@ class Navigation:
 		self.event = [ ]
 		self.currentlyPlayingService = None
 		self.currentlyPlayingServiceReference = None
+		self.lastServiceRef = None
 		
 		self.RecordTimer = RecordTimer.RecordTimer()
 
@@ -29,6 +30,7 @@ class Navigation:
 			x(i)
 	
 	def playService(self, ref):
+		self.lastServiceRef = self.currentlyPlayingServiceReference
 		self.currentlyPlayingServiceReference = None
 		if ref is None:
 			self.stopService()
@@ -38,6 +40,9 @@ class Navigation:
 			self.currentlyPlayingServiceReference = ref
 			return 0
 		return 1
+	
+	def zapLast(self):
+		return self.playService(self.lastServiceRef)
 	
 	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
