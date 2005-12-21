@@ -59,13 +59,16 @@ class ChannelContextMenu(FixedMenu):
 			self.close()
  
 class MovieSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
 		
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
 		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:/hdd/movies/"))
+		if (selectedmovie is not None):
+			self.onShown.append(self.moveTo)
+			self.selectedmovie = selectedmovie
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		self["freeDiskSpace"] = DiskInfo("/hdd/movies", DiskInfo.FREE)
@@ -77,6 +80,9 @@ class MovieSelection(Screen):
 				"contextMenu": self.doContext,
 			})
 		self["actions"].csel = self
+
+	def moveTo(self):
+		self["list"].moveTo(self.selectedmovie)
 
 	def getCurrent(self):
 		return self["list"].getCurrent()[0]
