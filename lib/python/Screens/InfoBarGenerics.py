@@ -537,7 +537,10 @@ class InfoBarPVR:
 		self.seekbase = seekable.getPlayPosition()[1] / 90
 	
 	def pauseService(self):
-		self.setSeekState(self.SEEK_STATE_PAUSE);
+		if (self.seekstate == self.SEEK_STATE_PAUSE):
+			self.unPauseService()
+		else:
+			self.setSeekState(self.SEEK_STATE_PAUSE);
 		
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY);
