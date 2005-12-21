@@ -48,7 +48,7 @@ public:
 	std::string path;
 #endif
 	std::string getPath() { return path; }
-	std::string setPath( const std::string &n ) { path=n; }
+	void setPath( const std::string &n ) { path=n; }
 
 	int getData(unsigned int num) const
 	{

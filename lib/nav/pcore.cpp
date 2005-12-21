@@ -71,5 +71,8 @@ void pNavigation::navEvent(eNavigation *nav, int event)
 	case eNavigation::evUpdatedEventInfo:
 		m_event(evUpdatedEventInfo);
 		break;
+	case eNavigation::evUpdatedInfo:
+		m_event(evUpdatedInfo);
+		break;
 	}
 }
