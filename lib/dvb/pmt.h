@@ -82,10 +82,11 @@ public:
 	};
 
 	Signal1<void,int> serviceEvent;
-	
+
 	struct videoStream
 	{
 		int pid;
+		int component_tag;
 	};
 	
 	struct audioStream
@@ -105,6 +106,7 @@ public:
 		// ca info
 		int pcrPid;
 		int pmtPid;
+		bool isCrypted;
 	};
 	
 	int getProgramInfo(struct program &program);

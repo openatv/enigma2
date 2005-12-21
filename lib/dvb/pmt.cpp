@@ -125,6 +125,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
+	program.isCrypted = false;
 
 	if (!m_PMT.getCurrent(ptr))
 	{
@@ -140,25 +141,29 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			ElementaryStreamInfoConstIterator es;
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
-				int isaudio = 0, isvideo = 0;
+				int isaudio = 0, isvideo = 0, cadescriptors = 0;
 				videoStream video;
 				audioStream audio;
 				audio.component_tag=-1;
-				
+				video.component_tag=-1;
+
 				video.pid = (*es)->getPid();
 				audio.pid = (*es)->getPid();
-				
+
 				switch ((*es)->getType())
 				{
 				case 0x01: // MPEG 1 video
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
-					break;
+					//break; fall through !!!
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio:
-					isaudio = 1;
-					audio.type = audioStream::atMPEG;
-					break;
+					if (!isvideo)
+					{
+						isaudio = 1;
+						audio.type = audioStream::atMPEG;
+					}
+					//break; fall through !!!
 				case 0x06: // PES Private
 						/* PES private can contain AC-3, DTS or lots of other stuff.
 						   check descriptors to get the exact type. */
@@ -168,40 +173,55 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						switch ((*desc)->getTag())
 						{
 						case AC3_DESCRIPTOR:
-							isaudio = 1;
-							audio.type = audioStream::atAC3;
+							if (!isvideo)
+							{
+								isaudio = 1;
+								audio.type = audioStream::atAC3;
+							}
+							break;
+						case ISO_639_LANGUAGE_DESCRIPTOR:
+							if (!isvideo)
+							{
+								const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
+									/* use last language code */
+								for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
+									audio.language_code = (*i)->getIso639LanguageCode();
+							}
+							break;
+						case STREAM_IDENTIFIER_DESCRIPTOR:
+							audio.component_tag =
+								video.component_tag =
+									((StreamIdentifierDescriptor*)*desc)->getComponentTag();
+							break;
+						case CA_DESCRIPTOR:
+							++cadescriptors;
 							break;
 						}
 					}
 					break;
 				}
 				if (isaudio)
-				{
-					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
-							desc != (*es)->getDescriptors()->end(); ++desc)
-					{
-						switch ((*desc)->getTag())
-						{
-						case ISO_639_LANGUAGE_DESCRIPTOR:
-						{
-							const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
-							
-								/* use last language code */
-							for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
-								audio.language_code = (*i)->getIso639LanguageCode();
-
-							break;
-						}
-						case STREAM_IDENTIFIER_DESCRIPTOR:
-							audio.component_tag = ((StreamIdentifierDescriptor*)*desc)->getComponentTag();
-							break;
-						}
-					}
-
 					program.audioStreams.push_back(audio);
-				}
-				if (isvideo)
+				else if (isvideo)
 					program.videoStreams.push_back(video);
+				else
+					continue;
+				if ( cadescriptors > 0 )
+					program.isCrypted=true;
+			}
+			if ( !program.isCrypted )
+			{
+				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+					desc != pmt.getDescriptors()->end(); ++desc)
+				{
+					switch ((*desc)->getTag())
+					{
+					case CA_DESCRIPTOR:
+						program.isCrypted=true;
+						break;
+					}
+				}
+				break;
 			}
 		}
 		return 0;
@@ -209,8 +229,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	else if ( m_service && !m_service->cacheEmpty() )
 	{
 		int vpid = m_service->getCachePID(eDVBService::cVPID),
-			apid_ac3 = m_service->getCachePID(eDVBService::cAPID),
-			apid_mpeg = m_service->getCachePID(eDVBService::cAC3PID),
+			apid_ac3 = m_service->getCachePID(eDVBService::cAC3PID),
+			apid_mpeg = m_service->getCachePID(eDVBService::cAPID),
 			pcrpid = m_service->getCachePID(eDVBService::cPCRPID),
 			cnt=0;
 		if ( vpid != -1 )

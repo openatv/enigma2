@@ -702,17 +702,9 @@ class InfoBarSubserviceSelection:
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
-		self["DolbyActive"] = PixmapConditional()
-		# TODO: get the info from c++ somehow
-		self["DolbyActive"].setConnect(lambda: False)
-		
-		self["CryptActive"] = PixmapConditional()
-		# TODO: get the info from c++ somehow
-		self["CryptActive"].setConnect(lambda: False)
-		
-		self["FormatActive"] = PixmapConditional()
-		# TODO: get the info from c++ somehow
-		self["FormatActive"].setConnect(lambda: False)
+		self["DolbyActive"] = Pixmap()
+		self["CryptActive"] = Pixmap()
+		self["FormatActive"] = Pixmap()
 		
 		self["ButtonRed"] = PixmapConditional(withTimer = False)
 		self["ButtonRed"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
@@ -720,17 +712,78 @@ class InfoBarAdditionalInfo:
 		self["ButtonRedText"] = LabelConditional(text = _("Record"), withTimer = False)
 		self["ButtonRedText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
 		self.onShown.append(self["ButtonRedText"].update)
-				
-		self["ButtonGreen"] = PixmapConditional()
-		self["ButtonGreen"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
-		self["ButtonGreenText"] = LabelConditional(text = _("Subservices"))
-		self["ButtonGreenText"].setConnect(lambda: self.session.nav.getCurrentService().subServices().getNumberOfSubservices() > 0)
 
-		self["ButtonYellow"] = PixmapConditional()
+		self["ButtonGreen"] = Pixmap()
+		self["ButtonGreenText"] = Label(_("Subservices"))
+
+		self["ButtonYellow"] = PixmapConditional(withTimer = False)
 		self["ButtonYellow"].setConnect(lambda: False)
 
-		self["ButtonBlue"] = PixmapConditional()
+		self["ButtonBlue"] = PixmapConditional(withTimer = False)
 		self["ButtonBlue"].setConnect(lambda: False)
+
+		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
+
+	def hideSubServiceIndication(self):
+		self["ButtonGreen"].hideWidget()
+		self["ButtonGreenText"].hide()
+
+	def showSubServiceIndication(self):
+		self["ButtonGreen"].showWidget()
+		self["ButtonGreenText"].show()
+
+	def checkFormat(self, service):
+		info = service.info()
+		if info is not None:
+			aspect = info.getInfo(iServiceInformation.sAspect)
+			if aspect in [ 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10 ]:
+				self["FormatActive"].showWidget()
+			else:
+				self["FormatActive"].hideWidget()
+
+	def checkSubservices(self, service):
+		if service.subServices().getNumberOfSubservices() > 0:
+			self.showSubServiceIndication()
+		else:
+			self.hideSubServiceIndication()
+
+	def checkDolby(self, service):
+		dolby = False
+		audio = service.audioTracks()
+		if audio is not None:
+			n = audio.getNumberOfTracks()
+			for x in range(n):
+				i = audio.getTrackInfo(x)
+				description = i.getDescription();
+				if description.find("AC3") != -1 or description.find("DTS") != -1:
+					dolby = True
+					break
+		if dolby:
+			self["DolbyActive"].showWidget()
+		else:
+			self["DolbyActive"].hideWidget()
+
+	def checkCrypted(self, service):
+		info = service.info()
+		if info is not None:
+			if info.getInfo(iServiceInformation.sIsCrypted) > 0:
+				self["CryptActive"].showWidget()
+			else:
+				self["CryptActive"].hideWidget()
+
+	def gotServiceEvent(self, ev):
+		service = self.session.nav.getCurrentService()
+		if ev == pNavigation.evUpdatedEventInfo:
+			self.checkSubservices(service)
+			self.checkFormat(service)
+		elif ev == pNavigation.evUpdatedInfo:
+			self.checkCrypted(service)
+			self.checkDolby(service)
+		elif ev == pNavigation.evStopService:
+			self.hideSubServiceIndication()
+			self["CryptActive"].hideWidget()
+			self["DolbyActive"].hideWidget()
+			self["FormatActive"].hideWidget()
 
 class InfoBarNotifications:
 	def __init__(self):

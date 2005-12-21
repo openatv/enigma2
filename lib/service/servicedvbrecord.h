@@ -23,8 +23,8 @@ private:
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	
-	eDVBServicePMTHandler m_service_handler;
 	eServiceReferenceDVB m_ref;
+	eDVBServicePMTHandler m_service_handler;
 	void serviceEvent(int event);
 	
 	ePtr<iDVBTSRecorder> m_record;

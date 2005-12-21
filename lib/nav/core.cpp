@@ -43,6 +43,9 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	case iPlayableService::evUpdatedEventInfo:
 		m_event(this, evUpdatedEventInfo);
 		break;
+	case iPlayableService::evUpdatedInfo:
+		m_event(this, evUpdatedInfo);
+		break;
 	default:
 		break;
 	}

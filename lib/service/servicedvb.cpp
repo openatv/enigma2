@@ -618,7 +618,8 @@ void eDVBServicePlay::serviceEvent(int event)
 				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
 			}
 		}
-		
+
+		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
 	}
@@ -841,12 +842,51 @@ int eDVBServicePlay::getInfo(int w)
 	
 	switch (w)
 	{
+	case sAspect:
+		if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
+		{
+			ePtr<eServiceEvent> evt;
+			if (!m_event_handler.getEvent(evt, 0))
+			{
+				ePtr<eComponentData> data;
+				if (!evt->getComponentData(data, program.videoStreams[0].component_tag))
+				{
+					if ( data->getStreamContent() == 1 )
+					{
+						switch(data->getComponentType())
+						{
+							// SD
+							case 1: // 4:3 SD PAL
+							case 2:
+							case 3: // 16:9 SD PAL
+							case 4: // > 16:9 PAL
+							case 5: // 4:3 SD NTSC
+							case 6: 
+							case 7: // 16:9 SD NTSC
+							case 8: // > 16:9 NTSC
+
+							// HD
+							case 9: // 4:3 HD PAL
+							case 0xA:
+							case 0xB: // 16:9 HD PAL
+							case 0xC: // > 16:9 HD PAL
+							case 0xD: // 4:3 HD NTSC
+							case 0xE:
+							case 0xF: // 16:9 HD NTSC
+							case 0x10: // > 16:9 HD PAL
+								return data->getComponentType();
+						}
+					}
+				}
+			}
+		}
+		return -1;
+	case sIsCrypted: return program.isCrypted;
 	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
 	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[m_current_audio_stream].pid;
 	case sPCRPID: return program.pcrPid;
 	case sPMTPID: return program.pmtPid;
 	case sTXTPID: return -1;
-		
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
 	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
