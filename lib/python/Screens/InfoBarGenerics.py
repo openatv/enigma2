@@ -254,7 +254,12 @@ class InfoBarNumberZap:
 
 	def keyNumberGlobal(self, number):
 #		print "You pressed number " + str(number)
-		self.session.openWithCallback(self.numberEntered, NumberZap, number)
+		if number == 0:
+			self.session.nav.zapLast()
+			self.instance.show()
+			self.show()
+		else:
+			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
 	def numberEntered(self, retval):
 #		print self.servicelist
