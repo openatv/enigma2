@@ -80,3 +80,10 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 		if answer == True:
 			self.session.nav.playService(self.lastservice)
 			self.close()
+			
+	def showMovies(self):
+		self.session.openWithCallback(self.movieSelected, MovieSelection)
+
+	def movieSelected(self, service):
+		if service is not None:
+			self.session.nav.playService(service)
