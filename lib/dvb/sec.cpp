@@ -475,10 +475,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						eDebug("Entry for %d,%d? not in Rotor Table found... i try gotoXX?", sat.orbital_position / 10, sat.orbital_position % 10 );
 						useGotoXX = true;
 
-						int satDir = sat.orbital_position < 0 ?
-							eDVBSatelliteRotorParameters::WEST :
-							eDVBSatelliteRotorParameters::EAST;
-
 						double	SatLon = abs(sat.orbital_position)/10.00,
 								SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
 								SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
@@ -488,9 +484,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 						if ( rotor_param.m_gotoxx_parameters.m_lo_direction == eDVBSatelliteRotorParameters::WEST )
 							SiteLon = 360 - SiteLon;
-
-						if (satDir == eDVBSatelliteRotorParameters::WEST )
-							SatLon = 360 - SatLon;
 
 						eDebug("siteLatitude = %lf, siteLongitude = %lf, %lf degrees", SiteLat, SiteLon, SatLon );
 						double satHourAngle =
