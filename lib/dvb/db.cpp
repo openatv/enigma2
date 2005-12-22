@@ -279,7 +279,8 @@ void eDVBDB::load()
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
 				sat.fec = fec;
-				sat.orbital_position = orbital_position;
+				sat.orbital_position =
+					orbital_position < 0 ? orbital_position + 3600 : orbital_position;
 				sat.inversion = inversion;
 				feparm->setDVBS(sat);
 			} else if (line[1]=='t')
@@ -418,7 +419,8 @@ void eDVBDB::save()
 		{
 			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
 				sat.frequency, sat.symbol_rate,
-				sat.polarisation, sat.fec, sat.orbital_position,
+				sat.polarisation, sat.fec,
+				sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
 				sat.inversion);
 		}
 		if (!ch.m_frontendParameters->getDVBT(ter))
@@ -829,7 +831,15 @@ RESULT eDVBDBListQuery::getNextResult(eServiceReferenceDVB &ref)
 int eDVBDBListQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
 {
 	if ( m_query->m_sort == eDVBChannelQuery::tSatellitePosition )
-		return (a.getDVBNamespace().get() >> 16) < (b.getDVBNamespace().get() >> 16);
+	{
+		int x = (a.getDVBNamespace().get() >> 16);
+		int y = (b.getDVBNamespace().get() >> 16);
+		if ( x > 1800 )
+			x -= 3600;
+		if ( y > 1800 )
+			y -= 3600;
+		return x < y;
+	}
 	return a.name < b.name;
 }
 
