@@ -33,7 +33,7 @@ class eWidgetDesktop: public Object
 public:
 	eWidgetDesktop(eSize screen);
 	~eWidgetDesktop();
-	void addRootWidget(eWidget *root, int top);
+	void addRootWidget(eWidget *root);
 	void removeRootWidget(eWidget *root);
 	
 		/* try to move widget content. */

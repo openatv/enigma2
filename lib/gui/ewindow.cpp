@@ -6,7 +6,7 @@
 
 #include <lib/gdi/epng.h>
 
-eWindow::eWindow(eWidgetDesktop *desktop): eWidget(0)
+eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
 		/* ask style manager for current style */
@@ -22,12 +22,14 @@ eWindow::eWindow(eWidgetDesktop *desktop): eWidget(0)
 		style = new eWindowStyleSimple();
 	
 	setStyle(style);
+	
+	setZPosition(z); /* must be done before addRootWidget */
 
 		/* we are the parent for the child window. */
 		/* as we are in the constructor, this is thread safe. */
 	m_child = this;
 	m_child = new eWidget(this);
-	desktop->addRootWidget(this, 0);
+	desktop->addRootWidget(this);
 }
 
 eWindow::~eWindow()
