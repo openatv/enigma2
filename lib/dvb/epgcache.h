@@ -93,11 +93,8 @@ struct hash_uniqueEPGKey
 #define descriptorPair std::pair<int,__u8*>
 #define descriptorMap std::map<__u32, descriptorPair >
 
-#endif // SWIG
-
 class eventData
 {
-#ifndef SWIG
 	friend class eEPGCache;
 private:
 	__u8* EITdata;
@@ -108,17 +105,14 @@ private:
 	static int CacheSize;
 	static void load(FILE *);
 	static void save(FILE *);
-#endif // SWIG
 public:
 	eventData(const eit_event_struct* e=NULL, int size=0, int type=0);
 	~eventData();
-#ifndef SWIG
 	const eit_event_struct* get() const;
 	operator const eit_event_struct*() const
 	{
 		return get();
 	}
-#endif
 	int getEventID()
 	{
 		return (EITdata[0] << 8) | EITdata[1];
@@ -132,6 +126,7 @@ public:
 		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
  }
 };
+#endif
 
 class eEPGCache: public eMainloop, private eThread, public Object
 {
@@ -226,8 +221,10 @@ private:
 #endif // SWIG
 public:
 	static eEPGCache *getInstance() { return instance; }
+#ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
+#endif
 
 	// called from main thread
 	inline void Lock();
@@ -236,13 +233,13 @@ public:
 	// at moment just for one service..
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);
 
+#ifndef SWIG
 	// eventData's are plain entrys out of the cache.. it's not safe to use them after cache unlock
 	// but its faster in use... its not allowed to delete this pointers via delete or free..
 	SWIG_VOID(RESULT) lookupEventId(const eServiceReference &service, int event_id, const eventData *&SWIG_OUTPUT);
 	SWIG_VOID(RESULT) lookupEventTime(const eServiceReference &service, time_t, const eventData *&SWIG_OUTPUT);
 	SWIG_VOID(RESULT) getNextTimeEntry(const eventData *&SWIG_OUTPUT);
 
-#ifndef SWIG
 	// eit_event_struct's are plain dvb eit_events .. it's not safe to use them after cache unlock
 	// its not allowed to delete this pointers via delete or free..
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&);
