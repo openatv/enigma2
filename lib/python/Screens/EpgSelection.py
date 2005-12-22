@@ -54,10 +54,7 @@ class EPGSelection(Screen):
 		if event is None:
 			return
 		
-		# FIXME only works if already playing a service
-		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
-		
-		newEntry = RecordTimerEntry(serviceref, *parseEvent(event))
+		newEntry = RecordTimerEntry(self.currentService, *parseEvent(event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 	
 	def timerEditFinished(self, answer):
