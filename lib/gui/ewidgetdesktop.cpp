@@ -5,18 +5,27 @@
 
 extern void dumpRegion(const gRegion &region);
 
-void eWidgetDesktop::addRootWidget(eWidget *root, int top)
+void eWidgetDesktop::addRootWidget(eWidget *root)
 {
 	assert(!root->m_desktop);
 	
+	int invert_sense = 0;
 		/* buffered mode paints back-to-front, while immediate mode is front-to-back. */
 	if (m_comp_mode == cmBuffered)
-		top = !top;
+		invert_sense = 1;
 	
-	if (top)
-		m_root.push_back(root);
-	else
-		m_root.push_front(root);
+	ePtrList<eWidget>::iterator insert_position = m_root.begin();
+	
+	for (;;)
+	{
+		if ((insert_position == m_root.end()) || (invert_sense ^ (insert_position->m_z_position > root->m_z_position)))
+		{
+			m_root.insert(insert_position, root);
+			break;
+		}
+		++insert_position;
+	}
+	
 	root->m_desktop = this;
 
 		/* the creation will be postponed. */

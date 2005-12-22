@@ -10,7 +10,7 @@ class eWindow: public eWidget
 {
 	friend class eWindowStyle;
 public:
-	eWindow(eWidgetDesktop *desktop);
+	eWindow(eWidgetDesktop *desktop, int z = 0);
 	~eWindow();
 	void setTitle(const std::string &string);
 	std::string getTitle() const;
