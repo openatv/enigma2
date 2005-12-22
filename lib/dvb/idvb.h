@@ -19,7 +19,7 @@
 struct eBouquet
 {
 	std::string m_bouquet_name;
-	std::string m_path;
+	std::string m_filename;  // without path.. just name
 	typedef std::list<eServiceReference> list;
 	list m_services;
 // the following four methods are implemented in db.cpp

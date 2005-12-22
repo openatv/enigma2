@@ -66,7 +66,7 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 
 RESULT eBouquet::flushChanges()
 {
-	FILE *f=fopen(m_path.c_str(), "wt");
+	FILE *f=fopen((CONFIGDIR"/enigma2/"+m_filename).c_str(), "w");
 	if (!f)
 		return -1;
 	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
@@ -103,7 +103,7 @@ RESULT eBouquet::flushChanges()
 	return 0;
 err:
 	fclose(f);
-	eDebug("couldn't write file %s", m_path.c_str());
+	eDebug("couldn't write file %s", m_filename.c_str());
 	return -1;
 }
 
@@ -132,7 +132,7 @@ void eDVBService::genSortName()
 	makeUpper(m_service_name_sort);
 	while ((!m_service_name_sort.empty()) && m_service_name_sort[0] == ' ')
 		m_service_name_sort.erase(0, 1);
-	
+
 		/* put unnamed services at the end, not at the beginning. */
 	if (m_service_name_sort.empty())
 		m_service_name_sort = "\xFF";
@@ -140,7 +140,7 @@ void eDVBService::genSortName()
 
 RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 {
-	if (!ref.name.empty())  
+	if (!ref.name.empty())
 		name = ref.name; // use renamed service name..
 	else if (!m_service_name.empty())
 		name = m_service_name;
@@ -229,9 +229,17 @@ DEFINE_REF(eDVBDB);
 void eDVBDB::load()
 {
 	eDebug("---- opening lame channel db");
-	FILE *f=fopen("lamedb", "rt");
+	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "rt");
 	if (!f)
+	{
+		struct stat s;
+		if ( !stat("lamedb", &s) )
+		{
+			rename("lamedb", CONFIGDIR"/enigma2/lamedb" );
+			load();
+		}
 		return;
+	}
 	char line[256];
 	if ((!fgets(line, 256, f)) || strncmp(line, "eDVB services", 13))
 	{
@@ -297,7 +305,7 @@ void eDVBDB::load()
 				ter.guard_interval = guard_interval;
 				ter.hierarchy = hierarchy;
 				ter.inversion = inversion;
-				
+
 				feparm->setDVBT(ter);
 			} else if (line[1]=='c')
 			{
@@ -345,7 +353,7 @@ void eDVBDB::load()
 
 		s->m_service_name = line;
 		s->genSortName();
-		 
+
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
@@ -399,7 +407,7 @@ void eDVBDB::load()
 void eDVBDB::save()
 {
 	eDebug("---- saving lame channel db");
-	FILE *f=fopen("lamedb", "wt");
+	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "w");
 	int channels=0, services=0;
 	if (!f)
 		eFatal("couldn't save lame channel db!");
@@ -483,15 +491,24 @@ void eDVBDB::loadBouquet(const char *path)
 		return;
 	}
 	eBouquet &bouquet = m_bouquets[bouquet_name];
-	bouquet.m_path = path;
+	bouquet.m_filename = bouquet_name;
 	std::list<eServiceReference> &list = bouquet.m_services;
 	list.clear();
 
-	eDebug("loading bouquet... %s", path);
-	FILE *fp=fopen(path, "rt");
+	std::string p = CONFIGDIR"/enigma2/";
+	p+=path;
+	eDebug("loading bouquet... %s", p.c_str());
+	FILE *fp=fopen(p.c_str(), "rt");
 	int entries=0;
 	if (!fp)
 	{
+		struct stat s;
+		if ( !stat(path, &s) )
+		{
+			rename(path, p.c_str() );
+			loadBouquet(path);
+			return;
+		}
 		eDebug("failed to open.");
 		if ( strstr(path, "bouquets.tv") )
 		{
@@ -532,18 +549,17 @@ void eDVBDB::loadBouquet(const char *path)
 				}
 				if ( (tmp.flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
 				{
-					std::string str = tmp.path;
-					unsigned int pos = str.rfind('/');
+					unsigned int pos = tmp.path.rfind('/');
 					if ( pos != std::string::npos )
-						str.erase(0, pos+1);
-					if (str.empty())
+						tmp.path.erase(0, pos+1);
+					if (tmp.path.empty())
 					{
 						eDebug("Bouquet load failed.. no filename given..");
 						continue;
 					}
 					loadBouquet(tmp.path.c_str());
 					char buf[256];
-					snprintf(buf, 256, "(type == %d) FROM BOUQUET \"%s\" ORDER BY bouquet", tmp.data[0], str.c_str());
+					snprintf(buf, 256, "(type == %d) FROM BOUQUET \"%s\" ORDER BY bouquet", tmp.data[0], tmp.path.c_str());
 					tmp.path = buf;
 				}
 				list.push_back(tmp);
@@ -573,7 +589,7 @@ void eDVBDB::loadBouquets()
 	if ( m_bouquets.find("userbouquet.favourites.tv") == m_bouquets.end() )
 	{
 		eBouquet &b = m_bouquets["userbouquet.favourites.tv"];
-		b.m_path = "userbouquet.favourites.tv";
+		b.m_filename = "userbouquet.favourites.tv";
 		b.m_bouquet_name = "Favourites (TV)";
 		b.flushChanges();
 		eServiceReference ref;
@@ -589,7 +605,7 @@ void eDVBDB::loadBouquets()
 	if ( m_bouquets.find("userbouquet.favourites.radio") == m_bouquets.end() )
 	{
 		eBouquet &b = m_bouquets["userbouquet.favourites.radio"];
-		b.m_path = "userbouquet.favourites.radio";
+		b.m_filename = "userbouquet.favourites.radio";
 		b.m_bouquet_name = "Favourites (Radio)";
 		b.flushChanges();
 		eServiceReference ref;
