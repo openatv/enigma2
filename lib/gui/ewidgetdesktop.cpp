@@ -18,7 +18,7 @@ void eWidgetDesktop::addRootWidget(eWidget *root)
 	
 	for (;;)
 	{
-		if ((insert_position == m_root.end()) || (invert_sense ^ (insert_position->m_z_position > root->m_z_position)))
+		if ((insert_position == m_root.end()) || (invert_sense ^ (insert_position->m_z_position >= root->m_z_position)))
 		{
 			m_root.insert(insert_position, root);
 			break;
