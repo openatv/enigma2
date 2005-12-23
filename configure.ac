@@ -43,6 +43,7 @@ TUXBOX_APPS_GETTEXT
 AC_OUTPUT([
 Makefile
 data/Makefile
+data/fonts/Makefile
 data/countries/Makefile
 lib/Makefile
 lib/actions/Makefile

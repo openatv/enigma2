@@ -177,7 +177,7 @@ int main(int argc, char **argv)
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Regular", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/md_khmurabi_10.ttf", "Regular", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));
