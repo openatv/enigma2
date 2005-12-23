@@ -628,7 +628,6 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
-#if 0
 	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
@@ -637,6 +636,7 @@ void eEPGCache::load()
 		int size=0;
 		int cnt=0;
 		bool md5ok=false;
+#if 0
 		if (!md5_file("/hdd/epg.dat", 1, md5))
 		{
 			FILE *f = fopen("/hdd/epg.dat.md5", "r");
@@ -649,6 +649,7 @@ void eEPGCache::load()
 			}
 		}
 		if ( md5ok )
+#endif
 		{
 			char text1[13];
 			fread( text1, 13, 1, f);
@@ -688,12 +689,10 @@ void eEPGCache::load()
 			fclose(f);
 		}
 	}
-#endif
 }
 
 void eEPGCache::save()
 {
-#if 0
 	struct statfs s;
 	off64_t tmp;
 	if (statfs("/hdd", &s)<0)
@@ -740,6 +739,7 @@ void eEPGCache::save()
 		eDebug("%d events written to /hdd/epg.dat", cnt);
 		eventData::save(f);
 		fclose(f);
+#if 0
 		unsigned char md5[16];
 		if (!md5_file("/hdd/epg.dat", 1, md5))
 		{
@@ -750,8 +750,8 @@ void eEPGCache::save()
 				fclose(f);
 			}
 		}
-	}
 #endif
+	}
 }
 
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
