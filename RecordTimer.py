@@ -3,6 +3,7 @@ import codecs
 #from time import datetime
 from Tools import Directories, Notifications
 
+from Components.config import config
 import timer
 import xml.dom.minidom
 
@@ -85,7 +86,10 @@ class RecordTimerEntry(timer.TimerEntry):
 				self.prepareOK = True
 			else:
 				# error.
-				Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
+				if config.recording.asktozap.value == 0:
+					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
+				else: # zap without asking
+					self.failureCB(True)
 		elif event == self.EventStart:
 			if self.prepareOK:
 				self.record_service.start()
@@ -112,6 +116,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.activate(self.EventPrepare)
 			if self.wantStart:
 				print "post-activating record"
+				NavigationInstance.instance.playService(self.serviceref)
 				self.activate(self.EventStart)
 		else:
 			print "user killed record"
