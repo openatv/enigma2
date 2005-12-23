@@ -440,6 +440,14 @@ bool eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepa
 
 bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
 {
+	bool ret=true;
+	if (m_cached_channel)
+	{
+		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
+		if(channelid==cache_chan->getChannelID())
+			return ret;
+	}
+
 		/* first, check if a channel is already existing. */
 //	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
 	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
@@ -448,11 +456,12 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 		if (i->m_channel_id == channelid)
 		{
 //			eDebug("found shared channel..");
-			return true;
+			return ret;
 		}
 	}
 
-	int *decremented_fe_usecount=NULL;
+	int *decremented_cached_channel_fe_usecount=NULL,
+		*decremented_fe_usecount=NULL;
 
 	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
 	{
@@ -471,6 +480,8 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 						{
 							--ii->m_inuse;
 							decremented_fe_usecount = &ii->m_inuse;
+							if (channel == &(*m_cached_channel))
+								decremented_cached_channel_fe_usecount = decremented_fe_usecount;
 							break;
 						}
 					}
@@ -480,23 +491,52 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 		}
 	}
 
+	if (!decremented_cached_channel_fe_usecount)
+	{
+		eDVBChannel *channel = (eDVBChannel*) &(*m_cached_channel);
+		if (channel->getUseCount() == 1)
+		{
+			ePtr<iDVBFrontend> fe;
+			if (!channel->getFrontend(fe))
+			{
+				for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
+				{
+					if ( &(*fe) == &(*ii->m_frontend) )
+					{
+						--ii->m_inuse;
+						decremented_cached_channel_fe_usecount = &ii->m_inuse;
+						break;
+					}
+				}
+			}
+		}
+	}
+	else
+		decremented_cached_channel_fe_usecount=NULL;
+
+	ePtr<iDVBFrontendParameters> feparm;
+
 	if (!m_list)
 	{
 		eDebug("no channel list set!");
-		return false;
+		ret = false;
+		goto error;
 	}
 
-	ePtr<iDVBFrontendParameters> feparm;
 	if (m_list->getChannelFrontendData(channelid, feparm))
 	{
 		eDebug("channel not found!");
-		return false;
+		ret = false;
+		goto error;
 	}
 
-	bool ret = canAllocateFrontend(feparm);
+	ret = canAllocateFrontend(feparm);
 
+error:
 	if (decremented_fe_usecount)
 		++(*decremented_fe_usecount);
+	if (decremented_cached_channel_fe_usecount)
+		++(*decremented_cached_channel_fe_usecount);
 
 	return ret;
 }
