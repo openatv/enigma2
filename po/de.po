@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-21 00:56+0100\n"
+"POT-Creation-Date: 2005-12-23 01:05+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -45,6 +45,10 @@ msgstr ""
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Add"
 msgstr "Hinzufügen"
+
+#: ../lib/python/Screens/EpgSelection.py:26
+msgid "Add timer"
+msgstr "Timer setzen"
 
 #: ../lib/python/Screens/ChannelSelection.py:258
 msgid "All"
@@ -166,7 +170,7 @@ msgstr "Aus"
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:658
+#: ../lib/python/Screens/InfoBarGenerics.py:675
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -339,7 +343,7 @@ msgstr "Nord"
 msgid "Nothing connected"
 msgstr "Nichts angeschlossen"
 
-#: ../lib/python/Screens/InfoBar.py:35
+#: ../lib/python/Screens/InfoBar.py:36
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
 
@@ -387,7 +391,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:715
+#: ../lib/python/Screens/InfoBarGenerics.py:724
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -437,7 +441,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:660
+#: ../lib/python/Screens/InfoBarGenerics.py:677
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -449,11 +453,11 @@ msgstr "Startzeit"
 msgid "Step "
 msgstr "Schritt "
 
-#: ../lib/python/Screens/InfoBar.py:77
+#: ../lib/python/Screens/InfoBar.py:78
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:721 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:729 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -628,7 +632,7 @@ msgstr "freier Festplattenspeicher"
 msgid "horizontal"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:65
+#: ../lib/python/Screens/InfoBar.py:66
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
 
@@ -636,7 +640,7 @@ msgstr "Abspielmodus verlassen..."
 msgid "manual"
 msgstr "manuell"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:311
+#: ../lib/python/Screens/InfoBarGenerics.py:316
 msgid "next channel"
 msgstr "nächster Kanal"
 
@@ -670,7 +674,7 @@ msgstr "an"
 msgid "once"
 msgstr "einmalig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:312
+#: ../lib/python/Screens/InfoBarGenerics.py:317
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
@@ -720,7 +724,7 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:354
+#: ../lib/python/Screens/InfoBarGenerics.py:359
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
@@ -976,6 +980,10 @@ msgid "Color Format"
 msgstr "Farbformat"
 
 #: ../data/
+msgid "Plugin browser"
+msgstr ""
+
+#: ../data/
 msgid "LCD"
 msgstr ""
 
@@ -1096,10 +1104,6 @@ msgstr "Jugendschutz"
 #: ../data/
 msgid "Skip confirmations"
 msgstr "Bestätigungen überspringen"
-
-#: ../data/
-msgid "Plugins"
-msgstr "Erweiterungen"
 
 #: ../data/
 msgid "Yes, scan now"
@@ -1232,3 +1236,6 @@ msgstr ""
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
+#~ msgid "Plugins"
+#~ msgstr "Erweiterungen"
