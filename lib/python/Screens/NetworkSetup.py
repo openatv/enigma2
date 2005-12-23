@@ -32,7 +32,7 @@ class NetworkSetup(Screen):
 		self["config"] = ConfigList(self.list)
 		self.createSetup()
         
-		self["introduction"] = Label("Press OK to activate the settings.")
+		self["introduction"] = Label(_("Press OK to activate the settings."))
         
 	def createSetup(self):
 		self.list = []
