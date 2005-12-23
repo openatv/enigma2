@@ -44,7 +44,7 @@ class HarddiskSetup(Screen):
 	def hddReady(self, result):
 		print "Result: " + str(result)
 		if (result != 0):
-			self.session.open(MessageBox, _("Unable to initialize harddisk.\nPlease refer to the user manual.\nError: ") + str(self.hdd.errorList[0 - result]))
+			self.session.open(MessageBox, _("Unable to initialize harddisk.\nPlease refer to the user manual.\nError: ") + str(self.hdd.errorList[0 - result]), MessageBox.TYPE_ERROR)
 		else:
 			self.close()
 			

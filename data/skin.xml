@@ -270,9 +270,10 @@
 			<eLabel position="500,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
-			<widget name="text" position="0,35" size="650,0" font="Regular;22" />
-			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
-			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
+			<widget name="text" position="60,10" size="650,0" font="Regular;22" />
+			<widget name="ErrorPixmap" pixmap="/usr/share/enigma2/error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+			<widget name="QuestionPixmap" pixmap="/usr/share/enigma2/question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+			<widget name="list" position="100,100" size="550,375" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
 from enigma import eSize, ePoint
@@ -283,8 +284,11 @@ textsize = self["text"].getSize()
 
 # y size still must be fixed in font stuff...
 textsize = (textsize[0] + 50, textsize[1] + 50)
-wsizex = textsize[0] + 50
-wsizey = textsize[1] + 50
+offset = 0
+if self.type == self.TYPE_YESNO:
+	offset = 60
+wsizex = textsize[0] + offset
+wsizey = textsize[1] + offset
 if (280 > wsizex):
 	wsizex = 280
 wsize = (wsizex, wsizey)
@@ -295,6 +299,11 @@ self.instance.resize(eSize(*wsize))
 
 # resize label
 self["text"].instance.resize(eSize(*textsize))
+
+# move list
+listsize = (wsizex, 50)
+self["list"].instance.move(ePoint(0, textsize[1]))
+self["list"].instance.resize(eSize(*listsize))
 
 # center window
 newwidth = wsize[0]

@@ -1,5 +1,7 @@
 from enigma import *
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 
@@ -13,16 +15,17 @@ class Example(Screen):
 		self.skin = Example.skin
 		Screen.__init__(self, session)
 
-		self["text"] = Label("Small test")
+		self["text"] = Label("Big test")
 
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
-			"ok": self.ok
+			"ok": self.ok,
+			"back": self.close
 		}, -1)
 		
 	def ok(self):
-		self.close()
-		
+		self.session.open(MessageBox, "Bla bla bla bla bla bla bla bla\n bla bla bla bla bla bla\n bla bla bla bla bla bla\n bla bla bla bla bla", MessageBox.TYPE_YESNO)
+				
 def main(session):
 	session.open(Example)
 	
