@@ -8,7 +8,7 @@ import os
 class Example(Screen):
 	skin = """
 		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
-			<widget name="text" position="0,0" size="550,400" font="Arial;15" />
+			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
 		
 	def __init__(self, session):

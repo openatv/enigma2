@@ -33,7 +33,7 @@ class LanguageList(HTMLComponent, GUIComponent, MenuList):
 		self.l = eListboxPythonMultiContent()
 		self.list = list
 		self.l.setList(list)
-		self.l.setFont(0, gFont("Arial", 20))
+		self.l.setFont(0, gFont("Regular", 20))
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)

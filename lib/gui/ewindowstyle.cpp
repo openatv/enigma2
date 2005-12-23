@@ -38,7 +38,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 	m_border_left = m_border_right = m_border_bottom = 2;
 	m_border_top = 30;
 
-	m_fnt = new gFont("Arial", 25);
+	m_fnt = new gFont("Regular", 25);
 	
 	m_border_color_tl = gColor(0x1f);
 	m_border_color_br = gColor(0x14);
@@ -141,13 +141,13 @@ RESULT eWindowStyleSimple::getFont(int what, ePtr<gFont> &fnt)
 	switch (what)
 	{
 	case fontStatic:
-		fnt = new gFont("Arial", 12);
+		fnt = new gFont("Regular", 12);
 		break;
 	case fontButton:
-		fnt = new gFont("Arial", 20);
+		fnt = new gFont("Regular", 20);
 		break;
 	case fontTitlebar:
-		fnt = new gFont("Arial", 25);
+		fnt = new gFont("Regular", 25);
 		break;
 	default:
 		return -1;

@@ -37,8 +37,8 @@
 		<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
 		</screen>
 		<screen name="Menu" position="210,150" size="300,235" title="Main menu">
-			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
-			<!--<widget name="menu" position="10,55" size="280,150" font="Arial;23" />-->
+			<widget name="title" position="10,10" size="280,35" font="Regular;23" />
+			<!--<widget name="menu" position="10,55" size="280,150" font="Regular;23" />-->
 			<widget name="menu" position="10,55" size="290,175" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="ScartLoopThrough" position="0,0" size="720,576">
@@ -53,22 +53,22 @@
 			<widget name="subservices" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="HarddiskWait" position="140,165" size="360,60">
-			<widget name="wait" position="20,10" size="320,25" font="Arial;23"/>
+			<widget name="wait" position="20,10" size="320,25" font="Regular;23"/>
 		</screen>
 		<screen name="HarddiskSelection" position="140,165" size="360,100" title="Select HDD">
 			<widget name="hddlist" position="20,10" size="320,75" />
 		</screen>
 		<screen name="HarddiskSetup" position="140,165" size="420,160" title="Harddisk">
-			<widget name="model" position="20,10" size="380,25" font="Arial;23"  />
-			<widget name="capacity" position="20,40" size="380,25" font="Arial;23"  />
-			<widget name="bus" position="20,70" size="380,25" font="Arial;23"  />
-			<widget name="initialize" position="40,110" size="100,28" font="Arial;25" backgroundColor="red" />
+			<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
+			<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
+			<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
+			<widget name="initialize" position="40,110" size="100,28" font="Regular;25" backgroundColor="red" />
 		</screen>
 		<screen name="Setup" position="100,125" size="540,280" title="Setup">
-			<widget name="title" position="10,10" size="280,35" font="Arial;23" />
+			<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 			<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
-			<widget name="ok" position="140,240" size="38,20" font="Arial;20" backgroundColor="green" />
-			<widget name="cancel" position="240,240" size="70,20" font="Arial;20" backgroundColor="red" />
+			<widget name="ok" position="140,240" size="38,20" font="Regular;20" backgroundColor="green" />
+			<widget name="cancel" position="240,240" size="70,20" font="Regular;20" backgroundColor="red" />
 		</screen>
 		<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
 			<widget name="list" position="10,0" size="190,240" scrollbarMode="showOnDemand" />
@@ -80,16 +80,16 @@
 			<widget name="nimlist" position="20,10" size="360,75" />
 		</screen>
 		<screen name="CiWait" position="140,165" size="360,50" title="Common Interface">
-			<widget name="message" position="20,10" size="320,25" font="Arial;23" />
+			<widget name="message" position="20,10" size="320,25" font="Regular;23" />
 		</screen>
 		<screen name="CiSelection" position="140,165" size="360,100" title="Common Interface">
 			<widget name="entries" position="20,10" size="320,75" />
 		</screen>
 		<screen name="CiMmi" position="140,165" size="360,260">
-			<widget name="title" position="10,0" size="320,25" font="Arial;23" />
-			<widget name="subtitle" position="10,35" size="320,25" font="Arial;23" />
+			<widget name="title" position="10,0" size="320,25" font="Regular;23" />
+			<widget name="subtitle" position="10,35" size="320,25" font="Regular;23" />
 			<widget name="entries" position="20,70" size="320,150" scrollbarMode="showOnDemand" />
-			<widget name="bottom" position="20,230" size="320,25" font="Arial;23" />
+			<widget name="bottom" position="20,230" size="320,25" font="Regular;23" />
 		</screen>
 		<screen name="NimSetup" position="130,165" size="440,250" title="Satconfig">
 			<widget name="config" position="20,10" size="400,220" />
@@ -99,30 +99,30 @@
 		</screen>
 		<screen name="ScanSetup" position="90,100" size="520,400" title="Service scan">
 			<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
-			<widget name="introduction" position="20,360" size="350,30" font="Arial;23" />
+			<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
 		</screen>
 		<screen name="ScanSimple" position="150,100" size="400,300" title="Service scan">
-			<widget name="header" position="20,10" size="280,25" font="Arial;23"/>
+			<widget name="header" position="20,10" size="280,25" font="Regular;23"/>
 			<widget name="config" position="20,45" size="360,200" scrollbarMode="showOnDemand" />
-			<widget name="footer" position="20,250" size="360,25" font="Arial;23"/>
-			<!--<widget name="introduction" position="20,360" size="280,30" font="Arial;23" />-->
+			<widget name="footer" position="20,250" size="360,25" font="Regular;23"/>
+			<!--<widget name="introduction" position="20,360" size="280,30" font="Regular;23" />-->
 		</screen>
 		<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
 			<widget name="config" position="5,10" size="480,350" />
-			<widget name="ok" position="140,365" size="38,20" font="Arial;20" backgroundColor="green" />
-			<widget name="cancel" position="240,365" size="70,20" font="Arial;20" backgroundColor="red" />
+			<widget name="ok" position="140,365" size="38,20" font="Regular;20" backgroundColor="green" />
+			<widget name="cancel" position="240,365" size="70,20" font="Regular;20" backgroundColor="red" />
 		</screen>
 		<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
 			<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
-			<widget name="introduction" position="10,230" size="400,30" font="Arial;23" />
+			<widget name="introduction" position="10,230" size="400,30" font="Regular;23" />
 		</screen>
 		<screen name="About" position="140,125" size="360,250" title="About">
-			<widget name="text" position="10,30" size="420,40" font="Arial;18"/>
-			<widget name="tuner" position="10,80" size="420,20" font="Arial;18"/>
-			<widget name="tuner0" position="10,100" size="420,20" font="Arial;18"/>
-			<widget name="tuner1" position="10,120" size="420,20" font="Arial;18"/>
-			<widget name="hdd" position="10,170" size="420,20" font="Arial;18"/>
-			<widget name="hddA" position="10,190" size="420,20" font="Arial;18"/>
+			<widget name="text" position="10,30" size="420,40" font="Regular;18"/>
+			<widget name="tuner" position="10,80" size="420,20" font="Regular;18"/>
+			<widget name="tuner0" position="10,100" size="420,20" font="Regular;18"/>
+			<widget name="tuner1" position="10,120" size="420,20" font="Regular;18"/>
+			<widget name="hdd" position="10,170" size="420,20" font="Regular;18"/>
+			<widget name="hddA" position="10,190" size="420,20" font="Regular;18"/>
 		</screen>
 		<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
 			<widget name="okbutton" position="20,270" size="205,40" />
@@ -138,10 +138,10 @@
 		</screen>
 		<screen name="TimerEditList" position="70,100" size="560,400" title="Timer Editor">
 			<widget name="timerlist" position="10,50" size="520,300" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
-			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
-			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
-			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
@@ -151,12 +151,12 @@
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 
-			<widget name="snr" text="SNR:" position="195,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
-			<widget name="agc" text="AGC:" position="275,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
-			<widget name="ber" text="BER:" position="355,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
-			<widget name="snr_percent" position="232,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
-			<widget name="agc_percent" position="314,0" size="40,22" valign="center" font="Arial;15" transparent="1" />
-			<widget name="ber_count" position="392,0" size="53,22" valign="center" font="Arial;15" transparent="1" />
+			<widget name="snr" text="SNR:" position="195,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="agc" text="AGC:" position="275,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="ber" text="BER:" position="355,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="snr_percent" position="232,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="agc_percent" position="314,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="ber_count" position="392,0" size="53,22" valign="center" font="Regular;15" transparent="1" />
 			<widget name="snr_progress" position="447,1" size="88,6" />
 			<widget name="agc_progress" position="447,8" size="88,6" />
 			<widget name="ber_progress" position="447,15" size="88,6" />
@@ -167,19 +167,19 @@
 			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
 			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
 
-			<widget name="ServiceName" position="69,26" size="427,34" valign="center" font="Arial;22" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
-			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Arial;20" backgroundColor="dark" />
-			<widget name="Event_Next_StartTime" position="210,98" size="60,22" font="Arial;20" backgroundColor="dark" />
-			<widget name="Event_Now" position="273,68" size="282,22" font="Arial;20" backgroundColor="dark" />
-			<widget name="Event_Next" position="273,98" size="282,22" font="Arial;20" backgroundColor="dark" />
-			<widget name="Event_Now_Duration" position="555,68" size="150,26" font="Arial;22" backgroundColor="dark" />
-			<widget name="Event_Next_Duration" position="555,98" size="150,26" font="Arial;22" backgroundColor="dark" />
+			<widget name="ServiceName" position="69,26" size="427,34" valign="center" font="Regular;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" />
+			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Next_StartTime" position="210,98" size="60,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Now" position="273,68" size="282,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Next" position="273,98" size="282,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Now_Duration" position="555,68" size="150,26" font="Regular;22" backgroundColor="dark" />
+			<widget name="Event_Next_Duration" position="555,98" size="150,26" font="Regular;22" backgroundColor="dark" />
 
 			<widget name="ButtonRed" pixmap="/usr/share/enigma2/button_red.png" position="210,132" size="27,12" />
-			<widget name="ButtonRedText" position="240,130" size="85,22" font="Arial;14" backgroundColor="blue" transparent="1" />
+			<widget name="ButtonRedText" position="240,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
 			<widget name="ButtonGreen" pixmap="/usr/share/enigma2/button_green.png" position="320,132" size="27,12" />
-			<widget name="ButtonGreenText" position="350,130" size="85,22" font="Arial;14" backgroundColor="blue" transparent="1" />
+			<widget name="ButtonGreenText" position="350,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
 			<widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
 			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" />
 			
@@ -197,18 +197,18 @@
 			<ePixmap position="410,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/stopbutton.png" />
 			<ePixmap position="455,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/recordbutton.png" />
 -->
-<!--			<widget name="ServiceName" position="250,75" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,85" size="90,30" backgroundColor="dark" font="Arial;19" />
-			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Arial;20" />
+<!--			<widget name="ServiceName" position="250,75" size="427,26" valign="center" font="Regular;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,85" size="90,30" backgroundColor="dark" font="Regular;19" />
+			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Regular;20" />
 -->
-			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Arial;22" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Arial;19" />
+			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Regular;22" backgroundColor="#101258" />
+			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" />
 		</screen>
 
 
 		<screen name="NumberZap" position="200,140" size="280,60" title="Channel">
-			<widget name="channel" position="50,15" size="110,25" font="Arial;23" />
-			<widget name="number" position="160,15" size="80,25" halign="right" font="Arial;23" />
+			<widget name="channel" position="50,15" size="110,25" font="Regular;23" />
+			<widget name="number" position="160,15" size="80,25" halign="right" font="Regular;23" />
 		</screen>
 		<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume">
 			<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="/usr/share/enigma2/volumeslider-fs8.png" />
@@ -224,55 +224,55 @@
 		</screen>
  		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 			<widget name="list" position="10,45" size="550,364" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
-			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
-			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
-			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		</screen>
 		<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 			<widget name="list" position="10,45" size="540,364" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Arial;21" />
-			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Arial;21" />
-			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Arial;21" />
-			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Arial;21" />
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		</screen>
 		<screen name="EPGSelection" position="90,100" size="560,415" title="EPG Selection">
 			<widget name="list" position="10,40" size="550,370" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Arial;21" />
-			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Arial;21" />
-			<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Arial;21" />
-			<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Arial;21" />
+			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Regular;21" />
 		</screen>
 		<screen name="EventView" position="100,100" size="520,380" title="Eventview">
-			<widget name="epg_description" position="10,5" size="500,335" font="Arial;22" />
-			<widget name="datetime" position="10,345" size="130,30" font="Arial;22" />
-			<widget name="duration" position="140,345" size="100,30" font="Arial;22" />
-			<widget name="channel" position="240,345" size="270,30" font="Arial;22" />
+			<widget name="epg_description" position="10,5" size="500,335" font="Regular;22" />
+			<widget name="datetime" position="10,345" size="130,30" font="Regular;22" />
+			<widget name="duration" position="140,345" size="100,30" font="Regular;22" />
+			<widget name="channel" position="240,345" size="270,30" font="Regular;22" />
 		</screen>
 		<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
 			<widget name="list" position="0,0" size="560,375" scrollbarMode="showOnDemand" />
-			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Arial;25" />
+			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;25" />
 		</screen>
 		<screen name="ServiceScan" position="200,100" size="300,200" title="Service Scan">
 			<widget name="scan_progress" position="10,10" size="300,20" />
-			<widget name="scan_state" position="10,40" size="280,60" font="Arial;20" />
+			<widget name="scan_state" position="10,40" size="280,60" font="Regular;20" />
 		</screen>
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
-			<widget name="description" position="10,10" size="580,40" font="Arial;25" />
-			<widget name="lbegin" position="405,102" size="103,30" font="Arial;25" foregroundColor="red" />
-			<widget name="lend" position="405,158" size="103,30" font="Arial;25" foregroundColor="green" />
-			<widget name="begin" position="508,105" size="72,35" font="Arial;25" />
-			<widget name="end" position="508,150" size="72,35" font="Arial;25" />
+			<widget name="description" position="10,10" size="580,40" font="Regular;25" />
+			<widget name="lbegin" position="405,102" size="103,30" font="Regular;25" foregroundColor="red" />
+			<widget name="lend" position="405,158" size="103,30" font="Regular;25" foregroundColor="green" />
+			<widget name="begin" position="508,105" size="72,35" font="Regular;25" />
+			<widget name="end" position="508,150" size="72,35" font="Regular;25" />
 			<widget name="apply" position="10,240" size="250,35" />
 		</screen>
 		<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
 			<widget name="list" position="100,100" size="550,375" scrollbarMode="showOnDemand" />
-			<eLabel position="500,40" size="220,60" text="help..." font="Arial;50" />
+			<eLabel position="500,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
-			<widget name="text" position="0,35" size="650,0" font="Arial;22" />
-			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Arial;21" />
-			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Arial;21" />
+			<widget name="text" position="0,35" size="650,0" font="Regular;22" />
+			<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
 from enigma import eSize, ePoint

@@ -110,7 +110,7 @@ void eListboxTestContent::setSize(const eSize &size)
 
 void eListboxTestContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 20);
+	ePtr<gFont> fnt = new gFont("Regular", 20);
 	painter.clip(eRect(offset, m_size));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
@@ -219,7 +219,7 @@ void eListboxStringContent::setSize(const eSize &size)
 
 void eListboxStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 20);
+	ePtr<gFont> fnt = new gFont("Regular", 20);
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
@@ -328,7 +328,7 @@ void eListboxPythonStringContent::setSize(const eSize &size)
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 20);
+	ePtr<gFont> fnt = new gFont("Regular", 20);
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
@@ -398,8 +398,8 @@ void eListboxPythonStringContent::invalidate()
 
 void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Arial", 20);
-	ePtr<gFont> fnt2 = new gFont("Arial", 16);
+	ePtr<gFont> fnt = new gFont("Regular", 20);
+	ePtr<gFont> fnt2 = new gFont("Regular", 16);
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();

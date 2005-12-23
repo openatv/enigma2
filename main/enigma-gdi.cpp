@@ -68,7 +68,7 @@ int main()
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Regular", 100);
 
 	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
 	
@@ -102,7 +102,7 @@ int main()
 	p.setBackgroundColor(gColor(0x1f));
 	p.setForegroundColor(gColor(0x10));
 
-	ePtr<gFont> fnt = new gFont("Arial", 70);
+	ePtr<gFont> fnt = new gFont("Regular", 70);
 	p.setFont(fnt);
 	p.renderText(eRect(100, 100, 500, 200), "Hello welt!");
 	

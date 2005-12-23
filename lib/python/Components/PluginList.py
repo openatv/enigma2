@@ -33,8 +33,8 @@ class PluginList(HTMLComponent, GUIComponent, MenuList):
 		self.l = eListboxPythonMultiContent()
 		self.list = list
 		self.l.setList(list)
-		self.l.setFont(0, gFont("Arial", 20))
-		self.l.setFont(1, gFont("Arial", 10))
+		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 10))
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)

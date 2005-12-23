@@ -44,8 +44,8 @@ class HelpMenuList(GUIComponent):
 		
 		self.l.setList(l)
 		
-		self.l.setFont(0, gFont("Arial", 36))
-		self.l.setFont(1, gFont("Arial", 18))
+		self.l.setFont(0, gFont("Regular", 36))
+		self.l.setFont(1, gFont("Regular", 18))
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)

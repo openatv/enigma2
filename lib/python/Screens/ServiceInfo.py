@@ -25,7 +25,7 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-		self.l.setFont(0, gFont("Arial", 23))
+		self.l.setFont(0, gFont("Regular", 23))
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)

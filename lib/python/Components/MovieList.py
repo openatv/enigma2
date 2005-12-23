@@ -61,8 +61,8 @@ class MovieList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.load(root)
 		self.l.setList(self.list)
-		self.l.setFont(0, gFont("Arial", 30))
-		self.l.setFont(1, gFont("Arial", 18))
+		self.l.setFont(0, gFont("Regular", 30))
+		self.l.setFont(1, gFont("Regular", 18))
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)

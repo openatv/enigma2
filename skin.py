@@ -165,7 +165,7 @@ def loadSkin(desktop):
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
 		
-		style.setTitleFont(gFont("Arial", 20));
+		style.setTitleFont(gFont("Regular", 20));
 		style.setTitleOffset(eSize(20, 5));
 		
 		for borderset in elementsWithTag(windowstyle.childNodes, "borderset"):

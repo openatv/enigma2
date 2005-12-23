@@ -177,7 +177,7 @@ int main(int argc, char **argv)
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Arial", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Regular", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));
@@ -219,14 +219,14 @@ int main(int argc, char **argv)
 	lcd_label = new eLabel(lcd_win);
 	lcd_label->move(ePoint(0, 4));
 	lcd_label->resize(eSize(132, 42));
-	ePtr<gFont> font = new gFont("Arial", 19);
-	//ePtr<gFont> font = new gFont("Arial", 16);
+	ePtr<gFont> font = new gFont("Regular", 19);
+	//ePtr<gFont> font = new gFont("Regular", 16);
 	lcd_label->setFont(font);
 
 	lcd_clock = new eLabel(lcd_win);
 	lcd_clock->move(ePoint(50, 46));
 	lcd_clock->resize(eSize(132, 18));
-	ePtr<gFont> clkfont = new gFont("Arial", 16);
+	ePtr<gFont> clkfont = new gFont("Regular", 16);
 	lcd_clock->setFont(clkfont);
 
 	//lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
