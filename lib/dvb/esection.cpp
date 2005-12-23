@@ -8,6 +8,16 @@ void eGTable::sectionRead(const __u8 *d)
 	m_table.flags |= eDVBTableSpec::tfThisVersion;
 	m_table.version = (d[5]>>1)&0x1F;
 
+		/* if a section is missing, we retry reading the
+		   whole data up to 5 times. if after that the
+		   section is still missing, we timeout. */
+	if (m_tries > 5 * (last_section_number+1))
+	{
+		timeout();
+		return;
+	}
+	
+	m_tries++;
 
 	if (createTable(d[6], d, last_section_number + 1))
 	{
@@ -43,6 +53,8 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 
 	m_reader = reader;
 	m_reader->connectRead(slot(*this, &eGTable::sectionRead), m_sectionRead_conn);
+	
+	m_tries = 0;
 	
 	// setup filter struct
 	eDVBSectionFilterMask mask;
