@@ -32,7 +32,7 @@ class ChannelContextMenu(FixedMenu):
 		if result == True:
 			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete this recording?"))
 		else:
-			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"))
+			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
@@ -47,7 +47,7 @@ class ChannelContextMenu(FixedMenu):
 				result = True
 		
 		if result == False:
-			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"))
+			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 		else:
 			list = self.csel["list"]
 			currentIndex = list.getCurrentIndex()

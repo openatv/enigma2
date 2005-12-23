@@ -668,7 +668,7 @@ class InfoBarInstantRecord:
 		try:
 			stat = os.stat("/hdd/movies")
 		except:
-			self.session.open(MessageBox, "No HDD found!")
+			self.session.open(MessageBox, "No HDD found!", MessageBox.TYPE_ERROR)
 			return
 	
 		if self.isInstantRecordRunning():
