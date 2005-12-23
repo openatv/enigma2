@@ -196,13 +196,13 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	switch (what)
 	{
 	case fontStatic:
-		fnt = new gFont("Arial", 12);
+		fnt = new gFont("Regular", 12);
 		break;
 	case fontButton:
-		fnt = new gFont("Arial", 20);
+		fnt = new gFont("Regular", 20);
 		break;
 	case fontTitlebar:
-		fnt = new gFont("Arial", 25);
+		fnt = new gFont("Regular", 25);
 		break;
 	default:
 		return -1;

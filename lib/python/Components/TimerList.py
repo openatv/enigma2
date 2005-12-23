@@ -66,8 +66,8 @@ class TimerList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		self.l.setList(list)
-		self.l.setFont(0, gFont("Arial", 20))
-		self.l.setFont(1, gFont("Arial", 18))
+		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 18))
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()

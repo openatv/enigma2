@@ -6,7 +6,7 @@ from Components.Label import Label
 class Example(Screen):
 	skin = """
 		<screen position="100,100" size="200,200" title="Example plugin..." >
-			<widget name="text" position="0,0" size="100,50" font="Arial;23" />
+			<widget name="text" position="0,0" size="100,50" font="Regular;23" />
 		</screen>"""
 		
 	def __init__(self, session):
