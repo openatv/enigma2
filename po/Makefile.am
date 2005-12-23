@@ -50,6 +50,7 @@ enigma2.pot:
 			../lib/python/Components/NimManager.py \
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py \
+			../lib/python/Components/RecordingConfig.py \
 			../RecordTimer.py
 	./xml2po.py	../data/ >> enigma2.pot
 
