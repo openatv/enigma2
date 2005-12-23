@@ -11,6 +11,8 @@ private:
 	ePtr<iDVBSectionReader> m_reader;
 	eDVBTableSpec m_table;
 	
+	int m_tries;
+	
 	eTimer *m_timeout;
 
 	void sectionRead(const __u8 *data);
@@ -41,7 +43,6 @@ protected:
 		if (avail.find(nr) != avail.end())
 			delete sections[nr];
 		sections.resize(max);
-		
 		
 		sections[nr] = new Section(data);
 		avail.insert(nr);
