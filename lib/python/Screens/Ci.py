@@ -222,14 +222,14 @@ class CiMmi(Screen):
 class CiSelection(Screen):
 	def createMenu(self):
 		self.list = [ ]
-		self.list.append( ("Reset", 0) )
-		self.list.append( ("Init", 1) )
+		self.list.append( (_("Reset"), 0) )
+		self.list.append( (_("Init"), 1) )
 		
 		self.state = eDVBCI_UI.getInstance().getState(0)
 		if self.state == 0:			#no module
-			self.list.append( ("no module found", 2) )
+			self.list.append( (_("no module found"), 2) )
 		elif self.state == 1:		#module in init
-			self.list.append( ("init module", 2) )
+			self.list.append( (_("init module"), 2) )
 		elif self.state == 2:		#module ready
 			#get appname		
 			appname = eDVBCI_UI.getInstance().getAppName(0)

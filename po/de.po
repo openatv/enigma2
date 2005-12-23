@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-23 01:05+0100\n"
+"POT-Creation-Date: 2005-12-23 07:00+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
 
-#: ../RecordTimer.py:88
+#: ../RecordTimer.py:90
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -259,6 +259,10 @@ msgstr ""
 msgid "IP Address"
 msgstr "IP-Adresse"
 
+#: ../lib/python/Screens/Ci.py:226
+msgid "Init"
+msgstr ""
+
 #: ../lib/python/Screens/HarddiskSetup.py:31
 msgid "Initialize"
 msgstr "Initialisieren"
@@ -375,6 +379,10 @@ msgstr "Rotor"
 msgid "Positioner mode"
 msgstr "Rotorart"
 
+#: ../lib/python/Screens/NetworkSetup.py:35
+msgid "Press OK to activate the settings."
+msgstr "OK drücken zum aktivieren"
+
 #: ../lib/python/Screens/ScanSetup.py:382
 msgid "Press OK to scan"
 msgstr "Zum Starten der Suche OK drücken."
@@ -394,6 +402,10 @@ msgstr "Anbieter"
 #: ../lib/python/Screens/InfoBarGenerics.py:724
 msgid "Record"
 msgstr "Aufnahme"
+
+#: ../lib/python/Screens/Ci.py:225
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 #: ../lib/python/Screens/ScanSetup.py:86 ../lib/python/Screens/ScanSetup.py:95
 #: ../lib/python/Screens/Satconfig.py:13
@@ -632,6 +644,10 @@ msgstr "freier Festplattenspeicher"
 msgid "horizontal"
 msgstr ""
 
+#: ../lib/python/Screens/Ci.py:232
+msgid "init module"
+msgstr "Modul initialisieren"
+
 #: ../lib/python/Screens/InfoBar.py:66
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
@@ -647,12 +663,17 @@ msgstr "nächster Kanal"
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/TimerEntry.py:96
 #: ../lib/python/Components/Network.py:140
+#: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
 msgstr "nein"
 
 #: ../lib/python/Screens/HarddiskSetup.py:61
 msgid "no HDD found"
 msgstr "keine Festplatte gefunden"
+
+#: ../lib/python/Screens/Ci.py:230
+msgid "no module found"
+msgstr "Kein Modul gefunden"
 
 #: ../lib/python/Screens/About.py:27
 msgid "none"
@@ -752,6 +773,7 @@ msgstr "wöchentlich"
 #: ../lib/python/Screens/TimerEntry.py:96
 #: ../lib/python/Components/Network.py:15
 #: ../lib/python/Components/Network.py:140
+#: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "ja"
 
@@ -836,8 +858,8 @@ msgid "This is step number 2."
 msgstr ""
 
 #: ../data/
-msgid "Use wizard to set up basic features"
-msgstr "Grundeinstellungen jetzt vornehmen"
+msgid "Recording"
+msgstr "Aufnahmen"
 
 #: ../data/
 msgid "Sat / Dish Setup"
@@ -894,10 +916,6 @@ msgstr "Invertieren"
 #: ../data/
 msgid "System"
 msgstr ""
-
-#: ../data/
-msgid "VCR Switch"
-msgstr "Videorekorderumschaltung"
 
 #: ../data/
 msgid "use power delta"
@@ -968,7 +986,7 @@ msgid "Timer"
 msgstr ""
 
 #: ../data/
-msgid "Yes, view the tutorial"
+msgid "Timer Editor"
 msgstr ""
 
 #: ../data/
@@ -1006,6 +1024,10 @@ msgstr ""
 #: ../data/
 msgid "Common Interface"
 msgstr ""
+
+#: ../data/
+msgid "Ask before zapping"
+msgstr "Vor Umschalten nachfragen"
 
 #: ../data/
 msgid "#c0c000"
@@ -1078,6 +1100,10 @@ msgid "Eventview"
 msgstr "Programmübersicht"
 
 #: ../data/
+msgid "Yes, view the tutorial"
+msgstr ""
+
+#: ../data/
 msgid "Keymap"
 msgstr "Tastenlayout"
 
@@ -1094,8 +1120,8 @@ msgid "Serviceinfo"
 msgstr ""
 
 #: ../data/
-msgid "WSS"
-msgstr ""
+msgid "VCR Switch"
+msgstr "Videorekorderumschaltung"
 
 #: ../data/
 msgid "Parental Lock"
@@ -1126,8 +1152,13 @@ msgid "Delay"
 msgstr "Verzögerung"
 
 #: ../data/
-msgid "Select HDD"
-msgstr "Festplattenwahl"
+msgid "WSS"
+msgstr ""
+
+#: ../data/
+msgid "Thanx for using the wizard. Your box is now ready to use."
+msgstr ""
+"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden."
 
 #: ../data/
 msgid "Setup Lock"
@@ -1201,8 +1232,8 @@ msgid "Finetune"
 msgstr "Feineinst."
 
 #: ../data/
-msgid "Timer Editor"
-msgstr ""
+msgid "Select HDD"
+msgstr "Festplattenwahl"
 
 #: ../data/
 msgid "AGC:"
@@ -1229,9 +1260,8 @@ msgid "Do you want to do a service scan?"
 msgstr "Jetzt nach Kanälen suchen?"
 
 #: ../data/
-msgid "Thanx for using the wizard. Your box is now ready to use."
-msgstr ""
-"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden."
+msgid "Use wizard to set up basic features"
+msgstr "Grundeinstellungen jetzt vornehmen"
 
 #: ../data/
 msgid "Satelliteconfig"
