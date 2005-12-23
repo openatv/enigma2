@@ -102,6 +102,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			if self.prepareOK:
 				self.record_service.stop()
 				self.record_service = None
+				
 				print "Timer successfully ended"
 			else:
 				print "prepare failed, thus nothing was recorded."
@@ -112,11 +113,13 @@ class RecordTimerEntry(timer.TimerEntry):
 
 	def failureCB(self, answer):
 		if answer == True:
-			NavigationInstance.instance.stopUserServices()
+			#NavigationInstance.instance.stopUserServices()
+			print "[RecordTimer] zapping to", self.service_ref
+			NavigationInstance.instance.playService(self.service_ref.ref)
 			self.activate(self.EventPrepare)
+
 			if self.wantStart:
 				print "post-activating record"
-				NavigationInstance.instance.playService(self.serviceref)
 				self.activate(self.EventStart)
 		else:
 			print "user killed record"
