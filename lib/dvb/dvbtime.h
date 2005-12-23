@@ -1,6 +1,8 @@
 #ifndef __LIB_DVB_DVBTIME_H_
 #define __LIB_DVB_DVBTIME_H_
 
+#ifndef SWIG
+
 #include <lib/base/eerror.h>
 #include <lib/dvb/esection.h>
 #include <dvbsi++/time_date_section.h>
@@ -33,6 +35,8 @@ public:
 	int getUpdateCount() { return update_count; }
 };
 
+#endif  // SWIG
+
 class eDVBLocalTimeHandler: public Object
 {
 	struct channel_data
@@ -57,9 +61,12 @@ class eDVBLocalTimeHandler: public Object
 	void updateTime(time_t tp_time, eDVBChannel*, int updateCount);
 	static eDVBLocalTimeHandler *instance;
 public:
+#ifndef SWIG
 	PSignal0<void> m_timeUpdated;
 	eDVBLocalTimeHandler();
 	~eDVBLocalTimeHandler();
+#endif
+	time_t nowTime() const { return m_time_ready ? ::time(0)+m_time_difference : -1; }
 	bool ready() const { return m_time_ready; }
 	int difference() const { return m_time_difference; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
