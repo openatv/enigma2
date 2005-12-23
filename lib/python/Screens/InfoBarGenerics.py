@@ -21,6 +21,7 @@ from Screens.Mute import Mute
 from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventView
+from Screens.MinuteInput import MinuteInput
 from Components.Harddisk import harddiskmanager
 
 from Tools import Notifications
@@ -477,8 +478,10 @@ class InfoBarPVR:
 				"unPauseService": (self.unPauseService, "continue"),
 				
 				"seekFwd": (self.seekFwd, "skip forward"),
+				"seekFwdUp": (self.seekFwdUp, "skip forward"),
 				"seekBack": (self.seekBack, "skip backward"),
-							  
+				"seekBackUp": (self.seekBackUp, "skip backward"),
+							 
 				"up": (self.showMovies, "movie list"),
 				"down": (self.showMovies, "movie list")
 			})
@@ -488,6 +491,14 @@ class InfoBarPVR:
 		self.seekTimer.timeout.get().append(self.seekTimerFired)
 		self.skipinterval = 500 # 500ms skip interval
 		self.onClose.append(self.delSeekTimer)
+		
+		self.fwdtimer = False
+		self.fwdKeyTimer = eTimer()
+		self.fwdKeyTimer.timeout.get().append(self.fwdTimerFire)
+
+		self.rwdtimer = False
+		self.rwdKeyTimer = eTimer()
+		self.rwdKeyTimer.timeout.get().append(self.rwdTimerFire)
 	
 	def up(self):
 		pass
@@ -565,44 +576,85 @@ class InfoBarPVR:
 		seekable.seekTo(90 * seektime)
 
 	def seekFwd(self):
-		lookup = {
-				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
-				self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
-				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
-				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
-				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
-				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
-				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
-				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
-				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
-				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
-				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
-			}
-		self.setSeekState(lookup[self.seekstate]);
-	
+		print "start fwd timer"
+		self.fwdtimer = True
+		self.fwdKeyTimer.start(500)
+
 	def seekBack(self):
-		lookup = {
-				self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_4X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
-				self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
-				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
-				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
-				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
-				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
-				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
-				self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
-				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
-				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
-				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
-				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
-			}
-		self.setSeekState(lookup[self.seekstate]);
+		print "start rewind timer"
+		self.rwdtimer = True
+		self.rwdKeyTimer.start(500)
+
+	def seekFwdUp(self):
+		if self.fwdtimer:
+			self.fwdKeyTimer.stop()
+			self.fwdtimer = False
+			lookup = {
+					self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
+					self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
+					self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
+					self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
+					self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
+					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
+					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
+					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
+					self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
+					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
+					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
+					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
+					self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
+					self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
+					self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
+				}
+			self.setSeekState(lookup[self.seekstate]);
+	
+	def seekBackUp(self):
+		if self.rwdtimer:
+			self.rwdKeyTimer.stop()
+			self.rwdtimer = False
+		
+			lookup = {
+					self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_4X,
+					self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
+					self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
+					self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
+					self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
+					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
+					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
+					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
+					self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
+					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
+					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
+					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
+					self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
+					self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
+					self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
+				}
+			self.setSeekState(lookup[self.seekstate]);
+		
+	def fwdTimerFire(self):
+		print "Display seek fwd"
+		self.fwdKeyTimer.stop()
+		self.fwdtimer = False
+		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
+		
+	def fwdSeekTo(self, minutes):
+		print "Seek", minutes, "minutes forward"
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return
+		seekable = service.seek()
+		if seekable is None:
+			return
+		seekable.seekRelative(1, minutes * 60 * 90000)
+	
+	def rwdTimerFire(self):
+		self.rwdKeyTimer.stop()
+		self.rwdtimer = False
+		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
+	
+	def rwdSeekTo(self, minutes):
+		self.fwdSeekTo(0 - minutes)
 
 from RecordTimer import parseEvent
 
