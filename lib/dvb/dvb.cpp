@@ -493,19 +493,22 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 
 	if (!decremented_cached_channel_fe_usecount)
 	{
-		eDVBChannel *channel = (eDVBChannel*) &(*m_cached_channel);
-		if (channel->getUseCount() == 1)
+		if (m_cached_channel)
 		{
-			ePtr<iDVBFrontend> fe;
-			if (!channel->getFrontend(fe))
+			eDVBChannel *channel = (eDVBChannel*) &(*m_cached_channel);
+			if (channel->getUseCount() == 1)
 			{
-				for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
+				ePtr<iDVBFrontend> fe;
+				if (!channel->getFrontend(fe))
 				{
-					if ( &(*fe) == &(*ii->m_frontend) )
+					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
 					{
-						--ii->m_inuse;
-						decremented_cached_channel_fe_usecount = &ii->m_inuse;
-						break;
+						if ( &(*fe) == &(*ii->m_frontend) )
+						{
+							--ii->m_inuse;
+							decremented_cached_channel_fe_usecount = &ii->m_inuse;
+							break;
+						}
 					}
 				}
 			}
