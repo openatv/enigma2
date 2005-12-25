@@ -45,6 +45,17 @@ void eAVSwitch::setInput(int val)
 
 	write(fd, input[val], strlen(input[val]));
 	close(fd);
+	
+	char *fb[] = {"low", "high", "vcr"};
+
+	
+	if((fd = open("/proc/stb/avs/0/fb", O_WRONLY)) < 0) {
+		printf("cannot open /proc/stb/avs/0/fb\n");
+		return;
+	}
+
+	write(fd, input[val], strlen(fb[0]));
+	close(fd);
 }
 
 void eAVSwitch::setColorFormat(int format)
