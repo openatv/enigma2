@@ -11,7 +11,8 @@ public:
 	~eAVSwitch();
 
 	static eAVSwitch *getInstance();
-
+	
+	void setFastBlank(int val);
 	void setColorFormat(int format);
 	void setAspectRatio(int ratio);
 	void setVideomode(int mode);

@@ -8,4 +8,4 @@ install_PYTHON = \
 	EpgSelection.py EventView.py Mute.py Standby.py ServiceInfo.py \
 	AudioSelection.py InfoBarGenerics.py HelpMenu.py Wizard.py __init__.py \
 	Dish.py SubserviceSelection.py LanguageSelection.py StartWizard.py \
-	TutorialWizard.py PluginBrowser.py MinuteInput.py
+	TutorialWizard.py PluginBrowser.py MinuteInput.py Scart.py

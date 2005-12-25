@@ -46,6 +46,13 @@ void eAVSwitch::setInput(int val)
 	write(fd, input[val], strlen(input[val]));
 	close(fd);
 	
+	if (val == 1)
+		setFastBlank(0);
+}
+
+void eAVSwitch::setFastBlank(int val)
+{
+	int fd;
 	char *fb[] = {"low", "high", "vcr"};
 
 	
@@ -54,7 +61,7 @@ void eAVSwitch::setInput(int val)
 		return;
 	}
 
-	write(fd, input[val], strlen(fb[0]));
+	write(fd, fb[val], strlen(fb[0]));
 	close(fd);
 }
 
