@@ -1,5 +1,6 @@
 from enigma import *
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 
@@ -15,7 +16,7 @@ class Example(Screen):
 		self.skin = Example.skin
 		Screen.__init__(self, session)
 
-		self["text"] = Label("Press OK to upgrade")
+		self["text"] = Label("Please press OK!")
 				
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
@@ -24,11 +25,19 @@ class Example(Screen):
 		}, -1)
 		
 	def ok(self):
-		lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
-		string = ""
-		for x in lines:
-			string += x
-		self["text"].setText(string)
+		self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
+		
+	def doUpdate(self, val = False):
+		
+		if val:
+			print "updating"
+			lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
+			string = ""
+			for x in lines:
+				string += x
+			self["text"].setText("Updating finished. Here is the result:\n\n" + string)
+		else:
+			self.close()		
 		
 		
 def main(session):
