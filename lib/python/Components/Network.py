@@ -21,6 +21,12 @@ class Network:
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
 		fp.close()
 
+		if config.network.dhcp.value == 0:
+			fp = file('/etc/resolv.conf', 'w')
+			fp.write("nameserver %d.%d.%d.%d\n" % tuple(config.network.dns.value))
+			fp.close()		
+
+
 	def loadNetworkConfig(self):
 		try:
 			# parse the interfaces-file
@@ -48,7 +54,7 @@ class Network:
 						ifaces[currif]["gateway"] = map(int, split[1].split('.'))									
 			
 			# parse the resolv.conf-file
-			fp = file('/etc/network/interfaces', 'r')
+			fp = file('/etc/resolv.conf', 'r')
 			resolv = fp.readlines()
 			fp.close()
 		except:
