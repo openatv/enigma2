@@ -12,7 +12,7 @@ class Network:
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto eth0\n")
-		if (config.network.dhcp.value == _("yes")):
+		if (config.network.dhcp.value == 1):
 			fp.write("iface eth0 inet dhcp\n")
 		else:
 			fp.write("iface eth0 inet static\n")
