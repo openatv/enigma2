@@ -640,13 +640,14 @@ class InfoBarPVR:
 		
 	def fwdSeekTo(self, minutes):
 		print "Seek", minutes, "minutes forward"
-		service = self.session.nav.getCurrentService()
-		if service is None:
-			return
-		seekable = service.seek()
-		if seekable is None:
-			return
-		seekable.seekRelative(1, minutes * 60 * 90000)
+		if minutes != 0:
+			service = self.session.nav.getCurrentService()
+			if service is None:
+				return
+			seekable = service.seek()
+			if seekable is None:
+				return
+			seekable.seekRelative(1, minutes * 60 * 90000)
 	
 	def rwdTimerFire(self):
 		self.rwdKeyTimer.stop()
