@@ -30,7 +30,6 @@ class Example(Screen):
 	def doUpdate(self, val = False):
 		
 		if val:
-			print "updating"
 			lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
 			string = ""
 			for x in lines:
