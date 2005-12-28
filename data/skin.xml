@@ -137,7 +137,7 @@
 			<widget name="config" position="10,30" size="420,220" />
 		</screen>
 		<screen name="TimerEditList" position="70,100" size="560,400" title="Timer Editor">
-			<widget name="timerlist" position="10,50" size="520,300" scrollbarMode="showOnDemand" />
+			<widget name="timerlist" position="10,50" size="530,300" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
 			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
@@ -211,7 +211,7 @@
 			<widget name="number" position="160,15" size="80,25" halign="right" font="Regular;23" />
 		</screen>
 		<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
-			<widget name="minutes" position="160,15" size="80,25" halign="right" font="Regular;23" />
+			<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
 		</screen>
 		<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume">
 			<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="/usr/share/enigma2/volumeslider-fs8.png" />
