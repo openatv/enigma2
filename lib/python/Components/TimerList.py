@@ -26,7 +26,7 @@ RT_WRAP = 32
 def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
-	res.append((0, 0, 400, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
+	res.append((0, 0, 220, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
 	repeatedtext = ""
 	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
 	if (timer.repeated != 0):
@@ -39,11 +39,11 @@ def TimerEntryComponent(timer, processed):
 					repeatedtext += days[x]
 					count += 1
 				flags = flags >> 1
-		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+		res.append((0, 30, 300, 20, 1, RT_HALIGN_LEFT, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
 	else:
-		res.append((0, 30, 200, 20, 1, RT_HALIGN_LEFT, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
+		res.append((0, 30, 300, 20, 1, RT_HALIGN_LEFT, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
-	res.append((300, 0, 200, 20, 1, RT_HALIGN_RIGHT, timer.name))
+	res.append((240, 0, 320, 20, 1, RT_HALIGN_RIGHT, timer.name))
 	
 	if not processed:
 		if timer.state == TimerEntry.StateWait:
@@ -57,7 +57,7 @@ def TimerEntryComponent(timer, processed):
 	else:
 		state = "done!"
 	
-	res.append((300, 30, 200, 20, 1, RT_HALIGN_RIGHT, state))
+	res.append((320, 30, 240, 20, 1, RT_HALIGN_RIGHT, state))
 	
 	return res
 
