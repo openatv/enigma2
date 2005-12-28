@@ -223,9 +223,6 @@ int eListbox::event(int event, void *data, void *data2)
 	{
 	case evtPaint:
 	{
-		timeval t, t2;
-		gettimeofday(&t, 0);
-
 		ePtr<eWindowStyle> style;
 		
 		if (!m_content)
@@ -257,9 +254,6 @@ int eListbox::event(int event, void *data, void *data2)
 
 		m_content->cursorRestore();
 
-		gettimeofday(&t2, 0);
-		t2 -= t;
-		eDebug("draw %d:%d", t2.tv_sec, t2.tv_usec);
 		return 0;
 	}
 	case evtChangedSize:
@@ -284,9 +278,6 @@ void eListbox::recalcSize()
 	m_prev_scrollbar_page=-1;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
-
-	if (m_items_per_page > 20)
-		eDebug("eListbox::recalcSize() m_items_per_page %d", m_items_per_page);
 
 	if (m_items_per_page < 0) /* TODO: whyever - our size could be invalid, or itemheigh could be wrongly specified. */
  		m_items_per_page = 0;
