@@ -545,7 +545,8 @@ RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	painter.clip(eRect(offset, m_itemsize));
+	eRect itemrect(offset, m_itemsize);
+	painter.clip(itemrect);
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
 
@@ -661,16 +662,25 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				eRect r = eRect(x, y, width, height);
 				r.moveBy(offset);
+				r &= itemrect;
 
 				painter.setFont(m_font[fnt]);
 
+				painter.clip(r);
 				painter.renderText(r, string, flags);
+				painter.clippop();
 
 				Py_XDECREF(pstring);
 				break;
 			}
 			case 1: // pixmap
 			{
+				if (!(px && py && pwidth && pheight && pfnt))
+				{
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, pixmap))");
+					painter.clippop();
+					return;
+				}
 				int x = PyInt_AsLong(px);
 				int y = PyInt_AsLong(py);
 				int width = PyInt_AsLong(pwidth);
@@ -678,8 +688,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				
 				eRect r = eRect(x, y, width, height);
 				r.moveBy(offset);
+				r &= itemrect;
 				
+				painter.clip(r);
 				painter.blit(pixmap, r.topLeft(), r);
+				painter.clippop();
+
 				break;
 			}
 			default:
