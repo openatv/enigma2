@@ -3,16 +3,6 @@
 #include <lib/gui/eslider.h>
 #include <lib/actions/action.h>
 
-	int m_scrollbar_mode, m_prev_scrollbar_page;
-	bool m_content_changed;
-
-	int m_top, m_selected;
-	int m_itemheight;
-	int m_items_per_page;
-	int m_selection_enabled;
-	ePtr<iListboxContent> m_content;
-	eSlider *m_scrollbar;
-
 eListbox::eListbox(eWidget *parent)
 	:eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1)
 	,m_content_changed(false), m_top(0), m_selected(0), m_itemheight(25)
