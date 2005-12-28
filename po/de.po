@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-23 07:00+0100\n"
+"POT-Creation-Date: 2005-12-28 21:02+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -98,7 +98,7 @@ msgstr "Kanal"
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:179
+#: ../lib/python/Screens/InfoBarGenerics.py:180
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -170,13 +170,21 @@ msgstr "Aus"
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:675
+#: ../lib/python/Screens/InfoBarGenerics.py:728
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
 msgstr ""
 "Die aktuelle Direktaufnahme\n"
 "abbrechen?"
+
+#: ../lib/python/Plugins/update.py:28
+msgid ""
+"Do you want to update your Dreambox?\n"
+"After pressing OK, please wait!"
+msgstr ""
+"Möchten Sie Ihre Dreambox updaten?\n"
+"Nach dem Druck auf OK bitte warten!"
 
 #: ../lib/python/Screens/ChannelSelection.py:335
 msgid "E"
@@ -351,6 +359,10 @@ msgstr "Nichts angeschlossen"
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
 
+#: ../lib/python/Plugins/update.py:19
+msgid "Please press OK!"
+msgstr "Bitte OK drücken!"
+
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
 msgstr "Polarität"
@@ -399,7 +411,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:724
+#: ../lib/python/Screens/InfoBarGenerics.py:777
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -453,7 +465,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:677
+#: ../lib/python/Screens/InfoBarGenerics.py:730
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -469,7 +481,7 @@ msgstr "Schritt "
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:729 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:782 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -533,6 +545,10 @@ msgstr ""
 "Konnte Festplatte nicht initialisieren.\n"
 "Bitte lesen Sie im Handbuch nach.\n"
 "Fehler: "
+
+#: ../lib/python/Plugins/update.py:37
+msgid "Updating finished. Here is the result:"
+msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
@@ -656,13 +672,13 @@ msgstr "Abspielmodus verlassen..."
 msgid "manual"
 msgstr "manuell"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:316
+#: ../lib/python/Screens/InfoBarGenerics.py:317
 msgid "next channel"
 msgstr "nächster Kanal"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Components/Network.py:140
+#: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
 msgstr "nein"
@@ -695,7 +711,7 @@ msgstr "an"
 msgid "once"
 msgstr "einmalig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:317
+#: ../lib/python/Screens/InfoBarGenerics.py:318
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
@@ -745,7 +761,7 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:359
+#: ../lib/python/Screens/InfoBarGenerics.py:360
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
@@ -771,8 +787,7 @@ msgstr "wöchentlich"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Components/Network.py:15
-#: ../lib/python/Components/Network.py:140
+#: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "ja"
@@ -1191,6 +1206,10 @@ msgid "Parental Control"
 msgstr "Jugendschutz"
 
 #: ../data/
+msgid "VCR scart"
+msgstr ""
+
+#: ../data/
 msgid "Mainmenu"
 msgstr "Hauptmenü"
 
@@ -1262,6 +1281,10 @@ msgstr "Jetzt nach Kanälen suchen?"
 #: ../data/
 msgid "Use wizard to set up basic features"
 msgstr "Grundeinstellungen jetzt vornehmen"
+
+#: ../data/
+msgid "Seek"
+msgstr ""
 
 #: ../data/
 msgid "Satelliteconfig"

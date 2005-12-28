@@ -16,7 +16,7 @@ class Example(Screen):
 		self.skin = Example.skin
 		Screen.__init__(self, session)
 
-		self["text"] = Label("Please press OK!")
+		self["text"] = Label(_("Please press OK!"))
 				
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
@@ -34,7 +34,7 @@ class Example(Screen):
 			string = ""
 			for x in lines:
 				string += x
-			self["text"].setText("Updating finished. Here is the result:\n\n" + string)
+			self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
 		else:
 			self.close()		
 		
