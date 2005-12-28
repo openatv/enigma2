@@ -3,20 +3,25 @@
 #include <lib/gui/eslider.h>
 #include <lib/actions/action.h>
 
+	int m_scrollbar_mode, m_prev_scrollbar_page;
+	bool m_content_changed;
+
+	int m_top, m_selected;
+	int m_itemheight;
+	int m_items_per_page;
+	int m_selection_enabled;
+	ePtr<iListboxContent> m_content;
+	eSlider *m_scrollbar;
+
 eListbox::eListbox(eWidget *parent)
-	:eWidget(parent), m_prev_scrollbar_page(-1), m_content_changed(false)
-	, m_scrollbar_mode(showNever), m_scrollbar(NULL)
+	:eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1)
+	,m_content_changed(false), m_top(0), m_selected(0), m_itemheight(25)
+	,m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
 	setContent(new eListboxStringContent());
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
-	
-	m_itemheight = 25;
-	m_selection_enabled = 1;
-	
-	m_items_per_page = 0;
-	
 	ptr->bindAction("ListboxActions", 0, 0, this);
 }
 
@@ -228,6 +233,9 @@ int eListbox::event(int event, void *data, void *data2)
 	{
 	case evtPaint:
 	{
+		timeval t, t2;
+		gettimeofday(&t, 0);
+
 		ePtr<eWindowStyle> style;
 		
 		if (!m_content)
@@ -259,6 +267,9 @@ int eListbox::event(int event, void *data, void *data2)
 
 		m_content->cursorRestore();
 
+		gettimeofday(&t2, 0);
+		t2 -= t;
+		eDebug("draw %d:%d", t2.tv_sec, t2.tv_usec);
 		return 0;
 	}
 	case evtChangedSize:
@@ -283,6 +294,9 @@ void eListbox::recalcSize()
 	m_prev_scrollbar_page=-1;
 	m_content->setSize(eSize(size().width(), m_itemheight));
 	m_items_per_page = size().height() / m_itemheight;
+
+	if (m_items_per_page > 20)
+		eDebug("eListbox::recalcSize() m_items_per_page %d", m_items_per_page);
 
 	if (m_items_per_page < 0) /* TODO: whyever - our size could be invalid, or itemheigh could be wrongly specified. */
  		m_items_per_page = 0;
