@@ -31,9 +31,18 @@ class NimSetup(Screen):
 			pass
 	
 	def createSetup(self):
+		print "Creating setup"
 		self.list = [ ]
+
+		self.configMode = None
 		self.diseqcModeEntry = None
-		
+		self.advancedSatsEntry = None
+		self.advancedLnbsEntry = None
+		self.advancedDiseqcMode = None
+		self.advancedUsalsEntry = None
+		self.advancedLof = None
+		self.advancedPowerMeasurement = None
+
 		if (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-S"]):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), config.Nims[self.nim.slotid].configMode)
 			self.list.append(self.configMode)
@@ -51,7 +60,55 @@ class NimSetup(Screen):
 				pass
 			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "loopthrough": # linked
 				pass
-		
+			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced": # advanced
+				# SATs
+				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), config.Nims[self.nim.slotid].advanced.sats)
+				self.list.append(self.advancedSatsEntry)
+				currSat = config.Nims[self.nim.slotid].advanced.sat[nimmanager.satList[config.Nims[self.nim.slotid].advanced.sats.value][1]]
+				currLnb = config.Nims[self.nim.slotid].advanced.lnb[currSat.lnb.value]
+				
+				self.list.append(getConfigListEntry(_("Voltage mode"), currSat.voltage))
+				self.list.append(getConfigListEntry(_("Tone mode"), currSat.tonemode))
+				if (currLnb != 0 and currentConfigSelectionElement(currLnb.diseqcMode) == "1_2"):
+					self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), currSat.usals)
+					self.list.append(self.advancedUsalsEntry)
+					if (currentConfigSelectionElement(currSat.usals) == "no"):
+						self.list.append(getConfigListEntry(_("Stored position"), currSat.rotorposition))
+				
+				# LNBs
+				self.advancedLnbsEntry = getConfigListEntry(_("LNB"), currSat.lnb)
+				self.list.append(self.advancedLnbsEntry)
+				if currLnb != 0:
+					self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
+					self.list.append(self.advancedDiseqcMode)
+					if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
+						self.list.append(getConfigListEntry(_("Committed DiSEqC command"), currLnb.commitedDiseqcCommand))
+						self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
+						self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
+						if currentConfigSelectionElement(currLnb.diseqcMode) == "1_0":
+							self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
+						else:
+							self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
+							self.list.append(getConfigListEntry(_("Uncommitted DiSEqC command"), currLnb.uncommittedDiseqcCommand))
+							self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
+						if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
+							self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
+							self.list.append(getConfigListEntry("", currLnb.longitudeOrientation))
+							self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
+							self.list.append(getConfigListEntry("", currLnb.latitudeOrientation))
+							self.advancedPowerMeasurement = getConfigListEntry("Use Power Measurement", currLnb.powerMeasurement)
+							self.list.append(self.advancedPowerMeasurement)
+							if currentConfigSelectionElement(currLnb.powerMeasurement) == "yes":
+								self.list.append(getConfigListEntry("Power Threshold in mA", currLnb.powerThreshold))
+					self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
+					self.list.append(self.advancedLof)
+					if currentConfigSelectionElement(currLnb.lof) == "user_defined":
+						self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+						self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+						self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
+					self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
+					self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
+					self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
 			self.list.append(getConfigListEntry(_("Cable provider"), config.Nims[self.nim.slotid].cable))
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-T"]):
@@ -61,12 +118,11 @@ class NimSetup(Screen):
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		
-	def newConfig(self):	
-		if self["config"].getCurrent() == self.configMode:
-			self.createSetup()
-		if self["config"].getCurrent() == self.diseqcModeEntry:
-			self.createSetup()
-		
+	def newConfig(self):
+		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, self.advancedLof, self.advancedPowerMeasurement)
+		for x in checkList:
+			if self["config"].getCurrent() == x:
+				self.createSetup()			
 	def keyLeft(self):
 		self["config"].handleKey(config.key["prevElement"])
 		self.newConfig()

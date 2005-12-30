@@ -91,11 +91,8 @@
 			<widget name="entries" position="20,70" size="320,150" scrollbarMode="showOnDemand" />
 			<widget name="bottom" position="20,230" size="320,25" font="Regular;23" />
 		</screen>
-		<screen name="NimSetup" position="130,165" size="440,250" title="Satconfig">
-			<widget name="config" position="20,10" size="400,220" />
-		</screen>
-		<screen name="Satconfig" position="140,125" size="460,280" title="Satconfig">
-			<widget name="config" position="10,50" size="420,150" scrollbarMode="showOnDemand" />
+		<screen name="NimSetup" position="70,70" size="580,480" title="Satconfig">
+			<widget name="config" position="20,10" size="560,450" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="ScanSetup" position="90,100" size="520,400" title="Service scan">
 			<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
