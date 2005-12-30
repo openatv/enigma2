@@ -1,5 +1,7 @@
 import os
 
+from Tools.Directories import *
+
 def tryOpen(filename):
 	try:
 		procFile = open(filename)
@@ -124,7 +126,7 @@ class Harddisk:
 		return (res >> 8)
 
 	def createMovieFolder(self):
-		res = os.system("mkdir /hdd/movies")
+		res = os.system("mkdir " + resolveFilename(SCOPE_HDD))
 		return (res >> 8)
 		
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]

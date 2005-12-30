@@ -25,6 +25,7 @@ from Screens.MinuteInput import MinuteInput
 from Components.Harddisk import harddiskmanager
 
 from Tools import Notifications
+from Tools.Directories import *
 
 #from enigma import eTimer, eDVBVolumecontrol, quitMainloop
 from enigma import *
@@ -719,9 +720,9 @@ class InfoBarInstantRecord:
 
 	def instantRecord(self):
 		try:
-			stat = os.stat("/hdd/movies")
+			stat = os.stat(resolveFilename(SCOPE_HDD))
 		except:
-			self.session.open(MessageBox, "No HDD found!", MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 	
 		if self.isInstantRecordRunning():
