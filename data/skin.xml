@@ -290,7 +290,7 @@ textsize = (textsize[0] + 50, textsize[1] + 50)
 offset = 0
 if self.type == self.TYPE_YESNO:
 	offset = 60
-wsizex = textsize[0] + offset
+wsizex = textsize[0] + 60
 wsizey = textsize[1] + offset
 if (280 > wsizex):
 	wsizex = 280
