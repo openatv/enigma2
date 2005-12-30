@@ -412,7 +412,10 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")), ("advanced", _("Advanced")))) # "Advanced"));
+			if slot.slotid == 0:
+				nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("advanced", _("Advanced"))))
+			else:							
+				nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")), ("advanced", _("Advanced"))))
 			
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			if currentConfigSelectionElement(nim.configMode) == "loopthrough": #linked
