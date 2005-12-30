@@ -4,6 +4,8 @@ from config import configElement
 from config import ConfigSubsection
 from config import ConfigSlider
 from config import configSelection
+from config import currentConfigSelectionElement
+from config import getConfigSelectionElement
 from config import configSequence
 from config import configsequencearg
 from config import configSatlist
@@ -83,25 +85,27 @@ class SecConfigure:
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if nim.configMode.value == 2:
+				if currentConfigSelectionElement(nim.configMode) == "loopthrough":
 					self.linkNIMs(x, nim.linkedTo.value)
 					nim = config.Nims[nim.linkedTo.value]
-				if nim.configMode.value == 0:		#simple config
-					if nim.diseqcMode.value == 0:			#single
+				elif currentConfigSelectionElement(nim.configMode) == "simple":		#simple config
+					if currentConfigSelectionElement(nim.diseqcMode) == "single":			#single
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 0, diseqcpos = 4)
-					elif nim.diseqcMode.value == 1:		#Toneburst A/B
+					elif currentConfigSelectionElement(nim.diseqcMode) == "toneburst_a_b":		#Toneburst A/B
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 1, diseqcmode = 0, diseqcpos = 4)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 1, diseqcmode = 0, diseqcpos = 4)
-					elif nim.diseqcMode.value == 2:		#DiSEqC A/B
+					elif currentConfigSelectionElement(nim.diseqcMode) == "diseqc_a_b":		#DiSEqC A/B
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 0)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 1)
-					elif nim.diseqcMode.value == 3:		#DiSEqC A/B/C/D
+					elif currentConfigSelectionElement(nim.diseqcMode) == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 0)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 1)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcC.vals[nim.diseqcC.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 2)
 						self.addLNBSimple(slotid = x, orbpos = int(nim.diseqcD.vals[nim.diseqcD.value][1]), toneburstmode = 0, diseqcmode = 1, diseqcpos = 3)
-					elif nim.diseqcMode.value == 4:		#Positioner
+					elif currentConfigSelectionElement(nim.diseqcMode) == "positioner":		#Positioner
 						self.addLNBSimple(slotid = x, diseqcmode = 3, longitude = float(str(nim.longitude.value[0]) + "." + str(nim.longitude.value[1])), loDirection = nim.longitudeOrientation.value - 2, latitude = float(str(nim.latitude.value[0]) + "." + str(nim.latitude.value[1])), laDirection = nim.latitudeOrientation.value)
+					pass
+				elif currentConfigSelectionElement(nim.configMode) == "nothing":
 					pass
 				else:																	#advanced config
 					print "FIXME add support for advanced config"
@@ -408,19 +412,19 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")))) # "Advanced"));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")), ("advanced", _("Advanced")))) # "Advanced"));
 			
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
-			if nim.configMode.value == 2: #linked
+			if currentConfigSelectionElement(nim.configMode) == "loopthrough": #linked
 				if x == 0:										#first one can never be linked to anything
-					nim.configMode.value = 0		#reset to simple
+					nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
 					nim.configMode.save()
 				else:
 					#FIXME: make it better
 					for y in nimmgr.nimslots:
 						if y.slotid == 0:
 							if y.nimType != nimmgr.nimType["DVB-S"]:
-								nim.configMode.value = 0		#reset to simple
+								nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
 								nim.configMode.save()
 
 			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")), ("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")), ("positioner", _("Positioner"))));
