@@ -21,15 +21,15 @@ class LCD:
 	def setInverted(self, value):
 		if value:
 			value = 255
-		eDBoxLCD.getInstance().setInverted(value)
+		eDBoxLCD.getInstance().setInverted(1 - value)
 		pass
 
 def InitLcd():
 	config.lcd = ConfigSubsection();
-	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 10, "");
-	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 10, "");
-	config.lcd.standby = configElement("config.lcd.standby", ConfigSlider, 0, "");
-	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, (_("Disable"), _("Enable")) );
+	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 10, "")
+	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 10, "")
+	config.lcd.standby = configElement("config.lcd.standby", ConfigSlider, 0, "")
+	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, (("enable", _("Enable")), ("disable", _("Disable"))))
 
 	ilcd = LCD()
 

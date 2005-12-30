@@ -78,8 +78,16 @@ class configSelection:
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
-		return ("text", _(self.parent.vals[self.parent.value]))
+		if isinstance(self.parent.vals[self.parent.value], str):
+			returnValue = _(self.parent.vals[self.parent.value])
+		else:
+			returnValue = _(self.parent.vals[self.parent.value][1])
 
+			
+		print self.parent.vals[self.parent.value]
+		
+		return ("text", returnValue)
+		
 class configDateTime:
 	def __init__(self, parent):
 		self.parent = parent
@@ -417,7 +425,17 @@ class configElement:
 		if control == ConfigSlider:
 			return int(data)
 		elif control == configSelection:
-			return int(data)
+			try:
+				return int(data)
+			except:
+				for x in data.split(":"):
+					if x[0] == "*":
+						count = 0
+						for y in self.vals:
+							if y[0] == x[1:-1]:
+								return count
+							count += 1
+				return self.defaultValue
 		elif control == configDateTime:
 			return int(data)
 		elif control == configText:
@@ -437,6 +455,18 @@ class configElement:
 		if control == ConfigSlider:
 			return str(data)
 		elif control == configSelection:
+			if isinstance(self.vals[data], str):
+				return str(data)
+			else:
+				confList = []
+				count = 0
+				for x in self.vals:
+					if count == data:
+						confList.append("*" + str(x[0] + "*"))
+					else:
+						confList.append(x[0])
+					count += 1
+				return ":".join(confList)
 			return str(data)
 		elif control == configDateTime:
 			return str(data)
