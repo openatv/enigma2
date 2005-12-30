@@ -227,7 +227,27 @@ class SecConfigure:
 				# finally add the orbital positions
 				for y in lnbSat[x]:
 					sec.addSatellite(y)
+					currSat = config.Nims[slotid].advanced.sat[y]
+					if currentConfigSelectionElement(currSat.voltage) == "polarization":
+						pass
+					elif currentConfigSelectionElement(currSat.voltage) == "13V":
+						pass
+					elif currentConfigSelectionElement(currSat.voltage) == "18V":
+						pass
 
+					if currentConfigSelectionElement(currSat.tonemode) == "band":
+						pass
+					elif currentConfigSelectionElement(currSat.tonemode) == "on":
+						pass
+					elif currentConfigSelectionElement(currSat.tonemode) == "off":
+						pass
+					
+					if  currentConfigSelectionElement(currSat.usals) == "no":
+						pass # use currSat.rotorposition.value to set the stored rotor position
+					else:
+						pass # use usals for this sat!
+					
+					
 	def __init__(self, nimmgr):
 		self.NimManager = nimmgr
 		self.update()
