@@ -454,6 +454,49 @@ def InitNimManager(nimmgr):
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
 			nim.linkedTo.addNotifier(boundFunction(nimLinkedToChanged,x))
+			
+			# advanced config:
+			nim.advanced = ConfigSubsection()
+			nim.advanced.sats = configElement(cname + "advanced.sats", configSatlist, 192, nimmgr.satList);
+			nim.advanced.sat = {}
+			lnbs = ["not available"]
+			for y in range(1, 33):
+				lnbs.append("LNB " + str(y))
+			for x in nimmgr.satList:
+				nim.advanced.sat[x[1]] = ConfigSubsection()
+				nim.advanced.sat[x[1]].voltage = configElement(cname + "advanced.sat" + str(x[1]) + ".voltage", configSelection, 0, (("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))))
+				nim.advanced.sat[x[1]].tonemode = configElement(cname + "advanced.sat" + str(x[1]) + ".tonemode", configSelection, 0, (("band", _("Band")), ("on", _("On")), ("off", _("Off"))))
+				nim.advanced.sat[x[1]].usals = configElement(cname + "advanced.sat" + str(x[1]) + ".usals", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
+				nim.advanced.sat[x[1]].rotorposition = configElement(cname + "advanced.sat" + str(x[1]) + ".rotorposition", configSequence, [1], configsequencearg.get("INTEGER", (1, 255)))
+				nim.advanced.sat[x[1]].lnb = configElement(cname + "advanced.sat" + str(x[1]) + ".lnb", configSelection, 0, lnbs)
+			
+			nim.advanced.lnb = [0]
+			for x in range(1, 33):
+				nim.advanced.lnb.append(ConfigSubsection())
+				nim.advanced.lnb[x].lof = configElement(cname + "advanced.lnb" + str(x) + ".lof", configSelection, 0, (("universal_lnb", _("Universal LNB")), ("c_band", _("C-Band")), ("user_defined", _("User defined"))))
+				nim.advanced.lnb[x].lofl = configElement(cname + "advanced.lnb" + str(x) + ".lofl", configSequence, [9750], configsequencearg.get("INTEGER", (0, 99999)))
+				nim.advanced.lnb[x].lofh = configElement(cname + "advanced.lnb" + str(x) + ".lofh", configSequence, [10600], configsequencearg.get("INTEGER", (0, 99999)))
+				nim.advanced.lnb[x].threshold = configElement(cname + "advanced.lnb" + str(x) + ".threshold", configSequence, [11750], configsequencearg.get("INTEGER", (0, 99999)))
+				nim.advanced.lnb[x].output_12v = configElement(cname + "advanced.lnb" + str(x) + ".output_12v", configSelection, 0, (("0V", _("0 V")), ("12V", _("12 V"))))
+				nim.advanced.lnb[x].increased_voltage = configElement(cname + "advanced.lnb" + str(x) + ".increased_voltage", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
+				nim.advanced.lnb[x].toneburst = configElement(cname + "advanced.lnb" + str(x) + ".toneburst", configSelection, 0, (("none", _("None")), ("A", _("A")), ("B", _("B"))))
+				nim.advanced.lnb[x].diseqcMode = configElement(cname + "advanced.lnb" + str(x) + ".diseqcMode", configSelection, 0, (("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))))
+				nim.advanced.lnb[x].commitedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".commitedDiseqcCommand", configSelection, 0, (("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))))
+				nim.advanced.lnb[x].fastDiseqc = configElement(cname + "advanced.lnb" + str(x) + ".fastDiseqc", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
+				nim.advanced.lnb[x].sequenceRepeat = configElement(cname + "advanced.lnb" + str(x) + ".sequenceRepeat", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
+				nim.advanced.lnb[x].commandOrder1_0 = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder1_0", configSelection, 0, ("committed, toneburst", "toneburst, committed"))
+				nim.advanced.lnb[x].commandOrder = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder", configSelection, 0, ("committed, toneburst", "toneburst, committed", "committed, uncommitted, toneburst", "toneburst, committed, uncommitted", "uncommitted, committed, toneburst", "toneburst, uncommitted, commmitted"))
+				disCmd = ["none"]
+				for y in range(1, 17):
+					disCmd.append("Input " + str(y))
+				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, disCmd)
+				nim.advanced.lnb[x].diseqcRepeats = configElement(cname + "advanced.lnb" + str(x) + ".diseqcRepeats", configSelection, 0, (("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))))
+				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (_("East"), _("West")))
+				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+				nim.advanced.lnb[x].latitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))))
+				nim.advanced.lnb[x].powerMeasurement = configElement(cname + "advanced.lnb" + str(x) + ".powerMeasurement", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
+				nim.advanced.lnb[x].powerThreshold = configElement(cname + "advanced.lnb" + str(x) + ".powerThreshold", configSequence, [50], configsequencearg.get("INTEGER", (0, 100)))
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
 			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
