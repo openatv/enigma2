@@ -82,6 +82,7 @@ class NimSetup(Screen):
 					self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 					self.list.append(self.advancedDiseqcMode)
 					if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
+						self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
 						self.list.append(getConfigListEntry(_("Committed DiSEqC command"), currLnb.commitedDiseqcCommand))
 						self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc))
 						self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat))
@@ -108,7 +109,6 @@ class NimSetup(Screen):
 						self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 					self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
 					self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
-					self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
 			self.list.append(getConfigListEntry(_("Cable provider"), config.Nims[self.nim.slotid].cable))
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-T"]):
