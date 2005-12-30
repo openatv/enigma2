@@ -22,22 +22,23 @@ class NimSetup(Screen):
 	
 	def createPositionerSetup(self, nim, list):
 		list.append(getConfigListEntry(_("Positioner mode"), config.Nims[nim.slotid].positionerMode))
-		if (config.Nims[nim.slotid].positionerMode.value == 0): # USALS
+		if (currentConfigSelectionElement(config.Nims[nim.slotid].positionerMode) == "usals"): # USALS
 			list.append(getConfigListEntry(_("Longitude"), config.Nims[nim.slotid].longitude))
 			list.append(getConfigListEntry("", config.Nims[nim.slotid].longitudeOrientation))
 			list.append(getConfigListEntry(_("Latitude"), config.Nims[nim.slotid].latitude))
 			list.append(getConfigListEntry("", config.Nims[nim.slotid].latitudeOrientation))
-		elif (config.Nims[nim.slotid].positionerMode.value == 1): # manual
+		elif (currentConfigSelectionElement(config.Nims[nim.slotid].positionerMode) == "manual"): # manual
 			pass
 	
 	def createSetup(self):
 		self.list = [ ]
+		self.diseqcModeEntry = None
 		
 		if (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-S"]):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), config.Nims[self.nim.slotid].configMode)
 			self.list.append(self.configMode)
 			
-			if config.Nims[self.nim.slotid].configMode.value == 0:			#simple setup
+			if currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "simple":			#simple setup
 				self.diseqcModeEntry = getConfigListEntry(_("DiSEqC Mode"), config.Nims[self.nim.slotid].diseqcMode)
 				self.list.append(self.diseqcModeEntry)
 			
@@ -45,10 +46,10 @@ class NimSetup(Screen):
 					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
 				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
 					self.createPositionerSetup(self.nim, self.list)
-			elif config.Nims[self.nim.slotid].configMode.value == 1: # nothing
+			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "nothing": # nothing
 				#self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
 				pass
-			elif config.Nims[self.nim.slotid].configMode.value == 2: # linked
+			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "loopthrough": # linked
 				pass
 		
 		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
@@ -61,9 +62,9 @@ class NimSetup(Screen):
 		self["config"].l.setList(self.list)
 		
 	def newConfig(self):	
-		if self["config"].getCurrent() == self.diseqcModeEntry:
-			self.createSetup()
 		if self["config"].getCurrent() == self.configMode:
+			self.createSetup()
+		if self["config"].getCurrent() == self.diseqcModeEntry:
 			self.createSetup()
 		
 	def keyLeft(self):

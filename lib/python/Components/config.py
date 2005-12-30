@@ -48,7 +48,18 @@ class configFile:
 
 			fileHandle.write(wstr)
 
-		fileHandle.close()		
+		fileHandle.close()
+		
+def currentConfigSelectionElement(element):
+	return element.vals[element.value][0]
+
+def getConfigSelectionElement(element, value):
+	count = 0
+	for x in element.vals:
+		if x[0] == value:
+			return count
+		count += 1
+	return -1
 
 class configSelection:
 	def __init__(self, parent):
@@ -82,9 +93,6 @@ class configSelection:
 			returnValue = _(self.parent.vals[self.parent.value])
 		else:
 			returnValue = _(self.parent.vals[self.parent.value][1])
-
-			
-		print self.parent.vals[self.parent.value]
 		
 		return ("text", returnValue)
 		
