@@ -68,21 +68,30 @@ class NimSetup(Screen):
 			self.createSetup()
 		
 	def keyLeft(self):
-		if self["config"].getCurrent() == self.configMode:
-			if self.nim.slotid == 0:
-				return
+		#if self["config"].getCurrent() == self.configMode:
+			#if self.nim.slotid == 0:
+				#while currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) != "simple" and currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) != "advanced":
+					#self["config"].handleKey(config.key["prevElement"])
+			#else:
+				#self["config"].handleKey(config.key["prevElement"])
+#		else:
 		self["config"].handleKey(config.key["prevElement"])
+
 		self.newConfig()
 
 	def keyRight(self):
 		#forbid to enable advanced mode until its ready
 		#perhaps its better to use an own element here
 		#this suckz .. how enable advanced config?
-		if self["config"].getCurrent() == self.configMode:
-			if self.nim.slotid == 0:
-				return
-
+		#if self["config"].getCurrent() == self.configMode:
+			#if self.nim.slotid == 0:
+				#while currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) != "simple" and currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) != "advanced":
+					#self["config"].handleKey(config.key["nextElement"])
+			#else:
+				#self["config"].handleKey(config.key["prevElement"])
+		#else:
 		self["config"].handleKey(config.key["nextElement"])
+		
 		self.newConfig()
 
 	def keyNumberGlobal(self, number):
