@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-28 21:02+0100\n"
+"POT-Creation-Date: 2005-12-30 06:00+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -98,7 +98,7 @@ msgstr "Kanal"
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:180
+#: ../lib/python/Screens/InfoBarGenerics.py:181
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -126,7 +126,7 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../lib/python/Screens/MovieSelection.py:50
+#: ../lib/python/Screens/MovieSelection.py:52
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen."
 
@@ -166,11 +166,11 @@ msgstr "DiSEqC-Modus"
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/MovieSelection.py:33
+#: ../lib/python/Screens/MovieSelection.py:35
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:728
+#: ../lib/python/Screens/InfoBarGenerics.py:729
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -319,7 +319,7 @@ msgstr "Montag bis Freitag"
 msgid "Monday"
 msgstr "Montag"
 
-#: ../lib/python/Screens/MovieSelection.py:20
+#: ../lib/python/Screens/MovieSelection.py:22
 msgid "Movie Menu"
 msgstr "Filmauswahl"
 
@@ -338,6 +338,11 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:725
+msgid "No HDD found or HDD not initialized!"
+msgstr "Keine Festplatte gefunden oder\nFestplatte nicht initialisiert."
+
 
 #: ../lib/python/Screens/ScanSetup.py:173
 #: ../lib/python/Screens/ScanSetup.py:179
@@ -411,7 +416,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:777
+#: ../lib/python/Screens/InfoBarGenerics.py:778
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -465,7 +470,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:730
+#: ../lib/python/Screens/InfoBarGenerics.py:731
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -481,7 +486,7 @@ msgstr "Schritt "
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:782 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:783 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -571,7 +576,7 @@ msgstr "Wochentag"
 msgid "West"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:35
+#: ../lib/python/Screens/MovieSelection.py:37
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
 
@@ -603,7 +608,7 @@ msgstr "Zu Bouquet hinzufügen"
 msgid "add service to favourites"
 msgstr "Kanal zu Favoriten hinzufügen"
 
-#: ../lib/python/Screens/MovieSelection.py:18
+#: ../lib/python/Screens/MovieSelection.py:20
 #: ../lib/python/Screens/ChannelSelection.py:65
 msgid "back"
 msgstr "zurück"
@@ -620,7 +625,7 @@ msgstr ""
 msgid "daily"
 msgstr "täglich"
 
-#: ../lib/python/Screens/MovieSelection.py:18
+#: ../lib/python/Screens/MovieSelection.py:20
 msgid "delete..."
 msgstr "löschen..."
 
@@ -672,7 +677,7 @@ msgstr "Abspielmodus verlassen..."
 msgid "manual"
 msgstr "manuell"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:317
+#: ../lib/python/Screens/InfoBarGenerics.py:318
 msgid "next channel"
 msgstr "nächster Kanal"
 
@@ -711,7 +716,7 @@ msgstr "an"
 msgid "once"
 msgstr "einmalig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:318
+#: ../lib/python/Screens/InfoBarGenerics.py:319
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
@@ -761,7 +766,7 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:360
+#: ../lib/python/Screens/InfoBarGenerics.py:361
 msgid "show EPG..."
 msgstr "zeige EPG..."
 

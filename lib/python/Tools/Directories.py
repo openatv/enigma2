@@ -8,6 +8,7 @@ SCOPE_SKIN_IMAGE = 4
 SCOPE_USERETC = 5
 SCOPE_CONFIG = 6
 SCOPE_LANGUAGE = 7
+SCOPE_HDD = 8
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -22,23 +23,28 @@ defaultPaths = {
 
 		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
 		SCOPE_SKIN_IMAGE: ("/usr/share/enigma2/", PATH_DONTCREATE),
+		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
 	}
 
-def resolveFilename(scope, base):
+def resolveFilename(scope, base = ""):
 	# in future, we would check for file existence here,
 	# so we can provide default/fallbacks.
 	
 	path = defaultPaths[scope]
 	if path[1] == PATH_CREATE:
-		if (not os.path.exists(path[0])):
+		if (not pathExists(scope)):
 			os.mkdir(path[0])
 	
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path[0] + base
 
 	# this is only the BASE - an extension must be added later.
+	
+def pathExists(scope):
+	return os.path.exists(defaultPaths[scope][0])
+
 def getRecordingFilename(basename):
 	
 		# filter out non-allowed characters
@@ -52,7 +58,7 @@ def getRecordingFilename(basename):
 	
 	i = 0
 	while True:
-		path = "/hdd/movies/" + filename
+		path = resolveFilename(SCOPE_HDD, filename)
 		if i > 0:
 			path += "_%03d" % i
 		try:
@@ -60,3 +66,9 @@ def getRecordingFilename(basename):
 			i += 1
 		except IOError:
 			return path
+		
+# this fixes paths or files when changed in a new enigma2 version
+def fixOldDirectoryEntries():
+	if (os.path.exists("/hdd/movies")):
+		if (not os.path.exists(resolveFilename(SCOPE_HDD))):
+			os.system("mv /hdd/movies " + resolveFilename(SCOPE_HDD))

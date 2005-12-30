@@ -8,6 +8,8 @@ from Components.DiskInfo import DiskInfo
 from Screens.MessageBox import MessageBox
 from Screens.FixedMenu import FixedMenu
 
+from Tools.Directories import *
+
 from enigma import eServiceReference, eServiceCenter
 
 class ChannelContextMenu(FixedMenu):
@@ -65,13 +67,13 @@ class MovieSelection(Screen):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
-		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:/hdd/movies/"))
+		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
 		if (selectedmovie is not None):
 			self.onShown.append(self.moveTo)
 			self.selectedmovie = selectedmovie
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
-		self["freeDiskSpace"] = DiskInfo("/hdd/movies", DiskInfo.FREE)
+		self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE)
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ContextMenuActions"],
 			{

@@ -20,6 +20,8 @@ from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fixOldDirectoryEntries
+fixOldDirectoryEntries()
 
 had = dict()
 
