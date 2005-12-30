@@ -108,8 +108,126 @@ class SecConfigure:
 				elif currentConfigSelectionElement(nim.configMode) == "nothing":
 					pass
 				else:																	#advanced config
-					print "FIXME add support for advanced config"
-		
+					self.updateAdvanced(x)
+
+	def updateAdvanced(self, slotid):
+		sec = eDVBSatelliteEquipmentControl.getInstance()
+		lnbSat = {}
+		for x in range(1,33):
+			lnbSat[x] = []
+		for x in self.NimManager.satList:
+			lnb = config.Nims[slotid].advanced.sat[x[1]].lnb.value
+			if lnb != 0:
+				lnbSat[lnb].append(x[1])
+		for x in range(1,33):
+			if len(lnbSat[x]) > 0:
+				currLnb = config.Nims[slotid].advanced.lnb[x]
+				sec.addLNB()
+				sec.setLNBTunerMask(1 << slotid)
+				if currentConfigSelectionElement(currLnb.lof) == "universal_lnb":
+					sec.setLNBLOFL(9750000)
+					sec.setLNBLOFH(10600000)
+					sec.setLNBThreshold(11750000)
+				elif currentConfigSelectionElement(currLnb.lof) == "c_band":
+					sec.setLNBLOFL(5150000)
+					sec.setLNBLOFH(5150000)
+					sec.setLNBThreshold(5150000)
+				elif currentConfigSelectionElement(currLnb.lof) == "user_defined":
+					sec.setLNBLOFL(currLnb.lofl.value * 1000)
+					sec.setLNBLOFH(currLnb.lofh.value * 1000)
+					sec.setLNBThreshold(currLnb.threshold.value * 1000)
+					
+				if currentConfigSelectionElement(currLnb.output_12v) == "0V":
+					pass
+				elif currentConfigSelectionElement(currLnb.output_12v) == "12V":
+					pass
+				
+				if currentConfigSelectionElement(currLnb.increased_voltage) == "yes":
+					pass
+				else:
+					pass
+				
+				if currentConfigSelectionElement(currLnb.diseqcMode) == "none":
+					pass
+				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_0":
+					pass
+				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_1":
+					pass
+				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
+					pass
+
+				if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
+					if currentConfigSelectionElement(currLnb.toneburst) == "none":
+						pass
+					elif currentConfigSelectionElement(currLnb.toneburst) == "A":
+						pass
+					elif currentConfigSelectionElement(currLnb.toneburst) == "B":
+						pass
+
+
+					if currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "none":
+						pass
+					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "AA":
+						pass
+					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "AB":
+						pass
+					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "BA":
+						pass				
+					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "BB":
+						pass
+				
+					if currentConfigSelectionElement(currLnb.fastDiseqc) == "yes":
+						pass
+					else:
+						pass
+				
+					if currentConfigSelectionElement(currLnb.sequenceRepeat) == "yes":
+						pass
+					else:
+						pass
+				
+					if currentConfigSelectionElement(currLnb.diseqcMode) == "1_0":
+						currCO = currLnb.commandOrder1_0.value
+					else:
+						currCO = currLnb.commandOrder.value
+						
+						pass # do something with currLnb.uncommittedDiseqcCommand.value... holds 0 for none, 1 for input 1, 2 for input 2 etc.
+						
+						if currentConfigSelectionElement(currLnb.diseqcRepeats) == "none":
+							pass
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "One":
+							pass
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "Two":
+							pass
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "Three":
+							pass
+										
+					if currCO == 0: # committed, toneburst
+						pass
+					elif currCO == 1: # toneburst, committed
+						pass
+					elif currCO == 2: # committed, uncommitted, toneburst
+						pass
+					elif currCO == 3: # toneburst, committed, uncommitted
+						pass
+					elif currCO == 4: # uncommitted, committed, toneburst
+						pass
+					elif currCO == 5: # toneburst, uncommitted, commmitted
+						pass
+					
+				if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
+					sec.setLatitude(float(str(currLnb.latitude.value[0]) + "." + str(currLnb.latitude.value[1])))
+					sec.setLaDirection(nim.latitudeOrientation.value)
+					sec.setLongitude(float(str(currLnb.longitude.value[0]) + "." + str(currLnb.longitude.value[1])))
+					sec.setLoDirection(nim.longitudeOrientation.value - 2)
+
+				if currentConfigSelectionElement(currLnb.powerMeasurement) == "yes":
+					pass # set to currLnb.powerThreshold.value, which is an integer holding the mA value
+	
+				# finally add the orbital positions
+				for y in lnbSat[x]:
+					sec.addSatellite(y)
+
 	def __init__(self, nimmgr):
 		self.NimManager = nimmgr
 		self.update()
