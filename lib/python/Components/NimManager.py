@@ -408,7 +408,7 @@ def InitNimManager(nimmgr):
 		nim = config.Nims[x]
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			nim.configMode = configElement(cname + "configMode", configSelection, 0, (_("Simple"), _("Nothing connected"), _("Loopthrough to Socket A"))) # "Advanced"));
+			nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")))) # "Advanced"));
 			
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			if nim.configMode.value == 2: #linked
@@ -423,20 +423,20 @@ def InitNimManager(nimmgr):
 								nim.configMode.value = 0		#reset to simple
 								nim.configMode.save()
 
-			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (_("Single"), _("Toneburst A/B"), _("DiSEqC A/B"), _("DiSEqC A/B/C/D"), _("Positioner")));
+			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")), ("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")), ("positioner", _("Positioner"))));
 			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
-			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (_("USALS"), _("manual")));
+			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))));
 			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (_("East"), _("West")))
 			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (_("North"), _("South")))
+			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))))
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []
 			for x in satNimList:
-				satNimListNames.append(_("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x))
+				satNimListNames.append((("Slot_" + ("A", "B", "C", "D")[x] + "_" + nimmgr.getNimName(x)), _("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x)))
 			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
 			
 			#perhaps the instance of the slot is more useful?

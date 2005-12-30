@@ -26,13 +26,13 @@ class AVSwitch:
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
-	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, ("CVBS", "RGB", "S-Video") );
-	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, ("4:3 Letterbox", "4:3 PanScan", "16:9", "16:9 always") );
+	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, (("cvbs", _("CVBS")), ("rgb", _("RGB")), ("svideo", _("S-Video")) ));
+	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, (("4_3_letterbox", _("4:3 Letterbox")), ("4_3_panscan", _("4:3 PanScan")), ("16_9", _("16:9")), ("16_9_always", _("16:9 always"))) );
 	#config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") );
-	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "NTSC") );
-	config.av.wss = configElement("config.av.wss", configSelection, 0, ("Enable", "Disable") );
-	config.av.defaultac3 = configElement("config.av.defaultac3", configSelection, 1, ("Enable", "Disable") );
-	config.av.vcrswitch = configElement("config.av.vcrswitch", configSelection, 1, ("Enable", "Disable") );
+	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, (("pal", _("PAL")), ("ntsc", _("NTSC"))) );
+	config.av.wss = configElement("config.av.wss", configSelection, 0, (("enable", _("Enable")), ("disable", _("Disable"))) );
+	config.av.defaultac3 = configElement("config.av.defaultac3", configSelection, 1, (("enable", _("Enable")), ("disable", _("Disable"))));
+	config.av.vcrswitch = configElement("config.av.vcrswitch", configSelection, 1, (("enable", _("Enable")), ("disable", _("Disable"))));
 
 	iAVSwitch = AVSwitch()
 

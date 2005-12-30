@@ -143,7 +143,7 @@ def InitNetwork():
 
 		
 	config.network = ConfigSubsection()
-	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, (_("no"), _("yes")))
+	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, (("no", _("no")), ("yes", _("yes"))))
 	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, configsequencearg.get("IP"))
 	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], configsequencearg.get("IP"))
 	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], configsequencearg.get("IP"))
