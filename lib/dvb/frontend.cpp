@@ -212,7 +212,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
-	:m_type(-1), m_fe(fe), m_timeout(0), m_tuneTimer(0), m_fd(-1)
+	:m_type(-1), m_fe(fe), m_fd(-1), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
