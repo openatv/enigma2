@@ -60,6 +60,10 @@ class eDVBLocalTimeHandler: public Object
 	void writeTimeOffsetData(const char*);
 	void updateTime(time_t tp_time, eDVBChannel*, int updateCount);
 	static eDVBLocalTimeHandler *instance;
+#ifdef SWIG
+	eDVBLocalTimeHandler();
+	~eDVBLocalTimeHandler();
+#endif
 public:
 #ifndef SWIG
 	PSignal0<void> m_timeUpdated;

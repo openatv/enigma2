@@ -41,9 +41,15 @@ public:
 class eWindowStyleManager: public iObject
 {
 	DECLARE_REF(eWindowStyleManager);
-public:
+#ifdef SWIG
 	eWindowStyleManager();
 	~eWindowStyleManager();
+#endif
+public:
+#ifndef SWIG
+	eWindowStyleManager();
+	~eWindowStyleManager();
+#endif
 	void getStyle(ePtr<eWindowStyle> &style);
 	void setStyle(eWindowStyle *style);
 	static int getInstance(ePtr<eWindowStyleManager> &mgr) { mgr = m_instance; if (!mgr) return -1; return 0; }

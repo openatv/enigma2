@@ -12,38 +12,49 @@
 
 class eLCD
 {
+#ifdef SWIG
+	eLCD(eSize size);
+	~eLCD();
+#else
 protected:
 	eSize res;
 	unsigned char *_buffer;
 	int lcdfd;
 	int _stride;
 	int locked;
+#endif
 public:
 	int lock();
 	void unlock();
 	int islocked() { return locked; }
-
+#ifndef SWIG
 	eLCD(eSize size);
 	virtual ~eLCD();
-
 	__u8 *buffer() { return (__u8*)_buffer; }
 	int stride() { return _stride; }
 	eSize size() { return res; }
 	
 	virtual void update()=0;
+#endif
 };
 
 class eDBoxLCD: public eLCD
 {
 	static eDBoxLCD *instance;
 	unsigned char inverted;
+#ifdef SWIG
+	eDBoxLCD();
+	~eDBoxLCD();
+#endif
 public:
+#ifndef SWIG
+	eDBoxLCD();
+	~eDBoxLCD();
+#endif
 	static eDBoxLCD *getInstance();
 	int eDBoxLCD::setLCDContrast(int contrast);
 	int eDBoxLCD::setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
-	eDBoxLCD();
-	~eDBoxLCD();
 	void update();
 };
 

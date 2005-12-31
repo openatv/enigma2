@@ -6,11 +6,15 @@ class eRFmod
 	static eRFmod *instance;
 	
 	int fd;
-protected:	
-public:
+#ifdef SWIG
 	eRFmod();
 	~eRFmod();
-
+#endif
+public:
+#ifndef SWIG
+	eRFmod();
+	~eRFmod();
+#endif
 	static eRFmod *getInstance();
 
 	void setFunction(int val);						//0=Enable 1=Disable

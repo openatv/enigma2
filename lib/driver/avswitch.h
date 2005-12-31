@@ -4,12 +4,16 @@
 class eAVSwitch
 {
 	static eAVSwitch *instance;
-	
-protected:	
-public:
+#ifdef SWIG
 	eAVSwitch();
 	~eAVSwitch();
-
+#endif
+protected:	
+public:
+#ifndef SWIG
+	eAVSwitch();
+	~eAVSwitch();
+#endif
 	static eAVSwitch *getInstance();
 	
 	void setFastBlank(int val);

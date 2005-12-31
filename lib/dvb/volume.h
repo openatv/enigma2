@@ -8,7 +8,9 @@ class eDVBVolumecontrol
 private:
 	static eDVBVolumecontrol *instance;
 	eDVBVolumecontrol();
-	
+#ifdef SWIG
+	~eDVBVolumecontrol();
+#endif
 	int openMixer();
 	void closeMixer(int fd);
 	

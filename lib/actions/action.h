@@ -17,6 +17,10 @@ class eWidget;
 class eActionMap: public iObject
 {
 DECLARE_REF(eActionMap);
+#ifdef SWIG
+	eActionMap();
+	~eActionMap();
+#endif
 public:
 #ifndef SWIG
 	eActionMap();

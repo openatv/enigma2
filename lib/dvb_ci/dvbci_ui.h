@@ -11,11 +11,15 @@ class eDVBCI_UI
 	int state[MAX_SLOTS];
 	static eDVBCI_UI *instance;
 	std::string appName;
-protected:
-public:
+#ifdef SWIG
 	eDVBCI_UI();
 	~eDVBCI_UI();
-
+#endif
+public:
+#ifndef SWIG
+	eDVBCI_UI();
+	~eDVBCI_UI();
+#endif
 	static eDVBCI_UI *getInstance();
 	
 	int getState(int slot);
