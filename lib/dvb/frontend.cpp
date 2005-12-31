@@ -593,12 +593,12 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					eDebug("[SEC] error read lnbp (%m)");
 				if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
 				{
-					data[0] |= 0x90;  // enable static current limiting
+					data[0] |= 0x80;  // enable static current limiting
 					eDebug("[SEC] set static current limiting");
 				}
 				else
 				{
-					data[0] &= ~0x90;  // enable dynamic current limiting
+					data[0] &= ~0x80;  // enable dynamic current limiting
 					eDebug("[SEC] set dynamic current limiting");
 				}
 				if(::write(fd, data, 1) != 1)
