@@ -290,7 +290,7 @@ class SecConfigure:
 						sec.setToneMode(switchParam.OFF)
 						
 					if  currentConfigSelectionElement(currSat.usals) == "no":
-						sec.setRotorPosNum(currSat.rotorposition.value)
+						sec.setRotorPosNum(currSat.rotorposition.value[0])
 					else:
 						sec.setRotorPosNum(0) #USALS
 
