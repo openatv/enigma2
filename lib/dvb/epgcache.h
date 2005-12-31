@@ -19,6 +19,7 @@
 #include <lib/base/thread.h>
 #include <lib/base/message.h>
 #include <lib/service/event.h>
+#include <lib/python/python.h>
 
 #define CLEAN_INTERVAL 60000    //  1 min
 #define UPDATE_INTERVAL 3600000  // 60 min
@@ -255,6 +256,7 @@ public:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &);
 	RESULT getNextTimeEntry(Event *&);
 #endif
+	PyObject *lookupEvent(PyObject *list, PyObject *convertFunc=NULL);
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
 	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
