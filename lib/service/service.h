@@ -15,10 +15,15 @@ DECLARE_REF(eServiceCenter);
 private:
 	std::map<int,iServiceHandlerPtr> handler;
 	static eServiceCenter *instance;
+#ifdef SWIG
+	eServiceCenter();
+	~eServiceCenter();
+#endif
 public:
+#ifndef SWIG
 	eServiceCenter();
 	virtual ~eServiceCenter();
-
+#endif
 		// iServiceHandler
 	RESULT play(const eServiceReference &, iPlayableServicePtr &ptr);
 	RESULT record(const eServiceReference &, iRecordableServicePtr &ptr);

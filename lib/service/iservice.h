@@ -191,12 +191,16 @@ typedef long long pts_t;
 	   
 class iStaticServiceInformation: public iObject
 {
+#ifdef SWIG
+	iStaticServiceInformation();
+	~iStaticServiceInformation();
+#endif
 public:
 	virtual SWIG_VOID(RESULT) getName(const eServiceReference &ref, std::string &SWIG_OUTPUT)=0;
 	
 		// doesn't need to be implemented, should return -1 then.
 	virtual int getLength(const eServiceReference &ref);
-	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=0);
+	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=-1);
 		// returns true when not implemented
 	virtual bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 
@@ -210,6 +214,10 @@ TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 
 class iServiceInformation: public iObject
 {
+#ifdef SWIG
+	iServiceInformation();
+	~iServiceInformation();
+#endif
 public:
 	virtual SWIG_VOID(RESULT) getName(std::string &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) getEvent(ePtr<eServiceEvent> &SWIG_OUTPUT, int nownext);
@@ -252,6 +260,10 @@ TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
 
 class iFrontendStatusInformation: public iObject
 {
+#ifdef SWIG
+	iFrontendStatusInformation();
+	~iFrontendStatusInformation();
+#endif
 public:
 	enum {
 		bitErrorRate,
@@ -265,6 +277,10 @@ TEMPLATE_TYPEDEF(ePtr<iFrontendStatusInformation>, iFrontendStatusInformationPtr
 
 class iPauseableService: public iObject
 {
+#ifdef SWIG
+	iPausableService();
+	~iPausableService();
+#endif
 public:
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
@@ -278,6 +294,10 @@ TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);
 
 class iSeekableService: public iObject
 {
+#ifdef SWIG
+	iSeekableService();
+	~iSeekableService();
+#endif
 public:
 	virtual RESULT getLength(pts_t &SWIG_OUTPUT)=0;
 	virtual RESULT seekTo(pts_t to)=0;
@@ -293,6 +313,12 @@ TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
 struct iAudioTrackInfo
 {
+#ifdef SWIG
+private:
+	iAudioTrackInfo();
+	~iAudioTrackInfo();
+public:
+#endif
 #ifndef SWIG
 	std::string m_description;
 	std::string m_language; /* iso639 */
@@ -305,6 +331,10 @@ SWIG_ALLOW_OUTPUT_SIMPLE(iAudioTrackInfo);
 
 class iAudioTrackSelection: public iObject
 {
+#ifdef SWIG
+	iAudioTrackSelection();
+	~iAudioTrackSelection();
+#endif
 public:
 	virtual int getNumberOfTracks()=0;
 	virtual RESULT selectTrack(unsigned int i)=0;
@@ -315,6 +345,10 @@ TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
 class iSubserviceList: public iObject
 {
+#ifdef SWIG
+	iSubserviceList();
+	~iSubserviceList();
+#endif
 public:
 	virtual int getNumberOfSubservices()=0;
 	virtual SWIG_VOID(RESULT) getSubservice(eServiceReference &SWIG_OUTPUT, unsigned int n)=0;
@@ -324,6 +358,10 @@ TEMPLATE_TYPEDEF(ePtr<iSubserviceList>, iSubserviceListPtr);
 
 class iTimeshiftService: public iObject
 {
+#ifdef SWIG
+	iTimeshiftService();
+	~iTimeshiftService();
+#endif
 public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift()=0;
@@ -333,6 +371,10 @@ TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
 class iPlayableService: public iObject
 {
+#ifdef SWIG
+	iPlayableService();
+	~iPlaybleService();
+#endif
 	friend class iServiceHandler;
 public:
 	enum
@@ -361,6 +403,10 @@ TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 
 class iRecordableService: public iObject
 {
+#ifdef SWIG
+	iRecordableService();
+	~iRecordableService();
+#endif
 public:
 	virtual RESULT prepare(const char *filename)=0;
 	virtual RESULT start()=0;
@@ -373,6 +419,10 @@ TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
 class iMutableServiceList: public iObject
 {
+#ifdef SWIG
+	iMutableServiceList();
+	~iMutableServiceList();
+#endif
 public:
 		/* flush changes */
 	virtual RESULT flushChanges()=0;
@@ -389,6 +439,10 @@ TEMPLATE_TYPEDEF(ePtr<iMutableServiceList>, iMutableServiceListPtr);
 
 class iListableService: public iObject
 {
+#ifdef SWIG
+	iListableService();
+	~iListableService();
+#endif
 public:
 		/* legacy interface: get a list */
 	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
@@ -408,6 +462,7 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
 
+#ifndef SWIG
 	/* a helper class which can be used as argument to stl's sort(). */
 class iListableServiceCompare
 {
@@ -419,9 +474,14 @@ public:
 		return m_list->compareLessEqual(a, b);
 	}
 };
+#endif
 
 class iServiceOfflineOperations: public iObject
 {
+#ifdef SWIG
+	iServiceOfflineOperations();
+	~iServiceOfflineOperations();
+#endif
 public:
 		/* to delete a service, forever. */
 	virtual RESULT deleteFromDisk(int simulate=1)=0;
@@ -436,6 +496,10 @@ TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
 
 class iServiceHandler: public iObject
 {
+#ifdef SWIG
+	iServiceHandler();
+	~iServiceHandler();
+#endif
 public:
 	virtual SWIG_VOID(RESULT) play(const eServiceReference &, ePtr<iPlayableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) record(const eServiceReference &, ePtr<iRecordableService> &SWIG_OUTPUT)=0;

@@ -46,6 +46,9 @@ class fontRenderClass
 	FTC_FaceID getFaceID(const std::string &face);
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit);
 	static fontRenderClass *instance;
+#else
+	fontRenderClass();
+	~fontRenderClass();
 #endif
 public:
 	float getLineHeight(const gFont& font);
@@ -54,9 +57,9 @@ public:
 	std::string AddFont(const std::string &filename, const std::string &name, int scale);
 	FT_Error FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface);
 	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth=-1);
-#endif
 	fontRenderClass();
 	~fontRenderClass();
+#endif
 };
 
 #ifndef SWIG

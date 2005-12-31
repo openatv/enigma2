@@ -109,17 +109,21 @@ public:
 		return secSequence.size();
 	}
 };
+#endif
 
 class eDVBSatelliteDiseqcParameters
 {
+#ifdef SWIG
+	eDVBSatelliteDiseqcParameters();
+	~eDVBSatelliteDiseqcParameters();
+#endif
 public:
 	enum { AA=0, AB=1, BA=2, BB=3, SENDNO=4 /* and 0xF0 .. 0xFF*/  };	// DiSEqC Parameter
-	__u8 m_committed_cmd;
-
 	enum t_diseqc_mode { NONE=0, V1_0=1, V1_1=2, V1_2=3, SMATV=4 };	// DiSEqC Mode
-	t_diseqc_mode m_diseqc_mode;
-
 	enum t_toneburst_param { NO=0, A=1, B=2 };
+#ifndef SWIG
+	__u8 m_committed_cmd;
+	t_diseqc_mode m_diseqc_mode;
 	t_toneburst_param m_toneburst_param;
 
 	__u8 m_repeats;	// for cascaded switches
@@ -135,23 +139,34 @@ public:
 			4) uncommitted, committed, toneburst
 			5) toneburst, uncommitted, committed */
 	__u8 m_uncommitted_cmd;	// state of the 4 uncommitted switches..
+#endif
 };
 
 class eDVBSatelliteSwitchParameters
 {
+#ifdef SWIG
+	eDVBSatelliteSwitchParameters();
+	~eDVBSatelliteSwitchParameters();
+#endif
 public:
 	enum t_22khz_signal {	HILO=0, ON=1, OFF=2	}; // 22 Khz
 	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3 }; // 14/18 V
+#ifndef SWIG
 	t_voltage_mode m_voltage_mode;
 	t_22khz_signal m_22khz_signal;
 	__u8 m_rotorPosNum; // 0 is disable.. then use gotoxx
+#endif
 };
 
 class eDVBSatelliteRotorParameters
 {
+#ifdef SWIG
+	eDVBSatelliteRotorParameters();
+	~eDVBSatelliteRotorParameters();
+#endif
 public:
 	enum { NORTH, SOUTH, EAST, WEST };
-
+#ifndef SWIG
 	eDVBSatelliteRotorParameters() { setDefaultOptions(); }
 
 	struct eDVBSatelliteRotorInputpowerParameters
@@ -179,12 +194,18 @@ public:
 		m_gotoxx_parameters.m_longitude = 0.0;
 		m_gotoxx_parameters.m_latitude = 0.0;
 	}
+#endif
 };
 
 class eDVBSatelliteLNBParameters
 {
+#ifdef SWIG
+	eDVBSatelliteLNBParameters();
+	~eDVBSatelliteLNBParameters();
+#endif
 public:
 	enum t_12V_relais_state { OFF=0, ON };
+#ifndef SWIG
 	t_12V_relais_state m_12V_relais_state;	// 12V relais output on/off
 
 	__u8 tuner_mask; // useable by tuner ( 1 | 2 | 4...)
@@ -198,8 +219,8 @@ public:
 	std::map<int, eDVBSatelliteSwitchParameters> m_satellites;
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
-};
 #endif
+};
 
 class eDVBRegisteredFrontend;
 
@@ -213,9 +234,13 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
 	bool m_rotorMoving;
 #endif
+#ifdef SWIG
+	eDVBSatelliteEquipmentControl();
+	~eDVBSatelliteEquipmentControl();
+#endif
 public:
-	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
 #ifndef SWIG
+	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id);
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id);
