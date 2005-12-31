@@ -254,8 +254,10 @@ class SecConfigure:
 						sec.setCommandOrder(currCO)
 						
 				if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
-					sec.setLatitude(float(str(currLnb.latitude.value[0]) + "." + str(currLnb.latitude.value[1])))
-					sec.setLongitude(float(str(currLnb.longitude.value[0]) + "." + str(currLnb.longitude.value[1])))
+					latitude = float(str(currLnb.latitude.value[0]) + "." + str(currLnb.latitude.value[1]))
+					sec.setLatitude(latitude)
+					longitude = float(str(currLnb.longitude.value[0]) + "." + str(currLnb.longitude.value[1]))
+					sec.setLongitude(longitude)
 					if currentConfigSelectionElement(currLnb.latitudeOrientation) == "north":
 						sec.setLaDirection(rotorParam.NORTH)
 					else:
@@ -622,7 +624,7 @@ def InitNimManager(nimmgr):
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
 			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))));
 			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east",_("East")), ("west", _("West"))))
+			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))))
 			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
 			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))))
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
@@ -676,9 +678,9 @@ def InitNimManager(nimmgr):
 					disCmd.append("Input " + str(y))
 				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, disCmd)
 				nim.advanced.lnb[x].diseqcRepeats = configElement(cname + "advanced.lnb" + str(x) + ".diseqcRepeats", configSelection, 0, (("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))))
-				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (_("East"), _("West")))
-				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
+				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]))
+				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))))
+				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]))
 				nim.advanced.lnb[x].latitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))))
 				nim.advanced.lnb[x].powerMeasurement = configElement(cname + "advanced.lnb" + str(x) + ".powerMeasurement", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))))
 				nim.advanced.lnb[x].powerThreshold = configElement(cname + "advanced.lnb" + str(x) + ".powerThreshold", configSequence, [50], configsequencearg.get("INTEGER", (0, 100)))
