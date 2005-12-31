@@ -75,7 +75,7 @@ class SecConfigure:
 				self.satList.append(int(x[1]))
 
 	def linkNIMs(self, sec, nim1, nim2):
-		print "link", nim1, "to", nim2
+		print "link tuner", nim1, "to tuner", nim2
 		sec.setTunerLinked(nim1, nim2)
 
 	def getSatList(self):
@@ -83,7 +83,8 @@ class SecConfigure:
 
 	def update(self):
 		sec = eDVBSatelliteEquipmentControl.getInstance()
-		sec.clear()
+		sec.clear() ## this do unlinking NIMs too !!
+		print "sec config cleared"
 		self.satList = []
 
 		self.linked = { }
@@ -135,6 +136,7 @@ class SecConfigure:
 					pass
 				else: #advanced config
 					self.updateAdvanced(sec, x)
+		print "sec config completed"
 
 	def updateAdvanced(self, sec, slotid):
 		lnbSat = {}
@@ -536,19 +538,20 @@ class NimManager:
 					list.append(x)
 		return list
 
-	#callbacks for c++ config
-	def nimConfigModeChanged(self, slotid, mode):
-		if (mode != 2): # not linked
-			print "Unlinking slot " + str(slotid)
-			# TODO call c++ to unlink nim in slot slotid
-		if (mode == 2): # linked
-			pass
-			#FIXME!!!
-			#if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
-			#	print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
-			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
-	def nimLinkedToChanged(self, slotid, val):
-		print "Linking slot " + str(slotid) + " to " + str(val)
+#	#callbacks for c++ config
+#	def nimConfigModeChanged(self, slotid, mode):
+#		if (mode != 2): # not linked
+#			print "Unlinking slot " + str(slotid)
+#			# TODO call c++ to unlink nim in slot slotid
+#		if (mode == 2): # linked
+#			pass
+#			#FIXME!!!
+#			#if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
+#			#	print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
+#			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
+
+#	def nimLinkedToChanged(self, slotid, val):
+#		print "Linking slot " + str(slotid) + " to " + str(val)
 
 	def nimDiseqcModeChanged(self, slotid, mode):
 		#print "nimDiseqcModeChanged set to " + str(mode)
@@ -572,10 +575,10 @@ def InitNimManager(nimmgr):
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
 		
-	def nimConfigModeChanged(slotid, configElement):
-		nimmgr.nimConfigModeChanged(slotid, configElement.value)
-	def nimLinkedToChanged(slotid, configElement):
-		nimmgr.nimLinkedToChanged(slotid, configElement.value)
+#	def nimConfigModeChanged(slotid, configElement):
+#		nimmgr.nimConfigModeChanged(slotid, configElement.value)
+#	def nimLinkedToChanged(slotid, configElement):
+#		nimmgr.nimLinkedToChanged(slotid, configElement.value)
 	def nimDiseqcModeChanged(slotid, configElement):
 		nimmgr.nimDiseqcModeChanged(slotid, configElement.value)
 		
@@ -629,13 +632,13 @@ def InitNimManager(nimmgr):
 			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
 			
 			#perhaps the instance of the slot is more useful?
-			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
+#			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
 			nim.diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
 			nim.diseqcA.addNotifier(boundFunction(nimPortAChanged,int(x)))
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
-			nim.linkedTo.addNotifier(boundFunction(nimLinkedToChanged,x))
+#			nim.linkedTo.addNotifier(boundFunction(nimLinkedToChanged,x))
 			
 			# advanced config:
 			nim.advanced = ConfigSubsection()
