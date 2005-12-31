@@ -8,6 +8,7 @@
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
 #include <lib/base/eerror.h>
+#include <Python.h>
 
 int eventData::CacheSize=0;
 descriptorMap eventData::descriptors;
@@ -1004,7 +1005,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 }
 
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result )
-// if t == 0 we search the current event...
+// if t == -1 we search the current event...
 {
 	singleLock s(cache_lock);
 	uniqueEPGKey key(service);
@@ -1013,7 +1014,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	eventCache::iterator It = eventDB.find( key );
 	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
 	{
-		if (!t)
+		if (t==-1)
 			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
 		timeMap::iterator i = It->second.second.lower_bound(t);  // find > or equal
 		if ( i != It->second.second.end() )
@@ -1206,4 +1207,263 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 		return result->parseFrom(&ev, currentQueryTsidOnid);
 	}
 	return -1;
+}
+
+void fillTuple(PyObject *tuple, char *argstring, int argcount, PyObject *service, ePtr<eServiceEvent> &ptr, PyObject *nowTime, PyObject *service_name )
+{
+	PyObject *tmp=NULL;
+	int pos=0;
+	while(pos < argcount)
+	{
+		bool inc_refcount=false;
+		switch(argstring[pos])
+		{
+			case 'I': // Event Id
+				tmp = ptr ? PyLong_FromLong(ptr->getEventId()) : NULL;
+				break;
+			case 'B': // Event Begin Time
+				tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : NULL;
+				break;
+			case 'D': // Event Duration
+				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : NULL;
+				break;
+			case 'T': // Event Title
+				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : NULL;
+				break;
+			case 'S': // Event Short Description
+				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : NULL;
+				break;
+			case 'E': // Event Extended Description
+				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : NULL;
+				break;
+			case 'C': // Current Time
+				tmp = nowTime;
+				inc_refcount = true;
+				break;
+			case 'R': // service reference string
+				tmp = service;
+				inc_refcount = true;
+				break;
+			case 'N': // service name
+				tmp = service_name;
+				inc_refcount = true;
+		}
+		if (!tmp)
+		{
+			tmp = Py_None;
+			inc_refcount = true;
+		}
+		if (inc_refcount)
+			Py_INCREF(tmp);
+		PyTuple_SET_ITEM(tuple, pos++, tmp);
+	}
+}
+
+PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argstring, int argcount, PyObject *service, PyObject *nowTime, PyObject *service_name, PyObject *convertFunc, PyObject *convertFuncArgs)
+{
+	if (convertFunc)
+	{
+		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
+		PyObject *result = PyEval_CallObject(convertFunc, convertFuncArgs);
+		if (result == NULL)
+		{
+			if (nowTime)
+				Py_DECREF(nowTime);
+			Py_DECREF(convertFuncArgs);
+			return result;
+		}
+		PyList_Append(dest_list, result);
+	}
+	else
+	{
+		PyObject *tuple = PyTuple_New(argcount);
+		fillTuple(tuple, argstring, argcount, service, ptr, nowTime, service_name);
+		PyList_Append(dest_list, tuple);
+	}
+	return 0;
+}
+
+// here we get a list with tuples
+// first tuple entry is the servicereference
+// the second is the type of query (0 = time, 1 = event_id)
+// the third
+//		when type is eventid it is the event_id
+//		when type is time then it is the start_time ( 0 for now_time )
+// the fourth is the end_time .. ( optional )
+
+/* argv is a python string
+   I = Event Id
+   B = Event Begin Time
+   D = Event Duration
+   T = Event Title
+   S = Event Short Description
+   E = Event Extended Description
+   C = Current Time
+   R = Service Reference
+   N = Service Name
+*/
+
+PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
+{
+	PyObject *convertFuncArgs=NULL;
+	int argcount=0;
+	char *argstring=NULL;
+	if (!PyList_Check(list))
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+		eDebug("no list");
+		return NULL;
+	}
+	int listIt=0;
+	int listSize=PyList_Size(list);
+	if (!listSize)
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"not params given");
+		eDebug("not params given");
+		return NULL;
+	}
+	else 
+	{
+		PyObject *argv=PyList_GET_ITEM(list, 0); // borrowed reference!
+		if (PyString_Check(argv))
+		{
+			argstring = PyString_AS_STRING(argv);
+			++listIt;
+		}
+		else
+			argstring = "I"; // just event id as default
+		argcount = strlen(argstring);
+//		eDebug("have %d args('%s')", argcount, argstring);
+	}
+	if (convertFunc)
+	{
+		if (!PyCallable_Check(convertFunc))
+		{
+			PyErr_SetString(PyExc_StandardError,
+				"convertFunc must be callable");
+			eDebug("convertFunc is not callable");
+			return NULL;
+		}
+		convertFuncArgs = PyTuple_New(argcount);
+	}
+
+	PyObject *nowTime = strchr(argstring, 'C') ?
+		PyLong_FromLong(time(0)+eDVBLocalTimeHandler::getInstance()->difference()) :
+		NULL;
+
+	bool must_get_service_name = strchr(argstring, 'N') ? true : false;
+
+	// create dest list
+	PyObject *dest_list=PyList_New(0);
+	while(listSize > listIt)
+	{
+		PyObject *item=PyList_GET_ITEM(list, listIt++); // borrowed reference!
+		if (PyTuple_Check(item))
+		{
+			int type=0;
+			long event_id=-1;
+			time_t stime=-1;
+			int minutes=0;
+			int tupleSize=PyTuple_Size(item);
+			int tupleIt=0;
+			PyObject *service=NULL;
+			PyObject *service_name=NULL;
+			eServiceReference ref;
+			char *refstr=NULL;
+			while(tupleSize > tupleIt)
+			{
+				PyObject *entry=PyTuple_GET_ITEM(item, tupleIt); // borrowed reference!
+				switch(tupleIt++)
+				{
+					case 0:
+					{
+						refstr = PyString_AS_STRING(entry);
+						ref = eServiceReference(refstr);
+						if (must_get_service_name)
+						{
+							service = entry;
+							ePtr<iStaticServiceInformation> sptr;
+							eServiceCenterPtr ptr;
+							eServiceCenter::getPrivInstance(ptr);
+							if (ptr)
+							{
+								ptr->info(ref, sptr);
+								if (sptr)
+								{
+									std::string name;
+									sptr->getName(ref, name);
+									if (name.length())
+										service_name = PyString_FromString(name.c_str());
+								}
+							}
+							if (!service_name)
+								service_name = PyString_FromString("<n/a>");
+						}
+						break;
+					}
+					case 1:
+						type=PyInt_AsLong(entry);
+						if (type < 0 || type > 1)
+						{
+							eDebug("unknown type %d", type);
+							goto nextListEntry;
+						}
+						break;
+					case 2:
+						event_id=stime=PyInt_AsLong(entry);
+						break;
+					case 3:
+						minutes=PyInt_AsLong(entry);
+						break;
+					default:
+						eDebug("unneeded extra argument");
+						break;
+				}
+			}
+			if (refstr)
+			{
+				if (minutes)
+				{
+					Lock();
+					if (!startTimeQuery(ref, stime, minutes))
+					{
+						ePtr<eServiceEvent> ptr;
+						while (!getNextTimeEntry(ptr))
+						{
+							PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
+							if (ret)
+								return ret;
+						}
+					}
+					else
+						eDebug("startTimeQuery failed %s", refstr);
+					Unlock();
+				}
+				else
+				{
+					ePtr<eServiceEvent> ptr;
+					if (stime)
+					{
+						if (type == 0)
+							lookupEventTime(ref, stime, ptr);
+						else // type == 1
+							lookupEventId(ref, event_id, ptr);
+					}
+					PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
+					if (ret)
+						return ret;
+				}
+			}
+nextListEntry:
+			if (service_name)
+				Py_DECREF(service_name);
+		}
+	}
+	if (convertFuncArgs)
+		Py_DECREF(convertFuncArgs);
+	if (nowTime)
+		Py_DECREF(nowTime);
+	return dest_list;
 }
