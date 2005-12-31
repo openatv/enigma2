@@ -163,6 +163,7 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 		(stime_bcd >> 8)&0xFF,
 		stime_bcd & 0xFF
 	);
+	m_event_id = evt->getEventId();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
 	std::string country="de_DE";  // TODO use local data here
 	for (int i=0; i < MAX_LANG; i++)
