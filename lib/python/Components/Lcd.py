@@ -21,8 +21,7 @@ class LCD:
 	def setInverted(self, value):
 		if value:
 			value = 255
-		eDBoxLCD.getInstance().setInverted(1 - value)
-		pass
+		eDBoxLCD.getInstance().setInverted(value)
 
 def InitLcd():
 	config.lcd = ConfigSubsection();
