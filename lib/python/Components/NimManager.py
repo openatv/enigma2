@@ -127,9 +127,9 @@ class SecConfigure:
 						else:
 							loValue = rotorParam.WEST
 						self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
-							longitude = float(str(nim.longitude.value[0]) + "." + str(nim.longitude.value[1])),
+							longitude = configsequencearg.getFloat(nim.longitude),
 							loDirection = loValue,
-							latitude = float(str(nim.latitude.value[0]) + "." + str(nim.latitude.value[1])),
+							latitude = configsequencearg.getFloat(nim.latitude),
 							laDirection = laValue)
 #					pass
 				elif currentConfigSelectionElement(nim.configMode) == "nothing":
@@ -254,9 +254,9 @@ class SecConfigure:
 						sec.setCommandOrder(currCO)
 						
 				if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
-					latitude = float(str(currLnb.latitude.value[0]) + "." + str(currLnb.latitude.value[1]))
+					latitude = configsequencearg.getFloat(currLnb.latitude)
 					sec.setLatitude(latitude)
-					longitude = float(str(currLnb.longitude.value[0]) + "." + str(currLnb.longitude.value[1]))
+					longitude = configsequencearg.getFloat(currLnb.longitude)
 					sec.setLongitude(longitude)
 					if currentConfigSelectionElement(currLnb.latitudeOrientation) == "north":
 						sec.setLaDirection(rotorParam.NORTH)
