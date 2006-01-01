@@ -487,7 +487,6 @@ class configElement:
 			return str(data.strip())
 
 		elif control == configSequence:
-			print data
 			try:
 				value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
 			except:	
