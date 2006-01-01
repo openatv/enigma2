@@ -466,6 +466,8 @@ class configElement:
 		if control == ConfigSlider:
 			return str(data)
 		elif control == configSelection:
+			if len(self.vals) < data + 1:
+				return "0"
 			if isinstance(self.vals[data], str):
 				return str(data)
 			else:
