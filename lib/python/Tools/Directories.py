@@ -39,9 +39,7 @@ fallbackPaths = {
 	}
 
 def resolveFilename(scope, base = ""):
-	print "getting scope", scope, "with base", base
 	path = defaultPaths[scope]
-	print "path:", path
 
 	if path[1] == PATH_CREATE:
 		if (not pathExists(defaultPaths[scope][0])):
