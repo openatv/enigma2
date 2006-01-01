@@ -1267,9 +1267,12 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 		PyObject *result = PyEval_CallObject(convertFunc, convertFuncArgs);
 		if (result == NULL)
 		{
+			if (service_name)
+				Py_DECREF(service_name);
 			if (nowTime)
 				Py_DECREF(nowTime);
 			Py_DECREF(convertFuncArgs);
+			Py_DECREF(dest_list);
 			return result;
 		}
 		PyList_Append(dest_list, result);
