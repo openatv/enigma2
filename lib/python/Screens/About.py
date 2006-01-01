@@ -4,12 +4,13 @@ from Components.Label import Label
 from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
+from Components.About import about
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["text"] = Label("Enigma v2.0b")
+		self["text"] = Label("Enigma v" + about.getVersionString())
 
 		self["tuner"] = Label(_("Detected NIMs:"))
 		
