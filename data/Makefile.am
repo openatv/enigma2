@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = gnu
 
-SUBDIRS = countries fonts
+SUBDIRS = countries fonts defaults
 
 installdir = $(DATADIR)/enigma2
 

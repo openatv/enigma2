@@ -12,7 +12,7 @@ SCOPE_HDD = 8
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
-
+PATH_FALLBACK = 2
 defaultPaths = {
 		SCOPE_TRANSPONDERDATA: ("/etc/", PATH_DONTCREATE),
 		SCOPE_SYSETC: ("/etc/", PATH_DONTCREATE),
@@ -27,23 +27,63 @@ defaultPaths = {
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
 	}
+	
+FILE_COPY = 0 # copy files from fallback dir to the basedir
+FILE_MOVE = 1 # move files
+PATH_COPY = 2 # copy the complete fallback dir to the basedir
+PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in paths)
+fallbackPaths = {
+		SCOPE_CONFIG: [("/home/root/", FILE_MOVE),
+					   ("/usr/share/enigma2/defaults/", FILE_COPY)],
+		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)]
+	}
 
 def resolveFilename(scope, base = ""):
-	# in future, we would check for file existence here,
-	# so we can provide default/fallbacks.
-	
+	print "getting scope", scope, "with base", base
 	path = defaultPaths[scope]
-	if path[1] == PATH_CREATE:
-		if (not pathExists(scope)):
-			os.mkdir(path[0])
+	print "path:", path
+	
+	if not fileExists(path[0] + base):
+		#try:
+		if fallbackPaths.has_key(scope):
+			print 1
+			for x in fallbackPaths[scope]:
+				print x
+				if x[1] == FILE_COPY:
+					if fileExists(x[0] + base):
+						os.system("cp " + x[0] + base + " " + path[0] + base)
+				elif x[1] == FILE_MOVE:
+					if fileExists(x[0] + base):
+						os.system("mv " + x[0] + base + " " + path[0] + base)
+				elif x[1] == PATH_COPY:
+					if pathExists(x[0]):
+						if not pathExists(defaultPaths[scope][0]):
+							os.mkdir(path[0])
+						os.system("cp -a " + x[0] + "* " + path[0])
+				elif x[1] == PATH_MOVE:
+					if pathExists(x[0]):
+						os.system("mv " + x[0] + " " + path[0])
+
+		if path[1] == PATH_CREATE:
+			if (not pathExists(defaultPaths[scope][0])):
+				os.mkdir(path[0])
 	
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path[0] + base
 
 	# this is only the BASE - an extension must be added later.
 	
-def pathExists(scope):
-	return os.path.exists(defaultPaths[scope][0])
+def pathExists(path):
+	return os.path.exists(path)
+
+def fileExists(f):
+	try:
+		file = open(f)
+	except IOError:
+		exists = 0
+	else:
+		exists = 1
+	return exists
 
 def getRecordingFilename(basename):
 	
@@ -66,9 +106,8 @@ def getRecordingFilename(basename):
 			i += 1
 		except IOError:
 			return path
-		
-# this fixes paths or files when changed in a new enigma2 version
-def fixOldDirectoryEntries():
-	if (os.path.exists("/hdd/movies")):
-		if (not os.path.exists(resolveFilename(SCOPE_HDD))):
-			os.system("mv /hdd/movies " + resolveFilename(SCOPE_HDD))
+
+# this is clearly a hack:
+def InitFallbackFiles():
+	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.tv")
+	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
