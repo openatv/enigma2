@@ -547,7 +547,8 @@ class configElement:
 	def reload(self):
 		self.loadData()
 	def save(self):
-		configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
+		if self.defaultValue != self.value:
+			configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
 
 class configElement_nonSave(configElement):
 	def __init__(self, configPath, control, defaultValue, vals):
