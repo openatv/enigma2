@@ -181,6 +181,9 @@ class configSequenceArg:
 		# configsequencearg.get("FLOAT", [(min,max),(min1,max1)]) => x.y with min <= x <= max and min1 <= y <= max1
 		if (type == "FLOAT"):
 			return (("."), args, "")
+		
+	def getFloat(self, element):
+		return float(("%d.%0" + str(len(str(element.vals[1][1][1]))) + "d") % (element.value[0], element.value[1]))
 
 configsequencearg = configSequenceArg()
 		
