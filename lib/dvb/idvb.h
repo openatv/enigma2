@@ -343,7 +343,7 @@ public:
 	};
 	virtual RESULT setTone(int tone)=0;
 	enum {
-		voltageOff, voltage13, voltage18
+		voltageOff, voltage13, voltage18, voltage13_5, voltage18_5
 	};
 	virtual RESULT setVoltage(int voltage)=0;
 	virtual RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc)=0;

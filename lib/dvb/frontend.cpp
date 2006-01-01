@@ -614,7 +614,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
 			{
-				int idleInputpower = m_idleInputpower[m_curVoltage == iDVBFrontend::voltage13 ? 0 : 1];
+				int idleInputpower = m_idleInputpower[ (m_curVoltage&1) ? 0 : 1];
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
 				const char *txt = cmd.direction ? "running" : "stopped";
 				eDebug("[SEC] waiting for rotor %s %d, idle %d, delta %d",
@@ -965,9 +965,9 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 #if HAVE_DVB_API_VERSION < 3
 	secVoltage vlt;
 #else
+	bool increased=false;
 	fe_sec_voltage_t vlt;
 #endif
-
 	m_curVoltage=voltage;
 	switch (voltage)
 	{
@@ -976,9 +976,23 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 			m_data[i]=-1;
 		vlt = SEC_VOLTAGE_OFF;
 		break;
+	case voltage13_5:
+#if HAVE_DVB_API_VERSION < 3
+		vlt = SEC_VOLTAGE_13_5;
+		break;
+#else
+		increased = true;
+#endif
 	case voltage13:
 		vlt = SEC_VOLTAGE_13;
 		break;
+	case voltage18_5:
+#if HAVE_DVB_API_VERSION < 3
+		vlt = SEC_VOLTAGE_18_5;
+		break;
+#else
+		increased = true;
+#endif
 	case voltage18:
 		vlt = SEC_VOLTAGE_18;
 		break;
@@ -988,6 +1002,8 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 #if HAVE_DVB_API_VERSION < 3
 	return ::ioctl(m_secfd, SEC_SET_VOLTAGE, vlt);
 #else
+	if (::ioctl(m_fd, FE_ENABLE_HIGH_LNB_VOLTAGE, increased) < 0)
+		perror("FE_ENABLE_HIGH_LNB_VOLTAGE");
 	return ::ioctl(m_fd, FE_SET_VOLTAGE, vlt);
 #endif
 }
