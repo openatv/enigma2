@@ -332,6 +332,8 @@ int eDVBFrontend::closeFrontend()
 		}
 	}
 	eDebug("close frontend %d", m_fe);
+	setTone(iDVBFrontend::toneOff);
+	setVoltage(iDVBFrontend::voltageOff);
 	if (m_fd >= 0)
 	{
 		::close(m_fd);
@@ -347,8 +349,6 @@ int eDVBFrontend::closeFrontend()
 	delete m_sn;
 	m_sn=0;
 
-	setTone(iDVBFrontend::toneOff);
-	setVoltage(iDVBFrontend::voltageOff);
 	return 0;
 }
 
