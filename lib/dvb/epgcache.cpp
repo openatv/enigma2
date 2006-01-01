@@ -1369,38 +1369,19 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 			int tupleSize=PyTuple_Size(item);
 			int tupleIt=0;
 			PyObject *service=NULL;
-			PyObject *service_name=NULL;
-			eServiceReference ref;
-			char *refstr=NULL;
-			while(tupleSize > tupleIt)
+			while(tupleSize > tupleIt)  // parse query args
 			{
 				PyObject *entry=PyTuple_GET_ITEM(item, tupleIt); // borrowed reference!
 				switch(tupleIt++)
 				{
 					case 0:
 					{
-						refstr = PyString_AS_STRING(entry);
-						ref = eServiceReference(refstr);
-						if (must_get_service_name)
+						if (!PyString_Check(entry))
 						{
-							service = entry;
-							ePtr<iStaticServiceInformation> sptr;
-							eServiceCenterPtr ptr;
-							eServiceCenter::getPrivInstance(ptr);
-							if (ptr)
-							{
-								ptr->info(ref, sptr);
-								if (sptr)
-								{
-									std::string name;
-									sptr->getName(ref, name);
-									if (name.length())
-										service_name = PyString_FromString(name.c_str());
-								}
-							}
-							if (!service_name)
-								service_name = PyString_FromString("<n/a>");
+							eDebug("tuple entry 0 is no a string");
+							continue;
 						}
+						service = entry;
 						break;
 					}
 					case 1:
@@ -1408,7 +1389,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 						if (type < 0 || type > 1)
 						{
 							eDebug("unknown type %d", type);
-							goto nextListEntry;
+							continue;
 						}
 						break;
 					case 2:
@@ -1422,41 +1403,61 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 						break;
 				}
 			}
-			if (refstr)
+			eServiceReference ref(PyString_AS_STRING(service));
+			if (ref.type != eServiceReference::idDVB)
 			{
-				if (minutes)
+				eDebug("service reference for epg query is not valid");
+				continue;
+			}
+			PyObject *service_name=NULL;
+			if (must_get_service_name)
+			{
+				ePtr<iStaticServiceInformation> sptr;
+				eServiceCenterPtr service_center;
+				eServiceCenter::getPrivInstance(service_center);
+				if (service_center)
 				{
-					Lock();
-					if (!startTimeQuery(ref, stime, minutes))
+					service_center->info(ref, sptr);
+					if (sptr)
 					{
-						ePtr<eServiceEvent> ptr;
-						while (!getNextTimeEntry(ptr))
-						{
-							PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
-							if (ret)
-								return ret;
-						}
+						std::string name;
+						sptr->getName(ref, name);
+						if (name.length())
+							service_name = PyString_FromString(name.c_str());
 					}
-					else
-						eDebug("startTimeQuery failed %s", refstr);
-					Unlock();
 				}
-				else
+				if (!service_name)
+					service_name = PyString_FromString("<n/a>");
+			}
+			if (minutes)
+			{
+				Lock();
+				if (!startTimeQuery(ref, stime, minutes))
 				{
 					ePtr<eServiceEvent> ptr;
-					if (stime)
+					while (!getNextTimeEntry(ptr))
 					{
-						if (type == 0)
-							lookupEventTime(ref, stime, ptr);
-						else // type == 1
-							lookupEventId(ref, event_id, ptr);
+						PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
+						if (ret)
+							return ret;
 					}
-					PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
-					if (ret)
-						return ret;
 				}
+				Unlock();
 			}
-nextListEntry:
+			else
+			{
+				ePtr<eServiceEvent> ptr;
+				if (stime)
+				{
+					if (type == 0)
+						lookupEventTime(ref, stime, ptr);
+					else // type == 1
+						lookupEventId(ref, event_id, ptr);
+				}
+				PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
+				if (ret)
+					return ret;
+			}
 			if (service_name)
 				Py_DECREF(service_name);
 		}
@@ -1467,3 +1468,7 @@ nextListEntry:
 		Py_DECREF(nowTime);
 	return dest_list;
 }
+
+
+
+
