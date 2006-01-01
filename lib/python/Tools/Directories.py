@@ -42,31 +42,34 @@ def resolveFilename(scope, base = ""):
 	print "getting scope", scope, "with base", base
 	path = defaultPaths[scope]
 	print "path:", path
+
+	if path[1] == PATH_CREATE:
+		if (not pathExists(defaultPaths[scope][0])):
+			os.mkdir(path[0])
 	
 	if not fileExists(path[0] + base):
 		#try:
 		if fallbackPaths.has_key(scope):
-			print 1
 			for x in fallbackPaths[scope]:
-				print x
 				if x[1] == FILE_COPY:
 					if fileExists(x[0] + base):
 						os.system("cp " + x[0] + base + " " + path[0] + base)
+						break
 				elif x[1] == FILE_MOVE:
 					if fileExists(x[0] + base):
 						os.system("mv " + x[0] + base + " " + path[0] + base)
+						break
 				elif x[1] == PATH_COPY:
 					if pathExists(x[0]):
 						if not pathExists(defaultPaths[scope][0]):
 							os.mkdir(path[0])
 						os.system("cp -a " + x[0] + "* " + path[0])
+						break
 				elif x[1] == PATH_MOVE:
 					if pathExists(x[0]):
 						os.system("mv " + x[0] + " " + path[0])
+						break
 
-		if path[1] == PATH_CREATE:
-			if (not pathExists(defaultPaths[scope][0])):
-				os.mkdir(path[0])
 	
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path[0] + base
