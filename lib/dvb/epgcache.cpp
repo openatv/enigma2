@@ -1276,12 +1276,14 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 			return result;
 		}
 		PyList_Append(dest_list, result);
+		Py_DECREF(result);
 	}
 	else
 	{
 		PyObject *tuple = PyTuple_New(argcount);
 		fillTuple(tuple, argstring, argcount, service, ptr, nowTime, service_name);
 		PyList_Append(dest_list, tuple);
+		Py_DECREF(tuple);
 	}
 	return 0;
 }
