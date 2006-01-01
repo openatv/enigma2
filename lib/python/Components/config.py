@@ -526,13 +526,14 @@ class configElement:
 		#is this right? activate settings after load/cancel and use default	
 		self.change()
 
-	def __init__(self, configPath, control, defaultValue, vals):
+	def __init__(self, configPath, control, defaultValue, vals, saveDefaults = True):
 		self.configPath = configPath
 		self.defaultValue = defaultValue
 		self.controlType = control
 		self.vals = vals
 		self.notifierList = [ ]
 		self.enabled = True
+		self.saveDefaults = saveDefaults
 		self.loadData()		
 		
 	def getConfigPath(self):
@@ -547,7 +548,7 @@ class configElement:
 	def reload(self):
 		self.loadData()
 	def save(self):
-		if self.defaultValue != self.value:
+		if self.defaultValue != self.value or self.saveDefaults == True:
 			configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
 
 class configElement_nonSave(configElement):
