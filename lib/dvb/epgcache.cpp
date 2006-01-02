@@ -1264,7 +1264,7 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 	if (convertFunc)
 	{
 		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
-		PyObject *result = PyEval_CallObject(convertFunc, convertFuncArgs);
+		PyObject *result = PyObject_CallObject(convertFunc, convertFuncArgs);
 		if (result == NULL)
 		{
 			if (service_name)
