@@ -6,6 +6,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 import time
 import datetime
 
