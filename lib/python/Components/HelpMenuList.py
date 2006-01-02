@@ -37,8 +37,8 @@ class HelpMenuList(GUIComponent):
 				if not first:
 					buttonstring = "You can also press " + buttonstring + "."
 
-				entry.append( (0, 0, 200, 36, 0, 0, help) )
-				entry.append( (0, 40, 200, 20, 1, 0, buttonstring) )
+				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 36, 0, 0, help) )
+				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 40, 200, 20, 1, 0, buttonstring) )
 				
 				l.append(entry)
 		

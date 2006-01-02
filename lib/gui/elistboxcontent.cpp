@@ -400,7 +400,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 {
 	ePtr<gFont> fnt = new gFont("Regular", 20);
 	ePtr<gFont> fnt2 = new gFont("Regular", 16);
-	painter.clip(eRect(offset, m_itemsize));
+	eRect itemrect(offset, m_itemsize);
+	painter.clip(itemrect);
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
 
@@ -557,135 +558,171 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		if (!items)
 		{
 			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
-			painter.clippop();
-			return;
+			goto error_out;
 		}
 		
 		if (!PyList_Check(items))
 		{
 			eDebug("eListboxPythonMultiContent: list entry %d is not a list", m_cursor);
-			painter.clippop();
-			return;
+			goto error_out;
 		}
 		
 		int size = PyList_Size(items);
 		for (int i = 1; i < size; ++i)
 		{
-			PyObject *item = PyList_GetItem(items, i); // borrowed reference!
+			PyObject *item = PyList_GET_ITEM(items, i); // borrowed reference!
 			
 			if (!item)
 			{
 				eDebug("eListboxPythonMultiContent: ?");
-				painter.clippop();
-				return;
+				goto error_out;
 			}
-			
 			
 			PyObject *px = 0, *py = 0, *pwidth = 0, *pheight = 0, *pfnt = 0, *pstring = 0, *pflags = 0;
 		
 			/*
 				we have a list of tuples:
 				
-				(x, y, width, height, fnt, flags, "bla" ),
-				
+				(0, x, y, width, height, fnt, flags, "bla" ),
+
+				or, for a progress:
+				(1, x, y, width, height, filled_percent )
+
 				or, for a pixmap:
 				
-				(x, y, width, height, pixmap )
+				(2, x, y, width, height, pixmap )
 				
 			 */
 			
 			if (!PyTuple_Check(item))
 			{
 				eDebug("eListboxPythonMultiContent did not receive a tuple.");
-				painter.clippop();
-				return;
+				goto error_out;
 			}
-			
+
 			int size = PyTuple_Size(item);
-			
-			if (size >= 5)
+
+			if (!size)
 			{
-				px = PyTuple_GetItem(item, 0);
-				py = PyTuple_GetItem(item, 1);
-				pwidth = PyTuple_GetItem(item, 2);
-				pheight = PyTuple_GetItem(item, 3);
-			
-				pfnt = PyTuple_GetItem(item, 4); /* could also be an pixmap */
-				if (size >= 7)
-				{
-					pflags = PyTuple_GetItem(item, 5);
-					pstring = PyTuple_GetItem(item, 6);
-				}
+				eDebug("eListboxPythonMultiContent receive empty tuple.");
+				goto error_out;
 			}
-			
-			ePtr<gPixmap> pixmap;
-			
-				/* decide what type */
-			int type = -1;
-			if (pfnt)
+
+			int type = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
+
+			if (size > 5)
 			{
-				if (PyNumber_Check(pfnt)) /* font index */
-					type = 0;
-				else if (!SwigFromPython(pixmap, pfnt))
-					type = 1;
+				px = PyTuple_GET_ITEM(item, 1);
+				py = PyTuple_GET_ITEM(item, 2);
+				pwidth = PyTuple_GET_ITEM(item, 3);
+				pheight = PyTuple_GET_ITEM(item, 4);
+				pfnt = PyTuple_GET_ITEM(item, 5); /* could also be an pixmap or an int (progress filled percent) */
+				if (size > 7)
+				{
+					pflags = PyTuple_GET_ITEM(item, 6);
+					pstring = PyTuple_GET_ITEM(item, 7);
+				}
 			}
 			
 			switch (type)
 			{
-			case 0: // text
+			case TYPE_TEXT: // text
 			{
 				if (!(px && py && pwidth && pheight && pfnt && pstring))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, fnt, flags, string[, ...])");
-					painter.clippop();
-					return;
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string[, ...])");
+					goto error_out;
 				}
-	
-				pstring = PyObject_Str(pstring);
-			
+				
 				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
-			
 				int x = PyInt_AsLong(px);
 				int y = PyInt_AsLong(py);
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
 				int flags = PyInt_AsLong(pflags);
-
 				int fnt = PyInt_AsLong(pfnt);
-
+				
 				if (m_font.find(fnt) == m_font.end())
 				{
 					eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
-					Py_XDECREF(pstring);
-					painter.clippop();
-					return;
+					goto error_out;
 				}
+				
 				eRect r = eRect(x, y, width, height);
 				r.moveBy(offset);
 				r &= itemrect;
-
+				
 				painter.setFont(m_font[fnt]);
-
+				
 				painter.clip(r);
 				painter.renderText(r, string, flags);
 				painter.clippop();
-
-				Py_XDECREF(pstring);
 				break;
 			}
-			case 1: // pixmap
+			case TYPE_PROGRESS: // Progress
 			{
 				if (!(px && py && pwidth && pheight && pfnt))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (x, y, width, height, pixmap))");
-					painter.clippop();
-					return;
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent))");
+					goto error_out;
 				}
 				int x = PyInt_AsLong(px);
 				int y = PyInt_AsLong(py);
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
-				
+				int filled = PyInt_AsLong(pfnt);
+
+				eRect r = eRect(x, y, width, height);
+				r.moveBy(offset);
+				r &= itemrect;
+
+				painter.clip(r);
+				int bwidth=2;  // borderwidth hardcoded yet
+
+				// border
+				eRect rc = eRect(x, y, width, bwidth);
+				rc.moveBy(offset);
+				painter.fill(rc);
+
+				rc = eRect(x, y+bwidth, bwidth, height-bwidth);
+				rc.moveBy(offset);
+				painter.fill(rc);
+
+				rc = eRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
+				rc.moveBy(offset);
+				painter.fill(rc);
+
+				rc = eRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
+				rc.moveBy(offset);
+				painter.fill(rc);
+
+				// progress
+				rc = eRect(x+bwidth, y+bwidth, (width-bwidth*2) * filled / 100, height-bwidth*2);
+				rc.moveBy(offset);
+				painter.fill(rc);
+
+				painter.clippop();
+
+				break;
+			}
+			case TYPE_PIXMAP: // pixmap
+			{
+				if (!(px && py && pwidth && pheight && pfnt))
+				{
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap))");
+					goto error_out;
+				}
+				int x = PyInt_AsLong(px);
+				int y = PyInt_AsLong(py);
+				int width = PyInt_AsLong(pwidth);
+				int height = PyInt_AsLong(pheight);
+				ePtr<gPixmap> pixmap;
+				if (SwigFromPython(pixmap, pfnt))
+				{
+					eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
+					goto error_out;
+				}
+
 				eRect r = eRect(x, y, width, height);
 				r.moveBy(offset);
 				r &= itemrect;
@@ -697,9 +734,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				break;
 			}
 			default:
-				eWarning("eListboxPythonMultiContent received neither text nor pixmap entry");
-				painter.clippop();
-				return;
+				eWarning("eListboxPythonMultiContent received unknown type (%d)", type);
+				goto error_out;
 			}
 		}
 	}
@@ -707,6 +743,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	if (selected)
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
+error_out:
 	painter.clippop();
 }
 

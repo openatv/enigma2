@@ -18,11 +18,11 @@ RT_VALIGN_BOTTOM = 16
 
 def PluginEntryComponent(picture, name):
 	res = [ None ]
-	res.append((80, 10, 200, 50, 0, RT_HALIGN_LEFT , name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT , name))
 	png = loadPNG(picture)
 	if png == None:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/missing.png"))
-	res.append((10, 5, 60, 40, png))
+	res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 5, 60, 40, png))
 	
 	return res
 
