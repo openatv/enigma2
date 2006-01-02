@@ -14,8 +14,10 @@ class TimerEntry(Screen):
 		Screen.__init__(self, session)
 		self.timer = timer;
 		
-		self["ok"] = Label("OK")
-		self["cancel"] = Label("Cancel")
+		self["oktext"] = Label(_("OK"))
+		self["canceltext"] = Label(_("Cancel"))
+		self["ok"] = Pixmap()
+		self["cancel"] = Pixmap()
 
 		self.createConfig()
 
