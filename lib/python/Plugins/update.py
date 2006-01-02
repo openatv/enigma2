@@ -28,7 +28,6 @@ class Example(Screen):
 		self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
 		
 	def doUpdate(self, val = False):
-		
 		if val:
 			lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
 			string = ""

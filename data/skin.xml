@@ -62,13 +62,16 @@
 			<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
 			<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
 			<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
-			<widget name="initialize" position="40,110" size="100,28" font="Regular;25" backgroundColor="red" />
+			<widget name="initialize" position="40,110" size="90,30" zPosition="1" pixmap="/usr/share/enigma2/init.png" />
+			<widget name="initializetext" position="40,110" size="90,30" valign="center" halign="center" zPosition="2" font="Regular;20" />
 		</screen>
 		<screen name="Setup" position="100,125" size="540,280" title="Setup">
 			<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 			<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
-			<widget name="ok" position="140,240" size="38,20" font="Regular;20" backgroundColor="green" />
-			<widget name="cancel" position="240,240" size="70,20" font="Regular;20" backgroundColor="red" />
+			<widget name="ok" position="140,240" size="53,30" pixmap="/usr/share/enigma2/ok.png" />
+			<widget name="oktext" position="140,240" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+			<widget name="cancel" position="240,240" size="80,30" pixmap="/usr/share/enigma2/cancel.png" />
+			<widget name="canceltext" position="240,240" size="80,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		</screen>
 		<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
 			<widget name="list" position="10,0" size="190,240" scrollbarMode="showOnDemand" />

@@ -4,6 +4,7 @@ from Components.config import config				#global config instance
 from Components.config import configSelection
 from Components.ConfigList import ConfigList
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
@@ -105,9 +106,11 @@ class Setup(Screen):
 
 		self["title"] = Label(_(myTitle));
 
-		self["ok"] = Label("OK")
-		self["cancel"] = Label("Cancel")
-
+		self["oktext"] = Label(_("OK"))
+		self["canceltext"] = Label(_("Cancel"))
+		self["ok"] = Pixmap()
+		self["cancel"] = Pixmap()
+		
 		self["actions"] = NumberActionMap(["SetupActions"], 
 			{
 				"cancel": self.keyCancel,
