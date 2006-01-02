@@ -11,7 +11,8 @@ class EventView(Screen):
 	def __init__(self, session, Event, Ref, callback=None):
 		Screen.__init__(self, session)
 		self.cbFunc = callback
-		self.currentService=None
+		self.currentService=Ref
+		self.event = Event
 		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
@@ -26,17 +27,20 @@ class EventView(Screen):
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd
 			})
-		self.setEvent(Event)
-		self.setService(Ref)
+		self.onShown.append(self.onCreate)
+
+	def onCreate(self):
+		self.setEvent(self.event)
+		self.setService(self.currentService)
 
 	def prevEvent(self):
 		if self.cbFunc is not None:
-			self.cbFunc(self.setEvent, -1)
+			self.cbFunc(self.setEvent, self.setService, -1)
 
 	def nextEvent(self):
 		if self.cbFunc is not None:
-			self.cbFunc(self.setEvent, +1)
-			
+			self.cbFunc(self.setEvent, self.setService, +1)
+
 	def timerAdd(self):
 		newEntry = RecordTimerEntry(self.currentService, *parseEvent(self.event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)

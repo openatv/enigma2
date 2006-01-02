@@ -5,7 +5,7 @@ from Components.Label import *
 from Components.ProgressBar import *
 from Components.config import configfile, configsequencearg
 from Components.config import config, configElement, ConfigSubsection, configSequence
-from ChannelSelection import ChannelSelection
+from ChannelSelection import ChannelSelection, BouquetSelector
 
 from Components.Pixmap import Pixmap, PixmapConditional
 from Components.BlinkingPixmap import BlinkingPixmapConditional
@@ -362,7 +362,34 @@ class InfoBarEPG:
 			})
 
 	def showEPGList(self):
-		ref=self.session.nav.getCurrentlyPlayingServiceReference()
+		bouquets = self.servicelist.getBouquetList()
+		if bouquets is None:
+			cnt = 0
+		else:
+			cnt = len(bouquets)
+		if cnt > 1: # show bouquet list
+			self.session.open(BouquetSelector, bouquets, self.openBouquetEPG)
+		elif cnt == 1: # add to only one existing bouquet
+			self.openBouquetEPG(bouquets[0][1])
+		else: #no bouquets so we open single epg
+			self.openSingleEPGSelector(self.session.nav.getCurrentlyPlayingServiceReference())
+
+	def openBouquetEPG(self, bouquet):
+		ptr=eEPGCache.getInstance()
+		services = [ ]
+		servicelist = eServiceCenter.getInstance().list(bouquet)
+		if not servicelist is None:
+			while True:
+				service = servicelist.getNext()
+				if not service.valid(): #check if end of list
+					break
+				if service.flags: #ignore non playable services
+					continue
+				services.append(ServiceReference(service))
+		if len(services):
+			self.session.open(EPGSelection, services)
+
+	def openSingleEPGSelector(self, ref):
 		ptr=eEPGCache.getInstance()
 		if ptr.startTimeQuery(ref) != -1:
 			self.session.open(EPGSelection, ref)
@@ -383,7 +410,7 @@ class InfoBarEPG:
 			except:
 				pass
 
-	def eventViewCallback(self, setEvent, val): #used for now/next displaying
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
 		if len(self.epglist) > 1:
 			tmp = self.epglist[0]
 			self.epglist[0]=self.epglist[1]

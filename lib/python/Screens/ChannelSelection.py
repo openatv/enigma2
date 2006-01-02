@@ -12,8 +12,8 @@ from Components.NimManager import nimmanager
 import xml.dom.minidom
 
 class BouquetSelector(FixedMenu):
-	def __init__(self, session, bouquets, parent):
-		self.parent=parent
+	def __init__(self, session, bouquets, selectedFunc):
+		self.selectedFunc=selectedFunc
 		entrys = [ ]
 		for x in bouquets:
 			entrys.append((x[0], self.bouquetSelected, x[1]))
@@ -21,8 +21,7 @@ class BouquetSelector(FixedMenu):
 		self.skinName = "Menu"
 
 	def bouquetSelected(self):
-		self.parent.addCurrentServiceToBouquet(self["menu"].getCurrent()[2])
-		self.close()
+		self.selectedFunc(self["menu"].getCurrent()[2])
 
 class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel):
@@ -68,21 +67,13 @@ class ChannelContextMenu(FixedMenu):
 		self.skinName = "Menu"
 
 	def addServiceToBouquetSelected(self):
-		bouquets = [ ]
-		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(self.csel.bouquet_root)
-		if not list is None:
-			while True:
-				s = list.getNext()
-				if not s.valid():
-					break
-				if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
-					info = serviceHandler.info(s)
-					if not info is None:
-						bouquets.append((info.getName(s), s))
-		cnt = len(bouquets)
+		bouquets = self.csel.getBouquetList()
+		if bouquets is None:
+			cnt = 0
+		else:
+			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
-			self.session.open(BouquetSelector, bouquets, self)
+			self.session.open(BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
 			self.addCurrentServiceToBouquet(bouquet[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
@@ -369,6 +360,29 @@ class ChannelSelectionBase(Screen):
 
 	def cancel(self):
 		self.close(None)
+
+	def getBouquetList(self):
+		serviceCount=0
+		bouquets = [ ]
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(self.bouquet_root)
+		if not list is None:
+			while True:
+				s = list.getNext()
+				if not s.valid():
+					break
+				if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+					info = serviceHandler.info(s)
+					if not info is None:
+						bouquets.append((info.getName(s), s))
+				else:
+					serviceCount += 1
+			if len(bouquets) == 0 and serviceCount > 0:
+				info = serviceHandler.info(self.bouquet_root)
+				if not info is None:
+					bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
+			return bouquets
+		return None
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 	def __init__(self, session):
