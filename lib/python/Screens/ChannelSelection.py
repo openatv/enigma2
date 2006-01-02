@@ -233,18 +233,21 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self)
 
+USE_MULTIBOUQUETS = False
+
 class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
 		# this makes it much simple to implement a selectable radio or tv mode :)
 		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17)'
-		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
+#		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
 
 		self.service_types = self.service_types_tv
-
-		#self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+		if USE_MULTIBOUQUETS:
+			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		else:
+			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
@@ -283,10 +286,15 @@ class ChannelSelectionBase(Screen):
 		return offsetCount
 
 	def setRootBase(self, root, justSet=False):
-		inBouquetRootList = root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
-		if not inBouquetRootList and (root.getPath().find('FROM BOUQUET') != -1):
+		path = root.getPath()
+		inBouquetRootList = path.find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		pos = path.find(' FROM BOUQUET')
+		isBouquet = pos != -1
+		if not inBouquetRootList and isBouquet:
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
 			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
+			refstr = self.service_types + path[pos:]
+			root = eServiceReference(refstr)
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)
