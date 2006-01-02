@@ -187,11 +187,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					new_stime = begTime-120
 			test.append((service, 0, new_stime))
-		self.list = self.queryEPG(test, self.buildMultiEntry)
-#		tmp = self.queryEPG(test)
-#		self.list = [ ]
-#		for x in tmp:
-#			self.list.append(self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
+#		self.list = self.queryEPG(test, self.buildMultiEntry)
+		tmp = self.queryEPG(test)
+		self.list = [ ]
+		for x in tmp:
+			self.list.append(self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
 		self.l.setList(self.list)
 		print time() - t
 
