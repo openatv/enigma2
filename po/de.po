@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-01 18:13+0100\n"
+"POT-Creation-Date: 2006-01-02 17:02+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
-#: ../lib/python/Screens/EventView.py:72
+#: ../lib/python/Screens/EventView.py:76
 #, python-format
 msgid "%d min"
 msgstr ""
@@ -29,7 +29,7 @@ msgstr ""
 msgid "%d.%B %Y"
 msgstr ""
 
-#: ../lib/python/Screens/About.py:25
+#: ../lib/python/Screens/About.py:26
 #, python-format
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../lib/python/Screens/EpgSelection.py:26
+#: ../lib/python/Screens/EpgSelection.py:20
 msgid "Add timer"
 msgstr "Timer setzen"
 
@@ -99,7 +99,7 @@ msgstr "Timer setzen"
 msgid "Advanced"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:258
+#: ../lib/python/Screens/ChannelSelection.py:249
 msgid "All"
 msgstr "Alle"
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Bandwidth"
 msgstr "Bandbreite"
 
-#: ../lib/python/Screens/HarddiskSetup.py:30
+#: ../lib/python/Screens/HarddiskSetup.py:31
 msgid "Bus: "
 msgstr ""
 
@@ -155,7 +155,11 @@ msgstr ""
 msgid "Cable provider"
 msgstr "Kabelanbieter"
 
-#: ../lib/python/Screens/HarddiskSetup.py:29
+#: ../lib/python/Screens/Setup.py:110
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Capacity: "
 msgstr "Kapazität: "
 
@@ -163,7 +167,7 @@ msgstr "Kapazität: "
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../lib/python/Screens/ChannelSelection.py:67 ../data/
+#: ../lib/python/Screens/ChannelSelection.py:66 ../data/
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
@@ -211,11 +215,11 @@ msgstr "Löschen fehlgeschlagen."
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../lib/python/Screens/About.py:22
+#: ../lib/python/Screens/About.py:23
 msgid "Detected HDD:"
 msgstr "Erkannte Festplatten"
 
-#: ../lib/python/Screens/About.py:14
+#: ../lib/python/Screens/About.py:15
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
@@ -240,7 +244,7 @@ msgid "DiSEqC repeats"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -255,7 +259,7 @@ msgstr "Aus"
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:729
+#: ../lib/python/Screens/InfoBarGenerics.py:786
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -271,7 +275,7 @@ msgstr ""
 "Möchten Sie Ihre Dreambox updaten?\n"
 "Nach dem Druck auf OK bitte warten!"
 
-#: ../lib/python/Screens/ChannelSelection.py:335
+#: ../lib/python/Screens/ChannelSelection.py:326
 msgid "E"
 msgstr "O"
 
@@ -286,7 +290,7 @@ msgid "East"
 msgstr "Ost"
 
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -320,7 +324,7 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:261
+#: ../lib/python/Screens/ChannelSelection.py:252
 msgid "Favourites"
 msgstr "Favoriten"
 
@@ -365,11 +369,11 @@ msgstr ""
 msgid "Init"
 msgstr ""
 
-#: ../lib/python/Screens/HarddiskSetup.py:31
+#: ../lib/python/Screens/HarddiskSetup.py:33
 msgid "Initialize"
 msgstr "Initialisieren"
 
-#: ../lib/python/Screens/HarddiskSetup.py:18
+#: ../lib/python/Screens/HarddiskSetup.py:19
 msgid "Initializing Harddisk..."
 msgstr "Initialisiere Festplatte..."
 
@@ -413,7 +417,7 @@ msgstr "Längengrad"
 msgid "Loopthrough to Socket A"
 msgstr "Verbunden mit Tuner A"
 
-#: ../lib/python/Screens/HarddiskSetup.py:28
+#: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
 msgstr "Modell:"
 
@@ -451,6 +455,10 @@ msgstr ""
 msgid "Netmask"
 msgstr "Netzmaske"
 
+#: ../lib/python/Screens/EpgSelection.py:30
+msgid "Next"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:656
 #: ../lib/python/Components/NimManager.py:668
 #: ../lib/python/Components/NimManager.py:672
@@ -459,7 +467,7 @@ msgstr "Netzmaske"
 msgid "No"
 msgstr "Nein"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:725
+#: ../lib/python/Screens/InfoBarGenerics.py:782
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Keine Festplatte gefunden oder\n"
@@ -486,17 +494,21 @@ msgstr "Nord"
 msgid "Nothing connected"
 msgstr "Nichts angeschlossen"
 
+#: ../lib/python/Screens/Setup.py:109
+msgid "OK"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:655
 msgid "Off"
-msgstr ""
+msgstr "Auf"
 
 #: ../lib/python/Components/NimManager.py:655
 msgid "On"
-msgstr ""
+msgstr "An"
 
 #: ../lib/python/Components/NimManager.py:680
 msgid "One"
-msgstr ""
+msgstr "Eins"
 
 #: ../lib/python/Screens/InfoBar.py:36
 msgid "Play recorded movies..."
@@ -550,15 +562,19 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Press OK to start the scan"
 msgstr "Zum Starten der Suche OK drücken."
 
-#: ../lib/python/Screens/ChannelSelection.py:260
+#: ../lib/python/Screens/EpgSelection.py:29
+msgid "Prev"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:251
 msgid "Provider"
 msgstr "Provider"
 
-#: ../lib/python/Screens/ChannelSelection.py:325
+#: ../lib/python/Screens/ChannelSelection.py:316
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:778
+#: ../lib/python/Screens/InfoBarGenerics.py:835
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -571,7 +587,7 @@ msgstr "Zurücksetzen"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Screens/ChannelSelection.py:259
+#: ../lib/python/Screens/ChannelSelection.py:250
 msgid "Satellites"
 msgstr "Satelliten"
 
@@ -588,7 +604,7 @@ msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 msgid "Sequence repeat"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:327
+#: ../lib/python/Screens/ChannelSelection.py:318
 msgid "Services"
 msgstr "Kanäle"
 
@@ -618,7 +634,7 @@ msgstr "Süd"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:731
+#: ../lib/python/Screens/InfoBarGenerics.py:788
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -638,7 +654,7 @@ msgstr "Das Abspielen dieses Films beenden?"
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:783 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:840 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -713,7 +729,7 @@ msgstr "Art der Suche"
 msgid "USALS"
 msgstr "USALS"
 
-#: ../lib/python/Screens/HarddiskSetup.py:47
+#: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
 "Unable to initialize harddisk.\n"
 "Please refer to the user manual.\n"
@@ -731,7 +747,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr ""
 
-#: ../lib/python/Plugins/update.py:37
+#: ../lib/python/Plugins/update.py:36
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
@@ -751,7 +767,7 @@ msgstr ""
 msgid "Voltage mode"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:333
+#: ../lib/python/Screens/ChannelSelection.py:324
 msgid "W"
 msgstr ""
 
@@ -781,36 +797,36 @@ msgstr "Ja"
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
 
-#: ../lib/python/Screens/ChannelSelection.py:145
+#: ../lib/python/Screens/ChannelSelection.py:136
 msgid "[bouquet edit]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:147
+#: ../lib/python/Screens/ChannelSelection.py:138
 msgid "[favourite edit]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:224
+#: ../lib/python/Screens/ChannelSelection.py:215
 msgid "[move mode]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:60
+#: ../lib/python/Screens/ChannelSelection.py:59
 msgid "abort bouquet edit"
 msgstr "Bouqueteditieren abbrechen"
 
-#: ../lib/python/Screens/ChannelSelection.py:63
+#: ../lib/python/Screens/ChannelSelection.py:62
 msgid "abort favourites edit"
 msgstr "Favoriteneditor abbrechen"
 
-#: ../lib/python/Screens/ChannelSelection.py:40
+#: ../lib/python/Screens/ChannelSelection.py:39
 msgid "add service to bouquet"
 msgstr "Zu Bouquet hinzufügen"
 
-#: ../lib/python/Screens/ChannelSelection.py:42
+#: ../lib/python/Screens/ChannelSelection.py:41
 msgid "add service to favourites"
 msgstr "Kanal zu Favoriten hinzufügen"
 
 #: ../lib/python/Screens/MovieSelection.py:20
-#: ../lib/python/Screens/ChannelSelection.py:65
+#: ../lib/python/Screens/ChannelSelection.py:64
 msgid "back"
 msgstr "zurück"
 
@@ -830,7 +846,7 @@ msgstr "täglich"
 msgid "delete..."
 msgstr "löschen..."
 
-#: ../lib/python/Screens/ChannelSelection.py:56
+#: ../lib/python/Screens/ChannelSelection.py:55
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
@@ -838,23 +854,23 @@ msgstr "Verschiebemodus ausschalten"
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
 
-#: ../lib/python/Screens/ChannelSelection.py:52
+#: ../lib/python/Screens/ChannelSelection.py:51
 msgid "enable bouquet edit"
 msgstr "Bouqueteditieren anschalten"
 
-#: ../lib/python/Screens/ChannelSelection.py:54
+#: ../lib/python/Screens/ChannelSelection.py:53
 msgid "enable favourite edit"
 msgstr "Favoriteneditor anschalten"
 
-#: ../lib/python/Screens/ChannelSelection.py:49
+#: ../lib/python/Screens/ChannelSelection.py:48
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
 
-#: ../lib/python/Screens/ChannelSelection.py:59
+#: ../lib/python/Screens/ChannelSelection.py:58
 msgid "end bouquet edit"
 msgstr "Bouqueteditieren beenden"
 
-#: ../lib/python/Screens/ChannelSelection.py:62
+#: ../lib/python/Screens/ChannelSelection.py:61
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
@@ -889,7 +905,7 @@ msgstr "nächster Kanal"
 msgid "no"
 msgstr "nein"
 
-#: ../lib/python/Screens/HarddiskSetup.py:61
+#: ../lib/python/Screens/HarddiskSetup.py:63
 msgid "no HDD found"
 msgstr "keine Festplatte gefunden"
 
@@ -897,7 +913,7 @@ msgstr "keine Festplatte gefunden"
 msgid "no module found"
 msgstr "Kein Modul gefunden"
 
-#: ../lib/python/Screens/About.py:27
+#: ../lib/python/Screens/About.py:28
 msgid "none"
 msgstr "keins"
 
@@ -921,7 +937,7 @@ msgstr "einmalig"
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
-#: ../lib/python/Screens/ChannelSelection.py:44
+#: ../lib/python/Screens/ChannelSelection.py:43
 msgid "remove service"
 msgstr "Kanal löschen"
 
@@ -975,7 +991,7 @@ msgstr "zeige EPG..."
 msgid "text"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:56
+#: ../lib/python/Screens/EventView.py:60
 msgid "unknown service"
 msgstr "unbekannter Service"
 

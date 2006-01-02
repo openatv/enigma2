@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Harddisk import harddiskmanager			#global harddiskmanager
 from Components.MenuList import MenuList
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 from enigma import eTimer
 
@@ -28,7 +29,8 @@ class HarddiskSetup(Screen):
 		self["model"] = Label(_("Model: ") + hdd.model())
 		self["capacity"] = Label(_("Capacity: ") + hdd.capacity())
 		self["bus"] = Label(_("Bus: ") + hdd.bus())
-		self["initialize"] = Label(_("Initialize"))
+		self["initialize"] = Pixmap()
+		self["initializetext"] = Label(_("Initialize"))
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{

@@ -33,6 +33,7 @@ enigma2.pot:
 			../lib/python/Screens/EpgSelection.py \
 			../lib/python/Screens/LanguageSelection.py \
 			../lib/python/Screens/About.py \
+			../lib/python/Screens/Setup.py \
 			../lib/python/Screens/HarddiskSetup.py \
 			../lib/python/Screens/MovieSelection.py \
 			../lib/python/Screens/InfoBar.py \
