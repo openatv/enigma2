@@ -21,7 +21,7 @@ def PluginEntryComponent(picture, name):
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT , name))
 	png = loadPNG(picture)
 	if png == None:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/countries/missing.png"))
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
 	res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 5, 60, 40, png))
 	
 	return res

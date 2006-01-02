@@ -2,5 +2,6 @@ installdir = $(LIBDIR)/enigma2/python/Plugins
 
 install_PYTHON =	\
 	__init__.py \
-	update.py
-#	example.py 
+	update.py	\
+	update.png
+ 
