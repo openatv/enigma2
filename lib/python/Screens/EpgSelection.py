@@ -38,15 +38,22 @@ class EPGSelection(Screen):
 
 		self["actions"] = ChannelActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
-				"cancel": self.close,
+				"cancel": self.closeClose,
 				"ok": self.eventSelected,
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
-				"blue": self.blueButtonPressed
+				"blue": self.blueButtonPressed,
+				"info": self.closeInfo
 			})
 		self["actions"].csel = self
 
 		self.onLayoutFinish.append(self.onCreate)
+
+	def closeClose(self):
+		self.close(False)
+		
+	def closeInfo(self):
+		self.close(True)
 
 	#just used in multipeg
 	def onCreate(self):
