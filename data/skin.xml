@@ -109,8 +109,10 @@
 		</screen>
 		<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
 			<widget name="config" position="5,10" size="480,350" />
-			<widget name="ok" position="140,365" size="38,20" font="Regular;20" backgroundColor="green" />
-			<widget name="cancel" position="240,365" size="70,20" font="Regular;20" backgroundColor="red" />
+			<widget name="ok" position="140,365" size="53,30" pixmap="/usr/share/enigma2/ok.png" />
+			<widget name="oktext" position="140,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+			<widget name="cancel" position="240,365" size="100,30" pixmap="/usr/share/enigma2/cancel.png" />
+			<widget name="canceltext" position="240,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		</screen>
 		<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
 			<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
