@@ -44,7 +44,7 @@ def main(session):
 	
 
 def getPicturePath():
-		return ""
+		return "/usr/lib/enigma2/python/Plugins/update.png"
 
 def getPluginName():
 		return "Softwareupdate"
