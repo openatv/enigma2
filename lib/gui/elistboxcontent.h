@@ -126,6 +126,7 @@ private:
 class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
 public:
+	enum { TYPE_TEXT, TYPE_PROGRESS, TYPE_PIXMAP };
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	
 	void setFont(int fnt, gFont *fnt);

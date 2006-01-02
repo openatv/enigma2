@@ -39,7 +39,7 @@ def MovieListEntry(serviceref, serviceHandler):
 	else:
 		len = "?:??"
 	
-	res.append((0, 0, 560, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
+	res.append((0, 0, 0, 560, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
 	
 	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
@@ -49,9 +49,9 @@ def MovieListEntry(serviceref, serviceHandler):
 		t = FuzzyTime(begin)
 		begin_string = t[0] + ", " + t[1]
 	
-	res.append((0, 30, 560, 20, 1, RT_HALIGN_LEFT, description))
-	res.append((0, 50, 270, 20, 1, RT_HALIGN_LEFT, begin_string))
-	res.append((290, 50, 270, 20, 1, RT_HALIGN_RIGHT, len))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 560, 20, 1, RT_HALIGN_LEFT, description))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 270, 20, 1, RT_HALIGN_LEFT, begin_string))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 290, 50, 270, 20, 1, RT_HALIGN_RIGHT, len))
 	
 	return res
 

@@ -12,10 +12,10 @@ RT_HALIGN_LEFT = 0
 def ServiceInfoListEntry(a, b):
 	res = [ ]
 
-	#PyObject *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-	res.append((0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""))
-	res.append((0, 0, 150, 25, 0, RT_HALIGN_LEFT, a))
-	res.append((170, 0, 150, 25, 0, RT_HALIGN_LEFT, b))
+	#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 150, 25, 0, RT_HALIGN_LEFT, a))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 170, 0, 150, 25, 0, RT_HALIGN_LEFT, b))
 
 	return res
 
