@@ -75,7 +75,7 @@ class ChannelContextMenu(FixedMenu):
 		if cnt > 1: # show bouquet list
 			self.session.open(BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
-			self.addCurrentServiceToBouquet(bouquet[0][1])
+			self.addCurrentServiceToBouquet(bouquets[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
 			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
 
