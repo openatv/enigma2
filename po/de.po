@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 17:02+0100\n"
+"POT-Creation-Date: 2006-01-03 12:04+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -24,8 +24,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:86
 #: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:92
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr "Timer setzen"
 msgid "Advanced"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:249
+#: ../lib/python/Screens/ChannelSelection.py:252
 msgid "All"
 msgstr "Alle"
 
@@ -155,7 +155,7 @@ msgstr ""
 msgid "Cable provider"
 msgstr "Kabelanbieter"
 
-#: ../lib/python/Screens/Setup.py:110
+#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:19
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -163,7 +163,7 @@ msgstr "Abbrechen"
 msgid "Capacity: "
 msgstr "Kapazität: "
 
-#: ../lib/python/Screens/TimerEntry.py:170 ../data/
+#: ../lib/python/Screens/TimerEntry.py:173 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -211,7 +211,7 @@ msgstr "Löschen"
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen."
 
-#: ../lib/python/Screens/TimerEntry.py:131
+#: ../lib/python/Screens/TimerEntry.py:134
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -267,7 +267,7 @@ msgstr ""
 "Die aktuelle Direktaufnahme\n"
 "abbrechen?"
 
-#: ../lib/python/Plugins/update.py:28
+#: ../lib/python/Plugins/update.py:31
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
@@ -275,7 +275,7 @@ msgstr ""
 "Möchten Sie Ihre Dreambox updaten?\n"
 "Nach dem Druck auf OK bitte warten!"
 
-#: ../lib/python/Screens/ChannelSelection.py:326
+#: ../lib/python/Screens/ChannelSelection.py:334
 msgid "E"
 msgstr "O"
 
@@ -301,11 +301,11 @@ msgstr "Ost"
 msgid "Enable"
 msgstr "Ein"
 
-#: ../lib/python/Screens/TimerEntry.py:165
+#: ../lib/python/Screens/TimerEntry.py:168
 msgid "End"
 msgstr "Ende"
 
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:171
 msgid "EndTime"
 msgstr "Endzeit"
 
@@ -324,19 +324,19 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:252
+#: ../lib/python/Screens/ChannelSelection.py:255
 msgid "Favourites"
 msgstr "Favoriten"
 
 #: ../lib/python/Screens/ScanSetup.py:87
 #: ../lib/python/Screens/ScanSetup.py:114
 #: ../lib/python/Screens/ScanSetup.py:124
-#: ../lib/python/Screens/TimerEntry.py:138
+#: ../lib/python/Screens/TimerEntry.py:141
 msgid "Frequency"
 msgstr "Frequenz"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:152
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Friday"
 msgstr "Freitag"
 
@@ -426,12 +426,12 @@ msgstr "Modell:"
 msgid "Modulation"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "Mon-Fri"
 msgstr "Montag bis Freitag"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:151
 msgid "Monday"
 msgstr "Montag"
 
@@ -443,7 +443,7 @@ msgstr "Filmauswahl"
 msgid "N/A"
 msgstr "Nicht verfügbar"
 
-#: ../lib/python/Screens/TimerEntry.py:130
+#: ../lib/python/Screens/TimerEntry.py:133
 msgid "Name"
 msgstr ""
 
@@ -494,7 +494,7 @@ msgstr "Nord"
 msgid "Nothing connected"
 msgstr "Nichts angeschlossen"
 
-#: ../lib/python/Screens/Setup.py:109
+#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:18
 msgid "OK"
 msgstr ""
 
@@ -566,11 +566,11 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Prev"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:251
+#: ../lib/python/Screens/ChannelSelection.py:254
 msgid "Provider"
 msgstr "Provider"
 
-#: ../lib/python/Screens/ChannelSelection.py:316
+#: ../lib/python/Screens/ChannelSelection.py:324
 msgid "Providers"
 msgstr "Anbieter"
 
@@ -587,16 +587,16 @@ msgstr "Zurücksetzen"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Screens/ChannelSelection.py:250
+#: ../lib/python/Screens/ChannelSelection.py:253
 msgid "Satellites"
 msgstr "Satelliten"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:153
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:156
 msgid "Saturday"
 msgstr "Samstag"
 
-#: ../lib/python/Screens/TimerEntry.py:208
+#: ../lib/python/Screens/TimerEntry.py:211
 msgid "Select channel to record from"
 msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 
@@ -604,7 +604,7 @@ msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 msgid "Sequence repeat"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:318
+#: ../lib/python/Screens/ChannelSelection.py:326
 msgid "Services"
 msgstr "Kanäle"
 
@@ -630,7 +630,7 @@ msgstr "Sockel "
 msgid "South"
 msgstr "Süd"
 
-#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Start"
 msgstr ""
 
@@ -638,7 +638,7 @@ msgstr ""
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:166
 msgid "StartTime"
 msgstr "Startzeit"
 
@@ -658,8 +658,8 @@ msgstr ""
 msgid "Subservices"
 msgstr "Unterkanäle"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:154
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:157
 msgid "Sunday"
 msgstr "Sonntag"
 
@@ -680,12 +680,12 @@ msgstr ""
 msgid "Threshold"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:151
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:154
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: ../lib/python/Screens/TimerEntry.py:132
+#: ../lib/python/Screens/TimerEntry.py:135
 msgid "Timer Type"
 msgstr "Timer-Art"
 
@@ -705,8 +705,8 @@ msgstr "Toneburst A/B"
 msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:149
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Tuesday"
 msgstr "Dienstag"
 
@@ -747,9 +747,13 @@ msgstr ""
 msgid "Universal LNB"
 msgstr ""
 
-#: ../lib/python/Plugins/update.py:36
+#: ../lib/python/Plugins/update.py:38
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
+
+#: ../lib/python/Plugins/update.py:43
+msgid "Updating... Please wait... This can take some minutes..."
+msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang keine einige Minuten dauern."
 
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
@@ -757,26 +761,26 @@ msgstr "Adresse automatisch beziehen (DHCP)"
 
 #: ../lib/python/Screens/Satconfig.py:73
 msgid "Use usals for this sat"
-msgstr ""
+msgstr "USALS für diesen Sat benutzen"
 
 #: ../lib/python/Components/NimManager.py:663
 msgid "User defined"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 #: ../lib/python/Screens/Satconfig.py:70
 msgid "Voltage mode"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:324
+#: ../lib/python/Screens/ChannelSelection.py:332
 msgid "W"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:150
+#: ../lib/python/Screens/TimerEntry.py:95
+#: ../lib/python/Screens/TimerEntry.py:153
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: ../lib/python/Screens/TimerEntry.py:145
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Weekday"
 msgstr "Wochentag"
 
@@ -838,7 +842,7 @@ msgstr ""
 msgid "circular right"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "daily"
 msgstr "täglich"
 
@@ -899,7 +903,7 @@ msgid "next channel"
 msgstr "nächster Kanal"
 
 #: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -929,7 +933,7 @@ msgstr "aus"
 msgid "on"
 msgstr "an"
 
-#: ../lib/python/Screens/TimerEntry.py:80
+#: ../lib/python/Screens/TimerEntry.py:83
 msgid "once"
 msgstr "einmalig"
 
@@ -941,7 +945,7 @@ msgstr "vorheriger Kanal"
 msgid "remove service"
 msgstr "Kanal löschen"
 
-#: ../lib/python/Screens/TimerEntry.py:80
+#: ../lib/python/Screens/TimerEntry.py:83
 msgid "repeated"
 msgstr "wiederholend"
 
@@ -995,7 +999,7 @@ msgstr ""
 msgid "unknown service"
 msgstr "unbekannter Service"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "user defined"
 msgstr "benutzerdefiniert"
 
@@ -1003,12 +1007,12 @@ msgstr "benutzerdefiniert"
 msgid "vertical"
 msgstr "vertikal"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "weekly"
 msgstr "wöchentlich"
 
 #: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
@@ -1313,6 +1317,11 @@ msgid "Network Setup"
 msgstr "Netzwerkeinstellungen"
 
 #: ../data/
+msgid "Thanks for using the wizard. Your box is now ready to use."
+msgstr ""
+"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden."
+
+#: ../data/
 msgid "#ffffffff"
 msgstr ""
 
@@ -1391,11 +1400,6 @@ msgstr "Verzögerung"
 #: ../data/
 msgid "WSS"
 msgstr ""
-
-#: ../data/
-msgid "Thanks for using the wizard. Your box is now ready to use."
-msgstr ""
-"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden."
 
 #: ../data/
 msgid "Setup Lock"

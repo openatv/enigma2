@@ -20,20 +20,28 @@ class Example(Screen):
 				
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
-			"ok": self.ok,
+			"ok": self.go,
 			"back": self.close
 		}, -1)
 		
-	def ok(self):
-		self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
+		self.delayTimer = eTimer()
+		self.delayTimer.timeout.get().append(self.doUpdateDelay)
 		
+	def go(self):
+		self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
+	
+	def doUpdateDelay(self):
+		lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
+		string = ""
+		for x in lines:
+			string += x
+		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
+			
+	
 	def doUpdate(self, val = False):
-		if val:
-			lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
-			string = ""
-			for x in lines:
-				string += x
-			self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
+		if val == True:
+			self["text"].setText(_("Updating... Please wait... This can take some minutes..."))
+			self.delayTimer.start(0, 1)
 		else:
 			self.close()		
 		
