@@ -1,13 +1,14 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
+from Components.AVSwitch import AVSwitch
 from enigma import *
 
 class Standby(Screen):
 	def Power(self):
 		print "leave standby"
 		#set input to encoder
-		eAVSwitch.getInstance().setInput(0)
+		self.avswitch.setInput("ENCODER")
 		#start last played service
 		#self.infobar.servicelist.zap()
 		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
@@ -34,6 +35,7 @@ class Standby(Screen):
 	def __init__(self, session, infobar):
 		Screen.__init__(self, session)
 		self.infobar = infobar
+		self. avswitch = AVSwitch()
 		print "enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
@@ -46,7 +48,7 @@ class Standby(Screen):
 		#stop actual played dvb-service
 		self.session.nav.stopService()
 		#set input to vcr scart
-		eAVSwitch.getInstance().setInput(1)
+		self.avswitch.setInput("SCART")
 		#set lcd brightness to standby value
 		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
 		#clear lcd (servicename)
