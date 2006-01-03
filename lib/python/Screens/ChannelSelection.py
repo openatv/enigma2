@@ -261,7 +261,15 @@ class ChannelSelectionBase(Screen):
 
 		self.numericalTextInput = NumericalTextInput()
 
+	def appendDVBTypes(self, ref):
+		path = ref.getPath()
+		pos = path.find(' FROM BOUQUET')
+		if pos != -1:
+			return eServiceReference(self.service_types + path[pos:])
+		return ref
+
 	def getBouquetNumOffset(self, bouquet):
+		bouquet = self.appendDVBTypes(bouquet)
 		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
 			return 0
 		offsetCount = 0
@@ -269,7 +277,7 @@ class ChannelSelectionBase(Screen):
 		bouquetlist = serviceHandler.list(self.bouquet_root)
 		if not bouquetlist is None:
 			while True:
-				bouquetIterator = bouquetlist.getNext()
+				bouquetIterator = self.appendDVBTypes(bouquetlist.getNext())
 				if not bouquetIterator.valid() or bouquetIterator == bouquet: #end of list or bouquet found
 					break
 				if ((bouquetIterator.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
