@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-03 12:04+0100\n"
+"POT-Creation-Date: 2006-01-03 13:24+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -207,7 +207,7 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../lib/python/Screens/MovieSelection.py:52
+#: ../lib/python/Screens/MovieSelection.py:53
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen."
 
@@ -255,7 +255,7 @@ msgstr ""
 msgid "Disable"
 msgstr "Aus"
 
-#: ../lib/python/Screens/MovieSelection.py:35
+#: ../lib/python/Screens/MovieSelection.py:36
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
@@ -435,7 +435,7 @@ msgstr "Montag bis Freitag"
 msgid "Monday"
 msgstr "Montag"
 
-#: ../lib/python/Screens/MovieSelection.py:22
+#: ../lib/python/Screens/MovieSelection.py:23
 msgid "Movie Menu"
 msgstr "Filmauswahl"
 
@@ -517,6 +517,10 @@ msgstr "Aufgenommene Filme abspielen..."
 #: ../lib/python/Plugins/update.py:19
 msgid "Please press OK!"
 msgstr "Bitte OK drücken!"
+
+#: ../lib/python/Screens/MovieSelection.py:75
+msgid "Please wait... Loading list..."
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
@@ -753,7 +757,9 @@ msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
 #: ../lib/python/Plugins/update.py:43
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang keine einige Minuten dauern."
+msgstr ""
+"Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten "
+"dauern."
 
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
@@ -797,7 +803,7 @@ msgstr ""
 msgid "Yes"
 msgstr "Ja"
 
-#: ../lib/python/Screens/MovieSelection.py:37
+#: ../lib/python/Screens/MovieSelection.py:38
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
 
@@ -829,7 +835,7 @@ msgstr "Zu Bouquet hinzufügen"
 msgid "add service to favourites"
 msgstr "Kanal zu Favoriten hinzufügen"
 
-#: ../lib/python/Screens/MovieSelection.py:20
+#: ../lib/python/Screens/MovieSelection.py:21
 #: ../lib/python/Screens/ChannelSelection.py:64
 msgid "back"
 msgstr "zurück"
@@ -846,7 +852,7 @@ msgstr ""
 msgid "daily"
 msgstr "täglich"
 
-#: ../lib/python/Screens/MovieSelection.py:20
+#: ../lib/python/Screens/MovieSelection.py:21
 msgid "delete..."
 msgstr "löschen..."
 
@@ -878,7 +884,7 @@ msgstr "Bouqueteditieren beenden"
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
-#: ../lib/python/Components/DiskInfo.py:29
+#: ../lib/python/Components/DiskInfo.py:30
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
 
