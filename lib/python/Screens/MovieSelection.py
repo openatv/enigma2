@@ -70,7 +70,6 @@ class MovieSelection(Screen):
 		
 		self.delayTimer = eTimer()
 		self.delayTimer.timeout.get().append(self.updateHDDData)
-		self.delayTimer.start(0, 1)
 		
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 		
@@ -87,6 +86,10 @@ class MovieSelection(Screen):
 				"contextMenu": self.doContext,
 			})
 		self["actions"].csel = self
+		self.onShown.append(self.go)
+		
+	def go(self):
+		self.delayTimer.start(0, 1)
 
 	def updateHDDData(self):
 		self["list"].reload(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
