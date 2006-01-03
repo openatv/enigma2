@@ -14,7 +14,6 @@ class AVSwitch:
 		eAVSwitch.getInstance().setAspectRatio(value)
 
 	def setSystem(self, value):
-		print "system:" + str(value)
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def setWSS(self, value):
@@ -23,6 +22,8 @@ class AVSwitch:
 	
 	def setInput(self, input):
 		eAVSwitch.getInstance().setInput(self.INPUT[input])
+		# FIXME why do we have to reset the colorformat? bug in avs-driver?
+		eAVSwitch.getInstance().setColorFormat(config.av.colorformat.value)
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
