@@ -63,7 +63,7 @@ class MovieList(HTMLComponent, GUIComponent):
 			self.reload(root)
 		self.l.setFont(0, gFont("Regular", 30))
 		self.l.setFont(1, gFont("Regular", 18))
-
+		
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
