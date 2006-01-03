@@ -220,7 +220,10 @@ int eDVBService::getCachePID(cacheID id)
 
 void eDVBService::setCachePID(cacheID id, int pid)
 {
-	m_cache[id] = pid;
+	if (pid == -1)
+		m_cache.erase(id);
+	else
+		m_cache[id] = pid;
 }
 
 DEFINE_REF(eDVBDB);
@@ -357,7 +360,6 @@ void eDVBDB::load()
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
-
 		std::string str=line;
 
 		if (str[1]!=':')	// old ... (only service_provider)

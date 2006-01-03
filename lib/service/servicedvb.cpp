@@ -8,6 +8,7 @@
 
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
+#include <lib/dvb/decoder.h>
 
 #include <lib/service/servicedvbrecord.h>
 #include <lib/dvb/metaparser.h>
@@ -613,8 +614,17 @@ void eDVBServicePlay::serviceEvent(int event)
 				/* don't worry about non-existing services, nor pvr services */
 			if (m_dvb_service && !m_is_pvr)
 			{
+				if (apidtype == eDVBAudio::aMPEG)
+				{
+					m_dvb_service->setCachePID(eDVBService::cAPID, apid);
+					m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+				}
+				else
+				{
+					m_dvb_service->setCachePID(eDVBService::cAPID, -1);
+					m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
+				}
 				m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
-				m_dvb_service->setCachePID(eDVBService::cAPID, apid);
 				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
 			}
 		}
@@ -978,6 +988,23 @@ int eDVBServicePlay::selectAudioStream(int i)
 	
 	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
 		return -4;
+
+	if (m_dvb_service && !m_is_pvr)
+	{
+		if (m_dvb_service && !m_is_pvr)
+		{
+			if (program.audioStreams[i].type == eDVBAudio::aMPEG)
+			{
+				m_dvb_service->setCachePID(eDVBService::cAPID, program.audioStreams[i].pid);
+				m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+			}
+			else
+			{
+				m_dvb_service->setCachePID(eDVBService::cAPID, -1);
+				m_dvb_service->setCachePID(eDVBService::cAC3PID, program.audioStreams[i].pid);
+			}
+		}
+	}
 
 	m_current_audio_stream = i;
 
