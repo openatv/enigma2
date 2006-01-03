@@ -129,6 +129,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 	if (!m_PMT.getCurrent(ptr))
 	{
+		int cached_apid_ac3 = -1;
+		int cached_apid_mpeg = -1;
+		int cached_vpid = -1;
+		if ( m_service && !m_service->cacheEmpty() )
+		{
+			cached_vpid = m_service->getCachePID(eDVBService::cVPID);
+			cached_apid_mpeg = m_service->getCachePID(eDVBService::cAC3PID);
+			cached_apid_ac3 = m_service->getCachePID(eDVBService::cAPID);
+		}
 		eDVBTableSpec table_spec;
 		ptr->getSpec(table_spec);
 		program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
@@ -201,9 +210,26 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					break;
 				}
 				if (isaudio)
-					program.audioStreams.push_back(audio);
+				{
+					if ( !program.audioStreams.empty() &&
+						( audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg) )
+					{
+						program.audioStreams.push_back(program.audioStreams[0]);
+						program.audioStreams[0] = audio;
+					}
+					else
+						program.audioStreams.push_back(audio);
+				}
 				else if (isvideo)
-					program.videoStreams.push_back(video);
+				{
+					if ( !program.videoStreams.empty() && video.pid == cached_vpid )
+					{
+						program.videoStreams.push_back(program.videoStreams[0]);
+						program.videoStreams[0] = video;
+					}
+					else
+						program.videoStreams.push_back(video);
+				}
 				else
 					continue;
 				if ( cadescriptors > 0 )
