@@ -255,7 +255,8 @@
 			<widget name="channel" position="240,345" size="270,30" font="Regular;22" />
 		</screen>
 		<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
-			<widget name="list" position="0,0" size="560,375" scrollbarMode="showOnDemand" />
+			<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
+			<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
 			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;25" />
 		</screen>
 		<screen name="ServiceScan" position="200,100" size="300,200" title="Service Scan">
