@@ -4,13 +4,14 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from Components.MovieList import MovieList
 from Components.DiskInfo import DiskInfo
+from Components.Label import Label
 
 from Screens.MessageBox import MessageBox
 from Screens.FixedMenu import FixedMenu
 
 from Tools.Directories import *
 
-from enigma import eServiceReference, eServiceCenter
+from enigma import eServiceReference, eServiceCenter, eTimer
 
 class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel, service):
@@ -67,13 +68,17 @@ class MovieSelection(Screen):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
-		self["list"] = MovieList(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
-		if (selectedmovie is not None):
-			self.onShown.append(self.moveTo)
-			self.selectedmovie = selectedmovie
+		self.delayTimer = eTimer()
+		self.delayTimer.timeout.get().append(self.updateHDDData)
+		self.delayTimer.start(0, 1)
+		
+		self["waitingtext"] = Label(_("Please wait... Loading list..."))
+		
+		self["list"] = MovieList(None)
+		self.selectedmovie = selectedmovie
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
-		self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE)
+		self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE, update=False)
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ContextMenuActions"],
 			{
@@ -82,6 +87,14 @@ class MovieSelection(Screen):
 				"contextMenu": self.doContext,
 			})
 		self["actions"].csel = self
+
+	def updateHDDData(self):
+		self["list"].reload(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
+		if (self.selectedmovie is not None):
+			self.moveTo()
+		self["waitingtext"].instance.hide()
+						
+		self["freeDiskSpace"].update()
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)

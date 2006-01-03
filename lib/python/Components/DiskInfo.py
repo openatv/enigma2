@@ -11,12 +11,13 @@ class DiskInfo(GUIComponent, VariableText):
 	USED = 1
 	SIZE = 2
 	
-	def __init__(self, path, type):
+	def __init__(self, path, type, update = True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
 		self.path = path
-		self.update()
+		if update:
+			self.update()
 	
 	def update(self):
 		try:

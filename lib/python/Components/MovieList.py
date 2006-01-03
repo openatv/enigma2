@@ -59,8 +59,8 @@ class MovieList(HTMLComponent, GUIComponent):
 	def __init__(self, root):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
-		self.load(root)
-		self.l.setList(self.list)
+		if root is not None:
+			self.reload(root)
 		self.l.setFont(0, gFont("Regular", 30))
 		self.l.setFont(1, gFont("Regular", 18))
 
@@ -81,6 +81,13 @@ class MovieList(HTMLComponent, GUIComponent):
 	def GUIdelete(self):
 		self.instance.setContent(None)
 		self.instance = None
+
+	def reload(self, root = None):
+		if root is not None:
+			self.load(root)
+		else:
+			self.load(self.root)
+		self.l.setList(self.list)
 
 	def load(self, root):
 		# this lists our root service, then building a 
@@ -115,10 +122,6 @@ class MovieList(HTMLComponent, GUIComponent):
 				found = count
 			count += 1
 		self.instance.moveSelectionTo(found)
-
-	def reload(self):
-		self.load(self.root)
-		self.l.setList(self.list)
 
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
