@@ -48,6 +48,8 @@ void eListboxServiceContent::setCurrent(const eServiceReference &ref)
 			m_cursor_number = index;
 			break;
 		}
+	if (m_listbox)
+		m_listbox->moveSelectionTo(index);
 }
 
 void eListboxServiceContent::getCurrent(eServiceReference &ref)
