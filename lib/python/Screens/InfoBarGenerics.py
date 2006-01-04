@@ -543,6 +543,7 @@ class InfoBarPVR:
 				"seekBack": (self.seekBack, "skip backward"),
 				"seekBackUp": (self.seekBackUp, "skip backward"),
 							 
+				"movieList": (self.showMovies, "movie list"),
 				"up": (self.showMovies, "movie list"),
 				"down": (self.showMovies, "movie list")
 			})
