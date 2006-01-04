@@ -419,8 +419,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
 			{
 				"cancel": self.cancel,
-				"down": self.cancel,
-				"up": self.cancel,
 				"ok": self.channelSelected,
 				"mark": self.doMark,
 				"contextMenu": self.doContext,
