@@ -139,10 +139,11 @@ class Menu(Screen):
 
 		self["menu"] = MenuList(list)	
 							
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.close
+				"cancel": self.close,
+				"menu": self.close
 			})
 		
 		a = getValbyAttr(parent, "title")
