@@ -358,7 +358,7 @@ class InfoBarEPG:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
-				"showEPGList": (self.openSingleServiceEPG, _("show EPG...")),
+				"showEPGList": (self.showEPGList, _("show EPG...")),
 			})
 
 	def showEPGList(self):
@@ -382,6 +382,22 @@ class InfoBarEPG:
 		if info:
 			self.showEPGList()
 			
+	def openEventView(self):
+		try:
+			self.epglist = [ ]
+			service = self.session.nav.getCurrentService()
+			info = service.info()
+			ptr=info.getEvent(0)
+			if ptr:
+				self.epglist.append(ptr)
+			ptr=info.getEvent(1)
+			if ptr:
+				self.epglist.append(ptr)
+			if len(self.epglist) > 0:
+				self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
+		except:
+			pass
+			
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
 		ptr=eEPGCache.getInstance()
@@ -389,20 +405,7 @@ class InfoBarEPG:
 			self.session.openWithCallback(self.singleEPGCallback, EPGSelection, ref)
 		else: # try to show now/next
 			print 'no epg for service', ref.toString()
-			try:
-				self.epglist = [ ]
-				service = self.session.nav.getCurrentService()
-				info = service.info()
-				ptr=info.getEvent(0)
-				if ptr:
-					self.epglist.append(ptr)
-				ptr=info.getEvent(1)
-				if ptr:
-					self.epglist.append(ptr)
-				if len(self.epglist) > 0:
-					self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
-			except:
-				pass	
+
 	
 	def openBouquetEPG(self, bouquet):
 		ptr=eEPGCache.getInstance()
