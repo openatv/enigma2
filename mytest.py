@@ -22,6 +22,7 @@ from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import InitFallbackFiles
 InitFallbackFiles()
+eDVBDB.getInstance().reloadBouquets()
 
 had = dict()
 
