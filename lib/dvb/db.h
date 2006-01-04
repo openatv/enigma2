@@ -1,20 +1,23 @@
 #ifndef __db_h
 #define __db_h
 
+#ifndef SWIG
 #include <lib/base/eptrlist.h>
 #include <lib/dvb/idvb.h>
 #include <set>
-
 class ServiceDescriptionSection;
+#endif
 
 class eDVBDB: public iDVBChannelList
 {
+	static eDVBDB *instance;
 DECLARE_REF(eDVBDB);
 	friend class eDVBDBQuery;
 	friend class eDVBDBBouquetQuery;
 	friend class eDVBDBSatellitesQuery;
 	friend class eDVBDBProvidersQuery;
-private:
+
+
 	struct channel
 	{
 		ePtr<iDVBFrontendParameters> m_frontendParameters;
@@ -25,16 +28,13 @@ private:
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
 	
 	std::map<std::string, eBouquet> m_bouquets;
-public:
-	void load();
-	void save();
-
-	void loadBouquet(const char *path);
-	void loadBouquets();
-
+#ifdef SWIG
 	eDVBDB();
-	virtual ~eDVBDB();
-	
+	~eDVBDB();
+#endif
+public:
+#ifndef SWIG
+// iDVBChannelList
 	RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm);
 	RESULT removeChannel(const eDVBChannelID &id);
 
@@ -47,8 +47,18 @@ public:
 	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source);
 
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
+//////
+	void saveServicelist();
+	void loadBouquet(const char *path);
+	eDVBDB();
+	virtual ~eDVBDB();
+#endif
+	static eDVBDB *getInstance() { return instance; }
+	void reloadServicelist();
+	void reloadBouquets();
 };
 
+#ifndef SWIG
 	// we have to add a possibility to invalidate here.
 class eDVBDBQueryBase: public iDVBChannelListQuery
 {
@@ -100,5 +110,6 @@ class eDVBDBProvidersQuery: public eDVBDBListQuery
 public:
 	eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 };
+#endif // SWIG
 
 #endif

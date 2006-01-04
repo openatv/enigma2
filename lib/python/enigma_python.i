@@ -68,6 +68,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/actions/action.h>
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/epng.h>
+#include <lib/dvb/db.h>
 #include <lib/dvb/volume.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/epgcache.h>
@@ -175,6 +176,7 @@ typedef long time_t;
 %include <lib/driver/etimezone.h>
 %include <lib/gdi/lcd.h>
 %include <lib/dvb_ci/dvbci_ui.h>
+%include <lib/dvb/db.h>
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;

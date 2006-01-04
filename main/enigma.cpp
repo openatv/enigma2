@@ -128,15 +128,11 @@ public:
 		m_locale_time_handler = new eDVBLocalTimeHandler();
 		m_epgcache = new eEPGCache();
 		m_mgr->setChannelList(m_dvbdb);
-		
-//		m_scan = new eComponentScan();
-//		m_scan->start();
-
 	}
 	
 	~eMain()
 	{
-		m_dvbdb->save();
+		m_dvbdb->saveServicelist();
 		m_scan = 0;
 	}
 };
