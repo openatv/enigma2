@@ -24,11 +24,15 @@ class Example(Screen):
 			"back": self.close
 		}, -1)
 		
+		self.update = True
 		self.delayTimer = eTimer()
 		self.delayTimer.timeout.get().append(self.doUpdateDelay)
 		
 	def go(self):
-		self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
+		if self.update:
+			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
+		else:
+			self.close()
 	
 	def doUpdateDelay(self):
 		lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
@@ -36,6 +40,7 @@ class Example(Screen):
 		for x in lines:
 			string += x
 		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
+		self.update = False
 			
 	
 	def doUpdate(self, val = False):
