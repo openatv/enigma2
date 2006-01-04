@@ -180,18 +180,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			service = data[1]
 			begTime = data[2]
 			duration = data[3]
-			new_stime = 0
-			if begTime is not None:
-				if direction > 0:
-					new_stime = begTime+duration+120
-				else:
-					new_stime = begTime-120
-			test.append((service, 0, new_stime))
+			if begTime is None:
+				begTime = 0
+			test.append((service, direction, begTime))
 #		self.list = self.queryEPG(test, self.buildMultiEntry)
 		tmp = self.queryEPG(test)
-		self.list = [ ]
-		for x in tmp:
-			self.list.append(self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
+		s = len(tmp)
+		cnt = 0
+		while(cnt < s):
+			x = tmp[cnt]
+			if x[2] is not None:
+				self.list[cnt]=self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6])
+			cnt += 1
 		self.l.setList(self.list)
 		print time() - t
 
