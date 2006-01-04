@@ -229,7 +229,7 @@ void eDVBService::setCachePID(cacheID id, int pid)
 DEFINE_REF(eDVBDB);
 
 	/* THIS CODE IS BAD. it should be replaced by somethine better. */
-void eDVBDB::load()
+void eDVBDB::reloadServicelist()
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "rt");
@@ -239,7 +239,7 @@ void eDVBDB::load()
 		if ( !stat("lamedb", &s) )
 		{
 			rename("lamedb", CONFIGDIR"/enigma2/lamedb" );
-			load();
+			reloadServicelist();
 		}
 		return;
 	}
@@ -406,7 +406,7 @@ void eDVBDB::load()
 	fclose(f);
 }
 
-void eDVBDB::save()
+void eDVBDB::saveServicelist()
 {
 	eDebug("---- saving lame channel db");
 	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "w");
@@ -583,8 +583,9 @@ void eDVBDB::loadBouquet(const char *path)
 	eDebug("%d entries in Bouquet %s", entries, bouquet_name.c_str());
 }
 
-void eDVBDB::loadBouquets()
+void eDVBDB::reloadBouquets()
 {
+	m_bouquets.clear();
 	loadBouquet("bouquets.tv");
 	loadBouquet("bouquets.radio");
 // create default bouquets when missing
@@ -622,15 +623,17 @@ void eDVBDB::loadBouquets()
 	}
 }
 
+eDVBDB *eDVBDB::instance;
+
 eDVBDB::eDVBDB()
 {
-	load();
-	loadBouquets();
+	instance = this;
+	reloadServicelist();
 }
 
 eDVBDB::~eDVBDB()
 {
-//	save();
+	instance=NULL;
 }
 
 RESULT eDVBDB::addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)
@@ -681,7 +684,7 @@ RESULT eDVBDB::getService(const eServiceReferenceDVB &reference, ePtr<eDVBServic
 
 RESULT eDVBDB::flush()
 {
-	save();
+	saveServicelist();
 	return 0;
 }
 
