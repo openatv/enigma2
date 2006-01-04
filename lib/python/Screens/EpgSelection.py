@@ -43,7 +43,7 @@ class EPGSelection(Screen):
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.closeInfo
+				"info": self.closeClose
 			})
 		self["actions"].csel = self
 
