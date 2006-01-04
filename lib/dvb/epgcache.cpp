@@ -1004,7 +1004,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	}
 }
 
-RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
 // if t == -1 we search the current event...
 {
 	singleLock s(cache_lock);
@@ -1016,20 +1016,24 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	{
 		if (t==-1)
 			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
-		timeMap::iterator i = It->second.second.lower_bound(t);  // find > or equal
+		timeMap::iterator i = direction <= 0 ? It->second.second.lower_bound(t) :  // find > or equal
+			It->second.second.upper_bound(t); // just >
 		if ( i != It->second.second.end() )
 		{
-			if ( i->second->getStartTime() != t )
+			if ( direction < 0 || (direction == 0 && i->second->getStartTime() > t) )
 			{
 				timeMap::iterator x = i;
 				--x;
 				if ( x != It->second.second.end() )
 				{
 					time_t start_time = x->second->getStartTime();
-					if (t < start_time)
-						return -1;
-					if (t > (start_time+x->second->getDuration()))
-						return -1;
+					if (direction >= 0)
+					{
+						if (t < start_time)
+							return -1;
+						if (t > (start_time+x->second->getDuration()))
+							return -1;
+					}
 					i = x;
 				}
 				else
@@ -1042,31 +1046,31 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	return -1;
 }
 
-RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eit_event_struct *&result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eit_event_struct *&result, int direction)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEventTime(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data, direction);
 	if ( !ret && data )
 		result = data->get();
 	return ret;
 }
 
-RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Event *& result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Event *& result, int direction)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEventTime(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data, direction);
 	if ( !ret && data )
 		result = new Event((uint8_t*)data->get());
 	return ret;
 }
 
-RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result )
+RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result, int direction)
 {
 	singleLock s(cache_lock);
 	const eventData *data=0;
-	RESULT ret = lookupEventTime(service, t, data);
+	RESULT ret = lookupEventTime(service, t, data, direction);
 	if ( !ret && data )
 	{
 		Event ev((uint8_t*)data->get());
@@ -1391,7 +1395,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 					}
 					case 1:
 						type=PyInt_AsLong(entry);
-						if (type < 0 || type > 1)
+						if (type < -1 || type > 2)
 						{
 							eDebug("unknown type %d", type);
 							continue;
@@ -1454,10 +1458,10 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 				ePtr<eServiceEvent> ptr;
 				if (stime)
 				{
-					if (type == 0)
-						lookupEventTime(ref, stime, ptr);
-					else // type == 1
+					if (type == 2)
 						lookupEventId(ref, event_id, ptr);
+					else
+						lookupEventTime(ref, stime, ptr, type);
 				}
 				PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
 				if (ret)
