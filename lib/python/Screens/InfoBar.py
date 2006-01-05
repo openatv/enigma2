@@ -1,6 +1,7 @@
 from Screen import Screen
 
 from Screens.MovieSelection import MovieSelection
+from Screens.ChannelSelection import ChannelSelectionRadio
 from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
 
@@ -33,19 +34,25 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
-				"showMovies": (self.showMovies, _("Play recorded movies..."))
+				"showMovies": (self.showMovies, _("Play recorded movies...")),
+				"showRadio": (self.showRadio, _("Show the radio player..."))
 			})
 		
 		for x in HelpableScreen, \
 				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
-				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarTuner:
+				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
+				InfoBarTuner:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", "Hear Radio...")]))
 
 		self["CurrentTime"] = Clock()
+
+	def showRadio(self):
+		self.session.open(ChannelSelectionRadio)
 
 	def showMovies(self):
 		self.session.openWithCallback(self.movieSelected, MovieSelection)

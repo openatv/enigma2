@@ -97,6 +97,7 @@
 
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
+		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
@@ -199,6 +200,15 @@
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
 
+	<map context="ContextMenuActions">
+		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
+	</map>
+
+	<map context="TvRadioActions">
+		<key id="KEY_TV" mapto="keyTV" flags="m" />
+		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
+	</map>
+
 	<map context="EPGSelectActions">
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
@@ -255,8 +265,5 @@
 	</map>
 	<map context="StandbyActions">
 		<key id="KEY_POWER" mapto="power" flags="m" />
-	</map>
-	<map context="ContextMenuActions">
- 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 	</map>
 </keymap>

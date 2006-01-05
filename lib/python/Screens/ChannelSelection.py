@@ -235,19 +235,16 @@ class ChannelSelectionEdit:
 
 USE_MULTIBOUQUETS = False
 
+MODE_TV = 0
+MODE_RADIO = 1
+
 class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
 		# this makes it much simple to implement a selectable radio or tv mode :)
 		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17)'
-#		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
-
-		self.service_types = self.service_types_tv
-		if USE_MULTIBOUQUETS:
-			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-		else:
-			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
@@ -256,8 +253,6 @@ class ChannelSelectionBase(Screen):
 
 		self["list"] = ServiceList()
 		self.servicelist = self["list"]
-
-		#self["okbutton"] = Button("ok", [self.channelSelected])
 
 		self.numericalTextInput = NumericalTextInput()
 
@@ -292,6 +287,34 @@ class ChannelSelectionBase(Screen):
 							continue
 						offsetCount += 1
 		return offsetCount
+
+	def setTvMode(self):
+		self.service_types = self.service_types_tv
+		if USE_MULTIBOUQUETS:
+			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+		else:
+			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+		title = self.instance.getTitle()
+		pos = title.find(" (")
+		if pos != -1:
+			title = title[:pos]
+		title += " (TV)"
+		self.instance.setTitle(title)
+		self.mode = MODE_TV
+
+	def setRadioMode(self):
+		self.service_types = self.service_types_radio
+		if USE_MULTIBOUQUETS:
+			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+		else:
+			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(self.service_types))
+		title = self.instance.getTitle()
+		pos = title.find(" (")
+		if pos != -1:
+			title = title[:pos]
+		title += " (Radio)"
+		self.instance.setTitle(title)
+		self.mode = MODE_RADIO
 
 	def setRootBase(self, root, justSet=False):
 		path = root.getPath()
@@ -441,22 +464,23 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		self["actions"].csel = self
 		self.onShown.append(self.onShow)
 
-#		self.onLayoutFinish.append(self.onCreate)
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.timeout.get().append(self.onCreate)
 		self.lastChannelRootTimer.start(100,True)
 
 	def onCreate(self):
+		self.setTvMode()
 		lastroot=eServiceReference(config.tv.lastroot.value)
 		if lastroot.valid():
 			self.setRoot(lastroot)
 		else:
 			self.showFavourites()
 			self.saveRoot(self.getRoot())
+
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
-			self.session.nav.playService(lastservice)
 			self.servicelist.setCurrent(lastservice)
+			self.session.nav.playService(lastservice)
 
 	def onShow(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -518,19 +542,26 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if lastservice.valid() and self.getCurrentSelection() != lastservice:
 			self.servicelist.setCurrent(lastservice)
 
-class SimpleChannelSelection(ChannelSelectionBase):
-	def __init__(self, session, title):
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
+	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
-		self.title = title
-		self.onShown.append(self.onExecCallback)
+		ChannelSelectionEdit.__init__(self)
+
+		config.radio = ConfigSubsection();
+		config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0);
+		config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0);
+		self.onLayoutFinish.append(self.onCreate)
 
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
 				if not self.csel.enterBouquet(action):
 					NumberActionMap.action(self, contexts, action)
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions", "TvRadioActions"],
 			{
-				"cancel": self.cancel,
+				"keyTV": self.closeRadio,
+				"keyRadio": self.closeRadio,
+				"contextMenu": self.doContext,
+				"cancel": self.closeRadio,
 				"ok": self.channelSelected,
 				"showFavourites": self.showFavourites,
 				"showAllServices": self.showAllServices,
@@ -549,15 +580,101 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 		self["actions"].csel = self
 
-	def onExecCallback(self):
-		print "onExecCallback"
-		self.showFavourites()
-		self.session.currentDialog.instance.setTitle(self.title)
+	def onCreate(self):
+		self.setRadioMode()
+		lastroot=eServiceReference(config.radio.lastroot.value)
+		if lastroot.valid():
+			self.setRoot(lastroot)
+		else:
+			self.showFavourites()
+			self.saveRoot(self.getRoot())
+		lastservice=eServiceReference(config.radio.lastservice.value)
+		if lastservice.valid():
+			self.servicelist.setCurrent(lastservice)
+			self.session.nav.playService(lastservice)
+			self.servicelist.setPlayableIgnoreService(lastservice)
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		self.close(ref)
+		if self.movemode:
+			self.toggleMoveMarked()
+		elif (ref.flags & 7) == 7:
+			self.setRoot(ref)
+		elif self.bouquet_mark_edit:
+			self.doMark()
+		else:
+			self.session.nav.playService(ref)
+			self.servicelist.setPlayableIgnoreService(ref)
+			config.radio.lastservice.value = ref.toString()
+			config.radio.lastservice.save()
 
-	def setRoot(self, root):
-		self.setRootBase(root)
+	def setRoot(self, root, justSet=False):
+		self.setRootBase(root, justSet)
 
+	def closeRadio(self):
+		lastroot=eServiceReference(config.radio.lastroot.value)
+		lastservice=eServiceReference(config.radio.lastservice.value)
+		if lastroot.valid() and self.getRoot() != lastroot:
+			self.setRoot(lastroot)
+		if lastservice.valid() and self.getCurrentSelection() != lastservice:
+			self.servicelist.setCurrent(lastservice)
+		#set previous tv service
+		lastservice=eServiceReference(config.tv.lastservice.value)
+		self.session.nav.playService(lastservice)
+		self.close(None)
+
+class SimpleChannelSelection(ChannelSelectionBase):
+	def __init__(self, session, title):
+		ChannelSelectionBase.__init__(self, session)
+		self.title = title
+		self.onShown.append(self.onExecCallback)
+
+		class ChannelActionMap(NumberActionMap):
+			def action(self, contexts, action):
+				if not self.csel.enterBouquet(action):
+					NumberActionMap.action(self, contexts, action)
+		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions", "TvRadioActions"],
+			{
+				"cancel": self.cancel,
+				"ok": self.channelSelected,
+				"showFavourites": self.showFavourites,
+				"showAllServices": self.showAllServices,
+				"showProviders": self.showProviders,
+				"showSatellites": self.showSatellites,
+				"keyRadio": self.setModeRadio,
+				"keyTV": self.setModeTv,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal
+			})
+		self["actions"].csel = self
+
+	def onExecCallback(self):
+		self.session.currentDialog.instance.setTitle(self.title)
+		self.setModeTv()
+
+	def channelSelected(self): # just return selected service
+		ref = self.getCurrentSelection()
+		if (ref.flags & 7) == 7:
+			self.setRoot(ref)
+		else:
+			ref = self.getCurrentSelection()
+			self.close(ref)
+
+	def setRoot(self, root, justSet=False):
+		self.setRootBase(root, justSet)
+
+	def setModeTv(self):
+		self.setTvMode()
+		self.showFavourites()
+
+	def setModeRadio(self):
+		self.setRadioMode()
+		self.showFavourites()
