@@ -236,8 +236,6 @@ int main(int argc, char **argv)
 
 	python.execute("mytest", "__main__");
 
-//	eApp->exec();
-
 	return exit_code;
 }
 
@@ -246,9 +244,14 @@ eWidgetDesktop *getDesktop()
 	return wdsk;
 }
 
+eApplication *getApplication()
+{
+	return eApp;
+}
+
 void runMainloop()
 {
-	exit_code = eApp->exec();
+	exit_code = eApp->runLoop();
 }
 
 void quitMainloop(int exitCode)
