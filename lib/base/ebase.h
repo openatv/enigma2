@@ -16,6 +16,7 @@ class eApplication;
 
 extern eApplication* eApp;
 
+#ifndef SWIG
 	/* TODO: remove these inlines. */
 static inline bool operator<( const timeval &t1, const timeval &t2 )
 {
@@ -123,6 +124,7 @@ static inline int timeval_to_usec(const timeval &t1)
 {
 	return t1.tv_sec*1000000 + t1.tv_usec;
 }
+#endif
 
 class eMainloop;
 
@@ -138,11 +140,13 @@ class eSocketNotifier
 {
 public:
 	enum { Read=POLLIN, Write=POLLOUT, Priority=POLLPRI, Error=POLLERR, Hungup=POLLHUP };
+#ifndef SWIG
 private:
 	eMainloop &context;
 	int fd;
 	int state;
 	int requested;		// requested events (POLLIN, ...)
+#endif
 public:
 	/**
 	 * \brief Constructs a eSocketNotifier.
@@ -171,18 +175,19 @@ class eTimer;
 			// werden in einer mainloop verarbeitet
 class eMainloop
 {
+#ifndef SWIG
 	friend class eTimer;
 	friend class eSocketNotifier;
-	std::map<int, eSocketNotifier*> notifiers;
+	std::multimap<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> m_timer_list;
-	bool app_exit_loop;
 	bool app_quit_now;
 	int loop_level;
-	void processOneEvent();
+	int processOneEvent(unsigned int user_timeout);
 	int retval;
 	pthread_mutex_t recalcLock;
 	
 	int m_now_is_invalid;
+#endif
 public:
 	static void addTimeOffset(int offset);
  	void addSocketNotifier(eSocketNotifier *sn);
@@ -190,7 +195,10 @@ public:
 	void addTimer(eTimer* e);
 	void removeTimer(eTimer* e);
 
+#ifndef SWIG
 	static ePtrList<eMainloop> existing_loops;
+#endif
+
 	eMainloop()
 		:app_quit_now(0),loop_level(0),retval(0)
 	{
@@ -205,11 +213,20 @@ public:
 	}
 	int looplevel() { return loop_level; }
 
-		/* OBSOLETE. DONT USE. */
-	int exec();  // recursive enter the loop
+#ifndef SWIG
 	void quit(int ret=0); // leave all pending loops (recursive leave())
-	void enter_loop();
-	void exit_loop();
+#endif
+
+		/* a user supplied timeout. enter_loop will return with:
+		  0 - no timeout, no signal
+		  1 - timeout
+		  2 - signal
+		*/
+	int iterate(unsigned int timeout=0);
+		
+		/* run will iterate endlessly until the app is quit, and return
+		   the exit code */
+	int runLoop();
 };
 
 /**
@@ -240,12 +257,14 @@ public:
  */
 class eTimer
 {
+#ifndef SWIG
 	friend class eMainloop;
 	eMainloop &context;
 	timeval nextActivation;
 	long interval;
 	bool bSingleShot;
 	bool bActive;
+#endif
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -265,7 +284,9 @@ public:
 	void start(long msec, bool b=false);
 	void stop();
 	void changeInterval(long msek);
+#ifndef SWIG
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
+#endif
 	void startLongTimer( int seconds );
 	void addTimeOffset(int);
 };

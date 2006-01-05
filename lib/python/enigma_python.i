@@ -84,6 +84,7 @@ extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern void setLCD(const char *c);
 extern void setLCDClock(const char *c);
+extern eApplication *getApplication();
 
 extern PSignal1<void,int> &keyPressedSignal();
 %}
@@ -124,6 +125,10 @@ typedef long time_t;
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
 %include <lib/base/econfig.h>
+
+%immutable eTimer::timeout;
+%immutable eSocketNotifier::activated;
+%include <lib/base/ebase.h>
 %include <lib/base/smartptr.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
@@ -213,20 +218,6 @@ public:
 	$1 = $input->get();
 }
 
-/**************  base  **************/
-
-%immutable eTimer::timeout;
-
-class eTimer
-{
-public:
-	eTimer(eMainloop *context = eApp);
-	PSignal0<void> timeout;
-
-	void start(long msec, bool singleShot=false);
-	void stop();
-	void changeInterval(long msek);
-};
 
 /**************  debug  **************/
 
@@ -234,6 +225,7 @@ void runMainloop();
 void quitMainloop(int exit_code);
 void setLCD(const char*);
 void setLCDClock(const char*);
+eApplication *getApplication();
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();
 

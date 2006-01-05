@@ -623,7 +623,7 @@ void eEPGCache::thread()
 	nice(4);
 	load();
 	cleanLoop();
-	exec();
+	run();
 	save();
 }
 

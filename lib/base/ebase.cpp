@@ -121,11 +121,17 @@ void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 
 void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 {
-	notifiers.erase(sn->getFD());
+	for (std::multimap<int,eSocketNotifier*>::iterator i = notifiers.find(sn->getFD());
+			i != notifiers.end();
+			++i)
+		if (i->second == sn)
+			return notifiers.erase(i);
+	eFatal("removed socket notifier which is not present");
 }
 
-void eMainloop::processOneEvent()
+int eMainloop::processOneEvent(unsigned int user_timeout)
 {
+	int return_reason = 0;
 		/* get current time */
 	timeval now;
 	gettimeofday(&now, 0);
@@ -145,41 +151,69 @@ void eMainloop::processOneEvent()
 		poll_timeout /= 1000;
 	}
 	
+	if ((user_timeout > 0) && (poll_timeout > user_timeout))
+	{
+		poll_timeout = user_timeout;
+		return_reason = 1;
+	}
+	
 	int ret = 0;
-
+	
 	if (poll_timeout)
 	{
-			// build the poll aray
-		int fdcount = notifiers.size();
-		pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
 
-		std::map<int,eSocketNotifier*>::iterator it(notifiers.begin());
-		for (int i=0; i < fdcount; i++, it++)
+		std::multimap<int,eSocketNotifier*>::iterator it;
+		std::map<int,int> fd_merged;
+		std::map<int,int>::const_iterator fd_merged_it;
+		
+		for (it = notifiers.begin(); it != notifiers.end(); ++it)
+			fd_merged[it->first] |= it->second->getRequested();
+		
+		fd_merged_it = fd_merged.begin();
+		
+		int fdcount = fd_merged.size();
+
+			// build the poll aray
+		pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
+		
+		for (int i=0; i < fdcount; i++, fd_merged_it++)
 		{
-			pfd[i].fd = it->first;
-			pfd[i].events = it->second->getRequested();
+			pfd[i].fd = fd_merged_it->first;
+			pfd[i].events = fd_merged_it->second;
 		}
 
 		ret = poll(pfd, fdcount, poll_timeout);
-
+		
 			/* ret > 0 means that there are some active poll entries. */
 		if (ret > 0)
 		{
+			return_reason = 0;
 			for (int i=0; i < fdcount ; i++)
 			{
-				if (notifiers.find(pfd[i].fd) == notifiers.end())
-					continue;
+				it = notifiers.begin();
 				
-				int req = notifiers[pfd[i].fd]->getRequested();
+				int handled = 0;
 				
-				if (pfd[i].revents & req)
+				std::multimap<int,eSocketNotifier*>::iterator 
+					l = notifiers.lower_bound(pfd[i].fd),
+					u = notifiers.upper_bound(pfd[i].fd);
+				
+				ePtrList<eSocketNotifier> n;
+				
+				for (; l != u; ++l)
+					n.push_back(l->second);
+				
+				for (ePtrList<eSocketNotifier>::iterator li(n.begin()); li != n.end(); ++li)
 				{
-					notifiers[pfd[i].fd]->activate(pfd[i].revents);
+					int req = li->getRequested();
+					
+					handled |= req;
 				
-					if (!--ret)
-						break;
-				} else if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d) -> FIX YOUR CODE", pfd[i].fd,pfd[i].revents);
+					if (pfd[i].revents & req)
+						(*li)->activate(pfd[i].revents);
+				}
+				if ((pfd[i].revents&~handled) & (POLLERR|POLLHUP|POLLNVAL))
+						eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 			
 			ret = 1; /* poll did not timeout. */
@@ -189,7 +223,10 @@ void eMainloop::processOneEvent()
 			if (errno != EINTR)
 				eDebug("poll made error (%m)");
 			else
+			{
+				return_reason = 2;
 				ret = -1; /* don't assume the timeout has passed when we got a signal */
+			}
 		}
 		delete [] pfd;
 	}
@@ -205,12 +242,14 @@ void eMainloop::processOneEvent()
 			/* this will never change while we have the recalcLock */
 			/* we can savely return here, the timer will be re-checked soon. */
 		if (m_now_is_invalid)
-			return;
+			return 0;
 
 			/* process all timers which are ready. first remove them out of the list. */
 		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() <= now))
 			m_timer_list.begin()->activate();
 	}
+	
+	return return_reason;
 }
 
 void eMainloop::addTimer(eTimer* e)
@@ -223,47 +262,29 @@ void eMainloop::removeTimer(eTimer* e)
 	m_timer_list.remove(e);
 }
 
-int eMainloop::exec()
+int eMainloop::iterate(unsigned int user_timeout)
 {
-	if (!loop_level)
-	{
-		app_quit_now = false;
-		app_exit_loop = false;
-		enter_loop();
-	}
+	int ret = 0;
+	
+	do
+	{ 
+		if (app_quit_now) break; 
+		ret = processOneEvent(user_timeout);
+	} while (ret == 0);
+	
+	return ret;
+}
+
+int eMainloop::runLoop()
+{
+	while (!app_quit_now)
+		iterate();
 	return retval;
 }
 
-void eMainloop::enter_loop()
+void eMainloop::quit(int ret)
 {
-	loop_level++;
-	// Status der vorhandenen Loop merken
-	bool old_exit_loop = app_exit_loop;
-
-	app_exit_loop = false;
-
-	while (!app_exit_loop && !app_quit_now)
-		processOneEvent();
-
-	// wiederherstellen der vorherigen app_exit_loop
-	app_exit_loop = old_exit_loop;
-
-	--loop_level;
-
-	if (!loop_level)
-	{
-		// do something here on exit the last loop
-	}
-}
-
-void eMainloop::exit_loop()  // call this to leave the current loop
-{
-	app_exit_loop = true;
-}
-
-void eMainloop::quit( int ret )   // call this to leave all loops
-{
-	retval=ret;
+	retval = ret;
 	app_quit_now = true;
 }
 
