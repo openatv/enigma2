@@ -91,7 +91,8 @@ class Menu(Screen):
 		#        plus possible arguments, as 
 		#        string (as we want to reference 
 		#        stuff which is just imported)
-		# FIXME. somehow.
+		# FIXME. somehow
+		print arg
 		if arg[0] != "":
 			exec "from " + arg[0] + " import *"
 			
@@ -120,11 +121,14 @@ class Menu(Screen):
 				if x.nodeType != xml.dom.minidom.Element.nodeType:
 					continue
 				elif x.tagName == 'screen':
-					module = "Screens." + getValbyAttr(x, "module")
+					module = getValbyAttr(x, "module")
 					screen = getValbyAttr(x, "screen")
 
 					if len(screen) == 0:
 						screen = module
+
+					if module != "":
+						module = "Screens." + module
 					
 					# check for arguments. they will be appended to the 
 					# openDialog call
