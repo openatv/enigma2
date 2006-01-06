@@ -241,13 +241,15 @@
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 			<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
 		</screen>
-		<screen name="ServiceInfoWindow" position="90,420" size="560,65">
-			<widget name="Event_Now_StartTime" position="0,0" size="60,22" font="Regular;20" backgroundColor="dark" />
-			<widget name="Event_Next_StartTime" position="0,30" size="60,22" font="Regular;20" backgroundColor="dark" />
-			<widget name="Event_Now" position="80,0" size="380,22" font="Regular;20" backgroundColor="dark" />
-			<widget name="Event_Next" position="80,30" size="380,22" font="Regular;20" backgroundColor="dark" />
-			<widget name="Event_Now_Duration" position="470,0" size="150,26" font="Regular;22" backgroundColor="dark" />
-			<widget name="Event_Next_Duration" position="470,30" size="150,26" font="Regular;22" backgroundColor="dark" />
+		<screen name="ServiceInfoWindow" position="90,420" size="560,95">
+			<widget name="Service_Name" position="0,0" size="400,26" font="Regular;22" backgroundColor="dark" />
+			<widget name="Clock" position="470,0" size="90,26" font="Regular;22" backgroundColor="dark" />
+			<widget name="Event_Now_StartTime" position="0,35" size="60,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Next_StartTime" position="0,65" size="60,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Now" position="80,35" size="380,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Next" position="80,65" size="380,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Now_Duration" position="470,35" size="150,22" font="Regular;20" backgroundColor="dark" />
+			<widget name="Event_Next_Duration" position="470,65" size="150,22" font="Regular;20" backgroundColor="dark" />
 		</screen>
 		<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 			<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
