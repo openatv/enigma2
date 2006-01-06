@@ -234,7 +234,7 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self)
 
-USE_MULTIBOUQUETS = True
+USE_MULTIBOUQUETS = False
 
 MODE_TV = 0
 MODE_RADIO = 1
