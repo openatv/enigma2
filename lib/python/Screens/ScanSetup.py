@@ -68,7 +68,7 @@ class ScanSetup(Screen):
 				
 	def createSetup(self):
 		self.list = []
-
+		self.multiscanlist = []
 		print "ID: " + str(config.scan.nims.value)
 
 		self.list.append(getConfigListEntry(_("Tuner"), config.scan.nims))
@@ -102,8 +102,9 @@ class ScanSetup(Screen):
 					if self.Satexists(tlist, x[1]) == 0:
 						tlist.append(x[1])
 						sat = configElement_nonSave(x[1], configSelection, 0, (_("Enable"), _("Disable")))
-						self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
-	
+						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[1]), sat)
+						self.list.append(configEntry)
+						self.multiscanlist.append(configEntry)
 				# if (rotor):
     			   # for sat in nimmanager.satList:
 				#	self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))
@@ -290,7 +291,7 @@ class ScanSetup(Screen):
 		if (config.scan.type.value == 2): # multi sat scan
 			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
 
-			for x in self.list:
+			for x in self.multiscanlist:
 				if x[1].parent.value == 0:
 					print "   " + str(x[1].parent.configPath)
 					getInitialTransponderList(tlist, x[1].parent.configPath)
@@ -369,13 +370,15 @@ class ScanSimple(Screen):
 		self.list = []
 		tlist = []
 
-		SatList = nimmanager.getConfiguredSats()
 
-		for x in SatList:
-			if self.Satexists(tlist, x) == 0:
-				tlist.append(x)
-				sat = configElement_nonSave(x, configSelection, 0, (_("Enable"), _("Disable")))
-				self.list.append(getConfigListEntry(nimmanager.getSatDescription(x), sat))
+		for slotid in nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"]):
+			SatList = nimmanager.getSatListForNim(slotid)
+
+			for x in SatList:
+				if self.Satexists(tlist, x[1]) == 0:
+					tlist.append(x[1])
+					sat = configElement_nonSave(x[1], configSelection, 0, (_("Enable"), _("Disable")))
+					self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label(_("Automatic Scan"))
