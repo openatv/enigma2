@@ -227,6 +227,9 @@ Components.AVSwitch.InitAVSwitch()
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 
+import Components.UsageConfig
+Components.UsageConfig.InitUsageConfig()
+
 import Components.Network
 Components.Network.InitNetwork()
 

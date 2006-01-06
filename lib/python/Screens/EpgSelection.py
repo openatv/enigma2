@@ -9,6 +9,7 @@ from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
+from Components.config import config, currentConfigSelectionElement
 
 import xml.dom.minidom
 
@@ -38,22 +39,26 @@ class EPGSelection(Screen):
 
 		self["actions"] = ChannelActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
-				"cancel": self.closeClose,
+				"cancel": self.closeScreen,
 				"ok": self.eventSelected,
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.closeClose
+				"info": self.infoKeyPressed
 			})
 		self["actions"].csel = self
 
 		self.onLayoutFinish.append(self.onCreate)
 
-	def closeClose(self):
+	def infoKeyPressed(self):
+		if currentConfigSelectionElement(config.usage.epgtoggle) == "yes":
+			self.close(True)
+		else:
+			self.close(False)
+
+	def closeScreen(self):
 		self.close(False)
-		
-	def closeInfo(self):
-		self.close(True)
+
 
 	#just used in multipeg
 	def onCreate(self):

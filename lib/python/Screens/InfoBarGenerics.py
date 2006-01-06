@@ -33,6 +33,8 @@ from enigma import *
 import time
 import os
 
+from Components.config import config, currentConfigSelectionElement
+
 # hack alert!
 from Menu import MainMenu, mdom
 
@@ -358,8 +360,14 @@ class InfoBarEPG:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
-				"showEPGList": (self.showEPGList, _("show EPG...")),
+				"showEPGList": (self.showEPG, _("show EPG...")),
 			})
+
+	def showEPG(self):
+		if currentConfigSelectionElement(config.usage.epgtoggle) == "yes":
+			self.openSingleServiceEPG()
+		else:
+			self.showEPGList()
 
 	def showEPGList(self):
 		bouquets = self.servicelist.getBouquetList()
