@@ -55,7 +55,27 @@ class boundFunction:
 		self.args = args
 	def __call__(self):
 		self.fnc(*self.args)
-
+		
+class MenuUpdater:
+	def __init__(self):
+		self.updatedMenuItems = {}
+	
+	def addMenuItem(self, id, text, module, screen):
+		if not self.updatedMenuAvailable(id):
+			self.updatedMenuItems[id] = []
+		self.updatedMenuItems[id].append([text, module, screen])
+	
+	def delMenuItem(self, id, text, module, screen):
+		self.updatedMenuItems[id].remove([text, module, screen])
+	
+	def updatedMenuAvailable(self, id):
+		return self.updatedMenuItems.has_key(id)
+	
+	def getUpdatedMenu(self, id):
+		return self.updatedMenuItems[id]
+	
+menuupdater = MenuUpdater()
+		
 class Menu(Screen):
 	def okbuttonClick(self):
 		print "okbuttonClick"
@@ -73,8 +93,8 @@ class Menu(Screen):
 		#        stuff which is just imported)
 		# FIXME. somehow.
 		if arg[0] != "":
-			exec "from Screens." + arg[0] + " import *"
-		
+			exec "from " + arg[0] + " import *"
+			
 		self.openDialog(*eval(arg[1]))
 
 	def nothing(self):																	#dummy
@@ -100,7 +120,7 @@ class Menu(Screen):
 				if x.nodeType != xml.dom.minidom.Element.nodeType:
 					continue
 				elif x.tagName == 'screen':
-					module = getValbyAttr(x, "module")
+					module = "Screens." + getValbyAttr(x, "module")
 					screen = getValbyAttr(x, "screen")
 
 					if len(screen) == 0:
@@ -128,6 +148,7 @@ class Menu(Screen):
 		Screen.__init__(self, session)
 		
 		list = []
+		menuID = ""
 
 		for x in childNode:							#walk through the actual nodelist
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
@@ -136,6 +157,12 @@ class Menu(Screen):
 				self.addItem(list, x)
 			elif x.tagName == 'menu':
 				self.addMenu(list, x)
+			elif x.tagName == "id":
+				menuID = getValbyAttr(x, "val")
+
+		if menuupdater.updatedMenuAvailable(menuID):
+			for x in menuupdater.getUpdatedMenu(menuID):
+				list.append((x[0], boundFunction(self.runScreen, (x[1], x[2] + ", "))))
 
 		self["menu"] = MenuList(list)	
 							
