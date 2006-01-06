@@ -1,5 +1,5 @@
 <menu text="Mainmenu" title="Mainmenu">
-
+	<id val="mainmenu" />
 <!-- the following types are allowed:
 	<screen [module="mod"] [screen="classname"]>[arguments]</screen> 
 		executes Screen called "classname" from module "Screen.mod"
@@ -21,18 +21,21 @@
 		<item text="VCR scart"><screen module="Scart" screen="Scart" /></item>
 
 		<menu text="Information">
+			<id val="information" />
 			<item text="Service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 			<item text="About..."><screen module="About" /></item>
 		</menu>
 
 		<item text="Games / Plugins"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<menu text="Setup">
+			<id val="setup" />
 			<!--<menu text="Service Organising">
 				<item text="New Bouquets"></item>
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
 			</menu>-->
 			<menu text="Service Searching">
+				<id val="scan" />
 				<item text="Satelliteconfig"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item text="Automatic Scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
@@ -42,6 +45,7 @@
 				<!--<item text="Satfinder"></item>-->
 			</menu>
 			<menu text="System">
+				<id val="system" />
 				<item text="Language"><screen module="LanguageSelection" /></item>
 				<item text="Recording"><setup id="recording" /></item>
 				<item text="Timezone"><setup id="timezone" /></item>
@@ -60,6 +64,7 @@
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
 		<menu text="Standby / Restart">
+			<id val="shutdown" />
 			<!--<item text="Standby"><code>quitMainloop(0)</code></item>-->
 			<item text="Restart"><code>quitMainloop(2)</code></item>
 			<item text="Deep Standby"><code>quitMainloop(1)</code></item>

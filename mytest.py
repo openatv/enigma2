@@ -24,6 +24,10 @@ from Tools.Directories import InitFallbackFiles
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
 
+# initialize autorun plugins and plugin menu entries
+from Components.PluginComponent import plugins
+plugins.getPluginList()
+
 had = dict()
 
 def dump(dir, p = ""):
