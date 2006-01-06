@@ -8,6 +8,7 @@ from Components.config import config, configElement, ConfigSubsection, configTex
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
+from Components.EventInfo import EventInfo
 
 import xml.dom.minidom
 
@@ -233,7 +234,7 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self)
 
-USE_MULTIBOUQUETS = False
+USE_MULTIBOUQUETS = True
 
 MODE_TV = 0
 MODE_RADIO = 1
@@ -542,6 +543,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if lastservice.valid() and self.getCurrentSelection() != lastservice:
 			self.servicelist.setCurrent(lastservice)
 
+class ServiceInfoWindow(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
+		self["Event_Next_StartTime"] = EventInfo(self.session.nav, EventInfo.Next_StartTime)
+		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
+		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
+		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
+		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
+
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
@@ -551,6 +562,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 		config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0);
 		config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0);
 		self.onLayoutFinish.append(self.onCreate)
+
+		self.info = session.instantiateDialog(ServiceInfoWindow)
 
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
@@ -593,6 +606,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
 			self.servicelist.setPlayableIgnoreService(lastservice)
+		self.info.instance.show()
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
@@ -612,6 +626,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 		self.setRootBase(root, justSet)
 
 	def closeRadio(self):
+		self.info.instance.hide()
 		lastroot=eServiceReference(config.radio.lastroot.value)
 		lastservice=eServiceReference(config.radio.lastservice.value)
 		if lastroot.valid() and self.getRoot() != lastroot:
