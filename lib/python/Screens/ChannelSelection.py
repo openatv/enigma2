@@ -621,18 +621,14 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 			self.servicelist.setPlayableIgnoreService(ref)
 			config.radio.lastservice.value = ref.toString()
 			config.radio.lastservice.save()
-
+			config.radio.lastroot.value = self.getRoot().toString()
+			config.radio.lastroot.save()
+		
 	def setRoot(self, root, justSet=False):
 		self.setRootBase(root, justSet)
 
 	def closeRadio(self):
 		self.info.instance.hide()
-		lastroot=eServiceReference(config.radio.lastroot.value)
-		lastservice=eServiceReference(config.radio.lastservice.value)
-		if lastroot.valid() and self.getRoot() != lastroot:
-			self.setRoot(lastroot)
-		if lastservice.valid() and self.getCurrentSelection() != lastservice:
-			self.servicelist.setCurrent(lastservice)
 		#set previous tv service
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		self.session.nav.playService(lastservice)
