@@ -134,7 +134,7 @@ class SecConfigure:
 #					pass
 				elif currentConfigSelectionElement(nim.configMode) == "nothing":
 					pass
-				else: #advanced config
+				elif currentConfigSelectionElement(nim.configMode) == "advanced": #advanced config
 					self.updateAdvanced(sec, x)
 		print "sec config completed"
 
@@ -523,21 +523,27 @@ class NimManager:
 	
 	def getSatListForNim(self, slotid):
 		list = []
-		if (self.getNimType(slotid) != self.nimType["empty/unknown"]):
+		if (self.getNimType(slotid) == self.nimType["DVB-S"]):
 			#print "slotid:", slotid
 			
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
-			if (config.Nims[slotid].diseqcMode.value <= 3):
-				list.append(self.satList[config.Nims[slotid].diseqcA.value])
-			if (0 < config.Nims[slotid].diseqcMode.value <= 3):
-				list.append(self.satList[config.Nims[slotid].diseqcB.value])
-			if (config.Nims[slotid].diseqcMode.value == 3):
-				list.append(self.satList[config.Nims[slotid].diseqcC.value])
-				list.append(self.satList[config.Nims[slotid].diseqcD.value])
-			if (config.Nims[slotid].diseqcMode.value == 4):
+			configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+			if configMode == "simple":
+				if (config.Nims[slotid].diseqcMode.value <= 3):
+					list.append(self.satList[config.Nims[slotid].diseqcA.value])
+				if (0 < config.Nims[slotid].diseqcMode.value <= 3):
+					list.append(self.satList[config.Nims[slotid].diseqcB.value])
+				if (config.Nims[slotid].diseqcMode.value == 3):
+					list.append(self.satList[config.Nims[slotid].diseqcC.value])
+					list.append(self.satList[config.Nims[slotid].diseqcD.value])
+				if (config.Nims[slotid].diseqcMode.value == 4):
+					for x in self.satList:
+						list.append(x)
+			elif configMode == "advanced":
 				for x in self.satList:
-					list.append(x)
+					if config.Nims[slotid].advanced.sat[x[1]].lnb.value != 0:
+						list.append(x)
 		return list
 
 #	#callbacks for c++ config
