@@ -8,6 +8,8 @@ from Components.config import config, configElement, ConfigSubsection, configTex
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
+from Components.ServiceName import ServiceName
+from Components.Clock import Clock
 from Components.EventInfo import EventInfo
 
 import xml.dom.minidom
@@ -546,6 +548,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 class ServiceInfoWindow(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self["Service_Name"] = ServiceName(self.session.nav)
+		self["Clock"] = Clock()
 		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
 		self["Event_Next_StartTime"] = EventInfo(self.session.nav, EventInfo.Next_StartTime)
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
