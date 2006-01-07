@@ -213,7 +213,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout)
 						(*li)->activate(pfd[i].revents);
 				}
 				if ((pfd[i].revents&~handled) & (POLLERR|POLLHUP|POLLNVAL))
-						eFatal("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 			
 			ret = 1; /* poll did not timeout. */
