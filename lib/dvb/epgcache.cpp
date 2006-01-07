@@ -1882,9 +1882,9 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 		eDebug("get Null pointer from section reader !!");
 	else
 	{
-#ifdef NEED_DEMUX_WORKAROUND
 		if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
 		{
+#ifdef NEED_DEMUX_WORKAROUND
 			int version = data[5];
 			version = ((version & 0x3E) >> 1);
 			can_delete = 0;
