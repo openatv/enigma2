@@ -8,6 +8,7 @@
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
 #include <lib/base/eerror.h>
+#include <lib/dvb/pmt.h>
 #include <Python.h>
 
 int eventData::CacheSize=0;
@@ -193,6 +194,9 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 		channel_data *data = new channel_data(this);
 		data->channel = chan;
 		data->prevChannelState = -1;
+#ifdef ENABLE_PRIVATE_EPG
+		data->m_PrivatePid = -1;
+#endif
 		singleLock s(channel_map_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
 		chan->connectStateChange(slot(*this, &eEPGCache::DVBChannelStateChanged), data->m_stateChangedConn);
@@ -242,7 +246,14 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
 					return;
 				}
-
+#ifdef ENABLE_PRIVATE_EPG
+				res = demux->createSectionReader( this, data.m_PrivateReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize private reader!!");
+					return;
+				}
+#endif
 				messages.send(Message(Message::startChannel, chan));
 				// -> gotMessage -> changedService
 			}
@@ -508,6 +519,15 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 			eventDB.erase(it);
 
 			// TODO .. search corresponding channel for removed service and remove this channel from lastupdated map
+#ifdef ENABLE_PRIVATE_EPG
+			contentMaps::iterator it =
+				content_time_tables.find(s);
+			if ( it != content_time_tables.end() )
+			{
+				it->second.clear();
+				content_time_tables.erase(it);
+			}
+#endif
 		}
 	}
 	else // clear complete EPG Cache
@@ -523,6 +543,9 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 			tmMap.clear();
 		}
 		eventDB.clear();
+#ifdef ENABLE_PRIVATE_EPG
+		content_time_tables.clear();
+#endif
 		channelLastUpdated.clear();
 		singleLock m(channel_map_lock);
 		for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
@@ -542,6 +565,7 @@ void eEPGCache::cleanLoop()
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
+			bool updated = false;
 			for (timeMap::iterator It = DBIt->second.second.begin(); It != DBIt->second.second.end() && It->first < now;)
 			{
 				if ( now > (It->first+It->second->getDuration()) )  // outdated normal entry (nvod references to)
@@ -560,10 +584,37 @@ void eEPGCache::cleanLoop()
 					delete It->second;
 					DBIt->second.second.erase(It++);
 //					eDebug("[EPGC] delete old event (timeMap)");
+					updated = true;
 				}
 				else
 					++It;
 			}
+#ifdef ENABLE_PRIVATE_EPG
+			if ( updated )
+			{
+				contentMaps::iterator x =
+					content_time_tables.find( DBIt->first );
+				if ( x != content_time_tables.end() )
+				{
+					timeMap &tmMap = eventDB[DBIt->first].second;
+					for ( contentMap::iterator i = x->second.begin(); i != x->second.end(); )
+					{
+						for ( contentTimeMap::iterator it(i->second.begin());
+							it != i->second.end(); )
+						{
+							if ( tmMap.find(it->second.first) == tmMap.end() )
+								i->second.erase(it++);
+							else
+								++it;
+						}
+						if ( i->second.size() )
+							++i;
+						else
+							x->second.erase(i++);
+					}
+				}
+			}
+#endif
 		}
 		eDebug("[EPGC] stop cleanloop");
 		eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
@@ -609,6 +660,27 @@ void eEPGCache::gotMessage( const Message &msg )
 		case Message::quit:
 			quit(0);
 			break;
+#ifdef ENABLE_PRIVATE_EPG
+		case Message::got_private_pid:
+		{
+			for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			{
+				eDVBChannel *channel = (eDVBChannel*) it->first;
+				channel_data *data = it->second;
+				eDVBChannelID chid = channel->getChannelID();
+				if ( chid.transport_stream_id.get() == msg.service.tsid &&
+					chid.original_network_id.get() == msg.service.onid &&
+					data->m_PrivatePid == -1 )
+				{
+					data->m_PrivatePid = msg.pid;
+					data->m_PrivateService = msg.service;
+					data->startPrivateReader(msg.pid, -1);
+					break;
+				}
+			}
+			break;
+		}
+#endif
 		case Message::timeChanged:
 			cleanLoop();
 			break;
@@ -684,6 +756,38 @@ void eEPGCache::load()
 				}
 				eventData::load(f);
 				eDebug("%d events read from /hdd/epg.dat", cnt);
+#ifdef ENABLE_PRIVATE_EPG
+				char text2[11];
+				fread( text2, 11, 1, f);
+				if ( !strncmp( text2, "PRIVATE_EPG", 11) )
+				{
+					size=0;
+					fread( &size, sizeof(int), 1, f);
+					while(size--)
+					{
+						int size=0;
+						uniqueEPGKey key;
+						fread( &key, sizeof(uniqueEPGKey), 1, f);
+						fread( &size, sizeof(int), 1, f);
+						while(size--)
+						{
+							int size;
+							int content_id;
+							fread( &content_id, sizeof(int), 1, f);
+							fread( &size, sizeof(int), 1, f);
+							while(size--)
+							{
+								time_t time1, time2;
+								__u16 event_id;
+								fread( &time1, sizeof(time_t), 1, f);
+								fread( &time2, sizeof(time_t), 1, f);
+								fread( &event_id, sizeof(__u16), 1, f);
+								content_time_tables[key][content_id][time1]=std::pair<time_t, __u16>(time2, event_id);
+							}
+						}
+					}
+				}
+#endif // ENABLE_PRIVATE_EPG
 			}
 			else
 				eDebug("[EPGC] don't read old epg database");
@@ -739,6 +843,32 @@ void eEPGCache::save()
 		}
 		eDebug("%d events written to /hdd/epg.dat", cnt);
 		eventData::save(f);
+#ifdef ENABLE_PRIVATE_EPG
+		const char* text3 = "PRIVATE_EPG";
+		fwrite( text3, 11, 1, f );
+		size = content_time_tables.size();
+		fwrite( &size, sizeof(int), 1, f);
+		for (contentMaps::iterator a = content_time_tables.begin(); a != content_time_tables.end(); ++a)
+		{
+			contentMap &content_time_table = a->second;
+			fwrite( &a->first, sizeof(uniqueEPGKey), 1, f);
+			int size = content_time_table.size();
+			fwrite( &size, sizeof(int), 1, f);
+			for (contentMap::iterator i = content_time_table.begin(); i != content_time_table.end(); ++i )
+			{
+				int size = i->second.size();
+				fwrite( &i->first, sizeof(int), 1, f);
+				fwrite( &size, sizeof(int), 1, f);
+				for ( contentTimeMap::iterator it(i->second.begin());
+					it != i->second.end(); ++it )
+				{
+					fwrite( &it->first, sizeof(time_t), 1, f);
+					fwrite( &it->second.first, sizeof(time_t), 1, f);
+					fwrite( &it->second.second, sizeof(__u16), 1, f);
+				}
+			}
+		}
+#endif
 		fclose(f);
 #if 0
 		unsigned char md5[16];
@@ -778,6 +908,9 @@ bool eEPGCache::channel_data::finishEPG()
 		}
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+#ifdef ENABLE_PRIVATE_EPG
+		if (seenPrivateSections.empty())
+#endif
 		can_delete=1;
 		return true;
 	}
@@ -857,6 +990,9 @@ void eEPGCache::channel_data::abortNonAvail()
 				seenSections[i].clear();
 				calcedSections[i].clear();
 			}
+#ifdef ENABLE_PRIVATE_EPG
+			if (seenPrivateSections.empty())
+#endif
 			can_delete=1;
 		}
 	}
@@ -909,8 +1045,14 @@ void eEPGCache::channel_data::abortEPG()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
-		can_delete=1;
 	}
+#ifdef ENABLE_PRIVATE_EPG
+	if (m_PrivateReader)
+		m_PrivateReader->stop();
+	if (m_PrivateConn)
+		m_PrivateConn=0;
+#endif
+	can_delete=1;
 }
 
 void eEPGCache::channel_data::readData( const __u8 *data)
@@ -1478,6 +1620,297 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 	return dest_list;
 }
 
+#ifdef ENABLE_PRIVATE_EPG
+#include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/unknown_descriptor.h>
+#include <dvbsi++/private_data_specifier_descriptor.h>
 
+void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
+{
+	ePtr<eTable<ProgramMapSection> > ptr;
+	if (!pmthandler->getPMT(ptr) && ptr)
+	{
+		std::vector<ProgramMapSection*>::const_iterator i;
+		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
+		{
+			const ProgramMapSection &pmt = **i;
 
+			ElementaryStreamInfoConstIterator es;
+			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
+			{
+				int tmp=0;
+				switch ((*es)->getType())
+				{
+				case 0x05: // private
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+						desc != (*es)->getDescriptors()->end(); ++desc)
+					{
+						switch ((*desc)->getTag())
+						{
+							case PRIVATE_DATA_SPECIFIER_DESCRIPTOR:
+								if (((PrivateDataSpecifierDescriptor*)(*desc))->getPrivateDataSpecifier() == 190)
+									tmp |= 1;
+								break;
+							case 0x90:
+							{
+								UnknownDescriptor *descr = (UnknownDescriptor*)*desc;
+								int descr_len = descr->getLength();
+								if (descr_len == 4)
+								{
+									uint8_t data[descr_len+2];
+									descr->writeToBuffer(data);
+									if ( !data[2] && !data[3] && data[4] == 0xFF && data[5] == 0xFF )
+										tmp |= 2;
+								}
+								break;
+							}
+							default:
+								break;
+						}
+					}
+				default:
+					break;
+				}
+				if (tmp==3)
+				{
+					eServiceReferenceDVB ref;
+					if (!pmthandler->getService(ref))
+					{
+						int pid = (*es)->getPid();
+						messages.send(Message(Message::got_private_pid, ref, pid));
+						return;
+					}
+				}
+			}
+		}
+	}
+	else
+		eDebug("PMTready but no pmt!!");
+}
 
+struct date_time
+{
+	__u8 data[5];
+	time_t tm;
+	date_time( const date_time &a )
+	{
+		memcpy(data, a.data, 5);
+		tm = a.tm;
+	}
+	date_time( const __u8 data[5])
+	{
+		memcpy(this->data, data, 5);
+		tm = parseDVBtime(data[0], data[1], data[2], data[3], data[4]);
+	}
+	date_time()
+	{
+	}
+	const __u8& operator[](int pos) const
+	{
+		return data[pos];
+	}
+};
+
+struct less_datetime
+{
+	bool operator()( const date_time &a, const date_time &b ) const
+	{
+		return abs(a.tm-b.tm) < 360 ? false : a.tm < b.tm;
+	}
+};
+
+void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __u8 *data)
+{
+	contentMap &content_time_table = content_time_tables[current_service];
+	singleLock s(cache_lock);
+	std::map< date_time, std::list<uniqueEPGKey>, less_datetime > start_times;
+	eventMap &evMap = eventDB[current_service].first;
+	timeMap &tmMap = eventDB[current_service].second;
+	int ptr=8;
+	int content_id = data[ptr++] << 24;
+	content_id |= data[ptr++] << 16;
+	content_id |= data[ptr++] << 8;
+	content_id |= data[ptr++];
+
+	contentTimeMap &time_event_map =
+		content_time_table[content_id];
+	for ( contentTimeMap::iterator it( time_event_map.begin() );
+		it != time_event_map.end(); ++it )
+	{
+		eventMap::iterator evIt( evMap.find(it->second.second) );
+		if ( evIt != evMap.end() )
+		{
+			delete evIt->second;
+			evMap.erase(evIt);
+		}
+		tmMap.erase(it->second.first);
+	}
+	time_event_map.clear();
+
+	__u8 duration[3];
+	memcpy(duration, data+ptr, 3);
+	ptr+=3;
+	int duration_sec =
+		fromBCD(duration[0])*3600+fromBCD(duration[1])*60+fromBCD(duration[2]);
+
+	const __u8 *descriptors[65];
+	const __u8 **pdescr = descriptors;
+
+	int descriptors_length = (data[ptr++]&0x0F) << 8;
+	descriptors_length |= data[ptr++];
+	while ( descriptors_length > 0 )
+	{
+		int descr_type = data[ptr];
+		int descr_len = data[ptr+1];
+		descriptors_length -= (descr_len+2);
+		if ( descr_type == 0xf2 )
+		{
+			ptr+=2;
+			int tsid = data[ptr++] << 8;
+			tsid |= data[ptr++];
+			int onid = data[ptr++] << 8;
+			onid |= data[ptr++];
+			int sid = data[ptr++] << 8;
+			sid |= data[ptr++];
+			uniqueEPGKey service( sid, onid, tsid );
+			descr_len -= 6;
+			while( descr_len > 0 )
+			{
+				__u8 datetime[5];
+				datetime[0] = data[ptr++];
+				datetime[1] = data[ptr++];
+				int tmp_len = data[ptr++];
+				descr_len -= 3;
+				while( tmp_len > 0 )
+				{
+					memcpy(datetime+2, data+ptr, 3);
+					ptr+=3;
+					descr_len -= 3;
+					tmp_len -= 3;
+					start_times[datetime].push_back(service);
+				}
+			}
+		}
+		else
+		{
+			*pdescr++=data+ptr;
+			ptr += 2;
+			ptr += descr_len;
+		}
+	}
+	__u8 event[4098];
+	eit_event_struct *ev_struct = (eit_event_struct*) event;
+	ev_struct->running_status = 0;
+	ev_struct->free_CA_mode = 1;
+	memcpy(event+7, duration, 3);
+	ptr = 12;
+	const __u8 **d=descriptors;
+	while ( d < pdescr )
+	{
+		memcpy(event+ptr, *d, ((*d)[1])+2);
+		ptr+=(*d++)[1];
+		ptr+=2;
+	}
+	for ( std::map< date_time, std::list<uniqueEPGKey> >::iterator it(start_times.begin()); it != start_times.end(); ++it )
+	{
+		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+		if ( (it->first.tm + duration_sec) < now )
+			continue;
+		memcpy(event+2, it->first.data, 5);
+		int bptr = ptr;
+		int cnt=0;
+		for (std::list<uniqueEPGKey>::iterator i(it->second.begin()); i != it->second.end(); ++i)
+		{
+			event[bptr++] = 0x4A;
+			__u8 *len = event+(bptr++);
+			event[bptr++] = (i->tsid & 0xFF00) >> 8;
+			event[bptr++] = (i->tsid & 0xFF);
+			event[bptr++] = (i->onid & 0xFF00) >> 8;
+			event[bptr++] = (i->onid & 0xFF);
+			event[bptr++] = (i->sid & 0xFF00) >> 8;
+			event[bptr++] = (i->sid & 0xFF);
+			event[bptr++] = 0xB0;
+			bptr += sprintf((char*)(event+bptr), "Option %d", ++cnt);
+			*len = ((event+bptr) - len)-1;
+		}
+		int llen = bptr - 12;
+		ev_struct->descriptors_loop_length_hi = (llen & 0xF00) >> 8;
+		ev_struct->descriptors_loop_length_lo = (llen & 0xFF);
+
+		time_t stime = it->first.tm;
+		while( tmMap.find(stime) != tmMap.end() )
+			++stime;
+		event[6] += (stime - it->first.tm);
+		__u16 event_id = 0;
+		while( evMap.find(event_id) != evMap.end() )
+			++event_id;
+		event[0] = (event_id & 0xFF00) >> 8;
+		event[1] = (event_id & 0xFF);
+		time_event_map[it->first.tm]=std::pair<time_t, __u16>(stime, event_id);
+		eventData *d = new eventData( ev_struct, bptr, eEPGCache::SCHEDULE );
+		evMap[event_id] = d;
+		tmMap[stime] = d;
+	}
+}
+
+void eEPGCache::channel_data::startPrivateReader(int pid, int version)
+{
+	eDVBSectionFilterMask mask;
+	memset(&mask, 0, sizeof(mask));
+	mask.pid = pid;
+	mask.flags = eDVBSectionFilterMask::rfCRC;
+	mask.data[0] = 0xA0;
+	mask.mask[0] = 0xFF;
+	eDebug("start privatefilter for pid %04x and version %d", pid, version);
+	if (version != -1)
+	{
+		mask.data[3] = version << 1;
+		mask.mask[3] = 0x3E;
+		mask.mode[3] = 0x3E;
+	}
+	seenPrivateSections.clear();
+	m_PrivateReader->connectRead(slot(*this, &eEPGCache::channel_data::readPrivateData), m_PrivateConn);
+	m_PrivateReader->start(mask);
+#ifdef NEED_DEMUX_WORKAROUND
+	m_PrevVersion=version;
+#endif
+}
+
+void eEPGCache::channel_data::readPrivateData( const __u8 *data)
+{
+	if (!data)
+		eDebug("get Null pointer from section reader !!");
+	else
+	{
+#ifdef NEED_DEMUX_WORKAROUND
+		if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
+		{
+			int version = data[5];
+			version = ((version & 0x3E) >> 1);
+			can_delete = 0;
+			if ( m_PrevVersion != version )
+			{
+				cache->privateSectionRead(m_PrivateService, data);
+				seenPrivateSections.insert(data[6]);
+			}
+			else
+				eDebug("ignore");
+#else
+			can_delete = 0;
+			cache->privateSectionRead(m_PrivateService, data);
+			seenPrivateSections.insert(data[6]);
+#endif
+		}
+		if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
+		{
+			eDebug("[EPGC] private finished");
+			if (!isRunning)
+				can_delete = 1;
+			int version = data[5];
+			version = ((version & 0x3E) >> 1);
+			startPrivateReader(m_PrivatePid, version);
+		}
+	}
+}
+
+#endif // ENABLE_PRIVATE_EPG

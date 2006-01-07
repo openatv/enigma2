@@ -1,6 +1,9 @@
 #ifndef __epgcache_h_
 #define __epgcache_h_
 
+//#define ENABLE_PRIVATE_EPG 1
+#define NEED_DEMUX_WORKAROUND 1
+
 #ifndef SWIG
 
 #include <vector>
@@ -29,6 +32,7 @@
 
 class eventData;
 class eServiceReferenceDVB;
+class eDVBServicePMTHandler;
 
 struct uniqueEPGKey
 {
@@ -87,8 +91,18 @@ struct hash_uniqueEPGKey
 #define tidMap std::set<__u32>
 #if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
 	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
+	#ifdef ENABLE_PRIVATE_EPG
+		#define contentTimeMap __gnu_cxx::hash_map<time_t, std::pair<time_t, __u16> >
+		#define contentMap __gnu_cxx::hash_map<int, contentTimeMap >
+		#define contentMaps __gnu_cxx::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal >
+	#endif
 #else // for older gcc use following
 	#define eventCache std::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal >
+	#ifdef ENABLE_PRIVATE_EPG
+		#define contentTimeMap std::hash_map<time_t, std::pair<time_t, __u16> >
+		#define contentMap std::hash_map<int, contentTimeMap >
+		#define contentMaps std::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal>
+	#endif
 #endif
 
 #define descriptorPair std::pair<int,__u8*>
@@ -144,6 +158,18 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
 		tidMap seenSections[3], calcedSections[3];
+#ifdef ENABLE_PRIVATE_EPG
+#ifdef NEED_DEMUX_WORKAROUND
+		int m_PrevVersion;
+#endif
+		int m_PrivatePid;
+		uniqueEPGKey m_PrivateService;
+		ePtr<eConnection> m_PrivateConn;
+		ePtr<iDVBSectionReader> m_PrivateReader;
+		std::set<__u8> seenPrivateSections;
+		void readPrivateData(const __u8 *data);
+		void startPrivateReader(int pid, int version);
+#endif
 		void readData(const __u8 *data);
 		void startChannel();
 		void startEPG();
@@ -165,6 +191,7 @@ public:
 			updated,
 			isavail,
 			quit,
+			got_private_pid,
 			timeChanged
 		};
 		int type;
@@ -174,6 +201,7 @@ public:
 			int err;
 			time_t time;
 			bool avail;
+			int pid;
 		};
 		Message()
 			:type(0), time(0) {}
@@ -201,11 +229,18 @@ private:
 	updateMap channelLastUpdated;
 	static pthread_mutex_t cache_lock, channel_map_lock;
 
+#ifdef ENABLE_PRIVATE_EPG
+	contentMaps content_time_tables;
+#endif
+
 	void thread();  // thread function
 
 // called from epgcache thread
 	void save();
 	void load();
+#ifdef ENABLE_PRIVATE_EPG
+	void privateSectionRead(const uniqueEPGKey &, const __u8 *);
+#endif
 	void sectionRead(const __u8 *data, int source, channel_data *channel);
 	void gotMessage(const Message &message);
 	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
@@ -233,6 +268,11 @@ public:
 	// called from main thread
 	inline void Lock();
 	inline void Unlock();
+#ifdef ENABLE_PRIVATE_EPG
+	void PMTready(eDVBServicePMTHandler *pmthandler);
+#else
+	void PMTready(eDVBServicePMTHandler *pmthandler) {}
+#endif
 
 	// at moment just for one service..
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);

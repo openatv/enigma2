@@ -4,6 +4,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb_ci/dvbci.h>
+#include <lib/dvb/epgcache.h>
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/iso639_language_descriptor.h>
@@ -72,6 +73,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 	else
 	{
 		serviceEvent(eventNewProgramInfo);
+		eEPGCache::getInstance()->PMTready(this);
 		if (!m_pvr_channel)
 		{
 			if(!m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
