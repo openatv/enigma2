@@ -53,7 +53,7 @@ public:
 	std::string getBeginTimeString() const;
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	int getNumOfLinkageServices() const { return m_linkage_services.size(); }
-	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, int num) const;
+	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, eServiceReference &parent, int num) const;
 };
 
 TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);

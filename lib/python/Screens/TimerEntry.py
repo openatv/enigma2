@@ -7,6 +7,8 @@ from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Screens.SubserviceSelection import SubserviceSelection
+from enigma import eEPGCache
 import time
 import datetime
 
@@ -256,8 +258,19 @@ class TimerEntry(Screen):
 					if (config.timerentry.day[x].value == 0): self.timer.setRepeated(x)
 
 			self.timer.begin = self.getTimestamp(time.time(), config.timerentry.starttime.value)
-			self.timer.end = self.getTimestamp(time.time(), config.timerentry.endtime.value)				
+			self.timer.end = self.getTimestamp(time.time(), config.timerentry.endtime.value)
 
+		if self.timer.eit is not None:
+			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
+			if event is not None:
+				if event.getNumOfLinkageServices() > 0:
+					self.session.openWithCallback(self.subserviceSelected, SubserviceSelection, event, self.timer.service_ref.ref)
+					return
+			self.close((True, self.timer))
+
+	def subserviceSelected(self, service):
+		if not service is None:
+			self.timer.service_ref = ServiceReference(service)
 		self.close((True, self.timer))
 
 	def keyCancel(self):

@@ -26,7 +26,9 @@ RT_WRAP = 32
 def TimerEntryComponent(timer, processed):
 	res = [ timer ]
 	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 220, 30, 0, RT_HALIGN_LEFT, timer.service_ref.getServiceName()))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 560, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.service_ref.getServiceName()))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 560, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
+	
 	repeatedtext = ""
 	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
 	if (timer.repeated != 0):
@@ -39,12 +41,10 @@ def TimerEntryComponent(timer, processed):
 					repeatedtext += days[x]
 					count += 1
 				flags = flags >> 1
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 300, 20, 1, RT_HALIGN_LEFT, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 300, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 300, 20, 1, RT_HALIGN_LEFT, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 300, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 240, 0, 320, 20, 1, RT_HALIGN_RIGHT, timer.name))
-	
 	if not processed:
 		if timer.state == TimerEntry.StateWait:
 			state = "waiting"
@@ -57,7 +57,7 @@ def TimerEntryComponent(timer, processed):
 	else:
 		state = "done!"
 	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 30, 240, 20, 1, RT_HALIGN_RIGHT, state))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 	
 	return res
 
@@ -75,7 +75,7 @@ class TimerList(HTMLComponent, GUIComponent):
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
-		self.instance.setItemHeight(50)
+		self.instance.setItemHeight(70)
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)

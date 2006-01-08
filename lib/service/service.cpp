@@ -7,8 +7,8 @@
 eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c=string.c_str();
-	int pathl=-1;
-	
+	int pathl=0;
+
 	if ( sscanf(c, "%d:%d:%x:%x:%x:%x:%x:%x:%x:%x:%n", &type, &flags, &data[0], &data[1], &data[2], &data[3], &data[4], &data[5], &data[6], &data[7], &pathl) < 8 )
 	{
 		memset( data, 0, sizeof(data) );
@@ -17,7 +17,19 @@ eServiceReference::eServiceReference(const std::string &string)
 	}
 
 	if (pathl)
-		path=c+pathl;
+	{
+		const char *pathstr = c+pathl;
+		const char *namestr = strchr(pathstr, ':');
+		if (namestr)
+		{
+			if (pathstr != namestr)
+				path.assign(pathstr, namestr-pathstr);
+			if (*(namestr+1))
+				name=namestr+1;
+		}
+		else
+			path=pathstr;
+	}
 }
 
 std::string eServiceReference::toString() const
@@ -27,10 +39,10 @@ std::string eServiceReference::toString() const
 	ret += ":";
 	ret += getNum(flags);
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
-	{
 		ret+=":"+ getNum(data[i], 0x10);
-	}
 	ret+=":"+path;
+	if (name.length())
+		ret+=":"+name;
 	return ret;
 }
 

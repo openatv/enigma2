@@ -204,7 +204,7 @@ RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) c
 	return -1;
 }
 
-RESULT eServiceEvent::getLinkageService(eServiceReference &service, int num) const
+RESULT eServiceEvent::getLinkageService(eServiceReference &service, eServiceReference &parent, int num) const
 {
 	std::list<eServiceReference>::const_iterator it =
 		m_linkage_services.begin();
@@ -213,6 +213,25 @@ RESULT eServiceEvent::getLinkageService(eServiceReference &service, int num) con
 	if ( it != m_linkage_services.end() )
 	{
 		service = *it;
+		eServiceReferenceDVB &subservice = (eServiceReferenceDVB&) service;
+		eServiceReferenceDVB &current = (eServiceReferenceDVB&) parent;
+		subservice.setDVBNamespace(current.getDVBNamespace());
+		if ( current.getParentTransportStreamID().get() )
+		{
+			subservice.setParentTransportStreamID( current.getParentTransportStreamID() );
+			subservice.setParentServiceID( current.getParentServiceID() );
+		}
+		else
+		{
+			subservice.setParentTransportStreamID( current.getTransportStreamID() );
+			subservice.setParentServiceID( current.getServiceID() );
+		}
+		if ( subservice.getParentTransportStreamID() == subservice.getTransportStreamID() &&
+			subservice.getParentServiceID() == subservice.getServiceID() )
+		{
+			subservice.setParentTransportStreamID( eTransportStreamID(0) );
+			subservice.setParentServiceID( eServiceID(0) );
+		}
 		return 0;
 	}
 	service.type = eServiceReference::idInvalid;

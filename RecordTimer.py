@@ -8,6 +8,7 @@ import timer
 import xml.dom.minidom
 
 from Screens.MessageBox import MessageBox
+from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
 
 from Tools.XMLTools import elementsWithTag
@@ -26,7 +27,7 @@ def parseEvent(ev):
 	description = ev.getShortDescription()
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
-	eit = None
+	eit = ev.getEventId()
 	return (begin, end, name, description, eit)
 
 class RecordTimerEntry(timer.TimerEntry):
