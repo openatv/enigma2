@@ -1037,29 +1037,8 @@ RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
 	ePtr<eServiceEvent> evt;
 	if (!m_event_handler.getEvent(evt, 0))
 	{
-		if (!evt->getLinkageService(sub, n))
-		{
-			eServiceReferenceDVB &subservice = (eServiceReferenceDVB&) sub;
-			eServiceReferenceDVB &current = (eServiceReferenceDVB&) m_reference;
-			subservice.setDVBNamespace(current.getDVBNamespace());
-			if ( current.getParentTransportStreamID().get() )
-			{
-				subservice.setParentTransportStreamID( current.getParentTransportStreamID() );
-				subservice.setParentServiceID( current.getParentServiceID() );
-			}
-			else
-			{
-				subservice.setParentTransportStreamID( current.getTransportStreamID() );
-				subservice.setParentServiceID( current.getServiceID() );
-			}
-			if ( subservice.getParentTransportStreamID() == subservice.getTransportStreamID() &&
-				subservice.getParentServiceID() == subservice.getServiceID() )
-			{
-				subservice.setParentTransportStreamID( eTransportStreamID(0) );
-				subservice.setParentServiceID( eServiceID(0) );
-			}
+		if (!evt->getLinkageService(sub, m_reference, n))
 			return 0;
-		}
 	}
 	sub.type=eServiceReference::idInvalid;
 	return -1;
