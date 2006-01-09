@@ -1,5 +1,4 @@
 import os
-from re import *
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -92,10 +91,7 @@ def getRecordingFilename(basename):
 	non_allowed_characters = "/.\\"
 	filename = ""
 	
-	re = compile('\xc2\x86')
-	basename = re.sub('', basename)
-	re = compile('\xc2\x87')
-	basename = re.sub('', basename)
+	basename = basename.replace('\xc2\x86', '').replace('\xc2\x87', '')
 	
 	for c in basename:
 		if c in non_allowed_characters:
