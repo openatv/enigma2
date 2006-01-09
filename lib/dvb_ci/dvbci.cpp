@@ -531,7 +531,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 			prev_sent_capmt_version = pmt_version;
 		}
 	}
-	
+	return 0;
 }
 
 int eDVBCISlot::enableTS(int enable)

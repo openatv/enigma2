@@ -49,7 +49,6 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			unsigned char *d=(unsigned char*)data;
 			unsigned char *max=((unsigned char*)d) + len;
 			int textlen = len - 2;
-			int i;
 
 			printf("in enq\n");
 			
