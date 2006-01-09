@@ -11,6 +11,9 @@ class eDVBCI_UI
 	int state[MAX_SLOTS];
 	static eDVBCI_UI *instance;
 	std::string appName;
+	PyObject *mmiScreen;
+	int mmiTuplePos;
+	int mmiScreenReady;
 #ifdef SWIG
 	eDVBCI_UI();
 	~eDVBCI_UI();
@@ -38,9 +41,6 @@ public:
 	int cancelEnq(int slot);
 
 	PyObject *eDVBCI_UI::getMMIScreen(int slot);
-	PyObject *mmiScreen;
-	int mmiTuplePos;
-	int mmiScreenReady;
 
 	int mmiScreenEnq(int slot, int blind, int answerLen, char *text);
 	int mmiScreenBegin(int slot, int listmenu);
