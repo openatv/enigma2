@@ -5,14 +5,14 @@ GETTEXT=xgettext
 #MSGFMT = ./msgfmt.py
 MSGFMT = msgfmt
 
-LANGS := de en
+LANGS := de en ar
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
 LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
 
 default: enigma2.pot $(LANGPO) merge $(LANGMO)
 	for lang in $(LANGS); do \
 		mkdir -p $$lang/LC_MESSAGES; \
-		cp $$lang.mo de/LC_MESSAGES/enigma2.mo; \
+		cp $$lang.mo $$lang/LC_MESSAGES/enigma2.mo; \
 	done
 
 merge:
