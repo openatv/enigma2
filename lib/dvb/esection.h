@@ -11,7 +11,7 @@ private:
 	ePtr<iDVBSectionReader> m_reader;
 	eDVBTableSpec m_table;
 	
-	int m_tries;
+	unsigned int m_tries;
 	
 	eTimer *m_timeout;
 
