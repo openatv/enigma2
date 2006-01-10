@@ -335,12 +335,12 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (m_list && cursorValid())
 	{
-		PyObject *item = PyList_GetItem(m_list, m_cursor); // borrowed reference!
+		PyObject *item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		painter.setFont(fnt);
 
 			/* the user can supply tuples, in this case the first one will be displayed. */		
 		if (PyTuple_Check(item))
-			item = PyTuple_GetItem(item, 0);
+			item = PyTuple_GET_ITEM(item, 0);
 		
 		const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
 		
@@ -377,7 +377,7 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 		return 0;
 	if (!cursorValid())
 		return 0;
-	PyObject *r = PyList_GetItem(m_list, m_cursor);
+	PyObject *r = PyList_GET_ITEM(m_list, m_cursor);
 	Py_XINCREF(r);
 	return r;
 }
@@ -408,7 +408,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (m_list && cursorValid())
 	{
 			/* get current list item */
-		PyObject *item = PyList_GetItem(m_list, m_cursor); // borrowed reference!
+		PyObject *item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		PyObject *text = 0, *value = 0;
 		painter.setFont(fnt);
 
@@ -422,20 +422,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 				/* handle left part. get item from tuple, convert to string, display. */
 				
-			text = PyTuple_GetItem(item, 0);
-			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
+			text = PyTuple_GET_ITEM(item, 0);
+//			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
 			eSize item_left = eSize(m_seperation, m_itemsize.height());
 			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
 			painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
-			Py_XDECREF(text);
+//			Py_XDECREF(text);
 			
 				/* now, handle the value. get 2nd part from tuple*/
-			value = PyTuple_GetItem(item, 1);
+			value = PyTuple_GET_ITEM(item, 1);
 			if (value)
 			{
 				PyObject *args = PyTuple_New(1);
-				PyTuple_SetItem(args, 0, PyInt_FromLong(selected));
+				PyTuple_SET_ITEM(args, 0, PyInt_FromLong(selected));
 				
 					/* CallObject will call __call__ which should return the value tuple */
 				value = PyObject_CallObject(value, args);
@@ -451,14 +451,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (value && PyTuple_Check(value))
 			{
 					/* convert type to string */
-				PyObject *type = PyTuple_GetItem(value, 0);
+				PyObject *type = PyTuple_GET_ITEM(value, 0);
 				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
 				
 				if (atype)
 				{
 					if (!strcmp(atype, "text"))
 					{
-						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
 						painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, gPainter::RT_HALIGN_RIGHT);
@@ -466,7 +466,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
 					{
-						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						
 							/* convert value to Long. fallback to -1 on error. */
 						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
@@ -484,7 +484,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
 					{
-						PyObject *pvalue = PyTuple_GetItem(value, 1);
+						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						
 						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(m_seperation, 0), item_right));
@@ -496,7 +496,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						PyObject *plist = 0;
 						
 						if (PyTuple_Size(value) >= 3)
-							plist = PyTuple_GetItem(value, 2);
+							plist = PyTuple_GET_ITEM(value, 2);
 						
 						int entries = 0;
 
@@ -505,7 +505,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						
 						for (int i = 0; i < entries; ++i)
 						{
-							PyObject *entry = PyList_GetItem(plist, i);
+							PyObject *entry = PyList_GET_ITEM(plist, i);
 							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
 							
 							if ((num < 0) || (num >= glyphs))
@@ -553,7 +553,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 	if (m_list && cursorValid())
 	{
-		PyObject *items = PyList_GetItem(m_list, m_cursor); // borrowed reference!
+		PyObject *items = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		
 		if (!items)
 		{
