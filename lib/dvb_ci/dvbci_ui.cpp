@@ -63,7 +63,7 @@ void eDVBCI_UI::setAppName(int slot, const char *name)
 void eDVBCI_UI::setReset(int slot)
 {
 	eDVBCIInterfaces::getInstance()->reset(slot);
-	return 0;
+	return;
 }
 
 int eDVBCI_UI::startMMI(int slot)
