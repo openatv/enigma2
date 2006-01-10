@@ -88,28 +88,27 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.instance = None
 
 	def recalcEntrySize(self):
-		t = time()
-		esize = self.l.getItemSize()
-		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 16))
-		width = esize.width()
-		height = esize.height()
-		if self.type == EPG_TYPE_SINGLE:
-			w = width/20*5
-			self.datetime_rect = Rect(0,0, w, height)
-			self.descr_rect = Rect(w, 0, width/20*15, height)
-		else:
-			xpos = 0;
-			w = width/10*3;
-			self.service_rect = Rect(xpos, 0, w-10, height)
-			xpos += w;
-			w = width/10*2;
-			self.start_end_rect = Rect(xpos, 0, w-10, height)
-			self.progress_rect = Rect(xpos, 4, w-10, height-8)
-			xpos += w
-			w = width/10*5;
-			self.descr_rect = Rect(xpos, 0, width, height)
-		print "recalcEntrySize", time() - t
+		if SINGLE_CPP == 0:
+			esize = self.l.getItemSize()
+			self.l.setFont(0, gFont("Regular", 22))
+			self.l.setFont(1, gFont("Regular", 16))
+			width = esize.width()
+			height = esize.height()
+			if self.type == EPG_TYPE_SINGLE:
+				w = width/20*5
+				self.datetime_rect = Rect(0,0, w, height)
+				self.descr_rect = Rect(w, 0, width/20*15, height)
+			else:
+				xpos = 0;
+				w = width/10*3;
+				self.service_rect = Rect(xpos, 0, w-10, height)
+				xpos += w;
+				w = width/10*2;
+				self.start_end_rect = Rect(xpos, 0, w-10, height)
+				self.progress_rect = Rect(xpos, 4, w-10, height-8)
+				xpos += w
+				w = width/10*5;
+				self.descr_rect = Rect(xpos, 0, width, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
 		r1=self.datetime_rect
