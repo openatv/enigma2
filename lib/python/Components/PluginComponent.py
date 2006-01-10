@@ -2,7 +2,6 @@ import os
 
 from Tools.Directories import *
 from Screens.Menu import menuupdater
-#import Plugins
 
 class PluginComponent:
 	def __init__(self):
@@ -15,22 +14,27 @@ class PluginComponent:
 
 	def getPluginList(self):
 		list = []
-		dir = os.listdir("/usr/lib/enigma2/python/Plugins/")
+		dir = os.listdir(resolveFilename(SCOPE_PLUGINS))
 		self.menuDelete()
 		self.menuEntries = []
-		for x in dir:
-			if x[-3:] == ".py" and x[:-3] != "__init__":
-				print "trying to import " + self.prefix + x[:-3]
-				exec "import " + self.prefix + x[:-3]
-				picturepath = eval(self.prefix + x[:-3]).getPicturePath()
-				pluginname = eval(self.prefix + x[:-3]).getPluginName()
-				try:
-					for menuEntry in eval(self.prefix + x[:-3]).getMenuRegistrationList():
-						self.menuEntries.append([menuEntry, self.prefix + x[:-3]])
-				except:
-					pass
 
-				list.append((picturepath, pluginname , x[:-3]))
+		for x in dir:
+			path = resolveFilename(SCOPE_PLUGINS, x) + "/"
+			if os.path.exists(path):
+				if fileExists(path + "plugin.py"):
+					pluginmodule = self.prefix + x + ".plugin"
+					print "trying to import " + pluginmodule
+					exec "import " + pluginmodule
+					plugin = eval(pluginmodule)
+					picturepath = plugin.getPicturePath()
+					pluginname = plugin.getPluginName()
+					try:
+						for menuEntry in plugin.getMenuRegistrationList():
+							self.menuEntries.append([menuEntry, pluginmodule])
+					except:
+						pass
+	
+					list.append((picturepath, pluginname , x))
 		self.menuUpdate()
 		return list
 	
@@ -44,8 +48,8 @@ class PluginComponent:
 	
 	def runPlugin(self, plugin, session):
 		try:
-			exec "import " + self.prefix + plugin[2]
-			eval(self.prefix + plugin[2]).main(session)
+			exec "import " + self.prefix + plugin[2] + ".plugin"
+			eval(self.prefix + plugin[2] + ".plugin").main(session)
 		except:
 			print "exec of plugin failed!"
 
