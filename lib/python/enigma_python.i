@@ -79,6 +79,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/driver/etimezone.h>
 #include <lib/gdi/lcd.h>
 #include <lib/dvb_ci/dvbci_ui.h>
+#include <lib/python/python.h>
 
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
@@ -182,6 +183,7 @@ typedef long time_t;
 %include <lib/gdi/lcd.h>
 %include <lib/dvb_ci/dvbci_ui.h>
 %include <lib/dvb/db.h>
+%include <lib/python/python.h>
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
@@ -242,5 +244,10 @@ RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 		return -1;
 	result = *res;
 	return 0;
+}
+PyObject *New_TestObj()
+{
+    TestObj *result = (TestObj *)new TestObj();
+    return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_TestObj, 1);
 }
 %}
