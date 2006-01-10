@@ -4,6 +4,18 @@
 
 extern "C" void init_enigma();
 
+DEFINE_REF(TestObj);
+
+TestObj::TestObj()
+{
+	eDebug("create %p", this);
+}
+
+TestObj::~TestObj()
+{
+	eDebug("destroy %p", this);
+}
+
 #if 0
 ePyObject::ePyObject(void *ptr): m_object(ptr)
 {
