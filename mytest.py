@@ -16,17 +16,16 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Components.config import configfile
+from Tools.Directories import InitFallbackFiles
+InitFallbackFiles()
+eDVBDB.getInstance().reloadBouquets()
+# initialize autorun plugins and plugin menu entries
+from Components.PluginComponent import plugins
+plugins.getPluginList(runAutostartPlugins=True)
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import InitFallbackFiles
-InitFallbackFiles()
-eDVBDB.getInstance().reloadBouquets()
-
-# initialize autorun plugins and plugin menu entries
-from Components.PluginComponent import plugins
-plugins.getPluginList()
 
 had = dict()
 
@@ -247,6 +246,7 @@ import Components.NimManager
 # first, setup a screen
 try:
 	runScreenTest()
+	plugins.getPluginList(runAutoendPlugins=True)
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60

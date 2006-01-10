@@ -12,7 +12,7 @@ class PluginComponent:
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
 
-	def getPluginList(self):
+	def getPluginList(self, runAutostartPlugins=False, runAutoendPlugins=False):
 		list = []
 		dir = os.listdir(resolveFilename(SCOPE_PLUGINS))
 		self.menuDelete()
@@ -36,6 +36,13 @@ class PluginComponent:
 							pass
 		
 						list.append((picturepath, pluginname , x))
+						if runAutostartPlugins:
+							try: plugin.autostart()
+							except:	pass
+						if runAutoendPlugins:
+							try: plugin.autoend()
+							except:	pass
+							
 			except:
 				print "Directory", path, "contains a faulty plugin"
 		self.menuUpdate()
