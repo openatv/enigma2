@@ -20,21 +20,24 @@ class PluginComponent:
 
 		for x in dir:
 			path = resolveFilename(SCOPE_PLUGINS, x) + "/"
-			if os.path.exists(path):
-				if fileExists(path + "plugin.py"):
-					pluginmodule = self.prefix + x + ".plugin"
-					print "trying to import " + pluginmodule
-					exec "import " + pluginmodule
-					plugin = eval(pluginmodule)
-					picturepath = plugin.getPicturePath()
-					pluginname = plugin.getPluginName()
-					try:
-						for menuEntry in plugin.getMenuRegistrationList():
-							self.menuEntries.append([menuEntry, pluginmodule])
-					except:
-						pass
-	
-					list.append((picturepath, pluginname , x))
+			try:
+				if os.path.exists(path):
+					if fileExists(path + "plugin.py"):
+						pluginmodule = self.prefix + x + ".plugin"
+						print "trying to import " + pluginmodule
+						exec "import " + pluginmodule
+						plugin = eval(pluginmodule)
+						picturepath = plugin.getPicturePath()
+						pluginname = plugin.getPluginName()
+						try:
+							for menuEntry in plugin.getMenuRegistrationList():
+								self.menuEntries.append([menuEntry, pluginmodule])
+						except:
+							pass
+		
+						list.append((picturepath, pluginname , x))
+			except:
+				print "Directory", path, "contains a faulty plugin"
 		self.menuUpdate()
 		return list
 	
