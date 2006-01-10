@@ -130,7 +130,7 @@ struct call_entry
 	eWidget *m_widget;
 	void *m_widget_arg;
 	call_entry(PyObject *fnc, PyObject *arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0) { }
-	call_entry(eWidget *widget, void *arg): m_widget(widget), m_widget_arg(arg), m_fnc(0), m_arg(0) { }
+	call_entry(eWidget *widget, void *arg): m_fnc(0), m_arg(0), m_widget(widget), m_widget_arg(arg) { }
 };
 
 void eActionMap::keyPressed(int device, int key, int flags)
@@ -182,8 +182,8 @@ void eActionMap::keyPressed(int device, int key, int flags)
 						(k->second.m_flags & (1<<flags)))
 					{
 						PyObject *pArgs = PyTuple_New(2);
-						PyTuple_SetItem(pArgs, 0, PyString_FromString(k->first.c_str()));
-						PyTuple_SetItem(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
+						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));
+						PyTuple_SET_ITEM(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
 						++k;
 						Py_INCREF(i->second.m_fnc);
 						call_list.push_back(call_entry(i->second.m_fnc, pArgs));
@@ -193,8 +193,8 @@ void eActionMap::keyPressed(int device, int key, int flags)
 			} else
 			{
 				PyObject *pArgs = PyTuple_New(2);
-				PyTuple_SetItem(pArgs, 0, PyInt_FromLong(key));
-				PyTuple_SetItem(pArgs, 1, PyInt_FromLong(flags));
+				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
+				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
 				Py_INCREF(i->second.m_fnc);
 				call_list.push_back(call_entry(i->second.m_fnc, pArgs));
 			}

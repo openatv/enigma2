@@ -31,7 +31,7 @@ public:
 		int i;
 		for (i=0; i<size; ++i)
 		{
-			PyObject *b = PyList_GetItem(m_list, i);
+			PyObject *b = PyList_GET_ITEM(m_list, i);
 			ePython::call(b, tuple);
 		}
 	}
@@ -65,7 +65,7 @@ public:
 	R operator()(V0 a0)
 	{
 		PyObject *pArgs = PyTuple_New(1);
-		PyTuple_SetItem(pArgs, 0, PyFrom(a0));
+		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
 		callPython(pArgs);
 		Py_DECREF(pArgs);
 		return Signal1<R,V0>::operator()(a0);
@@ -79,8 +79,8 @@ public:
 	R operator()(V0 a0, V1 a1)
 	{
 		PyObject *pArgs = PyTuple_New(2);
-		PyTuple_SetItem(pArgs, 0, PyFrom(a0));
-		PyTuple_SetItem(pArgs, 1, PyFrom(a1));
+		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+		PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
 		callPython(pArgs);
 		Py_DECREF(pArgs);
 		return Signal2<R,V0,V1>::operator()(a0, a1);
