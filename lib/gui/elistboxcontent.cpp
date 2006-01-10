@@ -260,6 +260,7 @@ eListboxPythonStringContent::eListboxPythonStringContent()
 
 eListboxPythonStringContent::~eListboxPythonStringContent()
 {
+	Py_XDECREF(m_list);
 }
 
 void eListboxPythonStringContent::cursorHome()
