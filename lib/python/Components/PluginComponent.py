@@ -40,10 +40,10 @@ class PluginComponent:
 							pass
 	
 						for y in range(len(plugins)):
-							if len(plugins[y]) < 4:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][1], plugins[y][2], None))
+							if len(plugins[y]) < 5:
+								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], None, plugins[y][1]))
 							else:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][1], plugins[y][2], plugins[y][3]))
+								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], plugins[y][4], plugins[y][1]))
 						if runAutostartPlugins:
 							try: plugin.autostart()
 							except:	pass

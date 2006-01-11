@@ -16,9 +16,10 @@ RT_VALIGN_TOP = 0
 RT_VALIGN_CENTER = 8
 RT_VALIGN_BOTTOM = 16
 
-def PluginEntryComponent(picture, name):
+def PluginEntryComponent(picture, name, desc = "Plugin"):
 	res = [ None ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT , name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 200, 25, 0, RT_HALIGN_LEFT , name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 26, 200, 17, 1, RT_HALIGN_LEFT , desc))
 	png = loadPNG(picture)
 	if png == None:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
@@ -34,7 +35,7 @@ class PluginList(HTMLComponent, GUIComponent, MenuList):
 		self.list = list
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 10))
+		self.l.setFont(1, gFont("Regular", 14))
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
