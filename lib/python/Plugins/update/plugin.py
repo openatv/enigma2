@@ -56,14 +56,11 @@ class Example(Screen):
 #def autoend():
 	#print "**************************** AUTOEND"
 
-def main(session):
-	session.open(Example)
-	
-def getPicturePath():
-	return "update.png"
+def getPicturePaths():
+	return ["update.png"]
 
-def getPluginName():
-	return "Softwareupdate"
+def getPlugins():
+	return [("Softwareupdate", "screen", "Example")]
 	
 def getMenuRegistrationList():
 	list = []

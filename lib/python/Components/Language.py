@@ -11,6 +11,7 @@ class Language:
 		# FIXME make list dynamically
 		self.addLanguage(_("English"), "en")
 		self.addLanguage(_("German"), "de")
+		self.addLanguage(_("Arabic"), "ar")
 
 	def addLanguage(self, name, lang):
 		try:
