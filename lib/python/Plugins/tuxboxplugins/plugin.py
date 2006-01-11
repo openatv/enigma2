@@ -19,6 +19,12 @@ def getPlugins():
 			pass
 	return pluginlist
 
+def getPicturePaths():
+	list = []
+	dir = os.listdir("/usr/lib/tuxbox/plugins/")
+	for x in dir: list.append("tuxbox.png")
+	return list
+
 def getPluginParams(file):
 	params = {}
 	file = open("/usr/lib/tuxbox/plugins/" + file, "r")
