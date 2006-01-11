@@ -57,13 +57,13 @@ class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
 	
-	def addMenuItem(self, id, text, module, screen):
+	def addMenuItem(self, id, pos, text, module, screen):
 		if not self.updatedMenuAvailable(id):
 			self.updatedMenuItems[id] = []
-		self.updatedMenuItems[id].append([text, module, screen])
+		self.updatedMenuItems[id].append([text, pos, module, screen])
 	
-	def delMenuItem(self, id, text, module, screen):
-		self.updatedMenuItems[id].remove([text, module, screen])
+	def delMenuItem(self, id, pos, text, module, screen):
+		self.updatedMenuItems[id].remove([text, pos, module, screen])
 	
 	def updatedMenuAvailable(self, id):
 		return self.updatedMenuItems.has_key(id)
@@ -151,19 +151,26 @@ class Menu(Screen):
 		list = []
 		menuID = ""
 
-		for x in childNode:							#walk through the actual nodelist
+		menuID = -1
+		for x in childNode:						#walk through the actual nodelist
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 			    continue
 			elif x.tagName == 'item':
 				self.addItem(list, x)
+				count += 1
 			elif x.tagName == 'menu':
 				self.addMenu(list, x)
+				count += 1
 			elif x.tagName == "id":
 				menuID = getValbyAttr(x, "val")
+				count = 0
+			if menuID != -1:
+				if menuupdater.updatedMenuAvailable(menuID):
+					for x in menuupdater.getUpdatedMenu(menuID):
+						if x[1] == count:
+							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", "))))
+							count += 1
 
-		if menuupdater.updatedMenuAvailable(menuID):
-			for x in menuupdater.getUpdatedMenu(menuID):
-				list.append((x[0], boundFunction(self.runScreen, (x[1], x[2] + ", "))))
 
 		self["menu"] = MenuList(list)	
 							

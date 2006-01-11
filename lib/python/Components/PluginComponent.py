@@ -57,11 +57,11 @@ class PluginComponent:
 	
 	def menuDelete(self):
 		for menuEntry in self.menuEntries:
-			menuupdater.delMenuItem(menuEntry[0][0], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
+			menuupdater.delMenuItem(menuEntry[0][0], menuEntry[0][1], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
 
 	def menuUpdate(self):
 		for menuEntry in self.menuEntries:
-			menuupdater.addMenuItem(menuEntry[0][0], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
+			menuupdater.addMenuItem(menuEntry[0][0], menuEntry[0][1], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
 	
 	def runPlugin(self, plugin, session):
 		try:
