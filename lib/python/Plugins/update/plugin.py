@@ -12,7 +12,7 @@ class Example(Screen):
 			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
 		
-	def __init__(self, session):
+	def __init__(self, session, args = None):
 		self.skin = Example.skin
 		Screen.__init__(self, session)
 
