@@ -60,7 +60,7 @@ def getPicturePaths():
 	return ["update.png"]
 
 def getPlugins():
-	return [("Softwareupdate", "screen", "Example")]
+	return [("Softwareupdate", "Updates your receiver's software", "screen", "Example")]
 	
 def getMenuRegistrationList():
 	list = []

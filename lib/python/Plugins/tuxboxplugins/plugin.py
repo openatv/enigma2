@@ -13,20 +13,22 @@ def getPlugins():
 	for x in dir:
 		try:
 			if x[-3:] == "cfg":
-				pluginlist.append((getPluginParams(x)["name"], "function", "main", x))
+				params = getPluginParams(x)
+				pluginlist.append((params["name"], params["desc"], "function", "main", x))
 		except:
 			pass
 	return pluginlist
 
 def getPluginParams(file):
-	file = open("/usr/lib/tuxbox/plugins/" + file, "r")
-	lines = file.readlines()
-	file.close()
 	params = {}
-	for x in lines:
+	file = open("/usr/lib/tuxbox/plugins/" + file, "r")
+	for x in file.readlines():
 		split = x.split("=")
 		params[split[0]] = split[1]
+	file.close()
+
 	return params
 
 def main(session, args):
-	print "Running plugin with number", args
+	print "Running plugin " + args[:-4] + ".so with config file", args
+	print getPluginParams(args)

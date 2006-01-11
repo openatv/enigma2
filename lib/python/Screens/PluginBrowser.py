@@ -35,7 +35,7 @@ class PluginBrowser(Screen):
 		self.list = []
 		self.pluginlist = plugins.getPluginList()
 		for x in self.pluginlist:
-			self.list.append(PluginEntryComponent(x[0], x[1]))
+			self.list.append(PluginEntryComponent(x[0], x[1], x[6]))
 		
 		self["list"].l.setList(self.list)
 
