@@ -18,8 +18,8 @@ RT_VALIGN_BOTTOM = 16
 
 def PluginEntryComponent(picture, name, desc = "Plugin"):
 	res = [ None ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 200, 25, 0, RT_HALIGN_LEFT , name))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 26, 200, 17, 1, RT_HALIGN_LEFT , desc))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 300, 25, 0, RT_HALIGN_LEFT , name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 26, 300, 17, 1, RT_HALIGN_LEFT , desc))
 	png = loadPNG(picture)
 	if png == None:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
