@@ -14,13 +14,10 @@ def dump(x, i=0):
 	except:
 		None
 
+from Tools.Directories import resolveFilename, SCOPE_SKIN
+
 # read the skin
-try:
-	# first we search in the current path
-	skinfile = file('data/skin.xml', 'r')
-except:
-	# if not found in the current path, we use the global datadir-path
-	skinfile = file('/usr/share/enigma2/skin.xml', 'r')
+skinfile = file(resolveFilename(SCOPE_SKIN, 'skin.xml'), 'r')
 dom = xml.dom.minidom.parseString(skinfile.read())
 skinfile.close()
 

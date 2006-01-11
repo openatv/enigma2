@@ -6,6 +6,8 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 
+from Tools.Directories import resolveFilename, SCOPE_SKIN
+
 from enigma import quitMainloop
 
 import xml.dom.minidom
@@ -29,12 +31,7 @@ def doGlobal(screen):
 
 
 # read the menu
-try:
-	# first we search in the current path
-	menufile = file('data/menu.xml', 'r')
-except IOError:
-	# if not found in the current path, we use the global datadir-path
-	menufile = file('/usr/share/enigma2/menu.xml', 'r')
+menufile = file(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.dom.minidom.parseString(menufile.read())
 menufile.close()
 
