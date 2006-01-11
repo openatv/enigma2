@@ -429,7 +429,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			eSize item_left = eSize(m_seperation, m_itemsize.height());
 			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
 			painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
-//			Py_XDECREF(text);
+			Py_XDECREF(text);
 			
 				/* now, handle the value. get 2nd part from tuple*/
 			value = PyTuple_GET_ITEM(item, 1);
