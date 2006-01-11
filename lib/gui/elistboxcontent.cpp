@@ -424,7 +424,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* handle left part. get item from tuple, convert to string, display. */
 				
 			text = PyTuple_GET_ITEM(item, 0);
-//			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
+			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
 			eSize item_left = eSize(m_seperation, m_itemsize.height());
 			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
