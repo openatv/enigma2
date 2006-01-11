@@ -1,6 +1,6 @@
 installdir = $(LIBDIR)/enigma2/python/Plugins
 
-SUBDIRS = update
+SUBDIRS = update tuxboxplugins
 
 install_PYTHON =	\
 	__init__.py
