@@ -2,14 +2,17 @@
 #define __dvbci_dvbci_tc_h
 
 #include <lib/base/ebase.h>
+#include <lib/base/object.h>
 #include <lib/dvb_ci/dvbci.h>
 
 #define SLMS	256
 
 class eDVBCISession
 {
-	static eDVBCISession *sessions[SLMS];
-	static eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status);
+	DECLARE_REF(eDVBCISession);
+	static ePtr<eDVBCISession> sessions[SLMS];
+	static void eDVBCISession::deleteSessions(const eDVBCISlot *slot);
+	static void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status, ePtr<eDVBCISession> &ptr);
 	static void eDVBCISession::sendSPDU(eDVBCISlot *slot, unsigned char tag,const void *data, int len, unsigned short session_nb, const void *apdu=0,int alen=0);
 	static void sendOpenSessionResponse(eDVBCISlot *slot,unsigned char session_status, const unsigned char *resource_identifier,unsigned short session_nb);
 	void recvCreateSessionResponse(const unsigned char *data);

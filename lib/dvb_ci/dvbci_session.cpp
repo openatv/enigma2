@@ -7,7 +7,9 @@
 #include <lib/dvb_ci/dvbci_datetimemgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
 
-eDVBCISession *eDVBCISession::sessions[SLMS];
+DEFINE_REF(eDVBCISession);
+
+ePtr<eDVBCISession> eDVBCISession::sessions[SLMS];
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
@@ -108,9 +110,19 @@ void eDVBCISession::recvCloseSessionRequest(const unsigned char *data)
 	printf("close Session Request\n");
 }
 
-eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status)
+void eDVBCISession::deleteSessions(const eDVBCISlot *slot)
 {
-	eDVBCISession *session;
+	ePtr<eDVBCISession> ptr;
+	for (unsigned short session_nb=0; session_nb < SLMS; ++session_nb)
+	{
+		ptr = sessions[session_nb];
+		if (ptr && ptr->slot == slot)
+			sessions[session_nb]=0;
+	}
+}
+
+void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status, ePtr<eDVBCISession> &session)
+{
 	unsigned long tag;
 	unsigned short session_nb;
 
@@ -120,7 +132,7 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	if (session_nb == SLMS)
 	{
 		status=0xF3;
-		return 0;
+		return;
 	}
 
 	tag = resource_identifier[0] << 24;
@@ -133,7 +145,6 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	case 0x00010041:
 		session=new eDVBCIResourceManagerSession;
 		printf("RESOURCE MANAGER\n");
-		printf("session: %p\n",session);
 		break;
 	case 0x00020041:
 		session=new eDVBCIApplicationManagerSession(slot);
@@ -165,9 +176,10 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 	if (!session)
 	{
 		printf("unknown session.. expect crash\n");
-		return 0;
+		return;
 	}
-	printf("new session_nb: %d\n", session_nb);
+
+	printf("new session nb %d %p\n", session_nb, &(*session));
 	session->session_nb = session_nb;
 
 	if (session)
@@ -177,8 +189,6 @@ eDVBCISession *eDVBCISession::createSession(eDVBCISlot *slot, const unsigned cha
 		status = 0;
 	}
 	session->state = stateInCreation;
-
-	return session;
 }
 
 void eDVBCISession::handleClose()
@@ -197,7 +207,6 @@ int eDVBCISession::pollAll()
 			if (sessions[session_nb-1]->state == stateInDeletion)
 			{
 				sessions[session_nb-1]->handleClose();
-				delete sessions[session_nb-1];
 				sessions[session_nb-1]=0;
 				r=1;
 			} else
@@ -216,22 +225,20 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	int llen, hlen;
 
 	printf("slot: %p\n",slot);
-	
-	int i;
-	
-	for(i=0;i<len;i++)
+
+	for(unsigned int i=0;i<len;i++)
 		printf("%02x ",ptr[i]);
 	printf("\n");
 	
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
 	
-	eDVBCISession *session = NULL;
+	ePtr<eDVBCISession> session;
 	
 	if(tag == 0x91)
 	{
 		unsigned char status;
-		session = createSession(slot, pkt, status);
+		createSession(slot, pkt, status, session);
 		sendOpenSessionResponse(slot, status, pkt, session?session->session_nb:0);
 		
 		if (session)
@@ -312,5 +319,6 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 eDVBCISession::~eDVBCISession()
 {
+	printf("destroy %p\n", this);
 }
 
