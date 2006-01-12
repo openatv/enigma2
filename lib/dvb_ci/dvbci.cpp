@@ -73,6 +73,8 @@ int eDVBCIInterfaces::reset(int slotid)
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
+	eDVBCISession::deleteSessions(slot);
+
 	return slot->reset();
 }
 
@@ -299,6 +301,7 @@ void eDVBCISlot::data(int what)
 			state = stateRemoved;
 			enableTS(0);
 			printf("ci removed\n");
+			eDVBCISession::deleteSessions(this);
 			notifier->setRequested(eSocketNotifier::Read);
 			//HACK
 			eDVBCI_UI::getInstance()->setState(0,0);

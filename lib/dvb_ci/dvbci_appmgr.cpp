@@ -92,5 +92,6 @@ int eDVBCIApplicationManagerSession::startMMI()
 	printf("in appmanager -> startmmi()\n");
 	const unsigned char tag[3]={0x9F, 0x80, 0x22};  // Tenter_menu
 	sendAPDU(tag);
+	return 0;
 }
 

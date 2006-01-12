@@ -83,6 +83,7 @@ int eDVBCIResourceManagerSession::doAction()
 	case stateFinal:
 		printf("stateFinal und action! kann doch garnicht sein ;)\n");
 	default:
-		return 0;
+		break;
 	}
+	return 0;
 }
