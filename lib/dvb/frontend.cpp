@@ -331,11 +331,11 @@ int eDVBFrontend::closeFrontend()
 			return -1;
 		}
 	}
-	eDebug("close frontend %d", m_fe);
-	setTone(iDVBFrontend::toneOff);
-	setVoltage(iDVBFrontend::voltageOff);
 	if (m_fd >= 0)
 	{
+		eDebug("close frontend %d", m_fe);
+		setTone(iDVBFrontend::toneOff);
+		setVoltage(iDVBFrontend::voltageOff);
 		::close(m_fd);
 		m_fd=-1;
 	}
