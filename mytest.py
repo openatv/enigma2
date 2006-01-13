@@ -19,6 +19,19 @@ from Components.config import configfile
 from Tools.Directories import InitFallbackFiles
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
+
+try:
+	from twisted.internet import e2reactor
+	e2reactor.install()
+	
+	from twisted.internet import reactor
+	
+	def runReactor():
+		reactor.run()
+except:
+	def runReactor():
+		runMainloop()
+
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
 plugins.getPluginList(runAutostartPlugins=True)
@@ -204,7 +217,7 @@ def runScreenTest():
 
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
-	runMainloop()
+	runReactor()
 	
 	configfile.save()
 	
