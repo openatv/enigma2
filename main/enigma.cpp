@@ -174,6 +174,16 @@ int main(int argc, char **argv)
 	gLCDDC::getInstance(my_lcd_dc);
 
 	fontRenderClass::getInstance()->AddFont(FONTDIR "/md_khmurabi_10.ttf", "Regular", 100);
+	fontRenderClass::getInstance()->AddFont(FONTDIR "/ae_AlMateen.ttf", "Replacement", 90);
+	eTextPara::setReplacementFont("Replacement");
+	
+			/* some characters are wrong in the regular font, force them to use the replacement font */
+	for (int i = 0x60c; i <= 0x66d; ++i)
+		eTextPara::forceReplacementGlyph(i);
+	eTextPara::forceReplacementGlyph(0xfdf2);
+	for (int i = 0xfe80; i < 0xff00; ++i)
+		eTextPara::forceReplacementGlyph(i);
+	
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));

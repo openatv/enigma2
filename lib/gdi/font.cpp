@@ -361,7 +361,7 @@ void eTextPara::calc_bbox()
 	boundBox = i->bbox; 
 	++i;
 
-	for (i ; i != glyphs.end(); ++i)
+	for (; i != glyphs.end(); ++i)
 	{
 		if ( i->flags & GS_ISSPACE )
 			continue;
@@ -406,6 +406,7 @@ void eTextPara::setFont(const gFont *font)
 }
 
 std::string eTextPara::replacement_facename;
+std::set<int> eTextPara::forced_replaces;
 
 void eTextPara::setFont(Font *fnt, Font *replacement)
 {
@@ -587,9 +588,10 @@ nprint:	isprintable=0;
 		}
 		if (isprintable)
 		{
-			FT_UInt index;
-
-			index=(rflags&RS_DIRECT)? *i : FT_Get_Char_Index(current_face, *i);
+			FT_UInt index = 0;
+			
+			if (forced_replaces.find(*i) == forced_replaces.end())
+				index=(rflags&RS_DIRECT)? *i : FT_Get_Char_Index(current_face, *i);
 
 			if (!index)
 			{

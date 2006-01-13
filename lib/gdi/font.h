@@ -17,6 +17,8 @@
 #include <string>
 #include <lib/base/object.h> 
 
+#include <set>
+
 class FontRenderClass;
 class Font;
 class gDC;
@@ -98,6 +100,7 @@ private:
 	int use_kerning;
 	int previous;
 	static std::string replacement_facename;
+	static std::set<int> forced_replaces;
 
 	eRect area;
 	ePoint cursor;
@@ -120,6 +123,7 @@ public:
 	virtual ~eTextPara();
 	
 	static void setReplacementFont(std::string font) { replacement_facename=font; }
+	static void forceReplacementGlyph(int unicode) { forced_replaces.insert(unicode); }
 
 	void setFont(const gFont *font);
 	int renderString(const std::string &string, int flags=0);
