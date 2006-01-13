@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-13 23:18+0100\n"
+"POT-Creation-Date: 2006-01-13 03:53+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
@@ -24,8 +24,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:89
-#: ../lib/python/Screens/TimerEntry.py:92
+#: ../lib/python/Screens/TimerEntry.py:91
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-#: ../RecordTimer.py:90
+#: ../RecordTimer.py:91
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -102,6 +102,10 @@ msgstr ""
 #: ../lib/python/Screens/ChannelSelection.py:252
 msgid "All"
 msgstr "Alles"
+
+#: ../lib/python/Components/Language.py:14
+msgid "Arabic"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:171
 #: ../lib/python/Screens/ScanSetup.py:174
@@ -155,7 +159,7 @@ msgstr ""
 msgid "Cable provider"
 msgstr "Kabel provider"
 
-#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:19
+#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:21
 msgid "Cancel"
 msgstr "Stoppen"
 
@@ -163,7 +167,7 @@ msgstr "Stoppen"
 msgid "Capacity: "
 msgstr "Groote van harddisk: "
 
-#: ../lib/python/Screens/TimerEntry.py:173 ../data/
+#: ../lib/python/Screens/TimerEntry.py:175 ../data/
 msgid "Channel"
 msgstr "Kanaal"
 
@@ -211,7 +215,7 @@ msgstr "Verwijderen"
 msgid "Delete failed!"
 msgstr "Verwijderen mislukt."
 
-#: ../lib/python/Screens/TimerEntry.py:134
+#: ../lib/python/Screens/TimerEntry.py:136
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -267,7 +271,8 @@ msgstr ""
 "Wilt u de (actuele) direktopname\n"
 "stoppen?"
 
-#: ../lib/python/Plugins/update.py:33
+#: ../lib/python/Plugins/update/plugin.py:34
+#: ../lib/python/Plugins/update/plugin.py:142
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
@@ -301,11 +306,11 @@ msgstr "Oost"
 msgid "Enable"
 msgstr "Aan"
 
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "End"
 msgstr "Einde"
 
-#: ../lib/python/Screens/TimerEntry.py:171
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "EndTime"
 msgstr "Eindtijd"
 
@@ -331,12 +336,12 @@ msgstr "Favorieten"
 #: ../lib/python/Screens/ScanSetup.py:87
 #: ../lib/python/Screens/ScanSetup.py:115
 #: ../lib/python/Screens/ScanSetup.py:125
-#: ../lib/python/Screens/TimerEntry.py:141
+#: ../lib/python/Screens/TimerEntry.py:143
 msgid "Frequency"
 msgstr "Frequency"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:155
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:157
 msgid "Friday"
 msgstr "Vrijdag"
 
@@ -346,8 +351,8 @@ msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:13
-msgid "Nederlands"
-msgstr "Dutch"
+msgid "German"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:132
 msgid "Guard interval mode"
@@ -426,12 +431,12 @@ msgstr "Model:"
 msgid "Modulation"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:87
+#: ../lib/python/Screens/TimerEntry.py:89
 msgid "Mon-Fri"
 msgstr "Maandag tot Vrijdag"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:151
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:153
 msgid "Monday"
 msgstr "Maandag"
 
@@ -443,12 +448,16 @@ msgstr "Film Keuze"
 msgid "N/A"
 msgstr "Niet Aanwezig"
 
-#: ../lib/python/Screens/TimerEntry.py:133
+#: ../lib/python/Screens/TimerEntry.py:135
 msgid "Name"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:46 ../data/
 msgid "Nameserver"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:15
+msgid "Netherlands"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:44 ../data/
@@ -494,7 +503,7 @@ msgstr "Noord"
 msgid "Nothing connected"
 msgstr "Niks aangesloten"
 
-#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:18
+#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:20
 msgid "OK"
 msgstr ""
 
@@ -514,7 +523,7 @@ msgstr "Een"
 msgid "Play recorded movies..."
 msgstr "Opgenomen film afspelen..."
 
-#: ../lib/python/Plugins/update.py:19
+#: ../lib/python/Plugins/update/plugin.py:20
 msgid "Please press OK!"
 msgstr "Druk OK Aub!"
 
@@ -595,12 +604,12 @@ msgstr "Satellite"
 msgid "Satellites"
 msgstr "Satellites"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: ../lib/python/Screens/TimerEntry.py:211
+#: ../lib/python/Screens/TimerEntry.py:213
 msgid "Select channel to record from"
 msgstr "Selecteer een kanaal waarvan u wilt opnemen"
 
@@ -638,7 +647,7 @@ msgstr "Socket "
 msgid "South"
 msgstr "Zuid"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:165
 msgid "Start"
 msgstr ""
 
@@ -646,7 +655,7 @@ msgstr ""
 msgid "Start recording?"
 msgstr "Start Opnemen?"
 
-#: ../lib/python/Screens/TimerEntry.py:166
+#: ../lib/python/Screens/TimerEntry.py:168
 msgid "StartTime"
 msgstr "Startijd"
 
@@ -666,8 +675,8 @@ msgstr ""
 msgid "Subservices"
 msgstr "Subservices"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:157
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Sunday"
 msgstr "Zondag"
 
@@ -688,12 +697,12 @@ msgstr ""
 msgid "Threshold"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:154
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:156
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: ../lib/python/Screens/TimerEntry.py:135
+#: ../lib/python/Screens/TimerEntry.py:137
 msgid "Timer Type"
 msgstr "Timer-Type"
 
@@ -713,8 +722,8 @@ msgstr "Toneburst A/B"
 msgid "Transmission mode"
 msgstr "Overdragings type"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:152
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:154
 msgid "Tuesday"
 msgstr "Dinsdag"
 
@@ -755,15 +764,15 @@ msgstr ""
 msgid "Universal LNB"
 msgstr ""
 
-#: ../lib/python/Plugins/update.py:42
+#: ../lib/python/Plugins/update/plugin.py:43
+#: ../lib/python/Plugins/update/plugin.py:151
 msgid "Updating finished. Here is the result:"
 msgstr "Klaar met Updating. Dit is het Resultaat:"
 
-#: ../lib/python/Plugins/update.py:48
+#: ../lib/python/Plugins/update/plugin.py:49
+#: ../lib/python/Plugins/update/plugin.py:157
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Update is bezig. Wacht AUB. Dit kan enkele minuten "
-"duren."
+msgstr "Update is bezig. Wacht AUB. Dit kan enkele minuten duren."
 
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
@@ -785,12 +794,12 @@ msgstr ""
 msgid "W"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:95
-#: ../lib/python/Screens/TimerEntry.py:153
+#: ../lib/python/Screens/TimerEntry.py:97
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Wednesday"
 msgstr "Woensdag"
 
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:150
 msgid "Weekday"
 msgstr "Weekdag"
 
@@ -852,7 +861,7 @@ msgstr ""
 msgid "circular right"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:87
+#: ../lib/python/Screens/TimerEntry.py:89
 msgid "daily"
 msgstr "Dagelijks"
 
@@ -913,7 +922,7 @@ msgid "next channel"
 msgstr "Volgende Kanaal"
 
 #: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:101
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -943,7 +952,7 @@ msgstr "uit"
 msgid "on"
 msgstr "aan"
 
-#: ../lib/python/Screens/TimerEntry.py:83
+#: ../lib/python/Screens/TimerEntry.py:85
 msgid "once"
 msgstr "Eenmalig"
 
@@ -955,7 +964,7 @@ msgstr "Vorig Kanaal"
 msgid "remove service"
 msgstr "Kanaal verwijderen"
 
-#: ../lib/python/Screens/TimerEntry.py:83
+#: ../lib/python/Screens/TimerEntry.py:85
 msgid "repeated"
 msgstr "Herhalen"
 
@@ -987,11 +996,9 @@ msgstr ""
 #: ../lib/python/Components/ServiceScan.py:29
 #, python-format
 msgid ""
-"scanning in progress - %d %% done!\n"
+"scan in progress - %d %% done!\n"
 "%d services found!"
 msgstr ""
-"Scannen loopt - %d %% klaar!\n"
-"%d Kanalen gevonden!"
 
 #: ../lib/python/Screens/ServiceScan.py:22
 msgid "scan state"
@@ -1009,7 +1016,7 @@ msgstr ""
 msgid "unknown service"
 msgstr "onbekende Service"
 
-#: ../lib/python/Screens/TimerEntry.py:87
+#: ../lib/python/Screens/TimerEntry.py:89
 msgid "user defined"
 msgstr "gebruikers mode"
 
@@ -1017,12 +1024,12 @@ msgstr "gebruikers mode"
 msgid "vertical"
 msgstr "vertikaal"
 
-#: ../lib/python/Screens/TimerEntry.py:87
+#: ../lib/python/Screens/TimerEntry.py:89
 msgid "weekly"
 msgstr "wekelijks"
 
 #: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:101
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
@@ -1085,8 +1092,8 @@ msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
-"Met de omhoog/omlaag Toetsen op u afastands bediening een optie uitkiezen. En daarna op OK "
-"druken."
+"Met de omhoog/omlaag Toetsen op u afastands bediening een optie uitkiezen. "
+"En daarna op OK druken."
 
 #: ../data/
 msgid "No, just start my dreambox"
@@ -1332,8 +1339,7 @@ msgstr "Netwerk instellingen"
 
 #: ../data/
 msgid "Thanks for using the wizard. Your box is now ready to use."
-msgstr ""
-"De wizard is klaar. U kunt u dreambox nu gebruiken."
+msgstr "De wizard is klaar. U kunt u dreambox nu gebruiken."
 
 #: ../data/
 msgid "#ffffffff"
@@ -1528,6 +1534,16 @@ msgstr ""
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliet instellingen"
+
+#~ msgid "Nederlands"
+#~ msgstr "Dutch"
+
+#~ msgid ""
+#~ "scanning in progress - %d %% done!\n"
+#~ "%d services found!"
+#~ msgstr ""
+#~ "Scannen loopt - %d %% klaar!\n"
+#~ "%d Kanalen gevonden!"
 
 #~ msgid "Recording"
 #~ msgstr "Opnemen"
