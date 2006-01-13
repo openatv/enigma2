@@ -25,8 +25,6 @@ RT_WRAP = 32
 # | name of movie              |
 #
 def MovieListEntry(serviceref, serviceHandler):
-	res = [ serviceref ]
-
 	info = serviceHandler.info(serviceref)
 	
 	if info is None:
@@ -39,11 +37,13 @@ def MovieListEntry(serviceref, serviceHandler):
 	else:
 		len = "?:??"
 	
+	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+	res = [ (serviceref, begin) ]
+
 	res.append((0, 0, 0, 560, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
 	
 	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
-	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
-	
+
 	begin_string = ""
 	if begin > 0:
 		t = FuzzyTime(begin)
@@ -71,7 +71,7 @@ class MovieList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def getCurrent(self):
-		return self.l.getCurrentSelection()
+		return self.l.getCurrentSelection()[0]
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
@@ -113,12 +113,14 @@ class MovieList(HTMLComponent, GUIComponent):
 		# now process them...
 		for ref in movieList:
 			self.list.append(MovieListEntry(ref, serviceHandler))
-			
+		
+		self.list.sort(key=lambda x: -x[0][1])
+
 	def moveTo(self, serviceref):
 		found = 0
 		count = 0
 		for x in self.list:
-			if str(ServiceReference(x[0])) == str(ServiceReference(serviceref)):
+			if str(ServiceReference(x[0][0])) == str(ServiceReference(serviceref)):
 				found = count
 			count += 1
 		self.instance.moveSelectionTo(found)
