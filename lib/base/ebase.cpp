@@ -129,13 +129,19 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	eFatal("removed socket notifier which is not present");
 }
 
-int eMainloop::processOneEvent(unsigned int user_timeout)
+int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObject *additional)
 {
 	int return_reason = 0;
 		/* get current time */
 	timeval now;
 	gettimeofday(&now, 0);
 	m_now_is_invalid = 0;
+	
+	if (additional && !PyDict_Check(additional))
+		eFatal("additional, but it's not dict");
+	
+	if (additional && !res)
+		eFatal("additional, but no res");
 	
 	int poll_timeout = -1; /* infinite in case of empty timer list */
 	
@@ -159,9 +165,9 @@ int eMainloop::processOneEvent(unsigned int user_timeout)
 	
 	int ret = 0;
 	
+	
 	if (poll_timeout)
 	{
-
 		std::multimap<int,eSocketNotifier*>::iterator it;
 		std::map<int,int> fd_merged;
 		std::map<int,int>::const_iterator fd_merged_it;
@@ -171,24 +177,49 @@ int eMainloop::processOneEvent(unsigned int user_timeout)
 		
 		fd_merged_it = fd_merged.begin();
 		
-		int fdcount = fd_merged.size();
+		int nativecount, fdcount;
+		
+		nativecount = fdcount = fd_merged.size();
+		
+		if (additional)	
+		{
+			additional = PyDict_Items(additional);
+			fdcount += PyList_Size(additional);
+		}
 
 			// build the poll aray
 		pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
 		
-		for (int i=0; i < fdcount; i++, fd_merged_it++)
+		for (int i=0; i < nativecount; i++, fd_merged_it++)
 		{
 			pfd[i].fd = fd_merged_it->first;
 			pfd[i].events = fd_merged_it->second;
 		}
+		
+		if (additional)
+		{
+			for (int i=0; i < PyList_Size(additional); ++i)
+			{
+				PyObject *it = PyList_GetItem(additional, i);
+				if (!PyTuple_Check(it))
+					eFatal("poll item is not a tuple");
+				if (PyTuple_Size(it) != 2)
+					eFatal("poll tuple size is not 2");
+				int fd = PyObject_AsFileDescriptor(PyTuple_GetItem(it, 0));
+				if (fd == -1)
+					eFatal("poll tuple not a filedescriptor");
+				pfd[nativecount + i].fd = fd;
+				pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GetItem(it, 1));
+			}
+		}
 
-		ret = poll(pfd, fdcount, poll_timeout);
+		ret = ::poll(pfd, fdcount, poll_timeout);
 		
 			/* ret > 0 means that there are some active poll entries. */
 		if (ret > 0)
 		{
 			return_reason = 0;
-			for (int i=0; i < fdcount ; i++)
+			for (int i=0; i < nativecount ; i++)
 			{
 				it = notifiers.begin();
 				
@@ -216,6 +247,19 @@ int eMainloop::processOneEvent(unsigned int user_timeout)
 					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 			
+			for (int i = nativecount; i < fdcount; ++i)
+			{
+				if (pfd[i].revents)
+				{
+					if (!*res)
+						*res = PyList_New(0);
+					PyObject *it = PyTuple_New(2);
+					PyTuple_SetItem(it, 0, PyInt_FromLong(pfd[i].fd));
+					PyTuple_SetItem(it, 1, PyInt_FromLong(pfd[i].revents));
+					PyList_Append(*res, it);
+				}
+			}
+			
 			ret = 1; /* poll did not timeout. */
 		} else if (ret < 0)
 		{
@@ -229,6 +273,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout)
 			}
 		}
 		delete [] pfd;
+		Py_XDECREF(additional);
 	}
 	
 		/* when we not processed anything, check timers. */
@@ -262,14 +307,16 @@ void eMainloop::removeTimer(eTimer* e)
 	m_timer_list.remove(e);
 }
 
-int eMainloop::iterate(unsigned int user_timeout)
+int eMainloop::iterate(unsigned int user_timeout, PyObject **res, PyObject *dict)
 {
 	int ret = 0;
 	
 	do
 	{ 
-		if (app_quit_now) break; 
-		ret = processOneEvent(user_timeout);
+		if (app_quit_now) return -1;
+		ret = processOneEvent(user_timeout, res, dict);
+		if (res && *res)
+			return ret;
 	} while (ret == 0);
 	
 	return ret;
@@ -280,6 +327,19 @@ int eMainloop::runLoop()
 	while (!app_quit_now)
 		iterate();
 	return retval;
+}
+
+PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
+{
+	PyObject *res = 0;
+	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
+	
+	iterate(user_timeout, &res, dict);
+	
+	if (!res) /* return empty list on timeout */
+		res = PyList_New(0);
+	
+	return res;
 }
 
 void eMainloop::quit(int ret)
