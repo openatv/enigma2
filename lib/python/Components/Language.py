@@ -12,7 +12,7 @@ class Language:
 		self.addLanguage(_("English"), "en")
 		self.addLanguage(_("German"), "de")
 		self.addLanguage(_("Arabic"), "ar")
-		self.addLanguage(_("Netherlands"), "nl")
+		self.addLanguage(_("Dutch"), "nl")
 
 	def addLanguage(self, name, lang):
 		try:
