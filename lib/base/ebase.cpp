@@ -200,16 +200,16 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 		{
 			for (int i=0; i < PyList_Size(additional); ++i)
 			{
-				PyObject *it = PyList_GetItem(additional, i);
+				PyObject *it = PyList_GET_ITEM(additional, i);
 				if (!PyTuple_Check(it))
 					eFatal("poll item is not a tuple");
 				if (PyTuple_Size(it) != 2)
 					eFatal("poll tuple size is not 2");
-				int fd = PyObject_AsFileDescriptor(PyTuple_GetItem(it, 0));
+				int fd = PyObject_AsFileDescriptor(PyTuple_GET_ITEM(it, 0));
 				if (fd == -1)
 					eFatal("poll tuple not a filedescriptor");
 				pfd[nativecount + i].fd = fd;
-				pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GetItem(it, 1));
+				pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GET_ITEM(it, 1));
 			}
 		}
 
@@ -254,9 +254,10 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 					if (!*res)
 						*res = PyList_New(0);
 					PyObject *it = PyTuple_New(2);
-					PyTuple_SetItem(it, 0, PyInt_FromLong(pfd[i].fd));
-					PyTuple_SetItem(it, 1, PyInt_FromLong(pfd[i].revents));
+					PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
+					PyTuple_SET_ITEM(it, 1, PyInt_FromLong(pfd[i].revents));
 					PyList_Append(*res, it);
+					Py_DECREF(it);
 				}
 			}
 			
