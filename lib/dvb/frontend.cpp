@@ -218,6 +218,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 #endif
 {
 #if HAVE_DVB_API_VERSION < 3
+	sprintf(m_filename, "/dev/dvb/card%d/frontend%d", adap, fe);
 	sprintf(m_sec_filename, "/dev/dvb/card%d/sec%d", adap, fe);
 #endif
 	sprintf(m_filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
