@@ -5,11 +5,10 @@ from twisted.web2 import server, http, static
 
 def autostart():
 	print "Web startup"
-	# For example, serve the /tmp directory
-	toplevel = static.File("/tmp")
+	toplevel = static.File("/hdd")
 	site = server.Site(toplevel)
 	
-	reactor.listenTCP(8080, http.HTTPFactory(site))
+	reactor.listenTCP(80, http.HTTPFactory(site))
 
 def autoend():
 	pass
