@@ -138,7 +138,7 @@ class TimerEntry(Screen):
 		self.list.append(self.timerTypeEntry)
 
 		if (config.timerentry.type.value == 0): # once
-			pass
+			self.frequencyEntry = None
 		else: # repeated
 			self.frequencyEntry = getConfigListEntry(_("Frequency"), config.timerentry.repeated)
 			self.list.append(self.frequencyEntry)
