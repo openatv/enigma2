@@ -57,7 +57,7 @@ public:
 	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
 	void resetPrevSentCAPMTVersion() { prev_sent_capmt_version = 0xFF; }
 	
-	int enableTS(int enable);
+	int enableTS(int enable, int tuner=0);
 
 };
 
