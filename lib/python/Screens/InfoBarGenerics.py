@@ -762,7 +762,17 @@ class InfoBarInstantRecord:
 		
 		if event is not None:
 			data = parseEvent(event)
-			data = (data[0], data[1] + 3600 * 10, data[2], data[3], data[4])
+			begin = data[0]
+			if begin < time.time():
+				begin = time.time()
+			
+			end = data[1]
+			if end < begin:
+				end = begin
+			
+			end += 3600 * 10
+			
+			data = (begin, end, data[2], data[3], data[4])
 		else:
 			data = (time.time(), time.time() + 3600 * 10, "instant record", "", None)
 		
