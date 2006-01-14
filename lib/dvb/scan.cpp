@@ -375,6 +375,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	m_ch_unavailable.clear();
 	m_new_channels.clear();
 	m_new_services.clear();
+	m_last_service = m_new_services.end();
 
 	for (eSmartPtrList<iDVBFrontendParameters>::const_iterator i(known_transponders.begin()); i != known_transponders.end(); ++i)
 	{
@@ -469,7 +470,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			}
 		}
 		
-		m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));		
+		std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i = m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
+		
+		if (i.second)
+		{
+			m_last_service = i.first;
+			m_event(evtNewService);
+		}
 	}
 	return 0;
 }
@@ -485,4 +492,12 @@ void eDVBScan::getStats(int &transponders_done, int &transponders_total, int &se
 	transponders_done = m_ch_scanned.size() + m_ch_unavailable.size();
 	transponders_total = m_ch_toScan.size() + transponders_done;
 	services = m_new_services.size();
+}
+
+void eDVBScan::getLastServiceName(std::string &last_service_name)
+{
+	if (m_last_service == m_new_services.end())
+		last_service_name = "";
+	else
+		last_service_name = m_last_service->second->m_service_name;
 }

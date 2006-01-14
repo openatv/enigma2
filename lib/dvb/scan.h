@@ -40,6 +40,7 @@ private:
 	
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
+	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_last_service;
 	
 	std::list<ePtr<iDVBFrontendParameters> > m_ch_toScan, m_ch_scanned, m_ch_unavailable;
 	ePtr<iDVBFrontendParameters> m_ch_current;
@@ -70,11 +71,12 @@ public:
 	enum { scanNetworkSearch = 1, scanSearchBAT = 2 };
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
-	enum { evtUpdate, evtFinish, evtFail };
+	enum { evtUpdate, evtNewService, evtFinish, evtFail };
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
 	void insertInto(iDVBChannelList *db);
 	
 	void getStats(int &transponders_done, int &transponders_total, int &services);
+	void getLastServiceName(std::string &name);
 };
 
 #endif
