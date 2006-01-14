@@ -220,9 +220,9 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 #if HAVE_DVB_API_VERSION < 3
 	sprintf(m_filename, "/dev/dvb/card%d/frontend%d", adap, fe);
 	sprintf(m_sec_filename, "/dev/dvb/card%d/sec%d", adap, fe);
-#endif
+#else
 	sprintf(m_filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
-
+#endif
 	m_timeout = new eTimer(eApp);
 	CONNECT(m_timeout->timeout, eDVBFrontend::timeout);
 
