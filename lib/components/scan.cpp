@@ -33,6 +33,12 @@ void eComponentScan::scanEvent(int evt)
 		}
 	}
 	
+	if (evt == eDVBScan::evtNewService)
+	{
+		newService();
+		return;
+	}
+	
 	if (evt == eDVBScan::evtFail)
 	{
 		eDebug("scan failed.");
@@ -136,4 +142,11 @@ int eComponentScan::isDone()
 int eComponentScan::getError()
 {
 	return m_failed;
+}
+
+void eComponentScan::getLastServiceName(std::string &string)
+{
+	if (!m_scan)
+		return;
+	m_scan->getLastServiceName(string);
 }

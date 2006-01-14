@@ -23,6 +23,7 @@ public:
 	~eComponentScan();
 	
 	PSignal0<void> statusChanged;
+	PSignal0<void> newService;
 	
 		/* progress between 0 and 100 */
 	int getProgress();
@@ -32,6 +33,9 @@ public:
 	
 		/* true when done or error */
 	int isDone();
+	
+		/* get last added service */
+	void getLastServiceName(std::string &SWIG_OUTPUT);
 	
 	int getError();
 	
