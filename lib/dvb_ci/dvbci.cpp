@@ -85,7 +85,37 @@ int eDVBCIInterfaces::enableTS(int slotid, int enable)
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
-	return slot->enableTS(enable);
+	int tunernum = 0;
+	if (enable)
+	{
+		tunernum=-1;
+		PMTHandlerList::iterator it = m_pmt_handlers.begin();
+		while (it != m_pmt_handlers.end())
+		{
+			if ( it->cislot == slot )
+			{
+				eDVBServicePMTHandler *pmthandler = it->pmthandler;
+				eUsePtr<iDVBChannel> channel;
+				if (!pmthandler->getChannel(channel))
+				{
+					ePtr<iDVBFrontend> frontend;
+					if (!channel->getFrontend(frontend))
+					{
+						eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
+						tunernum = fe->getID();
+					}
+				}
+				break;
+			}
+			++it;
+		}
+		if ( tunernum == -1 )
+		{
+			eFatal("couldn't find the correct tuner num in enableTS");
+			return -1;
+		}
+	}
+	return slot->enableTS(enable, tunernum);
 }
 
 int eDVBCIInterfaces::initialize(int slotid)
@@ -537,19 +567,31 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 	return 0;
 }
 
-int eDVBCISlot::enableTS(int enable)
+int eDVBCISlot::enableTS(int enable, int tuner)
 {
-	printf("eDVBCISlot::enableTS(%d)\n", enable);
+	printf("eDVBCISlot::enableTS(%d %d)\n", enable, tuner);
 
-	FILE *f;
-	if((f = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
+	FILE *input0, *input1, *ci;
+	if((input0 = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
 		printf("cannot open /proc/stb/tsmux/input0\n");
 		return 0;
 	}
+	if((input1 = fopen("/proc/stb/tsmux/input1", "wb")) == NULL) {
+		printf("cannot open /proc/stb/tsmux/input1\n");
+		return 0;
+	}
+	if((ci = fopen("/proc/stb/tsmux/input2", "wb")) == NULL) {
+		printf("cannot open /proc/stb/tsmux/input2\n");
+		return 0;
+	}
 
-	fprintf(f, "%s", enable?"CI":"A");
+	fprintf(ci, "%s", tuner==0 ? "A" : "B");  // configure CI data source (TunerA, TunerB)
+	fprintf(input0, "%s", tuner==0 && enable ? "CI" : "A"); // configure ATI input 0 data source
+	fprintf(input1, "%s", tuner==1 && enable ? "CI" : "B"); // configure ATI input 1 data source
 
-	fclose(f);
+	fclose(input0);
+	fclose(input1);
+	fclose(ci);
 
 	return 0;
 }
