@@ -592,7 +592,6 @@ int eDVBCISlot::enableTS(int enable, int tuner)
 	fclose(input0);
 	fclose(input1);
 	fclose(ci);
-
 	return 0;
 }
 
