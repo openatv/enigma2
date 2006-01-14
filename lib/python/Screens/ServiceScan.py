@@ -3,6 +3,7 @@ from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
 from Components.ActionMap import ActionMap
+from Components.FIFOList import FIFOList
 
 class ServiceScan(Screen):
 	def ok(self):
@@ -20,7 +21,8 @@ class ServiceScan(Screen):
 		
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
-		self["scan"] = CScan(self["scan_progress"], self["scan_state"], transponders, feid, flags)
+		self["servicelist"] = FIFOList(len=7)
+		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], transponders, feid, flags)
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{

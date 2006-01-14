@@ -142,6 +142,7 @@ typedef long time_t;
 %immutable eButton::selected;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
+%immutable eComponentScan::newService;
 %immutable pNavigation::m_event;
 
 %include <lib/gdi/font.h>
