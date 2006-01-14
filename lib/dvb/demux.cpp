@@ -8,9 +8,21 @@
 
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
+
 #ifndef DMX_SET_NEGFILTER_MASK
 	#define DMX_SET_NEGFILTER_MASK   _IOW('o',48,uint8_t *)
 #endif
+
+#ifndef DMX_GET_STC
+	struct dmx_stc
+	{
+		unsigned int num;	/* input : which STC? O..N */
+		unsigned int base;	/* output: divisor for stc to get 90 kHz clock */
+		unsigned long long stc; /* output: src in 'base'*90 kHz units */
+	};
+	#define DMX_GET_STC		_IOR('o', 50, struct dmx_stc)
+#endif
+
 #else
 #include <linux/dvb/dmx.h>
 #endif
