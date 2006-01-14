@@ -147,7 +147,13 @@ class Session:
 
 		# create GUI view of this dialog
 		assert self.desktop != None
-		dlg.instance = eWindow(self.desktop)
+		
+		z = 0
+		for (key, value) in dlg.skinAttributes:
+			if key == "zPosition":
+				z = int(value)
+
+		dlg.instance = eWindow(self.desktop, z)
 		applyAllAttributes(dlg.instance, self.desktop, dlg.skinAttributes)
 		gui = GUIOutputDevice()
 		gui.parent = dlg.instance
