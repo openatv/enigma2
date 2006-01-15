@@ -38,19 +38,20 @@ from Components.config import config, currentConfigSelectionElement
 # hack alert!
 from Menu import MainMenu, mdom
 
+from GlobalActions import globalActionMap
+
 class InfoBarVolumeControl:
 	"""Volume control, handles volUp, volDown, volMute actions and display 
 	a corresponding dialog"""
+
 	def __init__(self):
+		global globalActionMap
+		globalActionMap.actions["volumeUp"]=self.volUp
+		globalActionMap.actions["volumeDown"]=self.volDown
+		globalActionMap.actions["volumeMute"]=self.volMute
+
 		config.audio = ConfigSubsection()
 		config.audio.volume = configElement("config.audio.volume", configSequence, [100], configsequencearg.get("INTEGER", (0, 100)))
-
-		self["VolumeActions"] = ActionMap( ["InfobarVolumeActions"] ,
-			{
-				"volumeUp": self.volUp,
-				"volumeDown": self.volDown,
-				"volumeMute": self.volMute,
-			})
 
 		self.volumeDialog = self.session.instantiateDialog(Volume)
 		self.muteDialog = self.session.instantiateDialog(Mute)
