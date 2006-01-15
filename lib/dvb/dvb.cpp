@@ -671,7 +671,6 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 
 RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
-	eDebug("get %d demux", cap);
 	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
 	
 	if (!our_demux)
@@ -680,14 +679,12 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 		
 		if (m_mgr->allocateDemux(m_frontend ? (eDVBRegisteredFrontend*)*m_frontend : (eDVBRegisteredFrontend*)0, our_demux, cap))
 			return -1;
-		
 	}
 	
 	demux = *our_demux;
+		/* don't hold a reference to the decoding demux, we don't need it. */
 	if (cap & capDecode)
-	{
 		our_demux = 0;
-	}
 	return 0;
 }
 
