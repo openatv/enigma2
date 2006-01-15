@@ -518,8 +518,9 @@ class InfoBarServiceName:
 	def __init__(self):
 		self["ServiceName"] = ServiceName(self.session.nav)
 
-class InfoBarPVR:
-
+class InfoBarSeek:
+	"""handles actions like seeking, pause"""
+	
 	# ispause, isff, issm, skip
 	SEEK_STATE_PLAY = (0, 0, 0, 0)
 	SEEK_STATE_PAUSE = (1, 0, 0, 0)
@@ -539,9 +540,8 @@ class InfoBarPVR:
 	SEEK_STATE_SM_QUARTER = (0, 0, 4, 0)
 	SEEK_STATE_SM_EIGHTH = (0, 0, 8, 0)
 	
-	"""handles PVR specific actions like seeking, pause"""
 	def __init__(self):
-		self["PVRActions"] = HelpableActionMap(self, "InfobarPVRActions", 
+		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 
 			{
 				"pauseService": (self.pauseService, "pause"),
 				"unPauseService": (self.unPauseService, "continue"),
@@ -550,10 +550,6 @@ class InfoBarPVR:
 				"seekFwdUp": (self.seekFwdUp, "skip forward"),
 				"seekBack": (self.seekBack, "skip backward"),
 				"seekBackUp": (self.seekBackUp, "skip backward"),
-							 
-				"movieList": (self.showMovies, "movie list"),
-				"up": (self.showMovies, "movie list"),
-				"down": (self.showMovies, "movie list")
 			})
 
 		self.seekstate = self.SEEK_STATE_PLAY
@@ -727,6 +723,59 @@ class InfoBarPVR:
 	def rwdSeekTo(self, minutes):
 		self.fwdSeekTo(0 - minutes)
 
+class InfoBarShowMovies:
+
+	# i don't really like this class. 
+	# it calls a not further specified "movie list" on up/down/movieList,
+	# so this is not moe than an action map
+	def __init__(self):
+		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", 
+			{
+				"movieList": (self.showMovies, "movie list"),
+				"up": (self.showMovies, "movie list"),
+				"down": (self.showMovies, "movie list")
+			})
+
+class InfoBarTimeshift:
+	def __init__(self):
+		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", 
+			{
+				"timeshiftStart": (self.startTimeshift, "start timeshift "),
+				"timeshiftStop": (self.stopTimeshift, "stop timeshift")
+			})
+		self.tshack = 0
+	
+	def getTimeshift(self):
+		service = self.session.nav.getCurrentService()
+		return service.timeshift()
+
+	def startTimeshift(self):
+		# TODO: check for harddisk! (or do this in the interface? would make
+		# more sense... for example radio could be timeshifted in memory,
+		# and the decision can't be made here)
+		print "enable timeshift"
+		ts = self.getTimeshift()
+		if ts is None:
+			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
+			print "no ts interface"
+			return
+		print "ok, timeshift enabled"
+		if self.tshack == 0:
+			ts.startTimeshift()
+			self.tshack = 1
+		else:
+			pauseable = self.session.nav.getCurrentService().pause()
+			pauseable.pause() # switch to record
+
+	def stopTimeshift(self):
+		print "disable timeshift"
+		ts = self.getTimeshift()
+		if ts is None:
+			return
+		ts.stopTimeshift()
+		self.tshack = 0
+		
+
 from RecordTimer import parseEvent
 
 class InfoBarInstantRecord:
@@ -893,6 +942,7 @@ class InfoBarAdditionalInfo:
 			self.hideSubServiceIndication()
 
 	def checkDolby(self, service):
+		# FIXME
 		dolby = False
 		audio = service.audioTracks()
 		if audio is not None:
