@@ -17,11 +17,11 @@ class AVSwitch:
 		eAVSwitch.getInstance().setVideomode(value)
 
 	def setWSS(self, value):
-		if value == 0:
+		if currentConfigSelectionElement(config.av.wss) == "off":
 			writevalue = "off"
-		elif value == 1:
+		elif currentConfigSelectionElement(config.av.wss) == "auto":
 			writevalue = "auto"
-		elif value == 2:
+		elif currentConfigSelectionElement(config.av.wss) == "auto_no4_3":
 			writevalue = "auto(4:3_off)"
 		try:
 			file = open("/proc/stb/denc/0/wss", "w")
