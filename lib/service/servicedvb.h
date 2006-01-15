@@ -116,7 +116,8 @@ private:
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
 	
-	eDVBServicePMTHandler m_service_handler;
+		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
+	eDVBServicePMTHandler m_service_handler, m_service_handler_timeshift;
 	eDVBServiceEITHandler m_event_handler;
 	
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
@@ -124,12 +125,27 @@ private:
 	void gotNewEvent();
 	
 	void serviceEvent(int event);
+	void serviceEventTimeshift(int event);
 	Signal2<void,iPlayableService*,int> m_event;
 	
-	int m_is_pvr, m_is_paused, m_timeshift_enabled;
+	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active;
+	
+	std::string m_timeshift_file;
+	int m_timeshift_fd;
+	
+	ePtr<iDVBDemux> m_decode_demux;
 	
 	int m_current_audio_stream;
 	int selectAudioStream(int n);
+	
+	ePtr<iDVBTSRecorder> m_record;
+	std::set<int> m_pids_active;
+
+	void updateTimeshiftPids();
+	void switchToLive();
+	void switchToTimeshift();
+	
+	void updateDecoder();
 };
 
 #endif
