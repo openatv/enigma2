@@ -485,12 +485,13 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service), m_service_handler(0), m_is_paused(0)
+	m_reference(ref), m_dvb_service(service), m_is_paused(0)
 {
 	m_is_pvr = !ref.path.empty();
-	m_timeshift_enabled = 0;
+	m_timeshift_enabled = m_timeshift_active = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
+	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 }
 
@@ -521,7 +522,7 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventTuned:
 	{
 		ePtr<iDVBDemux> m_demux;
-		if (!m_service_handler.getDemux(m_demux))
+		if (!m_service_handler.getDataDemux(m_demux))
 		{
 			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
 			int sid = ref.getParentServiceID().get();
@@ -543,111 +544,41 @@ void eDVBServicePlay::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
-		int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1;
-		eDVBServicePMTHandler::program program;
-		if (m_service_handler.getProgramInfo(program))
-			eDebug("getting program info failed.");
-		else
-		{
-			eDebugNoNewLine("have %d video stream(s)", program.videoStreams.size());
-			if (!program.videoStreams.empty())
-			{
-				eDebugNoNewLine(" (");
-				for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-					i(program.videoStreams.begin()); 
-					i != program.videoStreams.end(); ++i)
-				{
-					if (vpid == -1)
-						vpid = i->pid;
-					if (i != program.videoStreams.begin())
-						eDebugNoNewLine(", ");
-					eDebugNoNewLine("%04x", i->pid);
-				}
-				eDebugNoNewLine(")");
-			}
-			eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
-			if (!program.audioStreams.empty())
-			{
-				eDebugNoNewLine(" (");
-				for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-					i(program.audioStreams.begin()); 
-					i != program.audioStreams.end(); ++i)
-				{
-					if (apid == -1)
-					{
-						apid = i->pid;
-						apidtype = i->type;
-					}
-					if (i != program.audioStreams.begin())
-						eDebugNoNewLine(", ");
-					eDebugNoNewLine("%04x", i->pid);
-				}
-				eDebugNoNewLine(")");
-			}
-			eDebug(", and the pcr pid is %04x", program.pcrPid);
-			if (program.pcrPid != 0x1fff)
-				pcrpid = program.pcrPid;
-		}
-		
-		if (!m_decoder)
-		{
-			ePtr<iDVBDemux> demux;
-			m_service_handler.getDemux(demux);
-			if (demux)
-				demux->getMPEGDecoder(m_decoder);
-		}
-
-		if (m_decoder)
-		{
-			m_decoder->setVideoPID(vpid);
-			m_current_audio_stream = 0;
-			m_decoder->setAudioPID(apid, apidtype);
-			if (!m_is_pvr)
-				m_decoder->setSyncPCR(pcrpid);
-			else
-				m_decoder->setSyncPCR(-1);
-			m_decoder->start();
-// how we can do this better?
-// update cache pid when the user changed the audio track or video track
-// TODO handling of difference audio types.. default audio types..
-				
-				/* don't worry about non-existing services, nor pvr services */
-			if (m_dvb_service && !m_is_pvr)
-			{
-				if (apidtype == eDVBAudio::aMPEG)
-				{
-					m_dvb_service->setCachePID(eDVBService::cAPID, apid);
-					m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
-				}
-				else
-				{
-					m_dvb_service->setCachePID(eDVBService::cAPID, -1);
-					m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
-				}
-				m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
-				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
-			}
-		}
-
+		eDebug("eventNewProgramInfo %d %d", m_timeshift_enabled, m_timeshift_active);
+		if (m_timeshift_enabled)
+			updateTimeshiftPids();
+		if (!m_timeshift_active)
+			updateDecoder();
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
 	}
 }
 
+void eDVBServicePlay::serviceEventTimeshift(int event)
+{
+	switch (event)
+	{
+	case eDVBServicePMTHandler::eventNewProgramInfo:
+		if (m_timeshift_active)
+			updateDecoder();
+		break;
+	}
+}
+
 RESULT eDVBServicePlay::start()
 {
 	int r;
-	eDebug("starting DVB service");
-	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference);
-	eDebug("tune result: %d", r);
+		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
+		   two (one for decoding, one for data source), as we must be prepared
+		   to start recording from the data demux. */
+	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr);
 	m_event(this, evStart);
 	return 0;
 }
 
 RESULT eDVBServicePlay::stop()
 {
-	eDebug("stopping..");
 	return 0;
 }
 
@@ -659,7 +590,7 @@ RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &ev
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
-	if (!m_is_pvr)
+	if ((!m_is_pvr) && (!m_timeshift_enabled))
 	{
 		ptr = 0;
 		return -1;
@@ -687,7 +618,7 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
     
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
-	if (m_is_pvr)
+	if (m_is_pvr || m_timeshift_enabled)
 	{
 		ptr = this;
 		return 0;
@@ -712,6 +643,11 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 
 RESULT eDVBServicePlay::pause()
 {
+	if (m_timeshift_enabled && !m_timeshift_active)
+	{
+		switchToTimeshift();
+		return 0;
+	}
 	if (!m_is_paused && m_decoder)
 	{
 		m_is_paused = 1;
@@ -733,23 +669,24 @@ RESULT eDVBServicePlay::unpause()
 RESULT eDVBServicePlay::seekTo(pts_t to)
 {
 	eDebug("eDVBServicePlay::seekTo: jump %lld", to);
+	
+	if (!m_decode_demux)
+		return -1;
 
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
 	if (m_service_handler.getPVRChannel(pvr_channel))
 		return -1;
 	
-	ePtr<iDVBDemux> demux;
-	m_service_handler.getDemux(demux);
-	if (!demux)
-		return -1;
-	
-	return pvr_channel->seekTo(demux, 0, to);
+	return pvr_channel->seekTo(m_decode_demux, 0, to);
 }
 
 RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 {
 	eDebug("eDVBServicePlay::seekRelative: jump %d, %lld", direction, to);
+	
+	if (!m_decode_demux)
+		return -1;
 
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
@@ -758,27 +695,20 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	
 	to *= direction;
 	
-	ePtr<iDVBDemux> demux;
-	m_service_handler.getDemux(demux);
-	if (!demux)
-		return -1;
-	
-	return pvr_channel->seekTo(demux, 1, to);
+	return pvr_channel->seekTo(m_decode_demux, 1, to);
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 {
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
+	if (!m_decode_demux)
+		return -1;
+	
 	if (m_service_handler.getPVRChannel(pvr_channel))
 		return -1;
 	
-	ePtr<iDVBDemux> demux;
-	m_service_handler.getDemux(demux);
-	if (!demux)
-		return -1;
-	
-	return pvr_channel->getCurrentPosition(demux, pos, 1);
+	return pvr_channel->getCurrentPosition(m_decode_demux, pos, 1);
 }
 
 RESULT eDVBServicePlay::setTrickmode(int trick)
@@ -991,18 +921,14 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	if (m_dvb_service && !m_is_pvr)
 	{
-		if (m_dvb_service && !m_is_pvr)
+		if (program.audioStreams[i].type == eDVBAudio::aMPEG)
 		{
-			if (program.audioStreams[i].type == eDVBAudio::aMPEG)
-			{
-				m_dvb_service->setCachePID(eDVBService::cAPID, program.audioStreams[i].pid);
-				m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
-			}
-			else
-			{
-				m_dvb_service->setCachePID(eDVBService::cAPID, -1);
-				m_dvb_service->setCachePID(eDVBService::cAC3PID, program.audioStreams[i].pid);
-			}
+			m_dvb_service->setCachePID(eDVBService::cAPID, program.audioStreams[i].pid);
+			m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+		}	else
+		{
+			m_dvb_service->setCachePID(eDVBService::cAPID, -1);
+			m_dvb_service->setCachePID(eDVBService::cAC3PID, program.audioStreams[i].pid);
 		}
 	}
 
@@ -1046,9 +972,40 @@ RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
 
 RESULT eDVBServicePlay::startTimeshift()
 {
+	ePtr<iDVBDemux> demux;
+	
+	eDebug("Start timeshift!");
+	
 	if (m_timeshift_enabled)
 		return -1;
-	eDebug("TIMESHIFT - start!");
+	
+		/* start recording with the data demux. */
+	if (m_service_handler.getDataDemux(demux))
+		return -2;
+
+	demux->createTSRecorder(m_record);
+	if (!m_record)
+		return -3;
+
+	char templ[]="/media/hdd/timeshift.XXXXXX";
+	m_timeshift_fd = mkstemp(templ);
+	m_timeshift_file = templ;
+	
+	eDebug("recording to %s", templ);
+	
+	if (m_timeshift_fd < 0)
+	{
+		delete m_record;
+		return -4;
+	}
+		
+	m_record->setTargetFD(m_timeshift_fd);
+
+	m_timeshift_enabled = 1;
+	
+	updateTimeshiftPids();
+	m_record->start();
+
 	return 0;
 }
 
@@ -1056,9 +1013,187 @@ RESULT eDVBServicePlay::stopTimeshift()
 {
 	if (!m_timeshift_enabled)
 		return -1;
+	
+	switchToLive();
+	
 	m_timeshift_enabled = 0;
+	
+	m_record->stop();
+	delete m_record;
+	
+	close(m_timeshift_fd);
+	remove(m_timeshift_file.c_str());
+	
 	eDebug("timeshift disabled");
 	return 0;
+}
+
+void eDVBServicePlay::updateTimeshiftPids()
+{
+	if (!m_record)
+		return;
+	
+	eDVBServicePMTHandler::program program;
+	if (m_service_handler.getProgramInfo(program))
+		return;
+	else
+	{
+		std::set<int> pids_to_record;
+		pids_to_record.insert(0); // PAT
+		if (program.pmtPid != -1)
+			pids_to_record.insert(program.pmtPid); // PMT
+		
+		for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
+			i(program.videoStreams.begin()); 
+			i != program.videoStreams.end(); ++i)
+			pids_to_record.insert(i->pid);
+
+		for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
+			i(program.audioStreams.begin()); 
+			i != program.audioStreams.end(); ++i)
+				pids_to_record.insert(i->pid);
+
+		std::set<int> new_pids, obsolete_pids;
+		
+		std::set_difference(pids_to_record.begin(), pids_to_record.end(), 
+				m_pids_active.begin(), m_pids_active.end(),
+				std::inserter(new_pids, new_pids.begin()));
+		
+		std::set_difference(
+				m_pids_active.begin(), m_pids_active.end(),
+				pids_to_record.begin(), pids_to_record.end(), 
+				std::inserter(new_pids, new_pids.begin())
+				);
+		
+		for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
+			m_record->addPID(*i);
+
+		for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
+			m_record->removePID(*i);
+	}
+}
+
+void eDVBServicePlay::switchToLive()
+{
+	eDebug("SwitchToLive");
+	if (!m_timeshift_active)
+		return;
+	
+	m_decoder = 0;
+	m_decode_demux = 0;
+		/* free the timeshift service handler, we need the resources */
+	m_service_handler_timeshift.free();
+	m_timeshift_active = 0;
+	
+	updateDecoder();
+}
+
+void eDVBServicePlay::switchToTimeshift()
+{
+	eDebug("SwitchToTimeshift");
+	if (m_timeshift_active)
+		return;
+	
+	m_decode_demux = 0;
+	m_decoder = 0;
+	
+	m_timeshift_active = 1;
+	
+	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
+	r.path = m_timeshift_file;
+	
+	eDebug("ok, re-tuning to %s", r.toString().c_str());
+	m_service_handler_timeshift.tune(r, 1); /* use the decoder demux for everything */
+}
+
+void eDVBServicePlay::updateDecoder()
+{
+	int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1;
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+
+	eDVBServicePMTHandler::program program;
+	if (h.getProgramInfo(program))
+		eDebug("getting program info failed.");
+	else
+	{
+		eDebugNoNewLine("have %d video stream(s)", program.videoStreams.size());
+		if (!program.videoStreams.empty())
+		{
+			eDebugNoNewLine(" (");
+			for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
+				i(program.videoStreams.begin()); 
+				i != program.videoStreams.end(); ++i)
+			{
+				if (vpid == -1)
+					vpid = i->pid;
+				if (i != program.videoStreams.begin())
+					eDebugNoNewLine(", ");
+				eDebugNoNewLine("%04x", i->pid);
+			}
+			eDebugNoNewLine(")");
+		}
+		eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
+		if (!program.audioStreams.empty())
+		{
+			eDebugNoNewLine(" (");
+			for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
+				i(program.audioStreams.begin()); 
+				i != program.audioStreams.end(); ++i)
+			{
+				if (apid == -1)
+				{
+					apid = i->pid;
+					apidtype = i->type;
+				}
+				if (i != program.audioStreams.begin())
+					eDebugNoNewLine(", ");
+				eDebugNoNewLine("%04x", i->pid);
+			}
+			eDebugNoNewLine(")");
+		}
+		eDebug(", and the pcr pid is %04x", program.pcrPid);
+		if (program.pcrPid != 0x1fff)
+			pcrpid = program.pcrPid;
+	}
+
+	if (!m_decoder)
+	{
+		h.getDecodeDemux(m_decode_demux);
+		if (m_decode_demux)
+			m_decode_demux->getMPEGDecoder(m_decoder);
+	}
+
+	if (m_decoder)
+	{
+		m_decoder->setVideoPID(vpid);
+		m_current_audio_stream = 0;
+		m_decoder->setAudioPID(apid, apidtype);
+		if (!(m_is_pvr || m_timeshift_active))
+			m_decoder->setSyncPCR(pcrpid);
+		else
+			m_decoder->setSyncPCR(-1);
+		m_decoder->start();
+// how we can do this better?
+// update cache pid when the user changed the audio track or video track
+// TODO handling of difference audio types.. default audio types..
+				
+				/* don't worry about non-existing services, nor pvr services */
+			if (m_dvb_service && !m_is_pvr)
+			{
+				if (apidtype == eDVBAudio::aMPEG)
+				{
+					m_dvb_service->setCachePID(eDVBService::cAPID, apid);
+					m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+				}
+				else
+				{
+					m_dvb_service->setCachePID(eDVBService::cAPID, -1);
+					m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
+				}
+				m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
+				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
+			}
+	}
 }
 
 DEFINE_REF(eDVBServicePlay)
