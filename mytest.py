@@ -199,6 +199,68 @@ class Session:
 		self.currentDialog.returnValue = retval
 		self.delayTimer.start(0, 1)
 
+from Screens.Volume import Volume
+from Screens.Mute import Mute
+from GlobalActions import globalActionMap
+from Components.config import ConfigSubsection, configSequence, configElement, configsequencearg
+
+#TODO .. move this to a own .py file
+class VolumeControl:
+	"""Volume control, handles volUp, volDown, volMute actions and display
+	a corresponding dialog"""
+	def __init__(self, session):
+		global globalActionMap
+		globalActionMap.actions["volumeUp"]=self.volUp
+		globalActionMap.actions["volumeDown"]=self.volDown
+		globalActionMap.actions["volumeMute"]=self.volMute
+
+		config.audio = ConfigSubsection()
+		config.audio.volume = configElement("config.audio.volume", configSequence, [100], configsequencearg.get("INTEGER", (0, 100)))
+
+		self.volumeDialog = session.instantiateDialog(Volume)
+		self.muteDialog = session.instantiateDialog(Mute)
+
+		self.hideVolTimer = eTimer()
+		self.hideVolTimer.timeout.get().append(self.volHide)
+
+		vol = config.audio.volume.value[0]
+		self.volumeDialog.setValue(vol)
+		eDVBVolumecontrol.getInstance().setVolume(vol, vol)
+
+	def volSave(self):
+		config.audio.volume.value = eDVBVolumecontrol.getInstance().getVolume()
+		config.audio.volume.save()
+
+	def	volUp(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.volMute()
+		eDVBVolumecontrol.getInstance().volumeUp()
+		self.volumeDialog.instance.show()
+		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volSave()
+		self.hideVolTimer.start(3000, True)
+
+	def	volDown(self):
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.volMute()
+		eDVBVolumecontrol.getInstance().volumeDown()
+		self.volumeDialog.instance.show()
+		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		self.volSave()
+		self.hideVolTimer.start(3000, True)
+
+	def volHide(self):
+		self.volumeDialog.instance.hide()
+
+	def	volMute(self):
+		eDVBVolumecontrol.getInstance().volumeToggleMute()
+		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+
+		if (eDVBVolumecontrol.getInstance().isMuted()):
+			self.muteDialog.instance.show()
+		else:
+			self.muteDialog.instance.hide()
+
 def runScreenTest():
 	session = Session()
 	session.desktop = getDesktop()
@@ -207,11 +269,11 @@ def runScreenTest():
 	
 	screensToRun = wizardManager.getWizards()
 	screensToRun.append(Screens.InfoBar.InfoBar)
-	
+
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			quitMainloop(result)
-
+	
 		screen = screensToRun[0]
 		
 		if len(screensToRun):
@@ -220,8 +282,10 @@ def runScreenTest():
 			session.open(screen)
 	
 	runNextScreen(session, screensToRun)
-
+	
 	CONNECT(keyPressedSignal(), session.keyEvent)
+	
+	vol = VolumeControl(session)
 	
 	runReactor()
 	

@@ -16,8 +16,6 @@ from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
 
 from Screens.MessageBox import MessageBox
-from Screens.Volume import Volume
-from Screens.Mute import Mute
 from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventView
@@ -37,65 +35,6 @@ from Components.config import config, currentConfigSelectionElement
 
 # hack alert!
 from Menu import MainMenu, mdom
-
-from GlobalActions import globalActionMap
-
-class InfoBarVolumeControl:
-	"""Volume control, handles volUp, volDown, volMute actions and display 
-	a corresponding dialog"""
-
-	def __init__(self):
-		global globalActionMap
-		globalActionMap.actions["volumeUp"]=self.volUp
-		globalActionMap.actions["volumeDown"]=self.volDown
-		globalActionMap.actions["volumeMute"]=self.volMute
-
-		config.audio = ConfigSubsection()
-		config.audio.volume = configElement("config.audio.volume", configSequence, [100], configsequencearg.get("INTEGER", (0, 100)))
-
-		self.volumeDialog = self.session.instantiateDialog(Volume)
-		self.muteDialog = self.session.instantiateDialog(Mute)
-
-		self.hideVolTimer = eTimer()
-		self.hideVolTimer.timeout.get().append(self.volHide)
-
-		vol = config.audio.volume.value[0]
-		self.volumeDialog.setValue(vol)
-		eDVBVolumecontrol.getInstance().setVolume(vol, vol)
-	
-	def volSave(self):
-		config.audio.volume.value = eDVBVolumecontrol.getInstance().getVolume()
-		config.audio.volume.save()
-		
-	def	volUp(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.volMute()
-		eDVBVolumecontrol.getInstance().volumeUp()
-		self.volumeDialog.instance.show()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.volSave()
-		self.hideVolTimer.start(3000, True)
-
-	def	volDown(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.volMute()
-		eDVBVolumecontrol.getInstance().volumeDown()
-		self.volumeDialog.instance.show()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.volSave()
-		self.hideVolTimer.start(3000, True)
-		
-	def volHide(self):
-		self.volumeDialog.instance.hide()
-
-	def	volMute(self):
-		eDVBVolumecontrol.getInstance().volumeToggleMute()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.muteDialog.instance.show()
-		else:
-			self.muteDialog.instance.hide()
 
 class InfoBarDish:
 	def __init__(self):
