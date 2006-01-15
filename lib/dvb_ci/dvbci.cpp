@@ -88,7 +88,6 @@ int eDVBCIInterfaces::enableTS(int slotid, int enable)
 	int tunernum = 0;
 	if (enable)
 	{
-		tunernum=-1;
 		PMTHandlerList::iterator it = m_pmt_handlers.begin();
 		while (it != m_pmt_handlers.end())
 		{
@@ -108,11 +107,6 @@ int eDVBCIInterfaces::enableTS(int slotid, int enable)
 				break;
 			}
 			++it;
-		}
-		if ( tunernum == -1 )
-		{
-			eFatal("couldn't find the correct tuner num in enableTS");
-			return -1;
 		}
 	}
 	return slot->enableTS(enable, tunernum);
