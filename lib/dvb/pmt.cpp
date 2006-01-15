@@ -10,19 +10,17 @@
 #include <dvbsi++/iso639_language_descriptor.h>
 #include <dvbsi++/stream_identifier_descriptor.h>
 
-eDVBServicePMTHandler::eDVBServicePMTHandler(int record)
+eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0)
 {
-	m_record = record;
+	m_use_decode_demux = 0;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
-	eDebug("new PMT handler record: %d", m_record);
 }
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
 {
-	eDebug("delete PMT handler record: %d", m_record);
 	if (m_ca_servicePtr)
 	{
 		eDebug("unregister caservice");
@@ -44,7 +42,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		&& (state == iDVBChannel::state_ok) && (!m_demux))
 	{
 		if (m_channel)
-			if (m_channel->getDemux(m_demux, m_record ? 0 : iDVBChannel::capDecode))
+			if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
 				eDebug("Allocating a demux for now tuned-in channel failed.");
 		
 		serviceEvent(eventTuned);
@@ -98,7 +96,6 @@ void eDVBServicePMTHandler::PMTready(int error)
 
 void eDVBServicePMTHandler::PATready(int)
 {
-	eDebug("got PAT");
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
@@ -128,6 +125,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.audioStreams.clear();
 	program.pcrPid = -1;
 	program.isCrypted = false;
+	program.pmtPid = -1;
 
 	if (!m_PMT.getCurrent(ptr))
 	{
@@ -253,8 +251,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			}
 		}
 		return 0;
-	}
-	else if ( m_service && !m_service->cacheEmpty() )
+	} else if ( m_service && !m_service->cacheEmpty() )
 	{
 		int vpid = m_service->getCachePID(eDVBService::cVPID),
 			apid_ac3 = m_service->getCachePID(eDVBService::cAC3PID),
@@ -304,13 +301,26 @@ int eDVBServicePMTHandler::getChannel(eUsePtr<iDVBChannel> &channel)
 		return -1;
 }
 
-int eDVBServicePMTHandler::getDemux(ePtr<iDVBDemux> &demux)
+int eDVBServicePMTHandler::getDataDemux(ePtr<iDVBDemux> &demux)
 {
 	demux = m_demux;
 	if (demux)
 		return 0;
 	else
 		return -1;
+}
+
+int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
+{
+		/* if we're using the decoding demux as data source
+		   (for example in pvr playbacks), return that one. */
+	if (m_use_decode_demux)
+	{
+		demux = m_demux;
+		return 0;
+	}
+	
+	return m_channel->getDemux(demux, iDVBChannel::capDecode);
 }
 
 int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
@@ -322,10 +332,12 @@ int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
 		return -1;
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux)
 {
 	RESULT res;
 	m_reference = ref;
+	
+	m_use_decode_demux = use_decode_demux;
 	
 		/* is this a normal (non PVR) channel? */
 	if (ref.path.empty())
@@ -372,6 +384,16 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref)
 		db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
 	return res;
+}
+
+void eDVBServicePMTHandler::free()
+{
+	m_PMT.stop();
+	m_PAT.stop();
+	m_service = 0;
+	m_channel = 0;
+	m_pvr_channel = 0;
+	m_demux = 0;
 }
 
 std::map<eServiceReferenceDVB, eDVBCAService*> eDVBCAService::exist;
