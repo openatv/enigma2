@@ -81,6 +81,8 @@ class TimerEntry(Screen):
 			else: # once
 				type = 0
 				repeated = 0
+				weekday = (int(strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
+				day[weekday] = 0
 			
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
 			config.timerentry.name = configElement_nonSave("config.timerentry.name", configText, self.timer.name, (configText.extendableSize, self.keyRightCallback))
