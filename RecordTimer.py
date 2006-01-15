@@ -11,7 +11,7 @@ from Screens.MessageBox import MessageBox
 from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
 
-from Tools.XMLTools import elementsWithTag
+from Tools.XMLTools import elementsWithTag, mergeText
 from ServiceReference import ServiceReference
 
 # ok, for descriptions etc we have:
@@ -30,6 +30,7 @@ def parseEvent(ev):
 	eit = ev.getEventId()
 	return (begin, end, name, description, eit)
 
+# please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
 	def __init__(self, serviceref, begin, end, name, description, eit):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
@@ -37,17 +38,25 @@ class RecordTimerEntry(timer.TimerEntry):
 		assert isinstance(serviceref, ServiceReference)
 		
 		self.service_ref = serviceref
-		
 		self.eit = eit
-		
 		self.dontSave = False
 		self.name = name
 		self.description = description
 		self.timer = None
 		self.record_service = None
-		self.wantStart = False
-		self.prepareOK = False
 		
+		self.log_entries = []
+		self.resetState()
+	
+	def log(self, code, msg):
+		self.log_entries.append((int(time.time()), code, msg))
+		print "[TIMER]", msg
+	
+	def resetState(self):
+		self.state = self.StateWaiting
+		self.first_try_prepare = True
+		self.timeChanged()
+	
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 #		begin_date = datetime.fromtimestamp(begin).strf...
@@ -59,71 +68,109 @@ class RecordTimerEntry(timer.TimerEntry):
 		print "description: ", self.description
 
 		self.Filename = Directories.getRecordingFilename(service_name)
+		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
-		
 	
 	def tryPrepare(self):
 		self.calculateFilename()
 		self.record_service = NavigationInstance.instance.recordService(self.service_ref)
 		if self.record_service == None:
+			self.log(1, "'record service' failed")
 			return False
 		else:
-			if self.record_service.prepare(self.Filename + ".ts"):
+			prep_res = self.record_service.prepare(self.Filename + ".ts")
+			if prep_res:
+				self.log(2, "'prepare' failed: error %d" % prep_res)
 				self.record_service = None
 				return False
 
-			f = open(self.Filename + ".ts.meta", "w")
-			f.write(str(self.service_ref) + "\n")
-			f.write(self.name + "\n")
-			f.write(self.description + "\n")
-			f.write(str(self.begin) + "\n")
-			del f
+			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
+			try:
+				f = open(self.Filename + ".ts.meta", "w")
+				f.write(str(self.service_ref) + "\n")
+				f.write(self.name + "\n")
+				f.write(self.description + "\n")
+				f.write(str(self.begin) + "\n")
+				f.close()
+			except:
+				self.log(4, "failed to write meta information")
 			return True
 
-	def activate(self, event):
-		if event == self.EventPrepare:
-			self.prepareOK = False
+	def do_backoff(self):
+		if self.backoff == 0:
+			self.backoff = 5
+		else:
+			self.backoff *= 2
+			if self.backoff > 100:
+				self.backoff = 100
+		self.log(10, "backoff: retry in %d seconds" % self.backoff)
+
+	def activate(self):
+		next_state = self.state + 1
+		self.log(5, "activating state %d" % next_state)
+		
+		if next_state == self.StatePrepared:
 			if self.tryPrepare():
-				self.prepareOK = True
-			else:
-				# error.
+				self.log(6, "prepare ok, waiting for begin")
+				# fine. it worked, resources are allocated.
+				self.next_activation = self.begin
+				self.backoff = 0
+				return True
+			
+			self.log(7, "prepare failed")
+			if self.first_try_prepare:
+				self.first_try_prepare = False
 				if config.recording.asktozap.value == 0:
+					self.log(8, "asking user to zap away")
 					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
 				else: # zap without asking
+					self.log(9, "zap without asking")
 					self.failureCB(True)
-		elif event == self.EventStart:
-			if self.prepareOK:
-				self.record_service.start()
-				print "timer started!"
-			else:
-				print "prepare failed, thus start failed, too."
-				self.wantStart = True
-		elif event == self.EventEnd or event == self.EventAbort:
-			self.wantStart = False
-			if self.prepareOK:
-				self.record_service.stop()
-				self.record_service = None
-				
-				print "Timer successfully ended"
-			else:
-				print "prepare failed, thus nothing was recorded."
 
-	def abort():
-		# fixme
-		pass
+			self.do_backoff()
+			# retry
+			self.start_prepare = time.time() + self.backoff
+			return False
+		elif next_state == self.StateRunning:
+			self.log(11, "start recording")
+			record_res = self.record_service.start()
+			
+			if record_res:
+				self.log(13, "start record returned %d" % record_res)
+				self.do_backoff()
+				# retry
+				self.begin = time.time() + self.backoff
+				return False
+			
+			return True
+		elif next_state == self.StateEnded:
+			self.log(12, "stop recording")
+			self.record_service.stop()
+			self.record_service = None
+			return True
+
+	def getNextActivation(self):
+		if self.state == self.StateEnded:
+			return self.end
+		
+		next_state = self.state + 1
+		
+		return {self.StatePrepared: self.start_prepare, 
+				self.StateRunning: self.begin, 
+				self.StateEnded: self.end }[next_state]
 
 	def failureCB(self, answer):
 		if answer == True:
+			self.log(13, "ok, zapped away")
 			#NavigationInstance.instance.stopUserServices()
-			print "[RecordTimer] zapping to", self.service_ref
 			NavigationInstance.instance.playService(self.service_ref.ref)
-			self.activate(self.EventPrepare)
-
-			if self.wantStart:
-				print "post-activating record"
-				self.activate(self.EventStart)
 		else:
-			print "user killed record"
+			self.log(14, "user didn't want to zap away, record will probably fail")
+
+	def timeChanged(self):
+		self.start_prepare = self.begin - self.prepare_time
+		self.backoff = 0
+		self.log(15, "record time changed, start prepare is now: %s" % time.ctime(self.start_prepare))
 
 def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
@@ -136,6 +183,13 @@ def createTimer(xml):
 	#filename = xml.getAttribute("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit)
 	entry.repeated = int(repeated)
+	
+	for l in elementsWithTag(xml.childNodes, "log"):
+		time = int(l.getAttribute("time"))
+		code = int(l.getAttribute("code"))
+		msg = mergeText(l.childNodes).strip()
+		entry.log_entries.append((time, code, msg))
+	
 	return entry
 
 class RecordTimer(timer.Timer):
@@ -148,7 +202,7 @@ class RecordTimer(timer.Timer):
 			self.loadTimer()
 		except IOError:
 			print "unable to load timers from file!"
-			
+
 	def isRecording(self):
 		isRunning = False
 		for timer in self.timer_list:
@@ -178,14 +232,23 @@ class RecordTimer(timer.Timer):
 			t = doc.createTextNode("\t")
 			root_element.appendChild(t)
 			t = doc.createElement('timer')
-			t.setAttribute("begin", str(timer.begin))
-			t.setAttribute("end", str(timer.end))
+			t.setAttribute("begin", str(int(timer.begin)))
+			t.setAttribute("end", str(int(timer.end)))
 			t.setAttribute("serviceref", str(timer.service_ref))
 			t.setAttribute("repeated", str(timer.repeated))			
 			t.setAttribute("name", timer.name)
 			t.setAttribute("description", timer.description)
 			t.setAttribute("eit", str(timer.eit))
 			
+			for time, code, msg in timer.log_entries:
+				t.appendChild(doc.createTextNode("\t\t"))
+				l = doc.createElement('log')
+				l.setAttribute("time", str(time))
+				l.setAttribute("code", str(code))
+				l.appendChild(doc.createTextNode(msg))
+				t.appendChild(l)
+				t.appendChild(doc.createTextNode("\n"))
+
 			root_element.appendChild(t)
 			t = doc.createTextNode("\n")
 			root_element.appendChild(t)
@@ -194,8 +257,9 @@ class RecordTimer(timer.Timer):
 		doc.writexml(file)
 		file.write("\n")
 		file.close()
-	
+
 	def record(self, entry):
+		entry.timeChanged()
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
@@ -203,23 +267,15 @@ class RecordTimer(timer.Timer):
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
 		
+		# avoid re-enqueuing
 		entry.repeated = False
 
-		if entry.state == timer.TimerEntry.StateRunning:
-			print "remove running timer."
-			entry.end = time.time()
+		# abort timer.
+		# this sets the end time to current time, so timer will be stopped.
+		entry.abort()
+		
+		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
-		elif entry.state != timer.TimerEntry.StateEnded:
-			entry.activate(timer.TimerEntry.EventAbort)
-			self.timer_list.remove(entry)
-
-			self.calcNextActivation()
-			print "timer did not yet start - removing"
-
-			# the timer was aborted, and removed.
-			return
-		else:
-			print "timer did already end - doing nothing."
 		
 		print "state: ", entry.state
 		print "in processed: ", entry in self.processed_timers
