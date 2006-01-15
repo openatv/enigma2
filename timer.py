@@ -3,15 +3,10 @@ import time
 from enigma import *
 
 class TimerEntry:
-	EventPrepare = 0
-	EventStart   = 1
-	EventEnd     = 2
-	EventAbort   = 3
-	
-	StateWait    = 0
-	StatePrepare = 1
-	StateRunning = 2
-	StateEnded   = 3
+	StateWaiting  = 0
+	StatePrepared = 1
+	StateRunning  = 2
+	StateEnded    = 3
 	
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -19,10 +14,11 @@ class TimerEntry:
 		self.end = end
 		self.state = 0
 		self.resetRepeated()
+		self.backoff = 0
 		
 	def resetRepeated(self):
 		self.repeated = int(0)
-		
+
 	def setRepeated(self, day):
 		self.repeated |= (2 ** day)
 		print "Repeated: " + str(self.repeated)
@@ -58,22 +54,34 @@ class TimerEntry:
 				self.begin += 86400
 				self.end += 86400
 
-	def getTime(self):
-		if self.state == self.StateWait:
-			return self.begin - self.prepare_time
-		elif self.state == self.StatePrepare:
-			return self.begin
-		else:
-			return self.end 
-	
 	def __lt__(self, o):
-		return self.getTime() < o.getTime()
+		return self.getNextActivation() < o.getNextActivation()
 	
-	def activate(self, event):
-		print "[timer.py] timer %s got activated (%d)!" % (self.description, event)
+	# must be overridden
+	def activate(self):
+		pass
+		
+	# can be overridden
+	def timeChanged(self):
+		pass
+
+	# check if a timer entry must be skipped
+	def shouldSkip(self):
+		return self.end <= time.time() and self.state == TimerEntry.StateWaiting
+
+	def abort(self):
+		self.end = time.time()
+		
+		# in case timer has not yet started, but gets aborted (so it's preparing),
+		# set begin to now.
+		if self.begin > self.end:
+			self.begin = self.end
+	
+	# must be overridden!
+	def getNextActivation():
+		pass
 
 class Timer:
-
 	# the time between "polls". We do this because
 	# we want to account for time jumps etc.
 	# of course if they occur <100s before starting,
@@ -95,13 +103,17 @@ class Timer:
 		
 		self.calcNextActivation()
 	
+	def stateChanged(self, entry):
+		pass
+	
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
 
 		# when the timer has not yet started, and is already passed,
 		# don't go trough waiting/running/end-states, but sort it
 		# right into the processedTimers.
-		if entry.end <= time.time() and entry.state == TimerEntry.StateWait:
+		if entry.shouldSkip() or entry.state == TimerEntry.StateEnded:
+			print "already passed, skipping"
 			bisect.insort(self.processed_timers, entry)
 			entry.state = TimerEntry.StateEnded
 		else:
@@ -123,7 +135,7 @@ class Timer:
 			self.processed_timers = [ ]
 			for x in tl:
 				# simulate a "waiting" state to give them a chance to re-occure
-				x.state = TimerEntry.StateWaiting
+				x.resetState()
 				self.addTimerEntry(x, noRecalc=1)
 		
 		self.processActivation()
@@ -133,35 +145,52 @@ class Timer:
 		
 		# calculate next activation point
 		if len(self.timer_list):
-			w = self.timer_list[0].getTime()
+			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
 		
 		self.setNextActivation(min)
 	
 	def timeChanged(self, timer):
+		timer.timeChanged()
 		self.timer_list.remove(timer)
 
 		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
-		w.activate(w.state)
 		self.timer_list.remove(w)
 		
-		w.state += 1
+		# when activating a timer which has already passed,
+		# simply abort the timer. don't run trough all the stages.
+		if w.shouldSkip():
+			w.abort()
+			bisect.insort(self.processed_timers, w)
+		else:
+			# when active returns true, this means "accepted".
+			# otherwise, the current state is kept.
+			# the timer entry itself will fix up the delay then.
+			if w.activate():
+				w.state += 1
+
+		# did this timer reached the last state?
 		if w.state < TimerEntry.StateEnded:
+			# no, sort it into active list
 			bisect.insort(self.timer_list, w)
 		else:
-			if (w.repeated != 0):
+			# yes. Process repeated, and re-add.
+			if not w.repeated:
 				w.processRepeated()
-				w.state = TimerEntry.StateWait
+				w.state = TimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
 				bisect.insort(self.processed_timers, w)
+		
+		self.stateChanged(w)
 
 	def processActivation(self):
+		print "It's now ", time.strftime("%c", time.localtime(time.time()))
 		t = int(time.time()) + 1
 		
 		# we keep on processing the first entry until it goes into the future.
-		while len(self.timer_list) and self.timer_list[0].getTime() < t:
+		while len(self.timer_list) and self.timer_list[0].getNextActivation() < t:
 			self.doActivate(self.timer_list[0])
