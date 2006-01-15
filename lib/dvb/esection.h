@@ -98,7 +98,12 @@ public:
 
 	~eAUTable()
 	{
-		current=next=0;
+		stop();
+	}
+	
+	void stop()
+	{
+		current = next = 0;
 	}
 	
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBDemux> demux)
