@@ -121,7 +121,7 @@ class EPGSelection(Screen):
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):
-		if (answer[0]):
+		if answer[0]:
 			self.session.nav.RecordTimer.record(answer[1])
 		else:
 			print "Timeredit aborted"	

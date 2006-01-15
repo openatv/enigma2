@@ -38,10 +38,10 @@ class TimerEditList(Screen):
 		del self.list[:]
 		
 		for timer in self.session.nav.RecordTimer.timer_list:
-			self.list.append(TimerEntryComponent(timer, 0))
+			self.list.append(TimerEntryComponent(timer, processed=False))
 		
 		for timer in self.session.nav.RecordTimer.processed_timers:
-			self.list.append(TimerEntryComponent(timer, 1))
+			self.list.append(TimerEntryComponent(timer, processed=True))
 
 	def openEdit(self):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
@@ -75,16 +75,19 @@ class TimerEditList(Screen):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 		
 	def finishedEdit(self, answer):
-		if (answer[0]):
+		print "finished edit"
+		if answer[0]:
 			print "Edited timer"
 			self.session.nav.RecordTimer.timeChanged(answer[1])
 			self.fillTimerList()
 		else:
 			print "Timeredit aborted"
-			
+
 	def finishedAdd(self, answer):
-		if (answer[0]):
-			self.session.nav.RecordTimer.record(answer[1])
+		print "finished add"
+		if answer[0]:
+			entry = answer[1]
+			self.session.nav.RecordTimer.record(entry)
 			self.fillTimerList()
 		else:
 			print "Timeredit aborted"		

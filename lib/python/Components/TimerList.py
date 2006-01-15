@@ -31,7 +31,7 @@ def TimerEntryComponent(timer, processed):
 	
 	repeatedtext = ""
 	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
-	if (timer.repeated != 0):
+	if not timer.repeated:
 		flags = timer.repeated
 		count = 0
 		for x in range(0, 7):
@@ -46,9 +46,9 @@ def TimerEntryComponent(timer, processed):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 300, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
 	if not processed:
-		if timer.state == TimerEntry.StateWait:
+		if timer.state == TimerEntry.StateWaiting:
 			state = "waiting"
-		elif timer.state == TimerEntry.StatePrepare:
+		elif timer.state == TimerEntry.StatePrepared:
 			state = "about to start"
 		elif timer.state == TimerEntry.StateRunning:
 			state = "recording..."
