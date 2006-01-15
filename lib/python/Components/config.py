@@ -257,23 +257,17 @@ class configSequence:
 			olddec = oldvalue % 10 ** (numberLen - posinblock) - (oldvalue % 10 ** (numberLen - posinblock - 1))
 			newvalue = oldvalue - olddec + (10 ** (numberLen - posinblock - 1) * number)
 			
-			print "You actually pressed a number (" + str(number) + ") which will be added at block number " + str(blocknumber) + " on position " + str(posinblock)
-			print "Old value: " + str(oldvalue) + " olddec: " + str(olddec) + " newvalue: " + str(newvalue)
 			self.parent.value[blocknumber] = newvalue
 			self.markedPos += 1
 		
 		self.checkValues()			
 		
-		print "markPos:",
-		print self.markedPos
-
 		#FIXME: dont call when press left/right
 		self.parent.change()	
 
 	def __call__(self, selected):			#needed by configlist
 		value = ""
 		mPos = self.markedPos
-		print "Positon: " + str(mPos)
 		num = 0;
 		for i in self.parent.value:
 			if len(value):	#fixme no heading separator possible
@@ -285,7 +279,6 @@ class configSequence:
 			#if diff > 0:
 				## if this helps?!
 				#value += " " * diff
-			print (("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i)
 			if (self.censorChar == ""):
 				value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
 			else:
@@ -323,7 +316,6 @@ class configText:
 		self.parent.save()
 		
 	def nextEntry(self):
-		print self.parent
 		self.parent.vals[1](self.parent.getConfigPath())
 
 	def handleKey(self, key):
