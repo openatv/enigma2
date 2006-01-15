@@ -53,6 +53,9 @@ class TimerEntry:
 				print time.strftime("%c", time.localtime(self.end))
 				self.begin += 86400
 				self.end += 86400
+			
+			self.timeChanged()
+			
 
 	def __lt__(self, o):
 		return self.getNextActivation() < o.getNextActivation()
@@ -102,9 +105,11 @@ class Timer:
 		self.lastActivation = time.time()
 		
 		self.calcNextActivation()
+		self.on_state_change = [ ]
 	
 	def stateChanged(self, entry):
-		pass
+		for f in self.on_state_change:
+			f(entry)
 	
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
