@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-13 03:53+0100\n"
+"POT-Creation-Date: 2006-01-15 16:28+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-#: ../RecordTimer.py:91
+#: ../RecordTimer.py:125
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -263,7 +263,7 @@ msgstr "Uit"
 msgid "Do you really want to delete this recording?"
 msgstr "Wilt u deze opname werkelijk wissen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:798
+#: ../lib/python/Screens/InfoBarGenerics.py:857
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -279,6 +279,10 @@ msgid ""
 msgstr ""
 "Wilt u de dreambox updaten?\n"
 "Druk op OK en wacht een momment!"
+
+#: ../lib/python/Components/Language.py:15
+msgid "Dutch"
+msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:368
 msgid "E"
@@ -456,10 +460,6 @@ msgstr ""
 msgid "Nameserver"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:15
-msgid "Netherlands"
-msgstr ""
-
 #: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Netmask"
@@ -476,7 +476,7 @@ msgstr ""
 msgid "No"
 msgstr "Nee"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:794
+#: ../lib/python/Screens/InfoBarGenerics.py:853
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Geen Harddisk gevonden of\n"
@@ -587,7 +587,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Providers"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:847
+#: ../lib/python/Screens/InfoBarGenerics.py:906
 msgid "Record"
 msgstr "Opnemen"
 
@@ -651,7 +651,7 @@ msgstr "Zuid"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:800
+#: ../lib/python/Screens/InfoBarGenerics.py:859
 msgid "Start recording?"
 msgstr "Start Opnemen?"
 
@@ -671,7 +671,7 @@ msgstr "Stop afspelen deze film?"
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:852 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:911 ../data/
 msgid "Subservices"
 msgstr "Subservices"
 
@@ -705,6 +705,10 @@ msgstr "Donderdag"
 #: ../lib/python/Screens/TimerEntry.py:137
 msgid "Timer Type"
 msgstr "Timer-Type"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:759
+msgid "Timeshift not possible!"
+msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:71
 msgid "Tone mode"
@@ -1000,7 +1004,7 @@ msgid ""
 "%d services found!"
 msgstr ""
 
-#: ../lib/python/Screens/ServiceScan.py:22
+#: ../lib/python/Screens/ServiceScan.py:23
 msgid "scan state"
 msgstr "Status"
 
