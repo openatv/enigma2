@@ -11,7 +11,7 @@ from Components.ServicePosition import ServicePosition
 
 from Tools.Notifications import AddNotificationWithCallback
 
-from Screens.InfoBarGenerics import InfoBarVolumeControl, InfoBarShowHide, \
+from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
@@ -23,7 +23,7 @@ from enigma import *
 
 import time
 
-class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
+class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
@@ -39,7 +39,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 			})
 		
 		for x in HelpableScreen, \
-				InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
+				InfoBarShowHide, InfoBarPowerKey, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
@@ -61,7 +61,7 @@ class InfoBar(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey,
 		if service is not None:
 			self.session.open(MoviePlayer, service)
 
-class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, \
+class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications):
 		
@@ -73,7 +73,7 @@ class MoviePlayer(Screen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 		
-		for x in HelpableScreen, InfoBarVolumeControl, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, InfoBarNotifications:
+		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, InfoBarNotifications:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
