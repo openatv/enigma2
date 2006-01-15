@@ -33,6 +33,7 @@ class TimerEditList(Screen):
 				"red": self.removeTimer,
 				"green": self.addCurrentTimer
 			})
+		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 
 	def fillTimerList(self):
 		del self.list[:]
@@ -50,6 +51,9 @@ class TimerEditList(Screen):
 	def removeTimer(self):
 		# FIXME doesn't work...
 		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
+		self.refill()
+	
+	def refill(self):
 		self.fillTimerList()
 		self["timerlist"].invalidate()
 	
@@ -94,4 +98,8 @@ class TimerEditList(Screen):
 
 	def leave(self):
 		self.session.nav.RecordTimer.saveTimer()
+		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
 		self.close()
+
+	def onStateChange(self, entry):
+		self.refill()
