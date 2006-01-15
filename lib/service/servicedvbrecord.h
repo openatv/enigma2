@@ -29,7 +29,7 @@ private:
 	
 	ePtr<iDVBTSRecorder> m_record;
 	
-	int m_recording;
+	int m_recording, m_tuned;
 	std::set<int> m_pids_active;
 	std::string m_filename;
 	

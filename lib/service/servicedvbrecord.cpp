@@ -5,11 +5,12 @@
 
 DEFINE_REF(eDVBServiceRecord);
 
-eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref), m_service_handler(1)
+eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);
 	m_state = stateIdle;
 	m_want_record = 0;
+	m_tuned = 0;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -20,33 +21,9 @@ void eDVBServiceRecord::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventTuned:
 	{
 		eDebug("tuned..");
-		if (!m_record)
-		{
-			eDebug("Recording to %s...", m_filename.c_str());
-			::remove(m_filename.c_str());
-			int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
-			if (fd == -1)
-			{
-				eDebug("eDVBServiceRecord - can't open hardcoded recording file!");
-				return;
-//				return -1;
-			}
-			ePtr<iDVBDemux> demux;
-			if (m_service_handler.getDemux(demux))
-			{
-				eDebug("eDVBServiceRecord - NO DEMUX available!");
-				return;
-//				return -2;
-			}
-			demux->createTSRecorder(m_record);
-			if (!m_record)
-			{
-				eDebug("eDVBServiceRecord - no ts recorder available.");
-				return;
-//				return -3;
-			}
-			m_record->setTargetFD(fd);
-		}
+		m_tuned = 1;
+		if (m_state == stateRecording && m_want_record)
+			doRecord();
 		break;
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
@@ -59,7 +36,6 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 	}
 }
-
 
 RESULT eDVBServiceRecord::prepare(const char *filename)
 {
@@ -83,7 +59,8 @@ RESULT eDVBServiceRecord::stop()
 	eDebug("stop recording!!");
 	if (m_state == stateRecording)
 	{
-		m_record->stop();
+		if (m_record)
+			m_record->stop();
 		m_state = statePrepared;
 	}
 	
@@ -103,7 +80,7 @@ int eDVBServiceRecord::doPrepare()
 	{
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref);
+		return m_service_handler.tune(m_ref, 0);
 	}
 	return 0;
 }
@@ -114,10 +91,33 @@ int eDVBServiceRecord::doRecord()
 	if (err)
 		return err;
 	
-	if (!m_record)
+	if (!m_tuned)
+		return 0; /* try it again when we are tuned in */
+	
+	if (!m_record && m_tuned)
 	{
-		eDebug("demux not available (tune failed?). cannot record.");
-		return -1;
+
+		eDebug("Recording to %s...", m_filename.c_str());
+		::remove(m_filename.c_str());
+		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
+		if (fd == -1)
+		{
+			eDebug("eDVBServiceRecord - can't open hardcoded recording file!");
+			return -1;
+		}
+		ePtr<iDVBDemux> demux;
+		if (m_service_handler.getDataDemux(demux))
+		{
+			eDebug("eDVBServiceRecord - NO DEMUX available!");
+			return -2;
+		}
+		demux->createTSRecorder(m_record);
+		if (!m_record)
+		{
+			eDebug("eDVBServiceRecord - no ts recorder available.");
+			return -3;
+		}
+		m_record->setTargetFD(fd);
 	}
 	eDebug("starting recording..");
 	
@@ -190,6 +190,8 @@ int eDVBServiceRecord::doRecord()
 			eDebug("REMOVED PID: %04x", *i);
 			m_record->removePID(*i);
 		}
+		
+		m_pids_active = pids_to_record;
 		
 		if (m_state != stateRecording)
 		{
