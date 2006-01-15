@@ -65,9 +65,9 @@ class eDVBServicePMTHandler: public Object
 	void PMTready(int error);
 	void PATready(int error);
 	
-	int m_record;
+	int m_use_decode_demux;
 public:
-	eDVBServicePMTHandler(int record);
+	eDVBServicePMTHandler();
 	~eDVBServicePMTHandler();
 	
 	enum
@@ -110,13 +110,16 @@ public:
 	};
 	
 	int getProgramInfo(struct program &program);
-	int getDemux(ePtr<iDVBDemux> &demux);
+	int getDataDemux(ePtr<iDVBDemux> &demux);
+	int getDecodeDemux(ePtr<iDVBDemux> &demux);
+	
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getService(eServiceReferenceDVB &service) { service = m_reference; return 0; }
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 
-	int tune(eServiceReferenceDVB &ref);
+	int tune(eServiceReferenceDVB &ref, int use_decode_demux);
+	void free();
 };
 
 #endif
