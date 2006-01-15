@@ -178,7 +178,7 @@ class Timer:
 			bisect.insort(self.timer_list, w)
 		else:
 			# yes. Process repeated, and re-add.
-			if not w.repeated:
+			if w.repeated:
 				w.processRepeated()
 				w.state = TimerEntry.StateWaiting
 				self.addTimerEntry(w)
