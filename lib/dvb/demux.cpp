@@ -418,6 +418,7 @@ RESULT eDVBTSRecorder::startPID(int pid)
 
 void eDVBTSRecorder::stopPID(int pid)
 {
-	::close(m_pids[pid]);
+	if (m_pids[pid] != -1)
+		::close(m_pids[pid]);
 	m_pids[pid] = -1;
 }
