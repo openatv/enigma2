@@ -153,7 +153,7 @@ class Session:
 			if key == "zPosition":
 				z = int(value)
 
-		dlg.instance = eWindow(self.desktop, -z)
+		dlg.instance = eWindow(self.desktop, z)
 		applyAllAttributes(dlg.instance, self.desktop, dlg.skinAttributes)
 		gui = GUIOutputDevice()
 		gui.parent = dlg.instance
