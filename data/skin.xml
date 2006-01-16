@@ -239,7 +239,7 @@
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 			<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
 		</screen>
-		<screen name="ServiceInfoWindow" position="90,420" size="560,95">
+		<screen name="ServiceInfoWindow" position="90,420" size="560,95" zPosition="-1">
 			<widget name="Service_Name" position="0,0" size="400,26" font="Regular;22" backgroundColor="dark" />
 			<widget name="Clock" position="470,0" size="90,26" font="Regular;22" backgroundColor="dark" />
 			<widget name="Event_Now_StartTime" position="0,35" size="60,22" font="Regular;20" backgroundColor="dark" />
