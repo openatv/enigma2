@@ -17,7 +17,6 @@ public:
 		evStopService,  /** the "current" service was just stopped and likes to be deallocated (clear refs!) */
 		evNewService,   /** a new "current" service was just started */
 		evPlayFailed,   /** the next service (in playlist) or the one given in playService failed to play */
-		evPlaylistDone, /** the last service in the playlist was just played */
 		evUpdatedEventInfo, /** the "currently running" event info was updated */
 		evUpdatedInfo, /** the program info of this service was updated */
 	};
@@ -27,9 +26,7 @@ public:
 	RESULT playService(const eServiceReference &service);
 	SWIG_VOID(RESULT) recordService(const eServiceReference &ref, ePtr<iRecordableService> &SWIG_OUTPUT);
 	
-	RESULT enqueueService(const eServiceReference &service);
 	SWIG_VOID(RESULT) getCurrentService(ePtr<iPlayableService> &SWIG_OUTPUT);
-	SWIG_VOID(RESULT) getPlaylist(ePtr<ePlaylist> &SWIG_OUTPUT);
 	RESULT stopService();
 	
 	RESULT pause(int p);

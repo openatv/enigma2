@@ -4,6 +4,6 @@ INCLUDES = \
 noinst_LIBRARIES = libenigma_nav.a
 
 libenigma_nav_a_SOURCES = \
-	core.cpp playlist.cpp pcore.cpp
+	core.cpp pcore.cpp
 
 
