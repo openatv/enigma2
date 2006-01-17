@@ -704,12 +704,13 @@ void eEPGCache::load()
 	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
-		unsigned char md5_saved[16];
-		unsigned char md5[16];
 		int size=0;
 		int cnt=0;
-		bool md5ok=false;
 #if 0
+		unsigned char md5_saved[16];
+		unsigned char md5[16];
+		bool md5ok=false;
+
 		if (!md5_file("/hdd/epg.dat", 1, md5))
 		{
 			FILE *f = fopen("/hdd/epg.dat.md5", "r");
