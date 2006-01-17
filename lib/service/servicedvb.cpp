@@ -1044,7 +1044,10 @@ void eDVBServicePlay::updateTimeshiftPids()
 		pids_to_record.insert(0); // PAT
 		if (program.pmtPid != -1)
 			pids_to_record.insert(program.pmtPid); // PMT
-		
+
+		if (program.textPid != -1)
+			pids_to_record.insert(program.textPid); // Videotext
+
 		for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
 			i(program.videoStreams.begin()); 
 			i != program.videoStreams.end(); ++i)
@@ -1066,7 +1069,7 @@ void eDVBServicePlay::updateTimeshiftPids()
 				pids_to_record.begin(), pids_to_record.end(), 
 				std::inserter(new_pids, new_pids.begin())
 				);
-		
+
 		for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
 			m_record->addPID(*i);
 
@@ -1110,7 +1113,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 void eDVBServicePlay::updateDecoder()
 {
-	int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1;
+	int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	eDVBServicePMTHandler::program program;
@@ -1153,9 +1156,10 @@ void eDVBServicePlay::updateDecoder()
 			}
 			eDebugNoNewLine(")");
 		}
-		eDebug(", and the pcr pid is %04x", program.pcrPid);
-		if (program.pcrPid != 0x1fff)
-			pcrpid = program.pcrPid;
+		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
+		pcrpid = program.pcrPid;
+		eDebug(", and the text pid is %04x", program.textPid);
+		tpid = program.textPid;
 	}
 
 	if (!m_decoder)
@@ -1174,27 +1178,29 @@ void eDVBServicePlay::updateDecoder()
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
+		m_decoder->setTextPID(tpid);
 		m_decoder->start();
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track
 // TODO handling of difference audio types.. default audio types..
 				
-				/* don't worry about non-existing services, nor pvr services */
-			if (m_dvb_service && !m_is_pvr)
+		/* don't worry about non-existing services, nor pvr services */
+		if (m_dvb_service && !m_is_pvr)
+		{
+			if (apidtype == eDVBAudio::aMPEG)
 			{
-				if (apidtype == eDVBAudio::aMPEG)
-				{
-					m_dvb_service->setCachePID(eDVBService::cAPID, apid);
-					m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
-				}
-				else
-				{
-					m_dvb_service->setCachePID(eDVBService::cAPID, -1);
-					m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
-				}
-				m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
-				m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
+				m_dvb_service->setCachePID(eDVBService::cAPID, apid);
+				m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
 			}
+			else
+			{
+				m_dvb_service->setCachePID(eDVBService::cAPID, -1);
+				m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
+			}
+			m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
+			m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
+			m_dvb_service->setCachePID(eDVBService::cTPID, tpid);
+		}
 	}
 }
 

@@ -62,6 +62,19 @@ public:
 	virtual ~eDVBPCR();
 };
 
+class eDVBVText: public iObject
+{
+DECLARE_REF(eDVBVText);
+private:
+	ePtr<eDVBDemux> m_demux;
+	int m_fd_demux;
+public:
+	eDVBVText(eDVBDemux *demux);
+	int startPid(int pid);
+	void stop();
+	virtual ~eDVBVText();
+};
+
 class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
 {
 DECLARE_REF(eTSMPEGDecoder);
@@ -70,12 +83,14 @@ private:
 	ePtr<eDVBAudio> m_audio;
 	ePtr<eDVBVideo> m_video;
 	ePtr<eDVBPCR> m_pcr;
-	int m_vpid, m_apid, m_atype, m_pcrpid;
+	ePtr<eDVBVText> m_text;
+	int m_vpid, m_apid, m_atype, m_pcrpid, m_textpid;
 	enum
 	{
 		changeVideo = 1, 
 		changeAudio = 2, 
-		changePCR   = 4
+		changePCR   = 4,
+		changeText  = 8
 	};
 	int m_changed;
 	int m_is_ff, m_is_sm, m_is_trickmode;
@@ -90,6 +105,7 @@ public:
 	RESULT setVideoPID(int vpid);
 	RESULT setAudioPID(int apid, int type);
 	RESULT setSyncPCR(int pcrpid);
+	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);
 	RESULT start();
 	RESULT freeze(int cont);

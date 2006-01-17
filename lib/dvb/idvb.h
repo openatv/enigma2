@@ -466,12 +466,15 @@ public:
 		/** Set Displayed Audio PID and type */
 	virtual RESULT setAudioPID(int apid, int type)=0;
 
+		/** Set Displayed Videotext PID */
+	virtual RESULT setTextPID(int vpid)=0;
+
 		/** Set Sync mode to PCR */
 	virtual RESULT setSyncPCR(int pcrpid)=0;
 	enum { sm_Audio, sm_Video };
 		/** Set Sync mode to either audio or video master */
 	virtual RESULT setSyncMaster(int who)=0;
-	
+
 		/** Apply settings */
 	virtual RESULT start()=0;
 	

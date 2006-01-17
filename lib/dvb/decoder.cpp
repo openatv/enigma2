@@ -301,6 +301,57 @@ eDVBPCR::~eDVBPCR()
 		::close(m_fd_demux);
 }
 
+DEFINE_REF(eDVBVText);
+
+eDVBVText::eDVBVText(eDVBDemux *demux): m_demux(demux)
+{
+	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
+#else
+	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
+#endif
+	m_fd_demux = ::open(filename, O_RDWR);
+	if (m_fd_demux < 0)
+		eWarning("%s: %m", filename);
+}
+
+int eDVBVText::startPid(int pid)
+{
+	if (m_fd_demux < 0)
+		return -1;
+	dmx_pes_filter_params pes;
+
+	pes.pid      = pid;
+	pes.input    = DMX_IN_FRONTEND;
+	pes.output   = DMX_OUT_DECODER;
+	pes.pes_type = DMX_PES_TELETEXT;
+	pes.flags    = 0;
+	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
+	{
+		eWarning("video: DMX_SET_PES_FILTER: %m");
+		return -errno;
+	}
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
+	{
+		eWarning("video: DMX_START: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+void eDVBVText::stop()
+{
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+		eWarning("video: DMX_STOP: %m");
+}
+
+eDVBVText::~eDVBVText()
+{
+	if (m_fd_demux >= 0)
+		::close(m_fd_demux);
+}
+
 DEFINE_REF(eTSMPEGDecoder);
 
 int eTSMPEGDecoder::setState()
@@ -416,6 +467,22 @@ int eTSMPEGDecoder::setState()
 		}
 		m_changed &= ~changeAudio;
 	}
+	if (m_changed & changeText)
+	{
+		if (m_text)
+			m_text->stop();
+		m_text = 0;
+		if ((m_textpid >= 0) && (m_textpid < 0x1FFF))
+		{
+			m_text = new eDVBVText(m_demux);
+			if (m_text->startPid(m_textpid))
+			{
+				eWarning("text: startpid failed!");
+				res = -1;
+			}
+		}
+		m_changed &= ~changeText;
+	}
 #endif
 	return res;
 }
@@ -460,6 +527,16 @@ RESULT eTSMPEGDecoder::setSyncPCR(int pcrpid)
 	{
 		m_changed |= changePCR;
 		m_pcrpid = pcrpid;
+	}
+	return 0;
+}
+
+RESULT eTSMPEGDecoder::setTextPID(int textpid)
+{
+	if (m_textpid != textpid)
+	{
+		m_changed |= changeText;
+		m_textpid = textpid;
 	}
 	return 0;
 }
