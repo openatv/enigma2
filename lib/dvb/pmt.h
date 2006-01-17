@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-class eDVBServicePMTHandler;
+class eDVBCAService;
 
 typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
 
