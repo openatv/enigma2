@@ -111,6 +111,7 @@ public:
 		// ca info
 		int pcrPid;
 		int pmtPid;
+		int textPid;
 		bool isCrypted;
 	};
 	

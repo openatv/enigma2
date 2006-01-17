@@ -6,6 +6,7 @@
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb/epgcache.h>
 #include <dvbsi++/ca_program_map_section.h>
+#include <dvbsi++/teletext_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/iso639_language_descriptor.h>
 #include <dvbsi++/stream_identifier_descriptor.h>
@@ -138,17 +139,20 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.pcrPid = -1;
 	program.isCrypted = false;
 	program.pmtPid = -1;
+	program.textPid = -1;
 
 	if (!m_PMT.getCurrent(ptr))
 	{
 		int cached_apid_ac3 = -1;
 		int cached_apid_mpeg = -1;
 		int cached_vpid = -1;
+		int cached_tpid = -1;
 		if ( m_service && !m_service->cacheEmpty() )
 		{
 			cached_vpid = m_service->getCachePID(eDVBService::cVPID);
 			cached_apid_mpeg = m_service->getCachePID(eDVBService::cAC3PID);
 			cached_apid_ac3 = m_service->getCachePID(eDVBService::cAPID);
+			cached_tpid = m_service->getCachePID(eDVBService::cTPID);
 		}
 		eDVBTableSpec table_spec;
 		ptr->getSpec(table_spec);
@@ -193,6 +197,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					{
 						switch ((*desc)->getTag())
 						{
+						case TELETEXT_DESCRIPTOR:
+							if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
+								program.textPid = (*es)->getPid();
+							break;
 						case AC3_DESCRIPTOR:
 							if (!isvideo)
 							{
@@ -269,6 +277,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			apid_ac3 = m_service->getCachePID(eDVBService::cAC3PID),
 			apid_mpeg = m_service->getCachePID(eDVBService::cAPID),
 			pcrpid = m_service->getCachePID(eDVBService::cPCRPID),
+			tpid = m_service->getCachePID(eDVBService::cTPID),
 			cnt=0;
 		if ( vpid != -1 )
 		{
@@ -297,6 +306,11 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 		{
 			++cnt;
 			program.pcrPid = pcrpid;
+		}
+		if ( tpid != -1 )
+		{
+			++cnt;
+			program.textPid = tpid;
 		}
 		if ( cnt )
 			return 0;

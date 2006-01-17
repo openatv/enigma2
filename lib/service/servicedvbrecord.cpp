@@ -163,10 +163,13 @@ int eDVBServiceRecord::doRecord()
 			}
 			eDebugNoNewLine(")");
 		}
-		eDebug(", and the pcr pid is %04x", program.pcrPid);
+		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		if (program.pcrPid != 0x1fff)
 			pids_to_record.insert(program.pcrPid);
-		
+		eDebug(", and the text pid is %04x", program.textPid);
+		if (program.textPid != -1)
+			pids_to_record.insert(program.textPid); // Videotext
+
 			/* find out which pids are NEW and which pids are obsolete.. */
 		std::set<int> new_pids, obsolete_pids;
 		
