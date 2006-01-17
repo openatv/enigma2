@@ -185,6 +185,11 @@ struct eServiceReferenceDVB: public eServiceReference
 		:eServiceReference(eServiceReference::idDVB, 0)
 	{
 	}
+
+	eServiceReferenceDVB(const std::string &string)
+		:eServiceReference(string)
+	{
+	}
 };
 
 
