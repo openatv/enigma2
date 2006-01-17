@@ -341,7 +341,8 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		case 0x10:
 		{
 //			eDebug("(0x10)text encoded in ISO-8859-%d",n);
-			int n=(data[++i]<<8)|(data[++i]);
+			int n=(data[++i]<<8);
+			n |= (data[++i]);
 			++i;
 			switch(n)
 			{
