@@ -157,7 +157,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 		poll_timeout /= 1000;
 	}
 	
-	if ((user_timeout > 0) && (poll_timeout > user_timeout))
+	if ((user_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > user_timeout))
 	{
 		poll_timeout = user_timeout;
 		return_reason = 1;
