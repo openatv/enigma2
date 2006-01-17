@@ -2,6 +2,9 @@
 #define __dvbci_ui_h
 
 #include <string>
+                /* avoid warnigs :) */
+#undef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200112L
 #include <Python.h>
 
 #define MAX_SLOTS	2	
