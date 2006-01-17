@@ -427,6 +427,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							diseqc.data[2] = 0x38;
 							diseqc.data[3] = csw;
 						}
+						else
+						{
+							diseqc.data[2] = 0x00;
+							diseqc.data[3] = 0x00;
+						}
 						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 
 						i++;
@@ -557,6 +562,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							diseqc.len = 4;
 							diseqc.data[2] = 0x6B;	// goto stored sat position
 							diseqc.data[3] = RotorCmd;
+							diseqc.data[4] = 0x00;
 						}
 
 						if ( rotor_param.m_inputpower_parameters.m_use )
