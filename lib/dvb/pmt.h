@@ -61,11 +61,14 @@ class eDVBServicePMTHandler: public Object
 	
 	void channelStateChanged(iDVBChannel *);
 	ePtr<eConnection> m_channelStateChanged_connection;
+	void channelEvent(iDVBChannel *, int event);
+	ePtr<eConnection> m_channelEvent_connection;
 
 	void PMTready(int error);
 	void PATready(int error);
 	
 	int m_use_decode_demux;
+	
 public:
 	eDVBServicePMTHandler();
 	~eDVBServicePMTHandler();
@@ -78,7 +81,9 @@ public:
 		eventNoPATEntry,   // no pat entry for the corresponding SID could be found
 		eventNoPMT,        // no pmt could be received (timeout)
 		eventNewProgramInfo, // we just received a PMT
-		eventTuned         // a channel was sucessfully (re-)tuned in, you may start additional filters now
+		eventTuned,        // a channel was sucessfully (re-)tuned in, you may start additional filters now
+		
+		eventEOF,          // a file playback did end
 	};
 
 	Signal1<void,int> serviceEvent;
