@@ -552,6 +552,8 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
+	case eDVBServicePMTHandler::eventEOF:
+		m_event((iPlayableService*)this, evEnd);
 	}
 }
 
