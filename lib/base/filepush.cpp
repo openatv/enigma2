@@ -4,10 +4,11 @@
 #include <errno.h>
 #include <fcntl.h>
 
-eFilePushThread::eFilePushThread()
+eFilePushThread::eFilePushThread(): m_messagepump(eApp, 0)
 {
 	m_stop = 0;
 	flush();
+	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
 static void signal_handler(int x)
@@ -65,12 +66,16 @@ void eFilePushThread::thread()
 		}
 		if (m_buf_end == 0)
 		{
+			sendEvent(evtEOF);
+
+#if 0
 			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
 			if (!lseek(m_fd_source, 0, SEEK_SET))
 			{
 				eDebug("(looping)");
 				continue;
 			}
+#endif
 			break;
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
@@ -114,3 +119,13 @@ void eFilePushThread::flush()
 	m_buf_start = m_buf_end = 0;
 }
 
+
+void eFilePushThread::sendEvent(int evt)
+{
+	m_messagepump.send(evt);
+}
+
+void eFilePushThread::recvEvent(const int &evt)
+{
+	m_event(evt);
+}
