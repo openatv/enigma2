@@ -206,6 +206,8 @@ public:
 	eDVBChannelID getChannelID() { return m_channel_id; }
 
 	RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
+	RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);
+	
 	RESULT getState(int &state);
 
 	RESULT setCIRouting(const eDVBCIRouting &routing);
@@ -229,6 +231,7 @@ private:
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
 	eDVBChannelID m_channel_id;
 	Signal1<void,iDVBChannel*> m_stateChanged;
+	Signal2<void,iDVBChannel*,int> m_event;
 	int m_state;
 
 			/* for channel list */
@@ -239,6 +242,8 @@ private:
 	
 		/* for PVR playback */
 	eFilePushThread *m_pvr_thread;
+	void pvrEvent(int event);
+	
 	int m_pvr_fd_src, m_pvr_fd_dst;
 	eDVBTSTools m_tstools;
 
