@@ -607,6 +607,17 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	}
 }
 
+void eDVBChannel::pvrEvent(int event)
+{
+	switch (event)
+	{
+	case eFilePushThread::evtEOF:
+		eDebug("eDVBChannel: End of file!");
+		m_event(this, evtEOF);
+		break;
+	}
+}
+
 void eDVBChannel::AddUse()
 {
 	++m_use_count;
@@ -655,6 +666,12 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 RESULT eDVBChannel::connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iDVBChannel*)this, m_stateChanged.connect(stateChange));
+	return 0;
+}
+
+RESULT eDVBChannel::connectEvent(const Slot2<void,iDVBChannel*,int> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection((iDVBChannel*)this, m_event.connect(event));
 	return 0;
 }
 
@@ -733,6 +750,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
+	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	return 0;
 }

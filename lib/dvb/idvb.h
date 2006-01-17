@@ -388,7 +388,13 @@ public:
 		state_ok,          /* ok */
 		state_release      /* channel is being shut down. */
 	};
+	
+	enum 
+	{
+		evtEOF, evtFailed
+	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
+	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT getState(int &state)=0;
 	
 		/* demux capabilities */
