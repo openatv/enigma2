@@ -4,6 +4,7 @@
 #include <lib/gui/ewidget.h>
 #include <connection.h>
 
+class eListbox;
 class eSlider;
 
 class iListboxContent: public iObject
