@@ -19,7 +19,7 @@ merge:
 #	msgmerge -N -U enigma2.pot menu.pot
 #	msgmerge -N -U enigma2.pot setup.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
-	rm enigma2.pot
+	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
 	msgmerge -N -U de.po enigma2.pot
 	msgmerge -N -U ar.po enigma2.pot
@@ -66,7 +66,7 @@ enigma2.pot:
 	msginit -l $@ -o $@ -i enigma2.pot --no-translator
 
 clean:
-	rm *.mo *.pot
+	$(RM) *.mo *.pot
 
 install-data-am: default
 	for lang in $(LANGS); do \
