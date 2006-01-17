@@ -64,6 +64,18 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 	}
 }
 
+void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
+{
+	switch (event)
+	{
+	case iDVBChannel::evtEOF:
+		serviceEvent(eventEOF);
+		break;
+	default:
+		break;
+	}
+}
+
 void eDVBServicePMTHandler::PMTready(int error)
 {
 	if (error)
@@ -370,6 +382,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux)
 			m_channelStateChanged_connection);
 		m_last_channel_state = -1;
 		channelStateChanged(m_channel);
+
+		m_channel->connectEvent(
+			slot(*this, &eDVBServicePMTHandler::channelEvent), 
+			m_channelEvent_connection);
 	} else
 	{
 		serviceEvent(eventTuneFailed);
