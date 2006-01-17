@@ -10,32 +10,9 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	}
 
 	switch (event)
-	{
+	{	
 	case iPlayableService::evEnd:
-		assert(m_playlist); /* we need to have a playlist */
-		
-		/* at first, kill the running service */
-		stopService();
-		
-		/* our running main service stopped. identify what to do next. */
-			
-			/* unless the playlist current position is invalid (because there was */
-			/* playlist, for example when the service was engaged with playService */
-		if (m_playlist->m_current != m_playlist->end())
-			++m_playlist->m_current;
-			
-			/* was the current service the last one? */
-		if (m_playlist->m_current == m_playlist->end())
-		{
-			m_event(this, evPlaylistDone);
-			break;
-		}
-
-			/* there is another service in the playlist. play it. */
-		RESULT res;
-		res = playService(*m_playlist->m_current);
-		if (res)
-			m_event(this, evPlayFailed);
+//		m_event(this, ev);
 		break;
 	case iPlayableService::evStart:
 		m_event(this, evNewService);
@@ -65,25 +42,6 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	return res;
 }
 
-RESULT eNavigation::enqueueService(const eServiceReference &service)
-{
-	assert(m_playlist);
-		/* check if we need to play after the service was enqueued. */
-	int doplay = m_playlist->m_current == m_playlist->end();
-	
-		/* add the service to the playlist. the playlist's m_current */
-		/* points either to a service before the last or 'doplay' is set. */
-	m_playlist->push_back(service);
-
-	if (doplay)
-	{
-		m_playlist->m_current = m_playlist->end();
-		--m_playlist->m_current;
-		return playService(*m_playlist->m_current);
-	}
-	return 0;
-}
-
 RESULT eNavigation::connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(event));
@@ -93,14 +51,6 @@ RESULT eNavigation::connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr
 RESULT eNavigation::getCurrentService(ePtr<iPlayableService> &service)
 {
 	service = m_runningService;
-	return 0;
-}
-
-RESULT eNavigation::getPlaylist(ePtr<ePlaylist> &playlist)
-{
-	if (!m_playlist)
-		return -1;
-	playlist = m_playlist;
 	return 0;
 }
 
@@ -145,10 +95,6 @@ eNavigation::eNavigation(iServiceHandler *serviceHandler)
 {
 	assert(serviceHandler);
 	m_servicehandler = serviceHandler;
-	m_playlist = new ePlaylist;
-
-		/* start with no current selection */
-	m_playlist->m_current = m_playlist->end();
 }
 
 eNavigation::~eNavigation()

@@ -26,19 +26,9 @@ RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 	return m_core->recordService(ref, service);
 }
 
-RESULT pNavigation::enqueueService(const eServiceReference &service)
-{
-	return m_core->enqueueService(service);
-}
-
 RESULT pNavigation::getCurrentService(ePtr<iPlayableService> &service)
 {
 	return m_core->getCurrentService(service);
-}
-
-RESULT pNavigation::getPlaylist(ePtr<ePlaylist> &playlist)
-{
-	return m_core->getPlaylist(playlist);
 }
 
 RESULT pNavigation::pause(int p)
@@ -64,9 +54,6 @@ void pNavigation::navEvent(eNavigation *nav, int event)
 		break;
 	case eNavigation::evPlayFailed:
 		m_event(evPlayFailed);
-		break;
-	case eNavigation::evPlaylistDone:
-		m_event(evPlaylistDone);
 		break;
 	case eNavigation::evUpdatedEventInfo:
 		m_event(evUpdatedEventInfo);

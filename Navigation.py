@@ -59,9 +59,6 @@ class Navigation:
 		else:
 			return service
 	
-	def enqueueService(self, ref):
-		return self.pnav.enqueueService(ref)
-	
 	def getCurrentService(self):
 		service = self.pnav.getCurrentService()
 		
@@ -72,12 +69,6 @@ class Navigation:
 	
 	def stopService(self):
 		self.pnav.stopService()
-	
-	def getPlaylist(self):
-		playlist = ePlaylistPtr()
-		if self.pnav.getPlaylist(playlist):
-			return None
-		return playlist
 	
 	def pause(self, p):
 		return self.pnav.pause(p)
