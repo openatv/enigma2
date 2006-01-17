@@ -28,7 +28,7 @@ int eDVBMetaParser::parseFile(const std::string &tsname)
 		switch (linecnt)
 		{
 		case 0:
-			m_ref = (const eServiceReferenceDVB&)eServiceReference(line);
+			m_ref = eServiceReferenceDVB(line);
 			break;
 		case 1:
 			m_name = line;
