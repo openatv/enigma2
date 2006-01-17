@@ -8,6 +8,7 @@
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
+#include <lib/gdi/region.h>
 
 struct gColor
 {
