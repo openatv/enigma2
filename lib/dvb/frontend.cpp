@@ -520,10 +520,12 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_VOLTAGE:
+			{
 				int voltage = m_sec_sequence.current()++->voltage;
 				eDebug("[SEC] setVoltage %d", voltage);
 				setVoltage(voltage);
 				break;
+			}
 			case eSecCommand::SET_TONE:
 				eDebug("[SEC] setTone %d", m_sec_sequence.current()->tone);
 				setTone(m_sec_sequence.current()++->tone);
