@@ -199,7 +199,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 #		print "You pressed number " + str(number)
 		if number == 0:
-			self.session.nav.zapLast()
+			self.servicelist.recallPrevService()
 			self.instance.show()
 			self.show()
 		else:
@@ -241,10 +241,13 @@ class InfoBarNumberZap:
 						continue
 					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:
-			self.session.nav.playService(service) #play service
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
-				self.servicelist.setRoot(bouquet)
+				self.servicelist.clearPath()
+				if self.servicelist.bouquet_root != bouquet:
+					self.servicelist.enterPath(self.servicelist.bouquet_root)
+				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+			self.servicelist.zap()
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial 
