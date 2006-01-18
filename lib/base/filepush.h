@@ -20,6 +20,7 @@ public:
 	
 		/* flushes the internal readbuffer */ 
 	void flush();
+	void enablePVRCommit(int);
 	
 	enum { evtEOF, evtReadError, evtWriteError };
 	Signal1<void,int> m_event;
@@ -29,6 +30,7 @@ private:
 	unsigned char m_buffer[65536];
 	int m_buf_start, m_buf_end;
 	int m_fd_source, m_fd_dest;
+	int m_send_pvr_commit;
 	
 	eFixedMessagePump<int> m_messagepump;
 	

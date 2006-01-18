@@ -3,11 +3,15 @@
 #include <lib/base/eerror.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
+
+#define PVR_COMMIT 1
 
 eFilePushThread::eFilePushThread(): m_messagepump(eApp, 0)
 {
 	m_stop = 0;
 	flush();
+	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
@@ -18,6 +22,8 @@ static void signal_handler(int x)
 void eFilePushThread::thread()
 {
 	off_t dest_pos = 0;
+	
+	int already_empty = 0;
 	eDebug("FILEPUSH THREAD START");
 		// this is a race. FIXME.
 	
@@ -66,6 +72,17 @@ void eFilePushThread::thread()
 		}
 		if (m_buf_end == 0)
 		{
+				/* on EOF, try COMMITting once. */
+			if (m_send_pvr_commit && !already_empty)
+			{
+				eDebug("sending PVR commit");
+				already_empty = 1;
+				if (::ioctl(m_fd_dest, PVR_COMMIT) == EINTR)
+					continue;
+				eDebug("commit done");
+						/* well check again */
+				continue;
+			}
 			sendEvent(evtEOF);
 
 #if 0
@@ -77,7 +94,8 @@ void eFilePushThread::thread()
 			}
 #endif
 			break;
-		}
+		} else
+			already_empty = 0;
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
 	
@@ -119,6 +137,10 @@ void eFilePushThread::flush()
 	m_buf_start = m_buf_end = 0;
 }
 
+void eFilePushThread::enablePVRCommit(int s)
+{
+	m_send_pvr_commit = s;
+}
 
 void eFilePushThread::sendEvent(int evt)
 {
