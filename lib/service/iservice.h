@@ -365,6 +365,10 @@ class iTimeshiftService: public iObject
 public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift()=0;
+	
+	virtual int isTimeshiftActive()=0;
+			/* this essentially seeks to the relative end of the timeshift buffer */
+	virtual RESULT activateTimeshift()=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
@@ -386,6 +390,9 @@ public:
 			// when iServiceInformation is implemented:
 		evUpdatedEventInfo,
 		evUpdatedInfo,
+
+			/* when seek() is implemented: */		
+		evSeekableStatusChanged, /* for example when timeshifting */
 		
 		evEOF
 	};
