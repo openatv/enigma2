@@ -24,6 +24,7 @@ public:
 		evUpdatedEventInfo, /** the "currently running" event info was updated */
 		evUpdatedInfo, /** the program info of this service was updated */
 		evSeekableStatusChanged,
+		evEnd
 	};
 	
 	RESULT playService(const eServiceReference &service);

@@ -64,5 +64,7 @@ void pNavigation::navEvent(eNavigation *nav, int event)
 	case eNavigation::evSeekableStatusChanged:
 		m_event(evSeekableStatusChanged);
 		break;
+	case eNavigation::evEnd:
+		m_event(evEnd);
 	}
 }
