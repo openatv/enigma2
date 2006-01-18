@@ -483,7 +483,7 @@ RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int dem
 		if ( iter < max_demux_slots )
 		{
 			caservice->m_used_demux[iter] = demux_nums[i] & 0xFF;
-			eDebug("[eDVBCAService] add demuxe %d to slot %d service %s", caservice->m_used_demux[iter], iter, ref.toString().c_str());
+			eDebug("[eDVBCAService] add demux %d to slot %d service %s", caservice->m_used_demux[iter], iter, ref.toString().c_str());
 		}
 		else
 		{
