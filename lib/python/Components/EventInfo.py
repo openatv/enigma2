@@ -60,7 +60,8 @@ class EventInfoProgress(PerServiceDisplayProgress, EventInfo):
 	def update(self, ev):
 		self.g.setRange(0, ev.getDuration())
 		progress = int(time() - ev.getBeginTime())
-		
+
 		self.setValue(progress)
 		
-		
+	def stopEvent(self):
+		self.setValue(0)
