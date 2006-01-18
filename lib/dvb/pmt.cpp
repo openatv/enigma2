@@ -12,7 +12,7 @@
 #include <dvbsi++/stream_identifier_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_ca_servicePtr(0)
+	:m_ca_servicePtr(0), m_decode_demux_num(0xFF)
 {
 	m_use_decode_demux = 0;
 	eDVBResourceManager::getInstance(m_resourceManager);
@@ -25,11 +25,17 @@ eDVBServicePMTHandler::~eDVBServicePMTHandler()
 	if (m_ca_servicePtr)
 	{
 		eDebug("unregister caservice");
-		uint8_t demux_num;
-		m_demux->getCADemuxID(demux_num);
+		int demuxes[2] = {0,0};
+		uint8_t tmp;
+		m_demux->getCADemuxID(tmp);
+		demuxes[0]=tmp;
+		if (m_decode_demux_num != 0xFF)
+			demuxes[1]=m_decode_demux_num;
+		else
+			demuxes[1]=demuxes[0];
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAService::unregister_service(m_reference, demux_num, ptr);
+		eDVBCAService::unregister_service(m_reference, demuxes, ptr);
 		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 	}
 }
@@ -89,9 +95,15 @@ void eDVBServicePMTHandler::PMTready(int error)
 		{
 			if(!m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
 			{
-				uint8_t demux_num;
-				m_demux->getCADemuxID(demux_num);
-				eDVBCAService::register_service(m_reference, demux_num, m_ca_servicePtr);
+				int demuxes[2] = {0,0};
+				uint8_t tmp;
+				m_demux->getCADemuxID(tmp);
+				demuxes[0]=tmp;
+				if (m_decode_demux_num != 0xFF)
+					demuxes[1]=m_decode_demux_num;
+				else
+					demuxes[1]=demuxes[0];
+				eDVBCAService::register_service(m_reference, demuxes, m_ca_servicePtr);
 				eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 			}
 			eDVBCIInterfaces::getInstance()->gotPMT(this);
@@ -338,15 +350,20 @@ int eDVBServicePMTHandler::getDataDemux(ePtr<iDVBDemux> &demux)
 
 int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 {
+	int ret=0;
 		/* if we're using the decoding demux as data source
 		   (for example in pvr playbacks), return that one. */
 	if (m_use_decode_demux)
 	{
 		demux = m_demux;
-		return 0;
+		return ret;
 	}
-	
-	return m_channel->getDemux(demux, iDVBChannel::capDecode);
+
+	ret = m_channel->getDemux(demux, iDVBChannel::capDecode);
+	if (!ret)
+		demux->getCADemuxID(m_decode_demux_num);
+
+	return ret;
 }
 
 int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
@@ -442,7 +459,7 @@ eDVBCAService::~eDVBCAService()
 	::close(m_sock);
 }
 
-RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice )
+RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice )
 {
 	CAServiceMap::iterator it = exist.find(ref);
 	if ( it != exist.end() )
@@ -453,26 +470,31 @@ RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int dem
 		caservice->m_service = ref;
 		eDebug("[eDVBCAService] new service %s", ref.toString().c_str() );
 	}
+
+	int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
+	for (int i=0; i < loops; ++i)
+	{
 // search free demux entry
-	int iter=0, max_demux_slots = sizeof(caservice->m_used_demux);
+		int iter=0, max_demux_slots = sizeof(caservice->m_used_demux);
 
-	while ( iter < max_demux_slots && caservice->m_used_demux[iter] != 0xFF )
-		++iter;
+		while ( iter < max_demux_slots && caservice->m_used_demux[iter] != 0xFF )
+			++iter;
 
-	if ( iter < max_demux_slots )
-	{
-		caservice->m_used_demux[iter] = demux_num & 0xFF;
-		eDebug("[eDVBCAService] add demux %d to slot %d service %s", demux_num, iter, ref.toString().c_str());
-	}
-	else
-	{
-		eDebug("[eDVBCAService] no more demux slots free for service %s!!", ref.toString().c_str());
-		return -1;
+		if ( iter < max_demux_slots )
+		{
+			caservice->m_used_demux[iter] = demux_nums[i] & 0xFF;
+			eDebug("[eDVBCAService] add demuxe %d to slot %d service %s", caservice->m_used_demux[iter], iter, ref.toString().c_str());
+		}
+		else
+		{
+			eDebug("[eDVBCAService] no more demux slots free for service %s!!", ref.toString().c_str());
+			return -1;
+		}
 	}
 	return 0;
 }
 
-RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr )
+RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int demux_nums[2], eTable<ProgramMapSection> *ptr )
 {
 	CAServiceMap::iterator it = exist.find(ref);
 	if ( it == exist.end() )
@@ -483,41 +505,45 @@ RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int d
 	else
 	{
 		eDVBCAService *caservice = it->second;
-		bool freed = false;
-		int iter = 0,
-			used_demux_slots = 0,
-			max_demux_slots = sizeof(caservice->m_used_demux)/sizeof(int);
-		while ( iter < max_demux_slots )
+		int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
+		for (int i=0; i < loops; ++i)
 		{
-			if ( caservice->m_used_demux[iter] != 0xFF )
+			bool freed = false;
+			int iter = 0,
+				used_demux_slots = 0,
+				max_demux_slots = sizeof(caservice->m_used_demux)/sizeof(int);
+			while ( iter < max_demux_slots )
 			{
-				if ( !freed && caservice->m_used_demux[iter] == demux_num )
+				if ( caservice->m_used_demux[iter] != 0xFF )
 				{
-					eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, caservice->m_used_demux[iter], caservice->m_service.toString().c_str() );
-					caservice->m_used_demux[iter] = 0xFF;
-					freed=true;
+					if ( !freed && caservice->m_used_demux[iter] == demux_nums[i] )
+					{
+						eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, caservice->m_used_demux[iter], caservice->m_service.toString().c_str() );
+						caservice->m_used_demux[iter] = 0xFF;
+						freed=true;
+					}
+					else
+						++used_demux_slots;
+				}
+				++iter;
+			}
+			if (!freed)
+				eDebug("[eDVBCAService] couldn't free demux slot for demux %d", demux_nums[i]);
+			if (i || loops == 1)
+			{
+				if (!used_demux_slots)  // no more used.. so we remove it
+				{
+					delete it->second;
+					exist.erase(it);
 				}
 				else
-					++used_demux_slots;
+				{
+					if (ptr)
+						it->second->buildCAPMT(ptr);
+					else
+						eDebug("[eDVBCAService] can not send updated demux info");
+				}
 			}
-			++iter;
-		}
-		if (!freed)
-		{
-			eDebug("[eDVBCAService] couldn't free demux slot for demux %d", demux_num);
-			return -1;
-		}
-		if (!used_demux_slots)  // no more used.. so we remove it
-		{
-			delete it->second;
-			exist.erase(it);
-		}
-		else
-		{
-			if (ptr)
-				it->second->buildCAPMT(ptr);
-			else
-				eDebug("[eDVBCAService] can not send updated demux info");
 		}
 	}
 	return 0;
@@ -548,32 +574,27 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		pmt_version = table_spec.version;
 
 	uint8_t demux_mask = 0;
-	uint8_t first_demux_num = 0xFF;
+	int data_demux = -1;
 
-#if 1
 	int iter=0, max_demux_slots = sizeof(m_used_demux);
 	while ( iter < max_demux_slots )
 	{
 		if ( m_used_demux[iter] != 0xFF )
 		{
-			if ( first_demux_num == 0xFF )
-				first_demux_num = m_used_demux[iter];
+			if ( m_used_demux[iter] > data_demux )
+				data_demux = m_used_demux[iter];
 			demux_mask |= (1 << m_used_demux[iter]);
 		}
 		++iter;
 	}
-#else
-	demux_mask = 3;
-	first_demux_num = 0;
-#endif
 
-	if ( first_demux_num == 0xFF )
+	if ( data_demux == -1 )
 	{
-		eDebug("[eDVBCAService] no demux found for service %s", m_service.toString().c_str() );
+		eDebug("[eDVBCAService] no data demux found for service %s", m_service.toString().c_str() );
 		return;
 	}
 
-	eDebug("demux %d mask %02x prevhash %08x", first_demux_num, demux_mask, m_prev_build_hash);
+	eDebug("demux %d mask %02x prevhash %08x", data_demux, demux_mask, m_prev_build_hash);
 
 	unsigned int build_hash = (pmtpid << 16);
 	build_hash |= (demux_mask << 8);
@@ -608,7 +629,7 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
 		tmp[2] = demux_mask;	// descramble bitmask
-		tmp[3] = first_demux_num; // read section data from demux number
+		tmp[3] = data_demux&0xFF; // read section data from demux number
 		capmt.injectDescriptor(tmp, false);
 
 		tmp[0] = 0x81; // dvbnamespace
