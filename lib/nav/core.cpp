@@ -12,7 +12,7 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 	switch (event)
 	{	
 	case iPlayableService::evEnd:
-//		m_event(this, ev);
+		m_event(this, evEnd);
 		break;
 	case iPlayableService::evStart:
 		m_event(this, evNewService);
