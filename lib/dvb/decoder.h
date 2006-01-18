@@ -62,17 +62,17 @@ public:
 	virtual ~eDVBPCR();
 };
 
-class eDVBVText: public iObject
+class eDVBTText: public iObject
 {
-DECLARE_REF(eDVBVText);
+DECLARE_REF(eDVBTText);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd_demux;
 public:
-	eDVBVText(eDVBDemux *demux);
+	eDVBTText(eDVBDemux *demux);
 	int startPid(int pid);
 	void stop();
-	virtual ~eDVBVText();
+	virtual ~eDVBTText();
 };
 
 class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
@@ -83,7 +83,7 @@ private:
 	ePtr<eDVBAudio> m_audio;
 	ePtr<eDVBVideo> m_video;
 	ePtr<eDVBPCR> m_pcr;
-	ePtr<eDVBVText> m_text;
+	ePtr<eDVBTText> m_text;
 	int m_vpid, m_apid, m_atype, m_pcrpid, m_textpid;
 	enum
 	{
