@@ -454,6 +454,8 @@ class InfoBarEvent:
 		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
 		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 
+		self["Now_ProgressBar"] = EventInfoProgress(self.session.nav, EventInfo.Now)
+
 class InfoBarServiceName:
 	def __init__(self):
 		self["ServiceName"] = ServiceName(self.session.nav)
