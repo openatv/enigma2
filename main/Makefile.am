@@ -27,7 +27,7 @@ enigma2_LDADD = \
 	@SIGC_LIBS@ \
 	@DVBSI_LIBS@ \
 	@FRIBIDI_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv -lpython2.4
+	-ldl -lpthread -lcrypt -lresolv
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)
