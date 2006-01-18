@@ -22,7 +22,8 @@ public:
 		evNewService,   /** a new "current" service was just started */
 		evPlayFailed,   /** the next service (in playlist) or the one given in playService failed to play */
 		evUpdatedEventInfo, /** the "currently running" event info was updated */
-		evUpdatedInfo /** the program info of this service was updated */
+		evUpdatedInfo, /** the program info of this service was updated */
+		evSeekableStatusChanged,
 	};
 	
 	RESULT playService(const eServiceReference &service);
