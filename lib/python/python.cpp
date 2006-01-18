@@ -1,5 +1,8 @@
 #include <lib/python/python.h>
 #include <lib/base/eerror.h>
+                /* avoid warnigs :) */
+#undef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200112L
 #include <Python.h>
 
 extern "C" void init_enigma();
