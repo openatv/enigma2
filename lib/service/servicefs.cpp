@@ -25,6 +25,7 @@ DEFINE_REF(eStaticServiceFSInformation);
 RESULT eStaticServiceFSInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	name = ref.path;
+	return 0;
 }
 
 // eServiceFactoryFS
