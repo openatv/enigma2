@@ -758,6 +758,11 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 
 RESULT eDVBServicePlay::getName(std::string &name)
 {
+	if (m_is_pvr)
+	{
+		ePtr<iStaticServiceInformation> i = new eStaticServiceDVBPVRInformation(m_reference);
+		return i->getName(m_reference, name);
+	}
 	if (m_dvb_service)
 	{
 		m_dvb_service->getName(m_reference, name);
