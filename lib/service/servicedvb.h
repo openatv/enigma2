@@ -107,6 +107,8 @@ public:
 		// iTimeshiftService
 	RESULT startTimeshift();
 	RESULT stopTimeshift();
+	int isTimeshiftActive();
+	RESULT activateTimeshift();
 
 private:
 	friend class eServiceFactoryDVB;

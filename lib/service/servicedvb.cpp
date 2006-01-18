@@ -553,7 +553,10 @@ void eDVBServicePlay::serviceEvent(int event)
 		break;
 	}
 	case eDVBServicePMTHandler::eventEOF:
+	{
 		m_event((iPlayableService*)this, evEnd);
+		break;
+	}
 	}
 }
 
@@ -564,6 +567,9 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 		if (m_timeshift_active)
 			updateDecoder();
+		break;
+	case eDVBServicePMTHandler::eventEOF:
+		switchToLive();
 		break;
 	}
 }
@@ -620,7 +626,7 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
     
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
-	if (m_is_pvr || m_timeshift_enabled)
+	if (m_is_pvr || m_timeshift_active)
 	{
 		ptr = this;
 		return 0;
@@ -645,11 +651,6 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 
 RESULT eDVBServicePlay::pause()
 {
-	if (m_timeshift_enabled && !m_timeshift_active)
-	{
-		switchToTimeshift();
-		return 0;
-	}
 	if (!m_is_paused && m_decoder)
 	{
 		m_is_paused = 1;
@@ -677,7 +678,7 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
-	if (m_service_handler.getPVRChannel(pvr_channel))
+	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
 	return pvr_channel->seekTo(m_decode_demux, 0, to);
@@ -692,7 +693,7 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
-	if (m_service_handler.getPVRChannel(pvr_channel))
+	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
 	to *= direction;
@@ -707,7 +708,7 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	if (!m_decode_demux)
 		return -1;
 	
-	if (m_service_handler.getPVRChannel(pvr_channel))
+	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
 	return pvr_channel->getCurrentPosition(m_decode_demux, pos, 1);
@@ -1030,6 +1031,25 @@ RESULT eDVBServicePlay::stopTimeshift()
 	return 0;
 }
 
+int eDVBServicePlay::isTimeshiftActive()
+{
+	return m_timeshift_enabled && m_timeshift_active;
+}
+
+RESULT eDVBServicePlay::activateTimeshift()
+{
+	if (!m_timeshift_enabled)
+		return -1;
+	
+	if (!m_timeshift_active)
+	{
+		switchToTimeshift();
+		return 0;
+	}
+	
+	return -2;
+}
+
 void eDVBServicePlay::updateTimeshiftPids()
 {
 	if (!m_record)
@@ -1090,6 +1110,8 @@ void eDVBServicePlay::switchToLive()
 	m_service_handler_timeshift.free();
 	m_timeshift_active = 0;
 	
+	m_event((iPlayableService*)this, evSeekableStatusChanged);
+	
 	updateDecoder();
 }
 
@@ -1103,6 +1125,8 @@ void eDVBServicePlay::switchToTimeshift()
 	m_decoder = 0;
 	
 	m_timeshift_active = 1;
+
+	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
