@@ -11,6 +11,7 @@ from Components.NimManager import nimmanager
 from Components.ServiceName import ServiceName
 from Components.Clock import Clock
 from Components.EventInfo import EventInfo
+from re import *
 
 import xml.dom.minidom
 
@@ -32,7 +33,7 @@ class ChannelContextMenu(FixedMenu):
 
 		menu = [ ]
 
-		inBouquetRootList = csel.servicelist.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		inBouquetRootList = csel.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
 
@@ -121,7 +122,7 @@ class ChannelSelectionEdit:
 			return self.mutableList
 		serviceHandler = eServiceCenter.getInstance()
 		if not root.valid():
-			root=self.servicelist.getRoot()
+			root=self.getRoot()
 		list = serviceHandler.list(root)
 		if list is not None:
 			return list.startEdit()
@@ -131,7 +132,7 @@ class ChannelSelectionEdit:
 	def startMarkedEdit(self):
 		self.mutableList = self.getMutableList()
 		# add all services from the current list to internal marked set in listboxservicecontent
-		self.bouquetRoot = self.servicelist.getRoot()
+		self.bouquetRoot = self.getRoot()
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
 		self.saved_title = self.instance.getTitle()
 		new_title = self.saved_title
@@ -191,7 +192,7 @@ class ChannelSelectionEdit:
 				if self.servicelist.getCurrentIndex() == currentIndex:
 					currentIndex -= 1
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
-				self.setRoot(self.servicelist.getRoot())
+				self.setRoot(self.getRoot())
 				self.servicelist.moveToIndex(currentIndex)
 
 	def addCurrentServiceToBouquet(self, dest):
@@ -258,6 +259,9 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput()
+
+		self.servicePathTV = [ ]
+		self.servicePathRadio = [ ]
 
 	def appendDVBTypes(self, ref):
 		path = ref.getPath()
@@ -339,42 +343,110 @@ class ChannelSelectionBase(Screen):
 	def moveDown(self):
 		self.servicelist.moveDown()
 
+	def clearPath(self):
+		if self.mode == MODE_RADIO:
+			self.servicePathRadio = [ ]
+		else:
+			self.servicePathTV = [ ]
+
+	def enterPath(self, ref, justSet=False):
+		if self.mode == MODE_RADIO:
+			self.servicePathRadio.append(ref)
+		else:
+			self.servicePathTV.append(ref)
+		self.setRoot(ref, justSet)
+
+	def pathUp(self, justSet=False):
+		if self.mode == MODE_TV:
+			prev = self.servicePathTV.pop()
+			length = len(self.servicePathTV)
+			if length:
+				current = self.servicePathTV[length-1]
+		else:
+			prev = self.servicePathRadio.pop()
+			length = len(self.servicePathRadio)
+			if length:
+				current = self.servicePathRadio[length-1]
+		self.setRoot(current, justSet)
+		if not justSet:
+			self.setCurrentSelection(prev)
+		return prev
+
+	def isBasePathEqual(self, ref):
+		if self.mode == MODE_RADIO and len(self.servicePathRadio) > 1 and self.servicePathRadio[0] == ref:
+			return True
+		elif self.mode == MODE_TV and len(self.servicePathTV) > 1 and self.servicePathTV[0] == ref:
+			return True
+		return False
+
+	def isPrevPathEqual(self, ref):
+		path = self.servicePathRadio
+		if self.mode == MODE_TV:
+			path = self.servicePathTV
+		length = len(path)
+		if length > 1 and path[length-2] == ref:
+			return True
+		return False
+
 	def showAllServices(self):
 		ref = eServiceReference('%s ORDER BY name'%(self.service_types))
-		self.setRoot(ref)
+		self.clearPath()
+		self.enterPath(ref)
 
 	def showSatellites(self):
+		justSet=False
+		prev = None
 		ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
-		self.setRoot(ref, True)
-		serviceHandler = eServiceCenter.getInstance()
-		servicelist = serviceHandler.list(ref)
-		if not servicelist is None:
-			while True:
-				service = servicelist.getNext()
-				if not service.valid(): #check if end of list
-					break
-				orbpos = service.getData(4) >> 16
-				if service.getPath().find("FROM PROVIDER") != -1:
-					service_name = _("Providers")
-				else:
-					service_name = _("Services")
-				try:
-					service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
-					service.setName(service_name) # why we need this cast?
-				except:
-					if orbpos > 1800: # west
-						service.setName("%s (%3.1f" + _("W") + ")" %(str, (0 - (orbpos - 3600)) / 10.0))
+		if self.isBasePathEqual(ref):
+			if self.isPrevPathEqual(ref):
+				justSet=True
+			prev = self.pathUp(justSet)
+		else:
+			justSet=True
+			self.clearPath()
+			self.enterPath(ref, True)
+		if justSet:
+			serviceHandler = eServiceCenter.getInstance()
+			servicelist = serviceHandler.list(ref)
+			if not servicelist is None:
+				while True:
+					service = servicelist.getNext()
+					if not service.valid(): #check if end of list
+						break
+					orbpos = service.getData(4) >> 16
+					if service.getPath().find("FROM PROVIDER") != -1:
+						service_name = _("Providers")
 					else:
-						service.setName("%s (%3.1f" + _("E") + ")" % (str, orbpos / 10.0))
-				self.servicelist.addService(service)
-		self.servicelist.finishFill()
+						service_name = _("Services")
+					try:
+						service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
+						service.setName(service_name) # why we need this cast?
+					except:
+						if orbpos > 1800: # west
+							service.setName("%s (%3.1f" + _("W") + ")" %(str, (0 - (orbpos - 3600)) / 10.0))
+						else:
+							service.setName("%s (%3.1f" + _("E") + ")" % (str, orbpos / 10.0))
+#					print service.toString()
+					self.servicelist.addService(service)
+				self.servicelist.finishFill()
+				if prev is not None:
+#					print "-->", prev.toString()
+					self.setCurrentSelection(prev)
 
 	def showProviders(self):
 		ref = eServiceReference('%s FROM PROVIDERS ORDER BY name'%(self.service_types))
-		self.setRoot(ref)
+		if self.isBasePathEqual(ref):
+			self.pathUp()
+		else:
+			self.clearPath()
+			self.enterPath(ref)
 
 	def showFavourites(self):
-		self.setRoot(self.bouquet_root)
+		if self.isBasePathEqual(self.bouquet_root):
+			self.pathUp()
+		else:
+			self.clearPath()
+			self.enterPath(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
 		char = self.numericalTextInput.getKey(number)
@@ -398,6 +470,11 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.getCurrent()
 
 	def setCurrentSelection(self, service):
+		servicepath = service.getPath()
+		pos = servicepath.find(" FROM BOUQUET")
+		if pos != -1:
+			servicepath = '(type == 1)' + servicepath[pos:]
+			service.setPath(servicepath)
 		self.servicelist.setCurrent(service)
 
 	def cancel(self):
@@ -435,6 +512,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		config.tv = ConfigSubsection();
 		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
+		config.tv.prevservice = configElement("config.tv.prevservice", configText, "", 0);
+		config.tv.prevroot = configElement("config.tv.prevroot", configText, "", 0);
 
 		class ChannelActionMap(NumberActionMap):
 			def action(self, contexts, action):
@@ -473,16 +552,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 
 	def onCreate(self):
 		self.setTvMode()
-		lastroot=eServiceReference(config.tv.lastroot.value)
-		if lastroot.valid():
-			self.setRoot(lastroot)
-		else:
-			self.showFavourites()
-			self.saveRoot(self.getRoot())
-
+		self.servicePathTV = [ ]
+		self.restoreRoot()
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
-			self.servicelist.setCurrent(lastservice)
+			self.setCurrentSelection(lastservice)
 			self.session.nav.playService(lastservice)
 
 	def onShow(self):
@@ -505,7 +579,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if self.movemode:
 			self.toggleMoveMarked()
 		elif (ref.flags & 7) == 7:
-			self.setRoot(ref)
+			self.enterPath(ref)
 		elif self.bouquet_mark_edit:
 			self.doMark()
 		else:
@@ -518,14 +592,37 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 
 	#called from infoBar and channelSelected
 	def zap(self):
-		self.session.nav.playService(self.getCurrentSelection())
-		self.saveRoot(self.getRoot())
+		if self.session.nav.getCurrentlyPlayingServiceReference() != self.getCurrentSelection():
+			self.session.nav.playService(self.getCurrentSelection())
+		self.saveRoot()
 		self.saveChannel()
 
-	def saveRoot(self, root):
-		if root is not None:
-			config.tv.lastroot.value = root.toString()
+	def saveRoot(self):
+		path = ''
+		for i in self.servicePathTV:
+			path += i.toString()
+			path += ';'
+		if config.tv.prevroot.value != config.tv.lastroot.value:
+			config.tv.prevroot.value = config.tv.lastroot.value
+			config.tv.prevroot.save()
+		if len(path) and path != config.tv.lastroot.value:
+			config.tv.lastroot.value = path
 			config.tv.lastroot.save()
+
+	def restoreRoot(self):
+		self.servicePathTV = [ ]
+		re = compile('.+?;')
+		tmp = re.findall(config.tv.lastroot.value)
+		cnt = 0
+		for i in tmp:
+			self.servicePathTV.append(eServiceReference(i[:len(i)-1]))
+			cnt += 1
+		if cnt:
+			path = self.servicePathTV.pop()
+			self.enterPath(path)
+		else:
+			self.showFavourites()
+			self.saveRoot()
 
 	def saveChannel(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -533,17 +630,37 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			refstr = ref.toString()
 		else:
 			refstr = ""
-		config.tv.lastservice.value = refstr
-		config.tv.lastservice.save()
+		if refstr != config.tv.lastservice.value:
+			config.tv.prevservice.value = config.tv.lastservice.value
+			config.tv.prevservice.save()
+			config.tv.lastservice.value = refstr
+			config.tv.lastservice.save()
+
+	def recallPrevService(self):
+		if len(config.tv.prevservice.value) and len(config.tv.prevroot.value):
+			if config.tv.lastroot.value != config.tv.prevroot.value:
+				tmp = config.tv.lastroot.value
+				config.tv.lastroot.value = config.tv.prevroot.value
+				config.tv.lastroot.save()
+				config.tv.prevroot.value = tmp
+				config.tv.prevroot.save()
+				self.restoreRoot()
+			if config.tv.lastservice.value != config.tv.prevservice.value:
+				tmp = config.tv.lastservice.value
+				config.tv.lastservice.value = config.tv.prevservice.value
+				config.tv.lastservice.save()
+				config.tv.prevservice.value = tmp
+				config.tv.prevservice.save()
+				lastservice=eServiceReference(config.tv.lastservice.value)
+				self.session.nav.playService(lastservice)
+				self.setCurrentSelection(lastservice)
 
 	def cancel(self):
 		self.close(None)
-		lastroot=eServiceReference(config.tv.lastroot.value)
+		self.restoreRoot()
 		lastservice=eServiceReference(config.tv.lastservice.value)
-		if lastroot.valid() and self.getRoot() != lastroot:
-			self.setRoot(lastroot)
 		if lastservice.valid() and self.getCurrentSelection() != lastservice:
-			self.servicelist.setCurrent(lastservice)
+			self.setCurrentSelection(lastservice)
 
 class ServiceInfoWindow(Screen):
 	def __init__(self, session):
@@ -597,14 +714,33 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 			})
 		self["actions"].csel = self
 
-	def onCreate(self):
-		self.setRadioMode()
-		lastroot=eServiceReference(config.radio.lastroot.value)
-		if lastroot.valid():
-			self.setRoot(lastroot)
+	def saveRoot(self):
+		path = ''
+		for i in self.servicePathRadio:
+			path += i.toString()
+			path += ';'
+		if len(path) and path != config.radio.lastroot.value:
+			config.radio.lastroot.value = path
+			config.radio.lastroot.save()
+
+	def restoreRoot(self):
+		self.servicePathRadio = [ ]
+		re = compile('.+?;')
+		tmp = re.findall(config.radio.lastroot.value)
+		cnt = 0
+		for i in tmp:
+			self.servicePathRadio.append(eServiceReference(i[:len(i)-1]))
+			cnt += 1
+		if cnt:
+			path = self.servicePathRadio.pop()
+			self.enterPath(path)
 		else:
 			self.showFavourites()
-			self.saveRoot(self.getRoot())
+			self.saveRoot()
+
+	def onCreate(self):
+		self.setRadioMode()
+		self.restoreRoot()
 		lastservice=eServiceReference(config.radio.lastservice.value)
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
@@ -617,17 +753,17 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 		if self.movemode:
 			self.toggleMoveMarked()
 		elif (ref.flags & 7) == 7:
-			self.setRoot(ref)
+			self.enterPath(ref)
 		elif self.bouquet_mark_edit:
 			self.doMark()
 		else:
-			self.session.nav.playService(ref)
-			self.servicelist.setPlayableIgnoreService(ref)
-			config.radio.lastservice.value = ref.toString()
-			config.radio.lastservice.save()
-			config.radio.lastroot.value = self.getRoot().toString()
-			config.radio.lastroot.save()
-		
+			if self.session.nav.getCurrentlyPlayingServiceReference() != ref:
+				self.session.nav.playService(ref)
+				self.servicelist.setPlayableIgnoreService(ref)
+				config.radio.lastservice.value = ref.toString()
+				config.radio.lastservice.save()
+			self.saveRoot()
+
 	def setRoot(self, root, justSet=False):
 		self.setRootBase(root, justSet)
 
@@ -678,7 +814,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
 		if (ref.flags & 7) == 7:
-			self.setRoot(ref)
+			self.enterPath(ref)
 		else:
 			ref = self.getCurrentSelection()
 			self.close(ref)
