@@ -39,8 +39,6 @@ eRFmod *eRFmod::getInstance()
 
 void eRFmod::setFunction(int val)		//0=Enable 1=Disable
 {
-	int myval = !val;
-
 	ioctl(fd, IOCTL_SET_STANDBY, &val);
 }
 
