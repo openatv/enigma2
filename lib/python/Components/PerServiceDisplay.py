@@ -1,8 +1,9 @@
 from GUIComponent import *
 from VariableText import *
+from VariableValue import *
 
 from enigma import pNavigation
-from enigma import eLabel
+from enigma import eLabel, eSlider
 
 class PerServiceDisplay(GUIComponent, VariableText):
 	"""Mixin for building components which display something which changes on navigation events, for example "service name" """
@@ -28,3 +29,21 @@ class PerServiceDisplay(GUIComponent, VariableText):
 		g = eLabel(parent)
 		return g
 
+
+class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceDisplay):
+	def __init__(self, navcore, eventmap):
+		GUIComponent.__init__(self)
+		VariableValue.__init__(self)
+		self.eventmap = eventmap
+		self.navcore = navcore
+		self.navcore.event.append(self.event)
+
+		# start with stopped state, so simulate that
+		self.event(pNavigation.evStopService)
+
+
+	def createWidget(self, parent):
+		# by default, we use a label to display our data.
+		self.g = eSlider(parent)
+		return self.g
+	

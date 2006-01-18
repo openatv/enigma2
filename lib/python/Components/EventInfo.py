@@ -1,6 +1,6 @@
 from PerServiceDisplay import *
 from time import strftime
-from time import localtime
+from time import localtime, time
 
 from enigma import iServiceInformationPtr, eServiceEventPtr
 
@@ -31,15 +31,36 @@ class EventInfo(PerServiceDisplay):
 			if info is not None: 
 				ev = info.getEvent(self.now_or_next & 1)
 				if ev is not None:
-					if (self.Now_Duration <= self.now_or_next <= self.Next_Duration):
-						self.setText("%d min" % (ev.getDuration() / 60))
-					if (self.Now_StartTime <= self.now_or_next <= self.Next_StartTime):
-						self.setText(strftime("%H:%M", localtime(ev.getBeginTime())))
-					if (self.Now <= self.now_or_next <= self.Next):
-						self.setText(ev.getEventName())
+					self.update(ev)
+
+
+	def update(self, ev):
+		if (self.Now_Duration <= self.now_or_next <= self.Next_Duration):
+			self.setText("%d min" % (ev.getDuration() / 60))
+		if (self.Now_StartTime <= self.now_or_next <= self.Next_StartTime):
+			self.setText(strftime("%H:%M", localtime(ev.getBeginTime())))
+		if (self.Now <= self.now_or_next <= self.Next):
+			self.setText(ev.getEventName())		
 
 	def stopEvent(self):
 		self.setText(
 			#(_("waiting for event data..."), "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
 			("", "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
 
+
+class EventInfoProgress(PerServiceDisplayProgress, EventInfo):
+	def __init__(self, navcore, now_or_next):
+		self.now_or_next = now_or_next
+		PerServiceDisplayProgress.__init__(self, navcore, 
+			{ 
+				pNavigation.evUpdatedEventInfo: self.ourEvent, 
+				pNavigation.evStopService: self.stopEvent 
+			})
+
+	def update(self, ev):
+		self.g.setRange(0, ev.getDuration())
+		progress = int(time() - ev.getBeginTime())
+		
+		self.setValue(progress)
+		
+		
