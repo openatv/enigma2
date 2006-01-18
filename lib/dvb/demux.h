@@ -32,7 +32,7 @@ private:
 	friend class eDVBAudio;
 	friend class eDVBVideo;
 	friend class eDVBPCR;
-	friend class eDVBVText;
+	friend class eDVBTText;
 	friend class eDVBTSRecorder;
 	friend class eDVBCAService;
 	Signal1<void, int> m_event;

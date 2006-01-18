@@ -301,9 +301,9 @@ eDVBPCR::~eDVBPCR()
 		::close(m_fd_demux);
 }
 
-DEFINE_REF(eDVBVText);
+DEFINE_REF(eDVBTText);
 
-eDVBVText::eDVBVText(eDVBDemux *demux): m_demux(demux)
+eDVBTText::eDVBTText(eDVBDemux *demux): m_demux(demux)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -316,7 +316,7 @@ eDVBVText::eDVBVText(eDVBDemux *demux): m_demux(demux)
 		eWarning("%s: %m", filename);
 }
 
-int eDVBVText::startPid(int pid)
+int eDVBTText::startPid(int pid)
 {
 	if (m_fd_demux < 0)
 		return -1;
@@ -340,13 +340,13 @@ int eDVBVText::startPid(int pid)
 	return 0;
 }
 
-void eDVBVText::stop()
+void eDVBTText::stop()
 {
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
 		eWarning("video: DMX_STOP: %m");
 }
 
-eDVBVText::~eDVBVText()
+eDVBTText::~eDVBTText()
 {
 	if (m_fd_demux >= 0)
 		::close(m_fd_demux);
@@ -359,9 +359,13 @@ int eTSMPEGDecoder::setState()
 	int res = 0;
 	
 	int noaudio = m_is_sm || m_is_ff || m_is_trickmode;
-	
+	int nott = noaudio; /* actually same conditions */
+
 	if ((noaudio && m_audio) || (!m_audio && !noaudio))
 		m_changed |= changeAudio;
+	
+	if ((nott && m_text) || (!m_text && !nott))
+		m_changed |= changeText;
 	
 #if HAVE_DVB_API_VERSION < 3
 	if (m_changed & changeAudio && m_audio)
@@ -472,9 +476,9 @@ int eTSMPEGDecoder::setState()
 		if (m_text)
 			m_text->stop();
 		m_text = 0;
-		if ((m_textpid >= 0) && (m_textpid < 0x1FFF))
+		if ((m_textpid >= 0) && (m_textpid < 0x1FFF) && !nott)
 		{
-			m_text = new eDVBVText(m_demux);
+			m_text = new eDVBTText(m_demux);
 			if (m_text->startPid(m_textpid))
 			{
 				eWarning("text: startpid failed!");
