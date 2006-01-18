@@ -10,7 +10,7 @@ from ChannelSelection import ChannelSelection, BouquetSelector
 from Components.Pixmap import Pixmap, PixmapConditional
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
-from Components.EventInfo import EventInfo
+from Components.EventInfo import EventInfo, EventInfoProgress
 
 from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
