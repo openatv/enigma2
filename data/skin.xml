@@ -222,7 +222,7 @@
 		<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute" zPosition="-1">
 			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
 		</screen>
-		<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish">
+		<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish" zPosition="-10" >
 			<widget name="transparent" zPosition="-1" position="0,0" size="100,107" backgroundColor="transparent" />
 			<widget name="Dishpixmap" pixmap="/usr/share/enigma2/dish.png" position="0,0" size="100,107" />
 		</screen>
