@@ -749,6 +749,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	m_stateChanged(this);
 	
 	m_pvr_thread = new eFilePushThread();
+	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
