@@ -379,7 +379,7 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 	if (clip.rects.empty())
 		return;
 		
-	__u32 col;
+	__u32 col = 0;
 	if (surface->bpp == 8)
 	{
 		srf8 = (__u8*)surface->data;
@@ -438,7 +438,7 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 			do
 			{
 				++a;
-				if (a == clip.rects.size())
+				if ((unsigned int)a == clip.rects.size())
 					a = 0;
 				if (a == lasthit)
 				{
