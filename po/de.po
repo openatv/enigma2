@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-15 16:28+0100\n"
+"POT-Creation-Date: 2006-01-18 21:20+0100\n"
 "PO-Revision-Date: 2005-12-14 03:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -24,8 +24,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:91
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:93
+#: ../lib/python/Screens/TimerEntry.py:96
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgstr "Abbruch"
 msgid "Capacity: "
 msgstr "Kapazität: "
 
-#: ../lib/python/Screens/TimerEntry.py:175 ../data/
+#: ../lib/python/Screens/TimerEntry.py:177 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -175,7 +175,7 @@ msgstr "Kanal"
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:183
+#: ../lib/python/Screens/InfoBarGenerics.py:123
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -215,7 +215,7 @@ msgstr "Löschen"
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen."
 
-#: ../lib/python/Screens/TimerEntry.py:136
+#: ../lib/python/Screens/TimerEntry.py:138
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -263,7 +263,7 @@ msgstr "Aus"
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:857
+#: ../lib/python/Screens/InfoBarGenerics.py:799
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -310,11 +310,11 @@ msgstr "Ost"
 msgid "Enable"
 msgstr "Ein"
 
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:172
 msgid "End"
 msgstr "Ende"
 
-#: ../lib/python/Screens/TimerEntry.py:173
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "EndTime"
 msgstr "Endzeit"
 
@@ -340,12 +340,12 @@ msgstr "Favoriten"
 #: ../lib/python/Screens/ScanSetup.py:87
 #: ../lib/python/Screens/ScanSetup.py:115
 #: ../lib/python/Screens/ScanSetup.py:125
-#: ../lib/python/Screens/TimerEntry.py:143
+#: ../lib/python/Screens/TimerEntry.py:145
 msgid "Frequency"
 msgstr "Frequenz"
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:157
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Friday"
 msgstr "Freitag"
 
@@ -435,12 +435,12 @@ msgstr "Modell:"
 msgid "Modulation"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:91
 msgid "Mon-Fri"
 msgstr "Montag bis Freitag"
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:153
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Monday"
 msgstr "Montag"
 
@@ -452,7 +452,7 @@ msgstr "Filmauswahl"
 msgid "N/A"
 msgstr "Nicht verfügbar"
 
-#: ../lib/python/Screens/TimerEntry.py:135
+#: ../lib/python/Screens/TimerEntry.py:137
 msgid "Name"
 msgstr ""
 
@@ -476,7 +476,7 @@ msgstr ""
 msgid "No"
 msgstr "Nein"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:853
+#: ../lib/python/Screens/InfoBarGenerics.py:795
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Keine Festplatte gefunden oder\n"
@@ -587,7 +587,7 @@ msgstr "Provider"
 msgid "Providers"
 msgstr "Anbieter"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:906
+#: ../lib/python/Screens/InfoBarGenerics.py:848
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -604,12 +604,12 @@ msgstr "Satellit"
 msgid "Satellites"
 msgstr "Satelliten"
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:158
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Saturday"
 msgstr "Samstag"
 
-#: ../lib/python/Screens/TimerEntry.py:213
+#: ../lib/python/Screens/TimerEntry.py:215
 msgid "Select channel to record from"
 msgstr "Kanal auswahlen, von dem aufgenommen werden soll"
 
@@ -647,15 +647,15 @@ msgstr "Sockel "
 msgid "South"
 msgstr "Süd"
 
-#: ../lib/python/Screens/TimerEntry.py:165
+#: ../lib/python/Screens/TimerEntry.py:167
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:859
+#: ../lib/python/Screens/InfoBarGenerics.py:801
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "StartTime"
 msgstr "Startzeit"
 
@@ -671,12 +671,12 @@ msgstr "Das Abspielen dieses Films beenden?"
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:911 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:853 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:159
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "Sunday"
 msgstr "Sonntag"
 
@@ -697,16 +697,16 @@ msgstr ""
 msgid "Threshold"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: ../lib/python/Screens/TimerEntry.py:137
+#: ../lib/python/Screens/TimerEntry.py:139
 msgid "Timer Type"
 msgstr "Timer-Art"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:759
+#: ../lib/python/Screens/InfoBarGenerics.py:701
 msgid "Timeshift not possible!"
 msgstr ""
 
@@ -726,8 +726,8 @@ msgstr "Toneburst A/B"
 msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:154
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:156
 msgid "Tuesday"
 msgstr "Dienstag"
 
@@ -800,12 +800,12 @@ msgstr ""
 msgid "W"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:97
-#: ../lib/python/Screens/TimerEntry.py:155
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:157
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: ../lib/python/Screens/TimerEntry.py:150
+#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Weekday"
 msgstr "Wochentag"
 
@@ -867,7 +867,7 @@ msgstr ""
 msgid "circular right"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:91
 msgid "daily"
 msgstr "täglich"
 
@@ -923,12 +923,12 @@ msgstr "Abspielmodus verlassen..."
 msgid "manual"
 msgstr "manuell"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:320
+#: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "next channel"
 msgstr "nächster Kanal"
 
 #: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/TimerEntry.py:101
+#: ../lib/python/Screens/TimerEntry.py:103
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -958,11 +958,11 @@ msgstr "aus"
 msgid "on"
 msgstr "an"
 
-#: ../lib/python/Screens/TimerEntry.py:85
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "once"
 msgstr "einmalig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:321
+#: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "previous channel"
 msgstr "vorheriger Kanal"
 
@@ -970,7 +970,7 @@ msgstr "vorheriger Kanal"
 msgid "remove service"
 msgstr "Kanal löschen"
 
-#: ../lib/python/Screens/TimerEntry.py:85
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "repeated"
 msgstr "wiederholend"
 
@@ -1012,7 +1012,7 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:363
+#: ../lib/python/Screens/InfoBarGenerics.py:303
 msgid "show EPG..."
 msgstr "zeige EPG..."
 
@@ -1024,7 +1024,7 @@ msgstr ""
 msgid "unknown service"
 msgstr "unbekannter Service"
 
-#: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:91
 msgid "user defined"
 msgstr "benutzerdefiniert"
 
@@ -1032,12 +1032,12 @@ msgstr "benutzerdefiniert"
 msgid "vertical"
 msgstr "vertikal"
 
-#: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:91
 msgid "weekly"
 msgstr "wöchentlich"
 
 #: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/TimerEntry.py:101
+#: ../lib/python/Screens/TimerEntry.py:103
 #: ../lib/python/Components/Network.py:146
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
@@ -1082,6 +1082,10 @@ msgstr ""
 #: ../data/
 msgid "TV System"
 msgstr "Fernsehnorm"
+
+#: ../data/
+msgid "#ffffff"
+msgstr ""
 
 #: ../data/
 msgid "Deep Standby"
@@ -1136,8 +1140,8 @@ msgid "Sat / Dish Setup"
 msgstr "Sat-/Schüsseleinstellungen"
 
 #: ../data/
-msgid "#ffffff"
-msgstr ""
+msgid "Visualize positioner movement"
+msgstr "Rotorbewegungen anzeigen"
 
 #: ../data/
 msgid "Mute"
@@ -1256,7 +1260,7 @@ msgid "Timer"
 msgstr ""
 
 #: ../data/
-msgid "Timer Editor"
+msgid "Yes, view the tutorial"
 msgstr ""
 
 #: ../data/
@@ -1375,10 +1379,6 @@ msgid "Eventview"
 msgstr "Programmübersicht"
 
 #: ../data/
-msgid "Yes, view the tutorial"
-msgstr ""
-
-#: ../data/
 msgid "Keymap"
 msgstr "Tastenlayout"
 
@@ -1403,8 +1403,8 @@ msgid "VCR Switch"
 msgstr "Videorekorderumschaltung"
 
 #: ../data/
-msgid "Parental Lock"
-msgstr "Jugendschutz"
+msgid "WSS on 4:3"
+msgstr ""
 
 #: ../data/
 msgid "Skip confirmations"
@@ -1431,8 +1431,8 @@ msgid "Delay"
 msgstr "Verzögerung"
 
 #: ../data/
-msgid "WSS"
-msgstr ""
+msgid "Select HDD"
+msgstr "Festplattenwahl"
 
 #: ../data/
 msgid "Setup Lock"
@@ -1510,8 +1510,8 @@ msgid "Finetune"
 msgstr "Feineinst."
 
 #: ../data/
-msgid "Select HDD"
-msgstr "Festplattenwahl"
+msgid "Timer Editor"
+msgstr ""
 
 #: ../data/
 msgid "AGC:"
@@ -1544,6 +1544,10 @@ msgstr ""
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
+#: ../data/
+msgid "Parental Lock"
+msgstr "Jugendschutz"
 
 #~ msgid "Recording"
 #~ msgstr "Aufnahmen"

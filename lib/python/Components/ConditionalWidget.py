@@ -65,10 +65,6 @@ class ConditionalWidget(Widget):
 				self.conditionalFunction = None
 				self.activateCondition(False)
 			
-
-
-			
-			
 import time
 
 class BlinkingWidget(Widget):
@@ -93,10 +89,12 @@ class BlinkingWidget(Widget):
 				self.showWidget()
 			
 	def startBlinking(self):
+		print "****************************** Start blinking"
 		self.blinking = True
 		self.timer.start(self.blinktime)
 		
 	def stopBlinking(self):
+		print "****************************** Stop blinking"
 		self.blinking = False
 		if (self.state == self.SHOWN):
 			self.hideWidget()
