@@ -22,7 +22,7 @@ typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
 class eDVBCAService: public Object
 {
 	eServiceReferenceDVB m_service;
-	uint8_t m_used_demux[10];
+	uint8_t m_used_demux[32];
 	unsigned int m_prev_build_hash;
 
 	int m_sock, m_clilen; 
@@ -37,8 +37,8 @@ class eDVBCAService: public Object
 	eDVBCAService();
 	~eDVBCAService();
 public:
-	static RESULT register_service( const eServiceReferenceDVB &ref, int demux_num, eDVBCAService *&caservice );
-	static RESULT unregister_service( const eServiceReferenceDVB &ref, int demux_num, eTable<ProgramMapSection> *ptr );
+	static RESULT register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice );
+	static RESULT unregister_service( const eServiceReferenceDVB &ref, int demux_nums[2], eTable<ProgramMapSection> *ptr );
 	void buildCAPMT(eTable<ProgramMapSection> *ptr);
 };
 
@@ -68,6 +68,7 @@ class eDVBServicePMTHandler: public Object
 	void PATready(int error);
 	
 	int m_use_decode_demux;
+	uint8_t m_decode_demux_num;
 	
 public:
 	eDVBServicePMTHandler();
