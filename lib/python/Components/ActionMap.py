@@ -6,15 +6,40 @@ class ActionMap:
 		self.contexts = contexts
 		self.prio = prio
 		self.p = eActionMapPtr()
+		self.bound = False
+		self.exec_active = False
+		self.enabled = True
 		eActionMap.getInstance(self.p)
+	
+	def setEnabled(self, enabled):
+		self.enabled = enabled
+		self.checkBind()
+
+	def doBind(self):
+		if not self.bound:
+			for ctx in self.contexts:
+				self.p.bindAction(ctx, self.prio, self.action)
+			self.bound = True
+
+	def doUnbind(self):
+		if self.bound:
+			for ctx in self.contexts:
+				self.p.unbindAction(ctx, self.action)
+			self.bound = False
+
+	def checkBind(self):
+		if self.exec_active and self.enabled:
+			self.doBind()
+		else:
+			self.doUnbind()
 
 	def execBegin(self):
-		for ctx in self.contexts:
-			self.p.bindAction(ctx, self.prio, self.action)
+		self.exec_active = True
+		self.checkBind()
 
 	def execEnd(self):
-		for ctx in self.contexts:
-			self.p.unbindAction(ctx, self.action)
+		self.exec_active = False
+		self.checkBind()
 
 	def action(self, context, action):
 		print " ".join(("action -> ", context, action))
