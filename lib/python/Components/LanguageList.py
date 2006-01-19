@@ -26,7 +26,6 @@ def LanguageEntryComponent(file, name):
 	
 	return res
 
-
 class LanguageList(HTMLComponent, GUIComponent, MenuList):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
@@ -39,4 +38,3 @@ class LanguageList(HTMLComponent, GUIComponent, MenuList):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
 		self.instance.setItemHeight(50)
-

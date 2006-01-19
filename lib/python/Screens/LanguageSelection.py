@@ -39,7 +39,7 @@ class LanguageSelection(Screen):
 			self.list.append(LanguageEntryComponent("en", _("English")))
 		else:
 			for x in language.lang:
-				self.list.append(LanguageEntryComponent(x[2], _(x[0])))
+				self.list.append(LanguageEntryComponent(x[3].lower(), _(x[0])))
 		
 		self["list"].l.setList(self.list)
 
