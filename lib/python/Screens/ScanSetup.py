@@ -181,7 +181,7 @@ class ScanSetup(Screen):
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 9999)))
 
 			# terrestial
-			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (10000, 14000)))
+			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (100, 900)))
 			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, (_("off"), _("on"), _("Auto")))
 			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 3, ("8MHz", "7MHz", "6MHz", _("Auto")))
 			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, (_("None"), "1/2", "2/3", "3/4", "5/6", "7/8", _("Auto")))
@@ -245,18 +245,17 @@ class ScanSetup(Screen):
 		tlist.append(parm)
 
 	# FIXME use correct parameters
-	def addTerTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position):
-		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
-		print "orbpos: " + str(orbital_position)
+	def addTerTransponder(self, tlist, frequency):
 		parm = eDVBFrontendParametersTerrestrial()
-		parm.frequency = frequency * 1000
-		parm.symbol_rate = symbol_rate * 1000
-		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti	
-		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
-		#parm.fec = 6					# AUTO
-		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
-		#parm.inversion = 2 		#AUTO
-		parm.orbital_position = int(orbital_position)
+		
+		parm.frequency = frequency * 1000000
+		parm.inversion = 2  # eDVBFrontendParametersTerrestrial.Inversion.Unknown;
+		parm.bandwidth = 0  #eDVBFrontendParametersTerrestrial.Bandwidth.Bw8MHz;
+		parm.code_rate_HP = parm.code_rate_LP = 6 #eDVBFrontendParametersTerrestrial.FEC.fAuto;
+		parm.modulation = 1 #eDVBFrontendParametersTerrestrial.Modulation.QAM16;
+		parm.transmission_mode = 1 # eDVBFrontendParametersTerrestrial.TransmissionMode.TM8k;
+		parm.guard_interval = 0 # eDVBFrontendParametersTerrestrial.GuardInterval.GI_1_32;
+		parm.hierarchy = 0 #eDVBFrontendParametersTerrestrial.Hierarchy.HNone;
 		tlist.append(parm)
 
 	def keyGo(self):
@@ -277,12 +276,8 @@ class ScanSetup(Screen):
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
 			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
-				self.addTerTransponder(tlist, config.scan.sat.frequency.value[0],
-											  config.scan.sat.symbolrate.value[0],
-											  config.scan.sat.polarization.value,
-											  config.scan.sat.fec.value,
-											  config.scan.sat.inversion.value,
-											  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+				self.addTerTransponder(tlist, 
+											  config.scan.ter.frequency.value[0])
 
 		if (config.scan.type.value == 1): # single sat scan
 			getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
