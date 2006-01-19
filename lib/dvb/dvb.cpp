@@ -304,8 +304,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		if(channelid==cache_chan->getChannelID())
 		{
 			eDebug("use cached_channel");
-			channel =  m_cached_channel;
-			m_cached_channel->recheckFrontendState();
+			channel = m_cached_channel;
 			return 0;
 		}
 		m_cached_channel=0;
