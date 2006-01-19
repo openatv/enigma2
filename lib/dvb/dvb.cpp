@@ -600,7 +600,7 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 		} else
 			/* on unmanaged channels, we don't do this. the client will do this. */
 		{
-			eDebug("OURSTATE: lost lock, unavailable now.")
+			eDebug("OURSTATE: lost lock, unavailable now.");
 			ourstate = state_unavailable;
 		}
 	} else if (state == iDVBFrontend::stateFailed)
