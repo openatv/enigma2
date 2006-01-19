@@ -16,10 +16,13 @@ class Input(HTMLComponent, GUIComponent, VariableText):
 		self.update()
 
 	def update(self):
-		self.setText(self.text[0:self.currPos] + "_" + self.text[self.currPos] + "_" + self.text[self.currPos + 1:])
+		self.setMarkedPos(self.currPos)
+		self.setText(self.text)
+		#self.setText(self.text[0:self.currPos] + "_" + self.text[self.currPos] + "_" + self.text[self.currPos + 1:])
+
 	
 	def createWidget(self, parent):
-		return eLabel(parent)
+		return eLabel(parent, self.currPos)
 	
 	def getSize(self):
 		s = self.instance.calculateSize()
