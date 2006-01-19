@@ -582,6 +582,7 @@ RESULT eDVBServicePlay::start()
 		   to start recording from the data demux. */
 	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr);
 	m_event(this, evStart);
+	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
 }
 
@@ -598,6 +599,9 @@ RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &ev
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
+		/* note: we check for timeshift to be enabled,
+		   not neccessary active. if you pause when timeshift
+		   is not active, you should activate it when unpausing */
 	if ((!m_is_pvr) && (!m_timeshift_enabled))
 	{
 		ptr = 0;
