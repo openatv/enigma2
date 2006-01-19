@@ -37,13 +37,18 @@ int eLabel::event(int event, void *data, void *data2)
 			para->setFont(m_font);
 			para->renderString(m_text, 0);
 			para->realign(eTextPara::dirLeft);
+			int glyphs = para->size();
 
-			para->setGlyphFlag(m_pos, GS_INVERT);
-			eRect bbox;
-			bbox = para->getGlyphBBox(m_pos);
-			printf("BBOX: %d %d %d %d\n", bbox.left(), 0, bbox.width(), size().height());
-			bbox = eRect(bbox.left(), 0, bbox.width(), size().height());
-			painter.fill(bbox);
+			if ((m_pos < 0) || (m_pos >= glyphs))
+				eWarning("glyph index %d in eLabel out of bounds!");
+			else
+			{
+				para->setGlyphFlag(m_pos, GS_INVERT);
+				eRect bbox;
+				bbox = para->getGlyphBBox(m_pos);
+				bbox = eRect(bbox.left(), 0, bbox.width(), size().height());
+				painter.fill(bbox);
+			}
 
 			painter.renderPara(para, ePoint(0, 0));
 			return 0;

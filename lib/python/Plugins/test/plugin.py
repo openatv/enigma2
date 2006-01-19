@@ -18,7 +18,7 @@ class Test(Screen):
 		self.skin = Test.skin
 		Screen.__init__(self, session)
 
-		self["text"] = Input("Please press OK!")
+		self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
 		{
