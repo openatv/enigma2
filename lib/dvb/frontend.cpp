@@ -400,9 +400,7 @@ void eDVBFrontend::feEvent(int w)
 			else
 			{
 				state = stateLostLock;
-
-				if (m_state != stateLostLock)
-					eDebug("FIXME: we lost lock, so we might have to retune.");
+				m_data[0] = m_data[1] = m_data[2] = -1; // reset diseqc
 			}
 		}
 		if (m_state != state)

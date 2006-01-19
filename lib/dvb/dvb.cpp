@@ -591,8 +591,9 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 		ourstate = state_tuning;
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
-		eDebug("OURSTATE: lost lock");
-		ourstate = state_unavailable;
+		eDebug("OURSTATE: lost lock.. retune");
+		ourstate = state_tuning;
+		m_frontend->get().tune(*m_feparm);
 	} else if (state == iDVBFrontend::stateFailed)
 	{
 		eDebug("OURSTATE: failed");
@@ -652,6 +653,7 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 			/* if tuning fails, shutdown the channel immediately. */
 	int res;
 	res = m_frontend->get().tune(*feparm);
+	m_feparm = feparm;
 	
 	if (res)
 	{
