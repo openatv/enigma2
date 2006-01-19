@@ -591,9 +591,18 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 		ourstate = state_tuning;
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
-		eDebug("OURSTATE: lost lock.. retune");
-		ourstate = state_tuning;
-		m_frontend->get().tune(*m_feparm);
+		if (m_feparm)
+		{
+			eDebug("OURSTATE: lost lock.. retune");
+			ourstate = state_tuning;
+			m_frontend->get().tune(*m_feparm);
+		}
+		else // this case happens in scan.. in scan setChannel is not used .. so m_feparm is NULL
+		// but its okay.. in scan we dont like to retune
+		{
+			eDebug("OURSTATE: lost lock.. but no feparm avail.. set state_unavailable");
+			ourstate = state_unavailable;
+		}
 	} else if (state == iDVBFrontend::stateFailed)
 	{
 		eDebug("OURSTATE: failed");
