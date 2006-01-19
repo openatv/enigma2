@@ -219,43 +219,78 @@ class RecordTimer(timer.Timer):
 			self.record(createTimer(timer))
 	
 	def saveTimer(self):
-		doc = xml.dom.minidom.Document()
-		root_element = doc.createElement('timers')
-		doc.appendChild(root_element)
-		root_element.appendChild(doc.createTextNode("\n"))
+		#doc = xml.dom.minidom.Document()
+		#root_element = doc.createElement('timers')
+		#doc.appendChild(root_element)
+		#root_element.appendChild(doc.createTextNode("\n"))
 		
-		for timer in self.timer_list + self.processed_timers:
+		#for timer in self.timer_list + self.processed_timers:
 			# some timers (instant records) don't want to be saved.
 			# skip them
-			if timer.dontSave:
-				continue
-			t = doc.createTextNode("\t")
-			root_element.appendChild(t)
-			t = doc.createElement('timer')
-			t.setAttribute("begin", str(int(timer.begin)))
-			t.setAttribute("end", str(int(timer.end)))
-			t.setAttribute("serviceref", str(timer.service_ref))
-			t.setAttribute("repeated", str(timer.repeated))			
-			t.setAttribute("name", timer.name)
-			t.setAttribute("description", timer.description)
-			t.setAttribute("eit", str(timer.eit))
+			#if timer.dontSave:
+				#continue
+			#t = doc.createTextNode("\t")
+			#root_element.appendChild(t)
+			#t = doc.createElement('timer')
+			#t.setAttribute("begin", str(int(timer.begin)))
+			#t.setAttribute("end", str(int(timer.end)))
+			#t.setAttribute("serviceref", str(timer.service_ref))
+			#t.setAttribute("repeated", str(timer.repeated))			
+			#t.setAttribute("name", timer.name)
+			#t.setAttribute("description", timer.description)
+			#t.setAttribute("eit", str(timer.eit))
+			
+			#for time, code, msg in timer.log_entries:
+				#t.appendChild(doc.createTextNode("\t\t"))
+				#l = doc.createElement('log')
+				#l.setAttribute("time", str(time))
+				#l.setAttribute("code", str(code))
+				#l.appendChild(doc.createTextNode(msg))
+				#t.appendChild(l)
+				#t.appendChild(doc.createTextNode("\n"))
+
+			#root_element.appendChild(t)
+			#t = doc.createTextNode("\n")
+			#root_element.appendChild(t)
+
+
+		#file = open(self.Filename, "w")
+		#doc.writexml(file)
+		#file.write("\n")
+		#file.close()
+
+		list = []
+
+		list.append('<?xml version="1.0" ?>\n')
+		list.append('<timers>\n')
+		
+		for timer in self.timer_list + self.processed_timers:
+			list.append('<timer')
+			list.append(' begin="' + str(int(timer.begin)) + '"')
+			list.append(' end="' + str(int(timer.end)) + '"')
+			list.append(' serviceref="' + str(timer.service_ref) + '"')
+			list.append(' repeated="' + str(int(timer.repeated)) + '"')
+			list.append(' name="' + str(timer.name) + '"')
+			list.append(' description="' + str(timer.description) + '"')
+			list.append(' eit="' + str(timer.eit) + '"')
+			list.append('>\n')
 			
 			for time, code, msg in timer.log_entries:
-				t.appendChild(doc.createTextNode("\t\t"))
-				l = doc.createElement('log')
-				l.setAttribute("time", str(time))
-				l.setAttribute("code", str(code))
-				l.appendChild(doc.createTextNode(msg))
-				t.appendChild(l)
-				t.appendChild(doc.createTextNode("\n"))
+				list.append('<log')
+				list.append(' code="' + str(code) + '"')
+				list.append(' time="' + str(time) + '"')
+				list.append('>')
+				list.append(str(msg))
+				list.append('</log>\n')
 
-			root_element.appendChild(t)
-			t = doc.createTextNode("\n")
-			root_element.appendChild(t)
+			
+			list.append('</timer>\n')
+
+		list.append('</timers>\n')
 
 		file = open(self.Filename, "w")
-		doc.writexml(file)
-		file.write("\n")
+		for x in list:
+			file.write(x)
 		file.close()
 
 	def record(self, entry):
