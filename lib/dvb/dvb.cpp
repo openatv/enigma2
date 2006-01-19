@@ -304,7 +304,8 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		if(channelid==cache_chan->getChannelID())
 		{
 			eDebug("use cached_channel");
-			channel=m_cached_channel;
+			channel =  m_cached_channel;
+			m_cached_channel->recheckFrontendState();
 			return 0;
 		}
 		m_cached_channel=0;
@@ -591,16 +592,16 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 		ourstate = state_tuning;
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
+			/* on managed channels, we try to retune in order to re-acquire lock. */
 		if (m_feparm)
 		{
-			eDebug("OURSTATE: lost lock.. retune");
+			eDebug("OURSTATE: lost lock, trying to retune");
 			ourstate = state_tuning;
 			m_frontend->get().tune(*m_feparm);
-		}
-		else // this case happens in scan.. in scan setChannel is not used .. so m_feparm is NULL
-		// but its okay.. in scan we dont like to retune
+		} else
+			/* on unmanaged channels, we don't do this. the client will do this. */
 		{
-			eDebug("OURSTATE: lost lock.. but no feparm avail.. set state_unavailable");
+			eDebug("OURSTATE: lost lock, unavailable now.")
 			ourstate = state_unavailable;
 		}
 	} else if (state == iDVBFrontend::stateFailed)
