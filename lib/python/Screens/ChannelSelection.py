@@ -560,6 +560,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			self.session.nav.playService(lastservice)
 
 	def onShow(self):
+		self.setTvMode()
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if ref is not None and ref.valid() and ref.getPath() == "":
 			self.servicelist.setPlayableIgnoreService(ref)

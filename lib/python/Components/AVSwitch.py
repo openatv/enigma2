@@ -55,18 +55,18 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		iAVSwitch.setColorFormat(configElement.value);
+		iAVSwitch.setColorFormat(configElement.value)
 	def setAspectRatio(configElement):
-		iAVSwitch.setAspectRatio(configElement.value);
+		iAVSwitch.setAspectRatio(configElement.value)
 	def setSystem(configElement):
-		iAVSwitch.setSystem(configElement.value);
+		iAVSwitch.setSystem(configElement.value)
 	def setWSS(configElement):
-		iAVSwitch.setWSS(configElement.value);
+		iAVSwitch.setWSS(configElement.value)
 
 	# this will call the "setup-val" initial
-	config.av.colorformat.addNotifier(setColorFormat);
-	config.av.aspectratio.addNotifier(setAspectRatio);
-	config.av.tvsystem.addNotifier(setSystem);
-	config.av.wss.addNotifier(setWSS);
+	config.av.colorformat.addNotifier(setColorFormat)
+	config.av.aspectratio.addNotifier(setAspectRatio)
+	config.av.tvsystem.addNotifier(setSystem)
+	config.av.wss.addNotifier(setWSS)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
