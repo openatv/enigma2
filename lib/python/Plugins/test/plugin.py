@@ -11,7 +11,7 @@ import os
 class Test(Screen):
 	skin = """
 		<screen position="100,100" size="550,400" title="Test" >
-			<widget name="text" position="0,0" size="550,400" font="Regular;20" />
+			<widget name="text" position="0,0" size="550,25" font="Regular;20" />
 		</screen>"""
 		
 	def __init__(self, session, args = None):

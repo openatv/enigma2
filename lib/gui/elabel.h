@@ -6,8 +6,9 @@
 class eLabel: public eWidget
 {
 public:
-	eLabel(eWidget *parent);
+	eLabel(eWidget *parent, int markedPos = -1);
 	void setText(const std::string &string);
+	void setMarkedPos(int markedPos);
 	void setFont(gFont *font);
 	gFont* eLabel::getFont();
 
@@ -33,6 +34,7 @@ protected:
 	int m_valign, m_halign;
 	std::string m_text;
 	int event(int event, void *data=0, void *data2=0);
+	int m_pos;
 private:
 	int m_have_foreground_color;
 	gRGB m_foreground_color;
@@ -41,7 +43,8 @@ private:
 	{
 		evtChangedText = evtUserWidget,
 		evtChangedFont,
-		evtChangedAlignment
+		evtChangedAlignment,
+		evtChangedMarkedPos
 	};
 };
 

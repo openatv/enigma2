@@ -1,8 +1,9 @@
 #include <lib/gui/elabel.h>
 #include <lib/gdi/font.h>
 
-eLabel::eLabel(eWidget *parent): eWidget(parent)
+eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 {
+	m_pos = markedPos;
 	ePtr<eWindowStyle> style;
 	getStyle(style);
 	
@@ -28,37 +29,60 @@ int eLabel::event(int event, void *data, void *data2)
 		eWidget::event(event, data, data2);
 
 		gPainter &painter = *(gPainter*)data2;
-		painter.setFont(m_font);
-		style->setStyle(painter, eWindowStyle::styleLabel);
 		
-		if (m_have_foreground_color)
-			painter.setForegroundColor(m_foreground_color);
-		
-		int flags = 0;
-		if (m_valign == alignTop)
-			flags |= gPainter::RT_VALIGN_TOP;
-		else if (m_valign == alignCenter)
-			flags |= gPainter::RT_VALIGN_CENTER;
-		else if (m_valign == alignBottom)
-			flags |= gPainter::RT_VALIGN_BOTTOM;
+		if (m_pos != -1)
+		{
+			style->setStyle(painter, eWindowStyle::styleLabel);
+			ePtr<eTextPara> para = new eTextPara(eRect(0, 0, size().width(), size().height()));
+			para->setFont(m_font);
+			para->renderString(m_text, 0);
+			para->realign(eTextPara::dirLeft);
 
-		if (m_halign == alignLeft)
-			flags |= gPainter::RT_HALIGN_LEFT;
-		else if (m_halign == alignCenter)
-			flags |= gPainter::RT_HALIGN_CENTER;
-		else if (m_halign == alignRight)
-			flags |= gPainter::RT_HALIGN_RIGHT;
-		else if (m_halign == alignBlock)
-			flags |= gPainter::RT_HALIGN_BLOCK;
-		
-		flags |= gPainter::RT_WRAP;
-		painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags);
-		
-		return 0;
+			para->setGlyphFlag(m_pos, GS_INVERT);
+			eRect bbox;
+			bbox = para->getGlyphBBox(m_pos);
+			printf("BBOX: %d %d %d %d\n", bbox.left(), 0, bbox.width(), size().height());
+			bbox = eRect(bbox.left(), 0, bbox.width(), size().height());
+			painter.fill(bbox);
+
+			painter.renderPara(para, ePoint(0, 0));
+			return 0;
+		}
+		else
+		{		
+			painter.setFont(m_font);
+			style->setStyle(painter, eWindowStyle::styleLabel);
+			
+			if (m_have_foreground_color)
+				painter.setForegroundColor(m_foreground_color);
+			
+			int flags = 0;
+			if (m_valign == alignTop)
+				flags |= gPainter::RT_VALIGN_TOP;
+			else if (m_valign == alignCenter)
+				flags |= gPainter::RT_VALIGN_CENTER;
+			else if (m_valign == alignBottom)
+				flags |= gPainter::RT_VALIGN_BOTTOM;
+	
+			if (m_halign == alignLeft)
+				flags |= gPainter::RT_HALIGN_LEFT;
+			else if (m_halign == alignCenter)
+				flags |= gPainter::RT_HALIGN_CENTER;
+			else if (m_halign == alignRight)
+				flags |= gPainter::RT_HALIGN_RIGHT;
+			else if (m_halign == alignBlock)
+				flags |= gPainter::RT_HALIGN_BLOCK;
+			
+			flags |= gPainter::RT_WRAP;
+			painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags);
+			
+			return 0;
+		}
 	}
 	case evtChangedFont:
 	case evtChangedText:
 	case evtChangedAlignment:
+	case evtChangedMarkedPos:
 		invalidate();
 		return 0;
 	default:
@@ -72,6 +96,12 @@ void eLabel::setText(const std::string &string)
 		return;
 	m_text = string;
 	event(evtChangedText);
+}
+
+void eLabel::setMarkedPos(int markedPos)
+{
+	m_pos = markedPos;
+	event(evtChangedMarkedPos);
 }
 
 void eLabel::setFont(gFont *font)
