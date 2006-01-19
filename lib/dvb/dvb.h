@@ -225,6 +225,7 @@ public:
 
 	int getUseCount() { return m_use_count; }
 private:
+	ePtr<iDVBFrontendParameters> m_feparm; // for retune on lostlock
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
 	
