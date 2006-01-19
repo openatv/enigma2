@@ -4,7 +4,6 @@ from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
-from Components.TextInput import TextInput
 from TimerEntry import TimerEntry
 from RecordTimer import RecordTimerEntry, parseEvent
 from time import *

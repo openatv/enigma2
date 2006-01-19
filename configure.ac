@@ -59,6 +59,7 @@ lib/python/Components/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/update/Makefile
+lib/python/Plugins/test/Makefile
 lib/python/Plugins/tuxboxplugins/Makefile
 lib/python/Plugins/web/Makefile
 lib/python/Tools/Makefile
