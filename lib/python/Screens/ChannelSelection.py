@@ -4,7 +4,7 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
-from Components.config import config, configElement, ConfigSubsection, configText
+from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
@@ -237,8 +237,6 @@ class ChannelSelectionEdit:
 	def doContext(self):
 		self.session.open(ChannelContextMenu, self)
 
-USE_MULTIBOUQUETS = False
-
 MODE_TV = 0
 MODE_RADIO = 1
 
@@ -295,12 +293,21 @@ class ChannelSelectionBase(Screen):
 						offsetCount += 1
 		return offsetCount
 
-	def setTvMode(self):
-		self.service_types = self.service_types_tv
-		if USE_MULTIBOUQUETS:
-			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+	def recallBouquetMode(self):
+		if self.mode == MODE_TV:
+			self.service_types = self.service_types_tv
+			if currentConfigSelectionElement(config.usage.multibouquet) == "yes":
+				self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+			else:
+				self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
 		else:
-			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types))
+			self.service_types = self.service_types_radio
+			if currentConfigSelectionElement(config.usage.multibouquet) == "yes":
+				self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+			else:
+				self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(self.service_types))
+
+	def setTvMode(self):
 		title = self.instance.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
@@ -308,13 +315,9 @@ class ChannelSelectionBase(Screen):
 		title += " (TV)"
 		self.instance.setTitle(title)
 		self.mode = MODE_TV
+		self.recallBouquetMode()
 
 	def setRadioMode(self):
-		self.service_types = self.service_types_radio
-		if USE_MULTIBOUQUETS:
-			self.bouquet_root = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
-		else:
-			self.bouquet_root = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(self.service_types))
 		title = self.instance.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
@@ -322,6 +325,7 @@ class ChannelSelectionBase(Screen):
 		title += " (Radio)"
 		self.instance.setTitle(title)
 		self.mode = MODE_RADIO
+		self.recallBouquetMode()
 
 	def setRootBase(self, root, justSet=False):
 		path = root.getPath()
@@ -560,7 +564,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			self.session.nav.playService(lastservice)
 
 	def onShow(self):
-		self.setTvMode()
+		self.recallBouquetMode()
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if ref is not None and ref.valid() and ref.getPath() == "":
 			self.servicelist.setPlayableIgnoreService(ref)
