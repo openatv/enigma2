@@ -9,14 +9,16 @@ class Language:
 		self.activeLanguage = 0
 		self.lang = []
 		# FIXME make list dynamically
-		self.addLanguage(_("English"), "en")
-		self.addLanguage(_("German"), "de")
-		self.addLanguage(_("Arabic"), "ar")
-		self.addLanguage(_("Dutch"), "nl")
+		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
+		self.addLanguage(_("English"), "en", "EN")
+		self.addLanguage(_("German"), "de", "DE")
+		self.addLanguage(_("Arabic"), "ar", "AE")
+		self.addLanguage(_("Dutch"), "nl", "NL")
+		self.addLanguage(_("Spanish"), "es", "ES")
 
-	def addLanguage(self, name, lang):
+	def addLanguage(self, name, lang, country):
 		try:
-			self.lang.append((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang))
+			self.lang.append((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang, country))
 		except:
 			print "Language " + str(name) + " not found"
 
