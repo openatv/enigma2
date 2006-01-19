@@ -5,7 +5,7 @@ GETTEXT=xgettext
 #MSGFMT = ./msgfmt.py
 MSGFMT = msgfmt
 
-LANGS := de en ar nl
+LANGS := de en ar nl es
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
 LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
 
@@ -16,14 +16,12 @@ default: enigma2.pot $(LANGPO) merge $(LANGMO)
 	done
 
 merge:
-#	msgmerge -N -U enigma2.pot menu.pot
-#	msgmerge -N -U enigma2.pot setup.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
 	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
-	msgmerge -N -U de.po enigma2.pot
-	msgmerge -N -U ar.po enigma2.pot
-	msgmerge -N -U nl.po enigma2.pot
+	for lang in $(LANGS); do \
+		msgmerge -N -U $$lang.po enigma2.pot; \
+	done
 
 enigma2.pot:
 	$(GETTEXT)	-d enigma2 -s -o enigma2.pot \
