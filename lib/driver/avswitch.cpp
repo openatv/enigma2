@@ -45,6 +45,9 @@ void eAVSwitch::setInput(int val)
 
 	write(fd, input[val], strlen(input[val]));
 	close(fd);
+	
+	if (val == 1)
+		setFastBlank(2);
 }
 
 void eAVSwitch::setFastBlank(int val)
