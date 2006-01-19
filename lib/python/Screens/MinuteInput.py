@@ -4,16 +4,16 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
+from Components.Input import Input
 from enigma import eSize, ePoint
 
 class MinuteInput(Screen):
 		def __init__(self, session, basemins = 5):
 			Screen.__init__(self, session)
 						
-			self["minutes"] = Label()
-			self.updateValue(basemins)
+			self["minutes"] = Input(str(basemins), type=Input.NUMBER)
 			
-			self["actions"] = NumberActionMap([ "NumberZapActions", "MinuteInputActions" ],
+			self["actions"] = NumberActionMap([ "InputActions" , "MinuteInputActions" ],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -25,29 +25,32 @@ class MinuteInput(Screen):
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal,
+				"left": self.left,
+				"right": self.right,
 				"up": self.up,
 				"down": self.down,
 				"ok": self.ok,
 				"cancel": self.cancel
 			})
 			
-		def updateValue(self, minutes):
-			self.minutes = minutes
-			self["minutes"].setText(str(self.minutes) + _(" mins"))
-			
 		def keyNumberGlobal(self, number):
-			#self.updateValue(self.minutes * 10 + number)
+			self["minutes"].number(number)
 			pass
 			
+		def left(self):
+			self["minutes"].left()
+			
+		def right(self):
+			self["minutes"].right()
+			
 		def up(self):
-			self.updateValue(self.minutes + 1)
+			self["minutes"].up()
 		
 		def down(self):
-			if self.minutes > 0:
-				self.updateValue(self.minutes - 1)
+			self["minutes"].down()
 				
 		def ok(self):
-			self.close(self.minutes)
+			self.close(int(self["minutes"].getText()))
 			
 		def cancel(self):
 			self.close(0)

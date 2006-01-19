@@ -96,6 +96,13 @@
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 	</map>
+
+	<map context="MinuteInputActions">
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+	</map>
 	
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
@@ -159,6 +166,8 @@
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
+	
+
 	
 	<map context="TextEntryActions">
 		<key id="KEY_MUTE" mapto="delete" flags="mr" />
