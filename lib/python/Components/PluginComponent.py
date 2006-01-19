@@ -20,38 +20,38 @@ class PluginComponent:
 
 		for x in dir:
 			path = resolveFilename(SCOPE_PLUGINS, x) + "/"
-			try:
-				if os.path.exists(path):
-					if fileExists(path + "plugin.py"):
-						pluginmodule = self.prefix + x + ".plugin"
-						print "trying to import " + pluginmodule
-						exec "import " + pluginmodule
-						plugin = eval(pluginmodule)
-						plugins = plugin.getPlugins()
-						try: picturepaths = plugin.getPicturePaths()
-						except:
-							picturepaths = []
-							for p in plugins:
-								picturepaths.append("")
-						try:
-							for menuEntry in plugin.getMenuRegistrationList():
-								self.menuEntries.append([menuEntry, pluginmodule])
-						except:
-							pass
-	
-						for y in range(len(plugins)):
-							if len(plugins[y]) < 5:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], None, plugins[y][1]))
-							else:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], plugins[y][4], plugins[y][1]))
-						if runAutostartPlugins:
-							try: plugin.autostart()
-							except:	pass
-						if runAutoendPlugins:
-							try: plugin.autoend()
-							except:	pass
-			except:
-				print "Directory", path, "contains a faulty plugin"
+#			try:
+			if os.path.exists(path):
+				if fileExists(path + "plugin.py"):
+					pluginmodule = self.prefix + x + ".plugin"
+					print "trying to import " + pluginmodule
+					exec "import " + pluginmodule
+					plugin = eval(pluginmodule)
+					plugins = plugin.getPlugins()
+					try: picturepaths = plugin.getPicturePaths()
+					except:
+						picturepaths = []
+						for p in plugins:
+							picturepaths.append("")
+					try:
+						for menuEntry in plugin.getMenuRegistrationList():
+							self.menuEntries.append([menuEntry, pluginmodule])
+					except:
+						pass
+
+					for y in range(len(plugins)):
+						if len(plugins[y]) < 5:
+							list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], None, plugins[y][1]))
+						else:
+							list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], plugins[y][4], plugins[y][1]))
+					if runAutostartPlugins:
+						try: plugin.autostart()
+						except:	pass
+					if runAutoendPlugins:
+						try: plugin.autoend()
+						except:	pass
+#			except:
+#				print "Directory", path, "contains a faulty plugin"
 		self.menuUpdate()
 		return list
 	
