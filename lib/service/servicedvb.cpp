@@ -834,7 +834,7 @@ int eDVBServicePlay::getInfo(int w)
 	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[m_current_audio_stream].pid;
 	case sPCRPID: return program.pcrPid;
 	case sPMTPID: return program.pmtPid;
-	case sTXTPID: return -1;
+	case sTXTPID: return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
 	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
