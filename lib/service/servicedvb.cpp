@@ -1007,7 +1007,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	
 	if (m_timeshift_fd < 0)
 	{
-		delete m_record;
+		m_record = 0;
 		return -4;
 	}
 		
@@ -1031,12 +1031,11 @@ RESULT eDVBServicePlay::stopTimeshift()
 	m_timeshift_enabled = 0;
 	
 	m_record->stop();
-	delete m_record;
+	m_record = 0;
 	
 	close(m_timeshift_fd);
 	remove(m_timeshift_file.c_str());
 	
-	eDebug("timeshift disabled");
 	return 0;
 }
 
@@ -1109,7 +1108,6 @@ void eDVBServicePlay::updateTimeshiftPids()
 
 void eDVBServicePlay::switchToLive()
 {
-	eDebug("SwitchToLive");
 	if (!m_timeshift_active)
 		return;
 	
@@ -1126,7 +1124,6 @@ void eDVBServicePlay::switchToLive()
 
 void eDVBServicePlay::switchToTimeshift()
 {
-	eDebug("SwitchToTimeshift");
 	if (m_timeshift_active)
 		return;
 	
@@ -1140,7 +1137,6 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 	
-	eDebug("ok, re-tuning to %s", r.toString().c_str());
 	m_service_handler_timeshift.tune(r, 1); /* use the decoder demux for everything */
 }
 
