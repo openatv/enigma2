@@ -190,6 +190,11 @@
 		<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 	</map>
 
+	<map context="InfobarTimeshiftActivateActions">
+		<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="m" />
+		<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="m" />
+	</map>
+
 	<map context="InfobarMovieListActions">
 		<key id="KEY_UP" mapto="up" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="m" />

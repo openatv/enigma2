@@ -1,5 +1,4 @@
 <skin>
-	
 		<colors>
 			<color name="white" 	value="#ffffff" />
 			<color name="black" 	value="#000000" />
@@ -164,7 +163,6 @@
 			<widget name="ber_progress" position="447,15" size="88,6" />
 
 			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,31" zPosition="2" size="58,25" alphatest="on" />
-
 			<widget name="CryptActive" pixmap="/usr/share/enigma2/crypt.png" position="570,40" size="12,15" />
 			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
 			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
@@ -204,7 +202,9 @@
 			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Regular;20" />
 -->
 			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Regular;22" backgroundColor="#101258" />
-			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" />
+			<widget name="CurrentTime" position="575,10" size="90,25" backgroundColor="dark" font="Regular;19" />
+			   <!-- fixme -->
+			<widget name="ElapsedTime" position="575,35" size="90,30" backgroundColor="dark" font="Regular;19" />
 		</screen>
 
 
