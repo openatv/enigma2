@@ -168,9 +168,12 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.log(14, "user didn't want to zap away, record will probably fail")
 
 	def timeChanged(self):
+		old_prepare = self.start_prepare
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
-		self.log(15, "record time changed, start prepare is now: %s" % time.ctime(self.start_prepare))
+		
+		if old_prepare != self.start_prepare:
+			self.log(15, "record time changed, start prepare is now: %s" % time.ctime(self.start_prepare))
 
 def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
