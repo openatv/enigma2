@@ -48,8 +48,13 @@ class TimerEditList(Screen):
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
 		
 	def removeTimer(self):
-		# FIXME doesn't work...
-		self.session.nav.RecordTimer.removeEntry(self["timerlist"].getCurrent()[0])
+		list = self["timerlist"]
+		currentIndex = list.getCurrentIndex()
+		list.moveDown()
+		if list.getCurrentIndex() == currentIndex:
+			currentIndex -= 1
+			list.moveToIndex(currentIndex)
+		self.session.nav.RecordTimer.removeEntry(list.getCurrent()[0])
 		self.refill()
 	
 	def refill(self):

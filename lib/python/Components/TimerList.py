@@ -76,7 +76,16 @@ class TimerList(HTMLComponent, GUIComponent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
 		self.instance.setItemHeight(70)
-	
+
+	def moveToIndex(self, index):
+		self.instance.moveSelectionTo(index)
+
+	def getCurrentIndex(self):
+		return self.instance.getCurrentIndex()
+
+	def moveDown(self):
+		self.instance.moveSelection(self.instance.moveDown)
+
 	def GUIdelete(self):
 		self.instance.setContent(None)
 		self.instance = None
