@@ -597,7 +597,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 
 	#called from infoBar and channelSelected
 	def zap(self):
-		if self.session.nav.getCurrentlyPlayingServiceReference() != self.getCurrentSelection():
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref is None or ref != self.getCurrentSelection():
 			self.session.nav.playService(self.getCurrentSelection())
 		self.saveRoot()
 		self.saveChannel()
