@@ -38,7 +38,9 @@ class SecConfigure:
 		#simple defaults
 		sec.addLNB()
 		tunermask = 1 << slotid
-		if self.linked.has_key(slotid):
+		if self.equal.has_key(slotid):
+			tunermask |= (1 << self.equal[slotid])
+		elif self.linked.has_key(slotid):
 			tunermask |= (1 << self.linked[slotid])
 		sec.setLNBTunerMask(tunermask)
 		sec.setLNBLOFL(9750000)
@@ -60,19 +62,26 @@ class SecConfigure:
 			sec.addSatellite(orbpos)
 			self.satList.append(orbpos)
 		elif (diseqcmode == 3): # diseqc 1.2
+			if self.satposdepends.has_key(slotid):
+				tunermask |= (1 << self.satposdepends[slotid])
+				sec.setLNBTunerMask(tunermask)
 			sec.setLatitude(latitude)
 			sec.setLaDirection(laDirection)
 			sec.setLongitude(longitude)
 			sec.setLoDirection(loDirection)
 			sec.setUseInputpower(True)
 			sec.setInputpowerDelta(50)
-			
+
 			for x in self.NimManager.satList:
 				print "Add sat " + str(x[1])
 				sec.addSatellite(int(x[1]))
 				sec.setVoltageMode(0)
 				sec.setToneMode(0)
 				self.satList.append(int(x[1]))
+
+	def setSatposDepends(self, sec, nim1, nim2):
+		print "tuner", nim1, "depends on satpos of", nim2
+		sec.setTunerDepends(nim1, nim2)
 
 	def linkNIMs(self, sec, nim1, nim2):
 		print "link tuner", nim1, "to tuner", nim2
@@ -88,20 +97,27 @@ class SecConfigure:
 		self.satList = []
 
 		self.linked = { }
+		self.satposdepends = { }
+		self.equal = { }
 		for slot in self.NimManager.nimslots:
 			x = slot.slotid
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
+				if currentConfigSelectionElement(nim.configMode) == "equal":
+					self.equal[nim.equalTo.value]=x
 				if currentConfigSelectionElement(nim.configMode) == "loopthrough":
 					self.linkNIMs(sec, x, nim.linkedTo.value)
 					self.linked[nim.linkedTo.value]=x
+				elif currentConfigSelectionElement(nim.configMode) == "satposdepends":
+					self.setSatposDepends(sec, x, nim.satposDependsTo.value)
+					self.satposdepends[nim.satposDependsTo.value]=x
 
 		for slot in self.NimManager.nimslots:
 			x = slot.slotid
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if currentConfigSelectionElement(nim.configMode) == "loopthrough":
+				if currentConfigSelectionElement(nim.configMode) in [ "loopthrough", "satposdepends", "equal", "nothing" ]:
 					pass
 				elif currentConfigSelectionElement(nim.configMode) == "simple":		#simple config
 					if currentConfigSelectionElement(nim.diseqcMode) == "single":			#single
@@ -131,9 +147,6 @@ class SecConfigure:
 							loDirection = loValue,
 							latitude = configsequencearg.getFloat(nim.latitude),
 							laDirection = laValue)
-#					pass
-				elif currentConfigSelectionElement(nim.configMode) == "nothing":
-					pass
 				elif currentConfigSelectionElement(nim.configMode) == "advanced": #advanced config
 					self.updateAdvanced(sec, x)
 		print "sec config completed"
@@ -153,9 +166,10 @@ class SecConfigure:
 				sec.addLNB()
 
 				tunermask = 1 << slotid
-				if self.linked.has_key(slotid):
+				if self.equal.has_key(slotid):
+					tunermask |= (1 << self.equal[slotid])
+				elif self.linked.has_key(slotid):
 					tunermask |= (1 << self.linked[slotid])
-				sec.setLNBTunerMask(tunermask)
 
 				if currentConfigSelectionElement(currLnb.lof) == "universal_lnb":
 					sec.setLNBLOFL(9750000)
@@ -188,6 +202,10 @@ class SecConfigure:
 					sec.setDiSEqCMode(diseqcParam.V1_1)
 				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
 					sec.setDiSEqCMode(diseqcParam.V1_2)
+
+					if self.satposdepends.has_key(slotid):  # only useable with rotors
+						tunermask |= (1 << self.satposdepends[slotid])
+
 					
 				if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
 					if currentConfigSelectionElement(currLnb.toneburst) == "none":
@@ -272,7 +290,9 @@ class SecConfigure:
 					sec.setInputpowerDelta(currLnb.powerThreshold.value[0])
 				else:
 					sec.setUseInputpower(False)
-						
+
+				sec.setLNBTunerMask(tunermask)
+
 				# finally add the orbital positions
 				for y in lnbSat[x]:
 					sec.addSatellite(y)
@@ -546,21 +566,6 @@ class NimManager:
 						list.append(x)
 		return list
 
-#	#callbacks for c++ config
-#	def nimConfigModeChanged(self, slotid, mode):
-#		if (mode != 2): # not linked
-#			print "Unlinking slot " + str(slotid)
-#			# TODO call c++ to unlink nim in slot slotid
-#		if (mode == 2): # linked
-#			pass
-#			#FIXME!!!
-#			#if (len(self.getNimListOfType(self.nimType["DVB-S"], slotid)) > 0):
-#			#	print "Linking slot " + str(slotid) + " to " + str(nimmgr.getConfigPrefix(slotid).value)
-#			# TODO call c++ to link nim in slot slotid with nim in slot nimmgr.getConfigPrefix(slotid).value
-
-#	def nimLinkedToChanged(self, slotid, val):
-#		print "Linking slot " + str(slotid) + " to " + str(val)
-
 	def nimDiseqcModeChanged(self, slotid, mode):
 		#print "nimDiseqcModeChanged set to " + str(mode)
 		pass
@@ -585,8 +590,6 @@ def InitNimManager(nimmgr):
 		
 #	def nimConfigModeChanged(slotid, configElement):
 #		nimmgr.nimConfigModeChanged(slotid, configElement.value)
-#	def nimLinkedToChanged(slotid, configElement):
-#		nimmgr.nimLinkedToChanged(slotid, configElement.value)
 	def nimDiseqcModeChanged(slotid, configElement):
 		nimmgr.nimDiseqcModeChanged(slotid, configElement.value)
 		
@@ -606,12 +609,18 @@ def InitNimManager(nimmgr):
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			if slot.slotid == 0:
-				nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("advanced", _("Advanced"))))
-			else:							
-				nim.configMode = configElement(cname + "configMode", configSelection, 0, (("simple", _("Simple")), ("nothing", _("Nothing connected")), ("loopthrough", _("Loopthrough to Socket A")), ("advanced", _("Advanced"))))
-			
+				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
+				("simple", _("Simple")), ("advanced", _("Advanced"))))
+			else:
+				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
+				("equal", _("Equal to Socket A")),
+				("loopthrough", _("Loopthrough to Socket A")),
+				("nothing", _("Nothing connected")),
+				("satposdepends", _("Secondary cable from Rotor-LNB")),
+				("simple", _("Simple")),
+				("advanced", _("Advanced"))))
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
-			if currentConfigSelectionElement(nim.configMode) == "loopthrough": #linked
+			if currentConfigSelectionElement(nim.configMode) in ["loopthrough", "satposdepends", "equal"]:
 				if x == 0:										#first one can never be linked to anything
 					nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
 					nim.configMode.save()
@@ -637,7 +646,9 @@ def InitNimManager(nimmgr):
 			satNimListNames = []
 			for x in satNimList:
 				satNimListNames.append((("Slot_" + ("A", "B", "C", "D")[x] + "_" + nimmgr.getNimName(x)), _("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x)))
+			nim.equalTo = configElement(cname + "equalTo", configSelection, 0, satNimListNames);
 			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
+			nim.satposDependsTo = configElement(cname + "satposDependsTo", configSelection, 0, satNimListNames);
 			
 			#perhaps the instance of the slot is more useful?
 #			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
@@ -646,7 +657,6 @@ def InitNimManager(nimmgr):
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
-#			nim.linkedTo.addNotifier(boundFunction(nimLinkedToChanged,x))
 			
 			# advanced config:
 			nim.advanced = ConfigSubsection()

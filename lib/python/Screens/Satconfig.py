@@ -55,10 +55,7 @@ class NimSetup(Screen):
 					self.createSimpleSetup(self.nim, self.list, config.Nims[self.nim.slotid].diseqcMode.value)
 				if (config.Nims[self.nim.slotid].diseqcMode.value == 4):
 					self.createPositionerSetup(self.nim, self.list)
-			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "nothing": # nothing
-				#self.list.append(getConfigListEntry(_("Linked to"), config.Nims[self.nim.slotid].linkedTo))
-				pass
-			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "loopthrough": # linked
+			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) in ["loopthrough", "satposdepends", "nothing", "equal"]:
 				pass
 			elif currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced": # advanced
 				# SATs

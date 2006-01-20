@@ -238,6 +238,8 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eDVBSatelliteEquipmentControl();
 	~eDVBSatelliteEquipmentControl();
 #endif
+	// helper function for setTunerLinked and setTunerDepends
+	RESULT setDependencyPointers( int no1, int no2, int dest_data_byte );
 public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
@@ -278,6 +280,7 @@ public:
 	RESULT setRotorPosNum(int rotor_pos_num);
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
+	RESULT setTunerDepends(int from, int to);
 
 	void setRotorMoving(bool); // called from the frontend's
 	bool isRotorMoving();

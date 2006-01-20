@@ -114,7 +114,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			if ( sit != lnb_param.m_satellites.end())
 			{
 				int band=0,
-					linked_to=0, // linked tuner
+					linked_to=-1, // linked tuner
+					satpos_depends_to=-1,
 					csw = di_param.m_committed_cmd,
 					ucsw = di_param.m_uncommitted_cmd,
 					toneburst = di_param.m_toneburst_param,
@@ -122,6 +123,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				fe->getData(6, curRotorPos);
 				fe->getData(7, linked_to);
+				fe->getData(8, satpos_depends_to);
 
 				if ( sat.frequency > lnb_param.m_lof_threshold )
 					band |= 1;
@@ -188,6 +190,23 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 //							eDebug("OK .. can tune this transponder with linked tuner in use :)");
 					}
 				}
+
+				if (satpos_depends_to != -1)  // check for linked tuners..
+				{
+					eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_to;
+					if ( satpos_depends_to_fe->m_inuse )
+					{
+						int oRotorPos = -1;
+						satpos_depends_to_fe->m_frontend->getData(6, oRotorPos);
+						if (!rotor || oRotorPos != sat.orbital_position)
+						{
+//							eDebug("can not tune this transponder ... rotor on other tuner is positioned to %d", oRotorPos);
+							ret=0;
+						}
+					}
+//					else
+//						eDebug("OK .. can tune this transponder satpos is correct :)");
+				}
 			}
 		}
 	}
@@ -199,6 +218,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id)
 {
 	bool linked=false;
+	bool depend_satpos_mode=false;
 
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
@@ -216,6 +236,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			int band=0,
 				linked_to=-1, // linked tuner
+				satpos_depends_to=-1,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
 				csw = di_param.m_committed_cmd,
@@ -233,6 +254,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			frontend.getData(5, lastRotorCmd);
 			frontend.getData(6, curRotorPos);
 			frontend.getData(7, linked_to);
+			frontend.getData(8, satpos_depends_to);
 
 			if (linked_to != -1)
 			{
@@ -241,6 +263,18 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				{
 					eDebug("[SEC] frontend is linked with another and the other one is in use.. so we dont do SEC!!");
 					linked=true;
+				}
+			}
+
+			if (satpos_depends_to != -1)
+			{
+				eDVBRegisteredFrontend *satpos_fe = (eDVBRegisteredFrontend*) satpos_depends_to;
+				if (satpos_fe->m_inuse)
+				{
+					if ( di_param.m_diseqc_mode != eDVBSatelliteDiseqcParameters::V1_2 )
+						continue;
+					eDebug("[SEC] frontend is depending on satpos of other one.. so we dont turn rotor!!");
+					depend_satpos_mode=true;
 				}
 			}
 
@@ -471,154 +505,152 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )
 				{
-					int RotorCmd=0;
-					bool useGotoXX = false;
-
-					if (sw_param.m_rotorPosNum) // we have stored rotor pos?
-						RotorCmd=sw_param.m_rotorPosNum;
-					else  // we must calc gotoxx cmd
+					if (depend_satpos_mode || linked)
+						// in this both modes we dont really turn the rotor.... but in canTune we need the satpos
+						frontend.setData(6, sat.orbital_position);
+					else
 					{
-						eDebug("Entry for %d,%d? not in Rotor Table found... i try gotoXX?", sat.orbital_position / 10, sat.orbital_position % 10 );
-						useGotoXX = true;
+						int RotorCmd=0;
+						bool useGotoXX = false;
 
-						double	SatLon = abs(sat.orbital_position)/10.00,
-								SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
-								SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
-
-						if ( rotor_param.m_gotoxx_parameters.m_la_direction == eDVBSatelliteRotorParameters::SOUTH )
-							SiteLat = -SiteLat;
-
-						if ( rotor_param.m_gotoxx_parameters.m_lo_direction == eDVBSatelliteRotorParameters::WEST )
-							SiteLon = 360 - SiteLon;
-
-						eDebug("siteLatitude = %lf, siteLongitude = %lf, %lf degrees", SiteLat, SiteLon, SatLon );
-						double satHourAngle =
-							calcSatHourangle( SatLon, SiteLat, SiteLon );
-						eDebug("PolarmountHourAngle=%lf", satHourAngle );
-
-						static int gotoXTable[10] =
-							{ 0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E };
-
-						if (SiteLat >= 0) // Northern Hemisphere
+						if (sw_param.m_rotorPosNum) // we have stored rotor pos?
+							RotorCmd=sw_param.m_rotorPosNum;
+						else  // we must calc gotoxx cmd
 						{
-							int tmp=(int)round( fabs( 180 - satHourAngle ) * 10.0 );
-							RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+							eDebug("Entry for %d,%d? not in Rotor Table found... i try gotoXX?", sat.orbital_position / 10, sat.orbital_position % 10 );
+							useGotoXX = true;
 
-							if (satHourAngle < 180) // the east
-								RotorCmd |= 0xE000;
-							else					// west
-								RotorCmd |= 0xD000;
-						}
-						else // Southern Hemisphere
-						{
-							if (satHourAngle < 180) // the east
+							double	SatLon = abs(sat.orbital_position)/10.00,
+									SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
+									SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
+
+							if ( rotor_param.m_gotoxx_parameters.m_la_direction == eDVBSatelliteRotorParameters::SOUTH )
+								SiteLat = -SiteLat;
+
+							if ( rotor_param.m_gotoxx_parameters.m_lo_direction == eDVBSatelliteRotorParameters::WEST )
+								SiteLon = 360 - SiteLon;
+
+							eDebug("siteLatitude = %lf, siteLongitude = %lf, %lf degrees", SiteLat, SiteLon, SatLon );
+							double satHourAngle =
+								calcSatHourangle( SatLon, SiteLat, SiteLon );
+							eDebug("PolarmountHourAngle=%lf", satHourAngle );
+
+							static int gotoXTable[10] =
+								{ 0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E };
+
+							if (SiteLat >= 0) // Northern Hemisphere
 							{
-								int tmp=(int)round( fabs( satHourAngle ) * 10.0 );
+								int tmp=(int)round( fabs( 180 - satHourAngle ) * 10.0 );
 								RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
-								RotorCmd |= 0xD000;
-							}
-							else					// west
-							{          
-								int tmp=(int)round( fabs( 360 - satHourAngle ) * 10.0 );
-								RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
-								RotorCmd |= 0xE000;
-							}
-						}
-						eDebug("RotorCmd = %04x", RotorCmd);
-					}
-					if ( RotorCmd != lastRotorCmd )
-					{
-						if ( send_mask )
-						{
-							// override first voltage change
-							*(++(++sec_sequence.begin()))=eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13));
-							// wait 1 second after first switch diseqc command
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 1000) );
-						}
-						else  // no other diseqc commands before
-						{
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );  // wait 15msec after tone change
-							eSecCommand::pair compare;
-							compare.voltage = voltage;
-							compare.steps = +3;
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // voltage already correct ?
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
-						}
 
-						eDVBDiseqcCommand diseqc;
-						diseqc.data[0] = 0xE0;
-						diseqc.data[1] = 0x31;		// positioner
-						if ( useGotoXX )
-						{
-							diseqc.len = 5;
-							diseqc.data[2] = 0x6E;	// drive to angular position
-							diseqc.data[3] = ((RotorCmd & 0xFF00) / 0x100);
-							diseqc.data[4] = RotorCmd & 0xFF;
-						}
-						else
-						{
-							diseqc.len = 4;
-							diseqc.data[2] = 0x6B;	// goto stored sat position
-							diseqc.data[3] = RotorCmd;
-							diseqc.data[4] = 0x00;
-						}
-
-						if ( rotor_param.m_inputpower_parameters.m_use )
-						{ // use measure rotor input power to detect rotor state
-							eSecCommand::rotor cmd;
-// measure idle power values
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_IDLE_INPUTPOWER_AVAIL_GOTO, +8) ); // already measured?
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
-							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 100) );  // wait 100msec before measure
-							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // back to lower voltage
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
-////////////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
-							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 40) );  // 2 seconds rotor start timout
-// rotor start loop
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // 50msec delay
-							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-							cmd.direction=1;  // check for running rotor
-							cmd.deltaA=rotor_param.m_inputpower_parameters.m_delta;
-							cmd.steps=+3;
-							cmd.okcount=0;
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +9 ) );  // timeout .. we assume now the rotor is already at the correct position
-							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 2400) );  // 2 minutes running timeout
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
-// rotor running loop
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
-							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-							cmd.direction=0;  // check for stopped rotor
-							cmd.steps=+3;
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ? this should never happen
-							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
-/////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-							if ( linked )
+								if (satHourAngle < 180) // the east
+									RotorCmd |= 0xE000;
+								else					// west
+									RotorCmd |= 0xD000;
+							}
+							else // Southern Hemisphere
 							{
-								frontend.setData(5, RotorCmd);
-								frontend.setData(6, sat.orbital_position);
+								if (satHourAngle < 180) // the east
+								{
+									int tmp=(int)round( fabs( satHourAngle ) * 10.0 );
+									RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+									RotorCmd |= 0xD000;
+								}
+								else					// west
+								{          
+									int tmp=(int)round( fabs( 360 - satHourAngle ) * 10.0 );
+									RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
+									RotorCmd |= 0xE000;
+								}
+							}
+							eDebug("RotorCmd = %04x", RotorCmd);
+						}
+						if ( RotorCmd != lastRotorCmd )
+						{
+							if ( send_mask )
+							{
+								// override first voltage change
+								*(++(++sec_sequence.begin()))=eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13));
+								// wait 1 second after first switch diseqc command
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 1000) );
+							}
+							else  // no other diseqc commands before
+							{
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );  // wait 15msec after tone change
+								eSecCommand::pair compare;
+								compare.voltage = voltage;
+								compare.steps = +3;
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // voltage already correct ?
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
+							}
+
+							eDVBDiseqcCommand diseqc;
+							diseqc.data[0] = 0xE0;
+							diseqc.data[1] = 0x31;		// positioner
+							if ( useGotoXX )
+							{
+								diseqc.len = 5;
+								diseqc.data[2] = 0x6E;	// drive to angular position
+								diseqc.data[3] = ((RotorCmd & 0xFF00) / 0x100);
+								diseqc.data[4] = RotorCmd & 0xFF;
 							}
 							else
 							{
+								diseqc.len = 4;
+								diseqc.data[2] = 0x6B;	// goto stored sat position
+								diseqc.data[3] = RotorCmd;
+								diseqc.data[4] = 0x00;
+							}
+
+							if ( rotor_param.m_inputpower_parameters.m_use )
+							{ // use measure rotor input power to detect rotor state
+								eSecCommand::rotor cmd;
+// measure idle power values
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_IDLE_INPUTPOWER_AVAIL_GOTO, +8) ); // already measured?
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
+								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 100) );  // wait 100msec before measure
+								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // back to lower voltage
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
+////////////////////////////
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec after voltage change
+								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 40) );  // 2 seconds rotor start timout
+// rotor start loop
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // 50msec delay
+								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+								cmd.direction=1;  // check for running rotor
+								cmd.deltaA=rotor_param.m_inputpower_parameters.m_delta;
+								cmd.steps=+3;
+								cmd.okcount=0;
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +9 ) );  // timeout .. we assume now the rotor is already at the correct position
+								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
+////////////////////
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 2400) );  // 2 minutes running timeout
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
+// rotor running loop
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
+								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+								cmd.direction=0;  // check for stopped rotor
+								cmd.steps=+3;
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ? this should never happen
+								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
+/////////////////////
+								sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 								frontend.setData(3, RotorCmd);
 								frontend.setData(4, sat.orbital_position);
 							}
+							else
+								eFatal("rotor turning without inputpowermeasure not implemented yet");
 						}
-						else
-							eFatal("rotor turning without inputpowermeasure not implemented yet");
 					}
 				}
 			}
@@ -648,10 +680,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		}
 	}
 
-	if (linked)
-		return 0;
-
-	eDebug("found no satellite configuration for orbital position (%d)", sat.orbital_position );
+	eDebug("found no useable satellite configuration for orbital position (%d)", sat.orbital_position );
 	return -1;
 }
 
@@ -669,6 +698,31 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 		it->m_frontend->setData(7, -1);
 
 	return 0;
+}
+
+// helper function for setTunerLinked and setTunerDepends
+RESULT eDVBSatelliteEquipmentControl::setDependencyPointers( int tu1, int tu2, int dest_data_byte )
+{
+	if (tu1 == tu2)
+		return -1;
+
+	eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
+
+	int cnt=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
+	{
+		if (cnt == tu1)
+			p1 = *it;
+		else if (cnt == tu2)
+			p2 = *it;
+	}
+	if (p1 && p2)
+	{
+		p1->m_frontend->setData(dest_data_byte, (int)p2);  // this is evil..
+		p2->m_frontend->setData(dest_data_byte, (int)p1);
+		return 0;
+	}
+	return -1;
 }
 
 /* LNB Specific Parameters */
@@ -923,26 +977,12 @@ RESULT eDVBSatelliteEquipmentControl::setRotorPosNum(int rotor_pos_num)
 
 RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 {
-	if (tu1 == tu2)
-		return -1;
+	return setDependencyPointers(tu1, tu2, 7);
+}
 
-	eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
-
-	int cnt=0;
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
-	{
-		if (cnt == tu1)
-			p1 = *it;
-		else if (cnt == tu2)
-			p2 = *it;
-	}
-	if (p1 && p2)
-	{
-		p1->m_frontend->setData(7, (int)p2);  // this is evil..
-		p2->m_frontend->setData(7, (int)p1);
-		return 0;
-	}
-	return -1;
+RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
+{
+	return setDependencyPointers(tu1, tu2, 8);
 }
 
 bool eDVBSatelliteEquipmentControl::isRotorMoving()
