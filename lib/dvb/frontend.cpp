@@ -413,19 +413,12 @@ void eDVBFrontend::feEvent(int w)
 
 void eDVBFrontend::timeout()
 {
-	int state;
+	m_tuning = 0;
 	if (m_state == stateTuning)
 	{
-		state = stateFailed;
-		eDebug("DVBFrontend: timeout");
-		if (m_state != state)
-		{
-			m_state = state;
-			m_stateChanged(this);
-		}
-		m_tuning = 0;
-	} else
-		m_tuning = 0;
+		m_state = stateFailed;
+		m_stateChanged(this);
+	}
 }
 
 int eDVBFrontend::readFrontendData(int type)
@@ -941,6 +934,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 	m_tuneTimer->start(0,true);
+	m_timeout->stop();
 	m_sec_sequence.current() = m_sec_sequence.begin();
 
 	if (m_state != stateTuning)
