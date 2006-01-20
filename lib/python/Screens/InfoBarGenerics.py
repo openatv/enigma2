@@ -22,6 +22,8 @@ from Screens.EventView import EventView
 from Screens.MinuteInput import MinuteInput
 from Components.Harddisk import harddiskmanager
 
+from Components.ServiceEventTracker import ServiceEventTracker
+
 from Tools import Notifications
 from Tools.Directories import *
 
@@ -237,7 +239,7 @@ class InfoBarNumberZap:
 					bouquet = self.servicelist.appendDVBTypes(bouquetlist.getNext())
 					if not bouquet.valid(): #check end of list
 						break
-					if ((bouquet.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
+					if (bouquet.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
 						continue
 					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:
@@ -486,6 +488,10 @@ class InfoBarSeek:
 	SEEK_STATE_SM_EIGHTH = (0, 0, 8, 0)
 	
 	def __init__(self):
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged
+			})
 		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 
 			{
 				"pauseService": (self.pauseService, "pause"),
@@ -495,7 +501,8 @@ class InfoBarSeek:
 				"seekFwdUp": (self.seekFwdUp, "skip forward"),
 				"seekBack": (self.seekBack, "skip backward"),
 				"seekBackUp": (self.seekBackUp, "skip backward"),
-			})
+			}, prio=-1)
+			# give them a little more priority to win over color buttons
 
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.seekTimer = eTimer()
@@ -519,6 +526,8 @@ class InfoBarSeek:
 	
 	def delSeekTimer(self):
 		del self.seekTimer
+		del self.fwdKeyTimer
+		del self.rwdKeyTimer
 	
 	def seekTimerFired(self):
 		self.seekbase += self.skipmode * self.skipinterval
@@ -530,22 +539,53 @@ class InfoBarSeek:
 			
 		self.doSeek(self.seekbase)
 
-	def setSeekState(self, state):
-		oldstate = self.seekstate
-		
-		self.seekstate = state
-
+	def isSeekable(self):
 		service = self.session.nav.getCurrentService()
 		if service is None:
-			return
+			return False
+		if service.seek() is None:
+			return False
+		else:
+			return True
+
+	def __seekableStatusChanged(self):
+		print "seekable status changed!"
+		if not self.isSeekable():
+			self["SeekActions"].setEnabled(False)
+			print "not seekable, return to play"
+			self.setSeekState(self.SEEK_STATE_PLAY)
+		else:
+			self["SeekActions"].setEnabled(True)
+			print "seekable"
+
+	def setSeekState(self, state):
+		service = self.session.nav.getCurrentService()
+		self.seekTimer.stop()
+		
+		if service is None:
+			return False
+		
+		if service.seek() is None:
+			if state not in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+				state = self.SEEK_STATE_PLAY
 		
 		pauseable = service.pause()
+
+		if pauseable is None:
+			print "not pauseable."
+			state = self.SEEK_STATE_PLAY
+		
+		oldstate = self.seekstate
+		self.seekstate = state
 		
 		for i in range(4):
 			if oldstate[i] != self.seekstate[i]:
 				(self.session.nav.pause, pauseable.setFastForward, pauseable.setSlowMotion, self.setSkipMode)[i](self.seekstate[i])
+
+		return True
 		
 	def setSkipMode(self, skipmode):
+		print "setskipmode", skipmode
 		self.skipmode = skipmode
 		if skipmode == 0:
 			self.seekTimer.stop()
@@ -568,15 +608,23 @@ class InfoBarSeek:
 		self.seekbase = seekable.getPlayPosition()[1] / 90
 	
 	def pauseService(self):
-		if (self.seekstate == self.SEEK_STATE_PAUSE):
+		if self.seekstate == self.SEEK_STATE_PAUSE:
+			print "pause, but in fact unpause"
 			self.unPauseService()
 		else:
+			if self.seekstate == self.SEEK_STATE_PLAY:
+				print "yes, playing."
+			else:
+				print "no", self.seekstate
+			print "pause"
 			self.setSeekState(self.SEEK_STATE_PAUSE);
 		
 	def unPauseService(self):
+		print "unpause"
 		self.setSeekState(self.SEEK_STATE_PLAY);
 	
 	def doSeek(self, seektime):
+		print "doseek", seektime
 		service = self.session.nav.getCurrentService()
 		if service is None:
 			return
@@ -597,6 +645,7 @@ class InfoBarSeek:
 		self.rwdKeyTimer.start(500)
 
 	def seekFwdUp(self):
+		print "seekFwdUp"
 		if self.fwdtimer:
 			self.fwdKeyTimer.stop()
 			self.fwdtimer = False
@@ -620,6 +669,7 @@ class InfoBarSeek:
 			self.setSeekState(lookup[self.seekstate]);
 	
 	def seekBackUp(self):
+		print "seekBackUp"
 		if self.rwdtimer:
 			self.rwdKeyTimer.stop()
 			self.rwdtimer = False
@@ -661,18 +711,20 @@ class InfoBarSeek:
 			seekable.seekRelative(1, minutes * 60 * 90000)
 	
 	def rwdTimerFire(self):
+		print "rwdTimerFire"
 		self.rwdKeyTimer.stop()
 		self.rwdtimer = False
 		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 	
 	def rwdSeekTo(self, minutes):
+		print "rwdSeekTo"
 		self.fwdSeekTo(0 - minutes)
 
 class InfoBarShowMovies:
 
 	# i don't really like this class. 
 	# it calls a not further specified "movie list" on up/down/movieList,
-	# so this is not moe than an action map
+	# so this is not more than an action map
 	def __init__(self):
 		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", 
 			{
@@ -681,14 +733,56 @@ class InfoBarShowMovies:
 				"down": (self.showMovies, "movie list")
 			})
 
+# InfoBarTimeshift requires InfoBarSeek, instantiated BEFORE!
+
+# Hrmf.
+#
+# Timeshift works the following way:
+#                                         demux0   demux1                    "TimeshiftActions" "TimeshiftActivateActions" "SeekActions"
+# - normal playback                       TUNER    unused      PLAY               enable                disable              disable
+# - user presses "yellow" button.         TUNER    record      PAUSE              enable                disable              enable
+# - user presess pause again              FILE     record      PLAY               enable                disable              enable
+# - user fast forwards                    FILE     record      FF                 enable                disable              enable
+# - end of timeshift buffer reached       TUNER    record      PLAY               enable                enable               disable
+# - user backwards                        FILE     record      BACK  # !!         enable                disable              enable
+#
+
+# in other words:
+# - when a service is playing, pressing the "timeshiftStart" button ("yellow") enables recording ("enables timeshift"),
+# freezes the picture (to indicate timeshift), sets timeshiftMode ("activates timeshift")
+# now, the service becomes seekable, so "SeekActions" are enabled, "TimeshiftEnableActions" are disabled.
+# - the user can now PVR around
+# - if it hits the end, the service goes into live mode ("deactivates timeshift", it's of course still "enabled")
+# the service looses it's "seekable" state. It can still be paused, but just to activate timeshift right
+# after!
+# the seek actions will be disabled, but the timeshiftActivateActions will be enabled
+# - if the user rewinds, or press pause, timeshift will be activated again
+
+# note that a timeshift can be enabled ("recording") and
+# activated (currently time-shifting).
+
 class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", 
 			{
-				"timeshiftStart": (self.startTimeshift, "start timeshift "),
-				"timeshiftStop": (self.stopTimeshift, "stop timeshift")
+				"timeshiftStart": (self.startTimeshift, "start timeshift"),  # the "yellow key"
+				"timeshiftStop": (self.stopTimeshift, "stop timeshift")      # currently undefined :), probably 'TV'
+			}, prio=1)
+		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
+			{
+				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "pause key"
+				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "backward key"
 			})
-		self.tshack = 0
+
+		self.timeshift_enabled = 0
+		self.timeshift_state = 0
+		self.ts_pause_timer = eTimer()
+		self.ts_pause_timer.timeout.get().append(self.pauseService)
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged
+			})
 	
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
@@ -704,22 +798,79 @@ class InfoBarTimeshift:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
 			print "no ts interface"
 			return
-		print "ok, timeshift enabled"
-		if self.tshack == 0:
-			ts.startTimeshift()
-			self.tshack = 1
+		
+		if self.timeshift_enabled:
+			print "hu, timeshift already enabled?"
 		else:
-			pauseable = self.session.nav.getCurrentService().pause()
-			pauseable.pause() # switch to record
+			if not ts.startTimeshift():
+				self.timeshift_enabled = 1
+				
+				# PAUSE.
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+				
+				# enable the "TimeshiftEnableActions", which will override
+				# the startTimeshift actions
+				self.__seekableStatusChanged()
+			else:
+				print "timeshift failed"
 
+	# nyi
 	def stopTimeshift(self):
 		print "disable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
 			return
 		ts.stopTimeshift()
-		self.tshack = 0
+		self.timeshift_enabled = 0
+
+		# disable actions
+		self.__seekableStatusChanged()
+	
+	# activates timeshift, and seeks to (almost) the end
+	def activateTimeshiftEnd(self):
+		ts = self.getTimeshift()
 		
+		if ts is None:
+			return
+		
+		if ts.isTimeshiftActive():
+			print "!! activate timeshift called - but shouldn't this be a normal pause?"
+			self.pauseService()
+		else:
+			self.setSeekState(self.SEEK_STATE_PLAY)
+			ts.activateTimeshift()
+	
+	# same as activateTimeshiftEnd, but pauses afterwards.
+	def activateTimeshiftEndAndPause(self):
+		state = self.seekstate
+		self.activateTimeshiftEnd()
+		
+		# well, this is "andPause", but it could be pressed from pause,
+		# when pausing on the (fake-)"live" picture, so an un-pause
+		# is perfectly ok.
+		
+		print "now, pauseService"
+		if state == self.SEEK_STATE_PLAY:
+			print "is PLAYING, start pause timer"
+			self.ts_pause_timer.start(200, 1)
+		else:
+			print "unpause"
+			self.unPauseService()
+	
+	def __seekableStatusChanged(self):
+		enabled = False
+		
+		print "self.isSeekable", self.isSeekable()
+		print "self.timeshift_enabled", self.timeshift_enabled
+		
+		# when this service is not seekable, but timeshift
+		# is enabled, this means we can activate
+		# the timeshift
+		if not self.isSeekable() and self.timeshift_enabled:
+			enabled = True
+
+		print "timeshift activate:", enabled
+		self["TimeshiftActivateActions"].setEnabled(enabled)
 
 from RecordTimer import parseEvent
 
@@ -944,3 +1095,18 @@ class InfoBarNotifications:
 				self.session.openWithCallback(cb, *n[1:])
 			else:
 				self.session.open(*n[1:])
+
+class InfoBarServiceNotifications:
+	def __init__(self):
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				pNavigation.evEnd: self.serviceHasEnded
+			})
+
+	def serviceHasEnded(self):
+		print "service end!"
+
+		try:
+			self.setSeekState(self.SEEK_STATE_PLAY)
+		except:
+			pass
