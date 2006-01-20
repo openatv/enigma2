@@ -6,6 +6,12 @@
 #include <lib/base/message.h>
 #include <sys/types.h>
 
+class iFilePushScatterGather
+{
+public:
+	virtual void getNextSourceSpan(size_t bytes_read, off_t &start, size_t &size)=0;
+};
+
 class eFilePushThread: public eThread, public Object
 {
 public:
@@ -22,10 +28,13 @@ public:
 	void flush();
 	void enablePVRCommit(int);
 	
+	void setSG(iFilePushScatterGather *);
+	
 	enum { evtEOF, evtReadError, evtWriteError };
 	Signal1<void,int> m_event;
 	
 private:
+	iFilePushScatterGather *m_sg;
 	int m_stop;
 	unsigned char m_buffer[65536];
 	int m_buf_start, m_buf_end;
