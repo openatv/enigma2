@@ -36,7 +36,7 @@ class Upgrade(Screen):
 			self.close()
 	
 	def doUpdateDelay(self):
-		lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
+		lines = os.popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
 		string = ""
 		for x in lines:
 			string += x
