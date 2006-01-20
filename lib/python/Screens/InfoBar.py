@@ -15,7 +15,8 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
-	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift
+	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
+	InfoBarServiceNotifications
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -27,7 +28,7 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
-	InfoBarSubserviceSelection, InfoBarTuner):
+	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -43,7 +44,7 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
-				InfoBarTuner:
+				InfoBarTuner, InfoBarTimeshift, InfoBarSeek:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
@@ -63,7 +64,8 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 
 class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
-		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications):
+		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarServiceNotifications):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
@@ -73,10 +75,15 @@ class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 		
-		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, InfoBarNotifications:
+		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, \
+				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
+				InfoBarAudioSelection, InfoBarNotifications, \
+				InfoBarServiceNotifications:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
+		self["ElapsedTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_POSITION)
+		# TYPE_LENGTH?
 		
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.playService(service)
