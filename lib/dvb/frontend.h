@@ -57,7 +57,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 
 	eSecCommandList m_sec_sequence;
 
-	int m_data[8]; /* when satellite frontend then
+	int m_data[9]; /* when satellite frontend then
 		data[0] = lastcsw -> state of the committed switch
 		data[1] = lastucsw -> state of the uncommitted switch
 		data[2] = lastToneburst -> current state of toneburst switch
@@ -65,7 +65,8 @@ class eDVBFrontend: public iDVBFrontend, public Object
 		data[4] = newRotorPos -> current Rotor Position
 		data[5] = curRotorCmd
 		data[6] = curRotorPos
-		data[7] = linkedToTunerNo */
+		data[7] = linkedToTunerNo
+		data[8] = dependsToTunerNo (just satpos.. for rotor with twin lnb) */
 
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
