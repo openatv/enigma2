@@ -669,13 +669,6 @@ void eDVBFrontend::setFrontend()
 		perror("FE_SET_FRONTEND failed");
 		return;
 	}
-
-	if (m_state != stateTuning)
-	{
-		m_tuning = 1;
-		m_state = stateTuning;
-		m_stateChanged(this);
-	}
 	m_timeout->start(5000, 1); // 5 sec timeout. TODO: symbolrate dependent
 }
 
@@ -949,6 +942,13 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 	m_tuneTimer->start(0,true);
 	m_sec_sequence.current() = m_sec_sequence.begin();
+
+	if (m_state != stateTuning)
+	{
+		m_tuning = 1;
+		m_state = stateTuning;
+		m_stateChanged(this);
+	}
 
 	return 0;
 }
