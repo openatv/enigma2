@@ -111,6 +111,8 @@ void eFilePushThread::start(int fd_source, int fd_dest)
 
 void eFilePushThread::stop()
 {
+	if (!thread_running()) /* FIXME: races */
+		return;
 	m_stop = 1;
 	sendSignal(SIGUSR1);
 	kill();
