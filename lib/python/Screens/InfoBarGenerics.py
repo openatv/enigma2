@@ -184,7 +184,7 @@ class InfoBarPowerKey:
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
 	def __init__(self):
-		self["NumberZapActions"] = NumberActionMap( [ "NumberZapActions"],
+		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -350,7 +350,7 @@ class InfoBarEPG:
 				self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
 		except:
 			pass
-			
+
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
 		ptr=eEPGCache.getInstance()
@@ -359,7 +359,6 @@ class InfoBarEPG:
 		else: # try to show now/next
 			print 'no epg for service', ref.toString()
 
-	
 	def openBouquetEPG(self, bouquet):
 		ptr=eEPGCache.getInstance()
 		services = [ ]

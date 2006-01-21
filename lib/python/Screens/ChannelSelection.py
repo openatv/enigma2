@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import NumberActionMap, ActionMap
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
 from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
@@ -107,6 +107,21 @@ class ChannelContextMenu(FixedMenu):
 		self.csel.endMarkedEdit(abort=True)
 		self.close()
 
+class ChannelSelectionEPG:
+	def __init__(self):
+		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
+			{
+				"showEPGList": self.showEPGList,
+			})
+
+	def showEPGList(self):
+		ref=self.getCurrentSelection()
+		ptr=eEPGCache.getInstance()
+		if ptr.startTimeQuery(ref) != -1:
+			self.session.open(EPGSelection, ref)
+		else:
+			print 'no epg for service', ref.toString()
+
 class ChannelSelectionEdit:
 	def __init__(self):
 		self.entry_marked = False
@@ -116,6 +131,19 @@ class ChannelSelectionEdit:
 		self.__marked = [ ]
 		self.saved_title = None
 		self.saved_root = None
+
+		class ChannelSelectionEditActionMap(ActionMap):
+			def __init__(self, csel, contexts = [ ], actions = { }, prio=0):
+				ActionMap.__init__(self, contexts, actions, prio)
+				self.csel = csel
+			def action(self, contexts, action):
+				if action == "cancel":
+					self.csel.handleEditCancel()
+				ActionMap.action(self, contexts, action)
+		self["ChannelSelectEditActions"] = ChannelSelectionEditActionMap(self, ["ChannelSelectEditActions"],
+			{
+				"contextMenu": self.doContext,
+			})
 
 	def getMutableList(self, root=eServiceReference()):
 		if not self.mutableList is None:
@@ -260,6 +288,31 @@ class ChannelSelectionBase(Screen):
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
+
+		class ChannelBaseActionMap(NumberActionMap):
+			def __init__(self, csel, contexts = [ ], actions = { }, prio=0):
+				NumberActionMap.__init__(self, contexts, actions, prio)
+				self.csel = csel
+			def action(self, contexts, action):
+				if not self.csel.enterBouquet(action):
+					NumberActionMap.action(self, contexts, action)
+		self["ChannelSelectBaseActions"] = ChannelBaseActionMap(self, ["ChannelSelectBaseActions"],
+			{
+				"showFavourites": self.showFavourites,
+				"showAllServices": self.showAllServices,
+				"showProviders": self.showProviders,
+				"showSatellites": self.showSatellites,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal,
+				"0": self.keyNumberGlobal
+			})
 
 	def appendDVBTypes(self, ref):
 		path = ref.getPath()
@@ -527,10 +580,11 @@ class ChannelSelectionBase(Screen):
 			return bouquets
 		return None
 
-class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
+class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
 		ChannelSelectionEdit.__init__(self)
+		ChannelSelectionEPG.__init__(self)
 
 		#config for lastservice
 		config.tv = ConfigSubsection();
@@ -539,35 +593,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		config.tv.prevservice = configElement("config.tv.prevservice", configText, "", 0);
 		config.tv.prevroot = configElement("config.tv.prevroot", configText, "", 0);
 
-		class ChannelActionMap(NumberActionMap):
-			def action(self, contexts, action):
-				if not self.csel.enterBouquet(action):
-					if action == "cancel":
-						self.csel.handleEditCancel()
-					NumberActionMap.action(self, contexts, action)
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
-				"mark": self.doMark,
-				"contextMenu": self.doContext,
-				"showFavourites": self.showFavourites,
-				"showAllServices": self.showAllServices,
-				"showProviders": self.showProviders,
-				"showSatellites": self.showSatellites,
-				"showEPGList": self.showEPGList,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
 			})
-		self["actions"].csel = self
 		self.onShown.append(self.onShow)
 
 		self.lastChannelRootTimer = eTimer()
@@ -590,14 +620,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 			self.servicelist.setPlayableIgnoreService(ref)
 		else:
 			self.servicelist.setPlayableIgnoreService(eServiceReference())
-
-	def showEPGList(self):
-		ref=self.getCurrentSelection()
-		ptr=eEPGCache.getInstance()
-		if ptr.startTimeQuery(ref) != -1:
-			self.session.open(EPGSelection, ref)
-		else:
-			print 'no epg for service', ref.toString()
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -699,57 +721,36 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 		if lastservice.valid() and self.getCurrentSelection() != lastservice:
 			self.setCurrentSelection(lastservice)
 
-class ServiceInfoWindow(Screen):
+from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord
+
+class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["Service_Name"] = ServiceName(self.session.nav)
+		InfoBarEvent.__init__(self)
+		InfoBarServiceName.__init__(self)
+		InfoBarInstantRecord.__init__(self)
 		self["Clock"] = Clock()
-		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
-		self["Event_Next_StartTime"] = EventInfo(self.session.nav, EventInfo.Next_StartTime)
-		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
-		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
-		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
-		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
 		ChannelSelectionEdit.__init__(self)
+		ChannelSelectionEPG.__init__(self)
 
 		config.radio = ConfigSubsection();
 		config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0);
 		config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0);
 		self.onLayoutFinish.append(self.onCreate)
 
-		self.info = session.instantiateDialog(ServiceInfoWindow)
+		self.info = session.instantiateDialog(RadioInfoBar)
 
-		class ChannelActionMap(NumberActionMap):
-			def action(self, contexts, action):
-				if not self.csel.enterBouquet(action):
-					NumberActionMap.action(self, contexts, action)
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions", "TvRadioActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"keyTV": self.closeRadio,
 				"keyRadio": self.closeRadio,
-				"contextMenu": self.doContext,
 				"cancel": self.closeRadio,
 				"ok": self.channelSelected,
-				"showFavourites": self.showFavourites,
-				"showAllServices": self.showAllServices,
-				"showProviders": self.showProviders,
-				"showSatellites": self.showSatellites,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
 			})
-		self["actions"].csel = self
 
 	def saveRoot(self):
 		path = ''
@@ -780,7 +781,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 			pathstr = config.radio.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
-				lastservice=eServiceReference(config.tv.lastservice.value)
+				lastservice=eServiceReference(config.radio.lastservice.value)
 				if lastservice is not None:
 					self.setCurrentSelection(lastservice)
 				return True
@@ -805,7 +806,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit):
 		elif self.bouquet_mark_edit:
 			self.doMark()
 		else:
-			if self.session.nav.getCurrentlyPlayingServiceReference() != ref:
+			playingref = self.session.nav.getCurrentlyPlayingServiceReference()
+			if playingref is None or playingref != ref:
 				self.session.nav.playService(ref)
 				self.servicelist.setPlayableIgnoreService(ref)
 				config.radio.lastservice.value = ref.toString()
@@ -828,32 +830,13 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		self.title = title
 		self.onShown.append(self.onExecCallback)
 
-		class ChannelActionMap(NumberActionMap):
-			def action(self, contexts, action):
-				if not self.csel.enterBouquet(action):
-					NumberActionMap.action(self, contexts, action)
-		self["actions"] = ChannelActionMap(["ChannelSelectActions", "OkCancelActions", "ContextMenuActions", "TvRadioActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
-				"showFavourites": self.showFavourites,
-				"showAllServices": self.showAllServices,
-				"showProviders": self.showProviders,
-				"showSatellites": self.showSatellites,
 				"keyRadio": self.setModeRadio,
 				"keyTV": self.setModeTv,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
 			})
-		self["actions"].csel = self
 
 	def onExecCallback(self):
 		self.session.currentDialog.instance.setTitle(self.title)
