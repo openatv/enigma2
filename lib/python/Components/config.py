@@ -260,8 +260,8 @@ class configSequence:
 			self.parent.value[blocknumber] = newvalue
 			self.markedPos += 1
 		
-		self.checkValues()			
-		
+		self.checkValues()
+
 		#FIXME: dont call when press left/right
 		self.parent.change()	
 
@@ -508,10 +508,11 @@ class configElement:
 
 		if value == "":
 			#print "value not found - using default"
-
 			if self.controlType == configSatlist:
 				self.value = self.getIndexbyEntry(self.defaultValue)
-			else:	
+			elif self.controlType == configSequence:
+				self.value = self.defaultValue[:]
+			else:
 				self.value = self.defaultValue
 
 			self.save()		#add missing value to dict
@@ -544,7 +545,7 @@ class configElement:
 	def reload(self):
 		self.loadData()
 	def save(self):
-		if self.defaultValue != self.value or self.saveDefaults == True:
+		if (self.defaultValue != self.value) or (self.saveDefaults == True):
 			configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
 
 class configElement_nonSave(configElement):
