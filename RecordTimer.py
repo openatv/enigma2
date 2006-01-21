@@ -182,7 +182,10 @@ def createTimer(xml):
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
-	eit = long(xml.getAttribute("eit").encode("utf-8"))
+	try:
+		eit = long(xml.getAttribute("eit").encode("utf-8"))
+	except:
+		eit = None
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit)
