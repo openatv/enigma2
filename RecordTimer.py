@@ -44,6 +44,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.description = description
 		self.timer = None
 		self.record_service = None
+		self.start_prepare = 0
 		
 		self.log_entries = []
 		self.resetState()
