@@ -153,22 +153,7 @@
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
-	
-	<map context="NumberZapActions">
-		<key id="KEY_1" mapto="1" flags="m" />
-		<key id="KEY_2" mapto="2" flags="m" />
-		<key id="KEY_3" mapto="3" flags="m" />
-		<key id="KEY_4" mapto="4" flags="m" />
-		<key id="KEY_5" mapto="5" flags="m" />
-		<key id="KEY_6" mapto="6" flags="m" />
-		<key id="KEY_7" mapto="7" flags="m" />
-		<key id="KEY_8" mapto="8" flags="m" />
-		<key id="KEY_9" mapto="9" flags="m" />
-		<key id="KEY_0" mapto="0" flags="m" />
-	</map>
-	
 
-	
 	<map context="TextEntryActions">
 		<key id="KEY_MUTE" mapto="delete" flags="mr" />
 	</map>	
@@ -204,39 +189,29 @@
 	<map context="MoviePlayerActions">
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 	</map>
-	
-	<map context="ChannelSelectActions">
-		<key id="m" mapto="mark" flags="m" />
+
+	<map context="ChannelSelectBaseActions">
 		<!-- yes, this is flexible as hell. -->
 		<!--key id="p" mapto="bouquet:(provider == PREMIERE) &amp;&amp; (type == 1)" flags="m" />
-		<key id="d" mapto="bouquet:(provider == ARD) &amp;&amp; (type == 1)" flags="m" />
-		<key id="a" mapto="bouquet:" flags="m" />
-		<key id="KEY_M" mapto="mark" flags="m" />
-		<key id="KEY_D" mapto="bouquet:(provider == ARD)" flags="m" />
-		<key id="KEY_A" mapto="bouquet:" flags="m" />
-		<key id="KEY_RED" mapto="bouquet:(type == 1) || (type == 17) ORDER BY name" flags="m" />
-		<key id="KEY_GREEN" mapto="bouquet:(type == 1) || (type == 17) FROM SATELLITES ORDER BY satellitePosition" flags="m" />
-		<key id="KEY_YELLOW" mapto="bouquet:(type == 1) || (type == 17) FROM PROVIDERS ORDER BY name" flags="m" /-->
-
+	<key id="d" mapto="bouquet:(provider == ARD) &amp;&amp; (type == 1)" flags="m" />
+	<key id="a" mapto="bouquet:" flags="m" />
+	<key id="KEY_M" mapto="mark" flags="m" />
+	<key id="KEY_D" mapto="bouquet:(provider == ARD)" flags="m" />
+	<key id="KEY_A" mapto="bouquet:" flags="m" />
+	<key id="KEY_RED" mapto="bouquet:(type == 1) || (type == 17) ORDER BY name" flags="m" />
+	<key id="KEY_GREEN" mapto="bouquet:(type == 1) || (type == 17) FROM SATELLITES ORDER BY satellitePosition" flags="m" />
+	<key id="KEY_YELLOW" mapto="bouquet:(type == 1) || (type == 17) FROM PROVIDERS ORDER BY name" flags="m" /-->
 		<key id="KEY_RED" mapto="showAllServices" flags="m" />
 		<key id="KEY_GREEN" mapto="showSatellites" flags="m" />
 		<key id="KEY_YELLOW" mapto="showProviders" flags="m" />
 		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
-		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
-		
-		<key id="KEY_1" mapto="1" flags="m" />
-		<key id="KEY_2" mapto="2" flags="m" />
-		<key id="KEY_3" mapto="3" flags="m" />
-		<key id="KEY_4" mapto="4" flags="m" />
-		<key id="KEY_5" mapto="5" flags="m" />
-		<key id="KEY_6" mapto="6" flags="m" />
-		<key id="KEY_7" mapto="7" flags="m" />
-		<key id="KEY_8" mapto="8" flags="m" />
-		<key id="KEY_9" mapto="9" flags="m" />
-		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
 
-	<map context="ContextMenuActions">
+	<map context="ChannelSelectEPGActions">
+		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
+	</map>
+
+	<map context="ChannelSelectEditActions">
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 	</map>
 
