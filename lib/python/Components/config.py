@@ -479,16 +479,20 @@ class configElement:
 			return str(data.strip())
 
 		elif control == configSequence:
+			print self.vals
+			print self.value
 			try:
-				value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
+				value = ""
+				count = 0
+				for i in data:
+					if value !="":
+						value += self.vals[0]
+					value += (("%0" + str(len(str(self.vals[1][count][1]))) + "d") % i)
+					count += 1
+					#value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
 			except:	
 				value = str(data)	
-#			just in case you don't understand the above, here an equivalent:
-#			value = ""
-#			for i in data:
-#				if value !="":
-#					value += self.vals[0]
-#				value += str(i)
+
 			return value
 		elif control == configSatlist:
 			return str(self.vals[self.value][1]);
