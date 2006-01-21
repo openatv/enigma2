@@ -490,7 +490,8 @@ class InfoBarSeek:
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged
+				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged,
+				pNavigation.evNewService: self.__serviceStarted
 			})
 		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 
 			{
@@ -557,6 +558,9 @@ class InfoBarSeek:
 		else:
 			self["SeekActions"].setEnabled(True)
 			print "seekable"
+
+	def __serviceStarted(self):
+		self.seekstate = self.SEEK_STATE_PLAY
 
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
