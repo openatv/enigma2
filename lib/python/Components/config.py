@@ -478,8 +478,8 @@ class configElement:
 		elif control == configText:
 			return str(data.strip())
 		elif control == configSequence:
-			print self.vals
-			print self.value
+#			print self.vals
+#			print self.value
 			try:
 				value = ""
 				count = 0
