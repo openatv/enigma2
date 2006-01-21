@@ -213,6 +213,8 @@ class TimerEntry(Screen):
 	def keySelect(self):
 		if self["config"].getCurrent() == self.channelEntry:
 			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
+		else:
+			self.keyGo()
 
 	def finishedChannelSelection(self, args):
 		oldref = self.timer.service_ref
@@ -268,7 +270,7 @@ class TimerEntry(Screen):
 				if event.getNumOfLinkageServices() > 0:
 					self.session.openWithCallback(self.subserviceSelected, SubserviceSelection, event, self.timer.service_ref.ref)
 					return
-			self.close((True, self.timer))
+		self.close((True, self.timer))
 
 	def subserviceSelected(self, service):
 		if not service is None:
