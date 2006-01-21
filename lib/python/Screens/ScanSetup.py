@@ -167,7 +167,7 @@ class ScanSetup(Screen):
 			config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
 
 			# sat
-			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (10000, 14000)))
+			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (1, 99999)))
 			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, (_("off"), _("on"), _("Auto")))
 			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 99999)))
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (_("horizontal"), _("vertical"),  _("circular left"), _("circular right")))
