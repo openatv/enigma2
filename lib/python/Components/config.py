@@ -477,7 +477,6 @@ class configElement:
 			return str(data)
 		elif control == configText:
 			return str(data.strip())
-
 		elif control == configSequence:
 			print self.vals
 			print self.value
@@ -492,7 +491,6 @@ class configElement:
 					#value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
 			except:	
 				value = str(data)	
-
 			return value
 		elif control == configSatlist:
 			return str(self.vals[self.value][1]);
@@ -519,7 +517,7 @@ class configElement:
 		else:
 			#print "set val:" + str(value)
 			self.value = value
-			
+
 		#is this right? activate settings after load/cancel and use default	
 		self.change()
 
@@ -539,13 +537,20 @@ class configElement:
 	def addNotifier(self, notifier):
 		self.notifierList.append(notifier);
 		notifier(self);
+
 	def change(self):
 		for notifier in self.notifierList:
 			notifier(self)
+
 	def reload(self):
 		self.loadData()
+
 	def save(self):
-		if (self.defaultValue != self.value) or (self.saveDefaults == True):
+		if self.controlType == configSatlist:
+			defaultValue = self.getIndexbyEntry(self.defaultValue)
+		else:
+			defaultValue = self.defaultValue
+		if (defaultValue != self.value) or (self.saveDefaults == True):
 			configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
 
 class configElement_nonSave(configElement):
@@ -554,12 +559,11 @@ class configElement_nonSave(configElement):
 
 	def save(self):
 		pass
-		
+
 def getConfigListEntry(description, element):
 	b = element
 	item = b.controlType(b)
 	return ((description, item))
-
 
 def configElementBoolean(name, default, texts=(_("Enable"), _("Disable"))):
 	return configElement(name, configSelection, default, texts)
