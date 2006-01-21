@@ -206,7 +206,6 @@ class SecConfigure:
 					if self.satposdepends.has_key(slotid):  # only useable with rotors
 						tunermask |= (1 << self.satposdepends[slotid])
 
-					
 				if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
 					if currentConfigSelectionElement(currLnb.toneburst) == "none":
 						sec.setToneburst(diseqcParam.NO)
@@ -610,7 +609,7 @@ def InitNimManager(nimmgr):
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			if slot.slotid == 0:
 				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
-				("simple", _("Simple")), ("advanced", _("Advanced"))))
+				("simple", _("Simple")), ("advanced", _("Advanced"))), False)
 			else:
 				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
 				("equal", _("Equal to Socket A")),
@@ -618,7 +617,7 @@ def InitNimManager(nimmgr):
 				("nothing", _("Nothing connected")),
 				("satposdepends", _("Secondary cable from Rotor-LNB")),
 				("simple", _("Simple")),
-				("advanced", _("Advanced"))))
+				("advanced", _("Advanced"))), False)
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			if currentConfigSelectionElement(nim.configMode) in ["loopthrough", "satposdepends", "equal"]:
 				if x == 0:										#first one can never be linked to anything
@@ -632,23 +631,23 @@ def InitNimManager(nimmgr):
 								nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
 								nim.configMode.save()
 
-			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")), ("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")), ("positioner", _("Positioner"))));
-			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList);
-			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList);
-			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList);
-			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList);
-			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))));
-			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))))
-			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]));
-			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))))
+			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")), ("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")), ("positioner", _("Positioner"))), False);
+			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList, False);
+			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList, False);
+			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList, False);
+			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList, False);
+			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))), False);
+			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
+			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
+			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
+			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))), False)
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []
 			for x in satNimList:
 				satNimListNames.append((("Slot_" + ("A", "B", "C", "D")[x] + "_" + nimmgr.getNimName(x)), _("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x)))
-			nim.equalTo = configElement(cname + "equalTo", configSelection, 0, satNimListNames);
-			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames);
-			nim.satposDependsTo = configElement(cname + "satposDependsTo", configSelection, 0, satNimListNames);
+			nim.equalTo = configElement(cname + "equalTo", configSelection, 0, satNimListNames, False);
+			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames, False);
+			nim.satposDependsTo = configElement(cname + "satposDependsTo", configSelection, 0, satNimListNames, False);
 			
 			#perhaps the instance of the slot is more useful?
 #			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
@@ -701,9 +700,9 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].powerMeasurement = configElement(cname + "advanced.lnb" + str(x) + ".powerMeasurement", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))), False)
 				nim.advanced.lnb[x].powerThreshold = configElement(cname + "advanced.lnb" + str(x) + ".powerThreshold", configSequence, [50], configsequencearg.get("INTEGER", (0, 100)), False)
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
-			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList);
+			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList, False);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
-			nim.cable = configElement(cname + "terrestrial", configSelection, 0, nimmgr.terrestrialsList);
+			nim.cable = configElement(cname + "terrestrial", configSelection, 0, nimmgr.terrestrialsList, False);
 		else:
 			print "pls add support for this frontend type!"		
 
