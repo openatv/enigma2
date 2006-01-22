@@ -17,8 +17,8 @@ public:
 	~eDVBCIMMISession();
 	int stopMMI();
 	int answerText(int answer);
+	int answerEnq(char *answer);
 	int cancelEnq();
-
 };
 
 #endif

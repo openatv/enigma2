@@ -480,6 +480,8 @@ int eDVBCISlot::getMMIState()
 int eDVBCISlot::answerEnq(char *value)
 {
 	printf("edvbcislot: answerENQ(%s)\n", value);
+
+	
 	return 0;
 }
 
