@@ -135,7 +135,6 @@ class Wizard(Screen, HelpableScreen):
 	
 	def getStepWithID(self, id):
 		count = 0
-		print self.wizard
 		for x in self.wizard:
 			if self.wizard[x]["id"] == id:
 				return count
