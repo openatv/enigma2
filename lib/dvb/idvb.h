@@ -1,7 +1,6 @@
 #ifndef __dvb_idvb_h
 #define __dvb_idvb_h
 
-#include <config.h>
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
 #define FRONTENDPARAMETERS FrontendParameters

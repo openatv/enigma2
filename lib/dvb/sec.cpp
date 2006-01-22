@@ -1,4 +1,3 @@
-#include <config.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/rotor_calc.h>

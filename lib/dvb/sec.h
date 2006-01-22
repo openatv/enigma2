@@ -1,7 +1,6 @@
 #ifndef __dvb_sec_h
 #define __dvb_sec_h
 
-#include <config.h>
 #include <lib/dvb/idvb.h>
 #include <list>
 

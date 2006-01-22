@@ -1,6 +1,5 @@
 #include <lib/base/encoding.h>
 #include <lib/base/eerror.h>
-#include <config.h>
 
 eDVBTextEncodingHandler encodingHandler;  // the one and only instance
 

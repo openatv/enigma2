@@ -1,7 +1,6 @@
 #ifndef __E_ERROR__
 #define __E_ERROR__
 
-#include "config.h"
 #include <string>
 #include <map>       
 #include <new>
