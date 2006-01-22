@@ -416,10 +416,14 @@ class ChannelSelectionBase(Screen):
 
 	def pathUp(self, justSet=False):
 		if self.mode == MODE_TV:
+			print "MODE_TV"
 			prev = self.servicePathTV.pop()
+			print "prev", prev.toString()
 			length = len(self.servicePathTV)
+			print "length", length
 			if length:
 				current = self.servicePathTV[length-1]
+				print "current", current.toString()
 		else:
 			prev = self.servicePathRadio.pop()
 			length = len(self.servicePathRadio)
@@ -427,6 +431,7 @@ class ChannelSelectionBase(Screen):
 				current = self.servicePathRadio[length-1]
 		self.setRoot(current, justSet)
 		if not justSet:
+			print "setCurrentSelection prev"
 			self.setCurrentSelection(prev)
 		return prev
 
@@ -520,8 +525,10 @@ class ChannelSelectionBase(Screen):
 		if not self.pathChangedDisabled:
 			if not self.preEnterPath(self.bouquet_rootstr):
 				if self.isBasePathEqual(self.bouquet_root):
+					print "basepath equal"
 					self.pathUp()
 				else:
+					print "basepath not equal"
 					currentRoot = self.getRoot()
 					if currentRoot is None or currentRoot != self.bouquet_root:
 						self.clearPath()
@@ -543,7 +550,10 @@ class ChannelSelectionBase(Screen):
 		servicepath = service.getPath()
 		pos = servicepath.find(" FROM BOUQUET")
 		if pos != -1:
-			servicepath = '(type == 1)' + servicepath[pos:]
+			if self.mode == MODE_TV:
+				servicepath = '(type == 1)' + servicepath[pos:]
+			else:
+				servicepath = '(type == 2)' + servicepath[pos:]
 			service.setPath(servicepath)
 		self.servicelist.setCurrent(service)
 
