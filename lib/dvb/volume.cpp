@@ -4,7 +4,6 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include <config.h>
 #if HAVE_DVB_API_VERSION < 3
 #define VIDEO_DEV "/dev/dvb/card0/video0"
 #define AUDIO_DEV "/dev/dvb/card0/audio0"

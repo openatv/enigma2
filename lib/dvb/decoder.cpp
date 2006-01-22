@@ -1,4 +1,3 @@
-#include <config.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
 #if HAVE_DVB_API_VERSION < 3 

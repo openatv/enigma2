@@ -1,4 +1,3 @@
-#include <config.h>
 #include <lib/dvb/tstools.h>
 #include <lib/base/eerror.h>
 #include <unistd.h>

@@ -1,4 +1,3 @@
-#include <config.h>
 #include <lib/dvb/dvb.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
