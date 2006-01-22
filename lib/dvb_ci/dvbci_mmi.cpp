@@ -184,6 +184,17 @@ int eDVBCIMMISession::answerText(int answer)
 	return 0;
 }
 
+int eDVBCIMMISession::answerEnq(char *answer)
+{
+	unsigned int len = strlen(answer);
+	printf("eDVBCIMMISession::answerEnq(%d bytes)\n", len);
+
+	unsigned char tag[]={0x9f, 0x88, 0x08};
+	sendAPDU(tag, (unsigned char*)answer, len);
+
+	return 0;
+}
+
 int eDVBCIMMISession::cancelEnq()
 {
 	printf("eDVBCIMMISession::cancelEnq()\n");
