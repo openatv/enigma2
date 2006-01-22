@@ -153,8 +153,6 @@ int main(int argc, char **argv)
 	ePython python;
 	eMain main;
 	
-	int double_buffer = 0;
-
 #if 1
 #ifdef SDLDC
 	ePtr<gSDLDC> my_dc;
@@ -163,7 +161,7 @@ int main(int argc, char **argv)
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
 	
-	double_buffer = my_dc->haveDoubleBuffering();
+	int double_buffer = my_dc->haveDoubleBuffering();
 #endif
 
 	ePtr<gLCDDC> my_lcd_dc;
