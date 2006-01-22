@@ -20,13 +20,18 @@ class Wizard(Screen, HelpableScreen):
 			self.isPointsElement, self.isReboundsElement = 0, 0
 			self.wizard = wizard
 			self.currContent = ""
+			self.lastStep = 0
 		
 		def startElement(self, name, attrs):
 			print name
 			self.currContent = name
 			if (name == "step"):
-				self.lastStep = int(attrs.get('number'))
-				self.wizard[self.lastStep] = {"condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": ""}
+				self.lastStep += 1
+				if attrs.has_key('id'):
+					id = str(attrs.get('id'))
+				else:
+					id = ""
+				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": ""}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "listentry"):
@@ -127,6 +132,15 @@ class Wizard(Screen, HelpableScreen):
 		
 	def markDone(self):
 		pass
+	
+	def getStepWithID(self, id):
+		count = 0
+		print self.wizard
+		for x in self.wizard:
+			if self.wizard[x]["id"] == id:
+				return count
+			count += 1
+		return 0
 		
 	def ok(self):
 		print "OK"
@@ -140,12 +154,7 @@ class Wizard(Screen, HelpableScreen):
 		if self.showList:
 			if (len(self.wizard[self.currStep]["list"]) > 0):
 				nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
-				if nextStep == "end":
-					self.currStep = self.numSteps
-				elif nextStep == "next":
-					pass
-				else:
-					self.currStep = int(nextStep) - 1
+				self.currStep = self.getStepWithID(nextStep)
 
 		if (self.currStep == self.numSteps): # wizard finished
 			self.markDone()

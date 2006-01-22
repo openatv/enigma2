@@ -1,5 +1,5 @@
 <wizard>
-		<step number="1">
+		<step id="welcome">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Dreambox.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self["arrowdown"].moveTo(557, 232, 1)
@@ -10,10 +10,10 @@ self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 			</code>
 		</step>
-		<step number="2">
+		<step>
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use wizard to set up basic features" step="next" />
+				<listentry caption="Use wizard to set up basic features" step="nima" />
 				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
@@ -27,7 +27,7 @@ self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 			</code>
 		</step>
-		<step number="3">
+		<step id="nima">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.nimCount > 0
@@ -45,7 +45,7 @@ self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
-		<step number="4">
+		<step id="nimb">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.nimCount > 1
@@ -63,7 +63,7 @@ self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
-		<step number="5">
+		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<code>
 self["rc"].moveTo(800, 50, 1)
@@ -74,15 +74,15 @@ self["arrowup2"].moveTo(800, 310, 1)
 self["arrowup2"].startMoving()
 			</code>
 			<list>
-				<listentry caption="Yes, scan now" step="next" />
-				<listentry caption="No, scan later manually" step="7" />
+				<listentry caption="Yes, scan now" step="scan" />
+				<listentry caption="No, scan later manually" step="end" />
 			</list>
 		</step>
-		<step number="6">
+		<step id="scan">
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
 		</step>
-		<step number="7">
+		<step id="end">
 			<text value="Thanks for using the wizard. Your box is now ready to use." />
 		</step>
 </wizard>
