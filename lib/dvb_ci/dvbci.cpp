@@ -481,7 +481,9 @@ int eDVBCISlot::answerEnq(char *value)
 {
 	printf("edvbcislot: answerENQ(%s)\n", value);
 
-	
+	if(mmi_session)
+		mmi_session->answerEnq(value);
+
 	return 0;
 }
 
