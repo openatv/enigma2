@@ -9,7 +9,7 @@
 class iFilePushScatterGather
 {
 public:
-	virtual ~iFilePushScatterGather();
+	virtual ~iFilePushScatterGather() {}
 	virtual void getNextSourceSpan(size_t bytes_read, off_t &start, size_t &size)=0;
 };
 
