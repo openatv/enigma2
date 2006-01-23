@@ -491,7 +491,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(m_seperation, 0), item_right));
 						para->setFont(fnt2);
 						para->renderString(text, 0);
-						para->realign(eTextPara::dirRight);
+						if (strlen(text) != 0)
+							para->realign(eTextPara::dirRight);
+						else
+							para->realign(eTextPara::dirLeft);
 						int glyphs = para->size();
 						
 						PyObject *plist = 0;
