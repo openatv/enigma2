@@ -71,13 +71,13 @@ class CiMmi(Screen):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
 			list.append( (entry[1], entry[2]) )
 		if entry[0] == "PIN":
+			self.pinlength = entry[1]
 			if entry[3] == 1:
 				# masked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "*")))
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (self.pinlength, "*")))
 			else:				
 				# unmasked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))
-			
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (self.pinlength, "")))
 			self["subtitle"].setText(entry[2])
 			self.pin = getConfigListEntry("",x)
 			list.append( self.pin )
@@ -97,7 +97,10 @@ class CiMmi(Screen):
 			self.showWait()	
 		elif self.tag == "ENQ":
 			answer = str(self.pin[1].parent.value[0])
-			print "answer ENQ", answer
+			length = len(answer)
+			while length < self.pinlength:
+				answer = '0'+answer
+				length+=1
 			eDVBCI_UI.getInstance().answerEnq(self.slotid, answer)
 			self.showWait()
 
