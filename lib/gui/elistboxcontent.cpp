@@ -431,6 +431,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
 			Py_XDECREF(text);
 			
+				/* when we have no label, align value to the left. (FIXME: 
+				   don't we want to specifiy this individually?) */
+			int value_alignment_left = !*string;
+			
 				/* now, handle the value. get 2nd part from tuple*/
 			value = PyTuple_GET_ITEM(item, 1);
 			if (value)
@@ -462,7 +466,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, gPainter::RT_HALIGN_RIGHT);
+						painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -491,10 +495,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(m_seperation, 0), item_right));
 						para->setFont(fnt2);
 						para->renderString(text, 0);
-						if (strlen(text) != 0)
-							para->realign(eTextPara::dirRight);
-						else
-							para->realign(eTextPara::dirLeft);
+						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);
 						int glyphs = para->size();
 						
 						PyObject *plist = 0;
