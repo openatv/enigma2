@@ -60,10 +60,14 @@ void eDVBCI_UI::setAppName(int slot, const char *name)
 	appName = name;
 }
 
+void eDVBCI_UI::setInit(int slot)
+{
+	eDVBCIInterfaces::getInstance()->sendCAPMT(slot);
+}
+
 void eDVBCI_UI::setReset(int slot)
 {
 	eDVBCIInterfaces::getInstance()->reset(slot);
-	return;
 }
 
 int eDVBCI_UI::startMMI(int slot)

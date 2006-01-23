@@ -32,6 +32,7 @@ public:
 	void setState(int slot, int state);
 	std::string getAppName(int slot);
 	void setAppName(int slot, const char *name);
+	void setInit(int slot);
 	void setReset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);

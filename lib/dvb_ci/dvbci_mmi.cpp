@@ -189,8 +189,12 @@ int eDVBCIMMISession::answerEnq(char *answer)
 	unsigned int len = strlen(answer);
 	printf("eDVBCIMMISession::answerEnq(%d bytes)\n", len);
 
+	unsigned char data[len+1];
+	data[0] = 0x01; // answer ok
+	memcpy(data+1, answer, len);
+
 	unsigned char tag[]={0x9f, 0x88, 0x08};
-	sendAPDU(tag, (unsigned char*)answer, len);
+	sendAPDU(tag, data, len+1);
 
 	return 0;
 }
@@ -200,7 +204,7 @@ int eDVBCIMMISession::cancelEnq()
 	printf("eDVBCIMMISession::cancelEnq()\n");
 
 	unsigned char tag[]={0x9f, 0x88, 0x08};
-	unsigned char data[]={0x00};
+	unsigned char data[]={0x00}; // canceled
 	sendAPDU(tag, data, 1);
 	
 	return 0;

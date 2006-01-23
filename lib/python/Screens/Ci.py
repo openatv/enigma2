@@ -9,168 +9,17 @@ from Components.Label import Label
 from Components.HTMLComponent import *
 from Components.GUIComponent import *
 from Components.config import *
+from Components.ConfigList import ConfigList
 
-from enigma import *
+from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
 
-class CiConfigList(HTMLComponent, GUIComponent):
-	def __init__(self, list):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonConfigContent()
-		self.l.setList(list)
-		self.l.setSeperation(100)
-		self.list = list
-
-	def toggle(self):
-		pass
-
-	def handleKey(self, key):
-		selection = self.getCurrent()
-		selection[1].handleKey(key)
-		self.invalidateCurrent()
-
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-
-	def invalidateCurrent(self):
-		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
-
-	def invalidate(self, entry):
-		i = 0
-		for x in self.list:
-			if (entry.getConfigPath() == x[1].parent.getConfigPath()):
-				self.l.invalidateEntry(i)
-			i += 1
-		pass
-
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
+TYPE_MENU = 0
+TYPE_CONFIG = 1
 
 class CiMmi(Screen):
-	def addEntry(self, list, entry):
-		if entry[0] == "TEXT":		#handle every item (text / pin only?)
-			#list.append( (entry[1], entry[2]) )
-			list.append( (entry[1], entry[2]) )
-		if entry[0] == "PIN":
-			if entry[3] == 1:
-				# masked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "-")))
-			else:				
-				# unmasked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))			
-			
-			list.append( (entry[2], 0) )	
-			self.pin = getConfigListEntry("",x)
-			list.append( self.pin )
-
-	def okbuttonClick(self):
-		print "ok"
-		if self.tag == "WAIT":
-			print "do nothing - wait"
-		elif self.tag == "MENU":
-			print "answer MENU"
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, self["entries"].getCurrent()[1])
-			self.showWait()	
-		elif self.tag == "LIST":
-			print "answer LIST"
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
-			self.showWait()	
-		elif self.tag == "ENQ":
-			print "answer ENQ"
-			eDVBCI_UI.getInstance().answerEnq(self.slotid, str(self.pin[1].parent.value))
-			self.showWait()	
-
-	def closeMmi(self):
-		self.Timer.stop()
-		self.close()
-
-	def keyCancel(self):
-		print "keyCancel"
-		if self.tag == "WAIT":
-			self.closeMmi()
-		elif self.tag == "MENU":
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
-			self.showWait()	
-		elif self.tag == "LIST":
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
-			self.showWait()	
-		elif self.tag == "ENQ":
-			eDVBCI_UI.getInstance().cancelEnq(self.slotid)
-			self.showWait()	
-		else:
-			print "give cancel action to ci"	
-
-	def keyNumberGlobal(self, number):
-		self["entries"].handleKey(config.key[str(number)])
-
-	def keyLeft(self):
-		self["entries"].handleKey(config.key["prevElement"])
-
-	def keyRight(self):
-		self["entries"].handleKey(config.key["nextElement"])
-
-	def updateList(self, list):
-		self["entries"].list = list
-		self["entries"].l.setList(list)
-
-	def showWait(self):
-		self.tag = "WAIT"
-		self["title"].setText("")
-		self["subtitle"].setText("")
-		self["bottom"].setText("")
-		list = [ ]
-		list.append( ("wait for ci...", 0) )
-		self.updateList(list)
-		
-	def showScreen(self):
-		screen = eDVBCI_UI.getInstance().getMMIScreen(self.slotid)
-	
-		list = [ ]
-
-		self.tag = screen[0][0]
-		
-		for entry in screen:
-			if entry[0] == "TITLE":
-				self["title"].setText(entry[1])
-			elif entry[0] == "SUBTITLE":
-				self["subtitle"].setText(entry[1])
-			elif entry[0] == "BOTTOM":
-				self["bottom"].setText(entry[1])
-			elif entry[0] == "TEXT":
-				self.addEntry(list, entry)
-			elif entry[0] == "PIN":
-				self.addEntry(list, entry)
-
-		self.updateList(list)
-
-	def TimerCheck(self):
-
-		if self.action == 0:			#reset
-			self.closeMmi()
-		if self.action == 1:			#init
-			self.closeMmi()
-
-		#module still there ?			
-		if eDVBCI_UI.getInstance().getState(self.slotid) != 2:
-			self.closeMmi()
-
-		#mmi session still active ?			
-		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
-			self.closeMmi()
-			
-		#new screen available?	
-		if eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
-			self.showScreen()
-			
-		#FIXME: check for mmi-session closed	
-			
 	def __init__(self, session, slotid, action):
 		Screen.__init__(self, session)
-		
+
 		print "ciMMI with action" + str(action)
 
 		self.slotid = slotid
@@ -183,8 +32,8 @@ class CiMmi(Screen):
 		self["title"] = Label("")
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
-		self["entries"] = MenuList([ ])
-		#self["entries"] = CiConfigList([ ])
+		self["entries"] = ConfigList([ ])
+		self.listtype = TYPE_CONFIG
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 			{
@@ -204,21 +53,157 @@ class CiMmi(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			}, -1)
-		
+
 		self.action = action
 
 		if action == 0:			#reset
 			eDVBCI_UI.getInstance().setReset(self.slotid)
-			self.showWait()	
+			self.showWait()
 		elif action == 1:		#init
-			pass
-			self.showWait()	
+			eDVBCI_UI.getInstance().setInit(self.slotid)
 		elif action == 2:		#start MMI
 			eDVBCI_UI.getInstance().startMMI(self.slotid)
-			self.showWait()	
+			self.showWait()
 		elif action == 3:		#mmi already there (called from infobar)
-			self.showScreen()	
+			self.showScreen()
+
+	def addEntry(self, list, entry):
+		if entry[0] == "TEXT":		#handle every item (text / pin only?)
+			list.append( (entry[1], entry[2]) )
+		if entry[0] == "PIN":
+			if entry[3] == 1:
+				# masked pins:
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "*")))
+			else:				
+				# unmasked pins:
+				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (entry[1], "")))
 			
+			self["subtitle"].setText(entry[2])
+			self.pin = getConfigListEntry("",x)
+			list.append( self.pin )
+			self["bottom"].setText(_("please press OK when ready"))
+
+	def okbuttonClick(self):
+		print "ok"
+		if self.tag == "WAIT":
+			print "do nothing - wait"
+		elif self.tag == "MENU":
+			print "answer MENU"
+			eDVBCI_UI.getInstance().answerMenu(self.slotid, self["entries"].getCurrent()[1])
+			self.showWait()	
+		elif self.tag == "LIST":
+			print "answer LIST"
+			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			self.showWait()	
+		elif self.tag == "ENQ":
+			answer = str(self.pin[1].parent.value[0])
+			print "answer ENQ", answer
+			eDVBCI_UI.getInstance().answerEnq(self.slotid, answer)
+			self.showWait()
+
+	def closeMmi(self):
+		self.Timer.stop()
+		self.close()
+
+	def keyCancel(self):
+		print "keyCancel"
+		if self.tag == "WAIT":
+			eDVBCI_UI.getInstance().stopMMI(self.slotid)
+			self.closeMmi()
+		elif self.tag in [ "MENU", "LIST" ]:
+			print "cancel list"
+			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			self.showWait()
+		elif self.tag == "ENQ":
+			print "cancel enq"
+			eDVBCI_UI.getInstance().cancelEnq(self.slotid)
+			self.showWait()
+		else:
+			print "give cancel action to ci"	
+
+	def keyNumberGlobal(self, number):
+		self["entries"].handleKey(config.key[str(number)])
+
+	def keyLeft(self):
+		self["entries"].handleKey(config.key["prevElement"])
+
+	def keyRight(self):
+		self["entries"].handleKey(config.key["nextElement"])
+
+	def updateList(self, list):
+		List = self["entries"]
+		try:
+			List.instance.moveSelectionTo(0)
+		except:
+			List.l.setList(list)
+			return
+
+		if self.tag == "ENQ":
+			type = TYPE_CONFIG
+		else:
+			type = TYPE_MENU
+
+		if type != self.listtype:
+			if type == TYPE_CONFIG:
+				List.l = eListboxPythonConfigContent()
+			else:
+				List.l = eListboxPythonStringContent()
+			List.instance.setContent(List.l)
+			self.listtype = type
+
+		List.l.setList(list)
+
+
+	def showWait(self):
+		self.tag = "WAIT"
+		self["title"].setText("")
+		self["subtitle"].setText("")
+		self["bottom"].setText("")
+		list = [ ]
+		list.append( ("wait for ci...", 0) )
+		self.updateList(list)
+
+	def showScreen(self):
+		screen = eDVBCI_UI.getInstance().getMMIScreen(self.slotid)
+	
+		list = [ ]
+
+		self.tag = screen[0][0]
+
+		for entry in screen:
+			if entry[0] == "PIN":
+				self.addEntry(list, entry)
+			else:
+				if entry[0] == "TITLE":
+					self["title"].setText(entry[1])
+				elif entry[0] == "SUBTITLE":
+					self["subtitle"].setText(entry[1])
+				elif entry[0] == "BOTTOM":
+					self["bottom"].setText(entry[1])
+				elif entry[0] == "TEXT":
+					self.addEntry(list, entry)
+		self.updateList(list)
+
+	def TimerCheck(self):
+		if self.action == 0:			#reset
+			self.closeMmi()
+		if self.action == 1:			#init
+			self.closeMmi()
+
+		#module still there ?			
+		if eDVBCI_UI.getInstance().getState(self.slotid) != 2:
+			self.closeMmi()
+
+		#mmi session still active ?			
+		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
+			self.closeMmi()
+			
+		#new screen available?	
+		if eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
+			self.showScreen()
+			
+		#FIXME: check for mmi-session closed	
+
 class CiSelection(Screen):
 	def createMenu(self):
 		self.list = [ ]
@@ -235,8 +220,8 @@ class CiSelection(Screen):
 			appname = eDVBCI_UI.getInstance().getAppName(0)
 			self.list.append( (appname, 2) )
 
-		self["entries"] .list = self.list
-		self["entries"] .l.setList(self.list)
+		self["entries"].list = self.list
+		self["entries"].l.setList(self.list)
 
 	def TimerCheck(self):
 		state = eDVBCI_UI.getInstance().getState(0)
