@@ -725,7 +725,7 @@ void eEPGCache::load()
 		if ( md5ok )
 #endif
 		{
-			int magic;
+			unsigned int magic=0;
 			fread( &magic, sizeof(int), 1, f);
 			if (magic != 0x98765432)
 			{
@@ -831,7 +831,7 @@ void eEPGCache::save()
 	int cnt=0;
 	if ( f )
 	{
-		int magic = 0x98765432;
+		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
 		const char *text = "ENIGMA_EPG_V5";
 		fwrite( text, 13, 1, f );
