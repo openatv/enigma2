@@ -725,9 +725,17 @@ void eEPGCache::load()
 		if ( md5ok )
 #endif
 		{
+			int magic;
+			fread( &magic, sizeof(int), 1, f);
+			if (magic != 0x98765432)
+			{
+				eDebug("epg file has incorrect byte order.. dont read it");
+				fclose(f);
+				return;
+			}
 			char text1[13];
 			fread( text1, 13, 1, f);
-			if ( !strncmp( text1, "ENIGMA_EPG_V4", 13) )
+			if ( !strncmp( text1, "ENIGMA_EPG_V5", 13) )
 			{
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
@@ -823,7 +831,9 @@ void eEPGCache::save()
 	int cnt=0;
 	if ( f )
 	{
-		const char *text = "ENIGMA_EPG_V4";
+		int magic = 0x98765432;
+		fwrite( &magic, sizeof(int), 1, f);
+		const char *text = "ENIGMA_EPG_V5";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
