@@ -466,7 +466,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
+						if (value_alignment_left)
+							painter.renderText(eRect(offset, item_right), value, gPainter::RT_HALIGN_LEFT);
+						else
+							painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, gPainter::RT_HALIGN_RIGHT);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -491,8 +494,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					{
 						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						
-						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(m_seperation, 0), item_right));
+						int xoffs = value_alignment_left ? 0 : m_seperation;
+						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(xoffs, 0), item_right));
 						para->setFont(fnt2);
 						para->renderString(text, 0);
 						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);
