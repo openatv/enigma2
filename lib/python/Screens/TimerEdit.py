@@ -4,6 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
+from Screens.MessageBox import MessageBox
 from TimerEntry import TimerEntry, TimerLog
 from RecordTimer import RecordTimerEntry, parseEvent
 from time import *
@@ -23,7 +24,7 @@ class TimerEditList(Screen):
 		self["key_red"] = Button(_("Delete"))
 		self["key_green"] = Button(_("Add"))
 		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
+		self["key_blue"] = Button(_("Cleanup"))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "TimerEditActions"], 
 			{
@@ -31,6 +32,7 @@ class TimerEditList(Screen):
 				"cancel": self.leave,
 				"red": self.removeTimer,
 				"green": self.addCurrentTimer,
+				"blue": self.cleanupQuestion,
 				"log": self.showLog
 			})
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
@@ -50,6 +52,14 @@ class TimerEditList(Screen):
 	def openEdit(self):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
 		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
+		
+	def cleanupQuestion(self):
+		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
+	
+	def cleanupTimer(self, delete):
+		if delete:
+			self.session.nav.RecordTimer.cleanup()
+			self.refill()
 		
 	def removeTimer(self):
 		list = self["timerlist"]
