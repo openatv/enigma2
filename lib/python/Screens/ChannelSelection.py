@@ -377,6 +377,8 @@ class ChannelSelectionBase(Screen):
 				"showAllServices": self.showAllServices,
 				"showProviders": self.showProviders,
 				"showSatellites": self.showSatellites,
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -590,6 +592,23 @@ class ChannelSelectionBase(Screen):
 					if currentRoot is None or currentRoot != ref:
 						self.clearPath()
 						self.enterPath(ref)
+
+	def changeBouquet(self, direction):
+		if not self.pathChangedDisabled:
+			if self.isBasePathEqual(self.bouquet_root):
+				self.pathUp()
+				if direction < 0:
+					self.moveUp()
+				else:
+					self.moveDown()
+				ref = self.getCurrentSelection()
+				self.enterPath(ref)
+
+	def nextBouquet(self):
+		self.changeBouquet(+1)
+
+	def prevBouquet(self):
+		self.changeBouquet(-1)
 
 	def showFavourites(self):
 		if not self.pathChangedDisabled:
