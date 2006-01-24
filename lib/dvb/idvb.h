@@ -21,11 +21,12 @@ struct eBouquet
 	std::string m_filename;  // without path.. just name
 	typedef std::list<eServiceReference> list;
 	list m_services;
-// the following four methods are implemented in db.cpp
+// the following five methods are implemented in db.cpp
 	RESULT flushChanges();
 	RESULT addService(const eServiceReference &);
 	RESULT removeService(const eServiceReference &);
 	RESULT moveService(const eServiceReference &, unsigned int);
+	RESULT setListName(const std::string &name);
 };
 
 		/* these structures have by intention no operator int() defined.

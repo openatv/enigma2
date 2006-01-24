@@ -2,6 +2,7 @@
 #define __lib_dvb_iservice_h
 
 #include <lib/python/swig.h>
+#include <lib/python/python.h>
 #include <lib/base/object.h>
 #include <string>
 #include <connection.h>
@@ -165,6 +166,8 @@ public:
 };
 
 SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);
+
+extern PyObject *New_eServiceReference(const eServiceReference &ref); // defined in enigma_python.i
 
 typedef long long pts_t;
 
@@ -442,6 +445,8 @@ public:
 		/* moves a service in a list, only if list suppports a specific sort method. */
 		/* pos is the new, absolute position from 0..size-1 */
 	virtual RESULT moveService(eServiceReference &ref, int pos)=0;
+		/* set name of list, for bouquets this is the visible bouquet name */
+	virtual RESULT setListName(const std::string &name)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iMutableServiceList>, iMutableServiceListPtr);
@@ -454,8 +459,9 @@ class iListableService: public iObject
 #endif
 public:
 		/* legacy interface: get a list */
-	virtual RESULT getContent(std::list<eServiceReference> &list)=0;
-	
+	virtual RESULT getContent(std::list<eServiceReference> &list, bool sorted=false)=0;
+	virtual RESULT getContent(PyObject *list, bool sorted=false)=0;
+
 		/* new, shiny interface: streaming. */
 	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;
 	

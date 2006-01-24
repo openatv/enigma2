@@ -3,7 +3,7 @@ from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer
+from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
 from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
@@ -11,7 +11,9 @@ from Components.NimManager import nimmanager
 from Components.ServiceName import ServiceName
 from Components.Clock import Clock
 from Components.EventInfo import EventInfo
+from ServiceReference import ServiceReference
 from re import *
+from os import remove
 
 import xml.dom.minidom
 
@@ -37,14 +39,20 @@ class ChannelContextMenu(FixedMenu):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
 
-		if not csel.bouquet_mark_edit and not csel.movemode and not inBouquetRootList:
-			if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
-				if haveBouquets:
-					menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
-				else:
-					menu.append((_("add service to favourites"), self.addServiceToBouquetSelected))
-			if inBouquet:
-				menu.append((_("remove service"), self.removeCurrentService))
+		if not csel.bouquet_mark_edit and not csel.movemode:
+			if not inBouquetRootList:
+				if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+					if haveBouquets:
+						menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
+					else:
+						menu.append((_("add service to favourites"), self.addServiceToBouquetSelected))
+				elif haveBouquets:
+					if not inBouquet and csel.getCurrentSelection().getPath().find("PROVIDERS") == -1:
+						menu.append((_("copy to favourites"), csel.copyCurrentToBouquetList))
+				if inBouquet:
+					menu.append((_("remove service"), self.removeCurrentService))
+			elif haveBouquets:
+				menu.append((_("remove bouquet"), csel.removeBouquet))
 
 		if inBouquet: # current list is editable?
 			if not csel.bouquet_mark_edit:
@@ -82,6 +90,14 @@ class ChannelContextMenu(FixedMenu):
 			self.addCurrentServiceToBouquet(bouquets[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
 			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
+
+	def copyCurrentToBouquetList(self):
+		self.csel.copyCurrentToBouquetList()
+		self.close()
+
+	def removeBouquet(self):
+		self.csel.removeBouquet()
+		self.close()
 
 	def addCurrentServiceToBouquet(self, dest):
 		self.csel.addCurrentServiceToBouquet(dest)
@@ -158,6 +174,65 @@ class ChannelSelectionEdit:
 		if list is not None:
 			return list.startEdit()
 		return None
+
+	def buildBouquetID(self, str):
+		tmp = str.lower()
+		name = ''
+		for c in tmp:
+			if (c >= 'a' and c <= 'z') or (c >= '0' and c <= '9'):
+				name += c
+			else:
+				name += '_'
+		return name
+
+	def copyCurrentToBouquetList(self):
+		provider = ServiceReference(self.getCurrentSelection())
+		serviceHandler = eServiceCenter.getInstance()
+		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
+		if mutableBouquetList:
+			providerName = provider.getServiceName()
+			if self.mode == MODE_TV:
+				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
+			else:
+				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
+			new_bouquet_ref = eServiceReference(str)
+			if not mutableBouquetList.addService(new_bouquet_ref):
+				mutableBouquetList.flushChanges()
+				eDVBDB.getInstance().reloadBouquets()
+				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
+				if mutableBouquet:
+					mutableBouquet.setListName(providerName)
+					list = [ ]
+					services = serviceHandler.list(provider.ref)
+					if not services is None:
+						if not services.getContent(list, True):
+							for service in list:
+								if mutableBouquet.addService(service):
+									print "add", service.toString(), "to new bouquet failed"
+							mutableBouquet.flushChanges()
+						else:
+							print "getContent failed"
+					else:
+						print "list provider", providerName, "failed"
+				else:
+					print "get mutable list for new created bouquet failed"
+			else:
+				print "add", str, "to bouquets failed"
+		else:
+			print "bouquetlist is not editable"
+
+	def removeBouquet(self):
+		refstr = self.getCurrentSelection().toString()
+		pos = refstr.find('FROM BOUQUET "')
+		if pos != -1:
+			refstr = refstr[pos+14:]
+			print refstr
+			pos = refstr.find('"')
+			if pos != -1:
+				filename = '/etc/enigma2/' + refstr[:pos] # FIXMEEE !!! HARDCODED /etc/enigma2
+		self.removeCurrentService()
+		remove(filename)
+		eDVBDB.getInstance().reloadBouquets()
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self):
@@ -279,7 +354,7 @@ class ChannelSelectionBase(Screen):
 
 		# this makes it much simple to implement a selectable radio or tv mode :)
 		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17)'
-		self.service_types_radio = '1:7:1:0:0:0:0:0:0:0:(type == 2)'
+		self.service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
