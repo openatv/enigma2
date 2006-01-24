@@ -96,7 +96,7 @@ eServiceFS::~eServiceFS()
 {
 }
 
-RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
+RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 {
 	DIR *d=opendir(path.c_str());
 	if (!d)
@@ -141,6 +141,33 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list)
 		}
 	}
 	closedir(d);
+
+	if (sorted)
+		list.sort(iListableServiceCompare(this));
+
+	return 0;
+}
+
+RESULT eServiceFS::getContent(PyObject *list, bool sorted)
+{
+	if (!list || !PyList_Check(list))
+		return -1;
+
+	std::list<eServiceReference> tmplist;
+
+	getContent(tmplist, sorted);
+
+	if (sorted)
+		tmplist.sort(iListableServiceCompare(this));
+
+	for (std::list<eServiceReference>::iterator it(tmplist.begin());
+		it != tmplist.end(); ++it)
+	{
+		PyObject *refobj = New_eServiceReference(*it);
+		PyList_Append(list, refobj);
+		Py_DECREF(refobj);
+	}
+
 	return 0;
 }
 

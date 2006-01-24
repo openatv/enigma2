@@ -13,6 +13,7 @@
 #include <lib/service/servicedvbrecord.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/tstools.h>
+#include <lib/python/python.h>
 
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
@@ -305,7 +306,32 @@ RESULT eDVBServiceList::startQuery()
 	return 0;
 }
 
-RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
+RESULT eDVBServiceList::getContent(PyObject *list, bool sorted)
+{
+	eServiceReferenceDVB ref;
+
+	if (!m_query || !list || !PyList_Check(list))
+		return -1;
+
+	std::list<eServiceReferenceDVB> tmplist;
+
+	while (!m_query->getNextResult(ref))
+		tmplist.push_back(ref);
+
+	if (sorted)
+		tmplist.sort(iListableServiceCompare(this));
+
+	for (std::list<eServiceReferenceDVB>::iterator it(tmplist.begin());
+		it != tmplist.end(); ++it)
+	{
+		PyObject *refobj = New_eServiceReference(*it);
+		PyList_Append(list, refobj);
+		Py_DECREF(refobj);
+	}
+	return 0;
+}
+
+RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sorted)
 {
 	eServiceReferenceDVB ref;
 	
@@ -314,6 +340,10 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list)
 	
 	while (!m_query->getNextResult(ref))
 		list.push_back(ref);
+
+	if (sorted)
+		list.sort(iListableServiceCompare(this));
+
 	return 0;
 }
 
@@ -377,6 +407,13 @@ RESULT eDVBServiceList::flushChanges()
 	if (!m_bouquet)
 		return -1;
 	return m_bouquet->flushChanges();
+}
+
+RESULT eDVBServiceList::setListName(const std::string &name)
+{
+	if (!m_bouquet)
+		return -1;
+	return m_bouquet->setListName(name);
 }
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)

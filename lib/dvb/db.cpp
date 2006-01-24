@@ -107,6 +107,12 @@ err:
 	return -1;
 }
 
+RESULT eBouquet::setListName(const std::string &name)
+{
+	m_bouquet_name = name;
+	return 0;
+}
+
 eDVBService::eDVBService()
 {
 }

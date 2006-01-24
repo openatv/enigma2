@@ -34,7 +34,8 @@ private:
 public:
 	virtual ~eServiceFS();
 	
-	RESULT getContent(std::list<eServiceReference> &list);
+	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
+	RESULT getContent(PyObject *list, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &, const eServiceReference &);
 	RESULT startEdit(ePtr<iMutableServiceList> &);

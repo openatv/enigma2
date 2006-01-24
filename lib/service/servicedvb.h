@@ -32,7 +32,8 @@ class eDVBServiceList: public iListableService, public iMutableServiceList
 DECLARE_REF(eDVBServiceList);
 public:
 	virtual ~eDVBServiceList();
-	RESULT getContent(std::list<eServiceReference> &list);
+	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
+	RESULT getContent(PyObject *list, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
 	
@@ -41,6 +42,7 @@ public:
 	RESULT addService(eServiceReference &ref);
 	RESULT removeService(eServiceReference &ref);
 	RESULT moveService(eServiceReference &ref, int pos);
+	RESULT setListName(const std::string &name);
 private:
 	RESULT startQuery();
 	eServiceReference m_parent;
