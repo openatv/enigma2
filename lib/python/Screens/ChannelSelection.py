@@ -238,7 +238,7 @@ class ChannelSelectionEdit:
 			if self.entry_marked:
 				self.toggleMoveMarked() # unmark current entry
 			self.movemode = False
-			self.pathChangedDisabled = True # re-enable path change
+			self.pathChangedDisabled = False # re-enable path change
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 			self.mutableList = None
 			self.instance.setTitle(self.saved_title)
