@@ -110,6 +110,9 @@ class Timer:
 	def stateChanged(self, entry):
 		for f in self.on_state_change:
 			f(entry)
+			
+	def cleanup(self):
+		self.processed_timers = []
 	
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
