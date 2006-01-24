@@ -4,10 +4,13 @@ from ServiceReference import ServiceReference
 from Components.config import *
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
+from Components.MenuList import MenuList
+from Components.Button import Button
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.SubserviceSelection import SubserviceSelection
+from Screens.MessageBox import MessageBox
 from enigma import eEPGCache
 import time
 import datetime
@@ -15,7 +18,7 @@ import datetime
 class TimerEntry(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
-		self.timer = timer;
+		self.timer = timer
 		
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
@@ -279,3 +282,79 @@ class TimerEntry(Screen):
 
 	def keyCancel(self):
 		self.close((False,))
+
+class TimerLog(Screen):
+	def __init__(self, session, timer):
+		Screen.__init__(self, session)
+		self.timer = timer;
+		self.log_entries = self.timer.log_entries[:]
+		
+		self.fillLogList()
+		
+		self["loglist"] = MenuList(self.list)
+		self["logentry"] = Label()
+		
+		self["key_red"] = Button(_("Delete entry"))
+		self["key_green"] = Button()
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button(_("Clear log"))
+		
+		self.onShown.append(self.updateText)
+
+		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
+		{
+			"ok": self.keyClose,
+			"cancel": self.keyClose,
+			"up": self.up,
+			"down": self.down,
+			"left": self.left,
+			"right": self.right,
+			"red": self.deleteEntry,
+			"blue": self.clearLog
+		}, -1)
+
+	def deleteEntry(self):
+		self.log_entries.remove(self["loglist"].getCurrent()[1])
+		self.fillLogList()
+		self["loglist"].l.setList(self.list)
+		self.updateText()
+
+	def fillLogList(self):
+		self.list = [ ]
+		for x in self.log_entries:
+			self.list.append((str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
+	
+	def clearLog(self):		
+		self.log_entries = []
+		self.fillLogList()
+		self["loglist"].l.setList(self.list)
+		self.updateText()
+		
+	def keyClose(self):
+		if self.timer.log_entries != self.log_entries:
+			self.timer.log_entries = self.log_entries
+			self.close((True, self.timer))
+		else:
+			self.close((False,))
+		
+	def up(self):
+		self["loglist"].instance.moveSelection(self["loglist"].instance.moveUp)
+		self.updateText()
+		
+	def down(self):
+		self["loglist"].instance.moveSelection(self["loglist"].instance.moveDown)
+		self.updateText()
+
+	def left(self):
+		self["loglist"].instance.moveSelection(self["loglist"].instance.pageUp)
+		self.updateText()
+		
+	def right(self):
+		self["loglist"].instance.moveSelection(self["loglist"].instance.pageDown)
+		self.updateText()
+
+	def updateText(self):
+		if len(self.list) > 0:
+			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
+		else:
+			self["logentry"].setText("")

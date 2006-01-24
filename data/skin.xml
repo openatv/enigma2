@@ -144,6 +144,14 @@
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		</screen>
+		<screen name="TimerLog" position="70,100" size="560,400" title="Timer log">
+			<widget name="loglist" position="0,45" size="560,250" scrollbarMode="showOnDemand" />
+			<widget name="logentry" position="0,300" size="560,140" font="Regular;20" />
+			<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+		</screen>
 		<screen name="clockDisplay" position="300,100" size="300,300">
 			<widget name="okbutton" position="10,10" size="280,40" />
 			<widget name="title" position="10,120" size="280,50" />

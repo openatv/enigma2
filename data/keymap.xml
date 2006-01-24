@@ -210,6 +210,10 @@
 		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
 	</map>
 
+	<map context="TimerEditActions">
+		<key id="KEY_INFO" mapto="log" flags="m" />
+	</map>
+	
 	<map context="EPGSelectActions">
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
@@ -236,6 +240,20 @@
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
+	</map>
+	
+	<map context="DirectionActions">
+		<key id="KEY_UP" mapto="up" flags="m" />		
+		<key id="KEY_DOWN" mapto="down" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="m" />		
+		<key id="KEY_RIGHT" mapto="right" flags="m" />
+	</map>
+	
+	<map context="ColorActions">
+		<key id="KEY_RED" mapto="red" flags="m" />		
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />		
+		<key id="KEY_BLUE" mapto="blue" flags="m" />
 	</map>
 
 	<map context="MsgBoxActions">
