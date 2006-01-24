@@ -416,14 +416,10 @@ class ChannelSelectionBase(Screen):
 
 	def pathUp(self, justSet=False):
 		if self.mode == MODE_TV:
-			print "MODE_TV"
 			prev = self.servicePathTV.pop()
-			print "prev", prev.toString()
 			length = len(self.servicePathTV)
-			print "length", length
 			if length:
 				current = self.servicePathTV[length-1]
-				print "current", current.toString()
 		else:
 			prev = self.servicePathRadio.pop()
 			length = len(self.servicePathRadio)
@@ -431,7 +427,6 @@ class ChannelSelectionBase(Screen):
 				current = self.servicePathRadio[length-1]
 		self.setRoot(current, justSet)
 		if not justSet:
-			print "setCurrentSelection prev"
 			self.setCurrentSelection(prev)
 		return prev
 
@@ -525,10 +520,8 @@ class ChannelSelectionBase(Screen):
 		if not self.pathChangedDisabled:
 			if not self.preEnterPath(self.bouquet_rootstr):
 				if self.isBasePathEqual(self.bouquet_root):
-					print "basepath equal"
 					self.pathUp()
 				else:
-					print "basepath not equal"
 					currentRoot = self.getRoot()
 					if currentRoot is None or currentRoot != self.bouquet_root:
 						self.clearPath()
@@ -536,8 +529,6 @@ class ChannelSelectionBase(Screen):
 
 	def keyNumberGlobal(self, number):
 		char = self.numericalTextInput.getKey(number)
-		print "You pressed number " + str(number)
-		print "You would go to character " + str(char)
 		self.servicelist.moveToChar(char)
 
 	def getRoot(self):
