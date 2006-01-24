@@ -621,7 +621,7 @@ void eDVBDB::reloadBouquets()
 		memset(ref.data, 0, sizeof(ref.data));
 		ref.type=1;
 		ref.flags=7;
-		ref.data[0]=1;
+		ref.data[0]=2;
 		ref.path="(type == 2) FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet";
 		eBouquet &parent = m_bouquets["bouquets.radio"];
 		parent.m_services.push_back(ref);
