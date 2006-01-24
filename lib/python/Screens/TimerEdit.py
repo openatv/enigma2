@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
-from TimerEntry import TimerEntry
+from TimerEntry import TimerEntry, TimerLog
 from RecordTimer import RecordTimerEntry, parseEvent
 from time import *
 from ServiceReference import ServiceReference
@@ -25,12 +25,13 @@ class TimerEditList(Screen):
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
 
-		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "TimerEditActions"], 
 			{
 				"ok": self.openEdit,
 				"cancel": self.leave,
 				"red": self.removeTimer,
-				"green": self.addCurrentTimer
+				"green": self.addCurrentTimer,
+				"log": self.showLog
 			})
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 
@@ -42,6 +43,9 @@ class TimerEditList(Screen):
 		
 		for timer in self.session.nav.RecordTimer.processed_timers:
 			self.list.append(TimerEntryComponent(timer, processed=True))
+
+	def showLog(self):
+		self.session.openWithCallback(self.finishedEdit, TimerLog, self["timerlist"].getCurrent()[0])
 
 	def openEdit(self):
 		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
