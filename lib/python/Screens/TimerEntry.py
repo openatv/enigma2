@@ -165,12 +165,12 @@ class TimerEntry(Screen):
 
 		if (config.timerentry.type.value == 0): # once
 			self.list.append(getConfigListEntry(_("Start"), config.timerentry.startdate))
-			self.list.append(getConfigListEntry("", config.timerentry.starttime))
+			self.list.append(getConfigListEntry(" ", config.timerentry.starttime))
 		else:
 			self.list.append(getConfigListEntry(_("StartTime"), config.timerentry.starttime))
 		if (config.timerentry.type.value == 0): # once
 			self.list.append(getConfigListEntry(_("End"), config.timerentry.enddate))
-			self.list.append(getConfigListEntry("", config.timerentry.endtime))
+			self.list.append(getConfigListEntry(" ", config.timerentry.endtime))
 		else:
 			self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
 
