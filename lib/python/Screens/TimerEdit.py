@@ -10,6 +10,7 @@ from RecordTimer import RecordTimerEntry, parseEvent
 from time import *
 from ServiceReference import ServiceReference
 from Components.config import *
+from Components.TimerSanityCheck import TimerSanityCheck
 
 class TimerEditList(Screen):
 	def __init__(self, session):
@@ -133,8 +134,13 @@ class TimerEditList(Screen):
 		
 	def finishedEdit(self, answer):
 		print "finished edit"
+		
 		if answer[0]:
 			print "Edited timer"
+			if not TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1]).check():
+				print "Sanity check failed"
+			else:
+				print "Sanity check passed"
 			self.session.nav.RecordTimer.timeChanged(answer[1])
 			self.fillTimerList()
 		else:
@@ -143,6 +149,10 @@ class TimerEditList(Screen):
 	def finishedAdd(self, answer):
 		print "finished add"
 		if answer[0]:
+			if not TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1]).check():
+				print "Sanity check failed"
+			else:
+				print "Sanity check passed"
 			entry = answer[1]
 			self.session.nav.RecordTimer.record(entry)
 			self.fillTimerList()
