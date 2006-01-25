@@ -224,7 +224,10 @@ class RecordTimer(timer.Timer):
 		root = doc.childNodes[0]
 		for timer in elementsWithTag(root.childNodes, "timer"):
 			self.record(createTimer(timer))
-	
+
+	def strToXML(self, str):
+		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;'). replace('"', '&qout;')
+
 	def saveTimer(self):
 		#doc = xml.dom.minidom.Document()
 		#root_element = doc.createElement('timers')
@@ -277,8 +280,8 @@ class RecordTimer(timer.Timer):
 			list.append(' end="' + str(int(timer.end)) + '"')
 			list.append(' serviceref="' + str(timer.service_ref) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' name="' + str(timer.name) + '"')
-			list.append(' description="' + str(timer.description) + '"')
+			list.append(' name="' + str(self.strToXML(timer.name)) + '"')
+			list.append(' description="' + str(self.strToXML(timer.description)) + '"')
 			list.append(' eit="' + str(timer.eit) + '"')
 			list.append('>\n')
 			
