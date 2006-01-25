@@ -1541,7 +1541,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 						if (!PyString_Check(entry))
 						{
 							eDebug("tuple entry 0 is no a string");
-							continue;
+							goto skip_entry;
 						}
 						service = entry;
 						break;
@@ -1551,7 +1551,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 						if (type < -1 || type > 2)
 						{
 							eDebug("unknown type %d", type);
-							continue;
+							goto skip_entry;
 						}
 						break;
 					case 2:
@@ -1623,6 +1623,8 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 			if (service_name)
 				Py_DECREF(service_name);
 		}
+skip_entry:
+		;
 	}
 	if (convertFuncArgs)
 		Py_DECREF(convertFuncArgs);
