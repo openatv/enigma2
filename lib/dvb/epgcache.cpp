@@ -701,6 +701,7 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
+	singleLock s(cache_lock);
 	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
