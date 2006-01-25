@@ -31,8 +31,8 @@ def TimerEntryComponent(timer, processed):
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 560, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
 	
 	repeatedtext = ""
-	days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
-	if not timer.repeated:
+	days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+	if timer.repeated:
 		flags = timer.repeated
 		count = 0
 		for x in range(0, 7):
@@ -42,9 +42,9 @@ def TimerEntryComponent(timer, processed):
 					repeatedtext += days[x]
 					count += 1
 				flags = flags >> 1
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 300, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 300, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
 	if not processed:
 		if timer.state == TimerEntry.StateWaiting:

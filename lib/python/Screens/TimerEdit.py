@@ -66,9 +66,9 @@ class TimerEditList(Screen):
 		
 	def updateState(self):
 		if self["timerlist"].getCurrent()[0].disabled:
-			self["key_yellow"].setText(_("enable"))
+			self["key_yellow"].setText(_("Enable"))
 		else:
-			self["key_yellow"].setText(_("disable"))
+			self["key_yellow"].setText(_("Disable"))
 		self["key_yellow"].instance.invalidate()
 
 	def fillTimerList(self):
