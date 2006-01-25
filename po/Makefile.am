@@ -49,6 +49,7 @@ enigma2.pot:
 			../lib/python/Components/SetupDevices.py \
 			../lib/python/Components/Language.py \
 			../lib/python/Components/NimManager.py \
+			../lib/python/Components/TimerList.py \
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py \
 			../lib/python/Components/RecordingConfig.py \
