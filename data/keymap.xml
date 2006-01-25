@@ -97,13 +97,6 @@
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 	</map>
 
-	<map context="MinuteInputActions">
-		<key id="KEY_UP" mapto="up" flags="mr" />
-		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_OK" mapto="ok" flags="m" />
-		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-	</map>
-	
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 	</map>
@@ -178,6 +171,10 @@
 	<map context="InfobarTimeshiftActivateActions">
 		<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="m" />
 		<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="m" />
+	</map>
+
+	<map context="MovieSelectionActions">
+		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 	</map>
 
 	<map context="InfobarMovieListActions">
