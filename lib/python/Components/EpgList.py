@@ -42,7 +42,10 @@ class Rect:
 		return self.__width
 
 class EPGList(HTMLComponent, GUIComponent):
-	def __init__(self, type=EPG_TYPE_SINGLE):
+	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None):
+		self.onSelChanged = [ ]
+		if selChangedCB is not None:
+			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.type=type
 		if type == EPG_TYPE_SINGLE and SINGLE_CPP > 0:
@@ -78,8 +81,24 @@ class EPGList(HTMLComponent, GUIComponent):
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
 
+	def connectSelectionChanged(func):
+		if not self.onSelChanged.count(func):
+			self.onSelChanged.append(func)
+
+	def disconnectSelectionChanged(func):
+		self.onSelChanged.remove(func)
+
+	def selectionChanged(self):
+		for x in self.onSelChanged:
+			if x is not None:
+				try:
+					x()
+				except:
+					pass
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
+		self.instance.selectionChanged.get().append(self.selectionChanged)
 		self.instance.setContent(self.l)
 		if SINGLE_CPP > 0:
 			self.instance.setItemHeight(25)
@@ -191,6 +210,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			cnt+=1
 		self.l.setList(self.list)
 		print time() - t
+		self.selectionChanged()
 
 	def fillSingleEPG(self, service):
 		t = time()

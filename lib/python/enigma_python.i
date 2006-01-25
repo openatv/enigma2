@@ -144,6 +144,7 @@ typedef long time_t;
 %immutable eComponentScan::statusChanged;
 %immutable eComponentScan::newService;
 %immutable pNavigation::m_event;
+%immutable eListbox::selectionChanged;
 
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
