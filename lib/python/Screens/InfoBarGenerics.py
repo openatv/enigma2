@@ -18,7 +18,7 @@ from EpgSelection import EPGSelection
 from Screens.MessageBox import MessageBox
 from Screens.Dish import Dish
 from Screens.Standby import Standby
-from Screens.EventView import EventView
+from Screens.EventView import EventViewEPGSelect
 from Screens.MinuteInput import MinuteInput
 from Components.Harddisk import harddiskmanager
 
@@ -305,59 +305,18 @@ class InfoBarEPG:
 	def __init__(self):
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
-				"showEPGList": (self.showEPG, _("show EPG...")),
+				"showEventInfo": (self.openEventView, _("show EPG...")),
 			})
 
-	def showEPG(self):
-		if currentConfigSelectionElement(config.usage.epgtoggle) == "yes":
-			self.openSingleServiceEPG()
-		else:
-			self.showEPGList()
-
-	def showEPGList(self):
-		bouquets = self.servicelist.getBouquetList()
-		if bouquets is None:
-			cnt = 0
-		else:
-			cnt = len(bouquets)
-		if cnt > 1: # show bouquet list
-			self.session.open(BouquetSelector, bouquets, self.openBouquetEPG)
-		elif cnt == 1: # add to only one existing bouquet
-			self.openBouquetEPG(bouquets[0][1])
-		else: #no bouquets so we open single epg
-			self.openSingleEPGSelector(self.session.nav.getCurrentlyPlayingServiceReference())
-
-	def bouquetEPGCallback(self, info):
-		if info:
-			self.openSingleServiceEPG()
-	
-	def singleEPGCallback(self, info):
-		if info:
-			self.showEPGList()
-			
-	def openEventView(self):
-		try:
-			self.epglist = [ ]
-			service = self.session.nav.getCurrentService()
-			info = service.info()
-			ptr=info.getEvent(0)
-			if ptr:
-				self.epglist.append(ptr)
-			ptr=info.getEvent(1)
-			if ptr:
-				self.epglist.append(ptr)
-			if len(self.epglist) > 0:
-				self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
-		except:
-			pass
-
-	def openSingleServiceEPG(self):
-		ref=self.session.nav.getCurrentlyPlayingServiceReference()
-		ptr=eEPGCache.getInstance()
-		if ptr.startTimeQuery(ref) != -1:
-			self.session.openWithCallback(self.singleEPGCallback, EPGSelection, ref)
-		else: # try to show now/next
-			print 'no epg for service', ref.toString()
+	def zapToService(self, service):
+		if not service is None:
+			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
+				self.servicelist.clearPath()
+				if self.servicelist.bouquet_root != self.epg_bouquet:
+					self.servicelist.enterPath(self.servicelist.bouquet_root)
+				self.servicelist.enterPath(self.epg_bouquet)
+			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+			self.servicelist.zap()
 
 	def openBouquetEPG(self, bouquet):
 		ptr=eEPGCache.getInstance()
@@ -372,28 +331,53 @@ class InfoBarEPG:
 					continue
 				services.append(ServiceReference(service))
 		if len(services):
-			self.session.openWithCallback(self.bouquetEPGCallback, EPGSelection, services)
+			self.epg_bouquet = bouquet
+			self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService)
 
-	def openSingleEPGSelector(self, ref):
+	def closed(self, ret):
+		if ret:
+			self.close(ret)
+
+	def openMultiServiceEPG(self):
+		bouquets = self.servicelist.getBouquetList()
+		if bouquets is None:
+			cnt = 0
+		else:
+			cnt = len(bouquets)
+		if cnt > 1: # show bouquet list
+			self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG)
+		elif cnt == 1: 
+			self.openBouquetEPG(bouquets[0][1])
+
+	def openSingleServiceEPG(self):
+		ref=self.session.nav.getCurrentlyPlayingServiceReference()
 		ptr=eEPGCache.getInstance()
-		if ptr.startTimeQuery(ref) != -1:
-			self.session.open(EPGSelection, ref)
-		else: # try to show now/next
-			print 'no epg for service', ref.toString()
-			try:
-				self.epglist = [ ]
-				service = self.session.nav.getCurrentService()
-				info = service.info()
-				ptr=info.getEvent(0)
+		self.session.openWithCallback(self.closed, EPGSelection, ref)
+
+	def openEventView(self):
+		self.epglist = [ ]
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			self.epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			self.epglist.append(ptr)
+		if len(self.epglist) == 0:
+			epg = eEPGCache.getInstance()
+			ptr = epg.lookupEventTime(ref, -1)
+			if ptr:
+				self.epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
 				if ptr:
 					self.epglist.append(ptr)
-				ptr=info.getEvent(1)
-				if ptr:
-					self.epglist.append(ptr)
-				if len(self.epglist) > 0:
-					self.session.open(EventView, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
-			except:
-				pass
+		if len(self.epglist) > 0:
+			self.session.open(EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG)
+		else:
+			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
+			self.openMultiServiceEPG()
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
 		if len(self.epglist) > 1:

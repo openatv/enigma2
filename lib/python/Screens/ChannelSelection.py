@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap
+from Components.MenuList import MenuList
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
 from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
@@ -17,17 +18,27 @@ from os import remove
 
 import xml.dom.minidom
 
-class BouquetSelector(FixedMenu):
+class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc):
+		Screen.__init__(self, session)
+
 		self.selectedFunc=selectedFunc
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.okbuttonClick,
+				"cancel": self.cancelClick
+			})
 		entrys = [ ]
 		for x in bouquets:
-			entrys.append((x[0], self.bouquetSelected, x[1]))
-		FixedMenu.__init__(self, session, "Bouquetlist", entrys)
-		self.skinName = "Menu"
+			entrys.append((x[0], x[1]))
+		self["menu"] = MenuList(entrys)
 
-	def bouquetSelected(self):
-		self.selectedFunc(self["menu"].getCurrent()[2])
+	def okbuttonClick(self):
+		self.selectedFunc(self["menu"].getCurrent()[1])
+
+	def cancelClick(self):
+		self.close(False)
 
 class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel):

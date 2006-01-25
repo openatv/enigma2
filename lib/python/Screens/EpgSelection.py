@@ -1,8 +1,11 @@
 from Screen import Screen
 from Components.Button import Button
+from Components.Pixmap import Pixmap
+from Components.Label import Label
 from Components.EpgList import *
 from Components.ActionMap import ActionMap
-from Screens.EventView import EventView
+from Components.ScrollLabel import ScrollLabel
+from Screens.EventView import EventViewSimple
 from enigma import eServiceReference, eServiceEventPtr
 from Screens.FixedMenu import FixedMenu
 from RecordTimer import RecordTimerEntry, parseEvent
@@ -10,28 +13,40 @@ from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from Components.config import config, currentConfigSelectionElement
+from time import localtime
 
 import xml.dom.minidom
 
 class EPGSelection(Screen):
-	def __init__(self, session, service):
+	def __init__(self, session, service, zapFunc=None):
 		Screen.__init__(self, session)
-
 		self["key_red"] = Button("")
-		self["key_green"] = Button(_("Add timer"))
-
+		self.closeRecursive = False
 		if isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
 			self.currentService=ServiceReference(service)
 		else:
+			self.skinName = "EPGSelectionMulti"
 			self.type = EPG_TYPE_MULTI
 			self["key_yellow"] = Button(_("Prev"))
 			self["key_blue"] = Button(_("Next"))
+			self["now_button"] = Pixmap()
+			self["next_button"] = Pixmap()
+			self["more_button"] = Pixmap()
+			self["now_button_sel"] = Pixmap()
+			self["next_button_sel"] = Pixmap()
+			self["more_button_sel"] = Pixmap()
+			self["now_text"] = Label()
+			self["next_text"] = Label()
+			self["more_text"] = Label()
+			self["date"] = Label()
 			self.services = service
+			self.zapFunc = zapFunc
 
-		self["list"] = EPGList(self.type)
+		self["key_green"] = Button(_("Add timer"))
+		self["list"] = EPGList(self.type, self.onSelectionChanged)
 
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
@@ -44,21 +59,26 @@ class EPGSelection(Screen):
 				"timerAdd": self.timerAdd,
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
-				"info": self.infoKeyPressed
+				"info": self.infoKeyPressed,
+				"zapTo": self.zapTo
 			})
 		self["actions"].csel = self
 
 		self.onLayoutFinish.append(self.onCreate)
 
-	def infoKeyPressed(self):
-		if currentConfigSelectionElement(config.usage.epgtoggle) == "yes":
-			self.close(True)
-		else:
-			self.close(False)
-
 	def closeScreen(self):
-		self.close(False)
+		self.close(self.closeRecursive or self.type == EPG_TYPE_SINGLE)
 
+	def infoKeyPressed(self):
+		if self.type == EPG_TYPE_MULTI:
+			cur = self["list"].getCurrent()
+			event = cur[0]
+			service = cur[1]
+		else:
+			event = self["list"].getCurrent()
+			service = self.currentService
+		if event is not None:
+			self.session.open(EventViewSimple, event, service, self.eventViewCallback)
 
 	#just used in multipeg
 	def onCreate(self):
@@ -88,16 +108,17 @@ class EPGSelection(Screen):
 				setEvent(cur[0])
 				setService(cur[1])
 
+	def zapTo(self): # just used in multiepg
+		if self.zapFunc != None:
+			self.closeRecursive = True
+			ref = self["list"].getCurrent()[1]
+			self.zapFunc(ref.ref)
+
 	def eventSelected(self):
 		if self.type == EPG_TYPE_SINGLE:
-			event = self["list"].getCurrent()
-			service = self.currentService
+			self.infoKeyPressed()
 		else: # EPG_TYPE_MULTI
-			cur = self["list"].getCurrent()
-			event = cur[0]
-			service = cur[1]
-		if event is not None:
-			self.session.open(EventView, event, service, self.eventViewCallback)
+			self.zapTo()
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -131,3 +152,48 @@ class EPGSelection(Screen):
 
 	def moveDown(self):
 		self["list"].moveDown()
+
+	def applyButtonState(self, state):
+		if state == 1:
+			self["now_button_sel"].showWidget()
+			self["now_button"].hideWidget()
+		else:
+			self["now_button"].showWidget()
+			self["now_button_sel"].hideWidget()
+
+		if state == 2:
+			self["next_button_sel"].showWidget()
+			self["next_button"].hideWidget()
+		else:
+			self["next_button"].showWidget()
+			self["next_button_sel"].hideWidget()
+
+		if state == 3:
+			self["more_button_sel"].showWidget()
+			self["more_button"].hideWidget()
+		else:
+			self["more_button"].showWidget()
+			self["more_button_sel"].hideWidget()
+
+	def onSelectionChanged(self):
+		if self.type == EPG_TYPE_MULTI:
+			count = self["list"].getCurrentChangeCount()
+			if count > 1:
+				self.applyButtonState(3)
+			elif count > 0:
+				self.applyButtonState(2)
+			else:
+				self.applyButtonState(1)
+			days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+			datastr = ""
+			event = self["list"].getCurrent()[0]
+			if event is not None:
+				now = time()
+				beg = event.getBeginTime()
+				nowTime = localtime(now)
+				begTime = localtime(beg)
+				if nowTime[2] != begTime[2]:
+					datestr = '%s %d.%d.'%(days[begTime[6]], begTime[2], begTime[1])
+				else:
+					datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
+			self["date"].setText(datestr)

@@ -1,5 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from enigma import eServiceEventPtr
@@ -7,9 +8,8 @@ from ServiceReference import ServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
 
-class EventView(Screen):
-	def __init__(self, session, Event, Ref, callback=None):
-		Screen.__init__(self, session)
+class EventViewBase:
+	def __init__(self, Event, Ref, callback=None):
 		self.cbFunc = callback
 		self.currentService=Ref
 		self.event = Event
@@ -17,6 +17,10 @@ class EventView(Screen):
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
+		self["key_red"] = Button(_(""))
+		self["key_green"] = Button(_("Add Timer"))
+		self["key_yellow"] = Button(_(""))
+		self["key_blue"] = Button(_(""))
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 				"cancel": self.close,
@@ -49,7 +53,7 @@ class EventView(Screen):
 		if (answer[0]):
 			self.session.nav.RecordTimer.record(answer[1])
 		else:
-			print "Timeredit aborted"	
+			print "Timeredit aborted"
 
 	def setService(self, service):
 		self.currentService=service
@@ -77,6 +81,25 @@ class EventView(Screen):
 
 	def pageUp(self):
 		self["epg_description"].pageUp()
-	
+
 	def pageDown(self):
 		self["epg_description"].pageDown()
+
+class EventViewSimple(Screen, EventViewBase):
+	def __init__(self, session, Event, Ref, callback=None):
+		Screen.__init__(self, session)
+		self.skinName = "EventView"
+		EventViewBase.__init__(self, Event, Ref, callback)
+
+class EventViewEPGSelect(Screen, EventViewBase):
+	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None):
+		Screen.__init__(self, session)
+		self.skinName = "EventView"
+		EventViewBase.__init__(self, Event, Ref, callback)
+		self["key_yellow"].setText(_("Single EPG"))
+		self["key_blue"].setText(_("Multi EPG"))
+		self["epgactions"] = ActionMap(["EventViewEPGActions"],
+			{
+				"openSingleServiceEPG": singleEPGCB,
+				"openMultiServiceEPG": multiEPGCB
+			})

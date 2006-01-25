@@ -64,7 +64,7 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
+		<key id="KEY_INFO" mapto="showEventInfo" flags="m" />
 	</map>
 	
 	<map context="InfobarInstantRecord">
@@ -229,6 +229,12 @@
 		<key id="KEY_LEFT" mapto="prevEvent" flags="mr" />
 		<key id="KEY_RIGHT" mapto="nextEvent" flags="mr" />
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+		<key id="KEY_INFO" mapto="cancel" flags="m" />
+	</map>
+	
+	<map context="EventViewEPGActions">
+		<key id="KEY_YELLOW" mapto="openSingleServiceEPG" flags="m" />
+		<key id="KEY_BLUE" mapto="openMultiServiceEPG" flags="m" />
 	</map>
 
 	<map context="OkCancelActions">

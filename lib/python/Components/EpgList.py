@@ -60,6 +60,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.epgcache.lookupEventId(service.ref, eventid)
 		return event
 
+	def getCurrentChangeCount(self):
+		if self.type == EPG_TYPE_SINGLE:
+			return 0
+		return self.l.getCurrentSelection()[0][0]
+
 	def getCurrent(self):
 		if self.type == EPG_TYPE_SINGLE:
 			if SINGLE_CPP > 0:
@@ -69,8 +74,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				evt = self.getEventFromId(self.service, eventid)
 		else:
 			tmp = self.l.getCurrentSelection()[0]
-			eventid = tmp[0]
-			service = ServiceReference(tmp[1])
+			eventid = tmp[1]
+			service = ServiceReference(tmp[2])
 			event = self.getEventFromId(service, eventid)
 			evt = ( event, service )
 		return evt
@@ -138,13 +143,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
 
-	def buildMultiEntry(self, service, eventId, begTime, duration, EventName, nowTime, service_name):
+	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
 		sname = service_name
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
-		res = [ (eventId, service, begTime, duration) ]
+		res = [ (changecount, eventId, service, begTime, duration) ]
 		re = compile('\xc2\x86.*?\xc2\x87')
 		list = re.findall(sname)
 		if len(list):
@@ -186,18 +191,19 @@ class EPGList(HTMLComponent, GUIComponent):
 		tmp = self.queryEPG(test)
 		self.list = [ ]
 		for x in tmp:
-			self.list.append(self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
+			self.list.append(self.buildMultiEntry(0, x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
 		self.l.setList(self.list)
 		print time() - t
+		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
 		t = time()
 		test = [ 'RIBDTCN' ]
 		for x in self.list:
 			data = x[0]
-			service = data[1]
-			begTime = data[2]
-			duration = data[3]
+			service = data[2]
+			begTime = data[3]
+			duration = data[4]
 			if begTime is None:
 				begTime = 0
 			test.append((service, direction, begTime))
@@ -205,8 +211,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		tmp = self.queryEPG(test)
 		cnt=0
 		for x in tmp:
-			if x[2] is not None:
-				self.list[cnt]=self.buildMultiEntry(x[0], x[1], x[2], x[3], x[4], x[5], x[6])
+			changecount = self.list[cnt][0][0] + direction
+			if changecount >= 0:
+				if x[2] is not None:
+					self.list[cnt]=self.buildMultiEntry(changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
 			cnt+=1
 		self.l.setList(self.list)
 		print time() - t
@@ -227,3 +235,4 @@ class EPGList(HTMLComponent, GUIComponent):
 #				self.list.append(self.buildSingleEntry(refstr, x[0], x[1], x[2], x[3]))
 			self.l.setList(self.list)
 		print time() - t
+		self.selectionChanged()
