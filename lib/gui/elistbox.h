@@ -57,6 +57,8 @@ public:
 	eListbox(eWidget *parent);
 	~eListbox();
 
+	PSignal0<void> selectionChanged;
+
 	enum {
 		showOnDemand,
 		showAlways,
@@ -90,7 +92,6 @@ public:
 	
 	void setItemHeight(int h);
 	void setSelectionEnable(int en);
-
 #ifndef SWIG
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */
 	void entryAdded(int index);

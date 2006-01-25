@@ -8,7 +8,7 @@ eListbox::eListbox(eWidget *parent)
 	,m_content_changed(false), m_top(0), m_selected(0), m_itemheight(25)
 	,m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
-	setContent(new eListboxStringContent());
+//	setContent(new eListboxStringContent());
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
@@ -48,10 +48,13 @@ void eListbox::setScrollbarMode(int mode)
 
 void eListbox::setContent(iListboxContent *content)
 {
+	int oldsel = m_selected;
 	m_content = content;
 	if (content)
 		m_content->setListbox(this);
 	entryReset();
+	if (oldsel == m_selected)
+		/* emit */ selectionChanged();
 }
 
 void eListbox::moveSelection(int dir)
@@ -59,15 +62,12 @@ void eListbox::moveSelection(int dir)
 		/* refuse to do anything without a valid list. */
 	if (!m_content)
 		return;
-	
 		/* if our list does not have one entry, don't do anything. */
 	if (!m_items_per_page)
 		return;
-		
 		/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
 	int oldsel = m_selected;
-	
 		/* first, move cursor */
 	switch (dir)
 	{
@@ -128,7 +128,6 @@ void eListbox::moveSelection(int dir)
 	
 		/* now, look wether the current selection is out of screen */
 	m_selected = m_content->cursorGet();
-
 	while (m_selected < m_top)
 	{
 		m_top -= m_items_per_page;
@@ -139,14 +138,16 @@ void eListbox::moveSelection(int dir)
 		/* m_top should be always valid here as it's selected */
 		m_top += m_items_per_page;
 
+	if (oldsel != m_selected)
+		/* emit */ selectionChanged();
+
 	updateScrollBar();
 
 	if (m_top != oldtop)
 		invalidate();
 	else if (m_selected != oldsel)
 	{
-		
-			/* redraw the old and newly selected */
+   /* redraw the old and newly selected */
 		gRegion inv = eRect(0, m_itemheight * (m_selected-m_top), size().width(), m_itemheight);
 		inv |= eRect(0, m_itemheight * (oldsel-m_top), size().width(), m_itemheight);
 		
