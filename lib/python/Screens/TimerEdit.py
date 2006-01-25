@@ -99,13 +99,14 @@ class TimerEditList(Screen):
 		
 	def removeTimer(self):
 		list = self["timerlist"]
+		timer = list.getCurrent()[0]
 		currentIndex = list.getCurrentIndex()
+		self.session.nav.RecordTimer.removeEntry(timer)
 		list.moveDown()
 		if list.getCurrentIndex() == currentIndex:
 			currentIndex -= 1
-			list.moveToIndex(currentIndex)
-		self.session.nav.RecordTimer.removeEntry(list.getCurrent()[0])
 		self.refill()
+		list.moveToIndex(currentIndex)
 	
 	def refill(self):
 		self.fillTimerList()
