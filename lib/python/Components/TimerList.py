@@ -4,8 +4,9 @@ from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 import time
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
+from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG
 from timer import TimerEntry
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
@@ -58,6 +59,10 @@ def TimerEntryComponent(timer, processed):
 		state = "done!"
 	
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
+
+	if timer.disabled:
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/redx.png"))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 490, 5, 40, 40, png))
 	
 	return res
 

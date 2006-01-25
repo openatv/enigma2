@@ -26,16 +26,50 @@ class TimerEditList(Screen):
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button(_("Cleanup"))
 
-		self["actions"] = ActionMap(["OkCancelActions", "ShortcutActions", "TimerEditActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], 
 			{
 				"ok": self.openEdit,
 				"cancel": self.leave,
 				"red": self.removeTimer,
 				"green": self.addCurrentTimer,
 				"blue": self.cleanupQuestion,
-				"log": self.showLog
-			})
+				"yellow": self.toggleDisabledState,
+				"log": self.showLog,
+				"left": self.left,
+				"right": self.right,
+				"up": self.up,
+				"down": self.down
+			}, -1)
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		self.onShown.append(self.updateState)
+
+	def up(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
+		self.updateState()
+		
+	def down(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveDown)
+		self.updateState()
+
+	def left(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageUp)
+		self.updateState()
+		
+	def right(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageDown)
+		self.updateState()
+		
+	def toggleDisabledState(self):
+		self["timerlist"].getCurrent()[0].disabled = not self["timerlist"].getCurrent()[0].disabled
+		self.updateState()
+		self.refill()
+		
+	def updateState(self):
+		if self["timerlist"].getCurrent()[0].disabled:
+			self["key_yellow"].setText(_("disable"))
+		else:
+			self["key_yellow"].setText(_("enable"))
+		self["key_yellow"].instance.invalidate()
 
 	def fillTimerList(self):
 		del self.list[:]

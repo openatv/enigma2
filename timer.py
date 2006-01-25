@@ -16,6 +16,8 @@ class TimerEntry:
 		self.resetRepeated()
 		self.backoff = 0
 		
+		self.disabled = False
+		
 	def resetRepeated(self):
 		self.repeated = int(0)
 
@@ -120,7 +122,7 @@ class Timer:
 		# when the timer has not yet started, and is already passed,
 		# don't go trough waiting/running/end-states, but sort it
 		# right into the processedTimers.
-		if entry.shouldSkip() or entry.state == TimerEntry.StateEnded:
+		if entry.shouldSkip() or entry.state == TimerEntry.StateEnded or (entry.state == TimerEntry.StateWaiting and entry.disabled):
 			print "already passed, skipping"
 			bisect.insort(self.processed_timers, entry)
 			entry.state = TimerEntry.StateEnded
