@@ -142,7 +142,7 @@ RESULT eServiceMP3::stop()
 	test.stop();
 	printf("MP3: %s stop\n", filename.c_str());
 	m_state = stStopped;
-	m_event(this, evEnd);
+	m_event(this, evEOF);
 	return 0;
 }
 
