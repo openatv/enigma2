@@ -59,6 +59,8 @@ ePyObject &ePyObject::operator=(void *object)
 
 ePython::ePython()
 {
+//	Py_VerboseFlag = 1;
+	
 	Py_Initialize();
 	
 	init_enigma();
