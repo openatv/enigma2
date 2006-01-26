@@ -526,6 +526,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 {
 	m_is_pvr = !ref.path.empty();
 	m_timeshift_enabled = m_timeshift_active = 0;
+	m_skipmode = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
@@ -590,10 +591,11 @@ void eDVBServicePlay::serviceEvent(int event)
 		break;
 	}
 	case eDVBServicePMTHandler::eventEOF:
-	{
-		m_event((iPlayableService*)this, evEnd);
+		m_event((iPlayableService*)this, evEOF);
 		break;
-	}
+	case eDVBServicePMTHandler::eventSOF:
+		m_event((iPlayableService*)this, evSOF);
+		break;
 	}
 }
 
@@ -617,7 +619,8 @@ RESULT eDVBServicePlay::start()
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
 		   two (one for decoding, one for data source), as we must be prepared
 		   to start recording from the data demux. */
-	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr);
+	m_cue = new eCueSheet();
+	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr, m_cue);
 	m_event(this, evStart);
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
@@ -625,6 +628,15 @@ RESULT eDVBServicePlay::start()
 
 RESULT eDVBServicePlay::stop()
 {
+	eDebug("stop timeshift");
+	stopTimeshift(); /* in case timeshift was enabled, remove buffer etc. */
+	
+	eDebug("free ts handler");
+	m_service_handler_timeshift.free();
+	eDebug("stop service handler");
+	m_service_handler.free();
+	eDebug("ok");
+	
 	return 0;
 }
 
@@ -659,10 +671,39 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 
 RESULT eDVBServicePlay::setFastForward(int ratio)
 {
-	if (m_decoder)
-		return m_decoder->setFastForward(ratio);
-	else
+	int skipmode, ffratio;
+	
+	if (ratio > 8)
+	{
+		skipmode = ratio;
+		ffratio = 1;
+	} else if (ratio > 0)
+	{
+		skipmode = 0;
+		ffratio = ratio;
+	} else if (!ratio)
+	{
+		skipmode = 0;
+		ffratio = 0;
+	} else if (ratio < 0)
+	{
+		skipmode = ratio;
+		ffratio = 1;
+	}
+
+	if (m_skipmode != skipmode)
+	{
+		eDebug("setting cue skipmode to %d", skipmode);
+		if (m_cue)
+			m_cue->setSkipmode(skipmode * 90000); /* convert to 90000 per second */
+	}
+	
+	m_skipmode = skipmode;
+	
+	if (!m_decoder)
 		return -1;
+
+	return m_decoder->setFastForward(ffratio);
 }
     
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
@@ -722,7 +763,11 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
-	return pvr_channel->seekTo(m_decode_demux, 0, to);
+	if (!m_cue)
+		return -1;
+	
+	m_cue->seekTo(0, to);
+	return 0;
 }
 
 RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
@@ -739,7 +784,11 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	
 	to *= direction;
 	
-	return pvr_channel->seekTo(m_decode_demux, 1, to);
+	if (!m_cue)
+		return 0;
+	
+	m_cue->seekTo(1, to);
+	return 0;
 }
 
 RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
@@ -1174,7 +1223,7 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 	
-	m_service_handler_timeshift.tune(r, 1); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
 }
 
 void eDVBServicePlay::updateDecoder()
@@ -1233,6 +1282,8 @@ void eDVBServicePlay::updateDecoder()
 		h.getDecodeDemux(m_decode_demux);
 		if (m_decode_demux)
 			m_decode_demux->getMPEGDecoder(m_decoder);
+		if (m_cue)
+			m_cue->setDecodingDemux(m_decode_demux);
 	}
 
 	if (m_decoder)

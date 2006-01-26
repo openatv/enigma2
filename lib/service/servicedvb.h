@@ -6,6 +6,7 @@
 
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/eit.h>
+#include <lib/base/filepush.h>
 
 class eServiceFactoryDVB: public iServiceHandler
 {
@@ -150,6 +151,10 @@ private:
 	void switchToTimeshift();
 	
 	void updateDecoder();
+	
+	int m_skipmode;
+	
+	ePtr<eCueSheet> m_cue;
 };
 
 #endif
