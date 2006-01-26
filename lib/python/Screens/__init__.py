@@ -4,4 +4,5 @@ __all__ = ["ChannelSelection", "ClockDisplay", "ConfigMenu",
 	"TimerEdit", "Setup", "HarddiskSetup", "FixedMenu",
 	"Satconfig", "Scanconfig", "Ci.py", "Volume.py", "Mute.py",
 	"EpgSelection", "EventView", "Standby", "ServiceInfo",
-	"AudioSelection", "SubserviceSelection", "InfoBarGenerics", "HelpMenu", "Wizard"]
+	"AudioSelection", "SubserviceSelection", "InfoBarGenerics", "HelpMenu", "Wizard",
+	"PVRState"]
