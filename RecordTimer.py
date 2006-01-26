@@ -32,7 +32,7 @@ def parseEvent(ev):
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
@@ -42,6 +42,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.dontSave = False
 		self.name = name
 		self.description = description
+		self.disabled = disabled
 		self.timer = None
 		self.record_service = None
 		self.start_prepare = 0
@@ -182,13 +183,14 @@ def createTimer(xml):
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
+	disabled = eval(xml.getAttribute("disabled"))
 	try:
 		eit = long(xml.getAttribute("eit").encode("utf-8"))
 	except:
 		eit = None
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled)
 	entry.repeated = int(repeated)
 	
 	for l in elementsWithTag(xml.childNodes, "log"):
@@ -283,6 +285,7 @@ class RecordTimer(timer.Timer):
 			list.append(' name="' + str(self.strToXML(timer.name)) + '"')
 			list.append(' description="' + str(self.strToXML(timer.description)) + '"')
 			list.append(' eit="' + str(timer.eit) + '"')
+			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append('>\n')
 			
 			for time, code, msg in timer.log_entries:
