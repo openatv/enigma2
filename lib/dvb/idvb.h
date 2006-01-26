@@ -396,7 +396,7 @@ public:
 	
 	enum 
 	{
-		evtEOF, evtFailed
+		evtEOF, evtSOF, evtFailed
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
@@ -420,7 +420,40 @@ public:
 };
 
 	/* signed, so we can express deltas. */
+	
 typedef long long pts_t;
+
+class iFilePushScatterGather;
+
+	/* note that a cue sheet describes the logical positions. thus 
+	   everything is specified in pts and not file positions */
+
+	/* implemented in dvb.cpp */
+class eCueSheet: public iObject, public Object
+{
+	DECLARE_REF(eCueSheet);
+public:
+	eCueSheet();
+	
+			/* frontend */
+	void seekTo(int relative, const pts_t &pts);
+	
+	void clear();
+	void addSourceSpan(const pts_t &begin, const pts_t &end);
+	
+	void setSkipmode(const pts_t &ratio); /* 90000 is 1:1 */
+	void setDecodingDemux(iDVBDemux *demux);
+	
+			/* backend */
+	enum { evtSeek, evtSkipmode, evtSpanChanged };
+	RESULT connectEvent(const Slot1<void, int> &event, ePtr<eConnection> &connection);
+
+	std::list<std::pair<pts_t,pts_t> > m_spans;	/* begin, end */
+	std::list<std::pair<int, pts_t> > m_seek_requests; /* relative, delta */
+	pts_t m_skipmode_ratio;
+	Signal1<void,int> m_event;
+	ePtr<iDVBDemux> m_decoding_demux;
+};
 
 class iDVBPVRChannel: public iDVBChannel
 {
@@ -431,18 +464,21 @@ public:
 	};
 	
 		/* FIXME: there are some very ugly buffer-end and ... related problems */
-		/* so this is VERY UGLY. */
+		/* so this is VERY UGLY. 
+		
+		   ok, it's going to get better. but still...*/
 	virtual RESULT playFile(const char *file) = 0;
+	virtual void stopFile() = 0;
+	
+	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
 	
 	virtual RESULT getLength(pts_t &pts) = 0;
 	
 		/* we explicitely ask for the decoding demux here because a channel
 		   can be shared between multiple decoders.
-		   Of couse skipping doesn't make much sense 
-		   then, but getCurrentPosition does. */
+		*/
 	virtual RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode) = 0;
-	virtual RESULT seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts) = 0;
-	virtual RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &pts) = 0;
+		/* skipping must be done with a cue sheet */
 };
 
 class iDVBSectionReader;
