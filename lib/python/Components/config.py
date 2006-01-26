@@ -29,11 +29,16 @@ class configFile:
 			self.configElements[line[:x]] = line[x + 1:-1]
 	
 	def getKey(self, key):
-		return self.configElements[key]
+		if self.configElements.has_key(key):
+			return self.configElements[key]
+		return None
 
-	def setKey(self, key, value):
+	def setKey(self, key, value, isDefaultKey=False):
 		self.changed = 1
-		self.configElements[key] = value
+		if isDefaultKey and self.configElements.has_key(key):
+			del self.configElements[key]
+		else:
+			self.configElements[key] = value
 
 	def save(self):
 		if self.changed == 0:		#no changes, so no write to disk needed
@@ -550,8 +555,12 @@ class configElement:
 			defaultValue = self.getIndexbyEntry(self.defaultValue)
 		else:
 			defaultValue = self.defaultValue
-		if (defaultValue != self.value) or (self.saveDefaults == True):
-			configfile.setKey(self.configPath, self.datatoFile(self.controlType,self.value))
+		if self.value != defaultValue or self.saveDefaults:
+			configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value))
+		else:
+			oldValue = configfile.getKey(self.configPath)
+			if oldValue is not None and oldValue != defaultValue:
+				configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value), True)
 
 class configElement_nonSave(configElement):
 	def __init__(self, configPath, control, defaultValue, vals):
