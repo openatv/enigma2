@@ -16,16 +16,6 @@ private:
 	ePtr<eConnection> m_service_event_conn;
 	void serviceEvent(iPlayableService* service, int event);
 public:
-	enum
-	{
-		evStopService,  /** the "current" service was just stopped and likes to be deallocated (clear refs!) */
-		evNewService,   /** a new "current" service was just started */
-		evPlayFailed,   /** the next service (in playlist) or the one given in playService failed to play */
-		evUpdatedEventInfo, /** the "currently running" event info was updated */
-		evUpdatedInfo, /** the program info of this service was updated */
-		evSeekableStatusChanged,
-		evEnd
-	};
 	
 	RESULT playService(const eServiceReference &service);
 	RESULT connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr<eConnection> &connection);
