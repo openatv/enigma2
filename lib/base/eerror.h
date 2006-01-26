@@ -25,7 +25,13 @@
 #define NULL 0
 #endif
 
-void eFatal(const char* fmt, ...);
+#ifndef SWIG
+#define CHECKFORMAT __attribute__ ((__format__(__printf__, 1, 2)))
+#else
+#define CHECKFORMAT
+#endif
+
+void CHECKFORMAT eFatal(const char*, ...);
 
 enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 
@@ -39,9 +45,9 @@ extern int logOutputConsole;
 #endif
 
 #ifdef DEBUG
-    void eDebug(const char* fmt, ...);
-    void eDebugNoNewLine(const char* fmt, ...);
-    void eWarning(const char* fmt, ...);
+    void CHECKFORMAT eDebug(const char*, ...);
+    void CHECKFORMAT eDebugNoNewLine(const char*, ...);
+    void CHECKFORMAT eWarning(const char*, ...);
 #ifndef SWIG
     #define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
 #endif
