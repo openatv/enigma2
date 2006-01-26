@@ -22,22 +22,7 @@ eDVBServicePMTHandler::eDVBServicePMTHandler()
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
 {
-	if (m_ca_servicePtr)
-	{
-		eDebug("unregister caservice");
-		int demuxes[2] = {0,0};
-		uint8_t tmp;
-		m_demux->getCADemuxID(tmp);
-		demuxes[0]=tmp;
-		if (m_decode_demux_num != 0xFF)
-			demuxes[1]=m_decode_demux_num;
-		else
-			demuxes[1]=demuxes[0];
-		ePtr<eTable<ProgramMapSection> > ptr;
-		m_PMT.getCurrent(ptr);
-		eDVBCAService::unregister_service(m_reference, demuxes, ptr);
-		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
-	}
+	free();
 }
 
 void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
@@ -77,6 +62,9 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 	{
 	case iDVBChannel::evtEOF:
 		serviceEvent(eventEOF);
+		break;
+	case iDVBChannel::evtSOF:
+		serviceEvent(eventSOF);
 		break;
 	default:
 		break;
@@ -375,7 +363,7 @@ int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
 		return -1;
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue)
 {
 	RESULT res;
 	m_reference = ref;
@@ -424,7 +412,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux)
 	}
 
 	if (m_pvr_channel)
+	{
+		m_pvr_channel->setCueSheet(cue);
 		m_pvr_channel->playFile(ref.path.c_str());
+	}
 
 	ePtr<iDVBChannelList> db;
 	if (!m_resourceManager->getChannelList(db))
@@ -435,6 +426,28 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux)
 
 void eDVBServicePMTHandler::free()
 {
+	if (m_ca_servicePtr)
+	{
+		int demuxes[2] = {0,0};
+		uint8_t tmp;
+		m_demux->getCADemuxID(tmp);
+		demuxes[0]=tmp;
+		if (m_decode_demux_num != 0xFF)
+			demuxes[1]=m_decode_demux_num;
+		else
+			demuxes[1]=demuxes[0];
+		ePtr<eTable<ProgramMapSection> > ptr;
+		m_PMT.getCurrent(ptr);
+		eDVBCAService::unregister_service(m_reference, demuxes, ptr);
+		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
+		m_ca_servicePtr = 0;
+	}
+
+	if (m_pvr_channel)
+	{
+		m_pvr_channel->stopFile();
+		m_pvr_channel->setCueSheet(0);
+	}
 	m_PMT.stop();
 	m_PAT.stop();
 	m_service = 0;

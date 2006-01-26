@@ -84,6 +84,7 @@ public:
 		eventNewProgramInfo, // we just received a PMT
 		eventTuned,        // a channel was sucessfully (re-)tuned in, you may start additional filters now
 		
+		eventSOF,          // seek pre start
 		eventEOF,          // a file playback did end
 	};
 
@@ -125,7 +126,7 @@ public:
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 
-	int tune(eServiceReferenceDVB &ref, int use_decode_demux);
+	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0);
 	void free();
 };
 

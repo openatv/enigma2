@@ -2,6 +2,7 @@
 #define __dvb_dvb_h
 
 #include <lib/base/ebase.h>
+#include <lib/base/filepush.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
@@ -190,10 +191,8 @@ public:
 	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 };
 
-class eFilePushThread;
-
 	/* iDVBPVRChannel includes iDVBChannel. don't panic. */
-class eDVBChannel: public iDVBPVRChannel, public Object
+class eDVBChannel: public iDVBPVRChannel, public iFilePushScatterGather, public Object
 {
 	DECLARE_REF(eDVBChannel);
 public:
@@ -216,12 +215,12 @@ public:
 	
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
+	void stopFile();
+	
+	void setCueSheet(eCueSheet *cuesheet);
+	
 	RESULT getLength(pts_t &len);
 	RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode);
-	RESULT seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts);
-			/* seeking to relative positions won't work - 
-			   there is an unknown amount of buffers in between */
-	RESULT seekToPosition(iDVBDemux *decoding_demux, const off_t &off);
 
 	int getUseCount() { return m_use_count; }
 private:
@@ -247,6 +246,16 @@ private:
 	
 	int m_pvr_fd_src, m_pvr_fd_dst;
 	eDVBTSTools m_tstools;
+	
+	ePtr<eCueSheet> m_cue;
+	
+	void cueSheetEvent(int event);
+	ePtr<eConnection> m_conn_cueSheetEvent;
+	int m_skipmode_m, m_skipmode_n;
+	
+	std::list<std::pair<off_t, off_t> > m_source_span;
+	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
+	void flushPVR(iDVBDemux *decoding_demux=0);
 
 	friend class eUsePtr<eDVBChannel>;
 		/* use count */

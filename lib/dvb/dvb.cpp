@@ -552,6 +552,8 @@ eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *fronte
 
 	m_pvr_thread = 0;
 	
+	m_skipmode_n = m_skipmode_m = 0;
+	
 	if (m_frontend)
 		m_frontend->get().connectStateChange(slot(*this, &eDVBChannel::frontendStateChanged), m_conn_frontendStateChanged);
 }
@@ -560,14 +562,8 @@ eDVBChannel::~eDVBChannel()
 {
 	if (m_channel_id)
 		m_mgr->removeChannel(this);
-	
-	if (m_pvr_thread)
-	{
-		m_pvr_thread->stop();
-		::close(m_pvr_fd_src);
-		::close(m_pvr_fd_dst);
-		delete m_pvr_thread;
-	}
+
+	stopFile();
 }
 
 void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
@@ -625,7 +621,159 @@ void eDVBChannel::pvrEvent(int event)
 		eDebug("eDVBChannel: End of file!");
 		m_event(this, evtEOF);
 		break;
+	case eFilePushThread::evtUser: /* start */
+		eDebug("SOF");
+		m_event(this, evtSOF);
+		break;
 	}
+}
+
+void eDVBChannel::cueSheetEvent(int event)
+{
+		/* we need proper locking here! */
+	eDebug("CUE SHEET EVENT %d", event);
+	
+	switch (event)
+	{
+	case eCueSheet::evtSeek:
+		eDebug("seek.");
+		flushPVR(m_cue->m_decoding_demux);
+		break;
+	case eCueSheet::evtSkipmode:
+	{
+		m_cue->m_seek_requests.push_back(std::pair<int, pts_t>(1, 0)); /* resync */
+		if (m_cue->m_skipmode_ratio)
+		{
+			int bitrate = m_tstools.calcBitrate(); /* in bits/s */
+			eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
+					/* i agree that this might look a bit like black magic. */
+			m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
+			m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio;
+
+			eDebug("resolved to: %d %d", m_skipmode_m, m_skipmode_n);
+			
+			if (abs(m_skipmode_m) < abs(m_skipmode_n))
+			{
+				eFatal("damn, something is wrong with this calculation");
+				m_skipmode_n = m_skipmode_m = 0;
+			}
+			
+		} else
+		{
+			eDebug("skipmode ratio is 0, normal play");
+			m_skipmode_n = m_skipmode_m = 0;
+		}
+		flushPVR(m_cue->m_decoding_demux);
+		break;
+	}
+	case eCueSheet::evtSpanChanged:
+		eDebug("source span translation not yet supported");
+	//	recheckCuesheetSpans();
+		break;
+	}
+}
+
+	/* remember, this gets called from another thread. */
+void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
+{
+	unsigned int max = 10*1024*1024;
+	
+	if (!m_cue)
+	{
+		eDebug("no cue sheet. forcing normal play");
+		start = current_offset;
+		size = max;
+		return;
+	}
+	
+	if (!m_cue->m_decoding_demux)
+	{
+		start = current_offset;
+		size = max;
+		eDebug("getNextSourceSpan, no decoding demux. forcing normal play");
+		return;
+	}
+	
+	if (m_skipmode_n)
+	{
+		eDebug("skipmode %d:%d", m_skipmode_m, m_skipmode_n);
+		max = m_skipmode_n;
+	}
+	
+	eDebug("getNextSourceSpan, current offset is %08llx!", current_offset);
+	
+	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+	{
+		eDebug("reached SOF");
+		m_skipmode_m = 0;
+		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+	}
+	
+	current_offset += m_skipmode_m;
+	
+	while (!m_cue->m_seek_requests.empty())
+	{
+		std::pair<int, pts_t> seek = m_cue->m_seek_requests.front();
+		m_cue->m_seek_requests.pop_front();
+		int relative = seek.first;
+		pts_t pts = seek.second;
+
+		int bitrate = m_tstools.calcBitrate(); /* in bits/s */
+	
+		if (bitrate == -1)
+			continue;
+	
+		if (relative)
+		{
+			pts_t now;
+					/* we're using the decoder's timestamp here. this 
+					   won't work for radio (ouch). */
+			if (getCurrentPosition(m_cue->m_decoding_demux, now, 1))
+			{
+				eDebug("seekTo: getCurrentPosition failed!");
+				continue;
+			}
+			pts += now;
+		}
+	
+		if (pts < 0)
+			pts = 0;
+	
+		off_t offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
+		
+		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
+		current_offset = offset;
+	}
+	
+	for (std::list<std::pair<off_t, off_t> >::const_iterator i(m_source_span.begin()); i != m_source_span.end(); ++i)
+	{
+		if ((current_offset >= i->first) && (current_offset < i->second))
+		{
+			start = current_offset;
+			size = i->second - current_offset;
+			if (size > max)
+				size = max;
+			eDebug("HIT, %lld < %lld < %lld", i->first, current_offset, i->second);
+			return;
+		}
+		if (current_offset < i->first)
+		{
+			start = i->first;
+			size = i->second - i->first;
+			if (size > max)
+				size = max;
+			eDebug("skip");
+			return;
+		}
+	}
+	
+	start = current_offset;
+	size = max;
+	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
+	
+	if (size < 4096)
+		eFatal("blub");
+	return;
 }
 
 void eDVBChannel::AddUse()
@@ -761,10 +909,32 @@ RESULT eDVBChannel::playFile(const char *file)
 	
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->enablePVRCommit(1);
+	m_pvr_thread->setScatterGather(this);
+
 	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	return 0;
+}
+
+void eDVBChannel::stopFile()
+{
+	if (m_pvr_thread)
+	{
+		m_pvr_thread->stop();
+		::close(m_pvr_fd_src);
+		::close(m_pvr_fd_dst);
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+	}
+}
+
+void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
+{
+	m_conn_cueSheetEvent = 0;
+	m_cue = cuesheet;
+	if (m_cue)
+		m_cue->connectEvent(slot(*this, &eDVBChannel::cueSheetEvent), m_conn_cueSheetEvent);
 }
 
 RESULT eDVBChannel::getLength(pts_t &len)
@@ -814,34 +984,7 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	return 0;
 }
 
-RESULT eDVBChannel::seekTo(iDVBDemux *decoding_demux, int relative, pts_t &pts)
-{
-	int bitrate = m_tstools.calcBitrate(); /* in bits/s */
-	
-	if (bitrate == -1)
-		return -1;
-	
-	if (relative)
-	{
-		pts_t now;
-		if (getCurrentPosition(decoding_demux, now, 0))
-		{
-			eDebug("seekTo: getCurrentPosition failed!");
-			return -1;
-		}
-		pts += now;
-	}
-	
-	if (pts < 0)
-		pts = 0;
-	
-	off_t offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
-	
-	seekToPosition(decoding_demux, offset);
-	return 0;
-}
-
-RESULT eDVBChannel::seekToPosition(iDVBDemux *decoding_demux, const off_t &r)
+void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)
 {
 			/* when seeking, we have to ensure that all buffers are flushed.
 			   there are basically 3 buffers:
@@ -853,12 +996,10 @@ RESULT eDVBChannel::seekToPosition(iDVBDemux *decoding_demux, const off_t &r)
 			   the ratebuffer (for example) would immediately refill from
 			   the not-yet-flushed PVR buffer.
 			*/
-	eDebug("eDVBChannel: seekToPosition .. %llx", r);
-	m_pvr_thread->pause();
 
+	m_pvr_thread->pause();
 		/* flush internal filepush buffer */
 	m_pvr_thread->flush();
-
 		/* HACK: flush PVR buffer */
 	::ioctl(m_pvr_fd_dst, 0);
 	
@@ -867,7 +1008,47 @@ RESULT eDVBChannel::seekToPosition(iDVBDemux *decoding_demux, const off_t &r)
 		decoding_demux->flush();
 
 		/* demux will also flush all decoder.. */
-	m_pvr_thread->seek(SEEK_SET, r);
+		/* resume will re-query the SG */
 	m_pvr_thread->resume();
+}
+
+DEFINE_REF(eCueSheet);
+
+eCueSheet::eCueSheet()
+{
+	m_skipmode_ratio = 0;
+}
+
+void eCueSheet::seekTo(int relative, const pts_t &pts)
+{
+	m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
+	m_event(evtSeek);
+}
+	
+void eCueSheet::clear()
+{
+	m_spans.clear();
+}
+
+void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
+{
+	m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
+	m_event(evtSpanChanged);
+}
+
+void eCueSheet::setSkipmode(const pts_t &ratio)
+{
+	m_skipmode_ratio = ratio;
+	m_event(evtSkipmode);
+}
+
+void eCueSheet::setDecodingDemux(iDVBDemux *demux)
+{
+	m_decoding_demux = demux;
+}
+
+RESULT eCueSheet::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_event.connect(event));
 	return 0;
 }
