@@ -17,11 +17,9 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 		return 0
 	
 	def disable(self):
-#		self.instance.hide()
 		pass
 	
 	def enable(self):
-#		self.instance.show()
 		pass
 
 # html:

@@ -16,7 +16,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
-	InfoBarServiceNotifications
+	InfoBarServiceNotifications, InfoBarPVRState
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -65,7 +65,7 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
-		InfoBarServiceNotifications):
+		InfoBarServiceNotifications, InfoBarPVRState):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
@@ -78,7 +78,7 @@ class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, \
-				InfoBarServiceNotifications:
+				InfoBarServiceNotifications, InfoBarPVRState:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
