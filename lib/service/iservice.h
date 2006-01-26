@@ -386,6 +386,8 @@ class iPlayableService: public iObject
 public:
 	enum
 	{
+			/* these first two events are magical, and should only
+			   be generated if you know what you're doing. */
 		evStart,
 		evEnd,
 		
@@ -397,7 +399,8 @@ public:
 			/* when seek() is implemented: */		
 		evSeekableStatusChanged, /* for example when timeshifting */
 		
-		evEOF
+		evEOF,
+		evSOF, /* bounced against start of file (when seeking backwards) */
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
