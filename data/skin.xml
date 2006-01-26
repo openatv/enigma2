@@ -172,12 +172,12 @@
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
 
-			<widget name="snr" text="SNR:" position="195,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
-			<widget name="agc" text="AGC:" position="275,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
-			<widget name="ber" text="BER:" position="355,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
-			<widget name="snr_percent" position="232,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
-			<widget name="agc_percent" position="314,0" size="40,22" valign="center" font="Regular;15" transparent="1" />
-			<widget name="ber_count" position="392,0" size="53,22" valign="center" font="Regular;15" transparent="1" />
+			<widget name="snr" text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" />
+			<widget name="agc" text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
+			<widget name="ber" text="BER:" position="355,0" size="40,22" font="Regular;15" transparent="1" />
+			<widget name="snr_percent" position="232,0" size="40,22" font="Regular;15" transparent="1" />
+			<widget name="agc_percent" position="314,0" size="40,22" font="Regular;15" transparent="1" />
+			<widget name="ber_count" position="392,0" size="53,22" font="Regular;15" transparent="1" />
 			<widget name="snr_progress" position="447,1" size="88,6" />
 			<widget name="agc_progress" position="447,8" size="88,6" />
 			<widget name="ber_progress" position="447,15" size="88,6" />
@@ -187,7 +187,7 @@
 			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
 			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
 
-			<widget name="ServiceName" position="69,26" size="427,34" valign="center" font="Regular;22" backgroundColor="#101258" />
+			<widget name="ServiceName" position="69,26" size="427,34" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" />
 			<widget name="Event_Now_StartTime" position="210,68" size="60,22" font="Regular;20" backgroundColor="dark" />
 			<widget name="Event_Next_StartTime" position="210,98" size="60,22" font="Regular;20" backgroundColor="dark" />
@@ -217,11 +217,11 @@
 			<ePixmap position="410,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/stopbutton.png" />
 			<ePixmap position="455,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/recordbutton.png" />
 -->
-<!--			<widget name="ServiceName" position="250,75" size="427,26" valign="center" font="Regular;22" backgroundColor="#101258" />
+<!--			<widget name="ServiceName" position="250,75" size="427,26" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,85" size="90,30" backgroundColor="dark" font="Regular;19" />
 			<eLabel position="70,0" size="300,30" text=".oO Movie Player Oo." font="Regular;20" />
 -->
-			<widget name="ServiceName" position="69,25" size="427,26" valign="center" font="Regular;22" backgroundColor="#101258" />
+			<widget name="ServiceName" position="69,25" size="427,26" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,25" backgroundColor="dark" font="Regular;19" />
 			   <!-- fixme -->
 			<widget name="ElapsedTime" position="575,35" size="90,30" backgroundColor="dark" font="Regular;19" />
@@ -335,8 +335,8 @@
 			<widget name="list" position="100,100" size="550,375" scrollbarMode="showOnDemand" />
 			<eLabel position="500,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
-		<screen name="PVRState" position="100,100" size="150,150" >
-			<widget name="state" position="0,0" size="100,100" />
+		<screen name="PVRState" flags="wfNoBorder" position="100,100" size="150,50" >
+			<widget name="state" position="0,0" size="150,50" font="Regular;25" halign="center" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
 			<widget name="text" position="60,10" size="650,0" font="Regular;22" />
