@@ -44,27 +44,5 @@ RESULT pNavigation::stopService()
 void pNavigation::navEvent(eNavigation *nav, int event)
 {
 		/* just relay the events here. */
-	switch (event)
-	{
-	case eNavigation::evStopService:
-		m_event(evStopService);
-		break;
-	case eNavigation::evNewService:
-		m_event(evNewService);
-		break;
-	case eNavigation::evPlayFailed:
-		m_event(evPlayFailed);
-		break;
-	case eNavigation::evUpdatedEventInfo:
-		m_event(evUpdatedEventInfo);
-		break;
-	case eNavigation::evUpdatedInfo:
-		m_event(evUpdatedInfo);
-		break;
-	case eNavigation::evSeekableStatusChanged:
-		m_event(evSeekableStatusChanged);
-		break;
-	case eNavigation::evEnd:
-		m_event(evEnd);
-	}
+	m_event(event);
 }

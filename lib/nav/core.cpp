@@ -9,26 +9,7 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 		return;
 	}
 
-	switch (event)
-	{	
-	case iPlayableService::evEnd:
-		m_event(this, evEnd);
-		break;
-	case iPlayableService::evStart:
-		m_event(this, evNewService);
-		break;
-	case iPlayableService::evUpdatedEventInfo:
-		m_event(this, evUpdatedEventInfo);
-		break;
-	case iPlayableService::evUpdatedInfo:
-		m_event(this, evUpdatedInfo);
-		break;
-	case iPlayableService::evSeekableStatusChanged:
-		m_event(this, evSeekableStatusChanged);
-		break;
-	default:
-		break;
-	}
+	m_event(this, event);
 }
 
 RESULT eNavigation::playService(const eServiceReference &service)
@@ -63,8 +44,9 @@ RESULT eNavigation::stopService(void)
 	if (!m_runningService)
 		return 1;
 			/* send stop event */
-	m_event(this, evStopService);
+	m_event(this, iPlayableService::evEnd);
 
+	m_runningService->stop();
 		/* kill service. */
 	m_runningService = 0;
 	m_service_event_conn = 0;

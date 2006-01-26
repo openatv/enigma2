@@ -12,17 +12,6 @@ DECLARE_REF(pNavigation);
 public:
 	PSignal1<void, int> m_event;
 	
-	enum
-	{
-		evStopService,  /** the "current" service was just stopped and likes to be deallocated (clear refs!) */
-		evNewService,   /** a new "current" service was just started */
-		evPlayFailed,   /** the next service (in playlist) or the one given in playService failed to play */
-		evUpdatedEventInfo, /** the "currently running" event info was updated */
-		evUpdatedInfo, /** the program info of this service was updated */
-		evSeekableStatusChanged,
-		evEnd
-	};
-	
 	pNavigation();
 	
 	RESULT playService(const eServiceReference &service);
