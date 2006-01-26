@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <lib/python/swig.h>
 
+inline void ptrAssert(void *p) { if (!p) *(unsigned long*)0=0; }
+
 template<class T>
 class ePtr
 {
@@ -54,7 +56,7 @@ public:
 	
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
 	T* &ptrref() { assert(!ptr); return ptr; }
-	T* operator->() const { assert(ptr); return ptr; }
+	T* operator->() const { ptrAssert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
 	
 	operator bool() const { return !!this->ptr; }
@@ -131,7 +133,7 @@ public:
 	
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); ptr->AddUse(); return ptr; }
 	T* &ptrref() { assert(!ptr); return ptr; }
-	T* operator->() const { assert(ptr); return ptr; }
+	T* operator->() const { ptrAssert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
 };
 
@@ -179,13 +181,13 @@ public:
 	}
 	
 	
-	ePtrHelper<T> operator->() { assert(ptr); return ePtrHelper<T>(ptr); }
+	ePtrHelper<T> operator->() { ptrAssert(ptr); return ePtrHelper<T>(ptr); }
 
 			/* for const objects, we don't need the helper, as they can't */
 			/* be changed outside the program flow. at least this is */
 			/* what the compiler assumes, so in case you're using const */
 			/* eMutablePtrs note that they have to be const. */
-	const T* operator->() const { assert(ptr); return ptr; }
+	const T* operator->() const { ptrAssert(ptr); return ptr; }
 };
 #endif
 
