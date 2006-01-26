@@ -2,7 +2,7 @@ from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import *
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -49,7 +49,7 @@ class TimerEntry(Screen):
 
 		self.list = []
 		self["config"] = ConfigList(self.list)
-		self.createSetup()
+		self.createSetup("config")
 
 	def createConfig(self):
 			config.timerentry = ConfigSubsection()
@@ -135,7 +135,7 @@ class TimerEntry(Screen):
 				except:
 					pass
 
-	def createSetup(self):
+	def createSetup(self, widget):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Name"), config.timerentry.name))
 		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
@@ -180,15 +180,15 @@ class TimerEntry(Screen):
 		self.channelEntry = getConfigListEntry(_("Channel"), config.timerentry.service)
 		self.list.append(self.channelEntry)
 
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
+		self[widget].list = self.list
+		self[widget].l.setList(self.list)
 
 	def newConfig(self):
 		print self["config"].getCurrent()
 		if self["config"].getCurrent() == self.timerTypeEntry:
-			self.createSetup()
+			self.createSetup("config")
 		if self["config"].getCurrent() == self.frequencyEntry:
-			self.createSetup()
+			self.createSetup("config")
 
 	def keyLeft(self):
 		if self["config"].getCurrent() == self.channelEntry:
@@ -282,7 +282,7 @@ class TimerEntry(Screen):
 
 	def keyCancel(self):
 		self.close((False,))
-
+		
 class TimerLog(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)

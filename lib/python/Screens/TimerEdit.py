@@ -1,5 +1,7 @@
 from Screen import Screen
 from Components.TimerList import TimerList, TimerEntryComponent
+from Components.ConfigList import ConfigList
+from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.TimeInput import TimeInput
 from Components.Label import Label
@@ -138,7 +140,8 @@ class TimerEditList(Screen):
 		
 		if answer[0]:
 			print "Edited timer"
-			if not TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1]).check():
+			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1])
+			if not timersanitycheck.check():
 				print "Sanity check failed"
 			else:
 				print "Sanity check passed"
@@ -150,15 +153,20 @@ class TimerEditList(Screen):
 	def finishedAdd(self, answer):
 		print "finished add"
 		if answer[0]:
-			if not TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1]).check():
+			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, answer[1])
+			if not timersanitycheck.check():
 				print "Sanity check failed"
+				self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, timersanitycheck.getSimulTimerList())
 			else:
 				print "Sanity check passed"
-			entry = answer[1]
-			self.session.nav.RecordTimer.record(entry)
-			self.fillTimerList()
+				entry = answer[1]
+				self.session.nav.RecordTimer.record(entry)
+				self.fillTimerList()
 		else:
 			print "Timeredit aborted"		
+
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
 
 	def leave(self):
 		self.session.nav.RecordTimer.saveTimer()
@@ -167,3 +175,67 @@ class TimerEditList(Screen):
 
 	def onStateChange(self, entry):
 		self.refill()
+		
+class TimerSanityConflict(Screen):
+	def __init__(self, session, timer):
+		Screen.__init__(self, session)
+		self.timer = timer
+		print timer
+			
+		self["timer1"] = TimerList(self.getTimerList(timer[0]))
+		if len(timer) > 1:
+			self["timer2"] = TimerList(self.getTimerList(timer[1]))
+		else:
+			self["timer2"] = Button("No conflict")
+		
+		self.list = []
+		count = 0
+		for x in timer:
+			if count != 0:
+				self.list.append((_("Conflicting timer") + " " + str(count), x))
+			count += 1
+
+		self["list"] = MenuList(self.list)
+		
+		self["key_red"] = Button("Edit")
+		self["key_green"] = Button("Disable")
+		self["key_yellow"] = Button("Edit")
+		self["key_blue"] = Button("Disable")
+
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], 
+			{
+				"ok": self.close,
+				#"cancel": self.leave,
+				"red": self.editTimer1,
+				"green": self.disableTimer1,
+#				"yellow": self.editTimer2,
+#				"blue": self.disableTimer2,
+				#"log": self.showLog,
+				#"left": self.left,
+				#"right": self.right,
+				"up": self.up,
+				"down": self.down
+			}, -1)
+
+	def getTimerList(self, timer):
+		return [TimerEntryComponent(timer, processed=False)]
+
+	def editTimer1(self):
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent()[0])
+
+	def disableTimer1(self):
+		self.timer[0].disabled = True
+		self.finishedEdit((True, self.timer[0]))
+
+	def finishedEdit(self, answer):
+		self.close((True, self.timer[0]))
+
+	def up(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()[1]))
+		
+	def down(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()[1]))
+			
+		
