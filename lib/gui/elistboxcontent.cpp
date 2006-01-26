@@ -517,7 +517,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
 							
 							if ((num < 0) || (num >= glyphs))
-								eWarning("glyph index %d in PythonConfigList out of bounds!");
+								eWarning("glyph index %d in PythonConfigList out of bounds!", num);
 							else
 							{
 								para->setGlyphFlag(num, GS_INVERT);
@@ -713,6 +713,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				break;
 			}
+			case TYPE_PIXMAP_ALPHATEST:
 			case TYPE_PIXMAP: // pixmap
 			{
 				if (!(px && py && pwidth && pheight && pfnt))
@@ -736,7 +737,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				r &= itemrect;
 				
 				painter.clip(r);
-				painter.blit(pixmap, r.topLeft(), r);
+				painter.blit(pixmap, r.topLeft(), r, (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : 0);
 				painter.clippop();
 
 				break;

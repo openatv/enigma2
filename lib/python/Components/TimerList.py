@@ -62,7 +62,7 @@ def TimerEntryComponent(timer, processed):
 
 	if timer.disabled:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/redx.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 490, 5, 40, 40, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
 	
 	return res
 

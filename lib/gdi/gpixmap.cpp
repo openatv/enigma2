@@ -310,7 +310,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 						// use duff's device here!
 					while (width--)
 					{
-						if (*src==0x01)
+						if (!(pal[*src]&0x80000000))
 						{
 							src++;
 							dst++;
