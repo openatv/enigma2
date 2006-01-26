@@ -32,7 +32,7 @@ def parseEvent(ev):
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
