@@ -75,6 +75,7 @@ void eAVSwitch::setColorFormat(int format)
 	char *cvbs="cvbs";
 	char *rgb="rgb";
 	char *svideo="svideo";
+	char *yuv="yuv";
 	int fd;
 	
 	if((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
@@ -90,6 +91,9 @@ void eAVSwitch::setColorFormat(int format)
 			break;
 		case 2:
 			write(fd, svideo, strlen(svideo));
+			break;
+		case 3:
+			write(fd, yuv, strlen(yuv));
 			break;
 	}	
 	close(fd);
