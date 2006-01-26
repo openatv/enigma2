@@ -114,11 +114,7 @@ class Timer:
 			f(entry)
 			
 	def cleanup(self):
-		new_processed_timers = []
-		for x in self.processed_timers:
-			if x.disabled:
-				new_processed_timers.append(x)
-		self.processed_timers = new_processed_timers
+		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
 	
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
