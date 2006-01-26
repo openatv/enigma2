@@ -694,13 +694,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
 			})
-		self.onShown.append(self.onShow)
+		self.onShown.append(self.__onShown)
 
 		self.lastChannelRootTimer = eTimer()
-		self.lastChannelRootTimer.timeout.get().append(self.onCreate)
+		self.lastChannelRootTimer.timeout.get().append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
 
-	def onCreate(self):
+	def __onCreate(self):
 		self.setTvMode()
 		self.servicePathTV = [ ]
 		self.restoreRoot()
@@ -709,7 +709,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(lastservice)
 			self.session.nav.playService(lastservice)
 
-	def onShow(self):
+	def __onShown(self):
 		self.recallBouquetMode()
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if ref is not None and ref.valid() and ref.getPath() == "":
@@ -887,7 +887,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
 			self.servicelist.setPlayableIgnoreService(lastservice)
-		self.info.instance.show()
+		self.info.show()
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
@@ -907,7 +907,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			self.saveRoot()
 
 	def closeRadio(self):
-		self.info.instance.hide()
+		self.info.hide()
 		#set previous tv service
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		self.session.nav.playService(lastservice)
@@ -917,7 +917,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
 		self.title = title
-		self.onShown.append(self.onExecCallback)
+		self.onShown.append(self.__onExecCallback)
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -927,7 +927,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"keyTV": self.setModeTv,
 			})
 
-	def onExecCallback(self):
+	def __onExecCallback(self):
 		self.session.currentDialog.instance.setTitle(self.title)
 		self.setModeTv()
 

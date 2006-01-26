@@ -41,7 +41,7 @@ from Menu import MainMenu, mdom
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
-		self.onShown.append(self.dishDialog.instance.show)
+		self.onShown.append(self.dishDialog.show)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -58,49 +58,56 @@ class InfoBarShowHide:
 				"hide": self.hide,
 			})
 
-		self.state = self.STATE_SHOWN
+		self.__state = self.STATE_SHOWN
+		self.__locked = 0
 		
 		self.onExecBegin.append(self.show)
-		self.onClose.append(self.delHideTimer)
 		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
-
-	def delHideTimer(self):
-		del self.hideTimer
-
-	def hide(self):	
-		self.instance.hide()
 		
-	def show(self):
-		self.state = self.STATE_SHOWN
-		self.hideTimer.start(5000, True)
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.__state = self.STATE_SHOWN
+		self.startHideTimer()
+	
+	def startHideTimer(self):
+		if self.__state == self.STATE_SHOWN and not self.__locked:
+			self.hideTimer.start(5000, True)
+
+	def __onHide(self):
+		self.__state = self.STATE_HIDDEN
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
-		if self.state == self.STATE_SHOWN:
-			self.instance.hide()
-			self.state = self.STATE_HIDDEN
+		if self.__state == self.STATE_SHOWN:
+			self.hide()
 
 	def toggleShow(self):
-		if self.state == self.STATE_SHOWN:
-			self.instance.hide()
-			#pls check animation support, sorry
-#			self.startHide()
+		if self.__state == self.STATE_SHOWN:
+			self.hide()
 			self.hideTimer.stop()
-			self.state = self.STATE_HIDDEN
-		elif self.state == self.STATE_HIDDEN:
-			self.instance.show()
+		elif self.__state == self.STATE_HIDDEN:
 			self.show()
-			
-	def startShow(self):
-		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
-		self.state = self.STATE_SHOWN
+
+	def lockShow(self):
+		self.__locked = self.__locked + 1
+		self.show()
 	
-	def startHide(self):
-		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
-		self.state = self.STATE_HIDDEN
+	def unlockShow(self):
+		self.__locked = self.__locked - 1
+		self.startHideTimer()
+
+#	def startShow(self):
+#		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
+#		self.__state = self.STATE_SHOWN
+#	
+#	def startHide(self):
+#		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
+#		self.__state = self.STATE_HIDDEN
 
 class NumberZap(Screen):
 	def quit(self):
@@ -202,7 +209,6 @@ class InfoBarNumberZap:
 #		print "You pressed number " + str(number)
 		if number == 0:
 			self.servicelist.recallPrevService()
-			self.instance.show()
 			self.show()
 		else:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
@@ -265,27 +271,25 @@ class InfoBarChannelSelection:
 				"zapUp": (self.zapUp, _("next channel")),
 				"zapDown": (self.zapDown, _("previous channel")),
 			})
-			
-	def switchChannelUp(self):	
+
+	def switchChannelUp(self):
 		self.servicelist.moveUp()
 		self.session.execDialog(self.servicelist)
 
-	def switchChannelDown(self):	
+	def switchChannelDown(self):
 		self.servicelist.moveDown()
 		self.session.execDialog(self.servicelist)
 
 	def	zapUp(self):
 		self.servicelist.moveUp()
 		self.servicelist.zap()
-		self.instance.show()
 		self.show()
 
 	def	zapDown(self):
 		self.servicelist.moveDown()
 		self.servicelist.zap()
-		self.instance.show()
 		self.show()
-		
+
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
@@ -451,30 +455,33 @@ class InfoBarServiceName:
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 	
-	# ispause, isff, issm, skip
-	SEEK_STATE_PLAY = (0, 0, 0, 0)
-	SEEK_STATE_PAUSE = (1, 0, 0, 0)
-	SEEK_STATE_FF_2X = (0, 2, 0, 0)
-	SEEK_STATE_FF_4X = (0, 4, 0, 0)
-	SEEK_STATE_FF_8X = (0, 8, 0, 0)
-	SEEK_STATE_FF_32X = (0, 4, 0, 32)
-	SEEK_STATE_FF_64X = (0, 4, 0, 64)
-	SEEK_STATE_FF_128X = (0, 4, 0, 128)
+	# ispause, isff, issm
+	SEEK_STATE_PLAY = (0, 0, 0, "")
+	SEEK_STATE_PAUSE = (1, 0, 0, "||")
+	SEEK_STATE_FF_2X = (0, 2, 0, ">> 2x")
+	SEEK_STATE_FF_4X = (0, 4, 0, ">> 4x")
+	SEEK_STATE_FF_8X = (0, 8, 0, ">> 8x")
+	SEEK_STATE_FF_32X = (0, 32, 0, ">> 32x")
+	SEEK_STATE_FF_64X = (0, 64, 0, ">> 64x")
+	SEEK_STATE_FF_128X = (0, 128, 0, ">> 128x")
 	
-	SEEK_STATE_BACK_4X = (0, 0, 0, -4)
-	SEEK_STATE_BACK_32X = (0, 0, 0, -32)
-	SEEK_STATE_BACK_64X = (0, 0, 0, -64)
-	SEEK_STATE_BACK_128X = (0, 0, 0, -128)
+	SEEK_STATE_BACK_4X = (0, -4, 0, "<< 4x")
+	SEEK_STATE_BACK_32X = (0, -32, 0, "<< 32x")
+	SEEK_STATE_BACK_64X = (0, -64, 0, "<< 64x")
+	SEEK_STATE_BACK_128X = (0, -128, 0, "<< 128x")
 	
-	SEEK_STATE_SM_HALF = (0, 0, 2, 0)
-	SEEK_STATE_SM_QUARTER = (0, 0, 4, 0)
-	SEEK_STATE_SM_EIGHTH = (0, 0, 8, 0)
+	SEEK_STATE_SM_HALF = (0, 0, 2, "/2")
+	SEEK_STATE_SM_QUARTER = (0, 0, 4, "/4")
+	SEEK_STATE_SM_EIGHTH = (0, 0, 8, "/8")
 	
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged,
-				pNavigation.evNewService: self.__serviceStarted
+				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+				iPlayableService.evStart: self.__serviceStarted,
+				
+				iPlayableService.evEOF: self.__evEOF,
+				iPlayableService.evSOF: self.__evSOF,
 			})
 		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 
 			{
@@ -489,10 +496,7 @@ class InfoBarSeek:
 			# give them a little more priority to win over color buttons
 
 		self.seekstate = self.SEEK_STATE_PLAY
-		self.seekTimer = eTimer()
-		self.seekTimer.timeout.get().append(self.seekTimerFired)
-		self.skipinterval = 500 # 500ms skip interval
-		self.onClose.append(self.delSeekTimer)
+		self.onClose.append(self.delTimer)
 		
 		self.fwdtimer = False
 		self.fwdKeyTimer = eTimer()
@@ -501,6 +505,10 @@ class InfoBarSeek:
 		self.rwdtimer = False
 		self.rwdKeyTimer = eTimer()
 		self.rwdKeyTimer.timeout.get().append(self.rwdTimerFire)
+		
+		self.onPlayStateChanged = [ ]
+		
+		self.lockedBecauseOfSkipping = False
 	
 	def up(self):
 		pass
@@ -508,21 +516,10 @@ class InfoBarSeek:
 	def down(self):
 		pass
 	
-	def delSeekTimer(self):
-		del self.seekTimer
+	def delTimer(self):
 		del self.fwdKeyTimer
 		del self.rwdKeyTimer
 	
-	def seekTimerFired(self):
-		self.seekbase += self.skipmode * self.skipinterval
-		
-		# check if we bounced against the beginning of the file
-		if self.seekbase < 0:
-			self.seekbase = 0;
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			
-		self.doSeek(self.seekbase)
-
 	def isSeekable(self):
 		service = self.session.nav.getCurrentService()
 		if service is None:
@@ -547,7 +544,6 @@ class InfoBarSeek:
 
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
-		self.seekTimer.stop()
 		
 		if service is None:
 			return False
@@ -565,35 +561,17 @@ class InfoBarSeek:
 		oldstate = self.seekstate
 		self.seekstate = state
 		
-		for i in range(4):
+		for i in range(3):
 			if oldstate[i] != self.seekstate[i]:
-				(self.session.nav.pause, pauseable.setFastForward, pauseable.setSlowMotion, self.setSkipMode)[i](self.seekstate[i])
+				(self.session.nav.pause, pauseable.setFastForward, pauseable.setSlowMotion)[i](self.seekstate[i])
+
+		for c in self.onPlayStateChanged:
+			c(self.seekstate)
+		
+		self.checkSkipShowHideLock()
 
 		return True
 		
-	def setSkipMode(self, skipmode):
-		print "setskipmode", skipmode
-		self.skipmode = skipmode
-		if skipmode == 0:
-			self.seekTimer.stop()
-		else:
-			self.seekTimer.start(500)
-		
-		service = self.session.nav.getCurrentService()
-		if service is None:
-			return
-		
-		seekable = service.seek()
-		if seekable is None:
-			return
-
-		if skipmode:
-			seekable.setTrickmode(1)
-		else:
-			seekable.setTrickmode(0)
-		
-		self.seekbase = seekable.getPlayPosition()[1] / 90
-	
 	def pauseService(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			print "pause, but in fact unpause"
@@ -706,6 +684,36 @@ class InfoBarSeek:
 	def rwdSeekTo(self, minutes):
 		print "rwdSeekTo"
 		self.fwdSeekTo(0 - minutes)
+	
+	def checkSkipShowHideLock(self):
+		wantlock = self.seekstate != self.SEEK_STATE_PLAY
+		
+		if self.lockedBecauseOfSkipping and not wantlock:
+			self.unlockShow()
+			self.lockedBecauseOfSkipping = False
+		
+		if wantlock and not self.lockedBecauseOfSkipping:
+			self.lockShow()
+			self.lockedBecauseOfSkipping = True
+
+	def __evEOF(self):
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+	
+	def __evSOF(self):
+		self.setSeekState(self.SEEK_STATE_PLAY)
+
+from Screens.PVRState import PVRState
+
+class InfoBarPVRState:
+	def __init__(self):
+		self.onPlayStateChanged.append(self.__playStateChanged)
+		self.pvrStateDialog = self.session.instantiateDialog(PVRState)
+		self.onShow.append(self.pvrStateDialog.show)
+		self.onHide.append(self.pvrStateDialog.hide)
+	
+	def __playStateChanged(self, state):
+		playstateString = state[3]
+		self.pvrStateDialog["state"].setText(playstateString)
 
 class InfoBarShowMovies:
 
@@ -768,7 +776,7 @@ class InfoBarTimeshift:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				pNavigation.evSeekableStatusChanged: self.__seekableStatusChanged
+				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
 	
 	def getTimeshift(self):
@@ -1051,13 +1059,13 @@ class InfoBarAdditionalInfo:
 
 	def gotServiceEvent(self, ev):
 		service = self.session.nav.getCurrentService()
-		if ev == pNavigation.evUpdatedEventInfo:
+		if ev == iPlayableService.evUpdatedEventInfo:
 			self.checkSubservices(service)
 			self.checkFormat(service)
-		elif ev == pNavigation.evUpdatedInfo:
+		elif ev == iPlayableService.evUpdatedInfo:
 			self.checkCrypted(service)
 			self.checkDolby(service)
-		elif ev == pNavigation.evStopService:
+		elif ev == iPlayableService.evEnd:
 			self.hideSubServiceIndication()
 			self["CryptActive"].hideWidget()
 			self["DolbyActive"].hideWidget()
@@ -1087,7 +1095,7 @@ class InfoBarServiceNotifications:
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				pNavigation.evEnd: self.serviceHasEnded
+				iPlayableService.evEnd: self.serviceHasEnded
 			})
 
 	def serviceHasEnded(self):

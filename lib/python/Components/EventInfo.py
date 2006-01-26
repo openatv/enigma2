@@ -13,13 +13,13 @@ class EventInfo(PerServiceDisplay):
 	Next_StartTime = 5
 	
 	def __init__(self, navcore, now_or_next):
-		# listen to evUpdatedEventInfo and evStopService
-		# note that evStopService will be called once to establish a known state
+		# listen to evUpdatedEventInfo and evEnd
+		# note that evEnd will be called once to establish a known state
 		self.now_or_next = now_or_next
 		PerServiceDisplay.__init__(self, navcore, 
 			{ 
-				pNavigation.evUpdatedEventInfo: self.ourEvent, 
-				pNavigation.evStopService: self.stopEvent 
+				iPlayableService.evUpdatedEventInfo: self.ourEvent, 
+				iPlayableService.evEnd: self.stopEvent 
 			})
 
 	def ourEvent(self):
@@ -53,8 +53,8 @@ class EventInfoProgress(PerServiceDisplayProgress, EventInfo):
 		self.now_or_next = now_or_next
 		PerServiceDisplayProgress.__init__(self, navcore, 
 			{ 
-				pNavigation.evUpdatedEventInfo: self.ourEvent, 
-				pNavigation.evStopService: self.stopEvent 
+				iPlayableService.evUpdatedEventInfo: self.ourEvent, 
+				iPlayableService.evEnd: self.stopEvent 
 			})
 
 	def update(self, ev):
