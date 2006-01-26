@@ -95,11 +95,14 @@ class InfoBarShowHide:
 
 	def lockShow(self):
 		self.__locked = self.__locked + 1
-		self.show()
+		if self.execing:
+			self.show()
+			self.hideTimer.stop()
 	
 	def unlockShow(self):
 		self.__locked = self.__locked - 1
-		self.startHideTimer()
+		if self.execing:
+			self.startHideTimer()
 
 #	def startShow(self):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 600), ePoint(0, 380), 100)
@@ -456,7 +459,7 @@ class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 	
 	# ispause, isff, issm
-	SEEK_STATE_PLAY = (0, 0, 0, "")
+	SEEK_STATE_PLAY = (0, 0, 0, ">")
 	SEEK_STATE_PAUSE = (1, 0, 0, "||")
 	SEEK_STATE_FF_2X = (0, 2, 0, ">> 2x")
 	SEEK_STATE_FF_4X = (0, 4, 0, ">> 4x")
@@ -708,12 +711,17 @@ class InfoBarPVRState:
 	def __init__(self):
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(PVRState)
-		self.onShow.append(self.pvrStateDialog.show)
+		self.onShow.append(self.__mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 	
+	def __mayShow(self):
+		if self.seekstate != self.SEEK_STATE_PLAY:
+			self.pvrStateDialog.show()
+
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
+		self.__mayShow()
 
 class InfoBarShowMovies:
 
