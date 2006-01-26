@@ -147,6 +147,15 @@
 			<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 			<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		</screen>
+		<screen name="TimerSanityConflict" position="70,100" size="600,400" title="Timer sanity error">
+			<widget name="timer1" position="0,45" size="290,80" scrollbarMode="showOnDemand" />
+			<widget name="timer2" position="310,45" size="280,80" scrollbarMode="showOnDemand" />
+			<widget name="list" position="0,160" size="250,240" scrollbarMode="showOnDemand" />
+			<widget name="key_red" position="0,0" size="145,40" backgroundColor="red" font="Regular;21" />
+			<widget name="key_green" position="145,0" size="145,40" backgroundColor="green" font="Regular;21" />
+			<widget name="key_yellow" position="310,0" size="145,40" backgroundColor="yellow" font="Regular;21" />
+			<widget name="key_blue" position="455,0" size="145,40" backgroundColor="blue" font="Regular;21" />
+		</screen>
 		<screen name="TimerLog" position="70,100" size="560,400" title="Timer log">
 			<widget name="loglist" position="0,45" size="560,250" scrollbarMode="showOnDemand" />
 			<widget name="logentry" position="0,300" size="560,140" font="Regular;20" />
