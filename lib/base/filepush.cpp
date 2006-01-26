@@ -21,10 +21,10 @@ static void signal_handler(int x)
 
 void eFilePushThread::thread()
 {
-	off_t dest_pos = 0;
+	off_t dest_pos = 0, source_pos = 0;
 	size_t bytes_read = 0;
 	
-	off_t current_span_offset;
+	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
 	
 	int already_empty = 0;
@@ -38,6 +38,8 @@ void eFilePushThread::thread()
 	sigaction(SIGUSR1, &act, 0);
 	
 	dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
+	source_pos = lseek(m_fd_source, 0, SEEK_CUR);
+	
 		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
@@ -51,7 +53,7 @@ void eFilePushThread::thread()
 			{
 				if (errno == -EINTR)
 					continue;
-				eDebug("eFilePushThread *write error* (%m) - not yet handled");
+				break;
 				// ... we would stop the thread
 			}
 
@@ -68,14 +70,17 @@ void eFilePushThread::thread()
 			
 		if (m_sg && !current_span_remaining)
 		{
-			m_sg->getNextSourceSpan(bytes_read, current_span_offset, current_span_remaining);
+			m_sg->getNextSourceSpan(source_pos, bytes_read, current_span_offset, current_span_remaining);
+
+			if (source_pos != current_span_offset)
+				source_pos = lseek(m_fd_source, current_span_offset, SEEK_SET);
 			bytes_read = 0;
 		}
 		
 		size_t maxread = sizeof(m_buffer);
 		
 			/* if we have a source span, don't read past the end */
-		if (m_sg && maxread < current_span_remaining)
+		if (m_sg && maxread > current_span_remaining)
 			maxread = current_span_remaining;
 
 		m_buf_start = 0;
@@ -83,8 +88,6 @@ void eFilePushThread::thread()
 		
 		if (maxread)
 			m_buf_end = read(m_fd_source, m_buffer, maxread);
-
-		bytes_read += m_buf_end;
 
 		if (m_buf_end < 0)
 		{
@@ -117,7 +120,13 @@ void eFilePushThread::thread()
 #endif
 			break;
 		} else
+		{
+			source_pos += m_buf_end;
+			bytes_read += m_buf_end;
+			if (m_sg)
+				current_span_remaining -= m_buf_end;
 			already_empty = 0;
+		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
 	
@@ -164,6 +173,11 @@ void eFilePushThread::flush()
 void eFilePushThread::enablePVRCommit(int s)
 {
 	m_send_pvr_commit = s;
+}
+
+void eFilePushThread::setScatterGather(iFilePushScatterGather *sg)
+{
+	m_sg = sg;
 }
 
 void eFilePushThread::sendEvent(int evt)

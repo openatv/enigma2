@@ -9,8 +9,8 @@
 class iFilePushScatterGather
 {
 public:
+	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)=0;
 	virtual ~iFilePushScatterGather() {}
-	virtual void getNextSourceSpan(size_t bytes_read, off_t &start, size_t &size)=0;
 };
 
 class eFilePushThread: public eThread, public Object
@@ -29,11 +29,13 @@ public:
 	void flush();
 	void enablePVRCommit(int);
 	
-	void setSG(iFilePushScatterGather *);
+	void setScatterGather(iFilePushScatterGather *);
 	
-	enum { evtEOF, evtReadError, evtWriteError };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser };
 	Signal1<void,int> m_event;
-	
+
+		/* you can send private events if you want */
+	void sendEvent(int evt);
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
@@ -44,7 +46,6 @@ private:
 	
 	eFixedMessagePump<int> m_messagepump;
 	
-	void sendEvent(int evt);
 	void recvEvent(const int &evt);
 };
 
