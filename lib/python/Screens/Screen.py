@@ -15,7 +15,11 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.onExecBegin = [ ]
 		self.onShown = [ ]
 		
+		self.onShow = [ ]
+		self.onHide = [ ]
+		
 		self.execing = False
+		self.shown = False
 		
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
@@ -72,3 +76,19 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
+
+	def show(self):
+		if self.shown:
+			return
+		self.shown = True
+		self.instance.show()
+		for x in self.onShow:
+			x()
+
+	def hide(self):
+		if not self.shown:
+			return
+		self.shown = False
+		self.instance.hide()
+		for x in self.onHide:
+			x()
