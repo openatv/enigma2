@@ -13,10 +13,10 @@
 from Screens.InfoBar import InfoBar
 self.infobardialog = self.session.instantiateDialog(InfoBar)
 self.infobardialog.hideTimer.stop()
-self.infobardialog.instance.show()
+self.infobardialog.show()
 			</code>
 			<code pos="after">
-self.infobardialog.instance.hide()
+self.infobardialog.hide()
 del self.infobardialog
 			</code>
 
