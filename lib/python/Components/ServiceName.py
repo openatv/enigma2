@@ -1,14 +1,14 @@
 from PerServiceDisplay import *
 
-#from enigma import pNavigation, iServiceInformationPtr
+#from enigma import iPlayableService, iServiceInformationPtr
 from enigma import *
 
 class ServiceName(PerServiceDisplay):
 	def __init__(self, navcore):
 		PerServiceDisplay.__init__(self, navcore,
 			{
-				pNavigation.evNewService: self.newService,
-				pNavigation.evStopService: self.stopEvent
+				iPlayableService.evStart: self.newService,
+				iPlayableService.evEnd: self.stopEvent
 			})
 
 	def newService(self):

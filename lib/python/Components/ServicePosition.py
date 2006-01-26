@@ -2,7 +2,7 @@ from PerServiceDisplay import *
 from enigma import eTimer
 
 
-from enigma import pNavigation, iSeekableServicePtr
+from enigma import iPlayableService, iSeekableServicePtr
 
 class ServicePosition(PerServiceDisplay):
 	TYPE_LENGTH = 0,
@@ -14,8 +14,8 @@ class ServicePosition(PerServiceDisplay):
 		self.updateTimer.timeout.get().append(self.update)
 		PerServiceDisplay.__init__(self, navcore,
 			{
-				pNavigation.evNewService: self.newService,
-				pNavigation.evStopService: self.stopEvent
+				iPlayableService.evStart: self.newService,
+				iPlayableService.evEnd: self.stopEvent
 			})
 		self.type = type
 #		self.setType(type)

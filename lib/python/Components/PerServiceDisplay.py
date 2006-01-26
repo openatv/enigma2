@@ -2,7 +2,7 @@ from GUIComponent import *
 from VariableText import *
 from VariableValue import *
 
-from enigma import pNavigation
+from enigma import iPlayableService
 from enigma import eLabel, eSlider
 
 class PerServiceDisplay(GUIComponent, VariableText):
@@ -16,7 +16,7 @@ class PerServiceDisplay(GUIComponent, VariableText):
 		self.navcore.event.append(self.event)
 
 		# start with stopped state, so simulate that
-		self.event(pNavigation.evStopService)
+		self.event(iPlayableService.evEnd)
 
 	def event(self, ev):
 		# loop up if we need to handle this event
@@ -39,7 +39,7 @@ class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceDisplay):
 		self.navcore.event.append(self.event)
 
 		# start with stopped state, so simulate that
-		self.event(pNavigation.evStopService)
+		self.event(iPlayableService.evEnd)
 
 
 	def createWidget(self, parent):
