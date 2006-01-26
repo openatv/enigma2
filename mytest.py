@@ -110,11 +110,11 @@ class Session:
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
 		if c == self.currentDialog:
-			c.instance.show()
+			c.show()
 		
 	def execEnd(self):
 		self.currentDialog.execEnd()
-		self.currentDialog.instance.hide()
+		self.currentDialog.hide()
 	
 	def create(self, screen, arguments):
 		# creates an instance of 'screen' (which is a class)
@@ -235,7 +235,7 @@ class VolumeControl:
 		if (eDVBVolumecontrol.getInstance().isMuted()):
 			self.volMute()
 		eDVBVolumecontrol.getInstance().volumeUp()
-		self.volumeDialog.instance.show()
+		self.volumeDialog.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.volSave()
 		self.hideVolTimer.start(3000, True)
@@ -244,22 +244,22 @@ class VolumeControl:
 		if (eDVBVolumecontrol.getInstance().isMuted()):
 			self.volMute()
 		eDVBVolumecontrol.getInstance().volumeDown()
-		self.volumeDialog.instance.show()
+		self.volumeDialog.show()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 		self.volSave()
 		self.hideVolTimer.start(3000, True)
 
 	def volHide(self):
-		self.volumeDialog.instance.hide()
+		self.volumeDialog.hide()
 
 	def	volMute(self):
 		eDVBVolumecontrol.getInstance().volumeToggleMute()
 		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
 
 		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.muteDialog.instance.show()
+			self.muteDialog.show()
 		else:
-			self.muteDialog.instance.hide()
+			self.muteDialog.hide()
 
 def runScreenTest():
 	session = Session()
