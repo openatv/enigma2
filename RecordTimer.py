@@ -183,7 +183,10 @@ def createTimer(xml):
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
-	disabled = eval(xml.getAttribute("disabled"))
+	try:
+		disabled = eval(xml.getAttribute("disabled"))
+	except:
+		disabled = False
 	try:
 		eit = long(xml.getAttribute("eit").encode("utf-8"))
 	except:
