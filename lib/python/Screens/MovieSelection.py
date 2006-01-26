@@ -79,7 +79,7 @@ class MovieSelection(Screen):
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE, update=False)
 		
-		self["actions"] = ActionMap(["OkCancelActions", "ContextMenuActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "MovieSelectionActions"],
 			{
 				"cancel": self.abort,
 				"ok": self.movieSelected,
