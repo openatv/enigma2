@@ -77,6 +77,7 @@ class Navigation:
 	
 	def shutdown(self):
 		self.RecordTimer.shutdown()
+		del self.pnav
 
 	def stopUserServices(self):
 		self.stopService()
