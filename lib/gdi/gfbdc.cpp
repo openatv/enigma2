@@ -2,7 +2,6 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/econfig.h>
 
 #include <lib/gdi/accel.h>
 
@@ -206,19 +205,13 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::saveSettings()
 {
-	eConfig::getInstance()->setKey("/ezap/osd/alpha", alpha);
-	eConfig::getInstance()->setKey("/ezap/osd/gamma", gamma);
-	eConfig::getInstance()->setKey("/ezap/osd/brightness", brightness);
 }
 
 void gFBDC::reloadSettings()
 {
-	if (eConfig::getInstance()->getKey("/ezap/osd/alpha", alpha))
-		alpha=255;
-	if (eConfig::getInstance()->getKey("/ezap/osd/gamma", gamma))
-		gamma=128;
-	if (eConfig::getInstance()->getKey("/ezap/osd/brightness", brightness))
-		brightness=128;
+	alpha=255;
+	gamma=128;
+	brightness=128;
 
 	calcRamp();
 	setPalette();

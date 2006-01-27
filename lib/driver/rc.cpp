@@ -8,7 +8,6 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/econfig.h>
 #include <lib/base/eerror.h>
 
 /*
@@ -158,15 +157,10 @@ void eRCConfig::reload()
 {
 	rdelay=500;
 	rrate=100;
-	if ( eConfig::getInstance()->getKey("/ezap/rc/repeatRate", rrate) )
-		save();
-	eConfig::getInstance()->getKey("/ezap/rc/repeatDelay", rdelay);
 }
 
 void eRCConfig::save()
 {
-	eConfig::getInstance()->setKey("/ezap/rc/repeatRate", rrate);
-	eConfig::getInstance()->setKey("/ezap/rc/repeatDelay", rdelay);
 }
 
 eRCInput *eRCInput::instance;

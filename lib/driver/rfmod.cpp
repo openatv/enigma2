@@ -6,7 +6,6 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/econfig.h>
 #include <lib/base/eerror.h>
 
 #define IOCTL_SET_CHANNEL						0
