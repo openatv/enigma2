@@ -39,7 +39,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
-#include <lib/base/econfig.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/event.h>
@@ -125,7 +124,6 @@ typedef long time_t;
 %include <lib/python/swig.h>
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
-%include <lib/base/econfig.h>
 
 %immutable eTimer::timeout;
 %immutable eSocketNotifier::activated;
