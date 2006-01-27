@@ -704,6 +704,14 @@ class InfoBarSeek:
 	
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return
+		seekable = service.seek()
+		if seekable is None:
+			return
+		seekable.seekRelative(0, 0)
+		
 
 from Screens.PVRState import PVRState
 
