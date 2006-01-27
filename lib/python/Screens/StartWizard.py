@@ -12,7 +12,7 @@ class StartWizard(Wizard):
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
 			<widget name="list" position="50,300" zPosition="1" size="440,200" />
-			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" />			
+			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />			
 			<widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" />
 			<widget name="wizard" pixmap="/usr/share/enigma2/wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
 			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
