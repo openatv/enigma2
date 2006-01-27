@@ -84,6 +84,7 @@ eNavigation::eNavigation(iServiceHandler *serviceHandler)
 
 eNavigation::~eNavigation()
 {
+	stopService();
 }
 
 DEFINE_REF(eNavigation);
