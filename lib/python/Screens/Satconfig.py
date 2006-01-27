@@ -24,9 +24,9 @@ class NimSetup(Screen):
 		list.append(getConfigListEntry(_("Positioner mode"), config.Nims[nim.slotid].positionerMode))
 		if (currentConfigSelectionElement(config.Nims[nim.slotid].positionerMode) == "usals"): # USALS
 			list.append(getConfigListEntry(_("Longitude"), config.Nims[nim.slotid].longitude))
-			list.append(getConfigListEntry("", config.Nims[nim.slotid].longitudeOrientation))
+			list.append(getConfigListEntry(" ", config.Nims[nim.slotid].longitudeOrientation))
 			list.append(getConfigListEntry(_("Latitude"), config.Nims[nim.slotid].latitude))
-			list.append(getConfigListEntry("", config.Nims[nim.slotid].latitudeOrientation))
+			list.append(getConfigListEntry(" ", config.Nims[nim.slotid].latitudeOrientation))
 		elif (currentConfigSelectionElement(config.Nims[nim.slotid].positionerMode) == "manual"): # manual
 			pass
 	
@@ -91,9 +91,9 @@ class NimSetup(Screen):
 							self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
 						if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
 							self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
-							self.list.append(getConfigListEntry("", currLnb.longitudeOrientation))
+							self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
 							self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
-							self.list.append(getConfigListEntry("", currLnb.latitudeOrientation))
+							self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
 							self.advancedPowerMeasurement = getConfigListEntry("Use Power Measurement", currLnb.powerMeasurement)
 							self.list.append(self.advancedPowerMeasurement)
 							if currentConfigSelectionElement(currLnb.powerMeasurement) == "yes":
