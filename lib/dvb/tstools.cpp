@@ -45,6 +45,7 @@ void eDVBTSTools::setSearchRange(int maxrange)
 	m_maxrange = maxrange;
 }
 
+	/* getPTS extracts a pts value from any PID at a given offset. */
 int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 {
 	if (m_fd < 0)
@@ -136,7 +137,14 @@ void eDVBTSTools::calcEnd()
 	if (m_fd < 0)	
 		return;
 	
-	m_offset_end = lseek(m_fd, 0, SEEK_END);
+	off_t end = lseek(m_fd, 0, SEEK_END);
+	
+	if (abs(end - m_offset_end) > 1*1024*1024)
+	{
+		m_offset_end = end;
+		m_end_valid = 0;
+		eDebug("file size changed, recalc length");
+	}
 	
 	int maxiter = 10;
 	
