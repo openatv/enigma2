@@ -27,11 +27,9 @@ class configFile:
 		x = line.find("=")
 		if x > -1:
 			self.configElements[line[:x]] = line[x + 1:-1]
-	
+
 	def getKey(self, key):
-		if self.configElements.has_key(key):
-			return self.configElements[key]
-		return None
+		return self.configElements[key]
 
 	def setKey(self, key, value, isDefaultKey=False):
 		self.changed = 1
@@ -558,7 +556,10 @@ class configElement:
 		if self.value != defaultValue or self.saveDefaults:
 			configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value))
 		else:
-			oldValue = configfile.getKey(self.configPath)
+			try:
+				oldValue = configfile.getKey(self.configPath)
+			except:
+				oldValue = None
 			if oldValue is not None and oldValue != defaultValue:
 				configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value), True)
 
