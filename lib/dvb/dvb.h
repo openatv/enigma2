@@ -3,6 +3,7 @@
 
 #include <lib/base/ebase.h>
 #include <lib/base/filepush.h>
+#include <lib/base/elock.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
@@ -256,6 +257,8 @@ private:
 	std::list<std::pair<off_t, off_t> > m_source_span;
 	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
 	void flushPVR(iDVBDemux *decoding_demux=0);
+	
+	eSingleLock m_cuesheet_lock;
 
 	friend class eUsePtr<eDVBChannel>;
 		/* use count */
