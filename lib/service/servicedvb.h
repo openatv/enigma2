@@ -88,6 +88,7 @@ public:
 	RESULT seekRelative(int direction, pts_t to);
 	RESULT getPlayPosition(pts_t &pos);
 	RESULT setTrickmode(int trick=0);
+	RESULT isCurrentlySeekable();
 
 		// iServiceInformation
 	RESULT getName(std::string &name);
