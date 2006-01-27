@@ -46,12 +46,14 @@ class SecConfigure:
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11750000)
+		sec.setLNBIncreasedVoltage(lnbParam.OFF)
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(0)
 		sec.setSeqRepeat(0)
 		sec.setVoltageMode(switchParam.HV)
 		sec.setToneMode(switchParam.HILO)
 		sec.setCommandOrder(0)
+
 		#user values
 		sec.setDiSEqCMode(diseqcmode)
 		sec.setToneburst(toneburstmode)
@@ -77,6 +79,7 @@ class SecConfigure:
 				sec.addSatellite(int(x[1]))
 				sec.setVoltageMode(0)
 				sec.setToneMode(0)
+				sec.setRotorPosNum(0) # USALS
 				self.satList.append(int(x[1]))
 
 	def setSatposDepends(self, sec, nim1, nim2):
