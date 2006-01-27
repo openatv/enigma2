@@ -6,7 +6,6 @@
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/econfig.h>
 #include <lib/base/eerror.h>
 
 eAVSwitch *eAVSwitch::instance = 0;

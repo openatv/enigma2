@@ -7,7 +7,6 @@
 #include <memory.h>
 #include <linux/kd.h>
 
-#include <lib/base/econfig.h>
 #include <lib/gdi/fb.h>
 
 #ifndef FBIO_WAITFORVSYNC
