@@ -26,21 +26,7 @@ class ServicePosition(PerServiceDisplay):
 	def setType(self, type):
 		self.type = type
 		
-		seek = iSeekableServicePtr()
-		service = self.navcore.getCurrentService()
-		
-		self.updateTimer.stop()
-		self.available = 0
-		
-		if service != None:
-			seek = service.seek()
-			if seek != None:
-				if self.type != self.TYPE_LENGTH:
-					self.updateTimer.start(500)
-				
-				self.length = self.get(self.TYPE_LENGTH)
-				self.available = 1
-
+		self.updateTimer.start(500)
 		self.update()
 	
 	def get(self, what):
@@ -59,16 +45,23 @@ class ServicePosition(PerServiceDisplay):
 		return -1
 	
 	def update(self):
-		if self.available:
+		seek = None
+		service = self.navcore.getCurrentService()
+		if service != None:
+			seek = service.seek()
+
+		if seek is not None:
 			if self.type == self.TYPE_LENGTH:
-				l = self.length
+				l = self.get(self.TYPE_LENGTH)
 			elif self.type == self.TYPE_POSITION:
 				l = self.get(self.TYPE_POSITION)
 			elif self.type == self.TYPE_REMAINING:
-				l = self.length - self.get(self.TYPE_POSITION)
+				l = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
 			
 			self.setText("%d:%02d" % (l/60, l%60))
+			self.updateTimer.start(500)
 		else:
+			self.updateTimer.start(10000)
 			self.setText("-:--")
 	
 	def stopEvent(self):
