@@ -523,14 +523,22 @@ class InfoBarSeek:
 		del self.fwdKeyTimer
 		del self.rwdKeyTimer
 	
-	def isSeekable(self):
+	def getSeek(self):
 		service = self.session.nav.getCurrentService()
 		if service is None:
 			return False
-		if service.seek() is None:
+
+		seek = service.seek()
+
+		if seek is None or not seek.isCurrentlySeekable():
+			return None
+		
+		return seek
+	
+	def isSeekable(self):
+		if self.getSeek() is None:
 			return False
-		else:
-			return True
+		return True
 
 	def __seekableStatusChanged(self):
 		print "seekable status changed!"
@@ -551,7 +559,7 @@ class InfoBarSeek:
 		if service is None:
 			return False
 		
-		if service.seek() is None:
+		if not self.isSeekable():
 			if state not in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
 				state = self.SEEK_STATE_PLAY
 		
@@ -597,9 +605,10 @@ class InfoBarSeek:
 		if service is None:
 			return
 		
-		seekable = service.seek()
+		seekable = self.getSeek()
 		if seekable is None:
 			return
+		
 		seekable.seekTo(90 * seektime)
 
 	def seekFwd(self):
@@ -670,13 +679,9 @@ class InfoBarSeek:
 	def fwdSeekTo(self, minutes):
 		print "Seek", minutes, "minutes forward"
 		if minutes != 0:
-			service = self.session.nav.getCurrentService()
-			if service is None:
-				return
-			seekable = service.seek()
-			if seekable is None:
-				return
-			seekable.seekRelative(1, minutes * 60 * 90000)
+			seekable = self.getSeek()
+			if seekable is not None:
+				seekable.seekRelative(1, minutes * 60 * 90000)
 	
 	def rwdTimerFire(self):
 		print "rwdTimerFire"
@@ -704,14 +709,12 @@ class InfoBarSeek:
 	
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
-		service = self.session.nav.getCurrentService()
-		if service is None:
-			return
-		seekable = service.seek()
-		if seekable is None:
-			return
-		seekable.seekRelative(0, 0)
-		
+		self.doSeek(0)
+
+	def seekRelative(self, diff):
+		seekable = self.getSeek()
+		if seekable is not None:
+			seekable.seekRelative(0, diff)
 
 from Screens.PVRState import PVRState
 
@@ -783,7 +786,7 @@ class InfoBarTimeshift:
 			{
 				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "pause key"
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "backward key"
-			})
+			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = 0
 		self.timeshift_state = 0
@@ -800,9 +803,6 @@ class InfoBarTimeshift:
 		return service.timeshift()
 
 	def startTimeshift(self):
-		# TODO: check for harddisk! (or do this in the interface? would make
-		# more sense... for example radio could be timeshifted in memory,
-		# and the decision can't be made here)
 		print "enable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
@@ -825,7 +825,6 @@ class InfoBarTimeshift:
 			else:
 				print "timeshift failed"
 
-	# nyi
 	def stopTimeshift(self):
 		print "disable timeshift"
 		ts = self.getTimeshift()
@@ -850,6 +849,7 @@ class InfoBarTimeshift:
 		else:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			ts.activateTimeshift()
+			self.seekRelative(0)
 	
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
