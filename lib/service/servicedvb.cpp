@@ -15,6 +15,10 @@
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
 
+#include <sys/vfs.h>
+
+#define TSPATH "/media/hdd"
+
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -685,7 +689,7 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 	{
 		skipmode = 0;
 		ffratio = 0;
-	} else if (ratio < 0)
+	} else // if (ratio < 0)
 	{
 		skipmode = ratio;
 		ffratio = 1;
@@ -837,12 +841,28 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 
 RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 {
+	ptr = 0;
 	if (m_timeshift_enabled || !m_is_pvr)
 	{
+		if (!m_timeshift_enabled)
+		{
+				/* we need enough diskspace */
+			struct statfs fs;
+			if (statfs(TSPATH "/.", &fs) < 0)
+			{
+				eDebug("statfs failed!");
+				return -2;
+			}
+		
+			if (((off_t)fs.f_bavail) * ((off_t)fs.f_bsize) < 1024*1024*1024LL)
+			{
+				eDebug("not enough diskspace for timeshift! (less than 1GB)");
+				return -3;
+			}
+		}
 		ptr = this;
 		return 0;
 	}
-	ptr = 0;
 	return -1;
 }
 
@@ -1085,7 +1105,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	char templ[]="/media/hdd/timeshift.XXXXXX";
+	char templ[]=TSPATH "/timeshift.XXXXXX";
 	m_timeshift_fd = mkstemp(templ);
 	m_timeshift_file = templ;
 	
