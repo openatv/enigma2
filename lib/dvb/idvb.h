@@ -11,6 +11,7 @@
 #include <lib/dvb/frontendparms.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
+#include <lib/base/elock.h>
 #include <lib/service/service.h>
 #include <libsig_comp.h>
 #include <connection.h>
@@ -443,6 +444,9 @@ public:
 	
 	void setSkipmode(const pts_t &ratio); /* 90000 is 1:1 */
 	void setDecodingDemux(iDVBDemux *demux);
+	
+			/* frontend and backend */
+	eSingleLock m_lock;
 	
 			/* backend */
 	enum { evtSeek, evtSkipmode, evtSpanChanged };

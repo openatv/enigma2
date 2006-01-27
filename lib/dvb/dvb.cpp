@@ -630,9 +630,6 @@ void eDVBChannel::pvrEvent(int event)
 
 void eDVBChannel::cueSheetEvent(int event)
 {
-		/* we need proper locking here! */
-	eDebug("CUE SHEET EVENT %d", event);
-	
 	switch (event)
 	{
 	case eCueSheet::evtSeek:
@@ -641,27 +638,30 @@ void eDVBChannel::cueSheetEvent(int event)
 		break;
 	case eCueSheet::evtSkipmode:
 	{
-		m_cue->m_seek_requests.push_back(std::pair<int, pts_t>(1, 0)); /* resync */
-		if (m_cue->m_skipmode_ratio)
 		{
-			int bitrate = m_tstools.calcBitrate(); /* in bits/s */
-			eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
-					/* i agree that this might look a bit like black magic. */
-			m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
-			m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio;
-
-			eDebug("resolved to: %d %d", m_skipmode_m, m_skipmode_n);
-			
-			if (abs(m_skipmode_m) < abs(m_skipmode_n))
+			eSingleLocker l(m_cue->m_lock);
+			m_cue->m_seek_requests.push_back(std::pair<int, pts_t>(1, 0)); /* resync */
+			if (m_cue->m_skipmode_ratio)
 			{
-				eFatal("damn, something is wrong with this calculation");
+				int bitrate = m_tstools.calcBitrate(); /* in bits/s */
+				eDebug("skipmode ratio is %lld:90000, bitrate is %d bit/s", m_cue->m_skipmode_ratio, bitrate);
+						/* i agree that this might look a bit like black magic. */
+				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
+				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio;
+	
+				eDebug("resolved to: %d %d", m_skipmode_m, m_skipmode_n);
+				
+				if (abs(m_skipmode_m) < abs(m_skipmode_n))
+				{
+					eFatal("damn, something is wrong with this calculation");
+					m_skipmode_n = m_skipmode_m = 0;
+				}
+				
+			} else
+			{
+				eDebug("skipmode ratio is 0, normal play");
 				m_skipmode_n = m_skipmode_m = 0;
 			}
-			
-		} else
-		{
-			eDebug("skipmode ratio is 0, normal play");
-			m_skipmode_n = m_skipmode_m = 0;
 		}
 		flushPVR(m_cue->m_decoding_demux);
 		break;
@@ -685,6 +685,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		size = max;
 		return;
 	}
+
+	eSingleLocker l(m_cue->m_lock);
 	
 	if (!m_cue->m_decoding_demux)
 	{
@@ -1021,24 +1023,34 @@ eCueSheet::eCueSheet()
 
 void eCueSheet::seekTo(int relative, const pts_t &pts)
 {
-	m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
+	{
+		eSingleLock l(m_lock);
+		m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
+	}
 	m_event(evtSeek);
 }
 	
 void eCueSheet::clear()
 {
+	eSingleLock l(m_lock);
 	m_spans.clear();
 }
 
 void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 {
-	m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
+	{
+		eSingleLock l(m_lock);
+		m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
+	}
 	m_event(evtSpanChanged);
 }
 
 void eCueSheet::setSkipmode(const pts_t &ratio)
 {
-	m_skipmode_ratio = ratio;
+	{
+		eSingleLock l(m_lock);
+		m_skipmode_ratio = ratio;
+	}
 	m_event(evtSkipmode);
 }
 

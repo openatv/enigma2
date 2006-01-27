@@ -7,7 +7,7 @@ class singleLock
 {
 	pthread_mutex_t &lock;
 public:
-	singleLock( pthread_mutex_t &m )
+	singleLock(pthread_mutex_t &m )
 		:lock(m)
 	{
 		pthread_mutex_lock(&lock);
@@ -15,6 +15,36 @@ public:
 	~singleLock()
 	{
 		pthread_mutex_unlock(&lock);
+	}
+};
+
+class eSingleLock
+{
+	friend class eSingleLocker;
+	pthread_mutex_t m_lock;
+public:
+	eSingleLock()
+	{
+		pthread_mutex_init(&m_lock, 0);
+	}
+	~eSingleLock()
+	{
+		pthread_mutex_destroy(&m_lock);
+	}
+};
+
+class eSingleLocker
+{
+	eSingleLock &m_lock;
+public:
+	eSingleLocker(eSingleLock &m)
+		: m_lock(m)
+	{
+		pthread_mutex_lock(&m_lock.m_lock);
+	}
+	~eSingleLocker()
+	{
+		pthread_mutex_unlock(&m_lock.m_lock);
 	}
 };
 
