@@ -712,7 +712,7 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
     
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
-	if (m_is_pvr || m_timeshift_active)
+	if (m_is_pvr || m_timeshift_enabled)
 	{
 		ptr = this;
 		return 0;
@@ -722,15 +722,13 @@ RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 	return -1;
 }
 
+	/* TODO: when timeshift is enabled but not active, this doesn't work. */
 RESULT eDVBServicePlay::getLength(pts_t &len)
 {
 	ePtr<iDVBPVRChannel> pvr_channel;
 	
-	if (m_service_handler.getPVRChannel(pvr_channel))
-	{
-		eDebug("getPVRChannel failed!");
+	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
-	}
 	
 	return pvr_channel->getLength(len);
 }
@@ -813,6 +811,11 @@ RESULT eDVBServicePlay::setTrickmode(int trick)
 	if (m_decoder)
 		m_decoder->setTrickmode(trick);
 	return 0;
+}
+
+RESULT eDVBServicePlay::isCurrentlySeekable()
+{
+	return m_is_pvr || m_timeshift_active;
 }
 
 RESULT eDVBServicePlay::frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr)
@@ -1140,6 +1143,7 @@ RESULT eDVBServicePlay::stopTimeshift()
 	m_record = 0;
 	
 	close(m_timeshift_fd);
+	eDebug("remove timeshift file");
 	remove(m_timeshift_file.c_str());
 	
 	return 0;

@@ -310,6 +310,7 @@ public:
 		/* if you want to do several seeks in a row, you can enable the trickmode. 
 		   audio will be switched off, sync will be disabled etc. */
 	virtual RESULT setTrickmode(int trick=0)=0;
+	virtual RESULT isCurrentlySeekable()=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
