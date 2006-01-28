@@ -142,6 +142,8 @@ class NimSetup(Screen):
 
 	def fillAdvancedList(self):
 		self.list = [ ]
+		self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
+		self.list.append(self.configMode)
 		self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 		self.list.append(self.advancedSatsEntry)
 		for x in nimmanager.satList:
