@@ -12,7 +12,7 @@ class Network:
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto lo\n")
-		fp.write("iface lo inet loopback\n")
+		fp.write("iface lo inet loopback\n\n")
 		fp.write("auto eth0\n")
 		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
 			fp.write("iface eth0 inet dhcp\n")
