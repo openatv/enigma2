@@ -2,7 +2,7 @@ from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
-from Components.Label import Label
+from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
 
 import os
@@ -17,12 +17,14 @@ class Upgrade(Screen):
 		self.skin = Upgrade.skin
 		Screen.__init__(self, session)
 
-		self["text"] = Label(_("Please press OK!"))
+		self["text"] = ScrollLabel(_("Please press OK!"))
 				
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
 		{
 			"ok": self.go,
-			"back": self.close
+			"back": self.close,
+			"up": self["text"].pageUp,
+			"down": self["text"].pageDown
 		}, -1)
 		
 		self.update = True
