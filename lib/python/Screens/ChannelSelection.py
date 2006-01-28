@@ -36,7 +36,6 @@ class BouquetSelector(Screen):
 
 	def okbuttonClick(self):
 		self.selectedFunc(self["menu"].getCurrent()[1])
-		self.close(True)
 
 	def cancelClick(self):
 		self.close(False)
@@ -107,11 +106,15 @@ class ChannelContextMenu(Screen):
 		else:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
-			self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
+			self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.bouquetSelected)
 		elif cnt == 1: # add to only one existing bouquet
 			self.addCurrentServiceToBouquet(bouquets[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
 			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
+
+	def bouquetSelected(self, bouquet):
+		self.addCurrentServiceToBouquet(bouquet)
+		self.close(True) # close bouquet selection
 
 	def bouquetSelClosed(self, recursive):
 		if recursive:
