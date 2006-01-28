@@ -12,7 +12,7 @@ class Network:
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto eth0\n")
-		if (config.network.dhcp.value == 1):
+		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
 			fp.write("iface eth0 inet dhcp\n")
 		else:
 			fp.write("iface eth0 inet static\n")
@@ -21,7 +21,7 @@ class Network:
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
 		fp.close()
 
-		if config.network.dhcp.value == 0:
+		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
 			fp = file('/etc/resolv.conf', 'w')
 			fp.write("nameserver %d.%d.%d.%d\n" % tuple(config.network.dns.value))
 			fp.close()		
@@ -58,15 +58,15 @@ class Network:
 			resolv = fp.readlines()
 			fp.close()
 		except:
-			pass
+			print "[Network.py] loading network files failed"
 			
 		try:
 			for i in resolv:
 				split = i.strip().split(' ')
 				if (split[0] == "nameserver"):
-					config.network.nameserver.value = map(int, split[1].split('.'))
+					config.network.dns.value = map(int, split[1].split('.'))
 		except:
-			pass
+			print "[Network.py] resolv.conf parsing failed"
 		
 		try:
 			# set this config
@@ -79,7 +79,7 @@ class Network:
 				if (ifaces["eth0"].has_key("netmask")): config.network.netmask.value = ifaces["eth0"]["netmask"]
 				if (ifaces["eth0"].has_key("gateway")): config.network.gateway.value = ifaces["eth0"]["gateway"]
 		except:
-			pass
+			print "[Network.py] parsing network failed"
 
 	def activateNetworkConfig(self):
 		import os
