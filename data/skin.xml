@@ -9,6 +9,8 @@
 			<color name="blue" 		value="#0000ff" />
 			<color name="yellow"	value="#c0c000" />
 			<color name="transparent" 	value="#ffffffff" />
+			
+			<color name="transpBlack" value="#80000000" />
 		</colors>
 		<windowstyle type="skinned">
 			<color name="Background" color="#33294a6b" />
@@ -335,8 +337,9 @@
 			<widget name="list" position="100,100" size="550,375" scrollbarMode="showOnDemand" />
 			<eLabel position="500,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
-		<screen name="PVRState" flags="wfNoBorder" position="100,100" size="150,50" >
-			<widget name="state" position="0,0" size="150,50" font="Regular;25" halign="center" />
+		<screen name="PVRState" flags="wfNoBorder" position="70,70" size="150,30" backgroundColor="transpBlack" zPosition="2">
+			<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" 
+				backgroundColor="transpBlack" foregroundColor="white" />
 		</screen>
 		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
 			<widget name="text" position="60,10" size="650,0" font="Regular;22" />
