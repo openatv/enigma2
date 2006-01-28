@@ -64,40 +64,49 @@ int eDVBVolumecontrol::checkVolume(int vol)
 
 void eDVBVolumecontrol::setVolume(int left, int right)
 {
+		/* left, right is 0..100 */
 	leftVol = checkVolume(left);
 	rightVol = checkVolume(right);
 	
+		/* convert to -1dB steps */
 	left = 63 - leftVol * 63 / 100;
 	right = 63 - rightVol * 63 / 100;
-	
+		/* now range is 63..0, where 0 is loudest */
+
 #if HAVE_DVB_API_VERSION < 3   
-		audioMixer_t mixer;
+	audioMixer_t mixer;
 #else
-		audio_mixer_t mixer;
+	audio_mixer_t mixer;
 #endif
 
 #ifdef HAVE_DVB_API_VERSION
-		mixer.volume_left = (left * left) / 64;
-		mixer.volume_right = (right * right) / 64;
+		/* convert to linear scale. 0 = loudest, ..63 */
+	mixer.volume_left = 63.0-pow(1.068241, 63-left);
+	mixer.volume_right = 63.0-pow(1.068241, 63-right);
 #endif
 
-		int fd = openMixer();
+	printf("Setvolume: %d %d (raw)\n", leftVol, rightVol);
+	printf("Setvolume: %d %d (-1db)\n", left, right);
+	printf("Setvolume: %d %d (lin)\n", mixer.volume_left, mixer.volume_right);
+
+	int fd = openMixer();
+	if (fd >= 0)
+	{
 #ifdef HAVE_DVB_API_VERSION
 		ioctl(fd, AUDIO_SET_MIXER, &mixer);
 #endif
 		closeMixer(fd);
-		
-		printf("Setvolume: %d %d\n", leftVol, rightVol);
-		printf("Setvolume: %d %d\n", left, right);		
-		
+		return;
+	}
+
 	//HACK?
 	FILE *f;
 	if((f = fopen("/proc/stb/avs/0/volume", "wb")) == NULL) {
 		printf("cannot open /proc/stb/avs/0/volume\n");
 		return;
 	}
-	
-	fprintf(f, "%d", left);
+
+	fprintf(f, "%d", left); /* in -1dB */
 
 	fclose(f);
 }
