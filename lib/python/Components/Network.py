@@ -11,6 +11,8 @@ class Network:
 		# fixme restarting and updating the network too often. possible fix: check current config and execute only if changed :/
 		# fixme using interfaces.tmp instead of interfaces for now
 		fp = file('/etc/network/interfaces', 'w')
+		fp.write("auto lo\n")
+		fp.write("iface lo inet loopback\n")
 		fp.write("auto eth0\n")
 		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
 			fp.write("iface eth0 inet dhcp\n")
