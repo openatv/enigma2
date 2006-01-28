@@ -36,14 +36,21 @@ class BouquetSelector(Screen):
 
 	def okbuttonClick(self):
 		self.selectedFunc(self["menu"].getCurrent()[1])
+		self.close(True)
 
 	def cancelClick(self):
 		self.close(False)
 
-class ChannelContextMenu(FixedMenu):
+class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
+		Screen.__init__(self, session)
 		self.csel = csel
 
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.okbuttonClick,
+				"cancel": self.cancelClick
+			})
 		menu = [ ]
 
 		inBouquetRootList = csel.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
@@ -84,10 +91,14 @@ class ChannelContextMenu(FixedMenu):
 					menu.append((_("end favourites edit"), self.bouquetMarkEnd))
 					menu.append((_("abort favourites edit"), self.bouquetMarkAbort))
 
-		menu.append((_("back"), self.close))
+		menu.append((_("back"), self.cancelClick))
+		self["menu"] = MenuList(menu)
 
-		FixedMenu.__init__(self, session, _("Channel Selection"), menu)
-		self.skinName = "Menu"
+	def okbuttonClick(self):
+		self["menu"].getCurrent()[1]()
+
+	def cancelClick(self):
+		self.close(False)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -96,11 +107,15 @@ class ChannelContextMenu(FixedMenu):
 		else:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
-			self.session.open(BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
+			self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
 			self.addCurrentServiceToBouquet(bouquets[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
 			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
+
+	def bouquetSelClosed(self, recursive):
+		if recursive:
+			self.close(False)
 
 	def copyCurrentToBouquetList(self):
 		self.csel.copyCurrentToBouquetList()
@@ -112,7 +127,6 @@ class ChannelContextMenu(FixedMenu):
 
 	def addCurrentServiceToBouquet(self, dest):
 		self.csel.addCurrentServiceToBouquet(dest)
-		self.close()
 
 	def removeCurrentService(self):
 		self.csel.removeCurrentService()
