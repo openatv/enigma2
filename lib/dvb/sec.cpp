@@ -144,16 +144,18 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					{
 						rotor=true;
 						if ( curRotorPos == sat.orbital_position )
-							ret=20;
+							ret=20;  // rotor on correct orbpos = prio 20
 						else
-							ret=10;
+							ret=10;  // rotor must turn to correct orbpos = prio 10
 					}
+					else
+						ret = 30;  // no rotor = prio 30
 				}
 				else
+				{
 					csw = band;
-
-				if (!ret)
-					ret=40;
+					ret = 40;  // no diseqc = prio 40
+				}
 
 				if (linked_to != -1)  // check for linked tuners..
 				{
