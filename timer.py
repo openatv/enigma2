@@ -173,8 +173,7 @@ class Timer:
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
 		if w.shouldSkip():
-			w.abort()
-			bisect.insort(self.processed_timers, w)
+			w.state = TimerEntry.StateEnded
 		else:
 			# when active returns true, this means "accepted".
 			# otherwise, the current state is kept.
