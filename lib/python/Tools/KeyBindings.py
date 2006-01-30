@@ -6,8 +6,14 @@ from keyids import KEYIDS
 keyDescriptions = {
 		KEYIDS["KEY_RED"]: "red",
 		KEYIDS["KEY_BLUE"]: "blue",
+		KEYIDS["KEY_GREEN"]: "green",
 		KEYIDS["KEY_MENU"]: "menu",
-		KEYIDS["KEY_VIDEO"]: "video"
+		KEYIDS["KEY_LEFT"]: "left",
+		KEYIDS["KEY_RIGHT"]: "right",
+		KEYIDS["KEY_VIDEO"]: "video",
+		KEYIDS["KEY_INFO"]: "info",
+		KEYIDS["KEY_AUDIO"]: "audio",
+		KEYIDS["KEY_RADIO"]: "radio"
 	}
 
 def addKeyBinding(key, context, action):
