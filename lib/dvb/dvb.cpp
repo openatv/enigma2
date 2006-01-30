@@ -369,6 +369,7 @@ void eDVBResourceManager::DVBChannelStateChanged(iDVBChannel *chan)
 	chan->getState(state);
 	switch (state)
 	{
+		case iDVBChannel::state_release:
 		case iDVBChannel::state_ok:
 		{
 			eDebug("stop release channel timer");
@@ -814,7 +815,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 void eDVBChannel::AddUse()
 {
 	if (++m_use_count > 1 && m_state == state_last_instance)
+	{
 		m_state = state_ok;
+		m_stateChanged(this);
+	}
 }
 
 void eDVBChannel::ReleaseUse()
