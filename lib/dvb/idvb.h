@@ -392,6 +392,7 @@ public:
 		state_failed,      /* tuning failed. */
 		state_unavailable, /* currently unavailable, will be back without further interaction */
 		state_ok,          /* ok */
+		state_last_instance, /* just one reference to this channel is left */
 		state_release      /* channel is being shut down. */
 	};
 	

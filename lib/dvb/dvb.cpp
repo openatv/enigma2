@@ -43,6 +43,7 @@ DEFINE_REF(eDVBResourceManager);
 eDVBResourceManager *eDVBResourceManager::instance;
 
 eDVBResourceManager::eDVBResourceManager()
+	:m_releaseCachedChannelTimer(eApp)
 {
 	avail = 1;
 	busy = 0;
@@ -63,6 +64,8 @@ eDVBResourceManager::eDVBResourceManager()
 	
 	eDebug("found %d adapter, %d frontends and %d demux", 
 		m_adapter.size(), m_frontend.size(), m_demux.size());
+
+	CONNECT(m_releaseCachedChannelTimer.timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
 
@@ -355,8 +358,38 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		return errChidNotFound;
 	}
 	m_cached_channel = channel = ch;
+	CONNECT(ch->m_stateChanged,eDVBResourceManager::DVBChannelStateChanged);
 
 	return 0;
+}
+
+void eDVBResourceManager::DVBChannelStateChanged(iDVBChannel *chan)
+{
+	int state=0;
+	chan->getState(state);
+	switch (state)
+	{
+		case iDVBChannel::state_ok:
+		{
+			eDebug("stop release channel timer");
+			m_releaseCachedChannelTimer.stop();
+			break;
+		}
+		case iDVBChannel::state_last_instance:
+		{
+			eDebug("start release channel timer");
+			m_releaseCachedChannelTimer.start(3000, true);
+			break;
+		}
+		default: // ignore all other events
+			break;
+	}
+}
+
+void eDVBResourceManager::releaseCachedChannel()
+{
+	eDebug("release cached channel");
+	m_cached_channel=0;
 }
 
 RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index)
@@ -780,7 +813,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 void eDVBChannel::AddUse()
 {
-	++m_use_count;
+	if (++m_use_count > 1 && m_state == state_last_instance)
+		m_state = state_ok;
 }
 
 void eDVBChannel::ReleaseUse()
@@ -788,6 +822,11 @@ void eDVBChannel::ReleaseUse()
 	if (!--m_use_count)
 	{
 		m_state = state_release;
+		m_stateChanged(this);
+	}
+	else if (m_use_count == 1)
+	{
+		m_state = state_last_instance;
 		m_stateChanged(this);
 	}
 }

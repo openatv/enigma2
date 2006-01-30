@@ -117,12 +117,10 @@ private:
 	eSmartPtrList<eDVBDemux>    m_demux;
 };
 
-class eDVBResourceManager: public iObject
+class eDVBResourceManager: public iObject, public Object
 {
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
-
-	eUsePtr<iDVBChannel> m_cached_channel;
 
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	
@@ -167,6 +165,11 @@ class eDVBResourceManager: public iObject
 	Signal1<void,eDVBChannel*> m_channelAdded;
 
 	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
+
+	eUsePtr<iDVBChannel> m_cached_channel;
+	eTimer m_releaseCachedChannelTimer;
+	void DVBChannelStateChanged(iDVBChannel*);
+	void releaseCachedChannel();
 public:
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
@@ -196,6 +199,7 @@ public:
 class eDVBChannel: public iDVBPVRChannel, public iFilePushScatterGather, public Object
 {
 	DECLARE_REF(eDVBChannel);
+	friend class eDVBResourceManager;
 public:
 	eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend);
 	virtual ~eDVBChannel();
