@@ -106,15 +106,11 @@ class ChannelContextMenu(Screen):
 		else:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
-			self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.bouquetSelected)
+			self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
 			self.addCurrentServiceToBouquet(bouquets[0][1])
 		else: #no bouquets in root.. so assume only one favourite list is used
 			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
-
-	def bouquetSelected(self, bouquet):
-		self.addCurrentServiceToBouquet(bouquet)
-		self.close(True) # close bouquet selection
 
 	def bouquetSelClosed(self, recursive):
 		if recursive:
@@ -130,6 +126,7 @@ class ChannelContextMenu(Screen):
 
 	def addCurrentServiceToBouquet(self, dest):
 		self.csel.addCurrentServiceToBouquet(dest)
+		self.close(True) # close bouquet selection
 
 	def removeCurrentService(self):
 		self.csel.removeCurrentService()
