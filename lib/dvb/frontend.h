@@ -70,6 +70,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
 	int m_timeoutCount; // needed for timeout
+	int m_retryCount; // diseqc retry for rotor
 	int m_curVoltage;
 
 	void feEvent(int);

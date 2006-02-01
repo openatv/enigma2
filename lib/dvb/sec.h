@@ -12,11 +12,14 @@ public:
 	enum {
 		NONE, SLEEP, SET_VOLTAGE, SET_TONE, GOTO,
 		SEND_DISEQC, SEND_TONEBURST, SET_FRONTEND,
-	 	MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
-		IF_TIMEOUT_GOTO, IF_INPUTPOWER_DELTA_GOTO,
-		UPDATE_CURRENT_ROTORPARAMS, SET_TIMEOUT,
-		IF_IDLE_INPUTPOWER_AVAIL_GOTO, SET_POWER_LIMITING_MODE,
-		IF_VOLTAGE_GOTO
+		SET_TIMEOUT, IF_TIMEOUT_GOTO, 
+		IF_VOLTAGE_GOTO, IF_NOT_VOLTAGE_GOTO,
+		SET_POWER_LIMITING_MODE,
+		SET_ROTOR_DISEQC_RETRYS, IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO,
+		MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
+		IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, IF_INPUTPOWER_DELTA_GOTO,
+		UPDATE_CURRENT_ROTORPARAMS, INVALIDATE_CURRENT_ROTORPARMS,
+		IF_ROTORPOS_VALID_GOTO
 	};
 	int cmd;
 	struct rotor
@@ -67,8 +70,12 @@ public:
 
 class eSecCommandList
 {
-	std::list<eSecCommand> secSequence;
-	std::list<eSecCommand>::iterator cur;
+	typedef std::list<eSecCommand> List;
+	List secSequence;
+public:
+	typedef List::iterator iterator;
+private:
+	iterator cur;
 public:
 	eSecCommandList()
 		:cur(secSequence.end())
@@ -87,15 +94,15 @@ public:
 		secSequence.clear();
 		cur=secSequence.end();
 	}
-	inline std::list<eSecCommand>::iterator &current()
+	inline iterator &current()
 	{
 		return cur;
 	}
-	inline std::list<eSecCommand>::iterator begin()
+	inline iterator begin()
 	{
 		return secSequence.begin();
 	}
-	inline std::list<eSecCommand>::iterator end()
+	inline iterator end()
 	{
 		return secSequence.end();
 	}

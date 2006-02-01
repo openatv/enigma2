@@ -244,7 +244,6 @@ int eDVBFrontend::openFrontend()
 		return -1;  // already opened
 
 	m_state=0;
-	m_curVoltage=voltageOff;
 	m_tuning=0;
 
 #if HAVE_DVB_API_VERSION < 3
@@ -338,6 +337,7 @@ int eDVBFrontend::closeFrontend()
 		setVoltage(iDVBFrontend::voltageOff);
 		::close(m_fd);
 		m_fd=-1;
+		m_data[0] = m_data[1] = m_data[2] = -1;
 	}
 #if HAVE_DVB_API_VERSION < 3
 	if (m_secfd >= 0)
@@ -516,6 +516,22 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				setVoltage(voltage);
 				break;
 			}
+			case eSecCommand::IF_VOLTAGE_GOTO:
+			{
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				if ( compare.voltage == m_curVoltage && setSecSequencePos(compare.steps) )
+					break;
+				++m_sec_sequence.current();
+				break;
+			}
+			case eSecCommand::IF_NOT_VOLTAGE_GOTO:
+			{
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				if ( compare.voltage != m_curVoltage && setSecSequencePos(compare.steps) )
+					break;
+				++m_sec_sequence.current();
+				break;
+			}
 			case eSecCommand::SET_TONE:
 				eDebug("[SEC] setTone %d", m_sec_sequence.current()->tone);
 				setTone(m_sec_sequence.current()++->tone);
@@ -537,6 +553,20 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				setFrontend();
 				++m_sec_sequence.current();
 				break;
+			case eSecCommand::SET_TIMEOUT:
+				m_timeoutCount = m_sec_sequence.current()++->val;
+				eDebug("[SEC] set timeout %d", m_timeoutCount);
+				break;
+			case eSecCommand::IF_TIMEOUT_GOTO:
+				if (!m_timeoutCount)
+				{
+					eDebug("[SEC] rotor timout");
+					m_sec->setRotorMoving(false);
+					setSecSequencePos(m_sec_sequence.current()->steps);
+				}
+				else
+					++m_sec_sequence.current();
+				break;
 			case eSecCommand::MEASURE_IDLE_INPUTPOWER:
 			{
 				int idx = m_sec_sequence.current()++->val;
@@ -549,60 +579,27 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					eDebug("[SEC] idleInputpower measure index(%d) out of bound !!!", idx);
 				break;
 			}
-			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
-				m_runningInputpower = readInputpower();
-				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
-				++m_sec_sequence.current();
-				break;
-			case eSecCommand::SET_TIMEOUT:
-				m_timeoutCount = m_sec_sequence.current()++->val;
-				eDebug("[SEC] set timeout %d", m_timeoutCount);
-				break;
-			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
-				m_data[5] = m_data[3];
-				m_data[6] = m_data[4];
-				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
-				++m_sec_sequence.current();
-				break;
-			case eSecCommand::IF_TIMEOUT_GOTO:
-				if (!m_timeoutCount)
-				{
-					eDebug("[SEC] rotor timout");
-					m_sec->setRotorMoving(false);
-					setSecSequencePos(m_sec_sequence.current()->steps);
-				}
-				else
-					++m_sec_sequence.current();
-				break;
-			case eSecCommand::SET_POWER_LIMITING_MODE:
+			case eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO:
 			{
-				int fd = m_fe ?
-					::open("/dev/i2c/1", O_RDWR) :
-					::open("/dev/i2c/0", O_RDWR);
-
-				unsigned char data[2];
-				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
-				if(::read(fd, data, 1) != 1)
-					eDebug("[SEC] error read lnbp (%m)");
-				if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				int idx = compare.voltage;
+				if ( idx == 0 || idx == 1 )
 				{
-					data[0] |= 0x80;  // enable static current limiting
-					eDebug("[SEC] set static current limiting");
+					int idle = readInputpower();
+					int diff = abs(idle-m_idleInputpower[idx]);
+					if ( diff > 0)
+					{
+						eDebug("measure idle(%d) was not okay.. (%d - %d = %d) retry", idx, m_idleInputpower[idx], idle, diff);
+						setSecSequencePos(compare.steps);
+						break;
+					}
 				}
-				else
-				{
-					data[0] &= ~0x80;  // enable dynamic current limiting
-					eDebug("[SEC] set dynamic current limiting");
-				}
-				if(::write(fd, data, 1) != 1)
-					eDebug("[SEC] error write lnbp (%m)");
-				::close(fd);
 				++m_sec_sequence.current();
 				break;
 			}
-			case eSecCommand::IF_IDLE_INPUTPOWER_AVAIL_GOTO:
-				if (m_idleInputpower[0] && m_idleInputpower[1] && setSecSequencePos(m_sec_sequence.current()->steps))
-					break;
+			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
+				m_runningInputpower = readInputpower();
+				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
@@ -632,16 +629,66 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				{
 					eDebug("[SEC] rotor not %s... reset counter.. increase timeout", txt);
 					--m_timeoutCount;
+					if (!m_timeoutCount && m_retryCount > 0)
+						--m_retryCount;
 					cmd.okcount=0;
 				}
 				++m_sec_sequence.current();
 				break;
 			}
-			case eSecCommand::IF_VOLTAGE_GOTO:
+			case eSecCommand::IF_ROTORPOS_VALID_GOTO:
+				if (m_data[5] != -1 && m_data[6] != -1)
+					setSecSequencePos(m_sec_sequence.current()->steps);
+				else
+					++m_sec_sequence.current();
+				break;
+			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
+				m_data[5] = m_data[6] = -1;
+				eDebug("[SEC] invalidate current rotorparams");
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
+				m_data[5] = m_data[3];
+				m_data[6] = m_data[4];
+				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::SET_ROTOR_DISEQC_RETRYS:
+				m_retryCount = m_sec_sequence.current()++->val;
+				eDebug("[SEC] set rotor retries %d", m_retryCount);
+				break;
+			case eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO:
+				if (!m_retryCount)
+				{
+					eDebug("[SEC] no more rotor retrys");
+					setSecSequencePos(m_sec_sequence.current()->steps);
+				}
+				else
+					++m_sec_sequence.current();
+				break;
+			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
-				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.voltage == m_curVoltage && setSecSequencePos(compare.steps) )
-					break;
+				int fd = m_fe ?
+					::open("/dev/i2c/1", O_RDWR) :
+					::open("/dev/i2c/0", O_RDWR);
+
+				unsigned char data[2];
+				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
+				if(::read(fd, data, 1) != 1)
+					eDebug("[SEC] error read lnbp (%m)");
+				if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+				{
+					data[0] |= 0x80;  // enable static current limiting
+					eDebug("[SEC] set static current limiting");
+				}
+				else
+				{
+					data[0] &= ~0x80;  // enable dynamic current limiting
+					eDebug("[SEC] set dynamic current limiting");
+				}
+				if(::write(fd, data, 1) != 1)
+					eDebug("[SEC] error write lnbp (%m)");
+				::close(fd);
 				++m_sec_sequence.current();
 				break;
 			}
