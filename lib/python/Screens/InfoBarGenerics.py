@@ -81,6 +81,10 @@ class InfoBarShowHide:
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
 
+	def doShow(self):
+		self.show()
+		self.startHideTimer()
+
 	def doTimerHide(self):
 		self.hideTimer.stop()
 		if self.__state == self.STATE_SHOWN:
@@ -212,7 +216,7 @@ class InfoBarNumberZap:
 #		print "You pressed number " + str(number)
 		if number == 0:
 			self.servicelist.recallPrevService()
-			self.show()
+			self.doShow()
 		else:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -286,12 +290,12 @@ class InfoBarChannelSelection:
 	def	zapUp(self):
 		self.servicelist.moveUp()
 		self.servicelist.zap()
-		self.show()
+		self.doShow()
 
 	def	zapDown(self):
 		self.servicelist.moveDown()
 		self.servicelist.zap()
-		self.show()
+		self.doShow()
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -918,15 +922,8 @@ class InfoBarInstantRecord:
 		
 		if event is not None:
 			data = parseEvent(event)
-			begin = data[0]
-			if begin < time.time():
-				begin = time.time()
-			
-			end = data[1]
-			if end < begin:
-				end = begin
-			
-			end += 3600 * 10
+			begin = time.time()
+			end = begin + 3600 * 10
 			
 			data = (begin, end, data[2], data[3], data[4])
 		else:
