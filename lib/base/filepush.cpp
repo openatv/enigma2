@@ -27,6 +27,8 @@ void eFilePushThread::thread()
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
 	
+	size_t written_since_last_sync = 0;
+	
 	int already_empty = 0;
 	eDebug("FILEPUSH THREAD START");
 		// this is a race. FIXME.
@@ -59,8 +61,16 @@ void eFilePushThread::thread()
 
 				/* this should flush all written pages to disk. */
 			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
-
+			
 			dest_pos += w;
+			written_since_last_sync += w;
+			
+			if (written_since_last_sync >= 512*1024)
+			{
+				fdatasync(m_fd_dest);
+				written_since_last_sync = 0;
+			}
+
 //			printf("FILEPUSH: wrote %d bytes\n", w);
 			m_buf_start += w;
 			continue;
@@ -94,7 +104,12 @@ void eFilePushThread::thread()
 			m_buf_end = 0;
 			if (errno == EINTR)
 				continue;
-			eDebug("eFilePushThread *read error* - not yet handled");
+			if (errno == EOVERFLOW)
+			{
+				eWarning("OVERFLOW while recording");
+				continue;
+			}
+			eDebug("eFilePushThread *read error* (%m) - not yet handled");
 		}
 		if (m_buf_end == 0)
 		{
