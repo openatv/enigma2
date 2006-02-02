@@ -102,9 +102,13 @@ int eDVBServiceRecord::doRecord()
 		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
 		if (fd == -1)
 		{
-			eDebug("eDVBServiceRecord - can't open hardcoded recording file!");
+			eDebug("eDVBServiceRecord - can't open recording file!");
 			return -1;
 		}
+		
+			/* turn off kernel caching strategies */
+		posix_fadvise(fd, 0, 0, POSIX_FADV_RANDOM);
+		
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
@@ -133,6 +137,8 @@ int eDVBServiceRecord::doRecord()
 		if (program.pmtPid != -1)
 			pids_to_record.insert(program.pmtPid); // PMT
 		
+		int timing_pid = -1;
+		
 		eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
@@ -142,6 +148,10 @@ int eDVBServiceRecord::doRecord()
 				i != program.videoStreams.end(); ++i)
 			{
 				pids_to_record.insert(i->pid);
+				
+				if (timing_pid == -1)
+					timing_pid = i->pid;
+				
 				if (i != program.videoStreams.begin())
 					eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -157,6 +167,10 @@ int eDVBServiceRecord::doRecord()
 				i != program.audioStreams.end(); ++i)
 			{
 				pids_to_record.insert(i->pid);
+
+				if (timing_pid == -1)
+					timing_pid = i->pid;
+				
 				if (i != program.audioStreams.begin())
 					eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -193,6 +207,9 @@ int eDVBServiceRecord::doRecord()
 			eDebug("REMOVED PID: %04x", *i);
 			m_record->removePID(*i);
 		}
+		
+		if (timing_pid != -1)
+			m_record->setTimingPID(timing_pid);
 		
 		m_pids_active = pids_to_record;
 		
