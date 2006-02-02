@@ -60,7 +60,7 @@ public:
 	RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn);
 };
 
-class eFilePushThread;
+class eDVBRecordFileThread;
 
 class eDVBTSRecorder: public iDVBTSRecorder, public Object
 {
@@ -73,7 +73,7 @@ public:
 	RESULT addPID(int pid);
 	RESULT removePID(int pid);
 	
-	RESULT setFormat(int pid);
+	RESULT setTimingPID(int pid);
 	
 	RESULT setTargetFD(int fd);
 	RESULT setBoundary(off_t max);
@@ -85,14 +85,14 @@ private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
 	
-	eFilePushThread *m_thread;
+	eDVBRecordFileThread *m_thread;
 	
 	std::map<int,int> m_pids;
 	Signal1<void,int> m_event;
 	
 	ePtr<eDVBDemux> m_demux;
 	
-	int m_running, m_format, m_target_fd, m_source_fd;
+	int m_running, m_target_fd, m_source_fd;
 };
 
 #endif
