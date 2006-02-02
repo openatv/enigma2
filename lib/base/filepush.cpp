@@ -49,6 +49,7 @@ void eFilePushThread::thread()
 		if (m_buf_start != m_buf_end)
 		{
 				// TODO: take care of boundaries.
+			filterRecordData(m_buffer + m_buf_start, m_buf_end - m_buf_start);
 			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
 //			eDebug("wrote %d bytes", w);
 			if (w <= 0)
@@ -204,3 +205,9 @@ void eFilePushThread::recvEvent(const int &evt)
 {
 	m_event(evt);
 }
+
+void eFilePushThread::filterRecordData(const char *data, int len)
+{
+	/* do nothing */
+}
+

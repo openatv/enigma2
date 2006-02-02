@@ -33,9 +33,11 @@ public:
 	
 	enum { evtEOF, evtReadError, evtWriteError, evtUser };
 	Signal1<void,int> m_event;
-
+	
 		/* you can send private events if you want */
 	void sendEvent(int evt);
+protected:
+	virtual void filterRecordData(const char *data, int len);
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
