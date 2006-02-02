@@ -280,6 +280,9 @@ class RecordTimer(timer.Timer):
 		list.append('<timers>\n')
 		
 		for timer in self.timer_list + self.processed_timers:
+			if timer.dontSave:
+				continue
+
 			list.append('<timer')
 			list.append(' begin="' + str(int(timer.begin)) + '"')
 			list.append(' end="' + str(int(timer.end)) + '"')
