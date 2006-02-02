@@ -62,8 +62,7 @@ public:
 	virtual RESULT addPID(int pid) = 0;
 	virtual RESULT removePID(int pid) = 0;
 	
-		/* include timestamps? ... */
-	virtual RESULT setFormat(int pid) = 0;
+	virtual RESULT setTimingPID(int pid) = 0;
 	
 	virtual RESULT setTargetFD(int fd) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;

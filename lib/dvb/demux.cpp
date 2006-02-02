@@ -34,6 +34,7 @@
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/pvrparse.h>
 
 eDVBDemux::eDVBDemux(int adapter, int demux): adapter(adapter), demux(demux)
 {
@@ -267,14 +268,45 @@ RESULT eDVBSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eCo
 	return 0;
 }
 
+class eDVBRecordFileThread: public eFilePushThread
+{
+public:
+	eDVBRecordFileThread();
+	void setTimingPID(int pid);
+protected:
+	void filterRecordData(const char *data, int len);
+private:
+	eMPEGStreamParserTS m_ts_parser;
+	eMPEGStreamInformation m_stream_info;
+	off_t m_current_offset;
+	int m_pid;
+};
+
+eDVBRecordFileThread::eDVBRecordFileThread()
+	: m_ts_parser(m_stream_info)
+{
+	m_current_offset = 0;
+}
+
+void eDVBRecordFileThread::setTimingPID(int pid)
+{
+	m_ts_parser.setPid(pid);
+}
+
+void eDVBRecordFileThread::filterRecordData(const char *data, int len)
+{
+	m_ts_parser.parseData(m_current_offset, data, len);
+	
+	m_current_offset += len;
+}
+
 DEFINE_REF(eDVBTSRecorder);
 
 eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
 {
 	m_running = 0;
-	m_format = 0;
 	m_target_fd = -1;
-	m_thread = new eFilePushThread();
+	m_thread = new eDVBRecordFileThread();
 	m_demux->m_dvr_busy = 1;
 }
 
@@ -339,11 +371,11 @@ RESULT eDVBTSRecorder::removePID(int pid)
 	return 0;
 }
 
-RESULT eDVBTSRecorder::setFormat(int format)
+RESULT eDVBTSRecorder::setTimingPID(int pid)
 {
 	if (m_running)
 		return -1;
-	m_format = format;
+	m_thread->setTimingPID(pid);
 	return 0;
 }
 
