@@ -25,12 +25,18 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.getCurrent(r)
 		return r
 
+	def atBegin(self):
+		return self.instance.atBegin()
+
+	def atEnd(self):
+		return self.instance.atEnd()
+
 	def moveUp(self):
 		self.instance.moveSelection(self.instance.moveUp)
 
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
-		
+
 	def moveToChar(self, char):
 		# TODO fill with life
 		print "Next char: "
@@ -51,6 +57,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
+		self.instance.setWrapAround(True)
 		self.instance.setContent(self.l)
 		self.setMode(self.mode)
 	

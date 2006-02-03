@@ -103,6 +103,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
+		self.instance.setWrapAround(True)
 		self.instance.selectionChanged.get().append(self.selectionChanged)
 		self.instance.setContent(self.l)
 		if SINGLE_CPP > 0:
