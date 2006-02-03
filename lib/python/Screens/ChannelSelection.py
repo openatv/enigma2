@@ -222,6 +222,7 @@ class ChannelSelectionEdit:
 				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
 			new_bouquet_ref = eServiceReference(str)
 			if not mutableBouquetList.addService(new_bouquet_ref):
+				self.bouquetNumOffsetCache = { }
 				mutableBouquetList.flushChanges()
 				eDVBDB.getInstance().reloadBouquets()
 				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
@@ -248,10 +249,10 @@ class ChannelSelectionEdit:
 
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
+		self.bouquetNumOffsetCache = { }
 		pos = refstr.find('FROM BOUQUET "')
 		if pos != -1:
 			refstr = refstr[pos+14:]
-			print refstr
 			pos = refstr.find('"')
 			if pos != -1:
 				filename = '/etc/enigma2/' + refstr[:pos] # FIXMEEE !!! HARDCODED /etc/enigma2
@@ -276,11 +277,12 @@ class ChannelSelectionEdit:
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
-		self.saved_root = self.getRoot()
+		self.savedPath = self.servicePath[:]
 		self.showAllServices()
 
 	def endMarkedEdit(self, abort):
 		if not abort and self.mutableList is not None:
+			self.bouquetNumOffsetCache = { }
 			new_marked = set(self.servicelist.getMarked())
 			old_marked = set(self.__marked)
 			removed = old_marked - new_marked
@@ -301,7 +303,9 @@ class ChannelSelectionEdit:
 		self.mutableList = None
 		self.instance.setTitle(self.saved_title)
 		self.saved_title = None
-		self.setRoot(self.saved_root)
+		self.servicePath = self.savedPath[:]
+		del self.savedPath
+		self.setRoot(self.servicePath[len(self.servicePath-1)])
 
 	def clearMarks(self):
 		self.servicelist.clearMarks()
@@ -318,6 +322,7 @@ class ChannelSelectionEdit:
 		mutableList = self.getMutableList()
 		if ref.valid() and mutableList is not None:
 			if not mutableList.removeService(ref):
+				self.bouquetNumOffsetCache = { }
 				currentIndex = self.servicelist.getCurrentIndex()
 				self.servicelist.moveDown()
 				if self.servicelist.getCurrentIndex() == currentIndex:
@@ -330,6 +335,7 @@ class ChannelSelectionEdit:
 		mutableList = self.getMutableList(dest)
 		if not mutableList is None:
 			if not mutableList.addService(self.servicelist.getCurrent()):
+				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges()
 		self.close()
 
@@ -343,6 +349,8 @@ class ChannelSelectionEdit:
 			self.mutableList = None
 			self.instance.setTitle(self.saved_title)
 			self.saved_title = None
+			if self.getRoot() == self.bouquet_root:
+				self.bouquetNumOffsetCache = { }
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
@@ -393,8 +401,11 @@ class ChannelSelectionBase(Screen):
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
+		self.servicePath = None
 
 		self.pathChangedDisabled = False
+
+		self.bouquetNumOffsetCache = { }
 
 		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions"],
 			{
@@ -424,29 +435,33 @@ class ChannelSelectionBase(Screen):
 		return ref
 
 	def getBouquetNumOffset(self, bouquet):
-		bouquet = self.appendDVBTypes(bouquet)
 		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
 			return 0
-		offsetCount = 0
-		serviceHandler = eServiceCenter.getInstance()
-		bouquetlist = serviceHandler.list(self.bouquet_root)
-		if not bouquetlist is None:
-			while True:
-				bouquetIterator = self.appendDVBTypes(bouquetlist.getNext())
-				if not bouquetIterator.valid() or bouquetIterator == bouquet: #end of list or bouquet found
-					break
-				if ((bouquetIterator.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
-					continue
-				servicelist = serviceHandler.list(bouquetIterator)
-				if not servicelist is None:
-					while True:
-						serviceIterator = servicelist.getNext()
-						if not serviceIterator.valid(): #check if end of list
-							break
-						if serviceIterator.flags: #playable services have no flags
-							continue
-						offsetCount += 1
-		return offsetCount
+		bouquet = self.appendDVBTypes(bouquet)
+		try:
+			return self.bouquetNumOffsetCache[bouquet.toString()]
+		except:
+			offsetCount = 0
+			serviceHandler = eServiceCenter.getInstance()
+			bouquetlist = serviceHandler.list(self.bouquet_root)
+			if not bouquetlist is None:
+				while True:
+					bouquetIterator = self.appendDVBTypes(bouquetlist.getNext())
+					if not bouquetIterator.valid(): #end of list
+						break
+					self.bouquetNumOffsetCache[bouquetIterator.toString()]=offsetCount
+					if ((bouquetIterator.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
+						continue
+					servicelist = serviceHandler.list(bouquetIterator)
+					if not servicelist is None:
+						while True:
+							serviceIterator = servicelist.getNext()
+							if not serviceIterator.valid(): #check if end of list
+								break
+							if serviceIterator.flags: #playable services have no flags
+								continue
+							offsetCount += 1
+		return self.bouquetNumOffsetCache.get(bouquet.toString(), offsetCount)
 
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
@@ -471,6 +486,7 @@ class ChannelSelectionBase(Screen):
 		title += " (TV)"
 		self.instance.setTitle(title)
 		self.mode = MODE_TV
+		self.servicePath = self.servicePathTV
 		self.recallBouquetMode()
 
 	def setRadioMode(self):
@@ -481,6 +497,7 @@ class ChannelSelectionBase(Screen):
 		title += " (Radio)"
 		self.instance.setTitle(title)
 		self.mode = MODE_RADIO
+		self.servicePath = self.servicePathRadio
 		self.recallBouquetMode()
 
 	def setRoot(self, root, justSet=False):
@@ -504,47 +521,30 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.moveDown()
 
 	def clearPath(self):
-		if self.mode == MODE_RADIO:
-			self.servicePathRadio = [ ]
-		else:
-			self.servicePathTV = [ ]
+		del self.servicePath[:]
 
 	def enterPath(self, ref, justSet=False):
-		if self.mode == MODE_RADIO:
-			self.servicePathRadio.append(ref)
-		else:
-			self.servicePathTV.append(ref)
+		self.servicePath.append(ref)
 		self.setRoot(ref, justSet)
 
 	def pathUp(self, justSet=False):
-		if self.mode == MODE_TV:
-			prev = self.servicePathTV.pop()
-			length = len(self.servicePathTV)
-			if length:
-				current = self.servicePathTV[length-1]
-		else:
-			prev = self.servicePathRadio.pop()
-			length = len(self.servicePathRadio)
-			if length:
-				current = self.servicePathRadio[length-1]
+		prev = self.servicePath.pop()
+		length = len(self.servicePath)
+		if length:
+			current = self.servicePath[length-1]
 		self.setRoot(current, justSet)
 		if not justSet:
 			self.setCurrentSelection(prev)
 		return prev
 
 	def isBasePathEqual(self, ref):
-		if self.mode == MODE_RADIO and len(self.servicePathRadio) > 1 and self.servicePathRadio[0] == ref:
-			return True
-		elif self.mode == MODE_TV and len(self.servicePathTV) > 1 and self.servicePathTV[0] == ref:
+		if len(self.servicePath) > 1 and self.servicePath[0] == ref:
 			return True
 		return False
 
 	def isPrevPathEqual(self, ref):
-		path = self.servicePathRadio
-		if self.mode == MODE_TV:
-			path = self.servicePathTV
-		length = len(path)
-		if length > 1 and path[length-2] == ref:
+		length = len(self.servicePath)
+		if length > 1 and self.servicePath[length-2] == ref:
 			return True
 		return False
 
@@ -628,6 +628,15 @@ class ChannelSelectionBase(Screen):
 					self.moveDown()
 				ref = self.getCurrentSelection()
 				self.enterPath(ref)
+
+	def inBouquet(self):
+		return self.isBasePathEqual(self.bouquet_root)
+
+	def atBegin(self):
+		return self.servicelist.atBegin()
+
+	def atEnd(self):
+		return self.servicelist.atEnd()
 
 	def nextBouquet(self):
 		self.changeBouquet(+1)
@@ -716,7 +725,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __onCreate(self):
 		self.setTvMode()
-		self.servicePathTV = [ ]
 		self.restoreRoot()
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
@@ -764,7 +772,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			config.tv.lastroot.save()
 
 	def restoreRoot(self):
-		self.servicePathTV = [ ]
+		self.clearPath()
 		re = compile('.+?;')
 		tmp = re.findall(config.tv.lastroot.value)
 		cnt = 0
@@ -868,7 +876,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			config.radio.lastroot.save()
 
 	def restoreRoot(self):
-		self.servicePathRadio = [ ]
+		self.clearPath()
 		re = compile('.+?;')
 		tmp = re.findall(config.radio.lastroot.value)
 		cnt = 0
