@@ -40,7 +40,7 @@ int eLabel::event(int event, void *data, void *data2)
 			int glyphs = para->size();
 
 			if ((m_pos < 0) || (m_pos >= glyphs))
-				eWarning("glyph index %d in eLabel out of bounds!");
+				eWarning("glyph index %d in eLabel out of bounds!", m_pos);
 			else
 			{
 				para->setGlyphFlag(m_pos, GS_INVERT);
@@ -134,13 +134,21 @@ void eLabel::setHAlign(int align)
 
 void eLabel::setForegroundColor(const gRGB &col)
 {
-	m_foreground_color = col;
-	m_have_foreground_color = 1;
+	if ((!m_have_foreground_color) || !(m_foreground_color == col))
+	{
+		m_foreground_color = col;
+		m_have_foreground_color = 1;
+		invalidate();
+	}
 }
 
 void eLabel::clearForegroundColor()
 {
-	m_have_foreground_color = 0;
+	if (m_have_foreground_color)
+	{
+		m_have_foreground_color = 0;
+		invalidate();
+	}
 }
 
 eSize eLabel::calculateSize()
