@@ -133,6 +133,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 					"showAlways": guiObject.showAlways,
 					"showNever": guiObject.showNever
 				}[value])
+		elif attrib == "enableWrapAround":
+			guiObject.setWrapAround(True)
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:
