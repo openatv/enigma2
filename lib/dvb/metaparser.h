@@ -7,7 +7,11 @@
 class eDVBMetaParser
 {
 public:
-	int parseFile(const std::string &filename);
+	eDVBMetaParser();
+	int parseFile(const std::string &basename);
+	
+	int parseMeta(const std::string &filename);
+	int parseRecordings(const std::string &filename);
 
 	eServiceReferenceDVB m_ref;
 	std::string m_name, m_description;
