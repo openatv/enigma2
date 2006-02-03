@@ -840,6 +840,16 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return
+		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO)
+
+	def stopTimeshiftConfirmed(self, confirmed):
+		if not confirmed:
+			return
+
+		ts = self.getTimeshift()
+		if ts is None:
+			return
+
 		ts.stopTimeshift()
 		self.timeshift_enabled = 0
 
