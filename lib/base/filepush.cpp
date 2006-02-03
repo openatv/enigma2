@@ -206,7 +206,7 @@ void eFilePushThread::recvEvent(const int &evt)
 	m_event(evt);
 }
 
-void eFilePushThread::filterRecordData(const char *data, int len)
+void eFilePushThread::filterRecordData(const unsigned char *data, int len)
 {
 	/* do nothing */
 }

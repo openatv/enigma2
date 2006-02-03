@@ -274,7 +274,7 @@ public:
 	eDVBRecordFileThread();
 	void setTimingPID(int pid);
 protected:
-	void filterRecordData(const char *data, int len);
+	void filterRecordData(const unsigned char *data, int len);
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	eMPEGStreamInformation m_stream_info;
@@ -293,7 +293,7 @@ void eDVBRecordFileThread::setTimingPID(int pid)
 	m_ts_parser.setPid(pid);
 }
 
-void eDVBRecordFileThread::filterRecordData(const char *data, int len)
+void eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len)
 {
 	m_ts_parser.parseData(m_current_offset, data, len);
 	
