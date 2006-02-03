@@ -5,7 +5,7 @@
 
 eListbox::eListbox(eWidget *parent)
 	:eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1)
-	,m_content_changed(false), m_top(0), m_selected(0), m_itemheight(25)
+	,m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25)
 	,m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
 //	setContent(new eListboxStringContent());
@@ -46,6 +46,11 @@ void eListbox::setScrollbarMode(int mode)
 	}
 }
 
+void eListbox::setWrapAround(bool state)
+{
+	m_enabled_wrap_around = state;
+}
+
 void eListbox::setContent(iListboxContent *content)
 {
 	int oldsel = m_selected;
@@ -55,6 +60,37 @@ void eListbox::setContent(iListboxContent *content)
 	entryReset();
 	if (oldsel == m_selected)
 		/* emit */ selectionChanged();
+}
+
+bool eListbox::atBegin()
+{
+	if (m_content && !m_selected)
+		return true;
+	return false;
+}
+
+bool eListbox::atEnd()
+{
+	if (m_content && m_content->size() == m_selected+1)
+		return true;
+	return false;
+}
+
+void eListbox::moveToEnd()
+{
+	/* move to last existing one ("end" is already invalid) */
+	m_content->cursorEnd(); m_content->cursorMove(-1);
+	/* current selection invisible? */
+	if (m_top + m_items_per_page <= m_content->cursorGet())
+	{
+		int rest = m_content->size() % m_items_per_page;
+		if ( rest )
+			m_top = m_content->cursorGet() - rest + 1;
+		else
+			m_top = m_content->cursorGet() - m_items_per_page + 1;
+		if (m_top < 0)
+			m_top = 0;
+	}
 }
 
 void eListbox::moveSelection(int dir)
@@ -72,13 +108,25 @@ void eListbox::moveSelection(int dir)
 	switch (dir)
 	{
 	case moveUp:
+	{
 		m_content->cursorMove(-1);
+		if ( m_enabled_wrap_around && oldsel == m_content->cursorGet() )  // must wrap around ?
+			moveToEnd();
 		break;
+	}
 	case moveDown:
 		m_content->cursorMove(1);
-			/* ok - we could have reached the end. we just go one back then. */
+			/* ok - we could have reached the end. So we do wrap around. */
 		if (!m_content->cursorValid())
-			m_content->cursorMove(-1);
+		{
+			if ( m_enabled_wrap_around )
+			{
+				m_top = 0;
+				m_content->cursorHome();
+			}
+			else
+				m_content->cursorMove(-1);
+		}
 		break;
 	case pageUp:
 		if (m_content->cursorGet() >= m_items_per_page)
@@ -97,26 +145,13 @@ void eListbox::moveSelection(int dir)
 		m_content->cursorHome();
 		m_top = 0; /* align with top, speeds up process */
 		break;
-
 	case pageDown:
 		m_content->cursorMove(m_items_per_page);
 		if (m_content->cursorValid())
 			break;
 				/* fall through */
 	case moveEnd:
-			/* move to last existing one ("end" is already invalid) */
-		m_content->cursorEnd(); m_content->cursorMove(-1); 
-			/* current selection invisible? */
-		if (m_top + m_items_per_page <= m_content->cursorGet())
-		{
-			int rest = m_content->size() % m_items_per_page;
-			if ( rest )
-				m_top = m_content->cursorGet() - rest + 1;
-			else
-				m_top = m_content->cursorGet() - m_items_per_page + 1;
-			if (m_top < 0)
-				m_top = 0;
-		}
+		moveToEnd();
 		break;
 	case justCheck:
 		break;

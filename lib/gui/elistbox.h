@@ -65,6 +65,7 @@ public:
 		showNever
 	};
 	void setScrollbarMode(int mode);
+	void setWrapAround(bool);
 
 	void setContent(iListboxContent *content);
 	
@@ -79,6 +80,9 @@ public:
 	int getCurrentIndex();
 	void moveSelection(int how);
 	void moveSelectionTo(int index);
+	void moveToEnd();
+	bool atBegin();
+	bool atEnd();
 
 	enum ListboxActions {
 		moveUp,
@@ -109,6 +113,7 @@ protected:
 private:
 	int m_scrollbar_mode, m_prev_scrollbar_page;
 	bool m_content_changed;
+	bool m_enabled_wrap_around;
 
 	int m_top, m_selected;
 	int m_itemheight;
