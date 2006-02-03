@@ -312,6 +312,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		}
 		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
+		m_releaseCachedChannelTimer.stop();
 	}
 
 //	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
@@ -391,8 +392,7 @@ void eDVBResourceManager::DVBChannelStateChanged(iDVBChannel *chan)
 
 void eDVBResourceManager::releaseCachedChannel()
 {
-	eDebug("release cached channel");
-	m_cached_channel_state_changed_conn.disconnect();
+	eDebug("release cached channel (timer timeout)");
 	m_cached_channel=0;
 }
 
@@ -404,6 +404,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 	{
 		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
+		m_releaseCachedChannelTimer.stop();
 	}
 
 	if (allocateFrontendByIndex(fe, frontend_index))
@@ -420,12 +421,6 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
-
-	if (m_cached_channel)
-	{
-		m_cached_channel_state_changed_conn.disconnect();
-		m_cached_channel=0;
-	}
 
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, 0);
