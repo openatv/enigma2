@@ -37,7 +37,7 @@ public:
 		/* you can send private events if you want */
 	void sendEvent(int evt);
 protected:
-	virtual void filterRecordData(const char *data, int len);
+	virtual void filterRecordData(const unsigned char *data, int len);
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
