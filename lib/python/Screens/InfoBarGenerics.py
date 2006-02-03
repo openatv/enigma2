@@ -287,13 +287,18 @@ class InfoBarChannelSelection:
 		self.servicelist.moveDown()
 		self.session.execDialog(self.servicelist)
 
-	def	zapUp(self):
+	def zapUp(self):
+		if self.servicelist.inBouquet() and self.servicelist.atBegin():
+			self.servicelist.prevBouquet()
 		self.servicelist.moveUp()
 		self.servicelist.zap()
 		self.doShow()
 
-	def	zapDown(self):
-		self.servicelist.moveDown()
+	def zapDown(self):
+		if self.servicelist.inBouquet() and self.servicelist.atEnd():
+			self.servicelist.nextBouquet()
+		else:
+			self.servicelist.moveDown()
 		self.servicelist.zap()
 		self.doShow()
 
