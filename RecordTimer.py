@@ -22,12 +22,15 @@ from ServiceReference import ServiceReference
 
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
+# begin and end will be corrected
 def parseEvent(ev):
 	name = ev.getEventName()
 	description = ev.getShortDescription()
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
 	eit = ev.getEventId()
+	begin -= config.recording.margin_before.value[0] * 60
+	end += config.recording.margin_after.value[0] * 60
 	return (begin, end, name, description, eit)
 
 # please do not translate log messages
