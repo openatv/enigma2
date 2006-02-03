@@ -61,15 +61,18 @@ class RecordTimerEntry(timer.TimerEntry):
 	
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
-#		begin_date = datetime.fromtimestamp(begin).strf...
-		begin_date = ""
+		begin_date = time.strftime("%Y%m%d %H%M", time.localtime(self.begin))
 		
 		print "begin_date: ", begin_date
 		print "service_name: ", service_name
 		print "name:", self.name
 		print "description: ", self.description
+		
+		filename = begin_date + " - " + service_name
+		if self.name:
+			filename += " - " + self.name
 
-		self.Filename = Directories.getRecordingFilename(service_name)
+		self.Filename = Directories.getRecordingFilename(filename)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
 	
