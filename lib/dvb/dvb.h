@@ -167,6 +167,7 @@ class eDVBResourceManager: public iObject, public Object
 	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 
 	eUsePtr<iDVBChannel> m_cached_channel;
+	Connection m_cached_channel_state_changed_conn;
 	eTimer m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
 	void releaseCachedChannel();

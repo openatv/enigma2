@@ -310,6 +310,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 			channel = m_cached_channel;
 			return 0;
 		}
+		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
 	}
 
@@ -358,7 +359,8 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		return errChidNotFound;
 	}
 	m_cached_channel = channel = ch;
-	CONNECT(ch->m_stateChanged,eDVBResourceManager::DVBChannelStateChanged);
+	m_cached_channel_state_changed_conn =
+		CONNECT(ch->m_stateChanged,eDVBResourceManager::DVBChannelStateChanged);
 
 	return 0;
 }
@@ -390,6 +392,7 @@ void eDVBResourceManager::DVBChannelStateChanged(iDVBChannel *chan)
 void eDVBResourceManager::releaseCachedChannel()
 {
 	eDebug("release cached channel");
+	m_cached_channel_state_changed_conn.disconnect();
 	m_cached_channel=0;
 }
 
@@ -398,7 +401,10 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 	ePtr<eDVBAllocatedFrontend> fe;
 
 	if (m_cached_channel)
+	{
+		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
+	}
 
 	if (allocateFrontendByIndex(fe, frontend_index))
 		return errNoFrontend;
@@ -416,7 +422,10 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 	ePtr<eDVBAllocatedDemux> demux;
 
 	if (m_cached_channel)
+	{
+		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
+	}
 
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, 0);
