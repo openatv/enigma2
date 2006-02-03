@@ -288,14 +288,15 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
-		if self.servicelist.inBouquet() and self.servicelist.atBegin():
-			self.servicelist.prevBouquet()
+		if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
+			if self.servicelist.inBouquet() and self.servicelist.atBegin():
+				self.servicelist.prevBouquet()
 		self.servicelist.moveUp()
 		self.servicelist.zap()
 		self.doShow()
 
 	def zapDown(self):
-		if self.servicelist.inBouquet() and self.servicelist.atEnd():
+		if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes" and self.servicelist.inBouquet() and self.servicelist.atEnd():
 			self.servicelist.nextBouquet()
 		else:
 			self.servicelist.moveDown()
