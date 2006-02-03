@@ -102,15 +102,19 @@ class Menu(Screen):
 		self.session.open(*dialog)
 
 	def openSetup(self, dialog):
-		self.session.open(Setup, dialog)
+		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def addMenu(self, destList, node):
 		MenuTitle = _(getValbyAttr(node, "text"))
 		if MenuTitle != "":																	#check for title
-			a = boundFunction(self.session.open, Menu, node, node.childNodes)
+			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
 			#TODO add check if !empty(node.childNodes)
 			destList.append((MenuTitle, a))
-		
+
+	def menuClosed(self, *res):
+		if len(res) and res[0]:
+			self.close(True)
+
 	def addItem(self, destList, node):
 		ItemText = _(getValbyAttr(node, "text"))
 		if ItemText != "":																	#check for name
@@ -177,14 +181,20 @@ class Menu(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.close,
-				"menu": self.close
+				"cancel": self.closeNonRecursive,
+				"menu": self.closeRecursive
 			})
 		
 		a = getValbyAttr(parent, "title")
 		if a == "":														#if empty use name
 			a = _(getValbyAttr(parent, "text"))
 		self["title"] = Header(a)
+
+	def closeNonRecursive(self):
+		self.close(False)
+
+	def closeRecursive(self):
+		self.close(True)
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
