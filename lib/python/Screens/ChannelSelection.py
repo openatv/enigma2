@@ -943,7 +943,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
-				"cancel": self.cancel,
+				"cancel": self.close,
 				"ok": self.channelSelected,
 				"keyRadio": self.setModeRadio,
 				"keyTV": self.setModeTv,
