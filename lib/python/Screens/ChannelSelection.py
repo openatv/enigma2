@@ -264,7 +264,6 @@ class ChannelSelectionEdit:
 	def startMarkedEdit(self):
 		self.mutableList = self.getMutableList()
 		# add all services from the current list to internal marked set in listboxservicecontent
-		self.bouquetRoot = self.getRoot()
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
 		self.saved_title = self.instance.getTitle()
 		pos = self.saved_title.find(')')
@@ -274,7 +273,6 @@ class ChannelSelectionEdit:
 		else:
 			new_title += ' ' + _("[favourite edit]")
 		self.instance.setTitle(new_title)
-		print new_title
 		self.bouquet_mark_edit = True
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
@@ -301,7 +299,6 @@ class ChannelSelectionEdit:
 		self.__marked = []
 		self.clearMarks()
 		self.bouquet_mark_edit = False
-		self.bouquetRoot = None
 		self.mutableList = None
 		self.instance.setTitle(self.saved_title)
 		self.saved_title = None
