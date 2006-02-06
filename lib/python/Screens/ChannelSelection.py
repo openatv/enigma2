@@ -267,12 +267,14 @@ class ChannelSelectionEdit:
 		self.bouquetRoot = self.getRoot()
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
 		self.saved_title = self.instance.getTitle()
-		new_title = self.saved_title
+		pos = self.saved_title.find(')')
+		new_title = self.saved_title[:pos+1]
 		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1:
 			new_title += ' ' + _("[bouquet edit]")
 		else:
 			new_title += ' ' + _("[favourite edit]")
 		self.instance.setTitle(new_title)
+		print new_title
 		self.bouquet_mark_edit = True
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
@@ -305,7 +307,7 @@ class ChannelSelectionEdit:
 		self.saved_title = None
 		self.servicePath = self.savedPath[:]
 		del self.savedPath
-		self.setRoot(self.servicePath[len(self.servicePath-1)])
+		self.setRoot(self.servicePath[len(self.servicePath)-1])
 
 	def clearMarks(self):
 		self.servicelist.clearMarks()
@@ -357,7 +359,8 @@ class ChannelSelectionEdit:
 			self.pathChangedDisabled = True # no path change allowed in movemode
 			self.saved_title = self.instance.getTitle()
 			new_title = self.saved_title
-			new_title += ' ' + _("[move mode]");
+			pos = self.saved_title.find(')')
+			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
 			self.instance.setTitle(new_title);
 
 	def handleEditCancel(self):
@@ -479,26 +482,26 @@ class ChannelSelectionBase(Screen):
 		self.bouquet_root = eServiceReference(self.bouquet_rootstr)
 
 	def setTvMode(self):
+		self.mode = MODE_TV
+		self.servicePath = self.servicePathTV
+		self.recallBouquetMode()
 		title = self.instance.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
 		title += " (TV)"
 		self.instance.setTitle(title)
-		self.mode = MODE_TV
-		self.servicePath = self.servicePathTV
-		self.recallBouquetMode()
 
 	def setRadioMode(self):
+		self.mode = MODE_RADIO
+		self.servicePath = self.servicePathRadio
+		self.recallBouquetMode()
 		title = self.instance.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
 		title += " (Radio)"
 		self.instance.setTitle(title)
-		self.mode = MODE_RADIO
-		self.servicePath = self.servicePathRadio
-		self.recallBouquetMode()
 
 	def setRoot(self, root, justSet=False):
 		path = root.getPath()
@@ -513,6 +516,53 @@ class ChannelSelectionBase(Screen):
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)
+		self.buildTitleString()
+
+	def removeModeStr(self, str):
+		if self.mode == MODE_TV:
+			pos = str.find(' (TV)')
+		else:
+			pos = str.find(' (Radio)')
+		if pos != -1:
+			return str[:pos]
+		return str
+
+	def getServiceName(self, ref):
+		str = self.removeModeStr(ServiceReference(ref).getServiceName())
+		if not len(str):
+			pathstr = ref.getPath()
+			if pathstr.find('FROM PROVIDERS') != -1:
+				return _("Provider")
+			if pathstr.find('FROM SATELLITES') != -1:
+				return _("Satellites")
+			if pathstr.find(') ORDER BY name') != -1:
+				return _("All")
+		return str
+
+	def buildTitleString(self):
+		titleStr = self.instance.getTitle()
+		pos = titleStr.find(']')
+		if pos == -1:
+			pos = titleStr.find(')')
+		if pos != -1:
+			titleStr = titleStr[:pos+1]
+			Len = len(self.servicePath)
+			if Len > 0:
+				base_ref = self.servicePath[0]
+				if Len > 1:
+					end_ref = self.servicePath[Len-1]
+				else:
+					end_ref = None
+				nameStr = self.getServiceName(base_ref)
+				titleStr += ' ' + nameStr
+				if end_ref is not None:
+					if Len > 2:
+						titleStr += '/../'
+					else:
+						titleStr += '/'
+					nameStr = self.getServiceName(end_ref)
+					titleStr += nameStr
+				self.instance.setTitle(titleStr)
 
 	def moveUp(self):
 		self.servicelist.moveUp()
