@@ -21,13 +21,10 @@ class Network:
 			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
 			fp.write("	netmask %d.%d.%d.%d\n" % tuple(config.network.netmask.value))
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
+			fp2 = file('/etc/resolv.conf', 'w')
+			fp2.write("nameserver %d.%d.%d.%d\n" % tuple(config.network.dns.value))
+			fp2.close()
 		fp.close()
-
-		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
-			fp = file('/etc/resolv.conf', 'w')
-			fp.write("nameserver %d.%d.%d.%d\n" % tuple(config.network.dns.value))
-			fp.close()		
-
 
 	def loadNetworkConfig(self):
 		try:
