@@ -27,7 +27,7 @@
 		</menu>
 
 		<item text="Games / Plugins"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
-		<menu text="Setup">
+		<menu text="Setup" flushConfigOnClose="1" >
 			<id val="setup" />
 			<!--<menu text="Service Organising">
 				<item text="New Bouquets"></item>

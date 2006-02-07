@@ -5,6 +5,7 @@ from Components.Header import Header
 from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
+from Components.config import configfile
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -107,9 +108,17 @@ class Menu(Screen):
 	def addMenu(self, destList, node):
 		MenuTitle = _(getValbyAttr(node, "text"))
 		if MenuTitle != "":																	#check for title
-			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
+			x = getValbyAttr(node, "flushConfigOnClose")
+			if x == "1":
+				a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
+			else:
+				a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
 			#TODO add check if !empty(node.childNodes)
 			destList.append((MenuTitle, a))
+
+	def menuClosedWithConfigFlush(self, *res):
+		configfile.save()
+		self.menuClosed(res)
 
 	def menuClosed(self, *res):
 		if len(res) and res[0]:
