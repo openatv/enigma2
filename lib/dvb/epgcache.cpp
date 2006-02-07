@@ -1446,25 +1446,28 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 	return 0;
 }
 
-// here we get a list with tuples
-// first tuple entry is the servicereference
-// the second is the type of query (0 = time, 1 = event_id)
-// the third
-//		when type is eventid it is the event_id
-//		when type is time then it is the start_time ( 0 for now_time )
-// the fourth is the end_time .. ( optional )
-
-/* argv is a python string
-   I = Event Id
-   B = Event Begin Time
-   D = Event Duration
-   T = Event Title
-   S = Event Short Description
-   E = Event Extended Description
-   C = Current Time
-   R = Service Reference
-   N = Service Name
-*/
+// here we get a python list
+// the first entry in the list is a python string to specify the format of the returned tuples (in a list)
+//   I = Event Id
+//   B = Event Begin Time
+//   D = Event Duration
+//   T = Event Title
+//   S = Event Short Description
+//   E = Event Extended Description
+//   C = Current Time
+//   R = Service Reference
+//   N = Service Name
+// then for each service follows a tuple
+//   first tuple entry is the servicereference (as string... use the ref.toString() function)
+//   the second is the type of query
+//     2 = event_id
+//    -1 = event before given start_time
+//     0 = event intersects given start_time
+//    +1 = event after given start_time
+//   the third
+//      when type is eventid it is the event_id
+//      when type is time then it is the start_time ( 0 for now_time )
+//   the fourth is the end_time .. ( optional .. for query all events in time range)
 
 PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 {
