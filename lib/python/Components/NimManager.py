@@ -618,7 +618,7 @@ def InitNimManager(nimmgr):
 				("equal", _("Equal to Socket A")),
 				("loopthrough", _("Loopthrough to Socket A")),
 				("nothing", _("Nothing connected")),
-				("satposdepends", _("Secondary cable from Rotor-LNB")),
+				("satposdepends", _("Secondary cable from motorized LNB")),
 				("simple", _("Simple")),
 				("advanced", _("Advanced"))), False)
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
