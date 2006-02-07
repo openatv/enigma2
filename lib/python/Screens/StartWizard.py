@@ -1,7 +1,7 @@
 from Wizard import Wizard, wizardManager
 
 from Components.Pixmap import *
-from Components.config import configElementBoolean, config
+from Components.config import configElementBoolean, config, configfile
 
 from LanguageSelection import LanguageSelection
 
@@ -35,6 +35,7 @@ class StartWizard(Wizard):
 	def markDone(self):
 		config.misc.firstrun.value = 0;
 		config.misc.firstrun.save()
+		configfile.save()
 		
 wizardManager.registerWizard(LanguageSelection, config.misc.firstrun.value)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value)
