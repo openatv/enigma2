@@ -205,7 +205,7 @@ def createTimer(xml):
 	for l in elementsWithTag(xml.childNodes, "log"):
 		time = int(l.getAttribute("time"))
 		code = int(l.getAttribute("code"))
-		msg = mergeText(l.childNodes).strip()
+		msg = mergeText(l.childNodes).strip().encode("utf-8")
 		entry.log_entries.append((time, code, msg))
 	
 	return entry
