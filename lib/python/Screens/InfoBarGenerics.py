@@ -41,7 +41,7 @@ from Menu import MainMenu, mdom
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
-		self.onShown.append(self.dishDialog.show)
+		self.onLayoutFinish.append(self.dishDialog.show)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
