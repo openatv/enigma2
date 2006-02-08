@@ -287,6 +287,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			else
 				parm.FREQUENCY = sat.frequency - lnb_param.m_lof_lo;
 
+			parm.FREQUENCY = abs(parm.FREQUENCY);
+
 			if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
 				band |= 2;
 
