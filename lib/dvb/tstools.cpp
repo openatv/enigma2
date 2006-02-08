@@ -169,6 +169,9 @@ int eDVBTSTools::calcLen(pts_t &len)
 	if (!(m_begin_valid && m_end_valid))
 		return -1;
 	len = m_pts_end - m_pts_begin;
+		/* wrap around? */
+	if (len < 0)
+		len += 0x200000000LL;
 	return 0;
 }
 
@@ -179,6 +182,10 @@ int eDVBTSTools::calcBitrate()
 		return -1;
 
 	pts_t len_in_pts = m_pts_end - m_pts_begin;
+
+		/* wrap around? */
+	if (len_in_pts < 0)
+		len_in_pts += 0x200000000LL;
 	off_t len_in_bytes = m_offset_end - m_offset_begin;
 	
 	if (!len_in_pts)
