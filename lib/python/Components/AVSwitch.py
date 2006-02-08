@@ -9,8 +9,8 @@ class AVSwitch:
 		eAVSwitch.getInstance().setInput(self.INPUT[input][0])
 		if self.INPUT[input][1] == 4:
 			aspect = self.getAspectRatioSetting()
-			self.setWSS(aspect)
-			self.setSlowBlank(aspect)
+			self.setAspectWSS(aspect)
+			self.setAspectSlowBlank(aspect)
 		else:
 			eAVSwitch.getInstance().setSlowblank(self.INPUT[input][1])
 		# FIXME why do we have to reset the colorformat? bug in avs-driver?
@@ -21,8 +21,8 @@ class AVSwitch:
 
 	def setAspectRatio(self, value):
 		eAVSwitch.getInstance().setAspectRatio(value)
-		self.setWSS(value)
-		self.setSlowBlank(value)
+		self.setAspectWSS(value)
+		self.setAspectSlowBlank(value)
 
 	def setSystem(self, value):
 		eAVSwitch.getInstance().setVideomode(value)
@@ -39,7 +39,7 @@ class AVSwitch:
 			val = 3
 		return val
 
-	def setWSS(self, aspect=None):
+	def setAspectWSS(self, aspect=None):
 		if aspect is None:
 			aspect = self.getAspectRatioSetting()
 		if aspect == 0 or aspect == 1: # letterbox or panscan
@@ -53,7 +53,7 @@ class AVSwitch:
 			value = 4 # 16:9_full_format
 		eAVSwitch.getInstance().setWSS(value)
 
-	def setSlowBlank(self, aspect=None):
+	def setAspectSlowBlank(self, aspect=None):
 		if aspect is None:
 			aspect = self.getAspectRatioSetting()
 		if aspect == 0 or aspect == 1: # letterbox or panscan
@@ -86,7 +86,7 @@ def InitAVSwitch():
 		iAVSwitch.setSystem(configElement.value)
 
 	def setWSS(configElement):
-		iAVSwitch.setWSS(configElement.value)
+		iAVSwitch.setAspectWSS()
 
 	# this will call the "setup-val" initial
 	config.av.colorformat.addNotifier(setColorFormat)
