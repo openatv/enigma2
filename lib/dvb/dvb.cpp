@@ -1026,7 +1026,7 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	}
 	
 	if (now < pos) /* wrap around */
-		pos = now + ((pts_t)1)<<33 - pos;
+		pos = now + 0x200000000LL - pos;
 	else
 		pos = now - pos;
 	
