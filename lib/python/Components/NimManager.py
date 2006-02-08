@@ -227,7 +227,9 @@ class SecConfigure:
 						sec.setCommittedCommand(diseqcParam.BA)
 					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "BB":
 						sec.setCommittedCommand(diseqcParam.BB)
-						
+					else:
+						sec.setCommittedCommand(long(currentConfigSelectionElement(currLnb.commitedDiseqcCommand)))
+
 					if currentConfigSelectionElement(currLnb.fastDiseqc) == "yes":
 						sec.setFastDiSEqC(True)
 					else:
@@ -674,7 +676,15 @@ def InitNimManager(nimmgr):
 				nim.advanced.sat[x[1]].usals = configElement(cname + "advanced.sat" + str(x[1]) + ".usals", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))), False)
 				nim.advanced.sat[x[1]].rotorposition = configElement(cname + "advanced.sat" + str(x[1]) + ".rotorposition", configSequence, [1], configsequencearg.get("INTEGER", (1, 255)), False)
 				nim.advanced.sat[x[1]].lnb = configElement(cname + "advanced.sat" + str(x[1]) + ".lnb", configSelection, 0, lnbs, False)
-			
+
+			csw = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
+			for y in range(0, 16):
+				csw.append((str(0xF0|y), "Input " + str(y+1)))
+
+			ucsw = [("none", _("None"))]
+			for y in range(1, 17):
+				ucsw.append("Input " + str(y))
+
 			nim.advanced.lnb = [0]
 			for x in range(1, 33):
 				nim.advanced.lnb.append(ConfigSubsection())
@@ -686,15 +696,12 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].increased_voltage = configElement(cname + "advanced.lnb" + str(x) + ".increased_voltage", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
 				nim.advanced.lnb[x].toneburst = configElement(cname + "advanced.lnb" + str(x) + ".toneburst", configSelection, 0, (("none", _("None")), ("A", _("A")), ("B", _("B"))), False)
 				nim.advanced.lnb[x].diseqcMode = configElement(cname + "advanced.lnb" + str(x) + ".diseqcMode", configSelection, 0, (("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))), False)
-				nim.advanced.lnb[x].commitedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".commitedDiseqcCommand", configSelection, 0, (("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))), False)
+				nim.advanced.lnb[x].commitedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".commitedDiseqcCommand", configSelection, 0, csw, False)
 				nim.advanced.lnb[x].fastDiseqc = configElement(cname + "advanced.lnb" + str(x) + ".fastDiseqc", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
 				nim.advanced.lnb[x].sequenceRepeat = configElement(cname + "advanced.lnb" + str(x) + ".sequenceRepeat", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
 				nim.advanced.lnb[x].commandOrder1_0 = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder1_0", configSelection, 0, ("committed, toneburst", "toneburst, committed"), False)
 				nim.advanced.lnb[x].commandOrder = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder", configSelection, 0, ("committed, toneburst", "toneburst, committed", "committed, uncommitted, toneburst", "toneburst, committed, uncommitted", "uncommitted, committed, toneburst", "toneburst, uncommitted, commmitted"), False)
-				disCmd = ["none"]
-				for y in range(1, 17):
-					disCmd.append("Input " + str(y))
-				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, disCmd, False)
+				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, ucsw, False)
 				nim.advanced.lnb[x].diseqcRepeats = configElement(cname + "advanced.lnb" + str(x) + ".diseqcRepeats", configSelection, 0, (("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))), False)
 				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False)
 				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
