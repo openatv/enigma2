@@ -3,7 +3,7 @@ import os
 from enigma import *
 
 class AVSwitch:
-	INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
+	INPUT = { "ENCODER": (0, 1), "SCART": (1, 0), "AUX": (2, 1) }
 	def __init__(self):
 		pass
 
@@ -38,7 +38,8 @@ class AVSwitch:
 		self.checkWSS()
 	
 	def setInput(self, input):
-		eAVSwitch.getInstance().setInput(self.INPUT[input])
+		eAVSwitch.getInstance().setInput(self.INPUT[input][0])
+		eAVSwitch.getInstance().setSlowblank(self.INPUT[input][1])
 		# FIXME why do we have to reset the colorformat? bug in avs-driver?
 		eAVSwitch.getInstance().setColorFormat(config.av.colorformat.value)
 

@@ -21,7 +21,7 @@ public:
 	void setAspectRatio(int ratio);
 	void setVideomode(int mode);
 	void setInput(int val);
-
+	void setSlowblank(int val); // 1: on, 0: off
 };
 
 #endif

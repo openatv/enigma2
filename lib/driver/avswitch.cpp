@@ -150,5 +150,17 @@ void eAVSwitch::setVideomode(int mode)
 	close(fd);
 }
 
+void eAVSwitch::setSlowblank(int val)
+{
+	int fd;
+	if((fd = open("/proc/stb/avs/0/sb", O_WRONLY)) < 0) {
+		printf("cannot open /proc/stb/avs/0/sb\n");
+		return;
+	}
+	const char *s = val ? "auto" : "vcr";
+	write(fd, s, strlen(s));
+	close(fd);
+}
+
 //FIXME: correct "run/startlevel"
 eAutoInitP0<eAVSwitch> init_avswitch(eAutoInitNumbers::rc, "AVSwitch Driver");
