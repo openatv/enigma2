@@ -914,15 +914,14 @@ class InfoBarInstantRecord:
 				"instantRecord": (self.instantRecord, "Instant Record..."),
 			})
 		self.recording = None
-		
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
-		self.onShown.append(self["BlinkingPoint"].hideWidget)
+		self.onLayoutFinish.append(self["BlinkingPoint"].hideWidget)
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
-		
+
 	def stopCurrentRecording(self):	
 		self.session.nav.RecordTimer.removeEntry(self.recording)
 		self.recording = None
-			
+
 	def startInstantRecording(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		
