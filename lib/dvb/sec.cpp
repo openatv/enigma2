@@ -138,7 +138,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
 						csw = 0xF0 | (csw << 2);
 
-					csw |= band;
+					if (di_param.m_committed_cmd <= eDVBSatelliteDiseqcParameters::SENDNO)
+						csw |= band;
 
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
 					{
@@ -355,7 +356,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
 					csw = 0xF0 | (csw << 2);
 
-				csw |= band;
+				if (di_param.m_committed_cmd <= eDVBSatelliteDiseqcParameters::SENDNO)
+					csw |= band;
 
 				bool send_csw =
 					(di_param.m_committed_cmd != eDVBSatelliteDiseqcParameters::SENDNO);
@@ -397,7 +399,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				}
 				if (changed_csw) 
 				{
-					if ( di_param.m_use_fast && (lastcsw & 0xF0) && ((csw / 4) == (lastcsw / 4)) )
+					if ( di_param.m_use_fast
+						&& di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO
+						&& (lastcsw & 0xF0)
+						&& ((csw / 4) == (lastcsw / 4)) )
 						eDebug("dont send committed cmd (fast diseqc)");
 					else
 					{
