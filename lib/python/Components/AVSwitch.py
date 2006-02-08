@@ -3,45 +3,66 @@ import os
 from enigma import *
 
 class AVSwitch:
-	INPUT = { "ENCODER": (0, 1), "SCART": (1, 0), "AUX": (2, 1) }
-	def __init__(self):
-		pass
+	INPUT = { "ENCODER": (0, 4), "SCART": (1, 3), "AUX": (2, 4) }
+
+	def setInput(self, input):
+		eAVSwitch.getInstance().setInput(self.INPUT[input][0])
+		if self.INPUT[input][1] == 4:
+			aspect = self.getAspectRatioSetting()
+			self.setWSS(aspect)
+			self.setSlowBlank(aspect)
+		else:
+			eAVSwitch.getInstance().setSlowblank(self.INPUT[input][1])
+		# FIXME why do we have to reset the colorformat? bug in avs-driver?
+		eAVSwitch.getInstance().setColorFormat(config.av.colorformat.value)
 
 	def setColorFormat(self, value):
 		eAVSwitch.getInstance().setColorFormat(value)
-		
+
 	def setAspectRatio(self, value):
 		eAVSwitch.getInstance().setAspectRatio(value)
-		self.checkWSS()
+		self.setWSS(value)
+		self.setSlowBlank(value)
 
 	def setSystem(self, value):
 		eAVSwitch.getInstance().setVideomode(value)
-		
-	def checkWSS(self):
-		if currentConfigSelectionElement(config.av.aspectratio) == "4_3_letterbox" or currentConfigSelectionElement(config.av.aspectratio) == "4_3_panscan":
-			writevalue = "4:3_full_format"
-		elif currentConfigSelectionElement(config.av.aspectratio) == "16_9":
-			if currentConfigSelectionElement(config.av.wss) == "off":
-				writevalue = "auto(4:3_off)"
-			else:
-				writevalue = "auto"
-		elif currentConfigSelectionElement(config.av.aspectratio) == "16_9_always":
-			writevalue = "16:9_full_format"
-		try:
-			file = open("/proc/stb/denc/0/wss", "w")
-			file.write(writevalue)
-			file.close()
-		except:
-			print "[AVSwitch.py] Error writing to /proc/stb/denc/0/wss"
 
-	def setWSS(self, value = None):
-		self.checkWSS()
-	
-	def setInput(self, input):
-		eAVSwitch.getInstance().setInput(self.INPUT[input][0])
-		eAVSwitch.getInstance().setSlowblank(self.INPUT[input][1])
-		# FIXME why do we have to reset the colorformat? bug in avs-driver?
-		eAVSwitch.getInstance().setColorFormat(config.av.colorformat.value)
+	def getAspectRatioSetting(self):
+		valstr = currentConfigSelectionElement(config.av.aspectratio)
+		if valstr == "4_3_letterbox":
+			val = 0
+		elif valstr == "4_3_panscan":
+			val = 1
+		elif valstr == "16_9":
+			val = 2
+		elif valstr == "16_9_always":
+			val = 3
+		return val
+
+	def setWSS(self, aspect=None):
+		if aspect is None:
+			aspect = self.getAspectRatioSetting()
+		if aspect == 0 or aspect == 1: # letterbox or panscan
+			value = 3 # 4:3_full_format
+		elif aspect == 2: # 16:9
+			if currentConfigSelectionElement(config.av.wss) == "off":
+				value = 2 # auto(4:3_off)
+			else:
+				value = 1 # auto
+		elif aspect == 3: # always 16:9
+			value = 4 # 16:9_full_format
+		eAVSwitch.getInstance().setWSS(value)
+
+	def setSlowBlank(self, aspect=None):
+		if aspect is None:
+			aspect = self.getAspectRatioSetting()
+		if aspect == 0 or aspect == 1: # letterbox or panscan
+			value = 2 # 12 V
+		elif aspect == 2: # 16:9
+			value = 4 # auto
+		elif aspect == 3: # always 16:9
+			value = 1 # 6V
+		eAVSwitch.getInstance().setSlowblank(value)
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
@@ -57,10 +78,13 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		iAVSwitch.setColorFormat(configElement.value)
+
 	def setAspectRatio(configElement):
 		iAVSwitch.setAspectRatio(configElement.value)
+
 	def setSystem(configElement):
 		iAVSwitch.setSystem(configElement.value)
+
 	def setWSS(configElement):
 		iAVSwitch.setWSS(configElement.value)
 
@@ -69,5 +93,5 @@ def InitAVSwitch():
 	config.av.aspectratio.addNotifier(setAspectRatio)
 	config.av.tvsystem.addNotifier(setSystem)
 	config.av.wss.addNotifier(setWSS)
-	
+
 	iAVSwitch.setInput("ENCODER") # init on startup
