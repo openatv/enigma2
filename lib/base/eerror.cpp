@@ -80,3 +80,15 @@ void eWarning(const char* fmt, ...)
 		fprintf(stderr, "%s\n", buf);
 }
 #endif // DEBUG
+
+void ePythonOutput(const char *string)
+{
+	logOutput(lvlWarning, string);
+	if (logOutputConsole)
+		fwrite(string, 1, strlen(string), stderr);
+}
+
+void eWriteCrashdump()
+{
+		/* implement me */
+}

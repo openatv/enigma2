@@ -207,4 +207,7 @@ inline void DumpUnfreed()
     #define ASSERT(x) do { } while (0)
 #endif //DEBUG
 
+void ePythonOutput(const char *);
+void eWriteCrashdump();
+
 #endif // __E_ERROR__
