@@ -122,6 +122,7 @@ int eDVBServiceRecord::doRecord()
 			return -3;
 		}
 		m_record->setTargetFD(fd);
+		m_record->setTargetFilename(m_filename.c_str());
 	}
 	eDebug("starting recording..");
 	

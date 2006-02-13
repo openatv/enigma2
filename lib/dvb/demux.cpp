@@ -273,6 +273,8 @@ class eDVBRecordFileThread: public eFilePushThread
 public:
 	eDVBRecordFileThread();
 	void setTimingPID(int pid);
+	
+	void saveTimingInformation(const std::string &filename);
 protected:
 	void filterRecordData(const unsigned char *data, int len);
 private:
@@ -291,6 +293,11 @@ eDVBRecordFileThread::eDVBRecordFileThread()
 void eDVBRecordFileThread::setTimingPID(int pid)
 {
 	m_ts_parser.setPid(pid);
+}
+
+void eDVBRecordFileThread::saveTimingInformation(const std::string &filename)
+{
+	m_stream_info.save(filename.c_str());
 }
 
 void eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len)
@@ -385,6 +392,11 @@ RESULT eDVBTSRecorder::setTargetFD(int fd)
 	return 0;
 }
 
+RESULT eDVBTSRecorder::setTargetFilename(const char *filename)
+{
+	m_target_filename = filename;
+}
+
 RESULT eDVBTSRecorder::setBoundary(off_t max)
 {
 	return -1; // not yet implemented
@@ -400,6 +412,9 @@ RESULT eDVBTSRecorder::stop()
 	m_thread->stop();
 	
 	close(m_source_fd);
+	
+	if (m_target_filename != "")
+		m_thread->saveTimingInformation(m_target_filename + ".ap");
 	
 	return 0;
 }
