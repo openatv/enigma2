@@ -11,6 +11,7 @@ class EventInfo(PerServiceDisplay):
 	Next_Duration = 3
 	Now_StartTime = 4
 	Next_StartTime = 5
+	Now_Remaining = 6
 	
 	def __init__(self, navcore, now_or_next):
 		# listen to evUpdatedEventInfo and evEnd
@@ -21,6 +22,9 @@ class EventInfo(PerServiceDisplay):
 				iPlayableService.evUpdatedEventInfo: self.ourEvent, 
 				iPlayableService.evEnd: self.stopEvent 
 			})
+		
+		if now_or_next in [self.Now_Remaining]:
+			self.enablePolling()
 
 	def ourEvent(self):
 		info = iServiceInformationPtr()
@@ -33,20 +37,22 @@ class EventInfo(PerServiceDisplay):
 				if ev is not None:
 					self.update(ev)
 
-
 	def update(self, ev):
-		if (self.Now_Duration <= self.now_or_next <= self.Next_Duration):
+		if self.now_or_next == self.Now_Remaining and ev.getBeginTime() <= time() <= (ev.getBeginTime() + ev.getDuration()):
+			self.setText("+%d min" % ((ev.getBeginTime() + ev.getDuration() - time()) / 60))
+		elif self.now_or_next in [self.Now_Duration, self.Next_Duration, self.Now_Remaining]:
 			self.setText("%d min" % (ev.getDuration() / 60))
-		if (self.Now_StartTime <= self.now_or_next <= self.Next_StartTime):
+		elif self.now_or_next in [self.Now_StartTime, self.Next_StartTime]:
 			self.setText(strftime("%H:%M", localtime(ev.getBeginTime())))
-		if (self.Now <= self.now_or_next <= self.Next):
+		elif self.now_or_next in [self.Now, self.Next]:
 			self.setText(ev.getEventName())		
 
 	def stopEvent(self):
 		self.setText(
-			#(_("waiting for event data..."), "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
-			("", "", "--:--",  "--:--", "--:--", "--:--")[self.now_or_next]);
+			("", "", "",  "", "--:--", "--:--", "")[self.now_or_next]);
 
+	def poll(self):
+		self.ourEvent()
 
 class EventInfoProgress(PerServiceDisplayProgress, EventInfo):
 	def __init__(self, navcore, now_or_next):

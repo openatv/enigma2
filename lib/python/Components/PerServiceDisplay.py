@@ -3,7 +3,7 @@ from VariableText import *
 from VariableValue import *
 
 from enigma import iPlayableService
-from enigma import eLabel, eSlider
+from enigma import eLabel, eSlider, eTimer
 
 class PerServiceDisplay(GUIComponent, VariableText):
 	"""Mixin for building components which display something which changes on navigation events, for example "service name" """
@@ -14,7 +14,9 @@ class PerServiceDisplay(GUIComponent, VariableText):
 		self.eventmap = eventmap
 		self.navcore = navcore
 		self.navcore.event.append(self.event)
-
+		self.poll_timer = eTimer()
+		self.poll_timer.timeout.get().append(self.poll)
+		
 		# start with stopped state, so simulate that
 		self.event(iPlayableService.evEnd)
 
@@ -29,6 +31,17 @@ class PerServiceDisplay(GUIComponent, VariableText):
 		g = eLabel(parent)
 		return g
 
+	def enablePolling(self, interval=60000):
+		if interval:
+			self.poll_timer.start(interval)
+		else:
+			self.poll_timer.stop()
+	
+	def disablePolling(self):
+		self.enablePolling(interval=0)
+
+	def poll(self):
+		pass
 
 class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceDisplay):
 	def __init__(self, navcore, eventmap):
@@ -46,4 +59,3 @@ class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceDisplay):
 		# by default, we use a label to display our data.
 		self.g = eSlider(parent)
 		return self.g
-	
