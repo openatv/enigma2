@@ -1,3 +1,4 @@
+from Tools import RedirectOutput
 from enigma import *
 from tools import *
 
