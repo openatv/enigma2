@@ -456,7 +456,7 @@ class InfoBarEvent:
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
 		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
 
-		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Duration)
+		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Remaining)
 		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
 
 		self["Now_ProgressBar"] = EventInfoProgress(self.session.nav, EventInfo.Now)
