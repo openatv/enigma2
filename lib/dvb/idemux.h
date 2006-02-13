@@ -65,6 +65,8 @@ public:
 	virtual RESULT setTimingPID(int pid) = 0;
 	
 	virtual RESULT setTargetFD(int fd) = 0;
+		/* for saving additional meta data. */
+	virtual RESULT setTargetFilename(const char *filename) = 0;
 	virtual RESULT setBoundary(off_t max) = 0;
 	
 	virtual RESULT stop() = 0;

@@ -76,6 +76,7 @@ public:
 	RESULT setTimingPID(int pid);
 	
 	RESULT setTargetFD(int fd);
+	RESULT setTargetFilename(const char *filename);
 	RESULT setBoundary(off_t max);
 	
 	RESULT stop();
@@ -93,6 +94,7 @@ private:
 	ePtr<eDVBDemux> m_demux;
 	
 	int m_running, m_target_fd, m_source_fd;
+	std::string m_target_filename;
 };
 
 #endif
