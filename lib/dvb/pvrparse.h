@@ -29,8 +29,11 @@ public:
 		/* get delta at specific offset */
 	pts_t getDelta(off_t offset);
 	
-		/* fixup timestamp near offset */
-	pts_t fixuppts_t(off_t offset, pts_t ts);
+		/* fixup timestamp near offset, i.e. convert to zero-based */
+	int fixupPTS(const off_t &offset, pts_t &ts);
+
+		/* get PTS before offset */	
+	int getPTS(off_t &offset, pts_t &pts);
 	
 		/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);

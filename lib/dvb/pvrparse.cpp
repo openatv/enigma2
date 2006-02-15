@@ -63,7 +63,6 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	if (!m_access_points.size())
 		return;
 		
-	int first_is_unreliable = 0;
 	eDebug("Fixing discontinuities ...");
 
 			/* if we have no delta at the beginning, extrapolate it */
@@ -78,7 +77,6 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 			tdiff *= first->first;
 			tdiff /= diff;
 			m_timestamp_deltas[0] = first->second - tdiff;
-			first_is_unreliable = 1;
 			eDebug("first delta is %08llx", first->second - tdiff);
 		}
 	}
@@ -91,9 +89,9 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	{
 		pts_t current = i->second - currentDelta;
 		pts_t diff = current - lastpts_t;
-		if ((first_is_unreliable) || (diff > (90000*5))) // 5sec diff
+		
+		if (llabs(diff) > (90000*5)) // 5sec diff
 		{
-			first_is_unreliable = 0;
 			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
 			currentDelta = i->second - lastpts_t; /* FIXME: should be the extrapolated new timestamp, based on the current rate */
 			eDebug("current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
@@ -104,12 +102,16 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	
 	
 	eDebug("ok, found %d disconts.", m_timestamp_deltas.size());
-	
-	
-	for (off_t x=0; x < 1000000; x+= 100000)
+
+#if 0	
+	for (off_t x=0x25807E34ULL; x < 0x25B3CF70; x+= 100000)
 	{
-		eDebug("%08llx -> %08llx | %08llx", x, getDelta(x), getInterpolated(x));
+		off_t o = x;
+		pts_t p;
+		int r = getPTS(o, p);
+		eDebug("%08llx -> %08llx | %08llx, %d, %08llx %08llx", x, getDelta(x), getInterpolated(x), r, o, p);
 	}
+#endif
 }
 
 pts_t eMPEGStreamInformation::getDelta(off_t offset)
@@ -125,11 +127,12 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 	return i->second;
 }
 
-pts_t eMPEGStreamInformation::fixuppts_t(off_t offset, pts_t ts)
+int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 {
 	if (!m_timestamp_deltas.size())
-		return 0;
-	std::map<off_t, pts_t>::const_iterator i = m_access_points.upper_bound(offset - 1024 * 1024), nearest = m_access_points.end();
+		return -1;
+
+	std::map<off_t, pts_t>::const_iterator i = m_access_points.upper_bound(offset - 4 * 1024 * 1024), nearest = m_access_points.end();
 	
 	while (i != m_access_points.end())
 	{
@@ -138,8 +141,29 @@ pts_t eMPEGStreamInformation::fixuppts_t(off_t offset, pts_t ts)
 		++i;
 	}
 	if (nearest == m_access_points.end())
-		return 0;
-	return ts - getDelta(nearest->first);
+		return -1;
+	ts -= getDelta(nearest->first);
+	return 0;
+}
+
+int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
+{
+	std::map<off_t,pts_t>::iterator before = m_access_points.lower_bound(offset);
+	
+		/* usually, we prefer the AP before the given offset. however if there is none, we take any. */
+	if (before != m_access_points.begin())
+		--before;
+	
+	if (before == m_access_points.end())
+	{
+		pts = 0;
+		return -1;
+	}
+	
+	offset = before->first;
+	pts = before->second - getDelta(offset);
+	
+	return 0;
 }
 
 pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
@@ -202,7 +226,7 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo): m_
 int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 {
 	if (!wantPacket(pkt))
-		printf("ne irgendwas ist da falsch\n");
+		eWarning("something's wrong.");
 
 	const unsigned char *end = pkt + 188;
 	

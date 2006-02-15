@@ -2,10 +2,11 @@
 #define __lib_dvb_tstools_h
 
 #include <sys/types.h>
+#include <lib/dvb/pvrparse.h>
 
 /*
  * Note: we're interested in PTS values, not STC values.
- * thus we're not evaluating PES headers, not adaption fields.
+ * thus we're evaluating PES headers, not adaption fields.
  */
 
 typedef long long pts_t;
@@ -23,9 +24,19 @@ public:
 	void setSearchRange(int maxrange);
 	
 		/* get first PTS *after* the given offset. */
+		/* pts values are zero-based. */
 	int getPTS(off_t &offset, pts_t &pts);
 	
-	int getPosition(off_t &offset, pts_t &pts);
+		/* this fixes up PTS to end up in a [0..len) range.
+		   discontinuities etc. are handled here.
+		
+		  input: 	
+		    offset - approximate offset in file to resolve ambiguities
+		    pts - video-pts (i.e. current STC of video decoder)
+		  output:
+		    pts - zero-based PTS value
+		*/
+	int fixupPTS(const off_t &offset, pts_t &pts);
 	
 	void calcBegin();
 	void calcEnd();
@@ -41,6 +52,9 @@ private:
 	int m_begin_valid, m_end_valid;
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;
+	
+	eMPEGStreamInformation m_streaminfo;
+	int m_use_streaminfo;
 };
 
 #endif
