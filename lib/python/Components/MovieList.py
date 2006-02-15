@@ -25,14 +25,17 @@ RT_WRAP = 32
 # | name of movie              |
 #
 def MovieListEntry(serviceref, serviceHandler):
+	if serviceref.flags & eServiceReference.mustDescent:
+		return None
+
 	info = serviceHandler.info(serviceref)
 	
 	if info is None:
 		# ignore service which refuse to info
-		return
+		return None
 	
 	len = info.getLength(serviceref)
-	if len:
+	if len > 0:
 		len = "%d:%02d" % (len / 60, len % 60)
 	else:
 		len = "?:??"
@@ -112,7 +115,9 @@ class MovieList(HTMLComponent, GUIComponent):
 		
 		# now process them...
 		for ref in movieList:
-			self.list.append(MovieListEntry(ref, serviceHandler))
+			a = MovieListEntry(ref, serviceHandler)
+			if a is not None:
+				self.list.append(a)
 		
 		self.list.sort(key=lambda x: -x[0][1])
 
