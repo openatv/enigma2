@@ -3,10 +3,10 @@
 #include <lib/gui/eslider.h>
 #include <lib/actions/action.h>
 
-eListbox::eListbox(eWidget *parent)
-	:eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1)
-	,m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25)
-	,m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
+eListbox::eListbox(eWidget *parent) :
+	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
+	m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25),
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
 //	setContent(new eListboxStringContent());
 
@@ -28,9 +28,9 @@ eListbox::~eListbox()
 void eListbox::setScrollbarMode(int mode)
 {
 	m_scrollbar_mode = mode;
-	if ( m_scrollbar )
+	if (m_scrollbar)
 	{
-		if ( m_scrollbar_mode == showNever )
+		if (m_scrollbar_mode == showNever)
 		{
 			delete m_scrollbar;
 			m_scrollbar=0;
@@ -84,7 +84,7 @@ void eListbox::moveToEnd()
 	if (m_top + m_items_per_page <= m_content->cursorGet())
 	{
 		int rest = m_content->size() % m_items_per_page;
-		if ( rest )
+		if (rest)
 			m_top = m_content->cursorGet() - rest + 1;
 		else
 			m_top = m_content->cursorGet() - m_items_per_page + 1;
@@ -110,7 +110,7 @@ void eListbox::moveSelection(int dir)
 	case moveUp:
 	{
 		m_content->cursorMove(-1);
-		if ( m_enabled_wrap_around && oldsel == m_content->cursorGet() )  // must wrap around ?
+		if (m_enabled_wrap_around && oldsel == m_content->cursorGet())  // must wrap around ?
 			moveToEnd();
 		break;
 	}
@@ -119,7 +119,7 @@ void eListbox::moveSelection(int dir)
 			/* ok - we could have reached the end. So we do wrap around. */
 		if (!m_content->cursorValid())
 		{
-			if ( m_enabled_wrap_around )
+			if (m_enabled_wrap_around)
 			{
 				m_top = 0;
 				m_content->cursorHome();
@@ -192,7 +192,7 @@ void eListbox::moveSelection(int dir)
 
 void eListbox::moveSelectionTo(int index)
 {
-	if ( m_content )
+	if (m_content)
 	{
 		m_content->cursorHome();
 		m_content->cursorMove(index);
@@ -202,7 +202,7 @@ void eListbox::moveSelectionTo(int index)
 
 int eListbox::getCurrentIndex()
 {
-	if ( m_content && m_content->cursorValid() )
+	if (m_content && m_content->cursorValid())
 		return m_content->cursorGet();
 	return 0;
 }
@@ -212,18 +212,18 @@ void eListbox::updateScrollBar()
 	if (!m_content || m_scrollbar_mode == showNever )
 		return;
 	int entries = m_content->size();
-	if ( m_content_changed )
+	if (m_content_changed)
 	{
 		int width = size().width();
 		int height = size().height();
 		m_content_changed = false;
-		if ( entries > m_items_per_page || m_scrollbar_mode == showAlways )
+		if (entries > m_items_per_page || m_scrollbar_mode == showAlways)
 		{
 			int sbarwidth=width/16;
-			if ( sbarwidth < 18 )
-				sbarwidth=18;
-			if ( sbarwidth > 22 )
-				sbarwidth=22;
+			if (sbarwidth < 18)
+				sbarwidth = 18;
+			if (sbarwidth > 22)
+				sbarwidth = 22;
 			m_scrollbar->move(ePoint(width-sbarwidth, 0));
 			m_scrollbar->resize(eSize(sbarwidth, height));
 			m_content->setSize(eSize(width-sbarwidth-5, m_itemheight));
@@ -235,14 +235,14 @@ void eListbox::updateScrollBar()
 			m_scrollbar->hide();
 		}
 	}
-	if ( m_items_per_page && entries )
+	if (m_items_per_page && entries)
 	{
 		int curVisiblePage = m_top / m_items_per_page;
 		if (m_prev_scrollbar_page != curVisiblePage)
 		{
 			m_prev_scrollbar_page = curVisiblePage;
 			int pages = entries / m_items_per_page;
-			if ( (pages*m_items_per_page) < entries )
+			if ((pages*m_items_per_page) < entries)
 				++pages;
 			int start=(m_top*100)/(pages*m_items_per_page);
 			int vis=(m_items_per_page*100)/(pages*m_items_per_page);
@@ -281,7 +281,7 @@ int eListbox::event(int event, void *data, void *data2)
 			m_content->cursorMove(+1);
 		}
 
-		if ( m_scrollbar && m_scrollbar->isVisible() )
+		if (m_scrollbar && m_scrollbar->isVisible())
 		{
 			painter.clip(eRect(m_scrollbar->position() - ePoint(5,0), eSize(5,m_scrollbar->size().height())));
 			painter.clear();
@@ -383,17 +383,30 @@ void eListbox::entryChanged(int index)
 	}
 }
 
-void eListbox::entryReset(bool cursorHome)
+void eListbox::entryReset(bool selectionHome)
 {
-	m_content_changed=true;
-	m_prev_scrollbar_page=-1;
-	if ( cursorHome )
+	eDebug("entry reset");
+	m_content_changed = true;
+	m_prev_scrollbar_page = -1;
+
+	if (selectionHome)
 	{
 		if (m_content)
 			m_content->cursorHome();
 		m_top = 0;
 		m_selected = 0;
 	}
+	
+	if (m_content && (m_selected >= m_content->size()))
+	{
+		if (m_content->size())
+			m_selected = m_content->size() - 1;
+		else
+			m_selected = 0;
+		m_content->cursorSet(m_selected);
+		selectionChanged();
+	}
+	
 	moveSelection(justCheck);
 	invalidate();
 }
