@@ -3,13 +3,13 @@
 			<color name="white" 	value="#ffffff" />
 			<color name="black" 	value="#000000" />
 			<color name="dark"  	value="#20294a6b" />
-			
+
 			<color name="red" 		value="#ff0000" />
 			<color name="green" 	value="#00ff00" />
 			<color name="blue" 		value="#0000ff" />
 			<color name="yellow"	value="#c0c000" />
 			<color name="transparent" 	value="#ffffffff" />
-			
+
 			<color name="transpBlack" value="#80000000" />
 		</colors>
 		<windowstyle type="skinned">
@@ -21,7 +21,6 @@
 			<color name="ListboxSelectedForeground" color="#ffffff" />
 			<color name="ListboxMarkedBackground" color="#ff0000" />
 			<color name="ListboxMarkedForeground" color="#ffffff" />
-			
 			<color name="WindowTitleForeground" color="#ffffff" />
 			<color name="WindowTitleBackground" color="#33294a6b" />
 			<borderset name="bsWindow">
@@ -337,8 +336,10 @@
 			<widget name="apply" position="10,240" size="250,35" />
 		</screen>
 		<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
-			<widget name="list" position="100,100" size="550,375" scrollbarMode="showOnDemand" />
-			<eLabel position="500,40" size="220,60" text="help..." font="Regular;50" />
+			<widget name="list" position="50,100" size="450,375" scrollbarMode="showOnDemand" />
+			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<eLabel position="400,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
 		<screen name="PVRState" flags="wfNoBorder" position="70,70" size="150,30" backgroundColor="transpBlack" zPosition="2">
 			<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" 
@@ -369,7 +370,7 @@ if (280 > wsizex):
 wsize = (wsizex, wsizey)
 
 
-# resize 
+# resize
 self.instance.resize(eSize(*wsize))
 
 # resize label

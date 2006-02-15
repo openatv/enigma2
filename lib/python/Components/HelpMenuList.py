@@ -3,13 +3,14 @@ from GUIComponent import *
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
+#getKeyPositions
 
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
 
 class HelpMenuList(GUIComponent):
 	def __init__(self, list, callback):
 		GUIComponent.__init__(self)
-		
+		self.onSelChanged = [ ]
 		self.l = eListboxPythonMultiContent()
 		self.callback = callback
 		
@@ -18,48 +19,46 @@ class HelpMenuList(GUIComponent):
 			for (action, help) in actions:
 				entry = [ ]
 				
-				entry.append( (actionmap, context, action) )
 				buttons = queryKeyBinding(context, action)
-				buttonstring = ""
-	
-				first = True
+
+				name = None
+				
 				for n in buttons:
 					name = getKeyDescription(n)
-					if name is None:
-						continue
+					if name is not None:
+						break
 
-					if not first:
-						buttonstring += ", or "
-
-					first = False
-					buttonstring += name
-
-				if not first:
-					buttonstring = "You can also press " + buttonstring + "."
-
-				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 550, 36, 0, 0, help) )
-				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 40, 550, 20, 1, 0, buttonstring) )
+				entry.append( (actionmap, context, action, name ) )
+				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
 				
 				l.append(entry)
 		
 		self.l.setList(l)
 		
-		self.l.setFont(0, gFont("Regular", 36))
-		self.l.setFont(1, gFont("Regular", 18))
+		self.l.setFont(0, gFont("Regular", 26))
 	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(75)
-	
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
-
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...
 		l = self.l.getCurrentSelection()[0]
 		
-		# ...containing (Actionmap, Context, Action).
+		# ...containing (Actionmap, Context, Action, keydata).
 		# we returns this tuple to the callback.
 		self.callback(l[0], l[1], l[2])
+	
+	def getCurrent(self):
+		return self.l.getCurrentSelection()[0]
+
+	def GUIcreate(self, parent):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+		self.instance.setItemHeight(42)
+		self.instance.selectionChanged.get().append(self.selectionChanged)
+		
+	def GUIdelete(self):
+		self.instance.setContent(None)
+		self.instance.selectionChanged.get().remove(self.selectionChanged)
+		self.instance = None
+
+	def selectionChanged(self):
+		for x in self.onSelChanged:
+			x()
