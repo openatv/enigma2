@@ -385,7 +385,6 @@ void eListbox::entryChanged(int index)
 
 void eListbox::entryReset(bool selectionHome)
 {
-	eDebug("entry reset");
 	m_content_changed = true;
 	m_prev_scrollbar_page = -1;
 
