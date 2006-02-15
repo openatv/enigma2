@@ -25,7 +25,7 @@ public:
 	
 		/* get first PTS *after* the given offset. */
 		/* pts values are zero-based. */
-	int getPTS(off_t &offset, pts_t &pts);
+	int getPTS(off_t &offset, pts_t &pts, int fixed=0);
 	
 		/* this fixes up PTS to end up in a [0..len) range.
 		   discontinuities etc. are handled here.
