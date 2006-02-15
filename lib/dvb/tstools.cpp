@@ -31,7 +31,10 @@ int eDVBTSTools::openFile(const char *filename)
 	if (!m_streaminfo.empty())
 		m_use_streaminfo = 1;
 	else
+	{
+		eDebug("no recorded stream information available");
 		m_use_streaminfo = 0;
+	}
 
 	m_fd = ::open(filename, O_RDONLY);
 	if (m_fd < 0)
@@ -56,15 +59,10 @@ void eDVBTSTools::setSearchRange(int maxrange)
 }
 
 	/* getPTS extracts a pts value from any PID at a given offset. */
-int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
+int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 {
 	if (m_use_streaminfo)
-	{
-		off_t off = offset;
-		pts_t p = pts;
-		int r = m_streaminfo.getPTS(off, p);
-		eDebug("streaminfo result: %d, %08llx, %08llx", r, off, p);
-	}
+		return m_streaminfo.getPTS(offset, pts);
 	
 	if (m_fd < 0)
 		return -1;
@@ -81,7 +79,10 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 	{
 		unsigned char block[188];
 		if (read(m_fd, block, 188) != 188)
+		{
+			eDebug("read error");
 			break;
+		}
 		left -= 188;
 		offset += 188;
 		
@@ -132,8 +133,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 			offset -= 188;
 			
 				/* convert to zero-based */
-			fixupPTS(offset, pts);
-			eDebug("tstools result: %08llx, %08llx", offset, pts);
+			if (fixed)
+				fixupPTS(offset, pts);
 			return 0;
 		}
 	}
@@ -145,27 +146,28 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 {
 	if (m_use_streaminfo)
 	{
-		eDebug("streaminfo fixup, before %08llx", now);
-		int r = m_streaminfo.fixupPTS(offset, now);
-		eDebug("streaminfo fixup, after  %08llx", now);
-		return r;
+		return m_streaminfo.fixupPTS(offset, now);
 	} else
 	{
 			/* for the simple case, we assume one epoch, with up to one wrap around in the middle. */
 		calcBegin();
-		off_t begin = 0;
-		pts_t pos;
-		if (getPTS(begin, pos))
+		if (!m_begin_valid)
+		{	
+			eDebug("begin not valid, can't fixup");
 			return -1;
+		}
+		
+		pts_t pos = m_pts_begin;
 		if ((now < pos) && ((pos - now) < 90000 * 10))
-		{
+		{	
 			pos = 0;
 			return 0;
 		}
+		
 		if (now < pos) /* wrap around */
-			pos = now + 0x200000000LL - pos;
+			now = now + 0x200000000LL - pos;
 		else
-			pos = now - pos;
+			now -= pos;
 		return 0;
 	}
 }
