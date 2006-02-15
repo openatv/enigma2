@@ -869,6 +869,17 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 	return -1;
 }
 
+RESULT eDVBServicePlay::cueSheet(ePtr<iCueSheet> &ptr)
+{
+	if (m_is_pvr)
+	{
+		ptr = this;
+		return 0;
+	}
+	ptr = 0;
+	return -1;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_is_pvr)
@@ -1166,6 +1177,23 @@ RESULT eDVBServicePlay::activateTimeshift()
 	}
 	
 	return -2;
+}
+
+PyObject *eDVBServicePlay::getCutList()
+{
+	PyObject *list = PyList_New(0);
+	
+	return list;
+}
+
+RESULT eDVBServicePlay::addCut(const pts_t &when, int what)
+{
+	return -1;
+}
+
+RESULT eDVBServicePlay::removeCut(const pts_t &when, int what)
+{
+	return -1;
 }
 
 void eDVBServicePlay::updateTimeshiftPids()
