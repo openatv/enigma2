@@ -996,17 +996,8 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 	if (!decoding_demux)
 		return -1;
 	
-	off_t begin = 0;
-		/* getPTS for offset 0 is cached, so it doesn't harm. */
-	int r = m_tstools.getPTS(begin, pos);
-	if (r)
-	{
-		eDebug("tstools getpts(0) failed!");
-		return r;
-	}
-	
 	pts_t now;
-	
+	int r;
 			/* TODO: this is a gross hack. */
 	r = decoding_demux->getSTC(now, mode ? 128 : 0);
 
@@ -1016,19 +1007,15 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 		return -1;
 	}
 	
-//	eDebug("STC: %08llx PTS: %08llx, diff %lld", now, pos, now - pos);
-		/* when we are less than 10 seconds before the start, return 0. */
-		/* (we're just waiting for the timespam to start) */
-	if ((now < pos) && ((pos - now) < 90000 * 10))
+	off_t off = 0; /* TODO: fixme */
+	r = m_tstools.fixupPTS(off, now);
+	if (r)
 	{
-		pos = 0;
-		return 0;
+		eDebug("fixup PTS failed");
+		return -1;
 	}
 	
-	if (now < pos) /* wrap around */
-		pos = now + 0x200000000LL - pos;
-	else
-		pos = now - pos;
+	pos = now;
 	
 	return 0;
 }

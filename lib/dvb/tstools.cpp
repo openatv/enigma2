@@ -13,6 +13,8 @@ eDVBTSTools::eDVBTSTools()
 	
 	m_begin_valid = 0;
 	m_end_valid = 0;
+	
+	m_use_streaminfo = 0;
 }
 
 eDVBTSTools::~eDVBTSTools()
@@ -23,6 +25,14 @@ eDVBTSTools::~eDVBTSTools()
 int eDVBTSTools::openFile(const char *filename)
 {
 	closeFile();
+	
+	m_streaminfo.load((std::string(filename) + ".ap").c_str());
+	
+	if (!m_streaminfo.empty())
+		m_use_streaminfo = 1;
+	else
+		m_use_streaminfo = 0;
+
 	m_fd = ::open(filename, O_RDONLY);
 	if (m_fd < 0)
 		return -1;
@@ -48,6 +58,14 @@ void eDVBTSTools::setSearchRange(int maxrange)
 	/* getPTS extracts a pts value from any PID at a given offset. */
 int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 {
+	if (m_use_streaminfo)
+	{
+		off_t off = offset;
+		pts_t p = pts;
+		int r = m_streaminfo.getPTS(off, p);
+		eDebug("streaminfo result: %d, %08llx, %08llx", r, off, p);
+	}
+	
 	if (m_fd < 0)
 		return -1;
 
@@ -112,11 +130,44 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts)
 			pts |= ((unsigned long long)(pes[12]&0xFF)) << 7;
 			pts |= ((unsigned long long)(pes[13]&0xFE)) >> 1;
 			offset -= 188;
+			
+				/* convert to zero-based */
+			fixupPTS(offset, pts);
+			eDebug("tstools result: %08llx, %08llx", offset, pts);
 			return 0;
 		}
 	}
 	
 	return -1;
+}
+
+int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
+{
+	if (m_use_streaminfo)
+	{
+		eDebug("streaminfo fixup, before %08llx", now);
+		int r = m_streaminfo.fixupPTS(offset, now);
+		eDebug("streaminfo fixup, after  %08llx", now);
+		return r;
+	} else
+	{
+			/* for the simple case, we assume one epoch, with up to one wrap around in the middle. */
+		calcBegin();
+		off_t begin = 0;
+		pts_t pos;
+		if (getPTS(begin, pos))
+			return -1;
+		if ((now < pos) && ((pos - now) < 90000 * 10))
+		{
+			pos = 0;
+			return 0;
+		}
+		if (now < pos) /* wrap around */
+			pos = now + 0x200000000LL - pos;
+		else
+			pos = now - pos;
+		return 0;
+	}
 }
 
 void eDVBTSTools::calcBegin()
