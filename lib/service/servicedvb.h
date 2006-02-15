@@ -58,7 +58,8 @@ private:
 class eDVBServicePlay: public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iFrontendStatusInformation,
-		public iSubserviceList, public iTimeshiftService
+		public iSubserviceList, public iTimeshiftService,
+		public iCueSheet
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -75,6 +76,8 @@ public:
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
+	RESULT cueSheet(ePtr<iCueSheet> &ptr);
+	
 
 		// iPauseableService
 	RESULT pause();
@@ -114,6 +117,11 @@ public:
 	int isTimeshiftActive();
 	RESULT activateTimeshift();
 
+		// iCueSheet
+	PyObject *getCutList();
+	RESULT addCut(const pts_t &when, int what);
+	RESULT removeCut(const pts_t &when, int what);
+	
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;

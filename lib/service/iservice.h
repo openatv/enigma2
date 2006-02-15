@@ -377,6 +377,23 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
+	/* not related to eCueSheet */
+class iCueSheet: public iObject
+{
+#ifdef SWIG
+	iCueSheet();
+	~iCueSheet();
+#endif
+public:
+			/* returns a list of (pts, what)-tuples */
+	virtual PyObject *getCutList() = 0;
+	
+	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
+	
+	virtual RESULT addCut(const pts_t &when, int what) = 0;
+	virtual RESULT removeCut(const pts_t &when, int what) = 0;
+};
+
 class iPlayableService: public iObject
 {
 #ifdef SWIG
@@ -413,6 +430,7 @@ public:
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
