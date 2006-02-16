@@ -14,6 +14,7 @@ eAVSwitch::eAVSwitch()
 {
 	ASSERT(!instance);
 	instance = this;
+	m_video_mode = 0;
 }
 
 eAVSwitch::~eAVSwitch()
@@ -132,6 +133,10 @@ void eAVSwitch::setVideomode(int mode)
 {
 	char *pal="pal";
 	char *ntsc="ntsc";
+	
+	if (mode == m_video_mode)
+		return;
+	
 	int fd;
 
 	if((fd = open("/proc/stb/video/videomode", O_WRONLY)) < 0) {
