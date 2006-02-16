@@ -32,6 +32,7 @@ from enigma import *
 
 import time
 import os
+import bisect
 
 from Components.config import config, currentConfigSelectionElement
 
@@ -836,6 +837,8 @@ class InfoBarTimeshift:
 				print "timeshift failed"
 
 	def stopTimeshift(self):
+		if not self.timeshift_enabled:
+			return
 		print "disable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
@@ -1133,3 +1136,119 @@ class InfoBarServiceNotifications:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		except:
 			pass
+
+class InfoBarCueSheetSupport:
+	CUT_TYPE_IN = 0
+	CUT_TYPE_OUT = 1
+	CUT_TYPE_MARK = 2
+	
+	def __init__(self):
+		self["CueSheetActions"] = HelpableActionMap(self, "InfobarCueSheetActions", 
+			{
+				"jumpPreviousMark": (self.jumpPreviousMark, "jump to next marked position"),
+				"jumpNextMark": (self.jumpNextMark, "jump to previous marked position"),
+				"toggleMark": (self.toggleMark, "toggle a cut mark at the current position")
+			}, prio=1) 
+		
+		self.cut_list = [ ]
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__serviceStarted,
+			})
+
+	def __serviceStarted(self):
+		print "new service started! trying to download cuts!"
+		self.downloadCuesheet()
+
+	def __getSeekable(self):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return None
+		return service.seek()
+
+	def __getCurrentPosition(self):
+		seek = self.__getSeekable()
+		if seek is None:
+			return None
+		r = seek.getPlayPosition()
+		if r[0]:
+			return None
+		return long(r[1])
+
+	def jumpPreviousNextMark(self, cmp, alternative=None):
+		current_pos = self.__getCurrentPosition()
+		if current_pos is None:
+ 			return
+		mark = self.getNearestCutPoint(current_pos, cmp=cmp)
+		if mark is not None:
+			pts = mark[0]
+		elif alternative is not None:
+			pts = alternative
+		else:
+			return
+
+		seekable = self.__getSeekable()
+		if seekable is not None:
+			seekable.seekTo(pts)
+
+	def jumpPreviousMark(self):
+		print "jumpPreviousMark"
+		# we add 2 seconds, so if the play position is <2s after
+		# the mark, the mark before will be used
+		self.jumpPreviousNextMark(lambda x: -x-5*90000, alternative=0)
+
+	def jumpNextMark(self):
+		print "jumpNextMark"
+		self.jumpPreviousNextMark(lambda x: x)
+
+	def getNearestCutPoint(self, pts, cmp=abs):
+		# can be optimized
+		nearest = None
+		for cp in self.cut_list:
+			diff = cmp(cp[0] - pts)
+			if diff >= 0 and (nearest is None or cmp(nearest[0] - pts) > diff):
+				nearest = cp
+		return nearest
+
+	def toggleMark(self):
+		print "toggleMark"
+		current_pos = self.__getCurrentPosition()
+		if current_pos is None:
+			print "not seekable"
+			return
+		
+		print "current position: ", current_pos
+
+		nearest_cutpoint = self.getNearestCutPoint(current_pos)
+		print "nearest_cutpoint: ", nearest_cutpoint
+		
+		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < 5*90000:
+			self.cut_list.remove(nearest_cutpoint)
+		else:
+			bisect.insort(self.cut_list, (current_pos, self.CUT_TYPE_MARK))
+		
+		self.uploadCuesheet()
+
+	def __getCuesheet(self):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return None
+		return service.cueSheet()
+
+	def uploadCuesheet(self):
+		cue = self.__getCuesheet()
+
+		if cue is None:
+			print "upload failed, no cuesheet interface"
+			return
+		cue.setCutList(self.cut_list)
+
+	def downloadCuesheet(self):
+		cue = self.__getCuesheet()
+
+		if cue is None:
+			print "upload failed, no cuesheet interface"
+			return
+		self.cut_list = cue.getCutList()
+
+		print "cuts:", self.cut_list
