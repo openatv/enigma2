@@ -191,6 +191,11 @@ void eListboxServiceContent::cursorHome()
 {
 	if (m_current_marked && m_saved_cursor == m_list.end())
 	{
+		if (m_cursor_number >= m_size)
+		{
+			m_cursor_number = m_size-1;
+			--m_cursor;
+		}
 		while (m_cursor_number)
 		{
 			std::iter_swap(m_cursor--, m_cursor);
