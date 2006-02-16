@@ -4,11 +4,12 @@
 class eAVSwitch
 {
 	static eAVSwitch *instance;
+	int m_video_mode;
 #ifdef SWIG
 	eAVSwitch();
 	~eAVSwitch();
 #endif
-protected:	
+protected:
 public:
 #ifndef SWIG
 	eAVSwitch();
