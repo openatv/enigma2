@@ -186,6 +186,12 @@
 	<map context="MoviePlayerActions">
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 	</map>
+	
+	<map context="InfobarCueSheetActions">
+		<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
+		<key id="KEY_PLAYPAUSE" mapto="toggleMark" flags="m" />
+		<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="m" />
+	</map>
 
 	<map context="ChannelSelectBaseActions">
 		<key id="KEY_RED" mapto="showAllServices" flags="m" />
