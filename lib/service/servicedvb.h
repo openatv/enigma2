@@ -119,8 +119,7 @@ public:
 
 		// iCueSheet
 	PyObject *getCutList();
-	RESULT addCut(const pts_t &when, int what);
-	RESULT removeCut(const pts_t &when, int what);
+	void setCutList(PyObject *);
 	
 private:
 	friend class eServiceFactoryDVB;
@@ -164,6 +163,27 @@ private:
 	int m_skipmode;
 	
 	ePtr<eCueSheet> m_cue;
+	
+	struct cueEntry
+	{
+		pts_t where;
+		unsigned int what;
+		
+		bool operator < (const struct cueEntry &o) const
+		{
+			return what < o.what;
+		}
+		cueEntry(const pts_t &where, unsigned int what) :
+			where(where), what(what)
+		{
+		}
+	};
+	
+	std::multiset<cueEntry> m_cue_entries;
+	int m_cuesheet_changed;
+	
+	void loadCuesheet();
+	void saveCuesheet();
 };
 
 #endif
