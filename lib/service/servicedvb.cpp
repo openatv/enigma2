@@ -17,6 +17,13 @@
 
 #include <sys/vfs.h>
 
+#include <byteswap.h>
+#include <netinet/in.h>
+
+#ifndef BYTE_ORDER
+#error no byte order defined!
+#endif
+
 #define TSPATH "/media/hdd"
 
 class eStaticServiceDVBInformation: public iStaticServiceInformation
@@ -529,12 +536,18 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_reference(ref), m_dvb_service(service), m_is_paused(0)
 {
 	m_is_pvr = !ref.path.empty();
+	
 	m_timeshift_enabled = m_timeshift_active = 0;
 	m_skipmode = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
+
+	m_cuesheet_changed = 0;
+	
+	if (m_is_pvr)
+		loadCuesheet();
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -632,14 +645,13 @@ RESULT eDVBServicePlay::start()
 
 RESULT eDVBServicePlay::stop()
 {
-	eDebug("stop timeshift");
 	stopTimeshift(); /* in case timeshift was enabled, remove buffer etc. */
-	
-	eDebug("free ts handler");
+
 	m_service_handler_timeshift.free();
-	eDebug("stop service handler");
 	m_service_handler.free();
-	eDebug("ok");
+	
+	if (m_is_pvr && m_cuesheet_changed)
+		saveCuesheet();
 	
 	return 0;
 }
@@ -1183,17 +1195,52 @@ PyObject *eDVBServicePlay::getCutList()
 {
 	PyObject *list = PyList_New(0);
 	
+	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+	{
+		PyObject *tuple = PyTuple_New(2);
+		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(i->where));
+		PyTuple_SetItem(tuple, 1, PyInt_FromLong(i->what));
+		PyList_Append(list, tuple);
+		Py_DECREF(tuple);
+	}
+	
 	return list;
 }
 
-RESULT eDVBServicePlay::addCut(const pts_t &when, int what)
+void eDVBServicePlay::setCutList(PyObject *list)
 {
-	return -1;
-}
-
-RESULT eDVBServicePlay::removeCut(const pts_t &when, int what)
-{
-	return -1;
+	if (!PyList_Check(list))
+		return;
+	int size = PyList_Size(list);
+	int i;
+	
+	m_cue_entries.clear();
+	
+	for (i=0; i<size; ++i)
+	{
+		PyObject *tuple = PyList_GetItem(list, i);
+		if (!PyTuple_Check(tuple))
+		{
+			eDebug("non-tuple in cutlist");
+			continue;
+		}
+		if (PyTuple_Size(tuple) != 2)
+		{
+			eDebug("cutlist entries need to be a 2-tuple");
+			continue;
+		}
+		PyObject *ppts = PyTuple_GetItem(tuple, 0), *ptype = PyTuple_GetItem(tuple, 1);
+		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
+		{
+			eDebug("cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
+			continue;
+		}
+		pts_t pts = PyLong_AsLongLong(ppts);
+		int type = PyInt_AsLong(ptype);
+		m_cue_entries.insert(cueEntry(pts, type));
+		eDebug("adding %08llx, %d", pts, type);
+	}
+	m_cuesheet_changed = 1;
 }
 
 void eDVBServicePlay::updateTimeshiftPids()
@@ -1371,6 +1418,74 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCachePID(eDVBService::cTPID, tpid);
 		}
 	}
+}
+
+void eDVBServicePlay::loadCuesheet()
+{
+	std::string filename = m_reference.path + ".cuts";
+	
+	m_cue_entries.clear();
+
+	FILE *f = fopen(filename.c_str(), "rb");
+
+	if (f)
+	{
+		eDebug("loading cuts..");
+		while (1)
+		{
+			unsigned long long where;
+			unsigned int what;
+			
+			if (!fread(&where, sizeof(where), 1, f))
+				break;
+			if (!fread(&what, sizeof(what), 1, f))
+				break;
+			
+#if BYTE_ORDER == LITTLE_ENDIAN
+			where = bswap_64(where);
+#endif
+			what = ntohl(what);
+			
+			if (what > 2)
+				break;
+			
+			m_cue_entries.insert(cueEntry(where, what));
+		}
+		fclose(f);
+		eDebug("%d entries", m_cue_entries.size());
+	} else
+		eDebug("cutfile not found!");
+	
+	m_cuesheet_changed = 0;
+}
+
+void eDVBServicePlay::saveCuesheet()
+{
+	std::string filename = m_reference.path + ".cuts";
+	
+	FILE *f = fopen(filename.c_str(), "wb");
+
+	if (f)
+	{
+		unsigned long long where;
+		int what;
+
+		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+		{
+#if BYTE_ORDER == BIG_ENDIAN
+			where = i->where;
+#else
+			where = bswap_64(i->where);
+#endif
+			what = htonl(i->what);
+			fwrite(&where, sizeof(where), 1, f);
+			fwrite(&what, sizeof(what), 1, f);
+			
+		}
+		fclose(f);
+	}
+	
+	m_cuesheet_changed = 0;
 }
 
 DEFINE_REF(eDVBServicePlay)
