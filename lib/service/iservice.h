@@ -387,12 +387,11 @@ class iCueSheet: public iObject
 public:
 			/* returns a list of (pts, what)-tuples */
 	virtual PyObject *getCutList() = 0;
-	
+	virtual void setCutList(PyObject *list) = 0;
 	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
-	
-	virtual RESULT addCut(const pts_t &when, int what) = 0;
-	virtual RESULT removeCut(const pts_t &when, int what) = 0;
 };
+
+TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
 
 class iPlayableService: public iObject
 {
