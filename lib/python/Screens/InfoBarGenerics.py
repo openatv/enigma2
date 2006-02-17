@@ -278,7 +278,15 @@ class InfoBarChannelSelection:
 				"switchChannelDown": self.switchChannelDown,
 				"zapUp": (self.zapUp, _("next channel")),
 				"zapDown": (self.zapDown, _("previous channel")),
+				"historyBack": (self.historyBack, _("previous channel in history")),
+				"historyNext": (self.historyNext, _("next channel in history"))
 			})
+
+	def historyBack(self):
+		self.servicelist.historyBack()
+
+	def historyNext(self):
+		self.servicelist.historyNext()
 
 	def switchChannelUp(self):
 		self.servicelist.moveUp()
