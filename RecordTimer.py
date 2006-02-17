@@ -189,14 +189,12 @@ def createTimer(xml):
 	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
-	try:
-		disabled = eval(xml.getAttribute("disabled"))
-	except:
-		disabled = False
-	try:
-		eit = long(xml.getAttribute("eit").encode("utf-8"))
-	except:
+	disabled = long(xml.getAttribute("disabled") or "0")
+	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
+		eit = long(xml.getAttribute("eit"))
+	else:
 		eit = None
+	
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled)
@@ -296,7 +294,8 @@ class RecordTimer(timer.Timer):
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' name="' + str(self.strToXML(timer.name)) + '"')
 			list.append(' description="' + str(self.strToXML(timer.description)) + '"')
-			list.append(' eit="' + str(timer.eit) + '"')
+			if timer.eit is not None:
+				list.append(' eit="' + str(timer.eit) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append('>\n')
 			
