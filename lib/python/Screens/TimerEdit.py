@@ -64,6 +64,7 @@ class TimerEditList(Screen):
 		
 	def toggleDisabledState(self):
 		self["timerlist"].getCurrent()[0].disabled = not self["timerlist"].getCurrent()[0].disabled
+		self.session.nav.RecordTimer.timeChanged(self["timerlist"].getCurrent()[0])
 		self.updateState()
 		self.refill()
 		
