@@ -84,6 +84,7 @@ class TimerEditList(Screen):
 		
 		for timer in self.session.nav.RecordTimer.processed_timers:
 			self.list.append(TimerEntryComponent(timer, processed=True))
+		self.list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
 
 	def showLog(self):
 		self.session.openWithCallback(self.finishedEdit, TimerLog, self["timerlist"].getCurrent()[0])
