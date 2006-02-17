@@ -25,6 +25,12 @@
 #include <sys/ioctl.h>
 #include <errno.h>
 
+	/* these are quite new... */
+#ifndef AUDIO_GET_PTS
+#define AUDIO_GET_PTS              _IOR('o', 19, __u64)
+#define VIDEO_GET_PTS              _IOR('o', 57, __u64)
+#endif
+
 DEFINE_REF(eDVBAudio);
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux)
@@ -130,7 +136,12 @@ void eDVBAudio::unfreeze()
 	if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
 		eDebug("video: AUDIO_CONTINUE: %m");
 }
-	
+
+int eDVBAudio::getPTS(pts_t &now)
+{
+	return ::ioctl(m_fd, AUDIO_GET_PTS, &now);
+}
+
 eDVBAudio::~eDVBAudio()
 {
 	if (m_fd >= 0)
@@ -235,6 +246,11 @@ int eDVBVideo::setFastForward(int skip)
 {
 	m_is_fast_forward = skip;
 	return ::ioctl(m_fd, VIDEO_FAST_FORWARD, skip);
+}
+
+int eDVBVideo::getPTS(pts_t &now)
+{
+	return ::ioctl(m_fd, VIDEO_GET_PTS, &now);
 }
 	
 eDVBVideo::~eDVBVideo()
@@ -641,4 +657,28 @@ RESULT eTSMPEGDecoder::setTrickmode(int what)
 	m_is_trickmode = what;
 	setState();
 	return 0;
+}
+
+RESULT eTSMPEGDecoder::getPTS(int what, pts_t &pts)
+{
+	if (what == 0) /* auto */
+		what = m_video ? 1 : 2;
+
+	if (what == 1) /* video */
+	{
+		if (m_video)
+			return m_video->getPTS(pts);
+		else
+			return -1;
+	}
+
+	if (what == 2) /* audio */
+	{
+		if (m_audio)
+			return m_audio->getPTS(pts);
+		else
+			return -1;
+	}
+
+	return -1;
 }

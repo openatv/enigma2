@@ -604,6 +604,11 @@ void eDVBServicePlay::serviceEvent(int event)
 			updateTimeshiftPids();
 		if (!m_timeshift_active)
 			updateDecoder();
+		if (m_first_program_info && m_is_pvr)
+		{
+			m_first_program_info = 0;
+			seekTo(0);
+		}
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
@@ -637,6 +642,7 @@ RESULT eDVBServicePlay::start()
 		   two (one for decoding, one for data source), as we must be prepared
 		   to start recording from the data demux. */
 	m_cue = new eCueSheet();
+	m_first_program_info = 1;
 	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr, m_cue);
 	m_event(this, evStart);
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
@@ -815,7 +821,18 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
-	return pvr_channel->getCurrentPosition(m_decode_demux, pos, 1);
+	int r = 0;
+
+		/* if there is a decoder, use audio or video PTS */
+	if (m_decoder)
+	{
+		r = m_decoder->getPTS(0, pos);
+		if (r)
+			return r;
+	}
+	
+		/* fixup */
+	return pvr_channel->getCurrentPosition(m_decode_demux, pos, m_decoder ? 1 : 0);
 }
 
 RESULT eDVBServicePlay::setTrickmode(int trick)
