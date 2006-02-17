@@ -746,6 +746,8 @@ class ChannelSelectionBase(Screen):
 			return bouquets
 		return None
 
+HISTORYSIZE = 20
+
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
@@ -770,13 +772,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.timeout.get().append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
 
+		self.history = [ ]
+		self.history_pos = 0
+
 	def __onCreate(self):
 		self.setTvMode()
 		self.restoreRoot()
 		lastservice=eServiceReference(config.tv.lastservice.value)
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
-			self.session.nav.playService(lastservice)
+			self.zap()
 
 	def __onShown(self):
 		self.recallBouquetMode()
@@ -801,9 +806,46 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	#called from infoBar and channelSelected
 	def zap(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		if ref is None or ref != self.getCurrentSelection():
-			self.session.nav.playService(self.getCurrentSelection())
+		nref = self.getCurrentSelection()
+		if ref is None or ref != nref:
+			self.session.nav.playService(nref)
 		self.saveRoot()
+		self.saveChannel()
+		tmp=self.servicePath[:]
+		tmp.append(nref)
+		try:
+			del self.history[self.history_pos+1:]
+		except:
+			pass
+		self.history.append(tmp)
+		hlen = len(self.history)
+		if hlen > HISTORYSIZE:
+			del self.history[0]
+		self.history_pos = hlen-1
+
+	def historyBack(self):
+		hlen = len(self.history)
+		if hlen > 1 and self.history_pos > 0:
+			self.history_pos -= 1
+			self.setHistoryPath()
+
+	def historyNext(self):
+		hlen = len(self.history)
+		if hlen > 1 and self.history_pos < (hlen-1):
+			self.history_pos += 1
+			self.setHistoryPath()
+
+	def setHistoryPath(self):
+		path = self.history[self.history_pos][:]
+		ref = path.pop()
+		self.servicePath = path
+		self.saveRoot()
+		plen = len(path)
+		root = path[plen-1]
+		if self.getRoot() != root:
+			self.setRoot(root)
+		self.session.nav.playService(ref)
+		self.setCurrentSelection(ref)
 		self.saveChannel()
 
 	def saveRoot(self):
