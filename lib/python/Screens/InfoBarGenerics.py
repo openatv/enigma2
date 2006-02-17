@@ -344,7 +344,7 @@ class InfoBarEPG:
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap()
 
-	def openBouquetEPG(self, bouquet):
+	def openBouquetEPG(self, bouquet, withCallback=True):
 		ptr=eEPGCache.getInstance()
 		services = [ ]
 		servicelist = eServiceCenter.getInstance().list(bouquet)
@@ -358,22 +358,28 @@ class InfoBarEPG:
 				services.append(ServiceReference(service))
 		if len(services):
 			self.epg_bouquet = bouquet
-			self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService)
+			if withCallback:
+				self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService)
+			else:
+				self.session.open(EPGSelection, services, self.zapToService)
 
 	def closed(self, ret):
 		if ret:
 			self.close(ret)
 
-	def openMultiServiceEPG(self):
+	def openMultiServiceEPG(self, withCallback=True):
 		bouquets = self.servicelist.getBouquetList()
 		if bouquets is None:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
-			self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG)
+			if withCallback:
+				self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG)
+			else:
+				self.session.open(BouquetSelector, bouquets, self.openBouquetEPG)
 		elif cnt == 1: 
-			self.openBouquetEPG(bouquets[0][1])
+			self.openBouquetEPG(bouquets[0][1], withCallback)
 
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
@@ -403,7 +409,7 @@ class InfoBarEPG:
 			self.session.open(EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG)
 		else:
 			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
-			self.openMultiServiceEPG()
+			self.openMultiServiceEPG(False)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
 		if len(self.epglist) > 1:
