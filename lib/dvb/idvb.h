@@ -426,6 +426,7 @@ public:
 typedef long long pts_t;
 
 class iFilePushScatterGather;
+class iTSMPEGDecoder;
 
 	/* note that a cue sheet describes the logical positions. thus 
 	   everything is specified in pts and not file positions */
@@ -444,7 +445,7 @@ public:
 	void addSourceSpan(const pts_t &begin, const pts_t &end);
 	
 	void setSkipmode(const pts_t &ratio); /* 90000 is 1:1 */
-	void setDecodingDemux(iDVBDemux *demux);
+	void setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder);
 	
 			/* frontend and backend */
 	eSingleLock m_lock;
@@ -458,6 +459,7 @@ public:
 	pts_t m_skipmode_ratio;
 	Signal1<void,int> m_event;
 	ePtr<iDVBDemux> m_decoding_demux;
+	ePtr<iTSMPEGDecoder> m_decoder;
 };
 
 class iDVBPVRChannel: public iDVBChannel

@@ -1399,7 +1399,7 @@ void eDVBServicePlay::updateDecoder()
 		if (m_decode_demux)
 			m_decode_demux->getMPEGDecoder(m_decoder);
 		if (m_cue)
-			m_cue->setDecodingDemux(m_decode_demux);
+			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
 	}
 
 	if (m_decoder)
