@@ -766,8 +766,16 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		if (relative)
 		{
 			pts_t now;
-					/* we're using the decoder's timestamp here. this 
-					   won't work for radio (ouch). */
+			if (!m_cue->m_decoder)
+			{
+				eDebug("no decoder - can't seek relative");
+				continue;
+			}
+			if (m_cue->m_decoder->getPTS(0, now))
+			{
+				eDebug("decoder getPTS failed, can't seek relative");
+				continue;
+			}
 			if (getCurrentPosition(m_cue->m_decoding_demux, now, 1))
 			{
 				eDebug("seekTo: getCurrentPosition failed!");
@@ -1092,9 +1100,10 @@ void eCueSheet::setSkipmode(const pts_t &ratio)
 	m_event(evtSkipmode);
 }
 
-void eCueSheet::setDecodingDemux(iDVBDemux *demux)
+void eCueSheet::setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder)
 {
 	m_decoding_demux = demux;
+	m_decoder = decoder;
 }
 
 RESULT eCueSheet::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection)
