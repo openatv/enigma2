@@ -997,15 +997,19 @@ RESULT eDVBChannel::getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, in
 		return -1;
 	
 	pts_t now;
+	
 	int r;
-			/* TODO: this is a gross hack. */
-	r = decoding_demux->getSTC(now, mode ? 128 : 0);
-
-	if (r)
+	
+	if (mode == 0) /* demux */
 	{
-		eDebug("demux getSTC failed");
-		return -1;
-	}
+		r = decoding_demux->getSTC(now, 0);
+		if (r)
+		{
+			eDebug("demux getSTC failed");
+			return -1;
+		}
+	} else
+		now = pos; /* fixup supplied */
 	
 	off_t off = 0; /* TODO: fixme */
 	r = m_tstools.fixupPTS(off, now);

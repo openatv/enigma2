@@ -549,6 +549,8 @@ public:
 	virtual RESULT setZoom(int what)=0;
 	
 	virtual RESULT setTrickmode(int what) = 0;
+	
+	virtual RESULT getPTS(int what, pts_t &pts) = 0;
 };
 
 #endif

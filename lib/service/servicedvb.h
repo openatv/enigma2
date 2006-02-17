@@ -142,6 +142,7 @@ private:
 	Signal2<void,iPlayableService*,int> m_event;
 	
 	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active;
+	int m_first_program_info;
 	
 	std::string m_timeshift_file;
 	int m_timeshift_fd;

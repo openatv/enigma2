@@ -22,6 +22,7 @@ public:
 	void flush();
 	void freeze();
 	void unfreeze();
+	int getPTS(pts_t &now);
 	virtual ~eDVBAudio();
 };
 
@@ -46,6 +47,7 @@ public:
 	int setSlowMotion(int repeat);
 	int setFastForward(int skip);
 	void unfreeze();
+	int getPTS(pts_t &now);
 	virtual ~eDVBVideo();
 };
 
@@ -117,5 +119,9 @@ public:
 	RESULT setZoom(int what);
 	RESULT flush();
 	RESULT setTrickmode(int what);
+	
+		/* what 0=auto, 1=video, 2=audio. */
+	RESULT getPTS(int what, pts_t &pts);
 };
+
 #endif
