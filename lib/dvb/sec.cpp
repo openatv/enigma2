@@ -602,27 +602,24 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 					// voltage was disabled..so we wait a longer time ..
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +4) );  // no need to send stop rotor cmd
+					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +7) );  // no need to send stop rotor cmd
+
+					if (send_mask)
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) ); // wait 750ms after send switch cmd
+					else
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +1) );
 
 					eDVBDiseqcCommand diseqc;
-					if ( !send_mask )  // no switch changed.. so we send first the rotor stop command
-					{
-						diseqc.len = 3;
-						diseqc.data[0] = 0xE0;
-						diseqc.data[1] = 0x31;	// positioner
-						diseqc.data[2] = 0x60;	// stop
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_ROTORPOS_VALID_GOTO, +3) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-						// wait 300msec after send rotor stop cmd
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 300) );
-					}
-					else
-					{
-						// wait 500msec after switching to rotor
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +2) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +1) );
-					}
+					diseqc.len = 3;
+					diseqc.data[0] = 0xE0;
+					diseqc.data[1] = 0x31;	// positioner
+					diseqc.data[2] = 0x60;	// stop
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_ROTORPOS_VALID_GOTO, +5) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+					// wait 300msec after send rotor stop cmd
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 300) );
 
 					diseqc.data[0] = 0xE0;
 					diseqc.data[1] = 0x31;		// positioner
