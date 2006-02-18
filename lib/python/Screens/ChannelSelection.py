@@ -821,6 +821,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		hlen = len(self.history)
 		if hlen > HISTORYSIZE:
 			del self.history[0]
+			hlen -= 1
 		self.history_pos = hlen-1
 
 	def historyBack(self):
