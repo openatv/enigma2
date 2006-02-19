@@ -641,8 +641,7 @@ def InitNimManager(nimmgr):
 			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList, False);
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList, False);
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList, False);
-#			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))), False);
-			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS"))), False);
+			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))), False);
 			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
 			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
 			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
