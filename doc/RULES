@@ -93,3 +93,10 @@ after. Empty lines are definitely preferred to save bandwidth.
 An ascii file ends with \n, and preferrable not with other empty lines.
 
 That means: make sure the last line doesn't contain any characters, thanks.
+
+5.-99.) Threads are bad.
+
+(Unless they are worker threads. And sleep()ing is definitely not working.
+So if you every having a thread which sleeps, you did something wrong. There
+are eTimers, and not knowing how to use them is no excuse to throw aways all
+enigma code design concepts.)
