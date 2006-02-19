@@ -1,6 +1,7 @@
 import os
 
 from Tools.Directories import *
+from Plugins.Plugin import PluginDescriptor
 
 def my_import(name):
 	mod = __import__(name)
@@ -12,12 +13,27 @@ def my_import(name):
 class PluginComponent:
 	def __init__(self):
 		self.plugins = {}
+		self.pluginList = [ ]
 		self.setPluginPrefix("Plugins.")
 		
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
-
-	def readPluginList(self, runAutostartPlugins=False, runAutoendPlugins=False):
+	
+	def addPlugin(self, plugin):
+		self.pluginList.append(plugin)
+		for x in plugin.where:
+			self.plugins.setdefault(x, []).append(plugin)
+			if x == PluginDescriptor.WHERE_AUTOSTART:
+				plugin(reason=0)
+	
+	def removePlugin(self, plugin):
+		self.pluginList.remove(plugin)
+		for x in plugin.where:
+			self.plugins[x].remove(plugin)
+			if x == PluginDescriptor.WHERE_AUTOSTART:
+				plugin(reason=1)
+	
+	def readPluginList(self):
 		"""enumerates plugins"""
 
 		directories = os.listdir(resolveFilename(SCOPE_PLUGINS))
@@ -40,10 +56,7 @@ class PluginComponent:
 						plugins = [ plugins ]
 					
 					for p in plugins:
-						print "imported plugin %s" % (p.name)
-						
-						for x in p.where:
-							self.plugins.setdefault(x, []).append(p)
+						self.addPlugin(p);
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
@@ -55,5 +68,9 @@ class PluginComponent:
 			for p in self.plugins.get(x, [ ]):
 				res.append(p)
 		return res
+
+	def shutdown(self):
+		for p in self.pluginList[:]:
+			self.removePlugin(p)
 
 plugins = PluginComponent()

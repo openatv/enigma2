@@ -68,3 +68,18 @@ def main(session):
 
 with MyScreen being a GUI screen.
 
+
+autostarting plugins
+====================
+
+you can configure your plugin to automatically start on enigma startup, and
+end on shutdown.
+
+you just have to use "WHERE_AUTOSTART". your entry point must (fnc) look 
+like:
+
+def autostartEntry(raeson):
+	if reason == 0: # startup
+		print "startup"
+	elif reason == 1:
+		print "shutdown"

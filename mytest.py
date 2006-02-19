@@ -35,7 +35,7 @@ except:
 
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
-plugins.readPluginList(runAutostartPlugins=True)
+plugins.readPluginList()
 
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
@@ -331,7 +331,7 @@ import Components.NimManager
 # first, setup a screen
 try:
 	runScreenTest()
-#	plugins.getPluginList(runAutoendPlugins=True)
+	plugins.shutdown()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
