@@ -5,13 +5,25 @@ class About:
 		pass
 	
 	def getVersionString(self):
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				return "2.0-" + str(splitted[1])
-		file.close()
-		return "2.0b"
+		try:
+			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split('=')
+				if splitted[0] == "version":
+					#     YYYY MM DD hh mm
+					#0120 2005 11 29 01 16
+					#0123 4567 89 01 23 45
+					version = splitted[1]
+					year = version[4:8]
+					month = version[8:10]
+					day = version[10:12]
+					
+					return '-'.join(["2.0", year, month, day])
+			file.close()
+		except IOError:
+			pass
+
+		return "unavailable"
 	
 about = About()
