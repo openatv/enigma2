@@ -22,7 +22,7 @@ InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
 
 try:
-	from twisted.internet import e2reactor
+	import e2reactor
 	e2reactor.install()
 	
 	from twisted.internet import reactor
@@ -30,6 +30,7 @@ try:
 	def runReactor():
 		reactor.run()
 except:
+	print "twisted not available"
 	def runReactor():
 		runMainloop()
 
