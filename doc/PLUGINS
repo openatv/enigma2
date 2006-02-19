@@ -1,0 +1,70 @@
+enigma2 plugins
+===============
+
+Enigma2 plugins are always written in python. If you really have to call
+C/C++ functions from your code, you can supply a python module with it,
+implementing your functions.
+
+Let's write a plugin. We call it "ourSmallTest", and it should be a test
+plugin.
+
+The simplest plugin looks like the following:
+
+Plugins/ourSmallTest/plugin.py:
+
+"from Plugins.Plugin import PluginDescriptor
+
+def main(session):
+	print "Hello world!"
+
+def Plugins():
+ 	return PluginDescriptor(
+		name="Our Small Test", 
+		description="plugin to test some capabilities", 
+		where = PluginDescriptor.WHERE_PLUGINMENU,
+		fnc=main)"
+
+Basically, you're writing a "python module", which is called
+Plugins.ourSmallTest.plugin. This corresponds to the
+Plugins/ourSmallTest/plugin.py file.
+
+This module must define a single function called "Plugins". The functions is
+called for every Plugin, and should return (a list of)
+PluginDescriptor-Objects. A PluginDescriptor is a simple object, holding the
+Plugin's name, description, picture etc., and an entry point.
+
+In the first line, we import that class. It's contained in a module called
+Plugins.Plugin.
+
+At the end, we define the "Plugins"-Functions. As said, it returns a
+constructed PluginDescriptor-object (in fact it can return either one or a
+list of descriptors, here it returns exactly one). We use keyword arguments
+to supply the Plugin's information, like the name, the descripttion etc.
+
+We also supply an entry point, called "fnc". It's set to the "main"
+function, which is defined before. Our entry point is called with a number
+of arguments, depending on where the plugin was launched from. In this case,
+it's a "session" argument. You need the session argument if you want to do
+graphical output. A session basically connects to "user". There is always
+one sessions which corresponds to the main screen output, but there can also
+be other sessions, which yet have to be implemented. (A possible example is a
+networked remote session.) If you don't need that argument, just ignore it.
+
+A plugin can decide where it wants to be displayed. A possible example is
+the plugin menu out of the main menu. In the "where" argument to the
+descriptor, you can supply one (or a list of) "WHERE_"-identifiers. We use
+WHERE_PLUGINMENU. There will be other ones, for example for the blue button,
+or specific other menus.
+
+Now, if you copy this plugin in-place, it should be listed in the plugin
+browser in the main menu. You can press "ok" on the plugin, and the "main"
+function, which was specified as the plugin's entry point, is executed.
+
+If you want to open a graphical screen, you might want the entry point to
+look like:
+
+def main(session):
+	session.open(MyScreen)
+
+with MyScreen being a GUI screen.
+

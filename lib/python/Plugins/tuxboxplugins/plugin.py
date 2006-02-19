@@ -1,3 +1,4 @@
+# must be fixed for the new plugin interface
 from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

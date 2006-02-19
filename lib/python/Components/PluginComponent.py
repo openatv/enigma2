@@ -1,76 +1,59 @@
 import os
 
 from Tools.Directories import *
-from Screens.Menu import menuupdater
+
+def my_import(name):
+	mod = __import__(name)
+	components = name.split('.')
+	for comp in components[1:]:
+		mod = getattr(mod, comp)
+	return mod
 
 class PluginComponent:
 	def __init__(self):
-		self.plugins = []
+		self.plugins = {}
 		self.setPluginPrefix("Plugins.")
-		self.menuEntries = []
 		
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
 
-	def getPluginList(self, runAutostartPlugins=False, runAutoendPlugins=False):
-		list = []
-		dir = os.listdir(resolveFilename(SCOPE_PLUGINS))
-		self.menuDelete()
-		self.menuEntries = []
+	def readPluginList(self, runAutostartPlugins=False, runAutoendPlugins=False):
+		"""enumerates plugins"""
 
-		for x in dir:
+		directories = os.listdir(resolveFilename(SCOPE_PLUGINS))
+		
+		for x in directories:
 			path = resolveFilename(SCOPE_PLUGINS, x) + "/"
-			try:
-				if os.path.exists(path):
-					if fileExists(path + "plugin.py"):
-						pluginmodule = self.prefix + x + ".plugin"
-						print "trying to import " + pluginmodule
-						exec "import " + pluginmodule
-						plugin = eval(pluginmodule)
-						plugins = plugin.getPlugins()
-						try: picturepaths = plugin.getPicturePaths()
-						except:
-							picturepaths = []
-							for p in plugins:
-								picturepaths.append("")
-						try:
-							for menuEntry in plugin.getMenuRegistrationList():
-								self.menuEntries.append([menuEntry, pluginmodule])
-						except:
-							pass
-	
-						for y in range(len(plugins)):
-							if len(plugins[y]) < 5:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], None, plugins[y][1]))
-							else:
-								list.append((path + picturepaths[y], plugins[y][0] , x, plugins[y][2], plugins[y][3], plugins[y][4], plugins[y][1]))
-						if runAutostartPlugins:
-							try: plugin.autostart()
-							except:	pass
-						if runAutoendPlugins:
-							try: plugin.autoend()
-							except:	pass
-			except:
-				print "Directory", path, "contains a faulty plugin"
-		self.menuUpdate()
-		return list
-	
-	def menuDelete(self):
-		for menuEntry in self.menuEntries:
-			menuupdater.delMenuItem(menuEntry[0][0], menuEntry[0][1], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
+			if os.path.exists(path):
+				if fileExists(path + "plugin.py"):
+					plugin = my_import('.'.join(("Plugins", x, "plugin")))
+					
+					if not plugin.__dict__.has_key("Plugins"):
+						print "Plugin %s doesn't have 'Plugin'-call." % (x)
+						continue
+					
+					print "plugin", plugin
+					plugins = plugin.Plugins()
+					
+					# allow single entry not to be a list
+					if type(plugins) is not list:
+						plugins = [ plugins ]
+					
+					for p in plugins:
+						print "imported plugin %s" % (p.name)
+						
+						for x in p.where:
+							self.plugins.setdefault(x, []).append(p)
 
-	def menuUpdate(self):
-		for menuEntry in self.menuEntries:
-			menuupdater.addMenuItem(menuEntry[0][0], menuEntry[0][1], menuEntry[0][2], menuEntry[1], menuEntry[0][3])
-	
-	def runPlugin(self, plugin, session):
-		try:
-			exec("import " + self.prefix + plugin[2] + ".plugin")
-			if plugin[3] == "screen":
-				session.open(eval(self.prefix + plugin[2] + ".plugin." + plugin[4]), plugin[5])
-			elif plugin[3] == "function":
-				eval(self.prefix + plugin[2] + ".plugin." + plugin[4])(session, plugin[5])
-		except:
-			print "exec of plugin failed!"
+	def getPlugins(self, where):
+		"""Get list of plugins in a specific category"""
+		
+		if type(where) is not list:
+			where = [ where ]
+		res = [ ]
+		for x in where:
+			for p in self.plugins.get(x, [ ]):
+				res.append(p)
+		return res
 
 plugins = PluginComponent()
