@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
 from Components.GUIComponent import *
+from Plugins.Plugin import PluginDescriptor
 
 import os
 
@@ -48,8 +49,8 @@ class Test(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-def getPicturePaths():
-	return [ "" ]
+def main(session):
+	session.open(Test)
 
-def getPlugins():
-	return [("Test", "plugin to test some capabilities", "screen", "Test")]
+def Plugins():
+ 	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)

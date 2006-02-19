@@ -4,6 +4,7 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
+from Plugins.Plugin import PluginDescriptor
 
 import os
 
@@ -161,23 +162,8 @@ class Ipkg(Screen):
 		else:
 			self.close()
 
+def main(session):
+	session.open(Upgrade)
 
-
-def autostart():
-	return
-	os.popen("ipkg update", "r")	
-#
-#def autoend():
-	#print "**************************** AUTOEND"
-
-def getPicturePaths():
-	return ["update.png", "update.png"]
-
-def getPlugins():
-	return [("Softwareupdate", "Updates your receiver's software", "screen", "Upgrade"),
-			("IPKG", "Updates your receiver's software", "screen", "Ipkg")]
-	
-def getMenuRegistrationList():
-	list = []
-	list.append(("setup", 2, "Softwareupdate", "Upgrade"))
-	return list
+def Plugins():
+	return PluginDescriptor(name="Softwareupdate", description="Updates your receiver's software", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)

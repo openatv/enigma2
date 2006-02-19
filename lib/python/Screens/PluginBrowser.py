@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.config import config
-
+from Plugins.Plugin import PluginDescriptor
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -19,28 +19,21 @@ class PluginBrowser(Screen):
 		{
 			"ok": self.save,
 			"back": self.close,
-			"up": self.up,
-			"down": self.down
-		}, -1)
+		})
 		
 	def save(self):
 		#self.close()
 		self.run()
 	
 	def run(self):
-		plugin = self.pluginlist[self["list"].l.getCurrentSelectionIndex()]
-		plugins.runPlugin(plugin, self.session)
+		plugin = self["list"].l.getCurrentSelection()[0]
+		
+		plugin(session=self.session)
 		
 	def updateList(self):
-		self.list = []
-		self.pluginlist = plugins.getPluginList()
-		for x in self.pluginlist:
-			self.list.append(PluginEntryComponent(x[0], x[1], x[6]))
+		self.list = [ ]
+		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		for plugin in self.pluginlist:
+			self.list.append(PluginEntryComponent(plugin))
 		
 		self["list"].l.setList(self.list)
-
-	def up(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		
-	def down(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
