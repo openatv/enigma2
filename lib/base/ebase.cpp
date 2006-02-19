@@ -333,6 +333,13 @@ int eMainloop::runLoop()
 PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
 {
 	PyObject *res = 0;
+	
+	if (app_quit_now)
+	{
+		Py_INCREF(Py_None);
+		return Py_None;
+	}
+	
 	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
 	
 	iterate(user_timeout, &res, dict);
