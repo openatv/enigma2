@@ -21,14 +21,14 @@ class NimSetup(Screen):
 				list.append(getConfigListEntry(_("Port D"), self.nimConfig.diseqcD))
 
 	def createPositionerSetup(self, list):
-		list.append(getConfigListEntry(_("Positioner mode"), self.nimConfig.positionerMode))
-		if (currentConfigSelectionElement(self.nimConfig.positionerMode) == "usals"): # USALS
-			list.append(getConfigListEntry(_("Longitude"), self.nimConfig.longitude))
-			list.append(getConfigListEntry(" ", self.nimConfig.longitudeOrientation))
-			list.append(getConfigListEntry(_("Latitude"), self.nimConfig.latitude))
-			list.append(getConfigListEntry(" ", self.nimConfig.latitudeOrientation))
-		elif (currentConfigSelectionElement(self.nimConfig.positionerMode) == "manual"): # manual
-			pass
+#		list.append(getConfigListEntry(_("Positioner mode"), self.nimConfig.positionerMode))
+#		if (currentConfigSelectionElement(self.nimConfig.positionerMode) == "usals"): # USALS
+		list.append(getConfigListEntry(_("Longitude"), self.nimConfig.longitude))
+		list.append(getConfigListEntry(" ", self.nimConfig.longitudeOrientation))
+		list.append(getConfigListEntry(_("Latitude"), self.nimConfig.latitude))
+		list.append(getConfigListEntry(" ", self.nimConfig.latitudeOrientation))
+#		elif (currentConfigSelectionElement(self.nimConfig.positionerMode) == "manual"): # manual
+#			pass
 
 	def createSetup(self):
 		print "Creating setup"
