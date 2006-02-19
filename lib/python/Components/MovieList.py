@@ -92,6 +92,12 @@ class MovieList(HTMLComponent, GUIComponent):
 			self.load(self.root)
 		self.l.setList(self.list)
 
+	def removeService(self, service):
+		for l in self.list[:]:
+			if l[0][0] == service:
+				self.list.remove(l)
+		self.l.setList(self.list)
+
 	def load(self, root):
 		# this lists our root service, then building a 
 		# nice list
