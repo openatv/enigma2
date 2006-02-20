@@ -152,6 +152,8 @@ void eAVSwitch::setVideomode(int mode)
 			break;
 	}
 	close(fd);
+
+	m_video_mode = mode;
 }
 
 void eAVSwitch::setWSS(int val) // 0 = auto, 1 = auto(4:3_off)
