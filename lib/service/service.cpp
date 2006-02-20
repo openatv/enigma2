@@ -9,11 +9,14 @@ eServiceReference::eServiceReference(const std::string &string)
 	const char *c=string.c_str();
 	int pathl=0;
 
-	if ( sscanf(c, "%d:%d:%x:%x:%x:%x:%x:%x:%x:%x:%n", &type, &flags, &data[0], &data[1], &data[2], &data[3], &data[4], &data[5], &data[6], &data[7], &pathl) < 8 )
+	if (!string.length())
+		type = idInvalid;
+	else if ( sscanf(c, "%d:%d:%x:%x:%x:%x:%x:%x:%x:%x:%n", &type, &flags, &data[0], &data[1], &data[2], &data[3], &data[4], &data[5], &data[6], &data[7], &pathl) < 8 )
 	{
 		memset( data, 0, sizeof(data) );
 		eDebug("find old format eServiceReference string");
-		sscanf(c, "%d:%d:%x:%x:%x:%x:%n", &type, &flags, &data[0], &data[1], &data[2], &data[3], &pathl);
+		if ( sscanf(c, "%d:%d:%x:%x:%x:%x:%n", &type, &flags, &data[0], &data[1], &data[2], &data[3], &pathl) < 2 )
+			type = idInvalid;
 	}
 
 	if (pathl)
