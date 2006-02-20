@@ -1,8 +1,8 @@
-from twisted.internet import reactor
-from twisted.web2 import server, http, static
-from Plugins.Plugin import PluginDescriptor
 
 def startWebserver():
+	from twisted.internet import reactor
+	from twisted.web2 import server, http, static
+	from Plugins.Plugin import PluginDescriptor
 	toplevel = static.File("/hdd")
 	site = server.Site(toplevel)
 	
