@@ -118,7 +118,7 @@ class Menu(Screen):
 
 	def menuClosedWithConfigFlush(self, *res):
 		configfile.save()
-		self.menuClosed(res)
+		self.menuClosed(*res)
 
 	def menuClosed(self, *res):
 		if len(res) and res[0]:
