@@ -14,7 +14,8 @@ class LanguageSelection(Screen):
 		self.list = []
 		self["list"] = LanguageList(self.list)
 		self.updateList()
-		
+		self.onLayoutFinish.append(self.selectActiveLanguage)
+				
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], 
 		{
 			"ok": self.save,
@@ -24,6 +25,9 @@ class LanguageSelection(Screen):
 			"left": self.left,
 			"right": self.right
 		}, -1)
+		
+	def selectActiveLanguage(self):
+		self["list"].instance.moveSelectionTo(language.activeLanguage)
 		
 	def save(self):
 		self.run()
