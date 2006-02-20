@@ -21,7 +21,7 @@ class SubserviceSelection(Screen):
 
 		self.subservices = subservices
 
-		print subservices
+		print "subservices", subservices
 		tlist = []
 		if isinstance(subservices, iSubserviceListPtr):
 			n = subservices.getNumberOfSubservices()

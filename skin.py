@@ -205,7 +205,6 @@ def readSkin(screen, skin, name, desktop):
 	
 	if myscreen is None:
 		# try embedded skin
-		print screen.__dict__
 		if "parsedSkin" in screen.__dict__:
 			myscreen = screen.parsedSkin
 		elif "skin" in screen.__dict__:
