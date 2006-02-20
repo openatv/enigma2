@@ -94,7 +94,25 @@ An ascii file ends with \n, and preferrable not with other empty lines.
 
 That means: make sure the last line doesn't contain any characters, thanks.
 
-5.-99.) Threads are bad.
+4.) usage of 'print'
+
+While it's great to dump out debug stuff, especially if your code can crash,
+expect your code to be stable at some point.
+
+At that point, others might get annoyed by the debug output created by your
+code. That's no problem, they can remove it, but they have to find them
+first.
+
+Using "print obj" with obj being some object, preferably a complex one, is a
+good way to ensure that nobody is able to remove your debug output - because
+nobody finds it!
+
+Please, always prepend something before which can be grepped. Anything, just
+not nothing. Going trough all prints to find the offending one is definitely
+no fun. Something like "print 'obj', obj" is fine. Something like "print 
+'mySpecialPlugin actionmap is', actionMap" is even better.
+
+6.-99.) Threads are bad.
 
 (Unless they are worker threads. And sleep()ing is definitely not working.
 So if you every having a thread which sleeps, you did something wrong. There
