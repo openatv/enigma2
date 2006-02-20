@@ -182,7 +182,7 @@ class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
-		print timer
+		print "TimerSanityConflict", timer
 			
 		self["timer1"] = TimerList(self.getTimerList(timer[0]))
 		if len(timer) > 1:

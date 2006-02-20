@@ -90,7 +90,6 @@ class Menu(Screen):
 		#        string (as we want to reference 
 		#        stuff which is just imported)
 		# FIXME. somehow
-		print arg
 		if arg[0] != "":
 			exec "from " + arg[0] + " import *"
 			

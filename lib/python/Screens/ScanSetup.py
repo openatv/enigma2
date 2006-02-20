@@ -10,7 +10,7 @@ from Components.Label import Label
 from enigma import eDVBFrontendParametersSatellite, eComponentScan
 
 def getInitialTransponderList(tlist, pos):
-	print pos
+	print "pos", pos
 	list = nimmanager.getTransponders(pos)
 
 	for x in list:

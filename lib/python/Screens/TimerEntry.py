@@ -184,7 +184,7 @@ class TimerEntry(Screen):
 		self[widget].l.setList(self.list)
 
 	def newConfig(self):
-		print self["config"].getCurrent()
+		print "newConfig", self["config"].getCurrent()
 		if self["config"].getCurrent() == self.timerTypeEntry:
 			self.createSetup("config")
 		if self["config"].getCurrent() == self.frequencyEntry:
@@ -237,7 +237,6 @@ class TimerEntry(Screen):
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		print dt
 		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):

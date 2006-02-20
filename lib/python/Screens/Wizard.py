@@ -23,7 +23,7 @@ class Wizard(Screen, HelpableScreen):
 			self.lastStep = 0
 		
 		def startElement(self, name, attrs):
-			print name
+			print "startElement", name
 			self.currContent = name
 			if (name == "step"):
 				self.lastStep += 1
@@ -195,7 +195,7 @@ class Wizard(Screen, HelpableScreen):
 		
 	def runCode(self, code):
 		if code != "":
-			print code
+			print "code", code
 			exec(code)
 		
 	def updateValues(self):
@@ -209,7 +209,7 @@ class Wizard(Screen, HelpableScreen):
 			if self.showStepSlider:
 				self["stepslider"].setValue(self.currStep)
 		
-			print _(self.wizard[self.currStep]["text"])
+			print "wizard text", _(self.wizard[self.currStep]["text"])
 			self["text"].setText(_(self.wizard[self.currStep]["text"]))
 	
 			self.runCode(self.wizard[self.currStep]["code"])
@@ -231,7 +231,7 @@ class Wizard(Screen, HelpableScreen):
 						self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
 					else:
 						self["config"].instance.setZPosition(2)
-						print self.wizard[self.currStep]["config"]["screen"]
+						print "wizard screen", self.wizard[self.currStep]["config"]["screen"]
 						if self.wizard[self.currStep]["config"]["args"] == None:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
 						else:
