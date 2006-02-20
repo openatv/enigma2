@@ -882,7 +882,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
 				lastservice=eServiceReference(config.tv.lastservice.value)
-				if lastservice is not None:
+				if lastservice.valid():
 					self.setCurrentSelection(lastservice)
 				return True
 		return False
@@ -986,7 +986,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
 				lastservice=eServiceReference(config.radio.lastservice.value)
-				if lastservice is not None:
+				if lastservice.valid():
 					self.setCurrentSelection(lastservice)
 				return True
 		return False
