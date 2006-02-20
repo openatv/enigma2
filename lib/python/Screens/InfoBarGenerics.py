@@ -639,12 +639,12 @@ class InfoBarSeek:
 	def seekFwd(self):
 		print "start fwd timer"
 		self.fwdtimer = True
-		self.fwdKeyTimer.start(500)
+		self.fwdKeyTimer.start(1000)
 
 	def seekBack(self):
 		print "start rewind timer"
 		self.rwdtimer = True
-		self.rwdKeyTimer.start(500)
+		self.rwdKeyTimer.start(1000)
 
 	def seekFwdUp(self):
 		print "seekFwdUp"
@@ -730,7 +730,13 @@ class InfoBarSeek:
 			self.lockedBecauseOfSkipping = True
 
 	def __evEOF(self):
-		self.setSeekState(self.SEEK_STATE_PAUSE)
+		if self.seekstate != self.SEEK_STATE_PLAY:
+			self.setSeekState(self.SEEK_STATE_PAUSE)
+			# HACK
+			self.getSeek().seekRelative(1, -90000)
+			self.setSeekState(self.SEEK_STATE_PLAY)
+		else:
+			self.setSeekState(self.SEEK_STATE_PAUSE)
 	
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
