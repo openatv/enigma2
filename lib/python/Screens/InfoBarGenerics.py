@@ -1038,19 +1038,26 @@ class InfoBarAdditionalInfo:
 		
 		self["ButtonRed"] = PixmapConditional(withTimer = False)
 		self["ButtonRed"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self.onShown.append(self["ButtonRed"].update)
+		self.onLayoutFinish.append(self["ButtonRed"].update)
 		self["ButtonRedText"] = LabelConditional(text = _("Record"), withTimer = False)
 		self["ButtonRedText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self.onShown.append(self["ButtonRedText"].update)
+		self.onLayoutFinish.append(self["ButtonRedText"].update)
 
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonGreenText"] = Label(_("Subservices"))
 
 		self["ButtonYellow"] = PixmapConditional(withTimer = False)
-		self["ButtonYellow"].setConnect(lambda: False)
+		self["ButtonYellow"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
+		self["ButtonYellowText"] = LabelConditional(text = _("Timeshifting"), withTimer = False)
+		self["ButtonYellowText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
+		self.onLayoutFinish.append(self["ButtonYellow"].update)
+		self.onLayoutFinish.append(self["ButtonYellowText"].update)
 
 		self["ButtonBlue"] = PixmapConditional(withTimer = False)
 		self["ButtonBlue"].setConnect(lambda: False)
+		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
+		self["ButtonBlueText"].setConnect(lambda: False)
+		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
 
