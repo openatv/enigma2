@@ -1057,6 +1057,7 @@ class InfoBarAdditionalInfo:
 		self["ButtonBlue"].setConnect(lambda: False)
 		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
 		self["ButtonBlueText"].setConnect(lambda: False)
+		self.onLayoutFinish.append(self["ButtonBlue"].update)
 		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
