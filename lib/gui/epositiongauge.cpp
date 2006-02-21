@@ -60,8 +60,13 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		getStyle(style);
 		style->paintBackground(painter, ePoint(0,0), s);
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
+		painter.setForegroundColor(gRGB(0x225b7395));
 
-		painter.fill(eRect(0, 10, s.width(), s.height()-20));
+		painter.fill(eRect(0, 10, s.width(), s.height()-14));
+		
+//		painter.setForegroundColor(gRGB(0x00000000));
+		painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
+		painter.fill(eRect(0, 2, 2, s.height() - 4));
 		
 #if 0
 // border
