@@ -239,6 +239,11 @@ int main(int argc, char **argv)
 	printf("executing main\n");
 
 	python.execute("mytest", "__main__");
+	
+	lcd_win->hide();
+	
+	dsk.paint();
+	dsk_lcd.paint();
 
 	return exit_code;
 }
