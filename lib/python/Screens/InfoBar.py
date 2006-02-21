@@ -7,7 +7,7 @@ from ServiceReference import ServiceReference
 
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ServicePosition import ServicePosition
+from Components.ServicePosition import ServicePosition, ServicePositionGauge
 
 from Tools.Notifications import AddNotificationWithCallback
 
@@ -16,7 +16,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
-	InfoBarServiceNotifications, InfoBarPVRState
+	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -51,6 +51,7 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", "Hear Radio...")]))
 
 		self["CurrentTime"] = Clock()
+		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 
 	def showRadio(self):
 		self.session.open(ChannelSelectionRadio)
@@ -65,7 +66,7 @@ class InfoBar(Screen, InfoBarShowHide, InfoBarPowerKey,
 class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
-		InfoBarServiceNotifications, InfoBarPVRState):
+		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
@@ -78,11 +79,13 @@ class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
 		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, \
-				InfoBarServiceNotifications, InfoBarPVRState:
+				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 		self["ElapsedTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_POSITION)
+		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
+		
 		# TYPE_LENGTH?
 		
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
