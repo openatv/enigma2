@@ -66,7 +66,14 @@ class AVSwitch:
 
 def InitAVSwitch():
 	config.av = ConfigSubsection();
-	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, (("cvbs", _("CVBS")), ("rgb", _("RGB")), ("svideo", _("S-Video")) ))
+	config.av.yuvenabled = configElementBoolean("config.av.yuvenabled", 0)
+	colorformat_choices = ( ("cvbs", _("CVBS")), ("rgb", _("RGB")), ("svideo", _("S-Video")), ("yuv", _("YPbPr")) )
+	
+	# when YUV is not enabled, don't let the user select it
+	if not config.av.yuvenabled.value:
+		colorformat_choices = colorformat_choices[:3]
+
+	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, colorformat_choices)
 	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, (("4_3_letterbox", _("4:3 Letterbox")), ("4_3_panscan", _("4:3 PanScan")), ("16_9", _("16:9")), ("16_9_always", _("16:9 always"))) )
 	#config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") )
 	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, (("pal", _("PAL")), ("ntsc", _("NTSC"))) )
