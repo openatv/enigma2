@@ -213,7 +213,7 @@
 
 		<screen name="MoviePlayer" flags="wfNoBorder" position="0,370" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
-			<ePixmap position="200,60" zPosition="0" size="433,57" pixmap="/usr/share/enigma2/dvr-buttons.png" />
+			<ePixmap position="210,88" zPosition="0" size="433,42" pixmap="/usr/share/enigma2/dvr-buttons.png" />
 			<!--<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/movieplayer.png" />
 -->
 <!--			<ePixmap position="230,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/rewindbutton.png" />
@@ -230,8 +230,8 @@
 			<widget name="ServiceName" position="69,25" size="427,26" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,25" backgroundColor="dark" font="Regular;19" />
 			   <!-- fixme -->
-			<widget name="ElapsedTime" position="575,35" size="90,30" backgroundColor="dark" font="Regular;19" />
-			<widget name="PositionGauge" position="70,0" size="300,30" pointer="/usr/share/enigma2/position_pointer.png:8,16"/>
+			<widget name="ElapsedTime" position="475,60" size="75,20" halign="left" backgroundColor="dark" font="Regular;18" />
+			<widget name="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="/usr/share/enigma2/position_pointer.png:3,5"/>
 		</screen>
 
 
