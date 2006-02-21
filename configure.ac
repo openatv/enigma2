@@ -46,6 +46,7 @@ data/Makefile
 data/fonts/Makefile
 data/countries/Makefile
 data/defaults/Makefile
+data/extensions/Makefile
 lib/Makefile
 lib/actions/Makefile
 lib/base/Makefile
