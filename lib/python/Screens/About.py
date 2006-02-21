@@ -6,6 +6,8 @@ from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.About import about
 
+from Tools.DreamboxHardware import getFPVersion
+
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -13,6 +15,14 @@ class About(Screen):
 		self["text"] = Label("Enigma v" + about.getVersionString())
 
 		self["tuner"] = Label(_("Detected NIMs:"))
+
+		fp_version = getFPVersion()
+		if fp_version is None:
+			fp_version = ""
+		else:
+			fp_version = _("Frontprocessor version: %d") % fp_version
+		
+		self["fpVersion"] = Label(fp_version)
 		
 		nims = nimmanager.nimList()
 		count = 0
@@ -32,4 +42,3 @@ class About(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
-	
