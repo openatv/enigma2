@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/test
+installdir = $(LIBDIR)/enigma2/python/Plugins/fpupgrade
 
 install_PYTHON =	\
 	__init__.py \

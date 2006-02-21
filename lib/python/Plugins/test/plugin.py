@@ -1,69 +1,54 @@
-from enigma import *
 from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.Input import Input
-from Components.GUIComponent import *
-from Components.Pixmap import Pixmap
-from Components.FileList import FileEntryComponent, FileList
 from Plugins.Plugin import PluginDescriptor
 
-import os
+def getUpgradeVersion():
+	import os
+	r = os.popen("fpupgrade --version").read()
+	if r[:16] != "FP update tool v":
+		return None
+	else:
+		return int(r[16:])
 
-class Test(Screen):
+class FPUpgrade(Screen):
 	skin = """
-		<screen position="100,100" size="550,400" title="Test" >
-			<!--widget name="text" position="0,0" size="550,25" font="Regular;20" /-->
-			<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
-			<widget name="pixmap" position="200,0" size="190,250" />
+		<screen position="150,200" size="450,200" title="FP upgrade required" >
+			<widget name="text" position="0,0" size="550,50" font="Regular;20" />
+			<widget name="oldversion_label" position="10,100" size="290,25" font="Regular;20" />
+			<widget name="newversion_label" position="10,125" size="290,25" font="Regular;20" />
+			<widget name="oldversion" position="300,100" size="50,25" font="Regular;20" />
+			<widget name="newversion" position="300,125" size="50,25" font="Regular;20" />
 		</screen>"""
-	def __init__(self, session, args = None):
-		self.skin = Test.skin
+	def __init__(self, session):
+		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
-
-		self["list"] = FileList("/", matchingPattern = "^.*\.png")
-		self["pixmap"] = Pixmap()
 		
-		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
-				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions"],
+		from Tools.DreamboxHardware import getFPVersion
+		version = str(getFPVersion() or "N/A")
+		newversion = str(getUpgradeVersion() or "N/A")
+
+		self["text"] = Label(_("Your frontprocessor firmware must be upgraded.\nPress OK to start upgrade."))
+		self["oldversion_label"] = Label(_("Current version:"))
+		self["newversion_label"] = Label(_("New version:"))
+
+		self["oldversion"] = Label(version)
+		self["newversion"] = Label(newversion)
+
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.ok,
-			"back": self.close,
-#			"left": self.keyLeft,
-#			"right": self.keyRight,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		}, -1)
-		
-	def keyLeft(self):
-		self["text"].left()
-	
-	def keyRight(self):
-		self["text"].right()
-	
-	def ok(self):
-		selection = self["list"].getSelection()
-		if selection[1] == True: # isDir
-			self["list"].changeDir(selection[0])
-		else:
-			self["pixmap"].instance.setPixmapFromFile(selection[0])
-	
-	def keyNumberGlobal(self, number):
-		print "pressed", number
-		self["text"].number(number)
+			"cancel": self.close,
+		})
 
-def main(session):
-	session.open(Test)
+	def ok(self):
+		self.close(4)
 
 def Plugins():
- 	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+	from Tools.DreamboxHardware import getFPVersion
+	version = getFPVersion()
+	newversion = getUpgradeVersion() or 0
+	if version is not None and version <= newversion:
+		return PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, fnc=FPUpgrade)
+	else:
+		return [ ]
