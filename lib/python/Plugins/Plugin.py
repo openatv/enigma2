@@ -21,6 +21,9 @@ class PluginDescriptor:
 	# reason (0: start, 1: end)
 	WHERE_AUTOSTART = 5
 	
+	# start as wizard. In that case, fnc must be a screen class!
+	WHERE_WIZARD = 6
+	
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None):
 		self.name = name
 		if type(where) is list:

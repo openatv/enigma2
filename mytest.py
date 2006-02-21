@@ -29,7 +29,7 @@ try:
 	
 	def runReactor():
 		reactor.run()
-except:
+except ImportError:
 	print "twisted not available"
 	def runReactor():
 		runMainloop()
@@ -42,6 +42,7 @@ from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
+from Plugins.Plugin import PluginDescriptor
 
 had = dict()
 
@@ -271,11 +272,13 @@ def runScreenTest():
 	session.nav = Navigation()
 	
 	screensToRun = wizardManager.getWizards()
+	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
+		screensToRun.append(p.__call__)
 	screensToRun.append(Screens.InfoBar.InfoBar)
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
-			quitMainloop(result)
+			quitMainloop(*result)
 	
 		screen = screensToRun[0]
 		
