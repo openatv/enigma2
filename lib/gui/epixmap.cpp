@@ -10,6 +10,7 @@ ePixmap::ePixmap(eWidget *parent)
 void ePixmap::setAlphatest(bool alphatest)
 {
 	m_alphatest = alphatest;
+	setTransparent(alphatest);
 }
 
 void ePixmap::setPixmap(gPixmap *pixmap)
