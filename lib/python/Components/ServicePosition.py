@@ -1,8 +1,7 @@
 from PerServiceDisplay import *
 from enigma import eTimer
 
-
-from enigma import iPlayableService, iSeekableServicePtr
+from enigma import iPlayableService, iSeekableServicePtr, ePositionGauge
 
 class ServicePosition(PerServiceDisplay):
 	TYPE_LENGTH = 0,
@@ -67,3 +66,48 @@ class ServicePosition(PerServiceDisplay):
 	def stopEvent(self):
 		self.updateTimer.stop()
 		self.setText("");
+
+class ServicePositionGauge(PerServiceBase):
+	def __init__(self, navcore):
+		PerServiceBase.__init__(self, navcore,
+			{
+				iPlayableService.evStart: self.newService,
+				iPlayableService.evEnd: self.stopEvent
+			})
+
+	def newService(self):
+		if self.get() is None:	
+			self.disablePolling()
+		else:
+			self.enablePolling(interval=500)
+	
+	def get(self):
+		service = self.navcore.getCurrentService()
+		if service is None:
+			return None
+		seek = service.seek()
+		if seek is None:
+			return None
+
+		len = seek.getLength()
+		pos = seek.getPlayPosition()
+		
+		if len[0] or pos[0]:
+			return (0, 0)
+		return (len[1], pos[1])
+	
+	def poll(self):
+		data = self.get()
+		if data is None:
+			return
+		self.instance.setLength(data[0])
+		self.instance.setPosition(data[1])
+		
+	def stopEvent(self):
+		self.disablePolling()
+
+	def GUIcreate(self, parent):
+		self.instance = ePositionGauge(parent)
+	
+	def GUIdelete(self):
+		self.instance = None
