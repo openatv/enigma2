@@ -1,10 +1,11 @@
 from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
 from Components.MenuList import MenuList
+from Components.Input import Input
 from Plugins.Plugin import PluginDescriptor
 
 import os
@@ -21,7 +22,7 @@ class UpdatePluginMenu(Screen):
 		
 		list = []
 		list.append((_("Upgrade"), "upgrade"))
-		list.append((_("Choose source"), None))
+		list.append((_("Choose source"), "source"))
 		list.append((_("Packet management"), "ipkg"))
 		
 		self["menu"] = MenuList(list)
@@ -35,13 +36,65 @@ class UpdatePluginMenu(Screen):
 	def go(self):
 		if (self["menu"].l.getCurrentSelection()[1] == "upgrade"):
 			self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
+		elif (self["menu"].l.getCurrentSelection()[1] == "source"):
+			self.session.open(IPKGSource)
 		elif (self["menu"].l.getCurrentSelection()[1] == "ipkg"):
 			self.session.open(Ipkg)
 	
 	def runUpgrade(self, result):
 		if result:
 			self.session.open(Upgrade)
+
+class IPKGSource(Screen):
+	skin = """
+		<screen position="100,100" size="550,60" title="IPKG source" >
+			<widget name="text" position="0,0" size="550,25" font="Regular;20" />
+		</screen>"""
+		
+	def __init__(self, session, args = None):
+		self.skin = IPKGSource.skin
+		Screen.__init__(self, session)
+		
+		fp = file('/etc/ipkg/official-feed.conf', 'r')
+		sources = fp.readlines()
+		fp.close()
+		
+		self["text"] = Input(sources[0], maxSize=False, type=Input.TEXT)
+				
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
+		{
+			"ok": self.go,
+			"back": self.close,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
+		}, -1)
+		
+	def go(self):
+		fp = file('/etc/ipkg/official-feed.conf', 'w')
+		fp.write(self["text"].getText())
+		fp.close()
+		self.close()
+		
+	def keyLeft(self):
+		self["text"].left()
 	
+	def keyRight(self):
+		self["text"].right()
+	
+	def keyNumberGlobal(self, number):
+		print "pressed", number
+		self["text"].number(number)
+
 class Upgrade(Screen):
 	skin = """
 		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
