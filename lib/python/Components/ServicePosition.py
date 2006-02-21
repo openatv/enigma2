@@ -100,8 +100,10 @@ class ServicePositionGauge(PerServiceBase):
 		data = self.get()
 		if data is None:
 			return
-		self.instance.setLength(data[0])
-		self.instance.setPosition(data[1])
+
+		if self.instance is not None:
+			self.instance.setLength(data[0])
+			self.instance.setPosition(data[1])
 		
 	def stopEvent(self):
 		self.disablePolling()
