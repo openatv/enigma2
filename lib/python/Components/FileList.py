@@ -1,5 +1,6 @@
 from HTMLComponent import *
 from GUIComponent import *
+import re
 
 from MenuList import MenuList
 
@@ -30,12 +31,14 @@ def FileEntryComponent(name, absolute, isDir = False):
 	return res
 
 class FileList(HTMLComponent, GUIComponent, MenuList):
-	def __init__(self, directory, showDirectories = True, showFiles = True):
+	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 
 		self.showDirectories = showDirectories
 		self.showFiles = showFiles
+		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
+		self.matchingPattern = matchingPattern
 		self.changeDir(directory)
 
 		self.l.setFont(0, gFont("Regular", 18))
@@ -55,7 +58,12 @@ class FileList(HTMLComponent, GUIComponent, MenuList):
 				if self.showDirectories:
 					self.list.append(FileEntryComponent(name = x, absolute = directory + x + "/" , isDir = True))
 			elif self.showFiles:
+				if self.matchingPattern is not None:
+					if re.compile(self.matchingPattern).search(x):
+						self.list.append(FileEntryComponent(name = x, absolute = directory + x , isDir = False))
+				else:
 					self.list.append(FileEntryComponent(name = x, absolute = directory + x , isDir = False))
+				
 		self.l.setList(self.list)
 				
 	def GUIcreate(self, parent):

@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
 from Components.GUIComponent import *
+from Components.Pixmap import Pixmap
 from Components.FileList import FileEntryComponent, FileList
 from Plugins.Plugin import PluginDescriptor
 
@@ -15,13 +16,15 @@ class Test(Screen):
 		<screen position="100,100" size="550,400" title="Test" >
 			<!--widget name="text" position="0,0" size="550,25" font="Regular;20" /-->
 			<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
+			<widget name="pixmap" position="200,0" size="190,250" />
 		</screen>"""
 	def __init__(self, session, args = None):
 		self.skin = Test.skin
 		Screen.__init__(self, session)
 
-		self["list"] = FileList("/")
-
+		self["list"] = FileList("/", matchingPattern = "^.*\.png")
+		self["pixmap"] = Pixmap()
+		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"],
@@ -52,6 +55,8 @@ class Test(Screen):
 		selection = self["list"].getSelection()
 		if selection[1] == True: # isDir
 			self["list"].changeDir(selection[0])
+		else:
+			self["pixmap"].instance.setPixmapFromFile(selection[0])
 	
 	def keyNumberGlobal(self, number):
 		print "pressed", number
