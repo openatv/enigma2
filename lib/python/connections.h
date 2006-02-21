@@ -40,11 +40,6 @@ public:
 	PyObject *get() { Py_INCREF(m_list); return m_list; }
 };
 
-inline PyObject *PyFrom(int v)
-{
-	return PyInt_FromLong(v);
-}
-
 template <class R>
 class PSignal0: public PSignal, public Signal0<R>
 {
@@ -65,7 +60,21 @@ public:
 	R operator()(V0 a0)
 	{
 		PyObject *pArgs = PyTuple_New(1);
-		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+		PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(a0));
+		callPython(pArgs);
+		Py_DECREF(pArgs);
+		return Signal1<R,V0>::operator()(a0);
+	}
+};
+
+template <class R, class V0>
+class PSignal1Str: public PSignal, public Signal1<R,V0>
+{
+public:
+	R operator()(V0 a0)
+	{
+		PyObject *pArgs = PyTuple_New(1);
+		PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(a0));
 		callPython(pArgs);
 		Py_DECREF(pArgs);
 		return Signal1<R,V0>::operator()(a0);
@@ -79,8 +88,8 @@ public:
 	R operator()(V0 a0, V1 a1)
 	{
 		PyObject *pArgs = PyTuple_New(2);
-		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
-		PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
+		PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(a0));
+		PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(a1));
 		callPython(pArgs);
 		Py_DECREF(pArgs);
 		return Signal2<R,V0,V1>::operator()(a0, a1);
