@@ -691,7 +691,7 @@ void eDVBChannel::cueSheetEvent(int event)
 				
 				if (abs(m_skipmode_m) < abs(m_skipmode_n))
 				{
-					eFatal("damn, something is wrong with this calculation");
+					eWarning("something is wrong with this calculation");
 					m_skipmode_n = m_skipmode_m = 0;
 				}
 				
