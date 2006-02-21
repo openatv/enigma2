@@ -493,7 +493,7 @@ class InfoBarSeek:
 	SEEK_STATE_FF_64X = (0, 64, 0, ">> 64x")
 	SEEK_STATE_FF_128X = (0, 128, 0, ">> 128x")
 	
-	SEEK_STATE_BACK_4X = (0, -4, 0, "<< 4x")
+	SEEK_STATE_BACK_16X = (0, -16, 0, "<< 16x")
 	SEEK_STATE_BACK_32X = (0, -32, 0, "<< 32x")
 	SEEK_STATE_BACK_64X = (0, -64, 0, "<< 64x")
 	SEEK_STATE_BACK_128X = (0, -128, 0, "<< 128x")
@@ -660,8 +660,8 @@ class InfoBarSeek:
 					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
 					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
 					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
-					self.SEEK_STATE_BACK_4X: self.SEEK_STATE_PLAY,
-					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_4X,
+					self.SEEK_STATE_BACK_16X: self.SEEK_STATE_PLAY,
+					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_16X,
 					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
 					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
 					self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
@@ -677,7 +677,7 @@ class InfoBarSeek:
 			self.rwdtimer = False
 		
 			lookup = {
-					self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_4X,
+					self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_16X,
 					self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
 					self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
 					self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
@@ -685,7 +685,7 @@ class InfoBarSeek:
 					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
 					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
 					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
-					self.SEEK_STATE_BACK_4X: self.SEEK_STATE_BACK_32X,
+					self.SEEK_STATE_BACK_16X: self.SEEK_STATE_BACK_32X,
 					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
 					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
 					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
