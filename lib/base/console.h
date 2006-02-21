@@ -40,7 +40,7 @@ public:
 	void sendCtrlC();
 	void write( const char *data, int len );
 	bool running() { return (fd[0]!=-1) && (fd[1]!=-1) && (fd[2]!=-1); }
-	PSignal1Str<void, const char*> dataAvail;
+	PSignal1<void, const char*> dataAvail;
 	PSignal1<void,int> dataSent;
 	PSignal1<void,int> appClosed;
 };

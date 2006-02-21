@@ -216,18 +216,11 @@ public:
 };
 
 %template(PSignal1VI) PSignal1<void,int>;
+%template(PSignal1VS) PSignal1<void,const char *c>;
 
 %typemap(out) PSignal1VI {
 	$1 = $input->get();
 }
-
-template<class R, class P0> class PSignal1Str
-{
-public:
-	PyObject *get();
-};
-
-%template(PSignal1VS) PSignal1Str<void,const char*>;
 
 %typemap(out) PSignal1VS {
 	$1 = $input->get();
