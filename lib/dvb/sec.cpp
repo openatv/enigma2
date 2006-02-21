@@ -256,7 +256,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 								range[1] = 12750000;
 								break;
 						}
-						// check frequency in range ( +/- 50Mhz )
+						// check frequency in range ( +/- 75Mhz )
 						if ( (sat.frequency+75000) < range[0] )
 							ret=0;
 						if ( (sat.frequency-75000) > range[1] )
