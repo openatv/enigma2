@@ -39,6 +39,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
+#include <lib/base/console.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/event.h>
@@ -138,6 +139,9 @@ typedef long time_t;
 
 
 // TODO: embed these...
+%immutable eConsoleAppContainer::appClosed;
+%immutable eConsoleAppContainer::dataAvail;
+%immutable eConsoleAppContainer::dataSent;
 %immutable eButton::selected;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
@@ -145,6 +149,7 @@ typedef long time_t;
 %immutable pNavigation::m_event;
 %immutable eListbox::selectionChanged;
 
+%include <lib/base/console.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
 %include <lib/gdi/epoint.h>
@@ -198,13 +203,13 @@ public:
 	PyObject *get();
 };
 
-template<class R, class P0> class PSignal1
-{
-public:
-	PyObject *get();
-};
+%template(PSignal0V) PSignal0<void>;
 
-template<class R, class P0, class P1> class PSignal2
+%typemap(out) PSignal0V {
+	$1 = $input->get();
+}
+
+template<class R, class P0> class PSignal1
 {
 public:
 	PyObject *get();
@@ -216,12 +221,23 @@ public:
 	$1 = $input->get();
 }
 
-%template(PSignal0V) PSignal0<void>;
+template<class R, class P0> class PSignal1Str
+{
+public:
+	PyObject *get();
+};
 
-%typemap(out) PSignal0V {
+%template(PSignal1VS) PSignal1Str<void,const char*>;
+
+%typemap(out) PSignal1VS {
 	$1 = $input->get();
 }
 
+template<class R, class P0, class P1> class PSignal2
+{
+public:
+	PyObject *get();
+};
 
 /**************  debug  **************/
 
