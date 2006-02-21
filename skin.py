@@ -72,6 +72,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
 			ptr = loadPNG(value)
+			# that __deref__ still scares me!
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPixmap(ptr.__deref__())
 			# guiObject.setPixmapFromFile(value)
@@ -135,6 +136,12 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 				}[value])
 		elif attrib == "enableWrapAround":
 			guiObject.setWrapAround(True)
+		elif attrib == "pointer":
+			(name, pos) = value.split(':')
+			pos = parsePosition(pos)
+			ptr = loadPNG(name)
+			desktop.makeCompatiblePixmap(ptr.__deref__())
+			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:
