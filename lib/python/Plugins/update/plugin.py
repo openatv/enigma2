@@ -4,10 +4,44 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
+from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 
 import os
 
+class UpdatePluginMenu(Screen):
+	skin = """
+		<screen position="200,100" size="300,250" title="Update..." >
+			<widget name="menu" position="10,10" size="290,175" scrollbarMode="showOnDemand" />
+		</screen>"""
+		
+	def __init__(self, session, args = None):
+		self.skin = UpdatePluginMenu.skin
+		Screen.__init__(self, session)
+		
+		list = []
+		list.append((_("Upgrade"), "upgrade"))
+		list.append((_("Choose source"), None))
+		list.append((_("Packet management"), "ipkg"))
+		
+		self["menu"] = MenuList(list)
+				
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+		{
+			"ok": self.go,
+			"back": self.close,
+		}, -1)
+		
+	def go(self):
+		if (self["menu"].l.getCurrentSelection()[1] == "upgrade"):
+			self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
+		elif (self["menu"].l.getCurrentSelection()[1] == "ipkg"):
+			self.session.open(Ipkg)
+	
+	def runUpgrade(self, result):
+		if result:
+			self.session.open(Upgrade)
+	
 class Upgrade(Screen):
 	skin = """
 		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
@@ -18,7 +52,7 @@ class Upgrade(Screen):
 		self.skin = Upgrade.skin
 		Screen.__init__(self, session)
 
-		self["text"] = ScrollLabel(_("Please press OK!"))
+		self["text"] = ScrollLabel(_("Updating... Please wait... This can take some minutes..."))
 				
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
 		{
@@ -28,15 +62,14 @@ class Upgrade(Screen):
 			"down": self["text"].pageDown
 		}, -1)
 		
-		self.update = True
 		self.delayTimer = eTimer()
 		self.delayTimer.timeout.get().append(self.doUpdateDelay)
+		# WARNING! Don't copy this code! this code could harm your children! It is ugly, bad and must be banned from this world!
+		# it only exists due to some lack of competence by the core system designers.
+		self.delayTimer.start(1, 1)
 		
 	def go(self):
-		if self.update:
-			self.session.openWithCallback(self.doUpdate, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))		
-		else:
-			self.close()
+		self.close()
 	
 	def doUpdateDelay(self):
 		lines = os.popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
@@ -44,16 +77,7 @@ class Upgrade(Screen):
 		for x in lines:
 			string += x
 		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
-		self.update = False
 			
-	
-	def doUpdate(self, val = False):
-		if val == True:
-			self["text"].setText(_("Updating... Please wait... This can take some minutes..."))
-			self.delayTimer.start(0, 1)
-		else:
-			self.close()
-
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
 RT_HALIGN_CENTER = 2
@@ -163,11 +187,7 @@ class Ipkg(Screen):
 			self.close()
 
 def UpgradeMain(session):
-	session.open(Upgrade)
-
-def IpkgMain(session):
-	session.open(Ipkg)
+	session.open(UpdatePluginMenu)
 
 def Plugins():
-	return [PluginDescriptor(name="Softwareupdate", description="Updates your receiver's software", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
-			PluginDescriptor(name="IPKG", description="(Beta-)Frontend for the packet management", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]
+	return PluginDescriptor(name="Softwareupdate", description="Updates your receiver's software", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain)
