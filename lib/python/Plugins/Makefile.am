@@ -1,7 +1,6 @@
 installdir = $(LIBDIR)/enigma2/python/Plugins
 
-SUBDIRS = update tuxboxplugins web test
+SUBDIRS = update tuxboxplugins web test fpupgrade
 
 install_PYTHON =	\
-	__init__.py Plugin.py
-
+	__init__.py Plugin.py 
