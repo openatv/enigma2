@@ -686,6 +686,9 @@ void eDVBChannel::cueSheetEvent(int event)
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
 				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
+				
+				if (m_cue->m_skipmode_ratio < 0)
+					m_skipmode_m -= m_skipmode_n;
 	
 				eDebug("resolved to: %d %d", m_skipmode_m, m_skipmode_n);
 				
