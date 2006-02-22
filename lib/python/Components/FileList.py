@@ -17,6 +17,18 @@ RT_VALIGN_TOP = 0
 RT_VALIGN_CENTER = 8
 RT_VALIGN_BOTTOM = 16
 
+EXTENSIONS = {
+		"mp3": "music",
+		"wav": "music",
+		"jpg": "picture",
+		"jpeg": "picture",
+		"png": "picture",
+		"ts": "movie",
+		"avi": "movie",
+		"mpg": "movie",
+		"mpeg": "movie",
+	}
+
 def FileEntryComponent(name, absolute, isDir = False):
 	res = [ (absolute, isDir) ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 200, 20, 0, RT_HALIGN_LEFT ,name))
@@ -24,7 +36,8 @@ def FileEntryComponent(name, absolute, isDir = False):
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/directory.png"))
 	else:
 		# FIXME: detect file extensions correctly
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + name[-3:] + ".png"))
+		if EXTENSIONS.has_key(name[-3:]):
+			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + EXTENSIONS[name[-3:]] + ".png"))
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
 	
