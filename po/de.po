@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-22 01:43+0100\n"
+"POT-Creation-Date: 2006-02-22 02:59+0100\n"
 "PO-Revision-Date: 2006-02-07 17:21+0100\n"
 "Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
 "Language-Team: none\n"
@@ -218,6 +218,10 @@ msgstr "Konfiguration"
 #: ../lib/python/Screens/TimerEdit.py:197
 msgid "Conflicting timer"
 msgstr ""
+
+#: ../lib/python/Plugins/fpupgrade/plugin.py:32
+msgid "Current version:"
+msgstr "Aktuelle Version:"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
@@ -512,6 +516,10 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
+
+#: ../lib/python/Plugins/fpupgrade/plugin.py:33
+msgid "New version:"
+msgstr "Neue Version:"
 
 #: ../lib/python/Screens/EpgSelection.py:34
 msgid "Next"
@@ -931,6 +939,14 @@ msgstr "Ja"
 #: ../lib/python/Screens/MovieSelection.py:38
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
+
+#: ../lib/python/Plugins/fpupgrade/plugin.py:31
+msgid ""
+"Your frontprocessor firmware must be upgraded.\n"
+"Press OK to start upgrade."
+msgstr ""
+"Ihre Frontprozessor-Firmware muss geupdatet werden.\n"
+"Drücken Sie OK, um das Upgrade zu starten."
 
 #: ../lib/python/Screens/ChannelSelection.py:272
 msgid "[bouquet edit]"
