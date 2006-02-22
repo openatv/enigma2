@@ -49,7 +49,7 @@ int bidirpipe(int pfd[], char *cmd , char *argv[])
 }
 
 eConsoleAppContainer::eConsoleAppContainer()
-:pid(-1), killstate(0)
+:pid(-1), killstate(0), in(0), out(0), err(0)
 {
 	for (int i=0; i < 3; ++i)
 		fd[i]=-1;
@@ -244,15 +244,27 @@ void eConsoleAppContainer::sendCtrlC()
 
 void eConsoleAppContainer::closePipes()
 {
-	in->stop();
-	out->stop();
-	err->stop();
-	::close(fd[0]);
-	fd[0]=-1;
-	::close(fd[1]);
-	fd[1]=-1;
-	::close(fd[2]);
-	fd[2]=-1;
+	if (in)
+		in->stop();
+	if (out)
+		out->stop();
+	if (err)
+		err->stop();
+	if (fd[0] != -1)
+	{
+		::close(fd[0]);
+		fd[0]=-1;
+	}
+	if (fd[1] != -1)
+	{
+		::close(fd[1]);
+		fd[1]=-1;
+	}
+	if (fd[2] != -1)
+	{
+		::close(fd[2]);
+		fd[2]=-1;
+	}
 	eDebug("pipes closed");
 	while( outbuf.size() ) // cleanup out buffer
 	{
