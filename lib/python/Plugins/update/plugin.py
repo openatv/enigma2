@@ -253,4 +253,4 @@ def UpgradeMain(session):
 	session.open(UpdatePluginMenu)
 
 def Plugins():
-	return PluginDescriptor(name="Softwareupdate", description="Updates your receiver's software", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain)
+	return PluginDescriptor(name="Softwareupdate", description="Updates your receiver's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain)

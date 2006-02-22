@@ -22,10 +22,10 @@ def PluginEntryComponent(plugin):
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 300, 25, 0, RT_HALIGN_LEFT, plugin.name))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 26, 300, 17, 1, RT_HALIGN_LEFT, plugin.description))
 
-#	png = loadPNG(picture)
-#	if png == None:
-
-	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
+	if plugin.icon is None:
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
+	else:
+		png = plugin.icon
 	res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 5, 60, 40, png))
 	
 	return res

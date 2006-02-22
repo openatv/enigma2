@@ -1,3 +1,5 @@
+from enigma import loadPNG
+
 class PluginDescriptor:
 	"""An object to describe a plugin."""
 	
@@ -31,8 +33,13 @@ class PluginDescriptor:
 		else:
 			self.where = [ where ]
 		self.description = description
-		if type(fnc) is str:
-			self.icon = loadPNG("..")
-		else:
-			self.icon = icon
+
+		self.iconstr = icon
+
 		self.__call__ = fnc
+
+	def updateIcon(self, path):
+		if type(self.iconstr) is str:
+			self.icon = loadPNG(path + self.iconstr)
+		else:
+			self.icon = None

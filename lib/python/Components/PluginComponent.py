@@ -56,6 +56,7 @@ class PluginComponent:
 						plugins = [ plugins ]
 					
 					for p in plugins:
+						p.updateIcon(path)
 						self.addPlugin(p);
 
 	def getPlugins(self, where):
