@@ -6,6 +6,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.GUIComponent import *
 from Components.MenuList import MenuList
 from Components.Input import Input
+from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
 
 import os
@@ -43,7 +44,7 @@ class UpdatePluginMenu(Screen):
 	
 	def runUpgrade(self, result):
 		if result:
-			self.session.open(Upgrade)
+			self.session.open(Console, ["ipkg update", "ipkg upgrade -force-defaults -force-overwrite"])
 
 class IPKGSource(Screen):
 	skin = """

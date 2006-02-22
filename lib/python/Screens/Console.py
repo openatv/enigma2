@@ -1,0 +1,52 @@
+from enigma import eConsoleAppContainer
+from Screens.Screen import Screen
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ScrollLabel import ScrollLabel
+
+class Console(Screen):
+	#TODO move this to skin.xml
+	skin = """
+		<screen position="100,100" size="550,400" title="Command execution..." >
+			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
+		</screen>"""
+		
+	def __init__(self, session, args = None):
+		self.skin = Console.skin
+		Screen.__init__(self, session)
+
+		self["text"] = ScrollLabel("")
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+		{
+			"ok": self.cancel,
+			"back": self.cancel,
+			"up": self["text"].pageUp,
+			"down": self["text"].pageDown
+		}, -1)
+		
+		self.cmdlist = args
+		
+		self.container = eConsoleAppContainer()
+		self.run = 0
+		self.container.appClosed.get().append(self.runFinished)
+		self.container.dataAvail.get().append(self.dataAvail)
+		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
+
+	def startRun(self):
+		self["text"].setText(_("Execution Progress:") + "\n\n")
+		self.container.execute("ipkg update")
+
+	def runFinished(self, retval):
+		self.run += 1
+		if self.run != len(self.cmdlist):
+			self.container.execute(self.cmdlist[self.run])
+		else:
+			str = self["text"].getText()
+			str += _("Execution finished!!");
+			self["text"].setText(str)
+			
+	def cancel(self):
+		if self.run == len(self.cmdlist):
+			self.close()
+
+	def dataAvail(self, str):
+		self["text"].setText(self["text"].getText() + str)
