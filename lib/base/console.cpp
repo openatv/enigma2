@@ -124,7 +124,9 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 
 //	eDebug("%d args", cnt-2);
 	char **argv = new char*[cnt];  // min two args... path and terminating 0
-	argv[0] = new char[ plen ];
+//	eDebug("%d args", cnt);
+	argv[0] = new char[ plen+1 ];
+//	eDebug("new argv[0] %d bytes (%s)", plen+1, path.c_str());
 	strcpy( argv[0], path.c_str() );
 	argv[cnt-1] = 0;               // set terminating null
 
@@ -154,7 +156,7 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 					tmp.erase(tmp.length()-1, 1);
 					bracketClosed=false;
 				}
-//				eDebug("new argv[%d] %d bytes", tmp.length()+1);
+//				eDebug("new argv[%d] %d bytes (%s)", cnt, tmp.length()+1, tmp.c_str());
 				argv[cnt] = new char[ tmp.length()+1 ];
 //				eDebug("idx=%d, arg = %s", idx, tmp.c_str() );
 				strcpy( argv[cnt++], tmp.c_str() );
@@ -172,7 +174,7 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 			cmds.erase(cmds.length()-1, 1);
 		}
 		// store the last arg
-//		eDebug("new argv[%d] %d bytes", cmds.length());
+//		eDebug("new argv[%d] %d bytes (%s)", cnt, cmds.length()+1, cmds.c_str());
 		argv[cnt] = new char[ cmds.length()+1 ];
 		strcpy( argv[cnt], cmds.c_str() );
 	}
