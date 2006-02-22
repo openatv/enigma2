@@ -82,8 +82,15 @@
 		<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
 			<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
 		</screen>
-		<screen name="PluginBrowser" position="100,125" size="400,350" title="Plugin browser">
-			<widget name="list" position="10,0" size="380,340" scrollbarMode="showOnDemand" />
+		<screen name="PluginBrowser" position="170,125" size="400,350" title="Plugin browser">
+			<widget name="red" position="0,0" size="200,40" backgroundColor="red" valign="center" halign="center" font="Regular;20" />
+			<widget name="green" position="200,0" size="200,40" backgroundColor="green" valign="center" halign="center" font="Regular;20" />
+
+			<widget name="list" position="10,50" size="380,280" scrollbarMode="showOnDemand" />
+		</screen>
+		<screen name="PluginDownloadBrowser" position="170,125" size="400,350" title="Downloadable plugins">
+			<widget name="text" position="10,00" size="380,330" zPosition="1" font="Regular;20" />
+			<widget name="list" position="10,00" size="380,330" zPosition="2" scrollbarMode="showOnDemand" />
 		</screen>
 		<screen name="NimSelection" position="140,165" size="400,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,75" />
