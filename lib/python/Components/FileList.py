@@ -36,7 +36,7 @@ def FileEntryComponent(name, absolute, isDir = False):
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/directory.png"))
 	else:
 		extension = name.split('.')
-		extension = extension[len(extension) - 1]
+		extension = extension[-1]
 		if EXTENSIONS.has_key(extension):
 			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + EXTENSIONS[extension] + ".png"))
 	if png is not None:
@@ -63,15 +63,25 @@ class FileList(HTMLComponent, GUIComponent, MenuList):
 	def changeDir(self, directory):
 		self.list = []
 		
-		directories = os.listdir(directory)
+		files = os.listdir(directory)
+		files.sort()
 		
 		if directory != "/" and self.showDirectories:
 			self.list.append(FileEntryComponent(name = "..", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
-		for x in directories:
+			
+		directories = []
+		for x in files:
 			if os.path.isdir(directory + x):
-				if self.showDirectories:
-					self.list.append(FileEntryComponent(name = x, absolute = directory + x + "/" , isDir = True))
-			elif self.showFiles:
+				directories.append(x)
+				files.remove(x)
+
+		if self.showDirectories:
+			for x in directories:
+				self.list.append(FileEntryComponent(name = x, absolute = directory + x + "/" , isDir = True))
+
+					
+		if self.showFiles:
+			for x in files:
 				if self.matchingPattern is not None:
 					if re.compile(self.matchingPattern).search(x):
 						self.list.append(FileEntryComponent(name = x, absolute = directory + x , isDir = False))
