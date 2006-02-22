@@ -43,6 +43,8 @@ enigma2.pot:
 			../lib/python/Screens/ServiceScan.py \
 			../lib/python/Screens/InfoBarGenerics.py \
 			../lib/python/Screens/ChannelSelection.py \
+			../lib/python/Screens/PluginBrowser.py \
+			../lib/python/Screens/Console.py \
 			../lib/python/Components/DiskInfo.py \
 			../lib/python/Components/ServiceScan.py \
 			../lib/python/Components/Lcd.py \

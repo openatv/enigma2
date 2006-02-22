@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-22 02:59+0100\n"
+"POT-Creation-Date: 2006-02-22 22:07+0100\n"
 "PO-Revision-Date: 2006-02-07 17:21+0100\n"
 "Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
 "Language-Team: none\n"
@@ -18,6 +18,12 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid "\"?"
+msgstr ""
+"\" wirklich\n"
+"herunterladen?"
 
 #: ../lib/python/Screens/EventView.py:80
 #, python-format
@@ -66,6 +72,10 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
+#: ../lib/python/Components/TimerList.py:57
+msgid "<unknown>"
+msgstr "<unbekannt>"
+
 #: ../lib/python/Components/NimManager.py:697
 msgid "A"
 msgstr ""
@@ -97,6 +107,7 @@ msgstr "Timer setzen"
 
 #: ../lib/python/Components/NimManager.py:617
 #: ../lib/python/Components/NimManager.py:625
+#: ../lib/python/Plugins/update/plugin.py:29
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -177,7 +188,7 @@ msgstr "Kanal"
 msgid "Channel:"
 msgstr "Kanal:"
 
-#: ../lib/python/Plugins/update/plugin.py:25
+#: ../lib/python/Plugins/update/plugin.py:31
 msgid "Choose source"
 msgstr "Quelle wählen"
 
@@ -228,6 +239,7 @@ msgid "Default"
 msgstr "Standard"
 
 #: ../lib/python/Screens/TimerEdit.py:27
+#: ../lib/python/Screens/PluginBrowser.py:19
 msgid "Delete"
 msgstr "Löschen"
 
@@ -288,6 +300,14 @@ msgstr "Aus"
 msgid "Do you really want to delete this recording?"
 msgstr "Wollen Sie diese Aufnahme wirklich löschen?"
 
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid ""
+"Do you really want to download\n"
+"the plugin \""
+msgstr ""
+"Wollen Sie das Plugin mit\n"
+"dem Namen \""
+
 #: ../lib/python/Screens/InfoBarGenerics.py:999
 msgid ""
 "Do you want to stop the current\n"
@@ -296,14 +316,22 @@ msgstr ""
 "Die aktuelle Direktaufnahme\n"
 "abbrechen?"
 
-#: ../lib/python/Plugins/update/plugin.py:38
-#: ../lib/python/Plugins/update/plugin.py:222
+#: ../lib/python/Plugins/update/plugin.py:46
+#: ../lib/python/Plugins/update/plugin.py:198
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Möchten Sie Ihre Dreambox updaten?\n"
 "Nach dem Druck auf OK bitte warten!"
+
+#: ../lib/python/Screens/PluginBrowser.py:20
+msgid "Download Plugins"
+msgstr "Plugins herunterladen"
+
+#: ../lib/python/Screens/PluginBrowser.py:70
+msgid "Downloading plugin information. Please wait..."
+msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
 #: ../lib/python/Components/Language.py:16
 msgid "Dutch"
@@ -354,6 +382,14 @@ msgstr "Englisch"
 msgid "Equal to Socket A"
 msgstr "Wie Tuner A"
 
+#: ../lib/python/Screens/Console.py:35
+msgid "Execution Progress:"
+msgstr "Ausführen eines externen Befehls:"
+
+#: ../lib/python/Screens/Console.py:44
+msgid "Execution finished!!"
+msgstr "Ausführung beendet!"
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1064
 msgid "Extensions"
 msgstr "Erweiterungen"
@@ -392,6 +428,10 @@ msgstr "Freitag"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
+
+#: ../lib/python/Plugins/update/plugin.py:55
+msgid "Function not yet implemented"
+msgstr "Funktion noch nicht eingebaut"
 
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
@@ -577,9 +617,9 @@ msgstr "An"
 msgid "One"
 msgstr "Eins"
 
-#: ../lib/python/Plugins/update/plugin.py:26
+#: ../lib/python/Plugins/update/plugin.py:32
 msgid "Packet management"
-msgstr ""
+msgstr "Paketverwaltung"
 
 #: ../lib/python/Screens/InfoBar.py:38
 msgid "Play recorded movies..."
@@ -690,6 +730,10 @@ msgstr "Sequenz-Wiederholung"
 #: ../lib/python/Screens/ChannelSelection.py:641
 msgid "Services"
 msgstr "Kanäle"
+
+#: ../lib/python/Plugins/update/plugin.py:33
+msgid "Settings"
+msgstr "Einstellungen"
 
 #: ../lib/python/Screens/InfoBar.py:39
 msgid "Show the radio player..."
@@ -873,19 +917,17 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Universal-LNB"
 
-#: ../lib/python/Plugins/update/plugin.py:132
-#: ../lib/python/Plugins/update/plugin.py:231
+#: ../lib/python/Plugins/update/plugin.py:207
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
-#: ../lib/python/Plugins/update/plugin.py:108
-#: ../lib/python/Plugins/update/plugin.py:237
+#: ../lib/python/Plugins/update/plugin.py:213
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
 "Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten "
 "dauern."
 
-#: ../lib/python/Plugins/update/plugin.py:24
+#: ../lib/python/Plugins/update/plugin.py:28
 msgid "Upgrade"
 msgstr ""
 
@@ -968,6 +1010,10 @@ msgstr "Bouqueteditieren abbrechen"
 msgid "abort favourites edit"
 msgstr "Favoriteneditor abbrechen"
 
+#: ../lib/python/Components/TimerList.py:53
+msgid "about to start"
+msgstr "startet gleich"
+
 #: ../lib/python/Screens/ChannelSelection.py:63
 msgid "add service to bouquet"
 msgstr "Zu Bouquet hinzufügen"
@@ -1004,6 +1050,10 @@ msgstr "löschen..."
 #: ../lib/python/Screens/ChannelSelection.py:84
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
+
+#: ../lib/python/Components/TimerList.py:59
+msgid "done!"
+msgstr "erledigt!"
 
 #: ../lib/python/Components/NimManager.py:541
 msgid "empty/unknown"
@@ -1044,6 +1094,10 @@ msgstr "Modul initialisieren"
 #: ../lib/python/Screens/InfoBar.py:76
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
+
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid "list"
+msgstr ""
 
 #: ../lib/python/Components/NimManager.py:644
 msgid "manual"
@@ -1103,6 +1157,10 @@ msgstr "vorheriger Kanal"
 #: ../lib/python/Screens/InfoBarGenerics.py:281
 msgid "previous channel in history"
 msgstr ""
+
+#: ../lib/python/Components/TimerList.py:55
+msgid "recording..."
+msgstr "nimmt auf..."
 
 #: ../lib/python/Screens/ChannelSelection.py:72
 msgid "remove bouquet"
@@ -1173,6 +1231,10 @@ msgstr "benutzerdefiniert"
 #: ../lib/python/Screens/ScanSetup.py:173
 msgid "vertical"
 msgstr "vertikal"
+
+#: ../lib/python/Components/TimerList.py:51
+msgid "waiting"
+msgstr "wartend"
 
 #: ../lib/python/Screens/TimerEntry.py:94
 msgid "weekly"
@@ -1436,6 +1498,10 @@ msgstr ""
 #: ../data/
 msgid "#80000000"
 msgstr ""
+
+#: ../data/
+msgid "Downloadable plugins"
+msgstr "Herunterladbare Erweiterungen"
 
 #: ../data/
 msgid "LCD"

@@ -48,15 +48,15 @@ def TimerEntryComponent(timer, processed):
 
 	if not processed:
 		if timer.state == TimerEntry.StateWaiting:
-			state = "waiting"
+			state = _("waiting")
 		elif timer.state == TimerEntry.StatePrepared:
-			state = "about to start"
+			state = _("about to start")
 		elif timer.state == TimerEntry.StateRunning:
-			state = "recording..."
+			state = _("recording...")
 		else:
-			state = "<unknown>"
+			state = _("<unknown>")
 	else:
-		state = "done!"
+		state = _("done!")
 	
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 
