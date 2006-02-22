@@ -96,52 +96,6 @@ class IPKGSource(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-class Upgrade(Screen):
-	skin = """
-		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
-			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
-		</screen>"""
-		
-	def __init__(self, session, args = None):
-		self.skin = Upgrade.skin
-		Screen.__init__(self, session)
-
-		self["text"] = ScrollLabel(_("Updating... Please wait... This can take some minutes..."))
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
-		{
-			"ok": self.cancel,
-			"back": self.cancel,
-			"up": self["text"].pageUp,
-			"down": self["text"].pageDown
-		}, -1)
-		
-		self.container = eConsoleAppContainer()
-		self.run = 0
-		self.container.appClosed.get().append(self.updateFinished)
-		self.container.dataAvail.get().append(self.dataAvail)
-		self.onLayoutFinish.append(self.startUpdate) # dont start before gui is finished
-
-	def startUpdate(self):
-		self["text"].setText(_("Update Progress:") + "\n\n")
-		self.container.execute("ipkg update")
-
-	def updateFinished(self, retval):
-		if self.run == 0:
-			self.run = 1
-			self.container.execute("ipkg upgrade -force-defaults -force-overwrite")
-		elif self.run == 1:
-			str = self["text"].getText()
-			str += _("Updating finished!!");
-			self["text"].setText(str)
-			self.run = 2
-			
-	def cancel(self):
-		if self.run == 2:
-			self.close()
-
-	def dataAvail(self, str):
-		self["text"].setText(self["text"].getText() + str)
-
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
 RT_HALIGN_CENTER = 2
