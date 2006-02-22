@@ -20,13 +20,16 @@ class MessageBox(Screen):
 		
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
+		self["InfoPixmap"] = Pixmap()
 		
 		self.list = []
 		if type != self.TYPE_ERROR:
 			self.onShown.append(self["ErrorPixmap"].hideWidget)
 		elif type != self.TYPE_YESNO:
 			self.onShown.append(self["QuestionPixmap"].hideWidget)
-
+		elif type != self.TYPE_INFO:
+			self.onShown.append(self["InfoPixmap"].hideWidget)
+			
 		if type == self.TYPE_YESNO:
 			self.list = [ (_("yes"), 0), (_("no"), 1) ]
 
