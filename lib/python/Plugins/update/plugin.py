@@ -106,7 +106,6 @@ class Upgrade(Screen):
 		Screen.__init__(self, session)
 
 		self["text"] = ScrollLabel(_("Updating... Please wait... This can take some minutes..."))
-				
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
 		{
 			"ok": self.go,
@@ -115,22 +114,43 @@ class Upgrade(Screen):
 			"down": self["text"].pageDown
 		}, -1)
 		
-		self.delayTimer = eTimer()
-		self.delayTimer.timeout.get().append(self.doUpdateDelay)
+#		self.delayTimer = eTimer()
+#		self.delayTimer.timeout.get().append(self.doUpdateDelay)
 		# WARNING! Don't copy this code! this code could harm your children! It is ugly, bad and must be banned from this world!
 		# it only exists due to some lack of competence by the core system designers.
-		self.delayTimer.start(1, 1)
-		
+#		self.delayTimer.start(1, 1)
+		self.container = eConsoleAppContainer()
+		self.container.appClosed.get().append(self.updateFinished)
+		self.container.dataAvail.get().append(self.dataAvail)
+		self.onLayoutFinish.append(self.startUpdate) # dont start before gui is finished
+
+	def startUpdate(self):
+		self["text"].setText(_("Update Progress:") + "\n\n")
+		self.container.execute("ls -l '/hdd/movie'")
+#		self.container.execute("ipkg update && ipkg upgrade -force-defaults -force-overwrite")
+
+	def updateFinished(self, retval):
+		print "app closed retval", retval
+		str = self["text"].getText()
+		str += _("Updating finished!!");
+		self["text"].setText(str)
+
+	def dataAvail(self, str):
+		print "got data:", str
+		string = self["text"].getText()
+		string += str
+		self["text"].setText(string)
+
 	def go(self):
 		self.close()
-	
-	def doUpdateDelay(self):
-		lines = os.popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
-		string = ""
-		for x in lines:
-			string += x
-		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
-			
+
+#	def doUpdateDelay(self):
+#		lines = os.popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
+#		string = ""
+#		for x in lines:
+#			string += x
+#		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
+
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
 RT_HALIGN_CENTER = 2
