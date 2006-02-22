@@ -55,8 +55,8 @@ enigma2.pot:
 			../lib/python/Components/EventInfo.py \
 			../lib/python/Components/Network.py \
 			../lib/python/Components/RecordingConfig.py \
-			../lib/python/Plugins/update/plugin.py \
-			../lib/python/Plugins/fpupgrade/plugin.py \
+			../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py \
+			../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py \
 			../RecordTimer.py
 	./xml2po.py	../data/ >> enigma2.pot
 
