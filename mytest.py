@@ -271,14 +271,19 @@ def runScreenTest():
 	
 	session.nav = Navigation()
 	
-	screensToRun = wizardManager.getWizards()
+	screensToRun = [ ]
+	
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
 		screensToRun.append(p.__call__)
+	
+	screensToRun += wizardManager.getWizards()
+	
 	screensToRun.append(Screens.InfoBar.InfoBar)
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			quitMainloop(*result)
+			return
 	
 		screen = screensToRun[0]
 		
