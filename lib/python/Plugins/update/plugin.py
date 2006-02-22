@@ -108,48 +108,38 @@ class Upgrade(Screen):
 		self["text"] = ScrollLabel(_("Updating... Please wait... This can take some minutes..."))
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
 		{
-			"ok": self.go,
-			"back": self.close,
+			"ok": self.cancel,
+			"back": self.cancel,
 			"up": self["text"].pageUp,
 			"down": self["text"].pageDown
 		}, -1)
 		
-#		self.delayTimer = eTimer()
-#		self.delayTimer.timeout.get().append(self.doUpdateDelay)
-		# WARNING! Don't copy this code! this code could harm your children! It is ugly, bad and must be banned from this world!
-		# it only exists due to some lack of competence by the core system designers.
-#		self.delayTimer.start(1, 1)
 		self.container = eConsoleAppContainer()
+		self.run = 0
 		self.container.appClosed.get().append(self.updateFinished)
 		self.container.dataAvail.get().append(self.dataAvail)
 		self.onLayoutFinish.append(self.startUpdate) # dont start before gui is finished
 
 	def startUpdate(self):
 		self["text"].setText(_("Update Progress:") + "\n\n")
-		self.container.execute("ls -l '/hdd/movie'")
-#		self.container.execute("ipkg update && ipkg upgrade -force-defaults -force-overwrite")
+		self.container.execute("ipkg update")
 
 	def updateFinished(self, retval):
-		print "app closed retval", retval
-		str = self["text"].getText()
-		str += _("Updating finished!!");
-		self["text"].setText(str)
+		if self.run == 0:
+			self.run = 1
+			self.container.execute("ipkg upgrade")
+		elif self.run == 1:
+			str = self["text"].getText()
+			str += _("Updating finished!!");
+			self["text"].setText(str)
+			self.run = 2
+			
+	def cancel(self):
+		if self.run == 2:
+			self.close()
 
 	def dataAvail(self, str):
-		print "got data:", str
-		string = self["text"].getText()
-		string += str
-		self["text"].setText(string)
-
-	def go(self):
-		self.close()
-
-#	def doUpdateDelay(self):
-#		lines = os.popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
-#		string = ""
-#		for x in lines:
-#			string += x
-#		self["text"].setText(_("Updating finished. Here is the result:") + "\n\n" + string)
+		self["text"].setText(self["text"].getText() + str)
 
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
