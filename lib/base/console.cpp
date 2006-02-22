@@ -154,6 +154,7 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 					tmp.erase(tmp.length()-1, 1);
 					bracketClosed=false;
 				}
+//				eDebug("new argv[%d] %d bytes", tmp.length()+1);
 				argv[cnt] = new char[ tmp.length()+1 ];
 //				eDebug("idx=%d, arg = %s", idx, tmp.c_str() );
 				strcpy( argv[cnt++], tmp.c_str() );
@@ -171,7 +172,8 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 			cmds.erase(cmds.length()-1, 1);
 		}
 		// store the last arg
-		argv[cnt] = new char[ cmds.length() ];
+//		eDebug("new argv[%d] %d bytes", cmds.length());
+		argv[cnt] = new char[ cmds.length()+1 ];
 		strcpy( argv[cnt], cmds.c_str() );
 	}
 	else
@@ -349,3 +351,4 @@ void eConsoleAppContainer::readyWrite(int what)
 	if ( !outbuf.size() )
 		out->stop();
 }
+	
