@@ -35,9 +35,10 @@ def FileEntryComponent(name, absolute, isDir = False):
 	if isDir:
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/directory.png"))
 	else:
-		# FIXME: detect file extensions correctly
-		if EXTENSIONS.has_key(name[-3:]):
-			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + EXTENSIONS[name[-3:]] + ".png"))
+		extension = name.split('.')
+		extension = extension[len(extension) - 1]
+		if EXTENSIONS.has_key(extension):
+			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + EXTENSIONS[extension] + ".png"))
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
 	

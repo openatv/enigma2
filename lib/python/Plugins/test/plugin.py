@@ -22,7 +22,7 @@ class Test(Screen):
 		self.skin = Test.skin
 		Screen.__init__(self, session)
 
-		self["list"] = FileList("/", matchingPattern = "^.*\.(png|avi|mp3)")
+		self["list"] = FileList("/", matchingPattern = "^.*\.(png|avi|mp3|mpeg)")
 		self["pixmap"] = Pixmap()
 		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
