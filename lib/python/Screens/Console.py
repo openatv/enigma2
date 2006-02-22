@@ -33,7 +33,7 @@ class Console(Screen):
 
 	def startRun(self):
 		self["text"].setText(_("Execution Progress:") + "\n\n")
-		self.container.execute("ipkg update")
+		self.container.execute(self.cmdlist[self.run])
 
 	def runFinished(self, retval):
 		self.run += 1

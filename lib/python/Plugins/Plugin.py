@@ -35,6 +35,7 @@ class PluginDescriptor:
 		self.description = description
 
 		self.iconstr = icon
+		self.icon = None
 
 		self.__call__ = fnc
 
