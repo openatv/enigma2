@@ -1,0 +1,46 @@
+# must be fixed for the new plugin interface
+from enigma import *
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Components.ActionMap import ActionMap
+from Components.Label import Label
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import pathExists
+from Plugins.Plugin import PluginDescriptor
+
+import os
+
+TUXBOX_PLUGINS_PATH = "/usr/lib/tuxbox/plugins/"
+
+def getPlugins():
+	pluginlist = []
+
+	if pathExists(TUXBOX_PLUGINS_PATH):
+		dir = os.listdir(TUXBOX_PLUGINS_PATH)
+	
+		for x in dir:
+			if x[-3:] == "cfg":
+				params = getPluginParams(x)
+				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where = PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", fnc=boundFunction(main, plugin=x)))
+	
+	return pluginlist
+
+def getPluginParams(file):
+	params = {}
+	try:
+		file = open(TUXBOX_PLUGINS_PATH + file, "r")
+		for x in file.readlines():
+			split = x.split("=")
+			params[split[0]] = split[1]
+		file.close()
+	except IOError:
+		print "no tuxbox plugins found"
+
+	return params
+
+def main(session, plugin):
+	print "Running plugin " + plugin[:-4] + ".so with config file", plugin
+	print getPluginParams(plugin)
+	
+def Plugins():
+	return getPlugins()
