@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 16:31+0100\n"
+"POT-Creation-Date: 2006-02-22 01:43+0100\n"
 "PO-Revision-Date: 2006-02-07 17:21+0100\n"
 "Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
 "Language-Team: none\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "%d.%B %Y"
 msgstr ""
 
-#: ../lib/python/Screens/About.py:26
+#: ../lib/python/Screens/About.py:36
 #, python-format
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
@@ -91,9 +91,6 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 #: ../lib/python/Screens/EventView.py:21
-msgid "Add Timer"
-msgstr "Timer hinzuf."
-
 #: ../lib/python/Screens/EpgSelection.py:48
 msgid "Add timer"
 msgstr "Timer setzen"
@@ -242,11 +239,11 @@ msgstr "Löschen fehlgeschlagen."
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ../lib/python/Screens/About.py:23
+#: ../lib/python/Screens/About.py:33
 msgid "Detected HDD:"
 msgstr "Erkannte Festplatten"
 
-#: ../lib/python/Screens/About.py:15
+#: ../lib/python/Screens/About.py:17
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
@@ -386,6 +383,11 @@ msgstr "Fr"
 #: ../lib/python/Screens/TimerEntry.py:162
 msgid "Friday"
 msgstr "Freitag"
+
+#: ../lib/python/Screens/About.py:23
+#, python-format
+msgid "Frontprocessor version: %d"
+msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
@@ -1054,7 +1056,7 @@ msgstr "keine Festplatte gefunden"
 msgid "no module found"
 msgstr "Kein Modul gefunden"
 
-#: ../lib/python/Screens/About.py:28
+#: ../lib/python/Screens/About.py:38
 msgid "none"
 msgstr "keine"
 
@@ -1727,6 +1729,9 @@ msgstr "Springen"
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
+#~ msgid "Add Timer"
+#~ msgstr "Timer hinzuf."
 
 #~ msgid "Please press OK!"
 #~ msgstr "Bitte OK drücken!"

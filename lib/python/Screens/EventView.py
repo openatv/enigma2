@@ -18,7 +18,7 @@ class EventViewBase:
 		self["channel"] = Label()
 		self["duration"] = Label()
 		self["key_red"] = Button("")
-		self["key_green"] = Button(_("Add Timer"))
+		self["key_green"] = Button(_("Add timer"))
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
