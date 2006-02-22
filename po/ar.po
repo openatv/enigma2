@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-19 00:55+0100\n"
+"POT-Creation-Date: 2006-02-22 22:07+0100\n"
 "PO-Revision-Date: 2006-01-10 01:17+0300\n"
 "Last-Translator: hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -19,35 +19,110 @@ msgstr ""
 "X-Poedit-Country: EGYPT\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
-#: ../lib/python/Screens/EventView.py:72
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid "\"?"
+msgstr ""
+
+#: ../lib/python/Screens/EventView.py:80
 #, python-format
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:86
-#: ../lib/python/Screens/TimerEntry.py:89
+#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 msgid "%d.%B %Y"
 msgstr ""
 
-#: ../lib/python/Screens/About.py:25
+#: ../lib/python/Screens/About.py:36
 #, python-format
 msgid "%s (%s, %d MB free)"
 msgstr "%s (%s, %d MB frei)"
 
-#: ../lib/python/Screens/TimerEdit.py:25
+#: ../lib/python/Components/NimManager.py:695
+msgid "0 V"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:698
+msgid "1.0"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:698
+msgid "1.1"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:698
+msgid "1.2"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:695
+msgid "12 V"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:140
+msgid "12V Output"
+msgstr "مخرج 12 فولت"
+
+#: ../lib/python/Components/NimManager.py:674
+msgid "13 V"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:674
+msgid "18 V"
+msgstr ""
+
+#: ../lib/python/Components/TimerList.py:57
+msgid "<unknown>"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:697
+msgid "A"
+msgstr "أ"
+
+#: ../RecordTimer.py:133
+msgid ""
+"A timer failed to record!\n"
+"Disable TV and try again?\n"
+msgstr ""
+"فشل عمليه التسجيل بالمؤقت\n"
+"حاول مره ثانيه؟\n"
+
+#: ../lib/python/Components/NimManager.py:680
+msgid "AA"
+msgstr "أأ"
+
+#: ../lib/python/Components/NimManager.py:680
+msgid "AB"
+msgstr "أب"
+
+#: ../lib/python/Screens/TimerEdit.py:28
 msgid "Add"
 msgstr "أضف"
 
-#: ../lib/python/Screens/ChannelSelection.py:223
+#: ../lib/python/Screens/EventView.py:21
+#: ../lib/python/Screens/EpgSelection.py:48
+msgid "Add timer"
+msgstr "أضف مؤقت"
+
+#: ../lib/python/Components/NimManager.py:617
+#: ../lib/python/Components/NimManager.py:625
+#: ../lib/python/Plugins/update/plugin.py:29
+msgid "Advanced"
+msgstr "متقدم"
+
+#: ../lib/python/Screens/ChannelSelection.py:392
+#: ../lib/python/Screens/ChannelSelection.py:536
 msgid "All"
 msgstr "الكل"
 
-#: ../lib/python/Screens/ScanSetup.py:170
-#: ../lib/python/Screens/ScanSetup.py:173
-#: ../lib/python/Screens/ScanSetup.py:177
+#: ../lib/python/Components/Language.py:15
+msgid "Arabic"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:171
+#: ../lib/python/Screens/ScanSetup.py:174
 #: ../lib/python/Screens/ScanSetup.py:178
 #: ../lib/python/Screens/ScanSetup.py:179
-#: ../lib/python/Screens/ScanSetup.py:184
+#: ../lib/python/Screens/ScanSetup.py:180
 #: ../lib/python/Screens/ScanSetup.py:185
 #: ../lib/python/Screens/ScanSetup.py:186
 #: ../lib/python/Screens/ScanSetup.py:187
@@ -55,91 +130,160 @@ msgstr "الكل"
 #: ../lib/python/Screens/ScanSetup.py:189
 #: ../lib/python/Screens/ScanSetup.py:190
 #: ../lib/python/Screens/ScanSetup.py:191
+#: ../lib/python/Screens/ScanSetup.py:192
 msgid "Auto"
 msgstr "آلـى"
 
-#: ../lib/python/Screens/ScanSetup.py:381 ../data/
+#: ../lib/python/Screens/ScanSetup.py:379 ../data/
 msgid "Automatic Scan"
 msgstr "بحث آلـى"
 
-#: ../lib/python/Screens/ScanSetup.py:126
+#: ../lib/python/Components/NimManager.py:697
+msgid "B"
+msgstr "ب"
+
+#: ../lib/python/Components/NimManager.py:680
+msgid "BA"
+msgstr "ب أ"
+
+#: ../lib/python/Components/NimManager.py:680
+msgid "BB"
+msgstr "ب ب"
+
+#: ../lib/python/Components/NimManager.py:675
+msgid "Band"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:127
 msgid "Bandwidth"
 msgstr ""
 
-#: ../lib/python/Screens/HarddiskSetup.py:30
+#: ../lib/python/Screens/HarddiskSetup.py:31
 msgid "Bus: "
 msgstr "الناقل"
 
-#: ../lib/python/Screens/Satconfig.py:55
+#: ../lib/python/Components/NimManager.py:691
+msgid "C-Band"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:66
 msgid "Cable provider"
 msgstr "مقدم خدمه الكابل"
 
-#: ../lib/python/Screens/HarddiskSetup.py:29
+#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:24
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Capacity: "
 msgstr "السعه:"
 
-#: ../lib/python/Screens/TimerEntry.py:170 ../data/
+#: ../lib/python/Screens/TimerEntry.py:180 ../data/
 msgid "Channel"
 msgstr "قناه"
 
-#: ../lib/python/Screens/ChannelSelection.py:55 ../data/
-msgid "Channel Selection"
-msgstr "إختيار القناه"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:179
+#: ../lib/python/Screens/InfoBarGenerics.py:140
 msgid "Channel:"
 msgstr "قناه:"
+
+#: ../lib/python/Plugins/update/plugin.py:31
+msgid "Choose source"
+msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Classic"
 msgstr "كلاسيك"
 
-#: ../lib/python/Screens/ScanSetup.py:127
-msgid "Code rate high"
+#: ../lib/python/Screens/TimerEdit.py:30
+msgid "Cleanup"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:299
+msgid "Clear log"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:128
+msgid "Code rate high"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:129
 msgid "Code rate low"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:37 ../data/
+#: ../lib/python/Screens/Satconfig.py:120
+#: ../lib/python/Screens/Satconfig.py:122
+msgid "Command order"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:116
+msgid "Committed DiSEqC command"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:47
+#: ../lib/python/Screens/Satconfig.py:145 ../data/
 msgid "Configuration Mode"
 msgstr "وضع التهيئه"
+
+#: ../lib/python/Screens/TimerEdit.py:197
+msgid "Conflicting timer"
+msgstr ""
+
+#: ../lib/python/Plugins/fpupgrade/plugin.py:32
+msgid "Current version:"
+msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
 msgstr "المعتاد"
 
-#: ../lib/python/Screens/TimerEdit.py:24
+#: ../lib/python/Screens/TimerEdit.py:27
+#: ../lib/python/Screens/PluginBrowser.py:19
 msgid "Delete"
 msgstr "أمسح"
 
-#: ../lib/python/Screens/TimerEntry.py:131
+#: ../lib/python/Screens/TimerEntry.py:296
+msgid "Delete entry"
+msgstr ""
+
+#: ../lib/python/Screens/MovieSelection.py:53
+msgid "Delete failed!"
+msgstr "فشل المسح"
+
+#: ../lib/python/Screens/TimerEntry.py:141
 msgid "Description"
 msgstr "الوصـف"
 
-#: ../lib/python/Screens/About.py:22
+#: ../lib/python/Screens/About.py:33
 msgid "Detected HDD:"
 msgstr "موجود قرص صلب:"
 
-#: ../lib/python/Screens/About.py:14
+#: ../lib/python/Screens/About.py:17
 msgid "Detected NIMs:"
 msgstr "موجود تيونر:"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:639
 msgid "DiSEqC A/B"
 msgstr "دايزك أ/ب"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:639
 msgid "DiSEqC A/B/C/D"
 msgstr "دايزك أ/ب/ج/د"
 
-#: ../lib/python/Screens/Satconfig.py:41
+#: ../lib/python/Screens/Satconfig.py:51
 msgid "DiSEqC Mode"
 msgstr "وضع الدايزك"
 
+#: ../lib/python/Screens/Satconfig.py:112
+msgid "DiSEqC mode"
+msgstr "وضعيـه الدايزك"
+
+#: ../lib/python/Screens/Satconfig.py:124
+msgid "DiSEqC repeats"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:375
+#: ../lib/python/Screens/TimerEdit.py:76 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -150,7 +294,17 @@ msgstr "وضع الدايزك"
 msgid "Disable"
 msgstr "إبطال"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:633
+#: ../lib/python/Screens/MovieSelection.py:36
+msgid "Do you really want to delete this recording?"
+msgstr "هل تريد مسح هذا التسجيل؟"
+
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid ""
+"Do you really want to download\n"
+"the plugin \""
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:999
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
@@ -158,17 +312,44 @@ msgstr ""
 "هل تريد إلغـاء التسجيل\n"
 "الحالى؟"
 
-#: ../lib/python/Components/ServiceScan.py:35
+#: ../lib/python/Plugins/update/plugin.py:46
+#: ../lib/python/Plugins/update/plugin.py:198
+msgid ""
+"Do you want to update your Dreambox?\n"
+"After pressing OK, please wait!"
+msgstr ""
+"هل تريد تحديث الدريم بوكس\n"
+"إضغط OK ثم إنتظر!"
+
+#: ../lib/python/Screens/PluginBrowser.py:20
+msgid "Download Plugins"
+msgstr ""
+
+#: ../lib/python/Screens/PluginBrowser.py:70
+msgid "Downloading plugin information. Please wait..."
+msgstr ""
+
+#: ../lib/python/Components/Language.py:16
+msgid "Dutch"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:650
+msgid "E"
+msgstr "O"
+
+#: ../lib/python/Components/ServiceScan.py:40
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "خطأ - فشل البحث (%s)!"
 
-#: ../lib/python/Components/NimManager.py:431
+#: ../lib/python/Components/NimManager.py:646
+#: ../lib/python/Components/NimManager.py:707
 msgid "East"
 msgstr "شرق"
 
 #: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:377 ../lib/python/Components/Lcd.py:32
+#: ../lib/python/Screens/ScanSetup.py:375
+#: ../lib/python/Screens/TimerEdit.py:74 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -179,55 +360,89 @@ msgstr "شرق"
 msgid "Enable"
 msgstr "تفعيل"
 
-#: ../lib/python/Screens/TimerEntry.py:165
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "End"
 msgstr "النهايه"
 
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:178
 msgid "EndTime"
 msgstr " إنتهاء الوقت"
 
-#: ../lib/python/Screens/LanguageSelection.py:39
+#: ../lib/python/Screens/LanguageSelection.py:45
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:12
+#: ../lib/python/Components/Language.py:13
 msgid "English"
 msgstr "إنجليزى"
 
+#: ../lib/python/Components/NimManager.py:620
+msgid "Equal to Socket A"
+msgstr ""
+
+#: ../lib/python/Screens/Console.py:35
+msgid "Execution Progress:"
+msgstr ""
+
+#: ../lib/python/Screens/Console.py:44
+msgid "Execution finished!!"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1064
+msgid "Extensions"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:91
-#: ../lib/python/Screens/ScanSetup.py:118
+#: ../lib/python/Screens/ScanSetup.py:119
 msgid "FEC"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:226
+#: ../lib/python/Screens/Satconfig.py:117
+msgid "Fast DiSEqC"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:395
 msgid "Favourites"
 msgstr "المفضله"
 
 #: ../lib/python/Screens/ScanSetup.py:87
-#: ../lib/python/Screens/ScanSetup.py:114
-#: ../lib/python/Screens/ScanSetup.py:124
-#: ../lib/python/Screens/TimerEntry.py:138
+#: ../lib/python/Screens/ScanSetup.py:115
+#: ../lib/python/Screens/ScanSetup.py:125
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Frequency"
 msgstr "التردد"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:152
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Fri"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:162
 msgid "Friday"
 msgstr "الجمعه"
+
+#: ../lib/python/Screens/About.py:23
+#, python-format
+msgid "Frontprocessor version: %d"
+msgstr ""
+
+#: ../lib/python/Plugins/update/plugin.py:55
+msgid "Function not yet implemented"
+msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:13
+#: ../lib/python/Components/Language.py:14
 msgid "German"
 msgstr "المانـى"
 
-#: ../lib/python/Screens/ScanSetup.py:131
+#: ../lib/python/Screens/ScanSetup.py:132
 msgid "Guard interval mode"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:132
+#: ../lib/python/Screens/ScanSetup.py:133
 msgid "Hierarchy mode"
 msgstr ""
 
@@ -235,59 +450,98 @@ msgstr ""
 msgid "IP Address"
 msgstr "عنوان IP"
 
-#: ../lib/python/Screens/HarddiskSetup.py:31
+#: ../lib/python/Screens/Satconfig.py:141
+msgid "Increased voltage"
+msgstr "فولت زائد"
+
+#: ../lib/python/Screens/Ci.py:214
+msgid "Init"
+msgstr ""
+
+#: ../lib/python/Screens/HarddiskSetup.py:33
 msgid "Initialize"
 msgstr "تفعيل البدأ"
 
-#: ../lib/python/Screens/HarddiskSetup.py:18
+#: ../lib/python/Screens/HarddiskSetup.py:19
 msgid "Initializing Harddisk..."
 msgstr "تفعيل القرص الصلب"
 
 #: ../lib/python/Screens/ScanSetup.py:88
-#: ../lib/python/Screens/ScanSetup.py:115
-#: ../lib/python/Screens/ScanSetup.py:125
+#: ../lib/python/Screens/ScanSetup.py:116
+#: ../lib/python/Screens/ScanSetup.py:126
 msgid "Inversion"
 msgstr "عكـس"
 
-#: ../lib/python/Screens/LanguageSelection.py:34 ../data/
+#: ../lib/python/Screens/Satconfig.py:109
+msgid "LNB"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:134
+msgid "LOF"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:138
+msgid "LOF/H"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:137
+msgid "LOF/L"
+msgstr ""
+
+#: ../lib/python/Screens/LanguageSelection.py:40 ../data/
 msgid "Language selection"
 msgstr "إختيار اللغه"
 
-#: ../lib/python/Screens/Satconfig.py:28 ../data/
+#: ../lib/python/Screens/Satconfig.py:28
+#: ../lib/python/Screens/Satconfig.py:128 ../data/
 msgid "Latitude"
 msgstr "خط العرض"
 
-#: ../lib/python/Screens/Satconfig.py:26 ../data/
+#: ../lib/python/Screens/Satconfig.py:26
+#: ../lib/python/Screens/Satconfig.py:126 ../data/
 msgid "Longitude"
 msgstr "خط الطول"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Components/NimManager.py:621
 msgid "Loopthrough to Socket A"
 msgstr ""
 
-#: ../lib/python/Screens/HarddiskSetup.py:28
+#: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
 msgstr "موديل :"
 
-#: ../lib/python/Screens/ScanSetup.py:117
-#: ../lib/python/Screens/ScanSetup.py:129
+#: ../lib/python/Screens/ScanSetup.py:118
+#: ../lib/python/Screens/ScanSetup.py:130
 msgid "Modulation"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Mon"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "Mon-Fri"
 msgstr "الاثنين - الجمعه"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Monday"
 msgstr "الاثنين"
 
-#: ../lib/python/Components/NimManager.py:260
+#: ../lib/python/Screens/MovieSelection.py:23
+msgid "Movie Menu"
+msgstr "قائمه الافلام"
+
+#: ../lib/python/Screens/EventView.py:100
+msgid "Multi EPG"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:476
 msgid "N/A"
 msgstr "غير موجود"
 
-#: ../lib/python/Screens/TimerEntry.py:130
+#: ../lib/python/Screens/TimerEntry.py:140
 msgid "Name"
 msgstr "الاسم"
 
@@ -299,29 +553,85 @@ msgstr "اسم السيرفر"
 msgid "Netmask"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:173
-#: ../lib/python/Screens/ScanSetup.py:179
-#: ../lib/python/Screens/ScanSetup.py:186
+#: ../lib/python/Plugins/fpupgrade/plugin.py:33
+msgid "New version:"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:34
+msgid "Next"
+msgstr "التالى"
+
+#: ../lib/python/Components/NimManager.py:676
+#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:700
+#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:710
+msgid "No"
+msgstr "لا"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:995
+msgid "No HDD found or HDD not initialized!"
+msgstr ""
+"لا يوجد قرص صلب\n"
+"أو ان القرص الصلب لم يبدأ"
+
+#: ../lib/python/Screens/ScanSetup.py:174
+#: ../lib/python/Screens/ScanSetup.py:180
 #: ../lib/python/Screens/ScanSetup.py:187
-#: ../lib/python/Screens/ScanSetup.py:191
+#: ../lib/python/Screens/ScanSetup.py:188
+#: ../lib/python/Screens/ScanSetup.py:192
+#: ../lib/python/Components/NimManager.py:680
+#: ../lib/python/Components/NimManager.py:684
+#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Components/NimManager.py:698
+#: ../lib/python/Components/NimManager.py:705
 msgid "None"
 msgstr "لاشيئ"
 
-#: ../lib/python/Components/NimManager.py:433
+#: ../lib/python/Components/NimManager.py:648
+#: ../lib/python/Components/NimManager.py:709
 msgid "North"
 msgstr "شمال"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Components/NimManager.py:622
 msgid "Nothing connected"
 msgstr "لاشيئ متصل"
 
-#: ../lib/python/Screens/InfoBar.py:35
+#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:23
+msgid "OK"
+msgstr "موافق"
+
+#: ../lib/python/Components/NimManager.py:675
+msgid "Off"
+msgstr "لا يعمل"
+
+#: ../lib/python/Components/NimManager.py:675
+msgid "On"
+msgstr "يعمل"
+
+#: ../lib/python/Components/NimManager.py:705
+msgid "One"
+msgstr "واحد"
+
+#: ../lib/python/Plugins/update/plugin.py:32
+msgid "Packet management"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBar.py:38
 msgid "Play recorded movies..."
 msgstr "عرض الافلام المسجله"
+
+#: ../lib/python/Screens/MovieSelection.py:68
+msgid "Please wait... Loading list..."
+msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
 
 #: ../lib/python/Screens/ScanSetup.py:90
 msgid "Polarity"
 msgstr "القطبيه"
+
+#: ../lib/python/Components/NimManager.py:674
+msgid "Polarization"
+msgstr "الاستقطاب"
 
 #: ../lib/python/Screens/Satconfig.py:15
 msgid "Port A"
@@ -339,15 +649,15 @@ msgstr "مدخل ج"
 msgid "Port D"
 msgstr "مدخل د"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:639
 msgid "Positioner"
 msgstr "الموتور"
 
-#: ../lib/python/Screens/Satconfig.py:24
-msgid "Positioner mode"
-msgstr "Rotorart"
+#: ../lib/python/Screens/NetworkSetup.py:35
+msgid "Press OK to activate the settings."
+msgstr "اضغط موافق لتفعيل الاعدادات"
 
-#: ../lib/python/Screens/ScanSetup.py:382
+#: ../lib/python/Screens/ScanSetup.py:380
 msgid "Press OK to scan"
 msgstr "اضغط موافق للبحث"
 
@@ -355,128 +665,237 @@ msgstr "اضغط موافق للبحث"
 msgid "Press OK to start the scan"
 msgstr "اضغط موافق لبدأ البحث"
 
-#: ../lib/python/Screens/ChannelSelection.py:225
+#: ../lib/python/Screens/EpgSelection.py:33
+msgid "Prev"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:394
+#: ../lib/python/Screens/ChannelSelection.py:532
 msgid "Provider"
 msgstr "مقدم الخدمه"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:690
+#: ../lib/python/Screens/ChannelSelection.py:639
+msgid "Providers"
+msgstr "مقدمو الخدمه"
+
+#: ../lib/python/Screens/TimerEdit.py:97
+msgid "Really delete done timers?"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1048
 msgid "Record"
 msgstr "تسجيل"
 
+#: ../lib/python/Screens/Ci.py:213
+msgid "Reset"
+msgstr "إعاده الضبط"
+
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Sat"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:86 ../lib/python/Screens/ScanSetup.py:95
-#: ../lib/python/Screens/Satconfig.py:13
+#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:61
+#: ../lib/python/Screens/Satconfig.py:147
 msgid "Satellite"
 msgstr "قمر صناعى"
 
-#: ../lib/python/Screens/ChannelSelection.py:224
+#: ../lib/python/Screens/ChannelSelection.py:393
+#: ../lib/python/Screens/ChannelSelection.py:534
 msgid "Satellites"
 msgstr "اقمار صناعيه"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:153
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Saturday"
 msgstr "السبت"
 
-#: ../lib/python/Screens/TimerEntry.py:208
+#: ../lib/python/Components/NimManager.py:623
+msgid "Secondary cable from motorized LNB"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:218
 msgid "Select channel to record from"
 msgstr "اختار القناه التى تريد ان تسجل منها"
 
-#: ../lib/python/Components/NimManager.py:409
+#: ../lib/python/Screens/Satconfig.py:118
+msgid "Sequence repeat"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:641
+msgid "Services"
+msgstr "القنوات/الخدمات"
+
+#: ../lib/python/Plugins/update/plugin.py:33
+msgid "Settings"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBar.py:39
+msgid "Show the radio player..."
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:617
+#: ../lib/python/Components/NimManager.py:624
 msgid "Simple"
 msgstr "بسيطه"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Components/NimManager.py:639
 msgid "Single"
 msgstr "مفرد"
 
-#: ../lib/python/Components/NimManager.py:437
+#: ../lib/python/Screens/EventView.py:99
+msgid "Single EPG"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:652
 msgid "Slot "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:323
+#: ../lib/python/Components/NimManager.py:539
 msgid "Socket "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:433
+#: ../lib/python/Components/NimManager.py:648
+#: ../lib/python/Components/NimManager.py:709
 msgid "South"
 msgstr "جنوب"
 
-#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Components/Language.py:17
+msgid "Spanish"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Start"
 msgstr "أبـدأ"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:635
+#: ../lib/python/Screens/InfoBarGenerics.py:1001
 msgid "Start recording?"
 msgstr "أبـدأ التسجيل؟"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "StartTime"
 msgstr "وقت البـدأ"
 
-#: ../lib/python/Screens/Wizard.py:183
+#: ../lib/python/Screens/Wizard.py:208
 msgid "Step "
 msgstr "خطوه "
 
-#: ../lib/python/Screens/InfoBar.py:77
+#: ../lib/python/Screens/InfoBarGenerics.py:866
+msgid "Stop Timeshift?"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBar.py:95
 msgid "Stop playing this movie?"
 msgstr "إيقاف عرض هذا الفيلم؟"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:696 ../data/
+#: ../lib/python/Screens/Satconfig.py:106
+msgid "Stored position"
+msgstr "الوضع المخزن"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1053 ../data/
 msgid "Subservices"
 msgstr "الخدمات الفرعيه"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:154
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Sun"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:164
 msgid "Sunday"
 msgstr "الاحد"
 
 #: ../lib/python/Screens/ScanSetup.py:89
-#: ../lib/python/Screens/ScanSetup.py:116
+#: ../lib/python/Screens/ScanSetup.py:117
 msgid "Symbol Rate"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:57
+#: ../lib/python/Screens/Satconfig.py:68
 msgid "Terrestrial provider"
 msgstr "Region"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:151
+#: ../lib/python/Components/NimManager.py:705
+msgid "Three"
+msgstr "ثلاثه"
+
+#: ../lib/python/Screens/Satconfig.py:139
+msgid "Threshold"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Thu"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "Thursday"
 msgstr "الخميس"
 
-#: ../lib/python/Screens/TimerEntry.py:132
+#: ../lib/python/Screens/TimerEntry.py:142
 msgid "Timer Type"
 msgstr "نوع المؤقت"
 
-#: ../lib/python/Components/NimManager.py:424
+#: ../lib/python/Screens/InfoBarGenerics.py:840
+msgid "Timeshift not possible!"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1057
+msgid "Timeshifting"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:198
+msgid "Today"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:101
+msgid "Tone mode"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:115
+msgid "Toneburst"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:639
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
-#: ../lib/python/Screens/ScanSetup.py:130
+#: ../lib/python/Screens/ScanSetup.py:131
 msgid "Transmission mode"
 msgstr "وضع النقل"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:149
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Tue"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Tuesday"
 msgstr "الثلاثاء"
 
 #: ../lib/python/Screens/ScanSetup.py:74
-#: ../lib/python/Screens/ScanSetup.py:149
+#: ../lib/python/Screens/ScanSetup.py:150
 msgid "Tuner"
 msgstr "التيونر(الموالف)"
 
+#: ../lib/python/Components/NimManager.py:705
+msgid "Two"
+msgstr "اثنين"
+
 #: ../lib/python/Screens/ScanSetup.py:77 ../lib/python/Screens/ScanSetup.py:79
 #: ../lib/python/Screens/ScanSetup.py:81
-#: ../lib/python/Screens/ScanSetup.py:147
+#: ../lib/python/Screens/ScanSetup.py:148
 msgid "Type of scan"
 msgstr "نوع البحث"
 
-#: ../lib/python/Components/NimManager.py:429
+#: ../lib/python/Components/NimManager.py:644
 msgid "USALS"
 msgstr "USALS"
 
-#: ../lib/python/Screens/HarddiskSetup.py:47
+#: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
 "Unable to initialize harddisk.\n"
 "Please refer to the user manual.\n"
@@ -486,128 +905,291 @@ msgstr ""
 "من فضلك راجع تعليمات التشغيل\n"
 "خطـأ .. "
 
+#: ../lib/python/Screens/Satconfig.py:123
+msgid "Uncommitted DiSEqC command"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:691
+msgid "Universal LNB"
+msgstr ""
+
+#: ../lib/python/Plugins/update/plugin.py:207
+msgid "Updating finished. Here is the result:"
+msgstr "إنتهاء التحديث، وهذه هى النتيجه"
+
+#: ../lib/python/Plugins/update/plugin.py:213
+msgid "Updating... Please wait... This can take some minutes..."
+msgstr "جارى التحديث ..انتظر..قد يستغرق بعض الوقت"
+
+#: ../lib/python/Plugins/update/plugin.py:28
+msgid "Upgrade"
+msgstr ""
+
 #: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
 msgstr "استخدمDHCP"
 
-#: ../lib/python/Screens/TimerEntry.py:92
-#: ../lib/python/Screens/TimerEntry.py:150
+#: ../lib/python/Screens/Satconfig.py:103
+msgid "Use usals for this sat"
+msgstr "USALS für diesen Sat benutzen"
+
+#: ../lib/python/Components/NimManager.py:691
+msgid "User defined"
+msgstr "يحددها المستخدم"
+
+#: ../lib/python/Screens/Satconfig.py:100
+msgid "Voltage mode"
+msgstr "وضعيه الفولت"
+
+#: ../lib/python/Screens/ChannelSelection.py:648
+msgid "W"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Components/TimerList.py:34
+msgid "Wed"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Wednesday"
 msgstr "الاربعاء"
 
-#: ../lib/python/Screens/TimerEntry.py:145
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Weekday"
 msgstr "يوم الاسبوع"
 
-#: ../lib/python/Components/NimManager.py:431
+#: ../lib/python/Components/NimManager.py:646
+#: ../lib/python/Components/NimManager.py:707
 msgid "West"
 msgstr "غرب"
 
-#: ../lib/python/Screens/ChannelSelection.py:51
+#: ../lib/python/Components/NimManager.py:676
+#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:700
+#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:710
+msgid "Yes"
+msgstr "نعم"
+
+#: ../lib/python/Screens/MovieSelection.py:38
+msgid "You cannot delete this!"
+msgstr "لايمكنك مسح هذه !"
+
+#: ../lib/python/Plugins/fpupgrade/plugin.py:31
+msgid ""
+"Your frontprocessor firmware must be upgraded.\n"
+"Press OK to start upgrade."
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:272
+msgid "[bouquet edit]"
+msgstr "تحرير الباقه"
+
+#: ../lib/python/Screens/ChannelSelection.py:274
+msgid "[favourite edit]"
+msgstr "تحرير المفضله"
+
+#: ../lib/python/Screens/ChannelSelection.py:360
+msgid "[move mode]"
+msgstr "وضع التحريك"
+
+#: ../lib/python/Screens/ChannelSelection.py:88
 msgid "abort bouquet edit"
 msgstr "الغاء تحرير الباقه"
 
-#: ../lib/python/Screens/ChannelSelection.py:37
+#: ../lib/python/Screens/ChannelSelection.py:91
+msgid "abort favourites edit"
+msgstr "الغاء تحرير المفضله"
+
+#: ../lib/python/Components/TimerList.py:53
+msgid "about to start"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:63
 msgid "add service to bouquet"
 msgstr "إضافه القناه الى الباقه"
 
-#: ../lib/python/Screens/ChannelSelection.py:53
+#: ../lib/python/Screens/ChannelSelection.py:65
+msgid "add service to favourites"
+msgstr "إضافه القناه الى المفضله"
+
+#: ../lib/python/Screens/MovieSelection.py:21
+#: ../lib/python/Screens/ChannelSelection.py:93
 msgid "back"
 msgstr "للخلف"
 
-#: ../lib/python/Screens/ScanSetup.py:172
+#: ../lib/python/Screens/ScanSetup.py:173
 msgid "circular left"
 msgstr "دائرى يسار"
 
-#: ../lib/python/Screens/ScanSetup.py:172
+#: ../lib/python/Screens/ScanSetup.py:173
 msgid "circular right"
 msgstr "دائرى يمين"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/ChannelSelection.py:68
+msgid "copy to favourites"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "daily"
 msgstr "يومى"
 
-#: ../lib/python/Screens/ChannelSelection.py:48
+#: ../lib/python/Screens/MovieSelection.py:21
+msgid "delete..."
+msgstr "مسح ..."
+
+#: ../lib/python/Screens/ChannelSelection.py:84
 msgid "disable move mode"
 msgstr "ألغاء وضع التحريك"
 
-#: ../lib/python/Components/NimManager.py:325
+#: ../lib/python/Components/TimerList.py:59
+msgid "done!"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:541
 msgid "empty/unknown"
 msgstr "فارغ/غير معروف"
 
-#: ../lib/python/Screens/ChannelSelection.py:46
+#: ../lib/python/Screens/ChannelSelection.py:80
 msgid "enable bouquet edit"
 msgstr "تفعيل تحرير الباقه"
 
-#: ../lib/python/Screens/ChannelSelection.py:44
+#: ../lib/python/Screens/ChannelSelection.py:82
+msgid "enable favourite edit"
+msgstr "تفعيل تحرير المفضله"
+
+#: ../lib/python/Screens/ChannelSelection.py:77
 msgid "enable move mode"
 msgstr "تفعيل وضع التحريك"
 
-#: ../lib/python/Screens/ChannelSelection.py:50
+#: ../lib/python/Screens/ChannelSelection.py:87
 msgid "end bouquet edit"
 msgstr "إنتهاء تحرير الباقه"
 
-#: ../lib/python/Screens/ScanSetup.py:172
+#: ../lib/python/Screens/ChannelSelection.py:90
+msgid "end favourites edit"
+msgstr "إنتهاء تحرير المفضله"
+
+#: ../lib/python/Components/DiskInfo.py:30
+msgid "free diskspace"
+msgstr "المساحه المتبقيه فى القرص"
+
+#: ../lib/python/Screens/ScanSetup.py:173
 msgid "horizontal"
 msgstr "عرضى"
 
-#: ../lib/python/Screens/InfoBar.py:65
+#: ../lib/python/Screens/Ci.py:220
+msgid "init module"
+msgstr "تفعيل الكـام"
+
+#: ../lib/python/Screens/InfoBar.py:76
 msgid "leave movie player..."
 msgstr "اترك عارض الافلام .."
 
-#: ../lib/python/Components/NimManager.py:429
+#: ../lib/python/Screens/PluginBrowser.py:82
+msgid "list"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:644
 msgid "manual"
 msgstr "يدوى"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:311
+#: ../lib/python/Screens/InfoBarGenerics.py:279
 msgid "next channel"
 msgstr "القناه التاليه"
 
-#: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Components/Network.py:140
+#: ../lib/python/Screens/InfoBarGenerics.py:282
+msgid "next channel in history"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:197
+#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Components/Network.py:145
+#: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
 msgstr "لا."
 
-#: ../lib/python/Screens/HarddiskSetup.py:61
+#: ../lib/python/Screens/HarddiskSetup.py:63
 msgid "no HDD found"
 msgstr "لم يتم العثور على قرص صلب"
 
-#: ../lib/python/Screens/About.py:27
+#: ../lib/python/Screens/Ci.py:218
+msgid "no module found"
+msgstr "لم يتم العثور على كامه"
+
+#: ../lib/python/Screens/About.py:38
 msgid "none"
 msgstr "لا احد"
 
-#: ../lib/python/Screens/ScanSetup.py:170
-#: ../lib/python/Screens/ScanSetup.py:177
-#: ../lib/python/Screens/ScanSetup.py:184
+#: ../lib/python/Screens/ScanSetup.py:171
+#: ../lib/python/Screens/ScanSetup.py:178
+#: ../lib/python/Screens/ScanSetup.py:185
 msgid "off"
 msgstr "لا يعمـل!"
 
-#: ../lib/python/Screens/ScanSetup.py:170
-#: ../lib/python/Screens/ScanSetup.py:177
-#: ../lib/python/Screens/ScanSetup.py:184
+#: ../lib/python/Screens/ScanSetup.py:171
+#: ../lib/python/Screens/ScanSetup.py:178
+#: ../lib/python/Screens/ScanSetup.py:185
 msgid "on"
 msgstr "يعمل!"
 
-#: ../lib/python/Screens/TimerEntry.py:80
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "once"
 msgstr "مره واحده"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:312
+#: ../lib/python/Screens/Ci.py:84
+msgid "please press OK when ready"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:280
 msgid "previous channel"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:39
+#: ../lib/python/Screens/InfoBarGenerics.py:281
+msgid "previous channel in history"
+msgstr ""
+
+#: ../lib/python/Components/TimerList.py:55
+msgid "recording..."
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:72
+msgid "remove bouquet"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:70
 msgid "remove service"
 msgstr "حذف القناه"
 
-#: ../lib/python/Screens/TimerEntry.py:80
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "repeated"
 msgstr "متكرر"
 
-#: ../lib/python/Components/ServiceScan.py:32
-msgid "scan done!"
+#: ../lib/python/Components/ServiceScan.py:37
+#, python-format
+msgid ""
+"scan done!\n"
+"%d services found!"
 msgstr ""
+"انتهاء البحث\n"
+"%d قنوات وجدت"
+
+#: ../lib/python/Components/ServiceScan.py:35
+msgid ""
+"scan done!\n"
+"No service found!"
+msgstr ""
+"انتهى البحث\n"
+"لم يتم العثور على قنوات !"
+
+#: ../lib/python/Components/ServiceScan.py:33
+msgid ""
+"scan done!\n"
+"One service found!"
+msgstr ""
+"انتهـى البحث!\n"
+"وجدت قناه واحده فقط!"
 
 #: ../lib/python/Components/ServiceScan.py:29
 #, python-format
@@ -618,40 +1200,48 @@ msgstr ""
 "بتم البحث الان %d %%\n"
 "%d تم العثور على"
 
-#: ../lib/python/Screens/ServiceScan.py:22
+#: ../lib/python/Screens/ServiceScan.py:23
 msgid "scan state"
 msgstr "حاله البحث"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:354
+#: ../lib/python/Screens/InfoBarGenerics.py:334
 msgid "show EPG..."
 msgstr "إظهار دليل البرامج الالكترونى"
 
-#: ../lib/python/Screens/Wizard.py:187 ../lib/python/Screens/Wizard.py:188
+#: ../lib/python/Screens/Wizard.py:212 ../lib/python/Screens/Wizard.py:213
 msgid "text"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:56
+#: ../lib/python/Screens/EventView.py:64
 msgid "unknown service"
 msgstr "قناه غير معروفه"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "user defined"
 msgstr "محدده من قبل المستخدم"
 
-#: ../lib/python/Screens/ScanSetup.py:172
+#: ../lib/python/Screens/ScanSetup.py:173
 msgid "vertical"
 msgstr "رأسى"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Components/TimerList.py:51
+msgid "waiting"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "weekly"
 msgstr "اسبوعى"
 
-#: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Components/Network.py:15
-#: ../lib/python/Components/Network.py:140
+#: ../lib/python/Screens/ScanSetup.py:197
+#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Components/Network.py:145
+#: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "نعـم"
+
+#: ../data/
+msgid "Channel Selection"
+msgstr "إختيار القناه"
 
 #: ../data/
 msgid "Service"
@@ -690,12 +1280,24 @@ msgid "TV System"
 msgstr "التليفزبـون"
 
 #: ../data/
+msgid "#ffffff"
+msgstr ""
+
+#: ../data/
+msgid "NEXT"
+msgstr ""
+
+#: ../data/
 msgid "Deep Standby"
 msgstr "وضع الاستعداد"
 
 #: ../data/
 msgid "Tuner Slot"
 msgstr "موضع التيونر(الموالف)"
+
+#: ../data/
+msgid "Change bouquets in quickzap"
+msgstr ""
 
 #: ../data/
 msgid "Sound"
@@ -708,8 +1310,16 @@ msgid ""
 msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وأختار  ثم أضغط موافق"
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "مشاهده وضع القمر"
+
+#: ../data/
+msgid "Do you want to view a tutorial?"
+msgstr "هل تريد مشاهده الشرح ؟"
 
 #: ../data/
 msgid "Setup"
@@ -720,6 +1330,10 @@ msgid "#000000"
 msgstr ""
 
 #: ../data/
+msgid "This is step number 2."
+msgstr "هذه هى الخطوه رقم 2"
+
+#: ../data/
 msgid "Use wizard to set up basic features"
 msgstr "استخدم الويزارد لعمل الاعدادات الاساسيه "
 
@@ -728,7 +1342,11 @@ msgid "Sat / Dish Setup"
 msgstr "ضبط القمر/طبق الاستقبال"
 
 #: ../data/
-msgid "#ffffff"
+msgid "Visualize positioner movement"
+msgstr ""
+
+#: ../data/
+msgid "Audio / Video"
 msgstr ""
 
 #: ../data/
@@ -768,6 +1386,10 @@ msgid "Auto show inforbar"
 msgstr "إظهار تلقائى لشريط المعلومات"
 
 #: ../data/
+msgid "Margin after record"
+msgstr ""
+
+#: ../data/
 msgid "Network"
 msgstr "شبكه"
 
@@ -778,10 +1400,6 @@ msgstr "مقلوب"
 #: ../data/
 msgid "System"
 msgstr "النـظام"
-
-#: ../data/
-msgid "VCR Switch"
-msgstr "مفتاح فيديو كاسيت"
 
 #: ../data/
 msgid "use power delta"
@@ -852,12 +1470,28 @@ msgid "Timer"
 msgstr "المؤقت"
 
 #: ../data/
+msgid "Yes, view the tutorial"
+msgstr "مشاهده الشرح"
+
+#: ../data/
 msgid "UHF Modulator"
 msgstr ""
 
 #: ../data/
 msgid "Color Format"
 msgstr "نوع الالـوان"
+
+#: ../data/
+msgid "Plugin browser"
+msgstr "متصفح البلج إنز"
+
+#: ../data/
+msgid "#80000000"
+msgstr ""
+
+#: ../data/
+msgid "Downloadable plugins"
+msgstr ""
 
 #: ../data/
 msgid "LCD"
@@ -884,12 +1518,20 @@ msgid "Common Interface"
 msgstr "وحده النفاذ المشروط"
 
 #: ../data/
+msgid "Ask before zapping"
+msgstr "أسأل قبل التنقل"
+
+#: ../data/
 msgid "#c0c000"
 msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "إعدادات الصوت والصوره"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr ""
 
 #: ../data/
 msgid ""
@@ -930,8 +1572,8 @@ msgid "Network Setup"
 msgstr "ضبط الشبـكة"
 
 #: ../data/
-msgid "#ffffffff"
-msgstr ""
+msgid "Parental Lock"
+msgstr "الاغلاق الابـوى"
 
 #: ../data/
 msgid "Restart"
@@ -954,6 +1596,10 @@ msgid "Eventview"
 msgstr "مشاهده الحدث"
 
 #: ../data/
+msgid "Margin before record (minutes)"
+msgstr ""
+
+#: ../data/
 msgid "Keymap"
 msgstr "خريطه المفاتيح"
 
@@ -966,32 +1612,44 @@ msgid "Exit wizard"
 msgstr "خـروج"
 
 #: ../data/
+msgid "Timer sanity error"
+msgstr ""
+
+#: ../data/
 msgid "Serviceinfo"
 msgstr "معلومات القناه"
 
 #: ../data/
-msgid "WSS"
-msgstr ""
+msgid "VCR Switch"
+msgstr "مفتاح فيديو كاسيت"
 
 #: ../data/
-msgid "Parental Lock"
-msgstr "الاغلاق الابـوى"
+msgid "WSS on 4:3"
+msgstr ""
 
 #: ../data/
 msgid "Skip confirmations"
 msgstr "تخطى التأكيد"
 
 #: ../data/
-msgid "Plugins"
-msgstr "بلج إنز"
+msgid "Choose bouquet"
+msgstr ""
 
 #: ../data/
 msgid "Yes, scan now"
 msgstr "نعم : ابحث الان"
 
 #: ../data/
+msgid "MORE"
+msgstr ""
+
+#: ../data/
 msgid "Information"
 msgstr "معلومات"
+
+#: ../data/
+msgid "Timer log"
+msgstr ""
 
 #: ../data/
 msgid "Menu"
@@ -1002,12 +1660,22 @@ msgid "Please set up tuner B"
 msgstr "من فضلك أضبط التيونر ب"
 
 #: ../data/
+msgid ""
+"Thank you for using the wizard. Your box is now ready to use.\n"
+"Please press OK to start using you Dreambox."
+msgstr ""
+
+#: ../data/
 msgid "Delay"
 msgstr "تأخير"
 
 #: ../data/
 msgid "Select HDD"
 msgstr "اختار القرص الصلب"
+
+#: ../data/
+msgid "#ffffffff"
+msgstr ""
 
 #: ../data/
 msgid "Setup Lock"
@@ -1040,6 +1708,10 @@ msgid "Parental Control"
 msgstr "التحكم الابوى"
 
 #: ../data/
+msgid "VCR scart"
+msgstr "وصله فيديو كاسيت"
+
+#: ../data/
 msgid "Mainmenu"
 msgstr "القائمه الاساسيه"
 
@@ -1050,6 +1722,10 @@ msgstr "اختار الفيلم"
 #: ../data/
 msgid "Volume"
 msgstr "درجه الصوت"
+
+#: ../data/
+msgid "Multi bouquets"
+msgstr ""
 
 #: ../data/
 msgid "Alpha"
@@ -1088,12 +1764,16 @@ msgid "AGC:"
 msgstr ""
 
 #: ../data/
-msgid "Video Audio"
-msgstr "صوره صوت"
-
-#: ../data/
 msgid "What do you want to scan?"
 msgstr "ماذا تريد ان تبحث ؟"
+
+#: ../data/
+msgid "Usage settings"
+msgstr ""
+
+#: ../data/
+msgid "Channellist menu"
+msgstr ""
 
 #: ../data/
 msgid "Audio"
@@ -1108,226 +1788,28 @@ msgid "Do you want to do a service scan?"
 msgstr "هل تريد عمل بحث"
 
 #: ../data/
-msgid "Thanx for using the wizard. Your box is now ready to use."
+msgid "NOW"
 msgstr ""
+
+#: ../data/
+msgid "Seek"
+msgstr "بحـث"
 
 #: ../data/
 msgid "Satelliteconfig"
 msgstr "ضبط الاقمـر"
 
-#~ msgid "12V Output"
-#~ msgstr "مخرج 12 فولت"
+#~ msgid "Positioner mode"
+#~ msgstr "Rotorart"
 
-#~ msgid "A"
-#~ msgstr "أ"
+#~ msgid "Plugins"
+#~ msgstr "بلج إنز"
 
-#~ msgid ""
-#~ "A timer failed to record!\n"
-#~ "Disable TV and try again?\n"
-#~ msgstr ""
-#~ "فشل عمليه التسجيل بالمؤقت\n"
-#~ "حاول مره ثانيه؟\n"
-
-#~ msgid "AA"
-#~ msgstr "أأ"
-
-#~ msgid "AB"
-#~ msgstr "أب"
-
-#~ msgid "Add timer"
-#~ msgstr "أضف مؤقت"
-
-#~ msgid "Advanced"
-#~ msgstr "متقدم"
-
-#~ msgid "B"
-#~ msgstr "ب"
-
-#~ msgid "BA"
-#~ msgstr "ب أ"
-
-#~ msgid "BB"
-#~ msgstr "ب ب"
-
-#~ msgid "Cancel"
-#~ msgstr "إلغاء"
-
-#~ msgid "Delete failed!"
-#~ msgstr "فشل المسح"
-
-#~ msgid "DiSEqC mode"
-#~ msgstr "وضعيـه الدايزك"
-
-#~ msgid "Do you really want to delete this recording?"
-#~ msgstr "هل تريد مسح هذا التسجيل؟"
-
-#~ msgid ""
-#~ "Do you want to update your Dreambox?\n"
-#~ "After pressing OK, please wait!"
-#~ msgstr ""
-#~ "هل تريد تحديث الدريم بوكس\n"
-#~ "إضغط OK ثم إنتظر!"
-
-#~ msgid "E"
-#~ msgstr "O"
-
-#~ msgid "Increased voltage"
-#~ msgstr "فولت زائد"
-
-#~ msgid "Movie Menu"
-#~ msgstr "قائمه الافلام"
-
-#~ msgid "Next"
-#~ msgstr "التالى"
-
-#~ msgid "No"
-#~ msgstr "لا"
-
-#~ msgid "No HDD found or HDD not initialized!"
-#~ msgstr ""
-#~ "لا يوجد قرص صلب\n"
-#~ "أو ان القرص الصلب لم يبدأ"
-
-#~ msgid "OK"
-#~ msgstr "موافق"
-
-#~ msgid "Off"
-#~ msgstr "لا يعمل"
-
-#~ msgid "On"
-#~ msgstr "يعمل"
-
-#~ msgid "One"
-#~ msgstr "واحد"
+#~ msgid "Video Audio"
+#~ msgstr "صوره صوت"
 
 #~ msgid "Please press OK!"
 #~ msgstr "من فضلك اضغط موافق"
-
-#~ msgid "Please wait... Loading list..."
-#~ msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
-
-#~ msgid "Polarization"
-#~ msgstr "الاستقطاب"
-
-#~ msgid "Press OK to activate the settings."
-#~ msgstr "اضغط موافق لتفعيل الاعدادات"
-
-#~ msgid "Providers"
-#~ msgstr "مقدمو الخدمه"
-
-#~ msgid "Reset"
-#~ msgstr "إعاده الضبط"
-
-#~ msgid "Services"
-#~ msgstr "القنوات/الخدمات"
-
-#~ msgid "Stored position"
-#~ msgstr "الوضع المخزن"
-
-#~ msgid "Three"
-#~ msgstr "ثلاثه"
-
-#~ msgid "Two"
-#~ msgstr "اثنين"
-
-#~ msgid "Updating finished. Here is the result:"
-#~ msgstr "إنتهاء التحديث، وهذه هى النتيجه"
-
-#~ msgid "Updating... Please wait... This can take some minutes..."
-#~ msgstr "جارى التحديث ..انتظر..قد يستغرق بعض الوقت"
-
-#~ msgid "Use usals for this sat"
-#~ msgstr "USALS für diesen Sat benutzen"
-
-#~ msgid "User defined"
-#~ msgstr "يحددها المستخدم"
-
-#~ msgid "Voltage mode"
-#~ msgstr "وضعيه الفولت"
-
-#~ msgid "Yes"
-#~ msgstr "نعم"
-
-#~ msgid "You cannot delete this!"
-#~ msgstr "لايمكنك مسح هذه !"
-
-#~ msgid "[bouquet edit]"
-#~ msgstr "تحرير الباقه"
-
-#~ msgid "[favourite edit]"
-#~ msgstr "تحرير المفضله"
-
-#~ msgid "[move mode]"
-#~ msgstr "وضع التحريك"
-
-#~ msgid "abort favourites edit"
-#~ msgstr "الغاء تحرير المفضله"
-
-#~ msgid "add service to favourites"
-#~ msgstr "إضافه القناه الى المفضله"
-
-#~ msgid "delete..."
-#~ msgstr "مسح ..."
-
-#~ msgid "enable favourite edit"
-#~ msgstr "تفعيل تحرير المفضله"
-
-#~ msgid "end favourites edit"
-#~ msgstr "إنتهاء تحرير المفضله"
-
-#~ msgid "free diskspace"
-#~ msgstr "المساحه المتبقيه فى القرص"
-
-#~ msgid "init module"
-#~ msgstr "تفعيل الكـام"
-
-#~ msgid "no module found"
-#~ msgstr "لم يتم العثور على كامه"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "انتهاء البحث\n"
-#~ "%d قنوات وجدت"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "انتهى البحث\n"
-#~ "لم يتم العثور على قنوات !"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "انتهـى البحث!\n"
-#~ "وجدت قناه واحده فقط!"
-
-#~ msgid "No, just start my dreambox"
-#~ msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
-
-#~ msgid "Do you want to view a tutorial?"
-#~ msgstr "هل تريد مشاهده الشرح ؟"
-
-#~ msgid "This is step number 2."
-#~ msgstr "هذه هى الخطوه رقم 2"
-
-#~ msgid "Yes, view the tutorial"
-#~ msgstr "مشاهده الشرح"
-
-#~ msgid "Plugin browser"
-#~ msgstr "متصفح البلج إنز"
-
-#~ msgid "Ask before zapping"
-#~ msgstr "أسأل قبل التنقل"
-
-#~ msgid "VCR scart"
-#~ msgstr "وصله فيديو كاسيت"
-
-#~ msgid "Seek"
-#~ msgstr "بحـث"
 
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "شكرا، الرسيفر جاهز للاستخدام الان"
