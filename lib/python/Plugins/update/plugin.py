@@ -127,7 +127,7 @@ class Upgrade(Screen):
 	def updateFinished(self, retval):
 		if self.run == 0:
 			self.run = 1
-			self.container.execute("ipkg upgrade")
+			self.container.execute("ipkg upgrade -force-defaults -force-overwrite")
 		elif self.run == 1:
 			str = self["text"].getText()
 			str += _("Updating finished!!");
