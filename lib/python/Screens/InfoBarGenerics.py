@@ -276,8 +276,8 @@ class InfoBarChannelSelection:
 			{
 				"switchChannelUp": self.switchChannelUp,
 				"switchChannelDown": self.switchChannelDown,
-				"zapUp": (self.zapUp, _("next channel")),
-				"zapDown": (self.zapDown, _("previous channel")),
+				"zapUp": (self.zapUp, _("previous channel")),
+				"zapDown": (self.zapDown, _("next channel")),
 				"historyBack": (self.historyBack, _("previous channel in history")),
 				"historyNext": (self.historyNext, _("next channel in history"))
 			})
