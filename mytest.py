@@ -17,7 +17,7 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Components.config import configfile
-from Tools.Directories import InitFallbackFiles
+from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
 
@@ -36,7 +36,7 @@ except ImportError:
 
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
-plugins.readPluginList()
+plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
