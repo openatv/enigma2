@@ -418,6 +418,9 @@ public:
 		
 		evEOF,
 		evSOF, /* bounced against start of file (when seeking backwards) */
+		
+			/* only when cueSheet is implemented */
+		evCuesheetChanged,
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;

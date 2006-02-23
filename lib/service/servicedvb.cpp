@@ -1260,6 +1260,8 @@ void eDVBServicePlay::setCutList(PyObject *list)
 		eDebug("adding %08llx, %d", pts, type);
 	}
 	m_cuesheet_changed = 1;
+	
+	m_event((iPlayableService*)this, evCuesheetChanged);
 }
 
 void eDVBServicePlay::updateTimeshiftPids()
