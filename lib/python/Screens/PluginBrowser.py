@@ -68,6 +68,7 @@ class PluginDownloadBrowser(Screen):
 		self.container.appClosed.get().append(self.runFinished)
 		self.container.dataAvail.get().append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
+		self.onShown.append(self.setTitle)
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -100,11 +101,13 @@ class PluginDownloadBrowser(Screen):
 			elif self.type == self.REMOVE:
 				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
 
+	def setTitle(self):
+		if self.type == self.DOWNLOAD:
+			self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
+		elif self.type == self.REMOVE:
+			self.session.currentDialog.instance.setTitle(_("Remove plugins"))
+
 	def startRun(self):
-		#if self.type == self.DOWNLOAD:
-		#	self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
-		#elif self.type == self.REMOVE:
-		#	self.session.currentDialog.instance.setTitle(_("Remove plugins"))
 		self["list"].instance.hide()
 		self.container.execute("ipkg update")
 		
