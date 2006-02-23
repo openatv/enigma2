@@ -44,3 +44,6 @@ class PluginDescriptor:
 			self.icon = loadPNG(path + self.iconstr)
 		else:
 			self.icon = None
+
+	def __eq__(self, other):
+		return self.__call__ == other.__call__
