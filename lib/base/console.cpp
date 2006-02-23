@@ -200,7 +200,7 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 	if ( pid == -1 )
 		return -3;
 
-	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
+//	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 
 	in = new eSocketNotifier(eApp, fd[0], POLLIN|POLLPRI|POLLHUP );
 	out = new eSocketNotifier(eApp, fd[1], POLLOUT, false);  
@@ -218,7 +218,7 @@ eConsoleAppContainer::~eConsoleAppContainer()
 
 void eConsoleAppContainer::kill()
 {
-	if ( killstate != -1 )
+	if ( killstate != -1 && pid != -1 )
 	{
 		eDebug("user kill(SIGKILL) console App");
 		killstate=-1;
@@ -239,7 +239,7 @@ void eConsoleAppContainer::kill()
 
 void eConsoleAppContainer::sendCtrlC()
 {
-	if ( killstate != -1 )
+	if ( killstate != -1 && pid != -1 )
 	{
 		eDebug("user send SIGINT(Ctrl-C) to console App");
 		::kill(pid, SIGINT);
@@ -276,6 +276,7 @@ void eConsoleAppContainer::closePipes()
 		outbuf.pop();
 		delete [] d.data;
 	}
+	pid = -1;
 }
 
 void eConsoleAppContainer::readyRead(int what)
