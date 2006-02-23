@@ -101,10 +101,10 @@ class PluginDownloadBrowser(Screen):
 				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
 
 	def startRun(self):
-		if self.type == self.DOWNLOAD:
-			self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
-		elif self.type == self.REMOVE:
-			self.session.currentDialog.instance.setTitle(_("Remove plugins"))
+		#if self.type == self.DOWNLOAD:
+		#	self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
+		#elif self.type == self.REMOVE:
+		#	self.session.currentDialog.instance.setTitle(_("Remove plugins"))
 		self["list"].instance.hide()
 		self.container.execute("ipkg update")
 		
