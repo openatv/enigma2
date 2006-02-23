@@ -1,0 +1,72 @@
+enigma2 skins
+=============
+
+A skin file is an XML file. Better read the existing skin file as an
+example.
+
+colors
+======
+
+you can define alias names for different colors. the "value" is given as
+#aarrggbb, or just #rrggbb.
+
+windowstyle
+===========
+here you can configure the "window style", i.e. the bord around windows.
+
+screens
+=======
+
+these are the different widgets for the screens. they can also be embedded
+in the screens itself.
+
+
+A NOTE ABOUT PNGs
+=================
+
+Enigma can user either a 32bit argb or an 8bit pseudocolor output. In any
+case, enigma uses 8bit PNGs for skins.
+
+Though it would be easy to support 32bit pngs as well, it questionable if
+this would be a great idea.
+
+a.) the quality improvement is realative
+
+you can use another palette for each png. that gives you unique 256 colors
+for each skin element. Unless you have very big PNGs, you shouldn't be able
+to notive the difference between 32bit and 8bit.
+
+b.) 32bit skins wouldn't be compatible to 8bit displays
+
+we still want to use enigma on hardware which is too slow for using a 32bit
+output (after all, framebuffers can be very slow). Turning a 32bit bitmap
+into an 8bit one is not ease and involves a lot of computations.
+
+It would end up that you need to specify an 8bit and a 32bit version. Is
+that really what you want?
+
+c.) 32bit PNGs don't compress well
+
+PNG is a lossless format. 32bit bitmap data is very hard to compress 
+lossless.
+
+We could use JPG, but jpgs don't offer a transparency channel, as far as i
+know.
+
+
+So, how to make your PNGs to look good?
+
+It's simple. Edit them as 32bit ARGB (photoshop, gimp should be able to do
+this fine!). Be sure that if you want alphatest, transparency really has an
+alpha value of 0 / 255 (i.e. the extreme).
+
+When you're finished, use "pngquant 256 <filename>" to process your PNGs to
+be compatible with enigma.
+
+note:
+=====
+
+if you're having less than 16 colors in your png file, pngquant generates a
+16color (4bit) PNG, which is not really what we want. Either add more colors 
+(evil workaround), fix enigma (good idea!) or patch pngquant to
+always create 8bit pngs.
