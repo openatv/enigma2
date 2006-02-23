@@ -59,6 +59,7 @@ class PluginComponent:
 						p.updateIcon(path)
 						self.addPlugin(p);
 				else:
+					open(path + "__init__.py", "w").close()
 					self.readPluginList(path, modules + [x], depth - 1)
 
 	def getPlugins(self, where):
@@ -71,6 +72,9 @@ class PluginComponent:
 			for p in self.plugins.get(x, [ ]):
 				res.append(p)
 		return res
+	
+	def clearPluginList(self):
+		self.pluginList = []
 
 	def shutdown(self):
 		for p in self.pluginList[:]:
