@@ -4,6 +4,7 @@ from Tools.Directories import *
 from Plugins.Plugin import PluginDescriptor
 
 def my_import(name):
+	print name
 	mod = __import__(name)
 	components = name.split('.')
 	for comp in components[1:]:
@@ -33,22 +34,21 @@ class PluginComponent:
 			if x == PluginDescriptor.WHERE_AUTOSTART:
 				plugin(reason=1)
 	
-	def readPluginList(self):
+	def readPluginList(self, directory, modules = [], depth = 1):
 		"""enumerates plugins"""
-
-		directories = os.listdir(resolveFilename(SCOPE_PLUGINS))
+		
+		directories = os.listdir(directory)
 		
 		for x in directories:
-			path = resolveFilename(SCOPE_PLUGINS, x) + "/"
-			if os.path.exists(path):
+			path = directory + x + "/"
+			if os.path.isdir(path):
 				if fileExists(path + "plugin.py"):
-					plugin = my_import('.'.join(("Plugins", x, "plugin")))
+					plugin = my_import('.'.join(["Plugins"] + modules + [x, "plugin"]))
 					
 					if not plugin.__dict__.has_key("Plugins"):
 						print "Plugin %s doesn't have 'Plugin'-call." % (x)
 						continue
 					
-					print "plugin", plugin
 					plugins = plugin.Plugins()
 					
 					# allow single entry not to be a list
@@ -58,6 +58,8 @@ class PluginComponent:
 					for p in plugins:
 						p.updateIcon(path)
 						self.addPlugin(p);
+				else:
+					self.readPluginList(path, modules + [x], depth - 1)
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
