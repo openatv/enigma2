@@ -34,6 +34,11 @@ class PluginComponent:
 			if x == PluginDescriptor.WHERE_AUTOSTART:
 				plugin(reason=1)
 	
+	def reReadPluginList(self, directory, depth = 1):
+		print "re-reading plugin list"
+		self.clearPluginList()
+		self.readPluginList(directory=directory, depth=depth)
+	
 	def readPluginList(self, directory, modules = [], depth = 1):
 		"""enumerates plugins"""
 		
@@ -59,7 +64,7 @@ class PluginComponent:
 						p.updateIcon(path)
 						self.addPlugin(p);
 				else:
-					open(path + "__init__.py", "w").close()
+					open(path + "__init__.py", "a").close()
 					self.readPluginList(path, modules + [x], depth - 1)
 
 	def getPlugins(self, where):
@@ -75,6 +80,7 @@ class PluginComponent:
 	
 	def clearPluginList(self):
 		self.pluginList = []
+		self.plugins = {}
 
 	def shutdown(self):
 		for p in self.pluginList[:]:
