@@ -112,7 +112,9 @@ class PluginDownloadBrowser(Screen):
 		self.container.execute("ipkg update")
 		
 	def installFinished(self):
+		plugins.clearPluginList()
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+		self.close()
 		
 	def runFinished(self, retval):
 		if self.run == 0:
@@ -137,6 +139,7 @@ class PluginDownloadBrowser(Screen):
 				self.pluginlist.append(plugin)
 	
 	def updateList(self):
+		self.list = []
 		for x in self.pluginlist:
 			plugin = PluginDescriptor(name = x[3], description = x[2])
 			self.list.append(PluginEntryComponent(plugin))
