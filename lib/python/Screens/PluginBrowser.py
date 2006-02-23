@@ -17,7 +17,7 @@ class PluginBrowser(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["red"] = Label(_("Delete"))
+		self["red"] = Label(_("Remove Plugins"))
 		self["green"] = Label(_("Download Plugins"))
 		
 		self.list = []
@@ -50,14 +50,19 @@ class PluginBrowser(Screen):
 		self["list"].l.setList(self.list)
 
 	def delete(self):
-		pass
+		self.session.openWithCallback(self.updateList, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 	
 	def download(self):
-		self.session.openWithCallback(self.updateList, PluginDownloadBrowser)
+		self.session.openWithCallback(self.updateList, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD)
 
 class PluginDownloadBrowser(Screen):
-	def __init__(self, session):
+	DOWNLOAD = 0
+	REMOVE = 1
+	
+	def __init__(self, session, type):
 		Screen.__init__(self, session)
+		
+		self.type = type
 		
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.get().append(self.runFinished)
@@ -68,7 +73,12 @@ class PluginDownloadBrowser(Screen):
 		self["list"] = PluginList(self.list)
 		self.pluginlist = []
 		
-		self["text"] = Label(_("Downloading plugin information. Please wait..."))
+		if self.type == self.DOWNLOAD:
+			self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
+			self["text"] = Label(_("Downloading plugin information. Please wait..."))
+		elif self.type == self.REMOVE:
+			self.session.currentDialog.instance.setTitle(_("Remove plugins"))
+			self["text"] = Label(_("Getting plugin information. Please wait..."))
 		
 		self.run = 0
 				
@@ -80,11 +90,17 @@ class PluginDownloadBrowser(Screen):
 		
 	def go(self):
 		print "plugin: installing:", self.pluginlist[self["list"].l.getCurrentSelectionIndex()]
-		self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][3] + "\"?"))
-		
+		if self.type == self.DOWNLOAD:
+			self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][3] + "\"?"))
+		elif self.type == self.REMOVE:
+			self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][3] + "\"?"))
+
 	def runInstall(self, val):
 		if val:
-			self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
+			if self.type == self.DOWNLOAD:
+				self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
+			elif self.type == self.REMOVE:
+				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
 
 	def startRun(self):
 		self["list"].instance.hide()
@@ -96,7 +112,10 @@ class PluginDownloadBrowser(Screen):
 	def runFinished(self, retval):
 		if self.run == 0:
 			self.run = 1
-			self.container.execute("ipkg list enigma2-plugin-*")
+			if self.type == self.DOWNLOAD:
+				self.container.execute("ipkg list enigma2-plugin-*")
+			elif self.type == self.REMOVE:
+				self.container.execute("ipkg list_installed enigma2-plugin-*")
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
