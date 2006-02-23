@@ -103,7 +103,7 @@ class PluginDownloadBrowser(Screen):
 
 	def setTitle(self):
 		if self.type == self.DOWNLOAD:
-			self.session.currentDialog.instance.setTitle(_("Downloadale new plugins"))
+			self.session.currentDialog.instance.setTitle(_("Downloadable new plugins"))
 		elif self.type == self.REMOVE:
 			self.session.currentDialog.instance.setTitle(_("Remove plugins"))
 
