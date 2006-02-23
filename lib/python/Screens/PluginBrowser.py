@@ -11,6 +11,7 @@ from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -52,7 +53,7 @@ class PluginBrowser(Screen):
 		pass
 	
 	def download(self):
-		self.session.open(PluginDownloadBrowser)
+		self.session.openWithCallback(self.updateList, PluginDownloadBrowser)
 
 class PluginDownloadBrowser(Screen):
 	def __init__(self, session):
@@ -83,11 +84,14 @@ class PluginDownloadBrowser(Screen):
 		
 	def runInstall(self, val):
 		if val:
-			self.session.open(Console, ["ipkg install " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
+			self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
 
 	def startRun(self):
 		self["list"].instance.hide()
 		self.container.execute("ipkg update")
+		
+	def installFinished(self):
+		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		
 	def runFinished(self, retval):
 		if self.run == 0:
