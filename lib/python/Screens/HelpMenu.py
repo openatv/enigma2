@@ -31,12 +31,14 @@ class HelpMenu(Screen):
 		
 	def SelectionChanged(self):
 		selection = self["list"].getCurrent()[3]
+		arrow = self["arrowup"]
+
 		if selection is None:
-			self["arrowup"].instance.hide()
+			arrow.hide()
 		else:
-			self["arrowup"].moveTo(selection[1], selection[2], 1)
-			self["arrowup"].startMoving()
-			self["arrowup"].instance.show()
+			arrow.moveTo(selection[1], selection[2], 1)
+			arrow.startMoving()
+			arrow.show()
 
 class HelpableScreen:
 	def __init__(self):
@@ -44,8 +46,10 @@ class HelpableScreen:
 			{
 				"displayHelp": self.showHelp,
 			})
+
 	def showHelp(self):
 		self.session.openWithCallback(self.callHelpAction, HelpMenu, self.helpList)
+
 	def callHelpAction(self, *args):
 		if len(args):
 			(actionmap, context, action) = args

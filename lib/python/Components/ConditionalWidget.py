@@ -4,17 +4,13 @@ from GUIComponent import *
 from enigma import *
 
 class Widget(GUIComponent):
-	
-	SHOWN = 0
-	HIDDEN = 1
-	
 	def __init__(self):
 		GUIComponent.__init__(self)
-		self.instance = None
-		self.state = self.SHOWN
 	
 	def GUIcreate(self, parent):
 		self.instance = self.createWidget(parent)
+		if self.state == self.HIDDEN:
+			self.instance.hide()
 	
 	def GUIdelete(self):
 		self.removeWidget(self.instance)
@@ -23,14 +19,6 @@ class Widget(GUIComponent):
 	def removeWidget(self, w):
 		pass
 	
-	def showWidget(self):
-		self.state = self.SHOWN
-		self.instance.show()
-
-	def hideWidget(self):
-		self.state = self.HIDDEN
-		self.instance.hide()
-		
 	def move(self, x, y):
 		self.instance.move(ePoint(int(x), int(y)))
 	
@@ -50,11 +38,11 @@ class ConditionalWidget(Widget):
 		
 	def activateCondition(self, condition):
 		if (condition):
-			if (self.state == self.HIDDEN):
-				self.showWidget()
+			if self.state == self.HIDDEN:
+				self.show()
 		else:
-			if (self.state == self.SHOWN):
-				self.hideWidget()
+			if self.state == self.SHOWN:
+				self.hide()
 
 	def update(self):
 		if (self.conditionalFunction != None):
@@ -83,10 +71,10 @@ class BlinkingWidget(Widget):
 		
 	def blink(self):
 		if self.blinking == True:
-			if (self.state == self.SHOWN):
-				self.hideWidget()
-			elif (self.state == self.HIDDEN):
-				self.showWidget()
+			if self.state == self.SHOWN:
+				self.hide()
+			elif self.state == self.HIDDEN:
+				self.show()
 			
 	def startBlinking(self):
 		self.blinking = True
@@ -94,8 +82,8 @@ class BlinkingWidget(Widget):
 		
 	def stopBlinking(self):
 		self.blinking = False
-		if (self.state == self.SHOWN):
-			self.hideWidget()
+		if self.state == self.SHOWN:
+			self.hide()
 		self.timer.stop()
 		
 class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
@@ -109,4 +97,4 @@ class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 				self.startBlinking()
 		else:
 			if self.blinking: # we are blinking
-				self.stopBlinking()			
+				self.stopBlinking()
