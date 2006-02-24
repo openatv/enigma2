@@ -25,8 +25,6 @@ class GUISkin:
 			else:
 				f()
 
-
-
 	def deleteGUIScreen(self):
 		for (name, val) in self.items():
 			if isinstance(val, GUIComponent):

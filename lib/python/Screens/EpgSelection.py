@@ -155,25 +155,25 @@ class EPGSelection(Screen):
 
 	def applyButtonState(self, state):
 		if state == 1:
-			self["now_button_sel"].showWidget()
-			self["now_button"].hideWidget()
+			self["now_button_sel"].show()
+			self["now_button"].hide()
 		else:
-			self["now_button"].showWidget()
-			self["now_button_sel"].hideWidget()
+			self["now_button"].show()
+			self["now_button_sel"].hide()
 
 		if state == 2:
-			self["next_button_sel"].showWidget()
-			self["next_button"].hideWidget()
+			self["next_button_sel"].show()
+			self["next_button"].hide()
 		else:
-			self["next_button"].showWidget()
-			self["next_button_sel"].hideWidget()
+			self["next_button"].show()
+			self["next_button_sel"].hide()
 
 		if state == 3:
-			self["more_button_sel"].showWidget()
-			self["more_button"].hideWidget()
+			self["more_button_sel"].show()
+			self["more_button"].hide()
 		else:
-			self["more_button"].showWidget()
-			self["more_button_sel"].hideWidget()
+			self["more_button"].show()
+			self["more_button_sel"].hide()
 
 	def onSelectionChanged(self):
 		if self.type == EPG_TYPE_MULTI:

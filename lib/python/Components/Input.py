@@ -78,9 +78,3 @@ class Input(HTMLComponent, GUIComponent, VariableText):
 		if self.type == self.PIN or self.type == self.NUMBER:
 			self.right()
 		self.update()
-
-	def show(self):
-		self.instance.show()
-
-	def hide(self):
-		self.instance.hide()
