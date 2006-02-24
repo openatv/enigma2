@@ -314,18 +314,20 @@ void eDVBDB::reloadServicelist()
 				ter.guard_interval = guard_interval;
 				ter.hierarchy = hierarchy;
 				ter.inversion = inversion;
-
 				feparm->setDVBT(ter);
 			} else if (line[1]=='c')
 			{
 				eDVBFrontendParametersCable cab;
-				int frequency, symbol_rate, inversion=0, modulation=3;
-				sscanf(line+2, "%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation);
+				int frequency, symbol_rate,
+					inversion=eDVBFrontendParametersCable::Inversion::Unknown,
+					modulation=eDVBFrontendParametersCable::Modulation::Auto,
+					fec_inner=eDVBFrontendParametersCable::FEC::fAuto;
+				sscanf(line+2, "%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner);
 				cab.frequency = frequency;
+				cab.fec_inner = fec_inner;
+				cab.inversion = inversion;
 				cab.symbol_rate = symbol_rate;
 				cab.modulation = modulation;
-				cab.fec_inner = 6;
-				cab.inversion = inversion;
 				feparm->setDVBC(cab);
 			}
 		}
@@ -455,8 +457,8 @@ void eDVBDB::saveServicelist()
 		}
 		if (!ch.m_frontendParameters->getDVBC(cab))
 		{
-			fprintf(f, "\tc %d:%d:%d:%d\n",
-				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation);
+			fprintf(f, "\tc %d:%d:%d:%d:%d\n",
+				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation, cab.fec_inner);
 		}
 		fprintf(f, "/\n");
 		channels++;
