@@ -25,9 +25,9 @@ class MessageBox(Screen):
 		self.list = []
 		if type != self.TYPE_ERROR:
 			self["ErrorPixmap"].hide()
-		elif type != self.TYPE_YESNO:
+		if type != self.TYPE_YESNO:
 			self["QuestionPixmap"].hide()
-		elif type != self.TYPE_INFO:
+		if type != self.TYPE_INFO:
 			self["InfoPixmap"].hide()
 			
 		if type == self.TYPE_YESNO:
