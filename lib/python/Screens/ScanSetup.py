@@ -37,8 +37,8 @@ def getInitialCableTransponderList(tlist, cable):
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
 			parm.modulation = x[3] # AUTO
-			parm.fec_inner = 6 # AUTO
-			parm.inversion = x[4] # AUTO
+			parm.fec_inner = x[4] # AUTO
+			parm.inversion = 2 # AUTO
 			tlist.append(parm)
 
 class ScanSetup(Screen):
