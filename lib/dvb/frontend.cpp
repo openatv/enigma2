@@ -195,7 +195,22 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		return 0;
 	}
 	case iDVBFrontend::feCable:
+		eDVBFrontendParametersCable ocable;
+		if (parm->getDVBC(ocable))
+			return -2;
+		
+		diff = abs(cable.frequency - ocable.frequency);
+		diff += abs(cable.symbol_rate - ocable.symbol_rate);
+		
+		return 0;
 	case iDVBFrontend::feTerrestrial:
+		eDVBFrontendParametersTerrestrial oterrestrial;
+		if (parm->getDVBT(oterrestrial))
+			return -2;
+		
+		diff = abs(terrestrial.frequency - oterrestrial.frequency);
+
+		return 0;
 	default:
 		return -1;
 	}
