@@ -18,7 +18,6 @@ class HelpMenu(Screen):
 		self.onSelChanged = [ ]
 		
 		self["list"] = HelpMenuList(list, self.close)
-		self["list"].onSelChanged.append(self.SelectionChanged)
 		
 		self["rc"] = Pixmap()
 		self["arrowup"] = MovingPixmap()
@@ -27,7 +26,17 @@ class HelpMenu(Screen):
 		{
 			"ok": self["list"].ok,
 			"back": self.close,
+			"up": self.up,
+			"down": self.down
 		}, -1)
+	
+	def up(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self.SelectionChanged()
+		
+	def down(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self.SelectionChanged()
 		
 	def SelectionChanged(self):
 		selection = self["list"].getCurrent()[3]
