@@ -22,6 +22,18 @@
 #define hierarchy_information HierarchyInformation
 #define code_rate_HP HP_CodeRate
 #define code_rate_LP LP_CodeRate
+#define parm.frequency parm.Frequency
+#define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
+#define parm.u.qam.fec_inner parm.u.qam.FEC_inner
+#define parm.u.qam.modulation parm.u.qam.MOD
+#define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
+#define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
+#define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
+#define parm.u.ofdm.constellation parm.u.ofdm.Constellation
+#define parm.u.ofdm.transmission_mode parm.u.ofdm.TransmissionMode
+#define parm.u.ofdm.guard_interval parm.u.ofdm.guardInterval
+#define parm.u.ofdm.hierarchy_information parm.u.ofdm.HierarchyInformation
+#define parm.inversion parm.Inversion
 #else
 #include <linux/dvb/frontend.h>
 #endif
@@ -34,45 +46,10 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 {
 	frequency    = descriptor.getFrequency() * 10;
 	symbol_rate  = descriptor.getSymbolRate() * 100;
-	switch (descriptor.getPolarization())
-	{
-	case 0:
-		polarisation = Polarisation::Horizontal;
-		break;
-	case 1:
-		polarisation = Polarisation::Vertical;
-		break;
-	case 2:
-		polarisation = Polarisation::CircularLeft;
-		break;
-	case 3:
-		polarisation = Polarisation::CircularRight;
-		break;
-	}
-	switch (descriptor.getFecInner())
-	{
-	case 1:
-		fec = FEC::f1_2;
-		break;
-	case 2:
-		fec = FEC::f2_3;
-		break;
-	case 3:
-		fec = FEC::f3_4;
-		break;
-	case 4:
-		fec = FEC::f5_6;
-		break;
-	case 5:
-		fec = FEC::f7_8;
-		break;
-	case 0xF:
+	polarisation = descriptor.getPolarization();
+	fec = descriptor.getFecInner();
+	if ( fec == 0xF )
 		fec = FEC::fNone;
-		break;
-	default:
-		fec = FEC::fAuto;
-		break;
-	}
 	inversion = Inversion::Unknown;
 	orbital_position  = ((descriptor.getOrbitalPosition() >> 12) & 0xF) * 1000;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 8) & 0xF) * 100;
@@ -84,12 +61,40 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 
 void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descriptor)
 {
-	eFatal("nyi");
+	frequency = descriptor.getFrequency() * 10;
+	symbol_rate = descriptor.getSymbolRate() * 100;
+	fec_inner = descriptor.getFecInner();
+	if ( fec_inner == 0xF )
+		fec_inner = FEC::fNone;
+	modulation = descriptor.getModulation();
+	if ( modulation > 0x5 )
+		modulation = Modulation::Auto;
+	inversion = Inversion::Unknown;
 }
 
-void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescriptor  &)
+void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescriptor &descriptor)
 {
-	eFatal("nyi");
+	frequency = descriptor.getCentreFrequency() * 10;
+	bandwidth = descriptor.getBandwidth();
+	if ( bandwidth > 2 ) // 5Mhz forced to auto
+		bandwidth = Bandwidth::BwAuto;
+	code_rate_HP = descriptor.getCodeRateHpStream();
+	if (code_rate_HP > 4)
+		code_rate_HP = FEC::fAuto;
+	code_rate_LP = descriptor.getCodeRateLpStream();
+	if (code_rate_LP > 4)
+		code_rate_LP = FEC::fAuto;
+	transmission_mode = descriptor.getTransmissionMode();
+	if (transmission_mode > 2)
+		transmission_mode = TransmissionMode::TMAuto;
+	guard_interval = descriptor.getGuardInterval();
+	if (guard_interval > 3)
+		guard_interval = GuardInterval::GI_Auto;
+	hierarchy = descriptor.getHierarchyInformation()&3;
+	modulation = descriptor.getConstellation();
+	if (modulation > 2)
+		modulation = Modulation::Auto;
+	inversion = Inversion::Unknown;
 }
 
 eDVBFrontendParameters::eDVBFrontendParameters(): m_type(-1)
@@ -750,123 +755,79 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
 		if (res)
 			return res;
-#if HAVE_DVB_API_VERSION < 3
-		eDebug("tuning to %d mhz", parm.Frequency/1000);
-#else
 		eDebug("tuning to %d mhz", parm.frequency/1000);
-#endif
 		break;
 	}
 	case feCable:
 	{
-#if HAVE_DVB_API_VERSION >= 3
 		eDVBFrontendParametersCable feparm;
 		if (where.getDVBC(feparm))
 			return -EINVAL;
-#if HAVE_DVB_API_VERSION < 3
-		parm.Frequency = feparm.frequency * 1000;
-		parm.u.qam.SymbolRate = feparm.symbol_rate;
-#else
 		parm.frequency = feparm.frequency * 1000;
 		parm.u.qam.symbol_rate = feparm.symbol_rate;
-#endif
-		fe_modulation_t mod=QAM_AUTO;
 		switch (feparm.modulation)
 		{
 		case eDVBFrontendParametersCable::Modulation::QAM16:
-			mod = QAM_16;
+			parm.u.qam.modulation = QAM_16;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM32:
-			mod = QAM_32;
+			parm.u.qam.modulation = QAM_32;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM64:
-			mod = QAM_64;
+			parm.u.qam.modulation = QAM_64;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM128:
-			mod = QAM_128;
+			parm.u.qam.modulation = QAM_128;
 			break;
 		case eDVBFrontendParametersCable::Modulation::QAM256:
-			mod = QAM_256;
-			break;			
+			parm.u.qam.modulation = QAM_256;
+			break;
+		default:
 		case eDVBFrontendParametersCable::Modulation::Auto:
-			mod = QAM_AUTO;
-			break;			
+			parm.u.qam.modulation = QAM_AUTO;
+			break;
 		}
-#if HAVE_DVB_API_VERSION < 3
-		parm.u.qam.QAM = mod;
-#else
-		parm.u.qam.modulation = mod;
-#endif
 		switch (feparm.inversion)
-		{		
+		{
 		case eDVBFrontendParametersCable::Inversion::On:
-			#if HAVE_DVB_API_VERSION < 3
-			parm.Inversion =
-			#else
-			parm.inversion =
-			#endif
-				INVERSION_ON;
+			parm.inversion = INVERSION_ON;
 			break;
 		case eDVBFrontendParametersCable::Inversion::Off:
-			#if HAVE_DVB_API_VERSION < 3
-			parm.Inversion =
-			#else
-			parm.inversion =
-			#endif
-				INVERSION_OFF;
+			parm.inversion = INVERSION_OFF;
 			break;
+		default:
 		case eDVBFrontendParametersCable::Inversion::Unknown:
-			#if HAVE_DVB_API_VERSION < 3
-			parm.Inversion =
-			#else
-			parm.inversion =
-			#endif
-				INVERSION_AUTO;
+			parm.inversion = INVERSION_AUTO;
 			break;
 		}
-		
-		fe_code_rate_t fec_inner=FEC_AUTO;
 		switch (feparm.fec_inner)
-		{		
+		{
 		case eDVBFrontendParametersCable::FEC::fNone:
-			fec_inner = FEC_NONE;
+			parm.u.qam.fec_inner = FEC_NONE;
 			break;
 		case eDVBFrontendParametersCable::FEC::f1_2:
-			fec_inner = FEC_1_2;
+			parm.u.qam.fec_inner = FEC_1_2;
 			break;
 		case eDVBFrontendParametersCable::FEC::f2_3:
-			fec_inner = FEC_2_3;
+			parm.u.qam.fec_inner = FEC_2_3;
 			break;
 		case eDVBFrontendParametersCable::FEC::f3_4:
-			fec_inner = FEC_3_4;
-			break;
-		case eDVBFrontendParametersCable::FEC::f4_5:
-			fec_inner = FEC_4_5;
+			parm.u.qam.fec_inner = FEC_3_4;
 			break;
 		case eDVBFrontendParametersCable::FEC::f5_6:
-			fec_inner = FEC_5_6;
-			break;
-		case eDVBFrontendParametersCable::FEC::f6_7:
-			fec_inner = FEC_6_7;
+			parm.u.qam.fec_inner = FEC_5_6;
 			break;
 		case eDVBFrontendParametersCable::FEC::f7_8:
-			fec_inner = FEC_7_8;
+			parm.u.qam.fec_inner = FEC_7_8;
 			break;
 		case eDVBFrontendParametersCable::FEC::f8_9:
-			fec_inner = FEC_8_9;
+			parm.u.qam.fec_inner = FEC_8_9;
 			break;
+		default:
 		case eDVBFrontendParametersCable::FEC::fAuto:
-			fec_inner = FEC_AUTO;
+			parm.u.qam.fec_inner = FEC_AUTO;
 			break;
 		}
-#if HAVE_DVB_API_VERSION < 3
-		parm.u.qam.FEC_inner = fec_inner;
-#else
-		parm.u.qam.fec_inner = fec_inner;
-#endif
-#else
-		eFatal("Old API not fully supported");
-#endif // old api
 		break;
 	}
 	case feTerrestrial:
@@ -877,54 +838,70 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			eDebug("no -T data");
 			return -EINVAL;
 		}
-#if HAVE_DVB_API_VERSION < 3
-		parm.Frequency = feparm.frequency;
-#else
 		parm.frequency = feparm.frequency;
-#endif
 
 		switch (feparm.bandwidth)
 		{
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.bandWidth =
-#else
-			parm.u.ofdm.bandwidth =
-#endif
-				BANDWIDTH_8_MHZ;
+			parm.u.ofdm.bandwidth = BANDWIDTH_8_MHZ;
 			break;
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.bandWidth =
-#else
-			parm.u.ofdm.bandwidth =
-#endif
-				BANDWIDTH_7_MHZ;
+			parm.u.ofdm.bandwidth = BANDWIDTH_7_MHZ;
 			break;
 		case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.bandWidth =
-#else
-			parm.u.ofdm.bandwidth =
-#endif
-				BANDWIDTH_6_MHZ;
-			break;
-		case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.bandWidth =
-#else
-			parm.u.ofdm.bandwidth =
-#endif
-				BANDWIDTH_AUTO;
+			parm.u.ofdm.bandwidth = BANDWIDTH_6_MHZ;
 			break;
 		default:
-			eWarning("invalid OFDM bandwith");
-			return -EINVAL;
+		case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
+			parm.u.ofdm.bandwidth = BANDWIDTH_AUTO;
+			break;
 		}
-		
-		parm.u.ofdm.code_rate_HP = FEC_AUTO;
-		parm.u.ofdm.code_rate_LP = FEC_AUTO;
-		
+		switch (feparm.code_rate_LP)
+		{
+		case eDVBFrontendParametersCable::FEC::f1_2:
+			parm.u.ofdm.code_rate_LP = FEC_1_2;
+			break;
+		case eDVBFrontendParametersCable::FEC::f2_3:
+			parm.u.ofdm.code_rate_LP = FEC_2_3;
+			break;
+		case eDVBFrontendParametersCable::FEC::f3_4:
+			parm.u.ofdm.code_rate_LP = FEC_3_4;
+			break;
+		case eDVBFrontendParametersCable::FEC::f5_6:
+			parm.u.ofdm.code_rate_LP = FEC_5_6;
+			break;
+		case eDVBFrontendParametersCable::FEC::f7_8:
+			parm.u.ofdm.code_rate_LP = FEC_7_8;
+			break;
+		default:
+		case eDVBFrontendParametersCable::FEC::fAuto:
+		case eDVBFrontendParametersCable::FEC::fNone:
+			parm.u.ofdm.code_rate_LP = FEC_AUTO;
+			break;
+		}
+		switch (feparm.code_rate_HP)
+		{
+		case eDVBFrontendParametersCable::FEC::f1_2:
+			parm.u.ofdm.code_rate_HP = FEC_1_2;
+			break;
+		case eDVBFrontendParametersCable::FEC::f2_3:
+			parm.u.ofdm.code_rate_HP = FEC_2_3;
+			break;
+		case eDVBFrontendParametersCable::FEC::f3_4:
+			parm.u.ofdm.code_rate_HP = FEC_3_4;
+			break;
+		case eDVBFrontendParametersCable::FEC::f5_6:
+			parm.u.ofdm.code_rate_HP = FEC_5_6;
+			break;
+		case eDVBFrontendParametersCable::FEC::f7_8:
+			parm.u.ofdm.code_rate_HP = FEC_7_8;
+			break;
+		default:
+		case eDVBFrontendParametersCable::FEC::fAuto:
+		case eDVBFrontendParametersCable::FEC::fNone:
+			parm.u.ofdm.code_rate_HP = FEC_AUTO;
+			break;
+		}
 		switch (feparm.modulation)
 		{
 		case eDVBFrontendParametersTerrestrial::Modulation::QPSK:
@@ -933,48 +910,59 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		case eDVBFrontendParametersTerrestrial::Modulation::QAM16:
 			parm.u.ofdm.constellation = QAM_16;
 			break;
+		default:
 		case eDVBFrontendParametersTerrestrial::Modulation::Auto:
 			parm.u.ofdm.constellation = QAM_AUTO;
 			break;
 		}
-		
 		switch (feparm.transmission_mode)
 		{
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.TransmissionMode =
-#else
-			parm.u.ofdm.transmission_mode =
-#endif
-				TRANSMISSION_MODE_2K;
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_2K;
 			break;
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.TransmissionMode =
-#else
-			parm.u.ofdm.transmission_mode =
-#endif
-				TRANSMISSION_MODE_8K;
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_8K;
 			break;
+		default:
 		case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto:
-#if HAVE_DVB_API_VERSION < 3
-			parm.u.ofdm.TransmissionMode =
-#else
-			parm.u.ofdm.transmission_mode =
-#endif
-				TRANSMISSION_MODE_AUTO;
+			parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_AUTO;
 			break;
 		}
-		
-		parm.u.ofdm.guard_interval = GUARD_INTERVAL_AUTO;
-		parm.u.ofdm.hierarchy_information = HIERARCHY_AUTO;
-#if HAVE_DVB_API_VERSION < 3
-		parm.Inversion =
-#else
-		parm.inversion =
-#endif
-			INVERSION_AUTO;
-		break;
+		switch (feparm.guard_interval)
+		{
+			case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32:
+				parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_32;
+				break;
+			case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_16:
+				parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_16;
+				break;
+			case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_8:
+				parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_8;
+				break;
+			case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_4:
+				parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_4;
+				break;
+			default:
+			case eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto:
+				parm.u.ofdm.guard_interval = GUARD_INTERVAL_AUTO;
+				break;
+		}
+		switch (feparm.hierarchy)
+		{
+			case eDVBFrontendParametersTerrestrial::Hierarchy::H1:
+				parm.u.ofdm.hierarchy_information = HIERARCHY_1;
+				break;
+			case eDVBFrontendParametersTerrestrial::Hierarchy::H2:
+				parm.u.ofdm.hierarchy_information = HIERARCHY_2;
+				break;
+			case eDVBFrontendParametersTerrestrial::Hierarchy::H4:
+				parm.u.ofdm.hierarchy_information = HIERARCHY_4;
+				break;
+			default:
+			case eDVBFrontendParametersTerrestrial::Hierarchy::HAuto:
+				parm.u.ofdm.hierarchy_information = HIERARCHY_AUTO;
+				break;
+		}
 	}
 	}
 
@@ -1115,23 +1103,17 @@ RESULT eDVBFrontend::sendToneburst(int burst)
 {
 #if HAVE_DVB_API_VERSION < 3
 	secMiniCmd cmd = SEC_MINI_NONE;
+#else
+	fe_sec_mini_cmd_t cmd = SEC_MINI_A;
+#endif
 	if ( burst == eDVBSatelliteDiseqcParameters::A )
 		cmd = SEC_MINI_A;
 	else if ( burst == eDVBSatelliteDiseqcParameters::B )
 		cmd = SEC_MINI_B;
+#if HAVE_DVB_API_VERSION < 3
 	if (::ioctl(m_secfd, SEC_DISEQC_SEND_BURST, cmd))
 		return -EINVAL;
 #else
-	fe_sec_mini_cmd_t cmd = SEC_MINI_A;
-	if ( burst == eDVBSatelliteDiseqcParameters::A )
-		cmd = SEC_MINI_A;
-	else if ( burst == eDVBSatelliteDiseqcParameters::B )
-		cmd = SEC_MINI_B;
-	else
-	{
-		eDebug("unknown toneburst!");
-		return -EINVAL;
-	}
 	if (::ioctl(m_fd, FE_DISEQC_SEND_BURST, cmd))
 		return -EINVAL;
 #endif
