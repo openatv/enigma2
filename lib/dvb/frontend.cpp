@@ -61,7 +61,7 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 
 void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descriptor)
 {
-	frequency = descriptor.getFrequency() * 10;
+	frequency = descriptor.getFrequency() / 10;
 	symbol_rate = descriptor.getSymbolRate() * 100;
 	fec_inner = descriptor.getFecInner();
 	if ( fec_inner == 0xF )
