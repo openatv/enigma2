@@ -5,6 +5,8 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/terrestrial_delivery_system_descriptor.h>
+#include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/esection.h>
@@ -285,20 +287,43 @@ void eDVBScan::channelDone()
 				{
 					switch ((*desc)->getTag())
 					{
-//					case SERVICE_LIST_DESCRIPTOR:
+					case CABLE_DELIVERY_SYSTEM_DESCRIPTOR:
+					{
+						CableDeliverySystemDescriptor &d = (CableDeliverySystemDescriptor&)**desc;
+						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+						eDVBFrontendParametersCable cable;
+						cable.set(d);
+						feparm->setDVBC(cable);
+
+						unsigned long hash=0;
+						feparm->getHash(hash);
+						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
+
+						addChannelToScan(
+							eDVBChannelID(ns, tsid, onid),
+							feparm);
+						break;
+					}
+					case TERRESTRIAL_DELIVERY_SYSTEM_DESCRIPTOR:
+					{
+						TerrestrialDeliverySystemDescriptor &d = (TerrestrialDeliverySystemDescriptor&)**desc;
+						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+						eDVBFrontendParametersTerrestrial terr;
+						terr.set(d);
+						feparm->setDVBT(terr);
+
+						unsigned long hash=0;
+						feparm->getHash(hash);
+						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
+
+						addChannelToScan(
+							eDVBChannelID(ns, tsid, onid),
+							feparm);
+						break;
+					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
 						SatelliteDeliverySystemDescriptor &d = (SatelliteDeliverySystemDescriptor&)**desc;
-						SCAN_eDebug("%d kHz, %d%d%d.%d%c %s MOD:%d %d symb/s, fec %d", 
-								d.getFrequency(), 
-								(d.getOrbitalPosition()>>12)&0xF,
-								(d.getOrbitalPosition()>>8)&0xF,
-								(d.getOrbitalPosition()>>4)&0xF,
-								d.getOrbitalPosition()&0xF, d.getWestEastFlag()?'E':'W',
-								d.getPolarization() ? "hor" : "vert",
-								d.getModulation(), d.getSymbolRate(), d.getFecInner());
-						
-							/* some sanity checking: below 100MHz is invalid */
 						if (d.getFrequency() < 10000)
 							break;
 						
