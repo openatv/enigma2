@@ -33,7 +33,7 @@ class About(Screen):
 		self["hdd"] = Label(_("Detected HDD:"))
 		hdd = Harddisk(0)
 		if hdd.model() != "":
-			self["hddA"] = Label(_("%s (%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
+			self["hddA"] = Label(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
 		else:			
 			self["hddA"] = Label(_("none"))
 
