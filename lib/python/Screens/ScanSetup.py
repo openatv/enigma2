@@ -315,6 +315,7 @@ class ScanSetup(Screen):
 											  config.scan.cab.inversion.value)
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
 				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
+				flags |= eComponentScan.scanNetworkSearch
 
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
