@@ -197,7 +197,7 @@ class ScanSetup(Screen):
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 999)))
 			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
 			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 9999)))
 
@@ -254,11 +254,11 @@ class ScanSetup(Screen):
 
 	# FIXME use correct parameters
 	def addCabTransponder(self, tlist, frequency, symbol_rate, modulation, fec, inversion):
-		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(modulation) + " fec: " + str(fec) + " inversion: " + str(inversion)
+		print "Add Cab: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(modulation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		parm = eDVBFrontendParametersCable()
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.modulation = modulation # eDVBFrontendParametersSatellite.Polarisation.Verti	
+		parm.modulation = modulation # modulation # eDVBFrontendParametersSatellite.Polarisation.Verti	
 		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
