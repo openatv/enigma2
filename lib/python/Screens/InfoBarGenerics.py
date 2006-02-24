@@ -945,7 +945,7 @@ class InfoBarInstantRecord:
 			})
 		self.recording = None
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
-		self.onLayoutFinish.append(self["BlinkingPoint"].hideWidget)
+		self["BlinkingPoint"].hide()
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
 
 	def stopCurrentRecording(self):	
@@ -1076,11 +1076,11 @@ class InfoBarAdditionalInfo:
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
 
 	def hideSubServiceIndication(self):
-		self["ButtonGreen"].hideWidget()
+		self["ButtonGreen"].hide()
 		self["ButtonGreenText"].hide()
 
 	def showSubServiceIndication(self):
-		self["ButtonGreen"].showWidget()
+		self["ButtonGreen"].show()
 		self["ButtonGreenText"].show()
 
 	def checkFormat(self, service):
@@ -1088,9 +1088,9 @@ class InfoBarAdditionalInfo:
 		if info is not None:
 			aspect = info.getInfo(iServiceInformation.sAspect)
 			if aspect in [ 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10 ]:
-				self["FormatActive"].showWidget()
+				self["FormatActive"].show()
 			else:
-				self["FormatActive"].hideWidget()
+				self["FormatActive"].hide()
 
 	def checkSubservices(self, service):
 		if service.subServices().getNumberOfSubservices() > 0:
@@ -1111,17 +1111,17 @@ class InfoBarAdditionalInfo:
 					dolby = True
 					break
 		if dolby:
-			self["DolbyActive"].showWidget()
+			self["DolbyActive"].show()
 		else:
-			self["DolbyActive"].hideWidget()
+			self["DolbyActive"].hide()
 
 	def checkCrypted(self, service):
 		info = service.info()
 		if info is not None:
 			if info.getInfo(iServiceInformation.sIsCrypted) > 0:
-				self["CryptActive"].showWidget()
+				self["CryptActive"].show()
 			else:
-				self["CryptActive"].hideWidget()
+				self["CryptActive"].hide()
 
 	def gotServiceEvent(self, ev):
 		service = self.session.nav.getCurrentService()
@@ -1133,9 +1133,9 @@ class InfoBarAdditionalInfo:
 			self.checkDolby(service)
 		elif ev == iPlayableService.evEnd:
 			self.hideSubServiceIndication()
-			self["CryptActive"].hideWidget()
-			self["DolbyActive"].hideWidget()
-			self["FormatActive"].hideWidget()
+			self["CryptActive"].hide()
+			self["DolbyActive"].hide()
+			self["FormatActive"].hide()
 
 class InfoBarNotifications:
 	def __init__(self):
