@@ -381,7 +381,6 @@ class NimManager:
 					pass
 				else:
 					self.transponders[self.parsedCab] = [ ]
-
 				self.transponders[self.parsedCab].append((1, freq, sr, mod, fec))
 
 	class parseTerrestrials(ContentHandler):
@@ -416,7 +415,16 @@ class NimManager:
 				self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
 
 	def getTransponders(self, pos):
-		return self.transponders[pos]
+		if self.transponders.has_key(pos):
+			return self.transponders[pos]
+		else:
+			return []
+
+	def getTranspondersCable(self, cable):
+		return self.transponderscable[cable]
+
+	def getCableDescription(self, nim):
+		return self.cablesList[config.Nims[nim].cable.value]
 
 	def getConfiguredSats(self):
 		return self.sec.getSatList()

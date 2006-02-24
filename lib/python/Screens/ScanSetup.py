@@ -26,6 +26,23 @@ def getInitialTransponderList(tlist, pos):
 			parm.orbital_position = pos
 			tlist.append(parm)
 
+def getInitialCableTransponderList(tlist, cable):
+	print "cable", cable
+	list = nimmanager.getTranspondersCable(cable)
+
+	for x in list:
+		if x[0] == 1:		#CABLE
+			print "[ScanSetup] cable-transponder to add:", x
+			parm = eDVBFrontendParametersCable()
+			parm.frequency = x[1]
+			parm.symbol_rate = x[2]
+			parm.modulation = 2 # x[3] # eDVBFrontendParametersSatellite.Polarisation.Verti	
+			parm.fec = 6# x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
+			#parm.fec = 6					# AUTO
+			parm.inversion = 2 # AUTO
+			#parm.inversion = 2 		#AUTO
+			tlist.append(parm)
+
 class ScanSetup(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -297,7 +314,7 @@ class ScanSetup(Screen):
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
-				pass
+				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
 
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
