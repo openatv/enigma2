@@ -517,9 +517,11 @@ class InfoBarSeek:
 				"unPauseService": (self.unPauseService, "continue"),
 				
 				"seekFwd": (self.seekFwd, "skip forward"),
-				"seekFwdUp": (self.seekFwdUp, "skip forward"),
+				"seekFwdDown": self.seekFwdDown,
+				"seekFwdUp": self.seekFwdUp,
 				"seekBack": (self.seekBack, "skip backward"),
-				"seekBackUp": (self.seekBackUp, "skip backward"),
+				"seekBackDown": self.seekBackDown,
+				"seekBackUp": self.seekBackUp,
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
@@ -636,12 +638,12 @@ class InfoBarSeek:
 		
 		seekable.seekTo(90 * seektime)
 
-	def seekFwd(self):
+	def seekFwdDown(self):
 		print "start fwd timer"
 		self.fwdtimer = True
 		self.fwdKeyTimer.start(1000)
 
-	def seekBack(self):
+	def seekBackDown(self):
 		print "start rewind timer"
 		self.rwdtimer = True
 		self.rwdKeyTimer.start(1000)
@@ -651,50 +653,55 @@ class InfoBarSeek:
 		if self.fwdtimer:
 			self.fwdKeyTimer.stop()
 			self.fwdtimer = False
-			lookup = {
-					self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
-					self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
-					self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
-					self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
-					self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
-					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
-					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
-					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
-					self.SEEK_STATE_BACK_16X: self.SEEK_STATE_PLAY,
-					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_16X,
-					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
-					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
-					self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
-					self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
-					self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
-				}
-			self.setSeekState(lookup[self.seekstate]);
+			self.seekFwd()
+
+	def seekFwd(self):
+		lookup = {
+				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
+				self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
+				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
+				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_32X,
+				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_64X,
+				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
+				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
+				self.SEEK_STATE_BACK_16X: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_16X,
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_32X,
+				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
+				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
+				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
+			}
+		self.setSeekState(lookup[self.seekstate])
 	
 	def seekBackUp(self):
 		print "seekBackUp"
 		if self.rwdtimer:
 			self.rwdKeyTimer.stop()
 			self.rwdtimer = False
+			self.seekBack()
 		
-			lookup = {
-					self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_16X,
-					self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
-					self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
-					self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
-					self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
-					self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
-					self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
-					self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
-					self.SEEK_STATE_BACK_16X: self.SEEK_STATE_BACK_32X,
-					self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
-					self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
-					self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
-					self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
-					self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
-					self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
-				}
-			self.setSeekState(lookup[self.seekstate]);
-		
+	def seekBack(self):
+		lookup = {
+				self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_16X,
+				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
+				self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
+				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
+				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
+				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_8X,
+				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_32X,
+				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
+				self.SEEK_STATE_BACK_16X: self.SEEK_STATE_BACK_32X,
+				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_64X,
+				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
+				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
+				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
+				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
+			}
+		self.setSeekState(lookup[self.seekstate])
+
 	def fwdTimerFire(self):
 		print "Display seek fwd"
 		self.fwdKeyTimer.stop()
@@ -1251,10 +1258,16 @@ class InfoBarCueSheetSupport:
 		print "nearest_cutpoint: ", nearest_cutpoint
 		
 		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < 5*90000:
-			self.cut_list.remove(nearest_cutpoint)
+			self.removeMark(self, *nearest_cutpoint)
 		else:
-			bisect.insort(self.cut_list, (current_pos, self.CUT_TYPE_MARK))
-		
+			self.addMark(self, current_pos, self.CUT_TYPE_MARK)
+
+	def addMark(self, where, type):
+		bisect.insort(self.cut_list, (current_pos, self.CUT_TYPE_MARK))
+		self.uploadCuesheet()
+
+	def removeMark(self, where, type):
+		self.cut_list.remove(nearest_cutpoint)
 		self.uploadCuesheet()
 
 	def __getCuesheet(self):
