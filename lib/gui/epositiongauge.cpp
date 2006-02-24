@@ -22,6 +22,7 @@ void ePositionGauge::setLength(const pts_t &len)
 		return;
 	m_length = len;
 	updatePosition();
+	invalidate();
 }
 
 void ePositionGauge::setPosition(const pts_t &pos)
@@ -46,6 +47,35 @@ void ePositionGauge::setPointer(gPixmap *pixmap, const ePoint &center)
 	updatePosition();
 }
 
+void ePositionGauge::setInOutList(PyObject *list)
+{
+	if (!PyList_Check(list))
+		return;
+	int size = PyList_Size(list);
+	int i;
+	
+	m_cue_entries.clear();
+	
+	for (i=0; i<size; ++i)
+	{
+		PyObject *tuple = PyList_GetItem(list, i);
+		if (!PyTuple_Check(tuple))
+			continue;
+
+		if (PyTuple_Size(tuple) != 2)
+			continue;
+
+		PyObject *ppts = PyTuple_GetItem(tuple, 0), *ptype = PyTuple_GetItem(tuple, 1);
+		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
+			continue;
+
+		pts_t pts = PyLong_AsLongLong(ppts);
+		int type = PyInt_AsLong(ptype);
+		m_cue_entries.insert(cueEntry(pts, type));
+	}
+	invalidate();
+}
+
 int ePositionGauge::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -60,11 +90,43 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		getStyle(style);
 		style->paintBackground(painter, ePoint(0,0), s);
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
-		painter.setForegroundColor(gRGB(0x225b7395));
-
-		painter.fill(eRect(0, 10, s.width(), s.height()-14));
+//		painter.fill(eRect(0, 10, s.width(), s.height()-20));
 		
+		pts_t in = 0, out = 0;
+		
+		std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
+		
+		while (1)
+		{
+			if (i == m_cue_entries.end())
+				out = m_length;
+			else {
+				if (i->what == 0) /* in */
+				{
+					in = i++->where;
+					continue;
+				} else if (i->what == 1) /* out */
+					out = i++->where;
+				else /* mark */
+				{
+					int xm = scale(i->where);
+					painter.setForegroundColor(gRGB(0xFF8080));
+					painter.fill(eRect(xm - 2, 0, 4, s.height()));
+					i++;
+					continue;
+				}
+			}
+			
+			painter.setForegroundColor(gRGB(0x225b7395));
+			int xi = scale(in), xo = scale(out);
+			painter.fill(eRect(xi, 10, xo-xi, s.height()-14));
+			in = m_length;
+			
+			if (i == m_cue_entries.end())
+				break;
+		}
 //		painter.setForegroundColor(gRGB(0x00000000));
+		painter.setForegroundColor(gRGB(0x225b7395));
 		painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
 		painter.fill(eRect(0, 2, 2, s.height() - 4));
 		
@@ -89,13 +151,18 @@ int ePositionGauge::event(int event, void *data, void *data2)
 
 void ePositionGauge::updatePosition()
 {
+	m_pos = scale(m_position);
+	int base = (size().height() - 10) / 2;
+	
+	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
+}
+
+int ePositionGauge::scale(const pts_t &val)
+{
 	if (!m_length)
-		return;
+		return 0;
 
 	int width = size().width();
-	int x = width * m_position / m_length;
-	m_pos = x;
-	int base = (size().height() - 10) / 2;
 
-	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
+	return width * val / m_length;
 }

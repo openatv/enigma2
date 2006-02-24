@@ -2,6 +2,7 @@
 #define __lib_gui_epositiongauge_h
 
 #include <lib/gui/ewidget.h>
+#include <set>
 
 typedef long long pts_t;
 
@@ -17,6 +18,8 @@ public:
 	
 	void setInColor(const gRGB &color); /* foreground? */
 	void setPointer(gPixmap *pixmap, const ePoint &center);
+	
+	void setInOutList(PyObject *list);
 #ifndef SWIG
 protected:
 	int event(int event, void *data=0, void *data2=0);
@@ -31,6 +34,25 @@ private:
 	
 	pts_t m_position, m_length;
 	int m_pos;
+
+		/* TODO: this is duplicated code from lib/service/servicedvb.h */
+	struct cueEntry
+	{
+		pts_t where;
+		unsigned int what;
+		
+		bool operator < (const struct cueEntry &o) const
+		{
+			return what < o.what;
+		}
+		cueEntry(const pts_t &where, unsigned int what) :
+			where(where), what(what)
+		{
+		}
+	};
+	
+	std::multiset<cueEntry> m_cue_entries;
+	int scale(const pts_t &val);
 #endif
 };
 
