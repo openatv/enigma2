@@ -17,15 +17,10 @@
 #define BANDWIDTH_AUTO			(BandWidth)3
 #define GUARD_INTERVAL_AUTO		(GuardInterval)4
 #define HIERARCHY_AUTO			(Hierarchy)4
-#define constellation Constellation
-#define guard_interval guardInterval
-#define hierarchy_information HierarchyInformation
-#define code_rate_HP HP_CodeRate
-#define code_rate_LP LP_CodeRate
 #define parm.frequency parm.Frequency
 #define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
 #define parm.u.qam.fec_inner parm.u.qam.FEC_inner
-#define parm.u.qam.modulation parm.u.qam.MOD
+#define parm.u.qam.modulation parm.u.qam.QAM
 #define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
 #define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
 #define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
