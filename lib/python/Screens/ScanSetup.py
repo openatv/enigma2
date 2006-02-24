@@ -267,36 +267,46 @@ class ScanSetup(Screen):
 	def keyGo(self):
 		tlist = []
 		flags = 0
-		if currentConfigSelectionElement(config.scan.type) == "single_transponder":
-			if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
+			if currentConfigSelectionElement(config.scan.type) == "single_transponder":
+
 				self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
 											  config.scan.sat.symbolrate.value[0],
 											  config.scan.sat.polarization.value,
 											  config.scan.sat.fec.value,
 											  config.scan.sat.inversion.value,
 											  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
-			elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
+				getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
+				flags |= eComponentScan.scanNetworkSearch
+	
+			elif currentConfigSelectionElement(config.scan.type) == "multisat":
+				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
+	
+				for x in self.multiscanlist:
+					if x[1].parent.value == 0:
+						print "   " + str(x[1].parent.configPath)
+						getInitialTransponderList(tlist, x[1].parent.configPath)
+				flags |= eComponentScan.scanNetworkSearch
+
+		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
+			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
 				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
 											  config.scan.cab.symbolrate.value[0],
 											  config.scan.cab.modulation.value,
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
-			elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
+				pass
+
+		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
+			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
 				self.addTerTransponder(tlist, 
-											  config.scan.ter.frequency.value[0])
+										  config.scan.ter.frequency.value[0])
+			if currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
+				pass
 
-		elif currentConfigSelectionElement(config.scan.type) == single_satellite:
-			getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
-			flags |= eComponentScan.scanNetworkSearch
 
-		elif currentConfigSelectionElement(config.scan.type) == "multisat":
-			SatList = nimmanager.getSatListForNim(config.scan.nims.value)
-
-			for x in self.multiscanlist:
-				if x[1].parent.value == 0:
-					print "   " + str(x[1].parent.configPath)
-					getInitialTransponderList(tlist, x[1].parent.configPath)
-			flags |= eComponentScan.scanNetworkSearch
 
 		for x in self["config"].list:
 			x[1].save()
