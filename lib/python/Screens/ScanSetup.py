@@ -138,7 +138,7 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_("Symbol Rate"), config.scan.cab.symbolrate))
 				self.list.append(getConfigListEntry(_("Modulation"), config.scan.cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), config.scan.cab.fec))
-				self.list.append(getConfigListEntry(_("Search NIT"), config.scan.cab.searchNIT))
+				self.list.append(getConfigListEntry(_("Network scan"), config.scan.cab.networkScan))
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
 				pass
 				
@@ -201,7 +201,7 @@ class ScanSetup(Screen):
 			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
 			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 9999)))
-			config.scan.cab.searchNIT = configElement_nonSave("config.scan.cab.searchNIT", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
+			config.scan.cab.networkScan = configElement_nonSave("config.scan.cab.networkScan", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
 
 			# terrestial
 			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (100, 900)))
@@ -313,7 +313,7 @@ class ScanSetup(Screen):
 											  config.scan.cab.modulation.value,
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
-				if  currentConfigSelectionElement(config.scan.cab.searchNIT) == "yes":
+				if  currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
 					flags |= eComponentScan.scanNetworkSearch
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
 				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
