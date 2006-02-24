@@ -2,24 +2,13 @@ from HTMLComponent import *
 from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
+from Components.MultiContent import MultiContentEntryText, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation
 
 from enigma import eServiceReference, eServiceCenter, \
 	eServiceCenterPtr, iListableServicePtr, \
 	iStaticServiceInformationPtr
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
-
-RT_WRAP = 32
-
 
 #
 # | name of movie              |
@@ -43,7 +32,7 @@ def MovieListEntry(serviceref, serviceHandler):
 	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 	res = [ (serviceref, begin) ]
 
-	res.append((0, 0, 0, 560, 30, 0, RT_HALIGN_LEFT, info.getName(serviceref)))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(560, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
 	
 	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 
@@ -52,9 +41,9 @@ def MovieListEntry(serviceref, serviceHandler):
 		t = FuzzyTime(begin)
 		begin_string = t[0] + ", " + t[1]
 	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 560, 20, 1, RT_HALIGN_LEFT, description))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 270, 20, 1, RT_HALIGN_LEFT, begin_string))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 290, 50, 270, 20, 1, RT_HALIGN_RIGHT, len))
+	res.append(MultiContentEntryText(pos=(0, 30), size=(560, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
+	res.append(MultiContentEntryText(pos=(0, 50), size=(270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+	res.append(MultiContentEntryText(pos=(290, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 	
 	return res
 
