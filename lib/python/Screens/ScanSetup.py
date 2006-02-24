@@ -18,7 +18,7 @@ def getInitialTransponderList(tlist, pos):
 			parm = eDVBFrontendParametersSatellite()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
-			parm.polarisation = x[3] # eDVBFrontendParametersSatellite.Polarisation.Vertical
+			parm.polarisation = x[3]#lookup_sat_polarisation[x[3]] # eDVBFrontendParametersSatellite.Polarisation.Vertical
 			parm.fec = x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
 			#parm.fec = 6					# AUTO
 			#parm.inversion = 1 	#eDVBFrontendParametersSatellite.Inversion.Off;
@@ -36,9 +36,9 @@ def getInitialCableTransponderList(tlist, cable):
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
-			parm.modulation = 5 # AUTO
+			parm.modulation = x[3] # AUTO
 			parm.fec_inner = 6 # AUTO
-			parm.inversion = 2 # AUTO
+			parm.inversion = x[4] # AUTO
 			tlist.append(parm)
 
 class ScanSetup(Screen):
@@ -195,10 +195,10 @@ class ScanSetup(Screen):
 			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
 
 			# cable
-			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 9999)))
+			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 999)))
 			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, (("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM"), ("auto", _("Auto"))))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 9, (("none", _("None")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 2, (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
+			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 9999)))
 
 			# terrestial
