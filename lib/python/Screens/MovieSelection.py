@@ -5,11 +5,14 @@ from Components.ActionMap import ActionMap
 from Components.MovieList import MovieList
 from Components.DiskInfo import DiskInfo
 from Components.Label import Label
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 from Screens.MessageBox import MessageBox
 from Screens.FixedMenu import FixedMenu
 
 from Tools.Directories import *
+from Tools.BoundFunction import boundFunction
 
 from enigma import eServiceReference, eServiceCenter, eTimer
 
@@ -20,8 +23,14 @@ class ChannelContextMenu(FixedMenu):
 		
 		menu = [(_("back"), self.close), (_("delete..."), self.delete)]
 		
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+			menu.append((p.description, boundFunction(self.execPlugin, p)))
+		
 		FixedMenu.__init__(self, session, _("Movie Menu"), menu)
 		self.skinName = "Menu"
+	
+	def execPlugin(self, plugin):
+		plugin(self.session, self.service)
 
 	def delete(self):
 		serviceHandler = eServiceCenter.getInstance()
