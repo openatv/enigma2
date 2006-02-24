@@ -155,9 +155,9 @@
 	<map context="InfobarSeekActions">
 		<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
 		<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
-		<key id="KEY_RED" mapto="seekBack" flags="m" />
+		<key id="KEY_RED" mapto="seekBackDown" flags="m" />
 		<key id="KEY_RED" mapto="seekBackUp" flags="b" />
-		<key id="KEY_BLUE" mapto="seekFwd" flags="m" />
+		<key id="KEY_BLUE" mapto="seekFwdDown" flags="m" />
 		<key id="KEY_BLUE" mapto="seekFwdUp" flags="b" />
 		
 		<key id="KEY_LEFT" mapto="seekBack" flags="m" />
@@ -296,5 +296,10 @@
 	</map>
 	<map context="StandbyActions">
 		<key id="KEY_POWER" mapto="power" flags="m" />
+	</map>
+	<map context="CutListEditorActions">
+		<key id="KEY_1" mapto="setIn" flags="m" />
+		<key id="KEY_2" mapto="setOut" flags="m" />
+		<key id="KEY_EXIT" mapto="leave" flags="m" />
 	</map>
 </keymap>
