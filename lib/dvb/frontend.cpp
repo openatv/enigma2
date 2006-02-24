@@ -52,6 +52,11 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	orbital_position += ((descriptor.getOrbitalPosition()) & 0xF);
 	if (orbital_position && (!descriptor.getWestEastFlag()))
 		orbital_position = 3600 - orbital_position;
+	eDebug("SAT freq %d, %s, pos %d, sr %d, fec %d",
+		frequency,
+		polarisation ? "hor" : "vert",
+		orbital_position,
+		symbol_rate, fec);
 }
 
 void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descriptor)
@@ -65,6 +70,9 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 	if ( modulation > 0x5 )
 		modulation = Modulation::Auto;
 	inversion = Inversion::Unknown;
+	eDebug("Cable freq %d, mod %d, sr %d, fec %d",
+		frequency,
+		modulation, symbol_rate, fec_inner);
 }
 
 void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescriptor &descriptor)
@@ -90,6 +98,9 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 	if (modulation > 2)
 		modulation = Modulation::Auto;
 	inversion = Inversion::Unknown;
+	eDebug("Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
+		frequency, bandwidth, code_rate_HP, code_rate_LP, transmission_mode,
+		guard_interval, hierarchy, modulation);
 }
 
 eDVBFrontendParameters::eDVBFrontendParameters(): m_type(-1)
