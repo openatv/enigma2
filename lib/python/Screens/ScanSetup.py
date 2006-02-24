@@ -36,11 +36,9 @@ def getInitialCableTransponderList(tlist, cable):
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
-			parm.modulation = 2 # x[3] # eDVBFrontendParametersSatellite.Polarisation.Verti	
-			parm.fec = 6# x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
-			#parm.fec = 6					# AUTO
+			parm.modulation = 5 # AUTO
+			parm.fec_inner = 6 # AUTO
 			parm.inversion = 2 # AUTO
-			#parm.inversion = 2 		#AUTO
 			tlist.append(parm)
 
 class ScanSetup(Screen):

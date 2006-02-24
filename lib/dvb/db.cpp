@@ -318,9 +318,15 @@ void eDVBDB::reloadServicelist()
 				feparm->setDVBT(ter);
 			} else if (line[1]=='c')
 			{
+				eDVBFrontendParametersCable cab;
 				int frequency, symbol_rate, inversion=0, modulation=3;
 				sscanf(line+2, "%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation);
-//				t.setCable(frequency, symbol_rate, inversion, modulation);
+				cab.frequency = frequency;
+				cab.symbol_rate = symbol_rate;
+				cab.modulation = modulation;
+				cab.fec_inner = 6;
+				cab.inversion = inversion;
+				feparm->setDVBC(cab);
 			}
 		}
 		addChannelToList(channelid, feparm);
@@ -431,6 +437,7 @@ void eDVBDB::saveServicelist()
 				chid.transport_stream_id.get(), chid.original_network_id.get());
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersTerrestrial ter;
+		eDVBFrontendParametersCable cab;
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
 			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
@@ -445,6 +452,11 @@ void eDVBDB::saveServicelist()
 				ter.frequency, ter.bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
 				ter.guard_interval, ter.hierarchy, ter.inversion);
+		}
+		if (!ch.m_frontendParameters->getDVBC(cab))
+		{
+			fprintf(f, "\tc %d:%d:%d:%d\n",
+				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation);
 		}
 		fprintf(f, "/\n");
 		channels++;
