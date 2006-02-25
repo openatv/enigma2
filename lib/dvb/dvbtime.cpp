@@ -189,14 +189,15 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			time_t rtc_time = getRTC();
 			if ( rtc_time ) // RTC Ready?
 			{
-				tm now = *localtime(&rtc_time);
+				tm now;
+				localtime_r(&rtc_time, &now);
 				eDebug("[eDVBLocalTimerHandler] RTC time is %02d:%02d:%02d",
 					now.tm_hour,
 					now.tm_min,
 					now.tm_sec);
 				time_t linuxTime=time(0);
 				time_t nowTime=linuxTime+m_time_difference;
-				now = *localtime(&nowTime);
+				localtime_r(&nowTime, &now);
 				eDebug("[eDVBLocalTimerHandler] Receiver time is %02d:%02d:%02d",
 					now.tm_hour,
 					now.tm_min,
@@ -313,7 +314,8 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			return;
 		}
 
-		tm now = *localtime(&t);
+		tm now;
+		localtime_r(&t, &now);
 		eDebug("[eDVBLocalTimerHandler] time update to %02d:%02d:%02d",
 			now.tm_hour,
 			now.tm_min,
