@@ -35,7 +35,8 @@ class E2SharedPoll:
 		del self.dict[fd]
 	
 	def poll(self, timeout = None):
-		return getApplication().poll(timeout, self.dict)
+		r = getApplication().poll(timeout, self.dict)
+		return r
 
 poller = E2SharedPoll()
 
@@ -56,6 +57,8 @@ class PollReactor(posixbase.PosixReactorBase):
 			poller.register(fd, mask)
 		else:
 			if selectables.has_key(fd): del selectables[fd]
+		
+		getApplication().interruptPoll()
 
 	def _dictRemove(self, selectable, mdict):
 		try:
@@ -131,6 +134,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			   POLLIN=select.POLLIN,
 			   POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
+		
 		if timeout is not None:
 			timeout = int(timeout * 1000) # convert seconds to milliseconds
 
@@ -183,6 +187,9 @@ class PollReactor(posixbase.PosixReactorBase):
 		if why:
 			self._disconnectSelectable(selectable, why, inRead)
 
+	def callLater(self, *args, **kwargs):
+		getApplication().interruptPoll()
+		return posixbase.PosixReactorBase.callLater(self, *args, **kwargs)
 
 def install():
 	"""Install the poll() reactor."""

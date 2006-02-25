@@ -165,7 +165,6 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 	
 	int ret = 0;
 	
-	
 	if (poll_timeout)
 	{
 		std::multimap<int,eSocketNotifier*>::iterator it;
@@ -312,10 +311,31 @@ int eMainloop::iterate(unsigned int user_timeout, PyObject **res, PyObject *dict
 {
 	int ret = 0;
 	
+	timeval user_timer;
+	gettimeofday(&user_timer, 0);
+	user_timer += user_timeout;
+
+		/* TODO: this code just became ugly. fix that. */
 	do
-	{ 
+	{
+		if (m_interrupt_requested)
+		{
+			m_interrupt_requested = 0;
+			return 0;
+		}
 		if (app_quit_now) return -1;
-		ret = processOneEvent(user_timeout, res, dict);
+		timeval now, timeout;
+		gettimeofday(&now, 0);
+		timeout = user_timer - now;
+		
+		if (user_timeout && (user_timer <= now))
+			return 0;
+		
+		int to = 0;
+		if (user_timeout)
+			to = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
+		
+		ret = processOneEvent(to, res, dict);
 		if (res && *res)
 			return ret;
 	} while (ret == 0);
@@ -341,13 +361,18 @@ PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
 	}
 	
 	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
-	
+
 	iterate(user_timeout, &res, dict);
 	
 	if (!res) /* return empty list on timeout */
 		res = PyList_New(0);
 	
 	return res;
+}
+
+void eMainloop::interruptPoll()
+{
+	m_interrupt_requested = 1;
 }
 
 void eMainloop::quit(int ret)
