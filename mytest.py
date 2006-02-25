@@ -120,22 +120,22 @@ class Session:
 		self.currentDialog.execEnd()
 		self.currentDialog.hide()
 	
-	def create(self, screen, arguments):
+	def create(self, screen, arguments, **kwargs):
 		# creates an instance of 'screen' (which is a class)
 		try:
-			return screen(self, *arguments)
+			return screen(self, *arguments, **kwargs)
 		except:
-			errstr = "Screen %s(%s): %s" % (str(screen), str(arguments), sys.exc_info()[0])
+			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), sys.exc_info()[0])
 			print errstr
 			traceback.print_exc(file=sys.stdout)
 			quitMainloop(5)
 			
 	
-	def instantiateDialog(self, screen, *arguments):
+	def instantiateDialog(self, screen, *arguments, **kwargs):
 		# create dialog
 		
 		try:
-			dlg = self.create(screen, arguments)
+			dlg = self.create(screen, arguments, **kwargs)
 		except:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
 			print '-'*60
@@ -184,13 +184,13 @@ class Session:
 		self.currentDialog.callback = None # would cause re-entrancy problems.
 		self.execBegin()
 
-	def openWithCallback(self, callback, screen, *arguments):
-		dlg = self.open(screen, *arguments)
+	def openWithCallback(self, callback, screen, *arguments, **kwargs):
+		dlg = self.open(screen, *arguments, **kwargs)
 		dlg.callback = callback
 
-	def open(self, screen, *arguments):
+	def open(self, screen, *arguments, **kwargs):
 		self.pushCurrent()
-		dlg = self.currentDialog = self.instantiateDialog(screen, *arguments)
+		dlg = self.currentDialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
 		dlg.callback = None
 		self.execBegin()
