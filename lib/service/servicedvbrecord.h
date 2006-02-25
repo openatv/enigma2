@@ -14,7 +14,7 @@ class eDVBServiceRecord: public iRecordableService, public Object
 {
 DECLARE_REF(eDVBServiceRecord);
 public:
-	RESULT prepare(const char *filename);
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);
 	RESULT start();
 	RESULT stop();
 private:

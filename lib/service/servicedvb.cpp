@@ -11,6 +11,7 @@
 #include <lib/dvb/decoder.h>
 
 #include <lib/service/servicedvbrecord.h>
+#include <lib/service/event.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
@@ -19,6 +20,8 @@
 
 #include <byteswap.h>
 #include <netinet/in.h>
+
+#include <dvbsi++/event_information_section.h>
 
 #ifndef BYTE_ORDER
 #error no byte order defined!
@@ -248,6 +251,7 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
 	res.push_back(m_ref.path + ".cuts");
+	res.push_back(m_ref.path + ".eit");
 	return 0;
 }
 
@@ -645,7 +649,31 @@ RESULT eDVBServicePlay::start()
 		   to start recording from the data demux. */
 	m_cue = new eCueSheet();
 	m_first_program_info = 1;
-	r = m_service_handler.tune((eServiceReferenceDVB&)m_reference, m_is_pvr, m_cue);
+	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
+	r = m_service_handler.tune(service, m_is_pvr, m_cue);
+	if (m_is_pvr)
+	{
+		std::string filename = service.path;
+		filename.erase(filename.length()-2, 2);
+		filename+="eit";
+		int fd = ::open( filename.c_str(), O_RDONLY );
+		if ( fd > -1 )
+		{
+			__u8 buf[4096];
+			int rd = ::read(fd, buf, 4096);
+			::close(fd);
+			if ( rd > 12 /*EIT_LOOP_SIZE*/ )
+			{
+				Event ev(buf);
+				ePtr<eServiceEvent> event = new eServiceEvent;
+				ePtr<eServiceEvent> empty;
+				event->parseFrom(&ev, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get());
+				m_event_handler.inject(event, 0);
+				m_event_handler.inject(empty, 1);
+				eDebug("injected");
+			}
+		}
+	}
 	m_event(this, evStart);
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;

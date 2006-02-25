@@ -12,13 +12,17 @@ class EventViewBase:
 	def __init__(self, Event, Ref, callback=None):
 		self.cbFunc = callback
 		self.currentService=Ref
+		self.isRecording = len(Ref.ref.getPath())
 		self.event = Event
 		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
 		self["key_red"] = Button("")
-		self["key_green"] = Button(_("Add timer"))
+		if self.isRecording:
+			self["key_green"] = Button("")
+		else:
+			self["key_green"] = Button(_("Add timer"))
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
 		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
@@ -46,8 +50,9 @@ class EventViewBase:
 			self.cbFunc(self.setEvent, self.setService, +1)
 
 	def timerAdd(self):
-		newEntry = RecordTimerEntry(self.currentService, *parseEvent(self.event))
-		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+		if not self.isRecording:
+			newEntry = RecordTimerEntry(self.currentService, *parseEvent(self.event))
+			self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):
 		if (answer[0]):
@@ -57,11 +62,14 @@ class EventViewBase:
 
 	def setService(self, service):
 		self.currentService=service
-		name = self.currentService.getServiceName()
-		if name is not None:
-			self["channel"].setText(name)
+		if self.isRecording:
+			self["channel"].setText(_("Recording"))
 		else:
-			self["channel"].setText(_("unknown service"))
+			name = self.currentService.getServiceName()
+			if name is not None:
+				self["channel"].setText(name)
+			else:
+				self["channel"].setText(_("unknown service"))
 
 	def setEvent(self, event):
 		self.event = event

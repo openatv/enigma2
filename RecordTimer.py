@@ -86,7 +86,10 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.log(1, "'record service' failed")
 			return False
 		else:
-			prep_res = self.record_service.prepare(self.Filename + ".ts")
+			event_id = self.eit
+			if event_id is None:
+				event_id = -1
+			prep_res = self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id )
 			if prep_res:
 				self.log(2, "'prepare' failed: error %d" % prep_res)
 				self.record_service = None

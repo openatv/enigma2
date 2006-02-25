@@ -32,6 +32,15 @@ void eDVBServiceEITHandler::EITready(int error)
 	m_eit_changed();
 }
 
+void eDVBServiceEITHandler::inject(ePtr<eServiceEvent> &event, int nownext)
+{
+	if (nownext)
+		m_event_next = event;
+	else
+		m_event_now = event;
+	m_eit_changed();
+}
+
 eDVBServiceEITHandler::eDVBServiceEITHandler()
 {
 	CONNECT(m_EIT.tableReady, eDVBServiceEITHandler::EITready);

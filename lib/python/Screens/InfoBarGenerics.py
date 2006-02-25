@@ -18,7 +18,7 @@ from EpgSelection import EPGSelection
 from Screens.MessageBox import MessageBox
 from Screens.Dish import Dish
 from Screens.Standby import Standby
-from Screens.EventView import EventViewEPGSelect
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.MinuteInput import MinuteInput
 from Components.Harddisk import harddiskmanager
 
@@ -325,6 +325,35 @@ class InfoBarMenu:
 		menu = mdom.childNodes[0]
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
 		self.session.open(MainMenu, menu, menu.childNodes)
+
+class InfoBarSimpleEventView:
+	""" Opens the Eventview for now/next """
+	def __init__(self):
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
+			{
+				"showEventInfo": (self.openEventView, _("show event details")),
+			})
+
+	def openEventView(self):
+		self.epglist = [ ]
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			self.epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			self.epglist.append(ptr)
+		if len(self.epglist) > 0:
+			self.session.open(EventViewSimple, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
+
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		if len(self.epglist) > 1:
+			tmp = self.epglist[0]
+			self.epglist[0]=self.epglist[1]
+			self.epglist[1]=tmp
+			setEvent(self.epglist[0])
 
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
@@ -959,17 +988,19 @@ class InfoBarInstantRecord:
 		event = None
 		try:
 			service = self.session.nav.getCurrentService()
-			info = service.info()
-			ev = info.getEvent(0)
-			event = ev
+			epg = eEPGCache.getInstance()
+			event = epg.lookupEventTime(serviceref, -1, 0)
+			if event is None:
+				info = service.info()
+				ev = info.getEvent(0)
+				event = ev
 		except:
 			pass
-		
+
 		if event is not None:
 			data = parseEvent(event)
 			begin = time.time()
 			end = begin + 3600 * 10
-			
 			data = (begin, end, data[2], data[3], data[4])
 		else:
 			data = (time.time(), time.time() + 3600 * 10, "instant record", "", None)

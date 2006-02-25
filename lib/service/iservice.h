@@ -444,7 +444,7 @@ class iRecordableService: public iObject
 	~iRecordableService();
 #endif
 public:
-	virtual RESULT prepare(const char *filename)=0;
+	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 };

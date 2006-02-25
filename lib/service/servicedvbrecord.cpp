@@ -1,5 +1,6 @@
 #include <lib/service/servicedvbrecord.h>
 #include <lib/base/eerror.h>
+#include <lib/dvb/epgcache.h>
 
 #include <fcntl.h>
 
@@ -37,11 +38,54 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 }
 
-RESULT eDVBServiceRecord::prepare(const char *filename)
+RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id)
 {
 	m_filename = filename;
 	if (m_state == stateIdle)
-		return doPrepare();
+	{
+		int ret = doPrepare();
+		if (!ret)
+		{
+			eEPGCache::getInstance()->Lock();
+			const eit_event_struct *event = 0;
+			if ( eit_event_id != -1 )
+			{
+				eDebug("query epg event id %d", eit_event_id);
+				eEPGCache::getInstance()->lookupEventId(m_ref, eit_event_id, event);
+			}
+			if ( !event && (begTime != -1 && endTime != -1) )
+			{
+				time_t queryTime = begTime + ((endTime-begTime)/2);
+				tm beg, end, query;
+				localtime_r(&begTime, &beg);
+				localtime_r(&endTime, &end);
+				localtime_r(&queryTime, &query);
+				eDebug("query stime %d:%d:%d, etime %d:%d:%d, qtime %d:%d:%d",
+					beg.tm_hour, beg.tm_min, beg.tm_sec,
+					end.tm_hour, end.tm_min, end.tm_sec,
+					query.tm_hour, query.tm_min, query.tm_sec);
+				eEPGCache::getInstance()->lookupEventTime(m_ref, queryTime, event);
+			}
+			if ( event )
+			{
+				eDebug("found event.. store to disc");
+				std::string fname = filename;
+				fname.erase(fname.length()-2, 2);
+				fname+="eit";
+				int fd = open(fname.c_str(), O_CREAT|O_WRONLY, 0777);
+				if (fd>-1)
+				{
+					int evLen=HILO(event->descriptors_loop_length)+12/*EIT_LOOP_SIZE*/;
+					int wr = ::write( fd, (unsigned char*)event, evLen );
+					if ( wr != evLen )
+						eDebug("eit write error (%m)");
+					::close(fd);
+				}
+			}
+			eEPGCache::getInstance()->Unlock();
+		}
+		return ret;
+	}
 	else
 		return -1;
 }
