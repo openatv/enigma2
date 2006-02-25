@@ -74,13 +74,25 @@ self["arrowup2"].moveTo(800, 310, 1)
 self["arrowup2"].startMoving()
 			</code>
 			<list>
-				<listentry caption="Yes, scan now" step="scan" />
+				<listentry caption="Yes, do an automatic scan now" step="scan" />
+				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 				<listentry caption="No, scan later manually" step="end" />
 			</list>
 		</step>
-		<step id="scan">
+		<step id="scan" nextstep="end">
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
+		</step>
+		<step id="manualscan">
+			<text value="What do you want to scan?" />
+			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
+		</step>
+		<step id="nextscan">
+			<text value="Do you want to do another manual service scan?" />
+			<list>
+				<listentry caption="Yes, do another manual scan now" step="manualscan" />
+				<listentry caption="No, scan later manually" step="end" />
+			</list>
 		</step>
 		<step id="end">
 			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using you Dreambox." />

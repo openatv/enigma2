@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-22 22:07+0100\n"
+"POT-Creation-Date: 2006-02-25 21:16+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,11 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../lib/python/Screens/PluginBrowser.py:82
+#: ../lib/python/Screens/PluginBrowser.py:93
+#: ../lib/python/Screens/PluginBrowser.py:95
 msgid "\"?"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:80
+#: ../lib/python/Screens/EventView.py:88
 #, python-format
 msgid "%d min"
 msgstr ""
@@ -32,26 +33,28 @@ msgstr ""
 
 #: ../lib/python/Screens/About.py:36
 #, python-format
-msgid "%s (%s, %d MB free)"
+msgid ""
+"%s\n"
+"(%s, %d MB free)"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:695
+#: ../lib/python/Components/NimManager.py:709
 msgid "0 V"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:698
+#: ../lib/python/Components/NimManager.py:712
 msgid "1.0"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:698
+#: ../lib/python/Components/NimManager.py:712
 msgid "1.1"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:698
+#: ../lib/python/Components/NimManager.py:712
 msgid "1.2"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:695
+#: ../lib/python/Components/NimManager.py:709
 msgid "12 V"
 msgstr ""
 
@@ -59,11 +62,11 @@ msgstr ""
 msgid "12V Output"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:674
+#: ../lib/python/Components/NimManager.py:688
 msgid "13 V"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:674
+#: ../lib/python/Components/NimManager.py:688
 msgid "18 V"
 msgstr ""
 
@@ -71,21 +74,21 @@ msgstr ""
 msgid "<unknown>"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Components/NimManager.py:711
 msgid "A"
 msgstr ""
 
-#: ../RecordTimer.py:133
+#: ../RecordTimer.py:136
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:680
+#: ../lib/python/Components/NimManager.py:694
 msgid "AA"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:680
+#: ../lib/python/Components/NimManager.py:694
 msgid "AB"
 msgstr ""
 
@@ -93,14 +96,14 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:21
+#: ../lib/python/Screens/EventView.py:25
 #: ../lib/python/Screens/EpgSelection.py:48
 msgid "Add timer"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:617
-#: ../lib/python/Components/NimManager.py:625
-#: ../lib/python/Plugins/update/plugin.py:29
+#: ../lib/python/Components/NimManager.py:631
+#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
 msgid "Advanced"
 msgstr ""
 
@@ -113,43 +116,43 @@ msgstr ""
 msgid "Arabic"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:171
-#: ../lib/python/Screens/ScanSetup.py:174
-#: ../lib/python/Screens/ScanSetup.py:178
-#: ../lib/python/Screens/ScanSetup.py:179
-#: ../lib/python/Screens/ScanSetup.py:180
-#: ../lib/python/Screens/ScanSetup.py:185
-#: ../lib/python/Screens/ScanSetup.py:186
-#: ../lib/python/Screens/ScanSetup.py:187
-#: ../lib/python/Screens/ScanSetup.py:188
-#: ../lib/python/Screens/ScanSetup.py:189
-#: ../lib/python/Screens/ScanSetup.py:190
-#: ../lib/python/Screens/ScanSetup.py:191
-#: ../lib/python/Screens/ScanSetup.py:192
+#: ../lib/python/Screens/ScanSetup.py:193
+#: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/ScanSetup.py:200
+#: ../lib/python/Screens/ScanSetup.py:201
+#: ../lib/python/Screens/ScanSetup.py:202
+#: ../lib/python/Screens/ScanSetup.py:208
+#: ../lib/python/Screens/ScanSetup.py:209
+#: ../lib/python/Screens/ScanSetup.py:210
+#: ../lib/python/Screens/ScanSetup.py:211
+#: ../lib/python/Screens/ScanSetup.py:212
+#: ../lib/python/Screens/ScanSetup.py:213
+#: ../lib/python/Screens/ScanSetup.py:214
+#: ../lib/python/Screens/ScanSetup.py:215
 msgid "Auto"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:379 ../data/
+#: ../lib/python/Screens/ScanSetup.py:431 ../data/
 msgid "Automatic Scan"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Components/NimManager.py:711
 msgid "B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:680
+#: ../lib/python/Components/NimManager.py:694
 msgid "BA"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:680
+#: ../lib/python/Components/NimManager.py:694
 msgid "BB"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:675
+#: ../lib/python/Components/NimManager.py:689
 msgid "Band"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:127
+#: ../lib/python/Screens/ScanSetup.py:149
 msgid "Bandwidth"
 msgstr ""
 
@@ -157,7 +160,7 @@ msgstr ""
 msgid "Bus: "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:705
 msgid "C-Band"
 msgstr ""
 
@@ -181,7 +184,7 @@ msgstr ""
 msgid "Channel:"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:31
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Choose source"
 msgstr ""
 
@@ -197,11 +200,11 @@ msgstr ""
 msgid "Clear log"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:128
+#: ../lib/python/Screens/ScanSetup.py:150
 msgid "Code rate high"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:129
+#: ../lib/python/Screens/ScanSetup.py:151
 msgid "Code rate low"
 msgstr ""
 
@@ -214,6 +217,11 @@ msgstr ""
 msgid "Committed DiSEqC command"
 msgstr ""
 
+#: ../lib/python/Screens/ScanSetup.py:182
+#: ../lib/python/Screens/ScanSetup.py:183
+msgid "Complete"
+msgstr ""
+
 #: ../lib/python/Screens/Satconfig.py:47
 #: ../lib/python/Screens/Satconfig.py:145 ../data/
 msgid "Configuration Mode"
@@ -223,7 +231,7 @@ msgstr ""
 msgid "Conflicting timer"
 msgstr ""
 
-#: ../lib/python/Plugins/fpupgrade/plugin.py:32
+#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
 msgstr ""
 
@@ -232,7 +240,6 @@ msgid "Default"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEdit.py:27
-#: ../lib/python/Screens/PluginBrowser.py:19
 msgid "Delete"
 msgstr ""
 
@@ -240,7 +247,7 @@ msgstr ""
 msgid "Delete entry"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:53
+#: ../lib/python/Screens/MovieSelection.py:62
 msgid "Delete failed!"
 msgstr ""
 
@@ -256,11 +263,11 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Components/NimManager.py:653
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Components/NimManager.py:653
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
@@ -276,8 +283,7 @@ msgstr ""
 msgid "DiSEqC repeats"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:375
+#: ../lib/python/Screens/ScanSetup.py:125
 #: ../lib/python/Screens/TimerEdit.py:76 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
@@ -289,34 +295,44 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:36
+#: ../lib/python/Screens/PluginBrowser.py:95
+msgid ""
+"Do you really want to REMOVE\n"
+"the plugin \""
+msgstr ""
+
+#: ../lib/python/Screens/MovieSelection.py:45
 msgid "Do you really want to delete this recording?"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:82
+#: ../lib/python/Screens/PluginBrowser.py:93
 msgid ""
 "Do you really want to download\n"
 "the plugin \""
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:999
+#: ../lib/python/Screens/InfoBarGenerics.py:1037
 msgid ""
 "Do you want to stop the current\n"
 "(instant) recording?"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:46
-#: ../lib/python/Plugins/update/plugin.py:198
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:46
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:198
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:20
+#: ../lib/python/Screens/PluginBrowser.py:21
 msgid "Download Plugins"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:70
+#: ../lib/python/Screens/PluginBrowser.py:106
+msgid "Downloadable new plugins"
+msgstr ""
+
+#: ../lib/python/Screens/PluginBrowser.py:78
 msgid "Downloading plugin information. Please wait..."
 msgstr ""
 
@@ -333,13 +349,12 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:646
-#: ../lib/python/Components/NimManager.py:707
+#: ../lib/python/Components/NimManager.py:660
+#: ../lib/python/Components/NimManager.py:721
 msgid "East"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:104
-#: ../lib/python/Screens/ScanSetup.py:375
+#: ../lib/python/Screens/ScanSetup.py:125
 #: ../lib/python/Screens/TimerEdit.py:74 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
@@ -365,7 +380,7 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:620
+#: ../lib/python/Components/NimManager.py:634
 msgid "Equal to Socket A"
 msgstr ""
 
@@ -373,16 +388,16 @@ msgstr ""
 msgid "Execution Progress:"
 msgstr ""
 
-#: ../lib/python/Screens/Console.py:44
+#: ../lib/python/Screens/Console.py:45
 msgid "Execution finished!!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1064
+#: ../lib/python/Screens/InfoBarGenerics.py:1102
 msgid "Extensions"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:91
-#: ../lib/python/Screens/ScanSetup.py:119
+#: ../lib/python/Screens/ScanSetup.py:112
+#: ../lib/python/Screens/ScanSetup.py:140
 msgid "FEC"
 msgstr ""
 
@@ -394,9 +409,9 @@ msgstr ""
 msgid "Favourites"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:87
-#: ../lib/python/Screens/ScanSetup.py:115
-#: ../lib/python/Screens/ScanSetup.py:125
+#: ../lib/python/Screens/ScanSetup.py:108
+#: ../lib/python/Screens/ScanSetup.py:136
+#: ../lib/python/Screens/ScanSetup.py:147
 #: ../lib/python/Screens/TimerEntry.py:148
 msgid "Frequency"
 msgstr "Frequency"
@@ -416,7 +431,7 @@ msgstr ""
 msgid "Frontprocessor version: %d"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:55
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:55
 msgid "Function not yet implemented"
 msgstr ""
 
@@ -429,11 +444,15 @@ msgstr "Gateway"
 msgid "German"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:132
+#: ../lib/python/Screens/PluginBrowser.py:80
+msgid "Getting plugin information. Please wait..."
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:154
 msgid "Guard interval mode"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:133
+#: ../lib/python/Screens/ScanSetup.py:155
 msgid "Hierarchy mode"
 msgstr ""
 
@@ -457,9 +476,9 @@ msgstr ""
 msgid "Initializing Harddisk..."
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:88
-#: ../lib/python/Screens/ScanSetup.py:116
-#: ../lib/python/Screens/ScanSetup.py:126
+#: ../lib/python/Screens/ScanSetup.py:109
+#: ../lib/python/Screens/ScanSetup.py:137
+#: ../lib/python/Screens/ScanSetup.py:148
 msgid "Inversion"
 msgstr "Inversion"
 
@@ -493,7 +512,7 @@ msgstr ""
 msgid "Longitude"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:621
+#: ../lib/python/Components/NimManager.py:635
 msgid "Loopthrough to Socket A"
 msgstr ""
 
@@ -501,8 +520,8 @@ msgstr ""
 msgid "Model: "
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:118
-#: ../lib/python/Screens/ScanSetup.py:130
+#: ../lib/python/Screens/ScanSetup.py:139
+#: ../lib/python/Screens/ScanSetup.py:152
 msgid "Modulation"
 msgstr ""
 
@@ -520,15 +539,19 @@ msgstr ""
 msgid "Monday"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:23
+#: ../lib/python/Screens/MovieSelection.py:29
 msgid "Movie Menu"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:100
+#: ../lib/python/Screens/EventView.py:108
 msgid "Multi EPG"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:476
+#: ../lib/python/Screens/ScanSetup.py:181
+msgid "Multisat"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:484
 msgid "N/A"
 msgstr ""
 
@@ -544,7 +567,11 @@ msgstr "Nameserver"
 msgid "Netmask"
 msgstr "Netmask"
 
-#: ../lib/python/Plugins/fpupgrade/plugin.py:33
+#: ../lib/python/Screens/ScanSetup.py:141
+msgid "Network scan"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
 msgstr ""
 
@@ -552,37 +579,37 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:676
-#: ../lib/python/Components/NimManager.py:696
-#: ../lib/python/Components/NimManager.py:700
-#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:690
 #: ../lib/python/Components/NimManager.py:710
+#: ../lib/python/Components/NimManager.py:714
+#: ../lib/python/Components/NimManager.py:715
+#: ../lib/python/Components/NimManager.py:724
 msgid "No"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:995
+#: ../lib/python/Screens/InfoBarGenerics.py:1033
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:174
-#: ../lib/python/Screens/ScanSetup.py:180
-#: ../lib/python/Screens/ScanSetup.py:187
-#: ../lib/python/Screens/ScanSetup.py:188
-#: ../lib/python/Screens/ScanSetup.py:192
-#: ../lib/python/Components/NimManager.py:680
-#: ../lib/python/Components/NimManager.py:684
-#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/ScanSetup.py:202
+#: ../lib/python/Screens/ScanSetup.py:210
+#: ../lib/python/Screens/ScanSetup.py:211
+#: ../lib/python/Screens/ScanSetup.py:215
+#: ../lib/python/Components/NimManager.py:694
 #: ../lib/python/Components/NimManager.py:698
-#: ../lib/python/Components/NimManager.py:705
+#: ../lib/python/Components/NimManager.py:711
+#: ../lib/python/Components/NimManager.py:712
+#: ../lib/python/Components/NimManager.py:719
 msgid "None"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:648
-#: ../lib/python/Components/NimManager.py:709
+#: ../lib/python/Components/NimManager.py:662
+#: ../lib/python/Components/NimManager.py:723
 msgid "North"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:622
+#: ../lib/python/Components/NimManager.py:636
 msgid "Nothing connected"
 msgstr ""
 
@@ -590,19 +617,19 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:675
+#: ../lib/python/Components/NimManager.py:689
 msgid "Off"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:675
+#: ../lib/python/Components/NimManager.py:689
 msgid "On"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:705
+#: ../lib/python/Components/NimManager.py:719
 msgid "One"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:32
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:32
 msgid "Packet management"
 msgstr ""
 
@@ -610,15 +637,15 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:68
+#: ../lib/python/Screens/MovieSelection.py:77
 msgid "Please wait... Loading list..."
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:90
+#: ../lib/python/Screens/ScanSetup.py:111
 msgid "Polarity"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:674
+#: ../lib/python/Components/NimManager.py:688
 msgid "Polarization"
 msgstr ""
 
@@ -638,7 +665,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Components/NimManager.py:653
 msgid "Positioner"
 msgstr ""
 
@@ -646,11 +673,11 @@ msgstr ""
 msgid "Press OK to activate the settings."
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:380
+#: ../lib/python/Screens/ScanSetup.py:432
 msgid "Press OK to scan"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:59
+#: ../lib/python/Screens/ScanSetup.py:74
 msgid "Press OK to start the scan"
 msgstr ""
 
@@ -671,8 +698,20 @@ msgstr ""
 msgid "Really delete done timers?"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1048
+#: ../lib/python/Screens/InfoBarGenerics.py:1086
 msgid "Record"
+msgstr ""
+
+#: ../lib/python/Screens/EventView.py:66
+msgid "Recording"
+msgstr ""
+
+#: ../lib/python/Screens/PluginBrowser.py:20
+msgid "Remove Plugins"
+msgstr ""
+
+#: ../lib/python/Screens/PluginBrowser.py:108
+msgid "Remove plugins"
 msgstr ""
 
 #: ../lib/python/Screens/Ci.py:213
@@ -684,7 +723,8 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:86 ../lib/python/Screens/ScanSetup.py:95
+#: ../lib/python/Screens/ScanSetup.py:107
+#: ../lib/python/Screens/ScanSetup.py:116
 #: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:147
 msgid "Satellite"
@@ -700,7 +740,11 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:623
+#: ../lib/python/Screens/ScanSetup.py:418
+msgid "Scan NIM"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:637
 msgid "Secondary cable from motorized LNB"
 msgstr ""
 
@@ -716,7 +760,7 @@ msgstr ""
 msgid "Services"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:33
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:33
 msgid "Settings"
 msgstr ""
 
@@ -724,29 +768,39 @@ msgstr ""
 msgid "Show the radio player..."
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:617
-#: ../lib/python/Components/NimManager.py:624
+#: ../lib/python/Components/NimManager.py:631
+#: ../lib/python/Components/NimManager.py:638
 msgid "Simple"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Components/NimManager.py:653
 msgid "Single"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:99
+#: ../lib/python/Screens/EventView.py:107
 msgid "Single EPG"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:652
+#: ../lib/python/Screens/ScanSetup.py:181
+msgid "Single satellite"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:181
+#: ../lib/python/Screens/ScanSetup.py:182
+#: ../lib/python/Screens/ScanSetup.py:183
+msgid "Single transponder"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:666
 msgid "Slot "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:539
+#: ../lib/python/Components/NimManager.py:553
 msgid "Socket "
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:648
-#: ../lib/python/Components/NimManager.py:709
+#: ../lib/python/Components/NimManager.py:662
+#: ../lib/python/Components/NimManager.py:723
 msgid "South"
 msgstr ""
 
@@ -758,7 +812,7 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1001
+#: ../lib/python/Screens/InfoBarGenerics.py:1039
 msgid "Start recording?"
 msgstr ""
 
@@ -770,7 +824,7 @@ msgstr ""
 msgid "Step "
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:866
+#: ../lib/python/Screens/InfoBarGenerics.py:902
 msgid "Stop Timeshift?"
 msgstr ""
 
@@ -782,7 +836,7 @@ msgstr ""
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1053 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1091 ../data/
 msgid "Subservices"
 msgstr ""
 
@@ -796,8 +850,8 @@ msgstr ""
 msgid "Sunday"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:89
-#: ../lib/python/Screens/ScanSetup.py:117
+#: ../lib/python/Screens/ScanSetup.py:110
+#: ../lib/python/Screens/ScanSetup.py:138
 msgid "Symbol Rate"
 msgstr ""
 
@@ -805,7 +859,7 @@ msgstr ""
 msgid "Terrestrial provider"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:705
+#: ../lib/python/Components/NimManager.py:719
 msgid "Three"
 msgstr ""
 
@@ -827,11 +881,11 @@ msgstr ""
 msgid "Timer Type"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:840
+#: ../lib/python/Screens/InfoBarGenerics.py:876
 msgid "Timeshift not possible!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1057
+#: ../lib/python/Screens/InfoBarGenerics.py:1095
 msgid "Timeshifting"
 msgstr ""
 
@@ -847,11 +901,11 @@ msgstr ""
 msgid "Toneburst"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Components/NimManager.py:653
 msgid "Toneburst A/B"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:131
+#: ../lib/python/Screens/ScanSetup.py:153
 msgid "Transmission mode"
 msgstr ""
 
@@ -865,22 +919,20 @@ msgstr ""
 msgid "Tuesday"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:74
-#: ../lib/python/Screens/ScanSetup.py:150
+#: ../lib/python/Screens/ScanSetup.py:89
 msgid "Tuner"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:705
+#: ../lib/python/Components/NimManager.py:719
 msgid "Two"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:77 ../lib/python/Screens/ScanSetup.py:79
-#: ../lib/python/Screens/ScanSetup.py:81
-#: ../lib/python/Screens/ScanSetup.py:148
+#: ../lib/python/Screens/ScanSetup.py:94 ../lib/python/Screens/ScanSetup.py:97
+#: ../lib/python/Screens/ScanSetup.py:100
 msgid "Type of scan"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:644
+#: ../lib/python/Components/NimManager.py:658
 msgid "USALS"
 msgstr ""
 
@@ -895,19 +947,19 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:705
 msgid "Universal LNB"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:207
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:207
 msgid "Updating finished. Here is the result:"
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:213
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
 
-#: ../lib/python/Plugins/update/plugin.py:28
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:28
 msgid "Upgrade"
 msgstr ""
 
@@ -919,7 +971,7 @@ msgstr ""
 msgid "Use usals for this sat"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:705
 msgid "User defined"
 msgstr ""
 
@@ -945,24 +997,24 @@ msgstr ""
 msgid "Weekday"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:646
-#: ../lib/python/Components/NimManager.py:707
+#: ../lib/python/Components/NimManager.py:660
+#: ../lib/python/Components/NimManager.py:721
 msgid "West"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:676
-#: ../lib/python/Components/NimManager.py:696
-#: ../lib/python/Components/NimManager.py:700
-#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:690
 #: ../lib/python/Components/NimManager.py:710
+#: ../lib/python/Components/NimManager.py:714
+#: ../lib/python/Components/NimManager.py:715
+#: ../lib/python/Components/NimManager.py:724
 msgid "Yes"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:38
+#: ../lib/python/Screens/MovieSelection.py:47
 msgid "You cannot delete this!"
 msgstr ""
 
-#: ../lib/python/Plugins/fpupgrade/plugin.py:31
+#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:31
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
@@ -1000,16 +1052,16 @@ msgstr ""
 msgid "add service to favourites"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:21
+#: ../lib/python/Screens/MovieSelection.py:24
 #: ../lib/python/Screens/ChannelSelection.py:93
 msgid "back"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:173
+#: ../lib/python/Screens/ScanSetup.py:195
 msgid "circular left"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:173
+#: ../lib/python/Screens/ScanSetup.py:195
 msgid "circular right"
 msgstr ""
 
@@ -1021,7 +1073,7 @@ msgstr ""
 msgid "daily"
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:21
+#: ../lib/python/Screens/MovieSelection.py:24
 msgid "delete..."
 msgstr ""
 
@@ -1033,7 +1085,7 @@ msgstr ""
 msgid "done!"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:541
+#: ../lib/python/Components/NimManager.py:555
 msgid "empty/unknown"
 msgstr ""
 
@@ -1061,7 +1113,7 @@ msgstr ""
 msgid "free diskspace"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:173
+#: ../lib/python/Screens/ScanSetup.py:195
 msgid "horizontal"
 msgstr ""
 
@@ -1073,15 +1125,16 @@ msgstr ""
 msgid "leave movie player..."
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:82
+#: ../lib/python/Screens/PluginBrowser.py:93
+#: ../lib/python/Screens/PluginBrowser.py:95
 msgid "list"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:644
+#: ../lib/python/Components/NimManager.py:658
 msgid "manual"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:279
+#: ../lib/python/Screens/InfoBarGenerics.py:280
 msgid "next channel"
 msgstr ""
 
@@ -1089,7 +1142,9 @@ msgstr ""
 msgid "next channel in history"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:197
+#: ../lib/python/Screens/ScanSetup.py:204
+#: ../lib/python/Screens/ScanSetup.py:220
+#: ../lib/python/Screens/ScanSetup.py:417
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
@@ -1108,15 +1163,15 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:171
-#: ../lib/python/Screens/ScanSetup.py:178
-#: ../lib/python/Screens/ScanSetup.py:185
+#: ../lib/python/Screens/ScanSetup.py:193
+#: ../lib/python/Screens/ScanSetup.py:200
+#: ../lib/python/Screens/ScanSetup.py:208
 msgid "off"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:171
-#: ../lib/python/Screens/ScanSetup.py:178
-#: ../lib/python/Screens/ScanSetup.py:185
+#: ../lib/python/Screens/ScanSetup.py:193
+#: ../lib/python/Screens/ScanSetup.py:200
+#: ../lib/python/Screens/ScanSetup.py:208
 msgid "on"
 msgstr ""
 
@@ -1124,11 +1179,15 @@ msgstr ""
 msgid "once"
 msgstr ""
 
+#: ../lib/python/Screens/ServiceScan.py:24
+msgid "pass"
+msgstr ""
+
 #: ../lib/python/Screens/Ci.py:84
 msgid "please press OK when ready"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:280
+#: ../lib/python/Screens/InfoBarGenerics.py:279
 msgid "previous channel"
 msgstr ""
 
@@ -1182,15 +1241,19 @@ msgstr ""
 msgid "scan state"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:334
+#: ../lib/python/Screens/InfoBarGenerics.py:363
 msgid "show EPG..."
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:334
+msgid "show event details"
 msgstr ""
 
 #: ../lib/python/Screens/Wizard.py:212 ../lib/python/Screens/Wizard.py:213
 msgid "text"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:64
+#: ../lib/python/Screens/EventView.py:72
 msgid "unknown service"
 msgstr ""
 
@@ -1198,7 +1261,7 @@ msgstr ""
 msgid "user defined"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:173
+#: ../lib/python/Screens/ScanSetup.py:195
 msgid "vertical"
 msgstr ""
 
@@ -1210,7 +1273,9 @@ msgstr ""
 msgid "weekly"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:197
+#: ../lib/python/Screens/ScanSetup.py:204
+#: ../lib/python/Screens/ScanSetup.py:220
+#: ../lib/python/Screens/ScanSetup.py:417
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
@@ -1527,6 +1592,10 @@ msgstr ""
 
 #: ../data/
 msgid "No, scan later manually"
+msgstr ""
+
+#: ../data/
+msgid "Input"
 msgstr ""
 
 #: ../data/

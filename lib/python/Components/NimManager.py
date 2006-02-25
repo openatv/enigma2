@@ -488,10 +488,16 @@ class NimManager:
 
 	def getNimType(self, slotID):
 		if slotID >= self.nimCount:
-			return "empty/unknown"
+			return self.nimType["empty/unknown"]
 		else:	
 			return self.nimType[self.nimTypes[slotID]]
 			
+	def getNimTypeName(self, slotID):
+		if slotID >= self.nimCount:
+			return "empty/unknown"
+		else:	
+			return self.nimTypes[slotID]
+		
 	def getNimName(self, slotID):
 		return self.nimNames[slotID]
 

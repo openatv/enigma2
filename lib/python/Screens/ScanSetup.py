@@ -10,7 +10,6 @@ from Components.Label import Label
 from enigma import eDVBFrontendParametersSatellite, eComponentScan
 
 def getInitialTransponderList(tlist, pos):
-	print "pos", pos
 	list = nimmanager.getTransponders(pos)
 
 	for x in list:
@@ -27,12 +26,10 @@ def getInitialTransponderList(tlist, pos):
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, cable):
-	print "cable", cable
 	list = nimmanager.getTranspondersCable(cable)
 
 	for x in list:
 		if x[0] == 1:		#CABLE
-			print "[ScanSetup] cable-transponder to add:", x
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
@@ -72,6 +69,9 @@ class ScanSetup(Screen):
 		self.createSetup()
 
 		self["introduction"] = Label(_("Press OK to start the scan"))
+
+	def run(self):
+		self.keyGo()
 
 	def updateSatList(self):
 		self.satList = []
@@ -333,7 +333,7 @@ class ScanSetup(Screen):
 
 		feid = config.scan.nims.value
 		# flags |= eComponentScan.scanSearchBAT
-		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, flags)
+		self.session.openWithCallback(self.doNothing, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
 
 		#self.close()
 	def doNothing(self):
@@ -345,29 +345,24 @@ class ScanSetup(Screen):
 		self.close()
 
 class ScanSimple(Screen):
-
 	def run(self):
-		print "start scan for sats:"
-		tlist = [ ]
-		for x in self.list:
-			if x[1].parent.value == 0:
-				print "   " + str(x[1].parent.configPath)
-				getInitialTransponderList(tlist, x[1].parent.configPath)
-
-		feid = 0 # FIXME
-		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
-		
+		self.keyGo()
 
 	def keyGo(self):
-		print "start scan for sats:"
-		tlist = [ ]
+		scanList = []
 		for x in self.list:
-			if x[1].parent.value == 0:
-				print "   " + str(x[1].parent.configPath)
-				getInitialTransponderList(tlist, x[1].parent.configPath)
-
-		feid = 0 # FIXME
-		self.session.openWithCallback(self.doNothing, ServiceScan, tlist, feid, eComponentScan.scanNetworkSearch)
+			slotid = x[1].parent.configPath
+			print "configpath:", x[1].parent.configPath, "-", currentConfigSelectionElement(x[1].parent)
+			if currentConfigSelectionElement(x[1].parent) == "yes":
+				tlist = [ ]
+				if nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-S"]:
+					SatList = nimmanager.getSatListForNim(slotid)
+					for sat in SatList:
+						getInitialTransponderList(tlist, sat[1])
+				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
+					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
+				scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
+		self.session.openWithCallback(self.doNothing, ServiceScan, scanList = scanList)
 
 	def doNothing(self):
 		pass
@@ -401,15 +396,9 @@ class ScanSimple(Screen):
 		self.list = []
 		tlist = []
 
-
-		for slotid in nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"]):
-			SatList = nimmanager.getSatListForNim(slotid)
-
-			for x in SatList:
-				if self.Satexists(tlist, x[1]) == 0:
-					tlist.append(x[1])
-					sat = configElement_nonSave(x[1], configSelection, 0, (("enable", _("Enable")), ("disable", _("Disable"))))
-					self.list.append(getConfigListEntry(nimmanager.getSatDescription(x[1]), sat))
+		for slotid in range(nimmanager.getNimSocketCount()):
+			nim = configElement_nonSave(slotid, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
+			self.list.append(getConfigListEntry(_("Scan NIM") + " " + str(slotid) + " (" + nimmanager.getNimTypeName(slotid) + ")", nim))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label(_("Automatic Scan"))
