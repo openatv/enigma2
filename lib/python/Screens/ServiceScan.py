@@ -14,15 +14,16 @@ class ServiceScan(Screen):
 	def cancel(self):
 		self.close()
 	
-	def __init__(self, session, transponders, feid, flags):
+	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 		
 		self.session.nav.stopService()
 		
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
+		self["pass"] = Label("")
 		self["servicelist"] = FIFOList(len=7)
-		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], transponders, feid, flags)
+		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], scanList)
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{

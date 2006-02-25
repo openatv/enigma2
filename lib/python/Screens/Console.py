@@ -33,6 +33,7 @@ class Console(Screen):
 
 	def startRun(self):
 		self["text"].setText(_("Execution Progress:") + "\n\n")
+		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
 		self.container.execute(self.cmdlist[self.run])
 
 	def runFinished(self, retval):

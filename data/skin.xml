@@ -333,10 +333,11 @@
 			<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
 			<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;25" />
 		</screen>
-		<screen name="ServiceScan" position="200,100" size="300,300" title="Service Scan">
-			<widget name="scan_progress" position="10,10" size="300,20" />
-			<widget name="scan_state" position="10,40" size="280,60" font="Regular;20" />
-			<widget name="servicelist" position="10,110" size="280,175" selectionDisabled="1" />
+		<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
+			<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
+			<widget name="scan_progress" position="10,45" size="280,20" />
+			<widget name="scan_state" position="10,65" size="280,60" font="Regular;20" />
+			<widget name="servicelist" position="10,135" size="280,175" selectionDisabled="1" />
 		</screen>
 		<screen name="InputBox" position="100,100" size="550,400" title="Input" >
 			<widget name="text" position="0,0" size="550,25" font="Regular;20" />

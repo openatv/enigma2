@@ -31,7 +31,11 @@ class Wizard(Screen, HelpableScreen):
 					id = str(attrs.get('id'))
 				else:
 					id = ""
-				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": ""}
+				if attrs.has_key('nextstep'):
+					nextstep = str(attrs.get('nextstep'))
+				else:
+					nextstep = None
+				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "nextstep": nextstep}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "listentry"):
@@ -160,6 +164,8 @@ class Wizard(Screen, HelpableScreen):
 			self.session.close()
 		else:
 			self.runCode(self.wizard[self.currStep]["codeafter"])
+			if self.wizard[self.currStep]["nextstep"] is not None:
+				self.currStep = self.getStepWithID(self.wizard[self.currStep]["nextstep"])
 			self.currStep += 1
 			self.updateValues()
 			

@@ -26,7 +26,7 @@ class ServiceScan:
 					self.state = self.Error
 					self.errorcode = errcode
 			else:
-				self.text.setText(_("scan in progress - %d %% done!\n%d services found!") % (self.scan.getProgress(), self.scan.getNumServices()))
+				self.text.setText(_("scan in progress - %d %% done!\n%d services found!") % (self.scan.getProgress(), self.foundServices + self.scan.getNumServices()))
 		
 		if self.state == self.Done:
 			if self.scan.getNumServices() == 1:
@@ -34,27 +34,48 @@ class ServiceScan:
 			elif self.scan.getNumServices() == 0:
 				self.text.setText(_("scan done!\nNo service found!"))
 			else:
-				self.text.setText(_("scan done!\n%d services found!") % (self.scan.getNumServices()))
+				self.text.setText(_("scan done!\n%d services found!") % (self.foundServices + self.scan.getNumServices()))
 		
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
+			
+		if self.state == self.Done or self.state == self.Error:
+			if self.run != len(self.scanList) - 1:
+				self.foundServices += self.scan.getNumServices()
+				self.execEnd()
+				self.run += 1
+				self.doRun()
+				self.execBegin()
 	
-	def __init__(self, progressbar, text, servicelist, transponders, feid, flags):
+	def __init__(self, progressbar, text, servicelist, passNumber, scanList):
+		self.foundServices = 0
 		self.progressbar = progressbar
 		self.text = text
-		self.scan = eComponentScan()
-		self.state = self.Idle
-		self.feid = feid
-		self.flags = flags
 		self.servicelist = servicelist
+		self.passNumber = passNumber
+		self.scanList = scanList
+		self.run = 0
+		
+		self.doRun()
+		
+	def doRun(self):
+		self.scan = eComponentScan()
+		
+		self.feid = self.scanList[self.run]["feid"]
+		self.flags = self.scanList[self.run]["flags"]
+		self.state = self.Idle
 		self.scanStatusChanged()
 		
-		for x in transponders:
+		for x in self.scanList[self.run]["transponders"]:
 			self.scan.addInitial(x)
-		
-		#self.scan.addInitial(parm)
+
+	def updatePass(self):
+		size = len(self.scanList)
+		if size > 1:
+			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("NIM") + " " + str(self.scanList[self.run]["feid"]) + ")")
 		
 	def execBegin(self):
+		self.updatePass()
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.scan.newService.get().append(self.newService)
 		self.state = self.Running
