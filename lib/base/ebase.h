@@ -187,6 +187,7 @@ class eMainloop
 	pthread_mutex_t recalcLock;
 	
 	int m_now_is_invalid;
+	int m_interrupt_requested;
 #endif
 public:
 	static void addTimeOffset(int offset);
@@ -200,7 +201,7 @@ public:
 #endif
 
 	eMainloop()
-		:app_quit_now(0),loop_level(0),retval(0)
+		:app_quit_now(0),loop_level(0),retval(0), m_interrupt_requested(0)
 	{
 		m_now_is_invalid = 0;
 		existing_loops.push_back(this);
@@ -230,6 +231,7 @@ public:
 	
 		/* our new shared polling interface. */
 	PyObject *poll(PyObject *dict, PyObject *timeout);
+	void interruptPoll();
 };
 
 /**
