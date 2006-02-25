@@ -30,16 +30,14 @@ class ServicePosition(PerServiceDisplay):
 	
 	def get(self, what):
 		service = self.navcore.getCurrentService()
-		
-		if service != None:
-			seek = service.seek()
-			if seek != None:
-				if what == self.TYPE_LENGTH:
-					r = seek.getLength()
-				elif what == self.TYPE_POSITION:
-					r = seek.getPlayPosition()
-				if not r[0]:
-					return r[1] / 90000
+		seek = service and service.seek()
+		if seek != None:
+			if what == self.TYPE_LENGTH:
+				r = seek.getLength()
+			elif what == self.TYPE_POSITION:
+				r = seek.getPlayPosition()
+			if not r[0]:
+				return r[1] / 90000
 		
 		return -1
 	
@@ -72,20 +70,21 @@ class ServicePositionGauge(PerServiceBase):
 		PerServiceBase.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.newService,
-				iPlayableService.evEnd: self.stopEvent
+				iPlayableService.evEnd: self.stopEvent,
+				iPlayableService.evCuesheetChanged: self.newCuesheet
 			})
+		self.instance = None
 
 	def newService(self):
 		if self.get() is None:	
 			self.disablePolling()
 		else:
 			self.enablePolling(interval=500)
+			self.newCuesheet()
 	
 	def get(self):
 		service = self.navcore.getCurrentService()
-		if service is None:
-			return None
-		seek = service.seek()
+		seek = service and service.seek()
 		if seek is None:
 			return None
 
@@ -110,6 +109,14 @@ class ServicePositionGauge(PerServiceBase):
 
 	def GUIcreate(self, parent):
 		self.instance = ePositionGauge(parent)
+		self.newService()
 	
 	def GUIdelete(self):
 		self.instance = None
+
+	def newCuesheet(self):
+		service = self.navcore.getCurrentService()
+		cue = service and service.cueSheet()
+		cutlist = (cue and cue.getCutList()) or [ ]
+		if self.instance is not None:
+			self.instance.setInOutList(cutlist)
