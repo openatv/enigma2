@@ -338,6 +338,10 @@
 			<widget name="scan_state" position="10,40" size="280,60" font="Regular;20" />
 			<widget name="servicelist" position="10,110" size="280,175" selectionDisabled="1" />
 		</screen>
+		<screen name="InputBox" position="100,100" size="550,400" title="Input" >
+			<widget name="text" position="0,0" size="550,25" font="Regular;20" />
+			<widget name="input" position="0,30" size="550,25" font="Regular;20" />
+		</screen>"""
 		<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
 			<widget name="description" position="10,10" size="580,40" font="Regular;25" />
 			<widget name="lbegin" position="405,102" size="103,30" font="Regular;25" foregroundColor="red" />
