@@ -76,6 +76,8 @@ class Wizard(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
+		self.stepHistory = []
+
 		self.wizard = {}
 		parser = make_parser()
 		print "Reading " + self.xmlfile
@@ -129,7 +131,9 @@ class Wizard(Screen, HelpableScreen):
 		}, -1)
 
 	def back(self):
-		self.currStep -= 1
+		if len(self.stepHistory) > 1:
+			self.currStep = self.stepHistory[-2]
+			self.stepHistory = self.stepHistory[:-2]
 		if self.currStep < 1:
 			self.currStep = 1
 		self.updateValues()
@@ -147,25 +151,26 @@ class Wizard(Screen, HelpableScreen):
 		
 	def ok(self):
 		print "OK"
+		currStep = self.currStep
 		if self.showConfig:
-			if (self.wizard[self.currStep]["config"]["screen"] != None):
+			if (self.wizard[currStep]["config"]["screen"] != None):
 				try: # don't die, if no run() is available
 					self.configInstance.run()
 				except:
 					print "Failed to run configInstance"
 		
 		if self.showList:
-			if (len(self.wizard[self.currStep]["list"]) > 0):
-				nextStep = self.wizard[self.currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
+			if (len(self.wizard[currStep]["list"]) > 0):
+				nextStep = self.wizard[currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
 				self.currStep = self.getStepWithID(nextStep)
 
-		if (self.currStep == self.numSteps): # wizard finished
+		if (currStep == self.numSteps): # wizard finished
 			self.markDone()
 			self.session.close()
 		else:
-			self.runCode(self.wizard[self.currStep]["codeafter"])
-			if self.wizard[self.currStep]["nextstep"] is not None:
-				self.currStep = self.getStepWithID(self.wizard[self.currStep]["nextstep"])
+			self.runCode(self.wizard[currStep]["codeafter"])
+			if self.wizard[currStep]["nextstep"] is not None:
+				self.currStep = self.getStepWithID(self.wizard[currStep]["nextstep"])
 			self.currStep += 1
 			self.updateValues()
 			
@@ -206,6 +211,8 @@ class Wizard(Screen, HelpableScreen):
 		
 	def updateValues(self):
 		print "Updating values in step " + str(self.currStep)
+		
+		self.stepHistory.append(self.currStep)
 		
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
