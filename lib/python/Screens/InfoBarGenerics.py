@@ -1227,13 +1227,11 @@ class InfoBarCueSheetSupport:
 			seekable.seekTo(pts)
 
 	def jumpPreviousMark(self):
-		print "jumpPreviousMark"
 		# we add 2 seconds, so if the play position is <2s after
 		# the mark, the mark before will be used
 		self.jumpPreviousNextMark(lambda x: -x-5*90000, alternative=0)
 
 	def jumpNextMark(self):
-		print "jumpNextMark"
 		self.jumpPreviousNextMark(lambda x: x)
 
 	def getNearestCutPoint(self, pts, cmp=abs):
@@ -1246,28 +1244,24 @@ class InfoBarCueSheetSupport:
 		return nearest
 
 	def toggleMark(self):
-		print "toggleMark"
 		current_pos = self.__getCurrentPosition()
 		if current_pos is None:
 			print "not seekable"
 			return
 		
-		print "current position: ", current_pos
-
 		nearest_cutpoint = self.getNearestCutPoint(current_pos)
-		print "nearest_cutpoint: ", nearest_cutpoint
 		
 		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < 5*90000:
-			self.removeMark(self, *nearest_cutpoint)
+			self.removeMark(nearest_cutpoint)
 		else:
-			self.addMark(self, current_pos, self.CUT_TYPE_MARK)
+			self.addMark((current_pos, self.CUT_TYPE_MARK))
 
-	def addMark(self, where, type):
-		bisect.insort(self.cut_list, (current_pos, self.CUT_TYPE_MARK))
+	def addMark(self, point):
+		bisect.insort(self.cut_list, point)
 		self.uploadCuesheet()
 
-	def removeMark(self, where, type):
-		self.cut_list.remove(nearest_cutpoint)
+	def removeMark(self, point):
+		self.cut_list.remove(point)
 		self.uploadCuesheet()
 
 	def __getCuesheet(self):
@@ -1291,5 +1285,3 @@ class InfoBarCueSheetSupport:
 			print "upload failed, no cuesheet interface"
 			return
 		self.cut_list = cue.getCutList()
-
-		print "cuts:", self.cut_list
