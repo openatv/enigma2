@@ -7,6 +7,7 @@ from Components.Input import Input
 from Components.GUIComponent import *
 from Components.Pixmap import Pixmap
 from Components.FileList import FileEntryComponent, FileList
+from Screens.InputBox import InputBox
 from Plugins.Plugin import PluginDescriptor
 
 import os
@@ -45,6 +46,11 @@ class Test(Screen):
 			"0": self.keyNumberGlobal
 		}, -1)
 		
+		self.onShown.append(self.openTest)
+
+	def openTest(self):
+		self.session.open(InputBox)
+		
 	def keyLeft(self):
 		self["text"].left()
 	
@@ -63,7 +69,12 @@ class Test(Screen):
 		self["text"].number(number)
 
 def main(session):
-	session.open(Test)
+	session.openWithCallback(test, InputBox, title="Hallo", text="1234", maxSize=True, type=Input.NUMBER)
+	
+def test(returnValue):
+	print "You entered", returnValue
 
 def Plugins():
  	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+
+ 	
