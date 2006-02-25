@@ -199,8 +199,15 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		if (parm->getDVBC(ocable))
 			return -2;
 		
-		diff = abs(cable.frequency - ocable.frequency);
-		diff += abs(cable.symbol_rate - ocable.symbol_rate);
+		if (cable.modulation != ocable.modulation && cable.modulation != eDVBFrontendParametersCable::Modulation::Auto && ocable.modulation != eDVBFrontendParametersCable::Modulation::Auto)
+			diff = 1 << 29;
+		else if (cable.inversion != ocable.inversion && cable.inversion != eDVBFrontendParametersCable::Inversion::Unknown && ocable.inversion != eDVBFrontendParametersCable::Inversion::Unknown)
+			diff = 1 << 28;
+		else
+		{
+			diff = abs(cable.frequency - ocable.frequency);
+			diff += abs(cable.symbol_rate - ocable.symbol_rate);
+		}
 		
 		return 0;
 	case iDVBFrontend::feTerrestrial:
