@@ -1,1 +1,1 @@
-SUBDIRS = SoftwareUpdate FrontprocessorUpgrade
+SUBDIRS = SoftwareUpdate FrontprocessorUpgrade OldSoftwareUpdate
