@@ -1478,6 +1478,7 @@ void eDVBServicePlay::loadCuesheet()
 		eDebug("cutfile not found!");
 	
 	m_cuesheet_changed = 0;
+	m_event((iPlayableService*)this, evCuesheetChanged);
 }
 
 void eDVBServicePlay::saveCuesheet()
