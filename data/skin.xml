@@ -356,12 +356,12 @@
 			<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" 
 				backgroundColor="transpBlack" foregroundColor="white" />
 		</screen>
-		<screen name="MessageBox" position="0,300" size="720,10" title="Message">
-			<widget name="text" position="60,10" size="650,0" font="Regular;22" />
+		<screen name="MessageBox" position="60,300" size="600,10" title="Message">
+			<widget name="text" position="60,10" size="520,0" font="Regular;22" />
 			<widget name="ErrorPixmap" pixmap="/usr/share/enigma2/error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
 			<widget name="QuestionPixmap" pixmap="/usr/share/enigma2/question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
 			<widget name="InfoPixmap" pixmap="/usr/share/enigma2/info.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
-			<widget name="list" position="100,100" size="550,375" />
+			<widget name="list" position="100,100" size="480,375" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
 from enigma import eSize, ePoint
