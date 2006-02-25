@@ -172,7 +172,7 @@ private:
 		
 		bool operator < (const struct cueEntry &o) const
 		{
-			return what < o.what;
+			return where < o.where;
 		}
 		cueEntry(const pts_t &where, unsigned int what) :
 			where(where), what(what)
