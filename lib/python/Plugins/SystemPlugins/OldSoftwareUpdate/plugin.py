@@ -174,4 +174,4 @@ def IpkgMain(session):
 
 def Plugins():
 	return [PluginDescriptor(name="Old Softwareupdate", description="Updates your receiver's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
-			PluginDescriptor(name="IPKG", description="IPKG frotend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]
+			PluginDescriptor(name="IPKG", description="IPKG frontend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]
