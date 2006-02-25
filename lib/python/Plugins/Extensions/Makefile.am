@@ -1,1 +1,1 @@
-SUBDIRS = TuxboxPlugins WebInterface FileManager
+SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor
