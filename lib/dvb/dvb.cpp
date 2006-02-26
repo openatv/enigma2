@@ -949,7 +949,11 @@ RESULT eDVBChannel::playFile(const char *file)
 		   THEN DO A REAL FIX HERE! */
 	
 		/* (this codepath needs to be improved anyway.) */
+#if HAVE_DVB_API_VERSION < 3
+	m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
+#else
 	m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
+#endif
 	if (m_pvr_fd_dst < 0)
 	{
 		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
