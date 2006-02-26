@@ -92,7 +92,9 @@ class MovieSelection(Screen):
 		self.onShown.append(self.go)
 		
 	def go(self):
-		self.delayTimer.start(0, 1)
+		# ouch. this should redraw our "Please wait..."-text.
+		# this is of course not the right way to do this.
+		self.delayTimer.start(10, 1)
 
 	def updateHDDData(self):
 		self["list"].reload(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
@@ -106,13 +108,18 @@ class MovieSelection(Screen):
 		self["list"].moveTo(self.selectedmovie)
 
 	def getCurrent(self):
-		return self["list"].getCurrent()[0]
+		l = self["list"].getCurrent()
+		return l and l[0]
 
 	def movieSelected(self):
-		self.close(self.getCurrent())
+		current = self.getCurrent()
+		if current is not None:
+			self.close(current)
 
 	def doContext(self):
-		self.session.open(ChannelContextMenu, self, self.getCurrent())
+		current = self.getCurrent()
+		if current is not None:
+			self.session.open(ChannelContextMenu, self, )
 
 	def abort(self):
 		self.close(None)
