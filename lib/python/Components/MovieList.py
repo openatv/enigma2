@@ -63,7 +63,8 @@ class MovieList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def getCurrent(self):
-		return self.l.getCurrentSelection()[0]
+		l = self.l.getCurrentSelection()
+		return l and l[0]
 	
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
