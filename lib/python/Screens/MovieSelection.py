@@ -119,7 +119,7 @@ class MovieSelection(Screen):
 	def doContext(self):
 		current = self.getCurrent()
 		if current is not None:
-			self.session.open(ChannelContextMenu, self, )
+			self.session.open(ChannelContextMenu, self, current)
 
 	def abort(self):
 		self.close(None)
