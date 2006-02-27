@@ -769,7 +769,7 @@ class InfoBarSeek:
 		if self.seekstate != self.SEEK_STATE_PLAY:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 			# HACK
-			self.getSeek().seekRelative(1, -90000)
+			#self.getSeek().seekRelative(1, -90000)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -1274,7 +1274,7 @@ class InfoBarCueSheetSupport:
 				nearest = cp
 		return nearest
 
-	def toggleMark(self):
+	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000):
 		current_pos = self.__getCurrentPosition()
 		if current_pos is None:
 			print "not seekable"
@@ -1282,9 +1282,10 @@ class InfoBarCueSheetSupport:
 		
 		nearest_cutpoint = self.getNearestCutPoint(current_pos)
 		
-		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < 5*90000:
-			self.removeMark(nearest_cutpoint)
-		else:
+		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < tolerance:
+			if not onlyadd:
+				self.removeMark(nearest_cutpoint)
+		elif not onlyremove:
 			self.addMark((current_pos, self.CUT_TYPE_MARK))
 
 	def addMark(self, point):
