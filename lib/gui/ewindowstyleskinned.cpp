@@ -70,6 +70,10 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		painter.setForegroundColor(m_color[colListboxMarkedForeground]);
 		painter.setBackgroundColor(m_color[colListboxMarkedBackground]);
 		break;
+	case styleListboxMarkedAndSelected:
+		painter.setForegroundColor(m_color[colListboxMarkedAndSelectedForeground]);
+		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
+		break;
 	}
 }
 
