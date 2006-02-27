@@ -77,7 +77,6 @@ public:
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
-	
 
 		// iPauseableService
 	RESULT pause();
@@ -120,6 +119,7 @@ public:
 		// iCueSheet
 	PyObject *getCutList();
 	void setCutList(PyObject *);
+	void setCutListEnable(int enable);
 	
 private:
 	friend class eServiceFactoryDVB;
@@ -181,10 +181,12 @@ private:
 	};
 	
 	std::multiset<cueEntry> m_cue_entries;
-	int m_cuesheet_changed;
+	int m_cuesheet_changed, m_cutlist_enabled;
 	
 	void loadCuesheet();
 	void saveCuesheet();
+	
+	void cutlistToCuesheet();
 };
 
 #endif
