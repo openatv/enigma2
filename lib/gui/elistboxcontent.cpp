@@ -105,10 +105,9 @@ int eListboxPythonStringContent::currentCursorSelectable()
 	if (m_list && cursorValid())
 	{
 		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
-		if (PyTuple_Check(item))
-			item = PyTuple_GET_ITEM(item, 0);
-		
-		if (item != Py_None)
+		if (!PyTuple_Check(item))
+			return 1;
+		if (PyTuple_Size(item) >= 2)
 			return 1;
 	}
 	return 0;
@@ -145,12 +144,17 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (m_list && cursorValid())
 	{
+		int gray = 0;
 		PyObject *item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		painter.setFont(fnt);
 
 			/* the user can supply tuples, in this case the first one will be displayed. */		
 		if (PyTuple_Check(item))
+		{
+			if (PyTuple_Size(item) == 1)
+				gray = 1;
 			item = PyTuple_GET_ITEM(item, 0);
+		}
 		
 		if (item == Py_None)
 		{
@@ -161,6 +165,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 			const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
 			ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
+			if (gray)
+				painter.setForegroundColor(gRGB(0x808080));
 			painter.renderText(eRect(text_offset, m_itemsize), string);
 		}
 		
