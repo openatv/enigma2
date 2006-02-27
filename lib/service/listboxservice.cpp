@@ -358,7 +358,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	if (m_current_marked && selected)
 		style.setStyle(painter, eWindowStyle::styleListboxMarked);
 	else if (cursorValid() && isMarked(*m_cursor))
-		style.setStyle(painter, eWindowStyle::styleListboxMarked);
+		style.setStyle(painter, selected ? eWindowStyle::styleListboxMarkedAndSelected : eWindowStyle::styleListboxMarked);
 	else
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();

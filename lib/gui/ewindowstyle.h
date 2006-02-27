@@ -18,7 +18,8 @@ public:
 		styleLabel,
 		styleListboxSelected,
 		styleListboxNormal,
-		styleListboxMarked
+		styleListboxMarked,
+		styleListboxMarkedAndSelected
 	};
 	
 	virtual void drawFrame(gPainter &painter, const eRect &frame, int type) = 0;

@@ -61,6 +61,8 @@ public:
 		colListboxSelectedForeground,
 		colListboxMarkedBackground,
 		colListboxMarkedForeground,
+		colListboxMarkedAndSelectedBackground,
+		colListboxMarkedAndSelectedForeground,
 		
 		colWindowTitleForeground,
 		colWindowTitleBackground,
