@@ -172,6 +172,25 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 	}
 }
 
+int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
+{
+	if (m_use_streaminfo)
+	{
+		offset = m_streaminfo.getAccessPoint(pts);
+		return 0;
+	} else
+	{
+		int bitrate = calcBitrate(); /* in bits/s */
+		if (bitrate <= 0)
+			return -1;
+		
+		offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
+		offset -= offset % 188;
+
+		return 0;
+	}
+}
+
 void eDVBTSTools::calcBegin()
 {
 	if (m_fd < 0)	

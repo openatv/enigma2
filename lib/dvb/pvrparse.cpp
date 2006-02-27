@@ -208,9 +208,7 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts)
 	off_t last = 0;
 	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
-		std::map<off_t, pts_t>::const_iterator d = m_timestamp_deltas.find(i->first);
-		if (d != m_timestamp_deltas.end())
-			delta = d->second;
+		pts_t delta = getDelta(i->first);
 		pts_t c = i->second - delta;
 		if (c > ts)
 			break;
