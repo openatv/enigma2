@@ -39,214 +39,9 @@ void iListboxContent::setListbox(eListbox *lb)
 	m_listbox = lb;
 }
 
-DEFINE_REF(eListboxTestContent);
-
-void eListboxTestContent::cursorHome()
+int iListboxContent::currentCursorSelectable()
 {
-	m_cursor = 0;
-}
-
-void eListboxTestContent::cursorEnd()
-{
-	m_cursor = size();
-}
-
-int eListboxTestContent::cursorMove(int count)
-{
-	m_cursor += count;
-	
-	if (m_cursor < 0)
-		cursorHome();
-	else if (m_cursor > size())
-		cursorEnd();
-	return 0;
-}
-
-int eListboxTestContent::cursorValid()
-{
-	return m_cursor < size();
-}
-
-int eListboxTestContent::cursorSet(int n)
-{
-	m_cursor = n;
-	
-	if (m_cursor < 0)
-		cursorHome();
-	else if (m_cursor > size())
-		cursorEnd();
-	return 0;
-}
-
-int eListboxTestContent::cursorGet()
-{
-	return m_cursor;
-}
-
-void eListboxTestContent::cursorSave()
-{
-	m_saved_cursor = m_cursor;
-}
-
-void eListboxTestContent::cursorRestore()
-{
-	m_cursor = m_saved_cursor;
-}
-
-int eListboxTestContent::size()
-{
-	return 10;
-}
-	
-RESULT eListboxTestContent::connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection)
-{
-	return 0;
-}
-
-void eListboxTestContent::setSize(const eSize &size)
-{
-	m_size = size;
-}
-
-void eListboxTestContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
-{
-	ePtr<gFont> fnt = new gFont("Regular", 20);
-	painter.clip(eRect(offset, m_size));
-	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-	painter.clear();
-
-	if (cursorValid())
-	{
-		painter.setFont(fnt);
-		char string[10];
-		sprintf(string, "%d.)", m_cursor);
-		
-		ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
-		
-		painter.renderText(eRect(text_offset, m_size), string);
-		
-		if (selected)
-			style.drawFrame(painter, eRect(offset, m_size), eWindowStyle::frameListboxEntry);
-	}
-	
-	painter.clippop();
-}
-
-//////////////////////////////////////
-
-DEFINE_REF(eListboxStringContent);
-
-eListboxStringContent::eListboxStringContent()
-{
-	m_size = 0;
-	cursorHome();
-}
-
-void eListboxStringContent::cursorHome()
-{
-	m_cursor = m_list.begin();
-	m_cursor_number = 0;
-}
-
-void eListboxStringContent::cursorEnd()
-{
-	m_cursor = m_list.end();
-	m_cursor_number = m_size;
-}
-
-int eListboxStringContent::cursorMove(int count)
-{
-	if (count > 0)
-	{
-		while (count && (m_cursor != m_list.end()))
-		{
-			++m_cursor;
-			++m_cursor_number;
-			--count;
-		}
-	} else if (count < 0)
-	{
-		while (count && (m_cursor != m_list.begin()))
-		{
-			--m_cursor;
-			--m_cursor_number;
-			++count;
-		}
-	}
-	
-	return 0;
-}
-
-int eListboxStringContent::cursorValid()
-{
-	return m_cursor != m_list.end();
-}
-
-int eListboxStringContent::cursorSet(int n)
-{
-	cursorHome();
-	cursorMove(n);
-	
-	return 0;
-}
-
-int eListboxStringContent::cursorGet()
-{
-	return m_cursor_number;
-}
-
-void eListboxStringContent::cursorSave()
-{
-	m_saved_cursor = m_cursor;
-	m_saved_cursor_number = m_cursor_number;
-}
-
-void eListboxStringContent::cursorRestore()
-{
-	m_cursor = m_saved_cursor;
-	m_cursor_number = m_saved_cursor_number;
-}
-
-int eListboxStringContent::size()
-{
-	return m_size;
-}
-	
-void eListboxStringContent::setSize(const eSize &size)
-{
-	m_itemsize = size;
-}
-
-void eListboxStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
-{
-	ePtr<gFont> fnt = new gFont("Regular", 20);
-	painter.clip(eRect(offset, m_itemsize));
-	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-	painter.clear();
-	
-	eDebug("item %d", m_cursor_number);
-	if (cursorValid())
-	{
-		eDebug("is valid..");
-		painter.setFont(fnt);
-		
-		ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
-		
-		painter.renderText(eRect(text_offset, m_itemsize), *m_cursor);
-		
-		if (selected)
-			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
-	}
-	
-	painter.clippop();
-}
-
-void eListboxStringContent::setList(std::list<std::string> &list)
-{
-	m_list = list;
-	m_size = list.size();
-	cursorHome();
-	m_listbox->entryReset(false);
+	return 1;
 }
 
 //////////////////////////////////////
@@ -305,6 +100,20 @@ int eListboxPythonStringContent::cursorGet()
 	return m_cursor;
 }
 
+int eListboxPythonStringContent::currentCursorSelectable()
+{
+	if (m_list && cursorValid())
+	{
+		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
+		if (PyTuple_Check(item))
+			item = PyTuple_GET_ITEM(item, 0);
+		
+		if (item != Py_None)
+			return 1;
+	}
+	return 0;
+}
+
 void eListboxPythonStringContent::cursorSave()
 {
 	m_saved_cursor = m_cursor;
@@ -343,11 +152,17 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (PyTuple_Check(item))
 			item = PyTuple_GET_ITEM(item, 0);
 		
-		const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
-		
-		ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
-		
-		painter.renderText(eRect(text_offset, m_itemsize), string);
+		if (item == Py_None)
+		{
+			int half_height = m_itemsize.height() / 2;
+			
+			painter.fill(eRect(offset.x() + half_height, offset.y() + half_height - 2, m_itemsize.width() - m_itemsize.height(), 4));
+		} else
+		{
+			const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
+			ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
+			painter.renderText(eRect(text_offset, m_itemsize), string);
+		}
 		
 		if (selected)
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
@@ -548,6 +363,11 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	}
 	
 	painter.clippop();
+}
+
+int eListboxPythonConfigContent::currentCursorSelectable()
+{
+	return eListboxPythonStringContent::currentCursorSelectable();
 }
 
 //////////////////////////////////////
@@ -757,6 +577,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 error_out:
 	painter.clippop();
+}
+
+int eListboxPythonMultiContent::currentCursorSelectable()
+{
+	return eListboxPythonStringContent::currentCursorSelectable();
 }
 
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
