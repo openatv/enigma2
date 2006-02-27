@@ -302,6 +302,15 @@ def runScreenTest():
 	
 	configfile.save()
 	
+	from Tools.DreamboxHardware import setFPWakeuptime
+	from time import time
+	nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
+	if nextRecordingTime != -1:
+		if (nextRecordingTime < 330): # no time to switch box back on
+			setFPWakeuptime(time() + 30) # so switch back on in 30 seconds
+		else:
+			setFPWakeuptime(nextRecordingTime - (300))
+	
 	session.nav.shutdown()
 	
 	return 0
@@ -340,6 +349,7 @@ import Components.NimManager
 # first, setup a screen
 try:
 	runScreenTest()
+
 	plugins.shutdown()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
