@@ -7,12 +7,11 @@ from Components.ActionMap import HelpableActionMap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, RT_HALIGN_RIGHT
 from Components.ServiceEventTracker import ServiceEventTracker
-
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
-
 from Components.GUIComponent import GUIComponent
-
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService
+from Screens.FixedMenu import FixedMenu
+import bisect
 
 def CutListEntry(where, what):
 	res = [ (where, what) ]
@@ -31,6 +30,51 @@ def CutListEntry(where, what):
 	res.append(MultiContentEntryText(pos=(400,0), size=(130, 20), text = type, flags = RT_HALIGN_RIGHT))
 
 	return res
+
+class CutListContextMenu(FixedMenu):
+	RET_STARTCUT = 0
+	RET_ENDCUT = 1
+	RET_DELETECUT = 2
+	RET_MARK = 3
+	
+	SHOW_STARTCUT = 0
+	SHOW_ENDCUT = 1
+	SHOW_DELETECUT = 2
+	
+	def __init__(self, session, state):
+		menu = [(_("back"), self.close), (None, )]
+
+		if state == self.SHOW_STARTCUT:
+			menu.append((_("start cut here"), self.startCut))
+		else:
+			menu.append((_("start cut here"), ))
+			
+		if state == self.SHOW_ENDCUT:
+			menu.append((_("end cut here"), self.endCut))
+		else:
+			menu.append((_("end cut here"), ))
+
+		if state == self.SHOW_DELETECUT:
+			menu.append((_("delete cut"), self.deleteCut))
+		else:
+			menu.append((_("delete cut"), ))
+		
+		menu.append((None, ))
+		menu.append((_("insert mark here"), self.insertMark))
+		FixedMenu.__init__(self, session, _("Cut"), menu)
+		self.skinName = "Menu"
+	
+	def startCut(self):
+		self.close(self.RET_STARTCUT)
+
+	def endCut(self):
+		self.close(self.RET_ENDCUT)
+
+	def deleteCut(self):
+		self.close(self.RET_DELETECUT)
+
+	def insertMark(self):
+		self.close(self.RET_MARK)
 
 class CutList(GUIComponent):
 	def __init__(self, list):
@@ -81,7 +125,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 		<screen position="100,100" size="550,400" title="Test" >
 			<widget name="Timeline" position="10,0" size="530,40" 
 				pointer="/usr/share/enigma2/position_pointer.png:3,5" />
-			<widget name="Cutlist" position="10,50" size="530,200" />
+			<widget name="Cutlist" position="10,50" size="530,300" scrollbarMode="showOnDemand" />
 		</screen>"""
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
@@ -110,7 +154,8 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 				"setMark": (self.setMark, _("Make this mark just a mark")),
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
-				"leave": (self.exit, _("Exit editor"))
+				"leave": (self.exit, _("Exit editor")),
+				"showMenu": self.showMenu,
 			})
 		
 		self.tutorial_seen = False
@@ -124,15 +169,17 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 		# to track new entries we save the last version of the cutlist
 		self.last_cuts = [ ]
 		
+		self.cut_start = None
+		
 	def showTutorial(self):
 		if not self.tutorial_seen:
 			self.tutorial_seen = True
 			self.session.open(MessageBox, 
-				"""Welcome to the Cutlist editor. It has a *very* unintuitive handling:
+				"""Welcome to the Cutlist editor. It's still a bit strange to use, but anyway:
 
-You can add use the color keys to move around in the recorded movie. 
-By pressing shift-yellow, you can add a mark or remove an existing one.
-You can then assign them to be either 'in' or 'out' positions by selecting them in the list and pressing 1 or 2.
+Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.
+
+Then seek to the end, press OK, select 'end cut'. That's it.
 				""", MessageBox.TYPE_INFO)
 	
 	def checkSkipShowHideLock(self):
@@ -200,6 +247,77 @@ You can then assign them to be either 'in' or 'out' positions by selecting them 
 				self["Cutlist"].setSelection(i)
 				break
 		self.last_cuts = new_list
+
+	def getStateForPosition(self, pos):
+		state = 0 # in
+		for (where, what) in self.cut_list:
+			if where < pos:
+				if what == 0: # in
+					state = 0
+				elif what == 1: # out
+					state = 1
+		return state
+
+	def showMenu(self):
+		curpos = self.cueGetCurrentPosition()
+		if curpos is None:
+			return
+		
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		
+		self.context_position = curpos
+		
+		cur_state = self.getStateForPosition(curpos)
+		if cur_state == 0:
+			print "currently in 'IN'"
+			if self.cut_start is None or self.context_position < self.cut_start:
+				state = CutListContextMenu.SHOW_STARTCUT
+			else:
+				state = CutListContextMenu.SHOW_ENDCUT
+		else:
+			print "currently in 'OUT'"
+			state = CutListContextMenu.SHOW_DELETECUT
+		
+		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state)
+	
+	def menuCallback(self, *result):
+		self.setSeekState(self.SEEK_STATE_PLAY)
+		if not len(result):
+			return
+		result = result[0]
+		
+		if result == CutListContextMenu.RET_STARTCUT:
+			self.cut_start = self.context_position
+		elif result == CutListContextMenu.RET_ENDCUT:
+			# remove in/out marks between the new cut
+			for (where, what) in self.cut_list[:]:
+				if self.cut_start <= where <= self.context_position and what in [0,1]:
+					self.cut_list.remove((where, what))
+			
+			bisect.insort(self.cut_list, (self.cut_start, 1))
+			bisect.insort(self.cut_list, (self.context_position, 0))
+			self.uploadCuesheet()
+			self.cut_start = None
+		elif result == CutListContextMenu.RET_DELETECUT:
+			out_before = None
+			in_after = None
+			
+			for (where, what) in self.cut_list:
+				if what == 1 and where < self.context_position: # out
+					out_before = (where, what)
+				elif what == 0 and where < self.context_position: # in, before out
+					out_before = None
+				elif what == 0 and where > self.context_position and in_after is None:
+					in_after = (where, what)
+			
+			if out_before is not None:
+				self.cut_list.remove(out_before)
+			
+			if in_after is not None:
+				self.cut_list.remove(in_after)
+			self.uploadCuesheet()
+		elif result == CutListContextMenu.RET_MARK:
+			self.__addMark()
 
 def main(session, service):
 	session.open(CutListEditor, service)
