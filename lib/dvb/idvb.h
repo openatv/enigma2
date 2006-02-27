@@ -443,6 +443,7 @@ public:
 	
 	void clear();
 	void addSourceSpan(const pts_t &begin, const pts_t &end);
+	void commitSpans();
 	
 	void setSkipmode(const pts_t &ratio); /* 90000 is 1:1 */
 	void setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder);
