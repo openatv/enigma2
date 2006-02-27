@@ -551,9 +551,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 
 	m_cuesheet_changed = 0;
-	
-	if (m_is_pvr)
-		loadCuesheet();
+	m_cutlist_enabled = 1;
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -648,9 +646,12 @@ RESULT eDVBServicePlay::start()
 		   two (one for decoding, one for data source), as we must be prepared
 		   to start recording from the data demux. */
 	m_cue = new eCueSheet();
+
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
 	r = m_service_handler.tune(service, m_is_pvr, m_cue);
+	
+		/* inject EIT if there is a stored one */
 	if (m_is_pvr)
 	{
 		std::string filename = service.path;
@@ -674,6 +675,10 @@ RESULT eDVBServicePlay::start()
 			}
 		}
 	}
+	
+	if (m_is_pvr)
+		loadCuesheet();
+
 	m_event(this, evStart);
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
@@ -1289,7 +1294,14 @@ void eDVBServicePlay::setCutList(PyObject *list)
 	}
 	m_cuesheet_changed = 1;
 	
+	cutlistToCuesheet();
 	m_event((iPlayableService*)this, evCuesheetChanged);
+}
+
+void eDVBServicePlay::setCutListEnable(int enable)
+{
+	m_cutlist_enabled = enable;
+	cutlistToCuesheet();
 }
 
 void eDVBServicePlay::updateTimeshiftPids()
@@ -1506,6 +1518,7 @@ void eDVBServicePlay::loadCuesheet()
 		eDebug("cutfile not found!");
 	
 	m_cuesheet_changed = 0;
+	cutlistToCuesheet();
 	m_event((iPlayableService*)this, evCuesheetChanged);
 }
 
@@ -1536,6 +1549,57 @@ void eDVBServicePlay::saveCuesheet()
 	}
 	
 	m_cuesheet_changed = 0;
+}
+
+void eDVBServicePlay::cutlistToCuesheet()
+{
+	if (!m_cue)
+	{
+		eDebug("no cue sheet");
+		return;
+	}	
+	m_cue->clear();
+	
+	if (!m_cutlist_enabled)
+	{
+		m_cue->commitSpans();
+		eDebug("cutlists where disabled");
+		return;
+	}
+
+	pts_t in = 0, out = 0, length = 0;
+	
+	getLength(length);
+		
+	std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
+	
+	while (1)
+	{
+		if (i == m_cue_entries.end())
+			out = length;
+		else {
+			if (i->what == 0) /* in */
+			{
+				in = i++->where;
+				continue;
+			} else if (i->what == 1) /* out */
+				out = i++->where;
+			else /* mark */
+			{
+				i++;
+				continue;
+			}
+		}
+		
+		if (in != out)
+			m_cue->addSourceSpan(in, out);
+		
+		in = length;
+		
+		if (i == m_cue_entries.end())
+			break;
+	}
+	m_cue->commitSpans();
 }
 
 DEFINE_REF(eDVBServicePlay)

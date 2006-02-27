@@ -388,6 +388,7 @@ public:
 			/* returns a list of (pts, what)-tuples */
 	virtual PyObject *getCutList() = 0;
 	virtual void setCutList(PyObject *list) = 0;
+	virtual void setCutListEnable(int enable) = 0;
 	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
 };
 
