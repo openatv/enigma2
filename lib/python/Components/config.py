@@ -293,7 +293,27 @@ class configSequence:
 			return ("mtext"[1-selected:], value, [mPos])
 		else:
 			return ("text", value)
+
+class configNothing:
+	def __init__(self, parent):
+		self.parent = parent
+		self.markedPos = 0
+
+	def cancel(self):
+		self.parent.reload()
+
+	def save(self):
+		self.parent.save()
 		
+	def nextEntry(self):
+		self.parent.vals[1](self.parent.getConfigPath())
+
+	def handleKey(self, key):
+		pass
+
+	def __call__(self, selected):			#needed by configlist
+		return ("text", "")
+
 class configText:
 	# used as first parameter
 	# is the text of a fixed size or is the user able to extend the length of the text
@@ -378,7 +398,7 @@ config = Config();
 
 configfile = configFile()
 
-class ConfigSlider:
+class configSlider:
 	def __init__(self, parent):
 		self.parent = parent
 
@@ -392,21 +412,21 @@ class ConfigSlider:
 		if self.parent.value < 0:
 			self.parent.value = 0	
 
-		if self.parent.value > 10:
-			self.parent.value = 10	
+		if self.parent.value > self.parent.vals[1]:
+			self.parent.value = self.parent.vals[1]
 
 	def handleKey(self, key):
 		if key == config.key["prevElement"]:
-			self.parent.value = self.parent.value - 1
+			self.parent.value = self.parent.value - self.parent.vals[0]
 		if key == config.key["nextElement"]:
-			self.parent.value = self.parent.value + 1
+			self.parent.value = self.parent.value + self.parent.vals[0]
 					
 		self.checkValues()	
 		self.parent.change()	
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
-		return ("slider", self.parent.value * 10)
+		return ("slider", self.parent.value, self.parent.vals[1])
 
 class ConfigSubsection:
 	def __init__(self):
@@ -428,7 +448,7 @@ class configElement:
 		return 0	#prevent bigger then array
 
 	def datafromFile(self, control, data):
-		if control == ConfigSlider:
+		if control == configSlider:
 			return int(data)
 		elif control == configSelection:
 			try:
@@ -458,7 +478,7 @@ class configElement:
 			return ""	
 
 	def datatoFile(self, control, data):
-		if control == ConfigSlider:
+		if control == configSlider:
 			return str(data)
 		elif control == configSelection:
 			if len(self.vals) < data + 1:

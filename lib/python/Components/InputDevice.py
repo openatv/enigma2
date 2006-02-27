@@ -2,7 +2,7 @@ from config import config				#global config instance
 
 from config import configElement
 from config import ConfigSubsection
-from config import ConfigSlider
+from config import configSlider
 from config import configSelection
 
 class inputDevices:
@@ -17,8 +17,8 @@ class inputDevices:
 
 def InitInputDevices():
 	config.inputDevices = ConfigSubsection();
-	config.inputDevices.repeat = configElement("config.inputDevices.repeat", ConfigSlider, 5, "");
-	config.inputDevices.delay = configElement("config.inputDevices.delay", ConfigSlider, 4, "");
+	config.inputDevices.repeat = configElement("config.inputDevices.repeat", configSlider, 5, (1, 10))
+	config.inputDevices.delay = configElement("config.inputDevices.delay", configSlider, 4, (1, 10))
 
 	#this instance anywhere else needed?	
 	iDevices = inputDevices();	
