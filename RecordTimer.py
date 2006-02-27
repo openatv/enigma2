@@ -221,7 +221,7 @@ class RecordTimer(timer.Timer):
 			self.loadTimer()
 		except IOError:
 			print "unable to load timers from file!"
-
+			
 	def isRecording(self):
 		isRunning = False
 		for timer in self.timer_list:
