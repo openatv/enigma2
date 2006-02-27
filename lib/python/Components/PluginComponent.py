@@ -49,7 +49,7 @@ class PluginComponent:
 			for x in os.listdir(directory_category):
 				path = directory_category + "/" + x + "/"
 				if os.path.isdir(path):
-					if fileExists(path + "plugin.py"):
+					if fileExists(path + "plugin.pyc") or fileExists(path + "plugin.py"):
 						plugin = my_import('.'.join(["Plugins", c, x, "plugin"]))
 
 						if not plugin.__dict__.has_key("Plugins"):
