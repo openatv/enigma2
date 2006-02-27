@@ -71,6 +71,10 @@ class CutList(GUIComponent):
 	def setList(self, list):
 		self.list = list
 		self.l.setList(self.list)
+	
+	def setSelection(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
 
 class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 	skin = """
@@ -86,6 +90,13 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 		InfoBarCueSheetSupport.__init__(self)
 		session.nav.playService(service)
 		
+		service = session.nav.getCurrentService()
+		cue = service and service.cueSheet()
+		if cue is not None:
+			# disable cutlists. we want to freely browse around in the movie
+			print "cut lists disabled!"
+			cue.setCutListEnable(0)
+		
 		self.downloadCuesheet()
 	
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
@@ -97,6 +108,8 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 				"setIn": (self.setIn, _("Make this mark an 'in' point")),
 				"setOut": (self.setOut, _("Make this mark an 'out' point")),
 				"setMark": (self.setMark, _("Make this mark just a mark")),
+				"addMark": (self.__addMark, _("Add a mark")),
+				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor"))
 			})
 		
@@ -107,6 +120,9 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 			{
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
+
+		# to track new entries we save the last version of the cutlist
+		self.last_cuts = [ ]
 		
 	def showTutorial(self):
 		if not self.tutorial_seen:
@@ -141,6 +157,15 @@ You can then assign them to be either 'in' or 'out' positions by selecting them 
 		self.setType(m, 2)
 		self.uploadCuesheet()
 	
+	def __addMark(self):
+		self.toggleMark(onlyadd=True, tolerance=90000) # do not allow two marks in <1s
+	
+	def __removeMark(self):
+		m = self["Cutlist"].getCurrent()
+		m = m and m[0]
+		if m is not None:
+			self.removeMark(m)
+	
 	def exit(self):
 		self.close()
 
@@ -165,7 +190,16 @@ You can then assign them to be either 'in' or 'out' positions by selecting them 
 	def refillList(self):
 		print "cue sheet changed, refilling"
 		self.downloadCuesheet()
-		self["Cutlist"].setList(self.getCutlist())
+		
+		# get the first changed entry, and select it
+		new_list = self.getCutlist()
+		self["Cutlist"].setList(new_list)
+		
+		for i in range(min(len(new_list), len(self.last_cuts))):
+			if new_list[i] != self.last_cuts[i]:
+				self["Cutlist"].setSelection(i)
+				break
+		self.last_cuts = new_list
 
 def main(session, service):
 	session.open(CutListEditor, service)
