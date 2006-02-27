@@ -22,7 +22,13 @@ void ePixmap::setPixmap(gPixmap *pixmap)
 void ePixmap::setPixmapFromFile(const char *filename)
 {
 	loadPNG(m_pixmap, filename);
-		
+	
+	if (!m_pixmap)
+	{
+		eDebug("ePixmap::setPixmapFromFile: loadPNG failed");
+		return;
+	}
+	
 		// TODO
 	getDesktop()->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);
