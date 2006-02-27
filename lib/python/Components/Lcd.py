@@ -1,5 +1,5 @@
 from config import config				#global config instance
-from config import ConfigSlider
+from config import configSlider
 from config import configSelection
 from config import ConfigSubsection
 from config import configElement
@@ -25,9 +25,9 @@ class LCD:
 
 def InitLcd():
 	config.lcd = ConfigSubsection();
-	config.lcd.bright = configElement("config.lcd.bright", ConfigSlider, 10, "")
-	config.lcd.contrast = configElement("config.lcd.contrast", ConfigSlider, 10, "")
-	config.lcd.standby = configElement("config.lcd.standby", ConfigSlider, 0, "")
+	config.lcd.bright = configElement("config.lcd.bright", configSlider, 10, (1, 10))
+	config.lcd.contrast = configElement("config.lcd.contrast", configSlider, 10, (1, 10))
+	config.lcd.standby = configElement("config.lcd.standby", configSlider, 0, (1,10))
 	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, (("disable", _("Disable")), ("enable", _("Enable"))))
 
 	ilcd = LCD()

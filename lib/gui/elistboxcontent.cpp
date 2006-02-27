@@ -476,12 +476,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					} else if (!strcmp(atype, "slider"))
 					{
 						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
+						PyObject *psize = PyTuple_GET_ITEM(value, 2);
 						
 							/* convert value to Long. fallback to -1 on error. */
 						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
+						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 						
 							/* calc. slider length */
-						int width = item_right.width() * value / 100;
+						int width = item_right.width() * value / size;
 						int height = item_right.height();
 						
 												

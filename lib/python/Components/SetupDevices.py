@@ -2,7 +2,7 @@
 from config import config				#global config instance
 from config import configElement
 from config import ConfigSubsection
-from config import ConfigSlider
+from config import configSlider
 from config import configSelection
 from config import configText
 from Components.Timezones import timezones
@@ -24,9 +24,9 @@ def InitSetupDevices():
 	config.keyboard.keymap = configElement("config.keyboard.keymap", configSelection, 1, (_("English"), _("German")) );
 
 	config.osd = ConfigSubsection();
-	config.osd.alpha = configElement("config.osd.alpha", ConfigSlider, 0, "");
-	config.osd.bright = configElement("config.osd.bright", ConfigSlider, 5, "");
-	config.osd.contrast = configElement("config.osd.contrast", ConfigSlider, 5, "");
+	config.osd.alpha = configElement("config.osd.alpha", configSlider, 0, (1, 10));
+	config.osd.bright = configElement("config.osd.bright", configSlider, 5, (1, 10));
+	config.osd.contrast = configElement("config.osd.contrast", configSlider, 5, (1, 10));
 	
 	def languageNotifier(configElement):
 		language.activateLanguage(configElement.value)

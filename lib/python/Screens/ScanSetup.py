@@ -63,6 +63,10 @@ class ScanSetup(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+		
+		self.statusTimer = eTimer()
+		self.statusTimer.timeout.get().append(self.updateStatus)
+		#self.statusTimer.start(5000, True)
 
 		self.list = []
 		self["config"] = ConfigList(self.list)
@@ -156,6 +160,19 @@ class ScanSetup(Screen):
 			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
 				pass
 
+		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
+			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
+			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"] and currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder"):
+				self.configElementSNR = getConfigListEntry(_("SNR"), config.scan.snr)
+				self.list.append(self.configElementSNR)
+				self.configElementACG = getConfigListEntry(_("AGC"), config.scan.agc)
+				self.list.append(self.configElementACG)
+				self.configElementBER = getConfigListEntry(_("BER"), config.scan.ber)
+				self.list.append(self.configElementBER)
+				self.statusTimer.start(500, False)
+		else:
+			self.statusTimer.stop()
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -187,6 +204,14 @@ class ScanSetup(Screen):
 				nimList.append(nim[0])
 			#nimList.append("all")
 			config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
+			
+			# status
+			config.scan.snr = configElement_nonSave("config.scan.snr", configSlider, 0, (1, 100))
+			config.scan.snr.enabled = False
+			config.scan.agc = configElement_nonSave("config.scan.agc", configSlider, 0, (1, 100))
+			config.scan.agc.enabled = False
+			config.scan.ber = configElement_nonSave("config.scan.ber", configSlider, 0, (1, 100))
+			config.scan.ber.enabled = False
 
 			# sat
 			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (1, 99999)))
@@ -234,6 +259,9 @@ class ScanSetup(Screen):
 	def keyRight(self):
 		self["config"].handleKey(config.key["nextElement"])
 		self.newConfig()
+
+	def updateStatus(self):
+		print "updatestatus"
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)

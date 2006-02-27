@@ -2,7 +2,6 @@ from config import config       #global config instance
 
 from config import configElement
 from config import ConfigSubsection
-from config import ConfigSlider
 from config import configSelection
 from config import currentConfigSelectionElement
 from config import getConfigSelectionElement
