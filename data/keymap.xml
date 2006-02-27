@@ -162,6 +162,13 @@
 		
 		<key id="KEY_LEFT" mapto="seekBack" flags="m" />
 		<key id="KEY_RIGHT" mapto="seekFwd" flags="m" />
+		
+		<key id="KEY_1" mapto="seek:-30" flags="m" />
+		<key id="KEY_3" mapto="seek:30" flags="m" />
+		<key id="KEY_4" mapto="seek:-90" flags="m" />
+		<key id="KEY_6" mapto="seek:90" flags="m" />
+		<key id="KEY_7" mapto="seek:-270" flags="m" />
+		<key id="KEY_9" mapto="seek:270" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftActions">
@@ -298,11 +305,11 @@
 		<key id="KEY_POWER" mapto="power" flags="m" />
 	</map>
 	<map context="CutListEditorActions">
-		<key id="KEY_1" mapto="setIn" flags="m" />
-		<key id="KEY_2" mapto="setOut" flags="m" />
-		<key id="KEY_3" mapto="setMark" flags="m" />
-		<key id="KEY_4" mapto="addMark" flags="m" />
-		<key id="KEY_5" mapto="removeMark" flags="m" />
+		<key id="KEY_NEXT" mapto="setIn" flags="m" />
+		<key id="KEY_PREVIOUS" mapto="setOut" flags="m" />
+		<key id="KEY_0" mapto="setMark" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="addMark" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" />
 		<key id="KEY_EXIT" mapto="leave" flags="m" />
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
 	</map>

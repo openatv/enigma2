@@ -540,7 +540,20 @@ class InfoBarSeek:
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
-		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 
+
+		class InfoBarSeekActionMap(HelpableActionMap):
+			def __init__(self, screen, *args, **kwargs):
+				HelpableActionMap.__init__(self, screen, *args, **kwargs)
+				self.screen = screen
+				
+			def action(self, contexts, action):
+				if action[:5] == "seek:":
+					time = int(action[5:])
+					self.screen.seekRelative(time * 90000)
+				else:
+					HelpableActionMap.action(self, contexts, action)
+
+		self["SeekActions"] = InfoBarSeekActionMap(self, "InfobarSeekActions", 
 			{
 				"pauseService": (self.pauseService, "pause"),
 				"unPauseService": (self.unPauseService, "continue"),
@@ -781,7 +794,7 @@ class InfoBarSeek:
 	def seekRelative(self, diff):
 		seekable = self.getSeek()
 		if seekable is not None:
-			seekable.seekRelative(0, diff)
+			seekable.seekRelative(1, diff)
 
 from Screens.PVRState import PVRState
 
