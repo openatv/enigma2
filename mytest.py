@@ -306,7 +306,7 @@ def runScreenTest():
 	from time import time
 	nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
 	if nextRecordingTime != -1:
-		if (nextRecordingTime < 330): # no time to switch box back on
+		if (nextRecordingTime - time() < 330): # no time to switch box back on
 			setFPWakeuptime(time() + 30) # so switch back on in 30 seconds
 		else:
 			setFPWakeuptime(nextRecordingTime - (300))
