@@ -69,6 +69,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
+
 	int m_timeoutCount; // needed for timeout
 	int m_retryCount; // diseqc retry for rotor
 	int m_curVoltage;
@@ -85,6 +86,9 @@ public:
 
 	RESULT getFrontendType(int &type);
 	RESULT tune(const iDVBFrontendParameters &where);
+	RESULT prepare_sat(const eDVBFrontendParametersSatellite &);
+	RESULT prepare_cable(const eDVBFrontendParametersCable &);
+	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
 	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
 	RESULT getState(int &state);
 	RESULT setTone(int tone);
@@ -96,7 +100,7 @@ public:
 	RESULT getData(int num, int &data);
 	RESULT setData(int num, int val);
 
-	int readFrontendData(int type); // bitErrorRate, signalPower, signalQuality
+	int readFrontendData(int type); // bitErrorRate, signalPower, signalQuality, Locked, Synced
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getID() { return m_fe; }
 
