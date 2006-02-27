@@ -409,12 +409,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 			
-			PyObject *px = 0, *py = 0, *pwidth = 0, *pheight = 0, *pfnt = 0, *pstring = 0, *pflags = 0;
+			PyObject *px = 0, *py = 0, *pwidth = 0, *pheight = 0, *pfnt = 0, *pstring = 0, *pflags = 0, *pcolor = 0;
 		
 			/*
 				we have a list of tuples:
 				
-				(0, x, y, width, height, fnt, flags, "bla" ),
+				(0, x, y, width, height, fnt, flags, "bla"[, color] ),
 
 				or, for a progress:
 				(1, x, y, width, height, filled_percent )
@@ -453,6 +453,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pflags = PyTuple_GET_ITEM(item, 6);
 					pstring = PyTuple_GET_ITEM(item, 7);
 				}
+				if (size > 8)
+					pcolor = PyTuple_GET_ITEM(item, 8);
 			}
 			
 			switch (type)
@@ -461,7 +463,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			{
 				if (!(px && py && pwidth && pheight && pfnt && pstring))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string[, ...])");
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string, [color, ]...])");
 					goto error_out;
 				}
 				
@@ -472,6 +474,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int height = PyInt_AsLong(pheight);
 				int flags = PyInt_AsLong(pflags);
 				int fnt = PyInt_AsLong(pfnt);
+				
+				if (pcolor)
+				{
+					int color = PyInt_AsLong(pcolor);
+					painter.setForegroundColor(gRGB(color));
+				}
 				
 				if (m_font.find(fnt) == m_font.end())
 				{
@@ -569,6 +577,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eWarning("eListboxPythonMultiContent received unknown type (%d)", type);
 				goto error_out;
 			}
+			
+			if (pcolor)
+				style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 		}
 	}
 	
@@ -581,7 +592,22 @@ error_out:
 
 int eListboxPythonMultiContent::currentCursorSelectable()
 {
-	return eListboxPythonStringContent::currentCursorSelectable();
+	if (m_list && cursorValid())
+	{
+		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
+
+		if (PyList_Check(item))
+		{
+			item = PyList_GET_ITEM(item, 0);
+			if (PyTuple_Check(item))
+			{
+				item = PyTuple_GET_ITEM(item, 0);
+				if (item != Py_None)
+					return 1;
+			}
+		}
+	}
+	return 0;
 }
 
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
