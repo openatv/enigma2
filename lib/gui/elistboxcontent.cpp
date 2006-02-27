@@ -598,20 +598,17 @@ error_out:
 
 int eListboxPythonMultiContent::currentCursorSelectable()
 {
+		/* each list-entry is a list of tuples. if the first of these is none, it's not selectable */
 	if (m_list && cursorValid())
 	{
 		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
-
 		if (PyList_Check(item))
-		{
-			item = PyList_GET_ITEM(item, 0);
-			if (PyTuple_Check(item))
+			if (PyList_Check(item))
 			{
-				item = PyTuple_GET_ITEM(item, 0);
+				item = PyList_GET_ITEM(item, 0);
 				if (item != Py_None)
 					return 1;
 			}
-		}
 	}
 	return 0;
 }
