@@ -157,6 +157,53 @@ void eListbox::moveSelection(int dir)
 		break;
 	}
 	
+	if (m_content->cursorValid() && !m_content->currentCursorSelectable())
+	{
+		eDebug("position not selectable");
+			/* ok, our cursor position is valid (i.e. in list), but not selectable. */
+			
+			/* when moving up, continue until we found a valid position. */
+		if ((dir == moveUp) || (dir == pageDown))
+		{
+			eDebug("moving up");
+			while (m_content->cursorGet())
+			{
+				eDebug("tick");
+				m_content->cursorMove(-1);
+				if (m_content->currentCursorSelectable())
+				{
+					eDebug("now ok");
+					break;
+				}
+			}
+		} else
+		{
+			eDebug("moving down");
+			while (m_content->cursorValid())
+			{
+				eDebug("TICK");
+				m_content->cursorMove(+1);
+				if (m_content->currentCursorSelectable())
+				{
+					eDebug("NOW ok");
+					break;
+				}
+			}
+			
+			if (!m_content->cursorValid())
+			{
+				eDebug("not valid (i.e.: end)");
+				m_content->cursorMove(-1);
+			}
+		}
+		
+		if (!m_content->currentCursorSelectable())
+		{
+			eDebug("can't move!");
+			m_content->cursorSet(oldsel);
+		}
+	}
+	
 		/* note that we could be on an invalid cursor position, but we don't
 		   care. this only happens on empty lists, and should have almost no
 		   side effects. */

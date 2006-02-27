@@ -38,6 +38,8 @@ protected:
 	
 	virtual int size()=0;
 	
+	virtual int currentCursorSelectable();
+	
 	void setListbox(eListbox *lb);
 	
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
