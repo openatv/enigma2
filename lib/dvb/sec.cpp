@@ -271,7 +271,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 #define VOLTAGE(x) (lnb_param.m_increased_voltage ? iDVBFrontend::voltage##x##_5 : iDVBFrontend::voltage##x)
 
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id)
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id)
 {
 	bool linked=false;
 	bool depend_satpos_mode=false;
@@ -289,7 +289,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		if ( sit != lnb_param.m_satellites.end())
 		{
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
-
+			bool doSetVoltageToneFrontend = true;
 			int band=0,
 				linked_to=-1, // linked tuner
 				satpos_depends_to=-1,
@@ -554,8 +554,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 
 					if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
-						// TODO .. add handling for turning rotor without measure inputpower
-						compare.voltage = VOLTAGE(18);
+					{
+						if (rotor_param.m_inputpower_parameters.m_use)
+							compare.voltage = VOLTAGE(18);  // in input power mode turn rotor always with 18V (fast)
+						else
+							compare.voltage = VOLTAGE(13);  // in normal mode start turning with 13V
+					}
 					else
 						compare.voltage = voltage;
 
@@ -652,8 +656,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					// else we set voltage after all diseqc stuff..
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 
-					// TODO .. add handling for turning rotor without measure inputpower
-					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
+					if (rotor_param.m_inputpower_parameters.m_use)
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // in normal mode start turning with 13V
+					else
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) ); // turn always with 18V
+
 					// voltage was disabled..so we wait a longer time ..
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +7) );  // no need to send stop rotor cmd
@@ -741,13 +748,46 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ? this should never happen
 						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
-						sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-						frontend.setData(3, RotorCmd);
-						frontend.setData(4, sat.orbital_position);
 					}
 					else
-						eFatal("rotor turning without inputpowermeasure not implemented yet");
+					{  // use normal turning mode
+						doSetVoltageToneFrontend=false;
+						eSecCommand::rotor cmd;
+						eSecCommand::pair compare;
+						compare.voltage = VOLTAGE(13);
+						compare.steps = +2;
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 200) );  // wait 200msec after voltage change
+
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+						compare.voltage = voltage;
+						compare.steps = +3;
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // correct final voltage?
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 2000) );  // wait 2 second before set high voltage
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
+
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+
+						cmd.direction=1;  // check for running rotor
+						cmd.deltaA=0;
+						cmd.steps=+3;
+						cmd.okcount=0;
+
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 480) );  // 2 minutes running timeout
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) ); 
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
+					}
+					sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+					frontend.setData(3, RotorCmd);
+					frontend.setData(4, sat.orbital_position);
 				}
 			}
 			else
@@ -760,15 +800,21 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if ( linked )
 				return 0;
 
-			eSecCommand::pair compare;
-			compare.voltage = voltage;
-			compare.steps = +3;
-			sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // voltage already correct ?
-			sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
-			sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
+			if (doSetVoltageToneFrontend)
+			{
+				eSecCommand::pair compare;
+				compare.voltage = voltage;
+				compare.steps = +3;
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // voltage already correct ?
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
 
-			sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
-			sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
+
+				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+			}
 
 			frontend.setSecSequence(sec_sequence);
 

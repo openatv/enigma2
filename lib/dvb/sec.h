@@ -19,7 +19,9 @@ public:
 		MEASURE_IDLE_INPUTPOWER, MEASURE_RUNNING_INPUTPOWER,
 		IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, IF_INPUTPOWER_DELTA_GOTO,
 		UPDATE_CURRENT_ROTORPARAMS, INVALIDATE_CURRENT_ROTORPARMS,
-		IF_ROTORPOS_VALID_GOTO
+		IF_ROTORPOS_VALID_GOTO,
+		IF_TUNER_LOCKED_GOTO,
+		START_TUNE_TIMEOUT
 	};
 	int cmd;
 	struct rotor
@@ -250,7 +252,7 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
-	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id);
+	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id);
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
 #endif

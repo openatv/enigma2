@@ -358,7 +358,7 @@ public:
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 
 	enum {
-		bitErrorRate, signalPower, signalQuality
+		bitErrorRate, signalPower, signalQuality, Locked, Synced
 	};
 	virtual int readFrontendData(int type)=0;
 
@@ -372,7 +372,7 @@ public:
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
-	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, eDVBFrontendParametersSatellite &sat, int frontend_id)=0;
+	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id)=0;
 	virtual void setRotorMoving(bool)=0;
 };
