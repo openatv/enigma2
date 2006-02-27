@@ -1232,7 +1232,7 @@ class InfoBarCueSheetSupport:
 			return None
 		return service.seek()
 
-	def __getCurrentPosition(self):
+	def cueGetCurrentPosition(self):
 		seek = self.__getSeekable()
 		if seek is None:
 			return None
@@ -1242,7 +1242,7 @@ class InfoBarCueSheetSupport:
 		return long(r[1])
 
 	def jumpPreviousNextMark(self, cmp, alternative=None):
-		current_pos = self.__getCurrentPosition()
+		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
  			return
 		mark = self.getNearestCutPoint(current_pos, cmp=cmp)
@@ -1275,7 +1275,7 @@ class InfoBarCueSheetSupport:
 		return nearest
 
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000):
-		current_pos = self.__getCurrentPosition()
+		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 			print "not seekable"
 			return
