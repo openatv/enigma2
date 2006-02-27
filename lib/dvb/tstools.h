@@ -38,6 +38,9 @@ public:
 		*/
 	int fixupPTS(const off_t &offset, pts_t &pts);
 	
+		/* get (approximate) offset corresponding to PTS */
+	int getOffset(off_t &offset, pts_t &pts);
+	
 	void calcBegin();
 	void calcEnd();
 	
