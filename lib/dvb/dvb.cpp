@@ -708,9 +708,22 @@ void eDVBChannel::cueSheetEvent(int event)
 		break;
 	}
 	case eCueSheet::evtSpanChanged:
-		eDebug("source span translation not yet supported");
-	//	recheckCuesheetSpans();
+	{
+		m_source_span.clear();
+		for (std::list<std::pair<pts_t, pts_t> >::const_iterator i(m_cue->m_spans.begin()); i != m_cue->m_spans.end(); ++i)
+		{
+			off_t offset_in, offset_out;
+			pts_t pts_in = i->first, pts_out = i->second;
+			if (m_tstools.getOffset(offset_in, pts_in) || m_tstools.getOffset(offset_out, pts_out))
+			{
+				eDebug("span translation failed.\n");
+				continue;
+			}
+			eDebug("source span: %llx .. %llx, translated to %llx..%llx", pts_in, pts_out, offset_in, offset_out);
+			m_source_span.push_back(std::pair<off_t, off_t>(offset_in, offset_out));
+		}
 		break;
+	}
 	}
 }
 
@@ -745,13 +758,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	
 	eDebug("getNextSourceSpan, current offset is %08llx!", current_offset);
 	
-	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
-	{
-		eDebug("reached SOF");
-		m_skipmode_m = 0;
-		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
-	}
-	
 	current_offset += m_skipmode_m;
 	
 	while (!m_cue->m_seek_requests.empty())
@@ -761,11 +767,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		int relative = seek.first;
 		pts_t pts = seek.second;
 
-		int bitrate = m_tstools.calcBitrate(); /* in bits/s */
-	
-		if (bitrate == -1)
-			continue;
-	
 		if (relative)
 		{
 			pts_t now;
@@ -786,12 +787,14 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			}
 			pts += now;
 		}
-	
+
 		if (pts < 0)
 			pts = 0;
-	
-		off_t offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
 		
+		off_t offset = 0;
+		if (m_tstools.getOffset(offset, pts))
+			continue;
+
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = offset;
 	}
@@ -809,13 +812,43 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 		if (current_offset < i->first)
 		{
-			start = i->first;
-			size = i->second - i->first;
-			if (size > max)
+				/* ok, our current offset is in an 'out' zone. */
+			if ((m_skipmode_m >= 0) || (i == m_source_span.begin()))
+			{
+					/* in normal playback, just start at the next zone. */
+				start = i->first;
+				size = i->second - i->first;
+				if (size > max)
+					size = max;
+				eDebug("skip");
+				if (m_skipmode_m < 0)
+				{
+					eDebug("reached SOF");
+						/* reached SOF */
+					m_skipmode_m = 0;
+					m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+				}
+			} else
+			{
+					/* when skipping reverse, however, choose the zone before. */
+				--i;
+				eDebug("skip to previous block, which is %llx..%llx", i->first, i->second);
+				size_t len = i->second - i->first;
+				if (max > len)
+					max = len;
+				start = i->second - max;
 				size = max;
-			eDebug("skip");
+				eDebug("skipping to %llx, %d", start, size);
+			}
 			return;
 		}
+	}
+	
+	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+	{
+		eDebug("reached SOF");
+		m_skipmode_m = 0;
+		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 	}
 	
 	start = current_offset;
@@ -1095,6 +1128,10 @@ void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 		eSingleLock l(m_lock);
 		m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
 	}
+}
+
+void eCueSheet::commitSpans()
+{
 	m_event(evtSpanChanged);
 }
 
