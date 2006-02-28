@@ -743,6 +743,11 @@ class InfoBarSeek:
 				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
 			}
 		self.setSeekState(lookup[self.seekstate])
+		
+		if self.seekstate == self.SEEK_STATE_PAUSE:
+			seekable = self.getSeek()
+			if seekable is not None:
+				seekable.seekRelative(-1, 2)
 
 	def fwdTimerFire(self):
 		print "Display seek fwd"
@@ -1287,7 +1292,7 @@ class InfoBarCueSheetSupport:
 				nearest = cp
 		return nearest
 
-	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000):
+	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 			print "not seekable"
@@ -1296,10 +1301,15 @@ class InfoBarCueSheetSupport:
 		nearest_cutpoint = self.getNearestCutPoint(current_pos)
 		
 		if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < tolerance:
+			if onlyreturn:
+				return nearest_cutpoint
 			if not onlyadd:
 				self.removeMark(nearest_cutpoint)
-		elif not onlyremove:
+		elif not onlyremove and not onlyreturn:
 			self.addMark((current_pos, self.CUT_TYPE_MARK))
+		
+		if onlyreturn:
+			return None
 
 	def addMark(self, point):
 		bisect.insort(self.cut_list, point)
