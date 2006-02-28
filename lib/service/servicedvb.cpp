@@ -837,12 +837,18 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
 	
+	int mode = 1;
+	
+			/* HACK until we have skip-AP api */
+	if ((to > 0) && (to < 100))
+		mode = 2;
+	
 	to *= direction;
 	
 	if (!m_cue)
 		return 0;
 	
-	m_cue->seekTo(1, to);
+	m_cue->seekTo(mode, to);
 	return 0;
 }
 
