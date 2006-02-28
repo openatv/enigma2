@@ -36,19 +36,20 @@ class CutListContextMenu(FixedMenu):
 	RET_ENDCUT = 1
 	RET_DELETECUT = 2
 	RET_MARK = 3
+	RET_DELETEMARK = 4
 	
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
 	SHOW_DELETECUT = 2
 	
-	def __init__(self, session, state):
+	def __init__(self, session, state, nearmark):
 		menu = [(_("back"), self.close), (None, )]
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
 		else:
 			menu.append((_("start cut here"), ))
-			
+
 		if state == self.SHOW_ENDCUT:
 			menu.append((_("end cut here"), self.endCut))
 		else:
@@ -58,12 +59,17 @@ class CutListContextMenu(FixedMenu):
 			menu.append((_("delete cut"), self.deleteCut))
 		else:
 			menu.append((_("delete cut"), ))
-		
+
 		menu.append((None, ))
-		menu.append((_("insert mark here"), self.insertMark))
+
+		if not nearmark:
+			menu.append((_("insert mark here"), self.insertMark))
+		else:
+			menu.append((_("remove this mark"), self.removeMark))
+
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "Menu"
-	
+
 	def startCut(self):
 		self.close(self.RET_STARTCUT)
 
@@ -75,6 +81,9 @@ class CutListContextMenu(FixedMenu):
 
 	def insertMark(self):
 		self.close(self.RET_MARK)
+
+	def removeMark(self):
+		self.close(self.RET_DELETEMARK)
 
 class CutList(GUIComponent):
 	def __init__(self, list):
@@ -267,6 +276,8 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 		
 		self.context_position = curpos
 		
+		self.context_nearest_mark = self.toggleMark(onlyreturn=True)
+
 		cur_state = self.getStateForPosition(curpos)
 		if cur_state == 0:
 			print "currently in 'IN'"
@@ -278,7 +289,12 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			print "currently in 'OUT'"
 			state = CutListContextMenu.SHOW_DELETECUT
 		
-		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state)
+		if self.context_nearest_mark is None:
+			nearmark = False
+		else:
+			nearmark = True
+		
+		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark)
 	
 	def menuCallback(self, *result):
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -318,6 +334,9 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			self.uploadCuesheet()
 		elif result == CutListContextMenu.RET_MARK:
 			self.__addMark()
+		elif result == CutListContextMenu.RET_DELETEMARK:
+			self.cut_list.remove(self.context_nearest_mark)
+			self.uploadCuesheet()
 
 def main(session, service):
 	session.open(CutListEditor, service)
