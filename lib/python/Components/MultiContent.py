@@ -19,3 +19,8 @@ def MultiContentEntryText(pos = (0, 0), size = (0, 0), font = 0, flags = RT_HALI
 
 def MultiContentEntryPixmap(pos = (0, 0), size = (0, 0), png = None):
 	return (eListboxPythonMultiContent.TYPE_PIXMAP, pos[0], pos[1], size[0], size[1], png)
+
+def MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (0, 0), png = None):
+	return (eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, pos[0], pos[1], size[0], size[1], png)
+
+	

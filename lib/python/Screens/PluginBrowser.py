@@ -1,6 +1,6 @@
 from Screen import Screen
 
-from enigma import eConsoleAppContainer
+from enigma import eConsoleAppContainer, loadPNG
 
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
@@ -11,7 +11,7 @@ from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -73,6 +73,7 @@ class PluginDownloadBrowser(Screen):
 		self.list = []
 		self["list"] = PluginList(self.list)
 		self.pluginlist = []
+		self.expanded = []
 		
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
@@ -88,18 +89,24 @@ class PluginDownloadBrowser(Screen):
 		})
 		
 	def go(self):
-		print "plugin: installing:", self.pluginlist[self["list"].l.getCurrentSelectionIndex()]
-		if self.type == self.DOWNLOAD:
-			self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][3] + "\"?"))
-		elif self.type == self.REMOVE:
-			self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][3] + "\"?"))
+		if type(self["list"].l.getCurrentSelection()[0]) is str: # category
+			if self["list"].l.getCurrentSelection()[0] in self.expanded:
+				self.expanded.remove(self["list"].l.getCurrentSelection()[0])
+			else:
+				self.expanded.append(self["list"].l.getCurrentSelection()[0])
+			self.updateList()
+		else:
+			if self.type == self.DOWNLOAD:
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + self["list"].l.getCurrentSelection()[0].name + "\"?"))
+			elif self.type == self.REMOVE:
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + self["list"].l.getCurrentSelection()[0].name + "\"?"))
 
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
+				self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + self.pluginlist[self["list"].l.getCurrentSelectionIndex()][0]])
+				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 
 	def setTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -141,9 +148,26 @@ class PluginDownloadBrowser(Screen):
 	
 	def updateList(self):
 		self.list = []
-		for x in self.pluginlist:
-			plugin = PluginDescriptor(name = x[3], description = x[2])
-			self.list.append(PluginEntryComponent(plugin))
+		expandableIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "expandable-plugins.png"))
+		expandedIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "expanded-plugins.png"))
+		verticallineIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "verticalline-plugins.png"))
 		
+		self.plugins = {}
+		for x in self.pluginlist:
+			split = x[3].split('-')
+			if len(split) < 2:
+				continue
+			if not self.plugins.has_key(split[0]):
+				self.plugins[split[0]] = []
+				
+			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1]))
+			
+		for x in self.plugins.keys():
+			if x in self.expanded:
+				self.list.append(PluginCategoryComponent(x, expandedIcon))
+				for plugin in self.plugins[x]:
+					self.list.append(PluginDownloadComponent(plugin[0], plugin[1]))
+			else:
+				self.list.append(PluginCategoryComponent(x, expandableIcon))
 		self["list"].l.setList(self.list)
 

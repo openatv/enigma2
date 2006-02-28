@@ -4,7 +4,7 @@ from GUIComponent import *
 from MenuList import MenuList
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-from Components.MultiContent import RT_HALIGN_LEFT, MultiContentEntryText, MultiContentEntryPixmap
+from Components.MultiContent import RT_HALIGN_LEFT, MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
 from enigma import *
 
@@ -18,7 +18,29 @@ def PluginEntryComponent(plugin):
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
 	else:
 		png = plugin.icon
-	res.append(MultiContentEntryPixmap(pos=(10, 5), size=(60, 40), png = png))
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(60, 40), png = png))
+	
+	return res
+
+def PluginCategoryComponent(name, png):
+	res = [ name ]
+	
+	res.append(MultiContentEntryText(pos=(80, 5), size=(300, 25), font=0, text=name))
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(60, 50), png = png))
+	
+	return res
+
+def PluginDownloadComponent(plugin, name):
+	res = [ plugin ]
+	
+	res.append(MultiContentEntryText(pos=(80, 5), size=(300, 25), font=0, text=name))
+	res.append(MultiContentEntryText(pos=(80, 26), size=(300, 17), font=1, text=plugin.description))
+
+	if plugin.icon is None:
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
+	else:
+		png = plugin.icon
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(60, 50), png = png))
 	
 	return res
 
