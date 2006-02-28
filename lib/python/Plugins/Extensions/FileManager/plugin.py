@@ -16,7 +16,7 @@ class FileManager(Screen):
 		<screen position="100,100" size="550,400" title="Test" >
 			<!--widget name="text" position="0,0" size="550,25" font="Regular;20" /-->
 			<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
-			<widget name="pixmap" position="200,0" size="190,250" />
+			<widget name="pixmap" position="200,0" size="190,250" alphatest="on" />
 		</screen>"""
 	def __init__(self, session, args = None):
 		self.skin = FileManager.skin
