@@ -34,8 +34,11 @@ class PluginDescriptor:
 			self.where = [ where ]
 		self.description = description
 
-		self.iconstr = icon
-		self.icon = None
+		if type(icon) is str or icon is None:
+			self.iconstr = icon
+			self.icon = None
+		else:
+			self.icon = icon
 
 		self.__call__ = fnc
 
