@@ -191,6 +191,17 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 	}
 }
 
+int eDVBTSTools::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
+{
+	if (m_use_streaminfo)
+		return m_streaminfo.getNextAccessPoint(ts, start, direction);
+	else
+	{
+		eDebug("can't get next access point without streaminfo");
+		return -1;
+	}
+}
+
 void eDVBTSTools::calcBegin()
 {
 	if (m_fd < 0)	

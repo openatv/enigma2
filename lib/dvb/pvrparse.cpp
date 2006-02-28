@@ -217,6 +217,41 @@ off_t eMPEGStreamInformation::getAccessPoint(pts_t ts)
 	return last;
 }
 
+int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
+{
+	off_t offset = getAccessPoint(start);
+	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
+	if (i == m_access_points.end())
+	{
+		eDebug("getNextAccessPoint: initial AP not found");
+		return -1;
+	}
+	while (direction)
+	{
+		if (direction > 0)
+		{
+			if (i == m_access_points.end())
+				return -1;
+			++i;
+			direction--;
+		}
+		if (direction < 0)
+		{
+			if (i == m_access_points.begin())
+			{
+				eDebug("at start");
+				return -1;
+			}
+			--i;
+			direction++;
+		}
+	}
+	ts = i->second - getDelta(i->first);
+	eDebug("fine, at %llx - %llx = %llx", ts, i->second, getDelta(i->first));
+	eDebug("fine, at %lld - %lld = %lld", ts, i->second, getDelta(i->first));
+	return 0;
+}
+
 eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo): m_streaminfo(streaminfo), m_pktptr(0), m_pid(-1), m_need_next_packet(0), m_skip(0)
 {
 }

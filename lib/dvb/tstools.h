@@ -41,6 +41,8 @@ public:
 		/* get (approximate) offset corresponding to PTS */
 	int getOffset(off_t &offset, pts_t &pts);
 	
+	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
+	
 	void calcBegin();
 	void calcEnd();
 	
