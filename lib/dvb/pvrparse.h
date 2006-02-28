@@ -40,6 +40,8 @@ public:
 	
 	off_t getAccessPoint(pts_t ts);
 	
+	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
+	
 	bool empty();
 };
 
