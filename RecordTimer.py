@@ -325,6 +325,32 @@ class RecordTimer(timer.Timer):
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
+		
+	def isInTimer(self, eventid, begin, duration, service):
+		time_match = 0
+		for x in self.timer:
+			if x.service_ref == service:
+				if x.eit is not None and x.repeated == 0:
+					if x.eit == eventid:
+						return duration
+				elif x.repeated != 0:
+					# TODO: implement!
+					pass
+				elif x.eit is None:
+					end = begin + duration
+					if begin <= x.begin <= end:
+						diff = end - x.begin
+						if time_match < diff:
+							time_match = diff
+					elif x.begin <= begin <= x.end:
+						diff = x.end - begin
+						if time_match < diff:
+							time_match = diff
+		return time_match
+							
+						
+						
+			
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)
