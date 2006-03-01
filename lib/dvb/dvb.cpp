@@ -767,9 +767,9 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		int relative = seek.first;
 		pts_t pts = seek.second;
 
+		pts_t now = 0;
 		if (relative)
 		{
-			pts_t now;
 			if (!m_cue->m_decoder)
 			{
 				eDebug("no decoder - can't seek relative");
@@ -785,11 +785,29 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("seekTo: getCurrentPosition failed!");
 				continue;
 			}
-			pts += now;
 		}
+		
+		if (relative == 1) /* pts relative */
+			pts += now;
 
-		if (pts < 0)
-			pts = 0;
+		if (relative != 2)
+			if (pts < 0)
+				pts = 0;
+		
+		if (relative == 2) /* AP relative */
+		{
+			eDebug("AP relative seeking: %lld, at %lld", pts, now);
+			pts_t nextap;
+			if (m_tstools.getNextAccessPoint(nextap, now, pts))
+			{
+				pts = now;
+				eDebug("AP relative seeking failed!");
+			} else
+			{
+				eDebug("next ap is %llx\n", pts);
+				pts = nextap;
+			}
+		}
 		
 		off_t offset = 0;
 		if (m_tstools.getOffset(offset, pts))
@@ -854,9 +872,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	start = current_offset;
 	size = max;
 	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
-	
-	if (size < 4096)
-		eFatal("blub");
 	return;
 }
 
