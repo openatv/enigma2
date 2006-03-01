@@ -5,6 +5,7 @@ from enigma import *
 from re import *
 from time import localtime, time
 from ServiceReference import ServiceReference
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -42,7 +43,8 @@ class Rect:
 		return self.__width
 
 class EPGList(HTMLComponent, GUIComponent):
-	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None):
+	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer = None):
+		self.timer = timer
 		self.onSelChanged = [ ]
 		if selChangedCB is not None:
 			self.onSelChanged.append(selChangedCB)
@@ -135,13 +137,17 @@ class EPGList(HTMLComponent, GUIComponent):
 				w = width/10*5;
 				self.descr_rect = Rect(xpos, 0, width, height)
 
-	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
+	def buildSingleEntry(self, eventId, beginTime, duration, EventName, rec=False):
 		r1=self.datetime_rect
 		r2=self.descr_rect
 		res = [ eventId ]
 		t = localtime(beginTime)
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
+		if rec:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
@@ -232,7 +238,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			tmp = self.queryEPG(test)
 			self.list = [ ]
 			for x in tmp:
-				self.list.append(self.buildSingleEntry(x[0], x[1], x[2], x[3]))
+				self.list.append(self.buildSingleEntry(x[0], x[1], x[2], x[3], (self.timer.isInTimer(eventid=x[0], begin=x[1], duration=x[2], service=service) > 0)))
 #				self.list.append(self.buildSingleEntry(refstr, x[0], x[1], x[2], x[3]))
 			self.l.setList(self.list)
 		print time() - t
