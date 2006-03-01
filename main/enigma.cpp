@@ -260,12 +260,13 @@ eApplication *getApplication()
 
 void runMainloop()
 {
-	exit_code = eApp->runLoop();
+	eApp->runLoop();
 }
 
 void quitMainloop(int exitCode)
 {
-	eApp->quit(exitCode);
+	exit_code = exitCode;
+	eApp->quit(0);
 }
 
 void setLCD(const char *string)
