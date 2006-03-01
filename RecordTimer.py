@@ -328,8 +328,8 @@ class RecordTimer(timer.Timer):
 		
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
-		for x in self.timer:
-			if x.service_ref == service:
+		for x in self.timer_list:
+			if str(x.service_ref) == str(service):
 				if x.eit is not None and x.repeated == 0:
 					if x.eit == eventid:
 						return duration

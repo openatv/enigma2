@@ -46,7 +46,7 @@ class EPGSelection(Screen):
 			self.zapFunc = zapFunc
 
 		self["key_green"] = Button(_("Add timer"))
-		self["list"] = EPGList(self.type, self.onSelectionChanged)
+		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer)
 
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
