@@ -10,6 +10,7 @@ import xml.dom.minidom
 from Screens.MessageBox import MessageBox
 from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
+from time import localtime
 
 from Tools.XMLTools import elementsWithTag, mergeText
 from ServiceReference import ServiceReference
@@ -330,12 +331,20 @@ class RecordTimer(timer.Timer):
 		time_match = 0
 		for x in self.timer_list:
 			if str(x.service_ref) == str(service):
-				if x.eit is not None and x.repeated == 0:
-					if x.eit == eventid:
-						return duration
-				elif x.repeated != 0:
-					# TODO: implement!
-					pass
+				#if x.eit is not None and x.repeated == 0:
+				#	if x.eit == eventid:
+				#		return duration
+				if x.repeated != 0:
+					chktime = localtime(begin)
+					time = localtime(x.begin)
+					chktimecmp = chktime.tm_wday * 1440 + chktime.tm_hour * 60 + chktime.tm_min
+					for y in range(7):
+						if x.repeated & (2 ** y):
+							timecmp = y * 1440 + time.tm_hour * 60 + time.tm_min
+							if timecmp <= chktimecmp < (timecmp + ((x.end - x.begin) / 60)):
+								time_match = ((timecmp + ((x.end - x.begin) / 60)) - chktimecmp) * 60
+							elif chktimecmp <= timecmp < (chktimecmp + (duration / 60)):
+								time_match = ((chktimecmp + (duration / 60)) - timecmp) * 60
 				elif x.eit is None:
 					end = begin + duration
 					if begin <= x.begin <= end:
