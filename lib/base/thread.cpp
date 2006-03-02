@@ -19,7 +19,7 @@ void *eThread::wrapper(void *ptr)
 	pthread_cleanup_push( thread_completed, (void*)p );
 	p->thread();
 	pthread_exit(0);
-	pthread_cleanup_pop(0);
+	pthread_cleanup_pop(1);
 	return 0;
 }
 
