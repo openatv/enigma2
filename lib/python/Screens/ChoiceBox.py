@@ -9,11 +9,12 @@ from Components.GUIComponent import *
 import os
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", **kwargs):
+	def __init__(self, session, title = "", list = []):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
-		self["list"] = MenuList(**kwargs)
+		self.list = list
+		self["list"] = MenuList(list)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
 		{

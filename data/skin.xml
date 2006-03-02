@@ -347,7 +347,7 @@
 		</screen>
 		<screen name="ChoiceBox" position="100,100" size="550,400" title="Input" >
 			<widget name="text" position="0,0" size="550,25" font="Regular;20" />
-			<widget name="list" position="0,30" size="550,335" />
+			<widget name="list" position="0,30" size="550,335" scrollbarMode="showOnDemand" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
 from enigma import eSize, ePoint
@@ -358,11 +358,14 @@ textsize = self["text"].getSize()
 
 # y size still must be fixed in font stuff...
 textsize = (textsize[0] + 50, textsize[1] + 50)
-offset = 60
+count = len(self.list)
+if count > 6:
+	count = 6
+offset = 30 * count
 wsizex = textsize[0] + 60
 wsizey = textsize[1] + offset
-if (280 > wsizex):
-	wsizex = 280
+if (400 > wsizex):
+	wsizex = 400
 wsize = (wsizex, wsizey)
 
 
@@ -373,7 +376,7 @@ self.instance.resize(eSize(*wsize))
 self["text"].instance.resize(eSize(*textsize))
 
 # move list
-listsize = (wsizex, 50)
+listsize = (wsizex, 30 * len(self.list))
 self["list"].instance.move(ePoint(0, textsize[1]))
 self["list"].instance.resize(eSize(*listsize))
 
