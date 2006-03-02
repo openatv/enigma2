@@ -19,7 +19,7 @@ class ChoiceBox(Screen):
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
 		{
 			"ok": self.go,
-			"back": self.close,
+			"back": self.cancel,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,

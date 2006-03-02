@@ -16,6 +16,7 @@ from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
 
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -999,21 +1000,24 @@ class InfoBarInstantRecord:
 		self.session.nav.RecordTimer.removeEntry(self.recording)
 		self.recording = None
 
-	def startInstantRecording(self):
+	def startInstantRecording(self, limitEvent = False):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		
 		# try to get event info
 		event = None
-		try:
-			service = self.session.nav.getCurrentService()
-			epg = eEPGCache.getInstance()
-			event = epg.lookupEventTime(serviceref, -1, 0)
+		if limitEvent:
+			try:
+				service = self.session.nav.getCurrentService()
+				epg = eEPGCache.getInstance()
+				event = epg.lookupEventTime(serviceref, -1, 0)
+				if event is None:
+					info = service.info()
+					ev = info.getEvent(0)
+					event = ev
+			except:
+				pass
 			if event is None:
-				info = service.info()
-				ev = info.getEvent(0)
-				event = ev
-		except:
-			pass
+				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
 
 		if event is not None:
 			data = parseEvent(event)
@@ -1036,13 +1040,16 @@ class InfoBarInstantRecord:
 		return False
 
 	def recordQuestionCallback(self, answer):
-		if answer == False:
+		if answer is None or answer[1] == "no":
 			return
 		
 		if self.isInstantRecordRunning():
 			self.stopCurrentRecording()
 		else:
-			self.startInstantRecording()
+			limitEvent = False
+			if answer[1] == "event":
+				limitEvent = True
+			self.startInstantRecording(limitEvent = limitEvent)
 
 	def instantRecord(self):
 		try:
@@ -1052,9 +1059,11 @@ class InfoBarInstantRecord:
 			return
 	
 		if self.isInstantRecordRunning():
-			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Do you want to stop the current\n(instant) recording?"), list=[(_("yes"), "yes"), (_("no"), "no")])
+#			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Do you want to stop the current\n(instant) recording?"), list=[(_("record indefinitely"), "indefinitely"), (_("stop after current event"), "event"), (_("don't record"), "no")])
+			#self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
 
 from Screens.AudioSelection import AudioSelection
 
