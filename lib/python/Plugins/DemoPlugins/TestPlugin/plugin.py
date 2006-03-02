@@ -7,7 +7,7 @@ from Components.Input import Input
 from Components.GUIComponent import *
 from Components.Pixmap import Pixmap
 from Components.FileList import FileEntryComponent, FileList
-from Screens.InputBox import InputBox
+from Screens.ChoiceBox import ChoiceBox
 from Plugins.Plugin import PluginDescriptor
 
 import os
@@ -69,7 +69,7 @@ class Test(Screen):
 		self["text"].number(number)
 
 def main(session):
-	session.openWithCallback(test, InputBox, title="Hallo", text="1234", maxSize=True, type=Input.NUMBER)
+	session.openWithCallback(test, ChoiceBox, title="Hallo", list=[(_("yes"), "yes"), (_("no"), "no")])
 	
 def test(returnValue):
 	print "You entered", returnValue
