@@ -6,6 +6,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.config import configfile
+from Components.Clock import Clock
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -73,7 +74,24 @@ class MenuUpdater:
 		return self.updatedMenuItems[id]
 	
 menuupdater = MenuUpdater()
-		
+
+class MenuSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget name="Clock" position="50,46" size="82,18" font="Regular;19" />
+		<widget name="MenuTitle" position="0,4" size="132,21" font="Regular;19" />
+		<widget name="MenuEntry" position="0,25" size="132,21" font="Regular;19" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+		self["MenuTitle"] = Label(parent.menu_title)
+		self["MenuEntry"] = Label("")
+		self["Clock"] = Clock()
+
+	def setCurrentEntry(self, entry):
+		self["MenuEntry"].setText(entry)
+
 class Menu(Screen):
 	def okbuttonClick(self):
 		print "okbuttonClick"
@@ -82,7 +100,7 @@ class Menu(Screen):
 
 	def execText(self, text):
 		exec text
-		
+
 	def runScreen(self, arg):
 		# arg[0] is the module (as string)
 		# arg[1] is Screen inside this module 
@@ -185,6 +203,7 @@ class Menu(Screen):
 
 
 		self["menu"] = MenuList(list)	
+		self["menu"].onSelectionChanged.append(self.selectionChanged)
 							
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
@@ -197,12 +216,21 @@ class Menu(Screen):
 		if a == "":														#if empty use name
 			a = _(getValbyAttr(parent, "text"))
 		self["title"] = Header(a)
+		self.menu_title = a
 
 	def closeNonRecursive(self):
 		self.close(False)
 
 	def closeRecursive(self):
 		self.close(True)
+
+	def createSummary(self):
+		return MenuSummary
+
+	def selectionChanged(self):
+		entry = self["menu"].getCurrent()[0]
+		for x in self.summaries:
+			x.setCurrentEntry(entry)
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file

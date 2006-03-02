@@ -6,7 +6,7 @@ class GUISkin:
 
 	def __init__(self):
 		self.onLayoutFinish = [ ]
-		pass
+		self.summaries = [ ]
 
 	def createGUIScreen(self, parent, desktop):
 		for (name, val) in self.items():
@@ -32,3 +32,19 @@ class GUISkin:
 
 	def close(self):
 		self.deleteGUIScreen()
+
+	def createSummary(self):
+		return None
+
+	def addSummary(self, summary):
+		self.summaries.append(summary)
+
+	def removeSummary(self, summary):
+		self.summaries.remove(summary)
+
+	def setTitle(self, title):
+		self.instance.setTitle(title)
+		self.title = title
+		
+		for x in self.summaries:
+			x.setTitle(title)

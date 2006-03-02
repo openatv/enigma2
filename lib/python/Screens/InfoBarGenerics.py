@@ -11,6 +11,7 @@ from Components.Pixmap import Pixmap, PixmapConditional
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo, EventInfoProgress
+from Components.Clock import Clock
 
 from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
@@ -748,7 +749,7 @@ class InfoBarSeek:
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			seekable = self.getSeek()
 			if seekable is not None:
-				seekable.seekRelative(-1, 2)
+				seekable.seekRelative(-1, 3)
 
 	def fwdTimerFire(self):
 		print "Display seek fwd"
@@ -1349,3 +1350,22 @@ class InfoBarCueSheetSupport:
 			print "upload failed, no cuesheet interface"
 			return
 		self.cut_list = cue.getCutList()
+
+class InfoBarSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget name="Clock" position="50,46" size="82,18" font="Regular;19" />
+		<widget name="CurrentService" position="0,4" size="132,42" font="Regular;19" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+		self["CurrentService"] = ServiceName(self.session.nav)
+		self["Clock"] = Clock()
+
+class InfoBarSummarySupport:
+	def __init__(self):
+		pass
+	
+	def createSummary(self):
+		return InfoBarSummary

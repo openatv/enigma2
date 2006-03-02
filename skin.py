@@ -210,12 +210,12 @@ def readSkin(screen, skin, name, desktop):
 			myscreen = x
 	del skin
 	
-	if myscreen is None:
-		# try embedded skin
-		if "parsedSkin" in screen.__dict__:
-			myscreen = screen.parsedSkin
-		elif "skin" in screen.__dict__:
-			myscreen = screen.parsedSkin = xml.dom.minidom.parseString(screen.skin).childNodes[0]
+	# try embedded skin
+	myscreen = myscreen or getattr(screen, "parsedSkin", None)
+	
+	# try uncompiled embedded skin
+	if myscreen is None and getattr(screen, "skin", None):
+		myscreen = screen.parsedSkin = xml.dom.minidom.parseString(screen.skin).childNodes[0]
 	
 	assert myscreen is not None, "no skin for screen '" + name + "' found!"
 

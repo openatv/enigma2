@@ -29,8 +29,8 @@ void ePixmap::setPixmapFromFile(const char *filename)
 		return;
 	}
 	
-		// TODO
-	getDesktop()->makeCompatiblePixmap(*m_pixmap);
+		// TODO: This only works for desktop 0
+	getDesktop(0)->makeCompatiblePixmap(*m_pixmap);
 	event(evtChangedPixmap);
 }
 

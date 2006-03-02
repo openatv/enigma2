@@ -9,6 +9,7 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.list = list
 		self.l = eListboxPythonStringContent()
 		self.l.setList(self.list)
+		self.onSelectionChanged = [ ]
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -16,9 +17,12 @@ class MenuList(HTMLComponent, GUIComponent):
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
+		self.instance.selectionChanged.get().append(self.selectionChanged)
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)
 		self.instance = None
 
-
+	def selectionChanged(self):
+		for f in self.onSelectionChanged:
+			f()

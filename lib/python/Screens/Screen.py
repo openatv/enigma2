@@ -29,15 +29,15 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.active_components = [ ]
 		for x in self.onExecBegin:
 			x()
-			if self.session.currentDialog != self:
+			if self.session.current_dialog != self:
 				return
 
-#		assert self.session == None, "a screen can only exec one per time"
+#		assert self.session == None, "a screen can only exec once per time"
 #		self.session = session
 
 		for (name, val) in self.items():
 			val.execBegin()
-			if self.session.currentDialog != self:
+			if self.session.current_dialog != self:
 				return
 			self.active_components.append(val)
 
@@ -57,6 +57,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 	
 	# never call this directly - it will be called from the session!
 	def doClose(self):
+		self.hide()
 		for x in self.onClose:
 			x()
 		
@@ -84,6 +85,9 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.instance.show()
 		for x in self.onShow:
 			x()
+		for (name, val) in self.items():
+			if isinstance(val, GUIComponent):
+				val.onShow()
 
 	def hide(self):
 		if not self.shown:
@@ -92,3 +96,6 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.instance.hide()
 		for x in self.onHide:
 			x()
+		for (name, val) in self.items():
+			if isinstance(val, GUIComponent):
+				val.onHide()

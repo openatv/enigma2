@@ -272,7 +272,7 @@ class ChannelSelectionEdit:
 			new_title += ' ' + _("[bouquet edit]")
 		else:
 			new_title += ' ' + _("[favourite edit]")
-		self.instance.setTitle(new_title)
+		self.setTitle(new_title)
 		self.bouquet_mark_edit = True
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
@@ -300,7 +300,7 @@ class ChannelSelectionEdit:
 		self.clearMarks()
 		self.bouquet_mark_edit = False
 		self.mutableList = None
-		self.instance.setTitle(self.saved_title)
+		self.setTitle(self.saved_title)
 		self.saved_title = None
 		self.servicePath = self.savedPath[:]
 		del self.savedPath
@@ -346,7 +346,7 @@ class ChannelSelectionEdit:
 			self.pathChangedDisabled = False # re-enable path change
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 			self.mutableList = None
-			self.instance.setTitle(self.saved_title)
+			self.setTitle(self.saved_title)
 			self.saved_title = None
 			if self.getRoot() == self.bouquet_root:
 				self.bouquetNumOffsetCache = { }
@@ -358,7 +358,7 @@ class ChannelSelectionEdit:
 			new_title = self.saved_title
 			pos = self.saved_title.find(')')
 			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
-			self.instance.setTitle(new_title);
+			self.setTitle(new_title);
 
 	def handleEditCancel(self):
 		if self.movemode: #movemode active?
@@ -487,7 +487,7 @@ class ChannelSelectionBase(Screen):
 		if pos != -1:
 			title = title[:pos]
 		title += " (TV)"
-		self.instance.setTitle(title)
+		self.setTitle(title)
 
 	def setRadioMode(self):
 		self.mode = MODE_RADIO
@@ -498,7 +498,7 @@ class ChannelSelectionBase(Screen):
 		if pos != -1:
 			title = title[:pos]
 		title += " (Radio)"
-		self.instance.setTitle(title)
+		self.setTitle(title)
 
 	def setRoot(self, root, justSet=False):
 		path = root.getPath()
@@ -559,7 +559,7 @@ class ChannelSelectionBase(Screen):
 						titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
 					titleStr += nameStr
-				self.instance.setTitle(titleStr)
+				self.setTitle(titleStr)
 
 	def moveUp(self):
 		self.servicelist.moveUp()
@@ -1043,7 +1043,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 
 	def __onExecCallback(self):
-		self.session.currentDialog.instance.setTitle(self.title)
+		self.setTitle(self.title)
 		self.setModeTv()
 
 	def channelSelected(self): # just return selected service

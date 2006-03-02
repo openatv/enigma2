@@ -113,6 +113,6 @@ public:
 	void setFocus(eWidget *focus);
 };
 
-extern eWidgetDesktop *getDesktop();
+extern eWidgetDesktop *getDesktop(int which);
 
 #endif

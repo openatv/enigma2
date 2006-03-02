@@ -9,6 +9,7 @@
 eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
+	m_desktop = desktop;
 		/* ask style manager for current style */
 	ePtr<eWindowStyleManager> mgr;
 	eWindowStyleManager::getInstance(mgr);
@@ -34,7 +35,7 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 
 eWindow::~eWindow()
 {
-	getDesktop()->removeRootWidget(this);
+	m_desktop->removeRootWidget(this);
 	m_child->destruct();
 }
 

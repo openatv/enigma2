@@ -82,7 +82,7 @@ class EventViewBase:
 			if len(text) > 0:
 				text = text + '\n\n'
 			text = text + ext
-		self.session.currentDialog.instance.setTitle(event.getEventName())
+		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
