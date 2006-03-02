@@ -68,7 +68,7 @@ class PluginDownloadBrowser(Screen):
 		self.container.appClosed.get().append(self.runFinished)
 		self.container.dataAvail.get().append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
-		self.onShown.append(self.setTitle)
+		self.onShown.append(self.setWindowTitle)
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -108,7 +108,7 @@ class PluginDownloadBrowser(Screen):
 			elif self.type == self.REMOVE:
 				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 
-	def setTitle(self):
+	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
 			self.setTitle(_("Downloadable new plugins"))
 		elif self.type == self.REMOVE:
