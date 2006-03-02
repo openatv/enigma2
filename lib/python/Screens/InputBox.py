@@ -18,7 +18,7 @@ class InputBox(Screen):
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
 		{
 			"ok": self.go,
-			"back": self.close,
+			"back": self.cancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"1": self.keyNumberGlobal,

@@ -12,12 +12,14 @@ from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.ServiceName import ServiceName
 from Components.EventInfo import EventInfo, EventInfoProgress
 from Components.Clock import Clock
+from Components.Input import Input
 
 from ServiceReference import ServiceReference
 from EpgSelection import EPGSelection
 
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.InputBox import InputBox
 from Screens.Dish import Dish
 from Screens.Standby import Standby
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -1052,12 +1054,24 @@ class InfoBarInstantRecord:
 			return
 		
 		if self.isInstantRecordRunning():
-			self.stopCurrentRecording()
+			if answer[1] == "manualduration":
+				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)				
+			else:
+				self.stopCurrentRecording()
 		else:
 			limitEvent = False
 			if answer[1] == "event":
 				limitEvent = True
+			if answer[1] == "manualduration":
+				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 			self.startInstantRecording(limitEvent = limitEvent)
+
+	def inputCallback(self, value):
+		if value is not None:
+			print "stopping recording after", int(value), "minutes."
+			if self.recording is not None:
+				self.recording.end = time.time() + 60 * int(value)
+				self.session.nav.RecordTimer.timeChanged(self.recording)
 
 	def instantRecord(self):
 		try:
@@ -1067,10 +1081,10 @@ class InfoBarInstantRecord:
 			return
 	
 		if self.isInstantRecordRunning():
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Do you want to stop the current\n(instant) recording?"), list=[(_("yes"), "yes"), (_("no"), "no")])
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("A recording is currently running.\nWhat do you want to do?"), list=[(_("stop recording"), "yes"), (_("enter recording duration"), "manualduration"), (_("do nothing"), "no")])
 #			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("record indefinitely"), "indefinitely"), (_("stop after current event"), "event"), (_("don't record"), "no")])
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("record indefinitely"), "indefinitely"), (_("stop after current event"), "event"), (_("enter recording duration"), "manualduration"),(_("don't record"), "no")])
 			#self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
 
 from Screens.AudioSelection import AudioSelection
