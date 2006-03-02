@@ -32,6 +32,7 @@ private:
 	std::string m_title;
 	eWidget *m_child;
 	int m_flags;
+	eWidgetDesktop *m_desktop;
 };
 
 #endif

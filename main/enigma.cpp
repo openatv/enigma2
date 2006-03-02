@@ -135,8 +135,6 @@ public:
 
 /************************************************/
 
-eLabel *lcd_label, *lcd_clock;
-
 int exit_code;
 
 int main(int argc, char **argv)
@@ -209,38 +207,11 @@ int main(int argc, char **argv)
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 
-	eWindow *lcd_win = new eWindow(&dsk_lcd);
-	
-	lcd_win->setFlag(eWindow::wfNoBorder);
-	
-	lcd_win->move(ePoint(0, 0));
-	lcd_win->resize(eSize(132, 64));
-	
-	lcd_label = new eLabel(lcd_win);
-	lcd_label->move(ePoint(0, 4));
-	lcd_label->resize(eSize(132, 42));
-	ePtr<gFont> font = new gFont("Regular", 19);
-	//ePtr<gFont> font = new gFont("Regular", 16);
-	lcd_label->setFont(font);
-
-	lcd_clock = new eLabel(lcd_win);
-	lcd_clock->move(ePoint(50, 46));
-	lcd_clock->resize(eSize(132, 18));
-	ePtr<gFont> clkfont = new gFont("Regular", 16);
-	lcd_clock->setFont(clkfont);
-
-	//lcd_label->setText("bla bla bla, this lcd\nSUCKS!");
-	//lcd_clock->setText("88:88:88");
-
-	lcd_win->show();
-	
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 	
 	printf("executing main\n");
 
 	python.execute("mytest", "__main__");
-	
-	lcd_win->hide();
 	
 	dsk.paint();
 	dsk_lcd.paint();
@@ -248,9 +219,9 @@ int main(int argc, char **argv)
 	return exit_code;
 }
 
-eWidgetDesktop *getDesktop()
+eWidgetDesktop *getDesktop(int which)
 {
-	return wdsk;
+	return which ? lcddsk : wdsk;
 }
 
 eApplication *getApplication()
@@ -271,10 +242,8 @@ void quitMainloop(int exitCode)
 
 void setLCD(const char *string)
 {
-	lcd_label->setText(string);
 }
 
 void setLCDClock(const char *string)
 {
-	lcd_clock->setText(string);
 }

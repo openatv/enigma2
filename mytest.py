@@ -6,6 +6,7 @@ from Components.Language import language
 
 import traceback
 import Screens.InfoBar
+from Screens.SimpleSummary import SimpleSummary
 
 import sys
 import time
@@ -81,44 +82,58 @@ class GUIOutputDevice(OutputDevice):
 		comp.createGUIScreen(self.parent, desktop)
 
 class Session:
-	def __init__(self):
-		self.desktop = None
-		self.delayTimer = eTimer()
-		self.delayTimer.timeout.get().append(self.processDelay)
+	def __init__(self, desktop = None, summary_desktop = None, navigation = None):
+		self.desktop = desktop
+		self.summary_desktop = summary_desktop
+		self.nav = navigation
+		self.delay_timer = eTimer()
+		self.delay_timer.timeout.get().append(self.processDelay)
 		
-		self.currentDialog = None
+		self.current_dialog = None
 		
-		self.dialogStack = [ ]
+		self.dialog_stack = [ ]
+		self.summary_stack = [ ]
+		self.summary = None
 	
 	def processDelay(self):
 		self.execEnd()
 		
-		callback = self.currentDialog.callback
+		callback = self.current_dialog.callback
 
-		retval = self.currentDialog.returnValue
+		retval = self.current_dialog.returnValue
 
-		if self.currentDialog.isTmp:
-			self.currentDialog.doClose()
-#			dump(self.currentDialog)
-			del self.currentDialog
+		if self.current_dialog.isTmp:
+			self.current_dialog.doClose()
+#			dump(self.current_dialog)
+			del self.current_dialog
 		else:
-			del self.currentDialog.callback
+			del self.current_dialog.callback
 		
 		self.popCurrent()
 		if callback is not None:
 			callback(*retval)
 
 	def execBegin(self):
-		c = self.currentDialog
+		c = self.current_dialog
+		
+		self.pushSummary()
+
+		summary = c.createSummary() or SimpleSummary
+		self.summary = self.instantiateSummaryDialog(summary, c)
+		self.summary.show()
+
+		c.addSummary(self.summary)
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
-		if c == self.currentDialog:
+		if c == self.current_dialog:
 			c.show()
 		
 	def execEnd(self):
-		self.currentDialog.execEnd()
-		self.currentDialog.hide()
+		self.current_dialog.execEnd()
+		self.current_dialog.hide()
+		self.current_dialog.removeSummary(self.summary)
+		self.popSummary()
 	
 	def create(self, screen, arguments, **kwargs):
 		# creates an instance of 'screen' (which is a class)
@@ -129,9 +144,14 @@ class Session:
 			print errstr
 			traceback.print_exc(file=sys.stdout)
 			quitMainloop(5)
-			
 	
 	def instantiateDialog(self, screen, *arguments, **kwargs):
+		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
+	
+	def instantiateSummaryDialog(self, screen, *arguments, **kwargs):
+		return self.doInstantiateDialog(screen, arguments, kwargs, self.summary_desktop)
+	
+	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		# create dialog
 		
 		try:
@@ -147,41 +167,45 @@ class Session:
 			return
 
 		# read skin data
-		readSkin(dlg, None, dlg.skinName, self.desktop)
+		readSkin(dlg, None, dlg.skinName, desktop)
 
 		# create GUI view of this dialog
-		assert self.desktop != None
+		assert desktop is not None
 		
 		z = 0
+		title = ""
 		for (key, value) in dlg.skinAttributes:
 			if key == "zPosition":
 				z = int(value)
-
-		dlg.instance = eWindow(self.desktop, z)
-		applyAllAttributes(dlg.instance, self.desktop, dlg.skinAttributes)
+			elif key == "title":
+				title = value
+		
+		dlg.instance = eWindow(desktop, z)
+		dlg.title = title
+		applyAllAttributes(dlg.instance, desktop, dlg.skinAttributes)
 		gui = GUIOutputDevice()
 		gui.parent = dlg.instance
-		gui.create(dlg, self.desktop)
+		gui.create(dlg, desktop)
 		
 		return dlg
 	 
 	def pushCurrent(self):
-		if self.currentDialog:
-			self.dialogStack.append(self.currentDialog)
+		if self.current_dialog:
+			self.dialog_stack.append(self.current_dialog)
 			self.execEnd()
 	
 	def popCurrent(self):
-		if len(self.dialogStack):
-			self.currentDialog = self.dialogStack.pop()
+		if len(self.dialog_stack):
+			self.current_dialog = self.dialog_stack.pop()
 			self.execBegin()
 		else:
-			self.currentDialog = None
+			self.current_dialog = None
 
 	def execDialog(self, dialog):
 		self.pushCurrent()
-		self.currentDialog = dialog
-		self.currentDialog.isTmp = False
-		self.currentDialog.callback = None # would cause re-entrancy problems.
+		self.current_dialog = dialog
+		self.current_dialog.isTmp = False
+		self.current_dialog.callback = None # would cause re-entrancy problems.
 		self.execBegin()
 
 	def openWithCallback(self, callback, screen, *arguments, **kwargs):
@@ -190,7 +214,7 @@ class Session:
 
 	def open(self, screen, *arguments, **kwargs):
 		self.pushCurrent()
-		dlg = self.currentDialog = self.instantiateDialog(screen, *arguments, **kwargs)
+		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
 		dlg.callback = None
 		self.execBegin()
@@ -200,8 +224,21 @@ class Session:
 		print "code " + str(code)
 
 	def close(self, *retval):
-		self.currentDialog.returnValue = retval
-		self.delayTimer.start(0, 1)
+		self.current_dialog.returnValue = retval
+		self.delay_timer.start(0, 1)
+
+	def pushSummary(self):
+		if self.summary is not None:
+			self.summary.hide()
+		self.summary_stack.append(self.summary)
+		self.summary = None
+
+	def popSummary(self):
+		if self.summary is not None:
+			self.summary.doClose()
+		self.summary = self.summary_stack.pop()
+		if self.summary is not None:
+			self.summary.show()
 
 from Screens.Volume import Volume
 from Screens.Mute import Mute
@@ -266,10 +303,7 @@ class VolumeControl:
 			self.muteDialog.hide()
 
 def runScreenTest():
-	session = Session()
-	session.desktop = getDesktop()
-	
-	session.nav = Navigation()
+	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
 	
 	screensToRun = [ ]
 	
@@ -318,7 +352,7 @@ def runScreenTest():
 import keymapparser
 keymapparser.readKeymap()
 import skin
-skin.loadSkin(getDesktop())
+skin.loadSkin(getDesktop(0))
 
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
