@@ -77,7 +77,7 @@ class ChannelContextMenu(Screen):
 			if not csel.bouquet_mark_edit:
 				if not csel.movemode:
 					menu.append((_("enable move mode"), self.toggleMoveMode))
-					menu.append((_("add bouquet"), self.showBouquetInputBox))
+					menu.append((_("add bouquet..."), self.showBouquetInputBox))
 					if not inBouquetRootList:
 						if haveBouquets:
 							menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
