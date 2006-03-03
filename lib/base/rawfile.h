@@ -19,7 +19,7 @@ public:
 private:
 	int m_fd;
 	std::string m_basename;
-	off_t m_splitsize, m_totallength, m_current_offset, m_base_offset;
+	off_t m_splitsize, m_totallength, m_current_offset, m_base_offset, m_last_offset;
 	int m_nrfiles;
 	void scan();
 	int m_current_file;
