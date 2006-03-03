@@ -3,6 +3,7 @@
 
 #include <sys/types.h>
 #include <lib/dvb/pvrparse.h>
+#include <lib/base/rawfile.h>
 
 /*
  * Note: we're interested in PTS values, not STC values.
@@ -51,8 +52,10 @@ public:
 	int calcBitrate(); /* in bits/sec */
 	
 private:
-	int m_fd, m_pid;
+	int m_pid;
 	int m_maxrange;
+	
+	eRawFile m_file;
 	
 	int m_begin_valid, m_end_valid;
 	pts_t m_pts_begin, m_pts_end;

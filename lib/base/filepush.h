@@ -5,6 +5,7 @@
 #include <libsig_comp.h>
 #include <lib/base/message.h>
 #include <sys/types.h>
+#include <lib/base/rawfile.h>
 
 class iFilePushScatterGather
 {
@@ -20,6 +21,7 @@ public:
 	void thread();
 	void stop();
 	void start(int sourcefd, int destfd);
+	int start(const char *filename, int destfd);
 	
 	void pause();
 	void seek(int whence, off_t where);
@@ -43,8 +45,10 @@ private:
 	int m_stop;
 	unsigned char m_buffer[65536];
 	int m_buf_start, m_buf_end;
-	int m_fd_source, m_fd_dest;
+	int m_fd_dest;
 	int m_send_pvr_commit;
+	
+	eRawFile m_raw_source;
 	
 	eFixedMessagePump<int> m_messagepump;
 	

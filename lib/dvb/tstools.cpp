@@ -7,7 +7,6 @@
 
 eDVBTSTools::eDVBTSTools()
 {
-	m_fd = -1;
 	m_pid = -1;
 	m_maxrange = 256*1024;
 	
@@ -36,16 +35,14 @@ int eDVBTSTools::openFile(const char *filename)
 		m_use_streaminfo = 0;
 	}
 
-	m_fd = ::open(filename, O_RDONLY);
-	if (m_fd < 0)
+	if (m_file.open(filename) < 0)
 		return -1;
 	return 0;
 }
 
 void eDVBTSTools::closeFile()
 {
-	if (m_fd >= 0)
-		::close(m_fd);
+	m_file.close();
 }
 
 void eDVBTSTools::setSyncPID(int pid)
@@ -64,13 +61,12 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	if (m_use_streaminfo)
 		return m_streaminfo.getPTS(offset, pts);
 	
-	if (m_fd < 0)
+	if (!m_file.valid() < 0)
 		return -1;
 
 	offset -= offset % 188;
 	
-		// TODO: multiple files!	
-	if (lseek(m_fd, offset, SEEK_SET) < 0)
+	if (m_file.lseek(offset, SEEK_SET) < 0)
 		return -1;
 
 	int left = m_maxrange;
@@ -78,7 +74,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	while (left >= 188)
 	{
 		unsigned char block[188];
-		if (read(m_fd, block, 188) != 188)
+		if (m_file.read(block, 188) != 188)
 		{
 			eDebug("read error");
 			break;
@@ -95,7 +91,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 					break;
 				++i;
 			}
-			offset = lseek(m_fd, i - 188, SEEK_CUR);
+			offset = m_file.lseek(i - 188, SEEK_CUR);
 			continue;
 		}
 		
@@ -204,7 +200,7 @@ int eDVBTSTools::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction
 
 void eDVBTSTools::calcBegin()
 {
-	if (m_fd < 0)	
+	if (!m_file.valid())
 		return;
 
 	if (!m_begin_valid)
@@ -217,10 +213,10 @@ void eDVBTSTools::calcBegin()
 
 void eDVBTSTools::calcEnd()
 {
-	if (m_fd < 0)	
+	if (!m_file.valid())
 		return;
 	
-	off_t end = lseek(m_fd, 0, SEEK_END);
+	off_t end = m_file.lseek(0, SEEK_END);
 	
 	if (abs(end - m_offset_end) > 1*1024*1024)
 	{
