@@ -111,10 +111,15 @@ class ServiceInfo(Screen):
 		frontendData = self.feinfo.getFrontendData(True)
 		print frontendData
 		if frontendData["tuner_type"] == "DVB-S":
-			Labels = ( ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+			Labels = ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   ("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
+					   ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
 					   ("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
-				   		("Polarization", ["horizontal", "vertical", "circular left", "circular right"][frontendData["polarization"]], TYPE_TEXT),
-				   		("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC))
+					   ("Polarization", frontendData["polarization"], TYPE_TEXT),
+					   ("Inversion", frontendData["inversion"], TYPE_TEXT),
+					   ("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
+				   		)
 		elif frontendData["tuner_type"] == "DVB-C":
 			pass
 		elif frontendData["tuner_type"] == "DVB-T":
