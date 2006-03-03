@@ -17,7 +17,6 @@ ePositionGauge::~ePositionGauge()
 
 void ePositionGauge::setLength(const pts_t &len)
 {
-	eDebug("set len: %llx", len);
 	if (m_length == len)
 		return;
 	m_length = len;
@@ -27,7 +26,6 @@ void ePositionGauge::setLength(const pts_t &len)
 
 void ePositionGauge::setPosition(const pts_t &pos)
 {
-	eDebug("set position: %llx", pos);
 	if (m_position == pos)
 		return;
 	m_position = pos;
