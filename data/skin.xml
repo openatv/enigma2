@@ -26,14 +26,14 @@
 			<color name="WindowTitleForeground" color="#ffffff" />
 			<color name="WindowTitleBackground" color="#33294a6b" />
 			<borderset name="bsWindow">
-				<pixmap pos="bpTopLeft"     filename="/usr/share/enigma2/b_w_tl.png" />
-				<pixmap pos="bpTop"         filename="/usr/share/enigma2/b_w_t.png"  />
-				<pixmap pos="bpTopRight"    filename="/usr/share/enigma2/b_w_tr.png" />
-				<pixmap pos="bpLeft"        filename="/usr/share/enigma2/b_w_l.png"  />
-				<pixmap pos="bpRight"       filename="/usr/share/enigma2/b_w_r.png"  />
-				<pixmap pos="bpBottomLeft"  filename="/usr/share/enigma2/b_w_bl.png" />
-				<pixmap pos="bpBottom"      filename="/usr/share/enigma2/b_w_b.png"  />
-				<pixmap pos="bpBottomRight" filename="/usr/share/enigma2/b_w_br.png" />
+				<pixmap pos="bpTopLeft"     filename="b_w_tl.png" />
+				<pixmap pos="bpTop"         filename="b_w_t.png"  />
+				<pixmap pos="bpTopRight"    filename="b_w_tr.png" />
+				<pixmap pos="bpLeft"        filename="b_w_l.png"  />
+				<pixmap pos="bpRight"       filename="b_w_r.png"  />
+				<pixmap pos="bpBottomLeft"  filename="b_w_bl.png" />
+				<pixmap pos="bpBottom"      filename="b_w_b.png"  />
+				<pixmap pos="bpBottomRight" filename="b_w_br.png" />
 			</borderset>
 		</windowstyle>
 		<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
@@ -74,15 +74,15 @@
 			<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
 			<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
 			<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
-			<widget name="initialize" position="40,110" size="120,30" zPosition="1" pixmap="/usr/share/enigma2/init.png" />
+			<widget name="initialize" position="40,110" size="120,30" zPosition="1" pixmap="init.png" />
 			<widget name="initializetext" position="40,110" size="120,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		</screen>
 		<screen name="Setup" position="100,125" size="540,280" title="Setup">
 			<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 			<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
-			<widget name="ok" position="140,240" size="53,30" pixmap="/usr/share/enigma2/ok.png" />
+			<widget name="ok" position="140,240" size="53,30" pixmap="ok.png" />
 			<widget name="oktext" position="140,240" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
-			<widget name="cancel" position="240,240" size="100,30" pixmap="/usr/share/enigma2/cancel.png" />
+			<widget name="cancel" position="240,240" size="100,30" pixmap="cancel.png" />
 			<widget name="canceltext" position="240,240" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		</screen>
 		<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
@@ -128,9 +128,9 @@
 		</screen>
 		<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
 			<widget name="config" position="5,10" size="480,350" />
-			<widget name="ok" position="140,365" size="53,30" pixmap="/usr/share/enigma2/ok.png" />
+			<widget name="ok" position="140,365" size="53,30" pixmap="ok.png" />
 			<widget name="oktext" position="140,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
-			<widget name="cancel" position="240,365" size="100,30" pixmap="/usr/share/enigma2/cancel.png" />
+			<widget name="cancel" position="240,365" size="100,30" pixmap="cancel.png" />
 			<widget name="canceltext" position="240,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		</screen>
 		<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
@@ -188,7 +188,7 @@
 			<widget name="theClock" position="10,60" size="280,50" />
 		</screen>
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
+			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
 
 			<widget name="snr" text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" />
 			<widget name="agc" text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
@@ -200,10 +200,10 @@
 			<widget name="agc_progress" position="447,8" size="88,6" />
 			<widget name="ber_progress" position="447,15" size="88,6" />
 
-			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="430,31" zPosition="2" size="58,25" alphatest="on" />
-			<widget name="CryptActive" pixmap="/usr/share/enigma2/crypt.png" position="570,40" size="12,15" />
-			<widget name="DolbyActive" pixmap="/usr/share/enigma2/dolby.png" position="585,40" size="25,15" />
-			<widget name="FormatActive" pixmap="/usr/share/enigma2/format.png" position="613,40" size="28,15" />
+			<widget name="BlinkingPoint" pixmap="record.png" position="430,31" zPosition="2" size="58,25" alphatest="on" />
+			<widget name="CryptActive" pixmap="crypt.png" position="570,40" size="12,15" />
+			<widget name="DolbyActive" pixmap="dolby.png" position="585,40" size="25,15" />
+			<widget name="FormatActive" pixmap="format.png" position="613,40" size="28,15" />
 
 			<widget name="ServiceName" position="69,26" size="427,34" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" />
@@ -215,27 +215,27 @@
 			<widget name="Event_Next_Duration" position="555,98" size="100,26" font="Regular;22" backgroundColor="dark" halign="right" />
 			<widget name="Now_ProgressBar" position="304,60" size="121,8" zPosition="1" />
 
-			<widget name="ButtonRed" pixmap="/usr/share/enigma2/button_red.png" position="210,132" size="27,12" />
+			<widget name="ButtonRed" pixmap="button_red.png" position="210,132" size="27,12" />
 			<widget name="ButtonRedText" position="240,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
-			<widget name="ButtonGreen" pixmap="/usr/share/enigma2/button_green.png" position="320,132" size="27,12" />
+			<widget name="ButtonGreen" pixmap="button_green.png" position="320,132" size="27,12" />
 			<widget name="ButtonGreenText" position="350,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
-			<widget name="ButtonYellow" pixmap="/usr/share/enigma2/button_yellow.png" position="430,132" size="27,12" />
+			<widget name="ButtonYellow" pixmap="button_yellow.png" position="430,132" size="27,12" />
 			<widget name="ButtonYellowText" position="460,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
-			<widget name="ButtonBlue" pixmap="/usr/share/enigma2/button_blue.png" position="540,132" size="27,12" />
+			<widget name="ButtonBlue" pixmap="button_blue.png" position="540,132" size="27,12" />
 			<widget name="ButtonBlueText" position="570,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" />
 		</screen>
 
 		<screen name="MoviePlayer" flags="wfNoBorder" position="0,370" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="/usr/share/enigma2/info-bg.png" />
-			<ePixmap position="210,83" zPosition="0" size="433,42" pixmap="/usr/share/enigma2/dvr-buttons.png" />
-			<!--<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="/usr/share/enigma2/movieplayer.png" />
+			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
+			<ePixmap position="210,83" zPosition="0" size="433,42" pixmap="dvr-buttons.png" />
+			<!--<ePixmap position="0,0" zPosition="1" size="720,148" pixmap="movieplayer.png" />
 -->
-<!--			<ePixmap position="230,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/rewindbutton.png" />
-			<ePixmap position="275,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/playbutton.png" />
-			<ePixmap position="320,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/pausebutton.png" />
-			<ePixmap position="365,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/forwardbutton.png" />
-			<ePixmap position="410,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/stopbutton.png" />
-			<ePixmap position="455,70" zPosition="0" size="40,40" pixmap="/usr/share/enigma2/recordbutton.png" />
+<!--			<ePixmap position="230,70" zPosition="0" size="40,40" pixmap="rewindbutton.png" />
+			<ePixmap position="275,70" zPosition="0" size="40,40" pixmap="playbutton.png" />
+			<ePixmap position="320,70" zPosition="0" size="40,40" pixmap="pausebutton.png" />
+			<ePixmap position="365,70" zPosition="0" size="40,40" pixmap="forwardbutton.png" />
+			<ePixmap position="410,70" zPosition="0" size="40,40" pixmap="stopbutton.png" />
+			<ePixmap position="455,70" zPosition="0" size="40,40" pixmap="recordbutton.png" />
 -->
 <!--			<widget name="ServiceName" position="250,75" size="427,26" font="Regular;22" backgroundColor="#101258" />
 			<widget name="CurrentTime" position="575,85" size="90,30" backgroundColor="dark" font="Regular;19" />
@@ -245,7 +245,7 @@
 			<widget name="CurrentTime" position="575,10" size="90,25" backgroundColor="dark" font="Regular;19" />
 			   <!-- fixme -->
 			<widget name="ElapsedTime" position="475,60" size="75,20" halign="left" backgroundColor="dark" font="Regular;18" />
-			<widget name="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="/usr/share/enigma2/position_pointer.png:3,5"/>
+			<widget name="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5"/>
 		</screen>
 
 
@@ -257,15 +257,15 @@
 			<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
 		</screen>
 		<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume" zPosition="1" >
-			<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="/usr/share/enigma2/volumeslider-fs8.png" />
+			<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="volumeslider-fs8.png" />
 			<widget name="Volume" zPosition="1" position="8,38" size="164,11" backgroundColor="dark" />
 		</screen>
 		<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute" zPosition="-1">
-			<ePixmap position="0,0" size="59,80" pixmap="/usr/share/enigma2/mute-fs8.png" />
+			<ePixmap position="0,0" size="59,80" pixmap="mute-fs8.png" />
 		</screen>
 		<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish" zPosition="-10" >
 			<widget name="transparent" zPosition="-1" position="0,0" size="100,107" backgroundColor="transparent" />
-			<widget name="Dishpixmap" pixmap="/usr/share/enigma2/dish.png" position="0,0" size="100,107" />
+			<widget name="Dishpixmap" pixmap="dish.png" position="0,0" size="100,107" />
 		</screen>
  		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 			<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
@@ -283,7 +283,7 @@
 		</screen>
 		<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
 			<widget name="ServiceName" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" />
-			<widget name="BlinkingPoint" pixmap="/usr/share/enigma2/record.png" position="400,0" zPosition="2" size="58,25" />
+			<widget name="BlinkingPoint" pixmap="record.png" position="400,0" zPosition="2" size="58,25" />
 			<widget name="Clock" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" />
 			<widget name="Now_ProgressBar" position="465,27" size="90,9" zPosition="1" borderWidth="2" />
 			<widget name="Event_Now_StartTime" position="0,44" size="60,22" font="Regular;20" backgroundColor="dark" />
@@ -312,12 +312,12 @@
 			<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
 			<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Regular;21" />
 			<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Regular;21" />
-			<widget name="now_button" position="10,40" size="123,40" pixmap="/usr/share/enigma2/button-fs8.png" />
-			<widget name="next_button" position="143,40" size="123,40" pixmap="/usr/share/enigma2/button-fs8.png" />
-			<widget name="more_button" position="276,40" size="123,40" pixmap="/usr/share/enigma2/button-fs8.png" />
-			<widget name="now_button_sel" position="10,40" size="123,40" pixmap="/usr/share/enigma2/button-selected-fs8.png" />
-			<widget name="next_button_sel" position="143,40" size="123,40" pixmap="/usr/share/enigma2/button-selected-fs8.png" />
-			<widget name="more_button_sel" position="276,40" size="123,40" pixmap="/usr/share/enigma2/button-selected-fs8.png" />
+			<widget name="now_button" position="10,40" size="123,40" pixmap="button-fs8.png" />
+			<widget name="next_button" position="143,40" size="123,40" pixmap="button-fs8.png" />
+			<widget name="more_button" position="276,40" size="123,40" pixmap="button-fs8.png" />
+			<widget name="now_button_sel" position="10,40" size="123,40" pixmap="button-selected-fs8.png" />
+			<widget name="next_button_sel" position="143,40" size="123,40" pixmap="button-selected-fs8.png" />
+			<widget name="more_button_sel" position="276,40" size="123,40" pixmap="button-selected-fs8.png" />
 			<widget name="now_text" text="NOW" zPosition="2" position="10,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
 			<widget name="next_text" text="NEXT" zPosition="2" position="143,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
 			<widget name="more_text" text="MORE" zPosition="2" position="276,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
@@ -399,8 +399,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</screen>
 		<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
 			<widget name="list" position="50,100" size="450,375" scrollbarMode="showOnDemand" />
-			<widget name="rc" pixmap="/usr/share/enigma2/rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
-			<widget name="arrowup" pixmap="/usr/share/enigma2/arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="rc" pixmap="rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
+			<widget name="arrowup" pixmap="arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<eLabel position="400,40" size="220,60" text="help..." font="Regular;50" />
 		</screen>
 		<screen name="PVRState" flags="wfNoBorder" position="70,70" size="150,30" backgroundColor="transpBlack" zPosition="2">
@@ -409,9 +409,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</screen>
 		<screen name="MessageBox" position="60,300" size="600,10" title="Message">
 			<widget name="text" position="60,10" size="520,0" font="Regular;22" />
-			<widget name="ErrorPixmap" pixmap="/usr/share/enigma2/error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
-			<widget name="QuestionPixmap" pixmap="/usr/share/enigma2/question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
-			<widget name="InfoPixmap" pixmap="/usr/share/enigma2/info.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+			<widget name="ErrorPixmap" pixmap="error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+			<widget name="QuestionPixmap" pixmap="question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+			<widget name="InfoPixmap" pixmap="info.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
 			<widget name="list" position="100,100" size="480,375" />
 			<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
