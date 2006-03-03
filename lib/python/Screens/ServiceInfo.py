@@ -70,10 +70,12 @@ class ServiceInfo(Screen):
 		service = session.nav.getCurrentService()
 		if service is not None:
 			self.info = service.info()
+			self.feinfo = service.frontendStatusInfo()
+			if self.feinfo:
+				print self.feinfo.getFrontendData(False)
 		else:
 			self.info = None
 
-	
 		self["red"] = Label("Serviceinfo")
 		self["green"] = Label("PIDs")
 		self["yellow"] = Label("Transponder")
