@@ -37,7 +37,6 @@ except ImportError:
 
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
-plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
@@ -304,6 +303,8 @@ class VolumeControl:
 
 def runScreenTest():
 	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
+
+	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 	
 	screensToRun = [ ]
 	

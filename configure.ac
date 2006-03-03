@@ -72,6 +72,7 @@ lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/WebInterface/Makefile
 lib/python/Plugins/Extensions/FileManager/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
+lib/python/Plugins/Extensions/ZappingAlternatives/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
