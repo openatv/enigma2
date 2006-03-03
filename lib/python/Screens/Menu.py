@@ -78,9 +78,9 @@ menuupdater = MenuUpdater()
 class MenuSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="Clock" position="50,46" size="82,18" font="Regular;19" />
-		<widget name="MenuTitle" position="0,4" size="132,21" font="Regular;19" />
-		<widget name="MenuEntry" position="0,25" size="132,21" font="Regular;19" />
+		<widget name="MenuTitle" position="0,4" size="132,21" font="Regular;18" />
+		<widget name="MenuEntry" position="0,25" size="132,21" font="Regular;16" />
+		<widget name="Clock" position="50,46" size="82,18" font="Regular;16" />
 	</screen>"""
 
 	def __init__(self, session, parent):
@@ -88,9 +88,12 @@ class MenuSummary(Screen):
 		self["MenuTitle"] = Label(parent.menu_title)
 		self["MenuEntry"] = Label("")
 		self["Clock"] = Clock()
+		parent["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.parent = parent
+		self.selectionChanged()
 
-	def setCurrentEntry(self, entry):
-		self["MenuEntry"].setText(entry)
+	def selectionChanged(self):
+		self["MenuEntry"].setText(self.parent["menu"].getCurrent()[0])
 
 class Menu(Screen):
 	def okbuttonClick(self):
@@ -203,7 +206,6 @@ class Menu(Screen):
 
 
 		self["menu"] = MenuList(list)	
-		self["menu"].onSelectionChanged.append(self.selectionChanged)
 							
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
@@ -226,11 +228,6 @@ class Menu(Screen):
 
 	def createSummary(self):
 		return MenuSummary
-
-	def selectionChanged(self):
-		entry = self["menu"].getCurrent()[0]
-		for x in self.summaries:
-			x.setCurrentEntry(entry)
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
