@@ -10,6 +10,7 @@ class ServiceName(PerServiceDisplay):
 				iPlayableService.evStart: self.newService,
 				iPlayableService.evEnd: self.stopEvent
 			})
+		self.newService()
 
 	def newService(self):
 		service = self.navcore.getCurrentService()
