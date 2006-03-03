@@ -342,7 +342,7 @@ class RecordTimer(timer.Timer):
 								time_match = ((timecmp + ((x.end - x.begin) / 60)) - chktimecmp) * 60
 							elif chktimecmp <= timecmp < (chktimecmp + (duration / 60)):
 								time_match = ((chktimecmp + (duration / 60)) - timecmp) * 60
-				elif x.eit is None:
+				else: #if x.eit is None:
 					end = begin + duration
 					if begin <= x.begin <= end:
 						diff = end - x.begin
