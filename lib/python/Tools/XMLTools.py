@@ -24,5 +24,4 @@ def mergeText(nodelist):
 	return rc
 
 def filterXMLString(text):
-	# TODO: better solutions?
-	return text.replace('"', "&quot;").replace('<', '&lt;')
+		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;'). replace('"', '&quot;')
