@@ -14,6 +14,7 @@ eDVBTSTools::eDVBTSTools()
 	m_end_valid = 0;
 	
 	m_use_streaminfo = 0;
+	m_samples_taken = 0;
 }
 
 eDVBTSTools::~eDVBTSTools()
@@ -34,6 +35,8 @@ int eDVBTSTools::openFile(const char *filename)
 		eDebug("no recorded stream information available");
 		m_use_streaminfo = 0;
 	}
+	
+	m_samples_taken = 0;
 
 	if (m_file.open(filename) < 0)
 		return -1;
@@ -128,6 +131,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			pts |= ((unsigned long long)(pes[13]&0xFE)) >> 1;
 			offset -= 188;
 			
+//			eDebug("found pts %08llx at %08llx", pts, offset);
+			
 				/* convert to zero-based */
 			if (fixed)
 				fixupPTS(offset, pts);
@@ -176,11 +181,40 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 		return 0;
 	} else
 	{
+//		eDebug("get offset");
+		if (!m_samples_taken)
+			takeSamples();
+		
+		if (m_samples.empty())
+			return -1;
+		
+//		eDebug("ok, samples ok");
+			/* search entry before and after */
+		std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(pts);
+		std::map<pts_t, off_t>::const_iterator u = l;
+
+		if (l != m_samples.begin())
+			--l;
+		
+		int birate;
+		if ((u == m_samples.end()) || (l == m_samples.end()))
+			return -1;
+
+		pts_t pts_diff = u->first - l->first;
+		off_t offset_diff = u->second - l->second;
+//		eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
+	
+		if (!pts_diff)
+			return -1;
+
 		int bitrate = calcBitrate(); /* in bits/s */
+		bitrate = offset_diff * 90000 * 8 / pts_diff;
+
 		if (bitrate <= 0)
 			return -1;
 		
-		offset = (pts * (pts_t)bitrate) / 8ULL / 90000ULL;
+		offset = l->second;
+		offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
 		offset -= offset % 188;
 
 		return 0;
@@ -275,4 +309,35 @@ int eDVBTSTools::calcBitrate()
 		return -1;
 	
 	return bitrate;
+}
+
+	/* pts, off */
+void eDVBTSTools::takeSamples()
+{
+	m_samples_taken = 1;
+	m_samples.clear();
+	pts_t dummy;
+	if (calcLen(dummy) == -1)
+		return;
+	
+	int nr_samples = 30;
+	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
+	if (bytes_per_sample < 1*1024*1024)
+		bytes_per_sample = 1*1024*1024;
+	
+	bytes_per_sample -= bytes_per_sample % 188;
+	
+	for (off_t offset = m_offset_begin; offset < m_offset_end; offset += bytes_per_sample)
+	{
+		off_t o = offset;
+		pts_t p;
+		if (!eDVBTSTools::getPTS(o, p, 1))
+		{
+//			eDebug("sample: %llx, %llx", o, p);
+			m_samples[p] = o;
+		}
+	}
+	m_samples[m_pts_begin] = m_offset_begin;
+	m_samples[m_pts_end] = m_offset_end;
+//	eDebug("begin, end: %llx %llx", m_offset_begin, m_offset_end); 
 }
