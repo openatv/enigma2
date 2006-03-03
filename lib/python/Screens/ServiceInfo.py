@@ -20,7 +20,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 
 	#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 150, 25, 0, RT_HALIGN_LEFT, a))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a))
 	print "b:", b
 	if type(b) is not str:
 		if valueType == TYPE_VALUE_HEX:
@@ -33,7 +33,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			b = str(b)		
 	
 	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 170, 0, 350, 25, 0, RT_HALIGN_LEFT, b))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 220, 0, 350, 25, 0, RT_HALIGN_LEFT, b))
 
 	return res
 
@@ -71,10 +71,9 @@ class ServiceInfo(Screen):
 		if service is not None:
 			self.info = service.info()
 			self.feinfo = service.frontendStatusInfo()
-			if self.feinfo:
-				print self.feinfo.getFrontendData(False)
 		else:
 			self.info = None
+
 
 		self["red"] = Label("Serviceinfo")
 		self["green"] = Label("PIDs")
@@ -109,8 +108,18 @@ class ServiceInfo(Screen):
 		self.fillList(Labels)
 	
 	def transponder(self):
-		Labels = ( ("Frequency", "11823", TYPE_TEXT),
-				   ("Polarity", "H", TYPE_TEXT))
+		frontendData = self.feinfo.getFrontendData(True)
+		print frontendData
+		if frontendData["tuner_type"] == "DVB-S":
+			Labels = ( ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   ("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
+				   		("Polarization", ["horizontal", "vertical", "circular left", "circular right"][frontendData["polarization"]], TYPE_TEXT),
+				   		("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC))
+		elif frontendData["tuner_type"] == "DVB-C":
+			pass
+		elif frontendData["tuner_type"] == "DVB-T":
+			pass
+			
 		self.fillList(Labels)
 	
 	def fillList(self, Labels):
