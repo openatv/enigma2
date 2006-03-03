@@ -1,0 +1,354 @@
+<skin>
+	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
+	</screen>
+	<screen name="Menu" position="210,150" size="300,235" title="Main menu">
+		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
+		<!--<widget name="menu" position="10,55" size="280,150" font="Regular;23" />-->
+		<widget name="menu" position="10,55" size="290,175" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="BouquetSelector" position="210,150" size="300,195" title="Choose bouquet">
+		<widget name="menu" position="10,10" size="280,175" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="ChannelContextMenu" position="210,150" size="300,195" title="Channellist menu">
+		<widget name="menu" position="10,10" size="280,175" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="Scart" position="0,0" size="720,576">
+	</screen>
+	<screen name="ServiceInfo" position="100,120" size="560,370" title="Serviceinfo">
+		<widget name="red" position="0,0" size="140,40" backgroundColor="red" valign="center" halign="center" font="Regular;21" />
+		<widget name="green" position="140,0" size="140,40" backgroundColor="green" valign="center" halign="center" font="Regular;21" />
+		<widget name="yellow" position="280,0" size="140,40" backgroundColor="yellow" valign="center" halign="center" font="Regular;21" />
+		<widget name="blue" position="420,0" size="140,40" backgroundColor="blue" valign="center" halign="center" font="Regular;21" />
+		<widget name="infolist" position="20,50" size="560,365" selectionDisabled="1"/>
+	</screen>
+	<screen name="AudioSelection" position="210,150" size="300,170" title="Audio">
+		<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="SubserviceSelection" position="210,150" size="300,250" title="Subservices">
+		<widget name="subservices" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="HarddiskWait" position="140,165" size="360,60">
+		<widget name="wait" position="20,10" size="320,25" font="Regular;23"/>
+	</screen>
+	<screen name="HarddiskSelection" position="140,165" size="360,100" title="Select HDD">
+		<widget name="hddlist" position="20,10" size="320,75" />
+	</screen>
+	<screen name="HarddiskSetup" position="140,165" size="420,160" title="Harddisk">
+		<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
+		<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
+		<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
+		<widget name="initialize" position="40,110" size="120,30" zPosition="1" pixmap="init.png" />
+		<widget name="initializetext" position="40,110" size="120,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+	</screen>
+	<screen name="Setup" position="100,125" size="540,280" title="Setup">
+		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
+		<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
+		<widget name="ok" position="140,240" size="53,30" pixmap="ok.png" />
+		<widget name="oktext" position="140,240" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+		<widget name="cancel" position="240,240" size="100,30" pixmap="cancel.png" />
+		<widget name="canceltext" position="240,240" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+	</screen>
+	<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
+		<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="PluginBrowser" position="170,125" size="400,350" title="Plugin browser">
+		<widget name="red" position="0,0" size="200,40" backgroundColor="red" valign="center" halign="center" font="Regular;20" />
+		<widget name="green" position="200,0" size="200,40" backgroundColor="green" valign="center" halign="center" font="Regular;20" />
+
+		<widget name="list" position="10,50" size="380,280" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="PluginDownloadBrowser" position="170,125" size="400,350" title="Downloadable plugins">
+		<widget name="text" position="10,00" size="380,330" zPosition="1" font="Regular;20" />
+		<widget name="list" position="10,00" size="380,330" zPosition="2" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="NimSelection" position="140,165" size="400,100" title="select Slot">
+		<widget name="nimlist" position="20,10" size="360,75" />
+	</screen>
+	<screen name="CiWait" position="140,165" size="360,50" title="Common Interface">
+		<widget name="message" position="20,10" size="320,25" font="Regular;23" />
+	</screen>
+	<screen name="CiSelection" position="140,165" size="360,100" title="Common Interface">
+		<widget name="entries" position="10,10" size="340,75" />
+	</screen>
+	<screen name="CiMmi" position="130,165" size="450,270">
+		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
+		<widget name="subtitle" position="10,35" size="430,25" font="Regular;23" />
+		<widget name="entries" position="10,70" size="430,150" scrollbarMode="showOnDemand" />
+		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
+	</screen>
+	<screen name="NimSetup" position="90,98" size="560,410" title="Satconfig">
+		<widget name="config" position="0,0" size="560,402" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="ScanSetup" position="90,100" size="520,400" title="Service scan">
+		<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
+		<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
+	</screen>
+	<screen name="ScanSimple" position="150,100" size="400,300" title="Service scan">
+		<widget name="header" position="20,10" size="280,25" font="Regular;23"/>
+		<widget name="config" position="20,45" size="360,200" scrollbarMode="showOnDemand" />
+		<widget name="footer" position="20,250" size="360,25" font="Regular;23"/>
+		<!--<widget name="introduction" position="20,360" size="280,30" font="Regular;23" />-->
+	</screen>
+	<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
+		<widget name="config" position="5,10" size="480,350" />
+		<widget name="ok" position="140,365" size="53,30" pixmap="ok.png" />
+		<widget name="oktext" position="140,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+		<widget name="cancel" position="240,365" size="100,30" pixmap="cancel.png" />
+		<widget name="canceltext" position="240,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+	</screen>
+	<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
+		<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
+		<widget name="introduction" position="10,230" size="400,30" font="Regular;23" />
+	</screen>
+	<screen name="About" position="140,125" size="360,250" title="About">
+		<widget name="text" position="10,30" size="420,20" font="Regular;18"/>
+		<widget name="fpVersion" position="10,50" size="420,20" font="Regular;18"/>
+		<widget name="tuner" position="10,80" size="420,20" font="Regular;18"/>
+		<widget name="tuner0" position="10,100" size="420,20" font="Regular;18"/>
+		<widget name="tuner1" position="10,120" size="420,20" font="Regular;18"/>
+		<widget name="hdd" position="10,170" size="420,20" font="Regular;18"/>
+		<widget name="hddA" position="10,190" size="420,40" font="Regular;18"/>
+	</screen>
+	<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
+		<widget name="okbutton" position="20,270" size="205,40" />
+		<widget name="txt_alpha" position="20,20" size="110,20" />
+		<widget name="sld_alpha" position="150,20" size="290,20" />
+		<widget name="txt_brightness" position="20,60" size="120,20" />
+		<widget name="sld_brightness" position="150,20" size="290,20" />
+		<widget name="txt_gamma" position="20,100" size="120,20" />
+		<widget name="sld_gamma" position="150,100" size="290,20" />
+	</screen>
+	<screen name="configTest" position="300,100" size="300,300" title="config menu">
+		<widget name="config" position="10,30" size="420,220" />
+	</screen>
+	<screen name="TimerEditList" position="70,100" size="560,400" title="Timer Editor">
+		<widget name="timerlist" position="0,45" size="560,350" scrollbarMode="showOnDemand" />
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+	</screen>
+	<screen name="TimerSanityConflict" position="70,100" size="600,400" title="Timer sanity error">
+		<widget name="timer1" position="0,45" size="290,80" scrollbarMode="showOnDemand" />
+		<widget name="timer2" position="310,45" size="280,80" scrollbarMode="showOnDemand" />
+		<widget name="list" position="0,160" size="250,240" scrollbarMode="showOnDemand" />
+		<widget name="key_red" position="0,0" size="145,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="145,0" size="145,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="310,0" size="145,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="455,0" size="145,40" backgroundColor="blue" font="Regular;21" />
+	</screen>
+	<screen name="TimerLog" position="70,100" size="560,400" title="Timer log">
+		<widget name="loglist" position="0,45" size="560,250" scrollbarMode="showOnDemand" />
+		<widget name="logentry" position="0,300" size="560,140" font="Regular;20" />
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+	</screen>
+	<screen name="clockDisplay" position="300,100" size="300,300">
+		<widget name="okbutton" position="10,10" size="280,40" />
+		<widget name="title" position="10,120" size="280,50" />
+		<widget name="theClock" position="10,60" size="280,50" />
+	</screen>
+
+	<screen name="NumberZap" position="200,140" size="280,60" title="Channel">
+		<widget name="channel" position="50,15" size="110,25" font="Regular;23" />
+		<widget name="number" position="160,15" size="80,25" halign="right" font="Regular;23" />
+	</screen>
+	<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
+		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
+	</screen>
+	<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume" zPosition="1" >
+		<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="volumeslider-fs8.png" />
+		<widget name="Volume" zPosition="1" position="8,38" size="164,11" backgroundColor="dark" />
+	</screen>
+	<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute" zPosition="-1">
+		<ePixmap position="0,0" size="59,80" pixmap="mute-fs8.png" />
+	</screen>
+	<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish" zPosition="-10" >
+		<widget name="transparent" zPosition="-1" position="0,0" size="100,107" backgroundColor="transparent" />
+		<widget name="Dishpixmap" pixmap="dish.png" position="0,0" size="100,107" />
+	</screen>
+ 		<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
+		<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+	</screen>
+	<screen name="ChannelSelectionRadio" position="90,98" size="560,307" title="Channel Selection">
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+		<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
+		<widget name="ServiceName" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" />
+		<widget name="BlinkingPoint" pixmap="record.png" position="400,0" zPosition="2" size="58,25" />
+		<widget name="Clock" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" />
+		<widget name="Now_ProgressBar" position="465,27" size="90,9" zPosition="1" borderWidth="2" />
+		<widget name="Event_Now_StartTime" position="0,44" size="60,22" font="Regular;20" backgroundColor="dark" />
+		<widget name="Event_Next_StartTime" position="0,74" size="60,22" font="Regular;20" backgroundColor="dark" />
+		<widget name="Event_Now" position="80,44" size="380,22" font="Regular;20" backgroundColor="dark" />
+		<widget name="Event_Next" position="80,74" size="380,22" font="Regular;20" backgroundColor="dark" />
+		<widget name="Event_Now_Duration" position="470,44" size="150,22" font="Regular;20" backgroundColor="dark" />
+		<widget name="Event_Next_Duration" position="470,74" size="150,22" font="Regular;20" backgroundColor="dark" />
+	</screen>
+	<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
+		<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+	</screen>
+	<screen name="EPGSelection" position="90,100" size="560,420" title="EPG Selection">
+		<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Regular;21" />
+		<widget name="list" position="0,40" size="560,375" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="EPGSelectionMulti" position="90,100" size="560,420" title="EPG Selection">
+		<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,30" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Regular;21" />
+		<widget name="now_button" position="10,40" size="123,40" pixmap="button-fs8.png" />
+		<widget name="next_button" position="143,40" size="123,40" pixmap="button-fs8.png" />
+		<widget name="more_button" position="276,40" size="123,40" pixmap="button-fs8.png" />
+		<widget name="now_button_sel" position="10,40" size="123,40" pixmap="button-selected-fs8.png" />
+		<widget name="next_button_sel" position="143,40" size="123,40" pixmap="button-selected-fs8.png" />
+		<widget name="more_button_sel" position="276,40" size="123,40" pixmap="button-selected-fs8.png" />
+		<widget name="now_text" text="NOW" zPosition="2" position="10,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
+		<widget name="next_text" text="NEXT" zPosition="2" position="143,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
+		<widget name="more_text" text="MORE" zPosition="2" position="276,40" size="123,40" transparent="1" halign="center" valign="center" font="Regular;21" />
+		<widget name="date" position="410,40" size="140,40" valign="center" halign="right" font="Regular;24" />
+		<widget name="list" position="00,85" size="560,325" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="EventView" position="100,100" size="520,380" title="Eventview">
+		<widget name="key_red" position="0,0" size="130,30" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="130,0" size="130,30" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="260,0" size="130,30" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="390,0" size="130,30" backgroundColor="blue" font="Regular;21" />
+		<widget name="epg_description" position="10,40" size="500,305" font="Regular;22" />
+		<widget name="datetime" position="10,345" size="130,30" font="Regular;22" />
+		<widget name="duration" position="140,345" size="100,30" font="Regular;22" />
+		<widget name="channel" position="240,345" size="270,30" font="Regular;22" />
+	</screen>
+	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
+		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
+		<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
+		<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;25" />
+	</screen>
+	<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
+		<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
+		<widget name="scan_progress" position="10,45" size="280,20" />
+		<widget name="scan_state" position="10,65" size="280,60" font="Regular;20" />
+		<widget name="servicelist" position="10,135" size="280,175" selectionDisabled="1" />
+	</screen>
+	<screen name="InputBox" position="100,100" size="550,60" title="Input" >
+		<widget name="text" position="0,0" size="550,25" font="Regular;20" />
+		<widget name="input" position="0,30" size="550,25" font="Regular;20" />
+	</screen>
+	<screen name="ChoiceBox" position="100,100" size="550,400" title="Input" >
+		<widget name="text" position="0,0" size="550,25" font="Regular;20" />
+		<widget name="list" position="0,30" size="550,335" scrollbarMode="showOnDemand" />
+		<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrates applets.
+from enigma import eSize, ePoint
+
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self["text"].getSize()
+
+# y size still must be fixed in font stuff...
+textsize = (textsize[0] + 50, textsize[1] + 50)
+count = len(self.list)
+if count > 6:
+	count = 6
+offset = 30 * count
+wsizex = textsize[0] + 60
+wsizey = textsize[1] + offset
+if (400 > wsizex):
+	wsizex = 400
+wsize = (wsizex, wsizey)
+
+
+# resize
+self.instance.resize(eSize(*wsize))
+
+# resize label
+self["text"].instance.resize(eSize(*textsize))
+
+# move list
+listsize = (wsizex, 30 * len(self.list))
+self["list"].instance.move(ePoint(0, textsize[1]))
+self["list"].instance.resize(eSize(*listsize))
+
+# center window
+newwidth = wsize[0]
+self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+		</applet>			
+	</screen>
+	<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
+		<widget name="description" position="10,10" size="580,40" font="Regular;25" />
+		<widget name="lbegin" position="405,102" size="103,30" font="Regular;25" foregroundColor="red" />
+		<widget name="lend" position="405,158" size="103,30" font="Regular;25" foregroundColor="green" />
+		<widget name="begin" position="508,105" size="72,35" font="Regular;25" />
+		<widget name="end" position="508,150" size="72,35" font="Regular;25" />
+		<widget name="apply" position="10,240" size="250,35" />
+	</screen>
+	<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
+		<widget name="list" position="50,100" size="450,375" scrollbarMode="showOnDemand" />
+		<widget name="rc" pixmap="rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
+		<widget name="arrowup" pixmap="arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		<eLabel position="400,40" size="220,60" text="help..." font="Regular;50" />
+	</screen>
+	<screen name="PVRState" flags="wfNoBorder" position="70,70" size="150,30" backgroundColor="transpBlack" zPosition="2">
+		<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" 
+			backgroundColor="transpBlack" foregroundColor="white" />
+	</screen>
+	<screen name="MessageBox" position="60,300" size="600,10" title="Message">
+		<widget name="text" position="60,10" size="520,0" font="Regular;22" />
+		<widget name="ErrorPixmap" pixmap="error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+		<widget name="QuestionPixmap" pixmap="question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+		<widget name="InfoPixmap" pixmap="info.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+		<widget name="list" position="100,100" size="480,375" />
+		<applet type="onLayoutFinish">
+# this should be factored out into some helper code, but currently demonstrates applets.
+from enigma import eSize, ePoint
+
+orgwidth = self.instance.size().width()
+orgpos = self.instance.position()
+textsize = self["text"].getSize()
+
+# y size still must be fixed in font stuff...
+textsize = (textsize[0] + 50, textsize[1] + 50)
+offset = 0
+if self.type == self.TYPE_YESNO:
+	offset = 60
+wsizex = textsize[0] + 60
+wsizey = textsize[1] + offset
+if (280 > wsizex):
+	wsizex = 280
+wsize = (wsizex, wsizey)
+
+
+# resize
+self.instance.resize(eSize(*wsize))
+
+# resize label
+self["text"].instance.resize(eSize(*textsize))
+
+# move list
+listsize = (wsizex, 50)
+self["list"].instance.move(ePoint(0, textsize[1]))
+self["list"].instance.resize(eSize(*listsize))
+
+# center window
+newwidth = wsize[0]
+self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+		</applet>
+	</screen>
+</skin>
