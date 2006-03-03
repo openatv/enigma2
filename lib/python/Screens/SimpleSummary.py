@@ -3,8 +3,8 @@ from Screens.Screen import Screen
 class SimpleSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="Clock" position="50,46" size="82,18" font="Regular;19" />
-		<widget name="Title" position="0,4" size="132,42" font="Regular;19" />
+		<widget name="Clock" position="50,46" size="82,18" font="Regular;16" />
+		<widget name="Title" position="0,4" size="132,42" font="Regular;18" />
 	</screen>"""
 	def __init__(self, session, root_screen):
 		from Components.Label import Label
