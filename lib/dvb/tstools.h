@@ -51,6 +51,8 @@ public:
 	
 	int calcBitrate(); /* in bits/sec */
 	
+	void takeSamples();
+	
 private:
 	int m_pid;
 	int m_maxrange;
@@ -60,6 +62,10 @@ private:
 	int m_begin_valid, m_end_valid;
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;
+	
+		/* for simple linear interpolation */
+	std::map<pts_t, off_t> m_samples;
+	int m_samples_taken;
 	
 	eMPEGStreamInformation m_streaminfo;
 	int m_use_streaminfo;
