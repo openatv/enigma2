@@ -239,7 +239,7 @@ class RecordTimer(timer.Timer):
 			self.record(createTimer(timer))
 
 	def strToXML(self, str):
-		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;'). replace('"', '&qout;')
+		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;'). replace('"', '&quot;')
 
 	def saveTimer(self):
 		#doc = xml.dom.minidom.Document()
