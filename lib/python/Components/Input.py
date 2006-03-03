@@ -69,6 +69,10 @@ class Input(HTMLComponent, GUIComponent, VariableText):
 		self.text = self.text[0:self.currPos] + newNumber + self.text[self.currPos + 1:]
 		self.update()
 		
+	def delete(self):
+		self.text = self.text[:self.currPos] + self.text[self.currPos + 1:]
+		self.update()
+		
 	def number(self, number):
 		if self.type == self.TEXT:
 			newChar = self.numericalTextInput.getKey(number)

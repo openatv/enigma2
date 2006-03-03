@@ -15,12 +15,13 @@ class InputBox(Screen):
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
 				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions"], 
 		{
 			"ok": self.go,
 			"back": self.cancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"delete": self.keyDelete,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -40,8 +41,10 @@ class InputBox(Screen):
 		self["input"].right()
 	
 	def keyNumberGlobal(self, number):
-		print "pressed", number
 		self["input"].number(number)
+		
+	def keyDelete(self):
+		self["input"].delete()
 		
 	def go(self):
 		self.close(self["input"].getText())
