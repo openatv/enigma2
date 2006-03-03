@@ -1172,6 +1172,7 @@ PyObject *eDVBServicePlay::getFrontendData(bool original)
 					eDVBFrontendParametersSatellite osat;
 					if (!feparm->getDVBS(osat))
 					{
+						void PutToDict(PyObject *, const char*, long);
 						void PutToDict(PyObject *, const char*, const char*);
 						PutToDict(ret, "orbital_position", osat.orbital_position);
 						const char *tmp = "UNKNOWN";
