@@ -603,7 +603,7 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 		bool read=m_fd != -1;
 		const char *tmp = "unknown";
 
-		PutToDict(ret, "tuner number", m_fe);
+		PutToDict(ret, "tuner_number", m_fe);
 
 		switch(m_type)
 		{
@@ -620,7 +620,7 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				read=false;
 				break;
 		}
-		PutToDict(ret, "tuner type", tmp);
+		PutToDict(ret, "tuner_type", tmp);
 
 		if (read)
 		{
@@ -647,13 +647,13 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				default:
 					break;
 			}
-			PutToDict(ret, "tuner state", tmp);
+			PutToDict(ret, "tuner_state", tmp);
 
-			PutToDict(ret, "tuner locked", readFrontendData(Locked));
-			PutToDict(ret, "tuner synced", readFrontendData(Synced));
-			PutToDict(ret, "tuner bit_error_rate", readFrontendData(bitErrorRate));
-			PutToDict(ret, "tuner signal_power", readFrontendData(signalPower));
-			PutToDict(ret, "tuner signal_quality", readFrontendData(signalQuality));
+			PutToDict(ret, "tuner_locked", readFrontendData(Locked));
+			PutToDict(ret, "tuner_synced", readFrontendData(Synced));
+			PutToDict(ret, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
+			PutToDict(ret, "tuner_signal_power", readFrontendData(signalPower));
+			PutToDict(ret, "tuner_signal_quality", readFrontendData(signalQuality));
 
 			if (!original && ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
 				eDebug("FE_GET_FRONTEND (%m)");
