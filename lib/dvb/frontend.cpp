@@ -536,13 +536,13 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 {
 	int freq_offset=0;
 	int csw=0;
+	const char *fec=0;
 	fe->getData(0, csw);
 	fe->getData(9, freq_offset);
 	int frequency = parm.frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
-	PutToDict(dict, "inversion", parm.inversion);
 	PutToDict(dict, "symbol_rate", parm.u.qpsk.symbol_rate);
-	const char *fec=0;
+
 	switch(parm.u.qpsk.fec_inner)
 	{
 		case FEC_1_2:
@@ -570,6 +570,7 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 
 void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
+	PutToDict(dict, "frequency", parm.frequency/1000);
 /*
 #define parm.frequency parm.Frequency
 #define parm.inversion parm.Inversion
@@ -581,6 +582,7 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 
 void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
+	PutToDict(dict, "frequency", parm.frequency);
 /*
 #define parm.frequency parm.Frequency
 #define parm.inversion parm.Inversion
@@ -659,6 +661,21 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				eDebug("FE_GET_FRONTEND (%m)");
 			else
 			{
+				tmp = "INVERSION_AUTO";
+				switch(parm.inversion)
+				{
+					case INVERSION_ON:
+						tmp = "INVERSION_ON";
+						break;
+					case INVERSION_OFF:
+						tmp = "INVERSION_OFF";
+						break;
+					default:
+						break;
+				}
+				if (tmp)
+					PutToDict(ret, "inversion", tmp);
+
 				switch(m_type)
 				{
 					case feSatellite:
