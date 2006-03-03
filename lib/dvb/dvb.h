@@ -250,7 +250,7 @@ private:
 	eFilePushThread *m_pvr_thread;
 	void pvrEvent(int event);
 	
-	int m_pvr_fd_src, m_pvr_fd_dst;
+	int m_pvr_fd_dst;
 	eDVBTSTools m_tstools;
 	
 	ePtr<eCueSheet> m_cue;

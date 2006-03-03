@@ -40,7 +40,7 @@ void eFilePushThread::thread()
 	sigaction(SIGUSR1, &act, 0);
 	
 	dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
-	source_pos = lseek(m_fd_source, 0, SEEK_CUR);
+	source_pos = m_raw_source.lseek(0, SEEK_CUR);
 	
 		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
@@ -84,7 +84,7 @@ void eFilePushThread::thread()
 			m_sg->getNextSourceSpan(source_pos, bytes_read, current_span_offset, current_span_remaining);
 
 			if (source_pos != current_span_offset)
-				source_pos = lseek(m_fd_source, current_span_offset, SEEK_SET);
+				source_pos = m_raw_source.lseek(current_span_offset, SEEK_SET);
 			bytes_read = 0;
 		}
 		
@@ -98,7 +98,7 @@ void eFilePushThread::thread()
 		m_buf_end = 0;
 		
 		if (maxread)
-			m_buf_end = read(m_fd_source, m_buffer, maxread);
+			m_buf_end = m_raw_source.read(m_buffer, maxread);
 
 		if (m_buf_end < 0)
 		{
@@ -128,7 +128,7 @@ void eFilePushThread::thread()
 			sendEvent(evtEOF);
 #if 0
 			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
-			if (!lseek(m_fd_source, 0, SEEK_SET))
+			if (!m_raw_source.lseek(0, SEEK_SET))
 			{
 				eDebug("(looping)");
 				continue;
@@ -151,9 +151,18 @@ void eFilePushThread::thread()
 
 void eFilePushThread::start(int fd_source, int fd_dest)
 {
-	m_fd_source = fd_source;
+	m_raw_source.setfd(fd_source);
 	m_fd_dest = fd_dest;
 	resume();
+}
+
+int eFilePushThread::start(const char *filename, int fd_dest)
+{
+	if (m_raw_source.open(filename) < 0)
+		return -1;
+	m_fd_dest = fd_dest;
+	resume();
+	return 0;
 }
 
 void eFilePushThread::stop()
@@ -172,7 +181,7 @@ void eFilePushThread::pause()
 
 void eFilePushThread::seek(int whence, off_t where)
 {
-	::lseek(m_fd_source, where, whence);
+	m_raw_source.lseek(where, whence);
 }
 
 void eFilePushThread::resume()

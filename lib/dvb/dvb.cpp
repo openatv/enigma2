@@ -1008,14 +1008,6 @@ RESULT eDVBChannel::playFile(const char *file)
 		return -ENODEV;
 	}
 	
-	m_pvr_fd_src = open(file, O_RDONLY|O_LARGEFILE);
-	if (m_pvr_fd_src < 0)
-	{
-		eDebug("can't open PVR m_pvr_fd_src file %s (%m)", file);
-		close(m_pvr_fd_dst);
-		return -ENOENT;
-	}
-	
 	m_state = state_ok;
 	m_stateChanged(this);
 	
@@ -1023,7 +1015,13 @@ RESULT eDVBChannel::playFile(const char *file)
 	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->setScatterGather(this);
 
-	m_pvr_thread->start(m_pvr_fd_src, m_pvr_fd_dst);
+	if (m_pvr_thread->start(file, m_pvr_fd_dst))
+	{
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+		eDebug("can't open PVR file %s (%m)", file);
+		return -ENOENT;
+	}
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	return 0;
@@ -1034,7 +1032,6 @@ void eDVBChannel::stopFile()
 	if (m_pvr_thread)
 	{
 		m_pvr_thread->stop();
-		::close(m_pvr_fd_src);
 		::close(m_pvr_fd_dst);
 		delete m_pvr_thread;
 		m_pvr_thread = 0;
