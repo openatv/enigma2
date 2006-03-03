@@ -101,6 +101,8 @@ public:
 	RESULT setData(int num, int val);
 
 	int readFrontendData(int type); // bitErrorRate, signalPower, signalQuality, Locked, Synced
+	PyObject *readTransponderData();
+
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getID() { return m_fe; }
 

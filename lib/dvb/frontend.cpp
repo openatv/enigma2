@@ -504,6 +504,12 @@ int eDVBFrontend::readFrontendData(int type)
 	return 0;
 }
 
+PyObject *eDVBFrontend::readTransponderData()
+{
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+
 #ifndef FP_IOCTL_GET_ID
 #define FP_IOCTL_GET_ID 0
 #endif

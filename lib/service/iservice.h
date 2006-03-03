@@ -271,9 +271,12 @@ public:
 	enum {
 		bitErrorRate,
 		signalPower,
-		signalQuality
+		signalQuality,
+		LockState,
+		SyncState
 	};
 	virtual int getFrontendInfo(int w)=0;
+	virtual PyObject *getFrontendTransponderData()=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iFrontendStatusInformation>, iFrontendStatusInformationPtr);
