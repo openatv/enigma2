@@ -14,7 +14,7 @@ def dump(x, i=0):
 	except:
 		None
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE
 
 # read the skin
 skinfile = file(resolveFilename(SCOPE_SKIN, 'skin.xml'), 'r')
@@ -71,7 +71,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
-			ptr = loadPNG(value)
+			ptr = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, value))
 			# that __deref__ still scares me!
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPixmap(ptr.__deref__())
@@ -139,7 +139,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == "pointer":
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos)
-			ptr = loadPNG(name)
+			ptr = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, name))
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib != 'name':
@@ -180,7 +180,7 @@ def loadSkin(desktop):
 				bpName = str(pixmap.getAttribute("pos"))
 				filename = str(pixmap.getAttribute("filename"))
 				
-				png = loadPNG(filename)
+				png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, filename))
 				
 				# adapt palette
 				desktop.makeCompatiblePixmap(png.__deref__())
