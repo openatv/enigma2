@@ -65,11 +65,11 @@ class InfoBar(InfoBarShowHide, InfoBarPowerKey,
 		if service is not None:
 			self.session.open(MoviePlayer, service)
 
-class MoviePlayer(Screen, InfoBarShowHide, InfoBarPowerKey, \
+class MoviePlayer(InfoBarShowHide, InfoBarPowerKey, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport):
+		InfoBarSummarySupport, Screen):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
