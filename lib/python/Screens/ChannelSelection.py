@@ -239,6 +239,7 @@ class ChannelSelectionEdit:
 				if mutableBouquet:
 					mutableBouquet.setListName(providerName)
 					mutableBouquet.flushChanges()
+					self.setRoot(self.getRoot())
 				else:
 					print "get mutable list for new created bouquet failed"
 			else:
@@ -358,13 +359,8 @@ class ChannelSelectionEdit:
 		if ref.valid() and mutableList is not None:
 			if not mutableList.removeService(ref):
 				self.bouquetNumOffsetCache = { }
-				currentIndex = self.servicelist.getCurrentIndex()
-				self.servicelist.moveDown()
-				if self.servicelist.getCurrentIndex() == currentIndex:
-					currentIndex -= 1
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.setRoot(self.getRoot())
-				self.servicelist.moveToIndex(currentIndex)
 
 	def addCurrentServiceToBouquet(self, dest):
 		mutableList = self.getMutableList(dest)
