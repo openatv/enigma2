@@ -17,10 +17,8 @@ def dump(x, i=0):
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE
 
 # read the skin
-skinfile = file(resolveFilename(SCOPE_SKIN, 'skin.xml'), 'r')
-dom = xml.dom.minidom.parseString(skinfile.read())
-skinfile.close()
-
+dom_skin = xml.dom.minidom.parse(resolveFilename(SCOPE_SKIN, 'skin.xml'))
+dom_skin_default = xml.dom.minidom.parse(resolveFilename(SCOPE_SKIN, 'skin_default.xml'))
 
 def parsePosition(str):
 	x, y = str.split(',')
@@ -155,7 +153,7 @@ def applyAllAttributes(guiObject, desktop, attributes):
 def loadSkin(desktop):
 	print "loading skin..."
 	
-	skin = dom.childNodes[0]
+	skin = dom_skin.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
 	
 	for c in elementsWithTag(skin.childNodes, "colors"):
@@ -203,14 +201,24 @@ def readSkin(screen, skin, name, desktop):
 	myscreen = None
 	
 	# first, find the corresponding screen element
-	skin = dom.childNodes[0]
+	skin = dom_skin.childNodes[0] 
+	skin_default = dom_skin_default.childNodes[0]
 	
 	for x in elementsWithTag(skin.childNodes, "screen"):
 		if x.getAttribute('name') == name:
 			myscreen = x
-	del skin
+			break
 	
-	# try embedded skin
+	# if not found, check default skin	
+	if myscreen is None:
+		for x in elementsWithTag(skin_default.childNodes, "screen"):
+			if x.getAttribute('name') == name:
+				myscreen = x
+				break
+
+	del skin, skin_default
+	
+	# otherwise try embedded skin
 	myscreen = myscreen or getattr(screen, "parsedSkin", None)
 	
 	# try uncompiled embedded skin
