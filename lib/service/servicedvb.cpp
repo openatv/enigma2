@@ -1152,6 +1152,26 @@ int eDVBServicePlay::getFrontendInfo(int w)
 	return fe->readFrontendData(w);
 }
 
+PyObject *eDVBServicePlay::getFrontendTransponderData()
+{
+	PyObject *ret=0;
+
+	eUsePtr<iDVBChannel> channel;
+	if(!m_service_handler.getChannel(channel))
+	{
+		ePtr<iDVBFrontend> fe;
+		if(!channel->getFrontend(fe))
+			ret = fe->readTransponderData();
+	}
+
+	if (!ret)
+	{
+		ret = Py_None;
+		Py_INCREF(ret);
+	}
+	return ret;
+}
+
 int eDVBServicePlay::getNumberOfSubservices()
 {
 	ePtr<eServiceEvent> evt;

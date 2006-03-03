@@ -361,6 +361,7 @@ public:
 		bitErrorRate, signalPower, signalQuality, Locked, Synced
 	};
 	virtual int readFrontendData(int type)=0;
+	virtual PyObject *readTransponderData()=0;
 
 	virtual RESULT getData(int num, int &data)=0;
 	virtual RESULT setData(int num, int val)=0;
