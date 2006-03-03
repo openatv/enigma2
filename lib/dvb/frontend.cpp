@@ -570,22 +570,68 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 
 void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
+	const char *tmp=0;
 	PutToDict(dict, "frequency", parm.frequency/1000);
-/*
-#define parm.frequency parm.Frequency
-#define parm.inversion parm.Inversion
-#define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
-#define parm.u.qam.fec_inner parm.u.qam.FEC_inner
-#define parm.u.qam.modulation parm.u.qam.QAM
-*/
+	PutToDict(dict, "symbol_rate", parm.u.qam.symbol_rate);
+	switch(parm.u.qam.fec_inner)
+	{
+	case FEC_NONE:
+		tmp = "FEC_NONE";
+		break;
+	case FEC_1_2:
+		tmp = "FEC_1_2";
+		break;
+	case FEC_2_3:
+		tmp = "FEC_2_3";
+		break;
+	case FEC_3_4:
+		tmp = "FEC_3_4";
+		break;
+	case FEC_5_6:
+		tmp = "FEC_5_6";
+		break;
+	case FEC_7_8:
+		tmp = "FEC_7_8";
+		break;
+	case FEC_8_9:
+		tmp = "FEC_8_9";
+		break;
+	default:
+	case FEC_AUTO:
+		tmp = "FEC_AUTO";
+		break;
+	}
+	PutToDict(dict, "fec_inner", tmp);
+	switch(parm.u.qam.modulation)
+	{
+	case QAM_16:
+		tmp = "QAM_16";
+		break;
+	case QAM_32:
+		tmp = "QAM_32";
+		break;
+	case QAM_64:	
+		tmp = "QAM_64";
+		break;
+	case QAM_128:
+		tmp = "QAM_128";
+		break;
+	case QAM_256:
+		tmp = "QAM_256";
+		break;
+	default:
+	case QAM_AUTO:
+		tmp = "QAM_AUTO";
+		break;
+	}
+	PutToDict(dict, "modulation", tmp);
 }
 
 void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
+	const char *tmp=0;
 	PutToDict(dict, "frequency", parm.frequency);
 /*
-#define parm.frequency parm.Frequency
-#define parm.inversion parm.Inversion
 #define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
 #define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
 #define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
@@ -603,7 +649,7 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 	if (ret)
 	{
 		bool read=m_fd != -1;
-		const char *tmp = "unknown";
+		const char *tmp=0;
 
 		PutToDict(ret, "tuner_number", m_fe);
 
@@ -613,12 +659,13 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				tmp = "DVB-S";
 				break;
 			case feCable:
-				tmp="DVB-C";
+				tmp = "DVB-C";
 				break;
 			case feTerrestrial:
-				tmp="DVB-T";
+				tmp = "DVB-T";
 				break;
 			default:
+				tmp = "UNKNOWN";
 				read=false;
 				break;
 		}
@@ -628,23 +675,23 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 		{
 			FRONTENDPARAMETERS front;
 
-			tmp = "unknown";
+			tmp = "UNKNOWN";
 			switch(m_state)
 			{
 				case stateIdle:
-					tmp="idle";
+					tmp="IDLE";
 					break;
 				case stateTuning:
-					tmp="tuning";
+					tmp="TUNING";
 					break;
 				case stateFailed:
-					tmp="failed";
+					tmp="FAILED";
 					break;
 				case stateLock:
-					tmp="lock";
+					tmp="LOCKED";
 					break;
 				case stateLostLock:
-					tmp="lostlock";
+					tmp="LOSTLOCK";
 					break;
 				default:
 					break;

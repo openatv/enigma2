@@ -1174,16 +1174,16 @@ PyObject *eDVBServicePlay::getFrontendData(bool original)
 					{
 						void PutToDict(PyObject *dict, const char*key, long value);
 						PutToDict(ret, "orbital_position", osat.orbital_position);
-						const char *tmp = "unknown";
+						const char *tmp = "UNKNOWN";
 						switch(osat.polarisation)
 						{
-							case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="horizontal"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="vertical"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="circular_left"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="circular_right"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="HORIZONTAL"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="VERTICAL"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="CIRCULAR_LEFT"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="CIRCULAR_RIGHT"; break;
 							default:break;
 						}
-						PutToDict(ret, "polarization", osat.polarisation);
+						PutToDict(ret, "polarization", tmp);
 					}
 				}
 			}
