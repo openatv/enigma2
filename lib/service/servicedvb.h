@@ -105,7 +105,7 @@ public:
 
 		// iFrontendStatusInformation
 	int getFrontendInfo(int w);
-	PyObject *getFrontendTransponderData();
+	PyObject *getFrontendData(bool);
 
 		// iSubserviceList
 	int getNumberOfSubservices();
