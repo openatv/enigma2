@@ -18,6 +18,9 @@
 #define GUARD_INTERVAL_AUTO		(GuardInterval)4
 #define HIERARCHY_AUTO			(Hierarchy)4
 #define parm.frequency parm.Frequency
+#define parm.inversion parm.Inversion
+#define parm.u.qpsk.symbol_rate parm.u.qpsk.SymbolRate
+#define parm.u.qpsk.fec_inner parm.u.qpsk.FEC_inner
 #define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
 #define parm.u.qam.fec_inner parm.u.qam.FEC_inner
 #define parm.u.qam.modulation parm.u.qam.QAM
@@ -28,7 +31,6 @@
 #define parm.u.ofdm.transmission_mode parm.u.ofdm.TransmissionMode
 #define parm.u.ofdm.guard_interval parm.u.ofdm.guardInterval
 #define parm.u.ofdm.hierarchy_information parm.u.ofdm.HierarchyInformation
-#define parm.inversion parm.Inversion
 #else
 #include <linux/dvb/frontend.h>
 #endif
@@ -504,10 +506,180 @@ int eDVBFrontend::readFrontendData(int type)
 	return 0;
 }
 
-PyObject *eDVBFrontend::readTransponderData()
+void PutToDict(PyObject *dict, const char*key, long value)
 {
-	Py_INCREF(Py_None);
-	return Py_None;
+	PyObject *item = PyInt_FromLong(value);
+	if (item)
+	{
+		if (PyDict_SetItemString(dict, key, item))
+			eDebug("put %s to dict failed", key);
+		Py_DECREF(item);
+	}
+	else
+		eDebug("could not create PyObject for %s", key);
+}
+
+void PutToDict(PyObject *dict, const char*key, const char *value)
+{
+	PyObject *item = PyString_FromString(value);
+	if (item)
+	{
+		if (PyDict_SetItemString(dict, key, item))
+			eDebug("put %s to dict failed", key);
+		Py_DECREF(item);
+	}
+	else
+		eDebug("could not create PyObject for %s", key);
+}
+
+void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
+{
+	int freq_offset=0;
+	int csw=0;
+	fe->getData(0, csw);
+	fe->getData(9, freq_offset);
+	int frequency = parm.frequency + freq_offset;
+	PutToDict(dict, "frequency", frequency);
+	PutToDict(dict, "inversion", parm.inversion);
+	PutToDict(dict, "symbol_rate", parm.u.qpsk.symbol_rate);
+	const char *fec=0;
+	switch(parm.u.qpsk.fec_inner)
+	{
+		case FEC_1_2:
+			fec = "FEC_1_2";
+			break;
+		case FEC_2_3:
+			fec = "FEC_2_3";
+			break;
+		case FEC_3_4:
+			fec = "FEC_3_4";
+			break;
+		case FEC_5_6:
+			fec = "FEC_5_6";
+			break;
+		case FEC_7_8:
+			fec = "FEC_7_8";
+			break;
+		default:
+		case FEC_AUTO:
+			fec = "FEC_AUTO";
+			break;
+	}
+	PutToDict(dict, "fec_inner", fec);
+}
+
+void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
+{
+/*
+#define parm.frequency parm.Frequency
+#define parm.inversion parm.Inversion
+#define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
+#define parm.u.qam.fec_inner parm.u.qam.FEC_inner
+#define parm.u.qam.modulation parm.u.qam.QAM
+*/
+}
+
+void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
+{
+/*
+#define parm.frequency parm.Frequency
+#define parm.inversion parm.Inversion
+#define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
+#define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
+#define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
+#define parm.u.ofdm.constellation parm.u.ofdm.Constellation
+#define parm.u.ofdm.transmission_mode parm.u.ofdm.TransmissionMode
+#define parm.u.ofdm.guard_interval parm.u.ofdm.guardInterval
+#define parm.u.ofdm.hierarchy_information parm.u.ofdm.HierarchyInformation
+*/
+}
+
+PyObject *eDVBFrontend::readTransponderData(bool original)
+{
+	PyObject *ret=PyDict_New();
+
+	if (ret)
+	{
+		bool read=m_fd != -1;
+		const char *tmp = "unknown";
+
+		PutToDict(ret, "tuner number", m_fe);
+
+		switch(m_type)
+		{
+			case feSatellite:
+				tmp = "DVB-S";
+				break;
+			case feCable:
+				tmp="DVB-C";
+				break;
+			case feTerrestrial:
+				tmp="DVB-T";
+				break;
+			default:
+				read=false;
+				break;
+		}
+		PutToDict(ret, "tuner type", tmp);
+
+		if (read)
+		{
+			FRONTENDPARAMETERS front;
+
+			tmp = "unknown";
+			switch(m_state)
+			{
+				case stateIdle:
+					tmp="idle";
+					break;
+				case stateTuning:
+					tmp="tuning";
+					break;
+				case stateFailed:
+					tmp="failed";
+					break;
+				case stateLock:
+					tmp="lock";
+					break;
+				case stateLostLock:
+					tmp="lostlock";
+					break;
+				default:
+					break;
+			}
+			PutToDict(ret, "tuner state", tmp);
+
+			PutToDict(ret, "tuner locked", readFrontendData(Locked));
+			PutToDict(ret, "tuner synced", readFrontendData(Synced));
+			PutToDict(ret, "tuner bit_error_rate", readFrontendData(bitErrorRate));
+			PutToDict(ret, "tuner signal_power", readFrontendData(signalPower));
+			PutToDict(ret, "tuner signal_quality", readFrontendData(signalQuality));
+
+			if (!original && ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
+				eDebug("FE_GET_FRONTEND (%m)");
+			else
+			{
+				switch(m_type)
+				{
+					case feSatellite:
+						fillDictWithSatelliteData(ret, original?parm:front, this);
+						break;
+					case feCable:
+						fillDictWithCableData(ret, original?parm:front);
+						break;
+					case feTerrestrial:
+						fillDictWithTerrestrialData(ret, original?parm:front);
+						break;
+				}
+			}
+		}
+	}
+	else
+	{
+		Py_INCREF(Py_None);
+		ret = Py_None;
+	}
+	return ret;
 }
 
 #ifndef FP_IOCTL_GET_ID
@@ -819,7 +991,47 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 	}
 	res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
 	if (!res)
+	{
+		parm.u.qpsk.symbol_rate = feparm.symbol_rate;
+		switch (feparm.inversion)
+		{
+			case eDVBFrontendParametersSatellite::Inversion::On:
+				parm.inversion = INVERSION_ON;
+				break;
+			case eDVBFrontendParametersSatellite::Inversion::Off:
+				parm.inversion = INVERSION_OFF;
+				break;
+			default:
+			case eDVBFrontendParametersSatellite::Inversion::Unknown:
+				parm.inversion = INVERSION_AUTO;
+				break;
+		}
+		switch (feparm.fec)
+		{
+			default:
+			case eDVBFrontendParametersSatellite::FEC::fNone:
+				eDebug("no fec set.. assume auto");
+			case eDVBFrontendParametersSatellite::FEC::fAuto:
+				parm.u.qpsk.fec_inner = FEC_AUTO;
+				break;
+			case eDVBFrontendParametersSatellite::FEC::f1_2:
+				parm.u.qpsk.fec_inner = FEC_1_2;
+				break;
+			case eDVBFrontendParametersSatellite::FEC::f2_3:
+				parm.u.qpsk.fec_inner = FEC_2_3;
+				break;
+			case eDVBFrontendParametersSatellite::FEC::f3_4:
+				parm.u.qpsk.fec_inner = FEC_3_4;
+				break;
+			case eDVBFrontendParametersSatellite::FEC::f5_6:
+				parm.u.qpsk.fec_inner = FEC_5_6;
+				break;
+			case eDVBFrontendParametersSatellite::FEC::f7_8:
+				parm.u.qpsk.fec_inner = FEC_7_8;
+				break;
+		}
 		eDebug("tuning to %d mhz", parm.frequency/1000);
+	}
 	return res;
 }
 

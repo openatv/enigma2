@@ -1152,7 +1152,7 @@ int eDVBServicePlay::getFrontendInfo(int w)
 	return fe->readFrontendData(w);
 }
 
-PyObject *eDVBServicePlay::getFrontendTransponderData()
+PyObject *eDVBServicePlay::getFrontendData(bool original)
 {
 	PyObject *ret=0;
 
@@ -1161,9 +1161,34 @@ PyObject *eDVBServicePlay::getFrontendTransponderData()
 	{
 		ePtr<iDVBFrontend> fe;
 		if(!channel->getFrontend(fe))
-			ret = fe->readTransponderData();
+		{
+			ret = fe->readTransponderData(original);
+			if (ret)
+			{
+				ePtr<iDVBFrontendParameters> feparm;
+				channel->getCurrentFrontendParameters(feparm);
+				if (feparm)
+				{
+					eDVBFrontendParametersSatellite osat;
+					if (!feparm->getDVBS(osat))
+					{
+						void PutToDict(PyObject *dict, const char*key, long value);
+						PutToDict(ret, "orbital_position", osat.orbital_position);
+						const char *tmp = "unknown";
+						switch(osat.polarisation)
+						{
+							case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="horizontal"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="vertical"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="circular_left"; break;
+							case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="circular_right"; break;
+							default:break;
+						}
+						PutToDict(ret, "polarization", osat.polarisation);
+					}
+				}
+			}
+		}
 	}
-
 	if (!ret)
 	{
 		ret = Py_None;

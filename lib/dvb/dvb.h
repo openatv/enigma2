@@ -218,7 +218,8 @@ public:
 	RESULT setCIRouting(const eDVBCIRouting &routing);
 	RESULT getDemux(ePtr<iDVBDemux> &demux, int cap);
 	RESULT getFrontend(ePtr<iDVBFrontend> &frontend);
-	
+	RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &param);
+
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
 	void stopFile();
@@ -230,7 +231,6 @@ public:
 
 	int getUseCount() { return m_use_count; }
 private:
-	ePtr<iDVBFrontendParameters> m_feparm; // for retune on lostlock
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
 	

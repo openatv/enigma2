@@ -626,11 +626,11 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
 			/* on managed channels, we try to retune in order to re-acquire lock. */
-		if (m_feparm)
+		if (m_current_frontend_parameters)
 		{
 			eDebug("OURSTATE: lost lock, trying to retune");
 			ourstate = state_tuning;
-			m_frontend->get().tune(*m_feparm);
+			m_frontend->get().tune(*m_current_frontend_parameters);
 		} else
 			/* on unmanaged channels, we don't do this. the client will do this. */
 		{
@@ -918,7 +918,7 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 			/* if tuning fails, shutdown the channel immediately. */
 	int res;
 	res = m_frontend->get().tune(*feparm);
-	m_feparm = feparm;
+	m_current_frontend_parameters = feparm;
 	
 	if (res)
 	{
@@ -977,8 +977,13 @@ RESULT eDVBChannel::getFrontend(ePtr<iDVBFrontend> &frontend)
 	frontend = &m_frontend->get();
 	if (frontend)
 		return 0;
-	else
-		return -ENODEV;
+	return -ENODEV;
+}
+
+RESULT eDVBChannel::getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &param)
+{
+	param = m_current_frontend_parameters;
+	return 0;
 }
 
 RESULT eDVBChannel::playFile(const char *file)

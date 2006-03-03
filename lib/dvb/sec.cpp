@@ -3,15 +3,9 @@
 #include <lib/dvb/rotor_calc.h>
 
 #if HAVE_DVB_API_VERSION < 3
-#define INVERSION Inversion
 #define FREQUENCY Frequency
-#define FEC_INNER FEC_inner
-#define SYMBOLRATE SymbolRate
 #else
-#define INVERSION inversion
 #define FREQUENCY frequency
-#define FEC_INNER fec_inner
-#define SYMBOLRATE symbol_rate
 #endif
 #include <lib/base/eerror.h>
 
@@ -126,7 +120,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				if ( sat.frequency > lnb_param.m_lof_threshold )
 					band |= 1;
-				if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
+				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
 					band |= 2;
 
 				bool rotor=false;
@@ -344,56 +338,17 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			parm.FREQUENCY = abs(parm.FREQUENCY);
 
-			if (sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal)
+			frontend.setData(9, sat.frequency - parm.FREQUENCY);
+
+			if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
 				band |= 2;
 
-			switch (sat.inversion)
-			{
-				case eDVBFrontendParametersCable::Inversion::On:
-					parm.INVERSION = INVERSION_ON;
-					break;
-				case eDVBFrontendParametersCable::Inversion::Off:
-					parm.INVERSION = INVERSION_OFF;
-					break;
-				default:
-				case eDVBFrontendParametersCable::Inversion::Unknown:
-					parm.INVERSION = INVERSION_AUTO;
-					break;
-			}
-
-			switch (sat.fec)
-			{
-				default:
-				case eDVBFrontendParametersSatellite::FEC::fNone:
-					eDebug("no fec set.. assume auto");
-				case eDVBFrontendParametersSatellite::FEC::fAuto:
-					parm.u.qpsk.FEC_INNER = FEC_AUTO;
-					break;
-				case eDVBFrontendParametersSatellite::FEC::f1_2:
-					parm.u.qpsk.FEC_INNER = FEC_1_2;
-					break;
-				case eDVBFrontendParametersSatellite::FEC::f2_3:
-					parm.u.qpsk.FEC_INNER = FEC_2_3;
-					break;
-				case eDVBFrontendParametersSatellite::FEC::f3_4:
-					parm.u.qpsk.FEC_INNER = FEC_3_4;
-					break;
-				case eDVBFrontendParametersSatellite::FEC::f5_6:
-					parm.u.qpsk.FEC_INNER = FEC_5_6;
-					break;
-				case eDVBFrontendParametersSatellite::FEC::f7_8: 
-					parm.u.qpsk.FEC_INNER = FEC_7_8;
-					break;
-			}
-
-			parm.u.qpsk.SYMBOLRATE = sat.symbol_rate;
-
 			if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_14V
-				|| ( sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Vertical
+				|| ( sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical
 					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 				voltage = VOLTAGE(13);
 			else if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_18V
-				|| ( sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal
+				|| ( !(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical)
 					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 				voltage = VOLTAGE(18);
 			if ( (sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::ON)

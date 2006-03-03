@@ -276,7 +276,7 @@ public:
 		SyncState
 	};
 	virtual int getFrontendInfo(int w)=0;
-	virtual PyObject *getFrontendTransponderData()=0;
+	virtual PyObject *getFrontendData(bool original=false)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iFrontendStatusInformation>, iFrontendStatusInformationPtr);
