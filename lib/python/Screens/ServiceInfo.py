@@ -64,7 +64,8 @@ class ServiceInfo(Screen):
 			"cancel": self.close,
 			"red": self.information,
 			"green": self.pids,
-			"yellow": self.transponder
+			"yellow": self.transponder,
+			"blue": self.tuner
 		}, -1)
 		
 		service = session.nav.getCurrentService()
@@ -78,7 +79,7 @@ class ServiceInfo(Screen):
 		self["red"] = Label("Serviceinfo")
 		self["green"] = Label("PIDs")
 		self["yellow"] = Label("Transponder")
-		self["blue"] = Label("")
+		self["blue"] = Label("Tuner status")
 	
 		tlist = [ ]
 
@@ -109,9 +110,17 @@ class ServiceInfo(Screen):
 	
 	def transponder(self):
 		frontendData = self.feinfo.getFrontendData(True)
-		print frontendData
+		Labels = self.getFEData(frontendData)
+		self.fillList(Labels)
+		
+	def tuner(self):
+		frontendData = self.feinfo.getFrontendData(False)
+		Labels = self.getFEData(frontendData)
+		self.fillList(Labels)
+		
+	def getFEData(self, frontendData):
 		if frontendData["tuner_type"] == "DVB-S":
-			Labels = ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+			return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
 					   ("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
 					   ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
@@ -121,12 +130,17 @@ class ServiceInfo(Screen):
 					   ("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
 				   		)
 		elif frontendData["tuner_type"] == "DVB-C":
-			pass
+			return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   ("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
+					   ("Modulation", frontendData["modulation"], TYPE_TEXT),
+					   ("Inversion", frontendData["inversion"], TYPE_TEXT),
+					   ("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
+				   		)
 		elif frontendData["tuner_type"] == "DVB-T":
-			pass
-			
-		self.fillList(Labels)
-	
+			return []
+		
 	def fillList(self, Labels):
 		tlist = [ ]
 
