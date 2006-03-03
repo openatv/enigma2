@@ -783,7 +783,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 RESULT eDVBSatelliteEquipmentControl::clear()
 {
-	for (int i=0; i < m_lnbidx; ++i)
+	for (int i=0; i <= m_lnbidx; ++i)
 	{
 		m_lnbs[i].m_satellites.clear();
 		m_lnbs[i].tuner_mask = 0;
@@ -825,7 +825,7 @@ RESULT eDVBSatelliteEquipmentControl::setDependencyPointers( int tu1, int tu2, i
 /* LNB Specific Parameters */
 RESULT eDVBSatelliteEquipmentControl::addLNB()
 {
-	if ( m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)))
+	if ( (m_lnbidx+1) < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)))
 		m_curSat=m_lnbs[++m_lnbidx].m_satellites.end();
 	else
 	{
