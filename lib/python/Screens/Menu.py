@@ -88,9 +88,16 @@ class MenuSummary(Screen):
 		self["MenuTitle"] = Label(parent.menu_title)
 		self["MenuEntry"] = Label("")
 		self["Clock"] = Clock()
-		parent["menu"].onSelectionChanged.append(self.selectionChanged)
 		self.parent = parent
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+	
+	def addWatcher(self):
+		self.parent["menu"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
+	
+	def removeWatcher(self):
+		self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
 		self["MenuEntry"].setText(self.parent["menu"].getCurrent()[0])
