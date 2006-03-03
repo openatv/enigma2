@@ -12,7 +12,7 @@ from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
 from time import localtime
 
-from Tools.XMLTools import elementsWithTag, mergeText, filterXMLString
+from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from ServiceReference import ServiceReference
 
 # ok, for descriptions etc we have:
@@ -291,10 +291,10 @@ class RecordTimer(timer.Timer):
 			list.append('<timer')
 			list.append(' begin="' + str(int(timer.begin)) + '"')
 			list.append(' end="' + str(int(timer.end)) + '"')
-			list.append(' serviceref="' + str(timer.service_ref) + '"')
+			list.append(' serviceref="' + str(stringToXML(timer.service_ref)) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' name="' + str(filterXMLString(timer.name)) + '"')
-			list.append(' description="' + str(filterXMLString(timer.description)) + '"')
+			list.append(' name="' + str(stringToXML(timer.name)) + '"')
+			list.append(' description="' + str(stringToXML(timer.description)) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')

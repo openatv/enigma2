@@ -23,5 +23,5 @@ def mergeText(nodelist):
 			rc = rc + node.data
 	return rc
 
-def filterXMLString(text):
-		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;'). replace('"', '&quot;')
+def stringToXML(text):
+		return str.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;').replace('"', '&quot;')
