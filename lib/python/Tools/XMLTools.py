@@ -23,3 +23,6 @@ def mergeText(nodelist):
 			rc = rc + node.data
 	return rc
 
+def filterXMLString(text):
+	# TODO: better solutions?
+	return text.replace('"', "&quot;").replace('<', '&lt;')
