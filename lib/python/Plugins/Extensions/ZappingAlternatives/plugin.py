@@ -245,7 +245,10 @@ def playService(self, ref):
 
 def autostart(reason):
 	if reason == 0:
-		loadAlternatives()
+		try:
+			loadAlternatives()
+		except:
+			pass
 		NavigationInstance.instance.playService = type(NavigationInstance.instance.playService)(playService, NavigationInstance, Navigation)
 
 def AlternativeZappingSetup(session):
