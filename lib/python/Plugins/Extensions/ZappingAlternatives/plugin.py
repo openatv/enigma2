@@ -67,7 +67,10 @@ class AlternativeZapping(Screen):
 		self.serviceslist = []
 		self.alternativeslist = []
 		
-		self.loadAlternatives()
+		try:
+			self.loadAlternatives()
+		except:
+			pass
 		self["serviceslist"] = MenuList(self.serviceslist)
 		self["alternativeslist"] = MenuList(self.alternativeslist)
 
@@ -184,6 +187,7 @@ class AlternativeZapping(Screen):
 
 			for x in alternativelist:
 				self.alternativeslist.append((ServiceReference(x).getServiceName(), x))
+				print ServiceReference(x).frontendStatusInfo().getFrontendData(True)
 			
 		self["alternativeslist"].l.setList(self.alternativeslist)
 			
