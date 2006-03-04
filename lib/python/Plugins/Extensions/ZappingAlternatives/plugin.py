@@ -187,7 +187,6 @@ class AlternativeZapping(Screen):
 
 			for x in alternativelist:
 				self.alternativeslist.append((ServiceReference(x).getServiceName(), x))
-				print ServiceReference(x).frontendStatusInfo().getFrontendData(True)
 			
 		self["alternativeslist"].l.setList(self.alternativeslist)
 			
