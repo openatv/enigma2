@@ -36,6 +36,16 @@ def removeAlternative(service1, service2):
 		del alternatives[service1]
 	if len(alternatives[service2]) == 0:
 		del alternatives[service2]
+		
+def loadAlternatives():
+	doc = xml.dom.minidom.parse(self.filename)
+	
+	root = doc.childNodes[0]
+	for service in elementsWithTag(root.childNodes, 'service'):
+		newService = str(service.getAttribute('ref'))
+		for alternative in elementsWithTag(service.childNodes, 'alternative'):
+			newAlternative = str(alternative.getAttribute('ref'))
+			addAlternative(newService, newAlternative)
 
 def sortKey(x):
 	return str.lower(ServiceReference(x).getServiceName().strip())
@@ -235,6 +245,7 @@ def playService(self, ref):
 
 def autostart(reason):
 	if reason == 0:
+		loadAlternatives()
 		NavigationInstance.instance.playService = type(NavigationInstance.instance.playService)(playService, NavigationInstance, Navigation)
 
 def AlternativeZappingSetup(session):
