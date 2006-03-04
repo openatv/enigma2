@@ -36,6 +36,9 @@ def removeAlternative(service1, service2):
 		del alternatives[service1]
 	if len(alternatives[service2]) == 0:
 		del alternatives[service2]
+
+def sortKey(x):
+	return str.lower(ServiceReference(x).getServiceName().strip())
 			
 class AlternativeZapping(Screen):
 	skin = """
@@ -167,17 +170,27 @@ class AlternativeZapping(Screen):
 	
 	def updateServices(self):
 		self.serviceslist = []
-		
-		for x in self.alternatives.keys():
+		keys = self.alternatives.keys()
+		keys.sort(key = sortKey)
+		for x in keys:
 			self.serviceslist.append((ServiceReference(x).getServiceName(), x))
 			
-		self["serviceslist"].l.setList(self.serviceslist)
+		self["serviceslist"].setList(self.serviceslist)
 		if len(self.serviceslist) > 0:
 			self.yellow.setText(_("Add alternative"))
 			self.red.setText(_("Remove service"))
 		else:
 			self.yellow.setText("")
 			self.red.setText("")
+	
+	def selectService(self, ref):
+		count = 0
+		for x in self["serviceslist"].list:
+			if x[1] == ref:
+				self["serviceslist"].instance.moveSelectionTo(count)
+				return
+			count += 1
+			
 			
 	def updateAlternatives(self):
 		self.alternativeslist = []
@@ -188,17 +201,18 @@ class AlternativeZapping(Screen):
 			for x in alternativelist:
 				self.alternativeslist.append((ServiceReference(x).getServiceName(), x))
 			
-		self["alternativeslist"].l.setList(self.alternativeslist)
+		self["alternativeslist"].setList(self.alternativeslist)
 			
 	def greenKey(self):
 		self.session.openWithCallback(self.finishedChannelSelection, SimpleChannelSelection, _("Select reference service"))
 
 	def finishedChannelSelection(self, args):
-		if not self.alternatives.has_key(str(ServiceReference(args))):
-			self.alternatives[str(ServiceReference(args))] = []
-		print "alternatives:", self.alternatives
+		serviceString = str(ServiceReference(args))
+		if not self.alternatives.has_key(serviceString):
+			self.alternatives[serviceString] = []
 		self.updateServices()
 		self.updateAlternatives()
+		self.selectService(serviceString)
 
 	def yellowKey(self):
 		if len(self.serviceslist) > 0:
