@@ -38,7 +38,7 @@ def removeAlternative(service1, service2):
 		del alternatives[service2]
 		
 def loadAlternatives():
-	doc = xml.dom.minidom.parse(self.filename)
+	doc = xml.dom.minidom.parse(resolveFilename(SCOPE_CONFIG, "alternatives.xml"))
 	
 	root = doc.childNodes[0]
 	for service in elementsWithTag(root.childNodes, 'service'):
