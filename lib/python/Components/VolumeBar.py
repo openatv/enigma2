@@ -15,4 +15,3 @@ class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
 		g = eSlider(parent)
 		g.setRange(0, 100)
 		return g
-		

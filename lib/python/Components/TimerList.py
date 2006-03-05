@@ -61,7 +61,7 @@ def TimerEntryComponent(timer, processed):
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 
 	if timer.disabled:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/redx.png"))
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "redx.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
 	
 	return res

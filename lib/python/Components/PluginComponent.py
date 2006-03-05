@@ -47,16 +47,16 @@ class PluginComponent:
 				continue
 			open(directory_category + "/__init__.py", "a").close()
 			for x in os.listdir(directory_category):
-				path = directory_category + "/" + x + "/"
+				path = directory_category + "/" + x
 				if os.path.isdir(path):
-					if fileExists(path + "plugin.pyc") or fileExists(path + "plugin.py"):
+					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.py"):
 						plugin = my_import('.'.join(["Plugins", c, x, "plugin"]))
 
 						if not plugin.__dict__.has_key("Plugins"):
 							print "Plugin %s doesn't have 'Plugin'-call." % (x)
 							continue
 
-						plugins = plugin.Plugins()
+						plugins = plugin.Plugins(path=path)
 
 						# allow single entry not to be a list
 						if type(plugins) is not list:
