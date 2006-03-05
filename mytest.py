@@ -94,6 +94,9 @@ class Session:
 		self.dialog_stack = [ ]
 		self.summary_stack = [ ]
 		self.summary = None
+		
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
+			p(reason=0, session=self)
 	
 	def processDelay(self):
 		self.execEnd()
@@ -303,9 +306,9 @@ class VolumeControl:
 			self.muteDialog.hide()
 
 def runScreenTest():
-	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
-
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
 	
 	screensToRun = [ ]
 	
