@@ -294,9 +294,9 @@ def autostart(reason):
 		NavigationInstance.instance.playService = type(NavigationInstance.instance.playService)(playService, NavigationInstance, Navigation)
 		
 
-def AlternativeZappingSetup(session):
+def AlternativeZappingSetup(session, **kwargs):
 	session.open(AlternativeZapping)
 
-def Plugins():
+def Plugins(**kwargs):
  	return [PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart),
  			PluginDescriptor(name="Alternative services setup" , description="Defines alternatives for services.", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=AlternativeZappingSetup)]

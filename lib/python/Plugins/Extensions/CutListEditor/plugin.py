@@ -338,8 +338,8 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			self.cut_list.remove(self.context_nearest_mark)
 			self.uploadCuesheet()
 
-def main(session, service):
+def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
 
-def Plugins():
+def Plugins(**kwargs):
  	return PluginDescriptor(name="Cutlist Editor", description=_("Cutlist editor..."), where = PluginDescriptor.WHERE_MOVIELIST, fnc=main)

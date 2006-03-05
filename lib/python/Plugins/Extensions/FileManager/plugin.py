@@ -62,8 +62,8 @@ class FileManager(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-def main(session):
+def main(session, **kwargs):
 	session.open(FileManager)
 
-def Plugins():
+def Plugins(**kwargs):
  	return PluginDescriptor(name="File-Manager", description="Let's you view/edit files in your Dreambox", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)

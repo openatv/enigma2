@@ -44,7 +44,7 @@ class FPUpgrade(Screen):
 	def ok(self):
 		self.close(4)
 
-def Plugins():
+def Plugins(**kwargs):
 	from Tools.DreamboxHardware import getFPVersion
 	version = getFPVersion()
 	newversion = getUpgradeVersion() or 0
