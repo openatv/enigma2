@@ -232,7 +232,7 @@ class AlternativeZapping(Screen):
 		pass
 
 
-oldPlayService = NavigationInstance.instance.playService
+oldPlayService = None
 
 from Components.PerServiceDisplay import PerServiceDisplay
 
@@ -274,29 +274,32 @@ class ServiceChanged(PerServiceDisplay):
 
 					#print "Alternatives: No playable alternative found!"
 
-servicechanged = ServiceChanged(NavigationInstance.instance)
+servicechanged = None
 
 def playService(self, ref):
 	#print "--------------------Alternatives: trying to play service", str(ServiceReference(ref))
 	servicechanged.lastPlayAction = str(ServiceReference(ref))
 	servicechanged.nextPlayTry = 0
 	result = oldPlayService(ref)
-
 	
 	return result
 
-def autostart(reason):
+def sessionstart(reason, session, **kwargs):
 	if reason == 0:
 		try:
 			loadAlternatives()
-		except:
+		except: # FIXME, THIS IS ILLEGAL CODE AND WILL BE PROSECUTED!
 			pass
-		NavigationInstance.instance.playService = type(NavigationInstance.instance.playService)(playService, NavigationInstance, Navigation)
 		
+		# attach to this sessions navigation instance.
+		global oldPlayService, servicechanged
+		oldPlayService = session.nav.playService
+		session.nav.playService = type(session.nav.playService)(playService, NavigationInstance, Navigation)
+		servicechanged = ServiceChanged(session.nav)
 
 def AlternativeZappingSetup(session, **kwargs):
 	session.open(AlternativeZapping)
 
 def Plugins(**kwargs):
- 	return [PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart),
+ 	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = sessionstart),
  			PluginDescriptor(name="Alternative services setup" , description="Defines alternatives for services.", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=AlternativeZappingSetup)]
