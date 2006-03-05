@@ -5,19 +5,20 @@ Enigma2 plugins are always written in python. If you really have to call
 C/C++ functions from your code, you can supply a python module with it,
 implementing your functions.
 
-Let's write a plugin. We call it "ourSmallTest", and it should be a test
-plugin.
+Let's write a plugin. We call it "OurSmallTest", and it should be a test
+plugin. Thus we choose "DemoPlugins" as a category. The category is just to
+organize plugins in the filesystem.
 
 The simplest plugin looks like the following:
 
-Plugins/ourSmallTest/plugin.py:
+Plugins/DemoPlugins/OurSmallTest/plugin.py:
 
 "from Plugins.Plugin import PluginDescriptor
 
-def main(session):
+def main(session, **kwargs):
 	print "Hello world!"
 
-def Plugins():
+def Plugins(**kwargs):
  	return PluginDescriptor(
 		name="Our Small Test", 
 		description="plugin to test some capabilities", 
@@ -68,6 +69,12 @@ def main(session):
 
 with MyScreen being a GUI screen.
 
+About the **kwargs:
+This somewhat special syntax (in fact the name 'kwargs' is arbitrary, but
+stands for "keyword arguments") collects all addition keyword arguments
+(i.e. named parameters). For example. the Plugins()-call gets a "path"
+parameter, and probably more in the future. You must ignore all additional
+keywords which you don't need!
 
 autostarting plugins
 ====================
@@ -78,8 +85,17 @@ end on shutdown.
 you just have to use "WHERE_AUTOSTART". your entry point must (fnc) look 
 like:
 
-def autostartEntry(raeson):
+def autostartEntry(raeson, **kwargs):
 	if reason == 0: # startup
 		print "startup"
 	elif reason == 1:
 		print "shutdown"
+
+Categories
+==========
+
+Currently defined categories are:
+
+* DemoPlugins: Plugins fore pure demonstration purposes
+* Extensions: User interface extensions
+* SystemPlugins: Hardware specific plugins

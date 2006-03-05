@@ -11,6 +11,8 @@ class PluginDescriptor:
 	#   servicereference
 	#   reason
 	
+	# you have to ignore unknown kwargs!
+	
 	# argument: session
 	WHERE_BLUEMENU = 0
 	WHERE_MAINMENU = 1
@@ -44,7 +46,7 @@ class PluginDescriptor:
 
 	def updateIcon(self, path):
 		if type(self.iconstr) is str:
-			self.icon = loadPNG(path + self.iconstr)
+			self.icon = loadPNG(path + "/" + self.iconstr)
 		else:
 			self.icon = None
 

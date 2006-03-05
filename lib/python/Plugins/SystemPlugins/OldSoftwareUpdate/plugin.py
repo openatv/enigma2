@@ -166,12 +166,12 @@ class Ipkg(Screen):
 		else:
 			self.close()
 
-def UpgradeMain(session):
+def UpgradeMain(session, **kwargs):
 	session.open(Upgrade)
 
-def IpkgMain(session):
+def IpkgMain(session, **kwargs):
 	session.open(Ipkg)
 
-def Plugins():
+def Plugins(**kwargs):
 	return [PluginDescriptor(name="Old Softwareupdate", description="Updates your receiver's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
 			PluginDescriptor(name="IPKG", description="IPKG frontend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]

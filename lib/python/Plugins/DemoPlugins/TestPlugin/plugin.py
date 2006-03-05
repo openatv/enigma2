@@ -68,13 +68,11 @@ class Test(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-def main(session):
+def main(session, **kwargs):
 	session.openWithCallback(test, ChoiceBox, title="Delete everything on this Dreambox?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
 	
 def test(returnValue):
 	print "You entered", returnValue
 
-def Plugins():
- 	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
-
- 	
+def Plugins(**kwargs):
+	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)

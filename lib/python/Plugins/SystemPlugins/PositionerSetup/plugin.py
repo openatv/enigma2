@@ -129,9 +129,8 @@ class PositionerSetup(Screen):
 		else:
 			self.status.setText("not moving")
 		
-def PositionerMain(session):
+def PositionerMain(session, **kwargs):
 	session.open(PositionerSetup)
 
-def Plugins():
+def Plugins(**kwargs):
 	return PluginDescriptor(name="Positioner setup", description="Setup your positioner", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=PositionerMain)
-

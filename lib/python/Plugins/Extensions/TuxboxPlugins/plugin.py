@@ -38,9 +38,9 @@ def getPluginParams(file):
 
 	return params
 
-def main(session, plugin):
+def main(session, plugin, **kwargs):
 	print "Running plugin " + plugin[:-4] + ".so with config file", plugin
 	print getPluginParams(plugin)
 	
-def Plugins():
+def Plugins(**kwargs):
 	return getPlugins()
