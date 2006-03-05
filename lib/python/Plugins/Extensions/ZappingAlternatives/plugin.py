@@ -57,8 +57,8 @@ class AlternativeZapping(Screen):
 			<widget name="green" position="140,0" size="140,40" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
 			<widget name="yellow" position="280,0" size="140,40" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
 			<widget name="blue" position="420,0" size="140,40" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
-			<widget name="serviceslist" position="0,40" size="280,360" />
-			<widget name="alternativeslist" position="280,40" size="280,360" selectionDisabled="1" />
+			<widget name="serviceslist" position="0,40" size="280,360" scrollbarMode="showOnDemand" />
+			<widget name="alternativeslist" position="280,40" size="280,360" selectionDisabled="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 	def __init__(self, session):
 		self.skin = AlternativeZapping.skin
