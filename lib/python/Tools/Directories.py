@@ -46,6 +46,9 @@ def resolveFilename(scope, base = ""):
 	if path[1] == PATH_CREATE:
 		if (not pathExists(defaultPaths[scope][0])):
 			os.mkdir(path[0])
+			
+	if base[0] == '/':
+		path = ""
 	
 	if not fileExists(path[0] + base):
 		#try:
