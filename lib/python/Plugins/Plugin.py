@@ -28,6 +28,10 @@ class PluginDescriptor:
 	# start as wizard. In that case, fnc must be a screen class!
 	WHERE_WIZARD = 6
 	
+	# like autostart, but for a session. currently, only session starts are 
+	# delivered, and only on pre-loaded plugins
+	WHERE_SESSIONSTART = 7
+	
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None):
 		self.name = name
 		if type(where) is list:
