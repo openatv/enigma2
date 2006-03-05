@@ -788,7 +788,11 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 		
 		if (relative == 1) /* pts relative */
+		{
 			pts += now;
+			if (pts < 0)
+				pts = 0;
+		}
 
 		if (relative != 2)
 			if (pts < 0)
