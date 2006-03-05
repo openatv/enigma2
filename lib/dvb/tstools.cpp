@@ -185,36 +185,39 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 		if (!m_samples_taken)
 			takeSamples();
 		
-		if (m_samples.empty())
-			return -1;
-		
+		if (!m_samples.empty())
+		{
 //		eDebug("ok, samples ok");
-			/* search entry before and after */
-		std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(pts);
-		std::map<pts_t, off_t>::const_iterator u = l;
+				/* search entry before and after */
+			std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(pts);
+			std::map<pts_t, off_t>::const_iterator u = l;
 
-		if (l != m_samples.begin())
-			--l;
+			if (l != m_samples.begin())
+				--l;
 		
-		int birate;
-		if ((u == m_samples.end()) || (l == m_samples.end()))
-			return -1;
-
-		pts_t pts_diff = u->first - l->first;
-		off_t offset_diff = u->second - l->second;
+			if ((u != m_samples.end()) && (l != m_samples.end()))
+			{
+				pts_t pts_diff = u->first - l->first;
+				off_t offset_diff = u->second - l->second;
 //		eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
 	
-		if (!pts_diff)
-			return -1;
-
-		int bitrate = calcBitrate(); /* in bits/s */
-		bitrate = offset_diff * 90000 * 8 / pts_diff;
-
-		if (bitrate <= 0)
-			return -1;
+				if (pts_diff)
+				{
+					int bitrate = offset_diff * 90000 * 8 / pts_diff;
+					if (bitrate > 0)
+					{
+						offset = l->second;
+						offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
+						offset -= offset % 188;
+						return 0;
+					}
+				}
+			}
+		}
 		
-		offset = l->second;
-		offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
+		eDebug("falling back");
+		int bitrate = calcBitrate();
+		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		offset -= offset % 188;
 
 		return 0;
@@ -322,8 +325,8 @@ void eDVBTSTools::takeSamples()
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
-	if (bytes_per_sample < 1*1024*1024)
-		bytes_per_sample = 1*1024*1024;
+	if (bytes_per_sample < 40*1024*1024)
+		bytes_per_sample = 40*1024*1024;
 	
 	bytes_per_sample -= bytes_per_sample % 188;
 	
