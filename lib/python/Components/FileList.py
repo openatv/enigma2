@@ -33,12 +33,12 @@ def FileEntryComponent(name, absolute, isDir = False):
 	res = [ (absolute, isDir) ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 200, 20, 0, RT_HALIGN_LEFT ,name))
 	if isDir:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/directory.png"))
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1]
 		if EXTENSIONS.has_key(extension):
-			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/extensions/" + EXTENSIONS[extension] + ".png"))
+			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/" + EXTENSIONS[extension] + ".png"))
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 2, 20, 20, png))
 	

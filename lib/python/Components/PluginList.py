@@ -15,7 +15,7 @@ def PluginEntryComponent(plugin):
 	res.append(MultiContentEntryText(pos=(80, 26), size=(300, 17), font=1, text=plugin.description))
 
 	if plugin.icon is None:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "plugin.png"))
 	else:
 		png = plugin.icon
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(60, 40), png = png))
@@ -37,7 +37,7 @@ def PluginDownloadComponent(plugin, name):
 	res.append(MultiContentEntryText(pos=(80, 26), size=(300, 17), font=1, text=plugin.description))
 
 	if plugin.icon is None:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "/plugin.png"))
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "plugin.png"))
 	else:
 		png = plugin.icon
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(60, 50), png = png))
