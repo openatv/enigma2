@@ -39,6 +39,7 @@ except ImportError:
 from Components.PluginComponent import plugins
 
 from Screens.Wizard import wizardManager
+from Screens.ImageWizard import *
 from Screens.StartWizard import *
 from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction

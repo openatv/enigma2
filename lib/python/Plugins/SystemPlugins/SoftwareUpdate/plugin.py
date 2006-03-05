@@ -8,6 +8,7 @@ from Components.MenuList import MenuList
 from Components.Input import Input
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
+from Screens.ImageWizard import ImageWizard
 
 import os
 
@@ -25,7 +26,8 @@ class UpdatePluginMenu(Screen):
 		
 		list = []
 		if self.menu == 0:
-			list.append((_("Upgrade"), "upgrade"))
+			list.append((_("Image-Upgrade"), "image"))
+			list.append((_("Online-Upgrade"), "upgrade"))
 			list.append((_("Advanced"), "advanced"))
 		elif self.menu == 1:
 			list.append((_("Choose source"), "source"))
@@ -42,6 +44,8 @@ class UpdatePluginMenu(Screen):
 		
 	def go(self):
 		if self.menu == 0:
+			if (self["menu"].l.getCurrentSelection()[1] == "image"):
+				self.session.open(ImageWizard)
 			if (self["menu"].l.getCurrentSelection()[1] == "upgrade"):
 				self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?\nAfter pressing OK, please wait!"))
 			if (self["menu"].l.getCurrentSelection()[1] == "advanced"):
