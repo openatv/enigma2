@@ -234,14 +234,54 @@ class AlternativeZapping(Screen):
 
 oldPlayService = NavigationInstance.instance.playService
 
+from Components.PerServiceDisplay import PerServiceDisplay
+
+class ServiceChanged(PerServiceDisplay):
+	def __init__(self, navcore):
+		PerServiceDisplay.__init__(self, navcore,
+			{
+				iPlayableService.evTuneFailed: self.tuneFailed,
+				iPlayableService.evStart: self.start
+			})
+		
+		self.lastPlayAction = None
+		self.nextPlayTry = 0
+
+	def start(self):
+#		print "+++++++++++++++++++++++++++++++++++++++++++++++++Start", self.lastPlayAction
+		if self.lastPlayAction is not None:
+			self.lastPlayAction = None
+
+	def tuneFailed(self):
+#		print "+++++++++++++++++++++++++++++++++++++++++++++++++Tuning failed!", self.lastPlayAction
+		ref = self.lastPlayAction
+#		print "Ref:", ref
+#		print "Alternatives: failed to play service"
+		if ref is not None:
+			if alternatives.has_key(ref):
+#					print "Alternatives: trying alternatives"
+					if len(alternatives[ref]) > self.nextPlayTry:
+#						print "Alternatives: trying alternative", alternatives[ref][self.nextPlayTry]
+						if oldPlayService(ServiceReference(alternatives[ref][self.nextPlayTry]).ref) == 0:
+								self.nextPlayTry += 1
+#								print "Alternatives: Alternative found!"
+						else:
+								self.nextPlayTry += 1
+#								print "Alternatives: Alternative doesn't play either"
+								self.tuneFailed()
+
+					#print "Alternatives: No playable alternative found!"
+
+servicechanged = ServiceChanged(NavigationInstance.instance)
+
 def playService(self, ref):
-	if not oldPlayService(ref):
-		if alternatives.has_key(str(ServiceReference(ref))):
-			for x in alternatives[str(ServiceReference(ref))]:
-				if oldPlayService(ServiceReference(x).ref):
-					return 1
-		return 0
-	return 1
+	#print "--------------------Alternatives: trying to play service", str(ServiceReference(ref))
+	servicechanged.lastPlayAction = str(ServiceReference(ref))
+	servicechanged.nextPlayTry = 0
+	result = oldPlayService(ref)
+
+	
+	return result
 
 def autostart(reason):
 	if reason == 0:
@@ -250,6 +290,7 @@ def autostart(reason):
 		except:
 			pass
 		NavigationInstance.instance.playService = type(NavigationInstance.instance.playService)(playService, NavigationInstance, Navigation)
+		
 
 def AlternativeZappingSetup(session):
 	session.open(AlternativeZapping)
