@@ -1,1 +1,2 @@
-SUBDIRS = SoftwareUpdate FrontprocessorUpgrade OldSoftwareUpdate PositionerSetup
+SUBDIRS = SoftwareUpdate FrontprocessorUpgrade OldSoftwareUpdate PositionerSetup ConfigurationBackup
+
