@@ -611,9 +611,9 @@ class ChannelSelectionBase(Screen):
 		length = len(self.servicePath)
 		if length:
 			current = self.servicePath[length-1]
-		self.setRoot(current, justSet)
-		if not justSet:
-			self.setCurrentSelection(prev)
+			self.setRoot(current, justSet)
+			if not justSet:
+				self.setCurrentSelection(prev)
 		return prev
 
 	def isBasePathEqual(self, ref):
@@ -793,8 +793,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		config.tv = ConfigSubsection();
 		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
 		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
-		config.tv.prevservice = configElement("config.tv.prevservice", configText, "", 0);
-		config.tv.prevroot = configElement("config.tv.prevroot", configText, "", 0);
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -889,9 +887,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for i in self.servicePathTV:
 			path += i.toString()
 			path += ';'
-		if config.tv.prevroot.value != config.tv.lastroot.value:
-			config.tv.prevroot.value = config.tv.lastroot.value
-			config.tv.prevroot.save()
 		if len(path) and path != config.tv.lastroot.value:
 			config.tv.lastroot.value = path
 			config.tv.lastroot.save()
@@ -929,29 +924,21 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			refstr = ""
 		if refstr != config.tv.lastservice.value:
-			config.tv.prevservice.value = config.tv.lastservice.value
-			config.tv.prevservice.save()
 			config.tv.lastservice.value = refstr
 			config.tv.lastservice.save()
 
 	def recallPrevService(self):
-		if len(config.tv.prevservice.value) and len(config.tv.prevroot.value):
-			if config.tv.lastroot.value != config.tv.prevroot.value:
-				tmp = config.tv.lastroot.value
-				config.tv.lastroot.value = config.tv.prevroot.value
-				config.tv.lastroot.save()
-				config.tv.prevroot.value = tmp
-				config.tv.prevroot.save()
-				self.restoreRoot()
-			if config.tv.lastservice.value != config.tv.prevservice.value:
-				tmp = config.tv.lastservice.value
-				config.tv.lastservice.value = config.tv.prevservice.value
-				config.tv.lastservice.save()
-				config.tv.prevservice.value = tmp
-				config.tv.prevservice.save()
-				lastservice=eServiceReference(config.tv.lastservice.value)
-				self.session.nav.playService(lastservice)
-				self.setCurrentSelection(lastservice)
+		hlen = len(self.history)
+		if hlen > 1:
+			if self.history_pos == hlen-1:
+				tmp = self.history[self.history_pos]
+				self.history[self.history_pos] = self.history[self.history_pos-1]
+				self.history[self.history_pos-1] = tmp
+			else:
+				tmp = self.history[self.history_pos+1]
+				self.history[self.history_pos+1] = self.history[self.history_pos]
+				self.history[self.history_pos] = tmp
+			self.setHistoryPath()
 
 	def cancel(self):
 		self.close(None)
