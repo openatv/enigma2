@@ -221,9 +221,9 @@ class AlternativeZapping(Screen):
 		if not self.alternatives.has_key(serviceString):
 			self.alternatives[serviceString] = []
 		self.updateServices()
-		self.updateAlternatives()
 		self.selectService(serviceString)
-
+		self.updateAlternatives()
+		
 	def yellowKey(self):
 		if len(self.serviceslist) > 0:
 			self.session.openWithCallback(self.finishedAlternativeSelection, SimpleChannelSelection, _("Select alternative service"))
@@ -269,6 +269,8 @@ class ServiceChanged(PerServiceDisplay):
 								self.nextPlayTry += 1
 #								print "Alternatives: Alternative doesn't play either"
 								self.tuneFailed()
+					else:
+						self.lastPlayAction = None
 
 					#print "Alternatives: No playable alternative found!"
 
