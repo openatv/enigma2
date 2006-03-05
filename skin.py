@@ -40,20 +40,28 @@ def parseColor(str):
 			raise ("color '%s' must be #aarrggbb or valid named color" % (str))
 	return gRGB(int(str[1:], 0x10))
 
-def collectAttributes(skinAttributes, node):
+def collectAttributes(skinAttributes, node, skin_path_prefix=None):
 	# walk all attributes
 	for p in range(node.attributes.length):
 		a = node.attributes.item(p)
 		
 		# convert to string (was: unicode)
 		attrib = str(a.name)
-		# TODO: proper UTF8 translation?! (for value)
 		# TODO: localization? as in e1?
-		value = str(a.value)
+		value = a.value.encode("utf-8")
+		
+		if skin_path_prefix and attrib in ["pixmap", "pointer"] and len(value) and value[0:2] == "~/":
+			value = skin_path_prefix + value[1:]
 		
 		skinAttributes.append((attrib, value))
 
-def applySingleAttribute(guiObject, desktop, attrib, value):		
+def loadPixmap(path):
+	ptr = loadPNG(path)
+	if ptr is None:
+		raise "pixmap file %s not found!" % (path)
+	return ptr
+
+def applySingleAttribute(guiObject, desktop, attrib, value):
 	# and set attributes
 	try:
 		if attrib == 'position':
@@ -69,7 +77,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
-			ptr = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, value))
+			ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value))
 			# that __deref__ still scares me!
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPixmap(ptr.__deref__())
@@ -137,7 +145,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == "pointer":
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos)
-			ptr = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, name))
+			ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, name))
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib != 'name':
@@ -178,7 +186,7 @@ def loadSkin(desktop):
 				bpName = str(pixmap.getAttribute("pos"))
 				filename = str(pixmap.getAttribute("filename"))
 				
-				png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, filename))
+				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename))
 				
 				# adapt palette
 				desktop.makeCompatiblePixmap(png.__deref__())
@@ -228,7 +236,10 @@ def readSkin(screen, skin, name, desktop):
 	assert myscreen is not None, "no skin for screen '" + name + "' found!"
 
 	screen.skinAttributes = [ ]
-	collectAttributes(screen.skinAttributes, myscreen)
+	
+	skin_path_prefix = getattr(screen, "skin_path", None)
+
+	collectAttributes(screen.skinAttributes, myscreen, skin_path_prefix)
 	
 	screen.additionalWidgets = [ ]
 	
@@ -245,7 +256,7 @@ def readSkin(screen, skin, name, desktop):
 		except:
 			raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 		
-		collectAttributes(attributes, widget)
+		collectAttributes(attributes, widget, skin_path_prefix)
 
 	# now walk additional objects
 	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
@@ -275,7 +286,7 @@ def readSkin(screen, skin, name, desktop):
 			raise str("unsupported stuff : %s" % widget.tagName)
 		
 		w.skinAttributes = [ ]
-		collectAttributes(w.skinAttributes, widget)
+		collectAttributes(w.skinAttributes, widget, skin_path_prefix)
 		
 		# applyAttributes(guiObject, widget, desktop)
 		# guiObject.thisown = 0
