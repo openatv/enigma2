@@ -1,0 +1,227 @@
+from enigma import *
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Screens.Console import Console
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Pixmap import *
+from Components.Pixmap import Pixmap
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.config import config, configSelection, configSelection, getConfigListEntry, configElement, ConfigSubsection, currentConfigSelectionElement
+from Components.ConfigList import ConfigList
+from Plugins.Plugin import PluginDescriptor
+
+from Tools.NumericalTextInput import *
+from Tools.Directories import *
+import os
+import string
+import time
+import datetime
+
+plugin_path = ""
+
+BackupPath = {
+		"hdd" : "/media/hdd/backup",
+		"usb" : "/media/usb/backup",
+		"cf" : "/media/cf/backup"
+	}
+
+class BackupSetup(Screen):
+	skin = """
+		<screen position="100,100" size="400,400" title="Backup and Restore" >
+			<widget name="config" position="5,10" size="380,350" />
+			<widget name="ok" position="10,365" size="53,30" pixmap="~/green.png" />
+			<widget name="oktext" position="10,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+			<widget name="cancel" position="73,365" size="100,30" pixmap="~/red.png" />
+			<widget name="canceltext" position="73,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
+			<widget name="restore" position="183,365" size="100,30" pixmap="~/yellow.png" />
+			<widget name="restoretext" position="183,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+			<widget name="backup" position="293,365" size="100,30" pixmap="~/blue.png" />
+			<widget name="backuptext" position="293,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+		</screen>"""
+		
+	def keyLeft(self):
+		self["config"].handleKey(config.key["prevElement"])
+
+	def keyRight(self):
+		self["config"].handleKey(config.key["nextElement"])
+
+	def keyNumberGlobal(self, number):
+		print "You pressed number " + str(number)
+		if (self["config"].getCurrent()[1].parent.enabled == True):
+			self["config"].handleKey(config.key[str(number)])
+
+	def keyCancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+		
+	def keySave(self):
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+	
+	def __init__(self, session, args = None):
+		Screen.__init__(self, session)
+		self.skin_path = plugin_path
+		
+		self["oktext"] = Label(_("OK"))
+		self["canceltext"] = Label(_("Cancel"))
+		self["backuptext"] = Label(_("Backup"))
+		self["restoretext"] = Label(_("Restore"))
+		self["restore"] = Pixmap()
+		self["backup"] = Pixmap()
+		self["ok"] = Pixmap()
+		self["cancel"] = Pixmap()
+
+		self.path = ""
+		self.list = []
+		self["config"] = ConfigList(self.list)
+		self.createSetup()
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.keySave,
+			"cancel": self.keyCancel,
+			"left": self.keyLeft,
+			"right": self.keyRight
+		}, -1)
+		
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		{
+			"red": self.keyCancel,
+			"green": self.keySave,
+			"blue": self.Backup,
+			"yellow": self.Restore,
+		})
+		
+
+	def createSetup(self):
+		print "Creating BackupSetup"
+		self.list = [ ]
+		self["config"] = ConfigList(self.list)
+		config.backup = ConfigSubsection()
+		config.backup.type = configElement("config.backup.type", configSelection, 0, (("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory"))))
+		config.backup.location = configElement("config.backup.location", configSelection, 0, (("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))))
+		self.list.append(getConfigListEntry(_("Backup Mode"), config.backup.type))
+		self.list.append(getConfigListEntry(_("Backup Location"), config.backup.location))
+		
+
+	def createBackupfolders(self):
+		self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
+		print "BackupPath: ", str(self.path)
+		print "Creating Backup Folder if not already there..."
+		cmd = "[ ! -e " + self.path + " ] && mkdir " + self.path
+		print "Commandstring: " + str(cmd)
+		os.system(cmd)
+
+	def Backup(self):
+		print "this will start the backup now!"
+		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))	
+
+	def Restore(self):
+		print "this will start the restore now!"
+		self.session.open(RestoreMenu)
+
+	def runBackup(self, result):
+		if result:
+			self.createBackupfolders()
+			d = time.localtime()
+			dt = datetime.date(d.tm_year, d.tm_mon, d.tm_mday)
+			print "Backup Time: " + str(dt)
+			self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
+			print "BackupPath: ", str(self.path)
+			if currentConfigSelectionElement(config.backup.type) == "full":
+				print "Backup Mode: Full"
+				self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_full_backup.tar.gz /etc/"])
+			if currentConfigSelectionElement(config.backup.type) == "settings":
+				print "Backup Mode: Settings"
+				self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
+			if currentConfigSelectionElement(config.backup.type) == "var":
+				print "Backup Mode: var"
+				self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
+
+
+class RestoreMenu(Screen):
+	skin = """
+		<screen position="100,100" size="400,400" title="Restore Backups" >
+		<widget name="filelist" position="5,10" size="380,350" scrollbarMode="showOnDemand" />
+		<widget name="cancel" position="73,365" size="100,30" pixmap="~/red.png" />
+		<widget name="canceltext" position="73,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
+		<widget name="restore" position="183,365" size="100,30" pixmap="~/yellow.png" />
+		<widget name="restoretext" position="183,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+		<widget name="text0" position="0,270" size="350,20" font="Regular;20" />
+		</screen>"""
+
+	def __init__(self, session, args = None):
+		Screen.__init__(self, session)
+		self.skin_path = plugin_path
+		
+		self['text0'] = Label("")
+		self["canceltext"] = Label(_("Cancel"))
+		self["restoretext"] = Label(_("Restore"))
+		self["restore"] = Pixmap()
+		self["cancel"] = Pixmap()
+		
+		self.sel = []
+		self.val = []
+		self.entry = False
+		self.exe = False
+		
+		self.path = ""
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.KeyOk,
+			"cancel": self.keyCancel
+		}, -1)
+		
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		{
+			"red": self.keyCancel,
+			"yellow": self.KeyOk,
+		})
+		self.flist = []
+		self["filelist"] = MenuList(self.flist)
+		self.fill_list()
+
+	def fill_list(self):
+		self.flist = []
+		self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
+		print "BackupPath: ", str(self.path)
+		dir = os.listdir(self.path)
+		for x in dir:
+			bla = string.find(x, ".tar.gz")
+			if (bla > 1):
+				self.flist.append((x))
+				self.entry = True
+				self["filelist"].l.setList(self.flist)
+
+
+
+	def KeyOk(self):
+	    if (self.exe == False) and (self.entry == True):
+	        self.sel = self["filelist"].getCurrent()
+	        self.val = self.path + self.sel
+	        self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n\n") + self.sel)
+
+	def keyCancel(self):
+		self.close()
+
+	def startRestore(self, ret = False):
+		if (ret == True):
+			self.exe = True
+			self['text0'].setText(_('One moment please...'))
+			print "Restore Location: " + str(self.path)
+			self.session.open(Console, ["Restore running", "tar -xzvf " + self.path + "/" + self.sel + " -C /"])
+
+	def Exit(self):
+	        self.close()
+
+def BackupMain(session, **kwargs):
+	session.open(BackupSetup)
+
+def Plugins(path, **kwargs):
+	global plugin_path
+	plugin_path = path
+	return PluginDescriptor(name="Backup/Restore", description="Backup and Restore your Settings", icon="backup.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=BackupMain)
