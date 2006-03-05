@@ -112,7 +112,15 @@ not nothing. Going trough all prints to find the offending one is definitely
 no fun. Something like "print 'obj', obj" is fine. Something like "print 
 'mySpecialPlugin actionmap is', actionMap" is even better.
 
-6.-99.) Threads are bad.
+6.) usage of 'import'
+
+Please avoid 'import *'.
+Use "from foo import bar" only if bar is clearly identifiable to belong to
+foo (e.g.: it's ok to "from Screens.MessageBox import MessageBox", but it's
+not ok to do "from os import path". Use "import os.path", then os.path.fnc.
+Of course "from os.path import *" is even worse.)
+
+7.-99.) Threads are bad.
 
 (Unless they are worker threads. And sleep()ing is definitely not working.
 So if you every having a thread which sleeps, you did something wrong. There
