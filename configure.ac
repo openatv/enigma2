@@ -65,12 +65,14 @@ lib/python/Plugins/SystemPlugins/SoftwareUpdate/Makefile
 lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
+lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/WebInterface/Makefile
 lib/python/Plugins/Extensions/FileManager/Makefile
+#lib/python/Plugins/Extensions/SimpleRSS/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/ZappingAlternatives/Makefile
 lib/python/Tools/Makefile
