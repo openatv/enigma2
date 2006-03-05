@@ -41,6 +41,11 @@ fallbackPaths = {
 	}
 
 def resolveFilename(scope, base = ""):
+
+	# don't resolve absolute paths
+	if len(base) and base[0] == '/':
+		return base
+
 	path = defaultPaths[scope]
 
 	if path[1] == PATH_CREATE:
