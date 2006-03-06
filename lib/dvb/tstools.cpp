@@ -38,7 +38,7 @@ int eDVBTSTools::openFile(const char *filename)
 	
 	m_samples_taken = 0;
 
-	if (m_file.open(filename) < 0)
+	if (m_file.open(filename, 1) < 0)
 		return -1;
 	return 0;
 }

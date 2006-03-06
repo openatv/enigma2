@@ -6,6 +6,7 @@
 eRawFile::eRawFile()
 {
 	m_fd = -1;
+	m_file = 0;
 	m_splitsize = 0;
 	m_totallength = 0;
 	m_current_offset = 0;
@@ -20,20 +21,31 @@ eRawFile::~eRawFile()
 	close();
 }
 
-int eRawFile::open(const char *filename)
+int eRawFile::open(const char *filename, int cached)
 {
 	close();
+	m_cached = cached;
 	m_basename = filename;
 	scan();
 	m_current_offset = 0;
 	m_last_offset = 0;
-	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
-	return m_fd;
+	if (!m_cached)
+	{
+		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
+		return m_fd;
+	} else
+	{
+		m_file = ::fopen64(filename, "rb");
+		if (!m_file)
+			return -1;
+		return 0;
+	}
 }
 
 void eRawFile::setfd(int fd)
 {
 	close();
+	m_cached = 0;
 	m_nrfiles = 1;
 	m_fd = fd;
 }
@@ -43,7 +55,12 @@ off_t eRawFile::lseek(off_t offset, int whence)
 //	eDebug("lseek: %lld, %d", offset, whence);
 		/* if there is only one file, use the native lseek - the file could be growing! */
 	if (m_nrfiles < 2)
-		return ::lseek(m_fd, offset, whence);
+	{
+		if (!m_cached)
+			return ::lseek(m_fd, offset, whence);
+		else
+			return ::fseeko(m_file, offset, whence);
+	}
 	switch (whence)
 	{
 	case SEEK_SET:
@@ -64,9 +81,19 @@ off_t eRawFile::lseek(off_t offset, int whence)
 
 int eRawFile::close()
 {
-	int ret = ::close(m_fd);
-	m_fd = -1;
-	return ret;
+	if (m_cached)
+	{
+		if (!m_file)
+			return -1;
+		::fclose(m_file);
+		m_file = 0;
+		return 0;
+	} else
+	{
+		int ret = ::close(m_fd);
+		m_fd = -1;
+		return ret;
+	}
 }
 
 ssize_t eRawFile::read(void *buf, size_t count)
@@ -82,7 +109,13 @@ ssize_t eRawFile::read(void *buf, size_t count)
 			return 0;
 	}
 	
-	int ret = ::read(m_fd, buf, count);
+	int ret;
+	
+	if (!m_cached)
+		ret = ::read(m_fd, buf, count);
+	else
+		ret = ::fread(buf, 1, count, m_file);
+
 	if (ret > 0)
 		m_current_offset = m_last_offset += ret;
 	return ret;
@@ -99,13 +132,25 @@ void eRawFile::scan()
 	m_totallength = 0;
 	while (m_nrfiles < 1000) /* .999 is the last possible */
 	{
-		int f = openFile(m_nrfiles);
-		if (f < 0)
-			break;
-		if (!m_nrfiles)
-			m_splitsize = ::lseek(f, 0, SEEK_END);
-		m_totallength += ::lseek(f, 0, SEEK_END);
-		::close(f);
+		if (!m_cached)
+		{
+			int f = openFile(m_nrfiles);
+			if (f < 0)
+				break;
+			if (!m_nrfiles)
+				m_splitsize = ::lseek(f, 0, SEEK_END);
+			m_totallength += ::lseek(f, 0, SEEK_END);
+			::close(f);
+		} else
+		{
+			FILE *f = (FILE*)openFile(m_nrfiles);
+			if (!f)
+				break;
+			if (!m_nrfiles)
+				m_splitsize = ::fseeko(f, 0, SEEK_END);
+			m_totallength += ::fseeko(f, 0, SEEK_END);
+			::fclose(f);
+		}
 		
 		++m_nrfiles;
 	}
@@ -123,7 +168,10 @@ int eRawFile::switchOffset(off_t off)
 		{	
 //			eDebug("-> %d", filenr);
 			close();
-			m_fd = openFile(filenr);
+			if (!m_cached)
+				m_fd = openFile(filenr);
+			else
+				m_file = (FILE*)openFile(filenr);
 			m_last_offset = m_base_offset = m_splitsize * filenr;
 			m_current_file = filenr;
 		}
@@ -132,13 +180,13 @@ int eRawFile::switchOffset(off_t off)
 	
 	if (off != m_last_offset)
 	{
-//		eDebug("%llx != %llx", off, m_last_offset);
-		m_last_offset = ::lseek(m_fd, off - m_base_offset, SEEK_SET) + m_base_offset;
-//		eDebug("offset now %llx", m_last_offset);
+		if (!m_cached)
+			m_last_offset = ::lseek(m_fd, off - m_base_offset, SEEK_SET) + m_base_offset;
+		else
+			m_last_offset = ::fseeko(m_file, off - m_base_offset, SEEK_SET) + m_base_offset;
 		return m_last_offset;
 	} else
 	{
-//		eDebug("offset already ok");
 		return m_last_offset;
 	}
 }
@@ -152,5 +200,8 @@ int eRawFile::openFile(int nr)
 		snprintf(suffix, 5, ".%03d", nr);
 		filename += suffix;
 	}
-	return ::open(filename.c_str(), O_RDONLY);
+	if (!m_cached)
+		return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE);
+	else
+		return (int)::fopen64(filename.c_str(), "rb");
 }
