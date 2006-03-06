@@ -25,10 +25,12 @@ class About(Screen):
 		self["fpVersion"] = Label(fp_version)
 		
 		nims = nimmanager.nimList()
-		count = 0
-		for i in nims:
-			self["tuner" + str(count)] = Label(i[0])
-			count += 1
+		for count in range(2):
+			print "count:", nimmanager.nimCount
+			if count < nimmanager.nimCount:
+				self["tuner" + str(count)] = Label(nims[count][0])
+			else:
+				self["tuner" + str(count)] = Label("")
 
 		self["hdd"] = Label(_("Detected HDD:"))
 		hdd = Harddisk(0)
