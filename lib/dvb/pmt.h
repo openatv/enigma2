@@ -128,6 +128,8 @@ public:
 
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0);
 	void free();
+	
+	int m_pmt_pid;
 };
 
 #endif
