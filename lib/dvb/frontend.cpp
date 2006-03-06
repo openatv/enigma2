@@ -607,7 +607,7 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	case FEC_7_8:
 		tmp = "FEC_7_8";
 		break;
-#ifdef HAVE_DVB_API_VERSION >= 3
+#if HAVE_DVB_API_VERSION >= 3
 	case FEC_8_9:
 		tmp = "FEC_8_9";
 		break;
@@ -1293,7 +1293,7 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 	case eDVBFrontendParametersCable::FEC::f7_8:
 		parm_u_qam_fec_inner = FEC_7_8;
 		break;
-#ifdef HAVE_DVB_API_VERSION >= 3
+#if HAVE_DVB_API_VERSION >= 3
 	case eDVBFrontendParametersCable::FEC::f8_9:
 		parm_u_qam_fec_inner = FEC_8_9;
 		break;
