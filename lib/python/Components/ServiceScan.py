@@ -72,7 +72,7 @@ class ServiceScan:
 	def updatePass(self):
 		size = len(self.scanList)
 		if size > 1:
-			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("NIM") + " " + str(self.scanList[self.run]["feid"]) + ")")
+			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(self.scanList[self.run]["feid"]) + ")")
 		
 	def execBegin(self):
 		self.updatePass()
