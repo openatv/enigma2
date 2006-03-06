@@ -12,6 +12,8 @@ class eRCInput;
 class eRCDriver;
 class eRCKey;
 
+#ifndef SWIG
+
 /**
  * \brief A remote control.
  *
@@ -161,13 +163,19 @@ public:
 		rrate;		// repeat rate (in ms)
 };
 
+#endif
+
 class eRCInput: public Object
 {
 	int locked;	
 	int handle;
 	static eRCInput *instance;
 	int keyboardMode;
-
+#ifdef SWIG
+	eRCInput();
+	~eRCInput();
+public:
+#else
 public:
 	struct lstr
 	{
@@ -182,10 +190,7 @@ public:
 	Signal1<void, const eRCKey&> keyEvent;
 	eRCInput();
 	~eRCInput();
-	
-	int lock();
-	void unlock();
-	int islocked() { return locked; }
+
 	void close();
 	bool open();
 
@@ -224,10 +229,13 @@ public:
 	void removeDevice(const std::string &id);
 	eRCDevice *getDevice(const std::string &id);
 	std::map<std::string,eRCDevice*,lstr> &getDevices();
-	
-	static eRCInput *getInstance() { return instance; }
-	
+
 	eRCConfig config;
+#endif
+	static eRCInput *getInstance() { return instance; }
+	int lock();
+	void unlock();
+	int islocked() { return locked; }
 };
 
 #endif
