@@ -44,6 +44,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/event.h>
+#include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
 #include <lib/gui/ewidget.h>
@@ -152,6 +153,7 @@ typedef long time_t;
 
 %include <lib/base/console.h>
 %include <lib/driver/rc.h>
+%include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
 %include <lib/gdi/epoint.h>

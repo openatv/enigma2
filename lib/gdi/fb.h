@@ -16,6 +16,11 @@ class fbClass
 	int locked;
 	
 	int m_number_of_pages;
+#ifdef SWIG
+	fbClass(const char *fb="/dev/fb/0");
+	~fbClass();
+public:
+#else
 public:
 	unsigned char *lfb;
 	int showConsole(int state);
@@ -32,10 +37,10 @@ public:
 	fbClass(const char *fb="/dev/fb/0");
 	~fbClass();
 	
-	static fbClass *getInstance();
-
-				// low level gfx stuff
+			// low level gfx stuff
 	int PutCMAP();
+#endif
+	static fbClass *getInstance();
 
 	int lock();
 	void unlock();
