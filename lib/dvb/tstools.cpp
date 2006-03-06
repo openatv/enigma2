@@ -64,7 +64,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	if (m_use_streaminfo)
 		return m_streaminfo.getPTS(offset, pts);
 	
-	if (!m_file.valid() < 0)
+	if (!m_file.valid())
 		return -1;
 
 	offset -= offset % 188;
@@ -343,4 +343,74 @@ void eDVBTSTools::takeSamples()
 	m_samples[m_pts_begin] = m_offset_begin;
 	m_samples[m_pts_end] = m_offset_end;
 //	eDebug("begin, end: %llx %llx", m_offset_begin, m_offset_end); 
+}
+
+int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
+{
+		/* FIXME: this will be factored out soon! */
+	if (!m_file.valid())
+	{
+		eDebug(" file not valid");
+		return -1;
+	}
+
+	if (m_file.lseek(0, SEEK_SET) < 0)
+	{
+		eDebug("seek failed");
+		return -1;
+	}
+
+	int left = 5*1024*1024;
+	
+	while (left >= 188)
+	{
+		unsigned char block[188];
+		if (m_file.read(block, 188) != 188)
+		{
+			eDebug("read error");
+			break;
+		}
+		left -= 188;
+		
+		if (block[0] != 0x47)
+		{
+			int i = 0;
+			while (i < 188)
+			{
+				if (block[i] == 0x47)
+					break;
+				++i;
+			}
+			m_file.lseek(i - 188, SEEK_CUR);
+			continue;
+		}
+		
+		int pid = ((block[1] << 8) | block[2]) & 0x1FFF;
+		
+		int pusi = !!(block[1] & 0x40);
+		
+		if (!pusi)
+			continue;
+		
+			/* ok, now we have a PES header or section header*/
+		unsigned char *sec;
+		
+			/* check for adaption field */
+		if (block[3] & 0x20)
+			sec = block + block[4] + 4 + 1;
+		else
+			sec = block + 4;
+		
+		if (sec[0])	/* table pointer, assumed to be 0 */
+			continue;
+
+		if (sec[1] == 0x02) /* program map section */
+		{
+			pmt_pid = pid;
+			service_id = (sec[4] << 8) | sec[5];
+			return 0;
+		}
+	}
+	
+	return -1;
 }

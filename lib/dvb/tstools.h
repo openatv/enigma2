@@ -53,6 +53,7 @@ public:
 	
 	void takeSamples();
 	
+	int findPMT(int &pmt_pid, int &service_id);
 private:
 	int m_pid;
 	int m_maxrange;
