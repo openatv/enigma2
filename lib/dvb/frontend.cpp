@@ -17,22 +17,36 @@
 #define BANDWIDTH_AUTO			(BandWidth)3
 #define GUARD_INTERVAL_AUTO		(GuardInterval)4
 #define HIERARCHY_AUTO			(Hierarchy)4
-#define parm.frequency parm.Frequency
-#define parm.inversion parm.Inversion
-#define parm.u.qpsk.symbol_rate parm.u.qpsk.SymbolRate
-#define parm.u.qpsk.fec_inner parm.u.qpsk.FEC_inner
-#define parm.u.qam.symbol_rate parm.u.qam.SymbolRate
-#define parm.u.qam.fec_inner parm.u.qam.FEC_inner
-#define parm.u.qam.modulation parm.u.qam.QAM
-#define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
-#define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
-#define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
-#define parm.u.ofdm.constellation parm.u.ofdm.Constellation
-#define parm.u.ofdm.transmission_mode parm.u.ofdm.TransmissionMode
-#define parm.u.ofdm.guard_interval parm.u.ofdm.guardInterval
-#define parm.u.ofdm.hierarchy_information parm.u.ofdm.HierarchyInformation
+#define parm_frequency parm_Frequency
+#define parm_inversion parm_Inversion
+#define parm_u_qpsk_symbol_rate parm.u.qpsk.SymbolRate
+#define parm_u_qpsk_fec_inner parm.u.qpsk.FEC_inner
+#define parm_u_qam_symbol_rate parm.u.qam.SymbolRate
+#define parm_u_qam_fec_inner parm.u.qam.FEC_inner
+#define parm_u_qam_modulation parm.u.qam.QAM
+#define parm_u_ofdm_bandwidth parm.u.ofdm.bandWidth
+#define parm_u_ofdm_code_rate_LP parm.u.ofdm.LP_CodeRate
+#define parm_u_ofdm_code_rate_HP parm.u.ofdm.HP_CodeRate
+#define parm_u_ofdm_constellation parm.u.ofdm.Constellation
+#define parm_u_ofdm_transmission_mode parm.u.ofdm.TransmissionMode
+#define parm_u_ofdm_guard_interval parm.u.ofdm.guardInterval
+#define parm_u_ofdm_hierarchy_information parm.u.ofdm.HierarchyInformation
 #else
 #include <linux/dvb/frontend.h>
+#define parm_frequency parm.frequency
+#define parm_inversion parm.inversion
+#define parm_u_qpsk_symbol_rate parm.u.qpsk.symbol_rate
+#define parm_u_qpsk_fec_inner parm.u.qpsk.fec_inner
+#define parm_u_qam_symbol_rate parm.u.qam.symbol_rate
+#define parm_u_qam_fec_inner parm.u.qam.fec_inner
+#define parm_u_qam_modulation parm.u.qam.modulation
+#define parm_u_ofdm_bandwidth parm.u.ofdm.bandwidth
+#define parm_u_ofdm_code_rate_LP parm.u.ofdm.code_rate_LP
+#define parm_u_ofdm_code_rate_HP parm.u.ofdm.code_rate_HP
+#define parm_u_ofdm_constellation parm.u.ofdm.constellation
+#define parm_u_ofdm_transmission_mode parm.u.ofdm.transmission_mode
+#define parm_u_ofdm_guard_interval parm.u.ofdm.guard_interval
+#define parm_u_ofdm_hierarchy_information parm.u.ofdm.hierarchy_information
 #endif
 
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
@@ -226,7 +240,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const 
+RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 {
 	switch (m_type)
 	{
@@ -539,11 +553,11 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 	const char *fec=0;
 	fe->getData(0, csw);
 	fe->getData(9, freq_offset);
-	int frequency = parm.frequency + freq_offset;
+	int frequency = parm_frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
-	PutToDict(dict, "symbol_rate", parm.u.qpsk.symbol_rate);
+	PutToDict(dict, "symbol_rate", parm_u_qpsk_symbol_rate);
 
-	switch(parm.u.qpsk.fec_inner)
+	switch(parm_u_qpsk_fec_inner)
 	{
 		case FEC_1_2:
 			fec = "FEC_1_2";
@@ -571,9 +585,9 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
-	PutToDict(dict, "frequency", parm.frequency/1000);
-	PutToDict(dict, "symbol_rate", parm.u.qam.symbol_rate);
-	switch(parm.u.qam.fec_inner)
+	PutToDict(dict, "frequency", parm_frequency/1000);
+	PutToDict(dict, "symbol_rate", parm_u_qam_symbol_rate);
+	switch(parm_u_qam_fec_inner)
 	{
 	case FEC_NONE:
 		tmp = "FEC_NONE";
@@ -602,7 +616,7 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 		break;
 	}
 	PutToDict(dict, "fec_inner", tmp);
-	switch(parm.u.qam.modulation)
+	switch(parm_u_qam_modulation)
 	{
 	case QAM_16:
 		tmp = "QAM_16";
@@ -610,7 +624,7 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	case QAM_32:
 		tmp = "QAM_32";
 		break;
-	case QAM_64:	
+	case QAM_64:
 		tmp = "QAM_64";
 		break;
 	case QAM_128:
@@ -630,15 +644,15 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
-	PutToDict(dict, "frequency", parm.frequency);
+	PutToDict(dict, "frequency", parm_frequency);
 /*
-#define parm.u.ofdm.bandwidth parm.u.ofdm.bandWidth
-#define parm.u.ofdm.code_rate_LP parm.u.ofdm.LP_CodeRate
-#define parm.u.ofdm.code_rate_HP parm.u.ofdm.HP_CodeRate
-#define parm.u.ofdm.constellation parm.u.ofdm.Constellation
-#define parm.u.ofdm.transmission_mode parm.u.ofdm.TransmissionMode
-#define parm.u.ofdm.guard_interval parm.u.ofdm.guardInterval
-#define parm.u.ofdm.hierarchy_information parm.u.ofdm.HierarchyInformation
+#define parm_u_ofdm_bandwidth parm_u_ofdm_bandWidth
+#define parm_u_ofdm_code_rate_LP parm_u_ofdm_LP_CodeRate
+#define parm_u_ofdm_code_rate_HP parm_u_ofdm_HP_CodeRate
+#define parm_u_ofdm_constellation parm_u_ofdm_Constellation
+#define parm_u_ofdm_transmission_mode parm_u_ofdm_TransmissionMode
+#define parm_u_ofdm_guard_interval parm_u_ofdm_guardInterval
+#define parm_u_ofdm_hierarchy_information parm_u_ofdm_HierarchyInformation
 */
 }
 
@@ -709,7 +723,7 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 			else
 			{
 				tmp = "INVERSION_AUTO";
-				switch(parm.inversion)
+				switch(parm_inversion)
 				{
 					case INVERSION_ON:
 						tmp = "INVERSION_ON";
@@ -1056,18 +1070,18 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 	res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
 	if (!res)
 	{
-		parm.u.qpsk.symbol_rate = feparm.symbol_rate;
+		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{
 			case eDVBFrontendParametersSatellite::Inversion::On:
-				parm.inversion = INVERSION_ON;
+				parm_inversion = INVERSION_ON;
 				break;
 			case eDVBFrontendParametersSatellite::Inversion::Off:
-				parm.inversion = INVERSION_OFF;
+				parm_inversion = INVERSION_OFF;
 				break;
 			default:
 			case eDVBFrontendParametersSatellite::Inversion::Unknown:
-				parm.inversion = INVERSION_AUTO;
+				parm_inversion = INVERSION_AUTO;
 				break;
 		}
 		switch (feparm.fec)
@@ -1076,94 +1090,94 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 			case eDVBFrontendParametersSatellite::FEC::fNone:
 				eDebug("no fec set.. assume auto");
 			case eDVBFrontendParametersSatellite::FEC::fAuto:
-				parm.u.qpsk.fec_inner = FEC_AUTO;
+				parm_u_qpsk_fec_inner = FEC_AUTO;
 				break;
 			case eDVBFrontendParametersSatellite::FEC::f1_2:
-				parm.u.qpsk.fec_inner = FEC_1_2;
+				parm_u_qpsk_fec_inner = FEC_1_2;
 				break;
 			case eDVBFrontendParametersSatellite::FEC::f2_3:
-				parm.u.qpsk.fec_inner = FEC_2_3;
+				parm_u_qpsk_fec_inner = FEC_2_3;
 				break;
 			case eDVBFrontendParametersSatellite::FEC::f3_4:
-				parm.u.qpsk.fec_inner = FEC_3_4;
+				parm_u_qpsk_fec_inner = FEC_3_4;
 				break;
 			case eDVBFrontendParametersSatellite::FEC::f5_6:
-				parm.u.qpsk.fec_inner = FEC_5_6;
+				parm_u_qpsk_fec_inner = FEC_5_6;
 				break;
 			case eDVBFrontendParametersSatellite::FEC::f7_8:
-				parm.u.qpsk.fec_inner = FEC_7_8;
+				parm_u_qpsk_fec_inner = FEC_7_8;
 				break;
 		}
-		eDebug("tuning to %d mhz", parm.frequency/1000);
+		eDebug("tuning to %d mhz", parm_frequency/1000);
 	}
 	return res;
 }
 
 RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 {
-	parm.frequency = feparm.frequency * 1000;
-	parm.u.qam.symbol_rate = feparm.symbol_rate;
+	parm_frequency = feparm.frequency * 1000;
+	parm_u_qam_symbol_rate = feparm.symbol_rate;
 	switch (feparm.modulation)
 	{
 	case eDVBFrontendParametersCable::Modulation::QAM16:
-		parm.u.qam.modulation = QAM_16;
+		parm_u_qam_modulation = QAM_16;
 		break;
 	case eDVBFrontendParametersCable::Modulation::QAM32:
-		parm.u.qam.modulation = QAM_32;
+		parm_u_qam_modulation = QAM_32;
 		break;
 	case eDVBFrontendParametersCable::Modulation::QAM64:
-		parm.u.qam.modulation = QAM_64;
+		parm_u_qam_modulation = QAM_64;
 		break;
 	case eDVBFrontendParametersCable::Modulation::QAM128:
-		parm.u.qam.modulation = QAM_128;
+		parm_u_qam_modulation = QAM_128;
 		break;
 	case eDVBFrontendParametersCable::Modulation::QAM256:
-		parm.u.qam.modulation = QAM_256;
+		parm_u_qam_modulation = QAM_256;
 		break;
 	default:
 	case eDVBFrontendParametersCable::Modulation::Auto:
-		parm.u.qam.modulation = QAM_AUTO;
+		parm_u_qam_modulation = QAM_AUTO;
 		break;
 	}
 	switch (feparm.inversion)
 	{
 	case eDVBFrontendParametersCable::Inversion::On:
-		parm.inversion = INVERSION_ON;
+		parm_inversion = INVERSION_ON;
 		break;
 	case eDVBFrontendParametersCable::Inversion::Off:
-		parm.inversion = INVERSION_OFF;
+		parm_inversion = INVERSION_OFF;
 		break;
 	default:
 	case eDVBFrontendParametersCable::Inversion::Unknown:
-		parm.inversion = INVERSION_AUTO;
+		parm_inversion = INVERSION_AUTO;
 		break;
 	}
 	switch (feparm.fec_inner)
 	{
 	case eDVBFrontendParametersCable::FEC::fNone:
-		parm.u.qam.fec_inner = FEC_NONE;
+		parm_u_qam_fec_inner = FEC_NONE;
 		break;
 	case eDVBFrontendParametersCable::FEC::f1_2:
-		parm.u.qam.fec_inner = FEC_1_2;
+		parm_u_qam_fec_inner = FEC_1_2;
 		break;
 	case eDVBFrontendParametersCable::FEC::f2_3:
-		parm.u.qam.fec_inner = FEC_2_3;
+		parm_u_qam_fec_inner = FEC_2_3;
 		break;
 	case eDVBFrontendParametersCable::FEC::f3_4:
-		parm.u.qam.fec_inner = FEC_3_4;
+		parm_u_qam_fec_inner = FEC_3_4;
 		break;
 	case eDVBFrontendParametersCable::FEC::f5_6:
-		parm.u.qam.fec_inner = FEC_5_6;
+		parm_u_qam_fec_inner = FEC_5_6;
 		break;
 	case eDVBFrontendParametersCable::FEC::f7_8:
-		parm.u.qam.fec_inner = FEC_7_8;
+		parm_u_qam_fec_inner = FEC_7_8;
 		break;
 	case eDVBFrontendParametersCable::FEC::f8_9:
-		parm.u.qam.fec_inner = FEC_8_9;
+		parm_u_qam_fec_inner = FEC_8_9;
 		break;
 	default:
 	case eDVBFrontendParametersCable::FEC::fAuto:
-		parm.u.qam.fec_inner = FEC_AUTO;
+		parm_u_qam_fec_inner = FEC_AUTO;
 		break;
 	}
 	return 0;
@@ -1171,129 +1185,129 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 
 RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial &feparm)
 {
-	parm.frequency = feparm.frequency;
+	parm_frequency = feparm.frequency;
 
 	switch (feparm.bandwidth)
 	{
 	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz:
-		parm.u.ofdm.bandwidth = BANDWIDTH_8_MHZ;
+		parm_u_ofdm_bandwidth = BANDWIDTH_8_MHZ;
 		break;
 	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz:
-		parm.u.ofdm.bandwidth = BANDWIDTH_7_MHZ;
+		parm_u_ofdm_bandwidth = BANDWIDTH_7_MHZ;
 		break;
 	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz:
-		parm.u.ofdm.bandwidth = BANDWIDTH_6_MHZ;
+		parm_u_ofdm_bandwidth = BANDWIDTH_6_MHZ;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
-		parm.u.ofdm.bandwidth = BANDWIDTH_AUTO;
+		parm_u_ofdm_bandwidth = BANDWIDTH_AUTO;
 		break;
 	}
 	switch (feparm.code_rate_LP)
 	{
 	case eDVBFrontendParametersCable::FEC::f1_2:
-		parm.u.ofdm.code_rate_LP = FEC_1_2;
+		parm_u_ofdm_code_rate_LP = FEC_1_2;
 		break;
 	case eDVBFrontendParametersCable::FEC::f2_3:
-		parm.u.ofdm.code_rate_LP = FEC_2_3;
+		parm_u_ofdm_code_rate_LP = FEC_2_3;
 		break;
 	case eDVBFrontendParametersCable::FEC::f3_4:
-		parm.u.ofdm.code_rate_LP = FEC_3_4;
+		parm_u_ofdm_code_rate_LP = FEC_3_4;
 		break;
 	case eDVBFrontendParametersCable::FEC::f5_6:
-		parm.u.ofdm.code_rate_LP = FEC_5_6;
+		parm_u_ofdm_code_rate_LP = FEC_5_6;
 		break;
 	case eDVBFrontendParametersCable::FEC::f7_8:
-		parm.u.ofdm.code_rate_LP = FEC_7_8;
+		parm_u_ofdm_code_rate_LP = FEC_7_8;
 		break;
 	default:
 	case eDVBFrontendParametersCable::FEC::fAuto:
 	case eDVBFrontendParametersCable::FEC::fNone:
-		parm.u.ofdm.code_rate_LP = FEC_AUTO;
+		parm_u_ofdm_code_rate_LP = FEC_AUTO;
 		break;
 	}
 	switch (feparm.code_rate_HP)
 	{
 	case eDVBFrontendParametersCable::FEC::f1_2:
-		parm.u.ofdm.code_rate_HP = FEC_1_2;
+		parm_u_ofdm_code_rate_HP = FEC_1_2;
 		break;
 	case eDVBFrontendParametersCable::FEC::f2_3:
-		parm.u.ofdm.code_rate_HP = FEC_2_3;
+		parm_u_ofdm_code_rate_HP = FEC_2_3;
 		break;
 	case eDVBFrontendParametersCable::FEC::f3_4:
-		parm.u.ofdm.code_rate_HP = FEC_3_4;
+		parm_u_ofdm_code_rate_HP = FEC_3_4;
 		break;
 	case eDVBFrontendParametersCable::FEC::f5_6:
-		parm.u.ofdm.code_rate_HP = FEC_5_6;
+		parm_u_ofdm_code_rate_HP = FEC_5_6;
 		break;
 	case eDVBFrontendParametersCable::FEC::f7_8:
-		parm.u.ofdm.code_rate_HP = FEC_7_8;
+		parm_u_ofdm_code_rate_HP = FEC_7_8;
 		break;
 	default:
 	case eDVBFrontendParametersCable::FEC::fAuto:
 	case eDVBFrontendParametersCable::FEC::fNone:
-		parm.u.ofdm.code_rate_HP = FEC_AUTO;
+		parm_u_ofdm_code_rate_HP = FEC_AUTO;
 		break;
 	}
 	switch (feparm.modulation)
 	{
 	case eDVBFrontendParametersTerrestrial::Modulation::QPSK:
-		parm.u.ofdm.constellation = QPSK;
+		parm_u_ofdm_constellation = QPSK;
 		break;
 	case eDVBFrontendParametersTerrestrial::Modulation::QAM16:
-		parm.u.ofdm.constellation = QAM_16;
+		parm_u_ofdm_constellation = QAM_16;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::Modulation::Auto:
-		parm.u.ofdm.constellation = QAM_AUTO;
+		parm_u_ofdm_constellation = QAM_AUTO;
 		break;
 	}
 	switch (feparm.transmission_mode)
 	{
 	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k:
-		parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_2K;
+		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_2K;
 		break;
 	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k:
-		parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_8K;
+		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_8K;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto:
-		parm.u.ofdm.transmission_mode = TRANSMISSION_MODE_AUTO;
+		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_AUTO;
 		break;
 	}
 	switch (feparm.guard_interval)
 	{
 		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32:
-			parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_32;
+			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_32;
 			break;
 		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_16:
-			parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_16;
+			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_16;
 			break;
 		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_8:
-			parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_8;
+			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_8;
 			break;
 		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_4:
-			parm.u.ofdm.guard_interval = GUARD_INTERVAL_1_4;
+			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_4;
 			break;
 		default:
 		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto:
-			parm.u.ofdm.guard_interval = GUARD_INTERVAL_AUTO;
+			parm_u_ofdm_guard_interval = GUARD_INTERVAL_AUTO;
 			break;
 	}
 	switch (feparm.hierarchy)
 	{
 		case eDVBFrontendParametersTerrestrial::Hierarchy::H1:
-			parm.u.ofdm.hierarchy_information = HIERARCHY_1;
+			parm_u_ofdm_hierarchy_information = HIERARCHY_1;
 			break;
 		case eDVBFrontendParametersTerrestrial::Hierarchy::H2:
-			parm.u.ofdm.hierarchy_information = HIERARCHY_2;
+			parm_u_ofdm_hierarchy_information = HIERARCHY_2;
 			break;
 		case eDVBFrontendParametersTerrestrial::Hierarchy::H4:
-			parm.u.ofdm.hierarchy_information = HIERARCHY_4;
+			parm_u_ofdm_hierarchy_information = HIERARCHY_4;
 			break;
 		default:
 		case eDVBFrontendParametersTerrestrial::Hierarchy::HAuto:
-			parm.u.ofdm.hierarchy_information = HIERARCHY_AUTO;
+			parm_u_ofdm_hierarchy_information = HIERARCHY_AUTO;
 			break;
 	}
 	return 0;
