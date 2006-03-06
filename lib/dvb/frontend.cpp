@@ -559,25 +559,25 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 
 	switch(parm_u_qpsk_fec_inner)
 	{
-		case FEC_1_2:
-			fec = "FEC_1_2";
-			break;
-		case FEC_2_3:
-			fec = "FEC_2_3";
-			break;
-		case FEC_3_4:
-			fec = "FEC_3_4";
-			break;
-		case FEC_5_6:
-			fec = "FEC_5_6";
-			break;
-		case FEC_7_8:
-			fec = "FEC_7_8";
-			break;
-		default:
-		case FEC_AUTO:
-			fec = "FEC_AUTO";
-			break;
+	case FEC_1_2:
+		fec = "FEC_1_2";
+		break;
+	case FEC_2_3:
+		fec = "FEC_2_3";
+		break;
+	case FEC_3_4:
+		fec = "FEC_3_4";
+		break;
+	case FEC_5_6:
+		fec = "FEC_5_6";
+		break;
+	case FEC_7_8:
+		fec = "FEC_7_8";
+		break;
+	default:
+	case FEC_AUTO:
+		fec = "FEC_AUTO";
+		break;
 	}
 	PutToDict(dict, "fec_inner", fec);
 }
@@ -607,9 +607,11 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	case FEC_7_8:
 		tmp = "FEC_7_8";
 		break;
+#ifdef HAVE_DVB_API_VERSION >= 3
 	case FEC_8_9:
 		tmp = "FEC_8_9";
 		break;
+#endif
 	default:
 	case FEC_AUTO:
 		tmp = "FEC_AUTO";
@@ -645,15 +647,134 @@ void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
 	PutToDict(dict, "frequency", parm_frequency);
-/*
-#define parm_u_ofdm_bandwidth parm_u_ofdm_bandWidth
-#define parm_u_ofdm_code_rate_LP parm_u_ofdm_LP_CodeRate
-#define parm_u_ofdm_code_rate_HP parm_u_ofdm_HP_CodeRate
-#define parm_u_ofdm_constellation parm_u_ofdm_Constellation
-#define parm_u_ofdm_transmission_mode parm_u_ofdm_TransmissionMode
-#define parm_u_ofdm_guard_interval parm_u_ofdm_guardInterval
-#define parm_u_ofdm_hierarchy_information parm_u_ofdm_HierarchyInformation
-*/
+	switch (parm_u_ofdm_bandwidth)
+	{
+	case BANDWIDTH_8_MHZ:
+		tmp = "BANDWIDTH_8_MHZ";
+		break;
+	case BANDWIDTH_7_MHZ:
+		tmp = "BANDWIDTH_7_MHZ";
+		break;
+	case BANDWIDTH_6_MHZ:
+		tmp = "BANDWIDTH_6_MHZ";
+		break;
+	default:
+	case BANDWIDTH_AUTO:
+		tmp = "BANDWIDTH_AUTO";
+		break;
+	}
+	PutToDict(dict, "bandwidth", tmp);
+	switch (parm_u_ofdm_code_rate_LP)
+	{
+	case FEC_1_2:
+		tmp = "FEC_1_2";
+		break;
+	case FEC_2_3:
+		tmp = "FEC_2_3";
+		break;
+	case FEC_3_4:
+		tmp = "FEC_3_4";
+		break;
+	case FEC_5_6:
+		tmp = "FEC_5_6";
+		break;
+	case FEC_7_8:
+		tmp = "FEC_7_8";
+		break;
+	default:
+	case FEC_AUTO:
+		tmp = "FEC_AUTO";
+		break;
+	}
+	PutToDict(dict, "code_rate_lp", tmp);
+	switch (parm_u_ofdm_code_rate_HP)
+	{
+	case FEC_1_2:
+		tmp = "FEC_1_2";
+		break;
+	case FEC_2_3:
+		tmp = "FEC_2_3";
+		break;
+	case FEC_3_4:
+		tmp = "FEC_3_4";
+		break;
+	case FEC_5_6:
+		tmp = "FEC_5_6";
+		break;
+	case FEC_7_8:
+		tmp = "FEC_7_8";
+		break;
+	default:
+	case FEC_AUTO:
+		tmp = "FEC_AUTO";
+		break;
+	}
+	PutToDict(dict, "code_rate_hp", tmp);
+	switch (parm_u_ofdm_constellation)
+	{
+	case QPSK:
+		tmp = "QPSK";
+		break;
+	case QAM_16:
+		tmp = "QAM_16";
+		break;
+	default:
+	case QAM_AUTO:
+		tmp = "QAM_AUTO";
+		break;
+	}
+	PutToDict(dict, "constellation", tmp);
+	switch (parm_u_ofdm_transmission_mode)
+	{
+	case TRANSMISSION_MODE_2K:
+		tmp = "TRANSMISSION_MODE_2K";
+		break;
+	case TRANSMISSION_MODE_8K:
+		tmp = "TRANSMISSION_MODE_8K";
+		break;
+	default:
+	case TRANSMISSION_MODE_AUTO:
+		tmp = "TRANSMISSION_MODE_AUTO";
+		break;
+	}
+	PutToDict(dict, "transmission_mode", tmp);
+	switch (parm_u_ofdm_guard_interval)
+	{
+		case GUARD_INTERVAL_1_32:
+			tmp = "GUARD_INTERVAL_1_32";
+			break;
+		case GUARD_INTERVAL_1_16:
+			tmp = "GUARD_INTERVAL_1_16";
+			break;
+		case GUARD_INTERVAL_1_8:
+			tmp = "GUARD_INTERVAL_1_8";
+			break;
+		case GUARD_INTERVAL_1_4:
+			tmp = "GUARD_INTERVAL_1_4";
+			break;
+		default:
+		case GUARD_INTERVAL_AUTO:
+			tmp = "GUARD_INTERVAL_AUTO";
+			break;
+	}
+	PutToDict(dict, "guard_interval", tmp);
+	switch (parm_u_ofdm_hierarchy_information)
+	{
+		case HIERARCHY_1:
+			tmp = "HIERARCHY_1";
+			break;
+		case HIERARCHY_2:
+			tmp = "HIERARCHY_2";
+			break;
+		case HIERARCHY_4:
+			tmp = "HIERARCHY_4";
+			break;
+		default:
+		case HIERARCHY_AUTO:
+			tmp = "HIERARCHY_AUTO";
+			break;
+	}
+	PutToDict(dict, "hierarchy_information", tmp);
 }
 
 PyObject *eDVBFrontend::readTransponderData(bool original)
@@ -1172,9 +1293,11 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 	case eDVBFrontendParametersCable::FEC::f7_8:
 		parm_u_qam_fec_inner = FEC_7_8;
 		break;
+#ifdef HAVE_DVB_API_VERSION >= 3
 	case eDVBFrontendParametersCable::FEC::f8_9:
 		parm_u_qam_fec_inner = FEC_8_9;
 		break;
+#endif
 	default:
 	case eDVBFrontendParametersCable::FEC::fAuto:
 		parm_u_qam_fec_inner = FEC_AUTO;
@@ -1205,47 +1328,45 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 	}
 	switch (feparm.code_rate_LP)
 	{
-	case eDVBFrontendParametersCable::FEC::f1_2:
+	case eDVBFrontendParametersTerrestrial::FEC::f1_2:
 		parm_u_ofdm_code_rate_LP = FEC_1_2;
 		break;
-	case eDVBFrontendParametersCable::FEC::f2_3:
+	case eDVBFrontendParametersTerrestrial::FEC::f2_3:
 		parm_u_ofdm_code_rate_LP = FEC_2_3;
 		break;
-	case eDVBFrontendParametersCable::FEC::f3_4:
+	case eDVBFrontendParametersTerrestrial::FEC::f3_4:
 		parm_u_ofdm_code_rate_LP = FEC_3_4;
 		break;
-	case eDVBFrontendParametersCable::FEC::f5_6:
+	case eDVBFrontendParametersTerrestrial::FEC::f5_6:
 		parm_u_ofdm_code_rate_LP = FEC_5_6;
 		break;
-	case eDVBFrontendParametersCable::FEC::f7_8:
+	case eDVBFrontendParametersTerrestrial::FEC::f7_8:
 		parm_u_ofdm_code_rate_LP = FEC_7_8;
 		break;
 	default:
-	case eDVBFrontendParametersCable::FEC::fAuto:
-	case eDVBFrontendParametersCable::FEC::fNone:
+	case eDVBFrontendParametersTerrestrial::FEC::fAuto:
 		parm_u_ofdm_code_rate_LP = FEC_AUTO;
 		break;
 	}
 	switch (feparm.code_rate_HP)
 	{
-	case eDVBFrontendParametersCable::FEC::f1_2:
+	case eDVBFrontendParametersTerrestrial::FEC::f1_2:
 		parm_u_ofdm_code_rate_HP = FEC_1_2;
 		break;
-	case eDVBFrontendParametersCable::FEC::f2_3:
+	case eDVBFrontendParametersTerrestrial::FEC::f2_3:
 		parm_u_ofdm_code_rate_HP = FEC_2_3;
 		break;
-	case eDVBFrontendParametersCable::FEC::f3_4:
+	case eDVBFrontendParametersTerrestrial::FEC::f3_4:
 		parm_u_ofdm_code_rate_HP = FEC_3_4;
 		break;
-	case eDVBFrontendParametersCable::FEC::f5_6:
+	case eDVBFrontendParametersTerrestrial::FEC::f5_6:
 		parm_u_ofdm_code_rate_HP = FEC_5_6;
 		break;
-	case eDVBFrontendParametersCable::FEC::f7_8:
+	case eDVBFrontendParametersTerrestrial::FEC::f7_8:
 		parm_u_ofdm_code_rate_HP = FEC_7_8;
 		break;
 	default:
-	case eDVBFrontendParametersCable::FEC::fAuto:
-	case eDVBFrontendParametersCable::FEC::fNone:
+	case eDVBFrontendParametersTerrestrial::FEC::fAuto:
 		parm_u_ofdm_code_rate_HP = FEC_AUTO;
 		break;
 	}
