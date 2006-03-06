@@ -165,62 +165,74 @@ gPainter::~gPainter()
 
 void gPainter::setBackgroundColor(const gColor &color)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setBackgroundColor;
 	o.dc = m_dc.grabRef();
 	o.parm.setColor = new gOpcode::para::psetColor;
 	o.parm.setColor->color = color;
-	
+
 	m_rc->submit(o);
 }
 
 void gPainter::setForegroundColor(const gColor &color)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setForegroundColor;
 	o.dc = m_dc.grabRef();
 	o.parm.setColor = new gOpcode::para::psetColor;
 	o.parm.setColor->color = color;
-	
+
 	m_rc->submit(o);
 }
 
 void gPainter::setBackgroundColor(const gRGB &color)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setBackgroundColorRGB;
 	o.dc = m_dc.grabRef();
 	o.parm.setColorRGB = new gOpcode::para::psetColorRGB;
 	o.parm.setColorRGB->color = color;
-	
+
 	m_rc->submit(o);
 }
 
 void gPainter::setForegroundColor(const gRGB &color)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setForegroundColorRGB;
 	o.dc = m_dc.grabRef();
 	o.parm.setColorRGB = new gOpcode::para::psetColorRGB;
 	o.parm.setColorRGB->color = color;
-	
+
 	m_rc->submit(o);
 }
 
 void gPainter::setFont(gFont *font)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setFont;
 	o.dc = m_dc.grabRef();
 	font->AddRef();
 	o.parm.setFont = new gOpcode::para::psetFont;
 	o.parm.setFont->font = font;
-	
+
 	m_rc->submit(o);
 }
 
 void gPainter::renderText(const eRect &pos, const std::string &string, int flags)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::renderText;
 	o.dc = m_dc.grabRef();
@@ -233,6 +245,8 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 
 void gPainter::renderPara(eTextPara *para, ePoint offset)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::renderPara;
 	o.dc = m_dc.grabRef();
@@ -246,6 +260,8 @@ void gPainter::renderPara(eTextPara *para, ePoint offset)
 
 void gPainter::fill(const eRect &area)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::fill;
 
@@ -257,6 +273,8 @@ void gPainter::fill(const eRect &area)
 
 void gPainter::fill(const gRegion &region)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::fillRegion;
 
@@ -268,6 +286,8 @@ void gPainter::fill(const gRegion &region)
 
 void gPainter::clear()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::clear;
 	o.dc = m_dc.grabRef();
@@ -278,10 +298,12 @@ void gPainter::clear()
 
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
-	
+
 	ASSERT(pixmap);
-	
+
 	o.opcode=gOpcode::blit;
 	o.dc = m_dc.grabRef();
 	pixmap->AddRef();
@@ -296,14 +318,16 @@ void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::setPalette;
 	o.dc = m_dc.grabRef();
 	gPalette *p=new gPalette;
-	
+
 	o.parm.setPalette = new gOpcode::para::psetPalette;
 	p->data=new gRGB[len];
-	
+
 	memcpy(p->data, colors, len*sizeof(gRGB));
 	p->start=start;
 	p->colors=len;
@@ -319,6 +343,8 @@ void gPainter::setPalette(gPixmap *source)
 
 void gPainter::mergePalette(gPixmap *target)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::mergePalette;
 	o.dc = m_dc.grabRef();
@@ -330,6 +356,8 @@ void gPainter::mergePalette(gPixmap *target)
 
 void gPainter::line(ePoint start, ePoint end)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::line;
 	o.dc = m_dc.grabRef();
@@ -341,6 +369,8 @@ void gPainter::line(ePoint start, ePoint end)
 
 void gPainter::setOffset(ePoint val)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -352,6 +382,8 @@ void gPainter::setOffset(ePoint val)
 
 void gPainter::moveOffset(ePoint rel)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -363,6 +395,8 @@ void gPainter::moveOffset(ePoint rel)
 
 void gPainter::resetOffset()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode=gOpcode::setOffset;
 	o.dc = m_dc.grabRef();
@@ -374,6 +408,8 @@ void gPainter::resetOffset()
 
 void gPainter::resetClip(const gRegion &region)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::setClip;
 	o.dc = m_dc.grabRef();
@@ -384,6 +420,8 @@ void gPainter::resetClip(const gRegion &region)
 
 void gPainter::clip(const gRegion &region)
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::addClip;
 	o.dc = m_dc.grabRef();
@@ -394,6 +432,8 @@ void gPainter::clip(const gRegion &region)
 
 void gPainter::clippop()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::popClip;
 	o.dc = m_dc.grabRef();
@@ -402,6 +442,8 @@ void gPainter::clippop()
 
 void gPainter::flush()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::flush;
 	o.dc = m_dc.grabRef();
@@ -410,6 +452,8 @@ void gPainter::flush()
 
 void gPainter::waitVSync()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::waitVSync;
 	o.dc = m_dc.grabRef();
@@ -418,6 +462,8 @@ void gPainter::waitVSync()
 
 void gPainter::flip()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::flip;
 	o.dc = m_dc.grabRef();
@@ -426,6 +472,8 @@ void gPainter::flip()
 
 void gPainter::notify()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::notify;
 	o.dc = m_dc.grabRef();
@@ -434,6 +482,8 @@ void gPainter::notify()
 
 void gPainter::end()
 {
+	if ( m_dc->islocked() )
+		return;
 	gOpcode o;
 	o.opcode = gOpcode::flush;
 	o.dc = m_dc.grabRef();
