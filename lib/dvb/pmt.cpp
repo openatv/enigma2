@@ -123,6 +123,84 @@ void eDVBServicePMTHandler::PATready(int)
 					pmtpid = (*program)->getProgramMapPid();
 		}
 		if (pmtpid == -1)
+		{
+			if ( m_reference.path.find(".ts") != std::string::npos ) // recorded ts
+			{
+				// we try to find manual the correct sid
+				int fd = open( m_reference.path.c_str(), O_RDONLY|O_LARGEFILE );
+				if ( fd < 0 )
+					eDebug("open %s failed");
+				else
+				{
+					eDebug("parse ts file for find the correct pmtpid");
+					unsigned char *buf = new unsigned char[256*1024]; // 256 kbyte
+					int rd=0;
+					while ( pmtpid == -1 && (rd < 1024*1024*5) )
+					{
+#define MAX_PIDS 64
+						int pids[MAX_PIDS];
+						int pididx=-1;
+						int r = ::read( fd, buf, 256*1024 );
+						if ( r <= 0 )
+							break;
+						rd+=r;
+						int cnt=0;
+						while(cnt < r)
+						{
+							while ( (buf[cnt] != 0x47) && ((cnt+188) < r) && (buf[cnt+188] != 0x47) )
+							{
+//								eDebug("search sync byte %02x %02x, %d %d", buf[cnt], buf[cnt+188], cnt+188, r);
+								cnt++;
+							}
+							if ( buf[cnt] == 0x47 )
+							{
+								int pid = ((buf[cnt+1]&0x3F) << 8) | buf[cnt+2];
+								int idx=0;
+								while(idx <= pididx)  // check if we already have this pid
+								{
+									if ( pids[idx] == pid )
+										break;
+									++idx;
+								}
+								if (idx > pididx && (pididx+1) < MAX_PIDS)
+								{
+									eDebug("found pid %04x", pid);
+									pids[++pididx]=pid;
+								}
+								cnt+=188;
+							}
+							else
+								break;
+						}
+						while(pididx > -1 && pmtpid == -1)
+						{
+							for (i = ptr->getSections().begin(); i != ptr->getSections().end() && pmtpid == -1; ++i)
+							{
+								const ProgramAssociationSection &pat = **i;
+								ProgramAssociationConstIterator program;
+								for (program = pat.getPrograms()->begin(); program != pat.getPrograms()->end(); ++program)
+								{
+									int pid = (*program)->getProgramMapPid();
+									if ( pid == pids[pididx])
+									{
+										int sid = (*program)->getProgramNumber();
+										pmtpid = pid;
+										m_reference.setServiceID(eServiceID(sid));
+										eDebug("found pmt for service id %04x with pid %04x", sid, pid);
+										break;
+									}
+								}
+							}	
+							--pididx;
+						}
+					}
+					delete [] buf;
+					close(fd);
+				}
+			}
+		}
+		
+		if (pmtpid == -1)
 			serviceEvent(eventNoPATEntry);
 		else
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
@@ -385,7 +463,9 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 			eWarning("no .meta file found, trying original service ref.");
 		else
 			m_reference = parser.m_ref;
-		
+
+//		eDebug("try %s", m_reference.toString().c_str());
+
 		eDebug("alloc PVR");
 			/* allocate PVR */
 		res = m_resourceManager->allocatePVRChannel(m_pvr_channel);

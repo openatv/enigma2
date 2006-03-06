@@ -75,14 +75,14 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 	FILE *f = fopen(recordings.c_str(), "r");
 	if (!f)
 	{
-		eDebug("no recordings.epl found: %s: %m", recordings.c_str());
+//		eDebug("no recordings.epl found: %s: %m", recordings.c_str());
 		return -1;
 	}
 	
 	std::string description;
 	eServiceReferenceDVB ref;
 	
-	eDebug("parsing recordings.epl..");
+//	eDebug("parsing recordings.epl..");
 	
 	while (1)
 	{
@@ -103,7 +103,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 
 		if ((line[0] == '/') && (ref.path == filename))
 		{
-			eDebug("hit!");
+//			eDebug("hit! ref %s descr %s", m_ref.toString().c_str(), m_name.c_str());
 			m_ref = ref;
 			m_name = description;
 			m_description = "";
