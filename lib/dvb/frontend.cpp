@@ -17,8 +17,8 @@
 #define BANDWIDTH_AUTO			(BandWidth)3
 #define GUARD_INTERVAL_AUTO		(GuardInterval)4
 #define HIERARCHY_AUTO			(Hierarchy)4
-#define parm_frequency parm_Frequency
-#define parm_inversion parm_Inversion
+#define parm_frequency parm.Frequency
+#define parm_inversion parm.Inversion
 #define parm_u_qpsk_symbol_rate parm.u.qpsk.SymbolRate
 #define parm_u_qpsk_fec_inner parm.u.qpsk.FEC_inner
 #define parm_u_qam_symbol_rate parm.u.qam.SymbolRate
