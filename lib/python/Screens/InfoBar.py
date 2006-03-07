@@ -17,7 +17,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
-	InfoBarSummarySupport
+	InfoBarSummarySupport, InfoBarTimeshiftState
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -30,7 +30,7 @@ class InfoBar(InfoBarShowHide, InfoBarPowerKey,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
-	InfoBarSummarySupport, Screen):
+	InfoBarSummarySupport, InfoBarTimeshiftState, Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -46,7 +46,7 @@ class InfoBar(InfoBarShowHide, InfoBarPowerKey,
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
-				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport:
+				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
