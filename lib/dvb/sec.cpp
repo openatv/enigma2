@@ -205,56 +205,15 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				}
 				if (ret)
 				{
-					static int lofs[] = { 3650000, 5150000, 9750000, 10600000 };
 					int lof = sat.frequency > lnb_param.m_lof_threshold ?
 						lnb_param.m_lof_hi : lnb_param.m_lof_lo;
-					int diff = 0x7FFFFFFF;
-					unsigned int num_lofs = sizeof(lofs) / sizeof(int);
-					int used_band = -1;
-					for (int i=0; i < num_lofs; ++i)
+					int tuner_freq = abs(sat.frequency - lof);
+//					eDebug("tuner freq %d", tuner_freq);
+					if (tuner_freq < 900000 || tuner_freq > 2200000)
 					{
-						int lof_diff = abs(lof - lofs[i]);
-						if ( lof_diff < diff )
-						{
-							diff = lof_diff;
-							used_band = i;
-						}
-					}
-					if ( used_band != -1 )
-					{
-						if ( diff > 50000 )
-						{
-							eDebug("could not detect used lnb freq range .. disable range check !!!");
-							used_band = -1;
-						}
-					}
-					if ( used_band != -1 )
-					{
-						int range[2];
-						switch(used_band)
-						{
-							case 0:  // s-band
-								range[0] = 2500000;
-								range[1] = 2700000;
-								break;
-							case 1:  // c-band
-								range[0] = 3400000;
-								range[1] = 4200000;
-								break;
-							case 2:  // ku-band low
-								range[0] = 10700000;
-								range[1] = 11750000;
-								break;
-							case 3:  // ku-band high
-								range[0] = 11750000;
-								range[1] = 12750000;
-								break;
-						}
-						// check frequency in range ( +/- 75Mhz )
-						if ( (sat.frequency+75000) < range[0] )
-							ret=0;
-						if ( (sat.frequency-75000) > range[1] )
-							ret=0;
+						ret=0;
+//						eDebug("Transponder not tuneable with this lnb... %d Khz out of tuner range",
+//							tuner_freq);
 					}
 				}
 			}

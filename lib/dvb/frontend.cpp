@@ -1229,6 +1229,12 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 				parm_u_qpsk_fec_inner = FEC_7_8;
 				break;
 		}
+		// FIXME !!! get frequency range from tuner
+		if ( parm_frequency < 900000 || parm_frequency > 2200000 )
+		{
+			eDebug("%d mhz out of tuner range.. dont tune", parm_frequency/1000);
+			return -EINVAL;
+		}
 		eDebug("tuning to %d mhz", parm_frequency/1000);
 	}
 	return res;
