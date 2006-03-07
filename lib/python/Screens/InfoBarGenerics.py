@@ -554,8 +554,9 @@ class InfoBarSeek:
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.seekRelative(time * 90000)
+					return 1
 				else:
-					HelpableActionMap.action(self, contexts, action)
+					return HelpableActionMap.action(self, contexts, action)
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, "InfobarSeekActions", 
 			{
@@ -805,12 +806,12 @@ class InfoBarSeek:
 		if seekable is not None:
 			seekable.seekRelative(1, diff)
 
-from Screens.PVRState import PVRState
+from Screens.PVRState import PVRState, TimeshiftState
 
 class InfoBarPVRState:
-	def __init__(self):
+	def __init__(self, screen=PVRState):
 		self.onPlayStateChanged.append(self.__playStateChanged)
-		self.pvrStateDialog = self.session.instantiateDialog(PVRState)
+		self.pvrStateDialog = self.session.instantiateDialog(screen)
 		self.onShow.append(self.__mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 	
@@ -822,6 +823,11 @@ class InfoBarPVRState:
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
 		self.__mayShow()
+
+class InfoBarTimeshiftState(InfoBarPVRState):
+	def __init__(self):
+		InfoBarPVRState.__init__(self, screen=TimeshiftState)
+
 
 class InfoBarShowMovies:
 
@@ -884,6 +890,7 @@ class InfoBarTimeshift:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
+				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
 	
@@ -903,7 +910,9 @@ class InfoBarTimeshift:
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
+				import time
 				self.timeshift_enabled = 1
+				self.pvrStateDialog["timeshift"].setRelative(time.time())
 				
 				# PAUSE.
 				self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -983,6 +992,10 @@ class InfoBarTimeshift:
 
 		print "timeshift activate:", enabled
 		self["TimeshiftActivateActions"].setEnabled(enabled)
+
+	def __serviceStarted(self):
+		self.timeshift_enabled = False
+		self.__seekableStatusChanged()
 
 from RecordTimer import parseEvent
 
