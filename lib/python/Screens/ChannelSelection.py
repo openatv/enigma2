@@ -67,11 +67,11 @@ class ChannelContextMenu(Screen):
 						menu.append((_("add service to favourites"), self.addServiceToBouquetSelected))
 				elif haveBouquets:
 					if not inBouquet and csel.getCurrentSelection().getPath().find("PROVIDERS") == -1:
-						menu.append((_("copy to favourites"), csel.copyCurrentToBouquetList))
+						menu.append((_("copy to favourites"), self.copyCurrentToBouquetList))
 				if inBouquet:
 					menu.append((_("remove service"), self.removeCurrentService))
 			elif haveBouquets:
-				menu.append((_("remove bouquet"), csel.removeBouquet))
+				menu.append((_("remove bouquet"), self.removeBouquet))
 
 		if inBouquet: # current list is editable?
 			if not csel.bouquet_mark_edit:
