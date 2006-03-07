@@ -59,7 +59,10 @@ off_t eRawFile::lseek(off_t offset, int whence)
 		if (!m_cached)
 			return ::lseek(m_fd, offset, whence);
 		else
-			return ::fseeko(m_file, offset, whence);
+		{
+			::fseeko(m_file, offset, whence);
+			return ::ftello(m_file);
+		}
 	}
 	switch (whence)
 	{
@@ -123,7 +126,10 @@ ssize_t eRawFile::read(void *buf, size_t count)
 
 int eRawFile::valid()
 {
-	return m_fd != -1;
+	if (!m_cached)
+		return m_fd != -1;
+	else
+		return !!m_file;
 }
 
 void eRawFile::scan()
@@ -146,9 +152,10 @@ void eRawFile::scan()
 			FILE *f = (FILE*)openFile(m_nrfiles);
 			if (!f)
 				break;
+			::fseeko(f, 0, SEEK_END);
 			if (!m_nrfiles)
-				m_splitsize = ::fseeko(f, 0, SEEK_END);
-			m_totallength += ::fseeko(f, 0, SEEK_END);
+				m_splitsize = ::ftello(f);
+			m_totallength += ::ftello(f);
 			::fclose(f);
 		}
 		
@@ -183,7 +190,10 @@ int eRawFile::switchOffset(off_t off)
 		if (!m_cached)
 			m_last_offset = ::lseek(m_fd, off - m_base_offset, SEEK_SET) + m_base_offset;
 		else
-			m_last_offset = ::fseeko(m_file, off - m_base_offset, SEEK_SET) + m_base_offset;
+		{
+			::fseeko(m_file, off - m_base_offset, SEEK_SET);
+			m_last_offset = ::ftello(m_file) + m_base_offset;
+		}
 		return m_last_offset;
 	} else
 	{
