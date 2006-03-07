@@ -1,6 +1,7 @@
 from Screen import Screen
 
 from Components.Label import Label
+from Components.ServicePosition import ServicePosition
 
 from enigma import *
 
@@ -8,4 +9,10 @@ class PVRState(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["state"] = Label(text="blub")
+		self["state"] = Label(text="")
+
+class TimeshiftState(PVRState):
+	def __init__(self, session):
+		PVRState.__init__(self, session)
+		
+		self["timeshift"] = ServicePosition(self.session.nav, ServicePosition.TYPE_RELATIVE)
