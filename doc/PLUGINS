@@ -76,6 +76,27 @@ stands for "keyword arguments") collects all addition keyword arguments
 parameter, and probably more in the future. You must ignore all additional
 keywords which you don't need!
 
+skins
+=====
+
+Generally, you can include the skin in your Screens by having a static (or
+non-static, if you really want) variable "skin", for example:
+
+class OurSmallTestScreen(Screen):
+	skin = "<skin>...</skin>"
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		...
+
+However, users can override the skin from their skin.xml. Note that the
+Screen's name (unless you override this, which is possible) is used for
+determining which skin is used. Thus, if you're choosing generic skin names
+like "TheScreen", it's likely to cause namespace clashes.
+
+Thus, please use skin names (i.e. Screen-names, unless you're overriding the
+skin name) which are unique enough to not clash. In doubt, prepend the
+pluginname like in our example.
+
 autostarting plugins
 ====================
 
