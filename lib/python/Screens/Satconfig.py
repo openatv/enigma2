@@ -90,6 +90,8 @@ class NimSetup(Screen):
 			self["config"].handleKey(config.key[str(number)])
 
 	def run(self):
+		if currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced":
+			self.fillAdvancedList()
 		for x in self["config"].list:
 			x[1].save()
 		nimmanager.sec.update()
@@ -152,8 +154,6 @@ class NimSetup(Screen):
 		self["config"].list = self.list
 
 	def keySave(self):
-		if currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced":
-			self.fillAdvancedList()
 		self.run()
 		self.close()
 
