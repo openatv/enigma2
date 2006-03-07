@@ -187,13 +187,16 @@ class ChannelSelectionEdit:
 			def __init__(self, csel, contexts = [ ], actions = { }, prio=0):
 				ActionMap.__init__(self, contexts, actions, prio)
 				self.csel = csel
+
 			def action(self, contexts, action):
 				if action == "cancel":
 					self.csel.handleEditCancel()
+					return 0 # fall-trough
 				elif action == "ok":
-					pass # avoid typo warning...
+					return 0 # fall-trough
 				else:
-					ActionMap.action(self, contexts, action)
+					return ActionMap.action(self, contexts, action)
+
 		self["ChannelSelectEditActions"] = ChannelSelectionEditActionMap(self, ["ChannelSelectEditActions", "OkCancelActions"],
 			{
 				"contextMenu": self.doContext,
