@@ -350,6 +350,8 @@ int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 		demux = m_demux;
 		return ret;
 	}
+	
+	ASSERT(m_channel); /* calling without a previous ::tune is certainly bad. */
 
 	ret = m_channel->getDemux(demux, iDVBChannel::capDecode);
 	if (!ret)
@@ -401,7 +403,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 					m_pmt_pid = pmt_pid;
 				}
 			}
-			
 		} else
 			m_reference = parser.m_ref;
 		
