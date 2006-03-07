@@ -1376,6 +1376,9 @@ void fillTuple(PyObject *tuple, char *argstring, int argcount, PyObject *service
 		bool inc_refcount=false;
 		switch(argstring[pos])
 		{
+			case '0': // PyLong 0
+				tmp = PyLong_FromLong(0);
+				break;
 			case 'I': // Event Id
 				tmp = ptr ? PyLong_FromLong(ptr->getEventId()) : NULL;
 				break;
@@ -1448,6 +1451,7 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 
 // here we get a python list
 // the first entry in the list is a python string to specify the format of the returned tuples (in a list)
+//   0 = PyLong(0)
 //   I = Event Id
 //   B = Event Begin Time
 //   D = Event Duration

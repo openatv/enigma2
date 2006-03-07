@@ -381,6 +381,17 @@ int eListboxPythonConfigContent::currentCursorSelectable()
 	/* todo: make a real infrastructure here! */
 RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
+eListboxPythonMultiContent::eListboxPythonMultiContent()
+	:m_buildFunc(0)
+{
+}
+
+eListboxPythonMultiContent::~eListboxPythonMultiContent()
+{
+	if (m_buildFunc)
+		Py_DECREF(m_buildFunc);
+}
+
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	eRect itemrect(offset, m_itemsize);
@@ -388,10 +399,25 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
 
+	PyObject *items=0;
+
 	if (m_list && cursorValid())
 	{
-		PyObject *items = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
-		
+		items = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+
+		if (m_buildFunc)
+		{
+			if (PyCallable_Check(m_buildFunc))  // when we have a buildFunc then call it
+			{
+				if (PyTuple_Check(items))
+					items = PyObject_CallObject(m_buildFunc, items);
+				else
+					eDebug("items is no tuple");
+			}
+			else
+				eDebug("buildfunc is not callable");
+		}
+
 		if (!items)
 		{
 			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
@@ -593,22 +619,36 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 error_out:
+	if (m_buildFunc && PyCallable_Check(m_buildFunc) && items)
+		Py_DECREF(items);
+
 	painter.clippop();
+}
+
+void eListboxPythonMultiContent::setBuildFunc(PyObject *cb)
+{
+	if (m_buildFunc)
+		Py_DECREF(m_buildFunc);
+	m_buildFunc=cb;
+	if (cb)
+		Py_INCREF(m_buildFunc);
 }
 
 int eListboxPythonMultiContent::currentCursorSelectable()
 {
-		/* each list-entry is a list of tuples. if the first of these is none, it's not selectable */
+	/* each list-entry is a list of tuples. if the first of these is none, it's not selectable */
 	if (m_list && cursorValid())
 	{
 		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
 		if (PyList_Check(item))
-			if (PyList_Check(item))
-			{
-				item = PyList_GET_ITEM(item, 0);
-				if (item != Py_None)
-					return 1;
-			}
+		{
+			item = PyList_GET_ITEM(item, 0);
+			if (item != Py_None)
+				return 1;
+		}
+		else if (m_buildFunc && PyCallable_Check(m_buildFunc))
+		// FIXME .. how we can detect non selectable entrys when we have a buildFunc callback
+			return 1;
 	}
 	return 0;
 }

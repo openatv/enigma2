@@ -58,12 +58,16 @@ private:
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
+	PyObject *m_buildFunc;
 public:
+	eListboxPythonMultiContent();
+	~eListboxPythonMultiContent();
 	enum { TYPE_TEXT, TYPE_PROGRESS, TYPE_PIXMAP, TYPE_PIXMAP_ALPHATEST };
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	int currentCursorSelectable();
 	
 	void setFont(int fnt, gFont *fnt);
+	void setBuildFunc(PyObject *func);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };

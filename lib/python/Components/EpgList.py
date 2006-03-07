@@ -54,6 +54,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l = eListboxEPGContent()
 		else:
 			self.l = eListboxPythonMultiContent()
+			if type == EPG_TYPE_SINGLE:
+				self.l.setBuildFunc(self.buildSingleEntry)
+			else:
+				self.l.setBuildFunc(self.buildMultiEntry)
 		self.epgcache = eEPGCache.getInstance()
 
 	def getEventFromId(self, service, eventid):
@@ -65,7 +69,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getCurrentChangeCount(self):
 		if self.type == EPG_TYPE_SINGLE:
 			return 0
-		return self.l.getCurrentSelection()[0][0]
+		return self.l.getCurrentSelection()[0]
 
 	def getCurrent(self):
 		if self.type == EPG_TYPE_SINGLE:
@@ -75,9 +79,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				eventid = self.l.getCurrentSelection()[0]
 				evt = self.getEventFromId(self.service, eventid)
 		else:
-			tmp = self.l.getCurrentSelection()[0]
-			eventid = tmp[1]
-			service = ServiceReference(tmp[2])
+			tmp = self.l.getCurrentSelection()
+			eventid = tmp[2]
+			service = ServiceReference(tmp[1])
 			event = self.getEventFromId(service, eventid)
 			evt = ( event, service )
 		return evt
@@ -137,10 +141,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				w = width/10*5;
 				self.descr_rect = Rect(xpos, 0, width, height)
 
-	def buildSingleEntry(self, eventId, beginTime, duration, EventName, rec=False):
+	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
+		rec=(self.timer.isInTimer(eventid=eventId, begin=beginTime, duration=duration, service=self.service) > 0)
 		r1=self.datetime_rect
 		r2=self.descr_rect
-		res = [ eventId ]
+		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
 		if rec:
@@ -156,7 +161,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
-		res = [ (changecount, eventId, service, begTime, duration) ]
+		res = [ None ] # no private data needed
 		re = compile('\xc2\x86.*?\xc2\x87')
 		list = re.findall(sname)
 		if len(list):
@@ -190,15 +195,11 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillMultiEPG(self, services):
 		t = time()
-		test = [ 'RIBDTCN' ]
+		test = [ '0RIBDTCN' ]
 		for service in services:
 			tuple = ( service.ref.toString(), 0 )
 			test.append( tuple )
-#		self.list = self.queryEPG(test, self.buildMultiEntry)
-		tmp = self.queryEPG(test)
-		self.list = [ ]
-		for x in tmp:
-			self.list.append(self.buildMultiEntry(0, x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
+		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		print time() - t
 		self.selectionChanged()
@@ -207,21 +208,19 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = time()
 		test = [ 'RIBDTCN' ]
 		for x in self.list:
-			data = x[0]
-			service = data[2]
-			begTime = data[3]
-			duration = data[4]
+			service = x[1]
+			begTime = x[3]
+			duration = x[4]
 			if begTime is None:
 				begTime = 0
 			test.append((service, direction, begTime))
-#		self.list = self.queryEPG(test, self.buildMultiEntry)
 		tmp = self.queryEPG(test)
 		cnt=0
 		for x in tmp:
-			changecount = self.list[cnt][0][0] + direction
+			changecount = self.list[cnt][0] + direction
 			if changecount >= 0:
 				if x[2] is not None:
-					self.list[cnt]=self.buildMultiEntry(changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
+					self.list[cnt]=(changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
 			cnt+=1
 		self.l.setList(self.list)
 		print time() - t
@@ -234,12 +233,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.service = service
 			test = [ 'IBDT', (service.ref.toString(), 0, -1, -1) ]
-#			self.list = self.queryEPG(test, self.buildSingleEntry)
-			tmp = self.queryEPG(test)
-			self.list = [ ]
-			for x in tmp:
-				self.list.append(self.buildSingleEntry(x[0], x[1], x[2], x[3], (self.timer.isInTimer(eventid=x[0], begin=x[1], duration=x[2], service=service) > 0)))
-#				self.list.append(self.buildSingleEntry(refstr, x[0], x[1], x[2], x[3]))
-			self.l.setList(self.list)
+			self.l.setList(self.queryEPG(test))
 		print time() - t
 		self.selectionChanged()
