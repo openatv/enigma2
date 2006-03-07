@@ -1,12 +1,12 @@
-from PerServiceDisplay import *
-from enigma import eTimer
-
-from enigma import iPlayableService, iSeekableServicePtr, ePositionGauge
+from PerServiceDisplay import PerServiceDisplay, PerServiceBase
+from enigma import eTimer, iPlayableService, iSeekableServicePtr, ePositionGauge
+import time
 
 class ServicePosition(PerServiceDisplay):
 	TYPE_LENGTH = 0,
 	TYPE_POSITION = 1,
-	TYPE_REMAINING = 2
+	TYPE_REMAINING = 2,
+	TYPE_RELATIVE = 3
 	
 	def __init__(self, navcore, type):
 		self.updateTimer = eTimer()
@@ -17,6 +17,7 @@ class ServicePosition(PerServiceDisplay):
 				iPlayableService.evEnd: self.stopEvent
 			})
 		self.type = type
+		self.relative_base = 0
 #		self.setType(type)
 
 	def newService(self):
@@ -27,6 +28,9 @@ class ServicePosition(PerServiceDisplay):
 		
 		self.updateTimer.start(500)
 		self.update()
+	
+	def setRelative(self, rel):
+		self.relative_base = rel
 	
 	def get(self, what):
 		service = self.navcore.getCurrentService()
@@ -48,14 +52,26 @@ class ServicePosition(PerServiceDisplay):
 			seek = service.seek()
 
 		if seek is not None:
-			if self.type == self.TYPE_LENGTH:
-				l = self.get(self.TYPE_LENGTH)
-			elif self.type == self.TYPE_POSITION:
-				l = self.get(self.TYPE_POSITION)
-			elif self.type == self.TYPE_REMAINING:
-				l = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
+			if self.type != self.TYPE_RELATIVE:
+				if self.type == self.TYPE_LENGTH:
+					l = self.get(self.TYPE_LENGTH)
+				elif self.type == self.TYPE_POSITION:
+					l = self.get(self.TYPE_POSITION)
+				elif self.type == self.TYPE_REMAINING:
+					l = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
 			
-			self.setText("%d:%02d" % (l/60, l%60))
+				self.setText("%d:%02d" % (l/60, l%60))
+			else:
+				l = self.get(self.TYPE_POSITION)
+				if l != -1:
+					l += self.relative_base
+					t = time.localtime(l)
+					timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+				else:
+					timestr = ""
+
+				self.setText(timestr)
+				
 			self.updateTimer.start(500)
 		else:
 			self.updateTimer.start(10000)
