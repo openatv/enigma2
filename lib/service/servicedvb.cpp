@@ -633,6 +633,9 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		if (m_timeshift_active)
 			updateDecoder();
 		break;
+	case eDVBServicePMTHandler::eventSOF:
+		m_event((iPlayableService*)this, evSOF);
+		break;
 	case eDVBServicePMTHandler::eventEOF:
 		switchToLive();
 		break;
@@ -1436,6 +1439,7 @@ void eDVBServicePlay::switchToTimeshift()
 	r.path = m_timeshift_file;
 	
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
+	updateDecoder(); /* mainly to switch off PCR */
 }
 
 void eDVBServicePlay::updateDecoder()
