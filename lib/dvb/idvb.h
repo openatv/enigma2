@@ -420,7 +420,7 @@ public:
 	virtual RESULT getState(int &state)=0;	
 
 		/* direct frontend access for raw channels and/or status inquiries. */
-	virtual RESULT getFrontend(ePtr<iDVBFrontend> &frontend)=0;
+	virtual RESULT getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
 
 #ifndef SWIG
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
@@ -445,7 +445,7 @@ public:
 	virtual void ReleaseUse() = 0;
 #endif
 };
-TEMPLATE_TYPEDEF(ePtr<iDVBChannel>, iDVBChannelPtr);
+TEMPLATE_TYPEDEF(eUsePtr<iDVBChannel>, iDVBChannelPtr);
 
 #ifndef SWIG
 
