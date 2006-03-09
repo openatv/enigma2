@@ -1,6 +1,8 @@
 #ifndef __dvb_dvb_h
 #define __dvb_dvb_h
 
+#ifndef SWIG
+
 #include <lib/base/ebase.h>
 #include <lib/base/filepush.h>
 #include <lib/base/elock.h>
@@ -117,6 +119,8 @@ private:
 	eSmartPtrList<eDVBDemux>    m_demux;
 };
 
+#endif // SWIG
+
 class eDVBResourceManager: public iObject, public Object
 {
 	DECLARE_REF(eDVBResourceManager);
@@ -171,12 +175,12 @@ class eDVBResourceManager: public iObject, public Object
 	eTimer m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
 	void releaseCachedChannel();
+#ifndef SWIG
 public:
+#endif
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
-	
-	static RESULT getInstance(ePtr<eDVBResourceManager> &ptr) { if (instance) { ptr = instance; return 0; } return -1; }
-	
+
 	RESULT setChannelList(iDVBChannelList *list);
 	RESULT getChannelList(ePtr<iDVBChannelList> &list);
 	
@@ -186,15 +190,20 @@ public:
 		errChidNotFound = -3
 	};
 
+	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
+	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
+
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
-	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
-
-	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-
-	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
+#ifdef SWIG
+public:
+#endif
+	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index);
+	static RESULT getInstance(ePtr<eDVBResourceManager> &ptr) { if (instance) { ptr = instance; return 0; } return -1; }
 };
+
+#ifndef SWIG
 
 	/* iDVBPVRChannel includes iDVBChannel. don't panic. */
 class eDVBChannel: public iDVBPVRChannel, public iFilePushScatterGather, public Object
@@ -272,4 +281,5 @@ private:
 	void ReleaseUse();
 };
 
+#endif // SWIG
 #endif

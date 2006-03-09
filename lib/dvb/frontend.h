@@ -2,10 +2,6 @@
 #define __dvb_frontend_h
 
 #include <lib/dvb/idvb.h>
-#include <lib/dvb/sec.h>
-
-class eSecCommandList;
-
 class eDVBFrontendParameters: public iDVBFrontendParameters
 {
 	DECLARE_REF(eDVBFrontendParameters);
@@ -32,6 +28,11 @@ public:
 	
 	RESULT getHash(unsigned long &hash) const;
 };
+
+#ifndef SWIG
+
+#include <lib/dvb/sec.h>
+class eSecCommandList;
 
 class eDVBFrontend: public iDVBFrontend, public Object
 {
@@ -111,4 +112,5 @@ public:
 	int closeFrontend();
 };
 
+#endif // SWIG
 #endif

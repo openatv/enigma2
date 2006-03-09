@@ -1,6 +1,8 @@
 #ifndef __dvb_idvb_h
 #define __dvb_idvb_h
 
+#ifndef SWIG
+
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/frontend.h>
 #define FRONTENDPARAMETERS FrontendParameters
@@ -299,16 +301,22 @@ public:
 	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source)=0;
 };
 
+#endif  // SWIG
+
 class iDVBFrontendParameters: public iObject
 {
+#ifdef SWIG
+	iDVBFrontendParameters();
+	~iDVBFrontendParameters();
+#endif
 public:
-	virtual RESULT getSystem(int &type) const = 0;
-	virtual RESULT getDVBS(eDVBFrontendParametersSatellite &p) const = 0;
-	virtual RESULT getDVBC(eDVBFrontendParametersCable &p) const = 0;
-	virtual RESULT getDVBT(eDVBFrontendParametersTerrestrial &p) const = 0;
+	virtual RESULT getSystem(int &SWIG_OUTPUT) const = 0;
+	virtual RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
+	virtual RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
+	virtual RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
 	
-	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &diff) const = 0;
-	virtual RESULT getHash(unsigned long &hash) const = 0;
+	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT) const = 0;
+	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
 };
 
 #define MAX_DISEQC_LENGTH  16
@@ -317,11 +325,14 @@ class eDVBDiseqcCommand
 {
 public:
 	int len;
+#ifndef SWIG
 	__u8 data[MAX_DISEQC_LENGTH];
 #if HAVE_DVB_API_VERSION < 3
 	int tone;
 	int voltage;
 #endif
+#endif //SWIG
+	void setData(const char *str);
 };
 
 class iDVBSatelliteEquipmentControl;
@@ -335,7 +346,9 @@ public:
 	};
 	virtual RESULT getFrontendType(int &type)=0;
 	virtual RESULT tune(const iDVBFrontendParameters &where)=0;
+#ifndef SWIG
 	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
+#endif
 	enum {
 		stateIdle = 0,
 		stateTuning = 1,
@@ -354,22 +367,26 @@ public:
 	virtual RESULT setVoltage(int voltage)=0;
 	virtual RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc)=0;
 	virtual RESULT sendToneburst(int burst)=0;
+#ifndef SWIG
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
-
+#endif
 	enum {
 		bitErrorRate, signalPower, signalQuality, Locked, Synced
 	};
 	virtual int readFrontendData(int type)=0;
 	virtual PyObject *readTransponderData(bool original)=0;
 
+#ifndef SWIG
 	virtual RESULT getData(int num, int &data)=0;
 	virtual RESULT setData(int num, int val)=0;
-	
 		/* 0 means: not compatible. other values are a priority. */
 	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
+#endif
 };
+TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 
+#ifndef SWIG
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
@@ -382,6 +399,7 @@ struct eDVBCIRouting
 {
 	int enabled;
 };
+#endif // SWIG
 
 class iDVBChannel: public iObject
 {
@@ -396,15 +414,20 @@ public:
 		state_last_instance, /* just one reference to this channel is left */
 		state_release      /* channel is being shut down. */
 	};
-	
+	virtual RESULT getState(int &state)=0;	
+
+		/* direct frontend access for raw channels and/or status inquiries. */
+	virtual RESULT getFrontend(ePtr<iDVBFrontend> &frontend)=0;
+
+#ifndef SWIG
+	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum 
 	{
 		evtEOF, evtSOF, evtFailed
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
-	virtual RESULT getState(int &state)=0;
-	
+
 		/* demux capabilities */
 	enum
 	{
@@ -414,14 +437,14 @@ public:
 	virtual RESULT setCIRouting(const eDVBCIRouting &routing)=0;
 	virtual RESULT getDemux(ePtr<iDVBDemux> &demux, int cap=0)=0;
 	
-		/* direct frontend access for raw channels and/or status inquiries. */
-	virtual RESULT getFrontend(ePtr<iDVBFrontend> &frontend)=0;
-	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
-	
 		/* use count handling */
 	virtual void AddUse() = 0;
 	virtual void ReleaseUse() = 0;
+#endif
 };
+TEMPLATE_TYPEDEF(ePtr<iDVBChannel>, iDVBChannelPtr);
+
+#ifndef SWIG
 
 	/* signed, so we can express deltas. */
 	
@@ -558,4 +581,5 @@ public:
 	virtual RESULT getPTS(int what, pts_t &pts) = 0;
 };
 
+#endif //SWIG
 #endif
