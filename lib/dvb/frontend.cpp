@@ -53,8 +53,10 @@
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 
-void eDVBDiseqcCommand::setData(const char *str)
+void eDVBDiseqcCommand::setCommandString(const char *str)
 {
+	if (!str)
+		return;
 	len = strlen(str);
 	if (len > MAX_DISEQC_LENGTH)
 		len = MAX_DISEQC_LENGTH;
