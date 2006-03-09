@@ -16,17 +16,17 @@ public:
 	eDVBFrontendParameters();
 	
 	RESULT getSystem(int &type) const;
-	RESULT getDVBS(eDVBFrontendParametersSatellite &p) const;
-	RESULT getDVBC(eDVBFrontendParametersCable &p) const;
-	RESULT getDVBT(eDVBFrontendParametersTerrestrial &p) const;
+	RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
+	RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
+	RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
 
 	RESULT setDVBS(const eDVBFrontendParametersSatellite &p);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
 	
-	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &diff) const;
+	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT) const;
 	
-	RESULT getHash(unsigned long &hash) const;
+	RESULT getHash(unsigned long &SWIG_OUTPUT) const;
 };
 
 #ifndef SWIG
