@@ -347,7 +347,7 @@ public:
 	enum {
 		feSatellite, feCable, feTerrestrial
 	};
-	virtual RESULT getFrontendType(int &type)=0;
+	virtual RESULT getFrontendType(int &SWIG_OUTPUT)=0;
 	virtual RESULT tune(const iDVBFrontendParameters &where)=0;
 #ifndef SWIG
 	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
@@ -359,7 +359,7 @@ public:
 		stateLock = 3,
 		stateLostLock = 4,
 	};
-	virtual RESULT getState(int &state)=0;
+	virtual RESULT getState(int &SWIG_OUTPUT)=0;
 	enum {
 		toneOff, toneOn
 	};
@@ -417,7 +417,7 @@ public:
 		state_last_instance, /* just one reference to this channel is left */
 		state_release      /* channel is being shut down. */
 	};
-	virtual RESULT getState(int &state)=0;	
+	virtual RESULT getState(int &SWIG_OUTPUT)=0;	
 
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual RESULT getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
