@@ -42,6 +42,16 @@ DEFINE_REF(eDVBResourceManager);
 
 eDVBResourceManager *eDVBResourceManager::instance;
 
+RESULT eDVBResourceManager::getInstance(ePtr<eDVBResourceManager> &ptr)
+{
+	if (instance)
+	{
+		ptr = instance;
+		return 0;
+	}
+	return -1;
+}
+
 eDVBResourceManager::eDVBResourceManager()
 	:m_releaseCachedChannelTimer(eApp)
 {
