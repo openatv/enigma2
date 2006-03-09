@@ -53,6 +53,14 @@
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 
+void eDVBDiseqcCommand::setData(const char *str)
+{
+	len = strlen(str);
+	if (len > MAX_DISEQC_LENGTH)
+		len = MAX_DISEQC_LENGTH;
+	memcpy(data, str, len);
+}
+
 void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescriptor &descriptor)
 {
 	frequency    = descriptor.getFrequency() * 10;
