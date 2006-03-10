@@ -251,7 +251,9 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
 	res.push_back(m_ref.path + ".cuts");
-	res.push_back(m_ref.path + ".eit");
+	std::string tmp = m_ref.path;
+	tmp.erase(m_ref.path.length()-3);
+	res.push_back(tmp + ".eit");
 	return 0;
 }
 
