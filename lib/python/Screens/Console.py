@@ -10,7 +10,7 @@ class Console(Screen):
 			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
 		
-	def __init__(self, session, args = None):
+	def __init__(self, session, title = "Console", cmdlist = None):
 		self.skin = Console.skin
 		Screen.__init__(self, session)
 
@@ -23,13 +23,19 @@ class Console(Screen):
 			"down": self["text"].pageDown
 		}, -1)
 		
-		self.cmdlist = args
+		self.cmdlist = cmdlist
+		self.newtitle = title
+		
+		self.onShown.append(self.updateTitle)
 		
 		self.container = eConsoleAppContainer()
 		self.run = 0
 		self.container.appClosed.get().append(self.runFinished)
 		self.container.dataAvail.get().append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
+
+	def updateTitle(self):
+		self.setTitle(self.newtitle)
 
 	def startRun(self):
 		self["text"].setText(_("Execution Progress:") + "\n\n")
