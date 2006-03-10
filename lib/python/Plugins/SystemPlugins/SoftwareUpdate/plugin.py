@@ -59,7 +59,7 @@ class UpdatePluginMenu(Screen):
 				self.session.open(MessageBox, _("Function not yet implemented"), MessageBox.TYPE_ERROR)
 	def runUpgrade(self, result):
 		if result:
-			self.session.open(Console, ["ipkg update", "ipkg upgrade -force-defaults -force-overwrite"])
+			self.session.open(Console, title = "Upgrade running...", cmdlist = ["ipkg update", "ipkg upgrade -force-defaults -force-overwrite"])
 
 class IPKGSource(Screen):
 	skin = """

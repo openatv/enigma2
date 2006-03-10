@@ -135,16 +135,16 @@ class BackupSetup(Screen):
 				self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
 				if currentConfigSelectionElement(config.backup.type) == "full":
 					print "Backup Mode: Full"
-					self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_full_backup.tar.gz /etc/"])
+					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_full_backup.tar.gz /etc/"])
 				if currentConfigSelectionElement(config.backup.type) == "settings":
 					print "Backup Mode: Settings"
-					self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
+					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
 				if currentConfigSelectionElement(config.backup.type) == "var":
 					print "Backup Mode: var"
-					self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
+					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
 				if currentConfigSelectionElement(config.backup.type) == "skin":
 					print "Backup Mode: skin"
-					self.session.open(Console, ["Backup running", "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
+					self.session.open(Console, title ="Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
 				self.session.open(MessageBox, _("Sorry your Backup destination does not exist\n\nPlease choose an other one."), MessageBox.TYPE_INFO)
 
@@ -213,7 +213,7 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret = False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(Console, ["Restore running", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall enigma2"])
+			self.session.open(Console, title = "Restore running", cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall enigma2"])
 			
 	def Exit(self):
 	        self.close()
