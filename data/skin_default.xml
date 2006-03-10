@@ -251,7 +251,7 @@
 		<widget name="text" position="0,0" size="550,25" font="Regular;20" />
 		<widget name="input" position="0,30" size="550,25" font="Regular;20" />
 	</screen>
-	<screen name="ChoiceBox" position="100,100" size="550,400" title="Input" >
+	<screen name="ChoiceBox" position="150,100" size="550,400" title="Input" >
 		<widget name="text" position="0,0" size="550,25" font="Regular;20" />
 		<widget name="list" position="0,30" size="550,335" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
@@ -288,7 +288,7 @@ self["list"].instance.resize(eSize(*listsize))
 
 # center window
 newwidth = wsize[0]
-self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+#self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>			
 	</screen>
 	<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
