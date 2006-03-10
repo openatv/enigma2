@@ -4,7 +4,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import *
 from Components.ProgressBar import *
 from Components.config import configfile, configsequencearg
-from Components.config import config, configElement, ConfigSubsection, configSequence
+from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
 from ChannelSelection import ChannelSelection, BouquetSelector
 
 from Components.Pixmap import Pixmap, PixmapConditional
@@ -269,12 +269,17 @@ class InfoBarNumberZap:
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap()
 
+config.misc.initialchannelselection = configElementBoolean("config.misc.initialchannelselection", 1);
+
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial 
 	channelChange actions which open the channelSelection dialog """
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		
+		if config.misc.initialchannelselection.value == 1:
+			self.onShown.append(self.firstRun)
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
@@ -286,6 +291,12 @@ class InfoBarChannelSelection:
 				"historyNext": (self.historyNext, _("next channel in history"))
 			})
 
+	def firstRun(self):
+		self.onShown.remove(self.firstRun)
+		config.misc.initialchannelselection.value = 0
+		config.misc.initialchannelselection.save()
+		self.switchChannelDown()
+		
 	def historyBack(self):
 		self.servicelist.historyBack()
 
