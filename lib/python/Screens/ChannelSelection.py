@@ -437,6 +437,8 @@ class ChannelSelectionBase(Screen):
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
 		self.servicePath = None
+		
+		self.mode = MODE_TV
 
 		self.pathChangedDisabled = False
 
