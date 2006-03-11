@@ -1,32 +1,33 @@
-from Screen import Screen
-from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ActionMap import NumberActionMap
-from Components.Label import *
-from Components.ProgressBar import *
-from Components.config import configfile, configsequencearg
-from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
 from ChannelSelection import ChannelSelection, BouquetSelector
 
-from Components.Pixmap import Pixmap, PixmapConditional
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import NumberActionMap
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.ServiceName import ServiceName
-from Components.EventInfo import EventInfo, EventInfoProgress
 from Components.Clock import Clock
-from Components.Input import Input
-
-from ServiceReference import ServiceReference
-from EpgSelection import EPGSelection
-
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
-from Screens.Dish import Dish
-from Screens.Standby import Standby
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
-from Screens.MinuteInput import MinuteInput
+from Components.EventInfo import EventInfo, EventInfoProgress
 from Components.Harddisk import harddiskmanager
-
+from Components.Input import Input
+from Components.Label import *
+from Components.Pixmap import Pixmap, PixmapConditional
+from Components.PluginComponent import plugins
+from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceName import ServiceName
+from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
+from Components.config import configfile, configsequencearg
+
+from EpgSelection import EPGSelection
+from Plugins.Plugin import PluginDescriptor
+
+from Screen import Screen
+from Screens.ChoiceBox import ChoiceBox
+from Screens.Dish import Dish
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
+from Screens.MinuteInput import MinuteInput
+from Screens.Standby import Standby
+from ServiceReference import ServiceReference
 
 from Tools import Notifications
 from Tools.Directories import *
@@ -1414,3 +1415,21 @@ class InfoBarSummarySupport:
 	
 	def createSummary(self):
 		return InfoBarSummary
+
+class InfoBarTeletextPlugin:
+	def __init__(self):
+		self.teletext_plugin = None
+		
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_TELETEXT):
+			self.teletext_plugin = p
+		
+		if self.teletext_plugin is not None:
+			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",
+				{
+					"startTeletext": (self.startTeletext, "View teletext...")
+				})
+		else:
+			print "no teletext plugin found!"
+
+	def startTeletext(self):
+		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
