@@ -142,7 +142,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.descr_rect = Rect(xpos, 0, width, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
-		rec=(self.timer.isInTimer(eventid=eventId, begin=beginTime, duration=duration, service=self.service) > 0)
+		rec=(self.timer.isInTimer(eventid=eventId, begin=beginTime, duration=duration, service=self.service) > ((duration/10)*8)) 
 		r1=self.datetime_rect
 		r2=self.descr_rect
 		res = [ None ]  # no private data needed
