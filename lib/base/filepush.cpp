@@ -66,7 +66,7 @@ void eFilePushThread::thread()
 			dest_pos += w;
 			written_since_last_sync += w;
 			
-			if (written_since_last_sync >= 512*1024)
+			if (written_since_last_sync >= 2048*1024)
 			{
 				fdatasync(m_fd_dest);
 				written_since_last_sync = 0;
