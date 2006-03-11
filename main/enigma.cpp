@@ -140,8 +140,6 @@ int main(int argc, char **argv)
 
 #ifdef HAVE_GSTREAMER
 	gst_init(&argc, &argv);
-#else
-#error bla
 #endif
 
 	// set pythonpath if unset
