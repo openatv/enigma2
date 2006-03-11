@@ -104,9 +104,9 @@ class PluginDownloadBrowser(Screen):
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.installFinished, Console, ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
