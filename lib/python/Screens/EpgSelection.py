@@ -50,7 +50,7 @@ class EPGSelection(Screen):
 
 		class ChannelActionMap(ActionMap):
 			def action(self, contexts, action):
-				ActionMap.action(self, contexts, action)
+				return ActionMap.action(self, contexts, action)
 
 		self["actions"] = ChannelActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
