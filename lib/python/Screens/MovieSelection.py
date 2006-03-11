@@ -30,7 +30,7 @@ class ChannelContextMenu(FixedMenu):
 		self.skinName = "Menu"
 	
 	def execPlugin(self, plugin):
-		plugin(self.session, self.service)
+		plugin(session=self.session, service=self.service)
 
 	def delete(self):
 		serviceHandler = eServiceCenter.getInstance()
