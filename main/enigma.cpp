@@ -3,40 +3,35 @@
 #endif
 
 #include <stdio.h>
+#include <unistd.h>
 #include <libsig_comp.h>
+
+#include <lib/actions/action.h>
+#include <lib/driver/rc.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-
-#include <unistd.h>
-
-#include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
 #include <lib/gdi/glcddc.h>
-
+#include <lib/gdi/grc.h>
 #ifdef WITH_SDL
 #include <lib/gdi/sdl.h>
 #endif
+#include <lib/gdi/epng.h>
 #include <lib/gdi/font.h> 
-
+#include <lib/gui/ebutton.h>
+#include <lib/gui/elabel.h>
+#include <lib/gui/elistboxcontent.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/ewidgetdesktop.h>
-#include <lib/gui/elabel.h>
-#include <lib/gui/ebutton.h>
-
 #include <lib/gui/ewindow.h>
-
-#include <lib/python/python.h>
 #include <lib/python/connections.h>
+#include <lib/python/python.h>
 
-#include <lib/gui/elistboxcontent.h>
-
-#include <lib/driver/rc.h>
-
-#include <lib/actions/action.h>
-
-#include <lib/gdi/epng.h>
+#ifdef HAVE_GSTREAMER
+#include <gst/gst.h>
+#endif
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -143,6 +138,12 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+#ifdef HAVE_GSTREAMER
+	gst_init(&argc, &argv);
+#else
+#error bla
+#endif
+
 	// set pythonpath if unset
 	setenv("PYTHONPATH", LIBDIR "/enigma2/python", 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
@@ -215,6 +216,13 @@ int main(int argc, char **argv)
 	
 	dsk.paint();
 	dsk_lcd.paint();
+
+	{
+		gPainter p(my_lcd_dc);
+		p.resetClip(eRect(0, 0, 132, 64));
+		p.clear();
+		p.flush();
+	}
 
 	return exit_code;
 }
