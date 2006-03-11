@@ -988,6 +988,9 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 
 RESULT eDVBChannel::getFrontend(ePtr<iDVBFrontend> &frontend)
 {
+	frontend = 0;
+	if (!m_frontend)
+		return -ENODEV;
 	frontend = &m_frontend->get();
 	if (frontend)
 		return 0;
