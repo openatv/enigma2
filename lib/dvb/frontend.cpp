@@ -1454,6 +1454,8 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
 	eDebug("(%d)tune", m_fe);
 
+	m_timeout->stop();
+
 	int res=0;
 
 	if (m_type == -1)
@@ -1483,7 +1485,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			return -EINVAL;
 		res=prepare_cable(feparm);
 		if (!res)
+		{
+			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		}
 		break;
 	}
 	case feTerrestrial:
@@ -1496,7 +1501,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		}
 		res=prepare_terrestrial(feparm);
 		if (!res)
+		{
+			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		}
 		break;
 	}
 	}
@@ -1504,7 +1512,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (!res)  // prepare ok
 	{
 		m_tuneTimer->start(0,true);
-		m_timeout->stop();
 		m_sec_sequence.current() = m_sec_sequence.begin();
 
 		if (m_state != stateTuning)

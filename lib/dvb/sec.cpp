@@ -243,6 +243,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		{
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 			bool doSetVoltageToneFrontend = true;
+			bool doSetFrontend = true;
 			int band=0,
 				linked_to=-1, // linked tuner
 				satpos_depends_to=-1,
@@ -666,6 +667,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					else
 					{  // use normal turning mode
 						doSetVoltageToneFrontend=false;
+						doSetFrontend=false;
 						eSecCommand::rotor cmd;
 						eSecCommand::pair compare;
 						compare.voltage = VOLTAGE(13);
@@ -711,10 +713,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			frontend.setData(1, ucsw);
 			frontend.setData(2, di_param.m_toneburst_param);
 
-			if ( linked )
-				return 0;
-
-			if (doSetVoltageToneFrontend)
+			if (!linked && doSetVoltageToneFrontend)
 			{
 				eSecCommand::pair compare;
 				compare.voltage = voltage;
@@ -725,11 +724,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
+			}
 
+			if (doSetFrontend)
+			{
 				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 			}
-
 			frontend.setSecSequence(sec_sequence);
 
 			return 0;
