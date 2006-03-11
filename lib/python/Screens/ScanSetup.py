@@ -3,8 +3,6 @@ from ServiceScan import *
 from Components.config import *
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
-from Components.config import config
-from Components.config import getConfigListEntry
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from enigma import eDVBFrontendParametersSatellite, eComponentScan
@@ -425,8 +423,9 @@ class ScanSimple(Screen):
 		tlist = []
 
 		for slotid in range(nimmanager.getNimSocketCount()):
-			nim = configElement_nonSave(slotid, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-			self.list.append(getConfigListEntry(_("Scan NIM") + " " + str(slotid) + " (" + nimmanager.getNimTypeName(slotid) + ")", nim))
+			if nimmanager.getNimType(slotid) != nimmanager.nimType["DVB-S"] or currentConfigSelectionElement(config.Nims[slotid].configMode) != "nothing":
+				nim = configElement_nonSave(slotid, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
+				self.list.append(getConfigListEntry(_("Scan NIM") + " " + str(slotid) + " (" + nimmanager.getNimTypeName(slotid) + ")", nim))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label(_("Automatic Scan"))
