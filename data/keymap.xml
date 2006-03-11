@@ -218,6 +218,10 @@
 		<key id="KEY_PLAYPAUSE" mapto="toggleMark" flags="m" />
 		<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="m" />
 	</map>
+	
+	<map context="InfobarTeletextActions">
+		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
+	</map>
 
 	<map context="ChannelSelectBaseActions">
 		<key id="KEY_RED" mapto="showAllServices" flags="m" />
