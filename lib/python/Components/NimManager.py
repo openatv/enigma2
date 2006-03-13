@@ -557,7 +557,10 @@ class NimManager:
 				nimText += ("DVB-S", "DVB-C", "DVB-T")[slot.nimType] + ")"
 			list.append((nimText, slot))
 		return list
-	
+
+	def getNimConfigMode(self, slotid):
+		return currentConfigSelectionElement(config.Nims[slotid].configMode)
+
 	def getSatListForNim(self, slotid):
 		list = []
 		if (self.getNimType(slotid) == self.nimType["DVB-S"]):
