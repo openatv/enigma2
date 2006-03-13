@@ -5,7 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
-from enigma import eDVBFrontendParametersSatellite, eComponentScan
+from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl
 
 def getInitialTransponderList(tlist, pos):
 	list = nimmanager.getTransponders(pos)
@@ -408,6 +408,19 @@ class ScanSimple(Screen):
 				return 1
 		return 0
 
+	def ScanNimTwoNeeded(self):
+		if nimmanager.getNimType(0) != nimmanager.getNimType(1):
+			return True
+		if nimmanager.getNimType(0) == nimmanager.nimType["DVB-S"]: #two dvb-s nims
+			if nimmanager.getNimConfigMode(1) in ["loopthrough", "satposdepends", "equal", "nothing"]:
+				return False
+			sec = eDVBSatelliteEquipmentControl.getInstance()
+			if sec is not None:
+				different_satellites = sec.get_different_satellites(0,1)
+				if different_satellites is None:# or not len(different_satellites):
+					return False
+			return True
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -422,10 +435,13 @@ class ScanSimple(Screen):
 		self.list = []
 		tlist = []
 
-		for slotid in range(nimmanager.getNimSocketCount()):
-			if nimmanager.getNimType(slotid) != nimmanager.nimType["DVB-S"] or currentConfigSelectionElement(config.Nims[slotid].configMode) != "nothing":
-				nim = configElement_nonSave(slotid, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-				self.list.append(getConfigListEntry(_("Scan NIM") + " " + str(slotid) + " (" + nimmanager.getNimTypeName(slotid) + ")", nim))
+		nimcount = nimmanager.getNimSocketCount()
+		if nimcount > 0:
+			nim = configElement_nonSave(0, configSelection, 0,(("yes", _("yes")),("no", _("no"))))
+			self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
+		if nimcount > 1 and self.ScanNimTwoNeeded():
+			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
+			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label(_("Automatic Scan"))

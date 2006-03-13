@@ -1032,6 +1032,51 @@ RESULT eDVBSatelliteEquipmentControl::setRotorPosNum(int rotor_pos_num)
 	return 0;
 }
 
+PyObject *eDVBSatelliteEquipmentControl::get_different_satellites(int tu1, int tu2)
+{
+	PyObject *ret=0;
+	if (tu1 != tu2)
+	{
+		eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
+		int cnt=0;
+		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
+		{
+			if (cnt == tu1)
+				p1 = *it;
+			else if (cnt == tu2)
+				p2 = *it;
+		}
+		if (p1 && p2)
+		{
+			// check for linked tuners
+			int tmp1, tmp2;
+			p1->m_frontend->getData(7, tmp1);
+			p2->m_frontend->setData(7, tmp2);
+			if ((void*)tmp1 != p2 && (void*)tmp2 != p1)
+			{
+				// check for rotor dependency
+				p1->m_frontend->getData(8, tmp1);
+				p2->m_frontend->setData(8, tmp2);
+				if ((void*)tmp1 != p2 && (void*)tmp2 != p1)
+				{
+					// here we know the tuners are not linked and no rotor dependency exist.
+					// now we check all configured satellites/lnb for difference and at all difference
+					// to a list of tuples with first value tuner number and second value orbital position
+					// of satellite
+					ret = PyList_New(0);
+					// FIXMEE !! fill list (compare satellites (lofh, lofl, lof threshold, opos))
+				}
+			}
+		}
+	}
+	if (!ret)
+	{
+		Py_INCREF(Py_None);
+		ret = Py_None;
+	}
+	return ret;
+}
+
 RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 {
 	return setDependencyPointers(tu1, tu2, 7);
