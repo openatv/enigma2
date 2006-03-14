@@ -129,10 +129,17 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 			list.push_back(service);
 		} else
 		{
-				/* FIIIIIX ME */
-			if (filename.substr(filename.size()-3) == ".ts")
+			std::string extension = filename.substr(filename.rfind('.'));
+			int type = -1;
+			
+			if (extension == ".ts")
+				type = eServiceFactoryDVB::id;
+			else if (extension == ".mp3")
+				type = 4097;
+			
+			if (type != -1)
 			{
-				eServiceReference service(eServiceFactoryDVB::id,
+				eServiceReference service(type,
 					0,
 					filename);
 				service.data[0] = 0;
