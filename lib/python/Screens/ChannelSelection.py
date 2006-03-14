@@ -342,7 +342,10 @@ class ChannelSelectionEdit:
 		self.mutableList = None
 		self.setTitle(self.saved_title)
 		self.saved_title = None
-		self.servicePath = self.savedPath[:]
+		# self.servicePath is just a reference to servicePathTv or Radio...
+		# so we never ever do use the asignment operator in self.servicePath
+		del self.servicePath[:] # remove all elements
+		self.servicePath += self.savedPath # add saved elements
 		del self.savedPath
 		self.setRoot(self.servicePath[len(self.servicePath)-1])
 
@@ -877,7 +880,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def setHistoryPath(self):
 		path = self.history[self.history_pos][:]
 		ref = path.pop()
-		self.servicePath = path
+		del self.servicePath[:]
+		self.servicePath += path
 		self.saveRoot()
 		plen = len(path)
 		root = path[plen-1]
