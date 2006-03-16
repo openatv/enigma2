@@ -37,13 +37,15 @@ class CutListContextMenu(FixedMenu):
 	RET_DELETECUT = 2
 	RET_MARK = 3
 	RET_DELETEMARK = 4
+	RET_REMOVEBEFORE = 5
+	RET_REMOVEAFTER = 6
 	
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
 	SHOW_DELETECUT = 2
 	
 	def __init__(self, session, state, nearmark):
-		menu = [(_("back"), self.close), (None, )]
+		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
@@ -60,7 +62,10 @@ class CutListContextMenu(FixedMenu):
 		else:
 			menu.append((_("delete cut"), ))
 
-		menu.append((None, ))
+		menu.append((_("remove before this position"), self.removeBefore))
+		menu.append((_("remove after this position"), self.removeAfter))
+
+#		menu.append((None, ))
 
 		if not nearmark:
 			menu.append((_("insert mark here"), self.insertMark))
@@ -84,6 +89,13 @@ class CutListContextMenu(FixedMenu):
 
 	def removeMark(self):
 		self.close(self.RET_DELETEMARK)
+	
+	def removeBefore(self):
+		self.close(self.RET_REMOVEBEFORE)
+
+	def removeAfter(self):
+		self.close(self.RET_REMOVEAFTER)
+
 
 class CutList(GUIComponent):
 	def __init__(self, list):
@@ -141,6 +153,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 		Screen.__init__(self, session)
 		InfoBarSeek.__init__(self)
 		InfoBarCueSheetSupport.__init__(self)
+		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 		
 		service = session.nav.getCurrentService()
@@ -177,7 +190,6 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 
 		# to track new entries we save the last version of the cutlist
 		self.last_cuts = [ ]
-		
 		self.cut_start = None
 		
 	def showTutorial(self):
@@ -223,6 +235,7 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			self.removeMark(m)
 	
 	def exit(self):
+		self.session.nav.playService(self.old_service)
 		self.close()
 
 	def getCutlist(self):
@@ -259,6 +272,11 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 
 	def getStateForPosition(self, pos):
 		state = 0 # in
+		
+		# when first point is "in", the beginning is "out"
+		if len(self.cut_list) and self.cut_list[0][1] == 0:
+			state = 1
+
 		for (where, what) in self.cut_list:
 			if where < pos:
 				if what == 0: # in
@@ -336,6 +354,22 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			self.__addMark()
 		elif result == CutListContextMenu.RET_DELETEMARK:
 			self.cut_list.remove(self.context_nearest_mark)
+			self.uploadCuesheet()
+		elif result == CutListContextMenu.RET_REMOVEBEFORE:
+			# remove in/out marks before current position
+			for (where, what) in self.cut_list[:]:
+				if where <= self.context_position and what in [0,1]:
+					self.cut_list.remove((where, what))
+			# add 'in' point
+			bisect.insort(self.cut_list, (self.context_position, 0))
+			self.uploadCuesheet()
+		elif result == CutListContextMenu.RET_REMOVEAFTER:
+			# remove in/out marks after current position
+			for (where, what) in self.cut_list[:]:
+				if where >= self.context_position and what in [0,1]:
+					self.cut_list.remove((where, what))
+			# add 'out' point
+			bisect.insort(self.cut_list, (self.context_position, 1))
 			self.uploadCuesheet()
 
 def main(session, service, **kwargs):
