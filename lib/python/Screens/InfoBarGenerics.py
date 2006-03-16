@@ -828,7 +828,7 @@ class InfoBarPVRState:
 		self.onHide.append(self.pvrStateDialog.hide)
 	
 	def __mayShow(self):
-		if self.seekstate != self.SEEK_STATE_PLAY:
+		if self.seekstate != self.SEEK_STATE_PLAY and self.execing:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
