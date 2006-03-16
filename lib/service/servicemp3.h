@@ -1,7 +1,10 @@
 #ifndef __servicemp3_h
 #define __servicemp3_h
 
+#ifdef HAVE_GSTREAMER
+#include <lib/base/message.h>
 #include <lib/service/iservice.h>
+#include <gst/gst.h>
 
 class eStaticServiceMP3Info;
 
@@ -33,21 +36,12 @@ public:
 	int getLength(const eServiceReference &ref);
 };
 
-class eServiceMP3: public iPlayableService, public iPauseableService, public iServiceInformation, public Object
+typedef struct _GstElement GstElement;
+
+class eServiceMP3: public iPlayableService, public iPauseableService, 
+	public iServiceInformation, public iSeekableService, public Object
 {
 DECLARE_REF(eServiceMP3);
-private:
-	friend class eServiceFactoryMP3;
-	std::string filename;
-	eServiceMP3(const char *filename);	
-	eTimer test;
-	void test_end();
-	Signal2<void,iPlayableService*,int> m_event;
-	enum
-	{
-		stIdle, stRunning, stStopped,
-	};
-	int m_state;
 public:
 	virtual ~eServiceMP3();
 
@@ -59,8 +53,9 @@ public:
 	RESULT setSlowMotion(int ratio);
 	RESULT setFastForward(int ratio);
 
+	RESULT seek(ePtr<iSeekableService> &ptr);
+
 		// not implemented (yet)
-	RESULT seek(ePtr<iSeekableService> &ptr) { ptr = 0; return -1; }
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
@@ -73,8 +68,35 @@ public:
 	
 	RESULT info(ePtr<iServiceInformation>&);
 	
+		// iSeekableService
+	RESULT getLength(pts_t &SWIG_OUTPUT);
+	RESULT seekTo(pts_t to);
+	RESULT seekRelative(int direction, pts_t to);
+	RESULT getPlayPosition(pts_t &SWIG_OUTPUT);
+	RESULT setTrickmode(int trick);
+	RESULT isCurrentlySeekable();
+	
 		// iServiceInformation
 	RESULT getName(std::string &name);
+private:
+	friend class eServiceFactoryMP3;
+	std::string m_filename;
+	eServiceMP3(const char *filename);	
+	Signal2<void,iPlayableService*,int> m_event;
+	enum
+	{
+		stIdle, stRunning, stStopped,
+	};
+	int m_state;
+	GstElement *m_gst_pipeline, *m_gst_audio;
+	GstTagList *m_stream_tags;
+	eFixedMessagePump<int> m_pump;
+	
+	void gstBusCall(GstBus *bus, GstMessage *msg);
+	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
+	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data);
+	void gstPoll(const int&);
 };
+#endif
 
 #endif
