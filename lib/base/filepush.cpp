@@ -54,15 +54,14 @@ void eFilePushThread::thread()
 //			eDebug("wrote %d bytes", w);
 			if (w <= 0)
 			{
-				if (errno == -EINTR)
+				if (errno == EINTR)
 					continue;
 				break;
 				// ... we would stop the thread
 			}
 
-				/* this should flush all written pages to disk. */
 			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
-			
+
 			dest_pos += w;
 			written_since_last_sync += w;
 			
@@ -119,7 +118,7 @@ void eFilePushThread::thread()
 			{
 				eDebug("sending PVR commit");
 				already_empty = 1;
-				if (::ioctl(m_fd_dest, PVR_COMMIT) == EINTR)
+				if (::ioctl(m_fd_dest, PVR_COMMIT) < 0 && errno == EINTR)
 					continue;
 				eDebug("commit done");
 						/* well check again */
