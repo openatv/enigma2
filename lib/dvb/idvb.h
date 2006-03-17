@@ -162,6 +162,20 @@ struct eServiceReferenceDVB: public eServiceReference
 	eTransportStreamID getParentTransportStreamID() const { return eTransportStreamID(data[6]); }
 	void setParentTransportStreamID( eTransportStreamID tsid ) { data[6]=tsid.get(); }
 
+	eServiceReferenceDVB getParentServiceReference() const
+	{
+		eServiceReferenceDVB tmp(*this);
+		if (data[4] && data[5])
+		{
+			tmp.data[1] = data[5];
+			tmp.data[2] = data[6];
+			tmp.data[5] = tmp.data[6] = 0;
+		}
+		else
+			tmp.type = idInvalid;
+		return tmp;
+	}
+
 	eServiceReferenceDVB(eDVBNamespace dvbnamespace, eTransportStreamID transport_stream_id, eOriginalNetworkID original_network_id, eServiceID service_id, int service_type)
 		:eServiceReference(eServiceReference::idDVB, 0)
 	{
