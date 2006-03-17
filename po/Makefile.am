@@ -58,6 +58,8 @@ enigma2.pot:
 			../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py \
 			../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py \
 			../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py \
+			../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py \
+			../lib/python/Tools/FuzzyDate.py \
 			../RecordTimer.py
 	./xml2po.py	../data/ >> enigma2.pot
 
