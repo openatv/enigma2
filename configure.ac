@@ -27,13 +27,7 @@ TUXBOX_APPS_LIB_PKGCONFIG(MAD,mad)
 TUXBOX_APPS_LIB_PKGCONFIG(PNG,libpng)
 TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
 TUXBOX_APPS_LIB_PKGCONFIG(DVBSI,libdvbsi++)
-_TUXBOX_APPS_LIB_PKGCONFIG(GSTREAMER,gstreamer)
-
-if test -z "$GSTREAMER_CFLAGS" ; then
-  AC_MSG_WARN([could not find package GSTREAMER]);
-else
-	AC_DEFINE_UNQUOTED([HAVE_GSTREAMER],1,[Define to 1 if you have gstreamer])
-fi
+_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(GSTREAMER,gstreamer >= 0.10,HAVE_GSTREAMER)
 
 if test "$withsdl" = "yes" ; then
 	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
