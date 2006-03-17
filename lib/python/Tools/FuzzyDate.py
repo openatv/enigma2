@@ -7,7 +7,7 @@ def FuzzyTime(t):
 	
 	if d[:3] == n[:3]:
 		# same day
-		date = "Today"
+		date = _("Today")
 	elif ((t - nt) < 7*86400) and (nt < t):
 		# same week
 		date = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[d[6]]
