@@ -48,10 +48,13 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 		{
 			eEPGCache::getInstance()->Lock();
 			const eit_event_struct *event = 0;
+			eServiceReferenceDVB ref = m_ref.getParentServiceReference();
+			if (!ref.valid())
+				ref = m_ref;
 			if ( eit_event_id != -1 )
 			{
 				eDebug("query epg event id %d", eit_event_id);
-				eEPGCache::getInstance()->lookupEventId(m_ref, eit_event_id, event);
+				eEPGCache::getInstance()->lookupEventId(ref, eit_event_id, event);
 			}
 			if ( !event && (begTime != -1 && endTime != -1) )
 			{
@@ -64,7 +67,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 					beg.tm_hour, beg.tm_min, beg.tm_sec,
 					end.tm_hour, end.tm_min, end.tm_sec,
 					query.tm_hour, query.tm_min, query.tm_sec);
-				eEPGCache::getInstance()->lookupEventTime(m_ref, queryTime, event);
+				eEPGCache::getInstance()->lookupEventTime(ref, queryTime, event);
 			}
 			if ( event )
 			{
