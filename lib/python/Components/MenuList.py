@@ -30,3 +30,6 @@ class MenuList(HTMLComponent, GUIComponent):
 	def setList(self, list):
 		self.list = list
 		self.l.setList(self.list)
+
+	def moveToIndex(self, idx):
+		self.instance.moveSelectionTo(idx)
