@@ -165,7 +165,7 @@ struct eServiceReferenceDVB: public eServiceReference
 	eServiceReferenceDVB getParentServiceReference() const
 	{
 		eServiceReferenceDVB tmp(*this);
-		if (data[4] && data[5])
+		if (data[5] && data[6])
 		{
 			tmp.data[1] = data[5];
 			tmp.data[2] = data[6];
