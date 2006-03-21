@@ -60,7 +60,7 @@ void eFilePushThread::thread()
 				// ... we would stop the thread
 			}
 
-			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
+//			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
 
 			dest_pos += w;
 			written_since_last_sync += w;
