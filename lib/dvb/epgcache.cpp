@@ -1713,7 +1713,7 @@ void fillTuple2(PyObject *tuple, const char *argstring, int argcount, eventData 
 //     1 = search events with exactly title name (EXAKT_TITLE_SEARCH)
 //     2 = search events with text in title name (PARTIAL_TITLE_SEARCH)
 //  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
-//   the fourth is the servicereference tring
+//   the fourth is the servicereference string
 //   the fifth is the eventid
 //  when type is 1 or 2 (EXAKT_TITLE_SEARCH or PARTIAL_TITLE_SEARCH)
 //   the fourth is the search text
@@ -1728,6 +1728,7 @@ PyObject *eEPGCache::search(PyObject *arg)
 	__u32 descr[512];
 	int eventid = -1;
 	const char *argstring=0;
+	char *refstr=0;
 	int argcount=0;
 	int querytype=-1;
 	bool needServiceEvent=false;
@@ -1772,7 +1773,7 @@ PyObject *eEPGCache::search(PyObject *arg)
 				PyObject *obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
 				{
-					const char *refstr = PyString_AS_STRING(obj);
+					refstr = PyString_AS_STRING(obj);
 					eServiceReferenceDVB ref(refstr);
 					if (ref.valid())
 					{
@@ -1929,10 +1930,20 @@ PyObject *eEPGCache::search(PyObject *arg)
 	if (descridx > -1)
 	{
 		int maxcount=maxmatches;
+		eServiceReferenceDVB ref(refstr?refstr:"");
+		// ref is only valid in SIMILAR_BROADCASTING_SEARCH
+		// in this case we start searching with the base service
+		bool first = ref.valid() ? true : false;
 		singleLock s(cache_lock);
-		// check all services
-		for( eventCache::iterator cit(eventDB.begin()); cit != eventDB.end() && maxcount; ++cit)
+		eventCache::iterator cit(ref.valid() ? eventDB.find(ref) : eventDB.begin());
+		while(cit != eventDB.end() && maxcount)
 		{
+			if ( ref.valid() && !first && cit->first == ref )
+			{
+				// do not scan base service twice ( only in SIMILAR BROADCASTING SEARCH )
+				++cit;
+				continue;
+			}
 			PyObject *service_name=0;
 			PyObject *service_reference=0;
 			eventMap &evmap = cit->second.first;
@@ -2012,6 +2023,14 @@ PyObject *eEPGCache::search(PyObject *arg)
 				Py_DECREF(service_name);
 			if (service_reference)
 				Py_DECREF(service_reference);
+			if (first)
+			{
+				// now start at first service in epgcache database ( only in SIMILAR BROADCASTING SEARCH )
+				first=false;
+				cit=eventDB.begin();
+			}
+			else
+				++cit;
 		}
 	}
 
