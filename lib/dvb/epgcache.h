@@ -139,7 +139,7 @@ public:
 	int getDuration()
 	{
 		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
- }
+	}
 };
 #endif
 
@@ -296,7 +296,17 @@ public:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &, int direction=0);
 	RESULT getNextTimeEntry(Event *&);
 #endif
+	enum {
+		SIMILAR_BROADCASTINGS_SEARCH,
+		EXAKT_TITLE_SEARCH,
+		PARTIAL_TITLE_SEARCH
+	};
+	enum {
+		CASE_CHECK,
+		NO_CASE_CHECK
+	};
 	PyObject *lookupEvent(PyObject *list, PyObject *convertFunc=NULL);
+	PyObject *search(PyObject *);
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
 	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
