@@ -4,6 +4,12 @@ from tools import *
 
 from Components.Language import language
 
+def setEPGLanguage():
+	#eServiceEvent.setEPGLanguage(language.getLanguage())
+	print "language set to", language.getLanguage()
+	
+language.addCallback(setEPGLanguage)
+
 import traceback
 import Screens.InfoBar
 from Screens.SimpleSummary import SimpleSummary
