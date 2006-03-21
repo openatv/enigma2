@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-17 21:53+0100\n"
+"POT-Creation-Date: 2006-03-21 07:04+0000\n"
 "PO-Revision-Date: 2006-02-23 01:33+0100\n"
 "Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
 "Language-Team: none\n"
@@ -39,8 +39,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:105
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -49,6 +49,11 @@ msgstr ""
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
+msgstr ""
+
+#: ../lib/python/Components/TimerList.py:46
+#: ../lib/python/Components/TimerList.py:51
+msgid "(ZAP)"
 msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
@@ -91,7 +96,7 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:57
+#: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
 msgstr "<unbekannt>"
 
@@ -107,7 +112,7 @@ msgstr ""
 "Zur Zeit läuft eine Aufnahme.\n"
 "Was möchten Sie tun?"
 
-#: ../RecordTimer.py:137
+#: ../RecordTimer.py:141
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -237,7 +242,7 @@ msgstr "Abbruch"
 msgid "Capacity: "
 msgstr "Kapazität: "
 
-#: ../lib/python/Screens/TimerEntry.py:180 ../data/
+#: ../lib/python/Screens/TimerEntry.py:190 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -257,7 +262,7 @@ msgstr "klassisch"
 msgid "Cleanup"
 msgstr "Aufräumen"
 
-#: ../lib/python/Screens/TimerEntry.py:299
+#: ../lib/python/Screens/TimerEntry.py:312
 msgid "Clear log"
 msgstr "Log löschen"
 
@@ -304,7 +309,7 @@ msgstr "Standard"
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../lib/python/Screens/TimerEntry.py:296
+#: ../lib/python/Screens/TimerEntry.py:309
 msgid "Delete entry"
 msgstr "Eintrag löschen"
 
@@ -312,7 +317,7 @@ msgstr "Eintrag löschen"
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen."
 
-#: ../lib/python/Screens/TimerEntry.py:141
+#: ../lib/python/Screens/TimerEntry.py:147
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -435,11 +440,11 @@ msgstr "Ost"
 msgid "Enable"
 msgstr "Ein"
 
-#: ../lib/python/Screens/TimerEntry.py:175
+#: ../lib/python/Screens/TimerEntry.py:184
 msgid "End"
 msgstr "Ende"
 
-#: ../lib/python/Screens/TimerEntry.py:178
+#: ../lib/python/Screens/TimerEntry.py:188
 msgid "EndTime"
 msgstr "Endzeit"
 
@@ -481,7 +486,7 @@ msgstr "Favoriten"
 #: ../lib/python/Screens/ScanSetup.py:110
 #: ../lib/python/Screens/ScanSetup.py:138
 #: ../lib/python/Screens/ScanSetup.py:149
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:156
 msgid "Frequency"
 msgstr "Frequenz"
 
@@ -490,8 +495,8 @@ msgstr "Frequenz"
 msgid "Fri"
 msgstr "Fr"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:162
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Friday"
 msgstr "Freitag"
 
@@ -629,12 +634,12 @@ msgstr ""
 msgid "Mon"
 msgstr "Mo"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "Mon-Fri"
 msgstr "Montag bis Freitag"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:158
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:166
 msgid "Monday"
 msgstr "Montag"
 
@@ -662,7 +667,7 @@ msgstr ""
 msgid "N/A"
 msgstr "Nicht verfügbar"
 
-#: ../lib/python/Screens/TimerEntry.py:140
+#: ../lib/python/Screens/TimerEntry.py:146
 msgid "Name"
 msgstr ""
 
@@ -844,6 +849,10 @@ msgstr "Plugins entfernen"
 msgid "Remove plugins"
 msgstr "Plugins entfernen"
 
+#: ../lib/python/Screens/TimerEntry.py:150
+msgid "Repeat Type"
+msgstr ""
+
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
 msgstr "Zurücksetzen"
@@ -874,8 +883,8 @@ msgstr "Satellit"
 msgid "Satellites"
 msgstr "Satelliten"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:171
 msgid "Saturday"
 msgstr "Samstag"
 
@@ -888,7 +897,7 @@ msgstr "Scanne Tuner"
 msgid "Secondary cable from motorized LNB"
 msgstr "Zweites Kabel vom Rotor"
 
-#: ../lib/python/Screens/TimerEntry.py:218
+#: ../lib/python/Screens/TimerEntry.py:230
 msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
@@ -962,7 +971,7 @@ msgstr "Süd"
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:178
 msgid "Start"
 msgstr ""
 
@@ -970,7 +979,7 @@ msgstr ""
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
-#: ../lib/python/Screens/TimerEntry.py:173
+#: ../lib/python/Screens/TimerEntry.py:181
 msgid "StartTime"
 msgstr "Startzeit"
 
@@ -1011,8 +1020,8 @@ msgstr "Unterkanäle"
 msgid "Sun"
 msgstr "So"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:164
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:172
 msgid "Sunday"
 msgstr "Sonntag"
 
@@ -1038,12 +1047,12 @@ msgstr "Grenze"
 msgid "Thu"
 msgstr "Do"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:161
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:169
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: ../lib/python/Screens/TimerEntry.py:142
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Timer Type"
 msgstr "Timer-Art"
 
@@ -1081,8 +1090,8 @@ msgstr "Übertragungstyp"
 msgid "Tue"
 msgstr "Di"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:159
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:167
 msgid "Tuesday"
 msgstr "Dienstag"
 
@@ -1161,12 +1170,12 @@ msgstr ""
 msgid "Wed"
 msgstr "Mi"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Screens/TimerEntry.py:108
+#: ../lib/python/Screens/TimerEntry.py:168
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: ../lib/python/Screens/TimerEntry.py:155
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Weekday"
 msgstr "Wochentag"
 
@@ -1215,7 +1224,7 @@ msgstr "Bouqueteditieren abbrechen"
 msgid "abort favourites edit"
 msgstr "Favoriteneditor abbrechen"
 
-#: ../lib/python/Components/TimerList.py:53
+#: ../lib/python/Components/TimerList.py:59
 msgid "about to start"
 msgstr "startet gleich"
 
@@ -1256,7 +1265,7 @@ msgstr "rechts-zirkular"
 msgid "copy to favourites"
 msgstr "In Favoriten kopieren"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "daily"
 msgstr "täglich"
 
@@ -1276,7 +1285,7 @@ msgstr "nichts tun"
 msgid "don't record"
 msgstr "Nicht aufnehmen"
 
-#: ../lib/python/Components/TimerList.py:59
+#: ../lib/python/Components/TimerList.py:68
 msgid "done!"
 msgstr "erledigt!"
 
@@ -1350,7 +1359,7 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Screens/TimerEntry.py:112
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -1380,7 +1389,7 @@ msgstr "aus"
 msgid "on"
 msgstr "an"
 
-#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:96
 msgid "once"
 msgstr "einmalig"
 
@@ -1404,11 +1413,15 @@ msgstr "vorheriger Kanal"
 msgid "previous channel in history"
 msgstr ""
 
+#: ../lib/python/Screens/TimerEntry.py:95
+msgid "record"
+msgstr ""
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "record indefinitely"
 msgstr "Unbegrenzt aufnehmen"
 
-#: ../lib/python/Components/TimerList.py:55
+#: ../lib/python/Components/TimerList.py:64
 msgid "recording..."
 msgstr "nimmt auf..."
 
@@ -1420,7 +1433,7 @@ msgstr "Bouquet entfernen"
 msgid "remove service"
 msgstr "Kanal löschen"
 
-#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:96
 msgid "repeated"
 msgstr "wiederholend"
 
@@ -1486,7 +1499,7 @@ msgstr ""
 msgid "unknown service"
 msgstr "unbekannter Service"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "user defined"
 msgstr "benutzerdefiniert"
 
@@ -1494,11 +1507,11 @@ msgstr "benutzerdefiniert"
 msgid "vertical"
 msgstr "vertikal"
 
-#: ../lib/python/Components/TimerList.py:51
+#: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
 msgstr "wartend"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "weekly"
 msgstr "wöchentlich"
 
@@ -1506,11 +1519,19 @@ msgstr "wöchentlich"
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Screens/TimerEntry.py:112
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "ja"
+
+#: ../lib/python/Screens/TimerEntry.py:95
+msgid "zap"
+msgstr ""
+
+#: ../lib/python/Components/TimerList.py:62
+msgid "zapped"
+msgstr ""
 
 #: ../data/
 msgid "Channel Selection"
@@ -1741,8 +1762,8 @@ msgid "Manual Scan"
 msgstr "Manuelle Suche"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Zeitgesteuerte Aufname"
+msgid "OSD Settings"
+msgstr "OSD-Einstellungen"
 
 #: ../data/
 msgid "RC Menu"
@@ -1781,8 +1802,8 @@ msgid "Fast zapping"
 msgstr "Schnelles Umschalten"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-Einstellungen"
+msgid "Usage Settings"
+msgstr "Bedieneinstellungen"
 
 #: ../data/
 msgid "Brightness"
@@ -1814,7 +1835,7 @@ msgstr "Ja, Tutorial anzeigen"
 
 #: ../data/
 msgid "UHF Modulator"
-msgstr ""
+msgstr "UHF-Modulator"
 
 #: ../data/
 msgid "Color Format"
@@ -1873,10 +1894,6 @@ msgstr ""
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-Einstellungen"
-
-#: ../data/
-msgid "Usage Settings"
-msgstr "Bedieneinstellungen"
 
 #: ../data/
 msgid ""
@@ -1974,7 +1991,7 @@ msgstr "Neustart"
 
 #: ../data/
 msgid "AC3 default"
-msgstr "AC3 standardmässig"
+msgstr "AC3 standardmäßig"
 
 #: ../data/
 msgid "Timer entry"
@@ -2016,6 +2033,10 @@ msgstr ""
 #: ../data/
 msgid "Exit wizard"
 msgstr "Assistenten beenden"
+
+#: ../data/
+msgid "Media player"
+msgstr ""
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2160,17 +2181,8 @@ msgid "Alpha"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid "Timer Edit"
+msgstr "Zeitgesteuerte Aufname"
 
 #: ../data/
 msgid "Setup"
@@ -2237,8 +2249,25 @@ msgid "Seek"
 msgstr "Springen"
 
 #: ../data/
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+
+#: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliteneinstellungen"
+
+#: ../data/
+msgid "MediaPlayer"
+msgstr ""
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
