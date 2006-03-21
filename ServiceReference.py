@@ -6,8 +6,9 @@ import NavigationInstance
 class ServiceReference(eServiceReference):
 	def __init__(self, ref):
 		if isinstance(ref, str):
-			ref = eServiceReference(ref)
-		self.ref = ref
+			self.ref = eServiceReference(ref)
+		else:
+			self.ref = ref
 		self.serviceHandler = eServiceCenter.getInstance()
 
 	def __str__(self):
