@@ -29,11 +29,11 @@ class Language:
 			print "Activating language " + str(self.lang[index][0])
 			self.lang[index][1].install()
 			self.activeLanguage = index
+			for x in self.callbacks:
+				x()
 		except:
 			print "Selected language does not exist!"
-		for x in self.callbacks:
-			x()
-		
+
 	def getLanguageList(self):
 		list = []
 		for x in self.lang:
