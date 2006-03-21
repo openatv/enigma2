@@ -10,6 +10,15 @@
 #include <dvbsi++/component_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 
+// static members / methods
+std::string eServiceEvent::m_language = "de_DE";
+
+void eServiceEvent::setEPGLanguage( const std::string language )
+{
+	m_language = language;
+}
+///////////////////////////
+
 DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 
@@ -165,9 +174,8 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	);
 	m_event_id = evt->getEventId();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
-	std::string country="de_DE";  // TODO use local data here
 	for (int i=0; i < MAX_LANG; i++)
-		if (country==ISOtbl[i][0])
+		if (m_language==ISOtbl[i][0])
 			if (loadLanguage(evt, ISOtbl[i][1], tsidonid))
 				return 0;
 	if (loadLanguage(evt, "eng", tsidonid))
