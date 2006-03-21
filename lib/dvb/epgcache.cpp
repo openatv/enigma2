@@ -1946,16 +1946,16 @@ PyObject *eEPGCache::search(PyObject *arg)
 			}
 			PyObject *service_name=0;
 			PyObject *service_reference=0;
-			eventMap &evmap = cit->second.first;
+			timeMap &evmap = cit->second.second;
 			// check all events
-			for (eventMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
+			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
 			{
+				if (evit->second->getEventID() == eventid)
+					continue;
 				__u8 *data = evit->second->EITdata;
 				int tmp = evit->second->ByteSize-12;
 				__u32 *p = (__u32*)(data+12);
 				// check if any of our descriptor used by this event
-				if (evit->first == eventid )
-					continue;
 				int cnt=-1;
 				while(tmp>0)
 				{
