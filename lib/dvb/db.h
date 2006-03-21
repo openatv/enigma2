@@ -50,6 +50,7 @@ public:
 //////
 	void saveServicelist();
 	void loadBouquet(const char *path);
+	eServiceReference searchReference(int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 #endif

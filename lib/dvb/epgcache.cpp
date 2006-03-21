@@ -9,6 +9,7 @@
 // #include <libmd5sum.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/db.h>
 #include <Python.h>
 
 int eventData::CacheSize=0;
@@ -65,7 +66,6 @@ const eit_event_struct* eventData::get() const
 {
 	int pos = 12;
 	int tmp = ByteSize-12;
-
 	memcpy(data, EITdata, 12);
 	__u32 *p = (__u32*)(EITdata+12);
 	while(tmp>0)
@@ -1639,6 +1639,389 @@ skip_entry:
 	if (nowTime)
 		Py_DECREF(nowTime);
 	return dest_list;
+}
+
+void fillTuple2(PyObject *tuple, const char *argstring, int argcount, eventData *evData, ePtr<eServiceEvent> &ptr, PyObject *service_name, PyObject *service_reference)
+{
+	PyObject *tmp=NULL;
+	int pos=0;
+	while(pos < argcount)
+	{
+		bool inc_refcount=false;
+		switch(argstring[pos])
+		{
+			case '0': // PyLong 0
+				tmp = PyLong_FromLong(0);
+				break;
+			case 'I': // Event Id
+				tmp = PyLong_FromLong(evData->getEventID());
+				break;
+			case 'B': // Event Begin Time
+				if (ptr)
+					tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : NULL;
+				else
+					tmp = PyLong_FromLong(evData->getStartTime());
+				break;
+			case 'D': // Event Duration
+				if (ptr)
+					tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : NULL;
+				else
+					tmp = PyLong_FromLong(evData->getDuration());
+				break;
+			case 'T': // Event Title
+				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : NULL;
+				break;
+			case 'S': // Event Short Description
+				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : NULL;
+				break;
+			case 'E': // Event Extended Description
+				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : NULL;
+				break;
+			case 'R': // service reference string
+				tmp = service_reference;
+				inc_refcount = true;
+				break;
+			case 'N': // service name
+				tmp = service_name;
+				inc_refcount = true;
+				break;
+		}
+		if (!tmp)
+		{
+			tmp = Py_None;
+			inc_refcount = true;
+		}
+		if (inc_refcount)
+			Py_INCREF(tmp);
+		PyTuple_SET_ITEM(tuple, pos++, tmp);
+	}
+}
+
+// here we get a python tuple
+// the first entry in the tuple is a python string to specify the format of the returned tuples (in a list)
+//   I = Event Id
+//   B = Event Begin Time
+//   D = Event Duration
+//   T = Event Title
+//   S = Event Short Description
+//   E = Event Extended Description
+//   R = Service Reference
+//   N = Service Name
+//  the second tuple entry is the MAX matches value
+//  the third tuple entry is the type of query
+//     0 = search for similar broadcastings (SIMILAR_BROADCASTINGS_SEARCH)
+//     1 = search events with exactly title name (EXAKT_TITLE_SEARCH)
+//     2 = search events with text in title name (PARTIAL_TITLE_SEARCH)
+//  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
+//   the fourth is the servicereference tring
+//   the fifth is the eventid
+//  when type is 1 or 2 (EXAKT_TITLE_SEARCH or PARTIAL_TITLE_SEARCH)
+//   the fourth is the search text
+//   the fifth is
+//     0 = case sensitive (CASE_CHECK)
+//     1 = case insensitive (NO_CASECHECK)
+
+PyObject *eEPGCache::search(PyObject *arg)
+{
+	PyObject *ret = 0;
+	int descridx = -1;
+	__u32 descr[512];
+	int eventid = -1;
+	const char *argstring=0;
+	int argcount=0;
+	int querytype=-1;
+	bool needServiceEvent=false;
+	int maxmatches=0;
+
+	if (PyTuple_Check(arg))
+	{
+		int tuplesize=PyTuple_Size(arg);
+		if (tuplesize > 0)
+		{
+			PyObject *obj = PyTuple_GET_ITEM(arg,0);
+			if (PyString_Check(obj))
+			{
+				argcount = PyString_GET_SIZE(obj);
+				argstring = PyString_AS_STRING(obj);
+				for (int i=0; i < argcount; ++i)
+					switch(argstring[i])
+					{
+					case 'S':
+					case 'E':
+					case 'T':
+						needServiceEvent=true;
+					default:
+						break;
+					}
+			}
+			else
+			{
+				PyErr_SetString(PyExc_StandardError,
+					"type error");
+				eDebug("tuple arg 0 is not a string");
+				return NULL;
+			}
+		}
+		if (tuplesize > 1)
+			maxmatches = PyLong_AsLong(PyTuple_GET_ITEM(arg, 1));
+		if (tuplesize > 2)
+		{
+			querytype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 2));
+			if (tuplesize > 4 && querytype == 0)
+			{
+				PyObject *obj = PyTuple_GET_ITEM(arg, 3);
+				if (PyString_Check(obj))
+				{
+					const char *refstr = PyString_AS_STRING(obj);
+					eServiceReferenceDVB ref(refstr);
+					if (ref.valid())
+					{
+						eventid = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
+						singleLock s(cache_lock);
+						const eventData *evData = 0;
+						lookupEventId(ref, eventid, evData);
+						if (evData)
+						{
+							__u8 *data = evData->EITdata;
+							int tmp = evData->ByteSize-12;
+							__u32 *p = (__u32*)(data+12);
+								// search short and extended event descriptors
+							while(tmp>0)
+							{
+								__u32 crc = *p++;
+								descriptorMap::iterator it =
+									eventData::descriptors.find(crc);
+								if (it != eventData::descriptors.end())
+								{
+									__u8 *descr_data = it->second.second;
+									switch(descr_data[0])
+									{
+									case 0x4D ... 0x4E:
+										descr[++descridx]=crc;
+									default:
+										break;
+									}
+								}
+								tmp-=4;
+							}
+						}
+						if (descridx<0)
+							eDebug("event not found");
+					}
+					else
+					{
+						PyErr_SetString(PyExc_StandardError,
+							"type error");
+						eDebug("tuple arg 4 is not a valid service reference string");
+						return NULL;
+					}
+				}
+				else
+				{
+					PyErr_SetString(PyExc_StandardError,
+					"type error");
+					eDebug("tuple arg 4 is not a string");
+					return NULL;
+				}
+			}
+			else if (tuplesize > 4 && (querytype == 1 || querytype == 2) )
+			{
+				PyObject *obj = PyTuple_GET_ITEM(arg, 3);
+				if (PyString_Check(obj))
+				{
+					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
+					const char *str = PyString_AS_STRING(obj);
+					int textlen = PyString_GET_SIZE(obj);
+					if (querytype == 1)
+						eDebug("lookup for events with '%s' as title(%s)", str, casetype?"ignore case":"case sensitive");
+					else
+						eDebug("lookup for events with '%s' in title(%s)", str, casetype?"ignore case":"case sensitive");
+					singleLock s(cache_lock);
+					for (descriptorMap::iterator it(eventData::descriptors.begin());
+						it != eventData::descriptors.end() && descridx < 511; ++it)
+					{
+						__u8 *data = it->second.second;
+						if ( data[0] == 0x4D ) // short event descriptor
+						{
+							int title_len = data[5];
+							if ( querytype == 1 )
+							{
+								if (title_len > textlen)
+									continue;
+								else if (title_len < textlen)
+									continue;
+								if ( casetype )
+								{
+									if ( !strncasecmp((const char*)data+6, str, title_len) )
+									{
+//										std::string s((const char*)data+6, title_len);
+//										eDebug("match1 %s %s", str, s.c_str() );
+										descr[++descridx] = it->first;
+									}
+								}
+								else if ( !strncmp((const char*)data+6, str, title_len) )
+								{
+//									std::string s((const char*)data+6, title_len);
+//									eDebug("match2 %s %s", str, s.c_str() );
+									descr[++descridx] = it->first;
+								}
+							}
+							else
+							{
+								int idx=0;
+								while((title_len-idx) >= textlen)
+								{
+									if (casetype)
+									{
+										if (!strncasecmp((const char*)data+6+idx, str, textlen) )
+										{
+											descr[++descridx] = it->first;
+//											std::string s((const char*)data+6, title_len);
+//											eDebug("match 3 %s %s", str, s.c_str() );
+											break;
+										}
+										else if (!strncmp((const char*)data+6+idx, str, textlen) )
+										{
+											descr[++descridx] = it->first;
+//											std::string s((const char*)data+6, title_len);
+//											eDebug("match 4 %s %s", str, s.c_str() );
+											break;
+										}
+									}
+									++idx;
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					PyErr_SetString(PyExc_StandardError,
+						"type error");
+					eDebug("tuple arg 4 is not a string");
+					return NULL;
+				}
+			}
+			else
+			{
+				PyErr_SetString(PyExc_StandardError,
+					"type error");
+				eDebug("tuple arg 3(%d) is not a known querytype(0, 1, 2)", querytype);
+				return NULL;
+			}
+		}
+		else
+		{
+			PyErr_SetString(PyExc_StandardError,
+				"type error");
+			eDebug("not enough args in tuple");
+			return NULL;
+		}
+	}
+	else
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+		eDebug("arg 0 is not a tuple");
+		return NULL;
+	}
+
+	if (descridx > -1)
+	{
+		int maxcount=maxmatches;
+		singleLock s(cache_lock);
+		// check all services
+		for( eventCache::iterator cit(eventDB.begin()); cit != eventDB.end() && maxcount; ++cit)
+		{
+			PyObject *service_name=0;
+			PyObject *service_reference=0;
+			eventMap &evmap = cit->second.first;
+			// check all events
+			for (eventMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
+			{
+				__u8 *data = evit->second->EITdata;
+				int tmp = evit->second->ByteSize-12;
+				__u32 *p = (__u32*)(data+12);
+				// check if any of our descriptor used by this event
+//				if (evit->first == eventid )
+//					continue;
+				int cnt=-1;
+				while(tmp>0)
+				{
+					__u32 crc32 = *p++;
+					for ( int i=0; i <= descridx; ++i)
+					{
+						if (descr[i] == crc32)  // found...
+							++cnt;
+					}
+					tmp-=4;
+				}
+				if ( (querytype == 0 && cnt == descridx) ||
+					 ((querytype == 1 || querytype == 2) && cnt != -1) )
+				{
+					const uniqueEPGKey &service = cit->first;
+					eServiceReference ref =
+						eDVBDB::getInstance()->searchReference(service.tsid, service.onid, service.sid);
+					if (ref.valid())
+					{
+					// create servive event
+						ePtr<eServiceEvent> ptr;
+						if (needServiceEvent)
+						{
+							lookupEventId(ref, evit->first, ptr);
+							if (!ptr)
+								eDebug("event not found !!!!!!!!!!!");
+						}
+					// create service name
+						if (!service_name && strchr(argstring,'N'))
+						{
+							ePtr<iStaticServiceInformation> sptr;
+							eServiceCenterPtr service_center;
+							eServiceCenter::getPrivInstance(service_center);
+							if (service_center)
+							{
+								service_center->info(ref, sptr);
+								if (sptr)
+								{
+									std::string name;
+									sptr->getName(ref, name);
+									if (name.length())
+										service_name = PyString_FromString(name.c_str());
+								}
+							}
+							if (!service_name)
+								service_name = PyString_FromString("<n/a>");
+						}
+					// create servicereference string
+						if (!service_reference && strchr(argstring,'R'))
+							service_reference = PyString_FromString(ref.toString().c_str());
+					// create list
+						if (!ret)
+							ret = PyList_New(0);
+					// create tuple
+						PyObject *tuple = PyTuple_New(argcount);
+					// fill tuple
+						fillTuple2(tuple, argstring, argcount, evit->second, ptr, service_name, service_reference);
+						PyList_Append(ret, tuple);
+						Py_DECREF(tuple);
+						--maxcount;
+					}
+				}
+			}
+			if (service_name)
+				Py_DECREF(service_name);
+			if (service_reference)
+				Py_DECREF(service_reference);
+		}
+	}
+
+	if (!ret)
+	{
+		Py_INCREF(Py_None);
+		ret=Py_None;
+	}
+
+	return ret;
 }
 
 #ifdef ENABLE_PRIVATE_EPG

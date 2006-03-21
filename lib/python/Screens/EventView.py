@@ -3,10 +3,11 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
-from enigma import eServiceEventPtr
+from enigma import eServiceEventPtr, eEPGCachePtr, eEPGCache
 from ServiceReference import ServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
+from time import localtime, asctime
 
 class EventViewBase:
 	def __init__(self, Event, Ref, callback=None):
@@ -71,8 +72,20 @@ class EventViewBase:
 			else:
 				self["channel"].setText(_("unknown service"))
 
+	def sort_func(self,x,y):
+		if x[1] < y[1]:
+			return -1
+		elif x[1] == y[1]:
+			return 0
+		else:
+			return 1
+
 	def setEvent(self, event):
 		self.event = event
+		id = event.getEventId()
+
+		refstr = str(self.currentService)
+		epgcache = eEPGCache.getInstance()
 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
@@ -82,6 +95,16 @@ class EventViewBase:
 			if len(text) > 0:
 				text = text + '\n\n'
 			text = text + ext
+
+	 # search similar broadcastings
+		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
+		if ret is not None:
+			text += '\n\n' + _('Similar broadcastings:')
+			ret.sort(self.sort_func)
+			for x in ret:
+				t = localtime(x[1])
+				text += '\n%d.%d.%d, %02d:%02d  -  %s'%(t[2], t[1], t[0], t[3], t[4], x[0])
+
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
 		self["datetime"].setText(event.getBeginTimeString())
