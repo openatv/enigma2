@@ -1943,8 +1943,8 @@ PyObject *eEPGCache::search(PyObject *arg)
 				int tmp = evit->second->ByteSize-12;
 				__u32 *p = (__u32*)(data+12);
 				// check if any of our descriptor used by this event
-//				if (evit->first == eventid )
-//					continue;
+				if (evit->first == eventid )
+					continue;
 				int cnt=-1;
 				while(tmp>0)
 				{
