@@ -99,7 +99,7 @@ class EventViewBase:
 	 # search similar broadcastings
 		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
 		if ret is not None:
-			text += '\n\n' + _('Similar broadcastings:')
+			text += '\n\n' + _('Similar broadcasts:')
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
