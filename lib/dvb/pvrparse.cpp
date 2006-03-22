@@ -362,6 +362,30 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			/* sorry for the redundant code here, but there are too many special cases... */
 	while (len)
 	{
+			/* emergency resync. usually, this should not happen, because the data should 
+			   be sync-aligned.
+			   
+			   to make this code work for non-strictly-sync-aligned data, (for example, bad 
+			   files) we fix a possible resync here by skipping data until the next 0x47.
+			   
+			   if this is a false 0x47, the packet will be dropped by wantPacket, and the
+			   next time, sync will be re-established. */
+		int skipped = 0;
+		while (!m_pktptr && len)
+		{
+			if (packet[0] == 0x47)
+				break;
+			len--;
+			packet++;
+			skipped++;
+		}
+		
+		if (skipped)
+			eDebug("SYNC LOST: skipped %d bytes.", skipped);
+		
+		if (!len)
+			break;
+		
 		if (m_pktptr)
 		{
 				/* skip last packet */
