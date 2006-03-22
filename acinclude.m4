@@ -248,7 +248,7 @@ AC_SUBST($1_LIBS)
 
 AC_DEFUN(_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL,[
 PKG_CHECK_MODULES($1,$2,$3="yes",$3="no")
-if test "x$3" = "xyes"; then
+if test "$$3" = "yes"; then
 	AC_DEFINE($3, 1, [$2 available])
 else
 	$1_CFLAGS=""
