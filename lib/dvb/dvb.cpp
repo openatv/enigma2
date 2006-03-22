@@ -836,10 +836,12 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		if ((current_offset >= i->first) && (current_offset < i->second))
 		{
 			start = current_offset;
-			size = i->second - current_offset;
-			if (size > max)
+				/* max can not exceed max(size_t). i->second - current_offset, however, can. */
+			if ((i->second - current_offset) > max)
 				size = max;
-			eDebug("HIT, %lld < %lld < %lld", i->first, current_offset, i->second);
+			else
+				size = i->second - current_offset;
+			eDebug("HIT, %lld < %lld < %lld, size: %d", i->first, current_offset, i->second, size);
 			return;
 		}
 		if (current_offset < i->first)
@@ -849,9 +851,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			{
 					/* in normal playback, just start at the next zone. */
 				start = i->first;
-				size = i->second - i->first;
-				if (size > max)
+				
+					/* size is not 64bit! */
+				if ((i->second - i->first) > max)
 					size = max;
+				else
+					size = i->second - i->first;
+
 				eDebug("skip");
 				if (m_skipmode_m < 0)
 				{
@@ -865,12 +871,15 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 					/* when skipping reverse, however, choose the zone before. */
 				--i;
 				eDebug("skip to previous block, which is %llx..%llx", i->first, i->second);
-				size_t len = i->second - i->first;
-				if (max > len)
-					max = len;
-				start = i->second - max;
-				size = max;
-				eDebug("skipping to %llx, %d", start, size);
+				size_t len;
+				
+				if ((i->second - i->first) > max)
+					len = max;
+				else
+					len = i->second - i->first;
+
+				start = i->second - len;
+				eDebug("skipping to %llx, %d", start, len);
 			}
 			return;
 		}
