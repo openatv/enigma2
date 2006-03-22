@@ -78,6 +78,8 @@ public:
 	
 		// iServiceInformation
 	RESULT getName(std::string &name);
+	int getInfo(int w);
+	std::string getInfoString(int w);
 private:
 	friend class eServiceFactoryMP3;
 	std::string m_filename;

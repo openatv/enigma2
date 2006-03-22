@@ -252,6 +252,13 @@ public:
 		
 		sDescription,
 		sTimeCreate,	// unix time or string
+		
+		sTitle,
+		sArtist,
+		sAlbum,
+		sComment,
+		sTracknumber,
+		sGenre,
 	};
 	enum { resNA = -1, resIsString = -2 };
 
