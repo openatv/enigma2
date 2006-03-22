@@ -119,6 +119,8 @@ class ServiceInfo(Screen):
 		self.fillList(Labels)
 		
 	def getFEData(self, frontendData):
+		if frontendData is None:
+			return []
 		if frontendData["tuner_type"] == "DVB-S":
 			return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
