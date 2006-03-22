@@ -344,6 +344,65 @@ RESULT eServiceMP3::getName(std::string &name)
 	return 0;
 }
 
+int eServiceMP3::getInfo(int w)
+{
+	switch (w)
+	{
+	case sTitle:
+	case sArtist:
+	case sAlbum:
+	case sComment:
+	case sTracknumber:
+	case sGenre:
+		return resIsString;
+	default:
+		return resNA;
+	}
+}
+
+std::string eServiceMP3::getInfoString(int w)
+{
+	gchar *tag = 0;
+	switch (w)
+	{
+	case sTitle:
+		tag = GST_TAG_TITLE;
+		break;
+	case sArtist:
+		tag = GST_TAG_ARTIST;
+		break;
+	case sAlbum:
+		tag = GST_TAG_ALBUM;
+		break;
+	case sComment:
+		tag = GST_TAG_COMMENT;
+		break;
+	case sTracknumber:
+		tag = GST_TAG_TRACK_NUMBER;
+		break;
+	case sGenre:
+		tag = GST_TAG_GENRE;
+		break;
+	default:
+		return "";
+	}
+	
+	if (!m_stream_tags || !tag)
+		return "";
+	
+	gchar *value;
+	
+	if (gst_tag_list_get_string(m_stream_tags, tag, &value))
+	{
+		std::string res = value;
+		g_free(value);
+		return res;
+	}
+	
+	return "";
+}
+
+
 		void foreach(const GstTagList *list, const gchar *tag, gpointer user_data)
 		{
 			if (tag)
