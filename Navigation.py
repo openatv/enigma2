@@ -29,6 +29,7 @@ class Navigation:
 			x(i)
 	
 	def playService(self, ref):
+		print "playing", ref
 		self.currentlyPlayingServiceReference = None
 		if ref is None:
 			self.stopService()

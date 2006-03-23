@@ -1,0 +1,124 @@
+from HTMLComponent import *
+from GUIComponent import *
+
+from MenuList import MenuList
+
+from Tools.Directories import *
+import os
+
+from enigma import *
+
+RT_HALIGN_LEFT = 0
+RT_HALIGN_RIGHT = 1
+RT_HALIGN_CENTER = 2
+RT_HALIGN_BLOCK = 4
+
+RT_VALIGN_TOP = 0
+RT_VALIGN_CENTER = 8
+RT_VALIGN_BOTTOM = 16
+
+STATE_PLAY = 0
+STATE_PAUSE = 1
+STATE_STOP = 2
+STATE_REWIND = 3
+STATE_FORWARD = 4
+STATE_NONE = 5
+
+PlayIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "play-small-fs8.png"))
+PauseIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "pause-small-fs8.png"))
+StopIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "stop-small-fs8.png"))
+RewindIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rewind-small-fs8.png"))
+ForwardIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "forward-small-fs8.png"))
+
+def PlaylistEntryComponent(serviceref, state):
+	res = [ serviceref ]
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 0, 250, 32, 0, RT_VALIGN_CENTER, os.path.split(serviceref.getPath().split('/')[-1])[1]))
+	png = None
+	if state == STATE_PLAY:
+		png = PlayIcon
+	elif state == STATE_PAUSE:
+		png = PauseIcon
+	elif state == STATE_STOP:
+		png = StopIcon
+	elif state == STATE_REWIND:
+		png = RewindIcon
+	elif state == STATE_FORWARD:
+		png = ForwardIcon
+
+	if png is not None:
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, 0, 33, 32, png))
+    
+	return res
+
+class PlayList(HTMLComponent, GUIComponent, MenuList):
+	def __init__(self):
+		GUIComponent.__init__(self)
+		self.l = eListboxPythonMultiContent()
+		self.list = []
+		self.l.setList(self.list)
+		self.l.setFont(0, gFont("Regular", 18))
+		self.currPlaying = 0
+		self.oldCurrPlaying = -1
+	
+	def clear(self):
+		self.list = []
+		self.l.setList(self.list)
+    
+	def GUIcreate(self, parent):
+		self.instance = eListbox(parent)
+		self.instance.setContent(self.l)
+		self.instance.setItemHeight(32)
+	
+	def getSelection(self):
+		return self.l.getCurrentSelection()[0]
+		
+	def getSelectionIndex(self):
+		return self.l.getCurrentSelectionIndex()
+
+	def addFile(self, serviceref):
+		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))
+
+	def deleteFile(self, index):
+		if self.currPlaying > index:
+			self.currPlaying -= 1
+		self.list = self.list[:index] + self.list[index + 1:]
+	
+	def setCurrentPlaying(self, index):
+		self.oldCurrPlaying = self.currPlaying
+		self.currPlaying = index
+	
+	def updateState(self, state):
+		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
+			self.list[self.oldCurrPlaying] = PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
+		self.list[self.currPlaying] = PlaylistEntryComponent(self.list[self.currPlaying][0], state)
+		self.updateList()
+
+	def playFile(self):
+		self.updateState(STATE_PLAY)
+
+	def pauseFile(self):
+		self.updateState(STATE_PAUSE)
+		
+	def stopFile(self):
+		self.updateState(STATE_STOP)
+
+	def rewindFile(self):
+		self.updateState(STATE_REWIND)
+		
+	def forwardFile(self):
+		self.updateState(STATE_FORWARD)
+	
+	def updateList(self):
+		self.l.setList(self.list)
+		
+	def getCurrentIndex(self):
+		return self.currPlaying
+	
+	def getServiceRefList(self):
+		list = []
+		for x in self.list:
+			list.append(x[0])
+		return list
+	
+	def __len__(self):
+		return len(self.list)

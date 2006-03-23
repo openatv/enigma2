@@ -284,10 +284,20 @@
 	</map>
 	
 	<map context="DirectionActions">
-		<key id="KEY_UP" mapto="up" flags="m" />		
+		<key id="KEY_UP" mapto="up" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="m" />
-		<key id="KEY_LEFT" mapto="left" flags="m" />		
+		<key id="KEY_LEFT" mapto="left" flags="m" />
 		<key id="KEY_RIGHT" mapto="right" flags="m" />
+
+		<key id="KEY_UP" mapto="upRepeated" flags="r" />
+		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
+		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
+		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
+		
+		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
+		<key id="KEY_UP" mapto="upUp" flags="b" />
+		<key id="KEY_DOWN" mapto="downUp" flags="b" />
 	</map>
 	
 	<map context="ColorActions">
@@ -334,5 +344,16 @@
 		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" />
 		<key id="KEY_EXIT" mapto="leave" flags="m" />
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
+	</map>
+	
+	<map context="MediaPlayerSeekActions">
+		<key id="KEY_YELLOW" mapto="pause" flags="m" />
+		<key id="KEY_GREEN" mapto="play" flags="m" />
+		<key id="KEY_TV" mapto="stop" flags="m" />
+
+		<key id="KEY_PREVIOUS" mapto="previous" flags="mr" />
+		<key id="KEY_NEXT" mapto="next" flags="mr" />
+		
+		<key id="KEY_MENU" mapto="menu" flags="m" />
 	</map>
 </keymap>

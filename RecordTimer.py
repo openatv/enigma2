@@ -36,7 +36,7 @@ def parseEvent(ev):
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
@@ -50,6 +50,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.timer = None
 		self.record_service = None
 		self.start_prepare = 0
+		self.justplay = justplay
 		
 		self.log_entries = []
 		self.resetState()
@@ -81,32 +82,35 @@ class RecordTimerEntry(timer.TimerEntry):
 		#begin_date + " - " + service_name + description)
 	
 	def tryPrepare(self):
-		self.calculateFilename()
-		self.record_service = NavigationInstance.instance.recordService(self.service_ref)
-		if self.record_service == None:
-			self.log(1, "'record service' failed")
-			return False
-		else:
-			event_id = self.eit
-			if event_id is None:
-				event_id = -1
-			prep_res = self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id )
-			if prep_res:
-				self.log(2, "'prepare' failed: error %d" % prep_res)
-				self.record_service = None
-				return False
-
-			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
-			try:
-				f = open(self.Filename + ".ts.meta", "w")
-				f.write(str(self.service_ref) + "\n")
-				f.write(self.name + "\n")
-				f.write(self.description + "\n")
-				f.write(str(self.begin) + "\n")
-				f.close()
-			except:
-				self.log(4, "failed to write meta information")
+		if self.justplay:
 			return True
+		else:
+			self.calculateFilename()
+			self.record_service = NavigationInstance.instance.recordService(self.service_ref)
+			if self.record_service == None:
+				self.log(1, "'record service' failed")
+				return False
+			else:
+				event_id = self.eit
+				if event_id is None:
+					event_id = -1
+				prep_res = self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id )
+				if prep_res:
+					self.log(2, "'prepare' failed: error %d" % prep_res)
+					self.record_service = None
+					return False
+	
+				self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
+				try:
+					f = open(self.Filename + ".ts.meta", "w")
+					f.write(str(self.service_ref) + "\n")
+					f.write(self.name + "\n")
+					f.write(self.description + "\n")
+					f.write(str(self.begin) + "\n")
+					f.close()
+				except:
+					self.log(4, "failed to write meta information")
+				return True
 
 	def do_backoff(self):
 		if self.backoff == 0:
@@ -144,17 +148,22 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.start_prepare = time.time() + self.backoff
 			return False
 		elif next_state == self.StateRunning:
-			self.log(11, "start recording")
-			record_res = self.record_service.start()
-			
-			if record_res:
-				self.log(13, "start record returned %d" % record_res)
-				self.do_backoff()
-				# retry
-				self.begin = time.time() + self.backoff
-				return False
-			
-			return True
+			if self.justplay:
+				self.log(11, "zapping")
+				NavigationInstance.instance.playService(self.service_ref.ref)
+				return True
+			else:
+				self.log(11, "start recording")
+				record_res = self.record_service.start()
+				
+				if record_res:
+					self.log(13, "start record returned %d" % record_res)
+					self.do_backoff()
+					# retry
+					self.begin = time.time() + self.backoff
+					return False
+				
+				return True
 		elif next_state == self.StateEnded:
 			self.log(12, "stop recording")
 			self.record_service.stop()
@@ -194,6 +203,7 @@ def createTimer(xml):
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
 	disabled = long(xml.getAttribute("disabled") or "0")
+	justplay = long(xml.getAttribute("justplay") or "0")
 	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
 		eit = long(xml.getAttribute("eit"))
 	else:
@@ -201,7 +211,7 @@ def createTimer(xml):
 	
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay)
 	entry.repeated = int(repeated)
 	
 	for l in elementsWithTag(xml.childNodes, "log"):
@@ -298,6 +308,7 @@ class RecordTimer(timer.Timer):
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append('>\n')
 			
 			#for time, code, msg in timer.log_entries:

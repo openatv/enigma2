@@ -668,7 +668,7 @@ class InfoBarSeek:
 		self.checkSkipShowHideLock()
 
 		return True
-		
+
 	def pauseService(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			print "pause, but in fact unpause"

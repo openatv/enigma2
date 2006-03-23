@@ -54,6 +54,11 @@ class TimerEntry(Screen):
 	def createConfig(self):
 			config.timerentry = ConfigSubsection()
 			
+			if (self.timer.justplay):
+				justplay = 0
+			else:
+				justplay = 1
+				
 			# calculate default values
 			day = []
 			weekday = 0
@@ -87,6 +92,7 @@ class TimerEntry(Screen):
 				weekday = (int(strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
 				day[weekday] = 0
 			
+			config.timerentry.justplay = configElement_nonSave("config.timerentry.justplay", configSelection, justplay, (("zap", _("zap")), ("record", _("record"))))
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
 			config.timerentry.name = configElement_nonSave("config.timerentry.name", configText, self.timer.name, (configText.extendableSize, self.keyRightCallback))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
@@ -139,7 +145,9 @@ class TimerEntry(Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Name"), config.timerentry.name))
 		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
-		self.timerTypeEntry = getConfigListEntry(_("Timer Type"), config.timerentry.type)
+		self.timerJustplayEntry = getConfigListEntry(_("Timer Type"), config.timerentry.justplay)
+		self.list.append(self.timerJustplayEntry)
+		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), config.timerentry.type)
 		self.list.append(self.timerTypeEntry)
 
 		if (config.timerentry.type.value == 0): # once
@@ -172,10 +180,12 @@ class TimerEntry(Screen):
 		else:
 			self.list.append(getConfigListEntry(_("StartTime"), config.timerentry.starttime))
 		if (config.timerentry.type.value == 0): # once
-			self.list.append(getConfigListEntry(_("End"), config.timerentry.enddate))
-			self.list.append(getConfigListEntry(" ", config.timerentry.endtime))
+			if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
+				self.list.append(getConfigListEntry(_("End"), config.timerentry.enddate))
+				self.list.append(getConfigListEntry(" ", config.timerentry.endtime))
 		else:
-			self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
+			if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
+				self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
 
 		self.channelEntry = getConfigListEntry(_("Channel"), config.timerentry.service)
 		self.list.append(self.channelEntry)
@@ -186,6 +196,8 @@ class TimerEntry(Screen):
 	def newConfig(self):
 		print "newConfig", self["config"].getCurrent()
 		if self["config"].getCurrent() == self.timerTypeEntry:
+			self.createSetup("config")
+		if self["config"].getCurrent() == self.timerJustplayEntry:
 			self.createSetup("config")
 		if self["config"].getCurrent() == self.frequencyEntry:
 			self.createSetup("config")
@@ -242,6 +254,7 @@ class TimerEntry(Screen):
 	def keyGo(self):
 		self.timer.name = config.timerentry.name.value
 		self.timer.description = config.timerentry.description.value
+		self.timer.justplay = (currentConfigSelectionElement(config.timerentry.justplay) == "zap")
 		self.timer.resetRepeated()
 		
 		if (config.timerentry.type.value == 0): # once

@@ -97,5 +97,26 @@
 			<widget name="ElapsedTime" position="475,60" size="75,20" halign="left" backgroundColor="dark" font="Regular;18" />
 			<widget name="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5"/>
 		</screen>
+		
+		<screen name="MediaPlayer" position="100,100" size="550,400" title="MediaPlayer" >
+			<widget name="currenttext" position="0,0" size="550,30" font="Regular;18" valign="center" backgroundColor="#101258" />
+			
+			<widget name="filelist" position="10,30" size="255,265" scrollbarMode="showOnDemand" />
+			<widget name="playlist" position="265,30" size="285,265" scrollbarMode="showOnDemand" selectionDisabled="1" />
+			
+			<ePixmap position="10,365" zPosition="0" size="177,32" pixmap="dvr-buttons-small-fs8.png" />
+			<widget name="PositionGauge" position="10,335" size="177,20" zPosition="2" pointer="position_pointer.png:3,5"/>
+			
+			<widget name="artisttext" position="200,300" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="artist" position="270,300" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="titletext" position="200,323" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="title" position="270,323" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="albumtext" position="200,346" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="album" position="270,346" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="yeartext" position="200,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="year" position="270,369" size="100,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="genretext" position="370,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+			<widget name="genre" position="440,369" size="110,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		</screen>
 
 </skin>

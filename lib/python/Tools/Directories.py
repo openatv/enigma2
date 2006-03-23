@@ -10,6 +10,7 @@ SCOPE_CONFIG = 6
 SCOPE_LANGUAGE = 7
 SCOPE_HDD = 8
 SCOPE_PLUGINS = 9
+SCOPE_MEDIA = 10
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -26,6 +27,7 @@ defaultPaths = {
 		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
 		SCOPE_SKIN_IMAGE: ("/usr/share/enigma2/", PATH_DONTCREATE),
 		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
+		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
 	}

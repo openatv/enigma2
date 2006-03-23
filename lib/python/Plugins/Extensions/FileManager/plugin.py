@@ -22,7 +22,7 @@ class FileManager(Screen):
 		self.skin = FileManager.skin
 		Screen.__init__(self, session)
 
-		self["list"] = FileList("/", matchingPattern = "^.*\.(png|avi|mp3|mpeg|ts)")
+		self["list"] = FileList("/", matchingPattern = "^.*\.(png|avi|mp3|mpeg|ts)", useServiceRef = True)
 		self["pixmap"] = Pixmap()
 		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
@@ -52,11 +52,11 @@ class FileManager(Screen):
 		self["text"].right()
 	
 	def ok(self):
-		selection = self["list"].getSelection()
-		if selection[1] == True: # isDir
-			self["list"].changeDir(selection[0])
+		
+		if self["list"].canDescent(): # isDir
+			self["list"].descent()
 		else:
-			self["pixmap"].instance.setPixmapFromFile(selection[0])
+			self["pixmap"].instance.setPixmapFromFile(self["list"].getSelection())
 	
 	def keyNumberGlobal(self, number):
 		print "pressed", number
