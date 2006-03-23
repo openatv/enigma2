@@ -20,10 +20,10 @@ class Language:
 		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
-		#try:
+		try:
 			self.lang[str(lang + "_" + country)] = ((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang, country))
-		#except:
-		#	print "Language " + str(name) + " not found"
+		except:
+			print "Language " + str(name) + " not found"
 
 	def activateLanguage(self, index):
 		try:
