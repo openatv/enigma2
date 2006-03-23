@@ -54,7 +54,7 @@ class LanguageSelection(Screen):
 		else:
 			for x in language.getLanguageList():
 				self.list.append(LanguageEntryComponent(file = x[1][3].lower(), name = _(x[1][0]), index = x[0]))
-		self.list.sort(key=lambda x: x[1][7])
+		#self.list.sort(key=lambda x: x[1][7])
 		self["list"].l.setList(self.list)
 
 	def up(self):
