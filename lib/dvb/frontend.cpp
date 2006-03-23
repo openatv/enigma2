@@ -371,7 +371,6 @@ int eDVBFrontend::openFrontend()
 
 	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
 	CONNECT(m_sn->activated, eDVBFrontend::feEvent);
-	m_sn->start();
 
 	return 0;
 }
@@ -1175,6 +1174,8 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 void eDVBFrontend::setFrontend()
 {
 	eDebug("setting frontend %d", m_fe);
+	m_sn->start();
+	feEvent(-1);
 	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
 	{
 		perror("FE_SET_FRONTEND failed");
@@ -1461,8 +1462,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (m_type == -1)
 		return -ENODEV;
 
-	feEvent(-1);
-
+	m_sn->stop();
 	m_sec_sequence.clear();
 
 	switch (m_type)
