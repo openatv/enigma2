@@ -16,8 +16,8 @@ RT_VALIGN_TOP = 0
 RT_VALIGN_CENTER = 8
 RT_VALIGN_BOTTOM = 16
 
-def LanguageEntryComponent(file, name):
-	res = [ 0 ]
+def LanguageEntryComponent(file, name, index):
+	res = [ index ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT ,name))
 	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "countries/" + file + ".png"))
 	if png == None:

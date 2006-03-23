@@ -31,7 +31,7 @@ def InitSetupDevices():
 	def languageNotifier(configElement):
 		language.activateLanguage(configElement.value)
 	
-	config.osd.language = configElement("config.osd.language", configSelection, 0, language.getLanguageList() );
+	config.osd.language = configElement("config.osd.language", configText, "en_EN", 0);
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection();

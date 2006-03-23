@@ -42,9 +42,15 @@ def TimerEntryComponent(timer, processed):
 					repeatedtext += days[x]
 					count += 1
 				flags = flags >> 1
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+		if timer.justplay:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (" %s ... %s" % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1]))))
 	else:
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
+		if timer.justplay:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ("%s, %s ... %s" % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:]))))
 
 	if not processed:
 		if timer.state == TimerEntry.StateWaiting:
@@ -52,7 +58,10 @@ def TimerEntryComponent(timer, processed):
 		elif timer.state == TimerEntry.StatePrepared:
 			state = _("about to start")
 		elif timer.state == TimerEntry.StateRunning:
-			state = _("recording...")
+			if timer.justplay:
+				state = _("zapped")
+			else:
+				state = _("recording...")
 		else:
 			state = _("<unknown>")
 	else:

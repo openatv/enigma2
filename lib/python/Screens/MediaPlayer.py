@@ -1,0 +1,316 @@
+from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation, eSize
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Components.ActionMap import NumberActionMap
+from Components.Label import Label
+from Components.Input import Input
+from Components.GUIComponent import *
+from Components.Pixmap import Pixmap
+from Components.Label import Label
+from Components.FileList import FileEntryComponent, FileList
+from Components.MediaPlayer import PlayList, PlaylistEntryComponent
+from Plugins.Plugin import PluginDescriptor
+from Tools.Directories import resolveFilename, SCOPE_MEDIA
+from Components.ServicePosition import ServicePositionGauge
+from Screens.ChoiceBox import ChoiceBox
+from Components.ServiceEventTracker import ServiceEventTracker
+from Screens.InfoBarGenerics import InfoBarSeek
+
+import os
+
+class MediaPlayer(Screen, InfoBarSeek):
+	def __init__(self, session, args = None):
+		Screen.__init__(self, session)
+		self.session.nav.stopService()
+		
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|avi)", useServiceRef = True)
+		self["filelist"] = self.filelist
+
+		self.playlist = PlayList()
+		self["playlist"] = self.playlist
+		
+		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
+		
+		self["currenttext"] = Label("")
+		
+		self["artisttext"] = Label(_("Artist:"))
+		self["artist"] = Label("")
+		self["titletext"] = Label(_("Title:"))
+		self["title"] = Label("")
+		self["albumtext"] = Label(_("Album:"))
+		self["album"] = Label("")
+		self["yeartext"] = Label(_("Year:"))
+		self["year"] = Label("")
+		self["genretext"] = Label(_("Genre:"))
+		self["genre"] = Label("")
+		
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+#				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+#				iPlayableService.evStart: self.__serviceStarted,
+				
+				iPlayableService.evEOF: self.__evEOF,
+#				iPlayableService.evSOF: self.__evSOF,
+			})
+
+        
+		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
+                
+		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "NumberActions", "MediaPlayerSeekActions"],
+		{
+			"ok": self.ok,
+			"cancel": self.close,
+			
+			"right": self.rightDown,
+			"rightRepeated": self.doNothing,
+			"rightUp": self.rightUp,
+			"left": self.leftDown,
+			"leftRepeated": self.doNothing,
+			"leftUp": self.leftUp,
+			
+			"up": self.up,
+			"upRepeated": self.up,
+			"down": self.down,
+			"downRepeated": self.down,
+			
+			"play": self.playEntry,
+			"pause": self.pauseEntry,
+			"stop": self.stopEntry,
+			
+			"previous": self.previousEntry,
+			"next": self.nextEntry,
+			
+			"menu": self.showMenu,
+			
+            "1": self.keyNumberGlobal,
+            "2": self.keyNumberGlobal,
+            "3": self.keyNumberGlobal,
+            "4": self.keyNumberGlobal,
+            "5": self.keyNumberGlobal,
+            "6": self.keyNumberGlobal,
+            "7": self.keyNumberGlobal,
+            "8": self.keyNumberGlobal,
+            "9": self.keyNumberGlobal,
+            "0": self.keyNumberGlobal
+        }, -2)
+
+		InfoBarSeek.__init__(self)
+
+		self.onClose.append(self.delMPTimer)
+		self.onClose.append(self.__onClose)
+		
+		self.righttimer = False
+		self.rightKeyTimer = eTimer()
+		self.rightKeyTimer.timeout.get().append(self.rightTimerFire)
+
+		self.lefttimer = False
+		self.leftKeyTimer = eTimer()
+		self.leftKeyTimer.timeout.get().append(self.leftTimerFire)
+		
+		self.currList = "filelist"
+		
+	def doNothing(self):
+		pass
+	
+	def checkSkipShowHideLock(self):
+		self.updatedSeekState()
+	
+	def __evEOF(self):
+		self.nextEntry()
+		
+	def __onClose(self):
+		self.session.nav.playService(None)
+	
+	def delMPTimer(self):
+		del self.rightKeyTimer
+		del self.leftKeyTimer
+		
+
+	def fwdTimerFire(self):
+		self.fwdKeyTimer.stop()
+		self.fwdtimer = False
+		self.nextEntry()
+	
+	def rwdTimerFire(self):
+		self.rwdKeyTimer.stop()
+		self.rwdtimer = False
+		self.previousEntry()
+        
+	def leftDown(self):
+		self.lefttimer = True
+		self.leftKeyTimer.start(1000)
+
+	def rightDown(self):
+		self.righttimer = True
+		self.rightKeyTimer.start(1000)
+		
+	def leftUp(self):
+		if self.lefttimer:
+			self.leftKeyTimer.stop()
+			self.lefttimer = False
+			self[self.currList].pageUp()
+    
+   	def rightUp(self):
+		if self.righttimer:
+			self.rightKeyTimer.stop()
+			self.righttimer = False
+			self[self.currList].pageDown()
+			
+	def leftTimerFire(self):
+		self.leftKeyTimer.stop()
+		self.lefttimer = False
+		self.switchToFileList()
+	
+	def rightTimerFire(self):
+		self.rightKeyTimer.stop()
+		self.righttimer = False
+		self.switchToPlayList()
+				
+	def switchToFileList(self):
+		self.currList = "filelist"
+		self.filelist.selectionEnabled(1)
+		self.playlist.selectionEnabled(0)
+		self.updateCurrentInfo()
+		
+	def switchToPlayList(self):
+		if len(self.playlist) != 0:
+			self.currList = "playlist"
+			self.filelist.selectionEnabled(0)
+			self.playlist.selectionEnabled(1)
+			self.updateCurrentInfo()
+		
+	def up(self):
+		self[self.currList].up()
+		self.updateCurrentInfo()
+
+	def down(self):
+		self[self.currList].down()
+		self.updateCurrentInfo()
+
+	def updateCurrentInfo(self):
+		text = ""
+		if self.currList == "filelist":
+			if not self.filelist.canDescent():
+				text = self.filelist.getServiceRef().getPath()
+		if self.currList == "playlist":
+			text = self.playlist.getSelection().getPath()
+		
+		self["currenttext"].setText(os.path.basename(text))
+    
+	def ok(self):
+		if self.currList == "filelist":
+			if self.filelist.canDescent():
+				self.filelist.descent()
+				self.updateCurrentInfo()
+			else:
+				self.copyFile()
+		if self.currList == "playlist":
+			selection = self["playlist"].getSelection()
+			self.changeEntry(self.playlist.getSelectionIndex())
+
+	def keyNumberGlobal(self, number):
+		pass
+	
+	def showMenu(self):
+		menu = []
+		if self.currList == "filelist":
+			menu.append((_("switch to playlist"), "playlist"))
+			if self.filelist.canDescent():
+				menu.append((_("add directory to playlist"), "copydir"))
+			else:
+				menu.append((_("add file to playlist"), "copy"))
+		else:
+			menu.append((_("switch to filelist"), "filelist"))
+			menu.append((_("delete"), "delete"))
+			menu.append((_("clear playlist"), "clear"))
+		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
+		
+	def menuCallback(self, choice):
+		if choice is None:
+			return
+		
+		if choice[1] == "copydir":
+			self.copyDirectory(self.filelist.getSelection()[0])
+		elif choice[1] == "copy":
+			self.copyFile()
+		elif choice[1] == "playlist":
+			self.switchToPlayList()
+		elif choice[1] == "filelist":
+			self.switchToFileList()
+		elif choice[1] == "delete":
+			self.deleteEntry()
+		elif choice[1] == "clear":
+			self.stopEntry()
+			self.playlist.clear()
+			self.switchToFileList()
+			
+	def copyDirectory(self, directory):
+		filelist = FileList(directory, useServiceRef = True, isTop = True)
+		
+		for x in filelist.getFileList():
+			if x[0][1] == True: #isDir
+				self.copyDirectory(x[0][0])
+			else:
+				self.playlist.addFile(x[0][0])
+		self.playlist.updateList()
+	
+	def copyFile(self):
+		self.playlist.addFile(self.filelist.getServiceRef())
+		self.playlist.updateList()
+
+	def nextEntry(self):
+		next = self.playlist.getCurrentIndex() + 1
+		if next < len(self.playlist):
+			self.changeEntry(next)
+	
+	def previousEntry(self):
+		next = self.playlist.getCurrentIndex() - 1
+		if next >= 0:
+			self.changeEntry(next)
+			
+	def deleteEntry(self):
+		self.playlist.deleteFile(self.playlist.getSelectionIndex())
+		self.playlist.updateList()
+		if len(self.playlist) == 0:
+			self.switchToFileList()
+		
+	def changeEntry(self, index):
+		self.playlist.setCurrentPlaying(index)
+		self.playEntry()
+	
+	def playEntry(self):
+		currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
+		if currref is None or self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
+			self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
+			info = eServiceCenter.getInstance().info(currref)
+			description = info.getInfoString(currref, iServiceInformation.sDescription)
+			self["title"].setText(description)
+		self.unPauseService()
+		
+		
+	def updatedSeekState(self):
+		if self.seekstate == self.SEEK_STATE_PAUSE:
+			self.playlist.pauseFile()
+		elif self.seekstate == self.SEEK_STATE_PLAY:
+			self.playlist.playFile()
+		elif self.seekstate in ( self.SEEK_STATE_FF_2X,
+								 self.SEEK_STATE_FF_4X,
+								 self.SEEK_STATE_FF_8X,
+								 self.SEEK_STATE_FF_32X,
+								 self.SEEK_STATE_FF_64X,
+								 self.SEEK_STATE_FF_128X):
+			self.playlist.forwardFile()
+		elif self.seekstate in ( self.SEEK_STATE_BACK_16X,
+								 self.SEEK_STATE_BACK_32X,
+								 self.SEEK_STATE_BACK_64X,
+								 self.SEEK_STATE_BACK_128X,):
+			self.playlist.rewindFile()
+	
+	def pauseEntry(self):
+		self.pauseService()
+		
+	def stopEntry(self):
+		self.playlist.stopFile()
+		self.session.nav.playService(None)
+
+    

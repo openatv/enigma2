@@ -6,6 +6,7 @@ from Components.config import configElementBoolean, config, configfile
 from LanguageSelection import LanguageSelection
 
 config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
+config.misc.languageselected = configElementBoolean("config.misc.languageselected", 1);
 
 class StartWizard(Wizard):
 	skin = """
@@ -33,9 +34,9 @@ class StartWizard(Wizard):
 		self["arrowup2"] = MovingPixmap()
 		
 	def markDone(self):
-		config.misc.firstrun.value = 0;
+		config.misc.firstrun.value = 0
 		config.misc.firstrun.save()
 		configfile.save()
 		
-wizardManager.registerWizard(LanguageSelection, config.misc.firstrun.value)
+wizardManager.registerWizard(LanguageSelection, config.misc.languageselected.value)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value)

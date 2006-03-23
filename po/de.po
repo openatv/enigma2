@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-21 07:04+0000\n"
+"POT-Creation-Date: 2006-03-22 21:46+0000\n"
 "PO-Revision-Date: 2006-02-23 01:33+0100\n"
 "Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
 "Language-Team: none\n"
@@ -34,7 +34,7 @@ msgstr ""
 "\" wirklich\n"
 "herunterladen?"
 
-#: ../lib/python/Screens/EventView.py:88
+#: ../lib/python/Screens/EventView.py:111
 #, python-format
 msgid "%d min"
 msgstr ""
@@ -104,7 +104,7 @@ msgstr "<unbekannt>"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1114
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -136,7 +136,7 @@ msgstr ""
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../lib/python/Screens/EventView.py:25
+#: ../lib/python/Screens/EventView.py:26
 #: ../lib/python/Screens/EpgSelection.py:48
 msgid "Add timer"
 msgstr "Timer setzen"
@@ -466,7 +466,7 @@ msgstr "Ausführen eines externen Befehls:"
 msgid "Execution finished!!"
 msgstr "Ausführung beendet!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
+#: ../lib/python/Screens/InfoBarGenerics.py:1181
 msgid "Extensions"
 msgstr "Erweiterungen"
 
@@ -539,8 +539,8 @@ msgstr "Festplatte"
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1083
-#: ../lib/python/Screens/InfoBarGenerics.py:1091
+#: ../lib/python/Screens/InfoBarGenerics.py:1088
+#: ../lib/python/Screens/InfoBarGenerics.py:1096
 msgid "How many minutes do you want to record?"
 msgstr "Wieviele Minuten möchten Sie aufnehmen?"
 
@@ -655,7 +655,7 @@ msgstr "Drehen nach Westen"
 msgid "Movie Menu"
 msgstr "Filmauswahl"
 
-#: ../lib/python/Screens/EventView.py:108
+#: ../lib/python/Screens/EventView.py:131
 msgid "Multi EPG"
 msgstr "Multi-EPG"
 
@@ -699,13 +699,13 @@ msgstr "Vor"
 msgid "No"
 msgstr "Nein"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1105
+#: ../lib/python/Screens/InfoBarGenerics.py:1110
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Keine Festplatte gefunden oder\n"
 "Festplatte nicht initialisiert."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1062
+#: ../lib/python/Screens/InfoBarGenerics.py:1067
 msgid "No event info found, recording indefinitely."
 msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 
@@ -833,11 +833,11 @@ msgstr "Anbieter"
 msgid "Really delete done timers?"
 msgstr "Vollendete Timer wirklich löschen?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1160
+#: ../lib/python/Screens/InfoBarGenerics.py:1165
 msgid "Record"
 msgstr "Aufnahme"
 
-#: ../lib/python/Screens/EventView.py:66
+#: ../lib/python/Screens/EventView.py:67
 msgid "Recording"
 msgstr "Aufnahmen"
 
@@ -921,6 +921,10 @@ msgstr "Einstellungen"
 msgid "Show the radio player..."
 msgstr "Radio-Wiedergabemodus..."
 
+#: ../lib/python/Screens/EventView.py:102
+msgid "Similar broadcastings:"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:633
 #: ../lib/python/Components/NimManager.py:640
 msgid "Simple"
@@ -930,7 +934,7 @@ msgstr "Einfach"
 msgid "Single"
 msgstr "Einzeln"
 
-#: ../lib/python/Screens/EventView.py:107
+#: ../lib/python/Screens/EventView.py:130
 msgid "Single EPG"
 msgstr "Einfach-EPG"
 
@@ -975,7 +979,7 @@ msgstr "Spanisch"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1117
 msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
@@ -995,7 +999,7 @@ msgstr "Schritt nach Osten"
 msgid "Step west"
 msgstr "Schritt nach Westen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:945
+#: ../lib/python/Screens/InfoBarGenerics.py:950
 msgid "Stop Timeshift?"
 msgstr "Timeshift beenden?"
 
@@ -1011,7 +1015,7 @@ msgstr "Position speichern"
 msgid "Stored position"
 msgstr "gespeicherte Position"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1170 ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -1056,11 +1060,11 @@ msgstr "Donnerstag"
 msgid "Timer Type"
 msgstr "Timer-Art"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:917
+#: ../lib/python/Screens/InfoBarGenerics.py:922
 msgid "Timeshift not possible!"
 msgstr "Timeshift nicht möglich!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1169
+#: ../lib/python/Screens/InfoBarGenerics.py:1174
 msgid "Timeshifting"
 msgstr ""
 
@@ -1277,11 +1281,11 @@ msgstr "löschen..."
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1114
 msgid "do nothing"
-msgstr "nichts tun"
+msgstr "Nichts tun"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1117
 msgid "don't record"
 msgstr "Nicht aufnehmen"
 
@@ -1313,8 +1317,8 @@ msgstr "Bouqueteditieren beenden"
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1117
 msgid "enter recording duration"
 msgstr "Aufnahmedauer eingeben"
 
@@ -1417,7 +1421,7 @@ msgstr ""
 msgid "record"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1117
 msgid "record indefinitely"
 msgstr "Unbegrenzt aufnehmen"
 
@@ -1483,11 +1487,11 @@ msgstr "zeige EPG..."
 msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1117
 msgid "stop after current event"
 msgstr "Nach aktueller Sendung anhalten"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1114
 msgid "stop recording"
 msgstr "Aufnahme anhalten"
 
@@ -1495,7 +1499,7 @@ msgstr "Aufnahme anhalten"
 msgid "text"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:72
+#: ../lib/python/Screens/EventView.py:73
 msgid "unknown service"
 msgstr "unbekannter Service"
 

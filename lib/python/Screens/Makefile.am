@@ -9,4 +9,5 @@ install_PYTHON = \
 	AudioSelection.py InfoBarGenerics.py HelpMenu.py Wizard.py __init__.py \
 	Dish.py SubserviceSelection.py LanguageSelection.py StartWizard.py \
 	TutorialWizard.py PluginBrowser.py MinuteInput.py Scart.py PVRState.py \
-	Console.py InputBox.py ChoiceBox.py SimpleSummary.py ImageWizard.py
+	Console.py InputBox.py ChoiceBox.py SimpleSummary.py ImageWizard.py \
+	MediaPlayer.py

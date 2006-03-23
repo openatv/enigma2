@@ -5,8 +5,8 @@ from tools import *
 from Components.Language import language
 
 def setEPGLanguage():
-	#eServiceEvent.setEPGLanguage(language.getLanguage())
 	print "language set to", language.getLanguage()
+	eServiceEvent.setEPGLanguage(language.getLanguage())
 	
 language.addCallback(setEPGLanguage)
 

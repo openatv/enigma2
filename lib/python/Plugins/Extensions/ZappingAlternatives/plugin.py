@@ -278,7 +278,8 @@ servicechanged = None
 
 def playService(self, ref):
 	#print "--------------------Alternatives: trying to play service", str(ServiceReference(ref))
-	servicechanged.lastPlayAction = str(ServiceReference(ref))
+	if ref is not None:
+		servicechanged.lastPlayAction = str(ServiceReference(ref))
 	servicechanged.nextPlayTry = 0
 	result = oldPlayService(ref)
 	

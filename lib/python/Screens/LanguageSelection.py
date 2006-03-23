@@ -27,26 +27,34 @@ class LanguageSelection(Screen):
 		}, -1)
 		
 	def selectActiveLanguage(self):
-		self["list"].instance.moveSelectionTo(language.activeLanguage)
+		activeLanguage = language.getActiveLanguage()
+		pos = 0
+		for x in self.list:
+			if x[0] == activeLanguage:
+				self["list"].instance.moveSelectionTo(pos)
+				break
+			pos += 1
 		
 	def save(self):
 		self.run()
 		self.close()
 	
 	def run(self):
-		language.activateLanguage(self["list"].l.getCurrentSelectionIndex())
-		config.osd.language.value = self["list"].l.getCurrentSelectionIndex()
+		language.activateLanguage(self["list"].l.getCurrentSelection()[0])
+		config.osd.language.value = self["list"].l.getCurrentSelection()[0]
 		config.osd.language.save()
+		config.misc.languageselected.value = 0
+		config.misc.languageselected.save()
 		self.setTitle(_("Language selection"))
 
 	def updateList(self):
 		self.list = []
-		if len(language.lang) == 0: # no language available => display only english
-			self.list.append(LanguageEntryComponent("en", _("English")))
+		if len(language.getLanguageList()) == 0: # no language available => display only english
+			self.list.append(LanguageEntryComponent("en", _("English"), "en_EN"))
 		else:
-			for x in language.lang:
-				self.list.append(LanguageEntryComponent(x[3].lower(), _(x[0])))
-		
+			for x in language.getLanguageList():
+				self.list.append(LanguageEntryComponent(file = x[1][3].lower(), name = _(x[1][0]), index = x[0]))
+		self.list.sort(key=lambda x: x[1][7])
 		self["list"].l.setList(self.list)
 
 	def up(self):
