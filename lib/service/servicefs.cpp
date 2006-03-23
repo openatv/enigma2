@@ -129,12 +129,19 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 			list.push_back(service);
 		} else
 		{
-			std::string extension = filename.substr(filename.rfind('.'));
+			size_t e = filename.rfind('.');
+			std::string extension = (e != std::string::npos) ? filename.substr(e) : "";
 			int type = -1;
 			
 			if (extension == ".ts")
 				type = eServiceFactoryDVB::id;
 			else if (extension == ".mp3" || extension == ".ogg" || extension == ".avi")
+				type = 4097;
+			else if (extension == ".ogg")
+				type = 4097;
+			else if (extension == ".mpg")
+				type = 4097;
+			else if (extension == ".vob")
 				type = 4097;
 			
 			if (type != -1)
