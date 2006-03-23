@@ -44,7 +44,7 @@ def doBackup(path):
 	os.system('tar cvpf ' + path + backupfile + ' /etc/enigma2')
 
 def doRestore(path):
-	os.system('cd / && tar xvpf ' + path + backupfile + ' etc/enigma2')
+	os.system('cd / && /bin/tar xvpf ' + path + backupfile)
 	
 
 		
