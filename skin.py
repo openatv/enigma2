@@ -16,9 +16,14 @@ def dump(x, i=0):
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE
 
-# read the skin
-dom_skin = xml.dom.minidom.parse(resolveFilename(SCOPE_SKIN, 'skin.xml'))
-dom_skin_default = xml.dom.minidom.parse(resolveFilename(SCOPE_SKIN, 'skin_default.xml'))
+dom_skins = [ ]
+
+def loadSkin(name):
+	# read the skin
+	dom_skins.append(xml.dom.minidom.parse(resolveFilename(SCOPE_SKIN, name)))
+
+loadSkin('skin.xml')
+loadSkin('skin_default.xml')
 
 def parsePosition(str):
 	x, y = str.split(',')
@@ -158,8 +163,8 @@ def applyAllAttributes(guiObject, desktop, attributes):
 	for (attrib, value) in attributes:
 		applySingleAttribute(guiObject, desktop, attrib, value)
 
-def loadSkin(desktop):
-	print "loading skin..."
+def loadSingleSkinData(desktop, dom_skin):
+	"""loads skin data like colors, windowstyle etc."""
 	
 	skin = dom_skin.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
@@ -205,26 +210,21 @@ def loadSkin(desktop):
 		eWindowStyleManager.getInstance(x)
 		x.setStyle(style)
 
-def readSkin(screen, skin, name, desktop):
-	myscreen = None
-	
-	# first, find the corresponding screen element
-	skin = dom_skin.childNodes[0] 
-	skin_default = dom_skin_default.childNodes[0]
-	
-	for x in elementsWithTag(skin.childNodes, "screen"):
-		if x.getAttribute('name') == name:
-			myscreen = x
-			break
-	
-	# if not found, check default skin	
-	if myscreen is None:
-		for x in elementsWithTag(skin_default.childNodes, "screen"):
-			if x.getAttribute('name') == name:
-				myscreen = x
-				break
+def loadSkinData(desktop):
+	for dom_skin in dom_skins:
+		loadSingleSkinData(desktop, dom_skin)
 
-	del skin, skin_default
+def lookupScreen(name):
+	for dom_skin in dom_skins:
+		# first, find the corresponding screen element
+		skin = dom_skin.childNodes[0] 
+		for x in elementsWithTag(skin.childNodes, "screen"):
+			if x.getAttribute('name') == name:
+				return x
+	return None
+
+def readSkin(screen, skin, name, desktop):
+	myscreen = lookupScreen(name)
 	
 	# otherwise try embedded skin
 	myscreen = myscreen or getattr(screen, "parsedSkin", None)
