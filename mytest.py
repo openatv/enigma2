@@ -363,7 +363,7 @@ def runScreenTest():
 import keymapparser
 keymapparser.readKeymap()
 import skin
-skin.loadSkin(getDesktop(0))
+skin.loadSkinData(getDesktop(0))
 
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
