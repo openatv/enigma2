@@ -106,6 +106,10 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.leftKeyTimer = eTimer()
 		self.leftKeyTimer.timeout.get().append(self.leftTimerFire)
 		
+		self.infoTimer = eTimer()
+		self.infoTimer.timeout.get().append(self.infoTimerFire)
+		self.infoTimer.start(500)
+		
 		self.currList = "filelist"
 		
 	def doNothing(self):
@@ -123,7 +127,30 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def delMPTimer(self):
 		del self.rightKeyTimer
 		del self.leftKeyTimer
+		del self.infoTimer
 		
+	def infoTimerFire(self):
+		currPlay = self.session.nav.getCurrentService()
+		if currPlay is not None:
+			self.updateMusicInformation( artist = currPlay.info().getInfoString(iServiceInformation.sArtist),
+										 title = currPlay.info().getInfoString(iServiceInformation.sTitle),
+										 album = currPlay.info().getInfoString(iServiceInformation.sAlbum),
+										 genre = currPlay.info().getInfoString(iServiceInformation.sGenre),
+										 clear = True)
+		else:
+			self.updateMusicInformation()
+	
+	def updateMusicInformation(self, artist = "", title = "", album = "", year = "", genre = "", clear = False):
+		self.updateSingleMusicInformation("artist", artist, clear)
+		self.updateSingleMusicInformation("title", title, clear)
+		self.updateSingleMusicInformation("album", album, clear)
+		self.updateSingleMusicInformation("year", year, clear)
+		self.updateSingleMusicInformation("genre", genre, clear)
+
+	def updateSingleMusicInformation(self, name, info, clear):
+		if info != "" or clear:
+			if self[name].getText() != info:
+				self[name].setText(info)
 
 	def fwdTimerFire(self):
 		self.fwdKeyTimer.stop()
