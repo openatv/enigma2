@@ -284,7 +284,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.playlist.addFile(self.filelist.getServiceRef())
 		self.playlist.updateList()
 		if len(self.playlist) == 1:
-			self.playEntry()
+			self.changeEntry(0)
 
 	def nextEntry(self):
 		next = self.playlist.getCurrentIndex() + 1
