@@ -23,7 +23,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		Screen.__init__(self, session)
 		self.session.nav.stopService()
 		
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|avi)", useServiceRef = True)
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()

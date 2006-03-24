@@ -135,13 +135,15 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 			
 			if (extension == ".ts")
 				type = eServiceFactoryDVB::id;
-			else if (extension == ".mp3" || extension == ".ogg" || extension == ".avi")
+			else if (extension == ".mp3")
 				type = 4097;
 			else if (extension == ".ogg")
 				type = 4097;
 			else if (extension == ".mpg")
 				type = 4097;
 			else if (extension == ".vob")
+				type = 4097;
+			else if (extension == ".wav" || extension == ".wave")
 				type = 4097;
 			
 			if (type != -1)
