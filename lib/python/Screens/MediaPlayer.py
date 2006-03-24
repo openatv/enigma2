@@ -44,16 +44,6 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
 		
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-#				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
-#				iPlayableService.evStart: self.__serviceStarted,
-				
-				iPlayableService.evEOF: self.__evEOF,
-#				iPlayableService.evSOF: self.__evSOF,
-			})
-
-        
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
                 
 		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "NumberActions", "MediaPlayerSeekActions"],
@@ -95,6 +85,15 @@ class MediaPlayer(Screen, InfoBarSeek):
         }, -2)
 
 		InfoBarSeek.__init__(self)
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+#				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+#				iPlayableService.evStart: self.__serviceStarted,
+				
+				iPlayableService.evEOF: self.__evEOF,
+#				iPlayableService.evSOF: self.__evSOF,
+			})
 
 		self.onClose.append(self.delMPTimer)
 		self.onClose.append(self.__onClose)
@@ -257,6 +256,8 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def copyFile(self):
 		self.playlist.addFile(self.filelist.getServiceRef())
 		self.playlist.updateList()
+		if len(self.playlist) == 1:
+			self.playEntry()
 
 	def nextEntry(self):
 		next = self.playlist.getCurrentIndex() + 1
@@ -280,7 +281,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 	
 	def playEntry(self):
 		currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
-		if currref is None or self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
+		if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
 			self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
 			info = eServiceCenter.getInstance().info(currref)
 			description = info.getInfoString(currref, iServiceInformation.sDescription)
