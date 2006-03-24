@@ -355,6 +355,7 @@ int eServiceMP3::getInfo(int w)
 	case sTracknumber:
 	case sGenre:
 		return resIsString;
+
 	default:
 		return resNA;
 	}
