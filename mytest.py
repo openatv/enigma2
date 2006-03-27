@@ -311,6 +311,47 @@ class VolumeControl:
 		else:
 			self.muteDialog.hide()
 
+from Screens.Standby import Standby
+
+class PowerKey:
+	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
+	
+	def __init__(self, session):
+		self.session = session
+		self.powerKeyTimer = eTimer()
+		self.powerKeyTimer.timeout.get().append(self.powertimer)
+		globalActionMap.actions["powerdown"]=self.powerdown
+		globalActionMap.actions["powerup"]=self.powerup
+		
+#		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
+			#{
+				#"powerdown": self.powerdown,
+				#"powerup": self.powerup,
+				#"discreteStandby": (self.standby, "Go standby"),
+				#"discretePowerOff": (self.quit, "Go to deep standby"),
+			#})
+
+	def powertimer(self):	
+		print "PowerOff - Now!"
+		self.quit()
+	
+	def powerdown(self):
+		self.standbyblocked = 0
+		self.powerKeyTimer.start(3000, True)
+
+	def powerup(self):
+		self.powerKeyTimer.stop()
+		if self.standbyblocked == 0:
+			self.standbyblocked = 1
+			self.standby()
+
+	def standby(self):
+		self.session.open(Standby, self)
+
+	def quit(self):
+		# halt
+		quitMainloop(1)
+
 def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
@@ -342,6 +383,7 @@ def runScreenTest():
 	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	vol = VolumeControl(session)
+	power = PowerKey(session)
 	
 	runReactor()
 	

@@ -12,7 +12,7 @@ from Components.ServicePosition import ServicePosition, ServicePositionGauge
 from Tools.Notifications import AddNotificationWithCallback
 
 from Screens.InfoBarGenerics import InfoBarShowHide, \
-	InfoBarPowerKey, InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
+	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
@@ -25,7 +25,7 @@ from enigma import *
 
 import time
 
-class InfoBar(InfoBarShowHide, InfoBarPowerKey,
+class InfoBar(InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
@@ -42,7 +42,7 @@ class InfoBar(InfoBarShowHide, InfoBarPowerKey,
 			})
 		
 		for x in HelpableScreen, \
-				InfoBarShowHide, InfoBarPowerKey, \
+				InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
@@ -66,7 +66,7 @@ class InfoBar(InfoBarShowHide, InfoBarPowerKey,
 		if service is not None:
 			self.session.open(MoviePlayer, service)
 
-class MoviePlayer(InfoBarShowHide, InfoBarPowerKey, \
+class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
@@ -80,7 +80,7 @@ class MoviePlayer(InfoBarShowHide, InfoBarPowerKey, \
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
 		
-		for x in HelpableScreen, InfoBarShowHide, InfoBarPowerKey, InfoBarMenu, \
+		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
