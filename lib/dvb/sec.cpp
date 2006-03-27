@@ -1051,12 +1051,12 @@ PyObject *eDVBSatelliteEquipmentControl::get_different_satellites(int tu1, int t
 			// check for linked tuners
 			int tmp1, tmp2;
 			p1->m_frontend->getData(7, tmp1);
-			p2->m_frontend->setData(7, tmp2);
+			p2->m_frontend->getData(7, tmp2);
 			if ((void*)tmp1 != p2 && (void*)tmp2 != p1)
 			{
 				// check for rotor dependency
 				p1->m_frontend->getData(8, tmp1);
-				p2->m_frontend->setData(8, tmp2);
+				p2->m_frontend->getData(8, tmp2);
 				if ((void*)tmp1 != p2 && (void*)tmp2 != p1)
 				{
 					// here we know the tuners are not linked and no rotor dependency exist.
