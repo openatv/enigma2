@@ -25,7 +25,7 @@ else:
 class ImageWizard(Wizard):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
-			<widget name="text" position="50,100" size="440,250" font="Regular;23" />
+			<widget name="text" position="50,100" size="440,250" font="Regular;22" />
 			<widget name="list" position="50,350" zPosition="1" size="440,200" />
 			<widget name="config" position="50,350" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
