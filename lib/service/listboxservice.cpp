@@ -369,7 +369,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		ePtr<iStaticServiceInformation> service_info;
 		m_service_center->info(*m_cursor, service_info);
 
-		if (m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 			painter.setForegroundColor(gRGB(0xbbbbbb));
 
 		for (int e = 0; e < celElements; ++e)
