@@ -26,7 +26,6 @@ from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
-from Screens.Standby import Standby
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -165,41 +164,6 @@ class NumberZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.timeout.get().append(self.keyOK)
 		self.Timer.start(3000, True)
-
-class InfoBarPowerKey:
-	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
-	
-	def __init__(self):
-		self.powerKeyTimer = eTimer()
-		self.powerKeyTimer.timeout.get().append(self.powertimer)
-		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
-			{
-				"powerdown": self.powerdown,
-				"powerup": self.powerup,
-				"discreteStandby": (self.standby, "Go standby"),
-				"discretePowerOff": (self.quit, "Go to deep standby"),
-			})
-
-	def powertimer(self):	
-		print "PowerOff - Now!"
-		self.quit()
-	
-	def powerdown(self):
-		self.standbyblocked = 0
-		self.powerKeyTimer.start(3000, True)
-
-	def powerup(self):
-		self.powerKeyTimer.stop()
-		if self.standbyblocked == 0:
-			self.standbyblocked = 1
-			self.standby()
-
-	def standby(self):
-		self.session.open(Standby, self)
-
-	def quit(self):
-		# halt
-		quitMainloop(1)
 
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """

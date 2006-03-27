@@ -41,7 +41,7 @@ class Standby(Screen):
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
 			"power": self.Power
-		})
+		}, -1)
 
 		#mute adc
 		self.setMute()
