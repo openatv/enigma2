@@ -105,10 +105,12 @@ void eAVSwitch::setAspectRatio(int ratio)
 	1-4:3 PanScan
 	2-16:9
 	3-16:9 forced
+	4-16:9 Letterbox
+	5-16:9 PanScan
 	*/
 	
-	char *aspect[] = {"4:3", "4:3", "any", "16:9"};
-	char *policy[] = {"letterbox", "panscan", "bestfit", "panscan"};
+	char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10"};
+	char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan"};
 
 	int fd;
 	if((fd = open("/proc/stb/video/aspect", O_WRONLY)) < 0) {

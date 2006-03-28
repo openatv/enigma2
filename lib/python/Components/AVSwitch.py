@@ -37,6 +37,10 @@ class AVSwitch:
 			val = 2
 		elif valstr == "16_9_always":
 			val = 3
+		elif valstr == "16_10_letterbox":
+			val = 4
+		elif valstr == "16_10_panscan":
+			val = 5
 		return val
 
 	def setAspectWSS(self, aspect=None):
@@ -51,6 +55,8 @@ class AVSwitch:
 				value = 1 # auto
 		elif aspect == 3: # always 16:9
 			value = 4 # 16:9_full_format
+		elif aspect == 4 or aspect == 5: # 16:10
+			value = 10 # 14:9_full_format
 		eAVSwitch.getInstance().setWSS(value)
 
 	def setAspectSlowBlank(self, aspect=None):
@@ -60,7 +66,7 @@ class AVSwitch:
 			value = 2 # 12 V
 		elif aspect == 2: # 16:9
 			value = 4 # auto
-		elif aspect == 3: # always 16:9
+		elif aspect == 3 or aspect == 4 or aspect == 5: # always 16:9
 			value = 1 # 6V
 		eAVSwitch.getInstance().setSlowblank(value)
 
@@ -74,7 +80,7 @@ def InitAVSwitch():
 		colorformat_choices = colorformat_choices[:3]
 
 	config.av.colorformat = configElement("config.av.colorformat", configSelection, 1, colorformat_choices)
-	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, (("4_3_letterbox", _("4:3 Letterbox")), ("4_3_panscan", _("4:3 PanScan")), ("16_9", _("16:9")), ("16_9_always", _("16:9 always"))) )
+	config.av.aspectratio = configElement("config.av.aspectratio", configSelection, 0, (("4_3_letterbox", _("4:3 Letterbox")), ("4_3_panscan", _("4:3 PanScan")), ("16_9", _("16:9")), ("16_9_always", _("16:9 always")), ("16_10_letterbox", _("16:10 Letterbox")), ("16_10_panscan", _("16:10 PanScan"))) )
 	#config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, ("PAL", "PAL + PAL60", "Multi", "NTSC") )
 	config.av.tvsystem = configElement("config.av.tvsystem", configSelection, 0, (("pal", _("PAL")), ("ntsc", _("NTSC"))) )
 	config.av.wss = configElement("config.av.wss", configSelection, 0, (("off", _("Off")), ("on", _("On"))) )
