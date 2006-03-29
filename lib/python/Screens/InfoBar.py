@@ -70,7 +70,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, Screen):
+		InfoBarSummarySupport, InfoBarTeletextPlugin, Screen):
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
@@ -84,7 +84,7 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
-				InfoBarSummarySupport:
+				InfoBarSummarySupport, InfoBarTeletextPlugin:
 			x.__init__(self)
 
 		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
