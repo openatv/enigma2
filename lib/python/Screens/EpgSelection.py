@@ -67,7 +67,7 @@ class EPGSelection(Screen):
 		self.onLayoutFinish.append(self.onCreate)
 
 	def closeScreen(self):
-		self.close(self.closeRecursive or self.type == EPG_TYPE_SINGLE)
+		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
 		if self.type == EPG_TYPE_MULTI:
