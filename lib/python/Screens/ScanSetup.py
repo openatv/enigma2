@@ -376,15 +376,32 @@ class ScanSimple(Screen):
 
 	def keyGo(self):
 		scanList = []
+		if nimmanager.getNimType(0) == nimmanager.nimType["DVB-S"] and nimmanager.getNimType(0) == nimmanager.getNimType(1):
+			sec = eDVBSatelliteEquipmentControl.getInstance()
+			if sec is not None:
+				exclusive_satellites = sec.get_exclusive_satellites(0,1)
+			else:
+				exclusive_satellites = [0,0]
+		else:
+			exclusive_satellites = [0,0]
+		print "exclusive satellites", exclusive_satellites
 		for x in self.list:
 			slotid = x[1].parent.configPath
-			print "configpath:", x[1].parent.configPath, "-", currentConfigSelectionElement(x[1].parent)
+			print "Scan Tuner", slotid, "-", currentConfigSelectionElement(x[1].parent)
 			if currentConfigSelectionElement(x[1].parent) == "yes":
 				tlist = [ ]
 				if nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-S"]:
+					if slotid > 0:
+						idx = exclusive_satellites[0]+1
+					else:
+						idx = 0
+					exclusive_nim_sats = exclusive_satellites[idx+1:idx+1+exclusive_satellites[idx]]
+					print "exclusive_nim_sats", exclusive_nim_sats
 					SatList = nimmanager.getSatListForNim(slotid)
 					for sat in SatList:
-						getInitialTransponderList(tlist, sat[1])
+						if sat[1] in exclusive_nim_sats or slotid == 0:
+							print sat
+							getInitialTransponderList(tlist, sat[1])
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
 					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
 				scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
@@ -416,8 +433,8 @@ class ScanSimple(Screen):
 				return False
 			sec = eDVBSatelliteEquipmentControl.getInstance()
 			if sec is not None:
-				different_satellites = sec.get_different_satellites(0,1)
-				if different_satellites is None:# or not len(different_satellites):
+				exclusive_satellites = sec.get_exclusive_satellites(0,1)
+				if len(exclusive_satellites) == 0:
 					return False
 			return True
 
