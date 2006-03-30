@@ -2,6 +2,8 @@
 #include <lib/dvb/sec.h>
 #include <lib/dvb/rotor_calc.h>
 
+#include <set>
+
 #if HAVE_DVB_API_VERSION < 3
 #define FREQUENCY Frequency
 #else
@@ -1032,9 +1034,38 @@ RESULT eDVBSatelliteEquipmentControl::setRotorPosNum(int rotor_pos_num)
 	return 0;
 }
 
-PyObject *eDVBSatelliteEquipmentControl::get_different_satellites(int tu1, int tu2)
+struct sat_compare
+{
+	int orb_pos, lofl, lofh;
+	sat_compare(int o, int lofl, int lofh)
+		:orb_pos(o), lofl(lofl), lofh(lofh)
+	{}
+	sat_compare(const sat_compare &x)
+		:orb_pos(x.orb_pos), lofl(x.lofl), lofh(x.lofh)
+	{}
+	bool operator < (const sat_compare & cmp) const
+	{
+		if (orb_pos == cmp.orb_pos)
+		{
+			if ( abs(lofl-cmp.lofl) < 200000 )
+			{
+				if (abs(lofh-cmp.lofh) < 200000)
+					return false;
+				return lofh<cmp.lofh;
+			}
+			return lofl<cmp.lofl;
+		}
+		return orb_pos < cmp.orb_pos;
+	}
+};
+
+PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int tu2)
 {
 	PyObject *ret=0;
+
+	int tu1_mask = 1 << tu1,
+		tu2_mask = 1 << tu2;
+
 	if (tu1 != tu2)
 	{
 		eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
@@ -1059,20 +1090,50 @@ PyObject *eDVBSatelliteEquipmentControl::get_different_satellites(int tu1, int t
 				p2->m_frontend->getData(8, tmp2);
 				if ((void*)tmp1 != p2 && (void*)tmp2 != p1)
 				{
-					// here we know the tuners are not linked and no rotor dependency exist.
-					// now we check all configured satellites/lnb for difference and at all difference
-					// to a list of tuples with first value tuner number and second value orbital position
-					// of satellite
-					ret = PyList_New(0);
-					// FIXMEE !! fill list (compare satellites (lofh, lofl, lof threshold, opos))
+					std::set<sat_compare> tu1sats, tu2sats;
+					std::list<sat_compare> tu1difference, tu2difference;
+					std::insert_iterator<std::list<sat_compare> > insert1(tu1difference, tu1difference.begin()),
+						insert2(tu2difference, tu2difference.begin());
+					for (int idx=0; idx <= m_lnbidx; ++idx )
+					{
+						eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
+						for (std::map<int, eDVBSatelliteSwitchParameters>::iterator sit(lnb_param.m_satellites.begin());
+							sit != lnb_param.m_satellites.end(); ++sit)
+						{
+							if ( lnb_param.tuner_mask & tu1_mask )
+								tu1sats.insert(sat_compare(sit->first, lnb_param.m_lof_lo, lnb_param.m_lof_hi));
+							if ( lnb_param.tuner_mask & tu2_mask )
+								tu2sats.insert(sat_compare(sit->first, lnb_param.m_lof_lo, lnb_param.m_lof_hi));
+						}
+					}
+					std::set_difference(tu1sats.begin(), tu1sats.end(),
+						tu2sats.begin(), tu2sats.end(),
+						insert1);
+					std::set_difference(tu2sats.begin(), tu2sats.end(),
+						tu1sats.begin(), tu1sats.end(),
+						insert2);
+					if (!tu1sats.empty() || !tu2sats.empty())
+					{
+						int idx=0;
+						ret = PyList_New(2+tu1difference.size()+tu2difference.size());
+
+						PyList_SET_ITEM(ret, idx++, PyInt_FromLong(tu1difference.size()));
+						for(std::list<sat_compare>::iterator it(tu1difference.begin()); it != tu1difference.end(); ++it)
+							PyList_SET_ITEM(ret, idx++, PyInt_FromLong(it->orb_pos));
+
+						PyList_SET_ITEM(ret, idx++, PyInt_FromLong(tu2difference.size()));
+						for(std::list<sat_compare>::iterator it(tu2difference.begin()); it != tu2difference.end(); ++it)
+							PyList_SET_ITEM(ret, idx++, PyInt_FromLong(it->orb_pos));
+					}
 				}
 			}
 		}
 	}
 	if (!ret)
 	{
-		Py_INCREF(Py_None);
-		ret = Py_None;
+		ret = PyList_New(2);
+		PyList_SET_ITEM(ret, 0, PyInt_FromLong(0));
+		PyList_SET_ITEM(ret, 1, PyInt_FromLong(0));
 	}
 	return ret;
 }

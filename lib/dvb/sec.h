@@ -290,7 +290,7 @@ public:
 	RESULT setTunerLinked(int from, int to);
 	RESULT setTunerDepends(int from, int to);
 
-	PyObject *get_different_satellites(int tu1, int tu2);
+	PyObject *get_exclusive_satellites(int tu1, int tu2);
 	void setRotorMoving(bool); // called from the frontend's
 	bool isRotorMoving();
 };
