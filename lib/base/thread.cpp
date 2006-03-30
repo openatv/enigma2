@@ -51,10 +51,10 @@ void eThread::run( int prio, int policy )
 	}
 	pthread_attr_destroy(&attr);
 	usleep(1000);
-	int timeout=20;
+	int timeout=50;
 	while(!alive && timeout--)
 	{
-		eDebug("waiting for thread start...");
+//		eDebug("waiting for thread start...");
 		usleep(1000*10);
 	}
 	if ( !timeout )
