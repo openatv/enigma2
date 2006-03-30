@@ -232,6 +232,7 @@ public:
 		/* our new shared polling interface. */
 	PyObject *poll(PyObject *dict, PyObject *timeout);
 	void interruptPoll();
+	void reset();
 };
 
 /**

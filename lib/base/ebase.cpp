@@ -350,6 +350,11 @@ int eMainloop::runLoop()
 	return retval;
 }
 
+void eMainloop::reset()
+{
+	app_quit_now=false;
+}
+
 PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
 {
 	PyObject *res = 0;
