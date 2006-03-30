@@ -10,6 +10,7 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
 
+#include <lib/components/file_eraser.h>
 #include <lib/service/servicedvbrecord.h>
 #include <lib/service/event.h>
 #include <lib/dvb/metaparser.h>
@@ -233,11 +234,18 @@ RESULT eDVBPVRServiceOfflineOperations::deleteFromDisk(int simulate)
 		if (getListOfFilenames(res))
 			return -1;
 		
+		eBackgroundFileEraser *eraser = eBackgroundFileEraser::getInstance();
+		if (!eraser)
+			eDebug("FATAL !! can't get background file eraser");
+		
 				/* TODO: deferred removing.. */
 		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
 		{
 			eDebug("Removing %s...", i->c_str());
-			::unlink(i->c_str());
+			if (eraser)
+				eraser->erase(i->c_str());
+			else
+				::unlink(i->c_str());
 		}
 		
 		return 0;
@@ -248,6 +256,19 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 {
 	res.clear();
 	res.push_back(m_ref.path);
+
+// handling for old splitted recordings (enigma 1)
+	char buf[255];
+	int slice=1;
+	while(true)
+	{
+		snprintf(buf, 255, "%s.%03d", m_ref.path.c_str(), slice++);
+		struct stat s;
+		if (stat(buf, &s) < 0)
+			break;
+		res.push_back(buf);
+	}	
+
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
 	res.push_back(m_ref.path + ".cuts");

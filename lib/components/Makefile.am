@@ -3,5 +3,5 @@ INCLUDES = \
 
 noinst_LIBRARIES = libenigma_components.a
 
-libenigma_components_a_SOURCES = scan.cpp listboxepg.cpp
+libenigma_components_a_SOURCES = scan.cpp listboxepg.cpp file_eraser.cpp
 	
