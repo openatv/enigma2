@@ -432,9 +432,16 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
 
+	if (m_cached_channel && m_releaseCachedChannelTimer.isActive())
+	{
+		m_cached_channel_state_changed_conn.disconnect();
+		m_cached_channel=0;
+		m_releaseCachedChannelTimer.stop();
+	}
+
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, 0);
-	
+
 	channel = ch;
 	return 0;
 }
