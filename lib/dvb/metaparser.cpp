@@ -108,6 +108,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			m_name = description;
 			m_description = "";
 			m_time_create = 0;
+			fclose(f);
 			return 0;
 		}
 	}
