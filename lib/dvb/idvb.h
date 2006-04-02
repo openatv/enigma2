@@ -236,8 +236,21 @@ public:
 	std::string m_provider_name;
 	
 	void genSortName();
-	
+
 	int m_flags;
+	enum
+	{
+#if 0  // not yet implemented
+		dxNoSDT=1,    // don't get SDT
+		dxDontshow=2,
+		dxHoldName=8,
+		dxNewFound=64, // found in prev scan
+#endif
+		dxNoDVB=4  // dont use PMT for this service ( use cached pids )
+	};
+
+	bool usePMT() const { return !(m_flags & dxNoDVB); }
+
 	std::set<int> m_ca;
 	std::map<int,int> m_cache;
 	virtual ~eDVBService();
