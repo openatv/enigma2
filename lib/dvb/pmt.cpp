@@ -145,7 +145,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.pmtPid = -1;
 	program.textPid = -1;
 
-	if (!m_PMT.getCurrent(ptr))
+	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
 	{
 		int cached_apid_ac3 = -1;
 		int cached_apid_mpeg = -1;
@@ -413,7 +413,11 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 			eDebug("allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
 	}
-	
+
+	ePtr<iDVBChannelList> db;
+	if (!m_resourceManager->getChannelList(db))
+		db->getService((eServiceReferenceDVB&)m_reference, m_service);
+
 	if (m_channel)
 	{
 		m_channel->connectStateChange(
@@ -436,10 +440,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		m_pvr_channel->setCueSheet(cue);
 		m_pvr_channel->playFile(ref.path.c_str());
 	}
-
-	ePtr<iDVBChannelList> db;
-	if (!m_resourceManager->getChannelList(db))
-		db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
 	return res;
 }
