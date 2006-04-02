@@ -489,8 +489,8 @@ void eDVBDB::saveServicelist()
 			ca != i->second->m_ca.end(); ++ca)
 			fprintf(f, ",C:%04x", *ca);
 
-		if (it->second->m_flags)
-			fprintf(f, ",f:%x", it->second->m_flags);
+		if (i->second->m_flags)
+			fprintf(f, ",f:%x", i->second->m_flags);
 
 		fprintf(f, "\n");
 		services++;
