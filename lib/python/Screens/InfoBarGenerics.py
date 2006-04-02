@@ -15,6 +15,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ServiceName import ServiceName
 from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
 from Components.config import configfile, configsequencearg
+from Components.TimerList import TimerEntryComponent
 
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -26,6 +27,7 @@ from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
+from Screens.TimerSelection import TimerSelection
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -983,15 +985,16 @@ class InfoBarInstantRecord:
 			{
 				"instantRecord": (self.instantRecord, "Instant Record..."),
 			})
-		self.recording = None
+		self.recording = []
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
 		self["BlinkingPoint"].hide()
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
 
-	def stopCurrentRecording(self):	
-		self.session.nav.RecordTimer.removeEntry(self.recording)
-		self.recording = None
-
+	def stopCurrentRecording(self, entry = -1):	
+		if entry is not None and entry != -1:
+			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
+			self.recording.remove(self.recording[entry])
+			
 	def startInstantRecording(self, limitEvent = False):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		
@@ -1027,27 +1030,39 @@ class InfoBarInstantRecord:
 				
 		data = (begin, end, name, description, eventid)
 		
-		self.recording = self.session.nav.recordWithTimer(serviceref, *data)
-		self.recording.dontSave = True
+		recording = self.session.nav.recordWithTimer(serviceref, *data)
+		recording.dontSave = True
+		self.recording.append(recording)
 		
 		#self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
 		
 	def isInstantRecordRunning(self):
-		if self.recording != None:
-			if self.recording.isRunning():
-				return True
+		print "self.recording:", self.recording
+		if len(self.recording) > 0:
+			for x in self.recording:
+				if x.isRunning():
+					return True
 		return False
 
 	def recordQuestionCallback(self, answer):
 		if answer is None or answer[1] == "no":
 			return
-		
-		if self.isInstantRecordRunning():
-			if answer[1] == "manualduration":
-				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)				
+		list = []
+		for x in self.recording:
+			if x.dontSave:
+				list.append(TimerEntryComponent(x, False))		
+
+		if answer[1] == "changeduration":
+			if len(self.recording) == 1:
+				self.changeDuration(0)
 			else:
-				self.stopCurrentRecording()
-		else:
+				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
+		elif answer[1] == "stop":
+			if len(self.recording) == 1:
+				self.stopCurrentRecording(0)
+			else:
+				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
+		if answer[1] == "indefinitely" or answer[1] == "manualduration" or answer[1] == "event":
 			limitEvent = False
 			if answer[1] == "event":
 				limitEvent = True
@@ -1055,12 +1070,16 @@ class InfoBarInstantRecord:
 				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 			self.startInstantRecording(limitEvent = limitEvent)
 
+	def changeDuration(self, entry):
+		if entry is not None:
+			self.selectedEntry = entry
+			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
+
 	def inputCallback(self, value):
 		if value is not None:
 			print "stopping recording after", int(value), "minutes."
-			if self.recording is not None:
-				self.recording.end = time.time() + 60 * int(value)
-				self.session.nav.RecordTimer.timeChanged(self.recording)
+			self.recording[self.selectedEntry].end = time.time() + 60 * int(value)
+			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def instantRecord(self):
 		try:
@@ -1070,11 +1089,9 @@ class InfoBarInstantRecord:
 			return
 	
 		if self.isInstantRecordRunning():
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("A recording is currently running.\nWhat do you want to do?"), list=[(_("stop recording"), "yes"), (_("enter recording duration"), "manualduration"), (_("do nothing"), "no")])
-#			self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Do you want to stop the current\n(instant) recording?"))
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("A recording is currently running.\nWhat do you want to do?"), list=[(_("stop recording"), "stop"), (_("change recording (duration)"), "changeduration"), (_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"), (_("do nothing"), "no")])
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("record indefinitely"), "indefinitely"), (_("stop after current event"), "event"), (_("enter recording duration"), "manualduration"),(_("don't record"), "no")])
-			#self.session.openWithCallback(self.recordQuestionCallback, MessageBox, _("Start recording?"))
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"),(_("don't record"), "no")])
 
 from Screens.AudioSelection import AudioSelection
 

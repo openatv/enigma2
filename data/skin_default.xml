@@ -128,6 +128,9 @@
 		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 	</screen>
+	<screen name="TimerSelection" position="70,100" size="560,400" title="Timer selection">
+		<widget name="timerlist" position="0,45" size="560,350" scrollbarMode="showOnDemand" />
+	</screen>
 	<screen name="TimerSanityConflict" position="70,100" size="600,400" title="Timer sanity error">
 		<widget name="timer1" position="0,45" size="290,80" scrollbarMode="showOnDemand" />
 		<widget name="timer2" position="310,45" size="280,80" scrollbarMode="showOnDemand" />
