@@ -6,6 +6,7 @@
 #include <Python.h>
 
 extern "C" void init_enigma();
+extern void bsodFatal();
 
 DEFINE_REF(TestObj);
 
@@ -129,6 +130,7 @@ int ePython::call(PyObject *pFunc, PyObject *pArgs)
 		} else
 		{
 		 	PyErr_Print();
+		 	bsodFatal();
 		}
 	}
 	return res;
