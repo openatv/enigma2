@@ -15,6 +15,8 @@ void eThread::thread_completed(void *ptr)
 		p->m_state.up();
 		assert(p->m_state.value() == 1);
 	}
+
+	p->thread_finished();
 }
 
 void *eThread::wrapper(void *ptr)
