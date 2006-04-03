@@ -1,10 +1,4 @@
-// for debugging use:
-// #define SYNC_PAINT
 #include <unistd.h>
-#ifndef SYNC_PAINT
-#include <pthread.h>
-#endif
-
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
