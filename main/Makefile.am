@@ -4,7 +4,7 @@ INCLUDES = \
 bin_PROGRAMS = enigma2
 
 enigma2_SOURCES = \
-	enigma.cpp 
+	enigma.cpp bsod.cpp
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
