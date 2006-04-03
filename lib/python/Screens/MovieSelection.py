@@ -77,6 +77,7 @@ class MovieSelection(Screen):
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 		
 		self["list"] = MovieList(None)
+		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
@@ -91,6 +92,9 @@ class MovieSelection(Screen):
 		self["actions"].csel = self
 		self.onShown.append(self.go)
 		
+		self.lengthTimer = eTimer()
+		self.lengthTimer.timeout.get().append(self.updateLengthData)
+		
 	def go(self):
 		# ouch. this should redraw our "Please wait..."-text.
 		# this is of course not the right way to do this.
@@ -103,6 +107,16 @@ class MovieSelection(Screen):
 		self["waitingtext"].instance.hide()
 						
 		self["freeDiskSpace"].update()
+		
+		self.lengthTimer.start(10, 1)
+		self.lengthPosition = 0
+		self.lengthLength = len(self["list"])
+		
+	def updateLengthData(self):
+		self.list.updateLengthOfIndex(self.lengthPosition)
+		self.lengthPosition += 1
+		if self.lengthPosition < self.lengthLength:
+			self.lengthTimer.start(10, 1)
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
