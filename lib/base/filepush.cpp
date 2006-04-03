@@ -31,7 +31,14 @@ void eFilePushThread::thread()
 	
 	int already_empty = 0;
 	eDebug("FILEPUSH THREAD START");
-		// this is a race. FIXME.
+	
+		/* we set the signal to not restart syscalls, so we can detect our signal. */
+	struct sigaction act;
+	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
+	act.sa_flags = 0;
+	sigaction(SIGUSR1, &act, 0);
+	
+	hasStarted();
 	
 	dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
 	source_pos = m_raw_source.lseek(0, SEEK_CUR);
@@ -158,25 +165,12 @@ int eFilePushThread::start(const char *filename, int fd_dest)
 	return 0;
 }
 
-void eFilePushThread::installSigUSR1Handler()
-{
-		/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
-	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
-	act.sa_flags = 0;
-	sigaction(SIGUSR1, &act, 0);
-}
-
-// called from thread before alive is set to 1
-void eFilePushThread::before_set_thread_alive()
-{
-	installSigUSR1Handler();
-}
-
 void eFilePushThread::stop()
 {
-	if (!thread_running()) /* FIXME: races */
+		/* if we aren't running, don't bother stopping. */
+	if (!sync())
 		return;
+
 	m_stop = 1;
 	sendSignal(SIGUSR1);
 	kill();

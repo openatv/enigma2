@@ -177,12 +177,11 @@ eEPGCache::eEPGCache()
 
 void eEPGCache::timeUpdated()
 {
-	if ( !thread_running() )
+	if (!sync())
 	{
 		eDebug("[EPGC] time updated.. start EPG Mainloop");
 		run();
-	}
-	else
+	} else
 		messages.send(Message(Message::timeChanged));
 }
 
@@ -692,6 +691,7 @@ void eEPGCache::gotMessage( const Message &msg )
 
 void eEPGCache::thread()
 {
+	hasStarted();
 	nice(4);
 	load();
 	cleanLoop();

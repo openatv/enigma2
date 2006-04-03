@@ -26,14 +26,13 @@ void eBackgroundFileEraser::idle()
 eBackgroundFileEraser::~eBackgroundFileEraser()
 {
 	messages.send(Message::quit);
-	if ( thread_running() )
-		kill();
 	if (instance==this)
 		instance=0;
 }
 
 void eBackgroundFileEraser::thread()
 {
+	hasStarted();
 	nice(5);
 	reset();
 	runLoop();
@@ -51,8 +50,7 @@ void eBackgroundFileEraser::erase(const char *filename)
 		else
 		{
 			messages.send(Message(Message::erase, strdup(buf)));
-			if (!thread_running())
-				run();
+			run();
 		}
 	}
 }
