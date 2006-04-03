@@ -70,6 +70,7 @@ private:
 	
 	eMPEGStreamInformation m_streaminfo;
 	int m_use_streaminfo;
+	int m_last_filelength, m_futile;
 };
 
 #endif

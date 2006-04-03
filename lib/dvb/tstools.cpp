@@ -15,6 +15,10 @@ eDVBTSTools::eDVBTSTools()
 	
 	m_use_streaminfo = 0;
 	m_samples_taken = 0;
+	
+	m_last_filelength = 0;
+	
+	m_futile = 0;
 }
 
 eDVBTSTools::~eDVBTSTools()
@@ -240,11 +244,13 @@ void eDVBTSTools::calcBegin()
 	if (!m_file.valid())
 		return;
 
-	if (!m_begin_valid)
+	if (!(m_begin_valid || m_futile))
 	{
 		m_offset_begin = 0;
 		if (!getPTS(m_offset_begin, m_pts_begin))
 			m_begin_valid = 1;
+		else
+			m_futile = 1;
 	}
 }
 
@@ -255,27 +261,44 @@ void eDVBTSTools::calcEnd()
 	
 	off_t end = m_file.lseek(0, SEEK_END);
 	
-	if (abs(end - m_offset_end) > 1*1024*1024)
+	if (abs(end - m_last_filelength) > 1*1024*1024)
 	{
-		m_offset_end = end;
+		m_last_filelength = end;
 		m_end_valid = 0;
+		
+		m_futile = 0;
 		eDebug("file size changed, recalc length");
 	}
 	
 	int maxiter = 10;
 	
-	while (!m_end_valid)
+	m_offset_end = m_last_filelength;
+	
+	while (!(m_end_valid || m_futile))
 	{
 		if (!--maxiter)
+		{
+			m_futile = 1;
 			return;
-		
+		}
+
 		m_offset_end -= m_maxrange;
 		if (m_offset_end < 0)
 			m_offset_end = 0;
+
+			/* restore offset if getpts fails */
+		off_t off = m_offset_end;
+
 		if (!getPTS(m_offset_end, m_pts_end))
 			m_end_valid = 1;
+		else
+			m_offset_end = off;
+
 		if (!m_offset_end)
-			return;
+		{
+			m_futile = 1;
+			break;
+		}
 	}
 }
 
