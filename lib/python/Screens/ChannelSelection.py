@@ -464,7 +464,7 @@ class ChannelSelectionBase(Screen):
 				"7": self.keyNumberGlobal,
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
+				"0": self.keyNumber0
 			})
 
 	def appendDVBTypes(self, ref):
@@ -788,6 +788,27 @@ class ChannelSelectionBase(Screen):
 					bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
 			return bouquets
 		return None
+
+	def keyNumber0(self, num):
+		if len(self.servicePath) > 1:
+			self.keyGoUp()
+		else:
+			self.keyNumberGlobal(num)
+
+	def keyGoUp(self):
+		if len(self.servicePath) > 1:
+			if self.isBasePathEqual(self.bouquet_root):
+				self.showFavourites()
+			else:
+				ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
+				if self.isBasePathEqual(ref):
+					self.showSatellites()
+				else:
+					ref = eServiceReference('%s FROM PROVIDERS ORDER BY name'%(self.service_types))
+					if self.isBasePathEqual(ref):
+						self.showProviders()
+					else:
+						self.showAllServices()
 
 HISTORYSIZE = 20
 
