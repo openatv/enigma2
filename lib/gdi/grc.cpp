@@ -63,8 +63,7 @@ void gRC::submit(const gOpcode &o)
 #ifndef SYNC_PAINT
 		pthread_mutex_lock(&mutex);
 #endif
-		int tmp=wp;
-		tmp+=1;
+		int tmp=wp+1;
 		if ( tmp == MAXSIZE )
 			tmp=0;
 		if ( tmp == rp )
@@ -85,10 +84,10 @@ void gRC::submit(const gOpcode &o)
 		queue[wp++]=o;
 		if ( wp == MAXSIZE )
 			wp = 0;
+		pthread_mutex_unlock(&mutex);
 		if (o.opcode==gOpcode::flush||o.opcode==gOpcode::shutdown||o.opcode==gOpcode::notify)
 #ifndef SYNC_PAINT
 			pthread_cond_signal(&cond);  // wakeup gdi thread
-		pthread_mutex_unlock(&mutex);
 #else
 			thread(); // paint
 #endif
@@ -109,8 +108,7 @@ void *gRC::thread()
 		pthread_mutex_lock(&mutex);
 		if ( rp != wp )
 		{
-			gOpcode o(queue[rp]);
-			rp++;
+			gOpcode o(queue[rp++]);
 			if ( rp == MAXSIZE )
 				rp=0;
 			pthread_mutex_unlock(&mutex);
