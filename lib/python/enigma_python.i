@@ -90,8 +90,6 @@ is usually caused by not marking PSignals as immutable.
 
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
-extern void setLCD(const char *c);
-extern void setLCDClock(const char *c);
 extern eApplication *getApplication();
 
 extern PSignal1<void,int> &keyPressedSignal();
@@ -248,8 +246,6 @@ public:
 
 void runMainloop();
 void quitMainloop(int exit_code);
-void setLCD(const char*);
-void setLCDClock(const char*);
 eApplication *getApplication();
 %immutable keyPressed;
 PSignal1<void,int> &keyPressedSignal();
