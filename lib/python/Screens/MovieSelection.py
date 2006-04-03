@@ -122,8 +122,7 @@ class MovieSelection(Screen):
 		self["list"].moveTo(self.selectedmovie)
 
 	def getCurrent(self):
-		l = self["list"].getCurrent()
-		return l and l[0]
+		return self["list"].getCurrent()
 
 	def movieSelected(self):
 		current = self.getCurrent()
