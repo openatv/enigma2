@@ -10,49 +10,6 @@ from enigma import eServiceReference, eServiceCenter, \
 	eServiceCenterPtr, iListableServicePtr, \
 	iStaticServiceInformationPtr
 
-#
-# | name of movie              |
-#
-def MovieListEntry(serviceref, serviceHandler, withLength = False):
-	if serviceref.flags & eServiceReference.mustDescent:
-		return None
-
-	info = serviceHandler.info(serviceref)
-	
-	if info is None:
-		# ignore service which refuse to info
-		return None
-	
-	if withLength:
-		len = info.getLength(serviceref)
-	else:
-		len = 0
-	if len > 0:
-		len = "%d:%02d" % (len / 60, len % 60)
-	else:
-		len = "?:??"
-	
-	begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
-	res = [ (serviceref, begin) ]
-
-	res.append(MultiContentEntryText(pos=(0, 0), size=(420, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
-	service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
-	if service is not None:
-		res.append(MultiContentEntryText(pos=(420, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
-	
-	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
-
-	begin_string = ""
-	if begin > 0:
-		t = FuzzyTime(begin)
-		begin_string = t[0] + ", " + t[1]
-	
-	res.append(MultiContentEntryText(pos=(0, 30), size=(560, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
-	res.append(MultiContentEntryText(pos=(0, 50), size=(270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-	res.append(MultiContentEntryText(pos=(290, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
-	
-	return res
-
 class MovieList(HTMLComponent, GUIComponent):
 	def __init__(self, root):
 		GUIComponent.__init__(self)
@@ -62,7 +19,40 @@ class MovieList(HTMLComponent, GUIComponent):
 		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 18))
 		self.l.setFont(2, gFont("Regular", 16))
-		
+		self.l.setBuildFunc(self.buildMovieListEntry)
+
+	#
+	# | name of movie              |
+	#
+	def buildMovieListEntry(self, serviceref, info, begin, len):
+		if serviceref.flags & eServiceReference.mustDescent:
+			return None
+
+		if len > 0:
+			len = "%d:%02d" % (len / 60, len % 60)
+		else:
+			len = "?:??"
+
+		res = [ None ]
+
+		res.append(MultiContentEntryText(pos=(0, 0), size=(420, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
+		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
+		if service is not None:
+			res.append(MultiContentEntryText(pos=(420, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+
+		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
+
+		begin_string = ""
+		if begin > 0:
+			t = FuzzyTime(begin)
+			begin_string = t[0] + ", " + t[1]
+
+		res.append(MultiContentEntryText(pos=(0, 30), size=(560, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
+		res.append(MultiContentEntryText(pos=(0, 50), size=(270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+		res.append(MultiContentEntryText(pos=(290, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+
+		return res
+
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
@@ -70,9 +60,8 @@ class MovieList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def getCurrent(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0]
-	
+		return self.l.getCurrentSelection()[0]
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
@@ -91,7 +80,7 @@ class MovieList(HTMLComponent, GUIComponent):
 
 	def removeService(self, service):
 		for l in self.list[:]:
-			if l[0][0] == service:
+			if l[0] == service:
 				self.list.remove(l)
 		self.l.setList(self.list)
 
@@ -99,8 +88,8 @@ class MovieList(HTMLComponent, GUIComponent):
 		return len(self.list)
 
 	def updateLengthOfIndex(self, index):
-		serviceHandler = eServiceCenter.getInstance()
-		self.list[index] = MovieListEntry(self.list[index][0][0], serviceHandler, True)
+		x = self.list[index]
+		self.list[index] = (x[0], x[1], x[2], x[1].getLength(x[0]))
 		self.l.invalidateEntry(index)
 
 	def load(self, root):
@@ -110,33 +99,31 @@ class MovieList(HTMLComponent, GUIComponent):
 		self.list = [ ]
 		self.root = root
 		
-		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(root)
+		self.serviceHandler = eServiceCenter.getInstance()
+		list = self.serviceHandler.list(root)
 		
 		if list is None:
 			raise "listing of movies failed"
 
-		movieList = [ ]
 		while 1:
-			s = list.getNext()
-			if not s.valid():
-				del list
+			serviceref = list.getNext()
+			if not serviceref.valid():
 				break
-			movieList.append(s)
+			if serviceref.flags & eServiceReference.mustDescent:
+				continue
+			info = self.serviceHandler.info(serviceref)
+			if info is None:
+				continue
+			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+			self.list.append((serviceref, info, begin, -1))
 		
-		# now process them...
-		for ref in movieList:
-			a = MovieListEntry(ref, serviceHandler)
-			if a is not None:
-				self.list.append(a)
-		
-		self.list.sort(key=lambda x: -x[0][1])
+		self.list.sort(key=lambda x: -x[2])
 
 	def moveTo(self, serviceref):
 		found = 0
 		count = 0
 		for x in self.list:
-			if str(ServiceReference(x[0][0])) == str(ServiceReference(serviceref)):
+			if x[0] == serviceref:
 				found = count
 			count += 1
 		self.instance.moveSelectionTo(found)
