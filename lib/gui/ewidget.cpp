@@ -100,16 +100,25 @@ void eWidget::show()
 {
 	if (m_vis & wVisShow)
 		return;
-	
-	m_vis |=  wVisShow;
 
+	m_vis |= wVisShow;
+	
 		/* TODO: optimize here to only recalc what's required. possibly merge with hide. */
 	eWidget *root = this;
 	ePoint abspos = position();
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		assert(root);
+		if (root)
+		{
+				/* oops: our root widget does not have a desktop associated. 
+					probably somebody already erased the root, but tries some
+					operations on a child window. 
+					
+					ignore them for now. */
+			/* assert(root); */
+			return;
+		}
 		abspos += root->position();
 	}
 
