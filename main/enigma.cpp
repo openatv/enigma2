@@ -29,6 +29,8 @@
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
 
+#include "bsod.h" 
+
 #ifdef HAVE_GSTREAMER
 #include <gst/gst.h>
 #endif
@@ -42,36 +44,7 @@ void object_dump()
 }
 #endif
 
-void dumpRegion(const gRegion &region)
-{
-	fprintf(stderr, "extends: %d %d -> %d %d (%d rects)\n", 
-		region.extends.left(), region.extends.top(),
-		region.extends.right(), region.extends.bottom(), region.rects.size());
-#if 0
-	for (int y=0; y<region.extends.bottom(); ++y)
-	{
-		for (int x=0; x<region.extends.right(); ++x)
-		{
-			unsigned char res = ' ';
-			for (unsigned int i=0; i < region.rects.size(); ++i)
-				if (region.rects[i].contains(ePoint(x, y)))
-					res = '0' + i;
-			fprintf(stderr, "%c", res);
-		}
-		fprintf(stderr, "\n");
-	}
-#endif
-
-}
-
-eWidgetDesktop *wdsk, *lcddsk;
-
-// typedef struct _object PyObject;
-
-void print(int i)
-{
-	printf("C++ says: it's a %d!!!\n", i);
-}
+static eWidgetDesktop *wdsk, *lcddsk;
 
 PSignal1<void,int> keyPressed;
 
@@ -128,8 +101,6 @@ public:
 	}
 };
 
-/************************************************/
-
 int exit_code;
 
 int main(int argc, char **argv)
@@ -145,7 +116,8 @@ int main(int argc, char **argv)
 	// set pythonpath if unset
 	setenv("PYTHONPATH", LIBDIR "/enigma2/python", 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
-
+	
+	bsodLogInit();
 
 	ePython python;
 	eMain main;
@@ -209,8 +181,13 @@ int main(int argc, char **argv)
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 	
 	printf("executing main\n");
-
+	
+	bsodCatchSignals();
+	
 	python.execute("mytest", "__main__");
+	
+	if (exit_code == 5) /* python crash */
+		bsodFatal();
 	
 	dsk.paint();
 	dsk_lcd.paint();
@@ -244,12 +221,4 @@ void quitMainloop(int exitCode)
 {
 	exit_code = exitCode;
 	eApp->quit(0);
-}
-
-void setLCD(const char *string)
-{
-}
-
-void setLCDClock(const char *string)
-{
 }
