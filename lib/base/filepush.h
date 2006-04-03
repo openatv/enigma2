@@ -35,7 +35,10 @@ public:
 	
 	enum { evtEOF, evtReadError, evtWriteError, evtUser };
 	Signal1<void,int> m_event;
-	
+
+	void installSigUSR1Handler();
+	void before_set_thread_alive();
+
 		/* you can send private events if you want */
 	void sendEvent(int evt);
 protected:
