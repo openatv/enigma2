@@ -38,7 +38,7 @@ def MovieListEntry(serviceref, serviceHandler, withLength = False):
 	res.append(MultiContentEntryText(pos=(0, 0), size=(420, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
 	service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 	if service is not None:
-		res.append(MultiContentEntryText(pos=(420, 0), size=(140, 30), font = 0, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+		res.append(MultiContentEntryText(pos=(420, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 	
 	description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 
@@ -61,6 +61,7 @@ class MovieList(HTMLComponent, GUIComponent):
 			self.reload(root)
 		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 18))
+		self.l.setFont(2, gFont("Regular", 16))
 		
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
