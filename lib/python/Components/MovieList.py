@@ -61,9 +61,7 @@ class MovieList(HTMLComponent, GUIComponent):
 
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
-		if l is not None:
-			return self.l.getCurrentSelection()[0]
-		return None
+		return l or l[0]
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
