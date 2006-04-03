@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-22 21:46+0000\n"
-"PO-Revision-Date: 2006-02-17 12:51+0100\n"
+"POT-Creation-Date: 2006-04-03 08:31+0200\n"
+"PO-Revision-Date: 2006-04-03 09:00+0200\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,8 @@ msgid ""
 "\n"
 "Enigma2 will restart after the restore"
 msgstr ""
+"\n"
+"Enigma2 reiniciará después de la restauración"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
@@ -52,15 +54,15 @@ msgstr ""
 #: ../lib/python/Components/TimerList.py:46
 #: ../lib/python/Components/TimerList.py:51
 msgid "(ZAP)"
-msgstr ""
+msgstr "(ZAPEAR)"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "/usr/share/enigma2 directorio"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/var directory"
-msgstr ""
+msgstr "/var directorio"
 
 #: ../lib/python/Components/NimManager.py:711
 msgid "0 V"
@@ -102,7 +104,7 @@ msgstr "<desconocido>"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -174,7 +176,7 @@ msgstr "Arábigo"
 msgid "Auto"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:447 ../data/
+#: ../lib/python/Screens/ScanSetup.py:464 ../data/
 msgid "Automatic Scan"
 msgstr "Búsqueda automática"
 
@@ -200,11 +202,11 @@ msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:113
 msgid "Backup Location"
-msgstr ""
+msgstr "Localización Backup"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:112
 msgid "Backup Mode"
-msgstr ""
+msgstr "Modo Backup"
 
 #: ../lib/python/Components/NimManager.py:691
 msgid "Band"
@@ -224,7 +226,7 @@ msgstr "Banda-C"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "CF Drive"
-msgstr ""
+msgstr "Unidad CF"
 
 #: ../lib/python/Screens/Satconfig.py:66
 msgid "Cable provider"
@@ -244,7 +246,7 @@ msgstr "Capacidad: "
 msgid "Channel"
 msgstr "Canal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:145
+#: ../lib/python/Screens/InfoBarGenerics.py:146
 msgid "Channel:"
 msgstr "Canal:"
 
@@ -293,11 +295,11 @@ msgstr "Modo Configuración"
 
 #: ../lib/python/Screens/TimerEdit.py:192
 msgid "Conflicting timer"
-msgstr "Grabación en conflicto"
+msgstr "Grabación en conflict"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
-msgstr "Versión actual:"
+msgstr "Versión actual"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
@@ -444,7 +446,7 @@ msgstr "Fin"
 msgid "EndTime"
 msgstr "HoraFin"
 
-#: ../lib/python/Screens/LanguageSelection.py:45
+#: ../lib/python/Screens/LanguageSelection.py:53
 #: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:13
 msgid "English"
@@ -462,7 +464,7 @@ msgstr "Progreso de ejecución:"
 msgid "Execution finished!!"
 msgstr "¡Ejecución terminó!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1181
+#: ../lib/python/Screens/InfoBarGenerics.py:1157
 msgid "Extensions"
 msgstr "Extensiones"
 
@@ -535,14 +537,18 @@ msgstr "Disco duro"
 msgid "Hierarchy mode"
 msgstr "Modo jerárquico"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1088
-#: ../lib/python/Screens/InfoBarGenerics.py:1096
+#: ../lib/python/Screens/InfoBarGenerics.py:1070
+#: ../lib/python/Screens/InfoBarGenerics.py:1076
 msgid "How many minutes do you want to record?"
 msgstr "¿Cuántos minutos quiere grabar?"
 
 #: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "Dirección IP"
+
+#: ../lib/python/Components/Language.py:18
+msgid "Icelandic"
+msgstr "Islandés"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
 msgid "Image-Upgrade"
@@ -586,7 +592,7 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:40 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
 msgid "Language selection"
 msgstr "Selección de Idioma"
 
@@ -695,11 +701,11 @@ msgstr "Siguiente"
 msgid "No"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1110
+#: ../lib/python/Screens/InfoBarGenerics.py:1088
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD no encontrado o no inicializado!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1067
+#: ../lib/python/Screens/InfoBarGenerics.py:1029
 msgid "No event info found, recording indefinitely."
 msgstr "No hay info del evento, grabando indefinidamente."
 
@@ -802,7 +808,7 @@ msgstr "Almacenar motor"
 msgid "Press OK to activate the settings."
 msgstr "Pulse OK para activar la configuración."
 
-#: ../lib/python/Screens/ScanSetup.py:448
+#: ../lib/python/Screens/ScanSetup.py:465
 msgid "Press OK to scan"
 msgstr "Pulse OK para buscar"
 
@@ -827,7 +833,7 @@ msgstr "Proveedores"
 msgid "Really delete done timers?"
 msgstr "¿Quiere borrar las programaciones terminadas?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165
+#: ../lib/python/Screens/InfoBarGenerics.py:1141
 msgid "Record"
 msgstr "Grabar"
 
@@ -845,7 +851,7 @@ msgstr "Borrar plugins"
 
 #: ../lib/python/Screens/TimerEntry.py:150
 msgid "Repeat Type"
-msgstr ""
+msgstr "Tipo de repetición"
 
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
@@ -854,7 +860,7 @@ msgstr "Resetear"
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:77
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
 msgid "Restore"
-msgstr ""
+msgstr "Restaurar"
 
 #: ../lib/python/Screens/ScanSetup.py:164
 msgid "SNR"
@@ -882,8 +888,8 @@ msgstr "Satélites"
 msgid "Saturday"
 msgstr "Sábado"
 
-#: ../lib/python/Screens/ScanSetup.py:441
-#: ../lib/python/Screens/ScanSetup.py:444
+#: ../lib/python/Screens/ScanSetup.py:458
+#: ../lib/python/Screens/ScanSetup.py:461
 msgid "Scan NIM"
 msgstr "Escanear NIM"
 
@@ -916,8 +922,8 @@ msgid "Show the radio player..."
 msgstr "Reproductor de radio..."
 
 #: ../lib/python/Screens/EventView.py:102
-msgid "Similar broadcastings:"
-msgstr ""
+msgid "Similar broadcasts:"
+msgstr "Emisiones similares:"
 
 #: ../lib/python/Components/NimManager.py:633
 #: ../lib/python/Components/NimManager.py:640
@@ -970,7 +976,7 @@ msgstr "Español"
 msgid "Start"
 msgstr "Inicio"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1094
 msgid "Start recording?"
 msgstr "¿Iniciar grabación?"
 
@@ -990,7 +996,7 @@ msgstr "Paso este"
 msgid "Step west"
 msgstr "Paso oeste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:950
+#: ../lib/python/Screens/InfoBarGenerics.py:911
 msgid "Stop Timeshift?"
 msgstr "¿Parar grabación de pausa?"
 
@@ -1006,7 +1012,7 @@ msgstr "Almacenar posición"
 msgid "Stored position"
 msgstr "Posición almacenada"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1170 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1146 ../data/
 msgid "Subservices"
 msgstr "Subservicios"
 
@@ -1051,11 +1057,11 @@ msgstr "Jueves"
 msgid "Timer Type"
 msgstr "Tipo de grabación"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:922
+#: ../lib/python/Screens/InfoBarGenerics.py:883
 msgid "Timeshift not possible!"
 msgstr "¡Pausa no posible!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1174
+#: ../lib/python/Screens/InfoBarGenerics.py:1150
 msgid "Timeshifting"
 msgstr "Pausa"
 
@@ -1110,7 +1116,7 @@ msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "USB Stick"
-msgstr ""
+msgstr "Memoria USB"
 
 #: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
@@ -1225,6 +1231,21 @@ msgstr "sobre comenzar"
 msgid "add bouquet..."
 msgstr "añadir lista..."
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1094
+msgid "add recording (enter recording duration)"
+msgstr "añadir grabación (introduzca duración)"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1094
+msgid "add recording (indefinitely)"
+msgstr "añadir grabación (indefinidamente)"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1094
+msgid "add recording (stop after current event)"
+msgstr "añadirgrabación (parar después del evento actual)"
+
 #: ../lib/python/Screens/ChannelSelection.py:65
 msgid "add service to bouquet"
 msgstr "añadir canal a la lista"
@@ -1238,11 +1259,17 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"está seguro que quere restaurar\n"
+"el siguiente backup:\n"
 
 #: ../lib/python/Screens/MovieSelection.py:24
 #: ../lib/python/Screens/ChannelSelection.py:96
 msgid "back"
 msgstr "atrás"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
+msgid "change recording (duration)"
+msgstr "cambiar la grabación (duración)"
 
 #: ../lib/python/Screens/ScanSetup.py:218
 msgid "circular left"
@@ -1268,11 +1295,11 @@ msgstr "borrar..."
 msgid "disable move mode"
 msgstr "inabilitar modo movimiento"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
 msgid "do nothing"
 msgstr "no hacer nada"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1094
 msgid "don't record"
 msgstr "no grabar"
 
@@ -1304,18 +1331,13 @@ msgstr "fin de edición de listas"
 msgid "end favourites edit"
 msgstr "fin edición de favoritos"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
-msgid "enter recording duration"
-msgstr "introduzca la duración de la grabación"
-
 #: ../lib/python/Components/DiskInfo.py:30
 msgid "free diskspace"
 msgstr "espacio libre en disco"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "full /etc directory"
-msgstr ""
+msgstr "todo el directorio /etc"
 
 #: ../lib/python/Screens/ScanSetup.py:218
 msgid "horizontal"
@@ -1338,18 +1360,18 @@ msgstr "lista"
 msgid "manual"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:290
+#: ../lib/python/Screens/InfoBarGenerics.py:256
 msgid "next channel"
-msgstr "siguiente canal"
+msgstr "canal siguiente"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:292
+#: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "next channel in history"
-msgstr "siguiente canal en historia"
+msgstr "canal siguiente en historia"
 
 #: ../lib/python/Screens/ScanSetup.py:227
 #: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:440
-#: ../lib/python/Screens/ScanSetup.py:443
+#: ../lib/python/Screens/ScanSetup.py:457
+#: ../lib/python/Screens/ScanSetup.py:460
 #: ../lib/python/Screens/TimerEntry.py:112
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
@@ -1386,7 +1408,7 @@ msgstr "una vez"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "only /etc/enigma2 directory"
-msgstr ""
+msgstr "solo el directorio /etc/enigma2"
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -1396,21 +1418,17 @@ msgstr "pasa"
 msgid "please press OK when ready"
 msgstr "pulse OK cuando esté preparado"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:289
+#: ../lib/python/Screens/InfoBarGenerics.py:255
 msgid "previous channel"
 msgstr "canal anterior"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:291
+#: ../lib/python/Screens/InfoBarGenerics.py:257
 msgid "previous channel in history"
 msgstr "canal anterior en historia"
 
 #: ../lib/python/Screens/TimerEntry.py:95
 msgid "record"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
-msgid "record indefinitely"
-msgstr "grabar indefinidamente"
+msgstr "grabar"
 
 #: ../lib/python/Components/TimerList.py:64
 msgid "recording..."
@@ -1466,19 +1484,15 @@ msgstr ""
 msgid "scan state"
 msgstr "estado de la búsqueda"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:379
+#: ../lib/python/Screens/InfoBarGenerics.py:345
 msgid "show EPG..."
 msgstr "mostrar EPG..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:350
+#: ../lib/python/Screens/InfoBarGenerics.py:316
 msgid "show event details"
 msgstr "mostrar detalles del evento"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
-msgid "stop after current event"
-msgstr "parar después del evento actual"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1092
 msgid "stop recording"
 msgstr "parar grabación"
 
@@ -1508,8 +1522,8 @@ msgstr "semanalmente"
 
 #: ../lib/python/Screens/ScanSetup.py:227
 #: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:440
-#: ../lib/python/Screens/ScanSetup.py:443
+#: ../lib/python/Screens/ScanSetup.py:457
+#: ../lib/python/Screens/ScanSetup.py:460
 #: ../lib/python/Screens/TimerEntry.py:112
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
@@ -1518,11 +1532,11 @@ msgstr "si"
 
 #: ../lib/python/Screens/TimerEntry.py:95
 msgid "zap"
-msgstr ""
+msgstr "zapear"
 
 #: ../lib/python/Components/TimerList.py:62
 msgid "zapped"
-msgstr ""
+msgstr "zapeado"
 
 #: ../data/
 msgid "Channel Selection"
@@ -1798,7 +1812,7 @@ msgstr "Brillo"
 
 #: ../data/
 msgid "Standby"
-msgstr ""
+msgstr "Reposo"
 
 #: ../data/
 msgid "Yes, do another manual scan now"
@@ -1934,6 +1948,10 @@ msgid ""
 msgstr ""
 "Ha elegido hacer un backup a tu disco duro. Pulse OK para comentar el backup "
 "ahora"
+
+#: ../data/
+msgid "Timer selection"
+msgstr "Selección de grabación"
 
 #: ../data/
 msgid "Repeat"
@@ -2255,11 +2273,20 @@ msgstr "Configurar satélite"
 
 #: ../data/
 msgid "MediaPlayer"
-msgstr ""
+msgstr "Reproductor"
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "¿Quieres hacer otra búsqueda manual?"
+
+#~ msgid "enter recording duration"
+#~ msgstr "introduzca la duración de la grabación"
+
+#~ msgid "record indefinitely"
+#~ msgstr "grabar indefinidamente"
+
+#~ msgid "stop after current event"
+#~ msgstr "parar después del evento actual"
 
 #~ msgid ""
 #~ "Do you want to stop the current\n"
