@@ -60,7 +60,10 @@ class MovieList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def getCurrent(self):
-		return self.l.getCurrentSelection()[0]
+		l = self.l.getCurrentSelection()
+		if l is not None:
+			return self.l.getCurrentSelection()[0]
+		return None
 
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
@@ -88,9 +91,10 @@ class MovieList(HTMLComponent, GUIComponent):
 		return len(self.list)
 
 	def updateLengthOfIndex(self, index):
-		x = self.list[index]
-		self.list[index] = (x[0], x[1], x[2], x[1].getLength(x[0]))
-		self.l.invalidateEntry(index)
+		if len(self.list) > index:
+			x = self.list[index]
+			self.list[index] = (x[0], x[1], x[2], x[1].getLength(x[0]))
+			self.l.invalidateEntry(index)
 
 	def load(self, root):
 		# this lists our root service, then building a 
