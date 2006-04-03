@@ -100,7 +100,7 @@ def fileExists(f):
 
 def getRecordingFilename(basename):
 		# filter out non-allowed characters
-	non_allowed_characters = "/.\\:\""
+	non_allowed_characters = "/.\\:*?<>|\""
 	filename = ""
 	
 	basename = basename.replace('\xc2\x86', '').replace('\xc2\x87', '')
