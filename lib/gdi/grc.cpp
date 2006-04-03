@@ -102,23 +102,24 @@ void *gRC::thread()
 #ifndef SYNC_PAINT
 	while (1)
 	{
-		singleLock s(mutex);
 #else
 	while (rp != wp)
 	{
 #endif
+		pthread_mutex_lock(&mutex);
 		if ( rp != wp )
 		{
-			gOpcode& o(queue[rp]);
+			gOpcode o(queue[rp]);
+			rp++;
+			if ( rp == MAXSIZE )
+				rp=0;
+			pthread_mutex_unlock(&mutex);
 			if (o.opcode==gOpcode::shutdown)
 				break;
 			else if (o.opcode==gOpcode::notify)
 				need_notify = 1;
 			else
 				o.dc->exec(&o);
-			rp++;
-			if ( rp == MAXSIZE )
-				rp=0;
 		}
 		else
 		{
@@ -130,6 +131,7 @@ void *gRC::thread()
 #ifndef SYNC_PAINT
 			pthread_cond_wait(&cond, &mutex);
 #endif
+			pthread_mutex_unlock(&mutex);
 		}
 	}
 #ifndef SYNC_PAINT
