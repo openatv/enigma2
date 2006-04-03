@@ -131,7 +131,6 @@ void *gRC::thread()
 #ifndef SYNC_PAINT
 			pthread_cond_wait(&cond, &mutex);
 #endif
-			pthread_mutex_unlock(&mutex);
 		}
 	}
 #ifndef SYNC_PAINT
