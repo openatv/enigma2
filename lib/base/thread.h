@@ -29,6 +29,11 @@ public:
 	eThread();
 	virtual ~eThread();
 
+		/* thread_finished is called from within the thread context as the last function
+		   before the thread is going to die.
+		   It should be used to do final cleanups (unlock locked mutexes ....) */
+	virtual void thread_finished() {}
+
 		/* runAsync starts the thread.
 		   it assumes that the thread is not running,
 		   i.e. sync() *must* return 0.
