@@ -7,17 +7,20 @@
 void eThread::thread_completed(void *ptr)
 {
 	eThread *p = (eThread*) ptr;
-	eDebug("thread has completed..");
-	p->alive=0;
-	p->thread_finished();
+	p->m_alive = 0;
+
+		/* recover state */
+	if (!p->m_state.value())
+	{
+		p->m_state.up();
+		assert(p->m_state.value() == 1);
+	}
 }
 
 void *eThread::wrapper(void *ptr)
 {
 	eThread *p = (eThread*)ptr;
-	p->before_set_thread_alive();
-	p->alive=1;
-	pthread_cleanup_push( thread_completed, (void*)p );
+	pthread_cleanup_push(thread_completed, (void*)p);
 	p->thread();
 	pthread_exit(0);
 	pthread_cleanup_pop(1);
@@ -25,65 +28,95 @@ void *eThread::wrapper(void *ptr)
 }
 
 eThread::eThread()
-	:the_thread(0), alive(0)
+	: the_thread(0), m_alive(0)
 {
 }
 
-void eThread::run( int prio, int policy )
+int eThread::runAsync(int prio, int policy)
 {
-	if (alive)
-	{
-		eDebug("thread already running !!");
-		return;
-	}
+	eDebug("before: %d", m_state.value());
+		/* the thread might already run. */
+	if (sync())
+		return -1;
+	
+	eDebug("after: %d", m_state.value());
+	assert(m_state.value() == 1); /* sync postconditions */
+	assert(!m_alive);
+	m_state.down();
+	
+	m_alive = 1;
+
+		/* start thread. */
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
-	if (prio||policy)
+	
+	if (prio || policy)
 	{
 		struct sched_param p;
 		p.__sched_priority=prio;
-		pthread_attr_setschedpolicy(&attr, policy );
+		pthread_attr_setschedpolicy(&attr, policy);
 		pthread_attr_setschedparam(&attr, &p);
 	}
-	if ( pthread_create(&the_thread, &attr, wrapper, this) )
+	
+	if (pthread_create(&the_thread, &attr, wrapper, this))
 	{
+		pthread_attr_destroy(&attr);
+		m_alive = 0;
 		eDebug("couldn't create new thread");
-		return;
+		return -1;
 	}
+	
 	pthread_attr_destroy(&attr);
-	usleep(1000);
-	int timeout=50;
-	while(!alive && timeout--)
-	{
-//		eDebug("waiting for thread start...");
-		usleep(1000*10);
-	}
-	if ( !timeout )
-		eDebug("thread couldn't be started !!!");
+	return 0;
 }                     
+
+int eThread::run(int prio, int policy)
+{
+	if (runAsync(prio, policy))
+		return -1;
+	sync();
+	return 0;
+}
 
 eThread::~eThread()
 {
 	kill();
 }
 
+int eThread::sync(void)
+{
+	int res;
+	m_state.down(); /* this might block */
+	res = m_alive;
+	assert(m_state.value() == 0);
+	m_state.up();
+	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
+}
+
 void eThread::sendSignal(int sig)
 {
-	if ( alive )
-		pthread_kill( the_thread, sig );
+	if (m_alive)
+		pthread_kill(the_thread, sig);
 	else
 		eDebug("send signal to non running thread");
 }
 
 void eThread::kill(bool sendcancel)
 {
-	if (!the_thread)
+	if (!the_thread) /* already joined */
 		return;
-	if ( alive && sendcancel )
+
+	if (sync() && sendcancel)
 	{
 		eDebug("send cancel to thread");
 		pthread_cancel(the_thread);
 	}
 	eDebug("thread joined %d", pthread_join(the_thread, 0));
-	the_thread=0;
+	the_thread = 0;
+}
+
+void eThread::hasStarted()
+{
+	assert(!m_state.value());
+	m_state.up();
 }
