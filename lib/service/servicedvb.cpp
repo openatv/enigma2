@@ -186,6 +186,8 @@ int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w
 	{
 	case iServiceInformation::sDescription:
 		return iServiceInformation::resIsString;
+	case iServiceInformation::sServiceref:
+		return iServiceInformation::resIsString;
 	case iServiceInformation::sTimeCreate:
 		if (m_parser.m_time_create)
 			return m_parser.m_time_create;
@@ -202,6 +204,8 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 	{
 	case iServiceInformation::sDescription:
 		return m_parser.m_description;
+	case iServiceInformation::sServiceref:
+		return m_parser.m_ref.toString();
 	default:
 		return "";
 	}

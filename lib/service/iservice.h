@@ -251,6 +251,7 @@ public:
 		sProvider,
 		
 		sDescription,
+		sServiceref,
 		sTimeCreate,	// unix time or string
 		
 		sTitle,
