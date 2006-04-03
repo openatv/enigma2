@@ -1045,10 +1045,7 @@ RESULT eDVBChannel::playFile(const char *file)
 		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
 		return -ENODEV;
 	}
-	
-	m_state = state_ok;
-	m_stateChanged(this);
-	
+
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->setScatterGather(this);
@@ -1061,6 +1058,9 @@ RESULT eDVBChannel::playFile(const char *file)
 		return -ENOENT;
 	}
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
+
+	m_state = state_ok;
+	m_stateChanged(this);
 
 	return 0;
 }
