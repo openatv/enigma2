@@ -24,6 +24,20 @@
 
 #else
 #include <linux/dvb/dmx.h>
+
+// #define HAVE_ADD_PID
+
+#ifdef HAVE_ADD_PID
+#define DMX_ADD_PID              _IO('o', 51)
+#define DMX_REMOVE_PID           _IO('o', 52)
+
+typedef enum {
+	DMX_TAP_TS = 0,
+	DMX_TAP_PES = DMX_PES_OTHER, /* for backward binary compat. */
+} dmx_tap_type_t;
+
+#endif
+
 #endif
 
 #include "crc32.h"
@@ -314,14 +328,18 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
 	m_running = 0;
 	m_target_fd = -1;
 	m_thread = new eDVBRecordFileThread();
+#ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 1;
+#endif
 }
 
 eDVBTSRecorder::~eDVBTSRecorder()
 {
 	stop();
 	delete m_thread;
+#ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 0;
+#endif
 }
 
 RESULT eDVBTSRecorder::start()
@@ -331,8 +349,9 @@ RESULT eDVBTSRecorder::start()
 	
 	if (m_target_fd == -1)
 		return -2;
-		
+
 	char filename[128];
+#ifndef HAVE_ADD_PID
 #if HAVE_DVB_API_VERSION < 3
 	snprintf(filename, 128, "/dev/dvb/card%d/dvr%d", m_demux->adapter, m_demux->demux);
 #else
@@ -345,6 +364,36 @@ RESULT eDVBTSRecorder::start()
 		eDebug("FAILED to open dvr (%s) in ts recoder (%m)", filename);
 		return -3;
 	}
+#else
+	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
+
+	m_source_fd = ::open(filename, O_RDONLY);
+	
+	if (m_source_fd < 0)
+	{
+		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);
+		return -3;
+	}
+	
+	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 1024*1024);
+
+	dmx_pes_filter_params flt;
+	flt.pes_type = (dmx_pes_type_t)DMX_TAP_TS;
+	flt.pid     = 0x1234; /* FIXME */
+	flt.input   = DMX_IN_FRONTEND;
+	flt.output  = DMX_OUT_TAP;
+	flt.flags   = 0;
+	int res = ::ioctl(m_source_fd, DMX_SET_PES_FILTER, &flt);
+	if (res)
+	{
+		eDebug("DMX_SET_PES_FILTER: %m");
+		::close(m_source_fd);
+		return -3;
+	}
+	
+	::ioctl(m_source_fd, DMX_START);
+	
+#endif
 	
 	m_thread->start(m_source_fd, m_target_fd);
 	m_running = 1;
@@ -395,6 +444,7 @@ RESULT eDVBTSRecorder::setTargetFD(int fd)
 RESULT eDVBTSRecorder::setTargetFilename(const char *filename)
 {
 	m_target_filename = filename;
+	return 0;
 }
 
 RESULT eDVBTSRecorder::setBoundary(off_t max)
@@ -427,6 +477,7 @@ RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnecti
 
 RESULT eDVBTSRecorder::startPID(int pid)
 {
+#ifndef HAVE_ADD_PID
 	int fd = m_demux->openDemux();
 	if (fd < 0)
 	{
@@ -458,13 +509,23 @@ RESULT eDVBTSRecorder::startPID(int pid)
 		return -1;
 	}
 	m_pids[pid] = fd;
-
+#else
+	eDebug("add pid: %08x", pid);
+	if (::ioctl(m_source_fd, DMX_ADD_PID, pid))
+		perror("DMX_ADD_PID");
+	eDebug("ok");
+#endif
 	return 0;
 }
 
 void eDVBTSRecorder::stopPID(int pid)
 {
+#ifndef HAVE_ADD_PID
 	if (m_pids[pid] != -1)
 		::close(m_pids[pid]);
 	m_pids[pid] = -1;
+#else
+	if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid))
+		perror("DMX_REMOVE_PID");
+#endif
 }
