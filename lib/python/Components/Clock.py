@@ -32,7 +32,6 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		t = time.localtime()
 		timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		self.setText(timestr)
-		setLCDClock(timestr)
 
 # realisierung als GUI
 	def createWidget(self, parent):
