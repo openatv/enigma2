@@ -18,6 +18,7 @@ public:
 	void run(int prio=0, int policy=0);
 
 	virtual void thread()=0;
+	virtual void before_set_thread_alive() { }
 	virtual void thread_finished() { }
 	void sendSignal(int sig);
 

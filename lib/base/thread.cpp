@@ -15,6 +15,7 @@ void eThread::thread_completed(void *ptr)
 void *eThread::wrapper(void *ptr)
 {
 	eThread *p = (eThread*)ptr;
+	p->before_set_thread_alive();
 	p->alive=1;
 	pthread_cleanup_push( thread_completed, (void*)p );
 	p->thread();
