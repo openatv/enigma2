@@ -13,7 +13,7 @@ from enigma import eServiceReference, eServiceCenter, \
 #
 # | name of movie              |
 #
-def MovieListEntry(serviceref, serviceHandler):
+def MovieListEntry(serviceref, serviceHandler, withLength = False):
 	if serviceref.flags & eServiceReference.mustDescent:
 		return None
 
@@ -23,7 +23,10 @@ def MovieListEntry(serviceref, serviceHandler):
 		# ignore service which refuse to info
 		return None
 	
-	len = info.getLength(serviceref)
+	if withLength:
+		len = info.getLength(serviceref)
+	else:
+		len = 0
 	if len > 0:
 		len = "%d:%02d" % (len / 60, len % 60)
 	else:
@@ -90,6 +93,14 @@ class MovieList(HTMLComponent, GUIComponent):
 			if l[0][0] == service:
 				self.list.remove(l)
 		self.l.setList(self.list)
+
+	def __len__(self):
+		return len(self.list)
+
+	def updateLengthOfIndex(self, index):
+		serviceHandler = eServiceCenter.getInstance()
+		self.list[index] = MovieListEntry(self.list[index][0][0], serviceHandler, True)
+		self.l.invalidateEntry(index)
 
 	def load(self, root):
 		# this lists our root service, then building a 
