@@ -167,9 +167,10 @@ RESULT eDVBFrontendParameters::getDVBT(eDVBFrontendParametersTerrestrial &p) con
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::setDVBS(const eDVBFrontendParametersSatellite &p)
+RESULT eDVBFrontendParameters::setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune)
 {
 	sat = p;
+	sat.no_rotor_command_on_tune = no_rotor_command_on_tune;
 	m_type = iDVBFrontend::feSatellite;
 	return 0;
 }

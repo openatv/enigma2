@@ -28,6 +28,7 @@ struct eDVBFrontendParametersSatellite
 			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone
 		};
 	};
+	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
 	int polarisation, fec, inversion, orbital_position;
 };
