@@ -447,7 +447,7 @@ public:
 	virtual RESULT getState(int &SWIG_OUTPUT)=0;	
 
 		/* direct frontend access for raw channels and/or status inquiries. */
-	virtual RESULT getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
+	virtual RESULT getFrontend(ePtr<iDVBFrontend> &)=0;
 
 #ifndef SWIG
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;

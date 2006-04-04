@@ -199,8 +199,8 @@ public:
 #ifdef SWIG
 public:
 #endif
-	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int frontend_index);
-	static SWIG_VOID(RESULT) getInstance(ePtr<eDVBResourceManager> &OUTPUT);
+	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &, int frontend_index);
+	static RESULT getInstance(ePtr<eDVBResourceManager> &);
 };
 TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManagerPtr);
 #ifndef SWIG

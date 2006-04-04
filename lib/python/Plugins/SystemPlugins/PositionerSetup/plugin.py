@@ -185,18 +185,25 @@ class PositionerSetup(Screen):
 
 	def diseqc(self, what):
 		res_mgr = eDVBResourceManagerPtr()
-		eDVBResourceManager.getInstance(res_mgr)
-		raw_channel = iDVBChannelPtr()
-		res_mgr.allocateRawChannel(raw_channel, self.feid)
-		frontend = raw_channel.getFrontend()
-		cmd = eDVBDiseqcCommand
-		if what == "moveWest":
-			cmd.setCommandString('\xe1\x31\x69\x40') 
-		elif what == "moveEast":
-			cmd.setCommandString('\xe1\x31\x68\x40') 
+		if eDVBResourceManager.getInstance(res_mgr) == 0:
+			raw_channel = iDVBChannelPtr()
+			if res_mgr.allocateRawChannel(raw_channel, self.feid) == 0:
+				frontend = iDVBFrontendPtr()
+				if raw_channel.getFrontend(frontend) == 0:
+					cmd = eDVBDiseqcCommand()
+					if what == "moveWest":
+						cmd.setCommandString('\xe1\x31\x69\x40') 
+					elif what == "moveEast":
+						cmd.setCommandString('\xe1\x31\x68\x40') 
+					else:
+						cmd.setCommandString('\xe0\x31\x60') #positioner stop
+					frontend.sendDiseqc(cmd)
+				else:
+					print "getFrontend failed"
+			else:
+				print "getRawChannel failed"
 		else:
-			cmd.setCommandString('\xe0\x31\x60') #positioner stop
-		frontend.sendDiseqc(cmd)
+				print "getResourceManager instance failed"
 
 	def updateStatus(self):
 		if eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
