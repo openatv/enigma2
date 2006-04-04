@@ -20,7 +20,7 @@ public:
 	RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
 	RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
 
-	RESULT setDVBS(const eDVBFrontendParametersSatellite &p);
+	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
 	

@@ -397,7 +397,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				int RotorCmd=-1;
 				bool useGotoXX = false;
-				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )
+				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
+					&& !sat.no_rotor_command_on_tune )
 				{
 					if (depend_satpos_mode || linked)
 						// in this both modes we dont really turn the rotor.... but in canTune we need the satpos
