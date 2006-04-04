@@ -11,6 +11,8 @@ class TunerInfo(GUIComponent):
 	SNR_BAR = 3
 	AGC_BAR = 4
 	BER_BAR = 5
+	LOCK_STATE = 6
+	SYNC_STATE = 7
 	def __init__(self, type, servicefkt):
 		GUIComponent.__init__(self)
 		self.instance = None
@@ -50,6 +52,8 @@ class TunerInfo(GUIComponent):
 					value = feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality) * 100 / 65536
 				elif self.type == self.BER_VALUE or self.type == self.BER_BAR:
 					value = feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
+				elif self.type == self.LOCK_STATE:
+					value = feinfo.getFrontendInfo(iFrontendStatusInformation.LockState)
 		
 		if self.type == self.SNR_PERCENTAGE or self.type == self.AGC_PERCENTAGE:
 			self.setText("%d%%" % (value))
@@ -59,9 +63,14 @@ class TunerInfo(GUIComponent):
 			self.setValue(value)
 		elif self.type == self.BER_BAR:
 			self.setValue(self.calc(value))
-
+		elif self.type == self.LOCK_STATE:
+			if value == 1:
+				self.setText(_("locked"))
+			else:
+				self.setText(_("not locked"))
+				
 	def createWidget(self, parent):
-		if self.SNR_PERCENTAGE <= self.type <= self.BER_VALUE:
+		if self.SNR_PERCENTAGE <= self.type <= self.BER_VALUE or self.type == self.LOCK_STATE:
 			return eLabel(parent)
 		elif self.SNR_BAR <= self.type <= self.BER_BAR:
 			self.g = eSlider(parent)
