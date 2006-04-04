@@ -16,6 +16,7 @@ from Components.ServiceName import ServiceName
 from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
 from Components.config import configfile, configsequencearg
 from Components.TimerList import TimerEntryComponent
+from Components.TunerInfo import TunerInfo
 
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -429,49 +430,30 @@ class InfoBarEPG:
 			self.epglist[1]=tmp
 			setEvent(self.epglist[0])
 
-from math import log
-
 class InfoBarTuner:
 	"""provides a snr/agc/ber display"""
 	def __init__(self):
 		self["snr"] = Label()
 		self["agc"] = Label()
 		self["ber"] = Label()
-		self["snr_percent"] = Label()
-		self["agc_percent"] = Label()
-		self["ber_count"] = Label()
-		self["snr_progress"] = ProgressBar()
-		self["agc_progress"] = ProgressBar()
-		self["ber_progress"] = ProgressBar()
+		self["snr_percent"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, self.session.nav.getCurrentService)
+		self["agc_percent"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, self.session.nav.getCurrentService)
+		self["ber_count"] = TunerInfo(TunerInfo.BER_VALUE, self.session.nav.getCurrentService)
+		self["snr_progress"] = TunerInfo(TunerInfo.SNR_BAR, self.session.nav.getCurrentService)
+		self["agc_progress"] = TunerInfo(TunerInfo.AGC_BAR, self.session.nav.getCurrentService)
+		self["ber_progress"] = TunerInfo(TunerInfo.BER_BAR, self.session.nav.getCurrentService)
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.updateTunerInfo)
 		self.timer.start(1000)
 
-	def calc(self,val):
-		if not val:
-			return 0
-		if val < 2500:
-			return (long)(log(val)/log(2))
-		return val*100/65535
-
 	def updateTunerInfo(self):
 		if self.instance.isVisible():
-			service = self.session.nav.getCurrentService()
-			snr=0
-			agc=0
-			ber=0
-			if service is not None:
-				feinfo = service.frontendStatusInfo()
-				if feinfo is not None:
-					ber=feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
-					snr=feinfo.getFrontendInfo(iFrontendStatusInformation.signalPower)*100/65536
-					agc=feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality)*100/65536
-			self["snr_percent"].setText("%d%%"%(snr))
-			self["agc_percent"].setText("%d%%"%(agc))
-			self["ber_count"].setText("%d"%(ber))
-			self["snr_progress"].setValue(snr)
-			self["agc_progress"].setValue(agc)
-			self["ber_progress"].setValue(self.calc(ber))
+			self["snr_percent"].update()
+			self["agc_percent"].update()
+			self["ber_count"].update()
+			self["snr_progress"].update()
+			self["agc_progress"].update()
+			self["ber_progress"].update()
 
 class InfoBarEvent:
 	"""provides a current/next event info display"""
