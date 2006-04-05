@@ -1,4 +1,4 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr, iDVBFrontend
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 
@@ -17,7 +17,6 @@ class PositionerSetup(Screen):
 			<widget name="green" position="140,120" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
 			<widget name="yellow" position="280,120" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
 			<widget name="blue" position="420,120" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
-			<widget name="status" position="0,320" size="550,40" font="Regular;15" />
 			
 			<widget name="snr" text="SNR:" position="0,220" size="60,22" font="Regular;21" />
 			<widget name="agc" text="AGC:" position="0,245" size="60,22" font="Regular;21" />
@@ -35,12 +34,15 @@ class PositionerSetup(Screen):
 		self.skin = PositionerSetup.skin
 		Screen.__init__(self, session)
 		
+		self.session.nav.stopService()
+		
+		self.diseqc = Diseqc()
+		
+		#self.session.nav.stopService()
+		
 		self.createConfig()
 		
 		self.isMoving = False
-		
-		self.status = Label("")
-		self["status"] = self.status
 		
 		self.red = Label("")
 		self["red"] = self.red
@@ -94,7 +96,10 @@ class PositionerSetup(Screen):
 		config.positioner.tune = configElement_nonSave("tune", configNothing, 0, None)
 		config.positioner.move = configElement_nonSave("move", configNothing, 0, None)
 		config.positioner.limits = configElement_nonSave("limits", configNothing, 0, None)
-		config.positioner.storage = configElement_nonSave("storage", configSelection, 0, ("1", "2", "3"))
+		storepos = []
+		for x in range(255):
+			storepos.append(str(x))
+		config.positioner.storage = configElement_nonSave("storage", configSelection, 0, storepos)
 	
 	def createSetup(self):
 		self.list.append(getConfigListEntry(_("Tune"), config.positioner.tune))
@@ -137,17 +142,17 @@ class PositionerSetup(Screen):
 				self.yellow.setText(_("Stop"))
 				self.blue.setText(_("Stop"))
 			else:
-				self.red.setText(_("Move east"))
-				self.green.setText(_("Step east"))
-				self.yellow.setText(_("Step west"))
-				self.blue.setText(_("Move west"))
+				self.red.setText(_("Move west"))
+				self.green.setText(_("Step west"))
+				self.yellow.setText(_("Step east"))
+				self.blue.setText(_("Move east"))
 		elif entry == "limits":
 			self.red.setText(_("Limits off"))
-			self.green.setText(_("Limit east"))
-			self.yellow.setText(_("Limit west"))
+			self.green.setText(_("Limit west"))
+			self.yellow.setText(_("Limit east"))
 			self.blue.setText("")
 		elif entry == "storage":
-			self.red.setText(_("Apply satellite"))
+			self.red.setText()
 			self.green.setText(_("Store position"))
 			self.yellow.setText(_("Goto position"))
 			self.blue.setText("")
@@ -160,70 +165,105 @@ class PositionerSetup(Screen):
 	def redKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
-			print "moving east"
-			self.diseqc()
-	
+			if self.isMoving:
+				self.diseqc.command("stop")
+				self.isMoving = False
+			else:
+				self.diseqc.command("moveWest", 0)
+				self.isMoving = True
+			self.updateColors("move")
+			print "moving west"
+		elif entry == "limits":
+			self.diseqc.command("limitOff")
+				
 	def greenKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
-			print "stepping east"
+			print "stepping west"
+			self.diseqc.command("moveWest", 1)
+		elif entry == "storage":
+			print "store at position", (config.positioner.storage.value + 1)
+			self.diseqc.command("store", config.positioner.storage.value + 1)
+		elif entry == "limits":
+			self.diseqc.command("limitWest")
 	
 	def yellowKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			print "stepping east"
-	
+			self.diseqc.command("moveEast", 1)
+		elif entry == "storage":
+			print "move to position", (config.positioner.storage.value + 1)
+			self.diseqc.command("moveTo", config.positioner.storage.value + 1)
+		elif entry == "limits":
+			self.diseqc.command("limitEast")
+#	
 	def blueKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
-			print "moving west"
 			if self.isMoving:
-				self.diseqc("stop")
+				self.diseqc.command("stop")
+				self.isMoving = False
 			else:
-				self.diseqc("moveWest")
-			print "stepping west"
-
-	def diseqc(self, what):
-		res_mgr = eDVBResourceManagerPtr()
-		if eDVBResourceManager.getInstance(res_mgr) == 0:
-			raw_channel = iDVBChannelPtr()
-			if res_mgr.allocateRawChannel(raw_channel, self.feid) == 0:
-				frontend = iDVBFrontendPtr()
-				if raw_channel.getFrontend(frontend) == 0:
-					cmd = eDVBDiseqcCommand()
-					if what == "moveWest":
-						cmd.setCommandString('\xe1\x31\x69\x40') 
-					elif what == "moveEast":
-						cmd.setCommandString('\xe1\x31\x68\x40') 
-					else:
-						cmd.setCommandString('\xe0\x31\x60') #positioner stop
-					frontend.sendDiseqc(cmd)
-				else:
-					print "getFrontend failed"
-			else:
-				print "getRawChannel failed"
-		else:
-				print "getResourceManager instance failed"
+				self.diseqc.command("moveEast", 0)
+				self.isMoving = True
+			self.updateColors("move")
+			print "moving east"
 
 	def updateStatus(self):
-		if eDVBSatelliteEquipmentControl.getInstance().isRotorMoving():
-			if not self.isMoving:
-				self.isMoving = True
-				self.updateColors(self.getCurrentConfigPath())
-			self.status.setText("moving...")
-		else:
-			if self.isMoving:
-				self.isMoving = False
-				self.updateColors(self.getCurrentConfigPath())
-			self.status.setText("not moving")
-			
 		self["snr_percentage"].update()
 		self["agc_percentage"].update()
 		self["ber_value"].update()
 		self["snr_bar"].update()
 		self["agc_bar"].update()
 		self["ber_bar"].update()
+
+class Diseqc:
+	def __init__(self, feid = 0):
+		self.ready = False
+		self.feid = feid
+		res_mgr = eDVBResourceManagerPtr()
+		if eDVBResourceManager.getInstance(res_mgr) == 0:
+			raw_channel = iDVBChannelPtr()
+			if res_mgr.allocateRawChannel(raw_channel, self.feid) == 0:
+				self.frontend = iDVBFrontendPtr()
+				if raw_channel.getFrontend(self.frontend) == 0:
+					self.frontend.setVoltage(iDVBFrontend.voltage18)
+					self.ready = True
+				else:
+					print "getFrontend failed"
+			else:
+				print "getRawChannel failed"
+		else:
+				print "getResourceManager instance failed"
 		
+	def command(self, what, param = 0):
+		if self.ready:
+			cmd = eDVBDiseqcCommand()
+			if what == "moveWest":
+				string = '\xe1\x31\x69' + chr(param)
+			elif what == "moveEast":
+				string = '\xe1\x31\x68' + chr(param)
+			elif what == "moveTo":
+				string = '\xe1\x31\x6b' + chr(param)
+			elif what == "store":
+				string = '\xe1\x31\x6a' + chr(param)
+			elif what == "limitOff":
+				string = '\xe1\x31\x63'
+			elif what == "limitEast":
+				string = '\xe1\x31\x66'
+			elif what == "limitWest":
+				string = '\xe1\x31\x67'
+			else:
+				string = '\xe0\x31\x60' #positioner stop
+			print "diseqc command:",
+			for x in string:
+				print hex(ord(x)),
+			print
+			
+			cmd.setCommandString(string)
+			self.frontend.sendDiseqc(cmd)
+					
 def PositionerMain(session, **kwargs):
 	session.open(PositionerSetup)
 
