@@ -152,7 +152,7 @@ class PositionerSetup(Screen):
 			self.yellow.setText(_("Limit east"))
 			self.blue.setText("")
 		elif entry == "storage":
-			self.red.setText()
+			self.red.setText("")
 			self.green.setText(_("Store position"))
 			self.yellow.setText(_("Goto position"))
 			self.blue.setText("")
@@ -228,7 +228,7 @@ class Diseqc:
 			if res_mgr.allocateRawChannel(raw_channel, self.feid) == 0:
 				self.frontend = iDVBFrontendPtr()
 				if raw_channel.getFrontend(self.frontend) == 0:
-					self.frontend.setVoltage(iDVBFrontend.voltage18)
+					self.frontend.setVoltage(iDVBFrontend.voltage13)
 					self.ready = True
 				else:
 					print "getFrontend failed"
@@ -241,25 +241,23 @@ class Diseqc:
 		if self.ready:
 			cmd = eDVBDiseqcCommand()
 			if what == "moveWest":
-				string = 'e13169' + ("%02x" % param)
+				string = 'e03169' + ("%02x" % param)
 			elif what == "moveEast":
-				string = 'e13168' + ("%02x" % param)
+				string = 'e03168' + ("%02x" % param)
 			elif what == "moveTo":
-				string = 'e1316b' + ("%02x" % param)
+				string = 'e0316b' + ("%02x" % param)
 			elif what == "store":
-				string = 'e1316a' + ("%02x" % param)
+				string = 'e0316a' + ("%02x" % param)
 			elif what == "limitOff":
-				string = 'e13163'
+				string = 'e03163'
 			elif what == "limitEast":
-				string = 'e13166'
+				string = 'e03166'
 			elif what == "limitWest":
-				string = 'e13167'
+				string = 'e03167'
 			else:
 				string = 'e03160' #positioner stop
 			print "diseqc command:",
-			for x in string:
-				print hex(ord(x)),
-			print
+			print string
 			
 			cmd.setCommandString(string)
 			self.frontend.sendDiseqc(cmd)
