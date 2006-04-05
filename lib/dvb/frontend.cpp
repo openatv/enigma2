@@ -57,10 +57,40 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 {
 	if (!str)
 		return;
-	len = strlen(str);
-	if (len > MAX_DISEQC_LENGTH)
-		len = MAX_DISEQC_LENGTH;
-	memcpy(data, str, len);
+	len=0;
+	int slen = strlen(str);
+	if (slen % 2)
+	{
+		eDebug("invalid diseqc command string length (not 2 byte aligned)");
+		return;
+	}
+	if (slen > MAX_DISEQC_LENGTH*2)
+	{
+		eDebug("invalid diseqc command string length (string is to long)");
+		return;
+	}
+	unsigned char val=0;
+	for (int i=0; i < slen; ++i)
+	{
+		unsigned char c = str[i];
+		switch(c)
+		{
+			case '0' ... '9': c-=48; break;
+			case 'a' ... 'f': c-=87; break;
+			case 'A' ... 'F': c-=55; break;
+			default:
+				eDebug("invalid character in hex string..ignore complete diseqc command !");
+				return;
+		}
+		if ( i % 2 )
+		{
+			val |= c;
+			data[i/2] = val;
+		}
+		else
+			val = c << 4;
+	}
+	len = slen/2;
 }
 
 void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescriptor &descriptor)
