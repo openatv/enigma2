@@ -109,7 +109,7 @@ void eWidget::show()
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		if (root)
+		if (!root)
 		{
 				/* oops: our root widget does not have a desktop associated. 
 					probably somebody already erased the root, but tries some
