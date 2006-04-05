@@ -51,5 +51,3 @@ class Standby(Screen):
 		self.avswitch.setInput("SCART")
 		#set lcd brightness to standby value
 		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
-		#clear lcd (servicename)
-		setLCD("                             ")
