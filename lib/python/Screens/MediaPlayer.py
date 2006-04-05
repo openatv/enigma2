@@ -21,6 +21,7 @@ import os
 class MediaPlayer(Screen, InfoBarSeek):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
+		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 		
 		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave)", useServiceRef = True)
@@ -49,7 +50,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "NumberActions", "MediaPlayerSeekActions"],
 		{
 			"ok": self.ok,
-			"cancel": self.close,
+			"cancel": self.exit,
 			
 			"right": self.rightDown,
 			"rightRepeated": self.doNothing,
@@ -115,6 +116,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def doNothing(self):
 		pass
 	
+	def exit(self):
+		self.close()
+	
 	def checkSkipShowHideLock(self):
 		self.updatedSeekState()
 	
@@ -122,7 +126,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.nextEntry()
 		
 	def __onClose(self):
-		self.session.nav.playService(None)
+		self.session.nav.playService(self.oldService)
 	
 	def delMPTimer(self):
 		del self.rightKeyTimer
