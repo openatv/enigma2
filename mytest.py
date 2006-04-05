@@ -322,7 +322,7 @@ class PowerKey:
 		self.powerKeyTimer.timeout.get().append(self.powertimer)
 		globalActionMap.actions["powerdown"]=self.powerdown
 		globalActionMap.actions["powerup"]=self.powerup
-		
+		self.standbyblocked = 0
 #		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
 			#{
 				#"powerdown": self.powerdown,
