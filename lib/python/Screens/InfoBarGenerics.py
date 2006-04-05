@@ -1049,6 +1049,7 @@ class InfoBarInstantRecord:
 			if answer[1] == "event":
 				limitEvent = True
 			if answer[1] == "manualduration":
+				self.selectedEntry = len(self.recording)
 				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 			self.startInstantRecording(limitEvent = limitEvent)
 
