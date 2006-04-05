@@ -241,21 +241,21 @@ class Diseqc:
 		if self.ready:
 			cmd = eDVBDiseqcCommand()
 			if what == "moveWest":
-				string = '\xe1\x31\x69' + chr(param)
+				string = 'e13169' + ("%02x" % param)
 			elif what == "moveEast":
-				string = '\xe1\x31\x68' + chr(param)
+				string = 'e13168' + ("%02x" % param)
 			elif what == "moveTo":
-				string = '\xe1\x31\x6b' + chr(param)
+				string = 'e1316b' + ("%02x" % param)
 			elif what == "store":
-				string = '\xe1\x31\x6a' + chr(param)
+				string = 'e1316a' + ("%02x" % param)
 			elif what == "limitOff":
-				string = '\xe1\x31\x63'
+				string = 'e13163'
 			elif what == "limitEast":
-				string = '\xe1\x31\x66'
+				string = 'e13166'
 			elif what == "limitWest":
-				string = '\xe1\x31\x67'
+				string = 'e13167'
 			else:
-				string = '\xe0\x31\x60' #positioner stop
+				string = 'e03160' #positioner stop
 			print "diseqc command:",
 			for x in string:
 				print hex(ord(x)),
