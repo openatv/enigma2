@@ -21,7 +21,8 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 		self.clockTimer = eTimer()
 		self.clockTimer.timeout.get().append(self.doClock)
 
-	def onShow(self):		
+	def onShow(self):
+		self.doClock()
 		self.clockTimer.start(1000)
 	
 	def onHide(self):
