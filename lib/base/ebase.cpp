@@ -136,15 +136,15 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 	timeval now;
 	gettimeofday(&now, 0);
 	m_now_is_invalid = 0;
-	
+		
 	if (additional && !PyDict_Check(additional))
 		eFatal("additional, but it's not dict");
-	
+		
 	if (additional && !res)
 		eFatal("additional, but no res");
-	
+		
 	int poll_timeout = -1; /* infinite in case of empty timer list */
-	
+		
 	if (m_timer_list)
 	{
 		singleLock s(recalcLock);
@@ -162,132 +162,127 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 		poll_timeout = user_timeout;
 		return_reason = 1;
 	}
-	
+		
 	int ret = 0;
-	
-	if (poll_timeout)
+		
+	std::multimap<int,eSocketNotifier*>::iterator it;
+	std::map<int,int> fd_merged;
+	std::map<int,int>::const_iterator fd_merged_it;
+		
+	for (it = notifiers.begin(); it != notifiers.end(); ++it)
+		fd_merged[it->first] |= it->second->getRequested();
+		
+	fd_merged_it = fd_merged.begin();
+		
+	int nativecount, fdcount;
+		
+	nativecount = fdcount = fd_merged.size();
+		
+	if (additional)
 	{
-		std::multimap<int,eSocketNotifier*>::iterator it;
-		std::map<int,int> fd_merged;
-		std::map<int,int>::const_iterator fd_merged_it;
+		additional = PyDict_Items(additional);
+		fdcount += PyList_Size(additional);
+	}
 		
-		for (it = notifiers.begin(); it != notifiers.end(); ++it)
-			fd_merged[it->first] |= it->second->getRequested();
+		// build the poll aray
+	pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
 		
-		fd_merged_it = fd_merged.begin();
+	for (int i=0; i < nativecount; i++, fd_merged_it++)
+	{
+		pfd[i].fd = fd_merged_it->first;
+		pfd[i].events = fd_merged_it->second;
+	}
 		
-		int nativecount, fdcount;
-		
-		nativecount = fdcount = fd_merged.size();
-		
-		if (additional)	
+	if (additional)
+	{
+		for (int i=0; i < PyList_Size(additional); ++i)
 		{
-			additional = PyDict_Items(additional);
-			fdcount += PyList_Size(additional);
+			PyObject *it = PyList_GET_ITEM(additional, i);
+			if (!PyTuple_Check(it))
+				eFatal("poll item is not a tuple");
+			if (PyTuple_Size(it) != 2)
+				eFatal("poll tuple size is not 2");
+			int fd = PyObject_AsFileDescriptor(PyTuple_GET_ITEM(it, 0));
+			if (fd == -1)
+				eFatal("poll tuple not a filedescriptor");
+			pfd[nativecount + i].fd = fd;
+			pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GET_ITEM(it, 1));
 		}
-
-			// build the poll aray
-		pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
+		Py_DECREF(additional);
+	}
 		
-		for (int i=0; i < nativecount; i++, fd_merged_it++)
-		{
-			pfd[i].fd = fd_merged_it->first;
-			pfd[i].events = fd_merged_it->second;
-		}
-		
-		if (additional)
-		{
-			for (int i=0; i < PyList_Size(additional); ++i)
-			{
-				PyObject *it = PyList_GET_ITEM(additional, i);
-				if (!PyTuple_Check(it))
-					eFatal("poll item is not a tuple");
-				if (PyTuple_Size(it) != 2)
-					eFatal("poll tuple size is not 2");
-				int fd = PyObject_AsFileDescriptor(PyTuple_GET_ITEM(it, 0));
-				if (fd == -1)
-					eFatal("poll tuple not a filedescriptor");
-				pfd[nativecount + i].fd = fd;
-				pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GET_ITEM(it, 1));
-			}
-		}
-
-		ret = ::poll(pfd, fdcount, poll_timeout);
+	ret = ::poll(pfd, fdcount, poll_timeout);
 		
 			/* ret > 0 means that there are some active poll entries. */
-		if (ret > 0)
+	if (ret > 0)
+	{
+		return_reason = 0;
+		for (int i=0; i < nativecount ; i++)
 		{
-			return_reason = 0;
-			for (int i=0; i < nativecount ; i++)
+			it = notifiers.begin();
+				
+			int handled = 0;
+				
+			std::multimap<int,eSocketNotifier*>::iterator 
+				l = notifiers.lower_bound(pfd[i].fd),
+				u = notifiers.upper_bound(pfd[i].fd);
+				
+			ePtrList<eSocketNotifier> n;
+				
+			for (; l != u; ++l)
+				n.push_back(l->second);
+				
+			for (ePtrList<eSocketNotifier>::iterator li(n.begin()); li != n.end(); ++li)
 			{
-				it = notifiers.begin();
-				
-				int handled = 0;
-				
-				std::multimap<int,eSocketNotifier*>::iterator 
-					l = notifiers.lower_bound(pfd[i].fd),
-					u = notifiers.upper_bound(pfd[i].fd);
-				
-				ePtrList<eSocketNotifier> n;
-				
-				for (; l != u; ++l)
-					n.push_back(l->second);
-				
-				for (ePtrList<eSocketNotifier>::iterator li(n.begin()); li != n.end(); ++li)
-				{
-					int req = li->getRequested();
+				int req = li->getRequested();
 					
-					handled |= req;
+				handled |= req;
 				
-					if (pfd[i].revents & req)
-						(*li)->activate(pfd[i].revents);
-				}
-				if ((pfd[i].revents&~handled) & (POLLERR|POLLHUP|POLLNVAL))
-					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+				if (pfd[i].revents & req)
+					(*li)->activate(pfd[i].revents);
 			}
+			if ((pfd[i].revents&~handled) & (POLLERR|POLLHUP|POLLNVAL))
+				eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+		}
 			
-			for (int i = nativecount; i < fdcount; ++i)
-			{
-				if (pfd[i].revents)
-				{
-					if (!*res)
-						*res = PyList_New(0);
-					PyObject *it = PyTuple_New(2);
-					PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
-					PyTuple_SET_ITEM(it, 1, PyInt_FromLong(pfd[i].revents));
-					PyList_Append(*res, it);
-					Py_DECREF(it);
-				}
-			}
-			
-			ret = 1; /* poll did not timeout. */
-		} else if (ret < 0)
+		for (int i = nativecount; i < fdcount; ++i)
 		{
-				/* when we got a signal, we get EINTR. */
-			if (errno != EINTR)
-				eDebug("poll made error (%m)");
-			else
+			if (pfd[i].revents)
 			{
-				return_reason = 2;
-				ret = -1; /* don't assume the timeout has passed when we got a signal */
+				if (!*res)
+					*res = PyList_New(0);
+				PyObject *it = PyTuple_New(2);
+				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
+				PyTuple_SET_ITEM(it, 1, PyInt_FromLong(pfd[i].revents));
+				PyList_Append(*res, it);
+				Py_DECREF(it);
 			}
 		}
-		delete [] pfd;
-		Py_XDECREF(additional);
+			
+		ret = 1; /* poll did not timeout. */
+	} else if (ret < 0)
+	{
+			/* when we got a signal, we get EINTR. */
+		if (errno != EINTR)
+			eDebug("poll made error (%m)");
+		else
+		{
+			return_reason = 2;
+			ret = -1; /* don't assume the timeout has passed when we got a signal */
+		}
 	}
+	delete [] pfd;
 	
 		/* when we not processed anything, check timers. */
-	if (!ret)
+	if (!m_timer_list.empty())
 	{
 			/* we know that this time has passed. */
-		now += poll_timeout;
-		
 		singleLock s(recalcLock);
 
-			/* this will never change while we have the recalcLock */
-			/* we can savely return here, the timer will be re-checked soon. */
-		if (m_now_is_invalid)
-			return 0;
+		if (ret || m_now_is_invalid)
+			gettimeofday(&now, 0);
+		else
+			now += poll_timeout;
 
 			/* process all timers which are ready. first remove them out of the list. */
 		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() <= now))
