@@ -125,6 +125,7 @@ class MovieSelection(Screen):
 		return self["list"].getCurrent()
 
 	def movieSelected(self):
+		self.lengthTimer.stop()
 		current = self.getCurrent()
 		if current is not None:
 			self.close(current)
