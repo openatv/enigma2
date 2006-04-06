@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <assert.h>
 #include <lib/base/eerror.h>
 
 void eThread::thread_completed(void *ptr)
