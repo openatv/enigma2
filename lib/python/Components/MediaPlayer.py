@@ -79,7 +79,7 @@ class PlayList(HTMLComponent, GUIComponent, MenuList):
 		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))
 
 	def deleteFile(self, index):
-		if self.currPlaying > index:
+		if self.currPlaying >= index:
 			self.currPlaying -= 1
 		self.list = self.list[:index] + self.list[index + 1:]
 	
