@@ -6,6 +6,20 @@ bin_PROGRAMS = enigma2
 enigma2_SOURCES = \
 	enigma.cpp bsod.cpp
 
+bsod.o: version.h
+
+# when there is no ../CVS/Entries, don't worry.
+../CVS/Entries:
+
+../CVS/Root:
+
+# this depends on Entries and not on Tag because Tag isn't always there.
+# Entries, however, will change then Tag is changed, so everything is fine.
+version.h: ../CVS/Entries ../CVS/Root
+	> version.h
+	if [ -f ../CVS/Tag ]; then echo "#define ENIGMA2_CHECKOUT_TAG \"`cat ../CVS/Tag`\"" >> version.h; fi
+	if [ -f ../CVS/Root ]; then echo "#define ENIGMA2_CHECKOUT_ROOT \"`cat ../CVS/Root`\"" >> version.h; fi
+
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
 	$(top_builddir)/lib/base/libenigma_base.a \

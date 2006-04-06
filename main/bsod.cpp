@@ -7,6 +7,8 @@
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
 
+#include "version.h"
+
 /************************************************/
 
 #define CRASH_EMAILADDR "crashlog@dream-multimedia-tv.de"
@@ -72,6 +74,14 @@ void bsodFatal()
 	{
 		time_t t = time(0);
 		fprintf(f, "enigma2 crashed on %s", ctime(&t));
+#ifdef ENIGMA2_CHECKOUT_TAG
+		fprintf(f, "enigma2 CVS TAG: " ENIGMA2_CHECKOUT_TAG "\n");
+#else
+		fprintf(f, "enigma2 compiled on " __DATE__ "\n");
+#endif
+#ifdef ENIGMA2_CHECKOUT_ROOT
+		fprintf(f, "enigma2 checked out from " ENIGMA2_CHECKOUT_ROOT "\n");
+#endif
 		fprintf(f, "please email this file to " CRASH_EMAILADDR "\n");
 		std::string buffer = getLogBuffer();
 		fwrite(buffer.c_str(), buffer.size(), 1, f);
@@ -83,6 +93,7 @@ void bsodFatal()
 	
 	{
 		gPainter p(my_dc);
+		p.resetOffset();
 		p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
 		p.setBackgroundColor(gRGB(0x0000C0));
 		p.setForegroundColor(gRGB(0xFFFFFF));
@@ -120,6 +131,7 @@ void bsodFatal()
 	
 		p.renderText(usable_area, 
 			lines.substr(start), gPainter::RT_HALIGN_LEFT);
+		p.flush();
 	}
 
 	raise(SIGKILL);
