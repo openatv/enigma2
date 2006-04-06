@@ -114,6 +114,7 @@ RESULT eBouquet::setListName(const std::string &name)
 }
 
 eDVBService::eDVBService()
+	:m_flags(0)
 {
 }
 
@@ -244,8 +245,11 @@ void eDVBDB::reloadServicelist()
 		struct stat s;
 		if ( !stat("lamedb", &s) )
 		{
-			rename("lamedb", CONFIGDIR"/enigma2/lamedb" );
-			reloadServicelist();
+			if ( !stat(CONFIGDIR"/enigma2", &s) )
+			{
+				rename("lamedb", CONFIGDIR"/enigma2/lamedb" );
+				reloadServicelist();
+			}
 		}
 		return;
 	}
