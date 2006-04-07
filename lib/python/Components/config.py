@@ -95,7 +95,7 @@ class configSelection:
 
 		returnValue = _(self.parent.vals[self.parent.value])
 		if not isinstance(returnValue, str):
-			returnValue = returnValue[0]
+			returnValue = returnValue[1]
 
 		# FIXME: it's not really nice to translate this here.
 		# however, configSelections are persistent.
