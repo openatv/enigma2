@@ -571,6 +571,9 @@ class NimManager:
 
 	def getNimConfigMode(self, slotid):
 		return currentConfigSelectionElement(config.Nims[slotid].configMode)
+	
+	def getSatList(self):
+		return self.satList
 
 	def getSatListForNim(self, slotid):
 		list = []

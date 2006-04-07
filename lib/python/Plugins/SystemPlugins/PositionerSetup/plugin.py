@@ -1,12 +1,14 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr, iDVBFrontend
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr, iDVBFrontend, eDVBFrontendParametersSatellite, eDVBFrontendParameters
 from Screens.Screen import Screen
+from Screens.ScanSetup import ScanSetup
 from Plugins.Plugin import PluginDescriptor
 
 from Components.Label import Label
 from Components.ConfigList import ConfigList
 from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
-from Components.config import config, ConfigSubsection, configElement_nonSave, configNothing, getConfigListEntry, configSelection
+from Components.NimManager import nimmanager
+from Components.config import config, ConfigSubsection, configElement_nonSave, configNothing, getConfigListEntry, configSelection, currentConfigSelectionElement, configSatlist
 
 class PositionerSetup(Screen):
 	skin = """
@@ -29,6 +31,13 @@ class PositionerSetup(Screen):
 			<widget name="snr_bar" position="60,220" size="150,22" />
 			<widget name="agc_bar" position="60,245" size="150,22" />
 			<widget name="ber_bar" position="60,270" size="150,22" />
+
+			<widget name="frequency" text="Frequency:" position="300,220" size="120,22" font="Regular;21" />
+			<widget name="symbolrate" text="Symbolrate:" position="300,245" size="120,22" font="Regular;21" />
+			<widget name="fec" text="FEC:" position="300,270" size="120,22" font="Regular;21" />
+			<widget name="frequency_value" position="420,220" size="120,22" font="Regular;21" />
+			<widget name="symbolrate_value" position="420,245" size="120,22" font="Regular;21" />
+			<widget name="fec_value" position="420,270" size="120,22" font="Regular;21" />
 		</screen>"""
 	def __init__(self, session):
 		self.skin = PositionerSetup.skin
@@ -36,7 +45,10 @@ class PositionerSetup(Screen):
 		
 		self.session.nav.stopService()
 		
-		self.diseqc = Diseqc()
+		self.feid = 1
+		
+		self.diseqc = Diseqc(self.feid)
+		self.tuner = Tuner(self.diseqc.getFrontend())
 		
 		#self.session.nav.stopService()
 		
@@ -53,8 +65,6 @@ class PositionerSetup(Screen):
 		self.blue = Label("")
 		self["blue"] = self.blue
 		
-		self.feid = 0
-
 		self.list = []
 		self["list"] = ConfigList(self.list)
 		self.createSetup()
@@ -63,13 +73,21 @@ class PositionerSetup(Screen):
 		self["agc"] = Label()
 		self["ber"] = Label()
 		self["lock"] = Label()
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, self.session.nav.getCurrentService)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, self.session.nav.getCurrentService)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, self.session.nav.getCurrentService)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, self.session.nav.getCurrentService)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, self.session.nav.getCurrentService)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, self.session.nav.getCurrentService)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, self.session.nav.getCurrentService)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, frontendfkt = self.diseqc.getFrontend)
+		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, frontendfkt = self.diseqc.getFrontend)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, frontendfkt = self.diseqc.getFrontend)
+		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, frontendfkt = self.diseqc.getFrontend)
+		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.diseqc.getFrontend)
+		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.diseqc.getFrontend)
+		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.diseqc.getFrontend)
+
+		self["frequency"] = Label()
+		self["symbolrate"] = Label()
+		self["fec"] = Label()
+
+		self["frequency_value"] = Label("")
+		self["symbolrate_value"] = Label("")
+		self["fec_value"] = Label("")
 		
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions"],
 		{
@@ -131,8 +149,8 @@ class PositionerSetup(Screen):
 	
 	def updateColors(self, entry):
 		if entry == "tune":
-			self.red.setText("tune manually")
-			self.green.setText("predefined transponder")
+			self.red.setText("tune")
+			self.green.setText("")
 			self.yellow.setText("")
 			self.blue.setText("")
 		elif entry == "move":
@@ -175,6 +193,8 @@ class PositionerSetup(Screen):
 			print "moving west"
 		elif entry == "limits":
 			self.diseqc.command("limitOff")
+		elif entry == "tune":
+			self.session.openWithCallback(self.tune, TunerScreen, self.feid)
 				
 	def greenKey(self):
 		entry = self.getCurrentConfigPath()
@@ -217,25 +237,35 @@ class PositionerSetup(Screen):
 		self["snr_bar"].update()
 		self["agc_bar"].update()
 		self["ber_bar"].update()
+		transponderdata = self.tuner.getTransponderData()
+		self["frequency_value"].setText(str(transponderdata["frequency"]))
+		self["symbolrate_value"].setText(str(transponderdata["symbol_rate"]))
+		self["fec_value"].setText(str(transponderdata["fec_inner"]))
 
+	def tune(self, transponder):
+		if transponder is not None:
+			self.tuner.tune(transponder)
+			
 class Diseqc:
 	def __init__(self, feid = 0):
 		self.ready = False
 		self.feid = feid
 		res_mgr = eDVBResourceManagerPtr()
 		if eDVBResourceManager.getInstance(res_mgr) == 0:
-			raw_channel = iDVBChannelPtr()
-			if res_mgr.allocateRawChannel(raw_channel, self.feid) == 0:
+			self.raw_channel = iDVBChannelPtr()
+			if res_mgr.allocateRawChannel(self.raw_channel, self.feid) == 0:
 				self.frontend = iDVBFrontendPtr()
-				if raw_channel.getFrontend(self.frontend) == 0:
-					self.frontend.setVoltage(iDVBFrontend.voltage13)
+				if self.raw_channel.getFrontend(self.frontend) == 0:
 					self.ready = True
 				else:
 					print "getFrontend failed"
 			else:
 				print "getRawChannel failed"
 		else:
-				print "getResourceManager instance failed"
+			print "getResourceManager instance failed"
+	
+	def getFrontend(self):
+		return self.frontend
 		
 	def command(self, what, param = 0):
 		if self.ready:
@@ -261,7 +291,119 @@ class Diseqc:
 			
 			cmd.setCommandString(string)
 			self.frontend.sendDiseqc(cmd)
-					
+			
+class Tuner:
+	def __init__(self, frontend):
+		self.frontend = frontend
+		
+	def tune(self, transponder):
+		print "tuning to transponder with data", transponder
+		parm = eDVBFrontendParametersSatellite()
+		parm.frequency = transponder[0] * 1000
+		parm.symbol_rate = transponder[1] * 1000
+		parm.polarisation = transponder[2]
+		parm.fec = transponder[3]
+		parm.inversion = transponder[4]
+		parm.orbital_position = 192
+		feparm = eDVBFrontendParameters()
+		feparm.setDVBS(parm, True)
+		self.frontend.tune(feparm)
+	
+	def getTransponderData(self):
+		return self.frontend.readTransponderData(True)
+
+class TunerScreen(ScanSetup):
+	skin = """
+		<screen position="90,100" size="520,400" title="Tune">
+			<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
+			<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
+		</screen>"""
+
+	def __init__(self, session, feid):
+		self.feid = feid
+		ScanSetup.__init__(self, session)
+
+		self["introduction"].setText("")
+		
+	def createSetup(self):
+		self.typeOfTuningEntry = None
+		self.satEntry = None
+
+		self.list = []
+		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), config.tuning.type)
+		self.list.append(self.typeOfTuningEntry)
+		self.satEntry = getConfigListEntry(_('Satellite'), config.tuning.sat)
+		self.list.append(self.satEntry)
+		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
+			self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
+			self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
+			self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
+			self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
+			self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
+		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
+			self.list.append(getConfigListEntry(_("Transponder"), config.tuning.transponder))
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+
+	def newConfig(self):
+		if self["config"].getCurrent() == self.typeOfTuningEntry:
+			self.createSetup()
+		elif self["config"].getCurrent() == self.satEntry:
+			self.updateSats()
+			self.createSetup()
+
+	def createConfig(self):
+		config.tuning = ConfigSubsection()
+		
+		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
+
+		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getSatListForNim(self.feid))
+		ScanSetup.createConfig(self)
+		self.updateSats()
+		
+	def updateSats(self):
+		transponderlist = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])
+		list = []
+		for x in transponderlist:
+			if x[3] == 0:
+				pol = "H"
+			elif x[3] == 1:
+				pol = "V"
+			elif x[3] == 2:
+				pol = "CL"
+			elif x[3] == 3:
+				pol = "CR"
+			if x[4] == 0:
+				fec = "FEC_AUTO"
+			elif x[4] == 1:
+				fec = "FEC_1_2"
+			elif x[4] == 2:
+				fec = "FEC_2_3"
+			elif x[4] == 3:
+				fec = "FEC_3_4"
+			elif x[4] == 4:
+				fec = "FEC_5_6"
+			elif x[4] == 5:
+				fec = "FEC_7_8"
+			elif x[4] == 5:
+				fec = "FEC_8_9"
+			elif x[4] == 6:
+				fec = "FEC_None"
+			list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
+		config.tuning.transponder = configElement_nonSave("config.tuning.transponder", configSelection, 0, list)
+	
+	def keyGo(self):
+		returnvalue = (0, 0, 0, 0, 0, 0)
+		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
+			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value)
+		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
+			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
+			returnvalue = (int(transponder[1] / 100), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1])
+		self.close(returnvalue)
+
+	def keyCancel(self):
+		self.close(None)
+
 def PositionerMain(session, **kwargs):
 	session.open(PositionerSetup)
 
