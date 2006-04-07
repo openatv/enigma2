@@ -81,6 +81,8 @@ class TimerEntry:
 		# set begin to now.
 		if self.begin > self.end:
 			self.begin = self.end
+
+		self.cancelled = True
 	
 	# must be overridden!
 	def getNextActivation():
