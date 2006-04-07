@@ -393,7 +393,7 @@ class NimManager:
 				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
 				tname = attrs.get('name',"").encode("UTF-8")
 				tflags = attrs.get('flags',"")
-				self.terrestrialsList.append((tname, tname, tflags))
+				self.terrestrialsList.append((tname, tflags))
 				self.parsedTer = str(tname)
 			elif (name == "transponder"):
 				# TODO finish this!
@@ -477,6 +477,7 @@ class NimManager:
 				self.nimSocketCount += 1
 			elif line.strip().startswith("Type:"):
 				self.nimTypes[lastsocket] = str(line.strip()[6:])
+				self.nimTypes[lastsocket] = str("DVB-T")
 			elif line.strip().startswith("Name:"):
 				self.nimNames[lastsocket] = str(line.strip()[6:])
 			elif line.strip().startswith("empty"):
@@ -728,7 +729,10 @@ def InitNimManager(nimmgr):
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
 			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList, False);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
-			nim.terrestrial = configElement(cname + "terrestrial", configSelection, 0, nimmgr.terrestrialsList, False);
+			list = []
+			for x in nimmgr.terrestrialsList:
+				list.append(x[0])
+			nim.terrestrial = configElement(cname + "terrestrial", configSelection, 0, list, False);
 		else:
 			print "pls add support for this frontend type!"		
 
