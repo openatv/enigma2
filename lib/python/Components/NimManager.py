@@ -422,8 +422,18 @@ class NimManager:
 	def getTranspondersCable(self, cable):
 		return self.transponderscable[cable]
 
+	def getTranspondersTerrestrial(self, region):
+		return self.transpondersterrestrial[region]
+	
 	def getCableDescription(self, nim):
 		return self.cablesList[config.Nims[nim].cable.value]
+
+	def getTerrestrialDescription(self, nim):
+		return self.terrestrialsList[config.Nims[nim].terrestrial.value][0]
+
+	def getTerrestrialFlags(self, nim):
+		return self.terrestrialsList[config.Nims[nim].terrestrial.value][1]
+
 
 	def getConfiguredSats(self):
 		return self.sec.getSatList()
