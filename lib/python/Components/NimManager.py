@@ -487,7 +487,7 @@ class NimManager:
 				self.nimSocketCount += 1
 			elif line.strip().startswith("Type:"):
 				self.nimTypes[lastsocket] = str(line.strip()[6:])
-				self.nimTypes[lastsocket] = str("DVB-T")
+				#self.nimTypes[lastsocket] = str("DVB-T")
 			elif line.strip().startswith("Name:"):
 				self.nimNames[lastsocket] = str(line.strip()[6:])
 			elif line.strip().startswith("empty"):
