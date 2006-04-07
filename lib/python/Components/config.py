@@ -92,10 +92,17 @@ class configSelection:
 
 	def __call__(self, selected):			#needed by configlist
 		self.checkValues()
-		if isinstance(self.parent.vals[self.parent.value], str):
-			returnValue = _(self.parent.vals[self.parent.value])
-		else:
-			returnValue = _(self.parent.vals[self.parent.value][1])
+
+		returnValue = _(self.parent.vals[self.parent.value])
+		if not isinstance(returnValue, str):
+			returnValue = returnValue[0]
+
+		# FIXME: it's not really nice to translate this here.
+		# however, configSelections are persistent.
+		
+		# WORKAROUND: don't translate ""
+		if returnValue:
+			returnValue = _(returnValue)
 		
 		return ("text", returnValue)
 		
