@@ -231,15 +231,11 @@ class TimerEntry(Screen):
 		else:
 			self.keyGo()
 
-	def finishedChannelSelection(self, args):
-		oldref = self.timer.service_ref
-		try:
-			self.timer.service_ref = ServiceReference(args)
+	def finishedChannelSelection(self, *args):
+		if len(args):
+			self.timer.service_ref = ServiceReference(args[0])
 			config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
 			self["config"].invalidate(config.timerentry.service)
-		except:
-			print "you pressed cancel"
-			self.timer.service_ref = oldref
 
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
