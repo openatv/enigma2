@@ -5,6 +5,11 @@ from enigma import eLabel, eSlider, iFrontendStatusInformation
 from math import log
 
 class TunerInfo(GUIComponent):
+	SNR = 0
+	AGC = 1
+	BER = 2
+	LOCK = 3
+	
 	SNR_PERCENTAGE = 0
 	AGC_PERCENTAGE = 1
 	BER_VALUE = 2
@@ -13,13 +18,14 @@ class TunerInfo(GUIComponent):
 	BER_BAR = 5
 	LOCK_STATE = 6
 	SYNC_STATE = 7
-	def __init__(self, type, servicefkt):
+	def __init__(self, type, servicefkt = None, frontendfkt = None):
 		GUIComponent.__init__(self)
 		self.instance = None
 		self.message = None
 		self.value = None
 		
 		self.servicefkt = servicefkt
+		self.frontendfkt = frontendfkt
 		self.type = type
 		self.update()
 	
@@ -41,19 +47,14 @@ class TunerInfo(GUIComponent):
 		return val*100/65535
 	
 	def update(self):
-		service = self.servicefkt()
-		value = 0
-		if service is not None:
-			feinfo = service.frontendStatusInfo()
-			if feinfo is not None:
-				if self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
-					value = feinfo.getFrontendInfo(iFrontendStatusInformation.signalPower) * 100 / 65536
-				elif self.type == self.AGC_PERCENTAGE or self.type == self.AGC_BAR:
-					value = feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality) * 100 / 65536
-				elif self.type == self.BER_VALUE or self.type == self.BER_BAR:
-					value = feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
-				elif self.type == self.LOCK_STATE:
-					value = feinfo.getFrontendInfo(iFrontendStatusInformation.LockState)
+		if self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
+			value = self.getValue(self.SNR) * 100 / 65536
+		elif self.type == self.AGC_PERCENTAGE or self.type == self.AGC_BAR:
+			value = self.getValue(self.AGC) * 100 / 65536
+		elif self.type == self.BER_VALUE or self.type == self.BER_BAR:
+			value = self.getValue(self.BER)
+		elif self.type == self.LOCK_STATE:
+			value = self.getValue(self.LOCK)
 		
 		if self.type == self.SNR_PERCENTAGE or self.type == self.AGC_PERCENTAGE:
 			self.setText("%d%%" % (value))
@@ -68,6 +69,33 @@ class TunerInfo(GUIComponent):
 				self.setText(_("locked"))
 			else:
 				self.setText(_("not locked"))
+				
+	def getValue(self, what):
+		if self.servicefkt is not None:
+			service = self.servicefkt()
+			if service is not None:
+				feinfo = service.frontendStatusInfo()
+				if feinfo is not None:
+					if what == self.SNR:
+						return feinfo.getFrontendInfo(iFrontendStatusInformation.signalPower)
+					elif what == self.AGC:
+						return feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality)
+					elif what == self.BER:
+						return feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
+					elif what == self.LOCK:
+						return feinfo.getFrontendInfo(iFrontendStatusInformation.LockState)
+		elif self.frontendfkt is not None:
+			frontend = self.frontendfkt()
+			if what == self.SNR:
+				return frontend.readFrontendData(iFrontendStatusInformation.signalPower)
+			elif what == self.AGC:
+				return frontend.readFrontendData(iFrontendStatusInformation.signalQuality)
+			elif what == self.BER:
+				return frontend.readFrontendData(iFrontendStatusInformation.bitErrorRate)
+			elif what == self.LOCK:
+				return frontend.readFrontendData(iFrontendStatusInformation.LockState)
+		
+		return 0
 				
 	def createWidget(self, parent):
 		if self.SNR_PERCENTAGE <= self.type <= self.BER_VALUE or self.type == self.LOCK_STATE:
