@@ -42,8 +42,10 @@ class NimSetup(Screen):
 		self.advancedUsalsEntry = None
 		self.advancedLof = None
 		self.advancedPowerMeasurement = None
+		
+		self.nim_type = nimmanager.getNimType(self.nim.slotid)
 
-		if (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-S"]):
+		if self.nim_type == nimmanager.nimType["DVB-S"]:
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 
@@ -62,9 +64,12 @@ class NimSetup(Screen):
 				self.list.append(self.advancedSatsEntry)
 				currSat = self.nimConfig.advanced.sat[nimmanager.satList[self.nimConfig.advanced.sats.value][1]]
 				self.fillListWithAdvancedSatEntrys(currSat)
-		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-C"]):
+			self.have_advanced = True
+		elif self.nim_type == nimmanager.nimType["DVB-C"]:
 			self.list.append(getConfigListEntry(_("Cable provider"), self.nimConfig.cable))
-		elif (nimmanager.getNimType(self.nim.slotid) == nimmanager.nimType["DVB-T"]):
+			self.have_advanced = False
+		elif self.nim_type == nimmanager.nimType["DVB-T"]:
+			self.have_advanced = False
 			self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
 
 		self["config"].list = self.list
@@ -90,7 +95,7 @@ class NimSetup(Screen):
 			self["config"].handleKey(config.key[str(number)])
 
 	def run(self):
-		if currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced":
+		if self.have_advanced and currentConfigSelectionElement(config.Nims[self.nim.slotid].configMode) == "advanced":
 			self.fillAdvancedList()
 		for x in self["config"].list:
 			x[1].save()
