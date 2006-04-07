@@ -61,6 +61,7 @@ class RecordTimerEntry(timer.TimerEntry):
 	
 	def resetState(self):
 		self.state = self.StateWaiting
+		self.cancelled = False
 		self.first_try_prepare = True
 		self.timeChanged()
 	
@@ -148,6 +149,10 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.start_prepare = time.time() + self.backoff
 			return False
 		elif next_state == self.StateRunning:
+			# if this timer has been cancelled, just go to "end" state.
+			if self.cancelled:
+				return True
+
 			if self.justplay:
 				self.log(11, "zapping")
 				NavigationInstance.instance.playService(self.service_ref.ref)
