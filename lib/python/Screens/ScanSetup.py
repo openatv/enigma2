@@ -5,7 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
-from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl
+from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial
 
 def getInitialTransponderList(tlist, pos):
 	list = nimmanager.getTransponders(pos)
@@ -35,6 +35,22 @@ def getInitialCableTransponderList(tlist, cable):
 			parm.fec_inner = x[4] # AUTO
 			parm.inversion = 2 # AUTO
 			tlist.append(parm)
+
+def getInitialTerrestrialTransponderList(tlist, region):
+	list = nimmanager.getTranspondersTerrestrial(region)
+	
+	for x in list:
+#self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
+		if x[0] == 2:		#TERRESTRIAL
+			parm = eDVBFrontendParametersTerrestrial()
+# FIXME change into terrestrial
+			parm.frequency = x[1]
+			parm.symbol_rate = x[2]
+			parm.modulation = x[3] # AUTO
+			parm.fec_inner = x[4] # AUTO
+			parm.inversion = 2 # AUTO
+			tlist.append(parm)
+
 
 class ScanSetup(Screen):
 	def __init__(self, session):
@@ -407,8 +423,9 @@ class ScanSetup(Screen):
 						hierarchy = config.scan.ter.hierarchy.value)
 				if currentConfigSelectionElement(config.scan.ter.networkScan) == "yes":
 					flags |= eComponentScan.scanNetworkSearch
-			if currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
-				pass
+			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
+				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(config.scan.nims.value))
+				flags |= eComponentScan.scanNetworkSearch
 
 		for x in self["config"].list:
 			x[1].save()
