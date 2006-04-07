@@ -7,6 +7,67 @@ from Components.NimManager import nimmanager
 from Components.Label import Label
 from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial
 
+def buildTerTransponder(frequency, 
+		inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
+		modulation = 2, transmission = 2, guard = 4,
+		hierarchy = 4):
+	# WARNING: normally, enums are working directly.
+	# Don't copy this (very bad)!! Instead either fix swig (good) or
+	# move this into a central place.
+	Bw8MHz = 0
+	Bw7MHz = 1
+	Bw6MHz = 2
+	Bw5MHz = 3
+	BwAuto = 4
+	
+	f1_2 = 0
+	f2_3 = 1
+	f3_4 = 2
+	f5_6 = 3
+	f7_8 = 4
+	fAuto = 5
+	
+	TM2k = 0
+	TM8k = 1
+	TM4k = 2
+	TMAuto = 3
+	
+	GI_1_32 = 0
+	GI_1_16 = 1
+	GI_1_8 = 2
+	GI_1_4 = 3
+	GI_Auto = 4
+	
+	HNone = 0
+	H1 = 1
+	H2 = 2
+	H4 = 3
+	HAuto = 4
+
+	QPSK = 0
+	QAM16 = 1
+	QAM64 = 2
+	Auto = 3
+	
+	Off = 0
+	On = 1
+	Unknown = 2
+
+	parm = eDVBFrontendParametersTerrestrial()
+
+	parm.frequency = frequency
+
+	parm.inversion = [Off, On, Unknown][inversion]
+	parm.bandwidth = [Bw8MHz, Bw7MHz, Bw6MHz, BwAuto][bandwidth] # Bw5MHz unsupported
+	parm.code_rate_HP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][fechigh]
+	parm.code_rate_LP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][feclow]
+	parm.modulation = [QPSK, QAM16, Auto][modulation] # QAM64 unsupported
+	parm.transmission_mode = [TM2k, TM8k, TMAuto][transmission] # TM4k unsupported
+	parm.guard_interval = [GI_1_32, GI_1_16, GI_1_8, GI_1_4, GI_Auto][guard]
+	parm.hierarchy = [HNone, H1, H2, H4, HAuto][hierarchy]
+	
+	return parm
+
 def getInitialTransponderList(tlist, pos):
 	list = nimmanager.getTransponders(pos)
 
@@ -39,16 +100,23 @@ def getInitialCableTransponderList(tlist, cable):
 def getInitialTerrestrialTransponderList(tlist, region):
 	list = nimmanager.getTranspondersTerrestrial(region)
 	
+
+#		inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
+#		modulation = 2, transmission = 2, guard = 4,
+#		hierarchy = 4):
+
 	for x in list:
 #self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
 		if x[0] == 2:		#TERRESTRIAL
-			parm = eDVBFrontendParametersTerrestrial()
-# FIXME change into terrestrial
-			parm.frequency = x[1]
-			parm.symbol_rate = x[2]
-			parm.modulation = x[3] # AUTO
-			parm.fec_inner = x[4] # AUTO
-			parm.inversion = 2 # AUTO
+			# FIXME: we need to convert the other parameters...
+			
+				# convert terrestrial.xml bandwidth to our enum
+			if x[2] in [0, 1]:
+				bandwidth = [1, 0][x[2]]
+			else:
+				bandwidth = 3 # auto
+			
+			parm = buildTerTransponder(x[1], bandwidth = [1, 0][x[2]])
 			tlist.append(parm)
 
 
@@ -163,7 +231,7 @@ class ScanSetup(Screen):
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), config.scan.ter.frequency))
-				self.list.append(getConfigListEntry(_("Network scan"), config.scan.cab.networkScan))
+				self.list.append(getConfigListEntry(_("Network scan"), config.scan.ter.networkScan))
 				self.list.append(getConfigListEntry(_("Inversion"), config.scan.ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), config.scan.ter.bandwidth))
 				self.list.append(getConfigListEntry(_("Code rate high"), config.scan.ter.fechigh))
@@ -246,7 +314,9 @@ class ScanSetup(Screen):
 			# terrestial
 			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (100, 900)))
 			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 3, (("8MHz", "8MHz"), ("7MHz", "7MHz"), ("6MHz", "6MHz"), ("auto", _("Auto"))))
+			# WORKAROUND: we can't use BW-auto
+			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, (("8MHz", "8MHz"), ("7MHz", "7MHz"), ("6MHz", "6MHz")))
+			#, ("auto", _("Auto"))))
 			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, (("none", _("None")), "1/2", "2/3", "3/4", "5/6", "7/8", _("Auto")))
 			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 6, (_("None"), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
 			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 2, (("qpsk", "QPSK"), ("qam16", "QAM16"), ("auto", _("Auto"))))
@@ -311,65 +381,8 @@ class ScanSetup(Screen):
 		#parm.inversion = 2 		#AUTO
 		tlist.append(parm)
 
-	def addTerTransponder(self, tlist, frequency, 
-			inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
-			modulation = 2, transmission = 2, guard = 4,
-			hierarchy = 4):
-		# WARNING: normally, enums are working directly.
-		# Don't copy this (very bad)!! Instead either fix swig (good) or
-		# move this into a central place.
-		Bw8MHz = 0
-		Bw7MHz = 1
-		Bw6MHz = 2
-		Bw5MHz = 3
-		BwAuto = 4
-		
-		f1_2 = 0
-		f2_3 = 1
-		f3_4 = 2
-		f5_6 = 3
-		f7_8 = 4
-		fAuto = 5
-		
-		TM2k = 0
-		TM8k = 1
-		TM4k = 2
-		TMAuto = 3
-		
-		GI_1_32 = 0
-		GI_1_16 = 1
-		GI_1_8 = 2
-		GI_1_4 = 3
-		GI_Auto = 4
-		
-		HNone = 0
-		H1 = 1
-		H2 = 2
-		H4 = 3
-		HAuto = 4
-
-		QPSK = 0
-		QAM16 = 1
-		QAM64 = 2
-		Auto = 3
-		
-		Off = 0
-		On = 1
-		Unknown = 2
-
-		parm = eDVBFrontendParametersTerrestrial()
-		
-		parm.frequency = frequency * 1000000
-
-		parm.inversion = [Off, On, Unknown][inversion]
-		parm.bandwidth = [Bw8MHz, Bw7MHz, Bw6MHz, BwAuto][bandwidth] # Bw5MHz unsupported
-		parm.code_rate_HP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][fechigh]
-		parm.code_rate_LP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][feclow]
-		parm.modulation = [QPSK, QAM16, Auto][modulation] # QAM64 unsupported
-		parm.transmission_mode = [TM2k, TM8k, TMAuto][transmission] # TM4k unsupported
-		parm.guard_interval = [GI_1_32, GI_1_16, GI_1_8, GI_1_4, GI_Auto][guard]
-		parm.hierarchy = [HNone, H1, H2, H4, HAuto][hierarchy]
-		tlist.append(parm)
+	def addTerTransponder(self, tlist, *args, **kwargs):
+		tlist.append(buildTerTransponder(*args, **kwargs))
 
 	def keyGo(self):
 		tlist = []
@@ -412,7 +425,7 @@ class ScanSetup(Screen):
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
 				self.addTerTransponder(tlist, 
-						config.scan.ter.frequency.value[0],
+						config.scan.ter.frequency.value[0] * 1000000,
 						inversion = config.scan.ter.inversion.value,
 						bandwidth = config.scan.ter.bandwidth.value,
 						fechigh = config.scan.ter.fechigh.value,
