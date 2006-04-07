@@ -166,8 +166,9 @@ class RecordTimerEntry(timer.TimerEntry):
 				return True
 		elif next_state == self.StateEnded:
 			self.log(12, "stop recording")
-			self.record_service.stop()
-			self.record_service = None
+			if not self.justplay:
+				self.record_service.stop()
+				self.record_service = None
 			return True
 
 	def getNextActivation(self):
