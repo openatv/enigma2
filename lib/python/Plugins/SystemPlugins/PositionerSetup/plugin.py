@@ -50,6 +50,7 @@ class PositionerSetup(Screen):
 		
 		self.diseqc = Diseqc(self.feid)
 		self.tuner = Tuner(self.diseqc.getFrontend())
+		self.tuner.tune((0,0,0,0,0,0,0,0))
 		
 		#self.session.nav.stopService()
 		
@@ -195,15 +196,15 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
-				self.diseqc.command("stop")
+				self.diseqccommand("stop")
 				self.isMoving = False
 				self.stopOnLock = False
 			else:
-				self.diseqc.command("moveWest", 0)
+				self.diseqccommand("moveWest", 0)
 				self.isMoving = True
 			self.updateColors("move")
 		elif entry == "limits":
-			self.diseqc.command("limitOff")
+			self.diseqccommand("limitOff")
 		elif entry == "tune":
 			self.session.openWithCallback(self.tune, TunerScreen, self.feid)
 				
@@ -211,56 +212,60 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
-				self.diseqc.command("stop")
+				self.diseqccommand("stop")
 				self.isMoving = False
 				self.stopOnLock = False
 			else:
 				self.isMoving = True
 				self.stopOnLock = True
-				self.diseqc.command("moveWest", 0)
+				self.diseqccommand("moveWest", 0)
 			self.updateColors("move")
 		elif entry == "finemove":
 			print "stepping west"
-			self.diseqc.command("moveWest", 1)
+			self.diseqccommand("moveWest", 1)
 		elif entry == "storage":
 			print "store at position", (config.positioner.storage.value + 1)
-			self.diseqc.command("store", config.positioner.storage.value + 1)
+			self.diseqccommand("store", config.positioner.storage.value + 1)
 		elif entry == "limits":
-			self.diseqc.command("limitWest")
+			self.diseqccommand("limitWest")
 	
 	def yellowKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
-				self.diseqc.command("stop")
+				self.diseqccommand("stop")
 				self.isMoving = False
 				self.stopOnLock = False
 			else:
 				self.isMoving = True
 				self.stopOnLock = True
-				self.diseqc.command("moveEast", 0)
+				self.diseqccommand("moveEast", 0)
 			self.updateColors("move")
 		elif entry == "finemove":
 			print "stepping east"
-			self.diseqc.command("moveEast", 1)
+			self.diseqccommand("moveEast", 1)
 		elif entry == "storage":
 			print "move to position", (config.positioner.storage.value + 1)
-			self.diseqc.command("moveTo", config.positioner.storage.value + 1)
+			self.diseqccommand("moveTo", config.positioner.storage.value + 1)
 		elif entry == "limits":
-			self.diseqc.command("limitEast")
+			self.diseqccommand("limitEast")
 #	
 	def blueKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
 			if self.isMoving:
-				self.diseqc.command("stop")
+				self.diseqccommand("stop")
 				self.isMoving = False
 				self.stopOnLock = False
 			else:
-				self.diseqc.command("moveEast", 0)
+				self.diseqccommand("moveEast", 0)
 				self.isMoving = True
 			self.updateColors("move")
 			print "moving east"
+			
+	def diseqccommand(self, cmd, param = 0):
+		self.diseqc.command(cmd, param)
+		self.tuner.retune()
 
 	def updateStatus(self):
 		self["snr_percentage"].update()
@@ -275,7 +280,7 @@ class PositionerSetup(Screen):
 		self["symbolrate_value"].setText(str(transponderdata["symbol_rate"]))
 		self["fec_value"].setText(str(transponderdata["fec_inner"]))
 		if transponderdata["tuner_locked"] == 1 and self.isMoving and self.stopOnLock:
-			self.diseqc.command("stop")
+			self.diseqccommand("stop")
 			self.isMoving = False
 			self.stopOnLock = False
 			self.updateColors(self.getCurrentConfigPath())
@@ -345,7 +350,11 @@ class Tuner:
 		parm.orbital_position = 192
 		feparm = eDVBFrontendParameters()
 		feparm.setDVBS(parm, True)
+		self.lastparm = feparm
 		self.frontend.tune(feparm)
+	
+	def retune(self):
+		self.frontend.tune(self.lastparm)
 	
 	def getTransponderData(self):
 		return self.frontend.readTransponderData(True)
