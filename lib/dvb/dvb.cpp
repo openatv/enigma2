@@ -273,12 +273,18 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	int n=0;
 		/* FIXME: hardware demux policy */
 	if (!(cap & iDVBChannel::capDecode))
-		++i, ++n;
+	{
+		if (m_demux.size() > 2)  /* assumed to be true, otherwise we have lost anyway */
+		{
+			++i, ++n;
+			++i, ++n;
+		}
+	}
 	
 	for (; i != m_demux.end(); ++i, ++n)
 		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
-			if ((cap & iDVBChannel::capDecode) && n)
+			if ((cap & iDVBChannel::capDecode) && (n >= 2))
 				continue;
 			
 			demux = new eDVBAllocatedDemux(i);
@@ -997,6 +1003,11 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 	
 	demux = *our_demux;
 		/* don't hold a reference to the decoding demux, we don't need it. */
+		
+		/* FIXME: by dropping the 'allocated demux' in favour of the 'iDVBDemux',
+		   the refcount is lost. thus, decoding demuxes are never allocated. 
+		   
+		   this poses a big problem for PiP. */
 	if (cap & capDecode)
 		our_demux = 0;
 	return 0;
