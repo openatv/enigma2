@@ -977,12 +977,16 @@ class InfoBarExtensions:
 
 	def extensionCallback(self, answer):
 		if answer[1] == "pipon":
+			self.session.nav.stopService()
 			self.pip = self.session.instantiateDialog(PictureInPicture)
-			self.pip.show()
+			#self.pip.show()
+			
+			newservice = str(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())) + "s"
+			self.pipservice = eServiceCenter.getInstance().play(eServiceReference(newservice))
+			self.pipservice.start()
 			self.pipshown = True
-			print "would show PiP now"
 		elif answer[1] == "pipoff":
-			self.pip.hide()
+			#self.pip.hide()
 			del self.pip
 			self.pipshown = False
 
