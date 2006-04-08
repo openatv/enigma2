@@ -103,9 +103,11 @@ class TimerEditList(Screen):
 		
 	def removeTimer(self):
 		list = self["timerlist"]
-		timer = list.getCurrent()[0]
-		self.session.nav.RecordTimer.removeEntry(timer)
-		self.refill()
+		cur = list.getCurrent()
+		if cur is not None:
+			timer = cur[0]
+			self.session.nav.RecordTimer.removeEntry(timer)
+			self.refill()
 	
 	def refill(self):
 		self.fillTimerList()
