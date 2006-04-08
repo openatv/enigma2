@@ -13,6 +13,4 @@ install_PYTHON = \
 	BlinkingPixmap.py Pixmap.py ConditionalWidget.py Slider.py LanguageList.py \
 	PluginList.py PluginComponent.py RecordingConfig.py About.py UsageConfig.py \
 	FIFOList.py ServiceEventTracker.py Input.py TimerSanityCheck.py FileList.py \
-	MultiContent.py MediaPlayer.py TunerInfo.py
-
-
+	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py
