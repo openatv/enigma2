@@ -29,6 +29,7 @@ from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
 from Screens.TimerSelection import TimerSelection
+from Screens.PictureInPicture import PictureInPicture
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -957,6 +958,34 @@ class InfoBarTimeshift:
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
 
+class InfoBarExtensions:
+	def __init__(self):
+		self.pipshown = False
+		
+		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+			{
+				"extensions": (self.extensions, "Extensions..."),
+			})
+			
+	def extensions(self):
+		list = []
+		if self.pipshown == False:
+			list.append((_("Activate Picture in Picture"), "pipon"))
+		elif self.pipshown == True:
+			list.append((_("Disable Picture in Picture"), "pipoff"))
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
+
+	def extensionCallback(self, answer):
+		if answer[1] == "pipon":
+			self.pip = self.session.instantiateDialog(PictureInPicture)
+			self.pip.show()
+			self.pipshown = True
+			print "would show PiP now"
+		elif answer[1] == "pipoff":
+			self.pip.hide()
+			del self.pip
+			self.pipshown = False
+
 from RecordTimer import parseEvent
 
 class InfoBarInstantRecord:
@@ -1136,9 +1165,9 @@ class InfoBarAdditionalInfo:
 		self.onLayoutFinish.append(self["ButtonYellowText"].update)
 
 		self["ButtonBlue"] = PixmapConditional(withTimer = False)
-		self["ButtonBlue"].setConnect(lambda: False)
+		self["ButtonBlue"].setConnect(lambda: True)
 		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
-		self["ButtonBlueText"].setConnect(lambda: False)
+		self["ButtonBlueText"].setConnect(lambda: True)
 		self.onLayoutFinish.append(self["ButtonBlue"].update)
 		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
