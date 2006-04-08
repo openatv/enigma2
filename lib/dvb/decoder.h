@@ -9,7 +9,7 @@ class eDVBAudio: public iObject
 DECLARE_REF(eDVBAudio);
 private:
 	ePtr<eDVBDemux> m_demux;
-	int m_fd, m_fd_demux;
+	int m_fd, m_fd_demux, m_dev;
 public:
 	enum {aMPEG, aAC3, aDTS };
 	eDVBAudio(eDVBDemux *demux, int dev);
@@ -31,7 +31,7 @@ class eDVBVideo: public iObject
 DECLARE_REF(eDVBVideo);
 private:
 	ePtr<eDVBDemux> m_demux;
-	int m_fd, m_fd_demux;
+	int m_fd, m_fd_demux, m_dev;
 	
 	int m_is_slow_motion, m_is_fast_forward;
 public:
@@ -94,7 +94,7 @@ private:
 		changePCR   = 4,
 		changeText  = 8
 	};
-	int m_changed;
+	int m_changed, m_decoder;
 	int m_is_ff, m_is_sm, m_is_trickmode;
 	int setState();
 	ePtr<eConnection> m_demux_event;
