@@ -110,7 +110,7 @@ class PositionerSetup(Screen):
 		
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
-		self.statusTimer.start(100, False)
+		self.statusTimer.start(50, False)
 		
 	def createConfig(self):
 		config.positioner = ConfigSubsection()
