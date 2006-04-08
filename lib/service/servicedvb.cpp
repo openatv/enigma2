@@ -569,13 +569,6 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_reference(ref), m_dvb_service(service), m_is_paused(0)
 {
 	m_is_primary = 1;
-		/* HACK!!! */
-	if (m_reference.path == "s")
-	{
-		m_reference.path = "";
-		m_is_primary = 0;
-	}
-	
 	m_is_pvr = !m_reference.path.empty();
 	
 	m_timeshift_enabled = m_timeshift_active = 0;
@@ -732,6 +725,12 @@ RESULT eDVBServicePlay::stop()
 	if (m_is_pvr && m_cuesheet_changed)
 		saveCuesheet();
 	
+	return 0;
+}
+
+RESULT eDVBServicePlay::setTarget(int target)
+{
+	m_is_primary = !target;
 	return 0;
 }
 
