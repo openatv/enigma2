@@ -568,6 +568,15 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
 	m_reference(ref), m_dvb_service(service), m_is_paused(0)
 {
+	m_is_primary = 1;
+		/* HACK!!! */
+	if (m_reference.path == "s")
+	{
+		m_reference.path = "";
+		ref.path = "";
+		m_is_primary = 0;
+	}
+	
 	m_is_pvr = !ref.path.empty();
 	
 	m_timeshift_enabled = m_timeshift_active = 0;
@@ -1524,7 +1533,7 @@ void eDVBServicePlay::updateDecoder()
 	{
 		h.getDecodeDemux(m_decode_demux);
 		if (m_decode_demux)
-			m_decode_demux->getMPEGDecoder(m_decoder);
+			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
 	}
@@ -1534,11 +1543,13 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setVideoPID(vpid);
 		m_current_audio_stream = 0;
 		m_decoder->setAudioPID(apid, apidtype);
-		if (!(m_is_pvr || m_timeshift_active))
+		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
 		m_decoder->setTextPID(tpid);
+		if (!m_is_primary)
+			m_decoder->setTrickmode(1);
 		m_decoder->start();
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track
