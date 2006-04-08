@@ -48,6 +48,8 @@ public:
 		
 	int isTransparent() { return m_vis & wVisTransparent; }
 	
+	ePoint getAbsolutePosition();
+	
 	eWidgetAnimation m_animation;
 private:
 	eWidgetDesktop *m_desktop;

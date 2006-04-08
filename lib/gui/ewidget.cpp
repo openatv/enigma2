@@ -199,6 +199,21 @@ void eWidget::setTransparent(int transp)
 		m_vis &=~wVisTransparent;
 }
 
+ePoint eWidget::getAbsolutePosition()
+{
+	eWidget *root = this;
+	ePoint abspos = position();
+
+	while (root && !root->m_desktop)
+	{
+		root = root->m_parent;
+		assert(root);
+		abspos += root->position();
+	}
+
+	return abspos;
+}
+
 void eWidget::mayKillFocus()
 {
 	setFocus(0);
