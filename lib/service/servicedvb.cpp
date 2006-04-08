@@ -573,11 +573,10 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	if (m_reference.path == "s")
 	{
 		m_reference.path = "";
-		ref.path = "";
 		m_is_primary = 0;
 	}
 	
-	m_is_pvr = !ref.path.empty();
+	m_is_pvr = !m_reference.path.empty();
 	
 	m_timeshift_enabled = m_timeshift_active = 0;
 	m_skipmode = 0;
