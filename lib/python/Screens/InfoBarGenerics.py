@@ -981,10 +981,15 @@ class InfoBarExtensions:
 			self.pip = self.session.instantiateDialog(PictureInPicture)
 			#self.pip.show()
 			
-			newservice = str(ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())) + "s"
-			self.pipservice = eServiceCenter.getInstance().play(eServiceReference(newservice))
-			self.pipservice.start()
-			self.pipshown = True
+			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.pipservice = eServiceCenter.getInstance().play(newservice)
+			if self.pipservice and not self.pipservice.setTarget(1):
+				self.pipservice.start()
+				self.pipshown = True
+			else:
+				self.pipservice = None
+				del self.pip
+
 		elif answer[1] == "pipoff":
 			#self.pip.hide()
 			del self.pip
