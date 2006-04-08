@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-22 21:46+0000\n"
+"POT-Creation-Date: 2006-03-22 23:28+0100\n"
 "PO-Revision-Date: 2006-04-01 15:54+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
@@ -37,8 +37,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:105
+#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -50,11 +50,6 @@ msgid ""
 msgstr ""
 "%s\n"
 "(%s, %d MB vrij)"
-
-#: ../lib/python/Components/TimerList.py:46
-#: ../lib/python/Components/TimerList.py:51
-msgid "(ZAP)"
-msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
@@ -96,7 +91,7 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:66
+#: ../lib/python/Components/TimerList.py:57
 msgid "<unknown>"
 msgstr "onbekend"
 
@@ -104,7 +99,7 @@ msgstr "onbekend"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -112,7 +107,7 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-#: ../RecordTimer.py:141
+#: ../RecordTimer.py:137
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -176,8 +171,7 @@ msgstr "Arabisch"
 msgid "Auto"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:447
-#: ../data/
+#: ../lib/python/Screens/ScanSetup.py:447 ../data/
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
 
@@ -233,8 +227,7 @@ msgstr ""
 msgid "Cable provider"
 msgstr "Kabel provider"
 
-#: ../lib/python/Screens/Setup.py:110
-#: ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:24
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -244,8 +237,7 @@ msgstr "Stoppen"
 msgid "Capacity: "
 msgstr "Groote van harddisk: "
 
-#: ../lib/python/Screens/TimerEntry.py:190
-#: ../data/
+#: ../lib/python/Screens/TimerEntry.py:180 ../data/
 msgid "Channel"
 msgstr "Kanaal"
 
@@ -265,7 +257,7 @@ msgstr "klassiek"
 msgid "Cleanup"
 msgstr "Opruimen"
 
-#: ../lib/python/Screens/TimerEntry.py:312
+#: ../lib/python/Screens/TimerEntry.py:299
 msgid "Clear log"
 msgstr "Log Wissen"
 
@@ -292,8 +284,7 @@ msgid "Complete"
 msgstr "Kompleet"
 
 #: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:147
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:147 ../data/
 msgid "Configuration Mode"
 msgstr "Konfiguratie"
 
@@ -313,7 +304,7 @@ msgstr "Standaard"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: ../lib/python/Screens/TimerEntry.py:309
+#: ../lib/python/Screens/TimerEntry.py:296
 msgid "Delete entry"
 msgstr "Verwijder Invoer"
 
@@ -321,7 +312,7 @@ msgstr "Verwijder Invoer"
 msgid "Delete failed!"
 msgstr "Verwijderen mislukt."
 
-#: ../lib/python/Screens/TimerEntry.py:147
+#: ../lib/python/Screens/TimerEntry.py:141
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -354,8 +345,7 @@ msgid "DiSEqC repeats"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:127
-#: ../lib/python/Screens/TimerEdit.py:76
-#: ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:76 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -434,8 +424,7 @@ msgid "East"
 msgstr "Oost"
 
 #: ../lib/python/Screens/ScanSetup.py:127
-#: ../lib/python/Screens/TimerEdit.py:74
-#: ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:74 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -446,11 +435,11 @@ msgstr "Oost"
 msgid "Enable"
 msgstr "Aan"
 
-#: ../lib/python/Screens/TimerEntry.py:184
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "End"
 msgstr "Einde"
 
-#: ../lib/python/Screens/TimerEntry.py:188
+#: ../lib/python/Screens/TimerEntry.py:178
 msgid "EndTime"
 msgstr "Eindtijd"
 
@@ -472,7 +461,7 @@ msgstr "Uitvoeren extern Commando"
 msgid "Execution finished!!"
 msgstr "Uitvoering gestopt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1181
+#: ../lib/python/Screens/InfoBarGenerics.py:1176
 msgid "Extensions"
 msgstr "Uitbreidingen"
 
@@ -492,7 +481,7 @@ msgstr "Favorieten"
 #: ../lib/python/Screens/ScanSetup.py:110
 #: ../lib/python/Screens/ScanSetup.py:138
 #: ../lib/python/Screens/ScanSetup.py:149
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Frequency"
 msgstr "Frequency"
 
@@ -501,8 +490,8 @@ msgstr "Frequency"
 msgid "Fri"
 msgstr "Vr"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:162
 msgid "Friday"
 msgstr "Vrijdag"
 
@@ -515,8 +504,7 @@ msgstr "Frontprocessor versie: %d"
 msgid "Function not yet implemented"
 msgstr "Nog niet ingebouwde funktie"
 
-#: ../lib/python/Screens/NetworkSetup.py:45
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
 msgstr ""
 
@@ -546,13 +534,12 @@ msgstr "Harddisk"
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1088
-#: ../lib/python/Screens/InfoBarGenerics.py:1096
+#: ../lib/python/Screens/InfoBarGenerics.py:1083
+#: ../lib/python/Screens/InfoBarGenerics.py:1091
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
 
-#: ../lib/python/Screens/NetworkSetup.py:42
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "IP-Adres"
 
@@ -598,14 +585,12 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:40
-#: ../data/
+#: ../lib/python/Screens/LanguageSelection.py:40 ../data/
 msgid "Language selection"
 msgstr "Taal Keuze"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:130
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:130 ../data/
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -622,8 +607,7 @@ msgid "Limits off"
 msgstr "Limieten uit"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:128
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:128 ../data/
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -645,12 +629,12 @@ msgstr "Modulatie"
 msgid "Mon"
 msgstr "Ma"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "Mon-Fri"
 msgstr "Maandag tot Vrijdag"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:166
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Monday"
 msgstr "Maandag"
 
@@ -678,17 +662,15 @@ msgstr ""
 msgid "N/A"
 msgstr "Niet Aanwezig"
 
-#: ../lib/python/Screens/TimerEntry.py:146
+#: ../lib/python/Screens/TimerEntry.py:140
 msgid "Name"
 msgstr "Naam"
 
-#: ../lib/python/Screens/NetworkSetup.py:46
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:46 ../data/
 msgid "Nameserver"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:44
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -712,13 +694,13 @@ msgstr "Volgende"
 msgid "No"
 msgstr "Nee"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1110
+#: ../lib/python/Screens/InfoBarGenerics.py:1105
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Geen Harddisk gevonden of\n"
 "Hardisk is niet Geformateerd."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1067
+#: ../lib/python/Screens/InfoBarGenerics.py:1062
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG-DATA  gevonden, Start onbegrensde opname."
 
@@ -744,8 +726,7 @@ msgstr "Noord"
 msgid "Nothing connected"
 msgstr "Niks aangesloten"
 
-#: ../lib/python/Screens/Setup.py:109
-#: ../lib/python/Screens/TimerEntry.py:23
+#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:23
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -847,7 +828,7 @@ msgstr "Providers"
 msgid "Really delete done timers?"
 msgstr "Wilt u gebruikte timers echt wissen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165
+#: ../lib/python/Screens/InfoBarGenerics.py:1160
 msgid "Record"
 msgstr "Opnemen"
 
@@ -862,10 +843,6 @@ msgstr "Verwijder Plugins"
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
 msgstr "Verwijder plugins"
-
-#: ../lib/python/Screens/TimerEntry.py:150
-msgid "Repeat Type"
-msgstr "Herhaal Type"
 
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
@@ -887,8 +864,7 @@ msgstr "Za"
 
 #: ../lib/python/Screens/ScanSetup.py:109
 #: ../lib/python/Screens/ScanSetup.py:118
-#: ../lib/python/Screens/Satconfig.py:13
-#: ../lib/python/Screens/Satconfig.py:61
+#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:149
 msgid "Satellite"
 msgstr "Satellite"
@@ -898,8 +874,8 @@ msgstr "Satellite"
 msgid "Satellites"
 msgstr "Satelliten"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:171
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Saturday"
 msgstr "Zaterdag"
 
@@ -912,7 +888,7 @@ msgstr ""
 msgid "Secondary cable from motorized LNB"
 msgstr "Tweede kabel van Rotor"
 
-#: ../lib/python/Screens/TimerEntry.py:230
+#: ../lib/python/Screens/TimerEntry.py:218
 msgid "Select channel to record from"
 msgstr "Selecteer een kanaal waarvan u wilt opnemen"
 
@@ -937,7 +913,7 @@ msgid "Show the radio player..."
 msgstr "Toon de radiospeler..."
 
 #: ../lib/python/Screens/EventView.py:102
-msgid "Similar broadcastings:"
+msgid "Similar broadcasts:"
 msgstr ""
 
 #: ../lib/python/Components/NimManager.py:633
@@ -990,15 +966,15 @@ msgstr "Zuid"
 msgid "Spanish"
 msgstr "Spaans"
 
-#: ../lib/python/Screens/TimerEntry.py:178
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "Start recording?"
 msgstr "Start Opnemen?"
 
-#: ../lib/python/Screens/TimerEntry.py:181
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "StartTime"
 msgstr "Startijd"
 
@@ -1014,7 +990,7 @@ msgstr "Stap naar oost"
 msgid "Step west"
 msgstr "Stap naar west"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:950
+#: ../lib/python/Screens/InfoBarGenerics.py:945
 msgid "Stop Timeshift?"
 msgstr "Timeshift Stoppen?"
 
@@ -1030,8 +1006,7 @@ msgstr "Sla positie op"
 msgid "Stored position"
 msgstr "Opgeslagen positie"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1170
-#: ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1165 ../data/
 msgid "Subservices"
 msgstr "Subservices"
 
@@ -1040,8 +1015,8 @@ msgstr "Subservices"
 msgid "Sun"
 msgstr "Zo"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:172
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:164
 msgid "Sunday"
 msgstr "Zondag"
 
@@ -1067,20 +1042,20 @@ msgstr "Drempel"
 msgid "Thu"
 msgstr "Do"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:169
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:142
 msgid "Timer Type"
 msgstr "Timer-Type"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:922
+#: ../lib/python/Screens/InfoBarGenerics.py:917
 msgid "Timeshift not possible!"
 msgstr "Timeshift is niet mogelijk!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1174
+#: ../lib/python/Screens/InfoBarGenerics.py:1169
 msgid "Timeshifting"
 msgstr ""
 
@@ -1110,8 +1085,8 @@ msgstr "Overdragings type"
 msgid "Tue"
 msgstr "Di"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:167
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Tuesday"
 msgstr "Dinsdag"
 
@@ -1124,8 +1099,7 @@ msgstr "Tuner"
 msgid "Two"
 msgstr "Twee"
 
-#: ../lib/python/Screens/ScanSetup.py:96
-#: ../lib/python/Screens/ScanSetup.py:99
+#: ../lib/python/Screens/ScanSetup.py:96 ../lib/python/Screens/ScanSetup.py:99
 #: ../lib/python/Screens/ScanSetup.py:102
 msgid "Type of scan"
 msgstr "Type voor zoeken"
@@ -1164,8 +1138,7 @@ msgstr "Klaar met Updating. Dit is het Resultaat:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Update is bezig. Wacht AUB. Dit kan enkele minuten duren."
 
-#: ../lib/python/Screens/NetworkSetup.py:40
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
 msgstr "automatisch IP verkrijgen (DHCP)"
 
@@ -1190,12 +1163,12 @@ msgstr ""
 msgid "Wed"
 msgstr "Wo"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Wednesday"
 msgstr "Woensdag"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Weekday"
 msgstr "Weekdag"
 
@@ -1244,7 +1217,7 @@ msgstr "Boeket edit stoppen"
 msgid "abort favourites edit"
 msgstr "Favoriet edit stoppen"
 
-#: ../lib/python/Components/TimerList.py:59
+#: ../lib/python/Components/TimerList.py:53
 msgid "about to start"
 msgstr "Start direkt"
 
@@ -1285,7 +1258,7 @@ msgstr "circular rechts"
 msgid "copy to favourites"
 msgstr "Naar favorieten copieeren"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "daily"
 msgstr "Dagelijks"
 
@@ -1297,15 +1270,15 @@ msgstr "Verwijderen..."
 msgid "disable move mode"
 msgstr "Verplaats modus uitzetten"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "do nothing"
 msgstr "doe niks"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "don't record"
 msgstr "niet opnemen"
 
-#: ../lib/python/Components/TimerList.py:68
+#: ../lib/python/Components/TimerList.py:59
 msgid "done!"
 msgstr "Klaar!"
 
@@ -1333,8 +1306,8 @@ msgstr "Boeket edit stoppen"
 msgid "end favourites edit"
 msgstr "Favorieten edit stoppen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "enter recording duration"
 msgstr "Voer opname tijd in"
 
@@ -1379,7 +1352,7 @@ msgstr "zet volgend kanaal in historie"
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -1409,7 +1382,7 @@ msgstr "uit"
 msgid "on"
 msgstr "aan"
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "once"
 msgstr "Eenmalig"
 
@@ -1433,15 +1406,11 @@ msgstr "Vorig Kanaal"
 msgid "previous channel in history"
 msgstr "zet vorig kanaal in historie"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "record"
-msgstr "opnemen"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "record indefinitely"
 msgstr "onbegrensde opname"
 
-#: ../lib/python/Components/TimerList.py:64
+#: ../lib/python/Components/TimerList.py:55
 msgid "recording..."
 msgstr "opnemen..."
 
@@ -1453,7 +1422,7 @@ msgstr "Boeket verwijderen"
 msgid "remove service"
 msgstr "Kanaal verwijderen"
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "repeated"
 msgstr "Herhalen"
 
@@ -1503,16 +1472,15 @@ msgstr "laat EPG zien..."
 msgid "show event details"
 msgstr "laat EPG details zien"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "stop after current event"
 msgstr "stop na huidige EPG data"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "stop recording"
 msgstr "stop opname"
 
-#: ../lib/python/Screens/Wizard.py:225
-#: ../lib/python/Screens/Wizard.py:226
+#: ../lib/python/Screens/Wizard.py:225 ../lib/python/Screens/Wizard.py:226
 msgid "text"
 msgstr ""
 
@@ -1520,7 +1488,7 @@ msgstr ""
 msgid "unknown service"
 msgstr "onbekende Service"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "user defined"
 msgstr "gebruikers mode"
 
@@ -1528,11 +1496,11 @@ msgstr "gebruikers mode"
 msgid "vertical"
 msgstr "vertikaal"
 
-#: ../lib/python/Components/TimerList.py:57
+#: ../lib/python/Components/TimerList.py:51
 msgid "waiting"
 msgstr "wachten"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "weekly"
 msgstr "wekelijks"
 
@@ -1540,19 +1508,11 @@ msgstr "wekelijks"
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "ja"
-
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "zap"
-msgstr ""
-
-#: ../lib/python/Components/TimerList.py:62
-msgid "zapped"
-msgstr ""
 
 #: ../data/
 msgid "Channel Selection"
@@ -1587,8 +1547,12 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, backup mijn settings!"
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
+"Terug zetten van de settings is klaar. Druk op OK om de terug gezette "
+"settings te activeren."
 
 #: ../data/
 msgid "Satconfig"
@@ -1596,11 +1560,17 @@ msgstr "Sat instelling"
 
 #: ../data/
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -1627,8 +1597,12 @@ msgid "NEXT"
 msgstr ""
 
 #: ../data/
-msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
-msgstr "U heeft schijnbaar geen harddisk in u dreambox. dus backup naar een harddisk is niet mogelijk voor u."
+msgid ""
+"You do not seem to have a harddisk in your Dreambox. So backing up to a "
+"harddisk is not an option for you."
+msgstr ""
+"U heeft schijnbaar geen harddisk in u dreambox. dus backup naar een harddisk "
+"is niet mogelijk voor u."
 
 #: ../data/
 msgid "Deep Standby"
@@ -1647,8 +1621,16 @@ msgid "Sound"
 msgstr "Geluid"
 
 #: ../data/
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Met de omhoog/omlaag Toetsen op u afstands bediening een optie uitkiezen. En daarna op OK druken."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
+msgstr ""
+"Met de omhoog/omlaag Toetsen op u afstands bediening een optie uitkiezen. En "
+"daarna op OK druken."
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nee, alleen mijn dreambox starten"
 
 #: ../data/
 msgid "Show Satposition"
@@ -1659,8 +1641,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nee, doe niks."
+msgid "Setup"
+msgstr "Instellingen"
 
 #: ../data/
 msgid "#000000"
@@ -1687,7 +1669,8 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U heeft gekozen backup naar usb stick. U kunt beter naar een harddisk backuppen!\n"
+"U heeft gekozen backup naar usb stick. U kunt beter naar een harddisk "
+"backuppen!\n"
 "Druk op OK om de backup te starten."
 
 #: ../data/
@@ -1695,8 +1678,8 @@ msgid "Audio / Video"
 msgstr "Audio / Video"
 
 #: ../data/
-msgid "Mute"
-msgstr "Mute"
+msgid "The wizard is finished now."
+msgstr "De wizard is is nu klaar."
 
 #: ../data/
 msgid "Service Searching"
@@ -1707,8 +1690,18 @@ msgid "#20294a6b"
 msgstr ""
 
 #: ../data/
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Welkom bij de Image upgrade wizard. De wizard zal u assisteren bij het upgrade van de firmware in u Dreambox door een backup mogelijkheid voor u huidige settings en een korte uitleg hoe uw firmware te upgraden."
+msgid "Mute"
+msgstr "Mute"
+
+#: ../data/
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Welkom bij de Image upgrade wizard. De wizard zal u assisteren bij het "
+"upgrade van de firmware in u Dreambox door een backup mogelijkheid voor u "
+"huidige settings en een korte uitleg hoe uw firmware te upgraden."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -1759,16 +1752,25 @@ msgid "Manual Scan"
 msgstr "Handmatig Zoeken"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-instellingen"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Welkom.\n"
+"\n"
+"De start wizard leid u door de basic instellingen van u dreambox.\n"
+"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
+"gaan."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Afstands Bediening"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nee, alleen mijn dreambox starten"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1799,8 +1801,8 @@ msgid "Fast zapping"
 msgstr "Fast zapping"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Gebruikers instellingen"
+msgid "OSD Settings"
+msgstr "OSD-instellingen"
 
 #: ../data/
 msgid "Brightness"
@@ -1809,10 +1811,6 @@ msgstr "Helderheid"
 #: ../data/
 msgid "Standby"
 msgstr ""
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, nu handmatig zoeken"
 
 #: ../data/
 msgid "Activate network settings"
@@ -1847,12 +1845,12 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr ""
-
-#: ../data/
 msgid "Downloadable plugins"
 msgstr "Downloadbare plugins"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
 
 #: ../data/
 msgid "LCD"
@@ -1883,24 +1881,32 @@ msgid "Ask before zapping"
 msgstr "Voor omschakelen eerst vragen"
 
 #: ../data/
-msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
-msgstr "Terug zetten van de settings is klaar. Druk op OK om de terug gezette settings te activeren."
+msgid "#c0c000"
+msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-instellingen"
 
 #: ../data/
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
-msgstr "Door op de OK Knop van de afstands bediening te drukken, word de infobar zichtbaar"
+msgid "Usage Settings"
+msgstr "Gebruikers instellingen"
+
+#: ../data/
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
+msgstr ""
+"Door op de OK Knop van de afstands bediening te drukken, word de infobar "
+"zichtbaar"
 
 #: ../data/
 msgid "Service scan"
 msgstr "Kanaal zoeken"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "De wizard is is nu klaar."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, nu handmatig zoeken"
 
 #: ../data/
 msgid "LCD Setup"
@@ -1931,8 +1937,12 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
-msgstr "U heeft gekozen om  te backuppen naar u harddisk. Druk op OK aub backuppen te starten."
+msgid ""
+"You have chosen to backup to your harddisk. Please press OK to start the "
+"backup now."
+msgstr ""
+"U heeft gekozen om  te backuppen naar u harddisk. Druk op OK aub backuppen "
+"te starten."
 
 #: ../data/
 msgid "Repeat"
@@ -1940,10 +1950,14 @@ msgstr "Herhaling"
 
 #: ../data/
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U hebt gekozen om backuppen naar u compact flash kaart. de CF kaar moet in het slot zitten. Er word niet gecontroleerd of er wat op staat. Daarom  is het beter te backuppen naar u harddisk!\n"
+"U hebt gekozen om backuppen naar u compact flash kaart. de CF kaar moet in "
+"het slot zitten. Er word niet gecontroleerd of er wat op staat. Daarom  is "
+"het beter te backuppen naar u harddisk!\n"
 "Druk op OK aub backuppen te starten."
 
 #: ../data/
@@ -1955,8 +1969,12 @@ msgid "Somewhere else"
 msgstr "Ergens anders"
 
 #: ../data/
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "U backup is geslaagd. We gaaqn nu verder met uitleggen hoe het  upgrade process werkt."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
+msgstr ""
+"U backup is geslaagd. We gaaqn nu verder met uitleggen hoe het  upgrade "
+"process werkt."
 
 #: ../data/
 msgid "Menu"
@@ -2003,16 +2021,13 @@ msgid "InfoBar"
 msgstr ""
 
 #: ../data/
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "De wizard kan u huidige settings backuppen. Wilt u nu  backuppen?"
 
 #: ../data/
 msgid "Exit wizard"
 msgstr "Wizard stoppen"
-
-#: ../data/
-msgid "Media player"
-msgstr ""
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2161,8 +2176,8 @@ msgid "Timer Edit"
 msgstr "Timer gestuurde opname"
 
 #: ../data/
-msgid "Setup"
-msgstr "Instellingen"
+msgid "No, do nothing."
+msgstr "Nee, doe niks."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2225,28 +2240,18 @@ msgid "Seek"
 msgstr "Zoeken"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Welkom.\n"
-"\n"
-"De start wizard leid u door de basic instellingen van u dreambox.\n"
-"Druk op de OK toets van u afstands bediening om naar de volgende stap te gaan."
-
-#: ../data/
 msgid "Satelliteconfig"
 msgstr "Satelliet instellingen"
 
 #: ../data/
-msgid "MediaPlayer"
-msgstr ""
-
-#: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Wilt u opnieuw handmatig zoeken?"
+
+#~ msgid "Repeat Type"
+#~ msgstr "Herhaal Type"
+
+#~ msgid "record"
+#~ msgstr "opnemen"
 
 #~ msgid ""
 #~ "Do you want to stop the current\n"
@@ -2254,28 +2259,37 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 #~ msgstr ""
 #~ "Wilt u de (actuele) direktopname\n"
 #~ "stoppen?"
+
 #~ msgid "Yes, scan now"
 #~ msgstr "Ja, nu scannen."
+
 #~ msgid "%s (%s, %d MB free)"
 #~ msgstr "%s (%s, %d MB vrij)"
+
 #~ msgid "Positioner mode"
 #~ msgstr "Rotor mode"
+
 #~ msgid "Plugins"
 #~ msgstr "Plugins"
+
 #~ msgid "Please press OK!"
 #~ msgstr "Druk OK Aub!"
+
 #~ msgid "Usage"
 #~ msgstr "Bediening"
+
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "De wizard is klaar. U kunt u dreambox nu gebruiken."
+
 #~ msgid "Toggle EPG type with INFO button"
 #~ msgstr "Verander EPG-Type door Drukken op INFO toets"
+
 #~ msgid "Nederlands"
 #~ msgstr "Dutch"
+
 #~ msgid ""
 #~ "scanning in progress - %d %% done!\n"
 #~ "%d services found!"
 #~ msgstr ""
 #~ "Scannen loopt - %d %% klaar!\n"
 #~ "%d Kanalen gevonden!"
-
