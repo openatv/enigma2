@@ -33,7 +33,7 @@
 
 DEFINE_REF(eDVBAudio);
 
-eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux)
+eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -63,7 +63,7 @@ int eDVBAudio::startPid(int pid, int type)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_AUDIO;  // DMX_PES_AUDIO0
+	pes.pes_type = m_dev ? DMX_PES_AUDIO1 : DMX_PES_AUDIO0; /* FIXME */
 	pes.flags    = 0;
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
@@ -152,7 +152,7 @@ eDVBAudio::~eDVBAudio()
 
 DEFINE_REF(eDVBVideo);
 
-eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
+eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -163,6 +163,8 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 	m_fd = ::open(filename, O_RDWR);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
+	
+	eDebug("Video Device: %s", filename);
 #if HAVE_DVB_API_VERSION < 3
 	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
 #else
@@ -171,6 +173,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux)
 	m_fd_demux = ::open(filename, O_RDWR);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
+	eDebug("demux device: %s", filename);
 }
 	
 int eDVBVideo::startPid(int pid)
@@ -182,7 +185,7 @@ int eDVBVideo::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_VIDEO;
+	pes.pes_type = m_dev ? DMX_PES_VIDEO1 : DMX_PES_VIDEO0; /* FIXME */
 	pes.flags    = 0;
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
@@ -375,7 +378,7 @@ int eTSMPEGDecoder::setState()
 	
 	int noaudio = m_is_sm || m_is_ff || m_is_trickmode;
 	int nott = noaudio; /* actually same conditions */
-
+	
 	if ((noaudio && m_audio) || (!m_audio && !noaudio))
 		m_changed |= changeAudio;
 	
@@ -414,7 +417,7 @@ int eTSMPEGDecoder::setState()
 	}
 	if (m_changed & changeVideo)
 	{
-		m_video = new eDVBVideo(m_demux, 0);
+		m_video = new eDVBVideo(m_demux, m_decoder);
 		if (m_video->startPid(m_vpid))
 		{
 			eWarning("video: startpid failed!");
@@ -424,7 +427,7 @@ int eTSMPEGDecoder::setState()
 	}
 	if (m_changed & changeAudio)
 	{
-		m_audio = new eDVBAudio(m_demux, 0);
+		m_audio = new eDVBAudio(m_demux, m_decoder);
 		if (m_audio->startPid(m_apid, m_atype))
 		{
 			eWarning("audio: startpid failed!");
@@ -461,7 +464,7 @@ int eTSMPEGDecoder::setState()
 		if ((m_vpid >= 0) && (m_vpid < 0x1FFF))
 		{
 			eDebug("new video");
-			m_video = new eDVBVideo(m_demux, 0);
+			m_video = new eDVBVideo(m_demux, m_decoder);
 			if (m_video->startPid(m_vpid))
 			{
 				eWarning("video: startpid failed!");
@@ -477,7 +480,7 @@ int eTSMPEGDecoder::setState()
 		m_audio = 0;
 		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
 		{
-			m_audio = new eDVBAudio(m_demux, 0);
+			m_audio = new eDVBAudio(m_demux, m_decoder);
 			if (m_audio->startPid(m_apid, m_atype))
 			{
 				eWarning("audio: startpid failed!");
@@ -506,7 +509,7 @@ int eTSMPEGDecoder::setState()
 	return res;
 }
 
-eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0)
+eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0), m_decoder(decoder)
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
 	m_is_ff = m_is_sm = m_is_trickmode = 0;
