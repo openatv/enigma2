@@ -231,6 +231,11 @@ RESULT eServiceMP3::stop()
 	return 0;
 }
 
+RESULT eServiceMP3::setTarget(int target)
+{
+	return -1;
+}
+
 RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 {
 	ptr=this;
@@ -292,14 +297,38 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 
 RESULT eServiceMP3::seekTo(pts_t to)
 {
-	/* implement me */
-	return -1;
+	if (!m_gst_pipeline)
+		return -1;
+
+		/* convert pts to nanoseconds */
+	gint64 time_nanoseconds = to * 11111LL;
+	if (!gst_element_seek (m_gst_pipeline, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
+		GST_SEEK_TYPE_SET, time_nanoseconds,
+		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+	{
+		eDebug("SEEK failed");
+		return -1;
+	}
+	return 0;
 }
 
 RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 {
-	/* implement me */
-	return -1;
+	if (!m_gst_pipeline)
+		return -1;
+
+	pause();
+
+	pts_t ppos;
+	getPlayPosition(ppos);
+	ppos += to * direction;
+	if (ppos < 0)
+		ppos = 0;
+	seekTo(ppos);
+	
+	unpause();
+
+	return 0;
 }
 
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
@@ -316,7 +345,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		return -1;
 	
 		/* len is in nanoseconds. we have 90 000 pts per second. */
-	
 	pts = len / 11111;
 	return 0;
 }
@@ -413,10 +441,14 @@ std::string eServiceMP3::getInfoString(int w)
 
 void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 {
+	gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
+	eDebug("gst_message: %s", string);
+	g_free(string);
+	
+	
 	switch (GST_MESSAGE_TYPE (msg))
 	{
 	case GST_MESSAGE_EOS:
-		eDebug("end of stream!");
 		m_event((iPlayableService*)this, evEOF);
 		break;
 	case GST_MESSAGE_ERROR:
@@ -434,7 +466,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	{
 		GstTagList *tags, *result;
 		gst_message_parse_tag(msg, &tags);
-		eDebug("is tag list: %d", GST_IS_TAG_LIST(tags));
 
 		result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_PREPEND);
 		if (result)
@@ -444,29 +475,9 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			m_stream_tags = result;
 		}
 		gst_tag_list_free(tags);
-		
-		eDebug("listing tags..");
-		gst_tag_list_foreach(m_stream_tags, foreach, 0);
-		eDebug("ok");
-
-		if (m_stream_tags)
-		{
-			gchar *title;
-			eDebug("is tag list: %d", GST_IS_TAG_LIST(m_stream_tags));
-			if (gst_tag_list_get_string(m_stream_tags, GST_TAG_TITLE, &title))
-			{
-				eDebug("TITLE: %s", title);
-				g_free(title);
-			} else
-				eDebug("no title");
-		} else
-			eDebug("no tags");
-		
-		eDebug("tag list updated!");
 		break;
 	}
 	default:
-		eDebug("unknown message");
 		break;
 	}
 }
@@ -492,6 +503,7 @@ void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last,
 		g_object_unref (audiopad);
 		return;
 	}
+	
 	
 	/* check media type */
 	caps = gst_pad_get_caps (pad);
