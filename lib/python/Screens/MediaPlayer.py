@@ -311,15 +311,15 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.playEntry()
 	
 	def playEntry(self):
-		currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
-		if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
-			self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
-			info = eServiceCenter.getInstance().info(currref)
-			description = info.getInfoString(currref, iServiceInformation.sDescription)
-			self["title"].setText(description)
-		self.unPauseService()
-		
-		
+		if len(self.playlist.getServiceRefList()):
+			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
+			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
+				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
+				info = eServiceCenter.getInstance().info(currref)
+				description = info.getInfoString(currref, iServiceInformation.sDescription)
+				self["title"].setText(description)
+			self.unPauseService()
+				
 	def updatedSeekState(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			self.playlist.pauseFile()
