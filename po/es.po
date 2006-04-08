@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-03 08:31+0200\n"
+"POT-Creation-Date: 2006-03-22 23:28+0100\n"
 "PO-Revision-Date: 2006-04-03 09:00+0200\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -37,8 +37,8 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:105
+#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -50,11 +50,6 @@ msgid ""
 msgstr ""
 "%s\n"
 "(%s, %d MB libres)"
-
-#: ../lib/python/Components/TimerList.py:46
-#: ../lib/python/Components/TimerList.py:51
-msgid "(ZAP)"
-msgstr "(ZAPEAR)"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
@@ -96,7 +91,7 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:66
+#: ../lib/python/Components/TimerList.py:57
 msgid "<unknown>"
 msgstr "<desconocido>"
 
@@ -104,7 +99,7 @@ msgstr "<desconocido>"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -112,7 +107,7 @@ msgstr ""
 "Una grabación está actualmente ejecutándose.\n"
 "¿Qué quiere hacer?"
 
-#: ../RecordTimer.py:141
+#: ../RecordTimer.py:137
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -176,7 +171,7 @@ msgstr "Arábigo"
 msgid "Auto"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:464 ../data/
+#: ../lib/python/Screens/ScanSetup.py:447 ../data/
 msgid "Automatic Scan"
 msgstr "Búsqueda automática"
 
@@ -242,11 +237,11 @@ msgstr "Cancelar"
 msgid "Capacity: "
 msgstr "Capacidad: "
 
-#: ../lib/python/Screens/TimerEntry.py:190 ../data/
+#: ../lib/python/Screens/TimerEntry.py:180 ../data/
 msgid "Channel"
 msgstr "Canal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:146
+#: ../lib/python/Screens/InfoBarGenerics.py:145
 msgid "Channel:"
 msgstr "Canal:"
 
@@ -262,7 +257,7 @@ msgstr "Clásico"
 msgid "Cleanup"
 msgstr "Limpiar"
 
-#: ../lib/python/Screens/TimerEntry.py:312
+#: ../lib/python/Screens/TimerEntry.py:299
 msgid "Clear log"
 msgstr "Borrar log"
 
@@ -309,7 +304,7 @@ msgstr "Por defecto"
 msgid "Delete"
 msgstr "Borrar"
 
-#: ../lib/python/Screens/TimerEntry.py:309
+#: ../lib/python/Screens/TimerEntry.py:296
 msgid "Delete entry"
 msgstr "Borrar entrada"
 
@@ -317,7 +312,7 @@ msgstr "Borrar entrada"
 msgid "Delete failed!"
 msgstr "¡Falló el borrado!"
 
-#: ../lib/python/Screens/TimerEntry.py:147
+#: ../lib/python/Screens/TimerEntry.py:141
 msgid "Description"
 msgstr "Descripción"
 
@@ -438,15 +433,15 @@ msgstr "Este"
 msgid "Enable"
 msgstr "Activar"
 
-#: ../lib/python/Screens/TimerEntry.py:184
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "End"
 msgstr "Fin"
 
-#: ../lib/python/Screens/TimerEntry.py:188
+#: ../lib/python/Screens/TimerEntry.py:178
 msgid "EndTime"
 msgstr "HoraFin"
 
-#: ../lib/python/Screens/LanguageSelection.py:53
+#: ../lib/python/Screens/LanguageSelection.py:45
 #: ../lib/python/Components/SetupDevices.py:24
 #: ../lib/python/Components/Language.py:13
 msgid "English"
@@ -464,7 +459,7 @@ msgstr "Progreso de ejecución:"
 msgid "Execution finished!!"
 msgstr "¡Ejecución terminó!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1157
+#: ../lib/python/Screens/InfoBarGenerics.py:1176
 msgid "Extensions"
 msgstr "Extensiones"
 
@@ -484,7 +479,7 @@ msgstr "Favoritos"
 #: ../lib/python/Screens/ScanSetup.py:110
 #: ../lib/python/Screens/ScanSetup.py:138
 #: ../lib/python/Screens/ScanSetup.py:149
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Frequency"
 msgstr "Frecuencia"
 
@@ -493,8 +488,8 @@ msgstr "Frecuencia"
 msgid "Fri"
 msgstr "Vie"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:162
 msgid "Friday"
 msgstr "Viernes"
 
@@ -537,18 +532,14 @@ msgstr "Disco duro"
 msgid "Hierarchy mode"
 msgstr "Modo jerárquico"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1070
-#: ../lib/python/Screens/InfoBarGenerics.py:1076
+#: ../lib/python/Screens/InfoBarGenerics.py:1083
+#: ../lib/python/Screens/InfoBarGenerics.py:1091
 msgid "How many minutes do you want to record?"
 msgstr "¿Cuántos minutos quiere grabar?"
 
 #: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "Dirección IP"
-
-#: ../lib/python/Components/Language.py:18
-msgid "Icelandic"
-msgstr "Islandés"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
 msgid "Image-Upgrade"
@@ -592,7 +583,7 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:40 ../data/
 msgid "Language selection"
 msgstr "Selección de Idioma"
 
@@ -636,12 +627,12 @@ msgstr "Modulació"
 msgid "Mon"
 msgstr "Lun"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "Mon-Fri"
 msgstr "Lun-Vie"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:166
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Monday"
 msgstr "Lunes"
 
@@ -669,7 +660,7 @@ msgstr ""
 msgid "N/A"
 msgstr "N/D"
 
-#: ../lib/python/Screens/TimerEntry.py:146
+#: ../lib/python/Screens/TimerEntry.py:140
 msgid "Name"
 msgstr "Nombre"
 
@@ -701,11 +692,11 @@ msgstr "Siguiente"
 msgid "No"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1088
+#: ../lib/python/Screens/InfoBarGenerics.py:1105
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD no encontrado o no inicializado!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1029
+#: ../lib/python/Screens/InfoBarGenerics.py:1062
 msgid "No event info found, recording indefinitely."
 msgstr "No hay info del evento, grabando indefinidamente."
 
@@ -808,7 +799,7 @@ msgstr "Almacenar motor"
 msgid "Press OK to activate the settings."
 msgstr "Pulse OK para activar la configuración."
 
-#: ../lib/python/Screens/ScanSetup.py:465
+#: ../lib/python/Screens/ScanSetup.py:448
 msgid "Press OK to scan"
 msgstr "Pulse OK para buscar"
 
@@ -833,7 +824,7 @@ msgstr "Proveedores"
 msgid "Really delete done timers?"
 msgstr "¿Quiere borrar las programaciones terminadas?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1141
+#: ../lib/python/Screens/InfoBarGenerics.py:1160
 msgid "Record"
 msgstr "Grabar"
 
@@ -848,10 +839,6 @@ msgstr "Borrar Plugins"
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
 msgstr "Borrar plugins"
-
-#: ../lib/python/Screens/TimerEntry.py:150
-msgid "Repeat Type"
-msgstr "Tipo de repetición"
 
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
@@ -883,13 +870,13 @@ msgstr "Satélite"
 msgid "Satellites"
 msgstr "Satélites"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:171
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Saturday"
 msgstr "Sábado"
 
-#: ../lib/python/Screens/ScanSetup.py:458
-#: ../lib/python/Screens/ScanSetup.py:461
+#: ../lib/python/Screens/ScanSetup.py:441
+#: ../lib/python/Screens/ScanSetup.py:444
 msgid "Scan NIM"
 msgstr "Escanear NIM"
 
@@ -897,7 +884,7 @@ msgstr "Escanear NIM"
 msgid "Secondary cable from motorized LNB"
 msgstr "Cable secundario del LNB motorizado"
 
-#: ../lib/python/Screens/TimerEntry.py:230
+#: ../lib/python/Screens/TimerEntry.py:218
 msgid "Select channel to record from"
 msgstr "Seleccione canal del que grabar"
 
@@ -972,15 +959,15 @@ msgstr "Sur"
 msgid "Spanish"
 msgstr "Español"
 
-#: ../lib/python/Screens/TimerEntry.py:178
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Start"
 msgstr "Inicio"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1094
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "Start recording?"
 msgstr "¿Iniciar grabación?"
 
-#: ../lib/python/Screens/TimerEntry.py:181
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "StartTime"
 msgstr "HoraInicio"
 
@@ -996,7 +983,7 @@ msgstr "Paso este"
 msgid "Step west"
 msgstr "Paso oeste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:911
+#: ../lib/python/Screens/InfoBarGenerics.py:945
 msgid "Stop Timeshift?"
 msgstr "¿Parar grabación de pausa?"
 
@@ -1012,7 +999,7 @@ msgstr "Almacenar posición"
 msgid "Stored position"
 msgstr "Posición almacenada"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1146 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1165 ../data/
 msgid "Subservices"
 msgstr "Subservicios"
 
@@ -1021,8 +1008,8 @@ msgstr "Subservicios"
 msgid "Sun"
 msgstr "Dom"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:172
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:164
 msgid "Sunday"
 msgstr "Domingo"
 
@@ -1048,20 +1035,20 @@ msgstr "Umbral"
 msgid "Thu"
 msgstr "Jue"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:169
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "Thursday"
 msgstr "Jueves"
 
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:142
 msgid "Timer Type"
 msgstr "Tipo de grabación"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:883
+#: ../lib/python/Screens/InfoBarGenerics.py:917
 msgid "Timeshift not possible!"
 msgstr "¡Pausa no posible!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1150
+#: ../lib/python/Screens/InfoBarGenerics.py:1169
 msgid "Timeshifting"
 msgstr "Pausa"
 
@@ -1091,8 +1078,8 @@ msgstr "Modo trasmisión"
 msgid "Tue"
 msgstr "Mar"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:167
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Tuesday"
 msgstr "Martes"
 
@@ -1169,12 +1156,12 @@ msgstr ""
 msgid "Wed"
 msgstr "Mie"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Wednesday"
 msgstr "Miércoles"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Weekday"
 msgstr "DiaSemana"
 
@@ -1223,28 +1210,13 @@ msgstr "abortar la edición de listas"
 msgid "abort favourites edit"
 msgstr "abortar la edición de favoritos"
 
-#: ../lib/python/Components/TimerList.py:59
+#: ../lib/python/Components/TimerList.py:53
 msgid "about to start"
 msgstr "sobre comenzar"
 
 #: ../lib/python/Screens/ChannelSelection.py:80
 msgid "add bouquet..."
 msgstr "añadir lista..."
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
-#: ../lib/python/Screens/InfoBarGenerics.py:1094
-msgid "add recording (enter recording duration)"
-msgstr "añadir grabación (introduzca duración)"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
-#: ../lib/python/Screens/InfoBarGenerics.py:1094
-msgid "add recording (indefinitely)"
-msgstr "añadir grabación (indefinidamente)"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
-#: ../lib/python/Screens/InfoBarGenerics.py:1094
-msgid "add recording (stop after current event)"
-msgstr "añadirgrabación (parar después del evento actual)"
 
 #: ../lib/python/Screens/ChannelSelection.py:65
 msgid "add service to bouquet"
@@ -1267,10 +1239,6 @@ msgstr ""
 msgid "back"
 msgstr "atrás"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
-msgid "change recording (duration)"
-msgstr "cambiar la grabación (duración)"
-
 #: ../lib/python/Screens/ScanSetup.py:218
 msgid "circular left"
 msgstr "circular izda"
@@ -1283,7 +1251,7 @@ msgstr "circular dcha"
 msgid "copy to favourites"
 msgstr "copiar a favoritos"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "daily"
 msgstr "diariamente"
 
@@ -1295,15 +1263,15 @@ msgstr "borrar..."
 msgid "disable move mode"
 msgstr "inabilitar modo movimiento"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "do nothing"
 msgstr "no hacer nada"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1094
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "don't record"
 msgstr "no grabar"
 
-#: ../lib/python/Components/TimerList.py:68
+#: ../lib/python/Components/TimerList.py:59
 msgid "done!"
 msgstr "¡hecho!"
 
@@ -1330,6 +1298,11 @@ msgstr "fin de edición de listas"
 #: ../lib/python/Screens/ChannelSelection.py:93
 msgid "end favourites edit"
 msgstr "fin edición de favoritos"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
+msgid "enter recording duration"
+msgstr "introduzca la duración de la grabación"
 
 #: ../lib/python/Components/DiskInfo.py:30
 msgid "free diskspace"
@@ -1360,19 +1333,19 @@ msgstr "lista"
 msgid "manual"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:256
+#: ../lib/python/Screens/InfoBarGenerics.py:290
 msgid "next channel"
 msgstr "canal siguiente"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:258
+#: ../lib/python/Screens/InfoBarGenerics.py:292
 msgid "next channel in history"
 msgstr "canal siguiente en historia"
 
 #: ../lib/python/Screens/ScanSetup.py:227
 #: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:457
-#: ../lib/python/Screens/ScanSetup.py:460
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/ScanSetup.py:440
+#: ../lib/python/Screens/ScanSetup.py:443
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -1402,7 +1375,7 @@ msgstr ""
 msgid "on"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "once"
 msgstr "una vez"
 
@@ -1418,19 +1391,19 @@ msgstr "pasa"
 msgid "please press OK when ready"
 msgstr "pulse OK cuando esté preparado"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:255
+#: ../lib/python/Screens/InfoBarGenerics.py:289
 msgid "previous channel"
 msgstr "canal anterior"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:257
+#: ../lib/python/Screens/InfoBarGenerics.py:291
 msgid "previous channel in history"
 msgstr "canal anterior en historia"
 
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "record"
-msgstr "grabar"
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
+msgid "record indefinitely"
+msgstr "grabar indefinidamente"
 
-#: ../lib/python/Components/TimerList.py:64
+#: ../lib/python/Components/TimerList.py:55
 msgid "recording..."
 msgstr "grabando..."
 
@@ -1442,7 +1415,7 @@ msgstr "borrar lista"
 msgid "remove service"
 msgstr "borrar canal"
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "repeated"
 msgstr "repetido"
 
@@ -1484,15 +1457,19 @@ msgstr ""
 msgid "scan state"
 msgstr "estado de la búsqueda"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:345
+#: ../lib/python/Screens/InfoBarGenerics.py:379
 msgid "show EPG..."
 msgstr "mostrar EPG..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:316
+#: ../lib/python/Screens/InfoBarGenerics.py:350
 msgid "show event details"
 msgstr "mostrar detalles del evento"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1092
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
+msgid "stop after current event"
+msgstr "parar después del evento actual"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "stop recording"
 msgstr "parar grabación"
 
@@ -1504,7 +1481,7 @@ msgstr "texto"
 msgid "unknown service"
 msgstr "servicio desconocido"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "user defined"
 msgstr "definido por el usuario"
 
@@ -1512,31 +1489,23 @@ msgstr "definido por el usuario"
 msgid "vertical"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:57
+#: ../lib/python/Components/TimerList.py:51
 msgid "waiting"
 msgstr "esperando"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "weekly"
 msgstr "semanalmente"
 
 #: ../lib/python/Screens/ScanSetup.py:227
 #: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:457
-#: ../lib/python/Screens/ScanSetup.py:460
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/ScanSetup.py:440
+#: ../lib/python/Screens/ScanSetup.py:443
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "si"
-
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "zap"
-msgstr "zapear"
-
-#: ../lib/python/Components/TimerList.py:62
-msgid "zapped"
-msgstr "zapeado"
 
 #: ../data/
 msgid "Channel Selection"
@@ -1571,8 +1540,12 @@ msgid "Yes, backup my settings!"
 msgstr "Si, ¡backup mi configuración!"
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
+"Restaurando la configuración está hecho. Pulse OK para activar la "
+"configuración ahora."
 
 #: ../data/
 msgid "Satconfig"
@@ -1648,6 +1621,10 @@ msgstr ""
 "Después, pulse OK."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "No, sólo arranca mi dreambox"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Mostrar la posición del satélite"
 
@@ -1656,8 +1633,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "¿Quiere ver un tutorial?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "No hacer nada"
+msgid "Setup"
+msgstr "Config"
 
 #: ../data/
 msgid "#000000"
@@ -1692,8 +1669,8 @@ msgid "Audio / Video"
 msgstr "Sonido / Video"
 
 #: ../data/
-msgid "Mute"
-msgstr "Silencio"
+msgid "The wizard is finished now."
+msgstr "El asistente ha finalizado ahora."
 
 #: ../data/
 msgid "Service Searching"
@@ -1702,6 +1679,10 @@ msgstr "Buscando Canal"
 #: ../data/
 msgid "#20294a6b"
 msgstr ""
+
+#: ../data/
+msgid "Mute"
+msgstr "Silencio"
 
 #: ../data/
 msgid ""
@@ -1763,16 +1744,25 @@ msgid "Manual Scan"
 msgstr "Búsqueda Manual"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "Config OSD"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Bienvenido.\n"
+"\n"
+"Este asistente le guiará a través de una configuración básica de su "
+"Dreambox.\n"
+"Pulse el botón OK de su mando para ir al siguiente paso."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Menú RC"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "No, sólo arranca mi dreambox"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1803,8 +1793,8 @@ msgid "Fast zapping"
 msgstr "Zapin rápido"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Configuración de uso"
+msgid "OSD Settings"
+msgstr "Config OSD"
 
 #: ../data/
 msgid "Brightness"
@@ -1813,10 +1803,6 @@ msgstr "Brillo"
 #: ../data/
 msgid "Standby"
 msgstr "Reposo"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Si, hacer otra búsqueda manual ahora"
 
 #: ../data/
 msgid "Activate network settings"
@@ -1851,12 +1837,12 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr ""
-
-#: ../data/
 msgid "Downloadable plugins"
 msgstr "Plugins descargables"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
 
 #: ../data/
 msgid "LCD"
@@ -1887,16 +1873,16 @@ msgid "Ask before zapping"
 msgstr "Preguntar antes de zapear"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "#c0c000"
 msgstr ""
-"Restaurando la configuración está hecho. Pulse OK para activar la "
-"configuración ahora."
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "Config A/V"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Configuración de uso"
 
 #: ../data/
 msgid ""
@@ -1910,8 +1896,8 @@ msgid "Service scan"
 msgstr "Buscar canales"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "El asistente ha finalizado ahora."
+msgid "Yes, do another manual scan now"
+msgstr "Si, hacer otra búsqueda manual ahora"
 
 #: ../data/
 msgid "LCD Setup"
@@ -1948,10 +1934,6 @@ msgid ""
 msgstr ""
 "Ha elegido hacer un backup a tu disco duro. Pulse OK para comentar el backup "
 "ahora"
-
-#: ../data/
-msgid "Timer selection"
-msgstr "Selección de grabación"
 
 #: ../data/
 msgid "Repeat"
@@ -2039,10 +2021,6 @@ msgstr ""
 #: ../data/
 msgid "Exit wizard"
 msgstr "Salir del asistente"
-
-#: ../data/
-msgid "Media player"
-msgstr ""
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2191,8 +2169,8 @@ msgid "Timer Edit"
 msgstr "Editar Hora"
 
 #: ../data/
-msgid "Setup"
-msgstr "Config"
+msgid "No, do nothing."
+msgstr "No hacer nada"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2255,38 +2233,48 @@ msgid "Seek"
 msgstr "Posicionar"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Bienvenido.\n"
-"\n"
-"Este asistente le guiará a través de una configuración básica de su "
-"Dreambox.\n"
-"Pulse el botón OK de su mando para ir al siguiente paso."
-
-#: ../data/
 msgid "Satelliteconfig"
 msgstr "Configurar satélite"
-
-#: ../data/
-msgid "MediaPlayer"
-msgstr "Reproductor"
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "¿Quieres hacer otra búsqueda manual?"
 
-#~ msgid "enter recording duration"
-#~ msgstr "introduzca la duración de la grabación"
+#~ msgid "(ZAP)"
+#~ msgstr "(ZAPEAR)"
 
-#~ msgid "record indefinitely"
-#~ msgstr "grabar indefinidamente"
+#~ msgid "Icelandic"
+#~ msgstr "Islandés"
 
-#~ msgid "stop after current event"
-#~ msgstr "parar después del evento actual"
+#~ msgid "Repeat Type"
+#~ msgstr "Tipo de repetición"
+
+#~ msgid "add recording (enter recording duration)"
+#~ msgstr "añadir grabación (introduzca duración)"
+
+#~ msgid "add recording (indefinitely)"
+#~ msgstr "añadir grabación (indefinidamente)"
+
+#~ msgid "add recording (stop after current event)"
+#~ msgstr "añadirgrabación (parar después del evento actual)"
+
+#~ msgid "change recording (duration)"
+#~ msgstr "cambiar la grabación (duración)"
+
+#~ msgid "record"
+#~ msgstr "grabar"
+
+#~ msgid "zap"
+#~ msgstr "zapear"
+
+#~ msgid "zapped"
+#~ msgstr "zapeado"
+
+#~ msgid "Timer selection"
+#~ msgstr "Selección de grabación"
+
+#~ msgid "MediaPlayer"
+#~ msgstr "Reproductor"
 
 #~ msgid ""
 #~ "Do you want to stop the current\n"

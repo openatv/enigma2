@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandin translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-22 21:46+0000\n"
+"POT-Creation-Date: 2006-03-22 23:28+0100\n"
 "PO-Revision-Date: 2006-03-22 22:01-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Icelandic <baddi@oreind.is>\n"
@@ -34,8 +34,8 @@ msgstr ""
 msgid "%d min"
 msgstr "%d min"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:105
+#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:99
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -44,11 +44,6 @@ msgstr "%d.%B %Y"
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
-msgstr ""
-
-#: ../lib/python/Components/TimerList.py:46
-#: ../lib/python/Components/TimerList.py:51
-msgid "(ZAP)"
 msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
@@ -91,7 +86,7 @@ msgstr "13 V"
 msgid "18 V"
 msgstr "18 V"
 
-#: ../lib/python/Components/TimerList.py:66
+#: ../lib/python/Components/TimerList.py:57
 msgid "<unknown>"
 msgstr ""
 
@@ -99,13 +94,13 @@ msgstr ""
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 
-#: ../RecordTimer.py:141
+#: ../RecordTimer.py:137
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -235,7 +230,7 @@ msgstr "Hætta við"
 msgid "Capacity: "
 msgstr "Stærð:"
 
-#: ../lib/python/Screens/TimerEntry.py:190 ../data/
+#: ../lib/python/Screens/TimerEntry.py:180 ../data/
 msgid "Channel"
 msgstr "Rás"
 
@@ -255,7 +250,7 @@ msgstr "Sígilt"
 msgid "Cleanup"
 msgstr "Hreinsa"
 
-#: ../lib/python/Screens/TimerEntry.py:312
+#: ../lib/python/Screens/TimerEntry.py:299
 msgid "Clear log"
 msgstr "Tæma lista"
 
@@ -302,7 +297,7 @@ msgstr "Venjulegt"
 msgid "Delete"
 msgstr "Eyða"
 
-#: ../lib/python/Screens/TimerEntry.py:309
+#: ../lib/python/Screens/TimerEntry.py:296
 msgid "Delete entry"
 msgstr "Eyða innslætti"
 
@@ -310,7 +305,7 @@ msgstr "Eyða innslætti"
 msgid "Delete failed!"
 msgstr "Tókst ekki að eyða!"
 
-#: ../lib/python/Screens/TimerEntry.py:147
+#: ../lib/python/Screens/TimerEntry.py:141
 msgid "Description"
 msgstr "Lýsing"
 
@@ -427,11 +422,11 @@ msgstr "Austur"
 msgid "Enable"
 msgstr "Virkja"
 
-#: ../lib/python/Screens/TimerEntry.py:184
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "End"
 msgstr "Hætta"
 
-#: ../lib/python/Screens/TimerEntry.py:188
+#: ../lib/python/Screens/TimerEntry.py:178
 msgid "EndTime"
 msgstr "EndaTími"
 
@@ -453,7 +448,7 @@ msgstr ""
 msgid "Execution finished!!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1181
+#: ../lib/python/Screens/InfoBarGenerics.py:1176
 msgid "Extensions"
 msgstr ""
 
@@ -473,7 +468,7 @@ msgstr "Uppáhald listar"
 #: ../lib/python/Screens/ScanSetup.py:110
 #: ../lib/python/Screens/ScanSetup.py:138
 #: ../lib/python/Screens/ScanSetup.py:149
-#: ../lib/python/Screens/TimerEntry.py:156
+#: ../lib/python/Screens/TimerEntry.py:148
 msgid "Frequency"
 msgstr "Tíðni"
 
@@ -482,8 +477,8 @@ msgstr "Tíðni"
 msgid "Fri"
 msgstr "Fös"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:162
 msgid "Friday"
 msgstr "Föstudagur"
 
@@ -526,8 +521,8 @@ msgstr "Harður diskur"
 msgid "Hierarchy mode"
 msgstr "Flokkunar hamur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1088
-#: ../lib/python/Screens/InfoBarGenerics.py:1096
+#: ../lib/python/Screens/InfoBarGenerics.py:1083
+#: ../lib/python/Screens/InfoBarGenerics.py:1091
 msgid "How many minutes do you want to record?"
 msgstr ""
 
@@ -621,12 +616,12 @@ msgstr "Mótun"
 msgid "Mon"
 msgstr "Mán"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "Mon-Fri"
 msgstr "Mán-Fös"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:166
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:158
 msgid "Monday"
 msgstr "Mánudagur"
 
@@ -654,7 +649,7 @@ msgstr ""
 msgid "N/A"
 msgstr "Ekki til"
 
-#: ../lib/python/Screens/TimerEntry.py:146
+#: ../lib/python/Screens/TimerEntry.py:140
 msgid "Name"
 msgstr "Nafn"
 
@@ -686,11 +681,11 @@ msgstr "Næsta"
 msgid "No"
 msgstr "Nei"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1110
+#: ../lib/python/Screens/InfoBarGenerics.py:1105
 msgid "No HDD found or HDD not initialized!"
 msgstr "Fann ekki harðan disk eða hann ekki formaður!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1067
+#: ../lib/python/Screens/InfoBarGenerics.py:1062
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
@@ -818,7 +813,7 @@ msgstr "Sendendur"
 msgid "Really delete done timers?"
 msgstr "Viltu eyða liðnum tímastillingum?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165
+#: ../lib/python/Screens/InfoBarGenerics.py:1160
 msgid "Record"
 msgstr "Upptaka"
 
@@ -832,10 +827,6 @@ msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
-msgstr ""
-
-#: ../lib/python/Screens/TimerEntry.py:150
-msgid "Repeat Type"
 msgstr ""
 
 #: ../lib/python/Screens/Ci.py:213
@@ -868,8 +859,8 @@ msgstr "Gervihnöttur"
 msgid "Satellites"
 msgstr "Gervihnettir"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:171
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:163
 msgid "Saturday"
 msgstr "Laugardagur"
 
@@ -882,7 +873,7 @@ msgstr ""
 msgid "Secondary cable from motorized LNB"
 msgstr "Seinni kapall frá mótorstýrðum nema"
 
-#: ../lib/python/Screens/TimerEntry.py:230
+#: ../lib/python/Screens/TimerEntry.py:218
 msgid "Select channel to record from"
 msgstr "Veldu rás til að taka upp frá"
 
@@ -907,7 +898,7 @@ msgid "Show the radio player..."
 msgstr "Sýna útvarpsspilara..."
 
 #: ../lib/python/Screens/EventView.py:102
-msgid "Similar broadcastings:"
+msgid "Similar broadcasts:"
 msgstr ""
 
 #: ../lib/python/Components/NimManager.py:633
@@ -957,15 +948,15 @@ msgstr "Suður"
 msgid "Spanish"
 msgstr "Spænska"
 
-#: ../lib/python/Screens/TimerEntry.py:178
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Start"
 msgstr "Byrja"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "Start recording?"
 msgstr "Byrja upptöku?"
 
-#: ../lib/python/Screens/TimerEntry.py:181
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "StartTime"
 msgstr "Byrjunartími"
 
@@ -981,7 +972,7 @@ msgstr ""
 msgid "Step west"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:950
+#: ../lib/python/Screens/InfoBarGenerics.py:945
 msgid "Stop Timeshift?"
 msgstr "Stoppa tímafærslu?"
 
@@ -997,7 +988,7 @@ msgstr ""
 msgid "Stored position"
 msgstr "Vistuð staða"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1170 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1165 ../data/
 msgid "Subservices"
 msgstr "Undirþjónusta"
 
@@ -1006,8 +997,8 @@ msgstr "Undirþjónusta"
 msgid "Sun"
 msgstr "Sun"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:172
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:164
 msgid "Sunday"
 msgstr "Sunnudagur"
 
@@ -1033,20 +1024,20 @@ msgstr "Mörk"
 msgid "Thu"
 msgstr "Fim"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:169
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:161
 msgid "Thursday"
 msgstr "Fimmtudagur"
 
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:142
 msgid "Timer Type"
 msgstr "Gerð Tímastillngar"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:922
+#: ../lib/python/Screens/InfoBarGenerics.py:917
 msgid "Timeshift not possible!"
 msgstr "Tímabreyting ekki möguleg!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1174
+#: ../lib/python/Screens/InfoBarGenerics.py:1169
 msgid "Timeshifting"
 msgstr ""
 
@@ -1076,8 +1067,8 @@ msgstr "Sendi stilling"
 msgid "Tue"
 msgstr "Þri"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:167
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:159
 msgid "Tuesday"
 msgstr "Þriðjudagur"
 
@@ -1154,12 +1145,12 @@ msgstr "W"
 msgid "Wed"
 msgstr "Mið"
 
-#: ../lib/python/Screens/TimerEntry.py:108
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:102
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Wednesday"
 msgstr "Miðvikudagur"
 
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Weekday"
 msgstr "Vikudagur"
 
@@ -1206,7 +1197,7 @@ msgstr "hætta við að breyta fléttu"
 msgid "abort favourites edit"
 msgstr "hætta við að breyta uppáhaldsl ista"
 
-#: ../lib/python/Components/TimerList.py:59
+#: ../lib/python/Components/TimerList.py:53
 msgid "about to start"
 msgstr ""
 
@@ -1245,7 +1236,7 @@ msgstr "hringpólun hægri"
 msgid "copy to favourites"
 msgstr "bæta við uppáhalds lista"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "daily"
 msgstr "daglega"
 
@@ -1257,15 +1248,15 @@ msgstr "eyða...."
 msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "do nothing"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "don't record"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:68
+#: ../lib/python/Components/TimerList.py:59
 msgid "done!"
 msgstr ""
 
@@ -1293,8 +1284,8 @@ msgstr "hætta að breyta fléttu"
 msgid "end favourites edit"
 msgstr "hætta að breyta uppáhalds lista"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "enter recording duration"
 msgstr ""
 
@@ -1339,7 +1330,7 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -1369,7 +1360,7 @@ msgstr "af"
 msgid "on"
 msgstr "á"
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "once"
 msgstr "einu sinni"
 
@@ -1393,15 +1384,11 @@ msgstr "fyrri rás"
 msgid "previous channel in history"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "record"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "record indefinitely"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:64
+#: ../lib/python/Components/TimerList.py:55
 msgid "recording..."
 msgstr ""
 
@@ -1413,7 +1400,7 @@ msgstr "eyða fléttu"
 msgid "remove service"
 msgstr "eyða rás"
 
-#: ../lib/python/Screens/TimerEntry.py:96
+#: ../lib/python/Screens/TimerEntry.py:90
 msgid "repeated"
 msgstr "endurtekinn"
 
@@ -1463,11 +1450,11 @@ msgstr "sýna EPG"
 msgid "show event details"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1117
+#: ../lib/python/Screens/InfoBarGenerics.py:1112
 msgid "stop after current event"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1114
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "stop recording"
 msgstr ""
 
@@ -1479,7 +1466,7 @@ msgstr "texti"
 msgid "unknown service"
 msgstr "óþekkt rás"
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "user defined"
 msgstr "stillt af notanda"
 
@@ -1487,11 +1474,11 @@ msgstr "stillt af notanda"
 msgid "vertical"
 msgstr "lóðrétt"
 
-#: ../lib/python/Components/TimerList.py:57
+#: ../lib/python/Components/TimerList.py:51
 msgid "waiting"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:94
 msgid "weekly"
 msgstr "vikulega"
 
@@ -1499,19 +1486,11 @@ msgstr "vikulega"
 #: ../lib/python/Screens/ScanSetup.py:243
 #: ../lib/python/Screens/ScanSetup.py:440
 #: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "já"
-
-#: ../lib/python/Screens/TimerEntry.py:95
-msgid "zap"
-msgstr ""
-
-#: ../lib/python/Components/TimerList.py:62
-msgid "zapped"
-msgstr ""
 
 #: ../data/
 msgid "Channel Selection"
@@ -1546,8 +1525,10 @@ msgid "Yes, backup my settings!"
 msgstr ""
 
 #: ../data/
-msgid "#c0c000"
-msgstr "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
 
 #: ../data/
 msgid "Satconfig"
@@ -1615,6 +1596,10 @@ msgid ""
 msgstr "Ýttu á up/niður takka á fjarstýringu til að velja. Ýttu svo á OK."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nei, ræstu bara boxinu mínu"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Sýna staðsetningu gervihnattar"
 
@@ -1623,8 +1608,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr ""
+msgid "Setup"
+msgstr "Uppsetning"
 
 #: ../data/
 msgid "#000000"
@@ -1657,8 +1642,8 @@ msgid "Audio / Video"
 msgstr "Hljóð / Mynd"
 
 #: ../data/
-msgid "Mute"
-msgstr "Hljóð Af"
+msgid "The wizard is finished now."
+msgstr ""
 
 #: ../data/
 msgid "Service Searching"
@@ -1667,6 +1652,10 @@ msgstr "Leita að rásum"
 #: ../data/
 msgid "#20294a6b"
 msgstr "#20294a6b"
+
+#: ../data/
+msgid "Mute"
+msgstr "Hljóð Af"
 
 #: ../data/
 msgid ""
@@ -1724,16 +1713,24 @@ msgid "Manual Scan"
 msgstr "Handvirk leitun"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "Stilling valmynda"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Velkomin.\n"
+"\n"
+"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
+"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Valmynd fjarstýringar"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxinu mínu"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "select Slot"
@@ -1764,8 +1761,8 @@ msgid "Fast zapping"
 msgstr "Stökkva hratt"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Stilla notkun"
+msgid "OSD Settings"
+msgstr "Stilling valmynda"
 
 #: ../data/
 msgid "Brightness"
@@ -1774,10 +1771,6 @@ msgstr "Birta"
 #: ../data/
 msgid "Standby"
 msgstr "Biðstaða"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr ""
 
 #: ../data/
 msgid "Activate network settings"
@@ -1812,11 +1805,11 @@ msgid "#80000000"
 msgstr "#80000000"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
+msgid "Downloadable plugins"
+msgstr ""
 
 #: ../data/
-msgid "Downloadable plugins"
+msgid "Do you want to view a cutlist tutorial?"
 msgstr ""
 
 #: ../data/
@@ -1848,14 +1841,16 @@ msgid "Ask before zapping"
 msgstr "Spyrja fyrir rásastökk"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
+msgid "#c0c000"
+msgstr "#c0c000"
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "Stillia hljóð/mynd"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Stilla notkun"
 
 #: ../data/
 msgid ""
@@ -1870,7 +1865,7 @@ msgid "Service scan"
 msgstr "Rása leit"
 
 #: ../data/
-msgid "The wizard is finished now."
+msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -1985,10 +1980,6 @@ msgstr ""
 #: ../data/
 msgid "Exit wizard"
 msgstr "Hætta í álfi"
-
-#: ../data/
-msgid "Media player"
-msgstr ""
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2137,8 +2128,8 @@ msgid "Timer Edit"
 msgstr "Breyta Tímastillingu"
 
 #: ../data/
-msgid "Setup"
-msgstr "Uppsetning"
+msgid "No, do nothing."
+msgstr ""
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2201,24 +2192,8 @@ msgid "Seek"
 msgstr "Leita"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Velkomin.\n"
-"\n"
-"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
-"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
-
-#: ../data/
 msgid "Satelliteconfig"
 msgstr "Stilling gervihnatta"
-
-#: ../data/
-msgid "MediaPlayer"
-msgstr ""
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
