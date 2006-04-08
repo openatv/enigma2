@@ -1,6 +1,7 @@
 from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr, iDVBFrontend, eDVBFrontendParametersSatellite, eDVBFrontendParameters
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
+from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
 from Components.Label import Label
@@ -13,12 +14,12 @@ from Components.config import config, ConfigSubsection, configElement_nonSave, c
 class PositionerSetup(Screen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Positioner setup..." >
-			<widget name="list" position="100,0" size="350,120" />
+			<widget name="list" position="100,0" size="350,130" />
 
-			<widget name="red" position="0,120" size="140,80" backgroundColor="red" halign="center" valign="center" font="Regular;21" />
-			<widget name="green" position="140,120" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
-			<widget name="yellow" position="280,120" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
-			<widget name="blue" position="420,120" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
+			<widget name="red" position="0,130" size="140,80" backgroundColor="red" halign="center" valign="center" font="Regular;21" />
+			<widget name="green" position="140,130" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
+			<widget name="yellow" position="280,130" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
+			<widget name="blue" position="420,130" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
 			
 			<widget name="snr" text="SNR:" position="0,220" size="60,22" font="Regular;21" />
 			<widget name="agc" text="AGC:" position="0,245" size="60,22" font="Regular;21" />
@@ -39,13 +40,13 @@ class PositionerSetup(Screen):
 			<widget name="symbolrate_value" position="420,245" size="120,22" font="Regular;21" />
 			<widget name="fec_value" position="420,270" size="120,22" font="Regular;21" />
 		</screen>"""
-	def __init__(self, session):
+	def __init__(self, session, feid):
 		self.skin = PositionerSetup.skin
 		Screen.__init__(self, session)
 		
 		self.session.nav.stopService()
 		
-		self.feid = 1
+		self.feid = feid
 		
 		self.diseqc = Diseqc(self.feid)
 		self.tuner = Tuner(self.diseqc.getFrontend())
@@ -55,6 +56,7 @@ class PositionerSetup(Screen):
 		self.createConfig()
 		
 		self.isMoving = False
+		self.stopOnLock = False
 		
 		self.red = Label("")
 		self["red"] = self.red
@@ -107,12 +109,13 @@ class PositionerSetup(Screen):
 		
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
-		self.statusTimer.start(200, False)
+		self.statusTimer.start(100, False)
 		
 	def createConfig(self):
 		config.positioner = ConfigSubsection()
 		config.positioner.tune = configElement_nonSave("tune", configNothing, 0, None)
 		config.positioner.move = configElement_nonSave("move", configNothing, 0, None)
+		config.positioner.finemove = configElement_nonSave("finemove", configNothing, 0, None)
 		config.positioner.limits = configElement_nonSave("limits", configNothing, 0, None)
 		storepos = []
 		for x in range(255):
@@ -122,6 +125,7 @@ class PositionerSetup(Screen):
 	def createSetup(self):
 		self.list.append(getConfigListEntry(_("Tune"), config.positioner.tune))
 		self.list.append(getConfigListEntry(_("Positioner movement"), config.positioner.move))
+		self.list.append(getConfigListEntry(_("Positioner fine movement"), config.positioner.finemove))
 		self.list.append(getConfigListEntry(_("Set limits"), config.positioner.limits))
 		self.list.append(getConfigListEntry(_("Positioner storage"), config.positioner.storage))
 		
@@ -134,12 +138,14 @@ class PositionerSetup(Screen):
 		return self["list"].getCurrent()[1].parent.configPath
 	
 	def up(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		self.updateColors(self.getCurrentConfigPath())
+		if not self.isMoving:
+			self["list"].instance.moveSelection(self["list"].instance.moveUp)
+			self.updateColors(self.getCurrentConfigPath())
 	
 	def down(self):
-		self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		self.updateColors(self.getCurrentConfigPath())
+		if not self.isMoving:
+			self["list"].instance.moveSelection(self["list"].instance.moveDown)
+			self.updateColors(self.getCurrentConfigPath())
 	
 	def left(self):
 		self["list"].handleKey(config.key["prevElement"])
@@ -161,9 +167,14 @@ class PositionerSetup(Screen):
 				self.blue.setText(_("Stop"))
 			else:
 				self.red.setText(_("Move west"))
-				self.green.setText(_("Step west"))
-				self.yellow.setText(_("Step east"))
+				self.green.setText(_("Search west"))
+				self.yellow.setText(_("Search east"))
 				self.blue.setText(_("Move east"))
+		elif entry == "finemove":
+			self.red.setText("")
+			self.green.setText(_("Step west"))
+			self.yellow.setText(_("Step east"))
+			self.blue.setText("")
 		elif entry == "limits":
 			self.red.setText(_("Limits off"))
 			self.green.setText(_("Limit west"))
@@ -186,11 +197,11 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.diseqc.command("stop")
 				self.isMoving = False
+				self.stopOnLock = False
 			else:
 				self.diseqc.command("moveWest", 0)
 				self.isMoving = True
 			self.updateColors("move")
-			print "moving west"
 		elif entry == "limits":
 			self.diseqc.command("limitOff")
 		elif entry == "tune":
@@ -199,6 +210,16 @@ class PositionerSetup(Screen):
 	def greenKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
+			if self.isMoving:
+				self.diseqc.command("stop")
+				self.isMoving = False
+				self.stopOnLock = False
+			else:
+				self.isMoving = True
+				self.stopOnLock = True
+				self.diseqc.command("moveWest", 0)
+			self.updateColors("move")
+		elif entry == "finemove":
 			print "stepping west"
 			self.diseqc.command("moveWest", 1)
 		elif entry == "storage":
@@ -210,6 +231,16 @@ class PositionerSetup(Screen):
 	def yellowKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
+			if self.isMoving:
+				self.diseqc.command("stop")
+				self.isMoving = False
+				self.stopOnLock = False
+			else:
+				self.isMoving = True
+				self.stopOnLock = True
+				self.diseqc.command("moveEast", 0)
+			self.updateColors("move")
+		elif entry == "finemove":
 			print "stepping east"
 			self.diseqc.command("moveEast", 1)
 		elif entry == "storage":
@@ -224,6 +255,7 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.diseqc.command("stop")
 				self.isMoving = False
+				self.stopOnLock = False
 			else:
 				self.diseqc.command("moveEast", 0)
 				self.isMoving = True
@@ -237,10 +269,16 @@ class PositionerSetup(Screen):
 		self["snr_bar"].update()
 		self["agc_bar"].update()
 		self["ber_bar"].update()
+		self["lock_state"].update()
 		transponderdata = self.tuner.getTransponderData()
 		self["frequency_value"].setText(str(transponderdata["frequency"]))
 		self["symbolrate_value"].setText(str(transponderdata["symbol_rate"]))
 		self["fec_value"].setText(str(transponderdata["fec_inner"]))
+		if transponderdata["tuner_locked"] == 1 and self.isMoving and self.stopOnLock:
+			self.diseqc.command("stop")
+			self.isMoving = False
+			self.stopOnLock = False
+			self.updateColors(self.getCurrentConfigPath())
 
 	def tune(self, transponder):
 		if transponder is not None:
@@ -404,8 +442,36 @@ class TunerScreen(ScanSetup):
 	def keyCancel(self):
 		self.close(None)
 
+class NimSelection(Screen):
+	skin = """
+		<screen position="140,165" size="400,100" title="select Slot">
+			<widget name="nimlist" position="20,10" size="360,75" />
+		</screen>"""
+		
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["nimlist"] = MenuList(nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"]))
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+		{
+			"ok": self.okbuttonClick ,
+			"cancel": self.close
+		}, -1)
+
+	def okbuttonClick(self):
+		selection = self["nimlist"].getCurrent()
+		self.session.open(PositionerSetup, selection[1].slotid)
+
 def PositionerMain(session, **kwargs):
-	session.open(PositionerSetup)
+	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+	if len(nimList) == 0:
+		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
+	elif len(nimList) == 1:
+		session.open(PositionerSetup, nimList[0])
+	else:
+		session.open(NimSelection)
+	
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Positioner setup", description="Setup your positioner", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=PositionerMain)
