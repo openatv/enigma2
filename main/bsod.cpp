@@ -102,16 +102,17 @@ void bsodFatal()
 		p.setFont(font);
 		p.clear();
 	
-		eRect usable_area = eRect(100, 70, my_dc->size().width() - 200, 100);
+		eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
 	
 		p.renderText(usable_area, 
 			"We are really sorry. Something happened "
 			"which should not have happened, and "
 			"resulted in a crash. If you want to help "
 			"us in improving this situation, please send "
-			"the logfile created in /hdd/ to " CRASH_EMAILADDR ".", gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
+			"the logfile created in /hdd/ to " CRASH_EMAILADDR "."
+			"Your receiver restarts in 10 seconds !", gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 	
-		usable_area = eRect(100, 170, my_dc->size().width() - 200, my_dc->size().height() - 20);
+		usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
 	
 		int i;
 	
@@ -132,6 +133,7 @@ void bsodFatal()
 		p.renderText(usable_area, 
 			lines.substr(start), gPainter::RT_HALIGN_LEFT);
 		p.flush();
+		sleep(10);
 	}
 
 	raise(SIGKILL);
@@ -164,7 +166,7 @@ void bsodCatchSignals()
 	struct sigaction act;
 	act.sa_handler = SIG_DFL;
 	act.sa_sigaction = handleFatalSignal;
-	act.sa_flags = 0;
+	act.sa_flags = SA_RESTART | SA_SIGINFO;
 	if (sigemptyset(&act.sa_mask) == -1)
 		perror("sigemptyset");
 	
