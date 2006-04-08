@@ -129,6 +129,7 @@ private:
 	ePtr<eDVBService> m_dvb_service;
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
+	int m_is_primary;
 	
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
 	eDVBServicePMTHandler m_service_handler, m_service_handler_timeshift;
