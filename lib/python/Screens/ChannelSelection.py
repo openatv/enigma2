@@ -873,18 +873,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.session.nav.playService(nref)
 		self.saveRoot()
 		self.saveChannel()
-		tmp=self.servicePath[:]
-		tmp.append(nref)
-		try:
-			del self.history[self.history_pos+1:]
-		except:
-			pass
-		self.history.append(tmp)
-		hlen = len(self.history)
-		if hlen > HISTORYSIZE:
-			del self.history[0]
-			hlen -= 1
-		self.history_pos = hlen-1
+		if self.servicePath is not None:
+			tmp=self.servicePath[:]
+			tmp.append(nref)
+			try:
+				del self.history[self.history_pos+1:]
+			except:
+				pass
+			self.history.append(tmp)
+			hlen = len(self.history)
+			if hlen > HISTORYSIZE:
+				del self.history[0]
+				hlen -= 1
+			self.history_pos = hlen-1
 
 	def historyBack(self):
 		hlen = len(self.history)
