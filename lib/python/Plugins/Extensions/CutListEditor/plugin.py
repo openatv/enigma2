@@ -207,8 +207,9 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 		pass
 	
 	def setType(self, index, type):
-		self.cut_list[index] = (self.cut_list[index][0], type)
-		self["Cutlist"].setIndex(index, CutListEntry(*self.cut_list[index]))
+		if len(self.cut_list):
+			self.cut_list[index] = (self.cut_list[index][0], type)
+			self["Cutlist"].setIndex(index, CutListEntry(*self.cut_list[index]))
 	
 	def setIn(self):
 		m = self["Cutlist"].getCurrentIndex()
