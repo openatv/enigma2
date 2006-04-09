@@ -25,7 +25,7 @@
 #else
 #include <linux/dvb/dmx.h>
 
-// #define HAVE_ADD_PID
+#define HAVE_ADD_PID
 
 #ifdef HAVE_ADD_PID
 #define DMX_ADD_PID              _IO('o', 51)
@@ -462,6 +462,7 @@ RESULT eDVBTSRecorder::stop()
 	m_thread->stop();
 	
 	close(m_source_fd);
+	m_source_fd = -1;
 	
 	if (m_target_filename != "")
 		m_thread->saveTimingInformation(m_target_filename + ".ap");
@@ -510,10 +511,10 @@ RESULT eDVBTSRecorder::startPID(int pid)
 	}
 	m_pids[pid] = fd;
 #else
-	eDebug("add pid: %08x", pid);
 	if (::ioctl(m_source_fd, DMX_ADD_PID, pid))
 		perror("DMX_ADD_PID");
-	eDebug("ok");
+	else
+		m_pids[pid] = 1;
 #endif
 	return 0;
 }
@@ -523,9 +524,12 @@ void eDVBTSRecorder::stopPID(int pid)
 #ifndef HAVE_ADD_PID
 	if (m_pids[pid] != -1)
 		::close(m_pids[pid]);
-	m_pids[pid] = -1;
 #else
-	if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid))
-		perror("DMX_REMOVE_PID");
+	if (m_pids[pid] != -1)
+	{
+		if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid))
+			perror("DMX_REMOVE_PID");
+	}
 #endif
+	m_pids[pid] = -1;
 }
