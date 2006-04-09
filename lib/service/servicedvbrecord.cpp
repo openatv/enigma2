@@ -12,6 +12,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_tuned = 0;
+	m_target_fd = -1;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -108,6 +109,11 @@ RESULT eDVBServiceRecord::stop()
 	{
 		if (m_record)
 			m_record->stop();
+		if (m_target_fd >= 0)
+		{
+			::close(m_target_fd);
+			m_target_fd = -1;
+		}
 		m_state = statePrepared;
 	}
 	
@@ -170,6 +176,7 @@ int eDVBServiceRecord::doRecord()
 		}
 		m_record->setTargetFD(fd);
 		m_record->setTargetFilename(m_filename.c_str());
+		m_target_fd = fd;
 	}
 	eDebug("starting recording..");
 	
