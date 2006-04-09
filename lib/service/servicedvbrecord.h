@@ -32,6 +32,7 @@ private:
 	int m_recording, m_tuned;
 	std::set<int> m_pids_active;
 	std::string m_filename;
+	int m_target_fd;
 	
 	int doPrepare();
 	int doRecord();
