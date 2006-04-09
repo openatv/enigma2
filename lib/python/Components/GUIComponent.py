@@ -24,6 +24,9 @@ class GUIComponent:
 	def onHide(self):
 		pass
 	
+	def destroy(self):
+		pass
+	
 	# this works only with normal widgets - if you don't have self.instance, override this.
 	def applySkin(self, desktop):
 		if self.state == self.HIDDEN:
