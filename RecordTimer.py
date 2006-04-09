@@ -370,10 +370,6 @@ class RecordTimer(timer.Timer):
 						if time_match < diff:
 							time_match = diff
 		return time_match
-							
-						
-						
-			
 
 	def removeEntry(self, entry):
 		print "[Timer] Remove " + str(entry)

@@ -88,6 +88,12 @@ class TimerEntry:
 	def getNextActivation():
 		pass
 
+	def disable(self):
+		self.disabled = True
+	
+	def enable(self):
+		self.disabled = False
+
 class Timer:
 	# the time between "polls". We do this because
 	# we want to account for time jumps etc.
@@ -131,6 +137,9 @@ class Timer:
 		# right into the processedTimers.
 		if entry.shouldSkip() or entry.state == TimerEntry.StateEnded or (entry.state == TimerEntry.StateWaiting and entry.disabled):
 			print "already passed, skipping"
+			print "shouldSkip:", entry.shouldSkip()
+			print "state == ended", entry.state == TimerEntry.StateEnded
+			print "waiting && disabled:", (entry.state == TimerEntry.StateWaiting and entry.disabled)
 			bisect.insort(self.processed_timers, entry)
 			entry.state = TimerEntry.StateEnded
 		else:
@@ -169,12 +178,16 @@ class Timer:
 		self.setNextActivation(min)
 	
 	def timeChanged(self, timer):
+		print "time changed"
 		timer.timeChanged()
 		if timer.state == TimerEntry.StateEnded:
 			self.processed_timers.remove(timer)
 		else:
 			self.timer_list.remove(timer)
 
+		# give the timer a chance to re-enqueue
+		if timer.state == TimerEntry.StateEnded:
+			timer.state = TimerEntry.StateWaiting
 		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
