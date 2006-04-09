@@ -17,6 +17,9 @@ class PerServiceBase(GUIComponent):
 		# start with stopped state, so simulate that
 		self.event(iPlayableService.evEnd)
 
+	def destroy(self):
+		self.navcore.event.remove(self.event)
+
 	def event(self, ev):
 		# loop up if we need to handle this event
 		if self.eventmap.has_key(ev):
