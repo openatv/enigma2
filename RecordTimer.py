@@ -242,7 +242,7 @@ class RecordTimer(timer.Timer):
 	def isRecording(self):
 		isRunning = False
 		for timer in self.timer_list:
-			if timer.isRunning():
+			if timer.isRunning() and not timer.justplay:
 				isRunning = True
 		return isRunning
 	
