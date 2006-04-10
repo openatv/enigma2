@@ -1069,7 +1069,7 @@ class InfoBarInstantRecord:
 			return
 		list = []
 		for x in self.recording:
-			if x.dontSave:
+			if x.dontSave and x.isRunning():
 				list.append(TimerEntryComponent(x, False))		
 
 		if answer[1] == "changeduration":
