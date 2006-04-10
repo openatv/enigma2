@@ -1065,11 +1065,16 @@ class InfoBarInstantRecord:
 		return False
 
 	def recordQuestionCallback(self, answer):
+		print "pre:\n", self.recording
+		
 		if answer is None or answer[1] == "no":
 			return
 		list = []
-		for x in self.recording:
-			if x.dontSave and x.isRunning():
+		recording = self.recording[:]
+		for x in recording:
+			if not x in self.session.nav.RecordTimer.timer_list:
+				self.recording.remove(x)
+			elif x.dontSave and x.isRunning():
 				list.append(TimerEntryComponent(x, False))		
 
 		if answer[1] == "changeduration":
@@ -1090,6 +1095,8 @@ class InfoBarInstantRecord:
 				self.selectedEntry = len(self.recording)
 				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 			self.startInstantRecording(limitEvent = limitEvent)
+			
+		print "after:\n", self.recording
 
 	def changeDuration(self, entry):
 		if entry is not None:
