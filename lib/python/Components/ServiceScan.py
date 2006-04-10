@@ -100,3 +100,6 @@ class ServiceScan:
 	def newService(self):
 		newServiceName = self.scan.getLastServiceName()
 		self.servicelist.addItem(newServiceName)
+
+	def destroy(self):
+		pass
