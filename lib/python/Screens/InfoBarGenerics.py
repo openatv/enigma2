@@ -976,24 +976,25 @@ class InfoBarExtensions:
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
 	def extensionCallback(self, answer):
-		if answer[1] == "pipon":
-			self.session.nav.stopService()
-			self.pip = self.session.instantiateDialog(PictureInPicture)
-			#self.pip.show()
-			
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
-			self.pipservice = eServiceCenter.getInstance().play(newservice)
-			if self.pipservice and not self.pipservice.setTarget(1):
-				self.pipservice.start()
-				self.pipshown = True
-			else:
-				self.pipservice = None
+		if answer is not None:
+			if answer[1] == "pipon":
+				self.session.nav.stopService()
+				self.pip = self.session.instantiateDialog(PictureInPicture)
+				#self.pip.show()
+				
+				newservice = self.session.nav.getCurrentlyPlayingServiceReference()
+				self.pipservice = eServiceCenter.getInstance().play(newservice)
+				if self.pipservice and not self.pipservice.setTarget(1):
+					self.pipservice.start()
+					self.pipshown = True
+				else:
+					self.pipservice = None
+					del self.pip
+	
+			elif answer[1] == "pipoff":
+				#self.pip.hide()
 				del self.pip
-
-		elif answer[1] == "pipoff":
-			#self.pip.hide()
-			del self.pip
-			self.pipshown = False
+				self.pipshown = False
 
 from RecordTimer import parseEvent
 
