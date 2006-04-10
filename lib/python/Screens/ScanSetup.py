@@ -468,24 +468,27 @@ class ScanSimple(Screen):
 				exclusive_satellites = sec.get_exclusive_satellites(0,1)
 			else:
 				exclusive_satellites = [0,0]
+			print "exclusive satellites", exclusive_satellites
+			two_sat_tuners = True
 		else:
-			exclusive_satellites = [0,0]
-		print "exclusive satellites", exclusive_satellites
+			two_sat_tuners = False
+
 		for x in self.list:
 			slotid = x[1].parent.configPath
 			print "Scan Tuner", slotid, "-", currentConfigSelectionElement(x[1].parent)
 			if currentConfigSelectionElement(x[1].parent) == "yes":
 				tlist = [ ]
 				if nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-S"]:
-					if slotid > 0:
-						idx = exclusive_satellites[0]+1
-					else:
-						idx = 0
-					exclusive_nim_sats = exclusive_satellites[idx+1:idx+1+exclusive_satellites[idx]]
-					print "exclusive_nim_sats", exclusive_nim_sats
+					if two_sat_tuners:
+						if slotid > 0:
+							idx = exclusive_satellites[0]+1
+						else:
+							idx = 0
+						exclusive_nim_sats = exclusive_satellites[idx+1:idx+1+exclusive_satellites[idx]]
+						print "exclusive_nim_sats", exclusive_nim_sats
 					SatList = nimmanager.getSatListForNim(slotid)
 					for sat in SatList:
-						if sat[1] in exclusive_nim_sats or slotid == 0:
+						if not two_sat_tuners or (sat[1] in exclusive_nim_sats or slotid == 0):
 							print sat
 							getInitialTransponderList(tlist, sat[1])
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
