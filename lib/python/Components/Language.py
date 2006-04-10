@@ -8,21 +8,24 @@ class Language:
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
 		self.activeLanguage = 0
 		self.lang = {}
+		self.langlist = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		self.addLanguage(_("English"), "en", "EN")
-		self.addLanguage(_("German"), "de", "DE")
 		self.addLanguage(_("Arabic"), "ar", "AE")
 		self.addLanguage(_("Dutch"), "nl", "NL")
-		self.addLanguage(_("Spanish"), "es", "ES")
+		self.addLanguage(_("German"), "de", "DE")
 		self.addLanguage(_("Icelandic"), "is", "IS")
 		self.addLanguage(_("Italian"), "it", "IT")
+		self.addLanguage(_("Spanish"), "es", "ES")
+
 		
 		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
 		try:
 			self.lang[str(lang + "_" + country)] = ((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang, country))
+			self.langlist.append(str(lang + "_" + country))
 		except:
 			print "Language " + str(name) + " not found"
 
@@ -38,7 +41,7 @@ class Language:
 
 	def getLanguageList(self):
 		list = []
-		for x in self.lang.keys():
+		for x in self.langlist:
 			list.append((x, self.lang[x]))
 		return list
 	
