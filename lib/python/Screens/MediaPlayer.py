@@ -316,7 +316,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
 				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
 				info = eServiceCenter.getInstance().info(currref)
-				description = info.getInfoString(currref, iServiceInformation.sDescription)
+				description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
 				self["title"].setText(description)
 			self.unPauseService()
 				
