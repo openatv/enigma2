@@ -9,6 +9,7 @@ from Components.ConfigList import ConfigList
 from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
+from Components.MenuList import MenuList
 from Components.config import config, ConfigSubsection, configElement_nonSave, configNothing, getConfigListEntry, configSelection, currentConfigSelectionElement, configSatlist
 
 class PositionerSetup(Screen):
