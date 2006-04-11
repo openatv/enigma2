@@ -379,7 +379,7 @@ RESULT eDVBTSRecorder::start()
 
 	dmx_pes_filter_params flt;
 	flt.pes_type = (dmx_pes_type_t)DMX_TAP_TS;
-	flt.pid     = 0x1234; /* FIXME */
+	flt.pid     = -1;
 	flt.input   = DMX_IN_FRONTEND;
 	flt.output  = DMX_OUT_TAP;
 	flt.flags   = 0;
