@@ -434,7 +434,6 @@ class NimManager:
 	def getTerrestrialFlags(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.value][1]
 
-
 	def getConfiguredSats(self):
 		return self.sec.getSatList()
 
@@ -598,6 +597,28 @@ class NimManager:
 				for x in self.satList:
 					if config.Nims[slotid].advanced.sat[x[1]].lnb.value != 0:
 						list.append(x)
+		return list
+
+	def getRotorSatListForNim(self, slotid):
+		list = []
+		if (self.getNimType(slotid) == self.nimType["DVB-S"]):
+			#print "slotid:", slotid
+
+			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
+			#print "diseqcA:", config.Nims[slotid].diseqcA.value
+			configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+			if configMode == "simple":
+				if (config.Nims[slotid].diseqcMode.value == 4):
+					for x in self.satList:
+						list.append(x)
+			elif configMode == "advanced":
+				for x in self.satList:
+					nim = config.Nims[slotid]
+					lnbnum = nim.advanced.sat[x[1]].lnb.value
+					if lnbnum != 0:
+						lnb = nim.advanced.lnb[lnbnum]
+						if lnb.diseqcMode.value == 3: # diseqc 1.2
+							list.append(x)
 		return list
 
 	def nimDiseqcModeChanged(self, slotid, mode):

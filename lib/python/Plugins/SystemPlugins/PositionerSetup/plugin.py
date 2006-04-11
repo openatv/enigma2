@@ -51,7 +51,7 @@ class PositionerSetup(Screen):
 		
 		self.diseqc = Diseqc(self.feid)
 		self.tuner = Tuner(self.diseqc.getFrontend())
-		self.tuner.tune((0,0,0,0,0,0,0,0))
+		self.tuner.tune((0,0,0,0,0,0,0,0,0))
 		
 		#self.session.nav.stopService()
 		
@@ -348,7 +348,7 @@ class Tuner:
 		parm.polarisation = transponder[2]
 		parm.fec = transponder[3]
 		parm.inversion = transponder[4]
-		parm.orbital_position = 192
+		parm.orbital_position = transponder[5]
 		feparm = eDVBFrontendParameters()
 		feparm.setDVBS(parm, True)
 		self.lastparm = feparm
@@ -404,49 +404,53 @@ class TunerScreen(ScanSetup):
 		config.tuning = ConfigSubsection()
 		
 		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
-
-		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getSatListForNim(self.feid))
+		
+		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getRotorSatListForNim(self.feid))
 		ScanSetup.createConfig(self)
 		self.updateSats()
 		
 	def updateSats(self):
-		transponderlist = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])
-		list = []
-		for x in transponderlist:
-			if x[3] == 0:
-				pol = "H"
-			elif x[3] == 1:
-				pol = "V"
-			elif x[3] == 2:
-				pol = "CL"
-			elif x[3] == 3:
-				pol = "CR"
-			if x[4] == 0:
-				fec = "FEC_AUTO"
-			elif x[4] == 1:
-				fec = "FEC_1_2"
-			elif x[4] == 2:
-				fec = "FEC_2_3"
-			elif x[4] == 3:
-				fec = "FEC_3_4"
-			elif x[4] == 4:
-				fec = "FEC_5_6"
-			elif x[4] == 5:
-				fec = "FEC_7_8"
-			elif x[4] == 5:
-				fec = "FEC_8_9"
-			elif x[4] == 6:
-				fec = "FEC_None"
-			list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
-		config.tuning.transponder = configElement_nonSave("config.tuning.transponder", configSelection, 0, list)
+		satnum = config.tuning.sat.value
+		satlist = config.tuning.sat.vals
+		if len(satlist):
+			transponderlist = nimmanager.getTransponders(satlist[satnum][1])
+			list = []
+			for x in transponderlist:
+				if x[3] == 0:
+					pol = "H"
+				elif x[3] == 1:
+					pol = "V"
+				elif x[3] == 2:
+					pol = "CL"
+				elif x[3] == 3:
+					pol = "CR"
+				if x[4] == 0:
+					fec = "FEC_AUTO"
+				elif x[4] == 1:
+					fec = "FEC_1_2"
+				elif x[4] == 2:
+					fec = "FEC_2_3"
+				elif x[4] == 3:
+					fec = "FEC_3_4"
+				elif x[4] == 4:
+					fec = "FEC_5_6"
+				elif x[4] == 5:
+					fec = "FEC_7_8"
+				elif x[4] == 5:
+					fec = "FEC_8_9"
+				elif x[4] == 6:
+					fec = "FEC_None"
+				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
+			config.tuning.transponder = configElement_nonSave("config.tuning.transponder", configSelection, 0, list)
 	
 	def keyGo(self):
-		returnvalue = (0, 0, 0, 0, 0, 0)
+		returnvalue = (0, 0, 0, 0, 0, 0, 0)
+		satpos = config.tuning.sat.vals[config.tuning.sat.value][1]
 		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
-			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value)
+			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
 		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
 			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
-			returnvalue = (int(transponder[1] / 100), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1])
+			returnvalue = (int(transponder[1] / 100), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
 		self.close(returnvalue)
 
 	def keyCancel(self):
@@ -476,18 +480,24 @@ class NimSelection(Screen):
 
 	def okbuttonClick(self):
 		selection = self["nimlist"].getCurrent()
-		print selection
 		self.session.open(PositionerSetup, selection[1])
 
 def PositionerMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
-	elif len(nimList) == 1:
-		session.open(PositionerSetup, nimList[0])
 	else:
-		session.open(NimSelection)
-	
+		usableNims = []
+		for x in nimList:
+			configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
+			if len(configured_rotor_sats) != 0:
+				usableNims.append(x)
+		if len(usableNims) == 1:
+			session.open(PositionerSetup, usableNims[0])
+		elif len(usableNims) > 1:
+			session.open(NimSelection)
+		else:
+			session.open(MessageBox, _("No tuner is configured for use with a diseqc rotor!"), MessageBox.TYPE_ERROR)
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Positioner setup", description="Setup your positioner", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=PositionerMain)
