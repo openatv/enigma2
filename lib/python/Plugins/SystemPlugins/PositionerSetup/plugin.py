@@ -461,7 +461,12 @@ class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["nimlist"] = MenuList(nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"]))
+		nimlist = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+		nimMenuList = []
+		for x in nimlist:
+			nimMenuList.append((_("NIM ") + (["A", "B", "C", "D"][x]) + ": " + nimmanager.getNimName(x) + " (" + nimmanager.getNimTypeName(x) + ")", x))
+		
+		self["nimlist"] = MenuList(nimMenuList)
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -471,7 +476,8 @@ class NimSelection(Screen):
 
 	def okbuttonClick(self):
 		selection = self["nimlist"].getCurrent()
-		self.session.open(PositionerSetup, selection[1].slotid)
+		print selection
+		self.session.open(PositionerSetup, selection[1])
 
 def PositionerMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
