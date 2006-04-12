@@ -101,12 +101,12 @@ class Session:
 		self.summary_stack = [ ]
 		self.summary = None
 		
+		self.in_exec = False
+		
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			p(reason=0, session=self)
 	
 	def processDelay(self):
-		self.execEnd()
-		
 		callback = self.current_dialog.callback
 
 		retval = self.current_dialog.returnValue
@@ -123,6 +123,8 @@ class Session:
 			callback(*retval)
 
 	def execBegin(self):
+		assert not self.in_exec 
+		self.in_exec = True
 		c = self.current_dialog
 		
 		self.pushSummary()
@@ -139,6 +141,9 @@ class Session:
 			c.show()
 		
 	def execEnd(self):
+		assert self.in_exec
+		self.in_exec = False
+
 		self.current_dialog.execEnd()
 		self.current_dialog.hide()
 		self.current_dialog.removeSummary(self.summary)
@@ -233,8 +238,13 @@ class Session:
 		print "code " + str(code)
 
 	def close(self, *retval):
+		if not self.in_exec:
+			print "close after exec!"
+			return
+
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
+		self.execEnd()
 
 	def pushSummary(self):
 		if self.summary is not None:
