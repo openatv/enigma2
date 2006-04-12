@@ -504,7 +504,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							++loops;
 
 						for ( int i=0; i < di_param.m_repeats; ++i )
-						loops *= 2;
+							loops *= 2;
 
 						for ( int i = 0; i < loops;)  // fill commands...
 						{
@@ -522,10 +522,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								diseqc.data[2] = 0x38;
 								diseqc.data[3] = csw;
 							}
-							else
+							else  // no committed command confed.. so send uncommitted..
 							{
-								diseqc.data[2] = 0x00;
-								diseqc.data[3] = 0x00;
+								diseqc.data[2] = 0x39;
+								diseqc.data[3] = ucsw;
 							}
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 
