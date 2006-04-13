@@ -109,7 +109,7 @@ class RecordTimerEntry(timer.TimerEntry):
 					f.write(self.description + "\n")
 					f.write(str(self.begin) + "\n")
 					f.close()
-				except:
+				except IOError:
 					self.log(4, "failed to write meta information")
 				return True
 
