@@ -425,6 +425,8 @@ int eDVBFrontend::closeFrontend()
 		m_tuneTimer->stop();
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
+		if (m_type == iDVBFrontend::feSatellite)
+			m_sec->setRotorMoving(false);
 		::close(m_fd);
 		m_fd=-1;
 		m_data[0] = m_data[1] = m_data[2] = -1;
@@ -1508,6 +1510,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			return -EINVAL;
 		}
 		res=prepare_sat(feparm);
+		m_sec->setRotorMoving(false);
 		break;
 	}
 	case feCable:
