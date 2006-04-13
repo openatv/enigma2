@@ -993,6 +993,7 @@ class InfoBarExtensions:
 	
 			elif answer[1] == "pipoff":
 				#self.pip.hide()
+				self.pipservice = None
 				del self.pip
 				self.pipshown = False
 
