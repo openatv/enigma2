@@ -561,7 +561,7 @@ class InfoBarSeek:
 	def getSeek(self):
 		service = self.session.nav.getCurrentService()
 		if service is None:
-			return False
+			return None
 
 		seek = service.seek()
 
