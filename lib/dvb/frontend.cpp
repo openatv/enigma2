@@ -422,6 +422,7 @@ int eDVBFrontend::closeFrontend()
 	if (m_fd >= 0)
 	{
 		eDebug("close frontend %d", m_fe);
+		m_tuneTimer->stop();
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
 		::close(m_fd);
