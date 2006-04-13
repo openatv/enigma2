@@ -95,7 +95,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
 {
-	int ret=0;
+	int ret=0, satcount=0;
 
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
@@ -103,6 +103,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 		if ( lnb_param.tuner_mask & frontend_id ) // lnb for correct tuner?
 		{
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
+
+			satcount += lnb_param.m_satellites.size();
 
 			std::map<int, eDVBSatelliteSwitchParameters>::iterator sit =
 				lnb_param.m_satellites.find(sat.orbital_position);
@@ -138,20 +140,14 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						csw |= band;
 
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
-					{
-						rotor=true;
-						if ( curRotorPos == sat.orbital_position )
-							ret=20;  // rotor on correct orbpos = prio 20
-						else
-							ret=10;  // rotor must turn to correct orbpos = prio 10
-					}
-					else
-						ret = 30;  // no rotor = prio 30
+						rotor = true;
+
+					ret = 1000;
 				}
 				else
 				{
 					csw = band;
-					ret = 40;  // no diseqc = prio 40
+					ret = 2000;
 				}
 
 				if (linked_to != -1)  // check for linked tuners..
@@ -221,6 +217,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			}
 		}
 	}
+	if (ret && satcount)
+		ret -= (satcount-1);
 	return ret;
 }
 
