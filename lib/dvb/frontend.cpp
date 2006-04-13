@@ -425,7 +425,7 @@ int eDVBFrontend::closeFrontend()
 		m_tuneTimer->stop();
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
-		if (m_type == iDVBFrontend::feSatellite)
+		if (m_sec)
 			m_sec->setRotorMoving(false);
 		::close(m_fd);
 		m_fd=-1;
