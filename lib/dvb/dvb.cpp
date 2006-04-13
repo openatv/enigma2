@@ -282,9 +282,14 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	}
 	
 	for (; i != m_demux.end(); ++i, ++n)
-		if ((!i->m_inuse) && ((!fe) || (i->m_adapter == fe->m_adapter)))
+	{
+		int is_decode = n < 2;
+		
+		int in_use = is_decode ? (i->m_demux->getRefCount() != 2) : i->m_inuse;
+		
+		if ((!in_use) && ((!fe) || (i->m_adapter == fe->m_adapter)))
 		{
-			if ((cap & iDVBChannel::capDecode) && (n >= 2))
+			if ((cap & iDVBChannel::capDecode) && !is_decode)
 				continue;
 			
 			demux = new eDVBAllocatedDemux(i);
@@ -294,6 +299,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				demux->get().setSourcePVR(0);
 			return 0;
 		}
+	}
 	eDebug("demux not found");
 	return -1;
 }
