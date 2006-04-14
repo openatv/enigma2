@@ -104,6 +104,7 @@ public:
 	void stop()
 	{
 		current = next = 0;
+		m_demux = 0;
 	}
 	
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBDemux> demux)

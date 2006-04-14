@@ -676,7 +676,8 @@ RESULT eDVBServicePlay::start()
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
 		   two (one for decoding, one for data source), as we must be prepared
 		   to start recording from the data demux. */
-	m_cue = new eCueSheet();
+	if (m_is_pvr)
+		m_cue = new eCueSheet();
 
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
@@ -1446,6 +1447,7 @@ void eDVBServicePlay::switchToLive()
 	if (!m_timeshift_active)
 		return;
 	
+	m_cue = 0;
 	m_decoder = 0;
 	m_decode_demux = 0;
 		/* free the timeshift service handler, we need the resources */
@@ -1472,6 +1474,7 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 	
+	m_cue = new eCueSheet();
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
 	updateDecoder(); /* mainly to switch off PCR */
 }
