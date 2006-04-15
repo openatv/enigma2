@@ -374,7 +374,6 @@ class ChannelSelectionEdit:
 			if not mutableList.addService(self.servicelist.getCurrent()):
 				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges()
-		self.close()
 
 	def toggleMoveMode(self):
 		if self.movemode:
