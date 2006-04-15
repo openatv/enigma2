@@ -23,8 +23,11 @@ void eGTable::sectionRead(const __u8 *d)
 	{
 		if (m_timeout)
 			m_timeout->stop();
-		m_reader->stop();
-		m_reader=0;
+		if (m_reader)
+		{
+			m_reader->stop();
+			m_reader=0;
+		}
 		m_sectionRead_conn=0;
 		ready = 1;
 		tableReady(error);
@@ -35,8 +38,11 @@ void eGTable::sectionRead(const __u8 *d)
 void eGTable::timeout()
 {
 	eDebug("timeout!");
-	m_reader->stop();
-	m_reader=0;
+	if (m_reader)
+	{
+		m_reader->stop();
+		m_reader=0;
+	}
 	m_sectionRead_conn=0;
 	ready = 1;
 	error = -1;
