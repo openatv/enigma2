@@ -76,10 +76,15 @@ class EPGList(HTMLComponent, GUIComponent):
 			if SINGLE_CPP > 0:
 				evt = self.l.getCurrent()
 			else:
-				eventid = self.l.getCurrentSelection()[0]
-				evt = self.getEventFromId(self.service, eventid)
+				cur = self.l.getCurrentSelection()
+				if cur is None:
+					return cur
+				else:
+					evt = self.getEventFromId(self.service, cur[0])
 		else:
 			tmp = self.l.getCurrentSelection()
+			if tmp is None:
+				return ( None, None )
 			eventid = tmp[2]
 			service = ServiceReference(tmp[1])
 			event = self.getEventFromId(service, eventid)
