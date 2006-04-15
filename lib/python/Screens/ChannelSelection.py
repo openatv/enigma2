@@ -54,7 +54,8 @@ class ChannelContextMenu(Screen):
 			})
 		menu = [ ]
 
-		inBouquetRootList = csel.getRoot().getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+		current_root = csel.getRoot()
+		inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
 
