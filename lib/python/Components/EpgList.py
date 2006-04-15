@@ -147,7 +147,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.descr_rect = Rect(xpos, 0, width, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
-		rec=(self.timer.isInTimer(eventid=eventId, begin=beginTime, duration=duration, service=self.service) > ((duration/10)*8)) 
+		rec=(self.timer.isInTimer(eventId, beginTime, duration, self.service) > ((duration/10)*8)) 
 		r1=self.datetime_rect
 		r2=self.descr_rect
 		res = [ None ]  # no private data needed
@@ -161,6 +161,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
+		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service) > ((duration/10)*8))
 		sname = service_name
 		r1=self.service_rect
 		r2=self.progress_rect
@@ -175,7 +176,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				sname+=substr[2:len(substr)-2]
 			if len(sname) == 0:
 				sname = service_name;
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, sname))
+		if rec:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, sname))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, sname))
 		if begTime is not None:
 			if nowTime < begTime:
 				begin = localtime(begTime)
