@@ -39,8 +39,8 @@ class EventViewBase:
 		self.onShown.append(self.onCreate)
 
 	def onCreate(self):
-		self.setEvent(self.event)
 		self.setService(self.currentService)
+		self.setEvent(self.event)
 
 	def prevEvent(self):
 		if self.cbFunc is not None:
@@ -62,6 +62,7 @@ class EventViewBase:
 			print "Timeredit aborted"
 
 	def setService(self, service):
+		
 		self.currentService=service
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))

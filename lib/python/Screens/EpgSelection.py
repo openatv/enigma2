@@ -105,8 +105,8 @@ class EPGSelection(Screen):
 			if self.type == EPG_TYPE_MULTI and cur[0] is None and cur[1].ref != old[1].ref:
 				self.eventViewCallback(setEvent, setService, val)
 			else:
-				setEvent(cur[0])
 				setService(cur[1])
+				setEvent(cur[0])
 
 	def zapTo(self): # just used in multiepg
 		if self.zapFunc != None:
