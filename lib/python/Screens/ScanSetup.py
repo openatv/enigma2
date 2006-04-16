@@ -5,6 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
+from Screens.MessageBox import MessageBox
 from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial
 
 def buildTerTransponder(frequency, 
@@ -477,6 +478,7 @@ class ScanSimple(Screen):
 			slotid = x[1].parent.configPath
 			print "Scan Tuner", slotid, "-", currentConfigSelectionElement(x[1].parent)
 			if currentConfigSelectionElement(x[1].parent) == "yes":
+				scanPossible = False
 				tlist = [ ]
 				if nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-S"]:
 					if two_sat_tuners:
@@ -489,14 +491,21 @@ class ScanSimple(Screen):
 					SatList = nimmanager.getSatListForNim(slotid)
 					for sat in SatList:
 						if not two_sat_tuners or (sat[1] in exclusive_nim_sats or slotid == 0):
+							scanPossible = True
 							print sat
 							getInitialTransponderList(tlist, sat[1])
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
+					ScanPossible = True
 					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-T"]:
+					ScanPossible = True
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(slotid))
-				scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
-		self.session.openWithCallback(self.doNothing, ServiceScan, scanList = scanList)
+				if scanPossible:
+					scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
+		if len(scanList):
+			self.session.openWithCallback(self.doNothing, ServiceScan, scanList = scanList)
+		else:
+			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def doNothing(self):
 		pass
