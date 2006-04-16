@@ -216,13 +216,14 @@ class AlternativeZapping(Screen):
 	def greenKey(self):
 		self.session.openWithCallback(self.finishedChannelSelection, SimpleChannelSelection, _("Select reference service"))
 
-	def finishedChannelSelection(self, args):
-		serviceString = str(ServiceReference(args))
-		if not self.alternatives.has_key(serviceString):
-			self.alternatives[serviceString] = []
-		self.updateServices()
-		self.selectService(serviceString)
-		self.updateAlternatives()
+	def finishedChannelSelection(self, *args):
+		if len(args):
+			serviceString = str(ServiceReference(args))
+			if not self.alternatives.has_key(serviceString):
+				self.alternatives[serviceString] = []
+			self.updateServices()
+			self.selectService(serviceString)
+			self.updateAlternatives()
 		
 	def yellowKey(self):
 		if len(self.serviceslist) > 0:
