@@ -390,20 +390,26 @@ class ScanSetup(Screen):
 		flags = 0
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
 			if currentConfigSelectionElement(config.scan.type) == "single_transponder":
-
-				self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
-											  config.scan.sat.symbolrate.value[0],
-											  config.scan.sat.polarization.value,
-											  config.scan.sat.fec.value,
-											  config.scan.sat.inversion.value,
-											  self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1])
+				l = len(self.satList)
+				if l and l > config.scan.nims.value:
+					nimsats=self.satList[config.scan.nims.value]
+					l = len(config.scan.satselection)
+					if l and l > config.scan.nims.value:
+						selsatidx=config.scan.satselection[config.scan.nims.value].value
+						l = len(nimsats)
+						if l and l > selsatidx:
+							orbpos=nimsats[selsatidx][1]
+							self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
+										config.scan.sat.symbolrate.value[0],
+										config.scan.sat.polarization.value,
+										config.scan.sat.fec.value,
+										config.scan.sat.inversion.value,
+										orbpos)
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
 				flags |= eComponentScan.scanNetworkSearch
-	
 			elif currentConfigSelectionElement(config.scan.type) == "multisat":
 				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
-	
 				for x in self.multiscanlist:
 					if x[1].parent.value == 0:
 						print "   " + str(x[1].parent.configPath)
@@ -417,7 +423,7 @@ class ScanSetup(Screen):
 											  config.scan.cab.modulation.value,
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
-				if  currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
+				if currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
 					flags |= eComponentScan.scanNetworkSearch
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
 				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
@@ -444,11 +450,13 @@ class ScanSetup(Screen):
 		for x in self["config"].list:
 			x[1].save()
 
-		feid = config.scan.nims.value
-		# flags |= eComponentScan.scanSearchBAT
-		self.session.openWithCallback(self.doNothing, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+		if len(tlist):
+			feid = config.scan.nims.value
+			# flags |= eComponentScan.scanSearchBAT
+			self.session.openWithCallback(self.doNothing, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+		else:
+			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-		#self.close()
 	def doNothing(self):
 		pass
 

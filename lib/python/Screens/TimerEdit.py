@@ -63,16 +63,18 @@ class TimerEditList(Screen):
 		self.updateState()
 		
 	def toggleDisabledState(self):
-		t = self["timerlist"].getCurrent()[0]
+		cur=self["timerlist"].getCurrent()
+		if cur:
+			t = cur[0]
 		
-		if t.disabled:
-			t.enable()
-		else:
-			t.disable()
+			if t.disabled:
+				t.enable()
+			else:
+				t.disable()
 
-		self.session.nav.RecordTimer.timeChanged(t)
-		self.updateState()
-		self.refill()
+			self.session.nav.RecordTimer.timeChanged(t)
+			self.updateState()
+			self.refill()
 		
 	def updateState(self):
 		if len(self.list) > 0:
@@ -93,12 +95,15 @@ class TimerEditList(Screen):
 		self.list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
 
 	def showLog(self):
-		self.session.openWithCallback(self.finishedEdit, TimerLog, self["timerlist"].getCurrent()[0])
+		cur=self["timerlist"].getCurrent()
+		if cur:
+			self.session.openWithCallback(self.finishedEdit, TimerLog, cur[0])
 
 	def openEdit(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timerlist"].getCurrent()[0])
-		#self.session.open(TimerEdit, self["timerlist"].getCurrent()[0])
-		
+		cur=self["timerlist"].getCurrent()
+		if cur:
+			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur[0])
+
 	def cleanupQuestion(self):
 		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
 	
@@ -110,7 +115,7 @@ class TimerEditList(Screen):
 	def removeTimer(self):
 		list = self["timerlist"]
 		cur = list.getCurrent()
-		if cur is not None:
+		if cur:
 			timer = cur[0]
 			self.session.nav.RecordTimer.removeEntry(timer)
 			self.refill()
