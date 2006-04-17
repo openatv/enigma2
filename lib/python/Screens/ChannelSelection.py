@@ -298,7 +298,10 @@ class ChannelSelectionEdit:
 			if pos != -1:
 				filename = '/etc/enigma2/' + refstr[:pos] # FIXMEEE !!! HARDCODED /etc/enigma2
 		self.removeCurrentService()
-		remove(filename)
+		try:
+			remove(filename)
+		except OSError:
+			print "error during remove of", filename
 		eDVBDB.getInstance().reloadBouquets()
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
