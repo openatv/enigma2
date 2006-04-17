@@ -214,7 +214,12 @@ void eListboxPythonStringContent::invalidateEntry(int index)
 void eListboxPythonStringContent::invalidate()
 {
 	if (m_listbox)
+	{
+		int s = size();
+		if ( m_cursor >= s )
+			m_listbox->moveSelectionTo(s?s-1:0);
 		m_listbox->invalidate();
+	}
 }
 
 //////////////////////////////////////
