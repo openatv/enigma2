@@ -1183,9 +1183,9 @@ class InfoBarAdditionalInfo:
 		self.onLayoutFinish.append(self["ButtonYellowText"].update)
 
 		self["ButtonBlue"] = PixmapConditional(withTimer = False)
-		self["ButtonBlue"].setConnect(lambda: False)
+		self["ButtonBlue"].setConnect(lambda: True)
 		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
-		self["ButtonBlueText"].setConnect(lambda: False)
+		self["ButtonBlueText"].setConnect(lambda: True)
 		self.onLayoutFinish.append(self["ButtonBlue"].update)
 		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
