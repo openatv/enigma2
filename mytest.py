@@ -87,6 +87,31 @@ class GUIOutputDevice(OutputDevice):
 	def create(self, comp, desktop):
 		comp.createGUIScreen(self.parent, desktop)
 
+# Session.open:
+# * push current active dialog ('current_dialog') onto stack
+# * call execEnd for this dialog
+#   * clear in_exec flag
+#   * hide screen
+# * instantiate new dialog into 'current_dialog'
+#   * create screens, components
+#   * read, apply skin
+#   * create GUI for screen
+# * call execBegin for new dialog
+#   * set in_exec
+#   * show gui screen
+#   * call components' / screen's onExecBegin
+# ... screen is active, until it calls 'close'...
+# Session.close:
+# * assert in_exec
+# * save return value
+# * start deferred close handler ('onClose')
+# * execEnd
+#   * clear in_exec
+#   * hide screen
+# .. a moment later:
+# Session.doClose:
+# * destroy screen
+
 class Session:
 	def __init__(self, desktop = None, summary_desktop = None, navigation = None):
 		self.desktop = desktop
@@ -204,7 +229,7 @@ class Session:
 		return dlg
 	 
 	def pushCurrent(self):
-		if self.current_dialog:
+		if self.current_dialog is not None:
 			self.dialog_stack.append(self.current_dialog)
 			self.execEnd()
 	
@@ -227,6 +252,10 @@ class Session:
 		dlg.callback = callback
 
 	def open(self, screen, *arguments, **kwargs):
+		if len(self.dialog_stack) and not self.in_exec:
+			raise "modal open are allowed only from a screen which is modal!"
+			# ...unless it's the very first screen.
+		
 		self.pushCurrent()
 		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
@@ -237,11 +266,20 @@ class Session:
 	def keyEvent(self, code):
 		print "code " + str(code)
 
-	def close(self, *retval):
+	def close(self, screen, *retval):
 		if not self.in_exec:
 			print "close after exec!"
 			return
-
+		
+		# be sure that the close is for the right dialog!
+		# if it's not, you probably closed after another dialog
+		# was opened. this can happen if you open a dialog
+		# onExecBegin, and forget to do this only once.
+		# after close of the top dialog, the underlying will
+		# gain focus again (for a short time), thus triggering
+		# the onExec, which opens the dialog again, closing the loop.
+		assert screen == self.current_dialog
+		
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
 		self.execEnd()

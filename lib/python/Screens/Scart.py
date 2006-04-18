@@ -13,11 +13,13 @@ class Scart(Screen):
 		
 		self.avswitch.setInput("SCART")
 		
-		self.onShown.append(self.showMessageBox)
+		self.onExecBegin.append(self.showMessageBox)
 				
 	def showMessageBox(self):
+		# only open messagebox on first execBegin
+		self.onShown.remove(self.showMessageBox)
 		self.session.openWithCallback(self.switchToTV, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
 		
-	def switchToTV(self, val):
+	def switchToTV(self, *val):
 		self.avswitch.setInput("ENCODER")
 		self.close()
