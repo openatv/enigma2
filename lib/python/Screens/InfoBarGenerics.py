@@ -964,7 +964,7 @@ class InfoBarExtensions:
 		
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 			{
-				"extensions": (self.extensions, "Extensions..."),
+				#"extensions": (self.extensions, "Extensions..."),
 			})
 			
 	def extensions(self):
@@ -1183,9 +1183,9 @@ class InfoBarAdditionalInfo:
 		self.onLayoutFinish.append(self["ButtonYellowText"].update)
 
 		self["ButtonBlue"] = PixmapConditional(withTimer = False)
-		self["ButtonBlue"].setConnect(lambda: True)
+		self["ButtonBlue"].setConnect(lambda: False)
 		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
-		self["ButtonBlueText"].setConnect(lambda: True)
+		self["ButtonBlueText"].setConnect(lambda: False)
 		self.onLayoutFinish.append(self["ButtonBlue"].update)
 		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
