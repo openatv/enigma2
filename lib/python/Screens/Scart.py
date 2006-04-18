@@ -17,7 +17,7 @@ class Scart(Screen):
 				
 	def showMessageBox(self):
 		# only open messagebox on first execBegin
-		self.onShown.remove(self.showMessageBox)
+		self.onExecBegin.remove(self.showMessageBox)
 		self.session.openWithCallback(self.switchToTV, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
 		
 	def switchToTV(self, *val):
