@@ -74,7 +74,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.__dict__.clear()
 	
 	def close(self, *retval):
-		self.session.close(*retval)
+		self.session.close(self, *retval)
 
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
