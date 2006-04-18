@@ -857,7 +857,7 @@ class InfoBarTimeshift:
 	
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
-		return service.timeshift()
+		return service and service.timeshift()
 
 	def startTimeshift(self):
 		print "enable timeshift"
