@@ -377,7 +377,7 @@ class InfoBarEPG:
 			else:
 				self.session.open(EPGSelection, services, self.zapToService)
 
-	def closed(self, ret):
+	def closed(self, ret=False):
 		self.dlg_stack.pop()
 		if ret:
 			dlgs=len(self.dlg_stack)
