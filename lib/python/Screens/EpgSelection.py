@@ -18,11 +18,18 @@ from time import localtime
 import xml.dom.minidom
 
 class EPGSelection(Screen):
-	def __init__(self, session, service, zapFunc=None):
+	def __init__(self, session, service, zapFunc=None, eventid=None):
 		Screen.__init__(self, session)
 		self["key_red"] = Button("")
 		self.closeRecursive = False
-		if isinstance(service, eServiceReference):
+		if isinstance(service, str) and eventid != None:
+			self.type = EPG_TYPE_SIMILAR
+			self["key_yellow"] = Button()
+			self["key_blue"] = Button()
+			self["key_red"] = Button()
+			self.currentService=service
+			self.eventid = eventid
+		elif isinstance(service, eServiceReference) or isinstance(service, str):
 			self.type = EPG_TYPE_SINGLE
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
@@ -70,7 +77,7 @@ class EPGSelection(Screen):
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
-		if self.type == EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_SIMILAR:
 			cur = self["list"].getCurrent()
 			event = cur[0]
 			service = cur[1]
@@ -78,7 +85,13 @@ class EPGSelection(Screen):
 			event = self["list"].getCurrent()
 			service = self.currentService
 		if event is not None:
-			self.session.open(EventViewSimple, event, service, self.eventViewCallback)
+			if self.type != EPG_TYPE_SIMILAR:
+				self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
+			else:
+				self.session.open(EventViewSimple, event, service, self.eventViewCallback)
+
+	def openSimilarList(self, eventid, refstr):
+		self.session.open(EPGSelection, refstr, None, eventid)
 
 	#just used in multipeg
 	def onCreate(self):
@@ -86,10 +99,13 @@ class EPGSelection(Screen):
 		if self.type == EPG_TYPE_MULTI:
 			l.recalcEntrySize()
 			l.fillMultiEPG(self.services)
-		else:
+		elif self.type == EPG_TYPE_SINGLE:
 			if SINGLE_CPP == 0:
 				l.recalcEntrySize()
 			l.fillSingleEPG(self.currentService)
+		else:
+			l.recalcEntrySize()
+			l.fillSimilarList(self.currentService, self.eventid)
 
 	def eventViewCallback(self, setEvent, setService, val):
 		l = self["list"]
@@ -115,10 +131,10 @@ class EPGSelection(Screen):
 			self.zapFunc(ref.ref)
 
 	def eventSelected(self):
-		if self.type == EPG_TYPE_SINGLE:
-			self.infoKeyPressed()
-		else: # EPG_TYPE_MULTI
+		if self.type == EPG_TYPE_MULTI:
 			self.zapTo()
+		else:
+			self.infoKeyPressed()
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:

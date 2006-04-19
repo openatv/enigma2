@@ -9,6 +9,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
+EPG_TYPE_SIMILAR = 2
 
 RT_HALIGN_LEFT = 0
 RT_HALIGN_RIGHT = 1
@@ -56,8 +57,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l = eListboxPythonMultiContent()
 			if type == EPG_TYPE_SINGLE:
 				self.l.setBuildFunc(self.buildSingleEntry)
-			else:
+			elif type == EPG_TYPE_MULTI:
 				self.l.setBuildFunc(self.buildMultiEntry)
+			else:
+				assert(type == EPG_TYPE_SIMILAR)
+				self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
 	def getEventFromId(self, service, eventid):
@@ -81,12 +85,20 @@ class EPGList(HTMLComponent, GUIComponent):
 					return cur
 				else:
 					evt = self.getEventFromId(self.service, cur[0])
-		else:
+		elif self.type == EPG_TYPE_MULTI:
 			tmp = self.l.getCurrentSelection()
 			if tmp is None:
 				return ( None, None )
 			eventid = tmp[2]
 			service = ServiceReference(tmp[1])
+			event = self.getEventFromId(service, eventid)
+			evt = ( event, service )
+		else:
+			tmp = self.l.getCurrentSelection()
+			if tmp is None:
+				return ( None, None )
+			eventid = tmp[1]
+			service = ServiceReference(tmp[0])
 			event = self.getEventFromId(service, eventid)
 			evt = ( event, service )
 		return evt
@@ -134,7 +146,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				w = width/20*5
 				self.datetime_rect = Rect(0,0, w, height)
 				self.descr_rect = Rect(w, 0, width/20*15, height)
-			else:
+			elif self.type == EPG_TYPE_MULTI:
 				xpos = 0;
 				w = width/10*3;
 				self.service_rect = Rect(xpos, 0, w-10, height)
@@ -145,6 +157,13 @@ class EPGList(HTMLComponent, GUIComponent):
 				xpos += w
 				w = width/10*5;
 				self.descr_rect = Rect(xpos, 0, width, height)
+			else: # EPG_TYPE_SIMILAR
+				xpos = 0;
+				w = width/10*3;
+				self.datetime_rect = Rect(xpos, 0, w-10, height)
+				xpos += w
+				w = width/10*7;
+				self.service_rect = Rect(xpos, 0, w-10, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
 		rec=(self.timer.isInTimer(eventId, beginTime, duration, self.service) > ((duration/10)*8)) 
@@ -158,6 +177,15 @@ class EPGList(HTMLComponent, GUIComponent):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
+		return res
+
+	def buildSimilarEntry(self, service, eventId, beginTime, service_name):
+		r1=self.datetime_rect
+		r2=self.service_rect
+		res = [ None ]  # no private data needed
+		t = localtime(beginTime)
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
@@ -246,3 +274,22 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setList(self.queryEPG(test))
 		print time() - t
 		self.selectionChanged()
+
+	def sort_func(self,x,y):
+		if x[2] < y[2]:
+			return -1
+		elif x[2] == y[2]:
+			return 0
+		else:
+			return 1
+
+	def fillSimilarList(self, refstr, event_id):
+		t = time()
+	 # search similar broadcastings
+		if event_id is None:
+			return
+		l = self.epgcache.search(('RIBN', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
+		l.sort(self.sort_func)
+		self.l.setList(l)
+		self.selectionChanged()
+		print time() - t
