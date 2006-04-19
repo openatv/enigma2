@@ -343,24 +343,29 @@ class RecordTimer(timer.Timer):
 		
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
+		chktime = None
+		chktimecmp = None
+		chktimecmp_end = None
+		end = begin + duration
 		for x in self.timer_list:
 			if str(x.service_ref) == str(service):
 				#if x.eit is not None and x.repeated == 0:
 				#	if x.eit == eventid:
 				#		return duration
 				if x.repeated != 0:
-					chktime = localtime(begin)
+					if chktime is None:
+						chktime = localtime(begin)
+						chktimecmp = chktime.tm_wday * 1440 + chktime.tm_hour * 60 + chktime.tm_min
+						chktimecmp_end = chktimecmp + (duration / 60)
 					time = localtime(x.begin)
-					chktimecmp = chktime.tm_wday * 1440 + chktime.tm_hour * 60 + chktime.tm_min
 					for y in range(7):
 						if x.repeated & (2 ** y):
 							timecmp = y * 1440 + time.tm_hour * 60 + time.tm_min
 							if timecmp <= chktimecmp < (timecmp + ((x.end - x.begin) / 60)):
 								time_match = ((timecmp + ((x.end - x.begin) / 60)) - chktimecmp) * 60
-							elif chktimecmp <= timecmp < (chktimecmp + (duration / 60)):
-								time_match = ((chktimecmp + (duration / 60)) - timecmp) * 60
+							elif chktimecmp <= timecmp < chktimecmp_end:
+								time_match = (chktimecmp_end - timecmp) * 60
 				else: #if x.eit is None:
-					end = begin + duration
 					if begin <= x.begin <= end:
 						diff = end - x.begin
 						if time_match < diff:
