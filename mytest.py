@@ -250,6 +250,7 @@ class Session:
 	def openWithCallback(self, callback, screen, *arguments, **kwargs):
 		dlg = self.open(screen, *arguments, **kwargs)
 		dlg.callback = callback
+		return dlg
 
 	def open(self, screen, *arguments, **kwargs):
 		if len(self.dialog_stack) and not self.in_exec:
@@ -278,7 +279,7 @@ class Session:
 		# after close of the top dialog, the underlying will
 		# gain focus again (for a short time), thus triggering
 		# the onExec, which opens the dialog again, closing the loop.
-		# assert screen == self.current_dialog
+		assert screen == self.current_dialog
 		
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
