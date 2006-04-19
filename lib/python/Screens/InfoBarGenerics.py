@@ -396,8 +396,10 @@ class InfoBarEPG:
 
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
-		ptr=eEPGCache.getInstance()
-		self.session.openWithCallback(self.closed, EPGSelection, ref)
+		self.session.open(EPGSelection, ref)
+
+	def openSimilarList(self, eventid, refstr):
+		self.session.open(EPGSelection, refstr, None, eventid)
 
 	def openEventView(self):
 		self.epglist = [ ]
@@ -419,7 +421,7 @@ class InfoBarEPG:
 				if ptr:
 					self.epglist.append(ptr)
 		if len(self.epglist) > 0:
-			self.session.open(EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG)
+			self.session.open(EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 		else:
 			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
 			self.openMultiServiceEPG(False)
