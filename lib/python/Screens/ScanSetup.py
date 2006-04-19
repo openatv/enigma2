@@ -542,9 +542,13 @@ class ScanSimple(Screen):
 			sec = eDVBSatelliteEquipmentControl.getInstance()
 			if sec is not None:
 				exclusive_satellites = sec.get_exclusive_satellites(0,1)
-				if len(exclusive_satellites) == 0:
+				if len(exclusive_satellites) == 2:
 					return False
-			return True
+				idx = exclusive_satellites[0]+1
+				exclusive_nim_sats = exclusive_satellites[idx+1:idx+1+exclusive_satellites[idx]]
+				if len(exclusive_nim_sats):
+					return True
+		return False # two -C or two -T tuners
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
