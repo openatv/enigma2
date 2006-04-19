@@ -342,6 +342,7 @@ class InfoBarSimpleEventView:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
+		self.dlg_stack = [ ]
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
@@ -372,13 +373,16 @@ class InfoBarEPG:
 		if len(services):
 			self.epg_bouquet = bouquet
 			if withCallback:
-				self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService)
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService))
 			else:
 				self.session.open(EPGSelection, services, self.zapToService)
 
 	def closed(self, ret):
+		self.dlg_stack.pop()
 		if ret:
-			self.close(ret)
+			dlgs=len(self.dlg_stack)
+			assert dlgs>0
+			self.dlg_stack[dlgs-1].close(dlgs > 1)
 
 	def openMultiServiceEPG(self, withCallback=True):
 		bouquets = self.servicelist.getBouquetList()
@@ -388,7 +392,7 @@ class InfoBarEPG:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
 			if withCallback:
-				self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG)
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG))
 			else:
 				self.session.open(BouquetSelector, bouquets, self.openBouquetEPG)
 		elif cnt == 1: 
@@ -421,7 +425,7 @@ class InfoBarEPG:
 				if ptr:
 					self.epglist.append(ptr)
 		if len(self.epglist) > 0:
-			self.session.open(EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			self.dlg_stack.append(self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList))
 		else:
 			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
 			self.openMultiServiceEPG(False)
