@@ -278,7 +278,7 @@ class Session:
 		# after close of the top dialog, the underlying will
 		# gain focus again (for a short time), thus triggering
 		# the onExec, which opens the dialog again, closing the loop.
-		assert screen == self.current_dialog
+		# assert screen == self.current_dialog
 		
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
