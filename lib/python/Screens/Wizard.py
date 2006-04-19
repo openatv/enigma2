@@ -166,7 +166,7 @@ class Wizard(Screen, HelpableScreen):
 
 		if (currStep == self.numSteps): # wizard finished
 			self.markDone()
-			self.session.close()
+			self.close()
 		else:
 			self.runCode(self.wizard[currStep]["codeafter"])
 			if self.wizard[currStep]["nextstep"] is not None:
