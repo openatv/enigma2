@@ -179,13 +179,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
 
-	def buildSimilarEntry(self, service, eventId, beginTime, service_name):
+	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
+		rec=(self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
 		r1=self.datetime_rect
 		r2=self.service_rect
 		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
+		if rec:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
+		else:
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
@@ -288,7 +293,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	 # search similar broadcastings
 		if event_id is None:
 			return
-		l = self.epgcache.search(('RIBN', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
+		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
 		if l and len(l):
 			l.sort(self.sort_func)
 		self.l.setList(l)
