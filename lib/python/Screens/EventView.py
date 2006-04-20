@@ -88,9 +88,9 @@ class EventViewBase:
 			return 1
 
 	def setEvent(self, event):
+		self.event = event
 		if event is None:
 			return
-		self.event = event
 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
