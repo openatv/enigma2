@@ -133,7 +133,7 @@ class EventViewBase:
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
-		if self.similarEPGCB is not None:
+		if self.similarEPGCB is not None and len(self["key_red"].getText()):
 			id = self.event and self.event.getEventId()
 			refstr = str(self.currentService)
 			if id is not None:
