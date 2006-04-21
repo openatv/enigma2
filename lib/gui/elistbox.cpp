@@ -310,10 +310,23 @@ int eListbox::event(int event, void *data, void *data2)
 		m_content->cursorSave();
 		m_content->cursorMove(m_top - m_selected);
 		
+		gRegion entryrect = eRect(0, 0, size().width(), m_itemheight);
+		const gRegion &paint_region = *(gRegion*)data;
+		
 		for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
 		{
-			m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
+			gRegion entry_clip_rect = paint_region & entryrect;
+
+			if (!entry_clip_rect.empty())
+				m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
+
+				/* (we could clip with entry_clip_rect, but 
+				   this shouldn't change the behaviour of any
+				   well behaving content, so it would just
+				   degrade performance without any gain.) */
+
 			m_content->cursorMove(+1);
+			entryrect.moveBy(ePoint(0, m_itemheight));
 		}
 
 		if (m_scrollbar && m_scrollbar->isVisible())
