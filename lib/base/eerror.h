@@ -7,18 +7,16 @@
 #include <libsig_comp.h>
 
 // to use memleak check change the following in configure.ac
-// * add -rdynamic to LD_FLAGS
-// * add -DMEMLEAK_CHECK to CPP_FLAGS
+// * add -DMEMLEAK_CHECK and -rdynamic to CPP_FLAGS
 
 #ifdef MEMLEAK_CHECK
 #define BACKTRACE_DEPTH 5
-// when you have c++filt and corresponding libs on your platform
-// then add -DHAVE_CPP_FILT to CPP_FLAGS in configure.ac
 #include <map>
 #include <lib/base/elock.h>
 #include <execinfo.h>
 #include <string>
 #include <new>
+#include <cxxabi.h>
 #endif // MEMLEAK_CHECK
 
 #ifndef NULL
@@ -131,66 +129,10 @@ inline void operator delete[](void *p)
 	free(p);
 };
 
-inline void DumpUnfreed()
-{
-	AllocList::iterator i;
-	unsigned int totalSize = 0;
-
-	if(!allocList)
-		return;
-
-	for(i = allocList->begin(); i != allocList->end(); i++)
-	{
-		unsigned int tmp;
-		printf("%s\tLINE %d\tADDRESS %p\t%d unfreed\ttype %d\n",
-			i->second.file, i->second.line, (void*)i->second.address, i->second.size, i->second.type);
-		totalSize += i->second.size;
-		char **bt_string = backtrace_symbols( i->second.backtrace, i->second.btcount );
-		for ( tmp=0; tmp < i->second.btcount; tmp++ )
-		{
-			if ( bt_string[tmp] )
-			{
-#ifdef HAVE_CPP_FILT
-				char *beg = strchr(bt_string[tmp], '(');
-				if ( beg )
-				{
-					std::string tmp1(beg+1);
-					int pos1=tmp1.find('+'), pos2=tmp1.find(')');
-					std::string tmp2(tmp1.substr(pos1,(pos2-pos1)-1));
-					std::string cmd="c++filt ";
-					cmd+=tmp1.substr(0,pos1);
-					FILE *f = popen(cmd.c_str(), "r");
-					char buf[256];
-					if (f)
-					{
-						size_t rd = fread(buf, 1, 255, f);
-						if ( rd > 0 )
-						{
-							buf[rd-1]=0;
-							printf("%s %s\n", buf, tmp2.c_str() );
-						}
-						else
-							printf("%s\n", tmp1.substr(0,pos1).c_str());
-						fclose(f);
-					}
-				}
-				else
-#endif // HAVE_CPP_FILT
-					printf("%s\n", bt_string[tmp]);
-			}
-		}
-		free(bt_string);
-		printf("\n");
-	}
-
-	printf("-----------------------------------------------------------\n");
-	printf("Total Unfreed: %d bytes\n", totalSize);
-	fflush(stdout);
-};
+void DumpUnfreed();
 #define new new(__FILE__, __LINE__)
 
 #endif // MEMLEAK_CHECK
-
 
 #else
     inline void eDebug(const char* fmt, ...)
