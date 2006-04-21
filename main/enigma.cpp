@@ -105,6 +105,10 @@ int exit_code;
 
 int main(int argc, char **argv)
 {
+#ifdef MEMLEAK_CHECK
+	atexit(DumpUnfreed);
+#endif
+
 #ifdef OBJECT_DEBUG
 	atexit(object_dump);
 #endif
