@@ -329,8 +329,10 @@ int eListbox::event(int event, void *data, void *data2)
 			entryrect.moveBy(ePoint(0, m_itemheight));
 		}
 
+		// clear/repaint empty/unused space between scrollbar and listboxentrys
 		if (m_scrollbar && m_scrollbar->isVisible())
 		{
+			style->setStyle(painter, eWindowStyle::styleListboxNormal);
 			painter.clip(eRect(m_scrollbar->position() - ePoint(5,0), eSize(5,m_scrollbar->size().height())));
 			painter.clear();
 			painter.clippop();
@@ -340,6 +342,7 @@ int eListbox::event(int event, void *data, void *data2)
 
 		return 0;
 	}
+
 	case evtChangedSize:
 		recalcSize();
 		return eWidget::event(event, data, data2);
