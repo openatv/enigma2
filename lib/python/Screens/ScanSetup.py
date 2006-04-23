@@ -503,10 +503,10 @@ class ScanSimple(Screen):
 							print sat
 							getInitialTransponderList(tlist, sat[1])
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
-					ScanPossible = True
+					scanPossible = True
 					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
 				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-T"]:
-					ScanPossible = True
+					scanPossible = True
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(slotid))
 				if scanPossible:
 					scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
