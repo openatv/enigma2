@@ -45,6 +45,7 @@ class Rect:
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer = None):
+		self.days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
 		self.timer = timer
 		self.onSelChanged = [ ]
 		if selChangedCB is not None:
@@ -143,9 +144,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			width = esize.width()
 			height = esize.height()
 			if self.type == EPG_TYPE_SINGLE:
-				w = width/20*5
-				self.datetime_rect = Rect(0,0, w, height)
-				self.descr_rect = Rect(w, 0, width/20*15, height)
+				w = width/20*7
+				self.datetime_rect = Rect(0, 0, w-15, height)
+				self.descr_rect = Rect(w, 0, width/20*13, height)
 			elif self.type == EPG_TYPE_MULTI:
 				xpos = 0;
 				w = width/10*3;
@@ -158,12 +159,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				w = width/10*5;
 				self.descr_rect = Rect(xpos, 0, width, height)
 			else: # EPG_TYPE_SIMILAR
-				xpos = 0;
-				w = width/10*3;
-				self.datetime_rect = Rect(xpos, 0, w-10, height)
-				xpos += w
-				w = width/10*7;
-				self.service_rect = Rect(xpos, 0, w-10, height)
+				w = width/20*7;
+				self.datetime_rect = Rect(0, 0, w-15, height)
+				self.service_rect = Rect(w, 0, width/20*13, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
 		rec=(self.timer.isInTimer(eventId, beginTime, duration, self.service) > ((duration/10)*8)) 
@@ -171,7 +169,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2=self.descr_rect
 		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%s %02d.%02d, %02d:%02d"%(self.days[t[6]],t[2],t[1],t[3],t[4])))
 		if rec:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
@@ -185,7 +183,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2=self.service_rect
 		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%s %02d.%02d, %02d:%02d"%(self.days[t[6]],t[2],t[1],t[3],t[4])))
 		if rec:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
