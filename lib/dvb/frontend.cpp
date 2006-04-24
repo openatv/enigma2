@@ -1488,6 +1488,19 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 			parm_u_ofdm_hierarchy_information = HIERARCHY_AUTO;
 			break;
 	}
+	switch (feparm.inversion)
+	{
+	case eDVBFrontendParametersTerrestrial::Inversion::On:
+		parm_inversion = INVERSION_ON;
+		break;
+	case eDVBFrontendParametersTerrestrial::Inversion::Off:
+		parm_inversion = INVERSION_OFF;
+		break;
+	default:
+	case eDVBFrontendParametersTerrestrial::Inversion::Unknown:
+		parm_inversion = INVERSION_AUTO;
+		break;
+	}
 	return 0;
 }
 
