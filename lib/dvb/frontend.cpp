@@ -803,6 +803,9 @@ void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	PutToDict(dict, "guard_interval", tmp);
 	switch (parm_u_ofdm_hierarchy_information)
 	{
+		case HIERARCHY_NONE:
+			tmp = "HIERARCHY_NONE";
+			break;
 		case HIERARCHY_1:
 			tmp = "HIERARCHY_1";
 			break;
@@ -1468,6 +1471,9 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 	}
 	switch (feparm.hierarchy)
 	{
+		case eDVBFrontendParametersTerrestrial::Hierarchy::HNone:
+			parm_u_ofdm_hierarchy_information = HIERARCHY_NONE;
+			break;
 		case eDVBFrontendParametersTerrestrial::Hierarchy::H1:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_1;
 			break;
