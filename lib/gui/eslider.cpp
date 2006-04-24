@@ -5,6 +5,12 @@ eSlider::eSlider(eWidget *parent)
 {
 }
 
+void eSlider::setPixmap(gPixmap *pixmap)
+{
+	m_pixmap = pixmap;
+	event(evtChangedSlider);
+}
+
 void eSlider::setBorderWidth(int pixel)
 {
 	m_border_width=pixel;
@@ -32,7 +38,11 @@ int eSlider::event(int event, void *data, void *data2)
 		getStyle(style);
 		style->paintBackground(painter, ePoint(0,0), s);
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
-		painter.fill(m_currently_filled);
+		
+		if (!m_pixmap)
+			painter.fill(m_currently_filled);
+		else
+			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends);
 
 // border
 		if (m_have_border_color)
