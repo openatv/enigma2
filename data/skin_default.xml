@@ -68,8 +68,8 @@
 		<widget name="cancel" position="240,240" size="100,30" pixmap="cancel.png" />
 		<widget name="canceltext" position="240,240" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
-	<screen name="LanguageSelection" position="200,125" size="220,250" title="Language selection">
-		<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />
+	<screen name="LanguageSelection" position="200,125" size="320,260" title="Language selection">
+		<widget name="list" position="0,0" size="310,250" scrollbarMode="showOnDemand" />
 	</screen>
 	<screen name="PluginBrowser" position="170,125" size="400,350" title="Plugin browser">
 		<widget name="red" position="0,0" size="200,40" backgroundColor="red" valign="center" halign="center" font="Regular;20" />
