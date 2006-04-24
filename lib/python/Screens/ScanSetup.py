@@ -112,12 +112,13 @@ def getInitialTerrestrialTransponderList(tlist, region):
 			# FIXME: we need to convert the other parameters...
 			
 				# convert terrestrial.xml bandwidth to our enum
-			if x[2] in [0, 1]:
-				bandwidth = [1, 0][x[2]]
-			else:
-				bandwidth = 3 # auto
-			
-			parm = buildTerTransponder(x[1], bandwidth = [1, 0][x[2]])
+			#if x[2] in [0, 1]:
+			#	bandwidth = [1, 0][x[2]]
+			#else:
+			#	bandwidth = 3 # auto
+			#
+			#parm = buildTerTransponder(x[1], bandwidth = [1, 0][x[2]])
+			parm = buildTerTransponder(x[1], inversion = x[9], bandwidth = x[2])
 			tlist.append(parm)
 
 
