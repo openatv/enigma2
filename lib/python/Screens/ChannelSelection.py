@@ -215,7 +215,7 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		if not root.valid():
 			root=self.getRoot()
-		list = serviceHandler.list(root)
+		list = root and serviceHandler.list(root)
 		if list is not None:
 			return list.startEdit()
 		return None
