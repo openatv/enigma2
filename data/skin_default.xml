@@ -183,7 +183,7 @@
 	</screen>
 	<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume" zPosition="1" >
 		<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="volumeslider-fs8.png" />
-		<widget name="Volume" zPosition="1" position="8,38" size="164,11" backgroundColor="dark" pixmap="volumeslider_background-fs8.png" />
+		<widget name="Volume" zPosition="1" position="8,38" size="164,11" backgroundColor="dark" />
 	</screen>
 	<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute" zPosition="-1">
 		<ePixmap position="0,0" size="59,80" pixmap="mute-fs8.png" />
@@ -259,8 +259,8 @@
 		<widget name="duration" position="140,345" size="100,30" font="Regular;22" />
 		<widget name="channel" position="240,345" size="270,30" font="Regular;22" />
 	</screen>
-	<screen name="PictureInPicture" position="300,100" size="340,280" zPosition="-1" flags="wfNoBorder" >
-		<widget name="video" position="0,0" size="320,240" />
+	<screen name="PictureInPicture" position="500,100" size="180,140" zPosition="-1" flags="wfNoBorder" >
+		<widget name="video" position="0,0" size="160,120" />
 	</screen>
 	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
 		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
