@@ -6,6 +6,7 @@ from Components.EpgList import *
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Screens.EventView import EventViewSimple
+from TimeDateInput import TimeDateInput
 from enigma import eServiceReference, eServiceEventPtr
 from Screens.FixedMenu import FixedMenu
 from RecordTimer import RecordTimerEntry, parseEvent
@@ -20,6 +21,7 @@ import xml.dom.minidom
 class EPGSelection(Screen):
 	def __init__(self, session, service, zapFunc=None, eventid=None):
 		Screen.__init__(self, session)
+		self.asked_specific_time = False
 		self["key_red"] = Button("")
 		self.closeRecursive = False
 		if isinstance(service, str) and eventid != None:
@@ -67,11 +69,21 @@ class EPGSelection(Screen):
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
-				"zapTo": self.zapTo
+				"zapTo": self.zapTo,
+				"input_date_time": self.enterDateTime
 			})
 		self["actions"].csel = self
 
 		self.onLayoutFinish.append(self.onCreate)
+
+	def enterDateTime(self):
+		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput)
+
+	def onDateTimeInputClosed(self, ret):
+		if len(ret) > 1:
+			if ret[0]:
+				self.asked_specific_time=True
+				self["list"].fillMultiEPG(self.services, ret[1])
 
 	def closeScreen(self):
 		self.close(self.closeRecursive)
@@ -170,31 +182,44 @@ class EPGSelection(Screen):
 		self["list"].moveDown()
 
 	def applyButtonState(self, state):
-		if state == 1:
-			self["now_button_sel"].show()
+		if state == 0:
 			self["now_button"].hide()
-		else:
-			self["now_button"].show()
 			self["now_button_sel"].hide()
-
-		if state == 2:
-			self["next_button_sel"].show()
 			self["next_button"].hide()
-		else:
-			self["next_button"].show()
 			self["next_button_sel"].hide()
-
-		if state == 3:
-			self["more_button_sel"].show()
 			self["more_button"].hide()
-		else:
-			self["more_button"].show()
 			self["more_button_sel"].hide()
+			self["now_text"].hide()
+			self["next_text"].hide()
+			self["more_text"].hide()
+		else:
+			if state == 1:
+				self["now_button_sel"].show()
+				self["now_button"].hide()
+			else:
+				self["now_button"].show()
+				self["now_button_sel"].hide()
+
+			if state == 2:
+				self["next_button_sel"].show()
+				self["next_button"].hide()
+			else:
+				self["next_button"].show()
+				self["next_button_sel"].hide()
+
+			if state == 3:
+				self["more_button_sel"].show()
+				self["more_button"].hide()
+			else:
+				self["more_button"].show()
+				self["more_button_sel"].hide()
 
 	def onSelectionChanged(self):
 		if self.type == EPG_TYPE_MULTI:
 			count = self["list"].getCurrentChangeCount()
-			if count > 1:
+			if self.asked_specific_time:
+				self.applyButtonState(0)
+			elif count > 1:
 				self.applyButtonState(3)
 			elif count > 0:
 				self.applyButtonState(2)

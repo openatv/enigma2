@@ -234,11 +234,11 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list)
 		return [ ]
 
-	def fillMultiEPG(self, services):
+	def fillMultiEPG(self, services, stime=-1):
 		t = time()
 		test = [ '0RIBDTCN' ]
 		for service in services:
-			tuple = ( service.ref.toString(), 0 )
+			tuple = (service.ref.toString(), 0, stime)
 			test.append( tuple )
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
