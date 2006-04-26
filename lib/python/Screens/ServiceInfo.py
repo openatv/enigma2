@@ -72,6 +72,7 @@ class ServiceInfo(Screen):
 		if service is not None:
 			self.info = service.info()
 			self.feinfo = service.frontendStatusInfo()
+			print self.info.getInfoObject(iServiceInformation.sVideoPID);
 		else:
 			self.info = None
 
@@ -141,7 +142,19 @@ class ServiceInfo(Screen):
 					   ("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
 				   		)
 		elif frontendData["tuner_type"] == "DVB-T":
-			return []
+			return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   ("Inversion", frontendData["inversion"], TYPE_TEXT),
+					   ("Bandwidth", frontendData["bandwidth"], TYPE_VALUE_DEC),
+					   ("CodeRateLP", frontendData["code_rate_lp"], TYPE_TEXT),
+					   ("CodeRateHP", frontendData["code_rate_hp"], TYPE_TEXT),
+					   ("Constellation", frontendData["constellation"], TYPE_TEXT),
+					   ("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
+					   ("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
+					   ("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
+					   ("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
+				   		)
 		
 	def fillList(self, Labels):
 		tlist = [ ]
