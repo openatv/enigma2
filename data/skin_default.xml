@@ -341,6 +341,14 @@ newwidth = wsize[0]
 		<widget name="timeshift" position="0,30" size="150,30" font="Regular;25" halign="center" 
 			backgroundColor="transpBlack" foregroundColor="white" />
 	</screen>
+	<screen name="TimeDateInput" position="150,150" size="400,200" title="Time/Date Input">
+		<widget name="config" position="5,10" size="380,150" />
+		<widget name="ok" position="110,165" size="53,30" pixmap="ok.png" />
+		<widget name="oktext" position="110,165" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+		<widget name="cancel" position="210,165" size="100,30" pixmap="cancel.png" />
+		<widget name="canceltext" position="210,165" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+	</screen>
+
 	<screen name="MessageBox" position="60,300" size="600,10" title="Message">
 		<widget name="text" position="60,10" size="520,0" font="Regular;22" />
 		<widget name="ErrorPixmap" pixmap="error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
