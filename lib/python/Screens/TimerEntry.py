@@ -11,6 +11,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.SubserviceSelection import SubserviceSelection
 from Screens.MessageBox import MessageBox
+from RecordTimer import AFTEREVENT
 from enigma import eEPGCache
 import time
 import datetime
@@ -59,6 +60,8 @@ class TimerEntry(Screen):
 			else:
 				justplay = 1
 				
+			afterevent = { AFTEREVENT.NONE: 0, AFTEREVENT.DEEPSTANDBY: 1, AFTEREVENT.STANDBY: 2}[self.timer.afterEvent]
+
 			# calculate default values
 			day = []
 			weekday = 0
@@ -93,6 +96,7 @@ class TimerEntry(Screen):
 				day[weekday] = 0
 			
 			config.timerentry.justplay = configElement_nonSave("config.timerentry.justplay", configSelection, justplay, (("zap", _("zap")), ("record", _("record"))))
+			config.timerentry.afterevent = configElement_nonSave("config.timerentry.afterevent", configSelection, afterevent, (("nothing", _("do nothing")), ("deepstandby", _("go to deep standby"))))
 			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
 			config.timerentry.name = configElement_nonSave("config.timerentry.name", configText, self.timer.name, (configText.extendableSize, self.keyRightCallback))
 			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
@@ -187,6 +191,9 @@ class TimerEntry(Screen):
 			if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
 				self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
 
+		if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
+			self.list.append(getConfigListEntry(_("After event"), config.timerentry.afterevent))
+
 		self.channelEntry = getConfigListEntry(_("Channel"), config.timerentry.service)
 		self.list.append(self.channelEntry)
 
@@ -252,6 +259,7 @@ class TimerEntry(Screen):
 		self.timer.description = config.timerentry.description.value
 		self.timer.justplay = (currentConfigSelectionElement(config.timerentry.justplay) == "zap")
 		self.timer.resetRepeated()
+		self.timer.afterEvent = { 0: AFTEREVENT.NONE, 1: AFTEREVENT.DEEPSTANDBY, 2: AFTEREVENT.STANDBY}[config.timerentry.afterevent.value]
 		
 		if (config.timerentry.type.value == 0): # once
 			self.timer.begin = self.getTimestamp(config.timerentry.startdate.value, config.timerentry.starttime.value)
