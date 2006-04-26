@@ -15,10 +15,10 @@
 	<screen name="Scart" position="0,0" size="720,576">
 	</screen>
 	<screen name="MediaPlayer" position="100,100" size="550,400" title="MediaPlayer" >
-		<widget name="currenttext" position="0,0" size="550,30" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="currenttext" position="0,0" size="550,40" font="Regular;18" valign="center" backgroundColor="#101258" />
 		
-		<widget name="filelist" position="10,30" size="255,265" scrollbarMode="showOnDemand" />
-		<widget name="playlist" position="265,30" size="285,265" scrollbarMode="showOnDemand" selectionDisabled="1" />
+		<widget name="filelist" position="10,42" size="255,255" scrollbarMode="showOnDemand" />
+		<widget name="playlist" position="275,42" size="275,255" scrollbarMode="showOnDemand" selectionDisabled="1" />
 			
 		<ePixmap position="10,365" zPosition="0" size="177,32" pixmap="dvr-buttons-small-fs8.png" />
 		<widget name="PositionGauge" position="10,335" size="177,20" zPosition="2" pointer="position_pointer.png:3,5"/>

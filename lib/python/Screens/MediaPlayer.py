@@ -46,8 +46,17 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["genre"] = Label("")
 		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
-                
-		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "NumberActions", "MediaPlayerSeekActions"],
+
+		class MoviePlayerActionMap(NumberActionMap):
+			def __init__(self, player, contexts = [ ], actions = { }, prio=0):
+				NumberActionMap.__init__(self, contexts, actions, prio)
+				self.player = player
+
+			def action(self, contexts, action):
+				self.player.show()
+				return NumberActionMap.action(self, contexts, action)
+
+		self["actions"] = MoviePlayerActionMap(self, ["OkCancelActions", "DirectionActions", "NumberActions", "MediaPlayerSeekActions"],
 		{
 			"ok": self.ok,
 			"cancel": self.exit,
@@ -253,6 +262,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 			menu.append((_("switch to filelist"), "filelist"))
 			menu.append((_("delete"), "delete"))
 			menu.append((_("clear playlist"), "clear"))
+		menu.append((_("hide"), "hide"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 		
 	def menuCallback(self, choice):
@@ -273,7 +283,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 			self.stopEntry()
 			self.playlist.clear()
 			self.switchToFileList()
-			
+		elif choice[1] == "hide":
+			self.hide()
+
 	def copyDirectory(self, directory):
 		filelist = FileList(directory, useServiceRef = True, isTop = True)
 		
