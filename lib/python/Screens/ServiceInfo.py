@@ -150,7 +150,6 @@ class ServiceInfo(Screen):
 					   ("CodeRateLP", frontendData["code_rate_lp"], TYPE_TEXT),
 					   ("CodeRateHP", frontendData["code_rate_hp"], TYPE_TEXT),
 					   ("Constellation", frontendData["constellation"], TYPE_TEXT),
-					   ("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
 					   ("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
 					   ("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
 					   ("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
