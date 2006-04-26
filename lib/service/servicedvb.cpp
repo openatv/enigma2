@@ -1017,6 +1017,9 @@ int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
 
+	if (w == sCAIDs)
+		return resIsPyObject;
+
 	if (m_service_handler.getProgramInfo(program))
 		return -1;
 	
@@ -1078,15 +1081,29 @@ int eDVBServicePlay::getInfo(int w)
 }
 
 std::string eDVBServicePlay::getInfoString(int w)
-{	
+{
 	switch (w)
 	{
 	case sProvider:
 		if (!m_dvb_service) return "";
 		return m_dvb_service->m_provider_name;
 	default:
-		return "";
+		break;
 	}
+	return iServiceInformation::getInfoString(w);
+}
+
+PyObject *eDVBServicePlay::getInfoObject(int w)
+{
+	switch (w)
+	{
+	case sCAIDs:
+		if (m_dvb_service)
+			return m_service_handler.getCaIds();
+	default:
+		break;
+	}
+	return iServiceInformation::getInfoObject(w);
 }
 
 int eDVBServicePlay::getNumberOfTracks()

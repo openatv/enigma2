@@ -1,8 +1,10 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
+#include <lib/python/python.h>
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
+#include <Python.h>
 
 eServiceReference::eServiceReference(const std::string &string)
 {
@@ -188,6 +190,12 @@ int iServiceInformation::getInfo(int w)
 std::string iServiceInformation::getInfoString(int w)
 {
 	return "";
+}
+
+PyObject* iServiceInformation::getInfoObject(int w)
+{
+	Py_INCREF(Py_None);
+	return Py_None;
 }
 
 eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");

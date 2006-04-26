@@ -6,6 +6,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
+#include <lib/python/python.h>
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
 
@@ -120,6 +121,7 @@ public:
 	int getProgramInfo(struct program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);
+	PyObject *getCaIds();
 	
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getService(eServiceReferenceDVB &service) { service = m_reference; return 0; }
