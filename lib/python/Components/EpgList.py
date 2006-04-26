@@ -144,9 +144,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			width = esize.width()
 			height = esize.height()
 			if self.type == EPG_TYPE_SINGLE:
-				w = width/20*7
-				self.datetime_rect = Rect(0, 0, w-15, height)
-				self.descr_rect = Rect(w, 0, width/20*13, height)
+				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+				self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
 			elif self.type == EPG_TYPE_MULTI:
 				xpos = 0;
 				w = width/10*3;
@@ -159,36 +159,40 @@ class EPGList(HTMLComponent, GUIComponent):
 				w = width/10*5;
 				self.descr_rect = Rect(xpos, 0, width, height)
 			else: # EPG_TYPE_SIMILAR
-				w = width/20*7;
-				self.datetime_rect = Rect(0, 0, w-15, height)
-				self.service_rect = Rect(w, 0, width/20*13, height)
+				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+				self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
 	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
 		rec=(self.timer.isInTimer(eventId, beginTime, duration, self.service) > ((duration/10)*8)) 
-		r1=self.datetime_rect
-		r2=self.descr_rect
+		r1=self.weekday_rect
+		r2=self.datetime_rect
+		r3=self.descr_rect
 		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%s %02d.%02d, %02d:%02d"%(self.days[t[6]],t[2],t[1],t[3],t[4])))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
 		if rec:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, EventName))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
 		rec=(self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
-		r1=self.datetime_rect
-		r2=self.service_rect
+		r1=self.weekday_rect
+		r2=self.datetime_rect
+		r3=self.service_rect
 		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%s %02d.%02d, %02d:%02d"%(self.days[t[6]],t[2],t[1],t[3],t[4])))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
 		if rec:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r2.left(), r2.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left() + 25, r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r2.height(), 0, RT_HALIGN_LEFT, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
