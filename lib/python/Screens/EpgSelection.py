@@ -77,7 +77,8 @@ class EPGSelection(Screen):
 		self.onLayoutFinish.append(self.onCreate)
 
 	def enterDateTime(self):
-		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput)
+		if self.type == EPG_TYPE_MULTI:
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput)
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
