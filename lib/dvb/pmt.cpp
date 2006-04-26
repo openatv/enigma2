@@ -5,6 +5,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb/epgcache.h>
+#include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/teletext_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
@@ -132,6 +133,76 @@ void eDVBServicePMTHandler::PATready(int)
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
 	} else
 		serviceEvent(eventNoPAT);
+}
+
+PyObject *eDVBServicePMTHandler::getCaIds()
+{
+	PyObject *ret=0;
+
+	ePtr<eTable<ProgramMapSection> > ptr;
+
+	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
+	{
+		uint16_t caids[255];
+		memset(caids, 0, sizeof(caids));
+		std::vector<ProgramMapSection*>::const_iterator i = ptr->getSections().begin();
+		for (; i != ptr->getSections().end(); ++i)
+		{
+			const ProgramMapSection &pmt = **i;
+			ElementaryStreamInfoConstIterator es = pmt.getEsInfo()->begin();
+			for (; es != pmt.getEsInfo()->end(); ++es)
+			{
+				for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+						desc != (*es)->getDescriptors()->end(); ++desc)
+				{
+					switch ((*desc)->getTag())
+					{
+						case CA_DESCRIPTOR:
+						{
+							CaDescriptor *cadescr = *desc;
+							uint16_t caid = cadescr->getCaSystemId();
+							int idx=0;
+							while (caids[idx] && caids[idx] != caid)
+								++idx;
+							caids[idx]=caid;
+							break;
+						}
+					}
+				}
+			}
+			for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+				desc != pmt.getDescriptors()->end(); ++desc)
+			{
+				switch ((*desc)->getTag())
+				{
+					case CA_DESCRIPTOR:
+					{
+						CaDescriptor *cadescr = *desc;
+						uint16_t caid = cadescr->getCaSystemId();
+						int idx=0;
+						while (caids[idx] && caids[idx] != caid)
+							++idx;
+						caids[idx]=caid;
+						break;
+					}
+				}
+			}
+		}
+		int cnt=0;
+		while (caids[cnt])
+			++cnt;
+		if (cnt)
+		{
+			ret=PyList_New(cnt);
+			while(cnt--)
+				PyList_SET_ITEM(ret, cnt, PyInt_FromLong(caids[cnt]));
+		}
+	}
+
+	if (!ret)
+		ret=PyList_New(0);
+
+	return ret;
 }
 
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)

@@ -99,6 +99,7 @@ public:
 	RESULT getEvent(ePtr<eServiceEvent> &evt, int nownext);
 	int getInfo(int w);
 	std::string getInfoString(int w);
+	PyObject *getInfoObject(int w);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();

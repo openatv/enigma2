@@ -225,7 +225,7 @@ public:
 	virtual SWIG_VOID(RESULT) getName(std::string &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) getEvent(ePtr<eServiceEvent> &SWIG_OUTPUT, int nownext);
 
-	enum { 
+	enum {
 		sIsCrypted,  /* is encrypted (no indication if decrypt was possible) */
 		sAspect,     /* aspect ratio: 0=4:3, 1=16:9, 2=whatever we need */
 		sIsMultichannel, /* multichannel *available* (probably not selected) */
@@ -260,11 +260,13 @@ public:
 		sComment,
 		sTracknumber,
 		sGenre,
+		sCAIDs,
 	};
-	enum { resNA = -1, resIsString = -2 };
+	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
 
 	virtual int getInfo(int w);
 	virtual std::string getInfoString(int w);
+	virtual PyObject *getInfoObject(int w);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
