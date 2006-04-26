@@ -262,7 +262,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 			menu.append((_("switch to filelist"), "filelist"))
 			menu.append((_("delete"), "delete"))
 			menu.append((_("clear playlist"), "clear"))
-		menu.append((_("hide"), "hide"));
+		menu.append((_("hide player"), "hide"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 		
 	def menuCallback(self, choice):
