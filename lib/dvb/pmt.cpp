@@ -159,7 +159,7 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 					{
 						case CA_DESCRIPTOR:
 						{
-							const CaDescriptor *cadescr = *desc;
+							const CaDescriptor *cadescr = (const CaDescriptor*)*desc;
 							uint16_t caid = cadescr->getCaSystemId();
 							int idx=0;
 							while (caids[idx] && caids[idx] != caid)
@@ -177,7 +177,7 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 				{
 					case CA_DESCRIPTOR:
 					{
-						const CaDescriptor *cadescr = *desc;
+						const CaDescriptor *cadescr = (const CaDescriptor*)*desc;
 						uint16_t caid = cadescr->getCaSystemId();
 						int idx=0;
 						while (caids[idx] && caids[idx] != caid)
