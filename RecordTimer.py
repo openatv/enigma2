@@ -7,6 +7,8 @@ from Components.config import config
 import timer
 import xml.dom.minidom
 
+from enigma import quitMainloop
+
 from Screens.MessageBox import MessageBox
 from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
@@ -34,9 +36,14 @@ def parseEvent(ev):
 	end += config.recording.margin_after.value[0] * 60
 	return (begin, end, name, description, eit)
 
+class AFTEREVENT:
+	NONE = 0
+	STANDBY = 1
+	DEEPSTANDBY = 2
+
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
 		assert isinstance(serviceref, ServiceReference)
@@ -51,6 +58,8 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.record_service = None
 		self.start_prepare = 0
 		self.justplay = justplay
+		self.afterEvent = afterEvent
+		self.session = None
 		
 		self.log_entries = []
 		self.resetState()
@@ -174,6 +183,11 @@ class RecordTimerEntry(timer.TimerEntry):
 			if not self.justplay:
 				self.record_service.stop()
 				self.record_service = None
+			if self.afterEvent == AFTEREVENT.STANDBY:
+				if self.session is not None:
+					self.session.open(Standby, self)
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+				quitMainloop(1)
 			return True
 
 	def getNextActivation(self):
@@ -210,6 +224,8 @@ def createTimer(xml):
 	repeated = xml.getAttribute("repeated").encode("utf-8")
 	disabled = long(xml.getAttribute("disabled") or "0")
 	justplay = long(xml.getAttribute("justplay") or "0")
+	afterevent = str(xml.getAttribute("afterevent") or "nothing")
+	afterevent = { "nothing": AFTEREVENT.NONE, "standby": AFTEREVENT.STANDBY, "deepstandby": AFTEREVENT.DEEPSTANDBY }[afterevent]
 	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
 		eit = long(xml.getAttribute("eit"))
 	else:
@@ -217,7 +233,7 @@ def createTimer(xml):
 	
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent)
 	entry.repeated = int(repeated)
 	
 	for l in elementsWithTag(xml.childNodes, "log"):
@@ -311,6 +327,7 @@ class RecordTimer(timer.Timer):
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
+			list.append(' afterevent="' + str(stringToXML({ AFTEREVENT.NONE: "nothing", AFTEREVENT.STANDBY: "standby", AFTEREVENT.DEEPSTANDBY: "deepstandby" }[timer.afterEvent])) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
