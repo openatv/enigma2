@@ -17,21 +17,21 @@
 	<screen name="MediaPlayer" position="100,100" size="550,400" title="MediaPlayer" >
 		<widget name="currenttext" position="0,0" size="550,40" font="Regular;18" valign="center" backgroundColor="#101258" />
 		
-		<widget name="filelist" position="10,42" size="255,255" scrollbarMode="showOnDemand" />
+		<widget name="filelist" position="0,42" size="265,255" scrollbarMode="showOnDemand" />
 		<widget name="playlist" position="275,42" size="275,255" scrollbarMode="showOnDemand" selectionDisabled="1" />
 			
-		<ePixmap position="10,365" zPosition="0" size="177,32" pixmap="dvr-buttons-small-fs8.png" />
-		<widget name="PositionGauge" position="10,335" size="177,20" zPosition="2" pointer="position_pointer.png:3,5"/>
+		<ePixmap position="0,365" zPosition="0" size="177,32" pixmap="dvr-buttons-small-fs8.png" />
+		<widget name="PositionGauge" position="0,335" size="177,20" zPosition="2" pointer="position_pointer.png:3,5"/>
 			
-		<widget name="artisttext" position="200,300" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="artisttext" position="185,300" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
 		<widget name="artist" position="270,300" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="titletext" position="200,323" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="titletext" position="185,323" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
 		<widget name="title" position="270,323" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="albumtext" position="200,346" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="albumtext" position="185,346" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
 		<widget name="album" position="270,346" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="yeartext" position="200,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="year" position="270,369" size="100,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="genretext" position="370,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="yeartext" position="185,369" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="year" position="270,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
+		<widget name="genretext" position="340,369" size="100,23" font="Regular;18" valign="center" backgroundColor="#101258" />
 		<widget name="genre" position="440,369" size="110,23" font="Regular;18" valign="center" backgroundColor="#101258" />
 	</screen>
 	<screen name="ServiceInfo" position="100,120" size="560,370" title="Serviceinfo">
