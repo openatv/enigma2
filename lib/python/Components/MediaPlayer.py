@@ -63,7 +63,9 @@ class PlayList(HTMLComponent, GUIComponent, MenuList):
 	def clear(self):
 		self.list = []
 		self.l.setList(self.list)
-    
+		self.currPlaying = 0
+		self.oldCurrPlaying = -1
+
 	def GUIcreate(self, parent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
@@ -81,8 +83,8 @@ class PlayList(HTMLComponent, GUIComponent, MenuList):
 	def deleteFile(self, index):
 		if self.currPlaying >= index:
 			self.currPlaying -= 1
-		self.list = self.list[:index] + self.list[index + 1:]
-	
+		del self.list[index]
+
 	def setCurrentPlaying(self, index):
 		self.oldCurrPlaying = self.currPlaying
 		self.currPlaying = index
