@@ -21,7 +21,7 @@ from os import remove
 import xml.dom.minidom
 
 class BouquetSelector(Screen):
-	def __init__(self, session, bouquets, selectedFunc):
+	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):
 		Screen.__init__(self, session)
 
 		self.selectedFunc=selectedFunc
@@ -34,16 +34,25 @@ class BouquetSelector(Screen):
 		entrys = [ ]
 		for x in bouquets:
 			entrys.append((x[0], x[1]))
-		self["menu"] = MenuList(entrys)
+		self["menu"] = MenuList(entrys, enableWrapAround)
+
+	def getCurrent(self):
+		cur = self["menu"].getCurrent()
+		return cur and cur[1]
 
 	def okbuttonClick(self):
-		self.selectedFunc(self["menu"].getCurrent()[1])
+		self.selectedFunc(self.getCurrent())
+
+	def up(self):
+		self["menu"].up()
+
+	def down(self):
+		self["menu"].down()
 
 	def cancelClick(self):
 		self.close(False)
 
 class ChannelContextMenu(Screen):
-	
 	def __init__(self, session, csel):
 		Screen.__init__(self, session)
 		self.csel = csel

@@ -19,9 +19,10 @@ from time import localtime
 import xml.dom.minidom
 
 class EPGSelection(Screen):
-	def __init__(self, session, service, zapFunc=None, eventid=None):
+	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None):
 		Screen.__init__(self, session)
-		self.asked_specific_time = False
+		self.bouquetChangeCB = bouquetChangeCB
+		self.ask_time = -1 #now
 		self["key_red"] = Button("")
 		self.closeRecursive = False
 		if isinstance(service, str) and eventid != None:
@@ -70,11 +71,21 @@ class EPGSelection(Screen):
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
 				"zapTo": self.zapTo,
-				"input_date_time": self.enterDateTime
+				"input_date_time": self.enterDateTime,
+				"nextBouquet": self.nextBouquet,
+				"prevBouquet": self.prevBouquet
 			})
 		self["actions"].csel = self
 
 		self.onLayoutFinish.append(self.onCreate)
+
+	def nextBouquet(self):
+		if self.bouquetChangeCB:
+			self.bouquetChangeCB(1, self)
+
+	def prevBouquet(self):
+		if self.bouquetChangeCB:
+			self.bouquetChangeCB(-1, self)
 
 	def enterDateTime(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -83,7 +94,7 @@ class EPGSelection(Screen):
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.asked_specific_time=True
+				self.ask_time=ret[1]
 				self["list"].fillMultiEPG(self.services, ret[1])
 
 	def closeScreen(self):
@@ -106,12 +117,16 @@ class EPGSelection(Screen):
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
 
+	def setServices(self, services):
+		self.services = services
+		self.onCreate()
+
 	#just used in multipeg
 	def onCreate(self):
 		l = self["list"]
 		if self.type == EPG_TYPE_MULTI:
 			l.recalcEntrySize()
-			l.fillMultiEPG(self.services)
+			l.fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE:
 			if SINGLE_CPP == 0:
 				l.recalcEntrySize()
@@ -218,7 +233,7 @@ class EPGSelection(Screen):
 	def onSelectionChanged(self):
 		if self.type == EPG_TYPE_MULTI:
 			count = self["list"].getCurrentChangeCount()
-			if self.asked_specific_time:
+			if self.ask_time != -1:
 				self.applyButtonState(0)
 			elif count > 1:
 				self.applyButtonState(3)

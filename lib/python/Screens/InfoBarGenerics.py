@@ -343,6 +343,7 @@ class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
 		self.dlg_stack = [ ]
+		self.bouquetSel = None
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
@@ -358,8 +359,7 @@ class InfoBarEPG:
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap()
 
-	def openBouquetEPG(self, bouquet, withCallback=True):
-		ptr=eEPGCache.getInstance()
+	def getBouquetServices(self, bouquet):
 		services = [ ]
 		servicelist = eServiceCenter.getInstance().list(bouquet)
 		if not servicelist is None:
@@ -370,15 +370,33 @@ class InfoBarEPG:
 				if service.flags: #ignore non playable services
 					continue
 				services.append(ServiceReference(service))
+		return services
+
+	def openBouquetEPG(self, bouquet, withCallback=True):
+		services = self.getBouquetServices(bouquet)
 		if len(services):
 			self.epg_bouquet = bouquet
 			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService))
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
 			else:
-				self.session.open(EPGSelection, services, self.zapToService)
+				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB)
+
+	def changeBouquetCB(self, direction, epg):
+		if self.bouquetSel:
+			if direction > 0:
+				self.bouquetSel.down()
+			else:
+				self.bouquetSel.up()
+			bouquet = self.bouquetSel.getCurrent()
+			services = self.getBouquetServices(bouquet)
+			if len(services):
+				self.epg_bouquet = bouquet
+				epg.setServices(services)
 
 	def closed(self, ret=False):
-		self.dlg_stack.pop()
+		closedScreen = self.dlg_stack.pop()
+		if self.bouquetSel and closedScreen == self.bouquetSel:
+			self.bouquetSel = None
 		if ret:
 			dlgs=len(self.dlg_stack)
 			assert dlgs>0
@@ -392,9 +410,10 @@ class InfoBarEPG:
 			cnt = len(bouquets)
 		if cnt > 1: # show bouquet list
 			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG))
+				self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
+				self.dlg_stack.append(self.bouquetSel)
 			else:
-				self.session.open(BouquetSelector, bouquets, self.openBouquetEPG)
+				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 		elif cnt == 1: 
 			self.openBouquetEPG(bouquets[0][1], withCallback)
 
