@@ -25,7 +25,7 @@ struct eDVBFrontendParametersSatellite
 	struct FEC
 	{
 		enum {
-			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone
+			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone=15
 		};
 	};
 	bool no_rotor_command_on_tune;
@@ -47,7 +47,7 @@ struct eDVBFrontendParametersCable
 	struct FEC
 	{
 		enum {
-			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone
+			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone=15
 		};
 	};
 	struct Modulation {
