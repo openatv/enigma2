@@ -51,7 +51,7 @@ public:
 	std::string getPath() { return path; }
 	void setPath( const std::string &n ) { path=n; }
 
-	int getData(unsigned int num) const
+	unsigned int getData(unsigned int num) const
 	{
 		if ( num < sizeof(data)/sizeof(int) )
 			return data[num];
