@@ -70,7 +70,7 @@ class EPGSelection(Screen):
 				"yellow": self.yellowButtonPressed,
 				"blue": self.blueButtonPressed,
 				"info": self.infoKeyPressed,
-				"zapTo": self.zapTo,
+				"red": self.zapTo,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet
@@ -153,16 +153,16 @@ class EPGSelection(Screen):
 				setEvent(cur[0])
 
 	def zapTo(self): # just used in multiepg
-		if self.zapFunc != None:
-			self.closeRecursive = True
-			ref = self["list"].getCurrent()[1]
-			self.zapFunc(ref.ref)
+		if self.zapFunc and self["key_red"].getText() == "Zap":
+			lst = self["list"]
+			count = lst.getCurrentChangeCount()
+			if count == 0:
+				self.closeRecursive = True
+				ref = lst.getCurrent()[1]
+				self.zapFunc(ref.ref)
 
 	def eventSelected(self):
-		if self.type == EPG_TYPE_MULTI:
-			self.zapTo()
-		else:
-			self.infoKeyPressed()
+		self.infoKeyPressed()
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -208,13 +208,16 @@ class EPGSelection(Screen):
 			self["now_text"].hide()
 			self["next_text"].hide()
 			self["more_text"].hide()
+			self["key_red"].setText("")
 		else:
 			if state == 1:
+				self["key_red"].setText("Zap")
 				self["now_button_sel"].show()
 				self["now_button"].hide()
 			else:
 				self["now_button"].show()
 				self["now_button_sel"].hide()
+				self["key_red"].setText("")
 
 			if state == 2:
 				self["next_button_sel"].show()
