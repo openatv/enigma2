@@ -194,7 +194,7 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		res = 0;
 		break;
 	case eDVBChannelQuery::tSatellitePosition:
-		res = (ref.getDVBNamespace().get() >> 16) == query.m_int;
+		res = ((unsigned int)ref.getDVBNamespace().get())>>16 == query.m_int;
 		break;
 	case eDVBChannelQuery::tChannelID:
 	{

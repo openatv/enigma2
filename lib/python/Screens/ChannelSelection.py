@@ -692,7 +692,7 @@ class ChannelSelectionBase(Screen):
 							service = servicelist.getNext()
 							if not service.valid(): #check if end of list
 								break
-							orbpos = service.getData(4) >> 16
+							orbpos = service.getUnsignedData(4) >> 16
 							if service.getPath().find("FROM PROVIDER") != -1:
 								service_name = _("Providers")
 							else:

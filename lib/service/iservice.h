@@ -51,11 +51,24 @@ public:
 	std::string getPath() { return path; }
 	void setPath( const std::string &n ) { path=n; }
 
-	unsigned int getData(unsigned int num) const
+	unsigned int getUnsignedData(unsigned int num) const
 	{
 		if ( num < sizeof(data)/sizeof(int) )
 			return data[num];
 		return 0;
+	}
+
+	int getData(unsigned int num) const
+	{
+		if ( num < sizeof(data)/sizeof(int) )
+			return data[num];
+		return 0;
+	}
+
+	void setUnsignedData(unsigned int num, unsigned int val)
+	{
+		if ( num < sizeof(data)/sizeof(int) )
+			data[num] = val;
 	}
 
 	void setData(unsigned int num, int val)
