@@ -278,6 +278,8 @@ class MediaPlayer(Screen, InfoBarSeek):
 		elif choice[1] == "filelist":
 			self.switchToFileList()
 		elif choice[1] == "delete":
+			if self.playlist.getSelectionIndex() == self.playlist.getCurrentIndex():
+				self.stopEntry()
 			self.deleteEntry()
 		elif choice[1] == "clear":
 			self.stopEntry()
@@ -356,5 +358,6 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def stopEntry(self):
 		self.playlist.stopFile()
 		self.session.nav.playService(None)
+		self.updateMusicInformation(clear=True)
 
     
