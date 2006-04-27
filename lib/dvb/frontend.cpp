@@ -144,7 +144,7 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 	if (code_rate_LP > 4)
 		code_rate_LP = FEC::fAuto;
 	transmission_mode = descriptor.getTransmissionMode();
-	if (transmission_mode > 2)
+	if (transmission_mode > 1) // TM4k forced to auto
 		transmission_mode = TransmissionMode::TMAuto;
 	guard_interval = descriptor.getGuardInterval();
 	if (guard_interval > 3)
