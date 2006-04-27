@@ -65,7 +65,9 @@ struct eDVBFrontendParametersTerrestrial
  void set(const TerrestrialDeliverySystemDescriptor  &);
 #endif
 	struct Bandwidth {
-		enum { Bw8MHz, Bw7MHz, Bw6MHz, Bw5MHz, BwAuto };
+		enum {
+			Bw8MHz, Bw7MHz, Bw6MHz, /*Bw5MHz,*/ BwAuto
+		}; // Bw5Mhz nyi (compatibilty with enigma1)
 	};
 	struct FEC
 	{
@@ -75,8 +77,8 @@ struct eDVBFrontendParametersTerrestrial
 	};
 	struct TransmissionMode {
 		enum {
-			TM2k, TM8k, TM4k, TMAuto
-		};
+			TM2k, TM8k, /*TM4k,*/ TMAuto
+		}; // TM4k nyi (compatibility with enigma1)
 	};
 	struct GuardInterval {
 		enum {
