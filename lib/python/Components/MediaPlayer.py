@@ -61,7 +61,7 @@ class PlayList(HTMLComponent, GUIComponent, MenuList):
 		self.oldCurrPlaying = -1
 	
 	def clear(self):
-		self.list = []
+		del self.list[:]
 		self.l.setList(self.list)
 		self.currPlaying = 0
 		self.oldCurrPlaying = -1
