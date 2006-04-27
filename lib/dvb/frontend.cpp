@@ -292,7 +292,11 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 		return 0;
 	}
 	case iDVBFrontend::feCable:
+		hash = 0xFFFF0000;
+		return 0;
 	case iDVBFrontend::feTerrestrial:
+		hash = 0xEEEE0000;
+		return 0;
 	default:
 		return -1;
 	}

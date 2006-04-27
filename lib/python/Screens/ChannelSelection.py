@@ -701,12 +701,17 @@ class ChannelSelectionBase(Screen):
 								service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
 								service.setName(service_name) # why we need this cast?
 							except:
-								if orbpos > 1800: # west
-									orbpos = 3600 - orbpos
-									h = _("W")
+								if orbpos == 0xFFFF0000: #Cable
+									n = ("%s (%s)") % (service_name, _("Cable"))
+								elif orbpos == 0xEEEE0000: #Terrestrial
+									n = ("%s (%s)") % (service_name, _("Terrestrial"))
 								else:
-									h = _("E")
-								n = ("%s (%d.%d" + h + ")") % (service_name, orbpos / 10, orbpos % 10)
+									if orbpos > 1800: # west
+										orbpos = 3600 - orbpos
+										h = _("W")
+									else:
+										h = _("E")
+									n = ("%s (%d.%d" + h + ")") % (service_name, orbpos / 10, orbpos % 10)
 								service.setName(n)
 							self.servicelist.addService(service)
 							self.servicelist.finishFill()
