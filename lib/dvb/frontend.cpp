@@ -765,6 +765,9 @@ void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	case QAM_16:
 		tmp = "QAM_16";
 		break;
+	case QAM_64:
+		tmp = "QAM_64";
+		break;
 	default:
 	case QAM_AUTO:
 		tmp = "QAM_AUTO";
@@ -1435,6 +1438,9 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 		break;
 	case eDVBFrontendParametersTerrestrial::Modulation::QAM16:
 		parm_u_ofdm_constellation = QAM_16;
+		break;
+	case eDVBFrontendParametersTerrestrial::Modulation::QAM64:
+		parm_u_ofdm_constellation = QAM_64;
 		break;
 	default:
 	case eDVBFrontendParametersTerrestrial::Modulation::Auto:
