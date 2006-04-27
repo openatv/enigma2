@@ -4,12 +4,13 @@ from GUIComponent import *
 from enigma import eListboxPythonStringContent, eListbox
 
 class MenuList(HTMLComponent, GUIComponent):
-	def __init__(self, list):
+	def __init__(self, list, enableWrapAround=False):
 		GUIComponent.__init__(self)
 		self.list = list
 		self.l = eListboxPythonStringContent()
 		self.l.setList(self.list)
 		self.onSelectionChanged = [ ]
+		self.enableWrapAround = enableWrapAround
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -18,6 +19,8 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.instance = eListbox(parent)
 		self.instance.setContent(self.l)
 		self.instance.selectionChanged.get().append(self.selectionChanged)
+		if self.enableWrapAround:
+			self.instance.setWrapAround(True)
 	
 	def GUIdelete(self):
 		self.instance.setContent(None)
