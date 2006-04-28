@@ -292,7 +292,8 @@ public:
 		tSatellitePosition,
 		tChannelID,
 		tAND,
-		tOR
+		tOR,
+		tAny
 	};
 	
 	int m_type;
