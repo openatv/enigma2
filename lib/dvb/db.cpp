@@ -209,6 +209,9 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 	case eDVBChannelQuery::tOR:
 		res = checkFilter(ref, *query.m_p1) || checkFilter(ref, *query.m_p2);
 		break;
+	case eDVBChannelQuery::tAny:
+		res = 1;
+		break;
 	}
 
 	if (query.m_inverse)
@@ -1016,6 +1019,13 @@ static int decodeType(const std::string &type)
 RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::const_iterator begin, std::list<std::string>::const_iterator end)
 {
 	std::list<std::string>::const_iterator end_of_exp;
+	
+	if (begin == end)
+	{
+		eDebug("empty expression!");
+		return 0;
+	}
+	
 	if (*begin == "(")
 	{
 		end_of_exp = begin;
@@ -1231,6 +1241,13 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	
 		/* now we recursivly parse that. */
 	int r = parseExpression(res, tokens.begin(), tokens.end());
+	
+		/* we have an empty (but valid!) expression */
+	if (!r && !res)
+	{
+		res = new eDVBChannelQuery();
+		res->m_type = eDVBChannelQuery::tAny;
+	}
 	
 	if (res)
 	{
