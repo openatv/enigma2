@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandin translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-22 23:28+0100\n"
+"POT-Creation-Date: 2006-04-28 14:53+0000\n"
 "PO-Revision-Date: 2006-03-22 22:01-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Icelandic <baddi@oreind.is>\n"
@@ -29,13 +29,13 @@ msgstr ""
 msgid "\"?"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:111
+#: ../lib/python/Screens/EventView.py:107
 #, python-format
 msgid "%d min"
 msgstr "%d min"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Screens/TimerEntry.py:109
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -46,6 +46,11 @@ msgid ""
 "(%s, %d MB free)"
 msgstr ""
 
+#: ../lib/python/Components/TimerList.py:46
+#: ../lib/python/Components/TimerList.py:51
+msgid "(ZAP)"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
 msgstr ""
@@ -54,53 +59,53 @@ msgstr ""
 msgid "/var directory"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:711
+#: ../lib/python/Components/NimManager.py:746
 msgid "0 V"
 msgstr "0 V"
 
-#: ../lib/python/Components/NimManager.py:714
+#: ../lib/python/Components/NimManager.py:749
 msgid "1.0"
 msgstr "1.0"
 
-#: ../lib/python/Components/NimManager.py:714
+#: ../lib/python/Components/NimManager.py:749
 msgid "1.1"
 msgstr "1.1"
 
-#: ../lib/python/Components/NimManager.py:714
+#: ../lib/python/Components/NimManager.py:749
 msgid "1.2"
 msgstr "1.2"
 
-#: ../lib/python/Components/NimManager.py:711
+#: ../lib/python/Components/NimManager.py:746
 msgid "12 V"
 msgstr "12 V"
 
-#: ../lib/python/Screens/Satconfig.py:142
+#: ../lib/python/Screens/Satconfig.py:147
 msgid "12V Output"
 msgstr "12V Út"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:725
 msgid "13 V"
 msgstr "13 V"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:725
 msgid "18 V"
 msgstr "18 V"
 
-#: ../lib/python/Components/TimerList.py:57
+#: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:713
+#: ../lib/python/Components/NimManager.py:748
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 
-#: ../RecordTimer.py:137
+#: ../RecordTimer.py:151
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -108,79 +113,90 @@ msgstr ""
 "Tímastillt upptaka mistkst!\n"
 "Hætta og reyna aftur?\n"
 
-#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:731
 msgid "AA"
 msgstr "AA"
 
-#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:731
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/ScanSetup.py:166
+#: ../lib/python/Screens/ScanSetup.py:253
 msgid "AGC"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:998
+msgid "Activate Picture in Picture"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEdit.py:28
 msgid "Add"
 msgstr "Viðbót"
 
-#: ../lib/python/Screens/EventView.py:26
-#: ../lib/python/Screens/EpgSelection.py:48
+#: ../lib/python/Screens/EventView.py:32
+#: ../lib/python/Screens/EpgSelection.py:58
 msgid "Add timer"
 msgstr "Bæta við tímastillingu"
 
-#: ../lib/python/Components/NimManager.py:633
-#: ../lib/python/Components/NimManager.py:641
+#: ../lib/python/Components/NimManager.py:668
+#: ../lib/python/Components/NimManager.py:676
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Advanced"
 msgstr "Sérfæði"
 
-#: ../lib/python/Screens/ChannelSelection.py:430
-#: ../lib/python/Screens/ChannelSelection.py:576
+#: ../lib/python/Screens/TimerEntry.py:195
+msgid "After event"
+msgstr ""
+
+#: ../lib/python/Screens/MediaPlayer.py:41
+msgid "Album:"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:448
+#: ../lib/python/Screens/ChannelSelection.py:594
 msgid "All"
 msgstr "Allt"
-
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:104
-msgid "Apply satellite"
-msgstr ""
 
 #: ../lib/python/Components/Language.py:15
 msgid "Arabic"
 msgstr "Arabíska"
 
-#: ../lib/python/Screens/ScanSetup.py:216
-#: ../lib/python/Screens/ScanSetup.py:219
-#: ../lib/python/Screens/ScanSetup.py:223
-#: ../lib/python/Screens/ScanSetup.py:224
-#: ../lib/python/Screens/ScanSetup.py:225
-#: ../lib/python/Screens/ScanSetup.py:231
-#: ../lib/python/Screens/ScanSetup.py:232
-#: ../lib/python/Screens/ScanSetup.py:233
-#: ../lib/python/Screens/ScanSetup.py:234
-#: ../lib/python/Screens/ScanSetup.py:235
-#: ../lib/python/Screens/ScanSetup.py:236
-#: ../lib/python/Screens/ScanSetup.py:237
-#: ../lib/python/Screens/ScanSetup.py:238
+#: ../lib/python/Screens/MediaPlayer.py:37
+msgid "Artist:"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:303
+#: ../lib/python/Screens/ScanSetup.py:306
+#: ../lib/python/Screens/ScanSetup.py:310
+#: ../lib/python/Screens/ScanSetup.py:311
+#: ../lib/python/Screens/ScanSetup.py:312
+#: ../lib/python/Screens/ScanSetup.py:318
+#: ../lib/python/Screens/ScanSetup.py:322
+#: ../lib/python/Screens/ScanSetup.py:323
+#: ../lib/python/Screens/ScanSetup.py:324
+#: ../lib/python/Screens/ScanSetup.py:325
+#: ../lib/python/Screens/ScanSetup.py:326
+#: ../lib/python/Screens/ScanSetup.py:327
 msgid "Auto"
 msgstr "Sjálfvirkt"
 
-#: ../lib/python/Screens/ScanSetup.py:447 ../data/
+#: ../lib/python/Screens/ScanSetup.py:577 ../data/
 msgid "Automatic Scan"
 msgstr "Sjálfvirk leit"
 
-#: ../lib/python/Components/NimManager.py:713
+#: ../lib/python/Components/NimManager.py:748
 msgid "B"
 msgstr "B"
 
-#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:731
 msgid "BA"
 msgstr "BA"
 
-#: ../lib/python/Components/NimManager.py:696
+#: ../lib/python/Components/NimManager.py:731
 msgid "BB"
 msgstr "BB"
 
-#: ../lib/python/Screens/ScanSetup.py:168
+#: ../lib/python/Screens/ScanSetup.py:255
 msgid "BER"
 msgstr ""
 
@@ -196,11 +212,11 @@ msgstr ""
 msgid "Backup Mode"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:726
 msgid "Band"
 msgstr "Tíðnisvið"
 
-#: ../lib/python/Screens/ScanSetup.py:151
+#: ../lib/python/Screens/ScanSetup.py:238
 msgid "Bandwidth"
 msgstr "Bandbreidd"
 
@@ -208,7 +224,7 @@ msgstr "Bandbreidd"
 msgid "Bus: "
 msgstr "Rás:"
 
-#: ../lib/python/Components/NimManager.py:707
+#: ../lib/python/Components/NimManager.py:742
 msgid "C-Band"
 msgstr "C-Band"
 
@@ -216,11 +232,15 @@ msgstr "C-Band"
 msgid "CF Drive"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:66
+#: ../lib/python/Screens/ChannelSelection.py:705
+msgid "Cable"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:69
 msgid "Cable provider"
 msgstr "Kapal sendandi"
 
-#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -230,11 +250,11 @@ msgstr "Hætta við"
 msgid "Capacity: "
 msgstr "Stærð:"
 
-#: ../lib/python/Screens/TimerEntry.py:180 ../data/
+#: ../lib/python/Screens/TimerEntry.py:197 ../data/
 msgid "Channel"
 msgstr "Rás"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:145
+#: ../lib/python/Screens/InfoBarGenerics.py:148
 msgid "Channel:"
 msgstr "Rás:"
 
@@ -250,43 +270,47 @@ msgstr "Sígilt"
 msgid "Cleanup"
 msgstr "Hreinsa"
 
-#: ../lib/python/Screens/TimerEntry.py:299
+#: ../lib/python/Screens/TimerEntry.py:316
 msgid "Clear log"
 msgstr "Tæma lista"
 
-#: ../lib/python/Screens/ScanSetup.py:152
+#: ../lib/python/Screens/ScanSetup.py:239
 msgid "Code rate high"
 msgstr "Gagna hraði, hár"
 
-#: ../lib/python/Screens/ScanSetup.py:153
+#: ../lib/python/Screens/ScanSetup.py:240
 msgid "Code rate low"
 msgstr "Gagna hraði, lár"
 
-#: ../lib/python/Screens/Satconfig.py:122
-#: ../lib/python/Screens/Satconfig.py:124
+#: ../lib/python/Screens/Satconfig.py:127
+#: ../lib/python/Screens/Satconfig.py:129
 msgid "Command order"
 msgstr "Röðun skipana"
 
-#: ../lib/python/Screens/Satconfig.py:118
+#: ../lib/python/Screens/Satconfig.py:123
 msgid "Committed DiSEqC command"
 msgstr "Fyrsta DiSEqC rofa stýring"
 
-#: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/ScanSetup.py:198
+#: ../lib/python/Screens/ScanSetup.py:284
+#: ../lib/python/Screens/ScanSetup.py:285
 msgid "Complete"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:147 ../data/
+#: ../lib/python/Screens/Satconfig.py:49
+#: ../lib/python/Screens/Satconfig.py:152 ../data/
 msgid "Configuration Mode"
 msgstr "Stillingar"
 
-#: ../lib/python/Screens/TimerEdit.py:192
+#: ../lib/python/Screens/TimerEdit.py:205
 msgid "Conflicting timer"
 msgstr "Tímastilling skarast"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:16
+msgid "Danish"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -297,7 +321,7 @@ msgstr "Venjulegt"
 msgid "Delete"
 msgstr "Eyða"
 
-#: ../lib/python/Screens/TimerEntry.py:296
+#: ../lib/python/Screens/TimerEntry.py:313
 msgid "Delete entry"
 msgstr "Eyða innslætti"
 
@@ -305,7 +329,7 @@ msgstr "Eyða innslætti"
 msgid "Delete failed!"
 msgstr "Tókst ekki að eyða!"
 
-#: ../lib/python/Screens/TimerEntry.py:141
+#: ../lib/python/Screens/TimerEntry.py:151
 msgid "Description"
 msgstr "Lýsing"
 
@@ -317,28 +341,28 @@ msgstr "Fann harðan disk:"
 msgid "Detected NIMs:"
 msgstr "Fann NIM:"
 
-#: ../lib/python/Components/NimManager.py:655
+#: ../lib/python/Components/NimManager.py:690
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
-#: ../lib/python/Components/NimManager.py:655
+#: ../lib/python/Components/NimManager.py:690
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-#: ../lib/python/Screens/Satconfig.py:51
+#: ../lib/python/Screens/Satconfig.py:53
 msgid "DiSEqC Mode"
 msgstr "DiSEqC Gerð"
 
-#: ../lib/python/Screens/Satconfig.py:114
+#: ../lib/python/Screens/Satconfig.py:119
 msgid "DiSEqC mode"
 msgstr "DiSEqC gerð"
 
-#: ../lib/python/Screens/Satconfig.py:126
+#: ../lib/python/Screens/Satconfig.py:131
 msgid "DiSEqC repeats"
 msgstr "DiSEqC endurtekning"
 
-#: ../lib/python/Screens/ScanSetup.py:127
-#: ../lib/python/Screens/TimerEdit.py:76 ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/ScanSetup.py:213
+#: ../lib/python/Screens/TimerEdit.py:84 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -348,6 +372,10 @@ msgstr "DiSEqC endurtekning"
 #: ../lib/python/Components/SetupDevices.py:47
 msgid "Disable"
 msgstr "Gera óvirkt"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1000
+msgid "Disable Picture in Picture"
+msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
@@ -392,11 +420,11 @@ msgstr ""
 msgid "Downloading plugin information. Please wait..."
 msgstr ""
 
-#: ../lib/python/Components/Language.py:16
+#: ../lib/python/Components/Language.py:17
 msgid "Dutch"
 msgstr "Hollenska"
 
-#: ../lib/python/Screens/ChannelSelection.py:690
+#: ../lib/python/Screens/ChannelSelection.py:713
 msgid "E"
 msgstr "E"
 
@@ -405,13 +433,13 @@ msgstr "E"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "VILLA - gat ekki opnað leit (%s)!"
 
-#: ../lib/python/Components/NimManager.py:662
-#: ../lib/python/Components/NimManager.py:723
+#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Components/NimManager.py:758
 msgid "East"
 msgstr "Austur"
 
-#: ../lib/python/Screens/ScanSetup.py:127
-#: ../lib/python/Screens/TimerEdit.py:74 ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/ScanSetup.py:213
+#: ../lib/python/Screens/TimerEdit.py:82 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -422,21 +450,21 @@ msgstr "Austur"
 msgid "Enable"
 msgstr "Virkja"
 
-#: ../lib/python/Screens/TimerEntry.py:175
+#: ../lib/python/Screens/TimerEntry.py:188
 msgid "End"
 msgstr "Hætta"
 
-#: ../lib/python/Screens/TimerEntry.py:178
+#: ../lib/python/Screens/TimerEntry.py:192
 msgid "EndTime"
 msgstr "EndaTími"
 
-#: ../lib/python/Screens/LanguageSelection.py:45
+#: ../lib/python/Screens/LanguageSelection.py:53
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:13
+#: ../lib/python/Components/Language.py:14
 msgid "English"
 msgstr "Enska"
 
-#: ../lib/python/Components/NimManager.py:636
+#: ../lib/python/Components/NimManager.py:671
 msgid "Equal to Socket A"
 msgstr "Eins og Tengi A"
 
@@ -448,37 +476,39 @@ msgstr ""
 msgid "Execution finished!!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
+#: ../lib/python/Screens/InfoBarGenerics.py:1212
 msgid "Extensions"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:114
-#: ../lib/python/Screens/ScanSetup.py:142
+#: ../lib/python/Screens/ScanSetup.py:200
+#: ../lib/python/Screens/ScanSetup.py:228
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:390
 msgid "FEC"
 msgstr "FEC"
 
-#: ../lib/python/Screens/Satconfig.py:119
+#: ../lib/python/Screens/Satconfig.py:124
 msgid "Fast DiSEqC"
 msgstr "Hratt DiSEqC"
 
-#: ../lib/python/Screens/ChannelSelection.py:433
+#: ../lib/python/Screens/ChannelSelection.py:451
 msgid "Favourites"
 msgstr "Uppáhald listar"
 
-#: ../lib/python/Screens/ScanSetup.py:110
-#: ../lib/python/Screens/ScanSetup.py:138
-#: ../lib/python/Screens/ScanSetup.py:149
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/ScanSetup.py:224
+#: ../lib/python/Screens/ScanSetup.py:235
+#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:386
 msgid "Frequency"
 msgstr "Tíðni"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Fri"
 msgstr "Fös"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:162
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:174
 msgid "Friday"
 msgstr "Föstudagur"
 
@@ -495,8 +525,12 @@ msgstr ""
 msgid "Gateway"
 msgstr "Beinir"
 
+#: ../lib/python/Screens/MediaPlayer.py:45
+msgid "Genre:"
+msgstr ""
+
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:14
+#: ../lib/python/Components/Language.py:18
 msgid "German"
 msgstr "Þýska"
 
@@ -504,11 +538,11 @@ msgstr "Þýska"
 msgid "Getting plugin information. Please wait..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:106
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Goto position"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:156
+#: ../lib/python/Screens/ScanSetup.py:243
 msgid "Guard interval mode"
 msgstr "Guard millibils hamur"
 
@@ -517,12 +551,12 @@ msgstr "Guard millibils hamur"
 msgid "Harddisk"
 msgstr "Harður diskur"
 
-#: ../lib/python/Screens/ScanSetup.py:157
+#: ../lib/python/Screens/ScanSetup.py:244
 msgid "Hierarchy mode"
 msgstr "Flokkunar hamur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1083
-#: ../lib/python/Screens/InfoBarGenerics.py:1091
+#: ../lib/python/Screens/InfoBarGenerics.py:1123
+#: ../lib/python/Screens/InfoBarGenerics.py:1131
 msgid "How many minutes do you want to record?"
 msgstr ""
 
@@ -530,11 +564,15 @@ msgstr ""
 msgid "IP Address"
 msgstr "IP Netfang"
 
+#: ../lib/python/Components/Language.py:19
+msgid "Icelandic"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
 msgid "Image-Upgrade"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:143
+#: ../lib/python/Screens/Satconfig.py:148
 msgid "Increased voltage"
 msgstr "Aukin spenna"
 
@@ -550,86 +588,95 @@ msgstr "Frumstiling"
 msgid "Initializing Harddisk..."
 msgstr "Frumstilli harða disk"
 
-#: ../lib/python/Screens/ScanSetup.py:111
-#: ../lib/python/Screens/ScanSetup.py:139
-#: ../lib/python/Screens/ScanSetup.py:150
+#: ../lib/python/Screens/ScanSetup.py:197
+#: ../lib/python/Screens/ScanSetup.py:225
+#: ../lib/python/Screens/ScanSetup.py:237
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:387
 msgid "Inversion"
 msgstr "Umbreyting"
 
-#: ../lib/python/Screens/Satconfig.py:111
+#: ../lib/python/Components/Language.py:20
+msgid "Italian"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:116
 msgid "LNB"
 msgstr "LNB"
 
-#: ../lib/python/Screens/Satconfig.py:136
+#: ../lib/python/Screens/Satconfig.py:141
 msgid "LOF"
 msgstr "LOF"
 
-#: ../lib/python/Screens/Satconfig.py:140
+#: ../lib/python/Screens/Satconfig.py:145
 msgid "LOF/H"
 msgstr "LOF/H"
 
-#: ../lib/python/Screens/Satconfig.py:139
+#: ../lib/python/Screens/Satconfig.py:144
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:40 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
 msgid "Language selection"
 msgstr "Val tungumáls"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:130 ../data/
+#: ../lib/python/Screens/Satconfig.py:135 ../data/
 msgid "Latitude"
 msgstr "Breiddargráða"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:100
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
 msgid "Limit east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:101
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
 msgid "Limit west"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:99
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:181
 msgid "Limits off"
 msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:128 ../data/
+#: ../lib/python/Screens/Satconfig.py:133 ../data/
 msgid "Longitude"
 msgstr "Lengdargráða"
 
-#: ../lib/python/Components/NimManager.py:637
+#: ../lib/python/Components/NimManager.py:672
 msgid "Loopthrough to Socket A"
 msgstr "Tengt á milli í tengi A"
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
+msgid "Manual transponder"
+msgstr ""
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
 msgstr "Gerð:"
 
-#: ../lib/python/Screens/ScanSetup.py:141
-#: ../lib/python/Screens/ScanSetup.py:154
+#: ../lib/python/Screens/ScanSetup.py:227
+#: ../lib/python/Screens/ScanSetup.py:241
 msgid "Modulation"
 msgstr "Mótun"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Mon"
 msgstr "Mán"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:104
 msgid "Mon-Fri"
 msgstr "Mán-Fös"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:158
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:170
 msgid "Monday"
 msgstr "Mánudagur"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:94
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Move east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:97
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
 msgid "Move west"
 msgstr ""
 
@@ -637,19 +684,23 @@ msgstr ""
 msgid "Movie Menu"
 msgstr "Bíómynda valmynd"
 
-#: ../lib/python/Screens/EventView.py:131
+#: ../lib/python/Screens/EventView.py:154
 msgid "Multi EPG"
 msgstr "Marg rása EPG"
 
-#: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/ScanSetup.py:283
 msgid "Multisat"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:483
+#: ../lib/python/Components/NimManager.py:493
 msgid "N/A"
 msgstr "Ekki til"
 
-#: ../lib/python/Screens/TimerEntry.py:140
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:471
+msgid "NIM "
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:150
 msgid "Name"
 msgstr "Nafn"
 
@@ -661,7 +712,8 @@ msgstr "Nafnaþjónn"
 msgid "Netmask"
 msgstr "Netmaski"
 
-#: ../lib/python/Screens/ScanSetup.py:143
+#: ../lib/python/Screens/ScanSetup.py:229
+#: ../lib/python/Screens/ScanSetup.py:236
 msgid "Network scan"
 msgstr ""
 
@@ -669,62 +721,81 @@ msgstr ""
 msgid "New version:"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:34
+#: ../lib/python/Screens/EpgSelection.py:44
 msgid "Next"
 msgstr "Næsta"
 
-#: ../lib/python/Components/NimManager.py:692
-#: ../lib/python/Components/NimManager.py:712
-#: ../lib/python/Components/NimManager.py:716
-#: ../lib/python/Components/NimManager.py:717
-#: ../lib/python/Components/NimManager.py:726
+#: ../lib/python/Components/NimManager.py:727
+#: ../lib/python/Components/NimManager.py:747
+#: ../lib/python/Components/NimManager.py:751
+#: ../lib/python/Components/NimManager.py:752
+#: ../lib/python/Components/NimManager.py:761
 msgid "No"
 msgstr "Nei"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1105
+#: ../lib/python/Screens/InfoBarGenerics.py:1143
 msgid "No HDD found or HDD not initialized!"
 msgstr "Fann ekki harðan disk eða hann ekki formaður!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1062
+#: ../lib/python/Screens/InfoBarGenerics.py:1076
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:219
-#: ../lib/python/Screens/ScanSetup.py:225
-#: ../lib/python/Screens/ScanSetup.py:233
-#: ../lib/python/Screens/ScanSetup.py:234
-#: ../lib/python/Screens/ScanSetup.py:238
-#: ../lib/python/Components/NimManager.py:696
-#: ../lib/python/Components/NimManager.py:700
-#: ../lib/python/Components/NimManager.py:713
-#: ../lib/python/Components/NimManager.py:714
-#: ../lib/python/Components/NimManager.py:721
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:488
+msgid "No positioner capable frontend found."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:500
+msgid "No tuner is configured for use with a diseqc positioner!"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:306
+#: ../lib/python/Screens/ScanSetup.py:312
+#: ../lib/python/Screens/ScanSetup.py:322
+#: ../lib/python/Screens/ScanSetup.py:323
+#: ../lib/python/Screens/ScanSetup.py:327
+#: ../lib/python/Components/NimManager.py:731
+#: ../lib/python/Components/NimManager.py:735
+#: ../lib/python/Components/NimManager.py:748
+#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:756
 msgid "None"
 msgstr "Enginn"
 
-#: ../lib/python/Components/NimManager.py:664
-#: ../lib/python/Components/NimManager.py:725
+#: ../lib/python/Components/NimManager.py:699
+#: ../lib/python/Components/NimManager.py:760
 msgid "North"
 msgstr "Norður"
 
-#: ../lib/python/Components/NimManager.py:638
+#: ../lib/python/Components/Language.py:21
+msgid "Norwegian"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:673
 msgid "Nothing connected"
 msgstr "Ekkert tengt"
 
-#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:23
+#: ../lib/python/Screens/ScanSetup.py:459
+#: ../lib/python/Screens/ScanSetup.py:517
+msgid ""
+"Nothing to scan!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
+
+#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:726
 msgid "Off"
 msgstr "Af"
 
-#: ../lib/python/Components/NimManager.py:691
+#: ../lib/python/Components/NimManager.py:726
 msgid "On"
 msgstr "Á"
 
-#: ../lib/python/Components/NimManager.py:721
+#: ../lib/python/Components/NimManager.py:756
 msgid "One"
 msgstr "Einn"
 
@@ -740,7 +811,11 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "Spila uppteknar myndir..."
 
-#: ../lib/python/Screens/ChannelSelection.py:106
+#: ../lib/python/Screens/InfoBarGenerics.py:1001
+msgid "Please choose an extension..."
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:118
 msgid "Please enter a name for the new bouquet"
 msgstr ""
 
@@ -748,11 +823,12 @@ msgstr ""
 msgid "Please wait... Loading list..."
 msgstr "Vinsamlega bíðið.. les inn lista...."
 
-#: ../lib/python/Screens/ScanSetup.py:113
+#: ../lib/python/Screens/ScanSetup.py:199
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:389
 msgid "Polarity"
 msgstr "Pólun"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:725
 msgid "Polarization"
 msgstr "Pólun"
 
@@ -772,52 +848,60 @@ msgstr "Tengi C"
 msgid "Port D"
 msgstr "Tengi D"
 
-#: ../lib/python/Components/NimManager.py:655
+#: ../lib/python/Components/NimManager.py:690
 msgid "Positioner"
 msgstr "Mótorstýring"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:69
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
+msgid "Positioner fine movement"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
 msgid "Positioner movement"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:71
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
 msgid "Positioner storage"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
+msgid "Predefined satellite"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:35
 msgid "Press OK to activate the settings."
 msgstr "Ýtið á OK til að virkja stillingar."
 
-#: ../lib/python/Screens/ScanSetup.py:448
+#: ../lib/python/Screens/ScanSetup.py:578
 msgid "Press OK to scan"
 msgstr "Ýtið á OK til að leita"
 
-#: ../lib/python/Screens/ScanSetup.py:73
+#: ../lib/python/Screens/ScanSetup.py:159
 msgid "Press OK to start the scan"
 msgstr "Ýtið á OK til að byrja að leita"
 
-#: ../lib/python/Screens/EpgSelection.py:33
+#: ../lib/python/Screens/EpgSelection.py:43
 msgid "Prev"
 msgstr "Fyrri"
 
-#: ../lib/python/Screens/ChannelSelection.py:432
-#: ../lib/python/Screens/ChannelSelection.py:572
+#: ../lib/python/Screens/ChannelSelection.py:450
+#: ../lib/python/Screens/ChannelSelection.py:590
 msgid "Provider"
 msgstr "Sendandi"
 
-#: ../lib/python/Screens/ChannelSelection.py:679
+#: ../lib/python/Screens/ChannelSelection.py:697
 msgid "Providers"
 msgstr "Sendendur"
 
-#: ../lib/python/Screens/TimerEdit.py:97
+#: ../lib/python/Screens/TimerEdit.py:108
 msgid "Really delete done timers?"
 msgstr "Viltu eyða liðnum tímastillingum?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1160
+#: ../lib/python/Screens/InfoBarGenerics.py:1196
 msgid "Record"
 msgstr "Upptaka"
 
-#: ../lib/python/Screens/EventView.py:67
+#: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
 msgstr ""
 
@@ -829,6 +913,10 @@ msgstr ""
 msgid "Remove plugins"
 msgstr ""
 
+#: ../lib/python/Screens/TimerEntry.py:154
+msgid "Repeat Type"
+msgstr ""
+
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
 msgstr "Endursetja"
@@ -838,54 +926,63 @@ msgstr "Endursetja"
 msgid "Restore"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:164
+#: ../lib/python/Screens/ScanSetup.py:251
 msgid "SNR"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Sat"
 msgstr "Lau"
 
-#: ../lib/python/Screens/ScanSetup.py:109
-#: ../lib/python/Screens/ScanSetup.py:118
-#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:61
-#: ../lib/python/Screens/Satconfig.py:149
+#: ../lib/python/Screens/ScanSetup.py:195
+#: ../lib/python/Screens/ScanSetup.py:204
+#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
+#: ../lib/python/Screens/Satconfig.py:154
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
 msgid "Satellite"
 msgstr "Gervihnöttur"
 
-#: ../lib/python/Screens/ChannelSelection.py:431
-#: ../lib/python/Screens/ChannelSelection.py:574
+#: ../lib/python/Screens/ChannelSelection.py:449
+#: ../lib/python/Screens/ChannelSelection.py:592
 msgid "Satellites"
 msgstr "Gervihnettir"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:163
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:175
 msgid "Saturday"
 msgstr "Laugardagur"
 
-#: ../lib/python/Screens/ScanSetup.py:441
-#: ../lib/python/Screens/ScanSetup.py:444
+#: ../lib/python/Screens/ScanSetup.py:571
+#: ../lib/python/Screens/ScanSetup.py:574
 msgid "Scan NIM"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:639
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
+msgid "Search east"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
+msgid "Search west"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:674
 msgid "Secondary cable from motorized LNB"
 msgstr "Seinni kapall frá mótorstýrðum nema"
 
-#: ../lib/python/Screens/TimerEntry.py:218
+#: ../lib/python/Screens/TimerEntry.py:237
 msgid "Select channel to record from"
 msgstr "Veldu rás til að taka upp frá"
 
-#: ../lib/python/Screens/Satconfig.py:120
+#: ../lib/python/Screens/Satconfig.py:125
 msgid "Sequence repeat"
 msgstr "Endurtaka runu"
 
-#: ../lib/python/Screens/ChannelSelection.py:681
+#: ../lib/python/Screens/ChannelSelection.py:699
 msgid "Services"
 msgstr "Rásir"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:70
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
 msgid "Set limits"
 msgstr ""
 
@@ -897,38 +994,42 @@ msgstr ""
 msgid "Show the radio player..."
 msgstr "Sýna útvarpsspilara..."
 
-#: ../lib/python/Screens/EventView.py:102
+#: ../lib/python/Screens/EventView.py:133
+msgid "Similar"
+msgstr ""
+
+#: ../lib/python/Screens/EventView.py:127
 msgid "Similar broadcasts:"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:633
-#: ../lib/python/Components/NimManager.py:640
+#: ../lib/python/Components/NimManager.py:668
+#: ../lib/python/Components/NimManager.py:675
 msgid "Simple"
 msgstr "Einfalt"
 
-#: ../lib/python/Components/NimManager.py:655
+#: ../lib/python/Components/NimManager.py:690
 msgid "Single"
 msgstr "Einn"
 
-#: ../lib/python/Screens/EventView.py:130
+#: ../lib/python/Screens/EventView.py:153
 msgid "Single EPG"
 msgstr "Eitt EPG"
 
-#: ../lib/python/Screens/ScanSetup.py:196
+#: ../lib/python/Screens/ScanSetup.py:283
 msgid "Single satellite"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/ScanSetup.py:198
+#: ../lib/python/Screens/ScanSetup.py:283
+#: ../lib/python/Screens/ScanSetup.py:284
+#: ../lib/python/Screens/ScanSetup.py:285
 msgid "Single transponder"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:668
+#: ../lib/python/Components/NimManager.py:703
 msgid "Slot "
 msgstr "Hólf"
 
-#: ../lib/python/Components/NimManager.py:552
+#: ../lib/python/Components/NimManager.py:562
 msgid "Socket "
 msgstr "Tengi"
 
@@ -939,24 +1040,24 @@ msgid ""
 "Please choose an other one."
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:664
-#: ../lib/python/Components/NimManager.py:725
+#: ../lib/python/Components/NimManager.py:699
+#: ../lib/python/Components/NimManager.py:760
 msgid "South"
 msgstr "Suður"
 
-#: ../lib/python/Components/Language.py:17
+#: ../lib/python/Components/Language.py:22
 msgid "Spanish"
 msgstr "Spænska"
 
-#: ../lib/python/Screens/TimerEntry.py:170
+#: ../lib/python/Screens/TimerEntry.py:182
 msgid "Start"
 msgstr "Byrja"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "Start recording?"
 msgstr "Byrja upptöku?"
 
-#: ../lib/python/Screens/TimerEntry.py:173
+#: ../lib/python/Screens/TimerEntry.py:185
 msgid "StartTime"
 msgstr "Byrjunartími"
 
@@ -964,15 +1065,22 @@ msgstr "Byrjunartími"
 msgid "Step "
 msgstr "Þrep"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:95
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
 msgid "Step east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:96
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:177
 msgid "Step west"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:945
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:169
+msgid "Stop"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:919
 msgid "Stop Timeshift?"
 msgstr "Stoppa tímafærslu?"
 
@@ -980,113 +1088,137 @@ msgstr "Stoppa tímafærslu?"
 msgid "Stop playing this movie?"
 msgstr "Stoppa spilun?"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:105
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
 msgid "Store position"
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:108
+#: ../lib/python/Screens/Satconfig.py:113
 msgid "Stored position"
 msgstr "Vistuð staða"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1201 ../data/
 msgid "Subservices"
 msgstr "Undirþjónusta"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Sun"
 msgstr "Sun"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:164
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:176
 msgid "Sunday"
 msgstr "Sunnudagur"
 
-#: ../lib/python/Screens/ScanSetup.py:112
-#: ../lib/python/Screens/ScanSetup.py:140
+#: ../lib/python/Components/Language.py:23
+msgid "Swedish"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:198
+#: ../lib/python/Screens/ScanSetup.py:226
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:388
 msgid "Symbol Rate"
 msgstr "Gagnahraði"
 
-#: ../lib/python/Screens/Satconfig.py:68
+#: ../lib/python/Screens/ChannelSelection.py:707
+msgid "Terrestrial"
+msgstr ""
+
+#: ../lib/python/Screens/Satconfig.py:73
 msgid "Terrestrial provider"
 msgstr "Sendandi á landi"
 
-#: ../lib/python/Components/NimManager.py:721
+#: ../lib/python/Components/NimManager.py:756
 msgid "Three"
 msgstr "Þrír"
 
-#: ../lib/python/Screens/Satconfig.py:141
+#: ../lib/python/Screens/Satconfig.py:146
 msgid "Threshold"
 msgstr "Mörk"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Thu"
 msgstr "Fim"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:161
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Fimmtudagur"
 
-#: ../lib/python/Screens/TimerEntry.py:142
+#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
 msgstr "Gerð Tímastillngar"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:917
+#: ../lib/python/Screens/InfoBarGenerics.py:891
 msgid "Timeshift not possible!"
 msgstr "Tímabreyting ekki möguleg!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1169
+#: ../lib/python/Screens/InfoBarGenerics.py:1205
 msgid "Timeshifting"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:198
+#: ../lib/python/Screens/MediaPlayer.py:39
+msgid "Title:"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:258
 #: ../lib/python/Tools/FuzzyDate.py:10
 msgid "Today"
 msgstr "Í dag"
 
-#: ../lib/python/Screens/Satconfig.py:103
+#: ../lib/python/Screens/Satconfig.py:108
 msgid "Tone mode"
 msgstr "Tón stilling"
 
-#: ../lib/python/Screens/Satconfig.py:117
+#: ../lib/python/Screens/Satconfig.py:122
 msgid "Toneburst"
 msgstr "Tónstýring"
 
-#: ../lib/python/Components/NimManager.py:655
+#: ../lib/python/Components/NimManager.py:690
 msgid "Toneburst A/B"
 msgstr "Tón stýring A/B"
 
-#: ../lib/python/Screens/ScanSetup.py:155
+#: ../lib/python/Screens/ScanSetup.py:242
 msgid "Transmission mode"
 msgstr "Sendi stilling"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:392
+msgid "Transponder"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Tue"
 msgstr "Þri"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:159
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:171
 msgid "Tuesday"
 msgstr "Þriðjudagur"
 
-#: ../lib/python/Screens/ScanSetup.py:91
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:128
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:381
+msgid "Tune"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:177
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "Tuner"
 msgstr "Móttakari"
 
-#: ../lib/python/Components/NimManager.py:721
+#: ../lib/python/Components/NimManager.py:756
 msgid "Two"
 msgstr "Tveir"
 
-#: ../lib/python/Screens/ScanSetup.py:96 ../lib/python/Screens/ScanSetup.py:99
-#: ../lib/python/Screens/ScanSetup.py:102
+#: ../lib/python/Screens/ScanSetup.py:182
+#: ../lib/python/Screens/ScanSetup.py:185
+#: ../lib/python/Screens/ScanSetup.py:188
 msgid "Type of scan"
 msgstr "Gerð leitunar"
 
-#: ../lib/python/Components/NimManager.py:660
+#: ../lib/python/Components/NimManager.py:695
 msgid "USALS"
 msgstr "USALS"
 
@@ -1104,11 +1236,11 @@ msgstr ""
 "Athugaðu upplýsingar um diskinn.\n"
 "Villa:"
 
-#: ../lib/python/Screens/Satconfig.py:125
+#: ../lib/python/Screens/Satconfig.py:130
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC stýring"
 
-#: ../lib/python/Components/NimManager.py:707
+#: ../lib/python/Components/NimManager.py:742
 msgid "Universal LNB"
 msgstr "Venjulegt LNB"
 
@@ -1124,46 +1256,50 @@ msgstr "Uppfæri... Vinsamlega bíðið... Þetta getur tekið nokkurn tíma.."
 msgid "Use DHCP"
 msgstr "Nota DHCP"
 
-#: ../lib/python/Screens/Satconfig.py:105
+#: ../lib/python/Screens/Satconfig.py:110
 msgid "Use usals for this sat"
 msgstr "Nota usals fyrir þennan hnött"
 
-#: ../lib/python/Components/NimManager.py:707
+#: ../lib/python/Components/NimManager.py:742
 msgid "User defined"
 msgstr "Stillt af notanda"
 
-#: ../lib/python/Screens/Satconfig.py:102
+#: ../lib/python/Screens/Satconfig.py:107
 msgid "Voltage mode"
 msgstr "Spennu stýring"
 
-#: ../lib/python/Screens/ChannelSelection.py:688
+#: ../lib/python/Screens/ChannelSelection.py:711
 msgid "W"
 msgstr "W"
 
-#: ../lib/python/Screens/EpgSelection.py:187
+#: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
 msgid "Wed"
 msgstr "Mið"
 
-#: ../lib/python/Screens/TimerEntry.py:102
-#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Screens/TimerEntry.py:112
+#: ../lib/python/Screens/TimerEntry.py:172
 msgid "Wednesday"
 msgstr "Miðvikudagur"
 
-#: ../lib/python/Screens/TimerEntry.py:155
+#: ../lib/python/Screens/TimerEntry.py:167
 msgid "Weekday"
 msgstr "Vikudagur"
 
-#: ../lib/python/Components/NimManager.py:662
-#: ../lib/python/Components/NimManager.py:723
+#: ../lib/python/Components/NimManager.py:697
+#: ../lib/python/Components/NimManager.py:758
 msgid "West"
 msgstr "Vestur"
 
-#: ../lib/python/Components/NimManager.py:692
-#: ../lib/python/Components/NimManager.py:712
-#: ../lib/python/Components/NimManager.py:716
-#: ../lib/python/Components/NimManager.py:717
-#: ../lib/python/Components/NimManager.py:726
+#: ../lib/python/Screens/MediaPlayer.py:43
+msgid "Year:"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:727
+#: ../lib/python/Components/NimManager.py:747
+#: ../lib/python/Components/NimManager.py:751
+#: ../lib/python/Components/NimManager.py:752
+#: ../lib/python/Components/NimManager.py:761
 msgid "Yes"
 msgstr "Já"
 
@@ -1177,39 +1313,62 @@ msgid ""
 "Press OK to start upgrade."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:312
+#: ../lib/python/Screens/ChannelSelection.py:331
 msgid "[bouquet edit]"
 msgstr "[breyta fléttu]"
 
-#: ../lib/python/Screens/ChannelSelection.py:314
+#: ../lib/python/Screens/ChannelSelection.py:333
 msgid "[favourite edit]"
 msgstr "[breyta uppáhalds lista]"
 
-#: ../lib/python/Screens/ChannelSelection.py:398
+#: ../lib/python/Screens/ChannelSelection.py:416
 msgid "[move mode]"
 msgstr "[færslu staða]"
 
-#: ../lib/python/Screens/ChannelSelection.py:91
+#: ../lib/python/Screens/ChannelSelection.py:103
 msgid "abort bouquet edit"
 msgstr "hætta við að breyta fléttu"
 
-#: ../lib/python/Screens/ChannelSelection.py:94
+#: ../lib/python/Screens/ChannelSelection.py:106
 msgid "abort favourites edit"
 msgstr "hætta við að breyta uppáhaldsl ista"
 
-#: ../lib/python/Components/TimerList.py:53
+#: ../lib/python/Components/TimerList.py:59
 msgid "about to start"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:80
+#: ../lib/python/Screens/ChannelSelection.py:92
 msgid "add bouquet..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:65
+#: ../lib/python/Screens/MediaPlayer.py:258
+msgid "add directory to playlist"
+msgstr ""
+
+#: ../lib/python/Screens/MediaPlayer.py:260
+msgid "add file to playlist"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1149
+msgid "add recording (enter recording duration)"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1149
+msgid "add recording (indefinitely)"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1149
+msgid "add recording (stop after current event)"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:77
 msgid "add service to bouquet"
 msgstr "bæta rás við fléttu"
 
-#: ../lib/python/Screens/ChannelSelection.py:67
+#: ../lib/python/Screens/ChannelSelection.py:79
 msgid "add service to favourites"
 msgstr "bæta rás við uppáhalds lista"
 
@@ -1220,74 +1379,82 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/MovieSelection.py:24
-#: ../lib/python/Screens/ChannelSelection.py:96
+#: ../lib/python/Screens/ChannelSelection.py:108
 msgid "back"
 msgstr "til baka"
 
-#: ../lib/python/Screens/ScanSetup.py:218
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
+msgid "change recording (duration)"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:305
 msgid "circular left"
 msgstr "hringpólun vinstri"
 
-#: ../lib/python/Screens/ScanSetup.py:218
+#: ../lib/python/Screens/ScanSetup.py:305
 msgid "circular right"
 msgstr "hringpólun hægri"
 
-#: ../lib/python/Screens/ChannelSelection.py:70
+#: ../lib/python/Screens/MediaPlayer.py:264
+msgid "clear playlist"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:82
 msgid "copy to favourites"
 msgstr "bæta við uppáhalds lista"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:104
 msgid "daily"
 msgstr "daglega"
+
+#: ../lib/python/Screens/MediaPlayer.py:263
+msgid "delete"
+msgstr ""
 
 #: ../lib/python/Screens/MovieSelection.py:24
 msgid "delete..."
 msgstr "eyða...."
 
-#: ../lib/python/Screens/ChannelSelection.py:87
+#: ../lib/python/Screens/ChannelSelection.py:99
 msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
+#: ../lib/python/Screens/TimerEntry.py:99
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid "do nothing"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
+#: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "don't record"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:59
+#: ../lib/python/Components/TimerList.py:68
 msgid "done!"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:554
+#: ../lib/python/Components/NimManager.py:564
 msgid "empty/unknown"
 msgstr "tómur/óþekkt"
 
-#: ../lib/python/Screens/ChannelSelection.py:83
+#: ../lib/python/Screens/ChannelSelection.py:95
 msgid "enable bouquet edit"
 msgstr "byrja féttu breytingu"
 
-#: ../lib/python/Screens/ChannelSelection.py:85
+#: ../lib/python/Screens/ChannelSelection.py:97
 msgid "enable favourite edit"
 msgstr "byrja breytingu uppáhalds lista"
 
-#: ../lib/python/Screens/ChannelSelection.py:79
+#: ../lib/python/Screens/ChannelSelection.py:91
 msgid "enable move mode"
 msgstr "virkja færlsu stöðu"
 
-#: ../lib/python/Screens/ChannelSelection.py:90
+#: ../lib/python/Screens/ChannelSelection.py:102
 msgid "end bouquet edit"
 msgstr "hætta að breyta fléttu"
 
-#: ../lib/python/Screens/ChannelSelection.py:93
+#: ../lib/python/Screens/ChannelSelection.py:105
 msgid "end favourites edit"
 msgstr "hætta að breyta uppáhalds lista"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
-msgid "enter recording duration"
-msgstr ""
 
 #: ../lib/python/Components/DiskInfo.py:30
 msgid "free diskspace"
@@ -1297,7 +1464,15 @@ msgstr "laust diskpláss"
 msgid "full /etc directory"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:218
+#: ../lib/python/Screens/TimerEntry.py:99
+msgid "go to deep standby"
+msgstr ""
+
+#: ../lib/python/Screens/MediaPlayer.py:265
+msgid "hide player"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:305
 msgid "horizontal"
 msgstr "lárétt"
 
@@ -1314,23 +1489,29 @@ msgstr "hætta í spilara"
 msgid "list"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:660
+#: ../lib/python/Components/NimManager.py:695
 msgid "manual"
 msgstr "handvirkt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:290
+#: ../lib/python/Components/TimerList.py:48
+#: ../lib/python/Components/TimerList.py:53
+msgid "mins"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "next channel"
 msgstr "næsta rás"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:292
+#: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "next channel in history"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:227
-#: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:440
-#: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Screens/ScanSetup.py:314
+#: ../lib/python/Screens/ScanSetup.py:328
+#: ../lib/python/Screens/ScanSetup.py:333
+#: ../lib/python/Screens/ScanSetup.py:570
+#: ../lib/python/Screens/ScanSetup.py:573
+#: ../lib/python/Screens/TimerEntry.py:116
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
@@ -1348,19 +1529,19 @@ msgstr "fann ekki einingu"
 msgid "none"
 msgstr "engin"
 
-#: ../lib/python/Screens/ScanSetup.py:216
-#: ../lib/python/Screens/ScanSetup.py:223
-#: ../lib/python/Screens/ScanSetup.py:231
+#: ../lib/python/Screens/ScanSetup.py:303
+#: ../lib/python/Screens/ScanSetup.py:310
+#: ../lib/python/Screens/ScanSetup.py:318
 msgid "off"
 msgstr "af"
 
-#: ../lib/python/Screens/ScanSetup.py:216
-#: ../lib/python/Screens/ScanSetup.py:223
-#: ../lib/python/Screens/ScanSetup.py:231
+#: ../lib/python/Screens/ScanSetup.py:303
+#: ../lib/python/Screens/ScanSetup.py:310
+#: ../lib/python/Screens/ScanSetup.py:318
 msgid "on"
 msgstr "á"
 
-#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "once"
 msgstr "einu sinni"
 
@@ -1376,31 +1557,31 @@ msgstr ""
 msgid "please press OK when ready"
 msgstr "vinsamlega ýtið á OK þegar tilbúið"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:289
+#: ../lib/python/Screens/InfoBarGenerics.py:257
 msgid "previous channel"
 msgstr "fyrri rás"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:291
+#: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "previous channel in history"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
-msgid "record indefinitely"
+#: ../lib/python/Screens/TimerEntry.py:98
+msgid "record"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:55
+#: ../lib/python/Components/TimerList.py:64
 msgid "recording..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:74
+#: ../lib/python/Screens/ChannelSelection.py:86
 msgid "remove bouquet"
 msgstr "eyða fléttu"
 
-#: ../lib/python/Screens/ChannelSelection.py:72
+#: ../lib/python/Screens/ChannelSelection.py:84
 msgid "remove service"
 msgstr "eyða rás"
 
-#: ../lib/python/Screens/TimerEntry.py:90
+#: ../lib/python/Screens/TimerEntry.py:100
 msgid "repeated"
 msgstr "endurtekinn"
 
@@ -1442,55 +1623,68 @@ msgstr ""
 msgid "scan state"
 msgstr "leitar staða"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:379
+#: ../lib/python/Screens/InfoBarGenerics.py:349
 msgid "show EPG..."
 msgstr "sýna EPG"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:350
+#: ../lib/python/Screens/InfoBarGenerics.py:318
 msgid "show event details"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1112
-msgid "stop after current event"
+#: ../lib/python/Screens/InfoBarGenerics.py:1147
+msgid "stop recording"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1109
-msgid "stop recording"
+#: ../lib/python/Screens/MediaPlayer.py:262
+msgid "switch to filelist"
+msgstr ""
+
+#: ../lib/python/Screens/MediaPlayer.py:256
+msgid "switch to playlist"
 msgstr ""
 
 #: ../lib/python/Screens/Wizard.py:225 ../lib/python/Screens/Wizard.py:226
 msgid "text"
 msgstr "texti"
 
-#: ../lib/python/Screens/EventView.py:73
+#: ../lib/python/Screens/EventView.py:80
 msgid "unknown service"
 msgstr "óþekkt rás"
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:104
 msgid "user defined"
 msgstr "stillt af notanda"
 
-#: ../lib/python/Screens/ScanSetup.py:218
+#: ../lib/python/Screens/ScanSetup.py:305
 msgid "vertical"
 msgstr "lóðrétt"
 
-#: ../lib/python/Components/TimerList.py:51
+#: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:104
 msgid "weekly"
 msgstr "vikulega"
 
-#: ../lib/python/Screens/ScanSetup.py:227
-#: ../lib/python/Screens/ScanSetup.py:243
-#: ../lib/python/Screens/ScanSetup.py:440
-#: ../lib/python/Screens/ScanSetup.py:443
-#: ../lib/python/Screens/TimerEntry.py:106
+#: ../lib/python/Screens/ScanSetup.py:314
+#: ../lib/python/Screens/ScanSetup.py:328
+#: ../lib/python/Screens/ScanSetup.py:333
+#: ../lib/python/Screens/ScanSetup.py:570
+#: ../lib/python/Screens/ScanSetup.py:573
+#: ../lib/python/Screens/TimerEntry.py:116
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "já"
+
+#: ../lib/python/Screens/TimerEntry.py:98
+msgid "zap"
+msgstr ""
+
+#: ../lib/python/Components/TimerList.py:62
+msgid "zapped"
+msgstr ""
 
 #: ../data/
 msgid "Channel Selection"
@@ -1525,10 +1719,8 @@ msgid "Yes, backup my settings!"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
+msgid "#c0c000"
+msgstr "#c0c000"
 
 #: ../data/
 msgid "Satconfig"
@@ -1596,10 +1788,6 @@ msgid ""
 msgstr "Ýttu á up/niður takka á fjarstýringu til að velja. Ýttu svo á OK."
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxinu mínu"
-
-#: ../data/
 msgid "Show Satposition"
 msgstr "Sýna staðsetningu gervihnattar"
 
@@ -1608,8 +1796,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
 #: ../data/
-msgid "Setup"
-msgstr "Uppsetning"
+msgid "No, do nothing."
+msgstr ""
 
 #: ../data/
 msgid "#000000"
@@ -1642,8 +1830,8 @@ msgid "Audio / Video"
 msgstr "Hljóð / Mynd"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr ""
+msgid "Mute"
+msgstr "Hljóð Af"
 
 #: ../data/
 msgid "Service Searching"
@@ -1652,10 +1840,6 @@ msgstr "Leita að rásum"
 #: ../data/
 msgid "#20294a6b"
 msgstr "#20294a6b"
-
-#: ../data/
-msgid "Mute"
-msgstr "Hljóð Af"
 
 #: ../data/
 msgid ""
@@ -1713,24 +1897,16 @@ msgid "Manual Scan"
 msgstr "Handvirk leitun"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Velkomin.\n"
-"\n"
-"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
-"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
+msgid "OSD Settings"
+msgstr "Stilling valmynda"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Valmynd fjarstýringar"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
+msgid "No, just start my dreambox"
+msgstr "Nei, ræstu bara boxinu mínu"
 
 #: ../data/
 msgid "select Slot"
@@ -1761,8 +1937,8 @@ msgid "Fast zapping"
 msgstr "Stökkva hratt"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "Stilling valmynda"
+msgid "Usage Settings"
+msgstr "Stilla notkun"
 
 #: ../data/
 msgid "Brightness"
@@ -1771,6 +1947,10 @@ msgstr "Birta"
 #: ../data/
 msgid "Standby"
 msgstr "Biðstaða"
+
+#: ../data/
+msgid "Yes, do another manual scan now"
+msgstr ""
 
 #: ../data/
 msgid "Activate network settings"
@@ -1805,11 +1985,11 @@ msgid "#80000000"
 msgstr "#80000000"
 
 #: ../data/
-msgid "Downloadable plugins"
-msgstr ""
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
-msgid "Do you want to view a cutlist tutorial?"
+msgid "Downloadable plugins"
 msgstr ""
 
 #: ../data/
@@ -1841,16 +2021,14 @@ msgid "Ask before zapping"
 msgstr "Spyrja fyrir rásastökk"
 
 #: ../data/
-msgid "#c0c000"
-msgstr "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "Stillia hljóð/mynd"
-
-#: ../data/
-msgid "Usage Settings"
-msgstr "Stilla notkun"
 
 #: ../data/
 msgid ""
@@ -1865,7 +2043,7 @@ msgid "Service scan"
 msgstr "Rása leit"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
+msgid "The wizard is finished now."
 msgstr ""
 
 #: ../data/
@@ -1900,6 +2078,10 @@ msgstr "Skerpa"
 msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
+msgstr ""
+
+#: ../data/
+msgid "Timer selection"
 msgstr ""
 
 #: ../data/
@@ -1980,6 +2162,10 @@ msgstr ""
 #: ../data/
 msgid "Exit wizard"
 msgstr "Hætta í álfi"
+
+#: ../data/
+msgid "Media player"
+msgstr ""
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2128,8 +2314,8 @@ msgid "Timer Edit"
 msgstr "Breyta Tímastillingu"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr ""
+msgid "Setup"
+msgstr "Uppsetning"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2150,6 +2336,10 @@ msgstr "Fínstilla"
 #: ../data/
 msgid "Timer Editor"
 msgstr "Breyta Tímastillingum"
+
+#: ../data/
+msgid "Time/Date Input"
+msgstr ""
 
 #: ../data/
 msgid "AGC:"
@@ -2192,8 +2382,24 @@ msgid "Seek"
 msgstr "Leita"
 
 #: ../data/
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Velkomin.\n"
+"\n"
+"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
+"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
+
+#: ../data/
 msgid "Satelliteconfig"
 msgstr "Stilling gervihnatta"
+
+#: ../data/
+msgid "MediaPlayer"
+msgstr ""
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
