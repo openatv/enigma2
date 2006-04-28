@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -34,6 +34,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -237,6 +238,7 @@ msgid "Cable provider"
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -307,6 +309,10 @@ msgstr ""
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -777,6 +783,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -1138,6 +1145,10 @@ msgstr ""
 #: ../lib/python/Screens/TimerEntry.py:112
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
@@ -1702,7 +1713,9 @@ msgid "Yes, backup my settings!"
 msgstr ""
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
 
 #: ../data/
@@ -1771,6 +1784,10 @@ msgid ""
 msgstr ""
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr ""
+
+#: ../data/
 msgid "Show Satposition"
 msgstr ""
 
@@ -1779,7 +1796,7 @@ msgid "Do you want to view a tutorial?"
 msgstr ""
 
 #: ../data/
-msgid "No, do nothing."
+msgid "Setup"
 msgstr ""
 
 #: ../data/
@@ -1864,6 +1881,10 @@ msgid "Invert"
 msgstr ""
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr ""
+
+#: ../data/
 msgid "System"
 msgstr ""
 
@@ -1880,7 +1901,11 @@ msgid "Manual Scan"
 msgstr ""
 
 #: ../data/
-msgid "OSD Settings"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
 msgstr ""
 
 #: ../data/
@@ -1888,7 +1913,7 @@ msgid "RC Menu"
 msgstr ""
 
 #: ../data/
-msgid "No, just start my dreambox"
+msgid "SNR:"
 msgstr ""
 
 #: ../data/
@@ -1920,7 +1945,7 @@ msgid "Fast zapping"
 msgstr ""
 
 #: ../data/
-msgid "Usage Settings"
+msgid "OSD Settings"
 msgstr ""
 
 #: ../data/
@@ -1929,10 +1954,6 @@ msgstr ""
 
 #: ../data/
 msgid "Standby"
-msgstr ""
-
-#: ../data/
-msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -1968,10 +1989,6 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr ""
-
-#: ../data/
 msgid "Downloadable plugins"
 msgstr ""
 
@@ -2004,13 +2021,19 @@ msgid "Ask before zapping"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "#c0c000"
 msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
+msgstr ""
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr ""
+
+#: ../data/
+msgid "Usage Settings"
 msgstr ""
 
 #: ../data/
@@ -2024,7 +2047,7 @@ msgid "Service scan"
 msgstr ""
 
 #: ../data/
-msgid "The wizard is finished now."
+msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -2045,10 +2068,6 @@ msgstr ""
 
 #: ../data/
 msgid "#0000ff"
-msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
 msgstr ""
 
 #: ../data/
@@ -2092,7 +2111,7 @@ msgid ""
 msgstr ""
 
 #: ../data/
-msgid "Menu"
+msgid "Do you want to restore your settings?"
 msgstr ""
 
 #: ../data/
@@ -2124,7 +2143,7 @@ msgid "Margin before record (minutes)"
 msgstr ""
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
+msgid "Time/Date Input"
 msgstr ""
 
 #: ../data/
@@ -2209,7 +2228,7 @@ msgid "Timer log"
 msgstr ""
 
 #: ../data/
-msgid "Do you want to restore your settings?"
+msgid "Menu"
 msgstr ""
 
 #: ../data/
@@ -2290,7 +2309,7 @@ msgid "Timer Edit"
 msgstr ""
 
 #: ../data/
-msgid "Setup"
+msgid "No, do nothing."
 msgstr ""
 
 #: ../data/
@@ -2314,7 +2333,7 @@ msgid "Timer Editor"
 msgstr ""
 
 #: ../data/
-msgid "Time/Date Input"
+msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 
 #: ../data/
@@ -2355,14 +2374,6 @@ msgstr ""
 
 #: ../data/
 msgid "Seek"
-msgstr ""
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
 msgstr ""
 
 #: ../data/
