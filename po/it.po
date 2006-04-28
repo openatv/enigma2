@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2006-04-01 02:52+0100\n"
 "Last-Translator: Musicbob <musicbob@satnews.tv.it>\n"
 "Language-Team: none\n"
@@ -39,6 +39,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -248,6 +249,7 @@ msgid "Cable provider"
 msgstr "Provider via cavo"
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -318,6 +320,10 @@ msgstr "Versione corrente:"
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -798,6 +804,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -1163,6 +1170,10 @@ msgstr "Gio"
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Giovedi"
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1741,8 +1752,10 @@ msgid "Yes, backup my settings!"
 msgstr "Si, salva le mie impostazioni!"
 
 #: ../data/
-msgid "#c0c000"
-msgstr ""
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr "Il restore delle impostazioni è terminato, premi OK per attivarle ora."
 
 #: ../data/
 msgid "Satconfig"
@@ -1819,6 +1832,10 @@ msgstr ""
 "OK per attivare l'opzione scelta."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "No, fai solo partire il Dreambox"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Mostra posizione Sat"
 
@@ -1827,8 +1844,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vuoi vedere una guida utente?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "No, non fare nulla"
+msgid "Setup"
+msgstr "Impostazioni"
 
 #: ../data/
 msgid "#000000"
@@ -1918,6 +1935,10 @@ msgid "Invert"
 msgstr "Inverti"
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr "La procedura guidata è terminata."
+
+#: ../data/
 msgid "System"
 msgstr "Sistema"
 
@@ -1934,16 +1955,24 @@ msgid "Manual Scan"
 msgstr "Ricerca Manuale"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "Impostazioni OSD"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Benvenuto.\n"
+"\n"
+"Questa procedura guidata effettuerà le impostazioni base del Dreambox.\n"
+"Premi il tasto OK del telecomando per andare avanti."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Menu telecomando"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "No, fai solo partire il Dreambox"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1974,8 +2003,8 @@ msgid "Fast zapping"
 msgstr "Cambio canale veloce"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Impostazioni d'uso"
+msgid "OSD Settings"
+msgstr "Impostazioni OSD"
 
 #: ../data/
 msgid "Brightness"
@@ -1984,10 +2013,6 @@ msgstr "Luminosità"
 #: ../data/
 msgid "Standby"
 msgstr "Stand-by"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Si, fai un altra ricerca manuale ora"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2019,10 +2044,6 @@ msgstr "Visualizzatore Plugins"
 
 #: ../data/
 msgid "#80000000"
-msgstr ""
-
-#: ../data/
-msgid "SNR:"
 msgstr ""
 
 #: ../data/
@@ -2058,14 +2079,20 @@ msgid "Ask before zapping"
 msgstr "Chiedi prima di cambiare canale"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr "Il restore delle impostazioni è terminato, premi OK per attivarle ora."
+msgid "#c0c000"
+msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "Impostazioni A/V"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Si, ricarica i settings ora"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Impostazioni d'uso"
 
 #: ../data/
 msgid ""
@@ -2078,8 +2105,8 @@ msgid "Service scan"
 msgstr "Ricerca canale"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "La procedura guidata è terminata."
+msgid "Yes, do another manual scan now"
+msgstr "Si, fai un altra ricerca manuale ora"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2100,10 +2127,6 @@ msgstr "Portante suono"
 #: ../data/
 msgid "#0000ff"
 msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Si, ricarica i settings ora"
 
 #: ../data/
 msgid "Contrast"
@@ -2152,8 +2175,8 @@ msgstr ""
 "procedura di aggiornamento."
 
 #: ../data/
-msgid "Menu"
-msgstr "Menu"
+msgid "Do you want to restore your settings?"
+msgstr "Vuoi ricaricare le tue impostazioni?"
 
 #: ../data/
 msgid "Parental Lock"
@@ -2184,9 +2207,8 @@ msgid "Margin before record (minutes)"
 msgstr "Margine di inizio registrazione (in minuti)"
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
+msgid "Time/Date Input"
 msgstr ""
-"Il backup è fallito. Prego selezionare un'altra locazione per il backup."
 
 #: ../data/
 msgid "Keymap"
@@ -2272,8 +2294,8 @@ msgid "Timer log"
 msgstr "Timer log"
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr "Vuoi ricaricare le tue impostazioni?"
+msgid "Menu"
+msgstr "Menu"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2358,8 +2380,8 @@ msgid "Timer Edit"
 msgstr "Modifica Timer"
 
 #: ../data/
-msgid "Setup"
-msgstr "Impostazioni"
+msgid "No, do nothing."
+msgstr "No, non fare nulla"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2382,8 +2404,9 @@ msgid "Timer Editor"
 msgstr "Modifica Timer"
 
 #: ../data/
-msgid "Time/Date Input"
+msgid "The backup failed. Please choose a different backup location."
 msgstr ""
+"Il backup è fallito. Prego selezionare un'altra locazione per il backup."
 
 #: ../data/
 msgid "AGC:"
@@ -2424,18 +2447,6 @@ msgstr "Si, spegni il dreambox ora."
 #: ../data/
 msgid "Seek"
 msgstr "Ricerca"
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Benvenuto.\n"
-"\n"
-"Questa procedura guidata effettuerà le impostazioni base del Dreambox.\n"
-"Premi il tasto OK del telecomando per andare avanti."
 
 #: ../data/
 msgid "Satelliteconfig"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2006-01-10 01:17+0300\n"
 "Last-Translator: hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -37,6 +37,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -242,6 +243,7 @@ msgid "Cable provider"
 msgstr "مقدم خدمه الكابل"
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -312,6 +314,10 @@ msgstr ""
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -786,6 +792,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "موافق"
@@ -1148,6 +1155,10 @@ msgstr ""
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "الخميس"
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1722,7 +1733,9 @@ msgid "Yes, backup my settings!"
 msgstr ""
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
 
 #: ../data/
@@ -1791,6 +1804,10 @@ msgid ""
 msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وأختار  ثم أضغط موافق"
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "مشاهده وضع القمر"
 
@@ -1799,8 +1816,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "هل تريد مشاهده الشرح ؟"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr ""
+msgid "Setup"
+msgstr "الضبـط"
 
 #: ../data/
 msgid "#000000"
@@ -1884,6 +1901,10 @@ msgid "Invert"
 msgstr "مقلوب"
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr ""
+
+#: ../data/
 msgid "System"
 msgstr "النـظام"
 
@@ -1900,16 +1921,24 @@ msgid "Manual Scan"
 msgstr "بحـث يدوى"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "إعدادات OSD"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"اهلا وسهلا\n"
+"\n"
+"هذه النوافذ سترشدك لعمل الضبط وتهيئه الدريم بوكس اضغط ذر OK من الريموت "
+"للانتقال للخطوه التاليه"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "قائمه الريموت كونترول"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1940,8 +1969,8 @@ msgid "Fast zapping"
 msgstr "التنقل السريع"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr ""
+msgid "OSD Settings"
+msgstr "إعدادات OSD"
 
 #: ../data/
 msgid "Brightness"
@@ -1950,10 +1979,6 @@ msgstr "الإضاءه"
 #: ../data/
 msgid "Standby"
 msgstr "الاستعداد"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr ""
 
 #: ../data/
 msgid "Activate network settings"
@@ -1985,10 +2010,6 @@ msgstr "متصفح البلج إنز"
 
 #: ../data/
 msgid "#80000000"
-msgstr ""
-
-#: ../data/
-msgid "SNR:"
 msgstr ""
 
 #: ../data/
@@ -2024,14 +2045,20 @@ msgid "Ask before zapping"
 msgstr "أسأل قبل التنقل"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "#c0c000"
 msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "إعدادات الصوت والصوره"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr ""
+
+#: ../data/
+msgid "Usage Settings"
+msgstr ""
 
 #: ../data/
 msgid ""
@@ -2044,7 +2071,7 @@ msgid "Service scan"
 msgstr "بحث عـن القنـوات"
 
 #: ../data/
-msgid "The wizard is finished now."
+msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -2065,10 +2092,6 @@ msgstr "حامل الصوت"
 
 #: ../data/
 msgid "#0000ff"
-msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
 msgstr ""
 
 #: ../data/
@@ -2112,8 +2135,8 @@ msgid ""
 msgstr ""
 
 #: ../data/
-msgid "Menu"
-msgstr "قائمه"
+msgid "Do you want to restore your settings?"
+msgstr ""
 
 #: ../data/
 msgid "Parental Lock"
@@ -2144,7 +2167,7 @@ msgid "Margin before record (minutes)"
 msgstr ""
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
+msgid "Time/Date Input"
 msgstr ""
 
 #: ../data/
@@ -2229,8 +2252,8 @@ msgid "Timer log"
 msgstr ""
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr ""
+msgid "Menu"
+msgstr "قائمه"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2313,8 +2336,8 @@ msgid "Timer Edit"
 msgstr "تحرير المؤقت"
 
 #: ../data/
-msgid "Setup"
-msgstr "الضبـط"
+msgid "No, do nothing."
+msgstr ""
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2337,7 +2360,7 @@ msgid "Timer Editor"
 msgstr "تحرير المؤقت"
 
 #: ../data/
-msgid "Time/Date Input"
+msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 
 #: ../data/
@@ -2379,18 +2402,6 @@ msgstr ""
 #: ../data/
 msgid "Seek"
 msgstr "بحـث"
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"اهلا وسهلا\n"
-"\n"
-"هذه النوافذ سترشدك لعمل الضبط وتهيئه الدريم بوكس اضغط ذر OK من الريموت "
-"للانتقال للخطوه التاليه"
 
 #: ../data/
 msgid "Satelliteconfig"

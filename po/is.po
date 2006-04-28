@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandin translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2006-03-22 22:01-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Icelandic <baddi@oreind.is>\n"
@@ -36,6 +36,7 @@ msgstr "%d min"
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -241,6 +242,7 @@ msgid "Cable provider"
 msgstr "Kapal sendandi"
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -311,6 +313,10 @@ msgstr ""
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -783,6 +789,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
@@ -1145,6 +1152,10 @@ msgstr "Fim"
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Fimmtudagur"
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1719,8 +1730,10 @@ msgid "Yes, backup my settings!"
 msgstr ""
 
 #: ../data/
-msgid "#c0c000"
-msgstr "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
 
 #: ../data/
 msgid "Satconfig"
@@ -1788,6 +1801,10 @@ msgid ""
 msgstr "Ýttu á up/niður takka á fjarstýringu til að velja. Ýttu svo á OK."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nei, ræstu bara boxinu mínu"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Sýna staðsetningu gervihnattar"
 
@@ -1796,8 +1813,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr ""
+msgid "Setup"
+msgstr "Uppsetning"
 
 #: ../data/
 msgid "#000000"
@@ -1881,6 +1898,10 @@ msgid "Invert"
 msgstr "Snúa við"
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr ""
+
+#: ../data/
 msgid "System"
 msgstr "Kerfi"
 
@@ -1897,16 +1918,24 @@ msgid "Manual Scan"
 msgstr "Handvirk leitun"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "Stilling valmynda"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Velkomin.\n"
+"\n"
+"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
+"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Valmynd fjarstýringar"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxinu mínu"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "select Slot"
@@ -1937,8 +1966,8 @@ msgid "Fast zapping"
 msgstr "Stökkva hratt"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Stilla notkun"
+msgid "OSD Settings"
+msgstr "Stilling valmynda"
 
 #: ../data/
 msgid "Brightness"
@@ -1947,10 +1976,6 @@ msgstr "Birta"
 #: ../data/
 msgid "Standby"
 msgstr "Biðstaða"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr ""
 
 #: ../data/
 msgid "Activate network settings"
@@ -1985,10 +2010,6 @@ msgid "#80000000"
 msgstr "#80000000"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Downloadable plugins"
 msgstr ""
 
@@ -2021,14 +2042,20 @@ msgid "Ask before zapping"
 msgstr "Spyrja fyrir rásastökk"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
+msgid "#c0c000"
+msgstr "#c0c000"
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "Stillia hljóð/mynd"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr ""
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Stilla notkun"
 
 #: ../data/
 msgid ""
@@ -2043,7 +2070,7 @@ msgid "Service scan"
 msgstr "Rása leit"
 
 #: ../data/
-msgid "The wizard is finished now."
+msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -2064,10 +2091,6 @@ msgstr "Hljóðburðarbylgja"
 
 #: ../data/
 msgid "#0000ff"
-msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
 msgstr ""
 
 #: ../data/
@@ -2111,8 +2134,8 @@ msgid ""
 msgstr ""
 
 #: ../data/
-msgid "Menu"
-msgstr "Valmynd"
+msgid "Do you want to restore your settings?"
+msgstr ""
 
 #: ../data/
 msgid "Parental Lock"
@@ -2143,7 +2166,7 @@ msgid "Margin before record (minutes)"
 msgstr "Mörk fyrir upptöku (mínútur)"
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
+msgid "Time/Date Input"
 msgstr ""
 
 #: ../data/
@@ -2228,8 +2251,8 @@ msgid "Timer log"
 msgstr "Tíma skrá"
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr ""
+msgid "Menu"
+msgstr "Valmynd"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2314,8 +2337,8 @@ msgid "Timer Edit"
 msgstr "Breyta Tímastillingu"
 
 #: ../data/
-msgid "Setup"
-msgstr "Uppsetning"
+msgid "No, do nothing."
+msgstr ""
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2338,7 +2361,7 @@ msgid "Timer Editor"
 msgstr "Breyta Tímastillingum"
 
 #: ../data/
-msgid "Time/Date Input"
+msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 
 #: ../data/
@@ -2380,18 +2403,6 @@ msgstr ""
 #: ../data/
 msgid "Seek"
 msgstr "Leita"
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Velkomin.\n"
-"\n"
-"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
-"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #: ../data/
 msgid "Satelliteconfig"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2006-04-01 15:54+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
@@ -39,6 +39,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -248,6 +249,7 @@ msgid "Cable provider"
 msgstr "Kabel provider"
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -318,6 +320,10 @@ msgstr "Aktuele versie"
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
+msgstr ""
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
 msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
@@ -798,6 +804,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -1163,6 +1170,10 @@ msgstr "Do"
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Donderdag"
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1741,8 +1752,12 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, backup mijn settings!"
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
+"Terug zetten van de settings is klaar. Druk op OK om de terug gezette "
+"settings te activeren."
 
 #: ../data/
 msgid "Satconfig"
@@ -1819,6 +1834,10 @@ msgstr ""
 "daarna op OK druken."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nee, alleen mijn dreambox starten"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Satpositie"
 
@@ -1827,8 +1846,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nee, doe niks."
+msgid "Setup"
+msgstr "Instellingen"
 
 #: ../data/
 msgid "#000000"
@@ -1918,6 +1937,10 @@ msgid "Invert"
 msgstr "Inverteren"
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr "De wizard is is nu klaar."
+
+#: ../data/
 msgid "System"
 msgstr "Systeem"
 
@@ -1934,16 +1957,25 @@ msgid "Manual Scan"
 msgstr "Handmatig Zoeken"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-instellingen"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Welkom.\n"
+"\n"
+"De start wizard leid u door de basic instellingen van u dreambox.\n"
+"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
+"gaan."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Afstands Bediening"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nee, alleen mijn dreambox starten"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1974,8 +2006,8 @@ msgid "Fast zapping"
 msgstr "Fast zapping"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Gebruikers instellingen"
+msgid "OSD Settings"
+msgstr "OSD-instellingen"
 
 #: ../data/
 msgid "Brightness"
@@ -1984,10 +2016,6 @@ msgstr "Helderheid"
 #: ../data/
 msgid "Standby"
 msgstr ""
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, nu handmatig zoeken"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2019,10 +2047,6 @@ msgstr "Plugin selector"
 
 #: ../data/
 msgid "#80000000"
-msgstr ""
-
-#: ../data/
-msgid "SNR:"
 msgstr ""
 
 #: ../data/
@@ -2058,16 +2082,20 @@ msgid "Ask before zapping"
 msgstr "Voor omschakelen eerst vragen"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "#c0c000"
 msgstr ""
-"Terug zetten van de settings is klaar. Druk op OK om de terug gezette "
-"settings te activeren."
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-instellingen"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Ja, restore de settings nu"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Gebruikers instellingen"
 
 #: ../data/
 msgid ""
@@ -2082,8 +2110,8 @@ msgid "Service scan"
 msgstr "Kanaal zoeken"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "De wizard is is nu klaar."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, nu handmatig zoeken"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2104,10 +2132,6 @@ msgstr "Geluids kanaal"
 #: ../data/
 msgid "#0000ff"
 msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Ja, restore de settings nu"
 
 #: ../data/
 msgid "Contrast"
@@ -2158,8 +2182,8 @@ msgstr ""
 "process werkt."
 
 #: ../data/
-msgid "Menu"
-msgstr "Menu"
+msgid "Do you want to restore your settings?"
+msgstr "Restore u settings?"
 
 #: ../data/
 msgid "Parental Lock"
@@ -2190,8 +2214,8 @@ msgid "Margin before record (minutes)"
 msgstr "Marge voor opname (minuten)"
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Backup Mislukt. Kies een andere  backup locatie AUB."
+msgid "Time/Date Input"
+msgstr ""
 
 #: ../data/
 msgid "Keymap"
@@ -2275,8 +2299,8 @@ msgid "Timer log"
 msgstr ""
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr "Restore u settings?"
+msgid "Menu"
+msgstr "Menu"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2361,8 +2385,8 @@ msgid "Timer Edit"
 msgstr "Timer gestuurde opname"
 
 #: ../data/
-msgid "Setup"
-msgstr "Instellingen"
+msgid "No, do nothing."
+msgstr "Nee, doe niks."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2385,8 +2409,8 @@ msgid "Timer Editor"
 msgstr ""
 
 #: ../data/
-msgid "Time/Date Input"
-msgstr ""
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Backup Mislukt. Kies een andere  backup locatie AUB."
 
 #: ../data/
 msgid "AGC:"
@@ -2427,19 +2451,6 @@ msgstr "JA, Nu afsluiten."
 #: ../data/
 msgid "Seek"
 msgstr "Zoeken"
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Welkom.\n"
-"\n"
-"De start wizard leid u door de basic instellingen van u dreambox.\n"
-"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
-"gaan."
 
 #: ../data/
 msgid "Satelliteconfig"

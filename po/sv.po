@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 14:53+0000\n"
+"POT-Creation-Date: 2006-04-28 15:25+0200\n"
 "PO-Revision-Date: 2006-03-16 21:30+0100\n"
 "Last-Translator: Robban™ <robban@pirathubben.no-ip.org>\n"
 "Language-Team: none\n"
@@ -39,6 +39,7 @@ msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -246,6 +247,7 @@ msgid "Cable provider"
 msgstr "KabelTV leverantör"
 
 #: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -317,6 +319,10 @@ msgstr "Aktuell Version:"
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
 msgstr "Danska"
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
+msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
@@ -794,6 +800,7 @@ msgid ""
 msgstr ""
 
 #: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -1156,6 +1163,10 @@ msgstr "Tors"
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Torsdag"
+
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1732,7 +1743,9 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, ta backup på mina inställningar!"
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
 
 #: ../data/
@@ -1809,6 +1822,10 @@ msgstr ""
 "Använd upp/ner pilarna på din fjärr för att välja. Tryck sedan OK Klart."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, starta bara dremboxen"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Visa Satposition"
 
@@ -1817,8 +1834,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gör ingenting"
+msgid "Setup"
+msgstr "Installera"
 
 #: ../data/
 msgid "#000000"
@@ -1909,6 +1926,10 @@ msgid "Invert"
 msgstr "Invertera"
 
 #: ../data/
+msgid "The wizard is finished now."
+msgstr "Guiden är nu färdig."
+
+#: ../data/
 msgid "System"
 msgstr ""
 
@@ -1925,16 +1946,24 @@ msgid "Manual Scan"
 msgstr "Manuell Sökning"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-Inställning"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Välkommen.\n"
+"\n"
+"Den här guiden hjälper dig att ställa in din Dreambox\n"
+"Tryck på OK på din fjärrkontroll, för att komma till nästa steg."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fjärrkontroll Meny"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, starta bara dremboxen"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "select Slot"
@@ -1965,8 +1994,8 @@ msgid "Fast zapping"
 msgstr "Snabbt kanalbyte"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Användarinställningar"
+msgid "OSD Settings"
+msgstr "OSD-Inställning"
 
 #: ../data/
 msgid "Brightness"
@@ -1975,10 +2004,6 @@ msgstr "Ljusstyrka"
 #: ../data/
 msgid "Standby"
 msgstr "Viloläge"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, kör en manuell sökning igen"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2010,10 +2035,6 @@ msgstr ""
 
 #: ../data/
 msgid "#80000000"
-msgstr ""
-
-#: ../data/
-msgid "SNR:"
 msgstr ""
 
 #: ../data/
@@ -2049,14 +2070,20 @@ msgid "Ask before zapping"
 msgstr "Fråga före kanalbyte"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "#c0c000"
 msgstr ""
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-Inställningar"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Ja, återställ inställningarna nu"
+
+#: ../data/
+msgid "Usage Settings"
+msgstr "Användarinställningar"
 
 #: ../data/
 msgid ""
@@ -2069,8 +2096,8 @@ msgid "Service scan"
 msgstr "Kanalsökning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Guiden är nu färdig."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, kör en manuell sökning igen"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2091,10 +2118,6 @@ msgstr "Ljudläge"
 #: ../data/
 msgid "#0000ff"
 msgstr ""
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Ja, återställ inställningarna nu"
 
 #: ../data/
 msgid "Contrast"
@@ -2145,8 +2168,8 @@ msgstr ""
 "uppgraderingsprocessen."
 
 #: ../data/
-msgid "Menu"
-msgstr "Meny"
+msgid "Do you want to restore your settings?"
+msgstr "Vill du återställa dina inställningar?"
 
 #: ../data/
 msgid "Parental Lock"
@@ -2177,8 +2200,8 @@ msgid "Margin before record (minutes)"
 msgstr "Marginal innan inspelning (i minuter)"
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Backupen misslyckades, välj en annan plats för din backup "
+msgid "Time/Date Input"
+msgstr ""
 
 #: ../data/
 msgid "Keymap"
@@ -2264,8 +2287,8 @@ msgid "Timer log"
 msgstr "Timer Logg"
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr "Vill du återställa dina inställningar?"
+msgid "Menu"
+msgstr "Meny"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2350,8 +2373,8 @@ msgid "Timer Edit"
 msgstr "Timer Editerare"
 
 #: ../data/
-msgid "Setup"
-msgstr "Installera"
+msgid "No, do nothing."
+msgstr "Nej, gör ingenting"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2374,8 +2397,8 @@ msgid "Timer Editor"
 msgstr ""
 
 #: ../data/
-msgid "Time/Date Input"
-msgstr ""
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Backupen misslyckades, välj en annan plats för din backup "
 
 #: ../data/
 msgid "AGC:"
@@ -2416,18 +2439,6 @@ msgstr "Ja, stäng av nu."
 #: ../data/
 msgid "Seek"
 msgstr "Sök"
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Välkommen.\n"
-"\n"
-"Den här guiden hjälper dig att ställa in din Dreambox\n"
-"Tryck på OK på din fjärrkontroll, för att komma till nästa steg."
 
 #: ../data/
 msgid "Satelliteconfig"
