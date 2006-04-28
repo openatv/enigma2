@@ -1246,6 +1246,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	if (!r && !res)
 	{
 		res = new eDVBChannelQuery();
+		res->m_inverse = 0;
 		res->m_type = eDVBChannelQuery::tAny;
 	}
 	
