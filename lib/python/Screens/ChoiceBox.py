@@ -5,16 +5,30 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.GUIComponent import *
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 
 import os
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = []):
+	def __init__(self, session, title = "", list = [], keys = None):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
-		self.list = list
-		self["list"] = MenuList(list)
+		self.list = []
+		if keys is None:
+			self.keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ] + (len(list) - 10) * [""]
+		else:
+			self.keys = keys
+			
+		self.keymap = {}
+		pos = 0
+		for x in list:
+			strpos = str(self.keys[pos])
+			self.list.append(ChoiceEntryComponent(strpos, x))
+			if self.keys[pos] != "":
+				self.keymap[self.keys[pos]] = list[pos]
+			pos += 1
+		self["list"] = ChoiceList(self.list)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
 		{
@@ -40,10 +54,11 @@ class ChoiceBox(Screen):
 	
 	def keyNumberGlobal(self, number):
 		print "pressed", number
-		#self["input"].number(number)
+		if self.keymap.has_key(str(number)):
+			self.close(self.keymap[str(number)])
 		
 	def go(self):
-		self.close(self["list"].l.getCurrentSelection())
+		self.close(self["list"].l.getCurrentSelection()[0])
 		#self.close(self["input"].getText())
 		
 	def cancel(self):
