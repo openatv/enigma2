@@ -6,7 +6,7 @@ from enigma import eLabel
 
 from Tools.NumericalTextInput import NumericalTextInput
 
-class Input(HTMLComponent, GUIComponent, VariableText):
+class Input(VariableText, HTMLComponent, GUIComponent):
 	TEXT = 0
 	PIN = 1
 	NUMBER = 2	

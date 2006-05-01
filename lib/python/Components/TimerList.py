@@ -75,7 +75,7 @@ def TimerEntryComponent(timer, processed):
 	
 	return res
 
-class TimerList(HTMLComponent, GUIComponent):
+class TimerList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
@@ -86,10 +86,11 @@ class TimerList(HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(70)
+	GUI_WIDGET = eListbox
+	
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(70)
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
@@ -97,13 +98,11 @@ class TimerList(HTMLComponent, GUIComponent):
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
+	currentIndex = property(moveToIndex, getCurrentIndex)
+	currentSelection = property(getCurrent)
+
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
 
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
-
 	def invalidate(self):
 		self.l.invalidate()
-

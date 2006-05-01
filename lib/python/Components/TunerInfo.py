@@ -105,16 +105,8 @@ class TunerInfo(GUIComponent):
 			self.g.setRange(0, 100)
 			return self.g
 		
-	def GUIcreate(self, parent):
-		self.instance = self.createWidget(parent)
+	def postWidgetCreate(self, instance):
 		if self.message is not None:
-			self.instance.setText(self.message)
+			instance.setText(self.message)
 		elif self.value is not None:
-			self.instance.setValue(self.value)	
-
-	def GUIdelete(self):
-		self.removeWidget(self.instance)
-		self.instance = None
-	
-	def removeWidget(self, instance):
-		pass
+			instance.setValue(self.value)

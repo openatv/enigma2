@@ -44,12 +44,9 @@ class PerServiceDisplay(PerServiceBase, VariableText):
 		VariableText.__init__(self)
 		PerServiceBase.__init__(self, navcore, eventmap)
 
-	def createWidget(self, parent):
-		# by default, we use a label to display our data.
-		g = eLabel(parent)
-		return g
+	GUI_WIDGET = eLabel
 
-class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceBase):
+class PerServiceDisplayProgress(PerServiceBase, VariableValue, GUIComponent):
 	def __init__(self, navcore, eventmap):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)
@@ -60,7 +57,4 @@ class PerServiceDisplayProgress(GUIComponent, VariableValue, PerServiceBase):
 		# start with stopped state, so simulate that
 		self.event(iPlayableService.evEnd)
 
-	def createWidget(self, parent):
-		# by default, we use a label to display our data.
-		self.g = eSlider(parent)
-		return self.g
+	GUI_WIDGET = eSlider

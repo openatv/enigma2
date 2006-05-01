@@ -4,13 +4,13 @@ from config import *
 
 from enigma import eListbox, eListboxPythonConfigContent
 
-class ConfigList(HTMLComponent, GUIComponent):
+class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setList(list)
 		self.l.setSeperation(100)
 		self.list = list
+		self.onSelectionChanged = [ ]
 	
 	def toggle(self):
 		selection = self.getCurrent()
@@ -31,16 +31,26 @@ class ConfigList(HTMLComponent, GUIComponent):
 		
 	def invalidate(self, entry):
 		i = 0
-		for x in self.list:
+		for x in self.__list:
 			if (entry.getConfigPath() == x[1].parent.getConfigPath()):
 				self.l.invalidateEntry(i)
 			i += 1
-		
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-	
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
 
+	GUI_WIDGET = eListbox
+	
+	def selectionChanged(self):
+		for x in self.onSelectionChanged:
+			x()
+
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.selectionChanged.get().append(self.selectionChanged)
+	
+	def setList(self, list):
+		self.__list = list
+		self.l.setList(self.__list)
+
+	def getList(self):
+		return self.__list
+
+	list = property(getList, setList)

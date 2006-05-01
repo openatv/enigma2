@@ -45,14 +45,11 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.l.setFont(0, gFont("Regular", 23))
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
+	GUI_WIDGET = eListbox
+	
+	def postWidgetCreate(self, instance):
 		self.instance.setContent(self.l)
 		self.instance.setItemHeight(25)
-
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
 
 class ServiceInfo(Screen):
 	def __init__(self, session):

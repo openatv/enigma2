@@ -3,28 +3,9 @@ from GUIComponent import *
 
 from enigma import *
 
-class Widget(GUIComponent):
-	def __init__(self):
-		GUIComponent.__init__(self)
-	
-	def GUIcreate(self, parent):
-		self.instance = self.createWidget(parent)
-		if self.state == self.HIDDEN:
-			self.instance.hide()
-	
-	def GUIdelete(self):
-		self.removeWidget(self.instance)
-		self.instance = None
-	
-	def removeWidget(self, w):
-		pass
-	
-	def move(self, x, y):
-		self.instance.move(ePoint(int(x), int(y)))
-	
-class ConditionalWidget(Widget):
+class ConditionalWidget(GUIComponent):
 	def __init__(self, withTimer = True):
-		Widget.__init__(self)
+		GUIComponent.__init__(self)
 		
 		self.setConnect(None)
 		
@@ -38,11 +19,9 @@ class ConditionalWidget(Widget):
 		
 	def activateCondition(self, condition):
 		if (condition):
-			if self.state == self.HIDDEN:
-				self.show()
+			self.state = self.HIDDEN
 		else:
-			if self.state == self.SHOWN:
-				self.hide()
+			self.state = self.SHOWN
 
 	def update(self):
 		if (self.conditionalFunction != None):
@@ -55,9 +34,9 @@ class ConditionalWidget(Widget):
 			
 import time
 
-class BlinkingWidget(Widget):
+class BlinkingWidget(GUIComponent):
 	def __init__(self):
-		Widget.__init__(self)
+		GUIComponent.__init__(self)
 		
 		self.blinking = True
 		

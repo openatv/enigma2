@@ -50,7 +50,7 @@ def PlaylistEntryComponent(serviceref, state):
     
 	return res
 
-class PlayList(HTMLComponent, GUIComponent, MenuList):
+class PlayList(MenuList, HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
@@ -66,11 +66,12 @@ class PlayList(HTMLComponent, GUIComponent, MenuList):
 		self.currPlaying = 0
 		self.oldCurrPlaying = -1
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(32)
-	
+	GUI_WIDGET = eListbox
+
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(32)
+
 	def getSelection(self):
 		return self.l.getCurrentSelection()[0]
 		
