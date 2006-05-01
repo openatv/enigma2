@@ -13,7 +13,7 @@ class Slider(VariableValue, HTMLComponent, GUIComponent):
 		self.min = min
 		self.max = max
 
-	def createWidget(self, parent):
-		g = eSlider(parent)
-		g.setRange(self.min, self.max)
-		return g
+	GUI_WIDGET = eSlider
+	
+	def postWidgetCreate(self, instance):
+		instance.setRange(self.min, self.max)
