@@ -71,6 +71,8 @@ class NimSetup(Screen):
 		elif self.nim_type == nimmanager.nimType["DVB-T"]:
 			self.have_advanced = False
 			self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
+		else:
+			self.have_advanced = False
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
