@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-29 21:36+0200\n"
+"POT-Creation-Date: 2006-04-28 19:26+0200\n"
 "PO-Revision-Date: 2006-05-01 13:24+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
@@ -39,7 +39,6 @@ msgstr "%d min"
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
-#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -248,8 +247,7 @@ msgstr "Kabel"
 msgid "Cable provider"
 msgstr "KabelTV leverantör"
 
-#: ../lib/python/Screens/Setup.py:110 ./lib/python/Screens/TimerEntry.py:25
-#: ../lib/python/Screens/TimeDateInput.py:16
+#: ../lib/python/Screens/Setup.py:143 ../lib/python/Screens/TimerEntry.py:25
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -322,10 +320,6 @@ msgstr "Aktuell Version:"
 msgid "Danish"
 msgstr "Danska"
 
-#: ../lib/python/Screens/TimeDateInput.py:54
-msgid "Date"
-msgstr "Datum"
-
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
 msgstr "Standard"
@@ -375,7 +369,7 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC repetetioner"
 
 #: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:84 ./lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:84 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -458,7 +452,7 @@ msgid "East"
 msgstr "Öst"
 
 #: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:82 ./lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:82 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -766,7 +760,7 @@ msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:500
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Ingen tuner är konfigurerad för diseqc positioner!
+msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
 
 #: ../lib/python/Screens/ScanSetup.py:306
 #: ../lib/python/Screens/ScanSetup.py:312
@@ -788,7 +782,7 @@ msgstr "Nord"
 
 #: ../lib/python/Components/Language.py:21
 msgid "Norwegian"
-msgstr "Norska
+msgstr "Norska"
 
 #: ../lib/python/Components/NimManager.py:673
 msgid "Nothing connected"
@@ -803,8 +797,7 @@ msgstr ""
 "Inget att scanna!\n"
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
-#: ../lib/python/Screens/Setup.py:109 ./lib/python/Screens/TimerEntry.py:24
-#: ../lib/python/Screens/TimeDateInput.py:15
+#: ../lib/python/Screens/Setup.py:142 ../lib/python/Screens/TimerEntry.py:24
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
@@ -959,7 +952,7 @@ msgstr "Lör"
 
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:204
-#: ../lib/python/Screens/Satconfig.py:13 ./lib/python/Screens/Satconfig.py:63
+#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
 #: ../lib/python/Screens/Satconfig.py:154
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
 msgid "Satellite"
@@ -1170,10 +1163,6 @@ msgstr "Tors"
 #: ../lib/python/Screens/TimerEntry.py:173
 msgid "Thursday"
 msgstr "Torsdag"
-
-#: ../lib/python/Screens/TimeDateInput.py:55
-msgid "Time"
-msgstr "Tid"
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1676,7 +1665,7 @@ msgstr "byt till fillista"
 msgid "switch to playlist"
 msgstr "byt till playlist"
 
-#: ../lib/python/Screens/Wizard.py:225 ./lib/python/Screens/Wizard.py:226
+#: ../lib/python/Screens/Wizard.py:225 ../lib/python/Screens/Wizard.py:226
 msgid "text"
 msgstr "text"
 
@@ -1806,8 +1795,8 @@ msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
 "harddisk is not an option for you."
 msgstr ""
-"Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till "
-"en hårddisk är inte möjligt."
+"Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till en "
+"hårddisk är inte möjligt."
 
 #: ../data/
 msgid "Deep Standby"
@@ -1873,7 +1862,8 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valt att ta backup till ett USB minne. Bättre att ta backup till HDD!\n"
+"Du har valt att ta backup till ett USB minne. Bättre att ta backup till "
+"HDD!\n"
 "Tryck OK för att starta backup."
 
 #: ../data/
@@ -1881,8 +1871,8 @@ msgid "Audio / Video"
 msgstr "Audio / Video"
 
 #: ../data/
-msgid "Mute"
-msgstr "Ljud av"
+msgid "The wizard is finished now."
+msgstr "Guiden är nu färdig."
 
 #: ../data/
 msgid "Service Searching"
@@ -1893,14 +1883,19 @@ msgid "#20294a6b"
 msgstr ""
 
 #: ../data/
+msgid "Mute"
+msgstr "Ljud av"
+
+#: ../data/
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen "
-"av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till dina"
-"aktuella inställningar och en kort förklaring hur du uppgraderar mjukvaran."
+"av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till "
+"dinaaktuella inställningar och en kort förklaring hur du uppgraderar "
+"mjukvaran."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -1933,10 +1928,6 @@ msgstr "Nätverk"
 #: ../data/
 msgid "Invert"
 msgstr "Invertera"
-
-#: ../data/
-msgid "The wizard is finished now."
-msgstr "Guiden är nu färdig."
 
 #: ../data/
 msgid "System"
@@ -2051,6 +2042,10 @@ msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
 
 #: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
+
+#: ../data/
 msgid "LCD"
 msgstr ""
 
@@ -2087,10 +2082,6 @@ msgid "A/V Settings"
 msgstr "A/V Inställningar"
 
 #: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Ja, återställ inställningarna nu"
-
-#: ../data/
 msgid "Usage Settings"
 msgstr "Användarinställningar"
 
@@ -2098,8 +2089,7 @@ msgstr "Användarinställningar"
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr ""
-"Inforutan visas om du trycker på OK på din fjärrkontroll."
+msgstr "Inforutan visas om du trycker på OK på din fjärrkontroll."
 
 #: ../data/
 msgid "Service scan"
@@ -2128,6 +2118,10 @@ msgstr "Ljudläge"
 #: ../data/
 msgid "#0000ff"
 msgstr ""
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Ja, återställ inställningarna nu"
 
 #: ../data/
 msgid "Contrast"
@@ -2174,11 +2168,12 @@ msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Backupen lyckades. Vi kommer nu att fortsätta förklara uppgraderingsprocessen."
+"Backupen lyckades. Vi kommer nu att fortsätta förklara "
+"uppgraderingsprocessen."
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr "Vill du återställa dina inställningar?"
+msgid "Menu"
+msgstr "Meny"
 
 #: ../data/
 msgid "Parental Lock"
@@ -2209,8 +2204,8 @@ msgid "Margin before record (minutes)"
 msgstr "Marginal innan inspelning (i minuter)"
 
 #: ../data/
-msgid "Time/Date Input"
-msgstr ""
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Backupen misslyckades, välj en annan plats för din backup "
 
 #: ../data/
 msgid "Keymap"
@@ -2295,8 +2290,8 @@ msgid "Timer log"
 msgstr "Timer logg"
 
 #: ../data/
-msgid "Menu"
-msgstr "Meny"
+msgid "Do you want to restore your settings?"
+msgstr "Vill du återställa dina inställningar?"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2405,8 +2400,8 @@ msgid "Timer Editor"
 msgstr ""
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Backupen misslyckades, välj en annan plats för din backup "
+msgid "Time/Date Input"
+msgstr ""
 
 #: ../data/
 msgid "AGC:"
@@ -2459,393 +2454,3 @@ msgstr ""
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
-
-# Gemini
-#~ msgid " Day(s) "
-#~ msgstr " Dag(ar) "
-
-#~ msgid " Hour(s) "
-#~ msgstr " Tim(mar) "
-
-#~ msgid " Minute(s)"
-#~ msgstr " Minut(er)"
-
-#~ msgid " free "
-#~ msgstr " ledigt "
-
-#~ msgid " free: "
-#~ msgstr " ledigt: "
-
-#~ msgid " used "
-#~ msgstr " använt "
-
-#~ msgid " used: "
-#~ msgstr " använt: "
-
-#~ msgid "<  select  >"
-#~ msgstr "<  välj  >"
-
-#~ msgid "Apply satellite"
-#~ msgstr "Lägg till satellit"
-
-#~ msgid ""
-#~ "Are you sure you want to download\n"
-#~ "the new satellites.xml?\n"
-#~ msgstr ""
-#~ "Är du säker på att du vill ladda ner\n"
-#~ "Den nya satellites.xml downloaden?\n"
-
-#~ msgid ""
-#~ "Are you sure you want to install\n"
-#~ "the new satellites.xml?\n"
-#~ msgstr ""
-#~ "Är du säker på att du vill installera\n"
-#~ "Den nya satellites.xml installieren?\n"
-
-#~ msgid ""
-#~ "Are you sure you want to install this addon?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Är du säker på att du vill installera det här tillägget?\n"
-#~ "\n"
-
-#~ msgid "Auto-Camd Settings"
-#~ msgstr "Auto-Camd Inställningar"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalender"
-
-#~ msgid "Camd Settings"
-#~ msgstr "Camd Inställningar"
-
-#~ msgid "Camd-ID not found"
-#~ msgstr "Camd-ID hittades inte"
-
-#~ msgid "Device Settings"
-#~ msgstr "Enhets Inställningar"
-
-#~ msgid "Devices"
-#~ msgstr "Enheter"
-
-#~ msgid "Epg Place:"
-#~ msgstr "Epg Placering:"
-
-#~ msgid "Error !!!"
-#~ msgstr "Fel !!!"
-
-#~ msgid "Extras / Settings"
-#~ msgstr "Extras / Inställningar"
-
-#~ msgid "February"
-#~ msgstr "Februari"
-
-#~ msgid "Free Disk-size to small !!!"
-#~ msgstr "För lite ledigt diskutrymme !!!"
-
-#~ msgid "Go Up"
-#~ msgstr "Gå upp"
-
-#~ msgid "Hdd-Temperature"
-#~ msgstr "Hdd-Temperatur"
-
-#~ msgid "Hide"
-#~ msgstr "Göm"
-
-#~ msgid "Info:"
-#~ msgstr "Information:"
-
-#~ msgid "Infobar"
-#~ msgstr "Inforuta"
-
-#~ msgid "Infobar timeout in seconds"
-#~ msgstr "Timeout för inforuta i Sekunder"
-
-#~ msgid "Install addon: "
-#~ msgstr "Installera Tillägg: "
-
-#~ msgid "January"
-#~ msgstr "Januari"
-
-#~ msgid "July"
-#~ msgstr "Juli"
-
-#~ msgid "June"
-#~ msgstr "Juni"
-
-#~ msgid "Kernel Modules"
-#~ msgstr "Kernel Moduler"
-
-#~ msgid "Manual install"
-#~ msgstr "Manuell installation"
-
-#~ msgid "March"
-#~ msgstr "Mars"
-
-#~ msgid "May"
-#~ msgstr "Maj"
-
-#~ msgid "Memory-Info"
-#~ msgstr "Minnes-information"
-
-#~ msgid "Messages from Kernel"
-#~ msgstr "Kernel Meddelande"
-
-#~ msgid "Mount points"
-#~ msgstr "Mounteringspunkt"
-
-#~ msgid "OK to reloaded Camd-List"
-#~ msgstr "Tryck OK för att ladda om Camd-Lista"
-
-#~ msgid "One moment please..."
-#~ msgstr "Ett ögonblick, tack..."
-
-#~ msgid "Path for Manual install:"
-#~ msgstr "Sökväg för manuell installation:"
-
-#~ msgid "Path: "
-#~ msgstr "Sökväg: "
-
-#~ msgid "Please select addon group"
-#~ msgstr "Välj tilläggs grupp"
-
-#~ msgid "Please select to dowload"
-#~ msgstr "Välj för att ladda ner"
-
-#~ msgid "Press '0' current Day,  Press '1' on/off Reminder"
-#~ msgstr "Tryck '0' Aktuell Dag,  Tryck '1' På/Av Påminnelse"
-
-#~ msgid "Press 'OK' for Info"
-#~ msgstr "Tryck 'OK' för Information"
-
-#~ msgid "Press OK to save settings."
-#~ msgstr "Tryck OK för att spara inställningarna"
-
-#~ msgid "Printer (LPD)"
-#~ msgstr "Skrivare (LPD)"
-
-#~ msgid "Process-Info"
-#~ msgstr "Process-Information"
-
-#~ msgid "Selected Camd (left, right)"
-#~ msgstr "Välj Camd (vänster, höger)"
-
-#~ msgid "Service not found"
-#~ msgstr "Kanal hittades inte"
-
-#~ msgid "Show"
-#~ msgstr "Visa"
-
-#~ msgid "Size (total "
-#~ msgstr "Storlek (total "
-
-#~ msgid "Start camd: "
-#~ msgstr "Starta camd: "
-
-#~ msgid "Start/Restart Camd"
-#~ msgstr "Starta/Starta om Camd"
-
-#~ msgid "Status: Drive is mounted on "
-#~ msgstr "Status: Hdd är mountad på "
-
-#~ msgid "Status: Drive is not mounted"
-#~ msgstr "Status: Hdd är inte mountad"
-
-#~ msgid "Status: Kernel-Modules not loaded!"
-#~ msgstr "Status: Kernel-Modul är inte laddad!"
-
-#~ msgid "Status: Printer not found"
-#~ msgstr "Status: Skrivare hittades inte"
-
-#~ msgid "Status: Reminder is disable"
-#~ msgstr "Status: Påminnelse är inaktiverad"
-
-#~ msgid "Status: Reminder is enable"
-#~ msgstr "Status: Påminnelse är aktiverad"
-
-#~ msgid "Status: hdd is sleeping"
-#~ msgstr "Status: Hårddisk sover"
-
-#~ msgid "Status: no Disc found!"
-#~ msgstr "Status: Ingen CD / DVD funnen"
-
-#~ msgid "Status: running"
-#~ msgstr "Status: Igång"
-
-#~ msgid "Status: stopping"
-#~ msgstr "Status: Stoppad"
-
-#~ msgid "Stop camd: "
-#~ msgstr "Stoppa camd: "
-
-#~ msgid "Stript executed"
-#~ msgstr "Stript genomfört"
-
-#~ msgid "Swap File not found "
-#~ msgstr "Swap Filen hittades inte "
-
-#~ msgid "Swap Place:"
-#~ msgstr "Swap placering:"
-
-#~ msgid "Swap Size:"
-#~ msgstr "Swap storlek:"
-
-#~ msgid "Swap active by "
-#~ msgstr "Swap aktiverad av "
-
-#~ msgid "Swap deactivated"
-#~ msgstr "Swap deaktiverat"
-
-#~ msgid "System Info"
-#~ msgstr "System Information"
-
-#~ msgid "That can last some time\n"
-#~ msgstr "Det kan ta lite tid\n"
-
-#~ msgid "Time update your ip in min:"
-#~ msgstr "Tid för att uppdatera din IP i Minuter:"
-
-#~ msgid "USB/IDE Devices"
-#~ msgstr "USB/IDE enheter"
-
-#~ msgid "VideoPid or AudioPid not found"
-#~ msgstr "VideoPid eller AudioPid hittades inte"
-
-#~ msgid "activate Swap"
-#~ msgstr "Aktiviera Swap"
-
-#~ msgid "addon install not successful!"
-#~ msgstr "Tillägg installerades inte!"
-
-#~ msgid "addon install successful!"
-#~ msgstr "Tillägg installerades!"
-
-#~ msgid "addon size: "
-#~ msgstr "Tillägg storlek: "
-
-#~ msgid ""
-#~ "are you sure you want to delete\n"
-#~ "following addon:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Vill du verkligen radera\n"
-#~ "Tillägget: \n"
-#~ "\n"
-
-#~ msgid "are you sure you want to restart\n"
-#~ msgstr "Är du säker på att du vill starta om\n"
-
-#~ msgid "close"
-#~ msgstr "Stäng"
-
-#~ msgid "creat satellites.xml"
-#~ msgstr "Skapa satellites.xml"
-
-#~ msgid ""
-#~ "creat/delete Swapfile\n"
-#~ "please wait..."
-#~ msgstr ""
-#~ "Skapa/Radera Swapfil\n"
-#~ "Var vänlig vänta..."
-
-#~ msgid "create new Swap File"
-#~ msgstr "Skapa ny Swap Fil"
-
-#~ msgid "current Camd-List:"
-#~ msgstr "Aktuell Camd-Lista:"
-
-#~ msgid "current Path is:\n"
-#~ msgstr "Aktuell sökväg är:\n"
-
-#~ msgid "deactivate Swap"
-#~ msgstr "Inaktivera Swap"
-
-#~ msgid "download"
-#~ msgstr "Ladda ner"
-
-#~ msgid "download and install"
-#~ msgstr "Ladda ner och installera"
-
-#~ msgid ""
-#~ "download not successful!\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Nerladdning misslyckades!\n"
-#~ "Fel: "
-
-#~ msgid "enable/disable"
-#~ msgstr "aktiv/inaktiv"
-
-#~ msgid "enable/disable Auto-Camd"
-#~ msgstr "aktivera/inaktivera Auto-Camd "
-
-#~ msgid "enter recording duration"
-#~ msgstr "Ange inspelningstid"
-
-#~ msgid "install not successful!\n"
-#~ msgstr "Installation misslyckades!\n"
-
-#~ msgid "install successful!\n"
-#~ msgstr "Installation lyckades!\n"
-
-#~ msgid "no Hdd found"
-#~ msgstr "Ingen hårddisk hittades"
-
-#~ msgid "no Mount points found"
-#~ msgstr "Inga mounteringspunkter hittades"
-
-#~ msgid "not by Record !"
-#~ msgstr "Inget i registret !"
-
-#~ msgid "ok press timer for those Infobar"
-#~ msgstr "ok press timer för inforuta"
-
-#~ msgid "open"
-#~ msgstr "öppna"
-
-#~ msgid "record indefinitely"
-#~ msgstr "Spela in obegränsad tid"
-
-#~ msgid "reloaded Camd-List"
-#~ msgstr "nyladdad Camd-List"
-
-#~ msgid "remove Swap File"
-#~ msgstr "ta bort Swap File"
-
-#~ msgid "set Port for httpd:"
-#~ msgstr "Sätt port för httpd:"
-
-#~ msgid "show Blue - Panel..."
-#~ msgstr "Visa Blå - Panel..."
-
-#~ msgid "show Crypt Symbole"
-#~ msgstr "Visa Crypt Symbol"
-
-#~ msgid "show Expert Ecm-Info"
-#~ msgstr "Visa Expert Ecm-Info"
-
-#~ msgid "show Tuner Info in the Infobar"
-#~ msgstr "Visa Tuner-info i inforutan"
-
-#~ msgid "size in use: "
-#~ msgstr "Storlek som används: "
-
-#~ msgid "size total: "
-#~ msgstr "Storlek totalt: "
-
-#~ msgid "stop after current event"
-#~ msgstr "avsluta efter pågående program"
-
-#~ msgid "this attitude require that start again\n"
-#~ msgstr "Den här ändringen kräver omstart\n"
-
-#~ msgid "time too briefly"
-#~ msgstr "Tid till genomgång"
-
-#~ msgid "timeout up to show"
-#~ msgstr "Tidkvar att visa"
-
-#~ msgid "view/choose"
-#~ msgstr "visa/välj"
-
-#~ msgid "Restart Enigma"
-#~ msgstr "Starta om Enigma"
