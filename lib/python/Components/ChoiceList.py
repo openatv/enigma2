@@ -37,6 +37,5 @@ class ChoiceList(MenuList, HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 		
 	def postWidgetCreate(self, instance):
-		instance = eListbox(parent)
 		instance.setContent(self.l)
 		instance.setItemHeight(25)
