@@ -5,8 +5,8 @@ import NavigationInstance
 
 class ServiceReference(eServiceReference):
 	def __init__(self, ref):
-		if isinstance(ref, str):
-			self.ref = eServiceReference(ref)
+		if not isinstance(ref, eServiceReference):
+			self.ref = eServiceReference(ref or "")
 		else:
 			self.ref = ref
 		self.serviceHandler = eServiceCenter.getInstance()
@@ -16,10 +16,7 @@ class ServiceReference(eServiceReference):
 	
 	def getServiceName(self):
 		info = self.info()
-		if info is None:
-			return None
-		
-		return info.getName(self.ref)
+		return info and info.getName(self.ref) or ""
 
 	def play(self):
 		return self.serviceHandler.info(self.ref)
