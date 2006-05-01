@@ -18,10 +18,10 @@ class ConditionalWidget(GUIComponent):
 		self.conditionalFunction = conditionalFunction
 		
 	def activateCondition(self, condition):
-		if (condition):
-			self.state = self.HIDDEN
-		else:
+		if condition:
 			self.state = self.SHOWN
+		else:
+			self.state = self.HIDDEN
 
 	def update(self):
 		if (self.conditionalFunction != None):
