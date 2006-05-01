@@ -487,17 +487,20 @@ def PositionerMain(session, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 	else:
-		usableNims = []
-		for x in nimList:
-			configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
-			if len(configured_rotor_sats) != 0:
-				usableNims.append(x)
-		if len(usableNims) == 1:
-			session.open(PositionerSetup, usableNims[0])
-		elif len(usableNims) > 1:
-			session.open(NimSelection)
+		if session.nav.RecordTimer.isRecording():
+			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
 		else:
-			session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+			usableNims = []
+			for x in nimList:
+				configured_rotor_sats = nimmanager.getRotorSatListForNim(x)
+				if len(configured_rotor_sats) != 0:
+					usableNims.append(x)
+			if len(usableNims) == 1:
+				session.open(PositionerSetup, usableNims[0])
+			elif len(usableNims) > 1:
+				session.open(NimSelection)
+			else:
+				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Positioner setup", description="Setup your positioner", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=PositionerMain)
