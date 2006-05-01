@@ -4,7 +4,7 @@ from VariableText import *
 
 from enigma import eButton
 
-class Button(HTMLComponent, GUIComponent, VariableText):
+class Button(VariableText, HTMLComponent, GUIComponent):
 	def __init__(self, text="", onClick = [ ]):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
@@ -26,12 +26,7 @@ class Button(HTMLComponent, GUIComponent, VariableText):
 	def produceHTML(self):
 		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
 
-# GUI:
-	def createWidget(self, parent):
-		g = eButton(parent)
-		g.selected.get().append(self.push)
-		return g
+	GUI_WIDGET = eButton
 
-	def removeWidget(self, w):
-		w.selected.get().remove(self.push)
-
+	def postWidgetCreate(self, instance):
+		instance.selected.get().append(self.push)

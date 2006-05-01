@@ -12,7 +12,7 @@ from config import config
 import time
 # now some "real" components:
 
-class Clock(HTMLComponent, GUIComponent, VariableText):
+class Clock(VariableText, HTMLComponent, GUIComponent):
 	def __init__(self):
 		VariableText.__init__(self)
 		GUIComponent.__init__(self)
@@ -43,4 +43,5 @@ class Clock(HTMLComponent, GUIComponent, VariableText):
 
 # ...und als HTML:
 	def produceHTML(self):
+	#	return T.b[self.getText()]
 		return self.getText()

@@ -6,7 +6,6 @@ from enigma import *
 from string import upper
 
 class ServiceList(HTMLComponent, GUIComponent):
-
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
 
@@ -14,7 +13,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 		self.root = None
-		
 		self.mode = self.MODE_NORMAL
 
 	def setCurrent(self, ref):
@@ -55,14 +53,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setWrapAround(True)
-		self.instance.setContent(self.l)
-		self.setMode(self.mode)
+	GUI_WIDGET = eListbox
 	
-	def GUIdelete(self):
-		self.instance = None
+	def postWidgetCreate(self, instance):
+		instance.setWrapAround(True)
+		instance.setContent(self.l)
+		self.setMode(self.mode)
 
 	def getRoot(self):
 		return self.root
@@ -129,11 +125,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setMode(self, mode):
 		self.mode = mode
 
-		try:
-			self.instance
-		except:
-			return
-		
 		if mode == self.MODE_NORMAL:
 			self.instance.setItemHeight(28)
 			self.l.setVisualMode(eListboxServiceContent.visModeSimple)

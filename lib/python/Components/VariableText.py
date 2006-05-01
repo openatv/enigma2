@@ -1,9 +1,10 @@
 import skin
 
-class VariableText:
+class VariableText(object):
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
 	
 	def __init__(self):
+		object.__init__(self)
 		self.message = ""
 		self.instance = None
 	
@@ -19,14 +20,7 @@ class VariableText:
 	def getText(self):
 		return self.message
 	
-	def GUIcreate(self, parent):
-		self.instance = self.createWidget(parent)
-		self.instance.setText(self.message)
+	text = property(getText, setText)
 	
-	def GUIdelete(self):
-		self.removeWidget(self.instance)
-		self.instance = None
-	
-	def removeWidget(self, instance):
-		pass
-
+	def postWidgetCreate(self, instance):
+		instance.setText(self.message)

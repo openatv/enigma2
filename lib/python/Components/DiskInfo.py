@@ -6,7 +6,7 @@ from enigma import eLabel
 
 # TODO: Harddisk.py has similiar functions, but only similiar.
 # fix this to use same code
-class DiskInfo(GUIComponent, VariableText):
+class DiskInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2

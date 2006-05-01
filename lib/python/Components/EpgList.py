@@ -122,19 +122,18 @@ class EPGList(HTMLComponent, GUIComponent):
 			if x is not None:
 				try:
 					x()
-				except:
+				except: # FIXME!!!
+					print "FIXME in EPGList.selectionChanged"
 					pass
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setWrapAround(True)
-		self.instance.selectionChanged.get().append(self.selectionChanged)
-		self.instance.setContent(self.l)
+	GUI_WIDGET = eListbox
+	
+	def postCreateWidget(self, instance):
+		instance.setWrapAround(True)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
 		if SINGLE_CPP > 0:
 			self.instance.setItemHeight(25)
-
-	def GUIdelete(self):
-		self.instance = None
 
 	def recalcEntrySize(self):
 		if SINGLE_CPP == 0:

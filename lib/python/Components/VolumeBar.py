@@ -6,12 +6,12 @@ from VariableText import *
 from enigma import eSlider
 from enigma import eLabel
 
-class VolumeBar(HTMLComponent, GUIComponent, VariableValue):
+class VolumeBar(VariableValue, HTMLComponent, GUIComponent):
 	def __init__(self):
 		VariableValue.__init__(self)
 		GUIComponent.__init__(self)
 
-	def createWidget(self, parent):
-		g = eSlider(parent)
-		g.setRange(0, 100)
-		return g
+	GUI_WIDGET = eSlider
+
+	def postWidgetCreate(self, instance):
+		instance.setRange(0, 100)

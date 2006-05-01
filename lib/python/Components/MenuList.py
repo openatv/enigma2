@@ -14,17 +14,17 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
+
+	GUI_WIDGET = eListbox
 	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.selectionChanged.get().append(self.selectionChanged)
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.selectionChanged.get().append(self.selectionChanged)
 		if self.enableWrapAround:
 			self.instance.setWrapAround(True)
 	
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
+	def preWidgetRemove(self, instance):
+		instance.setContent(None)
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:

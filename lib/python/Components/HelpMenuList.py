@@ -48,17 +48,13 @@ class HelpMenuList(GUIComponent):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()[0]
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(42)
-		self.instance.selectionChanged.get().append(self.selectionChanged)
-		
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance.selectionChanged.get().remove(self.selectionChanged)
-		self.instance = None
+	GUI_WIDGET = eListbox
 
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(42)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			x()

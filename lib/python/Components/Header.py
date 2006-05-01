@@ -4,7 +4,7 @@ from VariableText import *
 
 from enigma import eLabel
 
-class Header(HTMLComponent, GUIComponent, VariableText):
+class Header(VariableText, HTMLComponent, GUIComponent):
 
 	def __init__(self, message):
 		GUIComponent.__init__(self)

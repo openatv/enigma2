@@ -26,15 +26,16 @@ def LanguageEntryComponent(file, name, index):
 	
 	return res
 
-class LanguageList(HTMLComponent, GUIComponent, MenuList):
+class LanguageList(MenuList, HTMLComponent, GUIComponent):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		self.list = list
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
-	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(50)
+
+	GUI_WIDGET = eListbox
+		
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(50)

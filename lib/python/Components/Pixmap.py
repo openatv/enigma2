@@ -1,21 +1,10 @@
-from ConditionalWidget import *
+from ConditionalWidget import ConditionalWidget
+from GUIComponent import GUIComponent
 
-from enigma import *
+from enigma import ePixmap, eTimer
 
-class Pixmap(Widget):
-	def __init__(self):
-		Widget.__init__(self)
-
-	def getePixmap(self, parent):
-		#pixmap = ePixmap(parent)
-		#pixmap.setPixmapFromFile(self.filename)
-		return ePixmap(parent)
-	
-	def createWidget(self, parent):
-		return self.getePixmap(parent)
-
-	def removeWidget(self, w):
-		pass
+class Pixmap(GUIComponent):
+	GUI_WIDGET = ePixmap
 
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer = True):

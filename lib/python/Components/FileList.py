@@ -47,7 +47,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	
 	return res
 
-class FileList(HTMLComponent, GUIComponent, MenuList):
+class FileList(MenuList, HTMLComponent, GUIComponent):
 	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
@@ -134,8 +134,9 @@ class FileList(HTMLComponent, GUIComponent, MenuList):
 
 	def getServiceRef(self):
 		return self.getSelection()[0]
-				
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(23)
+
+	GUI_WIDGET = eListbox
+
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(23)

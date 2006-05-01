@@ -123,13 +123,11 @@ class ServicePositionGauge(PerServiceBase):
 	def stopEvent(self):
 		self.disablePolling()
 
-	def GUIcreate(self, parent):
-		self.instance = ePositionGauge(parent)
+	GUI_WIDGET = ePositionGauge
+	
+	def postWidgetCreate(self, instance):
 		self.newService()
 	
-	def GUIdelete(self):
-		self.instance = None
-
 	def newCuesheet(self):
 		service = self.navcore.getCurrentService()
 		cue = service and service.cueSheet()

@@ -63,15 +63,12 @@ class MovieList(HTMLComponent, GUIComponent):
 		l = self.l.getCurrentSelection()
 		return l and l[0]
 
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(75)
+	GUI_WIDGET = eListbox
 	
-	def GUIdelete(self):
-		self.instance.setContent(None)
-		self.instance = None
-
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(75)
+	
 	def reload(self, root = None):
 		if root is not None:
 			self.load(root)

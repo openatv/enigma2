@@ -44,7 +44,7 @@ def PluginDownloadComponent(plugin, name):
 	
 	return res
 
-class PluginList(HTMLComponent, GUIComponent, MenuList):
+class PluginList(MenuList, HTMLComponent, GUIComponent):
 	def __init__(self, list):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
@@ -52,8 +52,9 @@ class PluginList(HTMLComponent, GUIComponent, MenuList):
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
-	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(50)
+
+	GUI_WIDGET = eListbox
+
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(50)
