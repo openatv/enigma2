@@ -29,4 +29,5 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 	GUI_WIDGET = eButton
 
 	def postWidgetCreate(self, instance):
+		instance.setText(self.text)
 		instance.selected.get().append(self.push)
