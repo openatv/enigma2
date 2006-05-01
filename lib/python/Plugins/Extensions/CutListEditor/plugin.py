@@ -111,20 +111,16 @@ class CutList(GUIComponent):
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 	
-	def GUIcreate(self, parent):
-		self.instance = eListbox(parent)
-		self.instance.setContent(self.l)
-		self.instance.setItemHeight(30)
-		self.instance.selectionChanged.get().append(self.selectionChanged)
+	GUI_WIDGET = eListbox
+	
+	def postWidgetCreate(self, instance):
+		instance.setContent(self.l)
+		instance.setItemHeight(30)
+		instance.selectionChanged.get().append(self.selectionChanged)
 
 	def selectionChanged(self):
 		for x in self.onSelectionChanged:
 			x()
-	
-	def GUIdelete(self):
-		self.instance.selectionChanged.get().remove(self.selectionChanged)
-		self.instance.setContent(None)
-		self.instance = None
 	
 	def invalidateEntry(self, index):
 		self.l.invalidateEntry(index)
