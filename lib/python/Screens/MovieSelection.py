@@ -35,6 +35,8 @@ class ChannelContextMenu(FixedMenu):
 	def delete(self):
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(self.service)
+		info = serviceHandler.info(self.service)
+		name = info and info.getName(self.service) or _("this recording")
 		result = False
 		if offline is not None:
 			# simulate first
@@ -42,7 +44,7 @@ class ChannelContextMenu(FixedMenu):
 				result = True
 		
 		if result == True:
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete this recording?"))
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % (name))
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 
