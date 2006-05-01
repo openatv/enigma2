@@ -12,6 +12,7 @@ from skin import elementsWithTag
 
 from Tools import XMLTools
 
+# FIXME: use resolveFile!
 # read the setupmenu
 try:
 	# first we search in the current path
@@ -32,8 +33,37 @@ def getValbyAttr(x, attr):
 	
 	return ""
 
-class Setup(Screen):
+class SetupSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget name="SetupTitle" position="0,0" size="132,16" font="Regular;12" />
+		<widget name="SetupEntry" position="0,16" size="132,32" font="Regular;12" />
+		<widget name="SetupValue" position="0,48" size="132,16" font="Regular;12" />
+	</screen>"""
 
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+		self["SetupTitle"] = Label(_(parent.setup_title))
+		self["SetupEntry"] = Label("")
+		self["SetupValue"] = Label("")
+		self.parent = parent
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+		
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+	
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["SetupEntry"].text = self.parent.getCurrentEntry()
+		self["SetupValue"].text = self.parent.getCurrentValue()
+
+class Setup(Screen):
 	def addItems(self, list, childNode):
 		for x in childNode:
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
@@ -51,15 +81,21 @@ class Setup(Screen):
 				# the second one is converted to string.
 				list.append( (ItemText, item) )
 
+	def handleKey(self, key):
+		# ignore keys when not enabled
+		if self["config"].getCurrent()[1].parent.enabled:
+			self["config"].handleKey(config.key[key])
+			print self["config"].getCurrent()
+			self.changedEntry()
+
 	def keyOk(self):
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key["choseElement"])
+		self.handleKey("choseElement")
+
 	def keyLeft(self):
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key["prevElement"])
+		self.handleKey("prevElement")
+
 	def keyRight(self):
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key["nextElement"])
+		self.handleKey("nextElement")
 
 	def keySave(self):
 		print "save requested"
@@ -74,20 +110,16 @@ class Setup(Screen):
 		self.close()
 		
 	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key[str(number)])
-
+		self.handleKey(str(number))
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
 
-		print "request setup for " + setup
-		
 		xmldata = setupdom.childNodes[0]
 		
 		entries = xmldata.childNodes
 
+		self.onChangedEntry = [ ]
 		list = []
 				
 		for x in entries:             #walk through the actual nodelist
@@ -104,7 +136,8 @@ class Setup(Screen):
 		
 		self["config"] = ConfigList(list)
 
-		self["title"] = Label(_(myTitle));
+		self.setup_title = myTitle
+		self["title"] = Label(_(self.setup_title))
 
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
@@ -129,3 +162,19 @@ class Setup(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			}, -1)
+
+		self.changedEntry()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].parent.value)
+
+	def createSummary(self):
+		return SetupSummary
