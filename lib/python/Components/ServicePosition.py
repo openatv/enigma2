@@ -65,8 +65,11 @@ class ServicePosition(PerServiceDisplay):
 				l = self.get(self.TYPE_POSITION)
 				if l != -1:
 					l += self.relative_base
-					t = time.localtime(l)
-					timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+					try:
+						t = time.localtime(l)
+						timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+					except ValueError:
+						timestr = ""
 				else:
 					timestr = ""
 
