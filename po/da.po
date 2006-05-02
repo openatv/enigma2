@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-05-02 18:54+0200\n"
-"PO-Revision-Date: 2006-05-02 17:47+0100\n"
+"PO-Revision-Date: 2006-05-02 20:01+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj1@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -110,10 +110,8 @@ msgstr ""
 "Hvad vil du gøre?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "En optagelse er igang. Stop, venligst denne optagelse før konfigurering af Motoren."
 
 #: ../RecordTimer.py:151
 msgid ""
@@ -137,7 +135,7 @@ msgstr ""
 
 #: ../lib/python/Screens/InfoBarGenerics.py:998
 msgid "Activate Picture in Picture"
-msgstr ""
+msgstr "Aktiver Billed i Billed"
 
 #: ../lib/python/Screens/TimerEdit.py:28
 msgid "Add"
@@ -156,7 +154,7 @@ msgstr "Avanceret"
 
 #: ../lib/python/Screens/TimerEntry.py:195
 msgid "After event"
-msgstr ""
+msgstr "Efter film"
 
 #: ../lib/python/Screens/MediaPlayer.py:41
 msgid "Album:"
@@ -190,7 +188,8 @@ msgstr ""
 msgid "Auto"
 msgstr "Auto"
 
-#: ../lib/python/Screens/ScanSetup.py:577 ../data/
+#: ../lib/python/Screens/ScanSetup.py:577
+#: ../data/
 msgid "Automatic Scan"
 msgstr "Automatisk Søgning"
 
@@ -250,7 +249,8 @@ msgstr ""
 msgid "Cable provider"
 msgstr "Kabeludbyder"
 
-#: ../lib/python/Screens/Setup.py:143 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/Setup.py:143
+#: ../lib/python/Screens/TimerEntry.py:25
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -260,7 +260,8 @@ msgstr "Afbryd"
 msgid "Capacity: "
 msgstr "Kapacitet: "
 
-#: ../lib/python/Screens/TimerEntry.py:197 ../data/
+#: ../lib/python/Screens/TimerEntry.py:197
+#: ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -308,7 +309,8 @@ msgid "Complete"
 msgstr "Færdig"
 
 #: ../lib/python/Screens/Satconfig.py:49
-#: ../lib/python/Screens/Satconfig.py:154 ../data/
+#: ../lib/python/Screens/Satconfig.py:154
+#: ../data/
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
@@ -373,7 +375,8 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC gentagelser"
 
 #: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:84 ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:84
+#: ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -386,7 +389,7 @@ msgstr "Sluk"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1000
 msgid "Disable Picture in Picture"
-msgstr ""
+msgstr "Afbryd Billed i Billed"
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
@@ -399,7 +402,7 @@ msgstr ""
 #: ../lib/python/Screens/MovieSelection.py:47
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr ""
+msgstr "Vil du virkelig slette %s?"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 msgid ""
@@ -457,7 +460,8 @@ msgid "East"
 msgstr "Øst"
 
 #: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:82 ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/TimerEdit.py:82
+#: ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -515,7 +519,7 @@ msgstr "Favoritter"
 
 #: ../lib/python/Components/Language.py:18
 msgid "French"
-msgstr ""
+msgstr "Fransk"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/ScanSetup.py:224
@@ -544,7 +548,8 @@ msgstr "Frontprocessor Version: %d"
 msgid "Function not yet implemented"
 msgstr "Funktion endnu ikke tilgængelig"
 
-#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:45
+#: ../data/
 msgid "Gateway"
 msgstr ""
 
@@ -583,7 +588,8 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du optage?"
 
-#: ../lib/python/Screens/NetworkSetup.py:42 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:42
+#: ../data/
 msgid "IP Address"
 msgstr "IP-Adresse"
 
@@ -620,7 +626,7 @@ msgstr "Inverter"
 
 #: ../lib/python/Components/Language.py:21
 msgid "Italian"
-msgstr ""
+msgstr "Italiensk"
 
 #: ../lib/python/Screens/Satconfig.py:118
 msgid "LNB"
@@ -638,12 +644,14 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48
+#: ../data/
 msgid "Language selection"
 msgstr "Valg af sprog"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:137 ../data/
+#: ../lib/python/Screens/Satconfig.py:137
+#: ../data/
 msgid "Latitude"
 msgstr "Breddegrad"
 
@@ -660,7 +668,8 @@ msgid "Limits off"
 msgstr "Limits off"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:135 ../data/
+#: ../lib/python/Screens/Satconfig.py:135
+#: ../data/
 msgid "Longitude"
 msgstr "Længdegrad"
 
@@ -727,11 +736,13 @@ msgstr ""
 msgid "Name"
 msgstr "Navn"
 
-#: ../lib/python/Screens/NetworkSetup.py:46 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:46
+#: ../data/
 msgid "Nameserver"
 msgstr "Navneserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:44
+#: ../data/
 msgid "Netmask"
 msgstr "Netmaske"
 
@@ -768,11 +779,11 @@ msgstr "Ingen EPG-Data fundet. Start ubegrænset optagelse."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:488
 msgid "No positioner capable frontend found."
-msgstr ""
+msgstr "Ingen brugbar Motor frontend fundet."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr ""
+msgstr "Ingen Tuner er konfigureret til brug af diseqc Motor!"
 
 #: ../lib/python/Screens/ScanSetup.py:306
 #: ../lib/python/Screens/ScanSetup.py:312
@@ -806,8 +817,11 @@ msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Intet at søge!\n"
+"Sæt venligst Tuner indstilling op før du starter søgning."
 
-#: ../lib/python/Screens/Setup.py:142 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/Setup.py:142
+#: ../lib/python/Screens/TimerEntry.py:24
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr ""
@@ -838,7 +852,7 @@ msgstr "Afspil optaget film..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1001
 msgid "Please choose an extension..."
-msgstr ""
+msgstr "Vælg venligst en udvidelse..."
 
 #: ../lib/python/Screens/ChannelSelection.py:118
 msgid "Please enter a name for the new bouquet"
@@ -879,7 +893,7 @@ msgstr "Motor"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
 msgid "Positioner fine movement"
-msgstr ""
+msgstr "Fin justering af motor"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
 msgid "Positioner movement"
@@ -962,7 +976,8 @@ msgstr "Lør"
 
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:204
-#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
+#: ../lib/python/Screens/Satconfig.py:13
+#: ../lib/python/Screens/Satconfig.py:63
 #: ../lib/python/Screens/Satconfig.py:156
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
 msgid "Satellite"
@@ -985,11 +1000,11 @@ msgstr "Søg efter tunere"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Search east"
-msgstr ""
+msgstr "Søg øst"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Search west"
-msgstr ""
+msgstr "Søg vest"
 
 #: ../lib/python/Components/NimManager.py:674
 msgid "Secondary cable from motorized LNB"
@@ -1021,7 +1036,7 @@ msgstr "Vis radioafspilleren..."
 
 #: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
-msgstr ""
+msgstr "Magen til"
 
 #: ../lib/python/Screens/EventView.py:127
 msgid "Similar broadcasts:"
@@ -1124,7 +1139,8 @@ msgstr "Gem Position"
 msgid "Stored position"
 msgstr "Gemt Position"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1201 ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1201
+#: ../data/
 msgid "Subservices"
 msgstr "Underkanaler"
 
@@ -1140,7 +1156,7 @@ msgstr "Søndag"
 
 #: ../lib/python/Components/Language.py:24
 msgid "Swedish"
-msgstr ""
+msgstr "Svensk"
 
 #: ../lib/python/Screens/ScanSetup.py:198
 #: ../lib/python/Screens/ScanSetup.py:226
@@ -1150,7 +1166,7 @@ msgstr "Symbol Rate"
 
 #: ../lib/python/Screens/ChannelSelection.py:707
 msgid "Terrestrial"
-msgstr ""
+msgstr "Jordbaseret"
 
 #: ../lib/python/Screens/Satconfig.py:73
 msgid "Terrestrial provider"
@@ -1188,7 +1204,7 @@ msgstr ""
 
 #: ../lib/python/Screens/MediaPlayer.py:39
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: ../lib/python/Screens/EpgSelection.py:258
 #: ../lib/python/Tools/FuzzyDate.py:10
@@ -1280,7 +1296,8 @@ msgstr "Opdatering er udført. Her er resultatet:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Opdaterer... Vent venligst...  Dette kan tage adskillige minutter..."
 
-#: ../lib/python/Screens/NetworkSetup.py:40 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:40
+#: ../data/
 msgid "Use DHCP"
 msgstr "Brug (DHCP)"
 
@@ -1321,7 +1338,7 @@ msgstr "Vest"
 
 #: ../lib/python/Screens/MediaPlayer.py:43
 msgid "Year:"
-msgstr ""
+msgstr "År:"
 
 #: ../lib/python/Components/NimManager.py:727
 #: ../lib/python/Components/NimManager.py:747
@@ -1373,11 +1390,11 @@ msgstr "Tilføj pakke..."
 
 #: ../lib/python/Screens/MediaPlayer.py:258
 msgid "add directory to playlist"
-msgstr ""
+msgstr "tilføj direktorie til spilleliste"
 
 #: ../lib/python/Screens/MediaPlayer.py:260
 msgid "add file to playlist"
-msgstr ""
+msgstr "tilføj fil til spilleliste"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 #: ../lib/python/Screens/InfoBarGenerics.py:1149
@@ -1429,7 +1446,7 @@ msgstr "højre-cirkulær"
 
 #: ../lib/python/Screens/MediaPlayer.py:264
 msgid "clear playlist"
-msgstr ""
+msgstr "ryd spilleliste"
 
 #: ../lib/python/Screens/ChannelSelection.py:82
 msgid "copy to favourites"
@@ -1498,11 +1515,11 @@ msgstr "full /etc direktorie"
 
 #: ../lib/python/Screens/TimerEntry.py:99
 msgid "go to deep standby"
-msgstr ""
+msgstr "gå til afbrydning"
 
 #: ../lib/python/Screens/MediaPlayer.py:265
 msgid "hide player"
-msgstr ""
+msgstr "skjul spiller"
 
 #: ../lib/python/Screens/ScanSetup.py:305
 msgid "horizontal"
@@ -1669,19 +1686,20 @@ msgstr "stop optagelse"
 
 #: ../lib/python/Screens/MediaPlayer.py:262
 msgid "switch to filelist"
-msgstr ""
+msgstr "skift til filliste"
 
 #: ../lib/python/Screens/MediaPlayer.py:256
 msgid "switch to playlist"
-msgstr ""
+msgstr "skift til spilleliste"
 
-#: ../lib/python/Screens/Wizard.py:222 ../lib/python/Screens/Wizard.py:223
+#: ../lib/python/Screens/Wizard.py:222
+#: ../lib/python/Screens/Wizard.py:223
 msgid "text"
 msgstr "tekst"
 
 #: ../lib/python/Screens/MovieSelection.py:39
 msgid "this recording"
-msgstr ""
+msgstr "denne optagelse"
 
 #: ../lib/python/Screens/EventView.py:80
 msgid "unknown service"
@@ -1755,9 +1773,7 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, lav en backup af indstillinger!"
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
 msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu"
 
 #: ../data/
@@ -1766,17 +1782,11 @@ msgstr "Satkonfiguration"
 
 #: ../data/
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Du skal have en PC forbundet til din Dreambox. Hvis du manler "
-"yderligerInformationer, så gå til websiden http://www.dm7025.de.\n"
-"Din Dreambox bliver slukket nu. Efter du har udført opdateringen "
-"Instruktioner fra websiden, vil den nye firmware vil bede dig om at "
-"geninstallere, dine indstillinger."
+"Du skal have en PC forbundet til din Dreambox. Hvis du manler yderligerInformationer, så gå til websiden http://www.dm7025.de.\n"
+"Din Dreambox bliver slukket nu. Efter du har udført opdateringen Instruktioner fra websiden, vil den nye firmware vil bede dig om at geninstallere, dine indstillinger."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -1803,12 +1813,8 @@ msgid "NEXT"
 msgstr "NÆSTE"
 
 #: ../data/
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Du ser ikke ud til at have en HDD i din Dreambox. Så derfor kan du ikke lave "
-"en HDD backup."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "Du ser ikke ud til at have en HDD i din Dreambox. Så derfor kan du ikke lave en HDD backup."
 
 #: ../data/
 msgid "Deep Standby"
@@ -1827,11 +1833,8 @@ msgid "Sound"
 msgstr "Lyd"
 
 #: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Brug pil op/ned for at vælge på din fjernbetjening. Derefter tryk på OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Brug pil op/ned for at vælge på din fjernbetjening. Derefter tryk på OK."
 
 #: ../data/
 msgid "No, just start my dreambox"
@@ -1898,14 +1901,8 @@ msgid "Mute"
 msgstr "Mute"
 
 #: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Welkommen til Image upgrade guiden. Denne guide vil hjælpe dig gennem "
-"opdatering. Firmwaren i din Dreambox giver dig mulighed for at lave backup "
-"af dine settings her en kort gennemgang."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Welkommen til Image upgrade guiden. Denne guide vil hjælpe dig gennem opdatering. Firmwaren i din Dreambox giver dig mulighed for at lave backup af dine settings her en kort gennemgang."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -2097,9 +2094,7 @@ msgid "Usage Settings"
 msgstr "Bruger Indstillinger"
 
 #: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "For at se infobjælke, tryk på OK."
 
 #: ../data/
@@ -2139,12 +2134,8 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Du har valgt at lave en backup på HDD. Tryk venligst på OK, for at lave "
-"backup nu."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "Du har valgt at lave en backup på HDD. Tryk venligst på OK, for at lave backup nu."
 
 #: ../data/
 msgid "Timer selection"
@@ -2156,13 +2147,10 @@ msgstr "Gentag"
 
 #: ../data/
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valgt backup på compact flash. Kortet skal sidde i slottet. Den "
-"foretrukne måde at lave backup på er på HDD!\n"
+"Du har valgt backup på compact flash. Kortet skal sidde i slottet. Den foretrukne måde at lave backup på er på HDD!\n"
 "Tryk på OK, for alligevel at starte en backup."
 
 #: ../data/
@@ -2174,12 +2162,8 @@ msgid "Somewhere else"
 msgstr "Andet steds"
 
 #: ../data/
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Din backup er lykkedes. Vi vil nu forsætte forklaringen på opdaterings "
-"processen."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Din backup er lykkedes. Vi vil nu forsætte forklaringen på opdaterings processen."
 
 #: ../data/
 msgid "Menu"
@@ -2226,11 +2210,8 @@ msgid "InfoBar"
 msgstr "InfoBjælke"
 
 #: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Wizarden kan gemme dine nuværende indstillinger. Vil du gemme dine "
-"indstillinger nu?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Wizarden kan gemme dine nuværende indstillinger. Vil du gemme dine indstillinger nu?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -2413,7 +2394,7 @@ msgstr "Timer Redigering"
 
 #: ../data/
 msgid "Time/Date Input"
-msgstr ""
+msgstr "Tids/Dato Input"
 
 #: ../data/
 msgid "AGC:"
