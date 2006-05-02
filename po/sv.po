@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 19:26+0200\n"
-"PO-Revision-Date: 2006-05-01 13:24+0100\n"
+"POT-Creation-Date: 2006-05-02 18:54+0200\n"
+"PO-Revision-Date: 2006-05-02 11:18+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr "1.2"
 msgid "12 V"
 msgstr "12 V"
 
-#: ../lib/python/Screens/Satconfig.py:147
+#: ../lib/python/Screens/Satconfig.py:149
 msgid "12V Output"
 msgstr "12V Ut"
 
@@ -112,12 +112,18 @@ msgstr ""
 "En inspelning pågår redan.\n"
 "Vad vill du göra?"
 
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
+msgstr ""
+
 #: ../RecordTimer.py:151
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"En timerinspelning misslyckades.\n"
+"En timerinspelning misslyckades!\n"
 "Inaktivera TV och försök igen?\n"
 
 #: ../lib/python/Components/NimManager.py:731
@@ -134,7 +140,7 @@ msgstr "AGC"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:998
 msgid "Activate Picture in Picture"
-msgstr "Aktivera Picture in Picture"
+msgstr "Aktivera Bild i Bild"
 
 #: ../lib/python/Screens/TimerEdit.py:28
 msgid "Add"
@@ -189,7 +195,7 @@ msgstr "Auto"
 
 #: ../lib/python/Screens/ScanSetup.py:577 ../data/
 msgid "Automatic Scan"
-msgstr "Automatisk sökning"
+msgstr "Automatisk Sökning"
 
 #: ../lib/python/Components/NimManager.py:748
 msgid "B"
@@ -229,7 +235,7 @@ msgstr "Bandbredd"
 
 #: ../lib/python/Screens/HarddiskSetup.py:31
 msgid "Bus: "
-msgstr "Bus:"
+msgstr "Bus: "
 
 #: ../lib/python/Components/NimManager.py:742
 msgid "C-Band"
@@ -289,12 +295,12 @@ msgstr "Code rate hög"
 msgid "Code rate low"
 msgstr "Code rate låg"
 
-#: ../lib/python/Screens/Satconfig.py:127
 #: ../lib/python/Screens/Satconfig.py:129
+#: ../lib/python/Screens/Satconfig.py:131
 msgid "Command order"
 msgstr "Kommando ordning"
 
-#: ../lib/python/Screens/Satconfig.py:123
+#: ../lib/python/Screens/Satconfig.py:125
 msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC kommando"
 
@@ -304,7 +310,7 @@ msgid "Complete"
 msgstr "Komplett"
 
 #: ../lib/python/Screens/Satconfig.py:49
-#: ../lib/python/Screens/Satconfig.py:152 ../data/
+#: ../lib/python/Screens/Satconfig.py:154 ../data/
 msgid "Configuration Mode"
 msgstr "Inställningar"
 
@@ -332,7 +338,7 @@ msgstr "Ta bort"
 msgid "Delete entry"
 msgstr "Ta bort post"
 
-#: ../lib/python/Screens/MovieSelection.py:62
+#: ../lib/python/Screens/MovieSelection.py:64
 msgid "Delete failed!"
 msgstr "Borttagning misslyckades!"
 
@@ -358,13 +364,13 @@ msgstr "DiSEqC A/B/C/D"
 
 #: ../lib/python/Screens/Satconfig.py:53
 msgid "DiSEqC Mode"
-msgstr "DiSEqC läge"
+msgstr "DiSEqC Läge"
 
-#: ../lib/python/Screens/Satconfig.py:119
+#: ../lib/python/Screens/Satconfig.py:121
 msgid "DiSEqC mode"
 msgstr "DiSEqC läge"
 
-#: ../lib/python/Screens/Satconfig.py:131
+#: ../lib/python/Screens/Satconfig.py:133
 msgid "DiSEqC repeats"
 msgstr "DiSEqC repetetioner"
 
@@ -382,7 +388,7 @@ msgstr "Avaktivera"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1000
 msgid "Disable Picture in Picture"
-msgstr "Avaktivera Picture in Picture"
+msgstr "Avaktivera Bild i Bild"
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
@@ -392,9 +398,10 @@ msgstr ""
 "Vill du verkligen TA BORT\n"
 "pluginen \""
 
-#: ../lib/python/Screens/MovieSelection.py:45
-msgid "Do you really want to delete this recording?"
-msgstr "Vill du verkligen ta bort den här inspelningen?"
+#: ../lib/python/Screens/MovieSelection.py:47
+#, python-format
+msgid "Do you really want to delete %s?"
+msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 msgid ""
@@ -499,13 +506,17 @@ msgstr "Utökningar"
 msgid "FEC"
 msgstr "FEC"
 
-#: ../lib/python/Screens/Satconfig.py:124
+#: ../lib/python/Screens/Satconfig.py:126
 msgid "Fast DiSEqC"
 msgstr "Fast DiSEqC"
 
 #: ../lib/python/Screens/ChannelSelection.py:451
 msgid "Favourites"
 msgstr "Favoriter"
+
+#: ../lib/python/Components/Language.py:18
+msgid "French"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/ScanSetup.py:224
@@ -543,7 +554,7 @@ msgid "Genre:"
 msgstr "Genre:"
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:18
+#: ../lib/python/Components/Language.py:19
 msgid "German"
 msgstr "Tyska"
 
@@ -566,7 +577,7 @@ msgstr "Hårddisk"
 
 #: ../lib/python/Screens/ScanSetup.py:244
 msgid "Hierarchy mode"
-msgstr "Hiearktiskt läge"
+msgstr "Hierarkiskt läge"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1123
 #: ../lib/python/Screens/InfoBarGenerics.py:1131
@@ -577,7 +588,7 @@ msgstr "Hur många minuter vill du spela in?"
 msgid "IP Address"
 msgstr "IP Adress"
 
-#: ../lib/python/Components/Language.py:19
+#: ../lib/python/Components/Language.py:20
 msgid "Icelandic"
 msgstr "Isländska"
 
@@ -585,7 +596,7 @@ msgstr "Isländska"
 msgid "Image-Upgrade"
 msgstr "Image Uppgradering"
 
-#: ../lib/python/Screens/Satconfig.py:148
+#: ../lib/python/Screens/Satconfig.py:150
 msgid "Increased voltage"
 msgstr "Ökad spänning"
 
@@ -608,23 +619,23 @@ msgstr "Initierar Hårddisk..."
 msgid "Inversion"
 msgstr "Inversion"
 
-#: ../lib/python/Components/Language.py:20
+#: ../lib/python/Components/Language.py:21
 msgid "Italian"
 msgstr "Italienska"
 
-#: ../lib/python/Screens/Satconfig.py:116
+#: ../lib/python/Screens/Satconfig.py:118
 msgid "LNB"
 msgstr "LNB"
 
-#: ../lib/python/Screens/Satconfig.py:141
+#: ../lib/python/Screens/Satconfig.py:143
 msgid "LOF"
 msgstr "LOF"
 
-#: ../lib/python/Screens/Satconfig.py:145
+#: ../lib/python/Screens/Satconfig.py:147
 msgid "LOF/H"
 msgstr "LOF/H"
 
-#: ../lib/python/Screens/Satconfig.py:144
+#: ../lib/python/Screens/Satconfig.py:146
 msgid "LOF/L"
 msgstr "LOF/L"
 
@@ -633,7 +644,7 @@ msgid "Language selection"
 msgstr "Välj språk"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:135 ../data/
+#: ../lib/python/Screens/Satconfig.py:137 ../data/
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -650,7 +661,7 @@ msgid "Limits off"
 msgstr "Gränser av"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:133 ../data/
+#: ../lib/python/Screens/Satconfig.py:135 ../data/
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -660,11 +671,11 @@ msgstr "Loopa igenom till Tuner A"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
 msgid "Manual transponder"
-msgstr ""
+msgstr "Manuell transponder"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
-msgstr "Modell:"
+msgstr "Modell: "
 
 #: ../lib/python/Screens/ScanSetup.py:227
 #: ../lib/python/Screens/ScanSetup.py:241
@@ -687,11 +698,11 @@ msgstr "Måndag"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Move east"
-msgstr "Flytta Öst"
+msgstr "Flytta öst"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
 msgid "Move west"
-msgstr "Flytta Väst"
+msgstr "Flytta väst"
 
 #: ../lib/python/Screens/MovieSelection.py:29
 msgid "Movie Menu"
@@ -748,7 +759,7 @@ msgstr "Nej"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1143
 msgid "No HDD found or HDD not initialized!"
-msgstr "Ingen Hårddisk funnen eller initialiserad!"
+msgstr "Ingen hårddisk funnen eller initialiserad!"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1076
 msgid "No event info found, recording indefinitely."
@@ -756,9 +767,9 @@ msgstr "Ingen programinfo hittades, inspelning oändlig."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:488
 msgid "No positioner capable frontend found."
-msgstr ""
+msgstr "Ingen positioner kapabel frontend funnet"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:500
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
 
@@ -780,7 +791,7 @@ msgstr "Inga"
 msgid "North"
 msgstr "Nord"
 
-#: ../lib/python/Components/Language.py:21
+#: ../lib/python/Components/Language.py:22
 msgid "Norwegian"
 msgstr "Norska"
 
@@ -834,9 +845,9 @@ msgstr "Vänligen välj en utökning..."
 msgid "Please enter a name for the new bouquet"
 msgstr "Ange namn för den nya bouquet"
 
-#: ../lib/python/Screens/MovieSelection.py:77
+#: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
-msgstr "Vänta tack... Laddar lista..."
+msgstr "Vänligen vänta... Laddar lista..."
 
 #: ../lib/python/Screens/ScanSetup.py:199
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:389
@@ -885,7 +896,7 @@ msgstr "Fördefinerad satelliter"
 
 #: ../lib/python/Screens/NetworkSetup.py:35
 msgid "Press OK to activate the settings."
-msgstr "Tryck OK för aktivera inställningarna"
+msgstr "Tryck OK för aktivera inställningarna."
 
 #: ../lib/python/Screens/ScanSetup.py:578
 msgid "Press OK to scan"
@@ -953,7 +964,7 @@ msgstr "Lör"
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:204
 #: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
-#: ../lib/python/Screens/Satconfig.py:154
+#: ../lib/python/Screens/Satconfig.py:156
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
 msgid "Satellite"
 msgstr "Satellit"
@@ -989,9 +1000,9 @@ msgstr "Andra kabeln från Motor"
 msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
 
-#: ../lib/python/Screens/Satconfig.py:125
+#: ../lib/python/Screens/Satconfig.py:127
 msgid "Sequence repeat"
-msgstr "Repetera seqvens"
+msgstr "Repetera sekvens"
 
 #: ../lib/python/Screens/ChannelSelection.py:699
 msgid "Services"
@@ -1063,7 +1074,7 @@ msgstr ""
 msgid "South"
 msgstr "Syd"
 
-#: ../lib/python/Components/Language.py:22
+#: ../lib/python/Components/Language.py:23
 msgid "Spanish"
 msgstr "Spanska"
 
@@ -1079,7 +1090,7 @@ msgstr "Starta inspelning?"
 msgid "StartTime"
 msgstr "StartTid"
 
-#: ../lib/python/Screens/Wizard.py:221
+#: ../lib/python/Screens/Wizard.py:218
 msgid "Step "
 msgstr "Steg "
 
@@ -1108,11 +1119,11 @@ msgstr "Stoppa uppspelningen?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
 msgid "Store position"
-msgstr "Spara position"
+msgstr "Lagra position"
 
-#: ../lib/python/Screens/Satconfig.py:113
+#: ../lib/python/Screens/Satconfig.py:115
 msgid "Stored position"
-msgstr "Positionen sparad"
+msgstr "Lagrad position"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1201 ../data/
 msgid "Subservices"
@@ -1128,7 +1139,7 @@ msgstr "Sön"
 msgid "Sunday"
 msgstr "Söndag"
 
-#: ../lib/python/Components/Language.py:23
+#: ../lib/python/Components/Language.py:24
 msgid "Swedish"
 msgstr "Svenska"
 
@@ -1150,7 +1161,7 @@ msgstr "Terrestrial provider"
 msgid "Three"
 msgstr "Tre"
 
-#: ../lib/python/Screens/Satconfig.py:146
+#: ../lib/python/Screens/Satconfig.py:148
 msgid "Threshold"
 msgstr "Gränsvärde"
 
@@ -1174,7 +1185,7 @@ msgstr "Timeshift inte möjligt!"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1205
 msgid "Timeshifting"
-msgstr ""
+msgstr "Timeshifting"
 
 #: ../lib/python/Screens/MediaPlayer.py:39
 msgid "Title:"
@@ -1185,11 +1196,11 @@ msgstr "Title:"
 msgid "Today"
 msgstr "Idag"
 
-#: ../lib/python/Screens/Satconfig.py:108
+#: ../lib/python/Screens/Satconfig.py:110
 msgid "Tone mode"
 msgstr "Tone läge"
 
-#: ../lib/python/Screens/Satconfig.py:122
+#: ../lib/python/Screens/Satconfig.py:124
 msgid "Toneburst"
 msgstr "Toneburst"
 
@@ -1219,12 +1230,12 @@ msgstr "Tisdag"
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:381
 msgid "Tune"
-msgstr ""
+msgstr "Tune"
 
 #: ../lib/python/Screens/ScanSetup.py:177
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "Tuner"
-msgstr ""
+msgstr "Tuner"
 
 #: ../lib/python/Components/NimManager.py:756
 msgid "Two"
@@ -1242,7 +1253,7 @@ msgstr "USALS"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "USB Stick"
-msgstr "USB Stick"
+msgstr "USB Pinne"
 
 #: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
@@ -1254,7 +1265,7 @@ msgstr ""
 "Var vänlig läs i manualen.\n"
 "Fel: "
 
-#: ../lib/python/Screens/Satconfig.py:130
+#: ../lib/python/Screens/Satconfig.py:132
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
 
@@ -1274,7 +1285,7 @@ msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter...."
 msgid "Use DHCP"
 msgstr "Använd DHCP"
 
-#: ../lib/python/Screens/Satconfig.py:110
+#: ../lib/python/Screens/Satconfig.py:112
 msgid "Use usals for this sat"
 msgstr "Använd USALS för denna sat"
 
@@ -1282,13 +1293,13 @@ msgstr "Använd USALS för denna sat"
 msgid "User defined"
 msgstr "Användardefinierat"
 
-#: ../lib/python/Screens/Satconfig.py:107
+#: ../lib/python/Screens/Satconfig.py:109
 msgid "Voltage mode"
 msgstr "Spännings läge"
 
 #: ../lib/python/Screens/ChannelSelection.py:711
 msgid "W"
-msgstr "W"
+msgstr "V"
 
 #: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
@@ -1321,7 +1332,7 @@ msgstr "År:"
 msgid "Yes"
 msgstr "Ja"
 
-#: ../lib/python/Screens/MovieSelection.py:47
+#: ../lib/python/Screens/MovieSelection.py:49
 msgid "You cannot delete this!"
 msgstr "Du kan inte ta bort detta!"
 
@@ -1330,7 +1341,7 @@ msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"Din frontprocessor måste uppgraderas.\n"
+"Din frontprocessor firmware måste uppgraderas.\n"
 "Tryck OK för att starta."
 
 #: ../lib/python/Screens/ChannelSelection.py:331
@@ -1343,7 +1354,7 @@ msgstr "[favoriter editor]"
 
 #: ../lib/python/Screens/ChannelSelection.py:416
 msgid "[move mode]"
-msgstr "[ändra läge]"
+msgstr "[flytt läge]"
 
 #: ../lib/python/Screens/ChannelSelection.py:103
 msgid "abort bouquet edit"
@@ -1407,7 +1418,7 @@ msgstr "tillbaka"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid "change recording (duration)"
-msgstr "ändra inspelning (tid)"
+msgstr "ändra inspelning (längd)"
 
 #: ../lib/python/Screens/ScanSetup.py:305
 msgid "circular left"
@@ -1509,7 +1520,7 @@ msgstr "lämna videospelare..."
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid "list"
-msgstr ""
+msgstr "list"
 
 #: ../lib/python/Components/NimManager.py:695
 msgid "manual"
@@ -1518,7 +1529,7 @@ msgstr "manuell"
 #: ../lib/python/Components/TimerList.py:48
 #: ../lib/python/Components/TimerList.py:53
 msgid "mins"
-msgstr ""
+msgstr "mins"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "next channel"
@@ -1541,11 +1552,11 @@ msgstr "nej"
 
 #: ../lib/python/Screens/HarddiskSetup.py:63
 msgid "no HDD found"
-msgstr "Ingen hårddisk hittades"
+msgstr "Ingen hårddisk hittad"
 
 #: ../lib/python/Screens/Ci.py:218
 msgid "no module found"
-msgstr "ingen modul hittades"
+msgstr "ingen modul hittad"
 
 #: ../lib/python/Screens/About.py:40
 msgid "none"
@@ -1665,9 +1676,13 @@ msgstr "byt till fillista"
 msgid "switch to playlist"
 msgstr "byt till playlist"
 
-#: ../lib/python/Screens/Wizard.py:225 ../lib/python/Screens/Wizard.py:226
+#: ../lib/python/Screens/Wizard.py:222 ../lib/python/Screens/Wizard.py:223
 msgid "text"
 msgstr "text"
+
+#: ../lib/python/Screens/MovieSelection.py:39
+msgid "this recording"
+msgstr ""
 
 #: ../lib/python/Screens/EventView.py:80
 msgid "unknown service"
@@ -1706,7 +1721,7 @@ msgstr "zap"
 
 #: ../lib/python/Components/TimerList.py:62
 msgid "zapped"
-msgstr ""
+msgstr "zapped"
 
 #: ../data/
 msgid "Channel Selection"
@@ -1750,7 +1765,7 @@ msgstr ""
 
 #: ../data/
 msgid "Satconfig"
-msgstr "Satkonfiguration"
+msgstr "Satkonfig"
 
 #: ../data/
 msgid ""
@@ -1760,7 +1775,7 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterliggare "
+"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
 "instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
 "Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
 "instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
@@ -1847,15 +1862,15 @@ msgstr "Det här är steg 2."
 
 #: ../data/
 msgid "Use wizard to set up basic features"
-msgstr "Använd guiden för inställning av vanliga funktionerna"
+msgstr "Använd guiden för inställning av grundfunktionerna"
 
 #: ../data/
 msgid "Sat / Dish Setup"
-msgstr "Sat / Parabolinstallation"
+msgstr "Sat / Parabol Installation"
 
 #: ../data/
 msgid "Visualize positioner movement"
-msgstr "Motor inställningar"
+msgstr "Visualisera motorkörning"
 
 #: ../data/
 msgid ""
@@ -1894,7 +1909,7 @@ msgid ""
 msgstr ""
 "Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen "
 "av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till "
-"dinaaktuella inställningar och en kort förklaring hur du uppgraderar "
+"dina aktuella inställningar och en kort förklaring hur du uppgraderar "
 "mjukvaran."
 
 #: ../data/
@@ -1915,7 +1930,7 @@ msgstr "Inspelning Delningsstorlek"
 
 #: ../data/
 msgid "Auto show inforbar"
-msgstr "Automatisk visning av inforuta"
+msgstr "Automatisk visning av infobalk"
 
 #: ../data/
 msgid "Margin after record"
@@ -1931,11 +1946,11 @@ msgstr "Invertera"
 
 #: ../data/
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../data/
 msgid "use power delta"
-msgstr ""
+msgstr "använd ström delta"
 
 #: ../data/
 msgid "Test mode"
@@ -1954,7 +1969,7 @@ msgid ""
 msgstr ""
 "Välkommen.\n"
 "\n"
-"Den här guiden hjälper dig att ställa in din Dreambox.\n"
+"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
 "Tryck OK på din fjärrkontroll för att komma till nästa steg."
 
 #: ../data/
@@ -1963,7 +1978,7 @@ msgstr "Fjärrkontroll Meny"
 
 #: ../data/
 msgid "SNR:"
-msgstr "SNR: "
+msgstr "SNR:"
 
 #: ../data/
 msgid "select Slot"
@@ -1971,7 +1986,7 @@ msgstr "välj Slot"
 
 #: ../data/
 msgid "BER:"
-msgstr "BER: "
+msgstr "BER:"
 
 #: ../data/
 msgid "Standby / Restart"
@@ -1995,7 +2010,7 @@ msgstr "Snabbt kanalbyte"
 
 #: ../data/
 msgid "OSD Settings"
-msgstr "OSD-Inställning"
+msgstr "OSD Inställning"
 
 #: ../data/
 msgid "Brightness"
@@ -2031,7 +2046,7 @@ msgstr "Färgformat"
 
 #: ../data/
 msgid "Plugin browser"
-msgstr ""
+msgstr "Plugin browser"
 
 #: ../data/
 msgid "#80000000"
@@ -2043,11 +2058,11 @@ msgstr "Nerladdningsbara plugins"
 
 #: ../data/
 msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
+msgstr "Vill du visa cutlist guiden?"
 
 #: ../data/
 msgid "LCD"
-msgstr ""
+msgstr "LCD"
 
 #: ../data/
 msgid "Timezone"
@@ -2067,7 +2082,7 @@ msgstr ""
 
 #: ../data/
 msgid "Common Interface"
-msgstr ""
+msgstr "Common Interface"
 
 #: ../data/
 msgid "Ask before zapping"
@@ -2089,7 +2104,7 @@ msgstr "Användarinställningar"
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "Inforutan visas om du trycker på OK på din fjärrkontroll."
+msgstr "Infobalken visas om du trycker OK på din fjärrkontroll."
 
 #: ../data/
 msgid "Service scan"
@@ -2097,7 +2112,7 @@ msgstr "Kanalsökning"
 
 #: ../data/
 msgid "Yes, do another manual scan now"
-msgstr "Ja, kör en manuell sökning igen"
+msgstr "Ja, utför manuell sökning igen"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2105,7 +2120,7 @@ msgstr "LCD Inställning"
 
 #: ../data/
 msgid "No, scan later manually"
-msgstr "Nej, sök senare."
+msgstr "Nej, sök senare"
 
 #: ../data/
 msgid "Input"
@@ -2151,7 +2166,7 @@ msgid ""
 "Please press OK to start the backup now."
 msgstr ""
 "Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. "
-"Vi kan inte verifiera att den används förnärvarande, så det är bättre att ta "
+"Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta "
 "backup till hårddisk!\n"
 "Tryck OK för att starta backupen."
 
@@ -2193,7 +2208,7 @@ msgstr "Timer inmatning"
 
 #: ../data/
 msgid "Modulator"
-msgstr ""
+msgstr "Modulator"
 
 #: ../data/
 msgid "Eventview"
@@ -2213,7 +2228,7 @@ msgstr "TangentLayout"
 
 #: ../data/
 msgid "InfoBar"
-msgstr ""
+msgstr "InfoBalk"
 
 #: ../data/
 msgid ""
@@ -2227,11 +2242,11 @@ msgstr "Avsluta guiden"
 
 #: ../data/
 msgid "Media player"
-msgstr ""
+msgstr "Media spelare"
 
 #: ../data/
 msgid "Timer sanity error"
-msgstr ""
+msgstr "Timer fel"
 
 #: ../data/
 msgid "Serviceinfo"
@@ -2271,7 +2286,7 @@ msgstr "MER"
 
 #: ../data/
 msgid "Yes, do an automatic scan now"
-msgstr "Ja, gör en automatisk sökning nu"
+msgstr "Ja, utför automatisk sökning nu"
 
 #: ../data/
 msgid "Information"
@@ -2279,7 +2294,7 @@ msgstr "Information"
 
 #: ../data/
 msgid "Yes, do a manual scan now"
-msgstr "Ja, gör en manuell sökning nu"
+msgstr "Ja, utför manuell sökning nu"
 
 #: ../data/
 msgid "USB"
@@ -2287,7 +2302,7 @@ msgstr "USB"
 
 #: ../data/
 msgid "Timer log"
-msgstr "Timer logg"
+msgstr "Timer log"
 
 #: ../data/
 msgid "Do you want to restore your settings?"
@@ -2369,15 +2384,15 @@ msgstr "Flera bouquets"
 
 #: ../data/
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 #: ../data/
 msgid "Timer Edit"
-msgstr "Timer Editor"
+msgstr "Ändra Timer"
 
 #: ../data/
 msgid "No, do nothing."
-msgstr "Nej, gör ingenting"
+msgstr "Nej, gör inget."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2389,19 +2404,19 @@ msgstr "Om"
 
 #: ../data/
 msgid "config menu"
-msgstr "Konfigurationsmeny"
+msgstr "konfigurationsmeny"
 
 #: ../data/
 msgid "Finetune"
-msgstr "Fininställning."
+msgstr "Fininställning"
 
 #: ../data/
 msgid "Timer Editor"
-msgstr ""
+msgstr "Timer Editor"
 
 #: ../data/
 msgid "Time/Date Input"
-msgstr ""
+msgstr "Tid/Datum Inmatning"
 
 #: ../data/
 msgid "AGC:"
@@ -2449,8 +2464,11 @@ msgstr "Satellitinställning"
 
 #: ../data/
 msgid "MediaPlayer"
-msgstr ""
+msgstr "MediaSpelare"
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
+
+#~ msgid "Do you really want to delete this recording?"
+#~ msgstr "Vill du verkligen ta bort den här inspelningen?"
