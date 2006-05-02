@@ -1148,7 +1148,7 @@ class InfoBarInstantRecord:
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"),(_("don't record"), "no")])
 
-from Screens.AudioSelection import AudioSelection
+from Tools.ISO639 import LanguageCodes
 
 class InfoBarAudioSelection:
 	def __init__(self):
@@ -1160,9 +1160,40 @@ class InfoBarAudioSelection:
 	def audioSelection(self):
 		service = self.session.nav.getCurrentService()
 		audio = service.audioTracks()
+		self.audio = audio
 		n = audio.getNumberOfTracks()
 		if n > 0:
-			self.session.open(AudioSelection, audio)
+			tlist = []
+			for x in range(n):
+				i = audio.getTrackInfo(x)
+				language = i.getLanguage()
+				description = i.getDescription();
+	
+				if len(language) == 3:
+					if language in LanguageCodes:
+						language = LanguageCodes[language][0]
+	
+				if len(description):
+					description += " (" + language + ")"
+				else:
+					description = language
+	
+				tlist.append((description, x))
+			
+			selectedAudio = tlist[0][1]
+			tlist.sort(lambda x,y : cmp(x[0], y[0]))
+			selection = 0
+			for x in tlist:
+				if x[1] != selectedAudio:
+					selection += 1
+				else:
+					break
+			
+			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection)
+
+	def audioSelected(self, audio):
+		if audio is not None:
+			self.audio.selectTrack(audio[1])
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
