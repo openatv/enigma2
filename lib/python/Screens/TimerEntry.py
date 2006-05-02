@@ -9,8 +9,8 @@ from Components.Button import Button
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Screens.SubserviceSelection import SubserviceSelection
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
 from enigma import eEPGCache
 import time
@@ -286,14 +286,23 @@ class TimerEntry(Screen):
 		if self.timer.eit is not None:
 			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
 			if event is not None:
-				if event.getNumOfLinkageServices() > 0:
-					self.session.openWithCallback(self.subserviceSelected, SubserviceSelection, event, self.timer.service_ref.ref)
+				n = event.getNumOfLinkageServices()
+				if n > 0:
+					tlist = []
+					ref = self.session.nav.getCurrentlyPlayingServiceReference()
+					parent = self.timer.service_ref.ref
+					for x in range(n):
+						i = event.getLinkageService(parent, x)
+						if i.toString() == ref.toString():
+							selection = x
+						tlist.append((i.getName(), i))
+					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list = tlist, selection = selection)
 					return
 		self.close((True, self.timer))
 
 	def subserviceSelected(self, service):
 		if not service is None:
-			self.timer.service_ref = ServiceReference(service)
+			self.timer.service_ref = ServiceReference(service[1])
 		self.close((True, self.timer))
 
 	def keyCancel(self):

@@ -10,7 +10,7 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 import os
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = [], keys = None):
+	def __init__(self, session, title = "", list = [], keys = None, selection = 0):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
@@ -28,7 +28,7 @@ class ChoiceBox(Screen):
 			if self.keys[pos] != "":
 				self.keymap[self.keys[pos]] = list[pos]
 			pos += 1
-		self["list"] = ChoiceList(self.list)
+		self["list"] = ChoiceList(list = self.list, selection = selection)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"], 
 		{

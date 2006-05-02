@@ -1164,8 +1164,6 @@ class InfoBarAudioSelection:
 		if n > 0:
 			self.session.open(AudioSelection, audio)
 
-from Screens.SubserviceSelection import SubserviceSelection
-
 class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
@@ -1176,13 +1174,23 @@ class InfoBarSubserviceSelection:
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
 		subservices = service.subServices()
+		
 		n = subservices.getNumberOfSubservices()
+		selection = 0
 		if n > 0:
-			self.session.openWithCallback(self.subserviceSelected, SubserviceSelection, subservices)
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			tlist = []
+			for x in range(n):
+				i = subservices.getSubservice(x)
+				if i.toString() == ref.toString():
+					selection = x
+				tlist.append((i.getName(), i))
+
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection)
 
 	def subserviceSelected(self, service):
 		if not service is None:
-			self.session.nav.playService(service)
+			self.session.nav.playService(service[1])
 
 class InfoBarAdditionalInfo:
 	def __init__(self):

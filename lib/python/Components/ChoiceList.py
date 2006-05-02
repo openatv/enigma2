@@ -27,15 +27,17 @@ def ChoiceEntryComponent(key, text):
 	return res
 
 class ChoiceList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self, list):
+	def __init__(self, list, selection = 0):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		self.list = list
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.selection = selection
 
 	GUI_WIDGET = eListbox
 		
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.setItemHeight(25)
+		self.moveToIndex(self.selection)
