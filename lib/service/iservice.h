@@ -513,7 +513,7 @@ class iListableService: public iObject
 public:
 		/* legacy interface: get a list */
 	virtual RESULT getContent(std::list<eServiceReference> &list, bool sorted=false)=0;
-	virtual RESULT getContent(PyObject *list, bool sorted=false)=0;
+	virtual PyObject *getContent(const char* format, bool sorted=false)=0;
 
 		/* new, shiny interface: streaming. */
 	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;

@@ -164,27 +164,89 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 	return 0;
 }
 
-RESULT eServiceFS::getContent(PyObject *list, bool sorted)
+//   The first argument of this function is a format string to specify the order and
+//   the content of the returned list
+//   useable format options are
+//   R = Service Reference (as swig object .. this is very slow)
+//   S = Service Reference (as python string object .. same as ref.toString())
+//   N = Service Name (as python string object)
+//   when exactly one return value per service is selected in the format string,
+//   then each value is directly a list entry
+//   when more than one value is returned per service, then the list is a list of
+//   python tuples
+//   unknown format string chars are returned as python None values !
+PyObject *eServiceFS::getContent(const char* format, bool sorted)
 {
-	if (!list || !PyList_Check(list))
-		return -1;
-
+	PyObject *ret=0;
 	std::list<eServiceReference> tmplist;
+	int retcount=1;
 
-	getContent(tmplist, sorted);
+	if (!format || !(retcount=strlen(format)))
+		format = "R"; // just return service reference swig object ...
 
-	if (sorted)
-		tmplist.sort(iListableServiceCompare(this));
-
-	for (std::list<eServiceReference>::iterator it(tmplist.begin());
-		it != tmplist.end(); ++it)
+	if (!getContent(tmplist, sorted))
 	{
-		PyObject *refobj = New_eServiceReference(*it);
-		PyList_Append(list, refobj);
-		Py_DECREF(refobj);
-	}
+		int services=tmplist.size();
+		ePtr<iStaticServiceInformation> sptr;
+		eServiceCenterPtr service_center;
 
-	return 0;
+		if (strchr(format, 'N'))
+			eServiceCenter::getPrivInstance(service_center);
+
+		ret = PyList_New(services);
+		std::list<eServiceReference>::iterator it(tmplist.begin());
+
+		for (int cnt=0; cnt < services; ++cnt)
+		{
+			eServiceReference &ref=*it++;
+			PyObject *tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
+			for (int i=0; i < retcount; ++i)
+			{
+				PyObject *tmp=0;
+				switch(format[i])
+				{
+				case 'R':  // service reference (swig)object
+					tmp = New_eServiceReference(ref);
+					break;
+				case 'S':  // service reference string
+					tmp = PyString_FromString(ref.toString().c_str());
+					break;
+				case 'N':  // service name
+					if (service_center)
+					{
+						service_center->info(ref, sptr);
+						if (sptr)
+						{
+							std::string name;
+							sptr->getName(ref, name);
+							if (name.length())
+								tmp = PyString_FromString(name.c_str());
+						}
+					}
+					if (!tmp)
+						tmp = PyString_FromString("<n/a>");
+					break;
+				default:
+					if (tuple)
+					{
+						tmp = Py_None;
+						Py_INCREF(Py_None);
+					}
+					break;
+				}
+				if (tmp)
+				{
+					if (tuple)
+						PyTuple_SET_ITEM(tuple, i, tmp);
+					else
+						PyList_SET_ITEM(ret, cnt, tmp);
+				}
+			}
+			if (tuple)
+				PyList_SET_ITEM(ret, cnt, tuple);
+		}
+	}
+	return ret ? ret : PyList_New(0);
 }
 
 RESULT eServiceFS::getNext(eServiceReference &ptr)
