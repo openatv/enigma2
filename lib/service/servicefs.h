@@ -36,6 +36,7 @@ public:
 	
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
 	RESULT getContent(PyObject *list, bool sorted=false);
+	PyObject *getContent(const char *format, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &, const eServiceReference &);
 	RESULT startEdit(ePtr<iMutableServiceList> &);

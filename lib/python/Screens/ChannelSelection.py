@@ -284,16 +284,13 @@ class ChannelSelectionEdit:
 				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
 				if mutableBouquet:
 					mutableBouquet.setListName(providerName)
-					list = [ ]
 					services = serviceHandler.list(provider.ref)
 					if not services is None:
-						if not services.getContent(list, True):
-							for service in list:
-								if mutableBouquet.addService(service):
-									print "add", service.toString(), "to new bouquet failed"
-							mutableBouquet.flushChanges()
-						else:
-							print "getContent failed"
+						list = services.getContent('R', True)
+						for service in list:
+							if mutableBouquet.addService(service):
+								print "add", service.toString(), "to new bouquet failed"
+						mutableBouquet.flushChanges()
 					else:
 						print "list provider", providerName, "failed"
 				else:

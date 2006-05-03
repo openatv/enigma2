@@ -33,8 +33,8 @@ class eDVBServiceList: public iListableService, public iMutableServiceList
 DECLARE_REF(eDVBServiceList);
 public:
 	virtual ~eDVBServiceList();
+	PyObject *getContent(const char* formatstr, bool sorted=false);
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
-	RESULT getContent(PyObject *list, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
 	
