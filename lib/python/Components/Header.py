@@ -14,7 +14,4 @@ class Header(VariableText, HTMLComponent, GUIComponent):
 	def produceHTML(self):
 		return "<h2>" + self.getText() + "</h2>\n"
 
-	def createWidget(self, parent):
-		g = eLabel(parent)
-		return g
-
+	GUI_WIDGET = eLabel

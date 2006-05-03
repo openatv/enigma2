@@ -29,5 +29,4 @@ class DiskInfo(VariableText, GUIComponent):
 			free = stat.f_bfree / 1000 * stat.f_bsize / 1000
 			self.setText(("%dMB " + _("free diskspace")) % (free))
 
-	def createWidget(self, parent):
-		return eLabel(parent)
+	GUI_WIDGET = eLabel
