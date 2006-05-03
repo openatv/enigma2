@@ -342,8 +342,15 @@ class InfoBarSimpleEventView:
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
+			})
+
+		self.is_now_next = False
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
+		self.eventView = None
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
@@ -397,6 +404,8 @@ class InfoBarEPG:
 		closedScreen = self.dlg_stack.pop()
 		if self.bouquetSel and closedScreen == self.bouquetSel:
 			self.bouquetSel = None
+		elif self.eventView and closedScreen == self.eventView:
+			self.eventView = None
 		if ret:
 			dlgs=len(self.dlg_stack)
 			assert dlgs>0
@@ -424,27 +433,40 @@ class InfoBarEPG:
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
 
-	def openEventView(self):
+	def getNowNext(self):
 		self.epglist = [ ]
 		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		ptr = info and info.getEvent(0)
+		if ptr:
+			self.epglist.append(ptr)
+		ptr = info and info.getEvent(1)
+		if ptr:
+			self.epglist.append(ptr)
+
+	def __evEventInfoChanged(self):
+		if self.is_now_next and len(self.dlg_stack) == 1:
+			self.getNowNext()
+			assert self.eventView
+			self.eventView.setEvent(self.epglist[0])
+
+	def openEventView(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		info = service.info()
-		ptr=info.getEvent(0)
-		if ptr:
-			self.epglist.append(ptr)
-		ptr=info.getEvent(1)
-		if ptr:
-			self.epglist.append(ptr)
+		self.getNowNext()
 		if len(self.epglist) == 0:
+			self.is_now_next = False
 			epg = eEPGCache.getInstance()
-			ptr = epg.lookupEventTime(ref, -1)
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
 			if ptr:
 				self.epglist.append(ptr)
 				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
 				if ptr:
 					self.epglist.append(ptr)
+		else:
+			self.is_now_next = True
 		if len(self.epglist) > 0:
-			self.dlg_stack.append(self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList))
+			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			self.dlg_stack.append(self.eventView)
 		else:
 			print "no epg for the service avail.. so we show multiepg instead of eventinfo"
 			self.openMultiServiceEPG(False)
