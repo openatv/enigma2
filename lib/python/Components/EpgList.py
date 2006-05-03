@@ -128,14 +128,12 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	GUI_WIDGET = eListbox
 	
-	def createWidget(self, parent):
-		l = eListbox(parent)
-		l.setWrapAround(True)
-		l.selectionChanged.get().append(self.selectionChanged)
-		l.setContent(self.l)
+	def postWidgetCreate(self, instance):
+		instance.setWrapAround(True)
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
 		if SINGLE_CPP > 0:
-			l.setItemHeight(25)
-		return l
+			instance.setItemHeight(25)
 
 	def recalcEntrySize(self):
 		if SINGLE_CPP == 0:
