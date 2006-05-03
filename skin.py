@@ -84,7 +84,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == "pixmap":
 			ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value))
 			# that __deref__ still scares me!
-			desktop.makeCompatiblePixmap(ptr.__deref__())
+#			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPixmap(ptr.__deref__())
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
@@ -131,6 +131,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setBackgroundColor(parseColor(value))
 		elif attrib == "foregroundColor":
 			guiObject.setForegroundColor(parseColor(value))
+		elif attrib == "shadowColor":
+			guiObject.setShadowColor(parseColor(value))
 		elif attrib == "selectionDisabled":
 			guiObject.setSelectionEnable(0)
 		elif attrib == "transparent":
@@ -155,6 +157,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
+		elif attrib == 'shadowOffset':
+			guiObject.setShadowOffset(parsePosition(value))
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
@@ -182,8 +186,16 @@ def loadSingleSkinData(desktop, dom_skin):
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
 		
-		style.setTitleFont(gFont("Regular", 20));
-		style.setTitleOffset(eSize(20, 5));
+		# defaults
+		font = gFont("Regular", 20)
+		offset = eSize(20, 5)
+		
+		for title in elementsWithTag(windowstyle.childNodes, "title"):
+			offset = parseSize(title.getAttribute("offset"))
+			font = parseFont(str(title.getAttribute("font")))
+
+		style.setTitleFont(font);
+		style.setTitleOffset(offset)
 		
 		for borderset in elementsWithTag(windowstyle.childNodes, "borderset"):
 			bsName = str(borderset.getAttribute("name"))
