@@ -119,7 +119,7 @@ class ChannelContextMenu(Screen):
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
-			self.csel.addBouquet(bouquet)
+			self.csel.addBouquet(bouquet, True)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -238,17 +238,17 @@ class ChannelSelectionEdit:
 			else:
 				name += '_'
 		return name
-	
-	def addBouquet(self, providerName):
+
+	def addBouquet(self, bName, services, refresh=False):
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
 			if self.mode == MODE_TV:
-				providerName += " (TV)"
-				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
+				bName += " (TV)"
+				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			else:
-				providerName += " (Radio)"
-				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
+				bName += " (Radio)"
+				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			new_bouquet_ref = eServiceReference(str)
 			if not mutableBouquetList.addService(new_bouquet_ref):
 				self.bouquetNumOffsetCache = { }
@@ -256,9 +256,14 @@ class ChannelSelectionEdit:
 				eDVBDB.getInstance().reloadBouquets()
 				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
 				if mutableBouquet:
-					mutableBouquet.setListName(providerName)
+					mutableBouquet.setListName(bName)
+					if services is not None:
+						for service in services:
+							if mutableBouquet.addService(service):
+								print "add", service.toString(), "to new bouquet failed"
 					mutableBouquet.flushChanges()
-					self.setRoot(self.getRoot())
+					if refresh:
+						self.setRoot(self.getRoot())
 				else:
 					print "get mutable list for new created bouquet failed"
 			else:
@@ -268,37 +273,10 @@ class ChannelSelectionEdit:
 
 	def copyCurrentToBouquetList(self):
 		provider = ServiceReference(self.getCurrentSelection())
+		providerName = provider.getServiceName()
 		serviceHandler = eServiceCenter.getInstance()
-		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
-		if mutableBouquetList:
-			providerName = provider.getServiceName()
-			if self.mode == MODE_TV:
-				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
-			else:
-				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(providerName))
-			new_bouquet_ref = eServiceReference(str)
-			if not mutableBouquetList.addService(new_bouquet_ref):
-				self.bouquetNumOffsetCache = { }
-				mutableBouquetList.flushChanges()
-				eDVBDB.getInstance().reloadBouquets()
-				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
-				if mutableBouquet:
-					mutableBouquet.setListName(providerName)
-					services = serviceHandler.list(provider.ref)
-					if not services is None:
-						list = services.getContent('R', True)
-						for service in list:
-							if mutableBouquet.addService(service):
-								print "add", service.toString(), "to new bouquet failed"
-						mutableBouquet.flushChanges()
-					else:
-						print "list provider", providerName, "failed"
-				else:
-					print "get mutable list for new created bouquet failed"
-			else:
-				print "add", str, "to bouquets failed"
-		else:
-			print "bouquetlist is not editable"
+		services = serviceHandler.list(provider.ref)
+		self.addBouquet(providerName, services and services.getContent('R', True))
 
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
