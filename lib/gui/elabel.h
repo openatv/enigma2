@@ -26,6 +26,8 @@ public:
 	void setHAlign(int align);
 	
 	void setForegroundColor(const gRGB &col);
+	void setShadowColor(const gRGB &col);
+	void setShadowOffset(const ePoint &offset);
 	void clearForegroundColor();
 	
 	eSize calculateSize();
@@ -36,8 +38,9 @@ protected:
 	int event(int event, void *data=0, void *data2=0);
 	int m_pos;
 private:
-	int m_have_foreground_color;
-	gRGB m_foreground_color;
+	int m_have_foreground_color, m_have_shadow_color;
+	gRGB m_foreground_color, m_shadow_color;
+	ePoint m_shadow_offset;
 	
 	enum eLabelEvent
 	{

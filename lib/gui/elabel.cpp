@@ -14,6 +14,7 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	m_halign = alignLeft;
 	
 	m_have_foreground_color = 0;
+	m_have_shadow_color = 0;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -52,13 +53,14 @@ int eLabel::event(int event, void *data, void *data2)
 
 			painter.renderPara(para, ePoint(0, 0));
 			return 0;
-		}
-		else
-		{		
+		} else
+		{
 			painter.setFont(m_font);
 			style->setStyle(painter, eWindowStyle::styleLabel);
 			
-			if (m_have_foreground_color)
+			if (m_have_shadow_color)
+				painter.setForegroundColor(m_shadow_color);
+			else if (m_have_foreground_color)
 				painter.setForegroundColor(m_foreground_color);
 			
 			int flags = 0;
@@ -79,7 +81,19 @@ int eLabel::event(int event, void *data, void *data2)
 				flags |= gPainter::RT_HALIGN_BLOCK;
 			
 			flags |= gPainter::RT_WRAP;
-			painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags);
+			
+				/* if we don't have shadow, m_shadow_offset will be 0,0 */
+			painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags);
+			
+			if (m_have_shadow_color)
+			{
+				if (!m_have_foreground_color)
+					style->setStyle(painter, eWindowStyle::styleLabel);
+				else
+					painter.setForegroundColor(m_foreground_color);
+				painter.setBackgroundColor(m_shadow_color);
+				painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags);
+			}
 			
 			return 0;
 		}
@@ -140,6 +154,21 @@ void eLabel::setForegroundColor(const gRGB &col)
 		m_have_foreground_color = 1;
 		invalidate();
 	}
+}
+
+void eLabel::setShadowColor(const gRGB &col)
+{
+	if ((!m_have_shadow_color) || !(m_shadow_color == col))
+	{
+		m_shadow_color = col;
+		m_have_shadow_color = 1;
+		invalidate();
+	}
+}
+
+void eLabel::setShadowOffset(const ePoint &offset)
+{
+	m_shadow_offset = offset;
 }
 
 void eLabel::clearForegroundColor()
