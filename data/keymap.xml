@@ -357,6 +357,17 @@
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
 	</map>
 	
+	<map context="PiPSetupActions">
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />		
+		<key id="KEY_CHANNELUP" mapto="size+" flags="mr" />
+		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
+	</map>
+	
 	<map context="MediaPlayerSeekActions">
 		<key id="KEY_YELLOW" mapto="pause" flags="m" />
 		<key id="KEY_GREEN" mapto="play" flags="m" />

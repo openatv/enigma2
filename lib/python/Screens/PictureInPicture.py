@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from enigma import ePoint, eSize
 
 from Components.VideoWindow import VideoWindow
 
@@ -7,3 +8,17 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		
 		self["video"] = VideoWindow()
+
+	def move(self, x, y):
+		print "moving pip to", str(x) + ":" + str(y)
+		self.instance.move(ePoint(x, y))
+		
+	def resize(self, w, h):
+		print "resizing pip to", str(w) + "x" + str(h)
+		self.instance.resize(eSize(*(w, h)))
+		
+	def getPosition(self):
+		return ((self.instance.position().x(), self.instance.position().y()))
+		
+	def getSize(self):
+		return (self.instance.size().width(), self.instance.size().height())

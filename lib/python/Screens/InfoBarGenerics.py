@@ -1005,6 +1005,8 @@ class InfoBarTimeshift:
 		self.timeshift_enabled = False
 		self.__seekableStatusChanged()
 
+from Screens.PiPSetup import PiPSetup
+
 class InfoBarExtensions:
 	def __init__(self):
 		self.pipshown = False
@@ -1020,6 +1022,7 @@ class InfoBarExtensions:
 			list.append((_("Activate Picture in Picture"), "pipon"))
 		elif self.pipshown == True:
 			list.append((_("Disable Picture in Picture"), "pipoff"))
+			list.append((_("Move Picture in Picture"), "movepip"))
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
 	def extensionCallback(self, answer):
@@ -1037,12 +1040,14 @@ class InfoBarExtensions:
 				else:
 					self.pipservice = None
 					del self.pip
-	
+				self.session.nav.playService(newservice)
 			elif answer[1] == "pipoff":
 				#self.pip.hide()
 				self.pipservice = None
 				del self.pip
 				self.pipshown = False
+			elif answer[1] == "movepip":
+				self.session.open(PiPSetup, pip = self.pip)
 
 from RecordTimer import parseEvent
 
