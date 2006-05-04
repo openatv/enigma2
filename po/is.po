@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandin translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-28 15:25+0200\n"
-"PO-Revision-Date: 2006-03-22 22:01-0000\n"
+"POT-Creation-Date: 2006-05-02 18:54+0200\n"
+"PO-Revision-Date: 2006-05-03 22:30-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
-"Language-Team: Icelandic <baddi@oreind.is>\n"
+"Language-Team: Polar Team <baddi@oreind.is>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,11 +23,13 @@ msgid ""
 "\n"
 "Enigma2 will restart after the restore"
 msgstr ""
+"\n"
+"Enigma2 mun endurræsa eftir að hafa sett inn afrit"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid "\"?"
-msgstr ""
+msgstr "\"?"
 
 #: ../lib/python/Screens/EventView.py:107
 #, python-format
@@ -36,7 +38,6 @@ msgstr "%d min"
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
-#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -46,19 +47,21 @@ msgid ""
 "%s\n"
 "(%s, %d MB free)"
 msgstr ""
+"%s\n"
+"(%s, %d MB laus)"
 
 #: ../lib/python/Components/TimerList.py:46
 #: ../lib/python/Components/TimerList.py:51
 msgid "(ZAP)"
-msgstr ""
+msgstr "(STÖKK)"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
-msgstr ""
+msgstr "/usr/share/enigma2 mappa"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/var directory"
-msgstr ""
+msgstr "/var mappa"
 
 #: ../lib/python/Components/NimManager.py:746
 msgid "0 V"
@@ -80,7 +83,7 @@ msgstr "1.2"
 msgid "12 V"
 msgstr "12 V"
 
-#: ../lib/python/Screens/Satconfig.py:147
+#: ../lib/python/Screens/Satconfig.py:149
 msgid "12V Output"
 msgstr "12V Út"
 
@@ -94,7 +97,7 @@ msgstr "18 V"
 
 #: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
-msgstr ""
+msgstr "<óþekktur>"
 
 #: ../lib/python/Components/NimManager.py:748
 msgid "A"
@@ -104,6 +107,14 @@ msgstr "A"
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
+msgstr ""
+"Upptaka er nú í gangi.\n"
+"Hvað viltu núna gera?"
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
 msgstr ""
 
 #: ../RecordTimer.py:151
@@ -124,11 +135,11 @@ msgstr "AB"
 
 #: ../lib/python/Screens/ScanSetup.py:253
 msgid "AGC"
-msgstr ""
+msgstr "AGC"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:998
 msgid "Activate Picture in Picture"
-msgstr ""
+msgstr "Virkja Mynd í Mynd"
 
 #: ../lib/python/Screens/TimerEdit.py:28
 msgid "Add"
@@ -147,11 +158,11 @@ msgstr "Sérfæði"
 
 #: ../lib/python/Screens/TimerEntry.py:195
 msgid "After event"
-msgstr ""
+msgstr "Eftir atriði"
 
 #: ../lib/python/Screens/MediaPlayer.py:41
 msgid "Album:"
-msgstr ""
+msgstr "Albúm:"
 
 #: ../lib/python/Screens/ChannelSelection.py:448
 #: ../lib/python/Screens/ChannelSelection.py:594
@@ -164,7 +175,7 @@ msgstr "Arabíska"
 
 #: ../lib/python/Screens/MediaPlayer.py:37
 msgid "Artist:"
-msgstr ""
+msgstr "Listmaður:"
 
 #: ../lib/python/Screens/ScanSetup.py:303
 #: ../lib/python/Screens/ScanSetup.py:306
@@ -199,19 +210,19 @@ msgstr "BB"
 
 #: ../lib/python/Screens/ScanSetup.py:255
 msgid "BER"
-msgstr ""
+msgstr "BER"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:76
 msgid "Backup"
-msgstr ""
+msgstr "Afrit"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:113
 msgid "Backup Location"
-msgstr ""
+msgstr "Staður fyrir afrit"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:112
 msgid "Backup Mode"
-msgstr ""
+msgstr "Afritunar hamur"
 
 #: ../lib/python/Components/NimManager.py:726
 msgid "Band"
@@ -231,18 +242,17 @@ msgstr "C-Band"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "CF Drive"
-msgstr ""
+msgstr "CF Drif"
 
 #: ../lib/python/Screens/ChannelSelection.py:705
 msgid "Cable"
-msgstr ""
+msgstr "Kapalkerfi"
 
 #: ../lib/python/Screens/Satconfig.py:69
 msgid "Cable provider"
 msgstr "Kapal sendandi"
 
-#: ../lib/python/Screens/Setup.py:110 ../lib/python/Screens/TimerEntry.py:25
-#: ../lib/python/Screens/TimeDateInput.py:16
+#: ../lib/python/Screens/Setup.py:143 ../lib/python/Screens/TimerEntry.py:25
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -262,7 +272,7 @@ msgstr "Rás:"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:33
 msgid "Choose source"
-msgstr ""
+msgstr "Veldu miðil"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Classic"
@@ -284,22 +294,22 @@ msgstr "Gagna hraði, hár"
 msgid "Code rate low"
 msgstr "Gagna hraði, lár"
 
-#: ../lib/python/Screens/Satconfig.py:127
 #: ../lib/python/Screens/Satconfig.py:129
+#: ../lib/python/Screens/Satconfig.py:131
 msgid "Command order"
 msgstr "Röðun skipana"
 
-#: ../lib/python/Screens/Satconfig.py:123
+#: ../lib/python/Screens/Satconfig.py:125
 msgid "Committed DiSEqC command"
 msgstr "Fyrsta DiSEqC rofa stýring"
 
 #: ../lib/python/Screens/ScanSetup.py:284
 #: ../lib/python/Screens/ScanSetup.py:285
 msgid "Complete"
-msgstr ""
+msgstr "Búið"
 
 #: ../lib/python/Screens/Satconfig.py:49
-#: ../lib/python/Screens/Satconfig.py:152 ../data/
+#: ../lib/python/Screens/Satconfig.py:154 ../data/
 msgid "Configuration Mode"
 msgstr "Stillingar"
 
@@ -309,15 +319,11 @@ msgstr "Tímastilling skarast"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
-msgstr ""
+msgstr "Núverandi útgáfa:"
 
 #: ../lib/python/Components/Language.py:16
 msgid "Danish"
-msgstr ""
-
-#: ../lib/python/Screens/TimeDateInput.py:54
-msgid "Date"
-msgstr ""
+msgstr "Danska"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
@@ -331,7 +337,7 @@ msgstr "Eyða"
 msgid "Delete entry"
 msgstr "Eyða innslætti"
 
-#: ../lib/python/Screens/MovieSelection.py:62
+#: ../lib/python/Screens/MovieSelection.py:64
 msgid "Delete failed!"
 msgstr "Tókst ekki að eyða!"
 
@@ -359,11 +365,11 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC Mode"
 msgstr "DiSEqC Gerð"
 
-#: ../lib/python/Screens/Satconfig.py:119
+#: ../lib/python/Screens/Satconfig.py:121
 msgid "DiSEqC mode"
 msgstr "DiSEqC gerð"
 
-#: ../lib/python/Screens/Satconfig.py:131
+#: ../lib/python/Screens/Satconfig.py:133
 msgid "DiSEqC repeats"
 msgstr "DiSEqC endurtekning"
 
@@ -381,29 +387,36 @@ msgstr "Gera óvirkt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1000
 msgid "Disable Picture in Picture"
-msgstr ""
+msgstr "Gera Mynd í Mynd óvirka"
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
 msgstr ""
+"Viltu örugglega taka út\n"
+"þetta innskot \""
 
-#: ../lib/python/Screens/MovieSelection.py:45
-msgid "Do you really want to delete this recording?"
-msgstr "Viltu virkilega eyða þessari upptöku?"
+#: ../lib/python/Screens/MovieSelection.py:47
+#, python-format
+msgid "Do you really want to delete %s?"
+msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 msgid ""
 "Do you really want to download\n"
 "the plugin \""
 msgstr ""
+"Viltu örugglega hala niður\n"
+"þetta innskot \""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:123
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
+"Viltu taka afrit núna?\n"
+"Eftir að hafa ýtt á OK þá bíðið!"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:50
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:202
@@ -416,15 +429,15 @@ msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:21
 msgid "Download Plugins"
-msgstr ""
+msgstr "Hala niður innskotum"
 
 #: ../lib/python/Screens/PluginBrowser.py:113
 msgid "Downloadable new plugins"
-msgstr ""
+msgstr "Niðurhalanleg ný innskot"
 
 #: ../lib/python/Screens/PluginBrowser.py:79
 msgid "Downloading plugin information. Please wait..."
-msgstr ""
+msgstr "Hala niður innskots upplýsingum. Vinsamlega bíðið..."
 
 #: ../lib/python/Components/Language.py:17
 msgid "Dutch"
@@ -476,15 +489,15 @@ msgstr "Eins og Tengi A"
 
 #: ../lib/python/Screens/Console.py:41
 msgid "Execution Progress:"
-msgstr ""
+msgstr "Framganga keyrslu:"
 
 #: ../lib/python/Screens/Console.py:51
 msgid "Execution finished!!"
-msgstr ""
+msgstr "Keyrslu lokið!"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1212
 msgid "Extensions"
-msgstr ""
+msgstr "Viðbætur"
 
 #: ../lib/python/Screens/ScanSetup.py:200
 #: ../lib/python/Screens/ScanSetup.py:228
@@ -492,13 +505,17 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
-#: ../lib/python/Screens/Satconfig.py:124
+#: ../lib/python/Screens/Satconfig.py:126
 msgid "Fast DiSEqC"
 msgstr "Hratt DiSEqC"
 
 #: ../lib/python/Screens/ChannelSelection.py:451
 msgid "Favourites"
 msgstr "Uppáhald listar"
+
+#: ../lib/python/Components/Language.py:18
+msgid "French"
+msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/ScanSetup.py:224
@@ -521,11 +538,11 @@ msgstr "Föstudagur"
 #: ../lib/python/Screens/About.py:23
 #, python-format
 msgid "Frontprocessor version: %d"
-msgstr ""
+msgstr "Útgáfa framheila: %d"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:59
 msgid "Function not yet implemented"
-msgstr ""
+msgstr "Aðferð ekki enn virkt"
 
 #: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
@@ -533,20 +550,20 @@ msgstr "Beinir"
 
 #: ../lib/python/Screens/MediaPlayer.py:45
 msgid "Genre:"
-msgstr ""
+msgstr "Gerð:"
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:18
+#: ../lib/python/Components/Language.py:19
 msgid "German"
 msgstr "Þýska"
 
 #: ../lib/python/Screens/PluginBrowser.py:81
 msgid "Getting plugin information. Please wait..."
-msgstr ""
+msgstr "Næ í upplýsingar um innskot. Vinsamlega bíðið..."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Goto position"
-msgstr ""
+msgstr "Fara á staðsetningu"
 
 #: ../lib/python/Screens/ScanSetup.py:243
 msgid "Guard interval mode"
@@ -564,21 +581,21 @@ msgstr "Flokkunar hamur"
 #: ../lib/python/Screens/InfoBarGenerics.py:1123
 #: ../lib/python/Screens/InfoBarGenerics.py:1131
 msgid "How many minutes do you want to record?"
-msgstr ""
+msgstr "Í hvað margar mínútur viltu taka upp?"
 
 #: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "IP Netfang"
 
-#: ../lib/python/Components/Language.py:19
+#: ../lib/python/Components/Language.py:20
 msgid "Icelandic"
-msgstr ""
+msgstr "Íslenska"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
 msgid "Image-Upgrade"
-msgstr ""
+msgstr "Uppfærsla stýrikerfi"
 
-#: ../lib/python/Screens/Satconfig.py:148
+#: ../lib/python/Screens/Satconfig.py:150
 msgid "Increased voltage"
 msgstr "Aukin spenna"
 
@@ -601,23 +618,23 @@ msgstr "Frumstilli harða disk"
 msgid "Inversion"
 msgstr "Umbreyting"
 
-#: ../lib/python/Components/Language.py:20
+#: ../lib/python/Components/Language.py:21
 msgid "Italian"
-msgstr ""
+msgstr "Ítalska"
 
-#: ../lib/python/Screens/Satconfig.py:116
+#: ../lib/python/Screens/Satconfig.py:118
 msgid "LNB"
 msgstr "LNB"
 
-#: ../lib/python/Screens/Satconfig.py:141
+#: ../lib/python/Screens/Satconfig.py:143
 msgid "LOF"
 msgstr "LOF"
 
-#: ../lib/python/Screens/Satconfig.py:145
+#: ../lib/python/Screens/Satconfig.py:147
 msgid "LOF/H"
 msgstr "LOF/H"
 
-#: ../lib/python/Screens/Satconfig.py:144
+#: ../lib/python/Screens/Satconfig.py:146
 msgid "LOF/L"
 msgstr "LOF/L"
 
@@ -626,24 +643,24 @@ msgid "Language selection"
 msgstr "Val tungumáls"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:135 ../data/
+#: ../lib/python/Screens/Satconfig.py:137 ../data/
 msgid "Latitude"
 msgstr "Breiddargráða"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
 msgid "Limit east"
-msgstr ""
+msgstr "Mörk í austur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
 msgid "Limit west"
-msgstr ""
+msgstr "Mörk í vestur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:181
 msgid "Limits off"
-msgstr ""
+msgstr "Mörk ekki stillt"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:133 ../data/
+#: ../lib/python/Screens/Satconfig.py:135 ../data/
 msgid "Longitude"
 msgstr "Lengdargráða"
 
@@ -653,7 +670,7 @@ msgstr "Tengt á milli í tengi A"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
 msgid "Manual transponder"
-msgstr ""
+msgstr "Handvirk leit á sendi"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
@@ -680,11 +697,11 @@ msgstr "Mánudagur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Move east"
-msgstr ""
+msgstr "Færa austur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
 msgid "Move west"
-msgstr ""
+msgstr "Færa vestur"
 
 #: ../lib/python/Screens/MovieSelection.py:29
 msgid "Movie Menu"
@@ -696,7 +713,7 @@ msgstr "Marg rása EPG"
 
 #: ../lib/python/Screens/ScanSetup.py:283
 msgid "Multisat"
-msgstr ""
+msgstr "Margir gervihnettir"
 
 #: ../lib/python/Components/NimManager.py:493
 msgid "N/A"
@@ -704,7 +721,7 @@ msgstr "Ekki til"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:471
 msgid "NIM "
-msgstr ""
+msgstr "NIM"
 
 #: ../lib/python/Screens/TimerEntry.py:150
 msgid "Name"
@@ -721,11 +738,11 @@ msgstr "Netmaski"
 #: ../lib/python/Screens/ScanSetup.py:229
 #: ../lib/python/Screens/ScanSetup.py:236
 msgid "Network scan"
-msgstr ""
+msgstr "Leita netkerfið allt"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
-msgstr ""
+msgstr "Ný útgáfa:"
 
 #: ../lib/python/Screens/EpgSelection.py:44
 msgid "Next"
@@ -745,15 +762,15 @@ msgstr "Fann ekki harðan disk eða hann ekki formaður!"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1076
 msgid "No event info found, recording indefinitely."
-msgstr ""
+msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:488
 msgid "No positioner capable frontend found."
-msgstr ""
+msgstr "Það fannst ekki móttakari sem styður staðsetjara."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:500
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr ""
+msgstr "Enginn móttakari er stilltur til að nota með staðsetjara!"
 
 #: ../lib/python/Screens/ScanSetup.py:306
 #: ../lib/python/Screens/ScanSetup.py:312
@@ -773,9 +790,9 @@ msgstr "Enginn"
 msgid "North"
 msgstr "Norður"
 
-#: ../lib/python/Components/Language.py:21
+#: ../lib/python/Components/Language.py:22
 msgid "Norwegian"
-msgstr ""
+msgstr "Norska"
 
 #: ../lib/python/Components/NimManager.py:673
 msgid "Nothing connected"
@@ -787,9 +804,10 @@ msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Ekkert til að leita!\n"
+"Stilltu inn móttakarann áður en að þú byrjar rása leit."
 
-#: ../lib/python/Screens/Setup.py:109 ../lib/python/Screens/TimerEntry.py:24
-#: ../lib/python/Screens/TimeDateInput.py:15
+#: ../lib/python/Screens/Setup.py:142 ../lib/python/Screens/TimerEntry.py:24
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
@@ -808,11 +826,11 @@ msgstr "Einn"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Online-Upgrade"
-msgstr ""
+msgstr "Uppfærsla frá neti"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
 msgid "Packet management"
-msgstr ""
+msgstr "Pakka meðhöndlun"
 
 #: ../lib/python/Screens/InfoBar.py:40
 msgid "Play recorded movies..."
@@ -820,13 +838,13 @@ msgstr "Spila uppteknar myndir..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1001
 msgid "Please choose an extension..."
-msgstr ""
+msgstr "Vinsamlega veldu viðbót.."
 
 #: ../lib/python/Screens/ChannelSelection.py:118
 msgid "Please enter a name for the new bouquet"
-msgstr ""
+msgstr "Settu inn nafn á nýjum rása vendi"
 
-#: ../lib/python/Screens/MovieSelection.py:77
+#: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
 msgstr "Vinsamlega bíðið.. les inn lista...."
 
@@ -861,19 +879,19 @@ msgstr "Mótorstýring"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
 msgid "Positioner fine movement"
-msgstr ""
+msgstr "Fín færsla mótors"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
 msgid "Positioner movement"
-msgstr ""
+msgstr "Færsla mótors"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
 msgid "Positioner storage"
-msgstr ""
+msgstr "Vistun í staðsetjjara"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
 msgid "Predefined satellite"
-msgstr ""
+msgstr "Fyrirfram stilltur gervihnöttur"
 
 #: ../lib/python/Screens/NetworkSetup.py:35
 msgid "Press OK to activate the settings."
@@ -910,19 +928,19 @@ msgstr "Upptaka"
 
 #: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
-msgstr ""
+msgstr "Upptaka"
 
 #: ../lib/python/Screens/PluginBrowser.py:20
 msgid "Remove Plugins"
-msgstr ""
+msgstr "Taka út Innskot"
 
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
-msgstr ""
+msgstr "Taka út innskot"
 
 #: ../lib/python/Screens/TimerEntry.py:154
 msgid "Repeat Type"
-msgstr ""
+msgstr "Gerð endurtekningar"
 
 #: ../lib/python/Screens/Ci.py:213
 msgid "Reset"
@@ -931,11 +949,11 @@ msgstr "Endursetja"
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:77
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
 msgid "Restore"
-msgstr ""
+msgstr "Setja inn"
 
 #: ../lib/python/Screens/ScanSetup.py:251
 msgid "SNR"
-msgstr ""
+msgstr "SNR"
 
 #: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
@@ -945,7 +963,7 @@ msgstr "Lau"
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:204
 #: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
-#: ../lib/python/Screens/Satconfig.py:154
+#: ../lib/python/Screens/Satconfig.py:156
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
 msgid "Satellite"
 msgstr "Gervihnöttur"
@@ -963,15 +981,15 @@ msgstr "Laugardagur"
 #: ../lib/python/Screens/ScanSetup.py:571
 #: ../lib/python/Screens/ScanSetup.py:574
 msgid "Scan NIM"
-msgstr ""
+msgstr "Leita NIM"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Search east"
-msgstr ""
+msgstr "Leita austur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Search west"
-msgstr ""
+msgstr "Leita vestur"
 
 #: ../lib/python/Components/NimManager.py:674
 msgid "Secondary cable from motorized LNB"
@@ -981,7 +999,7 @@ msgstr "Seinni kapall frá mótorstýrðum nema"
 msgid "Select channel to record from"
 msgstr "Veldu rás til að taka upp frá"
 
-#: ../lib/python/Screens/Satconfig.py:125
+#: ../lib/python/Screens/Satconfig.py:127
 msgid "Sequence repeat"
 msgstr "Endurtaka runu"
 
@@ -991,11 +1009,11 @@ msgstr "Rásir"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
 msgid "Set limits"
-msgstr ""
+msgstr "Setja mörk"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Settings"
-msgstr ""
+msgstr "Stillingar"
 
 #: ../lib/python/Screens/InfoBar.py:41
 msgid "Show the radio player..."
@@ -1003,11 +1021,11 @@ msgstr "Sýna útvarpsspilara..."
 
 #: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
-msgstr ""
+msgstr "Svipað"
 
 #: ../lib/python/Screens/EventView.py:127
 msgid "Similar broadcasts:"
-msgstr ""
+msgstr "Svipuð útsending:"
 
 #: ../lib/python/Components/NimManager.py:668
 #: ../lib/python/Components/NimManager.py:675
@@ -1024,13 +1042,13 @@ msgstr "Eitt EPG"
 
 #: ../lib/python/Screens/ScanSetup.py:283
 msgid "Single satellite"
-msgstr ""
+msgstr "Einn gervihnöttur"
 
 #: ../lib/python/Screens/ScanSetup.py:283
 #: ../lib/python/Screens/ScanSetup.py:284
 #: ../lib/python/Screens/ScanSetup.py:285
 msgid "Single transponder"
-msgstr ""
+msgstr "Einn sendir"
 
 #: ../lib/python/Components/NimManager.py:703
 msgid "Slot "
@@ -1046,13 +1064,16 @@ msgid ""
 "\n"
 "Please choose an other one."
 msgstr ""
+"Því miður þá er afritunar staður ekki til\n"
+"\n"
+"Veldu aðra staðsetningu"
 
 #: ../lib/python/Components/NimManager.py:699
 #: ../lib/python/Components/NimManager.py:760
 msgid "South"
 msgstr "Suður"
 
-#: ../lib/python/Components/Language.py:22
+#: ../lib/python/Components/Language.py:23
 msgid "Spanish"
 msgstr "Spænska"
 
@@ -1068,24 +1089,24 @@ msgstr "Byrja upptöku?"
 msgid "StartTime"
 msgstr "Byrjunartími"
 
-#: ../lib/python/Screens/Wizard.py:221
+#: ../lib/python/Screens/Wizard.py:218
 msgid "Step "
 msgstr "Þrep"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
 msgid "Step east"
-msgstr ""
+msgstr "Skref austur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:177
 msgid "Step west"
-msgstr ""
+msgstr "Skref vestur"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:169
 msgid "Stop"
-msgstr ""
+msgstr "Stopp"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:919
 msgid "Stop Timeshift?"
@@ -1097,9 +1118,9 @@ msgstr "Stoppa spilun?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
 msgid "Store position"
-msgstr ""
+msgstr "Vista staðsetningu"
 
-#: ../lib/python/Screens/Satconfig.py:113
+#: ../lib/python/Screens/Satconfig.py:115
 msgid "Stored position"
 msgstr "Vistuð staða"
 
@@ -1117,9 +1138,9 @@ msgstr "Sun"
 msgid "Sunday"
 msgstr "Sunnudagur"
 
-#: ../lib/python/Components/Language.py:23
+#: ../lib/python/Components/Language.py:24
 msgid "Swedish"
-msgstr ""
+msgstr "Sænskt"
 
 #: ../lib/python/Screens/ScanSetup.py:198
 #: ../lib/python/Screens/ScanSetup.py:226
@@ -1129,7 +1150,7 @@ msgstr "Gagnahraði"
 
 #: ../lib/python/Screens/ChannelSelection.py:707
 msgid "Terrestrial"
-msgstr ""
+msgstr "Stafrænt í lofti"
 
 #: ../lib/python/Screens/Satconfig.py:73
 msgid "Terrestrial provider"
@@ -1139,7 +1160,7 @@ msgstr "Sendandi á landi"
 msgid "Three"
 msgstr "Þrír"
 
-#: ../lib/python/Screens/Satconfig.py:146
+#: ../lib/python/Screens/Satconfig.py:148
 msgid "Threshold"
 msgstr "Mörk"
 
@@ -1153,10 +1174,6 @@ msgstr "Fim"
 msgid "Thursday"
 msgstr "Fimmtudagur"
 
-#: ../lib/python/Screens/TimeDateInput.py:55
-msgid "Time"
-msgstr ""
-
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
 msgstr "Gerð Tímastillngar"
@@ -1167,22 +1184,22 @@ msgstr "Tímabreyting ekki möguleg!"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1205
 msgid "Timeshifting"
-msgstr ""
+msgstr "Lifandi pása"
 
 #: ../lib/python/Screens/MediaPlayer.py:39
 msgid "Title:"
-msgstr ""
+msgstr "Titill:"
 
 #: ../lib/python/Screens/EpgSelection.py:258
 #: ../lib/python/Tools/FuzzyDate.py:10
 msgid "Today"
 msgstr "Í dag"
 
-#: ../lib/python/Screens/Satconfig.py:108
+#: ../lib/python/Screens/Satconfig.py:110
 msgid "Tone mode"
 msgstr "Tón stilling"
 
-#: ../lib/python/Screens/Satconfig.py:122
+#: ../lib/python/Screens/Satconfig.py:124
 msgid "Toneburst"
 msgstr "Tónstýring"
 
@@ -1196,7 +1213,7 @@ msgstr "Sendi stilling"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:392
 msgid "Transponder"
-msgstr ""
+msgstr "Sendir"
 
 #: ../lib/python/Screens/EpgSelection.py:247
 #: ../lib/python/Components/TimerList.py:34
@@ -1212,7 +1229,7 @@ msgstr "Þriðjudagur"
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:381
 msgid "Tune"
-msgstr ""
+msgstr "Stilla"
 
 #: ../lib/python/Screens/ScanSetup.py:177
 #: ../lib/python/Components/ServiceScan.py:75
@@ -1235,7 +1252,7 @@ msgstr "USALS"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "USB Stick"
-msgstr ""
+msgstr "USB stautur"
 
 #: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
@@ -1247,7 +1264,7 @@ msgstr ""
 "Athugaðu upplýsingar um diskinn.\n"
 "Villa:"
 
-#: ../lib/python/Screens/Satconfig.py:130
+#: ../lib/python/Screens/Satconfig.py:132
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC stýring"
 
@@ -1267,7 +1284,7 @@ msgstr "Uppfæri... Vinsamlega bíðið... Þetta getur tekið nokkurn tíma.."
 msgid "Use DHCP"
 msgstr "Nota DHCP"
 
-#: ../lib/python/Screens/Satconfig.py:110
+#: ../lib/python/Screens/Satconfig.py:112
 msgid "Use usals for this sat"
 msgstr "Nota usals fyrir þennan hnött"
 
@@ -1275,7 +1292,7 @@ msgstr "Nota usals fyrir þennan hnött"
 msgid "User defined"
 msgstr "Stillt af notanda"
 
-#: ../lib/python/Screens/Satconfig.py:107
+#: ../lib/python/Screens/Satconfig.py:109
 msgid "Voltage mode"
 msgstr "Spennu stýring"
 
@@ -1304,7 +1321,7 @@ msgstr "Vestur"
 
 #: ../lib/python/Screens/MediaPlayer.py:43
 msgid "Year:"
-msgstr ""
+msgstr "Ár:"
 
 #: ../lib/python/Components/NimManager.py:727
 #: ../lib/python/Components/NimManager.py:747
@@ -1314,7 +1331,7 @@ msgstr ""
 msgid "Yes"
 msgstr "Já"
 
-#: ../lib/python/Screens/MovieSelection.py:47
+#: ../lib/python/Screens/MovieSelection.py:49
 msgid "You cannot delete this!"
 msgstr "Þú getur ekki eytt þessu!"
 
@@ -1323,6 +1340,8 @@ msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
+"Það þarf að uppfæra heila í framtölvu.\n"
+"Ýtið á OK til að byrja uppfærslu."
 
 #: ../lib/python/Screens/ChannelSelection.py:331
 msgid "[bouquet edit]"
@@ -1346,34 +1365,34 @@ msgstr "hætta við að breyta uppáhaldsl ista"
 
 #: ../lib/python/Components/TimerList.py:59
 msgid "about to start"
-msgstr ""
+msgstr "er að byrja"
 
 #: ../lib/python/Screens/ChannelSelection.py:92
 msgid "add bouquet..."
-msgstr ""
+msgstr "bæta við rásavendi..."
 
 #: ../lib/python/Screens/MediaPlayer.py:258
 msgid "add directory to playlist"
-msgstr ""
+msgstr "bæta möppu við spilunarlista"
 
 #: ../lib/python/Screens/MediaPlayer.py:260
 msgid "add file to playlist"
-msgstr ""
+msgstr "bæta skrá við spilunarlista"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 #: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "add recording (enter recording duration)"
-msgstr ""
+msgstr "bæta við upptöku (stilla tíma á upptöku)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 #: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "add recording (indefinitely)"
-msgstr ""
+msgstr "bæta við upptöku (endalaus)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 #: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "add recording (stop after current event)"
-msgstr ""
+msgstr "bæta við upptöku (stoppa eftir núverandi atriði)"
 
 #: ../lib/python/Screens/ChannelSelection.py:77
 msgid "add service to bouquet"
@@ -1388,6 +1407,8 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"ertu viss um að þú viljir setja inn\n"
+"eftirfarandi afrit:\n"
 
 #: ../lib/python/Screens/MovieSelection.py:24
 #: ../lib/python/Screens/ChannelSelection.py:108
@@ -1396,7 +1417,7 @@ msgstr "til baka"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid "change recording (duration)"
-msgstr ""
+msgstr "breyta upptöku (tíma)"
 
 #: ../lib/python/Screens/ScanSetup.py:305
 msgid "circular left"
@@ -1408,7 +1429,7 @@ msgstr "hringpólun hægri"
 
 #: ../lib/python/Screens/MediaPlayer.py:264
 msgid "clear playlist"
-msgstr ""
+msgstr "hreinsa spilunarlista"
 
 #: ../lib/python/Screens/ChannelSelection.py:82
 msgid "copy to favourites"
@@ -1420,7 +1441,7 @@ msgstr "daglega"
 
 #: ../lib/python/Screens/MediaPlayer.py:263
 msgid "delete"
-msgstr ""
+msgstr "eyða"
 
 #: ../lib/python/Screens/MovieSelection.py:24
 msgid "delete..."
@@ -1433,15 +1454,15 @@ msgstr "hætta í færslu stöðu"
 #: ../lib/python/Screens/TimerEntry.py:99
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid "do nothing"
-msgstr ""
+msgstr "ekki gera neitt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1149
 msgid "don't record"
-msgstr ""
+msgstr "ekki taka upp"
 
 #: ../lib/python/Components/TimerList.py:68
 msgid "done!"
-msgstr ""
+msgstr "búinn!"
 
 #: ../lib/python/Components/NimManager.py:564
 msgid "empty/unknown"
@@ -1473,15 +1494,15 @@ msgstr "laust diskpláss"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "full /etc directory"
-msgstr ""
+msgstr "alla /etc möppuna"
 
 #: ../lib/python/Screens/TimerEntry.py:99
 msgid "go to deep standby"
-msgstr ""
+msgstr "fara í djúpsvefn"
 
 #: ../lib/python/Screens/MediaPlayer.py:265
 msgid "hide player"
-msgstr ""
+msgstr "fela spilara"
 
 #: ../lib/python/Screens/ScanSetup.py:305
 msgid "horizontal"
@@ -1498,7 +1519,7 @@ msgstr "hætta í spilara"
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid "list"
-msgstr ""
+msgstr "listi"
 
 #: ../lib/python/Components/NimManager.py:695
 msgid "manual"
@@ -1507,7 +1528,7 @@ msgstr "handvirkt"
 #: ../lib/python/Components/TimerList.py:48
 #: ../lib/python/Components/TimerList.py:53
 msgid "mins"
-msgstr ""
+msgstr "mín"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "next channel"
@@ -1515,7 +1536,7 @@ msgstr "næsta rás"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "next channel in history"
-msgstr ""
+msgstr "næsta rás í sögu"
 
 #: ../lib/python/Screens/ScanSetup.py:314
 #: ../lib/python/Screens/ScanSetup.py:328
@@ -1558,11 +1579,11 @@ msgstr "einu sinni"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "only /etc/enigma2 directory"
-msgstr ""
+msgstr "bara /etc/enigma2 mappa"
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
-msgstr ""
+msgstr "í lagi"
 
 #: ../lib/python/Screens/Ci.py:84
 msgid "please press OK when ready"
@@ -1574,15 +1595,15 @@ msgstr "fyrri rás"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "previous channel in history"
-msgstr ""
+msgstr "fyrri rás í sögu"
 
 #: ../lib/python/Screens/TimerEntry.py:98
 msgid "record"
-msgstr ""
+msgstr "taka upp"
 
 #: ../lib/python/Components/TimerList.py:64
 msgid "recording..."
-msgstr ""
+msgstr "tek upp...."
 
 #: ../lib/python/Screens/ChannelSelection.py:86
 msgid "remove bouquet"
@@ -1640,23 +1661,27 @@ msgstr "sýna EPG"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:318
 msgid "show event details"
-msgstr ""
+msgstr "sýna atriði nánar"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1147
 msgid "stop recording"
-msgstr ""
+msgstr "stoppa upptöku"
 
 #: ../lib/python/Screens/MediaPlayer.py:262
 msgid "switch to filelist"
-msgstr ""
+msgstr "skipta í skráarlista"
 
 #: ../lib/python/Screens/MediaPlayer.py:256
 msgid "switch to playlist"
-msgstr ""
+msgstr "skipta í spilunar lista"
 
-#: ../lib/python/Screens/Wizard.py:225 ../lib/python/Screens/Wizard.py:226
+#: ../lib/python/Screens/Wizard.py:222 ../lib/python/Screens/Wizard.py:223
 msgid "text"
 msgstr "texti"
+
+#: ../lib/python/Screens/MovieSelection.py:39
+msgid "this recording"
+msgstr ""
 
 #: ../lib/python/Screens/EventView.py:80
 msgid "unknown service"
@@ -1672,7 +1697,7 @@ msgstr "lóðrétt"
 
 #: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
-msgstr ""
+msgstr "bíð"
 
 #: ../lib/python/Screens/TimerEntry.py:104
 msgid "weekly"
@@ -1691,11 +1716,11 @@ msgstr "já"
 
 #: ../lib/python/Screens/TimerEntry.py:98
 msgid "zap"
-msgstr ""
+msgstr "stökk"
 
 #: ../lib/python/Components/TimerList.py:62
 msgid "zapped"
-msgstr ""
+msgstr "stokkið"
 
 #: ../data/
 msgid "Channel Selection"
@@ -1703,7 +1728,7 @@ msgstr "Rása val"
 
 #: ../data/
 msgid "Backup is done. Please press OK to see the result."
-msgstr ""
+msgstr "Búið að taka afrit. Ýtið á OK til að sjá úkomuna."
 
 #: ../data/
 msgid "Service"
@@ -1727,13 +1752,14 @@ msgstr "hjálp..."
 
 #: ../data/
 msgid "Yes, backup my settings!"
-msgstr ""
+msgstr "Já, taka afrit að stilinunum!"
 
 #: ../data/
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
 "settings now."
 msgstr ""
+"Innsetning stillinga er lokið. Ýtið á OK til að virkja innsettar stillingar."
 
 #: ../data/
 msgid "Satconfig"
@@ -1747,10 +1773,15 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
+"Þú þarft að hafa tölvu tengda við dreamboxið. Ef þú þarft nánari upplýsingar "
+"þá skoðaðu síðuna http://www.dm7025.de.\n"
+"Dreamboxið verður núna stoppað. Eftir að þú hefur uppfært samkvæmt "
+"leiðbeinungunum á síðunni þá mun nýja stýrikerfið biðja þig um að setja "
+"aftur inn afritið."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
-msgstr ""
+msgstr "Hvar viltu vista afritið?"
 
 #: ../data/
 msgid "Service Scan"
@@ -1777,6 +1808,8 @@ msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
 "harddisk is not an option for you."
 msgstr ""
+"Þú ert ekki með harðan disk í boxinu svo að afritun á harðan disk er ekki "
+"möguleg fyrir þig."
 
 #: ../data/
 msgid "Deep Standby"
@@ -1802,7 +1835,7 @@ msgstr "Ýttu á up/niður takka á fjarstýringu til að velja. Ýttu svo á OK
 
 #: ../data/
 msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxinu mínu"
+msgstr "Nei, ræstu bara boxið mitt"
 
 #: ../data/
 msgid "Show Satposition"
@@ -1841,14 +1874,17 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
+"Þú hefur valið að taka afrit á USB staut. Það er betra að taka afrit á harða "
+"diskinn!\n"
+"Ýttu á OK til að byrja afritun núna."
 
 #: ../data/
 msgid "Audio / Video"
 msgstr "Hljóð / Mynd"
 
 #: ../data/
-msgid "Mute"
-msgstr "Hljóð Af"
+msgid "The wizard is finished now."
+msgstr "Álfurinn er búinn núna."
 
 #: ../data/
 msgid "Service Searching"
@@ -1859,11 +1895,18 @@ msgid "#20294a6b"
 msgstr "#20294a6b"
 
 #: ../data/
+msgid "Mute"
+msgstr "Hljóð Af"
+
+#: ../data/
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
+"Velkominn til stýrikerfis uppfærslu álfinn. Álfurinn aðstoðar þig við að "
+"uppfæra stýrikerfi Dreamboxins með því að sjá um afritun af þínum stillingum "
+"og sýnir svo hverning uppfærslan fer fram."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -1879,7 +1922,7 @@ msgstr "Diskur"
 
 #: ../data/
 msgid "Record Splitsize"
-msgstr "Skipta upptöku"
+msgstr "Stærð upptökuhluta"
 
 #: ../data/
 msgid "Auto show inforbar"
@@ -1896,10 +1939,6 @@ msgstr "Netkerfi"
 #: ../data/
 msgid "Invert"
 msgstr "Snúa við"
-
-#: ../data/
-msgid "The wizard is finished now."
-msgstr ""
 
 #: ../data/
 msgid "System"
@@ -1926,7 +1965,7 @@ msgid ""
 msgstr ""
 "Velkomin.\n"
 "\n"
-"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreambosinu.\n"
+"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreamboxinu.\n"
 "Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #: ../data/
@@ -1959,7 +1998,7 @@ msgstr "EPG val"
 
 #: ../data/
 msgid "Exit the wizard"
-msgstr ""
+msgstr "Hætta í álfinum"
 
 #: ../data/
 msgid "Fast zapping"
@@ -1987,7 +2026,7 @@ msgstr "Tímastilling"
 
 #: ../data/
 msgid "Compact flash card"
-msgstr ""
+msgstr "Compact flash kort"
 
 #: ../data/
 msgid "Yes, view the tutorial"
@@ -2011,6 +2050,10 @@ msgstr "#80000000"
 
 #: ../data/
 msgid "Downloadable plugins"
+msgstr "Niðurhalanleg innskot"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
 msgstr ""
 
 #: ../data/
@@ -2047,11 +2090,7 @@ msgstr "#c0c000"
 
 #: ../data/
 msgid "A/V Settings"
-msgstr "Stillia hljóð/mynd"
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr ""
+msgstr "Stilla hljóð/mynd"
 
 #: ../data/
 msgid "Usage Settings"
@@ -2071,7 +2110,7 @@ msgstr "Rása leit"
 
 #: ../data/
 msgid "Yes, do another manual scan now"
-msgstr ""
+msgstr "Já, leitaðu aftur handvirkt núna"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2083,7 +2122,7 @@ msgstr "Nei, leita seinna handvirkt"
 
 #: ../data/
 msgid "Input"
-msgstr ""
+msgstr "Inntak"
 
 #: ../data/
 msgid "Soundcarrier"
@@ -2091,7 +2130,11 @@ msgstr "Hljóðburðarbylgja"
 
 #: ../data/
 msgid "#0000ff"
-msgstr ""
+msgstr "#0000ff"
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Já, settu inn afritið núna"
 
 #: ../data/
 msgid "Contrast"
@@ -2102,10 +2145,12 @@ msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
 msgstr ""
+"Þú hefur valið að senda afritið á harða diskinn. Ýttu á OK til að byrja "
+"afritunina núna."
 
 #: ../data/
 msgid "Timer selection"
-msgstr ""
+msgstr "Tímastillinga val"
 
 #: ../data/
 msgid "Repeat"
@@ -2118,6 +2163,10 @@ msgid ""
 "to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
+"Þú hefur kosið að senda afritið á compact flash kort. Kortið verður að vera "
+"í raufinni. Við skoðum ekki hvort að það sé notað núna. Betra er að senda "
+"afritið á harða diskinn!\n"
+"Ýttu á OK til að byrja afritunina núna."
 
 #: ../data/
 msgid "Network Setup"
@@ -2125,17 +2174,17 @@ msgstr "Stilla netkerfi"
 
 #: ../data/
 msgid "Somewhere else"
-msgstr ""
+msgstr "Einhversstaðar annarstaðar"
 
 #: ../data/
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
-msgstr ""
+msgstr "Það tókst að taka afrit. Nú höldum við áfram með uppfærsluna."
 
 #: ../data/
-msgid "Do you want to restore your settings?"
-msgstr ""
+msgid "Menu"
+msgstr "Valmynd"
 
 #: ../data/
 msgid "Parental Lock"
@@ -2166,8 +2215,8 @@ msgid "Margin before record (minutes)"
 msgstr "Mörk fyrir upptöku (mínútur)"
 
 #: ../data/
-msgid "Time/Date Input"
-msgstr ""
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Afritun mistókst. Veldu annan stað fyrir afritið."
 
 #: ../data/
 msgid "Keymap"
@@ -2180,7 +2229,7 @@ msgstr "Upplýsingar"
 #: ../data/
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
+msgstr "Álfurinn getur tekið afrit af stillingum þínum. Viltu taka afrit núna?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -2188,7 +2237,7 @@ msgstr "Hætta í álfi"
 
 #: ../data/
 msgid "Media player"
-msgstr ""
+msgstr "Spilari"
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2204,7 +2253,7 @@ msgstr "Vídeó rofi"
 
 #: ../data/
 msgid "Your dreambox is shutting down. Please stand by..."
-msgstr ""
+msgstr "Dreamboxið er að slökkva á sér. Vinsamlega bíðið..."
 
 #: ../data/
 msgid "WSS on 4:3"
@@ -2220,11 +2269,11 @@ msgstr "Veldu fléttu"
 
 #: ../data/
 msgid "OK, guide me through the upgrade process"
-msgstr ""
+msgstr "Leiðbeindu mér með uppfærsluna"
 
 #: ../data/
 msgid "No backup needed"
-msgstr ""
+msgstr "Afritun óþörf"
 
 #: ../data/
 msgid "MORE"
@@ -2232,7 +2281,7 @@ msgstr "MEIRA"
 
 #: ../data/
 msgid "Yes, do an automatic scan now"
-msgstr ""
+msgstr "Já, leita sjálfvirkt núna"
 
 #: ../data/
 msgid "Information"
@@ -2240,19 +2289,19 @@ msgstr "Upplýsingar"
 
 #: ../data/
 msgid "Yes, do a manual scan now"
-msgstr ""
+msgstr "Já, leita handvirkt núna"
 
 #: ../data/
 msgid "USB"
-msgstr ""
+msgstr "USB"
 
 #: ../data/
 msgid "Timer log"
 msgstr "Tíma skrá"
 
 #: ../data/
-msgid "Menu"
-msgstr "Valmynd"
+msgid "Do you want to restore your settings?"
+msgstr "Viltu setja inn stillingarnar þínar aftur?"
 
 #: ../data/
 msgid "Please set up tuner B"
@@ -2276,7 +2325,7 @@ msgstr "Veldu harðadisk"
 
 #: ../data/
 msgid "#ffffffff"
-msgstr ""
+msgstr "#ffffffff"
 
 #: ../data/
 msgid "Setup Lock"
@@ -2338,11 +2387,11 @@ msgstr "Breyta Tímastillingu"
 
 #: ../data/
 msgid "No, do nothing."
-msgstr ""
+msgstr "Nei, ekki gera neitt."
 
 #: ../data/
 msgid "This is unsupported at the moment."
-msgstr ""
+msgstr "Þetta er ekki stutt sem stendur."
 
 #: ../data/
 msgid "About"
@@ -2361,8 +2410,8 @@ msgid "Timer Editor"
 msgstr "Breyta Tímastillingum"
 
 #: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr ""
+msgid "Time/Date Input"
+msgstr "Tíma/Dags Innsláttur"
 
 #: ../data/
 msgid "AGC:"
@@ -2386,7 +2435,7 @@ msgstr "Hljóð"
 
 #: ../data/
 msgid "#ff0000"
-msgstr ""
+msgstr "#ff0000"
 
 #: ../data/
 msgid "Do you want to do a service scan?"
@@ -2398,7 +2447,7 @@ msgstr "NÚNA"
 
 #: ../data/
 msgid "Yes, perform a shutdown now."
-msgstr ""
+msgstr "Já, slökkva núna"
 
 #: ../data/
 msgid "Seek"
@@ -2410,11 +2459,20 @@ msgstr "Stilling gervihnatta"
 
 #: ../data/
 msgid "MediaPlayer"
-msgstr ""
+msgstr "Spilari"
 
 #: ../data/
 msgid "Do you want to do another manual service scan?"
-msgstr ""
+msgstr "Viltu leita aftur handvirkt?"
+
+#~ msgid "Date"
+#~ msgstr "Dags"
+
+#~ msgid "Do you really want to delete this recording?"
+#~ msgstr "Viltu virkilega eyða þessari upptöku?"
+
+#~ msgid "Time"
+#~ msgstr "Tími"
 
 #~ msgid "%s (%s, %d MB free)"
 #~ msgstr "%s (%s, %d MB laus)"
