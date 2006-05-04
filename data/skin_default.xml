@@ -262,6 +262,9 @@
 	<screen name="PictureInPicture" position="500,100" size="180,140" zPosition="-1" flags="wfNoBorder" >
 		<widget name="video" position="0,0" size="160,120" />
 	</screen>
+	<screen name="PiPSetup" backgroundColor="transparent" position="70,400" size="600,150" title="PiPSetup" flags="wfNoBorder">
+		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
+	</screen>
 	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
 		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
 		<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
