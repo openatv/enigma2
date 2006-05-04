@@ -1158,8 +1158,7 @@ PyObject *eDVBServicePlay::getInfoObject(int w)
 	switch (w)
 	{
 	case sCAIDs:
-		if (m_dvb_service)
-			return m_service_handler.getCaIds();
+		return m_service_handler.getCaIds();
 	default:
 		break;
 	}
