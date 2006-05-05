@@ -24,7 +24,7 @@ class PiPSetup(Screen):
 
 		self["text"] = Label(_("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving."))
 
-		self["actions"] = NumberActionMap(["PiPSetupActions"], 
+		self["actions"] = NumberActionMap(["PiPSetupActions", "NumberActions"], 
 		{
 			"ok": self.go,
 			"cancel": self.cancel,
@@ -34,6 +34,16 @@ class PiPSetup(Screen):
 			"right": self.right,
 			"size+": self.bigger,
 			"size-": self.smaller,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
 		}, -1)
 		
 	def go(self):
@@ -75,3 +85,19 @@ class PiPSetup(Screen):
 	
 	def smaller(self):
 		self.resizePiP(self.resize - 5)
+		
+	def keyNumberGlobal(self, number):
+		size = int(240 / self.size[0] * 100)
+		actions = [((self.orgpos[0], self.orgpos[1]), size),
+				   ((0, 0), size),
+				   ((240, 0), size),
+				   ((480, 0), size),
+				   ((0, 192), size),
+				   ((240, 192), size),
+				   ((480, 192), size),
+				   ((0, 384), size),
+				   ((240, 384), size),
+				   ((480, 384), size)]
+				   
+		self.movePiP(actions[number][0][0], actions[number][0][1])
+		self.resizePiP(actions[number][1])
