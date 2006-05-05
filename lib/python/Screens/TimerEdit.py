@@ -3,7 +3,6 @@ from Components.TimerList import TimerList, TimerEntryComponent
 from Components.ConfigList import ConfigList
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
-from Components.TimeInput import TimeInput
 from Components.Label import Label
 from Components.Button import Button
 from Screens.MessageBox import MessageBox
