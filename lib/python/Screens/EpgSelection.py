@@ -32,11 +32,13 @@ class EPGSelection(Screen):
 			self["key_red"] = Button()
 			self.currentService=service
 			self.eventid = eventid
+			self.zapFunc = None
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
 			self.type = EPG_TYPE_SINGLE
 			self["key_yellow"] = Button()
 			self["key_blue"] = Button()
 			self.currentService=ServiceReference(service)
+			self.zapFunc = None
 		else:
 			self.skinName = "EPGSelectionMulti"
 			self.type = EPG_TYPE_MULTI
