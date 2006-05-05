@@ -1015,20 +1015,24 @@ class InfoBarExtensions:
 			{
 				"extensions": (self.extensions, "Extensions..."),
 			})
-			
+
+	PIPON = 0
+	PIPOFF = 1
+	MOVEPIP = 2
+
 	def extensions(self):
 		list = []
 		if self.pipshown == False:
-			list.append((_("Activate Picture in Picture"), "pipon"))
+			list.append((_("Activate Picture in Picture"), self.PIPON))
 		elif self.pipshown == True:
-			list.append((_("Disable Picture in Picture"), "pipoff"))
-			list.append((_("Move Picture in Picture"), "movepip"))
+			list.append((_("Disable Picture in Picture"), self.PIPOFF))
+			list.append((_("Move Picture in Picture"), self.MOVEPIP))
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
 	def extensionCallback(self, answer):
 		if answer is not None:
-			if answer[1] == "pipon":
-				self.session.nav.stopService()
+			if answer[1] == self.PIPON:
+#				self.session.nav.stopService()
 				self.pip = self.session.instantiateDialog(PictureInPicture)
 				#self.pip.show()
 				
@@ -1041,12 +1045,12 @@ class InfoBarExtensions:
 					self.pipservice = None
 					del self.pip
 				self.session.nav.playService(newservice)
-			elif answer[1] == "pipoff":
+			elif answer[1] == self.PIPOFF:
 				#self.pip.hide()
 				self.pipservice = None
 				del self.pip
 				self.pipshown = False
-			elif answer[1] == "movepip":
+			elif answer[1] == self.MOVEPIP:
 				self.session.open(PiPSetup, pip = self.pip)
 
 from RecordTimer import parseEvent
