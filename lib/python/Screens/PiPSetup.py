@@ -19,7 +19,8 @@ class PiPSetup(Screen):
 		self.orgpos = self.pos
 		
 		self.size = self.pip.getSize()
-		self.orgsize = self.size
+		
+		self.resize = 100
 
 		self["text"] = Label(_("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving."))
 
@@ -40,33 +41,37 @@ class PiPSetup(Screen):
 	
 	def cancel(self):
 		self.movePiP(self.orgpos[0], self.orgpos[1])
-		self.resizePiP(self.orgsize[0], self.orgsize[1])
+		self.resizePiP(100)
 		self.close()
 		
 	def movePiP(self, x, y):
+		if x < 0:
+			x = 0
+		if y < 0:
+			y = 0
 		self.pip.move(x, y)
 		self.pos = (x, y)
 		
-	def resizePiP(self, w, h):
+	def resizePiP(self, resize):
+		w = int(self.size[0] * self.resize / 100)
+		h = int(self.size[1] * self.resize / 100)
 		self.pip.resize(w, h)
-		self.size = (w, h)
+		self.resize = resize
 	
 	def up(self):
-		self.movePiP(self.pos[0], self.pos[1] - 1)
+		self.movePiP(self.pos[0], self.pos[1] - 10)
 
 	def down(self):
-		self.movePiP(self.pos[0], self.pos[1] + 1)
+		self.movePiP(self.pos[0], self.pos[1] + 10)
 	
 	def left(self):
-		self.movePiP(self.pos[0] - 1, self.pos[1])
+		self.movePiP(self.pos[0] - 10, self.pos[1])
 	
 	def right(self):
-		self.movePiP(self.pos[0] + 1, self.pos[1])
+		self.movePiP(self.pos[0] + 10, self.pos[1])
 		
 	def bigger(self):
-		# just for testing... TODO resize with correct aspect ratio
-		self.resizePiP(self.size[0] + 1, self.size[1] + 1)
+		self.resizePiP(self.resize + 5)
 	
 	def smaller(self):
-		# just for testing... TODO resize with correct aspect ratio
-		self.resizePiP(self.size[0] - 1, self.size[1] - 1)
+		self.resizePiP(self.resize - 5)
