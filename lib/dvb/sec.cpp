@@ -27,7 +27,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addLNB();
 	setLNBTunerMask(3);
 	setLNBLOFL(9750000);
-	setLNBThreshold(11750000);
+	setLNBThreshold(11700000);
 	setLNBLOFH(10607000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
@@ -44,7 +44,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addLNB();
 	setLNBTunerMask(3);
 	setLNBLOFL(9750000);
-	setLNBThreshold(11750000);
+	setLNBThreshold(11700000);
 	setLNBLOFH(10600000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
@@ -61,7 +61,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	addLNB();
 	setLNBTunerMask(3);
 	setLNBLOFL(9750000);
-	setLNBThreshold(11750000);
+	setLNBThreshold(11700000);
 	setLNBLOFH(10600000);
 	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_2);
 	setToneburst(eDVBSatelliteDiseqcParameters::NO);
