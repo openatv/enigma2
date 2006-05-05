@@ -2,6 +2,7 @@
 
 eVideoWidget::eVideoWidget(eWidget *parent): eWidget(parent)
 {
+	parent->setPositionNotifyChild(1);
 }
 
 int eVideoWidget::event(int event, void *data, void *data2)
@@ -10,6 +11,7 @@ int eVideoWidget::event(int event, void *data, void *data2)
 	{
 	case evtChangedPosition:
 	case evtChangedSize:
+	case evtParentChangedPosition:
 		eDebug("position is now ...");
 		updatePosition();
 	}
