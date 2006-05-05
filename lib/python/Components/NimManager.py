@@ -44,7 +44,7 @@ class SecConfigure:
 		sec.setLNBTunerMask(tunermask)
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
-		sec.setLNBThreshold(11750000)
+		sec.setLNBThreshold(11700000)
 		sec.setLNBIncreasedVoltage(lnbParam.OFF)
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(0)
@@ -176,7 +176,7 @@ class SecConfigure:
 				if currentConfigSelectionElement(currLnb.lof) == "universal_lnb":
 					sec.setLNBLOFL(9750000)
 					sec.setLNBLOFH(10600000)
-					sec.setLNBThreshold(11750000)
+					sec.setLNBThreshold(11700000)
 				elif currentConfigSelectionElement(currLnb.lof) == "c_band":
 					sec.setLNBLOFL(5150000)
 					sec.setLNBLOFH(5150000)
@@ -742,7 +742,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].lof = configElement(cname + "advanced.lnb" + str(x) + ".lof", configSelection, 0, (("universal_lnb", _("Universal LNB")), ("c_band", _("C-Band")), ("user_defined", _("User defined"))), False)
 				nim.advanced.lnb[x].lofl = configElement(cname + "advanced.lnb" + str(x) + ".lofl", configSequence, [9750], configsequencearg.get("INTEGER", (0, 99999)), False)
 				nim.advanced.lnb[x].lofh = configElement(cname + "advanced.lnb" + str(x) + ".lofh", configSequence, [10600], configsequencearg.get("INTEGER", (0, 99999)), False)
-				nim.advanced.lnb[x].threshold = configElement(cname + "advanced.lnb" + str(x) + ".threshold", configSequence, [11750], configsequencearg.get("INTEGER", (0, 99999)), False)
+				nim.advanced.lnb[x].threshold = configElement(cname + "advanced.lnb" + str(x) + ".threshold", configSequence, [11700], configsequencearg.get("INTEGER", (0, 99999)), False)
 				nim.advanced.lnb[x].output_12v = configElement(cname + "advanced.lnb" + str(x) + ".output_12v", configSelection, 0, (("0V", _("0 V")), ("12V", _("12 V"))), False)
 				nim.advanced.lnb[x].increased_voltage = configElement(cname + "advanced.lnb" + str(x) + ".increased_voltage", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
 				nim.advanced.lnb[x].toneburst = configElement(cname + "advanced.lnb" + str(x) + ".toneburst", configSelection, 0, (("none", _("None")), ("A", _("A")), ("B", _("B"))), False)
