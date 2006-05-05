@@ -82,7 +82,7 @@ private:
 	eWidget *m_current_focus, *m_focus_owner;
 	
 	int m_z_position;
-	
+	int m_notify_child_on_position_change;
 protected:
 	virtual ~eWidget();
 	void mayKillFocus();
@@ -99,6 +99,8 @@ public:
 		evtChangedPosition,
 		evtChangedSize,
 		
+		evtParentChangedPosition,
+		
 		evtWillShow,
 		evtWillHide,
 		evtWillChangePosition, /* new size is eRect *data */
@@ -113,6 +115,9 @@ public:
 	};
 	virtual int event(int event, void *data = 0, void *data2 = 0);
 	void setFocus(eWidget *focus);
+
+		/* enable this if you need the absolute position of the widget */
+	void setPositionNotifyChild(int n) { m_notify_child_on_position_change = 1; }
 };
 
 extern eWidgetDesktop *getDesktop(int which);

@@ -23,6 +23,8 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 
 	m_current_focus = 0;
 	m_focus_owner = 0;
+	
+	m_notify_child_on_position_change = 1;
 }
 
 void eWidget::move(ePoint pos)
@@ -38,6 +40,11 @@ void eWidget::move(ePoint pos)
 	m_position = pos;
 	
 	event(evtChangedPosition);
+	
+	if (m_notify_child_on_position_change)
+		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
+			i->event(evtParentChangedPosition);
+		
 	recalcClipRegionsWhenVisible();
 	
 		/* try native move if supported. */
@@ -64,6 +71,11 @@ void eWidget::resize(eSize size)
 	
 	invalidate();
 	event(evtChangedSize);
+
+	if (m_notify_child_on_position_change)
+		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
+			i->event(evtParentChangedPosition); /* position/size is the same here */
+
 	recalcClipRegionsWhenVisible();	
 	invalidate();
 }
@@ -340,10 +352,12 @@ int eWidget::event(int event, void *data, void *data2)
 		m_size = *static_cast<eSize*>(data);
 		break;
 	case evtChangedSize:
-	{
 		m_clip_region = gRegion(eRect(ePoint(0, 0),  m_size));
 		break;
-	}
+	case evtParentChangedPosition:
+		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
+			i->event(evtParentChangedPosition);
+		break;
 	case evtFocusGot:
 		m_focus_owner = (eWidget*)data;
 		break;
