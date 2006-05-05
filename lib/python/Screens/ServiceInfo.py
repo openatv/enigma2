@@ -69,7 +69,7 @@ class ServiceInfo(Screen):
 		if service is not None:
 			self.info = service.info()
 			self.feinfo = service.frontendStatusInfo()
-			print self.info.getInfoObject(iServiceInformation.sVideoPID);
+			print self.info.getInfoObject(iServiceInformation.sCAIDs);
 		else:
 			self.info = None
 

@@ -194,7 +194,10 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		res = 0;
 		break;
 	case eDVBChannelQuery::tSatellitePosition:
-		res = ((unsigned int)ref.getDVBNamespace().get())>>16 == query.m_int;
+		res = ((unsigned int)ref.getDVBNamespace().get())>>16 == (unsigned int)query.m_int;
+		break;
+	case eDVBChannelQuery::tFlags:
+		res = (m_flags & query.m_int) == query.m_int;
 		break;
 	case eDVBChannelQuery::tChannelID:
 	{
@@ -667,6 +670,135 @@ eDVBDB::~eDVBDB()
 	instance=NULL;
 }
 
+RESULT eDVBDB::removeService(eServiceReferenceDVB service)
+{
+	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+	if (it != m_services.end())
+	{
+		m_services.erase(it);
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
+{
+	RESULT ret=-1;
+	eDVBNamespace eNs;
+	eTransportStreamID eTsid;
+	eOriginalNetworkID eOnid;
+	std::map<eDVBChannelID, channel>::iterator it(m_channels.begin());
+	std::set<eDVBChannelID> removed_chids;
+	while (it != m_channels.end())
+	{
+		const eDVBChannelID &ch = it->first;
+		bool remove=true;
+		int system;
+		it->second.m_frontendParameters->getSystem(system);
+		if ( orbpos != 0xFFFFFFFF && system == iDVBFrontend::feSatellite )
+		{
+			eDVBFrontendParametersSatellite sat;
+			it->second.m_frontendParameters->getDVBS(sat);
+			if ((unsigned int)sat.orbital_position != orbpos)
+				remove=false;
+		}
+		if ( remove && chid.dvbnamespace != eNs && chid.dvbnamespace != ch.dvbnamespace )
+			remove=false;
+		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
+			remove=false;
+		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )
+			remove=false;
+		if ( remove )
+		{
+			removed_chids.insert(it->first);
+			m_channels.erase(it++);
+		}
+		else
+			++it;
+	}
+	if (!removed_chids.empty())
+	{
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator service(m_services.begin());
+		while(service != m_services.end())
+		{
+			eDVBChannelID chid;
+			service->first.getChannelID(chid);
+			std::set<eDVBChannelID>::iterator it(removed_chids.find(chid));
+			if (it != removed_chids.end())
+				m_services.erase(service++);
+			else
+				++service;
+			ret=0;
+		}
+	}
+	return ret;
+}
+
+RESULT eDVBDB::addFlag(eServiceReferenceDVB service, unsigned int flagmask)
+{
+	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+	if (it != m_services.end())
+	{
+		it->second->m_flags |= ~flagmask;
+	}
+	return 0;
+}
+
+RESULT eDVBDB::removeFlag(eServiceReferenceDVB service, unsigned int flagmask)
+{
+	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+	if (it != m_services.end())
+		it->second->m_flags &= ~flagmask;
+	return 0;
+}
+
+RESULT eDVBDB::removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orbpos)
+{
+	eDVBNamespace eNs;
+	eTransportStreamID eTsid;
+	eOriginalNetworkID eOnid;
+	std::map<eDVBChannelID, channel>::iterator it(m_channels.begin());
+	std::set<eDVBChannelID> removed_chids;
+	while (it != m_channels.end())
+	{
+		const eDVBChannelID &ch = it->first;
+		bool remove=true;
+		int system;
+		it->second.m_frontendParameters->getSystem(system);
+		if ( orbpos != 0xFFFFFFFF && system == iDVBFrontend::feSatellite )
+		{
+			eDVBFrontendParametersSatellite sat;
+			it->second.m_frontendParameters->getDVBS(sat);
+			if ((unsigned int)sat.orbital_position != orbpos)
+				remove=false;
+		}
+		if ( remove && chid.dvbnamespace != eNs && chid.dvbnamespace != ch.dvbnamespace )
+			remove=false;
+		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
+			remove=false;
+		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )
+			remove=false;
+		if ( remove )
+			removed_chids.insert(it->first);
+		++it;
+	}
+	if (!removed_chids.empty())
+	{
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator service(m_services.begin());
+		while(service != m_services.end())
+		{
+			eDVBChannelID chid;
+			service->first.getChannelID(chid);
+			std::set<eDVBChannelID>::iterator it(removed_chids.find(chid));
+			if (it != removed_chids.end())
+				service->second->m_flags &= ~flagmask;
+			++service;
+		}
+	}
+	return 0;
+}
+
+
 RESULT eDVBDB::addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)
 {
 	channel ch;
@@ -696,7 +828,14 @@ RESULT eDVBDB::getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontend
 
 RESULT eDVBDB::addService(const eServiceReferenceDVB &serviceref, eDVBService *service)
 {
-	m_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(serviceref, service));
+	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(serviceref));
+	if (it == m_services.end())
+	{
+		service->m_flags |= eDVBService::dxNewFound;
+		m_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(serviceref, service));
+	}
+	else
+		it->second->m_flags &= ~eDVBService::dxNewFound;
 	return 0;
 }
 
@@ -933,8 +1072,8 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				eServiceReferenceDVB ref;
 				ref.setDVBNamespace(dvbnamespace);
 				ref.flags=eServiceReference::flagDirectory;
-				char buf[64];
-				snprintf(buf, 64, "(satellitePosition == %d) && ", dvbnamespace>>16);
+				char buf[128];
+				snprintf(buf, 128, "(satellitePosition == %d) && ", dvbnamespace>>16);
 
 				ref.path=buf+source.path;
 				unsigned int pos=ref.path.find("FROM");
@@ -947,6 +1086,14 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				pos=ref.path.find("FROM");
 				ref.path.erase(pos+5);
 				ref.path+="PROVIDERS ORDER BY name";
+//				eDebug("ref.path now %s", ref.path.c_str());
+				m_list.push_back(ref);
+
+				snprintf(buf, 128, "(satellitePosition == %d) && (flags == %d) && ", dvbnamespace>>16, eDVBService::dxNewFound);
+				ref.path=buf+source.path;
+				pos=ref.path.find("FROM");
+				ref.path.erase(pos);
+				ref.path+="ORDER BY name";
 //				eDebug("ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 			}
@@ -1011,6 +1158,8 @@ static int decodeType(const std::string &type)
 		return eDVBChannelQuery::tSatellitePosition;
 	else if (type == "channelID")
 		return eDVBChannelQuery::tChannelID;
+	else if (type == "flags")
+		return eDVBChannelQuery::tFlags;
 	else
 		return -1;
 }

@@ -33,6 +33,11 @@ DECLARE_REF(eDVBDB);
 	~eDVBDB();
 #endif
 public:
+	RESULT removeService(eServiceReferenceDVB service);
+	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);
+	RESULT addFlag(eServiceReferenceDVB service, unsigned int flagmask);
+	RESULT removeFlag(eServiceReferenceDVB service, unsigned int flagmask);
+	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
 #ifndef SWIG
 // iDVBChannelList
 	RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm);

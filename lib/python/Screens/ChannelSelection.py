@@ -670,6 +670,8 @@ class ChannelSelectionBase(Screen):
 							orbpos = service.getUnsignedData(4) >> 16
 							if service.getPath().find("FROM PROVIDER") != -1:
 								service_name = _("Providers")
+							elif service.getPath().find("flags ==") != -1:
+								service_name = _("New")
 							else:
 								service_name = _("Services")
 							try:
