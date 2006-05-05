@@ -10,7 +10,6 @@ import xml.dom.minidom
 from enigma import quitMainloop
 
 from Screens.MessageBox import MessageBox
-from Screens.SubserviceSelection import SubserviceSelection
 import NavigationInstance
 from time import localtime
 
