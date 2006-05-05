@@ -244,8 +244,8 @@ public:
 		dxNoSDT=1,    // don't get SDT
 		dxDontshow=2,
 		dxHoldName=8,
-		dxNewFound=64, // found in prev scan
 #endif
+		dxNewFound=64,
 		dxNoDVB=4  // dont use PMT for this service ( use cached pids )
 	};
 
@@ -293,7 +293,8 @@ public:
 		tChannelID,
 		tAND,
 		tOR,
-		tAny
+		tAny,
+		tFlags
 	};
 	
 	int m_type;
@@ -315,6 +316,11 @@ public:
 class iDVBChannelList: public iObject
 {
 public:
+	virtual RESULT removeService(eServiceReferenceDVB service)=0;
+	virtual RESULT removeServices(eDVBChannelID chid=eDVBChannelID(), unsigned int orb_pos=0xFFFFFFFF)=0;
+	virtual RESULT addFlag(eServiceReferenceDVB service, unsigned int flagmask=0xFFFFFFFF)=0;
+	virtual RESULT removeFlag(eServiceReferenceDVB service, unsigned int flagmask=0xFFFFFFFF)=0;
+	virtual RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid=eDVBChannelID(), unsigned int orb_pos=0xFFFFFFFF)=0;
 	virtual RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)=0;
 	virtual RESULT removeChannel(const eDVBChannelID &id)=0;
 	
