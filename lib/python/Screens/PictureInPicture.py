@@ -16,6 +16,7 @@ class PictureInPicture(Screen):
 	def resize(self, w, h):
 		print "resizing pip to", str(w) + "x" + str(h)
 		self.instance.resize(eSize(*(w, h)))
+		self["video"].instance.resize(eSize(*(w, h)))
 		
 	def getPosition(self):
 		return ((self.instance.position().x(), self.instance.position().y()))
