@@ -408,8 +408,8 @@ class InfoBarEPG:
 			self.eventView = None
 		if ret:
 			dlgs=len(self.dlg_stack)
-			assert dlgs>0
-			self.dlg_stack[dlgs-1].close(dlgs > 1)
+			if dlgs > 0:
+				self.dlg_stack[dlgs-1].close(dlgs > 1)
 
 	def openMultiServiceEPG(self, withCallback=True):
 		bouquets = self.servicelist.getBouquetList()
