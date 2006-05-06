@@ -1532,6 +1532,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 		PyObject *item=PyList_GET_ITEM(list, listIt++); // borrowed reference!
 		if (PyTuple_Check(item))
 		{
+			bool service_changed=false;
 			int type=0;
 			long event_id=-1;
 			time_t stime=-1;
@@ -1579,6 +1580,24 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 				eDebug("service reference for epg query is not valid");
 				continue;
 			}
+
+			// redirect subservice querys to parent service
+			eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB&)ref;
+			if (dvb_ref.getParentTransportStreamID().get()) // linkage subservice
+			{
+				eServiceCenterPtr service_center;
+				if (!eServiceCenter::getPrivInstance(service_center))
+				{
+					dvb_ref.setTransportStreamID( dvb_ref.getParentTransportStreamID() );
+					dvb_ref.setServiceID( dvb_ref.getParentServiceID() );
+					dvb_ref.setParentTransportStreamID(eTransportStreamID(0));
+					dvb_ref.setParentServiceID(eServiceID(0));
+					dvb_ref.name="";
+					service = PyString_FromString(dvb_ref.toString().c_str());
+					service_changed = true;
+				}
+			}
+
 			PyObject *service_name=NULL;
 			if (must_get_service_name)
 			{
@@ -1628,6 +1647,8 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 				if (ret)
 					return ret;
 			}
+			if (service_changed)
+				Py_DECREF(service);
 			if (service_name)
 				Py_DECREF(service_name);
 		}

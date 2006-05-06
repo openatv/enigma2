@@ -103,13 +103,11 @@ class EPGSelection(Screen):
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
-		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_SIMILAR:
-			cur = self["list"].getCurrent()
-			event = cur[0]
-			service = cur[1]
-		else:
-			event = self["list"].getCurrent()
-			service = self.currentService
+		cur = self["list"].getCurrent()
+		event = cur[0]
+		service = cur[1]
+		print "event", cur[0]
+		print "service", cur[1]
 		if event is not None:
 			if self.type != EPG_TYPE_SIMILAR:
 				self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
@@ -126,15 +124,12 @@ class EPGSelection(Screen):
 	#just used in multipeg
 	def onCreate(self):
 		l = self["list"]
+		l.recalcEntrySize()
 		if self.type == EPG_TYPE_MULTI:
-			l.recalcEntrySize()
 			l.fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE:
-			if SINGLE_CPP == 0:
-				l.recalcEntrySize()
 			l.fillSingleEPG(self.currentService)
 		else:
-			l.recalcEntrySize()
 			l.fillSimilarList(self.currentService, self.eventid)
 
 	def eventViewCallback(self, setEvent, setService, val):
@@ -145,14 +140,11 @@ class EPGSelection(Screen):
 		elif val == +1:
 			self.moveDown()
 		cur = l.getCurrent()
-		if self.type == EPG_TYPE_SINGLE:
-			setEvent(cur)
+		if self.type == EPG_TYPE_MULTI and cur[0] is None and cur[1].ref != old[1].ref:
+			self.eventViewCallback(setEvent, setService, val)
 		else:
-			if self.type == EPG_TYPE_MULTI and cur[0] is None and cur[1].ref != old[1].ref:
-				self.eventViewCallback(setEvent, setService, val)
-			else:
-				setService(cur[1])
-				setEvent(cur[0])
+			setService(cur[1])
+			setEvent(cur[0])
 
 	def zapTo(self): # just used in multiepg
 		if self.zapFunc and self["key_red"].getText() == "Zap":
@@ -175,13 +167,9 @@ class EPGSelection(Screen):
 			self["list"].updateMultiEPG(1)
 
 	def timerAdd(self):
-		if self.type == EPG_TYPE_SINGLE:
-			event = self["list"].getCurrent()
-			serviceref = self.currentService
-		else:
-			cur = self["list"].getCurrent()
-			event = cur[0]
-			serviceref = cur[1]
+		cur = self["list"].getCurrent()
+		event = cur[0]
+		serviceref = cur[1]
 		if event is None:
 			return
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
