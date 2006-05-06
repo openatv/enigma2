@@ -139,7 +139,7 @@ class TimerEditList(Screen):
 		else:
 			data = parseEvent(event)
 
-		self.addTimer(RecordTimerEntry(serviceref, *data))
+		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, *data))
 		
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)

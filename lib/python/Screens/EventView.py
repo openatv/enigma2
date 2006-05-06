@@ -59,7 +59,7 @@ class EventViewBase:
 
 	def timerAdd(self):
 		if not self.isRecording:
-			newEntry = RecordTimerEntry(self.currentService, *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, *parseEvent(self.event))
 			self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):
