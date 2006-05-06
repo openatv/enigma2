@@ -910,7 +910,7 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
-		eDebug("[EPGC] stop caching events(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
+		eDebug("[EPGC] stop caching events(%ld)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
 		zapTimer.start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (int i=0; i < 3; ++i)
@@ -931,7 +931,7 @@ bool eEPGCache::channel_data::finishEPG()
 
 void eEPGCache::channel_data::startEPG()
 {
-	eDebug("[EPGC] start caching events(%d)", eDVBLocalTimeHandler::getInstance()->difference()+time(0));
+	eDebug("[EPGC] start caching events(%ld)", eDVBLocalTimeHandler::getInstance()->difference()+time(0));
 	state=0;
 	haveData=0;
 	can_delete=0;
@@ -1118,7 +1118,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 					break;
 				default: eDebugNoNewLine("unknown");break;
 			}
-			eDebug(" finished(%d)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
+			eDebug(" finished(%ld)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
 			if ( reader )
 				reader->stop();
 			isRunning &= ~source;
