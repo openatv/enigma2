@@ -42,8 +42,15 @@ class AFTEREVENT:
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
+		
+		if checkOldTimers == True:
+			if self.begin < time.time() - 1209600:
+				self.begin = int(time.time())
+		
+		if self.end < self.begin:
+			self.end = self.begin
 		
 		assert isinstance(serviceref, ServiceReference)
 		
