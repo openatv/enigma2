@@ -67,7 +67,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/elistboxcontent.h>
 #include <lib/service/listboxservice.h>
 #include <lib/components/scan.h>
-#include <lib/components/listboxepg.h>
 #include <lib/components/file_eraser.h>
 #include <lib/nav/pcore.h>
 #include <lib/actions/action.h>
@@ -182,7 +181,6 @@ typedef long time_t;
 %include <lib/gui/evideo.h>
 %include <lib/service/listboxservice.h>
 %include <lib/components/scan.h>
-%include <lib/components/listboxepg.h>
 %include <lib/components/file_eraser.h>
 %include <lib/nav/pcore.h>
 %include <lib/actions/action.h>

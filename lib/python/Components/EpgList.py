@@ -22,8 +22,6 @@ RT_VALIGN_BOTTOM = 16
 
 RT_WRAP = 32
 
-SINGLE_CPP = 0
-
 class Rect:
 	def __init__(self, x, y, width, height):
 		self.__left = x
@@ -52,17 +50,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.type=type
-		if type == EPG_TYPE_SINGLE and SINGLE_CPP > 0:
-			self.l = eListboxEPGContent()
+		self.l = eListboxPythonMultiContent()
+		if type == EPG_TYPE_SINGLE:
+			self.l.setBuildFunc(self.buildSingleEntry)
+		elif type == EPG_TYPE_MULTI:
+			self.l.setBuildFunc(self.buildMultiEntry)
 		else:
-			self.l = eListboxPythonMultiContent()
-			if type == EPG_TYPE_SINGLE:
-				self.l.setBuildFunc(self.buildSingleEntry)
-			elif type == EPG_TYPE_MULTI:
-				self.l.setBuildFunc(self.buildMultiEntry)
-			else:
-				assert(type == EPG_TYPE_SIMILAR)
-				self.l.setBuildFunc(self.buildSimilarEntry)
+			assert(type == EPG_TYPE_SIMILAR)
+			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
 	def getEventFromId(self, service, eventid):
@@ -72,37 +67,21 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def getCurrentChangeCount(self):
-		if self.type == EPG_TYPE_SINGLE:
-			return 0
-		return self.l.getCurrentSelection()[0]
+		if self.type == EPG_TYPE_MULTI:
+			return self.l.getCurrentSelection()[0]
+		return 0
 
 	def getCurrent(self):
-		if self.type == EPG_TYPE_SINGLE:
-			if SINGLE_CPP > 0:
-				evt = self.l.getCurrent()
-			else:
-				cur = self.l.getCurrentSelection()
-				if cur is None:
-					return cur
-				else:
-					evt = self.getEventFromId(self.service, cur[0])
-		elif self.type == EPG_TYPE_MULTI:
-			tmp = self.l.getCurrentSelection()
-			if tmp is None:
-				return ( None, None )
-			eventid = tmp[2]
-			service = ServiceReference(tmp[1])
-			event = self.getEventFromId(service, eventid)
-			evt = ( event, service )
-		else:
-			tmp = self.l.getCurrentSelection()
-			if tmp is None:
-				return ( None, None )
-			eventid = tmp[1]
-			service = ServiceReference(tmp[0])
-			event = self.getEventFromId(service, eventid)
-			evt = ( event, service )
-		return evt
+		idx=0
+		if self.type == EPG_TYPE_MULTI:
+			idx += 1
+		tmp = self.l.getCurrentSelection()
+		if tmp is None:
+			return ( None, None )
+		eventid = tmp[idx+1]
+		service = ServiceReference(tmp[idx])
+		event = self.getEventFromId(service, eventid)
+		return ( event, service )
 
 	def moveUp(self):
 		self.instance.moveSelection(self.instance.moveUp)
@@ -132,38 +111,35 @@ class EPGList(HTMLComponent, GUIComponent):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
-		if SINGLE_CPP > 0:
-			instance.setItemHeight(25)
 
 	def recalcEntrySize(self):
-		if SINGLE_CPP == 0:
-			esize = self.l.getItemSize()
-			self.l.setFont(0, gFont("Regular", 22))
-			self.l.setFont(1, gFont("Regular", 16))
-			width = esize.width()
-			height = esize.height()
-			if self.type == EPG_TYPE_SINGLE:
-				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
-				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
-				self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
-			elif self.type == EPG_TYPE_MULTI:
-				xpos = 0;
-				w = width/10*3;
-				self.service_rect = Rect(xpos, 0, w-10, height)
-				xpos += w;
-				w = width/10*2;
-				self.start_end_rect = Rect(xpos, 0, w-10, height)
-				self.progress_rect = Rect(xpos, 4, w-10, height-8)
-				xpos += w
-				w = width/10*5;
-				self.descr_rect = Rect(xpos, 0, width, height)
-			else: # EPG_TYPE_SIMILAR
-				self.weekday_rect = Rect(0, 0, width/20*2-10, height)
-				self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
-				self.service_rect = Rect(width/20*7, 0, width/20*13, height)
+		esize = self.l.getItemSize()
+		self.l.setFont(0, gFont("Regular", 22))
+		self.l.setFont(1, gFont("Regular", 16))
+		width = esize.width()
+		height = esize.height()
+		if self.type == EPG_TYPE_SINGLE:
+			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+			self.descr_rect = Rect(width/20*7, 0, width/20*13, height)
+		elif self.type == EPG_TYPE_MULTI:
+			xpos = 0;
+			w = width/10*3;
+			self.service_rect = Rect(xpos, 0, w-10, height)
+			xpos += w;
+			w = width/10*2;
+			self.start_end_rect = Rect(xpos, 0, w-10, height)
+			self.progress_rect = Rect(xpos, 4, w-10, height-8)
+			xpos += w
+			w = width/10*5;
+			self.descr_rect = Rect(xpos, 0, width, height)
+		else: # EPG_TYPE_SIMILAR
+			self.weekday_rect = Rect(0, 0, width/20*2-10, height)
+			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
+			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
-	def buildSingleEntry(self, eventId, beginTime, duration, EventName):
-		rec=(self.timer.isInTimer(eventId, beginTime, duration, self.service) > ((duration/10)*8)) 
+	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
+		rec=(self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -272,12 +248,8 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillSingleEPG(self, service):
 		t = time()
-		if SINGLE_CPP > 0:
-			self.l.setRoot(service.ref)
-		else:
-			self.service = service
-			test = [ 'IBDT', (service.ref.toString(), 0, -1, -1) ]
-			self.l.setList(self.queryEPG(test))
+		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
+		self.l.setList(self.queryEPG(test))
 		print time() - t
 		self.selectionChanged()
 
