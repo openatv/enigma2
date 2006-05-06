@@ -106,8 +106,6 @@ class EPGSelection(Screen):
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		service = cur[1]
-		print "event", cur[0]
-		print "service", cur[1]
 		if event is not None:
 			if self.type != EPG_TYPE_SIMILAR:
 				self.session.open(EventViewSimple, event, service, self.eventViewCallback, self.openSimilarList)
