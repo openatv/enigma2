@@ -291,6 +291,7 @@ class TimerEntry(Screen):
 					tlist = []
 					ref = self.session.nav.getCurrentlyPlayingServiceReference()
 					parent = self.timer.service_ref.ref
+					selection = 0
 					for x in range(n):
 						i = event.getLinkageService(parent, x)
 						if i.toString() == ref.toString():
