@@ -14,7 +14,7 @@ from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from Components.config import config, currentConfigSelectionElement
-from time import localtime
+from time import localtime, time
 
 import xml.dom.minidom
 
@@ -184,7 +184,7 @@ class EPGSelection(Screen):
 			serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, *parseEvent(event))
+		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):
