@@ -185,7 +185,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 	}
 		
 		// build the poll aray
-	pollfd* pfd = new pollfd[fdcount];  // make new pollfd array
+	pollfd pfd[fdcount];  // make new pollfd array
 		
 	for (int i=0; i < nativecount; i++, fd_merged_it++)
 	{
@@ -271,7 +271,6 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 			ret = -1; /* don't assume the timeout has passed when we got a signal */
 		}
 	}
-	delete [] pfd;
 	
 		/* when we not processed anything, check timers. */
 	if (!m_timer_list.empty())
