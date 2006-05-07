@@ -1225,6 +1225,7 @@ class InfoBarAudioSelection:
 	def audioSelected(self, audio):
 		if audio is not None:
 			self.audio.selectTrack(audio[1])
+		del self.audio
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
