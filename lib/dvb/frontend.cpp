@@ -305,7 +305,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
-	:m_type(-1), m_fe(fe), m_fd(-1), m_timeout(0), m_tuneTimer(0)
+	:m_type(-1), m_fe(fe), m_fd(-1), m_sn(0), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -334,35 +334,44 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 
 int eDVBFrontend::openFrontend()
 {
-	if (m_fd >= 0)
+	if (m_sn)
 		return -1;  // already opened
 
 	m_state=0;
 	m_tuning=0;
 
 #if HAVE_DVB_API_VERSION < 3
-	m_secfd = ::open(m_sec_filename, O_RDWR);
 	if (m_secfd < 0)
 	{
-		eWarning("failed! (%s) %m", m_sec_filename);
-		return -1;
+		m_secfd = ::open(m_sec_filename, O_RDWR);
+		if (m_secfd < 0)
+		{
+			eWarning("failed! (%s) %m", m_sec_filename);
+			return -1;
+		}
 	}
+	else
+		eWarning("sec %d already opened", m_fe);
 	FrontendInfo fe_info;
 #else
 	dvb_frontend_info fe_info;
 #endif
 	eDebug("opening frontend %d", m_fe);
-	m_fd = ::open(m_filename, O_RDWR|O_NONBLOCK);
 	if (m_fd < 0)
 	{
-		eWarning("failed! (%s) %m", m_filename);
+		m_fd = ::open(m_filename, O_RDWR|O_NONBLOCK);
+		if (m_fd < 0)
+		{
+			eWarning("failed! (%s) %m", m_filename);
 #if HAVE_DVB_API_VERSION < 3
-		::close(m_secfd);
-		m_secfd=-1;
+			::close(m_secfd);
+			m_secfd=-1;
 #endif
-		return -1;
+			return -1;
+		}
 	}
-
+	else
+		eWarning("frontend %d already opened", m_fe);
 	if (m_type == -1)
 	{
 		if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
@@ -431,15 +440,19 @@ int eDVBFrontend::closeFrontend()
 		setVoltage(iDVBFrontend::voltageOff);
 		if (m_sec)
 			m_sec->setRotorMoving(false);
-		::close(m_fd);
-		m_fd=-1;
+		if (!::close(m_fd))
+			m_fd=-1;
+		else
+			eWarning("couldnt close frontend %d", m_fe);
 		m_data[0] = m_data[1] = m_data[2] = -1;
 	}
 #if HAVE_DVB_API_VERSION < 3
 	if (m_secfd >= 0)
 	{
-		::close(m_secfd);
-		m_secfd=-1;
+		if (!::close(m_secfd))
+			m_secfd=-1;
+		else
+			eWarning("couldnt close sec %d", m_fe);
 	}
 #endif
 	delete m_sn;
