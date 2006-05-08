@@ -202,11 +202,12 @@ class ScanSetup(Screen):
 				self.updateSatList()
 				print config.scan.satselection[config.scan.nims.value]
 				self.list.append(getConfigListEntry(_("Satellite"), config.scan.satselection[config.scan.nims.value]))
+				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 			elif currentConfigSelectionElement(config.scan.type) == "multisat":
 				# if (norotor)
 				tlist = []
 				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
-	
+				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 				for x in SatList:
 					if self.Satexists(tlist, x[1]) == 0:
 						tlist.append(x[1])
@@ -228,7 +229,7 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_("FEC"), config.scan.cab.fec))
 				self.list.append(getConfigListEntry(_("Network scan"), config.scan.cab.networkScan))
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
-				pass
+				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 				
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
@@ -243,7 +244,7 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_("Guard interval mode"), config.scan.ter.guard))
 				self.list.append(getConfigListEntry(_("Hierarchy mode"), config.scan.ter.hierarchy))
 			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
-				pass
+				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
 			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
@@ -283,6 +284,7 @@ class ScanSetup(Screen):
 			config.scan.type = configElement_nonSave("config.scan.type", configSelection, 0, (("single_transponder", _("Single transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat"))))
 			config.scan.typecable = configElement_nonSave("config.scan.typecable", configSelection, 0, (("single_transponder", _("Single transponder")), ("complete", _("Complete"))))
 			config.scan.typeterrestrial = configElement_nonSave("config.scan.typeterrestrial", configSelection, 0, (("single_transponder", _("Single transponder")), ("complete", _("Complete"))))
+			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (hold feeds)"))))
 
 			nimList = [ ]
 			for nim in nimmanager.nimList():
@@ -362,7 +364,7 @@ class ScanSetup(Screen):
 		parm = eDVBFrontendParametersSatellite()
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti	
+		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti
 		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
@@ -376,7 +378,7 @@ class ScanSetup(Screen):
 		parm = eDVBFrontendParametersCable()
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.modulation = modulation # modulation # eDVBFrontendParametersSatellite.Polarisation.Verti	
+		parm.modulation = modulation # modulation # eDVBFrontendParametersSatellite.Polarisation.Verti
 		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
@@ -407,8 +409,15 @@ class ScanSetup(Screen):
 										config.scan.sat.inversion.value,
 										orbpos)
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
-				getInitialTransponderList(tlist, int(self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value][1]))
+				sat = self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value]
+				getInitialTransponderList(tlist, int(sat[1]))
 				flags |= eComponentScan.scanNetworkSearch
+				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				if tmp == "yes":
+					flags |= eComponentScan.scanRemoveServices
+				elif tmp == "yes_hold_feeds":
+					flags |= eComponentScan.scanRemoveServices
+					flags |= eComponentScan.scanDontRemoveFeeds
 			elif currentConfigSelectionElement(config.scan.type) == "multisat":
 				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
 				for x in self.multiscanlist:
@@ -416,6 +425,12 @@ class ScanSetup(Screen):
 						print "   " + str(x[1].parent.configPath)
 						getInitialTransponderList(tlist, x[1].parent.configPath)
 				flags |= eComponentScan.scanNetworkSearch
+				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				if tmp == "yes":
+					flags |= eComponentScan.scanRemoveServices
+				elif tmp == "yes_hold_feeds":
+					flags |= eComponentScan.scanRemoveServices
+					flags |= eComponentScan.scanDontRemoveFeeds
 
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
 			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
@@ -429,10 +444,16 @@ class ScanSetup(Screen):
 			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
 				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
 				flags |= eComponentScan.scanNetworkSearch
+				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				if tmp == "yes":
+					flags |= eComponentScan.scanRemoveServices
+				elif tmp == "yes_hold_feeds":
+					flags |= eComponentScan.scanRemoveServices
+					flags |= eComponentScan.scanDontRemoveFeeds
 
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
 			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
-				self.addTerTransponder(tlist, 
+				self.addTerTransponder(tlist,
 						config.scan.ter.frequency.value[0] * 1000000,
 						inversion = config.scan.ter.inversion.value,
 						bandwidth = config.scan.ter.bandwidth.value,
@@ -447,6 +468,12 @@ class ScanSetup(Screen):
 			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(config.scan.nims.value))
 				flags |= eComponentScan.scanNetworkSearch
+				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				if tmp == "yes":
+					flags |= eComponentScan.scanRemoveServices
+				elif tmp == "yes_hold_feeds":
+					flags |= eComponentScan.scanRemoveServices
+					flags |= eComponentScan.scanDontRemoveFeeds
 
 		for x in self["config"].list:
 			x[1].save()
@@ -510,7 +537,14 @@ class ScanSimple(Screen):
 					scanPossible = True
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(slotid))
 				if scanPossible:
-					scanList.append({"transponders": tlist, "feid": slotid, "flags": eComponentScan.scanNetworkSearch})
+					flags=eComponentScan.scanNetworkSearch
+					tmp = currentConfigSelectionElement(config.scan.clearallservices)
+					if tmp == "yes":
+						flags |= eComponentScan.scanRemoveServices
+					elif tmp == "yes_hold_feeds":
+						flags |= eComponentScan.scanRemoveServices
+						flags |= eComponentScan.scanDontRemoveFeeds
+					scanList.append({"transponders": tlist, "feid": slotid, "flags": flags})
 		if len(scanList):
 			self.session.openWithCallback(self.doNothing, ServiceScan, scanList = scanList)
 		else:
@@ -518,7 +552,7 @@ class ScanSimple(Screen):
 
 	def doNothing(self):
 		pass
-	
+
 	def keyCancel(self):
 		self.close()
 
@@ -567,7 +601,10 @@ class ScanSimple(Screen):
 
 		nimcount = nimmanager.getNimSocketCount()
 		if nimcount > 0:
-			nim = configElement_nonSave(0, configSelection, 0,(("yes", _("yes")),("no", _("no"))))
+			config.scan = ConfigSubsection()
+			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (hold feeds)"))))
+			self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
+			nim = configElement_nonSave(0, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
 			self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
 		if nimcount > 1 and self.ScanNimTwoNeeded():
 			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))

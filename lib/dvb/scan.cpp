@@ -15,6 +15,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <errno.h>
+#include <set>
 
 #define SCAN_eDebug(x...) eDebug(x)
 #define SCAN_eDebugNoNewLine(x...) eDebugNoNewLine(x)
@@ -422,6 +423,86 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 
 void eDVBScan::insertInto(iDVBChannelList *db)
 {
+	if (m_flags & scanRemoveServices)
+	{
+		bool clearTerrestrial=false;
+		bool clearCable=false;
+		std::set<unsigned int> scanned_sat_positions;
+		
+		std::list<ePtr<iDVBFrontendParameters> >::iterator it(m_ch_scanned.begin());
+		for (;it != m_ch_scanned.end(); ++it)
+		{
+			int system;
+			(*it)->getSystem(system);
+			switch(system)
+			{
+				case iDVBFrontend::feSatellite:
+				{
+					eDVBFrontendParametersSatellite sat_parm;
+					(*it)->getDVBS(sat_parm);
+					scanned_sat_positions.insert(sat_parm.orbital_position);
+					break;
+				}
+				case iDVBFrontend::feTerrestrial:
+				{
+					clearTerrestrial=true;
+					break;
+				}
+				case iDVBFrontend::feCable:
+				{
+					clearCable=true;
+					break;
+				}
+			}
+		}
+
+		for (it=m_ch_unavailable.begin();it != m_ch_unavailable.end(); ++it)
+		{
+			int system;
+			(*it)->getSystem(system);
+			switch(system)
+			{
+				case iDVBFrontend::feSatellite:
+				{
+					eDVBFrontendParametersSatellite sat_parm;
+					(*it)->getDVBS(sat_parm);
+					scanned_sat_positions.insert(sat_parm.orbital_position);
+					break;
+				}
+				case iDVBFrontend::feTerrestrial:
+				{
+					clearTerrestrial=true;
+					break;
+				}
+				case iDVBFrontend::feCable:
+				{
+					clearCable=true;
+					break;
+				}
+			}
+		}
+
+		if (clearTerrestrial)
+		{
+			eDVBChannelID chid;
+			chid.dvbnamespace=0xEEEE0000;
+			db->removeServices(chid);
+		}
+		if (clearCable)
+		{
+			eDVBChannelID chid;
+			chid.dvbnamespace=0xFFFF0000;
+			db->removeServices(chid);
+		}
+		for (std::set<unsigned int>::iterator x(scanned_sat_positions.begin()); x != scanned_sat_positions.end(); ++x)
+		{
+			eDVBChannelID chid;
+			if (m_flags & scanDontRemoveFeed)
+				chid.dvbnamespace = eDVBNamespace((*it)<<16));
+			db->removeServices(chid, *it);
+		}
+	}
+
 	for (std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> >::const_iterator 
 			ch(m_new_channels.begin()); ch != m_new_channels.end(); ++ch)
 		db->addChannelToList(ch->first, ch->second);

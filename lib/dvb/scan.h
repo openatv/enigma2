@@ -68,7 +68,7 @@ public:
 	eDVBScan(iDVBChannel *channel);
 	~eDVBScan();
 	
-	enum { scanNetworkSearch = 1, scanSearchBAT = 2 };
+	enum { scanNetworkSearch = 1, scanSearchBAT = 2, scanRemoveServices = 4, scanDontRemoveFeeds=8 };
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
