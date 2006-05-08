@@ -497,8 +497,8 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 		for (std::set<unsigned int>::iterator x(scanned_sat_positions.begin()); x != scanned_sat_positions.end(); ++x)
 		{
 			eDVBChannelID chid;
-			if (m_flags & scanDontRemoveFeed)
-				chid.dvbnamespace = eDVBNamespace((*it)<<16));
+			if (m_flags & scanDontRemoveFeeds)
+				chid.dvbnamespace = eDVBNamespace((*it)<<16);
 			db->removeServices(chid, *it);
 		}
 	}
