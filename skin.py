@@ -155,10 +155,11 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, name))
 			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPointer(ptr.__deref__(), pos)
-		elif attrib != 'name':
-			print "unsupported attribute " + attrib + "=" + value
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
+		elif attrib != 'name':
+			print "unsupported attribute " + attrib + "=" + value
+
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
