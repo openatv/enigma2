@@ -670,15 +670,24 @@ eDVBDB::~eDVBDB()
 	instance=NULL;
 }
 
-RESULT eDVBDB::removeService(eServiceReferenceDVB service)
+RESULT eDVBDB::removeService(const eServiceReference &ref)
 {
-	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
-	if (it != m_services.end())
+	if (ref.type == eServiceReference::idDVB)
 	{
-		m_services.erase(it);
-		return 0;
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+		{
+			m_services.erase(it);
+			return 0;
+		}
 	}
 	return -1;
+}
+
+RESULT eDVBDB::removeServices(int dvb_namespace, int tsid, int onid, unsigned int orb_pos)
+{
+	return removeServices(eDVBChannelID(eDVBNamespace(dvb_namespace), eTransportStreamID(tsid), eOriginalNetworkID(onid)), orb_pos);
 }
 
 RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
@@ -710,6 +719,10 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 			remove=false;
 		if ( remove )
 		{
+			eDebug("remove %08x %04x %04x",
+				ch.dvbnamespace.get(),
+				ch.original_network_id.get(),
+				ch.transport_stream_id.get());
 			removed_chids.insert(it->first);
 			m_channels.erase(it++);
 		}
@@ -734,22 +747,35 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 	return ret;
 }
 
-RESULT eDVBDB::addFlag(eServiceReferenceDVB service, unsigned int flagmask)
+RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
 {
-	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
-	if (it != m_services.end())
+	if (ref.type == eServiceReference::idDVB)
 	{
-		it->second->m_flags |= ~flagmask;
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			it->second->m_flags |= ~flagmask;
+		return 0;
 	}
-	return 0;
+	return -1;
 }
 
-RESULT eDVBDB::removeFlag(eServiceReferenceDVB service, unsigned int flagmask)
+RESULT eDVBDB::removeFlag(const eServiceReference &ref, unsigned int flagmask)
 {
-	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
-	if (it != m_services.end())
-		it->second->m_flags &= ~flagmask;
-	return 0;
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			it->second->m_flags &= ~flagmask;
+		return 0;
+	}
+	return -1;
+}
+
+RESULT eDVBDB::removeFlags(unsigned int flagmask, int dvb_namespace, int tsid, int onid, unsigned int orb_pos)
+{
+	return removeFlags(flagmask, eDVBChannelID(eDVBNamespace(dvb_namespace), eTransportStreamID(tsid), eOriginalNetworkID(onid)), orb_pos);
 }
 
 RESULT eDVBDB::removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orbpos)
@@ -797,7 +823,6 @@ RESULT eDVBDB::removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned i
 	}
 	return 0;
 }
-
 
 RESULT eDVBDB::addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)
 {

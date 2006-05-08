@@ -17,7 +17,6 @@ DECLARE_REF(eDVBDB);
 	friend class eDVBDBSatellitesQuery;
 	friend class eDVBDBProvidersQuery;
 
-
 	struct channel
 	{
 		ePtr<iDVBFrontendParameters> m_frontendParameters;
@@ -33,13 +32,16 @@ DECLARE_REF(eDVBDB);
 	~eDVBDB();
 #endif
 public:
-	RESULT removeService(eServiceReferenceDVB service);
-	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);
-	RESULT addFlag(eServiceReferenceDVB service, unsigned int flagmask);
-	RESULT removeFlag(eServiceReferenceDVB service, unsigned int flagmask);
-	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
-#ifndef SWIG
 // iDVBChannelList
+	RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
+	RESULT removeServices(int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
+	RESULT removeService(const eServiceReference &service);
+	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
+	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
+#ifndef SWIG
+	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
+	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);
+
 	RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm);
 	RESULT removeChannel(const eDVBChannelID &id);
 
