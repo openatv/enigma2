@@ -9,6 +9,21 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 
 import os
 
+# this is not so great.
+MAX_X = 720
+MAX_Y = 576
+MAX_W = MAX_X * 3 / 4
+MAX_H = MAX_Y * 3 / 4
+MIN_W = MAX_X / 8
+MIN_H = MAX_Y / 8
+
+def clip(val, min, max):
+	if min <= val <= max:
+		return val
+	if min <= val:
+		return max
+	return min
+
 class PiPSetup(Screen):
 	def __init__(self, session, pip):
 		Screen.__init__(self, session)
@@ -16,9 +31,10 @@ class PiPSetup(Screen):
 		self.pip = pip
 		
 		self.pos = (self.pip.instance.position().x(), self.pip.instance.position().y())
-		self.orgpos = self.pos
-		
 		self.size = self.pip.getSize()
+
+		self.orgpos = self.pos
+		self.orgsize = self.size
 		
 		self.resize = 100
 
@@ -50,54 +66,70 @@ class PiPSetup(Screen):
 		self.close()
 	
 	def cancel(self):
-		self.movePiP(self.orgpos[0], self.orgpos[1])
-		self.resizePiP(100)
+		self.pos = self.orgpos
+		self.size = self.orgsize
+		self.setPiPPosition()
 		self.close()
-		
-	def movePiP(self, x, y):
-		if x < 0:
-			x = 0
-		if y < 0:
-			y = 0
-		self.pip.move(x, y)
-		self.pos = (x, y)
-		
+	
+	def setPiPPosition(self):
+		self.pip.move(self.pos[0], self.pos[1])
+		self.pip.resize(self.size[0], self.size[1])
+
 	def resizePiP(self, resize):
-		w = int(self.size[0] * self.resize / 100)
-		h = int(self.size[1] * self.resize / 100)
-		self.pip.resize(w, h)
-		self.resize = resize
+		resize += 100 # resize is in percent, so resize=+20 means: 120%
+		
+		oldsize = self.size
+		w = clip(self.size[0] * resize / 100, MIN_W, MAX_W)
+		h = clip(self.size[1] * resize / 100, MIN_H, MAX_H)
+		
+		# calculate offset from center
+		mx = (oldsize[0] - w) / 2
+		my = (oldsize[1] - h) / 2
+		
+		self.size = (w, h)
+		# reclip, account for new center
+		self.moveRelative(x=mx, y=my)
+	
+	def moveRelative(self, x=0, y=0):
+		self.pos = (clip(self.pos[0] + x, 0, MAX_X - self.size[0]), clip(self.pos[1] + y, 0, MAX_Y - self.size[1]))
+		self.setPiPPosition()
 	
 	def up(self):
-		self.movePiP(self.pos[0], self.pos[1] - 10)
+		self.moveRelative(y=-32)
 
 	def down(self):
-		self.movePiP(self.pos[0], self.pos[1] + 10)
+		self.moveRelative(y=+32)
 	
 	def left(self):
-		self.movePiP(self.pos[0] - 10, self.pos[1])
+		self.moveRelative(x=-24)
 	
 	def right(self):
-		self.movePiP(self.pos[0] + 10, self.pos[1])
-		
+		self.moveRelative(x=+24)
+	
 	def bigger(self):
-		self.resizePiP(self.resize + 5)
+		self.resizePiP(+10)
 	
 	def smaller(self):
-		self.resizePiP(self.resize - 5)
-		
+		self.resizePiP(-10)
+	
 	def keyNumberGlobal(self, number):
-		size = int(240 / self.size[0] * 100)
-		actions = [((self.orgpos[0], self.orgpos[1]), size),
-				   ((0, 0), size),
-				   ((240, 0), size),
-				   ((480, 0), size),
-				   ((0, 192), size),
-				   ((240, 192), size),
-				   ((480, 192), size),
-				   ((0, 384), size),
-				   ((240, 384), size),
-				   ((480, 384), size)]
-				   
-		self.movePiP(actions[number][0][0], actions[number][0][1])
-		self.resizePiP(actions[number][1])
+		
+		if number > 0:
+			colsize = MAX_X / 3
+			rowsize = MAX_Y / 3
+			col = (number-1) % 3
+			row = (number-1) / 3
+
+			self.size = (180, 135)
+
+			# offset to keep center
+			ox = (colsize - self.size[0]) / 2
+			oy = (rowsize - self.size[1]) / 2
+
+			self.pos = (col * colsize + ox, row * rowsize + oy)
+		else:
+			# restore old position
+			self.pos = self.orgpos
+			self.size = self.orgsize
+		# reclip
+		self.moveRelative()
