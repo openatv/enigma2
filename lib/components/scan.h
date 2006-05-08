@@ -45,7 +45,7 @@ public:
 	void addInitial(const eDVBFrontendParametersTerrestrial &p);
 	
 		/* please keep the flags in sync with lib/dvb/scan.h ! */
-	enum { scanNetworkSearch=1 };
+	enum { scanNetworkSearch=1, scanRemoveServices=4, scanDontRemoveFeeds=8 };
 	int start(int feid, int flags=0);
 };
 
