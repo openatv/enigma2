@@ -18,6 +18,8 @@ from ServiceReference import ServiceReference
 from re import *
 from os import remove
 
+FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
+
 import xml.dom.minidom
 
 class BouquetSelector(Screen):
@@ -66,6 +68,8 @@ class ChannelContextMenu(Screen):
 		menu = [ ]
 
 		current_root = csel.getRoot()
+		current_sel_path = csel.getCurrentSelection().getPath()
+		current_sel_flags = csel.getCurrentSelection().flags
 		inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
@@ -77,11 +81,16 @@ class ChannelContextMenu(Screen):
 						menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
 					else:
 						menu.append((_("add service to favourites"), self.addServiceToBouquetSelected))
-				elif haveBouquets:
-					if not inBouquet and csel.getCurrentSelection().getPath().find("PROVIDERS") == -1:
-						menu.append((_("copy to favourites"), self.copyCurrentToBouquetList))
+				else:
+					if haveBouquets:
+						if not inBouquet and current_sel_path.find("PROVIDERS") == -1:
+							menu.append((_("copy to favourites"), self.copyCurrentToBouquetList))
+					if current_sel_path.find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+						menu.append((_("remove all new found flags"), self.removeAllNewFoundFlags))
 				if inBouquet:
 					menu.append((_("remove service"), self.removeCurrentService))
+				if current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+					menu.append((_("remove new found flag"), self.removeNewFoundFlag))
 			elif haveBouquets:
 				menu.append((_("remove bouquet"), self.removeBouquet))
 
@@ -172,6 +181,21 @@ class ChannelContextMenu(Screen):
 
 	def bouquetMarkAbort(self):
 		self.csel.endMarkedEdit(abort=True)
+		self.close()
+
+	def removeNewFoundFlag(self):
+		eDVBDB.getInstance().removeFlag(self.csel.getCurrentSelection(), FLAG_SERVICE_NEW_FOUND)
+		self.close()
+
+	def removeAllNewFoundFlags(self):
+		curpath = self.csel.getCurrentSelection().getPath()
+		idx = curpath.find("satellitePosition == ")
+		if idx != -1:
+			tmp = curpath[idx+21:]
+			idx = tmp.find(')')
+			if idx != -1:
+				satpos = int(tmp[:idx])
+				eDVBDB.getInstance().removeFlags(FLAG_SERVICE_NEW_FOUND, -1, -1, -1, satpos)
 		self.close()
 
 class ChannelSelectionEPG:
@@ -670,7 +694,7 @@ class ChannelSelectionBase(Screen):
 							orbpos = service.getUnsignedData(4) >> 16
 							if service.getPath().find("FROM PROVIDER") != -1:
 								service_name = _("Providers")
-							elif service.getPath().find("flags ==") != -1:
+							elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 								service_name = _("New")
 							else:
 								service_name = _("Services")

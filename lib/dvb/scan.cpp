@@ -498,8 +498,9 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 		{
 			eDVBChannelID chid;
 			if (m_flags & scanDontRemoveFeeds)
-				chid.dvbnamespace = eDVBNamespace((*it)<<16);
-			db->removeServices(chid, *it);
+				chid.dvbnamespace = eDVBNamespace((*x)<<16);
+			eDebug("remove %d %08x", *x, chid.dvbnamespace.get());
+			db->removeServices(chid, *x);
 		}
 	}
 

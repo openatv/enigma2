@@ -316,11 +316,13 @@ public:
 class iDVBChannelList: public iObject
 {
 public:
-	virtual RESULT removeService(eServiceReferenceDVB service)=0;
+	virtual RESULT removeService(const eServiceReference &service)=0;
 	virtual RESULT removeServices(eDVBChannelID chid=eDVBChannelID(), unsigned int orb_pos=0xFFFFFFFF)=0;
-	virtual RESULT addFlag(eServiceReferenceDVB service, unsigned int flagmask=0xFFFFFFFF)=0;
-	virtual RESULT removeFlag(eServiceReferenceDVB service, unsigned int flagmask=0xFFFFFFFF)=0;
+	virtual RESULT removeServices(int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF)=0;
+	virtual RESULT addFlag(const eServiceReference &service, unsigned int flagmask=0xFFFFFFFF)=0;
+	virtual RESULT removeFlag(const eServiceReference &service, unsigned int flagmask=0xFFFFFFFF)=0;
 	virtual RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid=eDVBChannelID(), unsigned int orb_pos=0xFFFFFFFF)=0;
+	virtual RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF)=0;
 	virtual RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm)=0;
 	virtual RESULT removeChannel(const eDVBChannelID &id)=0;
 	
