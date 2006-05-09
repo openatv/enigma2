@@ -22,12 +22,10 @@
 
 DEFINE_REF(eDVBScan);
 
-eDVBScan::eDVBScan(iDVBChannel *channel): m_channel(channel)
+eDVBScan::eDVBScan(iDVBChannel *channel)
+	:m_channel(channel), m_ready(0), m_flags(0), m_ready_all(readySDT)
+	,m_channel_state(iDVBChannel::state_idle)
 {
-	m_ready = m_flags = 0;
-	m_ready_all = readySDT;
-	m_channel_state = iDVBChannel::state_idle;
-
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
@@ -102,10 +100,10 @@ RESULT eDVBScan::nextChannel()
 	
 	if (m_ch_toScan.empty())
 	{
-		SCAN_eDebug("no channels left to scan.");
-		SCAN_eDebug("%d channels scanned, %d were unavailable.", 
-				m_ch_scanned.size(), m_ch_unavailable.size());
-		SCAN_eDebug("%d channels in database.", m_new_channels.size());
+//		SCAN_eDebug("no channels left to scan.");
+//		SCAN_eDebug("%d channels scanned, %d were unavailable.", 
+//				m_ch_scanned.size(), m_ch_unavailable.size());
+//		SCAN_eDebug("%d channels in database.", m_new_channels.size());
 		m_event(evtFinish);
 		return -ENOENT;
 	}
@@ -257,13 +255,12 @@ void eDVBScan::channelDone()
 	{
 		unsigned long hash = 0;
 
-		ePtr<iDVBFrontendParameters> p = m_ch_current;
+		// m_ch_current is not set, when eDVBScan is just used for a SDT update
+		if (!m_ch_current)
+			m_channel->getCurrentFrontendParameters(m_ch_current);
 
-		if (!p)  // used in sdt scan
-			m_channel->getCurrentFrontendParameters(p);
-
-		p->getHash(hash);
-
+		m_ch_current->getHash(hash);
+		
 		eDVBNamespace dvbnamespace = buildNamespace(
 			(**m_SDT->getSections().begin()).getOriginalNetworkId(),
 			(**m_SDT->getSections().begin()).getTransportStreamId(),
@@ -394,16 +391,12 @@ void eDVBScan::channelDone()
 		   here, and not before.
 		*/
 
-	ePtr<iDVBFrontendParameters> p = m_ch_current;
-	if (!p)
-		m_channel->getCurrentFrontendParameters(p);
-
 	if (!m_chid_current)
 		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
-		addKnownGoodChannel(m_chid_current, p);
-
-	m_ch_scanned.push_back(p);
+		addKnownGoodChannel(m_chid_current, m_ch_current);
+	
+	m_ch_scanned.push_back(m_ch_current);
 	nextChannel();
 }
 
