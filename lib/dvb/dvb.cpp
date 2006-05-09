@@ -536,7 +536,11 @@ bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, con
 		if (i->m_channel_id == ignore)
 		{
 			eDVBChannel *channel = (eDVBChannel*) &(*i->m_channel);
-			if (channel == &(*m_cached_channel) ? channel->getUseCount() == 2 : channel->getUseCount() == 1)  // channel only used once..
+			// one eUsePtr<iDVBChannel> is used in eDVBServicePMTHandler
+			// another on eUsePtr<iDVBChannel> is used in the eDVBScan instance used in eDVBServicePMTHandler (for SDT scan)
+			// so we must check here if usecount is 3 (when the channel is equal to the cached channel)
+			// or 2 when the cached channel is not equal to the compared channel
+			if (channel == &(*m_cached_channel) ? channel->getUseCount() == 3 : channel->getUseCount() == 2)  // channel only used once..
 			{
 				ePtr<iDVBFrontend> fe;
 				if (!i->m_channel->getFrontend(fe))
