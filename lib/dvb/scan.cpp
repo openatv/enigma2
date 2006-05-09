@@ -24,6 +24,10 @@ DEFINE_REF(eDVBScan);
 
 eDVBScan::eDVBScan(iDVBChannel *channel): m_channel(channel)
 {
+	m_ready = m_flags = 0;
+	m_ready_all = readySDT;
+	m_channel_state = iDVBChannel::state_idle;
+
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
@@ -98,10 +102,10 @@ RESULT eDVBScan::nextChannel()
 	
 	if (m_ch_toScan.empty())
 	{
-		eDebug("no channels left to scan.");
-		eDebug("%d channels scanned, %d were unavailable.", 
+		SCAN_eDebug("no channels left to scan.");
+		SCAN_eDebug("%d channels scanned, %d were unavailable.", 
 				m_ch_scanned.size(), m_ch_unavailable.size());
-		eDebug("%d channels in database.", m_new_channels.size());
+		SCAN_eDebug("%d channels in database.", m_new_channels.size());
 		m_event(evtFinish);
 		return -ENOENT;
 	}
@@ -252,8 +256,14 @@ void eDVBScan::channelDone()
 	if (m_ready & validSDT)
 	{
 		unsigned long hash = 0;
-		m_ch_current->getHash(hash);
-		
+
+		ePtr<iDVBFrontendParameters> p = m_ch_current;
+
+		if (!p)  // used in sdt scan
+			m_channel->getCurrentFrontendParameters(p);
+
+		p->getHash(hash);
+
 		eDVBNamespace dvbnamespace = buildNamespace(
 			(**m_SDT->getSections().begin()).getOriginalNetworkId(),
 			(**m_SDT->getSections().begin()).getTransportStreamId(),
@@ -339,7 +349,7 @@ void eDVBScan::channelDone()
 						
 						if ( m_chid_current.dvbnamespace.get() != -1 &&
 							((ns.get() ^ m_chid_current.dvbnamespace.get()) & 0xFFFF0000))
-							eDebug("dropping this transponder, it's on another satellite.");
+							SCAN_eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
 							addChannelToScan(
@@ -383,13 +393,17 @@ void eDVBScan::channelDone()
 		   These are the reasons for adding the transponder
 		   here, and not before.
 		*/
-	
+
+	ePtr<iDVBFrontendParameters> p = m_ch_current;
+	if (!p)
+		m_channel->getCurrentFrontendParameters(p);
+
 	if (!m_chid_current)
 		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
-		addKnownGoodChannel(m_chid_current, m_ch_current);
-	
-	m_ch_scanned.push_back(m_ch_current);
+		addKnownGoodChannel(m_chid_current, p);
+
+	m_ch_scanned.push_back(p);
 	nextChannel();
 }
 
@@ -421,7 +435,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	nextChannel();
 }
 
-void eDVBScan::insertInto(iDVBChannelList *db)
+void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 {
 	if (m_flags & scanRemoveServices)
 	{
@@ -499,7 +513,7 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 			eDVBChannelID chid;
 			if (m_flags & scanDontRemoveFeeds)
 				chid.dvbnamespace = eDVBNamespace((*x)<<16);
-			eDebug("remove %d %08x", *x, chid.dvbnamespace.get());
+//			eDebug("remove %d %08x", *x, chid.dvbnamespace.get());
 			db->removeServices(chid, *x);
 		}
 	}
@@ -513,8 +527,17 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 		ePtr<eDVBService> dvb_service;
 		if (!db->getService(service->first, dvb_service))
 		{
-			*dvb_service = *service->second;
-			dvb_service->m_flags &= ~eDVBService::dxNewFound;
+			if (dvb_service->m_flags & eDVBService::dxNoSDT)
+				continue;
+			if (!(dvb_service->m_flags & eDVBService::dxHoldName))
+			{
+				dvb_service->m_service_name = service->second->m_service_name;
+				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
+			}
+			dvb_service->m_provider_name = service->second->m_provider_name;
+
+			if (!dontRemoveOldFlags) // do not remove new found flags when not wished
+				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
 		else
 		{

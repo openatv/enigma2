@@ -67,13 +67,13 @@ private:
 public:
 	eDVBScan(iDVBChannel *channel);
 	~eDVBScan();
-	
+
 	enum { scanNetworkSearch = 1, scanSearchBAT = 2, scanRemoveServices = 4, scanDontRemoveFeeds=8 };
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
-	void insertInto(iDVBChannelList *db);
+	void insertInto(iDVBChannelList *db, bool dontRemoveNewFlags=false);
 	
 	void getStats(int &transponders_done, int &transponders_total, int &services);
 	void getLastServiceName(std::string &name);

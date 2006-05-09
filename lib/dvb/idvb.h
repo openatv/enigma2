@@ -240,13 +240,11 @@ public:
 	int m_flags;
 	enum
 	{
-#if 0  // not yet implemented
 		dxNoSDT=1,    // don't get SDT
-		dxDontshow=2,
+//nyi	dxDontshow=2,
+		dxNoDVB=4,  // dont use PMT for this service ( use cached pids )
 		dxHoldName=8,
-#endif
 		dxNewFound=64,
-		dxNoDVB=4  // dont use PMT for this service ( use cached pids )
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }

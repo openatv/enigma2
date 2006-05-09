@@ -17,6 +17,7 @@
 #include <fcntl.h>
 
 class eDVBCAService;
+class eDVBScan;
 
 typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
 
@@ -51,6 +52,7 @@ class eDVBServicePMTHandler: public Object
 
 	int m_last_channel_state;
 	eDVBCAService *m_ca_servicePtr;
+	eDVBScan *m_dvb_scan; // for sdt scan
 
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
@@ -64,13 +66,15 @@ class eDVBServicePMTHandler: public Object
 	ePtr<eConnection> m_channelStateChanged_connection;
 	void channelEvent(iDVBChannel *, int event);
 	ePtr<eConnection> m_channelEvent_connection;
+	void SDTScanEvent(int);
+	ePtr<eConnection> m_scan_event_connection;
 
 	void PMTready(int error);
 	void PATready(int error);
 	
 	int m_use_decode_demux;
 	uint8_t m_decode_demux_num;
-	
+
 public:
 	eDVBServicePMTHandler();
 	~eDVBServicePMTHandler();
@@ -130,7 +134,7 @@ public:
 
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0);
 	void free();
-	
+
 	int m_pmt_pid;
 };
 
