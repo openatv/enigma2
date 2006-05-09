@@ -855,12 +855,7 @@ RESULT eDVBDB::addService(const eServiceReferenceDVB &serviceref, eDVBService *s
 {
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(serviceref));
 	if (it == m_services.end())
-	{
-		service->m_flags |= eDVBService::dxNewFound;
 		m_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(serviceref, service));
-	}
-	else
-		it->second->m_flags &= ~eDVBService::dxNewFound;
 	return 0;
 }
 
