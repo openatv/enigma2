@@ -443,31 +443,20 @@ int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
 
 void eDVBServicePMTHandler::SDTScanEvent(int event)
 {
-	eDebug("scan event %d!", event);
-
 	switch (event)
 	{
 		case eDVBScan::evtFinish:
 		{
 			ePtr<iDVBChannelList> db;
-			int err;
-			if ((err = m_resourceManager->getChannelList(db)) != 0)
+			if (m_resourceManager->getChannelList(db) != 0)
 				eDebug("no channel list");
 			else
 			{
 				m_dvb_scan->insertInto(db);
-				eDebug("scan done!");
+				eDebug("sdt update done!");
 			}
 			break;
 		}
-
-		case eDVBScan::evtNewService:
-			eDebug("scan new service");
-			break;
-
-		case eDVBScan::evtFail:
-			eDebug("scan failed.");
-			break;
 
 		default:
 			break;
@@ -558,7 +547,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 void eDVBServicePMTHandler::free()
 {
-	eDVBScan *tmp = m_dvb_scan;
+	eDVBScan *tmp = m_dvb_scan;  // do a copy on stack (recursive call of free()) !!!
 	m_dvb_scan = 0;
 	delete m_dvb_scan;
 
