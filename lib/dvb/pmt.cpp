@@ -5,6 +5,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/scan.h>
 #include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/teletext_descriptor.h>
@@ -13,7 +14,7 @@
 #include <dvbsi++/stream_identifier_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_ca_servicePtr(0), m_decode_demux_num(0xFF)
+	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
 {
 	m_use_decode_demux = 0;
 	m_pmt_pid = -1;
@@ -440,6 +441,39 @@ int eDVBServicePMTHandler::getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel)
 		return -1;
 }
 
+void eDVBServicePMTHandler::SDTScanEvent(int event)
+{
+	eDebug("scan event %d!", event);
+
+	switch (event)
+	{
+		case eDVBScan::evtFinish:
+		{
+			ePtr<iDVBChannelList> db;
+			int err;
+			if ((err = m_resourceManager->getChannelList(db)) != 0)
+				eDebug("no channel list");
+			else
+			{
+				m_dvb_scan->insertInto(db);
+				eDebug("scan done!");
+			}
+			break;
+		}
+
+		case eDVBScan::evtNewService:
+			eDebug("scan new service");
+			break;
+
+		case eDVBScan::evtFail:
+			eDebug("scan failed.");
+			break;
+
+		default:
+			break;
+	}
+}
+
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue)
 {
 	RESULT res;
@@ -500,6 +534,13 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		m_channel->connectEvent(
 			slot(*this, &eDVBServicePMTHandler::channelEvent), 
 			m_channelEvent_connection);
+
+		if (ref.path.empty())
+		{
+			delete m_dvb_scan;
+			m_dvb_scan = new eDVBScan(m_channel);
+			m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
+		}
 	} else
 	{
 		serviceEvent(eventTuneFailed);
@@ -517,6 +558,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 void eDVBServicePMTHandler::free()
 {
+	eDVBScan *tmp = m_dvb_scan;
+	m_dvb_scan = 0;
+	delete m_dvb_scan;
+
 	if (m_ca_servicePtr)
 	{
 		int demuxes[2] = {0,0};
