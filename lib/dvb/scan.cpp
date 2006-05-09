@@ -512,9 +512,15 @@ void eDVBScan::insertInto(iDVBChannelList *db)
 	{
 		ePtr<eDVBService> dvb_service;
 		if (!db->getService(service->first, dvb_service))
+		{
 			*dvb_service = *service->second;
+			dvb_service->m_flags &= ~eDVBService::dxNewFound;
+		}
 		else
+		{
 			db->addService(service->first, service->second);
+			service->second->m_flags |= eDVBService::dxNewFound;
+		}
 	}
 }
 
