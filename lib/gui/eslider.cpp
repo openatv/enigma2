@@ -31,12 +31,14 @@ int eSlider::event(int event, void *data, void *data2)
 	case evtPaint:
 	{
 		ePtr<eWindowStyle> style;
-		gPainter &painter = *(gPainter*)data2;
 
 		eSize s(size());
-
 		getStyle(style);
-		style->paintBackground(painter, ePoint(0,0), s);
+			/* paint background */
+		eWidget::event(evtPaint, data, data2);
+
+		gPainter &painter = *(gPainter*)data2;
+
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
 		
 		if (!m_pixmap)
