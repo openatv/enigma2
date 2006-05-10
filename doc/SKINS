@@ -70,3 +70,35 @@ if you're having less than 16 colors in your png file, pngquant generates a
 16color (4bit) PNG, which is not really what we want. Either add more colors 
 (evil workaround), fix enigma (good idea!) or patch pngquant to
 always create 8bit pngs.
+
+transparency:
+=============
+
+First, do not mix up transparency with alpha. I agree, both terms refer to
+the same thing, but in our case, it's more complicated. As long as we don't
+run on accelerated graphic, we need to differentiate between these two.
+
+Alpha, in our context, is the ratio between the video and the OSD. Alpha = 0
+means that OSD is completely visible, and no video, whereas Alpha = 1 (or
+0xFF, if you express it so) means that there is only video.
+
+Transparency, on the other hand, is OSD-only. When you have a background,
+say a color, and you want to blit a picture on it, you can mix the
+background with the picture. (*) This allows pixmap with a non-rectangular
+shape.
+
+Because of speed reasons, we don't support real alpha blending when not
+running with acceleration. Instead, we use alpha testing. This means that a
+special color is "transparent", whereas all other colors are not. This
+colors *HAS TO BE AT INDEX 0*. As you can't count on automatic palette
+merging (it's disabled when the target is 32bit, so you you're not
+restricted to 8bit in total, only 8bit per pixmap), you have to tell your
+gfx program to put the transparent color at index 0. This is what's normally
+done, but in case transparency doesn't work correctly, you might want to
+check this.
+
+
+(*) Note, that, technically, if we start with a alpha=1 background (i.e.
+only video), and alphablend on this, we generalized the problem enough that
+we can handle both cases the same. But currently, we have to differentiate
+between them, as we can't always alphablend.
