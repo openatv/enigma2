@@ -299,13 +299,16 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 		return;
 	}
 
-	ePtr<gDC> pixmap_dc = new gDC(&pm);
-	gPainter pixmap_painter(pixmap_dc);
-	
 	ePtr<gPixmap> target_pixmap;
 	m_screen.m_dc->getPixmap(target_pixmap);
 	
 	assert(target_pixmap);
+	
+	if (target_pixmap->surface && target_pixmap->surface->bpp > 8)
+		return;
+
+	ePtr<gDC> pixmap_dc = new gDC(&pm);
+	gPainter pixmap_painter(pixmap_dc);
 	
 	pixmap_painter.mergePalette(target_pixmap);
 }
