@@ -140,10 +140,8 @@ int main(int argc, char **argv)
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/md_khmurabi_10.ttf", "Regular", 100);
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/ae_AlMateen.ttf", "Replacement", 90);
-	eTextPara::setReplacementFont("Replacement");
-	
+
+		/* ok, this is currently hardcoded for arabic. */
 			/* some characters are wrong in the regular font, force them to use the replacement font */
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
@@ -225,4 +223,11 @@ void quitMainloop(int exitCode)
 {
 	exit_code = exitCode;
 	eApp->quit(0);
+}
+
+void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement)
+{
+	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor);
+	if (is_replacement)
+		eTextPara::setReplacementFont(alias);
 }

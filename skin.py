@@ -14,7 +14,7 @@ def dump(x, i=0):
 	except:
 		None
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 
 dom_skins = [ ]
 
@@ -84,7 +84,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == "pixmap":
 			ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value))
 			# that __deref__ still scares me!
-#			desktop.makeCompatiblePixmap(ptr.__deref__())
+			desktop.makeCompatiblePixmap(ptr.__deref__())
 			guiObject.setPixmap(ptr.__deref__())
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
@@ -159,7 +159,6 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setShadowOffset(parsePosition(value))
 		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
-
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
@@ -183,6 +182,14 @@ def loadSingleSkinData(desktop, dom_skin):
 				raise ("need color and name, got %s %s" % (name, color))
 				
 			colorNames[name] = parseColor(color)
+	
+	for c in elementsWithTag(skin.childNodes, "fonts"):
+		for font in elementsWithTag(c.childNodes, "font"):
+			filename = str(font.getAttribute("filename") or "<NONAME>")
+			name = str(font.getAttribute("name") or "Regular")
+			scale = int(font.getAttribute("scale") or "100")
+			is_replacement = font.getAttribute("replacement") != ""
+			addFont(resolveFilename(SCOPE_FONTS, filename), name, scale, is_replacement)
 	
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
