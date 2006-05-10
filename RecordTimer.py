@@ -157,6 +157,7 @@ class RecordTimerEntry(timer.TimerEntry):
 					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"))
 				else: # zap without asking
 					self.log(9, "zap without asking")
+					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_WARNING)
 					self.failureCB(True)
 
 			self.do_backoff()
