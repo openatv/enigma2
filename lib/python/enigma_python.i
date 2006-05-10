@@ -242,6 +242,14 @@ public:
 	PyObject *get();
 };
 
+/************** temp *****************/
+
+	/* need a better place for this, i agree. */
+%{
+void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement); 
+%}
+void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+
 /**************  debug  **************/
 
 void runMainloop();
