@@ -1365,9 +1365,9 @@ class InfoBarNotifications:
 			print "open",n
 			cb = n[0]
 			if cb is not None:
-				self.session.openWithCallback(cb, *n[1:])
+				self.session.openWithCallback(cb, n[1], *n[2], **n[3])
 			else:
-				self.session.open(*n[1:])
+				self.session.open(n[1], *n[2], **n[3])
 
 class InfoBarServiceNotifications:
 	def __init__(self):
