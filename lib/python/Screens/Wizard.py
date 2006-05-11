@@ -72,6 +72,7 @@ class Wizard(Screen, HelpableScreen):
 					self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"] + ch
 			elif self.currContent == "condition":
 				 self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"] + ch
+
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -109,6 +110,8 @@ class Wizard(Screen, HelpableScreen):
 			self["list"] = MenuList(self.list)
 
 		self.onShown.append(self.updateValues)
+
+		self.configInstance = None
 		
 		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
 		{
@@ -154,10 +157,11 @@ class Wizard(Screen, HelpableScreen):
 		currStep = self.currStep
 		if self.showConfig:
 			if (self.wizard[currStep]["config"]["screen"] != None):
-				try: # don't die, if no run() is available
-					self.configInstance.run()
-				except:
-					print "Failed to run configInstance"
+				# TODO: don't die, if no run() is available
+				# there was a try/except here, but i can't see a reason
+				# for this. If there is one, please do a more specific check
+				# and/or a comment in which situation there is no run()
+				self.configInstance.run()
 		
 		if self.showList:
 			if (len(self.wizard[currStep]["list"]) > 0):
@@ -214,6 +218,11 @@ class Wizard(Screen, HelpableScreen):
 		
 		self.stepHistory.append(self.currStep)
 		
+		if self.configInstance is not None:
+			del self.configInstance["config"]
+			self.configInstance.doClose()
+			self.configInstance = None
+		
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if self.condition:
@@ -250,6 +259,7 @@ class Wizard(Screen, HelpableScreen):
 						else:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
 						self["config"].l.setList(self.configInstance["config"].list)
+						self.configInstance["config"].destroy()
 						self.configInstance["config"] = self["config"]
 				else:
 					self["config"].l.setList([])
