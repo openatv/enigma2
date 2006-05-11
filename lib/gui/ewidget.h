@@ -13,7 +13,8 @@ class eWidget
 	friend class eWidgetDesktop;
 public:
 	eWidget(eWidget *parent);
-	
+	virtual ~eWidget();
+
 	void move(ePoint pos);
 	void resize(eSize size);
 	
@@ -84,7 +85,6 @@ private:
 	int m_z_position;
 	int m_notify_child_on_position_change;
 protected:
-	virtual ~eWidget();
 	void mayKillFocus();
 public:
 
