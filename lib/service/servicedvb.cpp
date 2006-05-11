@@ -5,7 +5,7 @@
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
-
+#include <lib/base/nconfig.h> // access to python config
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
@@ -1560,6 +1560,12 @@ void eDVBServicePlay::updateDecoder()
 	int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
+	bool defaultac3=false;
+	std::string default_ac3;
+
+	if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
+		defaultac3 = default_ac3 == "enable";
+
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
 		eDebug("getting program info failed.");
@@ -1589,10 +1595,13 @@ void eDVBServicePlay::updateDecoder()
 				i(program.audioStreams.begin()); 
 				i != program.audioStreams.end(); ++i)
 			{
-				if (apid == -1)
+				if (apid == -1 || (apidtype == eDVBAudio::aMPEG && defaultac3))
 				{
-					apid = i->pid;
-					apidtype = i->type;
+					if ( apid == -1 || (i->type != eDVBAudio::aMPEG) )
+					{
+						apid = i->pid;
+						apidtype = i->type;
+					}
 				}
 				if (i != program.audioStreams.begin())
 					eDebugNoNewLine(", ");
