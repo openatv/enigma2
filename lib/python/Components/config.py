@@ -38,6 +38,18 @@ class configFile:
 		else:
 			self.configElements[key] = value
 
+	def getResolvedKey(self, key):
+		str = self.configElements[key]
+		if len(str):
+			pos = str.find('*')
+			if pos != -1:
+				str = str[pos+1:]
+				pos = str.find('*')
+				if pos != -1:
+					return str[:pos]
+			return str
+		return None
+
 	def save(self):
 		if self.changed == 0:		#no changes, so no write to disk needed
 			return

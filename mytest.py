@@ -415,6 +415,8 @@ def runScreenTest():
 	
 	screensToRun.append(Screens.InfoBar.InfoBar)
 
+	ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
+
 	def runNextScreen(session, screensToRun, *result):
 		if result:
 			quitMainloop(*result)
