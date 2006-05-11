@@ -25,7 +25,7 @@ class GUIComponent(object):
 		pass
 	
 	def destroy(self):
-		pass
+		self.__dict__.clear()
 	
 	# this works only with normal widgets - if you don't have self.instance, override this.
 	def applySkin(self, desktop):
