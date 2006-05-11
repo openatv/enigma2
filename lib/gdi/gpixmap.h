@@ -35,6 +35,12 @@ struct gRGB
 	gRGB(): b(0), g(0), r(0), a(0)
 	{
 	}
+	
+	unsigned long argb() const
+	{
+		return (a<<24)|(r<<16)|(g<<8)|b;
+	}
+	
 	void operator=(unsigned long val)
 	{
 		b = val&0xFF;
@@ -123,11 +129,12 @@ public:
 	virtual ~gPixmap();
 	
 	eSize size() const { return eSize(surface->x, surface->y); }
-	
+	inline bool needClut() const { return surface && surface->bpp <= 8; }
 private:
 #ifndef SWIG
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
+	void fill(const gRegion &clip, const gRGB &color);
 	
 	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
 	

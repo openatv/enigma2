@@ -1,6 +1,7 @@
 #ifndef __grc_h
 #define __grc_h
 
+// #define SYNC_PAINT
 /*
 	gPainter ist die high-level version. die highlevel daten werden zu low level opcodes ueber
 	die gRC-queue geschickt und landen beim gDC der hardwarespezifisch ist, meist aber auf einen
@@ -185,7 +186,7 @@ class gPainter
 public:
 	gPainter(gDC *dc, eRect rect=eRect());
 	virtual ~gPainter();
-
+	
 	void setBackgroundColor(const gColor &color);
 	void setForegroundColor(const gColor &color);
 
@@ -252,6 +253,7 @@ protected:
 	ePtr<gPixmap> m_pixmap;
 
 	gColor m_foreground_color, m_background_color;
+	gRGB m_foreground_color_rgb, m_background_color_rgb;
 	ePtr<gFont> m_current_font;
 	ePoint m_current_offset;
 	
