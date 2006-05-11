@@ -49,11 +49,17 @@ class HarddiskSetup(Screen):
 			self.session.open(MessageBox, _("Unable to initialize harddisk.\nPlease refer to the user manual.\nError: ") + str(self.hdd.errorList[0 - result]), MessageBox.TYPE_ERROR)
 		else:
 			self.close()
-			
+
 	def hddInitialize(self):
+		self.session.openWithCallback(self.hddInitConfirmed, MessageBox, _("Do you really want to initialize the harddisk?\nAll data on the disk will be lost!"))
+
+	def hddInitConfirmed(self, confirmed):
+		if not confirmed:
+			return
+
 		print "this will start the initialize now!"
 		self.session.openWithCallback(self.hddReady, HarddiskWait, self.hdd)
-
+			
 class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
