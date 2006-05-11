@@ -175,6 +175,38 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 	}
 }
 
+void gPixmap::fill(const gRegion &region, const gRGB &color)
+{
+	unsigned int i;
+	for (i=0; i<region.rects.size(); ++i)
+	{
+		const eRect &area = region.rects[i];
+		if ((area.height()<=0) || (area.width()<=0))
+			continue;
+
+		if (surface->bpp == 32)
+		{
+			__u32 col;
+
+			col = color.argb();
+			col^=0xFF000000;
+
+			if (surface->data_phys && gAccel::getInstance())
+				if (!gAccel::getInstance()->fill(surface,  area, col))
+					continue;
+
+			for (int y=area.top(); y<area.bottom(); y++)
+			{
+				__u32 *dst=(__u32*)(((__u8*)surface->data)+y*surface->stride+area.left()*surface->bypp);
+				int x=area.width();
+				while (x--)
+					*dst++=col;
+			}
+		}	else
+			eWarning("couldn't rgbfill %d bpp", surface->bpp);
+	}
+}
+
 void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag)
 {
 	for (unsigned int i=0; i<clip.rects.size(); ++i)

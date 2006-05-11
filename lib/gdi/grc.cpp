@@ -506,18 +506,24 @@ void gDC::exec(gOpcode *o)
 	{
 	case gOpcode::setBackgroundColor:
 		m_background_color = o->parm.setColor->color;
+		m_background_color_rgb = getRGB(m_background_color);
 		delete o->parm.setColor;
 		break;
 	case gOpcode::setForegroundColor:
 		m_foreground_color = o->parm.setColor->color;
+		m_background_color_rgb = getRGB(m_foreground_color);
 		delete o->parm.setColor;
 		break;
 	case gOpcode::setBackgroundColorRGB:
-		m_background_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		if (m_pixmap->needClut())
+			m_background_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		m_background_color_rgb = o->parm.setColorRGB->color;
 		delete o->parm.setColorRGB;
 		break;
 	case gOpcode::setForegroundColorRGB:
-		m_foreground_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		if (m_pixmap->needClut())
+			m_foreground_color = m_pixmap->surface->clut.findColor(o->parm.setColorRGB->color);
+		m_foreground_color_rgb = o->parm.setColorRGB->color;
 		delete o->parm.setColorRGB;
 		break;
 	case gOpcode::setFont:
@@ -549,13 +555,14 @@ void gDC::exec(gOpcode *o)
 			int correction = vcentered_top - bbox.top();
 			offset += ePoint(0, correction);
 		}
-		para->blit(*this, offset, getRGB(m_background_color), getRGB(m_foreground_color));
+		
+		para->blit(*this, offset, m_background_color_rgb, m_foreground_color_rgb);
 		delete o->parm.renderText;
 		break;
 	}
 	case gOpcode::renderPara:
 	{
-		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset + m_current_offset, getRGB(m_background_color), getRGB(m_foreground_color));
+		o->parm.renderPara->textpara->blit(*this, o->parm.renderPara->offset + m_current_offset, m_background_color_rgb, m_foreground_color_rgb);
 		o->parm.renderPara->textpara->Release();
 		delete o->parm.renderPara;
 		break;
@@ -565,7 +572,10 @@ void gDC::exec(gOpcode *o)
 		eRect area = o->parm.fill->area;
 		area.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & area;
-		m_pixmap->fill(clip, m_foreground_color);
+		if (m_pixmap->needClut())
+			m_pixmap->fill(clip, m_foreground_color);
+		else
+			m_pixmap->fill(clip, m_foreground_color_rgb);
 		delete o->parm.fill;
 		break;
 	}
@@ -573,12 +583,18 @@ void gDC::exec(gOpcode *o)
 	{
 		o->parm.fillRegion->region.moveBy(m_current_offset);
 		gRegion clip = m_current_clip & o->parm.fillRegion->region;
-		m_pixmap->fill(clip, m_foreground_color);
+		if (m_pixmap->needClut())
+			m_pixmap->fill(clip, m_foreground_color);
+		else
+			m_pixmap->fill(clip, m_foreground_color_rgb);
 		delete o->parm.fillRegion;
 		break;
 	}
 	case gOpcode::clear:
-		m_pixmap->fill(m_current_clip, m_background_color);
+		if (m_pixmap->needClut())
+			m_pixmap->fill(m_current_clip, m_background_color);
+		else
+			m_pixmap->fill(m_current_clip, m_background_color_rgb);
 		delete o->parm.fill;
 		break;
 	case gOpcode::blit:
