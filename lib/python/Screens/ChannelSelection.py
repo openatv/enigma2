@@ -897,9 +897,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.session.nav.playService(nref)
 		self.saveRoot()
 		self.saveChannel()
+		self.addToHistory(nref)
+
+	def addToHistory(self, ref):
 		if self.servicePath is not None:
 			tmp=self.servicePath[:]
-			tmp.append(nref)
+			tmp.append(ref)
 			try:
 				del self.history[self.history_pos+1:]
 			except:
