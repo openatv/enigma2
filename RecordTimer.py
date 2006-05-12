@@ -7,7 +7,7 @@ from Components.config import config
 import timer
 import xml.dom.minidom
 
-from enigma import quitMainloop
+from enigma import quitMainloop, eEPGCache, eEPGCachePtr
 
 from Screens.MessageBox import MessageBox
 import NavigationInstance
@@ -115,7 +115,13 @@ class RecordTimerEntry(timer.TimerEntry):
 					self.log(2, "'prepare' failed: error %d" % prep_res)
 					self.record_service = None
 					return False
-	
+
+				if self.repeated:
+					epgcache = eEPGCache.getInstance()
+					queryTime=self.begin+(self.end-self.begin)/2
+					evt = epgcache.lookupEventTime(self.service_ref.ref, queryTime)
+					if evt:
+						self.description = evt.getShortDescription()
 				self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
 				try:
 					f = open(self.Filename + ".ts.meta", "w")
