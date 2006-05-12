@@ -18,6 +18,7 @@ public:
 	RESULT setSourcePVR(int pvrnum);
 	
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
+	RESULT createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader);
 	RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder);
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int primary);
 	RESULT getSTC(pts_t &pts, int num);
@@ -31,6 +32,7 @@ private:
 	
 	int m_dvr_busy;
 	friend class eDVBSectionReader;
+	friend class eDVBPESReader;
 	friend class eDVBAudio;
 	friend class eDVBVideo;
 	friend class eDVBPCR;
@@ -60,6 +62,24 @@ public:
 	RESULT start(const eDVBSectionFilterMask &mask);
 	RESULT stop();
 	RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn);
+};
+
+class eDVBPESReader: public iDVBPESReader, public Object
+{
+	DECLARE_REF(eDVBPESReader);
+private:
+	int m_fd;
+	Signal2<void, const __u8*, int> m_read;
+	ePtr<eDVBDemux> m_demux;
+	int m_active;
+	void data(int);
+	eSocketNotifier *m_notifier;
+public:
+	eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res);
+	virtual ~eDVBPESReader();
+	RESULT start(int pid);
+	RESULT stop();
+	RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn);
 };
 
 class eDVBRecordFileThread;

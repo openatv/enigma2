@@ -108,6 +108,15 @@ RESULT eDVBDemux::createSectionReader(eMainloop *context, ePtr<iDVBSectionReader
 	return res;
 }
 
+RESULT eDVBDemux::createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader)
+{
+	RESULT res;
+	reader = new eDVBPESReader(this, context, res);
+	if (res)
+		reader = 0;
+	return res;
+}
+
 RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder)
 {
 	if (m_dvr_busy)
@@ -279,6 +288,100 @@ RESULT eDVBSectionReader::stop()
 RESULT eDVBSectionReader::connectRead(const Slot1<void,const __u8*> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, read.connect(r));
+	return 0;
+}
+
+void eDVBPESReader::data(int)
+{
+	while (1)
+	{
+		__u8 data[4096];
+		int r;
+		r = ::read(m_fd, data, 4096);
+		if (!r)
+			break;
+		if(r < 0)
+		{
+			eWarning("ERROR reading section - %m\n");
+			return;
+		}
+		if (m_active)
+			m_read(data, r);
+	}
+}
+
+eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res): m_demux(demux)
+{
+	char filename[128];
+	m_fd = m_demux->openDemux();
+	
+	if (m_fd >= 0)
+	{
+		m_notifier = new eSocketNotifier(context, m_fd, eSocketNotifier::Read, false);
+		CONNECT(m_notifier->activated, eDVBPESReader::data);
+		res = 0;
+	} else
+	{
+		perror(filename);
+		res = errno;
+	}
+}
+
+DEFINE_REF(eDVBPESReader)
+
+eDVBPESReader::~eDVBPESReader()
+{
+	if (m_notifier)
+		delete m_notifier;
+	if (m_fd >= 0)
+		::close(m_fd);
+}
+
+RESULT eDVBPESReader::start(int pid)
+{
+	RESULT res;
+	if (m_fd < 0)
+		return -ENODEV;
+
+	m_notifier->start();
+
+#if HAVE_DVB_API_VERSION < 3
+	dmxPesFilterParams flt;
+	
+	flt.pesType = DMX_PES_OTHER;
+#else
+	dmx_pes_filter_params flt;
+	
+	flt.pes_type = DMX_PES_OTHER;
+#endif
+
+	flt.pid     = pid;
+	flt.input   = DMX_IN_FRONTEND;
+	flt.output  = DMX_OUT_TAP;
+	
+	flt.flags   = DMX_IMMEDIATE_START;
+
+	res = ::ioctl(m_fd, DMX_SET_PES_FILTER, &flt);
+	if (!res)
+		m_active = 1;
+	return res;
+}
+
+RESULT eDVBPESReader::stop()
+{
+	if (!m_active)
+		return -1;
+
+	m_active=0;
+	::ioctl(m_fd, DMX_STOP);
+	m_notifier->stop();
+
+	return 0;
+}
+
+RESULT eDVBPESReader::connectRead(const Slot2<void,const __u8*,int> &r, ePtr<eConnection> &conn)
+{
+	conn = new eConnection(this, m_read.connect(r));
 	return 0;
 }
 

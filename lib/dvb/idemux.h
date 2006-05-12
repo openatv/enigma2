@@ -53,6 +53,15 @@ public:
 	virtual ~iDVBSectionReader() { };
 };
 
+class iDVBPESReader: public iObject
+{
+public:
+	virtual RESULT start(int pid)=0;
+	virtual RESULT stop()=0;
+	virtual RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn)=0;
+	virtual ~iDVBPESReader() { };
+};
+
 	/* records a given set of pids into a file descriptor. */
 	/* the FD must not be modified between start() and stop() ! */
 class iDVBTSRecorder: public iObject
