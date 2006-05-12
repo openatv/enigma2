@@ -6,6 +6,7 @@
 
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/eit.h>
+#include <lib/dvb/teletext.h>
 #include <lib/base/filepush.h>
 
 class eServiceFactoryDVB: public iServiceHandler
@@ -140,12 +141,14 @@ private:
 	
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
 	
+		/* events */
 	void gotNewEvent();
 	
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
 	Signal2<void,iPlayableService*,int> m_event;
 	
+		/* pvr */
 	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active;
 	int m_first_program_info;
 	
@@ -157,6 +160,7 @@ private:
 	int m_current_audio_stream;
 	int selectAudioStream(int n);
 	
+		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;
 	std::set<int> m_pids_active;
 
@@ -167,6 +171,8 @@ private:
 	void updateDecoder();
 	
 	int m_skipmode;
+	
+		/* cuesheet */
 	
 	ePtr<eCueSheet> m_cue;
 	
@@ -192,6 +198,9 @@ private:
 	void saveCuesheet();
 	
 	void cutlistToCuesheet();
+	
+		/* teletext subtitles */
+	ePtr<eDVBTeletextParser> m_teletext_parser;
 };
 
 #endif
