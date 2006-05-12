@@ -265,7 +265,7 @@ class InfoBarChannelSelection:
 		config.misc.initialchannelselection.value = 0
 		config.misc.initialchannelselection.save()
 		self.switchChannelDown()
-		
+
 	def historyBack(self):
 		self.servicelist.historyBack()
 
@@ -1231,8 +1231,51 @@ class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
-				"subserviceSelection": (self.subserviceSelection, "Subservice list..."),
+				"subserviceSelection": (self.subserviceSelection, _("Subservice list...")),
 			})
+
+		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
+			{
+				"nextSubservice": (self.nextSubservice, _("Switch to next subservice")),
+				"prevSubservice": (self.prevSubservice, _("Switch to previous subservice"))
+			}, -1)
+		self["SubserviceQuickzapAction"].setEnabled(False)
+
+		self.session.nav.event.append(self.checkParentAvail) # we like to get service events
+
+	def checkParentAvail(self, ev):
+		ref=self.session.nav.getCurrentlyPlayingServiceReference()
+		if ev == iPlayableService.evUpdatedEventInfo:
+			if ref.getData(5):
+				self["SubserviceQuickzapAction"].setEnabled(True)
+			else:
+				self["SubserviceQuickzapAction"].setEnabled(False)
+
+	def nextSubservice(self):
+		self.changeSubservice(+1)
+
+	def prevSubservice(self):
+		self.changeSubservice(-1)
+
+	def changeSubservice(self, direction):
+		service = self.session.nav.getCurrentService()
+		subservices = service.subServices()
+		n = subservices.getNumberOfSubservices()
+		if n > 0:
+			selection = -1
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			for x in range(n):
+				if subservices.getSubservice(x).toString() == ref.toString():
+					selection = x
+			if selection != -1:
+				selection += direction
+				if selection >= n:
+					selection=0
+				elif selection < 0:
+					selection=n-1
+				newservice = subservices.getSubservice(selection)
+				if newservice.valid():
+					self.session.nav.playService(newservice)
 
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
