@@ -242,7 +242,6 @@ RESULT eDVBPVRServiceOfflineOperations::deleteFromDisk(int simulate)
 		if (!eraser)
 			eDebug("FATAL !! can't get background file eraser");
 		
-				/* TODO: deferred removing.. */
 		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
 		{
 			eDebug("Removing %s...", i->c_str());
@@ -1526,6 +1525,8 @@ void eDVBServicePlay::switchToLive()
 	m_cue = 0;
 	m_decoder = 0;
 	m_decode_demux = 0;
+	m_teletext_parser = 0;
+	
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 	m_timeshift_active = 0;
@@ -1542,6 +1543,7 @@ void eDVBServicePlay::switchToTimeshift()
 	
 	m_decode_demux = 0;
 	m_decoder = 0;
+	m_teletext_parser = 0;
 	
 	m_timeshift_active = 1;
 
@@ -1622,6 +1624,9 @@ void eDVBServicePlay::updateDecoder()
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
+#ifdef INTERNAL_TELETEXT
+		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
+#endif
 	}
 
 	if (m_decoder)
@@ -1633,7 +1638,13 @@ void eDVBServicePlay::updateDecoder()
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
+#ifndef INTERNAL_TELETEXT
 		m_decoder->setTextPID(tpid);
+#else
+		if (m_teletext_parser)
+			m_teletext_parser->start(tpid);
+#endif
+
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
 		m_decoder->start();
