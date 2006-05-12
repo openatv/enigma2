@@ -1275,6 +1275,8 @@ class InfoBarSubserviceSelection:
 					selection=n-1
 				newservice = subservices.getSubservice(selection)
 				if newservice.valid():
+					del subservices
+					del service
 					self.session.nav.playService(newservice)
 
 	def subserviceSelection(self):
