@@ -343,7 +343,7 @@ class NimManager:
 				tpos = int(attrs.get('position',""))
 				if tpos < 0:
 					tpos = 3600 + tpos
-				tname = attrs.get('name',"")
+				tname = attrs.get('name',"").encode("UTF-8")
 				self.satellites[tpos] = tname
 				self.satList.append( (tname, tpos) )
 				self.parsedSat = int(tpos)
@@ -368,7 +368,7 @@ class NimManager:
 		def startElement(self, name, attrs):
 			if (name == "cable"):
 				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-				tname = attrs.get('name',"")
+				tname = attrs.get('name',"").encode("UTF-8")
 				self.cablesList.append(str(tname))
 				self.parsedCab = str(tname)
 			elif (name == "transponder"):
