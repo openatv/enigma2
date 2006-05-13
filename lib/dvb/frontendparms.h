@@ -25,12 +25,30 @@ struct eDVBFrontendParametersSatellite
 	struct FEC
 	{
 		enum {
-			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone=15
+			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, f3_5, f4_5, f9_10, fNone=15
+		};
+	};
+	struct System
+	{
+		enum {
+			DVB_S, DVB_S2
+		};
+	};
+	struct Modulation
+	{
+		enum {
+			Auto, QPSK, M8PSK, QAM_16
+		};
+	};
+	struct RollOff  // dvb-s2
+	{
+		enum {
+			alpha_0_35, alpha_0_25, alpha_0_20, alpha_auto
 		};
 	};
 	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position;
+	int polarisation, fec, inversion, orbital_position, system, modulation, roll_off;
 };
 
 struct eDVBFrontendParametersCable

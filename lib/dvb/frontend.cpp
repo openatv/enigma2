@@ -47,6 +47,11 @@
 #define parm_u_ofdm_transmission_mode parm.u.ofdm.transmission_mode
 #define parm_u_ofdm_guard_interval parm.u.ofdm.guard_interval
 #define parm_u_ofdm_hierarchy_information parm.u.ofdm.hierarchy_information
+#ifdef FEC_9_10
+	#warning "FEC_9_10 already exist in dvb api ... it seems it is now ready for DVB-S2"
+#else
+	#define FEC_9_10 FEC_AUTO+1
+#endif
 #endif
 
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
@@ -99,8 +104,8 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	symbol_rate  = descriptor.getSymbolRate() * 100;
 	polarisation = descriptor.getPolarization();
 	fec = descriptor.getFecInner();
-	if ( fec == 0xF )
-		fec = FEC::fNone;
+	if ( fec != FEC::fNone && fec > FEC::f9_10 )
+		fec = FEC::fAuto;
 	inversion = Inversion::Unknown;
 	orbital_position  = ((descriptor.getOrbitalPosition() >> 12) & 0xF) * 1000;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 8) & 0xF) * 100;
@@ -108,11 +113,32 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	orbital_position += ((descriptor.getOrbitalPosition()) & 0xF);
 	if (orbital_position && (!descriptor.getWestEastFlag()))
 		orbital_position = 3600 - orbital_position;
-	eDebug("SAT freq %d, %s, pos %d, sr %d, fec %d",
-		frequency,
-		polarisation ? "hor" : "vert",
-		orbital_position,
-		symbol_rate, fec);
+	system = descriptor.getModulationSystem();
+	modulation = descriptor.getModulation();
+	if (system == System::DVB_S && modulation == Modulation::M8PSK)
+	{
+		eDebug("satellite_delivery_descriptor non valid modulation type.. force QPSK");
+		modulation=QPSK;
+	}
+	roll_off = descriptor.getRollOff();
+	if (system == System::DVB_S2)
+	{
+		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, roll_off %d",
+			frequency,
+			polarisation ? "hor" : "vert",
+			orbital_position,
+			symbol_rate, fec,
+			modulation,
+			roll_off);
+	}
+	else
+	{
+		eDebug("SAT DVB-S freq %d, %s, pos %d, sr %d, fec %d",
+			frequency,
+			polarisation ? "hor" : "vert",
+			orbital_position,
+			symbol_rate, fec);
+	}
 }
 
 void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descriptor)
@@ -1276,11 +1302,12 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 		switch (feparm.fec)
 		{
 			default:
-			case eDVBFrontendParametersSatellite::FEC::fNone:
-				eDebug("no fec set.. assume auto");
+				eDebug("no valid fec set.. assume auto");
 			case eDVBFrontendParametersSatellite::FEC::fAuto:
 				parm_u_qpsk_fec_inner = FEC_AUTO;
 				break;
+			case eDVBFrontendParametersSatellite::FEC::fNone:
+				parm_u_qpsk_fec_inner = FEC_NONE;
 			case eDVBFrontendParametersSatellite::FEC::f1_2:
 				parm_u_qpsk_fec_inner = FEC_1_2;
 				break;
@@ -1296,6 +1323,11 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 			case eDVBFrontendParametersSatellite::FEC::f7_8:
 				parm_u_qpsk_fec_inner = FEC_7_8;
 				break;
+#if HAVE_DVB_API_VERSION >= 3
+			case eDVBFrontendParametersSatellite::FEC::f9_10:
+				parm_u_qpsk_fec_inner = FEC_9_10;
+				break;
+#endif
 		}
 		// FIXME !!! get frequency range from tuner
 		if ( parm_frequency < 900000 || parm_frequency > 2200000 )

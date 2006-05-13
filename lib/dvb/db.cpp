@@ -300,8 +300,11 @@ void eDVBDB::reloadServicelist()
 			if (line[1]=='s')
 			{
 				eDVBFrontendParametersSatellite sat;
-				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion;
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion);
+				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
+					system=eDVBFrontendParametersSatellite::System::DVB_S,
+					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
+					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_auto;
+				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff);
 				sat.frequency = frequency;
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
@@ -309,6 +312,9 @@ void eDVBDB::reloadServicelist()
 				sat.orbital_position =
 					orbital_position < 0 ? orbital_position + 3600 : orbital_position;
 				sat.inversion = inversion;
+				sat.system = system;
+				sat.modulation = modulation;
+				sat.roll_off = rolloff;
 				feparm->setDVBS(sat);
 			} else if (line[1]=='t')
 			{
@@ -452,11 +458,25 @@ void eDVBDB::saveServicelist()
 		eDVBFrontendParametersCable cab;
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
-			fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
-				sat.frequency, sat.symbol_rate,
-				sat.polarisation, sat.fec,
-				sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
-				sat.inversion);
+			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
+			{
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d\n",
+					sat.frequency, sat.symbol_rate,
+					sat.polarisation, sat.fec,
+					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
+					sat.inversion,
+					sat.system,
+					sat.modulation,
+					sat.roll_off);
+			}
+			else
+			{
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d\n",
+					sat.frequency, sat.symbol_rate,
+					sat.polarisation, sat.fec,
+					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
+					sat.inversion);
+			}
 		}
 		if (!ch.m_frontendParameters->getDVBT(ter))
 		{
