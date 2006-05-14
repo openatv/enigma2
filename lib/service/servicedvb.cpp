@@ -1125,6 +1125,7 @@ int eDVBServicePlay::getInfo(int w)
 		return -1;
 	case sIsCrypted: return program.isCrypted;
 	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoType: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
 	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[m_current_audio_stream].pid;
 	case sPCRPID: return program.pcrPid;
 	case sPMTPID: return program.pmtPid;
