@@ -116,10 +116,19 @@ RESULT eBouquet::setListName(const std::string &name)
 eDVBService::eDVBService()
 	:m_flags(0)
 {
+	memset(m_cache, -1, sizeof(m_cache));
 }
 
 eDVBService::~eDVBService()
 {
+}
+
+bool eDVBService::cacheEmpty()
+{
+	for (int i=0; i < cacheMax; ++i)
+		if (m_cache[i] != -1)
+			return false;
+	return true;
 }
 
 eDVBService &eDVBService::operator=(const eDVBService &s)
@@ -128,8 +137,8 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 	m_service_name_sort = s.m_service_name_sort;
 	m_provider_name = s.m_provider_name;
 	m_flags = s.m_flags;
-	m_ca = s.m_ca;
-	m_cache = s.m_cache;
+//	m_ca = s.m_ca;
+	memcpy(m_cache, s.m_cache, sizeof(m_cache));
 	return *this;
 }
 
@@ -225,17 +234,14 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 
 int eDVBService::getCachePID(cacheID id)
 {
-	std::map<int, int>::iterator it = m_cache.find(id);
-	if ( it != m_cache.end() )
-		return it->second;
-	return -1;
+	if (id >= cacheMax)
+		return -1;
+	return m_cache[id];
 }
 
 void eDVBService::setCachePID(cacheID id, int pid)
 {
-	if (pid == -1)
-		m_cache.erase(id);
-	else
+	if (id < cacheMax)
 		m_cache[id] = pid;
 }
 
@@ -421,12 +427,12 @@ void eDVBDB::reloadServicelist()
 					int cid, val;
 					sscanf(v.c_str(), "%02d%04x", &cid, &val);
 					s->m_cache[cid]=val;
-				} else if (p == 'C')
+				}/* else if (p == 'C')
 				{
 					int val;
 					sscanf(v.c_str(), "%04x", &val);
 					s->m_ca.insert(val);
-				}
+				}*/
 			}
 		addService(ref, s);
 	}
@@ -510,14 +516,16 @@ void eDVBDB::saveServicelist()
 		fprintf(f, "p:%s", i->second->m_provider_name.c_str());
 
 		// write cached pids
-		for (std::map<int,int>::const_iterator ca(i->second->m_cache.begin());
-			ca != i->second->m_cache.end(); ++ca)
-			fprintf(f, ",c:%02d%04x", ca->first, ca->second);
+		for (int x=0; x < eDVBService::cacheMax; ++x)
+			if (i->second->m_cache[x] != -1)
+				fprintf(f, ",c:%02d%04x", x, i->second->m_cache[x]);
 
+/*
 		// write cached ca pids
 		for (std::set<int>::const_iterator ca(i->second->m_ca.begin());
 			ca != i->second->m_ca.end(); ++ca)
 			fprintf(f, ",C:%04x", *ca);
+*/
 
 		if (i->second->m_flags)
 			fprintf(f, ",f:%x", i->second->m_flags);

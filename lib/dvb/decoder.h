@@ -11,7 +11,7 @@ private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev;
 public:
-	enum {aMPEG, aAC3, aDTS };
+	enum { aMPEG, aAC3, aDTS, aAAC };
 	eDVBAudio(eDVBDemux *demux, int dev);
 	int startPid(int pid, int type);
 	void stop();
@@ -35,8 +35,9 @@ private:
 	
 	int m_is_slow_motion, m_is_fast_forward;
 public:
+	enum { MPEG2, MPEG4_H264 };
 	eDVBVideo(eDVBDemux *demux, int dev);
-	int startPid(int pid);
+	int startPid(int pid, int type);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
 	void start();
@@ -86,7 +87,7 @@ private:
 	ePtr<eDVBVideo> m_video;
 	ePtr<eDVBPCR> m_pcr;
 	ePtr<eDVBTText> m_text;
-	int m_vpid, m_apid, m_atype, m_pcrpid, m_textpid;
+	int m_vpid, m_vtype, m_apid, m_atype, m_pcrpid, m_textpid;
 	enum
 	{
 		changeVideo = 1, 
@@ -104,7 +105,7 @@ public:
 	enum { pidNone = -1 };
 	eTSMPEGDecoder(eDVBDemux *demux, int decoder);
 	virtual ~eTSMPEGDecoder();
-	RESULT setVideoPID(int vpid);
+	RESULT setVideoPID(int vpid, int type);
 	RESULT setAudioPID(int apid, int type);
 	RESULT setSyncPCR(int pcrpid);
 	RESULT setTextPID(int textpid);

@@ -580,6 +580,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 				break;
 			}
+/*
 			case CA_IDENTIFIER_DESCRIPTOR:
 			{
 				CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
@@ -593,6 +594,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				SCAN_eDebug("");
 				break;
 			}
+*/
 			default:
 				SCAN_eDebug("descr<%x>", (*desc)->getTag());
 				break;

@@ -1559,7 +1559,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 void eDVBServicePlay::updateDecoder()
 {
-	int vpid = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1;
+	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	bool defaultac3=false;
@@ -1582,7 +1582,10 @@ void eDVBServicePlay::updateDecoder()
 				i != program.videoStreams.end(); ++i)
 			{
 				if (vpid == -1)
+				{
 					vpid = i->pid;
+					vpidtype = i->type;
+				}
 				if (i != program.videoStreams.begin())
 					eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -1631,7 +1634,7 @@ void eDVBServicePlay::updateDecoder()
 
 	if (m_decoder)
 	{
-		m_decoder->setVideoPID(vpid);
+		m_decoder->setVideoPID(vpid, vpidtype);
 		m_current_audio_stream = 0;
 		m_decoder->setAudioPID(apid, apidtype);
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
@@ -1666,6 +1669,7 @@ void eDVBServicePlay::updateDecoder()
 				m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
 			}
 			m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
+			m_dvb_service->setCachePID(eDVBService::cVTYPE, vpidtype);
 			m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCachePID(eDVBService::cTPID, tpid);
 		}

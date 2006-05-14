@@ -223,12 +223,13 @@ class eDVBService: public iStaticServiceInformation
 public:
 	enum cacheID
 	{
-		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cacheMax
+		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cVTYPE, cacheMax
 	};
 
 	int getCachePID(cacheID);
 	void setCachePID(cacheID, int);
-	bool cacheEmpty() { return m_cache.empty(); }
+
+	bool cacheEmpty();
 
 	eDVBService();
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
@@ -249,8 +250,9 @@ public:
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 
-	std::set<int> m_ca;
-	std::map<int,int> m_cache;
+//	std::set<int> m_ca;
+
+	int m_cache[cacheMax];
 	virtual ~eDVBService();
 	
 	eDVBService &operator=(const eDVBService &);
@@ -572,8 +574,8 @@ class iTSMPEGDecoder: public iObject
 {
 public:
 	enum { pidDisabled = -1 };
-		/** Set Displayed Video PID */
-	virtual RESULT setVideoPID(int vpid)=0;
+		/** Set Displayed Video PID and type */
+	virtual RESULT setVideoPID(int vpid, int type)=0;
 
 	enum { af_MPEG, af_AC3, af_DTS };
 		/** Set Displayed Audio PID and type */
