@@ -441,7 +441,7 @@ class ChannelSelectionBase(Screen):
 		Screen.__init__(self, session)
 
 		# this makes it much simple to implement a selectable radio or tv mode :)
-		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195)'
+		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
 		self.service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
 
 		self["key_red"] = Button(_("All"))
