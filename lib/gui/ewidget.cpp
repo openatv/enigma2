@@ -341,8 +341,13 @@ int eWidget::event(int event, void *data, void *data2)
 			}
 		} else
 		{
-			if (m_have_background_color)
-				painter.setBackgroundColor(m_background_color);
+			eWidget *w = this;
+			
+			while (w && !w->m_have_background_color)
+				w = w->m_parent;
+
+			if (w)
+				painter.setBackgroundColor(w->m_background_color);
 		}
 		break;
 	}
