@@ -44,7 +44,7 @@ int eSlider::event(int event, void *data, void *data2)
 		if (!m_pixmap)
 			painter.fill(m_currently_filled);
 		else
-			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends);
+			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
 
 // border
 		if (m_have_border_color)
