@@ -448,7 +448,8 @@ class InfoBarEPG:
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
 			assert self.eventView
-			self.eventView.setEvent(self.epglist[0])
+			if len(self.epglist):
+				self.eventView.setEvent(self.epglist[0])
 
 	def openEventView(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
