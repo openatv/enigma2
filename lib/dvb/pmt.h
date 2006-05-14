@@ -99,12 +99,14 @@ public:
 	{
 		int pid;
 		int component_tag;
+		enum { vtMPEG2, vtMPEG4_H264 };
+		int type;
 	};
 	
 	struct audioStream
 	{
 		int pid;
-		enum { atMPEG, atAC3, atDTS };
+		enum { atMPEG, atAC3, atDTS, atAAC };
 		int type; // mpeg2, ac3, dts, ...
 		
 		int component_tag;

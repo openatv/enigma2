@@ -175,12 +175,20 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 		eWarning("%s: %m", filename);
 	eDebug("demux device: %s", filename);
 }
-	
-int eDVBVideo::startPid(int pid)
+
+// not finally values i think.. !!
+#define VIDEO_STREAMTYPE_MPEG2 0
+#define VIDEO_STREAMTYPE_MPEG4_H264 1
+
+int eDVBVideo::startPid(int pid, int type)
 {	
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
+
+	if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE,
+		type == MPEG4_H264 ? VIDEO_STREAMTYPE_MPEG4_H264 : VIDEO_STREAMTYPE_MPEG2) < 0)
+		eWarning("video: VIDEO_SET_STREAMTYPE: %m");
 
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
@@ -465,7 +473,7 @@ int eTSMPEGDecoder::setState()
 		{
 			eDebug("new video");
 			m_video = new eDVBVideo(m_demux, m_decoder);
-			if (m_video->startPid(m_vpid))
+			if (m_video->startPid(m_vpid, m_vtype))
 			{
 				eWarning("video: startpid failed!");
 				res = -1;
@@ -522,12 +530,13 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 	setState();
 }
 
-RESULT eTSMPEGDecoder::setVideoPID(int vpid)
+RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 {
 	if (m_vpid != vpid)
 	{
 		m_changed |= changeVideo;
 		m_vpid = vpid;
+		m_vtype = type;
 	}
 	return 0;
 }

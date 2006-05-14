@@ -250,9 +250,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 				video.pid = (*es)->getPid();
 				audio.pid = (*es)->getPid();
+				video.type = videoStream::vtMPEG2;
 
 				switch ((*es)->getType())
 				{
+				case 0x1b: // AVC Video Stream (MPEG4 H264)
+					video.type = videoStream::vtMPEG4_H264;
 				case 0x01: // MPEG 1 video
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
@@ -276,6 +279,13 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						case TELETEXT_DESCRIPTOR:
 							if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
 								program.textPid = (*es)->getPid();
+							break;
+						case DTS_DESCRIPTOR:
+							if (!isvideo)
+							{
+								isaudio = 1;
+								audio.type = audioStream::atDTS;
+							}
 							break;
 						case AC3_DESCRIPTOR:
 							if (!isvideo)
@@ -354,11 +364,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			apid_mpeg = m_service->getCachePID(eDVBService::cAPID),
 			pcrpid = m_service->getCachePID(eDVBService::cPCRPID),
 			tpid = m_service->getCachePID(eDVBService::cTPID),
+			vpidtype = m_service->getCachePID(eDVBService::cVTYPE),
 			cnt=0;
+		if ( vpidtype == -1 )
+			vpidtype = videoStream::vtMPEG2;
 		if ( vpid != -1 )
 		{
 			videoStream s;
 			s.pid = vpid;
+			s.type = vpidtype;
 			program.videoStreams.push_back(s);
 			++cnt;
 		}
