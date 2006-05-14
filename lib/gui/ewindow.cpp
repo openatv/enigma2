@@ -52,6 +52,14 @@ std::string eWindow::getTitle() const
 	return m_title;
 }
 
+void eWindow::setBackgroundColor(const gRGB &col)
+{
+	eDebug("eWindow: Set background color!");
+		/* set background color for child, too */
+	eWidget::setBackgroundColor(col);
+	m_child->setBackgroundColor(col);
+}
+
 void eWindow::setFlag(int flags)
 {
 	m_flags |= flags;
