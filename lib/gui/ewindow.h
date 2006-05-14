@@ -19,6 +19,8 @@ public:
 	enum {
 		wfNoBorder = 1
 	};
+
+	void setBackgroundColor(const gRGB &col);
 	
 	void setFlag(int flags);
 	void clearFlag(int flags);
