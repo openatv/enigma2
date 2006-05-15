@@ -50,7 +50,7 @@
 #ifdef FEC_9_10
 	#warning "FEC_9_10 already exist in dvb api ... it seems it is now ready for DVB-S2"
 #else
-	#define FEC_9_10 FEC_AUTO+1
+	#define FEC_9_10 (fe_code_rate_t)(FEC_AUTO+1)
 #endif
 #endif
 
