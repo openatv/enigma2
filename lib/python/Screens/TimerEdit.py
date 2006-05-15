@@ -7,7 +7,7 @@ from Components.Label import Label
 from Components.Button import Button
 from Screens.MessageBox import MessageBox
 from TimerEntry import TimerEntry, TimerLog
-from RecordTimer import RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from time import *
 from ServiceReference import ServiceReference
 from Components.config import *
@@ -116,6 +116,7 @@ class TimerEditList(Screen):
 		cur = list.getCurrent()
 		if cur:
 			timer = cur[0]
+			timer.afterEvent = AFTEREVENT.NONE
 			self.session.nav.RecordTimer.removeEntry(timer)
 			self.refill()
 	
