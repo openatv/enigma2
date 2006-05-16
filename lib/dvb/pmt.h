@@ -122,6 +122,7 @@ public:
 		int pmtPid;
 		int textPid;
 		bool isCrypted;
+		int audioChannel;
 	};
 	
 	int getProgramInfo(struct program &program);

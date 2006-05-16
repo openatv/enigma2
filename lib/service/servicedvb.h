@@ -58,7 +58,8 @@ private:
 
 class eDVBServicePlay: public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
-		public iAudioTrackSelection, public iFrontendStatusInformation,
+		public iAudioTrackSelection, public iAudioChannelSelection,
+		public iFrontendStatusInformation,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet
 {
@@ -75,6 +76,7 @@ public:
 	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT info(ePtr<iServiceInformation> &ptr);
+	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
@@ -106,6 +108,10 @@ public:
 	int getNumberOfTracks();
 	RESULT selectTrack(unsigned int i);
 	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
+
+		// iAudioChannelSelection	
+	int getCurrentChannel();
+	RESULT selectChannel(int i);
 
 		// iFrontendStatusInformation
 	int getFrontendInfo(int w);

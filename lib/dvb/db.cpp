@@ -232,14 +232,14 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		return res;
 }
 
-int eDVBService::getCachePID(cacheID id)
+int eDVBService::getCacheEntry(cacheID id)
 {
 	if (id >= cacheMax)
 		return -1;
 	return m_cache[id];
 }
 
-void eDVBService::setCachePID(cacheID id, int pid)
+void eDVBService::setCacheEntry(cacheID id, int pid)
 {
 	if (id < cacheMax)
 		m_cache[id] = pid;
