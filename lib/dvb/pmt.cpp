@@ -288,6 +288,13 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								audio.type = audioStream::atDTS;
 							}
 							break;
+						case AAC_DESCRIPTOR:
+							if (!isvideo)
+							{
+								isaudio = 1;
+								audio.type = audioStream::atAAC;
+							}
+							break;
 						case AC3_DESCRIPTOR:
 							if (!isvideo)
 							{
