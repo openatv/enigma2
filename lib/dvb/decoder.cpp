@@ -144,13 +144,10 @@ void eDVBAudio::setChannel(int channel)
 	{
 	case aMonoLeft: val = AUDIO_MONO_LEFT; break;
 	case aMonoRight: val = AUDIO_MONO_RIGHT; break;
-	default:
-		break;
+	default: break;
 	}
 	if (::ioctl(m_fd, AUDIO_CHANNEL_SELECT, val) < 0)
 		eDebug("video: AUDIO_CHANNEL_SELECT: %m");
-	else
-		eDebug("AUDIO_CHANNEL_SELECT ok");
 }
 
 int eDVBAudio::getPTS(pts_t &now)
