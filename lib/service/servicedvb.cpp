@@ -1203,6 +1203,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "MPEG";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAC3)
 		info.m_description = "AC3";
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAAC)
+		info.m_description = "AAC";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
 	else
@@ -1699,7 +1701,7 @@ void eDVBServicePlay::updateDecoder()
 				m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
 			}
 			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
-			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype);
+			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
