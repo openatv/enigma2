@@ -128,7 +128,7 @@ class ChannelContextMenu(Screen):
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
-			self.csel.addBouquet(bouquet, True)
+			self.csel.addBouquet(bouquet, None, True)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
