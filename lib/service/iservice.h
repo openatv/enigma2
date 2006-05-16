@@ -374,6 +374,20 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
+class iAudioChannelSelection: public iObject
+{
+#ifdef SWIG
+	iAudioChannelSelection();
+	~iAudioChannelSelection();
+#endif
+public:
+	enum { LEFT, STEREO, RIGHT };
+	virtual int getCurrentChannel()=0;
+	virtual RESULT selectChannel(int i)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iAudioChannelSelection>, iAudioChannelSelectionPtr);
+
 class iSubserviceList: public iObject
 {
 #ifdef SWIG
@@ -459,6 +473,7 @@ public:
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) audioChannel(ePtr<iAudioChannelSelection> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;

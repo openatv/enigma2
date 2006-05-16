@@ -14,6 +14,8 @@ public:
 	enum { aMPEG, aAC3, aDTS, aAAC };
 	eDVBAudio(eDVBDemux *demux, int dev);
 	int startPid(int pid, int type);
+	enum { aMonoLeft, aStereo, aMonoRight };
+	void setChannel(int channel);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
 	void start();
@@ -107,6 +109,7 @@ public:
 	virtual ~eTSMPEGDecoder();
 	RESULT setVideoPID(int vpid, int type);
 	RESULT setAudioPID(int apid, int type);
+	RESULT setAudioChannel(int channel);
 	RESULT setSyncPCR(int pcrpid);
 	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);

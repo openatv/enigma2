@@ -216,6 +216,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.isCrypted = false;
 	program.pmtPid = -1;
 	program.textPid = -1;
+	program.audioChannel = m_service ? m_service->getCacheEntry(eDVBService::cACHANNEL) : -1;
 
 	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
 	{
@@ -225,10 +226,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 		int cached_tpid = -1;
 		if ( m_service && !m_service->cacheEmpty() )
 		{
-			cached_vpid = m_service->getCachePID(eDVBService::cVPID);
-			cached_apid_mpeg = m_service->getCachePID(eDVBService::cAC3PID);
-			cached_apid_ac3 = m_service->getCachePID(eDVBService::cAPID);
-			cached_tpid = m_service->getCachePID(eDVBService::cTPID);
+			cached_vpid = m_service->getCacheEntry(eDVBService::cVPID);
+			cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cAC3PID);
+			cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAPID);
+			cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
 		}
 		eDVBTableSpec table_spec;
 		ptr->getSpec(table_spec);
@@ -359,12 +360,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 		return 0;
 	} else if ( m_service && !m_service->cacheEmpty() )
 	{
-		int vpid = m_service->getCachePID(eDVBService::cVPID),
-			apid_ac3 = m_service->getCachePID(eDVBService::cAC3PID),
-			apid_mpeg = m_service->getCachePID(eDVBService::cAPID),
-			pcrpid = m_service->getCachePID(eDVBService::cPCRPID),
-			tpid = m_service->getCachePID(eDVBService::cTPID),
-			vpidtype = m_service->getCachePID(eDVBService::cVTYPE),
+		int vpid = m_service->getCacheEntry(eDVBService::cVPID),
+			apid_ac3 = m_service->getCacheEntry(eDVBService::cAC3PID),
+			apid_mpeg = m_service->getCacheEntry(eDVBService::cAPID),
+			pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
+			tpid = m_service->getCacheEntry(eDVBService::cTPID),
+			vpidtype = m_service->getCacheEntry(eDVBService::cVTYPE),
 			cnt=0;
 		if ( vpidtype == -1 )
 			vpidtype = videoStream::vtMPEG2;

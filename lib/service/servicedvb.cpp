@@ -997,6 +997,12 @@ RESULT eDVBServicePlay::info(ePtr<iServiceInformation> &ptr)
 	return 0;
 }
 
+RESULT eDVBServicePlay::audioChannel(ePtr<iAudioChannelSelection> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 {
 	ptr = this;
@@ -1239,18 +1245,36 @@ int eDVBServicePlay::selectAudioStream(int i)
 	{
 		if (program.audioStreams[i].type == eDVBAudio::aMPEG)
 		{
-			m_dvb_service->setCachePID(eDVBService::cAPID, program.audioStreams[i].pid);
-			m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, program.audioStreams[i].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}	else
 		{
-			m_dvb_service->setCachePID(eDVBService::cAPID, -1);
-			m_dvb_service->setCachePID(eDVBService::cAC3PID, program.audioStreams[i].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[i].pid);
 		}
 	}
 
 	m_current_audio_stream = i;
 
 	return 0;
+}
+
+int eDVBServicePlay::getCurrentChannel()
+{
+	int curChannel = m_dvb_service->getCacheEntry(eDVBService::cACHANNEL);
+	return curChannel == -1 ? STEREO : curChannel;
+}
+
+RESULT eDVBServicePlay::selectChannel(int i)
+{
+	if (i < iAudioChannelSelection::LEFT || i > iAudioChannelSelection::RIGHT)
+		i = -1;  // Stereo
+	if (m_dvb_service->getCacheEntry(eDVBService::cACHANNEL) != i)
+	{
+		m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
+		if (m_decoder)
+			m_decoder->setAudioChannel(i);
+	}
 }
 
 int eDVBServicePlay::getFrontendInfo(int w)
@@ -1560,7 +1584,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 void eDVBServicePlay::updateDecoder()
 {
-	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1;
+	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	bool defaultac3=false;
@@ -1619,6 +1643,7 @@ void eDVBServicePlay::updateDecoder()
 		pcrpid = program.pcrPid;
 		eDebug(", and the text pid is %04x", program.textPid);
 		tpid = program.textPid;
+		achannel = program.audioChannel;
 	}
 
 	if (!m_decoder)
@@ -1651,7 +1676,11 @@ void eDVBServicePlay::updateDecoder()
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
+
 		m_decoder->start();
+
+		m_decoder->setAudioChannel(achannel);
+
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track
 // TODO handling of difference audio types.. default audio types..
@@ -1661,18 +1690,18 @@ void eDVBServicePlay::updateDecoder()
 		{
 			if (apidtype == eDVBAudio::aMPEG)
 			{
-				m_dvb_service->setCachePID(eDVBService::cAPID, apid);
-				m_dvb_service->setCachePID(eDVBService::cAC3PID, -1);
+				m_dvb_service->setCacheEntry(eDVBService::cAPID, apid);
+				m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 			}
 			else
 			{
-				m_dvb_service->setCachePID(eDVBService::cAPID, -1);
-				m_dvb_service->setCachePID(eDVBService::cAC3PID, apid);
+				m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
+				m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
 			}
-			m_dvb_service->setCachePID(eDVBService::cVPID, vpid);
-			m_dvb_service->setCachePID(eDVBService::cVTYPE, vpidtype);
-			m_dvb_service->setCachePID(eDVBService::cPCRPID, pcrpid);
-			m_dvb_service->setCachePID(eDVBService::cTPID, tpid);
+			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
+			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype);
+			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
+			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
 	}
 }

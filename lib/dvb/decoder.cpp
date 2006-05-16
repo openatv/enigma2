@@ -137,6 +137,22 @@ void eDVBAudio::unfreeze()
 		eDebug("video: AUDIO_CONTINUE: %m");
 }
 
+void eDVBAudio::setChannel(int channel)
+{
+	int val = AUDIO_STEREO;
+	switch (channel)
+	{
+	case aMonoLeft: val = AUDIO_MONO_LEFT; break;
+	case aMonoRight: val = AUDIO_MONO_RIGHT; break;
+	default:
+		break;
+	}
+	if (::ioctl(m_fd, AUDIO_CHANNEL_SELECT, val) < 0)
+		eDebug("video: AUDIO_CHANNEL_SELECT: %m");
+	else
+		eDebug("AUDIO_CHANNEL_SELECT ok");
+}
+
 int eDVBAudio::getPTS(pts_t &now)
 {
 	return ::ioctl(m_fd, AUDIO_GET_PTS, &now);
@@ -549,6 +565,15 @@ RESULT eTSMPEGDecoder::setAudioPID(int apid, int type)
 		m_atype = type;
 		m_apid = apid;
 	}
+	return 0;
+}
+
+RESULT eTSMPEGDecoder::setAudioChannel(int channel)
+{
+	if (m_audio)
+		m_audio->setChannel(channel);
+	else
+		eDebug("eTSMPEGDecoder::setAudioChannel but no audio decoder exist");
 	return 0;
 }
 

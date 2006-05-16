@@ -13,7 +13,7 @@ from Components.PluginComponent import plugins
 from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ServiceName import ServiceName
-from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean
+from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean, configSelection, configElement_nonSave, getConfigListEntry
 from Components.config import configfile, configsequencearg
 from Components.TimerList import TimerEntryComponent
 from Components.TunerInfo import TunerInfo
@@ -1192,9 +1192,11 @@ class InfoBarAudioSelection:
 	def audioSelection(self):
 		service = self.session.nav.getCurrentService()
 		audio = service.audioTracks()
-		self.audio = audio
+		self.audioTracks = audio
 		n = audio.getNumberOfTracks()
 		if n > 0:
+#			self.audioChannel = service.audioChannel()
+#			config.audio.audiochannel = configElement_nonSave("config.audio.audiochannel", configSelection, self.audioChannel.getCurrentChannel(), (("left", _("Left  >")), ("stereo", _("<  Stereo  >")), ("right", _("<  Right"))))
 			tlist = []
 			for x in range(n):
 				i = audio.getTrackInfo(x)
@@ -1214,6 +1216,9 @@ class InfoBarAudioSelection:
 			
 			selectedAudio = tlist[0][1]
 			tlist.sort(lambda x,y : cmp(x[0], y[0]))
+
+#			tlist.insert(0, getConfigListEntry(_("Audio Channel"), config.audio.audiochannel))
+
 			selection = 0
 			for x in tlist:
 				if x[1] != selectedAudio:
@@ -1222,11 +1227,15 @@ class InfoBarAudioSelection:
 					break
 			
 			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection)
+		else:
+			del self.audioTracks
 
 	def audioSelected(self, audio):
 		if audio is not None:
-			self.audio.selectTrack(audio[1])
-		del self.audio
+			self.audioTracks.selectTrack(audio[1])
+		del self.audioTracks
+#		del self.audioChannel
+#		del config.audio.audiochannel
 
 class InfoBarSubserviceSelection:
 	def __init__(self):

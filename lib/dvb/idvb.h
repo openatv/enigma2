@@ -223,11 +223,11 @@ class eDVBService: public iStaticServiceInformation
 public:
 	enum cacheID
 	{
-		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cVTYPE, cacheMax
+		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cVTYPE, cACHANNEL, cacheMax
 	};
 
-	int getCachePID(cacheID);
-	void setCachePID(cacheID, int);
+	int getCacheEntry(cacheID);
+	void setCacheEntry(cacheID, int);
 
 	bool cacheEmpty();
 
@@ -577,9 +577,13 @@ public:
 		/** Set Displayed Video PID and type */
 	virtual RESULT setVideoPID(int vpid, int type)=0;
 
-	enum { af_MPEG, af_AC3, af_DTS };
+	enum { af_MPEG, af_AC3, af_DTS, af_AAC };
 		/** Set Displayed Audio PID and type */
 	virtual RESULT setAudioPID(int apid, int type)=0;
+
+	enum { ac_left, ac_stereo, ac_right };
+		/** Set Displayed Audio Channel */
+	virtual RESULT setAudioChannel(int channel)=0;
 
 		/** Set Displayed Videotext PID */
 	virtual RESULT setTextPID(int vpid)=0;
