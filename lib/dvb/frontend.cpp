@@ -50,7 +50,15 @@
 #ifdef FEC_9_10
 	#warning "FEC_9_10 already exist in dvb api ... it seems it is now ready for DVB-S2"
 #else
-	#define FEC_9_10 (fe_code_rate_t)(FEC_AUTO+1)
+	#define FEC_S2_1_2 (fe_code_rate_t)(FEC_AUTO+1)
+	#define FEC_S2_2_3 (fe_code_rate_t)(FEC_S2_1_2+1)
+	#define FEC_S2_3_4 (fe_code_rate_t)(FEC_S2_2_3+1)
+	#define FEC_S2_5_6 (fe_code_rate_t)(FEC_S2_3_4+1)
+	#define FEC_S2_7_8 (fe_code_rate_t)(FEC_S2_5_6+1)
+	#define FEC_S2_8_9 (fe_code_rate_t)(FEC_S2_7_8+1)
+	#define FEC_S2_3_5 (fe_code_rate_t)(FEC_S2_8_9+1)
+	#define FEC_S2_4_5 (fe_code_rate_t)(FEC_S2_3_5+1)
+	#define FEC_S2_9_10 (fe_code_rate_t)(FEC_S2_4_5+1)
 #endif
 #endif
 
@@ -636,36 +644,69 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 {
 	int freq_offset=0;
 	int csw=0;
-	const char *fec=0;
+	const char *tmp=0;
 	fe->getData(0, csw);
 	fe->getData(9, freq_offset);
 	int frequency = parm_frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
 	PutToDict(dict, "symbol_rate", parm_u_qpsk_symbol_rate);
-
 	switch(parm_u_qpsk_fec_inner)
 	{
 	case FEC_1_2:
-		fec = "FEC_1_2";
+		tmp = "FEC_1_2";
 		break;
 	case FEC_2_3:
-		fec = "FEC_2_3";
+		tmp = "FEC_2_3";
 		break;
 	case FEC_3_4:
-		fec = "FEC_3_4";
+		tmp = "FEC_3_4";
 		break;
 	case FEC_5_6:
-		fec = "FEC_5_6";
+		tmp = "FEC_5_6";
 		break;
 	case FEC_7_8:
-		fec = "FEC_7_8";
+		tmp = "FEC_7_8";
 		break;
+	case FEC_NONE:
+		tmp = "FEC_NONE";
 	default:
 	case FEC_AUTO:
-		fec = "FEC_AUTO";
+		tmp = "FEC_AUTO";
 		break;
+#if HAVE_DVB_API_VERSION >=3
+	case FEC_S2_1_2:
+		tmp = "FEC_1_2";
+		break;
+	case FEC_S2_2_3:
+		tmp = "FEC_2_3";
+		break;
+	case FEC_S2_3_4:
+		tmp = "FEC_3_4";
+		break;
+	case FEC_S2_5_6:
+		tmp = "FEC_5_6";
+		break;
+	case FEC_S2_7_8:
+		tmp = "FEC_7_8";
+		break;
+	case FEC_S2_8_9:
+		tmp = "FEC_8_9";
+		break;
+	case FEC_S2_3_5:
+		tmp = "FEC_3_5";
+		break;
+	case FEC_S2_4_5:
+		tmp = "FEC_4_5";
+		break;
+	case FEC_S2_9_10:
+		tmp = "FEC_9_10";
+		break;
+#endif
 	}
-	PutToDict(dict, "fec_inner", fec);
+	PutToDict(dict, "fec_inner", tmp);
+	tmp = parm_u_qpsk_fec_inner > FEC_AUTO ?
+		"DVB-S2" : "DVB-S";
+	PutToDict(dict, "system", tmp);
 }
 
 void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
@@ -1299,36 +1340,69 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 				parm_inversion = INVERSION_AUTO;
 				break;
 		}
-		switch (feparm.fec)
-		{
-			default:
-				eDebug("no valid fec set.. assume auto");
-			case eDVBFrontendParametersSatellite::FEC::fAuto:
-				parm_u_qpsk_fec_inner = FEC_AUTO;
-				break;
-			case eDVBFrontendParametersSatellite::FEC::fNone:
-				parm_u_qpsk_fec_inner = FEC_NONE;
-			case eDVBFrontendParametersSatellite::FEC::f1_2:
-				parm_u_qpsk_fec_inner = FEC_1_2;
-				break;
-			case eDVBFrontendParametersSatellite::FEC::f2_3:
-				parm_u_qpsk_fec_inner = FEC_2_3;
-				break;
-			case eDVBFrontendParametersSatellite::FEC::f3_4:
-				parm_u_qpsk_fec_inner = FEC_3_4;
-				break;
-			case eDVBFrontendParametersSatellite::FEC::f5_6:
-				parm_u_qpsk_fec_inner = FEC_5_6;
-				break;
-			case eDVBFrontendParametersSatellite::FEC::f7_8:
-				parm_u_qpsk_fec_inner = FEC_7_8;
-				break;
+		if (feparm.system == eDVBFrontendParametersSatellite::System::DVB_S)
+			switch (feparm.fec)
+			{
+				case eDVBFrontendParametersSatellite::FEC::fNone:
+					parm_u_qpsk_fec_inner = FEC_NONE;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f1_2:
+					parm_u_qpsk_fec_inner = FEC_1_2;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f2_3:
+					parm_u_qpsk_fec_inner = FEC_2_3;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f3_4:
+					parm_u_qpsk_fec_inner = FEC_3_4;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f5_6:
+					parm_u_qpsk_fec_inner = FEC_5_6;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f7_8:
+					parm_u_qpsk_fec_inner = FEC_7_8;
+					break;
+				default:
+					eDebug("no valid fec for DVB-S set.. assume auto");
+				case eDVBFrontendParametersSatellite::FEC::fAuto:
+					parm_u_qpsk_fec_inner = FEC_AUTO;
+					break;
+			}
 #if HAVE_DVB_API_VERSION >= 3
-			case eDVBFrontendParametersSatellite::FEC::f9_10:
-				parm_u_qpsk_fec_inner = FEC_9_10;
-				break;
+		else // DVB_S2
+			switch (feparm.fec)
+			{
+				case eDVBFrontendParametersSatellite::FEC::f1_2:
+					parm_u_qpsk_fec_inner = FEC_S2_1_2;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f2_3:
+					parm_u_qpsk_fec_inner = FEC_S2_2_3;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f3_4:
+					parm_u_qpsk_fec_inner = FEC_S2_3_4;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f3_5:
+					parm_u_qpsk_fec_inner = FEC_S2_3_5;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f4_5:
+					parm_u_qpsk_fec_inner = FEC_S2_4_5;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f5_6:
+					parm_u_qpsk_fec_inner = FEC_S2_5_6;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f7_8:
+					parm_u_qpsk_fec_inner = FEC_S2_7_8;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f8_9:
+					parm_u_qpsk_fec_inner = FEC_S2_8_9;
+					break;
+				case eDVBFrontendParametersSatellite::FEC::f9_10:
+					parm_u_qpsk_fec_inner = FEC_S2_9_10;
+					break;
+				default:
+					eDebug("no valid fec for DVB-S2 set.. abort !!");
+					return -EINVAL;
+			}
 #endif
-		}
 		// FIXME !!! get frequency range from tuner
 		if ( parm_frequency < 900000 || parm_frequency > 2200000 )
 		{
