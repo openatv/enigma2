@@ -588,7 +588,7 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
 			return strength;
 		}
-		case Locked:
+		case locked:
 		{
 #if HAVE_DVB_API_VERSION < 3
 			FrontendStatus status=0;
@@ -599,7 +599,7 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("FE_READ_STATUS failed (%m)");
 			return !!(status&FE_HAS_LOCK);
 		}
-		case Synced:
+		case synced:
 		{
 #if HAVE_DVB_API_VERSION < 3
 			FrontendStatus status=0;
@@ -610,6 +610,8 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("FE_READ_STATUS failed (%m)");
 			return !!(status&FE_HAS_SYNC);
 		}
+		case frontendNumber:
+			return m_fe;
 	}
 	return 0;
 }
@@ -966,8 +968,8 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 			}
 			PutToDict(ret, "tuner_state", tmp);
 
-			PutToDict(ret, "tuner_locked", readFrontendData(Locked));
-			PutToDict(ret, "tuner_synced", readFrontendData(Synced));
+			PutToDict(ret, "tuner_locked", readFrontendData(locked));
+			PutToDict(ret, "tuner_synced", readFrontendData(synced));
 			PutToDict(ret, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
 			PutToDict(ret, "tuner_signal_power", readFrontendData(signalPower));
 			PutToDict(ret, "tuner_signal_quality", readFrontendData(signalQuality));
@@ -1170,7 +1172,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::IF_TUNER_LOCKED_GOTO:
 			{
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
-				if (readFrontendData(Locked))
+				if (readFrontendData(locked))
 				{
 					eDebug("[SEC] locked step %d ok", cmd.okcount);
 					++cmd.okcount;

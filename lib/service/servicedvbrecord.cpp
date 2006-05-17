@@ -276,3 +276,9 @@ int eDVBServiceRecord::doRecord()
 	}
 	return 0;
 }
+
+RESULT eDVBServiceRecord::frontendInfo(ePtr<iFrontendInformation> &ptr)
+{
+	ptr = this;
+	return 0;
+}

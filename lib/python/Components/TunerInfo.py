@@ -1,6 +1,6 @@
 from GUIComponent import GUIComponent
 
-from enigma import eLabel, eSlider, iFrontendStatusInformation
+from enigma import eLabel, eSlider, iFrontendInformation
 
 from math import log
 
@@ -74,26 +74,26 @@ class TunerInfo(GUIComponent):
 		if self.servicefkt is not None:
 			service = self.servicefkt()
 			if service is not None:
-				feinfo = service.frontendStatusInfo()
+				feinfo = service.frontendInfo()
 				if feinfo is not None:
 					if what == self.SNR:
-						return feinfo.getFrontendInfo(iFrontendStatusInformation.signalPower)
+						return feinfo.getFrontendInfo(iFrontendInformation.signalPower)
 					elif what == self.AGC:
-						return feinfo.getFrontendInfo(iFrontendStatusInformation.signalQuality)
+						return feinfo.getFrontendInfo(iFrontendInformation.signalQuality)
 					elif what == self.BER:
-						return feinfo.getFrontendInfo(iFrontendStatusInformation.bitErrorRate)
+						return feinfo.getFrontendInfo(iFrontendInformation.bitErrorRate)
 					elif what == self.LOCK:
-						return feinfo.getFrontendInfo(iFrontendStatusInformation.LockState)
+						return feinfo.getFrontendInfo(iFrontendInformation.lockState)
 		elif self.frontendfkt is not None:
 			frontend = self.frontendfkt()
 			if what == self.SNR:
-				return frontend.readFrontendData(iFrontendStatusInformation.signalPower)
+				return frontend.readFrontendData(iFrontendInformation.signalPower)
 			elif what == self.AGC:
-				return frontend.readFrontendData(iFrontendStatusInformation.signalQuality)
+				return frontend.readFrontendData(iFrontendInformation.signalQuality)
 			elif what == self.BER:
-				return frontend.readFrontendData(iFrontendStatusInformation.bitErrorRate)
+				return frontend.readFrontendData(iFrontendInformation.bitErrorRate)
 			elif what == self.LOCK:
-				return frontend.readFrontendData(iFrontendStatusInformation.LockState)
+				return frontend.readFrontendData(iFrontendInformation.lockState)
 		
 		return 0
 				

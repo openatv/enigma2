@@ -411,7 +411,7 @@ public:
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 #endif
 	enum {
-		bitErrorRate, signalPower, signalQuality, Locked, Synced
+		bitErrorRate, signalPower, signalQuality, locked, synced, frontendNumber
 	};
 	virtual int readFrontendData(int type)=0;
 	virtual PyObject *readTransponderData(bool original)=0;

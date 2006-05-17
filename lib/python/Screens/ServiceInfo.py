@@ -68,7 +68,7 @@ class ServiceInfo(Screen):
 		service = session.nav.getCurrentService()
 		if service is not None:
 			self.info = service.info()
-			self.feinfo = service.frontendStatusInfo()
+			self.feinfo = service.frontendInfo()
 			print self.info.getInfoObject(iServiceInformation.sCAIDs);
 		else:
 			self.info = None
