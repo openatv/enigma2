@@ -985,7 +985,7 @@ RESULT eDVBServicePlay::isCurrentlySeekable()
 	return m_is_pvr || m_timeshift_active;
 }
 
-RESULT eDVBServicePlay::frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr)
+RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
 {
 	ptr = this;
 	return 0;
@@ -1279,10 +1279,8 @@ RESULT eDVBServicePlay::selectChannel(int i)
 	}
 }
 
-int eDVBServicePlay::getFrontendInfo(int w)
+int eDVBServiceBase::getFrontendInfo(int w)
 {
-	if (m_is_pvr)
-		return 0;
 	eUsePtr<iDVBChannel> channel;
 	if(m_service_handler.getChannel(channel))
 		return 0;
@@ -1292,7 +1290,7 @@ int eDVBServicePlay::getFrontendInfo(int w)
 	return fe->readFrontendData(w);
 }
 
-PyObject *eDVBServicePlay::getFrontendData(bool original)
+PyObject *eDVBServiceBase::getFrontendData(bool original)
 {
 	PyObject *ret=0;
 

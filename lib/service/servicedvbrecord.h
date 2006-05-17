@@ -10,7 +10,8 @@
 
 #include <lib/service/servicedvb.h>
 
-class eDVBServiceRecord: public iRecordableService, public Object
+class eDVBServiceRecord: public eDVBServiceBase,
+	public iRecordableService, public Object
 {
 DECLARE_REF(eDVBServiceRecord);
 public:
@@ -24,7 +25,6 @@ private:
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	
 	eServiceReferenceDVB m_ref;
-	eDVBServicePMTHandler m_service_handler;
 	void serviceEvent(int event);
 	
 	ePtr<iDVBTSRecorder> m_record;
@@ -36,6 +36,7 @@ private:
 	
 	int doPrepare();
 	int doRecord();
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 };
 
 #endif

@@ -56,10 +56,20 @@ private:
 	eBouquet *m_bouquet;
 };
 
-class eDVBServicePlay: public iPlayableService, public iPauseableService, 
+class eDVBServiceBase: public iFrontendInformation
+{
+protected:
+	eDVBServicePMTHandler m_service_handler;
+public:
+		// iFrontendInformation
+	int getFrontendInfo(int w);
+	PyObject *getFrontendData(bool);
+};
+
+class eDVBServicePlay: public eDVBServiceBase,
+		public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iAudioChannelSelection,
-		public iFrontendStatusInformation,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet
 {
@@ -78,7 +88,7 @@ public:
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
-	RESULT frontendStatusInfo(ePtr<iFrontendStatusInformation> &ptr);
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
@@ -113,10 +123,6 @@ public:
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
 
-		// iFrontendStatusInformation
-	int getFrontendInfo(int w);
-	PyObject *getFrontendData(bool);
-
 		// iSubserviceList
 	int getNumberOfSubservices();
 	RESULT getSubservice(eServiceReference &subservice, unsigned int n);
@@ -142,7 +148,7 @@ private:
 	int m_is_primary;
 	
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
-	eDVBServicePMTHandler m_service_handler, m_service_handler_timeshift;
+	eDVBServicePMTHandler m_service_handler_timeshift;
 	eDVBServiceEITHandler m_event_handler;
 	
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);

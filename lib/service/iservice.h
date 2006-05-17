@@ -285,25 +285,26 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
 
-class iFrontendStatusInformation: public iObject
+class iFrontendInformation: public iObject
 {
 #ifdef SWIG
-	iFrontendStatusInformation();
-	~iFrontendStatusInformation();
+	iFrontendInformation();
+	~iFrontendInformation();
 #endif
 public:
 	enum {
 		bitErrorRate,
 		signalPower,
 		signalQuality,
-		LockState,
-		SyncState
+		lockState,
+		syncState,
+		frontendNumber
 	};
 	virtual int getFrontendInfo(int w)=0;
 	virtual PyObject *getFrontendData(bool original=false)=0;
 };
 
-TEMPLATE_TYPEDEF(ePtr<iFrontendStatusInformation>, iFrontendStatusInformationPtr);
+TEMPLATE_TYPEDEF(ePtr<iFrontendInformation>, iFrontendInformationPtr);
 
 class iPauseableService: public iObject
 {
@@ -475,7 +476,7 @@ public:
 	virtual SWIG_VOID(RESULT) audioTracks(ePtr<iAudioTrackSelection> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioChannel(ePtr<iAudioChannelSelection> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
-	virtual SWIG_VOID(RESULT) frontendStatusInfo(ePtr<iFrontendStatusInformation> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 };
@@ -492,6 +493,7 @@ public:
 	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
+	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
