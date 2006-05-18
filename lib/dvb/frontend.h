@@ -57,17 +57,22 @@ class eDVBFrontend: public iDVBFrontend, public Object
 
 	eSecCommandList m_sec_sequence;
 
-	int m_data[10]; /* when satellite frontend then
-		data[0] = lastcsw -> state of the committed switch
-		data[1] = lastucsw -> state of the uncommitted switch
-		data[2] = lastToneburst -> current state of toneburst switch
-		data[3] = newRotorCmd -> last sent rotor cmd
-		data[4] = newRotorPos -> current Rotor Position
-		data[5] = curRotorCmd
-		data[6] = curRotorPos
-		data[7] = linkedToTunerNo
-		data[8] = dependsToTunerNo (just satpos.. for rotor with twin lnb)
-		data[9] = previousFrequencyOffset */
+	enum {
+		CSW,                  // state of the committed switch
+		UCSW,                 // state of the uncommitted switch
+		TONEBURST,            // current state of toneburst switch
+		NEW_ROTOR_CMD,        // prev sent rotor cmd
+		NEW_ROTOR_POS,        // new rotor position (not validated)
+		ROTOR_CMD,            // completed rotor cmd (finalized)
+		ROTOR_POS,            // current rotor position
+		LINKED_PREV_PTR,      // prev double linked list (for linked FEs)
+		LINKED_NEXT_PTR,      // next double linked list (for linked FEs)
+		SATPOS_DEPENDS_PTR,   // pointer to FE with configured rotor (with twin/quattro lnb)
+		FREQ_OFFSET,          // current frequency offset
+		NUM_DATA_ENTRIES
+	};
+
+	int m_data[NUM_DATA_ENTRIES];
 
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;

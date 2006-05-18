@@ -356,8 +356,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 	m_tuneTimer = new eTimer(eApp);
 	CONNECT(m_tuneTimer->timeout, eDVBFrontend::tuneLoop);
 
-	int entries = sizeof(m_data) / sizeof(int);
-	for (int i=0; i<entries; ++i)
+	for (int i=0; i<eDVBFrontend::NUM_DATA_ENTRIES; ++i)
 		m_data[i] = -1;
 
 	m_idleInputpower[0]=m_idleInputpower[1]=0;
@@ -455,16 +454,16 @@ int eDVBFrontend::openFrontend()
 
 int eDVBFrontend::closeFrontend()
 {
-	if (!m_fe && m_data[7] != -1)
+	eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[LINKED_NEXT_PTR];
+	while (linked_fe != (eDVBRegisteredFrontend*)-1)
 	{
-		// try to close the first frontend.. but the second is linked to the first
-		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[7];
 		if (linked_fe->m_inuse)
 		{
 			eDebug("dont close frontend %d until the linked frontend %d is still in use",
 				m_fe, linked_fe->m_frontend->getID());
 			return -1;
 		}
+		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, (int&)linked_fe);
 	}
 	if (m_fd >= 0)
 	{
@@ -478,7 +477,7 @@ int eDVBFrontend::closeFrontend()
 			m_fd=-1;
 		else
 			eWarning("couldnt close frontend %d", m_fe);
-		m_data[0] = m_data[1] = m_data[2] = -1;
+		m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1;
 	}
 #if HAVE_DVB_API_VERSION < 3
 	if (m_secfd >= 0)
@@ -542,7 +541,7 @@ void eDVBFrontend::feEvent(int w)
 			else
 			{
 				state = stateLostLock;
-				m_data[0] = m_data[1] = m_data[2] = -1; // reset diseqc
+				m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
 			}
 		}
 		if (m_state != state)
@@ -647,8 +646,8 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 	int freq_offset=0;
 	int csw=0;
 	const char *tmp=0;
-	fe->getData(0, csw);
-	fe->getData(9, freq_offset);
+	fe->getData(eDVBFrontend::CSW, csw);
+	fe->getData(eDVBFrontend::FREQ_OFFSET, freq_offset);
 	int frequency = parm_frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
 	PutToDict(dict, "symbol_rate", parm_u_qpsk_symbol_rate);
@@ -1234,19 +1233,19 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			}
 			case eSecCommand::IF_ROTORPOS_VALID_GOTO:
-				if (m_data[5] != -1 && m_data[6] != -1)
+				if (m_data[ROTOR_CMD] != -1 && m_data[ROTOR_POS] != -1)
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				else
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
-				m_data[5] = m_data[6] = -1;
+				m_data[ROTOR_CMD] = m_data[ROTOR_POS] = -1;
 				eDebug("[SEC] invalidate current rotorparams");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
-				m_data[5] = m_data[3];
-				m_data[6] = m_data[4];
+				m_data[ROTOR_CMD] = m_data[NEW_ROTOR_CMD];
+				m_data[ROTOR_POS] = m_data[NEW_ROTOR_POS];
 				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
 				++m_sec_sequence.current();
 				break;
@@ -1863,7 +1862,7 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 
 RESULT eDVBFrontend::getData(int num, int &data)
 {
-	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
+	if ( num < NUM_DATA_ENTRIES )
 	{
 		data = m_data[num];
 		return 0;
@@ -1873,7 +1872,7 @@ RESULT eDVBFrontend::getData(int num, int &data)
 
 RESULT eDVBFrontend::setData(int num, int val)
 {
-	if ( num < (int)(sizeof(m_data)/sizeof(int)) )
+	if ( num < NUM_DATA_ENTRIES )
 	{
 		m_data[num] = val;
 		return 0;

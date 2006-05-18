@@ -246,8 +246,6 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eDVBSatelliteEquipmentControl();
 	~eDVBSatelliteEquipmentControl();
 #endif
-	// helper function for setTunerLinked and setTunerDepends
-	RESULT setDependencyPointers( int no1, int no2, int dest_data_byte );
 public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
