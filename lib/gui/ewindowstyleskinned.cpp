@@ -240,14 +240,10 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 		if (m_border[bs].m_pixmap[i])
 			if (m_border[bs].m_border_bottom < m_border[bs].m_pixmap[i]->size().height())
 				m_border[bs].m_border_bottom = m_border[bs].m_pixmap[i]->size().height();
-	for (int i = 0; i < 9; i += 3)
-		if (m_border[bs].m_pixmap[i])
-			if (m_border[bs].m_border_left < m_border[bs].m_pixmap[i]->size().width())
-				m_border[bs].m_border_left = m_border[bs].m_pixmap[i]->size().width();
-	for (int i = 2; i < 9; i += 3)
-		if (m_border[bs].m_pixmap[i])
-			if (m_border[bs].m_border_right < m_border[bs].m_pixmap[i]->size().width())
-				m_border[bs].m_border_right = m_border[bs].m_pixmap[i]->size().width();
+
+	m_border[bs].m_border_left = m_border[bs].m_pixmap[3]->size().width();
+	m_border[bs].m_border_right = m_border[bs].m_pixmap[5]->size().width();
+
 	eDebug("recalced border size for %d: %d:%d %d:%d",
 		bs, 
 		m_border[bs].m_border_left, m_border[bs].m_border_top, 
