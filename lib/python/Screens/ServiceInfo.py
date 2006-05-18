@@ -106,15 +106,16 @@ class ServiceInfo(Screen):
 				   ("SID", self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4))
 		self.fillList(Labels)
 	
-	def transponder(self):
-		frontendData = self.feinfo.getFrontendData(True)
+	def showFrontendData(self, real):
+		frontendData = self.feinfo and self.feinfo.getFrontendData(real)
 		Labels = self.getFEData(frontendData)
 		self.fillList(Labels)
+	
+	def transponder(self):
+		self.showFrontendData(True)
 		
 	def tuner(self):
-		frontendData = self.feinfo.getFrontendData(False)
-		Labels = self.getFEData(frontendData)
-		self.fillList(Labels)
+		self.showFrontendData(False)
 		
 	def getFEData(self, frontendData):
 		if frontendData is None:
@@ -156,7 +157,6 @@ class ServiceInfo(Screen):
 		tlist = [ ]
 
 		for item in Labels:
-			print item
 			value = item[1]
 			if len(item) < 4:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
