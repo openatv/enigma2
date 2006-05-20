@@ -359,7 +359,7 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 
 		if (slot && !sameServiceExist)
 		{
-			if (slot->getNumOfServices() > 1) // fixme make it dependend of "ci can handle more than one service"
+			if (slot->getNumOfServices() > 1)
 			{
 				eDebug("[eDVBCIInterfaces] remove last pmt handler for service %s send empty capmt",
 					service_to_remove.toString().c_str());
@@ -437,8 +437,7 @@ void eDVBCISlot::data(int what)
 			eDVBCIInterfaces::getInstance()->ciRemoved(this);
 			eDVBCISession::deleteSessions(this);
 			notifier->setRequested(eSocketNotifier::Read);
-			//HACK
-			eDVBCI_UI::getInstance()->setState(0,0);
+			eDVBCI_UI::getInstance()->setState(getSlotID(),0);
 		}
 		return;
 	}
@@ -446,8 +445,7 @@ void eDVBCISlot::data(int what)
 	if(state != stateInserted) {
 		eDebug("ci inserted");
 		state = stateInserted;
-//		HACK
-		eDVBCI_UI::getInstance()->setState(0,1);
+		eDVBCI_UI::getInstance()->setState(getSlotID(),1);
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority);
 		/* enable PRI to detect removal or errors */
 	}
