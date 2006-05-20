@@ -4,6 +4,7 @@
 #include <lib/base/ebase.h>
 
 #include <set>
+#include <queue>
 
 class eDVBCISession;
 class eDVBCIApplicationManagerSession;
@@ -11,6 +12,22 @@ class eDVBCICAManagerSession;
 class eDVBCIMMISession;
 class eDVBServicePMTHandler;
 class eDVBCISlot;
+
+struct queueData
+{
+	__u8 prio;
+	unsigned char *data;
+	unsigned int len;
+	queueData( unsigned char *data, unsigned int len, __u8 prio = 0 )
+		:prio(prio), data(data), len(len)
+	{
+
+	}
+	bool operator < ( const struct queueData &a ) const
+	{
+		return prio < a.prio;
+	}
+};
 
 class eDVBCISlot: public iObject, public Object
 {
@@ -22,12 +39,13 @@ private:
 	eSocketNotifier *notifier;
 
 	int state;
-	enum {stateRemoved, stateInserted};
-	uint8_t prev_sent_capmt_version;
+	std::map<uint16_t, uint8_t> running_services;
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
 	eDVBCIMMISession *mmi_session;
+	std::priority_queue<queueData> sendqueue;
 public:
+	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	int use_count;
 
 	eDVBCISlot(eMainloop *context, int nr);
@@ -43,19 +61,18 @@ public:
 	eDVBCIMMISession *getMMIManager() { return mmi_session; }
 	eDVBCICAManagerSession *getCAManager() { return ca_manager; }
 
+	int getState() { return state; }
 	int getSlotID();
 	int reset();
-	int initialize();
 	int startMMI();
 	int stopMMI();
 	int answerText(int answer);
 	int answerEnq(char *value);
 	int cancelEnq();
 	int getMMIState();
-	void resendCAPMT();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
-	uint8_t getPrevSentCAPMTVersion() const { return prev_sent_capmt_version; }
-	void resetPrevSentCAPMTVersion() { prev_sent_capmt_version = 0xFF; }
+	void removeService(uint16_t program_number=0xFFFF);
+	int getNumOfServices() { return running_services.size(); }
 	
 	int enableTS(int enable, int tuner=0);
 
@@ -84,7 +101,7 @@ class eDVBCIInterfaces
 DECLARE_REF(eDVBCIInterfaces);
 	static eDVBCIInterfaces *instance;
 private:
-	eSmartPtrList<eDVBCISlot>	m_slots;
+	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
 
 	PMTHandlerList m_pmt_handlers; 
@@ -94,7 +111,9 @@ public:
 
 	void addPMTHandler(eDVBServicePMTHandler *pmthandler);
 	void removePMTHandler(eDVBServicePMTHandler *pmthandler);
+	void recheckPMTHandlers();
 	void gotPMT(eDVBServicePMTHandler *pmthandler);
+	void ciRemoved(eDVBCISlot *slot);
 
 	static eDVBCIInterfaces *getInstance();
 	

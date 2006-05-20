@@ -2118,7 +2118,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 				if (tmp==3)
 				{
 					eServiceReferenceDVB ref;
-					if (!pmthandler->getService(ref))
+					if (!pmthandler->getServiceReference(ref))
 					{
 						int pid = (*es)->getPid();
 						messages.send(Message(Message::got_private_pid, ref, pid));

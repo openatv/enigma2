@@ -15,17 +15,18 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <errno.h>
-#include <set>
 
-#define SCAN_eDebug(x...) eDebug(x)
-#define SCAN_eDebugNoNewLine(x...) eDebugNoNewLine(x)
+static bool scan_debug;
+#define SCAN_eDebug(x...) if (scan_debug) eDebug(x)
+#define SCAN_eDebugNoNewLine(x...) if (scan_debug) eDebugNoNewLine(x)
 
 DEFINE_REF(eDVBScan);
 
-eDVBScan::eDVBScan(iDVBChannel *channel)
-	:m_channel(channel), m_ready(0), m_flags(0), m_ready_all(readySDT)
-	,m_channel_state(iDVBChannel::state_idle)
+eDVBScan::eDVBScan(iDVBChannel *channel, bool debug)
+	:m_channel(channel), m_channel_state(iDVBChannel::state_idle)
+	,m_ready(0), m_ready_all(readySDT), m_flags(0)
 {
+	scan_debug=debug;
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
@@ -100,10 +101,10 @@ RESULT eDVBScan::nextChannel()
 	
 	if (m_ch_toScan.empty())
 	{
-//		SCAN_eDebug("no channels left to scan.");
-//		SCAN_eDebug("%d channels scanned, %d were unavailable.", 
-//				m_ch_scanned.size(), m_ch_unavailable.size());
-//		SCAN_eDebug("%d channels in database.", m_new_channels.size());
+		SCAN_eDebug("no channels left to scan.");
+		SCAN_eDebug("%d channels scanned, %d were unavailable.", 
+				m_ch_scanned.size(), m_ch_unavailable.size());
+		SCAN_eDebug("%d channels in database.", m_new_channels.size());
 		m_event(evtFinish);
 		return -ENOENT;
 	}
@@ -528,7 +529,8 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
 			}
 			dvb_service->m_provider_name = service->second->m_provider_name;
-
+			if (service->second->m_ca.size())
+				dvb_service->m_ca = service->second->m_ca;
 			if (!dontRemoveOldFlags) // do not remove new found flags when not wished
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
@@ -580,7 +582,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				SCAN_eDebug("name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 				break;
 			}
-/*
 			case CA_IDENTIFIER_DESCRIPTOR:
 			{
 				CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
@@ -589,12 +590,11 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 				{
 					SCAN_eDebugNoNewLine("%04x ", *i);
-					service->m_ca.insert(*i);
+					service->m_ca.push_front(*i);
 				}
 				SCAN_eDebug("");
 				break;
 			}
-*/
 			default:
 				SCAN_eDebug("descr<%x>", (*desc)->getTag());
 				break;

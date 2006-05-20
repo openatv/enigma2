@@ -65,7 +65,7 @@ private:
 	
 	int m_flags;
 public:
-	eDVBScan(iDVBChannel *channel);
+	eDVBScan(iDVBChannel *channel, bool debug=false);
 	~eDVBScan();
 
 	enum { scanNetworkSearch = 1, scanSearchBAT = 2, scanRemoveServices = 4, scanDontRemoveFeeds=8 };

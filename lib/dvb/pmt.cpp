@@ -85,9 +85,9 @@ void eDVBServicePMTHandler::PMTready(int error)
 	{
 		serviceEvent(eventNewProgramInfo);
 		eEPGCache::getInstance()->PMTready(this);
-		if (!m_pvr_channel)
+		if (!m_pvr_channel) // don't send campmt to camd.socket for playbacked services
 		{
-			if(!m_ca_servicePtr)   // don't send campmt to camd.socket for playbacked services
+			if(!m_ca_servicePtr)
 			{
 				int demuxes[2] = {0,0};
 				uint8_t tmp;
@@ -98,9 +98,10 @@ void eDVBServicePMTHandler::PMTready(int error)
 				else
 					demuxes[1]=demuxes[0];
 				eDVBCAService::register_service(m_reference, demuxes, m_ca_servicePtr);
-				eDVBCIInterfaces::getInstance()->addPMTHandler(this);
+				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			}
-			eDVBCIInterfaces::getInstance()->gotPMT(this);
+			else
+				eDVBCIInterfaces::getInstance()->gotPMT(this);
 		}
 		if (m_ca_servicePtr)
 		{
@@ -140,70 +141,21 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 {
 	PyObject *ret=0;
 
-	ePtr<eTable<ProgramMapSection> > ptr;
+	program prog;
 
-	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
+	if ( !getProgramInfo(prog) )
 	{
-		uint16_t caids[255];
-		memset(caids, 0, sizeof(caids));
-		std::vector<ProgramMapSection*>::const_iterator i = ptr->getSections().begin();
-		for (; i != ptr->getSections().end(); ++i)
-		{
-			const ProgramMapSection &pmt = **i;
-			ElementaryStreamInfoConstIterator es = pmt.getEsInfo()->begin();
-			for (; es != pmt.getEsInfo()->end(); ++es)
-			{
-				for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
-						desc != (*es)->getDescriptors()->end(); ++desc)
-				{
-					switch ((*desc)->getTag())
-					{
-						case CA_DESCRIPTOR:
-						{
-							const CaDescriptor *cadescr = (const CaDescriptor*)*desc;
-							uint16_t caid = cadescr->getCaSystemId();
-							int idx=0;
-							while (caids[idx] && caids[idx] != caid)
-								++idx;
-							caids[idx]=caid;
-							break;
-						}
-					}
-				}
-			}
-			for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
-				desc != pmt.getDescriptors()->end(); ++desc)
-			{
-				switch ((*desc)->getTag())
-				{
-					case CA_DESCRIPTOR:
-					{
-						const CaDescriptor *cadescr = (const CaDescriptor*)*desc;
-						uint16_t caid = cadescr->getCaSystemId();
-						int idx=0;
-						while (caids[idx] && caids[idx] != caid)
-							++idx;
-						caids[idx]=caid;
-						break;
-					}
-				}
-			}
-		}
-		int cnt=0;
-		while (caids[cnt])
-			++cnt;
+		int cnt=prog.caids.size();
 		if (cnt)
 		{
 			ret=PyList_New(cnt);
+			std::set<uint16_t>::iterator it(prog.caids.begin());
 			while(cnt--)
-				PyList_SET_ITEM(ret, cnt, PyInt_FromLong(caids[cnt]));
+				PyList_SET_ITEM(ret, cnt, PyInt_FromLong(*it++));
 		}
 	}
 
-	if (!ret)
-		ret=PyList_New(0);
-
-	return ret;
+	return ret ? ret : PyList_New(0);
 }
 
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)
@@ -213,7 +165,6 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
-	program.isCrypted = false;
 	program.pmtPid = -1;
 	program.textPid = -1;
 	program.audioChannel = m_service ? m_service->getCacheEntry(eDVBService::cACHANNEL) : -1;
@@ -243,7 +194,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			ElementaryStreamInfoConstIterator es;
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
-				int isaudio = 0, isvideo = 0, cadescriptors = 0;
+				int isaudio = 0, isvideo = 0;
 				videoStream video;
 				audioStream audio;
 				audio.component_tag=-1;
@@ -317,8 +268,11 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									((StreamIdentifierDescriptor*)*desc)->getComponentTag();
 							break;
 						case CA_DESCRIPTOR:
-							++cadescriptors;
+						{
+							CaDescriptor *descr = (CaDescriptor*)(*desc);
+							program.caids.insert(descr->getCaSystemId());
 							break;
+						}
 						}
 					}
 					break;
@@ -346,22 +300,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				}
 				else
 					continue;
-				if ( cadescriptors > 0 )
-					program.isCrypted=true;
 			}
-			if ( !program.isCrypted )
+			for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+				desc != pmt.getDescriptors()->end(); ++desc)
 			{
-				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
-					desc != pmt.getDescriptors()->end(); ++desc)
+				if ((*desc)->getTag() == CA_DESCRIPTOR)
 				{
-					switch ((*desc)->getTag())
-					{
-					case CA_DESCRIPTOR:
-						program.isCrypted=true;
-						break;
-					}
+					CaDescriptor *descr = (CaDescriptor*)(*desc);
+					program.caids.insert(descr->getCaSystemId());
 				}
-				break;
 			}
 		}
 		return 0;
@@ -410,6 +357,9 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			++cnt;
 			program.textPid = tpid;
 		}
+		CAID_LIST &caids = m_service->m_ca;
+		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
+			program.caids.insert(*it);
 		if ( cnt )
 			return 0;
 	}
@@ -499,6 +449,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel);
 		eDebug("allocate Channel: res %d", res);
+		eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	} else
 	{
 		eDVBMetaParser parser;
@@ -549,7 +500,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		if (ref.path.empty())
 		{
 			delete m_dvb_scan;
-			m_dvb_scan = new eDVBScan(m_channel);
+			m_dvb_scan = new eDVBScan(m_channel, false);
 			m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
 		}
 	} else

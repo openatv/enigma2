@@ -18,6 +18,14 @@
 #include <libsig_comp.h>
 #include <connection.h>
 
+#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
+#include <ext/slist>
+#define CAID_LIST __gnu_cxx::slist<uint16_t>
+#else
+#include <slist>
+#define CAID_LIST std::slist<uint16_t>
+#endif
+
 struct eBouquet
 {
 	std::string m_bouquet_name;
@@ -220,6 +228,9 @@ class eDVBChannelQuery;
 class eDVBService: public iStaticServiceInformation
 {
 	DECLARE_REF(eDVBService);
+	int *m_cache;
+	void initCache();
+	void copyCache(int *source);
 public:
 	enum cacheID
 	{
@@ -250,9 +261,8 @@ public:
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 
-//	std::set<int> m_ca;
+	CAID_LIST m_ca;
 
-	int m_cache[cacheMax];
 	virtual ~eDVBService();
 	
 	eDVBService &operator=(const eDVBService &);

@@ -117,11 +117,11 @@ public:
 	{
 		std::vector<videoStream> videoStreams;
 		std::vector<audioStream> audioStreams;
-		// ca info
+		std::set<uint16_t> caids;
 		int pcrPid;
 		int pmtPid;
 		int textPid;
-		bool isCrypted;
+		bool isCrypted() { return !caids.empty(); }
 		int audioChannel;
 	};
 	
@@ -131,7 +131,8 @@ public:
 	PyObject *getCaIds();
 	
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
-	int getService(eServiceReferenceDVB &service) { service = m_reference; return 0; }
+	int getServiceReference(eServiceReferenceDVB &service) { service = m_reference; return 0; }
+	int getService(ePtr<eDVBService> &service) { service = m_service; return 0; }
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 
