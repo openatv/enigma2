@@ -68,7 +68,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			
 			printf("enq-text: %s\n",str);
 			
-			eDVBCI_UI::getInstance()->mmiScreenEnq(0, blind, alen, (char*)convertDVBUTF8(str).c_str());
+			eDVBCI_UI::getInstance()->mmiScreenEnq(slot->getSlotID(), blind, alen, (char*)convertDVBUTF8(str).c_str());
 
 			break;		
 		}
@@ -83,11 +83,10 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				break;
 			int n=*d++;
 			
-			//FIXME: slotid
 			if(tag[2] == 0x09)	//menu
-				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 0);
+				eDVBCI_UI::getInstance()->mmiScreenBegin(slot->getSlotID(), 0);
 			else								//list
-				eDVBCI_UI::getInstance()->mmiScreenBegin(0, 1);
+				eDVBCI_UI::getInstance()->mmiScreenBegin(slot->getSlotID(), 1);
 			
 			if (n == 0xFF)
 				n=0;
@@ -110,14 +109,13 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				memcpy(str, ((char*)d), textlen);
 				str[textlen] = '\0';
 				
-				eDVBCI_UI::getInstance()->mmiScreenAddText(0, pos++, (char*)convertDVBUTF8(str).c_str());
+				eDVBCI_UI::getInstance()->mmiScreenAddText(slot->getSlotID(), pos++, (char*)convertDVBUTF8(str).c_str());
 					
 				while (textlen--)
 					printf("%c", *d++);
 				printf("\n");
 			}
-			//FIXME: slotid
-			eDVBCI_UI::getInstance()->mmiScreenFinish(0);
+			eDVBCI_UI::getInstance()->mmiScreenFinish(slot->getSlotID());
 			break;
 		}
 		default:
