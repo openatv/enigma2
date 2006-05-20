@@ -31,8 +31,9 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 				printf("%04x ", (((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
+			std::sort(caids.begin(), caids.end());
 			printf("\n");
-			slot->resendCAPMT();
+			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			break;
 		default:
 			printf("unknown APDU tag 9F 80 %02x\n", tag[2]);
@@ -64,8 +65,8 @@ int eDVBCICAManagerSession::sendCAPMT(unsigned char *data, int len)
 {
 	const unsigned char tag[3]={0x9F, 0x80, 0x32}; // ca_pmt
 
-  sendAPDU(tag, data, len);
-	
+	sendAPDU(tag, data, len);
+
 	return 0;
 }
 

@@ -124,14 +124,20 @@ class CiMmi(Screen):
 		else:
 			print "give cancel action to ci"	
 
+	def keyConfigEntry(self, key):
+		try:
+			self["entries"].handleKey(key)
+		except AttributeError:
+			pass
+
 	def keyNumberGlobal(self, number):
-		self["entries"].handleKey(config.key[str(number)])
+		self.keyConfigEntry(config.key[str(number)])
 
 	def keyLeft(self):
-		self["entries"].handleKey(config.key["prevElement"])
+		self.keyConfigEntry(config.key["prevElement"])
 
 	def keyRight(self):
-		self["entries"].handleKey(config.key["nextElement"])
+		self.keyConfigEntry(config.key["nextElement"])
 
 	def updateList(self, list):
 		List = self["entries"]
@@ -155,7 +161,6 @@ class CiMmi(Screen):
 			self.listtype = type
 
 		List.l.setList(list)
-
 
 	def showWait(self):
 		self.tag = "WAIT"

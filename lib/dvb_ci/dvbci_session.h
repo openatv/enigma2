@@ -11,9 +11,9 @@ class eDVBCISession
 {
 	DECLARE_REF(eDVBCISession);
 	static ePtr<eDVBCISession> sessions[SLMS];
-	static void eDVBCISession::deleteSessions(const eDVBCISlot *slot);
-	static void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status, ePtr<eDVBCISession> &ptr);
-	static void eDVBCISession::sendSPDU(eDVBCISlot *slot, unsigned char tag,const void *data, int len, unsigned short session_nb, const void *apdu=0,int alen=0);
+	static void deleteSessions(const eDVBCISlot *slot);
+	static void createSession(eDVBCISlot *slot, const unsigned char *resource_identifier, unsigned char &status, ePtr<eDVBCISession> &ptr);
+	static void sendSPDU(eDVBCISlot *slot, unsigned char tag,const void *data, int len, unsigned short session_nb, const void *apdu=0,int alen=0);
 	static void sendOpenSessionResponse(eDVBCISlot *slot,unsigned char session_status, const unsigned char *resource_identifier,unsigned short session_nb);
 	void recvCreateSessionResponse(const unsigned char *data);
 	void recvCloseSessionRequest(const unsigned char *data);
@@ -24,8 +24,8 @@ protected:
 	eDVBCISlot *slot;		//base only
 	unsigned short session_nb;
 	virtual int receivedAPDU(const unsigned char *tag, const void *data, int len) = 0;
-	void eDVBCISession::sendAPDU(const unsigned char *tag, const void *data=0,int len=0);
-	void eDVBCISession::sendSPDU(unsigned char tag, const void *data, int len,const void *apdu=0, int alen=0);
+	void sendAPDU(const unsigned char *tag, const void *data=0,int len=0);
+	void sendSPDU(unsigned char tag, const void *data, int len,const void *apdu=0, int alen=0);
 	virtual int doAction()=0;
 	void handleClose();
 public:

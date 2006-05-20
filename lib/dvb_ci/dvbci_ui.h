@@ -7,16 +7,21 @@
 #define _POSIX_C_SOURCE 200112L
 #include <Python.h>
 
-#define MAX_SLOTS	2	
+#define MAX_SLOTS 4
 
-class eDVBCI_UI
+struct slot_ui_data
 {
-	int state[MAX_SLOTS];
-	static eDVBCI_UI *instance;
 	std::string appName;
+	int state;
 	PyObject *mmiScreen;
 	int mmiTuplePos;
 	int mmiScreenReady;
+};
+
+class eDVBCI_UI
+{
+	static eDVBCI_UI *instance;
+	slot_ui_data slotdata[MAX_SLOTS];
 #ifdef SWIG
 	eDVBCI_UI();
 	~eDVBCI_UI();
@@ -27,14 +32,13 @@ public:
 	~eDVBCI_UI();
 #endif
 	static eDVBCI_UI *getInstance();
-	
+
 	int getState(int slot);
 	void setState(int slot, int state);
 	std::string getAppName(int slot);
 	void setAppName(int slot, const char *name);
 	void setInit(int slot);
 	void setReset(int slot);
-	int initialize(int slot);
 	int startMMI(int slot);
 	int stopMMI(int slot);
 	int availableMMI(int slot);
@@ -44,7 +48,7 @@ public:
 	int answerEnq(int slot, char *val);
 	int cancelEnq(int slot);
 
-	PyObject *eDVBCI_UI::getMMIScreen(int slot);
+	PyObject *getMMIScreen(int slot);
 
 	int mmiScreenEnq(int slot, int blind, int answerLen, char *text);
 	int mmiScreenBegin(int slot, int listmenu);

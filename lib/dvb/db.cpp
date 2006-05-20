@@ -114,21 +114,13 @@ RESULT eBouquet::setListName(const std::string &name)
 }
 
 eDVBService::eDVBService()
-	:m_flags(0)
+	:m_cache(0), m_flags(0)
 {
-	memset(m_cache, -1, sizeof(m_cache));
 }
 
 eDVBService::~eDVBService()
 {
-}
-
-bool eDVBService::cacheEmpty()
-{
-	for (int i=0; i < cacheMax; ++i)
-		if (m_cache[i] != -1)
-			return false;
-	return true;
+	delete [] m_cache;
 }
 
 eDVBService &eDVBService::operator=(const eDVBService &s)
@@ -137,8 +129,8 @@ eDVBService &eDVBService::operator=(const eDVBService &s)
 	m_service_name_sort = s.m_service_name_sort;
 	m_provider_name = s.m_provider_name;
 	m_flags = s.m_flags;
-//	m_ca = s.m_ca;
-	memcpy(m_cache, s.m_cache, sizeof(m_cache));
+	m_ca = s.m_ca;
+	copyCache(s.m_cache);
 	return *this;
 }
 
@@ -232,15 +224,47 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		return res;
 }
 
+bool eDVBService::cacheEmpty()
+{
+	if (m_cache)
+		for (int i=0; i < cacheMax; ++i)
+			if (m_cache[i] != -1)
+				return false;
+	return true;
+}
+
+void eDVBService::initCache()
+{
+	m_cache = new int[cacheMax];
+	memset(m_cache, -1, sizeof(int) * cacheMax);
+}
+
+void eDVBService::copyCache(int *source)
+{
+	if (source)
+	{
+		if (!m_cache)
+			m_cache = new int[cacheMax];
+		memcpy(m_cache, source, cacheMax * sizeof(int));
+	}
+	else
+	{
+		delete [] m_cache;
+		m_cache = 0;
+	}
+}
+
 int eDVBService::getCacheEntry(cacheID id)
 {
-	if (id >= cacheMax)
+	if (id >= cacheMax || !m_cache)
 		return -1;
 	return m_cache[id];
 }
 
 void eDVBService::setCacheEntry(cacheID id, int pid)
 {
+	if (!m_cache)
+		initCache();
 	if (id < cacheMax)
 		m_cache[id] = pid;
 }
@@ -426,13 +450,13 @@ void eDVBDB::reloadServicelist()
 				{
 					int cid, val;
 					sscanf(v.c_str(), "%02d%04x", &cid, &val);
-					s->m_cache[cid]=val;
-				}/* else if (p == 'C')
+					s->setCacheEntry(cid,val);
+				} else if (p == 'C')
 				{
 					int val;
 					sscanf(v.c_str(), "%04x", &val);
-					s->m_ca.insert(val);
-				}*/
+					s->m_ca.push_front((uint16_t)val);
+				}
 			}
 		addService(ref, s);
 	}
@@ -517,15 +541,16 @@ void eDVBDB::saveServicelist()
 
 		// write cached pids
 		for (int x=0; x < eDVBService::cacheMax; ++x)
-			if (i->second->m_cache[x] != -1)
-				fprintf(f, ",c:%02d%04x", x, i->second->m_cache[x]);
+		{
+			int entry = i->second->getCacheEntry(x);
+			if (entry != -1)
+				fprintf(f, ",c:%02d%04x", x, entry);
+		}
 
-/*
 		// write cached ca pids
-		for (std::set<int>::const_iterator ca(i->second->m_ca.begin());
+		for (CAID_LIST::const_iterator ca(i->second->m_ca.begin());
 			ca != i->second->m_ca.end(); ++ca)
 			fprintf(f, ",C:%04x", *ca);
-*/
 
 		if (i->second->m_flags)
 			fprintf(f, ",f:%x", i->second->m_flags);
