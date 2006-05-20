@@ -16,6 +16,7 @@ class Language:
 		self.addLanguage(_("Arabic"), "ar", "AE")
 		self.addLanguage(_("Danish"), "da", "DK")
 		self.addLanguage(_("Dutch"), "nl", "NL")
+		self.addLanguage(_("Finnish"), "fi", "FI")
 		self.addLanguage(_("French"), "fr", "FR")
 		self.addLanguage(_("Icelandic"), "is", "IS")
 		self.addLanguage(_("Italian"), "it", "IT")
