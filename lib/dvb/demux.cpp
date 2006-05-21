@@ -295,18 +295,23 @@ void eDVBPESReader::data(int)
 {
 	while (1)
 	{
-		__u8 data[4096];
+		__u8 buffer[16384];
 		int r;
-		r = ::read(m_fd, data, 4096);
+		r = ::read(m_fd, buffer, 16384);
 		if (!r)
-			break;
+			return;
 		if(r < 0)
 		{
-			eWarning("ERROR reading section - %m\n");
+			if (errno == EAGAIN) /* ok */
+				return;
+			eWarning("ERROR reading PES (fd=%d) - %m", m_fd);
 			return;
 		}
+
 		if (m_active)
-			m_read(data, r);
+			m_read(buffer, r);
+		else
+			eWarning("PES reader not active");
 	}
 }
 
@@ -317,6 +322,8 @@ eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res):
 	
 	if (m_fd >= 0)
 	{
+		::ioctl(m_fd, DMX_SET_BUFFER_SIZE, 64*1024);
+		::fcntl(m_fd, F_SETFL, O_NONBLOCK);
 		m_notifier = new eSocketNotifier(context, m_fd, eSocketNotifier::Read, false);
 		CONNECT(m_notifier->activated, eDVBPESReader::data);
 		res = 0;
@@ -362,6 +369,9 @@ RESULT eDVBPESReader::start(int pid)
 	flt.flags   = DMX_IMMEDIATE_START;
 
 	res = ::ioctl(m_fd, DMX_SET_PES_FILTER, &flt);
+	
+	if (res)
+		eWarning("PES filter: DMX_SET_PES_FILTER - %m");
 	if (!res)
 		m_active = 1;
 	return res;
