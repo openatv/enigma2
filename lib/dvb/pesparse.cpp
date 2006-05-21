@@ -20,8 +20,7 @@ void ePESParser::setStreamID(unsigned char id)
 void ePESParser::processData(const __u8 *p, int len)
 {
 	int i;
-	eDebug("process %d bytes of pes data, %02x, %02x, %02x, %02x, %02x, %02x", len, p[0], p[1], p[2], p[3], p[4], p[5]);
-#if 0
+
 		/* this is a state machine, handling arbitary amounts of pes-formatted data. */
 	while (len)
 	{
@@ -46,7 +45,7 @@ void ePESParser::processData(const __u8 *p, int len)
 			if (m_pes_position < 4)
 				if (*p != m_header[m_pes_position])
 				{
-					eDebug("sync lost at %d (%02x)", m_pes_position, *p);
+//					eDebug("sync lost at %d (%02x)", m_pes_position, *p);
 					m_pes_position = 0;
 					while (m_header[m_pes_position] == *p) /* guaranteed to stop at the old m_pes_position */
 						m_pes_position++;
@@ -58,9 +57,7 @@ void ePESParser::processData(const __u8 *p, int len)
 			if (m_pes_position == 6)
 			{
 				m_pes_length = ((m_pes_buffer[4] << 8) | m_pes_buffer[5]) + 6;
-				eDebug("pes length: %d", m_pes_length);
 			}
 		}
 	}
-#endif
 }
