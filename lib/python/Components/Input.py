@@ -54,7 +54,7 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		self.update()
 		
 	def up(self):
-		if self.text[self.currPos] == "9":
+		if self.text[self.currPos] == "9" or self.text[self.currPos] == " ":
 			newNumber = "0"
 		else:
 			newNumber = str(int(self.text[self.currPos]) + 1)
@@ -62,10 +62,11 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		self.update()
 		
 	def down(self):
-		if self.text[self.currPos] == "0":
+		if self.text[self.currPos] == "0" or self.text[self.currPos] == " ":
 			newNumber = "9"
 		else:
 			newNumber = str(int(self.text[self.currPos]) - 1)
+
 		self.text = self.text[0:self.currPos] + newNumber + self.text[self.currPos + 1:]
 		self.update()
 		
