@@ -43,7 +43,11 @@ eDVBCI_UI *eDVBCI_UI::getInstance()
 int eDVBCI_UI::getState(int slot)
 {
 	if (slot < MAX_SLOTS)
+	{
+		if (eDVBCIInterfaces::getInstance()->getSlotState(slot) == eDVBCISlot::stateInvalid)
+			eDVBCIInterfaces::getInstance()->reset(slot);
 		return slotdata[slot].state;
+	}
 	return 0;
 }
 

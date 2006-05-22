@@ -89,7 +89,11 @@ class CiMmi(Screen):
 			print "do nothing - wait"
 		elif self.tag == "MENU":
 			print "answer MENU"
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, self["entries"].getCurrent()[1])
+			cur = self["entries"].getCurrent()
+			if cur:
+				eDVBCI_UI.getInstance().answerMenu(self.slotid, cur[1])
+			else:
+				eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
 			self.showWait()	
 		elif self.tag == "LIST":
 			print "answer LIST"

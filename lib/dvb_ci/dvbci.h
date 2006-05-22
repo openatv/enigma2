@@ -114,6 +114,7 @@ public:
 	void recheckPMTHandlers();
 	void gotPMT(eDVBServicePMTHandler *pmthandler);
 	void ciRemoved(eDVBCISlot *slot);
+	int getSlotState(int slot);
 
 	static eDVBCIInterfaces *getInstance();
 	

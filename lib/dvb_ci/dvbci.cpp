@@ -66,6 +66,16 @@ eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
 	return 0;
 }
 
+int eDVBCIInterfaces::getSlotState(int slotid)
+{
+	eDVBCISlot *slot;
+
+	if( (slot = getSlot(slotid)) == 0 )
+		return eDVBCISlot::stateInvalid;
+
+	return slot->getState();
+}
+
 int eDVBCIInterfaces::reset(int slotid)
 {
 	eDVBCISlot *slot;
