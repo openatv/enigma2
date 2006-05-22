@@ -217,6 +217,7 @@ int eDVBCI_UI::mmiScreenFinish(int slot)
 	{
 		printf("eDVBCI_UI::mmiScreenFinish\n");
 		slotdata[slot].mmiScreenReady = 1;
+		/*emit*/ mmiAvail(slot);
 	}
 	return 0;
 }

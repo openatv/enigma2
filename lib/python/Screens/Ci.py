@@ -209,11 +209,10 @@ class CiMmi(Screen):
 		#mmi session still active ?			
 		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
 			self.closeMmi()
-			
-		#new screen available?	
+
 		if eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
 			self.showScreen()
-			
+
 		#FIXME: check for mmi-session closed	
 
 class CiSelection(Screen):
@@ -258,7 +257,10 @@ class CiSelection(Screen):
 	def cancel(self):
 		self.Timer.stop()
 		self.close()
-		
+
+	def mmiAvail(self, slot):
+		print "mmi avail slot", slot
+
 	def __init__(self, session):
 		#FIXME support for one ci only
 		Screen.__init__(self, session)
@@ -276,3 +278,5 @@ class CiSelection(Screen):
 		self.Timer = eTimer()
 		self.Timer.timeout.get().append(self.TimerCheck)
 		self.Timer.start(1000)
+
+		eDVBCI_UI.getInstance().mmiAvail.get().append(self.mmiAvail)
