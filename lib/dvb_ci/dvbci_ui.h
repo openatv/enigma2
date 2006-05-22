@@ -6,6 +6,7 @@
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
 #include <Python.h>
+#include <lib/python/connections.h>
 
 #define MAX_SLOTS 4
 
@@ -27,6 +28,7 @@ class eDVBCI_UI
 	~eDVBCI_UI();
 #endif
 public:
+	PSignal1<void,int> mmiAvail;
 #ifndef SWIG
 	eDVBCI_UI();
 	~eDVBCI_UI();
