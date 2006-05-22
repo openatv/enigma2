@@ -17,8 +17,8 @@
 #include <errno.h>
 
 static bool scan_debug;
-#define SCAN_eDebug(x...) if (scan_debug) eDebug(x)
-#define SCAN_eDebugNoNewLine(x...) if (scan_debug) eDebugNoNewLine(x)
+#define SCAN_eDebug(x...) do { if (scan_debug) eDebug(x); } while(0)
+#define SCAN_eDebugNoNewLine(x...) do { if (scan_debug) eDebugNoNewLine(x); } while(0)
 
 DEFINE_REF(eDVBScan);
 
