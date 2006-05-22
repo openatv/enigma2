@@ -450,7 +450,7 @@ void eDVBDB::reloadServicelist()
 				{
 					int cid, val;
 					sscanf(v.c_str(), "%02d%04x", &cid, &val);
-					s->setCacheEntry(cid,val);
+					s->setCacheEntry((eDVBService::cacheID)cid,val);
 				} else if (p == 'C')
 				{
 					int val;
@@ -542,7 +542,7 @@ void eDVBDB::saveServicelist()
 		// write cached pids
 		for (int x=0; x < eDVBService::cacheMax; ++x)
 		{
-			int entry = i->second->getCacheEntry(x);
+			int entry = i->second->getCacheEntry((eDVBService::cacheID)x);
 			if (entry != -1)
 				fprintf(f, ",c:%02d%04x", x, entry);
 		}
