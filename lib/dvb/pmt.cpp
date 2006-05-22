@@ -424,7 +424,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				eDebug("no channel list");
 			else
 			{
-				m_dvb_scan->insertInto(db);
+				m_dvb_scan->insertInto(db, true);
 				eDebug("sdt update done!");
 			}
 			break;
