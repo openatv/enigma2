@@ -601,11 +601,15 @@ class ScanSimple(Screen):
 
 		nimcount = nimmanager.getNimSocketCount()
 		if nimcount > 0:
+			scan_possible=True
 			config.scan = ConfigSubsection()
 			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (hold feeds)"))))
 			self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 			nim = configElement_nonSave(0, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-			self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
+			if nimmanager.getNimType(0) == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
+				scan_possible=False
+			if scan_possible:
+				self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
 		if nimcount > 1 and self.ScanNimTwoNeeded():
 			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
 			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
