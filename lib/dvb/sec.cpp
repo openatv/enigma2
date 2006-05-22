@@ -1113,6 +1113,7 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 			else if (cnt == tu2)
 				p2 = *it;
 		}
+
 		if (p1 && p2)
 		{
 			// check for linked tuners
@@ -1145,10 +1146,12 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 				int tmp2=-1;
 				// check for rotor dependency
 				p1->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, tmp1);
+				if (tmp1 != -1)
+					p1 = (void*)tmp1;
 				p2->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, tmp2);
-				if (tmp1 != -1 && (void*)tmp1 != p2
-					&& tmp2 != -1 && (void*)tmp2 != p1
-					&& tmp1 != tmp2 )
+				if (tmp2 != -1)
+					p2 = (void*)tmp2;
+				if (p1 != p2)
 				{
 					int tu1_mask = 1 << p1->m_frontend->getID(),
 						tu2_mask = 1 << p2->m_frontend->getID();

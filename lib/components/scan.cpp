@@ -8,7 +8,7 @@ DEFINE_REF(eComponentScan);
 
 void eComponentScan::scanEvent(int evt)
 {
-	eDebug("scan event %d!", evt);
+//	eDebug("scan event %d!", evt);
 	
 	if (evt == eDVBScan::evtFinish)
 	{
@@ -107,7 +107,7 @@ int eComponentScan::start(int feid, int flags)
 
 	std::list<ePtr<iDVBFrontendParameters> > list;
 		
-	m_scan = new eDVBScan(channel);
+	m_scan = new eDVBScan(channel, true);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
 	m_scan->start(m_initial, flags);
 	
