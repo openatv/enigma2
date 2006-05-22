@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from enigma import ePoint, eSize
+from enigma import ePoint, eSize, eServiceCenter
 
 from Components.VideoWindow import VideoWindow
 
@@ -8,6 +8,7 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		
 		self["video"] = VideoWindow()
+		self.currentService = None
 
 	def move(self, x, y):
 		print "moving pip to", str(x) + ":" + str(y)
@@ -23,3 +24,17 @@ class PictureInPicture(Screen):
 		
 	def getSize(self):
 		return (self.instance.size().width(), self.instance.size().height())
+		
+	def playService(self, service):
+		self.pipservice = eServiceCenter.getInstance().play(service)
+		if self.pipservice and not self.pipservice.setTarget(1):
+			self.pipservice.start()
+			self.currentService = service
+			return True
+		else:
+			self.pipservice = None
+			return False
+		
+	def getCurrentService(self):
+		return self.currentService
+	

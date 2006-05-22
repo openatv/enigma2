@@ -1020,6 +1020,7 @@ class InfoBarExtensions:
 	PIPON = 0
 	PIPOFF = 1
 	MOVEPIP = 2
+	PIPSWAP = 3
 
 	def extensions(self):
 		list = []
@@ -1028,29 +1029,30 @@ class InfoBarExtensions:
 		elif self.pipshown == True:
 			list.append((_("Disable Picture in Picture"), self.PIPOFF))
 			list.append((_("Move Picture in Picture"), self.MOVEPIP))
+			list.append((_("Swap services"), self.PIPSWAP))
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
 	def extensionCallback(self, answer):
 		if answer is not None:
 			if answer[1] == self.PIPON:
-#				self.session.nav.stopService()
 				self.pip = self.session.instantiateDialog(PictureInPicture)
-				#self.pip.show()
 				
 				newservice = self.session.nav.getCurrentlyPlayingServiceReference()
-				self.pipservice = eServiceCenter.getInstance().play(newservice)
-				if self.pipservice and not self.pipservice.setTarget(1):
-					self.pipservice.start()
+				
+				if self.pip.playService(newservice):
 					self.pipshown = True
 				else:
-					self.pipservice = None
+					self.pipshown = False
 					del self.pip
 				self.session.nav.playService(newservice)
 			elif answer[1] == self.PIPOFF:
-				#self.pip.hide()
-				self.pipservice = None
 				del self.pip
 				self.pipshown = False
+			elif answer[1] == self.PIPSWAP:
+				swapservice = self.pip.getCurrentService()
+				self.pip.playService(self.session.nav.getCurrentlyPlayingServiceReference())
+				self.session.nav.playService(swapservice)
+				
 			elif answer[1] == self.MOVEPIP:
 				self.session.open(PiPSetup, pip = self.pip)
 
