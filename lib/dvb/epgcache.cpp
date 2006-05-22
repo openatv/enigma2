@@ -2216,6 +2216,14 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 			onid |= data[ptr++];
 			int sid = data[ptr++] << 8;
 			sid |= data[ptr++];
+
+// WORKAROUND for wrong transmitted epg data
+			if ( onid == 0x85 && tsid == 0x11 && sid == 0xd3 )  // premiere sends wrong tsid here
+				tsid = 0x1;
+			else if ( onid == 0x85 && tsid == 0x3 && sid == 0xf5 ) // premiere sends wrong sid here
+				sid = 0xdc;
+////////////////////////////////////////////
+				
 			uniqueEPGKey service( sid, onid, tsid );
 			descr_len -= 6;
 			while( descr_len > 0 )
