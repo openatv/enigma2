@@ -22,6 +22,7 @@ class CiMmi(Screen):
 
 		print "ciMMI with action" + str(action)
 
+		self.tag = None
 		self.slotid = slotid
 
 		self.timer = eTimer()
@@ -79,6 +80,8 @@ class CiMmi(Screen):
 
 	def okbuttonClick(self):
 		self.timer.stop()
+		if not self.tag:
+			return
 		if self.tag == "WAIT":
 			print "do nothing - wait"
 		elif self.tag == "MENU":
@@ -108,6 +111,8 @@ class CiMmi(Screen):
 
 	def keyCancel(self):
 		self.timer.stop()
+		if not self.tag:
+			return
 		if self.tag == "WAIT":
 			eDVBCI_UI.getInstance().stopMMI(self.slotid)
 			self.closeMmi()
@@ -149,7 +154,7 @@ class CiMmi(Screen):
 			List.l.setList(list)
 			return
 
-		if self.tag == "ENQ":
+		if self.tag and self.tag == "ENQ":
 			type = TYPE_CONFIG
 		else:
 			type = TYPE_MENU
