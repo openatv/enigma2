@@ -152,7 +152,7 @@ typedef long time_t;
 %immutable eComponentScan::newService;
 %immutable pNavigation::m_event;
 %immutable eListbox::selectionChanged;
-%immutable eDVBCI_UI::mmiAvail;
+%immutable eDVBCI_UI::ciStateChanged;
 
 %include <lib/base/console.h>
 %include <lib/base/nconfig.h>

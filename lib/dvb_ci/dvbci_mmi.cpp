@@ -25,6 +25,7 @@ eDVBCIMMISession::eDVBCIMMISession(eDVBCISlot *tslot)
 eDVBCIMMISession::~eDVBCIMMISession()
 {
 	slot->setMMIManager(NULL);
+	eDVBCI_UI::getInstance()->mmiSessionDestroyed(slot->getSlotID());
 }
 
 int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, int len)
@@ -38,7 +39,26 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 	{
 		switch (tag[2])
 		{
-			case 0x01:
+		case 0x00:		//Tmmi_close
+		{
+			unsigned char *d=(unsigned char*)data;
+			int timeout=0;
+			if (d[3] == 1)
+			{
+				if (len > 4)
+					timeout = d[4];
+				else
+				{
+					eDebug("mmi close tag incorrect.. no timeout given.. assume 5 seconds");
+					timeout = 5;
+				}
+			}
+			else if (timeout>1)
+				eDebug("mmi close tag incorrect.. byte 4 should be 0 or 1");
+			eDVBCI_UI::getInstance()->mmiScreenClose(slot->getSlotID(), timeout);
+			break;
+		}
+		case 0x01:
 			printf("MMI display control\n");
 			if (((unsigned char*)data)[0] != 1)
 				printf("kann ich nicht. aber das sag ich dem modul nicht.\n");

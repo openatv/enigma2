@@ -3,6 +3,7 @@ from Screen import Screen
 from Screens.MovieSelection import MovieSelection
 from Screens.ChannelSelection import ChannelSelectionRadio
 from Screens.MessageBox import MessageBox
+from Screens.Ci import CiHandler
 from ServiceReference import ServiceReference
 
 from Components.Clock import Clock
@@ -34,6 +35,8 @@ class InfoBar(InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		CiHandler.setSession(session)
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{

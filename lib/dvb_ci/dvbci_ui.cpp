@@ -54,7 +54,10 @@ int eDVBCI_UI::getState(int slot)
 void eDVBCI_UI::setState(int slot, int newState)
 {
 	if (slot < MAX_SLOTS)
+	{
 		slotdata[slot].state = newState;
+		/*emit*/ ciStateChanged(slot);
+	}
 }
 
 std::string eDVBCI_UI::getAppName(int slot)
@@ -117,6 +120,28 @@ int eDVBCI_UI::availableMMI(int slot)
 	return false;
 }
 
+int eDVBCI_UI::mmiScreenClose(int slot, int timeout)
+{
+	if (slot >= MAX_SLOTS)
+		return 0;
+
+	slot_ui_data &data = slotdata[slot];
+
+	data.mmiScreenReady = 0;
+
+	if (data.mmiScreen)
+		Py_DECREF(data.mmiScreen);
+	data.mmiScreen = PyList_New(1);
+
+	PyObject *tuple = PyTuple_New(2);
+	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("CLOSE"));
+	PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(timeout));
+	PyList_SET_ITEM(data.mmiScreen, 0, tuple);
+	data.mmiScreenReady = 1;
+	/*emit*/ ciStateChanged(slot);
+	return 0;
+}
+
 int eDVBCI_UI::mmiScreenEnq(int slot, int blind, int answerLen, char *text)
 {
 	if (slot >= MAX_SLOTS)
@@ -143,6 +168,8 @@ int eDVBCI_UI::mmiScreenEnq(int slot, int blind, int answerLen, char *text)
 	PyList_SET_ITEM(data.mmiScreen, 1, tuple);
 
 	data.mmiScreenReady = 1;
+
+	/*emit*/ ciStateChanged(slot);
 
 	return 0;
 }
@@ -217,9 +244,14 @@ int eDVBCI_UI::mmiScreenFinish(int slot)
 	{
 		printf("eDVBCI_UI::mmiScreenFinish\n");
 		slotdata[slot].mmiScreenReady = 1;
-		/*emit*/ mmiAvail(slot);
+		/*emit*/ ciStateChanged(slot);
 	}
 	return 0;
+}
+
+void eDVBCI_UI::mmiSessionDestroyed(int slot)
+{
+	/*emit*/ ciStateChanged(slot);
 }
 
 int eDVBCI_UI::getMMIState(int slot)
