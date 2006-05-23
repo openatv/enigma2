@@ -178,6 +178,7 @@ class ScanSetup(Screen):
 		self.list.append(self.tunerEntry)
 		
 		self.typeOfScanEntry = None
+		self.systemEntry = None
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), config.scan.type)
 			self.list.append(self.typeOfScanEntry)
@@ -192,12 +193,17 @@ class ScanSetup(Screen):
 		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
 
 			if currentConfigSelectionElement(config.scan.type) == "single_transponder":
+				self.systemEntry = getConfigListEntry(_('Transpondertype'), config.scan.sat.system)
+				self.list.append(self.systemEntry)
 				self.list.append(getConfigListEntry(_('Satellite'), config.scan.satselection[config.scan.nims.value]))
 				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
 				self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
 				self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
-				self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
+				if currentConfigSelectionElement(config.scan.sat.system) == "dvb-s":
+					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
+				elif currentConfigSelectionElement(config.scan.sat.system) == "dvb-s2":
+					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec_s2))
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				self.updateSatList()
 				print config.scan.satselection[config.scan.nims.value]
@@ -272,7 +278,9 @@ class ScanSetup(Screen):
 		print self["config"].getCurrent()
 		if self["config"].getCurrent() == self.typeOfScanEntry:
 			self.createSetup()
-		if self["config"].getCurrent() == self.tunerEntry:
+		elif self["config"].getCurrent() == self.tunerEntry:
+			self.createSetup()
+		elif self["config"].getCurrent() == self.systemEntry:
 			self.createSetup()
 
 	def createConfig(self):
@@ -307,7 +315,7 @@ class ScanSetup(Screen):
 			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 99999)))
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
 			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
-			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, 8, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10"))))
+			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, 8, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
 
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 999)))
@@ -360,6 +368,19 @@ class ScanSetup(Screen):
 		if (self["config"].getCurrent()[1].parent.enabled == True):
 			self["config"].handleKey(config.key[str(number)])
 
+	fecmap = { "auto": 0,
+			   "1_2": 1,
+			   "2_3": 2,
+			   "3_4": 3,
+			   "5_6": 4,
+			   "7_8": 5,
+			   "8_9": 6,
+			   "3_5": 7,
+			   "4_5": 8,
+			   "9_10": 9,
+			   "none": 10
+			   }
+
 	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system):
 		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		print "orbpos: " + str(orbital_position)
@@ -368,7 +389,8 @@ class ScanSetup(Screen):
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
 		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti
-		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
+
+		parm.fec = self.fecmap[fec]			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
 		#parm.inversion = 2 		#AUTO
@@ -405,10 +427,14 @@ class ScanSetup(Screen):
 						l = len(nimsats)
 						if l and l > selsatidx:
 							orbpos=nimsats[selsatidx][1]
+							if currentConfigSelectionElement(config.scan.sat.system) == "dvb-s":
+								fec = currentConfigSelectionElement(config.scan.sat.fec)
+							else:
+								fec = currentConfigSelectionElement(config.scan.sat.fec_s2)
 							self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
 										config.scan.sat.symbolrate.value[0],
 										config.scan.sat.polarization.value,
-										config.scan.sat.fec.value,
+										fec,
 										config.scan.sat.inversion.value,
 										config.scan.sat.system.value,
 										orbpos)
