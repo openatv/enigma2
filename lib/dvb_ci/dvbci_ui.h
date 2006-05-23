@@ -28,7 +28,7 @@ class eDVBCI_UI
 	~eDVBCI_UI();
 #endif
 public:
-	PSignal1<void,int> mmiAvail;
+	PSignal1<void,int> ciStateChanged;
 #ifndef SWIG
 	eDVBCI_UI();
 	~eDVBCI_UI();
@@ -45,17 +45,17 @@ public:
 	int stopMMI(int slot);
 	int availableMMI(int slot);
 	int getMMIState(int slot);
-
 	int answerMenu(int slot, int answer);
 	int answerEnq(int slot, char *val);
 	int cancelEnq(int slot);
 
 	PyObject *getMMIScreen(int slot);
-
+	int mmiScreenClose(int slot, int timeout);
 	int mmiScreenEnq(int slot, int blind, int answerLen, char *text);
 	int mmiScreenBegin(int slot, int listmenu);
 	int mmiScreenAddText(int slot, int type, char *value);
 	int mmiScreenFinish(int slot);
+	void mmiSessionDestroyed(int slot);
 };
 
 #endif

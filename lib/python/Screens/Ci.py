@@ -24,9 +24,8 @@ class CiMmi(Screen):
 
 		self.slotid = slotid
 
-		self.Timer = eTimer()
-		self.Timer.timeout.get().append(self.TimerCheck)
-		self.Timer.start(1000)
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.keyCancel)
 
 		#else the skins fails
 		self["title"] = Label("")
@@ -56,12 +55,7 @@ class CiMmi(Screen):
 
 		self.action = action
 
-		if action == 0:			#reset
-			eDVBCI_UI.getInstance().setReset(self.slotid)
-			self.showWait()
-		elif action == 1:		#init
-			eDVBCI_UI.getInstance().setInit(self.slotid)
-		elif action == 2:		#start MMI
+		if action == 2:		#start MMI
 			eDVBCI_UI.getInstance().startMMI(self.slotid)
 			self.showWait()
 		elif action == 3:		#mmi already there (called from infobar)
@@ -84,7 +78,7 @@ class CiMmi(Screen):
 			self["bottom"].setText(_("please press OK when ready"))
 
 	def okbuttonClick(self):
-		print "ok"
+		self.timer.stop()
 		if self.tag == "WAIT":
 			print "do nothing - wait"
 		elif self.tag == "MENU":
@@ -109,11 +103,11 @@ class CiMmi(Screen):
 			self.showWait()
 
 	def closeMmi(self):
-		self.Timer.stop()
-		self.close()
+		self.timer.stop()
+		self.close(self.slotid)
 
 	def keyCancel(self):
-		print "keyCancel"
+		self.timer.stop()
 		if self.tag == "WAIT":
 			eDVBCI_UI.getInstance().stopMMI(self.slotid)
 			self.closeMmi()
@@ -129,18 +123,22 @@ class CiMmi(Screen):
 			print "give cancel action to ci"	
 
 	def keyConfigEntry(self, key):
+		self.timer.stop()
 		try:
 			self["entries"].handleKey(key)
-		except AttributeError:
+		except:
 			pass
 
 	def keyNumberGlobal(self, number):
+		self.timer.stop()
 		self.keyConfigEntry(config.key[str(number)])
 
 	def keyLeft(self):
+		self.timer.stop()
 		self.keyConfigEntry(config.key["prevElement"])
 
 	def keyRight(self):
+		self.timer.stop()
 		self.keyConfigEntry(config.key["nextElement"])
 
 	def updateList(self, list):
@@ -180,23 +178,30 @@ class CiMmi(Screen):
 	
 		list = [ ]
 
-		self.tag = screen[0][0]
-
-		for entry in screen:
-			if entry[0] == "PIN":
-				self.addEntry(list, entry)
+		self.timer.stop()
+		if len(screen) > 0 and screen[0][0] == "CLOSE":
+			timeout = screen[0][1]
+			if timeout > 0:
+				self.timer.start(timeout*1000, True)
 			else:
-				if entry[0] == "TITLE":
-					self["title"].setText(entry[1])
-				elif entry[0] == "SUBTITLE":
-					self["subtitle"].setText(entry[1])
-				elif entry[0] == "BOTTOM":
-					self["bottom"].setText(entry[1])
-				elif entry[0] == "TEXT":
+				self.keyCancel()
+		else:
+			self.tag = screen[0][0]
+			for entry in screen:
+				if entry[0] == "PIN":
 					self.addEntry(list, entry)
-		self.updateList(list)
+				else:
+					if entry[0] == "TITLE":
+						self["title"].setText(entry[1])
+					elif entry[0] == "SUBTITLE":
+						self["subtitle"].setText(entry[1])
+					elif entry[0] == "BOTTOM":
+						self["bottom"].setText(entry[1])
+					elif entry[0] == "TEXT":
+						self.addEntry(list, entry)
+			self.updateList(list)
 
-	def TimerCheck(self):
+	def ciStateChanged(self):
 		if self.action == 0:			#reset
 			self.closeMmi()
 		if self.action == 1:			#init
@@ -210,42 +215,109 @@ class CiMmi(Screen):
 		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
 			self.closeMmi()
 
-		if eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
+		if self.action > 1 and eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
 			self.showScreen()
 
 		#FIXME: check for mmi-session closed	
 
+class CiMessageHandler:
+	def __init__(self):
+		self.session = None
+		self.ci = { }
+		self.dlgs = { }
+		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
+
+	def setSession(self, session):
+		self.session = session
+
+	def ciStateChanged(self, slot):
+		if slot in self.ci:
+			self.ci[slot](slot)
+		else:
+			if slot in self.dlgs:
+				self.dlgs[slot].ciStateChanged()
+			elif eDVBCI_UI.getInstance().availableMMI(slot) == 1:
+				if self.session:
+					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, 3)
+				else:
+					print "no session"
+
+	def dlgClosed(self, slot):
+		del self.dlgs[slot]
+
+	def registerCIMessageHandler(self, slot, func):
+		self.unregisterCIMessageHandler(slot)
+		self.ci[slot] = func
+
+	def unregisterCIMessageHandler(self, slot):
+		if slot in self.ci:
+			del self.ci[slot]
+
+CiHandler = CiMessageHandler()
+
 class CiSelection(Screen):
-	def createMenu(self):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.okbuttonClick,
+				"cancel": self.cancel
+			})
+
+		self.dlg = None
+		self.state = { }
 		self.list = [ ]
-		self.list.append( (_("Reset"), 0) )
-		self.list.append( (_("Init"), 1) )
-		
-		self.state = eDVBCI_UI.getInstance().getState(0)
-		if self.state == 0:			#no module
-			self.list.append( (_("no module found"), 2) )
-		elif self.state == 1:		#module in init
-			self.list.append( (_("init module"), 2) )
-		elif self.state == 2:		#module ready
-			#get appname		
-			appname = eDVBCI_UI.getInstance().getAppName(0)
-			self.list.append( (appname, 2) )
+		self["entries"] = MenuList(list)
+		self.clearMenu()
+		self.createMenu(0) # FIXME more than one CI
+		CiHandler.registerCIMessageHandler(0, self.ciStateChanged)
+
+	def clearMenu(self):
+		self.list = [ ]
+
+	def createMenu(self, slot):
+		self.list.append( (_("Reset"), 0, slot) )
+		self.list.append( (_("Init"), 1, slot) )
+
+		self.state[slot] = eDVBCI_UI.getInstance().getState(slot)
+		if self.state[slot] == 0:			#no module
+			self.list.append( (_("no module found"), 2, slot) )
+		elif self.state[slot] == 1:		#module in init
+			self.list.append( (_("init module"), 2, slot) )
+		elif self.state[slot] == 2:		#module ready
+			#get appname
+			appname = eDVBCI_UI.getInstance().getAppName(slot)
+			self.list.append( (appname, 2, slot) )
 
 		self["entries"].list = self.list
 		self["entries"].l.setList(self.list)
 
-	def TimerCheck(self):
-		state = eDVBCI_UI.getInstance().getState(0)
-		if self.state != state:
-			#print "something happens"
-			self.state = state
-			self.createMenu()
-	
+	def ciStateChanged(self, slot):
+		if self.dlg:
+			self.dlg.ciStateChanged()
+		else:
+			state = eDVBCI_UI.getInstance().getState(slot)
+			if self.state[slot] != state:
+				#print "something happens"
+				self.state[slot] = state
+				self.clearMenu()
+				self.createMenu(slot)
+
+	def dlgClosed(self, slot):
+		self.dlg = None
+
 	def okbuttonClick(self):
-		self.slot = 0
-	
-		if self.state == 2:
-			self.session.open(CiMmi, 0, self["entries"].getCurrent()[1])
+		cur = self["entries"].getCurrent()
+		if cur:
+			action = cur[1]
+			slot = cur[2]
+			if action == 0:		#reset
+				eDVBCI_UI.getInstance().setReset(slot)
+			elif action == 1:		#init
+				eDVBCI_UI.getInstance().setInit(slot)
+			elif self.state[slot] == 2:
+				self.dlg = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, action)
 
 		#generate menu / list
 		#list = [ ]
@@ -255,28 +327,5 @@ class CiSelection(Screen):
 		#self.session.open(CiMmi, 0, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
 
 	def cancel(self):
-		self.Timer.stop()
+		CiHandler.unregisterCIMessageHandler(0)
 		self.close()
-
-	def mmiAvail(self, slot):
-		print "mmi avail slot", slot
-
-	def __init__(self, session):
-		#FIXME support for one ci only
-		Screen.__init__(self, session)
-		
-		self["actions"] = ActionMap(["OkCancelActions"], 
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.cancel
-			})
-
-		self.list = [ ]
-		self["entries"] = MenuList(list)
-		self.createMenu()
-
-		self.Timer = eTimer()
-		self.Timer.timeout.get().append(self.TimerCheck)
-		self.Timer.start(1000)
-
-		eDVBCI_UI.getInstance().mmiAvail.get().append(self.mmiAvail)

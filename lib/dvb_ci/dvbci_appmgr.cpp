@@ -47,9 +47,9 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 				printf("%c", ((unsigned char*)data)[i+6]);
 			printf("\n");
 
-			eDVBCI_UI::getInstance()->setState(slot->getSlotID(), 2);
-
 			eDVBCI_UI::getInstance()->setAppName(slot->getSlotID(), str);
+
+			eDVBCI_UI::getInstance()->setState(slot->getSlotID(), 2);
 			break;
 		}
 		default:

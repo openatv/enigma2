@@ -319,6 +319,6 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 eDVBCISession::~eDVBCISession()
 {
-	printf("destroy %p\n", this);
+//	printf("destroy %p\n", this);
 }
 
