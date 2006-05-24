@@ -694,9 +694,9 @@ def InitNimManager(nimmgr):
 			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList, False);
 			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList, False);
 			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))), False);
-			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
+			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False);
 			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
-			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False);
+			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False);
 			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))), False)
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
 			satNimListNames = []
@@ -755,9 +755,9 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].commandOrder = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder", configSelection, 0, ("committed, toneburst", "toneburst, committed", "committed, uncommitted, toneburst", "toneburst, committed, uncommitted", "uncommitted, committed, toneburst", "toneburst, uncommitted, commmitted"), False)
 				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, ucsw, False)
 				nim.advanced.lnb[x].diseqcRepeats = configElement(cname + "advanced.lnb" + str(x) + ".diseqcRepeats", configSelection, 0, (("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))), False)
-				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False)
+				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False)
 				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
-				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,90),(0,999)]), False)
+				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False)
 				nim.advanced.lnb[x].latitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))), False)
 				nim.advanced.lnb[x].powerMeasurement = configElement(cname + "advanced.lnb" + str(x) + ".powerMeasurement", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))), False)
 				nim.advanced.lnb[x].powerThreshold = configElement(cname + "advanced.lnb" + str(x) + ".powerThreshold", configSequence, [50], configsequencearg.get("INTEGER", (0, 100)), False)
