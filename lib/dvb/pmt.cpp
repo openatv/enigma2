@@ -449,7 +449,8 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel);
 		eDebug("allocate Channel: res %d", res);
-		eDVBCIInterfaces::getInstance()->addPMTHandler(this);
+		if (!res)
+			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	} else
 	{
 		eDVBMetaParser parser;
@@ -537,9 +538,11 @@ void eDVBServicePMTHandler::free()
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
 		eDVBCAService::unregister_service(m_reference, demuxes, ptr);
-		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 		m_ca_servicePtr = 0;
 	}
+
+	if (m_channel)
+		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 
 	if (m_pvr_channel)
 	{
