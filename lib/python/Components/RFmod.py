@@ -43,7 +43,7 @@ def InitRFmod():
 	def setSoundCarrier(configElement):
 		iRFmod.setSoundCarrier(configElement.value);
 	def setChannel(configElement):
-		iRFmod.setChannel(configElement.value +  30);
+		iRFmod.setChannel(configElement.value + RFMOD_CHANNEL_MIN);
 	def setFinetune(configElement):
 		iRFmod.setFinetune(configElement.value - 5);
 
