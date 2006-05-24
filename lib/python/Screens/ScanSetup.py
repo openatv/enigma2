@@ -83,6 +83,7 @@ def getInitialTransponderList(tlist, pos):
 			#parm.inversion = 1 	#eDVBFrontendParametersSatellite.Inversion.Off;
 			parm.inversion = 2 		#AUTO
 			parm.orbital_position = pos
+			parm.system = x[5]  #DVB-S or DVB-S2
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, cable):
@@ -378,7 +379,7 @@ class ScanSetup(Screen):
 			   "3_5": 7,
 			   "4_5": 8,
 			   "9_10": 9,
-			   "none": 10
+			   "none": 15
 			   }
 
 	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system):
@@ -436,8 +437,8 @@ class ScanSetup(Screen):
 										config.scan.sat.polarization.value,
 										fec,
 										config.scan.sat.inversion.value,
-										config.scan.sat.system.value,
-										orbpos)
+										orbpos,
+										config.scan.sat.system.value)
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				sat = self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value]
 				getInitialTransponderList(tlist, int(sat[1]))

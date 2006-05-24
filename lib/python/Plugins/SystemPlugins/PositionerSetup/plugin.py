@@ -349,6 +349,7 @@ class Tuner:
 		parm.fec = transponder[3]
 		parm.inversion = transponder[4]
 		parm.orbital_position = transponder[5]
+		parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
 		feparm = eDVBFrontendParameters()
 		feparm.setDVBS(parm, True)
 		self.lastparm = feparm
