@@ -1327,6 +1327,13 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 	res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
 	if (!res)
 	{
+		eDebug("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d",
+			feparm.system,
+			feparm.frequency,
+			feparm.polarisation,
+			feparm.symbol_rate,
+			feparm.inversion,
+			feparm.fec);
 		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{
