@@ -253,18 +253,18 @@ class ScanSetup(Screen):
 			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
 				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
-			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
-			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"] and currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder"):
-				self.configElementSNR = getConfigListEntry(_("SNR"), config.scan.snr)
-				self.list.append(self.configElementSNR)
-				self.configElementACG = getConfigListEntry(_("AGC"), config.scan.agc)
-				self.list.append(self.configElementACG)
-				self.configElementBER = getConfigListEntry(_("BER"), config.scan.ber)
-				self.list.append(self.configElementBER)
-				self.statusTimer.start(500, False)
-		else:
-			self.statusTimer.stop()
+#		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
+#			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
+#			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"] and currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder"):
+#				self.configElementSNR = getConfigListEntry(_("SNR"), config.scan.snr)
+#				self.list.append(self.configElementSNR)
+#				self.configElementACG = getConfigListEntry(_("AGC"), config.scan.agc)
+#				self.list.append(self.configElementACG)
+#				self.configElementBER = getConfigListEntry(_("BER"), config.scan.ber)
+#				self.list.append(self.configElementBER)
+#				self.statusTimer.start(500, False)
+#		else:
+#			self.statusTimer.stop()
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
