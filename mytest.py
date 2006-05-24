@@ -147,32 +147,36 @@ class Session:
 		if callback is not None:
 			callback(*retval)
 
-	def execBegin(self):
+	def execBegin(self, first=True):
 		assert not self.in_exec 
 		self.in_exec = True
 		c = self.current_dialog
 		
-		self.pushSummary()
+		# when this is an execbegin after a execend of a "higher" dialog,
+		# popSummary already did the right thing.
+		if first:
+			self.pushSummary()
+			summary = c.createSummary() or SimpleSummary
+			self.summary = self.instantiateSummaryDialog(summary, c)
+			self.summary.show()
+			c.addSummary(self.summary)
 
-		summary = c.createSummary() or SimpleSummary
-		self.summary = self.instantiateSummaryDialog(summary, c)
-		self.summary.show()
-
-		c.addSummary(self.summary)
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
 		if c == self.current_dialog:
 			c.show()
 		
-	def execEnd(self):
+	def execEnd(self, last=True):
 		assert self.in_exec
 		self.in_exec = False
 
 		self.current_dialog.execEnd()
 		self.current_dialog.hide()
-		self.current_dialog.removeSummary(self.summary)
-		self.popSummary()
+		
+		if last:
+			self.current_dialog.removeSummary(self.summary)
+			self.popSummary()
 	
 	def create(self, screen, arguments, **kwargs):
 		# creates an instance of 'screen' (which is a class)
@@ -231,12 +235,12 @@ class Session:
 	def pushCurrent(self):
 		if self.current_dialog is not None:
 			self.dialog_stack.append(self.current_dialog)
-			self.execEnd()
+			self.execEnd(last=False)
 	
 	def popCurrent(self):
 		if len(self.dialog_stack):
 			self.current_dialog = self.dialog_stack.pop()
-			self.execBegin()
+			self.execBegin(first=False)
 		else:
 			self.current_dialog = None
 
