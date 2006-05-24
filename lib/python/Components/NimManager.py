@@ -348,6 +348,7 @@ class NimManager:
 				self.satList.append( (tname, tpos) )
 				self.parsedSat = int(tpos)
 			elif (name == "transponder"):
+				modulation = int(attrs.get('modulation',"1"))
 				system = int(attrs.get('system',"0"))
 				freq = int(attrs.get('frequency',""))
 				sr = int(attrs.get('symbol_rate',""))
@@ -358,7 +359,7 @@ class NimManager:
 				else:
 					self.transponders[self.parsedSat] = [ ]
 
-				self.transponders[self.parsedSat].append((0, freq, sr, pol, fec, system))
+				self.transponders[self.parsedSat].append((0, freq, sr, pol, fec, system, modulation))
 
 	class parseCables(ContentHandler):
 		def __init__(self, cablesList, transponders):
