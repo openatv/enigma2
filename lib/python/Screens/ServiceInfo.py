@@ -122,8 +122,8 @@ class ServiceInfo(Screen):
 			return []
 		if frontendData["tuner_type"] == "DVB-S":
 			return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
-					   ("System", frontendData["system"], TYPE_TEXT),
-					   ("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   ("Type", frontendData["system"], TYPE_TEXT),
+					   ("Modulation", frontendData["modulation"], TYPE_TEXT),
 					   ("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
 					   ("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
 					   ("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),

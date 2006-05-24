@@ -50,15 +50,24 @@
 #ifdef FEC_9_10
 	#warning "FEC_9_10 already exist in dvb api ... it seems it is now ready for DVB-S2"
 #else
-	#define FEC_S2_1_2 (fe_code_rate_t)(FEC_AUTO+1)
-	#define FEC_S2_2_3 (fe_code_rate_t)(FEC_S2_1_2+1)
-	#define FEC_S2_3_4 (fe_code_rate_t)(FEC_S2_2_3+1)
-	#define FEC_S2_5_6 (fe_code_rate_t)(FEC_S2_3_4+1)
-	#define FEC_S2_7_8 (fe_code_rate_t)(FEC_S2_5_6+1)
-	#define FEC_S2_8_9 (fe_code_rate_t)(FEC_S2_7_8+1)
-	#define FEC_S2_3_5 (fe_code_rate_t)(FEC_S2_8_9+1)
-	#define FEC_S2_4_5 (fe_code_rate_t)(FEC_S2_3_5+1)
-	#define FEC_S2_9_10 (fe_code_rate_t)(FEC_S2_4_5+1)
+	#define FEC_S2_QPSK_1_2 (fe_code_rate_t)(FEC_AUTO+1)
+	#define FEC_S2_QPSK_2_3 (fe_code_rate_t)(FEC_S2_QPSK_1_2+1)
+	#define FEC_S2_QPSK_3_4 (fe_code_rate_t)(FEC_S2_QPSK_2_3+1)
+	#define FEC_S2_QPSK_5_6 (fe_code_rate_t)(FEC_S2_QPSK_3_4+1)
+	#define FEC_S2_QPSK_7_8 (fe_code_rate_t)(FEC_S2_QPSK_5_6+1)
+	#define FEC_S2_QPSK_8_9 (fe_code_rate_t)(FEC_S2_QPSK_7_8+1)
+	#define FEC_S2_QPSK_3_5 (fe_code_rate_t)(FEC_S2_QPSK_8_9+1)
+	#define FEC_S2_QPSK_4_5 (fe_code_rate_t)(FEC_S2_QPSK_3_5+1)
+	#define FEC_S2_QPSK_9_10 (fe_code_rate_t)(FEC_S2_QPSK_4_5+1)
+	#define FEC_S2_8PSK_1_2 (fe_code_rate_t)(FEC_S2_QPSK_9_10+1)
+	#define FEC_S2_8PSK_2_3 (fe_code_rate_t)(FEC_S2_8PSK_1_2+1)
+	#define FEC_S2_8PSK_3_4 (fe_code_rate_t)(FEC_S2_8PSK_2_3+1)
+	#define FEC_S2_8PSK_5_6 (fe_code_rate_t)(FEC_S2_8PSK_3_4+1)
+	#define FEC_S2_8PSK_7_8 (fe_code_rate_t)(FEC_S2_8PSK_5_6+1)
+	#define FEC_S2_8PSK_8_9 (fe_code_rate_t)(FEC_S2_8PSK_7_8+1)
+	#define FEC_S2_8PSK_3_5 (fe_code_rate_t)(FEC_S2_8PSK_8_9+1)
+	#define FEC_S2_8PSK_4_5 (fe_code_rate_t)(FEC_S2_8PSK_3_5+1)
+	#define FEC_S2_8PSK_9_10 (fe_code_rate_t)(FEC_S2_8PSK_4_5+1)
 #endif
 #endif
 
@@ -265,7 +274,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		diff = 1<<30; // big difference
 		return 0;
 	}
-	
+
 	switch (type)
 	{
 	case iDVBFrontend::feSatellite:
@@ -273,7 +282,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		eDVBFrontendParametersSatellite osat;
 		if (parm->getDVBS(osat))
 			return -2;
-		
+
 		if (sat.orbital_position != osat.orbital_position)
 			diff = 1<<29;
 		else if (sat.polarisation != osat.polarisation)
@@ -289,7 +298,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		eDVBFrontendParametersCable ocable;
 		if (parm->getDVBC(ocable))
 			return -2;
-		
+
 		if (cable.modulation != ocable.modulation && cable.modulation != eDVBFrontendParametersCable::Modulation::Auto && ocable.modulation != eDVBFrontendParametersCable::Modulation::Auto)
 			diff = 1 << 29;
 		else if (cable.inversion != ocable.inversion && cable.inversion != eDVBFrontendParametersCable::Inversion::Unknown && ocable.inversion != eDVBFrontendParametersCable::Inversion::Unknown)
@@ -299,13 +308,13 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			diff = abs(cable.frequency - ocable.frequency);
 			diff += abs(cable.symbol_rate - ocable.symbol_rate);
 		}
-		
+
 		return 0;
 	case iDVBFrontend::feTerrestrial:
 		eDVBFrontendParametersTerrestrial oterrestrial;
 		if (parm->getDVBT(oterrestrial))
 			return -2;
-		
+
 		diff = abs(terrestrial.frequency - oterrestrial.frequency);
 
 		return 0;
@@ -513,7 +522,7 @@ void eDVBFrontend::feEvent(int w)
 		int res;
 		int state;
 		res = ::ioctl(m_fd, FE_GET_EVENT, &event);
-		
+
 		if (res && (errno == EAGAIN))
 			break;
 
@@ -522,7 +531,7 @@ void eDVBFrontend::feEvent(int w)
 			eWarning("FE_GET_EVENT failed! %m");
 			return;
 		}
-		
+
 		if (w < 0)
 			continue;
 
@@ -675,35 +684,50 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 		tmp = "FEC_AUTO";
 		break;
 #if HAVE_DVB_API_VERSION >=3
-	case FEC_S2_1_2:
+	case FEC_S2_8PSK_1_2:
+	case FEC_S2_QPSK_1_2:
 		tmp = "FEC_1_2";
 		break;
-	case FEC_S2_2_3:
+	case FEC_S2_8PSK_2_3:
+	case FEC_S2_QPSK_2_3:
 		tmp = "FEC_2_3";
 		break;
-	case FEC_S2_3_4:
+	case FEC_S2_8PSK_3_4:
+	case FEC_S2_QPSK_3_4:
 		tmp = "FEC_3_4";
 		break;
-	case FEC_S2_5_6:
+	case FEC_S2_8PSK_5_6:
+	case FEC_S2_QPSK_5_6:
 		tmp = "FEC_5_6";
 		break;
-	case FEC_S2_7_8:
+	case FEC_S2_8PSK_7_8:
+	case FEC_S2_QPSK_7_8:
 		tmp = "FEC_7_8";
 		break;
-	case FEC_S2_8_9:
+	case FEC_S2_8PSK_8_9:
+	case FEC_S2_QPSK_8_9:
 		tmp = "FEC_8_9";
 		break;
-	case FEC_S2_3_5:
+	case FEC_S2_8PSK_3_5:
+	case FEC_S2_QPSK_3_5:
 		tmp = "FEC_3_5";
 		break;
-	case FEC_S2_4_5:
+	case FEC_S2_8PSK_4_5:
+	case FEC_S2_QPSK_4_5:
 		tmp = "FEC_4_5";
 		break;
-	case FEC_S2_9_10:
+	case FEC_S2_8PSK_9_10:
+	case FEC_S2_QPSK_9_10:
 		tmp = "FEC_9_10";
 		break;
 #endif
 	}
+#if HAVE_DVB_API_VERSION >=3
+	PutToDict(dict, "modulation",
+		parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10 ? "8PSK": "QPSK" );
+#else
+	PutToDict(dict, "modulation", "QPSK" );
+#endif
 	PutToDict(dict, "fec_inner", tmp);
 	tmp = parm_u_qpsk_fec_inner > FEC_AUTO ?
 		"DVB-S2" : "DVB-S";
@@ -1377,39 +1401,44 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 			}
 #if HAVE_DVB_API_VERSION >= 3
 		else // DVB_S2
+		{
 			switch (feparm.fec)
 			{
 				case eDVBFrontendParametersSatellite::FEC::f1_2:
-					parm_u_qpsk_fec_inner = FEC_S2_1_2;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_1_2;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f2_3:
-					parm_u_qpsk_fec_inner = FEC_S2_2_3;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_2_3;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f3_4:
-					parm_u_qpsk_fec_inner = FEC_S2_3_4;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_3_4;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f3_5:
-					parm_u_qpsk_fec_inner = FEC_S2_3_5;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_3_5;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f4_5:
-					parm_u_qpsk_fec_inner = FEC_S2_4_5;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_4_5;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f5_6:
-					parm_u_qpsk_fec_inner = FEC_S2_5_6;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_5_6;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f7_8:
-					parm_u_qpsk_fec_inner = FEC_S2_7_8;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_7_8;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f8_9:
-					parm_u_qpsk_fec_inner = FEC_S2_8_9;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_8_9;
 					break;
 				case eDVBFrontendParametersSatellite::FEC::f9_10:
-					parm_u_qpsk_fec_inner = FEC_S2_9_10;
+					parm_u_qpsk_fec_inner = FEC_S2_QPSK_9_10;
 					break;
 				default:
 					eDebug("no valid fec for DVB-S2 set.. abort !!");
 					return -EINVAL;
 			}
+			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
+				parm_u_qpsk_fec_inner = (fe_code_rate_t)((int)parm_u_qpsk_fec_inner+9);
+				// 8PSK fec driver values are decimal 9 bigger
+		}
 #endif
 		// FIXME !!! get frequency range from tuner
 		if ( parm_frequency < 900000 || parm_frequency > 2200000 )

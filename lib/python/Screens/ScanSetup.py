@@ -84,6 +84,7 @@ def getInitialTransponderList(tlist, pos):
 			parm.inversion = 2 		#AUTO
 			parm.orbital_position = pos
 			parm.system = x[5]  #DVB-S or DVB-S2
+			parm.modulation = x[6]
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, cable):
@@ -205,6 +206,7 @@ class ScanSetup(Screen):
 					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
 				elif currentConfigSelectionElement(config.scan.sat.system) == "dvb-s2":
 					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec_s2))
+					self.list.append(getConfigListEntry(_('Modulation'), config.scan.sat.modulation))
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				self.updateSatList()
 				print config.scan.satselection[config.scan.nims.value]
@@ -317,7 +319,8 @@ class ScanSetup(Screen):
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
 			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
 			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, 8, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
-
+			config.scan.sat.modulation = configElement_nonSave("config.scan.sat.modulation", configSelection, 0, ("qpsk", "QPSK"), ("8psk", "8PSK")))
+	
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 999)))
 			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
@@ -382,15 +385,18 @@ class ScanSetup(Screen):
 			   "none": 15
 			   }
 
-	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system):
+	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation):
 		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		print "orbpos: " + str(orbital_position)
 		parm = eDVBFrontendParametersSatellite()
+		if modulation == 1:
+			parm.modulation = 2 # eDVBFrontendParametersSatellite.Modulation.8PSK
+		else:
+			parm.modulation = 1 # eDVBFrontendParametersSatellite.Modulation.QPSK
 		parm.system = system
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
 		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti
-
 		parm.fec = self.fecmap[fec]			# eDVBFrontendParametersSatellite.FEC.f3_4;
 		#parm.fec = 6					# AUTO
 		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
@@ -438,7 +444,8 @@ class ScanSetup(Screen):
 										fec,
 										config.scan.sat.inversion.value,
 										orbpos,
-										config.scan.sat.system.value)
+										config.scan.sat.system.value,
+										config.scan.sat.modulation)
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				sat = self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value]
 				getInitialTransponderList(tlist, int(sat[1]))
