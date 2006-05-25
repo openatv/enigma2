@@ -1412,8 +1412,11 @@ class InfoBarNotifications:
 		Notifications.notificationAdded.append(self.checkNotificationsIfExecing)
 	
 	def checkNotificationsIfExecing(self):
-		if self.execing:
-			self.checkNotifications()
+		try:
+			if self.execing:
+				self.checkNotifications()
+		except:
+			print "******************************* A SEVERE ERROR HAPPENED... Someone who understands the code... please fix :) *******"
 
 	def checkNotifications(self):
 		if len(Notifications.notifications):
