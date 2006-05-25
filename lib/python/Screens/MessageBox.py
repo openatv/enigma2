@@ -4,7 +4,7 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
-from enigma import eSize, ePoint
+from enigma import eSize, ePoint, eTimer
 
 class MessageBox(Screen):
 	TYPE_YESNO = 0
@@ -12,7 +12,7 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 	
-	def __init__(self, session, text, type = TYPE_YESNO):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1):
 		self.type = type
 		Screen.__init__(self, session)
 		
@@ -21,6 +21,15 @@ class MessageBox(Screen):
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
 		self["InfoPixmap"] = Pixmap()
+		self.timerRunning = False
+		if timeout > 0:
+			self.timer = eTimer()
+			self.timer.timeout.get().append(self.timerTick)
+			self.timer.start(1000)
+			self.origTitle = None
+			self.onShown.append(self.timerTick)
+			self.timerRunning = True
+		self.timeout = timeout
 		
 		self.list = []
 		if type != self.TYPE_ERROR:
@@ -36,13 +45,35 @@ class MessageBox(Screen):
 
 		self["list"] = MenuList(self.list)
 		
-		self["actions"] = ActionMap(["MsgBoxActions"], 
+		self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
 			{
 				"cancel": self.cancel,
 				"ok": self.ok,
-				"alwaysOK": self.alwaysOK
-			})
+				"alwaysOK": self.alwaysOK,
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"upRepeated": self.up,
+				"downRepeated": self.down,
+				"leftRepeated": self.left,
+				"rightRepeated": self.right
+			}, -1)
 			
+	
+	def timerTick(self):
+		self.timeout -= 1
+		if self.origTitle is None:
+			self.origTitle = self.instance.getTitle()
+		self.setTitle(self.origTitle + " (" + _("Timeout: ") + str(self.timeout) + ")")
+		if self.timeout == 0:
+			self.timer.stop()
+			self.timerRunning = False
+			self.timeoutCallback()
+			
+	def timeoutCallback(self):
+		print "Timeout!"
+		self.ok()
 	
 	def cancel(self):
 		self.close(False)
@@ -55,3 +86,24 @@ class MessageBox(Screen):
 
 	def alwaysOK(self):
 		self.close(True)
+
+	def up(self):
+		self.move(self["list"].instance.moveUp)
+		
+	def down(self):
+		self.move(self["list"].instance.moveDown)
+
+	def left(self):
+		self.move(self["list"].instance.pageUp)
+		
+
+		
+	def right(self):
+		self.move(self["list"].instance.pageDown)
+
+	def move(self, direction):
+		self["list"].instance.moveSelection(direction)
+		if self.timerRunning:
+			self.timer.stop()
+			self.setTitle(self.origTitle)
+			self.timerRunning = False
