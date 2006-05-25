@@ -49,8 +49,14 @@ class Test(Screen):
 		self.onShown.append(self.openTest)
 
 	def openTest(self):
-		self.session.open(InputBox)
-		
+		self.session.openWithCallback(self.callback, MessageBox, _("Test-Messagebox?"))
+
+#		self.session.open(InputBox)
+	
+	def callback(self, answer):
+		print "answer:", answer
+		self.close()
+	
 	def keyLeft(self):
 		self["text"].left()
 	
@@ -69,7 +75,8 @@ class Test(Screen):
 		self["text"].number(number)
 
 def main(session, **kwargs):
-	session.openWithCallback(test, ChoiceBox, title="Delete everything on this Dreambox?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
+	session.openWithCallback(test, MessageBox, _("Test-Messagebox?"), timeout = 10)
+	#session.openWithCallback(test, ChoiceBox, title="Delete everything on this Dreambox?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
 	
 def test(returnValue):
 	print "You entered", returnValue
