@@ -134,7 +134,7 @@ class TimerEntry(Screen):
 				config.timerentry.enddate.change()
 				try:
 					self["config"].invalidate(config.timerentry.enddate)
-				except:
+				except: # FIXME: what could go wrong here?
 					pass
 		if (configElement.getConfigPath() == "config.timerentry.enddate"):
 			if (config.timerentry.enddate.value < config.timerentry.startdate.value):
@@ -142,7 +142,7 @@ class TimerEntry(Screen):
 				config.timerentry.startdate.change()
 				try:
 					self["config"].invalidate(config.timerentry.startdate)
-				except:
+				except: # FIXME: what could go wrong here?
 					pass
 
 	def createSetup(self, widget):
@@ -254,6 +254,23 @@ class TimerEntry(Screen):
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
 		return int(mktime(dt.timetuple()))
 
+	def getBeginEnd(self):
+		enddate = config.timerentry.enddate.value
+		endtime = config.timerentry.endtime.value
+		
+		startdate = config.timerentry.startdate.value
+		starttime = config.timerentry.starttime.value
+		
+		begin = self.getTimestamp(startdate, starttime)
+		end = self.getTimestamp(enddate, endtime)
+		
+		# because of the dateChecks, startdate can't be < enddate.
+		# however, the endtime can be less than the starttime.
+		# in this case, add 1 day.
+		if end < begin:
+			end += 86400
+		return begin, end
+
 	def keyGo(self):
 		self.timer.name = config.timerentry.name.value
 		self.timer.description = config.timerentry.description.value
@@ -262,8 +279,7 @@ class TimerEntry(Screen):
 		self.timer.afterEvent = { 0: AFTEREVENT.NONE, 1: AFTEREVENT.DEEPSTANDBY, 2: AFTEREVENT.STANDBY}[config.timerentry.afterevent.value]
 		
 		if (config.timerentry.type.value == 0): # once
-			self.timer.begin = self.getTimestamp(config.timerentry.startdate.value, config.timerentry.starttime.value)
-			self.timer.end = self.getTimestamp(config.timerentry.enddate.value, config.timerentry.endtime.value)
+			self.timer.begin, self.timer.end = self.getBeginEnd()
 		if (config.timerentry.type.value == 1): # repeated
 			if (config.timerentry.repeated.value == 0): # daily
 				for x in range(0,7):
@@ -282,6 +298,10 @@ class TimerEntry(Screen):
 
 			self.timer.begin = self.getTimestamp(time.time(), config.timerentry.starttime.value)
 			self.timer.end = self.getTimestamp(time.time(), config.timerentry.endtime.value)
+			
+			# when a timer end is set before the start, add 1 day
+			if self.timer.end < self.timer.begin:
+				self.timer.end += 86400
 
 		if self.timer.eit is not None:
 			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
