@@ -544,7 +544,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 					compare.steps = +3;
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
-					// voltage was disabled..so we wait a longer time .. for normal switches 500ms should be enough
+					// voltage was disabled..so we wait a longer time .. for normal switches 750ms should be enough
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) );
 
 					for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
