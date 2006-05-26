@@ -91,6 +91,7 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 		eDebug("invalid diseqc command string length (string is to long)");
 		return;
 	}
+	eDebugNoNewLine("send diseqc:");
 	unsigned char val=0;
 	for (int i=0; i < slen; ++i)
 	{
@@ -107,11 +108,13 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 		if ( i % 2 )
 		{
 			val |= c;
+			eDebugNoNewLine("%02x", val);
 			data[i/2] = val;
 		}
 		else
 			val = c << 4;
 	}
+	eDebug("");
 	len = slen/2;
 }
 
@@ -543,12 +546,16 @@ void eDVBFrontend::feEvent(int w)
 #endif
 		{
 			state = stateLock;
+			m_data[CSW] = m_data[NEW_CSW];
+			m_data[UCSW] = m_data[NEW_UCSW];
+			m_data[TONEBURST] = m_data[NEW_TONEBURST];
 		} else
 		{
 			if (m_tuning)
 				state = stateTuning;
 			else
 			{
+				eDebug("stateLostLock");
 				state = stateLostLock;
 				m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
 			}

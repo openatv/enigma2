@@ -15,31 +15,31 @@ from Components.config import config, ConfigSubsection, configElement_nonSave, c
 class PositionerSetup(Screen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Positioner setup..." >
-			<widget name="list" position="100,0" size="350,130" />
+			<widget name="list" position="100,0" size="350,155" />
 
-			<widget name="red" position="0,130" size="140,80" backgroundColor="red" halign="center" valign="center" font="Regular;21" />
-			<widget name="green" position="140,130" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
-			<widget name="yellow" position="280,130" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
-			<widget name="blue" position="420,130" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
+			<widget name="red" position="0,155" size="140,80" backgroundColor="red" halign="center" valign="center" font="Regular;21" />
+			<widget name="green" position="140,155" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
+			<widget name="yellow" position="280,155" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
+			<widget name="blue" position="420,155" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
 			
-			<widget name="snr" text="SNR:" position="0,220" size="60,22" font="Regular;21" />
-			<widget name="agc" text="AGC:" position="0,245" size="60,22" font="Regular;21" />
-			<widget name="ber" text="BER:" position="0,270" size="60,22" font="Regular;21" />
-			<widget name="lock" text="Lock:" position="0,295" size="60,22" font="Regular;21" />
-			<widget name="snr_percentage" position="220,220" size="60,22" font="Regular;21" />
-			<widget name="agc_percentage" position="220,245" size="60,22" font="Regular;21" />
-			<widget name="ber_value" position="220,270" size="60,22" font="Regular;21" />
-			<widget name="lock_state" position="60,295" size="150,22" font="Regular;21" />
-			<widget name="snr_bar" position="60,220" size="150,22" />
-			<widget name="agc_bar" position="60,245" size="150,22" />
-			<widget name="ber_bar" position="60,270" size="150,22" />
+			<widget name="snr" text="SNR:" position="0,245" size="60,22" font="Regular;21" />
+			<widget name="agc" text="AGC:" position="0,270" size="60,22" font="Regular;21" />
+			<widget name="ber" text="BER:" position="0,295" size="60,22" font="Regular;21" />
+			<widget name="lock" text="Lock:" position="0,320" size="60,22" font="Regular;21" />
+			<widget name="snr_percentage" position="220,245" size="60,22" font="Regular;21" />
+			<widget name="agc_percentage" position="220,270" size="60,22" font="Regular;21" />
+			<widget name="ber_value" position="220,295" size="60,22" font="Regular;21" />
+			<widget name="lock_state" position="60,320" size="150,22" font="Regular;21" />
+			<widget name="snr_bar" position="60,245" size="150,22" />
+			<widget name="agc_bar" position="60,270" size="150,22" />
+			<widget name="ber_bar" position="60,295" size="150,22" />
 
-			<widget name="frequency" text="Frequency:" position="300,220" size="120,22" font="Regular;21" />
-			<widget name="symbolrate" text="Symbolrate:" position="300,245" size="120,22" font="Regular;21" />
-			<widget name="fec" text="FEC:" position="300,270" size="120,22" font="Regular;21" />
-			<widget name="frequency_value" position="420,220" size="120,22" font="Regular;21" />
-			<widget name="symbolrate_value" position="420,245" size="120,22" font="Regular;21" />
-			<widget name="fec_value" position="420,270" size="120,22" font="Regular;21" />
+			<widget name="frequency" text="Frequency:" position="300,245" size="120,22" font="Regular;21" />
+			<widget name="symbolrate" text="Symbolrate:" position="300,270" size="120,22" font="Regular;21" />
+			<widget name="fec" text="FEC:" position="300,295" size="120,22" font="Regular;21" />
+			<widget name="frequency_value" position="420,245" size="120,22" font="Regular;21" />
+			<widget name="symbolrate_value" position="420,270" size="120,22" font="Regular;21" />
+			<widget name="fec_value" position="420,295" size="120,22" font="Regular;21" />
 		</screen>"""
 	def __init__(self, session, feid):
 		self.skin = PositionerSetup.skin
@@ -119,8 +119,9 @@ class PositionerSetup(Screen):
 		config.positioner.move = configElement_nonSave("move", configNothing, 0, None)
 		config.positioner.finemove = configElement_nonSave("finemove", configNothing, 0, None)
 		config.positioner.limits = configElement_nonSave("limits", configNothing, 0, None)
+		config.positioner.goto0 = configElement_nonSave("goto0", configNothing, 0, None)
 		storepos = []
-		for x in range(255):
+		for x in range(1,255):
 			storepos.append(str(x))
 		config.positioner.storage = configElement_nonSave("storage", configSelection, 0, storepos)
 	
@@ -130,7 +131,7 @@ class PositionerSetup(Screen):
 		self.list.append(getConfigListEntry(_("Positioner fine movement"), config.positioner.finemove))
 		self.list.append(getConfigListEntry(_("Set limits"), config.positioner.limits))
 		self.list.append(getConfigListEntry(_("Positioner storage"), config.positioner.storage))
-		
+		self.list.append(getConfigListEntry(_("Goto 0"), config.positioner.goto0))
 		self["list"].l.setList(self.list)
 		
 	def go(self):
@@ -181,11 +182,16 @@ class PositionerSetup(Screen):
 			self.red.setText(_("Limits off"))
 			self.green.setText(_("Limit west"))
 			self.yellow.setText(_("Limit east"))
-			self.blue.setText("")
+			self.blue.setText(_("Limits on"))
 		elif entry == "storage":
 			self.red.setText("")
 			self.green.setText(_("Store position"))
 			self.yellow.setText(_("Goto position"))
+			self.blue.setText("")
+		elif entry == "goto0":
+			self.red.setText(_("Goto 0"))
+			self.green.setText("")
+			self.yellow.setText("")
 			self.blue.setText("")
 		else:
 			self.red.setText("")
@@ -208,7 +214,10 @@ class PositionerSetup(Screen):
 			self.diseqccommand("limitOff")
 		elif entry == "tune":
 			self.session.openWithCallback(self.tune, TunerScreen, self.feid)
-				
+		elif entry == "goto0":
+			print "move to position 0"
+			self.diseqccommand("moveTo", 0)
+
 	def greenKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
@@ -223,7 +232,7 @@ class PositionerSetup(Screen):
 			self.updateColors("move")
 		elif entry == "finemove":
 			print "stepping west"
-			self.diseqccommand("moveWest", 1)
+			self.diseqccommand("moveWest", 0xFF) # one step
 		elif entry == "storage":
 			print "store at position", (config.positioner.storage.value + 1)
 			self.diseqccommand("store", config.positioner.storage.value + 1)
@@ -244,7 +253,7 @@ class PositionerSetup(Screen):
 			self.updateColors("move")
 		elif entry == "finemove":
 			print "stepping east"
-			self.diseqccommand("moveEast", 1)
+			self.diseqccommand("moveEast", 0xFF) # one step
 		elif entry == "storage":
 			print "move to position", (config.positioner.storage.value + 1)
 			self.diseqccommand("moveTo", config.positioner.storage.value + 1)
@@ -263,7 +272,9 @@ class PositionerSetup(Screen):
 				self.isMoving = True
 			self.updateColors("move")
 			print "moving east"
-			
+		elif entry == "limits":
+			self.diseqccommand("limitOn")
+
 	def diseqccommand(self, cmd, param = 0):
 		self.diseqc.command(cmd, param)
 		self.tuner.retune()
@@ -322,6 +333,8 @@ class Diseqc:
 				string = 'e0316b' + ("%02x" % param)
 			elif what == "store":
 				string = 'e0316a' + ("%02x" % param)
+			elif what == "limitOn":
+				string = 'e0316a00'
 			elif what == "limitOff":
 				string = 'e03163'
 			elif what == "limitEast":
@@ -452,7 +465,7 @@ class TunerScreen(ScanSetup):
 			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
 		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
 			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
-			returnvalue = (int(transponder[1] / 100), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
+			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
 		self.close(returnvalue)
 
 	def keyCancel(self):
