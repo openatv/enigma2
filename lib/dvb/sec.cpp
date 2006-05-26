@@ -544,8 +544,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 					compare.steps = +3;
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
-					// voltage was disabled..so we wait a longer time .. for normal switches 200ms should be enough
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 200) );
+					// voltage was disabled..so we wait a longer time .. for normal switches 500ms should be enough
+					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) );
 
 					for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
 					{
@@ -627,25 +627,28 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 				{
 					eSecCommand::pair compare;
-					compare.voltage = iDVBFrontend::voltageOff;
-					compare.steps = +4;
-					// the next is a check if voltage is switched off.. then we first set a voltage :)
-					// else we set voltage after all diseqc stuff..
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
+					if (!send_mask)
+					{
+						compare.voltage = iDVBFrontend::voltageOff;
+						compare.steps = +4;
+						// the next is a check if voltage is switched off.. then we first set a voltage :)
+						// else we set voltage after all diseqc stuff..
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 
-					if (rotor_param.m_inputpower_parameters.m_use)
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // in normal mode start turning with 13V
+						if (rotor_param.m_inputpower_parameters.m_use)
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // in normal mode start turning with 13V
+						else
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) ); // turn always with 18V
+
+						// voltage was disabled..so we wait a longer time ..
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +8) );  // no need to send stop rotor cmd and recheck voltage
+					}
 					else
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) ); // turn always with 18V
-
-					// voltage was disabled..so we wait a longer time ..
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +7) );  // no need to send stop rotor cmd
-
-					if (send_mask)
+					{
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) ); // wait 750ms after send switch cmd
-					else
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +1) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +8) );  // no need to send stop rotor cmd and recheck voltage
+					}
 
 					eDVBDiseqcCommand diseqc;
 					diseqc.len = 3;
@@ -771,9 +774,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			else
 				csw = band;
 
-			frontend.setData(eDVBFrontend::CSW, csw);
-			frontend.setData(eDVBFrontend::UCSW, ucsw);
-			frontend.setData(eDVBFrontend::TONEBURST, di_param.m_toneburst_param);
+			frontend.setData(eDVBFrontend::NEW_CSW, csw);
+			frontend.setData(eDVBFrontend::NEW_UCSW, ucsw);
+			frontend.setData(eDVBFrontend::NEW_TONEBURST, di_param.m_toneburst_param);
 
 			if (!linked && doSetVoltageToneFrontend)
 			{
