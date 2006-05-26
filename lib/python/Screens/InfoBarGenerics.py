@@ -1410,19 +1410,19 @@ class InfoBarNotifications:
 	def __init__(self):
 		self.onExecBegin.append(self.checkNotifications)
 		Notifications.notificationAdded.append(self.checkNotificationsIfExecing)
+		self.onClose.append(self.__removeNotification)
+	
+	def __removeNotification(self):
+		Notifications.notificationAdded.remove(self.checkNotificationsIfExecing)
 	
 	def checkNotificationsIfExecing(self):
-		try:
-			if self.execing:
-				self.checkNotifications()
-		except:
-			print "******************************* A SEVERE ERROR HAPPENED... Someone who understands the code... please fix :) *******"
+		if self.execing:
+			self.checkNotifications()
 
 	def checkNotifications(self):
 		if len(Notifications.notifications):
 			n = Notifications.notifications[0]
 			Notifications.notifications = Notifications.notifications[1:]
-			print "open",n
 			cb = n[0]
 			if cb is not None:
 				self.session.openWithCallback(cb, n[1], *n[2], **n[3])
