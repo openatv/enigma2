@@ -160,10 +160,10 @@ class RecordTimerEntry(timer.TimerEntry):
 				self.first_try_prepare = False
 				if config.recording.asktozap.value == 0:
 					self.log(8, "asking user to zap away")
-					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=15)
+					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
 				else: # zap without asking
 					self.log(9, "zap without asking")
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_WARNING, timeout=15)
+					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
 					self.failureCB(True)
 
 			self.do_backoff()
