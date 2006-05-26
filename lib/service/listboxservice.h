@@ -42,15 +42,25 @@ public:
 	
 		/* only in complex mode: */
 	enum {
-		celIcon,
 		celServiceNumber,
+		celFolderPixmap,
 		celServiceName,
+		celServiceTypePixmap,
 		celServiceInfo, // "now" event
 		celElements
 	};
-	
+
+	enum {
+		picDVB_S,
+		picDVB_T,
+		picDVB_C,
+		picFolder,
+		picElements
+	};
+
 	void setElementPosition(int element, eRect where);
 	void setElementFont(int element, gFont *font);
+	void setPixmap(int type, ePtr<gPixmap> &pic);
 	
 	void sort();
 
@@ -79,6 +89,7 @@ protected:
 		/* for complex mode */
 	eRect m_element_position[celElements];
 	ePtr<gFont> m_element_font[celElements];
+	ePtr<gPixmap> m_pixmaps[picElements];
 private:
 	typedef std::list<eServiceReference> list;
 	

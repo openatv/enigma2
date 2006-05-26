@@ -147,7 +147,6 @@ void eListboxServiceContent::setVisualMode(int mode)
 		m_element_font[celServiceName] = new gFont("Regular", 23);
 		m_element_position[celServiceNumber] = eRect();
 		m_element_font[celServiceNumber] = 0;
-		m_element_position[celIcon] = eRect();
 		m_element_position[celServiceInfo] = eRect();
 		m_element_font[celServiceInfo] = 0;
 	}
@@ -163,6 +162,12 @@ void eListboxServiceContent::setElementFont(int element, gFont *font)
 {
 	if ((element >= 0) && (element < celElements))
 		m_element_font[element] = font;
+}
+
+void eListboxServiceContent::setPixmap(int type, ePtr<gPixmap> &pic)
+{
+	if ((type >=0) && (type < picElements))
+		m_pixmaps[type] = pic;
 }
 
 void eListboxServiceContent::sort()
@@ -372,79 +377,118 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		if (m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 			painter.setForegroundColor(gRGB(0xbbbbbb));
 
+		int xoffset=0;  // used as offset when painting the folder symbol
+
 		for (int e = 0; e < celElements; ++e)
 		{
-			if (!m_element_font[e])
-				continue;
-			int flags=gPainter::RT_VALIGN_CENTER;
-
-			eRect area = m_element_position[e];
-
-			std::string text = "<n/a>";
-
-			switch (e)
+			if (m_element_font[e])
 			{
-			case celIcon:
-				// render icon here...
-				continue;
-			case celServiceNumber:
+				int flags=gPainter::RT_VALIGN_CENTER,
+					yoffs = 0,
+					xoffs = xoffset;
+				eRect &area = m_element_position[e];
+				std::string text = "<n/a>";
+				xoffset=0;
+
+				switch (e)
+				{
+				case celServiceNumber:
+				{
+					char bla[10];
+					sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
+					text = bla;
+					flags|=gPainter::RT_HALIGN_RIGHT;
+					break;
+				}
+				case celServiceName:
+				{
+					if (service_info)
+						service_info->getName(*m_cursor, text);
+					break;
+				}
+				case celServiceInfo:
+				{
+					ePtr<eServiceEvent> evt;
+					if ( !service_info->getEvent(*m_cursor, evt) )
+					{
+						std::string name = evt->getEventName();
+						if (!name.length())
+							continue;
+						text = '(' + evt->getEventName() + ')';
+					}
+					else
+						continue;
+					break;
+				}
+				}
+
+				eRect tmp = area;
+				tmp.setWidth(tmp.width()-xoffs);
+
+				eTextPara *para = new eTextPara(tmp);
+				para->setFont(m_element_font[e]);
+				para->renderString(text);
+
+				if (e == celServiceName)
+				{
+					eRect bbox = para->getBoundBox();
+					int name_width = bbox.width()+8;
+					m_element_position[celServiceInfo].setLeft(area.left()+name_width);
+					m_element_position[celServiceInfo].setTop(area.top());
+					m_element_position[celServiceInfo].setWidth(area.width()-name_width);
+					m_element_position[celServiceInfo].setHeight(area.height());
+				}
+
+				if (flags & gPainter::RT_HALIGN_RIGHT)
+					para->realign(eTextPara::dirRight);
+				else if (flags & gPainter::RT_HALIGN_CENTER)
+					para->realign(eTextPara::dirCenter);
+				else if (flags & gPainter::RT_HALIGN_BLOCK)
+					para->realign(eTextPara::dirBlock);
+
+				if (flags & gPainter::RT_VALIGN_CENTER)
+				{
+					eRect bbox = para->getBoundBox();
+					int vcentered_top = (area.height() - bbox.height()) / 2;
+					yoffs = vcentered_top - bbox.top();
+				}
+
+				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
+			}
+			else if (e == celServiceTypePixmap || e == celFolderPixmap)
 			{
-				char bla[10];
-				sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
-				text = bla;
-				flags|=gPainter::RT_HALIGN_RIGHT;
-				break;
+				int orbpos = m_cursor->getUnsignedData(4) >> 16;
+				ePtr<gPixmap> &pixmap =
+					(e == celFolderPixmap) ? m_pixmaps[picFolder] :
+					(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
+					(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
+				if (pixmap)
+				{
+					eSize pixmap_size = pixmap->size();
+					eRect area = m_element_position[e == celFolderPixmap ? celServiceName : celServiceInfo];
+					int correction = (area.height() - pixmap_size.height()) / 2;
+
+					if (m_cursor->flags & eServiceReference::flagDirectory)
+					{
+						if (e != celFolderPixmap)
+							continue;
+						xoffset = pixmap_size.width() + 8;
+					}
+					else
+					{
+						if (e != celServiceTypePixmap)
+							continue;
+						m_element_position[celServiceInfo] = area;
+						m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+						m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+					}
+
+					area.moveBy(offset);
+					painter.clip(area);
+					painter.blit(pixmap, offset+ePoint(area.left(), correction), area, gPainter::BT_ALPHATEST);
+					painter.clippop();
+				}
 			}
-			case celServiceName:
-			{
-				if (service_info)
-					service_info->getName(*m_cursor, text);
-				break;
-			}
-			case celServiceInfo:
-			{
-				ePtr<eServiceEvent> evt;
-				if ( !service_info->getEvent(*m_cursor, evt) )
-					text = '(' + evt->getEventName() + ')';
-				else
-					continue;
-				break;
-			}
-			}
-
-			eTextPara *para = new eTextPara(area);
-
-			para->setFont(m_element_font[e]);
-			para->renderString(text);
-
-			if (e == celServiceName)
-			{
-				eRect bbox = para->getBoundBox();
-				int name_width = bbox.width()+10;
-				m_element_position[celServiceInfo].setLeft(area.left()+name_width);
-				m_element_position[celServiceInfo].setTop(area.top());
-				m_element_position[celServiceInfo].setWidth(area.width()-name_width);
-				m_element_position[celServiceInfo].setHeight(area.height());
-			}
-
-			if (flags & gPainter::RT_HALIGN_RIGHT)
-				para->realign(eTextPara::dirRight);
-			else if (flags & gPainter::RT_HALIGN_CENTER)
-				para->realign(eTextPara::dirCenter);
-			else if (flags & gPainter::RT_HALIGN_BLOCK)
-				para->realign(eTextPara::dirBlock);
-
-			ePoint offs = offset;
-
-			if (flags & gPainter::RT_VALIGN_CENTER)
-			{
-				eRect bbox = para->getBoundBox();
-				int vcentered_top = (area.height() - bbox.height()) / 2;
-				int correction = vcentered_top - bbox.top();
-				offs += ePoint(0, correction);
-			}
-
-			painter.renderPara(para, offs);
 		}
 		
 		if (selected)

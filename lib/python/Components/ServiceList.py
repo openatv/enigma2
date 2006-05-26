@@ -5,6 +5,8 @@ from enigma import *
 
 from string import upper
 
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
+
 class ServiceList(HTMLComponent, GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
@@ -12,6 +14,23 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
+
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "folder.png"))
+		if pic:
+			self.l.setPixmap(self.l.picFolder, pic)
+
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_s-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picDVB_S, pic)
+
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_c-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picDVB_C, pic)
+
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_t-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picDVB_T, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 
