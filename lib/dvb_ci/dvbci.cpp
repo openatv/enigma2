@@ -433,8 +433,6 @@ int eDVBCISlot::send(const unsigned char *data, size_t len)
 
 void eDVBCISlot::data(int what)
 {
-	if (state == stateInvalid)
-		return;
 	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
@@ -451,6 +449,9 @@ void eDVBCISlot::data(int what)
 		}
 		return;
 	}
+
+	if (state == stateInvalid)
+		return;
 
 	if(state != stateInserted) {
 		eDebug("ci inserted");
