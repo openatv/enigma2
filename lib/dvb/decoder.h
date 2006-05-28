@@ -39,7 +39,7 @@ private:
 public:
 	enum { MPEG2, MPEG4_H264 };
 	eDVBVideo(eDVBDemux *demux, int dev);
-	int startPid(int pid, int type);
+	int startPid(int pid, int type=MPEG2);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
 	void start();
