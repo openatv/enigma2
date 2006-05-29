@@ -102,3 +102,32 @@ check this.
 only video), and alphablend on this, we generalized the problem enough that
 we can handle both cases the same. But currently, we have to differentiate
 between them, as we can't always alphablend.
+
+lcd:
+====
+
+Right now, most lcd-skins ("summary screens") are implemented right in the
+python screens. However, you can override them with regular skinfiles.
+
+There is some confusion about the actual size of the LCD. For now, assume it
+to be 132x64 pixel, but think of the fact that some (most?) hardware can
+only display either 128 (dreambox) or 120 (dbox2, dm8000) pixels
+horizontally.
+
+Right now some pixels will be cropped, currently at the right side. This
+will be (hopefully) fixed soon, so that the used pixels are always in the
+center.
+
+So, bottom line:
+
+Design LCD skins for 132x64, with no important items (text etc.) at the
+outermost 6 pixels on each side. In doubt, leave them white.
+
+LCD colorspace:
+===============
+
+current LCDs are not able to display grayscale graphics. For this, there
+will be a 1bit quantization. However, skins should be designed for 8bit
+grayscale (and still look good in 1bit!), because some next-generation
+display might be able to display some shades of gray - likely not 256, but
+maybe 16 or so.
