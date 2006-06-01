@@ -30,8 +30,10 @@
 	</map>
 
 	<map context="SetupActions">
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_RED" mapto="cancel" flags="m" />
@@ -89,15 +91,19 @@
 	<map context="MinuteInputActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_OK" mapto="ok" flags="mr" />
-		<key id="KEY_EXIT" mapto="cancel" flags="mr" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
 
 	<map context="InputBoxActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
+		<key id="KEY_ESC" mapto="back" flags="m" />
 		<key id="KEY_MUTE" mapto="delete" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
 		<key id="KEY_2" mapto="2" flags="m" />
@@ -117,7 +123,9 @@
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
+		<key id="KEY_ESC" mapto="back" flags="m" />
 	</map>
 	
 	<map context="InfobarMenuActions">
@@ -130,7 +138,9 @@
 	
 	<map context="InfobarShowHideActions">
 		<key id="KEY_OK" mapto="toggleShow" flags="m" />
+		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
+		<key id="KEY_ESC" mapto="hide" flags="m" />
 	</map>
 
 	<map context="InfobarActions">
@@ -291,9 +301,8 @@
 		<key id="\x1b" mapto="cancel" flags="m" />
 
 		<!-- use this on rcu, ok? -->
-		<key id="KEY_OK" mapto="ok" flags="m" />		
+		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
@@ -317,17 +326,19 @@
 	</map>
 	
 	<map context="ColorActions">
-		<key id="KEY_RED" mapto="red" flags="m" />		
+		<key id="KEY_RED" mapto="red" flags="m" />
 		<key id="KEY_GREEN" mapto="green" flags="m" />
-		<key id="KEY_YELLOW" mapto="yellow" flags="m" />		
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
 		<key id="KEY_BLUE" mapto="blue" flags="m" />
 	</map>
 
 	<map context="MsgBoxActions">
 		<key id="KEY_GREEN" mapto="alwaysOK" flags="m" />
-		<key id="KEY_OK" mapto="ok" flags="m" />		
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
 
 	<map context="WindowActions">
@@ -359,7 +370,9 @@
 		<key id="KEY_CHANNELUP" mapto="addMark" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" />
 		<key id="KEY_EXIT" mapto="leave" flags="m" />
+		<key id="KEY_ESC" mapto="leave" flags="m" />
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
+		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
 	</map>
 	
 	<map context="PiPSetupActions">
@@ -368,7 +381,9 @@
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-		<key id="KEY_OK" mapto="ok" flags="m" />		
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_CHANNELUP" mapto="size+" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
 	</map>
