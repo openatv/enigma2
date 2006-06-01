@@ -106,8 +106,8 @@ int eComponentScan::start(int feid, int flags)
 	}
 
 	std::list<ePtr<iDVBFrontendParameters> > list;
-		
-	m_scan = new eDVBScan(channel, true);
+
+	m_scan = new eDVBScan(channel);
 	m_scan->connectEvent(slot(*this, &eComponentScan::scanEvent), m_scan_event_connection);
 	m_scan->start(m_initial, flags);
 	

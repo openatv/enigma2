@@ -1,7 +1,4 @@
 #include <lib/dvb/idvb.h>
-#include <dvbsi++/service_description_section.h>
-#include <dvbsi++/network_information_section.h>
-#include <dvbsi++/bouquet_association_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
@@ -22,9 +19,10 @@ static bool scan_debug;
 
 DEFINE_REF(eDVBScan);
 
-eDVBScan::eDVBScan(iDVBChannel *channel, bool debug)
+eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	:m_channel(channel), m_channel_state(iDVBChannel::state_idle)
-	,m_ready(0), m_ready_all(readySDT), m_flags(0)
+	,m_ready(0), m_ready_all(usePAT ? (readySDT|readyPAT) : readySDT)
+	,m_flags(0), m_usePAT(usePAT)
 {
 	scan_debug=debug;
 	if (m_channel->getDemux(m_demux))
@@ -89,7 +87,7 @@ RESULT eDVBScan::nextChannel()
 	m_SDT = 0; m_BAT = 0; m_NIT = 0;
 
 	m_ready = 0;
-	
+
 		/* check what we need */
 	m_ready_all = readySDT;
 	
@@ -98,7 +96,10 @@ RESULT eDVBScan::nextChannel()
 	
 	if (m_flags & scanSearchBAT)
 		m_ready_all |= readyBAT;
-	
+
+	if (m_usePAT)
+		m_ready_all |= readyPAT;
+
 	if (m_ch_toScan.empty())
 	{
 		SCAN_eDebug("no channels left to scan.");
@@ -144,38 +145,62 @@ RESULT eDVBScan::nextChannel()
 
 RESULT eDVBScan::startFilter()
 {
+	bool startSDT=true;
 	assert(m_demux);
-	
-			/* only start required filters filter */
-	
-	m_SDT = 0;
 
-	if (m_ready_all & readySDT)
+			/* only start required filters filter */
+
+	if (m_ready_all & readyPAT)
+		startSDT = m_ready & readyPAT;
+
+	m_SDT = 0;
+	if (startSDT && (m_ready_all & readySDT))
 	{
 		m_SDT = new eTable<ServiceDescriptionSection>();
-		if (m_SDT->start(m_demux, eDVBSDTSpec()))
+		if (m_ready & readyPAT)
+		{
+			std::vector<ProgramAssociationSection*>::const_iterator i =
+				m_PAT->getSections().begin();
+			assert(i != m_PAT->getSections().end());
+			int tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
+			if (m_SDT->start(m_demux, eDVBSDTSpec(tsid, true)))
+				return -1;
+		}
+		else if (m_SDT->start(m_demux, eDVBSDTSpec()))
 			return -1;
 		CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
 	}
 
-	m_NIT = 0;
-	if (m_ready_all & readyNIT)
+	if (!(m_ready & readyPAT))
 	{
-		m_NIT = new eTable<NetworkInformationSection>();
-		if (m_NIT->start(m_demux, eDVBNITSpec()))
-			return -1;
-		CONNECT(m_NIT->tableReady, eDVBScan::NITready);
+		m_PAT = 0;
+		if (m_ready_all & readyPAT)
+		{
+			m_PAT = new eTable<ProgramAssociationSection>();
+			if (m_PAT->start(m_demux, eDVBPATSpec()))
+				return -1;
+			CONNECT(m_PAT->tableReady, eDVBScan::PATready);
+		}
+
+		m_NIT = 0;
+		if (m_ready_all & readyNIT)
+		{
+			m_NIT = new eTable<NetworkInformationSection>();
+			if (m_NIT->start(m_demux, eDVBNITSpec()))
+				return -1;
+			CONNECT(m_NIT->tableReady, eDVBScan::NITready);
+		}
+
+		m_BAT = 0;
+		if (m_ready_all & readyBAT)
+		{
+			m_BAT = new eTable<BouquetAssociationSection>();
+			if (m_BAT->start(m_demux, eDVBBATSpec()))
+				return -1;
+			CONNECT(m_BAT->tableReady, eDVBScan::BATready);
+		}
 	}
 
-	m_BAT = 0;
-	if (m_ready_all & readyBAT)
-	{
-		m_BAT = new eTable<BouquetAssociationSection>();
-		if (m_BAT->start(m_demux, eDVBBATSpec()))
-			return -1;
-		CONNECT(m_BAT->tableReady, eDVBScan::BATready);
-	}
-	
 	return 0;
 }
 
@@ -204,6 +229,15 @@ void eDVBScan::BATready(int err)
 	if (!err)
 		m_ready |= validBAT;
 	channelDone();
+}
+
+void eDVBScan::PATready(int err)
+{
+	SCAN_eDebug("got pat");
+	m_ready |= readyPAT;
+	if (!err)
+		m_ready |= validPAT;
+	startFilter(); // for starting the SDT filter
 }
 
 void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
@@ -548,10 +582,9 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	SCAN_eDebug("ONID: %04x", sdt.getOriginalNetworkId());
 	eDVBChannelID chid(dvbnamespace, sdt.getTransportStreamId(), sdt.getOriginalNetworkId());
 	
-		/* save correct CHID for this channel if this is an ACTUAL_SDT */
-	if (sdt.getTableId() == TID_SDT_ACTUAL)
-		m_chid_current = chid;
-	
+	/* save correct CHID for this channel */
+	m_chid_current = chid;
+
 	for (ServiceDescriptionConstIterator s(services.begin()); s != services.end(); ++s)
 	{
 		SCAN_eDebugNoNewLine("SID %04x: ", (*s)->getServiceId());
