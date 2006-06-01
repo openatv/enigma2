@@ -43,6 +43,23 @@ public:
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
 	}
+	eDVBSDTSpec(int tsid, bool other=false)
+	{
+		m_spec.pid     = ServiceDescriptionSection::PID;
+		m_spec.tid     = ServiceDescriptionSection::TID;
+		m_spec.tidext  = tsid;
+		m_spec.timeout = 20000; // ServiceDescriptionSection::TIMEOUT;
+		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
+			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
+			eDVBTableSpec::tfHaveTIDExt | eDVBTableSpec::tfHaveTimeout;
+		if (other)
+		{
+			// SDT other transport stream have TID 0x46 (current is 0x42)
+			// so we mask out the third bit in table id mask..
+			m_spec.flags |= eDVBTableSpec::tfHaveTIDMask;
+			m_spec.tid_mask = 0xFB;
+		}
+	}
 	operator eDVBTableSpec &()
 	{
 		return m_spec;
