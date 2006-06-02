@@ -685,89 +685,92 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 
 	int buffer_stride=surface->stride;
 	
-	for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
+	for (unsigned int c = 0; c < clip.rects.size(); ++c)
 	{
-		if (!(i->flags & GS_INVERT))
+		for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 		{
-			lookup8 = lookup8_normal;
-			lookup32 = lookup32_normal;
-		} else
-		{
-			lookup8 = lookup8_invert;
-			lookup32 = lookup32_invert;
-		}
-		
-		static FTC_SBit glyph_bitmap;
-		if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
-			continue;
-		int rx=i->x+glyph_bitmap->left + offset.x();
-		int ry=i->y-glyph_bitmap->top  + offset.y();
-		
-		__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
-		__u8 *s=glyph_bitmap->buffer;
-		register int sx=glyph_bitmap->width;
-		int sy=glyph_bitmap->height;
-		if ((sy+ry) >= clip.extends.bottom())
-			sy=clip.extends.bottom()-ry;
-		if ((sx+rx) >= clip.extends.right())
-			sx=clip.extends.right()-rx;
-		if (rx < clip.extends.left())
-		{
-			int diff=clip.extends.left()-rx;
-			s+=diff;
-			sx-=diff;
-			rx+=diff;
-			d+=diff*surface->bypp;
-		}
-		if (ry < clip.extends.top())
-		{
-			int diff=clip.extends.top()-ry;
-			s+=diff*glyph_bitmap->pitch;
-			sy-=diff;
-			ry+=diff;
-			d+=diff*buffer_stride;
-		}
-		if (sx>0)
-			for (int ay=0; ay<sy; ay++)
+			if (!(i->flags & GS_INVERT))
 			{
-				if (!opcode)		// 4bit lookup to 8bit
-				{
-					register __u8 *td=d;
-					register int ax;
-					
-					for (ax=0; ax<sx; ax++)
-					{	
-						register int b=(*s++)>>4;
-						if(b)
-							*td++=lookup8[b];
-						else
-							td++;
-					}
-				} else if (opcode == 1)	// 8bit direct
-				{
-					register __u8 *td=d;
-					register int ax;
-					for (ax=0; ax<sx; ax++)
-					{	
-						register int b=*s++;
-						*td++^=b;
-					}
-				} else
-				{
-					register __u32 *td=(__u32*)d;
-					register int ax;
-					for (ax=0; ax<sx; ax++)
-					{	
-						register int b=(*s++)>>4;
-						if(b)
-							*td++=lookup32[b];
-						else
-							td++;
-					}
-				}
-				s+=glyph_bitmap->pitch-sx;
-				d+=buffer_stride;
+				lookup8 = lookup8_normal;
+				lookup32 = lookup32_normal;
+			} else
+			{
+				lookup8 = lookup8_invert;
+				lookup32 = lookup32_invert;
 			}
+		
+			static FTC_SBit glyph_bitmap;
+			if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
+				continue;
+			int rx=i->x+glyph_bitmap->left + offset.x();
+			int ry=i->y-glyph_bitmap->top  + offset.y();
+		
+			__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
+			__u8 *s=glyph_bitmap->buffer;
+			register int sx=glyph_bitmap->width;
+			int sy=glyph_bitmap->height;
+			if ((sy+ry) >= clip.rects[c].bottom())
+				sy=clip.rects[c].bottom()-ry;
+			if ((sx+rx) >= clip.rects[c].right())
+				sx=clip.rects[c].right()-rx;
+			if (rx < clip.rects[c].left())
+			{
+				int diff=clip.rects[c].left()-rx;
+				s+=diff;
+				sx-=diff;
+				rx+=diff;
+				d+=diff*surface->bypp;
+			}
+			if (ry < clip.rects[c].top())
+			{
+				int diff=clip.rects[c].top()-ry;
+				s+=diff*glyph_bitmap->pitch;
+				sy-=diff;
+				ry+=diff;
+				d+=diff*buffer_stride;
+			}
+			if (sx>0)
+				for (int ay=0; ay<sy; ay++)
+				{
+					if (!opcode)		// 4bit lookup to 8bit
+					{
+						register __u8 *td=d;
+						register int ax;
+						
+						for (ax=0; ax<sx; ax++)
+						{	
+							register int b=(*s++)>>4;
+							if(b)
+								*td++=lookup8[b];
+							else
+								td++;
+						}
+					} else if (opcode == 1)	// 8bit direct
+					{
+						register __u8 *td=d;
+						register int ax;
+						for (ax=0; ax<sx; ax++)
+						{	
+							register int b=*s++;
+							*td++^=b;
+						}
+					} else
+					{
+						register __u32 *td=(__u32*)d;
+						register int ax;
+						for (ax=0; ax<sx; ax++)
+						{	
+							register int b=(*s++)>>4;
+							if(b)
+								*td++=lookup32[b];
+							else
+								td++;
+						}
+					}
+					s+=glyph_bitmap->pitch-sx;
+					d+=buffer_stride;
+				}
+		}
 	}
 }
 
