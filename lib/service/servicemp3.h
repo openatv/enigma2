@@ -63,7 +63,8 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-	RESULT cueSheet(ePtr<iCueSheet>& ptr) { ptr = 0; return -1; }
+	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = 0; return -1; }
 	
 		// iPausableService
 	RESULT pause();
@@ -93,13 +94,15 @@ private:
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_pipeline, *m_gst_audio;
+	GstElement *m_gst_pipeline, *m_gst_audio, *m_gst_videoqueue, *m_gst_audioqueue;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 	
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
-	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data);
+	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
+	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
+	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
 	void gstPoll(const int&);
 };
 #endif
