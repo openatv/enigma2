@@ -30,6 +30,7 @@ from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
 from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
+from Screens.SubtitleDisplay import SubtitleDisplay
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -1600,3 +1601,40 @@ class InfoBarTeletextPlugin:
 
 	def startTeletext(self):
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
+
+class InfoBarSubtitleSupport(object):
+	def __init__(self):
+		object.__init__(self)
+		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+		self.__subtitles_enabled = False
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__serviceStarted,
+			})
+
+	def __serviceStarted(self):
+		# reenable if it was enabled
+		r = self.__subtitles_enabled
+		self.__subtitles_enabled = False
+		self.setSubtitlesEnable(r)
+
+	def getCurrentServiceSubtitle(self):
+		service = self.session.nav.getCurrentService()
+		return service and service.subtitle()
+	
+	def setSubtitlesEnable(self, enable=True):
+		subtitle = self.getCurrentServiceSubtitle()
+		if enable:
+			if subtitle and not self.__subtitles_enabled:
+				subtitle.enableSubtitles(self.subtitle_window.instance, 0)
+				self.subtitle_window.show()
+				self.__subtitles_enabled = True
+		else:
+			if subtitle:
+				subtitle.disableSubtitles(self.subtitle_window.instance)
+
+			self.subtitle_window.hide()
+			self.__subtitles_enabled = False
+		
+	subtitlesEnabled = property(lambda self: self.__subtitlesEnabled, setSubtitlesEnable)
