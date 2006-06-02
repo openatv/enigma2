@@ -436,6 +436,19 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
 
+class eWidget;
+class PyList;
+
+class iSubtitleOutput: public iObject
+{
+public:
+	virtual RESULT enableSubtitles(eWidget *parent, int index)=0;
+	virtual RESULT disableSubtitles(eWidget *parent)=0;
+	virtual SWIG_VOID(RESULT) getSubtitleList(PyList *list)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);
+
 class iPlayableService: public iObject
 {
 #ifdef SWIG
@@ -479,6 +492,7 @@ public:
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
