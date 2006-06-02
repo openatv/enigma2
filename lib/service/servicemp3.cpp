@@ -106,9 +106,24 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 {
 	m_stream_tags = 0;
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
-	GstElement *source, *decoder, *conv, *flt, *sink;
+	GstElement *source = 0;
+	
+	GstElement *decoder = 0, *conv = 0, *flt = 0, *sink = 0; /* for audio */
+	
+	GstElement *audio = 0, *queue_audio = 0, *video = 0, *queue_video = 0, *mpegdemux = 0;
+	
 	m_state = stIdle;
 	eDebug("SERVICEMP3 construct!");
+	
+	
+		/* FIXME: currently, decodebin isn't possible for 
+		   video streams. in that case, make a manual pipeline. */
+
+	int is_video = !!strstr(filename, "mpg"); /* fixme */
+	
+	int use_decodebin = !is_video;
+	
+	int all_ok = 0;
 
 	m_gst_pipeline = gst_pipeline_new ("audio-player");
 	if (!m_gst_pipeline)
@@ -117,54 +132,93 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	source = gst_element_factory_make ("filesrc", "file-source");
 	if (!source)
 		eWarning("failed to create filesrc");
-		
-	decoder = gst_element_factory_make ("decodebin", "decoder");
-	if (!decoder)
-		eWarning("failed to create decodebin decoder");
 	
-	conv = gst_element_factory_make ("audioconvert", "converter");
-	if (!conv)
-		eWarning("failed to create audioconvert");
-	
-	flt = gst_element_factory_make ("capsfilter", "flt");
-	if (!flt)
-		eWarning("failed to create capsfilter");
-	
-		/* workaround for [3des]' driver bugs: */
-	if (flt)
+	if (use_decodebin)
 	{
-		GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", "endianness", G_TYPE_INT, 4321, 0);
-		g_object_set (G_OBJECT (flt), "caps", caps, 0);
-		gst_caps_unref(caps);
+			/* filesrc -> decodebin -> audioconvert -> capsfilter -> alsasink */
+		
+		decoder = gst_element_factory_make ("decodebin", "decoder");
+		if (!decoder)
+			eWarning("failed to create decodebin decoder");
+	
+		conv = gst_element_factory_make ("audioconvert", "converter");
+		if (!conv)
+			eWarning("failed to create audioconvert");
+	
+		flt = gst_element_factory_make ("capsfilter", "flt");
+		if (!flt)
+			eWarning("failed to create capsfilter");
+	
+			/* workaround for [3des]' driver bugs: */
+		if (flt)
+		{
+			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", "endianness", G_TYPE_INT, 4321, (char*)0);
+			g_object_set (G_OBJECT (flt), "caps", caps, (char*)0);
+			gst_caps_unref(caps);
+		}
+	
+		sink = gst_element_factory_make ("alsasink", "alsa-output");
+		if (!sink)
+			eWarning("failed to create osssink");
+		
+		if (source && decoder && conv && sink)
+			all_ok = 1;
+	} else /* is_video */
+	{
+			/* filesrc -> mpegdemux -> | queue_audio -> dvbaudiosink
+			                           | queue_video -> dvbvideosink */
+
+		audio = gst_element_factory_make("dvbaudiosink", "audio");
+		queue_audio = gst_element_factory_make("queue", "queue_audio");
+		
+		video = gst_element_factory_make("dvbvideosink", "video");
+		queue_video = gst_element_factory_make("queue", "queue_video");
+		
+		mpegdemux = gst_element_factory_make("mpegdemux", "mpegdemux");
+		
+		eDebug("audio: %p, queue_audio %p, video %p, queue_video %p, mpegdemux %p", audio, queue_audio, video, queue_video, mpegdemux);
+		if (audio && queue_audio && video && queue_video && mpegdemux)
+			all_ok = 1;
 	}
 	
-	sink = gst_element_factory_make ("alsasink", "alsa-output");
-	if (!sink)
-		eWarning("failed to create osssink");
-	
-	if (m_gst_pipeline && source && decoder && conv && sink)
+	if (m_gst_pipeline && all_ok)
 	{
 		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline)), gstBusSyncHandler, this);
 
+				/* configure source */
 		g_object_set (G_OBJECT (source), "location", filename, NULL);
-		g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
+		
+		if (use_decodebin)
+		{
+			g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
+			g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
 
-			/* gst_bin will take the 'floating references' */
-		gst_bin_add_many (GST_BIN (m_gst_pipeline),
-					source, decoder, NULL);
-		
-		gst_element_link(source, decoder);
-		
+				/* gst_bin will take the 'floating references' */
+			gst_bin_add_many (GST_BIN (m_gst_pipeline),
+						source, decoder, NULL);
+			gst_element_link(source, decoder);
+
 			/* create audio bin */
-		m_gst_audio = gst_bin_new ("audiobin");
-		GstPad *audiopad = gst_element_get_pad (conv, "sink");
+			m_gst_audio = gst_bin_new ("audiobin");
+			GstPad *audiopad = gst_element_get_pad (conv, "sink");
 		
-		gst_bin_add_many(GST_BIN(m_gst_audio), conv, flt, sink, 0);
-		gst_element_link_many(conv, flt, sink, 0);
-		gst_element_add_pad(m_gst_audio, gst_ghost_pad_new ("sink", audiopad));
-		gst_object_unref(audiopad);
-		
-		gst_bin_add (GST_BIN(m_gst_pipeline), m_gst_audio);
+			gst_bin_add_many(GST_BIN(m_gst_audio), conv, flt, sink, (char*)0);
+			gst_element_link_many(conv, flt, sink, (char*)0);
+			gst_element_add_pad(m_gst_audio, gst_ghost_pad_new ("sink", audiopad));
+			gst_object_unref(audiopad);
+			gst_bin_add (GST_BIN(m_gst_pipeline), m_gst_audio);
+		} else
+		{
+			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, mpegdemux, audio, queue_audio, video, queue_video, mpegdemux, NULL);
+			gst_element_link(source, mpegdemux);
+			gst_element_link(queue_audio, audio);
+			gst_element_link(queue_video, video);
+			
+			m_gst_audioqueue = queue_audio;
+			m_gst_videoqueue = queue_video;
+			
+			g_signal_connect(mpegdemux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
+		}
 	} else
 	{
 		if (m_gst_pipeline)
@@ -177,7 +231,20 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			gst_object_unref(GST_OBJECT(conv));
 		if (sink)
 			gst_object_unref(GST_OBJECT(sink));
+
+		if (audio)
+			gst_object_unref(GST_OBJECT(audio));
+		if (queue_audio)
+			gst_object_unref(GST_OBJECT(queue_audio));
+		if (video)
+			gst_object_unref(GST_OBJECT(video));
+		if (queue_video)
+			gst_object_unref(GST_OBJECT(queue_video));
+		if (mpegdemux)
+			gst_object_unref(GST_OBJECT(mpegdemux));
+
 		eDebug("sorry, can't play.");
+		m_gst_pipeline = 0;
 	}
 	
 	gst_element_set_state (m_gst_pipeline, GST_STATE_PLAYING);
@@ -459,7 +526,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		g_free (debug);
 		eWarning("Gstreamer error: %s", err->message);
 		g_error_free(err);
-		exit(0);
+			/* TODO: signal error condition to user */
 		break;
 	}
 	case GST_MESSAGE_TAG:
@@ -490,6 +557,21 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	return GST_BUS_PASS;
 }
 
+void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	
+	gchar *name;
+	name = gst_pad_get_name (pad);
+	g_print ("A new pad %s was created\n", name);
+	if (!strcmp(name, "audio_00"))
+		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_audioqueue, "sink"));
+	if (!strcmp(name, "video_00"))
+		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_videoqueue, "sink"));
+	g_free (name);
+	
+}
+  
 void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
@@ -500,14 +582,16 @@ void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last,
 	/* only link once */
 	audiopad = gst_element_get_pad (_this->m_gst_audio, "sink");
 	if (GST_PAD_IS_LINKED (audiopad)) {
+		eDebug("audio already linked!");
 		g_object_unref (audiopad);
 		return;
 	}
-	
-	
+
 	/* check media type */
 	caps = gst_pad_get_caps (pad);
 	str = gst_caps_get_structure (caps, 0);
+	eDebug("gst new pad! %s", gst_structure_get_name (str));
+	
 	if (!g_strrstr (gst_structure_get_name (str), "audio")) {
 		gst_caps_unref (caps);
 		gst_object_unref (audiopad);
@@ -518,6 +602,17 @@ void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last,
 	gst_pad_link (pad, audiopad);
 }
 
+void eServiceMP3::gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *caps, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	GstStructure *str;
+	
+	/* check media type */
+	caps = gst_pad_get_caps (pad);
+	str = gst_caps_get_structure (caps, 0);
+	eDebug("unknown type: %s - this can't be decoded.", gst_structure_get_name (str));
+	gst_caps_unref (caps);
+}
 
 void eServiceMP3::gstPoll(const int&)
 {
@@ -531,7 +626,7 @@ void eServiceMP3::gstPoll(const int&)
 	
 	GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline));
 	GstMessage *message;
-	while (message = gst_bus_pop (bus))
+	while ((message = gst_bus_pop (bus)))
 	{
 		gstBusCall(bus, message);
 		gst_message_unref (message);
