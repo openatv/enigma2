@@ -34,6 +34,7 @@ public:
 	int start(int pid);
 	void setPage(int page);
 	
+	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
 private:
 	void processPESPacket(__u8 *pkt, int len);
 	
@@ -56,6 +57,8 @@ private:
 	void addSubtitleString(int color, const std::string &string);
 	
 	void sendSubtitlePage();
+	
+	Signal1<void,const eDVBTeletextSubtitlePage&> m_new_subtitle_page;
 };
 
 #endif
