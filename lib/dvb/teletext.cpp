@@ -166,8 +166,11 @@ int eDVBTeletextParser::start(int pid)
 
 void eDVBTeletextParser::handlePageStart()
 {
-	if (m_C & (1<<4)) /* erase flag set */
-		m_subtitle_page.clear();
+//	if (m_C & (1<<4)) /* erase flag set */
+
+		/* we are always erasing the page, 
+		   even when the erase flag is not set. */
+	m_subtitle_page.clear();
 }
 
 void eDVBTeletextParser::handleLine(unsigned char *data, int len)
@@ -221,11 +224,17 @@ void eDVBTeletextParser::setPage(int page)
 	m_page_X = page & 0xFF;     /* page number */
 }
 
+void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubtitlePage&> &slot, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
+}
+
 void eDVBTeletextParser::addSubtitleString(int color, const std::string &string)
 {
+	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
 	if ((color != m_subtitle_color) && !m_subtitle_text.empty())
 	{
-		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(gRGB(0, 0xff, 0), m_subtitle_text));
+		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, m_subtitle_text));
 		m_subtitle_text = "";
 	} else if (!m_subtitle_text.empty() && m_subtitle_text[m_subtitle_text.size()-1] != ' ')
 		m_subtitle_text += " ";
@@ -239,4 +248,5 @@ void eDVBTeletextParser::sendSubtitlePage()
 	eDebug("subtitle page:");
 	for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
 		eDebug("%s", m_subtitle_page.m_elements[i].m_text.c_str());
+	m_new_subtitle_page(m_subtitle_page);
 }
