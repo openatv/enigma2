@@ -17,12 +17,17 @@
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
 
+		/* for subtitles */
+#include <lib/gui/esubtitle.h>
+
 #include <sys/vfs.h>
 
 #include <byteswap.h>
 #include <netinet/in.h>
 
 #include <dvbsi++/event_information_section.h>
+
+// #define INTERNAL_TELETEXT
 
 #ifndef BYTE_ORDER
 #error no byte order defined!
@@ -639,10 +644,13 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 
 	m_cuesheet_changed = 0;
 	m_cutlist_enabled = 1;
+	
+	m_subtitle_widget = 0;
 }
 
 eDVBServicePlay::~eDVBServicePlay()
 {
+	delete m_subtitle_widget;
 }
 
 void eDVBServicePlay::gotNewEvent()
@@ -1053,6 +1061,12 @@ RESULT eDVBServicePlay::cueSheet(ePtr<iCueSheet> &ptr)
 	return -1;
 }
 
+RESULT eDVBServicePlay::subtitle(ePtr<iSubtitleOutput> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_is_pvr)
@@ -1277,6 +1291,7 @@ RESULT eDVBServicePlay::selectChannel(int i)
 		if (m_decoder)
 			m_decoder->setAudioChannel(i);
 	}
+	return 0;
 }
 
 int eDVBServiceBase::getFrontendInfo(int w)
@@ -1655,6 +1670,7 @@ void eDVBServicePlay::updateDecoder()
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
 #ifdef INTERNAL_TELETEXT
 		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
+		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 #endif
 	}
 
@@ -1825,6 +1841,36 @@ void eDVBServicePlay::cutlistToCuesheet()
 			break;
 	}
 	m_cue->commitSpans();
+}
+
+RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, int index)
+{
+	if (m_subtitle_widget)
+		disableSubtitles(parent);
+	
+	m_subtitle_widget = new eSubtitleWidget(parent);
+	m_subtitle_widget->resize(parent->size()); /* full size */
+
+	return 0;
+}
+
+RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
+{
+	delete m_subtitle_widget;
+	m_subtitle_widget = 0;
+	return 0;
+}
+
+RESULT eDVBServicePlay::getSubtitleList(PyList *list)
+{
+	return -1;
+}
+
+void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
+{
+	eDebug("new subtitle page received!");
+	if (m_subtitle_widget)
+		m_subtitle_widget->addPage(page);
 }
 
 DEFINE_REF(eDVBServicePlay)

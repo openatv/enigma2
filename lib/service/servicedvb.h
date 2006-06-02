@@ -66,12 +66,14 @@ public:
 	PyObject *getFrontendData(bool);
 };
 
+class eSubtitleWidget; 
+
 class eDVBServicePlay: public eDVBServiceBase,
 		public iPlayableService, public iPauseableService, 
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
-		public iCueSheet
+		public iCueSheet, public iSubtitleOutput
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -92,6 +94,7 @@ public:
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
+	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 
 		// iPauseableService
 	RESULT pause();
@@ -138,6 +141,11 @@ public:
 	void setCutList(PyObject *);
 	void setCutListEnable(int enable);
 	
+		// iSubtitleOutput
+	RESULT enableSubtitles(eWidget *parent, int index);
+	RESULT disableSubtitles(eWidget *parent);
+	SWIG_VOID(RESULT) getSubtitleList(PyList *list);
+
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
@@ -212,7 +220,11 @@ private:
 	void cutlistToCuesheet();
 	
 		/* teletext subtitles */
+	void newSubtitlePage(const eDVBTeletextSubtitlePage &p);
+	ePtr<eConnection> m_new_subtitle_page_connection;
+	
 	ePtr<eDVBTeletextParser> m_teletext_parser;
+	eSubtitleWidget *m_subtitle_widget;
 };
 
 #endif
