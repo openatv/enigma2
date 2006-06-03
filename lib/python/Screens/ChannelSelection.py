@@ -895,9 +895,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		nref = self.getCurrentSelection()
 		if ref is None or ref != nref:
 			self.session.nav.playService(nref)
-		self.saveRoot()
-		self.saveChannel()
-		self.addToHistory(nref)
+			self.saveRoot()
+			self.saveChannel()
+			self.addToHistory(nref)
 
 	def addToHistory(self, ref):
 		if self.servicePath is not None:
