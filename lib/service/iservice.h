@@ -442,9 +442,9 @@ class PyList;
 class iSubtitleOutput: public iObject
 {
 public:
-	virtual RESULT enableSubtitles(eWidget *parent, int index)=0;
+	virtual RESULT enableSubtitles(eWidget *parent, PyObject *entry)=0;
 	virtual RESULT disableSubtitles(eWidget *parent)=0;
-	virtual SWIG_VOID(RESULT) getSubtitleList(PyList *list)=0;
+	virtual PyObject *getSubtitleList()=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);
