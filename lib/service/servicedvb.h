@@ -142,9 +142,9 @@ public:
 	void setCutListEnable(int enable);
 	
 		// iSubtitleOutput
-	RESULT enableSubtitles(eWidget *parent, int index);
+	RESULT enableSubtitles(eWidget *parent, PyObject *entry);
 	RESULT disableSubtitles(eWidget *parent);
-	SWIG_VOID(RESULT) getSubtitleList(PyList *list);
+	PyObject *getSubtitleList();
 
 private:
 	friend class eServiceFactoryDVB;

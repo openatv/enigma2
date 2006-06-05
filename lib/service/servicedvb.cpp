@@ -1843,7 +1843,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	m_cue->commitSpans();
 }
 
-RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, int index)
+RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
 {
 	if (m_subtitle_widget)
 		disableSubtitles(parent);
@@ -1861,9 +1861,27 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 	return 0;
 }
 
-RESULT eDVBServicePlay::getSubtitleList(PyList *list)
+PyObject *eDVBServicePlay::getSubtitleList()
 {
-	return -1;
+	if (!m_teletext_parser)
+	{
+		Py_INCREF(Py_None);
+		return Py_None;
+	}
+	
+	PyObject *l = PyList_New(0);
+	
+	for (std::set<int>::iterator i(m_teletext_parser->m_found_subtitle_pages.begin()); i != m_teletext_parser->m_found_subtitle_pages.end(); ++i)
+	{
+		PyObject *tuple = PyTuple_New(2);
+		char desc[20];
+		sprintf(desc, "Page %x", *i);
+		PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
+		PyTuple_SetItem(tuple, 1, PyInt_FromLong(*i));
+		PyList_Append(l, tuple);
+	}
+	
+	return l;
 }
 
 void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
