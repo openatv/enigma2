@@ -157,7 +157,7 @@ RESULT eDVBScan::startFilter()
 	if (startSDT && (m_ready_all & readySDT))
 	{
 		m_SDT = new eTable<ServiceDescriptionSection>();
-		if (m_ready & readyPAT)
+		if (m_ready & readyPAT && m_ready & validPAT)
 		{
 			std::vector<ProgramAssociationSection*>::const_iterator i =
 				m_PAT->getSections().begin();
