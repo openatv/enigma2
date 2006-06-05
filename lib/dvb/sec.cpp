@@ -774,9 +774,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			else
 				csw = band;
 
-			frontend.setData(eDVBFrontend::NEW_CSW, csw);
-			frontend.setData(eDVBFrontend::NEW_UCSW, ucsw);
-			frontend.setData(eDVBFrontend::NEW_TONEBURST, di_param.m_toneburst_param);
+			frontend.setData(eDVBFrontend::CSW, csw);
+			frontend.setData(eDVBFrontend::UCSW, ucsw);
+			frontend.setData(eDVBFrontend::TONEBURST, di_param.m_toneburst_param);
 
 			if (!linked && doSetVoltageToneFrontend)
 			{

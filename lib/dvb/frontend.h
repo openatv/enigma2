@@ -58,9 +58,6 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	eSecCommandList m_sec_sequence;
 
 	enum {
-		NEW_CSW,              // new committed switch cmd
-		NEW_UCSW,             // new uncommitted switch cmd
-		NEW_TONEBURST,        // new toneburst switch cmd
 		CSW,                  // state of the committed switch
 		UCSW,                 // state of the uncommitted switch
 		TONEBURST,            // current state of toneburst switch
