@@ -1022,6 +1022,7 @@ class InfoBarExtensions:
 	PIPOFF = 1
 	MOVEPIP = 2
 	PIPSWAP = 3
+	ENABLE_SUBTITLE = 4
 
 	def extensions(self):
 		list = []
@@ -1031,6 +1032,12 @@ class InfoBarExtensions:
 			list.append((_("Disable Picture in Picture"), self.PIPOFF))
 			list.append((_("Move Picture in Picture"), self.MOVEPIP))
 			list.append((_("Swap services"), self.PIPSWAP))
+		
+		s = self.getCurrentServiceSubtitle()
+		
+		for x in s.getSubtitleList():
+			list.append(("DEBUG: Enable Subtitles: " + x[0], self.ENABLE_SUBTITLE, x))
+		
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
 	def extensionCallback(self, answer):
@@ -1056,6 +1063,9 @@ class InfoBarExtensions:
 				
 			elif answer[1] == self.MOVEPIP:
 				self.session.open(PiPSetup, pip = self.pip)
+			elif answer[1] == self.ENABLE_SUBTITLE:
+				self.selected_subtitle = answer[2]
+				self.subtitles_enabled = True
 
 from RecordTimer import parseEvent
 
@@ -1617,6 +1627,7 @@ class InfoBarSubtitleSupport(object):
 		# reenable if it was enabled
 		r = self.__subtitles_enabled
 		self.__subtitles_enabled = False
+		self.__selected_subtitle = None
 		self.setSubtitlesEnable(r)
 
 	def getCurrentServiceSubtitle(self):
@@ -1625,9 +1636,9 @@ class InfoBarSubtitleSupport(object):
 	
 	def setSubtitlesEnable(self, enable=True):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable:
+		if enable and self.__selected_subtitle:
 			if subtitle and not self.__subtitles_enabled:
-				subtitle.enableSubtitles(self.subtitle_window.instance, 0)
+				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 				self.subtitle_window.show()
 				self.__subtitles_enabled = True
 		else:
@@ -1636,5 +1647,14 @@ class InfoBarSubtitleSupport(object):
 
 			self.subtitle_window.hide()
 			self.__subtitles_enabled = False
-		
-	subtitlesEnabled = property(lambda self: self.__subtitlesEnabled, setSubtitlesEnable)
+
+	def setSelectedSubtitle(self, subtitle):
+		if self.__selected_subtitle != subtitle and self.subtitles_enabled:
+			subtitle = self.getCurrentServiceSubtitle()
+			
+			# kick
+			self.__serviceStarted()
+		self.__selected_subtitle = subtitle
+
+	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
+	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
