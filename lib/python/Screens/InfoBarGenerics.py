@@ -1034,8 +1034,9 @@ class InfoBarExtensions:
 			list.append((_("Swap services"), self.PIPSWAP))
 		
 		s = self.getCurrentServiceSubtitle()
+		l = s and s.getSubtitleList() or [ ]
 		
-		for x in s.getSubtitleList():
+		for x in l:
 			list.append(("DEBUG: Enable Subtitles: " + x[0], self.ENABLE_SUBTITLE, x))
 		
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
@@ -1638,7 +1639,7 @@ class InfoBarSubtitleSupport(object):
 		subtitle = self.getCurrentServiceSubtitle()
 		if enable and self.__selected_subtitle:
 			if subtitle and not self.__subtitles_enabled:
-				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle[1])
 				self.subtitle_window.show()
 				self.__subtitles_enabled = True
 		else:
