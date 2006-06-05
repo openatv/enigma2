@@ -1848,8 +1848,18 @@ RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
 	if (m_subtitle_widget)
 		disableSubtitles(parent);
 	
+	if (!m_teletext_parser)
+		return -1;
+	
+	if (!PyInt_Check(entry))
+		return -1;
+	
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
+	
+	int page = PyInt_AsLong(entry);
+	
+	m_teletext_parser->setPage(page);
 
 	return 0;
 }
