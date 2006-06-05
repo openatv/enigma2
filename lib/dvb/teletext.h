@@ -35,6 +35,8 @@ public:
 	void setPage(int page);
 	
 	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
+	
+	std::set<int> m_found_subtitle_pages;
 private:
 	void processPESPacket(__u8 *pkt, int len);
 	
