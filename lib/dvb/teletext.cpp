@@ -107,7 +107,8 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		
 		m_M = magazine_and_packet_address & 7;
 		m_Y = magazine_and_packet_address >> 3;
-//		eDebug("line %d, framing code: %02x, M=%02x, Y=%02x", line_offset, framing_code, M, Y);
+
+//			eDebug("line %d, framing code: %02x, M=%02x, Y=%02x", line_offset, framing_code, m_M, m_Y);
 		
 		if (m_Y == 0) /* page header */
 		{
@@ -129,14 +130,19 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			m_C |= decode_hamming_84(data + 6) << 7;
 			m_C |= decode_hamming_84(data + 7) << 11;
 			
+			int serial_mode = m_C & (1<<11);
+			
 				/* page on the same magazine? end current page. */
-			if ((m_M == m_page_M) && (m_page_open))
+			if ((serial_mode || (m_M == m_page_M)) && (m_page_open))
 			{
 				handlePageEnd();
 				m_page_open = 0;
 			}
 			
 			m_X = decode_hamming_84(data+1) * 0x10 + decode_hamming_84(data);
+			
+			if (m_C & (1<<6))
+				m_found_subtitle_pages.insert((m_M << 8) | m_X);
 			
 				/* correct page on correct magazine? open page. */
 			if ((m_M == m_page_M) && (m_X == m_page_X))
@@ -178,10 +184,11 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 	if (!m_Y) /* first line is page header, we don't need that. */
 		return;
 
-	int last_was_white = 1, color = -1;
+	int last_was_white = 1, color = 7; /* start with whitespace. start with color=white. (that's unrelated.) */
 	
 	std::string text;
 	
+//	eDebug("handle subtitle line: %d len", len);
 	for (int i=0; i<len; ++i)
 	{
 		unsigned char b = decode_odd_parity(data + i);
@@ -192,8 +199,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 			{
 				if (b != color) /* new color is split into a new string */
 				{
-					if (color != -1)
-						addSubtitleString(color, text);
+					addSubtitleString(color, text);
 					text = "";
 					color = b;
 				}
@@ -201,6 +207,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 				/* ignore other attributes */
 		} else
 		{
+			eDebugNoNewLine("%c", b);
 				/* no more than one whitespace, only printable chars */
 			if (((!last_was_white) || (b != ' ')) && (b >= 0x20))
 			{
@@ -209,11 +216,13 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 			}
 		}
 	}
+	eDebug("");
 	addSubtitleString(color, text);
 }
 
 void eDVBTeletextParser::handlePageEnd()
 {
+	eDebug("handle page end");
 	addSubtitleString(-1, ""); /* end last line */ 
 	sendSubtitlePage();  /* send assembled subtitle page to display */
 }
@@ -231,6 +240,7 @@ void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubt
 
 void eDVBTeletextParser::addSubtitleString(int color, const std::string &string)
 {
+//	eDebug("add subtitle string: %s, col %d", string.c_str(), color);
 	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
 	if ((color != m_subtitle_color) && !m_subtitle_text.empty())
 	{
