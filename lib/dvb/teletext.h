@@ -19,6 +19,7 @@ struct eDVBTeletextSubtitlePageElement
 struct eDVBTeletextSubtitlePage
 {
 	pts_t m_pts;
+	int m_have_pts;
 	int m_timeout; /* in pts */
 	std::vector<eDVBTeletextSubtitlePageElement> m_elements;
 	
@@ -47,16 +48,16 @@ private:
 	
 	int m_M, m_Y, m_X, m_S1, m_S2, m_S3, m_S4, m_C;
 	
-	int m_page_M, m_page_X, m_page_open;
+	int m_page_M, m_page_X, m_page_open, m_double_height;
 	
 	void handlePageStart();
 	void handleLine(unsigned char *line, int len);
-	void handlePageEnd();
+	void handlePageEnd(int have_pts, const pts_t &pts);
 	
 	std::string m_subtitle_text;
 	int m_subtitle_color;
 	
-	void addSubtitleString(int color, const std::string &string);
+	void addSubtitleString(int color, std::string string);
 	
 	void sendSubtitlePage();
 	

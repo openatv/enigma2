@@ -45,11 +45,32 @@ static inline unsigned long decode_hamming_2418(unsigned char *b)
 		((h24 & 0x7f0000) >> 5);
 }
 
+static int extractPTS(pts_t &pts, unsigned char *pkt)
+{
+	pkt += 7;
+	int flags = *pkt++;
+	
+	pkt++; // header length
+	
+	if (flags & 0x80) /* PTS present? */
+	{
+			/* damn gcc bug */
+		pts  = ((unsigned long long)(((pkt[0] >> 1) & 7))) << 30;
+		pts |=   pkt[1] << 22;
+		pts |=  (pkt[2]>>1) << 15;
+		pts |=   pkt[3] << 7;
+		pts |=  (pkt[5]>>1);
+		
+		return 0;
+	} else
+		return -1;
+}
+
 eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux)
 {
 	setStreamID(0xBD); /* as per en 300 472 */
 	
-	setPage(0x150);
+	setPage(-1);
 	
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create PES reader!");
@@ -64,6 +85,9 @@ eDVBTeletextParser::~eDVBTeletextParser()
 void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 {
 	unsigned char *p = pkt;
+	
+	pts_t pts;
+	int have_pts = extractPTS(pts, pkt);
 	
 	p += 4; len -= 4; /* start code, already be verified by pes parser */
 	p += 2; len -= 2; /* length, better use the argument */	
@@ -135,13 +159,13 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				/* page on the same magazine? end current page. */
 			if ((serial_mode || (m_M == m_page_M)) && (m_page_open))
 			{
-				handlePageEnd();
+				handlePageEnd(have_pts, pts);
 				m_page_open = 0;
 			}
 			
 			m_X = decode_hamming_84(data+1) * 0x10 + decode_hamming_84(data);
 			
-			if (m_C & (1<<6))
+			if ((m_C & (1<<6)) && (m_X != 0xFF)) /* scan for pages with subtitle bit set */
 				m_found_subtitle_pages.insert((m_M << 8) | m_X);
 			
 				/* correct page on correct magazine? open page. */
@@ -181,8 +205,21 @@ void eDVBTeletextParser::handlePageStart()
 
 void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 {
+/* // hexdump
+	for (int i=0; i<len; ++i)
+		eDebugNoNewLine("%02x ", decode_odd_parity(data + i));
+	eDebug(""); */
 	if (!m_Y) /* first line is page header, we don't need that. */
+	{
+		m_double_height = -1;
 		return;
+	}
+		
+	if (m_double_height == m_Y)
+	{
+		m_double_height = -1;
+		return;
+	}
 
 	int last_was_white = 1, color = 7; /* start with whitespace. start with color=white. (that's unrelated.) */
 	
@@ -203,7 +240,11 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 					text = "";
 					color = b;
 				}
-			}
+			} else if (b == 0xd)
+			{
+				m_double_height = m_Y + 1;
+			} else if (b != 0xa && b != 0xb) /* box */
+				eDebug("[ignore %x]", b);
 				/* ignore other attributes */
 		} else
 		{
@@ -220,10 +261,14 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 	addSubtitleString(color, text);
 }
 
-void eDVBTeletextParser::handlePageEnd()
+void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 {
 	eDebug("handle page end");
-	addSubtitleString(-1, ""); /* end last line */ 
+	addSubtitleString(-2, ""); /* end last line */ 
+	
+	m_subtitle_page.m_have_pts = have_pts;
+	m_subtitle_page.m_pts = pts;
+	m_subtitle_page.m_timeout = 90000 * 20; /* 20s */
 	sendSubtitlePage();  /* send assembled subtitle page to display */
 }
 
@@ -238,19 +283,34 @@ void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubt
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }
 
-void eDVBTeletextParser::addSubtitleString(int color, const std::string &string)
+void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 {
 //	eDebug("add subtitle string: %s, col %d", string.c_str(), color);
-	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
-	if ((color != m_subtitle_color) && !m_subtitle_text.empty())
+
+	int force_cell = 0;
+	
+	if (string.substr(0, 2) == "- ")
 	{
+		string = string.substr(2);
+		force_cell = 1;
+	}
+
+//	eDebug("color %d, m_subtitle_color %d", color, m_subtitle_color);
+	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
+	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || !string.empty()))
+	{
+//		eDebug("add text |%s|: %d != %d || %d", m_subtitle_text.c_str(), color, m_subtitle_color, force_cell);
 		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, m_subtitle_text));
 		m_subtitle_text = "";
 	} else if (!m_subtitle_text.empty() && m_subtitle_text[m_subtitle_text.size()-1] != ' ')
 		m_subtitle_text += " ";
 	
-	m_subtitle_color = color;
-	m_subtitle_text += string;
+	if (!string.empty())
+	{
+//		eDebug("set %d as new color", color);
+		m_subtitle_color = color;
+		m_subtitle_text += string;
+	}
 }
 
 void eDVBTeletextParser::sendSubtitlePage()
