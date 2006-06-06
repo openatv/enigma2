@@ -11,15 +11,15 @@ class eSubtitleWidget: public eWidget
 public:
 	eSubtitleWidget(eWidget *parent);
 	
-	void addPage(const eDVBTeletextSubtitlePage &p);
-	void checkTiming();
-	void activatePage();
-
+	void setPage(const eDVBTeletextSubtitlePage &p);
+	void clearPage();
+	
 protected:
 	int event(int event, void *data=0, void *data2=0);
 
 private:
-	std::list<eDVBTeletextSubtitlePage> m_pages;
+	int m_page_ok;
+	eDVBTeletextSubtitlePage m_page;
 };
 
 #endif
