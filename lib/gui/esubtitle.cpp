@@ -13,23 +13,19 @@ eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 	: eWidget(parent)
 {
 	setBackgroundColor(gRGB(0,0,0,255));
+	m_page_ok = 0;
 }
 
-void eSubtitleWidget::addPage(const eDVBTeletextSubtitlePage &p)
+void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 {
-	eDebug("ADD Subtitle Page!!");
-	m_pages.clear();
-	m_pages.push_back(p);
-	checkTiming();
+	m_page = p;
+	m_page_ok = 1;
+	invalidate();
 }
 
-void eSubtitleWidget::checkTiming()
+void eSubtitleWidget::clearPage()
 {
-	activatePage();
-}
-
-void eSubtitleWidget::activatePage()
-{
+	m_page_ok = 0;
 	invalidate();
 }
 
@@ -48,21 +44,20 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		ePtr<gFont> font = new gFont("Regular", 30);
 		painter.setFont(font);
 		
-		std::list<eDVBTeletextSubtitlePage>::iterator pi = m_pages.begin();
-		if (pi == m_pages.end())
+		
+		if (!m_page_ok)
 			painter.renderText(eRect(ePoint(0, 0), size()), "waiting for subtitles...", gPainter::RT_WRAP);
 		else
 		{
-			const eDVBTeletextSubtitlePage &page = *pi;
-			int elements = page.m_elements.size();
+			int elements = m_page.m_elements.size();
 			int height = size().height();
 			int size_per_element = height / (elements ? elements : 1);
 			for (int i=0; i<elements; ++i)
 			{
 				painter.setForegroundColor(gRGB(0,0,0));
-				painter.renderText(eRect(2, size_per_element * i + 2, size().width(), size_per_element), page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
-				painter.setForegroundColor(page.m_elements[i].m_color);
-				painter.renderText(eRect(0, size_per_element * i, size().width(), size_per_element), page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(eRect(2, size_per_element * i + 2, size().width(), size_per_element), m_page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.setForegroundColor(m_page.m_elements[i].m_color);
+				painter.renderText(eRect(0, size_per_element * i, size().width(), size_per_element), m_page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
 		return 0;
