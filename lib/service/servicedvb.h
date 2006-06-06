@@ -225,6 +225,10 @@ private:
 	
 	ePtr<eDVBTeletextParser> m_teletext_parser;
 	eSubtitleWidget *m_subtitle_widget;
+	eTimer m_subtitle_sync_timer;
+	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
+	
+	void checkSubtitleTiming();
 };
 
 #endif

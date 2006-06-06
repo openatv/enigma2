@@ -27,7 +27,7 @@
 
 #include <dvbsi++/event_information_section.h>
 
-// #define INTERNAL_TELETEXT
+#define INTERNAL_TELETEXT
 
 #ifndef BYTE_ORDER
 #error no byte order defined!
@@ -646,6 +646,8 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_cutlist_enabled = 1;
 	
 	m_subtitle_widget = 0;
+	
+	CONNECT(m_subtitle_sync_timer.timeout, eDVBServicePlay::checkSubtitleTiming);
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -1896,9 +1898,50 @@ PyObject *eDVBServicePlay::getSubtitleList()
 
 void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 {
-	eDebug("new subtitle page received!");
 	if (m_subtitle_widget)
-		m_subtitle_widget->addPage(page);
+	{
+		m_subtitle_pages.push_back(page);
+		
+		checkSubtitleTiming();
+	}
+}
+
+void eDVBServicePlay::checkSubtitleTiming()
+{
+	while (1)
+	{
+		if (m_subtitle_pages.empty())
+			return;
+	
+		eDVBTeletextSubtitlePage p = m_subtitle_pages.front();
+	
+		pts_t pos = 0;
+	
+		if (m_decoder)
+			m_decoder->getPTS(0, pos);
+	
+		int diff = p.m_pts - pos;
+		if (diff < 0)
+		{
+			eDebug("[late (%d ms)]", -diff / 90);
+			diff = 0;
+		}
+		if (diff > 900000)
+		{
+			eDebug("[invalid]");
+			diff = 0;
+		}
+	
+		if (!diff)
+		{
+			m_subtitle_widget->setPage(p);
+			m_subtitle_pages.pop_front();
+		} else
+		{
+			m_subtitle_sync_timer.start(diff / 90, 1);
+			break;
+		}
+	}
 }
 
 DEFINE_REF(eDVBServicePlay)
