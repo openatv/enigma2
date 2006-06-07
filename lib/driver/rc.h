@@ -127,7 +127,8 @@ public:
 	enum
 	{
 		flagBreak=1,
-		flagRepeat=2
+		flagRepeat=2,
+		flagAscii=4
 	};
 	
 	bool operator<(const eRCKey &r) const
@@ -215,10 +216,6 @@ public:
 	   lock the console and pass this as the console fd for making the
 	   tc* stuff working.
 	*/
-	
-	enum { kmNone, kmAscii, kmAll };
-	void setKeyboardMode(int mode) { keyboardMode = mode; }
-	int  getKeyboardMode() { return keyboardMode; }
 
 	void keyPressed(const eRCKey &key)
 	{
@@ -232,6 +229,9 @@ public:
 
 	eRCConfig config;
 #endif
+	enum { kmNone, kmAscii, kmAll };
+	void setKeyboardMode(int mode) { keyboardMode = mode; }
+	int  getKeyboardMode() { return keyboardMode; }
 	static eRCInput *getInstance() { return instance; }
 	int lock();
 	void unlock();

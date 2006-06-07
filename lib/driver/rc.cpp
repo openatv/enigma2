@@ -171,7 +171,7 @@ eRCInput::eRCInput()
 	instance=this;
 	handle = -1;
 	locked = 0;
-	keyboardMode = kmAll;
+	keyboardMode = kmNone;
 }
 
 eRCInput::~eRCInput()
