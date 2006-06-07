@@ -52,8 +52,8 @@ public:
 	~eDBoxLCD();
 #endif
 	static eDBoxLCD *getInstance();
-	int eDBoxLCD::setLCDContrast(int contrast);
-	int eDBoxLCD::setLCDBrightness(int brightness);
+	int setLCDContrast(int contrast);
+	int setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
 	void update();
 };

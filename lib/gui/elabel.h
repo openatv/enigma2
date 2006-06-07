@@ -10,7 +10,7 @@ public:
 	void setText(const std::string &string);
 	void setMarkedPos(int markedPos);
 	void setFont(gFont *font);
-	gFont* eLabel::getFont();
+	gFont* getFont();
 
 	enum
 	{
