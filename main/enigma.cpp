@@ -53,13 +53,28 @@ PSignal1<void,int> &keyPressedSignal()
 	return keyPressed;
 }
 
+static int prev_ascii_code;
+
+int getPrevAsciiCode()
+{
+	int ret = prev_ascii_code;
+	prev_ascii_code = 0;
+	return ret;
+}
+
 void keyEvent(const eRCKey &key)
 {
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
-	ptr->keyPressed(0, key.code, key.flags);
-//	if (!key.flags)
-//		keyPressed(key.code);
+	if (key.flags & eRCKey::flagAscii)
+	{
+		prev_ascii_code = key.code;
+		ptr->keyPressed(0, 510 /* faked KEY_ASCII */, 0);
+	}
+	else
+		ptr->keyPressed(0, key.code, key.flags);
+	if (!key.flags)
+		keyPressed(key.code);
 }
 
 /************************************************/

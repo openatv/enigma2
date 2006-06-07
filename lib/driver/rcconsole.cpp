@@ -41,32 +41,30 @@ void eRCConsoleDriver::keyPressed(int)
 	char data[16];
 	char *d = data;
 	int num = read(handle, data, 16);
-	int code;
+	int code=-1;
 	
 	int km = input->getKeyboardMode();
 
 	while (num--)
 	{
+//		eDebug("console code %02x\n", *d++);
 		if (km == eRCInput::kmAll)
 			code = *d++;
 		else
 		{
 			if (*d == 27) // escape code
 			{
-					/* skip all this stuff */
-				return;
-
-/*				while (num)
+				while (num)
 				{
 					num--;
 					if (*++d != '[')
 						break;
 				}
-				code = -1; */
+				code = -1;
 			} else
 				code = *d;
 			++d;
-			
+
 			if (code < 32)			/* control characters */
 				code = -1;
 			if (code == 0x7F)		/* delete */
@@ -76,15 +74,15 @@ void eRCConsoleDriver::keyPressed(int)
 		if (code != -1)
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
 			{
-				eDebug("ascii %08x", code);
-				(*i)->handleCode(code | 0x8000);
+//				eDebug("ascii %08x", code);
+				(*i)->handleCode(/*0x8000|*/code);
 			}
 	}
 }
 
 void eRCConsole::handleCode(int code)
 {
-	input->keyPressed(eRCKey(this, code, 0));
+	input->keyPressed(eRCKey(this, code, eRCKey::flagAscii));
 }
 
 eRCConsole::eRCConsole(eRCDriver *driver)
@@ -112,7 +110,7 @@ class eRCConsoleInit
 	eRCConsoleDriver driver;
 	eRCConsole device;
 public:
-	eRCConsoleInit(): driver("/dev/stdin"), device(&driver)
+	eRCConsoleInit(): driver("/dev/vc/0"), device(&driver)
 	{
 	}
 };

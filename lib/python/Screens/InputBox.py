@@ -15,8 +15,9 @@ class InputBox(Screen):
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
 				
-		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "AsciiActions"], 
 		{
+			"gotAsciiCode": self.gotAsciiCode,
 			"ok": self.go,
 			"back": self.cancel,
 			"left": self.keyLeft,
@@ -33,7 +34,12 @@ class InputBox(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
+	def gotAsciiCode(self):
+		self["input"].handleAscii(getPrevAsciiCode())
+
 	def keyLeft(self):
 		self["input"].left()
 	
@@ -47,7 +53,11 @@ class InputBox(Screen):
 		self["input"].delete()
 		
 	def go(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(self["input"].getText())
 		
 	def cancel(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(None)

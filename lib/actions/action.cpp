@@ -128,9 +128,9 @@ struct call_entry
 {
 	PyObject *m_fnc, *m_arg;
 	eWidget *m_widget;
-	void *m_widget_arg;
+	void *m_widget_arg, *m_widget_arg2;
 	call_entry(PyObject *fnc, PyObject *arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0) { }
-	call_entry(eWidget *widget, void *arg): m_fnc(0), m_arg(0), m_widget(widget), m_widget_arg(arg) { }
+	call_entry(eWidget *widget, void *arg, void *arg2): m_fnc(0), m_arg(0), m_widget(widget), m_widget_arg(arg), m_widget_arg2(arg2) { }
 };
 
 void eActionMap::keyPressed(int device, int key, int flags)
@@ -158,7 +158,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 						// (k->second.m_device == m_device) &&
 							(k->second.m_key == key) &&
 							(k->second.m_flags & (1<<flags)))
-						call_list.push_back(call_entry(i->second.m_widget, (void*)k->second.m_action));
+						call_list.push_back(call_entry(i->second.m_widget, (void*)i->second.m_id, (void*)k->second.m_action));
 				}
 			} else
 			{
@@ -214,7 +214,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 		} else if (i->m_widget)
 		{
 			if (!res)
-				res = i->m_widget->event(eWidget::evtAction, 0, (void*)i->m_widget_arg);
+				res = i->m_widget->event(eWidget::evtAction, (void*)i->m_widget_arg, (void*)i->m_widget_arg2 );
 		}
 	}
 }

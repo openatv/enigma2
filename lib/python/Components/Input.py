@@ -50,8 +50,9 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		self.update()
 		
 	def left(self):
-		self.currPos -= 1
-		self.update()
+		if self.currPos > 0:
+			self.currPos -= 1
+			self.update()
 		
 	def up(self):
 		if self.text[self.currPos] == "9" or self.text[self.currPos] == " ":
@@ -73,7 +74,13 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 	def delete(self):
 		self.text = self.text[:self.currPos] + self.text[self.currPos + 1:]
 		self.update()
-		
+
+	def handleAscii(self, code):
+		newChar = chr(code)
+		self.text = self.text[0:self.currPos] + newChar + self.text[self.currPos + 1:]
+		self.right()
+		self.update()
+
 	def number(self, number):
 		if self.type == self.TEXT:
 			newChar = self.numericalTextInput.getKey(number)

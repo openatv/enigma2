@@ -97,6 +97,10 @@
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
 
+	<map context="InputAsciiActions">
+		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
+	</map>
+
 	<map context="InputBoxActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />

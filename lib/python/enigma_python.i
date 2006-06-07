@@ -94,6 +94,7 @@ extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 
 extern PSignal1<void,int> &keyPressedSignal();
+extern int getPrevAsciiCode();
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -254,6 +255,7 @@ void addFont(const char *filename, const char *alias, int scale_factor, int is_r
 
 /**************  debug  **************/
 
+int getPrevAsciiCode();
 void runMainloop();
 void quitMainloop(int exit_code);
 eApplication *getApplication();

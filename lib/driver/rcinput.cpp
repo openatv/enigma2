@@ -16,7 +16,43 @@ void eRCDeviceInputDev::handleCode(int rccode)
 	struct input_event *ev = (struct input_event *)rccode;
 	if (ev->type!=EV_KEY)
 		return;
+
 //	eDebug("%x %x %x", ev->value, ev->code, ev->type);
+
+	if (ev->type!=EV_KEY)
+		return;
+
+	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
+
+//	eDebug("keyboard mode %d", km);
+	
+	if (km == eRCInput::kmAll)
+		return;
+
+	if (km == eRCInput::kmAscii)
+	{
+//		eDebug("filtering.. %d", ev->code);
+		bool filtered = ( ev->code > 0 && ev->code < 61 );
+		switch (ev->code)
+		{
+			case KEY_RESERVED:
+			case KEY_ESC:
+			case KEY_TAB:
+			case KEY_BACKSPACE:
+			case KEY_ENTER:
+			case KEY_LEFTCTRL:
+			case KEY_RIGHTSHIFT:
+			case KEY_LEFTALT:
+			case KEY_CAPSLOCK:
+				filtered=false;
+			default:
+				break;
+		}
+		if (filtered)
+			return;
+//		eDebug("passed!");
+	}
+
 	switch (ev->value)
 	{
 	case 0:
@@ -31,8 +67,21 @@ void eRCDeviceInputDev::handleCode(int rccode)
 	}
 }
 
-eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver): eRCDevice(driver->getDeviceName(), driver)
+eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
+	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(false)
 {
+	int len=id.length();
+	int idx=0;
+	while(idx < len)
+	{
+		if (!strncasecmp(&id[idx++], "KEYBOARD", 8))
+		{
+			iskeyboard=true;
+			break;
+		}
+	}
+	eDebug("Input device \"%s\" is %sa keyboard.", id.c_str(), iskeyboard ? "" : "not ");
+
 }
 
 const char *eRCDeviceInputDev::getDescription() const
