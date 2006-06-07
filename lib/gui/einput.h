@@ -14,7 +14,12 @@ public:
 	PSignal0<void> changed;
 
 	int m_cursor;
-	
+
+	enum {
+		INPUT_ACTIONS,
+		ASCII_ACTIONS
+	};
+
 	enum InputActions {
 		moveLeft, 
 		moveRight, 
@@ -25,7 +30,11 @@ public:
 		toggleOverwrite,
 		accept
 	};
-	
+
+	enum AsciiActions {
+		gotAsciiCode
+	};
+
 	void setContent(eInputContent *cnt);
 	
 	void setOverwriteMode(int o);

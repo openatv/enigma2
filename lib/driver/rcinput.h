@@ -5,6 +5,7 @@
 
 class eRCDeviceInputDev: public eRCDevice
 {
+	int iskeyboard;
 public:
 	void handleCode(int code);
 	eRCDeviceInputDev(eRCInputEventDriver *driver);

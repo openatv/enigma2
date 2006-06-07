@@ -94,34 +94,54 @@ int eInput::event(int event, void *data, void *data2)
 	case evtAction:
 		if (isVisible())
 		{
-			switch((int)data2)
+			if ((int)data == ASCII_ACTIONS)
 			{
-			case moveLeft:
-				m_content->moveCursor(eInputContent::dirLeft);
-				break;
-			case moveRight:
-				m_content->moveCursor(eInputContent::dirRight);
-				break;
-			case moveHome:
-				m_content->moveCursor(eInputContent::dirHome);
-				break;
-			case moveEnd:
-				m_content->moveCursor(eInputContent::dirEnd);
-				break;
-			case deleteForward:
-				m_content->deleteChar(eInputContent::deleteForward);
-				break;
-			case deleteBackward:
-				m_content->deleteChar(eInputContent::deleteBackward);
-				break;
-			case toggleOverwrite:
-				setOverwriteMode(!m_mode);
-				break;
-			case accept:
-				changed();
-				mayKillFocus();
+				if ((int)data2 == gotAsciiCode)
+				{
+					if (m_content)
+					{
+						extern int getPrevAsciiCode();  // defined in enigma.cpp
+						return m_content->haveKey(getPrevAsciiCode(), m_mode);
+					}
+				}
 			}
-			return 1;
+			else if ((int)data == INPUT_ACTIONS)
+			{
+				switch((int)data2)
+				{
+				case moveLeft:
+					if (m_content)
+						m_content->moveCursor(eInputContent::dirLeft);
+					break;
+				case moveRight:
+					if (m_content)
+						m_content->moveCursor(eInputContent::dirRight);
+					break;
+				case moveHome:
+					if (m_content)
+						m_content->moveCursor(eInputContent::dirHome);
+					break;
+				case moveEnd:
+					if (m_content)
+						m_content->moveCursor(eInputContent::dirEnd);
+					break;
+				case deleteForward:
+					if (m_content)
+						m_content->deleteChar(eInputContent::deleteForward);
+					break;
+				case deleteBackward:
+					if (m_content)
+						m_content->deleteChar(eInputContent::deleteBackward);
+					break;
+				case toggleOverwrite:
+					setOverwriteMode(!m_mode);
+					break;
+				case accept:
+					changed();
+					mayKillFocus();
+				}
+				return 1;
+			}
 		}
 		return 0;
 	case evtKey:
@@ -137,9 +157,8 @@ int eInput::event(int event, void *data, void *data2)
 		eDebug("focus got in %p", this);
 		ePtr<eActionMap> ptr;
 		eActionMap::getInstance(ptr);
-		ptr->bindAction("InputActions", 0, 0, this);
-			// bind all keys
-		ptr->bindAction("", 0, 1, this);
+		ptr->bindAction("InputActions", 0, INPUT_ACTIONS, this);
+		ptr->bindAction("AsciiActions", 0, ASCII_ACTIONS, this);
 		m_have_focus = 1;
 		eRCInput::getInstance()->setKeyboardMode(eRCInput::kmAscii);
 			// fixme. we should use a style for this.
@@ -152,8 +171,8 @@ int eInput::event(int event, void *data, void *data2)
 		eDebug("focus lostin %p", this);
 		ePtr<eActionMap> ptr;
 		eActionMap::getInstance(ptr);
-		ptr->unbindAction(this, 0);
-		ptr->unbindAction(this, 1);
+		ptr->unbindAction(this, INPUT_ACTIONS);
+		ptr->unbindAction(this, ASCII_ACTIONS);
 		m_have_focus = 0;
 		if (m_content)
 			m_content->validate();
