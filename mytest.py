@@ -268,9 +268,6 @@ class Session:
 		self.execBegin()
 		return dlg
 
-	def keyEvent(self, code):
-		print "code " + str(code)
-
 	def close(self, screen, *retval):
 		if not self.in_exec:
 			print "close after exec!"
@@ -434,8 +431,6 @@ def runScreenTest():
 			session.open(screen)
 	
 	runNextScreen(session, screensToRun)
-	
-	CONNECT(keyPressedSignal(), session.keyEvent)
 	
 	vol = VolumeControl(session)
 	power = PowerKey(session)

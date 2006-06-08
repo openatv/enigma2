@@ -93,7 +93,6 @@ extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 
-extern PSignal1<void,int> &keyPressedSignal();
 extern int getPrevAsciiCode();
 %}
 
@@ -259,8 +258,6 @@ int getPrevAsciiCode();
 void runMainloop();
 void quitMainloop(int exit_code);
 eApplication *getApplication();
-%immutable keyPressed;
-PSignal1<void,int> &keyPressedSignal();
 
 %{
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
