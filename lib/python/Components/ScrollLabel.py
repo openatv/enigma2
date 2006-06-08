@@ -50,6 +50,30 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				self.total = None
 				self.pages = None
 
+	def appendText(self, text):
+		old_text = self.getText()
+		if len(str(old_text)) >0:
+			self.message += text
+		else:
+			self.message = text
+		if self.long_text is not None:
+			self.long_text.setText(self.message)
+			text_height=self.long_text.calculateSize().height()
+			total=self.pageHeight
+			pages=1
+			while total < text_height:
+				total=total+self.pageHeight
+				pages=pages+1
+			if pages > 1:
+				self.scrollbar.show()
+				self.total = total
+				self.pages = pages
+				self.updateScrollbar()
+			else:
+				self.scrollbar.hide()
+				self.total = None
+				self.pages = None
+
 	def updateScrollbar(self):
 		start = -self.long_text.position().y() * 100 / self.total
 		vis = self.pageHeight * 100 / self.total;
@@ -81,6 +105,13 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			if self.total-self.pageHeight >= abs( curPos.y() - self.pageHeight ):
 				self.long_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
 				self.updateScrollbar()
+
+	def lastPage(self):
+		i=1
+		while i < self.pages:
+			self.pageDown()
+			i += 1 
+			self.updateScrollbar()
 
 	def produceHTML(self):
 		return self.getText()
