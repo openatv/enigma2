@@ -26,8 +26,15 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		text = self.text
 		if self.type == self.PIN:
 			text = "*" * len(self.text)
-		self.setText(text)
-		#self.setText(self.text[0:self.currPos] + "_" + self.text[self.currPos] + "_" + self.text[self.currPos + 1:])
+		self.message = text
+		if self.instance:
+			self.instance.setText(self.message)
+
+	def setText(self, text):
+		if not len(text):
+			self.currPos = 0
+		self.text = text
+		self.update()
 
 	def getText(self):
 		return self.text
