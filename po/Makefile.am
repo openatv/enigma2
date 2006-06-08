@@ -16,9 +16,6 @@ default: enigma2.pot $(LANGPO) merge $(LANGMO)
 	done
 
 merge:
-	msguniq -o enigma2uniq.pot enigma2.pot
-	$(RM) enigma2.pot
-	mv enigma2uniq.pot enigma2.pot
 	for lang in $(LANGS); do \
 		msgmerge -N -U $$lang.po enigma2.pot; \
 	done
@@ -64,6 +61,11 @@ enigma2.pot:
 			../lib/python/Tools/FuzzyDate.py \
 			../RecordTimer.py
 	./xml2po.py	../data/ >> enigma2.pot
+	msguniq -o enigma2uniq.pot enigma2.pot
+	$(RM) enigma2.pot
+	mv enigma2uniq.pot enigma2.pot
+
+.PHONY: enigma2.pot
 
 
 %.mo: %.po
