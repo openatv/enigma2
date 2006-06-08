@@ -258,7 +258,8 @@ class InfoBarChannelSelection:
 				"zapUp": (self.zapUp, _("previous channel")),
 				"zapDown": (self.zapDown, _("next channel")),
 				"historyBack": (self.historyBack, _("previous channel in history")),
-				"historyNext": (self.historyNext, _("next channel in history"))
+				"historyNext": (self.historyNext, _("next channel in history")),
+				"openServiceList": (self.openServiceList, _("open service list")),
 			})
 
 	def firstRun(self):
@@ -279,6 +280,9 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		self.servicelist.moveDown()
+		self.session.execDialog(self.servicelist)
+	
+	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
@@ -681,6 +685,8 @@ class InfoBarSeek:
 		
 	def unPauseService(self):
 		print "unpause"
+		if self.seekstate == self.SEEK_STATE_PLAY:
+			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY);
 	
 	def doSeek(self, seektime):
