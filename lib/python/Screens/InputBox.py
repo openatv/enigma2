@@ -15,7 +15,7 @@ class InputBox(Screen):
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
 				
-		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "AsciiActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions"], 
 		{
 			"gotAsciiCode": self.gotAsciiCode,
 			"ok": self.go,
