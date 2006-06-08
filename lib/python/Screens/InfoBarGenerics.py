@@ -1276,8 +1276,8 @@ class InfoBarSubserviceSelection:
 	def checkSubservicesAvail(self, ev):
 		if ev == iPlayableService.evUpdatedEventInfo:
 			service = self.session.nav.getCurrentService()
-			subservices = service.subServices()
-			if subservices.getNumberOfSubservices() == 0:
+			subservices = service and service.subServices()
+			if not subservices or subservices.getNumberOfSubservices() == 0:
 				self["SubserviceQuickzapAction"].setEnabled(False)
 
 	def nextSubservice(self):
@@ -1288,9 +1288,9 @@ class InfoBarSubserviceSelection:
 
 	def changeSubservice(self, direction):
 		service = self.session.nav.getCurrentService()
-		subservices = service.subServices()
-		n = subservices.getNumberOfSubservices()
-		if n > 0:
+		subservices = service and service.subServices()
+		n = subservices and subservices.getNumberOfSubservices()
+		if n and n > 0:
 			selection = -1
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			for x in range(n):
@@ -1310,11 +1310,11 @@ class InfoBarSubserviceSelection:
 
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
-		subservices = service.subServices()
+		subservices = service and service.subServices()
 		
-		n = subservices.getNumberOfSubservices()
+		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
-		if n > 0:
+		if n and n > 0:
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			tlist = []
 			for x in range(n):
