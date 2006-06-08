@@ -38,16 +38,19 @@ eRCConsoleDriver::~eRCConsoleDriver()
 
 void eRCConsoleDriver::keyPressed(int)
 {
-	char data[16];
-	char *d = data;
+	unsigned char data[16];
+	unsigned char *d = data;
 	int num = read(handle, data, 16);
 	int code=-1;
 	
 	int km = input->getKeyboardMode();
 
+	if (km == eRCInput::kmNone)
+		return;
+
 	while (num--)
 	{
-//		eDebug("console code %02x\n", *d++);
+//		eDebug("console code %08x\n", *d);
 		if (km == eRCInput::kmAll)
 			code = *d++;
 		else
@@ -75,7 +78,7 @@ void eRCConsoleDriver::keyPressed(int)
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
 			{
 //				eDebug("ascii %08x", code);
-				(*i)->handleCode(/*0x8000|*/code);
+				(*i)->handleCode(code);
 			}
 	}
 }
