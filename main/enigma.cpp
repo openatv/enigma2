@@ -46,13 +46,6 @@ void object_dump()
 
 static eWidgetDesktop *wdsk, *lcddsk;
 
-PSignal1<void,int> keyPressed;
-
-PSignal1<void,int> &keyPressedSignal()
-{
-	return keyPressed;
-}
-
 static int prev_ascii_code;
 
 int getPrevAsciiCode()
@@ -73,8 +66,6 @@ void keyEvent(const eRCKey &key)
 	}
 	else
 		ptr->keyPressed(0, key.code, key.flags);
-	if (!key.flags)
-		keyPressed(key.code);
 }
 
 /************************************************/
