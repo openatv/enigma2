@@ -92,8 +92,10 @@ is usually caused by not marking PSignals as immutable.
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
-
 extern int getPrevAsciiCode();
+extern int isUTF8(const std::string &);
+extern std::string convertUTF8DVB(const std::string &, int);
+extern std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid);
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -258,8 +260,17 @@ int getPrevAsciiCode();
 void runMainloop();
 void quitMainloop(int exit_code);
 eApplication *getApplication();
-
+int isUTF8(const std::string &);
+std::string convertUTF8DVB(const std::string &, int);
+std::string convertDVBUTF8(std::string text, int table);
 %{
+
+std::string convertDVBUTF8(std::string text, int table)
+{
+	int len = text.length();
+	return convertDVBUTF8(len?text.c_str():"", len, table, 0);
+}
+
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 {	
 	ePtr<gPixmap> *res;
