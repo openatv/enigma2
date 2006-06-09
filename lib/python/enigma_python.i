@@ -268,7 +268,7 @@ std::string convertDVBUTF8(std::string text, int table);
 std::string convertDVBUTF8(std::string text, int table)
 {
 	int len = text.length();
-	return convertDVBUTF8(len?text.c_str():"", len, table, 0);
+	return convertDVBUTF8(len?(unsigned char*)text.c_str():(unsigned char*)"", len, table, 0);
 }
 
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
