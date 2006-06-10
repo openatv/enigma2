@@ -18,11 +18,14 @@ RT_VALIGN_BOTTOM = 16
 
 def ChoiceEntryComponent(key, text):
 	res = [ text ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 32, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
-
-	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "key_" + key + "-fs8.png"))
-	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 30, 20, png))
+	if text[0] == "--":
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
+	else:
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 32, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
+	
+		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "key_" + key + "-fs8.png"))
+		if png is not None:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 30, 20, png))
 	
 	return res
 
