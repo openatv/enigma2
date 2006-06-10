@@ -24,7 +24,7 @@ class ChoiceBox(Screen):
 		pos = 0
 		for x in list:
 			strpos = str(self.keys[pos])
-			self.list.append(ChoiceEntryComponent(strpos, x))
+			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
 			if self.keys[pos] != "":
 				self.keymap[self.keys[pos]] = list[pos]
 			pos += 1

@@ -1214,14 +1214,17 @@ class InfoBarAudioSelection:
 		audio = service.audioTracks()
 		self.audioTracks = audio
 		n = audio.getNumberOfTracks()
+		keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
+		tlist = []
+		print "tlist:", tlist
 		if n > 0:
-#			self.audioChannel = service.audioChannel()
+			self.audioChannel = service.audioChannel()
 #			config.audio.audiochannel = configElement_nonSave("config.audio.audiochannel", configSelection, self.audioChannel.getCurrentChannel(), (("left", _("Left  >")), ("stereo", _("<  Stereo  >")), ("right", _("<  Right"))))
-			tlist = []
+
 			for x in range(n):
 				i = audio.getTrackInfo(x)
 				language = i.getLanguage()
-				description = i.getDescription();
+				description = i.getDescription()
 	
 				if len(language) == 3:
 					if language in LanguageCodes:
@@ -1239,24 +1242,36 @@ class InfoBarAudioSelection:
 
 #			tlist.insert(0, getConfigListEntry(_("Audio Channel"), config.audio.audiochannel))
 
-			selection = 0
+			selection = 2
 			for x in tlist:
 				if x[1] != selectedAudio:
 					selection += 1
 				else:
 					break
-			
-			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection)
+
+			tlist = [([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
+			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys)
 		else:
 			del self.audioTracks
 
 	def audioSelected(self, audio):
 		if audio is not None:
-			self.audioTracks.selectTrack(audio[1])
+			if isinstance(audio[1], str):
+				if audio[1] == "mode":
+					keys = ["red", "green", "yellow"]
+					selection = self.audioChannel.getCurrentChannel()
+					tlist = [(_("left"), 0), (_("stereo"), 1), (_("right"), 2)]
+					self.session.openWithCallback(self.modeSelected, ChoiceBox, title=_("Select audio mode"), list = tlist, selection = selection, keys = keys)
+			else:
+				if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > audio[1]:
+					self.audioTracks.selectTrack(audio[1])
 		del self.audioTracks
-#		del self.audioChannel
 #		del config.audio.audiochannel
 
+	def modeSelected(self, mode):
+		if mode is not None:
+			self.audioChannel.selectChannel(mode[1])
+		del self.audioChannel
 class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
