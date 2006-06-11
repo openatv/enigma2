@@ -61,14 +61,16 @@ class ChoiceBox(Screen):
 	def up(self):
 		while 1:
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-			if self["list"].l.getCurrentSelection()[0][0] != "--":
+			if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
 				break
 		
 	def down(self):
 		while 1:
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-			if self["list"].l.getCurrentSelection()[0][0] != "--":
-				break	
+			if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
+				break
+
+
 	def keyNumberGlobal(self, number):
 		print "pressed", number
 		if self.keymap.has_key(str(number)):
