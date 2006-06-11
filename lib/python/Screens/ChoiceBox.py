@@ -30,7 +30,7 @@ class ChoiceBox(Screen):
 			pos += 1
 		self["list"] = ChoiceList(list = self.list, selection = selection)
 				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"], 
 		{
 			"ok": self.go,
 			"back": self.cancel,
@@ -47,7 +47,9 @@ class ChoiceBox(Screen):
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
-			"blue": self.keyBlue
+			"blue": self.keyBlue,
+			"up": self.up,
+			"down": self.down
 		}, -1)
 		
 	def keyLeft(self):
@@ -56,6 +58,17 @@ class ChoiceBox(Screen):
 	def keyRight(self):
 		pass
 	
+	def up(self):
+		while 1:
+			self["list"].instance.moveSelection(self["list"].instance.moveUp)
+			if self["list"].l.getCurrentSelection()[0][0] != "--":
+				break
+		
+	def down(self):
+		while 1:
+			self["list"].instance.moveSelection(self["list"].instance.moveDown)
+			if self["list"].l.getCurrentSelection()[0][0] != "--":
+				break	
 	def keyNumberGlobal(self, number):
 		print "pressed", number
 		if self.keymap.has_key(str(number)):
