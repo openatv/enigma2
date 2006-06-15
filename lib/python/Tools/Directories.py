@@ -42,10 +42,14 @@ fallbackPaths = {
 		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)]
 	}
 
-def resolveFilename(scope, base = ""):
+def resolveFilename(scope, base = "", path_prefix = None):
+	if base[0:2] == "~/":
+		# you can only use the ~/ if we have a prefix directory
+		assert path_prefix is not None
+		base = path_prefix + base[2:]
 
 	# don't resolve absolute paths
-	if len(base) and base[0] == '/':
+	if base[0:1] == '/':
 		return base
 
 	path = defaultPaths[scope]
