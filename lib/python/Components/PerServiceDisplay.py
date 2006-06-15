@@ -5,9 +5,8 @@ from VariableValue import *
 from enigma import iPlayableService
 from enigma import eLabel, eSlider, eTimer
 
-class PerServiceBase(GUIComponent):
+class PerServiceBase(object):
 	def __init__(self, navcore, eventmap):
-		GUIComponent.__init__(self)
 		self.eventmap = eventmap
 		self.navcore = navcore
 		self.navcore.event.append(self.event)
@@ -38,9 +37,10 @@ class PerServiceBase(GUIComponent):
 	def poll(self):
 		pass
 
-class PerServiceDisplay(PerServiceBase, VariableText):
+class PerServiceDisplay(PerServiceBase, VariableText, GUIComponent):
 	"""Mixin for building components which display something which changes on navigation events, for example "service name" """
 	def __init__(self, navcore, eventmap):
+		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		PerServiceBase.__init__(self, navcore, eventmap)
 
