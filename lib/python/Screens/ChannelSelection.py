@@ -836,16 +836,16 @@ class ChannelSelectionBase(Screen):
 
 HISTORYSIZE = 20
 
+#config for lastservice
+config.tv = ConfigSubsection();
+config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
+config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
+
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
-
-		#config for lastservice
-		config.tv = ConfigSubsection();
-		config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
-		config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
