@@ -1,15 +1,8 @@
 import os
 
 from Tools.Directories import *
+from Tools.Import import my_import
 from Plugins.Plugin import PluginDescriptor
-
-def my_import(name):
-	print name
-	mod = __import__(name)
-	components = name.split('.')
-	for comp in components[1:]:
-		mod = getattr(mod, comp)
-	return mod
 
 class PluginComponent:
 	def __init__(self):
