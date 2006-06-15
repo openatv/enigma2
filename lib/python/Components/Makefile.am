@@ -1,5 +1,7 @@
 installdir = $(LIBDIR)/enigma2/python/Components
 
+SUBDIRS = Sources Converter Renderer
+
 install_PYTHON = \
 	ActionMap.py GUISkin.py PerServiceDisplay.py components.py              \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \
