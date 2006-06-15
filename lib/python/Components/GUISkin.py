@@ -9,7 +9,7 @@ class GUISkin:
 		self.summaries = [ ]
 
 	def createGUIScreen(self, parent, desktop):
-		for (name, val) in self.items():
+		for val in self.values() + self.renderer:
 			if isinstance(val, GUIComponent):
 				val.GUIcreate(parent)
 				val.applySkin(desktop)
