@@ -35,7 +35,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 #		assert self.session == None, "a screen can only exec once per time"
 #		self.session = session
 
-		for (name, val) in self.items():
+		for val in self.values() + self.renderer:
 			val.execBegin()
 			if self.session.current_dialog != self:
 				return
@@ -70,6 +70,11 @@ class Screen(dict, HTMLSkin, GUISkin):
 			val.destroy()
 			del self[name]
 		
+		for val in self.renderer:
+			val.destroy()
+		
+		self.renderer = [ ]
+		
 		# really delete all elements now
 		self.__dict__.clear()
 	
@@ -86,7 +91,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.instance.show()
 		for x in self.onShow:
 			x()
-		for (name, val) in self.items():
+		for val in self.values() + self.renderer:
 			if isinstance(val, GUIComponent):
 				val.onShow()
 
@@ -97,6 +102,6 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.instance.hide()
 		for x in self.onHide:
 			x()
-		for (name, val) in self.items():
+		for val in self.values() + self.renderer:
 			if isinstance(val, GUIComponent):
 				val.onHide()
