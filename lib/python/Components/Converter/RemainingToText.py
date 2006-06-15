@@ -1,0 +1,19 @@
+from Components.Converter.Converter import Converter
+
+class RemainingToText(Converter, object):
+	def __init__(self, type, *args, **kwargs):
+		Converter.__init__(self)
+
+	def getText(self):
+
+		r = self.source.time
+		if r is None:
+			return ""
+
+		(duration, remaining) = self.source.time
+		if remaining is not None:
+			return "+%d min" % (remaining / 60)
+		else:
+			return "%d min" % (duration / 60)
+
+	text = property(getText)
