@@ -20,6 +20,20 @@ screens
 these are the different widgets for the screens. they can also be embedded
 in the screens itself.
 
+pixmap paths
+============
+there is no lookup order, but exactly one place to search for pixmaps.
+You can either:
+ - specify a full pathname (PLEASE, don't!), with a trailing slash.
+ - specify a relative pathname, without trailing slash.
+   The file will be searched for under the default skin image directory.
+   use this to refer to pixmaps which are included in the default 
+   distribution, i.e. no skin specific stuff but for example the 
+   number bitmaps etc.
+ - relative to the skin's directory (with a trailing "~/").
+   ~ in this case can be seen as the skin's "home directory", that's the 
+   place where the skin.xml is.
+   use this if you are building a skin.
 
 A NOTE ABOUT PNGs
 =================
@@ -101,7 +115,7 @@ check this.
 (*) Note, that, technically, if we start with a alpha=1 background (i.e.
 only video), and alphablend on this, we generalized the problem enough that
 we can handle both cases the same. But currently, we have to differentiate
-between them, as we can't always alphablend.
+between them, as we can't always alphablend simply for performance reasons.
 
 lcd:
 ====
