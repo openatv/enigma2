@@ -1,4 +1,5 @@
 from PerServiceDisplay import PerServiceDisplay, PerServiceBase
+from Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, iSeekableServicePtr, ePositionGauge
 import time
 
@@ -84,8 +85,9 @@ class ServicePosition(PerServiceDisplay):
 		self.updateTimer.stop()
 		self.setText("");
 
-class ServicePositionGauge(PerServiceBase):
+class ServicePositionGauge(PerServiceBase, GUIComponent):
 	def __init__(self, navcore):
+		GUIComponent.__init__(self)
 		PerServiceBase.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.newService,
