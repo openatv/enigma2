@@ -44,7 +44,9 @@ class ActionMap:
 	def action(self, context, action):
 		print " ".join(("action -> ", context, action))
 		if self.actions.has_key(action):
-			self.actions[action]()
+			res = self.actions[action]()
+			if res is not None:
+				return res
 			return 1
 		else:
 			print "unknown action %s/%s! typo in keymap?" % (context, action)
@@ -57,7 +59,9 @@ class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		if (action in numbers and self.actions.has_key(action)):
-			self.actions[action](int(action))
+			res = self.actions[action](int(action))
+			if res is not None:
+				return res
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
