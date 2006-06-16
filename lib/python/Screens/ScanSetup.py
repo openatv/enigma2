@@ -317,7 +317,7 @@ class ScanSetup(Screen):
 			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), _("Auto")))
 			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 99999)))
 			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
-			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 7, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
+			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
 			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, 8, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
 			config.scan.sat.modulation = configElement_nonSave("config.scan.sat.modulation", configSelection, 0, (("qpsk", "QPSK"), ("8psk", "8PSK")))
 	
