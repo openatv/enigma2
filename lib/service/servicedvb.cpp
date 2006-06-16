@@ -630,7 +630,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service), m_is_paused(0)
+	m_reference(ref), m_dvb_service(service), m_is_paused(0), m_current_audio_channel(-1)
 {
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
@@ -1279,17 +1279,18 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 int eDVBServicePlay::getCurrentChannel()
 {
-	int curChannel = m_dvb_service->getCacheEntry(eDVBService::cACHANNEL);
-	return curChannel == -1 ? STEREO : curChannel;
+	return m_current_audio_channel == -1 ? STEREO : m_current_audio_channel;
 }
 
 RESULT eDVBServicePlay::selectChannel(int i)
 {
 	if (i < iAudioChannelSelection::LEFT || i > iAudioChannelSelection::RIGHT)
 		i = -1;  // Stereo
-	if (m_dvb_service->getCacheEntry(eDVBService::cACHANNEL) != i)
+	if (m_current_audio_channel != i)
 	{
-		m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
+		if (m_dvb_service)
+			m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
+		m_current_audio_channel=i;
 		if (m_decoder)
 			m_decoder->setAudioChannel(i);
 	}
@@ -1685,18 +1686,18 @@ void eDVBServicePlay::updateDecoder()
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
-#ifndef INTERNAL_TELETEXT
+//#ifndef INTERNAL_TELETEXT
 		m_decoder->setTextPID(tpid);
-#else
+//#else
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
-#endif
-
+//#endif
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
 
 		m_decoder->start();
 
+		m_current_audio_channel=achannel;
 		m_decoder->setAudioChannel(achannel);
 
 // how we can do this better?

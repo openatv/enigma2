@@ -176,7 +176,8 @@ private:
 	int m_timeshift_fd;
 	
 	ePtr<iDVBDemux> m_decode_demux;
-	
+
+	int m_current_audio_channel;
 	int m_current_audio_stream;
 	int selectAudioStream(int n);
 	
