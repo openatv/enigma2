@@ -1686,12 +1686,12 @@ void eDVBServicePlay::updateDecoder()
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
-//#ifndef INTERNAL_TELETEXT
+
 		m_decoder->setTextPID(tpid);
-//#else
+
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
-//#endif
+
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
 
