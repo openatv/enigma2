@@ -125,7 +125,8 @@ void *gRC::thread()
 				m_notify_pump.send(1);
 			}
 #ifndef SYNC_PAINT
-			pthread_cond_wait(&cond, &mutex);
+			while(rp == wp)
+				pthread_cond_wait(&cond, &mutex);
 			pthread_mutex_unlock(&mutex);
 #endif
 		}
