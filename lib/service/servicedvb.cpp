@@ -1569,6 +1569,7 @@ void eDVBServicePlay::switchToLive()
 	m_decoder = 0;
 	m_decode_demux = 0;
 	m_teletext_parser = 0;
+	m_new_subtitle_page_connection = 0;
 	
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
@@ -1587,6 +1588,7 @@ void eDVBServicePlay::switchToTimeshift()
 	m_decode_demux = 0;
 	m_decoder = 0;
 	m_teletext_parser = 0;
+	m_new_subtitle_page_connection = 0;
 	
 	m_timeshift_active = 1;
 
