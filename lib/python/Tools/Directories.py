@@ -46,7 +46,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if base[0:2] == "~/":
 		# you can only use the ~/ if we have a prefix directory
 		assert path_prefix is not None
-		base = path_prefix + base[2:]
+		base = os.path.join(path_prefix, base[2:])
 
 	# don't resolve absolute paths
 	if base[0:1] == '/':
