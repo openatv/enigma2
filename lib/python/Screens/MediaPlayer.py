@@ -10,11 +10,13 @@ from Components.Label import Label
 from Components.FileList import FileEntryComponent, FileList
 from Components.MediaPlayer import PlayList, PlaylistEntryComponent
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, SCOPE_MEDIA, SCOPE_CONFIG
 from Components.ServicePosition import ServicePositionGauge
 from Screens.ChoiceBox import ChoiceBox
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Playlist import PlaylistIOInternal
 from Screens.InfoBarGenerics import InfoBarSeek
+from ServiceReference import ServiceReference
 
 import os
 
@@ -122,10 +124,21 @@ class MediaPlayer(Screen, InfoBarSeek):
 		
 		self.currList = "filelist"
 		
+		self.playlistIOInternal = PlaylistIOInternal()
+		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2"))
+		if list:
+			for x in list:
+				self.playlist.addFile(x.ref)
+			self.playlist.updateList()		
+		
 	def doNothing(self):
 		pass
 	
 	def exit(self):
+		self.playlistIOInternal.clear()
+		for x in self.playlist.list:
+			self.playlistIOInternal.addService(ServiceReference(x[0]))
+		self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2"))
 		self.close()
 	
 	def checkSkipShowHideLock(self):
