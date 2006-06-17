@@ -8,7 +8,7 @@ class EventInfo(PerServiceBase, Source):
 	NEXT = 1
 	
 	def __init__(self, navcore, now_or_next):
-		self.changed = Event()
+		Source.__init__(self)
 		PerServiceBase.__init__(self, navcore, 
 			{ 
 				iPlayableService.evUpdatedEventInfo: self.ourEvent, 

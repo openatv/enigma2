@@ -1,18 +1,4 @@
-from Tools.Event import Event
+from Components.Element import Element
 
-class Converter:
-	def __init__(self):
-		self.changed = Event(start = self.start, stop = self.stop)
-	
-	def connect(self, source):
-		source.changed.listen(self.changed)
-		self.source = source
-	
-	def disconnect(self):
-		self.source.changed.unlisten(self.changed)
-
-	def start(self):
-		pass
-	
-	def stop(self):
-		pass
+class Converter(Element):
+	pass
