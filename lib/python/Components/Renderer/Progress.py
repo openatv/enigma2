@@ -1,21 +1,16 @@
 from Components.VariableValue import VariableValue
-from Components.GUIComponent import GUIComponent
+from Renderer import Renderer
 
 from enigma import eSlider
 
-class Progress(VariableValue, GUIComponent):
+class Progress(VariableValue, Renderer):
 	def __init__(self):
-		GUIComponent.__init__(self)
+		Renderer.__init__(self)
 		VariableValue.__init__(self)
 		self.__start = 0
 		self.__end = 100
 
 	GUI_WIDGET = eSlider
-
-	def connect(self, source):
-		source.changed.listen(self.changed)
-		self.source = source
-		self.changed()
 
 	def changed(self):
 		range = self.source.range or 100

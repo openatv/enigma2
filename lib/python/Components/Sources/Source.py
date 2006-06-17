@@ -1,5 +1,6 @@
-class Source(object):
+from Components.Element import Element
 
+class Source(Element):
 	def execBegin(self):
 		pass
 	
