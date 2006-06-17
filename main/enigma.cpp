@@ -8,6 +8,7 @@
 
 #include <lib/actions/action.h>
 #include <lib/driver/rc.h>
+#include <lib/base/ioprio.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
@@ -191,7 +192,9 @@ int main(int argc, char **argv)
 	printf("executing main\n");
 	
 	bsodCatchSignals();
-	
+
+	setIoPrio(IOPRIO_CLASS_BE, 3);
+
 	python.execute("mytest", "__main__");
 	
 	if (exit_code == 5) /* python crash */

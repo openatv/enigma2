@@ -6,7 +6,8 @@
 
 #define PVR_COMMIT 1
 
-eFilePushThread::eFilePushThread(): m_messagepump(eApp, 0)
+eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level)
+	:prio_class(io_prio_class), prio(io_prio_level), m_messagepump(eApp, 0)
 {
 	m_stop = 0;
 	m_sg = 0;
@@ -21,6 +22,8 @@ static void signal_handler(int x)
 
 void eFilePushThread::thread()
 {
+	setIoPrio(prio_class, prio);
+
 	off_t dest_pos = 0, source_pos = 0;
 	size_t bytes_read = 0;
 	
@@ -28,7 +31,7 @@ void eFilePushThread::thread()
 	size_t current_span_remaining = 0;
 	
 	size_t written_since_last_sync = 0;
-	
+
 	int already_empty = 0;
 	eDebug("FILEPUSH THREAD START");
 	
@@ -40,7 +43,6 @@ void eFilePushThread::thread()
 	
 	hasStarted();
 	
-	dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
 	source_pos = m_raw_source.lseek(0, SEEK_CUR);
 	
 		/* m_stop must be evaluated after each syscall. */
@@ -61,15 +63,16 @@ void eFilePushThread::thread()
 				// ... we would stop the thread
 			}
 
-//			posix_fadvise(m_fd_dest, dest_pos, w, POSIX_FADV_DONTNEED);
-
-			dest_pos += w;
 			written_since_last_sync += w;
-			
-			if (written_since_last_sync >= 2048*1024)
+
+			if (written_since_last_sync >= 512*1024)
 			{
-				fdatasync(m_fd_dest);
-				written_since_last_sync = 0;
+				int toflush = written_since_last_sync > 2*1024*1024 ?
+					2*1024*1024 : written_since_last_sync &~ 4095; // write max 2MB at once
+				dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
+				dest_pos -= toflush;
+				posix_fadvise(m_fd_dest, dest_pos, toflush, POSIX_FADV_DONTNEED);
+				written_since_last_sync -= toflush;
 			}
 
 //			printf("FILEPUSH: wrote %d bytes\n", w);
@@ -145,7 +148,8 @@ void eFilePushThread::thread()
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
-	
+	fdatasync(m_fd_dest);
+
 	eDebug("FILEPUSH THREAD STOP");
 }
 

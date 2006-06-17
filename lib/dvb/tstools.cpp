@@ -36,7 +36,7 @@ int eDVBTSTools::openFile(const char *filename)
 		m_use_streaminfo = 1;
 	else
 	{
-		eDebug("no recorded stream information available");
+//		eDebug("no recorded stream information available");
 		m_use_streaminfo = 0;
 	}
 	
@@ -267,7 +267,7 @@ void eDVBTSTools::calcEnd()
 		m_end_valid = 0;
 		
 		m_futile = 0;
-		eDebug("file size changed, recalc length");
+//		eDebug("file size changed, recalc length");
 	}
 	
 	int maxiter = 10;

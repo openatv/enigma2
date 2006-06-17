@@ -8,5 +8,5 @@ libenigma_base_a_SOURCES = \
 	init.cpp message.cpp thread.cpp \
 	smartptr.cpp estring.cpp connection.cpp \
 	filepush.cpp encoding.cpp console.cpp rawfile.cpp \
-	nconfig.cpp
+	nconfig.cpp ioprio.cpp
 
