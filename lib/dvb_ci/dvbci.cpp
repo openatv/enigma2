@@ -451,7 +451,7 @@ void eDVBCISlot::data(int what)
 	}
 
 	if (state == stateInvalid)
-		return;
+		reset();
 
 	if(state != stateInserted) {
 		eDebug("ci inserted");
