@@ -98,9 +98,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-#				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
-#				iPlayableService.evStart: self.__serviceStarted,
-				
+				#iPlayableService.evStart: self.__serviceStarted,
+				#iPlayableService.evSeekableStatusChanged: InfoBarSeek.__seekableStatusChanged,
+
 				iPlayableService.evEOF: self.__evEOF,
 #				iPlayableService.evSOF: self.__evSOF,
 			})
@@ -133,7 +133,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 	
 	def __evEOF(self):
 		self.nextEntry()
-		
+	
 	def __onClose(self):
 		self.session.nav.playService(self.oldService)
 	
@@ -359,5 +359,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.playlist.stopFile()
 		self.session.nav.playService(None)
 		self.updateMusicInformation(clear=True)
+
+	def unPauseService(self):
+		self.setSeekState(self.SEEK_STATE_PLAY)
+
 
     
