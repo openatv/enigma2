@@ -18,6 +18,9 @@ def dump(x, i=0):
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 
+class SkinError(str):
+	pass
+
 dom_skins = [ ]
 
 def loadSkin(name):
@@ -299,7 +302,7 @@ def readSkin(screen, skin, name, desktop):
 			try:
 				attributes = screen[wname].skinAttributes = [ ]
 			except:
-				raise str("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 
 #			assert screen[wname] is not Source
 		
@@ -309,9 +312,12 @@ def readSkin(screen, skin, name, desktop):
 			# get corresponding source
 			source = screen.get(wsource)
 			if source is None:
-				raise str("source '" + wsource + "' was not found in screen '" + name + "'!")
+				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
 			
 			wrender = widget.getAttribute('render')
+			
+			if not wrender:
+				raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
 			
 			for converter in elementsWithTag(widget.childNodes, "convert"):
 				ctype = converter.getAttribute('type')
@@ -344,7 +350,7 @@ def readSkin(screen, skin, name, desktop):
 			if type == "onLayoutFinish":
 				screen.onLayoutFinish.append(code)
 			else:
-				raise str("applet type '%s' unknown!" % type)
+				raise SkinError("applet type '%s' unknown!" % type)
 			
 			continue
 		
@@ -358,7 +364,7 @@ def readSkin(screen, skin, name, desktop):
 		elif widget.tagName == "ePixmap":
 			w.widget = ePixmap
 		else:
-			raise str("unsupported stuff : %s" % widget.tagName)
+			raise SkinError("unsupported stuff : %s" % widget.tagName)
 		
 		w.skinAttributes = [ ]
 		collectAttributes(w.skinAttributes, widget, skin_path_prefix)
