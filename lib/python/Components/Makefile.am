@@ -16,5 +16,5 @@ install_PYTHON = \
 	PluginList.py PluginComponent.py RecordingConfig.py About.py UsageConfig.py \
 	FIFOList.py ServiceEventTracker.py Input.py TimerSanityCheck.py FileList.py \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
-	Element.py
+	Element.py Playlist.py
 
