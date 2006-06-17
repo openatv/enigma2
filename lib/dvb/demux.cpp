@@ -412,7 +412,7 @@ private:
 };
 
 eDVBRecordFileThread::eDVBRecordFileThread()
-	: m_ts_parser(m_stream_info)
+	:eFilePushThread(IOPRIO_CLASS_RT, 7), m_ts_parser(m_stream_info)
 {
 	m_current_offset = 0;
 }

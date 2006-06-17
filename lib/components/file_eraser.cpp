@@ -1,4 +1,5 @@
 #include <lib/components/file_eraser.h>
+#include <lib/base/ioprio.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -33,9 +34,15 @@ eBackgroundFileEraser::~eBackgroundFileEraser()
 void eBackgroundFileEraser::thread()
 {
 	hasStarted();
+
 	nice(5);
+
+	setIoPrio(IOPRIO_CLASS_BE, 7);
+
 	reset();
+
 	runLoop();
+
 	stop_thread_timer.stop();
 }
 
@@ -68,7 +75,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 					eDebug("file %s erased", msg.filename);
 				free((char*)msg.filename);
 			}
-			stop_thread_timer.start(2000, true); // stop thread in two seconds
+			stop_thread_timer.start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:
 			quit(0);

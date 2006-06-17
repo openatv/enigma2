@@ -2,6 +2,7 @@
 #define __lib_base_filepush_h
 
 #include <lib/base/thread.h>
+#include <lib/base/ioprio.h>
 #include <libsig_comp.h>
 #include <lib/base/message.h>
 #include <sys/types.h>
@@ -16,8 +17,9 @@ public:
 
 class eFilePushThread: public eThread, public Object
 {
+	int prio_class, prio;
 public:
-	eFilePushThread();
+	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0);
 	void thread();
 	void stop();
 	void start(int sourcefd, int destfd);

@@ -63,7 +63,7 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	if (!m_access_points.size())
 		return;
 		
-	eDebug("Fixing discontinuities ...");
+//	eDebug("Fixing discontinuities ...");
 
 			/* if we have no delta at the beginning, extrapolate it */
 	if ((m_access_points.find(0) == m_access_points.end()) && (m_access_points.size() > 1))
@@ -77,7 +77,7 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 			tdiff *= first->first;
 			tdiff /= diff;
 			m_timestamp_deltas[0] = first->second - tdiff;
-			eDebug("first delta is %08llx", first->second - tdiff);
+//			eDebug("first delta is %08llx", first->second - tdiff);
 		}
 	}
 
@@ -92,16 +92,16 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 		
 		if (llabs(diff) > (90000*5)) // 5sec diff
 		{
-			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
+//			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
 			currentDelta = i->second - lastpts_t; /* FIXME: should be the extrapolated new timestamp, based on the current rate */
-			eDebug("current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
+//			eDebug("current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
 			m_timestamp_deltas[i->first] = currentDelta;
 		}
 		lastpts_t = i->second - currentDelta;
 	}
 	
 	
-	eDebug("ok, found %d disconts.", m_timestamp_deltas.size());
+//	eDebug("ok, found %d disconts.", m_timestamp_deltas.size());
 
 #if 0	
 	for (off_t x=0x25807E34ULL; x < 0x25B3CF70; x+= 100000)
