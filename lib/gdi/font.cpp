@@ -482,28 +482,28 @@ int eTextPara::renderString(const char *string, int rflags)
 			{
 				unicode&=0x1F;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 			} else if ((unicode & 0xF0)==0xE0) // three bytes
 			{
 				unicode&=0x0F;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 			} else if ((unicode & 0xF8)==0xF0) // four bytes
 			{
 				unicode&=0x07;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p)
+				if (*p)
 					unicode|=(*p++)&0x3F;
 			}
 		}
