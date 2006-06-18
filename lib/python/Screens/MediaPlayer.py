@@ -30,9 +30,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.playlistparsers = {}
 		self.addPlaylistParser(PlaylistIOM3U, "m3u")
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
-		self.addPlaylistParser(PlaylistIOInternal, "e2")
+		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2)", useServiceRef = True)
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()
@@ -131,7 +131,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.currList = "filelist"
 		
 		self.playlistIOInternal = PlaylistIOInternal()
-		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2"))
+		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		if list:
 			for x in list:
 				self.playlist.addFile(x.ref)
@@ -144,7 +144,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.playlistIOInternal.clear()
 		for x in self.playlist.list:
 			self.playlistIOInternal.addService(ServiceReference(x[0]))
-		self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2"))
+		self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		self.close()
 	
 	def checkSkipShowHideLock(self):

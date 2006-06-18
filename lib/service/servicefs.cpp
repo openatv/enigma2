@@ -145,7 +145,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 				type = 4097;
 			else if (extension == ".wav" || extension == ".wave")
 				type = 4097;
-			else if (extension == ".m3u" || extension == ".pls" || extension == ".e2")
+			else if (extension == ".m3u" || extension == ".pls" || extension == ".e2pls")
 				type = 4098;
 			
 			if (type != -1)
