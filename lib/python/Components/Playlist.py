@@ -1,4 +1,5 @@
 from ServiceReference import ServiceReference
+import os
 
 class PlaylistIO:	
 	def __init__(self):
@@ -50,3 +51,62 @@ class PlaylistIOInternal(PlaylistIO):
 		file.close()
 		
 		return self.OK
+	
+class PlaylistIOM3U(PlaylistIO):
+	def __init__(self):
+		PlaylistIO.__init__(self)
+	
+	def open(self, filename):
+		self.clear()
+		try:
+			file = open(filename, "r")
+		except IOError:
+			return None
+		while True:
+			entry = file.readline().strip()
+			if entry == "":
+				break
+			if entry[0] != "#":
+				# TODO: use e2 facilities to create a service ref from file
+				if entry[0] == "/":
+					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry))
+				else:
+					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry))
+		file.close()
+		return self.list
+		
+	def save(self, filename = None):
+		return self.ERROR
+	
+class PlaylistIOPLS(PlaylistIO):
+	def __init__(self):
+		PlaylistIO.__init__(self)
+	
+	def open(self, filename):
+		self.clear()
+		try:
+			file = open(filename, "r")
+		except IOError:
+			return None
+		entry = file.readline().strip()
+		if entry == "[playlist]": # extended pls
+			while True:
+				entry = file.readline().strip()
+				if entry == "":
+					break
+				if entry[0:4] == "File":
+					pos = entry.find('=') + 1
+					newentry = entry[pos:]
+					# TODO: use e2 facilities to create a service ref from file
+					if newentry[0] == "/":
+						self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + newentry))
+					else:
+						self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + newentry))
+		else:
+			playlist = PlaylistIOM3U()
+			return playlist.open(filename)
+		file.close()
+		return self.list
+		
+	def save(self, filename = None):
+		return self.ERROR

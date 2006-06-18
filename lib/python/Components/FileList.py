@@ -95,7 +95,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 			tmpfiles = files[:]
 			for x in tmpfiles:
 				if os.path.isdir(directory + x):
-					directories.append(x)
+					directories.append(directory + x + "/")
 					files.remove(x)
 		
 		if directory != "/" and self.showDirectories and not self.isTop:
