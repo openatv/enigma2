@@ -470,9 +470,9 @@ int eTextPara::renderString(const char *string, int rflags)
 	if (string)
 		uc_string.reserve(strlen(string));
 	
-	const char *p = string;
+	const char *p = string ? string : "";
 
-	while(p)
+	while (*p)
 	{
 		unsigned int unicode=(unsigned char)*p++;
 
