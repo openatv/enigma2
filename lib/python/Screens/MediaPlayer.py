@@ -14,9 +14,10 @@ from Tools.Directories import resolveFilename, SCOPE_MEDIA, SCOPE_CONFIG
 from Components.ServicePosition import ServicePositionGauge
 from Screens.ChoiceBox import ChoiceBox
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Playlist import PlaylistIOInternal
+from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Screens.InfoBarGenerics import InfoBarSeek
 from ServiceReference import ServiceReference
+from Screens.ChoiceBox import ChoiceBox
 
 import os
 
@@ -25,8 +26,8 @@ class MediaPlayer(Screen, InfoBarSeek):
 		Screen.__init__(self, session)
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
-		
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave)", useServiceRef = True)
+
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()
@@ -311,11 +312,37 @@ class MediaPlayer(Screen, InfoBarSeek):
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
 	
+	ADDPLAYLIST = 0
+	REPLACEPLAYLIST = 1
+	
 	def copyFile(self):
-		self.playlist.addFile(self.filelist.getServiceRef())
-		self.playlist.updateList()
-		if len(self.playlist) == 1:
-			self.changeEntry(0)
+		if self.filelist.getServiceRef().type == 4098: # playlist
+			list = []
+			list.append((_("Add files to playlist"), (self.ADDPLAYLIST, self.filelist.getServiceRef())))
+			list.append((_("Replace current playlist"), (self.REPLACEPLAYLIST, self.filelist.getServiceRef())))
+			self.session.openWithCallback(self.playlistCallback, ChoiceBox, title=_("You selected a playlist"), list = list)
+		else:
+			self.playlist.addFile(self.filelist.getServiceRef())
+			self.playlist.updateList()
+			if len(self.playlist) == 1:
+				self.changeEntry(0)
+
+	def playlistCallback(self, answer):
+		if answer is not None:
+			extension = answer[1][1].getPath()[-3:]
+			if extension == "m3u":
+				playlist = PlaylistIOM3U()
+			elif extension == "pls":
+				playlist = PlaylistIOPLS()
+			if answer[1][0] == self.REPLACEPLAYLIST:
+				self.stopEntry()
+				self.playlist.clear()
+				self.switchToFileList()
+			if answer[1][0] == self.REPLACEPLAYLIST or answer[1][0] == self.ADDPLAYLIST:
+				list = playlist.open(answer[1][1].getPath())
+				for x in list:
+					self.playlist.addFile(x.ref)
+				
 
 	def nextEntry(self):
 		next = self.playlist.getCurrentIndex() + 1
