@@ -36,7 +36,7 @@ int eLabel::event(int event, void *data, void *data2)
 			style->setStyle(painter, eWindowStyle::styleLabel);
 			ePtr<eTextPara> para = new eTextPara(eRect(0, 0, size().width(), size().height()));
 			para->setFont(m_font);
-			para->renderString(m_text, 0);
+			para->renderString(m_text.empty()?0:m_text.c_str(), 0);
 			para->realign(eTextPara::dirLeft);
 			int glyphs = para->size();
 
@@ -185,7 +185,7 @@ eSize eLabel::calculateSize()
 	ePtr<eTextPara> p = new eTextPara(eRect(0, 0, size().width(), size().height()));
 	
 	p->setFont(m_font);
-	p->renderString(m_text, RS_WRAP);
+	p->renderString(m_text.empty()?0:m_text.c_str(), RS_WRAP);
 	
 	eRect bbox = p->getBoundBox();
 	return bbox.size();

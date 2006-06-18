@@ -55,7 +55,7 @@ int eInput::event(int event, void *data, void *data2)
 		
 		eDebug("cursor is %d", cursor);
 		para->setFont(m_font);
-		para->renderString(text, 0);
+		para->renderString(text.empty()?0:text.c_str(), 0);
 		int glyphs = para->size();
 		
 		if (m_have_focus)

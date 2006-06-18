@@ -237,7 +237,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.dc = m_dc.grabRef();
 	o.parm.renderText = new gOpcode::para::prenderText;
 	o.parm.renderText->area = pos;
-	o.parm.renderText->text = string;
+	o.parm.renderText->text = string.empty()?0:strdup(string.c_str());
 	o.parm.renderText->flags = flags;
 	m_rc->submit(o);
 }
@@ -539,7 +539,8 @@ void gDC::exec(gOpcode *o)
 		assert(m_current_font);
 		para->setFont(m_current_font);
 		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0);
-		
+		if (o->parm.renderText->text)
+			free(o->parm.renderText->text);
 		if (flags & gPainter::RT_HALIGN_RIGHT)
 			para->realign(eTextPara::dirRight);
 		else if (flags & gPainter::RT_HALIGN_CENTER)

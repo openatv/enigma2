@@ -427,7 +427,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				eTextPara *para = new eTextPara(tmp);
 				para->setFont(m_element_font[e]);
-				para->renderString(text);
+				para->renderString(text.c_str());
 
 				if (e == celServiceName)
 				{
