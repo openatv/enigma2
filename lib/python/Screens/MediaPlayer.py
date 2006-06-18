@@ -27,7 +27,12 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls)", useServiceRef = True)
+		self.playlistparsers = {}
+		self.addPlaylistParser(PlaylistIOM3U, "m3u")
+		self.addPlaylistParser(PlaylistIOPLS, "pls")
+		self.addPlaylistParser(PlaylistIOInternal, "e2")
+
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()
@@ -327,21 +332,23 @@ class MediaPlayer(Screen, InfoBarSeek):
 			if len(self.playlist) == 1:
 				self.changeEntry(0)
 
+	def addPlaylistParser(self, parser, extension):
+		self.playlistparsers[extension] = parser
+
 	def playlistCallback(self, answer):
 		if answer is not None:
-			extension = answer[1][1].getPath()[-3:]
-			if extension == "m3u":
-				playlist = PlaylistIOM3U()
-			elif extension == "pls":
-				playlist = PlaylistIOPLS()
-			if answer[1][0] == self.REPLACEPLAYLIST:
-				self.stopEntry()
-				self.playlist.clear()
-				self.switchToFileList()
-			if answer[1][0] == self.REPLACEPLAYLIST or answer[1][0] == self.ADDPLAYLIST:
-				list = playlist.open(answer[1][1].getPath())
-				for x in list:
-					self.playlist.addFile(x.ref)
+			extension = answer[1][1].getPath()[answer[1][1].getPath().rfind('.') + 1:]
+			print "extension:", extension
+			if self.playlistparsers.has_key(extension):
+				playlist = self.playlistparsers[extension]()
+				if answer[1][0] == self.REPLACEPLAYLIST:
+					self.stopEntry()
+					self.playlist.clear()
+					self.switchToFileList()
+				if answer[1][0] == self.REPLACEPLAYLIST or answer[1][0] == self.ADDPLAYLIST:
+					list = playlist.open(answer[1][1].getPath())
+					for x in list:
+						self.playlist.addFile(x.ref)
 				
 
 	def nextEntry(self):
