@@ -78,7 +78,7 @@ struct gOpcode
 		struct prenderText
 		{
 			eRect area;
-			std::string text;
+			char *text;
 			int flags;
 		} *renderText;
 

@@ -126,7 +126,7 @@ public:
 	static void forceReplacementGlyph(int unicode) { forced_replaces.insert(unicode); }
 
 	void setFont(const gFont *font);
-	int renderString(const std::string &string, int flags=0);
+	int renderString(const char *string, int flags=0);
 
 	void clear();
 

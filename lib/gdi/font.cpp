@@ -443,7 +443,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 void
 shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
-int eTextPara::renderString(const std::string &string, int rflags)
+int eTextPara::renderString(const char *string, int rflags)
 {
 	singleLock s(ftlock);
 	
@@ -467,11 +467,12 @@ int eTextPara::renderString(const std::string &string, int rflags)
 	}
 	
 	std::vector<unsigned long> uc_string, uc_visual;
-	uc_string.reserve(string.length());
+	if (string)
+		uc_string.reserve(strlen(string));
 	
-	std::string::const_iterator p(string.begin());
+	const char *p = string;
 
-	while(p != string.end())
+	while(p)
 	{
 		unsigned int unicode=(unsigned char)*p++;
 
@@ -481,28 +482,28 @@ int eTextPara::renderString(const std::string &string, int rflags)
 			{
 				unicode&=0x1F;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 			} else if ((unicode & 0xF0)==0xE0) // three bytes
 			{
 				unicode&=0x0F;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 			} else if ((unicode & 0xF8)==0xF0) // four bytes
 			{
 				unicode&=0x07;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 				unicode<<=6;
-				if (p != string.end())
+				if (p)
 					unicode|=(*p++)&0x3F;
 			}
 		}
