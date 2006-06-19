@@ -1680,6 +1680,12 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	int res=0;
 
+	if (!m_sn)
+	{
+		eDebug("no frontend device opened... do not try to tune !!!");
+		return -ENODEV;
+	}
+
 	if (m_type == -1)
 		return -ENODEV;
 
