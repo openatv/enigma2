@@ -143,6 +143,18 @@ void bsodFatal()
 void oops(const mcontext_t &context, int dumpcode)
 {
 	eDebug("PC: %08lx, vaddr: %08lx", (unsigned long)context.pc, (unsigned long)context.badvaddr);
+	
+		/* this is temporary debug stuff. */
+	if (dumpcode && ((unsigned long)context.pc) > 0x10000) /* not a zero pointer */
+	{
+		eDebug("As a final action, i will try to dump a bit of code.");
+		eDebug("I just hope that this won't crash.");
+		int i;
+		eDebugNoNewLine("%08x:", (unsigned long)context.pc);
+		for (i=0; i<0x20; ++i)
+			eDebugNoNewLine(" %02x", ((unsigned char*)context.pc)[i]);
+		eDebug(" (end)");
+	}
 }
 #else
 #warning "no oops support!"
