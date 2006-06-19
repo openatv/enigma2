@@ -1002,6 +1002,7 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				eDebug("FE_GET_FRONTEND (%m)");
 			else
 			{
+				const FRONTENDPARAMETERS &parm = original ? this->parm : front;
 				tmp = "INVERSION_AUTO";
 				switch(parm_inversion)
 				{
