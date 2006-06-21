@@ -100,8 +100,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 				eDVBCAService::register_service(m_reference, demuxes, m_ca_servicePtr);
 				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			}
-			else
-				eDVBCIInterfaces::getInstance()->gotPMT(this);
+			eDVBCIInterfaces::getInstance()->gotPMT(this);
 		}
 		if (m_ca_servicePtr)
 		{
@@ -449,6 +448,11 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel);
 		eDebug("allocate Channel: res %d", res);
+
+		ePtr<iDVBChannelList> db;
+		if (!m_resourceManager->getChannelList(db))
+				db->getService((eServiceReferenceDVB&)m_reference, m_service);
+
 		if (!res)
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	} else
@@ -481,10 +485,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 			eDebug("allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
 	}
-
-	ePtr<iDVBChannelList> db;
-	if (!m_resourceManager->getChannelList(db))
-		db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
 	if (m_channel)
 	{
