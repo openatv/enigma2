@@ -22,7 +22,7 @@ eDVBCI_UI::eDVBCI_UI()
 		slotdata[i].mmiScreen=NULL;
 		slotdata[i].mmiScreenReady=0;
 		slotdata[i].mmiTuplePos=0;
-		slotdata[i].state=0;
+		slotdata[i].state=-1;
 	}
 }
 
@@ -43,11 +43,7 @@ eDVBCI_UI *eDVBCI_UI::getInstance()
 int eDVBCI_UI::getState(int slot)
 {
 	if (slot < MAX_SLOTS)
-	{
-		if (eDVBCIInterfaces::getInstance()->getSlotState(slot) == eDVBCISlot::stateInvalid)
-			eDVBCIInterfaces::getInstance()->reset(slot);
 		return slotdata[slot].state;
-	}
 	return 0;
 }
 

@@ -250,9 +250,6 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		{
 			for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
 			{
-				if (ci_it->getState() == eDVBCISlot::stateInvalid)
-					ci_it->reset();
-
 				bool useThis=false;
 				eDVBCICAManagerSession *ca_manager = ci_it->getCAManager();
 				if (ca_manager)
@@ -358,12 +355,15 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 		bool sameServiceExist=false;
 		for (PMTHandlerList::iterator i=m_pmt_handlers.begin(); i != m_pmt_handlers.end(); ++i)
 		{
-			eServiceReferenceDVB ref;
-			i->pmthandler->getServiceReference(ref);
-			if ( ref == service_to_remove )
+			if (i->cislot)
 			{
-				sameServiceExist=true;
-				break;
+				eServiceReferenceDVB ref;
+				i->pmthandler->getServiceReference(ref);
+				if ( ref == service_to_remove )
+				{
+					sameServiceExist=true;
+					break;
+				}
 			}
 		}
 

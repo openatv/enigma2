@@ -273,19 +273,22 @@ class CiSelection(Screen):
 		self.dlg = None
 		self.state = { }
 		self.list = [ ]
-		self["entries"] = MenuList(list)
-		self.clearMenu()
-		self.createMenu(0) # FIXME more than one CI
-		CiHandler.registerCIMessageHandler(0, self.ciStateChanged)
 
-	def clearMenu(self):
-		self.list = [ ]
+		for slot in range(4):
+			state = eDVBCI_UI.getInstance().getState(slot)
+			self.appendEntries(slot, state) # FIXME more than one CI
+			CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
 
-	def createMenu(self, slot):
+		menuList = MenuList(list)
+		menuList.list = self.list
+		menuList.l.setList(self.list)
+		self["entries"] = menuList
+
+	def appendEntries(self, slot, state):
+		self.state[slot] = state
 		self.list.append( (_("Reset"), 0, slot) )
 		self.list.append( (_("Init"), 1, slot) )
 
-		self.state[slot] = eDVBCI_UI.getInstance().getState(slot)
 		if self.state[slot] == 0:			#no module
 			self.list.append( (_("no module found"), 2, slot) )
 		elif self.state[slot] == 1:		#module in init
@@ -295,8 +298,29 @@ class CiSelection(Screen):
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
 			self.list.append( (appname, 2, slot) )
 
-		self["entries"].list = self.list
-		self["entries"].l.setList(self.list)
+	def updateState(self, slot):
+		state = eDVBCI_UI.getInstance().getState(slot)
+		self.state[slot] = state
+
+		slotidx=0
+		while self.list[slotidx][2] != slot:
+			slotidx += 1
+
+		slotidx += 1 # do not change Reset
+		slotidx += 1 # do not change Init
+
+		if state == 0:			#no module
+			self.list[slotidx] = (_("no module found"), 2, slot)
+		elif state == 1:		#module in init
+			self.list[slotidx] = (_("init module"), 2, slot)
+		elif state == 2:		#module ready
+			#get appname
+			appname = eDVBCI_UI.getInstance().getAppName(slot)
+			self.list[slotidx] = (appname, 2, slot)
+
+		lst = self["entries"]
+		lst.list = self.list
+		lst.l.setList(self.list)
 
 	def ciStateChanged(self, slot):
 		if self.dlg:
@@ -306,8 +330,7 @@ class CiSelection(Screen):
 			if self.state[slot] != state:
 				#print "something happens"
 				self.state[slot] = state
-				self.clearMenu()
-				self.createMenu(slot)
+				self.updateState(slot)
 
 	def dlgClosed(self, slot):
 		self.dlg = None
@@ -323,13 +346,6 @@ class CiSelection(Screen):
 				eDVBCI_UI.getInstance().setInit(slot)
 			elif self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, action)
-
-		#generate menu / list
-		#list = [ ]
-		#list.append( ("TEXT", "CA-Info") )
-		#list.append( ("TEXT", "Card Status") )
-		#list.append( ("PIN", 6, "Card Pin", 1) )
-		#self.session.open(CiMmi, 0, 0, "Wichtiges CI", "Mainmenu", "Footer", list)
 
 	def cancel(self):
 		CiHandler.unregisterCIMessageHandler(0)
