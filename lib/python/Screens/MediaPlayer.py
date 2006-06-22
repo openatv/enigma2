@@ -32,7 +32,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()

@@ -96,6 +96,11 @@ eServiceFS::~eServiceFS()
 {
 }
 
+int lower(char c)
+{
+	return std::tolower(static_cast<unsigned char>(c));
+}
+
 RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 {
 	DIR *d=opendir(path.c_str());
@@ -131,6 +136,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 		{
 			size_t e = filename.rfind('.');
 			std::string extension = (e != std::string::npos) ? filename.substr(e) : "";
+			std::transform(extension.begin(), extension.end(), extension.begin(), lower);
 			int type = -1;
 			
 			if (extension == ".ts")
