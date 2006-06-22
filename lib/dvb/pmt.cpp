@@ -160,27 +160,27 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 {
 	ePtr<eTable<ProgramMapSection> > ptr;
+	int cached_apid_ac3 = -1;
+	int cached_apid_mpeg = -1;
+	int cached_vpid = -1;
+	int cached_tpid = -1;
 
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;
-	program.audioChannel = m_service ? m_service->getCacheEntry(eDVBService::cACHANNEL) : -1;
+
+	if ( m_service && !m_service->cacheEmpty() )
+	{
+		cached_vpid = m_service->getCacheEntry(eDVBService::cVPID);
+		cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cAC3PID);
+		cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAPID);
+		cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
+	}
 
 	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
 	{
-		int cached_apid_ac3 = -1;
-		int cached_apid_mpeg = -1;
-		int cached_vpid = -1;
-		int cached_tpid = -1;
-		if ( m_service && !m_service->cacheEmpty() )
-		{
-			cached_vpid = m_service->getCacheEntry(eDVBService::cVPID);
-			cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cAC3PID);
-			cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAPID);
-			cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
-		}
 		eDVBTableSpec table_spec;
 		ptr->getSpec(table_spec);
 		program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
@@ -313,48 +313,44 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 		return 0;
 	} else if ( m_service && !m_service->cacheEmpty() )
 	{
-		int vpid = m_service->getCacheEntry(eDVBService::cVPID),
-			apid_ac3 = m_service->getCacheEntry(eDVBService::cAC3PID),
-			apid_mpeg = m_service->getCacheEntry(eDVBService::cAPID),
-			pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
-			tpid = m_service->getCacheEntry(eDVBService::cTPID),
+		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
 			vpidtype = m_service->getCacheEntry(eDVBService::cVTYPE),
 			cnt=0;
 		if ( vpidtype == -1 )
 			vpidtype = videoStream::vtMPEG2;
-		if ( vpid != -1 )
+		if ( cached_vpid != -1 )
 		{
 			videoStream s;
-			s.pid = vpid;
+			s.pid = cached_vpid;
 			s.type = vpidtype;
 			program.videoStreams.push_back(s);
 			++cnt;
 		}
-		if ( apid_ac3 != -1 )
+		if ( cached_apid_ac3 != -1 )
 		{
 			audioStream s;
 			s.type = audioStream::atAC3;
-			s.pid = apid_ac3;
+			s.pid = cached_apid_ac3;
 			program.audioStreams.push_back(s);
 			++cnt;
 		}
-		if ( apid_mpeg != -1 )
+		if ( cached_apid_mpeg != -1 )
 		{
 			audioStream s;
 			s.type = audioStream::atMPEG;
-			s.pid = apid_mpeg;
+			s.pid = cached_apid_mpeg;
 			program.audioStreams.push_back(s);
 			++cnt;
 		}
-		if ( pcrpid != -1 )
+		if ( cached_pcrpid != -1 )
 		{
 			++cnt;
-			program.pcrPid = pcrpid;
+			program.pcrPid = cached_pcrpid;
 		}
-		if ( tpid != -1 )
+		if ( cached_tpid != -1 )
 		{
 			++cnt;
-			program.textPid = tpid;
+			program.textPid = cached_tpid;
 		}
 		CAID_LIST &caids = m_service->m_ca;
 		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)

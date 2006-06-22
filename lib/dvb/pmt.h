@@ -122,9 +122,8 @@ public:
 		int pmtPid;
 		int textPid;
 		bool isCrypted() { return !caids.empty(); }
-		int audioChannel;
 	};
-	
+
 	int getProgramInfo(struct program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);

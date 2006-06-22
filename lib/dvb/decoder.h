@@ -82,6 +82,9 @@ public:
 
 class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
 {
+	static int m_pcm_delay;
+	static int m_ac3_delay;
+	static int m_audio_channel;
 DECLARE_REF(eTSMPEGDecoder);
 private:
 	ePtr<eDVBDemux> m_demux;
@@ -110,6 +113,11 @@ public:
 	RESULT setVideoPID(int vpid, int type);
 	RESULT setAudioPID(int apid, int type);
 	RESULT setAudioChannel(int channel);
+	int getAudioChannel();
+	RESULT setPCMDelay(int delay);
+	int getPCMDelay() { return m_pcm_delay; }
+	RESULT setAC3Delay(int delay);
+	int getAC3Delay() { return m_ac3_delay; }
 	RESULT setSyncPCR(int pcrpid);
 	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);

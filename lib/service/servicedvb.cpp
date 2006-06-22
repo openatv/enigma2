@@ -630,7 +630,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service), m_is_paused(0), m_current_audio_channel(-1)
+	m_reference(ref), m_dvb_service(service), m_is_paused(0)
 {
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
@@ -1069,6 +1069,12 @@ RESULT eDVBServicePlay::subtitle(ePtr<iSubtitleOutput> &ptr)
 	return 0;
 }
 
+RESULT eDVBServicePlay::audioDelay(ePtr<iAudioDelay> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_is_pvr)
@@ -1279,21 +1285,17 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 int eDVBServicePlay::getCurrentChannel()
 {
-	return m_current_audio_channel == -1 ? STEREO : m_current_audio_channel;
+	return m_decoder ? m_decoder->getAudioChannel() : STEREO;
 }
 
 RESULT eDVBServicePlay::selectChannel(int i)
 {
-	if (i < iAudioChannelSelection::LEFT || i > iAudioChannelSelection::RIGHT)
+	if (i < LEFT || i > RIGHT)
 		i = -1;  // Stereo
-	if (m_current_audio_channel != i)
-	{
-		if (m_dvb_service)
-			m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
-		m_current_audio_channel=i;
-		if (m_decoder)
-			m_decoder->setAudioChannel(i);
-	}
+	if (m_dvb_service)
+		m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
+	if (m_decoder)
+		m_decoder->setAudioChannel(i);
 	return 0;
 }
 
@@ -1604,7 +1606,8 @@ void eDVBServicePlay::switchToTimeshift()
 
 void eDVBServicePlay::updateDecoder()
 {
-	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1;
+	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
+
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	bool defaultac3=false;
@@ -1663,7 +1666,6 @@ void eDVBServicePlay::updateDecoder()
 		pcrpid = program.pcrPid;
 		eDebug(", and the text pid is %04x", program.textPid);
 		tpid = program.textPid;
-		achannel = program.audioChannel;
 	}
 
 	if (!m_decoder)
@@ -1681,6 +1683,39 @@ void eDVBServicePlay::updateDecoder()
 
 	if (m_decoder)
 	{
+		if (m_dvb_service)
+		{
+			achannel = m_dvb_service->getCacheEntry(eDVBService::cACHANNEL);
+			ac3_delay = m_dvb_service->getCacheEntry(eDVBService::cAC3DELAY);
+			pcm_delay = m_dvb_service->getCacheEntry(eDVBService::cPCMDELAY);
+		}
+/*
+		else if (m_reference.path.length()) // workaround for recordings
+		{
+			eDebug("playback %s", m_reference.toString().c_str());
+			
+			ePtr<eDVBResourceManager> res_mgr;
+			if (!eDVBResourceManager::getInstance(res_mgr))
+			{
+				ePtr<iDVBChannelList> db;
+				if (!res_mgr->getChannelList(db))
+				{
+					ePtr<eDVBService> origService;
+					eServiceReference tmp = m_reference;
+					tmp.path="";
+					if (!db->getService((eServiceReferenceDVB&)tmp, origService))
+					{
+						ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
+						pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
+					}
+				}
+			}
+		}
+*/
+
+		m_decoder->setAC3Delay(ac3_delay == -1 ? 0 : ac3_delay);
+		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
+
 		m_decoder->setVideoPID(vpid, vpidtype);
 		m_current_audio_stream = 0;
 		m_decoder->setAudioPID(apid, apidtype);
@@ -1699,7 +1734,6 @@ void eDVBServicePlay::updateDecoder()
 
 		m_decoder->start();
 
-		m_current_audio_channel=achannel;
 		m_decoder->setAudioChannel(achannel);
 
 // how we can do this better?
@@ -1945,6 +1979,42 @@ void eDVBServicePlay::checkSubtitleTiming()
 			break;
 		}
 	}
+}
+
+int eDVBServicePlay::getAC3Delay()
+{
+	if (m_dvb_service)
+		return m_dvb_service->getCacheEntry(eDVBService::cAC3DELAY);
+	else if (m_decoder)
+		return m_decoder->getAC3Delay();
+	else
+		return 0;
+}
+
+int eDVBServicePlay::getPCMDelay()
+{
+	if (m_dvb_service)
+		return m_dvb_service->getCacheEntry(eDVBService::cPCMDELAY);
+	else if (m_decoder)
+		return m_decoder->getPCMDelay();
+	else
+		return 0;
+}
+
+void eDVBServicePlay::setAC3Delay(int delay)
+{
+	if (m_dvb_service)
+		m_dvb_service->setCacheEntry(eDVBService::cAC3DELAY, delay);
+	if (m_decoder)
+		m_decoder->setAC3Delay(delay);
+}
+
+void eDVBServicePlay::setPCMDelay(int delay)
+{
+	if (m_dvb_service)
+		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay);
+	if (m_decoder)
+		m_decoder->setPCMDelay(delay);
 }
 
 DEFINE_REF(eDVBServicePlay)
