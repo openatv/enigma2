@@ -33,6 +33,7 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 	def setText(self, text):
 		if not len(text):
 			self.currPos = 0
+			self.Text = ""
 		elif isUTF8(text):
 			self.Text = convertUTF8DVB(text, 0)
 		else:
