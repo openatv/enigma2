@@ -73,7 +73,7 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
-		public iCueSheet, public iSubtitleOutput
+		public iCueSheet, public iSubtitleOutput, public iAudioDelay
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -95,6 +95,7 @@ public:
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
+	RESULT audioDelay(ePtr<iAudioDelay> &ptr);	
 
 		// iPauseableService
 	RESULT pause();
@@ -146,6 +147,12 @@ public:
 	RESULT disableSubtitles(eWidget *parent);
 	PyObject *getSubtitleList();
 
+		// iAudioDelay
+	int getAC3Delay();
+	int getPCMDelay();
+	void setAC3Delay(int);
+	void setPCMDelay(int);
+
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
@@ -177,7 +184,6 @@ private:
 	
 	ePtr<iDVBDemux> m_decode_demux;
 
-	int m_current_audio_channel;
 	int m_current_audio_stream;
 	int selectAudioStream(int n);
 	

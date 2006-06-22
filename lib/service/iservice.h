@@ -389,6 +389,21 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iAudioChannelSelection>, iAudioChannelSelectionPtr);
 
+class iAudioDelay: public iObject
+{
+#ifdef SWIG
+	iAudioDelay();
+	~iAudioDelay();
+#endif
+public:
+	virtual int getAC3Delay()=0;
+	virtual int getPCMDelay()=0;
+	virtual void setAC3Delay(int)=0;
+	virtual void setPCMDelay(int)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iAudioDelay>, iAudioDelayPtr);
+
 class iSubserviceList: public iObject
 {
 #ifdef SWIG
@@ -493,6 +508,7 @@ public:
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);

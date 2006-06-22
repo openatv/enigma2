@@ -234,7 +234,8 @@ class eDVBService: public iStaticServiceInformation
 public:
 	enum cacheID
 	{
-		cVPID, cAPID, cTPID, cPCRPID, cAC3PID, cVTYPE, cACHANNEL, cacheMax
+		cVPID, cAPID, cTPID, cPCRPID, cAC3PID,
+		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY, cacheMax
 	};
 
 	int getCacheEntry(cacheID);
@@ -594,6 +595,12 @@ public:
 	enum { ac_left, ac_stereo, ac_right };
 		/** Set Displayed Audio Channel */
 	virtual RESULT setAudioChannel(int channel)=0;
+	virtual int getAudioChannel()=0;
+
+	virtual RESULT setPCMDelay(int delay)=0;
+	virtual int getPCMDelay()=0;
+	virtual RESULT setAC3Delay(int delay)=0;
+	virtual int getAC3Delay()=0;
 
 		/** Set Displayed Videotext PID */
 	virtual RESULT setTextPID(int vpid)=0;

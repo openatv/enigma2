@@ -530,6 +530,37 @@ int eTSMPEGDecoder::setState()
 	return res;
 }
 
+int eTSMPEGDecoder::m_pcm_delay=-1,
+	eTSMPEGDecoder::m_ac3_delay=-1;
+
+RESULT eTSMPEGDecoder::setPCMDelay(int delay)
+{
+	if (m_decoder == 0 && delay != m_pcm_delay )
+	{
+		FILE *fp = fopen("/proc/stb/audio/audio_delay_pcm", "w");
+		if (fp)
+		{
+			fprintf(fp, "%x", delay*90);
+			fclose(fp);
+			m_pcm_delay = delay;
+		}
+	}
+}
+
+RESULT eTSMPEGDecoder::setAC3Delay(int delay)
+{
+	if ( m_decoder == 0 && delay != m_ac3_delay )
+	{
+		FILE *fp = fopen("/proc/stb/audio/audio_delay_bitstream", "w");
+		if (fp)
+		{
+			fprintf(fp, "%x", delay*90);
+			fclose(fp);
+			m_ac3_delay = delay;
+		}
+	}
+}
+
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0), m_decoder(decoder)
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
@@ -565,13 +596,28 @@ RESULT eTSMPEGDecoder::setAudioPID(int apid, int type)
 	return 0;
 }
 
+int eTSMPEGDecoder::m_audio_channel = -1;
+
 RESULT eTSMPEGDecoder::setAudioChannel(int channel)
 {
-	if (m_audio)
-		m_audio->setChannel(channel);
-	else
-		eDebug("eTSMPEGDecoder::setAudioChannel but no audio decoder exist");
+	if (channel == -1)
+		channel = ac_stereo;
+	if (m_decoder == 0 && m_audio_channel != channel)
+	{
+		if (m_audio)
+		{
+			m_audio->setChannel(channel);
+			m_audio_channel=channel;
+		}
+		else
+			eDebug("eTSMPEGDecoder::setAudioChannel but no audio decoder exist");
+	}
 	return 0;
+}
+
+int eTSMPEGDecoder::getAudioChannel()
+{
+	return m_audio_channel == -1 ? ac_stereo : m_audio_channel;
 }
 
 RESULT eTSMPEGDecoder::setSyncPCR(int pcrpid)
