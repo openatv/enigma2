@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-02 18:54+0200\n"
-"PO-Revision-Date: 2006-06-06 16:45+0100\n"
+"POT-Creation-Date: 2006-06-19 20:29+0200\n"
+"PO-Revision-Date: 2006-06-21 11:56+0100\n"
 "Last-Translator: weeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,7 @@ msgstr "%d min"
 
 #: ../lib/python/Screens/TimerEntry.py:106
 #: ../lib/python/Screens/TimerEntry.py:109
+#: ../lib/python/Screens/TimeDateInput.py:49
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -64,23 +65,23 @@ msgstr "/usr/share/enigma2 bibliotek"
 msgid "/var directory"
 msgstr "/var bibliotek"
 
-#: ../lib/python/Components/NimManager.py:746
+#: ../lib/python/Components/NimManager.py:748
 msgid "0 V"
 msgstr "0 V"
 
-#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:751
 msgid "1.0"
 msgstr "1.0"
 
-#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:751
 msgid "1.1"
 msgstr "1.1"
 
-#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:751
 msgid "1.2"
 msgstr "1.2"
 
-#: ../lib/python/Components/NimManager.py:746
+#: ../lib/python/Components/NimManager.py:748
 msgid "12 V"
 msgstr "12 V"
 
@@ -88,11 +89,11 @@ msgstr "12 V"
 msgid "12V Output"
 msgstr "12V Ut"
 
-#: ../lib/python/Components/NimManager.py:725
+#: ../lib/python/Components/NimManager.py:727
 msgid "13 V"
 msgstr "13 V"
 
-#: ../lib/python/Components/NimManager.py:725
+#: ../lib/python/Components/NimManager.py:727
 msgid "18 V"
 msgstr "18 V"
 
@@ -100,11 +101,11 @@ msgstr "18 V"
 msgid "<unknown>"
 msgstr "<okänd>"
 
-#: ../lib/python/Components/NimManager.py:748
+#: ../lib/python/Components/NimManager.py:750
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -112,11 +113,13 @@ msgstr ""
 "En inspelning pågår redan.\n"
 "Vad vill du göra?"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "En inspelning pågår. Vänligen avbryt den innan du konfigurerar motorn"
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:506
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
+msgstr "En inspelning pågår. Vänligen avbryt den innan du konfigurerar motorn."
 
-#: ../RecordTimer.py:151
+#: ../RecordTimer.py:163
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -124,33 +127,29 @@ msgstr ""
 "En timerinspelning misslyckades!\n"
 "Inaktivera TV och försök igen?\n"
 
-#: ../lib/python/Components/NimManager.py:731
+#: ../lib/python/Components/NimManager.py:733
 msgid "AA"
 msgstr "AA"
 
-#: ../lib/python/Components/NimManager.py:731
+#: ../lib/python/Components/NimManager.py:733
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/ScanSetup.py:253
-msgid "AGC"
-msgstr "AGC"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:998
+#: ../lib/python/Screens/InfoBarGenerics.py:1028
 msgid "Activate Picture in Picture"
 msgstr "Aktivera Bild i Bild"
 
-#: ../lib/python/Screens/TimerEdit.py:28
+#: ../lib/python/Screens/TimerEdit.py:27
 msgid "Add"
 msgstr "Lägg till"
 
 #: ../lib/python/Screens/EventView.py:32
-#: ../lib/python/Screens/EpgSelection.py:58
+#: ../lib/python/Screens/EpgSelection.py:60
 msgid "Add timer"
 msgstr "Lägg till timer"
 
-#: ../lib/python/Components/NimManager.py:668
-#: ../lib/python/Components/NimManager.py:676
+#: ../lib/python/Components/NimManager.py:670
+#: ../lib/python/Components/NimManager.py:678
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Advanced"
 msgstr "Avancerat"
@@ -159,58 +158,53 @@ msgstr "Avancerat"
 msgid "After event"
 msgstr "Efter program"
 
-#: ../lib/python/Screens/MediaPlayer.py:41
+#: ../lib/python/Screens/MediaPlayer.py:43
 msgid "Album:"
 msgstr "Album:"
 
-#: ../lib/python/Screens/ChannelSelection.py:448
-#: ../lib/python/Screens/ChannelSelection.py:594
+#: ../lib/python/Screens/ChannelSelection.py:447
+#: ../lib/python/Screens/ChannelSelection.py:593
 msgid "All"
 msgstr "Alla"
 
-#: ../lib/python/Components/Language.py:15
+#: ../lib/python/Components/Language.py:16
 msgid "Arabic"
 msgstr "Arabiska"
 
-#: ../lib/python/Screens/MediaPlayer.py:37
+#: ../lib/python/Screens/MediaPlayer.py:39
 msgid "Artist:"
 msgstr "Artist:"
 
-#: ../lib/python/Screens/ScanSetup.py:303
-#: ../lib/python/Screens/ScanSetup.py:306
-#: ../lib/python/Screens/ScanSetup.py:310
-#: ../lib/python/Screens/ScanSetup.py:311
-#: ../lib/python/Screens/ScanSetup.py:312
-#: ../lib/python/Screens/ScanSetup.py:318
-#: ../lib/python/Screens/ScanSetup.py:322
-#: ../lib/python/Screens/ScanSetup.py:323
-#: ../lib/python/Screens/ScanSetup.py:324
-#: ../lib/python/Screens/ScanSetup.py:325
+#: ../lib/python/Screens/ScanSetup.py:317
+#: ../lib/python/Screens/ScanSetup.py:320
 #: ../lib/python/Screens/ScanSetup.py:326
 #: ../lib/python/Screens/ScanSetup.py:327
+#: ../lib/python/Screens/ScanSetup.py:328
+#: ../lib/python/Screens/ScanSetup.py:334
+#: ../lib/python/Screens/ScanSetup.py:338
+#: ../lib/python/Screens/ScanSetup.py:339
+#: ../lib/python/Screens/ScanSetup.py:340
+#: ../lib/python/Screens/ScanSetup.py:341
+#: ../lib/python/Screens/ScanSetup.py:342
+#: ../lib/python/Screens/ScanSetup.py:343
 msgid "Auto"
 msgstr "Auto"
 
-#: ../lib/python/Screens/ScanSetup.py:577
-#: ../data/
+#: ../lib/python/Screens/ScanSetup.py:656 ../data/
 msgid "Automatic Scan"
 msgstr "Automatisk Sökning"
 
-#: ../lib/python/Components/NimManager.py:748
+#: ../lib/python/Components/NimManager.py:750
 msgid "B"
 msgstr "B"
 
-#: ../lib/python/Components/NimManager.py:731
+#: ../lib/python/Components/NimManager.py:733
 msgid "BA"
 msgstr "BA"
 
-#: ../lib/python/Components/NimManager.py:731
+#: ../lib/python/Components/NimManager.py:733
 msgid "BB"
 msgstr "BB"
-
-#: ../lib/python/Screens/ScanSetup.py:255
-msgid "BER"
-msgstr "BER"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:76
 msgid "Backup"
@@ -224,11 +218,11 @@ msgstr "Backups Placering"
 msgid "Backup Mode"
 msgstr "Backup Läge"
 
-#: ../lib/python/Components/NimManager.py:726
+#: ../lib/python/Components/NimManager.py:728
 msgid "Band"
 msgstr "Band"
 
-#: ../lib/python/Screens/ScanSetup.py:238
+#: ../lib/python/Screens/ScanSetup.py:248
 msgid "Bandwidth"
 msgstr "Bandbredd"
 
@@ -236,7 +230,7 @@ msgstr "Bandbredd"
 msgid "Bus: "
 msgstr "Bus: "
 
-#: ../lib/python/Components/NimManager.py:742
+#: ../lib/python/Components/NimManager.py:744
 msgid "C-Band"
 msgstr "C-Band"
 
@@ -244,7 +238,7 @@ msgstr "C-Band"
 msgid "CF Drive"
 msgstr "CF Disk"
 
-#: ../lib/python/Screens/ChannelSelection.py:705
+#: ../lib/python/Screens/ChannelSelection.py:706
 msgid "Cable"
 msgstr "Kabel"
 
@@ -252,8 +246,8 @@ msgstr "Kabel"
 msgid "Cable provider"
 msgstr "KabelTV leverantör"
 
-#: ../lib/python/Screens/Setup.py:143
-#: ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/Setup.py:143 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:165
 msgid "Cancel"
@@ -263,12 +257,11 @@ msgstr "Avbryt"
 msgid "Capacity: "
 msgstr "Kapacitet: "
 
-#: ../lib/python/Screens/TimerEntry.py:197
-#: ../data/
+#: ../lib/python/Screens/TimerEntry.py:197 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:148
+#: ../lib/python/Screens/InfoBarGenerics.py:149
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -280,19 +273,27 @@ msgstr "Välj källa"
 msgid "Classic"
 msgstr "Klassisk"
 
-#: ../lib/python/Screens/TimerEdit.py:30
+#: ../lib/python/Screens/TimerEdit.py:29
 msgid "Cleanup"
 msgstr "Rensa"
 
-#: ../lib/python/Screens/TimerEntry.py:316
+#: ../lib/python/Screens/ScanSetup.py:214
+#: ../lib/python/Screens/ScanSetup.py:219
+#: ../lib/python/Screens/ScanSetup.py:241
+#: ../lib/python/Screens/ScanSetup.py:256
+#: ../lib/python/Screens/ScanSetup.py:645
+msgid "Clear before scan"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEntry.py:346
 msgid "Clear log"
 msgstr "Rensa log"
 
-#: ../lib/python/Screens/ScanSetup.py:239
+#: ../lib/python/Screens/ScanSetup.py:249
 msgid "Code rate high"
 msgstr "Code rate hög"
 
-#: ../lib/python/Screens/ScanSetup.py:240
+#: ../lib/python/Screens/ScanSetup.py:250
 msgid "Code rate low"
 msgstr "Code rate låg"
 
@@ -305,14 +306,13 @@ msgstr "Kommando ordning"
 msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC kommando"
 
-#: ../lib/python/Screens/ScanSetup.py:284
-#: ../lib/python/Screens/ScanSetup.py:285
+#: ../lib/python/Screens/ScanSetup.py:296
+#: ../lib/python/Screens/ScanSetup.py:297
 msgid "Complete"
 msgstr "Komplett"
 
 #: ../lib/python/Screens/Satconfig.py:49
-#: ../lib/python/Screens/Satconfig.py:154
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:154 ../data/
 msgid "Configuration Mode"
 msgstr "Inställningar"
 
@@ -324,19 +324,31 @@ msgstr "Timerkonflikt"
 msgid "Current version:"
 msgstr "Aktuell Version:"
 
-#: ../lib/python/Components/Language.py:16
+#: ../lib/python/Screens/ScanSetup.py:315
+msgid "DVB-S"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:315
+msgid "DVB-S2"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:17
 msgid "Danish"
 msgstr "Danska"
+
+#: ../lib/python/Screens/TimeDateInput.py:54
+msgid "Date"
+msgstr ""
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
 msgstr "Standard"
 
-#: ../lib/python/Screens/TimerEdit.py:27
+#: ../lib/python/Screens/TimerEdit.py:26
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../lib/python/Screens/TimerEntry.py:313
+#: ../lib/python/Screens/TimerEntry.py:343
 msgid "Delete entry"
 msgstr "Ta bort post"
 
@@ -356,11 +368,11 @@ msgstr "Hittad Hårddisk:"
 msgid "Detected NIMs:"
 msgstr "Hittad NIMs:"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:692
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:692
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
@@ -376,9 +388,8 @@ msgstr "DiSEqC läge"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC repetetioner"
 
-#: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:84
-#: ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/ScanSetup.py:223
+#: ../lib/python/Screens/TimerEdit.py:83 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -389,7 +400,7 @@ msgstr "DiSEqC repetetioner"
 msgid "Disable"
 msgstr "Avaktivera"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1000
+#: ../lib/python/Screens/InfoBarGenerics.py:1030
 msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
 
@@ -413,6 +424,12 @@ msgid ""
 msgstr ""
 "Vill du verkligen ladda ner\n"
 "pluginen \""
+
+#: ../lib/python/Screens/HarddiskSetup.py:54
+msgid ""
+"Do you really want to initialize the harddisk?\n"
+"All data on the disk will be lost!"
+msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:123
 msgid ""
@@ -443,27 +460,26 @@ msgstr "Nerladdningsbara nya plugins"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laddar ner information om pluginet. Var vänlig vänta..."
 
-#: ../lib/python/Components/Language.py:17
+#: ../lib/python/Components/Language.py:18
 msgid "Dutch"
 msgstr "Holländska"
 
-#: ../lib/python/Screens/ChannelSelection.py:713
+#: ../lib/python/Screens/ChannelSelection.py:714
 msgid "E"
 msgstr "Ö"
 
 #: ../lib/python/Components/ServiceScan.py:40
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
-msgstr "FEL - misslyckades scanna (%s)!"
+msgstr "FEL - misslyckades söka (%s)!"
 
-#: ../lib/python/Components/NimManager.py:697
-#: ../lib/python/Components/NimManager.py:758
+#: ../lib/python/Components/NimManager.py:699
+#: ../lib/python/Components/NimManager.py:760
 msgid "East"
 msgstr "Öst"
 
-#: ../lib/python/Screens/ScanSetup.py:213
-#: ../lib/python/Screens/TimerEdit.py:82
-#: ../lib/python/Components/Lcd.py:31
+#: ../lib/python/Screens/ScanSetup.py:223
+#: ../lib/python/Screens/TimerEdit.py:81 ../lib/python/Components/Lcd.py:31
 #: ../lib/python/Components/SetupDevices.py:38
 #: ../lib/python/Components/SetupDevices.py:39
 #: ../lib/python/Components/SetupDevices.py:43
@@ -488,7 +504,7 @@ msgstr "SlutTid"
 msgid "English"
 msgstr "Engelska"
 
-#: ../lib/python/Components/NimManager.py:671
+#: ../lib/python/Components/NimManager.py:673
 msgid "Equal to Socket A"
 msgstr "Likadant som Tuner A"
 
@@ -500,13 +516,14 @@ msgstr "Exekverings Framsteg:"
 msgid "Execution finished!!"
 msgstr "Exekvering färdig!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1212
+#: ../lib/python/Screens/InfoBarGenerics.py:1365
 msgid "Extensions"
 msgstr "Utökningar"
 
-#: ../lib/python/Screens/ScanSetup.py:200
-#: ../lib/python/Screens/ScanSetup.py:228
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:390
+#: ../lib/python/Screens/ScanSetup.py:206
+#: ../lib/python/Screens/ScanSetup.py:208
+#: ../lib/python/Screens/ScanSetup.py:238
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:405
 msgid "FEC"
 msgstr "FEC"
 
@@ -514,23 +531,27 @@ msgstr "FEC"
 msgid "Fast DiSEqC"
 msgstr "Fast DiSEqC"
 
-#: ../lib/python/Screens/ChannelSelection.py:451
+#: ../lib/python/Screens/ChannelSelection.py:450
 msgid "Favourites"
 msgstr "Favoriter"
 
-#: ../lib/python/Components/Language.py:18
+#: ../lib/python/Components/Language.py:19
+msgid "Finnish"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:20
 msgid "French"
 msgstr "Franska"
 
-#: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/ScanSetup.py:224
-#: ../lib/python/Screens/ScanSetup.py:235
+#: ../lib/python/Screens/ScanSetup.py:201
+#: ../lib/python/Screens/ScanSetup.py:234
+#: ../lib/python/Screens/ScanSetup.py:245
 #: ../lib/python/Screens/TimerEntry.py:160
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:386
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:401
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Fri"
 msgstr "Fre"
@@ -549,17 +570,16 @@ msgstr "Frontprocessor version: %d"
 msgid "Function not yet implemented"
 msgstr "Funktionen är inte implementerad"
 
-#: ../lib/python/Screens/NetworkSetup.py:45
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:45 ../data/
 msgid "Gateway"
 msgstr "Gateway"
 
-#: ../lib/python/Screens/MediaPlayer.py:45
+#: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Genre:"
 msgstr "Genre:"
 
 #: ../lib/python/Components/SetupDevices.py:24
-#: ../lib/python/Components/Language.py:19
+#: ../lib/python/Components/Language.py:15
 msgid "German"
 msgstr "Tyska"
 
@@ -567,11 +587,16 @@ msgstr "Tyska"
 msgid "Getting plugin information. Please wait..."
 msgstr "Hämtar plugin information. Var vänlig vänta..."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:134
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:192
+msgid "Goto 0"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:189
 msgid "Goto position"
 msgstr "Gå till position"
 
-#: ../lib/python/Screens/ScanSetup.py:243
+#: ../lib/python/Screens/ScanSetup.py:253
 msgid "Guard interval mode"
 msgstr "Guard interval läge"
 
@@ -580,21 +605,20 @@ msgstr "Guard interval läge"
 msgid "Harddisk"
 msgstr "Hårddisk"
 
-#: ../lib/python/Screens/ScanSetup.py:244
+#: ../lib/python/Screens/ScanSetup.py:254
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1123
-#: ../lib/python/Screens/InfoBarGenerics.py:1131
+#: ../lib/python/Screens/InfoBarGenerics.py:1167
+#: ../lib/python/Screens/InfoBarGenerics.py:1175
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
-#: ../lib/python/Screens/NetworkSetup.py:42
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:42 ../data/
 msgid "IP Address"
 msgstr "IP Adress"
 
-#: ../lib/python/Components/Language.py:20
+#: ../lib/python/Components/Language.py:21
 msgid "Icelandic"
 msgstr "Isländska"
 
@@ -602,11 +626,16 @@ msgstr "Isländska"
 msgid "Image-Upgrade"
 msgstr "Image Uppgradering"
 
+#: ../RecordTimer.py:166
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
+
 #: ../lib/python/Screens/Satconfig.py:150
 msgid "Increased voltage"
 msgstr "Ökad spänning"
 
-#: ../lib/python/Screens/Ci.py:214
+#: ../lib/python/Screens/Ci.py:286
 msgid "Init"
 msgstr "Initiera"
 
@@ -618,14 +647,14 @@ msgstr "Initiera"
 msgid "Initializing Harddisk..."
 msgstr "Initierar Hårddisk..."
 
-#: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/ScanSetup.py:225
-#: ../lib/python/Screens/ScanSetup.py:237
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:387
+#: ../lib/python/Screens/ScanSetup.py:202
+#: ../lib/python/Screens/ScanSetup.py:235
+#: ../lib/python/Screens/ScanSetup.py:247
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:402
 msgid "Inversion"
 msgstr "Inversion"
 
-#: ../lib/python/Components/Language.py:21
+#: ../lib/python/Components/Language.py:22
 msgid "Italian"
 msgstr "Italienska"
 
@@ -645,40 +674,45 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48
-#: ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
 msgid "Language selection"
 msgstr "Välj språk"
 
 #: ../lib/python/Screens/Satconfig.py:28
-#: ../lib/python/Screens/Satconfig.py:137
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:137 ../data/
 msgid "Latitude"
 msgstr "Latitud"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
+msgid "Left"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:184
 msgid "Limit east"
 msgstr "Östlig gräns"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
 msgid "Limit west"
 msgstr "Västlig gräns"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:181
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
 msgid "Limits off"
 msgstr "Gränser av"
 
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:185
+msgid "Limits on"
+msgstr ""
+
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:135
-#: ../data/
+#: ../lib/python/Screens/Satconfig.py:135 ../data/
 msgid "Longitude"
 msgstr "Longitud"
 
-#: ../lib/python/Components/NimManager.py:672
+#: ../lib/python/Components/NimManager.py:674
 msgid "Loopthrough to Socket A"
 msgstr "Loopa igenom till Tuner A"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
 msgid "Manual transponder"
 msgstr "Manuell transponder"
 
@@ -686,12 +720,13 @@ msgstr "Manuell transponder"
 msgid "Model: "
 msgstr "Modell: "
 
-#: ../lib/python/Screens/ScanSetup.py:227
-#: ../lib/python/Screens/ScanSetup.py:241
+#: ../lib/python/Screens/ScanSetup.py:209
+#: ../lib/python/Screens/ScanSetup.py:237
+#: ../lib/python/Screens/ScanSetup.py:251
 msgid "Modulation"
-msgstr "Modulation"
+msgstr "Modulering"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Mon"
 msgstr "Mån"
@@ -705,11 +740,15 @@ msgstr "Mån-Fre"
 msgid "Monday"
 msgstr "Måndag"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
+#: ../lib/python/Screens/InfoBarGenerics.py:1031
+msgid "Move Picture in Picture"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:175
 msgid "Move east"
 msgstr "Flytta öst"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Move west"
 msgstr "Flytta väst"
 
@@ -721,15 +760,15 @@ msgstr "Film Meny"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-#: ../lib/python/Screens/ScanSetup.py:283
+#: ../lib/python/Screens/ScanSetup.py:295
 msgid "Multisat"
 msgstr "Multisat"
 
-#: ../lib/python/Components/NimManager.py:493
+#: ../lib/python/Components/NimManager.py:495
 msgid "N/A"
 msgstr "Inte Tillgänglig"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:471
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:486
 msgid "NIM "
 msgstr "NIM "
 
@@ -737,81 +776,83 @@ msgstr "NIM "
 msgid "Name"
 msgstr "Namn"
 
-#: ../lib/python/Screens/NetworkSetup.py:46
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:46 ../data/
 msgid "Nameserver"
 msgstr "Namnserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:44
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:44 ../data/
 msgid "Netmask"
 msgstr "Nätmask"
 
-#: ../lib/python/Screens/ScanSetup.py:229
-#: ../lib/python/Screens/ScanSetup.py:236
+#: ../lib/python/Screens/ScanSetup.py:239
+#: ../lib/python/Screens/ScanSetup.py:246
 msgid "Network scan"
 msgstr "Sök Nätverk"
+
+#: ../lib/python/Screens/ChannelSelection.py:698
+msgid "New"
+msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
 msgstr "Ny Version:"
 
-#: ../lib/python/Screens/EpgSelection.py:44
+#: ../lib/python/Screens/EpgSelection.py:46
 msgid "Next"
 msgstr "Nästa"
 
-#: ../lib/python/Components/NimManager.py:727
-#: ../lib/python/Components/NimManager.py:747
-#: ../lib/python/Components/NimManager.py:751
-#: ../lib/python/Components/NimManager.py:752
-#: ../lib/python/Components/NimManager.py:761
+#: ../lib/python/Components/NimManager.py:729
+#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:753
+#: ../lib/python/Components/NimManager.py:754
+#: ../lib/python/Components/NimManager.py:763
 msgid "No"
 msgstr "Nej"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1143
+#: ../lib/python/Screens/InfoBarGenerics.py:1187
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk funnen eller initialiserad!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1076
+#: ../lib/python/Screens/InfoBarGenerics.py:1120
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:488
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
 msgid "No positioner capable frontend found."
 msgstr "Ingen positioner kapabel frontend funnet."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:518
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
 
-#: ../lib/python/Screens/ScanSetup.py:306
-#: ../lib/python/Screens/ScanSetup.py:312
-#: ../lib/python/Screens/ScanSetup.py:322
-#: ../lib/python/Screens/ScanSetup.py:323
-#: ../lib/python/Screens/ScanSetup.py:327
-#: ../lib/python/Components/NimManager.py:731
-#: ../lib/python/Components/NimManager.py:735
-#: ../lib/python/Components/NimManager.py:748
-#: ../lib/python/Components/NimManager.py:749
-#: ../lib/python/Components/NimManager.py:756
+#: ../lib/python/Screens/ScanSetup.py:320
+#: ../lib/python/Screens/ScanSetup.py:328
+#: ../lib/python/Screens/ScanSetup.py:338
+#: ../lib/python/Screens/ScanSetup.py:339
+#: ../lib/python/Screens/ScanSetup.py:343
+#: ../lib/python/Components/NimManager.py:733
+#: ../lib/python/Components/NimManager.py:737
+#: ../lib/python/Components/NimManager.py:750
+#: ../lib/python/Components/NimManager.py:751
+#: ../lib/python/Components/NimManager.py:758
 msgid "None"
 msgstr "Inga"
 
-#: ../lib/python/Components/NimManager.py:699
-#: ../lib/python/Components/NimManager.py:760
+#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:762
 msgid "North"
 msgstr "Nord"
 
-#: ../lib/python/Components/Language.py:22
+#: ../lib/python/Components/Language.py:23
 msgid "Norwegian"
 msgstr "Norska"
 
-#: ../lib/python/Components/NimManager.py:673
+#: ../lib/python/Components/NimManager.py:675
 msgid "Nothing connected"
 msgstr "Ingenting är anslutet"
 
-#: ../lib/python/Screens/ScanSetup.py:459
-#: ../lib/python/Screens/ScanSetup.py:517
+#: ../lib/python/Screens/ScanSetup.py:524
+#: ../lib/python/Screens/ScanSetup.py:589
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -819,21 +860,21 @@ msgstr ""
 "Inget att scanna!\n"
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
-#: ../lib/python/Screens/Setup.py:142
-#: ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/Setup.py:142 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/python/Components/NimManager.py:726
+#: ../lib/python/Components/NimManager.py:728
 msgid "Off"
 msgstr "Av"
 
-#: ../lib/python/Components/NimManager.py:726
+#: ../lib/python/Components/NimManager.py:728
 msgid "On"
 msgstr "På"
 
-#: ../lib/python/Components/NimManager.py:756
+#: ../lib/python/Components/NimManager.py:758
 msgid "One"
 msgstr "En"
 
@@ -845,28 +886,36 @@ msgstr "Online Uppgradering"
 msgid "Packet management"
 msgstr "Pakethantering"
 
-#: ../lib/python/Screens/InfoBar.py:40
+#: ../lib/python/Screens/InfoBar.py:45
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1001
+#: ../lib/python/Screens/InfoBarGenerics.py:1040
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
-#: ../lib/python/Screens/ChannelSelection.py:118
+#: ../lib/python/Screens/ChannelSelection.py:127
 msgid "Please enter a name for the new bouquet"
 msgstr "Ange namn för den nya bouquet"
+
+#: ../lib/python/Screens/TimerEntry.py:320
+msgid "Please select a subservice to record..."
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1333
+msgid "Please select a subservice..."
+msgstr ""
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
 msgstr "Vänligen vänta... Laddar lista..."
 
-#: ../lib/python/Screens/ScanSetup.py:199
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:389
+#: ../lib/python/Screens/ScanSetup.py:204
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:404
 msgid "Polarity"
 msgstr "Polaritet"
 
-#: ../lib/python/Components/NimManager.py:725
+#: ../lib/python/Components/NimManager.py:727
 msgid "Polarization"
 msgstr "Polarisation"
 
@@ -886,23 +935,23 @@ msgstr "Port C"
 msgid "Port D"
 msgstr "Port D"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:692
 msgid "Positioner"
 msgstr "Motor"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
 msgid "Positioner fine movement"
 msgstr "Motor finstegning"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
 msgid "Positioner movement"
 msgstr "Motor rörelse"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:133
 msgid "Positioner storage"
-msgstr "Motor arkiv"
+msgstr "Motor lagring"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
 msgid "Predefined satellite"
 msgstr "Fördefinerad satelliter"
 
@@ -910,32 +959,32 @@ msgstr "Fördefinerad satelliter"
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för aktivera inställningarna."
 
-#: ../lib/python/Screens/ScanSetup.py:578
+#: ../lib/python/Screens/ScanSetup.py:657
 msgid "Press OK to scan"
 msgstr "Tryck OK för sökning"
 
-#: ../lib/python/Screens/ScanSetup.py:159
+#: ../lib/python/Screens/ScanSetup.py:161
 msgid "Press OK to start the scan"
 msgstr "Tryck OK för starta sökning"
 
-#: ../lib/python/Screens/EpgSelection.py:43
+#: ../lib/python/Screens/EpgSelection.py:45
 msgid "Prev"
 msgstr "Föregående"
 
-#: ../lib/python/Screens/ChannelSelection.py:450
-#: ../lib/python/Screens/ChannelSelection.py:590
+#: ../lib/python/Screens/ChannelSelection.py:449
+#: ../lib/python/Screens/ChannelSelection.py:589
 msgid "Provider"
-msgstr "Provider"
+msgstr "Leverantör"
 
-#: ../lib/python/Screens/ChannelSelection.py:697
+#: ../lib/python/Screens/ChannelSelection.py:696
 msgid "Providers"
-msgstr "Providers"
+msgstr "Leverantörer"
 
-#: ../lib/python/Screens/TimerEdit.py:108
+#: ../lib/python/Screens/TimerEdit.py:107
 msgid "Really delete done timers?"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1196
+#: ../lib/python/Screens/InfoBarGenerics.py:1349
 msgid "Record"
 msgstr "Spela in"
 
@@ -955,7 +1004,7 @@ msgstr "Ta bort plugins"
 msgid "Repeat Type"
 msgstr "Repeat Typ"
 
-#: ../lib/python/Screens/Ci.py:213
+#: ../lib/python/Screens/Ci.py:285
 msgid "Reset"
 msgstr "Nollställ"
 
@@ -964,26 +1013,25 @@ msgstr "Nollställ"
 msgid "Restore"
 msgstr "Återställ"
 
-#: ../lib/python/Screens/ScanSetup.py:251
-msgid "SNR"
-msgstr "SNR"
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
+msgid "Right"
+msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Sat"
 msgstr "Lör"
 
-#: ../lib/python/Screens/ScanSetup.py:195
-#: ../lib/python/Screens/ScanSetup.py:204
-#: ../lib/python/Screens/Satconfig.py:13
-#: ../lib/python/Screens/Satconfig.py:63
+#: ../lib/python/Screens/ScanSetup.py:200
+#: ../lib/python/Screens/ScanSetup.py:213
+#: ../lib/python/Screens/Satconfig.py:13 ../lib/python/Screens/Satconfig.py:63
 #: ../lib/python/Screens/Satconfig.py:156
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:383
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:398
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Screens/ChannelSelection.py:449
-#: ../lib/python/Screens/ChannelSelection.py:592
+#: ../lib/python/Screens/ChannelSelection.py:448
+#: ../lib/python/Screens/ChannelSelection.py:591
 msgid "Satellites"
 msgstr "Satelliter"
 
@@ -992,22 +1040,30 @@ msgstr "Satelliter"
 msgid "Saturday"
 msgstr "Lördag"
 
-#: ../lib/python/Screens/ScanSetup.py:571
-#: ../lib/python/Screens/ScanSetup.py:574
+#: ../lib/python/Screens/ScanSetup.py:650
+#: ../lib/python/Screens/ScanSetup.py:653
 msgid "Scan NIM"
 msgstr "Scanna NIM"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Search east"
 msgstr "Sök öst"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Search west"
 msgstr "Sök väst"
 
-#: ../lib/python/Components/NimManager.py:674
+#: ../lib/python/Components/NimManager.py:676
 msgid "Secondary cable from motorized LNB"
 msgstr "Andra kabeln från Motor"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1253
+msgid "Select audio mode"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1242
+msgid "Select audio track"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:237
 msgid "Select channel to record from"
@@ -1017,11 +1073,11 @@ msgstr "Välj kanal att spela in från"
 msgid "Sequence repeat"
 msgstr "Repetera sekvens"
 
-#: ../lib/python/Screens/ChannelSelection.py:699
+#: ../lib/python/Screens/ChannelSelection.py:700
 msgid "Services"
 msgstr "Kanaler"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
 msgid "Set limits"
 msgstr "Ange gräns"
 
@@ -1029,7 +1085,7 @@ msgstr "Ange gräns"
 msgid "Settings"
 msgstr "Inställningar"
 
-#: ../lib/python/Screens/InfoBar.py:41
+#: ../lib/python/Screens/InfoBar.py:46
 msgid "Show the radio player..."
 msgstr "Visa radiospelaren..."
 
@@ -1041,12 +1097,12 @@ msgstr "Liknande"
 msgid "Similar broadcasts:"
 msgstr "Liknande sändningar:"
 
-#: ../lib/python/Components/NimManager.py:668
-#: ../lib/python/Components/NimManager.py:675
+#: ../lib/python/Components/NimManager.py:670
+#: ../lib/python/Components/NimManager.py:677
 msgid "Simple"
 msgstr "Enkelt"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:692
 msgid "Single"
 msgstr "Singel"
 
@@ -1054,21 +1110,21 @@ msgstr "Singel"
 msgid "Single EPG"
 msgstr "Singel EPG"
 
-#: ../lib/python/Screens/ScanSetup.py:283
+#: ../lib/python/Screens/ScanSetup.py:295
 msgid "Single satellite"
 msgstr "Singel satellit"
 
-#: ../lib/python/Screens/ScanSetup.py:283
-#: ../lib/python/Screens/ScanSetup.py:284
-#: ../lib/python/Screens/ScanSetup.py:285
+#: ../lib/python/Screens/ScanSetup.py:295
+#: ../lib/python/Screens/ScanSetup.py:296
+#: ../lib/python/Screens/ScanSetup.py:297
 msgid "Single transponder"
 msgstr "Singel transponder"
 
-#: ../lib/python/Components/NimManager.py:703
+#: ../lib/python/Components/NimManager.py:705
 msgid "Slot "
 msgstr "Slot "
 
-#: ../lib/python/Components/NimManager.py:562
+#: ../lib/python/Components/NimManager.py:564
 msgid "Socket "
 msgstr "Sockel "
 
@@ -1082,12 +1138,12 @@ msgstr ""
 "\n"
 "Vänligen ange annan."
 
-#: ../lib/python/Components/NimManager.py:699
-#: ../lib/python/Components/NimManager.py:760
+#: ../lib/python/Components/NimManager.py:701
+#: ../lib/python/Components/NimManager.py:762
 msgid "South"
 msgstr "Syd"
 
-#: ../lib/python/Components/Language.py:23
+#: ../lib/python/Components/Language.py:24
 msgid "Spanish"
 msgstr "Spanska"
 
@@ -1095,7 +1151,7 @@ msgstr "Spanska"
 msgid "Start"
 msgstr "Start"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1149
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "Start recording?"
 msgstr "Starta inspelning?"
 
@@ -1103,34 +1159,38 @@ msgstr "Starta inspelning?"
 msgid "StartTime"
 msgstr "StartTid"
 
-#: ../lib/python/Screens/Wizard.py:218
+#: ../lib/python/Screens/Wizard.py:230
 msgid "Step "
 msgstr "Steg "
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:179
 msgid "Step east"
 msgstr "Stega öst"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:177
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
 msgid "Step west"
 msgstr "Stega väst"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
+msgid "Stereo"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:169
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:170
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:919
+#: ../lib/python/Screens/InfoBarGenerics.py:941
 msgid "Stop Timeshift?"
 msgstr "Stoppa Timeshift?"
 
-#: ../lib/python/Screens/InfoBar.py:100
+#: ../lib/python/Screens/InfoBar.py:105
 msgid "Stop playing this movie?"
 msgstr "Stoppa uppspelningen?"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Store position"
 msgstr "Lagra position"
 
@@ -1138,12 +1198,15 @@ msgstr "Lagra position"
 msgid "Stored position"
 msgstr "Lagrad position"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1201
-#: ../data/
+#: ../lib/python/Screens/InfoBarGenerics.py:1271
+msgid "Subservice list..."
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1354 ../data/
 msgid "Subservices"
 msgstr "Underkanal"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Sun"
 msgstr "Sön"
@@ -1153,25 +1216,37 @@ msgstr "Sön"
 msgid "Sunday"
 msgstr "Söndag"
 
-#: ../lib/python/Components/Language.py:24
+#: ../lib/python/Screens/InfoBarGenerics.py:1032
+msgid "Swap services"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:25
 msgid "Swedish"
 msgstr "Svenska"
 
-#: ../lib/python/Screens/ScanSetup.py:198
-#: ../lib/python/Screens/ScanSetup.py:226
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:388
+#: ../lib/python/Screens/InfoBarGenerics.py:1276
+msgid "Switch to next subservice"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1277
+msgid "Switch to previous subservice"
+msgstr ""
+
+#: ../lib/python/Screens/ScanSetup.py:203
+#: ../lib/python/Screens/ScanSetup.py:236
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:403
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
-#: ../lib/python/Screens/ChannelSelection.py:707
+#: ../lib/python/Screens/ChannelSelection.py:708
 msgid "Terrestrial"
 msgstr "Terrestrial"
 
 #: ../lib/python/Screens/Satconfig.py:73
 msgid "Terrestrial provider"
-msgstr "Terrestrial provider"
+msgstr "Terrestrial leverantör"
 
-#: ../lib/python/Components/NimManager.py:756
+#: ../lib/python/Components/NimManager.py:758
 msgid "Three"
 msgstr "Tre"
 
@@ -1179,7 +1254,7 @@ msgstr "Tre"
 msgid "Threshold"
 msgstr "Gränsvärde"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Thu"
 msgstr "Tors"
@@ -1189,23 +1264,27 @@ msgstr "Tors"
 msgid "Thursday"
 msgstr "Torsdag"
 
+#: ../lib/python/Screens/TimeDateInput.py:55
+msgid "Time"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
 msgstr "Timertyp"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:891
+#: ../lib/python/Screens/InfoBarGenerics.py:913
 msgid "Timeshift not possible!"
 msgstr "Timeshift inte möjligt!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1205
+#: ../lib/python/Screens/InfoBarGenerics.py:1358
 msgid "Timeshifting"
 msgstr "Timeshifting"
 
-#: ../lib/python/Screens/MediaPlayer.py:39
+#: ../lib/python/Screens/MediaPlayer.py:41
 msgid "Title:"
 msgstr "Title:"
 
-#: ../lib/python/Screens/EpgSelection.py:258
+#: ../lib/python/Screens/EpgSelection.py:246
 #: ../lib/python/Tools/FuzzyDate.py:10
 msgid "Today"
 msgstr "Idag"
@@ -1218,19 +1297,23 @@ msgstr "Tone läge"
 msgid "Toneburst"
 msgstr "Toneburst"
 
-#: ../lib/python/Components/NimManager.py:690
+#: ../lib/python/Components/NimManager.py:692
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
-#: ../lib/python/Screens/ScanSetup.py:242
+#: ../lib/python/Screens/ScanSetup.py:252
 msgid "Transmission mode"
 msgstr "Sändningstyp"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:392
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:407
 msgid "Transponder"
 msgstr "Transponder"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/ScanSetup.py:198
+msgid "Transpondertype"
+msgstr ""
+
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Tue"
 msgstr "Tis"
@@ -1240,28 +1323,32 @@ msgstr "Tis"
 msgid "Tuesday"
 msgstr "Tisdag"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:128
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:381
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:161
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:396
 msgid "Tune"
 msgstr "Tune"
 
-#: ../lib/python/Screens/ScanSetup.py:177
+#: ../lib/python/Screens/ScanSetup.py:179
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "Tuner"
 msgstr "Tuner"
 
-#: ../lib/python/Components/NimManager.py:756
+#: ../lib/python/Components/Language.py:26
+msgid "Turkish"
+msgstr ""
+
+#: ../lib/python/Components/NimManager.py:758
 msgid "Two"
 msgstr "Två"
 
-#: ../lib/python/Screens/ScanSetup.py:182
 #: ../lib/python/Screens/ScanSetup.py:185
 #: ../lib/python/Screens/ScanSetup.py:188
+#: ../lib/python/Screens/ScanSetup.py:191
 msgid "Type of scan"
 msgstr "Typ av sökning"
 
-#: ../lib/python/Components/NimManager.py:695
+#: ../lib/python/Components/NimManager.py:697
 msgid "USALS"
 msgstr "USALS"
 
@@ -1283,7 +1370,7 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
 
-#: ../lib/python/Components/NimManager.py:742
+#: ../lib/python/Components/NimManager.py:744
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
@@ -1295,8 +1382,7 @@ msgstr "Uppdatering utförd. Här är resultatet:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter...."
 
-#: ../lib/python/Screens/NetworkSetup.py:40
-#: ../data/
+#: ../lib/python/Screens/NetworkSetup.py:40 ../data/
 msgid "Use DHCP"
 msgstr "Använd DHCP"
 
@@ -1304,7 +1390,7 @@ msgstr "Använd DHCP"
 msgid "Use usals for this sat"
 msgstr "Använd USALS för denna sat"
 
-#: ../lib/python/Components/NimManager.py:742
+#: ../lib/python/Components/NimManager.py:744
 msgid "User defined"
 msgstr "Användardefinierat"
 
@@ -1312,11 +1398,11 @@ msgstr "Användardefinierat"
 msgid "Voltage mode"
 msgstr "Spännings läge"
 
-#: ../lib/python/Screens/ChannelSelection.py:711
+#: ../lib/python/Screens/ChannelSelection.py:712
 msgid "W"
 msgstr "V"
 
-#: ../lib/python/Screens/EpgSelection.py:247
+#: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
 msgid "Wed"
 msgstr "Ons"
@@ -1330,20 +1416,20 @@ msgstr "Onsdag"
 msgid "Weekday"
 msgstr "Veckodag"
 
-#: ../lib/python/Components/NimManager.py:697
-#: ../lib/python/Components/NimManager.py:758
+#: ../lib/python/Components/NimManager.py:699
+#: ../lib/python/Components/NimManager.py:760
 msgid "West"
 msgstr "Väst"
 
-#: ../lib/python/Screens/MediaPlayer.py:43
+#: ../lib/python/Screens/MediaPlayer.py:45
 msgid "Year:"
 msgstr "År:"
 
-#: ../lib/python/Components/NimManager.py:727
-#: ../lib/python/Components/NimManager.py:747
-#: ../lib/python/Components/NimManager.py:751
-#: ../lib/python/Components/NimManager.py:752
-#: ../lib/python/Components/NimManager.py:761
+#: ../lib/python/Components/NimManager.py:729
+#: ../lib/python/Components/NimManager.py:749
+#: ../lib/python/Components/NimManager.py:753
+#: ../lib/python/Components/NimManager.py:754
+#: ../lib/python/Components/NimManager.py:763
 msgid "Yes"
 msgstr "Ja"
 
@@ -1359,23 +1445,23 @@ msgstr ""
 "Din frontprocessor firmware måste uppgraderas.\n"
 "Tryck OK för att starta."
 
-#: ../lib/python/Screens/ChannelSelection.py:331
+#: ../lib/python/Screens/ChannelSelection.py:330
 msgid "[bouquet edit]"
 msgstr "[bouquet editor]"
 
-#: ../lib/python/Screens/ChannelSelection.py:333
+#: ../lib/python/Screens/ChannelSelection.py:332
 msgid "[favourite edit]"
 msgstr "[favoriter editor]"
 
-#: ../lib/python/Screens/ChannelSelection.py:416
+#: ../lib/python/Screens/ChannelSelection.py:415
 msgid "[move mode]"
 msgstr "[flytt läge]"
 
-#: ../lib/python/Screens/ChannelSelection.py:103
+#: ../lib/python/Screens/ChannelSelection.py:112
 msgid "abort bouquet edit"
 msgstr "avbryt editera bouquet"
 
-#: ../lib/python/Screens/ChannelSelection.py:106
+#: ../lib/python/Screens/ChannelSelection.py:115
 msgid "abort favourites edit"
 msgstr "avbryt editera favoriter"
 
@@ -1383,38 +1469,38 @@ msgstr "avbryt editera favoriter"
 msgid "about to start"
 msgstr "håller på startar"
 
-#: ../lib/python/Screens/ChannelSelection.py:92
+#: ../lib/python/Screens/ChannelSelection.py:101
 msgid "add bouquet..."
 msgstr "lägg till bouquet..."
 
-#: ../lib/python/Screens/MediaPlayer.py:258
+#: ../lib/python/Screens/MediaPlayer.py:271
 msgid "add directory to playlist"
 msgstr "lägg till bibliotek till playlist"
 
-#: ../lib/python/Screens/MediaPlayer.py:260
+#: ../lib/python/Screens/MediaPlayer.py:273
 msgid "add file to playlist"
 msgstr "lägg till fil i playlist"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
-#: ../lib/python/Screens/InfoBarGenerics.py:1149
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (enter recording duration)"
 msgstr "lägg till inspelning (ange inspelningslängd)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
-#: ../lib/python/Screens/InfoBarGenerics.py:1149
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (indefinitely)"
 msgstr "lägg till inspelning (oändlig)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
-#: ../lib/python/Screens/InfoBarGenerics.py:1149
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (stop after current event)"
 msgstr "lägg till inspelning (avsluta efter nuvarande)"
 
-#: ../lib/python/Screens/ChannelSelection.py:77
+#: ../lib/python/Screens/ChannelSelection.py:81
 msgid "add service to bouquet"
 msgstr "lägg till kanal till bouquet"
 
-#: ../lib/python/Screens/ChannelSelection.py:79
+#: ../lib/python/Screens/ChannelSelection.py:83
 msgid "add service to favourites"
 msgstr "lägg till kanal i favoriter"
 
@@ -1427,27 +1513,27 @@ msgstr ""
 "med följande backup:\n"
 
 #: ../lib/python/Screens/MovieSelection.py:24
-#: ../lib/python/Screens/ChannelSelection.py:108
+#: ../lib/python/Screens/ChannelSelection.py:117
 msgid "back"
 msgstr "tillbaka"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
 
-#: ../lib/python/Screens/ScanSetup.py:305
+#: ../lib/python/Screens/ScanSetup.py:319
 msgid "circular left"
 msgstr "cirkulär vänster"
 
-#: ../lib/python/Screens/ScanSetup.py:305
+#: ../lib/python/Screens/ScanSetup.py:319
 msgid "circular right"
 msgstr "circulär höger"
 
-#: ../lib/python/Screens/MediaPlayer.py:264
+#: ../lib/python/Screens/MediaPlayer.py:277
 msgid "clear playlist"
 msgstr "rensa playlist"
 
-#: ../lib/python/Screens/ChannelSelection.py:82
+#: ../lib/python/Screens/ChannelSelection.py:87
 msgid "copy to favourites"
 msgstr "kopiera till favoriter"
 
@@ -1455,7 +1541,7 @@ msgstr "kopiera till favoriter"
 msgid "daily"
 msgstr "daglig"
 
-#: ../lib/python/Screens/MediaPlayer.py:263
+#: ../lib/python/Screens/MediaPlayer.py:276
 msgid "delete"
 msgstr "ta bort"
 
@@ -1463,16 +1549,16 @@ msgstr "ta bort"
 msgid "delete..."
 msgstr "tar bort.."
 
-#: ../lib/python/Screens/ChannelSelection.py:99
+#: ../lib/python/Screens/ChannelSelection.py:108
 msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "do nothing"
 msgstr "gör inget"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1149
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "don't record"
 msgstr "spela inte in"
 
@@ -1480,27 +1566,27 @@ msgstr "spela inte in"
 msgid "done!"
 msgstr "klar!"
 
-#: ../lib/python/Components/NimManager.py:564
+#: ../lib/python/Components/NimManager.py:566
 msgid "empty/unknown"
 msgstr "tom/okänd"
 
-#: ../lib/python/Screens/ChannelSelection.py:95
+#: ../lib/python/Screens/ChannelSelection.py:104
 msgid "enable bouquet edit"
 msgstr "aktivera bouquet editor"
 
-#: ../lib/python/Screens/ChannelSelection.py:97
+#: ../lib/python/Screens/ChannelSelection.py:106
 msgid "enable favourite edit"
 msgstr "aktivera favoriter editor"
 
-#: ../lib/python/Screens/ChannelSelection.py:91
+#: ../lib/python/Screens/ChannelSelection.py:100
 msgid "enable move mode"
 msgstr "aktivera flyttläge"
 
-#: ../lib/python/Screens/ChannelSelection.py:102
+#: ../lib/python/Screens/ChannelSelection.py:111
 msgid "end bouquet edit"
 msgstr "avsluta bouquet editor"
 
-#: ../lib/python/Screens/ChannelSelection.py:105
+#: ../lib/python/Screens/ChannelSelection.py:114
 msgid "end favourites edit"
 msgstr "avsluta favoriter editor"
 
@@ -1516,60 +1602,66 @@ msgstr "fullt /etc bibliotek"
 msgid "go to deep standby"
 msgstr "inta djupt viloläge"
 
-#: ../lib/python/Screens/MediaPlayer.py:265
+#: ../lib/python/Screens/MediaPlayer.py:278
 msgid "hide player"
 msgstr "göm spelare"
 
-#: ../lib/python/Screens/ScanSetup.py:305
+#: ../lib/python/Screens/ScanSetup.py:319
 msgid "horizontal"
 msgstr "horisontal"
 
-#: ../lib/python/Screens/Ci.py:220
+#: ../lib/python/Screens/Ci.py:292
 msgid "init module"
 msgstr "initialisera modul"
 
-#: ../lib/python/Screens/InfoBar.py:80
+#: ../lib/python/Screens/InfoBar.py:85
 msgid "leave movie player..."
 msgstr "lämna videospelare..."
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
+msgid "left"
+msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid "list"
 msgstr "list"
 
-#: ../lib/python/Components/NimManager.py:695
+#: ../lib/python/Components/NimManager.py:697
 msgid "manual"
 msgstr "manuell"
 
 #: ../lib/python/Components/TimerList.py:48
 #: ../lib/python/Components/TimerList.py:53
 msgid "mins"
-msgstr "mins"
+msgstr "min"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:258
+#: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "next channel"
 msgstr "nästa kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:260
+#: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "next channel in history"
 msgstr "nästa kanal i historiken"
 
-#: ../lib/python/Screens/ScanSetup.py:314
-#: ../lib/python/Screens/ScanSetup.py:328
-#: ../lib/python/Screens/ScanSetup.py:333
-#: ../lib/python/Screens/ScanSetup.py:570
-#: ../lib/python/Screens/ScanSetup.py:573
+#: ../lib/python/Screens/ScanSetup.py:298
+#: ../lib/python/Screens/ScanSetup.py:330
+#: ../lib/python/Screens/ScanSetup.py:344
+#: ../lib/python/Screens/ScanSetup.py:349
+#: ../lib/python/Screens/ScanSetup.py:644
+#: ../lib/python/Screens/ScanSetup.py:646
+#: ../lib/python/Screens/ScanSetup.py:652
 #: ../lib/python/Screens/TimerEntry.py:116
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "no"
 msgstr "nej"
 
-#: ../lib/python/Screens/HarddiskSetup.py:63
+#: ../lib/python/Screens/HarddiskSetup.py:69
 msgid "no HDD found"
-msgstr "Ingen hårddisk hittad"
+msgstr "ingen hårddisk hittad"
 
-#: ../lib/python/Screens/Ci.py:218
+#: ../lib/python/Screens/Ci.py:290
 msgid "no module found"
 msgstr "ingen modul hittad"
 
@@ -1577,15 +1669,15 @@ msgstr "ingen modul hittad"
 msgid "none"
 msgstr "ingen"
 
-#: ../lib/python/Screens/ScanSetup.py:303
-#: ../lib/python/Screens/ScanSetup.py:310
-#: ../lib/python/Screens/ScanSetup.py:318
+#: ../lib/python/Screens/ScanSetup.py:317
+#: ../lib/python/Screens/ScanSetup.py:326
+#: ../lib/python/Screens/ScanSetup.py:334
 msgid "off"
 msgstr "av"
 
-#: ../lib/python/Screens/ScanSetup.py:303
-#: ../lib/python/Screens/ScanSetup.py:310
-#: ../lib/python/Screens/ScanSetup.py:318
+#: ../lib/python/Screens/ScanSetup.py:317
+#: ../lib/python/Screens/ScanSetup.py:326
+#: ../lib/python/Screens/ScanSetup.py:334
 msgid "on"
 msgstr "på"
 
@@ -1597,19 +1689,23 @@ msgstr "en gång"
 msgid "only /etc/enigma2 directory"
 msgstr "bara /etc/enigma2 bibliotek"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:262
+msgid "open service list"
+msgstr ""
+
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
 msgstr "klart"
 
-#: ../lib/python/Screens/Ci.py:84
+#: ../lib/python/Screens/Ci.py:79
 msgid "please press OK when ready"
-msgstr "tryck OK när du är klar"
+msgstr "tryck OK när färdig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:257
+#: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "previous channel"
 msgstr "föregående kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:259
+#: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "previous channel in history"
 msgstr "föregående kanal i historiken"
 
@@ -1621,17 +1717,29 @@ msgstr "spela in"
 msgid "recording..."
 msgstr "spelar in..."
 
-#: ../lib/python/Screens/ChannelSelection.py:86
+#: ../lib/python/Screens/ChannelSelection.py:89
+msgid "remove all new found flags"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:95
 msgid "remove bouquet"
 msgstr "ta bort bouquet"
 
-#: ../lib/python/Screens/ChannelSelection.py:84
+#: ../lib/python/Screens/ChannelSelection.py:93
+msgid "remove new found flag"
+msgstr ""
+
+#: ../lib/python/Screens/ChannelSelection.py:91
 msgid "remove service"
 msgstr "ta bort kanal"
 
 #: ../lib/python/Screens/TimerEntry.py:100
 msgid "repeated"
 msgstr "repeterande"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
+msgid "right"
+msgstr ""
 
 #: ../lib/python/Components/ServiceScan.py:37
 #, python-format
@@ -1665,34 +1773,37 @@ msgid ""
 "%d services found!"
 msgstr ""
 "sökning pågår - %d %% klart!\n"
-"%d kanaler hittades!"
+"%d kanaler hittade!"
 
 #: ../lib/python/Screens/ServiceScan.py:23
 msgid "scan state"
 msgstr "söknings status"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:349
+#: ../lib/python/Screens/InfoBarGenerics.py:361
 msgid "show EPG..."
 msgstr "visa EPG..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:318
+#: ../lib/python/Screens/InfoBarGenerics.py:323
 msgid "show event details"
 msgstr "visa program detaljer"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1147
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
+msgid "stereo"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "stop recording"
 msgstr "stoppa inspelning"
 
-#: ../lib/python/Screens/MediaPlayer.py:262
+#: ../lib/python/Screens/MediaPlayer.py:275
 msgid "switch to filelist"
 msgstr "byt till fillista"
 
-#: ../lib/python/Screens/MediaPlayer.py:256
+#: ../lib/python/Screens/MediaPlayer.py:269
 msgid "switch to playlist"
 msgstr "byt till playlist"
 
-#: ../lib/python/Screens/Wizard.py:222
-#: ../lib/python/Screens/Wizard.py:223
+#: ../lib/python/Screens/Wizard.py:234 ../lib/python/Screens/Wizard.py:235
 msgid "text"
 msgstr "text"
 
@@ -1708,7 +1819,7 @@ msgstr "okänd kanal"
 msgid "user defined"
 msgstr "användardefinierad"
 
-#: ../lib/python/Screens/ScanSetup.py:305
+#: ../lib/python/Screens/ScanSetup.py:319
 msgid "vertical"
 msgstr "vertikal"
 
@@ -1720,16 +1831,23 @@ msgstr "väntar"
 msgid "weekly"
 msgstr "veckolig"
 
-#: ../lib/python/Screens/ScanSetup.py:314
-#: ../lib/python/Screens/ScanSetup.py:328
-#: ../lib/python/Screens/ScanSetup.py:333
-#: ../lib/python/Screens/ScanSetup.py:570
-#: ../lib/python/Screens/ScanSetup.py:573
+#: ../lib/python/Screens/ScanSetup.py:298
+#: ../lib/python/Screens/ScanSetup.py:330
+#: ../lib/python/Screens/ScanSetup.py:344
+#: ../lib/python/Screens/ScanSetup.py:349
+#: ../lib/python/Screens/ScanSetup.py:644
+#: ../lib/python/Screens/ScanSetup.py:646
+#: ../lib/python/Screens/ScanSetup.py:652
 #: ../lib/python/Screens/TimerEntry.py:116
 #: ../lib/python/Components/Network.py:145
 #: ../lib/python/Components/RecordingConfig.py:7
 msgid "yes"
 msgstr "ja"
+
+#: ../lib/python/Screens/ScanSetup.py:298
+#: ../lib/python/Screens/ScanSetup.py:644
+msgid "yes (keep feeds)"
+msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:98
 msgid "zap"
@@ -1772,20 +1890,22 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, ta backup på inställningar!"
 
 #: ../data/
-msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
-msgstr "Återställning av inställningar klart. Tryck OK för aktivera återskapade inställningarna"
-
-#: ../data/
 msgid "Satconfig"
 msgstr "Satkonfig"
 
 #: ../data/
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
-"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen instruktioner från websidan, din nya mjukvara kommer att fråga dig om du vill återställa dina inställningar."
+"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
+"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
+"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
+"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
+"vill återställa dina inställningar."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -1812,8 +1932,12 @@ msgid "NEXT"
 msgstr "NÄSTA"
 
 #: ../data/
-msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
-msgstr "Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till en hårddisk är inte möjligt."
+msgid ""
+"You do not seem to have a harddisk in your Dreambox. So backing up to a "
+"harddisk is not an option for you."
+msgstr ""
+"Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till en "
+"hårddisk är inte möjligt."
 
 #: ../data/
 msgid "Deep Standby"
@@ -1832,8 +1956,11 @@ msgid "Sound"
 msgstr "Ljud"
 
 #: ../data/
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Använd upp/ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
+msgstr ""
+"Använd upp/ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
 
 #: ../data/
 msgid "No, just start my dreambox"
@@ -1849,7 +1976,7 @@ msgstr "Vill du se en guide?"
 
 #: ../data/
 msgid "Setup"
-msgstr "Installera"
+msgstr "Installation"
 
 #: ../data/
 msgid "#000000"
@@ -1864,6 +1991,10 @@ msgid "Use wizard to set up basic features"
 msgstr "Använd guiden för grundinställningarna"
 
 #: ../data/
+msgid "#bab329"
+msgstr ""
+
+#: ../data/
 msgid "Sat / Dish Setup"
 msgstr "Sat / Parabol Installation"
 
@@ -1876,7 +2007,8 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valt att ta backup till ett USB minne. Bättre att ta backup till HDD!\n"
+"Du har valt att ta backup till ett USB minne. Bättre att ta backup till "
+"HDD!\n"
 "Tryck OK för att starta backup."
 
 #: ../data/
@@ -1892,16 +2024,19 @@ msgid "Service Searching"
 msgstr "Kanalsökning"
 
 #: ../data/
-msgid "#20294a6b"
-msgstr ""
-
-#: ../data/
 msgid "Mute"
 msgstr "Ljud av"
 
 #: ../data/
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till dina aktuella inställningar och en kort förklaring hur du uppgraderar mjukvaran."
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen "
+"av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till "
+"dina aktuella inställningar och en kort förklaring hur du uppgraderar "
+"mjukvaran."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -2036,6 +2171,10 @@ msgid "Color Format"
 msgstr "Färgformat"
 
 #: ../data/
+msgid "#f23d21"
+msgstr ""
+
+#: ../data/
 msgid "Plugin browser"
 msgstr "Plugin browser"
 
@@ -2068,8 +2207,8 @@ msgid "About..."
 msgstr "Om..."
 
 #: ../data/
-msgid "#00ff00"
-msgstr ""
+msgid "Seek"
+msgstr "Sök"
 
 #: ../data/
 msgid "Common Interface"
@@ -2080,8 +2219,12 @@ msgid "Ask before zapping"
 msgstr "Fråga före kanalbyte"
 
 #: ../data/
-msgid "#c0c000"
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
 msgstr ""
+"Återställning av inställningar klart. Tryck OK för aktivera återskapade "
+"inställningarna"
 
 #: ../data/
 msgid "A/V Settings"
@@ -2092,7 +2235,9 @@ msgid "Usage Settings"
 msgstr "Användarinställningar"
 
 #: ../data/
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
 msgstr "Infobalken visas om du trycker OK på din fjärrkontroll."
 
 #: ../data/
@@ -2109,7 +2254,7 @@ msgstr "LCD Inställning"
 
 #: ../data/
 msgid "No, scan later manually"
-msgstr "Nej, sök senare"
+msgstr "Nej, sök manuellt senare"
 
 #: ../data/
 msgid "Input"
@@ -2120,10 +2265,6 @@ msgid "Soundcarrier"
 msgstr "Ljudläge"
 
 #: ../data/
-msgid "#0000ff"
-msgstr ""
-
-#: ../data/
 msgid "Yes, restore the settings now"
 msgstr "Ja, återställ inställningarna nu"
 
@@ -2132,8 +2273,12 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
-msgstr "Du har valt att ta backup till din hårddisk. Vänlig tryck OK så startar backupen."
+msgid ""
+"You have chosen to backup to your harddisk. Please press OK to start the "
+"backup now."
+msgstr ""
+"Du har valt att ta backup till din hårddisk. Vänlig tryck OK så startar "
+"backupen."
 
 #: ../data/
 msgid "Timer selection"
@@ -2145,10 +2290,14 @@ msgstr "Repetera"
 
 #: ../data/
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta backup till hårddisk!\n"
+"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. "
+"Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta "
+"backup till hårddisk!\n"
 "Tryck OK för att starta backupen."
 
 #: ../data/
@@ -2160,8 +2309,16 @@ msgid "Somewhere else"
 msgstr "Någon annanstans"
 
 #: ../data/
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Backupen lyckades. Vi kommer nu att fortsätta förklara uppgraderingsprocessen."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
+msgstr ""
+"Backupen lyckades. Vi kommer nu att fortsätta förklara "
+"uppgraderingsprocessen."
+
+#: ../data/
+msgid "PiPSetup"
+msgstr ""
 
 #: ../data/
 msgid "Menu"
@@ -2201,15 +2358,17 @@ msgstr "Backupen misslyckades, välj en annan plats för din backup "
 
 #: ../data/
 msgid "Keymap"
-msgstr "TangentLayout"
+msgstr "Tangentlayout"
 
 #: ../data/
 msgid "InfoBar"
 msgstr "InfoBalk"
 
 #: ../data/
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Guiden tar en backup på nuvarande inställningar. Vill du ta en backup nu?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr ""
+"Guiden tar en backup på nuvarande inställningar. Vill du ta en backup nu?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -2338,6 +2497,10 @@ msgid "Parental Control"
 msgstr "Föräldrakontroll"
 
 #: ../data/
+msgid "#389416"
+msgstr ""
+
+#: ../data/
 msgid "VCR scart"
 msgstr "Video scart"
 
@@ -2347,7 +2510,7 @@ msgstr "Huvudmeny"
 
 #: ../data/
 msgid "Select a movie"
-msgstr "Välj film"
+msgstr "Välj en film"
 
 #: ../data/
 msgid "Volume"
@@ -2356,6 +2519,10 @@ msgstr "Volym"
 #: ../data/
 msgid "Multi bouquets"
 msgstr "Flera bouquets"
+
+#: ../data/
+msgid "#33294a6b"
+msgstr ""
 
 #: ../data/
 msgid "Alpha"
@@ -2414,10 +2581,6 @@ msgid "Audio"
 msgstr "Ljud"
 
 #: ../data/
-msgid "#ff0000"
-msgstr ""
-
-#: ../data/
 msgid "Do you want to do a service scan?"
 msgstr "Vill du söka efter kanaler?"
 
@@ -2430,12 +2593,12 @@ msgid "Yes, perform a shutdown now."
 msgstr "Ja, utför avstängning nu."
 
 #: ../data/
-msgid "Seek"
-msgstr "Sök"
-
-#: ../data/
 msgid "Satelliteconfig"
 msgstr "Satellitinställning"
+
+#: ../data/
+msgid "#0064c7"
+msgstr ""
 
 #: ../data/
 msgid "MediaPlayer"
@@ -2445,6 +2608,14 @@ msgstr "MediaSpelare"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
 
+#~ msgid "AGC"
+#~ msgstr "AGC"
+
+#~ msgid "BER"
+#~ msgstr "BER"
+
+#~ msgid "SNR"
+#~ msgstr "SNR"
+
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "Vill du verkligen ta bort den här inspelningen?"
-
