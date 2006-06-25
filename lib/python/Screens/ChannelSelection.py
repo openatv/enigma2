@@ -837,9 +837,14 @@ class ChannelSelectionBase(Screen):
 HISTORYSIZE = 20
 
 #config for lastservice
-config.tv = ConfigSubsection();
-config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0);
-config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0);
+config.tv = ConfigSubsection()
+config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0)
+config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0)
+config.radio = ConfigSubsection()
+config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0)
+config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0)
+config.servicelist = ConfigSubsection()
+config.servicelist.lastmode = configElement("config.servicelist.lastmode", configText, "tv", 0)
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
@@ -847,26 +852,66 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
+				"keyRadio": self.setModeRadio,
+				"keyTV": self.setModeTv,
 			})
+
 		self.onShown.append(self.__onShown)
 
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.timeout.get().append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
 
-		self.history = [ ]
+		self.history_tv = [ ]
+		self.history_radio = [ ]
+		self.history = self.history_tv
 		self.history_pos = 0
 
-	def __onCreate(self):
-		self.setTvMode()
+		self.lastservice = config.tv.lastservice
+		self.lastroot = config.tv.lastroot
+		self.revertMode = None
+
+	def setMode(self):
 		self.restoreRoot()
-		lastservice=eServiceReference(config.tv.lastservice.value)
+		lastservice=eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
+
+	def setModeTv(self):
+		if self.revertMode is None and config.servicelist.lastmode.value == "radio":
+			self.revertMode = MODE_RADIO
+		self.history = self.history_tv
+		self.lastservice = config.tv.lastservice
+		self.lastroot = config.tv.lastroot
+		config.servicelist.lastmode.value = "tv"
+		self.setTvMode()
+		self.setMode()
+
+	def setModeRadio(self):
+		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
+			self.revertMode = MODE_TV
+		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+			self.history = self.history_radio
+			self.lastservice = config.radio.lastservice
+			self.lastroot = config.radio.lastroot
+			config.servicelist.lastmode.value = "radio"
+			self.setRadioMode()
+			self.setMode()
+
+	def __onCreate(self):
+		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+			if config.servicelist.lastmode.value == "tv":
+				self.setModeTv()
+			else:
+				self.setModeRadio()
+		else:
+			self.setModeTv()
+		lastservice=eServiceReference(self.lastservice.value)
+		if lastservice.valid():
 			self.zap()
 
 	def __onShown(self):
@@ -891,12 +936,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	#called from infoBar and channelSelected
 	def zap(self):
+		self.revertMode=None
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		nref = self.getCurrentSelection()
 		if ref is None or ref != nref:
 			self.session.nav.playService(nref)
 			self.saveRoot()
 			self.saveChannel()
+			config.servicelist.lastmode.save()
 			self.addToHistory(nref)
 
 	def addToHistory(self, ref):
@@ -942,34 +989,34 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def saveRoot(self):
 		path = ''
-		for i in self.servicePathTV:
+		for i in self.servicePath:
 			path += i.toString()
 			path += ';'
-		if len(path) and path != config.tv.lastroot.value:
-			config.tv.lastroot.value = path
-			config.tv.lastroot.save()
+		if len(path) and path != self.lastroot.value:
+			self.lastroot.value = path
+			self.lastroot.save()
 
 	def restoreRoot(self):
 		self.clearPath()
 		re = compile('.+?;')
-		tmp = re.findall(config.tv.lastroot.value)
+		tmp = re.findall(self.lastroot.value)
 		cnt = 0
 		for i in tmp:
-			self.servicePathTV.append(eServiceReference(i[:len(i)-1]))
+			self.servicePath.append(eServiceReference(i[:len(i)-1]))
 			cnt += 1
 		if cnt:
-			path = self.servicePathTV.pop()
+			path = self.servicePath.pop()
 			self.enterPath(path)
 		else:
 			self.showFavourites()
 			self.saveRoot()
 
 	def preEnterPath(self, refstr):
-		if len(self.servicePathTV) and self.servicePathTV[0] != eServiceReference(refstr):
-			pathstr = config.tv.lastroot.value
+		if len(self.servicePath) and self.servicePath[0] != eServiceReference(refstr):
+			pathstr = self.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
-				lastservice=eServiceReference(config.tv.lastservice.value)
+				lastservice=eServiceReference(self.lastservice.value)
 				if lastservice.valid():
 					self.setCurrentSelection(lastservice)
 				return True
@@ -981,9 +1028,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			refstr = ref.toString()
 		else:
 			refstr = ""
-		if refstr != config.tv.lastservice.value:
-			config.tv.lastservice.value = refstr
-			config.tv.lastservice.save()
+		if refstr != self.lastservice.value:
+			self.lastservice.value = refstr
+			self.lastservice.save()
 
 	def recallPrevService(self):
 		hlen = len(self.history)
@@ -999,11 +1046,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setHistoryPath()
 
 	def cancel(self):
+		if self.revertMode is None:
+			self.restoreRoot()
+			lastservice=eServiceReference(self.lastservice.value)
+			if lastservice.valid() and self.getCurrentSelection() != lastservice:
+				self.setCurrentSelection(lastservice)
+		elif self.revertMode == MODE_TV:
+			self.setModeTv()
+		elif self.revertMode == MODE_RADIO:
+			self.setModeRadio()
+		self.revertMode = None
 		self.close(None)
-		self.restoreRoot()
-		lastservice=eServiceReference(config.tv.lastservice.value)
-		if lastservice.valid() and self.getCurrentSelection() != lastservice:
-			self.setCurrentSelection(lastservice)
 
 from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord
 

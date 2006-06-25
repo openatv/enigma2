@@ -262,6 +262,18 @@ class InfoBarChannelSelection:
 				"openServiceList": (self.openServiceList, _("open service list")),
 			})
 
+	def showTvChannelList(self, zap=False):
+		self.servicelist.setModeTv()
+		if zap:
+			self.servicelist.zap()
+		self.session.execDialog(self.servicelist)
+
+	def showRadioChannelList(self, zap=False):
+		self.servicelist.setModeRadio()
+		if zap:
+			self.servicelist.zap()
+		self.session.execDialog(self.servicelist)
+
 	def firstRun(self):
 		self.onShown.remove(self.firstRun)
 		config.misc.initialchannelselection.value = 0
