@@ -64,6 +64,13 @@ class Screen(dict, HTMLSkin, GUISkin):
 		# fixup circular references
 		del self.helpList
 		GUISkin.close(self)
+
+		# first disconnect all render from their sources.
+		# we might split this out into a "unskin"-call,
+		# but currently we destroy the screen afterwards
+		# anyway.
+		for val in self.renderer:
+			val.disconnectAll()  # disconnected converter/sources and probably destroy them
 		
 		del self.session
 		for (name, val) in self.items():

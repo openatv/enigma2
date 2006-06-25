@@ -25,6 +25,24 @@ class Element:
 		self.connectUpstream(upstream)
 		upstream.connectDownstream(self)
 
+	# we disconnect from down to up
+	def disconnectAll(self):
+		# we should not disconnect from upstream if
+		# there are still elements depending on us.
+		assert len(self.downstream_elements) == 0, "there are still downstream elements left"
+		
+		# disconnect all upstream elements from us
+		for upstream in self.upstream_elements:
+			upstream.disconnectDownstream(self)
+	
+	def disconnectDownstream(self, downstream):
+		self.downstream_elements.remove(downstream)
+		if self.master == downstream:
+			self.master = None
+		
+		if len(self.downstream_elements) == 0:
+			self.disconnectAll()
+
 	# default action: push downstream
 	def changed(self):
 		self.downstream_elements.changed()
