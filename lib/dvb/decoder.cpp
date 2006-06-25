@@ -405,7 +405,8 @@ int eTSMPEGDecoder::setState()
 	
 	if ((nott && m_text) || (!m_text && !nott))
 		m_changed |= changeText;
-	
+
+	bool changed = !!m_changed;
 #if HAVE_DVB_API_VERSION < 3
 	if (m_changed & changeAudio && m_audio)
 		m_audio->stopPid();
@@ -477,7 +478,7 @@ int eTSMPEGDecoder::setState()
 	{
 		eDebug("VIDEO CHANGED (to %04x)", m_vpid);
 		if (m_video)
-		{	
+		{
 			eDebug("STOP");
 			m_video->stop();
 		}
@@ -527,6 +528,9 @@ int eTSMPEGDecoder::setState()
 		m_changed &= ~changeText;
 	}
 #endif
+	if (changed && !m_video && m_audio && m_radio_pic.length())
+		showSinglePic(m_radio_pic.c_str());
+
 	return res;
 }
 
@@ -761,4 +765,80 @@ RESULT eTSMPEGDecoder::getPTS(int what, pts_t &pts)
 	}
 
 	return -1;
+}
+
+RESULT eTSMPEGDecoder::setRadioPic(const std::string &filename)
+{
+	m_radio_pic = filename;
+}
+
+RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
+{
+	if (m_decoder == 0)
+	{
+		FILE *f = fopen(filename, "r");
+		if (f)
+		{
+			int vfd = open("/dev/dvb/adapter0/video0", O_RDWR);
+			if (vfd > 0)
+			{
+				int length = fseek(f, 0, SEEK_END);
+				unsigned char *buffer = new unsigned char[length*3+9];
+				if (ioctl(vfd, VIDEO_FAST_FORWARD, 1) < 0)
+					eDebug("VIDEO_FAST_FORWARD failed (%m)");
+				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
+					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
+				if (ioctl(vfd, VIDEO_PLAY) < 0)
+					eDebug("VIDEO_PLAY failed (%m)");
+				int cnt=0;
+				int pos=0;
+				while(cnt<3)
+				{
+					int rd;
+					fseek(f, 0, SEEK_SET);
+					while(1)
+					{
+						if (!cnt)
+						{
+							buffer[pos++]=0;
+							buffer[pos++]=0;
+							buffer[pos++]=1;
+							buffer[pos++]=0xE0;
+							buffer[pos++]=(length*3)>>8;
+							buffer[pos++]=(length*3)&0xFF;
+							buffer[pos++]=0x80;
+							buffer[pos++]=0;
+							buffer[pos++]=0;
+						}
+						rd = fread(buffer+pos, 1, length, f);
+						if (rd > 0)
+							pos += rd;
+						else
+							break;
+					}
+					++cnt;
+				}
+				write(vfd, buffer, pos);
+				usleep(50000);
+				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
+					eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
+				if (ioctl(vfd, VIDEO_FAST_FORWARD, 0) < 0)
+					eDebug("VIDEO_FAST_FORWARD failed (%m)");
+				close(vfd);
+				delete [] buffer;
+			}
+			fclose(f);
+		}
+		else
+		{
+			eDebug("couldnt open %s", filename);
+			return -1;
+		}
+	}
+	else
+	{
+		eDebug("only show single pics on first decoder");
+		return -1;
+	}
+	return 0;
 }

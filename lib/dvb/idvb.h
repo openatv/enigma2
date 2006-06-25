@@ -641,6 +641,10 @@ public:
 	virtual RESULT setTrickmode(int what) = 0;
 	
 	virtual RESULT getPTS(int what, pts_t &pts) = 0;
+
+	virtual RESULT showSinglePic(const char *filename) = 0;
+
+	virtual RESULT setRadioPic(const std::string &filename) = 0;
 };
 
 #endif //SWIG

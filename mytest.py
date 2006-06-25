@@ -23,10 +23,12 @@ from Navigation import Navigation
 
 from skin import readSkin, applyAllAttributes
 
-from Components.config import configfile
-from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Components.config import configfile, configElement, configText, ConfigSubsection, config, configSequence, configsequencearg
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
+
+config.misc.radiopic = configElement("config.misc.radiopic", configText, resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi", 0)
 
 try:
 	import e2reactor
@@ -302,7 +304,6 @@ class Session:
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
-from Components.config import ConfigSubsection, configSequence, configElement, configsequencearg
 
 #TODO .. move this to a own .py file
 class VolumeControl:
