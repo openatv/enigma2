@@ -9,6 +9,7 @@ from ServiceReference import ServiceReference
 from Components.Clock import Clock
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ServicePosition import ServicePosition, ServicePositionGauge
+from Components.config import currentConfigSelectionElement, config
 
 from Tools.Notifications import AddNotificationWithCallback
 
@@ -43,7 +44,8 @@ class InfoBar(InfoBarShowHide,
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
-				"showRadio": (self.showRadio, _("Show the radio player..."))
+				"showRadio": (self.showRadio, _("Show the radio player...")),
+				"showTv": (self.showTv, _("Show the tv player...")),
 			})
 		
 		for x in HelpableScreen, \
@@ -61,8 +63,14 @@ class InfoBar(InfoBarShowHide,
 		self["CurrentTime"] = Clock()
 		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
 
+	def showTv(self):
+		self.showTvChannelList(True)
+
 	def showRadio(self):
-		self.session.open(ChannelSelectionRadio)
+		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+			self.showRadioChannelList(True)
+		else:
+			self.session.open(ChannelSelectionRadio)
 
 	def showMovies(self):
 		self.session.openWithCallback(self.movieSelected, MovieSelection)
