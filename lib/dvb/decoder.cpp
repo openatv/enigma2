@@ -782,7 +782,8 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 			int vfd = open("/dev/dvb/adapter0/video0", O_RDWR);
 			if (vfd > 0)
 			{
-				int length = fseek(f, 0, SEEK_END);
+				fseek(f, 0, SEEK_END);
+				int length = ftell(f);
 				unsigned char *buffer = new unsigned char[length*3+9];
 				if (ioctl(vfd, VIDEO_FAST_FORWARD, 1) < 0)
 					eDebug("VIDEO_FAST_FORWARD failed (%m)");
