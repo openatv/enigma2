@@ -1734,6 +1734,15 @@ void eDVBServicePlay::updateDecoder()
 
 		m_decoder->start();
 
+		if (vpid > 0 && vpid < 0x2000)
+			;
+		else
+		{
+			std::string radio_pic;
+			if (!ePythonConfigQuery::getConfigValue("config.misc.radiopic", radio_pic))
+				m_decoder->setRadioPic(radio_pic);
+		}
+
 		m_decoder->setAudioChannel(achannel);
 
 // how we can do this better?

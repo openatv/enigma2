@@ -86,6 +86,7 @@ class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
 	static int m_ac3_delay;
 	static int m_audio_channel;
 DECLARE_REF(eTSMPEGDecoder);
+	std::string m_radio_pic;
 private:
 	ePtr<eDVBDemux> m_demux;
 	ePtr<eDVBAudio> m_audio;
@@ -131,7 +132,8 @@ public:
 	RESULT setZoom(int what);
 	RESULT flush();
 	RESULT setTrickmode(int what);
-	
+	RESULT showSinglePic(const char *filename);
+	RESULT setRadioPic(const std::string &filename);
 		/* what 0=auto, 1=video, 2=audio. */
 	RESULT getPTS(int what, pts_t &pts);
 };
