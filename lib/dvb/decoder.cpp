@@ -820,7 +820,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					++cnt;
 				}
 				write(vfd, buffer, pos);
-				usleep(50000);
+				usleep(75000);  // i dont like this.. but i dont have a better solution :(
 				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
 					eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
 				if (ioctl(vfd, VIDEO_FAST_FORWARD, 0) < 0)
