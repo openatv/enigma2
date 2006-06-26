@@ -176,8 +176,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
-		elif attrib != 'name':
-			print "unsupported attribute " + attrib + "=" + value
+		else:
+			raise "unsupported attribute " + attrib + "=" + value
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
@@ -367,7 +367,7 @@ def readSkin(screen, skin, name, desktop):
 			raise SkinError("unsupported stuff : %s" % widget.tagName)
 		
 		w.skinAttributes = [ ]
-		collectAttributes(w.skinAttributes, widget, skin_path_prefix)
+		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=['name'])
 		
 		# applyAttributes(guiObject, widget, desktop)
 		# guiObject.thisown = 0
