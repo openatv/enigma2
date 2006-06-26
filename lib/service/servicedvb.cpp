@@ -1290,7 +1290,7 @@ int eDVBServicePlay::getCurrentChannel()
 
 RESULT eDVBServicePlay::selectChannel(int i)
 {
-	if (i < LEFT || i > RIGHT)
+	if (i < LEFT || i > RIGHT || i == STEREO)
 		i = -1;  // Stereo
 	if (m_dvb_service)
 		m_dvb_service->setCacheEntry(eDVBService::cACHANNEL, i);
@@ -2013,7 +2013,7 @@ int eDVBServicePlay::getPCMDelay()
 void eDVBServicePlay::setAC3Delay(int delay)
 {
 	if (m_dvb_service)
-		m_dvb_service->setCacheEntry(eDVBService::cAC3DELAY, delay);
+		m_dvb_service->setCacheEntry(eDVBService::cAC3DELAY, delay ? delay : -1);
 	if (m_decoder)
 		m_decoder->setAC3Delay(delay);
 }
@@ -2021,7 +2021,7 @@ void eDVBServicePlay::setAC3Delay(int delay)
 void eDVBServicePlay::setPCMDelay(int delay)
 {
 	if (m_dvb_service)
-		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay);
+		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay ? delay : -1);
 	if (m_decoder)
 		m_decoder->setPCMDelay(delay);
 }

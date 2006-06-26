@@ -176,7 +176,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setPointer(ptr.__deref__(), pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
-		else:
+		elif attrib != 'name':
 			print "unsupported attribute " + attrib + "=" + value
 	except int:
 # AttributeError:

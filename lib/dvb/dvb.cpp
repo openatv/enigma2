@@ -78,6 +78,14 @@ eDVBResourceManager::eDVBResourceManager()
 	CONNECT(m_releaseCachedChannelTimer.timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
+void eDVBResourceManager::feStateChanged()
+{
+	int mask=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+		if (i->m_inuse)
+			mask |= ( 1 << i->m_frontend->getID() );
+	/* emit */ frontendUseMaskChanged(mask);
+}
 
 DEFINE_REF(eDVBAdapterLinux);
 eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
@@ -215,6 +223,7 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 		{
 			frontend->setSEC(m_sec);
 			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
+			CONNECT(m_frontend.back()->stateChanged, eDVBResourceManager::feStateChanged);
 		}
 	}
 }

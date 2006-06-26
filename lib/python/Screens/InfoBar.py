@@ -7,6 +7,8 @@ from Screens.Ci import CiHandler
 from ServiceReference import ServiceReference
 
 from Components.Clock import Clock
+from Components.Date import DateLabel
+from Components.ProviderName import ProviderName
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ServicePosition import ServicePosition, ServicePositionGauge
 from Components.config import currentConfigSelectionElement, config
@@ -62,6 +64,8 @@ class InfoBar(InfoBarShowHide,
 
 		self["CurrentTime"] = Clock()
 		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
+		self["CurrentDate"] = DateLabel()
+		self["CurrentProvider"] = ProviderName(self.session.nav)
 
 	def showTv(self):
 		self.showTvChannelList(True)

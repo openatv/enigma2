@@ -23,6 +23,7 @@ class eDVBRegisteredFrontend: public iObject, public Object
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
 	eTimer *disable;
+	Signal0<void> stateChanged;
 	void closeFrontend()
 	{
 		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
@@ -38,12 +39,18 @@ public:
 	void dec_use()
 	{
 		if (!--m_inuse)
+		{
+			/* emit */ stateChanged();
 			disable->start(3000, true);
+		}
 	}
 	void inc_use()
 	{
 		if (++m_inuse == 1)
+		{
 			m_frontend->openFrontend();
+			/* emit */ stateChanged();
+		}
 	}
 	iDVBAdapter *m_adapter;
 	ePtr<eDVBFrontend> m_frontend;
@@ -175,6 +182,7 @@ class eDVBResourceManager: public iObject, public Object
 	eTimer m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
 	void releaseCachedChannel();
+	void feStateChanged();
 #ifndef SWIG
 public:
 #endif
@@ -199,6 +207,7 @@ public:
 #ifdef SWIG
 public:
 #endif
+	PSignal1<void,int> frontendUseMaskChanged;
 	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &, int frontend_index);
 	static RESULT getInstance(ePtr<eDVBResourceManager> &);
 };

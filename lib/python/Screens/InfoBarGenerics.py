@@ -1105,7 +1105,7 @@ class InfoBarInstantRecord:
 		if entry is not None and entry != -1:
 			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 			self.recording.remove(self.recording[entry])
-			
+
 	def startInstantRecording(self, limitEvent = False):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		
@@ -1359,10 +1359,15 @@ class InfoBarSubserviceSelection:
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
+		self["NimA"] = Pixmap()
+		self["NimB"] = Pixmap()
+		self["TextActive"] = Pixmap()
 		self["DolbyActive"] = Pixmap()
 		self["CryptActive"] = Pixmap()
 		self["FormatActive"] = Pixmap()
-		
+		self["NimA_Active"] = Pixmap()
+		self["NimB_Active"] = Pixmap()
+
 		self["ButtonRed"] = PixmapConditional(withTimer = False)
 		self["ButtonRed"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
 		self.onLayoutFinish.append(self["ButtonRed"].update)
@@ -1388,6 +1393,19 @@ class InfoBarAdditionalInfo:
 		self.onLayoutFinish.append(self["ButtonBlueText"].update)
 
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
+		res_mgr = eDVBResourceManagerPtr()
+		if eDVBResourceManager.getInstance(res_mgr) == 0:
+			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
+
+	def tunerUseMaskChanged(self, mask):
+		if mask&1:
+			self["NimA_Active"].show()
+		else:
+			self["NimA_Active"].hide()
+		if mask&2:
+			self["NimB_Active"].show()
+		else:
+			self["NimB_Active"].hide()
 
 	def hideSubServiceIndication(self):
 		self["ButtonGreen"].hide()
@@ -1399,15 +1417,25 @@ class InfoBarAdditionalInfo:
 
 	def checkFormat(self, service):
 		info = service.info()
-		if info is not None:
+		if info:
 			aspect = info.getInfo(iServiceInformation.sAspect)
 			if aspect in [ 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10 ]:
 				self["FormatActive"].show()
-			else:
-				self["FormatActive"].hide()
+				return
+		self["FormatActive"].hide()
+
+	def checkText(self, service):
+		info = service.info()
+		if info:
+			tpid = info.getInfo(iServiceInformation.sTXTPID)
+			if tpid != -1:
+				self["TextActive"].show()
+				return
+		self["TextActive"].hide()
 
 	def checkSubservices(self, service):
-		if service.subServices().getNumberOfSubservices() > 0:
+		subservices = service.subServices()
+		if subservices and subservices.getNumberOfSubservices() > 0:
 			self.showSubServiceIndication()
 		else:
 			self.hideSubServiceIndication()
@@ -1416,7 +1444,7 @@ class InfoBarAdditionalInfo:
 		# FIXME
 		dolby = False
 		audio = service.audioTracks()
-		if audio is not None:
+		if audio:
 			n = audio.getNumberOfTracks()
 			for x in range(n):
 				i = audio.getTrackInfo(x)
@@ -1431,25 +1459,41 @@ class InfoBarAdditionalInfo:
 
 	def checkCrypted(self, service):
 		info = service.info()
-		if info is not None:
-			if info.getInfo(iServiceInformation.sIsCrypted) > 0:
-				self["CryptActive"].show()
-			else:
-				self["CryptActive"].hide()
+		if info and info.getInfo(iServiceInformation.sIsCrypted) > 0:
+			self["CryptActive"].show()
+		else:
+			self["CryptActive"].hide()
+
+	def checkTunerState(self, service):
+		info = service.frontendInfo()
+		feNumber = info and info.getFrontendInfo(iFrontendInformation.frontendNumber)
+		if feNumber is None:
+			self["NimA"].hide()
+			self["NimB"].hide()
+		elif feNumber == 0:
+			self["NimB"].hide()
+			self["NimA"].show()
+		elif feNumber == 1:
+			self["NimA"].hide()
+			self["NimB"].show()
 
 	def gotServiceEvent(self, ev):
 		service = self.session.nav.getCurrentService()
-		if ev == iPlayableService.evUpdatedEventInfo:
+		if ev == iPlayableService.evStart:
+			self.checkTunerState(service)
+		elif ev == iPlayableService.evUpdatedEventInfo:
 			self.checkSubservices(service)
 			self.checkFormat(service)
 		elif ev == iPlayableService.evUpdatedInfo:
 			self.checkCrypted(service)
 			self.checkDolby(service)
+			self.checkText(service)
 		elif ev == iPlayableService.evEnd:
 			self.hideSubServiceIndication()
 			self["CryptActive"].hide()
 			self["DolbyActive"].hide()
 			self["FormatActive"].hide()
+			self["TextActive"].hide()
 
 class InfoBarNotifications:
 	def __init__(self):
