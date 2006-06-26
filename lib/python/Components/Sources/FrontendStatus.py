@@ -16,7 +16,6 @@ class FrontendStatus(Source):
 		self.snr = self.agc = self.ber = self.lock = None
 
 	def updateFrontendStatus(self):
-		print "update frontend status. %d downstream elements" % len(self.downstream_elements)
 		feinfo = self.getFrontendInfo()
 		if feinfo is None:
 			self.invalidate()
