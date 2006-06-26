@@ -657,7 +657,7 @@ class ScanSimple(Screen):
 		if nimcount > 1 and self.ScanNimTwoNeeded():
 			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
 			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
-			if nimtype = nimmanager.getNimType(1) == nimmanager.nimType["DVB-T"]:
+			if nimmanager.getNimType(1) == nimmanager.nimType["DVB-T"]:
 				have_terrestrial = True
 
 		if have_terrestrial:
