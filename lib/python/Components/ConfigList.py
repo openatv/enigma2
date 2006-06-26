@@ -46,6 +46,9 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
 	
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().remove(self.selectionChanged)
+	
 	def setList(self, list):
 		self.__list = list
 		self.l.setList(self.__list)
