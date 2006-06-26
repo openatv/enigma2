@@ -12,6 +12,7 @@
 
 		<color name="transpBlack" value="#80000000" />
 	</colors>
+	
 	<windowstyle type="skinned">
 		<title offset="20,5" font="Regular;20" />
 		<color name="Background" color="#33294a6b" />
@@ -45,7 +46,15 @@
 
 		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
 			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
-
+<!-- not used in this skin yet -->			
+			<widget name="CurrentProvider" position="0,0" size="0,0" />
+			<widget name="CurrentDate" position="0,0" size="0,0" />
+			<widget name="NimA" position="0,0" size="0,0" />
+			<widget name="NimB" position="0,0" size="0,0" />
+			<widget name="NimA_Active" position="0,0" size="0,0" />
+			<widget name="NimB_Active" position="0,0" size="0,0" />
+			<widget name="TextActive" position="0,0" size="0,0" /> 
+<!-- ............................................................................. -->
 			<widget name="snr" text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" />
 			<widget name="agc" text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
 			<widget name="ber" text="BER:" position="355,0" size="40,22" font="Regular;15" transparent="1" />

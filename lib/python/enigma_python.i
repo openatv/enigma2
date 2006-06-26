@@ -155,6 +155,7 @@ typedef long time_t;
 %immutable pNavigation::m_event;
 %immutable eListbox::selectionChanged;
 %immutable eDVBCI_UI::ciStateChanged;
+%immutable eDVBResourceManager::frontendUseMaskChanged;
 
 %include <lib/base/console.h>
 %include <lib/base/nconfig.h>
