@@ -1739,7 +1739,11 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 				ePythonConfigQuery::getConfigValue("config.terrestrial.enable_5V", enable_5V);
 				if (enable_5V == "yes")
 					m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
+				else
+					m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
 			}
+			else
+				m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 		}
 		break;
