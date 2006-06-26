@@ -41,7 +41,7 @@ class FrontendInfo(Converter, object):
 
 	text = property(getText)
 
-	bool = property(getBool)
+	boolean = property(getBool)
 
 	def getValue(self):
 		assert self.type != self.LOCK, "the value/range output of FrontendInfo can not be used for lock info"

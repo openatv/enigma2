@@ -25,7 +25,7 @@ class ServiceName(Converter, object):
 			return ""
 		
 		if self.type == self.NAME:
-			return service.getName()
+			return info.getName()
 		elif self.type == self.PROVIDER:
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider)
 
