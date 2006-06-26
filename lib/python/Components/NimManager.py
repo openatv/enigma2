@@ -641,6 +641,8 @@ class NimManager:
 		pass
 
 def InitNimManager(nimmgr):
+	have_terrestrial_tuner = False
+	config.terrestrial = ConfigSubsection()
 	config.Nims = []
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
@@ -765,12 +767,16 @@ def InitNimManager(nimmgr):
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
 			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList, False);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
+			have_terrestrial_tuner = True
 			list = []
 			for x in nimmgr.terrestrialsList:
 				list.append(x[0])
 			nim.terrestrial = configElement(cname + "terrestrial", configSelection, 0, list, False);
 		else:
 			print "pls add support for this frontend type!"		
+
+	if have_terrestrial_tuner:
+		config.terrestrial.enable_5V = configElement("config.terrestrial.enable_5V", configSelection, 1, (("yes", _("Yes")), ("no", _("No"))), True);
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
