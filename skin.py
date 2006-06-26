@@ -18,8 +18,12 @@ def dump(x, i=0):
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 
-class SkinError(str):
-	pass
+class SkinError(Exception):
+	def __init__(self, message):
+		self.message = message
+
+	def __str__(self):
+		return self.message
 
 dom_skins = [ ]
 
