@@ -1,5 +1,6 @@
 #include <lib/dvb/dvb.h>
 #include <lib/base/eerror.h>
+#include <lib/base/nconfig.h> // access to python config
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -1731,6 +1732,14 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (!res)
 		{
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+			eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[LINKED_PREV_PTR];
+			if (linked_fe == (eDVBRegisteredFrontend*)-1)
+			{
+				std::string enable_5V;
+				ePythonConfigQuery::getConfigValue("config.terrestrial.enable_5V", enable_5V);
+				if (enable_5V == "yes")
+					m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
+			}
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 		}
 		break;

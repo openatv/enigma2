@@ -215,15 +215,28 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 			m_demux.push_back(new eDVBRegisteredDemux(demux, adapter));
 	}
 
+	ePtr<eDVBRegisteredFrontend> prev_dvbt_frontend;
 	for (i=0; i<num_fe; ++i)
 	{
 		ePtr<eDVBFrontend> frontend;
-
 		if (!adapter->getFrontend(frontend, i))
 		{
+			int frontendType=0;
+			frontend->getFrontendType(frontendType);
+			eDVBRegisteredFrontend *new_fe = new eDVBRegisteredFrontend(frontend, adapter);
+			CONNECT(new_fe->stateChanged, eDVBResourceManager::feStateChanged);
+			m_frontend.push_back(new_fe);
 			frontend->setSEC(m_sec);
-			m_frontend.push_back(new eDVBRegisteredFrontend(frontend, adapter));
-			CONNECT(m_frontend.back()->stateChanged, eDVBResourceManager::feStateChanged);
+			// we must link all dvb-t frontends ( for active antenna voltage )
+			if (frontendType == iDVBFrontend::feTerrestrial)
+			{
+				if (prev_dvbt_frontend)
+				{
+					prev_dvbt_frontend->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (int)new_fe);
+					frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (int)&(*prev_dvbt_frontend));
+				}
+				prev_dvbt_frontend = new_fe;
+			}
 		}
 	}
 }
