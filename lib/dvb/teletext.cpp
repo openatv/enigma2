@@ -114,7 +114,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		
 		if (data_unit_length != 44)
 		{
-			eDebug("illegal data unit length %d", data_unit_length);
+			/* eDebug("illegal data unit length %d", data_unit_length); */
 			break;
 		}
 		
