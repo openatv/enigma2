@@ -19,9 +19,9 @@ class ConditionalWidget(GUIComponent):
 		
 	def activateCondition(self, condition):
 		if condition:
-			self.state = self.SHOWN
+			self.visible = 1
 		else:
-			self.state = self.HIDDEN
+			self.visible = 0
 
 	def update(self):
 		if (self.conditionalFunction != None):
@@ -50,10 +50,7 @@ class BlinkingWidget(GUIComponent):
 		
 	def blink(self):
 		if self.blinking == True:
-			if self.state == self.SHOWN:
-				self.hide()
-			elif self.state == self.HIDDEN:
-				self.show()
+			self.visible = not self.visible
 			
 	def startBlinking(self):
 		self.blinking = True
@@ -61,7 +58,7 @@ class BlinkingWidget(GUIComponent):
 		
 	def stopBlinking(self):
 		self.blinking = False
-		if self.state == self.SHOWN:
+		if self.visible:
 			self.hide()
 		self.timer.stop()
 		
