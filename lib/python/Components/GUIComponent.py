@@ -5,12 +5,9 @@ from enigma import ePoint
 class GUIComponent(object):
 	""" GUI component """
 	
-	SHOWN = 0
-	HIDDEN = 1
-	
 	def __init__(self):
 		self.instance = None
-		self.state = self.SHOWN
+		self.visible = 1
 	
 	def execBegin(self):
 		pass
@@ -29,7 +26,7 @@ class GUIComponent(object):
 	
 	# this works only with normal widgets - if you don't have self.instance, override this.
 	def applySkin(self, desktop):
-		if self.state == self.HIDDEN:
+		if not self.visible:
 			self.instance.hide()
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes)
 
@@ -37,25 +34,25 @@ class GUIComponent(object):
 		self.instance.move(ePoint(int(x), int(y)))
 
 	def show(self):
-		self.__state = self.SHOWN
+		self.__visible = 1
 		if self.instance is not None:
 			self.instance.show()
 
 	def hide(self):
-		self.__state = self.HIDDEN
+		self.__visible = 0
 		if self.instance is not None:
 			self.instance.hide()
 
-	def getState(self):
-		return self.__state
+	def getVisible(self):
+		return self.__visible
 	
-	def setState(self, state):
-		if state == self.SHOWN:
+	def setVisible(self, visible):
+		if visible:
 			self.show()
-		elif state == self.HIDDEN:
+		else:
 			self.hide()
 
-	state = property(getState, setState)
+	visible = property(getVisible, setVisible)
 
 	def setPosition(self, x, y):
 		self.instance.move(ePoint(int(x), int(y)))
