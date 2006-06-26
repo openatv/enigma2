@@ -1,4 +1,4 @@
-from Components.Converter.Converter import Converter
+from Converter import Converter
 from time import localtime, strftime
 
 class ClockToText(Converter, object):
