@@ -10,7 +10,7 @@ from Components.Label import Label
 from Components.FileList import FileEntryComponent, FileList
 from Components.MediaPlayer import PlayList, PlaylistEntryComponent
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_MEDIA, SCOPE_CONFIG
+from Tools.Directories import resolveFilename, SCOPE_MEDIA, SCOPE_CONFIG, SCOPE_SKIN_IMAGE
 from Components.ServicePosition import ServicePositionGauge
 from Screens.ChoiceBox import ChoiceBox
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -32,7 +32,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)
+		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)		
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()
@@ -52,6 +52,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["year"] = Label("")
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
+		self["coverArt"] = Pixmap()
 		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
 
@@ -129,6 +130,8 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.infoTimer.start(500)
 		
 		self.currList = "filelist"
+
+		self.coverArtFileName = ""
 		
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
@@ -169,8 +172,10 @@ class MediaPlayer(Screen, InfoBarSeek):
 										 album = currPlay.info().getInfoString(iServiceInformation.sAlbum),
 										 genre = currPlay.info().getInfoString(iServiceInformation.sGenre),
 										 clear = True)
+			self.updateCoverArtPixmap( currPlay.info().getName() )
 		else:
 			self.updateMusicInformation()
+			self.updateCoverArtPixmap( "" )
 	
 	def updateMusicInformation(self, artist = "", title = "", album = "", year = "", genre = "", clear = False):
 		self.updateSingleMusicInformation("artist", artist, clear)
@@ -183,6 +188,19 @@ class MediaPlayer(Screen, InfoBarSeek):
 		if info != "" or clear:
 			if self[name].getText() != info:
 				self[name].setText(info)
+
+	def updateCoverArtPixmap(self, currentServiceName):
+		filename = currentServiceName
+		# The "getName" usually adds something like "MP3 File:" infront of filename
+		# Get rid of this...by finding the first "/"
+		filename = filename[filename.find("/"):]
+		path = os.path.dirname(filename)
+		pngname = path + "/" + "folder.png"
+		if not os.path.exists(pngname):
+			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
+		if self.coverArtFileName != pngname:
+			self.coverArtFileName = pngname
+			self["coverArt"].instance.setPixmapFromFile(self.coverArtFileName)
 
 	def fwdTimerFire(self):
 		self.fwdKeyTimer.stop()

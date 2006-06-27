@@ -24,15 +24,15 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
-PlayIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "play-small-fs8.png"))
-PauseIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "pause-small-fs8.png"))
-StopIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "stop-small-fs8.png"))
-RewindIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rewind-small-fs8.png"))
-ForwardIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "forward-small-fs8.png"))
+PlayIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_play.png"))
+PauseIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_pause.png"))
+StopIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_stop.png"))
+RewindIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_rewind.png"))
+ForwardIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_forward.png"))
 
 def PlaylistEntryComponent(serviceref, state):
 	res = [ serviceref ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 0, 250, 32, 0, RT_VALIGN_CENTER, os.path.split(serviceref.getPath().split('/')[-1])[1]))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, os.path.split(serviceref.getPath().split('/')[-1])[1]))
 	png = None
 	if state == STATE_PLAY:
 		png = PlayIcon
@@ -46,7 +46,7 @@ def PlaylistEntryComponent(serviceref, state):
 		png = ForwardIcon
 
 	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, 0, 33, 32, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 16, 16, png))
     
 	return res
 
@@ -70,7 +70,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(32)
+		instance.setItemHeight(22)
 
 	def getSelection(self):
 		return self.l.getCurrentSelection()[0]

@@ -14,53 +14,57 @@
 	</screen>
 	<screen name="Scart" position="0,0" size="720,576">
 	</screen>
-	<screen name="MediaPlayer" position="100,100" size="550,400" title="MediaPlayer" >
-		<widget name="currenttext" position="0,0" size="550,40" font="Regular;18" valign="center" backgroundColor="#101258" />
-		
-		<widget name="filelist" position="0,42" size="265,255" scrollbarMode="showOnDemand" />
-		<widget name="playlist" position="275,42" size="275,255" scrollbarMode="showOnDemand" selectionDisabled="1" />
-			
-		<ePixmap position="0,365" zPosition="0" size="177,32" pixmap="dvr-buttons-small-fs8.png" />
-		<widget name="PositionGauge" position="0,335" size="177,20" zPosition="2" pointer="position_pointer.png:3,5"/>
-			
-		<widget name="artisttext" position="185,300" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="artist" position="270,300" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="titletext" position="185,323" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="title" position="270,323" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="albumtext" position="185,346" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="album" position="270,346" size="280,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="yeartext" position="185,369" size="85,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="year" position="270,369" size="70,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="genretext" position="340,369" size="100,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-		<widget name="genre" position="440,369" size="110,23" font="Regular;18" valign="center" backgroundColor="#101258" />
-	</screen>
-	<screen name="ServiceInfo" position="100,120" size="560,370" title="Serviceinfo">
+	<screen name="MediaPlayer" position="104,83" size="512,442" title="MediaPlayer">
+		<eLabel position="11,9" zPosition="1" size="359,78" backgroundColor="#182C40" />		
+		<widget name="artisttext" position="13,11" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
+		<widget name="artist" position="78,11" zPosition="3" size="290,17" font="Regular;16" valign="top" foregroundColor="#dddddd" backgroundColor="#33294a6b" />
+		<widget name="albumtext" position="13,30" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
+		<widget name="album" position="78,30" zPosition="3" size="290,17" font="Regular;16" valign="top" foregroundColor="#dddddd" backgroundColor="#33294a6b" />
+		<widget name="yeartext" position="13,49" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
+		<widget name="year" position="78,49" zPosition="3" size="290,17" font="Regular;16" valign="top" foregroundColor="#dddddd" backgroundColor="#33294a6b" />
+		<widget name="genretext" position="13,68" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
+		<widget name="genre" position="78,68" zPosition="3" size="290,17" font="Regular;16" valign="top" foregroundColor="#dddddd" backgroundColor="#33294a6b" />
+		<widget name="titletext" position="0,0" zPosition="3" size="0,0" font="Regular;16" valign="top" backgroundColor="#33294a6b" />
+		<eLabel name="nowPlaying" position="13,97" zPosition="3" size="355,14" text="Now Playing" font="Regular;12" foregroundColor="#00ff66" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-1,-1"/>
+		<widget name="title" position="13,111" zPosition="3" size="355,18" font="Regular;16" valign="top" backgroundColor="#33294a6b" />
+		<eLabel position="383,9" zPosition="1" size="120,120" backgroundColor="#182C40" />					
+		<widget name="coverArt" position="385,11" zPosition="3" size="116,116" pixmap="no_coverArt.png" transparent="1" alphatest="on" />	
+		<eLabel position="11,137" zPosition="1" size="491,109" backgroundColor="#182C40" />		
+		<widget name="filelist" position="13,139" zPosition="2" size="487,105" scrollbarMode="showOnDemand" />	
+		<eLabel position="11,251" zPosition="1" size="491,109" backgroundColor="#182C40" />				
+		<widget name="playlist" position="13,253" zPosition="2" size="487,105" scrollbarMode="showOnDemand" selectionDisabled="1" />
+		<eLabel position="11,365" zPosition="1" size="491,12" backgroundColor="#182C40" />								
+		<widget name="PositionGauge" position="13,367" size="487,8" zPosition="3" pointer="position_pointer.png:3,8" backgroundColor="#33294a6b" />
+		<widget name="currenttext" position="13,383" zPosition="3" size="490,18" font="Regular;16" halign="center" foregroundColor="#dddddd" />	
+		<ePixmap position="170,406" zPosition="1" size="177,32" pixmap="dvr-buttons-small-fs8.png" transparent="1" alphatest="on" />						
+	</screen>			
+	<screen name="ServiceInfo" position="80,103" size="560,370" title="Serviceinfo">
 		<widget name="red" position="0,0" size="140,40" backgroundColor="red" valign="center" halign="center" font="Regular;21" />
 		<widget name="green" position="140,0" size="140,40" backgroundColor="green" valign="center" halign="center" font="Regular;21" />
 		<widget name="yellow" position="280,0" size="140,40" backgroundColor="yellow" valign="center" halign="center" font="Regular;21" />
 		<widget name="blue" position="420,0" size="140,40" backgroundColor="blue" valign="center" halign="center" font="Regular;21" />
 		<widget name="infolist" position="20,50" size="560,365" selectionDisabled="1"/>
 	</screen>
-	<screen name="AudioSelection" position="210,150" size="300,170" title="Audio">
+	<screen name="AudioSelection" position="210,203" size="300,170" title="Audio">
 		<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="SubserviceSelection" position="210,150" size="300,250" title="Subservices">
+	<screen name="SubserviceSelection" position="210,163" size="300,250" title="Subservices">
 		<widget name="subservices" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="HarddiskWait" position="140,165" size="360,60">
-		<widget name="wait" position="20,10" size="320,25" font="Regular;23"/>
+		<screen name="HarddiskWait" position="100,150" size="540,60">
+		<widget name="wait" position="20,10" size="500,25" font="Regular;23"/>
 	</screen>
-	<screen name="HarddiskSelection" position="140,165" size="360,100" title="Select HDD">
-		<widget name="hddlist" position="20,10" size="320,75" />
+	<screen name="HarddiskSelection" position="100,150" size="540,100" title="Select HDD">
+		<widget name="hddlist" position="20,10" size="500,75" />
 	</screen>
-	<screen name="HarddiskSetup" position="140,165" size="420,160" title="Harddisk">
+	<screen name="HarddiskSetup" position="150,150" size="420,160" title="Harddisk">
 		<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
 		<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
 		<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
-		<widget name="initialize" position="40,110" size="120,30" zPosition="1" pixmap="init.png" />
-		<widget name="initializetext" position="40,110" size="120,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
+		<widget name="initialize" position="150,120" zPosition="1" size="120,30" pixmap="init.png"  transparent="1" alphatest="on" />
+		<widget name="initializetext" position="150,120" size="120,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
-	<screen name="Setup" position="100,125" size="540,280" title="Setup">
+	<screen name="Setup" position="90,148" size="540,280" title="Setup">
 		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 		<widget name="config" position="10,50" size="520,175" scrollbarMode="showOnDemand" />
 		<widget name="ok" position="140,240" size="53,30" pixmap="ok.png" />
@@ -68,59 +72,58 @@
 		<widget name="cancel" position="240,240" size="100,30" pixmap="cancel.png" />
 		<widget name="canceltext" position="240,240" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
-	<screen name="LanguageSelection" position="200,125" size="320,260" title="Language selection">
+	<screen name="LanguageSelection" position="200,158" size="320,260" title="Language selection">
 		<widget name="list" position="0,0" size="310,250" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="PluginBrowser" position="170,125" size="400,350" title="Plugin browser">
-		<widget name="red" position="0,0" size="200,40" backgroundColor="red" valign="center" halign="center" font="Regular;20" />
-		<widget name="green" position="200,0" size="200,40" backgroundColor="green" valign="center" halign="center" font="Regular;20" />
-
-		<widget name="list" position="10,50" size="380,280" scrollbarMode="showOnDemand" />
+	<screen name="PluginBrowser" position="150,115" size="420,370" title="Plugin browser">
+		<widget name="red" position="5,0" size="200,40" backgroundColor="red" valign="center" halign="center" font="Regular;20" />
+		<widget name="green" position="215,0" size="200,40" backgroundColor="green" valign="center" halign="center" font="Regular;20" />
+		<widget name="list" position="10,50" size="400,300" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="PluginDownloadBrowser" position="170,125" size="400,350" title="Downloadable plugins">
+	<screen name="PluginDownloadBrowser" position="160,113" size="400,350" title="Downloadable plugins">
 		<widget name="text" position="10,00" size="380,330" zPosition="1" font="Regular;20" />
 		<widget name="list" position="10,00" size="380,330" zPosition="2" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="NimSelection" position="140,165" size="400,100" title="select Slot">
+	<screen name="NimSelection" position="160,238" size="400,100" title="select Slot">
 		<widget name="nimlist" position="20,10" size="360,75" />
 	</screen>
-	<screen name="CiWait" position="140,165" size="360,50" title="Common Interface">
+	<screen name="CiWait" position="180,263" size="360,50" title="Common Interface">
 		<widget name="message" position="20,10" size="320,25" font="Regular;23" />
 	</screen>
-	<screen name="CiSelection" position="140,165" size="360,100" title="Common Interface">
+	<screen name="CiSelection" position="180,238" size="360,100" title="Common Interface">
 		<widget name="entries" position="10,10" size="340,75" />
 	</screen>
-	<screen name="CiMmi" position="130,165" size="450,270">
+	<screen name="CiMmi" position="135,153" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
 		<widget name="subtitle" position="10,35" size="430,25" font="Regular;23" />
 		<widget name="entries" position="10,70" size="430,150" scrollbarMode="showOnDemand" />
 		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
 	</screen>
-	<screen name="NimSetup" position="90,98" size="560,410" title="Satconfig">
+	<screen name="NimSetup" position="80,83" size="560,410" title="Satconfig">
 		<widget name="config" position="0,0" size="560,402" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="ScanSetup" position="90,100" size="520,400" title="Service scan">
+	<screen name="ScanSetup" position="100,88" size="520,400" title="Service scan">
 		<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
 	</screen>
-	<screen name="ScanSimple" position="150,100" size="400,300" title="Service scan">
+	<screen name="ScanSimple" position="160,138" size="400,300" title="Service scan">
 		<widget name="header" position="20,10" size="280,25" font="Regular;23"/>
 		<widget name="config" position="20,45" size="360,200" scrollbarMode="showOnDemand" />
 		<widget name="footer" position="20,250" size="360,25" font="Regular;23"/>
 		<!--<widget name="introduction" position="20,360" size="280,30" font="Regular;23" />-->
 	</screen>
-	<screen name="TimerEntry" position="100,100" size="500,400" title="Timer entry">
+	<screen name="TimerEntry" position="110,188" size="500,400" title="Timer entry">
 		<widget name="config" position="5,10" size="480,350" />
 		<widget name="ok" position="140,365" size="53,30" pixmap="ok.png" />
 		<widget name="oktext" position="140,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 		<widget name="cancel" position="240,365" size="100,30" pixmap="cancel.png" />
 		<widget name="canceltext" position="240,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
-	<screen name="NetworkSetup" position="140,125" size="460,280" title="Network Setup">
+	<screen name="NetworkSetup" position="130,148" size="460,280" title="Network Setup">
 		<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,230" size="400,30" font="Regular;23" />
 	</screen>
-	<screen name="About" position="140,125" size="360,250" title="About">
+	<screen name="About" position="180,163" size="360,250" title="About">
 		<widget name="text" position="10,30" size="420,20" font="Regular;18"/>
 		<widget name="fpVersion" position="10,50" size="420,20" font="Regular;18"/>
 		<widget name="tuner" position="10,80" size="420,20" font="Regular;18"/>
@@ -129,7 +132,7 @@
 		<widget name="hdd" position="10,170" size="420,20" font="Regular;18"/>
 		<widget name="hddA" position="10,190" size="420,40" font="Regular;18"/>
 	</screen>
-	<screen name="configOSD" position="140,125" size="460,350" title="OSD Settings">
+	<screen name="configOSD" position="130,113" size="460,350" title="OSD Settings">
 		<widget name="okbutton" position="20,270" size="205,40" />
 		<widget name="txt_alpha" position="20,20" size="110,20" />
 		<widget name="sld_alpha" position="150,20" size="290,20" />
@@ -173,10 +176,9 @@
 		<widget name="title" position="10,120" size="280,50" />
 		<widget name="theClock" position="10,60" size="280,50" />
 	</screen>
-
-	<screen name="NumberZap" position="200,140" size="280,60" title="Channel">
-		<widget name="channel" position="50,15" size="110,25" font="Regular;23" />
-		<widget name="number" position="160,15" size="80,25" halign="right" font="Regular;23" />
+	<screen name="NumberZap" position="235,255" size="250,60" title="Channel">
+		<widget name="channel" position="35,15" size="110,25" font="Regular;23" />
+		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>
 	<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
@@ -270,7 +272,7 @@
 	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
 		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
 		<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
-		<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;25" />
+		<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;22" />
 	</screen>
 	<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
 		<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
@@ -355,11 +357,11 @@ newwidth = wsize[0]
 		<widget name="canceltext" position="210,165" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
 
-	<screen name="MessageBox" position="60,300" size="600,10" title="Message">
-		<widget name="text" position="60,10" size="520,0" font="Regular;22" />
-		<widget name="ErrorPixmap" pixmap="error.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
-		<widget name="QuestionPixmap" pixmap="question.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
-		<widget name="InfoPixmap" pixmap="info.png" position="0,0" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+	<screen name="MessageBox" position="60,245" size="600,10" title="Message">
+		<widget name="text" position="65,8" size="520,0" font="Regular;22" />
+		<widget name="ErrorPixmap" pixmap="error.png" position="5,5" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+		<widget name="QuestionPixmap" pixmap="question.png" position="5,5" zPosition="3" size="53,53" alphatest="on" transparent="1" />
+		<widget name="InfoPixmap" pixmap="info.png" position="5,5" zPosition="3" size="53,53" alphatest="on" transparent="1" />
 		<widget name="list" position="100,100" size="480,375" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
