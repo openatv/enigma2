@@ -34,16 +34,16 @@ MountPoints = {
 
 class BackupSetup(Screen):
 	skin = """
-		<screen position="100,100" size="400,400" title="Backup and Restore" >
-			<widget name="config" position="5,10" size="380,350" />
-			<widget name="ok" position="10,365" size="53,30" pixmap="~/green.png" />
-			<widget name="oktext" position="10,365" size="53,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
-			<widget name="cancel" position="73,365" size="100,30" pixmap="~/red.png" />
-			<widget name="canceltext" position="73,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
-			<widget name="restore" position="183,365" size="100,30" pixmap="~/yellow.png" />
-			<widget name="restoretext" position="183,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
-			<widget name="backup" position="293,365" size="100,30" pixmap="~/blue.png" />
-			<widget name="backuptext" position="293,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+		<screen position="135,144" size="450,300" title="Backup and Restore" >
+			<widget name="config" position="10,10" size="430,240" />
+			<widget name="ok" position="10,255" size="100,40" pixmap="~/green.png" transparent="1" alphatest="on" />
+			<widget name="oktext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+			<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />
+			<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
+			<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
+			<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+			<widget name="backup" position="340,255" size="100,40" pixmap="~/blue.png" transparent="1" alphatest="on" />
+			<widget name="backuptext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 		</screen>"""
 		
 	def keyLeft(self):
@@ -150,12 +150,12 @@ class BackupSetup(Screen):
 
 class RestoreMenu(Screen):
 	skin = """
-		<screen position="100,100" size="400,400" title="Restore Backups" >
-		<widget name="filelist" position="5,10" size="380,350" scrollbarMode="showOnDemand" />
-		<widget name="cancel" position="73,365" size="100,30" pixmap="~/red.png" />
-		<widget name="canceltext" position="73,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
-		<widget name="restore" position="183,365" size="100,30" pixmap="~/yellow.png" />
-		<widget name="restoretext" position="183,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+		<screen position="135,144" size="450,300" title="Restore Backups" >
+		<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
+		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />		
+		<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
+		<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
+		<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 		</screen>"""
 
 	def __init__(self, session, args = None):
