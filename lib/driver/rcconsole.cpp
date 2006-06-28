@@ -70,8 +70,15 @@ void eRCConsoleDriver::keyPressed(int)
 
 			if (code < 32)			/* control characters */
 				code = -1;
-			if (code == 0x7F)		/* delete */
+			else switch(code)
+			{
+			case 0x7F:		// KEY_COMPOSE
+			case 0x6F:		// KEY_DELETE
+			case 0x6E:		// KEY_INSERT
 				code = -1;
+			default:
+				break;
+			}
 		}
 
 		if (code != -1)
