@@ -2366,8 +2366,7 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 			if (!isRunning)
 				can_delete = 1;
 			m_PrevVersion = (data[5] & 0x3E) >> 1;
-			m_PrivateReader->stop();
-			startPrivateTimer.start(UPDATE_INTERVAL, 1);
+			startPrivateReader();
 		}
 	}
 }

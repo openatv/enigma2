@@ -1731,17 +1731,13 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		res=prepare_terrestrial(feparm);
 		if (!res)
 		{
+			std::string enable_5V;
+			char configStr[255];
+			snprintf(configStr, 255, "config.Nim%c.terrestrial_5V", 'A'+m_fe);
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
-			eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[LINKED_PREV_PTR];
-			if (linked_fe == (eDVBRegisteredFrontend*)-1)
-			{
-				std::string enable_5V;
-				ePythonConfigQuery::getConfigValue("config.terrestrial.enable_5V", enable_5V);
-				if (enable_5V == "yes")
-					m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
-				else
-					m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
-			}
+			ePythonConfigQuery::getConfigValue(configStr, enable_5V);
+			if (enable_5V == "on")
+				m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 			else
 				m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
