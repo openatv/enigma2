@@ -44,7 +44,6 @@ void eRCDeviceInputDev::handleCode(int rccode)
 			case KEY_RIGHTSHIFT:
 			case KEY_LEFTALT:
 			case KEY_CAPSLOCK:
-			case KEY_COMPOSE:
 			case KEY_INSERT:
 			case KEY_DELETE:
 			case KEY_MUTE:
