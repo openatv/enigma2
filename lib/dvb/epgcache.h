@@ -159,16 +159,15 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
 		tidMap seenSections[3], calcedSections[3];
 #ifdef ENABLE_PRIVATE_EPG
-#ifdef NEED_DEMUX_WORKAROUND
+		eTimer startPrivateTimer;
 		int m_PrevVersion;
-#endif
 		int m_PrivatePid;
 		uniqueEPGKey m_PrivateService;
 		ePtr<eConnection> m_PrivateConn;
 		ePtr<iDVBSectionReader> m_PrivateReader;
 		std::set<__u8> seenPrivateSections;
 		void readPrivateData(const __u8 *data);
-		void startPrivateReader(int pid, int version);
+		void startPrivateReader();
 #endif
 		void readData(const __u8 *data);
 		void startChannel();
