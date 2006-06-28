@@ -9,8 +9,8 @@
 */
 
 // for debugging use:
-//#define SYNC_PAINT
-#undef SYNC_PAINT
+#define SYNC_PAINT
+//#undef SYNC_PAINT
 
 #include <pthread.h>
 #include <stack>
