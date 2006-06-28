@@ -129,7 +129,12 @@ class ScanSetup(Screen):
 		Screen.__init__(self, session)
 
 		self.updateSatList()
-		self.createConfig()
+		self.service = session.nav.getCurrentService()
+		frontendData = None
+		if self.service is not None:
+			self.feinfo = self.service.frontendInfo()
+			frontendData = self.feinfo and self.feinfo.getFrontendData(True)
+		self.createConfig(frontendData)
 
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -287,7 +292,56 @@ class ScanSetup(Screen):
 		elif self["config"].getCurrent() == self.systemEntry:
 			self.createSetup()
 
-	def createConfig(self):
+	def createConfig(self, frontendData):
+							   #("Type", frontendData["system"], TYPE_TEXT),
+					   #("Modulation", frontendData["modulation"], TYPE_TEXT),
+					   #("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
+					   #("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   #("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
+					   #("Polarization", frontendData["polarization"], TYPE_TEXT),
+					   #("Inversion", frontendData["inversion"], TYPE_TEXT),
+					   #("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
+				   		#)
+		#elif frontendData["tuner_type"] == "DVB-C":
+			#return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+					   #("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   #("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   #("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
+					   #("Modulation", frontendData["modulation"], TYPE_TEXT),
+					   #("Inversion", frontendData["inversion"], TYPE_TEXT),
+			#		   ("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
+				   		#)
+		#elif frontendData["tuner_type"] == "DVB-T":
+			#return ( ("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+					   #("Type", frontendData["tuner_type"], TYPE_TEXT),
+					   #("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
+					   #("Inversion", frontendData["inversion"], TYPE_TEXT),
+					   #("Bandwidth", frontendData["bandwidth"], TYPE_VALUE_DEC),
+					   #("CodeRateLP", frontendData["code_rate_lp"], TYPE_TEXT),
+					   #("CodeRateHP", frontendData["code_rate_hp"], TYPE_TEXT),
+					   #("Constellation", frontendData["constellation"], TYPE_TEXT),
+					   #("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
+					   #("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
+					   #("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
+			defaultSat = { "orbpos": 192, "system": 0, "frequency": [11836], "inversion": 2, "symbolrate": [27500], "polarization": 0, "fec": 0, "fec_s2": 8, "modulation": 0 }
+			defaultCab = {"frequency": [466], "inversion": 2, "modulation": 0, "fec": 0, "symbolrate": [6900]}
+			if frontendData is not None:
+				if frontendData["tuner_type"] == "DVB-S":
+					defaultSat["system"] = {"DVB-S": 0, "DVB-S2": 1}[frontendData["system"]]
+					defaultSat["frequency"] = [int(frontendData["frequency"] / 1000)]
+					defaultSat["inversion"] = {"INVERSION_OFF": 0, "INVERSION_ON": 1, "INVERSION_AUTO": 2}[frontendData["inversion"]]
+					defaultSat["symbolrate"] = [int(frontendData["symbol_rate"] / 1000)]
+					defaultSat["polarization"] = {"HORIZONTAL": 0, "VERTICAL": 1, "CIRCULAR_LEFT": 2, "CIRCULAR_RIGHT": 3, "UNKNOWN": 0}[frontendData["polarization"]]
+					defaultSat["fec"] = {"DVB-S": {"FEC_AUTO": 0, "FEC_1_2": 1, "FEC_2_3": 2, "FEC_3_4": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_NONE": 6}, "DVB-S2": {"FEC_1_2": 0, "FEC_2_3": 1, "FEC_3_4": 2, "FEC_4_5": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_8_9": 6, "FEC_9_10": 7}}[frontendData["system"]][frontendData["fec_inner"]]
+					defaultSat["modulation"] = {"QPSK": 0, "8PSK": 1}[frontendData["modulation"]]
+					defaultSat["orbpos"] = frontendData["orbital_position"]
+				elif frontendData["tuner_type"] == "DVB-C":
+					defaultCab["frequency"] = [int(frontendData["frequency"] / 1000)]
+					defaultCab["symbolrate"] = [int(frontendData["symbol_rate"] / 1000)]
+					defaultSat["inversion"] = {"INVERSION_OFF": 0, "INVERSION_ON": 1, "INVERSION_AUTO": 2}[frontendData["inversion"]]
+					defaultSat["fec"] = {"FEC_AUTO": 0, "FEC_1_2": 1, "FEC_2_3": 2, "FEC_3_4": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_8_9": 6, "FEC_NONE": 7}[frontendData["fec_inner"]]
+					defaultSat["modulation"] = {"QAM_AUTO": 0, "QAM_16": 1, "QAM_16": 2, "QAM_32": 3, "QAM_64": 4, "QAM_128": 5, "QAM_256": 6}[frontendData["modulation"]]
+										
 			config.scan = ConfigSubsection()
 			config.scan.sat = ConfigSubsection()
 			config.scan.cab = ConfigSubsection()
@@ -313,21 +367,21 @@ class ScanSetup(Screen):
 			config.scan.ber.enabled = False
 
 			# sat
-			config.scan.sat.system = configElement_nonSave("config.scan.sat.system", configSelection, 0, (("dvb-s", _("DVB-S")), ("dvb-s2", _("DVB-S2"))))
-			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, [11836], configsequencearg.get("INTEGER", (1, 99999)))
-			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), _("Auto")))
-			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, [27500], configsequencearg.get("INTEGER", (1, 99999)))
-			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, 0, (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
-			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
-			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, 8, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
-			config.scan.sat.modulation = configElement_nonSave("config.scan.sat.modulation", configSelection, 0, (("qpsk", "QPSK"), ("8psk", "8PSK")))
+			config.scan.sat.system = configElement_nonSave("config.scan.sat.system", configSelection, defaultSat["system"], (("dvb-s", _("DVB-S")), ("dvb-s2", _("DVB-S2"))))
+			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, defaultSat["frequency"], configsequencearg.get("INTEGER", (1, 99999)))
+			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, defaultSat["inversion"], (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
+			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, defaultSat["symbolrate"], configsequencearg.get("INTEGER", (1, 99999)))
+			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, defaultSat["polarization"], (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
+			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, defaultSat["fec"], (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
+			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, defaultSat["fec_s2"], (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
+			config.scan.sat.modulation = configElement_nonSave("config.scan.sat.modulation", configSelection, defaultSat["modulation"], (("qpsk", "QPSK"), ("8psk", "8PSK")))
 	
 			# cable
-			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, [466], configsequencearg.get("INTEGER", (50, 999)))
-			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, 0, (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, 0, (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
-			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, [6900], configsequencearg.get("INTEGER", (1, 9999)))
+			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, defaultCab["frequency"], configsequencearg.get("INTEGER", (50, 999)))
+			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, defaultCab["inversion"], (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, defaultCab["modulation"], (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
+			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, defaultCab["fec"], (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
+			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, defaultCab["symbolrate"], configsequencearg.get("INTEGER", (1, 9999)))
 			config.scan.cab.networkScan = configElement_nonSave("config.scan.cab.networkScan", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
 
 			# terrestial
@@ -354,7 +408,7 @@ class ScanSetup(Screen):
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 					print str(slot.slotid) + " : " + str(self.satList)
-					config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, 0, self.satList[slot.slotid]))
+					config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, defaultSat["orbpos"], self.satList[slot.slotid]))
 				else:
 					config.scan.satselection.append(None)
 	def keyLeft(self):
