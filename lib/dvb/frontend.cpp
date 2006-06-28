@@ -1774,7 +1774,7 @@ RESULT eDVBFrontend::connectStateChange(const Slot1<void,iDVBFrontend*> &stateCh
 
 RESULT eDVBFrontend::setVoltage(int voltage)
 {
-	if (m_type != feSatellite)
+	if (m_type == feCable)
 		return -1;
 #if HAVE_DVB_API_VERSION < 3
 	secVoltage vlt;
@@ -1816,7 +1816,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 #if HAVE_DVB_API_VERSION < 3
 	return ::ioctl(m_secfd, SEC_SET_VOLTAGE, vlt);
 #else
-	if (::ioctl(m_fd, FE_ENABLE_HIGH_LNB_VOLTAGE, increased) < 0)
+	if (m_type == feSatellite && ::ioctl(m_fd, FE_ENABLE_HIGH_LNB_VOLTAGE, increased) < 0)
 		perror("FE_ENABLE_HIGH_LNB_VOLTAGE");
 	return ::ioctl(m_fd, FE_SET_VOLTAGE, vlt);
 #endif
