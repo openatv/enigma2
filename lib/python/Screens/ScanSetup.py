@@ -259,7 +259,6 @@ class ScanSetup(Screen):
 				self.list.append(getConfigListEntry(_("Hierarchy mode"), config.scan.ter.hierarchy))
 			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
 				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
-			self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), config.terrestrial.enable_5V))
 
 #		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
 #			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
@@ -693,7 +692,6 @@ class ScanSimple(Screen):
 		tlist = []
 
 		nimcount = nimmanager.getNimSocketCount()
-		have_terrestrial = False
 		if nimcount > 0:
 			nimtype = nimmanager.getNimType(0)
 			scan_possible=True
@@ -701,9 +699,7 @@ class ScanSimple(Screen):
 			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))))
 			self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
 			nim = configElement_nonSave(0, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-			if nimtype == nimmanager.nimType["DVB-T"]:
-				have_terrestrial = True
-			elif nimtype == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
+			if nimtype == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
 				scan_possible=False
 			if scan_possible:
 				self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
@@ -711,11 +707,6 @@ class ScanSimple(Screen):
 		if nimcount > 1 and self.ScanNimTwoNeeded():
 			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
 			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
-			if nimmanager.getNimType(1) == nimmanager.nimType["DVB-T"]:
-				have_terrestrial = True
-
-		if have_terrestrial:
-			self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), config.terrestrial.enable_5V))
 
 		self["config"] = ConfigList(self.list)
 		self["header"] = Label(_("Automatic Scan"))

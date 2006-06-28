@@ -641,8 +641,6 @@ class NimManager:
 		pass
 
 def InitNimManager(nimmgr):
-	have_terrestrial_tuner = False
-	config.terrestrial = ConfigSubsection()
 	config.Nims = []
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
@@ -660,8 +658,6 @@ def InitNimManager(nimmgr):
 		nimmgr.nimPortCChanged(slotid, configElement.vals[configElement.value][1])
 	def nimPortDChanged(slotid, configElement):
 		nimmgr.nimPortDChanged(slotid, configElement.vals[configElement.value][1])
-	def terrestrial_5v_changed(configElement):
-		configElement.save()
 
 	for slot in nimmgr.nimslots:
 		x = slot.slotid
@@ -769,20 +765,15 @@ def InitNimManager(nimmgr):
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
 			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList, False);
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
-			have_terrestrial_tuner = True
 			list = []
 			for x in nimmgr.terrestrialsList:
 				list.append(x[0])
 			nim.terrestrial = configElement(cname + "terrestrial", configSelection, 0, list, False);
+			nim.terrestrial_5V = configElement(cname + "terrestrial_5V", configSelection, 1, (("on", _("On")), ("off", _("Off"))), True);
 		else:
 			print "pls add support for this frontend type!"		
 
-	if have_terrestrial_tuner:
-		config.terrestrial.enable_5V = configElement("config.terrestrial.enable_5V", configSelection, 1, (("yes", _("Yes")), ("no", _("No"))), True);
-		config.terrestrial.enable_5V.addNotifier(terrestrial_5v_changed)
-
 	nimmgr.sec = SecConfigure(nimmgr)
-
 
 
 nimmanager = NimManager()
