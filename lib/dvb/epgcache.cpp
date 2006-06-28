@@ -671,9 +671,18 @@ void eEPGCache::gotMessage( const Message &msg )
 					chid.original_network_id.get() == msg.service.onid &&
 					data->m_PrivatePid == -1 )
 				{
+					data->m_PrevVersion = -1;
 					data->m_PrivatePid = msg.pid;
 					data->m_PrivateService = msg.service;
-					data->startPrivateReader(msg.pid, -1);
+					updateMap::iterator It = channelLastUpdated.find( channel->getChannelID() );
+					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (time(0)+eDVBLocalTimeHandler::getInstance()->difference()-It->second) * 1000 ) ) : ZAP_DELAY );
+					if (update < ZAP_DELAY)
+						update = ZAP_DELAY;
+					data->startPrivateTimer.start(update, 1);
+					if (update >= 60000)
+						eDebug("[EPGC] next private update in %i min", update/60000);
+					else if (update >= 1000)
+						eDebug("[EPGC] next private update in %i sec", update/1000);
 					break;
 				}
 			}
@@ -899,11 +908,12 @@ void eEPGCache::save()
 
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	:cache(ml)
-	,abortTimer(ml), zapTimer(ml)
+	,abortTimer(ml), zapTimer(ml), startPrivateTimer(ml)
 	,state(0), isRunning(0), haveData(0), can_delete(1)
 {
 	CONNECT(zapTimer.timeout, eEPGCache::channel_data::startEPG);
 	CONNECT(abortTimer.timeout, eEPGCache::channel_data::abortNonAvail);
+	CONNECT(startPrivateTimer.timeout, eEPGCache::channel_data::startPrivateReader);
 }
 
 bool eEPGCache::channel_data::finishEPG()
@@ -2305,27 +2315,24 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 	}
 }
 
-void eEPGCache::channel_data::startPrivateReader(int pid, int version)
+void eEPGCache::channel_data::startPrivateReader()
 {
 	eDVBSectionFilterMask mask;
 	memset(&mask, 0, sizeof(mask));
-	mask.pid = pid;
+	mask.pid = m_PrivatePid;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 	mask.data[0] = 0xA0;
 	mask.mask[0] = 0xFF;
-	eDebug("start privatefilter for pid %04x and version %d", pid, version);
-	if (version != -1)
+	eDebug("start privatefilter for pid %04x and version %d", m_PrivatePid, m_PrevVersion);
+	if (m_PrevVersion != -1)
 	{
-		mask.data[3] = version << 1;
+		mask.data[3] = m_PrevVersion << 1;
 		mask.mask[3] = 0x3E;
 		mask.mode[3] = 0x3E;
 	}
 	seenPrivateSections.clear();
 	m_PrivateReader->connectRead(slot(*this, &eEPGCache::channel_data::readPrivateData), m_PrivateConn);
 	m_PrivateReader->start(mask);
-#ifdef NEED_DEMUX_WORKAROUND
-	m_PrevVersion=version;
-#endif
 }
 
 void eEPGCache::channel_data::readPrivateData( const __u8 *data)
@@ -2358,9 +2365,9 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 			eDebug("[EPGC] private finished");
 			if (!isRunning)
 				can_delete = 1;
-			int version = data[5];
-			version = ((version & 0x3E) >> 1);
-			startPrivateReader(m_PrivatePid, version);
+			m_PrevVersion = (data[5] & 0x3E) >> 1;
+			m_PrivateReader->stop();
+			startPrivateTimer.start(UPDATE_INTERVAL, 1);
 		}
 	}
 }
