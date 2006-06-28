@@ -72,6 +72,7 @@ void eRCConsoleDriver::keyPressed(int)
 				code = -1;
 			else switch(code)
 			{
+			case 0x71:		// KEY_MUTE
 			case 0x7F:		// KEY_COMPOSE
 			case 0x6F:		// KEY_DELETE
 			case 0x6E:		// KEY_INSERT

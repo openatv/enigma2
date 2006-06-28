@@ -47,6 +47,7 @@ void eRCDeviceInputDev::handleCode(int rccode)
 			case KEY_COMPOSE:
 			case KEY_INSERT:
 			case KEY_DELETE:
+			case KEY_MUTE:
 				filtered=false;
 			default:
 				break;
