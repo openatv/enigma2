@@ -72,11 +72,10 @@ void eRCConsoleDriver::keyPressed(int)
 				code = -1;
 			else switch(code)
 			{
-			case 0x71:		// KEY_MUTE
-			case 0x7F:		// KEY_COMPOSE
-			case 0x6F:		// KEY_DELETE
-			case 0x6E:		// KEY_INSERT
-				code = -1;
+			case 0x35:  // mute
+			case 0x7E:  // mute, einfg, entf
+			case 0x7F:  // backspace
+			code = -1;
 			default:
 				break;
 			}
