@@ -176,8 +176,9 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void abortEPG();
 		void abortNonAvail();
 	};
+	void FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
-	enum {NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4};
+	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4};
 	struct Message
 	{
 		enum
