@@ -37,7 +37,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
-		extension = extension[-1]
+		extension = extension[-1].lower()
 		if EXTENSIONS.has_key(extension):
 			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
@@ -89,6 +89,8 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 				else:
 					files.append(s)
 				print s.getName(), s.flags
+			directories.sort()
+			files.sort()
 		else:
 			files = os.listdir(directory)
 			files.sort()
