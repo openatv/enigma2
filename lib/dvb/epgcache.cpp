@@ -3,6 +3,10 @@
 
 #undef EPG_DEBUG  
 
+#ifdef EPG_DEBUG
+#include <lib/service/event.h>
+#endif
+
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
@@ -297,6 +301,69 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
+void eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
+{
+	timeMap::iterator tmp = tm_it;
+	while ((tmp->first+tmp->second->getDuration()-300) > TM)
+	{
+		if(tmp->first != TM && tmp->second->type != PRIVATE)
+		{
+			__u16 event_id = tmp->second->getEventID();
+			servicemap.first.erase(event_id);
+#ifdef EPG_DEBUG
+			Event evt((uint8_t*)tmp->second->get());
+			eServiceEvent event;
+			event.parseFrom(&evt, service.sid<<16|service.onid);
+			eDebug("(1)erase no more used event %04x %d\n%s %s\n%s",
+				service.sid, event_id,
+				event.getBeginTimeString().c_str(),
+				event.getEventName().c_str(),
+				event.getExtendedDescription().c_str());
+#endif
+			delete tmp->second;
+			if (tmp == servicemap.second.begin())
+			{
+				servicemap.second.erase(tmp);
+				break;
+			}
+			else
+				servicemap.second.erase(tmp--);
+		}
+		else
+		{
+			if (tmp == servicemap.second.begin())
+				break;
+			--tmp;
+		}
+	}
+
+	tmp = tm_it;
+	while(tmp->first < (TM+duration-300))
+	{
+		if (tmp->first != TM && tmp->second->type != PRIVATE)
+		{
+			__u16 event_id = tmp->second->getEventID();
+			servicemap.first.erase(event_id);
+#ifdef EPG_DEBUG  
+			Event evt((uint8_t*)tmp->second->get());
+			eServiceEvent event;
+			event.parseFrom(&evt, service.sid<<16|service.onid);
+			eDebug("(2)erase no more used event %04x %d\n%s %s\n%s",
+				service.sid, event_id,
+				event.getBeginTimeString().c_str(),
+				event.getEventName().c_str(),
+				event.getExtendedDescription().c_str());
+#endif
+			delete tmp->second;
+			servicemap.second.erase(tmp++);
+		}
+		else
+			++tmp;
+		if (tmp == servicemap.second.end())
+			break;
+	}
+}
+
 void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 {
 	eit_t *eit = (eit_t*) data;
@@ -364,24 +431,24 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			if ( ev_it != servicemap.first.end() )
 			{
 				if ( source > ev_it->second->type )  // update needed ?
-					goto next; // when not.. the skip this entry
+					goto next; // when not.. then skip this entry
 
 				// search this event in timemap
-				timeMap::iterator tm_it_tmp = 
+				timeMap::iterator tm_it_tmp =
 					servicemap.second.find(ev_it->second->getStartTime());
 
 				if ( tm_it_tmp != servicemap.second.end() )
 				{
-					if ( tm_it_tmp->first == TM ) // correct eventData
+					if ( tm_it_tmp->first == TM ) // just update eventdata
 					{
 						// exempt memory
 						delete ev_it->second;
-						evt = new eventData(eit_event, eit_event_size, source);
-						ev_it->second=evt;
-						tm_it_tmp->second=evt;
+						ev_it->second = tm_it_tmp->second =
+							new eventData(eit_event, eit_event_size, source);
+						FixOverlapping(servicemap, TM, duration, tm_it_tmp, service);
 						goto next;
 					}
-					else
+					else  // event has new event begin time
 					{
 						tm_erase_count++;
 						// delete the found record from timemap
@@ -391,45 +458,44 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 				}
 			}
 
-			// search in timemap, for check of a case if new time has coincided with time of other event 
+			// search in timemap, for check of a case if new time has coincided with time of other event
 			// or event was is not found in eventmap
 			timeMap::iterator tm_it =
 				servicemap.second.find(TM);
 
 			if ( tm_it != servicemap.second.end() )
 			{
-				// i think, if event is not found on eventmap, but found on timemap updating nevertheless demands
-#if 0
-				if ( source > tm_it->second->type && tm_erase_count == 0 ) // update needed ?
-					goto next; // when not.. the skip this entry
-#endif
+				// event with same start time but another event_id...
+				if ( source > tm_it->second->type &&
+					ev_it == servicemap.first.end() )
+					goto next; // when not.. then skip this entry
 
 				// search this time in eventmap
-				eventMap::iterator ev_it_tmp = 
+				eventMap::iterator ev_it_tmp =
 					servicemap.first.find(tm_it->second->getEventID());
 
 				if ( ev_it_tmp != servicemap.first.end() )
 				{
-					ev_erase_count++;				
+					ev_erase_count++;
 					// delete the found record from eventmap
 					servicemap.first.erase(ev_it_tmp);
 					prevEventIt=servicemap.first.end();
 				}
 			}
-			
+
 			evt = new eventData(eit_event, eit_event_size, source);
-#if EPG_DEBUG
+#ifdef EPG_DEBUG
 			bool consistencyCheck=true;
 #endif
 			if (ev_erase_count > 0 && tm_erase_count > 0) // 2 different pairs have been removed
 			{
 				// exempt memory
-				delete ev_it->second; 
+				delete ev_it->second;
 				delete tm_it->second;
 				ev_it->second=evt;
 				tm_it->second=evt;
 			}
-			else if (ev_erase_count == 0 && tm_erase_count > 0) 
+			else if (ev_erase_count == 0 && tm_erase_count > 0)
 			{
 				// exempt memory
 				delete ev_it->second;
@@ -445,34 +511,37 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			}
 			else // added new eventData
 			{
-#if EPG_DEBUG
+#ifdef EPG_DEBUG
 				consistencyCheck=false;
 #endif
-				prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
-				prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
+				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
+				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 			}
-#if EPG_DEBUG
+
+			FixOverlapping(servicemap, TM, duration, tm_it, service);
+
+#ifdef EPG_DEBUG
 			if ( consistencyCheck )
 			{
 				if ( tm_it->second != evt || ev_it->second != evt )
 					eFatal("tm_it->second != ev_it->second");
 				else if ( tm_it->second->getStartTime() != tm_it->first )
-					eFatal("event start_time(%d) non equal timemap key(%d)", 
+					eFatal("event start_time(%d) non equal timemap key(%d)",
 						tm_it->second->getStartTime(), tm_it->first );
 				else if ( tm_it->first != TM )
-					eFatal("timemap key(%d) non equal TM(%d)", 
+					eFatal("timemap key(%d) non equal TM(%d)",
 						tm_it->first, TM);
 				else if ( ev_it->second->getEventID() != ev_it->first )
 					eFatal("event_id (%d) non equal event_map key(%d)",
 						ev_it->second->getEventID(), ev_it->first);
 				else if ( ev_it->first != event_id )
-					eFatal("eventmap key(%d) non equal event_id(%d)", 
+					eFatal("eventmap key(%d) non equal event_id(%d)",
 						ev_it->first, event_id );
 			}
 #endif
 		}
 next:
-#if EPG_DEBUG
+#ifdef EPG_DEBUG
 		if ( servicemap.first.size() != servicemap.second.size() )
 		{
 			FILE *f = fopen("/hdd/event_map.txt", "w+");
@@ -787,6 +856,7 @@ void eEPGCache::load()
 						int size=0;
 						uniqueEPGKey key;
 						fread( &key, sizeof(uniqueEPGKey), 1, f);
+						eventMap &evMap=eventDB[key].first;
 						fread( &size, sizeof(int), 1, f);
 						while(size--)
 						{
@@ -802,6 +872,10 @@ void eEPGCache::load()
 								fread( &time2, sizeof(time_t), 1, f);
 								fread( &event_id, sizeof(__u16), 1, f);
 								content_time_tables[key][content_id][time1]=std::pair<time_t, __u16>(time2, event_id);
+								eventMap::iterator it =
+									evMap.find(event_id);
+								if (it != evMap.end())
+									it->second->type = PRIVATE;
 							}
 						}
 					}
@@ -908,8 +982,9 @@ void eEPGCache::save()
 
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	:cache(ml)
-	,abortTimer(ml), zapTimer(ml), startPrivateTimer(ml)
-	,state(0), isRunning(0), haveData(0), can_delete(1)
+	,abortTimer(ml), zapTimer(ml),state(0)
+	,isRunning(0), haveData(0), can_delete(1)
+	,startPrivateTimer(ml)
 {
 	CONNECT(zapTimer.timeout, eEPGCache::channel_data::startEPG);
 	CONNECT(abortTimer.timeout, eEPGCache::channel_data::abortNonAvail);
@@ -2309,7 +2384,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		event[0] = (event_id & 0xFF00) >> 8;
 		event[1] = (event_id & 0xFF);
 		time_event_map[it->first.tm]=std::pair<time_t, __u16>(stime, event_id);
-		eventData *d = new eventData( ev_struct, bptr, eEPGCache::SCHEDULE );
+		eventData *d = new eventData( ev_struct, bptr, eEPGCache::PRIVATE );
 		evMap[event_id] = d;
 		tmMap[stime] = d;
 	}
