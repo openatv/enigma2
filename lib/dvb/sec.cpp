@@ -562,8 +562,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						if ( send_mask & 2 )
 							++loops;
 
-						for ( int i=0; i < di_param.m_repeats; ++i )
-							loops *= 2;
+						loops *= 1 << di_param.m_repeats;
 
 						for ( int i = 0; i < loops;)  // fill commands...
 						{
@@ -598,7 +597,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 									cmd=0x38;
 								if (cmd)
 								{
-									static int delay = (120 - 54) / 2;  // standard says 100msek between two repeated commands
+									int delay = di_param.m_repeats ? (120 - 54) / 2 : 120;  // standard says 100msek between two repeated commands
 									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
 									diseqc.data[2]=cmd;
 									diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
