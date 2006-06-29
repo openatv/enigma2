@@ -63,6 +63,42 @@ self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
+		<step id="nimc">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = nimmanager.getNimType(2) != nimmanager.nimType["empty/unknown"]
+			</condition>
+			<text value="Please set up tuner B" />
+			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
+			<code>
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(525, 320, 1)
+self["arrowup"].startMoving()
+self["arrowup2"].moveTo(590, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(740, 355, 1)
+self["arrowdown"].startMoving()
+			</code>
+		</step>
+		<step id="nimd">
+			<condition>
+from Components.NimManager import nimmanager
+self.condition = nimmanager.getNimType(3) != nimmanager.nimType["empty/unknown"]
+			</condition>
+			<text value="Please set up tuner B" />
+			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
+			<code>
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(525, 320, 1)
+self["arrowup"].startMoving()
+self["arrowup2"].moveTo(590, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(740, 355, 1)
+self["arrowdown"].startMoving()
+			</code>
+		</step>
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<code>
