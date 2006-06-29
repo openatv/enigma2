@@ -19,8 +19,8 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		self.maxSize = maxSize
 		self.currPos = 0
 		self.Text = text
+		self.overwrite = 0
 		self.update()
-
 	def update(self):
 		self.setMarkedPos(self.currPos)
 		if self.type == self.PIN:
@@ -79,14 +79,45 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 			newNumber = str(int(self.Text[self.currPos]) - 1)
 		self.Text = self.Text[0:self.currPos] + newNumber + self.Text[self.currPos + 1:]
 		self.update()
-
+		
+	def home(self):
+		self.currPos = 0
+		self.update()
+	
+	def end(self):
+		self.currPos = len(self.Text) - 1
+		self.update()
+		
+	def tab(self):
+		if self.currPos == len(self.Text) - 1:
+			self.Text=self.Text+ " "
+			self.end()
+		else:
+			self.Text = self.Text[0:self.currPos] + " " + self.Text[self.currPos:]
+		self.update()
+		
 	def delete(self):
 		self.Text = self.Text[:self.currPos] + self.Text[self.currPos + 1:]
+		self.update()
+		
+	def toggleOverwrite(self):
+		if self.overwrite==1:
+			self.overwrite=0
+		else:
+			self.overwrite=1
+		self.update()
+
+	def deleteBackward(self):
+		self.Text = self.Text[:self.currPos - 1] + self.Text[self.currPos:]
+		self.left()
 		self.update()
 
 	def handleAscii(self, code):
 		newChar = chr(code)
-		self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos + 1:]
+		if self.overwrite==1:
+			self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos + 1:]
+		else:
+			self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos:]
 		self.right()
 
 	def number(self, number):
