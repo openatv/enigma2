@@ -14,8 +14,8 @@ class InputBox(Screen):
 
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
-				
-		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions"], 
+
+		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions"], 
 		{
 			"gotAsciiCode": self.gotAsciiCode,
 			"ok": self.go,
@@ -23,6 +23,15 @@ class InputBox(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"delete": self.keyDelete,
+			"moveLeft": self.keyLeft,
+			"moveRight": self.keyRight,
+			"moveHome": self.keyHome,
+			"moveEnd": self.keyEnd,
+			"deleteForward": self.keyDelete,
+			"deleteBackward": self.keyBackspace,
+			"tab": self.keyTab,
+			"toggleOverwrite": self.keyInsert,
+			"accept": self.go,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -42,22 +51,37 @@ class InputBox(Screen):
 
 	def keyLeft(self):
 		self["input"].left()
-	
+
 	def keyRight(self):
 		self["input"].right()
-	
+
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)
-		
+
 	def keyDelete(self):
 		self["input"].delete()
-		
+
 	def go(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(self["input"].getText())
-		
+
 	def cancel(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(None)
+
+	def keyHome(self):
+		self["input"].home()
+
+	def keyEnd(self):
+		self["input"].end()
+
+	def keyBackspace(self):
+		self["input"].deleteBackward()
+
+	def keyTab(self):
+		self["input"].tab()
+
+	def keyInsert(self):
+		self["input"].toggleOverwrite()
