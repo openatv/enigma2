@@ -562,7 +562,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						if ( send_mask & 2 )
 							++loops;
 
-						loops *= 1 << di_param.m_repeats;
+						loops <<= di_param.m_repeats;
 
 						for ( int i = 0; i < loops;)  // fill commands...
 						{
