@@ -251,11 +251,11 @@ class SecConfigure:
 						
 						if currentConfigSelectionElement(currLnb.diseqcRepeats) == "none":
 							sec.setRepeats(0)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "One":
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "one":
 							sec.setRepeats(1)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "Two":
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "two":
 							sec.setRepeats(2)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "Three":
+						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "three":
 							sec.setRepeats(3)
 						
 					setCommandOrder=False
