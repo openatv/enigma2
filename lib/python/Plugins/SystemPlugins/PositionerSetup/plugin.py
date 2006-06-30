@@ -415,13 +415,13 @@ class TunerScreen(ScanSetup):
 			self.updateSats()
 			self.createSetup()
 
-	def createConfig(self):
+	def createConfig(self, foo):
 		config.tuning = ConfigSubsection()
 		
 		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
 		
 		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getRotorSatListForNim(self.feid))
-		ScanSetup.createConfig(self)
+		ScanSetup.createConfig(self, None)
 		self.updateSats()
 		
 	def updateSats(self):
