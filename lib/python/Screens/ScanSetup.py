@@ -135,6 +135,8 @@ class ScanSetup(Screen):
 			self.feinfo = self.service.frontendInfo()
 			frontendData = self.feinfo and self.feinfo.getFrontendData(True)
 		self.createConfig(frontendData)
+		del self.feinfo
+		del self.service
 
 
 		self["actions"] = NumberActionMap(["SetupActions"],
