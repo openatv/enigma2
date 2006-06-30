@@ -440,7 +440,7 @@ class ScanSetup(Screen):
 			   }
 
 	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation):
-		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(fec) + " inversion: " + str(inversion)
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(self.fecmap[fec]) + " inversion: " + str(inversion) + " modulation: " + str(modulation) + " system: " + str(system)
 		print "orbpos: " + str(orbital_position)
 		parm = eDVBFrontendParametersSatellite()
 		if modulation == 1:
@@ -499,7 +499,7 @@ class ScanSetup(Screen):
 										config.scan.sat.inversion.value,
 										orbpos,
 										config.scan.sat.system.value,
-										config.scan.sat.modulation)
+										config.scan.sat.modulation.value)
 			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
 				sat = self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value]
 				getInitialTransponderList(tlist, int(sat[1]))
