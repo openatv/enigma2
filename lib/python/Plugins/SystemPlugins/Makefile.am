@@ -1,2 +1,2 @@
-SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup
+SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup Satfinder
 
