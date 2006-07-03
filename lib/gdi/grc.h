@@ -1,7 +1,6 @@
 #ifndef __grc_h
 #define __grc_h
 
-// #define SYNC_PAINT
 /*
 	gPainter ist die high-level version. die highlevel daten werden zu low level opcodes ueber
 	die gRC-queue geschickt und landen beim gDC der hardwarespezifisch ist, meist aber auf einen
@@ -9,8 +8,8 @@
 */
 
 // for debugging use:
-#define SYNC_PAINT
-//#undef SYNC_PAINT
+//#define SYNC_PAINT
+#undef SYNC_PAINT
 
 #include <pthread.h>
 #include <stack>
