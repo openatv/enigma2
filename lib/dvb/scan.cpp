@@ -252,7 +252,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 		/* check if we don't already have that channel ... */
 
 		/* ... in the list of channels to scan */
-	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end(); ++i)
+	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end(); ++i)
 		if (sameChannel(*i, feparm))
 		{
 			*i = feparm;  // update
