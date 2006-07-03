@@ -24,7 +24,7 @@ public:
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
 	
-	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT) const;
+	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const;
 	
 	RESULT getHash(unsigned long &SWIG_OUTPUT) const;
 };

@@ -59,8 +59,9 @@ private:
 		
 	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 	void addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
-	int  sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2) const;
-	
+
+	int sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2, bool exact=false) const;
+
 	void channelDone();
 	
 	Signal1<void,int> m_event;
