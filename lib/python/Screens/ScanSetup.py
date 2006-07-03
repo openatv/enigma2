@@ -130,6 +130,7 @@ class ScanSetup(Screen):
 
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
+		self.feinfo = None
 		frontendData = None
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
@@ -325,7 +326,7 @@ class ScanSetup(Screen):
 					   #("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
 					   #("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
 			defaultSat = { "orbpos": 192, "system": 0, "frequency": [11836], "inversion": 2, "symbolrate": [27500], "polarization": 0, "fec": 0, "fec_s2": 8, "modulation": 0 }
-			defaultCab = {"frequency": [466], "inversion": 2, "modulation": 0, "fec": 0, "symbolrate": [6900]}
+			defaultCab = {"frequency": [466], "inversion": 2, "modulation": 2, "fec": 0, "symbolrate": [6900]}
 			if frontendData is not None:
 				if frontendData["tuner_type"] == "DVB-S":
 					defaultSat["system"] = {"DVB-S": 0, "DVB-S2": 1}[frontendData["system"]]
@@ -380,7 +381,7 @@ class ScanSetup(Screen):
 			# cable
 			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, defaultCab["frequency"], configsequencearg.get("INTEGER", (50, 999)))
 			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, defaultCab["inversion"], (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, defaultCab["modulation"], (("auto", _("Auto")), ("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
+			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, defaultCab["modulation"], (("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
 			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, defaultCab["fec"], (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
 			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, defaultCab["symbolrate"], configsequencearg.get("INTEGER", (1, 9999)))
 			config.scan.cab.networkScan = configElement_nonSave("config.scan.cab.networkScan", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
@@ -530,7 +531,7 @@ class ScanSetup(Screen):
 			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
 				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
 											  config.scan.cab.symbolrate.value[0],
-											  config.scan.cab.modulation.value,
+											  config.scan.cab.modulation.value + 1,
 											  config.scan.cab.fec.value,
 											  config.scan.cab.inversion.value)
 				if currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
