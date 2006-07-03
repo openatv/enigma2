@@ -250,20 +250,23 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm)
 {
 		/* check if we don't already have that channel ... */
-		
+
 		/* ... in the list of channels to scan */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end(); ++i)
 		if (sameChannel(*i, feparm))
+		{
+			*i = feparm;  // update
 			return;
+		}
 
 		/* ... in the list of successfully scanned channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
 			return;
-		
+
 		/* ... in the list of unavailable channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_unavailable.begin()); i != m_ch_unavailable.end(); ++i)
-		if (sameChannel(*i, feparm))
+		if (sameChannel(*i, feparm, true))
 			return;
 
 		/* ... on the current channel */
@@ -274,10 +277,10 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	m_ch_toScan.push_front(feparm); // better.. then the rotor not turning wild from east to west :)
 }
 
-int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2) const
+int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *ch2, bool exact) const
 {
 	int diff;
-	if (ch1->calculateDifference(ch2, diff))
+	if (ch1->calculateDifference(ch2, diff, exact))
 		return 0;
 	if (diff < 4000) // more than 4mhz difference?
 		return 1;

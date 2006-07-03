@@ -362,7 +362,7 @@ public:
 	virtual RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
 	virtual RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
 	
-	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT) const = 0;
+	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const = 0;
 	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
 };
 

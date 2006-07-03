@@ -263,7 +263,7 @@ RESULT eDVBFrontendParameters::setDVBT(const eDVBFrontendParametersTerrestrial &
 	return 0;
 }
 
-RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters *parm, int &diff) const
+RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters *parm, int &diff, bool exact) const
 {
 	if (!parm)
 		return -1;
@@ -288,6 +288,8 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			diff = 1<<29;
 		else if (sat.polarisation != osat.polarisation)
 			diff = 1<<28;
+		else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC::fAuto && osat.fec != eDVBFrontendParametersSatellite::FEC::fAuto)
+			diff = 1<<27;
 		else
 		{
 			diff = abs(sat.frequency - osat.frequency);
@@ -300,24 +302,54 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 		if (parm->getDVBC(ocable))
 			return -2;
 
-		if (cable.modulation != ocable.modulation && cable.modulation != eDVBFrontendParametersCable::Modulation::Auto && ocable.modulation != eDVBFrontendParametersCable::Modulation::Auto)
+		if (exact && cable.modulation != ocable.modulation
+			&& cable.modulation != eDVBFrontendParametersCable::Modulation::Auto
+			&& ocable.modulation != eDVBFrontendParametersCable::Modulation::Auto)
 			diff = 1 << 29;
-		else if (cable.inversion != ocable.inversion && cable.inversion != eDVBFrontendParametersCable::Inversion::Unknown && ocable.inversion != eDVBFrontendParametersCable::Inversion::Unknown)
-			diff = 1 << 28;
+		else if (exact && cable.fec_inner != ocable.fec_inner && cable.fec_inner != eDVBFrontendParametersCable::FEC::fAuto && ocable.fec_inner != eDVBFrontendParametersCable::FEC::fAuto)
+			diff = 1 << 27;
 		else
 		{
 			diff = abs(cable.frequency - ocable.frequency);
 			diff += abs(cable.symbol_rate - ocable.symbol_rate);
 		}
-
 		return 0;
 	case iDVBFrontend::feTerrestrial:
 		eDVBFrontendParametersTerrestrial oterrestrial;
 		if (parm->getDVBT(oterrestrial))
 			return -2;
 
-		diff = abs(terrestrial.frequency - oterrestrial.frequency);
 
+		if (exact && oterrestrial.bandwidth != terrestrial.bandwidth &&
+			oterrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto &&
+			terrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.modulation != terrestrial.modulation &&
+			oterrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation::Auto &&
+			terrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation::Auto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.transmission_mode != terrestrial.transmission_mode &&
+			oterrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto &&
+			terrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.guard_interval != terrestrial.guard_interval &&
+			oterrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto &&
+			terrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.hierarchy != terrestrial.hierarchy &&
+			oterrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy::HAuto &&
+			terrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy::HAuto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.code_rate_LP != terrestrial.code_rate_LP &&
+			oterrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC::fAuto &&
+			terrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC::fAuto)
+			diff = 1 << 30;
+		else if (exact && oterrestrial.code_rate_HP != terrestrial.code_rate_HP &&
+			oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC::fAuto &&
+			terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC::fAuto)
+			diff = 1 << 30;
+		else
+			diff = abs(terrestrial.frequency - oterrestrial.frequency);
 		return 0;
 	default:
 		return -1;
