@@ -9,6 +9,7 @@
 #ifdef OBJECT_DEBUG
 #include <lib/base/eerror.h>
 #endif
+#include <lib/base/elock.h>
 
 typedef int RESULT;
 
@@ -38,12 +39,13 @@ public:
 };
 
 #ifndef SWIG
-#define DECLARE_REF(x) private: oRefCount ref; public: void AddRef(); void Release();
+#define DECLARE_REF(x) private: eSingleLock ref_lock; oRefCount ref; public: void AddRef(); void Release();
 #ifdef OBJECT_DEBUG
 extern int object_total_remaining;
-#define DEFINE_REF(c) void c::AddRef() { ++object_total_remaining; ++ref; eDebug("OBJECT_DEBUG " #c "+%p now %d", this, (int)ref); } void c::Release() { --object_total_remaining; eDebug("OBJECT_DEBUG " #c "-%p now %d", this, ref-1); if (!--ref) delete this; }
+#define DEFINE_REF(c) void c::AddRef() { eSingleLocker l(ref_lock); ++object_total_remaining; ++ref; eDebug("OBJECT_DEBUG " #c "+%p now %d", this, (int)ref); } void c::Release() { { eSingleLocker l(ref_lock); --object_total_remaining; --ref; eDebug("OBJECT_DEBUG " #c "-%p now %d", this, ref); } if (!ref) delete this; }
+#error fix locking for debug
 #else
-#define DEFINE_REF(c) void c::AddRef() { ++ref; } void c::Release() { if (!--ref) delete this; }
+#define DEFINE_REF(c) void c::AddRef() { eSingleLocker l(ref_lock); ++ref; } void c::Release() { { eSingleLocker l(ref_lock); --ref; } if (!ref) delete this; }
 #endif
 #else
 #define DECLARE_REF(x) private: void AddRef(); void Release();
