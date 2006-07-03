@@ -251,28 +251,71 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 {
 		/* check if we don't already have that channel ... */
 
+	int type;
+	feparm->getSystem(type);
+
+	switch(type)
+	{
+	case iDVBFrontend::feSatellite:
+	{
+		eDVBFrontendParametersSatellite parm;
+		feparm->getDVBS(parm);
+		eDebug("try to add %d %d %d %d %d %d",
+			parm.orbital_position, parm.frequency, parm.symbol_rate, parm.polarisation, parm.fec, parm.modulation);
+		break;
+	}
+	case iDVBFrontend::feCable:
+	{
+		eDVBFrontendParametersCable parm;
+		feparm->getDVBC(parm);
+		eDebug("try to add %d %d %d %d %d",
+			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
+		break;
+	}
+	case iDVBFrontend::feTerrestrial:
+	{
+		eDVBFrontendParametersTerrestrial parm;
+		feparm->getDVBT(parm);
+		eDebug("try to add %d %d %d %d %d %d %d %d",
+			parm.frequency, parm.modulation, parm.transmission_mode, parm.hierarchy,
+			parm.guard_interval, parm.code_rate_LP, parm.code_rate_HP, parm.bandwidth);
+		break;
+	}
+	}
+
 		/* ... in the list of channels to scan */
 	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end(); ++i)
 		if (sameChannel(*i, feparm))
 		{
 			*i = feparm;  // update
+			eDebug("update");
 			return;
 		}
 
 		/* ... in the list of successfully scanned channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
+		{
+			eDebug("successfully scanned");
 			return;
+		}
 
 		/* ... in the list of unavailable channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_unavailable.begin()); i != m_ch_unavailable.end(); ++i)
 		if (sameChannel(*i, feparm, true))
+		{
+			eDebug("scanned but not available");
 			return;
+		}
 
 		/* ... on the current channel */
 	if (sameChannel(m_ch_current, feparm))
+	{
+		eDebug("is current");
 		return;
+	}
 
+	eDebug("really add");
 		/* otherwise, add it to the todo list. */
 	m_ch_toScan.push_front(feparm); // better.. then the rotor not turning wild from east to west :)
 }

@@ -290,6 +290,8 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			diff = 1<<28;
 		else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC::fAuto && osat.fec != eDVBFrontendParametersSatellite::FEC::fAuto)
 			diff = 1<<27;
+		else if (exact && sat.modulation != osat.modulation && sat.modulation != eDVBFrontendParametersSatellite::Modulation::Auto && osat.modulation != eDVBFrontendParametersSatellite::Modulation::Auto)
+			diff = 1<<27;
 		else
 		{
 			diff = abs(sat.frequency - osat.frequency);
@@ -1386,13 +1388,14 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 	res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
 	if (!res)
 	{
-		eDebug("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d",
+		eDebug("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d",
 			feparm.system,
 			feparm.frequency,
 			feparm.polarisation,
 			feparm.symbol_rate,
 			feparm.inversion,
-			feparm.fec);
+			feparm.fec,
+			feparm.orbital_position);
 		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{
