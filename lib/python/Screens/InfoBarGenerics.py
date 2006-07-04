@@ -1029,7 +1029,7 @@ from Screens.PiPSetup import PiPSetup
 
 class InfoBarExtensions:
 	def __init__(self):
-		self.pipshown = False
+		self.session.pipshown = False
 		
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 			{
@@ -1044,9 +1044,9 @@ class InfoBarExtensions:
 
 	def extensions(self):
 		list = []
-		if self.pipshown == False:
+		if self.session.pipshown == False:
 			list.append((_("Activate Picture in Picture"), self.PIPON))
-		elif self.pipshown == True:
+		elif self.session.pipshown == True:
 			list.append((_("Disable Picture in Picture"), self.PIPOFF))
 			list.append((_("Move Picture in Picture"), self.MOVEPIP))
 			list.append((_("Swap services"), self.PIPSWAP))
@@ -1062,26 +1062,32 @@ class InfoBarExtensions:
 	def extensionCallback(self, answer):
 		if answer is not None:
 			if answer[1] == self.PIPON:
-				self.pip = self.session.instantiateDialog(PictureInPicture)
-				
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				newservice = self.session.nav.getCurrentlyPlayingServiceReference()
-				
-				if self.pip.playService(newservice):
-					self.pipshown = True
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
-					self.pipshown = False
-					del self.pip
+					self.session.pipshown = False
+					del self.session.pip
 				self.session.nav.playService(newservice)
 			elif answer[1] == self.PIPOFF:
-				del self.pip
-				self.pipshown = False
+				del self.session.pip
+				self.session.pipshown = False
 			elif answer[1] == self.PIPSWAP:
-				swapservice = self.pip.getCurrentService()
-				self.pip.playService(self.session.nav.getCurrentlyPlayingServiceReference())
-				self.session.nav.playService(swapservice)
-				
+				swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+				if self.session.pip.servicePath:
+					servicepath = self.servicelist.getCurrentServicePath()
+					ref=servicepath[len(servicepath)-1]
+					pipref=self.session.pip.getCurrentService()
+					self.session.pip.playService(swapservice)
+					self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
+					if pipref.toString() != ref.toString(): # is a subservice ?
+						self.session.nav.stopService() # stop portal
+						self.session.nav.playService(pipref) # start subservice
+					self.session.pip.servicePath=servicepath
 			elif answer[1] == self.MOVEPIP:
-				self.session.open(PiPSetup, pip = self.pip)
+				self.session.open(PiPSetup, pip = self.session.pip)
 			elif answer[1] == self.ENABLE_SUBTITLE:
 				self.selected_subtitle = answer[2]
 				self.subtitles_enabled = True

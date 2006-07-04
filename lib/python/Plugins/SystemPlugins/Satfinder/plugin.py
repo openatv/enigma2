@@ -79,12 +79,18 @@ class Satfinder(ScanSetup):
 		self.feid = feid
 
 		if not self.openFrontend():
-			self.frontend = None
+			session.nav.stopService() # try to disable foreground service
+			if not self.openFrontend():
+				if session.pipshown: # try to disable pip
+					session.pipshown = False
+					del session.pip
+					if not self.openFrontend():
+						self.frontend = None # in normal case this should not happen
+						self.getFrontend = None
 
 		ScanSetup.__init__(self, session)
-		self.session.nav.stopService()
 		self.tuner = Tuner(self.frontend)
-		
+
 		self["snr"] = Label()
 		self["agc"] = Label()
 		self["ber"] = Label()
@@ -129,7 +135,7 @@ class Satfinder(ScanSetup):
 			self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
 			self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
-		elif config.tuning.transponder and self.currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
+		elif config.tuning.transponder and currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), config.tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
