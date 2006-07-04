@@ -17,74 +17,25 @@ class Tuner:
 		self.frontend = frontend
 		
 	def tune(self, transponder):
-		print "tuning to transponder with data", transponder
-		parm = eDVBFrontendParametersSatellite()
-		parm.frequency = transponder[0] * 1000
-		parm.symbol_rate = transponder[1] * 1000
-		parm.polarisation = transponder[2]
-		parm.fec = transponder[3]
-		parm.inversion = transponder[4]
-		parm.orbital_position = transponder[5]
-		parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
-		parm.modulation = 1 # FIXMEE !! HARDCODED QPSK 
-		feparm = eDVBFrontendParameters()
-		feparm.setDVBS(parm, True)
-		self.lastparm = feparm
-		self.frontend.tune(feparm)
+		if self.frontend:
+			print "tuning to transponder with data", transponder
+			parm = eDVBFrontendParametersSatellite()
+			parm.frequency = transponder[0] * 1000
+			parm.symbol_rate = transponder[1] * 1000
+			parm.polarisation = transponder[2]
+			parm.fec = transponder[3]
+			parm.inversion = transponder[4]
+			parm.orbital_position = transponder[5]
+			parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
+			parm.modulation = 1 # FIXMEE !! HARDCODED QPSK 
+			feparm = eDVBFrontendParameters()
+			feparm.setDVBS(parm)
+			self.lastparm = feparm
+			self.frontend.tune(feparm)
 	
 	def retune(self):
-		self.frontend.tune(self.lastparm)
-	
-	def getTransponderData(self):
-		return self.frontend.readTransponderData(True)
-
-class Diseqc:
-	def __init__(self, feid = 0):
-		self.ready = False
-		self.feid = feid
-		res_mgr = eDVBResourceManagerPtr()
-		if eDVBResourceManager.getInstance(res_mgr) == 0:
-			self.raw_channel = iDVBChannelPtr()
-			if res_mgr.allocateRawChannel(self.raw_channel, self.feid) == 0:
-				self.frontend = iDVBFrontendPtr()
-				if self.raw_channel.getFrontend(self.frontend) == 0:
-					self.ready = True
-				else:
-					print "getFrontend failed"
-			else:
-				print "getRawChannel failed"
-		else:
-			print "getResourceManager instance failed"
-	
-	def getFrontend(self):
-		return self.frontend
-		
-	def command(self, what, param = 0):
-		if self.ready:
-			cmd = eDVBDiseqcCommand()
-			if what == "moveWest":
-				string = 'e03169' + ("%02x" % param)
-			elif what == "moveEast":
-				string = 'e03168' + ("%02x" % param)
-			elif what == "moveTo":
-				string = 'e0316b' + ("%02x" % param)
-			elif what == "store":
-				string = 'e0316a' + ("%02x" % param)
-			elif what == "limitOn":
-				string = 'e0316a00'
-			elif what == "limitOff":
-				string = 'e03163'
-			elif what == "limitEast":
-				string = 'e03166'
-			elif what == "limitWest":
-				string = 'e03167'
-			else:
-				string = 'e03160' #positioner stop
-			print "diseqc command:",
-			print string
-			
-			cmd.setCommandString(string)
-			self.frontend.sendDiseqc(cmd)
+		if self.frontend:
+			self.frontend.tune(self.lastparm)
 
 class Satfinder(ScanSetup):
 	skin = """
@@ -104,27 +55,47 @@ class Satfinder(ScanSetup):
 			<widget name="ber_bar" position="60,295" size="150,22" />
 		</screen>"""
 
+	def openFrontend(self):
+		res_mgr = eDVBResourceManagerPtr()
+		if eDVBResourceManager.getInstance(res_mgr) == 0:
+			self.raw_channel = iDVBChannelPtr()
+			if res_mgr.allocateRawChannel(self.raw_channel, self.feid) == 0:
+				self.frontend = iDVBFrontendPtr()
+				if self.raw_channel.getFrontend(self.frontend) == 0:
+					return True
+				else:
+					print "getFrontend failed"
+			else:
+				print "getRawChannel failed"
+		else:
+			print "getResourceManager instance failed"
+		return False
+
+	def getFrontend(self):
+		return self.frontend
+
 	def __init__(self, session, feid):
 		self.initcomplete = False
 		self.feid = feid
-		
+
+		if not self.openFrontend():
+			self.frontend = None
+
 		ScanSetup.__init__(self, session)
 		self.session.nav.stopService()
-		
-		self.diseqc = Diseqc(self.feid)
-		self.tuner = Tuner(self.diseqc.getFrontend())
+		self.tuner = Tuner(self.frontend)
 		
 		self["snr"] = Label()
 		self["agc"] = Label()
 		self["ber"] = Label()
 		self["lock"] = Label()
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, frontendfkt = self.diseqc.getFrontend)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, frontendfkt = self.diseqc.getFrontend)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, frontendfkt = self.diseqc.getFrontend)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, frontendfkt = self.diseqc.getFrontend)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.diseqc.getFrontend)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.diseqc.getFrontend)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.diseqc.getFrontend)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, frontendfkt = self.getFrontend)
+		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, frontendfkt = self.getFrontend)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, frontendfkt = self.getFrontend)
+		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, frontendfkt = self.getFrontend)
+		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.getFrontend)
+		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.getFrontend)
+		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.getFrontend)
 
 		self["introduction"].setText("")
 		
@@ -142,7 +113,7 @@ class Satfinder(ScanSetup):
 		self["agc_bar"].update()
 		self["ber_bar"].update()
 		self["lock_state"].update()
-		
+
 	def createSetup(self):
 		self.typeOfTuningEntry = None
 		self.satEntry = None
@@ -184,7 +155,7 @@ class Satfinder(ScanSetup):
 		config.tuning = ConfigSubsection()
 		
 		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
-		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getRotorSatListForNim(self.feid))
+		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
 		
 		self.updateSats()
@@ -196,8 +167,7 @@ class Satfinder(ScanSetup):
 		config.scan.sat.symbolrate.addNotifier(self.retune)
 		config.scan.sat.polarization.addNotifier(self.retune)
 		config.scan.sat.fec.addNotifier(self.retune)
-		config.tuning.transponder.addNotifier(self.retune)
-		
+
 	def updateSats(self):
 		satnum = config.tuning.sat.value
 		satlist = config.tuning.sat.vals
@@ -231,6 +201,7 @@ class Satfinder(ScanSetup):
 					fec = "FEC_None"
 				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			config.tuning.transponder = configElement_nonSave("config.tuning.transponder", configSelection, 0, list)
+			config.tuning.transponder.addNotifier(self.retune)
 	
 	def keyGo(self):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0)
