@@ -79,6 +79,40 @@ public:
 				if (!ref) \
 					delete this; \
 			}
+	#elif defined(__ppc__)
+		#define DECLARE_REF(x) 			\
+			private: oRefCount ref; 	\
+			public: void AddRef(); 		\
+					void Release();
+		#define DEFINE_REF(c) \
+			void c::AddRef() \
+			{ \
+				int temp; \
+				__asm__ __volatile__( \
+				"1:		lwarx	%0, 0, %3	\n" \
+				"		add		%0, %2, %0	\n" \
+				"		dcbt	0, %3		\n" \
+				"		stwcx.	%0, 0, %3	\n" \
+				"		bne-	1b			\n" \
+				: "=&r" (temp), "=m" ((int)ref) \
+				: "r" (1), "r" (&((int)ref)), "m" ((int)ref) \
+				: "cc"); \
+			} \
+			void c::Release() \
+			{ \
+				int temp; \
+				__asm__ __volatile__( \
+				"1:		lwarx	%0, 0, %3	\n" \
+				"		subf	%0, %2, %0	\n" \
+				"		dcbt	0, %3		\n" \
+				"		stwcx.	%0, 0, %3	\n" \
+				"		bne-	1b			\n" \
+				: "=&r" (temp), "=m" ((int)ref) \
+				: "r" (1), "r" (&((int)ref)), "m" ((int)ref) \
+				: "cc"); \
+				if (!ref) \
+					delete this; \
+			}
 	#else
 		#define DECLARE_REF(x) 			\
 			private:oRefCount ref; 	\
