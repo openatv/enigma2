@@ -1229,13 +1229,13 @@ class InfoBarAudioSelection:
 
 	def audioSelection(self):
 		service = self.session.nav.getCurrentService()
-		audio = service.audioTracks()
+		audio = service and service.audioTracks()
 		self.audioTracks = audio
-		n = audio.getNumberOfTracks()
+		n = audio and audio.getNumberOfTracks()
 		keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 		tlist = []
 		print "tlist:", tlist
-		if n > 0:
+		if n and n > 0:
 			self.audioChannel = service.audioChannel()
 
 			for x in range(n):
