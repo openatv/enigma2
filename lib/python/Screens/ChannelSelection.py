@@ -1032,6 +1032,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastservice.value = refstr
 			self.lastservice.save()
 
+	def setCurrentServicePath(self, path):
+		hlen = len(self.history)
+		if hlen > 0:
+			self.history[self.history_pos] = path
+		else:
+			self.history.append(path)
+		self.setHistoryPath()
+
+	def getCurrentServicePath(self):
+		hlen = len(self.history)
+		if hlen > 0:
+			return self.history[self.history_pos]
+		return None
+
 	def recallPrevService(self):
 		hlen = len(self.history)
 		if hlen > 1:
