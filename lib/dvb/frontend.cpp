@@ -1350,8 +1350,9 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			}
 			default:
+				eDebug("[SEC] unhandled sec command %d",
+					++m_sec_sequence.current()->cmd);
 				++m_sec_sequence.current();
-				eDebug("[SEC] unhandled sec command");
 		}
 		m_tuneTimer->start(delay,true);
 	}
@@ -1719,11 +1720,15 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (!m_sn)
 	{
 		eDebug("no frontend device opened... do not try to tune !!!");
-		return -ENODEV;
+		res = -ENODEV;
+		goto tune_error;
 	}
 
 	if (m_type == -1)
-		return -ENODEV;
+	{
+		res = -ENODEV;
+		goto tune_error;
+	}
 
 	m_sn->stop();
 	m_sec_sequence.clear();
@@ -1736,23 +1741,30 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (where.getDVBS(feparm))
 		{
 			eDebug("no dvbs data!");
-			return -EINVAL;
+			res = -EINVAL;
+			goto tune_error;
 		}
-		res=prepare_sat(feparm);
 		m_sec->setRotorMoving(false);
+		res=prepare_sat(feparm);
+		if (res)
+			goto tune_error;
+
 		break;
 	}
 	case feCable:
 	{
 		eDVBFrontendParametersCable feparm;
 		if (where.getDVBC(feparm))
-			return -EINVAL;
-		res=prepare_cable(feparm);
-		if (!res)
 		{
-			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
-			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+			res = -EINVAL;
+			goto tune_error;
 		}
+		res=prepare_cable(feparm);
+		if (res)
+			goto tune_error;
+
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 		break;
 	}
 	case feTerrestrial:
@@ -1761,39 +1773,42 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (where.getDVBT(feparm))
 		{
 			eDebug("no -T data");
-			return -EINVAL;
+			res = -EINVAL;
+			goto tune_error;
 		}
 		res=prepare_terrestrial(feparm);
-		if (!res)
-		{
-			std::string enable_5V;
-			char configStr[255];
-			snprintf(configStr, 255, "config.Nim%c.terrestrial_5V", 'A'+m_fe);
-			m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
-			ePythonConfigQuery::getConfigValue(configStr, enable_5V);
-			if (enable_5V == "on")
-				m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
-			else
-				m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
-			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
-		}
+		if (res)
+			goto tune_error;
+
+		std::string enable_5V;
+		char configStr[255];
+		snprintf(configStr, 255, "config.Nim%c.terrestrial_5V", 'A'+m_fe);
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
+		if (enable_5V == "on")
+			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
+		else
+			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+
 		break;
 	}
 	}
 
-	if (!res)  // prepare ok
-	{
-		m_tuneTimer->start(0,true);
-		m_sec_sequence.current() = m_sec_sequence.begin();
+	m_tuneTimer->start(0,true);
+	m_sec_sequence.current() = m_sec_sequence.begin();
 
-		if (m_state != stateTuning)
-		{
-			m_tuning = 1;
-			m_state = stateTuning;
-			m_stateChanged(this);
-		}
+	if (m_state != stateTuning)
+	{
+		m_tuning = 1;
+		m_state = stateTuning;
+		m_stateChanged(this);
 	}
 
+	return res;
+
+tune_error:
+	m_tuneTimer->stop();
 	return res;
 }
 
