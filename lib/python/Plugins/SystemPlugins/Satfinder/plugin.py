@@ -129,7 +129,7 @@ class Satfinder(ScanSetup):
 			self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
 			self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
-		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
+		elif config.tuning.transponder and self.currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), config.tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -143,17 +143,25 @@ class Satfinder(ScanSetup):
 
 	def retune(self, configElement):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0)
-		satpos = config.tuning.sat.vals[config.tuning.sat.value][1]
-		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
-			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
-		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
-			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
-			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
-		self.tune(returnvalue)
+		val = config.tuning.sat.value
+		if val > 0 and len(config.tuning.sat.vals) > val:
+			satpos = config.tuning.sat.vals[config.tuning.sat.value][1]
+		elif len(config.tuning.sat.vals) > 0:
+			satpos = config.tuning.sat.vals[0][1]
+		else:
+			satpos = None
+		if satpos:
+			if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
+				returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
+			elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
+				transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
+				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
+			self.tune(returnvalue)
 
 	def createConfig(self, foo):
 		config.tuning = ConfigSubsection()
-		
+
+		config.tuning.transponder = None
 		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
 		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
@@ -204,14 +212,7 @@ class Satfinder(ScanSetup):
 			config.tuning.transponder.addNotifier(self.retune)
 	
 	def keyGo(self):
-		returnvalue = (0, 0, 0, 0, 0, 0, 0)
-		satpos = config.tuning.sat.vals[config.tuning.sat.value][1]
-		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
-			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
-		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
-			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
-			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
-		self.close(returnvalue)
+		self.retune(config.tuning.type)
 
 	def keyCancel(self):
 		self.close(None)
