@@ -86,7 +86,9 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		eSize s(size());
 
 		getStyle(style);
-		style->paintBackground(painter, ePoint(0,0), s);
+		
+		eWidget::event(evtPaint, data, data2);
+
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
 //		painter.fill(eRect(0, 10, s.width(), s.height()-20));
 		
