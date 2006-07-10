@@ -64,54 +64,6 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 
 class Setup(Screen):
-	def addItems(self, list, childNode):
-		for x in childNode:
-			if x.nodeType != xml.dom.minidom.Element.nodeType:
-				continue
-			elif x.tagName == 'item':
-				ItemText = _(getValbyAttr(x, "text"))
-				b = eval(XMLTools.mergeText(x.childNodes));
-				print "item " + ItemText + " " + b.configPath
-				if b == "":
-					continue
-				#add to configlist
-				item = b.controlType(b)
-				
-				# the first b is the item itself, ignored by the configList.
-				# the second one is converted to string.
-				list.append( (ItemText, item) )
-
-	def handleKey(self, key):
-		# ignore keys when not enabled
-		if self["config"].getCurrent()[1].parent.enabled:
-			self["config"].handleKey(config.key[key])
-			print self["config"].getCurrent()
-			self.changedEntry()
-
-	def keyOk(self):
-		self.handleKey("choseElement")
-
-	def keyLeft(self):
-		self.handleKey("prevElement")
-
-	def keyRight(self):
-		self.handleKey("nextElement")
-
-	def keySave(self):
-		print "save requested"
-		for x in self["config"].list:
-			x[1].save()
-		self.close()
-
-	def keyCancel(self):
-		print "cancel requested"
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-		
-	def keyNumberGlobal(self, number):
-		self.handleKey(str(number))
-
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
 
@@ -178,3 +130,51 @@ class Setup(Screen):
 
 	def createSummary(self):
 		return SetupSummary
+
+	def addItems(self, list, childNode):
+		for x in childNode:
+			if x.nodeType != xml.dom.minidom.Element.nodeType:
+				continue
+			elif x.tagName == 'item':
+				ItemText = _(getValbyAttr(x, "text"))
+				b = eval(XMLTools.mergeText(x.childNodes));
+				print "item " + ItemText + " " + b.configPath
+				if b == "":
+					continue
+				#add to configlist
+				item = b.controlType(b)
+				
+				# the first b is the item itself, ignored by the configList.
+				# the second one is converted to string.
+				list.append( (ItemText, item) )
+
+	def handleKey(self, key):
+		# ignore keys when not enabled
+		if self["config"].getCurrent()[1].parent.enabled:
+			self["config"].handleKey(config.key[key])
+			print self["config"].getCurrent()
+			self.changedEntry()
+
+	def keyOk(self):
+		self.handleKey("choseElement")
+
+	def keyLeft(self):
+		self.handleKey("prevElement")
+
+	def keyRight(self):
+		self.handleKey("nextElement")
+
+	def keySave(self):
+		print "save requested"
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+
+	def keyCancel(self):
+		print "cancel requested"
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+		
+	def keyNumberGlobal(self, number):
+		self.handleKey(str(number))
