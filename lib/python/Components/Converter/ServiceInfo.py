@@ -61,3 +61,8 @@ class ServiceInfo(Converter, object):
 			return subservices and subservices.getNumberOfSubservices() > 0
 
 	boolean = property(getBoolean)
+
+	def changed(self, *args):
+		if not len(args) or args[0] in [iPlayableService.evStart, iPlayableService.evEnd, 
+			iPlayableService.evUpdatedInfo, iPlayableService.evUpdatedEventInfo]:
+			Converter.changed(self)
