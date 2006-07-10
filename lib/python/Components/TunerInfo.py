@@ -86,15 +86,15 @@ class TunerInfo(GUIComponent):
 						return feinfo.getFrontendInfo(iFrontendInformation.lockState)
 		elif self.frontendfkt is not None:
 			frontend = self.frontendfkt()
-			if what == self.SNR:
-				return frontend.readFrontendData(iFrontendInformation.signalPower)
-			elif what == self.AGC:
-				return frontend.readFrontendData(iFrontendInformation.signalQuality)
-			elif what == self.BER:
-				return frontend.readFrontendData(iFrontendInformation.bitErrorRate)
-			elif what == self.LOCK:
-				return frontend.readFrontendData(iFrontendInformation.lockState)
-		
+			if frontend:
+				if what == self.SNR:
+					return frontend.readFrontendData(iFrontendInformation.signalPower)
+				elif what == self.AGC:
+					return frontend.readFrontendData(iFrontendInformation.signalQuality)
+				elif what == self.BER:
+					return frontend.readFrontendData(iFrontendInformation.bitErrorRate)
+				elif what == self.LOCK:
+					return frontend.readFrontendData(iFrontendInformation.lockState)
 		return 0
 				
 	def createWidget(self, parent):
