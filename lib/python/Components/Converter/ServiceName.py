@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation
+from enigma import iServiceInformation, iPlayableService
 
 class ServiceName(Converter, object):
 	NAME = 0
@@ -30,3 +30,7 @@ class ServiceName(Converter, object):
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider)
 
 	text = property(getText)
+
+	def changed(self, *args):
+		if not len(args) or args[0] in [iPlayableService.evStart, iPlayableService.evEnd]:
+			Converter.changed(self)
