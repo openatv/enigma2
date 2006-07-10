@@ -62,6 +62,8 @@ ePython::ePython()
 {
 //	Py_VerboseFlag = 1;
 	
+	Py_OptimizeFlag = 1;
+	
 	Py_Initialize();
 	
 	init_enigma();
@@ -75,9 +77,8 @@ ePython::~ePython()
 int ePython::execute(const std::string &pythonfile, const std::string &funcname)
 {
 	PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue;
-	
 	pName = PyString_FromString(pythonfile.c_str());
-	
+
 	pModule = PyImport_Import(pName);
 	Py_DECREF(pName);
 	
