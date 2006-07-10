@@ -54,6 +54,7 @@ class PerServiceDisplayProgress(PerServiceBase, VariableValue, GUIComponent):
 	def __init__(self, navcore, eventmap):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)
+		PerServiceBase.__init__(self, navcore, eventmap)
 		self.eventmap = eventmap
 		self.navcore = navcore
 		self.navcore.event.append(self.event)
