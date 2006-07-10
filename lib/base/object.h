@@ -49,14 +49,15 @@ public:
 			{ \
 				unsigned long temp; \
 				__asm__ __volatile__( \
-				"		.set	mips3		\n" \
-				"1:		ll		%0, %1		\n" \
-				"		.set	mips0		\n" \
-				"		addu	%0, 1		\n" \
-				"		.set	mips3		\n" \
-				"		sc		%0, %1		\n" \
-				"		.set	mips0		\n" \
-				"		beqz	%0, 1b		\n" \
+				"		.set	mips3											\n" \
+				"1:		ll		%0, %1	# load counter							\n" \
+				"		.set	mips0											\n" \
+				"		addu	%0, 1	# increment								\n" \
+				"		.set	mips3											\n" \
+				"		sc		%0, %1	# try to store, checking for atomicity	\n" \
+				"		.set	mips0											\n" \
+				"		beqz	%0, 1b	# if not atomic (0), try again			\n" \
+				"		nop				# branch-delay slot						\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
 				: "memory"); \
@@ -65,14 +66,15 @@ public:
 			{ \
 				unsigned long temp; \
 				__asm__ __volatile__( \
-				"		.set	mips3		\n" \
-				"1:		ll		%0, %1		\n" \
-				"		.set	mips0		\n" \
-				"		subu	%0, 1		\n" \
-				"		.set	mips3		\n" \
-				"		sc		%0, %1		\n" \
-				"		.set	mips0		\n" \
-				"		beqz	%0, 1b		\n" \
+				"		.set	mips3				\n" \
+				"1:		ll		%0, %1				\n" \
+				"		.set	mips0				\n" \
+				"		subu	%0, 1	# decrement	\n" \
+				"		.set	mips3				\n" \
+				"		sc		%0, %1				\n" \
+				"		.set	mips0				\n" \
+				"		beqz	%0, 1b				\n" \
+				"		nop							\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
 				: "memory"); \
