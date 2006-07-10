@@ -174,7 +174,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": self.showMenu,
-			})
+			}, prio=-4)
 		
 		self.tutorial_seen = False
 		
