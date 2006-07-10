@@ -77,8 +77,10 @@ class Satfinder(ScanSetup):
 	def __init__(self, session, feid):
 		self.initcomplete = False
 		self.feid = feid
-
+		self.oldref = None
+		
 		if not self.openFrontend():
+			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
 			session.nav.stopService() # try to disable foreground service
 			if not self.openFrontend():
 				if session.pipshown: # try to disable pip
@@ -110,6 +112,7 @@ class Satfinder(ScanSetup):
 		self.statusTimer.start(50, False)
 
 		self.initcomplete = True
+		self.session = session
 		
 	def updateStatus(self):
 		self["snr_percentage"].update()
@@ -221,6 +224,11 @@ class Satfinder(ScanSetup):
 		self.retune(config.tuning.type)
 
 	def keyCancel(self):
+		if self.oldref:
+			if self.frontend:
+				self.frontend = None
+				del self.raw_channel
+			self.session.nav.playService(self.oldref)
 		self.close(None)
 		
 	def tune(self, transponder):
@@ -268,6 +276,7 @@ def SatfinderMain(session, **kwargs):
 				session.open(NimSelection)
 			else:
 				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Satfinder", description="Helps setting up your dish", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=SatfinderMain)
