@@ -44,5 +44,5 @@ class Element:
 			self.disconnectAll()
 
 	# default action: push downstream
-	def changed(self):
-		self.downstream_elements.changed()
+	def changed(self, *args, **kwargs):
+		self.downstream_elements.changed(*args, **kwargs)
