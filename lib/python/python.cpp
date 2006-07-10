@@ -62,7 +62,7 @@ ePython::ePython()
 {
 //	Py_VerboseFlag = 1;
 	
-	Py_OptimizeFlag = 1;
+//	Py_OptimizeFlag = 1;
 	
 	Py_Initialize();
 	
