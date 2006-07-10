@@ -4,6 +4,8 @@ from xml.dom import EMPTY_NAMESPACE
 from Tools.Import import my_import
 import os
 
+from Components.config import ConfigSubsection, configElement, configText, config
+
 from Tools.XMLTools import elementsWithTag, mergeText
 
 colorNames = dict()
@@ -44,7 +46,15 @@ def loadSkin(name):
 # so the first screen found will be used.
 
 # example: loadSkin("nemesis_greenline/skin.xml")
-loadSkin('skin.xml')
+config.skin = ConfigSubsection()
+config.skin.primary_skin = configElement("config.skin.primary_skin", configText, "skin.xml", 0)
+
+try:
+	loadSkin(config.skin.primary_skin.value)
+except SkinError, err:
+	print "SKIN ERROR:", err
+	print "defaulting to standard skin..."
+	loadSkin('skin.xml')
 loadSkin('skin_default.xml')
 
 def parsePosition(str):
@@ -325,7 +335,7 @@ def readSkin(screen, skin, name, desktop):
 			
 			for converter in elementsWithTag(widget.childNodes, "convert"):
 				ctype = converter.getAttribute('type')
-				assert ctype
+				assert ctype, "'convert'-tag needs a 'type'-attribute"
 				converter_class = my_import('.'.join(["Components", "Converter", ctype])).__dict__.get(ctype)
 				parms = mergeText(converter.childNodes).strip()
 				c = converter_class(parms)
