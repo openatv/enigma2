@@ -25,9 +25,9 @@ class Progress(VariableValue, Renderer):
 		instance.setRange(self.__start, self.__end)
 
 	def setRange(self, range):
-		(__start, __end) = range
+		(self.__start, self.__end) = range
 		if self.instance is not None:
-			self.instance.setRange(__start, __end)
+			self.instance.setRange(self.__start, self.__end)
 
 	def getRange(self):
 		return (self.__start, self.__end)
