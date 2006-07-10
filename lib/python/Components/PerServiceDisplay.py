@@ -6,12 +6,13 @@ from enigma import iPlayableService
 from enigma import eLabel, eSlider, eTimer
 
 class PerServiceBase(object):
-	def __init__(self, navcore, eventmap):
+	def __init__(self, navcore, eventmap, with_event=False):
 		self.eventmap = eventmap
 		self.navcore = navcore
 		self.navcore.event.append(self.event)
 		self.poll_timer = eTimer()
 		self.poll_timer.timeout.get().append(self.poll)
+		self.with_event = with_event
 		
 		# start with stopped state, so simulate that
 		self.event(iPlayableService.evEnd)
@@ -23,7 +24,10 @@ class PerServiceBase(object):
 		# loop up if we need to handle this event
 		if self.eventmap.has_key(ev):
 			# call handler
-			self.eventmap[ev]()
+			if self.with_event:
+				self.eventmap[ev](ev)
+			else:
+				self.eventmap[ev]()
 	
 	def enablePolling(self, interval=60000):
 		if interval:
