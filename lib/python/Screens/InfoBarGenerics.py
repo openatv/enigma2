@@ -319,7 +319,7 @@ class InfoBarMenu:
 	def __init__(self):
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions", 
 			{
-				"mainMenu": (self.mainMenu, "Enter main menu..."),
+				"mainMenu": (self.mainMenu, _("Enter main menu...")),
 			})
 
 	def mainMenu(self):
@@ -559,13 +559,13 @@ class InfoBarSeek:
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, "InfobarSeekActions", 
 			{
-				"pauseService": (self.pauseService, "pause"),
-				"unPauseService": (self.unPauseService, "continue"),
+				"pauseService": (self.pauseService, _("pause")),
+				"unPauseService": (self.unPauseService, _("continue")),
 				
-				"seekFwd": (self.seekFwd, "skip forward"),
+				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdDown": self.seekFwdDown,
 				"seekFwdUp": self.seekFwdUp,
-				"seekBack": (self.seekBack, "skip backward"),
+				"seekBack": (self.seekBack, _("skip backward")),
 				"seekBackDown": self.seekBackDown,
 				"seekBackUp": self.seekBackUp,
 			}, prio=-1)
@@ -875,8 +875,8 @@ class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", 
 			{
-				"timeshiftStart": (self.startTimeshift, "start timeshift"),  # the "yellow key"
-				"timeshiftStop": (self.stopTimeshift, "stop timeshift")      # currently undefined :), probably 'TV'
+				"timeshiftStart": (self.startTimeshift, _("start timeshift")),  # the "yellow key"
+				"timeshiftStop": (self.stopTimeshift, _("stop timeshift"))      # currently undefined :), probably 'TV'
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
@@ -916,7 +916,7 @@ class InfoBarTimeshift:
 				
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
-				
+					
 				# PAUSE.
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 				
@@ -1008,7 +1008,7 @@ class InfoBarExtensions:
 		
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 			{
-				"extensions": (self.extensions, "Extensions..."),
+				"extensions": (self.extensions, _("view extensions...")),
 			})
 
 	PIPON = 0
@@ -1075,7 +1075,7 @@ class InfoBarInstantRecord:
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"instantRecord": (self.instantRecord, "Instant Record..."),
+				"instantRecord": (self.instantRecord, _("Instant Record...")),
 			})
 		self.recording = []
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
@@ -1199,7 +1199,7 @@ class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", 
 			{
-				"audioSelection": (self.audioSelection, "Audio Options..."),
+				"audioSelection": (self.audioSelection, _("Audio Options...")),
 			})
 
 	def audioSelection(self):
@@ -1573,7 +1573,7 @@ class InfoBarTeletextPlugin:
 		if self.teletext_plugin is not None:
 			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",
 				{
-					"startTeletext": (self.startTeletext, "View teletext...")
+					"startTeletext": (self.startTeletext, _("View teletext..."))
 				})
 		else:
 			print "no teletext plugin found!"

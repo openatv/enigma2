@@ -56,8 +56,8 @@ class InfoBar(InfoBarShowHide,
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarSubtitleSupport:
 			x.__init__(self)
 
-		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", "Watch a Movie...")]))
-		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", "Hear Radio...")]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("hear radio..."))]))
 
 		self["CurrentTime"] = Clock()
 
