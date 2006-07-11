@@ -22,6 +22,7 @@ keyDescriptions = {
 		KEYIDS["KEY_AUDIO"]: ("audio", 555, 355),
 		KEYIDS["KEY_TV"]: ("tv", 560, 425),
 		KEYIDS["KEY_RADIO"]: ("radio", 585, 425),
+		KEYIDS["KEY_TEXT"]: ("text", 610, 425),
 		KEYIDS["KEY_NEXT"]: ("next", 635, 203),
 		KEYIDS["KEY_PREVIOUS"]: ("prev", 559, 203)
 	}
