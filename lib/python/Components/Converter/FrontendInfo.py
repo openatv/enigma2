@@ -39,7 +39,7 @@ class FrontendInfo(Converter, object):
 		assert self.type in [self.LOCK, selef.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
 		if self.type == self.LOCK:
 			return self.source.lock
-		elif:
+		else:
 			return self.source.ber > 0
 
 	text = property(getText)
