@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:31+0200\n"
+"POT-Creation-Date: 2006-07-12 00:57+0200\n"
 "PO-Revision-Date: 2006-06-26 14:50+0200\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -1718,8 +1718,16 @@ msgid "only /etc/enigma2 directory"
 msgstr "solo el directorio /etc/enigma2"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
-msgid "open service list"
-msgstr "abrir lista de canales"
+msgid "open servicelist"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:258
+msgid "open servicelist(down)"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:257
+msgid "open servicelist(up)"
+msgstr ""
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -2685,6 +2693,9 @@ msgstr "Reproductor"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "¿Quieres hacer otra búsqueda manual?"
+
+#~ msgid "open service list"
+#~ msgstr "abrir lista de canales"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Configurar satélite"

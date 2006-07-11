@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:31+0200\n"
+"POT-Creation-Date: 2006-07-12 00:57+0200\n"
 "PO-Revision-Date: 2006-07-09 22:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
@@ -1731,8 +1731,16 @@ msgid "only /etc/enigma2 directory"
 msgstr "nur /etc/enigma Verzeichnis"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
-msgid "open service list"
+msgid "open servicelist"
 msgstr "Kanalliste öffnen"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:258
+msgid "open servicelist(down)"
+msgstr "Kanalliste öffnen(nach unten)"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:257
+msgid "open servicelist(up)"
+msgstr "Kanalliste öffnen(nach open)"
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -1742,7 +1750,7 @@ msgstr "Durchgang"
 msgid "pause"
 msgstr "Pause"
 
-#: ../lib/python/Screens/Ci.py:79
+#: ../lib/python/Screens/Ci.py:79/
 msgid "please press OK when ready"
 msgstr "bitte OK drücken wenn bereit"
 
@@ -2704,6 +2712,9 @@ msgstr "Medienwiedergabe"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Wollen Sie eine weitere manuelle Suche durchführen?"
+
+#~ msgid "open service list"
+#~ msgstr "Kanalliste öffnen"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshift"
