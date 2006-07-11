@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-11 23:48+0200\n"
+"POT-Creation-Date: 2006-07-12 00:31+0200\n"
 "PO-Revision-Date: 2006-07-09 22:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
@@ -182,6 +182,10 @@ msgstr "Arabisch"
 #: ../lib/python/Screens/MediaPlayer.py:45
 msgid "Artist:"
 msgstr "Künstler:"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1202
+msgid "Audio Options..."
+msgstr "Audio Optionen"
 
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:377
@@ -517,6 +521,10 @@ msgstr "Endzeit"
 msgid "English"
 msgstr "Englisch"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:322
+msgid "Enter main menu..."
+msgstr "Öffne Hauptmenü"
+
 #: ../lib/python/Components/NimManager.py:673
 msgid "Equal to Socket A"
 msgstr "Wie Tuner A"
@@ -657,6 +665,10 @@ msgstr "Initialisieren"
 #: ../lib/python/Screens/HarddiskSetup.py:19
 msgid "Initializing Harddisk..."
 msgstr "Initialisiere Festplatte..."
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1078
+msgid "Instant Record..."
+msgstr "Sofortaufnahme"
 
 #: ../lib/python/Screens/ScanSetup.py:210
 #: ../lib/python/Screens/ScanSetup.py:243
@@ -1106,7 +1118,7 @@ msgstr "Radio-Wiedergabemodus..."
 
 #: ../lib/python/Screens/InfoBar.py:47
 msgid "Show the tv player..."
-msgstr "TV Player anzeigen..."
+msgstr "TV-Wiedergabemodus..."
 
 #: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
@@ -1407,6 +1419,10 @@ msgstr "USALS für diesen Sat benutzen"
 msgid "User defined"
 msgstr "Benutzerdefiniert"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1576
+msgid "View teletext..."
+msgstr "Videotext"
+
 #: ../lib/python/Screens/Satconfig.py:110
 msgid "Voltage mode"
 msgstr "Spannungs Modus"
@@ -1550,6 +1566,10 @@ msgstr "rechts-zirkular"
 msgid "clear playlist"
 msgstr "Spielliste leeren"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:563
+msgid "continue"
+msgstr "Weiter"
+
 #: ../lib/python/Screens/ChannelSelection.py:85
 msgid "copy to favourites"
 msgstr "In Favoriten kopieren"
@@ -1619,6 +1639,10 @@ msgstr "komplettes /etc Verzeichnis"
 msgid "go to deep standby"
 msgstr "Box abschalten"
 
+#: ../lib/python/Screens/InfoBar.py:60
+msgid "hear radio..."
+msgstr "Radio hören"
+
 #: ../lib/python/Screens/MediaPlayer.py:302
 msgid "hide player"
 msgstr "Player ausblenden"
@@ -1655,7 +1679,7 @@ msgstr "min"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "next channel"
-msgstr "nächster Kanal"
+msgstr "Nächster Kanal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:262
 msgid "next channel in history"
@@ -1714,17 +1738,21 @@ msgstr "Kanalliste öffnen"
 msgid "pass"
 msgstr "Durchgang"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:562
+msgid "pause"
+msgstr "Pause"
+
 #: ../lib/python/Screens/Ci.py:79
 msgid "please press OK when ready"
 msgstr "bitte OK drücken wenn bereit"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "previous channel"
-msgstr "vorheriger Kanal"
+msgstr "Vorheriger Kanal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "previous channel in history"
-msgstr "vorherhiger Kanal im Verlauf"
+msgstr "Vorherhiger Kanal im Verlauf"
 
 #: ../lib/python/Screens/TimerEntry.py:98
 msgid "record"
@@ -1798,11 +1826,23 @@ msgstr "Status"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:374
 msgid "show EPG..."
-msgstr "zeige EPG..."
+msgstr "Zeige EPG..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:336
 msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:568
+msgid "skip backward"
+msgstr "Vorwärts spulen"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:565
+msgid "skip forward"
+msgstr "Rückwärts spulen"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:878
+msgid "start timeshift"
+msgstr "Timeshift starten"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1253
 msgid "stereo"
@@ -1811,6 +1851,10 @@ msgstr ""
 #: ../lib/python/Screens/InfoBarGenerics.py:1192
 msgid "stop recording"
 msgstr "Aufnahme anhalten"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:879
+msgid "stop timeshift"
+msgstr "Timeshift beenden"
 
 #: ../lib/python/Screens/MediaPlayer.py:299
 msgid "switch to filelist"
@@ -1839,6 +1883,14 @@ msgstr "benutzerdefiniert"
 #: ../lib/python/Screens/ScanSetup.py:376
 msgid "vertical"
 msgstr "vertikal"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1011
+msgid "view extensions..."
+msgstr "Erweiterungen anzeigen"
+
+#: ../lib/python/Screens/InfoBar.py:59
+msgid "view recordings..."
+msgstr "Aufnahmen anzeigen"
 
 #: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
