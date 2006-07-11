@@ -4,7 +4,6 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Clock import Clock
-from Components.EventInfo import EventInfo, EventInfoProgress
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.Label import *
@@ -12,11 +11,13 @@ from Components.Pixmap import Pixmap, PixmapConditional
 from Components.PluginComponent import plugins
 from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.ServiceName import ServiceName
+from Components.Sources.CurrentService import CurrentService
+from Components.Sources.EventInfo import EventInfo
+from Components.Sources.FrontendStatus import FrontendStatus
+from Components.Sources.Boolean import Boolean
+from Components.TimerList import TimerEntryComponent
 from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean, configSelection, configElement_nonSave, getConfigListEntry
 from Components.config import configfile, configsequencearg
-from Components.TimerList import TimerEntryComponent
-from Components.TunerInfo import TunerInfo
 
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -499,45 +500,17 @@ class InfoBarEPG:
 class InfoBarTuner:
 	"""provides a snr/agc/ber display"""
 	def __init__(self):
-		self["snr"] = Label()
-		self["agc"] = Label()
-		self["ber"] = Label()
-		self["snr_percent"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, servicefkt = self.session.nav.getCurrentService)
-		self["agc_percent"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, servicefkt = self.session.nav.getCurrentService)
-		self["ber_count"] = TunerInfo(TunerInfo.BER_VALUE, servicefkt = self.session.nav.getCurrentService)
-		self["snr_progress"] = TunerInfo(TunerInfo.SNR_BAR, servicefkt = self.session.nav.getCurrentService)
-		self["agc_progress"] = TunerInfo(TunerInfo.AGC_BAR, servicefkt = self.session.nav.getCurrentService)
-		self["ber_progress"] = TunerInfo(TunerInfo.BER_BAR, servicefkt = self.session.nav.getCurrentService)
-		self.timer = eTimer()
-		self.timer.timeout.get().append(self.updateTunerInfo)
-		self.timer.start(1000)
-
-	def updateTunerInfo(self):
-		if self.instance.isVisible():
-			self["snr_percent"].update()
-			self["agc_percent"].update()
-			self["ber_count"].update()
-			self["snr_progress"].update()
-			self["agc_progress"].update()
-			self["ber_progress"].update()
+		self["FrontendStatus"] = FrontendStatus(service_source = self.session.nav.getCurrentService)
 
 class InfoBarEvent:
 	"""provides a current/next event info display"""
 	def __init__(self):
-		self["Event_Now_StartTime"] = EventInfo(self.session.nav, EventInfo.Now_StartTime)
-		self["Event_Next_StartTime"] = EventInfo(self.session.nav, EventInfo.Next_StartTime)
-				
-		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.Now)
-		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.Next)
-
-		self["Event_Now_Duration"] = EventInfo(self.session.nav, EventInfo.Now_Remaining)
-		self["Event_Next_Duration"] = EventInfo(self.session.nav, EventInfo.Next_Duration)
-
-		self["Now_ProgressBar"] = EventInfoProgress(self.session.nav, EventInfo.Now)
+		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.NOW)
+		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.NEXT)
 
 class InfoBarServiceName:
 	def __init__(self):
-		self["ServiceName"] = ServiceName(self.session.nav)
+		self["CurrentService"] = CurrentService(self.session.nav)
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
@@ -940,7 +913,9 @@ class InfoBarTimeshift:
 			if not ts.startTimeshift():
 				import time
 				self.timeshift_enabled = 1
-				self.pvrStateDialog["timeshift"].setRelative(time.time())
+				
+				# we remove the "relative time" for now.
+				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 				
 				# PAUSE.
 				self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -1367,36 +1342,12 @@ class InfoBarAdditionalInfo:
 	def __init__(self):
 		self["NimA"] = Pixmap()
 		self["NimB"] = Pixmap()
-		self["TextActive"] = Pixmap()
-		self["DolbyActive"] = Pixmap()
-		self["CryptActive"] = Pixmap()
-		self["FormatActive"] = Pixmap()
 		self["NimA_Active"] = Pixmap()
 		self["NimB_Active"] = Pixmap()
 
-		self["ButtonRed"] = PixmapConditional(withTimer = False)
-		self["ButtonRed"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self.onLayoutFinish.append(self["ButtonRed"].update)
-		self["ButtonRedText"] = LabelConditional(text = _("Record"), withTimer = False)
-		self["ButtonRedText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self.onLayoutFinish.append(self["ButtonRedText"].update)
-
-		self["ButtonGreen"] = Pixmap()
-		self["ButtonGreenText"] = Label(_("Subservices"))
-
-		self["ButtonYellow"] = PixmapConditional(withTimer = False)
-		self["ButtonYellow"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self["ButtonYellowText"] = LabelConditional(text = _("Timeshifting"), withTimer = False)
-		self["ButtonYellowText"].setConnect(lambda: harddiskmanager.HDDCount() > 0)
-		self.onLayoutFinish.append(self["ButtonYellow"].update)
-		self.onLayoutFinish.append(self["ButtonYellowText"].update)
-
-		self["ButtonBlue"] = PixmapConditional(withTimer = False)
-		self["ButtonBlue"].setConnect(lambda: True)
-		self["ButtonBlueText"] = LabelConditional(text = _("Extensions"), withTimer = False)
-		self["ButtonBlueText"].setConnect(lambda: True)
-		self.onLayoutFinish.append(self["ButtonBlue"].update)
-		self.onLayoutFinish.append(self["ButtonBlueText"].update)
+		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
+		self["TimeshiftPossible"] = self["RecordingPossible"]
+		self["ExtensionsAvailable"] = Boolean(fixed=1)
 
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
 		res_mgr = eDVBResourceManagerPtr()
@@ -1412,63 +1363,6 @@ class InfoBarAdditionalInfo:
 			self["NimB_Active"].show()
 		else:
 			self["NimB_Active"].hide()
-
-	def hideSubServiceIndication(self):
-		self["ButtonGreen"].hide()
-		self["ButtonGreenText"].hide()
-
-	def showSubServiceIndication(self):
-		self["ButtonGreen"].show()
-		self["ButtonGreenText"].show()
-
-	def checkFormat(self, service):
-		info = service.info()
-		if info:
-			aspect = info.getInfo(iServiceInformation.sAspect)
-			if aspect in [ 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10 ]:
-				self["FormatActive"].show()
-				return
-		self["FormatActive"].hide()
-
-	def checkText(self, service):
-		info = service.info()
-		if info:
-			tpid = info.getInfo(iServiceInformation.sTXTPID)
-			if tpid != -1:
-				self["TextActive"].show()
-				return
-		self["TextActive"].hide()
-
-	def checkSubservices(self, service):
-		subservices = service.subServices()
-		if subservices and subservices.getNumberOfSubservices() > 0:
-			self.showSubServiceIndication()
-		else:
-			self.hideSubServiceIndication()
-
-	def checkDolby(self, service):
-		# FIXME
-		dolby = False
-		audio = service.audioTracks()
-		if audio:
-			n = audio.getNumberOfTracks()
-			for x in range(n):
-				i = audio.getTrackInfo(x)
-				description = i.getDescription();
-				if description.find("AC3") != -1 or description.find("DTS") != -1:
-					dolby = True
-					break
-		if dolby:
-			self["DolbyActive"].show()
-		else:
-			self["DolbyActive"].hide()
-
-	def checkCrypted(self, service):
-		info = service.info()
-		if info and info.getInfo(iServiceInformation.sIsCrypted) > 0:
-			self["CryptActive"].show()
-		else:
-			self["CryptActive"].hide()
 
 	def checkTunerState(self, service):
 		info = service.frontendInfo()
@@ -1487,19 +1381,6 @@ class InfoBarAdditionalInfo:
 		service = self.session.nav.getCurrentService()
 		if ev == iPlayableService.evStart:
 			self.checkTunerState(service)
-		elif ev == iPlayableService.evUpdatedEventInfo:
-			self.checkSubservices(service)
-			self.checkFormat(service)
-		elif ev == iPlayableService.evUpdatedInfo:
-			self.checkCrypted(service)
-			self.checkDolby(service)
-			self.checkText(service)
-		elif ev == iPlayableService.evEnd:
-			self.hideSubServiceIndication()
-			self["CryptActive"].hide()
-			self["DolbyActive"].hide()
-			self["FormatActive"].hide()
-			self["TextActive"].hide()
 
 class InfoBarNotifications:
 	def __init__(self):
@@ -1668,7 +1549,7 @@ class InfoBarSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["CurrentService"] = ServiceName(self.session.nav)
+		self["CurrentService"] = CurrentService(self.session.nav)
 		self["Clock"] = Clock()
 
 class InfoBarSummarySupport:

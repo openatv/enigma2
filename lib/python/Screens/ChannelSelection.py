@@ -10,7 +10,7 @@ from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
 from Components.ServiceName import ServiceName
-from Components.Clock import Clock
+from Components.Sources.Clock import Clock
 from Components.EventInfo import EventInfo
 from Components.Input import Input
 from Screens.InputBox import InputBox
@@ -1080,7 +1080,7 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecor
 		InfoBarEvent.__init__(self)
 		InfoBarServiceName.__init__(self)
 		InfoBarInstantRecord.__init__(self)
-		self["Clock"] = Clock()
+		self["CurrentTime"] = Clock()
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):

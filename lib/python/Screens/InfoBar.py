@@ -6,11 +6,10 @@ from Screens.MessageBox import MessageBox
 from Screens.Ci import CiHandler
 from ServiceReference import ServiceReference
 
-from Components.Clock import Clock
+from Components.Sources.Clock import Clock
 from Components.Date import DateLabel
 from Components.ProviderName import ProviderName
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ServicePosition import ServicePosition, ServicePositionGauge
 from Components.config import currentConfigSelectionElement, config
 
 from Tools.Notifications import AddNotificationWithCallback
@@ -63,9 +62,6 @@ class InfoBar(InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", "Hear Radio...")]))
 
 		self["CurrentTime"] = Clock()
-		# ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
-		self["CurrentDate"] = DateLabel()
-		self["CurrentProvider"] = ProviderName(self.session.nav)
 
 	def showTv(self):
 		self.showTvChannelList(True)
@@ -104,12 +100,6 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarSummarySupport, InfoBarTeletextPlugin, InfoBarSubtitleSupport:
 			x.__init__(self)
 
-		self["CurrentTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_REMAINING)
-		self["ElapsedTime"] = ServicePosition(self.session.nav, ServicePosition.TYPE_POSITION)
-		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
-		
-		# TYPE_LENGTH?
-		
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.playService(service)
 

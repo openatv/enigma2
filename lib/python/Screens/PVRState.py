@@ -1,7 +1,7 @@
 from Screen import Screen
 
 from Components.Label import Label
-from Components.ServicePosition import ServicePosition
+from Components.Sources.CurrentService import CurrentService
 
 from enigma import *
 
@@ -15,4 +15,4 @@ class TimeshiftState(PVRState):
 	def __init__(self, session):
 		PVRState.__init__(self, session)
 		
-		self["timeshift"] = ServicePosition(self.session.nav, ServicePosition.TYPE_RELATIVE)
+		self["CurrentService"] = CurrentService(self.session.nav)

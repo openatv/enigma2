@@ -4,7 +4,9 @@
 	<screen name="Menu" position="210,150" size="300,265" title="Main menu">
 		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 		<!--<widget name="menu" position="10,55" size="280,150" font="Regular;23" />-->
-		<widget name="menu" position="10,55" size="290,205" scrollbarMode="showOnDemand" />
+		<widget source="menu" render="Listbox" position="10,55" size="290,205" scrollbarMode="showOnDemand" >
+			<convert type="StringList" />
+		</widget>
 	</screen>
 	<screen name="BouquetSelector" position="210,150" size="300,195" title="Choose bouquet">
 		<widget name="menu" position="10,10" size="280,175" scrollbarMode="showOnDemand" />
@@ -209,16 +211,39 @@
 		<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
 	</screen>
 	<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
-		<widget name="ServiceName" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" />
+		<widget source="CurrentService" render="Label" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
 		<widget name="BlinkingPoint" pixmap="record.png" position="400,0" zPosition="2" size="58,25" />
-		<widget name="Clock" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" />
-		<widget name="Now_ProgressBar" position="465,27" size="90,9" zPosition="1" borderWidth="2" />
-		<widget name="Event_Now_StartTime" position="0,44" size="60,22" font="Regular;20" backgroundColor="dark" />
-		<widget name="Event_Next_StartTime" position="0,74" size="60,22" font="Regular;20" backgroundColor="dark" />
-		<widget name="Event_Now" position="80,44" size="380,22" font="Regular;20" backgroundColor="dark" />
-		<widget name="Event_Next" position="80,74" size="380,22" font="Regular;20" backgroundColor="dark" />
-		<widget name="Event_Now_Duration" position="470,44" size="150,22" font="Regular;20" backgroundColor="dark" />
-		<widget name="Event_Next_Duration" position="470,74" size="150,22" font="Regular;20" backgroundColor="dark" />
+		<widget source="CurrentTime" render="Label" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" >
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="Event_Now" render="Progress" position="465,27" size="90,9" zPosition="1" borderWidth="2" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="Event_Now" render="Label" position="0,44" size="60,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="0,74" size="60,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="Event_Now" render="Label" position="80,44" size="380,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="80,74" size="380,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		
+		<widget source="Event_Now" render="Label" position="470,44" size="150,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="470,74" size="150,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>
 	</screen>
 	<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
 		<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
@@ -346,8 +371,10 @@ newwidth = wsize[0]
 	<screen name="TimeshiftState" flags="wfNoBorder" position="70,70" size="150,60" backgroundColor="transpBlack" zPosition="2">
 		<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" 
 			backgroundColor="transpBlack" foregroundColor="white" />
-		<widget name="timeshift" position="0,30" size="150,30" font="Regular;25" halign="center" 
-			backgroundColor="transpBlack" foregroundColor="white" />
+		<widget source="CurrentService" render="Label" position="0,30" size="150,30" font="Regular;25" halign="center" 
+			backgroundColor="transpBlack" foregroundColor="white" >
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
 	</screen>
 	<screen name="TimeDateInput" position="150,150" size="400,200" title="Time/Date Input">
 		<widget name="config" position="5,10" size="380,150" />
