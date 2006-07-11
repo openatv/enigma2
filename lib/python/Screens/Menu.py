@@ -1,5 +1,5 @@
 from Screen import *
-from Components.MenuList import MenuList
+from Components.Sources.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Header import Header
 from Components.Button import Button
