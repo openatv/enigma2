@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-10 18:44+0200\n"
+"POT-Creation-Date: 2006-07-11 23:48+0200\n"
 "PO-Revision-Date: 2006-07-09 22:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
@@ -149,7 +149,7 @@ msgstr "Hinzufügen"
 
 #: ../lib/python/Screens/MediaPlayer.py:344
 msgid "Add files to playlist"
-msgstr ""
+msgstr "Dateien zur Spielliste hinzufügen"
 
 #: ../lib/python/Screens/EventView.py:32
 #: ../lib/python/Screens/EpgSelection.py:60
@@ -170,8 +170,8 @@ msgstr "Nach dem Ereignis"
 msgid "Album:"
 msgstr "Album:"
 
-#: ../lib/python/Screens/ChannelSelection.py:447
-#: ../lib/python/Screens/ChannelSelection.py:593
+#: ../lib/python/Screens/ChannelSelection.py:445
+#: ../lib/python/Screens/ChannelSelection.py:591
 msgid "All"
 msgstr "Alle"
 
@@ -245,7 +245,7 @@ msgstr "C-Band"
 msgid "CF Drive"
 msgstr "CF Laufwerk"
 
-#: ../lib/python/Screens/ChannelSelection.py:706
+#: ../lib/python/Screens/ChannelSelection.py:704
 msgid "Cable"
 msgstr "Kabel"
 
@@ -473,7 +473,7 @@ msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 msgid "Dutch"
 msgstr "Holländisch"
 
-#: ../lib/python/Screens/ChannelSelection.py:714
+#: ../lib/python/Screens/ChannelSelection.py:712
 msgid "E"
 msgstr "O"
 
@@ -501,7 +501,7 @@ msgstr "Ein"
 
 #: ../lib/python/Screens/Satconfig.py:74
 msgid "Enable 5V for active antenna"
-msgstr ""
+msgstr "5V für aktive Antenne"
 
 #: ../lib/python/Screens/TimerEntry.py:188
 msgid "End"
@@ -540,7 +540,7 @@ msgstr "FEC"
 msgid "Fast DiSEqC"
 msgstr "Schnelles DiSEqC"
 
-#: ../lib/python/Screens/ChannelSelection.py:450
+#: ../lib/python/Screens/ChannelSelection.py:448
 msgid "Favourites"
 msgstr "Favoriten"
 
@@ -696,7 +696,7 @@ msgstr "Breitengrad"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1242
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:184
 msgid "Limit east"
@@ -800,7 +800,7 @@ msgstr "Netzmaske"
 msgid "Network scan"
 msgstr "Netzwerksuche"
 
-#: ../lib/python/Screens/ChannelSelection.py:698
+#: ../lib/python/Screens/ChannelSelection.py:696
 msgid "New"
 msgstr "Neu"
 
@@ -832,7 +832,7 @@ msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:503
 msgid "No positioner capable frontend found."
-msgstr "Keinen rotortauglischen Tuner gefunden."
+msgstr "Keinen rotortauglichen Tuner gefunden."
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:518
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -901,7 +901,7 @@ msgstr "Online-Aktualisierung"
 msgid "Packet management"
 msgstr "Paketverwaltung"
 
-#: ../lib/python/Screens/InfoBar.py:47
+#: ../lib/python/Screens/InfoBar.py:45
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
 
@@ -909,7 +909,7 @@ msgstr "Aufgenommene Filme abspielen..."
 msgid "Please choose an extension..."
 msgstr "Bitte eine Erweiterung auswählen..."
 
-#: ../lib/python/Screens/ChannelSelection.py:127
+#: ../lib/python/Screens/ChannelSelection.py:125
 msgid "Please enter a name for the new bouquet"
 msgstr "Bitte einen Namen für das neue Bouquet eingeben"
 
@@ -986,12 +986,12 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Prev"
 msgstr "Zurück"
 
-#: ../lib/python/Screens/ChannelSelection.py:449
-#: ../lib/python/Screens/ChannelSelection.py:589
+#: ../lib/python/Screens/ChannelSelection.py:447
+#: ../lib/python/Screens/ChannelSelection.py:587
 msgid "Provider"
 msgstr "Provider"
 
-#: ../lib/python/Screens/ChannelSelection.py:696
+#: ../lib/python/Screens/ChannelSelection.py:694
 msgid "Providers"
 msgstr "Anbieter"
 
@@ -1017,7 +1017,7 @@ msgstr "Wiederholungstyp"
 
 #: ../lib/python/Screens/MediaPlayer.py:345
 msgid "Replace current playlist"
-msgstr ""
+msgstr "Aktuelle Spielliste ersetzen"
 
 #: ../lib/python/Screens/Ci.py:289
 msgid "Reset"
@@ -1030,7 +1030,7 @@ msgstr "Zurückspielen"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1242
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 #: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
@@ -1045,8 +1045,8 @@ msgstr "Sa"
 msgid "Satellite"
 msgstr "Satellit"
 
-#: ../lib/python/Screens/ChannelSelection.py:448
-#: ../lib/python/Screens/ChannelSelection.py:591
+#: ../lib/python/Screens/ChannelSelection.py:446
+#: ../lib/python/Screens/ChannelSelection.py:589
 msgid "Satellites"
 msgstr "Satelliten"
 
@@ -1074,7 +1074,7 @@ msgstr "Zweites Kabel vom Rotor"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1254
 msgid "Select audio mode"
-msgstr ""
+msgstr "Wähle Ton Modus"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1243
 msgid "Select audio track"
@@ -1088,7 +1088,7 @@ msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 msgid "Sequence repeat"
 msgstr "Sequenz-Wiederholung"
 
-#: ../lib/python/Screens/ChannelSelection.py:700
+#: ../lib/python/Screens/ChannelSelection.py:698
 msgid "Services"
 msgstr "Kanäle"
 
@@ -1100,13 +1100,13 @@ msgstr "Limits setzen"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../lib/python/Screens/InfoBar.py:48
+#: ../lib/python/Screens/InfoBar.py:46
 msgid "Show the radio player..."
 msgstr "Radio-Wiedergabemodus..."
 
-#: ../lib/python/Screens/InfoBar.py:49
+#: ../lib/python/Screens/InfoBar.py:47
 msgid "Show the tv player..."
-msgstr ""
+msgstr "TV Player anzeigen..."
 
 #: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
@@ -1205,7 +1205,7 @@ msgstr "Stop"
 msgid "Stop Timeshift?"
 msgstr "Timeshift beenden?"
 
-#: ../lib/python/Screens/InfoBar.py:107
+#: ../lib/python/Screens/InfoBar.py:105
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
@@ -1253,7 +1253,7 @@ msgstr "Zum vorhergehenden Unterkanal schalten"
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
-#: ../lib/python/Screens/ChannelSelection.py:708
+#: ../lib/python/Screens/ChannelSelection.py:706
 msgid "Terrestrial"
 msgstr "Terrestrisch"
 
@@ -1347,7 +1347,7 @@ msgstr "Tuner"
 
 #: ../lib/python/Components/Language.py:26
 msgid "Turkish"
-msgstr ""
+msgstr "Türkisch"
 
 #: ../lib/python/Components/NimManager.py:758
 msgid "Two"
@@ -1411,7 +1411,7 @@ msgstr "Benutzerdefiniert"
 msgid "Voltage mode"
 msgstr "Spannungs Modus"
 
-#: ../lib/python/Screens/ChannelSelection.py:712
+#: ../lib/python/Screens/ChannelSelection.py:710
 msgid "W"
 msgstr "W"
 
@@ -1452,7 +1452,7 @@ msgstr "Sie können dies nicht löschen."
 
 #: ../lib/python/Screens/MediaPlayer.py:346
 msgid "You selected a playlist"
-msgstr ""
+msgstr "Sie haben eine Spielliste ausgewählt"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:31
 msgid ""
@@ -1462,23 +1462,23 @@ msgstr ""
 "Ihre Frontprozessor-Firmware muss geupdatet werden.\n"
 "Drücken Sie OK, um das Upgrade zu starten."
 
-#: ../lib/python/Screens/ChannelSelection.py:330
+#: ../lib/python/Screens/ChannelSelection.py:328
 msgid "[bouquet edit]"
 msgstr "[Bouquet Editor]"
 
-#: ../lib/python/Screens/ChannelSelection.py:332
+#: ../lib/python/Screens/ChannelSelection.py:330
 msgid "[favourite edit]"
 msgstr "[Favoriten Editor]"
 
-#: ../lib/python/Screens/ChannelSelection.py:415
+#: ../lib/python/Screens/ChannelSelection.py:413
 msgid "[move mode]"
 msgstr "[Verschiebemodus]"
 
-#: ../lib/python/Screens/ChannelSelection.py:112
+#: ../lib/python/Screens/ChannelSelection.py:110
 msgid "abort bouquet edit"
 msgstr "Bouqueteditieren abbrechen"
 
-#: ../lib/python/Screens/ChannelSelection.py:115
+#: ../lib/python/Screens/ChannelSelection.py:113
 msgid "abort favourites edit"
 msgstr "Favoriteneditor abbrechen"
 
@@ -1486,7 +1486,7 @@ msgstr "Favoriteneditor abbrechen"
 msgid "about to start"
 msgstr "startet gleich"
 
-#: ../lib/python/Screens/ChannelSelection.py:101
+#: ../lib/python/Screens/ChannelSelection.py:99
 msgid "add bouquet..."
 msgstr "Bouquet hinzufügen..."
 
@@ -1513,11 +1513,11 @@ msgstr "Aufnahme hinzufügen (unbegrenzt)"
 msgid "add recording (stop after current event)"
 msgstr "Aufnahme hinzufügen (Aktuelle Sendung)"
 
-#: ../lib/python/Screens/ChannelSelection.py:81
+#: ../lib/python/Screens/ChannelSelection.py:79
 msgid "add service to bouquet"
 msgstr "Zu Bouquet hinzufügen"
 
-#: ../lib/python/Screens/ChannelSelection.py:83
+#: ../lib/python/Screens/ChannelSelection.py:81
 msgid "add service to favourites"
 msgstr "Kanal zu Favoriten hinzufügen"
 
@@ -1530,7 +1530,7 @@ msgstr ""
 "Sicherung:\n"
 
 #: ../lib/python/Screens/MovieSelection.py:24
-#: ../lib/python/Screens/ChannelSelection.py:117
+#: ../lib/python/Screens/ChannelSelection.py:115
 msgid "back"
 msgstr "zurück"
 
@@ -1550,7 +1550,7 @@ msgstr "rechts-zirkular"
 msgid "clear playlist"
 msgstr "Spielliste leeren"
 
-#: ../lib/python/Screens/ChannelSelection.py:87
+#: ../lib/python/Screens/ChannelSelection.py:85
 msgid "copy to favourites"
 msgstr "In Favoriten kopieren"
 
@@ -1566,7 +1566,7 @@ msgstr "Löschen"
 msgid "delete..."
 msgstr "löschen..."
 
-#: ../lib/python/Screens/ChannelSelection.py:108
+#: ../lib/python/Screens/ChannelSelection.py:106
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
@@ -1587,23 +1587,23 @@ msgstr "erledigt!"
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
 
-#: ../lib/python/Screens/ChannelSelection.py:104
+#: ../lib/python/Screens/ChannelSelection.py:102
 msgid "enable bouquet edit"
 msgstr "Bouqueteditieren anschalten"
 
-#: ../lib/python/Screens/ChannelSelection.py:106
+#: ../lib/python/Screens/ChannelSelection.py:104
 msgid "enable favourite edit"
 msgstr "Favoriteneditor anschalten"
 
-#: ../lib/python/Screens/ChannelSelection.py:100
+#: ../lib/python/Screens/ChannelSelection.py:98
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
 
-#: ../lib/python/Screens/ChannelSelection.py:111
+#: ../lib/python/Screens/ChannelSelection.py:109
 msgid "end bouquet edit"
 msgstr "Bouqueteditieren beenden"
 
-#: ../lib/python/Screens/ChannelSelection.py:114
+#: ../lib/python/Screens/ChannelSelection.py:112
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
@@ -1631,13 +1631,13 @@ msgstr "horizontal"
 msgid "init module"
 msgstr "Modul initialisieren"
 
-#: ../lib/python/Screens/InfoBar.py:93
+#: ../lib/python/Screens/InfoBar.py:91
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1253
 msgid "left"
-msgstr ""
+msgstr "links"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
@@ -1708,7 +1708,7 @@ msgstr "nur /etc/enigma Verzeichnis"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
 msgid "open service list"
-msgstr ""
+msgstr "Kanalliste öffnen"
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -1734,19 +1734,19 @@ msgstr "Aufnehmen"
 msgid "recording..."
 msgstr "nimmt auf..."
 
-#: ../lib/python/Screens/ChannelSelection.py:89
+#: ../lib/python/Screens/ChannelSelection.py:87
 msgid "remove all new found flags"
 msgstr "Entfernen aller Neu gefunden Kennzeichnungen"
 
-#: ../lib/python/Screens/ChannelSelection.py:95
+#: ../lib/python/Screens/ChannelSelection.py:93
 msgid "remove bouquet"
 msgstr "Bouquet entfernen"
 
-#: ../lib/python/Screens/ChannelSelection.py:93
+#: ../lib/python/Screens/ChannelSelection.py:91
 msgid "remove new found flag"
 msgstr "Entfernen der Neu gefunden Kennzeichnung"
 
-#: ../lib/python/Screens/ChannelSelection.py:91
+#: ../lib/python/Screens/ChannelSelection.py:89
 msgid "remove service"
 msgstr "Kanal löschen"
 
@@ -1756,7 +1756,7 @@ msgstr "wiederholend"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1253
 msgid "right"
-msgstr ""
+msgstr "rechts"
 
 #: ../lib/python/Components/ServiceScan.py:37
 #, python-format
@@ -1983,10 +1983,6 @@ msgstr ""
 "drücken."
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nein, nur die Dreambox starten"
-
-#: ../data/
 msgid "Show Satposition"
 msgstr "Zeige Satposition"
 
@@ -1995,8 +1991,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
 #: ../data/
-msgid "Setup"
-msgstr "Einstellungen"
+msgid "No, do nothing."
+msgstr "Nein, nicht tun"
 
 #: ../data/
 msgid "#000000"
@@ -2041,8 +2037,8 @@ msgid "Audio / Video"
 msgstr "Audio / Video"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Der Assistent ist nun beendet."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, eine weitere manuelle Suche durchführen"
 
 #: ../data/
 msgid "Service Searching"
@@ -2112,29 +2108,20 @@ msgid "Manual Scan"
 msgstr "Manuelle Suche"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid "OSD Settings"
+msgstr "OSD-Einstellungen"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fernbedienung"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
+msgid "No, just start my dreambox"
+msgstr "Nein, nur die Dreambox starten"
 
 #: ../data/
 msgid "Tuner configuration"
-msgstr ""
+msgstr "Tuner Konfiguration"
 
 #: ../data/
 msgid "select Slot"
@@ -2165,8 +2152,8 @@ msgid "Fast zapping"
 msgstr "Schnelles Umschalten"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-Einstellungen"
+msgid "Usage Settings"
+msgstr "Bedieneinstellungen"
 
 #: ../data/
 msgid "Brightness"
@@ -2175,6 +2162,10 @@ msgstr "Helligkeit"
 #: ../data/
 msgid "Standby"
 msgstr "Standby"
+
+#: ../data/
+msgid "Timer Edit"
+msgstr "Zeitgesteuerte Aufname"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2210,11 +2201,15 @@ msgstr ""
 
 #: ../data/
 msgid "Enigma1 like radiomode"
-msgstr ""
+msgstr "Enigma1 ähnlicher Radio Modus"
 
 #: ../data/
 msgid "#80000000"
 msgstr ""
+
+#: ../data/
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Timeshift"
@@ -2223,10 +2218,6 @@ msgstr ""
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Herunterladbare Erweiterungen"
-
-#: ../data/
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
 
 #: ../data/
 msgid "Subservices"
@@ -2273,10 +2264,6 @@ msgid "A/V Settings"
 msgstr "A/V-Einstellungen"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Bedieneinstellungen"
-
-#: ../data/
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
@@ -2287,8 +2274,8 @@ msgid "Service scan"
 msgstr "Kanalsuche"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, eine weitere manuelle Suche durchführen"
+msgid "The wizard is finished now."
+msgstr "Der Assistent ist nun beendet."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2578,12 +2565,21 @@ msgid "Alpha"
 msgstr "Transparenz"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Zeitgesteuerte Aufname"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nein, nicht tun"
+msgid "Setup"
+msgstr "Einstellungen"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2623,7 +2619,7 @@ msgstr "Bedieneinstellungen"
 
 #: ../data/
 msgid "Now Playing"
-msgstr ""
+msgstr "Wiedergabe läuft"
 
 #: ../data/
 msgid "Channellist menu"
