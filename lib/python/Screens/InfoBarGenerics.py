@@ -3,7 +3,6 @@ from ChannelSelection import ChannelSelection, BouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.Clock import Clock
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.Label import *
@@ -15,6 +14,7 @@ from Components.Sources.CurrentService import CurrentService
 from Components.Sources.EventInfo import EventInfo
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
+from Components.Sources.Clock import Clock
 from Components.TimerList import TimerEntryComponent
 from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean, configSelection, configElement_nonSave, getConfigListEntry
 from Components.config import configfile, configsequencearg
@@ -1543,14 +1543,18 @@ class InfoBarCueSheetSupport:
 class InfoBarSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="Clock" position="50,46" size="82,18" font="Regular;16" />
-		<widget name="CurrentService" position="0,4" size="132,42" font="Regular;18" />
+		<widget source="CurrentTime" render="Label" position="50,46" size="82,18" font="Regular;16" >
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="CurrentService" render="Label" position="0,4" size="132,42" font="Regular;18" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		self["CurrentService"] = CurrentService(self.session.nav)
-		self["Clock"] = Clock()
+		self["CurrentTime"] = Clock()
 
 class InfoBarSummarySupport:
 	def __init__(self):

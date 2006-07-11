@@ -1,4 +1,4 @@
-from Screen import *
+from Screen import Screen
 from Components.Sources.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Header import Header
@@ -6,7 +6,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.config import configfile
-from Components.Clock import Clock
+from Components.Sources.Clock import Clock
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -19,11 +19,6 @@ from skin import elementsWithTag
 from Screens.Setup import *
 
 from Tools import XMLTools
-
-# some screens
-def doGlobal(screen):
-	screen["clock"] = Clock()
-
 
 #		<item text="TV-Mode">self.setModeTV()</item>
 #		<item text="Radio-Mode">self.setModeRadio()</item>
@@ -80,14 +75,16 @@ class MenuSummary(Screen):
 	<screen position="0,0" size="132,64">
 		<widget name="MenuTitle" position="0,4" size="132,21" font="Regular;18" />
 		<widget name="MenuEntry" position="0,25" size="132,21" font="Regular;16" />
-		<widget name="Clock" position="50,46" size="82,18" font="Regular;16" />
+		<widget source="CurrentTime" render="Label" position="50,46" size="82,18" font="Regular;16" >
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		self["MenuTitle"] = Label(parent.menu_title)
 		self["MenuEntry"] = Label("")
-		self["Clock"] = Clock()
+		self["CurrentTime"] = Clock()
 		self.parent = parent
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
