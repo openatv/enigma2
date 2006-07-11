@@ -34,7 +34,7 @@ class ServicePosition(Converter, Poll, object):
 		pos = seek.getPlayPosition()
 		if pos[0]:
 			return 0
-		return pos[1] / 90000
+		return pos[1]
 	
 	def getLength(self):
 		seek = self.getSeek()
@@ -43,7 +43,7 @@ class ServicePosition(Converter, Poll, object):
 		length = seek.getLength()
 		if length[0]:
 			return 0
-		return length[1] / 90000
+		return length[1]
 	
 	def getCutlist(self):
 		service = self.source.service
@@ -61,6 +61,8 @@ class ServicePosition(Converter, Poll, object):
 				l = self.position
 			elif self.type == self.TYPE_REMAINING:
 				l = self.length - self.position
+			
+			l /= 90000
 			return "%d:%02d" % (l/60, l%60)
 
 	position = property(getPosition)
