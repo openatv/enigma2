@@ -9,9 +9,7 @@ from Components.config import config, configElement, ConfigSubsection, configTex
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
-from Components.ServiceName import ServiceName
 from Components.Sources.Clock import Clock
-from Components.EventInfo import EventInfo
 from Components.Input import Input
 from Screens.InputBox import InputBox
 from ServiceReference import ServiceReference
