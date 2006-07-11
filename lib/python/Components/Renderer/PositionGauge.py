@@ -12,6 +12,7 @@ class PositionGauge(Renderer):
 	
 	def postWidgetCreate(self, instance):
 		self.changed()
+		self.cutlist_changed()
 		instance.setInOutList(self.__cutlist)
 
 	def changed(self):
