@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:31+0200\n"
+"POT-Creation-Date: 2006-07-12 00:57+0200\n"
 "PO-Revision-Date: 2006-07-06 21:28+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj1@satandream.com>\n"
@@ -1796,9 +1796,16 @@ msgid "only /etc/enigma2 directory"
 msgstr "kun /etc/enigma2 direktorie"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
-#, fuzzy
-msgid "open service list"
-msgstr "åben service list"
+msgid "open servicelist"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:258
+msgid "open servicelist(down)"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:257
+msgid "open servicelist(up)"
+msgstr ""
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -2788,6 +2795,10 @@ msgstr "Medie Afspiller"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Vil du lave en anden manuel søgning?"
+
+#, fuzzy
+#~ msgid "open service list"
+#~ msgstr "åben service list"
 
 #, fuzzy
 #~ msgid "Do you want to view a cutlist tutorial?"

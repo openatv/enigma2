@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:31+0200\n"
+"POT-Creation-Date: 2006-07-12 00:57+0200\n"
 "PO-Revision-Date: 2006-06-19 16:18+0200\n"
 "Last-Translator: Sauli Halttu <salde@salde.net>\n"
 "Language-Team: none\n"
@@ -1720,8 +1720,16 @@ msgid "only /etc/enigma2 directory"
 msgstr "vain /etc/enigma2 hakemisto"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
-msgid "open service list"
-msgstr "avaa palvelulista"
+msgid "open servicelist"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:258
+msgid "open servicelist(down)"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:257
+msgid "open servicelist(up)"
+msgstr ""
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -2684,6 +2692,9 @@ msgstr "Mediasoitin"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Haluatko tehdä uuden käsinhaun?"
+
+#~ msgid "open service list"
+#~ msgstr "avaa palvelulista"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Ajansiirto"
