@@ -6,8 +6,9 @@ from keyids import KEYIDS
 keyDescriptions = {
 		KEYIDS["BTN_0"]: ("fp_up", 630, 320),
 		KEYIDS["BTN_1"]: ("fp_down", 565, 320),
-		KEYIDS["KEY_UP"]: ("up", 630, 320),
-		KEYIDS["KEY_DOWN"]: ("down", 565, 320),
+		KEYIDS["KEY_OK"]: ("ok", 585, 320),
+		KEYIDS["KEY_UP"]: ("up", 585, 290),
+		KEYIDS["KEY_DOWN"]: ("down", 585, 355),
 		KEYIDS["KEY_POWER"]: ("power", 615, 80),
 		KEYIDS["KEY_RED"]: ("red", 555, 390),
 		KEYIDS["KEY_BLUE"]: ("blue", 640, 390),
