@@ -57,7 +57,6 @@ public:
 				"		sc		%0, %1	# try to store, checking for atomicity	\n" \
 				"		.set	mips0											\n" \
 				"		beqz	%0, 1b	# if not atomic (0), try again			\n" \
-				"		nop				# branch-delay slot						\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
 				: "memory"); \
@@ -74,7 +73,6 @@ public:
 				"		sc		%0, %1				\n" \
 				"		.set	mips0				\n" \
 				"		beqz	%0, 1b				\n" \
-				"		nop							\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
 				: "memory"); \
