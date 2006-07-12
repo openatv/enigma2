@@ -751,7 +751,10 @@ RESULT eDVBServicePlay::start()
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
 	r = m_service_handler.tune(service, m_is_pvr, m_cue);
-	
+
+	// get back correct service reference (after parsing of recording meta files)
+	m_service_handler.getServiceReference(service);
+
 		/* inject EIT if there is a stored one */
 	if (m_is_pvr)
 	{
@@ -1689,29 +1692,32 @@ void eDVBServicePlay::updateDecoder()
 			ac3_delay = m_dvb_service->getCacheEntry(eDVBService::cAC3DELAY);
 			pcm_delay = m_dvb_service->getCacheEntry(eDVBService::cPCMDELAY);
 		}
-/*
-		else if (m_reference.path.length()) // workaround for recordings
+		else // subservice or recording
 		{
-			eDebug("playback %s", m_reference.toString().c_str());
-			
-			ePtr<eDVBResourceManager> res_mgr;
-			if (!eDVBResourceManager::getInstance(res_mgr))
+			eServiceReferenceDVB parent = ((eServiceReferenceDVB&)m_reference).getParentServiceReference();
+			if (!parent && !m_reference.path.empty()) // is recording
 			{
-				ePtr<iDVBChannelList> db;
-				if (!res_mgr->getChannelList(db))
+				parent = (eServiceReferenceDVB&)m_reference;
+				parent.path="";
+			}
+			if (parent)
+			{
+				ePtr<eDVBResourceManager> res_mgr;
+				if (!eDVBResourceManager::getInstance(res_mgr))
 				{
-					ePtr<eDVBService> origService;
-					eServiceReference tmp = m_reference;
-					tmp.path="";
-					if (!db->getService((eServiceReferenceDVB&)tmp, origService))
+					ePtr<iDVBChannelList> db;
+					if (!res_mgr->getChannelList(db))
 					{
-						ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
-						pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
+						ePtr<eDVBService> origService;
+						if (!db->getService(parent, origService))
+						{
+							ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
+							pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
+						}
 					}
 				}
 			}
 		}
-*/
 
 		m_decoder->setAC3Delay(ac3_delay == -1 ? 0 : ac3_delay);
 		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
