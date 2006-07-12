@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:57+0200\n"
+"POT-Creation-Date: 2006-07-12 13:27+0200\n"
 "PO-Revision-Date: 2006-07-10 12:33+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
@@ -105,7 +105,7 @@ msgstr "onbekend"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "AB"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1023
+#: ../lib/python/Screens/InfoBarGenerics.py:1022
 msgid "Activate Picture in Picture"
 msgstr "Activeer PIP"
 
@@ -181,7 +181,7 @@ msgstr "Arabisch"
 msgid "Artist:"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1202
+#: ../lib/python/Screens/InfoBarGenerics.py:1201
 msgid "Audio Options..."
 msgstr ""
 
@@ -409,7 +409,7 @@ msgstr "DiSEqC Herhaling"
 msgid "Disable"
 msgstr "Uit"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1025
+#: ../lib/python/Screens/InfoBarGenerics.py:1024
 msgid "Disable Picture in Picture"
 msgstr "Deactiveer PIP"
 
@@ -624,8 +624,8 @@ msgstr "Harddisk"
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1168
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
+#: ../lib/python/Screens/InfoBarGenerics.py:1167
+#: ../lib/python/Screens/InfoBarGenerics.py:1175
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
 
@@ -662,7 +662,7 @@ msgstr "Format HDD"
 msgid "Initializing Harddisk..."
 msgstr "Formatting Harddisk..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1078
+#: ../lib/python/Screens/InfoBarGenerics.py:1077
 msgid "Instant Record..."
 msgstr ""
 
@@ -702,7 +702,7 @@ msgstr "Taal Keuze"
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Left"
 msgstr ""
 
@@ -759,7 +759,7 @@ msgstr "Maandag tot Vrijdag"
 msgid "Monday"
 msgstr "Maandag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1026
+#: ../lib/python/Screens/InfoBarGenerics.py:1025
 msgid "Move Picture in Picture"
 msgstr "Verplaats Picture in Picture"
 
@@ -828,13 +828,13 @@ msgstr "Volgende"
 msgid "No"
 msgstr "Nee"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1188
+#: ../lib/python/Screens/InfoBarGenerics.py:1187
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Geen Harddisk gevonden of\n"
 "Hardisk is niet Geformateerd."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1121
+#: ../lib/python/Screens/InfoBarGenerics.py:1120
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG-DATA  gevonden, Start onbegrensde opname."
 
@@ -913,7 +913,7 @@ msgstr "Pakket beheer"
 msgid "Play recorded movies..."
 msgstr "Opgenomen film afspelen..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1035
+#: ../lib/python/Screens/InfoBarGenerics.py:1034
 msgid "Please choose an extension..."
 msgstr "Kies een extension aub..."
 
@@ -925,9 +925,16 @@ msgstr "Voer naam in voor nieuw boeket"
 msgid "Please select a subservice to record..."
 msgstr "selecteer een subservice voor opname aub..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1334
+#: ../lib/python/Screens/InfoBarGenerics.py:1333
 msgid "Please select a subservice..."
 msgstr "selecteer een subservice aub..."
+
+#: ../lib/python/Screens/PiPSetup.py:41
+msgid ""
+"Please use direction keys to move the PiP window.\n"
+"Press Bouquet +/- to resize the window.\n"
+"Press OK to go back to the TV mode or EXIT to cancel the moving."
+msgstr ""
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1036,7 +1043,7 @@ msgstr "Reset"
 msgid "Restore"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Right"
 msgstr "Rechts"
 
@@ -1080,11 +1087,11 @@ msgstr "Zoek west"
 msgid "Secondary cable from motorized LNB"
 msgstr "Tweede kabel van Rotor"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1254
+#: ../lib/python/Screens/InfoBarGenerics.py:1253
 msgid "Select audio mode"
 msgstr "Kies audio modus"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1243
+#: ../lib/python/Screens/InfoBarGenerics.py:1242
 msgid "Select audio track"
 msgstr "Kies audio spoor"
 
@@ -1178,7 +1185,7 @@ msgstr "Spaans"
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "Start recording?"
 msgstr "Start Opnemen?"
 
@@ -1198,7 +1205,7 @@ msgstr "Stap naar oost"
 msgid "Step west"
 msgstr "Stap naar west"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Stereo"
 msgstr ""
 
@@ -1209,7 +1216,7 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:936
+#: ../lib/python/Screens/InfoBarGenerics.py:935
 msgid "Stop Timeshift?"
 msgstr "Timeshift Stoppen?"
 
@@ -1225,7 +1232,7 @@ msgstr "Sla positie op"
 msgid "Stored position"
 msgstr "Opgeslagen positie"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1271
 msgid "Subservice list..."
 msgstr "Subservice lijst..."
 
@@ -1239,7 +1246,7 @@ msgstr "Zo"
 msgid "Sunday"
 msgstr "Zondag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1027
+#: ../lib/python/Screens/InfoBarGenerics.py:1026
 msgid "Swap services"
 msgstr ""
 
@@ -1247,11 +1254,11 @@ msgstr ""
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1277
+#: ../lib/python/Screens/InfoBarGenerics.py:1276
 msgid "Switch to next subservice"
 msgstr "Switch naar volgende subservice"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1278
+#: ../lib/python/Screens/InfoBarGenerics.py:1277
 msgid "Switch to previous subservice"
 msgstr "Switch naar vorigge subservice"
 
@@ -1294,10 +1301,6 @@ msgstr "Tijd"
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
 msgstr "Timer-Type"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:906
-msgid "Timeshift not possible!"
-msgstr "Timeshift is niet mogelijk!"
 
 #: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Title:"
@@ -1413,7 +1416,7 @@ msgstr "Gebruik USALS voor deze Sat"
 msgid "User defined"
 msgstr "Gebruikers mode"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1576
+#: ../lib/python/Screens/InfoBarGenerics.py:1575
 msgid "View teletext..."
 msgstr ""
 
@@ -1508,18 +1511,18 @@ msgstr "Voeg directory toe aan playlist"
 msgid "add file to playlist"
 msgstr "Voeg file toe aan playlist"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (enter recording duration)"
 msgstr "Voeg opname toe (geef opnametijd aan)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (indefinitely)"
 msgstr "Voeg opname toe (direkt)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (stop after current event)"
 msgstr "Voeg opname toe (stop na huidigge opname)"
 
@@ -1544,7 +1547,7 @@ msgstr ""
 msgid "back"
 msgstr "Terug"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "change recording (duration)"
 msgstr "Verander opname (Tijdsduur)"
 
@@ -1585,11 +1588,11 @@ msgid "disable move mode"
 msgstr "Verplaats modus uitzetten"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "do nothing"
 msgstr "doe niks"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "don't record"
 msgstr "niet opnemen"
 
@@ -1653,7 +1656,7 @@ msgstr "Ci-Module initializeren"
 msgid "leave movie player..."
 msgstr "Afspelen stoppen..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "left"
 msgstr "links"
 
@@ -1784,7 +1787,7 @@ msgstr "Kanaal verwijderen"
 msgid "repeated"
 msgstr "Herhalen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "right"
 msgstr "rechts"
 
@@ -1842,19 +1845,19 @@ msgstr ""
 msgid "skip forward"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:878
+#: ../lib/python/Screens/InfoBarGenerics.py:877
 msgid "start timeshift"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "stereo"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "stop recording"
 msgstr "stop opname"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:879
+#: ../lib/python/Screens/InfoBarGenerics.py:878
 msgid "stop timeshift"
 msgstr ""
 
@@ -1886,7 +1889,7 @@ msgstr "gebruikers mode"
 msgid "vertical"
 msgstr "vertikaal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1011
+#: ../lib/python/Screens/InfoBarGenerics.py:1010
 msgid "view extensions..."
 msgstr ""
 
@@ -2700,6 +2703,9 @@ msgstr ""
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Wilt u opnieuw handmatig zoeken?"
+
+#~ msgid "Timeshift not possible!"
+#~ msgstr "Timeshift is niet mogelijk!"
 
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "wilt u een cutlist voorbeeld zien?"
