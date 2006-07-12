@@ -359,7 +359,7 @@ newwidth = wsize[0]
 		<widget name="apply" position="10,240" size="250,35" />
 	</screen>
 	<screen name="HelpMenu" flags="wfNoBorder" position="0,0" size="720,576" title="Menu">
-		<widget name="list" position="50,100" size="450,375" scrollbarMode="showOnDemand" />
+		<widget name="list" position="50,100" size="450,378" scrollbarMode="showOnDemand" />
 		<widget name="rc" pixmap="rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 		<widget name="arrowup" pixmap="arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 		<eLabel position="400,40" size="220,60" text="help..." font="Regular;50" />
