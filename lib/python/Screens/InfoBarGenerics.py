@@ -829,7 +829,6 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState)
 
-
 class InfoBarShowMovies:
 
 	# i don't really like this class. 
@@ -1030,7 +1029,7 @@ class InfoBarExtensions:
 		l = s and s.getSubtitleList() or [ ]
 		
 		for x in l:
-			list.append(("DEBUG: Enable Subtitles: " + x[0], self.ENABLE_SUBTITLE, x[1]))
+			list.append(("Enable Subtitles: " + x[0], self.ENABLE_SUBTITLE, x[1]))
 		
 		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list)
 
