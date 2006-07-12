@@ -161,6 +161,7 @@ private:
 	
 	ePtr<iTSMPEGDecoder> m_decoder;
 	int m_is_primary;
+	int m_have_video_pid;
 	
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
 	eDVBServicePMTHandler m_service_handler_timeshift;
