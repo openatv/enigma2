@@ -44,6 +44,7 @@ enigma2.pot:
 			../lib/python/Screens/PluginBrowser.py \
 			../lib/python/Screens/Console.py \
 			../lib/python/Screens/MediaPlayer.py \
+			../lib/python/Screens/PiPSetup.py \
 			../lib/python/Components/DiskInfo.py \
 			../lib/python/Components/ServiceScan.py \
 			../lib/python/Components/Lcd.py \

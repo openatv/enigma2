@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 00:57+0200\n"
+"POT-Creation-Date: 2006-07-12 13:27+0200\n"
 "PO-Revision-Date: 2006-06-19 16:18+0200\n"
 "Last-Translator: Sauli Halttu <salde@salde.net>\n"
 "Language-Team: none\n"
@@ -100,7 +100,7 @@ msgstr "<tuntematon>"
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -132,7 +132,7 @@ msgstr ""
 msgid "AB"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1023
+#: ../lib/python/Screens/InfoBarGenerics.py:1022
 msgid "Activate Picture in Picture"
 msgstr "Käynnistä Kuva Kuvassa-toiminto"
 
@@ -176,7 +176,7 @@ msgstr "Arabialainen"
 msgid "Artist:"
 msgstr "Artisti:"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1202
+#: ../lib/python/Screens/InfoBarGenerics.py:1201
 msgid "Audio Options..."
 msgstr ""
 
@@ -404,7 +404,7 @@ msgstr "DiSEqC toistoja"
 msgid "Disable"
 msgstr "Pois"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1025
+#: ../lib/python/Screens/InfoBarGenerics.py:1024
 msgid "Disable Picture in Picture"
 msgstr "Sulje Kuva Kuvassa-toiminto"
 
@@ -619,8 +619,8 @@ msgstr "Kiintolevy"
 msgid "Hierarchy mode"
 msgstr "Hierarkia-tila"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1168
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
+#: ../lib/python/Screens/InfoBarGenerics.py:1167
+#: ../lib/python/Screens/InfoBarGenerics.py:1175
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
@@ -657,7 +657,7 @@ msgstr "Alusta"
 msgid "Initializing Harddisk..."
 msgstr "Alustetaan kiintolevyä..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1078
+#: ../lib/python/Screens/InfoBarGenerics.py:1077
 msgid "Instant Record..."
 msgstr ""
 
@@ -697,7 +697,7 @@ msgstr "Kielivalinta"
 msgid "Latitude"
 msgstr "leveysaste"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Left"
 msgstr "Vasen"
 
@@ -754,7 +754,7 @@ msgstr "Ma-Pe"
 msgid "Monday"
 msgstr "Maanantai"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1026
+#: ../lib/python/Screens/InfoBarGenerics.py:1025
 msgid "Move Picture in Picture"
 msgstr "Siirrä Kuva Kuvassa-toimintoa"
 
@@ -823,13 +823,13 @@ msgstr "Seuraava"
 msgid "No"
 msgstr "Ei"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1188
+#: ../lib/python/Screens/InfoBarGenerics.py:1187
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Kiintolevyä ei löydy tai\n"
 "kiintolevy alustamaton."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1121
+#: ../lib/python/Screens/InfoBarGenerics.py:1120
 msgid "No event info found, recording indefinitely."
 msgstr "Ohjelmatietoa ei löydy, tallennetaan ilman ohjelmatietoja."
 
@@ -908,7 +908,7 @@ msgstr "Pakettienhallinta"
 msgid "Play recorded movies..."
 msgstr "Toista tallennetut elokuvat..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1035
+#: ../lib/python/Screens/InfoBarGenerics.py:1034
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
 
@@ -920,9 +920,16 @@ msgstr "Anna uuden kanavanipun nimi"
 msgid "Please select a subservice to record..."
 msgstr "Valitse tallennettava alipalvelu..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1334
+#: ../lib/python/Screens/InfoBarGenerics.py:1333
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu..."
+
+#: ../lib/python/Screens/PiPSetup.py:41
+msgid ""
+"Please use direction keys to move the PiP window.\n"
+"Press Bouquet +/- to resize the window.\n"
+"Press OK to go back to the TV mode or EXIT to cancel the moving."
+msgstr ""
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1031,7 +1038,7 @@ msgstr "Resetoi"
 msgid "Restore"
 msgstr "Palauta"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Right"
 msgstr "Oikea"
 
@@ -1075,11 +1082,11 @@ msgstr "Etsintä länteen"
 msgid "Secondary cable from motorized LNB"
 msgstr "Toinen kaapeli moottorisoidulta mikropäältä"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1254
+#: ../lib/python/Screens/InfoBarGenerics.py:1253
 msgid "Select audio mode"
 msgstr "Valitse äänimuoto"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1243
+#: ../lib/python/Screens/InfoBarGenerics.py:1242
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
 
@@ -1173,7 +1180,7 @@ msgstr "Espanjalainen"
 msgid "Start"
 msgstr "Aloita"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "Start recording?"
 msgstr "Aloita tallennus?"
 
@@ -1193,7 +1200,7 @@ msgstr "Askel itään"
 msgid "Step west"
 msgstr "Askel länteen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1242
+#: ../lib/python/Screens/InfoBarGenerics.py:1241
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -1204,7 +1211,7 @@ msgstr "Stereo"
 msgid "Stop"
 msgstr "Pysäytä"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:936
+#: ../lib/python/Screens/InfoBarGenerics.py:935
 msgid "Stop Timeshift?"
 msgstr "Pysäytä aikasiirto?"
 
@@ -1220,7 +1227,7 @@ msgstr "Tallenna sijainti"
 msgid "Stored position"
 msgstr "Tallennettu sijainti"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1271
 msgid "Subservice list..."
 msgstr "Alipalvelulista..."
 
@@ -1234,7 +1241,7 @@ msgstr "Su"
 msgid "Sunday"
 msgstr "Sunnuntai"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1027
+#: ../lib/python/Screens/InfoBarGenerics.py:1026
 msgid "Swap services"
 msgstr "Vaihda palveluita"
 
@@ -1242,11 +1249,11 @@ msgstr "Vaihda palveluita"
 msgid "Swedish"
 msgstr "Ruotsalainen"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1277
+#: ../lib/python/Screens/InfoBarGenerics.py:1276
 msgid "Switch to next subservice"
 msgstr "Vaihda seuraavaan alipalveluun"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1278
+#: ../lib/python/Screens/InfoBarGenerics.py:1277
 msgid "Switch to previous subservice"
 msgstr "Vaihda edelliseen alipalveluun"
 
@@ -1289,10 +1296,6 @@ msgstr "Aika"
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
 msgstr "Ajastimen tyyppi"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:906
-msgid "Timeshift not possible!"
-msgstr "Ajansiirto ei ole mahdollinen!"
 
 #: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Title:"
@@ -1408,7 +1411,7 @@ msgstr "Käytä USALS tälle satelliitille"
 msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1576
+#: ../lib/python/Screens/InfoBarGenerics.py:1575
 msgid "View teletext..."
 msgstr ""
 
@@ -1503,18 +1506,18 @@ msgstr "lisää hakemisto soittolistalle"
 msgid "add file to playlist"
 msgstr "lisää tiedosto soittolistalle"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (enter recording duration)"
 msgstr "tallenna (syötä tallennuksen kesto)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (indefinitely)"
 msgstr "tallenna (jatkuva)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "add recording (stop after current event)"
 msgstr "tallenna (lopeta nykyisen ohjelman jälkeen)"
 
@@ -1539,7 +1542,7 @@ msgstr ""
 msgid "back"
 msgstr "takaisin"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "change recording (duration)"
 msgstr "muokkaa tallennusta (kesto)"
 
@@ -1580,11 +1583,11 @@ msgid "disable move mode"
 msgstr "poistu siirtotilasta"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "do nothing"
 msgstr "älä tee mitään"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1194
+#: ../lib/python/Screens/InfoBarGenerics.py:1193
 msgid "don't record"
 msgstr "älä tallenna"
 
@@ -1648,7 +1651,7 @@ msgstr "alusta moduuli"
 msgid "leave movie player..."
 msgstr "poistu elokuvatoistimesta..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "left"
 msgstr "vasen"
 
@@ -1779,7 +1782,7 @@ msgstr "poista kanava"
 msgid "repeated"
 msgstr "toistuva"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "right"
 msgstr "oikea"
 
@@ -1837,19 +1840,19 @@ msgstr ""
 msgid "skip forward"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:878
+#: ../lib/python/Screens/InfoBarGenerics.py:877
 msgid "start timeshift"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1253
+#: ../lib/python/Screens/InfoBarGenerics.py:1252
 msgid "stereo"
 msgstr "stereo"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1192
+#: ../lib/python/Screens/InfoBarGenerics.py:1191
 msgid "stop recording"
 msgstr "lopeta tallennus"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:879
+#: ../lib/python/Screens/InfoBarGenerics.py:878
 msgid "stop timeshift"
 msgstr ""
 
@@ -1881,7 +1884,7 @@ msgstr "käyttäjän määrittelemä"
 msgid "vertical"
 msgstr "vertikaali"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1011
+#: ../lib/python/Screens/InfoBarGenerics.py:1010
 msgid "view extensions..."
 msgstr ""
 
@@ -2692,6 +2695,9 @@ msgstr "Mediasoitin"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Haluatko tehdä uuden käsinhaun?"
+
+#~ msgid "Timeshift not possible!"
+#~ msgstr "Ajansiirto ei ole mahdollinen!"
 
 #~ msgid "open service list"
 #~ msgstr "avaa palvelulista"
