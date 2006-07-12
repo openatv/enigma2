@@ -254,13 +254,13 @@ class InfoBarChannelSelection:
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
-				"switchChannelUp": self.switchChannelUp,
-				"switchChannelDown": self.switchChannelDown,
+				"switchChannelUp": (self.switchChannelUp, _("open servicelist(up)")),
+				"switchChannelDown": (self.switchChannelDown, _("open servicelist(down)")),
 				"zapUp": (self.zapUp, _("previous channel")),
 				"zapDown": (self.zapDown, _("next channel")),
 				"historyBack": (self.historyBack, _("previous channel in history")),
 				"historyNext": (self.historyNext, _("next channel in history")),
-				"openServiceList": (self.openServiceList, _("open service list")),
+				"openServiceList": (self.openServiceList, _("open servicelist")),
 			})
 
 	def showTvChannelList(self, zap=False):
