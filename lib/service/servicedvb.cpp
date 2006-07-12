@@ -630,7 +630,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
-	m_reference(ref), m_dvb_service(service), m_is_paused(0)
+	m_reference(ref), m_dvb_service(service), m_have_video_pid(0), m_is_paused(0)
 {
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
@@ -1031,7 +1031,8 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 {
 	ptr = 0;
-	if (m_timeshift_enabled || !m_is_pvr)
+	if (m_have_video_pid &&  // HACK !!! FIXMEE !! temporary no timeshift on radio services !!
+		(m_timeshift_enabled || !m_is_pvr))
 	{
 		if (!m_timeshift_enabled)
 		{
@@ -1774,6 +1775,7 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
 	}
+	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 }
 
 void eDVBServicePlay::loadCuesheet()

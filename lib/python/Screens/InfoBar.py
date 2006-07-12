@@ -45,7 +45,7 @@ class InfoBar(InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.showTv, _("Show the tv player...")),
-			})
+			}, prio=2)
 		
 		for x in HelpableScreen, \
 				InfoBarShowHide, \

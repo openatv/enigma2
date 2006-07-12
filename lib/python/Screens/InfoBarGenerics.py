@@ -903,9 +903,9 @@ class InfoBarTimeshift:
 		print "enable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
-			print "no ts interface"
-			return
+#			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
+#			print "no ts interface"
+			return 0;
 		
 		if self.timeshift_enabled:
 			print "hu, timeshift already enabled?"
@@ -913,7 +913,7 @@ class InfoBarTimeshift:
 			if not ts.startTimeshift():
 				import time
 				self.timeshift_enabled = 1
-				
+
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 					
@@ -928,11 +928,11 @@ class InfoBarTimeshift:
 
 	def stopTimeshift(self):
 		if not self.timeshift_enabled:
-			return
+			return 0
 		print "disable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
-			return
+			return 0
 		self.session.openWithCallback(self.stopTimeshiftConfirmed, MessageBox, _("Stop Timeshift?"), MessageBox.TYPE_YESNO)
 
 	def stopTimeshiftConfirmed(self, confirmed):
@@ -1187,7 +1187,7 @@ class InfoBarInstantRecord:
 		except:
 			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
-	
+
 		if self.isInstantRecordRunning():
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("A recording is currently running.\nWhat do you want to do?"), list=[(_("stop recording"), "stop"), (_("change recording (duration)"), "changeduration"), (_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"), (_("do nothing"), "no")])
 		else:
