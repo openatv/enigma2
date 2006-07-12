@@ -752,9 +752,6 @@ RESULT eDVBServicePlay::start()
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
 	r = m_service_handler.tune(service, m_is_pvr, m_cue);
 
-	// get back correct service reference (after parsing of recording meta files)
-	m_service_handler.getServiceReference(service);
-
 		/* inject EIT if there is a stored one */
 	if (m_is_pvr)
 	{
@@ -1695,12 +1692,11 @@ void eDVBServicePlay::updateDecoder()
 		}
 		else // subservice or recording
 		{
-			eServiceReferenceDVB parent = ((eServiceReferenceDVB&)m_reference).getParentServiceReference();
-			if (!parent && !m_reference.path.empty()) // is recording
-			{
-				parent = (eServiceReferenceDVB&)m_reference;
-				parent.path="";
-			}
+			eServiceReferenceDVB ref;
+			m_service_handler.getServiceReference(ref);
+			eServiceReferenceDVB parent = ref.getParentServiceReference();
+			if (!parent)
+				parent = ref;
 			if (parent)
 			{
 				ePtr<eDVBResourceManager> res_mgr;
@@ -1712,14 +1708,13 @@ void eDVBServicePlay::updateDecoder()
 						ePtr<eDVBService> origService;
 						if (!db->getService(parent, origService))
 						{
-							ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
+		 					ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
 							pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
 						}
 					}
 				}
 			}
 		}
-
 		m_decoder->setAC3Delay(ac3_delay == -1 ? 0 : ac3_delay);
 		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
