@@ -20,15 +20,15 @@ class ChannelContextMenu(FixedMenu):
 	def __init__(self, session, csel, service):
 		self.csel = csel
 		self.service = service
-		
+
 		menu = [(_("back"), self.close), (_("delete..."), self.delete)]
-		
+
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 			menu.append((p.description, boundFunction(self.execPlugin, p)))
-		
+
 		FixedMenu.__init__(self, session, _("Movie Menu"), menu)
 		self.skinName = "Menu"
-	
+
 	def execPlugin(self, plugin):
 		plugin(session=self.session, service=self.service)
 
@@ -89,6 +89,7 @@ class MovieSelection(Screen):
 			{
 				"cancel": self.abort,
 				"ok": self.movieSelected,
+				"showEventInfo": self.showEventInformation,
 				"contextMenu": self.doContext,
 			})
 		self["actions"].csel = self
@@ -96,7 +97,14 @@ class MovieSelection(Screen):
 		
 		self.lengthTimer = eTimer()
 		self.lengthTimer.timeout.get().append(self.updateLengthData)
-		
+
+	def showEventInformation(self):
+		from Screens.EventView import EventViewSimple
+		from ServiceReference import ServiceReference
+		evt = self["list"].getCurrentEvent()
+		if evt:
+			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
+
 	def go(self):
 		# ouch. this should redraw our "Please wait..."-text.
 		# this is of course not the right way to do this.

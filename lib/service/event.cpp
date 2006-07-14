@@ -10,6 +10,9 @@
 #include <dvbsi++/component_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 
+#include <sys/types.h>
+#include <fcntl.h>
+
 // static members / methods
 std::string eServiceEvent::m_language = "de_DE";
 
@@ -183,6 +186,27 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	if (loadLanguage(evt, std::string(), tsidonid))
 		return 0;
 	return 0;
+}
+
+RESULT eServiceEvent::parseFrom(const std::string filename, int tsidonid)
+{
+	if (!filename.empty())
+	{
+		int fd = ::open( filename.c_str(), O_RDONLY );
+		if ( fd > -1 )
+		{
+			__u8 buf[4096];
+			int rd = ::read(fd, buf, 4096);
+			::close(fd);
+			if ( rd > 12 /*EIT_LOOP_SIZE*/ )
+			{
+				Event ev(buf);
+				parseFrom(&ev, tsidonid);
+				return 0;
+			}
+		}
+	}
+	return -1;
 }
 
 std::string eServiceEvent::getBeginTimeString() const

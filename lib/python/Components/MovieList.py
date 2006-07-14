@@ -59,6 +59,10 @@ class MovieList(HTMLComponent, GUIComponent):
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
+	def getCurrentEvent(self):
+		l = self.l.getCurrentSelection()
+		return l and l[0] and l[1] and l[1].getEvent(l[0])
+
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0]
