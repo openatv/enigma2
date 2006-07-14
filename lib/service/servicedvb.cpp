@@ -25,8 +25,6 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
-#include <dvbsi++/event_information_section.h>
-
 #define INTERNAL_TELETEXT
 
 #ifndef BYTE_ORDER
@@ -149,7 +147,8 @@ public:
 	eStaticServiceDVBPVRInformation(const eServiceReference &ref);
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
-	
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time);
+
 	int getInfo(const eServiceReference &ref, int w);
 	std::string getInfoString(const eServiceReference &ref,int w);
 };
@@ -214,6 +213,24 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 	default:
 		return "";
 	}
+}
+
+RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
+{
+	if (!ref.path.empty())
+	{
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = ref.path;
+		filename.erase(filename.length()-2, 2);
+		filename+="eit";
+		if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get()))
+		{
+			evt = event;
+			return 0;
+		}
+	}
+	evt = 0;
+	return -1;
 }
 
 class eDVBPVRServiceOfflineOperations: public iServiceOfflineOperations
@@ -758,25 +775,15 @@ RESULT eDVBServicePlay::start()
 		std::string filename = service.path;
 		filename.erase(filename.length()-2, 2);
 		filename+="eit";
-		int fd = ::open( filename.c_str(), O_RDONLY );
-		if ( fd > -1 )
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		if (!event->parseFrom(filename, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get()))
 		{
-			__u8 buf[4096];
-			int rd = ::read(fd, buf, 4096);
-			::close(fd);
-			if ( rd > 12 /*EIT_LOOP_SIZE*/ )
-			{
-				Event ev(buf);
-				ePtr<eServiceEvent> event = new eServiceEvent;
-				ePtr<eServiceEvent> empty;
-				event->parseFrom(&ev, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get());
-				m_event_handler.inject(event, 0);
-				m_event_handler.inject(empty, 1);
-				eDebug("injected");
-			}
+			ePtr<eServiceEvent> empty;
+			m_event_handler.inject(event, 0);
+			m_event_handler.inject(empty, 1);
 		}
 	}
-	
+
 	if (m_is_pvr)
 		loadCuesheet();
 

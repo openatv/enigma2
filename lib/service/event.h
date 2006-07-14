@@ -44,6 +44,7 @@ class eServiceEvent: public iObject
 public:
 #ifndef SWIG
 	RESULT parseFrom(Event *evt, int tsidonid=0);
+	RESULT parseFrom(const std::string filename, int tsidonid=0);
 #endif
 	static void setEPGLanguage( const std::string language );
 	time_t getBeginTime() const { return m_begin; }
