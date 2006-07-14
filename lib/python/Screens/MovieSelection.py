@@ -97,6 +97,7 @@ class MovieSelection(Screen):
 		
 		self.lengthTimer = eTimer()
 		self.lengthTimer.timeout.get().append(self.updateLengthData)
+		self.inited = False
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -106,9 +107,11 @@ class MovieSelection(Screen):
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def go(self):
+		if not self.inited:
 		# ouch. this should redraw our "Please wait..."-text.
 		# this is of course not the right way to do this.
-		self.delayTimer.start(10, 1)
+			self.delayTimer.start(10, 1)
+			self.inited=True
 
 	def updateHDDData(self):
 		self["list"].reload(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
