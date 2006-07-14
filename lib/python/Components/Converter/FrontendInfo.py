@@ -36,7 +36,7 @@ class FrontendInfo(Converter, object):
 		return "%d %%" % (percent * 100 / 65536)
 
 	def getBool(self):
-		assert self.type in [self.LOCK, selef.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
+		assert self.type in [self.LOCK, self.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
 		if self.type == self.LOCK:
 			return self.source.lock
 		else:
