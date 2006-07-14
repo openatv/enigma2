@@ -9,18 +9,18 @@ class PerServiceBase(object):
 	def __init__(self, navcore, eventmap, with_event=False):
 		self.eventmap = eventmap
 		self.navcore = navcore
-		self.navcore.event.append(self.event)
+		self.navcore.event.append(self.event_callback)
 		self.poll_timer = eTimer()
 		self.poll_timer.timeout.get().append(self.poll)
 		self.with_event = with_event
 		
 		# start with stopped state, so simulate that
-		self.event(iPlayableService.evEnd)
+		self.event_callback(iPlayableService.evEnd)
 
 	def destroy(self):
-		self.navcore.event.remove(self.event)
+		self.navcore.event.remove(self.event_callback)
 
-	def event(self, ev):
+	def event_callback(self, ev):
 		# loop up if we need to handle this event
 		if self.eventmap.has_key(ev):
 			# call handler
