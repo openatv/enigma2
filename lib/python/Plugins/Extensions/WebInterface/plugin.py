@@ -4,14 +4,14 @@ sessions = [ ]
 
 def startWebserver():
 	from twisted.internet import reactor
-	from twisted.web2 import server, http, static, resource, stream
+	from twisted.web2 import server, http, static, resource, stream, http_headers, responsecode
 	import webif
 
 	class ScreenPage(resource.Resource):
 		def render(self, req):
 			global sessions
 			if sessions == [ ]:
-				return http.Response("please wait until enigma has booted")
+				return http.Response(200, stream="please wait until enigma has booted")
 			
 			s = stream.ProducerStream()
 			webif.renderPage(s, req, sessions[0])  # login?
@@ -21,7 +21,8 @@ def startWebserver():
 		addSlash = True
 		
 		def render(self, req):
-			return 'Hello! you want probably go to <a href="/test">the test</a> instead.'
+			return http.Response(responsecode.OK, {'Content-type': http_headers.MimeType('text', 'html')},
+				stream='Hello! you want probably go to <a href="/test">the test</a> instead.')
 
 		child_test = ScreenPage() # "/test"
 		child_hdd = static.File("/hdd")
