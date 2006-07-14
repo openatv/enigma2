@@ -3,7 +3,7 @@ from Tools.Event import Event
 from enigma import iPlayableService
 from Source import Source
 
-class EventInfo(PerServiceBase, Source):
+class EventInfo(PerServiceBase, Source, object):
 	NOW = 0
 	NEXT = 1
 	
@@ -11,19 +11,15 @@ class EventInfo(PerServiceBase, Source):
 		Source.__init__(self)
 		PerServiceBase.__init__(self, navcore, 
 			{ 
-				iPlayableService.evUpdatedEventInfo: self.ourEvent, 
-				iPlayableService.evEnd: self.stopEvent 
+				iPlayableService.evUpdatedEventInfo: self.changed,
+				iPlayableService.evEnd: self.changed
 			})
 		
-		self.event = None
 		self.now_or_next = now_or_next
 		
-	def ourEvent(self):
+	def getEvent(self):
 		service = self.navcore.getCurrentService()
 		info = service and service.info()
-		self.event = info and info.getEvent(self.now_or_next)
-		self.changed()
+		return info and info.getEvent(self.now_or_next)
 
-	def stopEvent(self):
-		self.event = None
-		self.changed()
+	event = property(getEvent)
