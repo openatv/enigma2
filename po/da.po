@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 13:27+0200\n"
-"PO-Revision-Date: 2006-07-06 21:28+0100\n"
+"POT-Creation-Date: 2006-07-15 00:41+0200\n"
+"PO-Revision-Date: 2006-07-12 15:13+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj1@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -193,8 +193,9 @@ msgid "Artist:"
 msgstr "Artist:"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1201
+#, fuzzy
 msgid "Audio Options..."
-msgstr ""
+msgstr "Lyd Valg..."
 
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:377
@@ -549,8 +550,9 @@ msgid "English"
 msgstr "Engelsk"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:322
+#, fuzzy
 msgid "Enter main menu..."
-msgstr ""
+msgstr "Åbne hoved menu..."
 
 #: ../lib/python/Components/NimManager.py:673
 msgid "Equal to Socket A"
@@ -695,12 +697,14 @@ msgid "Initialize"
 msgstr "Initialiserer"
 
 #: ../lib/python/Screens/HarddiskSetup.py:19
+#, fuzzy
 msgid "Initializing Harddisk..."
-msgstr "Initialiserer harddisk..."
+msgstr "Initialiserer Harddisk..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1077
+#, fuzzy
 msgid "Instant Record..."
-msgstr ""
+msgstr "Hurtig Optag..."
 
 #: ../lib/python/Screens/ScanSetup.py:210
 #: ../lib/python/Screens/ScanSetup.py:243
@@ -976,11 +980,15 @@ msgid "Please select a subservice..."
 msgstr "Vælg venligst en underkanal..."
 
 #: ../lib/python/Screens/PiPSetup.py:41
+#, fuzzy
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
+"Venligst brug pile knapper for at flytte PiP vindue.\n"
+"Tryk Bouquet +/- for at ændre vinduestørrelse.\n"
+"Tryk OK for at gå tilbage til TV eller EXIT for ikke at udføre flytning."
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1457,8 +1465,9 @@ msgid "Uncommitted DiSEqC command"
 msgstr "Ukommiteret DiSEqC kommando"
 
 #: ../lib/python/Components/NimManager.py:744
+#, fuzzy
 msgid "Universal LNB"
-msgstr "Universa lLNB"
+msgstr "Universal LNB"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:211
 msgid "Updating finished. Here is the result:"
@@ -1481,8 +1490,9 @@ msgid "User defined"
 msgstr "Brugerdefineret"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1575
+#, fuzzy
 msgid "View teletext..."
-msgstr ""
+msgstr "Se teletekst..."
 
 #: ../lib/python/Screens/Satconfig.py:110
 msgid "Voltage mode"
@@ -1569,12 +1579,14 @@ msgid "add bouquet..."
 msgstr "Tilføj pakke..."
 
 #: ../lib/python/Screens/MediaPlayer.py:295
+#, fuzzy
 msgid "add directory to playlist"
-msgstr "tilføj direktorie til spilleliste"
+msgstr "Tilføj direktorie til spilleliste"
 
 #: ../lib/python/Screens/MediaPlayer.py:297
+#, fuzzy
 msgid "add file to playlist"
-msgstr "tilføj fil til spilleliste"
+msgstr "Tilføj fil til spilleliste"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1191
 #: ../lib/python/Screens/InfoBarGenerics.py:1193
@@ -1588,8 +1600,9 @@ msgstr "Tilføj optagelse (endeligt)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1191
 #: ../lib/python/Screens/InfoBarGenerics.py:1193
+#, fuzzy
 msgid "add recording (stop after current event)"
-msgstr "tilføj optagelse (stop efter nuværende)"
+msgstr "Tilføj optagelse (stop efter nuværende)"
 
 #: ../lib/python/Screens/ChannelSelection.py:79
 msgid "add service to bouquet"
@@ -1600,21 +1613,24 @@ msgid "add service to favourites"
 msgstr "Tilføj kanal til favoritter"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:208
+#, fuzzy
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
-"er du sikker på at du vil gendanne\n"
+"Er du sikker på at du vil gendanne\n"
 "følgende backup:\n"
 
 #: ../lib/python/Screens/MovieSelection.py:24
 #: ../lib/python/Screens/ChannelSelection.py:115
+#, fuzzy
 msgid "back"
-msgstr "tilbage"
+msgstr "Tilbage"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1191
+#, fuzzy
 msgid "change recording (duration)"
-msgstr "skifte optagelse (længde)"
+msgstr "Skifte optagelse (længde)"
 
 #: ../lib/python/Screens/ScanSetup.py:376
 msgid "circular left"
@@ -1625,106 +1641,115 @@ msgid "circular right"
 msgstr "højre-cirkulær"
 
 #: ../lib/python/Screens/MediaPlayer.py:301
-#, fuzzy
 msgid "clear playlist"
-msgstr "slet spilleliste"
+msgstr "Slet spilleliste"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:563
+#, fuzzy
 msgid "continue"
-msgstr ""
+msgstr "Fortsæt"
 
 #: ../lib/python/Screens/ChannelSelection.py:85
+#, fuzzy
 msgid "copy to favourites"
-msgstr "kopier til favoritter"
+msgstr "Kopier til favoritter"
 
 #: ../lib/python/Screens/TimerEntry.py:104
 msgid "daily"
 msgstr "daglig"
 
 #: ../lib/python/Screens/MediaPlayer.py:300
+#, fuzzy
 msgid "delete"
-msgstr "slet"
+msgstr "Slet"
 
 #: ../lib/python/Screens/MovieSelection.py:24
+#, fuzzy
 msgid "delete..."
-msgstr "slet..."
+msgstr "Slet..."
 
 #: ../lib/python/Screens/ChannelSelection.py:106
-#, fuzzy
 msgid "disable move mode"
-msgstr "slå flytte type fra"
+msgstr "Slå flytte type fra"
 
 #: ../lib/python/Screens/TimerEntry.py:99
 #: ../lib/python/Screens/InfoBarGenerics.py:1191
+#, fuzzy
 msgid "do nothing"
-msgstr "gør intet"
+msgstr "Gør intet"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1193
+#, fuzzy
 msgid "don't record"
-msgstr "optag ikke"
+msgstr "Optag ikke"
 
 #: ../lib/python/Components/TimerList.py:68
 msgid "done!"
 msgstr "færdig!"
 
 #: ../lib/python/Components/NimManager.py:566
+#, fuzzy
 msgid "empty/unknown"
-msgstr "tom/ukendt"
+msgstr "Tom/ukendt"
 
 #: ../lib/python/Screens/ChannelSelection.py:102
 msgid "enable bouquet edit"
-msgstr "åbn pakke redigering"
+msgstr "Åbne pakke redigering"
 
 #: ../lib/python/Screens/ChannelSelection.py:104
+#, fuzzy
 msgid "enable favourite edit"
-msgstr "åbn favoritredigering"
+msgstr "Åbne favoritredigering"
 
 #: ../lib/python/Screens/ChannelSelection.py:98
+#, fuzzy
 msgid "enable move mode"
-msgstr "åbn flytte type"
+msgstr "Åbne flytte type"
 
 #: ../lib/python/Screens/ChannelSelection.py:109
+#, fuzzy
 msgid "end bouquet edit"
-msgstr "afslut pakke redigering"
+msgstr "Afslut pakke redigering"
 
 #: ../lib/python/Screens/ChannelSelection.py:112
+#, fuzzy
 msgid "end favourites edit"
-msgstr "afslut favorit redigering"
+msgstr "Afslut favorit redigering"
 
 #: ../lib/python/Components/DiskInfo.py:30
+#, fuzzy
 msgid "free diskspace"
-msgstr "fri HDD plads"
+msgstr "Fri HDD plads"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "full /etc directory"
 msgstr "full /etc direktorie"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#, fuzzy
 msgid "go to deep standby"
-msgstr "gå til dyb standby"
+msgstr "Gå til dyb standby"
 
 #: ../lib/python/Screens/InfoBar.py:60
+#, fuzzy
 msgid "hear radio..."
-msgstr ""
+msgstr "Høre radio..."
 
 #: ../lib/python/Screens/MediaPlayer.py:302
-#, fuzzy
 msgid "hide player"
-msgstr "skjul afspiller"
+msgstr "Skjul afspiller"
 
 #: ../lib/python/Screens/ScanSetup.py:376
 msgid "horizontal"
 msgstr "horizontal"
 
 #: ../lib/python/Screens/Ci.py:295 ../lib/python/Screens/Ci.py:315
-#, fuzzy
 msgid "init module"
-msgstr "initaliser modul"
+msgstr "Initaliser modul"
 
 #: ../lib/python/Screens/InfoBar.py:91
+#, fuzzy
 msgid "leave movie player..."
-msgstr "forlad film afspiller..."
+msgstr "Forlad film afspiller..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1252
 #, fuzzy
@@ -1733,12 +1758,14 @@ msgstr "venstre"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
+#, fuzzy
 msgid "list"
-msgstr "liste"
+msgstr "Liste"
 
 #: ../lib/python/Components/NimManager.py:697
+#, fuzzy
 msgid "manual"
-msgstr "manuelt"
+msgstr "Manuelt"
 
 #: ../lib/python/Components/TimerList.py:48
 #: ../lib/python/Components/TimerList.py:53
@@ -1746,12 +1773,14 @@ msgid "mins"
 msgstr "min"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:260
+#, fuzzy
 msgid "next channel"
-msgstr "næste kanal"
+msgstr "Næste kanal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:262
+#, fuzzy
 msgid "next channel in history"
-msgstr "næste kanal i hukommelse"
+msgstr "Næste kanal i hukommelse"
 
 #: ../lib/python/Screens/ScanSetup.py:355
 #: ../lib/python/Screens/ScanSetup.py:387
@@ -1767,16 +1796,19 @@ msgid "no"
 msgstr "nej"
 
 #: ../lib/python/Screens/HarddiskSetup.py:69
+#, fuzzy
 msgid "no HDD found"
-msgstr "ingen HDD fundet"
+msgstr "Ingen HDD fundet"
 
 #: ../lib/python/Screens/Ci.py:293 ../lib/python/Screens/Ci.py:313
+#, fuzzy
 msgid "no module found"
-msgstr "ingen modul fundet"
+msgstr "Ingen modul fundet"
 
 #: ../lib/python/Screens/About.py:40
+#, fuzzy
 msgid "none"
-msgstr "ingen"
+msgstr "Ingen"
 
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:383
@@ -1792,73 +1824,85 @@ msgstr "on"
 
 #: ../lib/python/Screens/TimerEntry.py:100
 msgid "once"
-msgstr "en gang"
+msgstr "En gang"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
+#, fuzzy
 msgid "only /etc/enigma2 directory"
-msgstr "kun /etc/enigma2 direktorie"
+msgstr "Kun /etc/enigma2 direktorie"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
+#, fuzzy
 msgid "open servicelist"
-msgstr ""
+msgstr "Åbne kanalliste"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:258
+#, fuzzy
 msgid "open servicelist(down)"
-msgstr ""
+msgstr "Åbne kanalliste(ned)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:257
+#, fuzzy
 msgid "open servicelist(up)"
-msgstr ""
+msgstr "Åbne kanalliste(op)"
 
 #: ../lib/python/Components/ServiceScan.py:75
+#, fuzzy
 msgid "pass"
-msgstr "ok"
+msgstr "Ok"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:562
+#, fuzzy
 msgid "pause"
-msgstr ""
+msgstr "Pause"
 
 #: ../lib/python/Screens/Ci.py:79
+#, fuzzy
 msgid "please press OK when ready"
-msgstr "tryk venligst OK når du er klar"
+msgstr "Tryk venligst OK når du er klar"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:259
+#, fuzzy
 msgid "previous channel"
-msgstr "forrige kanal"
+msgstr "Forrige kanal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:261
+#, fuzzy
 msgid "previous channel in history"
-msgstr "forrige sete kanal"
+msgstr "Forrige sete kanal"
 
 #: ../lib/python/Screens/TimerEntry.py:98
+#, fuzzy
 msgid "record"
-msgstr "optag"
+msgstr "Optag"
 
 #: ../lib/python/Components/TimerList.py:64
+#, fuzzy
 msgid "recording..."
-msgstr "optager..."
+msgstr "Optager..."
 
 #: ../lib/python/Screens/ChannelSelection.py:87
-#, fuzzy
 msgid "remove all new found flags"
-msgstr "fjern alle nye fundne flag"
+msgstr "Fjern alle nye fundne flag"
 
 #: ../lib/python/Screens/ChannelSelection.py:93
+#, fuzzy
 msgid "remove bouquet"
-msgstr "fjern pakke"
+msgstr "Fjern pakke"
 
 #: ../lib/python/Screens/ChannelSelection.py:91
-#, fuzzy
 msgid "remove new found flag"
-msgstr "fjern nyt fundet flag"
+msgstr "Fjern nyt fundet flag"
 
 #: ../lib/python/Screens/ChannelSelection.py:89
+#, fuzzy
 msgid "remove service"
-msgstr "fjern kanal"
+msgstr "Fjern kanal"
 
 #: ../lib/python/Screens/TimerEntry.py:100
+#, fuzzy
 msgid "repeated"
-msgstr "gentaget"
+msgstr "Gentaget"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1252
 #, fuzzy
@@ -1875,12 +1919,13 @@ msgstr ""
 "%d Kanaler fundet!"
 
 #: ../lib/python/Components/ServiceScan.py:35
+#, fuzzy
 msgid ""
 "scan done!\n"
 "No service found!"
 msgstr ""
 "Søgning slut.\n"
-"Ingen kanal fundet!"
+"Ingen kanaler fundet!"
 
 #: ../lib/python/Components/ServiceScan.py:33
 msgid ""
@@ -1900,81 +1945,95 @@ msgstr ""
 "%d kanaler fundet!"
 
 #: ../lib/python/Screens/ServiceScan.py:23
+#, fuzzy
 msgid "scan state"
-msgstr "søge status"
+msgstr "Søge status"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:374
+#, fuzzy
 msgid "show EPG..."
-msgstr "vis EPG..."
+msgstr "Vis EPG..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:336
+#, fuzzy
 msgid "show event details"
-msgstr "vis program detaljer"
+msgstr "Vis program detaljer"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:568
 msgid "skip backward"
-msgstr ""
+msgstr "Drop tilbage"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:565
 msgid "skip forward"
-msgstr ""
+msgstr "Drop fremad"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:877
+#, fuzzy
 msgid "start timeshift"
-msgstr ""
+msgstr "Start timeshift"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1252
-#, fuzzy
 msgid "stereo"
-msgstr "stereo"
+msgstr "Stereo"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1191
+#, fuzzy
 msgid "stop recording"
-msgstr "stop optagelse"
+msgstr "Stop optagelse"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:878
+#, fuzzy
 msgid "stop timeshift"
-msgstr ""
+msgstr "Stop timeshift"
 
 #: ../lib/python/Screens/MediaPlayer.py:299
+#, fuzzy
 msgid "switch to filelist"
-msgstr "skift til filliste"
+msgstr "Skift til filliste"
 
 #: ../lib/python/Screens/MediaPlayer.py:293
+#, fuzzy
 msgid "switch to playlist"
-msgstr "skift til spilleliste"
+msgstr "Skift til spilleliste"
 
 #: ../lib/python/Screens/Wizard.py:234 ../lib/python/Screens/Wizard.py:235
+#, fuzzy
 msgid "text"
-msgstr "tekst"
+msgstr "Tekst"
 
 #: ../lib/python/Screens/MovieSelection.py:39
+#, fuzzy
 msgid "this recording"
-msgstr "denne optagelse"
+msgstr "Denne optagelse"
 
 #: ../lib/python/Screens/EventView.py:80
+#, fuzzy
 msgid "unknown service"
-msgstr "ukendt kanal"
+msgstr "Ukendt kanal"
 
 #: ../lib/python/Screens/TimerEntry.py:104
+#, fuzzy
 msgid "user defined"
-msgstr "brugerdefineret"
+msgstr "Brugerdefineret"
 
 #: ../lib/python/Screens/ScanSetup.py:376
 msgid "vertical"
 msgstr "vertikal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1010
+#, fuzzy
 msgid "view extensions..."
-msgstr ""
+msgstr "Se udvidelser..."
 
 #: ../lib/python/Screens/InfoBar.py:59
+#, fuzzy
 msgid "view recordings..."
-msgstr ""
+msgstr "Se optagelser..."
 
 #: ../lib/python/Components/TimerList.py:57
+#, fuzzy
 msgid "waiting"
-msgstr "venter"
+msgstr "Venter"
 
 #: ../lib/python/Screens/TimerEntry.py:104
 msgid "weekly"
@@ -1995,9 +2054,8 @@ msgstr "ja"
 
 #: ../lib/python/Screens/ScanSetup.py:355
 #: ../lib/python/Screens/ScanSetup.py:702
-#, fuzzy
 msgid "yes (keep feeds)"
-msgstr "ja (behold feeds)"
+msgstr "Ja (behold feeds)"
 
 #: ../lib/python/Screens/TimerEntry.py:98
 #, fuzzy
@@ -2115,6 +2173,10 @@ msgstr ""
 "Brug pil op/ned for at vælge på din fjernbetjening. Derefter tryk på OK."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, bare start min Dreambox"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Vis Satposition"
 
@@ -2123,8 +2185,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vil du have en gennemgang ?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gør intet"
+msgid "Setup"
+msgstr "Indstillinger"
 
 #: ../data/
 msgid "#000000"
@@ -2167,9 +2229,8 @@ msgid "Audio / Video"
 msgstr "Audio / Video"
 
 #: ../data/
-#, fuzzy
-msgid "Yes, do another manual scan now"
-msgstr "Ja, tag en ny manuel søgning nu"
+msgid "The wizard is finished now."
+msgstr "Brugen af wizzard er færdig nu."
 
 #: ../data/
 msgid "Service Searching"
@@ -2227,8 +2288,9 @@ msgid "System"
 msgstr "System"
 
 #: ../data/
+#, fuzzy
 msgid "use power delta"
-msgstr "brug power delta"
+msgstr "Brug power delta"
 
 #: ../data/
 #, fuzzy
@@ -2240,20 +2302,30 @@ msgid "Manual Scan"
 msgstr "Manuel Søgning"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD Indstilling"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Din dreambox siger velkommen.\n"
+"\n"
+"Denne guide vil hjælpe dig igennem opsætningen af din Dreambox.\n"
+"Tryk venligst OK på fjernbetjeningen, for at gå til næste trin."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fjernbetjenings Menu"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, bare start min Dreambox"
+#, fuzzy
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
+#, fuzzy
 msgid "Tuner configuration"
-msgstr ""
+msgstr "Tuner konfiguration"
 
 #: ../data/
 msgid "select Slot"
@@ -2285,8 +2357,8 @@ msgid "Fast zapping"
 msgstr "Hurtig zap"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Bruger Indstillinger"
+msgid "OSD Settings"
+msgstr "OSD Indstilling"
 
 #: ../data/
 msgid "Brightness"
@@ -2295,10 +2367,6 @@ msgstr "Lysstyrke"
 #: ../data/
 msgid "Standby"
 msgstr "Standby"
-
-#: ../data/
-msgid "Timer Edit"
-msgstr "Timer Redigering"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2346,17 +2414,17 @@ msgstr ""
 
 #: ../data/
 #, fuzzy
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
-#, fuzzy
 msgid "Timeshift"
 msgstr "Timeshift"
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Plugins der kan downloades"
+
+#: ../data/
+#, fuzzy
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Ønsker du at se en cutlist oversigt?"
 
 #: ../data/
 msgid "Subservices"
@@ -2403,6 +2471,10 @@ msgid "A/V Settings"
 msgstr "A/V Indstillinger"
 
 #: ../data/
+msgid "Usage Settings"
+msgstr "Bruger Indstillinger"
+
+#: ../data/
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
@@ -2413,8 +2485,9 @@ msgid "Service scan"
 msgstr "Kanal søgning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Brugen af wizzard er færdig nu."
+#, fuzzy
+msgid "Yes, do another manual scan now"
+msgstr "Ja, tag en ny manuel søgning nu"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2710,20 +2783,12 @@ msgid "Alpha"
 msgstr "Alpha"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Din dreambox siger velkommen.\n"
-"\n"
-"Denne guide vil hjælpe dig igennem opsætningen af din Dreambox.\n"
-"Tryk venligst OK på fjernbetjeningen, for at gå til næste trin."
+msgid "Timer Edit"
+msgstr "Timer Redigering"
 
 #: ../data/
-msgid "Setup"
-msgstr "Indstillinger"
+msgid "No, do nothing."
+msgstr "Nej, gør intet"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2805,10 +2870,6 @@ msgstr "Vil du lave en anden manuel søgning?"
 #, fuzzy
 #~ msgid "open service list"
 #~ msgstr "åben service list"
-
-#, fuzzy
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Ønsker du at se en cutlist oversigt?"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satellit indstilling"
