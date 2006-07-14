@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-12 13:27+0200\n"
-"PO-Revision-Date: 2006-07-10 12:33+0100\n"
+"POT-Creation-Date: 2006-07-15 00:23+0200\n"
+"PO-Revision-Date: 2006-07-15 00:09+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -183,7 +183,7 @@ msgstr ""
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1201
 msgid "Audio Options..."
-msgstr ""
+msgstr "Audio Opties..."
 
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:377
@@ -521,7 +521,7 @@ msgstr "Engels"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:322
 msgid "Enter main menu..."
-msgstr ""
+msgstr "Ga naar hoofd menu..."
 
 #: ../lib/python/Components/NimManager.py:673
 msgid "Equal to Socket A"
@@ -664,7 +664,7 @@ msgstr "Formatting Harddisk..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1077
 msgid "Instant Record..."
-msgstr ""
+msgstr "Directe Opname..."
 
 #: ../lib/python/Screens/ScanSetup.py:210
 #: ../lib/python/Screens/ScanSetup.py:243
@@ -935,6 +935,9 @@ msgid ""
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
+"Gebruik de pijl toetsen voor verplaatsen  PiP window.\n"
+"Druk op Boeket +/- om PIP window te vergroten of te verkleinen.\n"
+"Druk op OK om terug te gaan naar TV mode of EXIT om verplaatsen te stoppen."
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1032,7 +1035,7 @@ msgstr "Herhaal Type"
 
 #: ../lib/python/Screens/MediaPlayer.py:345
 msgid "Replace current playlist"
-msgstr ""
+msgstr "Vervang huidigge afspeel lijst"
 
 #: ../lib/python/Screens/Ci.py:289
 msgid "Reset"
@@ -1256,11 +1259,11 @@ msgstr "Zweeds"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1276
 msgid "Switch to next subservice"
-msgstr "Switch naar volgende subservice"
+msgstr "Ga naar volgende subservice"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1277
 msgid "Switch to previous subservice"
-msgstr "Switch naar vorigge subservice"
+msgstr "Ga naar vorige subservice"
 
 #: ../lib/python/Screens/ScanSetup.py:211
 #: ../lib/python/Screens/ScanSetup.py:244
@@ -1358,7 +1361,7 @@ msgstr "Tuner"
 
 #: ../lib/python/Components/Language.py:26
 msgid "Turkish"
-msgstr ""
+msgstr "Turks"
 
 #: ../lib/python/Components/NimManager.py:758
 msgid "Two"
@@ -1418,7 +1421,7 @@ msgstr "Gebruikers mode"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1575
 msgid "View teletext..."
-msgstr ""
+msgstr "Laat teletext zien..."
 
 #: ../lib/python/Screens/Satconfig.py:110
 msgid "Voltage mode"
@@ -1565,7 +1568,7 @@ msgstr "Maak playlist schoon"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:563
 msgid "continue"
-msgstr ""
+msgstr "Ga Verder"
 
 #: ../lib/python/Screens/ChannelSelection.py:85
 msgid "copy to favourites"
@@ -1638,7 +1641,7 @@ msgstr "Box Uitzetten"
 
 #: ../lib/python/Screens/InfoBar.py:60
 msgid "hear radio..."
-msgstr ""
+msgstr "Luister naar radio..."
 
 #: ../lib/python/Screens/MediaPlayer.py:302
 msgid "hide player"
@@ -1891,11 +1894,11 @@ msgstr "vertikaal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1010
 msgid "view extensions..."
-msgstr ""
+msgstr "Laat extensies zien..."
 
 #: ../lib/python/Screens/InfoBar.py:59
 msgid "view recordings..."
-msgstr ""
+msgstr "Laat opnames zien..."
 
 #: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
@@ -1965,7 +1968,7 @@ msgstr "Ja, backup mijn settings!"
 
 #: ../data/
 msgid "Satconfig"
-msgstr "Sat instelling"
+msgstr "Tuner instellingen"
 
 #: ../data/
 msgid ""
@@ -2038,6 +2041,10 @@ msgstr ""
 "daarna op OK druken."
 
 #: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nee, alleen mijn dreambox starten"
+
+#: ../data/
 msgid "Show Satposition"
 msgstr "Satpositie"
 
@@ -2046,8 +2053,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nee, doe niks."
+msgid "Setup"
+msgstr "Instellingen"
 
 #: ../data/
 msgid "#000000"
@@ -2091,8 +2098,8 @@ msgid "Audio / Video"
 msgstr "Audio / Video"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, nu handmatig zoeken"
+msgid "The wizard is finished now."
+msgstr "De wizard is is nu klaar."
 
 #: ../data/
 msgid "Service Searching"
@@ -2161,20 +2168,29 @@ msgid "Manual Scan"
 msgstr "Handmatig Zoeken"
 
 #: ../data/
-msgid "OSD Settings"
-msgstr "OSD-instellingen"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Welkom.\n"
+"\n"
+"De start wizard leid u door de basic instellingen van u dreambox.\n"
+"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
+"gaan."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Afstands Bediening"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nee, alleen mijn dreambox starten"
+msgid "SNR:"
+msgstr ""
 
 #: ../data/
 msgid "Tuner configuration"
-msgstr ""
+msgstr "Tuner configuratie"
 
 #: ../data/
 msgid "select Slot"
@@ -2205,8 +2221,8 @@ msgid "Fast zapping"
 msgstr "Fast zapping"
 
 #: ../data/
-msgid "Usage Settings"
-msgstr "Gebruikers instellingen"
+msgid "OSD Settings"
+msgstr "OSD-instellingen"
 
 #: ../data/
 msgid "Brightness"
@@ -2215,10 +2231,6 @@ msgstr "Helderheid"
 #: ../data/
 msgid "Standby"
 msgstr ""
-
-#: ../data/
-msgid "Timer Edit"
-msgstr "Timer gestuurde opname"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2261,16 +2273,16 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr ""
-
-#: ../data/
 msgid "Timeshift"
 msgstr ""
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Downloadbare plugins"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "wilt u een cutlist voorbeeld zien?"
 
 #: ../data/
 msgid "Subservices"
@@ -2317,6 +2329,10 @@ msgid "A/V Settings"
 msgstr "A/V-instellingen"
 
 #: ../data/
+msgid "Usage Settings"
+msgstr "Gebruikers instellingen"
+
+#: ../data/
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
@@ -2329,8 +2345,8 @@ msgid "Service scan"
 msgstr "Kanaal zoeken"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "De wizard is is nu klaar."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, nu handmatig zoeken"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2616,21 +2632,12 @@ msgid "Alpha"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Welkom.\n"
-"\n"
-"De start wizard leid u door de basic instellingen van u dreambox.\n"
-"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
-"gaan."
+msgid "Timer Edit"
+msgstr "Timer gestuurde opname"
 
 #: ../data/
-msgid "Setup"
-msgstr "Instellingen"
+msgid "No, do nothing."
+msgstr "Nee, doe niks."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2706,9 +2713,6 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 
 #~ msgid "Timeshift not possible!"
 #~ msgstr "Timeshift is niet mogelijk!"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "wilt u een cutlist voorbeeld zien?"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelliet instellingen"
