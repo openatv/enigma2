@@ -174,12 +174,12 @@ def lreduce(list):
 		string = None
 	return res
 
-def renderPage(stream, req, session):
+def renderPage(stream, path, session):
 	handler = webifHandler(session)
 	parser = make_parser()
 	parser.setFeature(feature_namespaces, 0)
 	parser.setContentHandler(handler)
-	parser.parse(open(util.sibpath(__file__, 'test.xml'))) # currently fixed
+	parser.parse(open(util.sibpath(__file__, path)))
 	for x in lreduce(handler.res):
 		stream.write(str(x))
 	stream.finish() # must be done, unless we "callLater"

@@ -5,17 +5,29 @@ sessions = [ ]
 def startWebserver():
 	from twisted.internet import reactor
 	from twisted.web2 import server, http, static, resource, stream, http_headers, responsecode
+	from twisted.python import util
 	import webif
 
 	class ScreenPage(resource.Resource):
+		def __init__(self, path):
+			self.path = path
+			
 		def render(self, req):
 			global sessions
 			if sessions == [ ]:
 				return http.Response(200, stream="please wait until enigma has booted")
 			
 			s = stream.ProducerStream()
-			webif.renderPage(s, req, sessions[0])  # login?
+			webif.renderPage(s, self.path, sessions[0])  # login?
 			return http.Response(stream=s)
+
+		def locateChild(self, request, segments):
+			path = '/'.join(["web"] + segments)
+			if path[-1:] == "/":
+				path += "index"
+			
+			path += ".xml"
+			return ScreenPage(path), ()
 
 	class Toplevel(resource.Resource):
 		addSlash = True
@@ -24,8 +36,9 @@ def startWebserver():
 			return http.Response(responsecode.OK, {'Content-type': http_headers.MimeType('text', 'html')},
 				stream='Hello! you want probably go to <a href="/test">the test</a> instead.')
 
-		child_test = ScreenPage() # "/test"
+		child_web = ScreenPage("/") # "/web"
 		child_hdd = static.File("/hdd")
+		child_webdata = static.File(util.sibpath(__file__, "web-data"))
 
 	site = server.Site(Toplevel())
 	
