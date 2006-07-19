@@ -89,14 +89,16 @@ class ChannelContextMenu(Screen):
 					menu.append((_("remove service"), self.removeCurrentService))
 				if current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					menu.append((_("remove new found flag"), self.removeNewFoundFlag))
-			elif haveBouquets:
-				menu.append((_("remove bouquet"), self.removeBouquet))
+
+			if haveBouquets:
+				menu.append((_("add bouquet..."), self.showBouquetInputBox))
+				if inBouquetRootList:
+					menu.append((_("remove bouquet"), self.removeBouquet))
 
 		if inBouquet: # current list is editable?
 			if not csel.bouquet_mark_edit:
 				if not csel.movemode:
 					menu.append((_("enable move mode"), self.toggleMoveMode))
-					menu.append((_("add bouquet..."), self.showBouquetInputBox))
 					if not inBouquetRootList:
 						if haveBouquets:
 							menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
