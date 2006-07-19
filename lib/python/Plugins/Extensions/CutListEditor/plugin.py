@@ -26,6 +26,8 @@ def CutListEntry(where, what):
 		type = "OUT"
 	elif what == 2:
 		type = "MARK"
+	elif what == 3:
+		type = "LAST"
 	res.append(MultiContentEntryText(size=(400, 20), text = "%dh:%02dm:%02ds:%03d" % (h, m, s, ms)))
 	res.append(MultiContentEntryText(pos=(400,0), size=(130, 20), text = type, flags = RT_HALIGN_RIGHT))
 
