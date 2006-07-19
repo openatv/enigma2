@@ -224,7 +224,6 @@ static bool canDescrambleMultipleServices(int slotid)
 	snprintf(configStr, 255, "config.ci%d.canDescrambleMultipleServices", slotid);
 	std::string str;
 	ePythonConfigQuery::getConfigValue(configStr, str);
-	eDebug("str is %s", str.empty()?"empty" : str.c_str());
 	if ( str == "auto" )
 	{
 		std::string appname = eDVBCI_UI::getInstance()->getAppName(slotid);
