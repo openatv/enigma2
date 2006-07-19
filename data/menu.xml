@@ -47,17 +47,17 @@
 			</menu>
 			<menu text="System">
 				<id val="system" />
-				<item text="Language"><screen module="LanguageSelection" /></item>
-				<item text="Usage Settings"><setup id="usage" /></item>
-				<item text="Timezone"><setup id="timezone" /></item>
-				<item text="Audio / Video"><setup id="avsetup" /></item>
-				<item text="UHF Modulator"><setup id="RFmod" /></item>
-				<item text="Harddisk"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+				<item text="Language..."><screen module="LanguageSelection" /></item>
+				<item><setup id="usage" /></item>
+				<item><setup id="timezone" /></item>
+				<item><setup id="avsetup" /></item>
+				<item><setup id="RFmod" /></item>
+				<item text="Harddisk..."><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
-				<item text="LCD"><setup id="lcd" /></item>
-				<item text="Network"><screen module="NetworkSetup" screen="NetworkSetup" /></item>
+				<item><setup id="lcd" /></item>
+				<item text="Network..."><screen module="NetworkSetup" screen="NetworkSetup" /></item>
 			</menu>
 			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
