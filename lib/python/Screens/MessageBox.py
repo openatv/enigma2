@@ -65,7 +65,7 @@ class MessageBox(Screen):
 		self.timeout -= 1
 		if self.origTitle is None:
 			self.origTitle = self.instance.getTitle()
-		self.setTitle(self.origTitle + " (" + _("Timeout: ") + str(self.timeout) + ")")
+		self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
 		if self.timeout == 0:
 			self.timer.stop()
 			self.timerRunning = False
