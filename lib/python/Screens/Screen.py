@@ -1,5 +1,6 @@
 from Components.HTMLSkin import *
 from Components.GUISkin import *
+from Components.Sources.Source import Source
 
 import sys
 
@@ -99,7 +100,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		for x in self.onShow:
 			x()
 		for val in self.values() + self.renderer:
-			if isinstance(val, GUIComponent):
+			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onShow()
 
 	def hide(self):
@@ -110,5 +111,5 @@ class Screen(dict, HTMLSkin, GUISkin):
 		for x in self.onHide:
 			x()
 		for val in self.values() + self.renderer:
-			if isinstance(val, GUIComponent):
+			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()

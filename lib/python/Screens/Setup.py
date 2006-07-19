@@ -23,16 +23,6 @@ except:
 setupdom = xml.dom.minidom.parseString(setupfile.read())
 setupfile.close()
 
-def getValbyAttr(x, attr):
-	for p in range(x.attributes.length):
-		a = x.attributes.item(p)
-		attrib = str(a.name)
-		value = str(a.value)
-		if attrib == attr:
-			return value
-	
-	return ""
-
 class SetupSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -78,12 +68,11 @@ class Setup(Screen):
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
 			elif x.tagName == 'setup':
-				ItemText = getValbyAttr(x, "key")
-				if ItemText != setup:
+				if x.getAttribute("key") != setup:
 					continue
 				self.addItems(list, x.childNodes);
-				myTitle = getValbyAttr(x, "title")
-		
+				myTitle = x.getAttribute("title").encode("UTF-8")
+
 		#check for list.entries > 0 else self.close
 		
 		self["config"] = ConfigList(list)
@@ -136,9 +125,9 @@ class Setup(Screen):
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
 			elif x.tagName == 'item':
-				ItemText = _(getValbyAttr(x, "text"))
+				item_text = _(x.getAttribute("text").encode("UTF-8") or "??")
 				b = eval(XMLTools.mergeText(x.childNodes));
-				print "item " + ItemText + " " + b.configPath
+				print "item " + item_text + " " + b.configPath
 				if b == "":
 					continue
 				#add to configlist
@@ -146,7 +135,7 @@ class Setup(Screen):
 				
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
-				list.append( (ItemText, item) )
+				list.append( (item_text, item) )
 
 	def handleKey(self, key):
 		# ignore keys when not enabled
@@ -178,3 +167,9 @@ class Setup(Screen):
 		
 	def keyNumberGlobal(self, number):
 		self.handleKey(str(number))
+
+def getSetupTitle(id):
+	xmldata = setupdom.childNodes[0].childNodes
+	for x in elementsWithTag(xmldata, "setup"):
+		if x.getAttribute("key") == id:
+			return x.getAttribute("title").encode("UTF-8")

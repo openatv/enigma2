@@ -15,14 +15,14 @@
 			<item text="AC3 default">config.av.defaultac3</item>
 			<item text="VCR Switch">config.av.vcrswitch</item>
 		</setup>
-		<setup key="usage" title="Usage settings">
-			<item text="Ask before zapping">config.recording.asktozap</item>
+		<setup key="usage" title="Customize">
+			<item text="Recordings always have priority">config.recording.asktozap</item>
 			<item text="Margin before record (minutes)">config.recording.margin_before</item>
 			<item text="Margin after record">config.recording.margin_after</item>
-			<item text="Visualize positioner movement">config.usage.showdish</item>
-			<item text="Multi bouquets">config.usage.multibouquet</item>
+			<item text="Show positioner movement">config.usage.showdish</item>
+			<item text="Enable multiple bouquets">config.usage.multibouquet</item>
 			<item text="Change bouquets in quickzap">config.usage.quickzap_bouquet_change</item>
-			<item text="Enigma1 like radiomode">config.usage.e1like_radio_mode</item>
+			<item text="Alternative radio mode">config.usage.e1like_radio_mode</item>
 		</setup>
 		<setup key="network" title="Network setup">
 			<item text="Use DHCP">config.network.dhcp</item>
@@ -33,7 +33,7 @@
 <!--			<item text="MAC Address">config.network.mac</item>-->
 			<item text="Activate network settings">config.network.activate</item>
 		</setup>
-		<setup key="RFmod" title="UHF Modulator">
+		<setup key="RFmod" title="RF output">
 			<item text="Modulator">config.rfmod.enable</item>
 			<item text="Test mode">config.rfmod.test</item>
 			<item text="Sound">config.rfmod.sound</item>
@@ -48,25 +48,12 @@
 			<item text="Alpha">config.osd.alpha</item>
 			<item text="Brightness">config.osd.bright</item>
 			<item text="Contrast">config.osd.contrast</item>
-<!--			<item text="Language">config.osd.language</item>-->
 		</setup>
 		<setup key="lcd" title="LCD Setup">
 			<item text="Brightness">config.lcd.bright</item>
 			<item text="Contrast">config.lcd.contrast</item>
 			<item text="Standby">config.lcd.standby</item>
-			<item text="Invert">config.lcd.invert</item>
-		</setup>
-		<setup key="parental" title="Parental Control">
-			<item text="Parental Lock">config.parental.lock</item>
-			<item text="Setup Lock">config.parental.setuplock</item>
-		</setup>
-		<setup key="expert" title="Expert Setup">
-			<item text="Record Splitsize">config.expert.splitsize</item>
-			<item text="Show Satposition">config.expert.satpos</item>
-			<item text="Fast zapping">config.expert.fastzap</item>
-			<item text="Skip confirmations">config.expert.skipconfirm</item>
-			<item text="Hide error windows">config.expert.hideerrors</item>
-			<item text="Auto show inforbar">config.expert.autoinfo</item>
+			<item text="Invert display">config.lcd.invert</item>
 		</setup>
 		<setup key="satconfig" title="Sat / Dish Setup">
 			<item text="Tuner Slot">config.sat.tunerslot</item>
@@ -74,7 +61,7 @@
 			<item text="DiSEqC">config.sat.diseqc</item>
 			<item text="Longitude">config.sat.diseqca</item>
 			<item text="Latitude">config.sat.diseqcb</item>
-			<item text="use power delta" >config.sat.diseqcc</item>
+			<item text="Use power measurement" >config.sat.diseqcc</item>
 			<!--<item text="DiSEqC D">config.sat.diseqcd</item>-->
 		</setup>
 </setupxml>
