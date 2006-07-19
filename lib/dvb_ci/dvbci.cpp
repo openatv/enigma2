@@ -6,6 +6,7 @@
 #include <lib/base/ebase.h>
 
 #include <lib/base/eerror.h>
+#include <lib/base/nconfig.h> // access to python config
 #include <lib/dvb/pmt.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_session.h>
@@ -217,6 +218,24 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 	}
 }
 
+static bool canDescrambleMultipleServices(int slotid)
+{
+	char configStr[255];
+	snprintf(configStr, 255, "config.ci%d.canDescrambleMultipleServices", slotid);
+	std::string str;
+	ePythonConfigQuery::getConfigValue(configStr, str);
+	eDebug("str is %s", str.empty()?"empty" : str.c_str());
+	if ( str == "auto" )
+	{
+		std::string appname = eDVBCI_UI::getInstance()->getAppName(slotid);
+		if (appname.find("AlphaCrypt") != std::string::npos)
+			return true;
+	}
+	else if (str == "yes")
+		return true;
+	return false;
+}
+
 void eDVBCIInterfaces::recheckPMTHandlers()
 {
 //	eDebug("recheckPMTHAndlers()");
@@ -278,7 +297,6 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						{
 							if ( tmp->cislot )
 							{
-								bool canHandleMultipleServices=false;
 								eServiceReferenceDVB ref2;
 								tmp->pmthandler->getServiceReference(ref2);
 								eDVBChannelID s1, s2;
@@ -286,15 +304,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								{
 									ref.getChannelID(s1);
 									ref2.getChannelID(s2);
-									// FIXME .. build a "ci can handle multiple services" config entry
-									// Yes / No / Auto
-									if ( eDVBCI_UI::getInstance()->getAppName(ci_it->getSlotID()) == "AlphaCrypt" )
-									{
-										canHandleMultipleServices = true;
-										eDebug("Alphacrypt can handle multiple services");
-									}
 								}
-								if (ref == ref2 || (s1 == s2 && canHandleMultipleServices) )
+								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(ci_it->getSlotID())))
 								{
 									it->cislot = tmp->cislot;
 									++it->cislot->use_count;
