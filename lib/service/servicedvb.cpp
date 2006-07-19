@@ -794,6 +794,29 @@ RESULT eDVBServicePlay::start()
 
 RESULT eDVBServicePlay::stop()
 {
+		/* add bookmark for last play position */
+	if (m_is_pvr)
+	{
+		pts_t play_position;
+		if (!getPlayPosition(play_position))
+		{
+				/* remove last position */
+			for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end();)
+			{
+				if (i->what == 3) /* current play position */
+				{
+					m_cue_entries.erase(i);
+					i = m_cue_entries.begin();
+					continue;
+				} else
+					++i;
+			}
+			
+			m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
+			m_cuesheet_changed = 1;
+		}
+	}
+
 	stopTimeshift(); /* in case timeshift was enabled, remove buffer etc. */
 
 	m_service_handler_timeshift.free();
@@ -1806,7 +1829,7 @@ void eDVBServicePlay::loadCuesheet()
 #endif
 			what = ntohl(what);
 			
-			if (what > 2)
+			if (what > 3)
 				break;
 			
 			m_cue_entries.insert(cueEntry(where, what));
@@ -1862,7 +1885,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	if (!m_cutlist_enabled)
 	{
 		m_cue->commitSpans();
-		eDebug("cutlists where disabled");
+		eDebug("cutlists were disabled");
 		return;
 	}
 
@@ -1883,7 +1906,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 				continue;
 			} else if (i->what == 1) /* out */
 				out = i++->where;
-			else /* mark */
+			else /* mark (2) or last play position (3) */
 			{
 				i++;
 				continue;
