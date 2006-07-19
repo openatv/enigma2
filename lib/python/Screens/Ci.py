@@ -15,6 +15,13 @@ from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPytho
 
 TYPE_MENU = 0
 TYPE_CONFIG = 1
+MAX_NUM_CI = 4
+
+def InitCiConfig():
+	config.ci = [ ]
+	for slot in range(MAX_NUM_CI):
+		config.ci.append(ConfigSubsection())
+		config.ci[slot].canDescrambleMultipleServices = configElement("config.ci%d.canDescrambleMultipleServices"%(slot), configSelection, 0, (("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))))
 
 class CiMmi(Screen):
 	def __init__(self, session, slotid, action):
@@ -264,25 +271,41 @@ class CiSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "CiSelectionActions"],
 			{
+				"left": self.keyLeft,
+				"right": self.keyLeft,
 				"ok": self.okbuttonClick,
 				"cancel": self.cancel
-			})
+			},-1)
 
 		self.dlg = None
 		self.state = { }
 		self.list = [ ]
 
-		for slot in range(4):
+		for slot in range(MAX_NUM_CI):
 			state = eDVBCI_UI.getInstance().getState(slot)
-			self.appendEntries(slot, state) # FIXME more than one CI
-			CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
+			if state != -1:
+				self.appendEntries(slot, state)
+				CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
 
-		menuList = MenuList(list)
+		menuList = ConfigList(list)
 		menuList.list = self.list
 		menuList.l.setList(self.list)
 		self["entries"] = menuList
+
+	def keyConfigEntry(self, key):
+		try:
+			self["entries"].handleKey(key)
+			self["entries"].getCurrent()[1].save()
+		except:
+			pass
+
+	def keyLeft(self):
+		self.keyConfigEntry(config.key["prevElement"])
+
+	def keyRight(self):
+		self.keyConfigEntry(config.key["nextElement"])
 
 	def appendEntries(self, slot, state):
 		self.state[slot] = state
@@ -297,6 +320,8 @@ class CiSelection(Screen):
 			#get appname
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
 			self.list.append( (appname, 2, slot) )
+
+		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)
@@ -337,7 +362,7 @@ class CiSelection(Screen):
 
 	def okbuttonClick(self):
 		cur = self["entries"].getCurrent()
-		if cur:
+		if cur and len(cur) > 2:
 			action = cur[1]
 			slot = cur[2]
 			if action == 0:		#reset

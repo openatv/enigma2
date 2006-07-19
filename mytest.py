@@ -484,6 +484,9 @@ Components.RFmod.InitRFmod()
 
 import Components.NimManager
 
+import Screens.Ci
+Screens.Ci.InitCiConfig()
+
 # first, setup a screen
 try:
 	runScreenTest()

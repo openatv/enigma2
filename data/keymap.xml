@@ -383,6 +383,11 @@
 		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
 	</map>
 	
+	<map context="CiSelectionActions">
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+	</map>
+
 	<map context="PiPSetupActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
