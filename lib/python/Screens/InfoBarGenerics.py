@@ -299,16 +299,39 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
-		if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
-			if self.servicelist.inBouquet() and self.servicelist.atBegin():
-				self.servicelist.prevBouquet()
-		self.servicelist.moveUp()
+		if self.servicelist.inBouquet():
+			prev = self.servicelist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
+						if self.servicelist.atBegin():
+							self.servicelist.prevBouquet()
+					self.servicelist.moveUp()
+					cur = self.servicelist.getCurrentSelection()
+					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						break
+		else:
+			self.servicelist.moveUp()
 		self.servicelist.zap()
 		self.doShow()
 
 	def zapDown(self):
-		if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes" and self.servicelist.inBouquet() and self.servicelist.atEnd():
-			self.servicelist.nextBouquet()
+		if self.servicelist.inBouquet():
+			prev = self.servicelist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
+						if self.servicelist.atEnd():
+							self.servicelist.nextBouquet()
+						else:
+							self.servicelist.moveDown()
+					else:
+						self.servicelist.moveDown()
+					cur = self.servicelist.getCurrentSelection()
+					if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+						break
 		else:
 			self.servicelist.moveDown()
 		self.servicelist.zap()

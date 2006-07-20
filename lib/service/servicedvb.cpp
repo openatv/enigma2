@@ -506,11 +506,11 @@ RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 	return -1;
 }
 
-RESULT eDVBServiceList::addService(eServiceReference &ref)
+RESULT eDVBServiceList::addService(eServiceReference &ref, eServiceReference before)
 {
 	if (!m_bouquet)
 		return -1;
-	return m_bouquet->addService(ref);
+	return m_bouquet->addService(ref, before);
 }
 
 RESULT eDVBServiceList::removeService(eServiceReference &ref)

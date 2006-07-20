@@ -11,7 +11,8 @@ class eListboxServiceContent: public virtual iListboxContent
 public:
 	eListboxServiceContent();
 
-	void addService(const eServiceReference &ref);
+	void addService(const eServiceReference &ref, bool beforeCurrent=false);
+	void removeCurrent();
 	void FillFinished();
 
 	void setIgnoreService( const eServiceReference &service );
@@ -19,7 +20,9 @@ public:
 	void getCurrent(eServiceReference &ref);
 	
 	int getNextBeginningWithChar(char c);
-
+	int getPrevMarkerPos();
+	int getNextMarkerPos();
+	
 		/* support for marked services */
 	void initMarked();
 	void addMarked(const eServiceReference &ref);
@@ -43,6 +46,7 @@ public:
 		/* only in complex mode: */
 	enum {
 		celServiceNumber,
+		celMarkerPixmap,
 		celFolderPixmap,
 		celServiceName,
 		celServiceTypePixmap,
@@ -55,6 +59,7 @@ public:
 		picDVB_T,
 		picDVB_C,
 		picFolder,
+		picMarker,
 		picElements
 	};
 

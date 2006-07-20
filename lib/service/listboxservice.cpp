@@ -5,9 +5,29 @@
 #include <lib/dvb/pmt.h>
 #include <lib/python/connections.h>
 
-void eListboxServiceContent::addService(const eServiceReference &service)
+void eListboxServiceContent::addService(const eServiceReference &service, bool beforeCurrent)
 {
-	m_list.push_back(service);
+	if (beforeCurrent && m_size)
+	{
+		m_list.insert(m_cursor, service);
+		++m_size;
+		--m_cursor;
+	}
+	else
+		m_list.push_back(service);
+}
+
+void eListboxServiceContent::removeCurrent()
+{
+	if (m_size && m_listbox)
+	{
+		if (m_cursor_number == m_size-1)
+			m_list.erase(m_cursor--);
+		else
+			m_list.erase(m_cursor++);
+		--m_size;
+		m_listbox->entryRemoved(m_cursor_number);
+	}
 }
 
 void eListboxServiceContent::FillFinished()
@@ -85,6 +105,38 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 		}
 	}
 	return 0;
+}
+
+int eListboxServiceContent::getPrevMarkerPos()
+{
+	if (!m_listbox)
+		return 0;
+	list::iterator i(m_cursor);
+	int index = m_cursor_number;
+	while (index)
+	{
+		--i;
+		--index;
+		if (i->flags & eServiceReference::isMarker)
+			break;
+	}
+	return index;
+}
+
+int eListboxServiceContent::getNextMarkerPos()
+{
+	if (!m_listbox)
+		return 0;
+	list::iterator i(m_cursor);
+	int index = m_cursor_number;
+	while (index < (m_size-1))
+	{
+		++i;
+		++index;
+		if (i->flags & eServiceReference::isMarker)
+			break;
+	}
+	return index;
 }
 
 void eListboxServiceContent::initMarked()
@@ -377,7 +429,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		if (m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 			painter.setForegroundColor(gRGB(0xbbbbbb));
 
-		int xoffset=0;  // used as offset when painting the folder symbol
+		int xoffset=0;  // used as offset when painting the folder/marker symbol
 
 		for (int e = 0; e < celElements; ++e)
 		{
@@ -394,8 +446,21 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 				case celServiceNumber:
 				{
+					if (m_cursor->flags & eServiceReference::isMarker)
+						continue;
 					char bla[10];
-					sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1);
+				/* how we can do this better? :) */
+					int markers_before=0;
+					{
+						list::iterator tmp=m_cursor;
+						while(tmp != m_list.begin())
+						{
+							--tmp;
+							if (tmp->flags & eServiceReference::isMarker)
+								++markers_before;
+						}
+					}
+					sprintf(bla, "%d", m_numberoffset + m_cursor_number + 1 - markers_before);
 					text = bla;
 					flags|=gPainter::RT_HALIGN_RIGHT;
 					break;
@@ -455,17 +520,23 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
 			}
-			else if (e == celServiceTypePixmap || e == celFolderPixmap)
+			else if (e == celServiceTypePixmap || e == celFolderPixmap || e == celMarkerPixmap)
 			{
 				int orbpos = m_cursor->getUnsignedData(4) >> 16;
 				ePtr<gPixmap> &pixmap =
 					(e == celFolderPixmap) ? m_pixmaps[picFolder] :
+					(e == celMarkerPixmap) ? m_pixmaps[picMarker] :
 					(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
 					(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
 				if (pixmap)
 				{
 					eSize pixmap_size = pixmap->size();
-					eRect area = m_element_position[e == celFolderPixmap ? celServiceName : celServiceInfo];
+					int p = celServiceInfo;
+					if (e == celFolderPixmap)
+						p = celServiceName;
+					else if (e == celMarkerPixmap)
+						p = celServiceNumber;
+					eRect area = m_element_position[p];
 					int correction = (area.height() - pixmap_size.height()) / 2;
 
 					if (m_cursor->flags & eServiceReference::flagDirectory)
@@ -473,6 +544,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (e != celFolderPixmap)
 							continue;
 						xoffset = pixmap_size.width() + 8;
+					}
+					else if (m_cursor->flags & eServiceReference::isMarker)
+					{
+						if (e != celMarkerPixmap)
+							continue;
 					}
 					else
 					{
