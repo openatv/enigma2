@@ -41,7 +41,7 @@ public:
 	
 	RESULT startEdit(ePtr<iMutableServiceList> &);
 	RESULT flushChanges();
-	RESULT addService(eServiceReference &ref);
+	RESULT addService(eServiceReference &ref, eServiceReference before);
 	RESULT removeService(eServiceReference &ref);
 	RESULT moveService(eServiceReference &ref, int pos);
 	RESULT setListName(const std::string &name);

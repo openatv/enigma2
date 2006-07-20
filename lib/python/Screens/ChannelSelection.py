@@ -86,18 +86,17 @@ class ChannelContextMenu(Screen):
 					if current_sel_path.find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 						menu.append((_("remove all new found flags"), self.removeAllNewFoundFlags))
 				if inBouquet:
-					menu.append((_("remove service"), self.removeCurrentService))
+					menu.append((_("remove entry"), self.removeCurrentService))
 				if current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					menu.append((_("remove new found flag"), self.removeNewFoundFlag))
-
-			if haveBouquets:
-				menu.append((_("add bouquet..."), self.showBouquetInputBox))
-				if inBouquetRootList:
-					menu.append((_("remove bouquet"), self.removeBouquet))
+			else:
+					menu.append((_("add bouquet"), self.showBouquetInputBox))
+					menu.append((_("remove entry"), self.removeBouquet))
 
 		if inBouquet: # current list is editable?
 			if not csel.bouquet_mark_edit:
 				if not csel.movemode:
+					menu.append((_("add marker"), self.showMarkerInputBox))
 					menu.append((_("enable move mode"), self.toggleMoveMode))
 					if not inBouquetRootList:
 						if haveBouquets:
@@ -128,7 +127,8 @@ class ChannelContextMenu(Screen):
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
-			self.csel.addBouquet(bouquet, None, True)
+			self.csel.addBouquet(bouquet, None)
+		self.close()
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -154,6 +154,14 @@ class ChannelContextMenu(Screen):
 
 	def removeBouquet(self):
 		self.csel.removeBouquet()
+		self.close()
+
+	def showMarkerInputBox(self):
+		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, type=Input.TEXT)
+
+	def markerInputCallback(self, marker):
+		if marker is not None:
+			self.csel.addMarker(marker)
 		self.close()
 
 	def addCurrentServiceToBouquet(self, dest):
@@ -263,7 +271,25 @@ class ChannelSelectionEdit:
 				name += '_'
 		return name
 
-	def addBouquet(self, bName, services, refresh=False):
+	def addMarker(self, name):
+		current = self.servicelist.getCurrent()
+		mutableList = self.getMutableList()
+		cnt = 0
+		while mutableList:
+			str = '1:64:%d:0:0:0:0:0:0:0::%s'%(cnt, name)
+			ref = eServiceReference(str)
+			if current and current.valid():
+				if not mutableList.addService(ref, current):
+					self.servicelist.addService(ref, True)
+					mutableList.flushChanges()
+					break
+			elif not mutableList.addService(ref):
+				self.servicelist.addService(ref, True)
+				mutableList.flushChanges()
+				break
+			cnt+=1
+
+	def addBouquet(self, bName, services):
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
@@ -285,9 +311,11 @@ class ChannelSelectionEdit:
 						for service in services:
 							if mutableBouquet.addService(service):
 								print "add", service.toString(), "to new bouquet failed"
+							else:
+								current = self.servicelist.getCurrent()
+								if current and current.toString() == self.bouquet_rootstr:
+									self.servicelist.addService(service, True)
 					mutableBouquet.flushChanges()
-					if refresh:
-						self.setRoot(self.getRoot())
 				else:
 					print "get mutable list for new created bouquet failed"
 			else:
@@ -316,7 +344,6 @@ class ChannelSelectionEdit:
 			remove(filename)
 		except OSError:
 			print "error during remove of", filename
-		eDVBDB.getInstance().reloadBouquets()
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
 	def startMarkedEdit(self):
@@ -384,7 +411,7 @@ class ChannelSelectionEdit:
 			if not mutableList.removeService(ref):
 				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
-				self.setRoot(self.getRoot())
+				self.servicelist.removeCurrent()
 
 	def addCurrentServiceToBouquet(self, dest):
 		mutableList = self.getMutableList(dest)
@@ -472,6 +499,8 @@ class ChannelSelectionBase(Screen):
 				"showSatellites": self.showSatellites,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
+				"nextMarker": self.nextMarker,
+				"prevMarker": self.prevMarker,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -834,6 +863,12 @@ class ChannelSelectionBase(Screen):
 					else:
 						self.showAllServices()
 
+	def nextMarker(self):
+		self.servicelist.moveToNextMarker()
+
+	def prevMarker(self):
+		self.servicelist.moveToPrevMarker()
+
 HISTORYSIZE = 20
 
 #config for lastservice
@@ -930,7 +965,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.enterPath(ref)
 		elif self.bouquet_mark_edit:
 			self.doMark()
-		else:
+		elif not (ref.flags & 64): # no marker
 			self.zap()
 			self.close(ref)
 
@@ -1156,7 +1191,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			self.enterPath(ref)
 		elif self.bouquet_mark_edit:
 			self.doMark()
-		else:
+		elif not (ref.flags & 64): # no marker
 			playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 			if playingref is None or playingref != ref:
 				self.session.nav.playService(ref)
@@ -1194,7 +1229,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		ref = self.getCurrentSelection()
 		if (ref.flags & 7) == 7:
 			self.enterPath(ref)
-		else:
+		elif not (ref.flags & 64):
 			ref = self.getCurrentSelection()
 			self.close(ref)
 

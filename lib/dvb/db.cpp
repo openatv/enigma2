@@ -12,13 +12,19 @@
 
 DEFINE_REF(eDVBService);
 
-RESULT eBouquet::addService(const eServiceReference &ref)
+RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference before)
 {
 	list::iterator it =
 		std::find(m_services.begin(), m_services.end(), ref);
 	if ( it != m_services.end() )
 		return -1;
-	m_services.push_back(ref);
+	if (before.valid())
+	{
+		it = std::find(m_services.begin(), m_services.end(), before);
+		m_services.insert(it, ref);
+	}
+	else
+		m_services.push_back(ref);
 	return 0;
 }
 

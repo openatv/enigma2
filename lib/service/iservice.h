@@ -38,7 +38,8 @@ public:
 		flagDirectory=isDirectory|mustDescent|canDescent,
 		shouldSort=8,			// should be ASCII-sorted according to service_name. great for directories.
 		hasSortKey=16,		// has a sort key in data[3]. not having a sort key implies 0.
-		sort1=32					// sort key is 1 instead of 0
+		sort1=32,					// sort key is 1 instead of 0
+		isMarker=64			// Marker
 	};
 	int flags; // flags will NOT be compared.
 
@@ -540,7 +541,7 @@ public:
 		/* flush changes */
 	virtual RESULT flushChanges()=0;
 		/* adds a service to a list */
-	virtual RESULT addService(eServiceReference &ref)=0;
+	virtual RESULT addService(eServiceReference &ref, eServiceReference before=eServiceReference())=0;
 		/* removes a service from a list */
 	virtual RESULT removeService(eServiceReference &ref)=0;
 		/* moves a service in a list, only if list suppports a specific sort method. */

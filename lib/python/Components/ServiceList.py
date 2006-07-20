@@ -19,6 +19,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "marker-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picMarker, pic)
+
 		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_s-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
@@ -66,6 +70,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.instance.moveSelectionTo(index)
 		print "Moving to character " + str(char)
 
+	def moveToNextMarker(self):
+		idx = self.l.getNextMarkerPos()
+		self.instance.moveSelectionTo(idx)
+
+	def moveToPrevMarker(self):
+		idx = self.l.getPrevMarkerPos()
+		self.instance.moveSelectionTo(idx)
+
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
@@ -107,8 +119,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if not justSet:
 			self.l.sort()
 
-	def addService(self, service):
-		self.l.addService(service)
+	def removeCurrent(self):
+		self.l.removeCurrent()
+
+	def addService(self, service, beforeCurrent=False):
+		self.l.addService(service, beforeCurrent)
 
 	def finishFill(self):
 		self.l.FillFinished()

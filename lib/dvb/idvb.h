@@ -34,7 +34,7 @@ struct eBouquet
 	list m_services;
 // the following five methods are implemented in db.cpp
 	RESULT flushChanges();
-	RESULT addService(const eServiceReference &);
+	RESULT addService(const eServiceReference &, eServiceReference before=eServiceReference());
 	RESULT removeService(const eServiceReference &);
 	RESULT moveService(const eServiceReference &, unsigned int);
 	RESULT setListName(const std::string &name);
