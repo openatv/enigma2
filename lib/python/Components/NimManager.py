@@ -584,6 +584,11 @@ class NimManager:
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
 			configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+
+			if configMode == "equal":
+				slotid=0 #FIXME add handling for more than two tuners !!!
+				configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+
 			if configMode == "simple":
 				if (config.Nims[slotid].diseqcMode.value <= 3):
 					list.append(self.satList[config.Nims[slotid].diseqcA.value])
@@ -599,6 +604,7 @@ class NimManager:
 				for x in self.satList:
 					if config.Nims[slotid].advanced.sat[x[1]].lnb.value != 0:
 						list.append(x)
+
 		return list
 
 	def getRotorSatListForNim(self, slotid):
