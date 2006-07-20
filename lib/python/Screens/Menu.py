@@ -16,7 +16,7 @@ import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
-from Screens.Setup import *
+from Screens.Setup import Setup, getSetupTitle
 
 from Tools import XMLTools
 
@@ -31,17 +31,6 @@ from Tools import XMLTools
 menufile = file(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.dom.minidom.parseString(menufile.read())
 menufile.close()
-
-
-def getValbyAttr(x, attr):
-	for p in range(x.attributes.length):
-		a = x.attributes.item(p)
-		attrib = str(a.name)
-		value = str(a.value)
-		if attrib == attr:
-			return value
-			
-	return ""
 
 class boundFunction:
 	def __init__(self, fnc, *args):
@@ -130,15 +119,14 @@ class Menu(Screen):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def addMenu(self, destList, node):
-		MenuTitle = _(getValbyAttr(node, "text"))
-		if MenuTitle != "":																	#check for title
-			x = getValbyAttr(node, "flushConfigOnClose")
-			if x == "1":
-				a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
-			else:
-				a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
-			#TODO add check if !empty(node.childNodes)
-			destList.append((MenuTitle, a))
+		MenuTitle = _(node.getAttribute("text").encode("UTF-8") or "??")
+		x = node.getAttribute("flushConfigOnClose")
+		if x:
+			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
+		else:
+			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
+		#TODO add check if !empty(node.childNodes)
+		destList.append((MenuTitle, a))
 
 	def menuClosedWithConfigFlush(self, *res):
 		configfile.save()
@@ -149,37 +137,43 @@ class Menu(Screen):
 			self.close(True)
 
 	def addItem(self, destList, node):
-		ItemText = _(getValbyAttr(node, "text"))
-		if ItemText != "":																	#check for name
-			for x in node.childNodes:
-				if x.nodeType != xml.dom.minidom.Element.nodeType:
-					continue
-				elif x.tagName == 'screen':
-					module = getValbyAttr(x, "module")
-					screen = getValbyAttr(x, "screen")
+		item_text = node.getAttribute("text").encode("UTF-8")
+		for x in node.childNodes:
+			if x.nodeType != xml.dom.minidom.Element.nodeType:
+				continue
+			elif x.tagName == 'screen':
+				module = x.getAttribute("module") or None
+				screen = x.getAttribute("screen") or None
 
-					if len(screen) == 0:
-						screen = module
+				if screen is None:
+					screen = module
 
-					if module != "":
-						module = "Screens." + module
+				print module, screen
+				if module:
+					module = "Screens." + module
+				else:
+					module = ""
+				
+				# check for arguments. they will be appended to the 
+				# openDialog call
+				args = XMLTools.mergeText(x.childNodes)
+				screen += ", " + args
 					
-					# check for arguments. they will be appended to the 
-					# openDialog call
-					args = XMLTools.mergeText(x.childNodes)
-					screen += ", " + args
-					
-					destList.append((ItemText, boundFunction(self.runScreen, (module, screen))))
-					return
-				elif x.tagName == 'code':
-					destList.append((ItemText, boundFunction(self.execText, XMLTools.mergeText(x.childNodes))))
-					return
-				elif x.tagName == 'setup':
-					id = getValbyAttr(x, "id")
-					destList.append((ItemText, boundFunction(self.openSetup, id)))
-					return
-			
-			destList.append((ItemText,self.nothing))
+				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen))))
+				return
+			elif x.tagName == 'code':
+				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes))))
+				return
+			elif x.tagName == 'setup':
+				id = x.getAttribute("id")
+				if item_text == "":
+					item_text = _(getSetupTitle(id)) + "..."
+				else:
+					item_text = _(item_text)
+				destList.append((item_text, boundFunction(self.openSetup, id)))
+				return
+		
+		destList.append((item_text,self.nothing))
 
 
 	def __init__(self, session, parent, childNode):
@@ -199,7 +193,7 @@ class Menu(Screen):
 				self.addMenu(list, x)
 				count += 1
 			elif x.tagName == "id":
-				menuID = getValbyAttr(x, "val")
+				menuID = x.getAttribute("val")
 				count = 0
 			if menuID != -1:
 				if menuupdater.updatedMenuAvailable(menuID):
@@ -218,9 +212,9 @@ class Menu(Screen):
 				"menu": self.closeRecursive
 			})
 		
-		a = getValbyAttr(parent, "title")
-		if a == "":														#if empty use name
-			a = _(getValbyAttr(parent, "text"))
+		a = parent.getAttribute("title").encode("UTF-8") or None
+		if a is None:
+			a = _(parent.getAttribute("text").encode("UTF-8"))
 		self["title"] = Header(a)
 		self.menu_title = a
 
