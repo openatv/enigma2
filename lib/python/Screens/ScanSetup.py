@@ -12,14 +12,17 @@ def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
 		hierarchy = 4):
+
+#	print "freq", frequency, "inv", inversion, "bw", bandwidth, "fech", fechigh, "fecl", feclow, "mod", modulation, "tm", transmission, "guard", guard, "hierarchy", hierarchy
+
 	# WARNING: normally, enums are working directly.
 	# Don't copy this (very bad)!! Instead either fix swig (good) or
 	# move this into a central place.
 	Bw8MHz = 0
 	Bw7MHz = 1
 	Bw6MHz = 2
-	Bw5MHz = 3
-	BwAuto = 4
+	#Bw5MHz = 3 #not implemented for e1 compatibilty
+	BwAuto = 3
 	
 	f1_2 = 0
 	f2_3 = 1
@@ -30,8 +33,8 @@ def buildTerTransponder(frequency,
 	
 	TM2k = 0
 	TM8k = 1
-	TM4k = 2
-	TMAuto = 3
+	#TM4k = 2  #not implemented for e1 compatibilty
+	TMAuto = 2
 	
 	GI_1_32 = 0
 	GI_1_16 = 1
@@ -62,7 +65,7 @@ def buildTerTransponder(frequency,
 	parm.bandwidth = [Bw8MHz, Bw7MHz, Bw6MHz, BwAuto][bandwidth] # Bw5MHz unsupported
 	parm.code_rate_HP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][fechigh]
 	parm.code_rate_LP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][feclow]
-	parm.modulation = [QPSK, QAM16, Auto][modulation] # QAM64 unsupported
+	parm.modulation = [QPSK, QAM16, QAM64, Auto][modulation]
 	parm.transmission_mode = [TM2k, TM8k, TMAuto][transmission] # TM4k unsupported
 	parm.guard_interval = [GI_1_32, GI_1_16, GI_1_8, GI_1_4, GI_Auto][guard]
 	parm.hierarchy = [HNone, H1, H2, H4, HAuto][hierarchy]
@@ -77,13 +80,11 @@ def getInitialTransponderList(tlist, pos):
 			parm = eDVBFrontendParametersSatellite()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
-			parm.polarisation = x[3]#lookup_sat_polarisation[x[3]] # eDVBFrontendParametersSatellite.Polarisation.Vertical
-			parm.fec = x[4]			# eDVBFrontendParametersSatellite.FEC.f3_4;
-			#parm.fec = 6					# AUTO
-			#parm.inversion = 1 	#eDVBFrontendParametersSatellite.Inversion.Off;
-			parm.inversion = 2 		#AUTO
+			parm.polarisation = x[3]
+			parm.fec = x[4]
+			parm.inversion = 2 # AUTO
 			parm.orbital_position = pos
-			parm.system = x[5]  #DVB-S or DVB-S2
+			parm.system = x[5]
 			parm.modulation = x[6]
 			tlist.append(parm)
 
@@ -91,36 +92,26 @@ def getInitialCableTransponderList(tlist, cable):
 	list = nimmanager.getTranspondersCable(cable)
 
 	for x in list:
-		if x[0] == 1:		#CABLE
+		if x[0] == 1: #CABLE
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = x[1]
 			parm.symbol_rate = x[2]
-			parm.modulation = x[3] # AUTO
-			parm.fec_inner = x[4] # AUTO
+			parm.modulation = x[3]
+			parm.fec_inner = x[4]
 			parm.inversion = 2 # AUTO
 			tlist.append(parm)
 
 def getInitialTerrestrialTransponderList(tlist, region):
 	list = nimmanager.getTranspondersTerrestrial(region)
-	
 
-#		inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
-#		modulation = 2, transmission = 2, guard = 4,
-#		hierarchy = 4):
+	#self.transponders[self.parsedTer].append((2,freq,bw,const,crh,crl,guard,transm,hierarchy,inv))
+
+	#def buildTerTransponder(frequency, inversion = 2, bandwidth = 3, fechigh = 6, feclow = 6,
+				#modulation = 2, transmission = 2, guard = 4, hierarchy = 4):
 
 	for x in list:
-#self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
-		if x[0] == 2:		#TERRESTRIAL
-			# FIXME: we need to convert the other parameters...
-			
-				# convert terrestrial.xml bandwidth to our enum
-			#if x[2] in [0, 1]:
-			#	bandwidth = [1, 0][x[2]]
-			#else:
-			#	bandwidth = 3 # auto
-			#
-			#parm = buildTerTransponder(x[1], bandwidth = [1, 0][x[2]])
-			parm = buildTerTransponder(x[1], inversion = x[9], bandwidth = x[2])
+		if x[0] == 2: #TERRESTRIAL
+			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8])
 			tlist.append(parm)
 
 
@@ -392,9 +383,9 @@ class ScanSetup(Screen):
 			# WORKAROUND: we can't use BW-auto
 			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, (("8MHz", "8MHz"), ("7MHz", "7MHz"), ("6MHz", "6MHz")))
 			#, ("auto", _("Auto"))))
-			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 6, (("none", _("None")), "1/2", "2/3", "3/4", "5/6", "7/8", _("Auto")))
-			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 6, (_("None"), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
-			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 2, (("qpsk", "QPSK"), ("qam16", "QAM16"), ("auto", _("Auto"))))
+			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 5, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
+			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 5, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
+			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 3, (("qpsk", "QPSK"), ("qam16", "QAM16"), ("qam64", "QAM64"), ("auto", _("Auto"))))
 			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 2, (("2k", "2K"), ("8k", "8K"), ("auto", _("Auto"))))
 			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 4, (("1_32", "1/32"), ("1_16", "1/16"), ("1_8", "1/8"), ("1_4", "1/4"), ("auto", _("Auto"))))
 			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 4, (("none", _("None")), ("1", "1"), ("2", "2"), ("4", "4"), ("auto", _("Auto"))))
@@ -453,25 +444,20 @@ class ScanSetup(Screen):
 		parm.system = system
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.polarisation = polarisation # eDVBFrontendParametersSatellite.Polarisation.Verti
-		parm.fec = self.fecmap[fec]			# eDVBFrontendParametersSatellite.FEC.f3_4;
-		#parm.fec = 6					# AUTO
-		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
-		#parm.inversion = 2 		#AUTO
+		parm.polarisation = polarisation
+		parm.fec = self.fecmap[fec]
+		parm.inversion = inversion
 		parm.orbital_position = int(orbital_position)
 		tlist.append(parm)
 
-	# FIXME use correct parameters
 	def addCabTransponder(self, tlist, frequency, symbol_rate, modulation, fec, inversion):
 		print "Add Cab: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(modulation) + " fec: " + str(fec) + " inversion: " + str(inversion)
 		parm = eDVBFrontendParametersCable()
 		parm.frequency = frequency * 1000
 		parm.symbol_rate = symbol_rate * 1000
-		parm.modulation = modulation # modulation # eDVBFrontendParametersSatellite.Polarisation.Verti
-		parm.fec = fec			# eDVBFrontendParametersSatellite.FEC.f3_4;
-		#parm.fec = 6					# AUTO
-		parm.inversion = inversion 	#eDVBFrontendParametersSatellite.Inversion.Off;
-		#parm.inversion = 2 		#AUTO
+		parm.modulation = modulation
+		parm.fec = self.fecmap[fec]
+		parm.inversion = inversion
 		tlist.append(parm)
 
 	def addTerTransponder(self, tlist, *args, **kwargs):
