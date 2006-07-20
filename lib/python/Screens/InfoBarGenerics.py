@@ -322,11 +322,8 @@ class InfoBarChannelSelection:
 			if prev:
 				prev = prev.toString()
 				while True:
-					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
-						if self.servicelist.atEnd():
-							self.servicelist.nextBouquet()
-						else:
-							self.servicelist.moveDown()
+					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes" and self.servicelist.atEnd():
+						self.servicelist.nextBouquet()
 					else:
 						self.servicelist.moveDown()
 					cur = self.servicelist.getCurrentSelection()
