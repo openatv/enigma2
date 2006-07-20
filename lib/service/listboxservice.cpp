@@ -22,7 +22,10 @@ void eListboxServiceContent::removeCurrent()
 	if (m_size && m_listbox)
 	{
 		if (m_cursor_number == m_size-1)
+		{
 			m_list.erase(m_cursor--);
+			--m_cursor_number;
+		}
 		else
 			m_list.erase(m_cursor++);
 		--m_size;
