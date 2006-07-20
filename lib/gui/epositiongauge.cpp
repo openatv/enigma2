@@ -8,6 +8,7 @@ ePositionGauge::ePositionGauge(eWidget *parent)
 	m_point_widget->setAlphatest(1);
 	m_position = 0;
 	m_length = 0;
+	m_have_foreground_color = 0;
 }
 
 ePositionGauge::~ePositionGauge()
@@ -117,18 +118,26 @@ int ePositionGauge::event(int event, void *data, void *data2)
 				}
 			}
 			
-			painter.setForegroundColor(gRGB(0x225b7395));
-			int xi = scale(in), xo = scale(out);
-			painter.fill(eRect(xi, 10, xo-xi, s.height()-14));
+			if (m_have_foreground_color)
+			{
+				painter.setForegroundColor(gRGB(m_foreground_color));
+				int xi = scale(in), xo = scale(out);
+				painter.fill(eRect(xi, 10, xo-xi, s.height()-14));
+			}
+			
 			in = m_length;
 			
 			if (i == m_cue_entries.end())
 				break;
 		}
 //		painter.setForegroundColor(gRGB(0x00000000));
-		painter.setForegroundColor(gRGB(0x225b7395));
-		painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
-		painter.fill(eRect(0, 2, 2, s.height() - 4));
+
+		if (m_have_foreground_color)
+		{
+			painter.setForegroundColor(gRGB(0x225b7395));
+			painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
+			painter.fill(eRect(0, 2, 2, s.height() - 4));
+		}
 		
 #if 0
 // border
@@ -165,4 +174,14 @@ int ePositionGauge::scale(const pts_t &val)
 	int width = size().width();
 
 	return width * val / m_length;
+}
+
+void ePositionGauge::setForegroundColor(const gRGB &col)
+{
+	if ((!m_have_foreground_color) || !(m_foreground_color == col))
+	{
+		m_foreground_color = col;
+		m_have_foreground_color = 1;
+		invalidate();
+	}
 }

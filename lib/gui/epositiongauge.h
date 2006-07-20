@@ -20,6 +20,7 @@ public:
 	void setPointer(gPixmap *pixmap, const ePoint &center);
 	
 	void setInOutList(PyObject *list);
+	void setForegroundColor(const gRGB &col);
 #ifndef SWIG
 protected:
 	int event(int event, void *data=0, void *data2=0);
@@ -53,6 +54,9 @@ private:
 	
 	std::multiset<cueEntry> m_cue_entries;
 	int scale(const pts_t &val);
+	
+	int m_have_foreground_color;
+	gRGB m_foreground_color;
 #endif
 };
 

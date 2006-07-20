@@ -186,7 +186,7 @@
 			<widget source="CurrentService" render="Label" position="475,60" size="75,20" halign="left" backgroundColor="dark" font="Regular;18">
 				<convert type="ServicePosition">Remaining</convert>
 			</widget>
-			<widget source="CurrentService" render="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5" >
+			<widget source="CurrentService" render="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5" foregroundColor="#225b7395">
 				<convert type="ServicePosition">Gauge</convert>
 			</widget>
 		</screen>
