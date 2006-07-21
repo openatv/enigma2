@@ -188,6 +188,8 @@ class configSequenceArg:
 		if (type == "IP"):
 			return (("."), [(0,255),(0,255),(0,255),(0,255)], "")
 		# configsequencearg.get ("MAC")
+		if (type == "POSITION"):
+			return ((","), [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], "")
 		if (type == "MAC"):
 			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], "")
 		# configsequencearg.get ("CLOCK")
