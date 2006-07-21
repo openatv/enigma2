@@ -348,12 +348,12 @@ class NimManager:
 				self.satList.append( (tname, tpos) )
 				self.parsedSat = int(tpos)
 			elif (name == "transponder"):
-				modulation = int(attrs.get('modulation',"1"))
-				system = int(attrs.get('system',"0"))
+				modulation = int(attrs.get('modulation',"1")) # QPSK default
+				system = int(attrs.get('system',"0")) # DVB-S default
 				freq = int(attrs.get('frequency',""))
 				sr = int(attrs.get('symbol_rate',""))
 				pol = int(attrs.get('polarization',""))
-				fec = int(attrs.get('fec_inner',""))
+				fec = int(attrs.get('fec_inner',"0")) # AUTO default
 				if self.parsedSat in self.transponders:
 					pass
 				else:
@@ -376,8 +376,8 @@ class NimManager:
 			elif (name == "transponder"):
 				freq = int(attrs.get('frequency',""))
 				sr = int(attrs.get('symbol_rate',""))
-				mod = int(attrs.get('modulation',""))
-				fec = int(attrs.get('fec_inner',""))
+				mod = int(attrs.get('modulation',"3")) # QAM64 default
+				fec = int(attrs.get('fec_inner',"0")) # AUTO default
 				if self.parsedCab in self.transponders:
 					pass
 				else:
@@ -400,14 +400,18 @@ class NimManager:
 			elif (name == "transponder"):
 				# TODO finish this!
 				freq = int(attrs.get('centre_frequency',""))
-				bw = int(attrs.get('bandwidth',""))
-				const = int(attrs.get('constellation',""))
-				crh = int(attrs.get('code_rate_hp',""))
-				crl = int(attrs.get('code_rate_lp',""))
-				guard = int(attrs.get('guard_interval',""))
-				transm = int(attrs.get('transmission_mode',""))
-				hierarchy = int(attrs.get('hierarchy_information',""))
-				inv = int(attrs.get('inversion',""))
+				bw = int(attrs.get('bandwidth',"3")) # AUTO
+				const = int(attrs.get('constellation',"1")) # AUTO
+				crh = int(attrs.get('code_rate_hp',"5")) # AUTO
+				if crh > 5: # our terrestrial.xml is buggy... 6 for AUTO
+					crh = 5
+				crl = int(attrs.get('code_rate_lp',"5")) # AUTO
+				if crl > 5: # our terrestrial.xml is buggy... 6 for AUTO
+					crl = 5
+				guard = int(attrs.get('guard_interval',"4")) # AUTO
+				transm = int(attrs.get('transmission_mode',"2")) # AUTO
+				hierarchy = int(attrs.get('hierarchy_information',"4")) # AUTO
+				inv = int(attrs.get('inversion',"2")) # AUTO
 				if self.parsedTer in self.transponders:
 					pass
 				else:
