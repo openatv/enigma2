@@ -10,3 +10,7 @@ class FIFOList(MenuList):
 		self.list.append(item)
 		self.list = self.list[-self.len:]
 		self.l.setList(self.list)
+
+	def clear(self):
+		del self.list[:]
+		self.l.setList(self.list)

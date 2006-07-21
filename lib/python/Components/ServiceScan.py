@@ -78,6 +78,7 @@ class ServiceScan:
 		self.updatePass()
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.scan.newService.get().append(self.newService)
+		self.servicelist.clear()
 		self.state = self.Running
 		err = self.scan.start(self.feid, self.flags)
 		if err:
