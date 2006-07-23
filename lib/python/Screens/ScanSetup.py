@@ -515,10 +515,11 @@ class ScanSetup(Screen):
 
 		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
 			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
+				fec = currentConfigSelectionElement(config.scan.cab.fec)
 				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
 											  config.scan.cab.symbolrate.value[0],
 											  config.scan.cab.modulation.value + 1,
-											  config.scan.cab.fec.value,
+											  fec,
 											  config.scan.cab.inversion.value)
 				if currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
 					flags |= eComponentScan.scanNetworkSearch
