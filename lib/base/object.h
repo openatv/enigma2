@@ -25,15 +25,14 @@ public:
 	virtual void Release()=0;
 };
 
-class oRefCount
+struct oRefCount
 {
-	volatile int ref;
-public:
-	oRefCount(): ref(0) { }
-	operator volatile int&() { return ref; }
+	volatile int count;
+	oRefCount(): count(0) { }
+	operator volatile int&() { return count; }
 	~oRefCount() { 
 #ifdef OBJECT_DEBUG
-		if (ref) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, ref); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
+		if (count) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, ref); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
 #endif
 	}
 };
@@ -57,8 +56,8 @@ public:
 				"		sc		%0, %1	# try to store, checking for atomicity	\n" \
 				"		.set	mips0											\n" \
 				"		beqz	%0, 1b	# if not atomic (0), try again			\n" \
-				: "=&r" (temp), "=m" ((int)ref) \
-				: "m" ((int)ref) \
+				: "=&r" (temp), "=m" (ref.count) \
+				: "m" (ref.count) \
 				: ); \
 			} \
 			void c::Release() \
@@ -73,8 +72,8 @@ public:
 				"		sc		%0, %1				\n" \
 				"		.set	mips0				\n" \
 				"		beqz	%0, 1b				\n" \
-				: "=&r" (temp), "=m" ((int)ref) \
-				: "m" ((int)ref) \
+				: "=&r" (temp), "=m" (ref.count) \
+				: "m" (ref.count) \
 				: ); \
 				if (!ref) \
 					delete this; \
@@ -94,8 +93,8 @@ public:
 				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
 				"		stwcx.	%0, 0, %3	\n" \
 				"		bne-	1b			\n" \
-				: "=&r" (temp), "=m" ((int)ref) \
-				: "r" (1), "r" (&((int)ref)), "m" ((int)ref) \
+				: "=&r" (temp), "=m" (ref.count) \
+				: "r" (1), "r" (&ref.count), "m" (ref.count) \
 				: "cc"); \
 			} \
 			void c::Release() \
@@ -107,8 +106,8 @@ public:
 				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
 				"		stwcx.	%0, 0, %3	\n" \
 				"		bne-	1b			\n" \
-				: "=&r" (temp), "=m" ((int)ref) \
-				: "r" (1), "r" (&((int)ref)), "m" ((int)ref) \
+				: "=&r" (temp), "=m" (ref.count) \
+				: "r" (1), "r" (&ref.count), "m" (ref.count) \
 				: "cc"); \
 				if (!ref) \
 					delete this; \
@@ -127,7 +126,7 @@ public:
 					eSingleLocker l(ref_lock); \
 					++object_total_remaining; \
 					++ref; \
-					eDebug("OBJECT_DEBUG " #c "+%p now %d", this, (int)ref); \
+					eDebug("OBJECT_DEBUG " #c "+%p now %d", this, ref.count); \
 				} \
 				void c::Release() \
 				{ \
