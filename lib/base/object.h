@@ -27,10 +27,10 @@ public:
 
 class oRefCount
 {
-	int ref;
+	volatile int ref;
 public:
 	oRefCount(): ref(0) { }
-	operator int&() { return ref; }
+	operator volatile int&() { return ref; }
 	~oRefCount() { 
 #ifdef OBJECT_DEBUG
 		if (ref) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, ref); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
@@ -59,7 +59,7 @@ public:
 				"		beqz	%0, 1b	# if not atomic (0), try again			\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
-				: "memory"); \
+				: ); \
 			} \
 			void c::Release() \
 			{ \
@@ -75,7 +75,7 @@ public:
 				"		beqz	%0, 1b				\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
 				: "m" ((int)ref) \
-				: "memory"); \
+				: ); \
 				if (!ref) \
 					delete this; \
 			}
@@ -91,7 +91,7 @@ public:
 				__asm__ __volatile__( \
 				"1:		lwarx	%0, 0, %3	\n" \
 				"		add		%0, %2, %0	\n" \
-				"		dcbt	0, %3		\n" \
+				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
 				"		stwcx.	%0, 0, %3	\n" \
 				"		bne-	1b			\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
@@ -104,7 +104,7 @@ public:
 				__asm__ __volatile__( \
 				"1:		lwarx	%0, 0, %3	\n" \
 				"		subf	%0, %2, %0	\n" \
-				"		dcbt	0, %3		\n" \
+				"		dcbt	0, %3		# workaround for PPC405CR Errata\n" \
 				"		stwcx.	%0, 0, %3	\n" \
 				"		bne-	1b			\n" \
 				: "=&r" (temp), "=m" ((int)ref) \
