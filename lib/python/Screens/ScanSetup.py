@@ -63,8 +63,8 @@ def buildTerTransponder(frequency,
 
 	parm.inversion = [Off, On, Unknown][inversion]
 	parm.bandwidth = [Bw8MHz, Bw7MHz, Bw6MHz, BwAuto][bandwidth] # Bw5MHz unsupported
-	parm.code_rate_HP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][fechigh]
-	parm.code_rate_LP = [fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][feclow]
+	parm.code_rate_HP = [f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][fechigh]
+	parm.code_rate_LP = [f1_2, f2_3, f3_4, f5_6, f7_8, fAuto][feclow]
 	parm.modulation = [QPSK, QAM16, QAM64, Auto][modulation]
 	parm.transmission_mode = [TM2k, TM8k, TMAuto][transmission] # TM4k unsupported
 	parm.guard_interval = [GI_1_32, GI_1_16, GI_1_8, GI_1_4, GI_Auto][guard]
