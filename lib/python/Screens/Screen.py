@@ -113,3 +113,6 @@ class Screen(dict, HTMLSkin, GUISkin):
 		for val in self.values() + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()
+
+	def __repr__(self):
+		return str(type(self))

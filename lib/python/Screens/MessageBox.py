@@ -18,6 +18,8 @@ class MessageBox(Screen):
 		
 		self["text"] = Label(text)
 		
+		self.text = text
+		
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
 		self["InfoPixmap"] = Pixmap()
@@ -107,3 +109,6 @@ class MessageBox(Screen):
 			self.timer.stop()
 			self.setTitle(self.origTitle)
 			self.timerRunning = False
+
+	def __repr__(self):
+		return str(type(self)) + "(" + self.text + ")"
