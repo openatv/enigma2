@@ -86,6 +86,8 @@ class MoviePlayer(InfoBarShowHide, \
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
 		
+		self.is_closing = False
+		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
@@ -102,6 +104,7 @@ class MoviePlayer(InfoBarShowHide, \
 		self.session.nav.playService(service)
 
 	def leavePlayer(self):
+		self.is_closing = True
 		self.session.openWithCallback(self.leavePlayerConfirmed, MessageBox, _("Stop playing this movie?"))
 	
 	def leavePlayerConfirmed(self, answer):
