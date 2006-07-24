@@ -10,8 +10,8 @@ class ClockToText(Converter, object):
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
 	
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		if type == "WithSeconds":
 			self.type = self.WITH_SECONDS
 		elif type == "InMinutes":

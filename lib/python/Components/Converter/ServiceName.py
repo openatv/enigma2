@@ -5,8 +5,8 @@ class ServiceName(Converter, object):
 	NAME = 0
 	PROVIDER = 1
 
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		if type == "Provider":
 			self.type = self.PROVIDER
 		else:

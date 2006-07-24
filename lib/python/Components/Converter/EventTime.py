@@ -9,8 +9,8 @@ class EventTime(Poll, Converter, object):
 	PROGRESS = 3
 	DURATION = 4
 
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		Poll.__init__(self)
 		if type == "EndTime":
 			self.type = self.ENDTIME

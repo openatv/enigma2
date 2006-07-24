@@ -5,8 +5,8 @@ class EventName(Converter, object):
 	SHORT_DESCRIPTION = 1
 	EXTENDED_DESCRIPTION = 2
 
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		if type == "Description":
 			self.type = self.SHORT_DESCRIPTION
 		elif type == "ExtendedDescription":
@@ -17,7 +17,7 @@ class EventName(Converter, object):
 	def getText(self):
 		event = self.source.event
 		if event is None:
-			return ""
+			return "N/A"
 			
 		if self.type == self.NAME:
 			return event.getEventName()
