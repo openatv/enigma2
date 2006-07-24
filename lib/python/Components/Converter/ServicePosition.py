@@ -8,9 +8,9 @@ class ServicePosition(Converter, Poll, object):
 	TYPE_REMAINING = 2,
 	TYPE_GAUGE = 3
 	
-	def __init__(self, type, *args, **kwargs):
+	def __init__(self, type):
 		Poll.__init__(self)
-		Converter.__init__(self)
+		Converter.__init__(self, type)
 		if type == "Length":
 			self.type = self.TYPE_LENGTH
 		elif type == "Position":

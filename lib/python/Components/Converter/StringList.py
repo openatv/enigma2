@@ -4,8 +4,8 @@ from enigma import eListboxPythonStringContent
 
 class StringList(Converter):
 	"""Turns a simple python list into a list which can be used in a listbox."""
-	def __init__(self, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 
 	def changed(self):
 		self.content = eListboxPythonStringContent()
@@ -14,7 +14,7 @@ class StringList(Converter):
 		self.downstream_elements.changed()
 
 	def selectionChanged(self, index):
-		self.upstream_elements.selectionChanged(index)
+		self.source.selectionChanged(index)
 		# update all non-master targets
 		for x in self.downstream_elements:
 			if x is not self.master:

@@ -6,8 +6,8 @@ class FrontendInfo(Converter, object):
 	AGC = 2
 	LOCK = 3
 
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		if type == "BER":
 			self.type = self.BER
 		elif type == "SNR":

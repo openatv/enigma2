@@ -8,8 +8,8 @@ class ServiceInfo(Converter, object):
 	IS_WIDESCREEN = 3
 	SUBSERVICES_AVAILABLE = 4
 
-	def __init__(self, type, *args, **kwargs):
-		Converter.__init__(self)
+	def __init__(self, type):
+		Converter.__init__(self, type)
 		self.type = {
 				"HasTelext": self.HAS_TELETEXT,
 				"IsMultichannel": self.IS_MULTICHANNEL,
