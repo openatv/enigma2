@@ -11,6 +11,7 @@ class EventInfo(PerServiceBase, Source, object):
 		Source.__init__(self)
 		PerServiceBase.__init__(self, navcore, 
 			{ 
+				iPlayableService.evStart: self.changed,
 				iPlayableService.evUpdatedEventInfo: self.changed,
 				iPlayableService.evEnd: self.changed
 			})
