@@ -50,7 +50,7 @@ class Listbox(Renderer, object):
 	wrap_around = property(lambda self: self.__wrap_around, setWrapAround)
 
 	def selectionChanged(self):
-		self.upstream_elements.selectionChanged(self.index)
+		self.source.selectionChanged(self.index)
 
 	def getIndex(self):
 		if self.instance is None:

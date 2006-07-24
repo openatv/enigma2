@@ -7,7 +7,6 @@ from Tools.CList import CList
 class Element:
 	def __init__(self):
 		self.downstream_elements = CList()
-		self.upstream_elements = CList()
 		self.master = None
 		self.source = None
 
@@ -17,8 +16,8 @@ class Element:
 			self.master = downstream
 	
 	def connectUpstream(self, upstream):
-		self.upstream_elements.append(upstream)
-		self.source = upstream # for single-source elements (i.e., most of them.)
+		assert self.source is None
+		self.source = upstream
 		self.changed()
 	
 	def connect(self, upstream):
@@ -30,10 +29,7 @@ class Element:
 		# we should not disconnect from upstream if
 		# there are still elements depending on us.
 		assert len(self.downstream_elements) == 0, "there are still downstream elements left"
-		
-		# disconnect all upstream elements from us
-		for upstream in self.upstream_elements:
-			upstream.disconnectDownstream(self)
+		self.source.disconnectDownstream(self)
 	
 	def disconnectDownstream(self, downstream):
 		self.downstream_elements.remove(downstream)
@@ -46,3 +42,7 @@ class Element:
 	# default action: push downstream
 	def changed(self, *args, **kwargs):
 		self.downstream_elements.changed(*args, **kwargs)
+
+	def reconnectUpstream(self, new_upstream):
+		assert self.source is not None
+		self.source = new_upstream
