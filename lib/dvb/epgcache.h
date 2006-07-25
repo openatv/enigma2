@@ -2,7 +2,6 @@
 #define __epgcache_h_
 
 #define ENABLE_PRIVATE_EPG 1
-#define ENABLE_MHW_EPG 1
 
 #ifndef SWIG
 
@@ -153,7 +152,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		eEPGCache *cache;
 		eTimer abortTimer, zapTimer;
 		int prevChannelState;
-		__u8 state, isRunning, haveData, can_delete;
+		__u8 state, isRunning, haveData;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
@@ -168,6 +167,9 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		std::set<__u8> seenPrivateSections;
 		void readPrivateData(const __u8 *data);
 		void startPrivateReader();
+		bool canDelete() { return !isRunning && !m_PrivateConn; }
+#else
+		bool canDelete() { return !isRunning; }
 #endif
 		void readData(const __u8 *data);
 		void startChannel();
