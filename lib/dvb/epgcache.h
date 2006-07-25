@@ -2,7 +2,7 @@
 #define __epgcache_h_
 
 #define ENABLE_PRIVATE_EPG 1
-#define NEED_DEMUX_WORKAROUND 1
+#define ENABLE_MHW_EPG 1
 
 #ifndef SWIG
 
