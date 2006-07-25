@@ -286,7 +286,7 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 				{
 					eDebug("[eEPGCache] remove channel %p", chan);
 					messages.send(Message(Message::leaveChannel, chan));
-					while(!it->second->can_delete)
+					while(!it->second->canDelete())
 						usleep(1000);
 					delete it->second;
 					m_knownChannels.erase(it);
@@ -983,7 +983,7 @@ void eEPGCache::save()
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	:cache(ml)
 	,abortTimer(ml), zapTimer(ml),state(0)
-	,isRunning(0), haveData(0), can_delete(1)
+	,isRunning(0), haveData(0)
 	,startPrivateTimer(ml)
 {
 	CONNECT(zapTimer.timeout, eEPGCache::channel_data::startEPG);
@@ -1005,10 +1005,6 @@ bool eEPGCache::channel_data::finishEPG()
 		}
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = eDVBLocalTimeHandler::getInstance()->nowTime();
-#ifdef ENABLE_PRIVATE_EPG
-		if (seenPrivateSections.empty())
-#endif
-		can_delete=1;
 		return true;
 	}
 	return false;
@@ -1019,7 +1015,6 @@ void eEPGCache::channel_data::startEPG()
 	eDebug("[EPGC] start caching events(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
 	state=0;
 	haveData=0;
-	can_delete=0;
 	for (int i=0; i < 3; ++i)
 	{
 		seenSections[i].clear();
@@ -1087,10 +1082,6 @@ void eEPGCache::channel_data::abortNonAvail()
 				seenSections[i].clear();
 				calcedSections[i].clear();
 			}
-#ifdef ENABLE_PRIVATE_EPG
-			if (seenPrivateSections.empty())
-#endif
-			can_delete=1;
 		}
 	}
 	++state;
@@ -1149,7 +1140,6 @@ void eEPGCache::channel_data::abortEPG()
 	if (m_PrivateConn)
 		m_PrivateConn=0;
 #endif
-	can_delete=1;
 }
 
 void eEPGCache::channel_data::readData( const __u8 *data)
@@ -2419,15 +2409,12 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 	{
 		if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
 		{
-			can_delete = 0;
 			cache->privateSectionRead(m_PrivateService, data);
 			seenPrivateSections.insert(data[6]);
 		}
 		if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
 		{
 			eDebug("[EPGC] private finished");
-			if (!isRunning)
-				can_delete = 1;
 			m_PrevVersion = (data[5] & 0x3E) >> 1;
 			startPrivateReader();
 		}
