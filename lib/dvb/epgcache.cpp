@@ -2406,7 +2406,8 @@ void eEPGCache::channel_data::startPrivateReader()
 		mask.mode[3] = 0x3E;
 	}
 	seenPrivateSections.clear();
-	m_PrivateReader->connectRead(slot(*this, &eEPGCache::channel_data::readPrivateData), m_PrivateConn);
+	if (!m_PrivateConn)
+		m_PrivateReader->connectRead(slot(*this, &eEPGCache::channel_data::readPrivateData), m_PrivateConn);
 	m_PrivateReader->start(mask);
 }
 
@@ -2418,22 +2419,9 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 	{
 		if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
 		{
-#ifdef NEED_DEMUX_WORKAROUND
-			int version = data[5];
-			version = ((version & 0x3E) >> 1);
-			can_delete = 0;
-			if ( m_PrevVersion != version )
-			{
-				cache->privateSectionRead(m_PrivateService, data);
-				seenPrivateSections.insert(data[6]);
-			}
-			else
-				eDebug("ignore");
-#else
 			can_delete = 0;
 			cache->privateSectionRead(m_PrivateService, data);
 			seenPrivateSections.insert(data[6]);
-#endif
 		}
 		if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
 		{
