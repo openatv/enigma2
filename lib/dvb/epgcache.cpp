@@ -384,7 +384,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	int duration;
 
 	time_t TM = parseDVBtime( eit_event->start_time_1, eit_event->start_time_2,	eit_event->start_time_3, eit_event->start_time_4, eit_event->start_time_5);
-	time_t now = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+	time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
 
 	if ( TM != 3599 && TM > -1)
 		channel->haveData |= source;
@@ -629,7 +629,7 @@ void eEPGCache::cleanLoop()
 	{
 		eDebug("[EPGC] start cleanloop");
 
-		time_t now = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
@@ -744,7 +744,7 @@ void eEPGCache::gotMessage( const Message &msg )
 					data->m_PrivatePid = msg.pid;
 					data->m_PrivateService = msg.service;
 					updateMap::iterator It = channelLastUpdated.find( channel->getChannelID() );
-					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (time(0)+eDVBLocalTimeHandler::getInstance()->difference()-It->second) * 1000 ) ) : ZAP_DELAY );
+					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
 					if (update < ZAP_DELAY)
 						update = ZAP_DELAY;
 					data->startPrivateTimer.start(update, 1);
@@ -995,7 +995,7 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
-		eDebug("[EPGC] stop caching events(%ld)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
+		eDebug("[EPGC] stop caching events(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
 		zapTimer.start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (int i=0; i < 3; ++i)
@@ -1004,7 +1004,7 @@ bool eEPGCache::channel_data::finishEPG()
 			calcedSections[i].clear();
 		}
 		singleLock l(cache->cache_lock);
-		cache->channelLastUpdated[channel->getChannelID()] = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+		cache->channelLastUpdated[channel->getChannelID()] = eDVBLocalTimeHandler::getInstance()->nowTime();
 #ifdef ENABLE_PRIVATE_EPG
 		if (seenPrivateSections.empty())
 #endif
@@ -1016,7 +1016,7 @@ bool eEPGCache::channel_data::finishEPG()
 
 void eEPGCache::channel_data::startEPG()
 {
-	eDebug("[EPGC] start caching events(%ld)", eDVBLocalTimeHandler::getInstance()->difference()+time(0));
+	eDebug("[EPGC] start caching events(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
 	state=0;
 	haveData=0;
 	can_delete=0;
@@ -1100,7 +1100,7 @@ void eEPGCache::channel_data::startChannel()
 {
 	updateMap::iterator It = cache->channelLastUpdated.find( channel->getChannelID() );
 
-	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (time(0)+eDVBLocalTimeHandler::getInstance()->difference()-It->second) * 1000 ) ) : ZAP_DELAY );
+	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
 
 	if (update < ZAP_DELAY)
 		update = ZAP_DELAY;
@@ -1203,7 +1203,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 					break;
 				default: eDebugNoNewLine("unknown");break;
 			}
-			eDebug(" finished(%ld)", time(0)+eDVBLocalTimeHandler::getInstance()->difference());
+			eDebug(" finished(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
 			if ( reader )
 				reader->stop();
 			isRunning &= ~source;
@@ -1254,7 +1254,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
 	{
 		if (t==-1)
-			t = time(0)+eDVBLocalTimeHandler::getInstance()->difference();
+			t = eDVBLocalTimeHandler::getInstance()->nowTime();
 		timeMap::iterator i = direction <= 0 ? It->second.second.lower_bound(t) :  // find > or equal
 			It->second.second.upper_bound(t); // just >
 		if ( i != It->second.second.end() )
@@ -1605,7 +1605,7 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 	}
 
 	PyObject *nowTime = strchr(argstring, 'C') ?
-		PyLong_FromLong(time(0)+eDVBLocalTimeHandler::getInstance()->difference()) :
+		PyLong_FromLong(eDVBLocalTimeHandler::getInstance()->nowTime()) :
 		NULL;
 
 	bool must_get_service_name = strchr(argstring, 'N') ? true : false;
