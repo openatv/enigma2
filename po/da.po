@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 13:22+0200\n"
-"PO-Revision-Date: 2006-07-12 15:13+0100\n"
+"POT-Creation-Date: 2006-07-25 21:04+0200\n"
+"PO-Revision-Date: 2006-07-24 17:28+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj1@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,7 @@ msgid "\"?"
 msgstr "\" ?"
 
 #: ../lib/python/Screens/EventView.py:107
+#, python-format
 msgid "%d min"
 msgstr "%d min"
 
@@ -38,6 +39,7 @@ msgid "%d.%B %Y"
 msgstr "%d.%B %Å"
 
 #: ../lib/python/Screens/About.py:38
+#, python-format
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
@@ -92,11 +94,11 @@ msgstr "18 V"
 
 #: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
-msgstr "<ukendt>"
+msgstr "<Ukendt>"
 
 #: ../lib/python/Screens/Setup.py:128
 msgid "??"
-msgstr ""
+msgstr "??"
 
 #: ../lib/python/Components/NimManager.py:760
 msgid "A"
@@ -447,6 +449,10 @@ msgstr ""
 "Vil du lave backup nu?\n"
 "Efter tryk på OK, vent venligst!"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1476
+msgid "Do you want to resume this playback?"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:50
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:202
 msgid ""
@@ -661,7 +667,7 @@ msgstr "Initialiserer Harddisk..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1097
 msgid "Instant Record..."
-msgstr "Hurtig Optag..."
+msgstr "Hurtig Optagelse..."
 
 #: ../lib/python/Screens/ScanSetup.py:201
 #: ../lib/python/Screens/ScanSetup.py:234
@@ -726,7 +732,7 @@ msgstr "Længdegrad"
 
 #: ../lib/python/Components/NimManager.py:684
 msgid "Loopthrough to Socket A"
-msgstr "Forbundet med Tuner A"
+msgstr "Forbundet til Tuner A"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
 msgid "Manual transponder"
@@ -762,11 +768,11 @@ msgstr "Flytte Billed i Billed"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:175
 msgid "Move east"
-msgstr "Drej mod øst"
+msgstr "Drej mod Øst"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Move west"
-msgstr "Drej mod vest"
+msgstr "Drej mod Vest"
 
 #: ../lib/python/Screens/MovieSelection.py:29
 msgid "Movie Menu"
@@ -778,7 +784,7 @@ msgstr "Multi EPG"
 
 #: ../lib/python/Screens/Ci.py:324
 msgid "Multiple service support"
-msgstr ""
+msgstr "Multi kanal support"
 
 #: ../lib/python/Screens/ScanSetup.py:343
 msgid "Multisat"
@@ -790,7 +796,7 @@ msgstr "Ikke tilgængelig"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:486
 msgid "NIM "
-msgstr "NIM"
+msgstr "Tunere"
 
 #: ../lib/python/Screens/TimerEntry.py:150
 msgid "Name"
@@ -910,7 +916,7 @@ msgstr "Pakkeredigering"
 
 #: ../lib/python/Screens/InfoBar.py:45
 msgid "Play recorded movies..."
-msgstr "Afspil optaget film..."
+msgstr "Afspil optagede film..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1054
 msgid "Please choose an extension..."
@@ -922,11 +928,11 @@ msgstr "Indtast venligst navn for ny pakke"
 
 #: ../lib/python/Screens/ChannelSelection.py:160
 msgid "Please enter a name for the new marker"
-msgstr ""
+msgstr "Indtast venligst navn for ny marker"
 
 #: ../lib/python/Screens/TimerEntry.py:320
 msgid "Please select a subservice to record..."
-msgstr "Vælg en underkanal til at optage..."
+msgstr "Vælg en underkanal til at optagelse..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1353
 msgid "Please select a subservice..."
@@ -993,7 +999,7 @@ msgstr "Pre-defineret satellit"
 
 #: ../lib/python/Screens/NetworkSetup.py:35
 msgid "Press OK to activate the settings."
-msgstr "Tryk OK for at aktivere indstilling"
+msgstr "Tryk OK for at aktivere indstilling."
 
 #: ../lib/python/Screens/ScanSetup.py:703
 msgid "Press OK to scan"
@@ -1079,23 +1085,23 @@ msgstr "Lørdag"
 #: ../lib/python/Screens/ScanSetup.py:695
 #: ../lib/python/Screens/ScanSetup.py:699
 msgid "Scan NIM"
-msgstr "Søg efter tunere"
+msgstr "Søg tunere"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Search east"
-msgstr "Søg øst"
+msgstr "Søg Øst"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Search west"
-msgstr "Søg vest"
+msgstr "Søg Vest"
 
 #: ../lib/python/Components/NimManager.py:686
 msgid "Secondary cable from motorized LNB"
-msgstr "Sekundær kabel fra motor"
+msgstr "Sekundært kabel fra motor"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1273
 msgid "Select audio mode"
-msgstr "Vælg audio mode"
+msgstr "Vælg lyd type"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1262
 msgid "Select audio track"
@@ -1205,11 +1211,11 @@ msgstr "Step "
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:179
 msgid "Step east"
-msgstr "Drej mod øst"
+msgstr "Drej mod Øst"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
 msgid "Step west"
-msgstr "Drej mod vest"
+msgstr "Drej mod Vest"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1261
 msgid "Stereo"
@@ -1224,15 +1230,15 @@ msgstr "Stop"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:955
 msgid "Stop Timeshift?"
-msgstr "Stop Timeshift?"
+msgstr "Stoppe Timeshift?"
 
-#: ../lib/python/Screens/InfoBar.py:105
+#: ../lib/python/Screens/InfoBar.py:108
 msgid "Stop playing this movie?"
-msgstr "Stop afspilning af denne film?"
+msgstr "Stoppe afspilning af denne film?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Store position"
-msgstr "Gem Position"
+msgstr "Gemme Position"
 
 #: ../lib/python/Screens/Satconfig.py:116
 msgid "Stored position"
@@ -1280,7 +1286,7 @@ msgstr "Jordbaseret"
 
 #: ../lib/python/Screens/Satconfig.py:73
 msgid "Terrestrial provider"
-msgstr "Terristiel udbyder"
+msgstr "Jordbaseret udbyder"
 
 #: ../lib/python/Components/NimManager.py:768
 msgid "Three"
@@ -1306,7 +1312,7 @@ msgstr "Tid"
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
-msgstr "Timer-Type"
+msgstr "Timer Type"
 
 #: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Title:"
@@ -1315,7 +1321,7 @@ msgstr "Titel:"
 #: ../lib/python/Screens/EpgSelection.py:246
 #: ../lib/python/Tools/FuzzyDate.py:10
 msgid "Today"
-msgstr "I dag"
+msgstr "Idag"
 
 #: ../lib/python/Screens/Satconfig.py:111
 msgid "Tone mode"
@@ -1422,7 +1428,7 @@ msgstr "Brug USALS til denne position"
 msgid "User defined"
 msgstr "Brugerdefineret"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1595
+#: ../lib/python/Screens/InfoBarGenerics.py:1614
 msgid "View teletext..."
 msgstr "Se teletekst..."
 
@@ -1503,11 +1509,11 @@ msgstr "Fortryd favoritredigering"
 
 #: ../lib/python/Components/TimerList.py:59
 msgid "about to start"
-msgstr "ved at starte"
+msgstr "Ved at starte"
 
 #: ../lib/python/Screens/ChannelSelection.py:93
 msgid "add bouquet"
-msgstr ""
+msgstr "Tilføj pakke..."
 
 #: ../lib/python/Screens/MediaPlayer.py:295
 msgid "add directory to playlist"
@@ -1519,7 +1525,7 @@ msgstr "Tilføj fil til spilleliste"
 
 #: ../lib/python/Screens/ChannelSelection.py:99
 msgid "add marker"
-msgstr ""
+msgstr "Tilføj marker"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1211
 #: ../lib/python/Screens/InfoBarGenerics.py:1213
@@ -1529,7 +1535,7 @@ msgstr "Tilføj optagelse ( skriv optagelses længde) "
 #: ../lib/python/Screens/InfoBarGenerics.py:1211
 #: ../lib/python/Screens/InfoBarGenerics.py:1213
 msgid "add recording (indefinitely)"
-msgstr "Tilføj optagelse (endeligt)"
+msgstr "Tilføj optagelse (nu)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1211
 #: ../lib/python/Screens/InfoBarGenerics.py:1213
@@ -1583,7 +1589,7 @@ msgstr "Kopier til favoritter"
 
 #: ../lib/python/Screens/TimerEntry.py:104
 msgid "daily"
-msgstr "daglig"
+msgstr "Daglig"
 
 #: ../lib/python/Screens/MediaPlayer.py:300
 msgid "delete"
@@ -1662,13 +1668,13 @@ msgstr "horizontal"
 msgid "init module"
 msgstr "Initaliser modul"
 
-#: ../lib/python/Screens/InfoBar.py:91
+#: ../lib/python/Screens/InfoBar.py:93
 msgid "leave movie player..."
 msgstr "Forlad film afspiller..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1272
 msgid "left"
-msgstr "venstre"
+msgstr "Venstre"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
@@ -1721,13 +1727,13 @@ msgstr "Ingen"
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:382
 msgid "off"
-msgstr "off"
+msgstr "fra"
 
 #: ../lib/python/Screens/ScanSetup.py:365
 #: ../lib/python/Screens/ScanSetup.py:374
 #: ../lib/python/Screens/ScanSetup.py:382
 msgid "on"
-msgstr "on"
+msgstr "til"
 
 #: ../lib/python/Screens/TimerEntry.py:100
 msgid "once"
@@ -1784,7 +1790,7 @@ msgstr "Fjern alle nye fundne flag"
 #: ../lib/python/Screens/ChannelSelection.py:89
 #: ../lib/python/Screens/ChannelSelection.py:94
 msgid "remove entry"
-msgstr ""
+msgstr "Fjerne indgang"
 
 #: ../lib/python/Screens/ChannelSelection.py:91
 msgid "remove new found flag"
@@ -1796,7 +1802,7 @@ msgstr "Gentaget"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1272
 msgid "right"
-msgstr "højre"
+msgstr "Højre"
 
 #: ../lib/python/Components/ServiceScan.py:37
 #, python-format
@@ -1894,7 +1900,7 @@ msgstr "Brugerdefineret"
 
 #: ../lib/python/Screens/ScanSetup.py:367
 msgid "vertical"
-msgstr "vertikal"
+msgstr "Vertikal"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1030
 msgid "view extensions..."
@@ -1910,7 +1916,7 @@ msgstr "Venter"
 
 #: ../lib/python/Screens/TimerEntry.py:104
 msgid "weekly"
-msgstr "ugentlig"
+msgstr "Ugentlig"
 
 #: ../lib/python/Screens/ScanSetup.py:346
 #: ../lib/python/Screens/ScanSetup.py:378
@@ -1940,7 +1946,7 @@ msgstr "zappet"
 
 #: ../data/
 msgid "Channel Selection"
-msgstr "Kanal Liste"
+msgstr "Kanal Vælger"
 
 #: ../data/
 msgid "Backup is done. Please press OK to see the result."
@@ -1952,7 +1958,7 @@ msgstr "Kanal"
 
 #: ../data/
 msgid "Network setup"
-msgstr "Netværksindstillinger"
+msgstr "Netværks opsæt"
 
 #: ../data/
 msgid "Games / Plugins"
@@ -2002,7 +2008,7 @@ msgstr "TV System"
 
 #: ../data/
 msgid "Alternative radio mode"
-msgstr ""
+msgstr "Alternativ radio type"
 
 #: ../data/
 msgid "NEXT"
@@ -2022,7 +2028,7 @@ msgstr "Afbryde"
 
 #: ../data/
 msgid "Show positioner movement"
-msgstr ""
+msgstr "Vis motor bevægelse"
 
 #: ../data/
 msgid "Tuner Slot"
@@ -2030,7 +2036,7 @@ msgstr "Tuner Slot"
 
 #: ../data/
 msgid "Change bouquets in quickzap"
-msgstr "Skift pakke i hurtigzap"
+msgstr "Skifte pakke i hurtigzap"
 
 #: ../data/
 msgid "Sound"
@@ -2048,8 +2054,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vil du have en gennemgang ?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gør intet"
+msgid "Setup"
+msgstr "Indstillinger"
 
 #: ../data/
 msgid "#000000"
@@ -2073,7 +2079,7 @@ msgstr ""
 
 #: ../data/
 msgid "Sat / Dish Setup"
-msgstr "Sat / Parabol Opsætning"
+msgstr "Sat / Parabol Indstilling"
 
 #: ../data/
 msgid "#ffffff"
@@ -2088,8 +2094,8 @@ msgstr ""
 "at lave backup på HDD! Tryk på OK for at begynde backup."
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, tag en ny manuel søgning nu"
+msgid "The wizard is finished now."
+msgstr "Brugen af wizzard er færdig nu."
 
 #: ../data/
 msgid "Service Searching"
@@ -2105,7 +2111,7 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Welkommen til Image upgrade guiden. Denne guide vil hjælpe dig gennem "
+"Velkommen til Image upgrade guiden. Denne guide vil hjælpe dig gennem "
 "opdatering. Firmwaren i din Dreambox giver dig mulighed for at lave backup "
 "af dine settings her en kort gennemgang."
 
@@ -2115,21 +2121,11 @@ msgstr "Tastatur Layout"
 
 #: ../data/
 msgid "Enable multiple bouquets"
-msgstr ""
+msgstr "Tilføj multi pakker"
 
 #: ../data/
 msgid "Keyboard Setup"
 msgstr "Tastatur Indstilling"
-
-#: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Brug venstre/højre pil for at vælge.\n"
-"\n"
-"Indstilling for Tuner A"
 
 #: ../data/
 msgid "Dish"
@@ -2138,6 +2134,10 @@ msgstr "Parabol"
 #: ../data/
 msgid "Margin after record"
 msgstr "Margin efter optagelse"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, bare start min Dreambox"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2149,7 +2149,7 @@ msgstr "System"
 
 #: ../data/
 msgid "Use power measurement"
-msgstr ""
+msgstr "Brug power måling"
 
 #: ../data/
 msgid ""
@@ -2184,16 +2184,12 @@ msgid "RC Menu"
 msgstr "Fjernbetjenings Menu"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, bare start min Dreambox"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
-msgstr ""
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr "Tuner konfiguration"
+msgstr "Netværk..."
 
 #: ../data/
 msgid "select Slot"
@@ -2225,7 +2221,7 @@ msgstr "OSD Indstilling"
 
 #: ../data/
 msgid "RF output"
-msgstr ""
+msgstr "RF Udgang"
 
 #: ../data/
 msgid "Brightness"
@@ -2272,10 +2268,6 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Timeshift"
 msgstr "Timeshift"
 
@@ -2284,8 +2276,8 @@ msgid "Downloadable plugins"
 msgstr "Plugins der kan downloades"
 
 #: ../data/
-msgid "Subservices"
-msgstr "Underkanaler"
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
 
 #: ../data/
 msgid "Timezone"
@@ -2308,8 +2300,12 @@ msgid "Common Interface"
 msgstr "Common Interface"
 
 #: ../data/
+msgid "Tuner configuration"
+msgstr "Tuner konfiguration"
+
+#: ../data/
 msgid "Language..."
-msgstr ""
+msgstr "Sprog..."
 
 #: ../data/
 msgid ""
@@ -2332,8 +2328,8 @@ msgid "Service scan"
 msgstr "Kanal søgning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Brugen af wizzard er færdig nu."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, tag en ny manuel søgning nu"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2470,12 +2466,16 @@ msgid "Media player"
 msgstr "Medie Afspiller"
 
 #: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, afbryd nu."
+
+#: ../data/
 msgid "Timer sanity error"
 msgstr "Timer sanity fejl"
 
 #: ../data/
 msgid "Serviceinfo"
-msgstr "Serviceinformationer"
+msgstr "Kanalinformationer"
 
 #: ../data/
 msgid "VCR Switch"
@@ -2488,6 +2488,10 @@ msgstr "Din Dreambox slukker nu. Vent venligst..."
 #: ../data/
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
+
+#: ../data/
+msgid "Subservices"
+msgstr "Underkanaler"
 
 #: ../data/
 msgid "Choose bouquet"
@@ -2523,7 +2527,7 @@ msgstr "USB"
 
 #: ../data/
 msgid "Invert display"
-msgstr ""
+msgstr "Inverter display"
 
 #: ../data/
 msgid "Do you want to restore your settings?"
@@ -2531,7 +2535,7 @@ msgstr "Vil du genskabe dine indstillinger?"
 
 #: ../data/
 msgid "Please set up tuner B"
-msgstr "Indstillinger for Tuner B."
+msgstr "Venligst opsæt Tuner B."
 
 #: ../data/
 msgid "Delay"
@@ -2547,11 +2551,11 @@ msgstr "Billed Format"
 
 #: ../data/
 msgid "Recordings always have priority"
-msgstr ""
+msgstr "Optagelser har altid prioritet"
 
 #: ../data/
 msgid "Customize"
-msgstr ""
+msgstr "Brugerindstille"
 
 #: ../data/
 msgid "#389416"
@@ -2559,11 +2563,11 @@ msgstr ""
 
 #: ../data/
 msgid "VCR scart"
-msgstr "Scart-Video"
+msgstr "Scart Video"
 
 #: ../data/
 msgid "Mainmenu"
-msgstr "Hovedmenu"
+msgstr "HovedMenu"
 
 #: ../data/
 msgid "Select a movie"
@@ -2586,8 +2590,8 @@ msgid "Timer Edit"
 msgstr "Timer Redigering"
 
 #: ../data/
-msgid "Setup"
-msgstr "Indstillinger"
+msgid "No, do nothing."
+msgstr "Nej, gør intet"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2603,7 +2607,7 @@ msgstr "Konfigurations menu"
 
 #: ../data/
 msgid "Finetune"
-msgstr "Fintuning"
+msgstr "Fin tuning"
 
 #: ../data/
 msgid "Timer Editor"
@@ -2611,7 +2615,7 @@ msgstr "Timer Redigering"
 
 #: ../data/
 msgid "Time/Date Input"
-msgstr "Tids/Dato Input"
+msgstr "Tid/Dato Input"
 
 #: ../data/
 msgid "AGC:"
@@ -2635,15 +2639,21 @@ msgstr "Lyd"
 
 #: ../data/
 msgid "Harddisk..."
-msgstr ""
+msgstr "Harddisk..."
 
 #: ../data/
 msgid "NOW"
 msgstr "NU"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, sluk nu."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Brug venstre/højre pil for at vælge.\n"
+"\n"
+"Indstilling for Tuner A"
 
 #: ../data/
 msgid "#0064c7"
@@ -2656,96 +2666,3 @@ msgstr "Medie Afspiller"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Vil du lave en anden manuel søgning?"
-
-#~ msgid "add bouquet..."
-#~ msgstr "Tilføj pakke..."
-
-#~ msgid "remove bouquet"
-#~ msgstr "Fjern pakke"
-
-#~ msgid "remove service"
-#~ msgstr "Fjern kanal"
-
-#~ msgid "Hide error windows"
-#~ msgstr "Skjul fejlmeddelelser"
-
-#~ msgid "Show Satposition"
-#~ msgstr "Vis Satposition"
-
-#~ msgid "Visualize positioner movement"
-#~ msgstr "Vis motor bevægelsen"
-
-#~ msgid "Audio / Video"
-#~ msgstr "Audio / Video"
-
-#~ msgid "Record Splitsize"
-#~ msgstr "Optage Splitstørrelse"
-
-#~ msgid "Auto show inforbar"
-#~ msgstr "Vis automatisk infobjælke"
-
-#~ msgid "Network"
-#~ msgstr "Netværk"
-
-#~ msgid "Invert"
-#~ msgstr "Inverter"
-
-#~ msgid "use power delta"
-#~ msgstr "Brug power delta"
-
-#~ msgid "Fast zapping"
-#~ msgstr "Hurtig zap"
-
-#~ msgid "UHF Modulator"
-#~ msgstr "UHF Modulator"
-
-#~ msgid "Enigma1 like radiomode"
-#~ msgstr "Enigma1 radiotype"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Ønsker du at se en cutlist oversigt?"
-
-#~ msgid "LCD"
-#~ msgstr "LCD"
-
-#~ msgid "Ask before zapping"
-#~ msgstr "Spørg inden zap"
-
-#~ msgid "Usage Settings"
-#~ msgstr "Bruger Indstillinger"
-
-#~ msgid "Parental Lock"
-#~ msgstr "Forældrelås"
-
-#~ msgid "Skip confirmations"
-#~ msgstr "Ingen bekræftelse"
-
-#~ msgid "Setup Lock"
-#~ msgstr "Setup Lås"
-
-#~ msgid "Expert Setup"
-#~ msgstr "Expert Indstillinger"
-
-#~ msgid "Language"
-#~ msgstr "Sprog"
-
-#~ msgid "Parental Control"
-#~ msgstr "Forældrekontrol"
-
-#~ msgid "Multi bouquets"
-#~ msgstr "Multi pakker"
-
-#~ msgid "Usage settings"
-#~ msgstr "Bruger indstillinger"
-
-#~ msgid "Timeshift not possible!"
-#~ msgstr "Timeshift ikke mulig!"
-
-#~ msgid "open service list"
-#~ msgstr "åben service list"
-
-#~ msgid "Satelliteconfig"
-#~ msgstr "Satellit indstilling"
-
-#~ msgid "Timeshifting"
-#~ msgstr "Timeshifting"
