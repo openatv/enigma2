@@ -5,6 +5,8 @@ from Tools.Import import my_import
 import os
 
 from Components.config import ConfigSubsection, configElement, configText, config
+from Components.Element import Element
+from Components.Converter.Converter import Converter
 
 from Tools.XMLTools import elementsWithTag, mergeText
 
@@ -336,11 +338,22 @@ def readSkin(screen, skin, name, desktop):
 			for converter in elementsWithTag(widget.childNodes, "convert"):
 				ctype = converter.getAttribute('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
-				converter_class = my_import('.'.join(["Components", "Converter", ctype])).__dict__.get(ctype)
 				parms = mergeText(converter.childNodes).strip()
-				c = converter_class(parms)
+				converter_class = my_import('.'.join(["Components", "Converter", ctype])).__dict__.get(ctype)
 				
-				c.connect(source)
+				c = None
+				
+				for i in source.downstream_elements:
+					if isinstance(i, converter_class) and i.converter_arguments == parms:
+						c = i
+
+				if c is None:
+					print "allocating new converter!"
+					c = converter_class(parms)
+					c.connect(source)
+				else:
+					print "reused conveter!"
+	
 				source = c
 			
 			renderer_class = my_import('.'.join(["Components", "Renderer", wrender])).__dict__.get(wrender)
