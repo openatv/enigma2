@@ -263,7 +263,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 
 void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 {
-	eDebug("handle page end");
+//	eDebug("handle page end");
 	addSubtitleString(-2, ""); /* end last line */ 
 	
 	m_subtitle_page.m_have_pts = have_pts;
@@ -315,7 +315,7 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 
 void eDVBTeletextParser::sendSubtitlePage()
 {
-	eDebug("subtitle page:");
+//	eDebug("subtitle page:");
 	for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
 		eDebug("%s", m_subtitle_page.m_elements[i].m_text.c_str());
 	m_new_subtitle_page(m_subtitle_page);
