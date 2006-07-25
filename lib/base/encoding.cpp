@@ -3,7 +3,7 @@
 
 eDVBTextEncodingHandler encodingHandler;  // the one and only instance
 
-char toupper(char c)
+inline char toupper(char c)
 {
 	switch (c)
 	{
