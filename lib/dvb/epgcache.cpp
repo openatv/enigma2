@@ -1051,21 +1051,21 @@ void eEPGCache::channel_data::abortNonAvail()
 {
 	if (!state)
 	{
-		if ( !(haveData&eEPGCache::NOWNEXT) && (isRunning&eEPGCache::NOWNEXT) )
+		if ( !(haveData&NOWNEXT) && (isRunning&NOWNEXT) )
 		{
 			eDebug("[EPGC] abort non avail nownext reading");
-			isRunning &= ~eEPGCache::NOWNEXT;
+			isRunning &= ~NOWNEXT;
 			m_NowNextReader->stop();
 			m_NowNextConn=0;
 		}
-		if ( !(haveData&eEPGCache::SCHEDULE) && (isRunning&eEPGCache::SCHEDULE) )
+		if ( !(haveData&SCHEDULE) && (isRunning&SCHEDULE) )
 		{
 			eDebug("[EPGC] abort non avail schedule reading");
 			isRunning &= ~SCHEDULE;
 			m_ScheduleReader->stop();
 			m_ScheduleConn=0;
 		}
-		if ( !(haveData&eEPGCache::SCHEDULE_OTHER) && (isRunning&eEPGCache::SCHEDULE_OTHER) )
+		if ( !(haveData&SCHEDULE_OTHER) && (isRunning&SCHEDULE_OTHER) )
 		{
 			eDebug("[EPGC] abort non avail schedule_other reading");
 			isRunning &= ~SCHEDULE_OTHER;
@@ -1115,21 +1115,21 @@ void eEPGCache::channel_data::abortEPG()
 	if (isRunning)
 	{
 		eDebug("[EPGC] abort caching events !!");
-		if (isRunning & eEPGCache::SCHEDULE)
+		if (isRunning & SCHEDULE)
 		{
-			isRunning &= ~eEPGCache::SCHEDULE;
+			isRunning &= ~SCHEDULE;
 			m_ScheduleReader->stop();
 			m_ScheduleConn=0;
 		}
-		if (isRunning & eEPGCache::NOWNEXT)
+		if (isRunning & NOWNEXT)
 		{
-			isRunning &= ~eEPGCache::NOWNEXT;
+			isRunning &= ~NOWNEXT;
 			m_NowNextReader->stop();
 			m_NowNextConn=0;
 		}
 		if (isRunning & SCHEDULE_OTHER)
 		{
-			isRunning &= ~eEPGCache::SCHEDULE_OTHER;
+			isRunning &= ~SCHEDULE_OTHER;
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
@@ -1155,17 +1155,17 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 		{
 			case 0x4E ... 0x4F:
 				reader=m_NowNextReader;
-				source=eEPGCache::NOWNEXT;
+				source=NOWNEXT;
 				map=0;
 				break;
 			case 0x50 ... 0x5F:
 				reader=m_ScheduleReader;
-				source=eEPGCache::SCHEDULE;
+				source=SCHEDULE;
 				map=1;
 				break;
 			case 0x60 ... 0x6F:
 				reader=m_ScheduleOtherReader;
-				source=eEPGCache::SCHEDULE_OTHER;
+				source=SCHEDULE_OTHER;
 				map=2;
 				break;
 			default:
@@ -1179,15 +1179,15 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			eDebugNoNewLine("[EPGC] ");
 			switch (source)
 			{
-				case eEPGCache::NOWNEXT:
+				case NOWNEXT:
 					m_NowNextConn=0;
 					eDebugNoNewLine("nownext");
 					break;
-				case eEPGCache::SCHEDULE:
+				case SCHEDULE:
 					m_ScheduleConn=0;
 					eDebugNoNewLine("schedule");
 					break;
-				case eEPGCache::SCHEDULE_OTHER:
+				case SCHEDULE_OTHER:
 					m_ScheduleOtherConn=0;
 					eDebugNoNewLine("schedule other");
 					break;
@@ -2374,7 +2374,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		event[0] = (event_id & 0xFF00) >> 8;
 		event[1] = (event_id & 0xFF);
 		time_event_map[it->first.tm]=std::pair<time_t, __u16>(stime, event_id);
-		eventData *d = new eventData( ev_struct, bptr, eEPGCache::PRIVATE );
+		eventData *d = new eventData( ev_struct, bptr, PRIVATE );
 		evMap[event_id] = d;
 		tmMap[stime] = d;
 	}
