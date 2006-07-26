@@ -2,6 +2,7 @@
 #define __epgcache_h_
 
 #define ENABLE_PRIVATE_EPG 1
+//#define ENABLE_MHW_EPG 1
 
 #ifndef SWIG
 
@@ -14,6 +15,9 @@
 
 #include <lib/dvb/eit.h>
 #include <lib/dvb/lowlevel/eit.h>
+#ifdef ENABLE_MHW_EPG
+#include <lib/dvb/lowlevel/mhw.h>
+#endif
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/dvbtime.h>
@@ -171,6 +175,28 @@ class eEPGCache: public eMainloop, private eThread, public Object
 #else
 		bool canDelete() { return !isRunning; }
 #endif
+#ifdef ENABLE_MHW_EPG
+		std::vector<mhw_channel_name_t> m_channels;
+		std::map<__u8, mhw_theme_name_t> m_themes;
+		std::map<__u32, mhw_title_t> m_titles;
+		std::map<__u32, __u32> m_program_ids;
+		ePtr<eConnection> m_MHWConn;
+		ePtr<iDVBSectionReader> m_MHWReader;
+		eDVBSectionFilterMask m_MHWFilterMask;
+		eTimer m_MHWTimeoutTimer;
+		bool m_MHWTimeoutet;
+		void MHWTimeout() { m_MHWTimeoutet=true; }
+		void readMHWData(const __u8 *data);
+		void startMHWReader(__u16 pid, __u8 tid);
+		void startTimeout(int msek);
+		bool checkTimeout() { return m_MHWTimeoutet; }
+		void cleanup();
+		__u8 *delimitName( __u8 *in, __u8 *out, int len_in );
+		void timeMHW2DVB( u_char hours, u_char minutes, u_char *return_time);
+		void timeMHW2DVB( int minutes, u_char *return_time);
+		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
+		void storeTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
+#endif
 		void readData(const __u8 *data);
 		void startChannel();
 		void startEPG();
@@ -180,7 +206,11 @@ class eEPGCache: public eMainloop, private eThread, public Object
 	};
 	void FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
-	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4};
+	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
+#ifdef ENABLE_MHW_EPG
+	,MHW=8
+#endif
+	};
 	struct Message
 	{
 		enum
