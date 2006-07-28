@@ -143,7 +143,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport):
 	skin = """
 		<screen position="100,100" size="550,400" title="Test" >
 			<widget name="Timeline" position="10,0" size="530,40" 
-				pointer="/usr/share/enigma2/position_pointer.png:3,5" />
+				pointer="/usr/share/enigma2/position_pointer.png:3,5" foregroundColor="#225b7395" />
 			<widget name="Cutlist" position="10,50" size="530,300" scrollbarMode="showOnDemand" />
 		</screen>"""
 	def __init__(self, session, service):
