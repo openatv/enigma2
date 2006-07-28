@@ -111,7 +111,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'title':
 			guiObject.setTitle(_(value))
 		elif attrib == 'text':
-			guiObject.setText(value)
+			guiObject.setText(_(value))
 		elif attrib == 'font':
 			guiObject.setFont(parseFont(value))
 		elif attrib == 'zPosition':
