@@ -82,11 +82,11 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
 		InfoBarSummarySupport, InfoBarTeletextPlugin, InfoBarSubtitleSupport, Screen):
+
+	ENABLE_RESUME_SUPPORT = True
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
-		
-		self.is_closing = False
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{

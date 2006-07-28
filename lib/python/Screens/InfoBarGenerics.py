@@ -1445,6 +1445,8 @@ class InfoBarCueSheetSupport:
 	CUT_TYPE_MARK = 2
 	CUT_TYPE_LAST = 3
 	
+	ENABLE_RESUME_SUPPORT = False
+	
 	def __init__(self):
 		self["CueSheetActions"] = HelpableActionMap(self, "InfobarCueSheetActions", 
 			{
@@ -1454,6 +1456,7 @@ class InfoBarCueSheetSupport:
 			}, prio=1) 
 		
 		self.cut_list = [ ]
+		self.is_closing = False
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
@@ -1465,16 +1468,17 @@ class InfoBarCueSheetSupport:
 		print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 		
-		last = None
-		
-		for (pts, what) in self.cut_list:
-			if what == self.CUT_TYPE_LAST:
-				last = pts
+		if self.ENABLE_RESUME_SUPPORT:
+			last = None
 			
-		if last is not None:
-			self.resume_point = last
-			Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?"), timeout=10)
-	
+			for (pts, what) in self.cut_list:
+				if what == self.CUT_TYPE_LAST:
+					last = pts
+			
+			if last is not None:
+				self.resume_point = last
+				Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?"), timeout=10)
+
 	def playLastCB(self, answer):
 		if answer == True:
 			seekable = self.__getSeekable()
