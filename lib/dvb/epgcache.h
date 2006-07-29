@@ -152,6 +152,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 	DECLARE_REF(eEPGCache)
 	struct channel_data: public Object
 	{
+		pthread_mutex_t channel_active;
 		channel_data(eEPGCache*);
 		eEPGCache *cache;
 		eTimer abortTimer, zapTimer;
@@ -171,9 +172,6 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		std::set<__u8> seenPrivateSections;
 		void readPrivateData(const __u8 *data);
 		void startPrivateReader();
-		bool canDelete() { return !isRunning && !m_PrivateConn; }
-#else
-		bool canDelete() { return !isRunning; }
 #endif
 #ifdef ENABLE_MHW_EPG
 		std::vector<mhw_channel_name_t> m_channels;
