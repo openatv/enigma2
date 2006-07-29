@@ -208,7 +208,6 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 
 void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 {
-	singleLock s(channel_map_lock);
 	channelMapIterator it =
 		m_knownChannels.find(chan);
 	if ( it == m_knownChannels.end() )
@@ -294,17 +293,20 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 				{
 					eDebug("[eEPGCache] remove channel %p", chan);
 					messages.send(Message(Message::leaveChannel, chan));
-					while(!it->second->canDelete())
-						usleep(1000);
-					delete it->second;
+					pthread_mutex_lock(&it->second->channel_active);
+					singleLock s(channel_map_lock);
 					m_knownChannels.erase(it);
+					pthread_mutex_unlock(&it->second->channel_active);
+					delete it->second;
+					it->second=0;
 					// -> gotMessage -> abortEPG
 					break;
 				}
 				default: // ignore all other events
 					return;
 			}
-			it->second->prevChannelState = state;
+			if (it->second)
+				it->second->prevChannelState = state;
 		}
 	}
 }
@@ -1007,6 +1009,7 @@ eEPGCache::channel_data::channel_data(eEPGCache *ml)
 #ifdef ENABLE_PRIVATE_EPG
 	CONNECT(startPrivateTimer.timeout, eEPGCache::channel_data::startPrivateReader);
 #endif
+	pthread_mutex_init(&channel_active, 0);
 }
 
 bool eEPGCache::channel_data::finishEPG()
@@ -1130,6 +1133,7 @@ void eEPGCache::channel_data::abortNonAvail()
 
 void eEPGCache::channel_data::startChannel()
 {
+	pthread_mutex_lock(&channel_active);
 	updateMap::iterator It = cache->channelLastUpdated.find( channel->getChannelID() );
 
 	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
@@ -1189,6 +1193,7 @@ void eEPGCache::channel_data::abortEPG()
 	if (m_PrivateConn)
 		m_PrivateConn=0;
 #endif
+	pthread_mutex_unlock(&channel_active);
 }
 
 void eEPGCache::channel_data::readData( const __u8 *data)
