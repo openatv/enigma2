@@ -616,7 +616,7 @@ def getConfigListEntry(description, element):
 	item = b.controlType(b)
 	return ((description, item))
 
-def configElementBoolean(name, default, texts=(_("Enable"), _("Disable"))):
+def configElementBoolean(name, default, texts=(_("Disable"), _("Enable"))):
 	return configElement(name, configSelection, default, texts)
 
 config.misc = ConfigSubsection()
