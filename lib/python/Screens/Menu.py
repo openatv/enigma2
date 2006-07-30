@@ -89,6 +89,9 @@ class MenuSummary(Screen):
 		self["MenuEntry"].setText(self.parent["menu"].getCurrent()[0])
 
 class Menu(Screen):
+
+	ALLOW_SUSPEND = True
+
 	def okbuttonClick(self):
 		print "okbuttonClick"
 		selection = self["menu"].getCurrent()

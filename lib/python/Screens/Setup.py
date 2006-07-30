@@ -54,6 +54,9 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 
 class Setup(Screen):
+
+	ALLOW_SUSPEND = True
+
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
 
