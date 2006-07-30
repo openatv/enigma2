@@ -22,6 +22,8 @@ from Screens.ChoiceBox import ChoiceBox
 import os
 
 class MediaPlayer(Screen, InfoBarSeek):
+	ALLOW_SUSPEND = True
+	
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
