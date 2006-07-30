@@ -4,7 +4,7 @@ from Tools.CList import CList
 # Render Converter Converter Source
 
 # a bidirectional connection
-class Element:
+class Element(object):
 	CHANGED_DEFAULT = 0   # initial "pull" state
 	CHANGED_ALL = 1       # really everything changed
 	CHANGED_CLEAR = 2     # we're expecting a real update soon. don't bother polling NOW, but clear data.
@@ -15,6 +15,7 @@ class Element:
 		self.downstream_elements = CList()
 		self.master = None
 		self.source = None
+		self.__suspended = True
 		self.clearCache()
 
 	def connectDownstream(self, downstream):
@@ -61,3 +62,22 @@ class Element:
 
 	def clearCache(self):
 		self.cache = None
+
+	def setSuspend(self, suspended):
+		changed = self.__suspended != suspended
+		if not self.__suspended and suspended:
+			self.doSuspend(1)
+		elif self.__suspended and not suspended:
+			self.doSuspend(0)
+			
+		self.__suspended = suspended
+		if self.source is not None and changed:
+			self.source.checkSuspend()
+	
+	suspended = property(lambda self: self.__suspended, setSuspend)
+	
+	def checkSuspend(self):
+		self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
+
+	def doSuspend(self, suspend):
+		pass

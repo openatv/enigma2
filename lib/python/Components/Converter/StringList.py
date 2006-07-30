@@ -7,11 +7,11 @@ class StringList(Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 
-	def changed(self):
+	def changed(self, what):
 		self.content = eListboxPythonStringContent()
 		if self.source:
 			self.content.setList(self.source.list)
-		self.downstream_elements.changed()
+		self.downstream_elements.changed(what)
 
 	def selectionChanged(self, index):
 		self.source.selectionChanged(index)

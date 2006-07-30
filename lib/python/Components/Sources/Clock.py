@@ -18,3 +18,11 @@ class Clock(Source):
 
 	def poll(self):
 		self.changed((self.CHANGED_POLL,))
+
+	def doSuspend(self, suspended):
+		if suspended:
+			self.clock_timer.stop()
+		else:
+			self.clock_timer.start(1000)
+			self.poll()
+

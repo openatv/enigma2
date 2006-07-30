@@ -23,3 +23,9 @@ class Poll(object):
 
 	def poll(self):
 		self.changed((self.CHANGED_POLL,))
+
+	def doSuspend(self, suspended):
+		self.enabled = not suspended
+		if not suspended:
+			self.poll()
+

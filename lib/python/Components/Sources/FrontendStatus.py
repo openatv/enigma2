@@ -37,3 +37,10 @@ class FrontendStatus(Source):
 			return service and service.frontendInfo()
 		else:
 			return None
+
+	def doSuspend(self, suspended):
+		if suspended:
+			self.poll_timer.stop()
+		else:
+			self.poll_timer.start(1000)
+
