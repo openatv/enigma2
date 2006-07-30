@@ -75,5 +75,5 @@ class Listbox(Renderer, object):
 
 	selection_enabled = property(lambda self: self.__selection_enabled, setSelectionEnabled)
 
-	def changed(self):
+	def changed(self, what):
 		self.content = self.source.content
