@@ -5,7 +5,8 @@ from Components.Sources.Source import Source
 import sys
 
 class Screen(dict, HTMLSkin, GUISkin):
-	""" bla """
+
+	ALLOW_SUSPEND = False
 
 	def __init__(self, session):
 		self.skinName = self.__class__.__name__

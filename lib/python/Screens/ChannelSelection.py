@@ -1118,6 +1118,9 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecor
 		self["CurrentTime"] = Clock()
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
+
+	ALLOW_SUSPEND = True
+
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
 		ChannelSelectionEdit.__init__(self)

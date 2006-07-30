@@ -397,7 +397,8 @@ class PowerKey:
 			self.standby()
 
 	def standby(self):
-		self.session.open(Standby, self)
+		if self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+			self.session.open(Standby, self)
 
 	def quit(self):
 		# halt

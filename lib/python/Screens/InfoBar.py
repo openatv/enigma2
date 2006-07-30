@@ -34,6 +34,8 @@ class InfoBar(InfoBarShowHide,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, 
 	InfoBarSubtitleSupport, Screen):
+	
+	ALLOW_SUSPEND = True
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -84,6 +86,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarSummarySupport, InfoBarTeletextPlugin, InfoBarSubtitleSupport, Screen):
 
 	ENABLE_RESUME_SUPPORT = True
+	ALLOW_SUSPEND = True
 		
 	def __init__(self, session, service):
 		Screen.__init__(self, session)
