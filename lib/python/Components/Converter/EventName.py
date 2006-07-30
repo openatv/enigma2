@@ -15,6 +15,11 @@ class EventName(Converter, object):
 			self.type = self.NAME
 
 	def getText(self):
+		if self.cache is None:
+			self.cache = self.__getText()
+		return self.cache
+
+	def __getText(self):
 		event = self.source.event
 		if event is None:
 			return "N/A"

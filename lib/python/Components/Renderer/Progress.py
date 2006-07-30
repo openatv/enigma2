@@ -12,7 +12,11 @@ class Progress(VariableValue, Renderer):
 
 	GUI_WIDGET = eSlider
 
-	def changed(self):
+	def changed(self, what):
+		if what[0] == self.CHANGED_CLEAR:
+			(self.range, self.value) = ((0, 1), 0)
+			return
+
 		range = self.source.range or 100
 		value = self.source.value
 		if value is None:

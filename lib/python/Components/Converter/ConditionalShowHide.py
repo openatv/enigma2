@@ -6,6 +6,6 @@ class ConditionalShowHide(Converter, object):
 		Converter.__init__(self, type)
 		self.invert = type == "Invert"
 
-	def changed(self):
+	def changed(self, what):
 		for x in self.downstream_elements:
 			x.visible = self.source.boolean

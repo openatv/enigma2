@@ -12,7 +12,10 @@ class Label(VariableText, Renderer):
 
 	def connect(self, source):
 		Renderer.connect(self, source)
-		self.changed()
+		self.changed((self.CHANGED_DEFAULT,))
 
-	def changed(self):
-		self.text = self.source.text
+	def changed(self, what):
+		if what[0] == self.CHANGED_CLEAR:
+			self.text = ""
+		else:
+			self.text = self.source.text

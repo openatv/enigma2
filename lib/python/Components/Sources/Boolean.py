@@ -13,7 +13,7 @@ class Boolean(Source, object):
 		Source.__init__(self)
 		if poll > 0:
 			self.poll_timer = eTimer()
-			self.poll_timer.timeout.get().append(self.changed)
+			self.poll_timer.timeout.get().append(self.poll)
 			self.poll_timer.start(poll)
 
 	def getBoolean(self):
@@ -23,3 +23,6 @@ class Boolean(Source, object):
 			return self.fixed
 
 	boolean = property(getBoolean)
+
+	def poll(self):
+		self.changed((self.CHANGED_ALL,))

@@ -11,12 +11,15 @@ class PositionGauge(Renderer):
 	GUI_WIDGET = ePositionGauge
 	
 	def postWidgetCreate(self, instance):
-		self.changed()
+		self.changed((self.CHANGED_DEFAULT,))
 		self.cutlist_changed()
 		instance.setInOutList(self.__cutlist)
 
-	def changed(self):
-		(self.length, self.position) = (self.source.length or 0, self.source.position or 0)
+	def changed(self, what):
+		if what[0] == self.CHANGED_CLEAR:
+			(self.length, self.position) = 0
+		else:
+			(self.length, self.position) = (self.source.length or 0, self.source.position or 0)
 
 	def cutlist_changed(self):
 		self.cutlist = self.source.cutlist or [ ]
