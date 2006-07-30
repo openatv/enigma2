@@ -9,7 +9,7 @@ class MenuList(Source, object):
 	
 	def setList(self, list):
 		self.__list = list
-		self.changed()
+		self.changed((self.CHANGED_ALL,))
 	
 	list = property(lambda self: self.__list, setList)
 

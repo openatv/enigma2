@@ -70,13 +70,13 @@ class ServicePosition(Converter, Poll, object):
 	cutlist = property(getCutlist)
 	text = property(getText)
 	
-	def changed(self, *args):
-		cutlist_refresh = len(args) and args[0] in [iPlayableService.evCuesheetChanged, iPlayableService.evStart, iPlayableService.evEnd]
-		time_refresh = not len(args) or args[0] in [iPlayableService.evStart, iPlayableService.evEnd]
+	def changed(self, what):
+		cutlist_refresh = what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evCuesheetChanged]
+		time_refresh = what[0] == self.CHANGED_POLL or what[0] == self.CHANGED_SPECIFIC and what[1] in [iPlayableService.evCuesheetChanged]
 		
 		if cutlist_refresh:
 			if self.type == self.TYPE_GAUGE:
 				self.downstream_elements.cutlist_changed()
 
 		if time_refresh:
-			self.downstream_elements.changed()
+			self.downstream_elements.changed(what)

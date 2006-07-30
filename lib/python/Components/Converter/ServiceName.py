@@ -31,6 +31,6 @@ class ServiceName(Converter, object):
 
 	text = property(getText)
 
-	def changed(self, *args):
-		if not len(args) or args[0] in [iPlayableService.evStart, iPlayableService.evEnd]:
-			Converter.changed(self)
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evStart]:
+			Converter.changed(self, what)

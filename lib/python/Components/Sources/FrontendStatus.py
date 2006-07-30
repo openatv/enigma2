@@ -27,7 +27,7 @@ class FrontendStatus(Source):
 						iFrontendInformation.bitErrorRate, 
 						iFrontendInformation.lockState] ]
 
-		self.changed()
+		self.changed((self.CHANGED_ALL, ))
 
 	def getFrontendInfo(self):
 		if self.frontend_source:

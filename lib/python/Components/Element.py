@@ -5,10 +5,17 @@ from Tools.CList import CList
 
 # a bidirectional connection
 class Element:
+	CHANGED_DEFAULT = 0   # initial "pull" state
+	CHANGED_ALL = 1       # really everything changed
+	CHANGED_CLEAR = 2     # we're expecting a real update soon. don't bother polling NOW, but clear data.
+	CHANGED_SPECIFIC = 3  # second tuple will specify what exactly changed
+	CHANGED_POLL = 4      # a timer expired
+
 	def __init__(self):
 		self.downstream_elements = CList()
 		self.master = None
 		self.source = None
+		self.clearCache()
 
 	def connectDownstream(self, downstream):
 		self.downstream_elements.append(downstream)
@@ -18,7 +25,7 @@ class Element:
 	def connectUpstream(self, upstream):
 		assert self.source is None
 		self.source = upstream
-		self.changed()
+		self.changed((self.CHANGED_DEFAULT,))
 	
 	def connect(self, upstream):
 		self.connectUpstream(upstream)
@@ -44,8 +51,13 @@ class Element:
 
 	# default action: push downstream
 	def changed(self, *args, **kwargs):
+		self.clearCache()
 		self.downstream_elements.changed(*args, **kwargs)
+		self.clearCache()
 
 	def reconnectUpstream(self, new_upstream):
 		assert self.source is not None
 		self.source = new_upstream
+
+	def clearCache(self):
+		self.cache = None

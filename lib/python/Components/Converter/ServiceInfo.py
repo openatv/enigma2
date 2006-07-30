@@ -19,11 +19,11 @@ class ServiceInfo(Converter, object):
 			}[type]
 
 		self.interesting_events = {
-				self.HAS_TELETEXT: [iPlayableService.evEnd, iPlayableService.evUpdatedInfo],
-				self.IS_MULTICHANNEL: [iPlayableService.evUpdatedInfo, iPlayableService.evEnd],
-				self.IS_CRYPTED: [iPlayableService.evUpdatedInfo, iPlayableService.evEnd],
-				self.IS_WIDESCREEN: [iPlayableService.evUpdatedEventInfo, iPlayableService.evEnd],
-				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo, iPlayableService.evEnd]
+				self.HAS_TELETEXT: [iPlayableService.evUpdatedInfo],
+				self.IS_MULTICHANNEL: [iPlayableService.evUpdatedInfo],
+				self.IS_CRYPTED: [iPlayableService.evUpdatedInfo],
+				self.IS_WIDESCREEN: [iPlayableService.evUpdatedEventInfo],
+				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo]
 			}[self.type]
 
 	def getServiceInfoValue(self, info, what):
@@ -33,6 +33,11 @@ class ServiceInfo(Converter, object):
 		return info.getInfoString(what)
 
 	def getBoolean(self):
+		if self.cache is None:
+			self.cache = self.__getBoolean()
+		return self.cache
+
+	def __getBoolean(self):
 		service = self.source.service
 		info = service and service.info()
 		if not info:
@@ -62,7 +67,6 @@ class ServiceInfo(Converter, object):
 
 	boolean = property(getBoolean)
 
-	def changed(self, *args):
-		if not len(args) or args[0] in [iPlayableService.evStart, iPlayableService.evEnd, 
-			iPlayableService.evUpdatedInfo, iPlayableService.evUpdatedEventInfo]:
-			Converter.changed(self)
+	def changed(self, what):
+		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
+			Converter.changed(self, what)

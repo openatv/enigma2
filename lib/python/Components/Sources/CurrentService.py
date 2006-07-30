@@ -2,6 +2,8 @@ from Components.PerServiceDisplay import PerServiceBase
 from enigma import iPlayableService
 from Source import Source
 
+from time import time
+
 class CurrentService(PerServiceBase, Source):
 	def __init__(self, navcore):
 		Source.__init__(self)
@@ -18,9 +20,11 @@ class CurrentService(PerServiceBase, Source):
 		self.navcore = navcore
 
 	def serviceEvent(self, event):
-		self.changed(event)
+		self.changed((self.CHANGED_SPECIFIC, event))
 
 	def getCurrentService(self):
-		return self.navcore.getCurrentService()
+		if self.cache is None:
+			self.cache = self.navcore.getCurrentService()
+		return self.cache
 
 	service = property(getCurrentService)

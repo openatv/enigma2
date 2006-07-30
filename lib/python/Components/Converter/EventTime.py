@@ -30,6 +30,11 @@ class EventTime(Poll, Converter, object):
 			raise str("'%s' is not <StartTime|EndTime|Remaining|Duration> for EventTime converter" % type)
 
 	def getTime(self):
+		if self.cache is None or self.cache[0] is None:
+			self.cache = (self.__getTime(), self.cache and self.cache[1])
+		return self.cache[0]
+	
+	def __getTime(self):	
 		assert self.type != self.PROGRESS
 
 		event = self.source.event
@@ -53,6 +58,11 @@ class EventTime(Poll, Converter, object):
 				return (duration, None)
 
 	def getValue(self):
+		if self.cache is None or self.cache[1] is None:
+			self.cache = (self.cache and self.cache[0], self.__getValue())
+		return self.cache[1]
+
+	def __getValue(self):
 		assert self.type == self.PROGRESS
 
 		event = self.source.event
