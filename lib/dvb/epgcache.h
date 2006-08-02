@@ -178,14 +178,16 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		std::map<__u8, mhw_theme_name_t> m_themes;
 		std::map<__u32, mhw_title_t> m_titles;
 		std::map<__u32, __u32> m_program_ids;
-		ePtr<eConnection> m_MHWConn;
-		ePtr<iDVBSectionReader> m_MHWReader;
-		eDVBSectionFilterMask m_MHWFilterMask;
+		ePtr<eConnection> m_MHWConn, m_MHWConn2;
+		ePtr<iDVBSectionReader> m_MHWReader, m_MHWReader2;
+		eDVBSectionFilterMask m_MHWFilterMask, m_MHWFilterMask2;
 		eTimer m_MHWTimeoutTimer;
 		bool m_MHWTimeoutet;
 		void MHWTimeout() { m_MHWTimeoutet=true; }
 		void readMHWData(const __u8 *data);
+		void readMHWData2(const __u8 *data);
 		void startMHWReader(__u16 pid, __u8 tid);
+		void startMHWReader2(__u16 pid, __u8 tid, int ext=-1);
 		void startTimeout(int msek);
 		bool checkTimeout() { return m_MHWTimeoutet; }
 		void cleanup();
