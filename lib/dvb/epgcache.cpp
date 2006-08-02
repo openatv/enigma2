@@ -818,7 +818,7 @@ void eEPGCache::load()
 			fread( &magic, sizeof(int), 1, f);
 			if (magic != 0x98765432)
 			{
-				eDebug("epg file has incorrect byte order.. dont read it");
+				eDebug("[EPGC] epg file has incorrect byte order.. dont read it");
 				fclose(f);
 				return;
 			}
@@ -853,7 +853,7 @@ void eEPGCache::load()
 					eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
 				}
 				eventData::load(f);
-				eDebug("%d events read from /hdd/epg.dat", cnt);
+				eDebug("[EPGC] %d events read from /hdd/epg.dat", cnt);
 #ifdef ENABLE_PRIVATE_EPG
 				char text2[11];
 				fread( text2, 11, 1, f);
@@ -946,7 +946,7 @@ void eEPGCache::save()
 				++cnt;
 			}
 		}
-		eDebug("%d events written to /hdd/epg.dat", cnt);
+		eDebug("[EPGC] %d events written to /hdd/epg.dat", cnt);
 		eventData::save(f);
 #ifdef ENABLE_PRIVATE_EPG
 		const char* text3 = "PRIVATE_EPG";
@@ -1074,7 +1074,6 @@ void eEPGCache::channel_data::startEPG()
 	isRunning |= SCHEDULE;
 
 	mask.data[0] = 0x60;
-	mask.mask[0] = 0xF0;
 	m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
@@ -1198,91 +1197,86 @@ void eEPGCache::channel_data::abortEPG()
 
 void eEPGCache::channel_data::readData( const __u8 *data)
 {
-	if (!data)
-		eDebug("get Null pointer from section reader !!");
+	int source;
+	int map;
+	iDVBSectionReader *reader=NULL;
+	switch(data[0])
+	{
+		case 0x4E ... 0x4F:
+			reader=m_NowNextReader;
+			source=NOWNEXT;
+			map=0;
+			break;
+		case 0x50 ... 0x5F:
+			reader=m_ScheduleReader;
+			source=SCHEDULE;
+			map=1;
+			break;
+		case 0x60 ... 0x6F:
+			reader=m_ScheduleOtherReader;
+			source=SCHEDULE_OTHER;
+			map=2;
+			break;
+		default:
+			eDebug("[EPGC] unknown table_id !!!");
+			return;
+	}
+	tidMap &seenSections = this->seenSections[map];
+	tidMap &calcedSections = this->calcedSections[map];
+	if ( state == 1 && calcedSections == seenSections || state > 1 )
+	{
+		eDebugNoNewLine("[EPGC] ");
+		switch (source)
+		{
+			case NOWNEXT:
+				m_NowNextConn=0;
+				eDebugNoNewLine("nownext");
+				break;
+			case SCHEDULE:
+				m_ScheduleConn=0;
+				eDebugNoNewLine("schedule");
+				break;
+			case SCHEDULE_OTHER:
+				m_ScheduleOtherConn=0;
+				eDebugNoNewLine("schedule other");
+				break;
+			default: eDebugNoNewLine("unknown");break;
+		}
+		eDebug(" finished(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
+		if ( reader )
+			reader->stop();
+		isRunning &= ~source;
+		if (!isRunning)
+			finishEPG();
+	}
 	else
 	{
-		int source;
-		int map;
-		iDVBSectionReader *reader=NULL;
-		switch(data[0])
-		{
-			case 0x4E ... 0x4F:
-				reader=m_NowNextReader;
-				source=NOWNEXT;
-				map=0;
-				break;
-			case 0x50 ... 0x5F:
-				reader=m_ScheduleReader;
-				source=SCHEDULE;
-				map=1;
-				break;
-			case 0x60 ... 0x6F:
-				reader=m_ScheduleOtherReader;
-				source=SCHEDULE_OTHER;
-				map=2;
-				break;
-			default:
-				eDebug("[EPGC] unknown table_id !!!");
-				return;
-		}
-		tidMap &seenSections = this->seenSections[map];
-		tidMap &calcedSections = this->calcedSections[map];
-		if ( state == 1 && calcedSections == seenSections || state > 1 )
-		{
-			eDebugNoNewLine("[EPGC] ");
-			switch (source)
-			{
-				case NOWNEXT:
-					m_NowNextConn=0;
-					eDebugNoNewLine("nownext");
-					break;
-				case SCHEDULE:
-					m_ScheduleConn=0;
-					eDebugNoNewLine("schedule");
-					break;
-				case SCHEDULE_OTHER:
-					m_ScheduleOtherConn=0;
-					eDebugNoNewLine("schedule other");
-					break;
-				default: eDebugNoNewLine("unknown");break;
-			}
-			eDebug(" finished(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
-			if ( reader )
-				reader->stop();
-			isRunning &= ~source;
-			if (!isRunning)
-				finishEPG();
-		}
-		else
-		{
-			eit_t *eit = (eit_t*) data;
-			__u32 sectionNo = data[0] << 24;
-			sectionNo |= data[3] << 16;
-			sectionNo |= data[4] << 8;
-			sectionNo |= eit->section_number;
+		eit_t *eit = (eit_t*) data;
+		__u32 sectionNo = data[0] << 24;
+		sectionNo |= data[3] << 16;
+		sectionNo |= data[4] << 8;
+		sectionNo |= eit->section_number;
 
-			tidMap::iterator it =
-				seenSections.find(sectionNo);
+		tidMap::iterator it =
+			seenSections.find(sectionNo);
 
-			if ( it == seenSections.end() )
+		if ( it == seenSections.end() )
+		{
+			seenSections.insert(sectionNo);
+			calcedSections.insert(sectionNo);
+			__u32 tmpval = sectionNo & 0xFFFFFF00;
+			__u8 incr = source == NOWNEXT ? 1 : 8;
+			for ( int i = 0; i <= eit->last_section_number; i+=incr )
 			{
-				seenSections.insert(sectionNo);
-				calcedSections.insert(sectionNo);
-				__u32 tmpval = sectionNo & 0xFFFFFF00;
-				__u8 incr = source == NOWNEXT ? 1 : 8;
-				for ( int i = 0; i <= eit->last_section_number; i+=incr )
+				if ( i == eit->section_number )
 				{
-					if ( i == eit->section_number )
-					{
-						for (int x=i; x <= eit->segment_last_section_number; ++x)
-							calcedSections.insert(tmpval|(x&0xFF));
-					}
-					else
-						calcedSections.insert(tmpval|(i&0xFF));
+					for (int x=i; x <= eit->segment_last_section_number; ++x)
+						calcedSections.insert(tmpval|(x&0xFF));
 				}
-				cache->sectionRead(data, source, this);
+				else
+					calcedSections.insert(tmpval|(i&0xFF));
 			}
+			cache->sectionRead(data, source, this);
 		}
 	}
 }
@@ -1381,7 +1375,7 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 		else
 		{
 			result = 0;
-			eDebug("event %04x not found in epgcache", event_id);
+			eDebug("[EPGC] event %04x not found in epgcache", event_id);
 		}
 	}
 	return -1;
@@ -2442,7 +2436,7 @@ void eEPGCache::channel_data::startPrivateReader()
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 	mask.data[0] = 0xA0;
 	mask.mask[0] = 0xFF;
-	eDebug("start privatefilter for pid %04x and version %d", m_PrivatePid, m_PrevVersion);
+	eDebug("[EPGC] start privatefilter for pid %04x and version %d", m_PrivatePid, m_PrevVersion);
 	if (m_PrevVersion != -1)
 	{
 		mask.data[3] = m_PrevVersion << 1;
@@ -2457,21 +2451,16 @@ void eEPGCache::channel_data::startPrivateReader()
 
 void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 {
-	if (!data)
-		eDebug("get Null pointer from section reader !!");
-	else
+	if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
 	{
-		if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
-		{
-			cache->privateSectionRead(m_PrivateService, data);
-			seenPrivateSections.insert(data[6]);
-		}
-		if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
-		{
-			eDebug("[EPGC] private finished");
-			m_PrevVersion = (data[5] & 0x3E) >> 1;
-			startPrivateReader();
-		}
+		cache->privateSectionRead(m_PrivateService, data);
+		seenPrivateSections.insert(data[6]);
+	}
+	if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
+	{
+		eDebug("[EPGC] private finished");
+		m_PrevVersion = (data[5] & 0x3E) >> 1;
+		startPrivateReader();
 	}
 }
 
@@ -2728,7 +2717,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		}
 		haveData |= MHW;
 
-		eDebug("channels finished %d found", m_channels.size());
+		eDebug("[EPGC] mhw %d channels found", m_channels.size());
 
 		// Channels table has been read, start reading the themes table.
 		startMHWReader(0xD3, 0x92);
@@ -2759,7 +2748,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 
 			m_themes[idx+sub_idx] = *theme;
 		}
-		eDebug("themes finished %d found", m_themes.size());
+		eDebug("[EPGC] mhw %d themes found", m_themes.size());
 		// Themes table has been read, start reading the titles table.
 		startMHWReader(0xD2, 0x90);
 		startTimeout(4000);
@@ -2797,7 +2786,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 			// Titles table has been read, there are summaries to read.
 			// Start reading summaries, store corresponding titles on the fly.
 			startMHWReader(0xD3, 0x90);
-			eDebug("titles finished %d titles, %d with summary",
+			eDebug("[EPGC] mhw %d titles(%d with summary) found",
 				m_titles.size(),
 				m_program_ids.size());
 			startTimeout(4000);
@@ -2847,13 +2836,13 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 				return;	// Continue reading of the current table.
 		}
 	}
+	eDebug("[EPGC] mhw finished(%ld) %d summaries not found",
+		eDVBLocalTimeHandler::getInstance()->nowTime(),
+		m_program_ids.size());
 	// Summaries have been read, titles that have summaries have been stored.
 	// Now store titles that do not have summaries.
 	for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 		storeTitle( itTitle, "", data );
-	eDebug("[EPGC] mhw finished(%ld) %d summaries left",
-		eDVBLocalTimeHandler::getInstance()->nowTime(),
-		m_program_ids.size());
 	isRunning &= ~MHW;
 	m_MHWConn=0;
 	if ( m_MHWReader )
