@@ -2968,6 +2968,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			channel.transport_stream_id_lo = *(tmp++);
 			channel.channel_id_hi = *(tmp++);
 			channel.channel_id_lo = *(tmp++);
+#warning FIXME hardcoded network_id in mhw2 epg
 			channel.network_id_hi = 0; // hardcoded astra 19.2
 			channel.network_id_lo = 1;
 			m_channels.push_back(channel);
