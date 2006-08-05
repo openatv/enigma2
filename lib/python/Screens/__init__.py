@@ -6,4 +6,4 @@ __all__ = ["ChannelSelection", "ClockDisplay", "ConfigMenu",
 	"EpgSelection", "EventView", "Standby", "ServiceInfo",
 	"InfoBarGenerics", "HelpMenu", "Wizard", "PiPSetup",
 	"PVRState", "Console", "InputBox", "ChoiceBox", "SimpleSummary",
-	"TimerSelection" ]
+	"TimerSelection", "SubservicesQuickzap" ]
