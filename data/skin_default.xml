@@ -47,6 +47,14 @@
 		<widget name="blue" position="420,0" size="140,40" backgroundColor="blue" valign="center" halign="center" font="Regular;21" />
 		<widget name="infolist" position="20,50" size="560,365" selectionDisabled="1"/>
 	</screen>
+	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" flags="wfNoBorder" backgroundColor="transparent">
+		<widget name="BlinkingPoint" pixmap="BlinkingPoint-fs8.png" position="450,0" zPosition="2" size="15,15" alphatest="on" />
+		<eLabel position="0,0" size="470,20" backgroundColor="#33294a6b" font="Regular;13" text="Subservices" />	
+		<widget name="CurrentSubserviceNumber" position="0,20" size="50,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="CurrentService" render="Label" position="50,20" size="420,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>				
+	</screen>
 	<screen name="AudioSelection" position="210,203" size="300,170" title="Audio">
 		<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
 	</screen>

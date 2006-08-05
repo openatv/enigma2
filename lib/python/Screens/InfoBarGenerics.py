@@ -692,7 +692,7 @@ class InfoBarSeek:
 		print "unpause"
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			return 0
-		self.setSeekState(self.SEEK_STATE_PLAY);
+		self.setSeekState(self.SEEK_STATE_PLAY)
 	
 	def doSeek(self, seektime):
 		print "doseek", seektime
@@ -1022,8 +1022,9 @@ class InfoBarTimeshift:
 from Screens.PiPSetup import PiPSetup
 
 class InfoBarExtensions:
-	def __init__(self):
+	def __init__(self, useServicePath = True):
 		self.session.pipshown = False
+		self.useServicePath = useServicePath
 		
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
 			{
@@ -1060,7 +1061,8 @@ class InfoBarExtensions:
 				newservice = self.session.nav.getCurrentlyPlayingServiceReference()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					if self.useServicePath:
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.session.pipshown = False
 					del self.session.pip
@@ -1070,16 +1072,17 @@ class InfoBarExtensions:
 				self.session.pipshown = False
 			elif answer[1] == self.PIPSWAP:
 				swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
-				if self.session.pip.servicePath:
-					servicepath = self.servicelist.getCurrentServicePath()
-					ref=servicepath[len(servicepath)-1]
-					pipref=self.session.pip.getCurrentService()
-					self.session.pip.playService(swapservice)
-					self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
-					if pipref.toString() != ref.toString(): # is a subservice ?
-						self.session.nav.stopService() # stop portal
-						self.session.nav.playService(pipref) # start subservice
-					self.session.pip.servicePath=servicepath
+				if self.useServicePath:
+					if self.session.pip.servicePath:
+						servicepath = self.servicelist.getCurrentServicePath()
+						ref=servicepath[len(servicepath)-1]
+						pipref=self.session.pip.getCurrentService()
+						self.session.pip.playService(swapservice)
+						self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
+						if pipref.toString() != ref.toString(): # is a subservice ?
+							self.session.nav.stopService() # stop portal
+							self.session.nav.playService(pipref) # start subservice
+						self.session.pip.servicePath=servicepath
 			elif answer[1] == self.MOVEPIP:
 				self.session.open(PiPSetup, pip = self.session.pip)
 			elif answer[1] == self.ENABLE_SUBTITLE:
@@ -1284,6 +1287,7 @@ class InfoBarAudioSelection:
 			self.audioChannel.selectChannel(mode[1])
 		del self.audioChannel
 
+		
 class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
@@ -1350,12 +1354,21 @@ class InfoBarSubserviceSelection:
 					selection = x
 				tlist.append((i.getName(), i))
 
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection)
+			tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
+
+			keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection + 2, keys = keys)
 
 	def subserviceSelected(self, service):
 		if not service is None:
-			self["SubserviceQuickzapAction"].setEnabled(True)
-			self.session.nav.playService(service[1])
+			if isinstance(service[1], str):
+				if service[1] == "quickzap":
+					from Screens.SubservicesQuickzap import SubservicesQuickzap
+					self.session.open(SubservicesQuickzap, service[2])
+			else:
+				self["SubserviceQuickzapAction"].setEnabled(True)
+				self.session.nav.playService(service[1])
 
 class InfoBarAdditionalInfo:
 	def __init__(self):

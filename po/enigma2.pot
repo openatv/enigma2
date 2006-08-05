@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-02 20:53+0200\n"
+"POT-Creation-Date: 2006-08-05 19:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "AB"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1042
+#: ../lib/python/Screens/InfoBarGenerics.py:1043
 msgid "Activate Picture in Picture"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Artist:"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1221
+#: ../lib/python/Screens/InfoBarGenerics.py:1224
 msgid "Audio Options..."
 msgstr ""
 
@@ -400,7 +400,7 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1044
+#: ../lib/python/Screens/InfoBarGenerics.py:1045
 msgid "Disable Picture in Picture"
 msgstr ""
 
@@ -433,7 +433,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1480
+#: ../lib/python/Screens/InfoBarGenerics.py:1493
 msgid "Do you want to resume this playback?"
 msgstr ""
 
@@ -609,8 +609,8 @@ msgstr ""
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1187
-#: ../lib/python/Screens/InfoBarGenerics.py:1195
+#: ../lib/python/Screens/InfoBarGenerics.py:1190
+#: ../lib/python/Screens/InfoBarGenerics.py:1198
 msgid "How many minutes do you want to record?"
 msgstr ""
 
@@ -647,7 +647,7 @@ msgstr ""
 msgid "Initializing Harddisk..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1097
+#: ../lib/python/Screens/InfoBarGenerics.py:1100
 msgid "Instant Record..."
 msgstr ""
 
@@ -687,7 +687,7 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Left"
 msgstr ""
 
@@ -744,7 +744,7 @@ msgstr ""
 msgid "Monday"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1045
+#: ../lib/python/Screens/InfoBarGenerics.py:1046
 msgid "Move Picture in Picture"
 msgstr ""
 
@@ -817,11 +817,11 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1207
+#: ../lib/python/Screens/InfoBarGenerics.py:1210
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1140
+#: ../lib/python/Screens/InfoBarGenerics.py:1143
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
@@ -896,7 +896,7 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1054
+#: ../lib/python/Screens/InfoBarGenerics.py:1055
 msgid "Please choose an extension..."
 msgstr ""
 
@@ -912,7 +912,8 @@ msgstr ""
 msgid "Please select a subservice to record..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1353
+#: ../lib/python/Screens/InfoBarGenerics.py:1361
+#: ../lib/python/Screens/SubservicesQuickzap.py:90
 msgid "Please select a subservice..."
 msgstr ""
 
@@ -997,8 +998,16 @@ msgstr ""
 msgid "Providers"
 msgstr ""
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1357
+msgid "Quickzap"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEdit.py:107
 msgid "Really delete done timers?"
+msgstr ""
+
+#: ../lib/python/Screens/SubservicesQuickzap.py:101
+msgid "Really exit the subservices quickzap?"
 msgstr ""
 
 #: ../lib/python/Screens/EventView.py:74
@@ -1030,7 +1039,7 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Right"
 msgstr ""
 
@@ -1074,11 +1083,11 @@ msgstr ""
 msgid "Secondary cable from motorized LNB"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1273
+#: ../lib/python/Screens/InfoBarGenerics.py:1276
 msgid "Select audio mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1262
+#: ../lib/python/Screens/InfoBarGenerics.py:1265
 msgid "Select audio track"
 msgstr ""
 
@@ -1169,7 +1178,7 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "Start recording?"
 msgstr ""
 
@@ -1189,7 +1198,7 @@ msgstr ""
 msgid "Step west"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Stereo"
 msgstr ""
 
@@ -1216,7 +1225,7 @@ msgstr ""
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1291
+#: ../lib/python/Screens/InfoBarGenerics.py:1295
 msgid "Subservice list..."
 msgstr ""
 
@@ -1230,7 +1239,7 @@ msgstr ""
 msgid "Sunday"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1046
+#: ../lib/python/Screens/InfoBarGenerics.py:1047
 msgid "Swap services"
 msgstr ""
 
@@ -1238,11 +1247,11 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1296
+#: ../lib/python/Screens/InfoBarGenerics.py:1300
 msgid "Switch to next subservice"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1297
+#: ../lib/python/Screens/InfoBarGenerics.py:1301
 msgid "Switch to previous subservice"
 msgstr ""
 
@@ -1397,7 +1406,7 @@ msgstr ""
 msgid "User defined"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1618
+#: ../lib/python/Screens/InfoBarGenerics.py:1631
 msgid "View teletext..."
 msgstr ""
 
@@ -1494,18 +1503,18 @@ msgstr ""
 msgid "add marker"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (enter recording duration)"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (indefinitely)"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (stop after current event)"
 msgstr ""
 
@@ -1528,7 +1537,7 @@ msgstr ""
 msgid "back"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "change recording (duration)"
 msgstr ""
 
@@ -1569,11 +1578,11 @@ msgid "disable move mode"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "do nothing"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "don't record"
 msgstr ""
 
@@ -1637,7 +1646,7 @@ msgstr ""
 msgid "leave movie player..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "left"
 msgstr ""
 
@@ -1765,7 +1774,7 @@ msgstr ""
 msgid "repeated"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "right"
 msgstr ""
 
@@ -1819,11 +1828,11 @@ msgstr ""
 msgid "start timeshift"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "stereo"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "stop recording"
 msgstr ""
 
@@ -1859,7 +1868,7 @@ msgstr ""
 msgid "vertical"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1030
+#: ../lib/python/Screens/InfoBarGenerics.py:1031
 msgid "view extensions..."
 msgstr ""
 
@@ -2041,15 +2050,11 @@ msgid ""
 msgstr ""
 
 #: ../data/
-msgid "Yes, do another manual scan now"
+msgid "Mute"
 msgstr ""
 
 #: ../data/
 msgid "Service Searching"
-msgstr ""
-
-#: ../data/
-msgid "Mute"
 msgstr ""
 
 #: ../data/
@@ -2113,11 +2118,7 @@ msgid "Manual Scan"
 msgstr ""
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
+msgid "Timer Edit"
 msgstr ""
 
 #: ../data/
@@ -2174,6 +2175,10 @@ msgstr ""
 
 #: ../data/
 msgid "Standby"
+msgstr ""
+
+#: ../data/
+msgid "Yes, do another manual scan now"
 msgstr ""
 
 #: ../data/
@@ -2514,7 +2519,11 @@ msgid "Alpha"
 msgstr ""
 
 #: ../data/
-msgid "Timer Edit"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
 msgstr ""
 
 #: ../data/

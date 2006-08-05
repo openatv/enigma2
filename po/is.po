@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandin translation v.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-04 02:05+0200\n"
+"POT-Creation-Date: 2006-08-05 19:29+0000\n"
 "PO-Revision-Date: 2006-08-03 23:52-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Polar Team <baddi@oreind.is>\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -140,7 +140,7 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1042
+#: ../lib/python/Screens/InfoBarGenerics.py:1043
 msgid "Activate Picture in Picture"
 msgstr "Virkja Mynd í Mynd"
 
@@ -184,7 +184,7 @@ msgstr "Arabíska"
 msgid "Artist:"
 msgstr "Listmaður:"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1221
+#: ../lib/python/Screens/InfoBarGenerics.py:1224
 msgid "Audio Options..."
 msgstr "Hljóð stillingar..."
 
@@ -412,7 +412,7 @@ msgstr "DiSEqC endurtekning"
 msgid "Disable"
 msgstr "Gera óvirkt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1044
+#: ../lib/python/Screens/InfoBarGenerics.py:1045
 msgid "Disable Picture in Picture"
 msgstr "Gera Mynd í Mynd óvirka"
 
@@ -453,7 +453,7 @@ msgstr ""
 "Viltu taka afrit núna?\n"
 "Eftir að hafa ýtt á OK þá bíðið!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1480
+#: ../lib/python/Screens/InfoBarGenerics.py:1493
 msgid "Do you want to resume this playback?"
 msgstr ""
 
@@ -631,8 +631,8 @@ msgstr "Harður diskur"
 msgid "Hierarchy mode"
 msgstr "Flokkunar hamur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1187
-#: ../lib/python/Screens/InfoBarGenerics.py:1195
+#: ../lib/python/Screens/InfoBarGenerics.py:1190
+#: ../lib/python/Screens/InfoBarGenerics.py:1198
 msgid "How many minutes do you want to record?"
 msgstr "Í hvað margar mínútur viltu taka upp?"
 
@@ -670,7 +670,7 @@ msgstr "Frumstiling"
 msgid "Initializing Harddisk..."
 msgstr "Frumstilli harða disk"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1097
+#: ../lib/python/Screens/InfoBarGenerics.py:1100
 msgid "Instant Record..."
 msgstr "Skyndi upptaka..."
 
@@ -710,7 +710,7 @@ msgstr "Val tungumáls"
 msgid "Latitude"
 msgstr "Breiddargráða"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Left"
 msgstr "Vinstri"
 
@@ -767,7 +767,7 @@ msgstr "Mán-Fös"
 msgid "Monday"
 msgstr "Mánudagur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1045
+#: ../lib/python/Screens/InfoBarGenerics.py:1046
 msgid "Move Picture in Picture"
 msgstr "Færa Mynd í Mynd"
 
@@ -840,11 +840,11 @@ msgstr "Næsta"
 msgid "No"
 msgstr "Nei"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1207
+#: ../lib/python/Screens/InfoBarGenerics.py:1210
 msgid "No HDD found or HDD not initialized!"
 msgstr "Fann ekki harðan disk eða hann ekki formaður!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1140
+#: ../lib/python/Screens/InfoBarGenerics.py:1143
 msgid "No event info found, recording indefinitely."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
 
@@ -921,7 +921,7 @@ msgstr "Pakka meðhöndlun"
 msgid "Play recorded movies..."
 msgstr "Spila uppteknar myndir..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1054
+#: ../lib/python/Screens/InfoBarGenerics.py:1055
 msgid "Please choose an extension..."
 msgstr "Vinsamlega veldu viðbót.."
 
@@ -937,7 +937,8 @@ msgstr ""
 msgid "Please select a subservice to record..."
 msgstr "Velja undirrás til að taka upp..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1353
+#: ../lib/python/Screens/InfoBarGenerics.py:1361
+#: ../lib/python/Screens/SubservicesQuickzap.py:90
 msgid "Please select a subservice..."
 msgstr "Vinsamlega veldu undirrás..."
 
@@ -1025,9 +1026,17 @@ msgstr "Sendandi"
 msgid "Providers"
 msgstr "Sendendur"
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1357
+msgid "Quickzap"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEdit.py:107
 msgid "Really delete done timers?"
 msgstr "Viltu eyða liðnum tímastillingum?"
+
+#: ../lib/python/Screens/SubservicesQuickzap.py:101
+msgid "Really exit the subservices quickzap?"
+msgstr ""
 
 #: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
@@ -1058,7 +1067,7 @@ msgstr "Endursetja"
 msgid "Restore"
 msgstr "Setja inn"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Right"
 msgstr "Hægri"
 
@@ -1102,11 +1111,11 @@ msgstr "Leita vestur"
 msgid "Secondary cable from motorized LNB"
 msgstr "Seinni kapall frá mótorstýrðum nema"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1273
+#: ../lib/python/Screens/InfoBarGenerics.py:1276
 msgid "Select audio mode"
 msgstr "Veldu hljóð stillingu"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1262
+#: ../lib/python/Screens/InfoBarGenerics.py:1265
 msgid "Select audio track"
 msgstr "Veldu hljóð rás"
 
@@ -1200,7 +1209,7 @@ msgstr "Spænska"
 msgid "Start"
 msgstr "Byrja"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "Start recording?"
 msgstr "Byrja upptöku?"
 
@@ -1220,7 +1229,7 @@ msgstr "Skref austur"
 msgid "Step west"
 msgstr "Skref vestur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1261
+#: ../lib/python/Screens/InfoBarGenerics.py:1264
 msgid "Stereo"
 msgstr "Víðóma"
 
@@ -1247,7 +1256,7 @@ msgstr "Vista staðsetningu"
 msgid "Stored position"
 msgstr "Vistuð staða"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1291
+#: ../lib/python/Screens/InfoBarGenerics.py:1295
 msgid "Subservice list..."
 msgstr "Listi undirrása..."
 
@@ -1261,7 +1270,7 @@ msgstr "Sun"
 msgid "Sunday"
 msgstr "Sunnudagur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1046
+#: ../lib/python/Screens/InfoBarGenerics.py:1047
 msgid "Swap services"
 msgstr "Skipta á milli rása"
 
@@ -1269,11 +1278,11 @@ msgstr "Skipta á milli rása"
 msgid "Swedish"
 msgstr "Sænskt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1296
+#: ../lib/python/Screens/InfoBarGenerics.py:1300
 msgid "Switch to next subservice"
 msgstr "Skipta á næstu undirrás"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1297
+#: ../lib/python/Screens/InfoBarGenerics.py:1301
 msgid "Switch to previous subservice"
 msgstr "Skipta á fyrri undirrás"
 
@@ -1431,7 +1440,7 @@ msgstr "Nota usals fyrir þennan hnött"
 msgid "User defined"
 msgstr "Stillt af notanda"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1618
+#: ../lib/python/Screens/InfoBarGenerics.py:1631
 msgid "View teletext..."
 msgstr "Skoða textavarp..."
 
@@ -1530,18 +1539,18 @@ msgstr "bæta skrá við spilunarlista"
 msgid "add marker"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (enter recording duration)"
 msgstr "bæta við upptöku (stilla tíma á upptöku)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (indefinitely)"
 msgstr "bæta við upptöku (endalaus)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "add recording (stop after current event)"
 msgstr "bæta við upptöku (stoppa eftir núverandi atriði)"
 
@@ -1566,7 +1575,7 @@ msgstr ""
 msgid "back"
 msgstr "til baka"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "change recording (duration)"
 msgstr "breyta upptöku (tíma)"
 
@@ -1607,11 +1616,11 @@ msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "do nothing"
 msgstr "ekki gera neitt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1213
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "don't record"
 msgstr "ekki taka upp"
 
@@ -1675,7 +1684,7 @@ msgstr "stilli einingu"
 msgid "leave movie player..."
 msgstr "hætta í spilara"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "left"
 msgstr "vinstri"
 
@@ -1803,7 +1812,7 @@ msgstr "eyða merkingu um nýfundna rás"
 msgid "repeated"
 msgstr "endurtekinn"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "right"
 msgstr "hægri"
 
@@ -1865,11 +1874,11 @@ msgstr "fara áfram"
 msgid "start timeshift"
 msgstr "byrja lifandi pásu"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1272
+#: ../lib/python/Screens/InfoBarGenerics.py:1275
 msgid "stereo"
 msgstr "víðóma"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1211
+#: ../lib/python/Screens/InfoBarGenerics.py:1214
 msgid "stop recording"
 msgstr "stoppa upptöku"
 
@@ -1905,7 +1914,7 @@ msgstr "stillt af notanda"
 msgid "vertical"
 msgstr "lóðrétt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1030
+#: ../lib/python/Screens/InfoBarGenerics.py:1031
 msgid "view extensions..."
 msgstr "skoða innskot"
 
@@ -2056,8 +2065,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
 #: ../data/
-msgid "Setup"
-msgstr "Uppsetning"
+msgid "No, do nothing."
+msgstr "Nei, ekki gera neitt."
 
 #: ../data/
 msgid "#000000"
@@ -2097,16 +2106,12 @@ msgstr ""
 "Ýttu á OK til að byrja afritun núna."
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Álfurinn er búinn núna."
+msgid "Mute"
+msgstr "Hljóð Af"
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Leita að rásum"
-
-#: ../data/
-msgid "Mute"
-msgstr "Hljóð Af"
 
 #: ../data/
 msgid ""
@@ -2131,16 +2136,22 @@ msgid "Keyboard Setup"
 msgstr "Uppsetning lyklaborðs"
 
 #: ../data/
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Notaðu vinstri og hægri takka til að breyta.\n"
+"\n"
+"Vinsamlega settu upp móttakara A"
+
+#: ../data/
 msgid "Dish"
 msgstr "Diskur"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Mörk eftir upptöku"
-
-#: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nei, ræstu bara boxið mitt"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2171,28 +2182,24 @@ msgid "Manual Scan"
 msgstr "Handvirk leitun"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Velkomin.\n"
-"\n"
-"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreamboxinu.\n"
-"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
+msgid "Timer Edit"
+msgstr "Breyta Tímastillingu"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Valmynd fjarstýringar"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
+msgid "No, just start my dreambox"
+msgstr "Nei, ræstu bara boxið mitt"
 
 #: ../data/
 msgid "Network..."
 msgstr ""
+
+#: ../data/
+msgid "Tuner configuration"
+msgstr "Stilling móttakara"
 
 #: ../data/
 msgid "select Slot"
@@ -2235,6 +2242,10 @@ msgid "Standby"
 msgstr "Biðstaða"
 
 #: ../data/
+msgid "Yes, do another manual scan now"
+msgstr "Já, leitaðu aftur handvirkt núna"
+
+#: ../data/
 msgid "Activate network settings"
 msgstr "Virkja netkerfis stillingar"
 
@@ -2271,6 +2282,10 @@ msgid "#80000000"
 msgstr "#80000000"
 
 #: ../data/
+msgid "SNR:"
+msgstr "SNR:"
+
+#: ../data/
 msgid "Timeshift"
 msgstr "Lifandi pása"
 
@@ -2279,8 +2294,8 @@ msgid "Downloadable plugins"
 msgstr "Niðurhalanleg innskot"
 
 #: ../data/
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
+msgid "Subservices"
+msgstr "Undirþjónusta"
 
 #: ../data/
 msgid "Timezone"
@@ -2301,10 +2316,6 @@ msgstr "Leita"
 #: ../data/
 msgid "Common Interface"
 msgstr "Afruglara tengi"
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr "Stilling móttakara"
 
 #: ../data/
 msgid "Language..."
@@ -2334,8 +2345,8 @@ msgid "Service scan"
 msgstr "Rása leit"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Já, leitaðu aftur handvirkt núna"
+msgid "The wizard is finished now."
+msgstr "Álfurinn er búinn núna."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2469,10 +2480,6 @@ msgid "Media player"
 msgstr "Spilari"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Já, slökkva núna"
-
-#: ../data/
 msgid "Timer sanity error"
 msgstr "Villa í tímastillingu"
 
@@ -2491,10 +2498,6 @@ msgstr "Dreamboxið er að slökkva á sér. Vinsamlega bíðið..."
 #: ../data/
 msgid "WSS on 4:3"
 msgstr "WSS á 4:3"
-
-#: ../data/
-msgid "Subservices"
-msgstr "Undirþjónusta"
 
 #: ../data/
 msgid "Choose bouquet"
@@ -2589,12 +2592,20 @@ msgid "Alpha"
 msgstr "Gegnsæi"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Breyta Tímastillingu"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Velkomin.\n"
+"\n"
+"Þessi álfur hjálpar þér í gegnum grunnstillingar á Dreamboxinu.\n"
+"Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nei, ekki gera neitt."
+msgid "Setup"
+msgstr "Uppsetning"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2649,14 +2660,8 @@ msgid "NOW"
 msgstr "NÚNA"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Notaðu vinstri og hægri takka til að breyta.\n"
-"\n"
-"Vinsamlega settu upp móttakara A"
+msgid "Yes, perform a shutdown now."
+msgstr "Já, slökkva núna"
 
 #: ../data/
 msgid "#0064c7"
