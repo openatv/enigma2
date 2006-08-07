@@ -72,6 +72,7 @@ class ServiceInfo(Screen):
 			print self.info.getInfoObject(iServiceInformation.sCAIDs);
 		else:
 			self.info = None
+			self.feinfo = None
 
 
 		self["red"] = Label("Serviceinfo")
