@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-05 19:29+0000\n"
+"POT-Creation-Date: 2006-08-07 20:55+0200\n"
 "PO-Revision-Date: 2006-07-09 22:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
@@ -944,7 +944,6 @@ msgid "Please select a subservice to record..."
 msgstr "Bitte einen Unterkanal zur Aufnahme auswählen..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1361
-#: ../lib/python/Screens/SubservicesQuickzap.py:90
 msgid "Please select a subservice..."
 msgstr "Bitte einen Unterkanal auswählen..."
 
@@ -1039,10 +1038,6 @@ msgstr "Schnellumschalter"
 #: ../lib/python/Screens/TimerEdit.py:107
 msgid "Really delete done timers?"
 msgstr "Vollendete Timer wirklich löschen?"
-
-#: ../lib/python/Screens/SubservicesQuickzap.py:101
-msgid "Really exit the subservices quickzap?"
-msgstr "Wirklich den Subservices-Schnellumschalter beenden?"
 
 #: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
@@ -1213,7 +1208,7 @@ msgstr "Spanisch"
 
 #: ../lib/python/Screens/TimerEntry.py:182
 msgid "Start"
-msgstr "Strat"
+msgstr "Start"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "Start recording?"
@@ -2077,8 +2072,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nein, nicht tun"
+msgid "Setup"
+msgstr "Einstellungen"
 
 #: ../data/
 msgid "#000000"
@@ -2119,12 +2114,16 @@ msgstr ""
 "starten."
 
 #: ../data/
-msgid "Mute"
-msgstr "Stummschaltung"
+msgid "The wizard is finished now."
+msgstr "Der Assistent ist nun beendet."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Kanalsuche"
+
+#: ../data/
+msgid "Mute"
+msgstr "Stummschaltung"
 
 #: ../data/
 msgid ""
@@ -2150,22 +2149,16 @@ msgid "Keyboard Setup"
 msgstr "Tastatureinstellung"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
-"\n"
-"Einstellungen für Tuner A"
-
-#: ../data/
 msgid "Dish"
 msgstr "Schüssel"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Nachlauf hinter Aufnahme"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nein, nur die Dreambox starten"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2196,24 +2189,29 @@ msgid "Manual Scan"
 msgstr "Manuelle Suche"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Zeitgesteuerte Aufname"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fernbedienung"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nein, nur die Dreambox starten"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
 msgstr "Netzwerk..."
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr "Tuner Konfiguration"
 
 #: ../data/
 msgid "select Slot"
@@ -2256,10 +2254,6 @@ msgid "Standby"
 msgstr "Standby"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, eine weitere manuelle Suche durchführen"
-
-#: ../data/
 msgid "Activate network settings"
 msgstr "Aktiviere Netzwerkeinstellungen"
 
@@ -2296,10 +2290,6 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Timeshift"
 msgstr ""
 
@@ -2308,8 +2298,8 @@ msgid "Downloadable plugins"
 msgstr "Herunterladbare Erweiterungen"
 
 #: ../data/
-msgid "Subservices"
-msgstr "Unterkanäle"
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
 
 #: ../data/
 msgid "Timezone"
@@ -2330,6 +2320,10 @@ msgstr "Springen"
 #: ../data/
 msgid "Common Interface"
 msgstr "Common Interface"
+
+#: ../data/
+msgid "Tuner configuration"
+msgstr "Tuner Konfiguration"
 
 #: ../data/
 msgid "Language..."
@@ -2358,8 +2352,8 @@ msgid "Service scan"
 msgstr "Kanalsuche"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Der Assistent ist nun beendet."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, eine weitere manuelle Suche durchführen"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2499,6 +2493,10 @@ msgid "Media player"
 msgstr "Media Player"
 
 #: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, jetzt herunterfahren."
+
+#: ../data/
 msgid "Timer sanity error"
 msgstr "Fehler bei Timerprüfung"
 
@@ -2517,6 +2515,10 @@ msgstr "Ihre Dreambox fährt nun herunter. Bitte warten Sie einen Moment..."
 #: ../data/
 msgid "WSS on 4:3"
 msgstr "WSS bei 4:3"
+
+#: ../data/
+msgid "Subservices"
+msgstr "Unterkanäle"
 
 #: ../data/
 msgid "Choose bouquet"
@@ -2611,21 +2613,12 @@ msgid "Alpha"
 msgstr "Transparenz"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid "Timer Edit"
+msgstr "Zeitgesteuerte Aufname"
 
 #: ../data/
-msgid "Setup"
-msgstr "Einstellungen"
+msgid "No, do nothing."
+msgstr "Nein, nicht tun"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2680,8 +2673,14 @@ msgid "NOW"
 msgstr "JETZT"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, jetzt herunterfahren."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
+"\n"
+"Einstellungen für Tuner A"
 
 #: ../data/
 msgid "#0064c7"
@@ -2694,6 +2693,9 @@ msgstr "Medienwiedergabe"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Wollen Sie eine weitere manuelle Suche durchführen?"
+
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Wirklich den Subservices-Schnellumschalter beenden?"
 
 #~ msgid "Subservices quickzap"
 #~ msgstr "Unterkanäle-Schnellumschalter"
