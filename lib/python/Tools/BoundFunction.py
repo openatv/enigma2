@@ -6,4 +6,6 @@ class boundFunction:
 	def __call__(self, *args, **kwargs):
 		newkwargs = self.kwargs
 		newkwargs.update(kwargs)
-		self.fnc(*self.args + args, **newkwargs)
+		return self.fnc(*self.args + args, **newkwargs)
+		
+	
