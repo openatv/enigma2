@@ -56,7 +56,7 @@ class FileManager(Screen):
 		if self["list"].canDescent(): # isDir
 			self["list"].descent()
 		else:
-			self["pixmap"].instance.setPixmapFromFile(self["list"].getSelection())
+			self["pixmap"].instance.setPixmapFromFile(self["list"].getFilename())
 	
 	def keyNumberGlobal(self, number):
 		print "pressed", number
