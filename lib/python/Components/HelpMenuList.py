@@ -39,14 +39,16 @@ class HelpMenuList(GUIComponent):
 	
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...
-		l = self.l.getCurrentSelection()[0]
-		
+		l = self.getCurrent()
+		if l is None:
+			return
 		# ...containing (Actionmap, Context, Action, keydata).
 		# we returns this tuple to the callback.
 		self.callback(l[0], l[1], l[2])
 	
 	def getCurrent(self):
-		return self.l.getCurrentSelection()[0]
+		sel = self.l.getCurrentSelection()
+		return sel and sel[0]
 
 	GUI_WIDGET = eListbox
 
