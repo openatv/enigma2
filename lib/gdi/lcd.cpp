@@ -49,12 +49,21 @@ void eLCD::unlock()
 	locked=0;
 }
 
-eDBoxLCD::eDBoxLCD(): eLCD(eSize(128, 64))
+eDBoxLCD::eDBoxLCD(): eLCD(eSize(132, 64))
 {
 #ifndef NO_LCD
-	lcdfd=open("/dev/dbox/lcd0", O_RDWR);
+	lcdfd = open("/dev/dbox/oled0", O_RDWR);
+	if (lcdfd < 0)
+	{
+		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
+		is_oled = 0;
+	} else
+	{
+		eDebug("found OLED display!");
+		is_oled = 1;
+	}
 #else
-	lcdfd=-1;
+	lcdfd = -1;
 #endif
 	instance=this;
 
@@ -87,6 +96,7 @@ int eDBoxLCD::setLCDContrast(int contrast)
 	{
 		eDebug("[LCD] can't set lcd contrast");
 	}
+	close(fp);
 	return(0);
 }
 
@@ -103,6 +113,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 	{
 		eDebug("[LCD] can't set lcd brightness");
 	}
+	close(fp);
 	return(0);
 }
 
@@ -122,21 +133,36 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-	unsigned char raw[120*8];
-	int x, y, yy;
-	for (y=0; y<8; y++)
+	if (!is_oled)
 	{
-		for (x=0; x<120; x++)
+		unsigned char raw[132*8];
+		int x, y, yy;
+		for (y=0; y<8; y++)
 		{
-			int pix=0;
-			for (yy=0; yy<8; yy++)
+			for (x=0; x<132; x++)
 			{
-				pix|=(_buffer[(y*8+yy)*128+x]>=108)<<yy;
+				int pix=0;
+				for (yy=0; yy<8; yy++)
+				{
+					pix|=(_buffer[(y*8+yy)*132+x]>=108)<<yy;
+				}
+				raw[y*132+x]=(pix^inverted);
 			}
-			raw[y*120+x]=(pix^inverted);
 		}
+		if (lcdfd>0)
+			write(lcdfd, raw, 132*8);
+	} else
+	{
+		unsigned char raw[64*64];
+		int x, y;
+		memset(raw, 0, 64*64);
+		for (y=0; y<64; y++)
+		{
+			for (x=0; x<128 / 2; x++)
+				raw[y*64+x] = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
+		}
+		if (lcdfd > 0)
+			write(lcdfd, raw, 64*64);
 	}
-	if (lcdfd>0)
-		write(lcdfd, raw, 120*8);
 }
 
