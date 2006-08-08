@@ -1090,6 +1090,26 @@ class InfoBarExtensions:
 
 from Tools.BoundFunction import boundFunction
 
+# depends on InfoBarExtensions
+from Components.PluginComponent import plugins
+
+class InfoBarPlugins:
+	def __init__(self):
+		self.addExtension(extension = self.getPluginList, type = InfoBarExtensions.EXTENSION_LIST)
+		
+		
+	def getPluginName(self, name):
+		return name
+		
+	def getPluginList(self):
+		list = []
+		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU):
+			list.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None))
+		return list
+
+	def runPlugin(self, plugin):
+		plugin(session = self.session)
+
 # depends on InfoBarExtensions and InfoBarSubtitleSupport
 class InfoBarSubtitles:
 	def __init__(self):

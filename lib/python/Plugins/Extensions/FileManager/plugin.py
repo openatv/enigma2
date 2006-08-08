@@ -66,4 +66,5 @@ def main(session, **kwargs):
 	session.open(FileManager)
 
 def Plugins(**kwargs):
- 	return PluginDescriptor(name="File-Manager", description="Let's you view/edit files in your Dreambox", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+ 	return [PluginDescriptor(name="File-Manager", description="Let's you view/edit files in your Dreambox", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+			PluginDescriptor(name="File-Manager", description="Let's you view/edit files in your Dreambox", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
