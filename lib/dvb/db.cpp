@@ -1015,21 +1015,43 @@ eDVBDBQueryBase::eDVBDBQueryBase(eDVBDB *db, const eServiceReference &source, eD
 int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServiceReferenceDVB &b)
 {
 	ePtr<eDVBService> a_service, b_service;
-	
 	int sortmode = m_query ? m_query->m_sort : eDVBChannelQuery::tName;
 	
 	if ((sortmode == eDVBChannelQuery::tName) || (sortmode == eDVBChannelQuery::tProvider))
 	{
-		if (m_db->getService(a, a_service))
+		if (a.name.empty() && m_db->getService(a, a_service))
 			return 1;
-		if (m_db->getService(b, b_service))
+		if (b.name.empty() && m_db->getService(b, b_service))
 			return 1;
 	}
 	
 	switch (sortmode)
 	{
 	case eDVBChannelQuery::tName:
-		return a_service->m_service_name_sort < b_service->m_service_name_sort;
+		if (a_service)
+		{
+			if (b_service)
+				return a_service->m_service_name_sort < b_service->m_service_name_sort;
+			else
+			{
+				std::string str = b.name;
+				makeUpper(str);
+				return a_service->m_service_name_sort < str;
+			}
+		}
+		else if (b_service)
+		{
+			std::string str = a.name;
+			makeUpper(str);
+			return str < b_service->m_service_name_sort;
+		}
+		else
+		{
+			std::string aa = a.name, bb = b.name;
+			makeUpper(aa);
+			makeUpper(bb);
+			return aa < bb;
+		}
 	case eDVBChannelQuery::tProvider:
 		return a_service->m_provider_name < b_service->m_provider_name;
 	case eDVBChannelQuery::tType:
@@ -1126,7 +1148,10 @@ int eDVBDBListQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 			y -= 3600;
 		return x < y;
 	}
-	return a.name < b.name;
+	std::string aa = a.name, bb = b.name;
+	makeUpper(aa);
+	makeUpper(bb);
+	return aa < bb;
 }
 
 eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
