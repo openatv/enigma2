@@ -766,7 +766,10 @@ void eEPGCache::gotMessage( const Message &msg )
 					data->m_PrevVersion = -1;
 					data->m_PrivatePid = msg.pid;
 					data->m_PrivateService = msg.service;
-					updateMap::iterator It = channelLastUpdated.find( channel->getChannelID() );
+					int onid = chid.original_network_id.get();
+					onid |= 0x80000000;  // we use highest bit as private epg indicator
+					chid.original_network_id = onid;
+					updateMap::iterator It = channelLastUpdated.find( chid );
 					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
 					if (update < ZAP_DELAY)
 						update = ZAP_DELAY;
@@ -2495,6 +2498,11 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 	if ( seenPrivateSections.size() == (unsigned int)(data[7] + 1) )
 	{
 		eDebug("[EPGC] private finished");
+		eDVBChannelID chid = channel->getChannelID();
+		int tmp = chid.original_network_id.get();
+		tmp |= 0x80000000; // we use highest bit as private epg indicator
+		chid.original_network_id = tmp;
+		cache->channelLastUpdated[chid] = eDVBLocalTimeHandler::getInstance()->nowTime();
 		m_PrevVersion = (data[5] & 0x3E) >> 1;
 		startPrivateReader();
 	}
@@ -3213,7 +3221,7 @@ start_summary:
 		}
 	}
 abort:
-	isRunning &= ~eEPGCache::MHW;
+	isRunning &= ~MHW;
 	m_MHWConn2=0;
 	if ( m_MHWReader2 )
 		m_MHWReader2->stop();
