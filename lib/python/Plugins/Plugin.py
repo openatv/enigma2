@@ -14,7 +14,7 @@ class PluginDescriptor:
 	# you have to ignore unknown kwargs!
 	
 	# argument: session
-	WHERE_BLUEMENU = 0
+	WHERE_EXTENSIONSMENU = 0
 	WHERE_MAINMENU = 1
 	WHERE_PLUGINMENU  = 2
 	# argument: session, serviceref (currently selected)
