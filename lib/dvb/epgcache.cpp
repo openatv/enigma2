@@ -2377,6 +2377,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 			{
 				switch( (tsid << 16) | sid )
 				{
+					case 0x01030b: sid = 0x1b; tsid = 4; break;  // Premiere Win
 					case 0x0300f0: sid = 0xe0; tsid = 2; break;
 					case 0x0300f1: sid = 0xe1; tsid = 2; break;
 					case 0x0300f5: sid = 0xdc; break;
