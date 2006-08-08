@@ -42,6 +42,7 @@ class eDBoxLCD: public eLCD
 {
 	static eDBoxLCD *instance;
 	unsigned char inverted;
+	int is_oled;
 #ifdef SWIG
 	eDBoxLCD();
 	~eDBoxLCD();
