@@ -63,6 +63,9 @@ public:
 	};
 	
 	void setCompositionMode(int mode);
+	
+	int getStyleID() { return m_style_id; }
+	void setStyleID(int id) { m_style_id = id; }
 private:
 	ePtrList<eWidget> m_root;
 	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);
@@ -83,6 +86,8 @@ private:
 	void notify();
 	
 	void clearVisibility(eWidget *widget);
+	
+	int m_style_id;
 };
 
 #endif

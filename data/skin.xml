@@ -13,7 +13,8 @@
 		<color name="transpBlack" value="#80000000" />
 	</colors>
 	
-	<windowstyle type="skinned">
+		<!-- this is for the main screen -->
+	<windowstyle type="skinned" id="0">
 		<title offset="20,5" font="Regular;20" />
 		<color name="Background" color="#33294a6b" />
 		<color name="LabelForeground" color="#ffffff" />
@@ -37,6 +38,22 @@
 			<pixmap pos="bpBottom"      filename="b_w_b.png"  />
 			<pixmap pos="bpBottomRight" filename="b_w_br.png" />
 		</borderset>
+	</windowstyle>
+
+		<!-- this is for LCD -->
+	<windowstyle type="skinned" id="1">
+		<color name="Background" color="#000000" />
+		<color name="LabelForeground" color="#ffffff" />
+		<color name="ListboxBackground" color="#000000" />
+		<color name="ListboxForeground" color="#ffffff" />
+		<color name="ListboxSelectedBackground" color="#000000" />
+		<color name="ListboxSelectedForeground" color="#ffffff" />
+		<color name="ListboxMarkedBackground" color="#000000" />
+		<color name="ListboxMarkedForeground" color="#ffffff" />
+		<color name="ListboxMarkedAndSelectedBackground" color="#000000" />
+		<color name="ListboxMarkedAndSelectedForeground" color="#ffffff" />
+		<color name="WindowTitleForeground" color="#ffffff" />
+		<color name="WindowTitleBackground" color="#000000" />
 	</windowstyle>
 
 	<fonts>

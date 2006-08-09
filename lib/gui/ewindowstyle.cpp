@@ -19,14 +19,14 @@ eWindowStyleManager::~eWindowStyleManager()
 	m_instance = 0;
 }
 
-void eWindowStyleManager::getStyle(ePtr<eWindowStyle> &style)
+void eWindowStyleManager::getStyle(int style_id, ePtr<eWindowStyle> &style)
 {
-	style = m_current_style;
+	style = m_current_style[style_id];
 }
 
-void eWindowStyleManager::setStyle(eWindowStyle *style)
+void eWindowStyleManager::setStyle(int style_id, eWindowStyle *style)
 {
-	m_current_style = style;
+	m_current_style[style_id] = style;
 }
 
 eWindowStyleManager *eWindowStyleManager::m_instance;

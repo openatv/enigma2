@@ -330,6 +330,7 @@ eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0), m_timer(0)
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;
 	m_require_redraw = 0;
+	m_style_id = 0;
 
 	CONNECT(gRC::getInstance()->notify, eWidgetDesktop::notify);
 	setCompositionMode(cmImmediate);

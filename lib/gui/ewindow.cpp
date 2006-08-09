@@ -16,7 +16,7 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 	
 	ePtr<eWindowStyle> style;
 	if (mgr)
-		mgr->getStyle(style);
+		mgr->getStyle(desktop->getStyleID(), style);
 	
 		/* when there is either no style manager or no style, revert to simple style. */
 	if (!style)
