@@ -4,6 +4,17 @@ from Tools.CList import CList
 # Render Converter Converter Source
 
 # a bidirectional connection
+
+def cached(f):
+	name = f.__name__
+	def wrapper(self):
+		if self.cache is None:
+			return f(self)
+		if name not in self.cache:
+			self.cache[name] = (True, f(self))
+		return self.cache[name][1]
+	return wrapper
+
 class Element(object):
 	CHANGED_DEFAULT = 0   # initial "pull" state
 	CHANGED_ALL = 1       # really everything changed
@@ -16,7 +27,7 @@ class Element(object):
 		self.master = None
 		self.source = None
 		self.__suspended = True
-		self.clearCache()
+		self.cache = None
 
 	def connectDownstream(self, downstream):
 		self.downstream_elements.append(downstream)
@@ -52,16 +63,13 @@ class Element(object):
 
 	# default action: push downstream
 	def changed(self, *args, **kwargs):
-		self.clearCache()
+		self.cache = { }
 		self.downstream_elements.changed(*args, **kwargs)
-		self.clearCache()
+		self.cache = None
 
 	def reconnectUpstream(self, new_upstream):
 		assert self.source is not None
 		self.source = new_upstream
-
-	def clearCache(self):
-		self.cache = None
 
 	def setSuspend(self, suspended):
 		changed = self.__suspended != suspended

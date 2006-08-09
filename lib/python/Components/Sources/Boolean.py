@@ -1,4 +1,5 @@
 from Source import Source
+from Components.Element import cached
 from enigma import eTimer
 
 # a small warning:
@@ -16,6 +17,7 @@ class Boolean(Source, object):
 			self.poll_timer.timeout.get().append(self.poll)
 			self.poll_timer.start(poll)
 
+	@cached
 	def getBoolean(self):
 		if self.function is not None:
 			return self.function()

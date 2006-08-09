@@ -1,4 +1,5 @@
 from Components.Converter.Converter import Converter
+from Components.Element import cached
 
 class FrontendInfo(Converter, object):
 	BER = 0
@@ -17,6 +18,7 @@ class FrontendInfo(Converter, object):
 		else:
 			self.type = self.LOCK
 
+	@cached
 	def getText(self):
 		assert self.type != self.LOCK, "the text output of FrontendInfo cannot be used for lock info"
 		if self.type == self.BER: # as count
@@ -35,6 +37,7 @@ class FrontendInfo(Converter, object):
 
 		return "%d %%" % (percent * 100 / 65536)
 
+	@cached
 	def getBool(self):
 		assert self.type in [self.LOCK, self.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
 		if self.type == self.LOCK:
@@ -46,6 +49,7 @@ class FrontendInfo(Converter, object):
 
 	boolean = property(getBool)
 
+	@cached
 	def getValue(self):
 		assert self.type != self.LOCK, "the value/range output of FrontendInfo can not be used for lock info"
 		if self.type == self.AGC:

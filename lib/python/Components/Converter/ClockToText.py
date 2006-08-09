@@ -1,5 +1,6 @@
 from Converter import Converter
 from time import localtime, strftime
+from Components.Element import cached
 
 class ClockToText(Converter, object):
 	DEFAULT = 0
@@ -21,6 +22,7 @@ class ClockToText(Converter, object):
 		else:
 			self.type = self.DEFAULT
 
+	@cached
 	def getText(self):
 		time = self.source.time
 		if time is None:

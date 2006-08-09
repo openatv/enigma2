@@ -1,6 +1,6 @@
 from Converter import Converter
 from enigma import eListboxPythonStringContent
-
+from Components.Element import cached
 
 class StringList(Converter):
 	"""Turns a simple python list into a list which can be used in a listbox."""
@@ -20,6 +20,7 @@ class StringList(Converter):
 			if x is not self.master:
 				x.index = index
 
+	@cached
 	def getCurrent(self):
 		if self.source is None:
 			return None
@@ -28,6 +29,7 @@ class StringList(Converter):
 	current = property(getCurrent)
 
 	# pass through: getIndex / setIndex to master
+	@cached
 	def getIndex(self):
 		if self.master is None:
 			return None

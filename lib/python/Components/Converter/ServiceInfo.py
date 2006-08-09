@@ -1,5 +1,6 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
+from Components.Element import cached
 
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 0
@@ -26,18 +27,15 @@ class ServiceInfo(Converter, object):
 				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo]
 			}[self.type]
 
+	@cached
 	def getServiceInfoValue(self, info, what):
 		v = info.getInfo(what)
 		if v != -2:
 			return "N/A"
 		return info.getInfoString(what)
 
+	@cached
 	def getBoolean(self):
-		if self.cache is None:
-			self.cache = self.__getBoolean()
-		return self.cache
-
-	def __getBoolean(self):
 		service = self.source.service
 		info = service and service.info()
 		if not info:

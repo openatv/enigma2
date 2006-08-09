@@ -1,4 +1,5 @@
 from Tools.Event import Event
+from Components.Element import cached
 from enigma import eTimer
 import time
 
@@ -11,6 +12,7 @@ class Clock(Source):
 		self.clock_timer.timeout.get().append(self.poll)
 		self.clock_timer.start(1000)
 
+	@cached
 	def getClock(self):
 		return time.time()
 
@@ -25,4 +27,3 @@ class Clock(Source):
 		else:
 			self.clock_timer.start(1000)
 			self.poll()
-
