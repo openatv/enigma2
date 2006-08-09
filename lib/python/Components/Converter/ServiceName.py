@@ -13,7 +13,6 @@ class ServiceName(Converter, object):
 		else:
 			self.type = self.NAME
 
-	@cached
 	def getServiceInfoValue(self, info, what):
 		v = info.getInfo(what)
 		if v != -2:
