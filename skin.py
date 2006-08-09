@@ -228,6 +228,7 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 	
 	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
 		style = eWindowStyleSkinned()
+		id = int(windowstyle.getAttribute("id") or "0")
 		
 		# defaults
 		font = gFont("Regular", 20)
@@ -263,7 +264,7 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 			
 		x = eWindowStyleManagerPtr()
 		eWindowStyleManager.getInstance(x)
-		x.setStyle(style)
+		x.setStyle(id, style)
 
 def loadSkinData(desktop):
 	skins = dom_skins[:]

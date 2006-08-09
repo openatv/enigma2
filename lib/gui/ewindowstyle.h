@@ -51,12 +51,12 @@ public:
 	eWindowStyleManager();
 	~eWindowStyleManager();
 #endif
-	void getStyle(ePtr<eWindowStyle> &style);
-	void setStyle(eWindowStyle *style);
+	void getStyle(int style_id, ePtr<eWindowStyle> &style);
+	void setStyle(int style_id, eWindowStyle *style);
 	static int getInstance(ePtr<eWindowStyleManager> &mgr) { mgr = m_instance; if (!mgr) return -1; return 0; }
 private:
 	static eWindowStyleManager *m_instance;
-	ePtr<eWindowStyle> m_current_style;
+	std::map<int, ePtr<eWindowStyle> > m_current_style;
 };
 
 TEMPLATE_TYPEDEF(ePtr<eWindowStyleManager>, eWindowStyleManagerPtr);
