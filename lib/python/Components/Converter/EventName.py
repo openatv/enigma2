@@ -1,4 +1,5 @@
 from Components.Converter.Converter import Converter
+from Components.Element import cached
 
 class EventName(Converter, object):
 	NAME = 0
@@ -14,12 +15,8 @@ class EventName(Converter, object):
 		else:
 			self.type = self.NAME
 
+	@cached
 	def getText(self):
-		if self.cache is None:
-			self.cache = self.__getText()
-		return self.cache
-
-	def __getText(self):
 		event = self.source.event
 		if event is None:
 			return "N/A"

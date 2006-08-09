@@ -1,4 +1,5 @@
 from Components.PerServiceDisplay import PerServiceBase
+from Components.Element import cached
 from Tools.Event import Event
 from enigma import iPlayableService
 from Source import Source
@@ -19,14 +20,12 @@ class EventInfo(PerServiceBase, Source, object):
 			}, with_event=True)
 		
 		self.now_or_next = now_or_next
-		
+
+	@cached
 	def getEvent(self):
-		if self.cache is None:
-			service = self.navcore.getCurrentService()
-			info = service and service.info()
-			self.cache = (True, info and info.getEvent(self.now_or_next)) # we always store a tuple for negative caching
-		
-		return self.cache[1]
+		service = self.navcore.getCurrentService()
+		info = service and service.info()
+		return info and info.getEvent(self.now_or_next)
 
 	event = property(getEvent)
 

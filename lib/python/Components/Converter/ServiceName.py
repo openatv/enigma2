@@ -1,5 +1,6 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
+from Components.Element import cached
 
 class ServiceName(Converter, object):
 	NAME = 0
@@ -12,12 +13,14 @@ class ServiceName(Converter, object):
 		else:
 			self.type = self.NAME
 
+	@cached
 	def getServiceInfoValue(self, info, what):
 		v = info.getInfo(what)
 		if v != -2:
 			return "N/A"
 		return info.getInfoString(what)
 
+	@cached
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()

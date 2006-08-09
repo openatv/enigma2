@@ -1,6 +1,7 @@
 from Converter import Converter
 from Poll import Poll
 from enigma import iPlayableService
+from Components.Element import cached
 
 class ServicePosition(Converter, Poll, object):
 	TYPE_LENGTH = 0,
@@ -27,6 +28,7 @@ class ServicePosition(Converter, Poll, object):
 		s = self.source.service
 		return s and s.seek()
 	
+	@cached
 	def getPosition(self):
 		seek = self.getSeek()
 		if seek is None:
@@ -36,6 +38,7 @@ class ServicePosition(Converter, Poll, object):
 			return 0
 		return pos[1]
 	
+	@cached
 	def getLength(self):
 		seek = self.getSeek()
 		if seek is None:
@@ -45,11 +48,13 @@ class ServicePosition(Converter, Poll, object):
 			return 0
 		return length[1]
 	
+	@cached
 	def getCutlist(self):
 		service = self.source.service
 		cue = service and service.cueSheet()
 		return cue and cue.getCutList()
 	
+	@cached
 	def getText(self):
 		seek = self.getSeek()
 		if seek is None:
