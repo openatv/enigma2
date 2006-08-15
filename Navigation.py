@@ -19,18 +19,20 @@ class Navigation:
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.callEvent)
 		self.event = [ ]
-		self.currentlyPlayingService = None
 		self.currentlyPlayingServiceReference = None
-		
+		self.currentlyPlayingService = None
+		self.state = 0
 		self.RecordTimer = RecordTimer.RecordTimer()
 
 	def callEvent(self, i):
+		self.state = i != 1
 		for x in self.event:
 			x(i)
-	
+
 	def playService(self, ref):
-		print "playing", ref
+		print "playing", ref.toString()
 		self.currentlyPlayingServiceReference = None
+		self.currentlyPlayingService = None
 		if ref is None:
 			self.stopService()
 			return 0
@@ -54,18 +56,18 @@ class Navigation:
 			return None
 		else:
 			return service
-	
+
 	def getCurrentService(self):
-		service = self.pnav.getCurrentService()
-		
-		if service is None:
-			return None
-		
-		return service
-	
+		if self.state:
+			if not self.currentlyPlayingService:
+				self.currentlyPlayingService = self.pnav.getCurrentService()
+			return self.currentlyPlayingService
+		return None
+
 	def stopService(self):
 		self.pnav.stopService()
-	
+		self.currentlyPlayingService = None
+
 	def pause(self, p):
 		return self.pnav.pause(p)
 	
