@@ -7,7 +7,7 @@ from Components.config import config
 import timer
 import xml.dom.minidom
 
-from enigma import quitMainloop, eEPGCache, eEPGCachePtr
+from enigma import quitMainloop, eEPGCache
 
 from Screens.MessageBox import MessageBox
 import NavigationInstance

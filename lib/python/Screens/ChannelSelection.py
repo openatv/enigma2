@@ -4,7 +4,7 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.MenuList import MenuList
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eEPGCachePtr, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
 from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
