@@ -25,6 +25,7 @@ public:
 	virtual void Release()=0;
 };
 
+#ifndef SWIG
 struct oRefCount
 {
 	volatile int count;
@@ -37,7 +38,6 @@ struct oRefCount
 	}
 };
 
-#ifndef SWIG
 	#if defined(__mips__)
 		#define DECLARE_REF(x) 			\
 			private: oRefCount ref; 	\
@@ -158,17 +158,14 @@ struct oRefCount
 				}
 		#endif
 	#endif
-#else
+#else  // SWIG
 	#define DECLARE_REF(x) \
 		private: \
 			void AddRef(); \
 			void Release();
-#endif
-
-#ifdef SWIG
-class Object
-{
-};
-#endif
+	class Object
+	{
+	};
+#endif  // SWIG
 
 #endif

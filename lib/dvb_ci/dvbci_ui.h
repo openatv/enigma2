@@ -10,6 +10,7 @@
 
 #define MAX_SLOTS 4
 
+#ifndef SWIG
 struct slot_ui_data
 {
 	std::string appName;
@@ -18,12 +19,14 @@ struct slot_ui_data
 	int mmiTuplePos;
 	int mmiScreenReady;
 };
+#endif
 
 class eDVBCI_UI
 {
 	static eDVBCI_UI *instance;
+#ifndef SWIG
 	slot_ui_data slotdata[MAX_SLOTS];
-#ifdef SWIG
+#else
 	eDVBCI_UI();
 	~eDVBCI_UI();
 #endif
@@ -50,12 +53,14 @@ public:
 	int cancelEnq(int slot);
 
 	PyObject *getMMIScreen(int slot);
+#ifndef SWIG
 	int mmiScreenClose(int slot, int timeout);
 	int mmiScreenEnq(int slot, int blind, int answerLen, char *text);
 	int mmiScreenBegin(int slot, int listmenu);
 	int mmiScreenAddText(int slot, int type, char *value);
 	int mmiScreenFinish(int slot);
 	void mmiSessionDestroyed(int slot);
+#endif
 };
 
 #endif

@@ -295,16 +295,17 @@ public:
 #ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
-#endif
 
-	// called from main thread
-	inline void Lock();
-	inline void Unlock();
 #ifdef ENABLE_PRIVATE_EPG
 	void PMTready(eDVBServicePMTHandler *pmthandler);
 #else
 	void PMTready(eDVBServicePMTHandler *pmthandler) {}
 #endif
+
+#endif
+	// called from main thread
+	inline void Lock();
+	inline void Unlock();
 
 	// at moment just for one service..
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);

@@ -140,13 +140,11 @@ class eSocketNotifier
 {
 public:
 	enum { Read=POLLIN, Write=POLLOUT, Priority=POLLPRI, Error=POLLERR, Hungup=POLLHUP };
-#ifndef SWIG
 private:
 	eMainloop &context;
 	int fd;
 	int state;
 	int requested;		// requested events (POLLIN, ...)
-#endif
 public:
 	/**
 	 * \brief Constructs a eSocketNotifier.
@@ -175,7 +173,6 @@ class eTimer;
 			// werden in einer mainloop verarbeitet
 class eMainloop
 {
-#ifndef SWIG
 	friend class eTimer;
 	friend class eSocketNotifier;
 	std::multimap<int, eSocketNotifier*> notifiers;
@@ -188,13 +185,12 @@ class eMainloop
 	
 	int m_now_is_invalid;
 	int m_interrupt_requested;
-#endif
-public:
-	static void addTimeOffset(int offset);
  	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
 	void removeTimer(eTimer* e);
+public:
+	static void addTimeOffset(int offset);
 
 #ifndef SWIG
 	static ePtrList<eMainloop> existing_loops;
@@ -263,14 +259,13 @@ public:
  */
 class eTimer
 {
-#ifndef SWIG
 	friend class eMainloop;
 	eMainloop &context;
 	timeval nextActivation;
 	long interval;
 	bool bSingleShot;
 	bool bActive;
-#endif
+	void addTimeOffset(int);
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -294,6 +289,5 @@ public:
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
 #endif
 	void startLongTimer( int seconds );
-	void addTimeOffset(int);
 };
 #endif
