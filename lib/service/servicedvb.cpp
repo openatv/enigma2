@@ -1106,6 +1106,12 @@ RESULT eDVBServicePlay::audioDelay(ePtr<iAudioDelay> &ptr)
 	return 0;
 }
 
+RESULT eDVBServicePlay::radioText(ePtr<iRadioText> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 RESULT eDVBServicePlay::getName(std::string &name)
 {
 	if (m_is_pvr)
@@ -1296,13 +1302,17 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
 		return -4;
 
+	if (m_radiotext_parser)
+		m_radiotext_parser->start(program.audioStreams[i].pid);
+
 	if (m_dvb_service && !m_is_pvr)
 	{
 		if (program.audioStreams[i].type == eDVBAudio::aMPEG)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, program.audioStreams[i].pid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-		}	else
+		}
+		else
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[i].pid);
@@ -1328,6 +1338,22 @@ RESULT eDVBServicePlay::selectChannel(int i)
 	if (m_decoder)
 		m_decoder->setAudioChannel(i);
 	return 0;
+}
+
+std::string eDVBServicePlay::getRadioText(int x)
+{
+	if (m_radiotext_parser)
+		switch(x)
+		{
+			case 0:
+				return m_radiotext_parser->getCurrentText();
+		}
+	return "";
+}
+
+void eDVBServicePlay::radioTextUpdated()
+{
+	m_event((iPlayableService*)this, evUpdatedRadioText);
 }
 
 int eDVBServiceBase::getFrontendInfo(int w)
@@ -1602,7 +1628,9 @@ void eDVBServicePlay::switchToLive()
 	m_decoder = 0;
 	m_decode_demux = 0;
 	m_teletext_parser = 0;
+	m_radiotext_parser = 0;
 	m_new_subtitle_page_connection = 0;
+	m_radiotext_updated_connection = 0;
 	
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
@@ -1621,8 +1649,10 @@ void eDVBServicePlay::switchToTimeshift()
 	m_decode_demux = 0;
 	m_decoder = 0;
 	m_teletext_parser = 0;
+	m_radiotext_parser = 0;
 	m_new_subtitle_page_connection = 0;
-	
+	m_radiotext_updated_connection = 0;
+
 	m_timeshift_active = 1;
 
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
@@ -1710,6 +1740,16 @@ void eDVBServicePlay::updateDecoder()
 		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 #endif
+		if (apid != 1)
+		{
+			ePtr<iDVBDemux> data_demux;
+			if ( (m_timeshift_active && !m_service_handler_timeshift.getDataDemux(data_demux))
+				|| (!m_timeshift_active && !m_service_handler.getDataDemux(data_demux)))
+			{
+				m_radiotext_parser = new eDVBRadioTextParser(data_demux);
+				m_radiotext_parser->connectUpdatedRadiotext(slot(*this, &eDVBServicePlay::radioTextUpdated), m_radiotext_updated_connection);
+			}
+		}
 	}
 
 	if (m_decoder)
@@ -1760,6 +1800,9 @@ void eDVBServicePlay::updateDecoder()
 
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
+
+		if (m_radiotext_parser)
+			m_radiotext_parser->start(apid);
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);

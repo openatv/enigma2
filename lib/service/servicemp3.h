@@ -66,6 +66,7 @@ public:
 	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = 0; return -1; }
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
+	RESULT radioText(ePtr<iRadioText> &ptr) { ptr = 0; return -1; }
 
 		// iPausableService
 	RESULT pause();
