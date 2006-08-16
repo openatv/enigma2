@@ -405,6 +405,18 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iAudioDelay>, iAudioDelayPtr);
 
+class iRadioText: public iObject
+{
+#ifdef SWIG
+	iRadioText();
+	~iRadioText();
+#endif
+public:
+	virtual std::string getRadioText(int x=0)=0;
+};
+
+TEMPLATE_TYPEDEF(ePtr<iRadioText>, iRadioTextPtr);
+
 class iSubserviceList: public iObject
 {
 #ifdef SWIG
@@ -493,6 +505,8 @@ public:
 		
 			/* only when cueSheet is implemented */
 		evCuesheetChanged,
+
+		evUpdatedRadioText
 	};
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 	virtual RESULT start()=0;
@@ -510,6 +524,7 @@ public:
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) radioText(ePtr<iRadioText> &SWIG_OUTPUT)=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);

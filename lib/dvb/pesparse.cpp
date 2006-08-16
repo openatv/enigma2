@@ -12,9 +12,10 @@ ePESParser::ePESParser()
 	setStreamID(0); /* must be overridden */
 }
 
-void ePESParser::setStreamID(unsigned char id)
+void ePESParser::setStreamID(unsigned char id, unsigned char id_mask)
 {
 	m_header[3] = id;
+	m_stream_id_mask = id_mask;
 }
 
 void ePESParser::processData(const __u8 *p, int len)
@@ -43,16 +44,21 @@ void ePESParser::processData(const __u8 *p, int len)
 		} else
 		{
 			if (m_pes_position < 4)
-				if (*p != m_header[m_pes_position])
+			{
+				unsigned char ch = *p;
+				if (m_pes_position == 3)
+					ch &= m_stream_id_mask;
+				if (ch != m_header[m_pes_position])
 				{
 //					eDebug("sync lost at %d (%02x)", m_pes_position, *p);
 					m_pes_position = 0;
-					while (m_header[m_pes_position] == *p) /* guaranteed to stop at the old m_pes_position */
+					while (m_header[m_pes_position] == ch) /* guaranteed to stop at the old m_pes_position */
 						m_pes_position++;
 					p++;
 					len--;
 					continue;
 				}
+			}
 			m_pes_buffer[m_pes_position++] = *p++; len--;
 			if (m_pes_position == 6)
 			{

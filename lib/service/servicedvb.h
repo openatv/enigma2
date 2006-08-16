@@ -7,6 +7,7 @@
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/eit.h>
 #include <lib/dvb/teletext.h>
+#include <lib/dvb/radiotext.h>
 #include <lib/base/filepush.h>
 
 class eServiceFactoryDVB: public iServiceHandler
@@ -59,7 +60,7 @@ private:
 class eDVBServiceBase: public iFrontendInformation
 {
 protected:
-	eDVBServicePMTHandler m_service_handler;
+	eDVBServicePMTHandler m_service_handler	;
 public:
 		// iFrontendInformation
 	int getFrontendInfo(int w);
@@ -73,7 +74,8 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iSeekableService, public Object, public iServiceInformation, 
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
-		public iCueSheet, public iSubtitleOutput, public iAudioDelay
+		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
+		public iRadioText
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -95,7 +97,8 @@ public:
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
-	RESULT audioDelay(ePtr<iAudioDelay> &ptr);	
+	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
+	RESULT radioText(ePtr<iRadioText> &ptr);
 
 		// iPauseableService
 	RESULT pause();
@@ -126,6 +129,9 @@ public:
 		// iAudioChannelSelection	
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
+
+		// iRadioText
+	std::string getRadioText(int i=0);
 
 		// iSubserviceList
 	int getNumberOfSubservices();
@@ -232,11 +238,16 @@ private:
 	ePtr<eConnection> m_new_subtitle_page_connection;
 	
 	ePtr<eDVBTeletextParser> m_teletext_parser;
+	ePtr<eDVBRadioTextParser> m_radiotext_parser;
 	eSubtitleWidget *m_subtitle_widget;
 	eTimer m_subtitle_sync_timer;
 	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
 	
 	void checkSubtitleTiming();
+
+		/* radiotext */
+	ePtr<eConnection> m_radiotext_updated_connection;
+	void radioTextUpdated();
 };
 
 #endif
