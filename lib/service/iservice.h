@@ -346,12 +346,6 @@ TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
 struct iAudioTrackInfo
 {
-#ifdef SWIG
-private:
-	iAudioTrackInfo();
-	~iAudioTrackInfo();
-public:
-#endif
 #ifndef SWIG
 	std::string m_description;
 	std::string m_language; /* iso639 */
