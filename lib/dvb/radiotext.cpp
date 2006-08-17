@@ -82,6 +82,7 @@ void eDVBRadioTextParser::processPESPacket(__u8 *data, int len)
 		int channel = mode == 3 ? 1 : 2;
 		int id = (data[pos + 1] >> 3) & 1;
 		int emphasis_bit = data[pos + 3] & 3;
+		int protection_bit = data[pos + 1] & 1;
 		int rate = -1;
 		int sample_freq = -1;
 		int layer = -1;
@@ -112,16 +113,8 @@ void eDVBRadioTextParser::processPESPacket(__u8 *data, int len)
 
 		pos += frame_size;
 
-		int offs = pos - 1;
-		if (data[offs] != 0xFD)
-		{
-			offs -= 2;
-			if (data[offs] != 0xFD)
-				return;
-			else
-				eDebug("match 2");
-		}
-		else
+		int offs = protection_bit ? pos - 1 : pos - 3;
+		if (data[offs] == 0xFD)
 		{
 			int ancillary_len = 1 + data[offs - 1];
 			offs -= ancillary_len;
