@@ -1784,13 +1784,14 @@ void eDVBServicePlay::updateDecoder()
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
 		{
 			m_decoder->setSyncPCR(pcrpid);
-			if (apid != 1)
+			if (apid != -1)
 			{
 				ePtr<iDVBDemux> data_demux;
-				if (h.getDataDemux(data_demux))
+				if (!h.getDataDemux(data_demux))
 				{
 					m_radiotext_parser = new eDVBRadioTextParser(data_demux);
 					m_radiotext_parser->connectUpdatedRadiotext(slot(*this, &eDVBServicePlay::radioTextUpdated), m_radiotext_updated_connection);
+					m_radiotext_parser->start(apid);
 				}
 			}
 		}
@@ -1801,9 +1802,6 @@ void eDVBServicePlay::updateDecoder()
 
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
-
-		if (m_radiotext_parser)
-			m_radiotext_parser->start(apid);
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
