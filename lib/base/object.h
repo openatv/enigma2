@@ -2,14 +2,14 @@
 #define __base_object_h
 
 #include <assert.h>
-
-// #define OBJECT_DEBUG
-
 #include <lib/base/smartptr.h>
-#ifdef OBJECT_DEBUG
-#include <lib/base/eerror.h>
-#endif
 #include <lib/base/elock.h>
+
+//#define OBJECT_DEBUG
+
+#ifdef OBJECT_DEBUG
+	#include <lib/base/eerror.h>
+#endif
 
 typedef int RESULT;
 
@@ -26,19 +26,45 @@ public:
 };
 
 #ifndef SWIG
-struct oRefCount
-{
-	volatile int count;
-	oRefCount(): count(0) { }
-	operator volatile int&() { return count; }
-	~oRefCount() { 
-#ifdef OBJECT_DEBUG
-		if (count) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, ref); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
-#endif
-	}
-};
+	struct oRefCount
+	{
+		volatile int count;
+		oRefCount(): count(0) { }
+		operator volatile int&() { return count; }
+		~oRefCount() { 
+	#ifdef OBJECT_DEBUG
+			if (count) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, count); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
+	#endif
+		}
+	};
 
-	#if defined(__mips__)
+	#if defined(OBJECT_DEBUG)
+		extern int object_total_remaining;
+		#define DECLARE_REF(x) 			\
+			private:oRefCount ref; 	\
+					eSingleLock ref_lock; \
+			public: void AddRef(); 		\
+					void Release();
+		#define DEFINE_REF(c) \
+			void c::AddRef() \
+			{ \
+				eSingleLocker l(ref_lock); \
+				++object_total_remaining; \
+				++ref; \
+				eDebug("OBJECT_DEBUG " #c "+%p now %d", this, (int)ref); \
+			} \
+			void c::Release() \
+			{ \
+				{ \
+					eSingleLocker l(ref_lock); \
+					--object_total_remaining; \
+					--ref; \
+					eDebug("OBJECT_DEBUG " #c "-%p now %d", this, (int)ref); \
+				} \
+				if (!ref) \
+					delete this; \
+			}
+	#elif defined(__mips__)
 		#define DECLARE_REF(x) 			\
 			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
@@ -118,45 +144,21 @@ struct oRefCount
 					eSingleLock ref_lock; \
 			public: void AddRef(); 		\
 					void Release();
-		#ifdef OBJECT_DEBUG
-			extern int object_total_remaining;
-			#define DEFINE_REF(c) \
-				void c::AddRef() \
+		#define DEFINE_REF(c) \
+			void c::AddRef() \
+			{ \
+				eSingleLocker l(ref_lock); \
+				++ref; \
+			} \
+			void c::Release() \
+	 		{ \
 				{ \
 					eSingleLocker l(ref_lock); \
-					++object_total_remaining; \
-					++ref; \
-					eDebug("OBJECT_DEBUG " #c "+%p now %d", this, ref.count); \
+					--ref; \
 				} \
-				void c::Release() \
-				{ \
-					{ \
-						eSingleLocker l(ref_lock); \
-						--object_total_remaining; \
-						--ref; \
-						eDebug("OBJECT_DEBUG " #c "-%p now %d", this, ref); \
-					} \
-					if (!ref) \
-						delete this; \
-				}
-				#error fix locking for debug
-		#else
-			#define DEFINE_REF(c) \
-				void c::AddRef() \
-				{ \
-					eSingleLocker l(ref_lock); \
-					++ref; \
-				} \
-				void c::Release() \
-				{ \
-					{ \
-						eSingleLocker l(ref_lock); \
-						--ref; \
-					} \
-					if (!ref) \
-						delete this; \
-				}
-		#endif
+				if (!ref) \
+					delete this; \
+			}
 	#endif
 #else  // SWIG
 	#define DECLARE_REF(x) \
@@ -168,4 +170,4 @@ struct oRefCount
 	};
 #endif  // SWIG
 
-#endif
+#endif  // __base_object_h
