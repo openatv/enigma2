@@ -115,7 +115,11 @@ void *gRC::thread()
 			else if (o.opcode==gOpcode::notify)
 				need_notify = 1;
 			else
+			{
 				o.dc->exec(&o);
+				// o.dc is a gDC* filled with grabref... so we must release it here
+				o.dc->Release();
+			}
 		}
 		else
 		{
