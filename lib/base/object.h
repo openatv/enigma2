@@ -31,9 +31,13 @@ public:
 		volatile int count;
 		oRefCount(): count(0) { }
 		operator volatile int&() { return count; }
-		~oRefCount() { 
+		~oRefCount()
+		{ 
 	#ifdef OBJECT_DEBUG
-			if (count) eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, count); else eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
+			if (count)
+				eDebug("OBJECT_DEBUG FATAL: %p has %d references!", this, count);
+			else
+				eDebug("OBJECT_DEBUG refcount ok! (%p)", this); 
 	#endif
 		}
 	};
@@ -139,6 +143,7 @@ public:
 					delete this; \
 			}
 	#else
+		#warning use non optimized implementation of refcounting.
 		#define DECLARE_REF(x) 			\
 			private:oRefCount ref; 	\
 					eSingleLock ref_lock; \
