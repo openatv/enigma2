@@ -23,32 +23,25 @@
 #define NULL 0
 #endif
 
-#ifndef SWIG
-#define CHECKFORMAT __attribute__ ((__format__(__printf__, 1, 2)))
-#else
-#define CHECKFORMAT
-#endif
-
-void CHECKFORMAT eFatal(const char*, ...);
-
-enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
-
-#ifndef SWIG
-extern Signal2<void, int, const std::string&> logOutput;
-extern int logOutputConsole;
-#endif
-
 #ifdef ASSERT
 #undef ASSERT
 #endif
+
+#ifndef SWIG
+
+#define CHECKFORMAT __attribute__ ((__format__(__printf__, 1, 2)))
+
+extern Signal2<void, int, const std::string&> logOutput;
+extern int logOutputConsole;
+
+void CHECKFORMAT eFatal(const char*, ...);
+enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 
 #ifdef DEBUG
     void CHECKFORMAT eDebug(const char*, ...);
     void CHECKFORMAT eDebugNoNewLine(const char*, ...);
     void CHECKFORMAT eWarning(const char*, ...);
-#ifndef SWIG
     #define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
-#endif
 
 #ifdef MEMLEAK_CHECK
 typedef struct
@@ -134,7 +127,7 @@ void DumpUnfreed();
 
 #endif // MEMLEAK_CHECK
 
-#else
+#else  // DEBUG
     inline void eDebug(const char* fmt, ...)
     {
     }
@@ -149,7 +142,10 @@ void DumpUnfreed();
     #define ASSERT(x) do { } while (0)
 #endif //DEBUG
 
-void ePythonOutput(const char *);
 void eWriteCrashdump();
+
+#endif // SWIG
+
+void ePythonOutput(const char *);
 
 #endif // __E_ERROR__
