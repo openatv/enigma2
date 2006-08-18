@@ -312,6 +312,9 @@ eServiceFactoryDVB::eServiceFactoryDVB()
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 		sc->addServiceFactory(eServiceFactoryDVB::id, this);
+
+	m_StaticServiceDVBInfo = new eStaticServiceDVBInformation;
+	m_StaticServiceDVBBouquetInfo = new eStaticServiceDVBBouquetInformation;
 }
 
 eServiceFactoryDVB::~eServiceFactoryDVB()
@@ -584,9 +587,9 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 	if ((ref.flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory) // bouquet
 	{
 		if ( !ref.name.empty() )  // satellites or providers list
-			ptr = new eStaticServiceDVBInformation;
+			ptr = m_StaticServiceDVBInfo;
 		else // a dvb bouquet
-			ptr = new eStaticServiceDVBBouquetInformation;
+			ptr = m_StaticServiceDVBBouquetInfo;
 	}
 	else if (!ref.path.empty()) /* do we have a PVR service? */
 		ptr = new eStaticServiceDVBPVRInformation(ref);
@@ -594,7 +597,7 @@ RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServic
 	{
 		ePtr<eDVBService> service;
 		if (lookupService(service, ref)) // no eDVBService avail for this reference ( Linkage Services... )
-			ptr = new eStaticServiceDVBInformation;
+			ptr = m_StaticServiceDVBInfo;
 		else
 			/* eDVBService has the iStaticServiceInformation interface, so we pass it here. */
 			ptr = service;
