@@ -450,6 +450,7 @@ def runScreenTest():
 		else:
 			setFPWakeuptime(nextRecordingTime - (300))
 	
+	session.nav.stopService()
 	session.nav.shutdown()
 	
 	return 0
