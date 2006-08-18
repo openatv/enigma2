@@ -37,7 +37,7 @@ class Navigation:
 			self.stopService()
 			return 0
 		
-		if not self.pnav.playService(ref):
+		if self.pnav and not self.pnav.playService(ref):
 			self.currentlyPlayingServiceReference = ref
 			return 0
 		return 1
@@ -49,7 +49,7 @@ class Navigation:
 		print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
-		service = self.pnav.recordService(ref)
+		service = self.pnav and self.pnav.recordService(ref)
 		
 		if service is None:
 			print "record returned non-zero"
@@ -60,17 +60,18 @@ class Navigation:
 	def getCurrentService(self):
 		if self.state:
 			if not self.currentlyPlayingService:
-				self.currentlyPlayingService = self.pnav.getCurrentService()
+				self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()
 			return self.currentlyPlayingService
 		return None
 
 	def stopService(self):
-		self.pnav.stopService()
+		if self.pnav:
+			self.pnav.stopService()
 		self.currentlyPlayingService = None
 		self.currentlyPlayingServiceReference = None
 
 	def pause(self, p):
-		return self.pnav.pause(p)
+		return self.pnav and self.pnav.pause(p)
 
 	def recordWithTimer(self, ref, begin, end, name, description, eit):
 		if isinstance(ref, eServiceReference):
@@ -81,8 +82,8 @@ class Navigation:
 	
 	def shutdown(self):
 		self.RecordTimer.shutdown()
-		del self.ServiceHandler
-		del self.pnav
+		self.ServiceHandler = None
+		self.pnav = None
 
 	def stopUserServices(self):
 		self.stopService()
