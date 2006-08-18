@@ -67,10 +67,11 @@ class Navigation:
 	def stopService(self):
 		self.pnav.stopService()
 		self.currentlyPlayingService = None
+		self.currentlyPlayingServiceReference = None
 
 	def pause(self, p):
 		return self.pnav.pause(p)
-	
+
 	def recordWithTimer(self, ref, begin, end, name, description, eit):
 		if isinstance(ref, eServiceReference):
 			ref = ServiceReference.ServiceReference(ref)
@@ -80,6 +81,7 @@ class Navigation:
 	
 	def shutdown(self):
 		self.RecordTimer.shutdown()
+		del self.ServiceHandler
 		del self.pnav
 
 	def stopUserServices(self):
