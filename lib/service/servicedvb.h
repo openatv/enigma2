@@ -10,9 +10,14 @@
 #include <lib/dvb/radiotext.h>
 #include <lib/base/filepush.h>
 
+class eStaticServiceDVBInformation;
+class eStaticServiceDVBBouquetInformation;
+
 class eServiceFactoryDVB: public iServiceHandler
 {
-DECLARE_REF(eServiceFactoryDVB);
+	DECLARE_REF(eServiceFactoryDVB);
+	ePtr<eStaticServiceDVBInformation> m_StaticServiceDVBInfo;
+	ePtr<eStaticServiceDVBBouquetInformation> m_StaticServiceDVBBouquetInfo;
 public:
 	eServiceFactoryDVB();
 	virtual ~eServiceFactoryDVB();
