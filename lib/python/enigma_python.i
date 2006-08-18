@@ -122,7 +122,7 @@ extern std::string convertDVBUTF8(const unsigned char *data, int len, int table,
      fragment="t_output_helper") {}
  %typemap(argout,fragment="t_out_helper"{Type}) Type *OUTPUT, Type &OUTPUT
 		// generate None if smartpointer is NULL
-   "$result = t_output_helper($result, ((*$1) ? SWIG_NewPointerObj((void*)($1), $1_descriptor, 1) : (Py_INCREF(Py_None), Py_None)));"
+   "$result = t_output_helper($result, ((*$1) ? SWIG_NewPointerObj((void*)($1), $1_descriptor, 1) : (delete $1, Py_INCREF(Py_None), Py_None)));"
 %enddef
 
 
