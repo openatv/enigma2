@@ -9,10 +9,8 @@ from InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarServiceName, In
 class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, Screen):
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
-		for x in [InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport]:
+		for x in [InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport, InfoBarExtensions]:
 			x.__init__(self)
-		InfoBarExtensions.__init__(self, useServicePath = False)
-
 
 		self.restoreService = self.session.nav.getCurrentlyPlayingServiceReference()
 		
