@@ -49,14 +49,17 @@ class Language:
 		for x in self.langlist:
 			list.append((x, self.lang[x]))
 		return list
-	
+
 	def getActiveLanguage(self):
 		return self.activeLanguage
-	
+
 	def getLanguage(self):
-		return str(self.lang[self.activeLanguage][2]) + "_" + str(self.lang[self.activeLanguage][3])
-	
+		try:
+			return str(self.lang[self.activeLanguage][2]) + "_" + str(self.lang[self.activeLanguage][3])
+		except:
+			return ''
+
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
-		
+
 language = Language()

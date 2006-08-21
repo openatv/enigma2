@@ -10,10 +10,11 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 	TEXT = 0
 	PIN = 1
 	NUMBER = 2	
-	
+
 	def __init__(self, text="", maxSize = False, type = TEXT):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
+		self.table = 0
 		self.numericalTextInput = NumericalTextInput(self.right)
 		self.type = type
 		self.maxSize = maxSize
@@ -21,12 +22,13 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		self.Text = text
 		self.overwrite = 0
 		self.update()
+
 	def update(self):
 		self.setMarkedPos(self.currPos)
 		if self.type == self.PIN:
 			self.message = "*" * len(self.Text)
 		else:
-			self.message = convertDVBUTF8(self.Text, 0)
+			self.message = convertDVBUTF8(self.Text, self.table)
 		if self.instance:
 			self.instance.setText(self.message)
 
@@ -35,13 +37,13 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 			self.currPos = 0
 			self.Text = ""
 		elif isUTF8(text):
-			self.Text = convertUTF8DVB(text, 0)
+			self.Text = convertUTF8DVB(text, self.table)
 		else:
 			self.Text = text
 		self.update()
 
 	def getText(self):
-		return convertDVBUTF8(self.Text, 0)
+		return convertDVBUTF8(self.Text, self.table)
 
 	def createWidget(self, parent):
 		return eLabel(parent, self.currPos)
@@ -87,7 +89,7 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 	def end(self):
 		self.currPos = len(self.Text) - 1
 		self.update()
-		
+
 	def tab(self):
 		if self.currPos == len(self.Text) - 1:
 			self.Text=self.Text+ " "
@@ -95,11 +97,11 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 		else:
 			self.Text = self.Text[0:self.currPos] + " " + self.Text[self.currPos:]
 		self.update()
-		
+
 	def delete(self):
 		self.Text = self.Text[:self.currPos] + self.Text[self.currPos + 1:]
 		self.update()
-		
+
 	def toggleOverwrite(self):
 		if self.overwrite==1:
 			self.overwrite=0
