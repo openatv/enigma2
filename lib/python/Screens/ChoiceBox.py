@@ -59,16 +59,18 @@ class ChoiceBox(Screen):
 		pass
 	
 	def up(self):
-		while 1:
-			self["list"].instance.moveSelection(self["list"].instance.moveUp)
-			if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-				break
+		if len(self["list"].list) > 0:
+			while 1:
+				self["list"].instance.moveSelection(self["list"].instance.moveUp)
+				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
+					break
 		
 	def down(self):
-		while 1:
-			self["list"].instance.moveSelection(self["list"].instance.moveDown)
-			if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
-				break
+		if len(self["list"].list) > 0:
+			while 1:
+				self["list"].instance.moveSelection(self["list"].instance.moveDown)
+				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
+					break
 
 
 	def keyNumberGlobal(self, number):
@@ -77,8 +79,10 @@ class ChoiceBox(Screen):
 			self.close(self.keymap[str(number)])
 		
 	def go(self):
-		self.close(self["list"].l.getCurrentSelection()[0])
-		#self.close(self["input"].getText())
+		if len(self["list"].list) > 0:
+			self.close(self["list"].l.getCurrentSelection()[0])
+		else:
+			self.close(None)
 
 	def keyRed(self):
 		if self.keymap.has_key("red"):
