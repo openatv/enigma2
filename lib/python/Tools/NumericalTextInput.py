@@ -10,7 +10,7 @@ class NumericalTextInput:
 		if self.lang == 'de_DE':
 			self.mapping.append (".,?'\"0-()@/:_") # 0
 			self.mapping.append (" 1") # 1
-			self.mapping.append ("aäbc2AABC") # 2
+			self.mapping.append ("aäbc2AÄBC") # 2
 			self.mapping.append ("def3DEF") # 3
 			self.mapping.append ("ghi4GHI") # 4
 			self.mapping.append ("jkl5JKL") # 5
