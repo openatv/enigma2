@@ -1,2 +1,2 @@
-SUBDIRS = TuxboxPlugins FileManager CutListEditor ZappingAlternatives
+SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor ZappingAlternatives
 
