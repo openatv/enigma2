@@ -6,6 +6,8 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport
 
+from enigma import eTimer
+
 class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, Screen):
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
@@ -19,9 +21,11 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 		
 		self.updateSubservices()
 		self.currentlyPlayingSubservice = 0
-		
-		self.onLayoutFinish.append(self.playSubservice)
-				
+
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.playSubservice)
+		self.onLayoutFinish.append(self.onLayoutFinished)
+
 		self["actions"] = NumberActionMap( [ "InfobarSubserviceQuickzapActions", "NumberActions", "DirectionActions", "ColorActions" ], 
 			{
 				"up": self.showSelection,
@@ -42,8 +46,9 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 				"0": self.keyNumberGlobal
 			}, -1)
 
-	
-		
+	def onLayoutFinished(self):
+		self.timer.start(0,True)
+
 	def updateSubservices(self):
 		self.service = self.session.nav.getCurrentService()
 		self.subservices = self.service and self.service.subServices()
@@ -104,6 +109,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 			self.close()
 		
 	def playSubservice(self, number = 0):
+		print "playSubservice"
 		newservice = self.subservices.getSubservice(number)
 		if newservice.valid():
 			del self.subservices
