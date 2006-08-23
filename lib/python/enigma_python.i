@@ -261,17 +261,7 @@ int getPrevAsciiCode();
 void runMainloop();
 void quitMainloop(int exit_code);
 eApplication *getApplication();
-int isUTF8(const std::string &);
-std::string convertUTF8DVB(const std::string &, int);
-std::string convertDVBUTF8(std::string text, int table);
 %{
-
-std::string convertDVBUTF8(std::string text, int table)
-{
-	int len = text.length();
-	return convertDVBUTF8(len?(unsigned char*)text.c_str():(unsigned char*)"", len, table, 0);
-}
-
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 {	
 	ePtr<gPixmap> *res;

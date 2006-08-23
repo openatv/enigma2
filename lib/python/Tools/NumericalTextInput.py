@@ -8,38 +8,38 @@ class NumericalTextInput:
 		self.lang = language.getLanguage()
 		
 		if self.lang == 'de_DE':
-			self.mapping.append (".,?'\"0-()@/:_") # 0
-			self.mapping.append (" 1") # 1
-			self.mapping.append ("aäbc2AÄBC") # 2
-			self.mapping.append ("def3DEF") # 3
-			self.mapping.append ("ghi4GHI") # 4
-			self.mapping.append ("jkl5JKL") # 5
-			self.mapping.append ("mnoö6MNOÖ") # 6
-			self.mapping.append ("pqrsß7PQRSß") # 7
-			self.mapping.append ("tuüv8TUÜV") # 8
-			self.mapping.append ("wxyz9WXYZ") # 9
+			self.mapping.append (u".,?'\"0-()@/:_") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"aäbc2AÄBC") # 2
+			self.mapping.append (u"def3DEF") # 3
+			self.mapping.append (u"ghi4GHI") # 4
+			self.mapping.append (u"jkl5JKL") # 5
+			self.mapping.append (u"mnoö6MNOÖ") # 6
+			self.mapping.append (u"pqrsß7PQRSß") # 7
+			self.mapping.append (u"tuüv8TUÜV") # 8
+			self.mapping.append (u"wxyz9WXYZ") # 9
 		elif self.lang == 'es_ES':
-			self.mapping.append (".,?'\"0-()@/:_") # 0
-			self.mapping.append (" 1") # 1
-			self.mapping.append ("abcáà2ABCÁÀ") # 2
-			self.mapping.append ("deéèf3DEFÉÈ") # 3
-			self.mapping.append ("ghiíì4GHIÍÌ") # 4
-			self.mapping.append ("jkl5JKL") # 5
-			self.mapping.append ("mnñoóò6MNÑOÓÒ") # 6
-			self.mapping.append ("pqrs7PQRS") # 7
-			self.mapping.append ("tuvúù8TUVÚÙ") # 8
-			self.mapping.append ("wxyz9WXYZ") # 9
+			self.mapping.append (u".,?'\"0-()@/:_") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"abcáà2ABCÁÀ") # 2
+			self.mapping.append (u"deéèf3DEFÉÈ") # 3
+			self.mapping.append (u"ghiíì4GHIÍÌ") # 4
+			self.mapping.append (u"jkl5JKL") # 5
+			self.mapping.append (u"mnñoóò6MNÑOÓÒ") # 6
+			self.mapping.append (u"pqrs7PQRS") # 7
+			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
+			self.mapping.append (u"wxyz9WXYZ") # 9
 		else:
-			self.mapping.append (".,?'\"0-()@/:_") # 0
-			self.mapping.append (" 1") # 1
-			self.mapping.append ("abc2ABC") # 2
-			self.mapping.append ("def3DEF") # 3
-			self.mapping.append ("ghi4GHI") # 4
-			self.mapping.append ("jkl5JKL") # 5
-			self.mapping.append ("mno6MNO") # 6
-			self.mapping.append ("pqrs7PQRS") # 7
-			self.mapping.append ("tuv8TUV") # 8
-			self.mapping.append ("wxyz9WXYZ") # 9
+			self.mapping.append (u".,?'\"0-()@/:_") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"abc2ABC") # 2
+			self.mapping.append (u"def3DEF") # 3
+			self.mapping.append (u"ghi4GHI") # 4
+			self.mapping.append (u"jkl5JKL") # 5
+			self.mapping.append (u"mno6MNO") # 6
+			self.mapping.append (u"pqrs7PQRS") # 7
+			self.mapping.append (u"tuv8TUV") # 8
+			self.mapping.append (u"wxyz9WXYZ") # 9
 		
 		self.nextFunction = nextFunction
 		self.Timer = eTimer()
@@ -48,8 +48,7 @@ class NumericalTextInput:
 		self.pos = 0
 
 	def getKey(self, num):
-		self.Timer.stop()
-		self.Timer.start(1000)
+		self.Timer.start(1000, True)
 		if (self.lastKey != num):
 			self.lastKey = num
 			self.pos = 0
@@ -64,11 +63,10 @@ class NumericalTextInput:
 		self.lastKey = -1
 
 	def nextChar(self):
-		self.Timer.stop()
 		print "Timer done"
 		try:
 			self.nextKey()
 			if (self.nextFunction != None):
 				self.nextFunction()
-		except:
-			pass
+		except AttributeError:
+			print "Text Input object deleted with running nextChar timer?"
