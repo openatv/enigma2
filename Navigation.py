@@ -30,7 +30,7 @@ class Navigation:
 			x(i)
 
 	def playService(self, ref):
-		print "playing", ref.toString()
+		print "playing", ref and ref.toString()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
 		if ref is None:
@@ -65,6 +65,7 @@ class Navigation:
 		return None
 
 	def stopService(self):
+		print "stopService"
 		if self.pnav:
 			self.pnav.stopService()
 		self.currentlyPlayingService = None
