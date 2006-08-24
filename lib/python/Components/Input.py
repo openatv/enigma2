@@ -6,19 +6,19 @@ from enigma import eLabel
 
 from Tools.NumericalTextInput import NumericalTextInput
 
-class Input(VariableText, HTMLComponent, GUIComponent):
+class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 	TEXT = 0
 	PIN = 1
 	NUMBER = 2
 
 	def __init__(self, text="", maxSize = False, type = TEXT):
+		NumericalTextInput.__init__(self, self.right)
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
 		self.maxSize = maxSize
 		self.currPos = 0
 		self.overwrite = 0
-		self.numericalTextInput = NumericalTextInput(self.right)
 		self.setText(text)
 
 	def update(self):
@@ -122,7 +122,7 @@ class Input(VariableText, HTMLComponent, GUIComponent):
 
 	def number(self, number):
 		if self.type == self.TEXT:
-			newChar = self.numericalTextInput.getKey(number)
+			newChar = self.getKey(number)
 		elif self.type == self.PIN or self.type == self.NUMBER:
 			newChar = str(number)
 		self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos + 1:]
