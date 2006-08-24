@@ -349,6 +349,7 @@ class configText(NumericalTextInput):
 		try:
 			self.Text = self.parent.value.decode("utf-8")
 		except UnicodeDecodeError:
+			self.Text = self.parent.value
 			print "utf8 kaputt!"
 
 	def checkValues(self):
