@@ -175,7 +175,7 @@ int eDVBCI_UI::mmiScreenBegin(int slot, int listmenu)
 	if (slot >= MAX_SLOTS)
 		return 0;
 
-	printf("eDVBCI_UI::mmiScreenBegin\n");
+	eDebug("eDVBCI_UI::mmiScreenBegin");
 
 	slot_ui_data &data = slotdata[slot];
 
@@ -238,7 +238,7 @@ int eDVBCI_UI::mmiScreenFinish(int slot)
 {
 	if (slot < MAX_SLOTS)
 	{
-		printf("eDVBCI_UI::mmiScreenFinish\n");
+		eDebug("eDVBCI_UI::mmiScreenFinish");
 		slotdata[slot].mmiScreenReady = 1;
 		/*emit*/ ciStateChanged(slot);
 	}
