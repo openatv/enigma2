@@ -1,5 +1,5 @@
 from time import *
-from Tools.NumericalTextInput import *
+from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import *
 
 class configFile:
@@ -335,30 +335,34 @@ class configNothing:
 	def __call__(self, selected):			#needed by configlist
 		return ("text", "")
 
-class configText:
+class configText(NumericalTextInput):
 	# used as first parameter
 	# is the text of a fixed size or is the user able to extend the length of the text
 	extendableSize = 1
 	fixedSize = 2
 
 	def __init__(self, parent):
+		NumericalTextInput.__init__(self, self.nextEntry)
 		self.parent = parent
 		self.markedPos = 0
 		self.mode = self.parent.vals[0]
-		self.textInput = NumericalTextInput(self.nextEntry)
+		try:
+			self.parent.value = self.parent.value.decode("utf-8")
+		except UnicodeDecodeError:
+			print "utf8 kaputt!"
 
 	def checkValues(self):
 		if (self.markedPos < 0):
 			self.markedPos = 0
 		if (self.markedPos >= len(self.parent.value)):
 			self.markedPos = len(self.parent.value) - 1
-			
+
 	def cancel(self):
 		self.parent.reload()
 
 	def save(self):
 		self.parent.save()
-		
+
 	def nextEntry(self):
 		self.parent.vals[1](self.parent.getConfigPath())
 
@@ -367,30 +371,25 @@ class configText:
 		#so we can handle it here in gui element
 		if key == config.key["delete"]:
 			self.parent.value = self.parent.value[0:self.markedPos] + self.parent.value[self.markedPos + 1:]
-		if key == config.key["prevElement"]:
-			self.textInput.nextKey()
+		elif key == config.key["prevElement"]:
+			self.nextKey()
 			self.markedPos -= 1
-
-		if key == config.key["nextElement"]:
-			self.textInput.nextKey()
+		elif key == config.key["nextElement"]:
+			self.nextKey()
 			self.markedPos += 1
 			if (self.mode == self.extendableSize):
 				if (self.markedPos >= len(self.parent.value)):
 					self.parent.value = self.parent.value.ljust(len(self.parent.value) + 1)
-			
-				
-		if key >= config.key["0"] and key <= config.key["9"]:
+		elif key >= config.key["0"] and key <= config.key["9"]:
 			number = 9 - config.key["9"] + key
+			self.parent.value = self.parent.value[0:self.markedPos] + self.getKey(number) + self.parent.value[self.markedPos + 1:]
 
-			self.parent.value = self.parent.value[0:self.markedPos] + str(self.textInput.getKey(number)) + self.parent.value[self.markedPos + 1:]
-		
-		self.checkValues()			
-		
-		self.parent.change()	
+		self.checkValues()
+		self.parent.change()
 
 	def __call__(self, selected):			#needed by configlist
-		return ("mtext"[1-selected:], str(self.parent.value), [self.markedPos])
-		
+		return ("mtext"[1-selected:], self.parent.value.encode("utf-8"), [self.markedPos])
+
 class configValue:
 	def __init__(self, obj):
 		self.obj = obj

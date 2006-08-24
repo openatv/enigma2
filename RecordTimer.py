@@ -338,7 +338,7 @@ class RecordTimer(timer.Timer):
 			list.append(' end="' + str(int(timer.end)) + '"')
 			list.append(' serviceref="' + str(timer.service_ref) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' name="' + str(stringToXML(timer.name)) + '"')
+			list.append(' name="' + str(stringToXML(timer.name.encode("utf-8"))) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
 			list.append(' afterevent="' + str(stringToXML({ AFTEREVENT.NONE: "nothing", AFTEREVENT.STANDBY: "standby", AFTEREVENT.DEEPSTANDBY: "deepstandby" }[timer.afterEvent])) + '"')
 			if timer.eit is not None:

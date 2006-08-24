@@ -480,6 +480,7 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput()
+		self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
@@ -799,8 +800,10 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(self.bouquet_root)
 
 	def keyNumberGlobal(self, number):
-		char = self.numericalTextInput.getKey(number)
-		self.servicelist.moveToChar(char)
+		unichar = self.numericalTextInput.getKey(number)
+		charstr = unichar.encode("utf-8")
+		if len(charstr) == 1:
+			self.servicelist.moveToChar(charstr[0])
 
 	def getRoot(self):
 		return self.servicelist.getRoot()
