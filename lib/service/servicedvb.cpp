@@ -1194,7 +1194,7 @@ int eDVBServicePlay::getInfo(int w)
 	case sIsCrypted: return program.isCrypted();
 	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
 	case sVideoType: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
-	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[m_current_audio_stream].pid;
+	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
 	case sPCRPID: return program.pcrPid;
 	case sPMTPID: return program.pmtPid;
 	case sTXTPID: return program.textPid;
@@ -1321,8 +1321,6 @@ int eDVBServicePlay::selectAudioStream(int i)
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[i].pid);
 		}
 	}
-
-	m_current_audio_stream = i;
 
 	return 0;
 }
@@ -1782,7 +1780,6 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
-		m_current_audio_stream = 0;
 		m_decoder->setAudioPID(apid, apidtype);
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
 		{
