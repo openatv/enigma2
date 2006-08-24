@@ -62,7 +62,7 @@ eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
 		if(i->getSlotID() == slotid)
 			return i;
 
-	printf("FIXME: request for unknown slot\n");
+	eDebug("FIXME: request for unknown slot");
 			
 	return 0;
 }
@@ -422,10 +422,10 @@ int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res=0;
 	//int i;
-	//printf("< ");
+	//eDebugNoNewLine("< ");
 	//for(i=0;i<len;i++)
-	//	printf("%02x ",data[i]);
-	//printf("\n");
+	//	eDebugNoNewLine("%02x ",data[i]);
+	//eDebug("");
 
 	if (sendqueue.empty())
 		res = ::write(fd, data, len);
@@ -446,7 +446,7 @@ void eDVBCISlot::data(int what)
 	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
-			printf("ci removed\n");
+			eDebug("ci removed");
 			while(sendqueue.size())
 			{
 				delete [] sendqueue.top().data;
@@ -477,10 +477,10 @@ void eDVBCISlot::data(int what)
 		r = ::read(fd, data, 4096);
 		if(r > 0) {
 //			int i;
-//			printf("> ");
+//			eDebugNoNewLine("> ");
 //			for(i=0;i<r;i++)
-//				printf("%02x ",data[i]);
-//			printf("\n");
+//				eDebugNoNewLine("%02x ",data[i]);
+//			eDebug("");
 			eDVBCISession::receiveData(this, data, r);
 			eDVBCISession::pollAll();
 			return;
@@ -559,7 +559,7 @@ int eDVBCISlot::getSlotID()
 
 int eDVBCISlot::reset()
 {
-	printf("edvbcislot: reset requested\n");
+	eDebug("edvbcislot: reset requested");
 
 	if (state == stateInvalid)
 	{
@@ -582,7 +582,7 @@ int eDVBCISlot::reset()
 
 int eDVBCISlot::startMMI()
 {
-	printf("edvbcislot: startMMI()\n");
+	eDebug("edvbcislot: startMMI()");
 	
 	if(application_manager)
 		application_manager->startMMI();
@@ -592,7 +592,7 @@ int eDVBCISlot::startMMI()
 
 int eDVBCISlot::stopMMI()
 {
-	printf("edvbcislot: stopMMI()\n");
+	eDebug("edvbcislot: stopMMI()");
 
 	if(mmi_session)
 		mmi_session->stopMMI();
@@ -602,7 +602,7 @@ int eDVBCISlot::stopMMI()
 
 int eDVBCISlot::answerText(int answer)
 {
-	printf("edvbcislot: answerText(%d)\n", answer);
+	eDebug("edvbcislot: answerText(%d)", answer);
 
 	if(mmi_session)
 		mmi_session->answerText(answer);
@@ -620,7 +620,7 @@ int eDVBCISlot::getMMIState()
 
 int eDVBCISlot::answerEnq(char *value)
 {
-	printf("edvbcislot: answerENQ(%s)\n", value);
+	eDebug("edvbcislot: answerENQ(%s)", value);
 
 	if(mmi_session)
 		mmi_session->answerEnq(value);
@@ -630,7 +630,7 @@ int eDVBCISlot::answerEnq(char *value)
 
 int eDVBCISlot::cancelEnq()
 {
-	printf("edvbcislot: cancelENQ\n");
+	eDebug("edvbcislot: cancelENQ");
 
 	if(mmi_session)
 		mmi_session->cancelEnq();
@@ -740,20 +740,20 @@ void eDVBCISlot::removeService(uint16_t program_number)
 
 int eDVBCISlot::enableTS(int enable, int tuner)
 {
-//	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-//	printf("eDVBCISlot::enableTS(%d %d)\n", enable, tuner);
+//	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//	eDebug("eDVBCISlot::enableTS(%d %d)", enable, tuner);
 
 	FILE *input0, *input1, *ci;
 	if((input0 = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
-		printf("cannot open /proc/stb/tsmux/input0\n");
+		eDebug("cannot open /proc/stb/tsmux/input0");
 		return 0;
 	}
 	if((input1 = fopen("/proc/stb/tsmux/input1", "wb")) == NULL) {
-		printf("cannot open /proc/stb/tsmux/input1\n");
+		eDebug("cannot open /proc/stb/tsmux/input1");
 		return 0;
 	}
 	if((ci = fopen("/proc/stb/tsmux/input2", "wb")) == NULL) {
-		printf("cannot open /proc/stb/tsmux/input2\n");
+		eDebug("cannot open /proc/stb/tsmux/input2");
 		return 0;
 	}
 

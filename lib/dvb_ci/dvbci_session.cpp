@@ -1,5 +1,6 @@
 /* DVB CI Transport Connection */
 
+#include <lib/base/eerror.h>
 #include <lib/dvb_ci/dvbci_session.h>
 #include <lib/dvb_ci/dvbci_resmgr.h>
 #include <lib/dvb_ci/dvbci_appmgr.h>
@@ -30,7 +31,7 @@ int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 		return 3;
 	} else
 	{
-		printf("too big length\n");
+		eDebug("too big length");
 		exit(0);
 	}
 }
@@ -90,7 +91,7 @@ void eDVBCISession::sendOpenSessionResponse(eDVBCISlot *slot, unsigned char sess
 {
 	char pkt[6];
 	pkt[0]=session_status;
-	printf("sendOpenSessionResponse\n");
+	eDebug("sendOpenSessionResponse");
 	memcpy(pkt + 1, resource_identifier, 4);
 	sendSPDU(slot, 0x92, pkt, 5, session_nb);
 }
@@ -100,14 +101,14 @@ void eDVBCISession::recvCreateSessionResponse(const unsigned char *data)
 	status = data[0];
 	state = stateStarted;
 	action = 1;
-	printf("create Session Response, status %x\n", status);
+	eDebug("create Session Response, status %x", status);
 }
 
 void eDVBCISession::recvCloseSessionRequest(const unsigned char *data)
 {
 	state = stateInDeletion;
 	action = 1;
-	printf("close Session Request\n");
+	eDebug("close Session Request");
 }
 
 void eDVBCISession::deleteSessions(const eDVBCISlot *slot)
@@ -144,42 +145,42 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	{
 	case 0x00010041:
 		session=new eDVBCIResourceManagerSession;
-		printf("RESOURCE MANAGER\n");
+		eDebug("RESOURCE MANAGER");
 		break;
 	case 0x00020041:
 		session=new eDVBCIApplicationManagerSession(slot);
-		printf("APPLICATION MANAGER\n");
+		eDebug("APPLICATION MANAGER");
 		break;
 	case 0x00030041:
 		session = new eDVBCICAManagerSession(slot);
-		printf("CA MANAGER\n");
+		eDebug("CA MANAGER");
 		break;
 	case 0x00240041:
 		session=new eDVBCIDateTimeSession;
-		printf("DATE-TIME\n");
+		eDebug("DATE-TIME");
 		break;
 	case 0x00400041:
 		session = new eDVBCIMMISession(slot);
-		printf("MMI - create session\n");
+		eDebug("MMI - create session");
 		break;
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
-		printf("AuthSession\n");
+		eDebug("AuthSession");
 //		break;
 	case 0x00200041:
 	default:
-		printf("unknown resource type %02x %02x %02x %02x\n", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
+		eDebug("unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session=0;
 		status=0xF0;
 	}
 
 	if (!session)
 	{
-		printf("unknown session.. expect crash\n");
+		eDebug("unknown session.. expect crash");
 		return;
 	}
 
-	printf("new session nb %d %p\n", session_nb, &(*session));
+	eDebug("new session nb %d %p", session_nb, &(*session));
 	session->session_nb = session_nb;
 
 	if (session)
@@ -224,11 +225,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 	unsigned char tag = *pkt++;
 	int llen, hlen;
 
-	printf("slot: %p\n",slot);
+	eDebug("slot: %p",slot);
 
 	for(unsigned int i=0;i<len;i++)
-		printf("%02x ",ptr[i]);
-	printf("\n");
+		eDebugNoNewLine("%02x ",ptr[i]);
+	eDebug("");
 	
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
@@ -255,14 +256,14 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
-			printf("PROTOCOL: illegal session number %x\n", session_nb);
+			eDebug("PROTOCOL: illegal session number %x", session_nb);
 			return;
 		}
 		
 		session=sessions[session_nb-1];
 		if (!session)
 		{
-			printf("PROTOCOL: data on closed session %x\n", session_nb);
+			eDebug("PROTOCOL: data on closed session %x", session_nb);
 			return;
 		}
 
@@ -274,11 +275,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			session->recvCreateSessionResponse(pkt);
 			break;
 		case 0x95:
-			printf("recvCloseSessionRequest\n");
+			eDebug("recvCloseSessionRequest");
 			session->recvCloseSessionRequest(pkt);
 			break;
 		default:
-			printf("INTERNAL: nyi, tag %02x.\n", tag);
+			eDebug("INTERNAL: nyi, tag %02x.", tag);
 			return;
 		}
 	}
@@ -303,7 +304,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 			{
 				if (((len-alen) > 0) && ((len - alen) < 3))
 				{
-					printf("WORKAROUND: applying work around MagicAPDULength\n");
+					eDebug("WORKAROUND: applying work around MagicAPDULength");
 					alen=len;
 				}
 			}
@@ -314,11 +315,11 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		}
 		
 	if (len)
-		printf("PROTOCOL: warning, TL-Data has invalid length\n");
+		eDebug("PROTOCOL: warning, TL-Data has invalid length");
 }
 
 eDVBCISession::~eDVBCISession()
 {
-//	printf("destroy %p\n", this);
+//	eDebug("destroy %p", this);
 }
 

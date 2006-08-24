@@ -30,10 +30,10 @@ eDVBCIMMISession::~eDVBCIMMISession()
 
 int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, int len)
 {
-	printf("SESSION(%d)/MMI %02x %02x %02x: ", session_nb, tag[0], tag[1],tag[2]);
+	eDebugNoNewLine("SESSION(%d)/MMI %02x %02x %02x: ", session_nb, tag[0], tag[1],tag[2]);
 	for (int i=0; i<len; i++)
-		printf("%02x ", ((const unsigned char*)data)[i]);
-	printf("\n");
+		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
+	eDebug("");
 
 	if ((tag[0]==0x9f) && (tag[1]==0x88))
 	{
@@ -59,9 +59,9 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			break;
 		}
 		case 0x01:
-			printf("MMI display control\n");
+			eDebug("MMI display control");
 			if (((unsigned char*)data)[0] != 1)
-				printf("kann ich nicht. aber das sag ich dem modul nicht.\n");
+				eDebug("kann ich nicht. aber das sag ich dem modul nicht.");
 			state=stateDisplayReply;
 			return 1;
 		case 0x07:		//Tmenu_enq
@@ -70,7 +70,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			unsigned char *max=((unsigned char*)d) + len;
 			int textlen = len - 2;
 
-			printf("in enq\n");
+			eDebug("in enq");
 			
 			if ((d+2) > max)
 				break;
@@ -78,7 +78,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			int blind = *d++ & 1;
 			int alen = *d++;
 
-			printf("%d bytes text\n", textlen);
+			eDebug("%d bytes text", textlen);
 			if ((d+textlen) > max)
 				break;
 			
@@ -86,7 +86,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			memcpy(str, ((char*)d), textlen);
 			str[textlen] = '\0';
 			
-			printf("enq-text: %s\n",str);
+			eDebug("enq-text: %s",str);
 			
 			eDVBCI_UI::getInstance()->mmiScreenEnq(slot->getSlotID(), blind, alen, (char*)convertDVBUTF8(str).c_str());
 
@@ -98,7 +98,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 			unsigned char *d=(unsigned char*)data;
 			unsigned char *max=((unsigned char*)d) + len;
 			int pos = 0;
-			printf("Tmenu_last\n");
+			eDebug("Tmenu_last");
 			if (d > max)
 				break;
 			int n=*d++;
@@ -112,16 +112,16 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				n=0;
 			else
 				n++;
-			printf("%d texts\n", n);
+			eDebug("%d texts", n);
 			for (int i=0; i < (n+3); ++i)
 			{
 				int textlen;
 				if ((d+3) > max)
 					break;
-				printf("text tag: %02x %02x %02x\n", d[0], d[1], d[2]);
+				eDebug("text tag: %02x %02x %02x", d[0], d[1], d[2]);
 				d+=3;
 				d+=parseLengthField(d, textlen);
-				printf("%d bytes text\n", textlen);
+				eDebug("%d bytes text", textlen);
 				if ((d+textlen) > max)
 					break;
 					
@@ -132,14 +132,14 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 				eDVBCI_UI::getInstance()->mmiScreenAddText(slot->getSlotID(), pos++, (char*)convertDVBUTF8(str).c_str());
 					
 				while (textlen--)
-					printf("%c", *d++);
-				printf("\n");
+					eDebugNoNewLine("%c", *d++);
+				eDebug("");
 			}
 			eDVBCI_UI::getInstance()->mmiScreenFinish(slot->getSlotID());
 			break;
 		}
 		default:
-			printf("unknown APDU tag 9F 88 %02x\n", tag[2]);
+			eDebug("unknown APDU tag 9F 88 %02x", tag[2]);
 			break;
 		}
 	}
@@ -181,7 +181,7 @@ int eDVBCIMMISession::doAction()
 
 int eDVBCIMMISession::stopMMI()
 {
-	printf("eDVBCIMMISession::stopMMI()\n");
+	eDebug("eDVBCIMMISession::stopMMI()");
 
 	unsigned char tag[]={0x9f, 0x88, 0x00};
 	unsigned char data[]={0x00};
@@ -192,7 +192,7 @@ int eDVBCIMMISession::stopMMI()
 
 int eDVBCIMMISession::answerText(int answer)
 {
-	printf("eDVBCIMMISession::answerText(%d)\n",answer);
+	eDebug("eDVBCIMMISession::answerText(%d)",answer);
 
 	unsigned char tag[]={0x9f, 0x88, 0x0B};
 	unsigned char data[]={0x00};
@@ -205,7 +205,7 @@ int eDVBCIMMISession::answerText(int answer)
 int eDVBCIMMISession::answerEnq(char *answer)
 {
 	unsigned int len = strlen(answer);
-	printf("eDVBCIMMISession::answerEnq(%d bytes)\n", len);
+	eDebug("eDVBCIMMISession::answerEnq(%d bytes)", len);
 
 	unsigned char data[len+1];
 	data[0] = 0x01; // answer ok
@@ -219,7 +219,7 @@ int eDVBCIMMISession::answerEnq(char *answer)
 
 int eDVBCIMMISession::cancelEnq()
 {
-	printf("eDVBCIMMISession::cancelEnq()\n");
+	eDebug("eDVBCIMMISession::cancelEnq()");
 
 	unsigned char tag[]={0x9f, 0x88, 0x08};
 	unsigned char data[]={0x00}; // canceled
