@@ -347,15 +347,15 @@ class configText(NumericalTextInput):
 		self.markedPos = 0
 		self.mode = self.parent.vals[0]
 		try:
-			self.parent.value = self.parent.value.decode("utf-8")
+			self.Text = self.parent.value.decode("utf-8")
 		except UnicodeDecodeError:
 			print "utf8 kaputt!"
 
 	def checkValues(self):
 		if (self.markedPos < 0):
 			self.markedPos = 0
-		if (self.markedPos >= len(self.parent.value)):
-			self.markedPos = len(self.parent.value) - 1
+		if (self.markedPos >= len(self.Text)):
+			self.markedPos = len(self.Text) - 1
 
 	def cancel(self):
 		self.parent.reload()
@@ -370,7 +370,8 @@ class configText(NumericalTextInput):
 		#this will no change anything on the value itself
 		#so we can handle it here in gui element
 		if key == config.key["delete"]:
-			self.parent.value = self.parent.value[0:self.markedPos] + self.parent.value[self.markedPos + 1:]
+			self.Text = self.Text[0:self.markedPos] + self.Text[self.markedPos + 1:]
+			self.parent.value = self.Text.encode("utf-8")
 		elif key == config.key["prevElement"]:
 			self.nextKey()
 			self.markedPos -= 1
@@ -378,17 +379,18 @@ class configText(NumericalTextInput):
 			self.nextKey()
 			self.markedPos += 1
 			if (self.mode == self.extendableSize):
-				if (self.markedPos >= len(self.parent.value)):
-					self.parent.value = self.parent.value.ljust(len(self.parent.value) + 1)
+				if (self.markedPos >= len(self.Text)):
+					self.Text = self.Text.ljust(len(self.Text) + 1)
+					self.parent.value = self.Text.encode("utf-8")
 		elif key >= config.key["0"] and key <= config.key["9"]:
 			number = 9 - config.key["9"] + key
-			self.parent.value = self.parent.value[0:self.markedPos] + self.getKey(number) + self.parent.value[self.markedPos + 1:]
-
+			self.Text = self.Text[0:self.markedPos] + self.getKey(number) + self.Text[self.markedPos + 1:]
+			self.parent.value = self.Text.encode("utf-8")
 		self.checkValues()
 		self.parent.change()
 
 	def __call__(self, selected):			#needed by configlist
-		return ("mtext"[1-selected:], self.parent.value.encode("utf-8"), [self.markedPos])
+		return ("mtext"[1-selected:], self.parent.value, [self.markedPos])
 
 class configValue:
 	def __init__(self, obj):
