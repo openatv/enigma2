@@ -6,7 +6,7 @@ from Components.ConfigList import ConfigList
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
-from enigma import eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial
+from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial
 
 def buildTerTransponder(frequency, 
 		inversion=2, bandwidth = 3, fechigh = 6, feclow = 6,
