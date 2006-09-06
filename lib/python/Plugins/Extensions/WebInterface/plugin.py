@@ -34,7 +34,7 @@ def startWebserver():
 		
 		def render(self, req):
 			return http.Response(responsecode.OK, {'Content-type': http_headers.MimeType('text', 'html')},
-				stream='Hello! you want probably go to <a href="/test">the test</a> instead.')
+				stream='Hello! you want probably go to <a href="/web">the test</a> instead.')
 
 		child_web = ScreenPage("/") # "/web"
 		child_hdd = static.File("/hdd")
@@ -51,10 +51,10 @@ def autostart(reason, **kwargs):
 		return
 
 	if reason == 0:
-		try:
+		#try:
 			startWebserver()
-		except ImportError:
-			print "twisted not available, not starting web services"
+		#except ImportError:
+		#	print "twisted not available, not starting web services"
 
 def Plugins(**kwargs):
 	return PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart)
