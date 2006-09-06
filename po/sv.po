@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-05 19:29+0000\n"
-"PO-Revision-Date: 2006-06-21 11:56+0100\n"
-"Last-Translator: weeGull <weegull@hotmail.com>\n"
+"POT-Creation-Date: 2006-09-06 13:57+0200\n"
+"PO-Revision-Date: 2006-08-10 11:35+0100\n"
+"Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -103,13 +103,13 @@ msgstr "<okänd>"
 
 #: ../lib/python/Screens/Setup.py:131
 msgid "??"
-msgstr ""
+msgstr "??"
 
 #: ../lib/python/Components/NimManager.py:760
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -139,7 +139,7 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1043
+#: ../lib/python/Screens/InfoBarGenerics.py:1165
 msgid "Activate Picture in Picture"
 msgstr "Aktivera Bild i Bild"
 
@@ -149,7 +149,7 @@ msgstr "Lägg till"
 
 #: ../lib/python/Screens/MediaPlayer.py:346
 msgid "Add files to playlist"
-msgstr ""
+msgstr "Lägg till i spellista"
 
 #: ../lib/python/Screens/EventView.py:32
 #: ../lib/python/Screens/EpgSelection.py:60
@@ -171,7 +171,7 @@ msgid "Album:"
 msgstr "Album:"
 
 #: ../lib/python/Screens/ChannelSelection.py:474
-#: ../lib/python/Screens/ChannelSelection.py:622
+#: ../lib/python/Screens/ChannelSelection.py:623
 msgid "All"
 msgstr "Alla"
 
@@ -183,9 +183,9 @@ msgstr "Arabiska"
 msgid "Artist:"
 msgstr "Artist:"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1224
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "Audio Options..."
-msgstr ""
+msgstr "Ljud optioner..."
 
 #: ../lib/python/Screens/ScanSetup.py:365
 #: ../lib/python/Screens/ScanSetup.py:368
@@ -249,7 +249,7 @@ msgstr "C-Band"
 msgid "CF Drive"
 msgstr "CF Disk"
 
-#: ../lib/python/Screens/ChannelSelection.py:735
+#: ../lib/python/Screens/ChannelSelection.py:736
 msgid "Cable"
 msgstr "Kabel"
 
@@ -294,7 +294,7 @@ msgstr "Rensa"
 #: ../lib/python/Screens/ScanSetup.py:255
 #: ../lib/python/Screens/ScanSetup.py:690
 msgid "Clear before scan"
-msgstr ""
+msgstr "Rensa före sökning"
 
 #: ../lib/python/Screens/TimerEntry.py:346
 msgid "Clear log"
@@ -337,11 +337,11 @@ msgstr "Aktuell Version:"
 
 #: ../lib/python/Screens/ScanSetup.py:363
 msgid "DVB-S"
-msgstr ""
+msgstr "DVB-S"
 
 #: ../lib/python/Screens/ScanSetup.py:363
 msgid "DVB-S2"
-msgstr ""
+msgstr "DVB-S2"
 
 #: ../lib/python/Components/Language.py:17
 msgid "Danish"
@@ -349,7 +349,7 @@ msgstr "Danska"
 
 #: ../lib/python/Screens/TimeDateInput.py:54
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: ../lib/python/Components/SetupDevices.py:21
 msgid "Default"
@@ -411,9 +411,13 @@ msgstr "DiSEqC repetetioner"
 msgid "Disable"
 msgstr "Avaktivera"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1045
+#: ../lib/python/Screens/InfoBarGenerics.py:1163
 msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1120
+msgid "Disable subtitles"
+msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
@@ -441,6 +445,8 @@ msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
 msgstr ""
+"Vill du verkligen initiera hårddisken?\n"
+"All data på hårddisken kommer försvinna!"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:123
 msgid ""
@@ -450,9 +456,9 @@ msgstr ""
 "Vill du ta en backup nu?\n"
 "Tryck OK och vänligen vänta!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1493
+#: ../lib/python/Screens/InfoBarGenerics.py:1605
 msgid "Do you want to resume this playback?"
-msgstr ""
+msgstr "Vill du återuppta uppspelningen?"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:50
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:202
@@ -479,7 +485,7 @@ msgstr "Laddar ner information om pluginet. Var vänlig vänta..."
 msgid "Dutch"
 msgstr "Holländska"
 
-#: ../lib/python/Screens/ChannelSelection.py:743
+#: ../lib/python/Screens/ChannelSelection.py:744
 msgid "E"
 msgstr "Ö"
 
@@ -507,7 +513,7 @@ msgstr "Aktivera"
 
 #: ../lib/python/Screens/Satconfig.py:74
 msgid "Enable 5V for active antenna"
-msgstr ""
+msgstr "Aktivera 5V för aktiv antenn"
 
 #: ../lib/python/Screens/TimerEntry.py:188
 msgid "End"
@@ -525,7 +531,7 @@ msgstr "Engelska"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:342
 msgid "Enter main menu..."
-msgstr ""
+msgstr "Gå till huvudmeny"
 
 #: ../lib/python/Components/NimManager.py:683
 msgid "Equal to Socket A"
@@ -556,7 +562,7 @@ msgstr "Favoriter"
 
 #: ../lib/python/Components/Language.py:19
 msgid "Finnish"
-msgstr ""
+msgstr "Finska"
 
 #: ../lib/python/Components/Language.py:20
 msgid "French"
@@ -609,7 +615,7 @@ msgstr "Hämtar plugin information. Var vänlig vänta..."
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:134
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:192
 msgid "Goto 0"
-msgstr ""
+msgstr "Gå till 0"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:189
 msgid "Goto position"
@@ -628,8 +634,8 @@ msgstr "Hårddisk"
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1190
-#: ../lib/python/Screens/InfoBarGenerics.py:1198
+#: ../lib/python/Screens/InfoBarGenerics.py:1302
+#: ../lib/python/Screens/InfoBarGenerics.py:1310
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
@@ -648,7 +654,7 @@ msgstr "Image Uppgradering"
 #: ../RecordTimer.py:166
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
+msgstr "För att göra en timerinspelning, var TV växlad till inspelad kanal!\n"
 
 #: ../lib/python/Screens/Satconfig.py:151
 msgid "Increased voltage"
@@ -666,9 +672,9 @@ msgstr "Initiera"
 msgid "Initializing Harddisk..."
 msgstr "Initierar Hårddisk..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1100
+#: ../lib/python/Screens/InfoBarGenerics.py:1212
 msgid "Instant Record..."
-msgstr ""
+msgstr "Direkt inspelning..."
 
 #: ../lib/python/Screens/ScanSetup.py:201
 #: ../lib/python/Screens/ScanSetup.py:234
@@ -706,9 +712,9 @@ msgstr "Välj språk"
 msgid "Latitude"
 msgstr "Latitud"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1264
+#: ../lib/python/Screens/InfoBarGenerics.py:1376
 msgid "Left"
-msgstr ""
+msgstr "Vänster"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:184
 msgid "Limit east"
@@ -724,7 +730,7 @@ msgstr "Gränser av"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:185
 msgid "Limits on"
-msgstr ""
+msgstr "Gränser på"
 
 #: ../lib/python/Screens/Satconfig.py:26
 #: ../lib/python/Screens/Satconfig.py:136 ../data/
@@ -763,9 +769,9 @@ msgstr "Mån-Fre"
 msgid "Monday"
 msgstr "Måndag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1046
+#: ../lib/python/Screens/InfoBarGenerics.py:1171
 msgid "Move Picture in Picture"
-msgstr ""
+msgstr "Flytta Bild i Bild"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:175
 msgid "Move east"
@@ -785,7 +791,7 @@ msgstr "Multi EPG"
 
 #: ../lib/python/Screens/Ci.py:324
 msgid "Multiple service support"
-msgstr ""
+msgstr "Multipla kanaler stöds"
 
 #: ../lib/python/Screens/ScanSetup.py:343
 msgid "Multisat"
@@ -816,9 +822,9 @@ msgstr "Nätmask"
 msgid "Network scan"
 msgstr "Sök Nätverk"
 
-#: ../lib/python/Screens/ChannelSelection.py:727
+#: ../lib/python/Screens/ChannelSelection.py:728
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
@@ -836,11 +842,11 @@ msgstr "Nästa"
 msgid "No"
 msgstr "Nej"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1210
+#: ../lib/python/Screens/InfoBarGenerics.py:1322
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk funnen eller initialiserad!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1143
+#: ../lib/python/Screens/InfoBarGenerics.py:1255
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
 
@@ -913,11 +919,11 @@ msgstr "Online Uppgradering"
 msgid "Packet management"
 msgstr "Pakethantering"
 
-#: ../lib/python/Screens/InfoBar.py:47
+#: ../lib/python/Screens/InfoBar.py:48
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1055
+#: ../lib/python/Screens/InfoBarGenerics.py:1085
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
@@ -927,16 +933,16 @@ msgstr "Ange namn för den nya bouquet"
 
 #: ../lib/python/Screens/ChannelSelection.py:160
 msgid "Please enter a name for the new marker"
-msgstr ""
+msgstr "Vänligen ange namn för ny markör"
 
 #: ../lib/python/Screens/TimerEntry.py:320
 msgid "Please select a subservice to record..."
-msgstr ""
+msgstr "Vänligen välj en underkanal för inspelning..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1361
-#: ../lib/python/Screens/SubservicesQuickzap.py:90
+#: ../lib/python/Screens/InfoBarGenerics.py:1473
+#: ../lib/python/Screens/SubservicesQuickzap.py:93
 msgid "Please select a subservice..."
-msgstr ""
+msgstr "Vänligen välj en underkanal..."
 
 #: ../lib/python/Screens/PiPSetup.py:41
 msgid ""
@@ -944,6 +950,10 @@ msgid ""
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
+"Använd piltangenterna för att flytta BiB fönstret.\n"
+"Tryck Bouquet +/- för ändra storleken på fönstret.\n"
+"Tryck OK för att gå tillbaka till TV läge elelr EXIT för att avbryta "
+"flyttning."
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1011,25 +1021,25 @@ msgid "Prev"
 msgstr "Föregående"
 
 #: ../lib/python/Screens/ChannelSelection.py:476
-#: ../lib/python/Screens/ChannelSelection.py:618
+#: ../lib/python/Screens/ChannelSelection.py:619
 msgid "Provider"
 msgstr "Leverantör"
 
-#: ../lib/python/Screens/ChannelSelection.py:725
+#: ../lib/python/Screens/ChannelSelection.py:726
 msgid "Providers"
 msgstr "Leverantörer"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1357
+#: ../lib/python/Screens/InfoBarGenerics.py:1469
 msgid "Quickzap"
-msgstr ""
+msgstr "Quickzap"
 
 #: ../lib/python/Screens/TimerEdit.py:107
 msgid "Really delete done timers?"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
 
-#: ../lib/python/Screens/SubservicesQuickzap.py:101
+#: ../lib/python/Screens/SubservicesQuickzap.py:104
 msgid "Really exit the subservices quickzap?"
-msgstr ""
+msgstr "Verkligen avsluta underkanals quickzap?"
 
 #: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
@@ -1049,7 +1059,7 @@ msgstr "Repeat Typ"
 
 #: ../lib/python/Screens/MediaPlayer.py:347
 msgid "Replace current playlist"
-msgstr ""
+msgstr "Byt ut nuvarande spellista"
 
 #: ../lib/python/Screens/Ci.py:312
 msgid "Reset"
@@ -1060,9 +1070,9 @@ msgstr "Nollställ"
 msgid "Restore"
 msgstr "Återställ"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1264
+#: ../lib/python/Screens/InfoBarGenerics.py:1376
 msgid "Right"
-msgstr ""
+msgstr "Höger"
 
 #: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
@@ -1078,7 +1088,7 @@ msgid "Satellite"
 msgstr "Satellit"
 
 #: ../lib/python/Screens/ChannelSelection.py:475
-#: ../lib/python/Screens/ChannelSelection.py:620
+#: ../lib/python/Screens/ChannelSelection.py:621
 msgid "Satellites"
 msgstr "Satelliter"
 
@@ -1104,13 +1114,13 @@ msgstr "Sök väst"
 msgid "Secondary cable from motorized LNB"
 msgstr "Andra kabeln från Motor"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1276
+#: ../lib/python/Screens/InfoBarGenerics.py:1388
 msgid "Select audio mode"
-msgstr ""
+msgstr "Välj ljudläge"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1265
+#: ../lib/python/Screens/InfoBarGenerics.py:1377
 msgid "Select audio track"
-msgstr ""
+msgstr "Välj ljudspår"
 
 #: ../lib/python/Screens/TimerEntry.py:237
 msgid "Select channel to record from"
@@ -1120,7 +1130,7 @@ msgstr "Välj kanal att spela in från"
 msgid "Sequence repeat"
 msgstr "Repetera sekvens"
 
-#: ../lib/python/Screens/ChannelSelection.py:729
+#: ../lib/python/Screens/ChannelSelection.py:730
 msgid "Services"
 msgstr "Kanaler"
 
@@ -1132,13 +1142,13 @@ msgstr "Ange gräns"
 msgid "Settings"
 msgstr "Inställningar"
 
-#: ../lib/python/Screens/InfoBar.py:48
+#: ../lib/python/Screens/InfoBar.py:49
 msgid "Show the radio player..."
 msgstr "Visa radiospelaren..."
 
-#: ../lib/python/Screens/InfoBar.py:49
+#: ../lib/python/Screens/InfoBar.py:50
 msgid "Show the tv player..."
-msgstr ""
+msgstr "Visa tv spelare..."
 
 #: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
@@ -1202,7 +1212,7 @@ msgstr "Spanska"
 msgid "Start"
 msgstr "Start"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1216
+#: ../lib/python/Screens/InfoBarGenerics.py:1328
 msgid "Start recording?"
 msgstr "Starta inspelning?"
 
@@ -1222,9 +1232,9 @@ msgstr "Stega öst"
 msgid "Step west"
 msgstr "Stega väst"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1264
+#: ../lib/python/Screens/InfoBarGenerics.py:1376
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
@@ -1237,7 +1247,7 @@ msgstr "Stopp"
 msgid "Stop Timeshift?"
 msgstr "Stoppa Timeshift?"
 
-#: ../lib/python/Screens/InfoBar.py:111
+#: ../lib/python/Screens/InfoBar.py:113
 msgid "Stop playing this movie?"
 msgstr "Stoppa uppspelningen?"
 
@@ -1249,9 +1259,9 @@ msgstr "Lagra position"
 msgid "Stored position"
 msgstr "Lagrad position"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1295
+#: ../lib/python/Screens/InfoBarGenerics.py:1407
 msgid "Subservice list..."
-msgstr ""
+msgstr "Underkanalslista..."
 
 #: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
@@ -1263,21 +1273,21 @@ msgstr "Sön"
 msgid "Sunday"
 msgstr "Söndag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1047
-msgid "Swap services"
+#: ../lib/python/Screens/InfoBarGenerics.py:1168
+msgid "Swap Services"
 msgstr ""
 
 #: ../lib/python/Components/Language.py:25
 msgid "Swedish"
 msgstr "Svenska"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1300
+#: ../lib/python/Screens/InfoBarGenerics.py:1412
 msgid "Switch to next subservice"
-msgstr ""
+msgstr "Byt till nästa underkanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1301
+#: ../lib/python/Screens/InfoBarGenerics.py:1413
 msgid "Switch to previous subservice"
-msgstr ""
+msgstr "Byt till föregående underkanal"
 
 #: ../lib/python/Screens/ScanSetup.py:202
 #: ../lib/python/Screens/ScanSetup.py:235
@@ -1285,7 +1295,7 @@ msgstr ""
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
-#: ../lib/python/Screens/ChannelSelection.py:737
+#: ../lib/python/Screens/ChannelSelection.py:738
 msgid "Terrestrial"
 msgstr "Terrestrial"
 
@@ -1313,7 +1323,7 @@ msgstr "Torsdag"
 
 #: ../lib/python/Screens/TimeDateInput.py:55
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: ../lib/python/Screens/TimerEntry.py:152
 msgid "Timer Type"
@@ -1350,7 +1360,7 @@ msgstr "Transponder"
 
 #: ../lib/python/Screens/ScanSetup.py:197
 msgid "Transpondertype"
-msgstr ""
+msgstr "Transponertyp"
 
 #: ../lib/python/Screens/EpgSelection.py:235
 #: ../lib/python/Components/TimerList.py:34
@@ -1375,7 +1385,7 @@ msgstr "Tuner"
 
 #: ../lib/python/Components/Language.py:26
 msgid "Turkish"
-msgstr ""
+msgstr "Turkiska"
 
 #: ../lib/python/Components/NimManager.py:768
 msgid "Two"
@@ -1433,15 +1443,15 @@ msgstr "Använd USALS för denna sat"
 msgid "User defined"
 msgstr "Användardefinierat"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1631
+#: ../lib/python/Screens/InfoBarGenerics.py:1743
 msgid "View teletext..."
-msgstr ""
+msgstr "Visa teletext..."
 
 #: ../lib/python/Screens/Satconfig.py:110
 msgid "Voltage mode"
 msgstr "Spännings läge"
 
-#: ../lib/python/Screens/ChannelSelection.py:741
+#: ../lib/python/Screens/ChannelSelection.py:742
 msgid "W"
 msgstr "V"
 
@@ -1482,7 +1492,7 @@ msgstr "Du kan inte ta bort detta!"
 
 #: ../lib/python/Screens/MediaPlayer.py:348
 msgid "You selected a playlist"
-msgstr ""
+msgstr "Du valde en spellista"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:31
 msgid ""
@@ -1518,7 +1528,7 @@ msgstr "håller på startar"
 
 #: ../lib/python/Screens/ChannelSelection.py:93
 msgid "add bouquet"
-msgstr ""
+msgstr "lägg till bouquet"
 
 #: ../lib/python/Screens/MediaPlayer.py:297
 msgid "add directory to playlist"
@@ -1530,20 +1540,20 @@ msgstr "lägg till fil i playlist"
 
 #: ../lib/python/Screens/ChannelSelection.py:99
 msgid "add marker"
-msgstr ""
+msgstr "lägg till markör"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
-#: ../lib/python/Screens/InfoBarGenerics.py:1216
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
+#: ../lib/python/Screens/InfoBarGenerics.py:1328
 msgid "add recording (enter recording duration)"
 msgstr "lägg till inspelning (ange inspelningslängd)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
-#: ../lib/python/Screens/InfoBarGenerics.py:1216
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
+#: ../lib/python/Screens/InfoBarGenerics.py:1328
 msgid "add recording (indefinitely)"
 msgstr "lägg till inspelning (oändlig)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
-#: ../lib/python/Screens/InfoBarGenerics.py:1216
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
+#: ../lib/python/Screens/InfoBarGenerics.py:1328
 msgid "add recording (stop after current event)"
 msgstr "lägg till inspelning (avsluta efter nuvarande)"
 
@@ -1568,7 +1578,7 @@ msgstr ""
 msgid "back"
 msgstr "tillbaka"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
 
@@ -1586,7 +1596,7 @@ msgstr "rensa playlist"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:583
 msgid "continue"
-msgstr ""
+msgstr "forsätt"
 
 #: ../lib/python/Screens/ChannelSelection.py:85
 msgid "copy to favourites"
@@ -1602,18 +1612,18 @@ msgstr "ta bort"
 
 #: ../lib/python/Screens/MovieSelection.py:24
 msgid "delete..."
-msgstr "tar bort.."
+msgstr "ta bort..."
 
 #: ../lib/python/Screens/ChannelSelection.py:107
 msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
 #: ../lib/python/Screens/TimerEntry.py:99
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
 msgid "do nothing"
 msgstr "gör inget"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1216
+#: ../lib/python/Screens/InfoBarGenerics.py:1328
 msgid "don't record"
 msgstr "spela inte in"
 
@@ -1655,11 +1665,11 @@ msgstr "fullt /etc bibliotek"
 
 #: ../lib/python/Screens/TimerEntry.py:99
 msgid "go to deep standby"
-msgstr "inta djupt viloläge"
+msgstr "Stäng av mottagaren"
 
-#: ../lib/python/Screens/InfoBar.py:62
+#: ../lib/python/Screens/InfoBar.py:64
 msgid "hear radio..."
-msgstr ""
+msgstr "lyssna på radio..."
 
 #: ../lib/python/Screens/MediaPlayer.py:304
 msgid "hide player"
@@ -1673,13 +1683,13 @@ msgstr "horisontal"
 msgid "init module"
 msgstr "initialisera modul"
 
-#: ../lib/python/Screens/InfoBar.py:96
+#: ../lib/python/Screens/InfoBar.py:98
 msgid "leave movie player..."
 msgstr "lämna videospelare..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1275
+#: ../lib/python/Screens/InfoBarGenerics.py:1387
 msgid "left"
-msgstr ""
+msgstr "vänster"
 
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
@@ -1750,15 +1760,15 @@ msgstr "bara /etc/enigma2 bibliotek"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:263
 msgid "open servicelist"
-msgstr ""
+msgstr "öppna kanallista"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "open servicelist(down)"
-msgstr ""
+msgstr "öppna kanallista(ner)"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:257
 msgid "open servicelist(up)"
-msgstr ""
+msgstr "öppna kanallista(upp)"
 
 #: ../lib/python/Components/ServiceScan.py:75
 msgid "pass"
@@ -1766,7 +1776,7 @@ msgstr "klart"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:582
 msgid "pause"
-msgstr ""
+msgstr "paus"
 
 #: ../lib/python/Screens/Ci.py:86
 msgid "please press OK when ready"
@@ -1790,24 +1800,24 @@ msgstr "spelar in..."
 
 #: ../lib/python/Screens/ChannelSelection.py:87
 msgid "remove all new found flags"
-msgstr ""
+msgstr "ta bort alla ny hittad flagga"
 
 #: ../lib/python/Screens/ChannelSelection.py:89
 #: ../lib/python/Screens/ChannelSelection.py:94
 msgid "remove entry"
-msgstr ""
+msgstr "ta bort post"
 
 #: ../lib/python/Screens/ChannelSelection.py:91
 msgid "remove new found flag"
-msgstr ""
+msgstr "ta bort ny hittad flagga"
 
 #: ../lib/python/Screens/TimerEntry.py:100
 msgid "repeated"
 msgstr "repeterande"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1275
+#: ../lib/python/Screens/InfoBarGenerics.py:1387
 msgid "right"
-msgstr ""
+msgstr "höger"
 
 #: ../lib/python/Components/ServiceScan.py:37
 #, python-format
@@ -1857,27 +1867,27 @@ msgstr "visa program detaljer"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:588
 msgid "skip backward"
-msgstr ""
+msgstr "hoppa bakåt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:585
 msgid "skip forward"
-msgstr ""
+msgstr "hoppa framåt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:897
 msgid "start timeshift"
-msgstr ""
+msgstr "starta timeshift"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1275
+#: ../lib/python/Screens/InfoBarGenerics.py:1387
 msgid "stereo"
-msgstr ""
+msgstr "stereo"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
 msgid "stop recording"
 msgstr "stoppa inspelning"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:898
 msgid "stop timeshift"
-msgstr ""
+msgstr "stoppa timeshift"
 
 #: ../lib/python/Screens/MediaPlayer.py:301
 msgid "switch to filelist"
@@ -1907,13 +1917,13 @@ msgstr "användardefinierad"
 msgid "vertical"
 msgstr "vertikal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1031
+#: ../lib/python/Screens/InfoBarGenerics.py:1033
 msgid "view extensions..."
-msgstr ""
+msgstr "visa utökningar"
 
-#: ../lib/python/Screens/InfoBar.py:61
+#: ../lib/python/Screens/InfoBar.py:63
 msgid "view recordings..."
-msgstr ""
+msgstr "visa inspelningar..."
 
 #: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
@@ -1939,7 +1949,7 @@ msgstr "ja"
 #: ../lib/python/Screens/ScanSetup.py:346
 #: ../lib/python/Screens/ScanSetup.py:689
 msgid "yes (keep feeds)"
-msgstr ""
+msgstr "ja (behåll feeds)"
 
 #: ../lib/python/Screens/TimerEntry.py:98
 msgid "zap"
@@ -2013,7 +2023,7 @@ msgstr "TV System"
 
 #: ../data/
 msgid "Alternative radio mode"
-msgstr ""
+msgstr "Alternativt radioläge"
 
 #: ../data/
 msgid "NEXT"
@@ -2029,11 +2039,11 @@ msgstr ""
 
 #: ../data/
 msgid "Deep Standby"
-msgstr "Djupt viloläge"
+msgstr "Stäng av"
 
 #: ../data/
 msgid "Show positioner movement"
-msgstr ""
+msgstr "Visa motorflyttningar"
 
 #: ../data/
 msgid "Tuner Slot"
@@ -2059,8 +2069,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gör inget."
+msgid "Setup"
+msgstr "Installation"
 
 #: ../data/
 msgid "#000000"
@@ -2100,12 +2110,16 @@ msgstr ""
 "Tryck OK för att starta backup."
 
 #: ../data/
-msgid "Mute"
-msgstr "Ljud av"
+msgid "The wizard is finished now."
+msgstr "Guiden är nu färdig."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Kanalsökning"
+
+#: ../data/
+msgid "Mute"
+msgstr "Ljud av"
 
 #: ../data/
 msgid ""
@@ -2124,21 +2138,11 @@ msgstr "Tangentbordslayout"
 
 #: ../data/
 msgid "Enable multiple bouquets"
-msgstr ""
+msgstr "Aktivera flera bouquets"
 
 #: ../data/
 msgid "Keyboard Setup"
 msgstr "Tangentbords inställning"
-
-#: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Använd vänster och höger pil för att ändra ett val.\n"
-"\n"
-"Inställning Tuner A"
 
 #: ../data/
 msgid "Dish"
@@ -2147,6 +2151,10 @@ msgstr "Parabol"
 #: ../data/
 msgid "Margin after record"
 msgstr "Marginal efter inspelning"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, starta bara dreamboxen"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2158,7 +2166,7 @@ msgstr "System"
 
 #: ../data/
 msgid "Use power measurement"
-msgstr ""
+msgstr "Använd strömmätning"
 
 #: ../data/
 msgid ""
@@ -2177,24 +2185,28 @@ msgid "Manual Scan"
 msgstr "Manuell Sökning"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Ändra Timer"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Välkommen.\n"
+"\n"
+"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
+"Tryck OK på din fjärrkontroll för att komma till nästa steg."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fjärrkontroll Meny"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, starta bara dreamboxen"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
-msgstr ""
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr ""
+msgstr "Nätverk..."
 
 #: ../data/
 msgid "select Slot"
@@ -2206,7 +2218,7 @@ msgstr "BER:"
 
 #: ../data/
 msgid "Standby / Restart"
-msgstr "Viloläge / Omstart"
+msgstr "Avstängning / Omstart"
 
 #: ../data/
 msgid "Main menu"
@@ -2226,7 +2238,7 @@ msgstr "OSD Inställning"
 
 #: ../data/
 msgid "RF output"
-msgstr ""
+msgstr "RF ut"
 
 #: ../data/
 msgid "Brightness"
@@ -2234,11 +2246,7 @@ msgstr "Ljusstyrka"
 
 #: ../data/
 msgid "Standby"
-msgstr "Viloläge"
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, utför manuell sökning igen"
+msgstr "Avstängning"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2277,20 +2285,16 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Timeshift"
-msgstr ""
+msgstr "Timeshift"
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
 
 #: ../data/
-msgid "Subservices"
-msgstr "Underkanal"
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vill du visa cutlist guiden?"
 
 #: ../data/
 msgid "Timezone"
@@ -2313,8 +2317,12 @@ msgid "Common Interface"
 msgstr "Common Interface"
 
 #: ../data/
+msgid "Tuner configuration"
+msgstr "Tuner konfiguration"
+
+#: ../data/
 msgid "Language..."
-msgstr ""
+msgstr "Språk..."
 
 #: ../data/
 msgid ""
@@ -2339,8 +2347,8 @@ msgid "Service scan"
 msgstr "Kanalsökning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Guiden är nu färdig."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, utför manuell sökning igen"
 
 #: ../data/
 msgid "LCD Setup"
@@ -2420,7 +2428,7 @@ msgstr ""
 
 #: ../data/
 msgid "PiPSetup"
-msgstr ""
+msgstr "BiB konfiguration"
 
 #: ../data/
 msgid "Menu"
@@ -2477,6 +2485,10 @@ msgid "Media player"
 msgstr "Media spelare"
 
 #: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, utför avstängning nu."
+
+#: ../data/
 msgid "Timer sanity error"
 msgstr "Timer fel"
 
@@ -2495,6 +2507,10 @@ msgstr "Din Dreambox håller på att stängas ner. Vänlig vänta..."
 #: ../data/
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
+
+#: ../data/
+msgid "Subservices"
+msgstr "Underkanal"
 
 #: ../data/
 msgid "Choose bouquet"
@@ -2530,7 +2546,7 @@ msgstr "USB"
 
 #: ../data/
 msgid "Invert display"
-msgstr ""
+msgstr "Invertera LCD"
 
 #: ../data/
 msgid "Do you want to restore your settings?"
@@ -2554,11 +2570,11 @@ msgstr "Bildformat"
 
 #: ../data/
 msgid "Recordings always have priority"
-msgstr ""
+msgstr "Inspelningar har alltid prioritet"
 
 #: ../data/
 msgid "Customize"
-msgstr ""
+msgstr "Inställningar"
 
 #: ../data/
 msgid "#389416"
@@ -2589,20 +2605,12 @@ msgid "Alpha"
 msgstr "Alpha"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Välkommen.\n"
-"\n"
-"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
-"Tryck OK på din fjärrkontroll för att komma till nästa steg."
+msgid "Timer Edit"
+msgstr "Ändra Timer"
 
 #: ../data/
-msgid "Setup"
-msgstr "Installation"
+msgid "No, do nothing."
+msgstr "Nej, gör inget."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2638,7 +2646,7 @@ msgstr "Vad vill du söka efter?"
 
 #: ../data/
 msgid "Now Playing"
-msgstr ""
+msgstr "Spelas nu"
 
 #: ../data/
 msgid "Channellist menu"
@@ -2650,15 +2658,21 @@ msgstr "Ljud"
 
 #: ../data/
 msgid "Harddisk..."
-msgstr ""
+msgstr "Hårddisk..."
 
 #: ../data/
 msgid "NOW"
 msgstr "NU"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, utför avstängning nu."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Använd vänster och höger pil för att ändra ett val.\n"
+"\n"
+"Inställning Tuner A"
 
 #: ../data/
 msgid "#0064c7"
@@ -2671,6 +2685,9 @@ msgstr "MediaSpelare"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
+
+#~ msgid "Swap services"
+#~ msgstr "Byt kanal"
 
 #~ msgid "add bouquet..."
 #~ msgstr "lägg till bouquet..."
@@ -2752,9 +2769,6 @@ msgstr "Vill du göra en ny manuell sökning?"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshifting"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa cutlist guiden?"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satellitinställning"
