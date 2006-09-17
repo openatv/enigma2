@@ -218,7 +218,7 @@ class AlternativeZapping(Screen):
 
 	def finishedChannelSelection(self, *args):
 		if len(args):
-			serviceString = str(ServiceReference(args))
+			serviceString = str(ServiceReference(args[0]))
 			if not self.alternatives.has_key(serviceString):
 				self.alternatives[serviceString] = []
 			self.updateServices()
@@ -277,13 +277,12 @@ class ServiceChanged(PerServiceDisplay):
 
 servicechanged = None
 
-def playService(self, ref):
+def playService(self, ref, **kwargs):
 	#print "--------------------Alternatives: trying to play service", str(ServiceReference(ref))
 	if ref is not None:
 		servicechanged.lastPlayAction = str(ServiceReference(ref))
 	servicechanged.nextPlayTry = 0
-	result = oldPlayService(ref)
-	
+	result = oldPlayService(ref, **kwargs)
 	return result
 
 def sessionstart(reason, session, **kwargs):
