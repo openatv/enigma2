@@ -1,0 +1,167 @@
+<e2:screen name="TestScreen">&lt;html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+	<title>Enigma 2 realtime OSD example </title>
+	<script src="/webdata/tools.js" type="text/javascript" />
+</head>
+<style type="text/css">
+body { background-color:#445566; color:#FFCC99; }
+a:link { color:#FF9966; }
+a:visited { color:#FF9900; }
+a:active { color:#FFFFFF; }
+#CurrentTime { 
+	position: absolute; top:30px; right:30px;
+	color: white; 
+	font-family:Arial,sans-serif;
+	font-size:2em;
+	font-weight:normal;
+}
+
+#CurrentService { 
+	color: white;
+	font-family:Arial,sans-serif;
+	font-size:4em;
+	font-weight:normal;
+}
+
+#Event_Now_Name { 
+	color: #998888;
+	font-family:Arial,sans-serif;
+	font-size:3em;
+	font-weight:bold;
+}
+
+#Event_Now_Begin { 
+	color: #999999;
+	font-family:Arial,sans-serif;
+	font-size:2em;
+	font-weight:bold;
+}
+
+#Event_Now_Remaining { 
+	position: absolute; right: 30px;
+	color: #999999;
+	font-family:Arial,sans-serif;
+	font-size:2em;
+	font-weight:bold;
+}
+
+#Event_Now_Description { 
+	color: #99aaaa;
+	font-family:Arial,sans-serif;
+	font-size:1em;
+	font-weight:bold;
+}
+
+#Event_Now_Extended_Description { 
+	color: #99bbbb;
+	font-family:Arial,sans-serif;
+	font-size:1em;
+	font-weight:bold;
+}
+
+
+	/* allow room for 3 columns */
+ol
+{
+	width: 45em;
+}
+
+	/* float and allow room for the widest item */
+ol li
+{
+	float: left;
+	width: 15em;
+}
+
+/* stop the float */
+br
+{
+	clear: left;
+}
+
+	/* separate the list from subsequent markup */
+div.wrapper
+{
+	margin-bottom: 1em;
+}
+
+</style>
+<body>
+
+<div id="CurrentTime"> </div>
+<div id="CurrentService"> </div>
+<div>
+<span id="Event_Now_Begin"> </span> <span id="Event_Now_Name"> </span>
+<span id="Event_Now_Remaining"> </span>
+</div>
+<div id="Event_Now_Description"> </div>
+<div id="Event_Now_Extended_Description"> </div>
+
+<div id="ChannelList">
+<ol>
+<e2:element source="ServiceList">
+
+<e2:convert type="web:ListFiller">
+&lt;li onclick="zap(this)" id="<e2:item name="Reference" />"><e2:item name="Name"/>&lt;/li>
+</e2:convert>
+
+	<e2:convert type="web:TextToHTML" />
+</e2:element>
+</ol>
+</div>
+
+<script type="text/javascript" language="javascript">
+function set(what, value)
+{
+	document.getElementById(what).innerHTML = value;
+}
+
+function updatePage()
+{
+} 
+
+function zap(li)
+{
+	var request = getHTTPObject();
+	var url = "/web/zap?ZapTo=" + escape(li.id);
+	request.open("GET", url, true);
+	request.onreadystatechange = updatePage;
+	request.send(null);
+}
+
+</script>
+</body>
+
+<!-- realtime updates follow -->
+<e2:element source="CurrentTime" streaming="yes">
+  <e2:convert type="ClockToText">WithSeconds</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="CurrentService" streaming="yes">
+	<e2:convert type="ServiceName">Name</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="Event_Now" id="Event_Now_Name" streaming="yes">
+	<e2:convert type="EventName">Name</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="Event_Now" id="Event_Now_Description" streaming="yes">
+	<e2:convert type="EventName">Description</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="Event_Now" id="Event_Now_Extended_Description" streaming="yes">
+	<e2:convert type="EventName">ExtendedDescription</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="Event_Now" id="Event_Now_Remaining" streaming="yes">
+	<e2:convert type="EventTime">Remaining</e2:convert>
+	<e2:convert type="RemainingToText">InMinutes</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+<e2:element source="Event_Now" id="Event_Now_Begin" streaming="yes">
+	<e2:convert type="EventTime">StartTime</e2:convert>
+	<e2:convert type="ClockToText">Default</e2:convert>
+	<e2:convert type="web:JavascriptUpdate" />
+</e2:element>
+</e2:screen>

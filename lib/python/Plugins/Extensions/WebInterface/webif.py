@@ -1,5 +1,5 @@
 #
-# OK, this is more a proof of concept
+# OK, this is more than a proof of concept
 # things to improve:
 #  - nicer code
 #  - screens need to be defined somehow else. 
@@ -14,6 +14,11 @@ from Tools.Import import my_import
 # for our testscreen
 from Screens.InfoBarGenerics import InfoBarServiceName, InfoBarEvent
 from Components.Sources.Clock import Clock
+#from Components.Sources.Config import Config
+from Components.Sources.ServiceList import ServiceList
+from Components.Converter.Converter import Converter
+#from Components.config import config
+from Components.Element import Element
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, feature_namespaces
@@ -30,25 +35,88 @@ class TestScreen(InfoBarServiceName, InfoBarEvent, Screen):
 		InfoBarServiceName.__init__(self)
 		InfoBarEvent.__init__(self)
 		self["CurrentTime"] = Clock()
+#		self["TVSystem"] = Config(config.av.tvsystem)
+#		self["OSDLanguage"] = Config(config.osd.language)
+#		self["FirstRun"] = Config(config.misc.firstrun)
+		from enigma import eServiceReference
+		fav = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+		self["ServiceList"] = ServiceList(fav, command_func = self.zapTo)
+		self["ServiceListBrowse"] = ServiceList(fav, command_func = self.browseTo)
 
-# turns .text into __str__ 
-class Element:
-	def __init__(self, source):
-		self.source = source
+	def browseTo(self, reftobrowse):
+		self["ServiceListBrowse"].root = refttobrowse
 
-	def __str__(self):
-		return self.source.text
+	def zapTo(self, reftozap):
+		self.session.nav.playService(reftozap)
+
+# implements the 'render'-call.
+# this will act as a downstream_element, like a renderer.
+class OneTimeElement(Element):
+	def __init__(self, id):
+		Element.__init__(self)
+		self.source_id = id
+
+	# CHECKME: is this ok performance-wise?
+	def handleCommand(self, args):
+		for c in args.get(self.source_id, []):
+			self.source.handleCommand(c)
+
+	def render(self, stream):
+		t = self.source.getHTML(self.source_id)
+		if isinstance(t, unicode):
+			t = t.encode("utf-8")
+		stream.write(t)
+
+	def destroy(self):
+		pass
+
+class StreamingElement(OneTimeElement):
+	def __init__(self, id):
+		OneTimeElement.__init__(self, id)
+		self.stream = None
+
+	def changed(self, what):
+		if self.stream:
+			self.render(self.stream)
+
+	def setStream(self, stream):
+		self.stream = stream
 
 # a to-be-filled list item
 class ListItem:
 	def __init__(self, name):
 		self.name = name
 
-# the performant 'listfiller'-engine (plfe)
-class ListFiller(object):
+class TextToHTML(Converter):
 	def __init__(self, arg):
-		self.template = arg
-		
+		Converter.__init__(self, arg)
+
+	def getHTML(self, id):
+		return self.source.text # encode & etc. here!
+
+# a null-output. Useful if you only want to issue a command.
+class Null(Converter):
+	def __init__(self, arg):
+		Converter.__init__(self, arg)
+
+	def getHTML(self, id):
+		return ""
+
+def escape(s):
+	return s.replace("\\", "\\\\").replace("\n", "\\n").replace('"', '\\"')
+
+class JavascriptUpdate(Converter):
+	def __init__(self, arg):
+		Converter.__init__(self, arg)
+
+	def getHTML(self, id):
+		return '<script>set("' + id + '", "' + escape(self.source.text) + '");</script>\n'
+
+# the performant 'listfiller'-engine (plfe)
+class ListFiller(Converter):
+	def __init__(self, arg):
+		Converter.__init__(self, arg)
+
 	def getText(self):
 		l = self.source.list
 		lut = self.source.lut
@@ -56,7 +124,7 @@ class ListFiller(object):
 		# now build a ["string", 1, "string", 2]-styled list, with indices into the 
 		# list to avoid lookup of item name for each entry
 		lutlist = []
-		for element in self.template:
+		for element in self.converter_arguments:
 			if isinstance(element, str):
 				lutlist.append(element)
 			elif isinstance(element, ListItem):
@@ -81,10 +149,12 @@ class webifHandler(ContentHandler):
 		self.mode = 0
 		self.screen = None
 		self.session = session
+		self.screens = [ ]
 	
 	def startElement(self, name, attrs):
 		if name == "e2:screen":
 			self.screen = eval(attrs["name"])(self.session) # fixme
+			self.screens.append(self.screen)
 			return
 	
 		if name[:3] == "e2:":
@@ -97,7 +167,10 @@ class webifHandler(ContentHandler):
 			self.res.append(tag)
 		elif self.mode == 1: # expect "<e2:element>"
 			assert name == "e2:element", "found %s instead of e2:element" % name
-			self.source = self.screen[attrs["source"]]
+			source = attrs["source"]
+			self.source_id = str(attrs.get("id", source))
+			self.source = self.screen[source]
+			self.is_streaming = "streaming" in attrs
 		elif self.mode == 2: # expect "<e2:convert>"
 			if name[:3] == "e2:":
 				assert name == "e2:convert"
@@ -112,6 +185,7 @@ class webifHandler(ContentHandler):
 				self.sub.append(tag)
 		elif self.mode == 3:
 			assert name == "e2:item", "found %s instead of e2:item!" % name
+			assert "name" in attrs, "e2:item must have a name= attribute!"
 			self.sub.append(ListItem(attrs["name"]))
 
 	def endElement(self, name):
@@ -134,7 +208,15 @@ class webifHandler(ContentHandler):
 			
 			del self.sub
 		elif self.mode == 1: # closed 'element'
-			self.res.append(Element(self.source))
+			# instatiate either a StreamingElement or a OneTimeElement, depending on what's required.
+			if not self.is_streaming:
+				c = OneTimeElement(self.source_id)
+			else:
+				c = StreamingElement(self.source_id)
+			
+			c.connect(self.source)
+			self.res.append(c)
+			self.screen.renderer.append(c)
 			del self.source
 
 		if name[:3] == "e2:":
@@ -153,13 +235,20 @@ class webifHandler(ContentHandler):
 	def startEntity(self, name):
 		self.res.append('&' + name + ';');
 
+	def cleanup(self):
+		print "screen cleanup!"
+		for screen in self.screens:
+			screen.doClose()
+		self.screens = [ ]
+
 def lreduce(list):
 	# ouch, can be made better
 	res = [ ]
 	string = None
 	for x in list:
 		if isinstance(x, str) or isinstance(x, unicode):
-			x = x.encode("UTF-8")
+			if isinstance(x, unicode):
+				x = x.encode("UTF-8")
 			if string is None:
 				string = x
 			else:
@@ -174,12 +263,55 @@ def lreduce(list):
 		string = None
 	return res
 
-def renderPage(stream, path, session):
+def renderPage(stream, path, req, session):
+	
+	# read in the template, create required screens
+	# we don't have persistense yet.
+	# if we had, this first part would only be done once.
 	handler = webifHandler(session)
 	parser = make_parser()
 	parser.setFeature(feature_namespaces, 0)
 	parser.setContentHandler(handler)
 	parser.parse(open(util.sibpath(__file__, path)))
+	
+	# by default, we have non-streaming pages
+	finish = True
+	
+	# first, apply "commands" (aka. URL argument)
+	for x in handler.res:
+		if isinstance(x, Element):
+			x.handleCommand(req.args)
+
+	# now, we have a list with static texts mixed
+	# with non-static Elements.
+	# flatten this list, write into the stream.
 	for x in lreduce(handler.res):
-		stream.write(str(x))
-	stream.finish() # must be done, unless we "callLater"
+		if isinstance(x, Element):
+			if isinstance(x, StreamingElement):
+				finish = False
+				x.setStream(stream)
+			x.render(stream)
+		else:
+			stream.write(str(x))
+
+	def ping(s):
+		from twisted.internet import reactor
+		s.write("PING<br/>\n");
+		reactor.callLater(3, ping, s)
+
+	# if we met a "StreamingElement", there is at least one
+	# element which wants to output data more than once,
+	# i.e. on host-originated changes.
+	# in this case, don't finish yet, don't cleanup yet,
+	# but instead do that when the client disconnects.
+	if finish:
+		handler.cleanup()
+		stream.finish()
+	else:
+		# ok.
+		# you *need* something which constantly sends something in a regular interval,
+		# in order to detect disconnected clients.
+		# i agree that this "ping" sucks terrible, so better be sure to have something 
+		# similar. A "CurrentTime" is fine. Or anything that creates *some* output.
+#		ping(stream)
+		stream.closed_callback = lambda: handler.cleanup()
