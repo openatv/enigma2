@@ -93,6 +93,7 @@ div.wrapper
 <div id="CurrentService"> </div>
 <div>
 <span id="Event_Now_Begin"> </span> <span id="Event_Now_Name"> </span>
+<a href="javascript:imdb()">...</a>
 <span id="Event_Now_Remaining"> </span>
 </div>
 <div id="Event_Now_Description"> </div>
@@ -128,6 +129,12 @@ function zap(li)
 	request.open("GET", url, true);
 	request.onreadystatechange = updatePage;
 	request.send(null);
+}
+
+function imdb()
+{
+	w = window.open("http://www.imdb.com/find?s=all&amp;q=" + escape(document.getElementById("Event_Now_Name").innerHTML));
+	w.focus();
 }
 
 </script>
