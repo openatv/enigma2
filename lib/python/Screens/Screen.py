@@ -23,6 +23,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.execing = False
 		self.shown = False
 		
+		self.renderer = [ ]
+		
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
 		self.helpList = [ ]
