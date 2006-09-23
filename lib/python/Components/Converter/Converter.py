@@ -7,3 +7,6 @@ class Converter(Element):
 
 	def __repr__(self):
 		return str(type(self)) + "(" + self.converter_arguments + ")"
+
+	def handleCommand(self, cmd):
+		self.source.handleCommand(cmd)
