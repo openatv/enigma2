@@ -44,7 +44,7 @@ class TestScreen(InfoBarServiceName, InfoBarEvent, Screen):
 		self["ServiceListBrowse"] = ServiceList(fav, command_func = self.browseTo)
 
 	def browseTo(self, reftobrowse):
-		self["ServiceListBrowse"].root = refttobrowse
+		self["ServiceListBrowse"].root = reftobrowse
 
 	def zapTo(self, reftozap):
 		self.session.nav.playService(reftozap)
