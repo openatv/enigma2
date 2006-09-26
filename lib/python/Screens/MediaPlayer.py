@@ -23,7 +23,7 @@ import os
 
 class MediaPlayer(Screen, InfoBarSeek):
 	ALLOW_SUSPEND = True
-	
+
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -39,11 +39,11 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 		self.playlist = PlayList()
 		self["playlist"] = self.playlist
-		
+
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
-		
+
 		self["currenttext"] = Label("")
-		
+
 		self["artisttext"] = Label(_("Artist:"))
 		self["artist"] = Label("")
 		self["titletext"] = Label(_("Title:"))
@@ -55,7 +55,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
 		self["coverArt"] = Pixmap()
-		
+
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
 
 		class MoviePlayerActionMap(NumberActionMap):
@@ -71,39 +71,39 @@ class MediaPlayer(Screen, InfoBarSeek):
 		{
 			"ok": self.ok,
 			"cancel": self.exit,
-			
+
 			"right": self.rightDown,
 			"rightRepeated": self.doNothing,
 			"rightUp": self.rightUp,
 			"left": self.leftDown,
 			"leftRepeated": self.doNothing,
 			"leftUp": self.leftUp,
-			
+
 			"up": self.up,
 			"upRepeated": self.up,
 			"down": self.down,
 			"downRepeated": self.down,
-			
+
 			"play": self.playEntry,
 			"pause": self.pauseEntry,
 			"stop": self.stopEntry,
-			
+
 			"previous": self.previousEntry,
 			"next": self.nextEntry,
-			
+
 			"menu": self.showMenu,
-			
-            "1": self.keyNumberGlobal,
-            "2": self.keyNumberGlobal,
-            "3": self.keyNumberGlobal,
-            "4": self.keyNumberGlobal,
-            "5": self.keyNumberGlobal,
-            "6": self.keyNumberGlobal,
-            "7": self.keyNumberGlobal,
-            "8": self.keyNumberGlobal,
-            "9": self.keyNumberGlobal,
-            "0": self.keyNumberGlobal
-        }, -2)
+
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
+		}, -2)
 
 		InfoBarSeek.__init__(self)
 
@@ -118,7 +118,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 		self.onClose.append(self.delMPTimer)
 		self.onClose.append(self.__onClose)
-		
+
 		self.righttimer = False
 		self.rightKeyTimer = eTimer()
 		self.rightKeyTimer.timeout.get().append(self.rightTimerFire)
@@ -126,46 +126,46 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.lefttimer = False
 		self.leftKeyTimer = eTimer()
 		self.leftKeyTimer.timeout.get().append(self.leftTimerFire)
-		
+
 		self.infoTimer = eTimer()
 		self.infoTimer.timeout.get().append(self.infoTimerFire)
 		self.infoTimer.start(500)
-		
+
 		self.currList = "filelist"
 
 		self.coverArtFileName = ""
-		
+
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		if list:
 			for x in list:
 				self.playlist.addFile(x.ref)
-			self.playlist.updateList()		
-		
+			self.playlist.updateList()
+
 	def doNothing(self):
 		pass
-	
+
 	def exit(self):
 		self.playlistIOInternal.clear()
 		for x in self.playlist.list:
 			self.playlistIOInternal.addService(ServiceReference(x[0]))
 		self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		self.close()
-	
+
 	def checkSkipShowHideLock(self):
 		self.updatedSeekState()
-	
+
 	def __evEOF(self):
 		self.nextEntry()
-	
+
 	def __onClose(self):
 		self.session.nav.playService(self.oldService)
-	
+
 	def delMPTimer(self):
 		del self.rightKeyTimer
 		del self.leftKeyTimer
 		del self.infoTimer
-		
+
 	def infoTimerFire(self):
 		currPlay = self.session.nav.getCurrentService()
 		if currPlay is not None:
@@ -178,7 +178,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		else:
 			self.updateMusicInformation()
 			self.updateCoverArtPixmap( "" )
-	
+
 	def updateMusicInformation(self, artist = "", title = "", album = "", year = "", genre = "", clear = False):
 		self.updateSingleMusicInformation("artist", artist, clear)
 		self.updateSingleMusicInformation("title", title, clear)
@@ -208,12 +208,12 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.fwdKeyTimer.stop()
 		self.fwdtimer = False
 		self.nextEntry()
-	
+
 	def rwdTimerFire(self):
 		self.rwdKeyTimer.stop()
 		self.rwdtimer = False
 		self.previousEntry()
-        
+
 	def leftDown(self):
 		self.lefttimer = True
 		self.leftKeyTimer.start(1000)
@@ -221,42 +221,42 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def rightDown(self):
 		self.righttimer = True
 		self.rightKeyTimer.start(1000)
-		
+
 	def leftUp(self):
 		if self.lefttimer:
 			self.leftKeyTimer.stop()
 			self.lefttimer = False
 			self[self.currList].pageUp()
-    
+
    	def rightUp(self):
 		if self.righttimer:
 			self.rightKeyTimer.stop()
 			self.righttimer = False
 			self[self.currList].pageDown()
-			
+
 	def leftTimerFire(self):
 		self.leftKeyTimer.stop()
 		self.lefttimer = False
 		self.switchToFileList()
-	
+
 	def rightTimerFire(self):
 		self.rightKeyTimer.stop()
 		self.righttimer = False
 		self.switchToPlayList()
-				
+
 	def switchToFileList(self):
 		self.currList = "filelist"
 		self.filelist.selectionEnabled(1)
 		self.playlist.selectionEnabled(0)
 		self.updateCurrentInfo()
-		
+
 	def switchToPlayList(self):
 		if len(self.playlist) != 0:
 			self.currList = "playlist"
 			self.filelist.selectionEnabled(0)
 			self.playlist.selectionEnabled(1)
 			self.updateCurrentInfo()
-		
+
 	def up(self):
 		self[self.currList].up()
 		self.updateCurrentInfo()
@@ -272,9 +272,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 				text = self.filelist.getServiceRef().getPath()
 		if self.currList == "playlist":
 			text = self.playlist.getSelection().getPath()
-		
+
 		self["currenttext"].setText(os.path.basename(text))
-    
+
 	def ok(self):
 		if self.currList == "filelist":
 			if self.filelist.canDescent():
@@ -288,7 +288,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 	def keyNumberGlobal(self, number):
 		pass
-	
+
 	def showMenu(self):
 		menu = []
 		if self.currList == "filelist":
@@ -303,11 +303,11 @@ class MediaPlayer(Screen, InfoBarSeek):
 			menu.append((_("clear playlist"), "clear"))
 		menu.append((_("hide player"), "hide"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
-		
+
 	def menuCallback(self, choice):
 		if choice is None:
 			return
-		
+
 		if choice[1] == "copydir":
 			self.copyDirectory(self.filelist.getSelection()[0])
 		elif choice[1] == "copy":
@@ -329,17 +329,17 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 	def copyDirectory(self, directory):
 		filelist = FileList(directory, useServiceRef = True, isTop = True)
-		
+
 		for x in filelist.getFileList():
 			if x[0][1] == True: #isDir
 				self.copyDirectory(x[0][0])
 			else:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
-	
+
 	ADDPLAYLIST = 0
 	REPLACEPLAYLIST = 1
-	
+
 	def copyFile(self):
 		if self.filelist.getServiceRef().type == 4098: # playlist
 			list = []
@@ -369,28 +369,28 @@ class MediaPlayer(Screen, InfoBarSeek):
 					list = playlist.open(answer[1][1].getPath())
 					for x in list:
 						self.playlist.addFile(x.ref)
-				
+
 
 	def nextEntry(self):
 		next = self.playlist.getCurrentIndex() + 1
 		if next < len(self.playlist):
 			self.changeEntry(next)
-	
+
 	def previousEntry(self):
 		next = self.playlist.getCurrentIndex() - 1
 		if next >= 0:
 			self.changeEntry(next)
-			
+
 	def deleteEntry(self):
 		self.playlist.deleteFile(self.playlist.getSelectionIndex())
 		self.playlist.updateList()
 		if len(self.playlist) == 0:
 			self.switchToFileList()
-		
+
 	def changeEntry(self, index):
 		self.playlist.setCurrentPlaying(index)
 		self.playEntry()
-	
+
 	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
@@ -400,7 +400,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 				description = info and info.getInfoString(currref, iServiceInformation.sDescription) or ""
 				self["title"].setText(description)
 			self.unPauseService()
-				
+
 	def updatedSeekState(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
 			self.playlist.pauseFile()
@@ -418,10 +418,10 @@ class MediaPlayer(Screen, InfoBarSeek):
 								 self.SEEK_STATE_BACK_64X,
 								 self.SEEK_STATE_BACK_128X,):
 			self.playlist.rewindFile()
-	
+
 	def pauseEntry(self):
 		self.pauseService()
-		
+
 	def stopEntry(self):
 		self.playlist.stopFile()
 		self.session.nav.playService(None)
@@ -429,6 +429,3 @@ class MediaPlayer(Screen, InfoBarSeek):
 
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
-
-
-    
