@@ -31,8 +31,8 @@ def parseEvent(ev):
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
 	eit = ev.getEventId()
-	begin -= config.recording.margin_before.value[0] * 60
-	end += config.recording.margin_after.value[0] * 60
+	begin -= config.recording.margin_before.value * 60
+	end += config.recording.margin_after.value * 60
 	return (begin, end, name, description, eit)
 
 class AFTEREVENT:
@@ -158,7 +158,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
 				self.first_try_prepare = False
-				if config.recording.asktozap.value == 0:
+				if not config.recording.asktozap.value:
 					self.log(8, "asking user to zap away")
 					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
 				else: # zap without asking
@@ -232,7 +232,7 @@ class RecordTimerEntry(timer.TimerEntry):
 def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
 	end = int(xml.getAttribute("end"))
-	serviceref = ServiceReference(str(xml.getAttribute("serviceref")))
+	serviceref = ServiceReference(xml.getAttribute("serviceref").encode("utf-8"))
 	description = xml.getAttribute("description").encode("utf-8")
 	repeated = xml.getAttribute("repeated").encode("utf-8")
 	disabled = long(xml.getAttribute("disabled") or "0")
