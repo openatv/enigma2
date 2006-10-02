@@ -2126,7 +2126,8 @@ PyObject *eEPGCache::search(PyObject *arg)
 			// check all events
 			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
 			{
-				if (evit->second->getEventID() == eventid)
+				int evid = evit->second->getEventID();
+				if ( evid == eventid)
 					continue;
 				__u8 *data = evit->second->EITdata;
 				int tmp = evit->second->ByteSize-12;
@@ -2155,7 +2156,7 @@ PyObject *eEPGCache::search(PyObject *arg)
 						ePtr<eServiceEvent> ptr;
 						if (needServiceEvent)
 						{
-							lookupEventId(ref, evit->first, ptr);
+							lookupEventId(ref, evid, ptr);
 							if (!ptr)
 								eDebug("event not found !!!!!!!!!!!");
 						}
