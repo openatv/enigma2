@@ -37,7 +37,16 @@ int eLabel::event(int event, void *data, void *data2)
 			ePtr<eTextPara> para = new eTextPara(eRect(0, 0, size().width(), size().height()));
 			para->setFont(m_font);
 			para->renderString(m_text.empty()?0:m_text.c_str(), 0);
-			para->realign(eTextPara::dirLeft);
+
+			if (m_halign == alignLeft)
+				para->realign(eTextPara::dirLeft);
+			else if (m_halign == alignCenter)
+				para->realign(eTextPara::dirCenter);
+			else if (m_halign == alignRight)
+				para->realign(eTextPara::dirRight);
+			else if (m_halign == alignBlock)
+				para->realign(eTextPara::dirBlock);
+
 			int glyphs = para->size();
 
 			if ((m_pos < 0) || (m_pos >= glyphs))
