@@ -17,7 +17,7 @@
 	<screen name="Scart" position="0,0" size="720,576">
 	</screen>
 	<screen name="MediaPlayer" position="104,83" size="512,442" title="MediaPlayer">
-		<eLabel position="11,9" zPosition="1" size="359,78" backgroundColor="#182C40" />		
+		<eLabel position="11,9" zPosition="1" size="359,78" backgroundColor="#182C40" />
 		<widget name="artisttext" position="13,11" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
 		<widget name="artist" position="78,11" zPosition="3" size="290,17" font="Regular;16" valign="top" foregroundColor="#dddddd" backgroundColor="#33294a6b" />
 		<widget name="albumtext" position="13,30" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
@@ -29,17 +29,17 @@
 		<widget name="titletext" position="0,0" zPosition="3" size="0,0" font="Regular;16" valign="top" backgroundColor="#33294a6b" />
 		<eLabel name="nowPlaying" position="13,97" zPosition="3" size="355,14" text="Now Playing" font="Regular;12" foregroundColor="#00ff66" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-1,-1"/>
 		<widget name="title" position="13,111" zPosition="3" size="355,18" font="Regular;16" valign="top" backgroundColor="#33294a6b" />
-		<eLabel position="383,9" zPosition="1" size="120,120" backgroundColor="#182C40" />					
-		<widget name="coverArt" position="385,11" zPosition="3" size="116,116" pixmap="no_coverArt.png" transparent="1" alphatest="on" />	
-		<eLabel position="11,137" zPosition="1" size="491,109" backgroundColor="#182C40" />		
-		<widget name="filelist" position="13,139" zPosition="2" size="487,105" scrollbarMode="showOnDemand" />	
-		<eLabel position="11,251" zPosition="1" size="491,109" backgroundColor="#182C40" />				
+		<eLabel position="383,9" zPosition="1" size="120,120" backgroundColor="#182C40" />
+		<widget name="coverArt" position="385,11" zPosition="3" size="116,116" pixmap="no_coverArt.png" transparent="1" alphatest="on" />
+		<eLabel position="11,137" zPosition="1" size="491,109" backgroundColor="#182C40" />
+		<widget name="filelist" position="13,139" zPosition="2" size="487,105" scrollbarMode="showOnDemand" />
+		<eLabel position="11,251" zPosition="1" size="491,109" backgroundColor="#182C40" />
 		<widget name="playlist" position="13,253" zPosition="2" size="487,105" scrollbarMode="showOnDemand" selectionDisabled="1" />
-		<eLabel position="11,365" zPosition="1" size="491,12" backgroundColor="#182C40" />								
-		<widget name="PositionGauge" position="13,367" size="487,8" zPosition="3" pointer="position_pointer.png:3,8" backgroundColor="#33294a6b" />
-		<widget name="currenttext" position="13,383" zPosition="3" size="490,18" font="Regular;16" halign="center" foregroundColor="#dddddd" />	
-		<ePixmap position="170,406" zPosition="1" size="177,32" pixmap="dvr-buttons-small-fs8.png" transparent="1" alphatest="on" />						
-	</screen>			
+		<eLabel position="11,365" zPosition="1" size="491,12" backgroundColor="#182C40" />
+		<widget name="PositionGauge" position="13,367" size="487,8" zPosition="3" pointer="position_pointer.png:3,8" seek_pointer="position_pointer.png:3,8" backgroundColor="#33294a6b" />
+		<widget name="currenttext" position="13,383" zPosition="3" size="490,18" font="Regular;16" halign="center" foregroundColor="#dddddd" />
+		<ePixmap position="170,406" zPosition="1" size="177,32" pixmap="dvr-buttons-small-fs8.png" transparent="1" alphatest="on" />
+	</screen>
 	<screen name="ServiceInfo" position="80,103" size="560,370" title="Serviceinfo">
 		<widget name="red" position="0,0" size="140,40" backgroundColor="red" valign="center" halign="center" font="Regular;21" />
 		<widget name="green" position="140,0" size="140,40" backgroundColor="green" valign="center" halign="center" font="Regular;21" />
@@ -49,11 +49,11 @@
 	</screen>
 	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" flags="wfNoBorder" backgroundColor="transparent">
 		<widget name="BlinkingPoint" pixmap="BlinkingPoint-fs8.png" position="450,0" zPosition="2" size="15,15" alphatest="on" />
-		<eLabel position="0,0" size="470,20" backgroundColor="#33294a6b" font="Regular;13" text="Subservices" />	
+		<eLabel position="0,0" size="470,20" backgroundColor="#33294a6b" font="Regular;13" text="Subservices" />
 		<widget name="CurrentSubserviceNumber" position="0,20" size="50,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="CurrentService" render="Label" position="50,20" size="420,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1" >
 			<convert type="ServiceName">Name</convert>
-		</widget>				
+		</widget>
 	</screen>
 	<screen name="AudioSelection" position="210,203" size="300,170" title="Audio">
 		<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
@@ -243,7 +243,7 @@
 		<widget source="Event_Next" render="Label" position="80,74" size="380,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		
+
 		<widget source="Event_Now" render="Label" position="470,44" size="150,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
@@ -356,7 +356,7 @@ self["list"].instance.resize(eSize(*listsize))
 # center window
 newwidth = wsize[0]
 #self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
-		</applet>			
+		</applet>
 	</screen>
 	<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
 		<widget name="description" position="10,10" size="580,40" font="Regular;25" />
@@ -433,5 +433,18 @@ self["list"].instance.resize(eSize(*listsize))
 newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
+	</screen>
+	<screen name="NumericalTextInputHelpDialog" position="300,370" size="300,90" zPosition="2">
+		<widget name="key1" position="0,0" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key2" position="100,0" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key3" position="200,0" size="100,30" font="Regular;16" halign="center" />
+
+		<widget name="key4" position="0,30" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key5" position="100,30" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key6" position="200,30" size="100,30" font="Regular;16" halign="center" />
+
+		<widget name="key7" position="0,60" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key8" position="100,60" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key9" position="200,60" size="100,30" font="Regular;16" halign="center" />
 	</screen>
 </skin>
