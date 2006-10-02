@@ -1,9 +1,4 @@
-from config import config				#global config instance
-
-from config import configElement
-from config import ConfigSubsection
-from config import configSlider
-from config import configSelection
+from config import config, ConfigSlider, ConfigSubsection
 
 class inputDevices:
 	def __init__(self):
@@ -17,8 +12,8 @@ class inputDevices:
 
 def InitInputDevices():
 	config.inputDevices = ConfigSubsection();
-	config.inputDevices.repeat = configElement("config.inputDevices.repeat", configSlider, 5, (1, 10))
-	config.inputDevices.delay = configElement("config.inputDevices.delay", configSlider, 4, (1, 10))
+	config.inputDevices.repeat = ConfigSlider(default=5, limits=(1, 10))
+	config.inputDevices.delay = ConfigSlider(default=4, limits=(1, 10))
 
 	#this instance anywhere else needed?	
 	iDevices = inputDevices();	

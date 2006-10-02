@@ -10,7 +10,7 @@ from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, configElement_nonSave, configNothing, getConfigListEntry, configSelection, currentConfigSelectionElement, configSatlist
+from Components.config import ConfigDummy, ConfigSelection
 
 class PositionerSetup(Screen):
 	skin = """
@@ -114,24 +114,23 @@ class PositionerSetup(Screen):
 		self.statusTimer.start(50, False)
 		
 	def createConfig(self):
-		config.positioner = ConfigSubsection()
-		config.positioner.tune = configElement_nonSave("tune", configNothing, 0, None)
-		config.positioner.move = configElement_nonSave("move", configNothing, 0, None)
-		config.positioner.finemove = configElement_nonSave("finemove", configNothing, 0, None)
-		config.positioner.limits = configElement_nonSave("limits", configNothing, 0, None)
-		config.positioner.goto0 = configElement_nonSave("goto0", configNothing, 0, None)
+		self.positioner_tune = ConfigDummy()
+		self.positioner_move = ConfigDummy()
+		self.positioner_finemove = ConfigDummy()
+		self.positioner_limits = ConfigDummy()
+		self.positioner_goto0 = ConfigDummy()
 		storepos = []
 		for x in range(1,255):
 			storepos.append(str(x))
-		config.positioner.storage = configElement_nonSave("storage", configSelection, 0, storepos)
+		self.positioner_storage = ConfigSelection(choices = storepos)
 	
 	def createSetup(self):
-		self.list.append(getConfigListEntry(_("Tune"), config.positioner.tune))
-		self.list.append(getConfigListEntry(_("Positioner movement"), config.positioner.move))
-		self.list.append(getConfigListEntry(_("Positioner fine movement"), config.positioner.finemove))
-		self.list.append(getConfigListEntry(_("Set limits"), config.positioner.limits))
-		self.list.append(getConfigListEntry(_("Positioner storage"), config.positioner.storage))
-		self.list.append(getConfigListEntry(_("Goto 0"), config.positioner.goto0))
+		self.list.append(getConfigListEntry(_("Tune"), self.positioner_tune))
+		self.list.append(getConfigListEntry(_("Positioner movement"), self.positioner_move))
+		self.list.append(getConfigListEntry(_("Positioner fine movement"), self.positioner_finemove))
+		self.list.append(getConfigListEntry(_("Set limits"), self.positioner_limits))
+		self.list.append(getConfigListEntry(_("Positioner storage"), self.positioner_storage))
+		self.list.append(getConfigListEntry(_("Goto 0"), self.positioner_goto0))
 		self["list"].l.setList(self.list)
 		
 	def go(self):
@@ -234,8 +233,8 @@ class PositionerSetup(Screen):
 			print "stepping west"
 			self.diseqccommand("moveWest", 0xFF) # one step
 		elif entry == "storage":
-			print "store at position", (config.positioner.storage.value + 1)
-			self.diseqccommand("store", config.positioner.storage.value + 1)
+			print "store at position", (self.positioner_storage.value + 1)
+			self.diseqccommand("store", self.positioner_storage.value + 1)
 		elif entry == "limits":
 			self.diseqccommand("limitWest")
 	
@@ -255,8 +254,8 @@ class PositionerSetup(Screen):
 			print "stepping east"
 			self.diseqccommand("moveEast", 0xFF) # one step
 		elif entry == "storage":
-			print "move to position", (config.positioner.storage.value + 1)
-			self.diseqccommand("moveTo", config.positioner.storage.value + 1)
+			print "move to position", (self.positioner_storage.value + 1)
+			self.diseqccommand("moveTo", self.positioner_storage.value + 1)
 		elif entry == "limits":
 			self.diseqccommand("limitEast")
 #	

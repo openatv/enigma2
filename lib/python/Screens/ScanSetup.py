@@ -1,8 +1,8 @@
 from Screen import Screen
 from ServiceScan import *
-from Components.config import *
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigSatlist, ConfigEnableDisable
 from Components.ActionMap import NumberActionMap
-from Components.ConfigList import ConfigList
+from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.NimManager import nimmanager
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
@@ -115,7 +115,7 @@ def getInitialTerrestrialTransponderList(tlist, region):
 			tlist.append(parm)
 
 
-class ScanSetup(Screen):
+class ScanSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -135,26 +135,14 @@ class ScanSetup(Screen):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
 		}, -1)
-		
+
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
 		#self.statusTimer.start(5000, True)
 
 		self.list = []
-		self["config"] = ConfigList(self.list)
+		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
 
 		self["introduction"] = Label(_("Press OK to start the scan"))
@@ -173,95 +161,94 @@ class ScanSetup(Screen):
 	def createSetup(self):
 		self.list = []
 		self.multiscanlist = []
-		print "ID: " + str(config.scan.nims.value)
+		print "ID: ", self.scan_nims.index
 
-		self.tunerEntry = getConfigListEntry(_("Tuner"), config.scan.nims)
+		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
 		
 		self.typeOfScanEntry = None
 		self.systemEntry = None
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), config.scan.type)
+		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-S"]:
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_type)
 			self.list.append(self.typeOfScanEntry)
-		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), config.scan.typecable)
+		elif nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-C"]:
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typecable)
 			self.list.append(self.typeOfScanEntry)
-		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
-			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), config.scan.typeterrestrial)
+		elif nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-T"]:
+			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
 			self.list.append(self.typeOfScanEntry)
 
+		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-S"]:
 
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
-
-			if currentConfigSelectionElement(config.scan.type) == "single_transponder":
-				self.systemEntry = getConfigListEntry(_('Transpondertype'), config.scan.sat.system)
+			if self.scan_type.value == "single_transponder":
+				self.systemEntry = getConfigListEntry(_('Transpondertype'), self.scan_sat.system)
 				self.list.append(self.systemEntry)
-				self.list.append(getConfigListEntry(_('Satellite'), config.scan.satselection[config.scan.nims.value]))
-				self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
-				self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
-				self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
-				self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
-				if currentConfigSelectionElement(config.scan.sat.system) == "dvb-s":
-					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
-				elif currentConfigSelectionElement(config.scan.sat.system) == "dvb-s2":
-					self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec_s2))
-					self.list.append(getConfigListEntry(_('Modulation'), config.scan.sat.modulation))
-			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
+				self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.scan_nims.index]))
+				self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
+				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
+				self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
+				self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
+				if self.scan_sat.system.value == "dvb-s":
+					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+				elif self.scan_sat.system.value == "dvb-s2":
+					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
+					self.list.append(getConfigListEntry(_('Modulation'), self.scan_sat.modulation))
+			elif self.scan_type.value == "single_satellite":
 				self.updateSatList()
-				print config.scan.satselection[config.scan.nims.value]
-				self.list.append(getConfigListEntry(_("Satellite"), config.scan.satselection[config.scan.nims.value]))
-				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
-			elif currentConfigSelectionElement(config.scan.type) == "multisat":
+				print self.scan_satselection[self.scan_nims.index]
+				self.list.append(getConfigListEntry(_("Satellite"), self.scan_satselection[self.scan_nims.index]))
+				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
+			elif self.scan_type.value == "multisat":
 				# if (norotor)
 				tlist = []
-				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
-				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
+				SatList = nimmanager.getSatListForNim(self.scan_nims.index)
+				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 				for x in SatList:
-					if self.Satexists(tlist, x[1]) == 0:
-						tlist.append(x[1])
-						sat = configElement_nonSave(x[1], configSelection, 0, (("enable", _("Enable")), ("disable", _("Disable"))))
-						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[1]), sat)
+					if self.Satexists(tlist, x[0]) == 0:
+						tlist.append(x[0])
+						sat = ConfigEnableDisable(default = True)
+						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[0]), sat)
 						self.list.append(configEntry)
-						self.multiscanlist.append(configEntry)
+						self.multiscanlist.append((x[0], sat))
 				# if (rotor):
     			   # for sat in nimmanager.satList:
-				#	self.list.append(getConfigListEntry(sat[0], config.scan.scansat[sat[1]]))
+				#	self.list.append(getConfigListEntry(sat[1], self.scan_scansat[sat[0]]))
 
 
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
-			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
-				self.list.append(getConfigListEntry(_("Frequency"), config.scan.cab.frequency))
-				self.list.append(getConfigListEntry(_("Inversion"), config.scan.cab.inversion))
-				self.list.append(getConfigListEntry(_("Symbol Rate"), config.scan.cab.symbolrate))
-				self.list.append(getConfigListEntry(_("Modulation"), config.scan.cab.modulation))
-				self.list.append(getConfigListEntry(_("FEC"), config.scan.cab.fec))
-				self.list.append(getConfigListEntry(_("Network scan"), config.scan.cab.networkScan))
-			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
-				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
+		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-C"]:
+			if self.scan_typecable.value == "single_transponder":
+				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
+				self.list.append(getConfigListEntry(_("Inversion"), self.scan_cab.inversion))
+				self.list.append(getConfigListEntry(_("Symbol Rate"), self.scan_cab.symbolrate))
+				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
+				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
+				self.list.append(getConfigListEntry(_("Network scan"), self.scan_cab.networkScan))
+			elif self.scan_typecable.value == "complete":
+				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 				
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
-			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
-				self.list.append(getConfigListEntry(_("Frequency"), config.scan.ter.frequency))
-				self.list.append(getConfigListEntry(_("Network scan"), config.scan.ter.networkScan))
-				self.list.append(getConfigListEntry(_("Inversion"), config.scan.ter.inversion))
-				self.list.append(getConfigListEntry(_("Bandwidth"), config.scan.ter.bandwidth))
-				self.list.append(getConfigListEntry(_("Code rate high"), config.scan.ter.fechigh))
-				self.list.append(getConfigListEntry(_("Code rate low"), config.scan.ter.feclow))
-				self.list.append(getConfigListEntry(_("Modulation"), config.scan.ter.modulation))
-				self.list.append(getConfigListEntry(_("Transmission mode"), config.scan.ter.transmission))
-				self.list.append(getConfigListEntry(_("Guard interval mode"), config.scan.ter.guard))
-				self.list.append(getConfigListEntry(_("Hierarchy mode"), config.scan.ter.hierarchy))
-			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
-				self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
+		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-T"]:
+			if self.scan_typeterrestrial.value == "single_transponder":
+				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
+				self.list.append(getConfigListEntry(_("Network scan"), self.scan_ter.networkScan))
+				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
+				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
+				self.list.append(getConfigListEntry(_("Code rate high"), self.scan_ter.fechigh))
+				self.list.append(getConfigListEntry(_("Code rate low"), self.scan_ter.feclow))
+				self.list.append(getConfigListEntry(_("Modulation"), self.scan_ter.modulation))
+				self.list.append(getConfigListEntry(_("Transmission mode"), self.scan_ter.transmission))
+				self.list.append(getConfigListEntry(_("Guard interval mode"), self.scan_ter.guard))
+				self.list.append(getConfigListEntry(_("Hierarchy mode"), self.scan_ter.hierarchy))
+			elif self.scan_typeterrestrial.value == "complete":
+				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 
-#		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"] and currentConfigSelectionElement(config.scan.type) == "single_transponder") or \
-#			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"] and currentConfigSelectionElement(config.scan.typecable) == "single_transponder") or \
-#			(nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"] and currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder"):
-#				self.configElementSNR = getConfigListEntry(_("SNR"), config.scan.snr)
+#		if (nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-S"] and self.scan_type.type == "single_transponder") or \
+#			(nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-C"] and self.scan_typecable.type == "single_transponder") or \
+#			(nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-T"] and self.scan_typeterrestrial.type == "single_transponder"):
+#				self.configElementSNR = getConfigListEntry(_("SNR"), self.scan_snr)
 #				self.list.append(self.configElementSNR)
-#				self.configElementACG = getConfigListEntry(_("AGC"), config.scan.agc)
+#				self.configElementACG = getConfigListEntry(_("AGC"), self.scan_agc)
 #				self.list.append(self.configElementACG)
-#				self.configElementBER = getConfigListEntry(_("BER"), config.scan.ber)
+#				self.configElementBER = getConfigListEntry(_("BER"), self.scan_ber)
 #				self.list.append(self.configElementBER)
 #				self.statusTimer.start(500, False)
 #		else:
@@ -316,109 +303,104 @@ class ScanSetup(Screen):
 					   #("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
 					   #("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
 					   #("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
-			defaultSat = { "orbpos": 192, "system": 0, "frequency": [11836], "inversion": 2, "symbolrate": [27500], "polarization": 0, "fec": 0, "fec_s2": 8, "modulation": 0 }
-			defaultCab = {"frequency": [466], "inversion": 2, "modulation": 2, "fec": 0, "symbolrate": [6900]}
+			defaultSat = { "orbpos": 192, "system": "dvb-s", "frequency": 11836, "inversion": "auto", "symbolrate": 27500, "polarization": "horizontal", "fec": "auto", "fec_s2": "9_10", "modulation": "qpsk" }
+			defaultCab = {"frequency": 466, "inversion": "auto", "modulation": "64qam", "fec": "auto", "symbolrate": 6900}
 			if frontendData is not None:
 				if frontendData["tuner_type"] == "DVB-S":
-					defaultSat["system"] = {"DVB-S": 0, "DVB-S2": 1}[frontendData["system"]]
-					defaultSat["frequency"] = [int(frontendData["frequency"] / 1000)]
-					defaultSat["inversion"] = {"INVERSION_OFF": 0, "INVERSION_ON": 1, "INVERSION_AUTO": 2}[frontendData["inversion"]]
-					defaultSat["symbolrate"] = [int(frontendData["symbol_rate"] / 1000)]
-					defaultSat["polarization"] = {"HORIZONTAL": 0, "VERTICAL": 1, "CIRCULAR_LEFT": 2, "CIRCULAR_RIGHT": 3, "UNKNOWN": 0}[frontendData["polarization"]]
-					defaultSat["fec"] = {"DVB-S": {"FEC_AUTO": 0, "FEC_1_2": 1, "FEC_2_3": 2, "FEC_3_4": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_NONE": 6}, "DVB-S2": {"FEC_1_2": 0, "FEC_2_3": 1, "FEC_3_4": 2, "FEC_4_5": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_8_9": 6, "FEC_9_10": 7}}[frontendData["system"]][frontendData["fec_inner"]]
-					defaultSat["modulation"] = {"QPSK": 0, "8PSK": 1}[frontendData["modulation"]]
+					defaultSat["system"] = {"DVB-S": "dvb-s", "DVB-S2": "dvb-s2"}[frontendData["system"]]
+					defaultSat["frequency"] = int(frontendData["frequency"] / 1000)
+					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData["inversion"]]
+					defaultSat["symbolrate"] = int(frontendData["symbol_rate"] / 1000)
+					defaultSat["polarization"] = {"HORIZONTAL": "horizontal", "VERTICAL": "vertical", "CIRCULAR_LEFT": "circular_left", "CIRCULAR_RIGHT": "circular_right", "UNKNOWN": None}[frontendData["polarization"]]
+					defaultSat["fec"] = {"DVB-S": {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_NONE": "none"}, "DVB-S2": {"FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_4_5": "4_5", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_9_10": "9_10"}}[frontendData["system"]][frontendData["fec_inner"]]
+					defaultSat["modulation"] = {"QPSK": "qpsk", "8PSK": "8psk"}[frontendData["modulation"]]
 					defaultSat["orbpos"] = frontendData["orbital_position"]
 				elif frontendData["tuner_type"] == "DVB-C":
-					defaultCab["frequency"] = [int(frontendData["frequency"] / 1000)]
-					defaultCab["symbolrate"] = [int(frontendData["symbol_rate"] / 1000)]
-					defaultSat["inversion"] = {"INVERSION_OFF": 0, "INVERSION_ON": 1, "INVERSION_AUTO": 2}[frontendData["inversion"]]
-					defaultSat["fec"] = {"FEC_AUTO": 0, "FEC_1_2": 1, "FEC_2_3": 2, "FEC_3_4": 3, "FEC_5_6": 4, "FEC_7_8": 5, "FEC_8_9": 6, "FEC_NONE": 7}[frontendData["fec_inner"]]
-					defaultSat["modulation"] = {"QAM_AUTO": 0, "QAM_16": 1, "QAM_16": 2, "QAM_32": 3, "QAM_64": 4, "QAM_128": 5, "QAM_256": 6}[frontendData["modulation"]]
-										
-			config.scan = ConfigSubsection()
-			config.scan.sat = ConfigSubsection()
-			config.scan.cab = ConfigSubsection()
-			config.scan.ter = ConfigSubsection()
+					defaultCab["frequency"] = int(frontendData["frequency"] / 1000)
+					defaultCab["symbolrate"] = int(frontendData["symbol_rate"] / 1000)
+					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData["inversion"]]
+					defaultSat["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_NONE": "none"}[frontendData["fec_inner"]]
+					defaultSat["modulation"] = {"QAM_AUTO": "auto", "QAM_16": "16qam", "QAM_32": "32qam", "QAM_64": "64qam", "QAM_128": "128qam", "QAM_256": "256qam"}[frontendData["modulation"]]
 
-			config.scan.type = configElement_nonSave("config.scan.type", configSelection, 0, (("single_transponder", _("Single transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat"))))
-			config.scan.typecable = configElement_nonSave("config.scan.typecable", configSelection, 0, (("single_transponder", _("Single transponder")), ("complete", _("Complete"))))
-			config.scan.typeterrestrial = configElement_nonSave("config.scan.typeterrestrial", configSelection, 0, (("single_transponder", _("Single transponder")), ("complete", _("Complete"))))
-			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))))
+			self.scan_sat = ConfigSubsection()
+			self.scan_cab = ConfigSubsection()
+			self.scan_ter = ConfigSubsection()
+
+			self.scan_type = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat"))])
+			self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+			self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+			self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 
 			nimList = [ ]
 			for nim in nimmanager.nimList():
 				nimList.append(nim[0])
 			#nimList.append("all")
-			config.scan.nims = configElement_nonSave("config.scan.nims", configSelection, 0, nimList)
+			self.scan_nims = ConfigSelection(choices = nimList)
 			
 			# status
-			config.scan.snr = configElement_nonSave("config.scan.snr", configSlider, 0, (1, 100))
-			config.scan.snr.enabled = False
-			config.scan.agc = configElement_nonSave("config.scan.agc", configSlider, 0, (1, 100))
-			config.scan.agc.enabled = False
-			config.scan.ber = configElement_nonSave("config.scan.ber", configSlider, 0, (1, 100))
-			config.scan.ber.enabled = False
+			self.scan_snr = ConfigSlider()
+			self.scan_snr.enabled = False
+			self.scan_agc = ConfigSlider()
+			self.scan_agc.enabled = False
+			self.scan_ber = ConfigSlider()
+			self.scan_ber.enabled = False
 
 			# sat
-			config.scan.sat.system = configElement_nonSave("config.scan.sat.system", configSelection, defaultSat["system"], (("dvb-s", _("DVB-S")), ("dvb-s2", _("DVB-S2"))))
-			config.scan.sat.frequency = configElement_nonSave("config.scan.sat.frequency", configSequence, defaultSat["frequency"], configsequencearg.get("INTEGER", (1, 99999)))
-			config.scan.sat.inversion = configElement_nonSave("config.scan.sat.inversion", configSelection, defaultSat["inversion"], (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.sat.symbolrate = configElement_nonSave("config.scan.sat.symbolrate", configSequence, defaultSat["symbolrate"], configsequencearg.get("INTEGER", (1, 99999)))
-			config.scan.sat.polarization = configElement_nonSave("config.scan.sat.polarization", configSelection, defaultSat["polarization"], (("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))))
-			config.scan.sat.fec = configElement_nonSave("config.scan.sat.fec", configSelection, defaultSat["fec"], (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))))
-			config.scan.sat.fec_s2 = configElement_nonSave("config.scan.sat.fec_s2", configSelection, defaultSat["fec_s2"], (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")))
-			config.scan.sat.modulation = configElement_nonSave("config.scan.sat.modulation", configSelection, defaultSat["modulation"], (("qpsk", "QPSK"), ("8psk", "8PSK")))
+			self.scan_sat.system = ConfigSelection(default = defaultSat["system"], choices = [("dvb-s", _("DVB-S")), ("dvb-s2", _("DVB-S2"))])
+			self.scan_sat.frequency = ConfigInteger(default = defaultSat["frequency"], limits = (1, 99999))
+			self.scan_sat.inversion = ConfigSelection(default = defaultSat["inversion"], choices = [("off", _("off")), ("on", _("on")), ("auto", _("Auto"))])
+			self.scan_sat.symbolrate = ConfigInteger(default = defaultSat["symbolrate"], limits = (1, 99999))
+			self.scan_sat.polarization = ConfigSelection(default = defaultSat["polarization"], choices = [("horizontal", _("horizontal")), ("vertical", _("vertical")),  ("circular_left", _("circular left")), ("circular_right", _("circular right"))])
+			self.scan_sat.fec = ConfigSelection(default = defaultSat["fec"], choices = [("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))])
+			self.scan_sat.fec_s2 = ConfigSelection(default = defaultSat["fec_s2"], choices = [("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")])
+			self.scan_sat.modulation = ConfigSelection(default = defaultSat["modulation"], choices = [("qpsk", "QPSK"), ("8psk", "8PSK")])
 	
 			# cable
-			config.scan.cab.frequency = configElement_nonSave("config.scan.cab.frequency", configSequence, defaultCab["frequency"], configsequencearg.get("INTEGER", (50, 999)))
-			config.scan.cab.inversion = configElement_nonSave("config.scan.cab.inversion", configSelection, defaultCab["inversion"], (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
-			config.scan.cab.modulation = configElement_nonSave("config.scan.cab.modulation", configSelection, defaultCab["modulation"], (("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")))
-			config.scan.cab.fec = configElement_nonSave("config.scan.cab.fec", configSelection, defaultCab["fec"], (("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))))
-			config.scan.cab.symbolrate = configElement_nonSave("config.scan.cab.symbolrate", configSequence, defaultCab["symbolrate"], configsequencearg.get("INTEGER", (1, 9999)))
-			config.scan.cab.networkScan = configElement_nonSave("config.scan.cab.networkScan", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
+			self.scan_cab.frequency = ConfigInteger(default = defaultCab["frequency"], limits = (50, 999))
+			self.scan_cab.inversion = ConfigSelection(default = defaultCab["inversion"], choices = [("off", _("off")), ("on", _("on")), ("auto", _("Auto"))])
+			self.scan_cab.modulation = ConfigSelection(default = defaultCab["modulation"], choices = [("16qam", "16-QAM"), ("32qam", "32-QAM"), ("64qam", "64-QAM"), ("128qam", "128-QAM"), ("256qam", "256-QAM")])
+			self.scan_cab.fec = ConfigSelection(default = defaultCab["fec"], choices = [("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("none", _("None"))])
+			self.scan_cab.symbolrate = ConfigInteger(default = defaultCab["symbolrate"], limits = (1, 99999))
+			self.scan_cab.networkScan = ConfigYesNo(default = False)
 
 			# terrestial
-			config.scan.ter.frequency = configElement_nonSave("config.scan.ter.frequency", configSequence, [466], configsequencearg.get("INTEGER", (100, 900)))
-			config.scan.ter.inversion = configElement_nonSave("config.scan.ter.inversion", configSelection, 2, (("off", _("off")), ("on", _("on")), ("auto", _("Auto"))))
+			self.scan_ter.frequency = ConfigInteger(default = 466, limits = (100, 999))
+			self.scan_ter.inversion = ConfigSelection(default = "auto", choices = [("off", _("off")), ("on", _("on")), ("auto", _("Auto"))])
 			# WORKAROUND: we can't use BW-auto
-			config.scan.ter.bandwidth = configElement_nonSave("config.scan.ter.bandwidth", configSelection, 0, (("8MHz", "8MHz"), ("7MHz", "7MHz"), ("6MHz", "6MHz")))
+			self.scan_ter.bandwidth = ConfigSelection(default = "8MHz", choices = [("8MHz", "8MHz"), ("7MHz", "7MHz"), ("6MHz", "6MHz")])
 			#, ("auto", _("Auto"))))
-			config.scan.ter.fechigh = configElement_nonSave("config.scan.ter.fechigh", configSelection, 5, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
-			config.scan.ter.feclow = configElement_nonSave("config.scan.ter.feclow", configSelection, 5, (("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))))
-			config.scan.ter.modulation = configElement_nonSave("config.scan.ter.modulation", configSelection, 3, (("qpsk", "QPSK"), ("qam16", "QAM16"), ("qam64", "QAM64"), ("auto", _("Auto"))))
-			config.scan.ter.transmission = configElement_nonSave("config.scan.ter.transmission", configSelection, 2, (("2k", "2K"), ("8k", "8K"), ("auto", _("Auto"))))
-			config.scan.ter.guard = configElement_nonSave("config.scan.ter.guard", configSelection, 4, (("1_32", "1/32"), ("1_16", "1/16"), ("1_8", "1/8"), ("1_4", "1/4"), ("auto", _("Auto"))))
-			config.scan.ter.hierarchy = configElement_nonSave("config.scan.ter.hierarchy", configSelection, 4, (("none", _("None")), ("1", "1"), ("2", "2"), ("4", "4"), ("auto", _("Auto"))))
-			config.scan.ter.networkScan = configElement_nonSave("config.scan.cab.networkScan", configSelection, 0, (("no", _("no")), ("yes", _("yes"))))
+			self.scan_ter.fechigh = ConfigSelection(default = "auto", choices = [("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))])
+			self.scan_ter.feclow = ConfigSelection(default = "auto", choices = [("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("auto", _("Auto"))])
+			self.scan_ter.modulation = ConfigSelection(default = "auto", choices = [("qpsk", "QPSK"), ("qam16", "QAM16"), ("qam64", "QAM64"), ("auto", _("Auto"))])
+			self.scan_ter.transmission = ConfigSelection(default = "auto", choices = [("2k", "2K"), ("8k", "8K"), ("auto", _("Auto"))])
+			self.scan_ter.guard = ConfigSelection(default = "auto", choices = [("1_32", "1/32"), ("1_16", "1/16"), ("1_8", "1/8"), ("1_4", "1/4"), ("auto", _("Auto"))])
+			self.scan_ter.hierarchy = ConfigSelection(default = "auto", choices = [("none", _("None")), ("1", "1"), ("2", "2"), ("4", "4"), ("auto", _("Auto"))])
+			self.scan_ter.networkScan = ConfigYesNo(default = False)
 
-			config.scan.scansat = {}
+			self.scan_scansat = {}
 			for sat in nimmanager.satList:
 				#print sat[1]
-				config.scan.scansat[sat[1]] = configElement_nonSave("config.scan.scansat[" + str(sat[1]) + "]", configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
+				self.scan_scansat[sat[0]] = ConfigYesNo(default = False)
 
-			config.scan.satselection = []
+			self.scan_satselection = []
 			slotid = 0
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 					print str(slot.slotid) + " : " + str(self.satList)
-					config.scan.satselection.append(configElement_nonSave("config.scan.satselection[" + str(slot.slotid) + "]", configSatlist, defaultSat["orbpos"], self.satList[slot.slotid]))
+					self.scan_satselection.append(ConfigSatlist(default = defaultSat["orbpos"], list = self.satList[slot.slotid]))
 				else:
-					config.scan.satselection.append(None)
+					self.scan_satselection.append(None)
+
 	def keyLeft(self):
-		self["config"].handleKey(config.key["prevElement"])
+		ConfigListScreen.keyLeft(self)
 		self.newConfig()
 
 	def keyRight(self):
-		self["config"].handleKey(config.key["nextElement"])
+		ConfigListScreen.keyRight(self)
 		self.newConfig()
 
 	def updateStatus(self):
 		print "updatestatus"
-
-	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key[str(number)])
 
 	fecmap = { "auto": 0,
 			   "1_2": 1,
@@ -466,91 +448,91 @@ class ScanSetup(Screen):
 	def keyGo(self):
 		tlist = []
 		flags = 0
-		if (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-S"]):
-			if currentConfigSelectionElement(config.scan.type) == "single_transponder":
+		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-S"]:
+			if self.scan_type.value == "single_transponder":
 				l = len(self.satList)
-				if l and l > config.scan.nims.value:
-					nimsats=self.satList[config.scan.nims.value]
-					l = len(config.scan.satselection)
-					if l and l > config.scan.nims.value:
-						selsatidx=config.scan.satselection[config.scan.nims.value].value
+				if l and l > self.scan_nims.index:
+					nimsats=self.satList[self.scan_nims.index]
+					l = len(self.scan_satselection)
+					if l and l > self.scan_nims.index:
+						selsatidx=self.scan_satselection[self.scan_nims.index].index
 						l = len(nimsats)
 						if l and l > selsatidx:
-							orbpos=nimsats[selsatidx][1]
-							if currentConfigSelectionElement(config.scan.sat.system) == "dvb-s":
-								fec = currentConfigSelectionElement(config.scan.sat.fec)
+							orbpos=nimsats[selsatidx][0]
+							if self.scan_sat.system.value == "dvb-s":
+								fec = self.scan_sat.fec.value
 							else:
-								fec = currentConfigSelectionElement(config.scan.sat.fec_s2)
-							self.addSatTransponder(tlist, config.scan.sat.frequency.value[0],
-										config.scan.sat.symbolrate.value[0],
-										config.scan.sat.polarization.value,
+								fec = self.scan_sat.fec_s2.value
+							self.addSatTransponder(tlist, self.scan_sat.frequency.value,
+										self.scan_sat.symbolrate.value,
+										self.scan_sat.polarization.index,
 										fec,
-										config.scan.sat.inversion.value,
+										self.scan_sat.inversion.index,
 										orbpos,
-										config.scan.sat.system.value,
-										config.scan.sat.modulation.value)
-			elif currentConfigSelectionElement(config.scan.type) == "single_satellite":
-				sat = self.satList[config.scan.nims.value][config.scan.satselection[config.scan.nims.value].value]
-				getInitialTransponderList(tlist, int(sat[1]))
+										self.scan_sat.system.index,
+										self.scan_sat.modulation.index)
+			elif self.scan_type.value == "single_satellite":
+				sat = self.satList[self.scan_nims.index][self.scan_satselection[self.scan_nims.index].index]
+				getInitialTransponderList(tlist, sat[0])
 				flags |= eComponentScan.scanNetworkSearch
-				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
 				elif tmp == "yes_hold_feeds":
 					flags |= eComponentScan.scanRemoveServices
 					flags |= eComponentScan.scanDontRemoveFeeds
-			elif currentConfigSelectionElement(config.scan.type) == "multisat":
-				SatList = nimmanager.getSatListForNim(config.scan.nims.value)
+			elif self.scan_type.value == "multisat":
+				SatList = nimmanager.getSatListForNim(self.scan_nims.index)
 				for x in self.multiscanlist:
-					if x[1].parent.value == 0:
-						print "   " + str(x[1].parent.configPath)
-						getInitialTransponderList(tlist, x[1].parent.configPath)
+					if x[1].value:
+						print "   " + str(x[0])
+						getInitialTransponderList(tlist, x[0])
 				flags |= eComponentScan.scanNetworkSearch
-				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
 				elif tmp == "yes_hold_feeds":
 					flags |= eComponentScan.scanRemoveServices
 					flags |= eComponentScan.scanDontRemoveFeeds
 
-		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-C"]):
-			if currentConfigSelectionElement(config.scan.typecable) == "single_transponder":
-				fec = currentConfigSelectionElement(config.scan.cab.fec)
-				self.addCabTransponder(tlist, config.scan.cab.frequency.value[0],
-											  config.scan.cab.symbolrate.value[0],
-											  config.scan.cab.modulation.value + 1,
+		elif (nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-C"]):
+			if self.scan_typecable.value == "single_transponder":
+				fec = self.scan_cab.fec.value
+				self.addCabTransponder(tlist, self.scan_cab.frequency.value,
+											  self.scan_cab.symbolrate.value,
+											  self.scan_cab.modulation.index + 1,
 											  fec,
-											  config.scan.cab.inversion.value)
-				if currentConfigSelectionElement(config.scan.cab.networkScan) == "yes":
+											  self.scan_cab.inversion.index)
+				if self.scan_cab.networkScan.value:
 					flags |= eComponentScan.scanNetworkSearch
-			elif currentConfigSelectionElement(config.scan.typecable) == "complete":
-				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(config.scan.nims.value))
+			elif self.scan_typecable.value == "complete":
+				getInitialCableTransponderList(tlist, nimmanager.getCableDescription(self.scan_nims.index))
 				flags |= eComponentScan.scanNetworkSearch
-				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				tmp = self.scan_clearallservices
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
 				elif tmp == "yes_hold_feeds":
 					flags |= eComponentScan.scanRemoveServices
 					flags |= eComponentScan.scanDontRemoveFeeds
 
-		elif (nimmanager.getNimType(config.scan.nims.value) == nimmanager.nimType["DVB-T"]):
-			if currentConfigSelectionElement(config.scan.typeterrestrial) == "single_transponder":
+		elif (nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-T"]):
+			if self.scan_typeterrestrial.value == "single_transponder":
 				self.addTerTransponder(tlist,
-						config.scan.ter.frequency.value[0] * 1000000,
-						inversion = config.scan.ter.inversion.value,
-						bandwidth = config.scan.ter.bandwidth.value,
-						fechigh = config.scan.ter.fechigh.value,
-						feclow = config.scan.ter.feclow.value,
-						modulation = config.scan.ter.modulation.value,
-						transmission = config.scan.ter.transmission.value,
-						guard = config.scan.ter.guard.value,
-						hierarchy = config.scan.ter.hierarchy.value)
-				if currentConfigSelectionElement(config.scan.ter.networkScan) == "yes":
+						self.scan_ter.frequency.value * 1000000,
+						inversion = self.scan_ter.inversion.index,
+						bandwidth = self.scan_ter.bandwidth.index,
+						fechigh = self.scan_ter.fechigh.index,
+						feclow = self.scan_ter.feclow.index,
+						modulation = self.scan_ter.modulation.index,
+						transmission = self.scan_ter.transmission.index,
+						guard = self.scan_ter.guard.index,
+						hierarchy = self.scan_ter.hierarchy.index)
+				if self.scan_ter.networkScan.value:
 					flags |= eComponentScan.scanNetworkSearch
-			elif currentConfigSelectionElement(config.scan.typeterrestrial) == "complete":
-				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(config.scan.nims.value))
+			elif self.scan_typeterrestrial.value == "complete":
+				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(self.scan_nims.index))
 				flags |= eComponentScan.scanNetworkSearch
-				tmp = currentConfigSelectionElement(config.scan.clearallservices)
+				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
 				elif tmp == "yes_hold_feeds":
@@ -561,7 +543,7 @@ class ScanSetup(Screen):
 			x[1].save()
 
 		if len(tlist):
-			feid = config.scan.nims.value
+			feid = self.scan_nims.index
 			# flags |= eComponentScan.scanSearchBAT
 			self.session.openWithCallback(self.doNothing, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
 		else:
@@ -575,7 +557,41 @@ class ScanSetup(Screen):
 			x[1].cancel()
 		self.close()
 
-class ScanSimple(Screen):
+class ScanSimple(ConfigListScreen, Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["actions"] = ActionMap(["SetupActions"],
+		{
+			"ok": self.keyGo,
+			"cancel": self.keyCancel,
+		}, -1)
+
+		self.list = []
+		tlist = []
+
+		nimcount = nimmanager.getNimSocketCount()
+		if nimcount > 0:
+			nimtype = nimmanager.getNimType(0)
+			scan_possible=True
+			self.scan_clearallservices = ConfigSelection(default = "yes", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
+			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
+			nim = ConfigYesNo(default = True)
+			nim.nim_index = 0
+			if nimtype == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
+				scan_possible=False
+			if scan_possible:
+				self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
+
+		if nimcount > 1 and self.ScanNimTwoNeeded():
+			nim = ConfigYesNo(default = True)
+			nim.nim_index = 1
+			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
+
+		ConfigListScreen.__init__(self, self.list)
+		self["header"] = Label(_("Automatic Scan"))
+		self["footer"] = Label(_("Press OK to scan"))
+
 	def run(self):
 		self.keyGo()
 
@@ -592,13 +608,14 @@ class ScanSimple(Screen):
 		else:
 			two_sat_tuners = False
 
-		for x in self.list:
-			slotid = x[1].parent.configPath
-			print "Scan Tuner", slotid, "-", currentConfigSelectionElement(x[1].parent)
-			if currentConfigSelectionElement(x[1].parent) == "yes":
+		for (x, c) in self.list[1:]:
+			slotid = c.nim_index
+			print "Scan Tuner", slotid, "-", c.value
+			if c.value:
 				scanPossible = False
 				tlist = [ ]
-				if nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-S"]:
+				if nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-S"]:
+					print "is sat"
 					if two_sat_tuners:
 						if slotid > 0:
 							idx = exclusive_satellites[0]+1
@@ -608,19 +625,22 @@ class ScanSimple(Screen):
 						print "exclusive_nim_sats", exclusive_nim_sats
 					SatList = nimmanager.getSatListForNim(slotid)
 					for sat in SatList:
-						if not two_sat_tuners or (sat[1] in exclusive_nim_sats or slotid == 0):
+						if not two_sat_tuners or (sat[0] in exclusive_nim_sats or slotid == 0):
 							scanPossible = True
 							print sat
-							getInitialTransponderList(tlist, sat[1])
-				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-C"]:
+							getInitialTransponderList(tlist, sat[0])
+				elif nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-C"]:
 					scanPossible = True
 					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
-				elif nimmanager.getNimType(x[1].parent.configPath) == nimmanager.nimType["DVB-T"]:
+				elif nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-T"]:
 					scanPossible = True
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(slotid))
+				else:
+					assert False
+
 				if scanPossible:
 					flags=eComponentScan.scanNetworkSearch
-					tmp = currentConfigSelectionElement(config.scan.clearallservices)
+					tmp = self.scan_clearallservices.value
 					if tmp == "yes":
 						flags |= eComponentScan.scanRemoveServices
 					elif tmp == "yes_hold_feeds":
@@ -637,12 +657,6 @@ class ScanSimple(Screen):
 
 	def keyCancel(self):
 		self.close()
-
-	def keyLeft(self):
-		self["config"].handleKey(config.key["prevElement"])
-
-	def keyRight(self):
-		self["config"].handleKey(config.key["nextElement"])
 
 	def Satexists(self, tlist, pos):
 		for x in tlist:
@@ -667,37 +681,3 @@ class ScanSimple(Screen):
 					return True
 		return False # two -C or two -T tuners
 
-	def __init__(self, session):
-		Screen.__init__(self, session)
-
-		self["actions"] = ActionMap(["SetupActions"],
-		{
-			"ok": self.keyGo,
-			"cancel": self.keyCancel,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-		}, -1)
-
-		self.list = []
-		tlist = []
-
-		nimcount = nimmanager.getNimSocketCount()
-		if nimcount > 0:
-			nimtype = nimmanager.getNimType(0)
-			scan_possible=True
-			config.scan = ConfigSubsection()
-			config.scan.clearallservices = configElement_nonSave("config.scan.clearallservices", configSelection, 0, (("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))))
-			self.list.append(getConfigListEntry(_("Clear before scan"), config.scan.clearallservices))
-			nim = configElement_nonSave(0, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-			if nimtype == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
-				scan_possible=False
-			if scan_possible:
-				self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
-	
-		if nimcount > 1 and self.ScanNimTwoNeeded():
-			nim = configElement_nonSave(1, configSelection, 0, (("yes", _("yes")), ("no", _("no"))))
-			self.list.append(getConfigListEntry(_("Scan NIM") + " 1 (" + nimmanager.getNimTypeName(1) + ")", nim))
-
-		self["config"] = ConfigList(self.list)
-		self["header"] = Label(_("Automatic Scan"))
-		self["footer"] = Label(_("Press OK to scan"))

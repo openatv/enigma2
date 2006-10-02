@@ -4,7 +4,7 @@ from xml.dom import EMPTY_NAMESPACE
 from Tools.Import import my_import
 import os
 
-from Components.config import ConfigSubsection, configElement, configText, config
+from Components.config import ConfigSubsection, ConfigText, config
 from Components.Element import Element
 from Components.Converter.Converter import Converter
 
@@ -49,7 +49,7 @@ def loadSkin(name):
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-config.skin.primary_skin = configElement("config.skin.primary_skin", configText, "skin.xml", 0)
+config.skin.primary_skin = ConfigText(default = "skin.xml")
 
 try:
 	loadSkin(config.skin.primary_skin.value)
@@ -89,7 +89,7 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 		# TODO: localization? as in e1?
 		value = a.value.encode("utf-8")
 		
-		if attrib in ["pixmap", "pointer"]:
+		if attrib in ["pixmap", "pointer", "seek_pointer"]:
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 		
 		if attrib not in ignore:
@@ -184,12 +184,12 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 				}[value])
 		elif attrib == "enableWrapAround":
 			guiObject.setWrapAround(True)
-		elif attrib == "pointer":
+		elif attrib == "pointer" or attrib == "seek_pointer":
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos)
 			ptr = loadPixmap(name)
 			desktop.makeCompatiblePixmap(ptr.__deref__())
-			guiObject.setPointer(ptr.__deref__(), pos)
+			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr.__deref__(), pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
 		else:

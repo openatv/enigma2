@@ -13,7 +13,6 @@ from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
-from Components.config import config, currentConfigSelectionElement
 from time import localtime, time
 
 import xml.dom.minidom

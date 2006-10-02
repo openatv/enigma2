@@ -5,7 +5,7 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.MenuList import MenuList
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
-from Components.config import config, configElement, ConfigSubsection, configText, currentConfigSelectionElement
+from Components.config import config, ConfigSubsection, ConfigText
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
@@ -87,7 +87,7 @@ class ChannelContextMenu(Screen):
 						menu.append((_("remove all new found flags"), self.removeAllNewFoundFlags))
 				if inBouquet:
 					menu.append((_("remove entry"), self.removeCurrentService))
-				if current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+				if current_root is not None and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					menu.append((_("remove new found flag"), self.removeNewFoundFlag))
 			else:
 					menu.append((_("add bouquet"), self.showBouquetInputBox))
@@ -513,6 +513,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumber0
 			})
+		self.recallBouquetMode()
 
 	def appendDVBTypes(self, ref):
 		path = ref.getPath()
@@ -553,13 +554,13 @@ class ChannelSelectionBase(Screen):
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
 			self.service_types = self.service_types_tv
-			if currentConfigSelectionElement(config.usage.multibouquet) == "yes":
+			if config.usage.multibouquet.value:
 				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 			else:
 				self.bouquet_rootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
 		else:
 			self.service_types = self.service_types_radio
-			if currentConfigSelectionElement(config.usage.multibouquet) == "yes":
+			if config.usage.multibouquet.value:
 				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
 			else:
 				self.bouquet_rootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(self.service_types)
@@ -876,13 +877,13 @@ HISTORYSIZE = 20
 
 #config for lastservice
 config.tv = ConfigSubsection()
-config.tv.lastservice = configElement("config.tv.lastservice", configText, "", 0)
-config.tv.lastroot = configElement("config.tv.lastroot", configText, "", 0)
+config.tv.lastservice = ConfigText()
+config.tv.lastroot = ConfigText()
 config.radio = ConfigSubsection()
-config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0)
-config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0)
+config.radio.lastservice = ConfigText()
+config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
-config.servicelist.lastmode = configElement("config.servicelist.lastmode", configText, "tv", 0)
+config.servicelist.lastmode = ConfigText(default = "tv")
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	def __init__(self, session):
@@ -932,7 +933,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def setModeRadio(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
 			self.revertMode = MODE_TV
-		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+		if config.usage.e1like_radio_mode.value == "yes":
 			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
 			self.lastroot = config.radio.lastroot
@@ -941,7 +942,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setMode()
 
 	def __onCreate(self):
-		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+		if config.usage.e1like_radio_mode.value == "yes":
 			if config.servicelist.lastmode.value == "tv":
 				self.setModeTv()
 			else:
@@ -1130,8 +1131,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionEPG.__init__(self)
 
 		config.radio = ConfigSubsection();
-		config.radio.lastservice = configElement("config.radio.lastservice", configText, "", 0);
-		config.radio.lastroot = configElement("config.radio.lastroot", configText, "", 0);
+		config.radio.lastservice = ConfigText()
+		config.radio.lastroot = ConfigText()
 		self.onLayoutFinish.append(self.onCreate)
 
 		self.info = session.instantiateDialog(RadioInfoBar)

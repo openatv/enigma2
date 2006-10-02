@@ -62,9 +62,9 @@ menuupdater = MenuUpdater()
 class MenuSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="MenuTitle" position="0,4" size="132,21" font="Regular;18" />
-		<widget name="MenuEntry" position="0,25" size="132,21" font="Regular;16" />
-		<widget source="CurrentTime" render="Label" position="50,46" size="82,18" font="Regular;16" >
+		<widget name="MenuTitle" position="6,4" size="120,21" font="Regular;18" />
+		<widget name="MenuEntry" position="6,25" size="120,21" font="Regular;16" />
+		<widget source="CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>"""

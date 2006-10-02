@@ -1,13 +1,4 @@
-from config import config       #global config instance
-
-from config import configElement
-from config import ConfigSubsection
-from config import configSelection
-from config import currentConfigSelectionElement
-from config import getConfigSelectionElement
-from config import configSequence
-from config import configsequencearg
-from config import configSatlist
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigDummy, ConfigSubDict
 
 from enigma import eDVBSatelliteEquipmentControl, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -74,12 +65,12 @@ class SecConfigure:
 			sec.setInputpowerDelta(50)
 
 			for x in self.NimManager.satList:
-				print "Add sat " + str(x[1])
-				sec.addSatellite(int(x[1]))
+				print "Add sat " + str(x[0])
+				sec.addSatellite(int(x[0]))
 				sec.setVoltageMode(0)
 				sec.setToneMode(0)
 				sec.setRotorPosNum(0) # USALS
-				self.satList.append(int(x[1]))
+				self.satList.append(int(x[0]))
 
 	def setSatposDepends(self, sec, nim1, nim2):
 		print "tuner", nim1, "depends on satpos of", nim2
@@ -105,13 +96,13 @@ class SecConfigure:
 			x = slot.slotid
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
-				if currentConfigSelectionElement(nim.configMode) == "equal":
+				if nim.configMode.value == "equal":
 					self.equal[nim.equalTo.value]=x
-				if currentConfigSelectionElement(nim.configMode) == "loopthrough":
+				if nim.configMode.value == "loopthrough":
 					self.linkNIMs(sec, x, nim.linkedTo.value)
 					self.linked[nim.linkedTo.value]=x
-				elif currentConfigSelectionElement(nim.configMode) == "satposdepends":
-					self.setSatposDepends(sec, x, nim.satposDependsTo.value)
+				elif nim.configMode.value == "satposdepends":
+					self.setSatposDepends(sec, x, nim.satposDependsTo.index)
 					self.satposdepends[nim.satposDependsTo.value]=x
 
 		for slot in self.NimManager.nimslots:
@@ -119,37 +110,38 @@ class SecConfigure:
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if currentConfigSelectionElement(nim.configMode) in [ "loopthrough", "satposdepends", "equal", "nothing" ]:
+				print "diseqcmode: ", nim.configMode.value
+				if nim.configMode.value in [ "loopthrough", "satposdepends", "equal", "nothing" ]:
 					pass
-				elif currentConfigSelectionElement(nim.configMode) == "simple":		#simple config
-					if currentConfigSelectionElement(nim.diseqcMode) == "single":			#single
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
-					elif currentConfigSelectionElement(nim.diseqcMode) == "toneburst_a_b":		#Toneburst A/B
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
-					elif currentConfigSelectionElement(nim.diseqcMode) == "diseqc_a_b":		#DiSEqC A/B
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-					elif currentConfigSelectionElement(nim.diseqcMode) == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcA.vals[nim.diseqcA.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcB.vals[nim.diseqcB.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcC.vals[nim.diseqcC.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
-						self.addLNBSimple(sec, slotid = x, orbpos = int(nim.diseqcD.vals[nim.diseqcD.value][1]), toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
-					elif currentConfigSelectionElement(nim.diseqcMode) == "positioner":		#Positioner
-						if currentConfigSelectionElement(nim.latitudeOrientation) == "north":
+				elif nim.configMode.value == "simple":		#simple config
+					if nim.diseqcMode.value == "single":			#single
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
+					elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
+					elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+					elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
+						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
+					elif nim.diseqcMode.value == "positioner":		#Positioner
+						if nim.latitudeOrientation.value == "north":
 							laValue = rotorParam.NORTH
 						else:
 							laValue = rotorParam.SOUTH
-						if currentConfigSelectionElement(nim.longitudeOrientation) == "east":
+						if nim.longitudeOrientation.value == "east":
 							loValue = rotorParam.EAST
 						else:
 							loValue = rotorParam.WEST
 						self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
-							longitude = configsequencearg.getFloat(nim.longitude),
+							longitude = nim.longitude.float,
 							loDirection = loValue,
-							latitude = configsequencearg.getFloat(nim.latitude),
+							latitude = nim.latitude.float,
 							laDirection = laValue)
-				elif currentConfigSelectionElement(nim.configMode) == "advanced": #advanced config
+				elif nim.configMode.value == "advanced": #advanced config
 					self.updateAdvanced(sec, x)
 		print "sec config completed"
 
@@ -158,10 +150,10 @@ class SecConfigure:
 		for x in range(1,33):
 			lnbSat[x] = []
 		for x in self.NimManager.satList:
-			lnb = config.Nims[slotid].advanced.sat[x[1]].lnb.value
+			lnb = int(config.Nims[slotid].advanced.sat[x[0]].lnb.value)
 			if lnb != 0:
-				print "add", x[1], "to", lnb
-				lnbSat[lnb].append(x[1])
+				print "add", x[0], "to", lnb
+				lnbSat[lnb].append(x[0])
 		for x in range(1,33):
 			if len(lnbSat[x]) > 0:
 				currLnb = config.Nims[slotid].advanced.lnb[x]
@@ -173,124 +165,110 @@ class SecConfigure:
 				elif self.linked.has_key(slotid):
 					tunermask |= (1 << self.linked[slotid])
 
-				if currentConfigSelectionElement(currLnb.lof) == "universal_lnb":
+				if currLnb.lof.value == "universal_lnb":
 					sec.setLNBLOFL(9750000)
 					sec.setLNBLOFH(10600000)
 					sec.setLNBThreshold(11700000)
-				elif currentConfigSelectionElement(currLnb.lof) == "c_band":
+				elif currLnb.lof.value == "c_band":
 					sec.setLNBLOFL(5150000)
 					sec.setLNBLOFH(5150000)
 					sec.setLNBThreshold(5150000)
-				elif currentConfigSelectionElement(currLnb.lof) == "user_defined":
-					sec.setLNBLOFL(currLnb.lofl.value[0] * 1000)
-					sec.setLNBLOFH(currLnb.lofh.value[0] * 1000)
-					sec.setLNBThreshold(currLnb.threshold.value[0] * 1000)
+				elif currLnb.lof.value == "user_defined":
+					sec.setLNBLOFL(currLnb.lofl.value * 1000)
+					sec.setLNBLOFH(currLnb.lofh.value * 1000)
+					sec.setLNBThreshold(currLnb.threshold.value * 1000)
 					
-				if currentConfigSelectionElement(currLnb.output_12v) == "0V":
+				if currLnb.output_12v.value == "0V":
 					pass # nyi in drivers
-				elif currentConfigSelectionElement(currLnb.output_12v) == "12V":
+				elif currLnb.output_12v.value == "12V":
 					pass # nyi in drivers
 					
-				if currentConfigSelectionElement(currLnb.increased_voltage) == "yes":
+				if currLnb.increased_voltage.value:
 					sec.setLNBIncreasedVoltage(lnbParam.ON)
 				else:
 					sec.setLNBIncreasedVoltage(lnbParam.OFF)
-					
-				if currentConfigSelectionElement(currLnb.diseqcMode) == "none":
+				
+				dm = currLnb.diseqcMode.value 
+				if dm == "none":
 					sec.setDiSEqCMode(diseqcParam.NONE)
-				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_0":
+				elif dm == "1_0":
 					sec.setDiSEqCMode(diseqcParam.V1_0)
-				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_1":
+				elif dm == "1_1":
 					sec.setDiSEqCMode(diseqcParam.V1_1)
-				elif currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
+				elif dm == "1_2":
 					sec.setDiSEqCMode(diseqcParam.V1_2)
 
 					if self.satposdepends.has_key(slotid):  # only useable with rotors
 						tunermask |= (1 << self.satposdepends[slotid])
 
-				if currentConfigSelectionElement(currLnb.diseqcMode) != "none":
-					if currentConfigSelectionElement(currLnb.toneburst) == "none":
+				if dm != "none":
+					if currLnb.toneburst.value == "none":
 						sec.setToneburst(diseqcParam.NO)
-					elif currentConfigSelectionElement(currLnb.toneburst) == "A":
+					elif currLnb.toneburst.value == "A":
 						sec.setToneburst(diseqcParam.A)
-					elif currentConfigSelectionElement(currLnb.toneburst) == "B":
+					elif currLnb.toneburst.value == "B":
 						sec.setToneburst(diseqcParam.B)
+					
+					# Committed Diseqc Command
+					cdc = currLnb.commitedDiseqcCommand.value
+					
+					c = [
+						("none", diseqcParam.SENDNO),
+						("AA", diseqcParam.AA),
+						("AB", diseqcParam.AB),
+						("BA", diseqcParam.BA),
+						("BB", diseqcParam.BB)]
 						
-					if currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "none":
-						sec.setCommittedCommand(diseqcParam.SENDNO)
-					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "AA":
-						sec.setCommittedCommand(diseqcParam.AA)
-					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "AB":
-						sec.setCommittedCommand(diseqcParam.AB)
-					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "BA":
-						sec.setCommittedCommand(diseqcParam.BA)
-					elif currentConfigSelectionElement(currLnb.commitedDiseqcCommand) == "BB":
-						sec.setCommittedCommand(diseqcParam.BB)
+					if cdc in c:
+						sec.setCommittedCommand(c[cdc])
 					else:
-						sec.setCommittedCommand(long(currentConfigSelectionElement(currLnb.commitedDiseqcCommand)))
+						sec.setCommittedCommand(long(cdc))
 
-					if currentConfigSelectionElement(currLnb.fastDiseqc) == "yes":
-						sec.setFastDiSEqC(True)
-					else:
-						sec.setFastDiSEqC(False)
+					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
 						
-					if currentConfigSelectionElement(currLnb.sequenceRepeat) == "yes":
-						sec.setSeqRepeat(True)
-					else:
-						sec.setSeqRepeat(False)
+					sec.setSeqRepeat(currLnb.sequenceRepeat.value)
 						
-					if currentConfigSelectionElement(currLnb.diseqcMode) == "1_0":
+					if currLnb.diseqcMode.value == "1_0":
 						currCO = currLnb.commandOrder1_0.value
 					else:
 						currCO = currLnb.commandOrder.value
-						
-						if currLnb.uncommittedDiseqcCommand.value > 0:
-							sec.setUncommittedCommand(0xF0|(currLnb.uncommittedDiseqcCommand.value-1))
+
+						udc = int(currLnb.uncommittedDiseqcCommand.value)
+						if udc > 0:
+							sec.setUncommittedCommand(0xF0|(udc-1))
 						else:
 							sec.setUncommittedCommand(0) # SENDNO
-						
-						if currentConfigSelectionElement(currLnb.diseqcRepeats) == "none":
-							sec.setRepeats(0)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "one":
-							sec.setRepeats(1)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "two":
-							sec.setRepeats(2)
-						elif currentConfigSelectionElement(currLnb.diseqcRepeats) == "three":
-							sec.setRepeats(3)
-						
-					setCommandOrder=False
-					if currCO == 0: # committed, toneburst
-						setCommandOrder=True
-					elif currCO == 1: # toneburst, committed
-						setCommandOrder=True
-					elif currCO == 2: # committed, uncommitted, toneburst
-						setCommandOrder=True
-					elif currCO == 3: # toneburst, committed, uncommitted
-						setCommandOrder=True
-					elif currCO == 4: # uncommitted, committed, toneburst
-						setCommandOrder=True
-					elif currCO == 5: # toneburst, uncommitted, commmitted
-						setCommandOrder=True
-					if setCommandOrder:
-						sec.setCommandOrder(currCO)
-						
-				if currentConfigSelectionElement(currLnb.diseqcMode) == "1_2":
-					latitude = configsequencearg.getFloat(currLnb.latitude)
+
+						sec.setRepeats({"none": 0, "one": 1, "two": 2, "three": 3}[currLnb.diseqcRepeats.value])
+
+					setCommandOrder = False
+					
+					# 0 "committed, toneburst", 
+					# 1 "toneburst, committed", 
+					# 2 "committed, uncommitted, toneburst",
+					# 3 "toneburst, committed, uncommitted",
+					# 4 "uncommitted, committed, toneburst"
+					# 5 "toneburst, uncommitted, commmitted"
+					order_map = {"ct": 0, "tc": 1, "cut": 2, "tcu": 3, "uct": 4, "tuc": 5}
+					sec.setCommandOrder(order_map[currCO])
+
+				if dm == "1_2":
+					latitude = currLnb.latitude.float
 					sec.setLatitude(latitude)
-					longitude = configsequencearg.getFloat(currLnb.longitude)
+					longitude = currLnb.longitude.float
 					sec.setLongitude(longitude)
-					if currentConfigSelectionElement(currLnb.latitudeOrientation) == "north":
+					if currLnb.latitudeOrientation.value == "north":
 						sec.setLaDirection(rotorParam.NORTH)
 					else:
 						sec.setLaDirection(rotorParam.SOUTH)
-					if currentConfigSelectionElement(currLnb.longitudeOrientation) == "east":
+					if currLnb.longitudeOrientation.value == "east":
 						sec.setLoDirection(rotorParam.EAST)
 					else:
 						sec.setLoDirection(rotorParam.WEST)
 						
-				if currentConfigSelectionElement(currLnb.powerMeasurement) == "yes":
+				if currLnb.powerMeasurement.value:
 					sec.setUseInputpower(True)
-					sec.setInputpowerDelta(currLnb.powerThreshold.value[0])
+					sec.setInputpowerDelta(currLnb.powerThreshold.value)
 				else:
 					sec.setUseInputpower(False)
 
@@ -300,22 +278,23 @@ class SecConfigure:
 				for y in lnbSat[x]:
 					sec.addSatellite(y)
 					currSat = config.Nims[slotid].advanced.sat[y]
-					if currentConfigSelectionElement(currSat.voltage) == "polarization":
+
+					if currSat.voltage.value == "polarization":
 						sec.setVoltageMode(switchParam.HV)
-					elif currentConfigSelectionElement(currSat.voltage) == "13V":
+					elif currSat.voltage.value == "13V":
 						sec.setVoltageMode(switchParam._14V)
-					elif currentConfigSelectionElement(currSat.voltage) == "18V":
+					elif currSat.voltage.value == "18V":
 						sec.setVoltageMode(switchParam._18V)
 						
-					if currentConfigSelectionElement(currSat.tonemode) == "band":
+					if currSat.tonemode == "band":
 						sec.setToneMode(switchParam.HILO)
-					elif currentConfigSelectionElement(currSat.tonemode) == "on":
+					elif currSat.tonemode == "on":
 						sec.setToneMode(switchParam.ON)
-					elif currentConfigSelectionElement(currSat.tonemode) == "off":
+					elif currSat.tonemode == "off":
 						sec.setToneMode(switchParam.OFF)
 						
-					if  currentConfigSelectionElement(currSat.usals) == "no":
-						sec.setRotorPosNum(currSat.rotorposition.value[0])
+					if not currSat.usals.value:
+						sec.setRotorPosNum(currSat.rotorposition.value)
 					else:
 						sec.setRotorPosNum(0) #USALS
 
@@ -345,7 +324,7 @@ class NimManager:
 					tpos = 3600 + tpos
 				tname = attrs.get('name',"").encode("UTF-8")
 				self.satellites[tpos] = tname
-				self.satList.append( (tname, tpos) )
+				self.satList.append( (tpos, tname) )
 				self.parsedSat = int(tpos)
 			elif (name == "transponder"):
 				modulation = int(attrs.get('modulation',"1")) # QPSK default
@@ -575,7 +554,7 @@ class NimManager:
 		return list
 
 	def getNimConfigMode(self, slotid):
-		return currentConfigSelectionElement(config.Nims[slotid].configMode)
+		return config.Nims[slotid].configMode.value
 	
 	def getSatList(self):
 		return self.satList
@@ -587,26 +566,27 @@ class NimManager:
 			
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
-			configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+			configMode = config.Nims[slotid].configMode.value
 
 			if configMode == "equal":
 				slotid=0 #FIXME add handling for more than two tuners !!!
-				configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+				configMode = config.Nims[slotid].configMode.value
 
 			if configMode == "simple":
-				if (config.Nims[slotid].diseqcMode.value <= 3):
-					list.append(self.satList[config.Nims[slotid].diseqcA.value])
-				if (0 < config.Nims[slotid].diseqcMode.value <= 3):
-					list.append(self.satList[config.Nims[slotid].diseqcB.value])
-				if (config.Nims[slotid].diseqcMode.value == 3):
-					list.append(self.satList[config.Nims[slotid].diseqcC.value])
-					list.append(self.satList[config.Nims[slotid].diseqcD.value])
-				if (config.Nims[slotid].diseqcMode.value == 4):
+				dm = config.Nims[slotid].diseqcMode.value
+				if dm in ["single", "toneburst", "diseqc_a_b", "diseqc_a_b_c_d"]:
+					list.append(self.satList[config.Nims[slotid].diseqcA.index])
+				if dm in ["toneburst", "diseqc_a_b", "diseqc_a_b_c_d"]:
+					list.append(self.satList[config.Nims[slotid].diseqcB.index])
+				if dm == "diseqc_a_b_c_d":
+					list.append(self.satList[config.Nims[slotid].diseqcC.index])
+					list.append(self.satList[config.Nims[slotid].diseqcD.index])
+				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
 			elif configMode == "advanced":
 				for x in self.satList:
-					if config.Nims[slotid].advanced.sat[x[1]].lnb.value != 0:
+					if int(config.Nims[slotid].advanced.sat[x[0]].lnb.value) != 0:
 						list.append(x)
 
 		return list
@@ -618,18 +598,18 @@ class NimManager:
 
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
-			configMode = currentConfigSelectionElement(config.Nims[slotid].configMode)
+			configMode = config.Nims[slotid].configMode.value
 			if configMode == "simple":
-				if (config.Nims[slotid].diseqcMode.value == 4):
+				if config.Nims[slotid].diseqcMode.value == "positioner":
 					for x in self.satList:
 						list.append(x)
 			elif configMode == "advanced":
 				for x in self.satList:
 					nim = config.Nims[slotid]
-					lnbnum = nim.advanced.sat[x[1]].lnb.value
+					lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
 					if lnbnum != 0:
 						lnb = nim.advanced.lnb[lnbnum]
-						if lnb.diseqcMode.value == 3: # diseqc 1.2
+						if lnb.diseqcMode.value == "diseqc_a_b_c_d":
 							list.append(x)
 		return list
 
@@ -651,7 +631,7 @@ class NimManager:
 		pass
 
 def InitNimManager(nimmgr):
-	config.Nims = []
+	config.Nims = ConfigSubList()
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
 		
@@ -661,13 +641,13 @@ def InitNimManager(nimmgr):
 		nimmgr.nimDiseqcModeChanged(slotid, configElement.value)
 		
 	def nimPortAChanged(slotid, configElement):
-		nimmgr.nimPortAChanged(slotid, configElement.vals[configElement.value][1])
+		nimmgr.nimPortAChanged(slotid, configElement.value)
 	def nimPortBChanged(slotid, configElement):
-		nimmgr.nimPortBChanged(slotid, configElement.vals[configElement.value][1])
+		nimmgr.nimPortBChanged(slotid, configElement.value)
 	def nimPortCChanged(slotid, configElement):
-		nimmgr.nimPortCChanged(slotid, configElement.vals[configElement.value][1])
+		nimmgr.nimPortCChanged(slotid, configElement.value)
 	def nimPortDChanged(slotid, configElement):
-		nimmgr.nimPortDChanged(slotid, configElement.vals[configElement.value][1])
+		nimmgr.nimPortDChanged(slotid, configElement.value)
 
 	for slot in nimmgr.nimslots:
 		x = slot.slotid
@@ -676,46 +656,67 @@ def InitNimManager(nimmgr):
 		
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			if slot.slotid == 0:
-				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
-				("simple", _("Simple")), ("advanced", _("Advanced"))), False)
+				nim.configMode = ConfigSelection(
+					choices = {
+						"simple": _("simple"),
+						"advanced": _("advanced")},
+					default = "simple")
 			else:
-				nim.configMode = configElement(cname + "configMode", configSelection, 0, (
-				("equal", _("Equal to Socket A")),
-				("loopthrough", _("Loopthrough to Socket A")),
-				("nothing", _("Nothing connected")),
-				("satposdepends", _("Secondary cable from motorized LNB")),
-				("simple", _("Simple")),
-				("advanced", _("Advanced"))), False)
+
+				nim.configMode = ConfigSelection(
+					choices = {
+						"equal": _("equal to Socket A"),
+						"looptrough": _("loopthrough to socket A"),
+						"nothing": _("nothing connected"),
+						"satposdepends": _("second cable of motorized LNB"),
+						"simple": _("simple"),
+						"advanced": _("advanced")},
+					default = "looptrough")
+
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
-			if currentConfigSelectionElement(nim.configMode) in ["loopthrough", "satposdepends", "equal"]:
-				if x == 0:										#first one can never be linked to anything
-					nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
+			if nim.configMode.value in ["loopthrough", "satposdepends", "equal"]:
+				if x == 0: # first one can never be linked to anything
+					# reset to simple
+					nim.configMode.value = "simple"
 					nim.configMode.save()
 				else:
 					#FIXME: make it better
 					for y in nimmgr.nimslots:
 						if y.slotid == 0:
 							if y.nimType != nimmgr.nimType["DVB-S"]:
-								nim.configMode.value = getConfigSelectionElement(nim.configMode, "simple")		#reset to simple
+								# reset to simple
+								nim.configMode.value = "simple"
 								nim.configMode.save()
 
-			nim.diseqcMode = configElement(cname + "diseqcMode", configSelection, 2, (("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")), ("diseqc_a_b", _("DiSEqC A/B")), ("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")), ("positioner", _("Positioner"))), False);
-			nim.diseqcA = configElement(cname + "diseqcA", configSatlist, 192, nimmgr.satList, False);
-			nim.diseqcB = configElement(cname + "diseqcB", configSatlist, 130, nimmgr.satList, False);
-			nim.diseqcC = configElement(cname + "diseqcC", configSatlist, 0, nimmgr.satList, False);
-			nim.diseqcD = configElement(cname + "diseqcD", configSatlist, 0, nimmgr.satList, False);
-			nim.positionerMode = configElement(cname + "positionerMode", configSelection, 0, (("usals", _("USALS")), ("manual", _("manual"))), False);
-			nim.longitude = configElement(cname + "longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False);
-			nim.longitudeOrientation = configElement(cname + "longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
-			nim.latitude = configElement(cname + "latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False);
-			nim.latitudeOrientation = configElement(cname + "latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))), False)
+			nim.diseqcMode = ConfigSelection(
+				choices = [
+					("single", _("Single")),
+					("toneburst_a_b", _("Toneburst A/B")),
+					("diseqc_a_b", _("DiSEqC A/B")),
+					("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
+					("positioner", _("Positioner"))],
+				default = "diseqc_a_b")
+			nim.diseqcA = ConfigSatlist(default = 192, list = nimmgr.satList)
+			nim.diseqcB = ConfigSatlist(default = 130, list = nimmgr.satList)
+			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
+			nim.diseqcD = ConfigSatlist(list = nimmgr.satList)
+			nim.positionerMode = ConfigSelection(
+				choices = [
+					("usals", _("USALS")),
+					("manual", _("manual"))],
+				default = "usals")
+			nim.longitude = ConfigFloat(default=[5,100], limits=[(0,359),(0,999)])
+			nim.longitudeOrientation = ConfigSelection(choices={"east": _("East"), "west": _("West")}, default = "east")
+			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
+			nim.latitudeOrientation = ConfigSelection(choices={"north": _("North"), "south": _("South")}, default="north")
 			satNimList = nimmgr.getNimListOfType(nimmgr.nimType["DVB-S"], slot.slotid)
-			satNimListNames = []
+			satNimListNames = {}
 			for x in satNimList:
-				satNimListNames.append((("Slot_" + ("A", "B", "C", "D")[x] + "_" + nimmgr.getNimName(x)), _("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x)))
-			nim.equalTo = configElement(cname + "equalTo", configSelection, 0, satNimListNames, False);
-			nim.linkedTo = configElement(cname + "linkedTo", configSelection, 0, satNimListNames, False);
-			nim.satposDependsTo = configElement(cname + "satposDependsTo", configSelection, 0, satNimListNames, False);
+				satNimListNames["Slot_" + ("A", "B", "C", "D")[x] + "_" + nimmgr.getNimName(x)] = _("Slot ") + ("A", "B", "C", "D")[x] + ": " + nimmgr.getNimName(x)
+			if len(satNimListNames):
+				nim.equalTo = ConfigSelection(choices = satNimListNames)
+				nim.linkedTo = ConfigSelection(choices = satNimListNames)
+				nim.satposDependsTo = ConfigSelection(choices = satNimListNames)
 			
 			#perhaps the instance of the slot is more useful?
 #			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
@@ -727,61 +728,72 @@ def InitNimManager(nimmgr):
 			
 			# advanced config:
 			nim.advanced = ConfigSubsection()
-			nim.advanced.sats = configElement(cname + "advanced.sats", configSatlist, 192, nimmgr.satList, False);
-			nim.advanced.sat = {}
-			lnbs = ["not available"]
+			nim.advanced.sats = ConfigSatlist(default = 192, list = nimmgr.satList)
+			nim.advanced.sat = ConfigSubDict()
+			lnbs = [("0", "not available")]
 			for y in range(1, 33):
-				lnbs.append("LNB " + str(y))
+				lnbs.append((str(y), "LNB " + str(y)))
+
 			for x in nimmgr.satList:
-				nim.advanced.sat[x[1]] = ConfigSubsection()
-				nim.advanced.sat[x[1]].voltage = configElement(cname + "advanced.sat" + str(x[1]) + ".voltage", configSelection, 0, (("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))), False)
-				nim.advanced.sat[x[1]].tonemode = configElement(cname + "advanced.sat" + str(x[1]) + ".tonemode", configSelection, 0, (("band", _("Band")), ("on", _("On")), ("off", _("Off"))), False)
-				nim.advanced.sat[x[1]].usals = configElement(cname + "advanced.sat" + str(x[1]) + ".usals", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))), False)
-				nim.advanced.sat[x[1]].rotorposition = configElement(cname + "advanced.sat" + str(x[1]) + ".rotorposition", configSequence, [1], configsequencearg.get("INTEGER", (1, 255)), False)
-				nim.advanced.sat[x[1]].lnb = configElement(cname + "advanced.sat" + str(x[1]) + ".lnb", configSelection, 0, lnbs, False)
+				nim.advanced.sat[x[0]] = ConfigSubsection()
+				nim.advanced.sat[x[0]].voltage = ConfigSelection(choices={"polarization": _("Polarization"), "13V": _("13 V"), "18V": _("18 V")}, default = "polarization")
+				nim.advanced.sat[x[0]].tonemode = ConfigSelection(choices={"band": _("Band"), "on": _("On"), "off": _("Off")}, default = "band")
+				nim.advanced.sat[x[0]].usals = ConfigYesNo(default=True)
+				nim.advanced.sat[x[0]].rotorposition = ConfigInteger(default=1, limits=(1, 255))
+				nim.advanced.sat[x[0]].lnb = ConfigSelection(choices = lnbs)
 
 			csw = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
 			for y in range(0, 16):
 				csw.append((str(0xF0|y), "Input " + str(y+1)))
 
-			ucsw = [("none", _("None"))]
+			ucsw = [("0", _("None"))]
 			for y in range(1, 17):
-				ucsw.append("Input " + str(y))
+				ucsw.append((str(y), "Input " + str(y)))
 
-			nim.advanced.lnb = [0]
+			nim.advanced.lnb = ConfigSubList()
+			nim.advanced.lnb.append(ConfigDummy())
 			for x in range(1, 33):
 				nim.advanced.lnb.append(ConfigSubsection())
-				nim.advanced.lnb[x].lof = configElement(cname + "advanced.lnb" + str(x) + ".lof", configSelection, 0, (("universal_lnb", _("Universal LNB")), ("c_band", _("C-Band")), ("user_defined", _("User defined"))), False)
-				nim.advanced.lnb[x].lofl = configElement(cname + "advanced.lnb" + str(x) + ".lofl", configSequence, [9750], configsequencearg.get("INTEGER", (0, 99999)), False)
-				nim.advanced.lnb[x].lofh = configElement(cname + "advanced.lnb" + str(x) + ".lofh", configSequence, [10600], configsequencearg.get("INTEGER", (0, 99999)), False)
-				nim.advanced.lnb[x].threshold = configElement(cname + "advanced.lnb" + str(x) + ".threshold", configSequence, [11700], configsequencearg.get("INTEGER", (0, 99999)), False)
-				nim.advanced.lnb[x].output_12v = configElement(cname + "advanced.lnb" + str(x) + ".output_12v", configSelection, 0, (("0V", _("0 V")), ("12V", _("12 V"))), False)
-				nim.advanced.lnb[x].increased_voltage = configElement(cname + "advanced.lnb" + str(x) + ".increased_voltage", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
-				nim.advanced.lnb[x].toneburst = configElement(cname + "advanced.lnb" + str(x) + ".toneburst", configSelection, 0, (("none", _("None")), ("A", _("A")), ("B", _("B"))), False)
-				nim.advanced.lnb[x].diseqcMode = configElement(cname + "advanced.lnb" + str(x) + ".diseqcMode", configSelection, 0, (("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))), False)
-				nim.advanced.lnb[x].commitedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".commitedDiseqcCommand", configSelection, 0, csw, False)
-				nim.advanced.lnb[x].fastDiseqc = configElement(cname + "advanced.lnb" + str(x) + ".fastDiseqc", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
-				nim.advanced.lnb[x].sequenceRepeat = configElement(cname + "advanced.lnb" + str(x) + ".sequenceRepeat", configSelection, 0, (("no", _("No")), ("yes", _("Yes"))), False)
-				nim.advanced.lnb[x].commandOrder1_0 = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder1_0", configSelection, 0, ("committed, toneburst", "toneburst, committed"), False)
-				nim.advanced.lnb[x].commandOrder = configElement(cname + "advanced.lnb" + str(x) + ".commandOrder", configSelection, 0, ("committed, toneburst", "toneburst, committed", "committed, uncommitted, toneburst", "toneburst, committed, uncommitted", "uncommitted, committed, toneburst", "toneburst, uncommitted, commmitted"), False)
-				nim.advanced.lnb[x].uncommittedDiseqcCommand = configElement(cname + "advanced.lnb" + str(x) + ".uncommittedDiseqcCommand", configSelection, 0, ucsw, False)
-				nim.advanced.lnb[x].diseqcRepeats = configElement(cname + "advanced.lnb" + str(x) + ".diseqcRepeats", configSelection, 0, (("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))), False)
-				nim.advanced.lnb[x].longitude = configElement(cname + "advanced.lnb" + str(x) + ".longitude", configSequence, [5,100], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False)
-				nim.advanced.lnb[x].longitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".longitudeOrientation", configSelection, 0, (("east", _("East")), ("west", _("West"))), False)
-				nim.advanced.lnb[x].latitude = configElement(cname + "advanced.lnb" + str(x) + ".latitude", configSequence, [50,767], configsequencearg.get("FLOAT", [(0,359),(0,999)]), False)
-				nim.advanced.lnb[x].latitudeOrientation = configElement(cname + "advanced.lnb" + str(x) + ".latitudeOrientation", configSelection, 0, (("north", _("North")), ("south", _("South"))), False)
-				nim.advanced.lnb[x].powerMeasurement = configElement(cname + "advanced.lnb" + str(x) + ".powerMeasurement", configSelection, 0, (("yes", _("Yes")), ("no", _("No"))), False)
-				nim.advanced.lnb[x].powerThreshold = configElement(cname + "advanced.lnb" + str(x) + ".powerThreshold", configSequence, [50], configsequencearg.get("INTEGER", (0, 100)), False)
+				nim.advanced.lnb[x].lof = ConfigSelection(choices={"universal_lnb": _("Universal LNB"), "c_band": _("C-Band"), "user_defined": _("User defined")}, default="universal_lnb")
+				nim.advanced.lnb[x].lofl = ConfigInteger(default=9750, limits = (0, 99999))
+				nim.advanced.lnb[x].lofh = ConfigInteger(default=10600, limits = (0, 99999))
+				nim.advanced.lnb[x].threshold = ConfigInteger(default=11700, limits = (0, 99999))
+				nim.advanced.lnb[x].output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
+				nim.advanced.lnb[x].increased_voltage = ConfigYesNo(default=False)
+				nim.advanced.lnb[x].toneburst = ConfigSelection(choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))], default = "none")
+				nim.advanced.lnb[x].diseqcMode = ConfigSelection(choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))], default = "none")
+				nim.advanced.lnb[x].commitedDiseqcCommand = ConfigSelection(choices = csw)
+				nim.advanced.lnb[x].fastDiseqc = ConfigYesNo(default=False)
+				nim.advanced.lnb[x].sequenceRepeat = ConfigYesNo(default=False)
+				nim.advanced.lnb[x].commandOrder1_0 = ConfigSelection(choices = [("ct", "committed, toneburst"), ("tc", "toneburst, committed")], default = "ct")
+				nim.advanced.lnb[x].commandOrder = ConfigSelection(choices = [
+						("ct", "committed, toneburst"), 
+						("tc", "toneburst, committed"), 
+						("cut", "committed, uncommitted, toneburst"), 
+						("tcu", "toneburst, committed, uncommitted"), 
+						("uct", "uncommitted, committed, toneburst"), 
+						("tuc", "toneburst, uncommitted, commmitted")],
+						default="ct")
+				nim.advanced.lnb[x].uncommittedDiseqcCommand = ConfigSelection(choices = ucsw)
+				nim.advanced.lnb[x].diseqcRepeats = ConfigSelection(choices = [("none", _("None")), ("one", _("One")), ("two", _("Two")), ("three", _("Three"))], default = "none")
+				nim.advanced.lnb[x].longitude = ConfigFloat(default = [5,100], limits = [(0,359),(0,999)])
+				nim.advanced.lnb[x].longitudeOrientation = ConfigSelection(choices = [("east", _("East")), ("west", _("West"))], default = "east")
+				nim.advanced.lnb[x].latitude = ConfigFloat(default = [50,767], limits = [(0,359),(0,999)])
+				nim.advanced.lnb[x].latitudeOrientation = ConfigSelection(choices = [("north", _("North")), ("south", _("South"))], default = "north")
+				nim.advanced.lnb[x].powerMeasurement = ConfigYesNo(default=True)
+				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
+
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
-			nim.cable = configElement(cname + "cable", configSelection, 0, nimmgr.cablesList, False);
+			nim.cable = ConfigSelection(choices = nimmgr.cablesList)
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
 			list = []
 			for x in nimmgr.terrestrialsList:
 				list.append(x[0])
-			nim.terrestrial = configElement(cname + "terrestrial", configSelection, 0, list, False);
-			nim.terrestrial_5V = configElement(cname + "terrestrial_5V", configSelection, 1, (("on", _("On")), ("off", _("Off"))), True);
+			nim.terrestrial = ConfigSelection(choices = list)
+			nim.terrestrial_5V = ConfigOnOff()
 		else:
 			print "pls add support for this frontend type!"		
+#			assert False
 
 	nimmgr.sec = SecConfigure(nimmgr)
 

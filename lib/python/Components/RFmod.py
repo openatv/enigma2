@@ -25,12 +25,12 @@ class RFmod:
 def InitRFmod():
 
 	config.rfmod = ConfigSubsection();
-	config.rfmod.enable = configElement("config.rfmod.enable", configSelection, 1, (("enable", _("Enable")), ("disable", _("Disable"))) );
-	config.rfmod.test = configElement("config.rfmod.test", configSelection, 0, (("disable", _("Disable")), ("enable", _("Enable"))) );
-	config.rfmod.sound = configElement("config.rfmod.sound", configSelection, 0, (("enable", _("Enable")), ("disable", _("Disable"))) );
-	config.rfmod.soundcarrier = configElement("config.rfmod.soundcarrier", configSelection, 1, ("4.5 MHz", "5.5 MHz", "6.0 MHz", "6.5 MHz") );
-	config.rfmod.channel = configElement("config.rfmod.channel", configSelection, 36 - RFMOD_CHANNEL_MIN, tuple(["%d" % x for x in range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX)]))
-	config.rfmod.finetune = configElement("config.rfmod.finetune", configSlider, 5, (1, 10));
+	config.rfmod.enable = ConfigOnOff(default=False)
+	config.rfmod.test = ConfigOnOff(default=False)
+	config.rfmod.sound = ConfigOnOff(default=True)
+	config.rfmod.soundcarrier = ConfigSelection(choices=[("4500","4.5 MHz"), ("5500", "5.5 MHz"), ("6000", "6.0 MHz"), ("6500", "6.5 MHz")], default="5500")
+	config.rfmod.channel = ConfigSelection(default = "36", choices = ["%d" % x for x in range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX)])
+	config.rfmod.finetune = ConfigSlider(default=5, limits=(1, 10))
 
 	iRFmod = RFmod()
 
@@ -41,9 +41,9 @@ def InitRFmod():
 	def setSoundFunction(configElement):
 		iRFmod.setSoundFunction(configElement.value);
 	def setSoundCarrier(configElement):
-		iRFmod.setSoundCarrier(configElement.value);
+		iRFmod.setSoundCarrier(int(configElement.value));
 	def setChannel(configElement):
-		iRFmod.setChannel(configElement.value + RFMOD_CHANNEL_MIN);
+		iRFmod.setChannel(int(configElement.value));
 	def setFinetune(configElement):
 		iRFmod.setFinetune(configElement.value - 5);
 

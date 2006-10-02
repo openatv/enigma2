@@ -4,6 +4,8 @@ import RecordTimer
 import NavigationInstance
 import ServiceReference
 
+from time import time
+
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
 	def __init__(self):

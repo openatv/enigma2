@@ -1,6 +1,5 @@
 from Wizard import Wizard, wizardManager
 
-from Components.config import configElementBoolean, config
 from Components.Pixmap import *
 
 from LanguageSelection import LanguageSelection

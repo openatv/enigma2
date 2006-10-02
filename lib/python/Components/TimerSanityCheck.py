@@ -1,4 +1,3 @@
-from Components.config import config
 from Components.NimManager import nimmanager
 from time import localtime
 

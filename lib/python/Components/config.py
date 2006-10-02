@@ -1,624 +1,840 @@
-from time import *
+import time
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import *
+from Tools.Directories import resolveFilename, SCOPE_CONFIG
 
-class configFile:
+
+# ConfigElement, the base class of all ConfigElements.
+
+# it stores:
+#   value    the current value, usefully encoded.
+#            usually a property which retrieves _value,
+#            and maybe does some reformatting
+#   _value   the value as it's going to be saved in the configfile,
+#            though still in non-string form.
+#            this is the object which is actually worked on.
+#   default  the initial value. If _value is equal to default,
+#            it will not be stored in the config file
+#   saved_value is a text representation of _value, stored in the config file
+#
+# and has (at least) the following methods:
+#   save()   stores _value into saved_value, 
+#            (or stores 'None' if it should not be stored)
+#   load()   loads _value from saved_value, or loads
+#            the default if saved_value is 'None' (default)
+#            or invalid.
+#
+class ConfigElement(object):
 	def __init__(self):
-		self.changed = 0
-		self.configElements = { }
-		try:
-			self.file = open(resolveFilename(SCOPE_CONFIG, "config"))
-		except IOError:
-			print "cannot open config file"
-			return 
-		
-		while 1:
-			line = self.file.readline()
-			if line == "":
-				break
-			
-			if line.startswith("#"):		#skip comments
-				continue	
-				
-			self.addElement(line)
-		self.file.close()
+		object.__init__(self)
+		self.saved_value = None
+		self.save_disabled = False
+		self.notifiers = []
+		self.enabled = True
 
-	def addElement(self, line):
-		x = line.find("=")
-		if x > -1:
-			self.configElements[line[:x]] = line[x + 1:-1]
+	# you need to override this to do input validation
+	def setValue(self, value):
+		self._value = value
+		self.changed()
 
-	def getKey(self, key):
-		return self.configElements[key]
+	def getValue(self):
+		return self._value
+	
+	value = property(getValue, setValue)
 
-	def setKey(self, key, value, isDefaultKey=False):
-		self.changed = 1
-		if isDefaultKey and self.configElements.has_key(key):
-			del self.configElements[key]
+	# you need to override this if self.value is not a string
+	def fromstring(self, value):
+		return value
+
+	# you can overide this for fancy default handling
+	def load(self):
+		if self.saved_value is None:
+			self.value = self.default
 		else:
-			self.configElements[key] = value
+			self.value = self.fromstring(self.saved_value)
 
-	def getResolvedKey(self, key):
-		str = self.configElements[key]
-		if len(str):
-			pos = str.find('*')
-			if pos != -1:
-				str = str[pos+1:]
-				pos = str.find('*')
-				if pos != -1:
-					return str[:pos]
-			return str
+	def tostring(self, value):
+		return str(value)
+
+	# you need to override this if str(self.value) doesn't work
+	def save(self):
+		if self.save_disabled or self.value == self.default:
+			self.saved_value = None
+		else:
+			self.saved_value = self.tostring(self.value)
+
+	def cancel(self):
+		self.load()
+
+	def changed(self):
+		for x in self.notifiers:
+			x(self)
+			
+	def addNotifier(self, notifier):
+		assert callable(notifier), "notifiers must be callable"
+		self.notifiers.append(notifier)
+
+	def disableSave(self):
+		self.save_disabled = True
+
+	def __call__(self, selected):
+		return self.getMulti(selected)
+
+	def helpWindow(self):
 		return None
 
-	def save(self):
-		if self.changed == 0:		#no changes, so no write to disk needed
-			return
-			
-		fileHandle = open(resolveFilename(SCOPE_CONFIG, "config"), "w")
+KEY_LEFT = 0
+KEY_RIGHT = 1
+KEY_OK = 2
+KEY_DELETE = 3
+KEY_TIMEOUT = 4
+KEY_NUMBERS = range(12, 12+10)
+KEY_0 = 12
+KEY_9 = 12+9
+
+def getKeyNumber(key):
+	assert key in KEY_NUMBERS
+	return key - KEY_0
+
+#
+# ConfigSelection is a "one of.."-type.
+# it has the "choices", usually a list, which contains
+# (id, desc)-tuples (or just only the ids, in case the id
+# will be used as description)
+#
+# all ids MUST be plain strings.
+#
+class ConfigSelection(ConfigElement):
+	def __init__(self, choices, default = None):
+		ConfigElement.__init__(self)
+		self.choices = []
+		self.description = {}
 		
-		keys = self.configElements.keys()
-		keys.sort()
-		for x in keys:
-			wstr = x + "=" + self.configElements[x] + "\n"
-
-			fileHandle.write(wstr)
-
-		fileHandle.close()
+		if isinstance(choices, list):
+			for x in choices:
+				if isinstance(x, tuple):
+					self.choices.append(x[0])
+					self.description[x[0]] = x[1]
+				else:
+					self.choices.append(x)
+					self.description[x] = x
+		elif isinstance(choices, dict):
+			for (key, val) in choices.items():
+				self.choices.append(key)
+				self.description[key] = val
+		else:
+			assert False, "ConfigSelection choices must be dict or list!"
 		
-def currentConfigSelectionElement(element):
-	return element.vals[element.value][0]
+		assert len(self.choices), "you can't have an empty configselection"
 
-def getConfigSelectionElement(element, value):
-	count = 0
-	for x in element.vals:
-		if x[0] == value:
-			return count
-		count += 1
-	return -1
+		if default is None:
+			default = self.choices[0]
 
-class configSelection:
-	def __init__(self, parent):
-		self.parent = parent
+		assert default in self.choices, "default must be in choice list, but " + repr(default) + " is not!"
+		for x in self.choices:
+			assert isinstance(x, str), "ConfigSelection choices must be strings"
 		
-	def checkValues(self):
-		if self.parent.value < 0:
-			self.parent.value = len(self.parent.vals) - 1	
-		elif(self.parent.value > (len(self.parent.vals) - 1)):
-			self.parent.value = 0
+		self.value = self.default = default
 
-	def cancel(self):
-		self.parent.reload()
-
-	def save(self):
-		self.parent.save()
-
-	def handleKey(self, key):
-		if key == config.key["prevElement"]:
-			self.parent.value = self.parent.value - 1
-		if key == config.key["nextElement"]:
-			self.parent.value = self.parent.value + 1
+	def setValue(self, value):
+		if value in self.choices:
+			self._value = value
+		else:
+			self._value = self.default
 		
-		self.checkValues()			
+		self.changed()
 
-		self.parent.change()
+	def tostring(self, val):
+		return (val, ','.join(self.choices))
 
-	def __call__(self, selected):			#needed by configlist
-		self.checkValues()
+	def getValue(self):
+		return self._value
 
-		returnValue = _(self.parent.vals[self.parent.value])
-		if not isinstance(returnValue, str):
-			returnValue = returnValue[1]
-
-		# FIXME: it's not really nice to translate this here.
-		# however, configSelections are persistent.
-		
-		# WORKAROUND: don't translate ""
-		if returnValue:
-			returnValue = _(returnValue)
-		
-		return ("text", returnValue)
-		
-class configDateTime:
-	def __init__(self, parent):
-		self.parent = parent
-		
-	def checkValues(self):
-		pass
-#		if self.parent.value < 0:
-			#self.parent.value = 0	
-
-		#if(self.parent.value >= (len(self.parent.vals) - 1)):
-			#self.parent.value = len(self.parent.vals) - 1
-
-	def cancel(self):
-		self.parent.reload()
-
-	def save(self):
-		self.parent.save()
-
-	def handleKey(self, key):
-		if key == config.key["prevElement"]:
-			self.parent.value = self.parent.value - self.parent.vals[1]
-		if key == config.key["nextElement"]:
-			self.parent.value = self.parent.value + self.parent.vals[1]
-		
-		self.checkValues()
-
-		self.parent.change()	
-
-	def __call__(self, selected):			#needed by configlist
-		self.checkValues()
-		return ("text", strftime(self.parent.vals[0], localtime(self.parent.value)))
+	value = property(getValue, setValue)
 	
-class configSatlist:
-	def __init__(self, parent):
-		self.parent = parent
+	def getIndex(self):
+		return self.choices.index(self.value)
+	
+	index = property(getIndex)
 
-	def checkValues(self):
-		if self.parent.value < 0:
-			self.parent.value = 0	
+	# GUI
+	def handleKey(self, key):
+		nchoices = len(self.choices)
+		i = self.choices.index(self.value)
+		if key == KEY_LEFT:
+			self.value = self.choices[(i + nchoices - 1) % nchoices]
+		elif key == KEY_RIGHT:
+			self.value = self.choices[(i + 1) % nchoices]
+		elif key == KEY_TIMEOUT:
+			self.timeout()
+			return
 
-		if(self.parent.value >= (len(self.parent.vals) - 1)):
-			self.parent.value = len(self.parent.vals) - 1
-			
-	def cancel(self):
-		self.parent.reload()
+	def getMulti(self, selected):
+		return ("text", self.description[self.value])
 
-	def save(self):
-		self.parent.save()
+	# HTML
+	def getHTML(self, id):
+		res = ""
+		for v in self.choices:
+			if self.value == v:
+				checked = 'checked="checked" '
+			else:
+				checked = ''
+			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + self.description[v] + "</input></br>\n"
+		return res;
+
+	def unsafeAssign(self, value):
+		# setValue does check if value is in choices. This is safe enough.
+		self.value = value
+
+# a binary decision.
+#
+# several customized versions exist for different
+# descriptions.
+#
+class ConfigBoolean(ConfigElement):
+	def __init__(self, default = False, descriptions = {False: "false", True: "true"}):
+		ConfigElement.__init__(self)
+		self.descriptions = descriptions
+		self.value = self.default = default
+	def handleKey(self, key):
+		if key in [KEY_LEFT, KEY_RIGHT]:
+			self.value = not self.value
+
+	def getMulti(self, selected):
+		return ("text", _(self.descriptions[self.value]))
+
+ 	def tostring(self, value):
+		if not value:
+			return "false"
+		else:
+			return "true"
+
+	def fromstring(self, val):
+		if val == "true":
+			return True
+		else:
+			return False
+
+	def getHTML(self, id):
+		if self.value:
+			checked = ' checked="checked"'
+		else:
+			checked = ''
+		return '<input type="checkbox" name="' + id + '" value="1" ' + checked + " />"
+
+	# this is FLAWED. and must be fixed.
+	def unsafeAssign(self, value):
+		if value == "1":
+			self.value = True
+		else:
+			self.value = False
+
+class ConfigYesNo(ConfigBoolean):
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
+
+class ConfigOnOff(ConfigBoolean):
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")})
+
+class ConfigEnableDisable(ConfigBoolean):
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disable"), True: _("enable")})
+
+class ConfigDateTime(ConfigElement):
+	def __init__(self, default, formatstring, increment = 86400):
+		ConfigElement.__init__(self)
+		self.increment = increment
+		self.formatstring = formatstring
+		self.value = self.default = int(default)
 
 	def handleKey(self, key):
-		if key == config.key["prevElement"]:
-			self.parent.value = self.parent.value - 1
-		if key == config.key["nextElement"]:
-			self.parent.value = self.parent.value + 1
+		if key == KEY_LEFT:
+			self.value = self.value - self.increment
+		if key == KEY_RIGHT:
+			self.value = self.value + self.increment
+
+	def getMulti(self, selected):
+		return ("text", time.strftime(self.formatstring, time.localtime(self.value)))
+
+	def fromstring(self, val):
+		return int(val)
+
+# *THE* mighty config element class
+#
+# allows you to store/edit a sequence of values.
+# can be used for IP-addresses, dates, plain integers, ...
+# several helper exist to ease this up a bit.
+#
+class ConfigSequence(ConfigElement):
+	def __init__(self, seperator, limits, censor_char = "", default = None):
+		ConfigElement.__init__(self)
+		assert isinstance(limits, list) and len(limits[0]) == 2, "limits must be [(min, max),...]-tuple-list"
+		assert censor_char == "" or len(censor_char) == 1, "censor char must be a single char (or \"\")"
+		#assert isinstance(default, list), "default must be a list"
+		#assert isinstance(default[0], int), "list must contain numbers"
+		#assert len(default) == len(limits), "length must match"
+
+		self.marked_pos = 0
+		self.seperator = seperator
+		self.limits = limits
+		self.censor_char = censor_char
 		
-		self.checkValues()			
+		self.value = self.default = default
 
-		self.parent.change()	
-
-	def __call__(self, selected):			#needed by configlist
-		self.checkValues()
-		#fixme
-		return ("text", str(self.parent.vals[self.parent.value][0]))
-
-class configSequenceArg:
-	def get(self, type, args = ()):
-		# configsequencearg.get ("IP")
-		if (type == "IP"):
-			return (("."), [(0,255),(0,255),(0,255),(0,255)], "")
-		# configsequencearg.get ("MAC")
-		if (type == "POSITION"):
-			return ((","), [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], "")
-		if (type == "MAC"):
-			return ((":"), [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], "")
-		# configsequencearg.get ("CLOCK")
-		if (type == "CLOCK"):
-			return ((":"), [(0,23),(0,59)], "")
-		# configsequencearg.get("INTEGER", (min, max)) => x with min <= x <= max
-		if (type == "INTEGER"):
-			return ((":"), [args], "")
-		# configsequencearg.get("PINCODE", (number, "*")) => pin with number = length of pincode and "*" as numbers shown as stars
-		# configsequencearg.get("PINCODE", (number, "")) => pin with number = length of pincode and numbers shown
-		if (type == "PINCODE"):
-			return ((":"), [(0, (10**args[0])-1)], args[1])
-		# configsequencearg.get("FLOAT", [(min,max),(min1,max1)]) => x.y with min <= x <= max and min1 <= y <= max1
-		if (type == "FLOAT"):
-			return (("."), args, "")
-		
-	def getFloat(self, element):
-		return float(("%d.%0" + str(len(str(element.vals[1][1][1]))) + "d") % (element.value[0], element.value[1]))
-
-configsequencearg = configSequenceArg()
-		
-class configSequence:
-	def __init__(self, parent):
-		self.parent = parent
-		self.markedPos = 0
-		self.seperator = self.parent.vals[0]
-		self.valueBounds = self.parent.vals[1]
-		self.censorChar = self.parent.vals[2]
-
-	def checkValues(self):
-		maxPos = 0
+	def validate(self):
+		max_pos = 0
 		num = 0
-		for i in self.parent.value:
-			maxPos += len(str(self.valueBounds[num][1]))
-			while (self.valueBounds[num][0] > self.parent.value[num]):
-				self.parent.value[num] += 1
+		for i in self._value:
+			max_pos += len(str(self.limits[num][1]))
 
-			while (self.valueBounds[num][1] < self.parent.value[num]):
-				self.parent.value[num] -= 1
-				
-#			if (self.valueBounds[num][0] <= i <= self.valueBounds[num][1]):
-				#pass
-			#else:
-				#self.parent.value[num] = self.valueBounds[num][0]
+			while self._value[num] < self.limits[num][0]:
+				self.value[num] += 1
+
+			while self._value[num] > self.limits[num][1]:
+				self._value[num] -= 1
+
 			num += 1
-		
-		if self.markedPos >= maxPos:
-			self.markedPos = maxPos - 1
-		if self.markedPos < 0:
-			self.markedPos = 0
-			
-	def cancel(self):
-		self.parent.reload()
 
-	def save(self):
-		self.parent.save()
+		if self.marked_pos >= max_pos:
+			self.marked_pos = max_pos - 1
+
+		if self.marked_pos < 0:
+			self.marked_pos = 0
+
+	def validatePos(self):
+		if self.marked_pos < 0:
+			self.marked_pos = 0
+			
+		total_len = sum([len(str(x[1])) for x in self.limits])
+
+		if self.marked_pos >= total_len:
+			self.marked_pos = total_len - 1
 
 	def handleKey(self, key):
-		#this will no change anything on the value itself
-		#so we can handle it here in gui element
-		if key == config.key["prevElement"]:
-			self.markedPos -= 1
-		if key == config.key["nextElement"]:
-			self.markedPos += 1
+		if key == KEY_LEFT:
+			self.marked_pos -= 1
+			self.validatePos()
+
+		if key == KEY_RIGHT:
+			self.marked_pos += 1
+			self.validatePos()
 		
-		if key >= config.key["0"] and key <= config.key["9"]:
-			self.blockLen = []
-			for x in self.valueBounds:
-				self.blockLen.append(len(str(x[1])))
-				
+		if key in KEY_NUMBERS:
+			print "is number"
+			block_len = []
+			for x in self.limits:
+				block_len.append(len(str(x[1])))
+			
+			total_len = sum(block_len)
+
 			pos = 0
 			blocknumber = 0
-			self.blockLenTotal = [0,]
-			for x in self.blockLen:
-				pos += self.blockLen[blocknumber]
-				self.blockLenTotal.append(pos)
-				if (pos - 1 >= self.markedPos):
+			block_len_total = [0, ]
+			for x in block_len:
+				pos += block_len[blocknumber]
+				block_len_total.append(pos)
+				if pos - 1 >= self.marked_pos:
 					pass
 				else:
 					blocknumber += 1
-					
-			number = 9 - config.key["9"] + key
+
+			number = getKeyNumber(key)
+			
 			# length of numberblock
-			numberLen = len(str(self.valueBounds[blocknumber][1]))
+			number_len = len(str(self.limits[blocknumber][1]))
+
 			# position in the block
-			posinblock = self.markedPos - self.blockLenTotal[blocknumber]
+			posinblock = self.marked_pos - block_len_total[blocknumber]
 			
-			oldvalue = self.parent.value[blocknumber]
-			olddec = oldvalue % 10 ** (numberLen - posinblock) - (oldvalue % 10 ** (numberLen - posinblock - 1))
-			newvalue = oldvalue - olddec + (10 ** (numberLen - posinblock - 1) * number)
+			oldvalue = self._value[blocknumber]
+			olddec = oldvalue % 10 ** (number_len - posinblock) - (oldvalue % 10 ** (number_len - posinblock - 1))
+			newvalue = oldvalue - olddec + (10 ** (number_len - posinblock - 1) * number)
 			
-			self.parent.value[blocknumber] = newvalue
-			self.markedPos += 1
+			self._value[blocknumber] = newvalue
+			self.marked_pos += 1
 		
-		self.checkValues()
+			self.validate()
+			self.changed()
+			
+			print "res:", self._value
 
-		#FIXME: dont call when press left/right
-		self.parent.change()	
-
-	def __call__(self, selected):			#needed by configlist
+	def getMulti(self, selected):
 		value = ""
-		mPos = self.markedPos
+		mPos = self.marked_pos
 		num = 0;
-		for i in self.parent.value:
+		for i in self._value:
 			if len(value):	#fixme no heading separator possible
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
-				
-			#diff = 	self.valueBounds - len(str(i))
-			#if diff > 0:
-				## if this helps?!
-				#value += " " * diff
-			if (self.censorChar == ""):
-				value += ("%0" + str(len(str(self.valueBounds[num][1]))) + "d") % i
+
+			if self.censor_char == "":
+				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
 			else:
-				value += (self.censorChar * len(str(self.valueBounds[num][1])))
+				value += (self.censorChar * len(str(self.limits[num][1])))
 			num += 1
+
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
-		if (self.parent.enabled == True):
+		if self.enabled:
 			return ("mtext"[1-selected:], value, [mPos])
 		else:
 			return ("text", value)
 
-class configNothing:
-	def __init__(self, parent):
-		self.parent = parent
-		self.markedPos = 0
-
-	def cancel(self):
-		self.parent.reload()
-
-	def save(self):
-		self.parent.save()
-		
-	def nextEntry(self):
-		self.parent.vals[1](self.parent.getConfigPath())
-
-	def handleKey(self, key):
-		pass
-
-	def __call__(self, selected):			#needed by configlist
-		return ("text", "")
-
-class configText(NumericalTextInput):
-	# used as first parameter
-	# is the text of a fixed size or is the user able to extend the length of the text
-	extendableSize = 1
-	fixedSize = 2
-
-	def __init__(self, parent):
-		NumericalTextInput.__init__(self, self.nextEntry)
-		self.parent = parent
-		self.markedPos = 0
-		self.mode = self.parent.vals[0]
-		try:
-			self.Text = self.parent.value.decode("utf-8")
-		except UnicodeDecodeError:
-			self.Text = self.parent.value
-			print "utf8 kaputt!"
-
-	def checkValues(self):
-		if (self.markedPos < 0):
-			self.markedPos = 0
-		if (self.markedPos >= len(self.Text)):
-			self.markedPos = len(self.Text) - 1
-
-	def cancel(self):
-		self.parent.reload()
-
-	def save(self):
-		self.parent.save()
-
-	def nextEntry(self):
-		self.parent.vals[1](self.parent.getConfigPath())
-
-	def handleKey(self, key):
-		#this will no change anything on the value itself
-		#so we can handle it here in gui element
-		if key == config.key["delete"]:
-			self.Text = self.Text[0:self.markedPos] + self.Text[self.markedPos + 1:]
-			self.parent.value = self.Text.encode("utf-8")
-		elif key == config.key["prevElement"]:
-			self.nextKey()
-			self.markedPos -= 1
-		elif key == config.key["nextElement"]:
-			self.nextKey()
-			self.markedPos += 1
-			if (self.mode == self.extendableSize):
-				if (self.markedPos >= len(self.Text)):
-					self.Text = self.Text.ljust(len(self.Text) + 1)
-					self.parent.value = self.Text.encode("utf-8")
-		elif key >= config.key["0"] and key <= config.key["9"]:
-			number = 9 - config.key["9"] + key
-			self.Text = self.Text[0:self.markedPos] + self.getKey(number) + self.Text[self.markedPos + 1:]
-			self.parent.value = self.Text.encode("utf-8")
-		self.checkValues()
-		self.parent.change()
-
-	def __call__(self, selected):			#needed by configlist
-		return ("mtext"[1-selected:], self.parent.value, [self.markedPos])
-
-class configValue:
-	def __init__(self, obj):
-		self.obj = obj
-		
-	def __str__(self):
-		return self.obj
-
-class Config:
-	def __init__(self):
-		self.key = { "choseElement": 0,
-					 "prevElement": 1,
-					 "nextElement": 2,
-					 "delete": 3,
-					 "0": 10,
-					 "1": 11,
-					 "2": 12,
-					 "3": 13,
-					 "4": 14,
-					 "5": 15,
-					 "6": 16,
-					 "7": 17,
-					 "8": 18,
-					 "9": 19 }
-		
-config = Config();
-
-configfile = configFile()
-
-class configSlider:
-	def __init__(self, parent):
-		self.parent = parent
-
-	def cancel(self):
-		self.parent.reload()
-
-	def save(self):
-		self.parent.save()
-
-	def checkValues(self):
-		if self.parent.value < 0:
-			self.parent.value = 0	
-
-		if self.parent.value > self.parent.vals[1]:
-			self.parent.value = self.parent.vals[1]
-
-	def handleKey(self, key):
-		if key == config.key["prevElement"]:
-			self.parent.value = self.parent.value - self.parent.vals[0]
-		if key == config.key["nextElement"]:
-			self.parent.value = self.parent.value + self.parent.vals[0]
-					
-		self.checkValues()	
-		self.parent.change()	
-
-	def __call__(self, selected):			#needed by configlist
-		self.checkValues()
-		return ("slider", self.parent.value, self.parent.vals[1])
-
-class ConfigSubsection:
-	def __init__(self):
-		pass
-
-class configElement:
-
-	def getIndexbyEntry(self, data):
-		cnt = 0;
-		tcnt = -1; #for defaultval
-		for x in self.vals:
-			if int(x[1]) == int(data):
-					return cnt
-			if int(x[1]) == int(self.defaultValue):
-					tcnt = cnt
-			cnt += 1
-		if tcnt != -1:
-			return tcnt
-		return 0	#prevent bigger then array
-
-	def datafromFile(self, control, data):
-		if control == configSlider:
-			return int(data)
-		elif control == configSelection:
-			try:
-				return int(data)
-			except:
-				for x in data.split(":"):
-					if x[0] == "*":
-						count = 0
-						for y in self.vals:
-							if y[0] == x[1:-1]:
-								return count
-							count += 1
-				return self.defaultValue
-		elif control == configDateTime:
-			return int(data)
-		elif control == configText:
-			return str(data)
-		elif control == configSequence:
-			list = [ ]
-			part = data.split(self.vals[0])
-			for x in part:
-				list.append(int(x))
-			return list
-		elif control == configSatlist:
-			return self.getIndexbyEntry(data)
-		else: 
-			return ""	
-
-	def datatoFile(self, control, data):
-		if control == configSlider:
-			return str(data)
-		elif control == configSelection:
-			if len(self.vals) < data + 1:
-				return "0"
-			if isinstance(self.vals[data], str):
-				return str(data)
-			else:
-				confList = []
-				count = 0
-				for x in self.vals:
-					if count == data:
-						confList.append("*" + str(x[0] + "*"))
-					else:
-						confList.append(x[0])
-					count += 1
-				return ":".join(confList)
-			return str(data)
-		elif control == configDateTime:
-			return str(data)
-		elif control == configText:
-			return str(data.strip())
-		elif control == configSequence:
-#			print self.vals
-#			print self.value
-			try:
-				value = ""
-				count = 0
-				for i in data:
-					if value !="":
-						value += self.vals[0]
-					value += (("%0" + str(len(str(self.vals[1][count][1]))) + "d") % i)
-					count += 1
-					#value = ((len(data) * ("%d" + self.vals[0]))[0:-1]) % tuple(data)
-			except:	
-				value = str(data)	
-			return value
-		elif control == configSatlist:
-			return str(self.vals[self.value][1]);
-		else: 
-			return ""	
-
-	def loadData(self):
-		#print "load:" + self.configPath
-		try:
-			value = self.datafromFile(self.controlType, configfile.getKey(self.configPath))
-		except:		
-			value = ""
-
-		if value == "":
-			#print "value not found - using default"
-			if self.controlType == configSatlist:
-				self.value = self.getIndexbyEntry(self.defaultValue)
-			elif self.controlType == configSequence:
-				self.value = self.defaultValue[:]
-			else:
-				self.value = self.defaultValue
-
-			self.save()		#add missing value to dict
-		else:
-			#print "set val:" + str(value)
-			self.value = value
-
-		#is this right? activate settings after load/cancel and use default	
-		self.change()
-
-	def __init__(self, configPath, control, defaultValue, vals, saveDefaults = True):
-		self.configPath = configPath
-		self.defaultValue = defaultValue
-		self.controlType = control
-		self.vals = vals
-		self.notifierList = [ ]
-		self.enabled = True
-		self.saveDefaults = saveDefaults
-		self.loadData()		
-		
-	def getConfigPath(self):
-		return self.configPath
+	def tostring(self, val):
+		return self.seperator.join([self.saveSingle(x) for x in val])
 	
-	def addNotifier(self, notifier):
-		self.notifierList.append(notifier);
-		notifier(self);
+	def saveSingle(self, v):
+		return str(v)
 
-	def change(self):
-		for notifier in self.notifierList:
-			notifier(self)
+	def fromstring(self, value):
+		return [int(x) for x in self.saved_value.split(self.seperator)]
 
-	def reload(self):
-		self.loadData()
+class ConfigIP(ConfigSequence):
+	def __init__(self, default):
+		ConfigSequence.__init__(self, seperator = ".", limits = [(0,255),(0,255),(0,255),(0,255)], default = default)
+
+class ConfigMAC(ConfigSequence):
+	def __init__(self, default):
+		ConfigSequence.__init__(self, seperator = ":", limits = [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)], default = default)
+
+class ConfigPosition(ConfigSequence):
+	def __init__(self, default, args):
+		ConfigSequence.__init__(self, seperator = ",", limits = [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], default = default)
+
+class ConfigClock(ConfigSequence):
+	def __init__(self, default):
+		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = default)
+
+class ConfigInteger(ConfigSequence):
+	def __init__(self, default, limits):
+		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
+	
+	# you need to override this to do input validation
+	def setValue(self, value):
+		self._value = [value]
+		self.changed()
+
+	def getValue(self):
+		return self._value[0]
+	
+	value = property(getValue, setValue)
+
+	def fromstring(self, value):
+		return int(value)
+
+	def tostring(self, value):
+		return str(value)
+
+class ConfigPIN(ConfigSequence):
+	def __init__(self, default, len = 4, censor = ""):
+		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = [default])
+
+class ConfigFloat(ConfigSequence):
+	def __init__(self, default, limits):
+		ConfigSequence.__init__(self, seperator = ".", limits = limits, default = default)
+
+	def getFloat(self):
+		return float(self.value[1] / float(self.limits[1][1] + 1) + self.value[0])
+
+	float = property(getFloat)
+
+# an editable text...
+class ConfigText(ConfigElement, NumericalTextInput):
+	def __init__(self, default = "", fixed_size = True):
+		ConfigElement.__init__(self)
+		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
+		
+		self.marked_pos = 0
+		self.fixed_size = fixed_size
+
+		self.value = self.default = default
+
+	def validateMarker(self):
+		if self.marked_pos < 0:
+			self.marked_pos = 0
+		if self.marked_pos >= len(self.text):
+			self.marked_pos = len(self.text) - 1
+
+	#def nextEntry(self):
+	#	self.vals[1](self.getConfigPath())
+
+	def handleKey(self, key):
+		# this will no change anything on the value itself
+		# so we can handle it here in gui element
+		if key == KEY_DELETE:
+			self.text = self.text[0:self.marked_pos] + self.text[self.marked_pos + 1:]
+		elif key == KEY_LEFT:
+			self.marked_pos -= 1
+		elif key == KEY_RIGHT:
+			self.marked_pos += 1
+			if not self.fixed_size:
+				if self.marked_pos >= len(self.text):
+					self.text = self.text.ljust(len(self.text) + 1)
+		elif key in KEY_NUMBERS:
+			number = self.getKey(getKeyNumber(key))
+			self.text = self.text[0:self.marked_pos] + str(number) + self.text[self.marked_pos + 1:]
+		elif key == KEY_TIMEOUT:
+			self.timeout()
+			return
+
+		self.validateMarker()
+		self.changed()
+
+	def nextFunc(self):
+		self.marked_pos += 1
+		self.validateMarker()
+		self.changed()
+
+	def getValue(self):
+		return self.text.encode("utf-8")
+		
+	def setValue(self, val):
+		try:
+			self.text = val.decode("utf-8")
+		except UnicodeDecodeError:
+			self.text = val
+			print "Broken UTF8!"
+
+	value = property(getValue, setValue)
+	_value = property(getValue, setValue)
+
+	def getMulti(self, selected):
+		return ("mtext"[1-selected:], self.value, [self.marked_pos])
+
+	def helpWindow(self):
+		print "helpWindow for text!"
+
+		from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
+		return (NumericalTextInputHelpDialog,self)
+
+	def getHTML(self, id):
+		return '<input type="text" name="' + id + '" value="' + self.value + '" /><br>\n'
+
+	def unsafeAssign(self, value):
+		self.value = str(value)
+
+# a slider.
+class ConfigSlider(ConfigElement):
+	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
+		ConfigElement.__init__(self)
+		self.value = self.default = default
+		self.min = limits[0]
+		self.max = limits[1]
+		self.increment = increment
+
+	def checkValues(self):
+		if self.value < self.min:
+			self.value = self.min
+
+		if self.value > self.max:
+			self.value = self.max
+
+	def handleKey(self, key):
+		if key == KEY_LEFT:
+			self.value -= self.increment
+		elif key == KEY_RIGHT:
+			self.value += self.increment
+		else:
+			return
+
+		self.checkValues()
+		self.changed()
+
+	def getMulti(self, selected):
+		self.checkValues()
+		return ("slider", self.value, self.max)
+
+	def fromstring(self, value):
+		return int(value)
+
+# a satlist. in fact, it's a ConfigSelection.
+class ConfigSatlist(ConfigSelection):
+	def __init__(self, list, default = None):
+		if default is not None:
+			default = str(default)
+		if list == [ ]:
+			list = [0, "N/A"]
+		ConfigSelection.__init__(self, choices = [(str(orbpos), desc) for (orbpos, desc) in list], default = default)
+
+	def getOrbitalPosition(self):
+		return int(self.value)
+	
+	orbital_position = property(getOrbitalPosition)
+
+# nothing.
+class ConfigDummy(ConfigSelection):
+	def __init__(self):
+		ConfigSelection.__init__(self, choices = [""])
+
+# until here, 'saved_value' always had to be a *string*.
+# now, in ConfigSubsection, and only there, saved_value
+# is a dict, essentially forming a tree.
+#
+# config.foo.bar=True
+# config.foobar=False
+#
+# turns into:
+# config.saved_value == {"foo": {"bar": "True"}, "foobar": "False"}
+#
+
+
+class ConfigSubsectionContent(object):
+	pass
+
+# we store a backup of the loaded configuration
+# data in self.stored_values, to be able to deploy
+# them when a new config element will be added,
+# so non-default values are instantly available
+
+# A list, for example:
+# config.dipswitches = ConfigSubList()
+# config.dipswitches.append(ConfigYesNo())
+# config.dipswitches.append(ConfigYesNo())
+# config.dipswitches.append(ConfigYesNo())
+class ConfigSubList(list, object):
+	def __init__(self):
+		object.__init__(self)
+		list.__init__(self)
+		self.stored_values = {}
 
 	def save(self):
-		if self.controlType == configSatlist:
-			defaultValue = self.getIndexbyEntry(self.defaultValue)
-		else:
-			defaultValue = self.defaultValue
-		if self.value != defaultValue or self.saveDefaults:
-			configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value))
-		else:
-			try:
-				oldValue = configfile.getKey(self.configPath)
-			except:
-				oldValue = None
-			if oldValue is not None and oldValue != defaultValue:
-				configfile.setKey(self.configPath, self.datatoFile(self.controlType, self.value), True)
+		for x in self:
+			x.save()
+	
+	def load(self):
+		for x in self:
+			x.load()
 
-class configElement_nonSave(configElement):
-	def __init__(self, configPath, control, defaultValue, vals):
-		configElement.__init__(self, configPath, control, defaultValue, vals)
+	def getSavedValue(self):
+		res = {}
+		for i in range(len(self)):
+			sv = self[i].saved_value
+			if sv is not None:
+				res[str(i)] = sv
+		return res
+
+	def setSavedValue(self, values):
+		self.stored_values = dict(values)
+		for (key, val) in self.stored_values.items():
+			if int(key) < len(self):
+				self[int(key)].saved_value = val
+
+	saved_value = property(getSavedValue, setSavedValue)
+	
+	def append(self, item):
+		list.append(self, item)
+		i = str(len(self))
+		if i in self.stored_values:
+			item.saved_value = self.stored_values[i]
+			item.load()
+
+# same as ConfigSubList, just as a dictionary.
+# care must be taken that the 'key' has a proper
+# str() method, because it will be used in the config
+# file.
+class ConfigSubDict(dict, object):
+	def __init__(self):
+		object.__init__(self)
+		dict.__init__(self)
+		self.stored_values = {}
 
 	def save(self):
-		pass
+		for x in self.values():
+			x.save()
+	
+	def load(self):
+		for x in self.values():
+			x.load()
 
-def getConfigListEntry(description, element):
-	b = element
-	item = b.controlType(b)
-	return ((description, item))
+	def getSavedValue(self):
+		res = {}
+		for (key, val) in self.items():
+			if val.saved_value is not None:
+				res[str(key)] = val.saved_value
+		return res
 
-def configElementBoolean(name, default, texts=(_("Disable"), _("Enable"))):
-	return configElement(name, configSelection, default, texts)
+	def setSavedValue(self, values):
+		self.stored_values = dict(values)
+		for (key, val) in self.items():
+			if str(key) in self.stored_values:
+				val = self.stored_values[str(key)]
 
+	saved_value = property(getSavedValue, setSavedValue)
+
+	def __setitem__(self, key, item):
+		dict.__setitem__(self, key, item)
+		if str(key) in self.stored_values:
+			item.saved_value = self.stored_values[str(key)]
+			item.load()
+
+# Like the classes above, just with a more "native"
+# syntax.
+#
+# some evil stuff must be done to allow instant
+# loading of added elements. this is why this class
+# is so complex.
+#
+# we need the 'content' because we overwrite 
+# __setattr__.
+# If you don't understand this, try adding
+# __setattr__ to a usual exisiting class and you will.
+class ConfigSubsection(object):
+	def __init__(self):
+		object.__init__(self)
+		self.__dict__["content"] = ConfigSubsectionContent()
+		self.content.items = { }
+		self.content.stored_values = { }
+	
+	def __setattr__(self, name, value):
+		if name == "saved_value":
+			return self.setSavedValue(value)
+		self.content.items[name] = value
+		if name in self.content.stored_values:
+			#print "ok, now we have a new item,", name, "and have the following value for it:", self.content.stored_values[name]
+			value.saved_value = self.content.stored_values[name]
+			value.load()
+
+	def __getattr__(self, name):
+		return self.content.items[name]
+
+	def getSavedValue(self):
+		res = self.content.stored_values
+		for (key, val) in self.content.items.items():
+			if val.saved_value is not None:
+				res[key] = val.saved_value
+		return res
+
+	def setSavedValue(self, values):
+		values = dict(values)
+		
+		self.content.stored_values = values
+		
+		for (key, val) in self.content.items.items():
+			if key in values:
+				val.setSavedValue(values[key])
+
+	saved_value = property(getSavedValue, setSavedValue)
+
+	def save(self):
+		for x in self.content.items.values():
+			x.save()
+
+	def load(self):
+		for x in self.content.items.values():
+			x.load()
+
+# the root config object, which also can "pickle" (=serialize)
+# down the whole config tree.
+#
+# we try to keep non-existing config entries, to apply them whenever
+# a new config entry is added to a subsection
+# also, non-existing config entries will be saved, so they won't be
+# lost when a config entry disappears.
+class Config(ConfigSubsection):
+	def __init__(self):
+		ConfigSubsection.__init__(self)
+
+	def pickle_this(self, prefix, topickle, result):
+		for (key, val) in topickle.items():
+			name = prefix + "." + key
+			
+			if isinstance(val, dict):
+				self.pickle_this(name, val, result)
+			elif isinstance(val, tuple):
+				result.append(name + "=" + val[0]) # + " ; " + val[1])
+			else:
+				result.append(name + "=" + val)
+
+	def pickle(self):
+		result = [ ]
+		self.pickle_this("config", self.saved_value, result)
+		return '\n'.join(result) + "\n"
+
+	def unpickle(self, lines):
+		tree = { }
+		for l in lines:
+			if not len(l) or l[0] == '#':
+				continue
+			
+			n = l.find('=')
+			val = l[n+1:].strip()
+
+			names = l[:n].split('.')
+#			if val.find(' ') != -1:
+#				val = val[:val.find(' ')]
+
+			base = tree
+			
+			for n in names[:-1]:
+				base = base.setdefault(n, {})
+			
+			base[names[-1]] = val
+
+		# we inherit from ConfigSubsection, so ...
+		#object.__setattr__(self, "saved_value", tree["config"])
+		self.setSavedValue(tree["config"])
+
+	def saveToFile(self, filename):
+		f = open(filename, "w")
+		f.write(self.pickle())
+		f.close()
+
+	def loadFromFile(self, filename):
+		f = open(filename, "r")
+		self.unpickle(f.readlines())
+		f.close()
+
+config = Config()
 config.misc = ConfigSubsection()
+
+class ConfigFile:
+	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "config2")
+
+	def load(self):
+		try:
+			config.loadFromFile(self.CONFIG_FILE)
+		except IOError, e:
+			print "unable to load config (%s), assuming defaults..." % str(e)
+	
+	def save(self):
+		config.save()
+		config.saveToFile(self.CONFIG_FILE)
+	
+	def getResolvedKey(self, key):
+		return None # FIXME
+
+def NoSave(element):
+	element.disableSave()
+	return element
+
+configfile = ConfigFile()
+
+configfile.load()
+
+def getConfigListEntry(desc, config):
+	return (desc, config)
+
+#def _(x):
+#	return x
+#
+#config.bla = ConfigSubsection()
+#config.bla.test = ConfigYesNo()
+#config.nim = ConfigSubList()
+#config.nim.append(ConfigSubsection())
+#config.nim[0].bla = ConfigYesNo()
+#config.nim.append(ConfigSubsection())
+#config.nim[1].bla = ConfigYesNo()
+#config.nim[1].blub = ConfigYesNo()
+#config.arg = ConfigSubDict()
+#config.arg["Hello"] = ConfigYesNo()
+#
+#config.arg["Hello"].handleKey(KEY_RIGHT)
+#config.arg["Hello"].handleKey(KEY_RIGHT)
+#
+##config.saved_value
+#
+##configfile.save()
+#config.save()
+#print config.pickle()

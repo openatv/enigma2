@@ -1,6 +1,5 @@
 from Screen import Screen
 from Components.TimerList import TimerList, TimerEntryComponent
-from Components.ConfigList import ConfigList
 from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -10,7 +9,6 @@ from TimerEntry import TimerEntry, TimerLog
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from time import *
 from ServiceReference import ServiceReference
-from Components.config import *
 from Components.TimerSanityCheck import TimerSanityCheck
 
 class TimerEditList(Screen):

@@ -8,7 +8,7 @@ from Components.Label import Label
 
 from Components.HTMLComponent import *
 from Components.GUIComponent import *
-from Components.config import *
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0
 from Components.ConfigList import ConfigList
 
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
@@ -18,10 +18,10 @@ TYPE_CONFIG = 1
 MAX_NUM_CI = 4
 
 def InitCiConfig():
-	config.ci = [ ]
+	config.ci = ConfigSubList()
 	for slot in range(MAX_NUM_CI):
 		config.ci.append(ConfigSubsection())
-		config.ci[slot].canDescrambleMultipleServices = configElement("config.ci%d.canDescrambleMultipleServices"%(slot), configSelection, 0, (("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))))
+		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "auto")
 
 class CiMmi(Screen):
 	def __init__(self, session, slotid, action):
@@ -76,12 +76,12 @@ class CiMmi(Screen):
 			self.pinlength = entry[1]
 			if entry[3] == 1:
 				# masked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (self.pinlength, "*")))
-			else:				
+				x = ConfigPIN(len = self.pinlength, censor = "*")
+			else:
 				# unmasked pins:
-				x = configElement_nonSave("", configSequence, [1234], configsequencearg.get("PINCODE", (self.pinlength, "")))
+				x = ConfigPIN(len = self.pinlength)
 			self["subtitle"].setText(entry[2])
-			self.pin = getConfigListEntry("",x)
+			self.pin = getConfigListEntry("", x)
 			list.append( self.pin )
 			self["bottom"].setText(_("please press OK when ready"))
 
@@ -143,15 +143,15 @@ class CiMmi(Screen):
 
 	def keyNumberGlobal(self, number):
 		self.timer.stop()
-		self.keyConfigEntry(config.key[str(number)])
+		self.keyConfigEntry(KEY_0 + number)
 
 	def keyLeft(self):
 		self.timer.stop()
-		self.keyConfigEntry(config.key["prevElement"])
+		self.keyConfigEntry(KEY_LEFT)
 
 	def keyRight(self):
 		self.timer.stop()
-		self.keyConfigEntry(config.key["nextElement"])
+		self.keyConfigEntry(KEY_RIGHT)
 
 	def updateList(self, list):
 		List = self["entries"]
@@ -302,10 +302,10 @@ class CiSelection(Screen):
 			pass
 
 	def keyLeft(self):
-		self.keyConfigEntry(config.key["prevElement"])
+		self.keyConfigEntry(KEY_LEFT)
 
 	def keyRight(self):
-		self.keyConfigEntry(config.key["nextElement"])
+		self.keyConfigEntry(KEY_RIGHT)
 
 	def appendEntries(self, slot, state):
 		self.state[slot] = state

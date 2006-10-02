@@ -1,4 +1,4 @@
-from config import *
+from config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubsection, ConfigMAC
 
 import os
 from socket import *
@@ -14,7 +14,7 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		fp.write("auto eth0\n")
-		if (currentConfigSelectionElement(config.network.dhcp) == "yes"):
+		if config.network.dhcp.value:
 			fp.write("iface eth0 inet dhcp\n")
 		else:
 			fp.write("iface eth0 inet static\n")
@@ -84,6 +84,7 @@ class Network:
 		import os
 		os.system("/etc/init.d/networking restart")
 		config.network.ip.value = self.getCurrentIP()
+		config.network.ip.save()
 		
 	def setDHCP(self, useDHCP):
 		if (useDHCP):
@@ -140,22 +141,16 @@ iNetwork = Network()
 def InitNetwork():
 	ip = iNetwork.getCurrentIP()
 
-		
 	config.network = ConfigSubsection()
-	config.network.dhcp = configElement_nonSave("config.network.dhcp", configSelection, 1, (("no", _("no")), ("yes", _("yes"))))
-	config.network.ip = configElement_nonSave("config.network.ip", configSequence, ip, configsequencearg.get("IP"))
-	config.network.netmask = configElement_nonSave("config.network.netmask", configSequence, [255,255,255,0], configsequencearg.get("IP"))
-	config.network.gateway = configElement_nonSave("config.network.gateway", configSequence, [192,168,1,3], configsequencearg.get("IP"))
-	config.network.dns = configElement_nonSave("config.network.dns", configSequence, [192,168,1,3], configsequencearg.get("IP"))
-	config.network.mac = configElement_nonSave("config.network.mac", configSequence, [00,11,22,33,44,55], configsequencearg.get("MAC"))
+	config.network.dhcp = NoSave(ConfigYesNo(default=True))
+	config.network.ip = NoSave(ConfigIP(default=[0,0,0,0]))
+	config.network.netmask = NoSave(ConfigIP(default=[255,255,255,0]))
+	config.network.gateway = NoSave(ConfigIP(default=[192,168,1,3]))
+	config.network.dns = NoSave(ConfigIP(default=[192,168,1,3]))
+	config.network.mac = NoSave(ConfigMAC(default=[00,11,22,33,44,55]))
 
 	iNetwork.loadNetworkConfig()
 	
-	#FIXME using this till other concept for this is implemented
-	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes, sir", "you are my hero"))
-	#config.network.activate = configElement("config.network.activate", configSelection, 0, ("yes", "you are my hero"))
-
-
 	def writeNetworkConfig(configElement):
 		iNetwork.writeNetworkConfig()
 		

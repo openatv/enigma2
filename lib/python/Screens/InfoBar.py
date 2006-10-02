@@ -8,7 +8,7 @@ from ServiceReference import ServiceReference
 
 from Components.Sources.Clock import Clock
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.config import currentConfigSelectionElement, config
+from Components.config import config
 
 from Tools.Notifications import AddNotificationWithCallback
 
@@ -69,7 +69,7 @@ class InfoBar(InfoBarShowHide,
 		self.showTvChannelList(True)
 
 	def showRadio(self):
-		if currentConfigSelectionElement(config.usage.e1like_radio_mode) == "yes":
+		if config.usage.e1like_radio_mode.value:
 			self.showRadioChannelList(True)
 		else:
 			self.session.open(ChannelSelectionRadio)

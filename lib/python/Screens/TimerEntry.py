@@ -1,9 +1,9 @@
 from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import *
+from Components.config import ConfigSelection, ConfigText, ConfigSubList, ConfigSubsection, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.ConfigList import ConfigList
+from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.NimManager import nimmanager
@@ -16,7 +16,7 @@ from enigma import eEPGCache
 import time
 import datetime
 
-class TimerEntry(Screen):
+class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
@@ -28,93 +28,76 @@ class TimerEntry(Screen):
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "TextEntryActions"],
+		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"delete": self.keyDelete,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
 		}, -1)
 
 		self.list = []
-		self["config"] = ConfigList(self.list)
+		ConfigListScreen.__init__(self, self.list, session = session)
 		self.createSetup("config")
 
 	def createConfig(self):
-			config.timerentry = ConfigSubsection()
-			
-			if (self.timer.justplay):
-				justplay = 0
-			else:
-				justplay = 1
+			justplay = self.timer.justplay
 				
-			afterevent = { AFTEREVENT.NONE: 0, AFTEREVENT.DEEPSTANDBY: 1, AFTEREVENT.STANDBY: 2}[self.timer.afterEvent]
+			afterevent = { AFTEREVENT.NONE: "nothing", AFTEREVENT.DEEPSTANDBY: "deepstandby", AFTEREVENT.STANDBY: "standby"}[self.timer.afterEvent]
+			
+			weekday_table = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
 			# calculate default values
 			day = []
 			weekday = 0
 			for x in range(0,7):
-				day.append(1)
-			if (self.timer.repeated != 0): # repeated
-				type = 1 # repeated
+				day.append(0)
+			if self.timer.repeated: # repeated
+				type = "repeated"
 				if (self.timer.repeated == 31): # Mon-Fri
-					repeated = 2 # Mon - Fri
+					repeated = "weekdays"
 				elif (self.timer.repeated == 127): # daily
-					repeated = 0 # daily
+					repeated = "daily"
 				else:
 					flags = self.timer.repeated
-					repeated = 3 # user defined
+					repeated = "user"
 					count = 0
 					for x in range(0, 7):
-						if (flags == 1): # weekly
+						if flags == 1: # weekly
 							print "Set to weekday " + str(x)
 							weekday = x
-						if (flags & 1 == 1): # set user defined flags
-							day[x] = 0
+						if flags & 1 == 1: # set user defined flags
+							day[x] = 1
 							count += 1
 						else:
-							day[x] = 1
+							day[x] = 0
 						flags = flags >> 1
-					if (count == 1):
-						repeated = 1 # weekly
+					if count == 1:
+						repeated = "weekly"
 			else: # once
-				type = 0
-				repeated = 0
-				weekday = (int(strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
-				day[weekday] = 0
+				type = "once"
+				repeated = None
+				weekday = (int(time.strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
+				day[weekday] = 1
 			
-			config.timerentry.justplay = configElement_nonSave("config.timerentry.justplay", configSelection, justplay, (("zap", _("zap")), ("record", _("record"))))
-			config.timerentry.afterevent = configElement_nonSave("config.timerentry.afterevent", configSelection, afterevent, (("nothing", _("do nothing")), ("deepstandby", _("go to deep standby"))))
-			config.timerentry.type = configElement_nonSave("config.timerentry.type", configSelection, type, (_("once"), _("repeated")))
-			config.timerentry.name = configElement_nonSave("config.timerentry.name", configText, self.timer.name, (configText.extendableSize, self.keyRightCallback))
-			config.timerentry.description = configElement_nonSave("config.timerentry.description", configText, self.timer.description, (configText.extendableSize, self.keyRightCallback))
+			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "record"}[justplay])
+			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("deepstandby", _("go to deep standby"))], default = afterevent)
+			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
+			self.timerentry_name = ConfigText(default = self.timer.name, fixed_size = False)
+			self.timerentry_description = ConfigText(default = self.timer.description, fixed_size = False)
 
-			config.timerentry.repeated = configElement_nonSave("config.timerentry.repeated", configSelection, repeated, (_("daily"), _("weekly"), _("Mon-Fri"), _("user defined")))
+			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 
-			config.timerentry.startdate = configElement_nonSave("config.timerentry.startdate", configDateTime, self.timer.begin, (_("%d.%B %Y"), 86400))
-			config.timerentry.starttime = configElement_nonSave("config.timerentry.starttime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))], configsequencearg.get("CLOCK"))
+			self.timerentry_startdate = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
+			self.timerentry_starttime = ConfigClock(default = [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))])
 
-			config.timerentry.enddate = configElement_nonSave("config.timerentry.enddate", configDateTime, self.timer.end, (_("%d.%B %Y"), 86400))
-			config.timerentry.endtime = configElement_nonSave("config.timerentry.endtime", configSequence, [int(time.strftime("%H", time.localtime(self.timer.end))), int(time.strftime("%M", time.localtime(self.timer.end)))], configsequencearg.get("CLOCK"))
+			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
+			self.timerentry_endtime = ConfigClock(default = [int(time.strftime("%H", time.localtime(self.timer.end))), int(time.strftime("%M", time.localtime(self.timer.end)))])
 
-			config.timerentry.weekday = configElement_nonSave("config.timerentry.weekday", configSelection, weekday, (_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday")))
+			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
-			config.timerentry.day = []
+			self.timerentry_day = ConfigSubList()
 			for x in range(0,7):
-				config.timerentry.day.append(configElement_nonSave("config.timerentry.day[" + str(x) + "]", configSelection, day[x], (_("yes"), _("no"))))
-
+				self.timerentry_day.append(ConfigYesNo(default = day[x]))
 
 			# FIXME some service-chooser needed here
 			servicename = "N/A"
@@ -122,79 +105,72 @@ class TimerEntry(Screen):
 				servicename = str(self.timer.service_ref.getServiceName())
 			except:
 				pass
-			config.timerentry.service = configElement_nonSave("config.timerentry.service", configSelection, 0, ((servicename),))
+			self.timerentry_service = ConfigSelection([servicename])
 			
-			config.timerentry.startdate.addNotifier(self.checkDate)
-			config.timerentry.enddate.addNotifier(self.checkDate)
+			self.timerentry_startdate.addNotifier(self.checkDate)
+			self.timerentry_enddate.addNotifier(self.checkDate)
 
 	def checkDate(self, configElement):
-		if (configElement.getConfigPath() == "config.timerentry.startdate"):
-			if (config.timerentry.enddate.value < config.timerentry.startdate.value):
-				config.timerentry.enddate.value = config.timerentry.startdate.value
-				config.timerentry.enddate.change()
-				try:
-					self["config"].invalidate(config.timerentry.enddate)
-				except: # FIXME: what could go wrong here?
-					pass
-		if (configElement.getConfigPath() == "config.timerentry.enddate"):
-			if (config.timerentry.enddate.value < config.timerentry.startdate.value):
-				config.timerentry.startdate.value = config.timerentry.enddate.value
-				config.timerentry.startdate.change()
-				try:
-					self["config"].invalidate(config.timerentry.startdate)
-				except: # FIXME: what could go wrong here?
-					pass
+		if configElement is self.timerentry_startdate:
+			if self.timerentry_enddate.value < self.timerentry_startdate.value:
+				self.timerentry_enddate.value = self.timerentry_startdate.value
+				self["config"].invalidate(self.timerentry_enddate)
+		if configElement is self.timerentry_enddate:
+			if (self.timerentry_enddate.value < self.timerentry_startdate.value):
+				self.timerentry_startdate.value = self.timerentry_enddate.value
+				self["config"].invalidate(self.timerentry_startdate)
 
 	def createSetup(self, widget):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Name"), config.timerentry.name))
-		self.list.append(getConfigListEntry(_("Description"), config.timerentry.description))
-		self.timerJustplayEntry = getConfigListEntry(_("Timer Type"), config.timerentry.justplay)
+		self.list.append(getConfigListEntry(_("Name"), self.timerentry_name))
+		self.list.append(getConfigListEntry(_("Description"), self.timerentry_description))
+		self.timerJustplayEntry = getConfigListEntry(_("Timer Type"), self.timerentry_justplay)
 		self.list.append(self.timerJustplayEntry)
-		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), config.timerentry.type)
+		self.timerTypeEntry = getConfigListEntry(_("Repeat Type"), self.timerentry_type)
 		self.list.append(self.timerTypeEntry)
 
-		if (config.timerentry.type.value == 0): # once
+		if self.timerentry_type.value == "once":
 			self.frequencyEntry = None
 		else: # repeated
-			self.frequencyEntry = getConfigListEntry(_("Frequency"), config.timerentry.repeated)
+			self.frequencyEntry = getConfigListEntry(_("Frequency"), self.timerentry_repeated)
 			self.list.append(self.frequencyEntry)
-			if (config.timerentry.repeated.value == 0): # daily
+			if self.timerentry_repeated.value == "daily":
 				pass
-			if (config.timerentry.repeated.value == 2): # Mon-Fri
+			if self.timerentry_repeated.value == "weekdays":
 				pass
-			if (config.timerentry.repeated.value == 1): # weekly
-				self.list.append(getConfigListEntry(_("Weekday"), config.timerentry.weekday))
+			if self.timerentry_repeated.value == "weekly":
+				self.list.append(getConfigListEntry(_("Weekday"), self.timerentry_weekday))
 
-			if (config.timerentry.repeated.value == 3): # user defined
-				self.list.append(getConfigListEntry(_("Monday"), config.timerentry.day[0]))
-				self.list.append(getConfigListEntry(_("Tuesday"), config.timerentry.day[1]))
-				self.list.append(getConfigListEntry(_("Wednesday"), config.timerentry.day[2]))
-				self.list.append(getConfigListEntry(_("Thursday"), config.timerentry.day[3]))
-				self.list.append(getConfigListEntry(_("Friday"), config.timerentry.day[4]))
-				self.list.append(getConfigListEntry(_("Saturday"), config.timerentry.day[5]))
-				self.list.append(getConfigListEntry(_("Sunday"), config.timerentry.day[6]))
+			if self.timerentry_repeated.value == "user":
+				self.list.append(getConfigListEntry(_("Monday"), self.timerentry_day[0]))
+				self.list.append(getConfigListEntry(_("Tuesday"), self.timerentry_day[1]))
+				self.list.append(getConfigListEntry(_("Wednesday"), self.timerentry_day[2]))
+				self.list.append(getConfigListEntry(_("Thursday"), self.timerentry_day[3]))
+				self.list.append(getConfigListEntry(_("Friday"), self.timerentry_day[4]))
+				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
+				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
 
-			#self.list.append(getConfigListEntry("StartDate", config.timerentry.startdate))
-#		self.list.append(getConfigListEntry("Weekday", config.timerentry.weekday))
+			#self.list.append(getConfigListEntry("StartDate", self.timerentry_startdate))
+#		self.list.append(getConfigListEntry("Weekday", self.timerentry_weekday))
 
-		if (config.timerentry.type.value == 0): # once
-			self.list.append(getConfigListEntry(_("Start"), config.timerentry.startdate))
-			self.list.append(getConfigListEntry(" ", config.timerentry.starttime))
+		if self.timerentry_type.value == "once":
+			self.list.append(getConfigListEntry(_("Start"), self.timerentry_startdate))
+			self.list.append(getConfigListEntry(" ", self.timerentry_starttime))
 		else:
-			self.list.append(getConfigListEntry(_("StartTime"), config.timerentry.starttime))
-		if (config.timerentry.type.value == 0): # once
-			if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
-				self.list.append(getConfigListEntry(_("End"), config.timerentry.enddate))
-				self.list.append(getConfigListEntry(" ", config.timerentry.endtime))
+			self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
+
+		if self.timerentry_type.value == "once":
+			if self.timerentry_justplay.value != "zap":
+				self.list.append(getConfigListEntry(_("End"), self.timerentry_enddate))
+				self.list.append(getConfigListEntry(" ", self.timerentry_endtime))
 		else:
-			if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
-				self.list.append(getConfigListEntry(_("EndTime"), config.timerentry.endtime))
+			if self.timerentry_justplay.value != "zap":
+				self.list.append(getConfigListEntry(_("EndTime"), self.timerentry_endtime))
 
-		if currentConfigSelectionElement(config.timerentry.justplay) != "zap":
-			self.list.append(getConfigListEntry(_("After event"), config.timerentry.afterevent))
+		if self.timerentry_justplay.value != "zap":
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
 
-		self.channelEntry = getConfigListEntry(_("Channel"), config.timerentry.service)
+		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
 		self.list.append(self.channelEntry)
 
 		self[widget].list = self.list
@@ -210,15 +186,12 @@ class TimerEntry(Screen):
 			self.createSetup("config")
 
 	def keyLeft(self):
-		if self["config"].getCurrent() == self.channelEntry:
+		if self["config"].getCurrent() is self.channelEntry:
 			self.keySelect()
 		else:
-			self["config"].handleKey(config.key["prevElement"])
+			ConfigListScreen.keyLeft(self)
 			self.newConfig()
 
-	def keyDelete(self):
-		self["config"].handleKey(config.key["delete"])
-			
 	def keyRightCallback(self, configPath):
 		currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
 		# check if we are still on the same config entry
@@ -226,10 +199,10 @@ class TimerEntry(Screen):
 			self.keyRight()
 
 	def keyRight(self):
-		if self["config"].getCurrent() == self.channelEntry:
+		if self["config"].getCurrent() is self.channelEntry:
 			self.keySelect()
 		else:
-			self["config"].handleKey(config.key["nextElement"])
+			ConfigListScreen.keyRight(self)
 			self.newConfig()
 		
 	def keySelect(self):
@@ -241,25 +214,20 @@ class TimerEntry(Screen):
 	def finishedChannelSelection(self, *args):
 		if len(args):
 			self.timer.service_ref = ServiceReference(args[0])
-			config.timerentry.service.vals = (str(self.timer.service_ref.getServiceName()),)
-			self["config"].invalidate(config.timerentry.service)
-
-	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
-		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key[str(number)])
+			self.timerentry_service.vals = (str(self.timer.service_ref.getServiceName()),)
+			self["config"].invalidate(self.timerentry_service)
 
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(mktime(dt.timetuple()))
+		return int(time.mktime(dt.timetuple()))
 
 	def getBeginEnd(self):
-		enddate = config.timerentry.enddate.value
-		endtime = config.timerentry.endtime.value
+		enddate = self.timerentry_enddate.value
+		endtime = self.timerentry_endtime.value
 		
-		startdate = config.timerentry.startdate.value
-		starttime = config.timerentry.starttime.value
+		startdate = self.timerentry_startdate.value
+		starttime = self.timerentry_starttime.value
 		
 		begin = self.getTimestamp(startdate, starttime)
 		end = self.getTimestamp(enddate, endtime)
@@ -272,32 +240,33 @@ class TimerEntry(Screen):
 		return begin, end
 
 	def keyGo(self):
-		self.timer.name = config.timerentry.name.value
-		self.timer.description = config.timerentry.description.value
-		self.timer.justplay = (currentConfigSelectionElement(config.timerentry.justplay) == "zap")
+		self.timer.name = self.timerentry_name.value
+		self.timer.description = self.timerentry_description.value
+		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.resetRepeated()
-		self.timer.afterEvent = { 0: AFTEREVENT.NONE, 1: AFTEREVENT.DEEPSTANDBY, 2: AFTEREVENT.STANDBY}[config.timerentry.afterevent.value]
+		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
 		
-		if (config.timerentry.type.value == 0): # once
+		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
-		if (config.timerentry.type.value == 1): # repeated
-			if (config.timerentry.repeated.value == 0): # daily
+		if self.timerentry_type.value == "repeated":
+			if self.timerentry_repeated.value == "daily":
 				for x in range(0,7):
 					self.timer.setRepeated(x)
 
-			if (config.timerentry.repeated.value == 1): # weekly
-				self.timer.setRepeated(config.timerentry.weekday.value)
+			if self.timerentry_repeated.value == "weekly":
+				self.timer.setRepeated(self.timerentry_weekday.index)
 				
-			if (config.timerentry.repeated.value == 2): # Mon-Fri
+			if self.timerentry_repeated.value == "weekdays":
 				for x in range(0,5):
 					self.timer.setRepeated(x)
 				
-			if (config.timerentry.repeated.value == 3): # user defined
+			if self.timerentry_repeated.value == "user":
 				for x in range(0,7):
-					if (config.timerentry.day[x].value == 0): self.timer.setRepeated(x)
+					if self.timerentry_day[x].value:
+						self.timer.setRepeated(x)
 
-			self.timer.begin = self.getTimestamp(time.time(), config.timerentry.starttime.value)
-			self.timer.end = self.getTimestamp(time.time(), config.timerentry.endtime.value)
+			self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
+			self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
 			
 			# when a timer end is set before the start, add 1 day
 			if self.timer.end < self.timer.begin:
@@ -368,7 +337,7 @@ class TimerLog(Screen):
 	def fillLogList(self):
 		self.list = [ ]
 		for x in self.log_entries:
-			self.list.append((str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
+			self.list.append((str(time.strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
 	
 	def clearLog(self):		
 		self.log_entries = []

@@ -3,13 +3,14 @@ from Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, iSeekableServicePtr, ePositionGauge
 import time
 
-class ServicePosition(PerServiceDisplay):
+class ServicePosition(PerServiceDisplay, object):
 	TYPE_LENGTH = 0,
 	TYPE_POSITION = 1,
 	TYPE_REMAINING = 2,
 	TYPE_RELATIVE = 3
 	
 	def __init__(self, navcore, type):
+		object.__init__(self)
 		self.updateTimer = eTimer()
 		self.updateTimer.timeout.get().append(self.update)
 		PerServiceDisplay.__init__(self, navcore,
@@ -95,6 +96,7 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 				iPlayableService.evCuesheetChanged: self.newCuesheet
 			})
 		self.instance = None
+		self.__seek_position = 0
 
 	def newService(self):
 		if self.get() is None:	
@@ -107,7 +109,7 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		service = self.navcore.getCurrentService()
 		seek = service and service.seek()
 		if seek is None:
-			return None
+			return (0, 0)
 
 		len = seek.getLength()
 		pos = seek.getPlayPosition()
@@ -132,6 +134,7 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 	
 	def postWidgetCreate(self, instance):
 		self.newService()
+		self.setSeekPosition(self.__seek_position)
 	
 	def newCuesheet(self):
 		service = self.navcore.getCurrentService()
@@ -139,3 +142,25 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		cutlist = (cue and cue.getCutList()) or [ ]
 		if self.instance is not None:
 			self.instance.setInOutList(cutlist)
+
+	def getSeekEnable(self):
+		return self.__seek_enable
+	
+	def setSeekEnable(self, val):
+		self.__seek_enable = val
+		if self.instance is not None:
+			self.instance.enableSeekPointer(val)
+
+	seek_pointer_enabled = property(getSeekEnable, setSeekEnable)
+
+	def getSeekPosition(self):
+		return self.__seek_position
+	
+	def setSeekPosition(self, pos):
+		print "set seek position:", pos
+		self.__seek_position = pos
+		if self.instance is not None:
+			print "set instance."
+			self.instance.setSeekPosition(pos)
+	
+	seek_pointer_position = property(getSeekPosition, setSeekPosition)
