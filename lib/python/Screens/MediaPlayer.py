@@ -41,7 +41,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["playlist"] = self.playlist
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
-
+		
 		self["currenttext"] = Label("")
 
 		self["artisttext"] = Label(_("Artist:"))
@@ -55,7 +55,9 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
 		self["coverArt"] = Pixmap()
-
+		
+		self.seek_target = None
+		
 		#self["text"] = Input("1234", maxSize=True, type=Input.NUMBER)
 
 		class MoviePlayerActionMap(NumberActionMap):
@@ -287,7 +289,42 @@ class MediaPlayer(Screen, InfoBarSeek):
 			self.changeEntry(self.playlist.getSelectionIndex())
 
 	def keyNumberGlobal(self, number):
-		pass
+		if number == 5: # enable seeking
+			if self.seek_target is None:
+				(len, pos) = self["PositionGauge"].get()
+				
+				if self.isSeekable() and len != 0:
+					self.seek_target = pos
+			else:
+				self.seekAbsolute(self.seek_target)
+				self.seek_target = None
+		elif number == 2: # abort
+			self.seek_target = None
+		elif (number == 4 or number == 6) and self.seek_target is not None:
+			(len, pos) = self["PositionGauge"].get()
+			
+			if number == 4:
+				self.seek_target -= len / 10
+			else:
+				self.seek_target += len / 10
+			
+			if self.seek_target > len * 9 / 10:
+				self.seek_target = len * 9 / 10
+			
+			if self.seek_target < 0:
+				self.seek_target = 0
+
+		print "seek target is now", self.seek_target
+		
+		self.updateSeek()
+	
+	def updateSeek(self):
+		if self.seek_target is None:
+			self["PositionGauge"].seek_pointer = False
+		else:
+			self["PositionGauge"].seek_pointer = True
+			self["PositionGauge"].seek_pointer_position = self.seek_target
+
 
 	def showMenu(self):
 		menu = []
