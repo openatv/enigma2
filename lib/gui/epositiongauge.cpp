@@ -5,15 +5,19 @@ ePositionGauge::ePositionGauge(eWidget *parent)
 	: eWidget(parent)
 {
 	m_point_widget = new ePixmap(this);
+	m_seek_point_widget = new ePixmap(this);
 	m_point_widget->setAlphatest(1);
+	m_seek_point_widget->setAlphatest(1);
 	m_position = 0;
 	m_length = 0;
 	m_have_foreground_color = 0;
+	m_seek_position = 0;
 }
 
 ePositionGauge::~ePositionGauge()
 {
 	delete m_point_widget;
+	delete m_seek_point_widget;
 }
 
 void ePositionGauge::setLength(const pts_t &len)
@@ -38,11 +42,19 @@ void ePositionGauge::setInColor(const gRGB &color)
 	invalidate();
 }
 
-void ePositionGauge::setPointer(gPixmap *pixmap, const ePoint &center)
+void ePositionGauge::setPointer(int which, gPixmap *pixmap, const ePoint &center)
 {
-	m_point_center = center;
-	m_point_widget->setPixmap(pixmap);
-	m_point_widget->resize(pixmap->size());
+	if (which == 0)
+	{
+		m_point_center = center;
+		m_point_widget->setPixmap(pixmap);
+		m_point_widget->resize(pixmap->size());
+	} else
+	{
+		m_seek_point_center = center;
+		m_seek_point_widget->setPixmap(pixmap);
+		m_seek_point_widget->resize(pixmap->size());
+	}
 	updatePosition();
 }
 
@@ -161,9 +173,11 @@ int ePositionGauge::event(int event, void *data, void *data2)
 void ePositionGauge::updatePosition()
 {
 	m_pos = scale(m_position);
+	m_seek_pos = scale(m_seek_position);
 	int base = (size().height() - 10) / 2;
 	
 	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
+	m_seek_point_widget->move(ePoint(m_seek_pos - m_seek_point_center.x(), base - m_seek_point_center.y()));
 }
 
 int ePositionGauge::scale(const pts_t &val)
@@ -184,4 +198,20 @@ void ePositionGauge::setForegroundColor(const gRGB &col)
 		m_have_foreground_color = 1;
 		invalidate();
 	}
+}
+
+void ePositionGauge::enableSeekPointer(int enable)
+{
+	if (enable)
+		m_seek_point_widget->show();
+	else
+		m_seek_point_widget->hide();
+}
+
+void ePositionGauge::setSeekPosition(const pts_t &pos)
+{
+	if (m_seek_position == pos)
+		return;
+	m_seek_position = pos;
+	updatePosition();
 }
