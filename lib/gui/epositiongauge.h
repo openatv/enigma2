@@ -17,10 +17,14 @@ public:
 	void setPosition(const pts_t &pos);
 	
 	void setInColor(const gRGB &color); /* foreground? */
-	void setPointer(gPixmap *pixmap, const ePoint &center);
+	void setPointer(int which, gPixmap *pixmap, const ePoint &center);
 	
 	void setInOutList(PyObject *list);
 	void setForegroundColor(const gRGB &col);
+	
+	void enableSeekPointer(int enable);
+	void setSeekPosition(const pts_t &pos);
+	
 #ifndef SWIG
 protected:
 	int event(int event, void *data=0, void *data2=0);
@@ -30,12 +34,12 @@ private:
 	{
 		evtChangedPosition = evtUserWidget
 	};
-	ePixmap *m_point_widget;
-	ePoint m_point_center;
+	ePixmap *m_point_widget, *m_seek_point_widget;
+	ePoint m_point_center, m_seek_point_center;
 	
-	pts_t m_position, m_length;
-	int m_pos;
-
+	pts_t m_position, m_length, m_seek_position;
+	int m_pos, m_seek_pos;
+	
 		/* TODO: this is duplicated code from lib/service/servicedvb.h */
 	struct cueEntry
 	{
