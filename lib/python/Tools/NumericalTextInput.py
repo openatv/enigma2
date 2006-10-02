@@ -1,9 +1,9 @@
 # -*- coding: latin-1 -*-
-from enigma import *
+from enigma import eTimer
 from Components.Language import language
 
 class NumericalTextInput:
-	def __init__(self, nextFunc=None):
+	def __init__(self, nextFunc=None, handleTimeout = True):
 		self.mapping = []
 		self.lang = language.getLanguage()
 		self.useableChars=None
@@ -43,8 +43,11 @@ class NumericalTextInput:
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 
-		self.Timer = eTimer()
-		self.Timer.timeout.get().append(self.nextChar)
+		if handleTimeout:
+			self.timer = eTimer()
+			self.timer.timeout.get().append(self.timeout)
+		else:
+			self.timer = None
 		self.lastKey = -1
 		self.pos = -1
 
@@ -53,13 +56,14 @@ class NumericalTextInput:
 
 	def getKey(self, num):
 		cnt=0
-		self.Timer.start(1000, True)
-		if (self.lastKey != num):
+		if self.timer is not None:
+			self.timer.start(1000, True)
+		if self.lastKey != num:
 			self.lastKey = num
 			self.pos = -1
-		while(True):
+		while True:
 			self.pos += 1
-			if (len(self.mapping[num]) <= self.pos):
+			if len(self.mapping[num]) <= self.pos:
 				self.pos = 0
 			if self.useableChars:
 				pos = self.useableChars.find(self.mapping[num][self.pos])
@@ -73,10 +77,14 @@ class NumericalTextInput:
 		return self.mapping[num][self.pos]
 
 	def nextKey(self):
-		self.Timer.stop()
+		if self.timer is not None:
+			self.timer.stop()
 		self.lastKey = -1
 
 	def nextChar(self):
 		self.nextKey()
 		if self.nextFunction:
 			self.nextFunction()
+
+	def timeout(self):
+		self.nextChar()

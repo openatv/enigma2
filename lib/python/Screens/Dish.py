@@ -3,7 +3,7 @@ from Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Pixmap import Pixmap
 from Components.Button import Button
-from Components.config import config, currentConfigSelectionElement
+from Components.config import config
 
 from enigma import *
 
@@ -14,7 +14,7 @@ class Dish(Screen):
 		self["transparent"] = Button("")
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		#self["Dishpixmap"] = Pixmap()
-		if currentConfigSelectionElement(config.usage.showdish) == "no":
+		if not config.usage.showdish.value:
 			self["Dishpixmap"].setConnect(lambda: False)
 		else:
 			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)

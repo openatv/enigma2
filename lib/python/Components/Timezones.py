@@ -52,6 +52,6 @@ class Timezones:
 	
 	def getDefaultTimezone(self):
 		# TODO return something more useful - depending on country-settings?
-		return 27
+		return "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna"
 
 timezones = Timezones()

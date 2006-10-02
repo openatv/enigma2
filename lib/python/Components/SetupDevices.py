@@ -1,10 +1,4 @@
-#import os
-from config import config				#global config instance
-from config import configElement
-from config import ConfigSubsection
-from config import configSlider
-from config import configSelection
-from config import configText
+from config import config, ConfigSlider, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
 from Components.Timezones import timezones
 from Components.Language import language
 
@@ -14,34 +8,26 @@ def InitSetupDevices():
 		timezones.activateTimezone(configElement.value)
 		
 	config.timezone = ConfigSubsection();
-	config.timezone.val = configElement("config.timezone.val", configSelection, timezones.getDefaultTimezone(), timezones.getTimezoneList());
+	config.timezone.val = ConfigSelection(default = timezones.getDefaultTimezone(), choices = timezones.getTimezoneList())
 	config.timezone.val.addNotifier(timezoneNotifier)
 
-	config.rc = ConfigSubsection();
-	config.rc.map = configElement("config.rc.map", configSelection, 0, (_("Default"), _("Classic")) );
-
 	config.keyboard = ConfigSubsection();
-	config.keyboard.keymap = configElement("config.keyboard.keymap", configSelection, 1, (_("English"), _("German")) );
+	config.keyboard.keymap = ConfigSelection(choices = [("en", _("English")), ("de",_("German"))])
 
-	config.osd = ConfigSubsection();
-	config.osd.alpha = configElement("config.osd.alpha", configSlider, 0, (1, 10));
-	config.osd.bright = configElement("config.osd.bright", configSlider, 5, (1, 10));
-	config.osd.contrast = configElement("config.osd.contrast", configSlider, 5, (1, 10));
-	
 	def languageNotifier(configElement):
 		language.activateLanguage(configElement.value)
 	
-	config.osd.language = configElement("config.osd.language", configText, "en_EN", 0);
+	config.osd = ConfigSubsection()
+	config.osd.language = ConfigText(default = "en_EN");
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection();
-	config.parental.lock = configElement("config.parental.lock", configSelection, 1, (_("Enable"), _("Disable")) );
-	config.parental.setuplock = configElement("config.parental.setuplock", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.parental.lock = ConfigOnOff(default = False)
+	config.parental.setuplock = ConfigOnOff(default = False)
 
 	config.expert = ConfigSubsection();
-	config.expert.splitsize = configElement("config.expert.splitsize", configSelection, 1, ("0.5Gbyte", "1.0 GByte", "1.5 GByte", "2.0 GByte") );
-	config.expert.satpos = configElement("config.expert.satpos", configSelection, 1, (_("Enable"), _("Disable")) );
-	config.expert.fastzap = configElement("config.expert.fastzap", configSelection, 0, (_("Enable"), _("Disable")) );
-	config.expert.skipconfirm = configElement("config.expert.skipconfirm", configSelection, 1, (_("Enable"), _("Disable")) );
-	config.expert.hideerrors = configElement("config.expert.hideerrors", configSelection, 1, (_("Enable"), _("Disable")) );
-	config.expert.autoinfo = configElement("config.expert.autoinfo", configSelection, 1, (_("Enable"), _("Disable")) );
+	config.expert.satpos = ConfigOnOff(default = True)
+	config.expert.fastzap = ConfigOnOff(default = True)
+	config.expert.skipconfirm = ConfigOnOff(default = False)
+	config.expert.hideerrors = ConfigOnOff(default = False)
+	config.expert.autoinfo = ConfigOnOff(default = True)

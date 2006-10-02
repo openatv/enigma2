@@ -1,12 +1,11 @@
 from Wizard import Wizard, wizardManager
 
-from Components.config import configElementBoolean, config
+from Components.config import ConfigBoolean, config
 from Components.Pixmap import *
 
 from LanguageSelection import LanguageSelection
 
-
-config.misc.firstruntutorial = configElementBoolean("config.misc.firstruntutorial", 1);
+config.misc.firstruntutorial = ConfigBoolean(default = True)
 
 class TutorialWizard(Wizard):
 	skin = """
@@ -30,7 +29,7 @@ class TutorialWizard(Wizard):
 		self["arrowup2"] = MovingPixmap()
 		
 	def markDone(self):
-		config.misc.firstruntutorial.value = 1;
+		config.misc.firstruntutorial.value = False
 		config.misc.firstruntutorial.save()
-			
+
 #wizardManager.registerWizard(TutorialWizard, config.misc.firstruntutorial.value)

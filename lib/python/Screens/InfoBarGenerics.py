@@ -16,8 +16,7 @@ from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
 from Components.TimerList import TimerEntryComponent
-from Components.config import config, configElement, ConfigSubsection, configSequence, configElementBoolean, configSelection, configElement_nonSave, getConfigListEntry
-from Components.config import configfile, configsequencearg
+from Components.config import config, ConfigBoolean
 
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -43,8 +42,6 @@ from enigma import *
 import time
 import os
 import bisect
-
-from Components.config import config, currentConfigSelectionElement
 
 # hack alert!
 from Menu import MainMenu, mdom
@@ -240,7 +237,7 @@ class InfoBarNumberZap:
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 			self.servicelist.zap()
 
-config.misc.initialchannelselection = configElementBoolean("config.misc.initialchannelselection", 1);
+config.misc.initialchannelselection = ConfigBoolean(default = True)
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial 
@@ -249,7 +246,8 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		
-		if config.misc.initialchannelselection.value == 1:
+		print "__init__: servicelist is", self.servicelist
+		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
@@ -277,8 +275,9 @@ class InfoBarChannelSelection:
 
 	def firstRun(self):
 		self.onShown.remove(self.firstRun)
-		config.misc.initialchannelselection.value = 0
+		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
+		print "servicelist is", self.servicelist
 		self.switchChannelDown()
 
 	def historyBack(self):
@@ -304,7 +303,7 @@ class InfoBarChannelSelection:
 			if prev:
 				prev = prev.toString()
 				while True:
-					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes":
+					if config.usage.quickzap_bouquet_change.value:
 						if self.servicelist.atBegin():
 							self.servicelist.prevBouquet()
 					self.servicelist.moveUp()
@@ -322,7 +321,7 @@ class InfoBarChannelSelection:
 			if prev:
 				prev = prev.toString()
 				while True:
-					if currentConfigSelectionElement(config.usage.quickzap_bouquet_change) == "yes" and self.servicelist.atEnd():
+					if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
 						self.servicelist.nextBouquet()
 					else:
 						self.servicelist.moveDown()
@@ -826,6 +825,11 @@ class InfoBarSeek:
 		seekable = self.getSeek()
 		if seekable is not None:
 			seekable.seekRelative(1, diff)
+
+	def seekAbsolute(self, abs):
+		seekable = self.getSeek()
+		if seekable is not None:
+			seekable.seekTo(abs)
 
 from Screens.PVRState import PVRState, TimeshiftState
 
@@ -1710,10 +1714,10 @@ class InfoBarCueSheetSupport:
 class InfoBarSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="CurrentTime" render="Label" position="50,46" size="82,18" font="Regular;16" >
+		<widget source="CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget source="CurrentService" render="Label" position="0,4" size="132,42" font="Regular;18" >
+		<widget source="CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 	</screen>"""

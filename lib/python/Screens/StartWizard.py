@@ -1,12 +1,12 @@
 from Wizard import Wizard, wizardManager
 
 from Components.Pixmap import *
-from Components.config import configElementBoolean, config, configfile
+from Components.config import config, ConfigBoolean, configfile
 
 from LanguageSelection import LanguageSelection
 
-config.misc.firstrun = configElementBoolean("config.misc.firstrun", 1);
-config.misc.languageselected = configElementBoolean("config.misc.languageselected", 1);
+config.misc.firstrun = ConfigBoolean(default = True)
+config.misc.languageselected = ConfigBoolean(default = True)
 
 class StartWizard(Wizard):
 	skin = """

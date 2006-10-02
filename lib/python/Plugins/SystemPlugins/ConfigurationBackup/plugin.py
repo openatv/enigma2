@@ -7,7 +7,7 @@ from Components.Pixmap import *
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import config, configSelection, configSelection, getConfigListEntry, configElement, ConfigSubsection, currentConfigSelectionElement
+from Components.config import config, ConfigSelection, ConfigSubsection
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
@@ -107,8 +107,8 @@ class BackupSetup(Screen):
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
 		config.backup = ConfigSubsection()
-		config.backup.type = configElement("config.backup.type", configSelection, 0, (("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))))
-		config.backup.location = configElement("config.backup.location", configSelection, 0, (("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))))
+		config.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))])
+		config.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
 		self.list.append(getConfigListEntry(_("Backup Mode"), config.backup.type))
 		self.list.append(getConfigListEntry(_("Backup Location"), config.backup.location))
 
@@ -192,7 +192,7 @@ class RestoreMenu(Screen):
 
 	def fill_list(self):
 		self.flist = []
-		self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
+		self.path = BackupPath[config.backup.location.value]
 		if (os.path.exists(str(self.path)) == False):
 			os.makedirs(str(self.path))
 		for file in os.listdir(str(self.path)):

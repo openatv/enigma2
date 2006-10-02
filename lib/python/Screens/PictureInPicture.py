@@ -1,14 +1,14 @@
 from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter
 from Components.VideoWindow import VideoWindow
-from Components.config import config, configElement, configSequence, configsequencearg
+from Components.config import config, ConfigPosition
 
 class PictureInPicture(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.currentService = None
-		config.av.pip = configElement("config.av.pip", configSequence, [-1, -1, -1, -1], configsequencearg.get("POSITION", (719, 567, 720, 568)))
+		config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], limits = (719, 567, 720, 568))
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def LayoutFinished(self):

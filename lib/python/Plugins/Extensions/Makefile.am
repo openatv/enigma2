@@ -1,2 +1,3 @@
-SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor ZappingAlternatives
+SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor ZappingAlternatives SimpleRSS FritzCall
+
 

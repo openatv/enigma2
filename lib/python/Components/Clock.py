@@ -7,8 +7,6 @@ from VariableText import *
 
 from enigma import *
 
-from config import config
-
 import time
 # now some "real" components:
 
@@ -28,20 +26,16 @@ class Clock(VariableText, HTMLComponent, GUIComponent):
 	def onHide(self):
 		self.clockTimer.stop()
 
-# "funktionalitaet"	
 	def doClock(self):
 		t = time.localtime()
 		timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		self.setText(timestr)
 
-# realisierung als GUI
 	def createWidget(self, parent):
 		return eLabel(parent)
 
 	def removeWidget(self, w):
 		del self.clockTimer
 
-# ...und als HTML:
 	def produceHTML(self):
-	#	return T.b[self.getText()]
 		return self.getText()

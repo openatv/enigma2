@@ -13,12 +13,12 @@ from enigma import eTimer
 
 my_global_session = None
 
-from Components.config import config, ConfigSubsection, configElement, configSequence, getConfigListEntry, configsequencearg, configElementBoolean
+from Components.config import config, ConfigSubsection, ConfigIP, ConfigEnableDisable
 from Components.ConfigList import ConfigList
 
 config.FritzCall = ConfigSubsection()
-config.FritzCall.hostname = configElement("config.FritzCall.hostname", configSequence, [192,168,178,254], configsequencearg.get("IP"))
-config.FritzCall.enable = configElementBoolean("config.FritzCall.enable", 0)
+config.FritzCall.hostname = ConfigIP(default = [192,168,178,254])
+config.FritzCall.enable = ConfigEnableDisable()
 
 class FritzCallSetup(Screen):
 	skin = """

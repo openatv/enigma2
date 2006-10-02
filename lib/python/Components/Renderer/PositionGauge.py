@@ -5,7 +5,9 @@ class PositionGauge(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__position = 0
+		self.__seek_position = 0
 		self.__length = 0
+		self.__seek_enable = 0
 		self.__cutlist = [ ]
 	
 	GUI_WIDGET = ePositionGauge
@@ -53,3 +55,23 @@ class PositionGauge(Renderer):
 			self.instance.setInOutList(cutlist)
 
 	cutlist = property(getCutlist, setCutlist)
+
+	def getSeekEnable(self):
+		return self.__seek_enable
+	
+	def setSeekEnable(self, val):
+		self.__seek_enable = val
+		if self.instance is not None:
+			self.instance.enableSeekPointer(val)
+
+	seek_pointer_enabled = property(getSeekEnable, setSeekEnable)
+
+	def getSeekPosition(self):
+		return self.__seek_position
+	
+	def setSeekPosition(self, pos):
+		self.__seek_position = pos
+		if self.instance is not None:
+			self.instance.setSeekPosition(pos)
+	
+	seek_pointer_position = property(getSeekPosition, setSeekPosition)

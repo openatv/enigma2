@@ -1,10 +1,6 @@
-from config import config				#global config instance
-from config import configSlider
-from config import configSelection
-from config import ConfigSubsection
-from config import configElement
+from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo
 
-from enigma import *
+from enigma import eDBoxLCD
 
 class LCD:
 	def __init__(self):
@@ -25,10 +21,10 @@ class LCD:
 
 def InitLcd():
 	config.lcd = ConfigSubsection();
-	config.lcd.bright = configElement("config.lcd.bright", configSlider, 10, (1, 10))
-	config.lcd.contrast = configElement("config.lcd.contrast", configSlider, 10, (1, 10))
-	config.lcd.standby = configElement("config.lcd.standby", configSlider, 0, (1,10))
-	config.lcd.invert = configElement("config.lcd.invert", configSelection, 0, (("disable", _("Disable")), ("enable", _("Enable"))))
+	config.lcd.bright = ConfigSlider(default=10, limits=(1, 10))
+	config.lcd.contrast = ConfigSlider(default=10, limits=(1, 10))
+	config.lcd.standby = ConfigSlider(default=0, limits=(1,10))
+	config.lcd.invert = ConfigYesNo(default=False)
 
 	ilcd = LCD()
 
@@ -44,6 +40,3 @@ def InitLcd():
 	config.lcd.bright.addNotifier(setLCDbright);
 	config.lcd.contrast.addNotifier(setLCDcontrast);
 	config.lcd.invert.addNotifier(setLCDinverted);
-	
-
-	

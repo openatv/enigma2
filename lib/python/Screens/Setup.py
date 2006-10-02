@@ -1,8 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.config import config				#global config instance
-from Components.config import configSelection
-from Components.ConfigList import ConfigList
+from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_OK
+from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 
@@ -25,10 +24,10 @@ setupfile.close()
 
 class SetupSummary(Screen):
 	skin = """
-	<screen position="0,0" size="132,64">
-		<widget name="SetupTitle" position="0,0" size="132,16" font="Regular;12" />
-		<widget name="SetupEntry" position="0,16" size="132,32" font="Regular;12" />
-		<widget name="SetupValue" position="0,48" size="132,16" font="Regular;12" />
+	<screen position="6,0" size="120,64">
+		<widget name="SetupTitle" position="6,0" size="120,16" font="Regular;12" />
+		<widget name="SetupEntry" position="6,16" size="120,32" font="Regular;12" />
+		<widget name="SetupValue" position="6,48" size="120,16" font="Regular;12" />
 	</screen>"""
 
 	def __init__(self, session, parent):
@@ -53,7 +52,7 @@ class SetupSummary(Screen):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
 
-class Setup(Screen):
+class Setup(ConfigListScreen, Screen):
 
 	ALLOW_SUSPEND = True
 
@@ -78,8 +77,6 @@ class Setup(Screen):
 
 		#check for list.entries > 0 else self.close
 		
-		self["config"] = ConfigList(list)
-
 		self.setup_title = myTitle
 		self["title"] = Label(_(self.setup_title))
 
@@ -91,21 +88,10 @@ class Setup(Screen):
 		self["actions"] = NumberActionMap(["SetupActions"], 
 			{
 				"cancel": self.keyCancel,
-				"ok": self.keyOk,
-				"left": self.keyLeft,
-				"right": self.keyRight,
 				"save": self.keySave,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
 			}, -1)
+
+		ConfigListScreen.__init__(self, list, session = session)
 
 		self.changedEntry()
 
@@ -118,7 +104,7 @@ class Setup(Screen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].parent.value)
+		return str(self["config"].getCurrent()[1].value)
 
 	def createSummary(self):
 		return SetupSummary
@@ -130,31 +116,13 @@ class Setup(Screen):
 			elif x.tagName == 'item':
 				item_text = _(x.getAttribute("text").encode("UTF-8") or "??")
 				b = eval(XMLTools.mergeText(x.childNodes));
-				print "item " + item_text + " " + b.configPath
 				if b == "":
 					continue
 				#add to configlist
-				item = b.controlType(b)
-				
+				item = b
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				list.append( (item_text, item) )
-
-	def handleKey(self, key):
-		# ignore keys when not enabled
-		if self["config"].getCurrent()[1].parent.enabled:
-			self["config"].handleKey(config.key[key])
-			print self["config"].getCurrent()
-			self.changedEntry()
-
-	def keyOk(self):
-		self.handleKey("choseElement")
-
-	def keyLeft(self):
-		self.handleKey("prevElement")
-
-	def keyRight(self):
-		self.handleKey("nextElement")
 
 	def keySave(self):
 		print "save requested"
@@ -168,9 +136,6 @@ class Setup(Screen):
 			x[1].cancel()
 		self.close()
 		
-	def keyNumberGlobal(self, number):
-		self.handleKey(str(number))
-
 def getSetupTitle(id):
 	xmldata = setupdom.childNodes[0].childNodes
 	for x in elementsWithTag(xmldata, "setup"):
