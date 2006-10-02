@@ -24,11 +24,11 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from Components.config import configfile, configElement, configText, ConfigSubsection, config, configSequence, configsequencearg
+from Components.config import config, ConfigText, configfile, ConfigSubsection, ConfigInteger
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
 
-config.misc.radiopic = configElement("config.misc.radiopic", configText, resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi", 0)
+config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 
 try:
 	import e2reactor
@@ -193,6 +193,10 @@ class Session:
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
 	
+	def deleteDialog(self, screen):
+		screen.hide()
+		screen.doClose()
+	
 	def instantiateSummaryDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.summary_desktop)
 	
@@ -316,7 +320,7 @@ class VolumeControl:
 		globalActionMap.actions["volumeMute"]=self.volMute
 
 		config.audio = ConfigSubsection()
-		config.audio.volume = configElement("config.audio.volume", configSequence, [100], configsequencearg.get("INTEGER", (0, 100)))
+		config.audio.volume = ConfigInteger(default = 100, limits = (0, 100))
 
 		self.volumeDialog = session.instantiateDialog(Volume)
 		self.muteDialog = session.instantiateDialog(Mute)
@@ -324,7 +328,8 @@ class VolumeControl:
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.timeout.get().append(self.volHide)
 
-		vol = config.audio.volume.value[0]
+		vol = config.audio.volume.value
+		print "volume is", vol
 		self.volumeDialog.setValue(vol)
 		eDVBVolumecontrol.getInstance().setVolume(vol, vol)
 
