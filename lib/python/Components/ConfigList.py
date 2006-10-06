@@ -52,17 +52,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		n = self.getCurrent()
 		
 		if self.help_window:
-			print "close old help window!"
 			self.session.deleteDialog(self.help_window)
 		
 		nh = n and n[1].helpWindow()
-		print "n, nh:", n, nh
 		if nh is not None and self.session is not None:
-			print "show new help window"
 			self.help_window = self.session.instantiateDialog(*nh)
 			self.help_window.show()
 
-		print "config selection changed, from ", self.current, " to ", n
 		self.current = n
 		for x in self.onSelectionChanged:
 			x()
@@ -104,7 +100,7 @@ class ConfigListScreen:
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, -1)
+		}, -5)
 
 		self["config"] = ConfigList(list, session = session)
 
