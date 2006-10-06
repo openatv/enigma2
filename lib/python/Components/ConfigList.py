@@ -100,7 +100,7 @@ class ConfigListScreen:
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, -5)
+		}, 5)
 
 		self["config"] = ConfigList(list, session = session)
 
