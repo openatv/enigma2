@@ -1,6 +1,7 @@
 import time
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
+import copy
 
 
 # ConfigElement, the base class of all ConfigElements.
@@ -280,7 +281,8 @@ class ConfigSequence(ConfigElement):
 		self.limits = limits
 		self.censor_char = censor_char
 		
-		self.value = self.default = default
+		self.default = default
+		self.value = copy.copy(default)
 
 	def validate(self):
 		max_pos = 0
@@ -321,7 +323,6 @@ class ConfigSequence(ConfigElement):
 			self.validatePos()
 		
 		if key in KEY_NUMBERS:
-			print "is number"
 			block_len = []
 			for x in self.limits:
 				block_len.append(len(str(x[1])))
@@ -357,8 +358,6 @@ class ConfigSequence(ConfigElement):
 			self.validate()
 			self.changed()
 			
-			print "res:", self._value
-
 	def getMulti(self, selected):
 		value = ""
 		mPos = self.marked_pos
@@ -504,8 +503,6 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		return ("mtext"[1-selected:], self.value, [self.marked_pos])
 
 	def helpWindow(self):
-		print "helpWindow for text!"
-
 		from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 		return (NumericalTextInputHelpDialog,self)
 
