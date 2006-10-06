@@ -13,14 +13,14 @@ from enigma import eTimer
 
 my_global_session = None
 
-from Components.config import config, ConfigSubsection, ConfigIP, ConfigEnableDisable
-from Components.ConfigList import ConfigList
+from Components.config import config, ConfigSubsection, ConfigIP, ConfigEnableDisable, getConfigListEntry
+from Components.ConfigList import ConfigList, ConfigListScreen
 
 config.FritzCall = ConfigSubsection()
 config.FritzCall.hostname = ConfigIP(default = [192,168,178,254])
-config.FritzCall.enable = ConfigEnableDisable()
+config.FritzCall.enable = ConfigEnableDisable(default = False)
 
-class FritzCallSetup(Screen):
+class FritzCallSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen position="100,100" size="550,400" title="FritzCall Setup" >
 		<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
@@ -30,7 +30,6 @@ class FritzCallSetup(Screen):
 	def __init__(self, session, args = None):
 		from Tools.BoundFunction import boundFunction
 		
-		print "screen init"
 		Screen.__init__(self, session)
 		self.onClose.append(self.abort)
 		
@@ -38,32 +37,15 @@ class FritzCallSetup(Screen):
 		self.list = [ ]
 		self.list.append(getConfigListEntry(_("Call monitoring"), config.FritzCall.enable))
 		self.list.append(getConfigListEntry(_("Fritz!Box FON IP address"), config.FritzCall.hostname))
-		self["config"] = ConfigList(self.list)
+		ConfigListScreen.__init__(self, self.list)
 
 		# DO NOT ASK.		
 		self["setupActions"] = NumberActionMap(["SetupActions"],
 		{
-			"left": boundFunction(self["config"].handleKey, config.key["prevElement"]),
-			"right": boundFunction(self["config"].handleKey, config.key["nextElement"]),
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal,
 			"save": self.save,
 			"cancel": self.cancel,
 			"ok": self.save,
 		}, -1)
-	# FIX ME.
-	def keyNumberGlobal(self, number):
-		if self["config"].getCurrent()[1].parent.enabled == True:
-			self["config"].handleKey(config.key[str(number)])
-
 	def abort(self):
 		print "aborting"
 
