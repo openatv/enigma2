@@ -132,13 +132,13 @@ class Satfinder(ScanSetup):
 		self.list.append(self.typeOfTuningEntry)
 		self.satEntry = getConfigListEntry(_('Satellite'), self.tuning_sat)
 		self.list.append(self.satEntry)
-		if currentConfigSelectionElement(self.tuning_type) == "manual_transponder":
+		if self.tuning_type.value == "manual_transponder":
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
 			self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-		elif self.tuning_transponder and currentConfigSelectionElement(self.tuning_type) == "predefined_transponder":
+		elif self.tuning_transponder and self.tuning_type.value == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), self.tuning_transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -160,9 +160,9 @@ class Satfinder(ScanSetup):
 		else:
 			satpos = None
 		if satpos:
-			if currentConfigSelectionElement(self.tuning_type) == "manual_transponder":
+			if self.tuning_type.value == "manual_transponder":
 				returnvalue = (self.scan_sat.frequency.value[0], self.scan_sat.symbolrate.value[0], self.scan_sat.polarization.value, self.scan_sat.fec.value, self.scan_sat.inversion.value, satpos)
-			elif currentConfigSelectionElement(self.tuning_type) == "predefined_transponder":
+			elif self.tuning_type.value == "predefined_transponder":
 				transponder = nimmanager.getTransponders(self.tuning_sat.vals[self.tuning_sat.value][1])[self.tuning_transponder.value]
 				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, self.tuning_sat.vals[self.tuning_sat.value][1], satpos)
 			self.tune(returnvalue)
@@ -171,7 +171,7 @@ class Satfinder(ScanSetup):
 
 		self.tuning_transponder = None
 		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))])
-		self.tuning_sat = ConfigSatlist(default = 192, satlist = nimmanager.getSatListForNim(self.feid))
+		self.tuning_sat = ConfigSatlist(default = 192, list = nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
 		
 		self.updateSats()
