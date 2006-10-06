@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.config import config, getConfigListEntry
 from Components.Network import iNetwork
@@ -9,11 +9,11 @@ class NetworkSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
         
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions"],
 		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-		}, -1)
+			"ok": self.ok,
+			"cancel": self.cancel,
+		}, -2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
@@ -48,15 +48,14 @@ class NetworkSetup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.createSetup()
 
-	def keySave(self):
+	def ok(self):
 		#for x in self["config"].list:
 			#x[1].save()
-
 		iNetwork.writeNetworkConfig()    
 		iNetwork.activateNetworkConfig()
 		self.close()
 
-	def keyCancel(self):
+	def cancel(self):
 		for x in self["config"].list:
 			x[1].cancel()
 		iNetwork.loadNetworkConfig()

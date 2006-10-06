@@ -89,7 +89,7 @@ class Setup(ConfigListScreen, Screen):
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
-			}, -1)
+			}, -2)
 
 		ConfigListScreen.__init__(self, list, session = session)
 
