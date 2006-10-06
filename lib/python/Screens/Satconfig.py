@@ -193,7 +193,7 @@ class NimSelection(Screen):
 		{
 			"ok": self.okbuttonClick ,
 			"cancel": self.close
-		}, -1)
+		}, -2)
 
 	def okbuttonClick(self):
 		selection = self["nimlist"].getCurrent()

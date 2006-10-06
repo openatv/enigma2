@@ -135,7 +135,7 @@ class ScanSetup(ConfigListScreen, Screen):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-		}, -1)
+		}, -2)
 
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
@@ -565,7 +565,7 @@ class ScanSimple(ConfigListScreen, Screen):
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
-		}, -1)
+		}, -2)
 
 		self.list = []
 		tlist = []

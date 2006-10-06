@@ -24,7 +24,7 @@ class TimeDateInput(Screen, ConfigListScreen):
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
-		}, -1)
+		}, -2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
