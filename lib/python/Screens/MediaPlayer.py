@@ -283,7 +283,10 @@ class MediaPlayer(Screen, InfoBarSeek):
 				self.filelist.descent()
 				self.updateCurrentInfo()
 			else:
-				self.copyFile()
+				self.playlist.clear()
+				self.copyDirectory(os.path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
+				self.playServiceRefEntry(self.filelist.getServiceRef())
+				
 		if self.currList == "playlist":
 			selection = self["playlist"].getSelection()
 			self.changeEntry(self.playlist.getSelectionIndex())
@@ -364,12 +367,14 @@ class MediaPlayer(Screen, InfoBarSeek):
 		elif choice[1] == "hide":
 			self.hide()
 
-	def copyDirectory(self, directory):
+	def copyDirectory(self, directory, recursive = True):
+		print "copyDirectory", directory
 		filelist = FileList(directory, useServiceRef = True, isTop = True)
 
 		for x in filelist.getFileList():
 			if x[0][1] == True: #isDir
-				self.copyDirectory(x[0][0])
+				if recursive:
+					self.copyDirectory(x[0][0])
 			else:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
@@ -427,6 +432,13 @@ class MediaPlayer(Screen, InfoBarSeek):
 	def changeEntry(self, index):
 		self.playlist.setCurrentPlaying(index)
 		self.playEntry()
+
+	def playServiceRefEntry(self, serviceref):
+		serviceRefList = self.playlist.getServiceRefList()
+		for count in range(len(serviceRefList)):
+			if serviceRefList[count] == serviceref:
+				self.changeEntry(count)
+				break
 
 	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
