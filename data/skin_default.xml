@@ -305,7 +305,8 @@
 	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
 		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
 		<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
-		<widget name="freeDiskSpace" position="10,380" size="540,30" font="Regular;22" />
+		<widget name="freeDiskSpace" position="10,380" size="510,30" font="Regular;22" />
+		<ePixmap position="520,390" zPosition="1" size="36,20" pixmap="key_menu-fs8.png" transparent="1" alphatest="on" />
 	</screen>
 	<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
 		<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
