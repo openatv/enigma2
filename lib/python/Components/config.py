@@ -125,7 +125,10 @@ class ConfigSelection(ConfigElement):
 		else:
 			assert False, "ConfigSelection choices must be dict or list!"
 		
-		assert len(self.choices), "you can't have an empty configselection"
+		#assert len(self.choices), "you can't have an empty configselection"
+		if len(self.choices) == 0:
+			self.choices = [""]
+			self.description[""] = ""
 
 		if default is None:
 			default = self.choices[0]
@@ -165,9 +168,6 @@ class ConfigSelection(ConfigElement):
 			self.value = self.choices[(i + nchoices - 1) % nchoices]
 		elif key == KEY_RIGHT:
 			self.value = self.choices[(i + 1) % nchoices]
-		elif key == KEY_TIMEOUT:
-			self.timeout()
-			return
 
 	def getMulti(self, selected):
 		return ("text", self.description[self.value])
@@ -551,11 +551,11 @@ class ConfigSatlist(ConfigSelection):
 	def __init__(self, list, default = None):
 		if default is not None:
 			default = str(default)
-		if list == [ ]:
-			list = [0, "N/A"]
 		ConfigSelection.__init__(self, choices = [(str(orbpos), desc) for (orbpos, desc) in list], default = default)
 
 	def getOrbitalPosition(self):
+		if self.value == "":
+			return None
 		return int(self.value)
 	
 	orbital_position = property(getOrbitalPosition)
