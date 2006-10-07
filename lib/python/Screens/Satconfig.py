@@ -169,7 +169,7 @@ class NimSetup(Screen, ConfigListScreen):
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
-		}, -1)
+		}, -2)
 
 		self.nim = nimmanager.nimList()[slotid][1]
 		self.nimConfig = config.Nims[self.nim.slotid]
