@@ -100,7 +100,7 @@ class ConfigListScreen:
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, 5)
+		}, -1) # to prevent left/right overriding the listbox
 
 		self["config"] = ConfigList(list, session = session)
 
