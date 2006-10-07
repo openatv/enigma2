@@ -10,7 +10,7 @@ from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
-from Components.config import ConfigSelection, ConfigSatlist
+from Components.config import ConfigSelection, ConfigSatlist, getConfigListEntry
 
 class Tuner:
 	def __init__(self, frontend):
@@ -150,21 +150,20 @@ class Satfinder(ScanSetup):
 			self.updateSats()
 			self.createSetup()
 
+	def sat_changed(self, config_element):
+		self.newConfig()
+		self.retune(config_element)
+
 	def retune(self, configElement):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0)
-		val = self.tuning_sat.orbital_positioon
-		if val > 0 and len(self.tuning_sat.vals) > val:
-			satpos = self.tuning_sat.vals[self.tuning_sat.value][1]
-		elif len(self.tuning_sat.vals) > 0:
-			satpos = self.tuning_sat.vals[0][1]
-		else:
-			satpos = None
-		if satpos:
+		satpos = self.tuning_sat.orbital_position
+		
+		if satpos is not None:
 			if self.tuning_type.value == "manual_transponder":
-				returnvalue = (self.scan_sat.frequency.value[0], self.scan_sat.symbolrate.value[0], self.scan_sat.polarization.value, self.scan_sat.fec.value, self.scan_sat.inversion.value, satpos)
+				returnvalue = (self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.index, self.scan_sat.fec.index, self.scan_sat.inversion.index, satpos)
 			elif self.tuning_type.value == "predefined_transponder":
-				transponder = nimmanager.getTransponders(self.tuning_sat.vals[self.tuning_sat.value][1])[self.tuning_transponder.value]
-				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, self.tuning_sat.vals[self.tuning_sat.value][1], satpos)
+				transponder = nimmanager.getTransponders(satpos)[self.tuning_transponder.index]
+				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
 			self.tune(returnvalue)
 
 	def createConfig(self, foo):
@@ -177,7 +176,7 @@ class Satfinder(ScanSetup):
 		self.updateSats()
 
 		self.tuning_type.addNotifier(self.retune)
-		self.tuning_sat.addNotifier(self.retune)
+		self.tuning_sat.addNotifier(self.sat_changed)
 		self.scan_sat.frequency.addNotifier(self.retune)
 		self.scan_sat.inversion.addNotifier(self.retune)
 		self.scan_sat.symbolrate.addNotifier(self.retune)
@@ -185,10 +184,9 @@ class Satfinder(ScanSetup):
 		self.scan_sat.fec.addNotifier(self.retune)
 
 	def updateSats(self):
-		satnum = self.tuning_sat.value
-		satlist = self.tuning_sat.vals
-		if len(satlist):
-			transponderlist = nimmanager.getTransponders(satlist[satnum][1])
+		orb_pos = self.tuning_sat.orbital_position
+		if orb_pos is not None:
+			transponderlist = nimmanager.getTransponders(orb_pos)
 			list = []
 			for x in transponderlist:
 				if x[3] == 0:
