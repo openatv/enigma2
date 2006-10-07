@@ -1,6 +1,6 @@
 from HTMLComponent import *
 from GUIComponent import *
-from config import KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_OK, KEY_TIMEOUT
+from config import KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_OK, KEY_TIMEOUT, ConfigElement
 from Components.ActionMap import NumberActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eTimer
 
@@ -70,9 +70,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def preWidgetRemove(self, instance):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 	
-	def setList(self, list):
-		self.__list = list
+	def setList(self, l):
+		self.__list = l
 		self.l.setList(self.__list)
+
+		if l is not None:
+			for x in l:
+				assert isinstance(x[1], ConfigElement), "entry in ConfigList " + str(x[1]) + " must be a ConfigElement"
 
 	def getList(self):
 		return self.__list
@@ -101,7 +105,7 @@ class ConfigListScreen:
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1) # to prevent left/right overriding the listbox
-
+		
 		self["config"] = ConfigList(list, session = session)
 
 	def keyOK(self):
