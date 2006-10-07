@@ -1453,6 +1453,7 @@ class InfoBarSubserviceSelection:
 				if newservice.valid():
 					del subservices
 					del service
+					self.doShow()
 					self.session.nav.playService(newservice)
 
 	def subserviceSelection(self):
@@ -1484,6 +1485,7 @@ class InfoBarSubserviceSelection:
 					self.session.open(SubservicesQuickzap, service[2])
 			else:
 				self["SubserviceQuickzapAction"].setEnabled(True)
+				self.doShow()
 				self.session.nav.playService(service[1])
 
 class InfoBarAdditionalInfo:

@@ -56,18 +56,22 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 	
 	def nextSubservice(self):
 		self.updateSubservices()
-		if self.currentlyPlayingSubservice == self.n - 1:
-			self.playSubservice(0)
-		else:
-			self.playSubservice(self.currentlyPlayingSubservice + 1)
+		if self.n:
+			if self.currentlyPlayingSubservice >= self.n - 1:
+				self.playSubservice(0)
+			else:
+				self.playSubservice(self.currentlyPlayingSubservice + 1)
 	
 	def previousSubservice(self):
 		self.updateSubservices()
-		if self.currentlyPlayingSubservice == 0:
-			self.playSubservice(self.n - 1)
-		else:
-			self.playSubservice(self.currentlyPlayingSubservice - 1)
-	
+		if self.n:
+			if self.currentlyPlayingSubservice > self.n:
+				self.currentlyPlayingSubservice = self.n
+			if self.currentlyPlayingSubservice == 0:
+				self.playSubservice(self.n - 1)
+			else:
+				self.playSubservice(self.currentlyPlayingSubservice - 1)
+
 	def getSubserviceIndex(self, service):
 		self.updateSubservices()
 		for x in range(self.n):
@@ -109,7 +113,6 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 			self.close()
 		
 	def playSubservice(self, number = 0):
-		print "playSubservice"
 		newservice = self.subservices.getSubservice(number)
 		if newservice.valid():
 			del self.subservices
