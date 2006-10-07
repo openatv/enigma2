@@ -212,14 +212,13 @@ class SecConfigure:
 					# Committed Diseqc Command
 					cdc = currLnb.commitedDiseqcCommand.value
 					
-					c = [
-						("none", diseqcParam.SENDNO),
-						("AA", diseqcParam.AA),
-						("AB", diseqcParam.AB),
-						("BA", diseqcParam.BA),
-						("BB", diseqcParam.BB)]
-						
-					if cdc in c:
+					c = { "none": diseqcParam.SENDNO,
+						"AA": diseqcParam.AA,
+						"AB": diseqcParam.AB,
+						"BA": diseqcParam.BA,
+						"BB": diseqcParam.BB }
+
+					if c.has_key(cdc):
 						sec.setCommittedCommand(c[cdc])
 					else:
 						sec.setCommittedCommand(long(cdc))
@@ -745,11 +744,11 @@ def InitNimManager(nimmgr):
 			csw = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
 			for y in range(0, 16):
 				csw.append((str(0xF0|y), "Input " + str(y+1)))
-
+			
 			ucsw = [("0", _("None"))]
 			for y in range(1, 17):
 				ucsw.append((str(y), "Input " + str(y)))
-
+			
 			nim.advanced.lnb = ConfigSubList()
 			nim.advanced.lnb.append(ConfigDummy())
 			for x in range(1, 33):
