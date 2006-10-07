@@ -21,6 +21,7 @@
 #include <lib/gui/esubtitle.h>
 
 #include <sys/vfs.h>
+#include <sys/stat.h>
 
 #include <byteswap.h>
 #include <netinet/in.h>
@@ -826,7 +827,12 @@ RESULT eDVBServicePlay::stop()
 	m_service_handler.free();
 	
 	if (m_is_pvr && m_cuesheet_changed)
-		saveCuesheet();
+	{
+		struct stat s;
+				/* save cuesheet only when main file is accessible. */
+		if (!::stat(m_reference.path.c_str(), &s))
+			saveCuesheet();
+	}
 	
 	return 0;
 }
