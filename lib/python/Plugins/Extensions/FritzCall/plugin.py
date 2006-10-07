@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 from Tools import Notifications
@@ -39,13 +39,14 @@ class FritzCallSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Fritz!Box FON IP address"), config.FritzCall.hostname))
 		ConfigListScreen.__init__(self, self.list)
 
-		# DO NOT ASK.		
-		self["setupActions"] = NumberActionMap(["SetupActions"],
+		# DO NOT ASK.
+		self["setupActions"] = ActionMap(["SetupActions"],
 		{
 			"save": self.save,
 			"cancel": self.cancel,
 			"ok": self.save,
-		}, -1)
+		}, -2)
+
 	def abort(self):
 		print "aborting"
 
