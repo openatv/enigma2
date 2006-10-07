@@ -8,7 +8,7 @@ from Components.Label import Label
 
 from Components.HTMLComponent import *
 from Components.GUIComponent import *
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigDummy
 from Components.ConfigList import ConfigList
 
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
@@ -289,7 +289,7 @@ class CiSelection(Screen):
 				self.appendEntries(slot, state)
 				CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
 
-		menuList = ConfigList(list)
+		menuList = ConfigList(self.list)
 		menuList.list = self.list
 		menuList.l.setList(self.list)
 		self["entries"] = menuList
@@ -309,17 +309,17 @@ class CiSelection(Screen):
 
 	def appendEntries(self, slot, state):
 		self.state[slot] = state
-		self.list.append( (_("Reset"), 0, slot) )
-		self.list.append( (_("Init"), 1, slot) )
+		self.list.append( (_("Reset"), ConfigDummy(), 0, slot) )
+		self.list.append( (_("Init"), ConfigDummy(), 1, slot) )
 
 		if self.state[slot] == 0:			#no module
-			self.list.append( (_("no module found"), 2, slot) )
+			self.list.append( (_("no module found"), ConfigDummy(), 2, slot) )
 		elif self.state[slot] == 1:		#module in init
-			self.list.append( (_("init module"), 2, slot) )
+			self.list.append( (_("init module"), ConfigDummy(), 2, slot) )
 		elif self.state[slot] == 2:		#module ready
 			#get appname
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list.append( (appname, 2, slot) )
+			self.list.append( (appname, ConfigDummy(), 2, slot) )
 
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 
@@ -335,13 +335,13 @@ class CiSelection(Screen):
 		slotidx += 1 # do not change Init
 
 		if state == 0:			#no module
-			self.list[slotidx] = (_("no module found"), 2, slot)
+			self.list[slotidx] = (_("no module found"), ConfigDummy(), 2, slot)
 		elif state == 1:		#module in init
-			self.list[slotidx] = (_("init module"), 2, slot)
+			self.list[slotidx] = (_("init module"), ConfigDummy(), 2, slot)
 		elif state == 2:		#module ready
 			#get appname
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list[slotidx] = (appname, 2, slot)
+			self.list[slotidx] = (appname, ConfigDummy(), 2, slot)
 
 		lst = self["entries"]
 		lst.list = self.list
@@ -363,8 +363,8 @@ class CiSelection(Screen):
 	def okbuttonClick(self):
 		cur = self["entries"].getCurrent()
 		if cur and len(cur) > 2:
-			action = cur[1]
-			slot = cur[2]
+			action = cur[2]
+			slot = cur[3]
 			if action == 0:		#reset
 				eDVBCI_UI.getInstance().setReset(slot)
 			elif action == 1:		#init
