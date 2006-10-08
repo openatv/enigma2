@@ -30,7 +30,7 @@ class TimerEditList(Screen):
 			{
 				"ok": self.openEdit,
 				"cancel": self.leave,
-				"red": self.removeTimer,
+				"red": self.removeTimerQuestion,
 				"green": self.addCurrentTimer,
 				"blue": self.cleanupQuestion,
 				"yellow": self.toggleDisabledState,
@@ -108,8 +108,13 @@ class TimerEditList(Screen):
 		if delete:
 			self.session.nav.RecordTimer.cleanup()
 			self.refill()
+	
+	def removeTimerQuestion(self):
+		self.session.openWithCallback(self.removeTimer, MessageBox, _("Really delete this timer?"))
 		
-	def removeTimer(self):
+	def removeTimer(self, result):
+		if not result:
+			return
 		list = self["timerlist"]
 		cur = list.getCurrent()
 		if cur:
