@@ -8,7 +8,7 @@ from Components.Label import Label
 
 from Components.HTMLComponent import *
 from Components.GUIComponent import *
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigDummy
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing
 from Components.ConfigList import ConfigList
 
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
@@ -309,17 +309,17 @@ class CiSelection(Screen):
 
 	def appendEntries(self, slot, state):
 		self.state[slot] = state
-		self.list.append( (_("Reset"), ConfigDummy(), 0, slot) )
-		self.list.append( (_("Init"), ConfigDummy(), 1, slot) )
+		self.list.append( (_("Reset"), ConfigNothing(), 0, slot) )
+		self.list.append( (_("Init"), ConfigNothing(), 1, slot) )
 
 		if self.state[slot] == 0:			#no module
-			self.list.append( (_("no module found"), ConfigDummy(), 2, slot) )
+			self.list.append( (_("no module found"), ConfigNothing(), 2, slot) )
 		elif self.state[slot] == 1:		#module in init
-			self.list.append( (_("init module"), ConfigDummy(), 2, slot) )
+			self.list.append( (_("init module"), ConfigNothing(), 2, slot) )
 		elif self.state[slot] == 2:		#module ready
 			#get appname
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list.append( (appname, ConfigDummy(), 2, slot) )
+			self.list.append( (appname, ConfigNothing(), 2, slot) )
 
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 
@@ -335,13 +335,13 @@ class CiSelection(Screen):
 		slotidx += 1 # do not change Init
 
 		if state == 0:			#no module
-			self.list[slotidx] = (_("no module found"), ConfigDummy(), 2, slot)
+			self.list[slotidx] = (_("no module found"), ConfigNothing(), 2, slot)
 		elif state == 1:		#module in init
-			self.list[slotidx] = (_("init module"), ConfigDummy(), 2, slot)
+			self.list[slotidx] = (_("init module"), ConfigNothing(), 2, slot)
 		elif state == 2:		#module ready
 			#get appname
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
-			self.list[slotidx] = (appname, ConfigDummy(), 2, slot)
+			self.list[slotidx] = (appname, ConfigNothing(), 2, slot)
 
 		lst = self["entries"]
 		lst.list = self.list

@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
-from Components.config import getConfigListEntry, config, ConfigDummy
+from Components.config import getConfigListEntry, config, ConfigNothing
 
 class NimSetup(Screen, ConfigListScreen):
 	def createSimpleSetup(self, list, mode):
@@ -93,7 +93,7 @@ class NimSetup(Screen, ConfigListScreen):
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		currLnb = self.nimConfig.advanced.lnb[int(Sat.lnb.value)]
 		
-		if isinstance(currLnb, ConfigDummy):
+		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
 
 		self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
