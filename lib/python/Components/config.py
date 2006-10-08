@@ -26,6 +26,7 @@ import copy
 #
 class ConfigElement(object):
 	def __init__(self):
+
 		object.__init__(self)
 		self.saved_value = None
 		self.save_disabled = False
@@ -571,7 +572,7 @@ class ConfigSatlist(ConfigSelection):
 	orbital_position = property(getOrbitalPosition)
 
 # nothing.
-class ConfigDummy(ConfigSelection):
+class ConfigNothing(ConfigSelection):
 	def __init__(self):
 		ConfigSelection.__init__(self, choices = [""])
 

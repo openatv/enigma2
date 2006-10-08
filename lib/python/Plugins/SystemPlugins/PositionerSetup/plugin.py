@@ -10,7 +10,7 @@ from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
-from Components.config import ConfigDummy, ConfigSelection
+from Components.config import ConfigNothing, ConfigSelection
 
 class PositionerSetup(Screen):
 	skin = """
@@ -114,11 +114,11 @@ class PositionerSetup(Screen):
 		self.statusTimer.start(50, False)
 		
 	def createConfig(self):
-		self.positioner_tune = ConfigDummy()
-		self.positioner_move = ConfigDummy()
-		self.positioner_finemove = ConfigDummy()
-		self.positioner_limits = ConfigDummy()
-		self.positioner_goto0 = ConfigDummy()
+		self.positioner_tune = ConfigNothing()
+		self.positioner_move = ConfigNothing()
+		self.positioner_finemove = ConfigNothing()
+		self.positioner_limits = ConfigNothing()
+		self.positioner_goto0 = ConfigNothing()
 		storepos = []
 		for x in range(1,255):
 			storepos.append(str(x))

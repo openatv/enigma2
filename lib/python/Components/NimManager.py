@@ -1,4 +1,4 @@
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigDummy, ConfigSubDict
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict
 
 from enigma import eDVBSatelliteEquipmentControl, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -750,7 +750,7 @@ def InitNimManager(nimmgr):
 				ucsw.append((str(y), "Input " + str(y)))
 			
 			nim.advanced.lnb = ConfigSubList()
-			nim.advanced.lnb.append(ConfigDummy())
+			nim.advanced.lnb.append(ConfigNothing())
 			for x in range(1, 33):
 				nim.advanced.lnb.append(ConfigSubsection())
 				nim.advanced.lnb[x].lof = ConfigSelection(choices={"universal_lnb": _("Universal LNB"), "c_band": _("C-Band"), "user_defined": _("User defined")}, default="universal_lnb")
