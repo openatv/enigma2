@@ -158,7 +158,7 @@ class ConfigSelection(ConfigElement):
 		self.changed()
 
 	def tostring(self, val):
-		return (val, ','.join(self.choices))
+		return val
 
 	def getValue(self):
 		return self._value
@@ -697,6 +697,7 @@ class ConfigSubsection(object):
 	def __setattr__(self, name, value):
 		if name == "saved_value":
 			return self.setSavedValue(value)
+		assert isinstance(value, ConfigSubsection) or isinstance(value, ConfigElement) or isinstance(value, ConfigSubList) or isinstance(value, ConfigSubDict), "ConfigSubsections can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements"
 		self.content.items[name] = value
 		if name in self.content.stored_values:
 			#print "ok, now we have a new item,", name, "and have the following value for it:", self.content.stored_values[name]
@@ -711,6 +712,9 @@ class ConfigSubsection(object):
 		for (key, val) in self.content.items.items():
 			if val.saved_value is not None:
 				res[key] = val.saved_value
+			elif key in res:
+				del res[key]
+				
 		return res
 
 	def setSavedValue(self, values):
