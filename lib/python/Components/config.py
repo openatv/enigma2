@@ -439,6 +439,7 @@ class ConfigInteger(ConfigSequence):
 
 class ConfigPIN(ConfigSequence):
 	def __init__(self, default, len = 4, censor = ""):
+		assert isinstance(default, int), "ConfigPIN default must be an integer"
 		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = [default])
 
 class ConfigFloat(ConfigSequence):
