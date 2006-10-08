@@ -631,8 +631,8 @@ class ConfigSubList(list, object):
 	saved_value = property(getSavedValue, setSavedValue)
 	
 	def append(self, item):
-		list.append(self, item)
 		i = str(len(self))
+		list.append(self, item)
 		if i in self.stored_values:
 			item.saved_value = self.stored_values[i]
 			item.load()
