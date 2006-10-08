@@ -5,7 +5,7 @@ from Components.Language import language
 def InitSetupDevices():
 	
 	def timezoneNotifier(configElement):
-		timezones.activateTimezone(configElement.value)
+		timezones.activateTimezone(configElement.index)
 		
 	config.timezone = ConfigSubsection();
 	config.timezone.val = ConfigSelection(default = timezones.getDefaultTimezone(), choices = timezones.getTimezoneList())
