@@ -8,7 +8,7 @@ from Components.Label import Label
 
 from Components.HTMLComponent import *
 from Components.GUIComponent import *
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
 from Components.ConfigList import ConfigList
 
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
@@ -71,18 +71,17 @@ class CiMmi(Screen):
 
 	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
-			list.append( (entry[1], entry[2]) )
+			list.append( (entry[1], ConfigNothing(), entry[2]) )
 		if entry[0] == "PIN":
-			self.pinlength = entry[1]
+			pinlength = entry[1]
 			if entry[3] == 1:
 				# masked pins:
-				x = ConfigPIN(len = self.pinlength, censor = "*")
+				x = ConfigPIN(0, len = pinlength, censor = "*")
 			else:
 				# unmasked pins:
-				x = ConfigPIN(len = self.pinlength)
+				x = ConfigPIN(0, len = pinlength)
 			self["subtitle"].setText(entry[2])
-			self.pin = getConfigListEntry("", x)
-			list.append( self.pin )
+			list.append( getConfigListEntry("", x) )
 			self["bottom"].setText(_("please press OK when ready"))
 
 	def okbuttonClick(self):
@@ -95,7 +94,7 @@ class CiMmi(Screen):
 			print "answer MENU"
 			cur = self["entries"].getCurrent()
 			if cur:
-				eDVBCI_UI.getInstance().answerMenu(self.slotid, cur[1])
+				eDVBCI_UI.getInstance().answerMenu(self.slotid, cur[2])
 			else:
 				eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
 			self.showWait()	
@@ -104,9 +103,10 @@ class CiMmi(Screen):
 			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
 			self.showWait()	
 		elif self.tag == "ENQ":
-			answer = str(self.pin[1].parent.value[0])
+			cur = self["entries"].getCurrent()
+			answer = str(cur[1].value)
 			length = len(answer)
-			while length < self.pinlength:
+			while length < cur[1].getLength():
 				answer = '0'+answer
 				length+=1
 			eDVBCI_UI.getInstance().answerEnq(self.slotid, answer)
