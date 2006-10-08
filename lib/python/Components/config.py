@@ -382,7 +382,7 @@ class ConfigSequence(ConfigElement):
 			if self.censor_char == "":
 				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
 			else:
-				value += (self.censorChar * len(str(self.limits[num][1])))
+				value += (self.censor_char * len(str(self.limits[num][1])))
 			num += 1
 
 			# only mark cursor when we are selected
@@ -437,10 +437,14 @@ class ConfigInteger(ConfigSequence):
 	def tostring(self, value):
 		return str(value)
 
-class ConfigPIN(ConfigSequence):
+class ConfigPIN(ConfigInteger):
 	def __init__(self, default, len = 4, censor = ""):
 		assert isinstance(default, int), "ConfigPIN default must be an integer"
-		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = [default])
+		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = default)
+		self.len = len
+
+	def getLength(self):
+		return self.len
 
 class ConfigFloat(ConfigSequence):
 	def __init__(self, default, limits):
