@@ -608,7 +608,7 @@ class NimManager:
 					lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
 					if lnbnum != 0:
 						lnb = nim.advanced.lnb[lnbnum]
-						if lnb.diseqcMode.value == "diseqc_a_b_c_d":
+						if lnb.diseqcMode.value == "1_2":
 							list.append(x)
 		return list
 
