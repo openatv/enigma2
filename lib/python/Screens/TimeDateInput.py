@@ -33,7 +33,8 @@ class TimeDateInput(Screen, ConfigListScreen):
 	def createConfig(self):
 		nowtime = time.time()
 		self.timeinput_date = ConfigDateTime(default = nowtime, formatstring = (_("%d.%B %Y"), 86400))
-#		self.timeinput_time = ConfigSequence(default = [int(time.strftime("%H", time.localtime(nowtime))), int(time.strftime("%M", time.localtime(nowtime)))]
+		self.timeinput_time = ConfigClock(default = nowtime)
+
 		assert False, "fixme"
 
 	def createSetup(self, configlist):

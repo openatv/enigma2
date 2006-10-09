@@ -88,10 +88,10 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 
 			self.timerentry_startdate = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_starttime = ConfigClock(default = [int(time.strftime("%H", time.localtime(self.timer.begin))), int(time.strftime("%M", time.localtime(self.timer.begin)))])
+			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 
 			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
-			self.timerentry_endtime = ConfigClock(default = [int(time.strftime("%H", time.localtime(self.timer.end))), int(time.strftime("%M", time.localtime(self.timer.end)))])
+			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
 			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
