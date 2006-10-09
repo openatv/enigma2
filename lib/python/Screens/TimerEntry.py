@@ -192,12 +192,6 @@ class TimerEntry(Screen, ConfigListScreen):
 			ConfigListScreen.keyLeft(self)
 			self.newConfig()
 
-	def keyRightCallback(self, configPath):
-		currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
-		# check if we are still on the same config entry
-		if (currentConfigPath == configPath):
-			self.keyRight()
-
 	def keyRight(self):
 		if self["config"].getCurrent() is self.channelEntry:
 			self.keySelect()
