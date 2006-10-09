@@ -9,15 +9,17 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
 		self.l.setSeperation(100)
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.timeout)
 		self.list = list
 		self.onSelectionChanged = [ ]
 		self.current = None
 		self.help_window = None
 		self.setHelpWindowSession(session)
-		
-		self.timer = eTimer()
-		self.timer.timeout.get().append(self.timeout)
-	
+
+	def execEnd(self):
+		self.timer = None
+
 	def setHelpWindowSession(self, session):
 		assert self.help_window is None, "you can't move a help window to another session"
 		self.session = session
@@ -29,13 +31,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def handleKey(self, key):
 		selection = self.getCurrent()
-		if selection[1].enabled:
+		if selection and selection[1].enabled:
 			selection[1].handleKey(key)
 			self.invalidateCurrent()
 			if self.help_window:
 				self.help_window.update(selection[1])
-		if key not in [KEY_TIMEOUT, KEY_LEFT, KEY_RIGHT, KEY_DELETE, KEY_OK]:
-			self.timer.start(1000, 1)
+			if key not in [KEY_TIMEOUT, KEY_LEFT, KEY_RIGHT, KEY_DELETE, KEY_OK]:
+				self.timer.start(1000, 1)
 
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -71,6 +73,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 	
 	def setList(self, l):
+		self.timer.stop()
 		self.__list = l
 		self.l.setList(self.__list)
 
