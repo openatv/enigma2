@@ -175,13 +175,13 @@ class Satfinder(ScanSetup):
 		
 		self.updateSats()
 
-		self.tuning_type.addNotifier(self.retune)
-		self.tuning_sat.addNotifier(self.sat_changed)
-		self.scan_sat.frequency.addNotifier(self.retune)
-		self.scan_sat.inversion.addNotifier(self.retune)
-		self.scan_sat.symbolrate.addNotifier(self.retune)
-		self.scan_sat.polarization.addNotifier(self.retune)
-		self.scan_sat.fec.addNotifier(self.retune)
+		self.tuning_type.addNotifier(self.retune, initial_call = False)
+		self.tuning_sat.addNotifier(self.sat_changed, initial_call = False)
+		self.scan_sat.frequency.addNotifier(self.retune, initial_call = False)
+		self.scan_sat.inversion.addNotifier(self.retune, initial_call = False)
+		self.scan_sat.symbolrate.addNotifier(self.retune, initial_call = False)
+		self.scan_sat.polarization.addNotifier(self.retune, initial_call = False)
+		self.scan_sat.fec.addNotifier(self.retune, initial_call = False)
 
 	def updateSats(self):
 		orb_pos = self.tuning_sat.orbital_position
@@ -215,7 +215,7 @@ class Satfinder(ScanSetup):
 					fec = "FEC_None"
 				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			self.tuning_transponder = ConfigSelection(choices = list)
-			self.tuning_transponder.addNotifier(self.retune)
+			self.tuning_transponder.addNotifier(self.retune, initial_call = False)
 	
 	def keyGo(self):
 		self.retune(self.tuning_type)

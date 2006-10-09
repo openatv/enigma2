@@ -71,19 +71,20 @@ class ConfigElement(object):
 		for x in self.notifiers:
 			x(self)
 			
-	def addNotifier(self, notifier):
+	def addNotifier(self, notifier, initial_call = True):
 		assert callable(notifier), "notifiers must be callable"
 		self.notifiers.append(notifier)
-		
+
 		# CHECKME:
 		# do we want to call the notifier
-		#  - at all when adding it? (yes)
+		#  - at all when adding it? (yes, though optional)
 		#  - when the default is active? (yes)
 		#  - when no value *yet* has been set,
 		#    because no config has ever been read (currently yes)
 		#    (though that's not so easy to detect.
 		#     the entry could just be new.)
-		notifier(self)
+		if initial_call:
+			notifier(self)
 
 	def disableSave(self):
 		self.save_disabled = True
