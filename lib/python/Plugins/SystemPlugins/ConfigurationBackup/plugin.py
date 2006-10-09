@@ -7,7 +7,7 @@ from Components.Pixmap import *
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import config, ConfigSelection, ConfigSubsection
+from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
@@ -47,26 +47,26 @@ class BackupSetup(Screen):
 		</screen>"""
 		
 	def keyLeft(self):
-		self["config"].handleKey(config.key["prevElement"])
+		self["config"].handleKey(KEY_LEFT)
 
 	def keyRight(self):
-		self["config"].handleKey(config.key["nextElement"])
+		self["config"].handleKey(KEY_RIGHT)
 
 	def keyNumberGlobal(self, number):
-		print "You pressed number " + str(number)
+		print "You pressed number", number
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(config.key[str(number)])
+			self["config"].handleKey(KEY_0+number)
 
 	def keyCancel(self):
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
-		
+
 	def keySave(self):
 		for x in self["config"].list:
 			x[1].save()
 		self.close()
-	
+
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
@@ -79,12 +79,12 @@ class BackupSetup(Screen):
 		self["backup"] = Pixmap()
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-
+		
 		self.path = ""
 		self.list = []
 		self["config"] = ConfigList(self.list)
 		self.createSetup()
-
+		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySave,
@@ -106,17 +106,17 @@ class BackupSetup(Screen):
 		print "Creating BackupSetup"
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
-		config.backup = ConfigSubsection()
-		config.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))])
-		config.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
-		self.list.append(getConfigListEntry(_("Backup Mode"), config.backup.type))
-		self.list.append(getConfigListEntry(_("Backup Location"), config.backup.location))
+		self.backup = ConfigSubsection()
+		self.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))])
+		self.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
+		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
+		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
 
 	def createBackupfolders(self):
-		self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
+		self.path = BackupPath[self.backup.location.value]
 		print "Creating Backup Folder if not already there..."
-		if (os.path.exists(str(self.path)) == False):
-			os.makedirs(str(self.path))
+		if (os.path.exists(self.path) == False):
+			os.makedirs(self.path)
 
 	def Backup(self):
 		print "this will start the backup now!"
@@ -124,25 +124,25 @@ class BackupSetup(Screen):
 
 	def Restore(self):
 		print "this will start the restore now!"
-		self.session.open(RestoreMenu)
+		self.session.open(RestoreMenu, self.backup)
 
 	def runBackup(self, result):
 		if result:
-			if os.path.ismount(MountPoints[str(currentConfigSelectionElement(config.backup.location))]):
+			if os.path.ismount(MountPoints[self.backup.location.value]):
 				self.createBackupfolders()
 				d = time.localtime()
 				dt = datetime.date(d.tm_year, d.tm_mon, d.tm_mday)
-				self.path = BackupPath[str(currentConfigSelectionElement(config.backup.location))]
-				if currentConfigSelectionElement(config.backup.type) == "full":
+				self.path = BackupPath[self.backup.location.value]
+				if self.backup.type.value == "full":
 					print "Backup Mode: Full"
 					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_full_backup.tar.gz /etc/"])
-				if currentConfigSelectionElement(config.backup.type) == "settings":
+				elif self.backup.type.value == "settings":
 					print "Backup Mode: Settings"
 					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
-				if currentConfigSelectionElement(config.backup.type) == "var":
+				elif self.backup.type.value == "var":
 					print "Backup Mode: var"
 					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
-				if currentConfigSelectionElement(config.backup.type) == "skin":
+				elif self.backup.type.value == "skin":
 					print "Backup Mode: skin"
 					self.session.open(Console, title ="Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
@@ -158,15 +158,16 @@ class RestoreMenu(Screen):
 		<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, backup):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
-		
+		self.backup = backup
+
 		self["canceltext"] = Label(_("Cancel"))
 		self["restoretext"] = Label(_("Restore"))
 		self["restore"] = Pixmap()
 		self["cancel"] = Pixmap()
-		
+
 		self.sel = []
 		self.val = []
 		self.entry = False
@@ -179,7 +180,7 @@ class RestoreMenu(Screen):
 			"ok": self.KeyOk,
 			"cancel": self.keyCancel
 		}, -1)
-		
+
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
 		{
 			"red": self.keyCancel,
@@ -189,23 +190,22 @@ class RestoreMenu(Screen):
 		self["filelist"] = MenuList(self.flist)
 		self.fill_list()
 
-
 	def fill_list(self):
 		self.flist = []
-		self.path = BackupPath[config.backup.location.value]
-		if (os.path.exists(str(self.path)) == False):
-			os.makedirs(str(self.path))
-		for file in os.listdir(str(self.path)):
+		self.path = BackupPath[self.backup.location.value]
+		if (os.path.exists(self.path) == False):
+			os.makedirs(self.path)
+		for file in os.listdir(self.path):
 			if (file.endswith(".tar.gz")):
 				self.flist.append((file))
 				self.entry = True
 				self["filelist"].l.setList(self.flist)
 
 	def KeyOk(self):
-	    if (self.exe == False) and (self.entry == True):
-	        self.sel = self["filelist"].getCurrent()
-	        self.val = self.path + self.sel
-	        self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nEnigma2 will restart after the restore"))
+		if (self.exe == False) and (self.entry == True):
+			self.sel = self["filelist"].getCurrent()
+			self.val = self.path + self.sel
+			self.session.openWithCallback(self.startRestore, MessageBox, _("are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nEnigma2 will restart after the restore"))
 
 	def keyCancel(self):
 		self.close()
@@ -214,9 +214,9 @@ class RestoreMenu(Screen):
 		if (ret == True):
 			self.exe = True
 			self.session.open(Console, title = "Restore running", cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall enigma2"])
-			
+
 	def Exit(self):
-	        self.close()
+		self.close()
 
 def BackupMain(session, **kwargs):
 	session.open(BackupSetup)
