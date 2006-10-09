@@ -32,23 +32,15 @@ class TimeDateInput(Screen, ConfigListScreen):
 
 	def createConfig(self):
 		nowtime = time.time()
-		self.timeinput_date = ConfigDateTime(default = nowtime, formatstring = (_("%d.%B %Y"), 86400))
+		self.timeinput_date = ConfigDateTime(default = nowtime, formatstring = _("%d.%B %Y"), increment = 86400)
 		self.timeinput_time = ConfigClock(default = nowtime)
-
-		assert False, "fixme"
 
 	def createSetup(self, configlist):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Date"), config.timeinput.date))
-		self.list.append(getConfigListEntry(_("Time"), config.timeinput.time))
+		self.list.append(getConfigListEntry(_("Date"), self.timeinput_date))
+		self.list.append(getConfigListEntry(_("Time"), self.timeinput_time))
 		configlist.list = self.list
 		configlist.l.setList(self.list)
-
-	def keyRightCallback(self, configPath):
-		currentConfigPath = self["config"].getCurrent()[1].parent.getConfigPath()
-		# check if we are still on the same config entry
-		if (currentConfigPath == configPath):
-			self.keyRight()
 
 	def keySelect(self):
 		self.keyGo()
@@ -56,10 +48,10 @@ class TimeDateInput(Screen, ConfigListScreen):
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(mktime(dt.timetuple()))
+		return int(time.mktime(dt.timetuple()))
 
 	def keyGo(self):
-		time = self.getTimestamp(config.timeinput.date.value, config.timeinput.time.value)
+		time = self.getTimestamp(self.timeinput_date.value, self.timeinput_time.value)
 		self.close((True, time))
 
 	def keyCancel(self):
