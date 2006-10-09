@@ -13,8 +13,6 @@ from Components.ConfigList import ConfigList
 
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
 
-TYPE_MENU = 0
-TYPE_CONFIG = 1
 MAX_NUM_CI = 4
 
 def InitCiConfig():
@@ -40,7 +38,6 @@ class CiMmi(Screen):
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
 		self["entries"] = ConfigList([ ])
-		self.listtype = TYPE_CONFIG
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 			{
@@ -158,22 +155,7 @@ class CiMmi(Screen):
 		try:
 			List.instance.moveSelectionTo(0)
 		except:
-			List.l.setList(list)
-			return
-
-		if self.tag and self.tag == "ENQ":
-			type = TYPE_CONFIG
-		else:
-			type = TYPE_MENU
-
-		if type != self.listtype:
-			if type == TYPE_CONFIG:
-				List.l = eListboxPythonConfigContent()
-			else:
-				List.l = eListboxPythonStringContent()
-			List.instance.setContent(List.l)
-			self.listtype = type
-
+			pass
 		List.l.setList(list)
 
 	def showWait(self):
@@ -182,7 +164,7 @@ class CiMmi(Screen):
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
 		list = [ ]
-		list.append( ("wait for ci...", 0) )
+		list.append( (_("wait for ci..."), ConfigNothing()) )
 		self.updateList(list)
 
 	def showScreen(self):
