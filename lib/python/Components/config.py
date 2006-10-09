@@ -415,7 +415,9 @@ class ConfigPosition(ConfigSequence):
 
 class ConfigClock(ConfigSequence):
 	def __init__(self, default):
-		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = default)
+		import time
+		t = time.localtime(default)
+		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = [t.tm_hour, t.tm_min])
 
 class ConfigInteger(ConfigSequence):
 	def __init__(self, default, limits):
@@ -491,7 +493,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 					self.text = self.text.ljust(len(self.text) + 1)
 		elif key in KEY_NUMBERS:
 			number = self.getKey(getKeyNumber(key))
-			self.text = self.text[0:self.marked_pos] + str(number) + self.text[self.marked_pos + 1:]
+			self.text = self.text[0:self.marked_pos] + unicode(number) + self.text[self.marked_pos + 1:]
 		elif key == KEY_TIMEOUT:
 			self.timeout()
 			return
