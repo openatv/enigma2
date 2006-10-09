@@ -435,17 +435,18 @@ newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
 	</screen>
-	<screen name="NumericalTextInputHelpDialog" position="300,370" size="300,90" zPosition="2">
-		<widget name="key1" position="0,0" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key2" position="100,0" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key3" position="200,0" size="100,30" font="Regular;16" halign="center" />
+	<screen name="NumericalTextInputHelpDialog" flags="wfNoBorder" position="250,370" size="400,100" zPosition="2" backgroundColor="#202020">
+		<eLabel position="3,3" size="392,92" backgroundColor="#c0c0c0" zPosition="-1" />
+		<widget name="key1" position="5,5" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key2" position="135,5" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key3" position="265,5" size="130,30" font="Regular;16" halign="center" />
 
-		<widget name="key4" position="0,30" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key5" position="100,30" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key6" position="200,30" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key4" position="5,35" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key5" position="135,35" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key6" position="265,35" size="130,30" font="Regular;16" halign="center" />
 
-		<widget name="key7" position="0,60" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key8" position="100,60" size="100,30" font="Regular;16" halign="center" />
-		<widget name="key9" position="200,60" size="100,30" font="Regular;16" halign="center" />
+		<widget name="key7" position="5,65" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key8" position="135,65" size="130,30" font="Regular;16" halign="center" />
+		<widget name="key9" position="265,65" size="130,30" font="Regular;16" halign="center" />
 	</screen>
 </skin>
