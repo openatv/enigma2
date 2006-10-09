@@ -14,6 +14,7 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 	int m_type;
 public:
 	eDVBFrontendParameters();
+	~eDVBFrontendParameters() {}
 	
 	RESULT getSystem(int &type) const;
 	RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
