@@ -18,7 +18,8 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.setHelpWindowSession(session)
 
 	def execEnd(self):
-		self.timer = None
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.timeout)
 
 	def setHelpWindowSession(self, session):
 		assert self.help_window is None, "you can't move a help window to another session"
