@@ -169,7 +169,7 @@ class Satfinder(ScanSetup):
 	def createConfig(self, foo):
 
 		self.tuning_transponder = None
-		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))])
+		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined transponder"))])
 		self.tuning_sat = ConfigSatlist(default = 192, list = nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
 		
