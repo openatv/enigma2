@@ -14,6 +14,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		GUISkin.__init__(self)
 		
 		self.onClose = [ ]
+		self.onFirstExecBegin = [ ]
 		self.onExecBegin = [ ]
 		self.onShown = [ ]
 		
@@ -31,7 +32,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 		
 	def execBegin(self):
 		self.active_components = [ ]
-		for x in self.onExecBegin:
+
+		single = self.onFirstExecBegin
+		self.onFirstExecBegin = []
+		for x in self.onExecBegin + single:
 			x()
 			if self.session.current_dialog != self:
 				return
