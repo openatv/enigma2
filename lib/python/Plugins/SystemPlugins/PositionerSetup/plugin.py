@@ -10,7 +10,7 @@ from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
-from Components.config import ConfigNothing, ConfigSelection
+from Components.config import ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, getConfigListEntry
 
 class PositionerSetup(Screen):
 	skin = """
@@ -51,7 +51,7 @@ class PositionerSetup(Screen):
 		
 		self.diseqc = Diseqc(self.feid)
 		self.tuner = Tuner(self.diseqc.getFrontend())
-		self.tuner.tune((0,0,0,0,0,0,0,0,0))
+		self.tuner.tune((0,0,0,0,0,0))
 		
 		#self.session.nav.stopService()
 		
@@ -112,7 +112,7 @@ class PositionerSetup(Screen):
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
 		self.statusTimer.start(50, False)
-		
+
 	def createConfig(self):
 		self.positioner_tune = ConfigNothing()
 		self.positioner_move = ConfigNothing()
@@ -123,38 +123,38 @@ class PositionerSetup(Screen):
 		for x in range(1,255):
 			storepos.append(str(x))
 		self.positioner_storage = ConfigSelection(choices = storepos)
-	
+
 	def createSetup(self):
-		self.list.append(getConfigListEntry(_("Tune"), self.positioner_tune))
-		self.list.append(getConfigListEntry(_("Positioner movement"), self.positioner_move))
-		self.list.append(getConfigListEntry(_("Positioner fine movement"), self.positioner_finemove))
-		self.list.append(getConfigListEntry(_("Set limits"), self.positioner_limits))
-		self.list.append(getConfigListEntry(_("Positioner storage"), self.positioner_storage))
-		self.list.append(getConfigListEntry(_("Goto 0"), self.positioner_goto0))
+		self.list.append((_("Tune"), self.positioner_tune, "tune"))
+		self.list.append((_("Positioner movement"), self.positioner_move, "move"))
+		self.list.append((_("Positioner fine movement"), self.positioner_finemove, "finemove"))
+		self.list.append((_("Set limits"), self.positioner_limits, "limits"))
+		self.list.append((_("Positioner storage"), self.positioner_storage, "storage"))
+		self.list.append((_("Goto 0"), self.positioner_goto0, "goto0"))
 		self["list"].l.setList(self.list)
-		
+
 	def go(self):
 		pass
-	
+
 	def getCurrentConfigPath(self):
-		return self["list"].getCurrent()[1].parent.configPath
-	
+		return self["list"].getCurrent()[2]
+
 	def up(self):
 		if not self.isMoving:
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
 			self.updateColors(self.getCurrentConfigPath())
-	
+
 	def down(self):
 		if not self.isMoving:
 			self["list"].instance.moveSelection(self["list"].instance.moveDown)
 			self.updateColors(self.getCurrentConfigPath())
-	
+
 	def left(self):
-		self["list"].handleKey(config.key["prevElement"])
-	
+		self["list"].handleKey(KEY_LEFT)
+
 	def right(self):
-		self["list"].handleKey(config.key["nextElement"])
-	
+		self["list"].handleKey(KEY_RIGHT)
+
 	def updateColors(self, entry):
 		if entry == "tune":
 			self.red.setText(_("Tune"))
@@ -197,7 +197,7 @@ class PositionerSetup(Screen):
 			self.green.setText("")
 			self.yellow.setText("")
 			self.blue.setText("")
-	
+
 	def redKey(self):
 		entry = self.getCurrentConfigPath()
 		if entry == "move":
@@ -362,7 +362,7 @@ class Tuner:
 		parm.inversion = transponder[4]
 		parm.orbital_position = transponder[5]
 		parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
-		parm.modulation = 1 # FIXMEE !! HARDCODED QPSK 
+		parm.modulation = 1 # FIXMEE !! HARDCODED QPSK
 		feparm = eDVBFrontendParameters()
 		feparm.setDVBS(parm, True)
 		self.lastparm = feparm
@@ -392,18 +392,18 @@ class TunerScreen(ScanSetup):
 		self.satEntry = None
 
 		self.list = []
-		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), config.tuning.type)
+		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning.type)
 		self.list.append(self.typeOfTuningEntry)
-		self.satEntry = getConfigListEntry(_('Satellite'), config.tuning.sat)
+		self.satEntry = getConfigListEntry(_('Satellite'), self.tuning.sat)
 		self.list.append(self.satEntry)
-		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
-			self.list.append(getConfigListEntry(_('Frequency'), config.scan.sat.frequency))
-			self.list.append(getConfigListEntry(_('Inversion'), config.scan.sat.inversion))
-			self.list.append(getConfigListEntry(_('Symbol Rate'), config.scan.sat.symbolrate))
-			self.list.append(getConfigListEntry(_("Polarity"), config.scan.sat.polarization))
-			self.list.append(getConfigListEntry(_("FEC"), config.scan.sat.fec))
-		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
-			self.list.append(getConfigListEntry(_("Transponder"), config.tuning.transponder))
+		if self.tuning.type.value == "manual_transponder":
+			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
+			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
+			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
+			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
+			self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+		elif self.tuning.type.value == "predefined_transponder":
+			self.list.append(getConfigListEntry(_("Transponder"), self.tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -411,24 +411,24 @@ class TunerScreen(ScanSetup):
 		if self["config"].getCurrent() == self.typeOfTuningEntry:
 			self.createSetup()
 		elif self["config"].getCurrent() == self.satEntry:
-			self.updateSats()
+			self.updateTransponders()
 			self.createSetup()
 
 	def createConfig(self, foo):
-		config.tuning = ConfigSubsection()
-		
-		config.tuning.type = configElement_nonSave("config.tuning.type", configSelection, 0, (("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined satellite"))))
-		
-		config.tuning.sat = configElement_nonSave("config.tuning.sat", configSatlist, 192, nimmanager.getRotorSatListForNim(self.feid))
+		self.tuning = ConfigSubsection()
+		self.tuning.type = ConfigSelection(
+			default = "manual_transponder",
+			choices = { "manual_transponder" : _("Manual transponder"),
+						"predefined_transponder" : _("Predefined transponder") } )
+		self.tuning.sat = ConfigSatlist(list=nimmanager.getRotorSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
-		self.updateSats()
-		
-	def updateSats(self):
-		satnum = config.tuning.sat.value
-		satlist = config.tuning.sat.vals
-		if len(satlist):
-			transponderlist = nimmanager.getTransponders(satlist[satnum][1])
-			list = []
+		self.updateTransponders()
+
+	def updateTransponders(self):
+		if len(self.tuning.sat.choices):
+			transponderlist = nimmanager.getTransponders(int(self.tuning.sat.value))
+			tps = []
+			cnt=0
 			for x in transponderlist:
 				if x[3] == 0:
 					pol = "H"
@@ -454,17 +454,23 @@ class TunerScreen(ScanSetup):
 					fec = "FEC_8_9"
 				elif x[4] == 6:
 					fec = "FEC_None"
-				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
-			config.tuning.transponder = configElement_nonSave("config.tuning.transponder", configSelection, 0, list)
-	
+				tps.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
+			self.tuning.transponder = ConfigSelection(choices=tps)
+
 	def keyGo(self):
-		returnvalue = (0, 0, 0, 0, 0, 0, 0)
-		satpos = config.tuning.sat.vals[config.tuning.sat.value][1]
-		if currentConfigSelectionElement(config.tuning.type) == "manual_transponder":
-			returnvalue = (config.scan.sat.frequency.value[0], config.scan.sat.symbolrate.value[0], config.scan.sat.polarization.value, config.scan.sat.fec.value, config.scan.sat.inversion.value, satpos)
-		elif currentConfigSelectionElement(config.tuning.type) == "predefined_transponder":
-			transponder = nimmanager.getTransponders(config.tuning.sat.vals[config.tuning.sat.value][1])[config.tuning.transponder.value]
-			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, config.tuning.sat.vals[config.tuning.sat.value][1], satpos)
+		returnvalue = (0, 0, 0, 0, 0, 0)
+		satpos = int(self.tuning.sat.value)
+		if self.tuning.type.value == "manual_transponder":
+			returnvalue = (
+				self.scan_sat.frequency.value,
+				self.scan_sat.symbolrate.value,
+				self.scan_sat.polarization.index,
+				self.scan_sat.fec.index,
+				self.scan_sat.inversion.index,
+				satpos)
+		elif self.tuning.type.value == "predefined_transponder":
+			transponder = nimmanager.getTransponders(satpos)[self.tuning.transponder.index]
+			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
 		self.close(returnvalue)
 
 	def keyCancel(self):
