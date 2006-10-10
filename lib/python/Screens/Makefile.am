@@ -11,4 +11,4 @@ install_PYTHON = \
 	TutorialWizard.py PluginBrowser.py MinuteInput.py Scart.py PVRState.py \
 	Console.py InputBox.py ChoiceBox.py SimpleSummary.py ImageWizard.py \
 	MediaPlayer.py TimerSelection.py PictureInPicture.py TimeDateInput.py \
-	SubtitleDisplay.py SubservicesQuickzap.py NumericalTextInputHelpDialog.py
+	SubtitleDisplay.py SubservicesQuickzap.py ParentalControlSetup.py NumericalTextInputHelpDialog.py
