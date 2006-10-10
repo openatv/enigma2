@@ -268,7 +268,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	{
 		eDVBFrontendParametersCable parm;
 		feparm->getDVBC(parm);
-		eDebug("try to add %d %d %d %d %d",
+		eDebug("try to add %d %d %d %d",
 			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
 		break;
 	}
