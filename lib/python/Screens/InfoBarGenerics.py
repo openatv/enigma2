@@ -246,7 +246,6 @@ class InfoBarChannelSelection:
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		
-		print "__init__: servicelist is", self.servicelist
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
@@ -277,7 +276,6 @@ class InfoBarChannelSelection:
 		self.onShown.remove(self.firstRun)
 		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
-		print "servicelist is", self.servicelist
 		self.switchChannelDown()
 
 	def historyBack(self):
