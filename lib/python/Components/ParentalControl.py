@@ -92,16 +92,15 @@ class ParentalControl:
 		print "unprotect"
 		print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		if config.ParentalControl.type.value == "whitelist":
-			if service.toCompareString() not in self.whitelist:
+			if service not in self.whitelist:
 				self.addWhitelistService(service)
 		else: # blacklist
-			if service.toCompareString() in self.blacklist:
+			if service in self.blacklist:
 				self.deleteBlacklistService(service)
 		print "whitelist:", self.whitelist
 		print "blacklist:", self.blacklist
 
-	def getProtectionLevel(self, serviceref):
-		service = serviceref.toCompareString()
+	def getProtectionLevel(self, service):
 		if (config.ParentalControl.type.value == "whitelist" and service not in self.whitelist) or (config.ParentalControl.type.value == "blacklist" and service in self.blacklist):
 			if self.serviceLevel.has_key(service):
 				return self.serviceLevel[service]

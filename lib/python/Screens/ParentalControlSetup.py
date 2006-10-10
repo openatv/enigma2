@@ -170,9 +170,9 @@ class ParentalControlEditor(Screen):
 		
 		list = serviceHandler.list(self.root)
 		if list is not None:
-			services = list.getContent("CRN", True) #(servicecomparestring, eServiceRef, name)
+			services = list.getContent("CN", True) #(servicecomparestring, name)
 			for s in services:
-				key = s[2].lower()[0]
+				key = s[1].lower()[0]
 				if key < 'a' or key > 'z':
 					key = '&'
 				#key = str(key)
@@ -201,7 +201,7 @@ class ParentalControlEditor(Screen):
 			self.currentLetter = result[1]
 			self.list = []
 			for x in self.servicesList[result[1]]:
-				self.list.append(ParentalControlEntryComponent(x[1], x[2], parentalControl.getProtectionLevel(x[1]) != -1))
+				self.list.append(ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionLevel(x[0]) != -1))
 			self.servicelist.setList(self.list)			
 
 class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
