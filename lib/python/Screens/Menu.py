@@ -7,6 +7,7 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.config import configfile
 from Components.Sources.Clock import Clock
+from Components.PluginComponent import plugins
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -109,7 +110,7 @@ class Menu(Screen):
 		# FIXME. somehow
 		if arg[0] != "":
 			exec "from " + arg[0] + " import *"
-			
+
 		self.openDialog(*eval(arg[1]))
 
 	def nothing(self):																	#dummy
@@ -183,9 +184,8 @@ class Menu(Screen):
 		Screen.__init__(self, session)
 		
 		list = []
-		menuID = ""
-
-		menuID = -1
+		
+		menuID = None
 		for x in childNode:						#walk through the actual nodelist
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 			    continue
@@ -198,13 +198,19 @@ class Menu(Screen):
 			elif x.tagName == "id":
 				menuID = x.getAttribute("val")
 				count = 0
-			if menuID != -1:
+
+			if menuID is not None:
+				# menuupdater?
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
 							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", "))))
 							count += 1
 
+		if menuID is not None:
+			# plugins
+			for l in plugins.getPluginsForMenu(menuID):
+				list.append((l[0], boundFunction(l[1], self.session)))
 
 		self["menu"] = MenuList(list)	
 							
