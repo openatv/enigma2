@@ -51,6 +51,16 @@ std::string eServiceReference::toString() const
 	return ret;
 }
 
+std::string eServiceReference::toCompareString() const
+{
+	std::string ret;
+	ret += getNum(type);
+	ret += ":0";
+	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
+		ret+=":"+getNum(data[i], 0x10);
+	ret+=":"+path;
+	return ret;
+}
 
 eServiceCenter *eServiceCenter::instance;
 

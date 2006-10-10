@@ -145,6 +145,7 @@ public:
 #endif
 	eServiceReference(const std::string &string);
 	std::string toString() const;
+	std::string toCompareString() const;
 	bool operator==(const eServiceReference &c) const
 	{
 		if (type != c.type)
