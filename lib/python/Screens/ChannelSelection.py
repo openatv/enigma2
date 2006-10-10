@@ -1134,7 +1134,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 		self.close(None)
 
-from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord
+from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarRadioText
 
 class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord):
 	def __init__(self, session):
@@ -1144,7 +1144,7 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecor
 		InfoBarInstantRecord.__init__(self)
 		self["CurrentTime"] = Clock()
 
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarRadioText):
 
 	ALLOW_SUSPEND = True
 
@@ -1152,6 +1152,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionBase.__init__(self, session)
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
+		InfoBarRadioText.__init__(self)
 
 		config.radio = ConfigSubsection();
 		config.radio.lastservice = ConfigText()

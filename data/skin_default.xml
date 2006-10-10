@@ -1,4 +1,8 @@
 <skin>
+	<fonts>
+		<font filename="lcd.ttf" name="LCD" scale="100" />
+	</fonts>
+
 	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
 	</screen>
 	<screen name="Menu" position="210,150" size="300,265" title="Main menu">
@@ -222,7 +226,10 @@
 		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
 		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
-		<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
+		<widget name="list" position="0,45" size="560,196" scrollbarMode="showOnDemand" />
+		<widget source="RadioText" render="Label" position="0,241" size="560,66" font="LCD;25" >
+			<convert type="RadioText">Name</convert>
+		</widget>
 	</screen>
 	<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
 		<widget source="CurrentService" render="Label" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" >

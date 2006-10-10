@@ -12,6 +12,7 @@ from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.CurrentService import CurrentService
 from Components.Sources.EventInfo import EventInfo
+from Components.Sources.RadioText import RadioText
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
@@ -524,6 +525,11 @@ class InfoBarEvent:
 	def __init__(self):
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.NOW)
 		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.NEXT)
+
+class InfoBarRadioText:
+	"""provides radio (RDS) text info display"""
+	def __init__(self):
+		self["RadioText"] = RadioText(self.session.nav)
 
 class InfoBarServiceName:
 	def __init__(self):
@@ -1401,7 +1407,6 @@ class InfoBarAudioSelection:
 			self.audioChannel.selectChannel(mode[1])
 		del self.audioChannel
 
-		
 class InfoBarSubserviceSelection:
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
