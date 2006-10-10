@@ -357,6 +357,11 @@ void eDVBScan::channelDone()
 	if (m_ready & validNIT)
 	{
 		SCAN_eDebug("dumping NIT");
+		if (m_flags & clearToScanOnFirstNIT)
+		{
+			m_ch_toScan.clear();
+			m_flags &= ~clearToScanOnFirstNIT;
+		}
 		std::vector<NetworkInformationSection*>::const_iterator i;
 		for (i = m_NIT->getSections().begin(); i != m_NIT->getSections().end(); ++i)
 		{
