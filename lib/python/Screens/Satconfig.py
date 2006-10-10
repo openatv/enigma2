@@ -60,7 +60,6 @@ class NimSetup(Screen, ConfigListScreen):
 				# SATs
 				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 				self.list.append(self.advancedSatsEntry)
-				print "blub", self.nimConfig.advanced.sat
 				currSat = self.nimConfig.advanced.sat[self.nimConfig.advanced.sats.orbital_position]
 				self.fillListWithAdvancedSatEntrys(currSat)
 			self.have_advanced = True
