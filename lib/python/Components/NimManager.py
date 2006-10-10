@@ -353,14 +353,14 @@ class NimManager:
 				self.parsedCab = str(tname)
 			elif (name == "transponder"):
 				freq = int(attrs.get('frequency',""))
-				sr = int(attrs.get('symbol_rate',""))
-				mod = int(attrs.get('modulation',"3")) # QAM64 default
-				fec = int(attrs.get('fec_inner',"0")) # AUTO default
+				#sr = int(attrs.get('symbol_rate',""))
+				#mod = int(attrs.get('modulation',"3")) # QAM64 default
+				#fec = int(attrs.get('fec_inner',"0")) # AUTO default
 				if self.parsedCab in self.transponders:
 					pass
 				else:
 					self.transponders[self.parsedCab] = [ ]
-				self.transponders[self.parsedCab].append((1, freq, sr, mod, fec))
+				self.transponders[self.parsedCab].append((1, freq))
 
 	class parseTerrestrials(ContentHandler):
 		def __init__(self, terrestrialsList, transponders):
@@ -410,7 +410,10 @@ class NimManager:
 		return self.transpondersterrestrial[region]
 	
 	def getCableDescription(self, nim):
-		return self.cablesList[config.Nims[nim].cable.value]
+		return self.cablesList[0]
+	
+	def getCableTrustNit(self, nim):
+		return (config.Nims[nim].cabletype.value == "quick")
 
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.value][0]
@@ -783,7 +786,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
 
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
-			nim.cable = ConfigSelection(choices = nimmgr.cablesList)
+			nim.cabletype = ConfigSelection(choices = [("quick", _("Quick")), ("complete", _("Complete"))])
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
 			list = []
 			for x in nimmgr.terrestrialsList:

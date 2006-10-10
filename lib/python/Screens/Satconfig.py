@@ -64,7 +64,7 @@ class NimSetup(Screen, ConfigListScreen):
 				self.fillListWithAdvancedSatEntrys(currSat)
 			self.have_advanced = True
 		elif self.nim_type == nimmanager.nimType["DVB-C"]:
-			self.list.append(getConfigListEntry(_("Cable provider"), self.nimConfig.cable))
+			self.list.append(getConfigListEntry(_("Service scan type needed"), self.nimConfig.cabletype))
 			self.have_advanced = False
 		elif self.nim_type == nimmanager.nimType["DVB-T"]:
 			self.have_advanced = False
