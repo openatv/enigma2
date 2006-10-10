@@ -396,6 +396,7 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sort
 //   useable format options are
 //   R = Service Reference (as swig object .. this is very slow)
 //   S = Service Reference (as python string object .. same as ref.toString())
+//   C = Service Reference (as python string object .. same as ref.toCompareString())
 //   N = Service Name (as python string object)
 //   when exactly one return value per service is selected in the format string,
 //   then each value is directly a list entry
@@ -434,6 +435,9 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 				{
 				case 'R':  // service reference (swig)object
 					tmp = New_eServiceReference(ref);
+					break;
+				case 'C':  // service reference compare string
+					tmp = PyString_FromString(ref.toCompareString().c_str());
 					break;
 				case 'S':  // service reference string
 					tmp = PyString_FromString(ref.toString().c_str());
