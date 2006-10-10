@@ -91,15 +91,25 @@ def getInitialTransponderList(tlist, pos):
 def getInitialCableTransponderList(tlist, cable):
 	list = nimmanager.getTranspondersCable(cable)
 
+	symbolrates = [6900000, 6875000]
+	modulations = [3, 5, 1, 2, 4] # QAM 64, 256, 16, 32, 128
+
 	for x in list:
 		if x[0] == 1: #CABLE
-			parm = eDVBFrontendParametersCable()
-			parm.frequency = x[1]
-			parm.symbol_rate = x[2]
-			parm.modulation = x[3]
-			parm.fec_inner = x[4]
-			parm.inversion = 2 # AUTO
-			tlist.append(parm)
+			for symbolrate in symbolrates:
+				for modulation in modulations:
+					parm = eDVBFrontendParametersCable()
+					parm.frequency = x[1]
+					parm.symbol_rate = symbolrate
+					parm.modulation = modulation
+					parm.fec_inner = 0
+					parm.inversion = 2 # AUTO
+					#print "frequency:", x[1]
+					#print "symbol_rate:", x[2]
+					#print "modulation:", x[3]
+					#print "fec_inner:", x[4]
+					#print "inversion:", 2
+					tlist.append(parm)
 
 def getInitialTerrestrialTransponderList(tlist, region):
 	list = nimmanager.getTranspondersTerrestrial(region)
@@ -613,6 +623,7 @@ class ScanSimple(ConfigListScreen, Screen):
 			print "Scan Tuner", slotid, "-", c.value
 			if c.value:
 				scanPossible = False
+				trustNit = False
 				tlist = [ ]
 				if nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-S"]:
 					print "is sat"
@@ -632,6 +643,8 @@ class ScanSimple(ConfigListScreen, Screen):
 				elif nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-C"]:
 					scanPossible = True
 					getInitialCableTransponderList(tlist, nimmanager.getCableDescription(slotid))
+					if nimmanager.getCableTrustNit(slotid):
+						trustNit = True
 				elif nimmanager.getNimType(slotid) == nimmanager.nimType["DVB-T"]:
 					scanPossible = True
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(slotid))
@@ -640,6 +653,8 @@ class ScanSimple(ConfigListScreen, Screen):
 
 				if scanPossible:
 					flags=eComponentScan.scanNetworkSearch
+					if trustNit:
+						flags |= eComponentScan.clearToScanOnFirstNIT
 					tmp = self.scan_clearallservices.value
 					if tmp == "yes":
 						flags |= eComponentScan.scanRemoveServices

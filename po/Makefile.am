@@ -42,6 +42,7 @@ enigma2.pot:
 			../lib/python/Screens/InfoBarGenerics.py \
 			../lib/python/Screens/ChannelSelection.py \
 			../lib/python/Screens/PluginBrowser.py \
+			../lib/python/Screens/ParentalControlSetup.py \
 			../lib/python/Screens/Console.py \
 			../lib/python/Screens/MediaPlayer.py \
 			../lib/python/Screens/PiPSetup.py \
@@ -51,6 +52,8 @@ enigma2.pot:
 			../lib/python/Components/Lcd.py \
 			../lib/python/Components/SetupDevices.py \
 			../lib/python/Components/Language.py \
+			../lib/python/Components/ParentalControl.py \
+			../lib/python/Components/ParentalControlList.py \
 			../lib/python/Components/NimManager.py \
 			../lib/python/Components/TimerList.py \
 			../lib/python/Components/EventInfo.py \
