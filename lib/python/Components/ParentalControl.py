@@ -37,26 +37,25 @@ class ParentalControl:
 		self.tries = 3
 		
 	def addWhitelistService(self, service):
-		self.whitelist.append(service.toCompareString())
+		self.whitelist.append(service)
 	
 	def addBlacklistService(self, service):
-		self.blacklist.append(service.toCompareString())
+		self.blacklist.append(service)
 
 	def setServiceLevel(self, service, level):
-		self.serviceLevel[service.toCompareString()] = level
+		self.serviceLevel[service] = level
 
 	def deleteWhitelistService(self, service):
-		self.whitelist.remove(service.toCompareString())
-		if self.serviceLevel.has_key(service.toCompareString()):
-			self.serviceLevel.remove(service.toCompareString())
+		self.whitelist.remove(service)
+		if self.serviceLevel.has_key(service):
+			self.serviceLevel.remove(service)
 	
 	def deleteBlacklistService(self, service):
-		self.blacklist.remove(service.toCompareString())
-		if self.serviceLevel.has_key(service.toCompareString()):
-			self.serviceLevel.remove(service.toCompareString())
+		self.blacklist.remove(service)
+		if self.serviceLevel.has_key(service):
+			self.serviceLevel.remove(service)
 				
-	def isServicePlayable(self, serviceref, callback):
-		service = serviceref.toCompareString()
+	def isServicePlayable(self, service, callback):
 		if not config.ParentalControl.configured.value:
 			return True
 		print "whitelist:", self.whitelist
@@ -80,10 +79,10 @@ class ParentalControl:
 		print "protect"
 		print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		if config.ParentalControl.type.value == "whitelist":
-			if service.toCompareString() in self.whitelist:
+			if service in self.whitelist:
 				self.deleteWhitelistService(service)
 		else: # blacklist
-			if service.toCompareString() not in self.blacklist:
+			if service not in self.blacklist:
 				self.addBlacklistService(service)
 		print "whitelist:", self.whitelist
 		print "blacklist:", self.blacklist
