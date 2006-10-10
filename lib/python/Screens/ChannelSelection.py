@@ -956,7 +956,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def setModeRadio(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
 			self.revertMode = MODE_TV
-		if config.usage.e1like_radio_mode.value == "yes":
+		if config.usage.e1like_radio_mode.value:
 			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
 			self.lastroot = config.radio.lastroot
@@ -965,7 +965,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setMode()
 
 	def __onCreate(self):
-		if config.usage.e1like_radio_mode.value == "yes":
+		if config.usage.e1like_radio_mode.value:
 			if config.servicelist.lastmode.value == "tv":
 				self.setModeTv()
 			else:
