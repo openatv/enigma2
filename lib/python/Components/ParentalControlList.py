@@ -20,10 +20,9 @@ lockPicture = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "lock-fs8.png"))
 
 def ParentalControlEntryComponent(service, name, locked = True):
 	res = [ (service, name, locked) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 200, 50, 0, RT_HALIGN_LEFT, name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 300, 50, 0, RT_HALIGN_LEFT, name))
 	if locked:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 32, 32, lockPicture))
-	
 	return res
 
 class ParentalControlList(MenuList, HTMLComponent, GUIComponent):

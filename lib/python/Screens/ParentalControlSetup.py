@@ -8,6 +8,7 @@ from Components.ParentalControl import parentalControl
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox, Input, PinInput
+from Screens.ChannelSelection import service_types_tv
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
@@ -162,8 +163,7 @@ class ParentalControlEditor(Screen):
 	
 	def readServiceList(self):
 		serviceHandler = eServiceCenter.getInstance()
-		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
-		refstr = '%s ORDER BY name' % (self.service_types_tv)
+		refstr = '%s ORDER BY name' % (service_types_tv)
 		self.root = eServiceReference(refstr)
 		
 		self.servicesList = {}
@@ -172,15 +172,16 @@ class ParentalControlEditor(Screen):
 		if list is not None:
 			services = list.getContent("CN", True) #(servicecomparestring, name)
 			for s in services:
-				key = s[1].lower()[0]
+				if s[1][0]=='\xc2' and s[1][1]=='\x86': # ignore shortname brackets
+					key = s[1].lower()[2]
+				else:
+					key = s[1].lower()[0]
 				if key < 'a' or key > 'z':
 					key = '&'
 				#key = str(key)
 				if not self.servicesList.has_key(key):
 					self.servicesList[key] = []
 				self.servicesList[key].append(s)
-
-		print self.servicesList
 
 	def chooseLetter(self):
 		print "choose letter"
