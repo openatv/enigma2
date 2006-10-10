@@ -486,13 +486,13 @@ class ChannelSelectionEdit:
 MODE_TV = 0
 MODE_RADIO = 1
 
+# this makes it much simple to implement a selectable radio or tv mode :)
+service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
+service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
+
 class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
-		# this makes it much simple to implement a selectable radio or tv mode :)
-		self.service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25)'
-		self.service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
 
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
@@ -576,13 +576,13 @@ class ChannelSelectionBase(Screen):
 
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
-			self.service_types = self.service_types_tv
+			self.service_types = service_types_tv
 			if config.usage.multibouquet.value:
 				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 			else:
 				self.bouquet_rootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
 		else:
-			self.service_types = self.service_types_radio
+			self.service_types = service_types_radio
 			if config.usage.multibouquet.value:
 				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
 			else:
