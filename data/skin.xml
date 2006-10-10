@@ -39,8 +39,8 @@
 			<pixmap pos="bpBottomRight" filename="b_w_br.png" />
 		</borderset>
 	</windowstyle>
-
-		<!-- this is for LCD -->
+		
+	<!-- this is for LCD -->
 	<windowstyle type="skinned" id="1">
 		<color name="Background" color="#000000" />
 		<color name="LabelForeground" color="#ffffff" />
@@ -61,13 +61,18 @@
 		<font filename="ae_AlMateen.ttf" name="Replacement" scale="90" replacement="1" />
 	</fonts>
 
-		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
+		<screen name="InfoBar" flags="wfNoBorder" position="0,330" size="720,198" title="InfoBar" backgroundColor="transparent" >
+			
+			<widget source="RadioText" render="Label" position="50,0" size="620,50" font="LCD;25" backgroundColor="transparent">
+				<convert type="RadioText">Name</convert>
+			</widget>
+
+			<ePixmap position="0,50" zPosition="-1" size="720,148" pixmap="info-bg.png" />
 <!-- not used in this skin yet -->			
-			<widget name="NimA" position="0,0" size="0,0" />
-			<widget name="NimB" position="0,0" size="0,0" />
-			<widget name="NimA_Active" position="0,0" size="0,0" />
-			<widget name="NimB_Active" position="0,0" size="0,0" />
+			<widget name="NimA" position="0,50" size="0,0" />
+			<widget name="NimB" position="0,50" size="0,0" />
+			<widget name="NimA_Active" position="0,50" size="0,0" />
+			<widget name="NimB_Active" position="0,50" size="0,0" />
 
 <!--			'teletext available'
 			<widget source="CurrentService" render="Pixmap" pixmap="format.png" position="613,40" size="28,15">
@@ -77,113 +82,113 @@
 -->
 
 <!-- ............................................................................. -->
-			<eLabel text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" />
-			<eLabel text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
-			<eLabel text="BER:" position="355,0" size="40,22" font="Regular;15" transparent="1" />
+			<eLabel text="SNR:" position="195,50" size="40,22" font="Regular;15" transparent="1" />
+			<eLabel text="AGC:" position="275,50" size="40,22" font="Regular;15" transparent="1" />
+			<eLabel text="BER:" position="355,50" size="40,22" font="Regular;15" transparent="1" />
 			
-			<widget source="FrontendStatus" render="Label" position="232,0" size="40,22" font="Regular;15" transparent="1" >
+			<widget source="FrontendStatus" render="Label" position="232,50" size="40,22" font="Regular;15" transparent="1" >
 				<convert type="FrontendInfo">SNR</convert>
 			</widget>
-			<widget source="FrontendStatus" render="Label" position="314,0" size="40,22" font="Regular;15" transparent="1" >
+			<widget source="FrontendStatus" render="Label" position="314,50" size="40,22" font="Regular;15" transparent="1" >
 				<convert type="FrontendInfo">AGC</convert>
 			</widget>
-			<widget source="FrontendStatus" render="Label" position="392,0" size="53,22" font="Regular;15" transparent="1" >
+			<widget source="FrontendStatus" render="Label" position="392,50" size="53,22" font="Regular;15" transparent="1" >
 				<convert type="FrontendInfo">BER</convert>
 			</widget>
 			
-			<widget source="FrontendStatus" render="Progress" position="447,1" size="88,6" pixmap="rtgbar.png" >
+			<widget source="FrontendStatus" render="Progress" position="447,51" size="88,6" pixmap="rtgbar.png" >
 				<convert type="FrontendInfo">SNR</convert>
 			</widget>
-			<widget source="FrontendStatus" render="Progress" position="447,8" size="88,6" pixmap="rtgbar.png" >
+			<widget source="FrontendStatus" render="Progress" position="447,58" size="88,6" pixmap="rtgbar.png" >
 				<convert type="FrontendInfo">AGC</convert>
 			</widget> 
-			<widget source="FrontendStatus" render="Progress" position="447,15" size="88,6" >
+			<widget source="FrontendStatus" render="Progress" position="447,65" size="88,6" >
 				<convert type="FrontendInfo">BER</convert>
 			</widget>
 
-			<widget name="BlinkingPoint" pixmap="record.png" position="430,31" zPosition="2" size="58,25" alphatest="on" />
+			<widget name="BlinkingPoint" pixmap="record.png" position="430,81" zPosition="2" size="58,25" alphatest="on" />
 			
 				<!-- show 'is crypted' icon when service is crypted. -->
-			<widget source="CurrentService" render="Pixmap" pixmap="crypt.png" position="570,40" size="12,15" >
+			<widget source="CurrentService" render="Pixmap" pixmap="crypt.png" position="570,90" size="12,15" >
 				<convert type="ServiceInfo">IsCrypted</convert>
 				<convert type="ConditionalShowHide" />
 			</widget>
 			
 				<!-- show 'multichannel' icon when service has multichannel 
 				     audio. -->
-			<widget source="CurrentService" render="Pixmap" pixmap="dolby.png" position="585,40" size="25,15">
+			<widget source="CurrentService" render="Pixmap" pixmap="dolby.png" position="585,90" size="25,15">
 				<convert type="ServiceInfo">IsMultichannel</convert>
 				<convert type="ConditionalShowHide" />
 			</widget>
 			
-			<widget source="CurrentService" render="Pixmap" pixmap="format.png" position="613,40" size="28,15">
+			<widget source="CurrentService" render="Pixmap" pixmap="format.png" position="613,90" size="28,15">
 				<convert type="ServiceInfo">IsWidescreen</convert>
 				<convert type="ConditionalShowHide" />
 			</widget>
 
-			<widget source="CurrentService" render="Label" position="69,26" size="427,34" font="Regular;22" backgroundColor="#101258" >
+			<widget source="CurrentService" render="Label" position="69,76" size="427,34" font="Regular;22" backgroundColor="#101258" >
 				<convert type="ServiceName">Name</convert>
 				<!-- <convert type="ServiceName">Provider</convert> -->
 			</widget>
 			
-			<widget source="CurrentTime" render="Label" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" >
+			<widget source="CurrentTime" render="Label" position="575,60" size="90,30" backgroundColor="dark" font="Regular;19" >
 				<convert type="ClockToText">WithSeconds</convert>
 			</widget>
 			
-			<widget source="Event_Now" render="Label" position="210,68" size="60,22" font="Regular;20" backgroundColor="dark">
+			<widget source="Event_Now" render="Label" position="210,118" size="60,22" font="Regular;20" backgroundColor="dark">
 				<convert type="EventTime">StartTime</convert>
 				<convert type="ClockToText">Default</convert>
 			</widget>
-			<widget source="Event_Next" render="Label" position="210,98" size="60,22" font="Regular;20" backgroundColor="dark">
+			<widget source="Event_Next" render="Label" position="210,148" size="60,22" font="Regular;20" backgroundColor="dark">
 				<convert type="EventTime">StartTime</convert>
 				<convert type="ClockToText">Default</convert>
 			</widget>
-			<widget source="Event_Now" render="Label" position="273,68" size="282,22" font="Regular;20" backgroundColor="dark">
+			<widget source="Event_Now" render="Label" position="273,118" size="282,22" font="Regular;20" backgroundColor="dark">
 				<convert type="EventName">Name</convert>
 			</widget>
-			<widget source="Event_Next" render="Label" position="273,98" size="282,22" font="Regular;20" backgroundColor="dark">
+			<widget source="Event_Next" render="Label" position="273,148" size="282,22" font="Regular;20" backgroundColor="dark">
 				<convert type="EventName">Name</convert>
 			</widget>
-			<widget source="Event_Now" render="Label" position="555,68" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
+			<widget source="Event_Now" render="Label" position="555,118" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
 				<convert type="EventTime">Remaining</convert>
 				<convert type="RemainingToText">InMinutes</convert>
 			</widget>
-			<widget source="Event_Next" render="Label" position="555,98" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
+			<widget source="Event_Next" render="Label" position="555,148" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
 				<convert type="EventTime">Duration</convert>
 				<convert type="ClockToText">InMinutes</convert>
 			</widget>
-			<widget source="Event_Now" render="Progress" position="304,60" size="121,8" zPosition="1">
+			<widget source="Event_Now" render="Progress" position="304,110" size="121,8" zPosition="1">
 				<convert type="EventTime">Progress</convert>
 			</widget>
 
 				<!-- red button: is recording possible? -->
-			<widget source="RecordingPossible" render="Pixmap" pixmap="button_red.png" position="210,132" size="27,12" >
+			<widget source="RecordingPossible" render="Pixmap" pixmap="button_red.png" position="210,182" size="27,12" >
 				<convert type="ConditionalShowHide" />
 			</widget>
 			
-			<widget source="RecordingPossible" render="FixedLabel" text="Record" position="240,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1">
+			<widget source="RecordingPossible" render="FixedLabel" text="Record" position="240,180" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1">
 				<convert type="ConditionalShowHide" />
 			</widget>
 			
-			<widget source="CurrentService" render="Pixmap" pixmap="button_green.png" position="320,132" size="27,12" >
+			<widget source="CurrentService" render="Pixmap" pixmap="button_green.png" position="320,182" size="27,12" >
 				<convert type="ServiceInfo">SubservicesAvailable</convert>
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="CurrentService" render="FixedLabel" text="Subservices" position="350,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
+			<widget source="CurrentService" render="FixedLabel" text="Subservices" position="350,180" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
 				<convert type="ServiceInfo">SubservicesAvailable</convert> 
 				<convert type="ConditionalShowHide" />
 			</widget>
 			
-			<widget source="TimeshiftPossible" render="Pixmap" pixmap="button_yellow.png" position="430,132" size="27,12" >
+			<widget source="TimeshiftPossible" render="Pixmap" pixmap="button_yellow.png" position="430,182" size="27,12" >
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="TimeshiftPossible" render="FixedLabel" text="Timeshift" position="460,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
+			<widget source="TimeshiftPossible" render="FixedLabel" text="Timeshift" position="460,180" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="ExtensionsAvailable" render="Pixmap" pixmap="button_blue.png" position="540,132" size="27,12" >
+			<widget source="ExtensionsAvailable" render="Pixmap" pixmap="button_blue.png" position="540,182" size="27,12" >
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="ExtensionsAvailable" render="FixedLabel" text="Extensions" position="570,130" size="95,22" font="Regular;14" backgroundColor="blue" transparent="1" >
+			<widget source="ExtensionsAvailable" render="FixedLabel" text="Extensions" position="570,180" size="95,22" font="Regular;14" backgroundColor="blue" transparent="1" >
 				<convert type="ConditionalShowHide" />
 			</widget>
 		</screen>
