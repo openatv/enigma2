@@ -73,7 +73,11 @@ public:
 	eDVBScan(iDVBChannel *channel, bool usePAT=true, bool debug=true );
 	~eDVBScan();
 
-	enum { scanNetworkSearch = 1, scanSearchBAT = 2, scanRemoveServices = 4, scanDontRemoveFeeds=8 };
+	enum {
+		scanNetworkSearch = 1, scanSearchBAT = 2,
+		scanRemoveServices = 4, scanDontRemoveFeeds = 8,
+		clearToScanOnFirstNIT = 16 };
+
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
