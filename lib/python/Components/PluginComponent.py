@@ -1,4 +1,5 @@
 import os
+import traceback
 
 from Tools.Directories import *
 from Tools.Import import my_import
@@ -43,13 +44,19 @@ class PluginComponent:
 				path = directory_category + "/" + x
 				if os.path.isdir(path):
 					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.py"):
-						plugin = my_import('.'.join(["Plugins", c, x, "plugin"]))
+						try:
+							plugin = my_import('.'.join(["Plugins", c, x, "plugin"]))
 
-						if not plugin.__dict__.has_key("Plugins"):
-							print "Plugin %s doesn't have 'Plugin'-call." % (x)
+							if not plugin.__dict__.has_key("Plugins"):
+								print "Plugin %s doesn't have 'Plugin'-call." % (x)
+								continue
+
+							plugins = plugin.Plugins(path=path)
+						except Exception, exc:
+							print "Plugin ", path, "failed to load:", exc
+							traceback.print_exc(file=sys.stdout)
+							print "skipping plugin."
 							continue
-
-						plugins = plugin.Plugins(path=path)
 
 						# allow single entry not to be a list
 						if type(plugins) is not list:
@@ -80,7 +87,13 @@ class PluginComponent:
 			for p in self.plugins.get(x, [ ]):
 				res.append(p)
 		return res
-	
+
+	def getPluginsForMenu(self, menuid):
+		res = [ ]
+		for p in self.getPlugins(PluginDescriptor.WHERE_SETUP):
+			res += p(menuid)
+		return res
+
 	def clearPluginList(self):
 		self.pluginList = []
 		self.plugins = {}
