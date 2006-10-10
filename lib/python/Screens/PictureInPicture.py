@@ -8,7 +8,7 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.currentService = None
-		config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], limits = (719, 567, 720, 568))
+		config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def LayoutFinished(self):
