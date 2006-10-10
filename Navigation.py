@@ -41,7 +41,7 @@ class Navigation:
 			self.stopService()
 			return 0
 		
-		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
+		if not checkParentalControl or parentalControl.isServicePlayable(ref.toCompareString(), boundFunction(self.playService, checkParentalControl = False)):
 			if self.pnav and not self.pnav.playService(ref):
 				self.currentlyPlayingServiceReference = ref
 				return 0
