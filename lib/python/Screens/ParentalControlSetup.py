@@ -170,21 +170,16 @@ class ParentalControlEditor(Screen):
 		
 		list = serviceHandler.list(self.root)
 		if list is not None:
-			while 1:
-				s = list.getNext()
-				if s.valid():
-					service = s.toString()
-					name = ServiceReference(service).getServiceName()
-					key = name.lower()[0]
-					if key < 'a' or key > 'z':
-						key = '&'
-					#key = str(key)
-					if not self.servicesList.has_key(key):
-						self.servicesList[key] = []
-					# (servicestring, eServiceRef, name)
-					self.servicesList[key].append((service, s, name))
-				else:
-					break
+			services = list.getContent("CRN", True) #(servicecomparestring, eServiceRef, name)
+			for s in services:
+				key = s[2].lower()[0]
+				if key < 'a' or key > 'z':
+					key = '&'
+				#key = str(key)
+				if not self.servicesList.has_key(key):
+					self.servicesList[key] = []
+				self.servicesList[key].append(s)
+
 		print self.servicesList
 
 	def chooseLetter(self):
