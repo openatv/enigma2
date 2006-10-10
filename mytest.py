@@ -19,6 +19,9 @@ import time
 
 import ServiceReference
 
+from Components.ParentalControl import InitParentalControl
+InitParentalControl()
+
 from Navigation import Navigation
 
 from skin import readSkin, applyAllAttributes
@@ -499,6 +502,9 @@ try:
 	runScreenTest()
 
 	plugins.shutdown()
+	
+	from Components.ParentalControl import parentalControl
+	parentalControl.save()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60

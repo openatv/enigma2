@@ -1,4 +1,6 @@
 from enigma import *
+from Components.ParentalControl import parentalControl
+from Tools.BoundFunction import boundFunction
 import RecordTimer
 
 import NavigationInstance
@@ -14,7 +16,7 @@ class Navigation:
 		
 		NavigationInstance.instance = self
 		self.ServiceHandler = eServiceCenter.getInstance()
-
+		
 		import Navigation as Nav
 		Nav.navcore = self
 		
@@ -25,13 +27,13 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.state = 0
 		self.RecordTimer = RecordTimer.RecordTimer()
-
+		
 	def callEvent(self, i):
 		self.state = i != 1
 		for x in self.event:
 			x(i)
 
-	def playService(self, ref):
+	def playService(self, ref, checkParentalControl = True):
 		print "playing", ref and ref.toString()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
@@ -39,9 +41,12 @@ class Navigation:
 			self.stopService()
 			return 0
 		
-		if self.pnav and not self.pnav.playService(ref):
-			self.currentlyPlayingServiceReference = ref
-			return 0
+		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
+			if self.pnav and not self.pnav.playService(ref):
+				self.currentlyPlayingServiceReference = ref
+				return 0
+		else:
+			self.stopService()
 		return 1
 	
 	def getCurrentlyPlayingServiceReference(self):

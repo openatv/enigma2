@@ -11,8 +11,11 @@ from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
 from Components.Sources.Clock import Clock
 from Components.Input import Input
-from Screens.InputBox import InputBox
+from Components.ParentalControl import parentalControl
+from Screens.InputBox import InputBox, PinInput
+from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
+from Tools.BoundFunction import boundFunction
 from re import *
 from os import remove
 
@@ -75,6 +78,11 @@ class ChannelContextMenu(Screen):
 		if not csel.bouquet_mark_edit and not csel.movemode:
 			if not inBouquetRootList:
 				if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+					if config.ParentalControl.configured.value:
+						if parentalControl.getProtectionLevel(csel.getCurrentSelection()) == -1:
+							menu.append((_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
+						else:
+							menu.append((_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
 					if haveBouquets:
 						menu.append((_("add service to bouquet"), self.addServiceToBouquetSelected))
 					else:
@@ -129,6 +137,21 @@ class ChannelContextMenu(Screen):
 		if bouquet is not None:
 			self.csel.addBouquet(bouquet, None)
 		self.close()
+
+	def addParentalProtection(self, service):
+		parentalControl.protectService(service)
+		self.close()
+
+	def removeParentalProtection(self, service):
+		self.session.openWithCallback(boundFunction(self.pinEntered, service), PinInput, pinList = [config.ParentalControl.servicepin[0].value], title = _("Enter the service pin"), windowTitle = _("Change pin code"))
+
+	def pinEntered(self, service, result):
+		if result[0]:
+			parentalControl.unProtectService(service)
+			self.close()
+		else:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+		
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()

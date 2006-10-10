@@ -20,6 +20,9 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.currPos = 0
 		self.overwrite = 0
 		self.setText(text)
+		
+	def __len__(self):
+		return len(self.text)
 
 	def update(self):
 		self.setMarkedPos(self.currPos)

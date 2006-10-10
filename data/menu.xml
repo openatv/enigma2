@@ -58,8 +58,10 @@
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item><setup id="lcd" /></item>
 				<item text="Network..."><screen module="NetworkSetup" screen="NetworkSetup" /></item>
+				<item text="Parental control..."><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
 			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
+			<item text="Startwizard"><screen module="StartWizard" screen="StartWizard" /></item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
 		</menu>

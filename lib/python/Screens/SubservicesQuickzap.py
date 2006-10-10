@@ -4,14 +4,14 @@ from Components.Label import Label
 
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport
+from InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection
 
 from enigma import eTimer
 
-class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, Screen):
+class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection, Screen):
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
-		for x in [InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport, InfoBarExtensions]:
+		for x in [InfoBarShowHide, InfoBarMenu, InfoBarServiceName, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport, InfoBarExtensions, InfoBarAudioSelection]:
 			x.__init__(self)
 
 		self.restoreService = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -118,6 +118,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 			del self.subservices
 			del self.service
 			self.lastservice = self.currentlyPlayingSubservice
+			self.session.nav.stopService()
 			self.session.nav.playService(newservice)
 			self.currentlyPlayingSubservice = number
 			self.currentSubserviceNumberLabel.setText(str(number))
