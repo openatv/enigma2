@@ -117,8 +117,8 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def keyNumberGlobal(self, number):
 		pass
 
+SPECIAL_CHAR = 96
 class ParentalControlEditor(Screen):
-	SPECIAL_CHAR = 96
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.list = []
