@@ -165,6 +165,13 @@ class ConfigSelection(ConfigElement):
 	def getValue(self):
 		return self._value
 
+	def setCurrentText(self, text):
+		i = self.choices.index(self.value)
+		del self.description[self.choices[i]]
+		self.choices[i] = text
+		self.description[text] = text
+		self._value = text
+
 	value = property(getValue, setValue)
 	
 	def getIndex(self):

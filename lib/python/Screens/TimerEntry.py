@@ -214,7 +214,7 @@ class TimerEntry(Screen, ConfigListScreen):
 	def finishedChannelSelection(self, *args):
 		if len(args):
 			self.timer.service_ref = ServiceReference(args[0])
-			self.timerentry_service.vals = (str(self.timer.service_ref.getServiceName()),)
+			self.timerentry_service.setCurrentText(self.timer.service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
 
 	def getTimestamp(self, date, mytime):
