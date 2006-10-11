@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-11 17:12+0200\n"
+"POT-Creation-Date: 2006-10-11 19:43+0200\n"
 "PO-Revision-Date: 2006-08-10 11:35+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
@@ -2122,18 +2122,8 @@ msgid "Satconfig"
 msgstr "Satkonfig"
 
 #: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+msgid "Startwizard"
 msgstr ""
-"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
-"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
-"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
-"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
-"vill återställa dina inställningar."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2203,8 +2193,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gör inget."
+msgid "Setup"
+msgstr "Installation"
 
 #: ../data/
 msgid "#000000"
@@ -2227,8 +2217,8 @@ msgid "#bab329"
 msgstr ""
 
 #: ../data/
-msgid "Startwizard"
-msgstr ""
+msgid "Sat / Dish Setup"
+msgstr "Sat / Parabol Installation"
 
 #: ../data/
 msgid "#ffffff"
@@ -2244,12 +2234,16 @@ msgstr ""
 "Tryck OK för att starta backup."
 
 #: ../data/
-msgid "Mute"
-msgstr "Ljud av"
+msgid "The wizard is finished now."
+msgstr "Guiden är nu färdig."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Kanalsökning"
+
+#: ../data/
+msgid "Mute"
+msgstr "Ljud av"
 
 #: ../data/
 msgid ""
@@ -2275,22 +2269,16 @@ msgid "Keyboard Setup"
 msgstr "Tangentbords inställning"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Använd vänster och höger pil för att ändra ett val.\n"
-"\n"
-"Inställning Tuner A"
-
-#: ../data/
 msgid "Dish"
 msgstr "Parabol"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Marginal efter inspelning"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, starta bara dreamboxen"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2321,16 +2309,24 @@ msgid "Manual Scan"
 msgstr "Manuell Sökning"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Ändra Timer"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Välkommen.\n"
+"\n"
+"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
+"Tryck OK på din fjärrkontroll för att komma till nästa steg."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fjärrkontroll Meny"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, starta bara dreamboxen"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
@@ -2353,10 +2349,6 @@ msgid "Standby / Restart"
 msgstr "Avstängning / Omstart"
 
 #: ../data/
-msgid "Standby"
-msgstr "Avstängning"
-
-#: ../data/
 msgid "EPG Selection"
 msgstr "EPG Val"
 
@@ -2377,12 +2369,12 @@ msgid "Brightness"
 msgstr "Ljusstyrka"
 
 #: ../data/
-msgid "Parental control services Editor"
-msgstr ""
+msgid "Standby"
+msgstr "Avstängning"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, utför manuell sökning igen"
+msgid "Parental control services Editor"
+msgstr ""
 
 #: ../data/
 msgid "Activate network settings"
@@ -2421,16 +2413,16 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Timeshift"
 msgstr "Timeshift"
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vill du visa cutlist guiden?"
 
 #: ../data/
 msgid "Subservices"
@@ -2487,8 +2479,22 @@ msgid "Service scan"
 msgstr "Kanalsökning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Guiden är nu färdig."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, utför manuell sökning igen"
+
+#: ../data/
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
+"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
+"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
+"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
+"vill återställa dina inställningar."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2621,6 +2627,10 @@ msgid "Media player"
 msgstr "Media spelare"
 
 #: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, utför avstängning nu."
+
+#: ../data/
 msgid "Timer sanity error"
 msgstr "Timer fel"
 
@@ -2737,20 +2747,12 @@ msgid "Alpha"
 msgstr "Alpha"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Välkommen.\n"
-"\n"
-"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
-"Tryck OK på din fjärrkontroll för att komma till nästa steg."
+msgid "Timer Edit"
+msgstr "Ändra Timer"
 
 #: ../data/
-msgid "Setup"
-msgstr "Installation"
+msgid "No, do nothing."
+msgstr "Nej, gör inget."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2781,10 +2783,6 @@ msgid "AGC:"
 msgstr "AGC:"
 
 #: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Sat / Parabol Installation"
-
-#: ../data/
 msgid "What do you want to scan?"
 msgstr "Vad vill du söka efter?"
 
@@ -2809,8 +2807,14 @@ msgid "NOW"
 msgstr "NU"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, utför avstängning nu."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Använd vänster och höger pil för att ändra ett val.\n"
+"\n"
+"Inställning Tuner A"
 
 #: ../data/
 msgid "#0064c7"
@@ -2850,9 +2854,6 @@ msgstr "Vill du göra en ny manuell sökning?"
 
 #~ msgid "Simple"
 #~ msgstr "Enkelt"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa cutlist guiden?"
 
 #~ msgid "Swap services"
 #~ msgstr "Byt kanal"
