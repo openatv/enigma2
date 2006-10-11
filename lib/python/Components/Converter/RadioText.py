@@ -9,11 +9,9 @@ class RadioText(Converter, object):
 	@cached
 	def getText(self):
 		rt = self.source.radiotext
-		if rt is None:
-			return ""
-		text = rt.getRadioText()
-		if self.type == "RadioText-UTF8":
-			return text.decode("latin-1").encode("utf-8")
-		else:
-			return text
+		text = ""
+		if rt:
+			if self.type == "RadioText":
+				text = rt.getRadioText()
+		return text.decode("latin-1").encode("utf-8")
 	text = property(getText)
