@@ -64,7 +64,7 @@
 		<screen name="InfoBar" flags="wfNoBorder" position="0,330" size="720,198" title="InfoBar" backgroundColor="transparent" >
 			
 			<widget source="RadioText" render="Label" position="50,0" size="620,50" font="LCD;25" backgroundColor="transparent">
-				<convert type="RadioText">RadioText-UTF8</convert>
+				<convert type="RadioText">RadioText</convert>
 			</widget>
 
 			<ePixmap position="0,50" zPosition="-1" size="720,148" pixmap="info-bg.png" />

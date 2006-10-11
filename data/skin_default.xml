@@ -228,7 +228,7 @@
 		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		<widget name="list" position="0,45" size="560,196" scrollbarMode="showOnDemand" />
 		<widget source="RadioText" render="Label" position="0,241" size="560,66" font="LCD;25" >
-			<convert type="RadioText">RadioText-UTF8</convert>
+			<convert type="RadioText">RadioText</convert>
 		</widget>
 	</screen>
 	<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
