@@ -19,7 +19,10 @@ import operator
 class ProtectedScreen:
 	def __init__(self):
 		if self.isProtected():
-			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.protectedWithPin()], title = self.getPinText(), windowTitle = _("Change pin code")))
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.protectedWithPin()], triesEntry = self.getTriesEntry(), title = self.getPinText(), windowTitle = _("Change pin code")))
+
+	def getTriesEntry(self):
+		return config.ParentalControl.retries.setuppin
 
 	def getPinText(self):
 		return _("Please enter the correct pin code")
@@ -31,10 +34,9 @@ class ProtectedScreen:
 		return config.ParentalControl.setuppin.value
 
 	def pinEntered(self, result):
-		if result[0] is None:
+		if result is None:
 			self.close()
-		if not result[0]:
-			print result, "-", self.protectedWithPin()
+		elif not result:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):

@@ -6,6 +6,7 @@ from Components.Label import Label
 from Components.Input import Input
 from Components.GUIComponent import *
 from Tools.BoundFunction import boundFunction
+from time import time
 
 import os
 
@@ -89,19 +90,28 @@ class InputBox(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service = "", tries = 1, pinList = [], *args, **kwargs):
+	def __init__(self, session, service = "", triesEntry = None, pinList = [], *args, **kwargs):
 		InputBox.__init__(self, session = session, text="9876", maxSize=True, type=Input.PIN, *args, **kwargs)
 		
-		self.showTries = True
-		if tries == 1:
-			self.showTries = False
-
+		self.waitTime = 15
+		
+		self.triesEntry = triesEntry
+		
 		self.pinList = pinList
 		self["service"] = Label(service)
 		
+		if self.getTries() == 0:
+			if (self.triesEntry.time.value + (self.waitTime * 60)) > time():
+				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
+				remainingMinutes = int(remaining / 60)
+				remainingSeconds = int(remaining % 60)
+				self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, _("You have to wait for") + " " + str(remainingMinutes) + " " + _("minutes and") + " " + str(remainingSeconds) + " " + _("seconds."), MessageBox.TYPE_ERROR))
+			else:
+				self.setTries(3)
+
 		self["tries"] = Label("")
-		self.onShown.append(boundFunction(self.setTries, tries))
-				
+		self.onShown.append(self.showTries)
+
 	def keyNumberGlobal(self, number):
 		if self["input"].currPos == len(self["input"]) - 1:
 			InputBox.keyNumberGlobal(self, number)
@@ -115,22 +125,44 @@ class PinInput(InputBox):
 		return False
 		
 	def go(self):
+		self.triesEntry.time.value = int(time())
+		self.triesEntry.time.save()
 		if self.checkPin(self["input"].getText()):
-			self.close((True, self.tries))
+			self.setTries(3)
+			self.closePinCorrect()
 		else:
 			self.keyHome()
-			self.setTries(self.tries - 1)
-			if self.tries == 0:
-				self.close((False, self.tries))
+			self.decTries()
+			if self.getTries() == 0:
+				self.closePinWrong()
 			else:
 				pass
+	
+	def closePinWrong(self, *args):
+		print "args:", args
+		self.close(False)
+		
+	def closePinCorrect(self, *args):
+		self.close(True)
+		
+	def closePinCancel(self, *args):
+		self.close(None)
 			
 	def cancel(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
-		self.close((None, self.tries))
-	
+		self.closePinCancel()
+		
+	def getTries(self):
+		return self.triesEntry.tries.value
+
+	def decTries(self):
+		self.setTries(self.triesEntry.tries.value - 1)
+		self.showTries()
+		
 	def setTries(self, tries):
-		self.tries = tries
-		if self.showTries:
-			self["tries"].setText(_("Tries left:") + " " + str(tries))
+		self.triesEntry.tries.value = tries
+		self.triesEntry.tries.save()
+				
+	def showTries(self):
+		self["tries"].setText(_("Tries left:") + " " + str(self.getTries()))

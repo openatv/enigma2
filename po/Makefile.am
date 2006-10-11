@@ -38,6 +38,7 @@ enigma2.pot:
 			../lib/python/Screens/TimerEntry.py \
 			../lib/python/Screens/TimeDateInput.py \
 			../lib/python/Screens/Wizard.py \
+			../lib/python/Screens/InputBox.py \
 			../lib/python/Screens/ServiceScan.py \
 			../lib/python/Screens/InfoBarGenerics.py \
 			../lib/python/Screens/ChannelSelection.py \

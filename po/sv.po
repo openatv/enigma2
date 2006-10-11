@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-11 01:01+0200\n"
+"POT-Creation-Date: 2006-10-11 17:12+0200\n"
 "PO-Revision-Date: 2006-08-10 11:35+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
@@ -37,8 +37,8 @@ msgstr "\"?"
 msgid "%d min"
 msgstr "%d min"
 
-#: ../lib/python/Screens/TimerEntry.py:90
-#: ../lib/python/Screens/TimerEntry.py:93
+#: ../lib/python/Screens/TimerEntry.py:94
+#: ../lib/python/Screens/TimerEntry.py:97
 #: ../lib/python/Screens/TimeDateInput.py:35
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -121,7 +121,7 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -151,7 +151,7 @@ msgstr "AA"
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1167
+#: ../lib/python/Screens/InfoBarGenerics.py:1173
 msgid "Activate Picture in Picture"
 msgstr "Aktivera Bild i Bild"
 
@@ -172,7 +172,7 @@ msgstr "Lägg till timer"
 msgid "Advanced"
 msgstr "Avancerat"
 
-#: ../lib/python/Screens/TimerEntry.py:171
+#: ../lib/python/Screens/TimerEntry.py:177
 msgid "After event"
 msgstr "Efter program"
 
@@ -193,7 +193,7 @@ msgstr "Arabiska"
 msgid "Artist:"
 msgstr "Artist:"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1338
+#: ../lib/python/Screens/InfoBarGenerics.py:1344
 msgid "Audio Options..."
 msgstr "Ljud optioner..."
 
@@ -263,7 +263,7 @@ msgstr "CF Disk"
 msgid "Cable"
 msgstr "Kabel"
 
-#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimerEntry.py:25
+#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimerEntry.py:29
 #: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
@@ -295,11 +295,11 @@ msgstr ""
 msgid "Change setup pin"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:173 ../data/
+#: ../lib/python/Screens/TimerEntry.py:179 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:147
+#: ../lib/python/Screens/InfoBarGenerics.py:148
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -319,7 +319,7 @@ msgstr "Rensa"
 msgid "Clear before scan"
 msgstr "Rensa före sökning"
 
-#: ../lib/python/Screens/TimerEntry.py:309
+#: ../lib/python/Screens/TimerEntry.py:315
 msgid "Clear log"
 msgstr "Rensa log"
 
@@ -379,7 +379,7 @@ msgstr "Datum"
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../lib/python/Screens/TimerEntry.py:306
+#: ../lib/python/Screens/TimerEntry.py:312
 msgid "Delete entry"
 msgstr "Ta bort post"
 
@@ -387,7 +387,7 @@ msgstr "Ta bort post"
 msgid "Delete failed!"
 msgstr "Borttagning misslyckades!"
 
-#: ../lib/python/Screens/TimerEntry.py:126
+#: ../lib/python/Screens/TimerEntry.py:130
 msgid "Description"
 msgstr "Beskrivning"
 
@@ -423,11 +423,11 @@ msgstr "DiSEqC repetetioner"
 msgid "Disable"
 msgstr "Avaktivera"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1165
+#: ../lib/python/Screens/InfoBarGenerics.py:1171
 msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1122
+#: ../lib/python/Screens/InfoBarGenerics.py:1128
 msgid "Disable subtitles"
 msgstr ""
 
@@ -468,7 +468,7 @@ msgstr ""
 "Vill du ta en backup nu?\n"
 "Tryck OK och vänligen vänta!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1609
+#: ../lib/python/Screens/InfoBarGenerics.py:1614
 msgid "Do you want to resume this playback?"
 msgstr "Vill du återuppta uppspelningen?"
 
@@ -527,11 +527,11 @@ msgstr "Aktivera 5V för aktiv antenn"
 msgid "Enable parental control"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:164
+#: ../lib/python/Screens/TimerEntry.py:167
 msgid "End"
 msgstr "Slut"
 
-#: ../lib/python/Screens/TimerEntry.py:168
+#: ../lib/python/Screens/TimerEntry.py:174
 msgid "EndTime"
 msgstr "SlutTid"
 
@@ -541,7 +541,7 @@ msgstr "SlutTid"
 msgid "English"
 msgstr "Engelska"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:339
+#: ../lib/python/Screens/InfoBarGenerics.py:340
 msgid "Enter main menu..."
 msgstr "Gå till huvudmeny"
 
@@ -583,7 +583,7 @@ msgstr "Franska"
 #: ../lib/python/Screens/ScanSetup.py:197
 #: ../lib/python/Screens/ScanSetup.py:230
 #: ../lib/python/Screens/ScanSetup.py:241
-#: ../lib/python/Screens/TimerEntry.py:135
+#: ../lib/python/Screens/TimerEntry.py:139
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:400
 msgid "Frequency"
 msgstr "Frekvens"
@@ -593,8 +593,8 @@ msgstr "Frekvens"
 msgid "Fri"
 msgstr "Fre"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:149
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:153
 msgid "Friday"
 msgstr "Fredag"
 
@@ -646,8 +646,8 @@ msgstr "Hårddisk"
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1304
-#: ../lib/python/Screens/InfoBarGenerics.py:1312
+#: ../lib/python/Screens/InfoBarGenerics.py:1310
+#: ../lib/python/Screens/InfoBarGenerics.py:1318
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
@@ -684,7 +684,11 @@ msgstr "Initiera"
 msgid "Initializing Harddisk..."
 msgstr "Initierar Hårddisk..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1214
+#: ../lib/python/Screens/InputBox.py:14 ../data/
+msgid "Input"
+msgstr "Ingång"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1220
 msgid "Instant Record..."
 msgstr "Direkt inspelning..."
 
@@ -724,7 +728,7 @@ msgstr "Välj språk"
 msgid "Latitude"
 msgstr "Latitud"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1378
+#: ../lib/python/Screens/InfoBarGenerics.py:1384
 msgid "Left"
 msgstr "Vänster"
 
@@ -768,16 +772,16 @@ msgstr "Modulering"
 msgid "Mon"
 msgstr "Mån"
 
-#: ../lib/python/Screens/TimerEntry.py:88
+#: ../lib/python/Screens/TimerEntry.py:92
 msgid "Mon-Fri"
 msgstr "Mån-Fre"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:145
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:149
 msgid "Monday"
 msgstr "Måndag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1173
+#: ../lib/python/Screens/InfoBarGenerics.py:1179
 msgid "Move Picture in Picture"
 msgstr "Flytta Bild i Bild"
 
@@ -813,7 +817,7 @@ msgstr "Inte Tillgänglig"
 msgid "NIM "
 msgstr "NIM "
 
-#: ../lib/python/Screens/TimerEntry.py:125
+#: ../lib/python/Screens/TimerEntry.py:129
 msgid "Name"
 msgstr "Namn"
 
@@ -834,7 +838,7 @@ msgstr "Sök Nätverk"
 msgid "New"
 msgstr "Ny"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:217
+#: ../lib/python/Screens/ParentalControlSetup.py:218
 msgid "New pin"
 msgstr ""
 
@@ -850,11 +854,11 @@ msgstr "Nästa"
 msgid "No"
 msgstr "Nej"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1324
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk funnen eller initialiserad!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1257
+#: ../lib/python/Screens/InfoBarGenerics.py:1263
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
 
@@ -895,7 +899,7 @@ msgstr ""
 "Inget att scanna!\n"
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
-#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimerEntry.py:24
+#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
@@ -921,7 +925,7 @@ msgstr "Online Uppgradering"
 msgid "Packet management"
 msgstr "Pakethantering"
 
-#: ../lib/python/Components/ParentalControl.py:73 ../data/
+#: ../lib/python/Components/ParentalControl.py:80 ../data/
 msgid "Parental control"
 msgstr ""
 
@@ -933,7 +937,7 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1087
+#: ../lib/python/Screens/InfoBarGenerics.py:1093
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
@@ -945,7 +949,7 @@ msgstr "Ange namn för den nya bouquet"
 msgid "Please enter a name for the new marker"
 msgstr "Vänligen ange namn för ny markör"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:25
+#: ../lib/python/Screens/ParentalControlSetup.py:28
 msgid "Please enter the correct pin code"
 msgstr ""
 
@@ -953,11 +957,11 @@ msgstr ""
 msgid "Please enter the old pin code"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:283
+#: ../lib/python/Screens/TimerEntry.py:289
 msgid "Please select a subservice to record..."
 msgstr "Vänligen välj en underkanal för inspelning..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1476
+#: ../lib/python/Screens/InfoBarGenerics.py:1481
 #: ../lib/python/Screens/SubservicesQuickzap.py:97
 msgid "Please select a subservice..."
 msgstr "Vänligen välj en underkanal..."
@@ -1059,7 +1063,7 @@ msgstr "Leverantörer"
 msgid "Quick"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1472
+#: ../lib/python/Screens/InfoBarGenerics.py:1477
 msgid "Quickzap"
 msgstr "Quickzap"
 
@@ -1083,7 +1087,7 @@ msgstr "Verkligen avsluta underkanals quickzap?"
 msgid "Recording"
 msgstr "Spelar in"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:218
+#: ../lib/python/Screens/ParentalControlSetup.py:219
 msgid "Reenter new pin"
 msgstr ""
 
@@ -1099,7 +1103,7 @@ msgstr "Ta bort Plugins"
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
-#: ../lib/python/Screens/TimerEntry.py:129
+#: ../lib/python/Screens/TimerEntry.py:133
 msgid "Repeat Type"
 msgstr "Repeat Typ"
 
@@ -1116,7 +1120,7 @@ msgstr "Nollställ"
 msgid "Restore"
 msgstr "Återställ"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1378
+#: ../lib/python/Screens/InfoBarGenerics.py:1384
 msgid "Right"
 msgstr "Höger"
 
@@ -1138,8 +1142,8 @@ msgstr "Satellit"
 msgid "Satellites"
 msgstr "Satelliter"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:150
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:154
 msgid "Saturday"
 msgstr "Lördag"
 
@@ -1156,15 +1160,15 @@ msgstr "Sök öst"
 msgid "Search west"
 msgstr "Sök väst"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1390
+#: ../lib/python/Screens/InfoBarGenerics.py:1396
 msgid "Select audio mode"
 msgstr "Välj ljudläge"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1379
+#: ../lib/python/Screens/InfoBarGenerics.py:1385
 msgid "Select audio track"
 msgstr "Välj ljudspår"
 
-#: ../lib/python/Screens/TimerEntry.py:204
+#: ../lib/python/Screens/TimerEntry.py:210
 msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
 
@@ -1253,15 +1257,15 @@ msgstr "Syd"
 msgid "Spanish"
 msgstr "Spanska"
 
-#: ../lib/python/Screens/TimerEntry.py:157
+#: ../lib/python/Screens/TimerEntry.py:160
 msgid "Start"
 msgstr "Start"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "Start recording?"
 msgstr "Starta inspelning?"
 
-#: ../lib/python/Screens/TimerEntry.py:160
+#: ../lib/python/Screens/TimerEntry.py:165
 msgid "StartTime"
 msgstr "StartTid"
 
@@ -1277,7 +1281,7 @@ msgstr "Stega öst"
 msgid "Step west"
 msgstr "Stega väst"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1378
+#: ../lib/python/Screens/InfoBarGenerics.py:1384
 msgid "Stereo"
 msgstr "Stereo"
 
@@ -1288,7 +1292,7 @@ msgstr "Stereo"
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:957
+#: ../lib/python/Screens/InfoBarGenerics.py:963
 msgid "Stop Timeshift?"
 msgstr "Stoppa Timeshift?"
 
@@ -1304,7 +1308,7 @@ msgstr "Lagra position"
 msgid "Stored position"
 msgstr "Lagrad position"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1409
+#: ../lib/python/Screens/InfoBarGenerics.py:1414
 msgid "Subservice list..."
 msgstr "Underkanalslista..."
 
@@ -1313,12 +1317,12 @@ msgstr "Underkanalslista..."
 msgid "Sun"
 msgstr "Sön"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:151
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Sunday"
 msgstr "Söndag"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1170
+#: ../lib/python/Screens/InfoBarGenerics.py:1176
 msgid "Swap Services"
 msgstr ""
 
@@ -1326,11 +1330,11 @@ msgstr ""
 msgid "Swedish"
 msgstr "Svenska"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1414
+#: ../lib/python/Screens/InfoBarGenerics.py:1419
 msgid "Switch to next subservice"
 msgstr "Byt till nästa underkanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1415
+#: ../lib/python/Screens/InfoBarGenerics.py:1420
 msgid "Switch to previous subservice"
 msgstr "Byt till föregående underkanal"
 
@@ -1353,8 +1357,8 @@ msgid "The pin code has been changed successfully."
 msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:153
-#: ../lib/python/Screens/ParentalControlSetup.py:38
-#: ../lib/python/Components/ParentalControl.py:136
+#: ../lib/python/Screens/ParentalControlSetup.py:40
+#: ../lib/python/Components/ParentalControl.py:141
 msgid "The pin code you entered is wrong."
 msgstr ""
 
@@ -1375,8 +1379,8 @@ msgstr "Gränsvärde"
 msgid "Thu"
 msgstr "Tors"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:148
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Thursday"
 msgstr "Torsdag"
 
@@ -1384,7 +1388,7 @@ msgstr "Torsdag"
 msgid "Time"
 msgstr "Tid"
 
-#: ../lib/python/Screens/TimerEntry.py:127
+#: ../lib/python/Screens/TimerEntry.py:131
 msgid "Timer Type"
 msgstr "Timertyp"
 
@@ -1421,13 +1425,17 @@ msgstr "Transponder"
 msgid "Transpondertype"
 msgstr "Transponertyp"
 
+#: ../lib/python/Screens/InputBox.py:168
+msgid "Tries left:"
+msgstr ""
+
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/TimerList.py:34
 msgid "Tue"
 msgstr "Tis"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:146
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:150
 msgid "Tuesday"
 msgstr "Tisdag"
 
@@ -1502,7 +1510,7 @@ msgstr "Använd USALS för denna sat"
 msgid "User defined"
 msgstr "Användardefinierat"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1747
+#: ../lib/python/Screens/InfoBarGenerics.py:1752
 msgid "View teletext..."
 msgstr "Visa teletext..."
 
@@ -1519,12 +1527,12 @@ msgstr "V"
 msgid "Wed"
 msgstr "Ons"
 
-#: ../lib/python/Screens/TimerEntry.py:96
-#: ../lib/python/Screens/TimerEntry.py:147
+#: ../lib/python/Screens/TimerEntry.py:100
+#: ../lib/python/Screens/TimerEntry.py:151
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#: ../lib/python/Screens/TimerEntry.py:142
+#: ../lib/python/Screens/TimerEntry.py:146
 msgid "Weekday"
 msgstr "Veckodag"
 
@@ -1544,6 +1552,10 @@ msgstr "Ja"
 #: ../lib/python/Screens/MovieSelection.py:49
 msgid "You cannot delete this!"
 msgstr "Du kan inte ta bort detta!"
+
+#: ../lib/python/Screens/InputBox.py:108
+msgid "You have to wait for"
+msgstr ""
 
 #: ../lib/python/Screens/MediaPlayer.py:390
 msgid "You selected a playlist"
@@ -1597,18 +1609,18 @@ msgstr "lägg till fil i playlist"
 msgid "add marker"
 msgstr "lägg till markör"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
-#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "add recording (enter recording duration)"
 msgstr "lägg till inspelning (ange inspelningslängd)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
-#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "add recording (indefinitely)"
 msgstr "lägg till inspelning (oändlig)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
-#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "add recording (stop after current event)"
 msgstr "lägg till inspelning (avsluta efter nuvarande)"
 
@@ -1646,7 +1658,7 @@ msgstr "tillbaka"
 msgid "blacklist"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
 
@@ -1666,7 +1678,7 @@ msgstr "rensa playlist"
 msgid "complex"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:580
+#: ../lib/python/Screens/InfoBarGenerics.py:586
 msgid "continue"
 msgstr "forsätt"
 
@@ -1674,7 +1686,7 @@ msgstr "forsätt"
 msgid "copy to favourites"
 msgstr "kopiera till favoriter"
 
-#: ../lib/python/Screens/TimerEntry.py:88
+#: ../lib/python/Screens/TimerEntry.py:92
 msgid "daily"
 msgstr "daglig"
 
@@ -1690,12 +1702,12 @@ msgstr "ta bort..."
 msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
-#: ../lib/python/Screens/TimerEntry.py:83
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
+#: ../lib/python/Screens/TimerEntry.py:87
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
 msgid "do nothing"
 msgstr "gör inget"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1336
 msgid "don't record"
 msgstr "spela inte in"
 
@@ -1739,7 +1751,7 @@ msgstr "ledigt diskutrymme"
 msgid "full /etc directory"
 msgstr "fullt /etc bibliotek"
 
-#: ../lib/python/Screens/TimerEntry.py:83
+#: ../lib/python/Screens/TimerEntry.py:87
 msgid "go to deep standby"
 msgstr "Stäng av mottagaren"
 
@@ -1763,7 +1775,7 @@ msgstr "initialisera modul"
 msgid "leave movie player..."
 msgstr "lämna videospelare..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1395
 msgid "left"
 msgstr "vänster"
 
@@ -1785,15 +1797,19 @@ msgstr "manuell"
 msgid "mins"
 msgstr "min"
 
+#: ../lib/python/Screens/InputBox.py:108
+msgid "minutes and"
+msgstr ""
+
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "never"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:257
+#: ../lib/python/Screens/InfoBarGenerics.py:258
 msgid "next channel"
 msgstr "nästa kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:259
+#: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "next channel in history"
 msgstr "nästa kanal i historiken"
 
@@ -1830,7 +1846,7 @@ msgstr "av"
 msgid "on"
 msgstr "på"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:88
 msgid "once"
 msgstr "en gång"
 
@@ -1838,15 +1854,15 @@ msgstr "en gång"
 msgid "only /etc/enigma2 directory"
 msgstr "bara /etc/enigma2 bibliotek"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:260
+#: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "open servicelist"
 msgstr "öppna kanallista"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:255
+#: ../lib/python/Screens/InfoBarGenerics.py:256
 msgid "open servicelist(down)"
 msgstr "öppna kanallista(ner)"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:254
+#: ../lib/python/Screens/InfoBarGenerics.py:255
 msgid "open servicelist(up)"
 msgstr "öppna kanallista(upp)"
 
@@ -1854,7 +1870,7 @@ msgstr "öppna kanallista(upp)"
 msgid "pass"
 msgstr "klart"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:579
+#: ../lib/python/Screens/InfoBarGenerics.py:585
 msgid "pause"
 msgstr "paus"
 
@@ -1862,15 +1878,15 @@ msgstr "paus"
 msgid "please press OK when ready"
 msgstr "tryck OK när färdig"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:256
+#: ../lib/python/Screens/InfoBarGenerics.py:257
 msgid "previous channel"
 msgstr "föregående kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:258
+#: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "previous channel in history"
 msgstr "föregående kanal i historiken"
 
-#: ../lib/python/Screens/TimerEntry.py:82
+#: ../lib/python/Screens/TimerEntry.py:86
 msgid "record"
 msgstr "spela in"
 
@@ -1895,11 +1911,11 @@ msgstr ""
 msgid "remove new found flag"
 msgstr "ta bort ny hittad flagga"
 
-#: ../lib/python/Screens/TimerEntry.py:84
+#: ../lib/python/Screens/TimerEntry.py:88
 msgid "repeated"
 msgstr "repeterande"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1395
 msgid "right"
 msgstr "höger"
 
@@ -1945,6 +1961,10 @@ msgstr "söknings status"
 msgid "second cable of motorized LNB"
 msgstr ""
 
+#: ../lib/python/Screens/InputBox.py:108
+msgid "seconds."
+msgstr ""
+
 #: ../lib/python/Screens/ParentalControlSetup.py:96
 msgid "service pin"
 msgstr ""
@@ -1953,11 +1973,11 @@ msgstr ""
 msgid "setup pin"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:391
+#: ../lib/python/Screens/InfoBarGenerics.py:392
 msgid "show EPG..."
 msgstr "visa EPG..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:353
+#: ../lib/python/Screens/InfoBarGenerics.py:354
 msgid "show event details"
 msgstr "visa program detaljer"
 
@@ -1967,27 +1987,27 @@ msgstr "visa program detaljer"
 msgid "simple"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:585
+#: ../lib/python/Screens/InfoBarGenerics.py:591
 msgid "skip backward"
 msgstr "hoppa bakåt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:582
+#: ../lib/python/Screens/InfoBarGenerics.py:588
 msgid "skip forward"
 msgstr "hoppa framåt"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:899
+#: ../lib/python/Screens/InfoBarGenerics.py:905
 msgid "start timeshift"
 msgstr "starta timeshift"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1395
 msgid "stereo"
 msgstr "stereo"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1328
+#: ../lib/python/Screens/InfoBarGenerics.py:1334
 msgid "stop recording"
 msgstr "stoppa inspelning"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:900
+#: ../lib/python/Screens/InfoBarGenerics.py:906
 msgid "stop timeshift"
 msgstr "stoppa timeshift"
 
@@ -2007,7 +2027,7 @@ msgstr "text"
 msgid "this recording"
 msgstr "denna inspelning"
 
-#: ../lib/python/Components/ParentalControl.py:73
+#: ../lib/python/Components/ParentalControl.py:80
 msgid "this service is protected by a parental control pin"
 msgstr ""
 
@@ -2019,7 +2039,7 @@ msgstr "okänd kanal"
 msgid "until restart"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:88
+#: ../lib/python/Screens/TimerEntry.py:92
 msgid "user defined"
 msgstr "användardefinierad"
 
@@ -2027,7 +2047,7 @@ msgstr "användardefinierad"
 msgid "vertical"
 msgstr "vertikal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1035
+#: ../lib/python/Screens/InfoBarGenerics.py:1041
 msgid "view extensions..."
 msgstr "visa utökningar"
 
@@ -2043,7 +2063,7 @@ msgstr ""
 msgid "waiting"
 msgstr "väntar"
 
-#: ../lib/python/Screens/TimerEntry.py:88
+#: ../lib/python/Screens/TimerEntry.py:92
 msgid "weekly"
 msgstr "veckolig"
 
@@ -2061,7 +2081,7 @@ msgstr "ja"
 msgid "yes (keep feeds)"
 msgstr "ja (behåll feeds)"
 
-#: ../lib/python/Screens/TimerEntry.py:82
+#: ../lib/python/Screens/TimerEntry.py:86
 msgid "zap"
 msgstr "zap"
 
@@ -2477,10 +2497,6 @@ msgstr "LCD Inställning"
 #: ../data/
 msgid "No, scan later manually"
 msgstr "Nej, sök manuellt senare"
-
-#: ../data/
-msgid "Input"
-msgstr "Ingång"
 
 #: ../data/
 msgid "Soundcarrier"
