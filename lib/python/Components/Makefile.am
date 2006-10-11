@@ -7,7 +7,7 @@ install_PYTHON = \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \
 	HTMLSkin.py ServiceList.py VariableText.py                              \
 	ConfigList.py Header.py VariableValue.py                                \
-	EventInfo.py Label.py ServiceScan.py VolumeBar.py                       \
+	Label.py ServiceScan.py VolumeBar.py                       \
 	GUIComponent.py MenuList.py __init__.py MovieList.py                    \
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py           \
 	AVSwitch.py Network.py RFmod.py DiskInfo.py NimManager.py Lcd.py        \
