@@ -16,8 +16,7 @@ class RadioText(PerServiceBase, Source, object):
 	@cached
 	def getText(self):
 		service = self.navcore.getCurrentService()
-		info = service and service.radioText()
-		return info and info.getRadioText()
+		return service and service.radioText()
 
 	radiotext = property(getText)
 
