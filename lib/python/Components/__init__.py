@@ -1,5 +1,5 @@
 
-__all__ = ["ActionMap", "Button", "Clock", "ConfigList", "EventInfo",
+__all__ = ["ActionMap", "Button", "Clock", "ConfigList",
 	"GUIComponent", "GUISkin", "HTMLComponent", "HTMLSkin", "Header",
 	"Label", "MenuList", "PerServiceDisplay", "ProgressBar", "ServiceList",
 	"ServiceName", "ServiceScan", "VariableText", "VariableValue", "VolumeBar",
