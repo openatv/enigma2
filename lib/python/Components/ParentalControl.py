@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.Input import Input
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
@@ -16,6 +16,14 @@ def InitParentalControl():
 	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
 	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [("whitelist", _("whitelist")), ("blacklist", _("blacklist"))])
 	config.ParentalControl.setuppin = ConfigPIN(default = -1)
+	
+	config.ParentalControl.retries = ConfigSubsection()
+	config.ParentalControl.retries.setuppin = ConfigSubsection()
+	config.ParentalControl.retries.setuppin.tries = ConfigInteger(default = 3)
+	config.ParentalControl.retries.setuppin.time = ConfigInteger(default = 3)	
+	config.ParentalControl.retries.servicepin = ConfigSubsection()
+	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
+	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 #	config.ParentalControl.configured = configElement("config.ParentalControl.configured", configSelection, 1, (("yes", _("yes")), ("no", _("no"))))
 	#config.ParentalControl.mode = configElement("config.ParentalControl.mode", configSelection, 0, (("simple", _("simple")), ("complex", _("complex"))))
 	#config.ParentalControl.storeservicepin = configElement("config.ParentalControl.storeservicepin", configSelection, 0, (("never", _("never")), ("5_minutes", _("5 minutes")), ("30_minutes", _("30 minutes")), ("60_minutes", _("60 minutes")), ("restart", _("until restart"))))
@@ -34,7 +42,6 @@ class ParentalControl:
 	def __init__(self):
 		self.open()
 		self.serviceLevel = {}
-		self.tries = 3
 		
 	def addWhitelistService(self, service):
 		self.whitelist.append(service)
@@ -70,7 +77,7 @@ class ParentalControl:
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
 			pinList = self.getPinList()[:levelNeeded + 1]
-			Notifications.AddNotificationWithCallback(boundFunction(self.servicePinEntered, service), PinInput, tries = self.tries, pinList = pinList, service = ServiceReference(service).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+			Notifications.AddNotificationWithCallback(boundFunction(self.servicePinEntered, service), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(service).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
 			return False
 		else:
 			return True
@@ -126,13 +133,11 @@ class ParentalControl:
 #		
 #		print "pin entered for service", service, "and pin was", pin
 		#if pin is not None and int(pin) in pinList:
-		if result[0] is not None and result[0]:
+		if result is not None and result:
 			print "pin ok, playing service"
-			self.tries = 3
 			self.callback(ref = ServiceReference(service).ref)
 		else:
-			self.tries = result[1]
-			if result[0] is not None:
+			if result is not None:
 				Notifications.AddNotification(MessageBox,  _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 			print "wrong pin entered"
 			

@@ -428,7 +428,7 @@ class ConfigClock(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = [t.tm_hour, t.tm_min])
 
 class ConfigInteger(ConfigSequence):
-	def __init__(self, default, limits):
+	def __init__(self, default, limits = (0, 10000000000)):
 		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
 	
 	# you need to override this to do input validation
