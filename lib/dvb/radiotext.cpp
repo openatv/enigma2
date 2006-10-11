@@ -113,7 +113,16 @@ void eDVBRadioTextParser::processPESPacket(__u8 *data, int len)
 
 		pos += frame_size;
 
-		int offs = protection_bit ? pos - 1 : pos - 3;
+#if 0
+//		eDebug("protection_bit ? %d", protection_bit);
+//		int offs = protection_bit ? pos - 1 : pos - 3;
+//		if (data[offs] != 0xFD)
+//			offs += 2;
+//		eDebug("%02x %02x %02x %02x %02x", data[offs-2], data[offs-1], data[offs], data[offs+1], data[offs+2]);
+#else
+		int offs = pos - 1;
+#endif
+
 		if (data[offs] == 0xFD)
 		{
 			int ancillary_len = 1 + data[offs - 1];
