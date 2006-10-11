@@ -803,7 +803,8 @@ class Config(ConfigSubsection):
 
 		# we inherit from ConfigSubsection, so ...
 		#object.__setattr__(self, "saved_value", tree["config"])
-		self.setSavedValue(tree["config"])
+		if "config" in tree:
+			self.setSavedValue(tree["config"])
 
 	def saveToFile(self, filename):
 		f = open(filename, "w")
