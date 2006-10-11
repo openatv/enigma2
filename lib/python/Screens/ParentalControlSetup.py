@@ -12,7 +12,7 @@ from Screens.ChannelSelection import service_types_tv
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
-from enigma import eServiceCenter, eServiceReference
+from enigma import eServiceCenter, eServiceReference, eTimer
 import os
 import operator
 
@@ -23,13 +23,13 @@ class ProtectedScreen:
 
 	def getPinText(self):
 		return _("Please enter the correct pin code")
-	
+
 	def isProtected(self):
 		return True
-	
+
 	def protectedWithPin(self):
 		return config.ParentalControl.setuppin.value
-	
+
 	def pinEntered(self, result):
 		if result[0] is None:
 			self.close()
@@ -40,18 +40,16 @@ class ProtectedScreen:
 class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
 		ProtectedScreen.__init__(self)
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+		self.createSetup()
 		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"cancel": self.keyCancel
 		}, -2)
-		
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-		self.createSetup()
-	
+
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value
 	
@@ -84,7 +82,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				
 		self["config"].list = self.list
 		self["config"].setList(self.list)
-		
+
 	def keyOK(self):
 		print "self[\"config\"].l.getCurrentSelection()", self["config"].l.getCurrentSelection()
 		if self["config"].l.getCurrentSelection() == self.editListEntry:
@@ -100,43 +98,43 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			ConfigListScreen.keyRight(self)
 			print "current selection:", self["config"].l.getCurrentSelection()
 			self.createSetup()
-			
+
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		print "current selection:", self["config"].l.getCurrentSelection()
-		self.createSetup()		
-			
+		self.createSetup()
+
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		print "current selection:", self["config"].l.getCurrentSelection()
 		self.createSetup()
-	
+
 	def keyCancel(self):
 		for x in self["config"].list:
 			x[1].save()
 		self.close()
-	
+
 	def keyNumberGlobal(self, number):
 		pass
 
 class ParentalControlEditor(Screen):
+	SPECIAL_CHAR = 96
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self.list = []
 		self.servicelist = ParentalControlList(self.list)
 		self["servicelist"] = self.servicelist;
-		
 		#self.onShown.append(self.chooseLetter)
-		self.currentLetter = ''
-		
+		self.currentLetter = chr(SPECIAL_CHAR)
 		self.readServiceList()
-		
+		self.chooseLetterTimer = eTimer()
+		self.chooseLetterTimer.timeout.get().append(self.chooseLetter)
+		self.onLayoutFinish.append(self.LayoutFinished)
+
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions", "NumberActions"],
 		{
 			"ok": self.select,
 			"cancel": self.cancel,
-			"red": self.chooseLetter,
 			#"left": self.keyLeft,
 			#"right": self.keyRight,
 			"1": self.keyNumberGlobal,
@@ -150,24 +148,24 @@ class ParentalControlEditor(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		
+
+	def LayoutFinished(self):
+		self.chooseLetterTimer.start(0, True)
+
 	def cancel(self):
-		parentalControl.save()
-		self.close()
-		
+		self.chooseLetter()
+
 	def select(self):
 		self.servicelist.toggleSelectedLock()
-	
+
 	def keyNumberGlobal(self, number):
 		pass
-	
+
 	def readServiceList(self):
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = '%s ORDER BY name' % (service_types_tv)
 		self.root = eServiceReference(refstr)
-		
 		self.servicesList = {}
-		
 		list = serviceHandler.list(self.root)
 		if list is not None:
 			services = list.getContent("CN", True) #(servicecomparestring, name)
@@ -177,7 +175,7 @@ class ParentalControlEditor(Screen):
 				else:
 					key = s[1].lower()[0]
 				if key < 'a' or key > 'z':
-					key = '&'
+					key = chr(SPECIAL_CHAR)
 				#key = str(key)
 				if not self.servicesList.has_key(key):
 					self.servicesList[key] = []
@@ -187,15 +185,15 @@ class ParentalControlEditor(Screen):
 		print "choose letter"
 		mylist = []
 		for x in self.servicesList.keys():
-			if x == '&':
+			if x == chr(SPECIAL_CHAR):
 				x = ("special characters", x)
 			else:
 				x = (x, x)
 			mylist.append(x)
 		mylist.sort(key=operator.itemgetter(1))
-		print self.servicesList.keys()
-		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=mylist)
-		
+		sel = ord(self.currentLetter) - SPECIAL_CHAR
+		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=mylist, keys = [], selection = sel)
+
 	def letterChosen(self, result):
 		if result is not None:
 			print "result:", result
@@ -203,21 +201,21 @@ class ParentalControlEditor(Screen):
 			self.list = []
 			for x in self.servicesList[result[1]]:
 				self.list.append(ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionLevel(x[0]) != -1))
-			self.servicelist.setList(self.list)			
+			self.servicelist.setList(self.list)
+		else:
+			parentalControl.save()
+			self.close()
 
 class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session, pin, pinname):
 		Screen.__init__(self, session)
-
 		self.pin = pin
-
 		self.list = []
 		self.pin1 = ConfigPIN(default = 1111, censor = "*")
 		self.pin2 = ConfigPIN(default = 1112, censor = "*")
 		self.list.append(getConfigListEntry(_("New pin"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter new pin"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
-		
 #		print "old pin:", pin
 		#if pin.value != "aaaa":
 			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
@@ -227,7 +225,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		{
 			"cancel": self.cancel,
 		}, -1)
-		
+
 	def getPinText(self):
 		return _("Please enter the old pin code")
 
@@ -236,14 +234,14 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 
 	def protectedWithPin(self):
 		return self.pin.value
-		
+
 #	def pinEntered(self, result):
 		#if result[0] is None:
 			#self.close()
 		#if not result[0]:
 			#print result, "-", self.pin.value
 			#self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-	
+
 	def keyOK(self):
 		if self.pin1.value == self.pin2.value:
 			self.pin.value = self.pin1.value
@@ -251,10 +249,10 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code has been changed successfully."), MessageBox.TYPE_INFO)
 		else:
 			self.session.open(MessageBox, _("The pin codes you entered are different."), MessageBox.TYPE_ERROR)
-	
+
 	def cancel(self):
 		self.close(None)
-	
+
 	def keyNumberGlobal(self, number):
 		ConfigListScreen.keyNumberGlobal(self, number)
-		
+
