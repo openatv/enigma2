@@ -1,4 +1,4 @@
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff
 
 from enigma import eDVBSatelliteEquipmentControl, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -416,10 +416,10 @@ class NimManager:
 		return (config.Nims[nim].cabletype.value == "quick")
 
 	def getTerrestrialDescription(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.value][0]
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
 
 	def getTerrestrialFlags(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.value][1]
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
 
 	def getConfiguredSats(self):
 		return self.sec.getSatList()
@@ -789,8 +789,10 @@ def InitNimManager(nimmgr):
 			nim.cabletype = ConfigSelection(choices = [("quick", _("Quick")), ("complete", _("Complete"))])
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
 			list = []
+			n = 0
 			for x in nimmgr.terrestrialsList:
-				list.append(x[0])
+				list.append((str(n), x[0]))
+				n += 1
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
