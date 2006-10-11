@@ -10,7 +10,7 @@ class RadioText(Converter, object):
 	def getText(self):
 		rt = self.source.radiotext
 		if rt is None:
-			return "N/A"
+			return ""
 		text = rt.getRadioText()
 		if self.type == "RadioText-UTF8":
 			return text.decode("latin-1").encode("utf-8")
