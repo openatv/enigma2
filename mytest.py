@@ -37,6 +37,9 @@ try:
 	import e2reactor
 	e2reactor.install()
 	
+	import twisted.python.runtime
+	twisted.python.runtime.platform.supportsThreads = lambda: False
+	
 	from twisted.internet import reactor
 	
 	def runReactor():
