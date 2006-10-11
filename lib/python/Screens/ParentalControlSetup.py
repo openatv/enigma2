@@ -185,16 +185,16 @@ class ParentalControlEditor(Screen):
 
 	def chooseLetter(self):
 		print "choose letter"
-		list = []
+		mylist = []
 		for x in self.servicesList.keys():
 			if x == '&':
 				x = ("special characters", x)
 			else:
 				x = (x, x)
-			list.append(x)
-		print "sorted list:", sorted(list, key=operator.itemgetter(1))
+			mylist.append(x)
+		mylist.sort(key=operator.itemgetter(1))
 		print self.servicesList.keys()
-		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=list)
+		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=mylist)
 		
 	def letterChosen(self, result):
 		if result is not None:
