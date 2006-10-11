@@ -21,6 +21,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.timer = timer
 		
+		self.entryStartDate = None
+		self.entryEndDate = None
+		self.entryService = None
+		
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
@@ -114,11 +118,11 @@ class TimerEntry(Screen, ConfigListScreen):
 		if configElement is self.timerentry_startdate:
 			if self.timerentry_enddate.value < self.timerentry_startdate.value:
 				self.timerentry_enddate.value = self.timerentry_startdate.value
-				self["config"].invalidate(self.timerentry_enddate)
+				self["config"].invalidate(self.entryEndDate)
 		if configElement is self.timerentry_enddate:
 			if (self.timerentry_enddate.value < self.timerentry_startdate.value):
 				self.timerentry_startdate.value = self.timerentry_enddate.value
-				self["config"].invalidate(self.timerentry_startdate)
+				self["config"].invalidate(self.entryStartDate)
 
 	def createSetup(self, widget):
 		self.list = []
@@ -153,15 +157,17 @@ class TimerEntry(Screen, ConfigListScreen):
 			#self.list.append(getConfigListEntry("StartDate", self.timerentry_startdate))
 #		self.list.append(getConfigListEntry("Weekday", self.timerentry_weekday))
 
+		self.entryStartDate = getConfigListEntry(_("Start"), self.timerentry_startdate)
 		if self.timerentry_type.value == "once":
-			self.list.append(getConfigListEntry(_("Start"), self.timerentry_startdate))
+			self.list.append(self.entryStartDate)
 			self.list.append(getConfigListEntry(" ", self.timerentry_starttime))
 		else:
 			self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
 
+		self.entryEndDate = getConfigListEntry(_("End"), self.timerentry_enddate)
 		if self.timerentry_type.value == "once":
 			if self.timerentry_justplay.value != "zap":
-				self.list.append(getConfigListEntry(_("End"), self.timerentry_enddate))
+				self.list.append(self.entryEndDate)
 				self.list.append(getConfigListEntry(" ", self.timerentry_endtime))
 		else:
 			if self.timerentry_justplay.value != "zap":
@@ -209,7 +215,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if len(args):
 			self.timer.service_ref = ServiceReference(args[0])
 			self.timerentry_service.vals = (str(self.timer.service_ref.getServiceName()),)
-			self["config"].invalidate(self.timerentry_service)
+			self["config"].invalidate(self.channelEntry)
 
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)
