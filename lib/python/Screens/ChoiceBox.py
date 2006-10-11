@@ -18,7 +18,7 @@ class ChoiceBox(Screen):
 		if keys is None:
 			self.keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
 		else:
-			self.keys = keys
+			self.keys = keys + (len(list) - len(keys)) * [""]
 			
 		self.keymap = {}
 		pos = 0
