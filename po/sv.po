@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-12 14:51+0200\n"
-"PO-Revision-Date: 2006-10-11 12:39+0100\n"
+"PO-Revision-Date: 2006-10-12 14:59+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -130,9 +130,7 @@ msgstr ""
 "Vad vill du göra?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:511
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "En inspelning pågår. Vänligen avbryt den innan du konfigurerar motorn."
 
 #: ../RecordTimer.py:163
@@ -207,11 +205,13 @@ msgstr "Ljud optioner..."
 #: ../lib/python/Screens/ScanSetup.py:384
 #: ../lib/python/Screens/ScanSetup.py:385
 #: ../lib/python/Screens/ScanSetup.py:386
-#: ../lib/python/Screens/ScanSetup.py:387 ../lib/python/Screens/Ci.py:22
+#: ../lib/python/Screens/ScanSetup.py:387
+#: ../lib/python/Screens/Ci.py:22
 msgid "Auto"
 msgstr "Auto"
 
-#: ../lib/python/Screens/ScanSetup.py:604 ../data/
+#: ../lib/python/Screens/ScanSetup.py:604
+#: ../data/
 msgid "Automatic Scan"
 msgstr "Automatisk Sökning"
 
@@ -263,7 +263,8 @@ msgstr "CF Disk"
 msgid "Cable"
 msgstr "Kabel"
 
-#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimerEntry.py:29
+#: ../lib/python/Screens/Setup.py:85
+#: ../lib/python/Screens/TimerEntry.py:29
 #: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
@@ -279,7 +280,8 @@ msgid "Catalan"
 msgstr "Katalanska"
 
 #: ../lib/python/Screens/ChannelSelection.py:146
-#: ../lib/python/Screens/ParentalControlSetup.py:22 ../data/
+#: ../lib/python/Screens/ParentalControlSetup.py:22
+#: ../data/
 msgid "Change pin code"
 msgstr "Ändra PIN kod"
 
@@ -295,7 +297,8 @@ msgstr "Ändra serive PIN"
 msgid "Change setup pin"
 msgstr "Ändra installations PIN"
 
-#: ../lib/python/Screens/TimerEntry.py:179 ../data/
+#: ../lib/python/Screens/TimerEntry.py:179
+#: ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -347,7 +350,8 @@ msgid "Complete"
 msgstr "Komplett"
 
 #: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:143 ../data/
+#: ../lib/python/Screens/Satconfig.py:143
+#: ../data/
 msgid "Configuration Mode"
 msgstr "Inställningar"
 
@@ -607,7 +611,8 @@ msgstr "Frontprocessor version: %d"
 msgid "Function not yet implemented"
 msgstr "Funktionen är inte implementerad"
 
-#: ../lib/python/Screens/NetworkSetup.py:32 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:32
+#: ../data/
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -651,7 +656,8 @@ msgstr "Hierarkiskt läge"
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
-#: ../lib/python/Screens/NetworkSetup.py:29 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:29
+#: ../data/
 msgid "IP Address"
 msgstr "IP Adress"
 
@@ -664,8 +670,7 @@ msgid "Image-Upgrade"
 msgstr "Image Uppgradering"
 
 #: ../RecordTimer.py:166
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "För att göra en timerinspelning, var TV växlad till inspelad kanal!\n"
 
 #: ../lib/python/Screens/Satconfig.py:139
@@ -684,7 +689,8 @@ msgstr "Initiera"
 msgid "Initializing Harddisk..."
 msgstr "Initierar Hårddisk..."
 
-#: ../lib/python/Screens/InputBox.py:14 ../data/
+#: ../lib/python/Screens/InputBox.py:14
+#: ../data/
 msgid "Input"
 msgstr "Ingång"
 
@@ -719,12 +725,14 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48
+#: ../data/
 msgid "Language selection"
 msgstr "Välj språk"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:126 ../data/
+#: ../lib/python/Screens/Satconfig.py:126
+#: ../data/
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -749,7 +757,8 @@ msgid "Limits on"
 msgstr "Gränser på"
 
 #: ../lib/python/Screens/Satconfig.py:24
-#: ../lib/python/Screens/Satconfig.py:124 ../data/
+#: ../lib/python/Screens/Satconfig.py:124
+#: ../data/
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -821,11 +830,13 @@ msgstr "NIM "
 msgid "Name"
 msgstr "Namn"
 
-#: ../lib/python/Screens/NetworkSetup.py:33 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:33
+#: ../data/
 msgid "Nameserver"
 msgstr "Namnserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:31 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:31
+#: ../data/
 msgid "Netmask"
 msgstr "Nätmask"
 
@@ -899,7 +910,8 @@ msgstr ""
 "Inget att scanna!\n"
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
-#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimerEntry.py:28
+#: ../lib/python/Screens/Setup.py:84
+#: ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
@@ -925,7 +937,8 @@ msgstr "Online Uppgradering"
 msgid "Packet management"
 msgstr "Pakethantering"
 
-#: ../lib/python/Components/ParentalControl.py:80 ../data/
+#: ../lib/python/Components/ParentalControl.py:80
+#: ../data/
 msgid "Parental control"
 msgstr "Föräldrarkontroll"
 
@@ -974,8 +987,7 @@ msgid ""
 msgstr ""
 "Använd piltangenterna för att flytta BiB fönstret.\n"
 "Tryck Bouquet +/- för ändra storleken på fönstret.\n"
-"Tryck OK för att gå tillbaka till TV läge elelr EXIT för att avbryta "
-"flyttning."
+"Tryck OK för att gå tillbaka till TV läge elelr EXIT för att avbryta flyttning."
 
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
@@ -1131,7 +1143,8 @@ msgstr "Lör"
 
 #: ../lib/python/Screens/ScanSetup.py:196
 #: ../lib/python/Screens/ScanSetup.py:209
-#: ../lib/python/Screens/Satconfig.py:11 ../lib/python/Screens/Satconfig.py:61
+#: ../lib/python/Screens/Satconfig.py:11
+#: ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:145
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:397
 msgid "Satellite"
@@ -1427,7 +1440,7 @@ msgstr "Transponertyp"
 
 #: ../lib/python/Screens/InputBox.py:168
 msgid "Tries left:"
-msgstr ""
+msgstr "Försök kvar:"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/TimerList.py:34
@@ -1498,7 +1511,8 @@ msgstr "Uppdatering utförd. Här är resultatet:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter...."
 
-#: ../lib/python/Screens/NetworkSetup.py:27 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:27
+#: ../data/
 msgid "Use DHCP"
 msgstr "Använd DHCP"
 
@@ -1555,7 +1569,7 @@ msgstr "Du kan inte ta bort detta!"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "You have to wait for"
-msgstr ""
+msgstr "Du måste vänta i"
 
 #: ../lib/python/Screens/MediaPlayer.py:390
 msgid "You selected a playlist"
@@ -1767,7 +1781,8 @@ msgstr "göm spelare"
 msgid "horizontal"
 msgstr "horisontal"
 
-#: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
+#: ../lib/python/Screens/Ci.py:300
+#: ../lib/python/Screens/Ci.py:322
 msgid "init module"
 msgstr "initialisera modul"
 
@@ -1799,7 +1814,7 @@ msgstr "min"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "minutes and"
-msgstr ""
+msgstr "minuter och"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "never"
@@ -1822,7 +1837,8 @@ msgstr "nej"
 msgid "no HDD found"
 msgstr "ingen hårddisk hittad"
 
-#: ../lib/python/Screens/Ci.py:298 ../lib/python/Screens/Ci.py:320
+#: ../lib/python/Screens/Ci.py:298
+#: ../lib/python/Screens/Ci.py:320
 msgid "no module found"
 msgstr "ingen modul hittad"
 
@@ -1963,7 +1979,7 @@ msgstr "andra kabeln från motorstyrt LNB"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "seconds."
-msgstr ""
+msgstr "sekunder."
 
 #: ../lib/python/Screens/ParentalControlSetup.py:96
 msgid "service pin"
@@ -2019,7 +2035,8 @@ msgstr "byt till fillista"
 msgid "switch to playlist"
 msgstr "byt till playlist"
 
-#: ../lib/python/Screens/Wizard.py:234 ../lib/python/Screens/Wizard.py:235
+#: ../lib/python/Screens/Wizard.py:234
+#: ../lib/python/Screens/Wizard.py:235
 msgid "text"
 msgstr "text"
 
@@ -2154,12 +2171,8 @@ msgid "NEXT"
 msgstr "NÄSTA"
 
 #: ../data/
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till en "
-"hårddisk är inte möjligt."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "Du verkar inte ha någon hårddisk i din Dreambox. Så att ta backup till en hårddisk är inte möjligt."
 
 #: ../data/
 msgid "Deep Standby"
@@ -2182,11 +2195,8 @@ msgid "Sound"
 msgstr "Ljud"
 
 #: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Använd upp/ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Använd upp/ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
 
 #: ../data/
 msgid "Do you want to view a tutorial?"
@@ -2229,8 +2239,7 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valt att ta backup till ett USB minne. Bättre att ta backup till "
-"HDD!\n"
+"Du har valt att ta backup till ett USB minne. Bättre att ta backup till HDD!\n"
 "Tryck OK för att starta backup."
 
 #: ../data/
@@ -2246,15 +2255,8 @@ msgid "Mute"
 msgstr "Ljud av"
 
 #: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen "
-"av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till "
-"dina aktuella inställningar och en kort förklaring hur du uppgraderar "
-"mjukvaran."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till dina aktuella inställningar och en kort förklaring hur du uppgraderar mjukvaran."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -2457,21 +2459,15 @@ msgid "Language..."
 msgstr "Språk..."
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Återställning av inställningar klart. Tryck OK för aktivera återskapade "
-"inställningarna"
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
+msgstr "Återställning av inställningar klart. Tryck OK för aktivera återskapade inställningarna"
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V Inställningar"
 
 #: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "Infobalken visas om du trycker OK på din fjärrkontroll."
 
 #: ../data/
@@ -2484,17 +2480,11 @@ msgstr "Ja, utför manuell sökning igen"
 
 #: ../data/
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
-"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
-"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
-"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
-"vill återställa dina inställningar."
+"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
+"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen instruktioner från websidan, din nya mjukvara kommer att fråga dig om du vill återställa dina inställningar."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2517,12 +2507,8 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Du har valt att ta backup till din hårddisk. Vänlig tryck OK så startar "
-"backupen."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "Du har valt att ta backup till din hårddisk. Vänlig tryck OK så startar backupen."
 
 #: ../data/
 msgid "Timer selection"
@@ -2534,14 +2520,10 @@ msgstr "Repetera"
 
 #: ../data/
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. "
-"Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta "
-"backup till hårddisk!\n"
+"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta backup till hårddisk!\n"
 "Tryck OK för att starta backupen."
 
 #: ../data/
@@ -2561,12 +2543,8 @@ msgid "Timer log"
 msgstr "Timer log"
 
 #: ../data/
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Backupen lyckades. Vi kommer nu att fortsätta förklara "
-"uppgraderingsprocessen."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Backupen lyckades. Vi kommer nu att fortsätta förklara uppgraderingsprocessen."
 
 #: ../data/
 msgid "PiPSetup"
@@ -2613,10 +2591,8 @@ msgid "InfoBar"
 msgstr "InfoBalk"
 
 #: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Guiden tar en backup på nuvarande inställningar. Vill du ta en backup nu?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Guiden tar en backup på nuvarande inställningar. Vill du ta en backup nu?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -2830,126 +2806,86 @@ msgstr "Vill du göra en ny manuell sökning?"
 
 #~ msgid "Cable provider"
 #~ msgstr "KabelTV leverantör"
-
 #~ msgid "Classic"
 #~ msgstr "Klassisk"
-
 #~ msgid "Default"
 #~ msgstr "Standard"
-
 #~ msgid "Equal to Socket A"
 #~ msgstr "Likadant som Tuner A"
-
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Loopa igenom till Tuner A"
-
 #~ msgid "Nothing connected"
 #~ msgstr "Ingenting är anslutet"
-
 #~ msgid "Predefined satellite"
 #~ msgstr "Fördefinerad satelliter"
-
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Andra kabeln från Motor"
-
 #~ msgid "Simple"
 #~ msgstr "Enkelt"
-
 #~ msgid "Swap services"
 #~ msgstr "Byt kanal"
-
 #~ msgid "add bouquet..."
 #~ msgstr "lägg till bouquet..."
-
 #~ msgid "remove bouquet"
 #~ msgstr "ta bort bouquet"
-
 #~ msgid "remove service"
 #~ msgstr "ta bort kanal"
-
 #~ msgid "Hide error windows"
 #~ msgstr "Göm felmeddelande fönster"
-
 #~ msgid "Show Satposition"
 #~ msgstr "Visa Satposition"
-
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Visualisera motorkörning"
-
 #~ msgid "Audio / Video"
 #~ msgstr "Audio / Video"
-
 #~ msgid "Record Splitsize"
 #~ msgstr "Inspelning Delningsstorlek"
-
 #~ msgid "Auto show inforbar"
 #~ msgstr "Automatisk visning av infobalk"
-
 #~ msgid "Network"
 #~ msgstr "Nätverk"
-
 #~ msgid "Invert"
 #~ msgstr "Invertera"
-
 #~ msgid "use power delta"
 #~ msgstr "använd ström delta"
-
 #~ msgid "Fast zapping"
 #~ msgstr "Snabbt kanalbyte"
-
 #~ msgid "Usage Settings"
 #~ msgstr "Användarinställningar"
-
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF Modulator"
-
 #~ msgid "LCD"
 #~ msgstr "LCD"
-
 #~ msgid "Ask before zapping"
 #~ msgstr "Fråga före kanalbyte"
-
 #~ msgid "Parental Lock"
 #~ msgstr "Barnlås"
-
 #~ msgid "Skip confirmations"
 #~ msgstr "Konfirmera inte"
-
 #~ msgid "Setup Lock"
 #~ msgstr "Inställningslås"
-
 #~ msgid "Expert Setup"
 #~ msgstr "Expert Inställningar"
-
 #~ msgid "Language"
 #~ msgstr "Språk"
-
 #~ msgid "Parental Control"
 #~ msgstr "Föräldrakontroll"
-
 #~ msgid "Multi bouquets"
 #~ msgstr "Flera bouquets"
-
 #~ msgid "Usage settings"
 #~ msgstr "Användarinställning"
-
 #~ msgid "Timeshift not possible!"
 #~ msgstr "Timeshift inte möjligt!"
-
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshifting"
-
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satellitinställning"
-
 #~ msgid "AGC"
 #~ msgstr "AGC"
-
 #~ msgid "BER"
 #~ msgstr "BER"
-
 #~ msgid "SNR"
 #~ msgstr "SNR"
-
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "Vill du verkligen ta bort den här inspelningen?"
+
