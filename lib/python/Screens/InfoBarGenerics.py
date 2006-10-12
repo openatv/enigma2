@@ -1154,11 +1154,10 @@ class InfoBarSubtitles:
 class InfoBarPiP:
 	def __init__(self):
 		self.session.pipshown = False
-		
-		self.addExtension((self.getShowHideName, self.showPiP, self.available), "1")
-		self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "2")
-		self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "3")
 
+		self.addExtension((self.getShowHideName, self.showPiP, self.available), "red")
+		self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+		self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
 	
 	def available(self):
 		return True
