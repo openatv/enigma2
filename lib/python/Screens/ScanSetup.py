@@ -590,6 +590,8 @@ class ScanSimple(ConfigListScreen, Screen):
 			nim.nim_index = 0
 			if nimtype == nimmanager.nimType["DVB-S"] and not len(nimmanager.getSatListForNim(0)):
 				scan_possible=False
+			if nimtype == nimmanager.nimType["empty/unknown"]:
+				scan_possible = False
 			if scan_possible:
 				self.list.append(getConfigListEntry(_("Scan NIM") + " 0 (" + nimmanager.getNimTypeName(0) + ")", nim))
 
@@ -680,6 +682,8 @@ class ScanSimple(ConfigListScreen, Screen):
 		return 0
 
 	def ScanNimTwoNeeded(self):
+		if nimmanager.getNimType(1) == nimmanager.nimType["empty/unknown"]:
+			return False
 		if nimmanager.getNimType(0) != nimmanager.getNimType(1):
 			return True
 		if nimmanager.getNimType(0) == nimmanager.nimType["DVB-S"]: #two dvb-s nims
