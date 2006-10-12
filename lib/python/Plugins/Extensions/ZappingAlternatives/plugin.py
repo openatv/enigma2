@@ -173,10 +173,11 @@ class AlternativeZapping(Screen):
 		self.updateServices()
 		self.updateAlternatives()
 	
-	def finishedAlternativeSelection(self, args):
-		self.alternatives[self["serviceslist"].getCurrent()[1]].append(str(ServiceReference(args)))
-		addAlternative(self["serviceslist"].getCurrent()[1], str(ServiceReference(args)))
-		self.updateAlternatives()
+	def finishedAlternativeSelection(self, *args):
+		if len(args):
+			self.alternatives[self["serviceslist"].getCurrent()[1]].append(str(ServiceReference(args)))
+			addAlternative(self["serviceslist"].getCurrent()[1], str(ServiceReference(args)))
+			self.updateAlternatives()
 	
 	def updateServices(self):
 		self.serviceslist = []
