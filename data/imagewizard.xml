@@ -115,7 +115,7 @@ import os
 from Screens.ImageWizard import backupfile
 print 'mv ' + self.backuppath + backupfile + ' ' + self.backuppath + backupfile + '.old'
 os.system('mv ' + self.backuppath + backupfile + ' ' + self.backuppath + backupfile + '.old')
-os.system('killall enigma2') # ugly... no better solution atm
+os.system('killall -9 enigma2') # ugly... no better solution atm
 			</code>
 		</step>
 		
