@@ -85,7 +85,9 @@ class InfoBarShowHide:
 	
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
-			self.hideTimer.start(5000, True)
+			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
@@ -190,7 +192,8 @@ class InfoBarNumberZap:
 #		print "You pressed number " + str(number)
 		if number == 0:
 			self.servicelist.recallPrevService()
-			self.doShow()
+			if config.usage.show_infobar_on_zap.value:
+				self.doShow()
 		else:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -312,7 +315,8 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.moveUp()
 		self.servicelist.zap()
-		self.doShow()
+		if config.usage.show_infobar_on_zap.value:
+			self.doShow()
 
 	def zapDown(self):
 		if self.servicelist.inBouquet():
@@ -330,7 +334,8 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.moveDown()
 		self.servicelist.zap()
-		self.doShow()
+		if config.usage.show_infobar_on_zap.value:
+			self.doShow()
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -804,13 +809,14 @@ class InfoBarSeek:
 	def checkSkipShowHideLock(self):
 		wantlock = self.seekstate != self.SEEK_STATE_PLAY
 		
-		if self.lockedBecauseOfSkipping and not wantlock:
-			self.unlockShow()
-			self.lockedBecauseOfSkipping = False
+		if config.usage.show_infobar_on_zap.value:
+			if self.lockedBecauseOfSkipping and not wantlock:
+				self.unlockShow()
+				self.lockedBecauseOfSkipping = False
 		
-		if wantlock and not self.lockedBecauseOfSkipping:
-			self.lockShow()
-			self.lockedBecauseOfSkipping = True
+			if wantlock and not self.lockedBecauseOfSkipping:
+				self.lockShow()
+				self.lockedBecauseOfSkipping = True
 
 	def __evEOF(self):
 		if self.seekstate != self.SEEK_STATE_PLAY:
@@ -1455,7 +1461,8 @@ class InfoBarSubserviceSelection:
 				if newservice.valid():
 					del subservices
 					del service
-					self.doShow()
+					if config.usage.show_infobar_on_zap.value:
+						self.doShow()
 					self.session.nav.playService(newservice)
 
 	def subserviceSelection(self):
@@ -1487,7 +1494,8 @@ class InfoBarSubserviceSelection:
 					self.session.open(SubservicesQuickzap, service[2])
 			else:
 				self["SubserviceQuickzapAction"].setEnabled(True)
-				self.doShow()
+				if config.usage.show_infobar_on_zap.value:
+					self.doShow()
 				self.session.nav.playService(service[1])
 
 class InfoBarAdditionalInfo:
