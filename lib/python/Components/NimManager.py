@@ -16,6 +16,14 @@ from xml.sax.handler import ContentHandler
 
 from Tools.BoundFunction import boundFunction
 
+def getConfigSatlist(orbpos, satlist):
+	default_orbpos = None
+	for x in satlist:
+		if x[0] == orbpos:
+			default_orbpos = orbpos
+			break
+	return ConfigSatlist(satlist, default_orbpos)
+
 def tryOpen(filename):
 	try:
 		procFile = open(filename)
@@ -698,8 +706,9 @@ def InitNimManager(nimmgr):
 					("diseqc_a_b_c_d", _("DiSEqC A/B/C/D")),
 					("positioner", _("Positioner"))],
 				default = "diseqc_a_b")
-			nim.diseqcA = ConfigSatlist(default = 192, list = nimmgr.satList)
-			nim.diseqcB = ConfigSatlist(default = 130, list = nimmgr.satList)
+
+			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
+			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
 			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
 			nim.diseqcD = ConfigSatlist(list = nimmgr.satList)
 			nim.positionerMode = ConfigSelection(
@@ -730,7 +739,7 @@ def InitNimManager(nimmgr):
 			
 			# advanced config:
 			nim.advanced = ConfigSubsection()
-			nim.advanced.sats = ConfigSatlist(default = 192, list = nimmgr.satList)
+			nim.advanced.sats = getConfigSatlist(192,nimmgr.satList)
 			nim.advanced.sat = ConfigSubDict()
 			lnbs = [("0", "not available")]
 			for y in range(1, 33):
