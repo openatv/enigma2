@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.ConfigList import ConfigList
 from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager
+from Components.NimManager import nimmanager, getConfigSatlist
 from Components.MenuList import MenuList
 from Components.config import ConfigSelection, ConfigSatlist, getConfigListEntry
 
@@ -170,7 +170,7 @@ class Satfinder(ScanSetup):
 
 		self.tuning_transponder = None
 		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined transponder"))])
-		self.tuning_sat = ConfigSatlist(default = 192, list = nimmanager.getSatListForNim(self.feid))
+		self.tuning_sat = getConfigSatlist(192, nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
 		
 		self.updateSats()

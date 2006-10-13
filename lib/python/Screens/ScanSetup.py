@@ -3,7 +3,7 @@ from ServiceScan import *
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigSatlist, ConfigEnableDisable
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.NimManager import nimmanager
+from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable
@@ -396,14 +396,7 @@ class ScanSetup(ConfigListScreen, Screen):
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 					print str(slot.slotid) + " : " + str(self.satList)
-					default_orbpos = None
-					orbpos = defaultSat["orbpos"]
-					satlist = self.satList[slot.slotid]
-					for x in satlist:
-						if x[0] == orbpos:
-							default_orbpos = orbpos
-							break
-					self.scan_satselection.append(ConfigSatlist(default = default_orbpos, list = satlist))
+					self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"],self.satList[slot.slotid]))
 				else:
 					self.scan_satselection.append(None)
 
