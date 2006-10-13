@@ -140,7 +140,6 @@ class ScanSetup(ConfigListScreen, Screen):
 		del self.feinfo
 		del self.service
 
-
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keyGo,
@@ -397,7 +396,14 @@ class ScanSetup(ConfigListScreen, Screen):
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 					print str(slot.slotid) + " : " + str(self.satList)
-					self.scan_satselection.append(ConfigSatlist(default = defaultSat["orbpos"], list = self.satList[slot.slotid]))
+					default_orbpos = None
+					orbpos = defaultSat["orbpos"]
+					satlist = self.satList[slot.slotid]
+					for x in satlist:
+						if x[0] == orbpos:
+							default_orbpos = orbpos
+							break
+					self.scan_satselection.append(ConfigSatlist(default = default_orbpos, list = satlist))
 				else:
 					self.scan_satselection.append(None)
 
