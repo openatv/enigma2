@@ -40,7 +40,6 @@ class SecConfigure:
 			tunermask |= (1 << self.equal[slotid])
 		elif self.linked.has_key(slotid):
 			tunermask |= (1 << self.linked[slotid])
-		sec.setLNBTunerMask(tunermask)
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11700000)
@@ -64,7 +63,6 @@ class SecConfigure:
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				tunermask |= (1 << self.satposdepends[slotid])
-				sec.setLNBTunerMask(tunermask)
 			sec.setLatitude(latitude)
 			sec.setLaDirection(laDirection)
 			sec.setLongitude(longitude)
@@ -79,6 +77,8 @@ class SecConfigure:
 				sec.setToneMode(0)
 				sec.setRotorPosNum(0) # USALS
 				self.satList.append(int(x[0]))
+
+		sec.setLNBTunerMask(tunermask)
 
 	def setSatposDepends(self, sec, nim1, nim2):
 		print "tuner", nim1, "depends on satpos of", nim2
@@ -105,13 +105,13 @@ class SecConfigure:
 			nim = config.Nims[x]
 			if slot.nimType == self.NimManager.nimType["DVB-S"]:
 				if nim.configMode.value == "equal":
-					self.equal[nim.equalTo.value]=x
+					self.equal[nim.equalTo.index]=x
 				if nim.configMode.value == "loopthrough":
-					self.linkNIMs(sec, x, nim.linkedTo.value)
-					self.linked[nim.linkedTo.value]=x
+					self.linkNIMs(sec, x, nim.linkedTo.index)
+					self.linked[nim.linkedTo.index]=x
 				elif nim.configMode.value == "satposdepends":
 					self.setSatposDepends(sec, x, nim.satposDependsTo.index)
-					self.satposdepends[nim.satposDependsTo.value]=x
+					self.satposdepends[nim.satposDependsTo.index]=x
 
 		for slot in self.NimManager.nimslots:
 			x = slot.slotid
@@ -672,16 +672,15 @@ def InitNimManager(nimmgr):
 						"advanced": _("advanced")},
 					default = "simple")
 			else:
-
 				nim.configMode = ConfigSelection(
 					choices = {
 						"equal": _("equal to Socket A"),
-						"looptrough": _("loopthrough to socket A"),
+						"loopthrough": _("loopthrough to socket A"),
 						"nothing": _("nothing connected"),
 						"satposdepends": _("second cable of motorized LNB"),
 						"simple": _("simple"),
 						"advanced": _("advanced")},
-					default = "looptrough")
+					default = "loopthrough")
 
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			if nim.configMode.value in ["loopthrough", "satposdepends", "equal"]:
