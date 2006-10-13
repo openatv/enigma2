@@ -213,7 +213,7 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret = False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(Console, title = "Restore running", cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall enigma2"])
+			self.session.open(Console, title = "Restore running", cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 
 	def Exit(self):
 		self.close()
