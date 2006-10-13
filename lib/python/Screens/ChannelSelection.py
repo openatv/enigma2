@@ -79,7 +79,7 @@ class ChannelContextMenu(Screen):
 			if not inBouquetRootList:
 				if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
 					if config.ParentalControl.configured.value:
-						if parentalControl.getProtectionLevel(csel.getCurrentSelection()) == -1:
+						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							menu.append((_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
 						else:
 							menu.append((_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
@@ -143,10 +143,10 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def removeParentalProtection(self, service):
-		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList = [config.ParentalControl.servicepin[0].value], title = _("Enter the service pin"), windowTitle = _("Change pin code"))
+		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList = [config.ParentalControl.servicepin[0].value], triesEntry = config.ParentalControl.retries.servicepin, title = _("Enter the service pin"), windowTitle = _("Change pin code"))
 
 	def pinEntered(self, service, result):
-		if result[0]:
+		if result:
 			parentalControl.unProtectService(service)
 			self.close()
 		else:

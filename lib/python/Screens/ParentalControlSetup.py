@@ -78,7 +78,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				elif config.ParentalControl.mode.value == "simple":	
 					self.changePin = getConfigListEntry(_("Change service pin"), NoSave(ConfigNothing()))
 					self.list.append(self.changePin)
-				self.list.append(getConfigListEntry(_("Remember service pin"), config.ParentalControl.storeservicepin))	
+				#self.list.append(getConfigListEntry(_("Remember service pin"), config.ParentalControl.storeservicepin))	
 				self.editListEntry = getConfigListEntry(_("Edit services list"), NoSave(ConfigNothing()))
 				self.list.append(self.editListEntry)
 				
