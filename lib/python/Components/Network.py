@@ -139,11 +139,9 @@ class Network:
 iNetwork = Network()
 
 def InitNetwork():
-	ip = iNetwork.getCurrentIP()
-
 	config.network = ConfigSubsection()
 	config.network.dhcp = NoSave(ConfigYesNo(default=True))
-	config.network.ip = NoSave(ConfigIP(default=[0,0,0,0]))
+	config.network.ip = NoSave(ConfigIP(default=iNetwork.getCurrentIP()))
 	config.network.netmask = NoSave(ConfigIP(default=[255,255,255,0]))
 	config.network.gateway = NoSave(ConfigIP(default=[192,168,1,3]))
 	config.network.dns = NoSave(ConfigIP(default=[192,168,1,3]))
