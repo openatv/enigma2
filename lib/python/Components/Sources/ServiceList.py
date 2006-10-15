@@ -2,10 +2,11 @@ from Source import Source
 from enigma import eServiceCenter, eServiceReference
 
 class ServiceList(Source):
-	def __init__(self, root, command_func = None):
+	def __init__(self, root, command_func = None, validate_commands = True):
 		Source.__init__(self)
 		self.root = root
 		self.command_func = command_func
+		self.validate_commands = validate_commands
 
 	def getServicesAsList(self, format = "SN"):
 		services = self.getServiceList()
@@ -34,7 +35,7 @@ class ServiceList(Source):
 	def handleCommand(self, cmd):
 		print "ServiceList handle command"
 		
-		if not self.validateReference(cmd):
+		if self.validate_commands and not self.validateReference(cmd):
 			print "Service reference did not validate!"
 			return
 
