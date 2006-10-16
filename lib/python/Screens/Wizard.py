@@ -3,6 +3,7 @@ from Screen import Screen
 import string
 
 from Screens.HelpMenu import HelpableScreen
+from Components.config import config
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.ActionMap import HelpableActionMap, NumberActionMap
@@ -155,6 +156,7 @@ class Wizard(Screen, HelpableScreen):
 	def ok(self):
 		print "OK"
 		currStep = self.currStep
+		
 		if self.showConfig:
 			if (self.wizard[currStep]["config"]["screen"] != None):
 				# TODO: don't die, if no run() is available
@@ -244,6 +246,7 @@ class Wizard(Screen, HelpableScreen):
 					for x in self.wizard[self.currStep]["list"]:
 						self.list.append((_(x[0]), None))
 				self["list"].l.setList(self.list)
+				self["list"].moveToIndex(0)
 	
 			if self.showConfig:
 				self["config"].instance.setZPosition(1)

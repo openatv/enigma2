@@ -65,14 +65,14 @@ class ParentalControl:
 	def isServicePlayable(self, service, callback):
 		if not config.ParentalControl.configured.value:
 			return True
-		print "whitelist:", self.whitelist
-		print "blacklist:", self.blacklist
-		print "config.ParentalControl.type.value:", config.ParentalControl.type.value
-		print "not in whitelist:", (service not in self.whitelist)
-		print "checking parental control for service:", service
+		#print "whitelist:", self.whitelist
+		#print "blacklist:", self.blacklist
+		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
+		#print "not in whitelist:", (service not in self.whitelist)
+		#print "checking parental control for service:", service
 		if (config.ParentalControl.type.value == "whitelist" and service not in self.whitelist) or (config.ParentalControl.type.value == "blacklist" and service in self.blacklist):
 			self.callback = callback
-			print "service:", ServiceReference(service).getServiceName()
+			#print "service:", ServiceReference(service).getServiceName()
 			levelNeeded = 0
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
@@ -83,29 +83,29 @@ class ParentalControl:
 			return True
 		
 	def protectService(self, service):
-		print "protect"
-		print "config.ParentalControl.type.value:", config.ParentalControl.type.value
+		#print "protect"
+		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		if config.ParentalControl.type.value == "whitelist":
 			if service in self.whitelist:
 				self.deleteWhitelistService(service)
 		else: # blacklist
 			if service not in self.blacklist:
 				self.addBlacklistService(service)
-		print "whitelist:", self.whitelist
-		print "blacklist:", self.blacklist
+		#print "whitelist:", self.whitelist
+		#print "blacklist:", self.blacklist
 
 				
 	def unProtectService(self, service):
-		print "unprotect"
-		print "config.ParentalControl.type.value:", config.ParentalControl.type.value
+		#print "unprotect"
+		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		if config.ParentalControl.type.value == "whitelist":
 			if service not in self.whitelist:
 				self.addWhitelistService(service)
 		else: # blacklist
 			if service in self.blacklist:
 				self.deleteBlacklistService(service)
-		print "whitelist:", self.whitelist
-		print "blacklist:", self.blacklist
+		#print "whitelist:", self.whitelist
+		#print "blacklist:", self.blacklist
 
 	def getProtectionLevel(self, service):
 		if (config.ParentalControl.type.value == "whitelist" and service not in self.whitelist) or (config.ParentalControl.type.value == "blacklist" and service in self.blacklist):
@@ -134,12 +134,12 @@ class ParentalControl:
 #		print "pin entered for service", service, "and pin was", pin
 		#if pin is not None and int(pin) in pinList:
 		if result is not None and result:
-			print "pin ok, playing service"
+			#print "pin ok, playing service"
 			self.callback(ref = ServiceReference(service).ref)
 		else:
 			if result is not None:
 				Notifications.AddNotification(MessageBox,  _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-			print "wrong pin entered"
+			#print "wrong pin entered"
 			
 	def saveWhitelist(self):
 		file = open(resolveFilename(SCOPE_CONFIG, "whitelist"), 'w')

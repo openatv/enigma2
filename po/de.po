@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-16 17:54+0200\n"
-"PO-Revision-Date: 2006-10-11 17:13+0100\n"
+"POT-Creation-Date: 2006-10-17 00:28+0200\n"
+"PO-Revision-Date: 2006-10-17 00:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -132,12 +132,8 @@ msgstr ""
 "Was möchten Sie tun?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:511
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Es läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das Rotor "
-"Setup ausführen."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Es läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das Rotor Setup ausführen."
 
 #: ../RecordTimer.py:163
 msgid ""
@@ -211,11 +207,13 @@ msgstr "Audio Optionen"
 #: ../lib/python/Screens/ScanSetup.py:383
 #: ../lib/python/Screens/ScanSetup.py:384
 #: ../lib/python/Screens/ScanSetup.py:385
-#: ../lib/python/Screens/ScanSetup.py:386 ../lib/python/Screens/Ci.py:22
+#: ../lib/python/Screens/ScanSetup.py:386
+#: ../lib/python/Screens/Ci.py:22
 msgid "Auto"
 msgstr "Auto"
 
-#: ../lib/python/Screens/ScanSetup.py:603 ../data/
+#: ../lib/python/Screens/ScanSetup.py:603
+#: ../data/
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
 
@@ -267,7 +265,8 @@ msgstr "CF Laufwerk"
 msgid "Cable"
 msgstr "Kabel"
 
-#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimerEntry.py:29
+#: ../lib/python/Screens/Setup.py:85
+#: ../lib/python/Screens/TimerEntry.py:29
 #: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
@@ -283,7 +282,8 @@ msgid "Catalan"
 msgstr "Katalanisch"
 
 #: ../lib/python/Screens/ChannelSelection.py:146
-#: ../lib/python/Screens/ParentalControlSetup.py:22 ../data/
+#: ../lib/python/Screens/ParentalControlSetup.py:22
+#: ../data/
 msgid "Change pin code"
 msgstr "Pincode ändern"
 
@@ -299,7 +299,8 @@ msgstr "Kanal-Pincodes ändern"
 msgid "Change setup pin"
 msgstr "Einstellungs-Pincode ändern"
 
-#: ../lib/python/Screens/TimerEntry.py:179 ../data/
+#: ../lib/python/Screens/TimerEntry.py:179
+#: ../data/
 msgid "Channel"
 msgstr "Kanal"
 
@@ -351,7 +352,8 @@ msgid "Complete"
 msgstr "Komplett"
 
 #: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:143 ../data/
+#: ../lib/python/Screens/Satconfig.py:143
+#: ../data/
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
@@ -611,7 +613,8 @@ msgstr "Frontprozessor-Version: %d"
 msgid "Function not yet implemented"
 msgstr "Funktion noch nicht eingebaut"
 
-#: ../lib/python/Screens/NetworkSetup.py:32 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:32
+#: ../data/
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -655,7 +658,8 @@ msgstr "Hierarchy"
 msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten möchten Sie aufnehmen?"
 
-#: ../lib/python/Screens/NetworkSetup.py:29 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:29
+#: ../data/
 msgid "IP Address"
 msgstr "IP-Adresse"
 
@@ -668,11 +672,8 @@ msgid "Image-Upgrade"
 msgstr "Image-Aktualisierung"
 
 #: ../RecordTimer.py:166
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
-"Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden "
-"Sender umgeschaltet!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden Sender umgeschaltet!\n"
 
 #: ../lib/python/Screens/Satconfig.py:139
 msgid "Increased voltage"
@@ -690,7 +691,8 @@ msgstr "Initialisieren"
 msgid "Initializing Harddisk..."
 msgstr "Initialisiere Festplatte..."
 
-#: ../lib/python/Screens/InputBox.py:14 ../data/
+#: ../lib/python/Screens/InputBox.py:14
+#: ../data/
 msgid "Input"
 msgstr "Eingabe"
 
@@ -725,12 +727,14 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:48
+#: ../data/
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:126 ../data/
+#: ../lib/python/Screens/Satconfig.py:126
+#: ../data/
 msgid "Latitude"
 msgstr "Breitengrad"
 
@@ -755,7 +759,8 @@ msgid "Limits on"
 msgstr "Limits aktiviert"
 
 #: ../lib/python/Screens/Satconfig.py:24
-#: ../lib/python/Screens/Satconfig.py:124 ../data/
+#: ../lib/python/Screens/Satconfig.py:124
+#: ../data/
 msgid "Longitude"
 msgstr "Längengrad"
 
@@ -827,11 +832,13 @@ msgstr "NIM "
 msgid "Name"
 msgstr "Name"
 
-#: ../lib/python/Screens/NetworkSetup.py:33 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:33
+#: ../data/
 msgid "Nameserver"
 msgstr "Nameserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:31 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:31
+#: ../data/
 msgid "Netmask"
 msgstr "Netzmaske"
 
@@ -857,6 +864,7 @@ msgid "Next"
 msgstr "Vor"
 
 #: ../lib/python/Screens/Ci.py:22
+#: ../data/
 msgid "No"
 msgstr "Nein"
 
@@ -907,7 +915,8 @@ msgstr ""
 "Nichts zu suchen!\n"
 "Bitte den Tuner vor der Suche einstellen."
 
-#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimerEntry.py:28
+#: ../lib/python/Screens/Setup.py:84
+#: ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
@@ -933,7 +942,8 @@ msgstr "Online-Aktualisierung"
 msgid "Packet management"
 msgstr "Paketverwaltung"
 
-#: ../lib/python/Components/ParentalControl.py:80 ../data/
+#: ../lib/python/Components/ParentalControl.py:80
+#: ../data/
 msgid "Parental control"
 msgstr "Jugendschutz"
 
@@ -1134,7 +1144,8 @@ msgstr "Sa"
 
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:208
-#: ../lib/python/Screens/Satconfig.py:11 ../lib/python/Screens/Satconfig.py:61
+#: ../lib/python/Screens/Satconfig.py:11
+#: ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:145
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:397
 msgid "Satellite"
@@ -1272,7 +1283,7 @@ msgstr "Aufnahme beginnen?"
 msgid "StartTime"
 msgstr "Startzeit"
 
-#: ../lib/python/Screens/Wizard.py:230
+#: ../lib/python/Screens/Wizard.py:232
 msgid "Step "
 msgstr "Schritt "
 
@@ -1499,11 +1510,10 @@ msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:217
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten "
-"dauern."
+msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten dauern."
 
-#: ../lib/python/Screens/NetworkSetup.py:27 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:27
+#: ../data/
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
@@ -1551,6 +1561,7 @@ msgid "Year:"
 msgstr "Jahr:"
 
 #: ../lib/python/Screens/Ci.py:22
+#: ../data/
 msgid "Yes"
 msgstr "Ja"
 
@@ -1772,7 +1783,8 @@ msgstr "Player ausblenden"
 msgid "horizontal"
 msgstr "horizontal"
 
-#: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
+#: ../lib/python/Screens/Ci.py:300
+#: ../lib/python/Screens/Ci.py:322
 msgid "init module"
 msgstr "Modul initialisieren"
 
@@ -1827,7 +1839,8 @@ msgstr "nein"
 msgid "no HDD found"
 msgstr "keine Festplatte gefunden"
 
-#: ../lib/python/Screens/Ci.py:298 ../lib/python/Screens/Ci.py:320
+#: ../lib/python/Screens/Ci.py:298
+#: ../lib/python/Screens/Ci.py:320
 msgid "no module found"
 msgstr "Kein Modul gefunden"
 
@@ -2024,7 +2037,8 @@ msgstr "In Dateiliste wechseln"
 msgid "switch to playlist"
 msgstr "In Wiedergabeliste wechseln"
 
-#: ../lib/python/Screens/Wizard.py:234 ../lib/python/Screens/Wizard.py:235
+#: ../lib/python/Screens/Wizard.py:236
+#: ../lib/python/Screens/Wizard.py:237
 msgid "text"
 msgstr "Text"
 
@@ -2100,8 +2114,7 @@ msgstr "Kanalliste"
 
 #: ../data/
 msgid "Backup is done. Please press OK to see the result."
-msgstr ""
-"Sicherung wurde durchgeführt. Bitte drücken Sie OK um das Ergebnis zu sehen."
+msgstr "Sicherung wurde durchgeführt. Bitte drücken Sie OK um das Ergebnis zu sehen."
 
 #: ../data/
 msgid "Service"
@@ -2116,6 +2129,20 @@ msgid "Games / Plugins"
 msgstr "Spiele / Erweiterungen"
 
 #: ../data/
+msgid "Do you want to enable the parental control feature or your dreambox?"
+msgstr "Möchten Sie den Jugendschutz Ihrer Dreambox aktivieren?"
+
+#: ../data/
+msgid ""
+"You need to set a pin code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
+"Sie müssen einen Pincode setzen und diesen vor Ihren Kindern geheim halten.\n"
+"\n"
+"Möchten Sie den Pincode nun setzen?"
+
+#: ../data/
 msgid "help..."
 msgstr "Hilfe..."
 
@@ -2128,8 +2155,12 @@ msgid "Satconfig"
 msgstr "Sateinstellung"
 
 #: ../data/
-msgid "Startwizard"
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
+"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie weiterführende Informationen benötigen, besuchen Sie die Webseite http://www.dm7025.de.\n"
+"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, ob Sie die Einstellungen wiederherstellen wollen."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2160,12 +2191,8 @@ msgid "NEXT"
 msgstr "NÄCHSTE"
 
 #: ../data/
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das "
-"Sichern auf Festplatte nicht möglich."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das Sichern auf Festplatte nicht möglich."
 
 #: ../data/
 msgid "Deep Standby"
@@ -2188,20 +2215,16 @@ msgid "Sound"
 msgstr "Ton"
 
 #: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Mit den hoch/runter Tasten können Sie eine Option auswählen. Danach bitte OK "
-"drücken."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Mit den hoch/runter Tasten können Sie eine Option auswählen. Danach bitte OK drücken."
 
 #: ../data/
 msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
 #: ../data/
-msgid "Setup"
-msgstr "Einstellungen"
+msgid "No, do nothing."
+msgstr "Nein, nicht tun"
 
 #: ../data/
 msgid "#000000"
@@ -2224,8 +2247,8 @@ msgid "#bab329"
 msgstr ""
 
 #: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Sat-/Schüsseleinstellungen"
+msgid "Startwizard"
+msgstr ""
 
 #: ../data/
 msgid "#ffffff"
@@ -2236,33 +2259,20 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene "
-"Methode\n"
-"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu "
-"starten."
-
-#: ../data/
-msgid "The wizard is finished now."
-msgstr "Der Assistent ist nun beendet."
-
-#: ../data/
-msgid "Service Searching"
-msgstr "Kanalsuche"
+"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene Methode\n"
+"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu starten."
 
 #: ../data/
 msgid "Mute"
 msgstr "Stummschaltung"
 
 #: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der "
-"Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die "
-"aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie "
-"die Firmware aktualisieren können."
+msgid "Service Searching"
+msgstr "Kanalsuche"
+
+#: ../data/
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie die Firmware aktualisieren können."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -2277,16 +2287,22 @@ msgid "Keyboard Setup"
 msgstr "Tastatureinstellung"
 
 #: ../data/
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
+"\n"
+"Einstellungen für Tuner A"
+
+#: ../data/
 msgid "Dish"
 msgstr "Schüssel"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Nachlauf hinter Aufnahme"
-
-#: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nein, nur die Dreambox starten"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2317,25 +2333,16 @@ msgid "Manual Scan"
 msgstr "Manuelle Suche"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid "Timer Edit"
+msgstr "Zeitgesteuerte Aufname"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fernbedienung"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
+msgid "No, just start my dreambox"
+msgstr "Nein, nur die Dreambox starten"
 
 #: ../data/
 msgid "Network..."
@@ -2358,6 +2365,10 @@ msgid "Standby / Restart"
 msgstr "Standby / Neustart"
 
 #: ../data/
+msgid "Standby"
+msgstr "Standby"
+
+#: ../data/
 msgid "EPG Selection"
 msgstr "EPG Auswahl"
 
@@ -2378,12 +2389,12 @@ msgid "Brightness"
 msgstr "Helligkeit"
 
 #: ../data/
-msgid "Standby"
-msgstr "Standby"
-
-#: ../data/
 msgid "Parental control services Editor"
 msgstr "Jugendschutz-Kanaleditor"
+
+#: ../data/
+msgid "Yes, do another manual scan now"
+msgstr "Ja, eine weitere manuelle Suche durchführen"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2406,16 +2417,8 @@ msgid "Yes, view the tutorial"
 msgstr "Ja, Tutorial anzeigen"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
+msgid "Show infobar on skip forward/backward"
 msgstr ""
-"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits "
-"im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf "
-"Festplatte!\n"
-"Bitte OK drücken, um die Sicherung trotzdem zu starten."
 
 #: ../data/
 msgid "Color Format"
@@ -2434,16 +2437,16 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
+msgid "SNR:"
+msgstr "SNR:"
+
+#: ../data/
 msgid "Timeshift"
 msgstr ""
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Herunterladbare Erweiterungen"
-
-#: ../data/
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
 
 #: ../data/
 msgid "Subservices"
@@ -2478,21 +2481,15 @@ msgid "Language..."
 msgstr "Sprache..."
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Die Einstellungen wurden wiederhergestellt. Drücken Sie OK um die "
-"wiederhergestellten Einstellungen nun zu aktivieren."
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
+msgstr "Die Einstellungen wurden wiederhergestellt. Drücken Sie OK um die wiederhergestellten Einstellungen nun zu aktivieren."
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-Einstellungen"
 
 #: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "Um die Infobar anzuzeigen, drücken sie OK."
 
 #: ../data/
@@ -2500,23 +2497,8 @@ msgid "Service scan"
 msgstr "Kanalsuche"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, eine weitere manuelle Suche durchführen"
-
-#: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie "
-"weiterführende Informationen benötigen, besuchen Sie die Webseite http://www."
-"dm7025.de.\n"
-"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der "
-"Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
-"ob Sie die Einstellungen wiederherstellen wollen."
+msgid "The wizard is finished now."
+msgstr "Der Assistent ist nun beendet."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2539,12 +2521,8 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie "
-"OK, um die Sicherung zu starten."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie OK, um die Sicherung zu starten."
 
 #: ../data/
 msgid "Timer selection"
@@ -2555,8 +2533,12 @@ msgid "Repeat"
 msgstr "Wiederholung"
 
 #: ../data/
-msgid "Show infobar on skip forward/backward"
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
+"Please press OK to start the backup now."
 msgstr ""
+"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf Festplatte!\n"
+"Bitte OK drücken, um die Sicherung trotzdem zu starten."
 
 #: ../data/
 msgid "Network Setup"
@@ -2575,12 +2557,8 @@ msgid "Timer log"
 msgstr "Timer Logbuch"
 
 #: ../data/
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren "
-"Aktualisierungs-Prozess erklären."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 #: ../data/
 msgid "PiPSetup"
@@ -2616,9 +2594,7 @@ msgstr "Vorlauf bei Aufnahme (in Minuten)"
 
 #: ../data/
 msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort "
-"auswählen."
+msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort auswählen."
 
 #: ../data/
 msgid "Keymap"
@@ -2629,11 +2605,8 @@ msgid "InfoBar"
 msgstr "Infoleiste"
 
 #: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun "
-"durchführen?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun durchführen?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -2642,10 +2615,6 @@ msgstr "Assistenten beenden"
 #: ../data/
 msgid "Media player"
 msgstr "Media Player"
-
-#: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, jetzt herunterfahren."
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2772,12 +2741,20 @@ msgid "Alpha"
 msgstr "Transparenz"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Zeitgesteuerte Aufname"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nein, nicht tun"
+msgid "Setup"
+msgstr "Einstellungen"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2808,6 +2785,10 @@ msgid "AGC:"
 msgstr "AGC:"
 
 #: ../data/
+msgid "Sat / Dish Setup"
+msgstr "Sat-/Schüsseleinstellungen"
+
+#: ../data/
 msgid "What do you want to scan?"
 msgstr "Was wollen Sie scannen?"
 
@@ -2832,14 +2813,12 @@ msgid "NOW"
 msgstr "JETZT"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
-"\n"
-"Einstellungen für Tuner A"
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, jetzt herunterfahren."
+
+#: ../data/
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch Ihrer Dreambox."
 
 #: ../data/
 msgid "#0064c7"
@@ -2855,129 +2834,88 @@ msgstr "Wollen Sie eine weitere manuelle Suche durchführen?"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Kanal-Pincode merken"
-
 #~ msgid "You have to wait for about "
 #~ msgstr "Sie müssen noch für ungefähr"
-
 #~ msgid "Cable provider"
 #~ msgstr "Kabelanbieter"
-
 #~ msgid "Classic"
 #~ msgstr "klassisch"
-
 #~ msgid "Default"
 #~ msgstr "Standard"
-
 #~ msgid "Equal to Socket A"
 #~ msgstr "Wie Tuner A"
-
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Verbunden mit Tuner A"
-
 #~ msgid "Nothing connected"
 #~ msgstr "Nichts angeschlossen"
-
 #~ msgid "Predefined satellite"
 #~ msgstr "Vordefinierte Satelliten"
-
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Zweites Kabel vom Rotor"
-
 #~ msgid "Simple"
 #~ msgstr "Einfach"
-
 #~ msgid "Swap services"
 #~ msgstr "Tausche Bilder"
-
 #~ msgid "Subservices quickzap"
 #~ msgstr "Unterkanäle-Schnellumschalter"
-
 #~ msgid "add bouquet..."
 #~ msgstr "Bouquet hinzufügen..."
-
 #~ msgid "remove bouquet"
 #~ msgstr "Bouquet entfernen"
-
 #~ msgid "remove service"
 #~ msgstr "Kanal löschen"
-
 #~ msgid "Hide error windows"
 #~ msgstr "Fehlerfenster verstecken"
-
 #~ msgid "Show Satposition"
 #~ msgstr "Zeige Satposition"
-
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Rotorbewegungen anzeigen"
-
 #~ msgid "Audio / Video"
 #~ msgstr "Audio / Video"
-
 #~ msgid "Record Splitsize"
 #~ msgstr "Splitgrösse der Aufnamen"
-
 #~ msgid "Auto show inforbar"
 #~ msgstr "Automatisch die Infobar anzeigen"
-
 #~ msgid "Network"
 #~ msgstr "Netzwerk"
-
 #~ msgid "Invert"
 #~ msgstr "Invertieren"
-
 #~ msgid "use power delta"
 #~ msgstr "Stromdelta verwenden"
-
 #~ msgid "Fast zapping"
 #~ msgstr "Schnelles Umschalten"
-
 #~ msgid "Usage Settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF-Modulator"
-
 #~ msgid "Enigma1 like radiomode"
 #~ msgstr "Enigma1 ähnlicher Radio Modus"
-
 #~ msgid "LCD"
 #~ msgstr "LCD"
-
 #~ msgid "Ask before zapping"
 #~ msgstr "Vor Umschalten nachfragen"
-
 #~ msgid "Parental Lock"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Skip confirmations"
 #~ msgstr "Bestätigungen überspringen"
-
 #~ msgid "Setup Lock"
 #~ msgstr "Setup-Sperre"
-
 #~ msgid "Expert Setup"
 #~ msgstr "Experteneinstellungen"
-
 #~ msgid "Language"
 #~ msgstr "Sprache"
-
 #~ msgid "Parental Control"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Multi bouquets"
 #~ msgstr "Mehrere Bouquets"
-
 #~ msgid "Usage settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "Timeshift not possible!"
 #~ msgstr "Timeshift nicht möglich!"
-
 #~ msgid "open service list"
 #~ msgstr "Kanalliste öffnen"
-
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshift"
-
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelliteneinstellungen"
+
