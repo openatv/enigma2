@@ -50,7 +50,7 @@ class TimerEntry:
 			print time.strftime("%c", time.localtime(self.begin))
 			print time.strftime("%c", time.localtime(self.end))
 			print str(time.localtime(self.begin).tm_wday)
-			while ((day[time.localtime(self.begin).tm_wday] != 0) or ((day[time.localtime(self.begin).tm_wday] == 0) and self.begin < now)):
+			while ((day[time.localtime(self.begin).tm_wday] != 0) or ((day[time.localtime(self.begin).tm_wday] == 0) and self.end < now)):
 				print time.strftime("%c", time.localtime(self.begin))
 				print time.strftime("%c", time.localtime(self.end))
 				self.begin += 86400
