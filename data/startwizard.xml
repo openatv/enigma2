@@ -1,5 +1,5 @@
 <wizard>
-		<step id="welcome">
+		<step id="welcome" nextstep="introduction">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Dreambox.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self["arrowdown"].moveTo(557, 232, 1)
@@ -10,7 +10,7 @@ self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 			</code>
 		</step>
-		<step>
+		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
 				<listentry caption="Use wizard to set up basic features" step="nima" />
@@ -112,10 +112,10 @@ self["arrowup2"].startMoving()
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="parentalcontrol" />
 			</list>
 		</step>
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="parentalcontrol">
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
 		</step>
@@ -127,8 +127,46 @@ self["arrowup2"].startMoving()
 			<text value="Do you want to do another manual service scan?" />
 			<list>
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="parentalcontrol" />
 			</list>
+		</step>
+		<step id="parentalcontrol">
+			<text value="Do you want to enable the parental control feature or your dreambox?" />
+			<list>
+				<listentry caption="Yes" step="parentalsetup" />
+				<listentry caption="No" step="end" />
+			</list>
+			<code pos="after">
+if self["list"].getSelectedIndex() == 0:
+	config.ParentalControl.configured.value = True
+else:
+	config.ParentalControl.configured.value = False
+config.ParentalControl.configured.save()
+			</code>
+		</step>
+		<step id="parentalsetup">
+			<text value="You need to set a pin code and hide it from your children.\n\nDo you want to set the pin now?" />
+			<list>
+				<listentry caption="Yes" step="finishparentalsetup" />
+				<listentry caption="No" step="finishparentalsetup" />
+			</list>
+			<code pos="after">
+from ParentalControlSetup import ParentalControlChangePin
+if self["list"].getSelectedIndex() == 0:
+	self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("parental control pin"))
+			</code>
+		</step>
+		<step id="finishparentalsetup">
+			<code>
+config.ParentalControl.setuppinactive.value = True
+config.ParentalControl.setuppinactive.save()
+config.ParentalControl.servicepinactive.value = True
+config.ParentalControl.servicepinactive.save()
+config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
+config.ParentalControl.setuppin.save()
+			</code>
+
+			<text value="After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that." />
 		</step>
 		<step id="end">
 			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using you Dreambox." />

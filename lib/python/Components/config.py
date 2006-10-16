@@ -820,7 +820,7 @@ config = Config()
 config.misc = ConfigSubsection()
 
 class ConfigFile:
-	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "config2")
+	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "settings")
 
 	def load(self):
 		try:
