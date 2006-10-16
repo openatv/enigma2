@@ -75,10 +75,10 @@ class ServiceInfo(Screen):
 			self.feinfo = None
 
 
-		self["red"] = Label("Serviceinfo")
-		self["green"] = Label("PIDs")
-		self["yellow"] = Label("Transponder")
-		self["blue"] = Label("Tuner status")
+		self["red"] = Label(_("Serviceinfo"))
+		self["green"] = Label(_("PIDs"))
+		self["yellow"] = Label(_("Transponder"))
+		self["blue"] = Label(_("Tuner status"))
 	
 		tlist = [ ]
 
