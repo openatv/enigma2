@@ -283,6 +283,7 @@ class MediaPlayer(Screen, InfoBarSeek):
 				self.filelist.descent()
 				self.updateCurrentInfo()
 			else:
+				self.stopEntry()
 				self.playlist.clear()
 				self.copyDirectory(os.path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
 				self.playServiceRefEntry(self.filelist.getServiceRef())
