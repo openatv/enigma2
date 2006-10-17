@@ -144,19 +144,20 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		conv = gst_element_factory_make ("audioconvert", "converter");
 		if (!conv)
 			eWarning("failed to create audioconvert");
-	
+
 		flt = gst_element_factory_make ("capsfilter", "flt");
 		if (!flt)
 			eWarning("failed to create capsfilter");
-	
-			/* workaround for [3des]' driver bugs: */
+
+			/* for some reasons, we need to set the sample format to depth/width=16, because auto negotiation doesn't work. */
+			/* endianness, however, is not required to be set anymore. */
 		if (flt)
 		{
-			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", "endianness", G_TYPE_INT, 4321, (char*)0);
+			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", /* "endianness", G_TYPE_INT, 4321, */ "depth", G_TYPE_INT, 16, "width", G_TYPE_INT, 16, (char*)0);
 			g_object_set (G_OBJECT (flt), "caps", caps, (char*)0);
 			gst_caps_unref(caps);
 		}
-	
+
 		sink = gst_element_factory_make ("alsasink", "alsa-output");
 		if (!sink)
 			eWarning("failed to create osssink");
@@ -209,7 +210,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			gst_bin_add (GST_BIN(m_gst_pipeline), m_gst_audio);
 		} else
 		{
-			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, mpegdemux, audio, queue_audio, video, queue_video, mpegdemux, NULL);
+			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, mpegdemux, audio, queue_audio, video, queue_video, NULL);
 			gst_element_link(source, mpegdemux);
 			gst_element_link(queue_audio, audio);
 			gst_element_link(queue_video, video);
