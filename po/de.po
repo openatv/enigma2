@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-17 00:28+0200\n"
-"PO-Revision-Date: 2006-10-17 00:31+0100\n"
+"POT-Creation-Date: 2006-10-18 00:34+0200\n"
+"PO-Revision-Date: 2006-10-18 00:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "<unbekannt>"
 
 #: ../lib/python/Screens/Setup.py:118
 msgid "??"
-msgstr ""
+msgstr "Aktualisierung beendet. Möchten Sie Ihre Dreambox nun neu starten?"
 
 #: ../lib/python/Components/NimManager.py:773
 msgid "A"
@@ -159,7 +159,7 @@ msgstr "Bild in Bild aktivieren"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: ../lib/python/Screens/MediaPlayer.py:388
+#: ../lib/python/Screens/MediaPlayer.py:389
 msgid "Add files to playlist"
 msgstr "Dateien zur Wiedergabeliste hinzufügen"
 
@@ -168,7 +168,7 @@ msgstr "Dateien zur Wiedergabeliste hinzufügen"
 msgid "Add timer"
 msgstr "Timer setzen"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:32
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -308,7 +308,7 @@ msgstr "Kanal"
 msgid "Channel:"
 msgstr "Kanal:"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:33
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
 msgid "Choose source"
 msgstr "Quelle wählen"
 
@@ -478,8 +478,8 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr "Möchten Sie die Wiedergabe an der letzten Stelle fortsetzen?"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:50
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:202
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:51
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
@@ -555,11 +555,11 @@ msgstr "Öffne Hauptmenü"
 msgid "Enter the service pin"
 msgstr "Geben Sie den Kanal-Pincode ein"
 
-#: ../lib/python/Screens/Console.py:41
+#: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
 msgstr "Ausführen eines externen Befehls:"
 
-#: ../lib/python/Screens/Console.py:51
+#: ../lib/python/Screens/Console.py:53
 msgid "Execution finished!!"
 msgstr "Ausführung beendet!"
 
@@ -609,7 +609,7 @@ msgstr "Freitag"
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:59
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:60
 msgid "Function not yet implemented"
 msgstr "Funktion noch nicht eingebaut"
 
@@ -667,7 +667,7 @@ msgstr "IP-Adresse"
 msgid "Icelandic"
 msgstr "Isländisch"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
 msgstr "Image-Aktualisierung"
 
@@ -934,11 +934,11 @@ msgstr "An"
 msgid "One"
 msgstr "Eins"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Online-Upgrade"
 msgstr "Online-Aktualisierung"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
 msgstr "Paketverwaltung"
 
@@ -1120,7 +1120,7 @@ msgstr "Plugins entfernen"
 msgid "Repeat Type"
 msgstr "Wiederholungstyp"
 
-#: ../lib/python/Screens/MediaPlayer.py:389
+#: ../lib/python/Screens/MediaPlayer.py:390
 msgid "Replace current playlist"
 msgstr "Aktuelle Wiedergabeliste ersetzen"
 
@@ -1202,7 +1202,7 @@ msgstr "Kanäle"
 msgid "Set limits"
 msgstr "Limits setzen"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:36
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -1504,13 +1504,17 @@ msgstr "Uncommitted DiSEqC Befehl"
 msgid "Universal LNB"
 msgstr "Universal-LNB"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:211
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:217
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:228
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten dauern."
+
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
+msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:27
 #: ../data/
@@ -1573,7 +1577,7 @@ msgstr "Sie können dies nicht löschen."
 msgid "You have to wait for"
 msgstr "Sie müssen noch für"
 
-#: ../lib/python/Screens/MediaPlayer.py:390
+#: ../lib/python/Screens/MediaPlayer.py:391
 msgid "You selected a playlist"
 msgstr "Sie haben eine Wiedergabeliste ausgewählt"
 
@@ -1613,11 +1617,11 @@ msgstr "startet gleich"
 msgid "add bouquet"
 msgstr "Bouquet einfügen"
 
-#: ../lib/python/Screens/MediaPlayer.py:337
+#: ../lib/python/Screens/MediaPlayer.py:338
 msgid "add directory to playlist"
 msgstr "Verzeichnis zur Wiedergabeliste hinzufügen"
 
-#: ../lib/python/Screens/MediaPlayer.py:339
+#: ../lib/python/Screens/MediaPlayer.py:340
 msgid "add file to playlist"
 msgstr "Datei zur Wiedergabeliste hinzufügen"
 
@@ -1686,7 +1690,7 @@ msgstr "links-zirkular"
 msgid "circular right"
 msgstr "rechts-zirkular"
 
-#: ../lib/python/Screens/MediaPlayer.py:343
+#: ../lib/python/Screens/MediaPlayer.py:344
 msgid "clear playlist"
 msgstr "Wiedergabeliste leeren"
 
@@ -1706,7 +1710,7 @@ msgstr "In Favoriten kopieren"
 msgid "daily"
 msgstr "täglich"
 
-#: ../lib/python/Screens/MediaPlayer.py:342
+#: ../lib/python/Screens/MediaPlayer.py:343
 msgid "delete"
 msgstr "Löschen"
 
@@ -1775,7 +1779,7 @@ msgstr "Box abschalten"
 msgid "hear radio..."
 msgstr "Radio hören"
 
-#: ../lib/python/Screens/MediaPlayer.py:344
+#: ../lib/python/Screens/MediaPlayer.py:345
 msgid "hide player"
 msgstr "Player ausblenden"
 
@@ -2029,11 +2033,11 @@ msgstr "Aufnahme anhalten"
 msgid "stop timeshift"
 msgstr "Timeshift beenden"
 
-#: ../lib/python/Screens/MediaPlayer.py:341
+#: ../lib/python/Screens/MediaPlayer.py:342
 msgid "switch to filelist"
 msgstr "In Dateiliste wechseln"
 
-#: ../lib/python/Screens/MediaPlayer.py:335
+#: ../lib/python/Screens/MediaPlayer.py:336
 msgid "switch to playlist"
 msgstr "In Wiedergabeliste wechseln"
 
