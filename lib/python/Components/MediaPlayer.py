@@ -57,7 +57,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		self.list = []
 		self.l.setList(self.list)
 		self.l.setFont(0, gFont("Regular", 18))
-		self.currPlaying = 0
+		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 	
 	def clear(self):
@@ -91,6 +91,8 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		self.currPlaying = index
 	
 	def updateState(self, state):
+		if self.currPlaying == -1:
+			return
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
 			self.list[self.oldCurrPlaying] = PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
 		self.list[self.currPlaying] = PlaylistEntryComponent(self.list[self.currPlaying][0], state)
