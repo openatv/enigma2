@@ -10,9 +10,11 @@ class Console(Screen):
 			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
 		
-	def __init__(self, session, title = "Console", cmdlist = None):
+	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None):
 		self.skin = Console.skin
 		Screen.__init__(self, session)
+
+		self.finishedCallback = finishedCallback
 
 		self["text"] = ScrollLabel("")
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
@@ -50,6 +52,8 @@ class Console(Screen):
 			str = self["text"].getText()
 			str += _("Execution finished!!");
 			self["text"].setText(str)
+			if self.finishedCallback is not None:
+				self.finishedCallback()
 			
 	def cancel(self):
 		if self.run == len(self.cmdlist):

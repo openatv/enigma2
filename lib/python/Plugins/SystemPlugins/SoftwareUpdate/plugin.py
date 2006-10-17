@@ -7,6 +7,7 @@ from Components.GUIComponent import *
 from Components.MenuList import MenuList
 from Components.Input import Input
 from Screens.Console import Console
+from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Screens.ImageWizard import ImageWizard
 
@@ -57,9 +58,19 @@ class UpdatePluginMenu(Screen):
 				self.session.open(Ipkg)
 			elif (self["menu"].l.getCurrentSelection()[1] == "setup"):
 				self.session.open(MessageBox, _("Function not yet implemented"), MessageBox.TYPE_ERROR)
+	
 	def runUpgrade(self, result):
 		if result:
-			self.session.open(Console, title = "Upgrade running...", cmdlist = ["ipkg update", "ipkg upgrade -force-defaults -force-overwrite"])
+			self.session.open(Console, title = "Upgrade running...", cmdlist = ["ipkg update", "ipkg upgrade -force-defaults -force-overwrite"], finishedCallback = self.runFinished)
+
+	def runFinished(self):
+		self.session.openWithCallback(self.reboot, MessageBox, _("Upgrade finished. Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
+		
+	def reboot(self, result):
+		if result is None:
+			return
+		if result:
+			quitMainloop(3)
 
 class IPKGSource(Screen):
 	skin = """
