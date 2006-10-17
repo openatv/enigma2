@@ -6,6 +6,7 @@ ePositionGauge::ePositionGauge(eWidget *parent)
 {
 	m_point_widget = new ePixmap(this);
 	m_seek_point_widget = new ePixmap(this);
+	m_seek_point_widget->hide();
 	m_point_widget->setAlphatest(1);
 	m_seek_point_widget->setAlphatest(1);
 	m_position = 0;
