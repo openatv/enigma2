@@ -59,6 +59,7 @@ enigma2.pot:
 			../lib/python/Components/TimerList.py \
 			../lib/python/Components/Network.py \
 			../lib/python/Components/RecordingConfig.py \
+			../lib/python/Components/UsageConfig.py \
 			../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py \
 			../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py \
 			../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py \

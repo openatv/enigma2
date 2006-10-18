@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-18 00:34+0200\n"
-"PO-Revision-Date: 2006-10-18 00:36+0100\n"
+"POT-Creation-Date: 2006-10-19 01:34+0200\n"
+"PO-Revision-Date: 2006-10-19 01:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -1514,7 +1514,7 @@ msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "Aktualisierung beendet. Möchten Sie Ihre Dreambox nun neu starten?"
 
 #: ../lib/python/Screens/NetworkSetup.py:27
 #: ../data/
@@ -1787,6 +1787,15 @@ msgstr "Player ausblenden"
 msgid "horizontal"
 msgstr "horizontal"
 
+#: ../lib/python/Components/UsageConfig.py:20
+msgid "hour"
+msgstr "Stunde"
+
+#: ../lib/python/Components/UsageConfig.py:20
+#: ../lib/python/Components/UsageConfig.py:21
+msgid "hours"
+msgstr "Stunden"
+
 #: ../lib/python/Screens/Ci.py:300
 #: ../lib/python/Screens/Ci.py:322
 msgid "init module"
@@ -1818,6 +1827,16 @@ msgstr "manuell"
 msgid "mins"
 msgstr "min"
 
+#: ../lib/python/Components/UsageConfig.py:18
+msgid "minute"
+msgstr "Minute"
+
+#: ../lib/python/Components/UsageConfig.py:18
+#: ../lib/python/Components/UsageConfig.py:19
+#: ../lib/python/Components/UsageConfig.py:20
+msgid "minutes"
+msgstr "Minuten"
+
 #: ../lib/python/Screens/InputBox.py:108
 msgid "minutes and"
 msgstr "Minuten und"
@@ -1847,6 +1866,14 @@ msgstr "keine Festplatte gefunden"
 #: ../lib/python/Screens/Ci.py:320
 msgid "no module found"
 msgstr "Kein Modul gefunden"
+
+#: ../lib/python/Components/UsageConfig.py:17
+msgid "no standby"
+msgstr "Kein Standby"
+
+#: ../lib/python/Components/UsageConfig.py:11
+msgid "no timeout"
+msgstr "Keine Timeout"
 
 #: ../lib/python/Screens/About.py:40
 msgid "none"
@@ -1979,9 +2006,20 @@ msgstr ""
 msgid "scan state"
 msgstr "Status"
 
+#: ../lib/python/Components/UsageConfig.py:11
+msgid "second"
+msgstr "Sekunde"
+
 #: ../lib/python/Components/NimManager.py:680
 msgid "second cable of motorized LNB"
 msgstr ""
+
+#: ../lib/python/Components/UsageConfig.py:11
+#: ../lib/python/Components/UsageConfig.py:12
+#: ../lib/python/Components/UsageConfig.py:13
+#: ../lib/python/Components/UsageConfig.py:17
+msgid "seconds"
+msgstr "Sekunden"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "seconds."
@@ -2236,7 +2274,7 @@ msgstr ""
 
 #: ../data/
 msgid "Infobar timeout"
-msgstr ""
+msgstr "Serviceinformationen ausblenden nach"
 
 #: ../data/
 msgid "Use wizard to set up basic features"
@@ -2823,6 +2861,10 @@ msgstr "Ja, jetzt herunterfahren."
 #: ../data/
 msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
 msgstr "Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch Ihrer Dreambox."
+
+#: ../data/
+msgid "Harddisk standby after"
+msgstr "Festplatten-Standby nach"
 
 #: ../data/
 msgid "#0064c7"
