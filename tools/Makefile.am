@@ -1,6 +1,7 @@
-lib_LTLIBRARIES = libopen.la
+libopen: 
+	$(CXX) -Wall -W libopen.c -O2 -nostartfiles -shared -fPIC -Wl,-soname,libopen.so.0 -o libopen.so.0.0 -ldl
 
-libopen_la_SOURCES = libopen.c
+all: libopen
 
-install-exec-local:
-$(LIBTOOL) --mode=install install libopen.la $(DESTDIR)/usr/lib
+install:
+	$(INSTALL) libopen.so.0.0 $(DEST)/usr/lib
