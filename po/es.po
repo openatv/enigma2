@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-18 20:44+0200\n"
+"POT-Creation-Date: 2006-10-19 01:34+0200\n"
 "PO-Revision-Date: 2006-10-18 14:00+0200\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -161,7 +161,7 @@ msgstr "Activar PiP"
 msgid "Add"
 msgstr "Añadir"
 
-#: ../lib/python/Screens/MediaPlayer.py:388
+#: ../lib/python/Screens/MediaPlayer.py:389
 msgid "Add files to playlist"
 msgstr "Añadir ficheros a la lista"
 
@@ -170,7 +170,7 @@ msgstr "Añadir ficheros a la lista"
 msgid "Add timer"
 msgstr "Grabar"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:32
 msgid "Advanced"
 msgstr "Avanzado"
 
@@ -305,7 +305,7 @@ msgstr "Canal"
 msgid "Channel:"
 msgstr "Canal:"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:33
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
 msgid "Choose source"
 msgstr "Elige origen"
 
@@ -474,8 +474,8 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr "¿Quieres continuar esta reproducción?"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:50
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:202
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:51
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
@@ -551,11 +551,11 @@ msgstr "Entra al menú principal..."
 msgid "Enter the service pin"
 msgstr "Ponga el pin del canal"
 
-#: ../lib/python/Screens/Console.py:41
+#: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
 msgstr "Progreso de ejecución:"
 
-#: ../lib/python/Screens/Console.py:51
+#: ../lib/python/Screens/Console.py:53
 msgid "Execution finished!!"
 msgstr "¡Ejecución terminó!"
 
@@ -605,7 +605,7 @@ msgstr "Viernes"
 msgid "Frontprocessor version: %d"
 msgstr "Versión Frontprocessor: %d"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:59
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:60
 msgid "Function not yet implemented"
 msgstr "Función no implementada todavía"
 
@@ -661,7 +661,7 @@ msgstr "Dirección IP"
 msgid "Icelandic"
 msgstr "Islandés"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:29
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
 msgstr "Actualización-Imagen"
 
@@ -919,11 +919,11 @@ msgstr ""
 msgid "One"
 msgstr "Uno"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Online-Upgrade"
 msgstr "Actualización-Online"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
 msgstr "Manejo de paquete"
 
@@ -1104,7 +1104,7 @@ msgstr "Borrar plugins"
 msgid "Repeat Type"
 msgstr "Tipo de repetición"
 
-#: ../lib/python/Screens/MediaPlayer.py:389
+#: ../lib/python/Screens/MediaPlayer.py:390
 msgid "Replace current playlist"
 msgstr "Reemplazar la actual lista"
 
@@ -1185,7 +1185,7 @@ msgstr "Canales"
 msgid "Set limits"
 msgstr "Límites activados"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:36
 msgid "Settings"
 msgstr "Configuraciones"
 
@@ -1487,13 +1487,17 @@ msgstr "Comando DiSEqC no enviado"
 msgid "Universal LNB"
 msgstr "LNB Universal"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:211
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
 msgstr "Actualización finalizada. Aquí está el resultado:"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:217
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:228
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Actualizando... Espere... Esto puede tardar varios minutos..."
+
+#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
+msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgstr "Actualización finalizada. ¿Quiere reiniciar su Dreambox?"
 
 #: ../lib/python/Screens/NetworkSetup.py:27 ../data/
 msgid "Use DHCP"
@@ -1554,7 +1558,7 @@ msgstr "¡No puede borrar esto!"
 msgid "You have to wait for"
 msgstr "Tiene que esperar para"
 
-#: ../lib/python/Screens/MediaPlayer.py:390
+#: ../lib/python/Screens/MediaPlayer.py:391
 msgid "You selected a playlist"
 msgstr "Seleccionaste un lista"
 
@@ -1594,11 +1598,11 @@ msgstr "para comenzar"
 msgid "add bouquet"
 msgstr "añadir lista"
 
-#: ../lib/python/Screens/MediaPlayer.py:337
+#: ../lib/python/Screens/MediaPlayer.py:338
 msgid "add directory to playlist"
 msgstr "añadir el directorio a la lista"
 
-#: ../lib/python/Screens/MediaPlayer.py:339
+#: ../lib/python/Screens/MediaPlayer.py:340
 msgid "add file to playlist"
 msgstr "añadir fichero a la lista"
 
@@ -1667,7 +1671,7 @@ msgstr "circular izda"
 msgid "circular right"
 msgstr "circular dcha"
 
-#: ../lib/python/Screens/MediaPlayer.py:343
+#: ../lib/python/Screens/MediaPlayer.py:344
 msgid "clear playlist"
 msgstr "limpiar lista"
 
@@ -1687,7 +1691,7 @@ msgstr "copiar a favoritos"
 msgid "daily"
 msgstr "diariamente"
 
-#: ../lib/python/Screens/MediaPlayer.py:342
+#: ../lib/python/Screens/MediaPlayer.py:343
 msgid "delete"
 msgstr "borrar"
 
@@ -1756,12 +1760,21 @@ msgstr "ir a pausa profunda"
 msgid "hear radio..."
 msgstr "escuchar radio..."
 
-#: ../lib/python/Screens/MediaPlayer.py:344
+#: ../lib/python/Screens/MediaPlayer.py:345
 msgid "hide player"
 msgstr "ocultar reproductor"
 
 #: ../lib/python/Screens/ScanSetup.py:362
 msgid "horizontal"
+msgstr ""
+
+#: ../lib/python/Components/UsageConfig.py:20
+msgid "hour"
+msgstr ""
+
+#: ../lib/python/Components/UsageConfig.py:20
+#: ../lib/python/Components/UsageConfig.py:21
+msgid "hours"
 msgstr ""
 
 #: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
@@ -1794,6 +1807,16 @@ msgstr ""
 msgid "mins"
 msgstr ""
 
+#: ../lib/python/Components/UsageConfig.py:18
+msgid "minute"
+msgstr ""
+
+#: ../lib/python/Components/UsageConfig.py:18
+#: ../lib/python/Components/UsageConfig.py:19
+#: ../lib/python/Components/UsageConfig.py:20
+msgid "minutes"
+msgstr ""
+
 #: ../lib/python/Screens/InputBox.py:108
 msgid "minutes and"
 msgstr "minutos y"
@@ -1822,6 +1845,14 @@ msgstr "disco no encontrado"
 #: ../lib/python/Screens/Ci.py:298 ../lib/python/Screens/Ci.py:320
 msgid "no module found"
 msgstr "módulo no encontrado"
+
+#: ../lib/python/Components/UsageConfig.py:17
+msgid "no standby"
+msgstr ""
+
+#: ../lib/python/Components/UsageConfig.py:11
+msgid "no timeout"
+msgstr ""
 
 #: ../lib/python/Screens/About.py:40
 msgid "none"
@@ -1954,9 +1985,20 @@ msgstr ""
 msgid "scan state"
 msgstr "estado de la búsqueda"
 
+#: ../lib/python/Components/UsageConfig.py:11
+msgid "second"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:680
 msgid "second cable of motorized LNB"
 msgstr "segundo cable del LNB motorizado"
+
+#: ../lib/python/Components/UsageConfig.py:11
+#: ../lib/python/Components/UsageConfig.py:12
+#: ../lib/python/Components/UsageConfig.py:13
+#: ../lib/python/Components/UsageConfig.py:17
+msgid "seconds"
+msgstr ""
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "seconds."
@@ -2008,11 +2050,11 @@ msgstr "parar grabación"
 msgid "stop timeshift"
 msgstr "parar pausa"
 
-#: ../lib/python/Screens/MediaPlayer.py:341
+#: ../lib/python/Screens/MediaPlayer.py:342
 msgid "switch to filelist"
 msgstr "cambiar a lista de ficheros"
 
-#: ../lib/python/Screens/MediaPlayer.py:335
+#: ../lib/python/Screens/MediaPlayer.py:336
 msgid "switch to playlist"
 msgstr "cambiar a lista"
 
@@ -2133,8 +2175,17 @@ msgid "Satconfig"
 msgstr ""
 
 #: ../data/
-msgid "Startwizard"
-msgstr "Comenzar asistente"
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"Necesita un PC conectado a tu dreambox. Si necesita instrucciones, visite el "
+"sitio web http://www.dm7025.de.\n"
+"Tu dreambox será apagado. Después, realiza las instrucciones del sitio web, "
+"y tu firmware preguntará actualizar tu configuración."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2205,8 +2256,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "¿Quiere ver un tutorial?"
 
 #: ../data/
-msgid "Setup"
-msgstr "Config"
+msgid "No, do nothing."
+msgstr "No hacer nada"
 
 #: ../data/
 msgid "#000000"
@@ -2229,8 +2280,8 @@ msgid "#bab329"
 msgstr ""
 
 #: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Sat / Config Ant"
+msgid "Startwizard"
+msgstr "Comenzar asistente"
 
 #: ../data/
 msgid "#ffffff"
@@ -2245,16 +2296,12 @@ msgstr ""
 "Pulse OK para comentar el backup ahora."
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "El asistente ha finalizado ahora."
+msgid "Mute"
+msgstr "Silencio"
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Buscando Canal"
-
-#: ../data/
-msgid "Mute"
-msgstr "Silencio"
 
 #: ../data/
 msgid ""
@@ -2280,16 +2327,22 @@ msgid "Keyboard Setup"
 msgstr "Configurar Teclado"
 
 #: ../data/
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Use los botones izq/der para cambiar una opción.\n"
+"\n"
+"Por favor configure tuner A"
+
+#: ../data/
 msgid "Dish"
 msgstr "Antena"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Margen después de grabar"
-
-#: ../data/
-msgid "No, just start my dreambox"
-msgstr "No, sólo arranca mi dreambox"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2320,25 +2373,16 @@ msgid "Manual Scan"
 msgstr "Búsqueda Manual"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Bienvenido.\n"
-"\n"
-"Este asistente le guiará a través de una configuración básica de su "
-"Dreambox.\n"
-"Pulse el botón OK de su mando para ir al siguiente paso."
+msgid "Timer Edit"
+msgstr "Editar Programación"
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Menú RC"
 
 #: ../data/
-msgid "SNR:"
-msgstr ""
+msgid "No, just start my dreambox"
+msgstr "No, sólo arranca mi dreambox"
 
 #: ../data/
 msgid "Network..."
@@ -2361,6 +2405,10 @@ msgid "Standby / Restart"
 msgstr "Reposo / Reiniciar"
 
 #: ../data/
+msgid "Standby"
+msgstr "Reposo"
+
+#: ../data/
 msgid "EPG Selection"
 msgstr "Selección EPG"
 
@@ -2381,12 +2429,12 @@ msgid "Brightness"
 msgstr "Brillo"
 
 #: ../data/
-msgid "Standby"
-msgstr "Reposo"
-
-#: ../data/
 msgid "Parental control services Editor"
 msgstr "Editor de canales para control de adultos"
+
+#: ../data/
+msgid "Yes, do another manual scan now"
+msgstr "Si, hacer otra búsqueda manual ahora"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2409,16 +2457,8 @@ msgid "Yes, view the tutorial"
 msgstr "Si, ver el tutorial"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Ha elegido backup a una tarjeta compact flash. La tarjeta debe estar en el "
-"slot. Nosotros no verificamos si realmente está en uso. Así que es mejor "
-"backup al disco duro!\n"
-"Pulse OK para comentar el backup ahora."
+msgid "Show infobar on skip forward/backward"
+msgstr "Mostrar la infobar al pasar adelante/atras"
 
 #: ../data/
 msgid "Color Format"
@@ -2437,16 +2477,16 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
+msgid "SNR:"
+msgstr ""
+
+#: ../data/
 msgid "Timeshift"
 msgstr "Pausa"
 
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Plugins descargables"
-
-#: ../data/
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
 
 #: ../data/
 msgid "Subservices"
@@ -2459,6 +2499,10 @@ msgstr "Configuración del control de adultos"
 #: ../data/
 msgid "Timezone"
 msgstr "Zona horaria"
+
+#: ../data/
+msgid "Message"
+msgstr "Mensaje"
 
 #: ../data/
 msgid "About..."
@@ -2500,21 +2544,8 @@ msgid "Service scan"
 msgstr "Buscar canales"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Si, hacer otra búsqueda manual ahora"
-
-#: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"Necesita un PC conectado a tu dreambox. Si necesita instrucciones, visite el "
-"sitio web http://www.dm7025.de.\n"
-"Tu dreambox será apagado. Después, realiza las instrucciones del sitio web, "
-"y tu firmware preguntará actualizar tu configuración."
+msgid "The wizard is finished now."
+msgstr "El asistente ha finalizado ahora."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2553,8 +2584,16 @@ msgid "Repeat"
 msgstr "Repetir"
 
 #: ../data/
-msgid "Show infobar on skip forward/backward"
-msgstr "Mostrar la infobar al pasar adelante/atras"
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
+msgstr ""
+"Ha elegido backup a una tarjeta compact flash. La tarjeta debe estar en el "
+"slot. Nosotros no verificamos si realmente está en uso. Así que es mejor "
+"backup al disco duro!\n"
+"Pulse OK para comentar el backup ahora."
 
 #: ../data/
 msgid "Network Setup"
@@ -2638,10 +2677,6 @@ msgstr "Salir del asistente"
 #: ../data/
 msgid "Media player"
 msgstr "Reproductor"
-
-#: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Si, realice el apagado ahora."
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2768,12 +2803,21 @@ msgid "Alpha"
 msgstr ""
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Editar Programación"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Bienvenido.\n"
+"\n"
+"Este asistente le guiará a través de una configuración básica de su "
+"Dreambox.\n"
+"Pulse el botón OK de su mando para ir al siguiente paso."
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "No hacer nada"
+msgid "Setup"
+msgstr "Config"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2786,10 +2830,6 @@ msgstr "Acerca de"
 #: ../data/
 msgid "config menu"
 msgstr "menú config"
-
-#: ../data/
-msgid "Message"
-msgstr "Mensaje"
 
 #: ../data/
 msgid "Finetune"
@@ -2806,6 +2846,10 @@ msgstr "Entrada Fecha/Hora"
 #: ../data/
 msgid "AGC:"
 msgstr ""
+
+#: ../data/
+msgid "Sat / Dish Setup"
+msgstr "Sat / Config Ant"
 
 #: ../data/
 msgid "What do you want to scan?"
@@ -2832,14 +2876,8 @@ msgid "NOW"
 msgstr "AHORA"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Use los botones izq/der para cambiar una opción.\n"
-"\n"
-"Por favor configure tuner A"
+msgid "Yes, perform a shutdown now."
+msgstr "Si, realice el apagado ahora."
 
 #: ../data/
 msgid ""
@@ -2848,6 +2886,10 @@ msgid ""
 msgstr ""
 "Después que haya terminado el asistente, necesita proteger los canales "
 "únicos. Mire el manual de su dreambox para saber cómo."
+
+#: ../data/
+msgid "Harddisk standby after"
+msgstr ""
 
 #: ../data/
 msgid "#0064c7"
@@ -2860,6 +2902,3 @@ msgstr "Reproductor"
 #: ../data/
 msgid "Do you want to do another manual service scan?"
 msgstr "¿Quiere hacer otra búsqueda manual?"
-
-#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-#~ msgstr "Actualización finalizada. ¿Quiere reiniciar su Dreambox?"
