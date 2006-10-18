@@ -51,6 +51,8 @@ class NetworkSetup(Screen, ConfigListScreen):
 	def ok(self):
 		#for x in self["config"].list:
 			#x[1].save()
+		
+		iNetwork.deactivateNetworkConfig()
 		iNetwork.writeNetworkConfig()    
 		iNetwork.activateNetworkConfig()
 		self.close()
