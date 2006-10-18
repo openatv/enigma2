@@ -80,9 +80,16 @@ class Network:
 		except:
 			print "[Network.py] parsing network failed"
 
+	def deactivateNetworkConfig(self):
+		import os
+		os.system("ip addr flush eth0")
+		os.system("/etc/init.d/networking stop")
+		os.system("killall -9 udhcpc")
+		os.system("rm /var/run/udhcpc*")
+
 	def activateNetworkConfig(self):
 		import os
-		os.system("/etc/init.d/networking restart")
+		os.system("/etc/init.d/networking start")
 		config.network.ip.value = self.getCurrentIP()
 		config.network.ip.save()
 		
