@@ -7,6 +7,7 @@ TUXBOX_APPS_DIRECTORY
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_RANLIB
+AM_PROG_LIBTOOL
 
 AC_ARG_WITH(libsdl,
 	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
@@ -87,5 +88,6 @@ lib/service/Makefile
 lib/components/Makefile
 po/Makefile
 main/Makefile
+tools/Makefile
 ])
 #lib/python/Plugins/Extensions/SimpleRSS/Makefile
