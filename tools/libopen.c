@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/socket.h>
@@ -11,7 +10,8 @@
 
 int open64(const char *pathname, int flags, ...)
 {
-	static int (*libc_open64) (const char* pathname, int flags, ...);
+	typedef int (*FUNC_PTR) (const char* pathname, int flags, ...);
+	static FUNC_PTR libc_open64;
 	int fd=-1;
 	if (!libc_open64)
 	{
@@ -23,7 +23,7 @@ int open64(const char *pathname, int flags, ...)
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_open64 = dlsym(handle, "open64");
+		libc_open64 = (FUNC_PTR) dlsym(handle, "open64");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
@@ -47,7 +47,8 @@ int open64(const char *pathname, int flags, ...)
 
 int open(const char *pathname, int flags, ...)
 {
-	static int (*libc_open) (const char* pathname, int flags, ...);
+	typedef int (*FUNC_PTR) (const char* pathname, int flags, ...);
+	static FUNC_PTR libc_open;
 	int fd=-1;
 	if (!libc_open)
 	{
@@ -59,7 +60,7 @@ int open(const char *pathname, int flags, ...)
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_open = dlsym(handle, "open");
+		libc_open = (FUNC_PTR) dlsym(handle, "open");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
@@ -83,7 +84,8 @@ int open(const char *pathname, int flags, ...)
 
 FILE *fopen64(const char *pathname, const char *mode)
 {
-	static FILE *(*libc_fopen64) (const char* pathname, const char *mode);
+	typedef FILE *(*FUNC_PTR) (const char* pathname, const char *mode);
+	static FUNC_PTR libc_fopen64;
 	FILE *f=0;
 	if (!libc_fopen64)
 	{
@@ -95,7 +97,7 @@ FILE *fopen64(const char *pathname, const char *mode)
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_fopen64 = dlsym(handle, "fopen64");
+		libc_fopen64 = (FUNC_PTR) dlsym(handle, "fopen64");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
@@ -120,7 +122,8 @@ FILE *fopen64(const char *pathname, const char *mode)
 
 FILE *fopen(const char *pathname, const char *mode)
 {
-	static FILE *(*libc_fopen) (const char* pathname, const char *mode);
+	typedef FILE *(*FUNC_PTR) (const char* pathname, const char *mode);
+	static FUNC_PTR libc_fopen;
 	FILE *f=0;
 	if (!libc_fopen)
 	{
@@ -132,7 +135,7 @@ FILE *fopen(const char *pathname, const char *mode)
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_fopen = dlsym(handle, "fopen");
+		libc_fopen = (FUNC_PTR) dlsym(handle, "fopen");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
@@ -157,7 +160,8 @@ FILE *fopen(const char *pathname, const char *mode)
 
 int socket(int domain, int type, int protocol)
 {
-	static int (*libc_socket) (int domain, int type, int protocol);
+	typedef int (*FUNC_PTR) (int domain, int type, int protocol);
+	static FUNC_PTR libc_socket;
 	int fd=-1;
 	if (!libc_socket)
 	{
@@ -169,7 +173,7 @@ int socket(int domain, int type, int protocol)
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_socket = dlsym(handle, "socket");
+		libc_socket = (FUNC_PTR) dlsym(handle, "socket");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
@@ -193,7 +197,8 @@ int socket(int domain, int type, int protocol)
 
 int pipe(int modus[2])
 {
-	static int (*libc_pipe) (int modus[2]);
+	typedef int (*FUNC_PTR) (int modus[2]);
+	static FUNC_PTR libc_pipe;
 	int ret=-1;
 	if (!libc_pipe)
 	{
@@ -205,7 +210,7 @@ int pipe(int modus[2])
 			fputs(dlerror(), stderr);
 			exit(1);
 		}
-		libc_pipe = dlsym(handle, "pipe");
+		libc_pipe = (FUNC_PTR) dlsym(handle, "pipe");
 		if ((error = dlerror()) != NULL) {
 			fprintf(stderr, "%s\n", error);
 			exit(1);
