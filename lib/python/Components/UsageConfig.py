@@ -18,7 +18,7 @@ def InitUsageConfig():
 		("12", "1 " + _("minute")), ("24", "2 " + _("minutes")),
 		("60", "5 " + _("minutes")), ("120", "10 " + _("minutes")), ("240", "20 " + _("minutes")),
 		("241", "30 " + _("minutes")), ("242", "1 " + _("hour")), ("244", "2 " + _("hours")),
-		("248", "4 " + _("hours")) ])
+		("248", "4 " + _("hours")), ("255", "4 " + _("hours") + _(" and ") + "15 " + _("seconds")) ])
 	
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
