@@ -18,6 +18,7 @@ eLCD::eLCD(eSize size): res(size)
 {
 	locked=0;
 	_buffer=new unsigned char[res.height()*res.width()];
+	memset(_buffer, 0, res.height()*res.width());
 	_stride=res.width();
 }
 
