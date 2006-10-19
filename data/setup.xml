@@ -16,7 +16,6 @@
 			<item text="VCR Switch">config.av.vcrswitch</item>
 		</setup>
 		<setup key="usage" title="Customize">
-			<item text="Harddisk standby after">config.usage.hdd_standby</item>
 			<item text="Recordings always have priority">config.recording.asktozap</item>
 			<item text="Margin before record (minutes)">config.recording.margin_before</item>
 			<item text="Margin after record">config.recording.margin_after</item>
@@ -27,6 +26,9 @@
 			<item text="Infobar timeout">config.usage.infobar_timeout</item>
 			<item text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 			<item text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
+		</setup>
+		<setup key="harddisk" title="Harddisk setup">
+			<item text="Harddisk standby after">config.usage.hdd_standby</item>
 		</setup>
 		<setup key="network" title="Network setup">
 			<item text="Use DHCP">config.network.dhcp</item>
