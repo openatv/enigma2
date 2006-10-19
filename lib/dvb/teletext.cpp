@@ -248,7 +248,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 				/* ignore other attributes */
 		} else
 		{
-			eDebugNoNewLine("%c", b);
+			//eDebugNoNewLine("%c", b);
 				/* no more than one whitespace, only printable chars */
 			if (((!last_was_white) || (b != ' ')) && (b >= 0x20))
 			{
@@ -257,7 +257,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 			}
 		}
 	}
-	eDebug("");
+	//eDebug("");
 	addSubtitleString(color, text);
 }
 
@@ -316,7 +316,7 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 void eDVBTeletextParser::sendSubtitlePage()
 {
 //	eDebug("subtitle page:");
-	for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
-		eDebug("%s", m_subtitle_page.m_elements[i].m_text.c_str());
+	//for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
+	//	eDebug("%s", m_subtitle_page.m_elements[i].m_text.c_str());
 	m_new_subtitle_page(m_subtitle_page);
 }
