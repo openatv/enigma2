@@ -11,6 +11,8 @@ class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
+		self.oldActiveLanguage = language.getActiveLanguage()
+		
 		self.list = []
 		self["list"] = LanguageList(self.list)
 		self.updateList()
@@ -19,7 +21,7 @@ class LanguageSelection(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], 
 		{
 			"ok": self.save,
-			"cancel": self.close,
+			"cancel": self.cancel,
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
@@ -37,6 +39,10 @@ class LanguageSelection(Screen):
 		
 	def save(self):
 		self.run()
+		self.close()
+	
+	def cancel(self):
+		language.activateLanguage(self.oldActiveLanguage)
 		self.close()
 	
 	def run(self):
