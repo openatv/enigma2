@@ -1686,7 +1686,7 @@ void eDVBServicePlay::updateDecoder()
 	std::string default_ac3;
 
 	if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
-		defaultac3 = default_ac3 == "enable";
+		defaultac3 = default_ac3 == "True";
 
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
