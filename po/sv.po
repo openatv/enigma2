@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 15:17+0200\n"
-"PO-Revision-Date: 2006-10-16 15:47+0100\n"
+"POT-Creation-Date: 2006-10-19 16:08+0200\n"
+"PO-Revision-Date: 2006-10-19 15:59+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -95,19 +95,19 @@ msgstr "13 V"
 
 #: ../lib/python/Components/AVSwitch.py:89
 msgid "16:10 Letterbox"
-msgstr ""
+msgstr "16:10 Letterbox"
 
 #: ../lib/python/Components/AVSwitch.py:90
 msgid "16:10 PanScan"
-msgstr ""
+msgstr "16:10 PanScan"
 
 #: ../lib/python/Components/AVSwitch.py:87
 msgid "16:9"
-msgstr ""
+msgstr "16:9"
 
 #: ../lib/python/Components/AVSwitch.py:88
 msgid "16:9 always"
-msgstr ""
+msgstr "16:9 alltid"
 
 #: ../lib/python/Components/NimManager.py:749
 msgid "18 V"
@@ -119,11 +119,11 @@ msgstr "30 minuter"
 
 #: ../lib/python/Components/AVSwitch.py:85
 msgid "4:3 Letterbox"
-msgstr ""
+msgstr "4:3 Letterbox"
 
 #: ../lib/python/Components/AVSwitch.py:86
 msgid "4:3 PanScan"
-msgstr ""
+msgstr "4:3 PanScan"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "5 minutes"
@@ -286,7 +286,7 @@ msgstr "CF Disk"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "CVBS"
-msgstr ""
+msgstr "CVBS"
 
 #: ../lib/python/Screens/ChannelSelection.py:760
 msgid "Cable"
@@ -386,11 +386,11 @@ msgstr "Timerkonflikt"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Create movie folder failed"
-msgstr ""
+msgstr "Skapa movie katalog misslyckades"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Creating partition failed"
-msgstr ""
+msgstr "Skapandet av partition misslyckades"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
@@ -572,7 +572,7 @@ msgstr "Slut"
 msgid "EndTime"
 msgstr "SlutTid"
 
-#: ../lib/python/Screens/LanguageSelection.py:53
+#: ../lib/python/Screens/LanguageSelection.py:59
 #: ../lib/python/Components/Language.py:14
 #: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
@@ -588,7 +588,7 @@ msgstr "Ange service PIN"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Everything is fine"
-msgstr ""
+msgstr "Allting är bra"
 
 #: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
@@ -706,6 +706,8 @@ msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
+"Om du ser detta, något är fel med\n"
+"din scart kontakt. Tryck OK för återgå."
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
@@ -767,7 +769,7 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:54 ../data/
 msgid "Language selection"
 msgstr "Välj språk"
 
@@ -807,7 +809,7 @@ msgstr "Manuell transponder"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mkfs failed"
-msgstr ""
+msgstr "Mkfs misslyckades"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
@@ -836,7 +838,7 @@ msgstr "Måndag"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mount failed"
-msgstr ""
+msgstr "Montering misslyckades"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1184
 msgid "Move Picture in Picture"
@@ -876,7 +878,7 @@ msgstr "NIM "
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "NTSC"
-msgstr ""
+msgstr "NTSC"
 
 #: ../lib/python/Screens/TimerEntry.py:129
 msgid "Name"
@@ -984,11 +986,11 @@ msgstr "Online Uppgradering"
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "PAL"
-msgstr ""
+msgstr "PAL"
 
 #: ../lib/python/Screens/ServiceInfo.py:79
 msgid "PIDs"
-msgstr ""
+msgstr "PIDs"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
@@ -1138,7 +1140,7 @@ msgstr "Quickzap"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: ../lib/python/Screens/Setup.py:145
 msgid "Really close without saving settings?"
@@ -1195,7 +1197,7 @@ msgstr "Höger"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "S-Video"
-msgstr ""
+msgstr "S-Video"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
@@ -1534,7 +1536,7 @@ msgstr "Tuner"
 
 #: ../lib/python/Screens/ServiceInfo.py:81
 msgid "Tuner status"
-msgstr ""
+msgstr "Tuner status"
 
 #: ../lib/python/Components/Language.py:27
 msgid "Turkish"
@@ -1578,7 +1580,7 @@ msgstr "Universal LNB"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Unmount failed"
-msgstr ""
+msgstr "Avmontering misslyckades"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
@@ -1590,7 +1592,7 @@ msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter...."
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "Uppgradering klar. Vill du starta om din Dreambox?"
 
 #: ../lib/python/Screens/NetworkSetup.py:27 ../data/
 msgid "Use DHCP"
@@ -1638,7 +1640,7 @@ msgstr "Väst"
 
 #: ../lib/python/Components/AVSwitch.py:81
 msgid "YPbPr"
-msgstr ""
+msgstr "YPbPr"
 
 #: ../lib/python/Screens/MediaPlayer.py:53
 msgid "Year:"
@@ -1799,7 +1801,7 @@ msgstr "ta bort..."
 
 #: ../lib/python/Components/config.py:262
 msgid "disable"
-msgstr ""
+msgstr "avaktivera"
 
 #: ../lib/python/Screens/ChannelSelection.py:115
 msgid "disable move mode"
@@ -1824,7 +1826,7 @@ msgstr "tom/okänd"
 
 #: ../lib/python/Components/config.py:262
 msgid "enable"
-msgstr ""
+msgstr "aktivera"
 
 #: ../lib/python/Screens/ChannelSelection.py:111
 msgid "enable bouquet edit"
@@ -1876,12 +1878,12 @@ msgstr "horisontal"
 
 #: ../lib/python/Components/UsageConfig.py:20
 msgid "hour"
-msgstr ""
+msgstr "timme"
 
 #: ../lib/python/Components/UsageConfig.py:20
 #: ../lib/python/Components/UsageConfig.py:21
 msgid "hours"
-msgstr ""
+msgstr "timmar"
 
 #: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
 msgid "init module"
@@ -1902,7 +1904,7 @@ msgstr "list"
 
 #: ../lib/python/Components/TunerInfo.py:69
 msgid "locked"
-msgstr ""
+msgstr "låst"
 
 #: ../lib/python/Components/NimManager.py:678
 msgid "loopthrough to socket A"
@@ -1919,13 +1921,13 @@ msgstr "min"
 
 #: ../lib/python/Components/UsageConfig.py:18
 msgid "minute"
-msgstr ""
+msgstr "minut"
 
 #: ../lib/python/Components/UsageConfig.py:18
 #: ../lib/python/Components/UsageConfig.py:19
 #: ../lib/python/Components/UsageConfig.py:20
 msgid "minutes"
-msgstr ""
+msgstr "minuter"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "minutes and"
@@ -1960,11 +1962,11 @@ msgstr "ingen modul hittad"
 
 #: ../lib/python/Components/UsageConfig.py:17
 msgid "no standby"
-msgstr ""
+msgstr "inget viloläge"
 
 #: ../lib/python/Components/UsageConfig.py:11
 msgid "no timeout"
-msgstr ""
+msgstr "ingen timeout"
 
 #: ../lib/python/Screens/About.py:40
 msgid "none"
@@ -1972,7 +1974,7 @@ msgstr "ingen"
 
 #: ../lib/python/Components/TunerInfo.py:71
 msgid "not locked"
-msgstr ""
+msgstr "inte låst"
 
 #: ../lib/python/Components/NimManager.py:679
 msgid "nothing connected"
@@ -2105,7 +2107,7 @@ msgstr "söknings status"
 
 #: ../lib/python/Components/UsageConfig.py:11
 msgid "second"
-msgstr ""
+msgstr "sekund"
 
 #: ../lib/python/Components/NimManager.py:680
 msgid "second cable of motorized LNB"
@@ -2116,7 +2118,7 @@ msgstr "andra kabeln från motorstyrt LNB"
 #: ../lib/python/Components/UsageConfig.py:13
 #: ../lib/python/Components/UsageConfig.py:17
 msgid "seconds"
-msgstr ""
+msgstr "sekunder"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "seconds."
@@ -2262,7 +2264,7 @@ msgstr "Kanal"
 
 #: ../data/
 msgid "Initialization..."
-msgstr ""
+msgstr "Initiering..."
 
 #: ../data/
 msgid "Network setup"
@@ -2273,15 +2275,14 @@ msgid "Games / Plugins"
 msgstr "Spel / Plugins"
 
 #: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr ""
-
-#: ../data/
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
+"Du måste ange en PIN kod och gömma det från dina barn.\n"
+"\n"
+"Vill du ange PIN kod nu?"
 
 #: ../data/
 msgid "help..."
@@ -2296,18 +2297,8 @@ msgid "Satconfig"
 msgstr "Satkonfig"
 
 #: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
-"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
-"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
-"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
-"vill återställa dina inställningar."
+msgid "Startwizard"
+msgstr "Start guide"
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2377,8 +2368,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nej, gör inget."
+msgid "Setup"
+msgstr "Installation"
 
 #: ../data/
 msgid "#000000"
@@ -2386,7 +2377,7 @@ msgstr ""
 
 #: ../data/
 msgid "Infobar timeout"
-msgstr ""
+msgstr "Infobalk timeout"
 
 #: ../data/
 msgid "Use wizard to set up basic features"
@@ -2401,8 +2392,8 @@ msgid "#bab329"
 msgstr ""
 
 #: ../data/
-msgid "Startwizard"
-msgstr "Start guide"
+msgid "Sat / Dish Setup"
+msgstr "Sat / Parabol Installation"
 
 #: ../data/
 msgid "#ffffff"
@@ -2418,12 +2409,16 @@ msgstr ""
 "Tryck OK för att starta backup."
 
 #: ../data/
-msgid "Mute"
-msgstr "Ljud av"
+msgid "The wizard is finished now."
+msgstr "Guiden är nu färdig."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Kanalsökning"
+
+#: ../data/
+msgid "Mute"
+msgstr "Ljud av"
 
 #: ../data/
 msgid ""
@@ -2449,22 +2444,16 @@ msgid "Keyboard Setup"
 msgstr "Tangentbords inställning"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Använd vänster och höger pil för att ändra ett val.\n"
-"\n"
-"Inställning Tuner A"
-
-#: ../data/
 msgid "Dish"
 msgstr "Parabol"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Marginal efter inspelning"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nej, starta bara dreamboxen"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2495,16 +2484,24 @@ msgid "Manual Scan"
 msgstr "Manuell Sökning"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Ändra Timer"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Välkommen.\n"
+"\n"
+"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
+"Tryck OK på din fjärrkontroll för att komma till nästa steg."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fjärrkontroll Meny"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nej, starta bara dreamboxen"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
@@ -2527,10 +2524,6 @@ msgid "Standby / Restart"
 msgstr "Stäng av / Omstart"
 
 #: ../data/
-msgid "Standby"
-msgstr "Avstängd"
-
-#: ../data/
 msgid "EPG Selection"
 msgstr "EPG Val"
 
@@ -2551,12 +2544,12 @@ msgid "Brightness"
 msgstr "Ljusstyrka"
 
 #: ../data/
-msgid "Parental control services Editor"
-msgstr "Föräldrarkontroll kanaleditor"
+msgid "Standby"
+msgstr "Avstängd"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, utför manuell sökning igen"
+msgid "Parental control services Editor"
+msgstr "Föräldrarkontroll kanaleditor"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2579,8 +2572,16 @@ msgid "Yes, view the tutorial"
 msgstr "Ja, visa guiden"
 
 #: ../data/
-msgid "Show infobar on skip forward/backward"
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
 msgstr ""
+"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. "
+"Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta "
+"backup till hårddisk!\n"
+"Tryck OK för att starta backupen."
 
 #: ../data/
 msgid "Color Format"
@@ -2599,12 +2600,8 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Harddisk setup"
-msgstr ""
+msgstr "Hårddisk installation"
 
 #: ../data/
 msgid "Timeshift"
@@ -2613,6 +2610,10 @@ msgstr "Timeshift"
 #: ../data/
 msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
+
+#: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vill du visa cutlist guiden?"
 
 #: ../data/
 msgid "Subservices"
@@ -2625,10 +2626,6 @@ msgstr "Föräldrarkontroll installation"
 #: ../data/
 msgid "Timezone"
 msgstr "Tidszon"
-
-#: ../data/
-msgid "Message"
-msgstr "Meddelande"
 
 #: ../data/
 msgid "About..."
@@ -2669,8 +2666,22 @@ msgid "Service scan"
 msgstr "Kanalsökning"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Guiden är nu färdig."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, utför manuell sökning igen"
+
+#: ../data/
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"Du behöver ha en PC kopplad till din Dreambox. Behöver du ytterligare "
+"instruktioner vänlig gå till websidan http://www.dm7025.de.\n"
+"Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
+"instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
+"vill återställa dina inställningar."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2709,16 +2720,8 @@ msgid "Repeat"
 msgstr "Repetera"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Du har valt att ta backup till ett flash-kort. Kortet måste sitta i sloten. "
-"Vi kan inte verifiera att den används förnärvarande. Så det är bättre att ta "
-"backup till hårddisk!\n"
-"Tryck OK för att starta backupen."
+msgid "Show infobar on skip forward/backward"
+msgstr "Visa infobalk vid hopp framåt/bakåt"
 
 #: ../data/
 msgid "Network Setup"
@@ -2799,12 +2802,16 @@ msgid "Media player"
 msgstr "Media spelare"
 
 #: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, utför avstängning nu."
+
+#: ../data/
 msgid "Timer sanity error"
 msgstr "Timer fel"
 
 #: ../data/
 msgid "Show infobar on channel change"
-msgstr ""
+msgstr "Visa infobalk vid kanalbyte"
 
 #: ../data/
 msgid "VCR Switch"
@@ -2919,20 +2926,12 @@ msgid "Alpha"
 msgstr "Alpha"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Välkommen.\n"
-"\n"
-"Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
-"Tryck OK på din fjärrkontroll för att komma till nästa steg."
+msgid "Timer Edit"
+msgstr "Ändra Timer"
 
 #: ../data/
-msgid "Setup"
-msgstr "Installation"
+msgid "No, do nothing."
+msgstr "Nej, gör inget."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2945,6 +2944,10 @@ msgstr "Om"
 #: ../data/
 msgid "config menu"
 msgstr "konfigurationsmeny"
+
+#: ../data/
+msgid "Message"
+msgstr "Meddelande"
 
 #: ../data/
 msgid "Finetune"
@@ -2961,10 +2964,6 @@ msgstr "Tid/Datum Inmatning"
 #: ../data/
 msgid "AGC:"
 msgstr "AGC:"
-
-#: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Sat / Parabol Installation"
 
 #: ../data/
 msgid "What do you want to scan?"
@@ -2991,18 +2990,30 @@ msgid "NOW"
 msgstr "NU"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, utför avstängning nu."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Använd vänster och höger pil för att ändra ett val.\n"
+"\n"
+"Inställning Tuner A"
+
+#: ../data/
+msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr "Vill du aktivera föräldrarkontroll på din Dreambox?"
 
 #: ../data/
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
+"Efter guiden avslutad, behöver du skydda enskild kanal. Läs i din manual för "
+"Dreambox om hur du utför det."
 
 #: ../data/
 msgid "Harddisk standby after"
-msgstr ""
+msgstr "Viloläge för hårddisk efter"
 
 #: ../data/
 msgid "#0064c7"
@@ -3021,9 +3032,6 @@ msgstr "Vill du göra en ny manuell sökning?"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Kom ihåg kanal PIN"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa cutlist guiden?"
 
 #~ msgid "Cable provider"
 #~ msgstr "KabelTV leverantör"
