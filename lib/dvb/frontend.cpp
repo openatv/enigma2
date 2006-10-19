@@ -1782,10 +1782,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 		std::string enable_5V;
 		char configStr[255];
-		snprintf(configStr, 255, "config.Nim%c.terrestrial_5V", 'A'+m_fe);
+		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_fe);
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
 		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
-		if (enable_5V == "on")
+		if (enable_5V == "True")
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );

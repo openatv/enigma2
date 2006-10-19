@@ -221,7 +221,7 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 static bool canDescrambleMultipleServices(int slotid)
 {
 	char configStr[255];
-	snprintf(configStr, 255, "config.ci%d.canDescrambleMultipleServices", slotid);
+	snprintf(configStr, 255, "config.ci.%d.canDescrambleMultipleServices", slotid);
 	std::string str;
 	ePythonConfigQuery::getConfigValue(configStr, str);
 	if ( str == "auto" )
