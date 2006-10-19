@@ -832,8 +832,23 @@ class ConfigFile:
 		config.save()
 		config.saveToFile(self.CONFIG_FILE)
 	
+	def __resolveValue(self, pickles, cmap):
+		if cmap.has_key(pickles[0]):
+			if len(pickles) > 1:
+				return self.__resolveValue(pickles[1:], cmap[pickles[0]].content.items)
+			else:
+				return str(cmap[pickles[0]].value)
+		return None
+	
 	def getResolvedKey(self, key):
-		return None # FIXME
+		names = key.split('.')
+		if len(names) > 1:
+			if names[0] == "config":
+				ret=self.__resolveValue(names[1:], config.content.items)
+				if ret and len(ret):
+					return ret
+		print "getResolvedKey", key, "failed !! (Typo??)"
+		return ""
 
 def NoSave(element):
 	element.disableSave()
