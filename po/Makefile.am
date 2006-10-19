@@ -48,6 +48,7 @@ enigma2.pot:
 			../lib/python/Screens/MediaPlayer.py \
 			../lib/python/Screens/PiPSetup.py \
 			../lib/python/Screens/SubservicesQuickzap.py \
+			../lib/python/Screens/ServiceInfo.py \
 			../lib/python/Components/DiskInfo.py \
 			../lib/python/Components/ServiceScan.py \
 			../lib/python/Components/Lcd.py \
