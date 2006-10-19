@@ -52,7 +52,11 @@
 				<item><setup id="timezone" /></item>
 				<item><setup id="avsetup" /></item>
 				<item><setup id="RFmod" /></item>
-				<item text="Harddisk..."><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+				<menu text="Harddisk">
+					<id val="harddisk" />
+					<item><setup id="harddisk" /></item>
+					<item text="Initialization..."><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+				</menu>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
