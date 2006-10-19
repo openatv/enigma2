@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-19 16:46+0200\n"
-"PO-Revision-Date: 2006-10-19 16:30+0100\n"
+"PO-Revision-Date: 2006-10-19 21:38+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -96,19 +96,19 @@ msgstr "13 V"
 
 #: ../lib/python/Components/AVSwitch.py:89
 msgid "16:10 Letterbox"
-msgstr ""
+msgstr "16:10 Letterbox"
 
 #: ../lib/python/Components/AVSwitch.py:90
 msgid "16:10 PanScan"
-msgstr ""
+msgstr "16:10 PanScan"
 
 #: ../lib/python/Components/AVSwitch.py:87
 msgid "16:9"
-msgstr ""
+msgstr "16:9"
 
 #: ../lib/python/Components/AVSwitch.py:88
 msgid "16:9 always"
-msgstr ""
+msgstr "16:9 altijd"
 
 #: ../lib/python/Components/NimManager.py:749
 msgid "18 V"
@@ -120,11 +120,11 @@ msgstr "30 minuten"
 
 #: ../lib/python/Components/AVSwitch.py:85
 msgid "4:3 Letterbox"
-msgstr ""
+msgstr "4:3 Letterbox"
 
 #: ../lib/python/Components/AVSwitch.py:86
 msgid "4:3 PanScan"
-msgstr ""
+msgstr "4:3 PanScan"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "5 minutes"
@@ -138,8 +138,10 @@ msgstr "60 minuten"
 msgid "<unknown>"
 msgstr "<onbekend>"
 
-#: ../lib/python/Screens/Menu.py:126 ../lib/python/Screens/Menu.py:166
-#: ../lib/python/Screens/Menu.py:169 ../lib/python/Screens/Setup.py:118
+#: ../lib/python/Screens/Menu.py:126
+#: ../lib/python/Screens/Menu.py:166
+#: ../lib/python/Screens/Menu.py:169
+#: ../lib/python/Screens/Setup.py:118
 msgid "??"
 msgstr ""
 
@@ -156,12 +158,8 @@ msgstr ""
 "Wat wilt u doen?"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:511
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Er is een opname bezig. Stop die eerst A.U.B  voordat u probeert de rotor "
-"settings te wijzigen."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Er is een opname bezig. Stop die eerst A.U.B  voordat u probeert de rotor settings te wijzigen."
 
 #: ../RecordTimer.py:163
 msgid ""
@@ -225,7 +223,8 @@ msgstr "Artist:"
 msgid "Audio Options..."
 msgstr "Audio Opties..."
 
-#: ../lib/python/Screens/Ci.py:22 ../lib/python/Screens/ScanSetup.py:360
+#: ../lib/python/Screens/Ci.py:22
+#: ../lib/python/Screens/ScanSetup.py:360
 #: ../lib/python/Screens/ScanSetup.py:363
 #: ../lib/python/Screens/ScanSetup.py:369
 #: ../lib/python/Screens/ScanSetup.py:371
@@ -239,7 +238,8 @@ msgstr "Audio Opties..."
 msgid "Auto"
 msgstr "Auto"
 
-#: ../lib/python/Screens/ScanSetup.py:603 ../data/
+#: ../lib/python/Screens/ScanSetup.py:603
+#: ../data/
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
 
@@ -289,13 +289,14 @@ msgstr "CF Drive"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "CVBS"
-msgstr ""
+msgstr "CVBS"
 
 #: ../lib/python/Screens/ChannelSelection.py:760
 msgid "Cable"
 msgstr "Kabel"
 
-#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimeDateInput.py:16
+#: ../lib/python/Screens/Setup.py:85
+#: ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Screens/TimerEntry.py:29
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
@@ -311,7 +312,8 @@ msgid "Catalan"
 msgstr "Catalaans"
 
 #: ../lib/python/Screens/ChannelSelection.py:146
-#: ../lib/python/Screens/ParentalControlSetup.py:22 ../data/
+#: ../lib/python/Screens/ParentalControlSetup.py:22
+#: ../data/
 msgid "Change pin code"
 msgstr "Verander pin code"
 
@@ -327,7 +329,8 @@ msgstr "Verander service pins"
 msgid "Change setup pin"
 msgstr "Verander setup pin"
 
-#: ../lib/python/Screens/TimerEntry.py:179 ../data/
+#: ../lib/python/Screens/TimerEntry.py:179
+#: ../data/
 msgid "Channel"
 msgstr "Kanaal"
 
@@ -349,7 +352,7 @@ msgstr "Opruimen"
 #: ../lib/python/Screens/ScanSetup.py:251
 #: ../lib/python/Screens/ScanSetup.py:587
 msgid "Clear before scan"
-msgstr "Schoonmaken, voor u start met kanalen zoeken?"
+msgstr "Opruimen, voor u start met kanalen zoeken?"
 
 #: ../lib/python/Screens/TimerEntry.py:315
 msgid "Clear log"
@@ -379,7 +382,8 @@ msgid "Complete"
 msgstr "Kompleet"
 
 #: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:143 ../data/
+#: ../lib/python/Screens/Satconfig.py:143
+#: ../data/
 msgid "Configuration Mode"
 msgstr "Konfiguratie"
 
@@ -389,11 +393,11 @@ msgstr "Timer conflict!!"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Create movie folder failed"
-msgstr ""
+msgstr "Maken van movie folder is mislukt"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Creating partition failed"
-msgstr ""
+msgstr "Maken van partitie is mislukt"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
@@ -591,7 +595,7 @@ msgstr "Voer de service pin in"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Everything is fine"
-msgstr ""
+msgstr "Alles is ok"
 
 #: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
@@ -652,7 +656,8 @@ msgstr "Frontprocessor versie: %d"
 msgid "Function not yet implemented"
 msgstr "Nog niet ingebouwde funktie"
 
-#: ../lib/python/Screens/NetworkSetup.py:32 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:32
+#: ../data/
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -696,7 +701,8 @@ msgstr "Hierarchy mode"
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
 
-#: ../lib/python/Screens/NetworkSetup.py:29 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:29
+#: ../data/
 msgid "IP Address"
 msgstr "IP-Adres"
 
@@ -709,14 +715,15 @@ msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
+"Waneer u dit ziet, is er iets mis met\n"
+"scart aansluiting. Druk op OK om terug te keren."
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
 msgstr "Image-Upgrade"
 
 #: ../RecordTimer.py:166
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Voor een timer opname , is de TV naar opname service geswitcht!\n"
 
 #: ../lib/python/Screens/Satconfig.py:139
@@ -735,7 +742,8 @@ msgstr "Format HDD"
 msgid "Initializing Harddisk..."
 msgstr "Formatting Harddisk..."
 
-#: ../lib/python/Screens/InputBox.py:14 ../data/
+#: ../lib/python/Screens/InputBox.py:14
+#: ../data/
 msgid "Input"
 msgstr "Invoer"
 
@@ -770,12 +778,14 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:54 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:54
+#: ../data/
 msgid "Language selection"
 msgstr "Taal Keuze"
 
 #: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:126 ../data/
+#: ../lib/python/Screens/Satconfig.py:126
+#: ../data/
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -800,7 +810,8 @@ msgid "Limits on"
 msgstr "Limieten aan"
 
 #: ../lib/python/Screens/Satconfig.py:24
-#: ../lib/python/Screens/Satconfig.py:124 ../data/
+#: ../lib/python/Screens/Satconfig.py:124
+#: ../data/
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -810,7 +821,7 @@ msgstr "Handmatige transponder"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mkfs failed"
-msgstr ""
+msgstr "Mkfs mislukt"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
@@ -839,7 +850,7 @@ msgstr "Maandag"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mount failed"
-msgstr ""
+msgstr "Mount mislukt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1184
 msgid "Move Picture in Picture"
@@ -879,17 +890,19 @@ msgstr "NIM "
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "NTSC"
-msgstr ""
+msgstr "NTSC"
 
 #: ../lib/python/Screens/TimerEntry.py:129
 msgid "Name"
 msgstr "Naam"
 
-#: ../lib/python/Screens/NetworkSetup.py:33 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:33
+#: ../data/
 msgid "Nameserver"
 msgstr "Nameserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:31 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:31
+#: ../data/
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -914,7 +927,8 @@ msgstr "Nieuwe versie"
 msgid "Next"
 msgstr "Volgende"
 
-#: ../lib/python/Screens/Ci.py:22 ../data/
+#: ../lib/python/Screens/Ci.py:22
+#: ../data/
 msgid "No"
 msgstr "Nee"
 
@@ -965,7 +979,8 @@ msgstr ""
 "Niks Gevonden!\n"
 "Stel u tuner settings in aub voor u een zoek opdracht geeft."
 
-#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimeDateInput.py:15
+#: ../lib/python/Screens/Setup.py:84
+#: ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
@@ -989,17 +1004,18 @@ msgstr "Online-Upgrade"
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "PAL"
-msgstr ""
+msgstr "PAL"
 
 #: ../lib/python/Screens/ServiceInfo.py:79
 msgid "PIDs"
-msgstr ""
+msgstr "PIDs"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
 msgstr "Pakket beheer"
 
-#: ../lib/python/Components/ParentalControl.py:80 ../data/
+#: ../lib/python/Components/ParentalControl.py:80
+#: ../data/
 msgid "Parental control"
 msgstr "Parental control"
 
@@ -1142,7 +1158,7 @@ msgstr "Snelzappen"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: ../lib/python/Screens/Setup.py:145
 msgid "Really close without saving settings?"
@@ -1199,7 +1215,7 @@ msgstr "Rechts"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "S-Video"
-msgstr ""
+msgstr "S-Video"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
@@ -1207,7 +1223,8 @@ msgstr ""
 msgid "Sat"
 msgstr "Za"
 
-#: ../lib/python/Screens/Satconfig.py:11 ../lib/python/Screens/Satconfig.py:61
+#: ../lib/python/Screens/Satconfig.py:11
+#: ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:145
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:208
@@ -1258,7 +1275,8 @@ msgstr "Herhaal Sequence"
 msgid "Service scan type needed"
 msgstr "Kanaalzoek type"
 
-#: ../lib/python/Screens/ServiceInfo.py:78 ../data/
+#: ../lib/python/Screens/ServiceInfo.py:78
+#: ../data/
 msgid "Serviceinfo"
 msgstr "Service informatie"
 
@@ -1365,7 +1383,7 @@ msgstr "Stap naar west"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1389
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
@@ -1407,7 +1425,7 @@ msgstr "Zondag"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1181
 msgid "Swap Services"
-msgstr ""
+msgstr "Swap Services"
 
 #: ../lib/python/Components/Language.py:26
 msgid "Swedish"
@@ -1538,7 +1556,7 @@ msgstr "Tuner"
 
 #: ../lib/python/Screens/ServiceInfo.py:81
 msgid "Tuner status"
-msgstr ""
+msgstr "Tuner status"
 
 #: ../lib/python/Components/Language.py:27
 msgid "Turkish"
@@ -1582,7 +1600,7 @@ msgstr "Universeel LNB"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Unmount failed"
-msgstr ""
+msgstr "Unmount mislukt"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
@@ -1596,7 +1614,8 @@ msgstr "Update is bezig. Wacht AUB. Dit kan enkele minuten duren."
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Upgrade is klaar. Wilt u nu uw Dreambox rebooten?"
 
-#: ../lib/python/Screens/NetworkSetup.py:27 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:27
+#: ../data/
 msgid "Use DHCP"
 msgstr "automatisch IP verkrijgen (DHCP)"
 
@@ -1642,13 +1661,14 @@ msgstr "West"
 
 #: ../lib/python/Components/AVSwitch.py:81
 msgid "YPbPr"
-msgstr ""
+msgstr "YPbPr"
 
 #: ../lib/python/Screens/MediaPlayer.py:53
 msgid "Year:"
 msgstr "Jaar:"
 
-#: ../lib/python/Screens/Ci.py:22 ../data/
+#: ../lib/python/Screens/Ci.py:22
+#: ../data/
 msgid "Yes"
 msgstr "Ja"
 
@@ -1779,7 +1799,7 @@ msgstr "Maak afspeellijst leeg"
 
 #: ../lib/python/Components/ParentalControl.py:13
 msgid "complex"
-msgstr ""
+msgstr "complex"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:591
 msgid "continue"
@@ -1803,7 +1823,7 @@ msgstr "Verwijderen..."
 
 #: ../lib/python/Components/config.py:262
 msgid "disable"
-msgstr ""
+msgstr "zet uit"
 
 #: ../lib/python/Screens/ChannelSelection.py:115
 msgid "disable move mode"
@@ -1828,7 +1848,7 @@ msgstr "leeg/onbekent"
 
 #: ../lib/python/Components/config.py:262
 msgid "enable"
-msgstr ""
+msgstr "zet aan"
 
 #: ../lib/python/Screens/ChannelSelection.py:111
 msgid "enable bouquet edit"
@@ -1887,7 +1907,8 @@ msgstr "uur"
 msgid "hours"
 msgstr "uren"
 
-#: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
+#: ../lib/python/Screens/Ci.py:300
+#: ../lib/python/Screens/Ci.py:322
 msgid "init module"
 msgstr "Ci-Module initializeren"
 
@@ -1906,7 +1927,7 @@ msgstr "lijst"
 
 #: ../lib/python/Components/TunerInfo.py:69
 msgid "locked"
-msgstr ""
+msgstr "op slot"
 
 #: ../lib/python/Components/NimManager.py:678
 msgid "loopthrough to socket A"
@@ -1958,7 +1979,8 @@ msgstr "nee"
 msgid "no HDD found"
 msgstr "Geen Harddisk gevonden"
 
-#: ../lib/python/Screens/Ci.py:298 ../lib/python/Screens/Ci.py:320
+#: ../lib/python/Screens/Ci.py:298
+#: ../lib/python/Screens/Ci.py:320
 msgid "no module found"
 msgstr "Geen Ci-Modul gevonden"
 
@@ -1976,7 +1998,7 @@ msgstr "geen"
 
 #: ../lib/python/Components/TunerInfo.py:71
 msgid "not locked"
-msgstr ""
+msgstr "niet op slot"
 
 #: ../lib/python/Components/NimManager.py:679
 msgid "nothing connected"
@@ -2128,11 +2150,11 @@ msgstr "seconden."
 
 #: ../lib/python/Screens/ParentalControlSetup.py:96
 msgid "service pin"
-msgstr ""
+msgstr "service pin"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:98
 msgid "setup pin"
-msgstr ""
+msgstr "setup pin"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:397
 msgid "show EPG..."
@@ -2162,7 +2184,7 @@ msgstr "Timeshift starten"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1400
 msgid "stereo"
-msgstr ""
+msgstr "stereo"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1339
 msgid "stop recording"
@@ -2180,7 +2202,8 @@ msgstr "ga naar filelist"
 msgid "switch to playlist"
 msgstr "ga naar afspeellijst"
 
-#: ../lib/python/Screens/Wizard.py:236 ../lib/python/Screens/Wizard.py:237
+#: ../lib/python/Screens/Wizard.py:236
+#: ../lib/python/Screens/Wizard.py:237
 msgid "text"
 msgstr "Text"
 
@@ -2266,7 +2289,7 @@ msgstr "Streaminfo"
 
 #: ../data/
 msgid "Initialization..."
-msgstr ""
+msgstr "Formateren..."
 
 #: ../data/
 msgid "Network setup"
@@ -2300,7 +2323,7 @@ msgstr "Tuner instellingen"
 
 #: ../data/
 msgid "Startwizard"
-msgstr ""
+msgstr "Startwizard"
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2331,12 +2354,8 @@ msgid "NEXT"
 msgstr "VOLGENDE"
 
 #: ../data/
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"U heeft schijnbaar geen harddisk in u dreambox. dus backup naar een harddisk "
-"is niet mogelijk voor u."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "U heeft schijnbaar geen harddisk in u dreambox. dus backup naar een harddisk is niet mogelijk voor u."
 
 #: ../data/
 msgid "Deep Standby"
@@ -2359,12 +2378,8 @@ msgid "Sound"
 msgstr "Geluid"
 
 #: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Met de omhoog/omlaag Toetsen op u afstands bediening een optie uitkiezen. En "
-"daarna op OK druken."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Met de omhoog/omlaag Toetsen op u afstands bediening een optie uitkiezen. En daarna op OK druken."
 
 #: ../data/
 msgid "Do you want to view a tutorial?"
@@ -2380,7 +2395,7 @@ msgstr ""
 
 #: ../data/
 msgid "Infobar timeout"
-msgstr ""
+msgstr "Infobar timeout"
 
 #: ../data/
 msgid "Use wizard to set up basic features"
@@ -2407,8 +2422,7 @@ msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U heeft gekozen backup naar usb stick. U kunt beter naar een harddisk "
-"backuppen!\n"
+"U heeft gekozen backup naar usb stick. U kunt beter naar een harddisk backuppen!\n"
 "Druk op OK om de backup te starten."
 
 #: ../data/
@@ -2424,14 +2438,8 @@ msgid "Mute"
 msgstr "Mute"
 
 #: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Welkom bij de Image upgrade wizard. De wizard zal u assisteren bij het "
-"upgrade van de firmware in u Dreambox door een backup mogelijkheid voor u "
-"huidige settings en een korte uitleg hoe uw firmware te upgraden."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Welkom bij de Image upgrade wizard. De wizard zal u assisteren bij het upgrade van de firmware in u Dreambox door een backup mogelijkheid voor u huidige settings en een korte uitleg hoe uw firmware te upgraden."
 
 #: ../data/
 msgid "Keyboard Map"
@@ -2495,8 +2503,7 @@ msgstr ""
 "Welkom.\n"
 "\n"
 "De start wizard leid u door de basic instellingen van u dreambox.\n"
-"Druk op de OK toets van u afstands bediening om naar de volgende stap te "
-"gaan."
+"Druk op de OK toets van u afstands bediening om naar de volgende stap te gaan."
 
 #: ../data/
 msgid "RC Menu"
@@ -2576,14 +2583,10 @@ msgstr "Ja, laat de tutorial zien"
 
 #: ../data/
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U hebt gekozen om backuppen naar u compact flash kaart. de CF kaar moet in "
-"het slot zitten. Er word niet gecontroleerd of er wat op staat. Daarom  is "
-"het beter te backuppen naar u harddisk!\n"
+"U hebt gekozen om backuppen naar u compact flash kaart. de CF kaar moet in het slot zitten. Er word niet gecontroleerd of er wat op staat. Daarom  is het beter te backuppen naar u harddisk!\n"
 "Druk op OK aub backuppen te starten."
 
 #: ../data/
@@ -2604,11 +2607,11 @@ msgstr ""
 
 #: ../data/
 msgid "Harddisk setup"
-msgstr ""
+msgstr "Harddisk setup"
 
 #: ../data/
 msgid "Timeshift"
-msgstr ""
+msgstr "Timeshift"
 
 #: ../data/
 msgid "Downloadable plugins"
@@ -2647,24 +2650,16 @@ msgid "Language..."
 msgstr "Taal..."
 
 #: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Terug zetten van de settings is klaar. Druk op OK om de terug gezette "
-"settings te activeren."
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
+msgstr "Terug zetten van de settings is klaar. Druk op OK om de terug gezette settings te activeren."
 
 #: ../data/
 msgid "A/V Settings"
 msgstr "A/V-instellingen"
 
 #: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr ""
-"Door op de OK Knop van de afstands bediening te drukken, word de infobar "
-"zichtbaar"
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgstr "Door op de OK Knop van de afstands bediening te drukken, word de infobar zichtbaar"
 
 #: ../data/
 msgid "Service scan"
@@ -2676,17 +2671,11 @@ msgstr "Ja, doe nu een handmatigge scan"
 
 #: ../data/
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"U moet een PC verbonden hebben met u Dreambox. Als u meer informatie wilt "
-"hebben, dan kunt u naar  Website http://www.dm7025.de.\n"
-"De dreambox word nu uitgezet. Nadat u de update hebt uitgevoerd zoals op de "
-"website beschreven is, de nieuwe firmware zal u vragen of u de settings "
-"terug wilt zetten."
+"U moet een PC verbonden hebben met u Dreambox. Als u meer informatie wilt hebben, dan kunt u naar  Website http://www.dm7025.de.\n"
+"De dreambox word nu uitgezet. Nadat u de update hebt uitgevoerd zoals op de website beschreven is, de nieuwe firmware zal u vragen of u de settings terug wilt zetten."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2709,12 +2698,8 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"U heeft gekozen om  te backuppen naar u harddisk. Druk op OK aub om het "
-"backuppen te starten."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "U heeft gekozen om  te backuppen naar u harddisk. Druk op OK aub om het backuppen te starten."
 
 #: ../data/
 msgid "Timer selection"
@@ -2741,12 +2726,8 @@ msgid "Timer log"
 msgstr "Timer Log"
 
 #: ../data/
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"U backup is geslaagd. We gaan nu verder met uitleggen hoe het  upgrade "
-"process werkt."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "U backup is geslaagd. We gaan nu verder met uitleggen hoe het  upgrade process werkt."
 
 #: ../data/
 msgid "PiPSetup"
@@ -2793,10 +2774,8 @@ msgid "InfoBar"
 msgstr "InfoBar"
 
 #: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"De wizard kan u huidige settings backuppen. Wilt u nu een backup maken?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "De wizard kan u huidige settings backuppen. Wilt u nu een backup maken?"
 
 #: ../data/
 msgid "Exit wizard"
@@ -3009,12 +2988,8 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Wilt u de parental control optie aanzetten op u dreambox?"
 
 #: ../data/
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"Wanneer de start wizard klaar is,Moet u  een kanaal beveiligen. Kijk in u "
-"dreambox gebruiks aanwijzijng hoe dat te doen ."
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "Wanneer de start wizard klaar is,Moet u  een kanaal beveiligen. Kijk in u dreambox gebruiks aanwijzijng hoe dat te doen ."
 
 #: ../data/
 msgid "Harddisk standby after"
@@ -3034,126 +3009,86 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 
 #~ msgid "Harddisk..."
 #~ msgstr "Harddisk..."
-
 #~ msgid "Remember service pin"
 #~ msgstr "Onthoud service pin"
-
 #~ msgid "Cable provider"
 #~ msgstr "Kabel provider"
-
 #~ msgid "Classic"
 #~ msgstr "klassiek"
-
 #~ msgid "Default"
 #~ msgstr "Standaard"
-
 #~ msgid "Equal to Socket A"
 #~ msgstr "Gelijk aan tuner A"
-
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Loopthrough met Tuner A"
-
 #~ msgid "Nothing connected"
 #~ msgstr "Niks aangesloten"
-
 #~ msgid "Predefined satellite"
 #~ msgstr "Vooraf bepaalde satellite"
-
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Tweede kabel van Rotor"
-
 #~ msgid "Simple"
 #~ msgstr "Simpel"
-
 #~ msgid "Swap services"
 #~ msgstr "Swap services"
-
 #~ msgid "add bouquet..."
 #~ msgstr "Bouquet hinzufügen..."
-
 #~ msgid "remove bouquet"
 #~ msgstr "Bouquet entfernen"
-
 #~ msgid "remove service"
 #~ msgstr "Kanal löschen"
-
 #~ msgid "Hide error windows"
 #~ msgstr "Fehlerfenster verstecken"
-
 #~ msgid "Show Satposition"
 #~ msgstr "Zeige Satposition"
-
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Rotorbewegungen anzeigen"
-
 #~ msgid "Audio / Video"
 #~ msgstr "Audio / Video"
-
 #~ msgid "Record Splitsize"
 #~ msgstr "Splitgrösse der Aufnamen"
-
 #~ msgid "Auto show inforbar"
 #~ msgstr "Automatisch die Infobar anzeigen"
-
 #~ msgid "Network"
 #~ msgstr "Netzwerk"
-
 #~ msgid "Invert"
 #~ msgstr "Invertieren"
-
 #~ msgid "use power delta"
 #~ msgstr "Stromdelta verwenden"
-
 #~ msgid "Fast zapping"
 #~ msgstr "Schnelles Umschalten"
-
 #~ msgid "Usage Settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF-Modulator"
-
 #~ msgid "Enigma1 like radiomode"
 #~ msgstr "Enigma1 ähnlicher Radio Modus"
-
 #~ msgid "LCD"
 #~ msgstr "LCD"
-
 #~ msgid "Ask before zapping"
 #~ msgstr "Vor Umschalten nachfragen"
-
 #~ msgid "Parental Lock"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Skip confirmations"
 #~ msgstr "Bestätigungen überspringen"
-
 #~ msgid "Setup Lock"
 #~ msgstr "Setup-Sperre"
-
 #~ msgid "Expert Setup"
 #~ msgstr "Experteneinstellungen"
-
 #~ msgid "Language"
 #~ msgstr "Sprache"
-
 #~ msgid "Parental Control"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Multi bouquets"
 #~ msgstr "Mehrere Bouquets"
-
 #~ msgid "Usage settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "Timeshift not possible!"
 #~ msgstr "Timeshift nicht möglich!"
-
 #~ msgid "open service list"
 #~ msgstr "Kanalliste öffnen"
-
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshift"
-
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelliteneinstellungen"
+
