@@ -21,52 +21,14 @@ merge:
 	done
 
 enigma2.pot:
-	$(GETTEXT)	-d enigma2 -s -o enigma2.pot \
-			../lib/python/Screens/ScanSetup.py \
-			../lib/python/Screens/NetworkSetup.py \
-			../lib/python/Screens/Satconfig.py \
-			../lib/python/Screens/EventView.py \
-			../lib/python/Screens/Ci.py \
-			../lib/python/Screens/EpgSelection.py \
-			../lib/python/Screens/LanguageSelection.py \
-			../lib/python/Screens/About.py \
-			../lib/python/Screens/Setup.py \
-			../lib/python/Screens/HarddiskSetup.py \
-			../lib/python/Screens/MovieSelection.py \
-			../lib/python/Screens/InfoBar.py \
-			../lib/python/Screens/TimerEdit.py \
-			../lib/python/Screens/TimerEntry.py \
-			../lib/python/Screens/TimeDateInput.py \
-			../lib/python/Screens/Wizard.py \
-			../lib/python/Screens/InputBox.py \
-			../lib/python/Screens/ServiceScan.py \
-			../lib/python/Screens/InfoBarGenerics.py \
-			../lib/python/Screens/ChannelSelection.py \
-			../lib/python/Screens/PluginBrowser.py \
-			../lib/python/Screens/ParentalControlSetup.py \
-			../lib/python/Screens/Console.py \
-			../lib/python/Screens/MediaPlayer.py \
-			../lib/python/Screens/PiPSetup.py \
-			../lib/python/Screens/SubservicesQuickzap.py \
-			../lib/python/Screens/ServiceInfo.py \
-			../lib/python/Components/DiskInfo.py \
-			../lib/python/Components/ServiceScan.py \
-			../lib/python/Components/Lcd.py \
-			../lib/python/Components/SetupDevices.py \
-			../lib/python/Components/Language.py \
-			../lib/python/Components/ParentalControl.py \
-			../lib/python/Components/ParentalControlList.py \
-			../lib/python/Components/NimManager.py \
-			../lib/python/Components/TimerList.py \
-			../lib/python/Components/Network.py \
-			../lib/python/Components/RecordingConfig.py \
-			../lib/python/Components/UsageConfig.py \
+	$(GETTEXT)	-d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
+			../lib/python/Tools/*.py \
+			../*.py \
 			../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py \
 			../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py \
 			../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py \
-			../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py \
-			../lib/python/Tools/FuzzyDate.py \
-			../RecordTimer.py
+			../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py 
+
 	./xml2po.py	../data/ >> enigma2.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
 	$(RM) enigma2.pot
