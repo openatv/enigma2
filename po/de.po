@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 15:17+0200\n"
+"POT-Creation-Date: 2006-10-19 16:08+0200\n"
 "PO-Revision-Date: 2006-10-19 15:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
@@ -576,7 +576,7 @@ msgstr "Ende"
 msgid "EndTime"
 msgstr "Endzeit"
 
-#: ../lib/python/Screens/LanguageSelection.py:53
+#: ../lib/python/Screens/LanguageSelection.py:59
 #: ../lib/python/Components/Language.py:14
 #: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
@@ -776,7 +776,7 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:54 ../data/
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
@@ -1266,7 +1266,7 @@ msgstr "Benötigte Kanalsuch-Art"
 
 #: ../lib/python/Screens/ServiceInfo.py:78 ../data/
 msgid "Serviceinfo"
-msgstr "Service-Informationen"
+msgstr "Service-Infos"
 
 #: ../lib/python/Screens/ChannelSelection.py:754
 msgid "Services"
@@ -2275,7 +2275,7 @@ msgstr "Kanal"
 
 #: ../data/
 msgid "Initialization..."
-msgstr ""
+msgstr "Initialisierung"
 
 #: ../data/
 msgid "Network setup"
@@ -2284,10 +2284,6 @@ msgstr "Netzwerkeinstellungen"
 #: ../data/
 msgid "Games / Plugins"
 msgstr "Spiele / Erweiterungen"
-
-#: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr "Möchten Sie den Jugendschutz Ihrer Dreambox aktivieren?"
 
 #: ../data/
 msgid ""
@@ -2312,19 +2308,8 @@ msgid "Satconfig"
 msgstr "Sateinstellung"
 
 #: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+msgid "Startwizard"
 msgstr ""
-"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie "
-"weiterführende Informationen benötigen, besuchen Sie die Webseite http://www."
-"dm7025.de.\n"
-"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der "
-"Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
-"ob Sie die Einstellungen wiederherstellen wollen."
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2395,8 +2380,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "Nein, nicht tun"
+msgid "Setup"
+msgstr "Einstellungen"
 
 #: ../data/
 msgid "#000000"
@@ -2404,7 +2389,7 @@ msgstr ""
 
 #: ../data/
 msgid "Infobar timeout"
-msgstr "Serviceinformationen ausblenden nach"
+msgstr "Infobar Anzeigedauer"
 
 #: ../data/
 msgid "Use wizard to set up basic features"
@@ -2419,8 +2404,8 @@ msgid "#bab329"
 msgstr ""
 
 #: ../data/
-msgid "Startwizard"
-msgstr ""
+msgid "Sat / Dish Setup"
+msgstr "Sat-/Schüsseleinstellungen"
 
 #: ../data/
 msgid "#ffffff"
@@ -2437,12 +2422,16 @@ msgstr ""
 "starten."
 
 #: ../data/
-msgid "Mute"
-msgstr "Stummschaltung"
+msgid "The wizard is finished now."
+msgstr "Der Assistent ist nun beendet."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Kanalsuche"
+
+#: ../data/
+msgid "Mute"
+msgstr "Stummschaltung"
 
 #: ../data/
 msgid ""
@@ -2468,22 +2457,16 @@ msgid "Keyboard Setup"
 msgstr "Tastatureinstellung"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
-"\n"
-"Einstellungen für Tuner A"
-
-#: ../data/
 msgid "Dish"
 msgstr "Schüssel"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Nachlauf hinter Aufnahme"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Nein, nur die Dreambox starten"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2514,16 +2497,25 @@ msgid "Manual Scan"
 msgstr "Manuelle Suche"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Zeitgesteuerte Aufname"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
+"führen.\n"
+"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Fernbedienung"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "Nein, nur die Dreambox starten"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
@@ -2546,10 +2538,6 @@ msgid "Standby / Restart"
 msgstr "Standby / Neustart"
 
 #: ../data/
-msgid "Standby"
-msgstr "Standby"
-
-#: ../data/
 msgid "EPG Selection"
 msgstr "EPG Auswahl"
 
@@ -2570,12 +2558,12 @@ msgid "Brightness"
 msgstr "Helligkeit"
 
 #: ../data/
-msgid "Parental control services Editor"
-msgstr "Jugendschutz-Kanaleditor"
+msgid "Standby"
+msgstr "Standby"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Ja, eine weitere manuelle Suche durchführen"
+msgid "Parental control services Editor"
+msgstr "Jugendschutz-Kanaleditor"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2598,8 +2586,16 @@ msgid "Yes, view the tutorial"
 msgstr "Ja, Tutorial anzeigen"
 
 #: ../data/
-msgid "Show infobar on skip forward/backward"
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
 msgstr ""
+"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits "
+"im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf "
+"Festplatte!\n"
+"Bitte OK drücken, um die Sicherung trotzdem zu starten."
 
 #: ../data/
 msgid "Color Format"
@@ -2618,10 +2614,6 @@ msgid "#80000000"
 msgstr ""
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Harddisk setup"
 msgstr "Festplatten-Einstellungen"
 
@@ -2634,6 +2626,10 @@ msgid "Downloadable plugins"
 msgstr "Herunterladbare Erweiterungen"
 
 #: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
+
+#: ../data/
 msgid "Subservices"
 msgstr "Unterkanäle"
 
@@ -2644,10 +2640,6 @@ msgstr "Jugendschutz-Einstellungen"
 #: ../data/
 msgid "Timezone"
 msgstr "Zeitzone"
-
-#: ../data/
-msgid "Message"
-msgstr "Nachricht"
 
 #: ../data/
 msgid "About..."
@@ -2688,8 +2680,23 @@ msgid "Service scan"
 msgstr "Kanalsuche"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "Der Assistent ist nun beendet."
+msgid "Yes, do another manual scan now"
+msgstr "Ja, eine weitere manuelle Suche durchführen"
+
+#: ../data/
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie "
+"weiterführende Informationen benötigen, besuchen Sie die Webseite http://www."
+"dm7025.de.\n"
+"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der "
+"Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
+"ob Sie die Einstellungen wiederherstellen wollen."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2728,16 +2735,8 @@ msgid "Repeat"
 msgstr "Wiederholung"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits "
-"im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf "
-"Festplatte!\n"
-"Bitte OK drücken, um die Sicherung trotzdem zu starten."
+msgid "Show infobar on skip forward/backward"
+msgstr "Zeige Infobar beim Spulen"
 
 #: ../data/
 msgid "Network Setup"
@@ -2819,6 +2818,10 @@ msgstr "Assistenten beenden"
 #: ../data/
 msgid "Media player"
 msgstr "Media Player"
+
+#: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Ja, jetzt herunterfahren."
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2941,21 +2944,12 @@ msgid "Alpha"
 msgstr "Transparenz"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Willkommen.\n"
-"\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
-"Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+msgid "Timer Edit"
+msgstr "Zeitgesteuerte Aufname"
 
 #: ../data/
-msgid "Setup"
-msgstr "Einstellungen"
+msgid "No, do nothing."
+msgstr "Nein, nichts tun"
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2968,6 +2962,10 @@ msgstr "Über"
 #: ../data/
 msgid "config menu"
 msgstr "Konfigurationsmenü"
+
+#: ../data/
+msgid "Message"
+msgstr "Nachricht"
 
 #: ../data/
 msgid "Finetune"
@@ -2984,10 +2982,6 @@ msgstr "Zeit/Datum Eingabe"
 #: ../data/
 msgid "AGC:"
 msgstr "AGC:"
-
-#: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Sat-/Schüsseleinstellungen"
 
 #: ../data/
 msgid "What do you want to scan?"
@@ -3014,8 +3008,18 @@ msgid "NOW"
 msgstr "JETZT"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Ja, jetzt herunterfahren."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Mit den rechts-/links-Tasten können Sie Optionen ändern.\n"
+"\n"
+"Einstellungen für Tuner A"
+
+#: ../data/
+msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr "Möchten Sie den Jugendschutz Ihrer Dreambox aktivieren?"
 
 #: ../data/
 msgid ""
