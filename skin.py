@@ -53,7 +53,7 @@ config.skin.primary_skin = ConfigText(default = "skin.xml")
 
 try:
 	loadSkin(config.skin.primary_skin.value)
-except SkinError, err:
+except (SkinError, IOError), err:
 	print "SKIN ERROR:", err
 	print "defaulting to standard skin..."
 	loadSkin('skin.xml')
