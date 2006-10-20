@@ -17,7 +17,7 @@ default: enigma2.pot $(LANGPO) merge $(LANGMO)
 
 merge:
 	for lang in $(LANGS); do \
-		msgmerge -N -U $$lang.po enigma2.pot; \
+		msgmerge -s -N -U $$lang.po enigma2.pot; \
 	done
 
 enigma2.pot:
