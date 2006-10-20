@@ -10,16 +10,17 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonConfigContent()
 		self.l.setSeperation(100)
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.timeout)
 		self.list = list
 		self.onSelectionChanged = [ ]
 		self.current = None
 		self.help_window = None
 		self.setHelpWindowSession(session)
 
-	def execEnd(self):
-		self.timer = eTimer()
+	def execBegin(self):
 		self.timer.timeout.get().append(self.timeout)
+
+	def execEnd(self):
+		self.timer.timeout.get().remove(self.timeout)
 
 	def setHelpWindowSession(self, session):
 		assert self.help_window is None, "you can't move a help window to another session"
@@ -91,7 +92,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.handleKey(KEY_TIMEOUT)
 
 class ConfigListScreen:
-	def __init__(self, list, session = None):
+	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "TextInputActions"],
 		{
 			"ok": self.keyOK,
@@ -111,18 +112,27 @@ class ConfigListScreen:
 		}, -1) # to prevent left/right overriding the listbox
 		
 		self["config"] = ConfigList(list, session = session)
+		if on_change is not None:
+			self.__changed = on_change
+		else:
+			self.__changed = lambda: None
 
 	def keyOK(self):
 		self["config"].handleKey(KEY_OK)
 
 	def keyLeft(self):
 		self["config"].handleKey(KEY_LEFT)
+		self.__changed()
 
 	def keyRight(self):
 		self["config"].handleKey(KEY_RIGHT)
+		self.__changed()
 
 	def keyDelete(self):
 		self["config"].handleKey(KEY_DELETE)
+		self.__changed()
 
 	def keyNumberGlobal(self, number):
 		self["config"].handleKey(KEY_0 + number)
+		self.__changed()
+
