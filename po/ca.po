@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 15:17+0200\n"
-"PO-Revision-Date: 2006-10-18 14:34+0200\n"
+"POT-Creation-Date: 2006-10-20 13:44+0200\n"
+"PO-Revision-Date: 2006-10-20 10:14+0200\n"
 "Last-Translator: Oriol Pellicer i Sabrià <oriol@elsud.org>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -203,7 +203,7 @@ msgstr "Avançat"
 
 #: ../lib/python/Screens/TimerEntry.py:177
 msgid "After event"
-msgstr "Després de l'event"
+msgstr "Després del programa"
 
 #: ../lib/python/Screens/MediaPlayer.py:51
 msgid "Album:"
@@ -434,7 +434,7 @@ msgstr "Descripció"
 
 #: ../lib/python/Screens/About.py:35
 msgid "Detected HDD:"
-msgstr "HDD detectat:"
+msgstr "Disc dur detectat:"
 
 #: ../lib/python/Screens/About.py:17
 msgid "Detected NIMs:"
@@ -576,7 +576,7 @@ msgstr "Fi"
 msgid "EndTime"
 msgstr "HoraFi"
 
-#: ../lib/python/Screens/LanguageSelection.py:53
+#: ../lib/python/Screens/LanguageSelection.py:59
 #: ../lib/python/Components/Language.py:14
 #: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
@@ -772,7 +772,7 @@ msgstr "LOF/H"
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:54 ../data/
 msgid "Language selection"
 msgstr "Selecció d'idioma"
 
@@ -970,7 +970,7 @@ msgstr ""
 #: ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
-msgstr "D'acord"
+msgstr "Bé"
 
 #: ../lib/python/Components/NimManager.py:750
 msgid "Off"
@@ -1026,7 +1026,7 @@ msgstr "Introdueix un nom per al nou marcador"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:28
 msgid "Please enter the correct pin code"
-msgstr "Sisplau introdueix el pin correcte"
+msgstr "Sisplau introdueix el pin"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:232
 msgid "Please enter the old pin code"
@@ -1086,7 +1086,7 @@ msgstr "Motor"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
 msgid "Positioner fine movement"
-msgstr "Moviment delicat del motor"
+msgstr "Moviment fi del motor"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
 msgid "Positioner movement"
@@ -2280,10 +2280,6 @@ msgid "Games / Plugins"
 msgstr "Jocs / plugins"
 
 #: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr ""
-
-#: ../data/
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
@@ -2303,18 +2299,8 @@ msgid "Satconfig"
 msgstr "Configuració satèl·lit"
 
 #: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"Et caldrà un PC connectat a la dreambox. Si necesites més instruccions, "
-"consulta la pàgina web http://www.dm7025.de.\n"
-"Ara s'apagarà la dreambox. Després d'haver fer l'actualització segons les "
-"instruccions de la web,  el nou firmware et demanarà actualitzar la "
-"configuració."
+msgid "Startwizard"
+msgstr "Assistent d'inici"
 
 #: ../data/
 msgid "Where do you want to backup your settings?"
@@ -2385,8 +2371,8 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vols veure un tutorial?"
 
 #: ../data/
-msgid "No, do nothing."
-msgstr "No, no cal."
+msgid "Setup"
+msgstr "Configuració"
 
 #: ../data/
 msgid "#000000"
@@ -2409,8 +2395,8 @@ msgid "#bab329"
 msgstr "#bab329"
 
 #: ../data/
-msgid "Startwizard"
-msgstr "Assistent d'inici"
+msgid "Sat / Dish Setup"
+msgstr "Configuració antena"
 
 #: ../data/
 msgid "#ffffff"
@@ -2426,12 +2412,16 @@ msgstr ""
 "Prem OK per a començar el backup."
 
 #: ../data/
-msgid "Mute"
-msgstr "Silenci"
+msgid "The wizard is finished now."
+msgstr "L'assistent ha finalitzat."
 
 #: ../data/
 msgid "Service Searching"
 msgstr "Buscar canals"
+
+#: ../data/
+msgid "Mute"
+msgstr "Silenci"
 
 #: ../data/
 msgid ""
@@ -2457,22 +2447,16 @@ msgid "Keyboard Setup"
 msgstr "Configuració teclat"
 
 #: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Utilitza els botons dreta/esquerra per a canviar una opció.\n"
-"\n"
-"Sisplau configura el sintonitzador A"
-
-#: ../data/
 msgid "Dish"
 msgstr "Antena"
 
 #: ../data/
 msgid "Margin after record"
 msgstr "Marge després de gravar"
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "No, només arrenca la Dreambox"
 
 #: ../data/
 msgid "#ffffffff"
@@ -2504,16 +2488,25 @@ msgid "Manual Scan"
 msgstr "Recerca manual"
 
 #: ../data/
-msgid "Timer Edit"
-msgstr "Editar hora"
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Benvingut.\n"
+"\n"
+"Aquest asistent et guiarà a través de la configuració bàsica de la "
+"Dreambox.\n"
+"Prem el botó OK del comandament a distància per anar al següent pas."
 
 #: ../data/
 msgid "RC Menu"
 msgstr "Menú RC"
 
 #: ../data/
-msgid "No, just start my dreambox"
-msgstr "No, només arrenca la Dreambox"
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../data/
 msgid "Network..."
@@ -2536,10 +2529,6 @@ msgid "Standby / Restart"
 msgstr "Repòs / Reiniciar"
 
 #: ../data/
-msgid "Standby"
-msgstr "Repòs"
-
-#: ../data/
 msgid "EPG Selection"
 msgstr "Selecció EPG"
 
@@ -2560,12 +2549,12 @@ msgid "Brightness"
 msgstr "Brillantor"
 
 #: ../data/
-msgid "Parental control services Editor"
-msgstr "Editor dels canals del control parental"
+msgid "Standby"
+msgstr "Repòs"
 
 #: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Si, fer una altra recerca manual ara"
+msgid "Parental control services Editor"
+msgstr "Editor dels canals del control parental"
 
 #: ../data/
 msgid "Activate network settings"
@@ -2588,8 +2577,16 @@ msgid "Yes, view the tutorial"
 msgstr "Si, veure el tutorial"
 
 #: ../data/
-msgid "Show infobar on skip forward/backward"
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
 msgstr ""
+"Has escollit fer el backup a una tarja Compact Flash. La tarja ha d'estar "
+"introduïda correctament, però no es comprova si realment funciona, per la "
+"qual cosa es recomana fer els backups al disc dur.\n"
+"Prem OK per a començar el backup ara."
 
 #: ../data/
 msgid "Color Format"
@@ -2608,10 +2605,6 @@ msgid "#80000000"
 msgstr "#80000000"
 
 #: ../data/
-msgid "SNR:"
-msgstr "SNR:"
-
-#: ../data/
 msgid "Harddisk setup"
 msgstr ""
 
@@ -2624,6 +2617,10 @@ msgid "Downloadable plugins"
 msgstr "Plugins descarregables"
 
 #: ../data/
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
+
+#: ../data/
 msgid "Subservices"
 msgstr "Subserveis"
 
@@ -2634,10 +2631,6 @@ msgstr "Configuració control parental"
 #: ../data/
 msgid "Timezone"
 msgstr "Zona horària"
-
-#: ../data/
-msgid "Message"
-msgstr "Missatge"
 
 #: ../data/
 msgid "About..."
@@ -2677,8 +2670,22 @@ msgid "Service scan"
 msgstr "Buscar canals"
 
 #: ../data/
-msgid "The wizard is finished now."
-msgstr "L'assistent ha finalitzat."
+msgid "Yes, do another manual scan now"
+msgstr "Si, fer una altra recerca manual ara"
+
+#: ../data/
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"Et caldrà un PC connectat a la dreambox. Si necesites més instruccions, "
+"consulta la pàgina web http://www.dm7025.de.\n"
+"Ara s'apagarà la dreambox. Després d'haver fer l'actualització segons les "
+"instruccions de la web,  el nou firmware et demanarà actualitzar la "
+"configuració."
 
 #: ../data/
 msgid "LCD Setup"
@@ -2716,16 +2723,8 @@ msgid "Repeat"
 msgstr "Repetir"
 
 #: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
+msgid "Show infobar on skip forward/backward"
 msgstr ""
-"Has escollit fer el backup a una tarja Compact Flash. La tarja ha d'estar "
-"introduïda correctament, però no es comprova si realment funciona, per la "
-"qual cosa es recomana fer els backups al disc dur.\n"
-"Prem OK per a començar el backup ara."
 
 #: ../data/
 msgid "Network Setup"
@@ -2804,6 +2803,10 @@ msgstr "Sortir de l'assistent"
 #: ../data/
 msgid "Media player"
 msgstr "Reproductor"
+
+#: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Si, apaga ara."
 
 #: ../data/
 msgid "Timer sanity error"
@@ -2926,21 +2929,12 @@ msgid "Alpha"
 msgstr "Alpha"
 
 #: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Benvingut.\n"
-"\n"
-"Aquest asistent et guiarà a través de la configuració bàsica de la "
-"Dreambox.\n"
-"Prem el botó OK del comandament a distància per anar al següent pas."
+msgid "Timer Edit"
+msgstr "Editar hora"
 
 #: ../data/
-msgid "Setup"
-msgstr "Configuració"
+msgid "No, do nothing."
+msgstr "No, no cal."
 
 #: ../data/
 msgid "This is unsupported at the moment."
@@ -2953,6 +2947,10 @@ msgstr "Quant a"
 #: ../data/
 msgid "config menu"
 msgstr "menú configuració"
+
+#: ../data/
+msgid "Message"
+msgstr "Missatge"
 
 #: ../data/
 msgid "Finetune"
@@ -2969,10 +2967,6 @@ msgstr "Entrada Hora/Data"
 #: ../data/
 msgid "AGC:"
 msgstr "AGC:"
-
-#: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Configuració antena"
 
 #: ../data/
 msgid "What do you want to scan?"
@@ -2999,8 +2993,18 @@ msgid "NOW"
 msgstr "ARA"
 
 #: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Si, apaga ara."
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Utilitza els botons dreta/esquerra per a canviar una opció.\n"
+"\n"
+"Sisplau configura el sintonitzador A"
+
+#: ../data/
+msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr ""
 
 #: ../data/
 msgid ""
@@ -3024,8 +3028,8 @@ msgstr "Reproductor"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vols fer una altra recerca manual?"
 
-#~ msgid "Harddisk..."
-#~ msgstr "Disc dur..."
-
 #~ msgid "Remember service pin"
 #~ msgstr "Recordar pin del canal"
+
+#~ msgid "Harddisk..."
+#~ msgstr "Disc dur..."
