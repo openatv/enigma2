@@ -3,5 +3,5 @@ libopen:
 
 all: libopen
 
-install:
+install: all
 	$(INSTALL) libopen.so.0.0 $(DESTDIR)/usr/lib
