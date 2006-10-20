@@ -936,8 +936,8 @@ class InfoBarTimeshift:
 		print "enable timeshift"
 		ts = self.getTimeshift()
 		if ts is None:
-#			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
-#			print "no ts interface"
+			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
+			print "no ts interface"
 			return 0;
 		
 		if self.timeshift_enabled:
