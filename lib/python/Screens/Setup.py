@@ -92,7 +92,7 @@ class Setup(ConfigListScreen, Screen):
 				"save": self.keySave,
 			}, -2)
 
-		ConfigListScreen.__init__(self, list, session = session)
+		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 
 		self.changedEntry()
 
@@ -105,7 +105,7 @@ class Setup(ConfigListScreen, Screen):
 		return self["config"].getCurrent()[0]
 
 	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
+		return str(self["config"].getCurrent()[1].getText())
 
 	def createSummary(self):
 		return SetupSummary
@@ -142,7 +142,14 @@ class Setup(ConfigListScreen, Screen):
 		self.close()
 
 	def keyCancel(self):
-		self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		is_changed = False
+		for x in self["config"].list:
+			is_changed |= x[1].isChanged()
+		
+		if is_changed:
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
 
 def getSetupTitle(id):
 	xmldata = setupdom.childNodes[0].childNodes

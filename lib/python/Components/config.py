@@ -67,6 +67,11 @@ class ConfigElement(object):
 	def cancel(self):
 		self.load()
 
+	def isChanged(self):
+		if self.saved_value is None and self.value == self.default:
+			return False
+		return self.tostring(self.value) != self.saved_value
+
 	def changed(self):
 		for x in self.notifiers:
 			x(self)
@@ -188,8 +193,11 @@ class ConfigSelection(ConfigElement):
 		elif key == KEY_RIGHT:
 			self.value = self.choices[(i + 1) % nchoices]
 
+	def getText(self):
+		return _(self.description[self.value])
+
 	def getMulti(self, selected):
-		return ("text", self.description[self.value])
+		return ("text", _(self.description[self.value]))
 
 	# HTML
 	def getHTML(self, id):
@@ -219,6 +227,9 @@ class ConfigBoolean(ConfigElement):
 	def handleKey(self, key):
 		if key in [KEY_LEFT, KEY_RIGHT]:
 			self.value = not self.value
+
+	def getText(self):
+		return _(self.descriptions[self.value])
 
 	def getMulti(self, selected):
 		return ("text", _(self.descriptions[self.value]))
@@ -273,6 +284,10 @@ class ConfigDateTime(ConfigElement):
 			self.value = self.value - self.increment
 		if key == KEY_RIGHT:
 			self.value = self.value + self.increment
+
+
+	def getText(self):
+		return time.strftime(self.formatstring, time.localtime(self.value))
 
 	def getMulti(self, selected):
 		return ("text", time.strftime(self.formatstring, time.localtime(self.value)))
@@ -376,8 +391,8 @@ class ConfigSequence(ConfigElement):
 		
 			self.validate()
 			self.changed()
-			
-	def getMulti(self, selected):
+	
+	def genText(self):
 		value = ""
 		mPos = self.marked_pos
 		num = 0;
@@ -392,7 +407,14 @@ class ConfigSequence(ConfigElement):
 			else:
 				value += (self.censor_char * len(str(self.limits[num][1])))
 			num += 1
-
+		return (value, mPos)
+		
+	def getText(self):
+		(value, mPos) = self.genText()
+		return value
+	
+	def getMulti(self, selected):
+		(value, mPos) = self.genText()
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
 		if self.enabled:
@@ -527,6 +549,9 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
+	def getText(self):
+		return self.value
+
 	def getMulti(self, selected):
 		return ("mtext"[1-selected:], self.value, [self.marked_pos])
 
@@ -566,6 +591,9 @@ class ConfigSlider(ConfigElement):
 
 		self.checkValues()
 		self.changed()
+
+	def getText(self):
+		return "%d / %d" % (self.value, self.max)
 
 	def getMulti(self, selected):
 		self.checkValues()
@@ -829,7 +857,7 @@ class ConfigFile:
 			print "unable to load config (%s), assuming defaults..." % str(e)
 	
 	def save(self):
-		config.save()
+#		config.save()
 		config.saveToFile(self.CONFIG_FILE)
 	
 	def __resolveValue(self, pickles, cmap):
