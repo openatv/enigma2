@@ -234,7 +234,7 @@ class PositionerSetup(Screen):
 			self.diseqccommand("moveWest", 0xFF) # one step
 		elif entry == "storage":
 			print "store at position", int(self.positioner_storage.value)
-			self.diseqccommand("store", int(self.positioner_storage.value)
+			self.diseqccommand("store", int(self.positioner_storage.value))
 		elif entry == "limits":
 			self.diseqccommand("limitWest")
 	
