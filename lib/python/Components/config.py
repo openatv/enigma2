@@ -886,8 +886,9 @@ configfile = ConfigFile()
 
 configfile.load()
 
-def getConfigListEntry(desc, config):
-	return (desc, config)
+def getConfigListEntry(*args):
+	assert len(args) > 1, "getConfigListEntry needs a minimum of two arguments (descr, configElement)"
+	return args
 
 #def _(x):
 #	return x
