@@ -12,6 +12,7 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/iso639_language_descriptor.h>
 #include <dvbsi++/stream_identifier_descriptor.h>
+#include <dvbsi++/subtitling_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -83,6 +84,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 		serviceEvent(eventNoPMT);
 	else
 	{
+		m_have_cached_program = false;
 		serviceEvent(eventNewProgramInfo);
 		eEPGCache::getInstance()->PMTready(this);
 		if (!m_pvr_channel) // don't send campmt to camd.socket for playbacked services
@@ -164,6 +166,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	int cached_apid_mpeg = -1;
 	int cached_vpid = -1;
 	int cached_tpid = -1;
+	int ret = -1;
 
 	program.videoStreams.clear();
 	program.audioStreams.clear();
@@ -181,136 +184,151 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 	if ( ((m_service && m_service->usePMT()) || !m_service) && !m_PMT.getCurrent(ptr))
 	{
-		eDVBTableSpec table_spec;
-		ptr->getSpec(table_spec);
-		program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
-		std::vector<ProgramMapSection*>::const_iterator i;
-		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
+		if (m_have_cached_program)
 		{
-			const ProgramMapSection &pmt = **i;
-			program.pcrPid = pmt.getPcrPid();
-			
-			ElementaryStreamInfoConstIterator es;
-			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
+			program = m_cached_program;
+			ret = 0;
+		}
+		else
+		{
+			eDVBTableSpec table_spec;
+			ptr->getSpec(table_spec);
+			program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
+			std::vector<ProgramMapSection*>::const_iterator i;
+			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
-				int isaudio = 0, isvideo = 0;
-				videoStream video;
-				audioStream audio;
-				audio.component_tag=-1;
-				video.component_tag=-1;
-
-				video.pid = (*es)->getPid();
-				audio.pid = (*es)->getPid();
-				video.type = videoStream::vtMPEG2;
-
-				switch ((*es)->getType())
+				const ProgramMapSection &pmt = **i;
+				program.pcrPid = pmt.getPcrPid();
+			
+				ElementaryStreamInfoConstIterator es;
+				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 				{
-				case 0x1b: // AVC Video Stream (MPEG4 H264)
-					video.type = videoStream::vtMPEG4_H264;
-				case 0x01: // MPEG 1 video
-				case 0x02: // MPEG 2 video
-					isvideo = 1;
-					//break; fall through !!!
-				case 0x03: // MPEG 1 audio
-				case 0x04: // MPEG 2 audio:
-					if (!isvideo)
+					int isaudio = 0, isvideo = 0;
+					videoStream video;
+					audioStream audio;
+					audio.component_tag=video.component_tag=-1;
+					video.type = videoStream::vtMPEG2;
+
+					switch ((*es)->getType())
 					{
-						isaudio = 1;
-						audio.type = audioStream::atMPEG;
-					}
-					//break; fall through !!!
-				case 0x06: // PES Private
-						/* PES private can contain AC-3, DTS or lots of other stuff.
-						   check descriptors to get the exact type. */
-					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
-							desc != (*es)->getDescriptors()->end(); ++desc)
-					{
-						switch ((*desc)->getTag())
+					case 0x1b: // AVC Video Stream (MPEG4 H264)
+						video.type = videoStream::vtMPEG4_H264;
+					case 0x01: // MPEG 1 video
+					case 0x02: // MPEG 2 video
+						isvideo = 1;
+						//break; fall through !!!
+					case 0x03: // MPEG 1 audio
+					case 0x04: // MPEG 2 audio:
+						if (!isvideo)
 						{
-						case TELETEXT_DESCRIPTOR:
-							if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
-								program.textPid = (*es)->getPid();
-							break;
-						case DTS_DESCRIPTOR:
-							if (!isvideo)
+							isaudio = 1;
+							audio.type = audioStream::atMPEG;
+						}
+						//break; fall through !!!
+					case 0x06: // PES Private
+							/* PES private can contain AC-3, DTS or lots of other stuff.
+							   check descriptors to get the exact type. */
+						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+								desc != (*es)->getDescriptors()->end(); ++desc)
+						{
+							switch ((*desc)->getTag())
 							{
+							case SUBTITLING_DESCRIPTOR:
+							{
+								SubtitlingDescriptor *d = (SubtitlingDescriptor*)(*desc);
+								const SubtitlingList *list = d->getSubtitlings();
+								subtitleStream s;
+								s.pid = (*es)->getPid();
+								for (SubtitlingConstIterator it(list->begin()); it != list->end(); ++it)
+								{
+									s.subtitling_type = (*it)->getSubtitlingType();
+									s.composition_page_id = (*it)->getCompositionPageId();
+									s.ancillary_page_id = (*it)->getAncillaryPageId();
+									s.language_code = (*it)->getIso639LanguageCode();
+									program.subtitleStreams.push_back(s);
+								}
+								break;
+							}
+							case TELETEXT_DESCRIPTOR:
+								if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
+									program.textPid = (*es)->getPid();
+								break;
+							case DTS_DESCRIPTOR:
 								isaudio = 1;
 								audio.type = audioStream::atDTS;
-							}
-							break;
-						case AAC_DESCRIPTOR:
-							if (!isvideo)
-							{
+								break;
+							case AAC_DESCRIPTOR:
 								isaudio = 1;
 								audio.type = audioStream::atAAC;
-							}
-							break;
-						case AC3_DESCRIPTOR:
-							if (!isvideo)
-							{
+								break;
+							case AC3_DESCRIPTOR:
 								isaudio = 1;
 								audio.type = audioStream::atAC3;
-							}
-							break;
-						case ISO_639_LANGUAGE_DESCRIPTOR:
-							if (!isvideo)
+								break;
+							case ISO_639_LANGUAGE_DESCRIPTOR:
+								if (!isvideo)
+								{
+									const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
+										/* use last language code */
+									for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
+										audio.language_code = (*i)->getIso639LanguageCode();
+								}
+								break;
+							case STREAM_IDENTIFIER_DESCRIPTOR:
+								audio.component_tag =
+									video.component_tag =
+										((StreamIdentifierDescriptor*)*desc)->getComponentTag();
+								break;
+							case CA_DESCRIPTOR:
 							{
-								const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
-									/* use last language code */
-								for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
-									audio.language_code = (*i)->getIso639LanguageCode();
+								CaDescriptor *descr = (CaDescriptor*)(*desc);
+								program.caids.insert(descr->getCaSystemId());
+								break;
 							}
-							break;
-						case STREAM_IDENTIFIER_DESCRIPTOR:
-							audio.component_tag =
-								video.component_tag =
-									((StreamIdentifierDescriptor*)*desc)->getComponentTag();
-							break;
-						case CA_DESCRIPTOR:
+							}
+						}
+						break;
+					}
+					if (isaudio)
+					{
+						audio.pid = (*es)->getPid();
+						if ( !program.audioStreams.empty() &&
+							( audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg) )
 						{
-							CaDescriptor *descr = (CaDescriptor*)(*desc);
-							program.caids.insert(descr->getCaSystemId());
-							break;
+							program.audioStreams.push_back(program.audioStreams[0]);
+							program.audioStreams[0] = audio;
 						}
-						}
+						else
+							program.audioStreams.push_back(audio);
 					}
-					break;
-				}
-				if (isaudio)
-				{
-					if ( !program.audioStreams.empty() &&
-						( audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg) )
+					else if (isvideo)
 					{
-						program.audioStreams.push_back(program.audioStreams[0]);
-						program.audioStreams[0] = audio;
+						video.pid = (*es)->getPid();
+						if ( !program.videoStreams.empty() && video.pid == cached_vpid )
+						{
+							program.videoStreams.push_back(program.videoStreams[0]);
+							program.videoStreams[0] = video;
+						}
+						else
+							program.videoStreams.push_back(video);
 					}
 					else
-						program.audioStreams.push_back(audio);
+						continue;
 				}
-				else if (isvideo)
+				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+					desc != pmt.getDescriptors()->end(); ++desc)
 				{
-					if ( !program.videoStreams.empty() && video.pid == cached_vpid )
+					if ((*desc)->getTag() == CA_DESCRIPTOR)
 					{
-						program.videoStreams.push_back(program.videoStreams[0]);
-						program.videoStreams[0] = video;
+						CaDescriptor *descr = (CaDescriptor*)(*desc);
+						program.caids.insert(descr->getCaSystemId());
 					}
-					else
-						program.videoStreams.push_back(video);
-				}
-				else
-					continue;
-			}
-			for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
-				desc != pmt.getDescriptors()->end(); ++desc)
-			{
-				if ((*desc)->getTag() == CA_DESCRIPTOR)
-				{
-					CaDescriptor *descr = (CaDescriptor*)(*desc);
-					program.caids.insert(descr->getCaSystemId());
 				}
 			}
+			ret = 0;
+			m_cached_program = program;
+			m_have_cached_program = true;
 		}
-		return 0;
 	} else if ( m_service && !m_service->cacheEmpty() )
 	{
 		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
@@ -356,9 +374,9 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
 			program.caids.insert(*it);
 		if ( cnt )
-			return 0;
+			ret = 0;
 	}
-	return -1;
+	return ret;
 }
 
 int eDVBServicePMTHandler::getChannel(eUsePtr<iDVBChannel> &channel)
@@ -517,7 +535,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 void eDVBServicePMTHandler::free()
 {
-	eDVBScan *tmp = m_dvb_scan;  // do a copy on stack (recursive call of free()) !!!
 	m_dvb_scan = 0;
 	delete m_dvb_scan;
 

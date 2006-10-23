@@ -73,7 +73,7 @@ eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux)
 	setPage(-1);
 	
 	if (demux->createPESReader(eApp, m_pes_reader))
-		eDebug("failed to create PES reader!");
+		eDebug("failed to create teletext subtitle PES reader!");
 	else
 		m_pes_reader->connectRead(slot(*this, &eDVBTeletextParser::processData), m_read_connection);
 }
