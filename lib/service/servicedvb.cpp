@@ -1640,9 +1640,11 @@ void eDVBServicePlay::switchToLive()
 	m_decode_demux = 0;
 	m_teletext_parser = 0;
 	m_radiotext_parser = 0;
+	m_subtitle_parser = 0;
+	m_new_dvb_subtitle_region_connection = 0;
 	m_new_subtitle_page_connection = 0;
 	m_radiotext_updated_connection = 0;
-	
+
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 	m_timeshift_active = 0;
@@ -1661,7 +1663,9 @@ void eDVBServicePlay::switchToTimeshift()
 	m_decoder = 0;
 	m_teletext_parser = 0;
 	m_radiotext_parser = 0;
+	m_subtitle_parser = 0;
 	m_new_subtitle_page_connection = 0;
+	m_new_dvb_subtitle_region_connection = 0;
 	m_radiotext_updated_connection = 0;
 
 	m_timeshift_active = 1;
@@ -1751,6 +1755,8 @@ void eDVBServicePlay::updateDecoder()
 		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 #endif
+		m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
+		m_subtitle_parser->connectNewRegion(slot(*this, &eDVBServicePlay::newDVBSubtitleRegion), m_new_dvb_subtitle_region_connection);
 	}
 
 	if (m_decoder)
@@ -1812,6 +1818,9 @@ void eDVBServicePlay::updateDecoder()
 
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
+
+		if (m_subtitle_parser && program.subtitleStreams.size() > 0)
+			m_subtitle_parser->start(program.subtitleStreams[0].pid);
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
@@ -2077,10 +2086,12 @@ void eDVBServicePlay::checkSubtitleTiming()
 
 void eDVBServicePlay::newDVBSubtitleRegion(const eDVBSubtitleRegion &p)
 {
+	eDebug("new dvb subtitle region");
 }
 
 void eDVBServicePlay::checkDvbSubtitleTiming()
 {
+	eDebug("check dvb subtitle timing");
 }
 
 int eDVBServicePlay::getAC3Delay()

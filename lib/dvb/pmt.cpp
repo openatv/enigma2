@@ -245,6 +245,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									s.composition_page_id = (*it)->getCompositionPageId();
 									s.ancillary_page_id = (*it)->getAncillaryPageId();
 									s.language_code = (*it)->getIso639LanguageCode();
+									eDebug("add subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
+										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
 									program.subtitleStreams.push_back(s);
 								}
 								break;

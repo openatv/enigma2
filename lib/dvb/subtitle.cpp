@@ -33,7 +33,7 @@ int bitstream_get(struct bitstream *bit)
 	return val;
 }
 
-static int extract_pts(pts_t &pts, const __u8 *pkt)
+static int extract_pts(pts_t &pts, __u8 *pkt)
 {
 	pkt += 7;
 	int flags = *pkt++;
@@ -54,7 +54,7 @@ static int extract_pts(pts_t &pts, const __u8 *pkt)
 		return -1;
 }
 
-void eDVBSubtitleParser::subtitle_process_line(struct subtitle_page *page, int object_id, int line, const __u8 *data, int len)
+void eDVBSubtitleParser::subtitle_process_line(struct subtitle_page *page, int object_id, int line, __u8 *data, int len)
 {
 	struct subtitle_region *region = page->regions;
 //	eDebug("line for %d:%d", page->page_id, object_id);
@@ -88,7 +88,7 @@ void eDVBSubtitleParser::subtitle_process_line(struct subtitle_page *page, int o
 	}
 }
 
-int eDVBSubtitleParser::subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, const __u8 *data)
+int eDVBSubtitleParser::subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data)
 {
 	int data_type = *data++;
 	static __u8 line[720];
@@ -137,7 +137,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(struct subtitle_page *page, 
 				{
 					col = 0;
 					len = 1;
-				} else if (code&2)  
+				} else if (code&2)
 				{
 					if (code&1)
 						len = 3 + 4 + bitstream_get(&bit);
@@ -272,7 +272,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(struct subtitle_page *page, 
 	return 0;
 }
 
-int eDVBSubtitleParser::subtitle_process_segment(const __u8 *segment)
+int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 {
 	int segment_type, page_id, segment_length, processed_length;
 	if (*segment++ !=  0x0F)
@@ -288,11 +288,11 @@ int eDVBSubtitleParser::subtitle_process_segment(const __u8 *segment)
 	if (segment_type == 0xFF)
 		return segment_length + 6;
 //	//eDebug("have %d bytes of segment data", segment_length);
-	
+
 //	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
-	
+
 	struct subtitle_page *page, **ppage;
-		
+
 	page = this->pages; ppage = &this->pages;
 
 	while (page)
@@ -726,8 +726,9 @@ int eDVBSubtitleParser::subtitle_process_segment(const __u8 *segment)
 	return segment_length + 6;
 }
 
-void eDVBSubtitleParser::subtitle_process_pes(const __u8 *pkt, int len)
+void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
+	eDebug("subtitle_process_pes");
 	if (!extract_pts(show_time, pkt))
 	{
 		pkt += 6; len -= 6;
@@ -970,6 +971,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				// TODO fill region->surface->clut !!!!!
 			}
 			// TODO Blit Region Pixmap !!!
+			eDebug("blit region");
 		}
 		else
 			eDebug("region not found");
@@ -987,10 +989,26 @@ eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create dvb subtitle PES reader!");
 	else
-		m_pes_reader->connectRead(slot(*this, &eDVBSubtitleParser::subtitle_process_pes), m_read_connection);
+		m_pes_reader->connectRead(slot(*this, &eDVBSubtitleParser::processData), m_read_connection);
 }
 
 eDVBSubtitleParser::~eDVBSubtitleParser()
 {
 	subtitle_reset();
+}
+
+int eDVBSubtitleParser::start(int pid)
+{
+#if 0
+	eDebug("eDVBSubtitleParser::start(%04x)", pid);
+	if (m_pes_reader)
+		return m_pes_reader->start(pid);
+	else
+		return -1;
+#endif
+}
+
+void eDVBSubtitleParser::connectNewRegion(const Slot1<void, const eDVBSubtitleRegion&> &slot, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_new_subtitle_region.connect(slot));
 }

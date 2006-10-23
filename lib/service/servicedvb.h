@@ -250,6 +250,7 @@ private:
 	void checkSubtitleTiming();
 	
 		/* dvb subtitles */
+	ePtr<eDVBSubtitleParser> m_subtitle_parser;
 	void newDVBSubtitleRegion(const eDVBSubtitleRegion &p);
 	ePtr<eConnection> m_new_dvb_subtitle_region_connection;
 	eTimer m_dvb_subtitle_sync_timer;
