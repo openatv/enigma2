@@ -337,7 +337,7 @@ class TimerLog(Screen):
 	def fillLogList(self):
 		self.list = [ ]
 		for x in self.log_entries:
-			self.list.append((str(time.strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
+			self.list.append((str(time.strftime("%Y-%m-%d %H-%M", time.localtime(x[0])) + " - " + x[2]), x))
 	
 	def clearLog(self):		
 		self.log_entries = []
