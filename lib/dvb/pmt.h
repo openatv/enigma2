@@ -72,9 +72,10 @@ class eDVBServicePMTHandler: public Object
 	void PMTready(int error);
 	void PATready(int error);
 	
+	int m_pmt_pid;
+	
 	int m_use_decode_demux;
 	uint8_t m_decode_demux_num;
-
 public:
 	eDVBServicePMTHandler();
 	~eDVBServicePMTHandler();
@@ -112,11 +113,21 @@ public:
 		int component_tag;
 		std::string language_code; /* iso-639, if available. */
 	};
-	
+
+	struct subtitleStream
+	{
+		int pid;
+		int subtitling_type;
+		int composition_page_id;
+		int ancillary_page_id;
+		std::string language_code;
+	};
+
 	struct program
 	{
 		std::vector<videoStream> videoStreams;
 		std::vector<audioStream> audioStreams;
+		std::vector<subtitleStream> subtitleStreams;
 		std::set<uint16_t> caids;
 		int pcrPid;
 		int pmtPid;
@@ -137,8 +148,9 @@ public:
 
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0);
 	void free();
-
-	int m_pmt_pid;
+private:
+	bool m_have_cached_program;
+	program m_cached_program;
 };
 
 #endif

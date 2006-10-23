@@ -6,6 +6,7 @@
 
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/eit.h>
+#include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/dvb/radiotext.h>
 #include <lib/base/filepush.h>
@@ -238,19 +239,25 @@ private:
 	
 	void cutlistToCuesheet();
 	
+	eSubtitleWidget *m_subtitle_widget;
+	
 		/* teletext subtitles */
+	ePtr<eDVBTeletextParser> m_teletext_parser;
 	void newSubtitlePage(const eDVBTeletextSubtitlePage &p);
 	ePtr<eConnection> m_new_subtitle_page_connection;
-	
-	ePtr<eDVBTeletextParser> m_teletext_parser;
-	ePtr<eDVBRadioTextParser> m_radiotext_parser;
-	eSubtitleWidget *m_subtitle_widget;
 	eTimer m_subtitle_sync_timer;
 	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
-	
 	void checkSubtitleTiming();
+	
+		/* dvb subtitles */
+	void newDVBSubtitleRegion(const eDVBSubtitleRegion &p);
+	ePtr<eConnection> m_new_dvb_subtitle_region_connection;
+	eTimer m_dvb_subtitle_sync_timer;
+	std::list<eDVBSubtitleRegion> m_dvb_subtitle_regions;
+	void checkDvbSubtitleTiming();
 
 		/* radiotext */
+	ePtr<eDVBRadioTextParser> m_radiotext_parser;
 	ePtr<eConnection> m_radiotext_updated_connection;
 	void radioTextUpdated();
 };

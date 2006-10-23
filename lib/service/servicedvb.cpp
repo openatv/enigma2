@@ -2075,6 +2075,14 @@ void eDVBServicePlay::checkSubtitleTiming()
 	}
 }
 
+void eDVBServicePlay::newDVBSubtitleRegion(const eDVBSubtitleRegion &p)
+{
+}
+
+void eDVBServicePlay::checkDvbSubtitleTiming()
+{
+}
+
 int eDVBServicePlay::getAC3Delay()
 {
 	if (m_dvb_service)
