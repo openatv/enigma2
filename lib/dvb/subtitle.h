@@ -104,19 +104,22 @@ class eDVBSubtitleParser
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	pts_t show_time;
+	Signal1<void,const eDVBSubtitleRegion&> m_new_subtitle_region;
 public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
 	int start(int pid);
+	void connectNewRegion(const Slot1<void, const eDVBSubtitleRegion&> &slot, ePtr<eConnection> &connection);
 private:
-	void subtitle_process_line(struct subtitle_page *page, int object_id, int line, const __u8 *data, int len);
-	int subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, const __u8 *data);
-	int subtitle_process_segment(const __u8 *segment);
-	void subtitle_process_pes(const __u8 *buffer, int len);
+	void subtitle_process_line(struct subtitle_page *page, int object_id, int line, __u8 *data, int len);
+	int subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data);
+	int subtitle_process_segment(__u8 *segment);
+	void subtitle_process_pes(__u8 *buffer, int len);
 	void subtitle_clear_screen();
 	void subtitle_redraw_all();
 	void subtitle_reset();
 	void subtitle_redraw(int page_id);
+	void processPESPacket(__u8 *pkt, int len) { subtitle_process_pes(pkt, len); }
 };
 
 #endif
