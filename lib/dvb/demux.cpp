@@ -312,6 +312,8 @@ void eDVBPESReader::data(int)
 			m_read(buffer, r);
 		else
 			eWarning("PES reader not active");
+		if (r != 16384)
+			break;
 	}
 }
 
