@@ -983,6 +983,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 DEFINE_REF(eDVBSubtitleParser);
 
 eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
+	:pages(0)
 {
 	setStreamID(0xBD);
 
