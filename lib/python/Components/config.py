@@ -194,10 +194,16 @@ class ConfigSelection(ConfigElement):
 			self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		return _(self.description[self.value])
+		descr = self.description[self.value]
+		if len(descr):
+			return _(descr)
+		return descr
 
 	def getMulti(self, selected):
-		return ("text", _(self.description[self.value]))
+		descr = self.description[self.value]
+		if len(descr):
+			return ("text", _(descr))
+		return ("text", descr)
 
 	# HTML
 	def getHTML(self, id):
@@ -229,12 +235,18 @@ class ConfigBoolean(ConfigElement):
 			self.value = not self.value
 
 	def getText(self):
-		return _(self.descriptions[self.value])
+		descr = self.descriptions[self.value]
+		if len(descr):
+			return _(descr)
+		return descr
 
 	def getMulti(self, selected):
-		return ("text", _(self.descriptions[self.value]))
+		descr = self.descriptions[self.value]
+		if len(descr):
+			return ("text", _(descr))
+		return ("text", descr)
 
- 	def tostring(self, value):
+	def tostring(self, value):
 		if not value:
 			return "false"
 		else:
@@ -284,7 +296,6 @@ class ConfigDateTime(ConfigElement):
 			self.value = self.value - self.increment
 		if key == KEY_RIGHT:
 			self.value = self.value + self.increment
-
 
 	def getText(self):
 		return time.strftime(self.formatstring, time.localtime(self.value))
