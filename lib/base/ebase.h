@@ -175,7 +175,7 @@ class eMainloop
 {
 	friend class eTimer;
 	friend class eSocketNotifier;
-	std::multimap<int, eSocketNotifier*> notifiers;
+	std::map<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> m_timer_list;
 	bool app_quit_now;
 	int loop_level;
