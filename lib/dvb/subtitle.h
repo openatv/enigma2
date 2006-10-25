@@ -11,17 +11,17 @@ typedef unsigned char __u8;
 struct subtitle_clut_entry
 {
 	__u8 Y, Cr, Cb, T;
+	__u8 valid;
 };
 
 struct subtitle_clut
 {
 	unsigned char clut_id;
-	unsigned char size_2, size_4, size_8;
 	unsigned char CLUT_version_number;
-	struct subtitle_clut_entry entries_2bit[4];
-	struct subtitle_clut_entry entries_4bit[16];
-	struct subtitle_clut_entry entries_8bit[256];
-	struct subtitle_clut *next;
+	subtitle_clut_entry entries_2bit[4];
+	subtitle_clut_entry entries_4bit[16];
+	subtitle_clut_entry entries_8bit[256];
+	subtitle_clut *next;
 };
 
 struct subtitle_page_region
@@ -29,7 +29,7 @@ struct subtitle_page_region
 	int region_id;
 	int region_horizontal_address;
 	int region_vertical_address;
-	struct subtitle_page_region *next;
+	subtitle_page_region *next;
 };
 
 struct subtitle_region_object
@@ -45,7 +45,7 @@ struct subtitle_region_object
 	int foreground_pixel_value;
 	int background_pixel_value;
 
-	struct subtitle_region_object *next;
+	subtitle_region_object *next;
 };
 
 struct subtitle_region
@@ -58,9 +58,9 @@ struct subtitle_region
 	
 	int clut_id;
 	
-	struct subtitle_region_object *region_objects;
+	subtitle_region_object *region_objects;
 	
-	struct subtitle_region *next;
+	subtitle_region *next;
 };
 
 struct subtitle_page
@@ -69,13 +69,13 @@ struct subtitle_page
 	time_t page_time_out;
 	int page_version_number;
 	int pcs_size;
-	struct subtitle_page_region *page_regions;
+	subtitle_page_region *page_regions;
 	
-	struct subtitle_region *regions;
+	subtitle_region *regions;
 
-	struct subtitle_clut *cluts;
+	subtitle_clut *cluts;
 
-	struct subtitle_page *next;
+	subtitle_page *next;
 };
 
 struct bitstream
@@ -88,34 +88,41 @@ struct bitstream
 
 struct eDVBSubtitleRegion
 {
-	pts_t show_time;
-	int timeout;
-	ePtr<gPixmap> region;
+	ePtr<gPixmap> m_pixmap;
+	ePoint m_position;
+	eDVBSubtitleRegion &operator=(const eDVBSubtitleRegion &s)
+	{
+		m_pixmap = s.m_pixmap;
+		m_position = s.m_position;
+		return *this;
+	}
+};
+
+struct eDVBSubtitlePage
+{
+	std::list<eDVBSubtitleRegion> m_regions;
+	pts_t m_show_time;
 };
 
 class eDVBSubtitleParser
 	:public iObject, public ePESParser, public Object
 {
 	DECLARE_REF(eDVBSubtitleParser);
-	struct subtitle_page *pages;
-	int current_clut_id, current_clut_page_id;
-	int screen_width, screen_height;
-	int bbox_left, bbox_top, bbox_right, bbox_bottom;
+	subtitle_page *pages;
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	pts_t show_time;
-	Signal1<void,const eDVBSubtitleRegion&> m_new_subtitle_region;
+	Signal1<void,const eDVBSubtitlePage&> m_new_subtitle_page;
 public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
 	int start(int pid);
-	void connectNewRegion(const Slot1<void, const eDVBSubtitleRegion&> &slot, ePtr<eConnection> &connection);
+	void connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
 private:
-	void subtitle_process_line(struct subtitle_page *page, int object_id, int line, __u8 *data, int len);
-	int subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data);
+	void subtitle_process_line(subtitle_page *page, int object_id, int line, __u8 *data, int len);
+	int subtitle_process_pixel_data(subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data);
 	int subtitle_process_segment(__u8 *segment);
 	void subtitle_process_pes(__u8 *buffer, int len);
-	void subtitle_clear_screen();
 	void subtitle_redraw_all();
 	void subtitle_reset();
 	void subtitle_redraw(int page_id);

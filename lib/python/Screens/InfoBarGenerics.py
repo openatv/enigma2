@@ -1146,7 +1146,7 @@ class InfoBarSubtitles:
 		return "Enable Subtitles: " + name
 
 	def enableSubtitle(self, subtitles):
-		print "enable subitles", subtitles
+		print "enable subtitles", subtitles
 		self.selected_subtitle = subtitles
 		self.subtitles_enabled = True
 		
@@ -1788,7 +1788,7 @@ class InfoBarSubtitleSupport(object):
 	
 	def setSubtitlesEnable(self, enable=True):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable and self.__selected_subtitle:
+		if enable and self.__selected_subtitle is not None:
 			if subtitle and not self.__subtitles_enabled:
 				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 				self.subtitle_window.show()

@@ -3,6 +3,7 @@
 
 #include <lib/gui/ewidget.h>
 #include <lib/dvb/teletext.h>
+#include <lib/dvb/subtitle.h>
 
 class eDVBTeletextSubtitlePage;
 
@@ -12,6 +13,7 @@ public:
 	eSubtitleWidget(eWidget *parent);
 	
 	void setPage(const eDVBTeletextSubtitlePage &p);
+	void setPage(const eDVBSubtitlePage &p);
 	void clearPage();
 	
 protected:
@@ -20,6 +22,9 @@ protected:
 private:
 	int m_page_ok;
 	eDVBTeletextSubtitlePage m_page;
+
+	int m_dvb_page_ok;
+	eDVBSubtitlePage m_dvb_page;
 };
 
 #endif

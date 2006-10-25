@@ -269,11 +269,13 @@ void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 	m_subtitle_page.m_have_pts = have_pts;
 	m_subtitle_page.m_pts = pts;
 	m_subtitle_page.m_timeout = 90000 * 20; /* 20s */
-	sendSubtitlePage();  /* send assembled subtitle page to display */
+	if (m_page_number != -1)
+		sendSubtitlePage();  /* send assembled subtitle page to display */
 }
 
 void eDVBTeletextParser::setPage(int page)
 {
+	m_page_number = page;
 	m_page_M = (page >> 8) & 7; /* magazine to look for */
 	m_page_X = page & 0xFF;     /* page number */
 }

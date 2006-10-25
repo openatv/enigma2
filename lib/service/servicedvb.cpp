@@ -1648,16 +1648,16 @@ void eDVBServicePlay::switchToLive()
 	m_teletext_parser = 0;
 	m_radiotext_parser = 0;
 	m_subtitle_parser = 0;
-	m_new_dvb_subtitle_region_connection = 0;
+	m_new_dvb_subtitle_page_connection = 0;
 	m_new_subtitle_page_connection = 0;
 	m_radiotext_updated_connection = 0;
 
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 	m_timeshift_active = 0;
-	
+
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
-	
+
 	updateDecoder();
 }
 
@@ -1665,23 +1665,23 @@ void eDVBServicePlay::switchToTimeshift()
 {
 	if (m_timeshift_active)
 		return;
-	
+
 	m_decode_demux = 0;
 	m_decoder = 0;
 	m_teletext_parser = 0;
 	m_radiotext_parser = 0;
 	m_subtitle_parser = 0;
 	m_new_subtitle_page_connection = 0;
-	m_new_dvb_subtitle_region_connection = 0;
+	m_new_dvb_subtitle_page_connection = 0;
 	m_radiotext_updated_connection = 0;
 
 	m_timeshift_active = 1;
 
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
-	
+
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
-	
+
 	m_cue = new eCueSheet();
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
 	updateDecoder(); /* mainly to switch off PCR */
@@ -1709,7 +1709,7 @@ void eDVBServicePlay::updateDecoder()
 		{
 			eDebugNoNewLine(" (");
 			for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-				i(program.videoStreams.begin()); 
+				i(program.videoStreams.begin());
 				i != program.videoStreams.end(); ++i)
 			{
 				if (vpid == -1)
@@ -1728,7 +1728,7 @@ void eDVBServicePlay::updateDecoder()
 		{
 			eDebugNoNewLine(" (");
 			for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-				i(program.audioStreams.begin()); 
+				i(program.audioStreams.begin());
 				i != program.audioStreams.end(); ++i)
 			{
 				if (apid == -1 || (apidtype == eDVBAudio::aMPEG && defaultac3))
@@ -1763,7 +1763,7 @@ void eDVBServicePlay::updateDecoder()
 		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 #endif
 		m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
-		m_subtitle_parser->connectNewRegion(slot(*this, &eDVBServicePlay::newDVBSubtitleRegion), m_new_dvb_subtitle_region_connection);
+		m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 	}
 
 	if (m_decoder)
@@ -1822,12 +1822,6 @@ void eDVBServicePlay::updateDecoder()
 			m_decoder->setSyncPCR(-1);
 
 		m_decoder->setTextPID(tpid);
-
-		if (m_teletext_parser)
-			m_teletext_parser->start(tpid);
-
-//		if (m_subtitle_parser && program.subtitleStreams.size() > 0)
-//			m_subtitle_parser->start(program.subtitleStreams[0].pid);
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
@@ -1997,18 +1991,38 @@ RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
 	if (m_subtitle_widget)
 		disableSubtitles(parent);
 	
-	if (!m_teletext_parser)
-		return -1;
-	
 	if (!PyInt_Check(entry))
 		return -1;
-	
+
+	int page = PyInt_AsLong(entry);
+
+	if (page > 0 && !m_teletext_parser)
+		return -1;
+	if (page < 0 && !m_subtitle_parser)
+		return -1;
+
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
-	
-	int page = PyInt_AsLong(entry);
-	
-	m_teletext_parser->setPage(page);
+
+	if (page > 0)
+	{
+		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+		eDVBServicePMTHandler::program program;
+		if (h.getProgramInfo(program))
+			eDebug("getting program info failed.");
+		else
+		{
+			eDebug("start teletext on pid %04x, page %d", program.textPid, page);
+			m_teletext_parser->start(program.textPid);
+			m_teletext_parser->setPage(page);
+		}
+	}
+	else
+	{
+		int pid = -page;
+		eDebug("start dvb subtitles on pid %04x", pid);
+		m_subtitle_parser->start(pid);
+	}
 
 	return 0;
 }
@@ -2038,8 +2052,28 @@ PyObject *eDVBServicePlay::getSubtitleList()
 		PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
 		PyTuple_SetItem(tuple, 1, PyInt_FromLong(*i));
 		PyList_Append(l, tuple);
+		Py_DECREF(tuple);
 	}
-	
+
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	eDVBServicePMTHandler::program program;
+	if (h.getProgramInfo(program))
+		eDebug("getting program info failed.");
+	else
+	{
+		for (std::vector<eDVBServicePMTHandler::subtitleStream>::iterator it(program.subtitleStreams.begin());
+			it != program.subtitleStreams.end(); ++it)
+		{
+			PyObject *tuple = PyTuple_New(2);
+			char desc[20];
+			sprintf(desc, "DVB %s", it->language_code.c_str());
+			PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
+			PyTuple_SetItem(tuple, 1, PyInt_FromLong(-it->pid));
+			PyList_Append(l, tuple);
+			Py_DECREF(tuple);
+		}
+	}
+
 	return l;
 }
 
@@ -2048,26 +2082,41 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 	if (m_subtitle_widget)
 	{
 		m_subtitle_pages.push_back(page);
-		
 		checkSubtitleTiming();
 	}
 }
 
 void eDVBServicePlay::checkSubtitleTiming()
 {
+//	eDebug("checkSubtitleTiming");
 	while (1)
 	{
-		if (m_subtitle_pages.empty())
+		enum { TELETEXT, DVB } type;
+		eDVBTeletextSubtitlePage page;
+		eDVBSubtitlePage dvb_page;
+		pts_t show_time;
+		if (!m_subtitle_pages.empty())
+		{
+			page = m_subtitle_pages.front();
+			type = TELETEXT;
+			show_time = page.m_pts;
+		}
+		else if (!m_dvb_subtitle_pages.empty())
+		{
+			dvb_page = m_dvb_subtitle_pages.front();
+			type = DVB;
+			show_time = dvb_page.m_show_time;
+		}
+		else
 			return;
-	
-		eDVBTeletextSubtitlePage p = m_subtitle_pages.front();
 	
 		pts_t pos = 0;
 	
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
-	
-		int diff = p.m_pts - pos;
+
+//		eDebug("%lld %lld", pos, show_time);
+		int diff =  show_time - pos;
 		if (diff < 0)
 		{
 			eDebug("[late (%d ms)]", -diff / 90);
@@ -2081,24 +2130,34 @@ void eDVBServicePlay::checkSubtitleTiming()
 	
 		if (!diff)
 		{
-			m_subtitle_widget->setPage(p);
-			m_subtitle_pages.pop_front();
+			if (type == TELETEXT)
+			{
+				eDebug("display teletext subtitle page");
+				m_subtitle_widget->setPage(page);
+				m_subtitle_pages.pop_front();
+			}
+			else
+			{
+				eDebug("display dvb subtitle Page");
+				m_subtitle_widget->setPage(dvb_page);
+				m_dvb_subtitle_pages.pop_front();
+			}
 		} else
 		{
+			eDebug("start subtitle delay %d", diff / 90);
 			m_subtitle_sync_timer.start(diff / 90, 1);
 			break;
 		}
 	}
 }
 
-void eDVBServicePlay::newDVBSubtitleRegion(const eDVBSubtitleRegion &p)
+void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 {
-	eDebug("new dvb subtitle region");
-}
-
-void eDVBServicePlay::checkDvbSubtitleTiming()
-{
-	eDebug("check dvb subtitle timing");
+	if (m_subtitle_widget)
+	{
+		m_dvb_subtitle_pages.push_back(p);
+		checkSubtitleTiming();
+	}
 }
 
 int eDVBServicePlay::getAC3Delay()
