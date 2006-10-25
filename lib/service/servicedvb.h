@@ -245,17 +245,16 @@ private:
 	ePtr<eDVBTeletextParser> m_teletext_parser;
 	void newSubtitlePage(const eDVBTeletextSubtitlePage &p);
 	ePtr<eConnection> m_new_subtitle_page_connection;
-	eTimer m_subtitle_sync_timer;
 	std::list<eDVBTeletextSubtitlePage> m_subtitle_pages;
-	void checkSubtitleTiming();
 	
 		/* dvb subtitles */
 	ePtr<eDVBSubtitleParser> m_subtitle_parser;
-	void newDVBSubtitleRegion(const eDVBSubtitleRegion &p);
-	ePtr<eConnection> m_new_dvb_subtitle_region_connection;
-	eTimer m_dvb_subtitle_sync_timer;
-	std::list<eDVBSubtitleRegion> m_dvb_subtitle_regions;
-	void checkDvbSubtitleTiming();
+	void newDVBSubtitlePage(const eDVBSubtitlePage &p);
+	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
+	std::list<eDVBSubtitlePage> m_dvb_subtitle_pages;
+
+	eTimer m_subtitle_sync_timer;
+	void checkSubtitleTiming();
 
 		/* radiotext */
 	ePtr<eDVBRadioTextParser> m_radiotext_parser;

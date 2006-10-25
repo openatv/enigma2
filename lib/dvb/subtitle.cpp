@@ -11,7 +11,7 @@
 #include <lib/base/eerror.h>
 #include <lib/gdi/gpixmap.h>
 
-void bitstream_init(struct bitstream *bit, const void *buffer, int size)
+void bitstream_init(bitstream *bit, const void *buffer, int size)
 {
 	bit->data = (__u8*) buffer;
 	bit->size = size;
@@ -19,7 +19,7 @@ void bitstream_init(struct bitstream *bit, const void *buffer, int size)
 	bit->consumed = 0;
 }
 
-int bitstream_get(struct bitstream *bit)
+int bitstream_get(bitstream *bit)
 {
 	int val;
 	bit->avail -= bit->size;
@@ -54,13 +54,13 @@ static int extract_pts(pts_t &pts, __u8 *pkt)
 		return -1;
 }
 
-void eDVBSubtitleParser::subtitle_process_line(struct subtitle_page *page, int object_id, int line, __u8 *data, int len)
+void eDVBSubtitleParser::subtitle_process_line(subtitle_page *page, int object_id, int line, __u8 *data, int len)
 {
-	struct subtitle_region *region = page->regions;
+	subtitle_region *region = page->regions;
 //	eDebug("line for %d:%d", page->page_id, object_id);
 	while (region)
 	{
-		struct subtitle_region_object *object = region->region_objects;
+		subtitle_region_object *object = region->region_objects;
 		while (object)
 		{
 			if (object->object_id == object_id)
@@ -88,12 +88,12 @@ void eDVBSubtitleParser::subtitle_process_line(struct subtitle_page *page, int o
 	}
 }
 
-int eDVBSubtitleParser::subtitle_process_pixel_data(struct subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data)
+int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data)
 {
 	int data_type = *data++;
 	static __u8 line[720];
 
-	struct bitstream bit;
+	bitstream bit;
 	bit.size=0;
 	switch (data_type)
 	{
@@ -291,7 +291,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 //	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
 
-	struct subtitle_page *page, **ppage;
+	subtitle_page *page, **ppage;
 
 	page = this->pages; ppage = &this->pages;
 
@@ -348,7 +348,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		{
 			while (page->page_regions)
 			{
-				struct subtitle_page_region *p = page->page_regions->next;
+				subtitle_page_region *p = page->page_regions->next;
 				delete page->page_regions;
 				page->page_regions = p;
 			}
@@ -360,7 +360,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		page->page_version_number = page_version_number;
 
-		struct subtitle_page_region **r = &page->page_regions;
+		subtitle_page_region **r = &page->page_regions;
 
 		//eDebug("%d  / %d data left", processed_length, segment_length);
 
@@ -370,7 +370,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		while (processed_length < segment_length)
 		{
-			struct subtitle_page_region *pr;
+			subtitle_page_region *pr;
 
 				// append new entry to list
 			pr = new subtitle_page_region;
@@ -410,7 +410,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			break;
 		}
 
-		struct subtitle_region *region, **pregion;
+		subtitle_region *region, **pregion;
 
 		region = page->regions; pregion = &page->regions;
 
@@ -430,10 +430,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		}
 		else if (region->region_version_number != region_version_number)
 		{
-			struct subtitle_region_object *objects = region->region_objects;
+			subtitle_region_object *objects = region->region_objects;
 			while (objects)
 			{
-				struct subtitle_region_object *n = objects->next;
+				subtitle_region_object *n = objects->next;
 				delete objects;
 				objects = n;
 			}
@@ -500,12 +500,11 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		//eDebug("region %02x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
 
 		region->region_objects = 0;
-		struct subtitle_region_object **pobject = &region->region_objects;
+		subtitle_region_object **pobject = &region->region_objects;
 
 		while (processed_length < segment_length)
 		{
-
-			struct subtitle_region_object *object;
+			subtitle_region_object *object;
 
 			object = new subtitle_region_object;
 
@@ -542,7 +541,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	case 0x12: // CLUT definition segment
 	{
 		int CLUT_id, CLUT_version_number;
-		struct subtitle_clut *clut, **pclut;
+		subtitle_clut *clut, **pclut;
 
 		if (!page)
 			break;
@@ -575,11 +574,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			break;
 
 		clut->CLUT_version_number=CLUT_version_number;
-		clut->size_2 = clut->size_4 = clut->size_8 = 0;
 
-			/* invalidate CLUT if updated. */
-		if ((this->current_clut_page_id == page_id) && (this->current_clut_id == CLUT_id))
-			this->current_clut_id = -1;
+		memset(clut->entries_2bit, 0, sizeof(clut->entries_2bit));
+		memset(clut->entries_4bit, 0, sizeof(clut->entries_4bit));
+		memset(clut->entries_8bit, 0, sizeof(clut->entries_8bit));
 
 		//eDebug("new clut");
 		while (processed_length < segment_length)
@@ -612,29 +610,29 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			if (entry_CLUT_flag & 1) // 8bit
 			{
 				ASSERT(CLUT_entry_id < 256);
-				++clut->size_8;
 				clut->entries_8bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_8bit[CLUT_entry_id].Cr = v_Cr;
 				clut->entries_8bit[CLUT_entry_id].Cb = v_Cb;
 				clut->entries_8bit[CLUT_entry_id].T = v_T;
+				clut->entries_8bit[CLUT_entry_id].valid = 1;
 			}
 			if (entry_CLUT_flag & 2) // 4bit
 			{
 				ASSERT(CLUT_entry_id < 16);
-				++clut->size_4;
 				clut->entries_4bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_4bit[CLUT_entry_id].Cr = v_Cr;
 				clut->entries_4bit[CLUT_entry_id].Cb = v_Cb;
 				clut->entries_4bit[CLUT_entry_id].T = v_T;
+				clut->entries_4bit[CLUT_entry_id].valid = 1;
 			}
 			if (entry_CLUT_flag & 4) // 2bit
 			{
 				ASSERT(CLUT_entry_id < 4);
-				++clut->size_2;
 				clut->entries_2bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_2bit[CLUT_entry_id].Cr = v_Cr;
 				clut->entries_2bit[CLUT_entry_id].Cb = v_Cb;
 				clut->entries_2bit[CLUT_entry_id].T = v_T;
+				clut->entries_2bit[CLUT_entry_id].valid = 1;
 			}
 			//eDebug("  %04x %02x %02x %02x %02x", CLUT_entry_id, v_Y, v_Cb, v_Cr, v_T);
 		}
@@ -728,7 +726,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
-	eDebug("subtitle_process_pes");
+//	eDebug("subtitle_process_pes");
 	if (!extract_pts(show_time, pkt))
 	{
 		pkt += 6; len -= 6;
@@ -769,45 +767,17 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 		eDebug("dvb subtitle packet without PTS.. ignore!!");
 }
 
-void eDVBSubtitleParser::subtitle_clear_screen()
-{
-		/* clear bbox */
-	int y;
-
-	//eDebug("BBOX clear %d:%d -> %d:%d", this->bbox_left, this->bbox_top, this->bbox_right, this->bbox_bottom);
-
-	// do not draw when anyone has locked the
-	// framebuffer ( non enigma plugins... )
-	this->bbox_right = 720;
-	if (this->bbox_right > this->bbox_left)
-		for (y=this->bbox_top; y < this->bbox_bottom; ++y)
-			; // TODO fixmee clear subtitle screen
-
-	this->bbox_right = 0;
-	this->bbox_left = this->screen_width;
-	this->bbox_top = this->screen_height;
-	this->bbox_bottom = 0;
-}
-
 void eDVBSubtitleParser::subtitle_redraw_all()
 {
 #if 1
-	struct subtitle_page *page = this->pages;
-	if ( page )
-	{
-		struct subtitle_page_region *region = page->page_regions;
-		if ( region )
-			subtitle_clear_screen();
-	}
+	subtitle_page *page = this->pages;
 	while(page)
 	{
 		subtitle_redraw(page->page_id);
 		page = page->next;
 	}
 #else
-	subtitle_clear_screen();
-
-	struct subtitle_page *page = this->pages;
+	subtitle_page *page = this->pages;
 	//eDebug("----------- end of display set");
 	//eDebug("active pages:");
 	while (page)
@@ -816,7 +786,7 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 		//eDebug("  page_version_number: %d", page->page_version_number);
 		//eDebug("  active regions:");
 		{
-			struct subtitle_page_region *region = page->page_regions;
+			subtitle_page_region *region = page->page_regions;
 			while (region)
 			{
 				//eDebug("    region_id: %04x", region->region_id);
@@ -829,12 +799,12 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 
 		subtitle_redraw(page->page_id);
 		//eDebug("defined regions:");
-		struct subtitle_region *region = page->regions;
+		subtitle_region *region = page->regions;
 		while (region)
 		{
 			//eDebug("  region_id %04x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
 
-			struct subtitle_region_object *object = region->region_objects;
+			subtitle_region_object *object = region->region_objects;
 			while (object)
 			{
 				//eDebug("  object %02x, type %d, %d:%d", object->object_id, object->object_type, object->object_horizontal_position, object->object_vertical_position);
@@ -849,23 +819,23 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 
 void eDVBSubtitleParser::subtitle_reset()
 {
-	while (struct subtitle_page *page = this->pages)
+	while (subtitle_page *page = this->pages)
 	{
 			/* free page regions */
 		while (page->page_regions)
 		{
-			struct subtitle_page_region *p = page->page_regions->next;
+			subtitle_page_region *p = page->page_regions->next;
 			delete page->page_regions;
 			page->page_regions = p;
 		}
 			/* free regions */
 		while (page->regions)
 		{
-			struct subtitle_region *region = page->regions;
+			subtitle_region *region = page->regions;
 
 			while (region->region_objects)
 			{
-				struct subtitle_region_object *obj = region->region_objects;
+				subtitle_region_object *obj = region->region_objects;
 				region->region_objects = obj->next;
 				delete obj;
 			}
@@ -884,7 +854,7 @@ void eDVBSubtitleParser::subtitle_reset()
 			/* free CLUTs */
 		while (page->cluts)
 		{
-			struct subtitle_clut *clut = page->cluts;
+			subtitle_clut *clut = page->cluts;
 			page->cluts = clut->next;
 			delete clut;
 		}
@@ -896,7 +866,7 @@ void eDVBSubtitleParser::subtitle_reset()
 
 void eDVBSubtitleParser::subtitle_redraw(int page_id)
 {
-	struct subtitle_page *page = this->pages;
+	subtitle_page *page = this->pages;
 
 	//eDebug("displaying page id %d", page_id);
 
@@ -912,15 +882,17 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 		return;
 	}
 
-
 	//eDebug("iterating regions..");
 		/* iterate all regions in this pcs */
-	struct subtitle_page_region *region = page->page_regions;
-	while (region)
+	subtitle_page_region *region = page->page_regions;
+
+	eDVBSubtitlePage Page;
+	Page.m_show_time = show_time;
+	for (; region; region=region->next)
 	{
-		//eDebug("region %d", region->region_id);
+//		eDebug("region %d", region->region_id);
 			/* find corresponding region */
-		struct subtitle_region *reg = page->regions;
+		subtitle_region *reg = page->regions;
 		while (reg)
 		{
 			if (reg->region_id == region->region_id)
@@ -929,31 +901,22 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 		}
 		if (reg)
 		{
-			int y;
-			//eDebug("copy region %d to %d, %d", region->region_id, region->region_horizontal_address, region->region_vertical_address);
+//			eDebug("copy region %d to %d, %d", region->region_id, region->region_horizontal_address, region->region_vertical_address);
 
 			int x0 = region->region_horizontal_address;
 			int y0 = region->region_vertical_address;
 			int x1 = x0 + reg->region_width;
 			int y1 = y0 + reg->region_height;
 
-			if ((x0 < 0) || (y0 < 0) || (x0 > this->screen_width) || (x0 > this->screen_height))
+			if ((x0 < 0) || (y0 < 0))
+			{
+//				eDebug("x0 %d, y0 %d",
+//					x0, y0);
 				continue;
-
-				/* adjust bbox */
-			if (x0 < this->bbox_left)
-				this->bbox_left = x0;
-			if (y0 < this->bbox_top)
-				this->bbox_top = y0;
-			if (x1 > this->bbox_right)
-				this->bbox_right = x1;
-			if (y1 > this->bbox_bottom)
-				this->bbox_bottom = y1;
-
-			int timeout = page->page_time_out;
+			}
 
 			/* find corresponding clut */
-			struct subtitle_clut *clut = page->cluts;
+			subtitle_clut *clut = page->cluts;
 			while (clut)
 			{
 			//eDebug("have %d, want %d", clut->clut_id, main_clut_id);
@@ -961,22 +924,174 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 				clut = clut->next;
 			}
+
+			int clut_size = reg->region_buffer->surface->clut.colors = reg->region_depth == subtitle_region::bpp2 ?
+				4 : reg->region_depth == subtitle_region::bpp4 ? 16 : 256;
+
+			if (reg->region_buffer->surface->clut.data &&
+				clut_size != reg->region_buffer->surface->clut.colors)
+			{
+				delete [] reg->region_buffer->surface->clut.data;
+				reg->region_buffer->surface->clut.data = 0;
+			}
+
+			if (!reg->region_buffer->surface->clut.data)
+				reg->region_buffer->surface->clut.data = new gRGB[clut_size];
+
+			gRGB *palette = reg->region_buffer->surface->clut.data;
+
+			subtitle_clut_entry *entries=0;
+			switch(reg->region_depth)
+			{
+				case subtitle_region::bpp2:
+//					eDebug("2BPP");
+					entries = clut->entries_2bit;
+					memset(palette, 0, 4*sizeof(gRGB));
+					palette[0].a = 0xFF;
+					palette[2].r = palette[2].g = palette[2].b = 0xFF;
+					palette[3].r = palette[3].g = palette[3].b = 0x80;
+					break;
+				case subtitle_region::bpp4:
+//					eDebug("4BPP");
+					entries = clut->entries_4bit;
+					memset(palette, 0, 16*sizeof(gRGB));
+					for (int i=0; i < 16; ++i)
+					{
+						if (!i)
+							palette[i].a = 0xFF;
+						else if (i & 1)
+						{
+							if (i & 8)
+								palette[i].r = 0x80;
+							if (i & 4)
+								palette[i].g = 0x80;
+							if (i & 2)
+								palette[i].b = 0x80;
+						}
+						else
+						{
+							if (i & 8)
+								palette[i].r = 0xFF;
+							if (i & 4)
+								palette[i].g = 0xFF;
+							if (i & 2)
+								palette[i].b = 0xFF;
+						}
+					}
+					break;
+				case subtitle_region::bpp8:
+//					eDebug("8BPP");
+					entries = clut->entries_8bit;
+					memset(palette, 0, 16*sizeof(gRGB));
+					for (int i=0; i < 256; ++i)
+					{
+						switch (i & 17)
+						{
+						case 0: // b1 == 0 && b5 == 0
+							if (!(i & 14)) // b2 == 0 && b3 == 0 && b4 == 0
+							{
+								if (!(i & 224)) // b6 == 0 && b7 == 0 && b8 == 0
+									palette[i].a = 0xFF;
+								else
+								{
+									if (i & 128) // R = 100% x b8
+										palette[i].r = 0xFF;
+									if (i & 64) // G = 100% x b7
+										palette[i].g = 0xFF;
+									if (i & 32) // B = 100% x b6
+										palette[i].b = 0xFF;
+									palette[i].a = 0xBF; // T = 75%
+								}
+								break;
+							}
+							// fallthrough !!
+						case 16: // b1 == 0 && b5 == 1
+							if (i & 128) // R = 33% x b8
+								palette[i].r = 0x55;
+							if (i & 64) // G = 33% x b7
+								palette[i].g = 0x55;
+							if (i & 32) // B = 33% x b6
+								palette[i].b = 0x55;
+							if (i & 8) // R + 66,7% x b4
+								palette[i].r += 0xAA;
+							if (i & 4) // G + 66,7% x b3
+								palette[i].g += 0xAA;
+							if (i & 2) // B + 66,7% x b2
+								palette[i].b += 0xAA;
+							if (i & 16) // needed for fall through from case 0!!
+								palette[i].a = 0x80; // T = 50%
+							break;
+						case 1: // b1 == 1 && b5 == 0
+							palette[i].r =
+							palette[i].g =
+							palette[i].b = 0x80; // 50%
+							// fall through!!
+						case 17: // b1 == 1 && b5 == 1
+							if (i & 128) // R += 16.7% x b8
+								palette[i].r += 0x2A;
+							if (i & 64) // G += 16.7% x b7
+								palette[i].g += 0x2A;
+							if (i & 32) // B += 16.7% x b6
+								palette[i].b += 0x2A;
+							if (i & 8) // R += 33% x b4
+								palette[i].r += 0x55;
+							if (i & 4) // G += 33% x b3
+								palette[i].g += 0x55;
+							if (i & 2) // B += 33% x b2
+								palette[i].b += 0x55;
+							break;
+						}
+					}
+					break;
+			}
+
 			if (clut)
 			{
-				// TODO fill region->surface->clut !!!!!
+				for (int i=0; i<clut_size; ++i)
+				{
+					if (entries[i].valid)
+					{
+						int y = entries[i].Y,
+							cr = entries[i].Cr,
+							cb = entries[i].Cb;
+						if (y > 0)
+						{
+							y -= 16;
+							cr -= 128;
+							cb -= 128;
+							palette[i].r = MAX(MIN(((298 * y            + 460 * cr) / 256), 255), 0);
+							palette[i].g = MAX(MIN(((298 * y -  55 * cb - 137 * cr) / 256), 255), 0);
+							palette[i].b = MAX(MIN(((298 * y + 543 * cb           ) / 256), 255), 0);
+							palette[i].a = (entries[i].T) & 0xFF;
+//							eDebug("override clut entry %d RGBA %02x%02x%02x%02x", i,
+//								palette[i].r, palette[i].g, palette[i].b, palette[i].a);
+						}
+						else
+						{
+//							eDebug("mist %d", i);
+							palette[i].r = 0;
+							palette[i].g = 0;
+							palette[i].b = 0;
+							palette[i].a = 0xFF;
+						}
+					}
+				}
 			}
-			else
-			{
-				// apply default clut depending on region->region_depth
-				// TODO fill region->surface->clut !!!!!
-			}
-			// TODO Blit Region Pixmap !!!
-			eDebug("blit region");
+			
+			eDVBSubtitleRegion Region;
+			Region.m_pixmap = reg->region_buffer;
+			Region.m_position.setX(x0);
+			Region.m_position.setY(y0);
+			Page.m_regions.push_back(Region);
 		}
 		else
 			eDebug("region not found");
-		region = region->next;
 	}
+	m_new_subtitle_page(Page);
+	Page.m_regions.clear();
+//	eDebug("page timeout is %d", page->page_time_out);
+//	Page.m_show_time += (page->page_time_out * 90000);
+//	m_new_subtitle_page(Page);
 	//eDebug("schon gut.");
 }
 
@@ -1000,7 +1115,7 @@ eDVBSubtitleParser::~eDVBSubtitleParser()
 
 int eDVBSubtitleParser::start(int pid)
 {
-#if 0
+#if 1
 	eDebug("eDVBSubtitleParser::start(%04x)", pid);
 	if (m_pes_reader)
 		return m_pes_reader->start(pid);
@@ -1009,7 +1124,7 @@ int eDVBSubtitleParser::start(int pid)
 #endif
 }
 
-void eDVBSubtitleParser::connectNewRegion(const Slot1<void, const eDVBSubtitleRegion&> &slot, ePtr<eConnection> &connection)
+void eDVBSubtitleParser::connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
 {
-	connection = new eConnection(this, m_new_subtitle_region.connect(slot));
+	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }

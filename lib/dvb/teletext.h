@@ -48,7 +48,7 @@ private:
 	
 	int m_M, m_Y, m_X, m_S1, m_S2, m_S3, m_S4, m_C;
 	
-	int m_page_M, m_page_X, m_page_open, m_double_height;
+	int m_page_number, m_page_M, m_page_X, m_page_open, m_double_height;
 	
 	void handlePageStart();
 	void handleLine(unsigned char *line, int len);

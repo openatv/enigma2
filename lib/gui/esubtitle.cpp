@@ -14,6 +14,7 @@ eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 {
 	setBackgroundColor(gRGB(0,0,0,255));
 	m_page_ok = 0;
+	m_dvb_page_ok = 0;
 }
 
 void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
@@ -23,9 +24,17 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	invalidate();
 }
 
+void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
+{
+	m_dvb_page = p;
+	m_dvb_page_ok = 1;
+	invalidate();
+}
+
 void eSubtitleWidget::clearPage()
 {
 	m_page_ok = 0;
+	m_dvb_page_ok = 0;
 	invalidate();
 }
 
@@ -44,10 +53,9 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		ePtr<gFont> font = new gFont("Regular", 30);
 		painter.setFont(font);
 		
-		
-		if (!m_page_ok)
+/*		if (!m_page_ok && !m_dvb_page_ok)
 			painter.renderText(eRect(ePoint(0, 0), size()), "waiting for subtitles...", gPainter::RT_WRAP);
-		else
+		else */if (m_page_ok)
 		{
 			int elements = m_page.m_elements.size();
 			int height = size().height();
@@ -58,6 +66,17 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				painter.renderText(eRect(2, size_per_element * i + 2, size().width(), size_per_element), m_page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 				painter.setForegroundColor(m_page.m_elements[i].m_color);
 				painter.renderText(eRect(0, size_per_element * i, size().width(), size_per_element), m_page.m_elements[i].m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+			}
+		}
+		else if (m_dvb_page_ok)
+		{
+			painter.setOffset(ePoint(0,0));
+//			if (!m_dvb_page.m_regions.size())
+//				eDebug("clear screen");
+			for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
+			{
+				painter.resetClip(eRect(it->m_position, it->m_pixmap->size()));
+				painter.blit(it->m_pixmap, it->m_position);
 			}
 		}
 		return 0;
