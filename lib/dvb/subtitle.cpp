@@ -1113,15 +1113,24 @@ eDVBSubtitleParser::~eDVBSubtitleParser()
 	subtitle_reset();
 }
 
+int eDVBSubtitleParser::stop()
+{
+	if (m_pes_reader)
+	{
+		eDebug("disable dvb subtitles");
+		return m_pes_reader->stop();
+	}
+	return -1;
+}
+
 int eDVBSubtitleParser::start(int pid)
 {
-#if 1
-	eDebug("eDVBSubtitleParser::start(%04x)", pid);
 	if (m_pes_reader)
+	{
+		eDebug("start dvb subtitles on pid 0x%04x", pid);
 		return m_pes_reader->start(pid);
-	else
-		return -1;
-#endif
+	}
+	return -1;
 }
 
 void eDVBSubtitleParser::connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)

@@ -275,6 +275,10 @@ void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 
 void eDVBTeletextParser::setPage(int page)
 {
+	if (page > 0)
+		eDebug("enable teletext subtitle page %d", page);
+	else
+		eDebug("disable teletext subtitles");
 	m_page_number = page;
 	m_page_M = (page >> 8) & 7; /* magazine to look for */
 	m_page_X = page & 0xFF;     /* page number */

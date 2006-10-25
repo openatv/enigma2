@@ -2022,7 +2022,6 @@ RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
 	else
 	{
 		int pid = -page;
-		eDebug("start dvb subtitles on pid %04x", pid);
 		m_subtitle_parser->start(pid);
 	}
 
@@ -2033,6 +2032,16 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 {
 	delete m_subtitle_widget;
 	m_subtitle_widget = 0;
+	if (m_subtitle_parser)
+	{
+		m_subtitle_parser->stop();
+		m_dvb_subtitle_pages.clear();
+	}
+	if (m_teletext_parser)
+	{
+		m_teletext_parser->setPage(-1);
+		m_subtitle_pages.clear();
+	}
 	return 0;
 }
 
@@ -2091,6 +2100,8 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 void eDVBServicePlay::checkSubtitleTiming()
 {
 //	eDebug("checkSubtitleTiming");
+	if (!m_subtitle_widget)
+		return;
 	while (1)
 	{
 		enum { TELETEXT, DVB } type;
