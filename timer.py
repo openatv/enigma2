@@ -1,5 +1,6 @@
 import bisect
 import time
+import calendar
 from enigma import *
 
 class TimerEntry:
@@ -31,11 +32,17 @@ class TimerEntry:
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self):
 		print "ProcessRepeated"
-		print time.strftime("%c", time.localtime(self.begin))
-		print time.strftime("%c", time.localtime(self.end))
 		if (self.repeated != 0):
 			now = int(time.time()) + 1
-			
+
+			#to avoid problems with daylight saving, we need to calculate with localtime, in struct_time representation
+			localbegin = time.localtime(self.begin)
+			localend = time.localtime(self.end)
+			localnow = time.localtime(now)
+
+			print time.strftime("%c", localbegin)
+			print time.strftime("%c", localend)
+
 			day = []
 			flags = self.repeated
 			for x in range(0, 7):
@@ -46,18 +53,23 @@ class TimerEntry:
 					day.append(1)
 				flags = flags >> 1
 
-			print time.strftime("%c", time.localtime(now))
+			print time.strftime("%c", localnow)
+			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and localend < localnow)):
+				print time.strftime("%c", localbegin)
+				print time.strftime("%c", localend)
+				#add one day to the struct_time, we have to convert using gmt functions, because the daylight saving flag might change after we add our 86400 seconds
+				localbegin = time.gmtime(calendar.timegm(localbegin) + 86400)
+				localend = time.gmtime(calendar.timegm(localend) + 86400)
+
+			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
+			self.begin = int(time.mktime(localbegin))
+			self.end = int(time.mktime(localend)) + 1
+
+			print "ProcessRepeated result"
 			print time.strftime("%c", time.localtime(self.begin))
 			print time.strftime("%c", time.localtime(self.end))
-			print str(time.localtime(self.begin).tm_wday)
-			while ((day[time.localtime(self.begin).tm_wday] != 0) or ((day[time.localtime(self.begin).tm_wday] == 0) and self.end < now)):
-				print time.strftime("%c", time.localtime(self.begin))
-				print time.strftime("%c", time.localtime(self.end))
-				self.begin += 86400
-				self.end += 86400
-			
+
 			self.timeChanged()
-			
 
 	def __lt__(self, o):
 		return self.getNextActivation() < o.getNextActivation()
