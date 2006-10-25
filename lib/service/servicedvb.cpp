@@ -1157,7 +1157,9 @@ int eDVBServicePlay::getInfo(int w)
 	if (w == sCAIDs)
 		return resIsPyObject;
 
-	if (m_service_handler.getProgramInfo(program))
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	
+	if (h.getProgramInfo(program))
 		return -1;
 	
 	switch (w)
@@ -1246,7 +1248,8 @@ PyObject *eDVBServicePlay::getInfoObject(int w)
 int eDVBServicePlay::getNumberOfTracks()
 {
 	eDVBServicePMTHandler::program program;
-	if (m_service_handler.getProgramInfo(program))
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	if (h.getProgramInfo(program))
 		return 0;
 	return program.audioStreams.size();
 }
@@ -1264,8 +1267,9 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 {
 	eDVBServicePMTHandler::program program;
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
-	if (m_service_handler.getProgramInfo(program))
+	if (h.getProgramInfo(program))
 		return -1;
 	
 	if (i >= program.audioStreams.size())
@@ -1302,8 +1306,9 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 int eDVBServicePlay::selectAudioStream(int i)
 {
 	eDVBServicePMTHandler::program program;
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
-	if (m_service_handler.getProgramInfo(program))
+	if (h.getProgramInfo(program))
 		return -1;
 	
 	if ((unsigned int)i >= program.audioStreams.size())
@@ -1588,7 +1593,9 @@ void eDVBServicePlay::updateTimeshiftPids()
 		return;
 	
 	eDVBServicePMTHandler::program program;
-	if (m_service_handler.getProgramInfo(program))
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+
+	if (h.getProgramInfo(program))
 		return;
 	else
 	{
