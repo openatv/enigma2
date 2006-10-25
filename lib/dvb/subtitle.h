@@ -117,6 +117,7 @@ public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
 	int start(int pid);
+	int stop();
 	void connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
 private:
 	void subtitle_process_line(subtitle_page *page, int object_id, int line, __u8 *data, int len);
