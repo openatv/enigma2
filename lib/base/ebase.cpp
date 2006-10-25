@@ -116,12 +116,14 @@ ePtrList<eMainloop> eMainloop::existing_loops;
 
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
-	notifiers.insert(std::pair<int,eSocketNotifier*> (sn->getFD(), sn));
+	int fd = sn->getFD();
+	ASSERT(notifiers.find(fd) == notifiers.end());
+	notifiers[fd]=sn;
 }
 
 void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 {
-	for (std::multimap<int,eSocketNotifier*>::iterator i = notifiers.find(sn->getFD());
+	for (std::map<int,eSocketNotifier*>::iterator i = notifiers.find(sn->getFD());
 			i != notifiers.end();
 			++i)
 		if (i->second == sn)
@@ -162,90 +164,59 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 		poll_timeout = user_timeout;
 		return_reason = 1;
 	}
-		
-	int ret = 0;
-		
-	std::multimap<int,eSocketNotifier*>::iterator it;
-	std::map<int,int> fd_merged;
-	std::map<int,int>::const_iterator fd_merged_it;
-		
-	for (it = notifiers.begin(); it != notifiers.end(); ++it)
-		fd_merged[it->first] |= it->second->getRequested();
-		
-	fd_merged_it = fd_merged.begin();
-		
-	int nativecount, fdcount;
-		
-	nativecount = fdcount = fd_merged.size();
-		
+	
+	int nativecount=notifiers.size(),
+		fdcount=nativecount,
+		ret=0;
+
 	if (additional)
-	{
-		additional = PyDict_Items(additional);
-		fdcount += PyList_Size(additional);
-	}
+		fdcount += PyDict_Size(additional);
 		
 		// build the poll aray
 	pollfd pfd[fdcount];  // make new pollfd array
-		
-	for (int i=0; i < nativecount; i++, fd_merged_it++)
+	std::map<int,eSocketNotifier*>::iterator it = notifiers.begin();
+	int i=0;
+	for (; i < nativecount; ++i, ++it)
 	{
-		pfd[i].fd = fd_merged_it->first;
-		pfd[i].events = fd_merged_it->second;
+		pfd[i].fd = it->first;
+		pfd[i].events = it->second->getRequested();
 	}
-		
+	
 	if (additional)
 	{
-		for (int i=0; i < PyList_Size(additional); ++i)
-		{
-			PyObject *it = PyList_GET_ITEM(additional, i);
-			if (!PyTuple_Check(it))
-				eFatal("poll item is not a tuple");
-			if (PyTuple_Size(it) != 2)
-				eFatal("poll tuple size is not 2");
-			int fd = PyObject_AsFileDescriptor(PyTuple_GET_ITEM(it, 0));
-			if (fd == -1)
-				eFatal("poll tuple not a filedescriptor");
-			pfd[nativecount + i].fd = fd;
-			pfd[nativecount + i].events = PyInt_AsLong(PyTuple_GET_ITEM(it, 1));
+		PyObject *key, *val;
+		int pos=0;
+		while (PyDict_Next(additional, &pos, &key, &val)) {
+			pfd[i].fd = PyObject_AsFileDescriptor(key);
+			pfd[i++].events = PyInt_AsLong(val);
 		}
-		Py_DECREF(additional);
 	}
-		
+	
 	ret = ::poll(pfd, fdcount, poll_timeout);
-		
 			/* ret > 0 means that there are some active poll entries. */
 	if (ret > 0)
 	{
+		int i=0;
 		return_reason = 0;
-		for (int i=0; i < nativecount ; i++)
+		for (; i < nativecount ; ++i)
 		{
-			it = notifiers.begin();
-				
-			int handled = 0;
-				
-			std::multimap<int,eSocketNotifier*>::iterator 
-				l = notifiers.lower_bound(pfd[i].fd),
-				u = notifiers.upper_bound(pfd[i].fd);
-				
-			ePtrList<eSocketNotifier> n;
-				
-			for (; l != u; ++l)
-				n.push_back(l->second);
-				
-			for (ePtrList<eSocketNotifier>::iterator li(n.begin()); li != n.end(); ++li)
+			if (pfd[i].revents)
 			{
-				int req = li->getRequested();
-					
-				handled |= req;
-				
-				if (pfd[i].revents & req)
-					(*li)->activate(pfd[i].revents);
+				int handled = 0;
+				it = notifiers.find(pfd[i].fd);
+				if (it != notifiers.end())
+				{
+					int req = it->second->getRequested();
+					handled |= req;
+					if (pfd[i].revents & req)
+						it->second->activate(pfd[i].revents);
+				}
+				pfd[i].revents &= ~handled;
+				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
+					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
-			if ((pfd[i].revents&~handled) & (POLLERR|POLLHUP|POLLNVAL))
-				eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 		}
-			
-		for (int i = nativecount; i < fdcount; ++i)
+		for (; i < fdcount; ++i)
 		{
 			if (pfd[i].revents)
 			{
