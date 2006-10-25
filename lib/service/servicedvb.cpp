@@ -1823,6 +1823,8 @@ void eDVBServicePlay::updateDecoder()
 
 		m_decoder->setTextPID(tpid);
 
+		m_teletext_parser->start(program.textPid);
+
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
 
@@ -2006,16 +2008,16 @@ RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
 
 	if (page > 0)
 	{
-		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+/*		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 		eDVBServicePMTHandler::program program;
 		if (h.getProgramInfo(program))
 			eDebug("getting program info failed.");
 		else
 		{
 			eDebug("start teletext on pid %04x, page %d", program.textPid, page);
-			m_teletext_parser->start(program.textPid);
+			m_teletext_parser->start(program.textPid);*/
 			m_teletext_parser->setPage(page);
-		}
+//		}
 	}
 	else
 	{
