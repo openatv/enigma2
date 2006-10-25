@@ -3,14 +3,13 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-19 15:17+0200\n"
-"PO-Revision-Date: 2006-07-20 23:11+0200\n"
+"PO-Revision-Date: 2006-10-23 20:36+0200\n"
 "Last-Translator: Sauli Halttu <salde@salde.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Finnish\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
@@ -25,12 +24,48 @@ msgstr ""
 #: ../lib/python/Screens/PluginBrowser.py:100
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid "\"?"
+msgstr "\"?"
+
+#: ../data/
+msgid "#000000"
+msgstr ""
+
+#: ../data/
+msgid "#0064c7"
+msgstr ""
+
+#: ../data/
+msgid "#33294a6b"
+msgstr ""
+
+#: ../data/
+msgid "#389416"
+msgstr ""
+
+#: ../data/
+msgid "#80000000"
+msgstr ""
+
+#: ../data/
+msgid "#bab329"
+msgstr ""
+
+#: ../data/
+msgid "#f23d21"
+msgstr ""
+
+#: ../data/
+msgid "#ffffff"
+msgstr ""
+
+#: ../data/
+msgid "#ffffffff"
 msgstr ""
 
 #: ../lib/python/Screens/EventView.py:107
 #, python-format
 msgid "%d min"
-msgstr ""
+msgstr "%d min"
 
 #: ../lib/python/Screens/TimeDateInput.py:35
 #: ../lib/python/Screens/TimerEntry.py:94
@@ -50,7 +85,7 @@ msgstr ""
 #: ../lib/python/Components/TimerList.py:46
 #: ../lib/python/Components/TimerList.py:51
 msgid "(ZAP)"
-msgstr ""
+msgstr "(ZAP)"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
@@ -62,23 +97,23 @@ msgstr "/var hakemisto"
 
 #: ../lib/python/Components/NimManager.py:771
 msgid "0 V"
-msgstr ""
+msgstr "0 V"
 
 #: ../lib/python/Components/NimManager.py:774
 msgid "1.0"
-msgstr ""
+msgstr "1.0"
 
 #: ../lib/python/Components/NimManager.py:774
 msgid "1.1"
-msgstr ""
+msgstr "1.1"
 
 #: ../lib/python/Components/NimManager.py:774
 msgid "1.2"
-msgstr ""
+msgstr "1.2"
 
 #: ../lib/python/Components/NimManager.py:771
 msgid "12 V"
-msgstr ""
+msgstr "12 V"
 
 #: ../lib/python/Screens/Satconfig.py:138
 msgid "12V Output"
@@ -86,47 +121,47 @@ msgstr "12V lähtö"
 
 #: ../lib/python/Components/NimManager.py:749
 msgid "13 V"
-msgstr ""
+msgstr "13 V"
 
 #: ../lib/python/Components/AVSwitch.py:89
 msgid "16:10 Letterbox"
-msgstr ""
+msgstr "16:10 Kirjelaatikko"
 
 #: ../lib/python/Components/AVSwitch.py:90
 msgid "16:10 PanScan"
-msgstr ""
+msgstr "16:10 PanScan"
 
 #: ../lib/python/Components/AVSwitch.py:87
 msgid "16:9"
-msgstr ""
+msgstr "16:9"
 
 #: ../lib/python/Components/AVSwitch.py:88
 msgid "16:9 always"
-msgstr ""
+msgstr "19:9 aina"
 
 #: ../lib/python/Components/NimManager.py:749
 msgid "18 V"
-msgstr ""
+msgstr "18 V"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minuuttia"
 
 #: ../lib/python/Components/AVSwitch.py:85
 msgid "4:3 Letterbox"
-msgstr ""
+msgstr "4:3 Kirjelaatikko"
 
 #: ../lib/python/Components/AVSwitch.py:86
 msgid "4:3 PanScan"
-msgstr ""
+msgstr "4:3 PanScan"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuuttia"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minuuttia"
 
 #: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
@@ -135,11 +170,11 @@ msgstr "<tuntematon>"
 #: ../lib/python/Screens/Menu.py:126 ../lib/python/Screens/Menu.py:166
 #: ../lib/python/Screens/Menu.py:169 ../lib/python/Screens/Setup.py:118
 msgid "??"
-msgstr ""
+msgstr "??"
 
 #: ../lib/python/Components/NimManager.py:773
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1339
 msgid ""
@@ -165,17 +200,41 @@ msgstr ""
 "Ajastintallennus epäonnistui!\n"
 "Yritä uudelleen?\n"
 
+#: ../data/
+msgid "A/V Settings"
+msgstr "A/V asetukset"
+
 #: ../lib/python/Components/NimManager.py:755
 msgid "AA"
-msgstr ""
+msgstr "AA"
 
 #: ../lib/python/Components/NimManager.py:755
 msgid "AB"
-msgstr ""
+msgstr "AB"
+
+#: ../data/
+msgid "AC3 default"
+msgstr "AC3 oletus"
+
+#: ../data/
+msgid "AGC:"
+msgstr "AGC:"
+
+#: ../data/
+msgid "About"
+msgstr "Tietoa"
+
+#: ../data/
+msgid "About..."
+msgstr "Tietoja..."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1178
 msgid "Activate Picture in Picture"
 msgstr "Käynnistä Kuva Kuvassa-toiminto"
+
+#: ../data/
+msgid "Activate network settings"
+msgstr "Ota verkkoasetukset käyttöön"
 
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Add"
@@ -198,6 +257,12 @@ msgstr "Edistyneille"
 msgid "After event"
 msgstr "Tapahtuman jälkeen"
 
+#: ../data/
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your dreambox's manual on how to do that."
+msgstr ""
+
 #: ../lib/python/Screens/MediaPlayer.py:51
 msgid "Album:"
 msgstr "Albumi:"
@@ -207,6 +272,14 @@ msgstr "Albumi:"
 msgid "All"
 msgstr "Kaikki"
 
+#: ../data/
+msgid "Alpha"
+msgstr "Alpha"
+
+#: ../data/
+msgid "Alternative radio mode"
+msgstr "Vaihtoehtoinen radiomuoto"
+
 #: ../lib/python/Components/Language.py:16
 msgid "Arabic"
 msgstr "Arabialainen"
@@ -214,6 +287,14 @@ msgstr "Arabialainen"
 #: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Artist:"
 msgstr "Artisti:"
+
+#: ../data/
+msgid "Aspect Ratio"
+msgstr "Kuvasuhde"
+
+#: ../data/
+msgid "Audio"
+msgstr "Ääni"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1349
 msgid "Audio Options..."
@@ -239,15 +320,19 @@ msgstr "Automaattihaku"
 
 #: ../lib/python/Components/NimManager.py:773
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: ../lib/python/Components/NimManager.py:755
 msgid "BA"
-msgstr ""
+msgstr "BA"
 
 #: ../lib/python/Components/NimManager.py:755
 msgid "BB"
-msgstr ""
+msgstr "BB"
+
+#: ../data/
+msgid "BER:"
+msgstr "BER:"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:76
 msgid "Backup"
@@ -261,6 +346,10 @@ msgstr "Mihin tallennetaan"
 msgid "Backup Mode"
 msgstr "Mitä tallennetaan"
 
+#: ../data/
+msgid "Backup is done. Please press OK to see the result."
+msgstr "Varmuuskopio valmis. Paina OK nähdäksesi tulokset."
+
 #: ../lib/python/Components/NimManager.py:750
 msgid "Band"
 msgstr "Taajuus"
@@ -269,9 +358,20 @@ msgstr "Taajuus"
 msgid "Bandwidth"
 msgstr "Kaistanleveys"
 
+#: ../data/
+msgid "Brightness"
+msgstr "Kirkkaus"
+
 #: ../lib/python/Screens/HarddiskSetup.py:31
 msgid "Bus: "
 msgstr "Väylä:"
+
+#: ../data/
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
+msgstr ""
+"Kun painat OK nappia kauko-ohjaimessasi tietopalkki näytetään ruudussa."
 
 #: ../lib/python/Components/NimManager.py:767
 msgid "C-Band"
@@ -283,7 +383,7 @@ msgstr "CF-Asema"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "CVBS"
-msgstr ""
+msgstr "CVBS"
 
 #: ../lib/python/Screens/ChannelSelection.py:760
 msgid "Cable"
@@ -304,30 +404,46 @@ msgstr "Kapasiteetti:"
 msgid "Catalan"
 msgstr ""
 
+#: ../data/
+msgid "Change bouquets in quickzap"
+msgstr "Vaihda kanavanippuja nopeavaihdossa"
+
 #: ../lib/python/Screens/ChannelSelection.py:146
 #: ../lib/python/Screens/ParentalControlSetup.py:22 ../data/
 msgid "Change pin code"
-msgstr ""
+msgstr "Vaihda pin-koodi"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:79
 msgid "Change service pin"
-msgstr ""
+msgstr "Vaihda palvelun pin-koodi"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:76
 msgid "Change service pins"
-msgstr ""
+msgstr "Vaihda palvelun pin-koodit"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:70
 msgid "Change setup pin"
-msgstr ""
+msgstr "Vaihda asetusten pin-koodi"
 
 #: ../lib/python/Screens/TimerEntry.py:179 ../data/
 msgid "Channel"
 msgstr "Kanava"
 
+#: ../data/
+msgid "Channel Selection"
+msgstr "Kanavien valinta"
+
 #: ../lib/python/Screens/InfoBarGenerics.py:150
 msgid "Channel:"
 msgstr "Kanava:"
+
+#: ../data/
+msgid "Channellist menu"
+msgstr "Kanavalistavalikko"
+
+#: ../data/
+msgid "Choose bouquet"
+msgstr "Valitse kanavanippu"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
 msgid "Choose source"
@@ -357,6 +473,10 @@ msgstr "Koodin taso korkea"
 msgid "Code rate low"
 msgstr "Koodin taso alhainen"
 
+#: ../data/
+msgid "Color Format"
+msgstr "Väriformaatti"
+
 #: ../lib/python/Screens/Satconfig.py:118
 #: ../lib/python/Screens/Satconfig.py:120
 msgid "Command order"
@@ -366,11 +486,19 @@ msgstr "Käskyjen järjestys"
 msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC-käsky"
 
+#: ../data/
+msgid "Common Interface"
+msgstr "Common Interface"
+
+#: ../data/
+msgid "Compact flash card"
+msgstr "Compact flash kortti"
+
 #: ../lib/python/Screens/ScanSetup.py:339
 #: ../lib/python/Screens/ScanSetup.py:340
 #: ../lib/python/Components/NimManager.py:797
 msgid "Complete"
-msgstr "Valmis"
+msgstr "Täysi"
 
 #: ../lib/python/Screens/Satconfig.py:47
 #: ../lib/python/Screens/Satconfig.py:143 ../data/
@@ -381,25 +509,33 @@ msgstr "Muokkaustila"
 msgid "Conflicting timer"
 msgstr "Ajastinkonflikti"
 
+#: ../data/
+msgid "Contrast"
+msgstr "Kontrasti"
+
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Create movie folder failed"
-msgstr ""
+msgstr "Movie-hakemiston luonti epäonnistui"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Creating partition failed"
-msgstr ""
+msgstr "Osion luonti epäonnistui"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
 msgstr "Nykyinen versio:"
 
+#: ../data/
+msgid "Customize"
+msgstr "Sovita"
+
 #: ../lib/python/Screens/ScanSetup.py:358
 msgid "DVB-S"
-msgstr ""
+msgstr "DVB-S"
 
 #: ../lib/python/Screens/ScanSetup.py:358
 msgid "DVB-S2"
-msgstr ""
+msgstr "DVB-S2"
 
 #: ../lib/python/Components/Language.py:18
 msgid "Danish"
@@ -408,6 +544,14 @@ msgstr "Tanska"
 #: ../lib/python/Screens/TimeDateInput.py:40
 msgid "Date"
 msgstr "Päiväys"
+
+#: ../data/
+msgid "Deep Standby"
+msgstr "Syvä valmiustila"
+
+#: ../data/
+msgid "Delay"
+msgstr "Viive"
 
 #: ../lib/python/Screens/TimerEdit.py:24
 msgid "Delete"
@@ -432,6 +576,10 @@ msgstr "Löytyi kiintolevy:"
 #: ../lib/python/Screens/About.py:17
 msgid "Detected NIMs:"
 msgstr "Löytyneet NIMit:"
+
+#: ../data/
+msgid "DiSEqC"
+msgstr "DiSEqC"
 
 #: ../lib/python/Components/NimManager.py:704
 msgid "DiSEqC A/B"
@@ -463,7 +611,11 @@ msgstr "Sulje Kuva Kuvassa-toiminto"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1134
 msgid "Disable subtitles"
-msgstr ""
+msgstr "Poista tekstitys"
+
+#: ../data/
+msgid "Dish"
+msgstr "Antenni"
 
 #: ../lib/python/Screens/PluginBrowser.py:102
 msgid ""
@@ -471,7 +623,7 @@ msgid ""
 "the plugin \""
 msgstr ""
 "Haluatko varmasti POISTAA\n"
-"tämän lisäosan?\""
+"tämän lisäosan \""
 
 #: ../lib/python/Screens/MovieSelection.py:47
 #, python-format
@@ -484,7 +636,7 @@ msgid ""
 "the plugin \""
 msgstr ""
 "Haluatko varmasti ladata\n"
-"tämän lisäosan?\""
+"tämän lisäosan \""
 
 #: ../lib/python/Screens/HarddiskSetup.py:54
 msgid ""
@@ -502,9 +654,25 @@ msgstr ""
 "Haluatko varmasti luoda varmuuskopion?\n"
 "Paina OK ja odota!"
 
+#: ../data/
+msgid "Do you want to do a service scan?"
+msgstr "Haluatko tehdä kanavahaun?"
+
+#: ../data/
+msgid "Do you want to do another manual service scan?"
+msgstr "Haluatko tehdä uuden käsinhaun?"
+
+#: ../data/
+msgid "Do you want to enable the parental control feature or your dreambox?"
+msgstr "Haluatko ottaa käyttöön lapsilukon dreamboxissasi?"
+
+#: ../data/
+msgid "Do you want to restore your settings?"
+msgstr "Haluatko palauttaa asetukset?"
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1621
 msgid "Do you want to resume this playback?"
-msgstr ""
+msgstr "Haluatko jatkaa videon toistamista?"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:51
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
@@ -515,6 +683,10 @@ msgstr ""
 "Haluatko varmasti päivittää Dreamboxin?\n"
 "Paina OK ja odota!"
 
+#: ../data/
+msgid "Do you want to view a tutorial?"
+msgstr "Haluatko katsoa opasohjelman?"
+
 #: ../lib/python/Screens/PluginBrowser.py:21
 msgid "Download Plugins"
 msgstr "Lataa lisäosia"
@@ -522,6 +694,10 @@ msgstr "Lataa lisäosia"
 #: ../lib/python/Screens/PluginBrowser.py:113
 msgid "Downloadable new plugins"
 msgstr "Uudet ladattavat lisäosat"
+
+#: ../data/
+msgid "Downloadable plugins"
+msgstr "Ladattavat lisäosat"
 
 #: ../lib/python/Screens/PluginBrowser.py:79
 msgid "Downloading plugin information. Please wait..."
@@ -533,7 +709,11 @@ msgstr "Hollantilainen"
 
 #: ../lib/python/Screens/ChannelSelection.py:768
 msgid "E"
-msgstr ""
+msgstr "E"
+
+#: ../data/
+msgid "EPG Selection"
+msgstr "EPG valinta"
 
 #: ../lib/python/Components/ServiceScan.py:40
 #, python-format
@@ -547,7 +727,7 @@ msgstr "Itä"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:82
 msgid "Edit services list"
-msgstr ""
+msgstr "Muokkaa palvelulistaa"
 
 #: ../lib/python/Screens/TimerEdit.py:79
 msgid "Enable"
@@ -557,9 +737,13 @@ msgstr "Päälle"
 msgid "Enable 5V for active antenna"
 msgstr "Syötä 5V aktiiviselle antennille"
 
+#: ../data/
+msgid "Enable multiple bouquets"
+msgstr "Käytä useaa kanavanippua"
+
 #: ../lib/python/Screens/ParentalControlSetup.py:64
 msgid "Enable parental control"
-msgstr ""
+msgstr "Ota lapsilukko käyttöön"
 
 #: ../lib/python/Screens/TimerEntry.py:167
 msgid "End"
@@ -581,11 +765,15 @@ msgstr "Mene päävalikkoon..."
 
 #: ../lib/python/Screens/ChannelSelection.py:146
 msgid "Enter the service pin"
-msgstr ""
+msgstr "Syötä palvelun pin-koodi"
+
+#: ../data/
+msgid "Eventview"
+msgstr "Ohjelmatiedot"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Everything is fine"
-msgstr ""
+msgstr "Kaikki on kunnossa"
 
 #: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
@@ -595,12 +783,24 @@ msgstr "Toimenpiteen edistyminen:"
 msgid "Execution finished!!"
 msgstr "Toimenpide valmis!"
 
+#: ../data/
+msgid "Exit the wizard"
+msgstr "Poistu velhosta"
+
+#: ../data/
+msgid "Exit wizard"
+msgstr "Poistu Velhosta"
+
+#: ../data/
+msgid "Extensions"
+msgstr "Laajennukset"
+
 #: ../lib/python/Screens/ScanSetup.py:201
 #: ../lib/python/Screens/ScanSetup.py:203
 #: ../lib/python/Screens/ScanSetup.py:233
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:404
 msgid "FEC"
-msgstr ""
+msgstr "FEC"
 
 #: ../lib/python/Screens/Satconfig.py:115
 msgid "Fast DiSEqC"
@@ -609,6 +809,10 @@ msgstr "Nopea DiSEqC"
 #: ../lib/python/Screens/ChannelSelection.py:500
 msgid "Favourites"
 msgstr "Suosikit"
+
+#: ../data/
+msgid "Finetune"
+msgstr "Hienosäädä"
 
 #: ../lib/python/Components/Language.py:20
 msgid "Finnish"
@@ -646,6 +850,10 @@ msgstr "Front -prosessorin versio: %d"
 msgid "Function not yet implemented"
 msgstr "Toiminto ei ole vielä käytössä"
 
+#: ../data/
+msgid "Games / Plugins"
+msgstr "Pelit / Lisäosat"
+
 #: ../lib/python/Screens/NetworkSetup.py:32 ../data/
 msgid "Gateway"
 msgstr "Yhdyskäytävä"
@@ -666,7 +874,7 @@ msgstr "Haetaan tietoja lisäosista. Odota..."
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:133
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:191
 msgid "Goto 0"
-msgstr ""
+msgstr "Goto 0"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Goto position"
@@ -680,6 +888,14 @@ msgstr "Suoja-aika asetus"
 #: ../data/
 msgid "Harddisk"
 msgstr "Kiintolevy"
+
+#: ../data/
+msgid "Harddisk setup"
+msgstr "Kiintolevyn asetukset"
+
+#: ../data/
+msgid "Harddisk standby after"
+msgstr "Kiintolevyn valmiustila"
 
 #: ../lib/python/Screens/ScanSetup.py:249
 msgid "Hierarchy mode"
@@ -703,6 +919,8 @@ msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
+"Jos näet tämän, jotain on väärin\n"
+"scart-liitännässä. Paina OK palataksesi."
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
@@ -717,9 +935,25 @@ msgstr "Tallennuksen onnistumiseksi, vaihdettiin tallennettavalle kanavalle!\n"
 msgid "Increased voltage"
 msgstr "Korotettu jännite"
 
+#: ../data/
+msgid "InfoBar"
+msgstr "Tietopalkki"
+
+#: ../data/
+msgid "Infobar timeout"
+msgstr "tietopalkin näkyvyys"
+
+#: ../data/
+msgid "Information"
+msgstr "Tietoja"
+
 #: ../lib/python/Screens/Ci.py:295
 msgid "Init"
 msgstr "Alusta"
+
+#: ../data/
+msgid "Initialization..."
+msgstr "Alustetaan..."
 
 #: ../lib/python/Screens/HarddiskSetup.py:33
 msgid "Initialize"
@@ -742,31 +976,55 @@ msgstr "Välitön tallennus..."
 #: ../lib/python/Screens/ScanSetup.py:242
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:401
 msgid "Inversion"
-msgstr "Käänteinen"
+msgstr "Inversio"
+
+#: ../data/
+msgid "Invert display"
+msgstr "käänteinen näyttö"
 
 #: ../lib/python/Components/Language.py:23
 msgid "Italian"
 msgstr "Italialainen"
 
+#: ../data/
+msgid "Keyboard Map"
+msgstr "Näppäimistökartta"
+
+#: ../data/
+msgid "Keyboard Setup"
+msgstr "Näppäimistön asetukset"
+
+#: ../data/
+msgid "Keymap"
+msgstr "Näppäinkartta"
+
+#: ../data/
+msgid "LCD Setup"
+msgstr "LCD asetukset"
+
 #: ../lib/python/Screens/Satconfig.py:107
 msgid "LNB"
-msgstr ""
+msgstr "LNB"
 
 #: ../lib/python/Screens/Satconfig.py:132
 msgid "LOF"
-msgstr ""
+msgstr "LOF"
 
 #: ../lib/python/Screens/Satconfig.py:136
 msgid "LOF/H"
-msgstr ""
+msgstr "LOF/H"
 
 #: ../lib/python/Screens/Satconfig.py:135
 msgid "LOF/L"
-msgstr ""
+msgstr "LOF/L"
 
 #: ../lib/python/Screens/LanguageSelection.py:48 ../data/
 msgid "Language selection"
 msgstr "Kielivalinta"
+
+#: ../data/
+msgid "Language..."
+msgstr "Kieli..."
 
 #: ../lib/python/Screens/Satconfig.py:26
 #: ../lib/python/Screens/Satconfig.py:126 ../data/
@@ -798,13 +1056,53 @@ msgstr "Rajat päälle"
 msgid "Longitude"
 msgstr "Pituusaste"
 
+#: ../data/
+msgid "MORE"
+msgstr "LISÄÄ"
+
+#: ../data/
+msgid "Main menu"
+msgstr "Päävalikko"
+
+#: ../data/
+msgid "Mainmenu"
+msgstr "Päävalikko"
+
+#: ../data/
+msgid "Manual Scan"
+msgstr "Käsinhaku"
+
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
 msgid "Manual transponder"
 msgstr "Manuaalinen transponderi"
 
+#: ../data/
+msgid "Margin after record"
+msgstr "Lisäaika tallenteen loppuun (minuuttia)"
+
+#: ../data/
+msgid "Margin before record (minutes)"
+msgstr "Lisäaika tallenteen alkuun (minuuttia)"
+
+#: ../data/
+msgid "Media player"
+msgstr "Mediasoitin"
+
+#: ../data/
+msgid "MediaPlayer"
+msgstr "Mediasoitin"
+
+#: ../data/
+msgid "Menu"
+msgstr "Valikko"
+
+#: ../data/
+msgid "Message"
+msgstr "Viesti"
+
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mkfs failed"
-msgstr ""
+msgstr "Mkfs epäonnistui"
 
 #: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
@@ -815,6 +1113,10 @@ msgstr "Malli:"
 #: ../lib/python/Screens/ScanSetup.py:246
 msgid "Modulation"
 msgstr "Modulaatio"
+
+#: ../data/
+msgid "Modulator"
+msgstr "Modulaattori"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
@@ -833,7 +1135,7 @@ msgstr "Maanantai"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Mount failed"
-msgstr ""
+msgstr "Liittäminen epäonnistui"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1184
 msgid "Move Picture in Picture"
@@ -863,17 +1165,29 @@ msgstr "Usean palvelun tuki"
 msgid "Multisat"
 msgstr "Usea satelliitti"
 
+#: ../data/
+msgid "Mute"
+msgstr "Mykistä"
+
 #: ../lib/python/Components/NimManager.py:488
 msgid "N/A"
 msgstr "Ei saatavilla"
 
+#: ../data/
+msgid "NEXT"
+msgstr "SEURAAVA"
+
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
 msgid "NIM "
-msgstr ""
+msgstr "NIM"
+
+#: ../data/
+msgid "NOW"
+msgstr "NYT"
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "NTSC"
-msgstr ""
+msgstr "NTSC"
 
 #: ../lib/python/Screens/TimerEntry.py:129
 msgid "Name"
@@ -887,10 +1201,22 @@ msgstr "Nimipalvelin"
 msgid "Netmask"
 msgstr "Verkkomaski"
 
+#: ../data/
+msgid "Network Setup"
+msgstr "Verkkoasetukset"
+
 #: ../lib/python/Screens/ScanSetup.py:234
 #: ../lib/python/Screens/ScanSetup.py:241
 msgid "Network scan"
 msgstr "Verkkohaku"
+
+#: ../data/
+msgid "Network setup"
+msgstr "Verkkoasetukset"
+
+#: ../data/
+msgid "Network..."
+msgstr "Verkko..."
 
 #: ../lib/python/Screens/ChannelSelection.py:752
 msgid "New"
@@ -898,7 +1224,7 @@ msgstr "Uusi"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:218
 msgid "New pin"
-msgstr ""
+msgstr "uusi pin"
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
@@ -918,6 +1244,10 @@ msgstr ""
 "Kiintolevyä ei löydy tai\n"
 "kiintolevy alustamaton."
 
+#: ../data/
+msgid "No backup needed"
+msgstr "Varmuuskopiota ei tarvitse"
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1268
 msgid "No event info found, recording indefinitely."
 msgstr "Ohjelmatietoa ei löydy, tallennetaan ilman ohjelmatietoja."
@@ -929,6 +1259,18 @@ msgstr "Ei löytynyt moottoria ymmärtävää frontendiä."
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:523
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Yhtään viritintä ei ole määritetty käyttämään diseqc-moottoria!"
+
+#: ../data/
+msgid "No, do nothing."
+msgstr "Ei, älä tee mitään."
+
+#: ../data/
+msgid "No, just start my dreambox"
+msgstr "Ei, käynnistä vain Dreambox"
+
+#: ../data/
+msgid "No, scan later manually"
+msgstr "Ei, hae myöhemmin käsin"
 
 #: ../lib/python/Screens/ScanSetup.py:363
 #: ../lib/python/Screens/ScanSetup.py:371
@@ -959,11 +1301,23 @@ msgstr ""
 "Ei mitään haettavaa!\n"
 "Määritä virittimen asetukset ennen kanavahakua."
 
+#: ../data/
+msgid "Now Playing"
+msgstr "Nyt Soi"
+
 #: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimeDateInput.py:15
 #: ../lib/python/Screens/TimerEntry.py:28
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
 msgid "OK"
 msgstr "OK"
+
+#: ../data/
+msgid "OK, guide me through the upgrade process"
+msgstr "OK, opasta päivityksessä"
+
+#: ../data/
+msgid "OSD Settings"
+msgstr "OSD asetukset"
 
 #: ../lib/python/Components/NimManager.py:750
 msgid "Off"
@@ -983,11 +1337,11 @@ msgstr "Online-päivitys"
 
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "PAL"
-msgstr ""
+msgstr "PAL"
 
 #: ../lib/python/Screens/ServiceInfo.py:79
 msgid "PIDs"
-msgstr ""
+msgstr "PID:it"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
@@ -995,11 +1349,27 @@ msgstr "Pakettienhallinta"
 
 #: ../lib/python/Components/ParentalControl.py:80 ../data/
 msgid "Parental control"
-msgstr ""
+msgstr "Lapsilukko"
+
+#: ../data/
+msgid "Parental control services Editor"
+msgstr "Lapsilukon palvelueditori"
+
+#: ../data/
+msgid "Parental control setup"
+msgstr "Lapsilukon asetukset"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:74
 msgid "Parental control type"
-msgstr ""
+msgstr "Lapsilukon tyyppi"
+
+#: ../data/
+msgid "PiPSetup"
+msgstr "PiP-Asetukset"
+
+#: ../data/
+msgid "Pin code needed"
+msgstr "Tarvitaan pin-koodi"
 
 #: ../lib/python/Screens/InfoBar.py:48
 msgid "Play recorded movies..."
@@ -1019,11 +1389,11 @@ msgstr "Anna nimi uudelle merkille"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:28
 msgid "Please enter the correct pin code"
-msgstr ""
+msgstr "Syötä oikea pin-koodi"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:232
 msgid "Please enter the old pin code"
-msgstr ""
+msgstr "Syötä vanha pin-koodi"
 
 #: ../lib/python/Screens/TimerEntry.py:289
 msgid "Please select a subservice to record..."
@@ -1033,6 +1403,10 @@ msgstr "Valitse tallennettava alipalvelu..."
 #: ../lib/python/Screens/SubservicesQuickzap.py:97
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu..."
+
+#: ../data/
+msgid "Please set up tuner B"
+msgstr "Aseta viritin B."
 
 #: ../lib/python/Screens/PiPSetup.py:41
 msgid ""
@@ -1047,6 +1421,10 @@ msgstr ""
 #: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
 msgstr "Odota... Listaa noudetaan..."
+
+#: ../data/
+msgid "Plugin browser"
+msgstr "Lisäosien selaus"
 
 #: ../lib/python/Screens/ScanSetup.py:199
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:403
@@ -1091,7 +1469,7 @@ msgstr "Moottorin muisti"
 
 #: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:422
 msgid "Predefined transponder"
-msgstr ""
+msgstr "Ennalta määritelty transponderi"
 
 #: ../lib/python/Screens/NetworkSetup.py:22
 msgid "Press OK to activate the settings."
@@ -1111,11 +1489,11 @@ msgstr "Edellinen"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:72
 msgid "Protect services"
-msgstr ""
+msgstr "Suojaa palvelut"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:68
 msgid "Protect setup"
-msgstr ""
+msgstr "Suojaa asetukset"
 
 #: ../lib/python/Screens/ChannelSelection.py:499
 #: ../lib/python/Screens/ChannelSelection.py:643
@@ -1128,19 +1506,27 @@ msgstr "Toimittajat"
 
 #: ../lib/python/Components/NimManager.py:797
 msgid "Quick"
-msgstr ""
+msgstr "Nopea"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1483
 msgid "Quickzap"
-msgstr ""
+msgstr "Pikavaihto"
+
+#: ../data/
+msgid "RC Menu"
+msgstr "Kauko-ohjaimen valikko"
+
+#: ../data/
+msgid "RF output"
+msgstr "RF-ulostulo"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: ../lib/python/Screens/Setup.py:145
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Haluatko varmasti poistua tallentamatta asetuksia?"
 
 #: ../lib/python/Screens/TimerEdit.py:105
 msgid "Really delete done timers?"
@@ -1148,19 +1534,27 @@ msgstr "Poistetaanko menneet ajastukset?"
 
 #: ../lib/python/Screens/TimerEdit.py:113
 msgid "Really delete this timer?"
-msgstr ""
+msgstr "Tuhoa tämä ajastus?"
 
 #: ../lib/python/Screens/SubservicesQuickzap.py:108
 msgid "Really exit the subservices quickzap?"
-msgstr ""
+msgstr "Poistu alipalveluiden pikavaihdosta?"
+
+#: ../data/
+msgid "Record"
+msgstr "Tallenna"
 
 #: ../lib/python/Screens/EventView.py:74
 msgid "Recording"
 msgstr "Tallennetaan"
 
+#: ../data/
+msgid "Recordings always have priority"
+msgstr "Tallennuksilla on aina etuoikeus"
+
 #: ../lib/python/Screens/ParentalControlSetup.py:219
 msgid "Reenter new pin"
-msgstr ""
+msgstr "Syötä uudelleen uusi pin-koodi"
 
 #: ../lib/python/Screens/PluginBrowser.py:20
 msgid "Remove Plugins"
@@ -1169,6 +1563,10 @@ msgstr "Poista lisäosia"
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
+
+#: ../data/
+msgid "Repeat"
+msgstr "Toista"
 
 #: ../lib/python/Screens/TimerEntry.py:133
 msgid "Repeat Type"
@@ -1182,10 +1580,22 @@ msgstr "Korvaa nykyinen soittolista"
 msgid "Reset"
 msgstr "Resetoi"
 
+#: ../data/
+msgid "Restart"
+msgstr "Uudelleenkäynnistä"
+
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:77
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:167
 msgid "Restore"
 msgstr "Palauta"
+
+#: ../data/
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
+"Asetusten palautus on valmis. Paina OK ottaaksesi palautetut asetukset "
+"käyttöön."
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1389
 msgid "Right"
@@ -1193,13 +1603,25 @@ msgstr "Oikea"
 
 #: ../lib/python/Components/AVSwitch.py:77
 msgid "S-Video"
-msgstr ""
+msgstr "S-Video"
+
+#: ../data/
+msgid "SNR:"
+msgstr "SNR:"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
 #: ../lib/python/Components/TimerList.py:34
 msgid "Sat"
 msgstr "La"
+
+#: ../data/
+msgid "Sat / Dish Setup"
+msgstr "Antenniasetukset"
+
+#: ../data/
+msgid "Satconfig"
+msgstr "Satelliittiasetukset"
 
 #: ../lib/python/Screens/Satconfig.py:11 ../lib/python/Screens/Satconfig.py:61
 #: ../lib/python/Screens/Satconfig.py:145
@@ -1232,6 +1654,18 @@ msgstr "Etsintä itään"
 msgid "Search west"
 msgstr "Etsintä länteen"
 
+#: ../data/
+msgid "Seek"
+msgstr "Etsi"
+
+#: ../data/
+msgid "Select HDD"
+msgstr "Valitse kiintolevy"
+
+#: ../data/
+msgid "Select a movie"
+msgstr "Valitse elokuva"
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1401
 msgid "Select audio mode"
 msgstr "Valitse äänimuoto"
@@ -1248,9 +1682,25 @@ msgstr "Valitse tallennettava kanava"
 msgid "Sequence repeat"
 msgstr "Vaiheen toisto"
 
+#: ../data/
+msgid "Service"
+msgstr "Kanava"
+
+#: ../data/
+msgid "Service Scan"
+msgstr "Kanavahaku"
+
+#: ../data/
+msgid "Service Searching"
+msgstr "Kanavahaku"
+
+#: ../data/
+msgid "Service scan"
+msgstr "Kanavahaku"
+
 #: ../lib/python/Screens/Satconfig.py:67
 msgid "Service scan type needed"
-msgstr ""
+msgstr "Tarvitaan palveluhaun tyyppi"
 
 #: ../lib/python/Screens/ServiceInfo.py:78 ../data/
 msgid "Serviceinfo"
@@ -1268,9 +1718,25 @@ msgstr "Aseta rajat"
 msgid "Settings"
 msgstr "Asetukset"
 
+#: ../data/
+msgid "Setup"
+msgstr "Käyttöasetukset"
+
+#: ../data/
+msgid "Show infobar on channel change"
+msgstr "Näytä tietopalkki kanavanvaihdossa"
+
+#: ../data/
+msgid "Show infobar on skip forward/backward"
+msgstr "Näytä tietopalkki hypätessä ed./seur."
+
+#: ../data/
+msgid "Show positioner movement"
+msgstr "Näytä moottorin liikkuminen"
+
 #: ../lib/python/Screens/ParentalControlSetup.py:197
 msgid "Show services beginning with"
-msgstr ""
+msgstr "Näytä palvelut jotka alkavat"
 
 #: ../lib/python/Screens/InfoBar.py:49
 msgid "Show the radio player..."
@@ -1314,6 +1780,10 @@ msgstr "Lukija"
 msgid "Socket "
 msgstr "Pistoke"
 
+#: ../data/
+msgid "Somewhere else"
+msgstr "Jossakin muualla"
+
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:149
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -1324,6 +1794,14 @@ msgstr ""
 "\n"
 "Valitse uusi kohde."
 
+#: ../data/
+msgid "Sound"
+msgstr "Ääni"
+
+#: ../data/
+msgid "Soundcarrier"
+msgstr "Äänenkantoaalto"
+
 #: ../lib/python/Components/NimManager.py:721
 #: ../lib/python/Components/NimManager.py:792
 msgid "South"
@@ -1332,6 +1810,14 @@ msgstr "Etelä"
 #: ../lib/python/Components/Language.py:25
 msgid "Spanish"
 msgstr "Espanjalainen"
+
+#: ../data/
+msgid "Standby"
+msgstr "Valmiustila"
+
+#: ../data/
+msgid "Standby / Restart"
+msgstr "Valmiustila / Käynnistys"
 
 #: ../lib/python/Screens/TimerEntry.py:160
 msgid "Start"
@@ -1344,6 +1830,10 @@ msgstr "Aloita tallennus?"
 #: ../lib/python/Screens/TimerEntry.py:165
 msgid "StartTime"
 msgstr "Aloitusaika"
+
+#: ../data/
+msgid "Startwizard"
+msgstr "Käynnistysvelho"
 
 #: ../lib/python/Screens/Wizard.py:232
 msgid "Step "
@@ -1388,6 +1878,10 @@ msgstr "Tallennettu sijainti"
 msgid "Subservice list..."
 msgstr "Alipalvelulista..."
 
+#: ../data/
+msgid "Subservices"
+msgstr "Alipalvelut"
+
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
 #: ../lib/python/Components/TimerList.py:34
@@ -1401,7 +1895,7 @@ msgstr "Sunnuntai"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1181
 msgid "Swap Services"
-msgstr ""
+msgstr "Vaihda palveluita"
 
 #: ../lib/python/Components/Language.py:26
 msgid "Swedish"
@@ -1421,6 +1915,14 @@ msgstr "Vaihda edelliseen alipalveluun"
 msgid "Symbol Rate"
 msgstr "Symboolinopeus"
 
+#: ../data/
+msgid "System"
+msgstr "Järjestelmä"
+
+#: ../data/
+msgid "TV System"
+msgstr "TV järjestelmä"
+
 #: ../lib/python/Screens/ChannelSelection.py:762
 msgid "Terrestrial"
 msgstr "Maanpäällinen"
@@ -1429,19 +1931,54 @@ msgstr "Maanpäällinen"
 msgid "Terrestrial provider"
 msgstr "Terrestiaalioperaattori"
 
+#: ../data/
+msgid "Test mode"
+msgstr "Testitila"
+
+#: ../data/
+msgid ""
+"Thank you for using the wizard. Your box is now ready to use.\n"
+"Please press OK to start using you Dreambox."
+msgstr ""
+"Kiitos velhon käyttämisestä. Laitteesi on nyt käyttövalmis.\n"
+"Paina OK aloittaaksesi käytön."
+
+#: ../data/
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Varmuuskopiointi epäonnistui. Valitse toinen varmuuskopiontipaikka."
+
 #: ../lib/python/Screens/ParentalControlSetup.py:251
 msgid "The pin code has been changed successfully."
-msgstr ""
+msgstr "Pin-koodi on vaihdettu."
 
 #: ../lib/python/Screens/ChannelSelection.py:153
 #: ../lib/python/Screens/ParentalControlSetup.py:40
 #: ../lib/python/Components/ParentalControl.py:141
 msgid "The pin code you entered is wrong."
-msgstr ""
+msgstr "Syöttämäsi pin-koodi on väärin."
 
 #: ../lib/python/Screens/ParentalControlSetup.py:253
 msgid "The pin codes you entered are different."
+msgstr "Syöttämäsi pin-koodit eroavat toisistaan."
+
+#: ../data/
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
+"Velho voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset "
+"nyt?"
+
+#: ../data/
+msgid "The wizard is finished now."
+msgstr "Velho on lopettanut."
+
+#: ../data/
+msgid "This is step number 2."
+msgstr "Tämä on vaihe 2."
+
+#: ../data/
+msgid "This is unsupported at the moment."
+msgstr "Tätä ei tällä hetkellä tueta."
 
 #: ../lib/python/Components/NimManager.py:788
 msgid "Three"
@@ -1466,9 +2003,49 @@ msgstr "Torstai"
 msgid "Time"
 msgstr "Aika"
 
+#: ../data/
+msgid "Time/Date Input"
+msgstr "Aika/Päivä "
+
+#: ../data/
+msgid "Timer"
+msgstr "Ajastin"
+
+#: ../data/
+msgid "Timer Edit"
+msgstr "Ajastimen muokkaus"
+
+#: ../data/
+msgid "Timer Editor"
+msgstr "Ajastimen muokkaus"
+
 #: ../lib/python/Screens/TimerEntry.py:131
 msgid "Timer Type"
 msgstr "Ajastimen tyyppi"
+
+#: ../data/
+msgid "Timer entry"
+msgstr "Ajastintieto"
+
+#: ../data/
+msgid "Timer log"
+msgstr "Ajastinloki"
+
+#: ../data/
+msgid "Timer sanity error"
+msgstr "Ajastinvirhe"
+
+#: ../data/
+msgid "Timer selection"
+msgstr "Ajastinvalinta"
+
+#: ../data/
+msgid "Timeshift"
+msgstr "Aikasiirto"
+
+#: ../data/
+msgid "Timezone"
+msgstr "Aikavyöhyke"
 
 #: ../lib/python/Screens/MediaPlayer.py:49
 msgid "Title:"
@@ -1506,7 +2083,7 @@ msgstr "Transponderityyppi"
 
 #: ../lib/python/Screens/InputBox.py:168
 msgid "Tries left:"
-msgstr ""
+msgstr "Yrityksiä jäljellä:"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
@@ -1530,9 +2107,17 @@ msgstr "Viritä"
 msgid "Tuner"
 msgstr "Viritin"
 
+#: ../data/
+msgid "Tuner Slot"
+msgstr "Viritinpaikka"
+
+#: ../data/
+msgid "Tuner configuration"
+msgstr "Viritinasetukset"
+
 #: ../lib/python/Screens/ServiceInfo.py:81
 msgid "Tuner status"
-msgstr ""
+msgstr "Virittimen tila"
 
 #: ../lib/python/Components/Language.py:27
 msgid "Turkish"
@@ -1551,6 +2136,10 @@ msgstr "Skannauksen tyyppi"
 #: ../lib/python/Components/NimManager.py:715
 msgid "USALS"
 msgstr "USALS"
+
+#: ../data/
+msgid "USB"
+msgstr "USB"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "USB Stick"
@@ -1576,7 +2165,7 @@ msgstr "Universaali LNB"
 
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Unmount failed"
-msgstr ""
+msgstr "Irrottaminen epäonnistui"
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
@@ -1588,19 +2177,53 @@ msgstr "Päivitetään...odota...tämä voi kestää muutaman minuutin..."
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "Päivitys valmis. Haluatko uudelleenkäynnistää Dreamboxin?"
 
 #: ../lib/python/Screens/NetworkSetup.py:27 ../data/
 msgid "Use DHCP"
 msgstr "Käytä DHCP"
 
+#: ../data/
+msgid "Use power measurement"
+msgstr "Käytä tehonmittausta"
+
+#: ../data/
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Käytä vasenta ja oikeata nappia vaihtaaksesi valintaa.\n"
+"\n"
+"Valitse viritin A"
+
+#: ../data/
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
+msgstr ""
+"Käytä ylös/alas näppäimiä kauko-ohjaimessasi valitaksesi vaihtoehdon. Paina "
+"sitten OK."
+
 #: ../lib/python/Screens/Satconfig.py:101
 msgid "Use usals for this sat"
 msgstr "Käytä USALS tälle satelliitille"
 
+#: ../data/
+msgid "Use wizard to set up basic features"
+msgstr "Käytä Velhoa perusasetuksien luonnissa"
+
 #: ../lib/python/Components/NimManager.py:767
 msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
+
+#: ../data/
+msgid "VCR Switch"
+msgstr "VCR Vaihto"
+
+#: ../data/
+msgid "VCR scart"
+msgstr "VCR scart"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1759
 msgid "View teletext..."
@@ -1610,9 +2233,17 @@ msgstr "näytä tekstitv..."
 msgid "Voltage mode"
 msgstr "Jännitetila"
 
+#: ../data/
+msgid "Volume"
+msgstr "Äänenvoimakkuus"
+
 #: ../lib/python/Screens/ChannelSelection.py:766
 msgid "W"
-msgstr ""
+msgstr "W"
+
+#: ../data/
+msgid "WSS on 4:3"
+msgstr "WSS 4:3"
 
 #: ../lib/python/Screens/EpgSelection.py:234
 #: ../lib/python/Components/EpgList.py:46
@@ -1629,14 +2260,44 @@ msgstr "Keskiviikko"
 msgid "Weekday"
 msgstr "Viikonpäivä"
 
+#: ../data/
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Tervetuloa ohjelmiston päivitys-Velhoon. Velho avustaa ohjelmiston "
+"päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa "
+"päivityksen jälkeen."
+
+#: ../data/
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Tervetuloa.\n"
+"\n"
+"Tämä aloitus-Velho auttaa perusasetusten luomisessa.\n"
+"Paina kauko-ohjaimen OK-näppäintä edetäksesi seuraavaan vaiheeseen."
+
 #: ../lib/python/Components/NimManager.py:719
 #: ../lib/python/Components/NimManager.py:790
 msgid "West"
 msgstr "Länsi"
 
+#: ../data/
+msgid "What do you want to scan?"
+msgstr "Mitä haluat etsiä?"
+
+#: ../data/
+msgid "Where do you want to backup your settings?"
+msgstr "Minne haluat varmuuskopioida asetukset?"
+
 #: ../lib/python/Components/AVSwitch.py:81
 msgid "YPbPr"
-msgstr ""
+msgstr "YPbPr"
 
 #: ../lib/python/Screens/MediaPlayer.py:53
 msgid "Year:"
@@ -1646,17 +2307,115 @@ msgstr "Vuosi:"
 msgid "Yes"
 msgstr "Kyllä"
 
+#: ../data/
+msgid "Yes, backup my settings!"
+msgstr "Kyllä, varmuuskopioi asetukset!"
+
+#: ../data/
+msgid "Yes, do a manual scan now"
+msgstr "Kyllä, tee käsinhaku nyt"
+
+#: ../data/
+msgid "Yes, do an automatic scan now"
+msgstr "Kyllä, tee automaattihaku nyt"
+
+#: ../data/
+msgid "Yes, do another manual scan now"
+msgstr "Kyllä, tee toinen käsinhaku nyt"
+
+#: ../data/
+msgid "Yes, perform a shutdown now."
+msgstr "Kyllä, sammuta nyt."
+
+#: ../data/
+msgid "Yes, restore the settings now"
+msgstr "Kyllä, palauta asetukset nyt"
+
+#: ../data/
+msgid "Yes, view the tutorial"
+msgstr "Kyllä, katso opasohjelma"
+
 #: ../lib/python/Screens/MovieSelection.py:49
 msgid "You cannot delete this!"
 msgstr "Et voi poistaa tätä!"
 
+#: ../data/
+msgid ""
+"You do not seem to have a harddisk in your Dreambox. So backing up to a "
+"harddisk is not an option for you."
+msgstr ""
+"Laitteessasi ei näytä olevan kiintolevyä, joten et voi varmuuskopioida "
+"kiintolevylle."
+
+#: ../data/
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
+msgstr ""
+"Olet valinnut varmuuskopioinnin Compact Flash -kortille. Kortin on oltava "
+"lukijassa. Sen toimintaa ei voi todeta. Suosittelemme varmuuskopiointia "
+"kiintolevylle!\n"
+"Paina OK aloittaakseni varmuuskopioinnin nyt."
+
+#: ../data/
+msgid ""
+"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
+"Please press OK to start the backup now."
+msgstr ""
+"Olet valinnut varmuuskopioinnin USB:lle. Kiintolevy on luotettavampi "
+"vaihtoehto!\n"
+"Paina OK aloittaaksesi varmuuskopioinnin."
+
+#: ../data/
+msgid ""
+"You have chosen to backup to your harddisk. Please press OK to start the "
+"backup now."
+msgstr ""
+"Olet valinnut varmuuskopioinnin kiintolevylle. Paina OK aloittaaksesi "
+"varmistuksen nyt."
+
 #: ../lib/python/Screens/InputBox.py:108
 msgid "You have to wait for"
+msgstr "Sinun täytyy odottaa"
+
+#: ../data/
+msgid ""
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
+"Tarvitse PC:n, joka on yhdistetty Dreamboksiin. Katso lisätietoja http://www."
+"dm7025.de.\n"
+"Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston "
+"mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
+
+#: ../data/
+msgid ""
+"You need to set a pin code and hide it from your children.\n"
+"\n"
+"Do you want to set the pin now?"
+msgstr ""
+"Sinun täytyy asettaa pin-koodi ja piilottaa se lapsiltasi.\n"
+"\n"
+"Haluatko asettaa pin-koodin nyt?"
 
 #: ../lib/python/Screens/MediaPlayer.py:391
 msgid "You selected a playlist"
 msgstr "Valitsit soittolistan"
+
+#: ../data/
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
+msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
+
+#: ../data/
+msgid "Your dreambox is shutting down. Please stand by..."
+msgstr "Laitteesi on sammumassa. Odota..."
 
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:31
 msgid ""
@@ -1731,12 +2490,12 @@ msgstr "lisää kanava suosikkeihin"
 
 #: ../lib/python/Screens/ChannelSelection.py:83
 msgid "add to parental protection"
-msgstr ""
+msgstr "lisää lapsilukkoon"
 
 #: ../lib/python/Components/NimManager.py:672
 #: ../lib/python/Components/NimManager.py:682
 msgid "advanced"
-msgstr ""
+msgstr "laaja"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:208
 msgid ""
@@ -1753,7 +2512,7 @@ msgstr "takaisin"
 
 #: ../lib/python/Components/ParentalControl.py:17
 msgid "blacklist"
-msgstr ""
+msgstr "kielletyt"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1339
 msgid "change recording (duration)"
@@ -1773,7 +2532,11 @@ msgstr "tyhjennä soittolista"
 
 #: ../lib/python/Components/ParentalControl.py:13
 msgid "complex"
-msgstr ""
+msgstr "monipuolinen"
+
+#: ../data/
+msgid "config menu"
+msgstr "Asetusvalikko"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:591
 msgid "continue"
@@ -1797,7 +2560,7 @@ msgstr "poista..."
 
 #: ../lib/python/Components/config.py:262
 msgid "disable"
-msgstr ""
+msgstr "pois"
 
 #: ../lib/python/Screens/ChannelSelection.py:115
 msgid "disable move mode"
@@ -1822,7 +2585,7 @@ msgstr "tyhjä/tuntematon"
 
 #: ../lib/python/Components/config.py:262
 msgid "enable"
-msgstr ""
+msgstr "päälle"
 
 #: ../lib/python/Screens/ChannelSelection.py:111
 msgid "enable bouquet edit"
@@ -1846,7 +2609,7 @@ msgstr "lopeta suosikkien muokkaus"
 
 #: ../lib/python/Components/NimManager.py:677
 msgid "equal to Socket A"
-msgstr ""
+msgstr "kuten kanta A"
 
 #: ../lib/python/Components/DiskInfo.py:30
 msgid "free diskspace"
@@ -1864,6 +2627,10 @@ msgstr "mene syvään valmiustilaan"
 msgid "hear radio..."
 msgstr "kuuntele radiota..."
 
+#: ../data/
+msgid "help..."
+msgstr "apua..."
+
 #: ../lib/python/Screens/MediaPlayer.py:345
 msgid "hide player"
 msgstr "piilota soitin"
@@ -1874,12 +2641,12 @@ msgstr "horisontaali"
 
 #: ../lib/python/Components/UsageConfig.py:20
 msgid "hour"
-msgstr ""
+msgstr "tunti"
 
 #: ../lib/python/Components/UsageConfig.py:20
 #: ../lib/python/Components/UsageConfig.py:21
 msgid "hours"
-msgstr ""
+msgstr "tuntia"
 
 #: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
 msgid "init module"
@@ -1900,11 +2667,11 @@ msgstr "listaa"
 
 #: ../lib/python/Components/TunerInfo.py:69
 msgid "locked"
-msgstr ""
+msgstr "lukittu"
 
 #: ../lib/python/Components/NimManager.py:678
 msgid "loopthrough to socket A"
-msgstr ""
+msgstr "Läpisyöttö kytkentään A"
 
 #: ../lib/python/Components/NimManager.py:716
 msgid "manual"
@@ -1917,21 +2684,21 @@ msgstr "minuuttia"
 
 #: ../lib/python/Components/UsageConfig.py:18
 msgid "minute"
-msgstr ""
+msgstr "minuutti"
 
 #: ../lib/python/Components/UsageConfig.py:18
 #: ../lib/python/Components/UsageConfig.py:19
 #: ../lib/python/Components/UsageConfig.py:20
 msgid "minutes"
-msgstr ""
+msgstr "minuuttia"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "minutes and"
-msgstr ""
+msgstr "minuuttia ja"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "never"
-msgstr ""
+msgstr "ei koskaan"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "next channel"
@@ -1958,11 +2725,11 @@ msgstr "moduleita ei löydy"
 
 #: ../lib/python/Components/UsageConfig.py:17
 msgid "no standby"
-msgstr ""
+msgstr "ei valmiustilaa"
 
 #: ../lib/python/Components/UsageConfig.py:11
 msgid "no timeout"
-msgstr ""
+msgstr "ei aikaa"
 
 #: ../lib/python/Screens/About.py:40
 msgid "none"
@@ -1970,11 +2737,11 @@ msgstr "ei yhtään"
 
 #: ../lib/python/Components/TunerInfo.py:71
 msgid "not locked"
-msgstr ""
+msgstr "ei lukittu"
 
 #: ../lib/python/Components/NimManager.py:679
 msgid "nothing connected"
-msgstr ""
+msgstr "ei kytketty"
 
 #: ../lib/python/Screens/ScanSetup.py:360
 #: ../lib/python/Screens/ScanSetup.py:369
@@ -2049,7 +2816,7 @@ msgstr "poista merkintä"
 
 #: ../lib/python/Screens/ChannelSelection.py:85
 msgid "remove from parental protection"
-msgstr ""
+msgstr "poista lapsilukosta"
 
 #: ../lib/python/Screens/ChannelSelection.py:99
 msgid "remove new found flag"
@@ -2103,30 +2870,34 @@ msgstr "haun tila"
 
 #: ../lib/python/Components/UsageConfig.py:11
 msgid "second"
-msgstr ""
+msgstr "sekuntti"
 
 #: ../lib/python/Components/NimManager.py:680
 msgid "second cable of motorized LNB"
-msgstr ""
+msgstr "toinen kaapeli moottorisoidulta mikropäältä"
 
 #: ../lib/python/Components/UsageConfig.py:11
 #: ../lib/python/Components/UsageConfig.py:12
 #: ../lib/python/Components/UsageConfig.py:13
 #: ../lib/python/Components/UsageConfig.py:17
 msgid "seconds"
-msgstr ""
+msgstr "sekunttia"
 
 #: ../lib/python/Screens/InputBox.py:108
 msgid "seconds."
-msgstr ""
+msgstr "sekunttia."
+
+#: ../data/
+msgid "select Slot"
+msgstr "Valitse lukija"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:96
 msgid "service pin"
-msgstr ""
+msgstr "palveluiden pin-koodi"
 
 #: ../lib/python/Screens/ParentalControlSetup.py:98
 msgid "setup pin"
-msgstr ""
+msgstr "asetusten pin-koodi"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:397
 msgid "show EPG..."
@@ -2140,7 +2911,7 @@ msgstr "näytä ohjelman tarkemmat tiedot"
 #: ../lib/python/Components/NimManager.py:681
 #: ../lib/python/Components/ParentalControl.py:13
 msgid "simple"
-msgstr ""
+msgstr "suppea"
 
 #: ../lib/python/Screens/InfoBarGenerics.py:596
 msgid "skip backward"
@@ -2184,7 +2955,7 @@ msgstr "tämä tallennus"
 
 #: ../lib/python/Components/ParentalControl.py:80
 msgid "this service is protected by a parental control pin"
-msgstr ""
+msgstr "tämä palvelu on suojattu lapsilukolla"
 
 #: ../lib/python/Screens/EventView.py:80
 msgid "unknown service"
@@ -2192,7 +2963,7 @@ msgstr "tuntematon kanava"
 
 #: ../lib/python/Components/ParentalControl.py:14
 msgid "until restart"
-msgstr ""
+msgstr "uudelleenkäynnistykseen asti"
 
 #: ../lib/python/Screens/TimerEntry.py:92
 msgid "user defined"
@@ -2212,7 +2983,7 @@ msgstr "näytä tallenteet..."
 
 #: ../lib/python/Screens/Ci.py:167
 msgid "wait for ci..."
-msgstr ""
+msgstr "odotetaan ci:tä..."
 
 #: ../lib/python/Components/TimerList.py:57
 msgid "waiting"
@@ -2224,7 +2995,7 @@ msgstr "viikottainen"
 
 #: ../lib/python/Components/ParentalControl.py:17
 msgid "whitelist"
-msgstr ""
+msgstr "hyväksytyt"
 
 #: ../lib/python/Screens/MessageBox.py:45
 #: ../lib/python/Screens/ScanSetup.py:341
@@ -2245,803 +3016,3 @@ msgstr "vaihto"
 #: ../lib/python/Components/TimerList.py:62
 msgid "zapped"
 msgstr "vaihdettu"
-
-#: ../data/
-msgid "Channel Selection"
-msgstr "Kanavien valinta"
-
-#: ../data/
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Varmuuskopio valmis. Paina OK nähdäksesi tulokset."
-
-#: ../data/
-msgid "Service"
-msgstr "Kanava"
-
-#: ../data/
-msgid "Initialization..."
-msgstr ""
-
-#: ../data/
-msgid "Network setup"
-msgstr "Verkkoasetukset"
-
-#: ../data/
-msgid "Games / Plugins"
-msgstr "Pelit / Lisäosat"
-
-#: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr ""
-
-#: ../data/
-msgid ""
-"You need to set a pin code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-
-#: ../data/
-msgid "help..."
-msgstr "apua..."
-
-#: ../data/
-msgid "Yes, backup my settings!"
-msgstr "Kyllä, varmuuskopioi asetukset!"
-
-#: ../data/
-msgid "Satconfig"
-msgstr "Satelliittiasetukset"
-
-#: ../data/
-msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"Tarvitse PC:n, joka on yhdistetty Dreamboksiin. Katso lisätietoja http://www."
-"dm7025.de.\n"
-"Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston "
-"mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
-
-#: ../data/
-msgid "Where do you want to backup your settings?"
-msgstr "Minne haluat varmuuskopioida asetukset?"
-
-#: ../data/
-msgid "Service Scan"
-msgstr "Kanavahaku"
-
-#: ../data/
-msgid "DiSEqC"
-msgstr ""
-
-#: ../data/
-msgid "Main menu"
-msgstr "Päävalikko"
-
-#: ../data/
-msgid "TV System"
-msgstr "TV järjestelmä"
-
-#: ../data/
-msgid "Alternative radio mode"
-msgstr "Vaihtoehtoinen radiomuoto"
-
-#: ../data/
-msgid "NEXT"
-msgstr "SEURAAVA"
-
-#: ../data/
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Laitteessasi ei näytä olevan kiintolevyä, joten et voi varmuuskopioida "
-"kiintolevylle."
-
-#: ../data/
-msgid "Deep Standby"
-msgstr "Syvä valmiustila"
-
-#: ../data/
-msgid "Show positioner movement"
-msgstr "Näytä moottorin liikkuminen"
-
-#: ../data/
-msgid "Tuner Slot"
-msgstr "Viritinpaikka"
-
-#: ../data/
-msgid "Change bouquets in quickzap"
-msgstr "Vaihda kanavanippuja nopeavaihdossa"
-
-#: ../data/
-msgid "Sound"
-msgstr "Ääni"
-
-#: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Käytä ylös/alas näppäimiä kauko-ohjaimessasi valitaksesi vaihtoehdon. Paina "
-"sitten OK."
-
-#: ../data/
-msgid "Do you want to view a tutorial?"
-msgstr "Haluatko katsoa opasohjelman?"
-
-#: ../data/
-msgid "No, do nothing."
-msgstr "Ei, älä tee mitään."
-
-#: ../data/
-msgid "#000000"
-msgstr ""
-
-#: ../data/
-msgid "Infobar timeout"
-msgstr ""
-
-#: ../data/
-msgid "Use wizard to set up basic features"
-msgstr "Käytä Velhoa perusasetuksien luonnissa"
-
-#: ../data/
-msgid "Extensions"
-msgstr "Laajennukset"
-
-#: ../data/
-msgid "#bab329"
-msgstr ""
-
-#: ../data/
-msgid "Startwizard"
-msgstr ""
-
-#: ../data/
-msgid "#ffffff"
-msgstr ""
-
-#: ../data/
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Olet valinnut varmuuskopioinnin USB:lle. Kiintolevy on luotettavampi "
-"vaihtoehto!\n"
-"Paina OK aloittaaksesi varmuuskopioinnin."
-
-#: ../data/
-msgid "Mute"
-msgstr "Mykistä"
-
-#: ../data/
-msgid "Service Searching"
-msgstr "Kanavahaku"
-
-#: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Tervetuloa ohjelmiston päivitys-Velhoon. Velho avustaa ohjelmiston "
-"päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa "
-"päivityksen jälkeen."
-
-#: ../data/
-msgid "Keyboard Map"
-msgstr "Näppäimistökartta"
-
-#: ../data/
-msgid "Enable multiple bouquets"
-msgstr "Käytä useaa kanavanippua"
-
-#: ../data/
-msgid "Keyboard Setup"
-msgstr "Näppäimistön asetukset"
-
-#: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
-"\n"
-"Please set up tuner A"
-msgstr ""
-"Käytä vasenta ja oikeata nappia vaihtaaksesi valintaa.\n"
-"\n"
-"Valitse viritin A"
-
-#: ../data/
-msgid "Dish"
-msgstr "Antenni"
-
-#: ../data/
-msgid "Margin after record"
-msgstr "Lisäaika tallenteen loppuun (minuuttia)"
-
-#: ../data/
-msgid "#ffffffff"
-msgstr ""
-
-#: ../data/
-msgid "System"
-msgstr "Järjestelmä"
-
-#: ../data/
-msgid "Use power measurement"
-msgstr "Käytä tehonmittausta"
-
-#: ../data/
-msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
-msgstr ""
-"Kiitos velhon käyttämisestä. Laitteesi on nyt käyttövalmis.\n"
-"Paina OK aloittaaksesi käytön."
-
-#: ../data/
-msgid "Test mode"
-msgstr "Testitila"
-
-#: ../data/
-msgid "Manual Scan"
-msgstr "Käsinhaku"
-
-#: ../data/
-msgid "Timer Edit"
-msgstr "Ajastimen muokkaus"
-
-#: ../data/
-msgid "RC Menu"
-msgstr "Kauko-ohjaimen valikko"
-
-#: ../data/
-msgid "No, just start my dreambox"
-msgstr "Ei, käynnistä vain Dreambox"
-
-#: ../data/
-msgid "Network..."
-msgstr "Verkko..."
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr "Viritinasetukset"
-
-#: ../data/
-msgid "select Slot"
-msgstr "Valitse lukija"
-
-#: ../data/
-msgid "BER:"
-msgstr ""
-
-#: ../data/
-msgid "Standby / Restart"
-msgstr "Valmiustila / Käynnistys"
-
-#: ../data/
-msgid "Standby"
-msgstr "Valmiustila"
-
-#: ../data/
-msgid "EPG Selection"
-msgstr "EPG valinta"
-
-#: ../data/
-msgid "Exit the wizard"
-msgstr "Poistu velhosta"
-
-#: ../data/
-msgid "OSD Settings"
-msgstr "OSD asetukset"
-
-#: ../data/
-msgid "RF output"
-msgstr "RF-ulostulo"
-
-#: ../data/
-msgid "Brightness"
-msgstr "Kirkkaus"
-
-#: ../data/
-msgid "Parental control services Editor"
-msgstr ""
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Kyllä, tee toinen käsinhaku nyt"
-
-#: ../data/
-msgid "Activate network settings"
-msgstr "Ota verkkoasetukset käyttöön"
-
-#: ../data/
-msgid "Timer"
-msgstr "Ajastin"
-
-#: ../data/
-msgid "Compact flash card"
-msgstr "Compact flash kortti"
-
-#: ../data/
-msgid "Record"
-msgstr "Tallenna"
-
-#: ../data/
-msgid "Yes, view the tutorial"
-msgstr "Kyllä, katso opasohjelma"
-
-#: ../data/
-msgid "Show infobar on skip forward/backward"
-msgstr ""
-
-#: ../data/
-msgid "Color Format"
-msgstr "Väriformaatti"
-
-#: ../data/
-msgid "#f23d21"
-msgstr ""
-
-#: ../data/
-msgid "Plugin browser"
-msgstr "Lisäosien selaus"
-
-#: ../data/
-msgid "#80000000"
-msgstr ""
-
-#: ../data/
-msgid "SNR:"
-msgstr ""
-
-#: ../data/
-msgid "Harddisk setup"
-msgstr ""
-
-#: ../data/
-msgid "Timeshift"
-msgstr "Aikasiirto"
-
-#: ../data/
-msgid "Downloadable plugins"
-msgstr "Ladattavat lisäosat"
-
-#: ../data/
-msgid "Subservices"
-msgstr "Alipalvelut"
-
-#: ../data/
-msgid "Parental control setup"
-msgstr ""
-
-#: ../data/
-msgid "Timezone"
-msgstr "Aikavyöhyke"
-
-#: ../data/
-msgid "Message"
-msgstr "Viesti"
-
-#: ../data/
-msgid "About..."
-msgstr "Tietoja..."
-
-#: ../data/
-msgid "Seek"
-msgstr "Etsi"
-
-#: ../data/
-msgid "Common Interface"
-msgstr ""
-
-#: ../data/
-msgid "Language..."
-msgstr "Kieli..."
-
-#: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Asetusten palautus on valmis. Paina OK ottaaksesi palautetut asetukset "
-"käyttöön."
-
-#: ../data/
-msgid "A/V Settings"
-msgstr "A/V asetukset"
-
-#: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr ""
-"Kun painat OK nappia kauko-ohjaimessasi tietopalkki näytetään ruudussa."
-
-#: ../data/
-msgid "Service scan"
-msgstr "Kanavahaku"
-
-#: ../data/
-msgid "The wizard is finished now."
-msgstr "Velho on lopettanut."
-
-#: ../data/
-msgid "LCD Setup"
-msgstr "LCD asetukset"
-
-#: ../data/
-msgid "No, scan later manually"
-msgstr "Ei, hae myöhemmin käsin"
-
-#: ../data/
-msgid "Soundcarrier"
-msgstr "Äänenkantoaalto"
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Kyllä, palauta asetukset nyt"
-
-#: ../data/
-msgid "Contrast"
-msgstr "Kontrasti"
-
-#: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Olet valinnut varmuuskopioinnin kiintolevylle. Paina OK aloittaaksesi "
-"varmistuksen nyt."
-
-#: ../data/
-msgid "Timer selection"
-msgstr "Ajastinvalinta"
-
-#: ../data/
-msgid "Repeat"
-msgstr "Toista"
-
-#: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Olet valinnut varmuuskopioinnin Compact Flash -kortille. Kortin on oltava "
-"lukijassa. Sen toimintaa ei voi todeta. Suosittelemme varmuuskopiointia "
-"kiintolevylle!\n"
-"Paina OK aloittaakseni varmuuskopioinnin nyt."
-
-#: ../data/
-msgid "Network Setup"
-msgstr "Verkkoasetukset"
-
-#: ../data/
-msgid "Somewhere else"
-msgstr "Jossakin muualla"
-
-#: ../data/
-msgid "Timer log"
-msgstr "Ajastinloki"
-
-#: ../data/
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
-
-#: ../data/
-msgid "PiPSetup"
-msgstr "PiP-Asetukset"
-
-#: ../data/
-msgid "Menu"
-msgstr "Valikko"
-
-#: ../data/
-msgid "Restart"
-msgstr "Uudelleenkäynnistä"
-
-#: ../data/
-msgid "AC3 default"
-msgstr "AC3 oletus"
-
-#: ../data/
-msgid "Timer entry"
-msgstr "Ajastintieto"
-
-#: ../data/
-msgid "Modulator"
-msgstr "Modulaattori"
-
-#: ../data/
-msgid "Eventview"
-msgstr "Ohjelmatiedot"
-
-#: ../data/
-msgid "Margin before record (minutes)"
-msgstr "Lisäaika tallenteen alkuun (minuuttia)"
-
-#: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Varmuuskopiointi epäonnistui. Valitse toinen varmuuskopiontipaikka."
-
-#: ../data/
-msgid "Keymap"
-msgstr "Näppäinkartta"
-
-#: ../data/
-msgid "InfoBar"
-msgstr "Tietopalkki"
-
-#: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Velho voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset "
-"nyt?"
-
-#: ../data/
-msgid "Exit wizard"
-msgstr "Poistu Velhosta"
-
-#: ../data/
-msgid "Media player"
-msgstr "Mediasoitin"
-
-#: ../data/
-msgid "Timer sanity error"
-msgstr "Ajastinvirhe"
-
-#: ../data/
-msgid "Show infobar on channel change"
-msgstr ""
-
-#: ../data/
-msgid "VCR Switch"
-msgstr "VCR Vaihto"
-
-#: ../data/
-msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Laitteesi on sammumassa. Odota..."
-
-#: ../data/
-msgid "WSS on 4:3"
-msgstr "WSS 4:3"
-
-#: ../data/
-msgid "Choose bouquet"
-msgstr "Valitse kanavanippu"
-
-#: ../data/
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, opasta päivityksessä"
-
-#: ../data/
-msgid "No backup needed"
-msgstr "Varmuuskopiota ei tarvitse"
-
-#: ../data/
-msgid "MORE"
-msgstr "LISÄÄ"
-
-#: ../data/
-msgid "Yes, do an automatic scan now"
-msgstr "Kyllä, tee automaattihaku nyt"
-
-#: ../data/
-msgid "Information"
-msgstr "Tietoja"
-
-#: ../data/
-msgid "Yes, do a manual scan now"
-msgstr "Kyllä, tee käsinhaku nyt"
-
-#: ../data/
-msgid "USB"
-msgstr ""
-
-#: ../data/
-msgid "Invert display"
-msgstr "käänteinen näyttö"
-
-#: ../data/
-msgid "Do you want to restore your settings?"
-msgstr "Haluatko palauttaa asetukset?"
-
-#: ../data/
-msgid "Please set up tuner B"
-msgstr "Aseta viritin B."
-
-#: ../data/
-msgid "This is step number 2."
-msgstr "Tämä on vaihe 2."
-
-#: ../data/
-msgid "Delay"
-msgstr "Viive"
-
-#: ../data/
-msgid "Select HDD"
-msgstr "Valitse kiintolevy"
-
-#: ../data/
-msgid "Aspect Ratio"
-msgstr "Kuvasuhde"
-
-#: ../data/
-msgid "Recordings always have priority"
-msgstr "Tallennuksilla on aina etuoikeus"
-
-#: ../data/
-msgid "Customize"
-msgstr "Sovita"
-
-#: ../data/
-msgid "#389416"
-msgstr ""
-
-#: ../data/
-msgid "Pin code needed"
-msgstr ""
-
-#: ../data/
-msgid "VCR scart"
-msgstr "VCR scart"
-
-#: ../data/
-msgid "Mainmenu"
-msgstr "Päävalikko"
-
-#: ../data/
-msgid "Select a movie"
-msgstr "Valitse elokuva"
-
-#: ../data/
-msgid "Volume"
-msgstr "Äänenvoimakkuus"
-
-#: ../data/
-msgid "#33294a6b"
-msgstr ""
-
-#: ../data/
-msgid "Alpha"
-msgstr ""
-
-#: ../data/
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Tervetuloa.\n"
-"\n"
-"Tämä aloitus-Velho auttaa perusasetusten luomisessa.\n"
-"Paina kauko-ohjaimen OK-näppäintä edetäksesi seuraavaan vaiheeseen."
-
-#: ../data/
-msgid "Setup"
-msgstr "Käyttöasetukset"
-
-#: ../data/
-msgid "This is unsupported at the moment."
-msgstr "Tätä ei tällä hetkellä tueta."
-
-#: ../data/
-msgid "About"
-msgstr "Tietoa"
-
-#: ../data/
-msgid "config menu"
-msgstr "Asetusvalikko"
-
-#: ../data/
-msgid "Finetune"
-msgstr "Hienosäädä"
-
-#: ../data/
-msgid "Timer Editor"
-msgstr "Ajastimen muokkaus"
-
-#: ../data/
-msgid "Time/Date Input"
-msgstr "Aika/Päivä "
-
-#: ../data/
-msgid "AGC:"
-msgstr ""
-
-#: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Antenniasetukset"
-
-#: ../data/
-msgid "What do you want to scan?"
-msgstr "Mitä haluat etsiä?"
-
-#: ../data/
-msgid "Now Playing"
-msgstr "Nyt Soi"
-
-#: ../data/
-msgid "Channellist menu"
-msgstr "Kanavalistavalikko"
-
-#: ../data/
-msgid "Audio"
-msgstr "Ääni"
-
-#: ../data/
-msgid "Do you want to do a service scan?"
-msgstr "Haluatko tehdä kanavahaun?"
-
-#: ../data/
-msgid "NOW"
-msgstr "NYT"
-
-#: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Kyllä, sammuta nyt."
-
-#: ../data/
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-
-#: ../data/
-msgid "Harddisk standby after"
-msgstr ""
-
-#: ../data/
-msgid "#0064c7"
-msgstr ""
-
-#: ../data/
-msgid "MediaPlayer"
-msgstr "Mediasoitin"
-
-#: ../data/
-msgid "Do you want to do another manual service scan?"
-msgstr "Haluatko tehdä uuden käsinhaun?"
-
-#~ msgid "Harddisk..."
-#~ msgstr "Kiintolevy..."
-
-#~ msgid "Cable provider"
-#~ msgstr "Kaapeli-TV operaattori"
-
-#~ msgid "Classic"
-#~ msgstr "Klassinen"
-
-#~ msgid "Default"
-#~ msgstr "Oletus"
-
-#~ msgid "Equal to Socket A"
-#~ msgstr "Kuten Kanta A"
-
-#~ msgid "Loopthrough to Socket A"
-#~ msgstr "Läpisyöttö kytkentään A"
-
-#~ msgid "Nothing connected"
-#~ msgstr "Ei kytketty"
-
-#~ msgid "Predefined satellite"
-#~ msgstr "Ennalta määritelty satelliitti"
-
-#~ msgid "Secondary cable from motorized LNB"
-#~ msgstr "Toinen kaapeli moottorisoidulta mikropäältä"
-
-#~ msgid "Simple"
-#~ msgstr "Yksinkertainen"
-
-#~ msgid "Swap services"
-#~ msgstr "Vaihda palveluita"
