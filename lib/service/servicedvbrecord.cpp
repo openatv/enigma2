@@ -232,6 +232,21 @@ int eDVBServiceRecord::doRecord()
 			}
 			eDebugNoNewLine(")");
 		}
+		if (!program.subtitleStreams.empty())
+		{
+			eDebugNoNewLine(" (");
+			for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
+				i(program.subtitleStreams.begin());
+				i != program.subtitleStreams.end(); ++i)
+			{
+				pids_to_record.insert(i->pid);
+
+				if (i != program.subtitleStreams.begin())
+					eDebugNoNewLine(", ");
+				eDebugNoNewLine("%04x", i->pid);
+			}
+			eDebugNoNewLine(")");
+		}
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		if (program.pcrPid != 0x1fff)
 			pids_to_record.insert(program.pcrPid);
