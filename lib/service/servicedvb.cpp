@@ -1819,8 +1819,8 @@ void eDVBServicePlay::updateDecoder()
 		if (m_teletext_parser)
 			m_teletext_parser->start(tpid);
 
-		if (m_subtitle_parser && program.subtitleStreams.size() > 0)
-			m_subtitle_parser->start(program.subtitleStreams[0].pid);
+//		if (m_subtitle_parser && program.subtitleStreams.size() > 0)
+//			m_subtitle_parser->start(program.subtitleStreams[0].pid);
 
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
