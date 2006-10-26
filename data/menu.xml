@@ -19,7 +19,7 @@
 		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
 		<item text="Media player"><screen module="MediaPlayer" screen="MediaPlayer" /></item>
 		<item text="Timer"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		<item text="VCR scart"><screen module="Scart" screen="Scart" /></item>
+		<item text="VCR scart"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
 		<menu text="Information">
 			<id val="information" />

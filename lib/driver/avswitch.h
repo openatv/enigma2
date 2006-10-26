@@ -1,10 +1,18 @@
 #ifndef __avswitch_h
 #define __avswitch_h
 
-class eAVSwitch
+#include <lib/base/object.h>
+#include <lib/python/connections.h>
+
+class eSocketNotifier;
+
+class eAVSwitch: public Object
 {
 	static eAVSwitch *instance;
 	int m_video_mode;
+	eSocketNotifier *m_fp_notifier;
+	void fp_event(int what);
+	int m_fp_fd;
 #ifdef SWIG
 	eAVSwitch();
 	~eAVSwitch();
@@ -16,7 +24,7 @@ public:
 	~eAVSwitch();
 #endif
 	static eAVSwitch *getInstance();
-	
+	int getVCRSlowBlanking();
 	void setFastBlank(int val);
 	void setColorFormat(int format);
 	void setAspectRatio(int ratio);
@@ -24,6 +32,7 @@ public:
 	void setInput(int val);
 	void setSlowblank(int val);
 	void setWSS(int val);
+	PSignal1<void, int> vcr_sb_notifier;
 };
 
 #endif

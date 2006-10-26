@@ -415,6 +415,31 @@ class PowerKey:
 		# halt
 		quitMainloop(1)
 
+from Screens.Scart import Scart
+
+class AutoScartControl:
+	def __init__(self, session):
+		self.force = False
+		self.current_vcr_sb = eAVSwitch.getInstance().getVCRSlowBlanking()
+		if self.current_vcr_sb and config.av.vcrswitch.value:
+			self.scartDialog = session.instantiateDialog(Scart, True)
+		else:
+			self.scartDialog = session.instantiateDialog(Scart, False)
+		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
+		eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
+
+	def recheckVCRSb(self, configElement):
+		self.VCRSbChanged(self.current_vcr_sb)
+
+	def VCRSbChanged(self, value):
+		#print "vcr sb changed to", value
+		self.current_vcr_sb = value
+		if config.av.vcrswitch.value or value > 2:
+			if value:
+				self.scartDialog.showMessageBox()
+			else:
+				self.scartDialog.switchToTV()
+
 def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
@@ -447,6 +472,9 @@ def runScreenTest():
 	
 	vol = VolumeControl(session)
 	power = PowerKey(session)
+
+	# we need session.scart to access it from within menu.xml
+	session.scart = AutoScartControl(session)
 	
 	runReactor()
 	
