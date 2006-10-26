@@ -24,7 +24,6 @@ from Tools import XMLTools
 #		<item text="TV-Mode">self.setModeTV()</item>
 #		<item text="Radio-Mode">self.setModeRadio()</item>
 #		<item text="File-Mode">self.setModeFile()</item>
-#		<item text="Scart">self.openDialog(ScartLoopThrough)</item>
 #			<item text="Sleep Timer"></item>
 
 

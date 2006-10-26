@@ -6,20 +6,35 @@ from Components.AVSwitch import AVSwitch
 from enigma import *
 
 class Scart(Screen):
-	def __init__(self, session):
+	def __init__(self, session, start_visible=True):
 		Screen.__init__(self, session)
-		
+
 		self.avswitch = AVSwitch()
-		
-		self.avswitch.setInput("SCART")
-		
-		self.onExecBegin.append(self.showMessageBox)
-				
+
+		if start_visible:
+			self.onExecBegin.append(self.showMessageBox)
+			self.msgVisible = None
+		else:
+			self.msgVisible = False
+
 	def showMessageBox(self):
-		# only open messagebox on first execBegin
-		self.onExecBegin.remove(self.showMessageBox)
-		self.session.openWithCallback(self.switchToTV, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
-		
+		if self.msgVisible is None:
+			self.onExecBegin.remove(self.showMessageBox)
+			self.msgVisible = False
+
+		if not self.msgVisible:
+			self.msgVisible = True
+			self.avswitch.setInput("SCART")
+			self.msgBox = self.session.openWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
+
+	def MsgBoxClosed(self, *val):
+		self.msgBox = None
+		self.switchToTV()
+
 	def switchToTV(self, *val):
-		self.avswitch.setInput("ENCODER")
-		self.close()
+		if self.msgVisible:
+			if self.msgBox:
+				self.msgBox.close() # ... MsgBoxClosed -> switchToTV again..
+				return
+			self.avswitch.setInput("ENCODER")
+			self.msgVisible = False
