@@ -254,8 +254,8 @@ class PositionerSetup(Screen):
 			print "stepping east"
 			self.diseqccommand("moveEast", 0xFF) # one step
 		elif entry == "storage":
-			print "move to position", (self.positioner_storage.value + 1)
-			self.diseqccommand("moveTo", self.positioner_storage.value + 1)
+			print "move to position", int(self.positioner_storage.value)
+			self.diseqccommand("moveTo", int(self.positioner_storage.value)
 		elif entry == "limits":
 			self.diseqccommand("limitEast")
 #	
