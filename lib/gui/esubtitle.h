@@ -7,7 +7,7 @@
 
 class eDVBTeletextSubtitlePage;
 
-class eSubtitleWidget: public eWidget
+class eSubtitleWidget: public eWidget, public Object
 {
 public:
 	eSubtitleWidget(eWidget *parent);
@@ -15,7 +15,7 @@ public:
 	void setPage(const eDVBTeletextSubtitlePage &p);
 	void setPage(const eDVBSubtitlePage &p);
 	void clearPage();
-	
+
 protected:
 	int event(int event, void *data=0, void *data2=0);
 
@@ -25,6 +25,10 @@ private:
 
 	int m_dvb_page_ok;
 	eDVBSubtitlePage m_dvb_page;
+
+	eTimer m_hide_subtitles_timer;
+
+	gRegion m_visible_region;
 };
 
 #endif
