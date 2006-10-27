@@ -118,8 +118,6 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 
 int eDVBVolumecontrol::getVolume()
 {
-	if (isMuted())
-		return 0;
 	return leftVol;
 }
 
