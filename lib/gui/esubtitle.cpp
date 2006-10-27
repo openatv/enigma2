@@ -10,32 +10,41 @@
  	*/	
 
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
-	: eWidget(parent)
+	: eWidget(parent), m_hide_subtitles_timer(eApp)
 {
 	setBackgroundColor(gRGB(0,0,0,255));
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
+	CONNECT(m_hide_subtitles_timer.timeout, eSubtitleWidget::clearPage);
 }
 
 void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 {
 	m_page = p;
 	m_page_ok = 1;
-	invalidate();
+	m_hide_subtitles_timer.start(5000, true);
+	invalidate();  // FIXME
 }
 
 void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 {
 	m_dvb_page = p;
+	invalidate(m_visible_region);  // invalidate old visible regions
+	m_visible_region.rects.clear();
+	for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
+		m_visible_region.rects.push_back(eRect(it->m_position, it->m_pixmap->size()));
 	m_dvb_page_ok = 1;
-	invalidate();
+	m_hide_subtitles_timer.start(5000, true);
+	invalidate(m_visible_region);  // invalidate new regions
 }
 
 void eSubtitleWidget::clearPage()
 {
+	eDebug("subtitle timeout... hide");
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
-	invalidate();
+	invalidate(m_visible_region);
+	m_visible_region.rects.clear();
 }
 
 int eSubtitleWidget::event(int event, void *data, void *data2)
@@ -70,7 +79,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		}
 		else if (m_dvb_page_ok)
 		{
-			painter.setOffset(ePoint(0,0));
 			for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 				painter.blit(it->m_pixmap, it->m_position);
 		}
