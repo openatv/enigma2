@@ -71,13 +71,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else if (m_dvb_page_ok)
 		{
 			painter.setOffset(ePoint(0,0));
-//			if (!m_dvb_page.m_regions.size())
-//				eDebug("clear screen");
 			for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
-			{
-				painter.resetClip(eRect(it->m_position, it->m_pixmap->size()));
 				painter.blit(it->m_pixmap, it->m_position);
-			}
 		}
 		return 0;
 	}
