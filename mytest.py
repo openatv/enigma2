@@ -335,43 +335,57 @@ class VolumeControl:
 		self.hideVolTimer.timeout.get().append(self.volHide)
 
 		vol = config.audio.volume.value
-		print "volume is", vol
 		self.volumeDialog.setValue(vol)
-		eDVBVolumecontrol.getInstance().setVolume(vol, vol)
+		self.volctrl = eDVBVolumecontrol.getInstance()
+		self.volctrl.setVolume(vol, vol)
 
 	def volSave(self):
-		config.audio.volume.value = eDVBVolumecontrol.getInstance().getVolume()
+		if self.volctrl.isMuted():
+			config.audio.volume.value = 0
+		else:
+			config.audio.volume.value = self.volctrl.getVolume()
 		config.audio.volume.save()
 
-	def	volUp(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.volMute()
-		eDVBVolumecontrol.getInstance().volumeUp()
-		self.volumeDialog.show()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-		self.volSave()
-		self.hideVolTimer.start(3000, True)
+	def volUp(self):
+		self.setVolume(+1)
 
-	def	volDown(self):
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.volMute()
-		eDVBVolumecontrol.getInstance().volumeDown()
+	def volDown(self):
+		self.setVolume(-1)
+
+	def setVolume(self, direction):
+		oldvol = self.volctrl.getVolume()
+		if direction > 0:
+			self.volctrl.volumeUp()
+		else:
+			self.volctrl.volumeDown()
+		is_muted = self.volctrl.isMuted()
+		vol = self.volctrl.getVolume()
 		self.volumeDialog.show()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
+		if is_muted:
+			self.volMute() # unmute
+		elif not vol:
+			self.volMute(False, True) # mute but dont show mute symbol
+		if self.volctrl.isMuted():
+			self.volumeDialog.setValue(0)
+		else:
+			self.volumeDialog.setValue(self.volctrl.getVolume())
 		self.volSave()
 		self.hideVolTimer.start(3000, True)
 
 	def volHide(self):
 		self.volumeDialog.hide()
 
-	def	volMute(self):
-		eDVBVolumecontrol.getInstance().volumeToggleMute()
-		self.volumeDialog.setValue(eDVBVolumecontrol.getInstance().getVolume())
-
-		if (eDVBVolumecontrol.getInstance().isMuted()):
-			self.muteDialog.show()
-		else:
-			self.muteDialog.hide()
+	def volMute(self, showMuteSymbol=True, force=False):
+		vol = self.volctrl.getVolume()
+		if vol or force:
+			self.volctrl.volumeToggleMute()
+			if self.volctrl.isMuted():
+				if showMuteSymbol:
+					self.muteDialog.show()
+				self.volumeDialog.setValue(0)
+			else:
+				self.muteDialog.hide()
+				self.volumeDialog.setValue(vol)
 
 from Screens.Standby import Standby
 
