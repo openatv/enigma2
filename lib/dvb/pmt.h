@@ -145,6 +145,7 @@ public:
 	int getService(ePtr<eDVBService> &service) { service = m_service; return 0; }
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	int getChannel(eUsePtr<iDVBChannel> &channel);
+	void resetCachedProgram() { m_have_cached_program = false; }
 
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0);
 	void free();

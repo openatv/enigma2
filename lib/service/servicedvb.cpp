@@ -1337,6 +1337,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 		}
 	}
 
+	h.resetCachedProgram();
+
 	return 0;
 }
 
