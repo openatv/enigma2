@@ -522,7 +522,7 @@ std::string convertLatin1UTF8(const std::string &string)
 
 	while (i < len)
 	{
-		unsigned long code=string[i++];
+		unsigned long code=(unsigned char)string[i++];
 				// Unicode->UTF8 encoding
 		if (code < 0x80) // identity latin <-> utf8 mapping
 			res[t++]=char(code);
