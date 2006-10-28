@@ -374,6 +374,8 @@ class Tuner:
 	def getTransponderData(self):
 		return self.frontend.readTransponderData(True)
 
+tuning = None
+
 class TunerScreen(ScanSetup):
 	skin = """
 		<screen position="90,100" size="520,400" title="Tune">
@@ -392,18 +394,18 @@ class TunerScreen(ScanSetup):
 		self.satEntry = None
 
 		self.list = []
-		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning.type)
+		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), tuning.type)
 		self.list.append(self.typeOfTuningEntry)
-		self.satEntry = getConfigListEntry(_('Satellite'), self.tuning.sat)
+		self.satEntry = getConfigListEntry(_('Satellite'), tuning.sat)
 		self.list.append(self.satEntry)
-		if self.tuning.type.value == "manual_transponder":
+		if tuning.type.value == "manual_transponder":
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
 			self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-		elif self.tuning.type.value == "predefined_transponder":
-			self.list.append(getConfigListEntry(_("Transponder"), self.tuning.transponder))
+		elif tuning.type.value == "predefined_transponder":
+			self.list.append(getConfigListEntry(_("Transponder"), tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -411,22 +413,29 @@ class TunerScreen(ScanSetup):
 		if self["config"].getCurrent() == self.typeOfTuningEntry:
 			self.createSetup()
 		elif self["config"].getCurrent() == self.satEntry:
-			self.updateTransponders()
 			self.createSetup()
 
 	def createConfig(self, foo):
-		self.tuning = ConfigSubsection()
-		self.tuning.type = ConfigSelection(
-			default = "manual_transponder",
-			choices = { "manual_transponder" : _("Manual transponder"),
-						"predefined_transponder" : _("Predefined transponder") } )
-		self.tuning.sat = ConfigSatlist(list=nimmanager.getRotorSatListForNim(self.feid))
+		if not tuning:
+			global tuning
+			tuning = ConfigSubsection()
+			tuning.type = ConfigSelection(
+				default = "manual_transponder",
+				choices = { "manual_transponder" : _("Manual transponder"),
+							"predefined_transponder" : _("Predefined transponder") } )
+			tuning.sat = ConfigSatlist(list=nimmanager.getRotorSatListForNim(self.feid))
+			tuning.sat.addNotifier(self.tuningSatChanged)
+			self.updateTransponders()
+			TunerScreenConfigCreated = True
 		ScanSetup.createConfig(self, None)
-		self.updateTransponders()
+
+	def tuningSatChanged(self, *parm):
+		if tuning.type.value == "predefined_transponder":
+			self.updateTransponders()
 
 	def updateTransponders(self):
-		if len(self.tuning.sat.choices):
-			transponderlist = nimmanager.getTransponders(int(self.tuning.sat.value))
+		if len(tuning.sat.choices):
+			transponderlist = nimmanager.getTransponders(int(tuning.sat.value))
 			tps = []
 			cnt=0
 			for x in transponderlist:
@@ -455,12 +464,12 @@ class TunerScreen(ScanSetup):
 				elif x[4] == 6:
 					fec = "FEC_None"
 				tps.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
-			self.tuning.transponder = ConfigSelection(choices=tps)
+			tuning.transponder = ConfigSelection(choices=tps)
 
 	def keyGo(self):
 		returnvalue = (0, 0, 0, 0, 0, 0)
-		satpos = int(self.tuning.sat.value)
-		if self.tuning.type.value == "manual_transponder":
+		satpos = int(tuning.sat.value)
+		if tuning.type.value == "manual_transponder":
 			returnvalue = (
 				self.scan_sat.frequency.value,
 				self.scan_sat.symbolrate.value,
@@ -468,8 +477,8 @@ class TunerScreen(ScanSetup):
 				self.scan_sat.fec.index,
 				self.scan_sat.inversion.index,
 				satpos)
-		elif self.tuning.type.value == "predefined_transponder":
-			transponder = nimmanager.getTransponders(satpos)[self.tuning.transponder.index]
+		elif tuning.type.value == "predefined_transponder":
+			transponder = nimmanager.getTransponders(satpos)[tuning.transponder.index]
 			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
 		self.close(returnvalue)
 
