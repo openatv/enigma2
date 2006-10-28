@@ -1163,7 +1163,7 @@ class InfoBarPiP:
 	def __init__(self):
 		self.session.pipshown = False
 
-		self.addExtension((self.getShowHideName, self.showPiP, self.available), "red")
+		self.addExtension((self.getShowHideName, self.showPiP, self.available), "blue")
 		self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 		self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
 	
