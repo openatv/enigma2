@@ -430,8 +430,7 @@ class TunerScreen(ScanSetup):
 		ScanSetup.createConfig(self, None)
 
 	def tuningSatChanged(self, *parm):
-		if tuning.type.value == "predefined_transponder":
-			self.updateTransponders()
+		self.updateTransponders()
 
 	def updateTransponders(self):
 		if len(tuning.sat.choices):
