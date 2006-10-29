@@ -75,7 +75,7 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
 {
 	int len=id.length();
 	int idx=0;
-	while(idx < len)
+	while(idx <= len-8)
 	{
 		if (!strncasecmp(&id[idx++], "KEYBOARD", 8))
 		{
