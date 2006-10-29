@@ -3,6 +3,7 @@
 #include <string>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
+#include <lib/base/estring.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <lib/base/nconfig.h> // access to python config
@@ -1364,7 +1365,7 @@ std::string eDVBServicePlay::getRadioText(int x)
 		switch(x)
 		{
 			case 0:
-				return m_radiotext_parser->getCurrentText();
+				return convertLatin1UTF8(m_radiotext_parser->getCurrentText());
 		}
 	return "";
 }
@@ -2061,7 +2062,7 @@ PyObject *eDVBServicePlay::getSubtitleList()
 	{
 		PyObject *tuple = PyTuple_New(2);
 		char desc[20];
-		sprintf(desc, "Page %x", *i);
+		sprintf(desc, "Page %d", *i);
 		PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
 		PyTuple_SetItem(tuple, 1, PyInt_FromLong(*i));
 		PyList_Append(l, tuple);
