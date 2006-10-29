@@ -276,7 +276,9 @@ public:
 		sTracknumber,
 		sGenre,
 		sCAIDs,
-		sVideoType  // MPEG2 MPEG4
+		sVideoType,  // MPEG2 MPEG4
+		
+		sTags,  /* space seperated list of tags */
 	};
 	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
 
