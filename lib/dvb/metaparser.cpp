@@ -55,6 +55,9 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		case 3:
 			m_time_create = atoi(line);
 			break;
+		case 4:
+			m_tags = line;
+			break;
 		default:
 			break;
 		}

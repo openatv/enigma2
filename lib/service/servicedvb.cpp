@@ -212,6 +212,8 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 		return m_parser.m_description;
 	case iServiceInformation::sServiceref:
 		return m_parser.m_ref.toString();
+	case iServiceInformation::sTags:
+		return m_parser.m_tags;
 	default:
 		return "";
 	}

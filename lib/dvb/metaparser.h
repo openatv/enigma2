@@ -16,6 +16,8 @@ public:
 	eServiceReferenceDVB m_ref;
 	std::string m_name, m_description;
 	int m_time_create;
+	
+	std::string m_tags;
 };
 
 #endif
