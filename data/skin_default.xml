@@ -315,11 +315,16 @@
 	<screen name="PiPSetup" backgroundColor="transparent" position="70,400" size="600,150" title="PiPSetup" flags="wfNoBorder">
 		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
 	</screen>
-	<screen name="MovieSelection" position="90,98" size="560,415" title="Select a movie">
-		<widget name="waitingtext" position="0,0" size="500,335" zPosition="2" font="Regular;22" />
-		<widget name="list" position="0,0" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
-		<widget name="freeDiskSpace" position="10,380" size="510,30" font="Regular;22" />
-		<ePixmap position="520,390" zPosition="1" size="36,20" pixmap="key_menu-fs8.png" transparent="1" alphatest="on" />
+	<screen name="MovieSelection" position="90,78" size="560,455" title="Select a movie">
+		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
+		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
+		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
+
+		<widget name="waitingtext" position="0,40" size="500,335" zPosition="2" font="Regular;22" />
+		<widget name="list" position="0,40" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
+		<widget name="freeDiskSpace" position="10,420" size="510,30" font="Regular;22" />
+		<ePixmap position="520,430" zPosition="1" size="36,20" pixmap="key_menu-fs8.png" transparent="1" alphatest="on" />
 	</screen>
 	<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
 		<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
