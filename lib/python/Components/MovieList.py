@@ -14,6 +14,7 @@ class MovieList(HTMLComponent, GUIComponent):
 	def __init__(self, root):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
+		self.tags = set()
 		if root is not None:
 			self.reload(root)
 		self.l.setFont(0, gFont("Regular", 22))
@@ -73,11 +74,11 @@ class MovieList(HTMLComponent, GUIComponent):
 		instance.setContent(self.l)
 		instance.setItemHeight(75)
 	
-	def reload(self, root = None):
+	def reload(self, root = None, filter_tags = None):
 		if root is not None:
-			self.load(root)
+			self.load(root, filter_tags)
 		else:
-			self.load(self.root)
+			self.load(self.root, filter_tags)
 		self.l.setList(self.list)
 
 	def removeService(self, service):
@@ -95,7 +96,7 @@ class MovieList(HTMLComponent, GUIComponent):
 			self.list[index] = (x[0], x[1], x[2], x[1].getLength(x[0]))
 			self.l.invalidateEntry(index)
 
-	def load(self, root):
+	def load(self, root, filter_tags):
 		# this lists our root service, then building a 
 		# nice list
 		
@@ -104,6 +105,8 @@ class MovieList(HTMLComponent, GUIComponent):
 		
 		self.serviceHandler = eServiceCenter.getInstance()
 		list = self.serviceHandler.list(root)
+		
+		tags = set()
 		
 		if list is None:
 			raise "listing of movies failed"
@@ -118,9 +121,28 @@ class MovieList(HTMLComponent, GUIComponent):
 			if info is None:
 				continue
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+			
+			# convert space-seperated list of tags into a set
+			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
+			if this_tags == ['']:
+				this_tags = []
+			this_tags = set(this_tags)
+			
+			# filter_tags is either None (which means no filter at all), or 
+			# a set. In this case, all elements of filter_tags must be present,
+			# otherwise the entry will be dropped.			
+			if filter_tags is not None and not this_tags.issuperset(filter_tags):
+				continue
+			
+			tags |= this_tags
 			self.list.append((serviceref, info, begin, -1))
 		
+		# sort: key is 'begin'
 		self.list.sort(key=lambda x: -x[2])
+		
+		# finally, store a list of all tags which were found. these can be presented
+		# to the user to filter the list
+		self.tags = tags
 
 	def moveTo(self, serviceref):
 		found = 0

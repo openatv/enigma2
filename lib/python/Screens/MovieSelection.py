@@ -70,6 +70,11 @@ class MovieSelection(Screen):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
 		
+		self.tags = [ ]
+		self.selected_tags = None
+		
+		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD))
+		
 		self.movemode = False
 		self.bouquet_mark_edit = False
 		
@@ -82,15 +87,25 @@ class MovieSelection(Screen):
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 		
+		self["key_red"] = Button(_("All..."))
+		self["key_green"] = Button("")
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
+		
 		#self["okbutton"] = Button("ok", [self.channelSelected])
 		self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE, update=False)
 		
-		self["actions"] = ActionMap(["OkCancelActions", "MovieSelectionActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "MovieSelectionActions", "ColorActions"],
 			{
 				"cancel": self.abort,
 				"ok": self.movieSelected,
 				"showEventInfo": self.showEventInformation,
 				"contextMenu": self.doContext,
+				
+				"red": self.showAll,
+				"yellow": self.showTagsFirst,
+				"green": self.showTagsSecond,
+				"blue": self.showTagsMenu,
 			})
 		self["actions"].csel = self
 		self.onShown.append(self.go)
@@ -114,17 +129,15 @@ class MovieSelection(Screen):
 			self.inited=True
 
 	def updateHDDData(self):
-		self["list"].reload(eServiceReference("2:0:1:0:0:0:0:0:0:0:" + resolveFilename(SCOPE_HDD)))
-		if (self.selectedmovie is not None):
+ 		self.reloadList()
+ 		if self.selectedmovie is not None:
 			self.moveTo()
 		self["waitingtext"].instance.hide()
-						
+
 		self["freeDiskSpace"].update()
-		
-		self.lengthTimer.start(10, 1)
-		self.lengthPosition = 0
-		self.lengthLength = len(self["list"])
-		
+
+		self.updateTags()
+
 	def updateLengthData(self):
 		self.list.updateLengthOfIndex(self.lengthPosition)
 		self.lengthPosition += 1
@@ -150,3 +163,61 @@ class MovieSelection(Screen):
 
 	def abort(self):
 		self.close(None)
+
+	def updateTags(self):
+		# get a list of tags available in this list
+		self.tags = list(self["list"].tags)
+		
+		# by default, we do not display any filtering options
+		self.tag_first = ""
+		self.tag_second = ""
+		
+		# when tags are present, however, the first two are 
+		# directly mapped to the second, third ("green", "yellow") buttons
+		if len(self.tags) > 0:
+			self.tag_first = self.tags[0]
+		
+		if len(self.tags) > 1:
+			self.tag_second = self.tags[1]
+		
+		self["key_green"].text = self.tag_first
+		self["key_yellow"].text = self.tag_second
+		
+		# the rest is presented in a list, available on the
+		# fourth ("blue") button
+		if len(self.tags) > 2:
+			self["key_blue"].text = _("Other...")
+		else:
+			self["key_blue"].text = ""
+
+	def reloadList(self):
+		self["list"].reload(self.current_ref, self.selected_tags)
+		self.lengthTimer.start(10, 1)
+		self.lengthPosition = 0
+		self.lengthLength = len(self["list"])
+
+	def showAll(self):
+		self.selected_tags = None
+		self.reloadList()
+
+	def showTagsN(self, n):
+		if len(self.tags) < n:
+			self.showTagWarning()
+		else:
+			self.selected_tags = set([self.tags[n - 1]])
+			self.reloadList()
+
+	def showTagsFirst(self):
+		self.showTagsN(1)
+
+	def showTagsSecond(self):
+		self.showTagsN(2)
+
+	def showTagsMenu(self):
+		if len(self.tags) < 3:
+			self.showTagWarning()
+		else:
+			pass
+
+	def showTagWarning(self):
+		print "select some tags first!"
