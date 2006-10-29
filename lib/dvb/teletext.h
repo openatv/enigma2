@@ -10,6 +10,7 @@ struct eDVBTeletextSubtitlePageElement
 {
 	gRGB m_color;
 	std::string m_text;
+	eRect m_area;
 	eDVBTeletextSubtitlePageElement(const gRGB &color, const std::string &text)
 		: m_color(color), m_text(text)
 	{

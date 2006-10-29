@@ -3,14 +3,79 @@
 #include <lib/dvb/idemux.h>
 #include <lib/gdi/gpixmap.h>
 
-/*
- This is a very simple en300 706 telext decoder.
- 
- It can only decode a single page at a time, thus it's only used
- for subtitles.
- 
- */
+// Try to map teletext characters into ISO-8859-1 charset
+// Use similar looking or similar meaning characters when possible.
 
+// G0 and G2 national option table
+// see table 33 in ETSI EN 300 706
+// use it with (triplet 1 bits 14-11)*(ctrl bits C12-14)
+
+unsigned char LatinNationalOptionSubsetsLookup[16*8] =
+{
+	1, 4, 11, 5, 3, 8, 0, 1,
+	7, 4, 11, 5, 3, 1, 0, 1,
+	1, 4, 11, 5, 3, 8, 12, 1,
+	1, 1, 1, 1, 1, 10, 1, 9,
+	1, 4, 2, 6, 1, 1, 0, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 12, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 3, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 1, 1, // reserved
+	1, 1, 1, 1, 1, 1, 1, 1  // reserved
+};
+
+unsigned char LatinNationalReplaceMap[128] =
+{
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 6, 7, 8,
+	9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 12, 13, 0
+};
+
+// latin national option subsets
+// see table 36 in ETSI EN 300 706
+
+unsigned char LatinNationalOptionSubsets[13*14] = {
+	0, '#', 'u', 'c', 't', 'z', 'ý', 'í', 'r', 'é', 'á', 'e', 'ú', 's', // Slovak/Czech
+	0, '£', '$', '@', '-', '½', '-', '|', '#', '-', '¼', '#', '¾', '÷', // English
+	0, '#', 'õ', 'S', 'Ä', 'Ö', 'Z', 'Ü', 'Õ', 's', 'ä', 'ö', 'z', 'ü', // Estonian
+	0, 'é', 'ï', 'à', 'ë', 'ê', 'ù', 'î', '#', 'è', 'â', 'ô', 'û', 'ç', // French
+	0, '#', '$', '§', 'Ä', 'Ö', 'Ü', '^', '_', 'º', 'ä', 'ö', 'ü', 'ß', // German
+	0, '£', '$', 'é', 'º', 'ç', '-', '|', '#', 'ù', 'à', 'ò', 'è', 'ì', // Italian
+	0, '#', '$', 'S', 'e', 'e', 'Z', 'c', 'u', 's', 'a', 'u', 'z', 'i', // Lithuanian/Lettish
+	0, '#', 'n', 'a', 'Z', 'S', 'L', 'c', 'ó', 'e', 'z', 's', 'l', 'z', // Polish
+	0, 'ç', '$', 'i', 'á', 'é', 'í', 'ó', 'ú', '¿', 'ü', 'ñ', 'è', 'à', // Spanish/Portuguese
+	0, '#', '¤', 'T', 'Â', 'S', 'A', 'Î', 'i', 't', 'â', 's', 'a', 'î', // Rumanian
+	0, '#', 'Ë', 'C', 'C', 'Z', 'D', 'S', 'ë', 'c', 'c', 'z', 'd', 's', // Slovenian/Serbian/Croation
+	0, '#', '¤', 'É', 'Ä', 'Ö', 'Å', 'Ü', '_', 'é', 'ä', 'ö', 'å', 'ü', // Finnish/Hungarian/Swedish
+	0, 'T', 'g', 'I', 'S', 'Ö', 'Ç', 'Ü', 'G', 'i', 's', 'ö', 'ç', 'ü'  // Turkish
+};
+
+unsigned char MapTeletextG0Latin1Char(int Gtriplet, int NatOpts, unsigned char inchar)
+{
+	int num = LatinNationalOptionSubsetsLookup[(Gtriplet&0xf)*(NatOpts&0x7)];
+	unsigned char c = inchar&0x7f;
+	unsigned char cc = LatinNationalReplaceMap[c];
+	if(cc)
+		return LatinNationalOptionSubsets[num*cc];
+	else
+		return c;
+}
+
+// This is a very simple en300 706 telext decoder.
+// It can only decode a single page at a time, thus it's only used
+// for subtitles.
+ 
 DEFINE_REF(eDVBTeletextParser);
 
 	/* we asumme error free transmission! */
@@ -115,6 +180,12 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		if (data_unit_length != 44)
 		{
 			/* eDebug("illegal data unit length %d", data_unit_length); */
+			break;
+		}
+		
+		if (data_unit_id != 0x03)
+		{
+			/* eDebug("non subtitle data unit id %d", data_unit_id); */
 			break;
 		}
 		
@@ -294,11 +365,21 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 //	eDebug("add subtitle string: %s, col %d", string.c_str(), color);
 
 	int force_cell = 0;
-	
+
 	if (string.substr(0, 2) == "- ")
 	{
 		string = string.substr(2);
 		force_cell = 1;
+	}
+
+	int len = string.length();
+	int idx = 0;
+
+	while (idx < len)
+	{
+		if (string[idx] >= 0x20)
+			string[idx] = MapTeletextG0Latin1Char(0, (m_C >> 11), string[idx]);
+		++idx;
 	}
 
 //	eDebug("color %d, m_subtitle_color %d", color, m_subtitle_color);
