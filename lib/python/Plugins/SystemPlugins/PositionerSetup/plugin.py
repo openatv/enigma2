@@ -12,6 +12,8 @@ from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.config import ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, getConfigListEntry
 
+from time import sleep
+
 class PositionerSetup(Screen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Positioner setup..." >
@@ -342,12 +344,15 @@ class Diseqc:
 				string = 'e03167'
 			else:
 				string = 'e03160' #positioner stop
+
 			print "diseqc command:",
 			print string
-			
 			cmd.setCommandString(string)
 			self.frontend.sendDiseqc(cmd)
-			
+			if string == 'e03160': #positioner stop
+				sleep(0.05)
+				self.frontend.sendDiseqc(cmd) # send 2nd time
+
 class Tuner:
 	def __init__(self, frontend):
 		self.frontend = frontend
