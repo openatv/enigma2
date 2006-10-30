@@ -9,8 +9,10 @@
 #define videoStreamSource_t video_stream_source_t
 #define streamSource stream_source
 #define dmxPesFilterParams dmx_pes_filter_params
-#define DMX_PES_VIDEO DMX_PES_VIDEO0
-#define DMX_PES_AUDIO DMX_PES_AUDIO0
+#define DMX_PES_VIDEO0 DMX_PES_VIDEO
+#define DMX_PES_AUDIO0 DMX_PES_AUDIO
+#define DMX_PES_VIDEO1 DMX_PES_VIDEO
+#define DMX_PES_AUDIO1 DMX_PES_AUDIO
 #include <ost/dmx.h>
 #include <ost/video.h>
 #include <ost/audio.h>
