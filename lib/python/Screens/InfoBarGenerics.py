@@ -344,12 +344,21 @@ class InfoBarMenu:
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
 			})
+		self.session.infobar = None
 
 	def mainMenu(self):
 		print "loading mainmenu XML..."
 		menu = mdom.childNodes[0]
 		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
-		self.session.open(MainMenu, menu, menu.childNodes)
+
+		self.session.infobar = self
+		# so we can access the currently active infobar from screens opened from within the mainmenu
+		# at the moment used from the SubserviceSelection
+
+		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu, menu.childNodes)
+
+	def mainMenuClosed(self, *val):
+		self.session.infobar = None
 
 class InfoBarSimpleEventView:
 	""" Opens the Eventview for now/next """
@@ -1123,40 +1132,6 @@ class InfoBarPlugins:
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session)
-
-# depends on InfoBarExtensions and InfoBarSubtitleSupport
-class InfoBarSubtitles:
-	def __init__(self):
-		self.addExtension((self.getDisableSubtitleName, self.disableSubtitles, self.subtitlesEnabled), "4")
-		self.addExtension(extension = self.getSubtitleList, type = InfoBarExtensions.EXTENSION_LIST)
-		
-	def getDisableSubtitleName(self):
-		return _("Disable subtitles")
-
-	def getSubtitleList(self):
-		list = []
-		s = self.getCurrentServiceSubtitle()
-		l = s and s.getSubtitleList() or [ ]
-
-		for x in l:
-			list.append(((boundFunction(self.getSubtitleEntryName, x[0]), boundFunction(self.enableSubtitle, x[1]), lambda: True), None))
-		return list
-	
-	def getSubtitleEntryName(self, name):
-		return "Enable Subtitles: " + name
-
-	def enableSubtitle(self, subtitles):
-		if self.selected_subtitle != subtitles:
-			print "enable subtitles", subtitles
-			self.subtitles_enabled = False
-			self.selected_subtitle = subtitles
-			self.subtitles_enabled = True
-
-	def subtitlesEnabled(self):
-		return self.subtitles_enabled
-		
-	def disableSubtitles(self):
-		self.subtitles_enabled = False
 
 # depends on InfoBarExtensions
 class InfoBarPiP:

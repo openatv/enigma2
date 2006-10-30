@@ -287,13 +287,15 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	segment_length |= *segment++;
 	if (segment_type == 0xFF)
 		return segment_length + 6;
+	if (page_id != m_composition_page_id && page_id != m_ancillary_page_id)
+		return segment_length + 6;
 //	//eDebug("have %d bytes of segment data", segment_length);
 
 //	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
 
 	subtitle_page *page, **ppage;
 
-	page = this->pages; ppage = &this->pages;
+	page = m_pages; ppage = &m_pages;
 
 	while (page)
 	{
@@ -727,7 +729,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
 //	eDebug("subtitle_process_pes");
-	if (!extract_pts(show_time, pkt))
+	if (!extract_pts(m_show_time, pkt))
 	{
 		pkt += 6; len -= 6;
 		// skip PES header
@@ -770,14 +772,14 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 void eDVBSubtitleParser::subtitle_redraw_all()
 {
 #if 1
-	subtitle_page *page = this->pages;
+	subtitle_page *page = m_pages;
 	while(page)
 	{
 		subtitle_redraw(page->page_id);
 		page = page->next;
 	}
 #else
-	subtitle_page *page = this->pages;
+	subtitle_page *page = m_pages;
 	//eDebug("----------- end of display set");
 	//eDebug("active pages:");
 	while (page)
@@ -819,7 +821,7 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 
 void eDVBSubtitleParser::subtitle_reset()
 {
-	while (subtitle_page *page = this->pages)
+	while (subtitle_page *page = m_pages)
 	{
 			/* free page regions */
 		while (page->page_regions)
@@ -859,14 +861,14 @@ void eDVBSubtitleParser::subtitle_reset()
 			delete clut;
 		}
 
-		this->pages = page->next;
+		m_pages = page->next;
 		delete page;
 	}
 }
 
 void eDVBSubtitleParser::subtitle_redraw(int page_id)
 {
-	subtitle_page *page = this->pages;
+	subtitle_page *page = m_pages;
 
 	//eDebug("displaying page id %d", page_id);
 
@@ -887,7 +889,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 	subtitle_page_region *region = page->page_regions;
 
 	eDVBSubtitlePage Page;
-	Page.m_show_time = show_time;
+	Page.m_show_time = m_show_time;
 	for (; region; region=region->next)
 	{
 //		eDebug("region %d", region->region_id);
@@ -905,8 +907,6 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 
 			int x0 = region->region_horizontal_address;
 			int y0 = region->region_vertical_address;
-			int x1 = x0 + reg->region_width;
-			int y1 = y0 + reg->region_height;
 
 			if ((x0 < 0) || (y0 < 0))
 			{
@@ -1098,7 +1098,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 DEFINE_REF(eDVBSubtitleParser);
 
 eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
-	:pages(0)
+	:m_pages(0)
 {
 	setStreamID(0xBD);
 
@@ -1123,11 +1123,14 @@ int eDVBSubtitleParser::stop()
 	return -1;
 }
 
-int eDVBSubtitleParser::start(int pid)
+int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_page_id)
 {
 	if (m_pes_reader)
 	{
-		eDebug("start dvb subtitles on pid 0x%04x", pid);
+		eDebug("start dvb subtitles on pid 0x%04x with composition_page_id %d and ancillary_page_id %d",
+			pid, composition_page_id, ancillary_page_id);
+		m_composition_page_id = composition_page_id;
+		m_ancillary_page_id = ancillary_page_id;
 		return m_pes_reader->start(pid);
 	}
 	return -1;

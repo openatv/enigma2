@@ -4,6 +4,7 @@
 #include <lib/base/object.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/pesparse.h>
+#include <lib/dvb/pmt.h>
 #include <lib/gdi/gpixmap.h>
 
 struct eDVBTeletextSubtitlePageElement
@@ -34,11 +35,10 @@ public:
 	eDVBTeletextParser(iDVBDemux *demux);
 	virtual ~eDVBTeletextParser();
 	int start(int pid);
-	void setPage(int page);
-	
+	void setPageAndMagazine(int page, int magazine);
+	void setMagazine(int magazine);
 	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
-	
-	std::set<int> m_found_subtitle_pages;
+	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
 private:
 	void processPESPacket(__u8 *pkt, int len);
 	
@@ -49,7 +49,7 @@ private:
 	
 	int m_M, m_Y, m_X, m_S1, m_S2, m_S3, m_S4, m_C;
 	
-	int m_page_number, m_page_M, m_page_X, m_page_open, m_double_height;
+	int m_pid, m_page_M, m_page_X, m_page_open, m_double_height;
 	
 	void handlePageStart();
 	void handleLine(unsigned char *line, int len);

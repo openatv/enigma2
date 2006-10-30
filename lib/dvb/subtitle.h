@@ -108,15 +108,16 @@ class eDVBSubtitleParser
 	:public iObject, public ePESParser, public Object
 {
 	DECLARE_REF(eDVBSubtitleParser);
-	subtitle_page *pages;
+	subtitle_page *m_pages;
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
-	pts_t show_time;
+	pts_t m_show_time;
 	Signal1<void,const eDVBSubtitlePage&> m_new_subtitle_page;
+	int m_composition_page_id, m_ancillary_page_id;
 public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
-	int start(int pid);
+	int start(int pid, int composition_page_id, int ancillary_page_id);
 	int stop();
 	void connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
 private:
