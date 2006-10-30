@@ -15,7 +15,7 @@ extern "C" int sys_ioprio_get(int, int);
 #if defined(__i386__)
 #define __NR_ioprio_set		289
 #define __NR_ioprio_get		290
-#elif defined(__ppc__)
+#elif defined(__ppc__) || defined(__powerpc__)
 #define __NR_ioprio_set		273
 #define __NR_ioprio_get		274
 #elif defined(__x86_64__)

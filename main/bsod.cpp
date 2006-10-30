@@ -164,7 +164,6 @@ void oops(const mcontext_t &context, int dumpcode)
 }
 #else
 #warning "no oops support!"
-#error bla
 #define NO_OOPS_SUPPORT
 #endif
 
