@@ -753,8 +753,8 @@ class ChannelSelectionBase(Screen):
 							else:
 								service_name = _("Services")
 							try:
-								service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
-								service.setName(service_name) # why we need this cast?
+								service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos).decode("latin-1").encode("utf-8")))
+								service.setName(service_name)
 							except:
 								if orbpos == 0xFFFF: #Cable
 									n = ("%s (%s)") % (service_name, _("Cable"))
