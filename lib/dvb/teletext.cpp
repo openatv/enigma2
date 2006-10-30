@@ -135,7 +135,7 @@ eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux)
 {
 	setStreamID(0xBD); /* as per en 300 472 */
 	
-	setPage(-1);
+	setPageAndMagazine(0,0);
 	
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create teletext subtitle PES reader!");
@@ -228,7 +228,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			int serial_mode = m_C & (1<<11);
 			
 				/* page on the same magazine? end current page. */
-			if ((serial_mode || (m_M == m_page_M)) && (m_page_open))
+			if ((serial_mode || m_M == m_page_M) && m_page_open)
 			{
 				handlePageEnd(have_pts, pts);
 				m_page_open = 0;
@@ -237,10 +237,17 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			m_X = decode_hamming_84(data+1) * 0x10 + decode_hamming_84(data);
 			
 			if ((m_C & (1<<6)) && (m_X != 0xFF)) /* scan for pages with subtitle bit set */
-				m_found_subtitle_pages.insert((m_M << 8) | m_X);
-			
+			{
+				eDVBServicePMTHandler::subtitleStream s;
+				s.pid = m_pid;
+				s.subtitling_type = 0x01; // ebu teletext subtitle
+				s.teletext_page_number = m_X & 0xFF;
+				s.teletext_magazine_number = m_M & 7;
+				m_found_subtitle_pages.insert(s);
+			}
+
 				/* correct page on correct magazine? open page. */
-			if ((m_M == m_page_M) && (m_X == m_page_X))
+			if (m_M == m_page_M && m_X == m_page_X)
 			{
 				handlePageStart();
 				m_page_open = 1;
@@ -248,8 +255,8 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			}
 		} else
 		{
-			/* data for the selected page? */
-			if ((m_M == m_page_M) && m_page_open)
+			/* data for the selected page ? */
+			if (m_M == m_page_M && m_page_open)
 				handleLine(data, 40);
 		}
 	}
@@ -260,7 +267,10 @@ int eDVBTeletextParser::start(int pid)
 	m_page_open = 0;
 
 	if (m_pes_reader)
+	{
+		m_pid = pid;
 		return m_pes_reader->start(pid);
+	}
 	else
 		return -1;
 }
@@ -340,19 +350,18 @@ void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 	m_subtitle_page.m_have_pts = have_pts;
 	m_subtitle_page.m_pts = pts;
 	m_subtitle_page.m_timeout = 90000 * 20; /* 20s */
-	if (m_page_number != -1)
+	if (m_page_X != 0)
 		sendSubtitlePage();  /* send assembled subtitle page to display */
 }
 
-void eDVBTeletextParser::setPage(int page)
+void eDVBTeletextParser::setPageAndMagazine(int page, int magazine)
 {
 	if (page > 0)
 		eDebug("enable teletext subtitle page %d", page);
 	else
 		eDebug("disable teletext subtitles");
-	m_page_number = page;
-	m_page_M = (page >> 8) & 7; /* magazine to look for */
-	m_page_X = page & 0xFF;     /* page number */
+	m_page_M = magazine&7; /* magazine to look for */
+	m_page_X = page&0xFF;  /* page number */
 }
 
 void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubtitlePage&> &slot, ePtr<eConnection> &connection)

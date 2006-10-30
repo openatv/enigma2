@@ -117,10 +117,29 @@ public:
 	struct subtitleStream
 	{
 		int pid;
-		int subtitling_type;
-		int composition_page_id;
-		int ancillary_page_id;
+		int subtitling_type;  	/*  see ETSI EN 300 468 table 26 component_type
+									when stream_content is 0x03
+									0x10..0x13, 0x20..0x23 is used for dvb subtitles
+									0x01 is used for teletext subtitles */
+		union
+		{
+			int composition_page_id;  // used for dvb subtitles
+			int teletext_page_number;  // used for teletext subtitles
+		};
+		union
+		{
+			int ancillary_page_id;  // used for dvb subtitles
+			int teletext_magazine_number;  // used for teletext subtitles
+		};
 		std::string language_code;
+		bool operator<(const subtitleStream &s)
+		{
+			if (pid != s.pid)
+				return pid < s.pid;
+			if (teletext_page_number != s.teletext_page_number)
+				return teletext_page_number < s.teletext_page_number;
+			return teletext_magazine_number < s.teletext_magazine_number;
+		}
 	};
 
 	struct program

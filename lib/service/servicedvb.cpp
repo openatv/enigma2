@@ -27,8 +27,6 @@
 #include <byteswap.h>
 #include <netinet/in.h>
 
-#define INTERNAL_TELETEXT
-
 #ifndef BYTE_ORDER
 #error no byte order defined!
 #endif
@@ -1763,10 +1761,8 @@ void eDVBServicePlay::updateDecoder()
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
-#ifdef INTERNAL_TELETEXT
 		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
-#endif
 		m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
 		m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 	}
@@ -1993,44 +1989,93 @@ void eDVBServicePlay::cutlistToCuesheet()
 	m_cue->commitSpans();
 }
 
-RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *entry)
+RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *tuple)
 {
 	if (m_subtitle_widget)
 		disableSubtitles(parent);
-	
+
+	PyObject *entry = 0;
+	int tuplesize = PyTuple_Size(tuple);
+	int type = 0;
+
+	if (!PyTuple_Check(tuple))
+		goto error_out;
+
+	if (tuplesize < 1)
+		goto error_out;
+
+	entry = PyTuple_GET_ITEM(tuple, 0);
+
 	if (!PyInt_Check(entry))
-		return -1;
+		goto error_out;
 
-	int page = PyInt_AsLong(entry);
+	type = PyInt_AsLong(entry);
 
-	if (page > 0 && !m_teletext_parser)
-		return -1;
-	if (page < 0 && !m_subtitle_parser)
-		return -1;
-
-	m_subtitle_widget = new eSubtitleWidget(parent);
-	m_subtitle_widget->resize(parent->size()); /* full size */
-
-	if (page > 0)
+	if (type == 1)  // teletext subtitles
 	{
-/*		eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
-		eDVBServicePMTHandler::program program;
-		if (h.getProgramInfo(program))
-			eDebug("getting program info failed.");
-		else
+		int page, magazine;
+		if (tuplesize < 4)
+			goto error_out;
+
+		if (!m_teletext_parser)
 		{
-			eDebug("start teletext on pid %04x, page %d", program.textPid, page);
-			m_teletext_parser->start(program.textPid);*/
-			m_teletext_parser->setPage(page);
-//		}
+			eDebug("enable teletext subtitles.. no parser !!!");
+			return -1;
+		}
+
+		// PyTuple_GET_ITEM(tuple, 1);  //we dont need pid yet
+		entry = PyTuple_GET_ITEM(tuple, 2);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		page = PyInt_AsLong(entry);
+
+		entry = PyTuple_GET_ITEM(tuple, 3);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		magazine = PyInt_AsLong(entry);
+
+		m_subtitle_widget = new eSubtitleWidget(parent);
+		m_subtitle_widget->resize(parent->size()); /* full size */
+		m_teletext_parser->setPageAndMagazine(page, magazine);
+	}
+	else if (type == 0)
+	{
+		int pid = 0, composition_page_id = 0, ancillary_page_id = 0;
+		if (!m_subtitle_parser)
+		{
+			eDebug("enable dvb subtitles.. no parser !!!");
+			return -1;
+		}
+		if (tuplesize < 4)
+			goto error_out;
+
+		entry = PyTuple_GET_ITEM(tuple, 1);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		pid = PyInt_AsLong(entry);
+
+		entry = PyTuple_GET_ITEM(tuple, 2);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		composition_page_id = PyInt_AsLong(entry);
+
+		entry = PyTuple_GET_ITEM(tuple, 3);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		ancillary_page_id = PyInt_AsLong(entry);
+
+		m_subtitle_widget = new eSubtitleWidget(parent);
+		m_subtitle_widget->resize(parent->size()); /* full size */
+		m_subtitle_parser->start(pid, composition_page_id, ancillary_page_id);
 	}
 	else
-	{
-		int pid = -page;
-		m_subtitle_parser->start(pid);
-	}
-
+		goto error_out;
 	return 0;
+error_out:
+	eDebug("enableSubtitles needs a tuple as 2nd argument!\n"
+		"for teletext subtitles (0, pid, teletext_page, teletext_magazine)\n"
+		"for dvb subtitles (1, pid, composition_page_id, ancillary_page_id)");
+	return -1;
 }
 
 RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
@@ -2044,7 +2089,7 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 	}
 	if (m_teletext_parser)
 	{
-		m_teletext_parser->setPage(-1);
+		m_teletext_parser->setPageAndMagazine(0,0);
 		m_subtitle_pages.clear();
 	}
 	return 0;
@@ -2059,17 +2104,10 @@ PyObject *eDVBServicePlay::getSubtitleList()
 	}
 	
 	PyObject *l = PyList_New(0);
-	
-	for (std::set<int>::iterator i(m_teletext_parser->m_found_subtitle_pages.begin()); i != m_teletext_parser->m_found_subtitle_pages.end(); ++i)
-	{
-		PyObject *tuple = PyTuple_New(2);
-		char desc[20];
-		sprintf(desc, "Page %d", *i);
-		PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(*i));
-		PyList_Append(l, tuple);
-		Py_DECREF(tuple);
-	}
+	std::set<int> added_ttx_pages;
+
+	std::set<eDVBServicePMTHandler::subtitleStream> &subs =
+		m_teletext_parser->m_found_subtitle_pages;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 	eDVBServicePMTHandler::program program;
@@ -2080,11 +2118,58 @@ PyObject *eDVBServicePlay::getSubtitleList()
 		for (std::vector<eDVBServicePMTHandler::subtitleStream>::iterator it(program.subtitleStreams.begin());
 			it != program.subtitleStreams.end(); ++it)
 		{
-			PyObject *tuple = PyTuple_New(2);
-			char desc[20];
-			sprintf(desc, "DVB %s", it->language_code.c_str());
-			PyTuple_SetItem(tuple, 0, PyString_FromString(desc));
-			PyTuple_SetItem(tuple, 1, PyInt_FromLong(-it->pid));
+			switch(it->subtitling_type)
+			{
+				case 0x01: // ebu teletext subtitles
+				{
+					int page_number = it->teletext_page_number & 0xFF;
+					int magazine_number = it->teletext_magazine_number & 7;
+					int hash = magazine_number << 8 | page_number;
+					if (added_ttx_pages.find(hash) == added_ttx_pages.end())
+					{
+						PyObject *tuple = PyTuple_New(5);
+						PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
+						PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
+						PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(page_number));
+						PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(magazine_number));
+						PyTuple_SET_ITEM(tuple, 4, PyString_FromString(it->language_code.c_str()));
+						PyList_Append(l, tuple);
+						Py_DECREF(tuple);
+						added_ttx_pages.insert(hash);
+					}
+					break;
+				}
+				case 0x10 ... 0x13:
+				case 0x20 ... 0x23: // dvb subtitles
+				{
+					PyObject *tuple = PyTuple_New(5);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
+					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->composition_page_id));
+					PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(it->ancillary_page_id));
+					PyTuple_SET_ITEM(tuple, 4, PyString_FromString(it->language_code.c_str()));
+					PyList_Insert(l, 0, tuple);
+					Py_DECREF(tuple);
+					break;
+				}
+			}
+		}
+	}
+
+	for (std::set<eDVBServicePMTHandler::subtitleStream>::iterator it(subs.begin());
+		it != subs.end(); ++it)
+	{
+		int page_number = it->teletext_page_number & 0xFF;
+		int magazine_number = it->teletext_magazine_number & 7;
+		int hash = magazine_number << 8 | page_number;
+		if (added_ttx_pages.find(hash) == added_ttx_pages.end())
+		{
+			PyObject *tuple = PyTuple_New(5);
+			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
+			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
+			PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(page_number));
+			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(magazine_number));
+			PyTuple_SET_ITEM(tuple, 4, PyString_FromString("und"));  // undetermined
 			PyList_Append(l, tuple);
 			Py_DECREF(tuple);
 		}
@@ -2162,7 +2247,7 @@ void eDVBServicePlay::checkSubtitleTiming()
 			}
 		} else
 		{
-			eDebug("start subtitle delay %d", diff / 90);
+//			eDebug("start subtitle delay %d", diff / 90);
 			m_subtitle_sync_timer.start(diff / 90, 1);
 			break;
 		}

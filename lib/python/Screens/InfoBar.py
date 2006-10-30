@@ -19,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarSubtitles, InfoBarPlugins
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -33,8 +33,7 @@ class InfoBar(InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarSubtitles, InfoBarPlugins,
-	InfoBarSubtitleSupport, Screen):
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, Screen):
 	
 	ALLOW_SUSPEND = True
 
@@ -56,7 +55,7 @@ class InfoBar(InfoBarShowHide,
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
-				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitles, InfoBarSubtitleSupport, \
+				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, \
 				InfoBarPlugins:
 			x.__init__(self)
 
@@ -85,7 +84,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, InfoBarTeletextPlugin, InfoBarSubtitleSupport, Screen):
+		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -102,7 +101,7 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
-				InfoBarSummarySupport, InfoBarTeletextPlugin, InfoBarSubtitleSupport:
+				InfoBarSummarySupport, InfoBarSubtitleSupport, InfoBarExtensions:
 			x.__init__(self)
 
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()

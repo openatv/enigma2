@@ -13,6 +13,7 @@
 #include <dvbsi++/iso639_language_descriptor.h>
 #include <dvbsi++/stream_identifier_descriptor.h>
 #include <dvbsi++/subtitling_descriptor.h>
+#include <dvbsi++/teletext_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -245,15 +246,36 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									s.composition_page_id = (*it)->getCompositionPageId();
 									s.ancillary_page_id = (*it)->getAncillaryPageId();
 									s.language_code = (*it)->getIso639LanguageCode();
-									eDebug("add subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
-										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
+//									eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
+//										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
 									program.subtitleStreams.push_back(s);
 								}
 								break;
 							}
 							case TELETEXT_DESCRIPTOR:
 								if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
-									program.textPid = (*es)->getPid();
+								{
+									subtitleStream s;
+									s.subtitling_type = 0x01; // EBU TELETEXT SUBTITLES
+									s.pid = program.textPid = (*es)->getPid();
+									TeletextDescriptor *d = (TeletextDescriptor*)(*desc);
+									const VbiTeletextList *list = d->getVbiTeletexts();
+									for (VbiTeletextConstIterator it(list->begin()); it != list->end(); ++it)
+									{
+										switch((*it)->getTeletextType())
+										{
+											case 0x02: // Teletext subtitle page
+											case 0x05: // Teletext subtitle page for hearing impaired pepople
+												s.language_code = (*it)->getIso639LanguageCode();
+												s.teletext_page_number = (*it)->getTeletextPageNumber();
+												s.teletext_magazine_number = (*it)->getTeletextMagazineNumber();
+//												eDebug("add teletext subtitle %s PID %04x, page number %d, magazine number %d",
+//													s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
+												program.subtitleStreams.push_back(s);
+												break;
+										}
+									}
+								}
 								break;
 							case DTS_DESCRIPTOR:
 								isaudio = 1;
