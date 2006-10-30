@@ -112,11 +112,11 @@ class Menu(Screen):
 
 		self.openDialog(*eval(arg[1]))
 
-	def nothing(self):																	#dummy
+	def nothing(self): #dummy
 		pass
 
 	def openDialog(self, *dialog):				# in every layer needed
-		self.session.open(*dialog)
+		self.session.openWithCallback(self.menuClosed, *dialog)
 
 	def openSetup(self, dialog):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
@@ -241,21 +241,3 @@ class MainMenu(Menu):
 	def __init__(self, *x):
 		Menu.__init__(self, *x)
 		self.skinName = "Menu"
-
-	def openDialog(self, dialog):
-		self.session.open(dialog)
-
-	def openSetup(self, dialog):
-		self.session.open(Setup, dialog)
-
-	def setModeTV(self):
-		print "set Mode to TV"
-		pass
-
-	def setModeRadio(self):
-		print "set Mode to Radio"
-		pass
-
-	def setModeFile(self):
-		print "set Mode to File"
-		pass
