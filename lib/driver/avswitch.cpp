@@ -23,7 +23,7 @@ eAVSwitch::eAVSwitch()
 	}
 	else
 	{
-		m_fp_notifier = new eSocketNotifier(eApp, m_fp_fd, eSocketNotifier::Read);
+		m_fp_notifier = new eSocketNotifier(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
 		CONNECT(m_fp_notifier->activated, eAVSwitch::fp_event);
 	}
 }
@@ -53,15 +53,27 @@ int eAVSwitch::getVCRSlowBlanking()
 
 void eAVSwitch::fp_event(int what)
 {
-	int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
-	if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
-		eDebug("FP_IOCTL_GET_EVENT failed (%m)");
-	else if (val & FP_EVENT_VCR_SB_CHANGED)
-		/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
+	if (what & POLLERR) // driver not ready for fp polling
+	{
+		eDebug("fp driver not read for polling.. so disable polling");
+		m_fp_notifier->stop();
+	}
+	else
+	{
+		int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
+		if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
+			eDebug("FP_IOCTL_GET_EVENT failed (%m)");
+		else if (val & FP_EVENT_VCR_SB_CHANGED)
+			/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
+	}
 }
 
 eAVSwitch::~eAVSwitch()
 {
+	if ( m_fp_fd >= 0 )
+		close(m_fp_fd);
+	if (m_fp_notifier)
+		delete m_fp_notifier;
 }
 
 eAVSwitch *eAVSwitch::getInstance()
