@@ -483,7 +483,8 @@ class ScanSetup(ConfigListScreen, Screen):
 			elif self.scan_type.value == "single_satellite":
 				sat = self.satList[self.scan_nims.index][self.scan_satselection[self.scan_nims.index].index]
 				getInitialTransponderList(tlist, sat[0])
-				flags |= eComponentScan.scanNetworkSearch
+				if sat[2] & 1:
+					flags |= eComponentScan.scanNetworkSearch
 				tmp = self.scan_clearallservices.value
 				if tmp == "yes":
 					flags |= eComponentScan.scanRemoveServices
