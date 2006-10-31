@@ -118,3 +118,15 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 	fclose(f);
 	return -1;
 }
+
+int eDVBMetaParser::updateMeta(const std::string &tsname)
+{
+	std::string filename = tsname + ".meta";
+
+	FILE *f = fopen(filename.c_str(), "w");
+	if (!f)
+		return -ENOENT;
+	fprintf(f, "%s\n%s\n%s\n%d\n%s\n", m_ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str());
+	fclose(f);
+	return 0;
+}
