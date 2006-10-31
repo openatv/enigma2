@@ -7,3 +7,4 @@ def InitRecordingConfig():
 	config.recording.asktozap = ConfigYesNo(default=True)
 	config.recording.margin_before = ConfigInteger(default=0, limits=(0,30))
 	config.recording.margin_after = ConfigInteger(default=0, limits=(0,30))
+	config.recording.debug = ConfigYesNo(default = False)

@@ -3,7 +3,7 @@ import codecs
 #from time import datetime
 from Tools import Directories, Notifications
 
-from Components.config import config
+from Components.config import config, ConfigYesNo
 import timer
 import xml.dom.minidom
 
@@ -25,9 +25,13 @@ from ServiceReference import ServiceReference
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
-def parseEvent(ev):
-	name = ev.getEventName()
-	description = ev.getShortDescription()
+def parseEvent(ev, description = True):
+	if description:
+		name = ev.getEventName()
+		description = ev.getShortDescription()
+	else:
+		name = ""
+		description = ""
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
 	eit = ev.getEventId()
@@ -226,7 +230,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
 		
-		if old_prepare != self.start_prepare:
+		if int(old_prepare) != int(self.start_prepare):
 			self.log(15, "record time changed, start prepare is now: %s" % time.ctime(self.start_prepare))
 
 def createTimer(xml):
@@ -347,14 +351,14 @@ class RecordTimer(timer.Timer):
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append('>\n')
 			
-			#for time, code, msg in timer.log_entries:
-				#list.append('<log')
-				#list.append(' code="' + str(code) + '"')
-				#list.append(' time="' + str(time) + '"')
-				#list.append('>')
-				#list.append(str(msg))
-				#list.append('</log>\n')
-
+			if config.recording.debug.value:
+				for time, code, msg in timer.log_entries:
+					list.append('<log')
+					list.append(' code="' + str(code) + '"')
+					list.append(' time="' + str(time) + '"')
+					list.append('>')
+					list.append(str(stringToXML(msg)))
+					list.append('</log>\n')
 			
 			list.append('</timer>\n')
 
