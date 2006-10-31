@@ -243,7 +243,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				s.subtitling_type = 0x01; // ebu teletext subtitle
 				s.teletext_page_number = m_X & 0xFF;
 				s.teletext_magazine_number = m_M & 7;
-				m_found_subtitle_pages.insert(s);
+				//m_found_subtitle_pages.insert(s);
 			}
 
 				/* correct page on correct magazine? open page. */
