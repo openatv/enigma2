@@ -95,11 +95,10 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				eRect &area = element.m_area;
 				eRect shadow = area;
 				shadow.moveBy(3,3);
-				std::string text = convertLatin1UTF8(element.m_text);
 				painter.setForegroundColor(gRGB(0,0,0));
-				painter.renderText(shadow, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(shadow, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 				painter.setForegroundColor(element.m_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
 		else if (m_dvb_page_ok)
