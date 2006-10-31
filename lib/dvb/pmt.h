@@ -132,7 +132,7 @@ public:
 			int teletext_magazine_number;  // used for teletext subtitles
 		};
 		std::string language_code;
-		bool operator<(const subtitleStream &s)
+		bool operator<(const subtitleStream &s) const
 		{
 			if (pid != s.pid)
 				return pid < s.pid;
