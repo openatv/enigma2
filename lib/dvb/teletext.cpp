@@ -3,14 +3,11 @@
 #include <lib/dvb/idemux.h>
 #include <lib/gdi/gpixmap.h>
 
-// Try to map teletext characters into ISO-8859-1 charset
-// Use similar looking or similar meaning characters when possible.
-
 // G0 and G2 national option table
 // see table 33 in ETSI EN 300 706
 // use it with (triplet 1 bits 14-11)*(ctrl bits C12-14)
 
-unsigned char LatinNationalOptionSubsetsLookup[16*8] =
+unsigned char NationalOptionSubsetsLookup[16*8] =
 {
 	1, 4, 11, 5, 3, 8, 0, 1,
 	7, 4, 11, 5, 3, 1, 0, 1,
@@ -30,7 +27,7 @@ unsigned char LatinNationalOptionSubsetsLookup[16*8] =
 	1, 1, 1, 1, 1, 1, 1, 1  // reserved
 };
 
-unsigned char LatinNationalReplaceMap[128] =
+unsigned char NationalReplaceMap[128] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -42,35 +39,24 @@ unsigned char LatinNationalReplaceMap[128] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 12, 13, 0
 };
 
-// latin national option subsets
+// national option subsets (UTF8)
 // see table 36 in ETSI EN 300 706
 
-unsigned char LatinNationalOptionSubsets[13*14] = {
-	0, '#', 'u', 'c', 't', 'z', 'ý', 'í', 'r', 'é', 'á', 'e', 'ú', 's', // Slovak/Czech
-	0, '£', '$', '@', '-', '½', '-', '|', '#', '-', '¼', '#', '¾', '÷', // English
-	0, '#', 'õ', 'S', 'Ä', 'Ö', 'Z', 'Ü', 'Õ', 's', 'ä', 'ö', 'z', 'ü', // Estonian
-	0, 'é', 'ï', 'à', 'ë', 'ê', 'ù', 'î', '#', 'è', 'â', 'ô', 'û', 'ç', // French
-	0, '#', '$', '§', 'Ä', 'Ö', 'Ü', '^', '_', 'º', 'ä', 'ö', 'ü', 'ß', // German
-	0, '£', '$', 'é', 'º', 'ç', '-', '|', '#', 'ù', 'à', 'ò', 'è', 'ì', // Italian
-	0, '#', '$', 'S', 'e', 'e', 'Z', 'c', 'u', 's', 'a', 'u', 'z', 'i', // Lithuanian/Lettish
-	0, '#', 'n', 'a', 'Z', 'S', 'L', 'c', 'ó', 'e', 'z', 's', 'l', 'z', // Polish
-	0, 'ç', '$', 'i', 'á', 'é', 'í', 'ó', 'ú', '¿', 'ü', 'ñ', 'è', 'à', // Spanish/Portuguese
-	0, '#', '¤', 'T', 'Â', 'S', 'A', 'Î', 'i', 't', 'â', 's', 'a', 'î', // Rumanian
-	0, '#', 'Ë', 'C', 'C', 'Z', 'D', 'S', 'ë', 'c', 'c', 'z', 'd', 's', // Slovenian/Serbian/Croation
-	0, '#', '¤', 'É', 'Ä', 'Ö', 'Å', 'Ü', '_', 'é', 'ä', 'ö', 'å', 'ü', // Finnish/Hungarian/Swedish
-	0, 'T', 'g', 'I', 'S', 'Ö', 'Ç', 'Ü', 'G', 'i', 's', 'ö', 'ç', 'ü'  // Turkish
+unsigned int NationalOptionSubsets[13*14] = {
+	0, 0x0023, 0xc5af, 0xc48d, 0xc5a5, 0xc5be, 0xc3bd, 0xc3ad, 0xc599, 0xc3a9, 0xc3a1, 0xc49b, 0xc3ba, 0xc5a1, // Slovak/Czech
+	0, 0xc2a3, 0x0024, 0x0040, 0xe28690, 0xc2bd, 0xe28692, 0xe28691, 0x0023, 0x002d, 0xc2bc, 0xc781, 0xc2be, 0xc3b7, // English
+	0, 0x0023, 0xc3b5, 0xc5A0, 0xc384, 0xc396, 0xc5bd, 0xc39c, 0xc395, 0xc5a1, 0xc3a4, 0xc3b6, 0xc5be, 0xc3bc, // Estonian
+	0, 0xc3a9, 0xc3af, 0xc3a0, 0xc3ab, 0xc3aa, 0xc3b9, 0xc3ae, 0x0023, 0xc3a8, 0xc3a2, 0xc3b4, 0xc3bb, 0xc3a7, // French
+	0, 0x0023, 0x0024, 0xc2a7, 0xc384, 0xc396, 0xc39c, 0x005e, 0x005f, 0xcb9a, 0xc3a4, 0xc3b6, 0xc3bc, 0xc39f, // German
+	0, 0xc2a3, 0x0024, 0xc3a9, 0xcb9a, 0xc3a7, 0xe28692, 0xe28691, 0x0023, 0xc3b9, 0xc3a0, 0xc3b2, 0xc3a8, 0xc3ac, // Italian
+	0, 0x0023, 0x0024, 0xc5a0, 0xc497, 0xc8a9, 0xc5bd, 0xc48d, 0xc5ab, 0xc5a1, 0xc485, 0xc5b3, 0xc5be, 0xc4af/*FIXMEE*/, // Lithuanian/Lettish
+	0, 0x0023, 0xc584, 0xc485, 0xc6b5, 0xc59a, 0xc581, 0xc487, 0xc3b3, 0xc8a9, 0xc5bc, 0xc59b, 0xc582, 0xc5ba, // Polish
+	0, 0xc3a7, 0x0024, 0xc2a1, 0xc3a1, 0xc3a9, 0xc3ad, 0xc3b3, 0xc3ba, 0xc2bf, 0xc3bc, 0xc3b1, 0xc3a8, 0xc3a0, // Spanish/Portuguese
+	0, 0x0023, 0xc2a4, 0xc5a2, 0xc382, 0xc59e, 0xc78d, 0xc38e, 0xc4b1, 0xc5a3, 0xc3a2, 0xc59f, 0xc78e, 0xc3ae, // Rumanian
+	0, 0x0023, 0xc38b, 0xc48c, 0xc486, 0xc5bd, 0xc490, 0xc5a0, 0xc3ab, 0xc48d, 0xc487, 0xc5be, 0xc491, 0xc5a1, // Slovenian/Serbian/Croation
+	0, 0x0023, 0xc2a4, 0xc389, 0xc384, 0xc396, 0xc385, 0xc39c, 0x005f, 0xc3a9, 0xc3a4, 0xc3b6, 0xc3a5, 0xc3bc, // Finnish/Hungarian/Swedish
+	0, 0xee8080/*FIXME*/, 0xc7a7, 0xc4b0, 0xc59e, 0xc396, 0xc387, 0xc39c, 0xc7a6, 0xc4b1, 0xc59f, 0xc3b6, 0xc3a7, 0xc3bc  // Turkish
 };
-
-unsigned char MapTeletextG0Latin1Char(int Gtriplet, int NatOpts, unsigned char inchar)
-{
-	int num = LatinNationalOptionSubsetsLookup[(Gtriplet&0xf)*(NatOpts&0x7)];
-	unsigned char c = inchar&0x7f;
-	unsigned char cc = LatinNationalReplaceMap[c];
-	if(cc)
-		return LatinNationalOptionSubsets[num*cc];
-	else
-		return c;
-}
 
 // This is a very simple en300 706 telext decoder.
 // It can only decode a single page at a time, thus it's only used
@@ -253,12 +239,17 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				m_page_open = 1;
 				handleLine(data + 8, 32);
 			}
-		} else
+		} else if (m_Y < 26) // directly displayable packet
 		{
 			/* data for the selected page ? */
 			if (m_M == m_page_M && m_page_open)
 				handleLine(data, 40);
 		}
+/*		else
+		{
+			if (m_M == m_page_M && m_page_open)
+				eDebug("ignore packet %d, disgnation code %d", m_Y, decode_hamming_84(data));
+		}*/
 	}
 }
 
@@ -372,7 +363,7 @@ void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubt
 void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 {
 //	eDebug("add subtitle string: %s, col %d", string.c_str(), color);
-
+	static unsigned char out[512];
 	int force_cell = 0;
 
 	if (string.substr(0, 2) == "- ")
@@ -381,19 +372,38 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 		force_cell = 1;
 	}
 
-	int len = string.length();
-	int idx = 0;
-
+	int len = string.length(),
+		idx = 0,
+		outidx = 0,
+		Gtriplet = 0,
+		nat_opts = (m_C >> 11) & 0x7,
+		nat_subset = NationalOptionSubsetsLookup[Gtriplet*8+nat_opts];
 	while (idx < len)
 	{
-		if (string[idx] >= 0x20)
-			string[idx] = MapTeletextG0Latin1Char(0, (m_C >> 11), string[idx]);
+		unsigned char c = string[idx];
+		if (c >= 0x20)
+		{
+			if (NationalReplaceMap[c])
+			{
+				unsigned int utf8_code =
+					NationalOptionSubsets[nat_subset*14+c];
+				if (utf8_code > 0xFFFFFF)
+					out[outidx++]=(utf8_code&0xFF000000)>>24;
+				if (utf8_code > 0xFFFF)
+					out[outidx++]=(utf8_code&0xFF0000)>>16;
+				if (utf8_code > 0xFF)
+					out[outidx++]=(utf8_code&0xFF00)>>8;
+				out[outidx++]=utf8_code&0xFF;
+			}
+			else
+				out[outidx++] = c;
+		}
 		++idx;
 	}
 
 //	eDebug("color %d, m_subtitle_color %d", color, m_subtitle_color);
 	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
-	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || !string.empty()))
+	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || outidx))
 	{
 //		eDebug("add text |%s|: %d != %d || %d", m_subtitle_text.c_str(), color, m_subtitle_color, force_cell);
 		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, m_subtitle_text));
@@ -401,11 +411,11 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 	} else if (!m_subtitle_text.empty() && m_subtitle_text[m_subtitle_text.size()-1] != ' ')
 		m_subtitle_text += " ";
 	
-	if (!string.empty())
+	if (outidx)
 	{
 //		eDebug("set %d as new color", color);
 		m_subtitle_color = color;
-		m_subtitle_text += string;
+		m_subtitle_text += std::string((const char*)out, outidx);
 	}
 }
 
