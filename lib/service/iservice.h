@@ -226,6 +226,9 @@ public:
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);
+
+	virtual int setInfo(const eServiceReference &ref, int w, int v);
+	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
@@ -285,6 +288,9 @@ public:
 	virtual int getInfo(int w);
 	virtual std::string getInfoString(int w);
 	virtual PyObject *getInfoObject(int w);
+	
+	virtual int setInfo(int w, int v);
+	virtual int setInfoString(int w, const char *v);
 };
 
 TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);

@@ -208,4 +208,24 @@ PyObject* iServiceInformation::getInfoObject(int w)
 	return Py_None;
 }
 
+int iStaticServiceInformation::setInfo(const eServiceReference &ref, int w, int v)
+{
+	return -1;
+}
+
+int iStaticServiceInformation::setInfoString(const eServiceReference &ref, int w, const char *v)
+{
+	return -1;
+}
+
+int iServiceInformation::setInfo(int w, int v)
+{
+	return -1;
+}
+
+int iServiceInformation::setInfoString(int w, const char *v)
+{
+	return -1;
+}
+
 eAutoInitPtr<eServiceCenter> init_eServiceCenter(eAutoInitNumbers::service, "eServiceCenter");
