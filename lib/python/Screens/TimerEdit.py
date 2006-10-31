@@ -139,9 +139,9 @@ class TimerEditList(Screen):
 		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference())
 		
 		if event is None:	
-			data = (int(time()), int(time() + 60), "unknown event", "", None)
+			data = (int(time()), int(time() + 60), "", "", None)
 		else:
-			data = parseEvent(event)
+			data = parseEvent(event, description = False)
 
 		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, *data))
 		
