@@ -5,6 +5,7 @@
 eDVBMetaParser::eDVBMetaParser()
 {
 	m_time_create = 0;
+	m_data_ok = 0;
 }
 
 int eDVBMetaParser::parseFile(const std::string &basename)
@@ -64,6 +65,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		++linecnt;
 	}
 	fclose(f);
+	m_data_ok = 1;
 	return 0;
 }
 
@@ -111,6 +113,8 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			m_name = description;
 			m_description = "";
 			m_time_create = 0;
+			
+			m_data_ok = 1;
 			fclose(f);
 			return 0;
 		}
@@ -121,6 +125,8 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 
 int eDVBMetaParser::updateMeta(const std::string &tsname)
 {
+	if (!m_data_ok)	
+		return -1;
 	std::string filename = tsname + ".meta";
 
 	FILE *f = fopen(filename.c_str(), "w");
