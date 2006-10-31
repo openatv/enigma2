@@ -512,10 +512,10 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.value = self.default = default
 
 	def validateMarker(self):
-		if self.marked_pos < 0:
-			self.marked_pos = 0
 		if self.marked_pos >= len(self.text):
 			self.marked_pos = len(self.text) - 1
+		if self.marked_pos < 0:
+			self.marked_pos = 0
 
 	#def nextEntry(self):
 	#	self.vals[1](self.getConfigPath())
@@ -529,9 +529,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.marked_pos -= 1
 		elif key == KEY_RIGHT:
 			self.marked_pos += 1
-			if not self.fixed_size:
-				if self.marked_pos >= len(self.text):
-					self.text = self.text.ljust(len(self.text) + 1)
+			self.maybeExpand()
 		elif key in KEY_NUMBERS:
 			number = self.getKey(getKeyNumber(key))
 			self.text = self.text[0:self.marked_pos] + unicode(number) + self.text[self.marked_pos + 1:]
@@ -542,8 +540,14 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.validateMarker()
 		self.changed()
 
+	def maybeExpand(self):
+		if not self.fixed_size:
+			if self.marked_pos >= len(self.text):
+				self.text = self.text.ljust(len(self.text) + 1)
+
 	def nextFunc(self):
 		self.marked_pos += 1
+		self.maybeExpand()
 		self.validateMarker()
 		self.changed()
 
