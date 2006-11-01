@@ -279,9 +279,9 @@ def SatfinderMain(session, **kwargs):
 
 def SatfinderStart(menuid):
 	if menuid == "scan":
-		return [("Satfinder", SatfinderMain)]
+		return [(_("Satfinder"), SatfinderMain)]
 	else:
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Satfinder", description="Helps setting up your dish", where = PluginDescriptor.WHERE_SETUP, fnc=SatfinderStart)
+	return PluginDescriptor(name=_("Satfinder"), description="Helps setting up your dish", where = PluginDescriptor.WHERE_SETUP, fnc=SatfinderStart)
