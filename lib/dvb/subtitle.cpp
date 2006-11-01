@@ -80,6 +80,7 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_page *page, int object_i
 					break;
 				}
 //				//eDebug("inserting %d bytes (into region %d)", len, region->region_id);
+//				eDebug("put data to region_buffer %p", &(*region->region_buffer));
 				memcpy((__u8*)region->region_buffer->surface->data + region->region_width * y + x, data, len);
 			}
 			object = object->next;
@@ -339,7 +340,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 				// if no update, just skip this data.
 			if (page->page_version_number == page_version_number)
 			{
-				eDebug("skip data... ");
+//				eDebug("skip data... ");
 				break;
 			}
 		}
@@ -429,6 +430,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		{
 			*pregion = region = new subtitle_region;
 			region->next = 0;
+			region->committed = false;
 		}
 		else if (region->region_version_number != region_version_number)
 		{
@@ -441,10 +443,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 			if (region->region_buffer)
 			{
-				if (region->region_buffer->surface)
-					delete region->region_buffer->surface;
+//				eDebug("no more need of region_buffer %p", &(*region->region_buffer));
 				region->region_buffer=0;
 			}
+			region->committed = false;
 		}
 		else
 			break;
@@ -463,6 +465,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		processed_length += 2;
 
 		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8);
+//		eDebug("new region_buffer %p", &(*region->region_buffer));
 
 		int region_level_of_compatibility, region_depth;
 
@@ -489,6 +492,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (region_fill_flag)
 		{
+//			eDebug("region fill region_buffer %p", &(*region->region_buffer));
 			if (region_depth == 1)
 				memset(region->region_buffer->surface->data, region_2bit_pixel_code, region->region_height * region->region_width);
 			else if (region_depth == 2)
@@ -844,8 +848,7 @@ void eDVBSubtitleParser::subtitle_reset()
 
 			if (region->region_buffer)
 			{
-				if (region->region_buffer->surface)
-					delete region->region_buffer->surface;
+//				eDebug("no more need of region_buffer 2 %p", &(*region->region_buffer));
 				region->region_buffer=0;
 			}
 
@@ -870,7 +873,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 {
 	subtitle_page *page = m_pages;
 
-	//eDebug("displaying page id %d", page_id);
+//	eDebug("displaying page id %d", page_id);
 
 	while (page)
 	{
@@ -903,6 +906,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 		}
 		if (reg)
 		{
+			if (reg->committed)
+				continue;
 //			eDebug("copy region %d to %d, %d", region->region_id, region->region_horizontal_address, region->region_vertical_address);
 
 			int x0 = region->region_horizontal_address;
@@ -928,15 +933,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 			int clut_size = reg->region_buffer->surface->clut.colors = reg->region_depth == subtitle_region::bpp2 ?
 				4 : reg->region_depth == subtitle_region::bpp4 ? 16 : 256;
 
-			if (reg->region_buffer->surface->clut.data &&
-				clut_size != reg->region_buffer->surface->clut.colors)
-			{
-				delete [] reg->region_buffer->surface->clut.data;
-				reg->region_buffer->surface->clut.data = 0;
-			}
-
-			if (!reg->region_buffer->surface->clut.data)
-				reg->region_buffer->surface->clut.data = new gRGB[clut_size];
+			reg->region_buffer->surface->clut.data = new gRGB[clut_size];
+//			eDebug("create clut data for region_buffer %p", &(*reg->region_buffer));
 
 			gRGB *palette = reg->region_buffer->surface->clut.data;
 
@@ -1077,12 +1075,14 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					}
 				}
 			}
-			
+
+//			eDebug("commit region_buffer %p", &(*reg->region_buffer));
 			eDVBSubtitleRegion Region;
 			Region.m_pixmap = reg->region_buffer;
 			Region.m_position.setX(x0);
 			Region.m_position.setY(y0);
 			Page.m_regions.push_back(Region);
+			reg->committed = true;
 		}
 		else
 			eDebug("region not found");
