@@ -538,13 +538,17 @@ DEFINE_REF(gPixmap);
 
 gPixmap::~gPixmap()
 {
+	if (must_delete_surface)
+		delete surface;
 }
 
-gPixmap::gPixmap(gSurface *surface): surface(surface)
+gPixmap::gPixmap(gSurface *surface)
+	:surface(surface), must_delete_surface(false)
 {
 }
 
 gPixmap::gPixmap(eSize size, int bpp, int accel)
+	:must_delete_surface(true)
 {
 	surface = new gSurface(size, bpp, accel);
 }
