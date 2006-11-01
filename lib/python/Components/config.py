@@ -698,6 +698,12 @@ class ConfigSubList(list, object):
 			item.saved_value = self.stored_values[i]
 			item.load()
 
+	def dict(self):
+		res = dict()
+		for index in range(len(self)):
+			res[str(index)] = self[index]
+		return res
+
 # same as ConfigSubList, just as a dictionary.
 # care must be taken that the 'key' has a proper
 # str() method, because it will be used in the config
@@ -736,6 +742,9 @@ class ConfigSubDict(dict, object):
 		if str(key) in self.stored_values:
 			item.saved_value = self.stored_values[str(key)]
 			item.load()
+
+	def dict(self):
+		return self
 
 # Like the classes above, just with a more "native"
 # syntax.
@@ -796,6 +805,9 @@ class ConfigSubsection(object):
 	def load(self):
 		for x in self.content.items.values():
 			x.load()
+
+	def dict(self):
+		return self.content.items
 
 # the root config object, which also can "pickle" (=serialize)
 # down the whole config tree.
@@ -878,7 +890,7 @@ class ConfigFile:
 	def __resolveValue(self, pickles, cmap):
 		if cmap.has_key(pickles[0]):
 			if len(pickles) > 1:
-				return self.__resolveValue(pickles[1:], cmap[pickles[0]].content.items)
+				return self.__resolveValue(pickles[1:], cmap[pickles[0]].dict())
 			else:
 				return str(cmap[pickles[0]].value)
 		return None
