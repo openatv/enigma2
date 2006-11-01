@@ -54,6 +54,7 @@ struct subtitle_region
 	int region_version_number;
 	int region_height, region_width;
 	enum depth { bpp2=1, bpp4=2, bpp8=3 } region_depth;
+	
 	ePtr<gPixmap> region_buffer;
 	
 	int clut_id;
@@ -61,6 +62,8 @@ struct subtitle_region
 	subtitle_region_object *region_objects;
 	
 	subtitle_region *next;
+	
+	bool committed;
 };
 
 struct subtitle_page
