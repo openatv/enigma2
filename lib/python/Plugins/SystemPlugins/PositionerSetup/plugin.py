@@ -60,7 +60,7 @@ class PositionerSetup(Screen):
 						self.frontend = None # in normal case this should not happen
 						self.getFrontend = None
 		
-		self.diseqc = Diseqc(self.feid)
+		self.diseqc = Diseqc(self.frontend)
 		self.tuner = Tuner(self.frontend)
 		self.tuner.tune((0,0,0,0,0,0))
 		
