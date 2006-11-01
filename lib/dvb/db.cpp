@@ -455,7 +455,7 @@ void eDVBDB::reloadServicelist()
 				} else if (p == 'c')
 				{
 					int cid, val;
-					sscanf(v.c_str(), "%02d%04x", &cid, &val);
+					sscanf(v.c_str(), "%02d%x", &cid, &val);
 					s->setCacheEntry((eDVBService::cacheID)cid,val);
 				} else if (p == 'C')
 				{
