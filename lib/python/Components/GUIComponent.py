@@ -8,6 +8,7 @@ class GUIComponent(object):
 	def __init__(self):
 		self.instance = None
 		self.visible = 1
+		self.skinAttributes = None
 	
 	def execBegin(self):
 		pass
@@ -28,6 +29,11 @@ class GUIComponent(object):
 	def applySkin(self, desktop):
 		if not self.visible:
 			self.instance.hide()
+		
+		if self.skinAttributes is None:
+			print "warning, skin is missing some elements."
+			return
+
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes)
 
 	def move(self, x, y):
