@@ -356,6 +356,8 @@ void eDVBScan::channelDone()
 	
 	if (m_ready & validNIT)
 	{
+		int system;
+		m_ch_current->getSystem(system);
 		SCAN_eDebug("dumping NIT");
 		if (m_flags & clearToScanOnFirstNIT)
 		{
@@ -383,6 +385,8 @@ void eDVBScan::channelDone()
 					{
 					case CABLE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
+						if (system != iDVBFrontend::feCable)
+							break; // when current locked transponder is no cable transponder ignore this descriptor
 						CableDeliverySystemDescriptor &d = (CableDeliverySystemDescriptor&)**desc;
 						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 						eDVBFrontendParametersCable cable;
@@ -400,6 +404,8 @@ void eDVBScan::channelDone()
 					}
 					case TERRESTRIAL_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
+						if (system != iDVBFrontend::feTerrestrial)
+							break; // when current locked transponder is no terrestrial transponder ignore this descriptor
 						TerrestrialDeliverySystemDescriptor &d = (TerrestrialDeliverySystemDescriptor&)**desc;
 						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 						eDVBFrontendParametersTerrestrial terr;
@@ -417,6 +423,9 @@ void eDVBScan::channelDone()
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
+						if (system != iDVBFrontend::feSatellite)
+							break; // when current locked transponder is no satellite transponder ignore this descriptor
+
 						SatelliteDeliverySystemDescriptor &d = (SatelliteDeliverySystemDescriptor&)**desc;
 						if (d.getFrequency() < 10000)
 							break;
