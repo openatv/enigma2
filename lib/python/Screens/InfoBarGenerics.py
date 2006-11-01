@@ -1749,14 +1749,15 @@ class InfoBarSubtitleSupport(object):
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
-
-	def __serviceStarted(self):
 		self.cached_subtitle_checked = False
+
+	def __serviceStopped(self):
 		self.subtitle_window.hide()
 		self.__subtitles_enabled = False
+		self.cached_subtitle_checked = False
 
 	def __updatedInfo(self):
 		if not self.cached_subtitle_checked:
