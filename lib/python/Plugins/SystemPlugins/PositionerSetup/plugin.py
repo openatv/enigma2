@@ -562,9 +562,9 @@ def PositionerMain(session, **kwargs):
 
 def PositionerSetupStart(menuid):
 	if menuid == "scan":
-		return [("Positioner setup", PositionerMain)]
+		return [(_("Positioner setup"), PositionerMain)]
 	else:
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Positioner setup", description="Setup your positioner", where = PluginDescriptor.WHERE_SETUP, fnc=PositionerSetupStart)
+	return PluginDescriptor(name=_("Positioner setup"), description="Setup your positioner", where = PluginDescriptor.WHERE_SETUP, fnc=PositionerSetupStart)
