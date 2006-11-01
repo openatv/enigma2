@@ -235,7 +235,8 @@ public:
 	enum cacheID
 	{
 		cVPID, cAPID, cTPID, cPCRPID, cAC3PID,
-		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY, cacheMax
+		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
+		cSUBTITLE, cacheMax
 	};
 
 	int getCacheEntry(cacheID);

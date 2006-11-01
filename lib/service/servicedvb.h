@@ -158,6 +158,7 @@ public:
 	RESULT enableSubtitles(eWidget *parent, PyObject *entry);
 	RESULT disableSubtitles(eWidget *parent);
 	PyObject *getSubtitleList();
+	PyObject *getCachedSubtitle();
 
 		// iAudioDelay
 	int getAC3Delay();

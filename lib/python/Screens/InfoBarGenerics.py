@@ -1750,14 +1750,24 @@ class InfoBarSubtitleSupport(object):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
 
 	def __serviceStarted(self):
-		# reenable if it was enabled
-		r = self.__subtitles_enabled
+		self.cached_subtitle_checked = False
+		self.subtitle_window.hide()
 		self.__subtitles_enabled = False
-		self.__selected_subtitle = None
-		self.setSubtitlesEnable(r)
+
+	def __updatedInfo(self):
+		if not self.cached_subtitle_checked:
+			subtitle = self.getCurrentServiceSubtitle()
+			self.cached_subtitle_checked = True
+			if subtitle:
+				self.__selected_subtitle = subtitle.getCachedSubtitle()
+			if self.__selected_subtitle:
+				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+				self.subtitle_window.show()
+				self.__subtitles_enabled = True
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
@@ -1773,17 +1783,11 @@ class InfoBarSubtitleSupport(object):
 		else:
 			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
-
-			self.subtitle_window.hide()
 			self.__subtitles_enabled = False
+			self.subtitle_window.hide()
 
 	def setSelectedSubtitle(self, subtitle):
-		if self.__selected_subtitle != subtitle and self.subtitles_enabled:
-			# kick
-			self.__selected_subtitle = subtitle
-			self.__serviceStarted()
-		else:
-			self.__selected_subtitle = subtitle
+		self.__selected_subtitle = subtitle
 
 	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
 	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
