@@ -190,8 +190,8 @@ class ScanSetup(ConfigListScreen, Screen):
 		if nimmanager.getNimType(self.scan_nims.index) == nimmanager.nimType["DVB-S"]:
 
 			if self.scan_type.value == "single_transponder":
-				self.systemEntry = getConfigListEntry(_('Transpondertype'), self.scan_sat.system)
-				self.list.append(self.systemEntry)
+#				self.systemEntry = getConfigListEntry(_('Transpondertype'), self.scan_sat.system)
+#				self.list.append(self.systemEntry)
 				self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[self.scan_nims.index]))
 				self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
