@@ -89,10 +89,10 @@ class Satfinder(ScanSetup):
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 						self.getFrontend = None
-
+		
 		ScanSetup.__init__(self, session)
 		self.tuner = Tuner(self.frontend)
-
+		
 		self["snr"] = Label()
 		self["agc"] = Label()
 		self["ber"] = Label()
@@ -104,16 +104,16 @@ class Satfinder(ScanSetup):
 		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.getFrontend)
 		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.getFrontend)
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.getFrontend)
-
+		
 		self["introduction"].setText("")
 		
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
 		self.statusTimer.start(50, False)
-
+		
 		self.initcomplete = True
 		self.session = session
-		
+
 	def updateStatus(self):
 		self["snr_percentage"].update()
 		self["agc_percentage"].update()
@@ -126,7 +126,7 @@ class Satfinder(ScanSetup):
 	def createSetup(self):
 		self.typeOfTuningEntry = None
 		self.satEntry = None
-
+		
 		self.list = []
 		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
 		self.list.append(self.typeOfTuningEntry)
@@ -167,14 +167,13 @@ class Satfinder(ScanSetup):
 			self.tune(returnvalue)
 
 	def createConfig(self, foo):
-
 		self.tuning_transponder = None
 		self.tuning_type = ConfigSelection(choices = [("manual_transponder", _("Manual transponder")), ("predefined_transponder", _("Predefined transponder"))])
 		self.tuning_sat = getConfigSatlist(192, nimmanager.getSatListForNim(self.feid))
 		ScanSetup.createConfig(self, None)
 		
 		self.updateSats()
-
+		
 		self.tuning_type.addNotifier(self.retune, initial_call = False)
 		self.tuning_sat.addNotifier(self.sat_changed, initial_call = False)
 		self.scan_sat.frequency.addNotifier(self.retune, initial_call = False)
@@ -216,18 +215,24 @@ class Satfinder(ScanSetup):
 				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			self.tuning_transponder = ConfigSelection(choices = list)
 			self.tuning_transponder.addNotifier(self.retune, initial_call = False)
-	
+
 	def keyGo(self):
 		self.retune(self.tuning_type)
 
-	def keyCancel(self):
-		if self.oldref:
+	def restartPrevService(self, yesno):
+		if yesno:
 			if self.frontend:
 				self.frontend = None
 				del self.raw_channel
 			self.session.nav.playService(self.oldref)
 		self.close(None)
-		
+
+	def keyCancel(self):
+		if self.oldref:
+			self.session.openWithCallback(self.restartPrevService, MessageBox, _("Zap back to service before satfinder?"), MessageBox.TYPE_YESNO)
+		else:
+			self.restartPrevService(False)
+
 	def tune(self, transponder):
 		if self.initcomplete:
 			if transponder is not None:
@@ -262,18 +267,21 @@ class NimSelection(Screen):
 def SatfinderMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
 	if len(nimList) == 0:
-		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
+		session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 	else:
 		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to configure the positioner."), MessageBox.TYPE_ERROR)
+			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 		else:
 			if len(nimList) == 1:
 				session.open(Satfinder, nimList[0])
-			elif len(nimList) > 1:
-				session.open(NimSelection)
 			else:
-				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+				session.open(NimSelection)
 
+def SatfinderStart(menuid):
+	if menuid == "scan":
+		return [("Satfinder", SatfinderMain)]
+	else:
+		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Satfinder", description="Helps setting up your dish", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=SatfinderMain)
+	return PluginDescriptor(name="Satfinder", description="Helps setting up your dish", where = PluginDescriptor.WHERE_SETUP, fnc=SatfinderStart)
