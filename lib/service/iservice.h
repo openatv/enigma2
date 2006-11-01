@@ -476,6 +476,7 @@ public:
 	virtual RESULT enableSubtitles(eWidget *parent, PyObject *entry)=0;
 	virtual RESULT disableSubtitles(eWidget *parent)=0;
 	virtual PyObject *getSubtitleList()=0;
+	virtual PyObject *getCachedSubtitle()=0;
 };
 
 TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);

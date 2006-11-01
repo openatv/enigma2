@@ -25,7 +25,7 @@ class Subtitles(Screen, ConfigListScreen):
 		else:
 			sel = None
 		for x in self.getSubtitleList():
-			if sel and sel == x:
+			if sel and sel[:4] == x[:4]: #ignore Language code in compare
 				text = _("Running")
 			else:
 				text = _("Enable")
@@ -50,7 +50,6 @@ class Subtitles(Screen, ConfigListScreen):
 
 	def enableSubtitle(self, subtitles):
 		if self.infobar.selected_subtitle != subtitles:
-			print "enable subtitles", subtitles
 			self.infobar.subtitles_enabled = False
 			self.infobar.selected_subtitle = subtitles
 			self.infobar.subtitles_enabled = True
