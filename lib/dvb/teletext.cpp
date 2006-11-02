@@ -153,7 +153,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 	
 	while (len > 2)
 	{
-		unsigned char data_unit_id = *p++;
+		/*unsigned char data_unit_id = */*p++;
 		unsigned char data_unit_length = *p++;
 		len -= 2;
 		
@@ -175,7 +175,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 //			break;
 //		}
 		
-		unsigned char line_offset = *p++; len--;
+		/*unsigned char line_offset =*/ *p++; len--;
 		unsigned char framing_code = *p++; len--;
 
 		int magazine_and_packet_address = decode_hamming_84(p++); len--;
@@ -186,69 +186,64 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		if (framing_code != 0xe4) /* no teletxt data */
 			continue;
 
-		m_M = magazine_and_packet_address & 7;
-		m_Y = magazine_and_packet_address >> 3;
-
+		int M = magazine_and_packet_address & 7,
+			Y = magazine_and_packet_address >> 3;
 //			eDebug("line %d, framing code: %02x, M=%02x, Y=%02x", line_offset, framing_code, m_M, m_Y);
 		
-		if (m_Y == 0) /* page header */
+		if (Y == 0) /* page header */
 		{
-			m_C = 0;
-			
-			m_S1 = decode_hamming_84(data + 2); /* S1 */
-			int S2C4 = decode_hamming_84(data + 3);
-			
-			m_S2 = S2C4 & 7;
-			m_C |= (S2C4 & 8) ? (1<<4) : 0;
-			
-			m_S3 = decode_hamming_84(data + 4);
-			
-			int S4C5C6 = decode_hamming_84(data + 5);
-			
-			m_S4 = S4C5C6 & 3;
-			m_C |= (S4C5C6 & 0xC) << 3;
-			
-			m_C |= decode_hamming_84(data + 6) << 7;
-			m_C |= decode_hamming_84(data + 7) << 11;
-			
-			int serial_mode = m_C & (1<<11);
-			
+			int X = decode_hamming_84(data + 1) * 0x10 + decode_hamming_84(data),
+//				S1 = decode_hamming_84(data + 2),
+				S2C4 = decode_hamming_84(data + 3),
+//				S2 = S2C4 & 7,
+//				S3 = decode_hamming_84(data + 4),
+				S4C5C6 = decode_hamming_84(data + 5),
+//				S4 = S4C5C6 & 3,
+				C = ((S2C4 & 8) ? (1<<4) : 0) |
+					((S4C5C6 & 0xC) << 3) |
+					(decode_hamming_84(data + 6) << 7) |
+					(decode_hamming_84(data + 7) << 11),
+				serial_mode = C & (1<<11);
+
 				/* page on the same magazine? end current page. */
-			if ((serial_mode || m_M == m_page_M) && m_page_open)
+			if ((serial_mode || M == m_page_M) && m_page_open)
 			{
 				handlePageEnd(have_pts, pts);
 				m_page_open = 0;
 			}
-			
-			m_X = decode_hamming_84(data+1) * 0x10 + decode_hamming_84(data);
-			
-			if ((m_C & (1<<6)) && (m_X != 0xFF)) /* scan for pages with subtitle bit set */
+
+			if ((C & (1<<6)) && (X != 0xFF)) /* scan for pages with subtitle bit set */
 			{
 				eDVBServicePMTHandler::subtitleStream s;
 				s.pid = m_pid;
 				s.subtitling_type = 0x01; // ebu teletext subtitle
-				s.teletext_page_number = m_X & 0xFF;
-				s.teletext_magazine_number = m_M & 7;
+				s.teletext_page_number = X & 0xFF;
+				s.teletext_magazine_number = M & 7;
 				m_found_subtitle_pages.insert(s);
 			}
 
 				/* correct page on correct magazine? open page. */
-			if (m_M == m_page_M && m_X == m_page_X)
+			if (M == m_page_M && X == m_page_X)
 			{
 				handlePageStart();
+				m_subtitle_page.m_C = C;
+				m_subtitle_page.m_Y = Y; 
 				m_page_open = 1;
 				handleLine(data + 8, 32);
 			}
-		} else if (m_Y < 26) // directly displayable packet
+		} else if (Y < 26) // directly displayable packet
 		{
 			/* data for the selected page ? */
-			if (m_M == m_page_M && m_page_open)
+			if (M == m_page_M && m_page_open)
+			{
+				m_subtitle_page.m_Y = Y;
 				handleLine(data, 40);
+			}
 		}
 /*		else
 		{
-			if (m_M == m_page_M && m_page_open)
-				eDebug("ignore packet %d, disgnation code %d", m_Y, decode_hamming_84(data));
+			if (M == m_page_M && m_page_open)
+				eDebug("ignore packet %d, designation code %d", Y, decode_hamming_84(data));
 		}*/
 	}
 }
@@ -281,13 +276,13 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 	for (int i=0; i<len; ++i)
 		eDebugNoNewLine("%02x ", decode_odd_parity(data + i));
 	eDebug(""); */
-	if (!m_Y) /* first line is page header, we don't need that. */
+	if (!m_subtitle_page.m_Y) /* first line is page header, we don't need that. */
 	{
 		m_double_height = -1;
 		return;
 	}
 		
-	if (m_double_height == m_Y)
+	if (m_double_height == m_subtitle_page.m_Y)
 	{
 		m_double_height = -1;
 		return;
@@ -314,7 +309,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 				}
 			} else if (b == 0xd)
 			{
-				m_double_height = m_Y + 1;
+				m_double_height = m_subtitle_page.m_Y + 1;
 			} else if (b != 0xa && b != 0xb) /* box */
 				eDebug("[ignore %x]", b);
 				/* ignore other attributes */
@@ -376,13 +371,16 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 		idx = 0,
 		outidx = 0,
 		Gtriplet = 0,
-		nat_opts = (m_C & (1<<14) ? 1 : 0) | (m_C & (1<<13) ? 2 : 0) | (m_C & (1<<12) ? 4 : 0),
+		nat_opts = (m_subtitle_page.m_C & (1<<14) ? 1 : 0) |
+					(m_subtitle_page.m_C & (1<<13) ? 2 : 0) |
+					(m_subtitle_page.m_C & (1<<12) ? 4 : 0),
 		nat_subset = NationalOptionSubsetsLookup[Gtriplet*8+nat_opts];
-//	eDebug("nat_opts = %d, nat_subset = %d, m_C %08x, C121314 = %d%d%d",
-//		nat_opts, nat_subset, m_C,
-//		(m_C & (1<<12))?1:0,
-//		(m_C & (1<<13))?1:0,
-//		(m_C & (1<<14))?1:0);
+/*	eDebug("nat_opts = %d, nat_subset = %d, C121314 = %d%d%d, m_C %08x",
+		nat_opts, nat_subset,
+		(m_subtitle_page.m_C & (1<<12))?1:0,
+		(m_subtitle_page.m_C & (1<<13))?1:0,
+		(m_subtitle_page.m_C & (1<<14))?1:0,
+		m_subtitle_page.m_C); */
 	while (idx < len)
 	{
 		unsigned char c = string[idx];
