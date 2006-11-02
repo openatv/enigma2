@@ -131,6 +131,7 @@ public:
 	eSize size() const { return eSize(surface->x, surface->y); }
 	inline bool needClut() const { return surface && surface->bpp <= 8; }
 private:
+	bool must_delete_surface;
 #ifndef SWIG
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
