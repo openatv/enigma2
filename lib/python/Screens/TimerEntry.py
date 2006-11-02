@@ -83,7 +83,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				weekday = (int(time.strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
 				day[weekday] = 1
 			
-			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "record"}[justplay])
+			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
 			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("deepstandby", _("go to deep standby"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, fixed_size = False)
