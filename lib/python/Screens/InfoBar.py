@@ -84,7 +84,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions):
+		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions, InfoBarTeletextPlugin):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -101,7 +101,8 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
-				InfoBarSummarySupport, InfoBarSubtitleSupport, InfoBarExtensions:
+				InfoBarSummarySupport, InfoBarSubtitleSupport, InfoBarExtensions, \
+				InfoBarTeletextPlugin:
 			x.__init__(self)
 
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
