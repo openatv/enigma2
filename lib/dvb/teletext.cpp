@@ -169,11 +169,11 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			break;
 		}
 		
-		if (data_unit_id != 0x03)
-		{
-			/* eDebug("non subtitle data unit id %d", data_unit_id); */
-			break;
-		}
+//		if (data_unit_id != 0x03)
+//		{
+//			/* eDebug("non subtitle data unit id %d", data_unit_id); */
+//			break;
+//		}
 		
 		unsigned char line_offset = *p++; len--;
 		unsigned char framing_code = *p++; len--;
@@ -185,7 +185,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 		
 		if (framing_code != 0xe4) /* no teletxt data */
 			continue;
-		
+
 		m_M = magazine_and_packet_address & 7;
 		m_Y = magazine_and_packet_address >> 3;
 
