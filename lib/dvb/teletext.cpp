@@ -376,17 +376,23 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 		idx = 0,
 		outidx = 0,
 		Gtriplet = 0,
-		nat_opts = (m_C >> 11) & 0x7,
+		nat_opts = (m_C & (1<<14) ? 1 : 0) | (m_C & (1<<13) ? 2 : 0) | (m_C & (1<<12) ? 4 : 0),
 		nat_subset = NationalOptionSubsetsLookup[Gtriplet*8+nat_opts];
+//	eDebug("nat_opts = %d, nat_subset = %d, m_C %08x, C121314 = %d%d%d",
+//		nat_opts, nat_subset, m_C,
+//		(m_C & (1<<12))?1:0,
+//		(m_C & (1<<13))?1:0,
+//		(m_C & (1<<14))?1:0);
 	while (idx < len)
 	{
 		unsigned char c = string[idx];
 		if (c >= 0x20)
 		{
-			if (NationalReplaceMap[c])
+			unsigned char offs = NationalReplaceMap[c];
+			if (offs)
 			{
 				unsigned int utf8_code =
-					NationalOptionSubsets[nat_subset*14+c];
+					NationalOptionSubsets[nat_subset*14+offs];
 				if (utf8_code > 0xFFFFFF)
 					out[outidx++]=(utf8_code&0xFF000000)>>24;
 				if (utf8_code > 0xFFFF)
