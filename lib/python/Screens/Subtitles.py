@@ -33,7 +33,7 @@ class Subtitles(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(text+" DVB "+LanguageCodes[x[4]][0], ConfigNothing(), x))
 			elif x[0] == 1:
 				if x[4] == 'und': #undefined
-					self.list.append(getConfigListEntry(text+" TTX "+_("Page")+" "+str(x[2])+"/"+str(x[3]), ConfigNothing(), x))
+					self.list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2]), ConfigNothing(), x))
 				else:
 					self.list.append(getConfigListEntry(text+" TTX "+LanguageCodes[x[4]][0], ConfigNothing(), x))
 #		return _("Disable subtitles")
