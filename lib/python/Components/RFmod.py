@@ -10,7 +10,7 @@ class RFmod:
 		pass
 
 	def setFunction(self, value):
-		eRFmod.getInstance().setFunction(value)
+		eRFmod.getInstance().setFunction(not value)
 	def setTestmode(self, value):
 		eRFmod.getInstance().setTestmode(value)
 	def setSoundFunction(self, value):
@@ -41,7 +41,7 @@ def InitRFmod():
 	def setSoundFunction(configElement):
 		iRFmod.setSoundFunction(configElement.value);
 	def setSoundCarrier(configElement):
-		iRFmod.setSoundCarrier(int(configElement.value));
+		iRFmod.setSoundCarrier(configElement.index);
 	def setChannel(configElement):
 		iRFmod.setChannel(int(configElement.value));
 	def setFinetune(configElement):
