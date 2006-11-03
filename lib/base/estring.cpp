@@ -334,9 +334,9 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	switch(data[0])
 	{
-		case 1 ... 12:
+		case 1 ... 11:
 			table=data[i++]+4;
-//			eDebug("(1..12)text encoded in ISO-8859-%d",table);
+//			eDebug("(1..11)text encoded in ISO-8859-%d",table);
 			break;
 		case 0x10:
 		{
@@ -348,6 +348,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			{
 				case 12:
 					eDebug("unsup. ISO8859-12 enc.", n);
+					break;
 				default:
 					table=n;
 					break;
@@ -370,9 +371,14 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			++i;
 			eDebug("unsup. Big5 subset of ISO/IEC 10646-1 enc.");
 			break;
+		case 0x15:
+			++i;
+			eDebug("unsup. UTF-8 encoding of ISO/IEC 10646-1.");
+			break;
 		case 0x0:
-		case 0xD ... 0xF:
-		case 0x15 ... 0x1F:
+		case 0xC ... 0xF:
+		case 0x16 ... 0x1F:
+		default:
 			eDebug("reserved %d", data[0]);
 			++i;
 			break;
