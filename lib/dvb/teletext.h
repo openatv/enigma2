@@ -23,6 +23,7 @@ struct eDVBTeletextSubtitlePage
 	pts_t m_pts;
 	int m_have_pts;
 	int m_timeout; /* in pts */
+	int m_C, m_Y;
 	std::vector<eDVBTeletextSubtitlePageElement> m_elements;
 	
 	void clear() { m_elements.clear(); }
@@ -46,8 +47,6 @@ private:
 	ePtr<eConnection> m_read_connection;
 	
 	eDVBTeletextSubtitlePage m_subtitle_page;
-	
-	int m_M, m_Y, m_X, m_S1, m_S2, m_S3, m_S4, m_C;
 	
 	int m_pid, m_page_M, m_page_X, m_page_open, m_double_height;
 	
