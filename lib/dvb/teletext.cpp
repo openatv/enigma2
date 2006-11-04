@@ -121,7 +121,7 @@ eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux)
 {
 	setStreamID(0xBD); /* as per en 300 472 */
 	
-	setPageAndMagazine(0,0);
+	setPageAndMagazine(-1, -1);
 	
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create teletext subtitle PES reader!");
@@ -212,7 +212,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				m_page_open = 0;
 			}
 
-			if ((C & (1<<6)) && (X != 0xFF)) /* scan for pages with subtitle bit set */
+			if ((C & (1<<6)) && (X != 0xFF) && !(C & (1<<5))) /* scan for pages with subtitle bit set */
 			{
 				eDVBServicePMTHandler::subtitleStream s;
 				s.pid = m_pid;
@@ -229,6 +229,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 				m_subtitle_page.m_C = C;
 				m_subtitle_page.m_Y = Y; 
 				m_page_open = 1;
+				m_box_open = 0;
 				handleLine(data + 8, 32);
 			}
 		} else if (Y < 26) // directly displayable packet
@@ -237,14 +238,19 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			if (M == m_page_M && m_page_open)
 			{
 				m_subtitle_page.m_Y = Y;
+				m_box_open = 0;
 				handleLine(data, 40);
 			}
-		}
-/*		else
+		} else if (Y > 29)
 		{
-			if (M == m_page_M && m_page_open)
-				eDebug("ignore packet %d, designation code %d", Y, decode_hamming_84(data));
-		}*/
+		}
+		else if (m_page_open)
+		{
+			if (M == m_page_M)
+				eDebug("ignore packet X/%d/%d", Y, decode_hamming_84(data));
+			else
+				eDebug("ignore packet M/%d/%d", Y, decode_hamming_84(data));
+		}
 	}
 }
 
@@ -288,10 +294,23 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 		return;
 	}
 
-	int last_was_white = 1, color = 7; /* start with whitespace. start with color=white. (that's unrelated.) */
-	
-	std::string text;
-	
+	int last_was_white = 1, color = 1; /* start with whitespace. start with color=white. (that's unrelated.) */
+
+	static unsigned char out[128];
+
+	int outidx = 0,
+		Gtriplet = 0,
+		nat_opts = (m_subtitle_page.m_C & (1<<14) ? 1 : 0) |
+					(m_subtitle_page.m_C & (1<<13) ? 2 : 0) |
+					(m_subtitle_page.m_C & (1<<12) ? 4 : 0),
+		nat_subset = NationalOptionSubsetsLookup[Gtriplet*8+nat_opts];
+/*	eDebug("nat_opts = %d, nat_subset = %d, C121314 = %d%d%d, m_C %08x",
+		nat_opts, nat_subset,
+		(m_subtitle_page.m_C & (1<<12))?1:0,
+		(m_subtitle_page.m_C & (1<<13))?1:0,
+		(m_subtitle_page.m_C & (1<<14))?1:0,
+		m_subtitle_page.m_C); */
+
 //	eDebug("handle subtitle line: %d len", len);
 	for (int i=0; i<len; ++i)
 	{
@@ -303,29 +322,47 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 			{
 				if (b != color) /* new color is split into a new string */
 				{
-					addSubtitleString(color, text);
-					text = "";
+					addSubtitleString(color, std::string((const char*)out, outidx));
+					outidx = 0;
 					color = b;
 				}
-			} else if (b == 0xd)
-			{
+			}
+			else if (b == 0xd)
 				m_double_height = m_subtitle_page.m_Y + 1;
-			} else if (b != 0xa && b != 0xb) /* box */
+			else if (b == 0xa)  // close box
+				m_box_open=0;
+			else if (b == 0xb)  // open box
+				++m_box_open;
+			else
 				eDebug("[ignore %x]", b);
 				/* ignore other attributes */
-		} else
+		} else if (m_box_open>1)
 		{
 			//eDebugNoNewLine("%c", b);
 				/* no more than one whitespace, only printable chars */
 			if (((!last_was_white) || (b != ' ')) && (b >= 0x20))
 			{
-				text += b;
+				unsigned char offs = NationalReplaceMap[b];
+				if (offs)
+				{
+					unsigned int utf8_code =
+						NationalOptionSubsets[nat_subset*14+offs];
+					if (utf8_code > 0xFFFFFF)
+						out[outidx++]=(utf8_code&0xFF000000)>>24;
+					if (utf8_code > 0xFFFF)
+						out[outidx++]=(utf8_code&0xFF0000)>>16;
+					if (utf8_code > 0xFF)
+						out[outidx++]=(utf8_code&0xFF00)>>8;
+					out[outidx++]=utf8_code&0xFF;
+				}
+				else
+					out[outidx++] = b;
 				last_was_white = b == ' ';
 			}
 		}
 	}
 	//eDebug("");
-	addSubtitleString(color, text);
+	addSubtitleString(color, std::string((const char*)out, outidx));
 }
 
 void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
@@ -346,8 +383,12 @@ void eDVBTeletextParser::setPageAndMagazine(int page, int magazine)
 		eDebug("enable teletext subtitle page %x%02x", magazine, page);
 	else
 		eDebug("disable teletext subtitles");
-	m_page_M = magazine&7; /* magazine to look for */
-	m_page_X = page&0xFF;  /* page number */
+	m_page_M = magazine; /* magazine to look for */
+	if (magazine != -1)
+		m_page_M &= 7;
+	m_page_X = page;  /* page number */
+	if (page != -1)
+		m_page_X &= 0xFF;
 }
 
 void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubtitlePage&> &slot, ePtr<eConnection> &connection)
@@ -358,7 +399,6 @@ void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubt
 void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 {
 //	eDebug("add subtitle string: %s, col %d", string.c_str(), color);
-	static unsigned char out[512];
 	int force_cell = 0;
 
 	if (string.substr(0, 2) == "- ")
@@ -367,47 +407,9 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 		force_cell = 1;
 	}
 
-	int len = string.length(),
-		idx = 0,
-		outidx = 0,
-		Gtriplet = 0,
-		nat_opts = (m_subtitle_page.m_C & (1<<14) ? 1 : 0) |
-					(m_subtitle_page.m_C & (1<<13) ? 2 : 0) |
-					(m_subtitle_page.m_C & (1<<12) ? 4 : 0),
-		nat_subset = NationalOptionSubsetsLookup[Gtriplet*8+nat_opts];
-/*	eDebug("nat_opts = %d, nat_subset = %d, C121314 = %d%d%d, m_C %08x",
-		nat_opts, nat_subset,
-		(m_subtitle_page.m_C & (1<<12))?1:0,
-		(m_subtitle_page.m_C & (1<<13))?1:0,
-		(m_subtitle_page.m_C & (1<<14))?1:0,
-		m_subtitle_page.m_C); */
-	while (idx < len)
-	{
-		unsigned char c = string[idx];
-		if (c >= 0x20)
-		{
-			unsigned char offs = NationalReplaceMap[c];
-			if (offs)
-			{
-				unsigned int utf8_code =
-					NationalOptionSubsets[nat_subset*14+offs];
-				if (utf8_code > 0xFFFFFF)
-					out[outidx++]=(utf8_code&0xFF000000)>>24;
-				if (utf8_code > 0xFFFF)
-					out[outidx++]=(utf8_code&0xFF0000)>>16;
-				if (utf8_code > 0xFF)
-					out[outidx++]=(utf8_code&0xFF00)>>8;
-				out[outidx++]=utf8_code&0xFF;
-			}
-			else
-				out[outidx++] = c;
-		}
-		++idx;
-	}
-
 //	eDebug("color %d, m_subtitle_color %d", color, m_subtitle_color);
 	gRGB rgbcol((color & 1) ? 255 : 128, (color & 2) ? 255 : 128, (color & 4) ? 255 : 128);
-	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || outidx))
+	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || !string.empty()))
 	{
 //		eDebug("add text |%s|: %d != %d || %d", m_subtitle_text.c_str(), color, m_subtitle_color, force_cell);
 		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, m_subtitle_text));
@@ -415,18 +417,22 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 	} else if (!m_subtitle_text.empty() && m_subtitle_text[m_subtitle_text.size()-1] != ' ')
 		m_subtitle_text += " ";
 	
-	if (outidx)
+	if (!string.empty())
 	{
 //		eDebug("set %d as new color", color);
 		m_subtitle_color = color;
-		m_subtitle_text += std::string((const char*)out, outidx);
+		m_subtitle_text += string;
 	}
 }
 
 void eDVBTeletextParser::sendSubtitlePage()
 {
 //	eDebug("subtitle page:");
-	//for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
-	//	eDebug("%s", m_subtitle_page.m_elements[i].m_text.c_str());
-	m_new_subtitle_page(m_subtitle_page);
+	bool empty=true;
+	if (empty)
+		for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
+			if (!m_subtitle_page.m_elements[i].m_text.empty())
+				empty=false;
+	if (!empty)
+		m_new_subtitle_page(m_subtitle_page);
 }
