@@ -2097,7 +2097,7 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 	}
 	if (m_teletext_parser)
 	{
-		m_teletext_parser->setPageAndMagazine(0,0);
+		m_teletext_parser->setPageAndMagazine(-1, -1);
 		m_subtitle_pages.clear();
 	}
 	if (m_dvb_service)
