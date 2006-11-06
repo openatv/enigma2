@@ -1342,9 +1342,8 @@ class InfoBarAudioSelection:
 				language = i.getLanguage()
 				description = i.getDescription()
 	
-				if len(language) == 3:
-					if language in LanguageCodes:
-						language = LanguageCodes[language][0]
+				if LanguageCodes.has_key(language):
+					language = LanguageCodes[language][0]
 	
 				if len(description):
 					description += " (" + language + ")"
