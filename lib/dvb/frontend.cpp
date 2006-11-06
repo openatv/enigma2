@@ -1559,6 +1559,12 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 		parm_u_qam_fec_inner = FEC_AUTO;
 		break;
 	}
+	eDebug("tuning to %d khz, sr %d, fec %d, modulation %d, inversion %d",
+		parm_frequency/1000,
+		parm_u_qam_symbol_rate,
+		parm_u_qam_fec_inner,
+		parm_u_qam_modulation,
+		parm_inversion);
 	return 0;
 }
 

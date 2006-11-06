@@ -283,14 +283,27 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	}
 	}
 
+	int found_count=0;
 		/* ... in the list of channels to scan */
-	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end(); ++i)
+	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
+	{
 		if (sameChannel(*i, feparm))
 		{
-			*i = feparm;  // update
-			eDebug("update");
-			return;
+			if (!found_count)
+			{
+				*i = feparm;  // update
+				eDebug("update");
+			}
+			else
+			{
+				eDebug("remove dupe");
+				m_ch_toScan.erase(i++);
+				continue;
+			}
+			++found_count;
 		}
+		++i;
+	}
 
 		/* ... in the list of successfully scanned channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
@@ -489,9 +502,23 @@ void eDVBScan::channelDone()
 	if (!m_chid_current)
 		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
+	{
 		addKnownGoodChannel(m_chid_current, m_ch_current);
 	
-	m_ch_scanned.push_back(m_ch_current);
+		m_ch_scanned.push_back(m_ch_current);
+
+		for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
+		{
+			if (sameChannel(*i, m_ch_current))
+			{
+				eDebug("remove dupe 2");
+				m_ch_toScan.erase(i++);
+				continue;
+			}
+			++i;
+		}
+	}
+
 	nextChannel();
 }
 
@@ -510,7 +537,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 		bool exist=false;
 		for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator ii(m_ch_toScan.begin()); ii != m_ch_toScan.end(); ++ii)
 		{
-			if (sameChannel(*i, *ii))
+			if (sameChannel(*i, *ii, true))
 			{
 				exist=true;
 				break;
