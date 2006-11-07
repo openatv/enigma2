@@ -40,10 +40,17 @@ private:
 protected:
 	int createTable(int nr, const __u8 *data, unsigned int max)
 	{
+		int ssize = sections.size();
+		if (max < ssize || nr >= max)
+		{
+			eDebug("kaputt max(%d) < ssize(%d) || nr(%d) >= max(%d)",
+				max, ssize, nr, max);
+			return 0;
+		}
 		if (avail.find(nr) != avail.end())
 			delete sections[nr];
+
 		sections.resize(max);
-		
 		sections[nr] = new Section(data);
 		avail.insert(nr);
 
@@ -53,11 +60,11 @@ protected:
 			else
 				printf("-");
 				
-		printf(" %d/%d TID %02x\n", avail.size(), max, data[0]);
+		eDebug(" %d/%d TID %02x", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
 		{
-			printf("done!\n");
+			eDebug("done!");
 			return 1;
 		} else
 			return 0;
@@ -69,8 +76,8 @@ public:
 	}
 	~eTable()
 	{
-		for (typename std::vector<Section*>::iterator i(sections.begin()); i != sections.end(); ++i)
-			delete *i;
+		for (std::set<int>::iterator i(avail.begin()); i != avail.end(); ++i)
+			delete sections[*i];
 	}
 };
 
