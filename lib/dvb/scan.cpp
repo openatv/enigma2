@@ -305,6 +305,12 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 		++i;
 	}
 
+	if (found_count > 0)
+	{
+		eDebug("already in todo list");
+		return;
+	}
+
 		/* ... in the list of successfully scanned channels */
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
