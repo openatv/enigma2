@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <lib/base/smartptr.h>
+#include <lib/base/eerror.h>
 
 template <class T>
 class ePtrList : public std::list<T*>
