@@ -3,12 +3,17 @@ from enigma import ePoint, eSize, eServiceCenter
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition
 
+pip_config_initialized = False
+
 class PictureInPicture(Screen):
 	def __init__(self, session):
+		global pip_config_initialized
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.currentService = None
-		config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
+		if not pip_config_initialized:
+			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
+			pip_config_initialized = True
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 	def LayoutFinished(self):
