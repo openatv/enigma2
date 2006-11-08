@@ -7,9 +7,7 @@
 
 //#define OBJECT_DEBUG
 
-#ifdef OBJECT_DEBUG
-	#include <lib/base/eerror.h>
-#endif
+#include <lib/base/eerror.h>
 
 typedef int RESULT;
 
