@@ -56,9 +56,9 @@ protected:
 
 		for (unsigned int i = 0; i < max; ++i)
 			if (avail.find(i) != avail.end())
-				printf("+");
+				eDebugNoNewLine("+");
 			else
-				printf("-");
+				eDebugNoNewLine("-");
 				
 		eDebug(" %d/%d TID %02x", avail.size(), max, data[0]);
 
