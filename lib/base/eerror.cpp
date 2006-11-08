@@ -76,6 +76,9 @@ int infatal=0;
 Signal2<void, int, const std::string&> logOutput;
 int logOutputConsole=1;
 
+pthread_mutex_t signalLock =
+	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
+
 void eFatal(const char* fmt, ...)
 {
 	char buf[1024];
@@ -83,6 +86,7 @@ void eFatal(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
+	singleLock s(signalLock);
 	logOutput(lvlFatal, buf);
 	fprintf(stderr, "FATAL: %s\n",buf );
 #if 0
@@ -94,7 +98,6 @@ void eFatal(const char* fmt, ...)
 		msg.exec();
 	}
 #endif
-
 	_exit(0);
 }
 
@@ -106,6 +109,7 @@ void eDebug(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
+	singleLock s(signalLock);
 	logOutput(lvlDebug, std::string(buf) + "\n");
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
@@ -118,6 +122,7 @@ void eDebugNoNewLine(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
+	singleLock s(signalLock);
 	logOutput(lvlDebug, buf);
 	if (logOutputConsole)
 		fprintf(stderr, "%s", buf);
@@ -130,6 +135,7 @@ void eWarning(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
+	singleLock s(signalLock);
 	logOutput(lvlWarning, std::string(buf) + "\n");
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
