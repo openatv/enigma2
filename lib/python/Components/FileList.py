@@ -52,6 +52,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		
+		self.current_directory = None
 		self.useServiceRef = useServiceRef
 		self.showDirectories = showDirectories
 		self.showFiles = showFiles
@@ -68,9 +69,10 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 	def getFileList(self):
 		return self.list
 	
-	def changeDir(self, directory):
+	def changeDir(self, directory, select = None):
 		self.list = []
 		
+		self.current_directory = directory
 		directories = []
 		files = []
 		
@@ -122,20 +124,42 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 						self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
 				else:
 					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
-				
+
 		self.l.setList(self.list)
 		
+		if select is not None:
+			i = 0
+			self.moveToIndex(0)
+			for x in self.list:
+				p = x[0][0]
+				
+				if isinstance(p, eServiceReference):
+					p = p.getPath()
+				
+				if p == select:
+					self.moveToIndex(i)
+				i += 1
+
+	def getCurrentDirectory(self):
+		return self.current_directory
+
 	def canDescent(self):
 		return self.getSelection()[1]
 	
 	def descent(self):
-		self.changeDir(self.getSelection()[0])
+		self.changeDir(self.getSelection()[0], select = self.current_directory)
 		
 	def getFilename(self):
-		return self.getSelection()[0].getPath()
+		x = self.getSelection()[0]
+		if isinstance(x, eServiceReference):
+			x = x.getPath()
+		return x
 
 	def getServiceRef(self):
-		return self.getSelection()[0]
+		x = self.getSelection()[0]
+		if isinstance(x, eServiceReference):
+			return x
+		return None
 
 	GUI_WIDGET = eListbox
 
