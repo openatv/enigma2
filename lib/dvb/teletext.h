@@ -6,6 +6,7 @@
 #include <lib/dvb/pesparse.h>
 #include <lib/dvb/pmt.h>
 #include <lib/gdi/gpixmap.h>
+#include <map>
 
 struct eDVBTeletextSubtitlePageElement
 {
@@ -41,6 +42,7 @@ public:
 	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
 	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
 private:
+	std::map<int, unsigned int> m_modifications;
 	void processPESPacket(__u8 *pkt, int len);
 	
 	ePtr<iDVBPESReader> m_pes_reader;
