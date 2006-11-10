@@ -106,7 +106,7 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 	clut.data = 0;
 
 	if (!data)
-		data = malloc(y * stride);
+		data = new unsigned char [y * stride];
 	
 	type = 1;
 }
@@ -118,9 +118,9 @@ gSurface::~gSurface()
 		if (data_phys)
 			gAccel::getInstance()->accelFree(data_phys);
 		else
-			free(data);
+			delete [] (unsigned char*)data;
 
-		delete[] clut.data;
+		delete [] clut.data;
 	}
 }
 
