@@ -19,8 +19,8 @@ import os, sys
 
 class SkinSelector(Screen):
 	skin = """
-		<screen position="75,138" size="600,300" title="Choose your Skin" >
-			<widget name="SkinList" position="10,10" size="275,280" scrollbarMode="showOnDemand" />
+		<screen position="75,138" size="600,320" title="Choose your Skin" >
+			<widget name="SkinList" position="10,10" size="275,300" scrollbarMode="showOnDemand" />
 			<widget name="Preview" position="305,45" size="280,210" alphatest="on"/>
 		</screen>
 		"""
