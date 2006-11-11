@@ -5,10 +5,10 @@
 
 	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
 	</screen>
-	<screen name="Menu" position="210,150" size="300,265" title="Main menu">
+	<screen name="Menu" position="210,150" size="300,295" title="Main menu">
 		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 		<!--<widget name="menu" position="10,55" size="280,150" font="Regular;23" />-->
-		<widget source="menu" render="Listbox" position="10,55" size="290,205" scrollbarMode="showOnDemand" >
+		<widget source="menu" render="Listbox" position="10,55" size="290,235" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
 	</screen>
