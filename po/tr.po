@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tr 01\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 15:17+0200\n"
+"POT-Creation-Date: 2006-11-12 21:58+0100\n"
 "PO-Revision-Date: 2006-06-16 12:51+0200\n"
 "Last-Translator: koksal <goksel@goksel.com>\n"
 "Language-Team: GökselD& <gok_68@hotmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Turkish\n"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:208
 msgid ""
 "\n"
 "Enigma2 will restart after the restore"
@@ -24,23 +23,43 @@ msgstr ""
 "\n"
 "Enigma2 yeniden başlat ve geriyükle"
 
-#: ../lib/python/Screens/PluginBrowser.py:100
-#: ../lib/python/Screens/PluginBrowser.py:102
 msgid "\"?"
 msgstr "\"?"
 
-#: ../lib/python/Screens/EventView.py:107
+msgid "#000000"
+msgstr "#000000"
+
+msgid "#0064c7"
+msgstr "#0064c7"
+
+msgid "#33294a6b"
+msgstr "#33294a6b"
+
+msgid "#389416"
+msgstr "#389416"
+
+msgid "#80000000"
+msgstr "#80000000"
+
+msgid "#bab329"
+msgstr "#bab329"
+
+msgid "#f23d21"
+msgstr "#f23d21"
+
+msgid "#ffffff"
+msgstr "#ffffff"
+
+msgid "#ffffffff"
+msgstr "#ffffffff"
+
 #, python-format
 msgid "%d min"
 msgstr "%d Enaz"
 
-#: ../lib/python/Screens/TimeDateInput.py:35
-#: ../lib/python/Screens/TimerEntry.py:94
-#: ../lib/python/Screens/TimerEntry.py:97
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-#: ../lib/python/Screens/About.py:38
 #, python-format
 msgid ""
 "%s\n"
@@ -49,101 +68,75 @@ msgstr ""
 "%s\n"
 "(%s, %d MB Boş)"
 
-#: ../lib/python/Components/TimerList.py:46
-#: ../lib/python/Components/TimerList.py:51
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 Klasörü"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
 msgid "/var directory"
 msgstr "/var Klasörü"
 
-#: ../lib/python/Components/NimManager.py:771
 msgid "0 V"
 msgstr "0 V"
 
-#: ../lib/python/Components/NimManager.py:774
 msgid "1.0"
 msgstr "1.0"
 
-#: ../lib/python/Components/NimManager.py:774
 msgid "1.1"
 msgstr "1.1"
 
-#: ../lib/python/Components/NimManager.py:774
 msgid "1.2"
 msgstr "1.2"
 
-#: ../lib/python/Components/NimManager.py:771
 msgid "12 V"
 msgstr "12 V"
 
-#: ../lib/python/Screens/Satconfig.py:138
 msgid "12V Output"
 msgstr "12V Çıkış"
 
-#: ../lib/python/Components/NimManager.py:749
 msgid "13 V"
 msgstr "13 V"
 
-#: ../lib/python/Components/AVSwitch.py:89
 msgid "16:10 Letterbox"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:90
 msgid "16:10 PanScan"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:87
 msgid "16:9"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:88
 msgid "16:9 always"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:749
 msgid "18 V"
 msgstr "18 V"
 
-#: ../lib/python/Components/ParentalControl.py:14
 msgid "30 minutes"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:85
 msgid "4:3 Letterbox"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:86
 msgid "4:3 PanScan"
 msgstr ""
 
-#: ../lib/python/Components/ParentalControl.py:14
 msgid "5 minutes"
 msgstr ""
 
-#: ../lib/python/Components/ParentalControl.py:14
 msgid "60 minutes"
 msgstr ""
 
-#: ../lib/python/Components/TimerList.py:66
 msgid "<unknown>"
 msgstr "<Bilinmeyen>"
 
-#: ../lib/python/Screens/Menu.py:126 ../lib/python/Screens/Menu.py:166
-#: ../lib/python/Screens/Menu.py:169 ../lib/python/Screens/Setup.py:118
 msgid "??"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:773
 msgid "A"
 msgstr "A"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -151,13 +144,16 @@ msgstr ""
 "Kayıt Helen devamediyor.\n"
 "Ne Yapmak İstiyorsunuz?"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:511
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr " Kayıt Helen devamediyor.lütfen kaydı kapamadan ayarları kontrol edin."
 
-#: ../RecordTimer.py:163
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -165,307 +161,345 @@ msgstr ""
 "Kayıtda Zaman Hatası!\n"
 "TV Devredışı bırak  veya tekrar dene?\n"
 
-#: ../lib/python/Components/NimManager.py:755
+msgid "A/V Settings"
+msgstr "Ses/Görüntü  Ayarları"
+
 msgid "AA"
 msgstr "AA"
 
-#: ../lib/python/Components/NimManager.py:755
 msgid "AB"
 msgstr "AB"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1178
+msgid "AC3 default"
+msgstr "AC3 Varsayılan"
+
+msgid "AGC:"
+msgstr "AGC:"
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid "About..."
+msgstr "Hakkında..."
+
 msgid "Activate Picture in Picture"
 msgstr "Etkinleştir Resim İçinde Resim"
 
-#: ../lib/python/Screens/TimerEdit.py:25
+msgid "Activate network settings"
+msgstr "Networkü Etkinleştir"
+
 msgid "Add"
 msgstr "Yeni"
 
-#: ../lib/python/Screens/MediaPlayer.py:389
+msgid "Add a mark"
+msgstr ""
+
+msgid "Add alternative"
+msgstr ""
+
 msgid "Add files to playlist"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:59
-#: ../lib/python/Screens/EventView.py:32
+msgid "Add service"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Yeni Zaman"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:32
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: ../lib/python/Screens/TimerEntry.py:177
 msgid "After event"
 msgstr "Olaydan Sonra"
 
-#: ../lib/python/Screens/MediaPlayer.py:51
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your dreambox's manual on how to do that."
+msgstr ""
+
 msgid "Album:"
 msgstr "Albüm:"
 
-#: ../lib/python/Screens/ChannelSelection.py:497
-#: ../lib/python/Screens/ChannelSelection.py:647
 msgid "All"
 msgstr "Hepsi"
 
-#: ../lib/python/Components/Language.py:16
+msgid "All..."
+msgstr ""
+
+msgid "Alpha"
+msgstr "Alfa"
+
+msgid "Alternative radio mode"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arapça"
 
-#: ../lib/python/Screens/MediaPlayer.py:47
 msgid "Artist:"
 msgstr "Sanatçı:"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1349
+msgid "Aspect Ratio"
+msgstr "Görüntü Oranı"
+
+msgid "Audio"
+msgstr "Ses"
+
 msgid "Audio Options..."
 msgstr ""
 
-#: ../lib/python/Screens/Ci.py:22 ../lib/python/Screens/ScanSetup.py:360
-#: ../lib/python/Screens/ScanSetup.py:363
-#: ../lib/python/Screens/ScanSetup.py:369
-#: ../lib/python/Screens/ScanSetup.py:371
-#: ../lib/python/Screens/ScanSetup.py:377
-#: ../lib/python/Screens/ScanSetup.py:381
-#: ../lib/python/Screens/ScanSetup.py:382
-#: ../lib/python/Screens/ScanSetup.py:383
-#: ../lib/python/Screens/ScanSetup.py:384
-#: ../lib/python/Screens/ScanSetup.py:385
-#: ../lib/python/Screens/ScanSetup.py:386
 msgid "Auto"
 msgstr "otmoatik"
 
-#: ../lib/python/Screens/ScanSetup.py:603 ../data/
 msgid "Automatic Scan"
 msgstr "Otomatik Arama"
 
-#: ../lib/python/Components/NimManager.py:773
 msgid "B"
 msgstr "B"
 
-#: ../lib/python/Components/NimManager.py:755
 msgid "BA"
 msgstr "BA"
 
-#: ../lib/python/Components/NimManager.py:755
 msgid "BB"
 msgstr "BB"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:76
+msgid "BER:"
+msgstr "BER:"
+
 msgid "Backup"
 msgstr "Yedekleme"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:113
 msgid "Backup Location"
 msgstr "Yedekleme Konumu"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:112
 msgid "Backup Mode"
 msgstr "Yedekleme Şekli"
 
-#: ../lib/python/Components/NimManager.py:750
+msgid "Backup is done. Please press OK to see the result."
+msgstr "Yedekleme Bitti Lütfen OK Tuşuna Basın Sonucu Görün."
+
 msgid "Band"
 msgstr "bant"
 
-#: ../lib/python/Screens/ScanSetup.py:243
 msgid "Bandwidth"
 msgstr "bant genişliği"
 
-#: ../lib/python/Screens/HarddiskSetup.py:31
+msgid "Brightness"
+msgstr "Parlaklık"
+
 msgid "Bus: "
 msgstr "Yol: "
 
-#: ../lib/python/Components/NimManager.py:767
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
+msgstr ""
+
 msgid "C-Band"
 msgstr "C-Band"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
 msgid "CF Drive"
 msgstr "CF Sürücü"
 
-#: ../lib/python/Components/AVSwitch.py:77
 msgid "CVBS"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:760
 msgid "Cable"
 msgstr "Kablo"
 
-#: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimeDateInput.py:16
-#: ../lib/python/Screens/TimerEntry.py:29
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:166
+msgid "Call monitoring"
+msgstr ""
+
 msgid "Cancel"
 msgstr "Vazgeç"
 
-#: ../lib/python/Screens/HarddiskSetup.py:30
 msgid "Capacity: "
 msgstr "Kapasite:"
 
-#: ../lib/python/Components/Language.py:17
 msgid "Catalan"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:146
-#: ../lib/python/Screens/ParentalControlSetup.py:22 ../data/
+msgid "Change bouquets in quickzap"
+msgstr ""
+
 msgid "Change pin code"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:79
 msgid "Change service pin"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:76
 msgid "Change service pins"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:70
 msgid "Change setup pin"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:179 ../data/
 msgid "Channel"
 msgstr "Kanal"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:150
+msgid "Channel Selection"
+msgstr "Kanal Seçimi"
+
 msgid "Channel:"
 msgstr "Kanal:"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:34
+msgid "Channellist menu"
+msgstr "Kanal Menü  Liste"
+
+msgid "Choose bouquet"
+msgstr "Buket Seç"
+
 msgid "Choose source"
 msgstr "Kaynağı Seç"
 
-#: ../lib/python/Screens/TimerEdit.py:27
 msgid "Cleanup"
 msgstr "Temizlik"
 
-#: ../lib/python/Screens/ScanSetup.py:209
-#: ../lib/python/Screens/ScanSetup.py:214
-#: ../lib/python/Screens/ScanSetup.py:236
-#: ../lib/python/Screens/ScanSetup.py:251
-#: ../lib/python/Screens/ScanSetup.py:587
 msgid "Clear before scan"
 msgstr "önceki aramayı Temizle"
 
-#: ../lib/python/Screens/TimerEntry.py:315
 msgid "Clear log"
 msgstr "Logu Temizle"
 
-#: ../lib/python/Screens/ScanSetup.py:244
 msgid "Code rate high"
 msgstr "Şifreleme düzeyi Yüksek"
 
-#: ../lib/python/Screens/ScanSetup.py:245
 msgid "Code rate low"
 msgstr "Şifreleme Düzeyi Düşük"
 
-#: ../lib/python/Screens/Satconfig.py:118
-#: ../lib/python/Screens/Satconfig.py:120
+msgid "Color Format"
+msgstr "Renk Biçimi"
+
 msgid "Command order"
 msgstr "Komut Düzenlemek"
 
-#: ../lib/python/Screens/Satconfig.py:114
 msgid "Committed DiSEqC command"
 msgstr "Bağlıolan  DiSEqC Emri"
 
-#: ../lib/python/Screens/ScanSetup.py:339
-#: ../lib/python/Screens/ScanSetup.py:340
-#: ../lib/python/Components/NimManager.py:797
+msgid "Common Interface"
+msgstr "Ortak Arabirim"
+
+msgid "Compact flash card"
+msgstr "Compact flash Kart"
+
 msgid "Complete"
 msgstr "Tamam"
 
-#: ../lib/python/Screens/Satconfig.py:47
-#: ../lib/python/Screens/Satconfig.py:143 ../data/
 msgid "Configuration Mode"
 msgstr "Yapılandırma Şekli"
 
-#: ../lib/python/Screens/TimerEdit.py:208
 msgid "Conflicting timer"
 msgstr "Çakışan Zaman"
 
-#: ../lib/python/Components/Harddisk.py:132
+msgid "Connected to Fritz!Box!"
+msgstr ""
+
+msgid "Connecting to Fritz!Box..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connection to Fritz!Box\n"
+"failed! (%s)\n"
+"retrying..."
+msgstr ""
+
+msgid "Contrast"
+msgstr "Keskinlik"
+
 msgid "Create movie folder failed"
 msgstr ""
 
-#: ../lib/python/Components/Harddisk.py:132
 msgid "Creating partition failed"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:32
 msgid "Current version:"
 msgstr "Kullanılan Versiyon:"
 
-#: ../lib/python/Screens/ScanSetup.py:358
+msgid "Customize"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Cutlist editor..."
+msgstr ""
+
+msgid "Czech"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
-#: ../lib/python/Screens/ScanSetup.py:358
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
-#: ../lib/python/Components/Language.py:18
 msgid "Danish"
 msgstr "Çanak"
 
-#: ../lib/python/Screens/TimeDateInput.py:40
 msgid "Date"
 msgstr "Tarih"
 
-#: ../lib/python/Screens/TimerEdit.py:24
+msgid "Deep Standby"
+msgstr "Derin Uyku"
+
+msgid "Delay"
+msgstr "Geçikme"
+
 msgid "Delete"
 msgstr "Silme"
 
-#: ../lib/python/Screens/TimerEntry.py:312
 msgid "Delete entry"
 msgstr "Girdileri Sil"
 
-#: ../lib/python/Screens/MovieSelection.py:64
 msgid "Delete failed!"
 msgstr "Silme Başarısız oldu!"
 
-#: ../lib/python/Screens/TimerEntry.py:130
 msgid "Description"
 msgstr "Tarifi"
 
-#: ../lib/python/Screens/About.py:35
 msgid "Detected HDD:"
 msgstr "Bulunan HDD:"
 
-#: ../lib/python/Screens/About.py:17
 msgid "Detected NIMs:"
 msgstr "Bulunan NIMs:"
 
-#: ../lib/python/Components/NimManager.py:704
+msgid "DiSEqC"
+msgstr "DiSEqC"
+
 msgid "DiSEqC A/B"
 msgstr "DiSEqC A/B"
 
-#: ../lib/python/Components/NimManager.py:705
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-#: ../lib/python/Screens/Satconfig.py:51
 msgid "DiSEqC Mode"
 msgstr "DiSEqC Şekli"
 
-#: ../lib/python/Screens/Satconfig.py:110
 msgid "DiSEqC mode"
 msgstr "DiSEqC Şekli"
 
-#: ../lib/python/Screens/Satconfig.py:122
 msgid "DiSEqC repeats"
 msgstr "DiSEqC Tekrarlayıcı"
 
-#: ../lib/python/Screens/TimerEdit.py:81
 msgid "Disable"
 msgstr "Devredışı Bırak"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
 msgid "Disable Picture in Picture"
 msgstr "Resim İçinde Resmi devredışı Bırak"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1134
-msgid "Disable subtitles"
+msgid "Disable Subtitles"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:102
+#, python-format
+msgid ""
+"Disconnected from\n"
+"Fritz!Box! (%s)\n"
+"retrying..."
+msgstr ""
+
+msgid "Dish"
+msgstr "Çanak"
+
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
@@ -473,12 +507,10 @@ msgstr ""
 "Silmek İstediğinize Eminmisiniz\n"
 "O  plugin i \""
 
-#: ../lib/python/Screens/MovieSelection.py:47
 #, python-format
 msgid "Do you really want to delete %s?"
 msgstr "Silmek İstediğinize Eminmisinz %s?"
 
-#: ../lib/python/Screens/PluginBrowser.py:100
 msgid ""
 "Do you really want to download\n"
 "the plugin \""
@@ -486,13 +518,11 @@ msgstr ""
 "İndirmek İstediğinize EMinmisiniz\n"
 "Bu plugin \""
 
-#: ../lib/python/Screens/HarddiskSetup.py:54
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
 msgstr "Hard diski i sıfırlamak konusunda eminmisiniz"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:123
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
@@ -500,12 +530,21 @@ msgstr ""
 "Şimdi Yedek Almak İstermisiniz?\n"
 "O Zaman OK, Ve Bekle!"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1621
+msgid "Do you want to do a service scan?"
+msgstr "şuan Servisi Taramak İstiyormusunuz!"
+
+msgid "Do you want to do another manual service scan?"
+msgstr "Başka Elle Servs Araması İstermisiniz"
+
+msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr ""
+
+msgid "Do you want to restore your settings?"
+msgstr " Ayarların Geri Yüklenmesini İstermisiniz ?"
+
 msgid "Do you want to resume this playback?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:51
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
@@ -513,799 +552,858 @@ msgstr ""
 " Dreambox  Güncellemek İstermisiniz?\n"
 "Bastıktan Sonra OK, Lütfen Bekle!"
 
-#: ../lib/python/Screens/PluginBrowser.py:21
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
+
+msgid "Do you want to view a tutorial?"
+msgstr "Görerek  İstermisiniz Öğreticiyi?"
+
 msgid "Download Plugins"
 msgstr "İndirilebilir plugins"
 
-#: ../lib/python/Screens/PluginBrowser.py:113
 msgid "Downloadable new plugins"
 msgstr "İndirilebilir yeni plugins"
 
-#: ../lib/python/Screens/PluginBrowser.py:79
+msgid "Downloadable plugins"
+msgstr "İndirilebilir  plugins"
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Plugin İndiriliyor Lütfen Bekleyin..."
 
-#: ../lib/python/Components/Language.py:19
 msgid "Dutch"
 msgstr "Almanca"
 
-#: ../lib/python/Screens/ChannelSelection.py:768
 msgid "E"
 msgstr "E"
 
-#: ../lib/python/Components/ServiceScan.py:40
+msgid "EPG Selection"
+msgstr "EPG Seçimi"
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HATA - Tarama Başarısız  (%s)!"
 
-#: ../lib/python/Components/NimManager.py:719
-#: ../lib/python/Components/NimManager.py:790
 msgid "East"
 msgstr "Doğu"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:82
 msgid "Edit services list"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:79
 msgid "Enable"
 msgstr "Devreye Al"
 
-#: ../lib/python/Screens/Satconfig.py:72
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:64
+msgid "Enable multiple bouquets"
+msgstr ""
+
 msgid "Enable parental control"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:167
 msgid "End"
 msgstr "Son"
 
-#: ../lib/python/Screens/TimerEntry.py:174
 msgid "EndTime"
 msgstr "Bitiş Zamanı"
 
-#: ../lib/python/Screens/LanguageSelection.py:53
-#: ../lib/python/Components/Language.py:14
-#: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
 msgstr "İngilizce"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:345
+msgid ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:146
 msgid "Enter the service pin"
 msgstr ""
 
-#: ../lib/python/Components/Harddisk.py:132
+msgid "Eventview"
+msgstr "Hata Günlüğü"
+
 msgid "Everything is fine"
 msgstr ""
 
-#: ../lib/python/Screens/Console.py:43
 msgid "Execution Progress:"
 msgstr "Uygulama İlerliyor:"
 
-#: ../lib/python/Screens/Console.py:53
 msgid "Execution finished!!"
 msgstr "Uygulama Bitti!!"
 
-#: ../lib/python/Screens/ScanSetup.py:201
-#: ../lib/python/Screens/ScanSetup.py:203
-#: ../lib/python/Screens/ScanSetup.py:233
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:404
+msgid "Exit editor"
+msgstr ""
+
+msgid "Exit the wizard"
+msgstr "Sihirbazdan Çık"
+
+msgid "Exit wizard"
+msgstr "Sihirbazdan Çık"
+
+msgid "Extensions"
+msgstr "İlaveler"
+
 msgid "FEC"
 msgstr "FEC"
 
-#: ../lib/python/Screens/Satconfig.py:115
 msgid "Fast DiSEqC"
 msgstr "Hızlı  DiSEqC"
 
-#: ../lib/python/Screens/ChannelSelection.py:500
 msgid "Favourites"
 msgstr "Favori"
 
-#: ../lib/python/Components/Language.py:20
+msgid "Finetune"
+msgstr "İnce Ayar"
+
 msgid "Finnish"
 msgstr "Bitiş"
 
-#: ../lib/python/Components/Language.py:21
 msgid "French"
 msgstr "Fransızca"
 
-#: ../lib/python/Screens/ScanSetup.py:196
-#: ../lib/python/Screens/ScanSetup.py:229
-#: ../lib/python/Screens/ScanSetup.py:240
-#: ../lib/python/Screens/TimerEntry.py:139
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:400
 msgid "Frequency"
 msgstr "Frekans"
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
 msgid "Fri"
 msgstr "Fri"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:153
 msgid "Friday"
 msgstr "Cuma"
 
-#: ../lib/python/Screens/About.py:23
+msgid "Fritz!Box FON IP address"
+msgstr ""
+
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Ön İşlemci: %d"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:60
 msgid "Function not yet implemented"
 msgstr "İşlev Yerine getir"
 
-#: ../lib/python/Screens/NetworkSetup.py:32 ../data/
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+
+msgid "Games / Plugins"
+msgstr "Oyun / Plugins"
+
 msgid "Gateway"
 msgstr "Ağ geçidi"
 
-#: ../lib/python/Screens/MediaPlayer.py:55
 msgid "Genre:"
 msgstr "Tür:"
 
-#: ../lib/python/Components/Language.py:15
-#: ../lib/python/Components/SetupDevices.py:15
 msgid "German"
 msgstr "Alman"
 
-#: ../lib/python/Screens/PluginBrowser.py:81
 msgid "Getting plugin information. Please wait..."
 msgstr "Plugin Bilgisi Hazırlanıypor Lütfen Bekleyin...."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:133
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:191
 msgid "Goto 0"
 msgstr "0 Git"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
 msgid "Goto position"
 msgstr "Pozisyona Git"
 
-#: ../lib/python/Screens/ScanSetup.py:248
 msgid "Guard interval mode"
 msgstr "Aralık Modunu Koru"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
-#: ../data/
 msgid "Harddisk"
 msgstr "Sabit Sürücü"
 
-#: ../lib/python/Screens/ScanSetup.py:249
+msgid "Harddisk setup"
+msgstr ""
+
+msgid "Harddisk standby after"
+msgstr ""
+
 msgid "Hierarchy mode"
 msgstr "Düzen Modu"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1315
-#: ../lib/python/Screens/InfoBarGenerics.py:1323
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakika kayıt yapmak istersiniz ?"
 
-#: ../lib/python/Screens/NetworkSetup.py:29 ../data/
 msgid "IP Address"
 msgstr "IP Adresi"
 
-#: ../lib/python/Components/Language.py:22
 msgid "Icelandic"
 msgstr "izlanda"
 
-#: ../lib/python/Screens/Scart.py:21
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:30
 msgid "Image-Upgrade"
 msgstr "İmaj-Yükselt"
 
-#: ../RecordTimer.py:166
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Zamanlanmış Kayıtları Sıraya Koy,Televizyonda Servisini Kaydet!\n"
 
-#: ../lib/python/Screens/Satconfig.py:139
 msgid "Increased voltage"
 msgstr "Ayrılmış Voltaj"
 
-#: ../lib/python/Screens/Ci.py:295
+msgid "InfoBar"
+msgstr "Bilgi Çubuğu"
+
+msgid "Infobar timeout"
+msgstr ""
+
+msgid "Information"
+msgstr "Bilgi"
+
 msgid "Init"
 msgstr "İçinde"
 
-#: ../lib/python/Screens/HarddiskSetup.py:33
+msgid "Initialization..."
+msgstr ""
+
 msgid "Initialize"
 msgstr "Başlangıç Ayarları"
 
-#: ../lib/python/Screens/HarddiskSetup.py:19
 msgid "Initializing Harddisk..."
 msgstr "Harddiskiniz Sıfırlanıyor"
 
-#: ../lib/python/Screens/InputBox.py:14 ../data/
 msgid "Input"
 msgstr "Giriş"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1225
 msgid "Instant Record..."
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:197
-#: ../lib/python/Screens/ScanSetup.py:230
-#: ../lib/python/Screens/ScanSetup.py:242
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:401
 msgid "Inversion"
 msgstr "Tersine Dön"
 
-#: ../lib/python/Components/Language.py:23
+msgid "Invert display"
+msgstr ""
+
 msgid "Italian"
 msgstr "İtalya"
 
-#: ../lib/python/Screens/Satconfig.py:107
+msgid "Keyboard Map"
+msgstr "Klavye Eşleme"
+
+msgid "Keyboard Setup"
+msgstr "Klavye Ayarları"
+
+msgid "Keymap"
+msgstr "Genel Harita"
+
+msgid "LCD Setup"
+msgstr "LCD Kurulum"
+
 msgid "LNB"
 msgstr "LNB"
 
-#: ../lib/python/Screens/Satconfig.py:132
 msgid "LOF"
 msgstr "LOF"
 
-#: ../lib/python/Screens/Satconfig.py:136
 msgid "LOF/H"
 msgstr "LOF/H"
 
-#: ../lib/python/Screens/Satconfig.py:135
 msgid "LOF/L"
 msgstr "LOF/L"
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
 msgid "Language selection"
 msgstr "Lisan Seçimi"
 
-#: ../lib/python/Screens/Satconfig.py:26
-#: ../lib/python/Screens/Satconfig.py:126 ../data/
+msgid "Language..."
+msgstr ""
+
 msgid "Latitude"
 msgstr "Latitude"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
 msgid "Left"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
 msgid "Limit east"
 msgstr "Doğu Limiti"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
 msgid "Limit west"
 msgstr "Batı Limiti"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:181
 msgid "Limits off"
 msgstr "Limit Kapalı"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:184
 msgid "Limits on"
 msgstr "Limit Açık"
 
-#: ../lib/python/Screens/Satconfig.py:24
-#: ../lib/python/Screens/Satconfig.py:124 ../data/
 msgid "Longitude"
 msgstr "Longitude"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
+msgid "MORE"
+msgstr "Dahafazla"
+
+msgid "Main menu"
+msgstr "Ana Menü"
+
+msgid "Mainmenu"
+msgstr "Ana Menü"
+
+msgid "Make this mark an 'in' point"
+msgstr ""
+
+msgid "Make this mark an 'out' point"
+msgstr ""
+
+msgid "Make this mark just a mark"
+msgstr ""
+
+msgid "Manual Scan"
+msgstr "Elle Arama"
+
 msgid "Manual transponder"
 msgstr "El İle Transponder"
 
-#: ../lib/python/Components/Harddisk.py:132
+msgid "Margin after record"
+msgstr "Arka Arkaya Kaydet"
+
+msgid "Margin before record (minutes)"
+msgstr ""
+
+msgid "Media player"
+msgstr "Ortam Oynatıcı"
+
+msgid "MediaPlayer"
+msgstr "Ortam Oynatıcı"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Message"
+msgstr "Mesaj"
+
 msgid "Mkfs failed"
 msgstr ""
 
-#: ../lib/python/Screens/HarddiskSetup.py:29
 msgid "Model: "
 msgstr "Model:"
 
-#: ../lib/python/Screens/ScanSetup.py:204
-#: ../lib/python/Screens/ScanSetup.py:232
-#: ../lib/python/Screens/ScanSetup.py:246
 msgid "Modulation"
 msgstr "Modülasyon"
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
+msgid "Modulator"
+msgstr "Modulator"
+
 msgid "Mon"
 msgstr "Pazartesi"
 
-#: ../lib/python/Screens/TimerEntry.py:92
 msgid "Mon-Fri"
 msgstr "Pazartesi-Cuma"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:149
 msgid "Monday"
 msgstr "Pazartesi"
 
-#: ../lib/python/Components/Harddisk.py:132
 msgid "Mount failed"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1184
 msgid "Move Picture in Picture"
 msgstr "Resimden Resme hareket Et"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Move east"
 msgstr "Doğuya Dön"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
 msgid "Move west"
 msgstr "Batıya Dön"
 
-#: ../lib/python/Screens/MovieSelection.py:29
 msgid "Movie Menu"
 msgstr "Film Menüsü"
 
-#: ../lib/python/Screens/EventView.py:154
 msgid "Multi EPG"
 msgstr "Çoklu EPG"
 
-#: ../lib/python/Screens/Ci.py:306
 msgid "Multiple service support"
 msgstr ""
 
-#: ../lib/python/Screens/ScanSetup.py:338
 msgid "Multisat"
 msgstr "Çoklu Uydu"
 
-#: ../lib/python/Components/NimManager.py:488
+msgid "Mute"
+msgstr "Sessiz"
+
 msgid "N/A"
 msgstr "N/A Tanımsız"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
+msgid "NEXT"
+msgstr "Sonraki"
+
 msgid "NIM "
 msgstr "NIM "
 
-#: ../lib/python/Components/AVSwitch.py:92
+msgid "NOW"
+msgstr "Şimdi"
+
 msgid "NTSC"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:129
 msgid "Name"
 msgstr "İsim"
 
-#: ../lib/python/Screens/NetworkSetup.py:33 ../data/
 msgid "Nameserver"
 msgstr "Nameserver"
 
-#: ../lib/python/Screens/NetworkSetup.py:31 ../data/
 msgid "Netmask"
 msgstr "Alt Ağ Maskesi"
 
-#: ../lib/python/Screens/ScanSetup.py:234
-#: ../lib/python/Screens/ScanSetup.py:241
+msgid "Network Setup"
+msgstr "Ağ Ayarları"
+
 msgid "Network scan"
 msgstr "Ağ Tarama"
 
-#: ../lib/python/Screens/ChannelSelection.py:752
+msgid "Network setup"
+msgstr "Ağ Ayarları"
+
+msgid "Network..."
+msgstr ""
+
 msgid "New"
 msgstr "Yeni"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:218
 msgid "New pin"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:33
 msgid "New version:"
 msgstr "Yeni Versiyon:"
 
-#: ../lib/python/Screens/EpgSelection.py:45
 msgid "Next"
 msgstr "Sonraki"
 
-#: ../lib/python/Screens/Ci.py:22 ../data/
 msgid "No"
 msgstr "Hayır"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1335
 msgid "No HDD found or HDD not initialized!"
 msgstr "HDD Bulunamadı  Veya HDD  Yok"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1268
+msgid "No backup needed"
+msgstr "Yedeklemeye İhtiyaç Olmadı"
+
 msgid "No event info found, recording indefinitely."
 msgstr "Hiçbir Bilgi Olay Bulunmadı,Süresiz Olarak Kaydet."
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:508
 msgid "No positioner capable frontend found."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:523
+msgid "No satellite frontend found!!"
+msgstr ""
+
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Hiçbir Tuner diseqc pozisyonu için ayarlanmadı !"
 
-#: ../lib/python/Screens/ScanSetup.py:363
-#: ../lib/python/Screens/ScanSetup.py:371
-#: ../lib/python/Screens/ScanSetup.py:386
-#: ../lib/python/Components/NimManager.py:755
-#: ../lib/python/Components/NimManager.py:759
-#: ../lib/python/Components/NimManager.py:773
-#: ../lib/python/Components/NimManager.py:774
-#: ../lib/python/Components/NimManager.py:788
+msgid "No, do nothing."
+msgstr "Hiçbirşey yapılmadı"
+
+msgid "No, just start my dreambox"
+msgstr ""
+
+msgid "No, scan later manually"
+msgstr "Hayır,  Sonra Ara Manuelolarak"
+
 msgid "None"
 msgstr "Hiçbiri"
 
-#: ../lib/python/Components/NimManager.py:721
-#: ../lib/python/Components/NimManager.py:792
 msgid "North"
 msgstr "Kuzey"
 
-#: ../lib/python/Components/Language.py:24
 msgid "Norwegian"
 msgstr "Norveç"
 
-#: ../lib/python/Screens/ScanSetup.py:559
-#: ../lib/python/Screens/ScanSetup.py:669
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
-#: ../lib/python/Screens/Setup.py:84 ../lib/python/Screens/TimeDateInput.py:15
-#: ../lib/python/Screens/TimerEntry.py:28
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:74
+msgid "Now Playing"
+msgstr ""
+
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/python/Components/NimManager.py:750
+msgid "OK, guide me through the upgrade process"
+msgstr ""
+
+msgid "OSD Settings"
+msgstr "OSD Ayarları"
+
 msgid "Off"
 msgstr "Kapalı"
 
-#: ../lib/python/Components/NimManager.py:750
 msgid "On"
 msgstr "Açık"
 
-#: ../lib/python/Components/NimManager.py:788
 msgid "One"
 msgstr "Bir"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:31
 msgid "Online-Upgrade"
 msgstr "Çevrimiçi-Yükseltme"
 
-#: ../lib/python/Components/AVSwitch.py:92
+msgid "Other..."
+msgstr ""
+
 msgid "PAL"
 msgstr ""
 
-#: ../lib/python/Screens/ServiceInfo.py:79
 msgid "PIDs"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:35
 msgid "Packet management"
 msgstr "Paket Yönetimi"
 
-#: ../lib/python/Components/ParentalControl.py:80 ../data/
+msgid "Page"
+msgstr ""
+
 msgid "Parental control"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:74
+msgid "Parental control services Editor"
+msgstr ""
+
+msgid "Parental control setup"
+msgstr ""
+
 msgid "Parental control type"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:48
+msgid "PiPSetup"
+msgstr "PiP Ayarları"
+
+msgid "Pin code needed"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Kayıtdaki Filmleri Oynat..."
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1099
 msgid "Please choose an extension..."
 msgstr "Lütfen Bir İlave Seçin..."
 
-#: ../lib/python/Screens/ChannelSelection.py:134
 msgid "Please enter a name for the new bouquet"
 msgstr "Lütfen Yani Bukete Bir İsim Verin"
 
-#: ../lib/python/Screens/ChannelSelection.py:183
 msgid "Please enter a name for the new marker"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:28
 msgid "Please enter the correct pin code"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:232
 msgid "Please enter the old pin code"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEntry.py:289
+msgid "Please press OK!"
+msgstr ""
+
 msgid "Please select a subservice to record..."
 msgstr "Lütfen alt servis kayıtı için seçin"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1487
-#: ../lib/python/Screens/SubservicesQuickzap.py:97
 msgid "Please select a subservice..."
 msgstr "Alt Servis Seçin Lütfen..."
 
-#: ../lib/python/Screens/PiPSetup.py:41
+msgid "Please set up tuner B"
+msgstr "Lütfen Ayarla  tuner B"
+
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:79
 msgid "Please wait... Loading list..."
 msgstr "Liste Yükleniyor... Lütfen Bekleyin..."
 
-#: ../lib/python/Screens/ScanSetup.py:199
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:403
+msgid "Plugin browser"
+msgstr "Plugin Gözlem"
+
 msgid "Polarity"
 msgstr "Kutupluk"
 
-#: ../lib/python/Components/NimManager.py:749
 msgid "Polarization"
 msgstr "Poloarizasyon"
 
-#: ../lib/python/Screens/Satconfig.py:13
 msgid "Port A"
 msgstr "Port A"
 
-#: ../lib/python/Screens/Satconfig.py:16
 msgid "Port B"
 msgstr "Port B"
 
-#: ../lib/python/Screens/Satconfig.py:18
 msgid "Port C"
 msgstr "Port C"
 
-#: ../lib/python/Screens/Satconfig.py:19
 msgid "Port D"
 msgstr "Port D"
 
-#: ../lib/python/Components/NimManager.py:706
 msgid "Positioner"
 msgstr "Pozisyoner"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
 msgid "Positioner fine movement"
 msgstr "Pozisyoner İnce Hareket"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
 msgid "Positioner movement"
 msgstr "Pozisyoneri Hareket Ettir"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
+msgid "Positioner setup"
+msgstr ""
+
 msgid "Positioner storage"
 msgstr "Pozisyoneri  Hafızaya Al"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:422
 msgid "Predefined transponder"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:22
 msgid "Press OK to activate the settings."
 msgstr "Ayarları Etkinleştimek için OK Basın"
 
-#: ../lib/python/Screens/ScanSetup.py:604
 msgid "Press OK to scan"
 msgstr "Ok Bas Ve Tarama yap"
 
-#: ../lib/python/Screens/ScanSetup.py:157
 msgid "Press OK to start the scan"
 msgstr "Ok Tuşuna Bas Aramayı Başlat"
 
-#: ../lib/python/Screens/EpgSelection.py:44
 msgid "Prev"
 msgstr "Önceki"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:72
 msgid "Protect services"
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:68
 msgid "Protect setup"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:499
-#: ../lib/python/Screens/ChannelSelection.py:643
 msgid "Provider"
 msgstr "Yayıncı"
 
-#: ../lib/python/Screens/ChannelSelection.py:750
 msgid "Providers"
 msgstr "Yayıncılar"
 
-#: ../lib/python/Components/NimManager.py:797
 msgid "Quick"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1483
 msgid "Quickzap"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:77
+msgid "RC Menu"
+msgstr "RC Menü"
+
+msgid "RF output"
+msgstr ""
+
 msgid "RGB"
 msgstr ""
 
-#: ../lib/python/Screens/Setup.py:145
+msgid "RSS Feed URI"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:105
 msgid "Really delete done timers?"
 msgstr "Zamanlamayı silmekte eminmisin ?"
 
-#: ../lib/python/Screens/TimerEdit.py:113
 msgid "Really delete this timer?"
 msgstr ""
 
-#: ../lib/python/Screens/SubservicesQuickzap.py:108
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:74
+msgid "Reception Settings"
+msgstr ""
+
+msgid "Record"
+msgstr "Kayıt"
+
 msgid "Recording"
 msgstr "Kaydetme"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:219
+msgid "Recordings always have priority"
+msgstr ""
+
 msgid "Reenter new pin"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:20
 msgid "Remove Plugins"
 msgstr "Plugins Sil"
 
-#: ../lib/python/Screens/PluginBrowser.py:115
+msgid "Remove a mark"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Plugins Sil"
 
-#: ../lib/python/Screens/TimerEntry.py:133
+msgid "Remove service"
+msgstr ""
+
+msgid "Repeat"
+msgstr "Tekrar"
+
 msgid "Repeat Type"
 msgstr "Tekrarlanan Tür"
 
-#: ../lib/python/Screens/MediaPlayer.py:390
 msgid "Replace current playlist"
 msgstr ""
 
-#: ../lib/python/Screens/Ci.py:294
 msgid "Reset"
 msgstr "Yeniden Başlat"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:77
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:167
+msgid "Restart"
+msgstr "Yeniden başlat"
+
+msgid "Restart GUI now?"
+msgstr ""
+
 msgid "Restore"
 msgstr "Geri Yükle"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
+"Geri Yükleme Tamamlandı Lütfen OK Tuşuna Basarak Ayarları Aktifleştirin Şimdi"
+
 msgid "Right"
 msgstr ""
 
-#: ../lib/python/Components/AVSwitch.py:77
+msgid "Running"
+msgstr ""
+
 msgid "S-Video"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
+msgid "SNR:"
+msgstr "Sinyal:"
+
 msgid "Sat"
 msgstr "Uydu"
 
-#: ../lib/python/Screens/Satconfig.py:11 ../lib/python/Screens/Satconfig.py:61
-#: ../lib/python/Screens/Satconfig.py:145
-#: ../lib/python/Screens/ScanSetup.py:195
-#: ../lib/python/Screens/ScanSetup.py:208
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:397
+msgid "Sat / Dish Setup"
+msgstr "Uydu /Çanak Ayarlayıcı"
+
 msgid "Satellite"
 msgstr "Uydu"
 
-#: ../lib/python/Screens/ChannelSelection.py:498
-#: ../lib/python/Screens/ChannelSelection.py:645
 msgid "Satellites"
 msgstr "Uydular"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:154
+msgid "Satfinder"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Cumartesi"
 
-#: ../lib/python/Screens/ScanSetup.py:595
-#: ../lib/python/Screens/ScanSetup.py:600
 msgid "Scan NIM"
 msgstr "NIM  Ara"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Search east"
 msgstr "Doğuyu Raraştır"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Search west"
 msgstr "Batıyı Araştır"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1401
+msgid "Seek"
+msgstr "Ara"
+
+msgid "Select HDD"
+msgstr "HDD Seç"
+
+msgid "Select a movie"
+msgstr "Bir Film Seç"
+
+msgid "Select alternative service"
+msgstr ""
+
 msgid "Select audio mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1390
 msgid "Select audio track"
 msgstr "Ses İzlerini  Seç"
 
-#: ../lib/python/Screens/TimerEntry.py:210
 msgid "Select channel to record from"
 msgstr "Seçili Kanalı Kaydet"
 
-#: ../lib/python/Screens/Satconfig.py:116
+msgid "Select reference service"
+msgstr ""
+
 msgid "Sequence repeat"
 msgstr "Sırayı Tekrarla"
 
-#: ../lib/python/Screens/Satconfig.py:67
+msgid "Service"
+msgstr "Servis"
+
+msgid "Service Scan"
+msgstr "Servis Arama"
+
+msgid "Service Searching"
+msgstr "Servis Arayıcı"
+
+msgid "Service scan"
+msgstr "Servis Taram"
+
 msgid "Service scan type needed"
 msgstr ""
 
-#: ../lib/python/Screens/ServiceInfo.py:78 ../data/
 msgid "Serviceinfo"
 msgstr "Servis Bilgisi"
 
-#: ../lib/python/Screens/ChannelSelection.py:754
 msgid "Services"
 msgstr "Servis"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
 msgid "Set limits"
 msgstr "Limit Sabitle"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:36
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:197
+msgid "Setup"
+msgstr "Kurulum"
+
+msgid "Show infobar on channel change"
+msgstr ""
+
+msgid "Show infobar on skip forward/backward"
+msgstr ""
+
+msgid "Show positioner movement"
+msgstr ""
+
 msgid "Show services beginning with"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:49
 msgid "Show the radio player..."
 msgstr "Radyo Playeri Göster"
 
-#: ../lib/python/Screens/InfoBar.py:50
 msgid "Show the tv player..."
 msgstr ""
 
-#: ../lib/python/Screens/EventView.py:133
 msgid "Similar"
 msgstr "Benzer"
 
-#: ../lib/python/Screens/EventView.py:127
 msgid "Similar broadcasts:"
 msgstr "Aynı yayınlamak"
 
-#: ../lib/python/Components/NimManager.py:702
 msgid "Single"
 msgstr "Tek"
 
-#: ../lib/python/Screens/EventView.py:153
 msgid "Single EPG"
 msgstr "Tekli EPG"
 
-#: ../lib/python/Screens/ScanSetup.py:338
 msgid "Single satellite"
 msgstr "Tek Uydu"
 
-#: ../lib/python/Screens/ScanSetup.py:338
-#: ../lib/python/Screens/ScanSetup.py:339
-#: ../lib/python/Screens/ScanSetup.py:340
 msgid "Single transponder"
 msgstr "Tek Transponder"
 
-#: ../lib/python/Components/NimManager.py:725
 msgid "Slot "
 msgstr "Yuva"
 
-#: ../lib/python/Components/NimManager.py:557
 msgid "Socket "
 msgstr "Soket"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:149
+msgid "Somewhere else"
+msgstr "Başka Bir Yer"
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
@@ -1315,239 +1413,260 @@ msgstr ""
 "\n"
 "Lütfen Seçin."
 
-#: ../lib/python/Components/NimManager.py:721
-#: ../lib/python/Components/NimManager.py:792
+msgid "Sound"
+msgstr "Ses"
+
+msgid "Soundcarrier"
+msgstr "Ses Taşıyıcı"
+
 msgid "South"
 msgstr "Güney"
 
-#: ../lib/python/Components/Language.py:25
 msgid "Spanish"
 msgstr "İspanyolca"
 
-#: ../lib/python/Screens/TimerEntry.py:160
+msgid "Standby"
+msgstr "Uyku Modu"
+
+msgid "Standby / Restart"
+msgstr "Bekleme / yenidenbaşlat"
+
 msgid "Start"
 msgstr "Başla"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
 msgid "Start recording?"
 msgstr "Kaydı Başlat"
 
-#: ../lib/python/Screens/TimerEntry.py:165
 msgid "StartTime"
 msgstr "Başlama Zamanı"
 
-#: ../lib/python/Screens/Wizard.py:232
+msgid "Startwizard"
+msgstr ""
+
 msgid "Step "
 msgstr "Adım"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
 msgid "Step east"
 msgstr "Doğu Adımı"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:177
 msgid "Step west"
 msgstr "Batı Adımı"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
 msgid "Stereo"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:169
 msgid "Stop"
 msgstr "Dur"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:969
 msgid "Stop Timeshift?"
 msgstr "Zamandonduru . Durdur?"
 
-#: ../lib/python/Screens/InfoBar.py:113
 msgid "Stop playing this movie?"
 msgstr "Bu Filmi Oynamasını Durdur?"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
 msgid "Store position"
 msgstr "Pozisyonu Sakla"
 
-#: ../lib/python/Screens/Satconfig.py:104
 msgid "Stored position"
 msgstr "Pozisyonu saklandı"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1419
 msgid "Subservice list..."
 msgstr "Alt Servis Listesi..."
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
+msgid "Subservices"
+msgstr "Alt servisler"
+
+msgid "Subtitle selection"
+msgstr ""
+
+msgid "Subtitles"
+msgstr ""
+
 msgid "Sun"
 msgstr "güneş"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:155
 msgid "Sunday"
 msgstr "Pazar"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1181
 msgid "Swap Services"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:26
 msgid "Swedish"
 msgstr "İsveç"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1424
 msgid "Switch to next subservice"
 msgstr "Alt Servisi Değiştir"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1425
 msgid "Switch to previous subservice"
 msgstr "Önceki Alt Servisle Değiştir"
 
-#: ../lib/python/Screens/ScanSetup.py:198
-#: ../lib/python/Screens/ScanSetup.py:231
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:402
 msgid "Symbol Rate"
 msgstr "Sembol Oranı"
 
-#: ../lib/python/Screens/ChannelSelection.py:762
+msgid "System"
+msgstr "Sistem"
+
+msgid "TV System"
+msgstr "TV Sistemi"
+
 msgid "Terrestrial"
 msgstr "Karasal"
 
-#: ../lib/python/Screens/Satconfig.py:71
 msgid "Terrestrial provider"
 msgstr "Karasal Yayıncı"
 
-#: ../lib/python/Screens/ParentalControlSetup.py:251
+msgid "Test mode"
+msgstr "Tset Kipi"
+
+msgid "Test-Messagebox?"
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your box is now ready to use.\n"
+"Please press OK to start using you Dreambox."
+msgstr ""
+"Sihirbazı Kullandığınız İçin Teşekkürler Box Kullanıma Hazır.\n"
+"Lütfen  OK Butonuna Basarak Başlatın Dreambox u."
+
+msgid "The backup failed. Please choose a different backup location."
+msgstr "Yedek Başarısız Oldu. Lütfen Konumu Farklı Yedek Seçin."
+
 msgid "The pin code has been changed successfully."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:153
-#: ../lib/python/Screens/ParentalControlSetup.py:40
-#: ../lib/python/Components/ParentalControl.py:141
 msgid "The pin code you entered is wrong."
 msgstr ""
 
-#: ../lib/python/Screens/ParentalControlSetup.py:253
 msgid "The pin codes you entered are different."
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:788
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr ""
+
+msgid "The wizard is finished now."
+msgstr "Sihirbaz Şimdi Bitti."
+
+msgid "This is step number 2."
+msgstr "2 numaralı adım"
+
+msgid "This is unsupported at the moment."
+msgstr "Şuan Desteklenmemiş ."
+
 msgid "Three"
 msgstr "Üç"
 
-#: ../lib/python/Screens/Satconfig.py:137
 msgid "Threshold"
 msgstr "Başlangıç"
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
 msgid "Thu"
 msgstr "Perşembe"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:152
 msgid "Thursday"
 msgstr "Perşembe"
 
-#: ../lib/python/Screens/TimeDateInput.py:41
 msgid "Time"
 msgstr "Zaman"
 
-#: ../lib/python/Screens/TimerEntry.py:131
+msgid "Time/Date Input"
+msgstr "Saat/Tarih Girin"
+
+msgid "Timer"
+msgstr "Zaman"
+
+msgid "Timer Edit"
+msgstr "Zamanı Yaz"
+
+msgid "Timer Editor"
+msgstr "Zaman Düzenleyici"
+
 msgid "Timer Type"
 msgstr "Zaman Yaz"
 
-#: ../lib/python/Screens/MediaPlayer.py:49
+msgid "Timer entry"
+msgstr "Süreölçer Girişi"
+
+msgid "Timer log"
+msgstr "Süre Ölçer Log"
+
+msgid "Timer sanity error"
+msgstr "Zaman Hesaplama Hatası"
+
+msgid "Timer selection"
+msgstr "Zaman Seçici"
+
+msgid "Timeshift"
+msgstr ""
+
+msgid "Timeshift not possible!"
+msgstr "Zaman Dondurma Mümkün Değil"
+
+msgid "Timezone"
+msgstr "Zaman Bölgesi"
+
 msgid "Title:"
 msgstr "Ünvan:"
 
-#: ../lib/python/Screens/EpgSelection.py:245
-#: ../lib/python/Tools/FuzzyDate.py:10
 msgid "Today"
 msgstr "Bu Gün"
 
-#: ../lib/python/Screens/Satconfig.py:99
 msgid "Tone mode"
 msgstr "Ton Modu"
 
-#: ../lib/python/Screens/Satconfig.py:113
 msgid "Toneburst"
 msgstr "Toneburst"
 
-#: ../lib/python/Components/NimManager.py:703
 msgid "Toneburst A/B"
 msgstr "Ton İle Ayırma A/B"
 
-#: ../lib/python/Screens/ScanSetup.py:247
 msgid "Transmission mode"
 msgstr "İletim Şekli"
 
-#: ../lib/python/Screens/ServiceInfo.py:80
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
 msgid "Transponder"
 msgstr "Transponder"
 
-#: ../lib/python/Screens/ScanSetup.py:193
-msgid "Transpondertype"
-msgstr "Transponder Yaz"
-
-#: ../lib/python/Screens/InputBox.py:168
 msgid "Tries left:"
 msgstr ""
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
 msgid "Tue"
 msgstr "Salı"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:150
 msgid "Tuesday"
 msgstr "Salı"
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:128
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:395
 msgid "Tune"
 msgstr "İnce Ayar"
 
-#: ../lib/python/Screens/ScanSetup.py:175
-#: ../lib/python/Components/ServiceScan.py:75
 msgid "Tuner"
 msgstr "Tüner"
 
-#: ../lib/python/Screens/ServiceInfo.py:81
+msgid "Tuner Slot"
+msgstr "Tüner Yuvası"
+
+msgid "Tuner configuration"
+msgstr ""
+
 msgid "Tuner status"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:27
 msgid "Turkish"
 msgstr ""
 
-#: ../lib/python/Components/NimManager.py:788
 msgid "Two"
 msgstr "İki"
 
-#: ../lib/python/Screens/ScanSetup.py:181
-#: ../lib/python/Screens/ScanSetup.py:184
-#: ../lib/python/Screens/ScanSetup.py:187
 msgid "Type of scan"
 msgstr "Cinsinden  Arama"
 
-#: ../lib/python/Components/NimManager.py:715
 msgid "USALS"
 msgstr "USALS"
 
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:111
+msgid "USB"
+msgstr "USB"
+
 msgid "USB Stick"
 msgstr "USB Çubuk Kullan"
 
-#: ../lib/python/Screens/HarddiskSetup.py:49
 msgid ""
 "Unable to initialize harddisk.\n"
 "Please refer to the user manual.\n"
@@ -1557,734 +1676,170 @@ msgstr ""
 "Lütfen İlgili Ref  Kullanıcı Kitabına Bakın.\n"
 "Hata: "
 
-#: ../lib/python/Screens/Satconfig.py:121
 msgid "Uncommitted DiSEqC command"
 msgstr "Bağımsız DiSEqC Emri"
 
-#: ../lib/python/Components/NimManager.py:767
 msgid "Universal LNB"
 msgstr "Beynelminel LNB"
 
-#: ../lib/python/Components/Harddisk.py:132
 msgid "Unmount failed"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
 msgstr "Yükseltme tamamlandı.Sonuç burada :"
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:228
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Yükseltiliyor...Lütfen Bekleyiniz..Bu birkaç dakika sürebilir.."
 
-#: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:67
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:27 ../data/
 msgid "Use DHCP"
 msgstr "DHCP Kullan"
 
-#: ../lib/python/Screens/Satconfig.py:101
+msgid "Use power measurement"
+msgstr ""
+
+msgid ""
+"Use the left and right buttons to change an option.\n"
+"\n"
+"Please set up tuner A"
+msgstr ""
+"Sol Ve Sağ Düymeleri Kullanarak değiştirin.\n"
+"\n"
+"Lütfen Kurun tuner A"
+
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
+msgstr ""
+
 msgid "Use usals for this sat"
 msgstr "Kullanıcı İçin Bir USALS Uydu"
 
-#: ../lib/python/Components/NimManager.py:767
+msgid "Use wizard to set up basic features"
+msgstr ""
+
 msgid "User defined"
 msgstr "Kullanıcı Tanımlı"
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1759
+msgid "VCR Switch"
+msgstr "VCR Anahtarı"
+
+msgid "VCR scart"
+msgstr "VCR scart"
+
 msgid "View teletext..."
 msgstr ""
 
-#: ../lib/python/Screens/Satconfig.py:98
 msgid "Voltage mode"
 msgstr "Voltaj Modu"
 
-#: ../lib/python/Screens/ChannelSelection.py:766
+msgid "Volume"
+msgstr "Ses"
+
 msgid "W"
 msgstr "W"
 
-#: ../lib/python/Screens/EpgSelection.py:234
-#: ../lib/python/Components/EpgList.py:46
-#: ../lib/python/Components/TimerList.py:34
+msgid "WSS on 4:3"
+msgstr "WSS on 4:3"
+
 msgid "Wed"
 msgstr "Evlen"
 
-#: ../lib/python/Screens/TimerEntry.py:100
-#: ../lib/python/Screens/TimerEntry.py:151
 msgid "Wednesday"
 msgstr "Çarşamba"
 
-#: ../lib/python/Screens/TimerEntry.py:146
 msgid "Weekday"
 msgstr "Gün"
 
-#: ../lib/python/Components/NimManager.py:719
-#: ../lib/python/Components/NimManager.py:790
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Hoşgeldiniz  şuan ımage yukseltmesı sihirbazı size yardımcı olacaktır.şuanki "
+"ayarlarınızı backup ını almak ıcın sıze kısa bır acıklama yapacaktır ve "
+"nasıl yukselteme yanı upgrade olacagını anlatacaktır."
+
+msgid ""
+"Welcome.\n"
+"\n"
+"This start wizard will guide you through the basic setup of your Dreambox.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Hoşgeldiniz.\n"
+"\n"
+"Sihirbaz  Size Kurulum sırasında rehberlik edecektir Dreambox.\n"
+"uzaktan kumandanun OK butonuna  basarak Sonraki Aşamalara Geçebilirsiniz."
+
 msgid "West"
 msgstr "Batı"
 
-#: ../lib/python/Components/AVSwitch.py:81
+msgid "What do you want to scan?"
+msgstr "Neyi Taramak İstiyorsunuz!"
+
+msgid "Where do you want to backup your settings?"
+msgstr "Nerden Yedekleme ve Seting  Yapmak Sitersiniz ?"
+
 msgid "YPbPr"
 msgstr ""
 
-#: ../lib/python/Screens/MediaPlayer.py:53
 msgid "Year:"
 msgstr "Yıl:"
 
-#: ../lib/python/Screens/Ci.py:22 ../data/
 msgid "Yes"
 msgstr "Evet"
 
-#: ../lib/python/Screens/MovieSelection.py:49
-msgid "You cannot delete this!"
-msgstr "Siz bunu silemezsiniz !"
-
-#: ../lib/python/Screens/InputBox.py:108
-msgid "You have to wait for"
-msgstr ""
-
-#: ../lib/python/Screens/MediaPlayer.py:391
-msgid "You selected a playlist"
-msgstr ""
-
-#: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:31
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Sizin ön işlemci firmware yükseltilmek zorundadır.\n"
-"Yükseltmesi başlatmak için OK basınız."
-
-#: ../lib/python/Screens/ChannelSelection.py:380
-msgid "[bouquet edit]"
-msgstr "[bouquet Düzenle]"
-
-#: ../lib/python/Screens/ChannelSelection.py:382
-msgid "[favourite edit]"
-msgstr "[favorileri Düzenle]"
-
-#: ../lib/python/Screens/ChannelSelection.py:465
-msgid "[move mode]"
-msgstr "[Taşıma Kipi]"
-
-#: ../lib/python/Screens/ChannelSelection.py:119
-msgid "abort bouquet edit"
-msgstr "Durdur  bouquet Düzenle"
-
-#: ../lib/python/Screens/ChannelSelection.py:122
-msgid "abort favourites edit"
-msgstr "Favori Düzenleme Hakkında"
-
-#: ../lib/python/Components/TimerList.py:59
-msgid "about to start"
-msgstr "Hakkında yı Başlat"
-
-#: ../lib/python/Screens/ChannelSelection.py:101
-msgid "add bouquet"
-msgstr ""
-
-#: ../lib/python/Screens/MediaPlayer.py:338
-msgid "add directory to playlist"
-msgstr "Yeni Klasör ve Çalma Lsitesi...."
-
-#: ../lib/python/Screens/MediaPlayer.py:340
-msgid "add file to playlist"
-msgstr "Yeni Dosya ve Çalmalistesi"
-
-#: ../lib/python/Screens/ChannelSelection.py:107
-msgid "add marker"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
-msgid "add recording (enter recording duration)"
-msgstr "Yeni Kayıt (Kaydederken Süre Gir)"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
-msgid "add recording (indefinitely)"
-msgstr "Kayıt ekle ( Süresiz olarak )"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
-msgid "add recording (stop after current event)"
-msgstr "Kayıt Ekle  ( Durdur Şuanki Kayıdı )"
-
-#: ../lib/python/Screens/ChannelSelection.py:87
-msgid "add service to bouquet"
-msgstr "Yeni Servis veya Buket Ekle"
-
-#: ../lib/python/Screens/ChannelSelection.py:89
-msgid "add service to favourites"
-msgstr "Ekle Servis E Favorileri"
-
-#: ../lib/python/Screens/ChannelSelection.py:83
-msgid "add to parental protection"
-msgstr ""
-
-#: ../lib/python/Components/NimManager.py:672
-#: ../lib/python/Components/NimManager.py:682
-msgid "advanced"
-msgstr ""
-
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:208
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Geri yükleme için Eminmisiniz\n"
-"Yedeklemeyi Takip Edin:\n"
-
-#: ../lib/python/Screens/ChannelSelection.py:124
-#: ../lib/python/Screens/MovieSelection.py:24
-msgid "back"
-msgstr "Geri"
-
-#: ../lib/python/Components/ParentalControl.py:17
-msgid "blacklist"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-msgid "change recording (duration)"
-msgstr "Kaydederek Değiştir    (Süre)"
-
-#: ../lib/python/Screens/ScanSetup.py:362
-msgid "circular left"
-msgstr "Dairevi Kalan"
-
-#: ../lib/python/Screens/ScanSetup.py:362
-msgid "circular right"
-msgstr ""
-
-#: ../lib/python/Screens/MediaPlayer.py:344
-msgid "clear playlist"
-msgstr "Çalma Listesini Temizle"
-
-#: ../lib/python/Components/ParentalControl.py:13
-msgid "complex"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:591
-msgid "continue"
-msgstr ""
-
-#: ../lib/python/Screens/ChannelSelection.py:93
-msgid "copy to favourites"
-msgstr "Favoriyi Kopyala"
-
-#: ../lib/python/Screens/TimerEntry.py:92
-msgid "daily"
-msgstr "Günlük"
-
-#: ../lib/python/Screens/MediaPlayer.py:343
-msgid "delete"
-msgstr "Sil"
-
-#: ../lib/python/Screens/MovieSelection.py:24
-msgid "delete..."
-msgstr "Sil...."
-
-#: ../lib/python/Components/config.py:262
-msgid "disable"
-msgstr ""
-
-#: ../lib/python/Screens/ChannelSelection.py:115
-msgid "disable move mode"
-msgstr "Taşıma Modunu Kapat"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/TimerEntry.py:87
-msgid "do nothing"
-msgstr "Hiçbirşey Yapma"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
-msgid "don't record"
-msgstr "Kayıt Bitti"
-
-#: ../lib/python/Components/TimerList.py:68
-msgid "done!"
-msgstr "Bitti!"
-
-#: ../lib/python/Components/NimManager.py:559
-msgid "empty/unknown"
-msgstr "Boş/Tanımsız"
-
-#: ../lib/python/Components/config.py:262
-msgid "enable"
-msgstr ""
-
-#: ../lib/python/Screens/ChannelSelection.py:111
-msgid "enable bouquet edit"
-msgstr "Etkinleştir Buket Düzenlemeyi"
-
-#: ../lib/python/Screens/ChannelSelection.py:113
-msgid "enable favourite edit"
-msgstr "Etkinleştir Favori Düzenlemeyi"
-
-#: ../lib/python/Screens/ChannelSelection.py:108
-msgid "enable move mode"
-msgstr "Taşıma Listesini Aç"
-
-#: ../lib/python/Screens/ChannelSelection.py:118
-msgid "end bouquet edit"
-msgstr "Buket Düzenleme  Son"
-
-#: ../lib/python/Screens/ChannelSelection.py:121
-msgid "end favourites edit"
-msgstr "Favori Düzenleme Bitti"
-
-#: ../lib/python/Components/NimManager.py:677
-msgid "equal to Socket A"
-msgstr ""
-
-#: ../lib/python/Components/DiskInfo.py:30
-msgid "free diskspace"
-msgstr "Kullanılabilir Disk Alanı"
-
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
-msgid "full /etc directory"
-msgstr "Tüm /etc Klasörü"
-
-#: ../lib/python/Screens/TimerEntry.py:87
-msgid "go to deep standby"
-msgstr "Derin Uyku Ya git"
-
-#: ../lib/python/Screens/InfoBar.py:64
-msgid "hear radio..."
-msgstr ""
-
-#: ../lib/python/Screens/MediaPlayer.py:345
-msgid "hide player"
-msgstr "Oynatıcıyı  Gizle"
-
-#: ../lib/python/Screens/ScanSetup.py:362
-msgid "horizontal"
-msgstr "Yatay"
-
-#: ../lib/python/Components/UsageConfig.py:20
-msgid "hour"
-msgstr ""
-
-#: ../lib/python/Components/UsageConfig.py:20
-#: ../lib/python/Components/UsageConfig.py:21
-msgid "hours"
-msgstr ""
-
-#: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
-msgid "init module"
-msgstr "init Modul"
-
-#: ../lib/python/Screens/InfoBar.py:98
-msgid "leave movie player..."
-msgstr "Film Oynatıcıdan Çık"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
-msgid "left"
-msgstr ""
-
-#: ../lib/python/Screens/PluginBrowser.py:100
-#: ../lib/python/Screens/PluginBrowser.py:102
-msgid "list"
-msgstr "Liste"
-
-#: ../lib/python/Components/TunerInfo.py:69
-msgid "locked"
-msgstr ""
-
-#: ../lib/python/Components/NimManager.py:678
-msgid "loopthrough to socket A"
-msgstr ""
-
-#: ../lib/python/Components/NimManager.py:716
-msgid "manual"
-msgstr "El İle"
-
-#: ../lib/python/Components/TimerList.py:48
-#: ../lib/python/Components/TimerList.py:53
-msgid "mins"
-msgstr "Dakikalar"
-
-#: ../lib/python/Components/UsageConfig.py:18
-msgid "minute"
-msgstr ""
-
-#: ../lib/python/Components/UsageConfig.py:18
-#: ../lib/python/Components/UsageConfig.py:19
-#: ../lib/python/Components/UsageConfig.py:20
-msgid "minutes"
-msgstr ""
-
-#: ../lib/python/Screens/InputBox.py:108
-msgid "minutes and"
-msgstr ""
-
-#: ../lib/python/Components/ParentalControl.py:14
-msgid "never"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:261
-msgid "next channel"
-msgstr "Sonraki Kanal"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:263
-msgid "next channel in history"
-msgstr "Bundansonra Gelecek Kanal İçeriği"
-
-#: ../lib/python/Screens/MessageBox.py:45
-#: ../lib/python/Screens/ScanSetup.py:341
-#: ../lib/python/Screens/ScanSetup.py:586
-#: ../lib/python/Components/config.py:254
-msgid "no"
-msgstr "Hayır"
-
-#: ../lib/python/Screens/HarddiskSetup.py:69
-msgid "no HDD found"
-msgstr "HDD Bulunamadı"
-
-#: ../lib/python/Screens/Ci.py:298 ../lib/python/Screens/Ci.py:320
-msgid "no module found"
-msgstr "Hiç Modül Bulunamadı"
-
-#: ../lib/python/Components/UsageConfig.py:17
-msgid "no standby"
-msgstr ""
-
-#: ../lib/python/Components/UsageConfig.py:11
-msgid "no timeout"
-msgstr ""
-
-#: ../lib/python/Screens/About.py:40
-msgid "none"
-msgstr "Hiçbiri"
-
-#: ../lib/python/Components/TunerInfo.py:71
-msgid "not locked"
-msgstr ""
-
-#: ../lib/python/Components/NimManager.py:679
-msgid "nothing connected"
-msgstr ""
-
-#: ../lib/python/Screens/ScanSetup.py:360
-#: ../lib/python/Screens/ScanSetup.py:369
-#: ../lib/python/Screens/ScanSetup.py:377
-#: ../lib/python/Components/config.py:258
-msgid "off"
-msgstr "Kapalı"
-
-#: ../lib/python/Screens/ScanSetup.py:360
-#: ../lib/python/Screens/ScanSetup.py:369
-#: ../lib/python/Screens/ScanSetup.py:377
-#: ../lib/python/Components/config.py:258
-msgid "on"
-msgstr "Açık"
-
-#: ../lib/python/Screens/TimerEntry.py:88
-msgid "once"
-msgstr "Vaktiyle"
-
-#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:110
-msgid "only /etc/enigma2 directory"
-msgstr "Yanlız /etc/enigma2 Dizini"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:264
-msgid "open servicelist"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:259
-msgid "open servicelist(down)"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:258
-msgid "open servicelist(up)"
-msgstr ""
-
-#: ../lib/python/Components/ServiceScan.py:75
-msgid "pass"
-msgstr "Şifre"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:590
-msgid "pause"
-msgstr ""
-
-#: ../lib/python/Screens/Ci.py:82
-msgid "please press OK when ready"
-msgstr "Hazırsanız OK Basın"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:260
-msgid "previous channel"
-msgstr "Önceki Kanal"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:262
-msgid "previous channel in history"
-msgstr "Önceki Kanal Geçmişi"
-
-#: ../lib/python/Screens/TimerEntry.py:86
-msgid "record"
-msgstr "Kayıt"
-
-#: ../lib/python/Components/TimerList.py:64
-msgid "recording..."
-msgstr "Kaydetme.."
-
-#: ../lib/python/Screens/ChannelSelection.py:95
-msgid "remove all new found flags"
-msgstr "Yeni Bulunan İşaretlerini Sil"
-
-#: ../lib/python/Screens/ChannelSelection.py:97
-#: ../lib/python/Screens/ChannelSelection.py:102
-msgid "remove entry"
-msgstr ""
-
-#: ../lib/python/Screens/ChannelSelection.py:85
-msgid "remove from parental protection"
-msgstr ""
-
-#: ../lib/python/Screens/ChannelSelection.py:99
-msgid "remove new found flag"
-msgstr ""
-
-#: ../lib/python/Screens/TimerEntry.py:88
-msgid "repeated"
-msgstr "yinelenen"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
-msgid "right"
-msgstr ""
-
-#: ../lib/python/Components/ServiceScan.py:37
-#, python-format
-msgid ""
-"scan done!\n"
-"%d services found!"
-msgstr ""
-"Arama Bitti!\n"
-"%d  Servis Bulundu !"
-
-#: ../lib/python/Components/ServiceScan.py:35
-msgid ""
-"scan done!\n"
-"No service found!"
-msgstr ""
-"Arama Bitti!\n"
-" Servis Bulunamadı!"
-
-#: ../lib/python/Components/ServiceScan.py:33
-msgid ""
-"scan done!\n"
-"One service found!"
-msgstr ""
-"Arama Bitti!\n"
-"Bir Servis Bulundu !"
-
-#: ../lib/python/Components/ServiceScan.py:29
-#, python-format
-msgid ""
-"scan in progress - %d %% done!\n"
-"%d services found!"
-msgstr ""
-"Arama İlerleme Durumu - %d %% Bitti!\n"
-"%d Servis Bulunamadı!"
-
-#: ../lib/python/Screens/ServiceScan.py:23
-msgid "scan state"
-msgstr "Arama Durumu"
-
-#: ../lib/python/Components/UsageConfig.py:11
-msgid "second"
-msgstr ""
-
-#: ../lib/python/Components/NimManager.py:680
-msgid "second cable of motorized LNB"
-msgstr ""
-
-#: ../lib/python/Components/UsageConfig.py:11
-#: ../lib/python/Components/UsageConfig.py:12
-#: ../lib/python/Components/UsageConfig.py:13
-#: ../lib/python/Components/UsageConfig.py:17
-msgid "seconds"
-msgstr ""
-
-#: ../lib/python/Screens/InputBox.py:108
-msgid "seconds."
-msgstr ""
-
-#: ../lib/python/Screens/ParentalControlSetup.py:96
-msgid "service pin"
-msgstr ""
-
-#: ../lib/python/Screens/ParentalControlSetup.py:98
-msgid "setup pin"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:397
-msgid "show EPG..."
-msgstr "Detaylı EPG"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:359
-msgid "show event details"
-msgstr "Olay Detayını Göster"
-
-#: ../lib/python/Components/NimManager.py:671
-#: ../lib/python/Components/NimManager.py:681
-#: ../lib/python/Components/ParentalControl.py:13
-msgid "simple"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:596
-msgid "skip backward"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:593
-msgid "skip forward"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:911
-msgid "start timeshift"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
-msgid "stereo"
-msgstr ""
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-msgid "stop recording"
-msgstr "Kaydı Durdur"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:912
-msgid "stop timeshift"
-msgstr ""
-
-#: ../lib/python/Screens/MediaPlayer.py:342
-msgid "switch to filelist"
-msgstr "Dosya Listesini Değiştir"
-
-#: ../lib/python/Screens/MediaPlayer.py:336
-msgid "switch to playlist"
-msgstr "Çalma Listesini Değiştir"
-
-#: ../lib/python/Screens/Wizard.py:236 ../lib/python/Screens/Wizard.py:237
-msgid "text"
-msgstr "Metin"
-
-#: ../lib/python/Screens/MovieSelection.py:39
-msgid "this recording"
-msgstr "Bunu Kaydet"
-
-#: ../lib/python/Components/ParentalControl.py:80
-msgid "this service is protected by a parental control pin"
-msgstr ""
-
-#: ../lib/python/Screens/EventView.py:80
-msgid "unknown service"
-msgstr "Bilinmeyen Servis"
-
-#: ../lib/python/Components/ParentalControl.py:14
-msgid "until restart"
-msgstr ""
-
-#: ../lib/python/Screens/TimerEntry.py:92
-msgid "user defined"
-msgstr "Kullanıcı Tanımlı"
-
-#: ../lib/python/Screens/ScanSetup.py:362
-msgid "vertical"
-msgstr "Düşey"
-
-#: ../lib/python/Screens/InfoBarGenerics.py:1047
-msgid "view extensions..."
-msgstr ""
-
-#: ../lib/python/Screens/InfoBar.py:63
-msgid "view recordings..."
-msgstr ""
-
-#: ../lib/python/Screens/Ci.py:167
-msgid "wait for ci..."
-msgstr ""
-
-#: ../lib/python/Components/TimerList.py:57
-msgid "waiting"
-msgstr "Bekleyin"
-
-#: ../lib/python/Screens/TimerEntry.py:92
-msgid "weekly"
-msgstr "Haftalık"
-
-#: ../lib/python/Components/ParentalControl.py:17
-msgid "whitelist"
-msgstr ""
-
-#: ../lib/python/Screens/MessageBox.py:45
-#: ../lib/python/Screens/ScanSetup.py:341
-#: ../lib/python/Screens/ScanSetup.py:586
-#: ../lib/python/Components/config.py:254
-msgid "yes"
-msgstr "Evet"
-
-#: ../lib/python/Screens/ScanSetup.py:341
-#: ../lib/python/Screens/ScanSetup.py:586
-msgid "yes (keep feeds)"
-msgstr "Evet (Bunları Sakla)"
-
-#: ../lib/python/Screens/TimerEntry.py:86
-msgid "zap"
-msgstr "Canlılık"
-
-#: ../lib/python/Components/TimerList.py:62
-msgid "zapped"
-msgstr ""
-
-#: ../data/
-msgid "Channel Selection"
-msgstr "Kanal Seçimi"
-
-#: ../data/
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Yedekleme Bitti Lütfen OK Tuşuna Basın Sonucu Görün."
-
-#: ../data/
-msgid "Service"
-msgstr "Servis"
-
-#: ../data/
-msgid "Initialization..."
-msgstr ""
-
-#: ../data/
-msgid "Network setup"
-msgstr "Ağ Ayarları"
-
-#: ../data/
-msgid "Games / Plugins"
-msgstr "Oyun / Plugins"
-
-#: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr ""
-
-#: ../data/
-msgid ""
-"You need to set a pin code and hide it from your children.\n"
-"\n"
-"Do you want to set the pin now?"
-msgstr ""
-
-#: ../data/
-msgid "help..."
-msgstr "Yardım...."
-
-#: ../data/
 msgid "Yes, backup my settings!"
 msgstr "Evet, Benim AYarlarımı Yedekle"
 
-#: ../data/
-msgid "Satconfig"
-msgstr "Uydu Ayarları"
+msgid "Yes, do a manual scan now"
+msgstr "Evet Bir Manuel Arama Şimdi"
 
-#: ../data/
+msgid "Yes, do an automatic scan now"
+msgstr "Evet Bir Otomatik Arama Şimdi"
+
+msgid "Yes, do another manual scan now"
+msgstr "Başka Elle Arama Yapmak İstermisin"
+
+msgid "Yes, perform a shutdown now."
+msgstr "Evet, Şuanda Kapatmak istiyorum."
+
+msgid "Yes, restore the settings now"
+msgstr "Evet Şimdi Setingleri Geriyükle"
+
+msgid "Yes, view the tutorial"
+msgstr "Evet, görmek İstiyorum"
+
+msgid "You cannot delete this!"
+msgstr "Siz bunu silemezsiniz !"
+
+msgid ""
+"You do not seem to have a harddisk in your Dreambox. So backing up to a "
+"harddisk is not an option for you."
+msgstr ""
+
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
+"Please press OK to start the backup now."
+msgstr ""
+
+msgid ""
+"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
+"Please press OK to start the backup now."
+msgstr ""
+
+msgid ""
+"You have chosen to backup to your harddisk. Please press OK to start the "
+"backup now."
+msgstr ""
+
+msgid "You have to wait for"
+msgstr ""
+
 msgid ""
 "You need a PC connected to your dreambox. If you need further instructions, "
 "please visit the website http://www.dm7025.de.\n"
@@ -2298,695 +1853,498 @@ msgstr ""
 "  dreambox  Yükseltme talimatları websitesi, ile temin EdebilirsinizSetin Ve "
 "Yeni Yazılımlar İçin."
 
-#: ../data/
-msgid "Where do you want to backup your settings?"
-msgstr "Nerden Yedekleme ve Seting  Yapmak Sitersiniz ?"
-
-#: ../data/
-msgid "Service Scan"
-msgstr "Servis Arama"
-
-#: ../data/
-msgid "DiSEqC"
-msgstr "DiSEqC"
-
-#: ../data/
-msgid "Main menu"
-msgstr "Ana Menü"
-
-#: ../data/
-msgid "TV System"
-msgstr "TV Sistemi"
-
-#: ../data/
-msgid "Alternative radio mode"
-msgstr ""
-
-#: ../data/
-msgid "NEXT"
-msgstr "Sonraki"
-
-#: ../data/
 msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-
-#: ../data/
-msgid "Deep Standby"
-msgstr "Derin Uyku"
-
-#: ../data/
-msgid "Show positioner movement"
-msgstr ""
-
-#: ../data/
-msgid "Tuner Slot"
-msgstr "Tüner Yuvası"
-
-#: ../data/
-msgid "Change bouquets in quickzap"
-msgstr ""
-
-#: ../data/
-msgid "Sound"
-msgstr "Ses"
-
-#: ../data/
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-
-#: ../data/
-msgid "Do you want to view a tutorial?"
-msgstr "Görerek  İstermisiniz Öğreticiyi?"
-
-#: ../data/
-msgid "No, do nothing."
-msgstr "Hiçbirşey yapılmadı"
-
-#: ../data/
-msgid "#000000"
-msgstr "#000000"
-
-#: ../data/
-msgid "Infobar timeout"
-msgstr ""
-
-#: ../data/
-msgid "Use wizard to set up basic features"
-msgstr ""
-
-#: ../data/
-msgid "Extensions"
-msgstr "İlaveler"
-
-#: ../data/
-msgid "#bab329"
-msgstr "#bab329"
-
-#: ../data/
-msgid "Startwizard"
-msgstr ""
-
-#: ../data/
-msgid "#ffffff"
-msgstr "#ffffff"
-
-#: ../data/
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-
-#: ../data/
-msgid "Mute"
-msgstr "Sessiz"
-
-#: ../data/
-msgid "Service Searching"
-msgstr "Servis Arayıcı"
-
-#: ../data/
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Hoşgeldiniz  şuan ımage yukseltmesı sihirbazı size yardımcı olacaktır.şuanki "
-"ayarlarınızı backup ını almak ıcın sıze kısa bır acıklama yapacaktır ve "
-"nasıl yukselteme yanı upgrade olacagını anlatacaktır."
-
-#: ../data/
-msgid "Keyboard Map"
-msgstr "Klavye Eşleme"
-
-#: ../data/
-msgid "Enable multiple bouquets"
-msgstr ""
-
-#: ../data/
-msgid "Keyboard Setup"
-msgstr "Klavye Ayarları"
-
-#: ../data/
-msgid ""
-"Use the left and right buttons to change an option.\n"
+"You need to set a pin code and hide it from your children.\n"
 "\n"
-"Please set up tuner A"
-msgstr ""
-"Sol Ve Sağ Düymeleri Kullanarak değiştirin.\n"
-"\n"
-"Lütfen Kurun tuner A"
-
-#: ../data/
-msgid "Dish"
-msgstr "Çanak"
-
-#: ../data/
-msgid "Margin after record"
-msgstr "Arka Arkaya Kaydet"
-
-#: ../data/
-msgid "#ffffffff"
-msgstr "#ffffffff"
-
-#: ../data/
-msgid "System"
-msgstr "Sistem"
-
-#: ../data/
-msgid "Use power measurement"
+"Do you want to set the pin now?"
 msgstr ""
 
-#: ../data/
-msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
-msgstr ""
-"Sihirbazı Kullandığınız İçin Teşekkürler Box Kullanıma Hazır.\n"
-"Lütfen  OK Butonuna Basarak Başlatın Dreambox u."
-
-#: ../data/
-msgid "Test mode"
-msgstr "Tset Kipi"
-
-#: ../data/
-msgid "Manual Scan"
-msgstr "Elle Arama"
-
-#: ../data/
-msgid "Timer Edit"
-msgstr "Zamanı Yaz"
-
-#: ../data/
-msgid "RC Menu"
-msgstr "RC Menü"
-
-#: ../data/
-msgid "No, just start my dreambox"
+msgid "You selected a playlist"
 msgstr ""
 
-#: ../data/
-msgid "Network..."
-msgstr ""
-
-#: ../data/
-msgid "Tuner configuration"
-msgstr ""
-
-#: ../data/
-msgid "select Slot"
-msgstr "Yuva Seç"
-
-#: ../data/
-msgid "BER:"
-msgstr "BER:"
-
-#: ../data/
-msgid "Standby / Restart"
-msgstr "Bekleme / yenidenbaşlat"
-
-#: ../data/
-msgid "Standby"
-msgstr "Uyku Modu"
-
-#: ../data/
-msgid "EPG Selection"
-msgstr "EPG Seçimi"
-
-#: ../data/
-msgid "Exit the wizard"
-msgstr "Sihirbazdan Çık"
-
-#: ../data/
-msgid "OSD Settings"
-msgstr "OSD Ayarları"
-
-#: ../data/
-msgid "RF output"
-msgstr ""
-
-#: ../data/
-msgid "Brightness"
-msgstr "Parlaklık"
-
-#: ../data/
-msgid "Parental control services Editor"
-msgstr ""
-
-#: ../data/
-msgid "Yes, do another manual scan now"
-msgstr "Başka Elle Arama Yapmak İstermisin"
-
-#: ../data/
-msgid "Activate network settings"
-msgstr "Networkü Etkinleştir"
-
-#: ../data/
-msgid "Timer"
-msgstr "Zaman"
-
-#: ../data/
-msgid "Compact flash card"
-msgstr "Compact flash Kart"
-
-#: ../data/
-msgid "Record"
-msgstr "Kayıt"
-
-#: ../data/
-msgid "Yes, view the tutorial"
-msgstr "Evet, görmek İstiyorum"
-
-#: ../data/
-msgid "Show infobar on skip forward/backward"
-msgstr ""
-
-#: ../data/
-msgid "Color Format"
-msgstr "Renk Biçimi"
-
-#: ../data/
-msgid "#f23d21"
-msgstr "#f23d21"
-
-#: ../data/
-msgid "Plugin browser"
-msgstr "Plugin Gözlem"
-
-#: ../data/
-msgid "#80000000"
-msgstr "#80000000"
-
-#: ../data/
-msgid "SNR:"
-msgstr "Sinyal:"
-
-#: ../data/
-msgid "Harddisk setup"
-msgstr ""
-
-#: ../data/
-msgid "Timeshift"
-msgstr ""
-
-#: ../data/
-msgid "Downloadable plugins"
-msgstr "İndirilebilir  plugins"
-
-#: ../data/
-msgid "Subservices"
-msgstr "Alt servisler"
-
-#: ../data/
-msgid "Parental control setup"
-msgstr ""
-
-#: ../data/
-msgid "Timezone"
-msgstr "Zaman Bölgesi"
-
-#: ../data/
-msgid "Message"
-msgstr "Mesaj"
-
-#: ../data/
-msgid "About..."
-msgstr "Hakkında..."
-
-#: ../data/
-msgid "Seek"
-msgstr "Ara"
-
-#: ../data/
-msgid "Common Interface"
-msgstr "Ortak Arabirim"
-
-#: ../data/
-msgid "Language..."
-msgstr ""
-
-#: ../data/
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Geri Yükleme Tamamlandı Lütfen OK Tuşuna Basarak Ayarları Aktifleştirin Şimdi"
-
-#: ../data/
-msgid "A/V Settings"
-msgstr "Ses/Görüntü  Ayarları"
-
-#: ../data/
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
-msgstr ""
-
-#: ../data/
-msgid "Service scan"
-msgstr "Servis Taram"
-
-#: ../data/
-msgid "The wizard is finished now."
-msgstr "Sihirbaz Şimdi Bitti."
-
-#: ../data/
-msgid "LCD Setup"
-msgstr "LCD Kurulum"
-
-#: ../data/
-msgid "No, scan later manually"
-msgstr "Hayır,  Sonra Ara Manuelolarak"
-
-#: ../data/
-msgid "Soundcarrier"
-msgstr "Ses Taşıyıcı"
-
-#: ../data/
-msgid "Yes, restore the settings now"
-msgstr "Evet Şimdi Setingleri Geriyükle"
-
-#: ../data/
-msgid "Contrast"
-msgstr "Keskinlik"
-
-#: ../data/
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-
-#: ../data/
-msgid "Timer selection"
-msgstr "Zaman Seçici"
-
-#: ../data/
-msgid "Repeat"
-msgstr "Tekrar"
-
-#: ../data/
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-
-#: ../data/
-msgid "Network Setup"
-msgstr "Ağ Ayarları"
-
-#: ../data/
-msgid "Somewhere else"
-msgstr "Başka Bir Yer"
-
-#: ../data/
-msgid "Timer log"
-msgstr "Süre Ölçer Log"
-
-#: ../data/
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
 
-#: ../data/
-msgid "PiPSetup"
-msgstr "PiP Ayarları"
-
-#: ../data/
-msgid "Menu"
-msgstr "Menü"
-
-#: ../data/
-msgid "Restart"
-msgstr "Yeniden başlat"
-
-#: ../data/
-msgid "AC3 default"
-msgstr "AC3 Varsayılan"
-
-#: ../data/
-msgid "Timer entry"
-msgstr "Süreölçer Girişi"
-
-#: ../data/
-msgid "Modulator"
-msgstr "Modulator"
-
-#: ../data/
-msgid "Eventview"
-msgstr "Hata Günlüğü"
-
-#: ../data/
-msgid "Margin before record (minutes)"
-msgstr ""
-
-#: ../data/
-msgid "The backup failed. Please choose a different backup location."
-msgstr "Yedek Başarısız Oldu. Lütfen Konumu Farklı Yedek Seçin."
-
-#: ../data/
-msgid "Keymap"
-msgstr "Genel Harita"
-
-#: ../data/
-msgid "InfoBar"
-msgstr "Bilgi Çubuğu"
-
-#: ../data/
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-
-#: ../data/
-msgid "Exit wizard"
-msgstr "Sihirbazdan Çık"
-
-#: ../data/
-msgid "Media player"
-msgstr "Ortam Oynatıcı"
-
-#: ../data/
-msgid "Timer sanity error"
-msgstr "Zaman Hesaplama Hatası"
-
-#: ../data/
-msgid "Show infobar on channel change"
-msgstr ""
-
-#: ../data/
-msgid "VCR Switch"
-msgstr "VCR Anahtarı"
-
-#: ../data/
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Dreambox Kapanırken. Lütfen Bekleyin..."
 
-#: ../data/
-msgid "WSS on 4:3"
-msgstr "WSS on 4:3"
-
-#: ../data/
-msgid "Choose bouquet"
-msgstr "Buket Seç"
-
-#: ../data/
-msgid "OK, guide me through the upgrade process"
-msgstr ""
-
-#: ../data/
-msgid "No backup needed"
-msgstr "Yedeklemeye İhtiyaç Olmadı"
-
-#: ../data/
-msgid "MORE"
-msgstr "Dahafazla"
-
-#: ../data/
-msgid "Yes, do an automatic scan now"
-msgstr "Evet Bir Otomatik Arama Şimdi"
-
-#: ../data/
-msgid "Information"
-msgstr "Bilgi"
-
-#: ../data/
-msgid "Yes, do a manual scan now"
-msgstr "Evet Bir Manuel Arama Şimdi"
-
-#: ../data/
-msgid "USB"
-msgstr "USB"
-
-#: ../data/
-msgid "Invert display"
-msgstr ""
-
-#: ../data/
-msgid "Do you want to restore your settings?"
-msgstr " Ayarların Geri Yüklenmesini İstermisiniz ?"
-
-#: ../data/
-msgid "Please set up tuner B"
-msgstr "Lütfen Ayarla  tuner B"
-
-#: ../data/
-msgid "This is step number 2."
-msgstr "2 numaralı adım"
-
-#: ../data/
-msgid "Delay"
-msgstr "Geçikme"
-
-#: ../data/
-msgid "Select HDD"
-msgstr "HDD Seç"
-
-#: ../data/
-msgid "Aspect Ratio"
-msgstr "Görüntü Oranı"
-
-#: ../data/
-msgid "Recordings always have priority"
-msgstr ""
-
-#: ../data/
-msgid "Customize"
-msgstr ""
-
-#: ../data/
-msgid "#389416"
-msgstr "#389416"
-
-#: ../data/
-msgid "Pin code needed"
-msgstr ""
-
-#: ../data/
-msgid "VCR scart"
-msgstr "VCR scart"
-
-#: ../data/
-msgid "Mainmenu"
-msgstr "Ana Menü"
-
-#: ../data/
-msgid "Select a movie"
-msgstr "Bir Film Seç"
-
-#: ../data/
-msgid "Volume"
-msgstr "Ses"
-
-#: ../data/
-msgid "#33294a6b"
-msgstr "#33294a6b"
-
-#: ../data/
-msgid "Alpha"
-msgstr "Alfa"
-
-#: ../data/
 msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your Dreambox.\n"
-"Press the OK button on your remote control to move to the next step."
+"Your frontprocessor firmware must be upgraded.\n"
+"Press OK to start upgrade."
 msgstr ""
-"Hoşgeldiniz.\n"
-"\n"
-"Sihirbaz  Size Kurulum sırasında rehberlik edecektir Dreambox.\n"
-"uzaktan kumandanun OK butonuna  basarak Sonraki Aşamalara Geçebilirsiniz."
+"Sizin ön işlemci firmware yükseltilmek zorundadır.\n"
+"Yükseltmesi başlatmak için OK basınız."
 
-#: ../data/
-msgid "Setup"
-msgstr "Kurulum"
+msgid "Zap back to service before positioner setup?"
+msgstr ""
 
-#: ../data/
-msgid "This is unsupported at the moment."
-msgstr "Şuan Desteklenmemiş ."
+msgid "Zap back to service before satfinder?"
+msgstr ""
 
-#: ../data/
-msgid "About"
-msgstr "Hakkında"
+msgid "[bouquet edit]"
+msgstr "[bouquet Düzenle]"
 
-#: ../data/
+msgid "[favourite edit]"
+msgstr "[favorileri Düzenle]"
+
+msgid "[move mode]"
+msgstr "[Taşıma Kipi]"
+
+msgid "abort bouquet edit"
+msgstr "Durdur  bouquet Düzenle"
+
+msgid "abort favourites edit"
+msgstr "Favori Düzenleme Hakkında"
+
+msgid "about to start"
+msgstr "Hakkında yı Başlat"
+
+msgid "add bouquet"
+msgstr ""
+
+msgid "add directory to playlist"
+msgstr "Yeni Klasör ve Çalma Lsitesi...."
+
+msgid "add file to playlist"
+msgstr "Yeni Dosya ve Çalmalistesi"
+
+msgid "add marker"
+msgstr ""
+
+msgid "add recording (enter recording duration)"
+msgstr "Yeni Kayıt (Kaydederken Süre Gir)"
+
+msgid "add recording (indefinitely)"
+msgstr "Kayıt ekle ( Süresiz olarak )"
+
+msgid "add recording (stop after current event)"
+msgstr "Kayıt Ekle  ( Durdur Şuanki Kayıdı )"
+
+msgid "add service to bouquet"
+msgstr "Yeni Servis veya Buket Ekle"
+
+msgid "add service to favourites"
+msgstr "Ekle Servis E Favorileri"
+
+msgid "add to parental protection"
+msgstr ""
+
+msgid "advanced"
+msgstr ""
+
+msgid ""
+"are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+"Geri yükleme için Eminmisiniz\n"
+"Yedeklemeyi Takip Edin:\n"
+
+msgid "back"
+msgstr "Geri"
+
+msgid "blacklist"
+msgstr ""
+
+msgid "change recording (duration)"
+msgstr "Kaydederek Değiştir    (Süre)"
+
+msgid "circular left"
+msgstr "Dairevi Kalan"
+
+msgid "circular right"
+msgstr ""
+
+msgid "clear playlist"
+msgstr "Çalma Listesini Temizle"
+
+msgid "complex"
+msgstr ""
+
 msgid "config menu"
 msgstr "yapılandırma Menüsü"
 
-#: ../data/
-msgid "Finetune"
-msgstr "İnce Ayar"
-
-#: ../data/
-msgid "Timer Editor"
-msgstr "Zaman Düzenleyici"
-
-#: ../data/
-msgid "Time/Date Input"
-msgstr "Saat/Tarih Girin"
-
-#: ../data/
-msgid "AGC:"
-msgstr "AGC:"
-
-#: ../data/
-msgid "Sat / Dish Setup"
-msgstr "Uydu /Çanak Ayarlayıcı"
-
-#: ../data/
-msgid "What do you want to scan?"
-msgstr "Neyi Taramak İstiyorsunuz!"
-
-#: ../data/
-msgid "Now Playing"
+msgid "continue"
 msgstr ""
 
-#: ../data/
-msgid "Channellist menu"
-msgstr "Kanal Menü  Liste"
+msgid "copy to favourites"
+msgstr "Favoriyi Kopyala"
 
-#: ../data/
-msgid "Audio"
-msgstr "Ses"
+msgid "daily"
+msgstr "Günlük"
 
-#: ../data/
-msgid "Do you want to do a service scan?"
-msgstr "şuan Servisi Taramak İstiyormusunuz!"
+msgid "delete"
+msgstr "Sil"
 
-#: ../data/
-msgid "NOW"
-msgstr "Şimdi"
+msgid "delete cut"
+msgstr ""
 
-#: ../data/
-msgid "Yes, perform a shutdown now."
-msgstr "Evet, Şuanda Kapatmak istiyorum."
+msgid "delete..."
+msgstr "Sil...."
 
-#: ../data/
+msgid "disable"
+msgstr ""
+
+msgid "disable move mode"
+msgstr "Taşıma Modunu Kapat"
+
+msgid "do nothing"
+msgstr "Hiçbirşey Yapma"
+
+msgid "don't record"
+msgstr "Kayıt Bitti"
+
+msgid "done!"
+msgstr "Bitti!"
+
+msgid "empty/unknown"
+msgstr "Boş/Tanımsız"
+
+msgid "enable"
+msgstr ""
+
+msgid "enable bouquet edit"
+msgstr "Etkinleştir Buket Düzenlemeyi"
+
+msgid "enable favourite edit"
+msgstr "Etkinleştir Favori Düzenlemeyi"
+
+msgid "enable move mode"
+msgstr "Taşıma Listesini Aç"
+
+msgid "end bouquet edit"
+msgstr "Buket Düzenleme  Son"
+
+msgid "end cut here"
+msgstr ""
+
+msgid "end favourites edit"
+msgstr "Favori Düzenleme Bitti"
+
+msgid "equal to Socket A"
+msgstr ""
+
+msgid "free diskspace"
+msgstr "Kullanılabilir Disk Alanı"
+
+msgid "full /etc directory"
+msgstr "Tüm /etc Klasörü"
+
+msgid "go to deep standby"
+msgstr "Derin Uyku Ya git"
+
+msgid "hear radio..."
+msgstr ""
+
+msgid "help..."
+msgstr "Yardım...."
+
+msgid "hide player"
+msgstr "Oynatıcıyı  Gizle"
+
+msgid "horizontal"
+msgstr "Yatay"
+
+msgid "hour"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+#, python-format
 msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
+"incoming call!\n"
+"%s calls on %s!"
 msgstr ""
 
-#: ../data/
-msgid "Harddisk standby after"
+msgid "init module"
+msgstr "init Modul"
+
+msgid "insert mark here"
 msgstr ""
 
-#: ../data/
-msgid "#0064c7"
-msgstr "#0064c7"
+msgid "leave movie player..."
+msgstr "Film Oynatıcıdan Çık"
 
-#: ../data/
-msgid "MediaPlayer"
-msgstr "Ortam Oynatıcı"
+msgid "left"
+msgstr ""
 
-#: ../data/
-msgid "Do you want to do another manual service scan?"
-msgstr "Başka Elle Servs Araması İstermisiniz"
+msgid "list"
+msgstr "Liste"
+
+msgid "locked"
+msgstr ""
+
+msgid "loopthrough to socket A"
+msgstr ""
+
+msgid "manual"
+msgstr "El İle"
+
+msgid "mins"
+msgstr "Dakikalar"
+
+msgid "minute"
+msgstr ""
+
+msgid "minutes"
+msgstr ""
+
+msgid "minutes and"
+msgstr ""
+
+msgid "never"
+msgstr ""
+
+msgid "next channel"
+msgstr "Sonraki Kanal"
+
+msgid "next channel in history"
+msgstr "Bundansonra Gelecek Kanal İçeriği"
+
+msgid "no"
+msgstr "Hayır"
+
+msgid "no HDD found"
+msgstr "HDD Bulunamadı"
+
+msgid "no module found"
+msgstr "Hiç Modül Bulunamadı"
+
+msgid "no standby"
+msgstr ""
+
+msgid "no timeout"
+msgstr ""
+
+msgid "none"
+msgstr "Hiçbiri"
+
+msgid "not locked"
+msgstr ""
+
+msgid "nothing connected"
+msgstr ""
+
+msgid "off"
+msgstr "Kapalı"
+
+msgid "on"
+msgstr "Açık"
+
+msgid "once"
+msgstr "Vaktiyle"
+
+msgid "only /etc/enigma2 directory"
+msgstr "Yanlız /etc/enigma2 Dizini"
+
+msgid "open servicelist"
+msgstr ""
+
+msgid "open servicelist(down)"
+msgstr ""
+
+msgid "open servicelist(up)"
+msgstr ""
+
+msgid "pass"
+msgstr "Şifre"
+
+msgid "pause"
+msgstr ""
+
+msgid "please press OK when ready"
+msgstr "Hazırsanız OK Basın"
+
+msgid "previous channel"
+msgstr "Önceki Kanal"
+
+msgid "previous channel in history"
+msgstr "Önceki Kanal Geçmişi"
+
+msgid "record"
+msgstr "Kayıt"
+
+msgid "recording..."
+msgstr "Kaydetme.."
+
+msgid "remove after this position"
+msgstr ""
+
+msgid "remove all new found flags"
+msgstr "Yeni Bulunan İşaretlerini Sil"
+
+msgid "remove before this position"
+msgstr ""
+
+msgid "remove entry"
+msgstr ""
+
+msgid "remove from parental protection"
+msgstr ""
+
+msgid "remove new found flag"
+msgstr ""
+
+msgid "remove this mark"
+msgstr ""
+
+msgid "repeated"
+msgstr "yinelenen"
+
+msgid "right"
+msgstr ""
+
+#, python-format
+msgid ""
+"scan done!\n"
+"%d services found!"
+msgstr ""
+"Arama Bitti!\n"
+"%d  Servis Bulundu !"
+
+msgid ""
+"scan done!\n"
+"No service found!"
+msgstr ""
+"Arama Bitti!\n"
+" Servis Bulunamadı!"
+
+msgid ""
+"scan done!\n"
+"One service found!"
+msgstr ""
+"Arama Bitti!\n"
+"Bir Servis Bulundu !"
+
+#, python-format
+msgid ""
+"scan in progress - %d %% done!\n"
+"%d services found!"
+msgstr ""
+"Arama İlerleme Durumu - %d %% Bitti!\n"
+"%d Servis Bulunamadı!"
+
+msgid "scan state"
+msgstr "Arama Durumu"
+
+msgid "second"
+msgstr ""
+
+msgid "second cable of motorized LNB"
+msgstr ""
+
+msgid "seconds"
+msgstr ""
+
+msgid "seconds."
+msgstr ""
+
+msgid "select Slot"
+msgstr "Yuva Seç"
+
+msgid "service pin"
+msgstr ""
+
+msgid "setup pin"
+msgstr ""
+
+msgid "show EPG..."
+msgstr "Detaylı EPG"
+
+msgid "show event details"
+msgstr "Olay Detayını Göster"
+
+msgid "simple"
+msgstr ""
+
+msgid "skip backward"
+msgstr ""
+
+msgid "skip forward"
+msgstr ""
+
+msgid "start cut here"
+msgstr ""
+
+msgid "start timeshift"
+msgstr ""
+
+msgid "stereo"
+msgstr ""
+
+msgid "stop recording"
+msgstr "Kaydı Durdur"
+
+msgid "stop timeshift"
+msgstr ""
+
+msgid "switch to filelist"
+msgstr "Dosya Listesini Değiştir"
+
+msgid "switch to playlist"
+msgstr "Çalma Listesini Değiştir"
+
+msgid "text"
+msgstr "Metin"
+
+msgid "this recording"
+msgstr "Bunu Kaydet"
+
+msgid "this service is protected by a parental control pin"
+msgstr ""
+
+msgid "unknown service"
+msgstr "Bilinmeyen Servis"
+
+msgid "until restart"
+msgstr ""
+
+msgid "user defined"
+msgstr "Kullanıcı Tanımlı"
+
+msgid "vertical"
+msgstr "Düşey"
+
+msgid "view extensions..."
+msgstr ""
+
+msgid "view recordings..."
+msgstr ""
+
+msgid "wait for ci..."
+msgstr ""
+
+msgid "waiting"
+msgstr "Bekleyin"
+
+msgid "weekly"
+msgstr "Haftalık"
+
+msgid "whitelist"
+msgstr ""
+
+msgid "yes"
+msgstr "Evet"
+
+msgid "yes (keep feeds)"
+msgstr "Evet (Bunları Sakla)"
+
+msgid "zap"
+msgstr "Canlılık"
+
+msgid "zapped"
+msgstr ""
+
+#~ msgid "Ask before zapping"
+#~ msgstr "Önceden Sonra zapping"
+
+#~ msgid "Audio / Video"
+#~ msgstr "Ses/Görüntü"
+
+#~ msgid "Auto show inforbar"
+#~ msgstr "Otomatik Bilgi Gösterici"
 
 #~ msgid "Cable provider"
 #~ msgstr "Kablo Kuruluşu"
@@ -3000,23 +2358,89 @@ msgstr "Başka Elle Servs Araması İstermisiniz"
 #~ msgid "Equal to Socket A"
 #~ msgstr "Soket A Eşitle"
 
+#~ msgid "Expert Setup"
+#~ msgstr "Uzam Kurulum"
+
+#~ msgid "Fast zapping"
+#~ msgstr "Hızlı Kanal Geçişi"
+
+#~ msgid "Hide error windows"
+#~ msgstr "Hata Penceresini Gösterme"
+
+#~ msgid "Invert"
+#~ msgstr "Tersçevir"
+
+#~ msgid "LCD"
+#~ msgstr "LCD"
+
+#~ msgid "Language"
+#~ msgstr "Lisan"
+
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Loopthrough to Socket A"
+
+#~ msgid "Multi bouquets"
+#~ msgstr "Çoklu buketler"
+
+#~ msgid "Network"
+#~ msgstr "Ağ"
 
 #~ msgid "Nothing connected"
 #~ msgstr "Hiçbirşey Bağlanmadı."
 
+#~ msgid "Parental Control"
+#~ msgstr "Ebeveyn Kontrol"
+
+#~ msgid "Parental Lock"
+#~ msgstr "Ebeveyn Kontol"
+
 #~ msgid "Predefined satellite"
 #~ msgstr "Tanımlanmış  Uydular"
+
+#~ msgid "Record Splitsize"
+#~ msgstr "Kayıt Aralıkları"
+
+#~ msgid "Satconfig"
+#~ msgstr "Uydu Ayarları"
+
+#~ msgid "Satelliteconfig"
+#~ msgstr "Uydu Yapılandırma"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "İkinci kablo LBN den motorize"
 
+#~ msgid "Setup Lock"
+#~ msgstr "Ayarları Kitle"
+
+#~ msgid "Show Satposition"
+#~ msgstr "Uydunun Pozisyonunu gör"
+
 #~ msgid "Simple"
 #~ msgstr "Sade"
 
+#~ msgid "Skip confirmations"
+#~ msgstr "Ayarları geç"
+
 #~ msgid "Swap services"
 #~ msgstr "Servis değiştir"
+
+#~ msgid "Timeshifting"
+#~ msgstr "Zaman Duraksat"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transponder Yaz"
+
+#~ msgid "UHF Modulator"
+#~ msgstr "UHF Birimi"
+
+#~ msgid "Usage Settings"
+#~ msgstr "Usül Ayarları"
+
+#~ msgid "Usage settings"
+#~ msgstr "Kullanma Ayarları"
+
+#~ msgid "Visualize positioner movement"
+#~ msgstr "Pozisyoneri Sanal Olarak Göster"
 
 #~ msgid "add bouquet..."
 #~ msgstr "Yeni  bouquet..."
@@ -3027,77 +2451,5 @@ msgstr "Başka Elle Servs Araması İstermisiniz"
 #~ msgid "remove service"
 #~ msgstr "servis Sil"
 
-#~ msgid "Hide error windows"
-#~ msgstr "Hata Penceresini Gösterme"
-
-#~ msgid "Show Satposition"
-#~ msgstr "Uydunun Pozisyonunu gör"
-
-#~ msgid "Visualize positioner movement"
-#~ msgstr "Pozisyoneri Sanal Olarak Göster"
-
-#~ msgid "Audio / Video"
-#~ msgstr "Ses/Görüntü"
-
-#~ msgid "Record Splitsize"
-#~ msgstr "Kayıt Aralıkları"
-
-#~ msgid "Auto show inforbar"
-#~ msgstr "Otomatik Bilgi Gösterici"
-
-#~ msgid "Network"
-#~ msgstr "Ağ"
-
-#~ msgid "Invert"
-#~ msgstr "Tersçevir"
-
 #~ msgid "use power delta"
 #~ msgstr "Güç kullanma Deltası"
-
-#~ msgid "Fast zapping"
-#~ msgstr "Hızlı Kanal Geçişi"
-
-#~ msgid "Usage Settings"
-#~ msgstr "Usül Ayarları"
-
-#~ msgid "UHF Modulator"
-#~ msgstr "UHF Birimi"
-
-#~ msgid "LCD"
-#~ msgstr "LCD"
-
-#~ msgid "Ask before zapping"
-#~ msgstr "Önceden Sonra zapping"
-
-#~ msgid "Parental Lock"
-#~ msgstr "Ebeveyn Kontol"
-
-#~ msgid "Skip confirmations"
-#~ msgstr "Ayarları geç"
-
-#~ msgid "Setup Lock"
-#~ msgstr "Ayarları Kitle"
-
-#~ msgid "Expert Setup"
-#~ msgstr "Uzam Kurulum"
-
-#~ msgid "Language"
-#~ msgstr "Lisan"
-
-#~ msgid "Parental Control"
-#~ msgstr "Ebeveyn Kontrol"
-
-#~ msgid "Multi bouquets"
-#~ msgstr "Çoklu buketler"
-
-#~ msgid "Usage settings"
-#~ msgstr "Kullanma Ayarları"
-
-#~ msgid "Timeshift not possible!"
-#~ msgstr "Zaman Dondurma Mümkün Değil"
-
-#~ msgid "Timeshifting"
-#~ msgstr "Zaman Duraksat"
-
-#~ msgid "Satelliteconfig"
-#~ msgstr "Uydu Yapılandırma"
