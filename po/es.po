@@ -7,12 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-05 22:55+0100\n"
+"POT-Creation-Date: 2006-11-12 21:58+0100\n"
 "PO-Revision-Date: 2006-11-05 22:36+0200\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Spanish\n"
@@ -155,6 +155,11 @@ msgstr ""
 "intentar configurar el motor."
 
 msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+
+msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
@@ -191,8 +196,17 @@ msgstr "Activar configuración de red"
 msgid "Add"
 msgstr "Añadir"
 
+msgid "Add a mark"
+msgstr ""
+
+msgid "Add alternative"
+msgstr ""
+
 msgid "Add files to playlist"
 msgstr "Añadir ficheros a la lista"
+
+msgid "Add service"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Grabar"
@@ -300,6 +314,9 @@ msgstr ""
 msgid "Cable"
 msgstr ""
 
+msgid "Call monitoring"
+msgstr ""
+
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -381,6 +398,19 @@ msgstr "Modo Configuración"
 msgid "Conflicting timer"
 msgstr "Grabación en conflict"
 
+msgid "Connected to Fritz!Box!"
+msgstr ""
+
+msgid "Connecting to Fritz!Box..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connection to Fritz!Box\n"
+"failed! (%s)\n"
+"retrying..."
+msgstr ""
+
 msgid "Contrast"
 msgstr "Contraste"
 
@@ -395,6 +425,12 @@ msgstr "Versión actual"
 
 msgid "Customize"
 msgstr "Parametrizar"
+
+msgid "Cut"
+msgstr ""
+
+msgid "Cutlist editor..."
+msgstr ""
 
 msgid "Czech"
 msgstr ""
@@ -460,6 +496,13 @@ msgid "Disable Picture in Picture"
 msgstr "Desactivar PiP"
 
 msgid "Disable Subtitles"
+msgstr ""
+
+#, python-format
+msgid ""
+"Disconnected from\n"
+"Fritz!Box! (%s)\n"
+"retrying..."
 msgstr ""
 
 msgid "Dish"
@@ -577,6 +620,15 @@ msgstr "HoraFin"
 msgid "English"
 msgstr "Inglés"
 
+msgid ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Entra al menú principal..."
 
@@ -594,6 +646,9 @@ msgstr "Progreso de ejecución:"
 
 msgid "Execution finished!!"
 msgstr "¡Ejecución terminó!"
+
+msgid "Exit editor"
+msgstr ""
 
 msgid "Exit the wizard"
 msgstr "Salir del asistente"
@@ -631,12 +686,20 @@ msgstr "Vie"
 msgid "Friday"
 msgstr "Viernes"
 
+msgid "Fritz!Box FON IP address"
+msgstr ""
+
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versión Frontprocessor: %d"
 
 msgid "Function not yet implemented"
 msgstr "Función no implementada todavía"
+
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
 
 msgid "Games / Plugins"
 msgstr "Juegos / Plugins"
@@ -794,6 +857,15 @@ msgstr "Menú principal"
 msgid "Mainmenu"
 msgstr "Menú principal"
 
+msgid "Make this mark an 'in' point"
+msgstr ""
+
+msgid "Make this mark an 'out' point"
+msgstr ""
+
+msgid "Make this mark just a mark"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Búsqueda Manual"
 
@@ -929,6 +1001,9 @@ msgstr "No hay info del evento, grabando indefinidamente."
 msgid "No positioner capable frontend found."
 msgstr "No he encontado motor capaz"
 
+msgid "No satellite frontend found!!"
+msgstr ""
+
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "¡No hay sintonizador configurado para usar con un motor diseqc!"
 
@@ -1032,6 +1107,9 @@ msgstr "Por favor, ponga el pin correcto"
 msgid "Please enter the old pin code"
 msgstr "Por favor ponga el pin antiguo"
 
+msgid "Please press OK!"
+msgstr ""
+
 msgid "Please select a subservice to record..."
 msgstr "Por favor, selecciona un subservicio a grabar..."
 
@@ -1131,6 +1209,9 @@ msgstr "Salida RF"
 msgid "RGB"
 msgstr ""
 
+msgid "RSS Feed URI"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "¿Seguro que quiere cerrar sin grabar la configuración?"
 
@@ -1161,8 +1242,14 @@ msgstr "Reintroduzca el nuevo pin"
 msgid "Remove Plugins"
 msgstr "Borrar Plugins"
 
+msgid "Remove a mark"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Borrar plugins"
+
+msgid "Remove service"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Repetir"
@@ -1178,6 +1265,9 @@ msgstr "Resetear"
 
 msgid "Restart"
 msgstr "Reiniciar"
+
+msgid "Restart GUI now?"
+msgstr ""
 
 msgid "Restore"
 msgstr "Restaurar"
@@ -1213,6 +1303,9 @@ msgstr "Satélite"
 msgid "Satellites"
 msgstr "Satélites"
 
+msgid "Satfinder"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Sábado"
 
@@ -1234,6 +1327,9 @@ msgstr "Seleccionar disco duro"
 msgid "Select a movie"
 msgstr "Seleccionar una película"
 
+msgid "Select alternative service"
+msgstr ""
+
 msgid "Select audio mode"
 msgstr "Seleccionar modo audio"
 
@@ -1242,6 +1338,9 @@ msgstr "Seleccionar pista de audio"
 
 msgid "Select channel to record from"
 msgstr "Seleccione canal a grabar"
+
+msgid "Select reference service"
+msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Repetir secuencia"
@@ -1434,6 +1533,9 @@ msgstr "Proveedor terrestre"
 
 msgid "Test mode"
 msgstr "Modo test"
+
+msgid "Test-Messagebox?"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1814,6 +1916,9 @@ msgstr ""
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 
+msgid "Zap back to service before satfinder?"
+msgstr ""
+
 msgid "[bouquet edit]"
 msgstr "[editar lista]"
 
@@ -1908,6 +2013,9 @@ msgstr "diariamente"
 msgid "delete"
 msgstr "borrar"
 
+msgid "delete cut"
+msgstr ""
+
 msgid "delete..."
 msgstr "borrar..."
 
@@ -1944,6 +2052,9 @@ msgstr "habilitar modo movimiento"
 msgid "end bouquet edit"
 msgstr "fin de edición de listas"
 
+msgid "end cut here"
+msgstr ""
+
 msgid "end favourites edit"
 msgstr "fin edición de favoritos"
 
@@ -1977,8 +2088,17 @@ msgstr "hora"
 msgid "hours"
 msgstr "horas"
 
+#, python-format
+msgid ""
+"incoming call!\n"
+"%s calls on %s!"
+msgstr ""
+
 msgid "init module"
 msgstr "iniciar módulo"
+
+msgid "insert mark here"
+msgstr ""
 
 msgid "leave movie player..."
 msgstr "salir del reproductor de películas..."
@@ -2085,8 +2205,14 @@ msgstr "grabar"
 msgid "recording..."
 msgstr "grabando..."
 
+msgid "remove after this position"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr "borrar todas marcas encontradas"
+
+msgid "remove before this position"
+msgstr ""
 
 msgid "remove entry"
 msgstr "eliminar entrada"
@@ -2096,6 +2222,9 @@ msgstr "quitar la protección de adultos"
 
 msgid "remove new found flag"
 msgstr "borrar nueva marca encontrada"
+
+msgid "remove this mark"
+msgstr ""
 
 msgid "repeated"
 msgstr "repetido"
@@ -2171,6 +2300,9 @@ msgstr "saltar adelante"
 
 msgid "skip forward"
 msgstr "saltar atrás"
+
+msgid "start cut here"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "comenzar pausa"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-02 17:58+0100\n"
+"POT-Creation-Date: 2006-11-12 21:58+0100\n"
 "PO-Revision-Date: 2006-11-02 17:40+0100\n"
 "Last-Translator: Oriol Pellicer i Sabrià <oriol@elsud.org>\n"
 "Language-Team: none\n"
@@ -161,6 +161,11 @@ msgstr ""
 "de configurar el motor."
 
 msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+
+msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
@@ -197,8 +202,17 @@ msgstr "Activar la configuració de la xarxa"
 msgid "Add"
 msgstr "Afegir"
 
+msgid "Add a mark"
+msgstr ""
+
+msgid "Add alternative"
+msgstr ""
+
 msgid "Add files to playlist"
 msgstr "Afegir fitxers a la llista"
+
+msgid "Add service"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Gravar"
@@ -306,6 +320,9 @@ msgstr "CVBS"
 msgid "Cable"
 msgstr "Cable"
 
+msgid "Call monitoring"
+msgstr ""
+
 msgid "Cancel"
 msgstr "Cancel·lar"
 
@@ -387,6 +404,19 @@ msgstr "Mode configuració"
 msgid "Conflicting timer"
 msgstr "Gravació en conflicte"
 
+msgid "Connected to Fritz!Box!"
+msgstr ""
+
+msgid "Connecting to Fritz!Box..."
+msgstr ""
+
+#, python-format
+msgid ""
+"Connection to Fritz!Box\n"
+"failed! (%s)\n"
+"retrying..."
+msgstr ""
+
 msgid "Contrast"
 msgstr "Contrast"
 
@@ -401,6 +431,12 @@ msgstr "Versió actual:"
 
 msgid "Customize"
 msgstr "Personalitzar"
+
+msgid "Cut"
+msgstr ""
+
+msgid "Cutlist editor..."
+msgstr ""
 
 msgid "Czech"
 msgstr ""
@@ -466,6 +502,13 @@ msgid "Disable Picture in Picture"
 msgstr "Desactivar PiP"
 
 msgid "Disable Subtitles"
+msgstr ""
+
+#, python-format
+msgid ""
+"Disconnected from\n"
+"Fritz!Box! (%s)\n"
+"retrying..."
 msgstr ""
 
 msgid "Dish"
@@ -584,6 +627,15 @@ msgstr "HoraFi"
 msgid "English"
 msgstr "Anglès"
 
+msgid ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Entrar al menú principal..."
 
@@ -601,6 +653,9 @@ msgstr "Progrés d'execució:"
 
 msgid "Execution finished!!"
 msgstr "Ha finalitzat l'execució"
+
+msgid "Exit editor"
+msgstr ""
 
 msgid "Exit the wizard"
 msgstr "Sortir de l'assistent"
@@ -638,12 +693,20 @@ msgstr "Div"
 msgid "Friday"
 msgstr "Divendres"
 
+msgid "Fritz!Box FON IP address"
+msgstr ""
+
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versió processador: %d"
 
 msgid "Function not yet implemented"
 msgstr "Funció encara no implementada"
+
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
 
 msgid "Games / Plugins"
 msgstr "Jocs / plugins"
@@ -804,6 +867,15 @@ msgstr "Menú principal"
 msgid "Mainmenu"
 msgstr "Menú principal"
 
+msgid "Make this mark an 'in' point"
+msgstr ""
+
+msgid "Make this mark an 'out' point"
+msgstr ""
+
+msgid "Make this mark just a mark"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Recerca manual"
 
@@ -939,6 +1011,9 @@ msgstr "No hi ha info del programa, gravant indefinidament."
 msgid "No positioner capable frontend found."
 msgstr "No s'ha trobat cap motor."
 
+msgid "No satellite frontend found!!"
+msgstr ""
+
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
 "No hi ha cap sintonitzador configurat per a utilitzar amb un motor diseqc!"
@@ -1044,6 +1119,9 @@ msgstr "Sisplau introdueix el pin"
 msgid "Please enter the old pin code"
 msgstr "Sisplau, introdueix el pin vell"
 
+msgid "Please press OK!"
+msgstr ""
+
 msgid "Please select a subservice to record..."
 msgstr "Sisplau selecciona un subservei a gravar..."
 
@@ -1143,6 +1221,9 @@ msgstr "Sortida RF"
 msgid "RGB"
 msgstr "RGB"
 
+msgid "RSS Feed URI"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Sortir sense guardar els canvis?"
 
@@ -1173,8 +1254,14 @@ msgstr "Torna a entrar el nou pin"
 msgid "Remove Plugins"
 msgstr "Esborrar plugins"
 
+msgid "Remove a mark"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Esborrar plugins"
+
+msgid "Remove service"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Repetir"
@@ -1190,6 +1277,9 @@ msgstr "Resetejar"
 
 msgid "Restart"
 msgstr "Reiniciar"
+
+msgid "Restart GUI now?"
+msgstr ""
 
 msgid "Restore"
 msgstr "Restaurar"
@@ -1223,6 +1313,9 @@ msgstr "Satèl·lit"
 msgid "Satellites"
 msgstr "Satèl·lits"
 
+msgid "Satfinder"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Dissabte"
 
@@ -1244,6 +1337,9 @@ msgstr "Seleccionar disc dur"
 msgid "Select a movie"
 msgstr "Seleccionar una pel·lícula"
 
+msgid "Select alternative service"
+msgstr ""
+
 msgid "Select audio mode"
 msgstr "Seleccionar mode àudio"
 
@@ -1252,6 +1348,9 @@ msgstr "Seleccionar pista d'àudio"
 
 msgid "Select channel to record from"
 msgstr "Selecciona el canal a gravar"
+
+msgid "Select reference service"
+msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Repetir seqüència"
@@ -1444,6 +1543,9 @@ msgstr "Proveidor terrestre"
 
 msgid "Test mode"
 msgstr "Mode test"
+
+msgid "Test-Messagebox?"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1827,6 +1929,9 @@ msgstr ""
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 
+msgid "Zap back to service before satfinder?"
+msgstr ""
+
 msgid "[bouquet edit]"
 msgstr "[editar llista]"
 
@@ -1921,6 +2026,9 @@ msgstr "diàriament"
 msgid "delete"
 msgstr "esborrar"
 
+msgid "delete cut"
+msgstr ""
+
 msgid "delete..."
 msgstr "esborrar..."
 
@@ -1957,6 +2065,9 @@ msgstr "activar mode moviment"
 msgid "end bouquet edit"
 msgstr "fi de l'edició de llistes"
 
+msgid "end cut here"
+msgstr ""
+
 msgid "end favourites edit"
 msgstr "fi de l'edició de preferits"
 
@@ -1990,8 +2101,17 @@ msgstr "hora"
 msgid "hours"
 msgstr "hores"
 
+#, python-format
+msgid ""
+"incoming call!\n"
+"%s calls on %s!"
+msgstr ""
+
 msgid "init module"
 msgstr "iniciar mòdul"
+
+msgid "insert mark here"
+msgstr ""
 
 msgid "leave movie player..."
 msgstr "sortir del reproductor de pel·lícules..."
@@ -2100,8 +2220,14 @@ msgstr "gravar"
 msgid "recording..."
 msgstr "gravant..."
 
+msgid "remove after this position"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr "esborrar totes les marques trobades"
+
+msgid "remove before this position"
+msgstr ""
 
 msgid "remove entry"
 msgstr "eliminar entrada"
@@ -2111,6 +2237,9 @@ msgstr "esborrar de la protecció parental"
 
 msgid "remove new found flag"
 msgstr "esborrar nova marca trobada"
+
+msgid "remove this mark"
+msgstr ""
 
 msgid "repeated"
 msgstr "repetit"
@@ -2186,6 +2315,9 @@ msgstr "saltar endarrere"
 
 msgid "skip forward"
 msgstr "saltar endavant"
+
+msgid "start cut here"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "activar pausa"
