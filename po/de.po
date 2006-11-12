@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-13 00:19+0100\n"
-"PO-Revision-Date: 2006-10-20 16:34+0100\n"
-"Last-Translator: Felix Domke <tmbinc@elitedvb.net>\n"
+"POT-Creation-Date: 2006-11-13 00:51+0100\n"
+"PO-Revision-Date: 2006-11-13 00:53+0100\n"
+"Last-Translator: \n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,23 +149,25 @@ msgstr ""
 "Zur Zeit läuft eine Aufnahme.\n"
 "Was möchten Sie tun?"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Es läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das Rotor "
-"Setup ausführen."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Es läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das Rotor Setup ausführen."
+
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "Zur Zeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den Sat-Finder starten."
 
 msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
+"A sleep timer want's to set your\n"
+"Dreambox to standby. Do that now?"
 msgstr ""
+"Ein Ausschalt-Timer will Ihre Dreambox in den\n"
+"Standby-Modus versetzen. Wirklich durchführen?"
 
-msgid "A sleep timer want's to set your"
+msgid ""
+"A sleep timer want's to shut down\n"
+"your Dreambox. Shutdown now?"
 msgstr ""
-
-msgid "A sleep timer want's to shut down"
-msgstr ""
+"Ein Ausschalt-Timer will Ihre Dreambox\n"
+"ausschalten. Wirklich durchführen?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -225,13 +227,8 @@ msgstr "Erweitert"
 msgid "After event"
 msgstr "Nach dem Ereignis"
 
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen "
-"Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch "
-"Ihrer Dreambox."
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch Ihrer Dreambox."
 
 msgid "Album:"
 msgstr "Album:"
@@ -255,7 +252,7 @@ msgid "Artist:"
 msgstr "Künstler:"
 
 msgid "Ask before shutdown:"
-msgstr ""
+msgstr "Vor runterfahren fragen:"
 
 msgid "Aspect Ratio"
 msgstr "Seitenverhältnis"
@@ -294,8 +291,7 @@ msgid "Backup Mode"
 msgstr "Sicherungs-Modus"
 
 msgid "Backup is done. Please press OK to see the result."
-msgstr ""
-"Sicherung wurde durchgeführt. Bitte drücken Sie OK um das Ergebnis zu sehen."
+msgstr "Sicherung wurde durchgeführt. Bitte drücken Sie OK um das Ergebnis zu sehen."
 
 msgid "Band"
 msgstr "Band"
@@ -309,9 +305,7 @@ msgstr "Helligkeit"
 msgid "Bus: "
 msgstr "Bus:"
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "Um die Infobar anzuzeigen, drücken sie OK."
 
 msgid "C-Band"
@@ -327,7 +321,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Call monitoring"
-msgstr ""
+msgstr "Anrufmonitor"
 
 msgid "Cancel"
 msgstr "Abbruch"
@@ -411,10 +405,10 @@ msgid "Conflicting timer"
 msgstr "In Konflikt stehender Timer"
 
 msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "Mit Fritz!Box verbunden!"
 
 msgid "Connecting to Fritz!Box..."
-msgstr ""
+msgstr "Verbinde zur Fritz!Box..."
 
 #, python-format
 msgid ""
@@ -422,6 +416,9 @@ msgid ""
 "failed! (%s)\n"
 "retrying..."
 msgstr ""
+"Verbindung zur Fritz!Box\n"
+"fehlgeschlagen! (%s)\n"
+"Erneuter Versuch..."
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -511,7 +508,7 @@ msgid "Disable Subtitles"
 msgstr "Untertitel abschalten"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Ausgeschaltet"
 
 #, python-format
 msgid ""
@@ -592,9 +589,6 @@ msgstr "Herunterladbare Erweiterungen"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
-msgid "Dreambox to standby. Do that now?"
-msgstr ""
-
 msgid "Dutch"
 msgstr "Holländisch"
 
@@ -627,7 +621,7 @@ msgid "Enable parental control"
 msgstr "Jugendschutz anschalten"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Eingeschaltet"
 
 msgid "End"
 msgstr "Ende"
@@ -775,11 +769,8 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Image-Aktualisierung"
 
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
-"Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden "
-"Sender umgeschaltet!\n"
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden Sender umgeschaltet!\n"
 
 msgid "Increased voltage"
 msgstr "Erhöhte Spannung"
@@ -1294,12 +1285,8 @@ msgstr ""
 msgid "Restore"
 msgstr "Zurückspielen"
 
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Die Einstellungen wurden wiederhergestellt. Drücken Sie OK um die "
-"wiederhergestellten Einstellungen nun zu aktivieren."
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
+msgstr "Die Einstellungen wurden wiederhergestellt. Drücken Sie OK um die wiederhergestellten Einstellungen nun zu aktivieren."
 
 msgid "Right"
 msgstr "Rechts"
@@ -1416,7 +1403,7 @@ msgid "Show the tv player..."
 msgstr "TV-Wiedergabemodus..."
 
 msgid "Shutdown Dreambox after"
-msgstr ""
+msgstr "Dreambox ausschalten nach"
 
 msgid "Similar"
 msgstr "Ähnlich"
@@ -1437,10 +1424,10 @@ msgid "Single transponder"
 msgstr "Einzelnen Transponder"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Ausschalt-Timer"
 
 msgid "Sleep timer action:"
-msgstr ""
+msgstr "Ausschalt-Timer-Aktion:"
 
 msgid "Slot "
 msgstr "Slot "
@@ -1488,7 +1475,7 @@ msgid "StartTime"
 msgstr "Startzeit"
 
 msgid "Startwizard"
-msgstr ""
+msgstr "Startassistent"
 
 msgid "Step "
 msgstr "Schritt "
@@ -1576,9 +1563,7 @@ msgstr ""
 "Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort "
-"auswählen."
+msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort auswählen."
 
 msgid "The pin code has been changed successfully."
 msgstr "Der Pincode wurde erfolgreich geändert."
@@ -1590,13 +1575,10 @@ msgid "The pin codes you entered are different."
 msgstr "Die Pincodes unterscheiden sich."
 
 msgid "The sleep timer has been acitvated."
-msgstr ""
+msgstr "Der Ausschalt-Timer wurde aktiviert."
 
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun "
-"durchführen?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun durchführen?"
 
 msgid "The wizard is finished now."
 msgstr "Der Assistent ist nun beendet."
@@ -1746,9 +1728,7 @@ msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten "
-"dauern."
+msgstr "Update wird durchgeführt. Bitte warten. Der Vorgang kann einige Minuten dauern."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Aktualisierung beendet. Möchten Sie Ihre Dreambox nun neu starten?"
@@ -1768,12 +1748,8 @@ msgstr ""
 "\n"
 "Einstellungen für Tuner A"
 
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Mit den hoch/runter Tasten können Sie eine Option auswählen. Danach bitte OK "
-"drücken."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Mit den hoch/runter Tasten können Sie eine Option auswählen. Danach bitte OK drücken."
 
 msgid "Use usals for this sat"
 msgstr "USALS für diesen Sat benutzen"
@@ -1814,15 +1790,8 @@ msgstr "Mittwoch"
 msgid "Weekday"
 msgstr "Wochentag"
 
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der "
-"Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die "
-"aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie "
-"die Firmware aktualisieren können."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie die Firmware aktualisieren können."
 
 msgid ""
 "Welcome.\n"
@@ -1832,8 +1801,7 @@ msgid ""
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox führen.\n"
 "Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 msgid "West"
@@ -1878,56 +1846,35 @@ msgstr "Ja, Tutorial anzeigen"
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
 
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das "
-"Sichern auf Festplatte nicht möglich."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das Sichern auf Festplatte nicht möglich."
 
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits "
-"im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf "
-"Festplatte!\n"
+"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf Festplatte!\n"
 "Bitte OK drücken, um die Sicherung trotzdem zu starten."
 
 msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene "
-"Methode\n"
-"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu "
-"starten."
+"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene Methode\n"
+"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu starten."
 
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie "
-"OK, um die Sicherung zu starten."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie OK, um die Sicherung zu starten."
 
 msgid "You have to wait for"
 msgstr "Sie müssen noch für"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie "
-"weiterführende Informationen benötigen, besuchen Sie die Webseite http://www."
-"dm7025.de.\n"
-"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der "
-"Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
-"ob Sie die Einstellungen wiederherstellen wollen."
+"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie weiterführende Informationen benötigen, besuchen Sie die Webseite http://www.dm7025.de.\n"
+"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, ob Sie die Einstellungen wiederherstellen wollen."
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -1941,12 +1888,8 @@ msgstr ""
 msgid "You selected a playlist"
 msgstr "Sie haben eine Wiedergabeliste ausgewählt"
 
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren "
-"Aktualisierungs-Prozess erklären."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Ihre Dreambox fährt nun herunter. Bitte warten Sie einen Moment..."
@@ -2338,7 +2281,7 @@ msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
 
 msgid "shutdown"
-msgstr ""
+msgstr "Ausschalten"
 
 msgid "simple"
 msgstr "einfach"
@@ -2350,7 +2293,7 @@ msgid "skip forward"
 msgstr "Vorwärts spulen"
 
 msgid "standby"
-msgstr ""
+msgstr "Standby"
 
 msgid "start cut here"
 msgstr ""
@@ -2418,158 +2361,116 @@ msgstr "ja"
 msgid "yes (keep feeds)"
 msgstr "ja (Feeds behalten)"
 
-msgid "your Dreambox. Shutdown now?"
-msgstr ""
-
 msgid "zap"
 msgstr "Umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "A sleep timer want's to set your"
+#~ msgstr "Ein Ausschalttimer will Ihre Dreambox"
+#~ msgid "A sleep timer want's to shut down"
+#~ msgstr "Ein Ausschalt-Timer will Ihre Dreambox"
 #~ msgid "Ask before zapping"
 #~ msgstr "Vor Umschalten nachfragen"
-
 #~ msgid "Audio / Video"
 #~ msgstr "Audio / Video"
-
 #~ msgid "Auto show inforbar"
 #~ msgstr "Automatisch die Infobar anzeigen"
-
 #~ msgid "Cable provider"
 #~ msgstr "Kabelanbieter"
-
 #~ msgid "Classic"
 #~ msgstr "klassisch"
-
 #~ msgid "Default"
 #~ msgstr "Standard"
-
 #~ msgid "Disable subtitles"
 #~ msgstr "Untertitel abschalten"
-
+#~ msgid "Dreambox to standby. Do that now?"
+#~ msgstr "in den Standby-Modus setzen. Wirklich ausführen?"
 #~ msgid "Enigma1 like radiomode"
 #~ msgstr "Enigma1 ähnlicher Radio Modus"
-
 #~ msgid "Equal to Socket A"
 #~ msgstr "Wie Tuner A"
-
 #~ msgid "Expert Setup"
 #~ msgstr "Experteneinstellungen"
-
 #~ msgid "Fast zapping"
 #~ msgstr "Schnelles Umschalten"
-
 #~ msgid "Harddisk..."
 #~ msgstr "Festplatte..."
-
 #~ msgid "Hide error windows"
 #~ msgstr "Fehlerfenster verstecken"
-
 #~ msgid "Initialization"
 #~ msgstr "Initialisierung"
-
 #~ msgid "Invert"
 #~ msgstr "Invertieren"
-
 #~ msgid "LCD"
 #~ msgstr "LCD"
-
 #~ msgid "Language"
 #~ msgstr "Sprache"
-
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Verbunden mit Tuner A"
-
 #~ msgid "Multi bouquets"
 #~ msgstr "Mehrere Bouquets"
-
 #~ msgid "Network"
 #~ msgstr "Netzwerk"
-
 #~ msgid "Nothing connected"
 #~ msgstr "Nichts angeschlossen"
-
 #~ msgid "Parental Control"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Parental Lock"
 #~ msgstr "Jugendschutz"
-
 #~ msgid "Predefined satellite"
 #~ msgstr "Vordefinierte Satelliten"
-
 #~ msgid "Record Splitsize"
 #~ msgstr "Splitgrösse der Aufnamen"
-
 #~ msgid "Remember service pin"
 #~ msgstr "Kanal-Pincode merken"
-
 #~ msgid "Satconfig"
 #~ msgstr "Sateinstellung"
-
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelliteneinstellungen"
-
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Zweites Kabel vom Rotor"
-
 #~ msgid "Setup Lock"
 #~ msgstr "Setup-Sperre"
-
 #~ msgid "Show Satposition"
 #~ msgstr "Zeige Satposition"
-
 #~ msgid "Simple"
 #~ msgstr "Einfach"
-
 #~ msgid "Skip confirmations"
 #~ msgstr "Bestätigungen überspringen"
-
 #~ msgid "Subservices quickzap"
 #~ msgstr "Unterkanäle-Schnellumschalter"
-
 #~ msgid "Swap services"
 #~ msgstr "Tausche Bilder"
-
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshift"
-
 #~ msgid "Transpondertype"
 #~ msgstr "Transponder type"
-
 #~ msgid "Tuner Setup"
 #~ msgstr "Tuner-Einstellungen"
-
 #~ msgid "Tuner config"
 #~ msgstr "Tuner-Einstellungen"
-
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF-Modulator"
-
 #~ msgid "Usage Settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "Usage settings"
 #~ msgstr "Bedieneinstellungen"
-
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Rotorbewegungen anzeigen"
-
 #~ msgid "You have to wait for about "
 #~ msgstr "Sie müssen noch für ungefähr"
-
 #~ msgid "add bouquet..."
 #~ msgstr "Bouquet hinzufügen..."
-
 #~ msgid "open service list"
 #~ msgstr "Kanalliste öffnen"
-
 #~ msgid "remove bouquet"
 #~ msgstr "Bouquet entfernen"
-
 #~ msgid "remove service"
 #~ msgstr "Kanal löschen"
-
 #~ msgid "use power delta"
 #~ msgstr "Stromdelta verwenden"
+#~ msgid "your Dreambox. Shutdown now?"
+#~ msgstr "ausschalten. Wirklich ausschalten?"
+
