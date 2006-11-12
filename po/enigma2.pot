@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 15:17+0200\n"
+"POT-Creation-Date: 2006-11-13 00:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:208
@@ -130,8 +130,8 @@ msgstr ""
 msgid "<unknown>"
 msgstr ""
 
-#: ../lib/python/Screens/Menu.py:126 ../lib/python/Screens/Menu.py:166
-#: ../lib/python/Screens/Menu.py:169 ../lib/python/Screens/Setup.py:118
+#: ../lib/python/Screens/Menu.py:125 ../lib/python/Screens/Menu.py:165
+#: ../lib/python/Screens/Menu.py:168 ../lib/python/Screens/Setup.py:118
 msgid "??"
 msgstr ""
 
@@ -139,19 +139,33 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:511
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:549
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
 
-#: ../RecordTimer.py:163
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:273
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+
+#: ../SleepTimer.py:32
+msgid "A sleep timer want's to set your"
+msgstr ""
+
+#: ../SleepTimer.py:27
+msgid "A sleep timer want's to shut down"
+msgstr ""
+
+#: ../RecordTimer.py:167
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -165,7 +179,11 @@ msgstr ""
 msgid "AB"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1178
+#: ../lib/python/Plugins/SystemPlugins/SkinSelector/plugin.py:77 ../data/
+msgid "About..."
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1169
 msgid "Activate Picture in Picture"
 msgstr ""
 
@@ -173,8 +191,20 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:175
+msgid "Add a mark"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/ZappingAlternatives/plugin.py:191
+msgid "Add alternative"
+msgstr ""
+
 #: ../lib/python/Screens/MediaPlayer.py:389
 msgid "Add files to playlist"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/ZappingAlternatives/plugin.py:71
+msgid "Add service"
 msgstr ""
 
 #: ../lib/python/Screens/EpgSelection.py:59
@@ -199,6 +229,10 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+#: ../lib/python/Screens/MovieSelection.py:90
+msgid "All..."
+msgstr ""
+
 #: ../lib/python/Components/Language.py:16
 msgid "Arabic"
 msgstr ""
@@ -207,7 +241,12 @@ msgstr ""
 msgid "Artist:"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1349
+#: ../lib/python/Screens/SleepTimerEdit.py:61
+#: ../lib/python/Screens/SleepTimerEdit.py:63
+msgid "Ask before shutdown:"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1340
 msgid "Audio Options..."
 msgstr ""
 
@@ -281,6 +320,10 @@ msgstr ""
 msgid "Cable"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:38
+msgid "Call monitoring"
+msgstr ""
+
 #: ../lib/python/Screens/Setup.py:85 ../lib/python/Screens/TimeDateInput.py:16
 #: ../lib/python/Screens/TimerEntry.py:29
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:75
@@ -317,7 +360,7 @@ msgstr ""
 msgid "Channel"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:150
+#: ../lib/python/Screens/InfoBarGenerics.py:151
 msgid "Channel:"
 msgstr ""
 
@@ -373,6 +416,22 @@ msgstr ""
 msgid "Conflicting timer"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:100
+msgid "Connected to Fritz!Box!"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:97
+msgid "Connecting to Fritz!Box..."
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:110
+#, python-format
+msgid ""
+"Connection to Fritz!Box\n"
+"failed! (%s)\n"
+"retrying..."
+msgstr ""
+
 #: ../lib/python/Components/Harddisk.py:132
 msgid "Create movie folder failed"
 msgstr ""
@@ -385,6 +444,18 @@ msgstr ""
 msgid "Current version:"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:77
+msgid "Cut"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:378
+msgid "Cutlist editor..."
+msgstr ""
+
+#: ../lib/python/Components/Language.py:18
+msgid "Czech"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:358
 msgid "DVB-S"
 msgstr ""
@@ -393,12 +464,16 @@ msgstr ""
 msgid "DVB-S2"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:18
+#: ../lib/python/Components/Language.py:19
 msgid "Danish"
 msgstr ""
 
 #: ../lib/python/Screens/TimeDateInput.py:40
 msgid "Date"
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:56 ../data/
+msgid "Deep Standby"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEdit.py:24
@@ -449,12 +524,24 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1176
+#: ../lib/python/Screens/InfoBarGenerics.py:1167
 msgid "Disable Picture in Picture"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1134
-msgid "Disable subtitles"
+#: ../lib/python/Screens/Subtitles.py:23
+msgid "Disable Subtitles"
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:54
+msgid "Disabled"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:106
+#, python-format
+msgid ""
+"Disconnected from\n"
+"Fritz!Box! (%s)\n"
+"retrying..."
 msgstr ""
 
 #: ../lib/python/Screens/PluginBrowser.py:102
@@ -486,10 +573,12 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1621
+#: ../lib/python/Screens/InfoBarGenerics.py:1611
 msgid "Do you want to resume this playback?"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:41
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:149
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:51
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:213
 msgid ""
@@ -509,7 +598,11 @@ msgstr ""
 msgid "Downloading plugin information. Please wait..."
 msgstr ""
 
-#: ../lib/python/Components/Language.py:19
+#: ../SleepTimer.py:32
+msgid "Dreambox to standby. Do that now?"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:20
 msgid "Dutch"
 msgstr ""
 
@@ -531,7 +624,7 @@ msgstr ""
 msgid "Edit services list"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:79
+#: ../lib/python/Screens/Subtitles.py:31 ../lib/python/Screens/TimerEdit.py:79
 msgid "Enable"
 msgstr ""
 
@@ -543,6 +636,10 @@ msgstr ""
 msgid "Enable parental control"
 msgstr ""
 
+#: ../lib/python/Screens/SleepTimerEdit.py:52
+msgid "Enabled"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEntry.py:167
 msgid "End"
 msgstr ""
@@ -551,13 +648,23 @@ msgstr ""
 msgid "EndTime"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:53
+#: ../lib/python/Screens/LanguageSelection.py:59
 #: ../lib/python/Components/Language.py:14
 #: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:345
+#: ../lib/python/Plugins/SystemPlugins/SkinSelector/plugin.py:76
+msgid ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:346
 msgid "Enter main menu..."
 msgstr ""
 
@@ -577,10 +684,15 @@ msgstr ""
 msgid "Execution finished!!"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:177
+msgid "Exit editor"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:201
 #: ../lib/python/Screens/ScanSetup.py:203
 #: ../lib/python/Screens/ScanSetup.py:233
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:404
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:436
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:140
 msgid "FEC"
 msgstr ""
 
@@ -592,11 +704,11 @@ msgstr ""
 msgid "Favourites"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:20
+#: ../lib/python/Components/Language.py:21
 msgid "Finnish"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:21
+#: ../lib/python/Components/Language.py:22
 msgid "French"
 msgstr ""
 
@@ -604,7 +716,8 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:229
 #: ../lib/python/Screens/ScanSetup.py:240
 #: ../lib/python/Screens/TimerEntry.py:139
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:400
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:432
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:136
 msgid "Frequency"
 msgstr ""
 
@@ -619,6 +732,10 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:39
+msgid "Fritz!Box FON IP address"
+msgstr ""
+
 #: ../lib/python/Screens/About.py:23
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -626,6 +743,12 @@ msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:60
 msgid "Function not yet implemented"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/SkinSelector/plugin.py:98
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:32 ../data/
@@ -645,12 +768,12 @@ msgstr ""
 msgid "Getting plugin information. Please wait..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:133
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:191
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:175
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:233
 msgid "Goto 0"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:188
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:230
 msgid "Goto position"
 msgstr ""
 
@@ -667,8 +790,8 @@ msgstr ""
 msgid "Hierarchy mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1315
-#: ../lib/python/Screens/InfoBarGenerics.py:1323
+#: ../lib/python/Screens/InfoBarGenerics.py:1306
+#: ../lib/python/Screens/InfoBarGenerics.py:1314
 msgid "How many minutes do you want to record?"
 msgstr ""
 
@@ -676,11 +799,11 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:22
+#: ../lib/python/Components/Language.py:23
 msgid "Icelandic"
 msgstr ""
 
-#: ../lib/python/Screens/Scart.py:21
+#: ../lib/python/Screens/Scart.py:28
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -690,7 +813,7 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr ""
 
-#: ../RecordTimer.py:166
+#: ../RecordTimer.py:170
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
@@ -715,18 +838,19 @@ msgstr ""
 msgid "Input"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1225
+#: ../lib/python/Screens/InfoBarGenerics.py:1216
 msgid "Instant Record..."
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:197
 #: ../lib/python/Screens/ScanSetup.py:230
 #: ../lib/python/Screens/ScanSetup.py:242
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:401
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:433
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:137
 msgid "Inversion"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:23
+#: ../lib/python/Components/Language.py:24
 msgid "Italian"
 msgstr ""
 
@@ -746,7 +870,7 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Screens/LanguageSelection.py:48 ../data/
+#: ../lib/python/Screens/LanguageSelection.py:54 ../data/
 msgid "Language selection"
 msgstr ""
 
@@ -755,23 +879,23 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1379
 msgid "Left"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:183
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:225
 msgid "Limit east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:182
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:224
 msgid "Limit west"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:181
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:223
 msgid "Limits off"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:184
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:226
 msgid "Limits on"
 msgstr ""
 
@@ -780,7 +904,20 @@ msgstr ""
 msgid "Longitude"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:421
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:172
+msgid "Make this mark an 'in' point"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:173
+msgid "Make this mark an 'out' point"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:174
+msgid "Make this mark just a mark"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:454
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:171
 msgid "Manual transponder"
 msgstr ""
 
@@ -817,15 +954,15 @@ msgstr ""
 msgid "Mount failed"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1184
+#: ../lib/python/Screens/InfoBarGenerics.py:1175
 msgid "Move Picture in Picture"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:216
 msgid "Move east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:213
 msgid "Move west"
 msgstr ""
 
@@ -849,7 +986,8 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:491
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:529
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:253
 msgid "NIM "
 msgstr ""
 
@@ -894,19 +1032,23 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1335
+#: ../lib/python/Screens/InfoBarGenerics.py:1326
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1268
+#: ../lib/python/Screens/InfoBarGenerics.py:1259
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:508
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:546
 msgid "No positioner capable frontend found."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:523
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:270
+msgid "No satellite frontend found!!"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:561
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
 
@@ -926,7 +1068,7 @@ msgstr ""
 msgid "North"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:24
+#: ../lib/python/Components/Language.py:25
 msgid "Norwegian"
 msgstr ""
 
@@ -959,6 +1101,10 @@ msgstr ""
 msgid "Online-Upgrade"
 msgstr ""
 
+#: ../lib/python/Screens/MovieSelection.py:189
+msgid "Other..."
+msgstr ""
+
 #: ../lib/python/Components/AVSwitch.py:92
 msgid "PAL"
 msgstr ""
@@ -971,6 +1117,11 @@ msgstr ""
 msgid "Packet management"
 msgstr ""
 
+#: ../lib/python/Screens/Subtitles.py:39 ../lib/python/Screens/Subtitles.py:42
+#: ../lib/python/Screens/Subtitles.py:44
+msgid "Page"
+msgstr ""
+
 #: ../lib/python/Components/ParentalControl.py:80 ../data/
 msgid "Parental control"
 msgstr ""
@@ -979,11 +1130,11 @@ msgstr ""
 msgid "Parental control type"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:48
+#: ../lib/python/Screens/InfoBar.py:47
 msgid "Play recorded movies..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1099
+#: ../lib/python/Screens/InfoBarGenerics.py:1109
 msgid "Please choose an extension..."
 msgstr ""
 
@@ -1003,11 +1154,15 @@ msgstr ""
 msgid "Please enter the old pin code"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:25
+msgid "Please press OK!"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEntry.py:289
 msgid "Please select a subservice to record..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1487
+#: ../lib/python/Screens/InfoBarGenerics.py:1477
 #: ../lib/python/Screens/SubservicesQuickzap.py:97
 msgid "Please select a subservice..."
 msgstr ""
@@ -1019,12 +1174,13 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 
-#: ../lib/python/Screens/MovieSelection.py:79
+#: ../lib/python/Screens/MovieSelection.py:84
 msgid "Please wait... Loading list..."
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:199
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:403
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:435
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:139
 msgid "Polarity"
 msgstr ""
 
@@ -1052,19 +1208,25 @@ msgstr ""
 msgid "Positioner"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:130
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
 msgid "Positioner fine movement"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:129
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:171
 msgid "Positioner movement"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:132
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:565
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:570
+msgid "Positioner setup"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:174
 msgid "Positioner storage"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:422
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:455
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:171
 msgid "Predefined transponder"
 msgstr ""
 
@@ -1105,7 +1267,7 @@ msgstr ""
 msgid "Quick"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1483
+#: ../lib/python/Screens/InfoBarGenerics.py:1473
 msgid "Quickzap"
 msgstr ""
 
@@ -1113,7 +1275,7 @@ msgstr ""
 msgid "RGB"
 msgstr ""
 
-#: ../lib/python/Screens/Setup.py:145
+#: ../lib/python/Screens/Setup.py:150
 msgid "Really close without saving settings?"
 msgstr ""
 
@@ -1141,8 +1303,16 @@ msgstr ""
 msgid "Remove Plugins"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:176
+msgid "Remove a mark"
+msgstr ""
+
 #: ../lib/python/Screens/PluginBrowser.py:115
 msgid "Remove plugins"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/ZappingAlternatives/plugin.py:192
+msgid "Remove service"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:133
@@ -1157,13 +1327,21 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/SkinSelector/plugin.py:99
+msgid "Restart GUI now?"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:77
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:167
 msgid "Restore"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1379
 msgid "Right"
+msgstr ""
+
+#: ../lib/python/Screens/Subtitles.py:29
+msgid "Running"
 msgstr ""
 
 #: ../lib/python/Components/AVSwitch.py:77
@@ -1180,13 +1358,19 @@ msgstr ""
 #: ../lib/python/Screens/Satconfig.py:145
 #: ../lib/python/Screens/ScanSetup.py:195
 #: ../lib/python/Screens/ScanSetup.py:208
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:397
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:429
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:133
 msgid "Satellite"
 msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:498
 #: ../lib/python/Screens/ChannelSelection.py:645
 msgid "Satellites"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:282
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:287
+msgid "Satfinder"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:100
@@ -1199,24 +1383,32 @@ msgstr ""
 msgid "Scan NIM"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:215
 msgid "Search east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:172
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:214
 msgid "Search west"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1401
+#: ../lib/python/Plugins/Extensions/ZappingAlternatives/plugin.py:231
+msgid "Select alternative service"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:1391
 msgid "Select audio mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1390
+#: ../lib/python/Screens/InfoBarGenerics.py:1380
 msgid "Select audio track"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:210
 msgid "Select channel to record from"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/ZappingAlternatives/plugin.py:218
+msgid "Select reference service"
 msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:116
@@ -1235,10 +1427,11 @@ msgstr ""
 msgid "Services"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:131
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:173
 msgid "Set limits"
 msgstr ""
 
+#: ../lib/python/Screens/SleepTimerEdit.py:64
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:36
 msgid "Settings"
 msgstr ""
@@ -1247,12 +1440,16 @@ msgstr ""
 msgid "Show services beginning with"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:49
+#: ../lib/python/Screens/InfoBar.py:48
 msgid "Show the radio player..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:50
+#: ../lib/python/Screens/InfoBar.py:49
 msgid "Show the tv player..."
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:25
+msgid "Shutdown Dreambox after"
 msgstr ""
 
 #: ../lib/python/Screens/EventView.py:133
@@ -1281,6 +1478,15 @@ msgstr ""
 msgid "Single transponder"
 msgstr ""
 
+#: ../lib/python/Screens/InfoBarGenerics.py:1145 ../data/
+msgid "Sleep Timer"
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:56
+#: ../lib/python/Screens/SleepTimerEdit.py:58
+msgid "Sleep timer action:"
+msgstr ""
+
 #: ../lib/python/Components/NimManager.py:725
 msgid "Slot "
 msgstr ""
@@ -1301,15 +1507,19 @@ msgstr ""
 msgid "South"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:25
+#: ../lib/python/Components/Language.py:26
 msgid "Spanish"
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:58 ../data/
+msgid "Standby"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:160
 msgid "Start"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
+#: ../lib/python/Screens/InfoBarGenerics.py:1332
 msgid "Start recording?"
 msgstr ""
 
@@ -1321,26 +1531,26 @@ msgstr ""
 msgid "Step "
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:178
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:220
 msgid "Step east"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:177
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:219
 msgid "Step west"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1389
+#: ../lib/python/Screens/InfoBarGenerics.py:1379
 msgid "Stereo"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:166
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:167
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:168
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:169
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:208
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:209
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:210
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:211
 msgid "Stop"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:969
+#: ../lib/python/Screens/InfoBarGenerics.py:979
 msgid "Stop Timeshift?"
 msgstr ""
 
@@ -1348,7 +1558,7 @@ msgstr ""
 msgid "Stop playing this movie?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:187
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:229
 msgid "Store position"
 msgstr ""
 
@@ -1356,7 +1566,7 @@ msgstr ""
 msgid "Stored position"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1419
+#: ../lib/python/Screens/InfoBarGenerics.py:1409
 msgid "Subservice list..."
 msgstr ""
 
@@ -1371,25 +1581,26 @@ msgstr ""
 msgid "Sunday"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1181
+#: ../lib/python/Screens/InfoBarGenerics.py:1172
 msgid "Swap Services"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:26
+#: ../lib/python/Components/Language.py:27
 msgid "Swedish"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1424
+#: ../lib/python/Screens/InfoBarGenerics.py:1414
 msgid "Switch to next subservice"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1425
+#: ../lib/python/Screens/InfoBarGenerics.py:1415
 msgid "Switch to previous subservice"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:198
 #: ../lib/python/Screens/ScanSetup.py:231
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:402
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:434
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:138
 msgid "Symbol Rate"
 msgstr ""
 
@@ -1399,6 +1610,11 @@ msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:71
 msgid "Terrestrial provider"
+msgstr ""
+
+#: ../lib/python/Plugins/DemoPlugins/TestPlugin/plugin.py:52
+#: ../lib/python/Plugins/DemoPlugins/TestPlugin/plugin.py:78
+msgid "Test-Messagebox?"
 msgstr ""
 
 #: ../lib/python/Screens/ParentalControlSetup.py:251
@@ -1413,6 +1629,10 @@ msgstr ""
 
 #: ../lib/python/Screens/ParentalControlSetup.py:253
 msgid "The pin codes you entered are different."
+msgstr ""
+
+#: ../lib/python/Screens/SleepTimerEdit.py:69
+msgid "The sleep timer has been acitvated."
 msgstr ""
 
 #: ../lib/python/Components/NimManager.py:788
@@ -1442,6 +1662,15 @@ msgstr ""
 msgid "Timer Type"
 msgstr ""
 
+#: ../lib/python/Screens/SleepTimerEdit.py:52
+#: ../lib/python/Screens/SleepTimerEdit.py:54
+msgid "Timer status:"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:949
+msgid "Timeshift not possible!"
+msgstr ""
+
 #: ../lib/python/Screens/MediaPlayer.py:49
 msgid "Title:"
 msgstr ""
@@ -1468,12 +1697,9 @@ msgid "Transmission mode"
 msgstr ""
 
 #: ../lib/python/Screens/ServiceInfo.py:80
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:406
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:438
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:142
 msgid "Transponder"
-msgstr ""
-
-#: ../lib/python/Screens/ScanSetup.py:193
-msgid "Transpondertype"
 msgstr ""
 
 #: ../lib/python/Screens/InputBox.py:168
@@ -1491,9 +1717,10 @@ msgstr ""
 msgid "Tuesday"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:128
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:160
-#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:395
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:170
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:202
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:427
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:131
 msgid "Tune"
 msgstr ""
 
@@ -1506,7 +1733,7 @@ msgstr ""
 msgid "Tuner status"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:27
+#: ../lib/python/Components/Language.py:28
 msgid "Turkish"
 msgstr ""
 
@@ -1547,10 +1774,14 @@ msgstr ""
 msgid "Unmount failed"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:50
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:158
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:222
 msgid "Updating finished. Here is the result:"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:56
+#: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:164
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:228
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
@@ -1571,7 +1802,7 @@ msgstr ""
 msgid "User defined"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1759
+#: ../lib/python/Screens/InfoBarGenerics.py:1749
 msgid "View teletext..."
 msgstr ""
 
@@ -1633,6 +1864,14 @@ msgid ""
 "Press OK to start upgrade."
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py:135
+msgid "Zap back to service before positioner setup?"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/Satfinder/plugin.py:232
+msgid "Zap back to service before satfinder?"
+msgstr ""
+
 #: ../lib/python/Screens/ChannelSelection.py:380
 msgid "[bouquet edit]"
 msgstr ""
@@ -1673,18 +1912,18 @@ msgstr ""
 msgid "add marker"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1332
 msgid "add recording (enter recording duration)"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1332
 msgid "add recording (indefinitely)"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
+#: ../lib/python/Screens/InfoBarGenerics.py:1332
 msgid "add recording (stop after current event)"
 msgstr ""
 
@@ -1713,6 +1952,7 @@ msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:124
 #: ../lib/python/Screens/MovieSelection.py:24
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:50
 msgid "back"
 msgstr ""
 
@@ -1720,7 +1960,7 @@ msgstr ""
 msgid "blacklist"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
 msgid "change recording (duration)"
 msgstr ""
 
@@ -1740,7 +1980,7 @@ msgstr ""
 msgid "complex"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:591
+#: ../lib/python/Screens/InfoBarGenerics.py:601
 msgid "continue"
 msgstr ""
 
@@ -1756,11 +1996,16 @@ msgstr ""
 msgid "delete"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:63
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:65
+msgid "delete cut"
+msgstr ""
+
 #: ../lib/python/Screens/MovieSelection.py:24
 msgid "delete..."
 msgstr ""
 
-#: ../lib/python/Components/config.py:262
+#: ../lib/python/Components/config.py:285
 msgid "disable"
 msgstr ""
 
@@ -1768,12 +2013,12 @@ msgstr ""
 msgid "disable move mode"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
 #: ../lib/python/Screens/TimerEntry.py:87
 msgid "do nothing"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1341
+#: ../lib/python/Screens/InfoBarGenerics.py:1332
 msgid "don't record"
 msgstr ""
 
@@ -1785,7 +2030,7 @@ msgstr ""
 msgid "empty/unknown"
 msgstr ""
 
-#: ../lib/python/Components/config.py:262
+#: ../lib/python/Components/config.py:285
 msgid "enable"
 msgstr ""
 
@@ -1803,6 +2048,11 @@ msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:118
 msgid "end bouquet edit"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:58
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:60
+msgid "end cut here"
 msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:121
@@ -1825,7 +2075,7 @@ msgstr ""
 msgid "go to deep standby"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:64
+#: ../lib/python/Screens/InfoBar.py:63
 msgid "hear radio..."
 msgstr ""
 
@@ -1846,15 +2096,26 @@ msgstr ""
 msgid "hours"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/FritzCall/plugin.py:81
+#, python-format
+msgid ""
+"incoming call!\n"
+"%s calls on %s!"
+msgstr ""
+
 #: ../lib/python/Screens/Ci.py:300 ../lib/python/Screens/Ci.py:322
 msgid "init module"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:98
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:73
+msgid "insert mark here"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBar.py:97
 msgid "leave movie player..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
+#: ../lib/python/Screens/InfoBarGenerics.py:1390
 msgid "left"
 msgstr ""
 
@@ -1884,6 +2145,7 @@ msgstr ""
 msgid "minute"
 msgstr ""
 
+#: ../lib/python/Screens/SleepTimerEdit.py:27
 #: ../lib/python/Components/UsageConfig.py:18
 #: ../lib/python/Components/UsageConfig.py:19
 #: ../lib/python/Components/UsageConfig.py:20
@@ -1898,18 +2160,19 @@ msgstr ""
 msgid "never"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:261
+#: ../lib/python/Screens/InfoBarGenerics.py:262
 msgid "next channel"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:263
+#: ../lib/python/Screens/InfoBarGenerics.py:264
 msgid "next channel in history"
 msgstr ""
 
 #: ../lib/python/Screens/MessageBox.py:45
 #: ../lib/python/Screens/ScanSetup.py:341
 #: ../lib/python/Screens/ScanSetup.py:586
-#: ../lib/python/Components/config.py:254
+#: ../lib/python/Screens/SleepTimerEdit.py:63
+#: ../lib/python/Components/config.py:277
 msgid "no"
 msgstr ""
 
@@ -1944,14 +2207,14 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:360
 #: ../lib/python/Screens/ScanSetup.py:369
 #: ../lib/python/Screens/ScanSetup.py:377
-#: ../lib/python/Components/config.py:258
+#: ../lib/python/Components/config.py:281
 msgid "off"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:360
 #: ../lib/python/Screens/ScanSetup.py:369
 #: ../lib/python/Screens/ScanSetup.py:377
-#: ../lib/python/Components/config.py:258
+#: ../lib/python/Components/config.py:281
 msgid "on"
 msgstr ""
 
@@ -1963,15 +2226,15 @@ msgstr ""
 msgid "only /etc/enigma2 directory"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:264
+#: ../lib/python/Screens/InfoBarGenerics.py:265
 msgid "open servicelist"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:259
+#: ../lib/python/Screens/InfoBarGenerics.py:260
 msgid "open servicelist(down)"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:258
+#: ../lib/python/Screens/InfoBarGenerics.py:259
 msgid "open servicelist(up)"
 msgstr ""
 
@@ -1979,7 +2242,7 @@ msgstr ""
 msgid "pass"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:590
+#: ../lib/python/Screens/InfoBarGenerics.py:600
 msgid "pause"
 msgstr ""
 
@@ -1987,11 +2250,11 @@ msgstr ""
 msgid "please press OK when ready"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:260
+#: ../lib/python/Screens/InfoBarGenerics.py:261
 msgid "previous channel"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:262
+#: ../lib/python/Screens/InfoBarGenerics.py:263
 msgid "previous channel in history"
 msgstr ""
 
@@ -2003,8 +2266,16 @@ msgstr ""
 msgid "recording..."
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:68
+msgid "remove after this position"
+msgstr ""
+
 #: ../lib/python/Screens/ChannelSelection.py:95
 msgid "remove all new found flags"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:67
+msgid "remove before this position"
 msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:97
@@ -2020,11 +2291,15 @@ msgstr ""
 msgid "remove new found flag"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:75
+msgid "remove this mark"
+msgstr ""
+
 #: ../lib/python/Screens/TimerEntry.py:88
 msgid "repeated"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
+#: ../lib/python/Screens/InfoBarGenerics.py:1390
 msgid "right"
 msgstr ""
 
@@ -2085,12 +2360,16 @@ msgstr ""
 msgid "setup pin"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:397
+#: ../lib/python/Screens/InfoBarGenerics.py:407
 msgid "show EPG..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:359
+#: ../lib/python/Screens/InfoBarGenerics.py:369
 msgid "show event details"
+msgstr ""
+
+#: ../SleepTimer.py:55
+msgid "shutdown"
 msgstr ""
 
 #: ../lib/python/Components/NimManager.py:671
@@ -2099,27 +2378,36 @@ msgstr ""
 msgid "simple"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:596
+#: ../lib/python/Screens/InfoBarGenerics.py:606
 msgid "skip backward"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:593
+#: ../lib/python/Screens/InfoBarGenerics.py:603
 msgid "skip forward"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:911
+#: ../SleepTimer.py:55
+msgid "standby"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:53
+#: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:55
+msgid "start cut here"
+msgstr ""
+
+#: ../lib/python/Screens/InfoBarGenerics.py:921
 msgid "start timeshift"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1400
+#: ../lib/python/Screens/InfoBarGenerics.py:1390
 msgid "stereo"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1339
+#: ../lib/python/Screens/InfoBarGenerics.py:1330
 msgid "stop recording"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:912
+#: ../lib/python/Screens/InfoBarGenerics.py:922
 msgid "stop timeshift"
 msgstr ""
 
@@ -2159,11 +2447,11 @@ msgstr ""
 msgid "vertical"
 msgstr ""
 
-#: ../lib/python/Screens/InfoBarGenerics.py:1047
+#: ../lib/python/Screens/InfoBarGenerics.py:1057
 msgid "view extensions..."
 msgstr ""
 
-#: ../lib/python/Screens/InfoBar.py:63
+#: ../lib/python/Screens/InfoBar.py:62
 msgid "view recordings..."
 msgstr ""
 
@@ -2186,13 +2474,18 @@ msgstr ""
 #: ../lib/python/Screens/MessageBox.py:45
 #: ../lib/python/Screens/ScanSetup.py:341
 #: ../lib/python/Screens/ScanSetup.py:586
-#: ../lib/python/Components/config.py:254
+#: ../lib/python/Screens/SleepTimerEdit.py:61
+#: ../lib/python/Components/config.py:277
 msgid "yes"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:341
 #: ../lib/python/Screens/ScanSetup.py:586
 msgid "yes (keep feeds)"
+msgstr ""
+
+#: ../SleepTimer.py:27
+msgid "your Dreambox. Shutdown now?"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:86
@@ -2228,10 +2521,6 @@ msgid "Games / Plugins"
 msgstr ""
 
 #: ../data/
-msgid "Do you want to enable the parental control feature or your dreambox?"
-msgstr ""
-
-#: ../data/
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
@@ -2244,10 +2533,6 @@ msgstr ""
 
 #: ../data/
 msgid "Yes, backup my settings!"
-msgstr ""
-
-#: ../data/
-msgid "Satconfig"
 msgstr ""
 
 #: ../data/
@@ -2294,10 +2579,6 @@ msgid ""
 msgstr ""
 
 #: ../data/
-msgid "Deep Standby"
-msgstr ""
-
-#: ../data/
 msgid "Show positioner movement"
 msgstr ""
 
@@ -2307,6 +2588,10 @@ msgstr ""
 
 #: ../data/
 msgid "Change bouquets in quickzap"
+msgstr ""
+
+#: ../data/
+msgid "Subtitles"
 msgstr ""
 
 #: ../data/
@@ -2462,10 +2747,6 @@ msgid "Standby / Restart"
 msgstr ""
 
 #: ../data/
-msgid "Standby"
-msgstr ""
-
-#: ../data/
 msgid "EPG Selection"
 msgstr ""
 
@@ -2546,6 +2827,10 @@ msgid "Timeshift"
 msgstr ""
 
 #: ../data/
+msgid "Reception Settings"
+msgstr ""
+
+#: ../data/
 msgid "Downloadable plugins"
 msgstr ""
 
@@ -2563,10 +2848,6 @@ msgstr ""
 
 #: ../data/
 msgid "Message"
-msgstr ""
-
-#: ../data/
-msgid "About..."
 msgstr ""
 
 #: ../data/
@@ -2799,6 +3080,10 @@ msgid "Select HDD"
 msgstr ""
 
 #: ../data/
+msgid "Subtitle selection"
+msgstr ""
+
+#: ../data/
 msgid "Aspect Ratio"
 msgstr ""
 
@@ -2912,6 +3197,10 @@ msgstr ""
 
 #: ../data/
 msgid "Yes, perform a shutdown now."
+msgstr ""
+
+#: ../data/
+msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr ""
 
 #: ../data/
