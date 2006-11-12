@@ -24,10 +24,7 @@ enigma2.pot:
 	$(GETTEXT)	-d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
 			../lib/python/Tools/*.py \
 			../*.py \
-			../lib/python/Plugins/SystemPlugins/PositionerSetup/plugin.py \
-			../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py \
-			../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py \
-			../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py 
+			../lib/python/Plugins/*/*/*.py
 
 	./xml2po.py	../data/ >> enigma2.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
