@@ -346,6 +346,21 @@
 		<widget name="input" position="200,100" size="550,25" font="Regular;50" />
 		
 	</screen>
+	<screen name="SleepTimerEdit" position="100,100" size="550,160" title="Sleep Timer" >
+		<widget name="red" pixmap="key_red-fs8.png" position="10,50" zPosition="10" size="28,20" transparent="1" alphatest="on"/>
+		<widget name="green" pixmap="key_green-fs8.png" position="10,90" zPosition="10" size="28,20" transparent="1" alphatest="on"/>
+		<widget name="yellow" pixmap="key_yellow-fs8.png" position="10,130" zPosition="10" size="28,20" transparent="1" alphatest="on"/>
+		<widget name="blue" pixmap="key_blue-fs8.png" position="10,170" zPosition="10" size="28,20" transparent="1" alphatest="on"/>
+		
+		<widget name="red_text" position="50,50" size="340,40" font="Regular;21" />
+		<widget name="green_text" position="50,90" size="340,40" font="Regular;21" />
+		<widget name="yellow_text" position="50,130" size="340,40" font="Regular;21" />
+		<widget name="blue_text" position="50,170" size="340,40" font="Regular;21" />
+		
+		<widget name="pretext" position="0,10" size="250,25" font="Regular;20" />
+		<widget name="input" position="260,10" size="50,25" font="Regular;20" />
+		<widget name="aftertext" position="310,10" size="100,25" font="Regular;20" />
+	</screen>
 	<screen name="ParentalControlChangePin" position="100,100" size="550,160" title="Change pin code" >
 		<widget name="config" position="20,10" size="460,350" scrollbarMode="showOnDemand" />
 	</screen>
