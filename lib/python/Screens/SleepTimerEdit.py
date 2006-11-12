@@ -66,7 +66,7 @@ class SleepTimerEdit(Screen):
 		
 	def select(self):
 		self.session.nav.SleepTimer.setSleepTime(int(self["input"].getText()))
-		self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been acitvated."), MessageBox.TYPE_INFO)
+		self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
 	
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)
