@@ -2,6 +2,7 @@ from enigma import *
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 import RecordTimer
+import SleepTimer
 
 import NavigationInstance
 import ServiceReference
@@ -27,6 +28,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 		self.state = 0
 		self.RecordTimer = RecordTimer.RecordTimer()
+		self.SleepTimer = SleepTimer.SleepTimer()
 		
 	def callEvent(self, i):
 		self.state = i != 1
