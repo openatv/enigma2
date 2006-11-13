@@ -19,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -33,7 +33,7 @@ class InfoBar(InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, Screen):
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, Screen):
 	
 	ALLOW_SUSPEND = True
 
@@ -55,7 +55,7 @@ class InfoBar(InfoBarShowHide,
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
-				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, \
+				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarSleepTimer, \
 				InfoBarPlugins:
 			x.__init__(self)
 
