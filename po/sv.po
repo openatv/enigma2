@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-13 00:19+0100\n"
-"PO-Revision-Date: 2006-10-19 15:59+0100\n"
+"POT-Creation-Date: 2006-11-13 16:38+0100\n"
+"PO-Revision-Date: 2006-11-13 13:26+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -156,12 +156,13 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
+"En inspelning pågår. Vänligen avbryt inspelningen före du startar satfinder."
 
 msgid "A sleep timer want's to set your"
-msgstr ""
+msgstr "En sovtimer vill sätta din"
 
 msgid "A sleep timer want's to shut down"
-msgstr ""
+msgstr "En sovtimer vill stänga av"
 
 msgid ""
 "A timer failed to record!\n"
@@ -201,16 +202,16 @@ msgid "Add"
 msgstr "Lägg till"
 
 msgid "Add a mark"
-msgstr ""
+msgstr "Lägg till markör"
 
 msgid "Add alternative"
-msgstr ""
+msgstr "Lägg till alternativ"
 
 msgid "Add files to playlist"
 msgstr "Lägg till i spellista"
 
 msgid "Add service"
-msgstr ""
+msgstr "Lägg till kanal"
 
 msgid "Add timer"
 msgstr "Lägg till timer"
@@ -235,7 +236,7 @@ msgid "All"
 msgstr "Alla"
 
 msgid "All..."
-msgstr ""
+msgstr "Alla..."
 
 msgid "Alpha"
 msgstr "Alpha"
@@ -250,7 +251,7 @@ msgid "Artist:"
 msgstr "Artist:"
 
 msgid "Ask before shutdown:"
-msgstr ""
+msgstr "Fråga före avstängning:"
 
 msgid "Aspect Ratio"
 msgstr "Bildformat"
@@ -321,7 +322,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Call monitoring"
-msgstr ""
+msgstr "Samtals monitorering"
 
 msgid "Cancel"
 msgstr "Avbryt"
@@ -405,10 +406,10 @@ msgid "Conflicting timer"
 msgstr "Timerkonflikt"
 
 msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "Ansluten till Fritz!Box!"
 
 msgid "Connecting to Fritz!Box..."
-msgstr ""
+msgstr "Ansluter till Fritz!Box..."
 
 #, python-format
 msgid ""
@@ -416,6 +417,9 @@ msgid ""
 "failed! (%s)\n"
 "retrying..."
 msgstr ""
+"Anslutning till Fritz!Box\n"
+"misslyckades! (%s)\n"
+"försöker igen..."
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -433,13 +437,13 @@ msgid "Customize"
 msgstr "Inställningar"
 
 msgid "Cut"
-msgstr ""
+msgstr "Klipp"
 
 msgid "Cutlist editor..."
-msgstr ""
+msgstr "Klipplist editor"
 
 msgid "Czech"
-msgstr ""
+msgstr "Tjeckiska"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -502,10 +506,10 @@ msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
 
 msgid "Disable Subtitles"
-msgstr ""
+msgstr "Avaktivera Textning"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Avaktivera"
 
 #, python-format
 msgid ""
@@ -513,6 +517,9 @@ msgid ""
 "Fritz!Box! (%s)\n"
 "retrying..."
 msgstr ""
+"Kopplade ifrån\n"
+"Fritz!Box! (%s)\n"
+"återförsöker..."
 
 msgid "Dish"
 msgstr "Parabol"
@@ -571,6 +578,9 @@ msgstr ""
 "Vill du uppdatera din Dreambox?\n"
 "Tryck OK och vänligen vänta!"
 
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vill du visa cutlist guiden?"
+
 msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
@@ -587,7 +597,7 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Laddar ner information om pluginet. Var vänlig vänta..."
 
 msgid "Dreambox to standby. Do that now?"
-msgstr ""
+msgstr "Dreambox till viloläge. Utföra det nu?"
 
 msgid "Dutch"
 msgstr "Holländska"
@@ -621,7 +631,7 @@ msgid "Enable parental control"
 msgstr "Aktivera föräldrarkontroll"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiverad"
 
 msgid "End"
 msgstr "Slut"
@@ -640,6 +650,12 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"Vid problem kontakta\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
 
 msgid "Enter main menu..."
 msgstr "Gå till huvudmeny"
@@ -660,7 +676,7 @@ msgid "Execution finished!!"
 msgstr "Exekvering färdig!"
 
 msgid "Exit editor"
-msgstr ""
+msgstr "Avsluta editor"
 
 msgid "Exit the wizard"
 msgstr "Avsluta guiden"
@@ -699,7 +715,7 @@ msgid "Friday"
 msgstr "Fredag"
 
 msgid "Fritz!Box FON IP address"
-msgstr ""
+msgstr "Fritz!Box FON IP adress"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -712,6 +728,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"GUI måste startas om för nytt utseende\n"
+"Vill du starta om GUI nu?"
 
 msgid "Games / Plugins"
 msgstr "Spel / Plugins"
@@ -872,13 +890,13 @@ msgid "Mainmenu"
 msgstr "Huvudmeny"
 
 msgid "Make this mark an 'in' point"
-msgstr ""
+msgstr "Gör denna markör till 'in' punkt"
 
 msgid "Make this mark an 'out' point"
-msgstr ""
+msgstr "Gör denna markör till 'out' punkt"
 
 msgid "Make this mark just a mark"
-msgstr ""
+msgstr "Gör denna markör till en markör"
 
 msgid "Manual Scan"
 msgstr "Manuell Sökning"
@@ -1016,7 +1034,7 @@ msgid "No positioner capable frontend found."
 msgstr "Ingen positioner kapabel frontend funnet."
 
 msgid "No satellite frontend found!!"
-msgstr ""
+msgstr "Ingen satellit frontend funnen!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
@@ -1071,7 +1089,7 @@ msgid "Online-Upgrade"
 msgstr "Online Uppgradering"
 
 msgid "Other..."
-msgstr ""
+msgstr "Annat..."
 
 msgid "PAL"
 msgstr "PAL"
@@ -1083,7 +1101,7 @@ msgid "Packet management"
 msgstr "Pakethantering"
 
 msgid "Page"
-msgstr ""
+msgstr "Sida"
 
 msgid "Parental control"
 msgstr "Föräldrarkontroll"
@@ -1122,7 +1140,7 @@ msgid "Please enter the old pin code"
 msgstr "Vänligen ange den gamla PIN koden"
 
 msgid "Please press OK!"
-msgstr ""
+msgstr "Vänligen tryck OK!"
 
 msgid "Please select a subservice to record..."
 msgstr "Vänligen välj en underkanal för inspelning..."
@@ -1177,7 +1195,7 @@ msgid "Positioner movement"
 msgstr "Motor rörelse"
 
 msgid "Positioner setup"
-msgstr ""
+msgstr "Positioner installation"
 
 msgid "Positioner storage"
 msgstr "Motor lagring"
@@ -1224,6 +1242,9 @@ msgstr "RF ut"
 msgid "RGB"
 msgstr "RGB"
 
+msgid "RSS Feed URI"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Verkligen stänga utan spara inställningarna?"
 
@@ -1237,7 +1258,7 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Verkligen avsluta underkanals quickzap?"
 
 msgid "Reception Settings"
-msgstr ""
+msgstr "Mottagning inställningar"
 
 msgid "Record"
 msgstr "Spela in"
@@ -1255,13 +1276,13 @@ msgid "Remove Plugins"
 msgstr "Ta bort Plugins"
 
 msgid "Remove a mark"
-msgstr ""
+msgstr "Ta bort en markör"
 
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Ta bort kanal"
 
 msgid "Repeat"
 msgstr "Repetera"
@@ -1279,7 +1300,7 @@ msgid "Restart"
 msgstr "Omstart"
 
 msgid "Restart GUI now?"
-msgstr ""
+msgstr "Omstart av GUI nu?"
 
 msgid "Restore"
 msgstr "Återställ"
@@ -1295,7 +1316,7 @@ msgid "Right"
 msgstr "Höger"
 
 msgid "Running"
-msgstr ""
+msgstr "Körandes"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1316,7 +1337,7 @@ msgid "Satellites"
 msgstr "Satelliter"
 
 msgid "Satfinder"
-msgstr ""
+msgstr "Satfinder"
 
 msgid "Saturday"
 msgstr "Lördag"
@@ -1340,7 +1361,7 @@ msgid "Select a movie"
 msgstr "Välj en film"
 
 msgid "Select alternative service"
-msgstr ""
+msgstr "Välj alternativ kanal"
 
 msgid "Select audio mode"
 msgstr "Välj ljudläge"
@@ -1352,7 +1373,7 @@ msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
 
 msgid "Select reference service"
-msgstr ""
+msgstr "Välj reference kanal"
 
 msgid "Sequence repeat"
 msgstr "Repetera sekvens"
@@ -1406,7 +1427,7 @@ msgid "Show the tv player..."
 msgstr "Visa tv spelare..."
 
 msgid "Shutdown Dreambox after"
-msgstr ""
+msgstr "Stäng av Dreambox efter"
 
 msgid "Similar"
 msgstr "Liknande"
@@ -1427,10 +1448,10 @@ msgid "Single transponder"
 msgstr "Singel transponder"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Sov Timer"
 
 msgid "Sleep timer action:"
-msgstr ""
+msgstr "Sovtimer händelse:"
 
 msgid "Slot "
 msgstr "Slot "
@@ -1514,10 +1535,10 @@ msgid "Subservices"
 msgstr "Underkanal"
 
 msgid "Subtitle selection"
-msgstr ""
+msgstr "Textningsval"
 
 msgid "Subtitles"
-msgstr ""
+msgstr "Textning"
 
 msgid "Sun"
 msgstr "Sön"
@@ -1556,7 +1577,7 @@ msgid "Test mode"
 msgstr "Testläge"
 
 msgid "Test-Messagebox?"
-msgstr ""
+msgstr "Test-Meddelandebox?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1577,7 +1598,7 @@ msgstr "PIN koden du angav var fel."
 msgid "The pin codes you entered are different."
 msgstr "PIN koderna du angav är olika."
 
-msgid "The sleep timer has been acitvated."
+msgid "The sleep timer has been activated."
 msgstr ""
 
 msgid ""
@@ -1637,7 +1658,7 @@ msgid "Timer selection"
 msgstr "Timer val"
 
 msgid "Timer status:"
-msgstr ""
+msgstr "Timer status:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -1940,10 +1961,10 @@ msgstr ""
 "Tryck OK för att starta."
 
 msgid "Zap back to service before positioner setup?"
-msgstr ""
+msgstr "Zap bakåt till kanal före positioner installation?"
 
 msgid "Zap back to service before satfinder?"
-msgstr ""
+msgstr "Zap bakåt till kanal före satfinder?"
 
 msgid "[bouquet edit]"
 msgstr "[bouquet editor]"
@@ -2040,7 +2061,7 @@ msgid "delete"
 msgstr "ta bort"
 
 msgid "delete cut"
-msgstr ""
+msgstr "ta bort klipp"
 
 msgid "delete..."
 msgstr "ta bort..."
@@ -2079,7 +2100,7 @@ msgid "end bouquet edit"
 msgstr "avsluta bouquet editor"
 
 msgid "end cut here"
-msgstr ""
+msgstr "slutklipp här"
 
 msgid "end favourites edit"
 msgstr "avsluta favoriter editor"
@@ -2119,12 +2140,14 @@ msgid ""
 "incoming call!\n"
 "%s calls on %s!"
 msgstr ""
+"inkommande samtal!\n"
+"%s ringer från %s!"
 
 msgid "init module"
 msgstr "initialisera modul"
 
 msgid "insert mark here"
-msgstr ""
+msgstr "infoga markör här"
 
 msgid "leave movie player..."
 msgstr "lämna videospelare..."
@@ -2232,13 +2255,13 @@ msgid "recording..."
 msgstr "spelar in..."
 
 msgid "remove after this position"
-msgstr ""
+msgstr "ta bort efter denna position"
 
 msgid "remove all new found flags"
 msgstr "ta bort alla ny hittad flagga"
 
 msgid "remove before this position"
-msgstr ""
+msgstr "ta bort före denna position"
 
 msgid "remove entry"
 msgstr "ta bort post"
@@ -2250,7 +2273,7 @@ msgid "remove new found flag"
 msgstr "ta bort ny hittad flagga"
 
 msgid "remove this mark"
-msgstr ""
+msgstr "ta bort denna markör"
 
 msgid "repeated"
 msgstr "repeterande"
@@ -2319,7 +2342,7 @@ msgid "show event details"
 msgstr "visa program detaljer"
 
 msgid "shutdown"
-msgstr ""
+msgstr "stäng av"
 
 msgid "simple"
 msgstr "enkelt"
@@ -2331,10 +2354,10 @@ msgid "skip forward"
 msgstr "hoppa framåt"
 
 msgid "standby"
-msgstr ""
+msgstr "viloläge"
 
 msgid "start cut here"
-msgstr ""
+msgstr "startklipp här"
 
 msgid "start timeshift"
 msgstr "starta timeshift"
@@ -2400,7 +2423,7 @@ msgid "yes (keep feeds)"
 msgstr "ja (behåll feeds)"
 
 msgid "your Dreambox. Shutdown now?"
-msgstr ""
+msgstr "din Dreambox. Stäng av nu?"
 
 msgid "zap"
 msgstr "zap"
@@ -2437,9 +2460,6 @@ msgstr "zapped"
 
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "Vill du verkligen ta bort den här inspelningen?"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa cutlist guiden?"
 
 #~ msgid "Equal to Socket A"
 #~ msgstr "Likadant som Tuner A"
@@ -2518,6 +2538,9 @@ msgstr "zapped"
 
 #~ msgid "Swap services"
 #~ msgstr "Byt kanal"
+
+#~ msgid "The sleep timer has been acitvated."
+#~ msgstr "Sovtimern har aktiverats"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshifting"
