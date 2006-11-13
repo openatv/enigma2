@@ -63,7 +63,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 	def clear(self):
 		del self.list[:]
 		self.l.setList(self.list)
-		self.currPlaying = 0
+		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 
 	GUI_WIDGET = eListbox
@@ -91,11 +91,10 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		self.currPlaying = index
 	
 	def updateState(self, state):
-		if self.currPlaying == -1:
-			return
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
 			self.list[self.oldCurrPlaying] = PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
-		self.list[self.currPlaying] = PlaylistEntryComponent(self.list[self.currPlaying][0], state)
+		if self.currPlaying != -1 and self.currPlaying < len(self.list):
+			self.list[self.currPlaying] = PlaylistEntryComponent(self.list[self.currPlaying][0], state)
 		self.updateList()
 
 	def playFile(self):
