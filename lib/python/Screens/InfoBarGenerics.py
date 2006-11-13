@@ -32,6 +32,7 @@ from Screens.MinuteInput import MinuteInput
 from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
 from Screens.SubtitleDisplay import SubtitleDisplay
+from Screens.SleepTimerEdit import SleepTimerEdit
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -1120,7 +1121,6 @@ class InfoBarPlugins:
 	def __init__(self):
 		self.addExtension(extension = self.getPluginList, type = InfoBarExtensions.EXTENSION_LIST)
 		
-		
 	def getPluginName(self, name):
 		return name
 		
@@ -1132,6 +1132,20 @@ class InfoBarPlugins:
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session)
+
+# depends on InfoBarExtensions
+class InfoBarSleepTimer:
+	def __init__(self):
+		self.addExtension((self.getSleepTimerName, self.showSleepTimerSetup, self.available), "1")	
+		
+	def available(self):
+		return True
+
+	def getSleepTimerName(self):
+		return _("Sleep Timer")
+
+	def showSleepTimerSetup(self):
+		self.session.open(SleepTimerEdit)
 
 # depends on InfoBarExtensions
 class InfoBarPiP:
