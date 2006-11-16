@@ -71,7 +71,12 @@
 	</map>
 	
 	<map context="InfobarInstantRecord">
-		<key id="KEY_RED" mapto="instantRecord" flags="m" />
+		<device name="dreambox remote control (native)">
+			<key id="KEY_RED" mapto="instantRecord" flags="m" />
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+		</device>
 	</map>
 
 	<map context="InfobarExtensions">
