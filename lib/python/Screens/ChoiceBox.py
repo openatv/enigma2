@@ -16,17 +16,17 @@ class ChoiceBox(Screen):
 		self["text"] = Label(title)
 		self.list = []
 		if keys is None:
-			self.keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
+			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
 		else:
-			self.keys = keys + (len(list) - len(keys)) * [""]
+			self.__keys = keys + (len(list) - len(keys)) * [""]
 			
 		self.keymap = {}
 		pos = 0
 		for x in list:
-			strpos = str(self.keys[pos])
+			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
-			if self.keys[pos] != "":
-				self.keymap[self.keys[pos]] = list[pos]
+			if self.__keys[pos] != "":
+				self.keymap[self.__keys[pos]] = list[pos]
 			pos += 1
 		self["list"] = ChoiceList(list = self.list, selection = selection)
 				
