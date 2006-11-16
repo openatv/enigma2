@@ -208,10 +208,10 @@ class MovieSelection(Screen):
 			self.reloadList()
 
 	def showTagsFirst(self):
-		self.showTagsN(1)
+		self.showTagsN(0)
 
 	def showTagsSecond(self):
-		self.showTagsN(2)
+		self.showTagsN(1)
 
 	def showTagsMenu(self):
 		if len(self.tags) < 3:
