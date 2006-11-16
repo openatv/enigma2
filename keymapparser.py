@@ -1,5 +1,6 @@
 import xml.dom.minidom
 import enigma
+from Tools.XMLTools import elementsWithTag
 
 from keyids import KEYIDS;
 
@@ -28,19 +29,16 @@ def readKeymap():
 	except:
 		raise "keymap not well-formed."
 	
-	try:	
-		keymap = dom.getElementsByTagName("keymap")[0]
-	except:
-		raise "no keymap defined."
+	keymap = dom.childNodes[0]
 	
-	maps = keymap.getElementsByTagName("map")
+	maps = elementsWithTag(keymap.childNodes, "map")
 	
 	for cmap in maps:
 		context = str(cmap.getAttribute("context"))
 		assert context != "", "map must have context"
 	
 		def parseKeys(device, keys):
-			for x in keys.getElementsByTagName("key"):
+			for x in elementsWithTag(keys.childNodes, "key"):
 				mapto = str(x.getAttribute("mapto"))
 				id = x.getAttribute("id")
 				flags = x.getAttribute("flags")
@@ -78,6 +76,6 @@ def readKeymap():
 		
 		parseKeys("generic", cmap)
 		
-		for device in cmap.getElementsByTagName("device"):
+		for device in elementsWithTag(cmap.childNodes, "device"):
 			parseKeys(str(device.getAttribute("name")), device)
 
