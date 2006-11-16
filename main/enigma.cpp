@@ -63,10 +63,10 @@ void keyEvent(const eRCKey &key)
 	if (key.flags & eRCKey::flagAscii)
 	{
 		prev_ascii_code = key.code;
-		ptr->keyPressed(0, 510 /* faked KEY_ASCII */, 0);
+		ptr->keyPressed(key.producer->getIdentifier(), 510 /* faked KEY_ASCII */, 0);
 	}
 	else
-		ptr->keyPressed(0, key.code, key.flags);
+		ptr->keyPressed(key.producer->getIdentifier(), key.code, key.flags);
 }
 
 /************************************************/
@@ -159,6 +159,9 @@ int main(int argc, char **argv)
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));
+	
+	dsk.setStyleID(0);
+	dsk_lcd.setStyleID(1);
 	
 /*	if (double_buffer)
 	{

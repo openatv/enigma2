@@ -105,7 +105,7 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 		{
 				// we found a native action.
 			eNativeKeyBinding bind;
-			bind.m_device = 0;
+			bind.m_device = device;
 			bind.m_key = key;
 			bind.m_flags = flags;
 			bind.m_action = actions[i].m_id;
@@ -117,7 +117,7 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 		// we didn't find the action, so it must be a pythonAction
 	ePythonKeyBinding bind;
 
-	bind.m_device = 0;
+	bind.m_device = device;
 	bind.m_key = key;
 	bind.m_flags = flags;
 	bind.m_action = action;
@@ -133,7 +133,7 @@ struct call_entry
 	call_entry(eWidget *widget, void *arg, void *arg2): m_fnc(0), m_arg(0), m_widget(widget), m_widget_arg(arg), m_widget_arg2(arg2) { }
 };
 
-void eActionMap::keyPressed(int device, int key, int flags)
+void eActionMap::keyPressed(const std::string &device, int key, int flags)
 {
 	std::list<call_entry> call_list;
 	
@@ -155,9 +155,10 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				for (; k != e; ++k)
 				{
 					if (
-						// (k->second.m_device == m_device) &&
 							(k->second.m_key == key) &&
-							(k->second.m_flags & (1<<flags)))
+							(k->second.m_flags & (1<<flags)) &&
+						  ((k->second.m_device == device) || (k->second.m_device == "generic"))
+						  )
 						call_list.push_back(call_entry(i->second.m_widget, (void*)i->second.m_id, (void*)k->second.m_action));
 				}
 			} else
@@ -177,9 +178,10 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				for (; k != e;)
 				{
 					if (
-						// (k->second.m_device == m_device) &&
 						(k->second.m_key == key) &&
-						(k->second.m_flags & (1<<flags)))
+						(k->second.m_flags & (1<<flags)) &&
+						((k->second.m_device == device) || (k->second.m_device == "generic"))
+						)
 					{
 						PyObject *pArgs = PyTuple_New(2);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));
@@ -192,6 +194,7 @@ void eActionMap::keyPressed(int device, int key, int flags)
 				}
 			} else
 			{
+				eDebug("wildcard.");
 				PyObject *pArgs = PyTuple_New(2);
 				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));

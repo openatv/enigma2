@@ -34,7 +34,7 @@ public:
 	
 	void bindKey(const std::string &device, int key, int flags, const std::string &context, const std::string &action);
 	
-	void keyPressed(int device, int key, int flags);
+	void keyPressed(const std::string &device, int key, int flags);
 	
 	static RESULT getInstance(ePtr<eActionMap> &ptr);
 #ifndef SWIG
@@ -56,7 +56,7 @@ private:
 	friend struct compare_string_keybind_native;
 	struct eNativeKeyBinding
 	{
-		int m_device;
+		std::string m_device;
 		int m_key;
 		int m_flags;
 		
@@ -69,7 +69,7 @@ private:
 	friend struct compare_string_keybind_python;
 	struct ePythonKeyBinding
 	{
-		int m_device;
+		std::string m_device;
 		int m_key;
 		int m_flags;
 		
