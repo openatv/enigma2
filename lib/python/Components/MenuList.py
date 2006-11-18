@@ -38,7 +38,8 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 
 	def moveToIndex(self, idx):
-		self.instance.moveSelectionTo(idx)
+		if self.instance is not None:
+			self.instance.moveSelectionTo(idx)
 
 	def pageUp(self):
 		if self.instance is not None:
