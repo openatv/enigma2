@@ -10,6 +10,7 @@ from Plugins.Plugin import PluginDescriptor
 
 from Screens.MessageBox import MessageBox
 from Screens.FixedMenu import FixedMenu
+from Screens.ChoiceBox import ChoiceBox
 
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
@@ -103,8 +104,8 @@ class MovieSelection(Screen):
 				"contextMenu": self.doContext,
 				
 				"red": self.showAll,
-				"yellow": self.showTagsFirst,
-				"green": self.showTagsSecond,
+				"green": self.showTagsFirst,
+				"yellow": self.showTagsSecond,
 				"blue": self.showTagsMenu,
 			})
 		self["actions"].csel = self
@@ -164,6 +165,10 @@ class MovieSelection(Screen):
 	def abort(self):
 		self.close(None)
 
+	def getTagDescription(self, tag):
+		# TODO: access the tag database
+		return tag
+
 	def updateTags(self):
 		# get a list of tags available in this list
 		self.tags = list(self["list"].tags)
@@ -175,10 +180,10 @@ class MovieSelection(Screen):
 		# when tags are present, however, the first two are 
 		# directly mapped to the second, third ("green", "yellow") buttons
 		if len(self.tags) > 0:
-			self.tag_first = self.tags[0]
+			self.tag_first = self.getTagDescription(self.tags[0])
 		
 		if len(self.tags) > 1:
-			self.tag_second = self.tags[1]
+			self.tag_second = self.getTagDescription(self.tags[1])
 		
 		self["key_green"].text = self.tag_first
 		self["key_yellow"].text = self.tag_second
@@ -195,6 +200,13 @@ class MovieSelection(Screen):
 		self.lengthTimer.start(10, 1)
 		self.lengthPosition = 0
 		self.lengthLength = len(self["list"])
+		
+		title = _("Recorded files...")
+		
+		if self.selected_tags is not None:
+			title += " - " + ','.join(self.selected_tags)
+		
+		self.setTitle(title)
 
 	def showAll(self):
 		self.selected_tags = None
@@ -204,20 +216,28 @@ class MovieSelection(Screen):
 		if len(self.tags) < n:
 			self.showTagWarning()
 		else:
+			print "select tag #%d, %s, %s" % (n, self.tags[n - 1], ','.join(self.tags))
 			self.selected_tags = set([self.tags[n - 1]])
 			self.reloadList()
 
 	def showTagsFirst(self):
-		self.showTagsN(0)
+		self.showTagsN(1)
 
 	def showTagsSecond(self):
-		self.showTagsN(1)
+		self.showTagsN(2)
+
+	def tagChosen(self, tag):
+		if tag is not None:
+			self.selected_tags = set([tag[0]])
+			self.reloadList()
 
 	def showTagsMenu(self):
 		if len(self.tags) < 3:
 			self.showTagWarning()
 		else:
-			pass
+			list = [(tag, self.getTagDescription(tag)) for tag in self.tags ]
+			self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select keyword to filter..."), list = list)
 
 	def showTagWarning(self):
-		print "select some tags first!"
+		# TODO
+		self.session.open(MessageBox, _("You need to define some keywords first!\nPress the menu-key to define keywords.\nDo you want to define keywords now?"), MessageBox.TYPE_ERROR)
