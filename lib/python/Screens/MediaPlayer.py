@@ -34,7 +34,8 @@ class MediaPlayer(Screen, InfoBarSeek):
 		self.addPlaylistParser(PlaylistIOPLS, "pls")
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
-		self.filelist = FileList(resolveFilename(SCOPE_MEDIA), matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)
+		# 'None' is magic to start at the list of mountpoints
+		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob)", useServiceRef = True)
 		self["filelist"] = self.filelist
 
 		self.playlist = PlayList()
@@ -271,9 +272,15 @@ class MediaPlayer(Screen, InfoBarSeek):
 		text = ""
 		if self.currList == "filelist":
 			if not self.filelist.canDescent():
-				text = self.filelist.getServiceRef().getPath()
+				r = self.filelist.getServiceRef()
+				if r is None:
+					return
+				text = r.getPath()
 		if self.currList == "playlist":
-			text = self.playlist.getSelection().getPath()
+			t = self.playlist.getSelection()
+			if t is None:
+				return
+			text = t.getPath()
 
 		self["currenttext"].setText(os.path.basename(text))
 
