@@ -16,6 +16,7 @@ AC_ARG_WITH(libsdl,
 
 AM_PATH_PYTHON(2.3)
 AC_PYTHON_DEVEL
+AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
 
 TUXBOX_APPS_DVB
 
@@ -28,6 +29,9 @@ TUXBOX_APPS_LIB_PKGCONFIG(PNG,libpng)
 TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
 TUXBOX_APPS_LIB_PKGCONFIG(DVBSI,libdvbsi++)
 _TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(GSTREAMER,gstreamer,HAVE_GSTREAMER)
+AC_CHECK_LIB(jpeg, jpeg_set_defaults, HAVE_JPEG="yes", HAVE_JPEG="no")
+JPEG_LIBS="-ljpeg"
+AC_SUBST(JPEG_LIBS)
 
 if test "$withsdl" = "yes" ; then
 	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
@@ -82,6 +86,7 @@ lib/python/Plugins/Extensions/FileManager/Makefile
 lib/python/Plugins/Extensions/FritzCall/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/ZappingAlternatives/Makefile
+lib/python/Plugins/Extensions/PicturePlayer/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
