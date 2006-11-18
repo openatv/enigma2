@@ -20,6 +20,7 @@ import datetime
 
 plugin_path = ""
 
+# FIXME: harddiskmanager has a better overview about available mointpoints!
 BackupPath = {
 		"hdd" : "/media/hdd/backup",
 		"usb" : "/media/usb/backup",
