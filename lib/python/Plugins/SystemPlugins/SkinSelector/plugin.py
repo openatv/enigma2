@@ -18,6 +18,8 @@ from Components.config import config
 import os, sys
 
 class SkinSelector(Screen):
+	# for i18n:
+	# _("Choose your Skin")
 	skin = """
 		<screen position="75,138" size="600,320" title="Choose your Skin" >
 			<widget name="SkinList" position="10,10" size="275,300" scrollbarMode="showOnDemand" />
