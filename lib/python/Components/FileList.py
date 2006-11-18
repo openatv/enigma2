@@ -3,6 +3,7 @@ from GUIComponent import *
 import re
 
 from MenuList import MenuList
+from Components.Harddisk import harddiskmanager
 
 from Tools.Directories import *
 
@@ -52,6 +53,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		
+		self.mount_point = None
 		self.current_directory = None
 		self.useServiceRef = useServiceRef
 		self.showDirectories = showDirectories
@@ -64,6 +66,8 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		self.l.setFont(0, gFont("Regular", 18))
 		
 	def getSelection(self):
+		if self.l.getCurrentSelection() is None:
+			return None
 		return self.l.getCurrentSelection()[0]
 	
 	def getFileList(self):
@@ -72,11 +76,20 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 	def changeDir(self, directory, select = None):
 		self.list = []
 		
+		# if we are just entering from the list of mount points:
+		if self.current_directory is None:
+			self.mount_point = directory
 		self.current_directory = directory
 		directories = []
 		files = []
 		
-		if self.useServiceRef:
+		if directory is None: # present available mountpoints
+			print "listing partitions:"
+			for p in harddiskmanager.getMountedPartitions():
+				self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint, isDir = True))
+			files = [ ]
+			directories = [ ]
+		elif self.useServiceRef:
 			root = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + directory)
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
@@ -102,8 +115,11 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 					directories.append(directory + x + "/")
 					files.remove(x)
 		
-		if directory != "/" and self.showDirectories and not self.isTop:
-			self.list.append(FileEntryComponent(name = "..", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+		if directory is not None and self.showDirectories and not self.isTop:
+			if directory == self.mount_point:
+				self.list.append(FileEntryComponent(name = ".. (" +_("List of Storage Devices") + ")", absolute = None, isDir = True))
+			else:
+				self.list.append(FileEntryComponent(name = "..", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
 
 		if self.showDirectories:
 			for x in directories:
@@ -144,18 +160,26 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		return self.current_directory
 
 	def canDescent(self):
+		if self.getSelection() is None:
+			return False
 		return self.getSelection()[1]
 	
 	def descent(self):
+		if self.getSelection() is None:
+			return
 		self.changeDir(self.getSelection()[0], select = self.current_directory)
 		
 	def getFilename(self):
+		if self.getSelection() is None:
+			return None
 		x = self.getSelection()[0]
 		if isinstance(x, eServiceReference):
 			x = x.getPath()
 		return x
 
 	def getServiceRef(self):
+		if self.getSelection() is None:
+			return None
 		x = self.getSelection()[0]
 		if isinstance(x, eServiceReference):
 			return x
