@@ -1,3 +1,4 @@
-SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor ZappingAlternatives FritzCall
+SUBDIRS = TuxboxPlugins WebInterface FileManager CutListEditor ZappingAlternatives FritzCall PicturePlayer
+
 
 
