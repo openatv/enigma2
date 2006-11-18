@@ -42,9 +42,11 @@ enigma2_LDADD = \
 	@DVBSI_LIBS@ \
 	@FRIBIDI_LIBS@ \
 	@GSTREAMER_LIBS@ \
-	@XINE_LIBS@ \
 	@JPEG_LIBS@ \
 	-ldl -lpthread -lcrypt -lresolv
+
+#	@XINE_LIBS@ \
+#
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)

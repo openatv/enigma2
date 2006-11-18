@@ -16,7 +16,7 @@ AC_ARG_WITH(libsdl,
 
 AM_PATH_PYTHON(2.3)
 AC_PYTHON_DEVEL
-AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
+#AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
 
 TUXBOX_APPS_DVB
 
