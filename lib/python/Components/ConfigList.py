@@ -46,9 +46,12 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	
 	def invalidateCurrent(self):
 		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
-		
+
 	def invalidate(self, entry):
-		self.l.invalidateEntry(self.__list.index(entry))
+		# when the entry to invalidate does not exist, just ignore the request.
+		# this eases up conditional setup screens a lot.
+		if entry in self.__list:
+			self.l.invalidateEntry(self.__list.index(entry))
 
 	GUI_WIDGET = eListbox
 	
