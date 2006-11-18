@@ -88,6 +88,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/lcd.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
+#include <lib/gdi/picexif.h>
+#include <lib/gdi/picload.h>
 
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
@@ -207,6 +209,8 @@ typedef long time_t;
 %include <lib/dvb_ci/dvbci_ui.h>
 %include <lib/dvb/db.h>
 %include <lib/python/python.h>
+%include <lib/gdi/picexif.h>
+%include <lib/gdi/picload.h>
 /**************  eptr  **************/
 
 %template(eActionMapPtr) ePtr<eActionMap>;
