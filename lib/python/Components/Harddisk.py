@@ -59,7 +59,7 @@ class Harddisk:
 								
 	def model(self):
 		procfile = tryOpen(self.prochdx + "model")
-		
+
 		if procfile == "":
 			return ""
 
@@ -162,23 +162,69 @@ def existHDD(num):
 	
 	return -1
 
+class Partition:
+	def __init__(self, mountpoint, description = ""):
+		self.mountpoint = mountpoint
+		self.description = description
+
+	def stat(self):
+		return os.statvfs(self.mountpoint)
+
+	def free(self):
+		try:
+			s = self.stat()
+			return s.f_bavail * s.f_bsize
+		except OSError:
+			return None
+	
+	def total(self):
+		try:
+			s = self.stat()
+			return s.f_blocks * s.f_bsize
+		except OSError:
+			return None
+
+	def mounted(self):
+		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
+		procfile = tryOpen("/proc/mounts")
+		for n in procfile.readlines():
+			if n.split(' ')[1] == self.mountpoint:
+				return True
+		return False
+
 class HarddiskManager:
 	def __init__(self):
 		hddNum = 0
 		self.hdd = [ ]
-		while 1:
-			if existHDD(hddNum) == 1:
-				self.hdd.append(Harddisk(hddNum))
-			hddNum += 1
-			
-			if hddNum > 8:
-				break
+		
+		self.partitions = [ ]
+		
+		for hddNum in range(8):
+			if existHDD(hddNum):
+				hdd = Harddisk(hddNum)
+				self.hdd.append(hdd)
+
+		# currently, this is just an enumeration of what's possible,
+		# this probably has to be changed to support automount stuff.
+		# still, if stuff is mounted into the correct mountpoints by
+		# external tools, everything is fine (until somebody inserts 
+		# a second usb stick.)
+		p = [
+					("/media/hdd", _("Harddisk")), 
+					("/media/card", _("Card")), 
+					("/media/cf", _("Compact Flash")),
+					("/media/mmc1", _("MMC Card")),
+					("/media/net", _("Network Mount")),
+					("/media/ram", _("Ram Disk")),
+					("/media/usb", _("USB Stick")),
+					("/", _("Internal Flash"))
+				]
+		
+		for x in p:
+			self.partitions.append(Partition(mountpoint = x[0], description = x[1]))
 
 	def HDDCount(self):
-		cnt = 0
-		for hd in self.hdd:
-			cnt = cnt + 1
-		return cnt	
+		return len(self.hdd)
 
 	def HDDList(self):
 		list = [ ]
@@ -193,6 +239,7 @@ class HarddiskManager:
 
 		return list
 
+	def getMountedPartitions(self):
+		return [x for x in self.partitions if x.mounted()]
+
 harddiskmanager = HarddiskManager()
-
-
