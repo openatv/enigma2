@@ -87,6 +87,7 @@ lib/python/Plugins/Extensions/FritzCall/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/ZappingAlternatives/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
+lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
