@@ -769,9 +769,9 @@ class ChannelSelectionBase(Screen):
 									n = ("%s (%d.%d" + h + ")") % (service_name, orbpos / 10, orbpos % 10)
 								service.setName(n)
 							self.servicelist.addService(service)
-							self.servicelist.finishFill()
-							if prev is not None:
-								self.setCurrentSelection(prev)
+						self.servicelist.finishFill()
+						if prev is not None:
+							self.setCurrentSelection(prev)
 
 	def showProviders(self):
 		if not self.pathChangedDisabled:
