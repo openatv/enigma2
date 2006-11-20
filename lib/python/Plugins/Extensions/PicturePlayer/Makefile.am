@@ -1,3 +1,5 @@
+SUBDIRS = data
+
 installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/PicturePlayer
 
 install_PYTHON =	\
