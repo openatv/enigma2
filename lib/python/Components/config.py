@@ -336,7 +336,7 @@ class ConfigSequence(ConfigElement):
 			max_pos += len(str(self.limits[num][1]))
 
 			while self._value[num] < self.limits[num][0]:
-				self.value[num] += 1
+				self._value[num] += 1
 
 			while self._value[num] > self.limits[num][1]:
 				self._value[num] -= 1
@@ -622,7 +622,7 @@ class ConfigSatlist(ConfigSelection):
 	def __init__(self, list, default = None):
 		if default is not None:
 			default = str(default)
-		ConfigSelection.__init__(self, choices = [(str(orbpos), desc) for (orbpos, desc) in list], default = default)
+		ConfigSelection.__init__(self, choices = [(str(orbpos), desc, flags) for (orbpos, desc, flags) in list], default = default)
 
 	def getOrbitalPosition(self):
 		if self.value == "":
