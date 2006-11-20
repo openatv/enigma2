@@ -1157,6 +1157,7 @@ int eDVBDBListQuery::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
 	:eDVBDBListQuery(db, source, query)
 {
+	std::set<unsigned int> found;
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
 		it != m_db->m_services.end(); ++it)
 	{
@@ -1164,15 +1165,9 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 		if (res)
 		{
 			unsigned int dvbnamespace = it->first.getDVBNamespace().get()&0xFFFF0000;
-			bool found=0;
-			for (std::list<eServiceReferenceDVB>::iterator i(m_list.begin()); i != m_list.end(); ++i)
-				if ( (i->getDVBNamespace().get()&0xFFFF0000) == dvbnamespace )
-				{
-					found=true;
-					break;
-				}
-			if (!found)
+			if (found.find(dvbnamespace) == found.end())
 			{
+				found.insert(dvbnamespace);
 				eServiceReferenceDVB ref;
 				ref.setDVBNamespace(dvbnamespace);
 				ref.flags=eServiceReference::flagDirectory;
@@ -1209,26 +1204,19 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
 	:eDVBDBListQuery(db, source, query)
 {
+	std::set<std::string> found;
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
 		it != m_db->m_services.end(); ++it)
 	{
 		int res = it->second->checkFilter(it->first, *query);
 		if (res)
 		{
-			bool found=0;
-
 			const char *provider_name = it->second->m_provider_name.length() ?
 				it->second->m_provider_name.c_str() :
 				"Unknown";
-
-			for (std::list<eServiceReferenceDVB>::iterator i(m_list.begin()); i != m_list.end(); ++i)
-				if (i->name == provider_name)
-				{
-					found=true;
-					break;
-				}
-			if (!found)
+			if (found.find(std::string(provider_name)) == found.end())
 			{
+				found.insert(std::string(provider_name));
 				eServiceReferenceDVB ref;
 				char buf[64];
 				ref.name=provider_name;
