@@ -1,4 +1,4 @@
-# -*- coding: latin-1 -*-
+# -*- coding: iso-8859-1 -*-
 from enigma import eTimer
 from Components.Language import language
 
