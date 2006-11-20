@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-2 -*-
 LanguageCodes = { }
 
 LanguageCodes["aar"] = LanguageCodes["aa"] = ("Afar", "Hamitic")
