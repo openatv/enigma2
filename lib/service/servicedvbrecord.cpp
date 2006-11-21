@@ -13,6 +13,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref
 	m_want_record = 0;
 	m_tuned = 0;
 	m_target_fd = -1;
+	m_error = 0;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -26,6 +27,13 @@ void eDVBServiceRecord::serviceEvent(int event)
 		m_tuned = 1;
 		if (m_state == stateRecording && m_want_record)
 			doRecord();
+		m_event((iRecordableService*)this, evTunedIn);
+		break;
+	}
+	case eDVBServicePMTHandler::eventTuneFailed:
+	{
+		eDebug("record failed to tune");
+		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
@@ -34,6 +42,7 @@ void eDVBServiceRecord::serviceEvent(int event)
 			doPrepare();
 		else if (m_want_record) /* doRecord can be called from Prepared and Recording state */
 			doRecord();
+		m_event((iRecordableService*)this, evNewProgramInfo);
 		break;
 	}
 	}
@@ -98,6 +107,7 @@ RESULT eDVBServiceRecord::start()
 {
 	m_want_record = 1;
 		/* when tune wasn't yet successfully, doRecord stays in "prepared"-state which is fine. */
+	m_event((iRecordableService*)this, evStart);
 	return doRecord();
 }
 
@@ -122,6 +132,7 @@ RESULT eDVBServiceRecord::stop()
 		m_record = 0;
 		m_state = stateIdle;
 	}
+	m_event((iRecordableService*)this, evStop);
 	return 0;
 }
 
@@ -142,21 +153,26 @@ int eDVBServiceRecord::doRecord()
 {
 	int err = doPrepare();
 	if (err)
+	{
+		m_error = errTuneFailed;
+		m_event((iRecordableService*)this, evRecordFailed);
 		return err;
+	}
 	
 	if (!m_tuned)
 		return 0; /* try it again when we are tuned in */
 	
 	if (!m_record && m_tuned)
 	{
-
 		eDebug("Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());
 		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
 		if (fd == -1)
 		{
 			eDebug("eDVBServiceRecord - can't open recording file!");
-			return -1;
+			m_error = errOpenRecordFile;
+			m_event((iRecordableService*)this, evRecordFailed);
+			return errOpenRecordFile;
 		}
 		
 			/* turn off kernel caching strategies */
@@ -166,13 +182,17 @@ int eDVBServiceRecord::doRecord()
 		if (m_service_handler.getDataDemux(demux))
 		{
 			eDebug("eDVBServiceRecord - NO DEMUX available!");
-			return -2;
+			m_error = errNoDemuxAvailable;
+			m_event((iRecordableService*)this, evRecordFailed);
+			return errNoDemuxAvailable;
 		}
 		demux->createTSRecorder(m_record);
 		if (!m_record)
 		{
 			eDebug("eDVBServiceRecord - no ts recorder available.");
-			return -3;
+			m_error = errNoTsRecorderAvailable;
+			m_event((iRecordableService*)this, evRecordFailed);
+			return errNoTsRecorderAvailable;
 		}
 		m_record->setTargetFD(fd);
 		m_record->setTargetFilename(m_filename.c_str());
@@ -289,11 +309,19 @@ int eDVBServiceRecord::doRecord()
 			m_state = stateRecording;
 		}
 	}
+	m_error = 0;
+	m_event((iRecordableService*)this, evRecordRunning);
 	return 0;
 }
 
 RESULT eDVBServiceRecord::frontendInfo(ePtr<iFrontendInformation> &ptr)
 {
 	ptr = this;
+	return 0;
+}
+
+RESULT eDVBServiceRecord::connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;
 }
