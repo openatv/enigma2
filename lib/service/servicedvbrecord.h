@@ -15,9 +15,11 @@ class eDVBServiceRecord: public eDVBServiceBase,
 {
 DECLARE_REF(eDVBServiceRecord);
 public:
+	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);
 	RESULT start();
 	RESULT stop();
+	RESULT getError(int &error) { error = m_error; m_error = 0; return 0; }
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	int m_state, m_want_record;
@@ -25,11 +27,10 @@ private:
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	
 	eServiceReferenceDVB m_ref;
-	void serviceEvent(int event);
 	
 	ePtr<iDVBTSRecorder> m_record;
 	
-	int m_recording, m_tuned;
+	int m_recording, m_tuned, m_error;
 	std::set<int> m_pids_active;
 	std::string m_filename;
 	int m_target_fd;
@@ -37,6 +38,11 @@ private:
 	int doPrepare();
 	int doRecord();
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
+
+			/* events */
+	void serviceEvent(int event);
+	Signal2<void,iRecordableService*,int> m_event;
+
 };
 
 #endif
