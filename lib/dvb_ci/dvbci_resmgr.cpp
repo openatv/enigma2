@@ -59,11 +59,11 @@ int eDVBCIResourceManagerSession::doAction()
 		state=stateProfileChange;
 		return 0;
 	}
-  case stateProfileChange:
-  {
-    eDebug("bla kaputt");
-    break;
-  }
+	case stateProfileChange:
+	{
+		eDebug("bla kaputt");
+		break;
+	}
 	case stateProfileEnquiry:
 	{
 		const unsigned char tag[3]={0x9F, 0x80, 0x11};
