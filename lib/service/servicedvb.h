@@ -44,7 +44,7 @@ public:
 	PyObject *getContent(const char* formatstr, bool sorted=false);
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
-	int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
+	inline int compareLessEqual(const eServiceReference &a, const eServiceReference &b);
 	
 	RESULT startEdit(ePtr<iMutableServiceList> &);
 	RESULT flushChanges();
@@ -62,6 +62,11 @@ private:
 		/* for editing purposes. WARNING: lifetime issue! */
 	eBouquet *m_bouquet;
 };
+
+inline int eDVBServiceList::compareLessEqual(const eServiceReference &a, const eServiceReference &b)
+{
+	return m_query->compareLessEqual((const eServiceReferenceDVB&)a, (const eServiceReferenceDVB&)b);
+}
 
 class eDVBServiceBase: public iFrontendInformation
 {
