@@ -51,12 +51,10 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 		return;
 	assert(m_service_center);
 	
-	ePtr<iListableService> lst;
-	if (m_service_center->list(m_root, lst))
+	if (m_service_center->list(m_root, m_lst))
 		eDebug("no list available!");
-	else
-		if (lst->getContent(m_list))
-			eDebug("getContent failed");
+	else if (m_lst->getContent(m_list))
+		eDebug("getContent failed");
 
 	FillFinished();
 }
@@ -227,10 +225,11 @@ void eListboxServiceContent::setPixmap(int type, ePtr<gPixmap> &pic)
 
 void eListboxServiceContent::sort()
 {
-	ePtr<iListableService> lst;
-	if (!m_service_center->list(m_root, lst))
+	if (!m_lst)
+		m_service_center->list(m_root, m_lst);
+	if (m_lst)
 	{
-		m_list.sort(iListableServiceCompare(lst));
+		m_list.sort(iListableServiceCompare(m_lst));
 			/* FIXME: is this really required or can we somehow keep the current entry? */
 		cursorHome();
 		if (m_listbox)
@@ -304,13 +303,12 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 		m_listbox->entryChanged(m_cursor_number);
 		if (!state)
 		{
-			ePtr<iListableService> lst;
-			if (m_service_center->list(m_root, lst))
-				eDebug("no list available!");
-			else
+			if (!m_lst)
+				m_service_center->list(m_root, m_lst);
+			if (m_lst)
 			{
 				ePtr<iMutableServiceList> list;
-				if (lst->startEdit(list))
+				if (m_lst->startEdit(list))
 					eDebug("no editable list");
 				else
 				{
@@ -329,6 +327,8 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 					}
 				}
 			}
+			else
+				eDebug("no list available!");
 		}
 	}
 

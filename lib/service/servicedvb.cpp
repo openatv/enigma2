@@ -382,7 +382,7 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sort
 	
 	if (!m_query)
 		return -1;
-	
+
 	while (!m_query->getNextResult(ref))
 		list.push_back(ref);
 
@@ -487,11 +487,6 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 		return -1;
 	
 	return m_query->getNextResult((eServiceReferenceDVB&)ref);
-}
-
-int eDVBServiceList::compareLessEqual(const eServiceReference &a, const eServiceReference &b)
-{
-	return m_query->compareLessEqual((const eServiceReferenceDVB&)a, (const eServiceReferenceDVB&)b);
 }
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)

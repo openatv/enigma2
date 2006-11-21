@@ -106,6 +106,7 @@ private:
 	
 	eSize m_itemsize;
 	ePtr<iServiceHandler> m_service_center;
+	ePtr<iListableService> m_lst;
 	
 	eServiceReference m_root;
 
