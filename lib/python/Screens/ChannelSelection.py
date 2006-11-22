@@ -73,7 +73,7 @@ class ChannelContextMenu(Screen):
 		current_sel_flags = csel.getCurrentSelection().flags
 		inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		inBouquet = csel.getMutableList() is not None
-		haveBouquets = csel.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1
+		haveBouquets = config.usage.multibouquet.value
 
 		if not csel.bouquet_mark_edit and not csel.movemode:
 			if not inBouquetRootList:
@@ -151,7 +151,6 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
-		
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -376,7 +375,7 @@ class ChannelSelectionEdit:
 		self.saved_title = self.instance.getTitle()
 		pos = self.saved_title.find(')')
 		new_title = self.saved_title[:pos+1]
-		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') != -1:
+		if config.usage.multibouquet.value:
 			new_title += ' ' + _("[bouquet edit]")
 		else:
 			new_title += ' ' + _("[favourite edit]")
@@ -546,7 +545,7 @@ class ChannelSelectionBase(Screen):
 		return ref
 
 	def getBouquetNumOffset(self, bouquet):
-		if self.bouquet_root.getPath().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
+		if config.usage.multibouquet.value:
 			return 0
 		bouquet = self.appendDVBTypes(bouquet)
 		try:
@@ -847,26 +846,27 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.setCurrent(service)
 
 	def getBouquetList(self):
-		serviceCount=0
-		bouquets = [ ]
-		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(self.bouquet_root)
-		if not list is None:
-			while True:
-				s = list.getNext()
-				if not s.valid():
-					break
-				if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
-					info = serviceHandler.info(s)
+		if config.usage.multibouquet.value:
+			serviceCount=0
+			bouquets = [ ]
+			serviceHandler = eServiceCenter.getInstance()
+			list = serviceHandler.list(self.bouquet_root)
+			if not list is None:
+				while True:
+					s = list.getNext()
+					if not s.valid():
+						break
+					if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+						info = serviceHandler.info(s)
+						if not info is None:
+							bouquets.append((info.getName(s), s))
+					else:
+						serviceCount += 1
+				if len(bouquets) == 0 and serviceCount > 0:
+					info = serviceHandler.info(self.bouquet_root)
 					if not info is None:
-						bouquets.append((info.getName(s), s))
-				else:
-					serviceCount += 1
-			if len(bouquets) == 0 and serviceCount > 0:
-				info = serviceHandler.info(self.bouquet_root)
-				if not info is None:
-					bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
-			return bouquets
+						bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
+				return bouquets
 		return None
 
 	def keyNumber0(self, num):
