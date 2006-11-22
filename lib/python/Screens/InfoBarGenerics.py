@@ -1478,11 +1478,13 @@ class InfoBarSubserviceSelection:
 					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				else:
 					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+				selection += 3
 			else:
 				tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
 				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+				selection += 2
 
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection + 2, keys = keys)
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection, keys = keys)
 
 	def subserviceSelected(self, service):
 		del self.bouquets
@@ -1508,8 +1510,6 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1: # add to only one existing bouquet
 				self.addSubserviceToBouquet(self.bouquets[0][1])
-			else: #no bouquets in root.. so assume only one favourite list is used
-				self.addSubserviceToBouquet(self.servicelist.bouquet_root)
 
 	def bouquetSelClosed(self, **args):
 		self.bsel = None
