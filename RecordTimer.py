@@ -198,7 +198,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		elif next_state == self.StateEnded:
 			self.log(12, "stop recording")
 			if not self.justplay:
-				self.record_service.stop()
+				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if self.session is not None:

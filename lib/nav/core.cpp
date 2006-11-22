@@ -1,5 +1,6 @@
 #include <lib/nav/core.h>
 #include <lib/base/eerror.h>
+#include <Python.h>
 
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {
@@ -8,8 +9,17 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 		eDebug("nav: event for other service");
 		return;
 	}
+	m_event(event);
+}
 
-	m_event(this, event);
+void eNavigation::recordEvent(iRecordableService* service, int event)
+{
+	if (m_recordings.find(service) == m_recordings.end())
+	{
+		eDebug("nav: event for non registered recording service");
+		return;
+	}
+	m_record_event(service, event);
 }
 
 RESULT eNavigation::playService(const eServiceReference &service)
@@ -26,9 +36,15 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	return res;
 }
 
-RESULT eNavigation::connectEvent(const Slot2<void,eNavigation*,int> &event, ePtr<eConnection> &connection)
+RESULT eNavigation::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(event));
+	return 0;
+}
+
+RESULT eNavigation::connectRecordEvent(const Slot2<void,ePtr<iRecordableService>,int> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_record_event.connect(event));
 	return 0;
 }
 
@@ -44,7 +60,7 @@ RESULT eNavigation::stopService(void)
 	if (!m_runningService)
 		return 1;
 			/* send stop event */
-	m_event(this, iPlayableService::evEnd);
+	m_event(iPlayableService::evEnd);
 
 	m_runningService->stop();
 		/* kill service. */
@@ -60,7 +76,38 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 	eDebug("record: %d", res);
 	if (res)
 		service = 0;
+	else
+	{
+		ePtr<eConnection> conn;
+		service->connectEvent(slot(*this, &eNavigation::recordEvent), conn);
+		m_recordings[service]=conn;
+	}
 	return res;
+}
+
+RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
+{
+	service->stop();
+	std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it =
+		m_recordings.find(service);
+	if (it != m_recordings.end())
+	{
+		m_recordings.erase(it);
+		return 0;
+	}
+	eDebug("try to stop non running recording!!");  // this should not happen
+	return -1;
+}
+
+extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
+
+PyObject *eNavigation::getRecordings(void)
+{
+	PyObject *result = PyList_New(m_recordings.size());
+	int pos=0;
+	for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
+		PyList_SET_ITEM(result, pos++, New_iRecordableServicePtr(it->first)); 
+	return result;
 }
 
 RESULT eNavigation::pause(int dop)

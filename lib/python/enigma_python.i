@@ -155,6 +155,7 @@ typedef long time_t;
 %immutable eComponentScan::statusChanged;
 %immutable eComponentScan::newService;
 %immutable pNavigation::m_event;
+%immutable pNavigation::m_record_event;
 %immutable eListbox::selectionChanged;
 %immutable eDVBCI_UI::ciStateChanged;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
@@ -252,6 +253,12 @@ public:
 	PyObject *get();
 };
 
+%template(PSignal2VoidIRecordableServiceInt) PSignal2<void,ePtr<iRecordableService>&,int>;
+
+%typemap(out) PSignal2VoidIRecordableServiceInt {
+	$1 = $input->get();
+}
+
 /************** temp *****************/
 
 	/* need a better place for this, i agree. */
@@ -289,5 +296,10 @@ PyObject *New_eServiceReference(const eServiceReference &ref)
 {
     eServiceReference *result = new eServiceReference(ref);
     return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_eServiceReference, 1);
+}
+PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ptr)
+{
+    ePtr<iRecordableService> *result = new ePtr<iRecordableService>(ptr);
+    return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_ePtrTiRecordableService_t, 1);
 }
 %}
