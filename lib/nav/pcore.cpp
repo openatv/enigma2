@@ -14,16 +14,12 @@ pNavigation::pNavigation()
 	m_core = new eNavigation(service_center);
 	
 	m_core->connectEvent(slot(*this, &pNavigation::navEvent), m_nav_event_connection);
+	m_core->connectRecordEvent(slot(*this, &pNavigation::navRecordEvent), m_nav_record_event_connection);
 }
 
 RESULT pNavigation::playService(const eServiceReference &service)
 {
 	return m_core->playService(service);
-}
-
-RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service)
-{
-	return m_core->recordService(ref, service);
 }
 
 RESULT pNavigation::getCurrentService(ePtr<iPlayableService> &service)
@@ -41,8 +37,29 @@ RESULT pNavigation::stopService()
 	return m_core->stopService();
 }
 
-void pNavigation::navEvent(eNavigation *nav, int event)
+RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service)
+{
+	return m_core->recordService(ref, service);
+}
+
+RESULT pNavigation::stopRecordService(ePtr<iRecordableService> &service)
+{
+	return m_core->stopRecordService(service);
+}
+
+PyObject *pNavigation::getRecordings(void)
+{
+	return m_core->getRecordings();
+}
+
+void pNavigation::navEvent(int event)
 {
 		/* just relay the events here. */
 	m_event(event);
+}
+
+void pNavigation::navRecordEvent(ePtr<iRecordableService> service, int event)
+{
+		/* just relay the events here. */
+	m_record_event(service, event);
 }

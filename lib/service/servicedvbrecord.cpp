@@ -1,10 +1,16 @@
 #include <lib/service/servicedvbrecord.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
-
 #include <fcntl.h>
 
 DEFINE_REF(eDVBServiceRecord);
+
+extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
+
+PyObject *PyFrom(ePtr<iRecordableService> &c)
+{
+	return New_iRecordableServicePtr(c);
+}
 
 eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
 {
@@ -115,6 +121,7 @@ RESULT eDVBServiceRecord::start()
 RESULT eDVBServiceRecord::stop()
 {
 	eDebug("stop recording!!");
+	m_event((iRecordableService*)this, evStop);
 	if (m_state == stateRecording)
 	{
 		if (m_record)
@@ -132,7 +139,7 @@ RESULT eDVBServiceRecord::stop()
 		m_record = 0;
 		m_state = stateIdle;
 	}
-	m_event((iRecordableService*)this, evStop);
+	m_event((iRecordableService*)this, evRecordStopped);
 	return 0;
 }
 

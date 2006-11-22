@@ -22,18 +22,25 @@ class Navigation:
 		Nav.navcore = self
 		
 		self.pnav = pNavigation()
-		self.pnav.m_event.get().append(self.callEvent)
+		self.pnav.m_event.get().append(self.dispatchEvent)
+		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
 		self.event = [ ]
+		self.record_event = [ ]
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
 		self.state = 0
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.SleepTimer = SleepTimer.SleepTimer()
-		
-	def callEvent(self, i):
+
+	def dispatchEvent(self, i):
 		self.state = i != 1
 		for x in self.event:
 			x(i)
+
+	def dispatchRecordEvent(self, rec_service, event):
+#		print "record_event", rec_service, event
+		for x in self.record_event:
+			x(rec_service, event)
 
 	def playService(self, ref, checkParentalControl = True):
 		print "playing", ref and ref.toString()
@@ -65,6 +72,13 @@ class Navigation:
 			return None
 		else:
 			return service
+
+	def stopRecordService(self, service):
+		ret = self.pnav and self.pnav.stopRecordService(service)
+		return ret
+
+	def getRecordings(self):
+		return self.pnav and self.pnav.getRecordings()
 
 	def getCurrentService(self):
 		if self.state:

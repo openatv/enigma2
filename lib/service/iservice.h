@@ -512,7 +512,9 @@ public:
 
 		evUpdatedRadioText
 	};
+#ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
+#endif
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 			/* might have to be changed... */
@@ -547,6 +549,7 @@ public:
 		evTunedIn,
 		evTuneFailed,
 		evRecordRunning,
+		evRecordStopped,
 		evNewProgramInfo,
 		evRecordFailed
 //		evDiskFull
@@ -560,8 +563,10 @@ public:
 		errDiskFull=-4,
 		errTuneFailed=-255
 	};
-	virtual RESULT getError(int &)=0;
+#ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
+#endif
+	virtual RESULT getError(int &)=0;
 	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
@@ -569,6 +574,8 @@ public:
 };
 
 TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
+
+PyObject *PyFrom(ePtr<iRecordableService>&);  // implemented in servicedvbrecord.cpp
 
 // TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
 
