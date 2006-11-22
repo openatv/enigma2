@@ -1418,6 +1418,8 @@ class InfoBarSubserviceSelection:
 
 		self.session.nav.event.append(self.checkSubservicesAvail) # we like to get service events
 
+		self.bsel = None
+
 	def checkSubservicesAvail(self, ev):
 		if ev == iPlayableService.evUpdatedEventInfo:
 			service = self.session.nav.getCurrentService()
@@ -1458,7 +1460,7 @@ class InfoBarSubserviceSelection:
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
 		subservices = service and service.subServices()
-		
+		self.bouquets = self.servicelist.getBouquetList()
 		n = subservices and subservices.getNumberOfSubservices()
 		selection = 0
 		if n and n > 0:
@@ -1470,13 +1472,20 @@ class InfoBarSubserviceSelection:
 					selection = x
 				tlist.append((i.getName(), i))
 
-			tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
-
-			keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+			if self.bouquets and len(self.bouquets):
+				keys = ["red", "green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
+				if config.usage.multibouquet.value:
+					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+				else:
+					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+			else:
+				tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
+				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 
 			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection + 2, keys = keys)
 
 	def subserviceSelected(self, service):
+		del self.bouquets
 		if not service is None:
 			if isinstance(service[1], str):
 				if service[1] == "quickzap":
@@ -1487,6 +1496,45 @@ class InfoBarSubserviceSelection:
 				if config.usage.show_infobar_on_zap.value:
 					self.doShow()
 				self.session.nav.playService(service[1])
+
+	def addSubserviceToBouquetCallback(self, service):
+		if len(service) > 1 and isinstance(service[1], eServiceReference):
+			self.selectedSubservice = service
+			if self.bouquets is None:
+				cnt = 0
+			else:
+				cnt = len(self.bouquets)
+			if cnt > 1: # show bouquet list
+				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
+			elif cnt == 1: # add to only one existing bouquet
+				self.addSubserviceToBouquet(self.bouquets[0][1])
+			else: #no bouquets in root.. so assume only one favourite list is used
+				self.addSubserviceToBouquet(self.servicelist.bouquet_root)
+
+	def bouquetSelClosed(self, **args):
+		self.bsel = None
+		del self.selectedSubservice
+
+	def addSubserviceToBouquet(self, dest):
+		serviceHandler = eServiceCenter.getInstance()
+		list = dest and serviceHandler.list(dest)
+		mutableList = dest and list and list.startEdit()
+		if mutableList:
+			if not mutableList.addService(self.selectedSubservice[1]):
+				mutableList.flushChanges()
+				# do some voodoo to check if the subservice is added to the
+				# current selected bouquet in channellist
+				cur_root = self.servicelist.getRoot();
+				str1 = cur_root.toString()
+				str2 = dest.toString()
+				pos1 = str1.find("FROM BOUQUET")
+				pos2 = str2.find("FROM BOUQUET")
+				if pos1 != -1 and pos2 != -1 and str1[pos1:] == str2[pos2:]:
+					self.servicelist.setMode()
+		if self.bsel:
+			self.bsel.close()
+		else:
+			del self.selectedSubservice
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
