@@ -25,6 +25,7 @@ EXTENSIONS = {
 		"jpg": "picture",
 		"jpeg": "picture",
 		"png": "picture",
+		"bmp": "picture",
 		"ts": "movie",
 		"avi": "movie",
 		"mpg": "movie",
@@ -86,7 +87,10 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		if directory is None: # present available mountpoints
 			print "listing partitions:"
 			for p in harddiskmanager.getMountedPartitions():
-				self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint, isDir = True))
+				if p.mountpoint == "/":
+					self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint, isDir = True))
+				else:
+					self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint + "/", isDir = True))
 			files = [ ]
 			directories = [ ]
 		elif self.useServiceRef:
