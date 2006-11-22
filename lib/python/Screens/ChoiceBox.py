@@ -72,7 +72,6 @@ class ChoiceBox(Screen):
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 					break
 
-
 	def keyNumberGlobal(self, number):
 		print "pressed", number
 		if self.keymap.has_key(str(number)):
@@ -86,19 +85,36 @@ class ChoiceBox(Screen):
 
 	def keyRed(self):
 		if self.keymap.has_key("red"):
-			self.close(self.keymap["red"])
+			entry = self.keymap["red"]
+			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+				entry[2](self["list"].l.getCurrentSelection()[0])
+			else:
+				self.close(entry)
 
 	def keyGreen(self):
 		if self.keymap.has_key("green"):
-			self.close(self.keymap["green"])
+			entry = self.keymap["green"]
+			print entry
+			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+				entry[2](self["list"].l.getCurrentSelection()[0])
+			else:
+				self.close(entry)
 	
 	def keyYellow(self):
 		if self.keymap.has_key("yellow"):
-			self.close(self.keymap["yellow"])
-			
+			entry = self.keymap["yellow"]
+			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+				entry[2](self["list"].l.getCurrentSelection()[0])
+			else:
+				self.close(entry)
+
 	def keyBlue(self):
 		if self.keymap.has_key("blue"):
-			self.close(self.keymap["blue"])
-			
+			entry = self.keymap["blue"]
+			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+				entry[2](self["list"].l.getCurrentSelection()[0])
+			else:
+				self.close(entry)
+
 	def cancel(self):
 		self.close(None)
