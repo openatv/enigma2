@@ -93,6 +93,9 @@ class ThumbView(Screen):
 				count += 1
 		self.maxentry = len(self.list)-1
 		
+		if self.maxentry < 0:
+			self["label0"].setText(_("no Picture found"))
+		
 		self.ThumbTimer = eTimer()
 		self.ThumbTimer.timeout.get().append(self.showThumb)
 
@@ -123,6 +126,9 @@ class ThumbView(Screen):
 		self.fillPage()
 		
 	def fillPage(self):
+		if self.maxentry < 0:
+			return
+
 		self["frame"].moveTo(self.poslist[self.list[self.index][3]][0], self.poslist[self.list[self.index][3]][1], 1)
 		self["frame"].startMoving()
 		
@@ -165,9 +171,15 @@ class ThumbView(Screen):
 			self.thumbindex = 0
 		
 	def StartExif(self):
+		if self.maxentry < 0:
+			return
+
 		self.session.open(ExifView, self.list[self.index][1], self.list[self.index][0])
 
 	def KeyOk(self):
+		if self.maxentry < 0:
+			return
+
 		self.old_index = self.index
 		self.session.openWithCallback(self.returnView ,PicView, self.filelist, self.list[self.index][0], self.path)
 		
@@ -215,6 +227,7 @@ class PicView(Screen):
 		self.slideOn = False
 		self.pauseOn = False
 		self.index = 0
+		self.old = 0
 		self.list = []
 		
 		count=0
@@ -437,11 +450,11 @@ class picmain(Screen):
 		}, -1)
 		
 		self.aspect = getAspect()
-		self.currDir = config.pic.lastDir.value
-		if not os.path.exists(self.currDir):
-			self.currDir = "/"
+		currDir = config.pic.lastDir.value
+		if not os.path.exists(currDir):
+			currDir = "/"
 		
-		self.filelist = FileList(self.currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|png|bmp)")
+		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|png|bmp)")
 		self["filelist"] = self.filelist
 		self["thumbnail"] = Pixmap()
 		
@@ -467,14 +480,15 @@ class picmain(Screen):
 
 	def showThumb(self):
 		if not self.filelist.canDescent():
+			print self.filelist.getCurrentDirectory()
 			cachefile = ""
 			if config.pic.cache.value:
-				cachedir = self.currDir + ".Thumbnails/"
+				cachedir = self.filelist.getCurrentDirectory() + ".Thumbnails/"
 				if not os.path.exists(cachedir):
 					os.mkdir(cachedir)
 				cachefile = cachedir + self.filelist.getSelection()[0] + str(180) + str(160) + str(self.aspect)
 
-			ptr = loadPic(self.currDir + self.filelist.getSelection()[0], 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
+			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getSelection()[0], 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
 			if ptr != None:
 				self["thumbnail"].show()
 				self["thumbnail"].instance.setPixmap(ptr.__deref__())
@@ -483,26 +497,32 @@ class picmain(Screen):
 
 	def KeyOk(self):
 		if self.filelist.canDescent():
-			self.currDir = self.filelist.getSelection()[0]
 			self.filelist.descent()
 		else:
-			self.session.openWithCallback(self.returnVal, PicView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.currDir)
+			self.session.openWithCallback(self.returnVal, PicView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.filelist.getCurrentDirectory())
 			
 	def StartThumb(self):
-		self.session.openWithCallback(self.returnVal, ThumbView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.currDir)
+		self.session.openWithCallback(self.returnVal, ThumbView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.filelist.getCurrentDirectory())
 
 	def returnVal(self, val=0):
-		print val
+		if val > 0:
+			for x in self.filelist.getFileList():
+				if x[0][1] == True:
+					val += 1
+			self.filelist.moveToIndex(val)
 
 	def StartExif(self):
 		if not self.filelist.canDescent():
-			self.session.open(ExifView, self.currDir + self.filelist.getSelection()[0], self.filelist.getSelection()[0])
+			self.session.open(ExifView, self.filelist.getCurrentDirectory() + self.filelist.getFilename(), self.filelist.getSelection()[0])
 
 	def Settings(self):
 		self.session.open(PicSetup)
 	
 	def Exit(self):
-		config.pic.lastDir.value = self.currDir
+		if self.filelist.getCurrentDirectory() is None:
+			config.pic.lastDir.value = "/"
+		else:
+			config.pic.lastDir.value = self.filelist.getCurrentDirectory()
 		config.pic.save()
 		self.close()
 
