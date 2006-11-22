@@ -162,8 +162,6 @@ class ChannelContextMenu(Screen):
 			self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
 			self.addCurrentServiceToBouquet(bouquets[0][1])
-		else: #no bouquets in root.. so assume only one favourite list is used
-			self.addCurrentServiceToBouquet(self.csel.bouquet_root)
 
 	def bouquetSelClosed(self, recursive):
 		self.bsel = None
@@ -846,10 +844,9 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.setCurrent(service)
 
 	def getBouquetList(self):
+		bouquets = [ ]
+		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
-			serviceCount=0
-			bouquets = [ ]
-			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(self.bouquet_root)
 			if not list is None:
 				while True:
@@ -860,13 +857,12 @@ class ChannelSelectionBase(Screen):
 						info = serviceHandler.info(s)
 						if not info is None:
 							bouquets.append((info.getName(s), s))
-					else:
-						serviceCount += 1
-				if len(bouquets) == 0 and serviceCount > 0:
-					info = serviceHandler.info(self.bouquet_root)
-					if not info is None:
-						bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
 				return bouquets
+		else:
+			info = serviceHandler.info(self.bouquet_root)
+			if not info is None:
+				bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
+			return bouquets
 		return None
 
 	def keyNumber0(self, num):
