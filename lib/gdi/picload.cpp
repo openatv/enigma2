@@ -336,59 +336,57 @@ static int png_load(const char *filename,  int *x, int *y)
 PyObject *getExif(const char *filename)
 {
 	PyObject *list = 0;
-	Cexif *m_exif = new Cexif();
-	if(m_exif->DecodeExif(filename))
+	Cexif exif;
+	if(exif.DecodeExif(filename))
 	{
-		if(m_exif->m_exifinfo->IsExif)
+		if(exif.m_exifinfo->IsExif)
 		{
 			int pos=0;
 			char tmp[256];
 			list = PyList_New(22);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->Version));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->CameraMake));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->CameraModel));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->DateTime));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->Comments));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d x %d", m_exif->m_exifinfo->Width, m_exif->m_exifinfo->Height));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->Orientation));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->MeteringMode));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->ExposureProgram));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->LightSource));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->FlashUsed));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", m_exif->m_exifinfo->CompressionLevel));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", m_exif->m_exifinfo->ISOequivalent));
-			sprintf(tmp, "%.2f", m_exif->m_exifinfo->Xresolution);
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Version));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->CameraMake));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->CameraModel));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->DateTime));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Comments));
+			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d x %d", exif.m_exifinfo->Width, exif.m_exifinfo->Height));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Orientation));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->MeteringMode));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->ExposureProgram));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->LightSource));
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->FlashUsed));
+			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif.m_exifinfo->CompressionLevel));
+			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif.m_exifinfo->ISOequivalent));
+			sprintf(tmp, "%.2f", exif.m_exifinfo->Xresolution);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", m_exif->m_exifinfo->Yresolution);
+			sprintf(tmp, "%.2f", exif.m_exifinfo->Yresolution);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(m_exif->m_exifinfo->ResolutionUnit));
-			sprintf(tmp, "%.2f", m_exif->m_exifinfo->Brightness);
+			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->ResolutionUnit));
+			sprintf(tmp, "%.2f", exif.m_exifinfo->Brightness);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f sec.", m_exif->m_exifinfo->ExposureTime);
+			sprintf(tmp, "%.5f sec.", exif.m_exifinfo->ExposureTime);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", m_exif->m_exifinfo->ExposureBias);
+			sprintf(tmp, "%.5f", exif.m_exifinfo->ExposureBias);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", m_exif->m_exifinfo->Distance);
+			sprintf(tmp, "%.5f", exif.m_exifinfo->Distance);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", m_exif->m_exifinfo->CCDWidth);
+			sprintf(tmp, "%.5f", exif.m_exifinfo->CCDWidth);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", m_exif->m_exifinfo->ApertureFNumber);
+			sprintf(tmp, "%.2f", exif.m_exifinfo->ApertureFNumber);
 			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
 		}
 		else
 		{
 			list = PyList_New(1);
-			PyList_SET_ITEM(list, 0, PyString_FromString(m_exif->m_szLastError));
+			PyList_SET_ITEM(list, 0, PyString_FromString(exif.m_szLastError));
 		}
-		m_exif->ClearExif();
+		exif.ClearExif();
 	}
 	else
 	{
 		list = PyList_New(1);
-		PyList_SET_ITEM(list, 0, PyString_FromString(m_exif->m_szLastError));
+		PyList_SET_ITEM(list, 0, PyString_FromString(exif.m_szLastError));
 	}
-
-	delete m_exif;
 
 	return list ? list : PyList_New(0);
 }
