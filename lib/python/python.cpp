@@ -1,4 +1,3 @@
-#include <lib/python/python.h>
 #include <lib/base/eerror.h>
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
@@ -7,6 +6,44 @@
 
 extern "C" void init_enigma();
 extern void bsodFatal();
+
+void Impl_Py_DECREF(const char* file, int line, PyObject *obj)
+{
+	if (!obj)
+	{
+		eDebug("decref python object null pointer %s %d!!!",
+			file, line);
+		bsodFatal();
+	}
+	if (obj->ob_refcnt <= 0)
+	{
+		eDebug("decref python object with refcounting value %d (%s %d)!!!", obj->ob_refcnt, file, line);
+		bsodFatal();
+	}
+	Py_DECREF(obj);
+}
+
+void Impl_Py_INCREF(const char* file, int line, PyObject *obj)
+{
+	if (!obj)
+	{
+		eDebug("incref python object null pointer %s %d!!!", file, line);
+		bsodFatal();
+	}
+	if (obj->ob_refcnt <= 0)
+	{
+		eDebug("incref python object with refcounting value %d (%s %d)!!!", obj->ob_refcnt, file, line);
+		bsodFatal();
+	}
+	if (obj->ob_refcnt == 0x7FFFFFFF)
+	{
+		eDebug("incref python object with refcounting value %d (MAX_INT!!!) (%s %d)!!!", obj->ob_refcnt, file, line);
+		bsodFatal();
+	}
+	Py_INCREF(obj);
+}
+
+#include <lib/python/python.h>
 
 DEFINE_REF(TestObj);
 
