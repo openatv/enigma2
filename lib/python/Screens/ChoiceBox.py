@@ -64,7 +64,7 @@ class ChoiceBox(Screen):
 				self["list"].instance.moveSelection(self["list"].instance.moveUp)
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
 					break
-		
+
 	def down(self):
 		if len(self["list"].list) > 0:
 			while 1:
@@ -72,49 +72,41 @@ class ChoiceBox(Screen):
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 					break
 
+	# runs a number shortcut
 	def keyNumberGlobal(self, number):
-		print "pressed", number
-		if self.keymap.has_key(str(number)):
-			self.close(self.keymap[str(number)])
-		
-	def go(self):
-		if len(self["list"].list) > 0:
-			self.close(self["list"].l.getCurrentSelection()[0])
-		else:
-			self.close(None)
+		self.goKey(str(number))
 
+	# runs the current selected entry
+	def go(self):
+		self.goEntry(self["list"].l.getCurrentSelection()[0])
+
+	# runs a specific entry
+	def goEntry(self, entry):
+		if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
+			# CALLFUNC wants to have the current selection as argument
+			arg = self["list"].l.getCurrentSelection()[0]
+			entry[2](arg)
+		else:
+			self.close(entry)
+
+	# lookups a key in the keymap, then runs it
+	def goKey(self, key):
+		if self.keymap.has_key(key):
+			entry = self.keymap[key]
+			self.goEntry(entry)
+
+	# runs a color shortcut
 	def keyRed(self):
-		if self.keymap.has_key("red"):
-			entry = self.keymap["red"]
-			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-				entry[2](self["list"].l.getCurrentSelection()[0])
-			else:
-				self.close(entry)
+		self.goKey("red")
 
 	def keyGreen(self):
-		if self.keymap.has_key("green"):
-			entry = self.keymap["green"]
-			print entry
-			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-				entry[2](self["list"].l.getCurrentSelection()[0])
-			else:
-				self.close(entry)
-	
+		self.goKey("green")
+
 	def keyYellow(self):
-		if self.keymap.has_key("yellow"):
-			entry = self.keymap["yellow"]
-			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-				entry[2](self["list"].l.getCurrentSelection()[0])
-			else:
-				self.close(entry)
+		self.goKey("yellow")
 
 	def keyBlue(self):
-		if self.keymap.has_key("blue"):
-			entry = self.keymap["blue"]
-			if len(entry) > 2 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
-				entry[2](self["list"].l.getCurrentSelection()[0])
-			else:
-				self.close(entry)
+		self.goKey("blue")
 
 	def cancel(self):
 		self.close(None)
