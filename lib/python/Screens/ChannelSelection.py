@@ -361,6 +361,7 @@ class ChannelSelectionEdit:
 		refstr = self.getCurrentSelection().toString()
 		self.bouquetNumOffsetCache = { }
 		pos = refstr.find('FROM BOUQUET "')
+		filename = None
 		if pos != -1:
 			refstr = refstr[pos+14:]
 			pos = refstr.find('"')
@@ -368,7 +369,8 @@ class ChannelSelectionEdit:
 				filename = '/etc/enigma2/' + refstr[:pos] # FIXMEEE !!! HARDCODED /etc/enigma2
 		self.removeCurrentService()
 		try:
-			remove(filename)
+			if filename is not None:
+				remove(filename)
 		except OSError:
 			print "error during remove of", filename
 
