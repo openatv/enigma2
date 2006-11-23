@@ -1575,7 +1575,7 @@ void fillTuple(PyObject *tuple, char *argstring, int argcount, PyObject *service
 	}
 }
 
-PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argstring, int argcount, PyObject *service, PyObject *nowTime, PyObject *service_name, PyObject *convertFunc, PyObject *convertFuncArgs)
+int handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argstring, int argcount, PyObject *service, PyObject *nowTime, PyObject *service_name, PyObject *convertFunc, PyObject *convertFuncArgs)
 {
 	if (convertFunc)
 	{
@@ -1589,7 +1589,10 @@ PyObject *handleEvent(ePtr<eServiceEvent> &ptr, PyObject *dest_list, char* argst
 				Py_DECREF(nowTime);
 			Py_DECREF(convertFuncArgs);
 			Py_DECREF(dest_list);
-			return result;
+			PyErr_SetString(PyExc_StandardError,
+				"error in convertFunc execute");
+			eDebug("error in convertFunc execute");
+			return -1;
 		}
 		PyList_Append(dest_list, result);
 		Py_DECREF(result);
@@ -1781,9 +1784,11 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 					ePtr<eServiceEvent> ptr;
 					while (!getNextTimeEntry(ptr))
 					{
-						PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
-						if (ret)
-							return ret;
+						if (handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						{
+							Unlock();
+							return 0;  // error
+						}
 					}
 				}
 				Unlock();
@@ -1798,9 +1803,8 @@ PyObject *eEPGCache::lookupEvent(PyObject *list, PyObject *convertFunc)
 					else
 						lookupEventTime(ref, stime, ptr, type);
 				}
-				PyObject *ret = handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
-				if (ret)
-					return ret;
+				if (handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+					return 0; // error
 			}
 			if (service_changed)
 				Py_DECREF(service);
