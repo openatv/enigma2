@@ -344,7 +344,7 @@ class ChannelSelectionEdit:
 				pos1 = str1.find("FROM BOUQUET")
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
-					self.setMode() #reload
+					self.setRoot(self.bouquet_root)
 			else:
 				print "add", str, "to bouquets failed"
 		else:
