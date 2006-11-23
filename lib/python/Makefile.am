@@ -11,6 +11,9 @@ libenigma_python_a_SOURCES = \
 
 enigma_python_wrap.cxx: enigma_python.i
 	swig -I$(top_srcdir)/ -c++ -python enigma_python.i
+	echo "#include <lib/python/python.h>" > bla.cxx
+	cat enigma_python_wrap.cxx >> bla.cxx
+	mv bla.cxx enigma_python_wrap.cxx
 
 installdir = $(LIBDIR)/enigma2/python
 

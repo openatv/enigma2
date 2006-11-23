@@ -14,7 +14,7 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/db.h>
-#include <Python.h>
+#include <lib/python/python.h>
 
 int eventData::CacheSize=0;
 descriptorMap eventData::descriptors;

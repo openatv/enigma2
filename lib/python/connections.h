@@ -7,7 +7,6 @@
 #include <features.h>
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#include <Python.h>
 #include <lib/python/python.h>
 
 class PSignal
