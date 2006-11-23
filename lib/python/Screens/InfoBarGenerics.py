@@ -1510,10 +1510,12 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1: # add to only one existing bouquet
 				self.addSubserviceToBouquet(self.bouquets[0][1])
+				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO)
 
 	def bouquetSelClosed(self, **args):
 		self.bsel = None
 		del self.selectedSubservice
+		self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
 
 	def addSubserviceToBouquet(self, dest):
 		serviceHandler = eServiceCenter.getInstance()
