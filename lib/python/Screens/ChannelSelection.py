@@ -90,7 +90,7 @@ class ChannelContextMenu(Screen):
 				else:
 					if haveBouquets:
 						if not inBouquet and current_sel_path.find("PROVIDERS") == -1:
-							menu.append((_("copy to favourites"), self.copyCurrentToBouquetList))
+							menu.append((_("copy to bouquets"), self.copyCurrentToBouquetList))
 					if current_sel_path.find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 						menu.append((_("remove all new found flags"), self.removeAllNewFoundFlags))
 				if inBouquet:
@@ -338,6 +338,13 @@ class ChannelSelectionEdit:
 					mutableBouquet.flushChanges()
 				else:
 					print "get mutable list for new created bouquet failed"
+				# do some voodoo to check if current_root is equal to bouquet_root
+				cur_root = self.getRoot();
+				str1 = cur_root.toString()
+				pos1 = str1.find("FROM BOUQUET")
+				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
+				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
+					self.setMode() #reload
 			else:
 				print "add", str, "to bouquets failed"
 		else:
