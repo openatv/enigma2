@@ -40,7 +40,7 @@ private:
 protected:
 	int createTable(int nr, const __u8 *data, unsigned int max)
 	{
-		int ssize = sections.size();
+		unsigned int ssize = sections.size();
 		if (max < ssize || nr >= max)
 		{
 			eDebug("kaputt max(%d) < ssize(%d) || nr(%d) >= max(%d)",
