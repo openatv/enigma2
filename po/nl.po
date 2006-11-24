@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-16 03:49+0100\n"
-"PO-Revision-Date: 2006-11-04 23:27+0100\n"
+"POT-Creation-Date: 2006-11-24 01:22+0100\n"
+"PO-Revision-Date: 2006-11-24 00:20+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -31,31 +31,31 @@ msgstr ""
 "downloaden?"
 
 msgid "#000000"
-msgstr ""
+msgstr "#000000"
 
 msgid "#0064c7"
-msgstr ""
+msgstr "#0064c7"
 
 msgid "#33294a6b"
-msgstr ""
+msgstr "#33294a6b"
 
 msgid "#389416"
-msgstr ""
+msgstr "#389416"
 
 msgid "#80000000"
-msgstr ""
+msgstr "#80000000"
 
 msgid "#bab329"
-msgstr ""
+msgstr "#bab329"
 
 msgid "#f23d21"
-msgstr ""
+msgstr "#f23d21"
 
 msgid "#ffffff"
-msgstr ""
+msgstr "#ffffff"
 
 msgid "#ffffffff"
-msgstr ""
+msgstr "#ffffffff"
 
 #, python-format
 msgid "%d min"
@@ -136,7 +136,7 @@ msgid "<unknown>"
 msgstr "<onbekend>"
 
 msgid "??"
-msgstr ""
+msgstr "??"
 
 msgid "A"
 msgstr "A"
@@ -159,16 +159,22 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
+"U bent aan het opnemen. stop alstubleift de opname voor uw de satfinder "
+"start."
 
 msgid ""
 "A sleep timer want's to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Een sleep timer wil u Dreambox\n"
+"In Standby mode zetten. Dat nu Doen?"
 
 msgid ""
 "A sleep timer want's to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"Een sleep time wil u Dreambox\n"
+"Uitzetten. Nu uitzetten?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -208,19 +214,25 @@ msgid "Add"
 msgstr "Toevoegen"
 
 msgid "Add a mark"
-msgstr ""
+msgstr "Zet merktpunt"
 
 msgid "Add alternative"
-msgstr ""
+msgstr "Zet alternatief"
 
 msgid "Add files to playlist"
 msgstr "Voeg files toe aan afspeelijst"
 
 msgid "Add service"
-msgstr ""
+msgstr "Zet service"
 
 msgid "Add timer"
 msgstr "Timerinstellen"
+
+msgid "Add to bouquet"
+msgstr ""
+
+msgid "Add to favourites"
+msgstr ""
 
 msgid "Advanced"
 msgstr "Expert"
@@ -242,7 +254,7 @@ msgid "All"
 msgstr "Alles"
 
 msgid "All..."
-msgstr ""
+msgstr "Alles..."
 
 msgid "Alpha"
 msgstr "Transparantie"
@@ -257,7 +269,7 @@ msgid "Artist:"
 msgstr "Artist:"
 
 msgid "Ask before shutdown:"
-msgstr ""
+msgstr "eerst vragen om uit te zetten:"
 
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
@@ -329,14 +341,20 @@ msgstr "CVBS"
 msgid "Cable"
 msgstr "Kabel"
 
-msgid "Call monitoring"
+msgid "Cache Thumbnails"
 msgstr ""
+
+msgid "Call monitoring"
+msgstr "Bel monitor"
 
 msgid "Cancel"
 msgstr "Stoppen"
 
 msgid "Capacity: "
 msgstr "Grootte van harddisk: "
+
+msgid "Card"
+msgstr ""
 
 msgid "Catalan"
 msgstr "Catalaans"
@@ -401,6 +419,9 @@ msgstr "Comitted DiSEqC commando"
 msgid "Common Interface"
 msgstr "Common Interface"
 
+msgid "Compact Flash"
+msgstr ""
+
 msgid "Compact flash card"
 msgstr "Compact flash kaart"
 
@@ -414,10 +435,10 @@ msgid "Conflicting timer"
 msgstr "Timer conflict!!"
 
 msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "Verbonden met Fritz!Box!"
 
 msgid "Connecting to Fritz!Box..."
-msgstr ""
+msgstr "Verbinden met Fritz!Box..."
 
 #, python-format
 msgid ""
@@ -425,6 +446,9 @@ msgid ""
 "failed! (%s)\n"
 "retrying..."
 msgstr ""
+"Vebinden met Fritz!Box\n"
+"mislukt! (%s)\n"
+"probeer opnieuw..."
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -436,7 +460,7 @@ msgid "Creating partition failed"
 msgstr "Maken van partitie is mislukt"
 
 msgid "Croatian"
-msgstr ""
+msgstr "Croatien"
 
 msgid "Current version:"
 msgstr "Aktuele versie"
@@ -445,13 +469,13 @@ msgid "Customize"
 msgstr "Aanpassen"
 
 msgid "Cut"
-msgstr ""
+msgstr "Knip"
 
 msgid "Cutlist editor..."
-msgstr ""
+msgstr "Cutlist editor..."
 
 msgid "Czech"
-msgstr ""
+msgstr "Czechie"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -517,7 +541,7 @@ msgid "Disable Subtitles"
 msgstr "Ondertitel Uit"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 #, python-format
 msgid ""
@@ -525,6 +549,9 @@ msgid ""
 "Fritz!Box! (%s)\n"
 "retrying..."
 msgstr ""
+"Verbinding verbroken met\n"
+"Fritz!Box! (%s)\n"
+"probeer opnieuw..."
 
 msgid "Dish"
 msgstr "Schotel"
@@ -633,7 +660,7 @@ msgid "Enable parental control"
 msgstr "Zet parental control aan"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 msgid "End"
 msgstr "Einde"
@@ -652,6 +679,12 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"Als u problemen heeft kunt u kontakt opnemen met\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
 
 msgid "Enter main menu..."
 msgstr "Ga naar hoofd menu..."
@@ -672,7 +705,7 @@ msgid "Execution finished!!"
 msgstr "Uitvoering gestopt!!"
 
 msgid "Exit editor"
-msgstr ""
+msgstr "Stop editor"
 
 msgid "Exit the wizard"
 msgstr "Stop de wizard"
@@ -711,7 +744,7 @@ msgid "Friday"
 msgstr "Vrijdag"
 
 msgid "Fritz!Box FON IP address"
-msgstr ""
+msgstr "Fritz!Box FON IP address"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -724,6 +757,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"De GUI heeft een restart nodig voor de nieuwe skin\n"
+"Wilt u de GUI nu Restarten?"
 
 msgid "Games / Plugins"
 msgstr "Games / Plugins"
@@ -814,6 +849,9 @@ msgstr "Invoer"
 msgid "Instant Record..."
 msgstr "Directe Opname..."
 
+msgid "Internal Flash"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Inversion"
 
@@ -871,8 +909,14 @@ msgstr "Limieten uit"
 msgid "Limits on"
 msgstr "Limieten aan"
 
+msgid "List of Storage Devices"
+msgstr ""
+
 msgid "Longitude"
 msgstr "Lengtegraad"
+
+msgid "MMC Card"
+msgstr ""
 
 msgid "MORE"
 msgstr "MEER"
@@ -884,13 +928,13 @@ msgid "Mainmenu"
 msgstr "Hoofdmenu"
 
 msgid "Make this mark an 'in' point"
-msgstr ""
+msgstr "Maak dit merk teken 'in' punt"
 
 msgid "Make this mark an 'out' point"
-msgstr ""
+msgstr "Maak dit merk teken 'out' punt"
 
 msgid "Make this mark just a mark"
-msgstr ""
+msgstr "Maak dit merk teken allen een merkpunt"
 
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
@@ -988,6 +1032,9 @@ msgstr "Nameserver"
 msgid "Netmask"
 msgstr "Netmask"
 
+msgid "Network Mount"
+msgstr ""
+
 msgid "Network Setup"
 msgstr "Netwerk instellingen"
 
@@ -1030,7 +1077,7 @@ msgid "No positioner capable frontend found."
 msgstr "Geen geschiktte positioner voor frontend gevonden."
 
 msgid "No satellite frontend found!!"
-msgstr ""
+msgstr "Geen satellite frontend gevonden!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Er is geen tuner ingesteld voor een diseqc motor!"
@@ -1136,13 +1183,16 @@ msgid "Please enter the old pin code"
 msgstr "oude pin code invoeren aub"
 
 msgid "Please press OK!"
-msgstr ""
+msgstr "Druk op OK! aub"
 
 msgid "Please select a subservice to record..."
 msgstr "selecteer een subservice voor opname aub..."
 
 msgid "Please select a subservice..."
 msgstr "selecteer een subservice aub..."
+
+msgid "Please select keyword to filter..."
+msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "instellingen voor Tuner B."
@@ -1238,6 +1288,9 @@ msgid "RGB"
 msgstr "RGB"
 
 msgid "RSS Feed URI"
+msgstr "RSS Feed URI"
+
+msgid "Ram Disk"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -1258,6 +1311,9 @@ msgstr "Ontvangst Settings"
 msgid "Record"
 msgstr "Opnemen"
 
+msgid "Recorded files..."
+msgstr ""
+
 msgid "Recording"
 msgstr "Opnemen"
 
@@ -1271,13 +1327,13 @@ msgid "Remove Plugins"
 msgstr "Verwijder Plugins"
 
 msgid "Remove a mark"
-msgstr ""
+msgstr "Verwijder een merkpunt"
 
 msgid "Remove plugins"
 msgstr "Verwijder plugins"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Verwijder een service"
 
 msgid "Repeat"
 msgstr "Herhaling"
@@ -1295,7 +1351,7 @@ msgid "Restart"
 msgstr "Herstart"
 
 msgid "Restart GUI now?"
-msgstr ""
+msgstr "Restart GUI nu?"
 
 msgid "Restore"
 msgstr "Restore"
@@ -1311,7 +1367,7 @@ msgid "Right"
 msgstr "Rechts"
 
 msgid "Running"
-msgstr ""
+msgstr "Running"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1332,10 +1388,13 @@ msgid "Satellites"
 msgstr "Satellieten"
 
 msgid "Satfinder"
-msgstr ""
+msgstr "Satfinder"
 
 msgid "Saturday"
 msgstr "Zaterdag"
+
+msgid "Scaling Mode"
+msgstr ""
 
 msgid "Scan NIM"
 msgstr "Zoek NIM"
@@ -1356,7 +1415,7 @@ msgid "Select a movie"
 msgstr "Kies een film"
 
 msgid "Select alternative service"
-msgstr ""
+msgstr "Kies alternatieve service"
 
 msgid "Select audio mode"
 msgstr "Kies audio modus"
@@ -1368,7 +1427,7 @@ msgid "Select channel to record from"
 msgstr "Selecteer een kanaal waarvan u wilt opnemen"
 
 msgid "Select reference service"
-msgstr ""
+msgstr "Kies referencie service"
 
 msgid "Sequence repeat"
 msgstr "Herhaal Sequence"
@@ -1381,6 +1440,12 @@ msgstr "Kanaal zoeken"
 
 msgid "Service Searching"
 msgstr "Kanaal Zoeken"
+
+msgid "Service has been added to the favourites."
+msgstr ""
+
+msgid "Service has been added to the selected bouquet."
+msgstr ""
 
 msgid "Service scan"
 msgstr "Kanaal zoeken"
@@ -1422,7 +1487,7 @@ msgid "Show the tv player..."
 msgstr "Tv Weergve mode..."
 
 msgid "Shutdown Dreambox after"
-msgstr ""
+msgstr "Zet Dreambox uit na"
 
 msgid "Similar"
 msgstr "Gelijkaardig"
@@ -1443,9 +1508,12 @@ msgid "Single transponder"
 msgstr "Een transponder"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Sleep Timer"
 
 msgid "Sleep timer action:"
+msgstr "Sleep timer actie:"
+
+msgid "Slideshow Interval (sec.)"
 msgstr ""
 
 msgid "Slot "
@@ -1572,7 +1640,7 @@ msgid "Test mode"
 msgstr "Testmode"
 
 msgid "Test-Messagebox?"
-msgstr ""
+msgstr "Test-Messagebox?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1594,7 +1662,7 @@ msgid "The pin codes you entered are different."
 msgstr "De pincodes zijn verschillend."
 
 msgid "The sleep timer has been activated."
-msgstr ""
+msgstr "De sleep timer is geactiveerd."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1653,7 +1721,7 @@ msgid "Timer selection"
 msgstr "Timer selectie"
 
 msgid "Timer status:"
-msgstr ""
+msgstr "Timer status:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -1928,6 +1996,12 @@ msgstr ""
 "terug wilt zetten."
 
 msgid ""
+"You need to define some keywords first!\n"
+"Press the menu-key to define keywords.\n"
+"Do you want to define keywords now?"
+msgstr ""
+
+msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
@@ -1960,7 +2034,7 @@ msgid "Zap back to service before positioner setup?"
 msgstr "Zap back to service before positioner setup?"
 
 msgid "Zap back to service before satfinder?"
-msgstr ""
+msgstr "Zap terug naar service voor satfinder?"
 
 msgid "[bouquet edit]"
 msgstr "[Boeket editor]"
@@ -2023,8 +2097,14 @@ msgstr ""
 msgid "back"
 msgstr "Terug"
 
+msgid "better"
+msgstr ""
+
 msgid "blacklist"
 msgstr "Zwarte lijst"
+
+msgid "by Exif"
+msgstr ""
 
 msgid "change recording (duration)"
 msgstr "Verander opname (Tijdsduur)"
@@ -2047,8 +2127,8 @@ msgstr "Configuratie menu"
 msgid "continue"
 msgstr "Ga Verder"
 
-msgid "copy to favourites"
-msgstr "Naar favorieten copieeren"
+msgid "copy to bouquets"
+msgstr ""
 
 msgid "daily"
 msgstr "Dagelijks"
@@ -2057,7 +2137,7 @@ msgid "delete"
 msgstr "Verwijder"
 
 msgid "delete cut"
-msgstr ""
+msgstr "delete cut"
 
 msgid "delete..."
 msgstr "Verwijderen..."
@@ -2096,7 +2176,7 @@ msgid "end bouquet edit"
 msgstr "Boeket edit stoppen"
 
 msgid "end cut here"
-msgstr ""
+msgstr "end cut here"
 
 msgid "end favourites edit"
 msgstr "Favorieten edit stoppen"
@@ -2136,12 +2216,14 @@ msgid ""
 "incoming call!\n"
 "%s calls on %s!"
 msgstr ""
+"inkomend gesprek!\n"
+"%s gesprek met %s!"
 
 msgid "init module"
 msgstr "Ci-Module initializeren"
 
 msgid "insert mark here"
-msgstr ""
+msgstr "hier merkteken invoegen"
 
 msgid "leave movie player..."
 msgstr "Afspelen stoppen..."
@@ -2187,6 +2269,9 @@ msgstr "nee"
 
 msgid "no HDD found"
 msgstr "Geen Harddisk gevonden"
+
+msgid "no Picture found"
+msgstr ""
 
 msgid "no module found"
 msgstr "Geen Ci-Modul gevonden"
@@ -2236,6 +2321,9 @@ msgstr "Pause"
 msgid "please press OK when ready"
 msgstr "Waneer klaar druk O.K aub."
 
+msgid "please wait, loading picture..."
+msgstr ""
+
 msgid "previous channel"
 msgstr "Vorig Kanaal"
 
@@ -2249,13 +2337,13 @@ msgid "recording..."
 msgstr "opnemen..."
 
 msgid "remove after this position"
-msgstr ""
+msgstr "verwijder na deze positie"
 
 msgid "remove all new found flags"
 msgstr "verwijder alle nieuw gevonden flags"
 
 msgid "remove before this position"
-msgstr ""
+msgstr "verwijder voor deze positie"
 
 msgid "remove entry"
 msgstr "Invoer verwijderen"
@@ -2267,7 +2355,7 @@ msgid "remove new found flag"
 msgstr "verwijder nieuw gevonden flag"
 
 msgid "remove this mark"
-msgstr ""
+msgstr "verwijder dit merkteken"
 
 msgid "repeated"
 msgstr "Herhalen"
@@ -2336,7 +2424,7 @@ msgid "show event details"
 msgstr "laat EPG details zien"
 
 msgid "shutdown"
-msgstr ""
+msgstr "uitzetten"
 
 msgid "simple"
 msgstr "simpel"
@@ -2348,10 +2436,10 @@ msgid "skip forward"
 msgstr "Vooruit spoelen"
 
 msgid "standby"
-msgstr ""
+msgstr "standby"
 
 msgid "start cut here"
-msgstr ""
+msgstr "start cut hier"
 
 msgid "start timeshift"
 msgstr "Timeshift starten"
@@ -2541,6 +2629,9 @@ msgstr "zapped"
 
 #~ msgid "add bouquet..."
 #~ msgstr "Bouquet hinzufügen..."
+
+#~ msgid "copy to favourites"
+#~ msgstr "Naar favorieten copieeren"
 
 #~ msgid "open service list"
 #~ msgstr "Kanalliste öffnen"
