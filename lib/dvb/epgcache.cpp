@@ -2899,7 +2899,9 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		int len = ((data[1]&0xf)<<8) + data[2];
 
 		// ugly workaround to convert const __u8* to char*
-		((char*)&data)[len+3] = 0;	// Terminate as a string.
+		char *tmp=0;
+		memcpy(&tmp, &data, sizeof(void*));
+		tmp[len+3] = 0;	// Terminate as a string.
 
 		std::map<__u32, __u32>::iterator itProgid( m_program_ids.find( program_id ) );
 		if ( itProgid == m_program_ids.end() )
