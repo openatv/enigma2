@@ -1,6 +1,6 @@
 #include <lib/nav/core.h>
 #include <lib/base/eerror.h>
-#include <lib/python/python.h>
+#include <Python.h>
 
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {

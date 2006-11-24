@@ -1,5 +1,5 @@
 #include <lib/base/nconfig.h>
-#include <lib/python/python.h>
+#include <Python.h>
 
 PyObject *ePythonConfigQuery::m_queryFunc;
 

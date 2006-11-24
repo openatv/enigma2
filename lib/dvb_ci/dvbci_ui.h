@@ -5,7 +5,7 @@
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#include <lib/python/python.h>
+#include <Python.h>
 #include <lib/python/connections.h>
 
 #define MAX_SLOTS 4

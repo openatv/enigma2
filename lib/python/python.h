@@ -3,33 +3,10 @@
 
 #include <string>
 #include <lib/base/object.h>
-#include <Python.h>
+
+typedef struct _object PyObject;
 
 // useable for debugging python refcounting
-#undef Py_DECREF
-#undef Py_XDECREF
-#undef Py_INCREF
-#undef Py_XINCREF
-#define Py_XDECREF(obj) Impl_Py_XDECREF(__FILE__, __LINE__, obj)
-#define Py_DECREF(obj) Impl_Py_DECREF(__FILE__, __LINE__, obj)
-#define Py_XINCREF(obj) Impl_Py_XINCREF(__FILE__, __LINE__, obj)
-#define Py_INCREF(obj) Impl_Py_INCREF(__FILE__, __LINE__, obj)
-
-void Impl_Py_DECREF(const char* file, int line, PyObject *obj);
-
-inline void Impl_Py_XDECREF(const char* file, int line, PyObject *obj)
-{
-	if (obj)
-		Impl_Py_DECREF(file, line, obj);
-}
-
-void Impl_Py_INCREF(const char* file, int line, PyObject *obj);
-
-inline void Impl_Py_XINCREF(const char* file, int line, PyObject *obj)
-{
-	if (obj)
-		Impl_Py_INCREF(file, line, obj);
-}
 
 extern PyObject *New_TestObj();
 
