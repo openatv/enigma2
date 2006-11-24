@@ -1,7 +1,7 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
-#include <lib/python/python.h>
+#include <Python.h>
 
 /*
     The basic idea is to have an interface which gives all relevant list
