@@ -19,7 +19,6 @@ eDVBCI_UI::eDVBCI_UI()
 	instance = this;
 	for(int i=0;i<MAX_SLOTS;++i)
 	{
-		slotdata[i].mmiScreen=NULL;
 		slotdata[i].mmiScreenReady=0;
 		slotdata[i].mmiTuplePos=0;
 		slotdata[i].state=-1;
@@ -129,7 +128,7 @@ int eDVBCI_UI::mmiScreenClose(int slot, int timeout)
 		Py_DECREF(data.mmiScreen);
 	data.mmiScreen = PyList_New(1);
 
-	PyObject *tuple = PyTuple_New(2);
+	ePyObject tuple = PyTuple_New(2);
 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("CLOSE"));
 	PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(timeout));
 	PyList_SET_ITEM(data.mmiScreen, 0, tuple);
@@ -151,7 +150,7 @@ int eDVBCI_UI::mmiScreenEnq(int slot, int blind, int answerLen, char *text)
 		Py_DECREF(data.mmiScreen);
 	data.mmiScreen = PyList_New(2);
 
-	PyObject *tuple = PyTuple_New(1);
+	ePyObject tuple = PyTuple_New(1);
 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("ENQ"));
 	PyList_SET_ITEM(data.mmiScreen, 0, tuple);
 
@@ -186,7 +185,7 @@ int eDVBCI_UI::mmiScreenBegin(int slot, int listmenu)
 
 	data.mmiScreen = PyList_New(1);
 
-	PyObject *tuple = PyTuple_New(1);
+	ePyObject tuple = PyTuple_New(1);
 	if (listmenu == 0)				//menu
 	 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("MENU"));
 	else 	//list
@@ -208,7 +207,7 @@ int eDVBCI_UI::mmiScreenAddText(int slot, int type, char *value)
 
 	slot_ui_data &data = slotdata[slot];
 
-	PyObject *tuple = PyTuple_New(3);
+	ePyObject tuple = PyTuple_New(3);
 
 	if (type == 0)					//title
 	 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("TITLE"));

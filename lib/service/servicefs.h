@@ -35,7 +35,7 @@ public:
 	virtual ~eServiceFS();
 	
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
-	RESULT getContent(PyObject *list, bool sorted=false);
+	RESULT getContent(SWIG_PYOBJECT(ePyObject) list, bool sorted=false);
 	PyObject *getContent(const char *format, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
 	int compareLessEqual(const eServiceReference &, const eServiceReference &);

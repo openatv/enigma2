@@ -186,7 +186,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 //   unknown format string chars are returned as python None values !
 PyObject *eServiceFS::getContent(const char* format, bool sorted)
 {
-	PyObject *ret=0;
+	ePyObject ret;
 	std::list<eServiceReference> tmplist;
 	int retcount=1;
 
@@ -208,10 +208,10 @@ PyObject *eServiceFS::getContent(const char* format, bool sorted)
 		for (int cnt=0; cnt < services; ++cnt)
 		{
 			eServiceReference &ref=*it++;
-			PyObject *tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
+			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
 			for (int i=0; i < retcount; ++i)
 			{
-				PyObject *tmp=0;
+				ePyObject tmp;
 				switch(format[i])
 				{
 				case 'R':  // service reference (swig)object
@@ -258,7 +258,7 @@ PyObject *eServiceFS::getContent(const char* format, bool sorted)
 				PyList_SET_ITEM(ret, cnt, tuple);
 		}
 	}
-	return ret ? ret : PyList_New(0);
+	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
 RESULT eServiceFS::getNext(eServiceReference &ptr)

@@ -5,11 +5,11 @@
 
 class ePythonConfigQuery
 {
-	static PyObject *m_queryFunc;
+	static ePyObject m_queryFunc;
 	ePythonConfigQuery() {}
 	~ePythonConfigQuery() {}
 public:
-	static void setQueryFunc(PyObject *func);
+	static void setQueryFunc(SWIG_PYOBJECT(ePyObject) func);
 #ifndef SWIG
 	static RESULT getConfigValue(const char *key, std::string &value);
 #endif

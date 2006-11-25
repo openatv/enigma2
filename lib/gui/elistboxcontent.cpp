@@ -1,7 +1,7 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
-#include <Python.h>
+#include <lib/python/python.h>
 
 /*
     The basic idea is to have an interface which gives all relevant list
@@ -50,7 +50,6 @@ DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
 {
-	m_list = 0;
 }
 
 eListboxPythonStringContent::~eListboxPythonStringContent()
@@ -104,7 +103,7 @@ int eListboxPythonStringContent::currentCursorSelectable()
 {
 	if (m_list && cursorValid())
 	{
-		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
+		ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
 		if (!PyTuple_Check(item))
 			return 1;
 		if (PyTuple_Size(item) >= 2)
@@ -145,7 +144,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (m_list && cursorValid())
 	{
 		int gray = 0;
-		PyObject *item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+		ePyObject item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 		painter.setFont(fnt);
 
 			/* the user can supply tuples, in this case the first one will be displayed. */		
@@ -177,12 +176,12 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	painter.clippop();
 }
 
-void eListboxPythonStringContent::setList(PyObject *list)
+void eListboxPythonStringContent::setList(ePyObject list)
 {
 	Py_XDECREF(m_list);
 	if (!PyList_Check(list))
 	{
-		m_list = 0;
+		m_list = ePyObject();
 	} else
 	{
 		m_list = list;
@@ -200,7 +199,7 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
-	PyObject *r = PyList_GET_ITEM(m_list, m_cursor);
+	ePyObject r = PyList_GET_ITEM(m_list, m_cursor);
 	Py_XINCREF(r);
 	return r;
 }
@@ -236,8 +235,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (m_list && cursorValid())
 	{
 			/* get current list item */
-		PyObject *item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
-		PyObject *text = 0, *value = 0;
+		ePyObject item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+		ePyObject text, value;
 		painter.setFont(fnt);
 
 			/* the first tuple element is a string for the left side.
@@ -266,7 +265,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			value = PyTuple_GET_ITEM(item, 1);
 			if (value)
 			{
-				PyObject *args = PyTuple_New(1);
+				ePyObject args = PyTuple_New(1);
 				PyTuple_SET_ITEM(args, 0, PyInt_FromLong(selected));
 				
 					/* CallObject will call __call__ which should return the value tuple */
@@ -283,14 +282,14 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (value && PyTuple_Check(value))
 			{
 					/* convert type to string */
-				PyObject *type = PyTuple_GET_ITEM(value, 0);
+				ePyObject type = PyTuple_GET_ITEM(value, 0);
 				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
 				
 				if (atype)
 				{
 					if (!strcmp(atype, "text"))
 					{
-						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
+						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
 						if (value_alignment_left)
@@ -301,8 +300,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
 					{
-						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
-						PyObject *psize = PyTuple_GET_ITEM(value, 2);
+						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
+						ePyObject psize = PyTuple_GET_ITEM(value, 2);
 						
 							/* convert value to Long. fallback to -1 on error. */
 						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
@@ -321,7 +320,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
 					{
-						PyObject *pvalue = PyTuple_GET_ITEM(value, 1);
+						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						int xoffs = value_alignment_left ? 0 : m_seperation;
 						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(xoffs, 0), item_right));
@@ -330,7 +329,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);
 						int glyphs = para->size();
 						
-						PyObject *plist = 0;
+						ePyObject plist;
 						
 						if (PyTuple_Size(value) >= 3)
 							plist = PyTuple_GET_ITEM(value, 2);
@@ -342,7 +341,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						
 						for (int i = 0; i < entries; ++i)
 						{
-							PyObject *entry = PyList_GET_ITEM(plist, i);
+							ePyObject entry = PyList_GET_ITEM(plist, i);
 							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
 							
 							if ((num < 0) || (num >= glyphs))
@@ -387,7 +386,6 @@ int eListboxPythonConfigContent::currentCursorSelectable()
 RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 eListboxPythonMultiContent::eListboxPythonMultiContent()
-	:m_buildFunc(0)
 {
 }
 
@@ -404,7 +402,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 	painter.clear();
 
-	PyObject *items=0;
+	ePyObject items;
 
 	if (m_list && cursorValid())
 	{
@@ -438,7 +436,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		int size = PyList_Size(items);
 		for (int i = 1; i < size; ++i)
 		{
-			PyObject *item = PyList_GET_ITEM(items, i); // borrowed reference!
+			ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
 			
 			if (!item)
 			{
@@ -446,7 +444,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 			
-			PyObject *px = 0, *py = 0, *pwidth = 0, *pheight = 0, *pfnt = 0, *pstring = 0, *pflags = 0, *pcolor = 0;
+			ePyObject px, py, pwidth, pheight, pfnt, pstring, pflags, pcolor;
 		
 			/*
 				we have a list of tuples:
@@ -630,7 +628,7 @@ error_out:
 	painter.clippop();
 }
 
-void eListboxPythonMultiContent::setBuildFunc(PyObject *cb)
+void eListboxPythonMultiContent::setBuildFunc(ePyObject cb)
 {
 	if (m_buildFunc)
 		Py_DECREF(m_buildFunc);
@@ -644,7 +642,7 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 	/* each list-entry is a list of tuples. if the first of these is none, it's not selectable */
 	if (m_list && cursorValid())
 	{
-		PyObject *item = PyList_GET_ITEM(m_list, m_cursor);
+		ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
 		if (PyList_Check(item))
 		{
 			item = PyList_GET_ITEM(item, 0);

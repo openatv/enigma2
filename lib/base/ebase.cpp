@@ -131,7 +131,7 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	eFatal("removed socket notifier which is not present");
 }
 
-int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObject *additional)
+int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObject additional)
 {
 	int return_reason = 0;
 		/* get current time */
@@ -222,7 +222,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, PyObje
 			{
 				if (!*res)
 					*res = PyList_New(0);
-				PyObject *it = PyTuple_New(2);
+				ePyObject it = PyTuple_New(2);
 				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
 				PyTuple_SET_ITEM(it, 1, PyInt_FromLong(pfd[i].revents));
 				PyList_Append(*res, it);
@@ -272,7 +272,7 @@ void eMainloop::removeTimer(eTimer* e)
 	m_timer_list.remove(e);
 }
 
-int eMainloop::iterate(unsigned int user_timeout, PyObject **res, PyObject *dict)
+int eMainloop::iterate(unsigned int user_timeout, PyObject **res, ePyObject dict)
 {
 	int ret = 0;
 	
@@ -320,9 +320,9 @@ void eMainloop::reset()
 	app_quit_now=false;
 }
 
-PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
+PyObject *eMainloop::poll(ePyObject timeout, ePyObject dict)
 {
-	PyObject *res = 0;
+	PyObject *res=0;
 	
 	if (app_quit_now)
 	{
@@ -333,11 +333,12 @@ PyObject *eMainloop::poll(PyObject *timeout, PyObject *dict)
 	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
 
 	iterate(user_timeout, &res, dict);
+	ePyObject ret(res);
 	
-	if (!res) /* return empty list on timeout */
-		res = PyList_New(0);
+	if (!ret) /* return empty list on timeout */
+		return PyList_New(0);
 	
-	return res;
+	return ret;
 }
 
 void eMainloop::interruptPoll()

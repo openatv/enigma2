@@ -460,7 +460,7 @@ class iCueSheet: public iObject
 public:
 			/* returns a list of (pts, what)-tuples */
 	virtual PyObject *getCutList() = 0;
-	virtual void setCutList(PyObject *list) = 0;
+	virtual void setCutList(SWIG_PYOBJECT(ePyObject) list) = 0;
 	virtual void setCutListEnable(int enable) = 0;
 	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
 };
@@ -473,7 +473,7 @@ class PyList;
 class iSubtitleOutput: public iObject
 {
 public:
-	virtual RESULT enableSubtitles(eWidget *parent, PyObject *entry)=0;
+	virtual RESULT enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry)=0;
 	virtual RESULT disableSubtitles(eWidget *parent)=0;
 	virtual PyObject *getSubtitleList()=0;
 	virtual PyObject *getCachedSubtitle()=0;
@@ -575,7 +575,12 @@ public:
 
 TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
-PyObject *PyFrom(ePtr<iRecordableService>&);  // implemented in servicedvbrecord.cpp
+extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
+
+inline PyObject *PyFrom(ePtr<iRecordableService> &c)
+{
+	return New_iRecordableServicePtr(c);
+}
 
 // TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
 

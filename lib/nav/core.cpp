@@ -1,6 +1,6 @@
 #include <lib/nav/core.h>
 #include <lib/base/eerror.h>
-#include <Python.h>
+#include <lib/python/python.h>
 
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {
@@ -99,11 +99,9 @@ RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 	return -1;
 }
 
-extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
-
 PyObject *eNavigation::getRecordings(void)
 {
-	PyObject *result = PyList_New(m_recordings.size());
+	ePyObject result = PyList_New(m_recordings.size());
 	int pos=0;
 	for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
 		PyList_SET_ITEM(result, pos++, New_iRecordableServicePtr(it->first)); 

@@ -54,12 +54,11 @@ void eActionMap::bindAction(const std::string &context, int priority, int id, eW
 	
 	bnd.m_context = context;
 	bnd.m_widget = widget;
-	bnd.m_fnc = 0;
 	bnd.m_id = id;
 	m_bindings.insert(std::pair<int,eActionBinding>(priority, bnd));
 }
 
-void eActionMap::bindAction(const std::string &context, int priority, PyObject *function)
+void eActionMap::bindAction(const std::string &context, int priority, ePyObject function)
 {
 	eActionBinding bnd;
 	
@@ -80,7 +79,7 @@ void eActionMap::unbindAction(eWidget *widget, int id)
 		}
 }
 
-void eActionMap::unbindAction(const std::string &context, PyObject *function)
+void eActionMap::unbindAction(const std::string &context, ePyObject function)
 {
 	for (std::multimap<int, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
 	{
@@ -126,11 +125,11 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 
 struct call_entry
 {
-	PyObject *m_fnc, *m_arg;
+	ePyObject m_fnc, m_arg;
 	eWidget *m_widget;
 	void *m_widget_arg, *m_widget_arg2;
-	call_entry(PyObject *fnc, PyObject *arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0) { }
-	call_entry(eWidget *widget, void *arg, void *arg2): m_fnc(0), m_arg(0), m_widget(widget), m_widget_arg(arg), m_widget_arg2(arg2) { }
+	call_entry(ePyObject fnc, ePyObject arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0) { }
+	call_entry(eWidget *widget, void *arg, void *arg2): m_widget(widget), m_widget_arg(arg), m_widget_arg2(arg2) { }
 };
 
 void eActionMap::keyPressed(const std::string &device, int key, int flags)
@@ -183,7 +182,7 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 						((k->second.m_device == device) || (k->second.m_device == "generic"))
 						)
 					{
-						PyObject *pArgs = PyTuple_New(2);
+						ePyObject pArgs = PyTuple_New(2);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));
 						PyTuple_SET_ITEM(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
 						++k;
@@ -195,7 +194,7 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 			} else
 			{
 				eDebug("wildcard.");
-				PyObject *pArgs = PyTuple_New(2);
+				ePyObject pArgs = PyTuple_New(2);
 				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
 				Py_INCREF(i->second.m_fnc);

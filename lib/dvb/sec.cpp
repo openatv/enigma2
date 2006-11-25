@@ -1102,7 +1102,7 @@ struct sat_compare
 
 PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int tu2)
 {
-	PyObject *ret=0;
+	ePyObject ret;
 
 	if (tu1 != tu2)
 	{

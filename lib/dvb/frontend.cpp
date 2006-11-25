@@ -660,9 +660,9 @@ int eDVBFrontend::readFrontendData(int type)
 	return 0;
 }
 
-void PutToDict(PyObject *dict, const char*key, long value)
+void PutToDict(ePyObject &dict, const char*key, long value)
 {
-	PyObject *item = PyInt_FromLong(value);
+	ePyObject item = PyInt_FromLong(value);
 	if (item)
 	{
 		if (PyDict_SetItemString(dict, key, item))
@@ -673,9 +673,9 @@ void PutToDict(PyObject *dict, const char*key, long value)
 		eDebug("could not create PyObject for %s", key);
 }
 
-void PutToDict(PyObject *dict, const char*key, const char *value)
+void PutToDict(ePyObject &dict, const char*key, const char *value)
 {
-	PyObject *item = PyString_FromString(value);
+	ePyObject item = PyString_FromString(value);
 	if (item)
 	{
 		if (PyDict_SetItemString(dict, key, item))
@@ -686,7 +686,7 @@ void PutToDict(PyObject *dict, const char*key, const char *value)
 		eDebug("could not create PyObject for %s", key);
 }
 
-void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
+void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
 {
 	int freq_offset=0;
 	int csw=0;
@@ -770,7 +770,7 @@ void fillDictWithSatelliteData(PyObject *dict, const FRONTENDPARAMETERS &parm, e
 	PutToDict(dict, "system", tmp);
 }
 
-void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
+void fillDictWithCableData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
 	PutToDict(dict, "frequency", parm_frequency/1000);
@@ -831,7 +831,7 @@ void fillDictWithCableData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 	PutToDict(dict, "modulation", tmp);
 }
 
-void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
+void fillDictWithTerrestrialData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
 	PutToDict(dict, "frequency", parm_frequency);
@@ -973,7 +973,7 @@ void fillDictWithTerrestrialData(PyObject *dict, const FRONTENDPARAMETERS &parm)
 
 PyObject *eDVBFrontend::readTransponderData(bool original)
 {
-	PyObject *ret=PyDict_New();
+	ePyObject ret=PyDict_New();
 
 	if (ret)
 	{

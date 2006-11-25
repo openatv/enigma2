@@ -7,7 +7,6 @@
 #include <features.h>
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#include <Python.h>
 #include <lib/python/python.h>
 #include <string>
 #include <map>
@@ -29,8 +28,8 @@ public:
 	void unbindAction(eWidget *widget, int id);
 #endif
 
-	void bindAction(const std::string &context, int priority, PyObject *function);
-	void unbindAction(const std::string &context, PyObject *function);
+	void bindAction(const std::string &context, int priority, SWIG_PYOBJECT(ePyObject) function);
+	void unbindAction(const std::string &context, SWIG_PYOBJECT(ePyObject) function);
 	
 	void bindKey(const std::string &device, int key, int flags, const std::string &context, const std::string &action);
 	
@@ -45,7 +44,7 @@ private:
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
 		
-		PyObject *m_fnc;
+		ePyObject m_fnc;
 		
 		eWidget *m_widget;
 		int m_id;
