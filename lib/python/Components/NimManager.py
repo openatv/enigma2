@@ -584,9 +584,9 @@ class NimManager:
 
 			if configMode == "simple":
 				dm = config.Nims[slotid].diseqcMode.value
-				if dm in ["single", "toneburst", "diseqc_a_b", "diseqc_a_b_c_d"]:
+				if dm in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
 					list.append(self.satList[config.Nims[slotid].diseqcA.index])
-				if dm in ["toneburst", "diseqc_a_b", "diseqc_a_b_c_d"]:
+				if dm in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
 					list.append(self.satList[config.Nims[slotid].diseqcB.index])
 				if dm == "diseqc_a_b_c_d":
 					list.append(self.satList[config.Nims[slotid].diseqcC.index])
