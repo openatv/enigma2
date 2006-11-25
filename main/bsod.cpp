@@ -172,7 +172,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	ucontext_t *uc = (ucontext_t*)ctx;
 	eDebug("KILLED BY signal %d", signum);
 #ifndef NO_OOPS_SUPPORT
-	oops(uc->uc_mcontext, signum == SIGSEGV);
+	oops(uc->uc_mcontext, signum == SIGSEGV || signum == SIGABRT);
 #endif
 	eDebug("-------");
 	bsodFatal();
@@ -191,6 +191,7 @@ void bsodCatchSignals()
 	sigaction(SIGSEGV, &act, 0);
 	sigaction(SIGILL, &act, 0);
 	sigaction(SIGBUS, &act, 0);
+	sigaction(SIGABRT, &act, 0);
 }
 
 void bsodLogInit()

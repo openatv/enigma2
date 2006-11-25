@@ -406,7 +406,7 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sort
 //   unknown format string chars are returned as python None values !
 PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 {
-	PyObject *ret=0;
+	ePyObject ret;
 	std::list<eServiceReference> tmplist;
 	int retcount=1;
 
@@ -428,10 +428,10 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 		for (int cnt=0; cnt < services; ++cnt)
 		{
 			eServiceReference &ref=*it++;
-			PyObject *tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
+			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
 			for (int i=0; i < retcount; ++i)
 			{
-				PyObject *tmp=0;
+				ePyObject tmp;
 				switch(format[i])
 				{
 				case 'R':  // service reference (swig)object
@@ -478,7 +478,7 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 				PyList_SET_ITEM(ret, cnt, tuple);
 		}
 	}
-	return ret ? ret : PyList_New(0);
+	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
 RESULT eDVBServiceList::getNext(eServiceReference &ref)
@@ -1383,7 +1383,7 @@ int eDVBServiceBase::getFrontendInfo(int w)
 
 PyObject *eDVBServiceBase::getFrontendData(bool original)
 {
-	PyObject *ret=0;
+	ePyObject ret;
 
 	eUsePtr<iDVBChannel> channel;
 	if(!m_service_handler.getChannel(channel))
@@ -1401,8 +1401,8 @@ PyObject *eDVBServiceBase::getFrontendData(bool original)
 					eDVBFrontendParametersSatellite osat;
 					if (!feparm->getDVBS(osat))
 					{
-						void PutToDict(PyObject *, const char*, long);
-						void PutToDict(PyObject *, const char*, const char*);
+						void PutToDict(ePyObject &, const char*, long);
+						void PutToDict(ePyObject &, const char*, const char*);
 						PutToDict(ret, "orbital_position", osat.orbital_position);
 						const char *tmp = "UNKNOWN";
 						switch(osat.polarisation)
@@ -1526,11 +1526,11 @@ RESULT eDVBServicePlay::activateTimeshift()
 
 PyObject *eDVBServicePlay::getCutList()
 {
-	PyObject *list = PyList_New(0);
+	ePyObject list = PyList_New(0);
 	
 	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 	{
-		PyObject *tuple = PyTuple_New(2);
+		ePyObject tuple = PyTuple_New(2);
 		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(i->where));
 		PyTuple_SetItem(tuple, 1, PyInt_FromLong(i->what));
 		PyList_Append(list, tuple);
@@ -1540,7 +1540,7 @@ PyObject *eDVBServicePlay::getCutList()
 	return list;
 }
 
-void eDVBServicePlay::setCutList(PyObject *list)
+void eDVBServicePlay::setCutList(ePyObject list)
 {
 	if (!PyList_Check(list))
 		return;
@@ -1551,7 +1551,7 @@ void eDVBServicePlay::setCutList(PyObject *list)
 	
 	for (i=0; i<size; ++i)
 	{
-		PyObject *tuple = PyList_GetItem(list, i);
+		ePyObject tuple = PyList_GetItem(list, i);
 		if (!PyTuple_Check(tuple))
 		{
 			eDebug("non-tuple in cutlist");
@@ -1562,7 +1562,7 @@ void eDVBServicePlay::setCutList(PyObject *list)
 			eDebug("cutlist entries need to be a 2-tuple");
 			continue;
 		}
-		PyObject *ppts = PyTuple_GetItem(tuple, 0), *ptype = PyTuple_GetItem(tuple, 1);
+		ePyObject ppts = PyTuple_GetItem(tuple, 0), ptype = PyTuple_GetItem(tuple, 1);
 		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
 		{
 			eDebug("cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
@@ -1984,12 +1984,12 @@ void eDVBServicePlay::cutlistToCuesheet()
 	m_cue->commitSpans();
 }
 
-RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, PyObject *tuple)
+RESULT eDVBServicePlay::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
 	if (m_subtitle_widget)
 		disableSubtitles(parent);
 
-	PyObject *entry = 0;
+	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
 	int type = 0;
 
@@ -2109,7 +2109,7 @@ PyObject *eDVBServicePlay::getCachedSubtitle()
 		{
 			unsigned int data = (unsigned int)tmp;
 			int pid = (data&0xFFFF0000)>>16;
-			PyObject *tuple = PyTuple_New(4);
+			ePyObject tuple = PyTuple_New(4);
 			eDVBServicePMTHandler::program program;
 			eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 			if (!h.getProgramInfo(program))
@@ -2137,7 +2137,7 @@ PyObject *eDVBServicePlay::getSubtitleList()
 		return Py_None;
 	}
 	
-	PyObject *l = PyList_New(0);
+	ePyObject l = PyList_New(0);
 	std::set<int> added_ttx_pages;
 
 	std::set<eDVBServicePMTHandler::subtitleStream> &subs =
@@ -2161,7 +2161,7 @@ PyObject *eDVBServicePlay::getSubtitleList()
 					int hash = magazine_number << 8 | page_number;
 					if (added_ttx_pages.find(hash) == added_ttx_pages.end())
 					{
-						PyObject *tuple = PyTuple_New(5);
+						ePyObject tuple = PyTuple_New(5);
 						PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 						PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
 						PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(page_number));
@@ -2176,7 +2176,7 @@ PyObject *eDVBServicePlay::getSubtitleList()
 				case 0x10 ... 0x13:
 				case 0x20 ... 0x23: // dvb subtitles
 				{
-					PyObject *tuple = PyTuple_New(5);
+					ePyObject tuple = PyTuple_New(5);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->composition_page_id));
@@ -2198,7 +2198,7 @@ PyObject *eDVBServicePlay::getSubtitleList()
 		int hash = magazine_number << 8 | page_number;
 		if (added_ttx_pages.find(hash) == added_ttx_pages.end())
 		{
-			PyObject *tuple = PyTuple_New(5);
+			ePyObject tuple = PyTuple_New(5);
 			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->pid));
 			PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(page_number));

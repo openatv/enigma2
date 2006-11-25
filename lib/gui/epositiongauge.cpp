@@ -59,7 +59,7 @@ void ePositionGauge::setPointer(int which, gPixmap *pixmap, const ePoint &center
 	updatePosition();
 }
 
-void ePositionGauge::setInOutList(PyObject *list)
+void ePositionGauge::setInOutList(ePyObject list)
 {
 	if (!PyList_Check(list))
 		return;
@@ -70,14 +70,14 @@ void ePositionGauge::setInOutList(PyObject *list)
 	
 	for (i=0; i<size; ++i)
 	{
-		PyObject *tuple = PyList_GetItem(list, i);
+		ePyObject tuple = PyList_GetItem(list, i);
 		if (!PyTuple_Check(tuple))
 			continue;
 
 		if (PyTuple_Size(tuple) != 2)
 			continue;
 
-		PyObject *ppts = PyTuple_GetItem(tuple, 0), *ptype = PyTuple_GetItem(tuple, 1);
+		ePyObject ppts = PyTuple_GetItem(tuple, 0), ptype = PyTuple_GetItem(tuple, 1);
 		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
 			continue;
 

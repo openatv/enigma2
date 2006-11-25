@@ -5,7 +5,7 @@
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#include <Python.h>
+#include <lib/python/python.h>
 #include <lib/python/connections.h>
 
 #define MAX_SLOTS 4
@@ -15,7 +15,7 @@ struct slot_ui_data
 {
 	std::string appName;
 	int state;
-	PyObject *mmiScreen;
+	ePyObject mmiScreen;
 	int mmiTuplePos;
 	int mmiScreenReady;
 };

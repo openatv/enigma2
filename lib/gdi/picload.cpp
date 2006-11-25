@@ -1,5 +1,6 @@
-#include "picload.h"
+#include <lib/gdi/picload.h>
 #include "picexif.h"
+#include <lib/python/python.h>
 
 #include <png.h>
 
@@ -335,7 +336,7 @@ static int png_load(const char *filename,  int *x, int *y)
 
 PyObject *getExif(const char *filename)
 {
-	PyObject *list = 0;
+	ePyObject list;
 	Cexif exif;
 	if(exif.DecodeExif(filename))
 	{
@@ -388,7 +389,7 @@ PyObject *getExif(const char *filename)
 		PyList_SET_ITEM(list, 0, PyString_FromString(exif.m_szLastError));
 	}
 
-	return list ? list : PyList_New(0);
+	return list ? (PyObject*)list : (PyObject*)PyList_New(0);
 }
 
 //---------------------------------------------------------------------------------------------

@@ -141,7 +141,7 @@ void eDVBServicePMTHandler::PATready(int)
 
 PyObject *eDVBServicePMTHandler::getCaIds()
 {
-	PyObject *ret=0;
+	ePyObject ret;
 
 	program prog;
 
@@ -157,7 +157,7 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 		}
 	}
 
-	return ret ? ret : PyList_New(0);
+	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
 int eDVBServicePMTHandler::getProgramInfo(struct program &program)

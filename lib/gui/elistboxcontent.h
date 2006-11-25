@@ -11,7 +11,7 @@ public:
 	eListboxPythonStringContent();
 	~eListboxPythonStringContent();
 
-	void setList(PyObject *list);
+	void setList(SWIG_PYOBJECT(ePyObject) list);
 	PyObject *getCurrentSelection();
 	int getCurrentSelectionIndex() { return m_cursor; }
 	void invalidateEntry(int index);
@@ -40,7 +40,7 @@ protected:
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 
 protected:
-	PyObject *m_list;
+	ePyObject m_list;
 	int m_cursor, m_saved_cursor;
 	eSize m_itemsize;
 #endif
@@ -58,7 +58,7 @@ private:
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
-	PyObject *m_buildFunc;
+	ePyObject m_buildFunc;
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
@@ -67,7 +67,7 @@ public:
 	int currentCursorSelectable();
 	
 	void setFont(int fnt, gFont *fnt);
-	void setBuildFunc(PyObject *func);
+	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };

@@ -156,11 +156,11 @@ public:
 
 		// iCueSheet
 	PyObject *getCutList();
-	void setCutList(PyObject *);
+	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
 	
 		// iSubtitleOutput
-	RESULT enableSubtitles(eWidget *parent, PyObject *entry);
+	RESULT enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry);
 	RESULT disableSubtitles(eWidget *parent);
 	PyObject *getSubtitleList();
 	PyObject *getCachedSubtitle();

@@ -179,7 +179,7 @@ class eMainloop
 	ePtrList<eTimer> m_timer_list;
 	bool app_quit_now;
 	int loop_level;
-	int processOneEvent(unsigned int user_timeout, PyObject **res=0, PyObject *additional=0);
+	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
 	pthread_mutex_t recalcLock;
 	
@@ -219,14 +219,14 @@ public:
 		  1 - timeout
 		  2 - signal
 		*/
-	int iterate(unsigned int timeout=0, PyObject **res=0, PyObject *additional=0);
-		
+	int iterate(unsigned int timeout=0, PyObject **res=0, SWIG_PYOBJECT(ePyObject) additional=(PyObject*)0);
+
 		/* run will iterate endlessly until the app is quit, and return
 		   the exit code */
 	int runLoop();
 	
 		/* our new shared polling interface. */
-	PyObject *poll(PyObject *dict, PyObject *timeout);
+	PyObject *poll(SWIG_PYOBJECT(ePyObject) dict, SWIG_PYOBJECT(ePyObject) timeout);
 	void interruptPoll();
 	void reset();
 };

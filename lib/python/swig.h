@@ -18,11 +18,13 @@ typedef x y; \
 #define SWIG_OUTPUT OUTPUT
 #define SWIG_NAMED_OUTPUT(x) OUTPUT
 #define SWIG_VOID(x) void
+#define SWIG_PYOBJECT(x) PyObject*
 #else
 #define SWIG_INPUT
 #define SWIG_OUTPUT
 #define SWIG_NAMED_OUTPUT(x) x
 #define SWIG_VOID(x) x
+#define SWIG_PYOBJECT(x) x
 #endif
 
 #endif

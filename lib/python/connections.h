@@ -7,37 +7,17 @@
 #include <features.h>
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#include <Python.h>
+
 #include <lib/python/python.h>
 
 class PSignal
 {
+	ePyObject m_list;
 public:
-	PyObject *m_list;
-public:
-	PSignal()
-	{
-		m_list = PyList_New(0);
-		Py_INCREF(m_list);
-	}
-	~PSignal()
-	{
-		Py_DECREF(m_list);
-	}
-	
-	void callPython(PyObject *tuple)
-	{
-		int size = PyList_Size(m_list);
-		int i;
-		for (i=0; i<size; ++i)
-		{
-			PyObject *b = PyList_GET_ITEM(m_list, i);
-			ePython::call(b, tuple);
-		}
-	}
-	
-	
-	PyObject *get() { Py_INCREF(m_list); return m_list; }
+	PSignal();
+	~PSignal();
+	void callPython(SWIG_PYOBJECT(ePyObject) tuple);
+	PyObject *get();
 };
 
 inline PyObject *PyFrom(int v)
@@ -58,7 +38,7 @@ public:
 	{
 		PyObject *pArgs = PyTuple_New(0);
 		callPython(pArgs);
-		Py_DECREF(pArgs);
+		Org_Py_DECREF(pArgs);
 		return Signal0<R>::operator()();
 	}
 };
@@ -72,7 +52,7 @@ public:
 		PyObject *pArgs = PyTuple_New(1);
 		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
 		callPython(pArgs);
-		Py_DECREF(pArgs);
+		Org_Py_DECREF(pArgs);
 		return Signal1<R,V0>::operator()(a0);
 	}
 };
@@ -87,7 +67,7 @@ public:
 		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
 		PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
 		callPython(pArgs);
-		Py_DECREF(pArgs);
+		Org_Py_DECREF(pArgs);
 		return Signal2<R,V0,V1>::operator()(a0, a1);
 	}
 };

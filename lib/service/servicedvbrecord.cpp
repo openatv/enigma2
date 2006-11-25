@@ -5,13 +5,6 @@
 
 DEFINE_REF(eDVBServiceRecord);
 
-extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
-
-PyObject *PyFrom(ePtr<iRecordableService> &c)
-{
-	return New_iRecordableServicePtr(c);
-}
-
 eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);

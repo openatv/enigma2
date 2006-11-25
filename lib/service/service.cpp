@@ -4,7 +4,7 @@
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
-#include <Python.h>
+#include <lib/python/python.h>
 
 eServiceReference::eServiceReference(const std::string &string)
 {

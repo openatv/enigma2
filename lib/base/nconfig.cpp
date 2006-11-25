@@ -1,9 +1,9 @@
 #include <lib/base/nconfig.h>
-#include <Python.h>
+#include <lib/python/python.h>
 
-PyObject *ePythonConfigQuery::m_queryFunc;
+ePyObject ePythonConfigQuery::m_queryFunc;
 
-void ePythonConfigQuery::setQueryFunc(PyObject *queryFunc)
+void ePythonConfigQuery::setQueryFunc(ePyObject queryFunc)
 {
 	if (m_queryFunc)
 		Py_DECREF(m_queryFunc);
@@ -16,9 +16,9 @@ RESULT ePythonConfigQuery::getConfigValue(const char *key, std::string &value)
 {
 	if (key && PyCallable_Check(m_queryFunc))
 	{
-		PyObject *pArgs = PyTuple_New(1);
+		ePyObject pArgs = PyTuple_New(1);
 		PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(key));
-		PyObject *pRet = PyObject_CallObject(m_queryFunc, pArgs);
+		ePyObject pRet = PyObject_CallObject(m_queryFunc, pArgs);
 		Py_DECREF(pArgs);
 		if (pRet)
 		{

@@ -338,8 +338,8 @@ public:
 		CASE_CHECK,
 		NO_CASE_CHECK
 	};
-	PyObject *lookupEvent(PyObject *list, PyObject *convertFunc=NULL);
-	PyObject *search(PyObject *);
+	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
+	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
 	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
