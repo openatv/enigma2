@@ -184,6 +184,22 @@ SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);
 
 extern PyObject *New_eServiceReference(const eServiceReference &ref); // defined in enigma_python.i
 
+#ifndef SWIG
+#ifdef PYTHON_REFCOUNT_DEBUG
+inline ePyObject Impl_New_eServiceReference(const char* file, int line, const eServiceReference &ref)
+{
+	return ePyObject(New_eServiceReference(ref), file, line);
+}
+#define NEW_eServiceReference(ref) Impl_New_eServiceReference(__FILE__, __LINE__, ref)
+#else
+inline ePyObject Impl_New_eServiceReference(const eServiceReference &ref)
+{
+	return New_eServiceReference(ref);
+}
+#define NEW_eServiceReference(ref) Impl_New_eServiceReference(ref)
+#endif
+#endif // SWIG
+
 typedef long long pts_t;
 
 	/* the reason we have the servicereference as additional argument is
@@ -581,6 +597,22 @@ inline PyObject *PyFrom(ePtr<iRecordableService> &c)
 {
 	return New_iRecordableServicePtr(c);
 }
+
+#ifndef SWIG
+#ifdef PYTHON_REFCOUNT_DEBUG
+inline ePyObject Impl_New_iRecordableServicePtr(const char* file, int line, const ePtr<iRecordableService> &ptr)
+{
+	return ePyObject(New_iRecordableServicePtr(ptr), file, line);
+}
+#define NEW_iRecordableServicePtr(ptr) Impl_New_iRecordableServicePtr(__FILE__, __LINE__, ptr)
+#else
+inline ePyObject Impl_New_iRecordableServicePtr(const ePtr<iRecordableService> &ptr)
+{
+	return New_iRecordableServicePtr(ptr);
+}
+#define NEW_iRecordableServicePtr(ptr) Impl_New_iRecordableServicePtr(ptr)
+#endif
+#endif // SWIG
 
 // TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
 

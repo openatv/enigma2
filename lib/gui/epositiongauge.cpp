@@ -70,14 +70,14 @@ void ePositionGauge::setInOutList(ePyObject list)
 	
 	for (i=0; i<size; ++i)
 	{
-		ePyObject tuple = PyList_GetItem(list, i);
+		ePyObject tuple = PyList_GET_ITEM(list, i);
 		if (!PyTuple_Check(tuple))
 			continue;
 
 		if (PyTuple_Size(tuple) != 2)
 			continue;
 
-		ePyObject ppts = PyTuple_GetItem(tuple, 0), ptype = PyTuple_GetItem(tuple, 1);
+		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
 		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
 			continue;
 

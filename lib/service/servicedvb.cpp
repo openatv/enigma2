@@ -428,14 +428,14 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 		for (int cnt=0; cnt < services; ++cnt)
 		{
 			eServiceReference &ref=*it++;
-			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
+			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : ePyObject();
 			for (int i=0; i < retcount; ++i)
 			{
 				ePyObject tmp;
 				switch(format[i])
 				{
 				case 'R':  // service reference (swig)object
-					tmp = New_eServiceReference(ref);
+					tmp = NEW_eServiceReference(ref);
 					break;
 				case 'C':  // service reference compare string
 					tmp = PyString_FromString(ref.toCompareString().c_str());
@@ -1551,7 +1551,7 @@ void eDVBServicePlay::setCutList(ePyObject list)
 	
 	for (i=0; i<size; ++i)
 	{
-		ePyObject tuple = PyList_GetItem(list, i);
+		ePyObject tuple = PyList_GET_ITEM(list, i);
 		if (!PyTuple_Check(tuple))
 		{
 			eDebug("non-tuple in cutlist");
@@ -1562,7 +1562,7 @@ void eDVBServicePlay::setCutList(ePyObject list)
 			eDebug("cutlist entries need to be a 2-tuple");
 			continue;
 		}
-		ePyObject ppts = PyTuple_GetItem(tuple, 0), ptype = PyTuple_GetItem(tuple, 1);
+		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
 		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
 		{
 			eDebug("cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));

@@ -208,14 +208,14 @@ PyObject *eServiceFS::getContent(const char* format, bool sorted)
 		for (int cnt=0; cnt < services; ++cnt)
 		{
 			eServiceReference &ref=*it++;
-			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : 0;
+			ePyObject tuple = retcount > 1 ? PyTuple_New(retcount) : ePyObject();
 			for (int i=0; i < retcount; ++i)
 			{
 				ePyObject tmp;
 				switch(format[i])
 				{
 				case 'R':  // service reference (swig)object
-					tmp = New_eServiceReference(ref);
+					tmp = NEW_eServiceReference(ref);
 					break;
 				case 'C':  // service reference compare string
 					tmp = PyString_FromString(ref.toCompareString().c_str());

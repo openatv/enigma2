@@ -1535,22 +1535,22 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 				tmp = PyLong_FromLong(0);
 				break;
 			case 'I': // Event Id
-				tmp = ptr ? PyLong_FromLong(ptr->getEventId()) : NULL;
+				tmp = ptr ? PyLong_FromLong(ptr->getEventId()) : ePyObject();
 				break;
 			case 'B': // Event Begin Time
-				tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : NULL;
+				tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : ePyObject();
 				break;
 			case 'D': // Event Duration
-				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : NULL;
+				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : ePyObject();
 				break;
 			case 'T': // Event Title
-				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : ePyObject();
 				break;
 			case 'S': // Event Short Description
-				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : ePyObject();
 				break;
 			case 'E': // Event Extended Description
-				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : ePyObject();
 				break;
 			case 'C': // Current Time
 				tmp = nowTime;
@@ -1581,7 +1581,7 @@ int handleEvent(ePtr<eServiceEvent> &ptr, ePyObject dest_list, char* argstring, 
 	{
 		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
-		if (result == NULL)
+		if (result)
 		{
 			if (service_name)
 				Py_DECREF(service_name);
@@ -1679,7 +1679,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 
 	ePyObject nowTime = strchr(argstring, 'C') ?
 		PyLong_FromLong(eDVBLocalTimeHandler::getInstance()->nowTime()) :
-		NULL;
+		ePyObject();
 
 	bool must_get_service_name = strchr(argstring, 'N') ? true : false;
 
@@ -1838,24 +1838,24 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 				break;
 			case 'B': // Event Begin Time
 				if (ptr)
-					tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : NULL;
+					tmp = ptr ? PyLong_FromLong(ptr->getBeginTime()) : ePyObject();
 				else
 					tmp = PyLong_FromLong(evData->getStartTime());
 				break;
 			case 'D': // Event Duration
 				if (ptr)
-					tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : NULL;
+					tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : ePyObject();
 				else
 					tmp = PyLong_FromLong(evData->getDuration());
 				break;
 			case 'T': // Event Title
-				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : ePyObject();
 				break;
 			case 'S': // Event Short Description
-				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : ePyObject();
 				break;
 			case 'E': // Event Extended Description
-				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : NULL;
+				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : ePyObject();
 				break;
 			case 'R': // service reference string
 				tmp = service_reference;
