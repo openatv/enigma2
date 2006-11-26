@@ -104,7 +104,7 @@ PyObject *eNavigation::getRecordings(void)
 	ePyObject result = PyList_New(m_recordings.size());
 	int pos=0;
 	for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
-		PyList_SET_ITEM(result, pos++, New_iRecordableServicePtr(it->first)); 
+		PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(it->first)); 
 	return result;
 }
 

@@ -8,8 +8,6 @@
 #include <lib/base/object.h>
 #include <Python.h>
 
-#define PYTHON_REFCOUNT_DEBUG
-
 #if !defined(SKIP_PART1) && !defined(SWIG)
 class ePyObject
 {
@@ -23,10 +21,14 @@ public:
 	inline ePyObject();
 	inline ePyObject(const ePyObject &ob);
 	inline ePyObject(PyObject *ob);
+#ifdef PYTHON_REFCOUNT_DEBUG
+	inline ePyObject(PyObject *ob, const char *file, int line);
+#endif
 	inline ePyObject(PyDictObject *ob);
 	inline ePyObject(PyTupleObject *ob);
 	inline ePyObject(PyListObject *ob);
 	inline ePyObject(PyStringObject *ob);
+	operator bool() const { return !!m_ob; }
 	operator bool() { return !!m_ob; }
 	ePyObject &operator=(const ePyObject &);
 	ePyObject &operator=(PyObject *);
@@ -73,6 +75,14 @@ inline ePyObject::ePyObject(PyObject *ob)
 #endif
 {
 }
+
+#ifdef PYTHON_REFCOUNT_DEBUG
+inline ePyObject::ePyObject(PyObject *ob, const char* file, int line)
+	:m_ob(ob)
+	,m_file(file), m_line(line), m_from(ob->ob_refcnt), m_to(ob->ob_refcnt), m_erased(false)
+{
+}
+#endif
 
 inline ePyObject::ePyObject(PyDictObject *ob)
 	:m_ob((PyObject*)ob)
@@ -149,10 +159,8 @@ public:
 };
 TEMPLATE_TYPEDEF(ePtr<TestObj>, TestObjPtr);
 
-extern PyObject *New_TestObj();
-
 #ifndef SWIG
-
+extern PyObject *New_TestObj();
 #ifdef PYTHON_REFCOUNT_DEBUG
 inline void Impl_Py_DECREF(const char* file, int line, const ePyObject &obj)
 {
@@ -174,6 +182,61 @@ inline void Impl_Py_XINCREF(const char* file, int line, const ePyObject &obj)
 {
 	if (obj)
 		((ePyObject*)(&obj))->incref(file, line);
+}
+
+inline ePyObject Impl_PyTuple_New(const char* file, int line, int elements=0)
+{
+	return ePyObject(PyTuple_New(elements), file, line);
+}
+
+inline ePyObject Impl_PyList_New(const char* file, int line, int elements=0)
+{
+	return ePyObject(PyList_New(elements), file, line);
+}
+
+inline ePyObject Impl_PyDict_New(const char* file, int line)
+{
+	return ePyObject(PyDict_New(), file, line);
+}
+
+inline ePyObject Impl_PyString_FromString(const char* file, int line, const char *str)
+{
+	return ePyObject(PyString_FromString(str), file, line);
+}
+
+inline ePyObject Impl_PyInt_FromLong(const char* file, int line, long val)
+{
+	return ePyObject(PyInt_FromLong(val), file, line);
+}
+
+inline ePyObject Impl_PyLong_FromLong(const char* file, int line, long val)
+{
+	return ePyObject(PyLong_FromLong(val), file, line);
+}
+
+inline ePyObject Impl_PyLong_FromUnsignedLong(const char* file, int line, unsigned long val)
+{
+	return ePyObject(PyLong_FromUnsignedLong(val), file, line);
+}
+
+inline ePyObject Impl_PyLong_FromLongLong(const char* file, int line, long long val)
+{
+	return ePyObject(PyLong_FromLongLong(val), file, line);
+}
+
+inline ePyObject Impl_New_TestObj(const char* file, int line)
+{
+	return ePyObject(New_TestObj(), file, line);
+}
+
+inline ePyObject Impl_PyList_GET_ITEM(const char *file, int line, ePyObject list, unsigned int pos)
+{
+	return ePyObject(PyList_GET_ITEM(list, pos), file, line);
+}
+
+inline ePyObject Impl_PyTuple_GET_ITEM(const char *file, int line, ePyObject list, unsigned int pos)
+{
+	return ePyObject(PyTuple_GET_ITEM(list, pos), file, line);
 }
 #else
 inline void Impl_Py_DECREF(const ePyObject &obj)
@@ -197,6 +260,61 @@ inline void Impl_Py_XINCREF(const ePyObject &obj)
 	if (obj)
 		((ePyObject*)(&obj))->incref();
 }
+
+inline ePyObject Impl_PyTuple_New(int elements=0)
+{
+	return PyTuple_New(elements);
+}
+
+inline ePyObject Impl_PyList_New(int elements=0)
+{
+	return PyList_New(elements);
+}
+
+inline ePyObject Impl_PyDict_New()
+{
+	return PyDict_New();
+}
+
+inline ePyObject Impl_PyString_FromString(const char *str)
+{
+	return PyString_FromString(str);
+}
+
+inline ePyObject Impl_PyInt_FromLong(long val)
+{
+	return PyInt_FromLong(val);
+}
+
+inline ePyObject Impl_PyLong_FromLong(long val)
+{
+	return PyLong_FromLong(val);
+}
+
+inline ePyObject Impl_PyLong_FromUnsignedLong(unsigned long val)
+{
+	return PyLong_FromUnsignedLong(val);
+}
+
+inline ePyObject Impl_PyLong_FromLongLong(long long val)
+{
+	return PyLong_FromLongLong(val);
+}
+
+inline ePyObject Impl_New_TestObj()
+{
+	return New_TestObj();
+}
+
+inline ePyObject Impl_PyList_GET_ITEM(ePyObject list, unsigned int pos)
+{
+	return PyList_GET_ITEM(list, pos);
+}
+
+inline ePyObject Impl_PyTuple_GET_ITEM(ePyObject list, unsigned int pos)
+{
+	return PyTuple_GET_ITEM(list, pos);
+}
 #endif
 
 inline void Impl_DECREF(PyObject *ob)
@@ -208,16 +326,40 @@ inline void Impl_DECREF(PyObject *ob)
 #undef Py_XDECREF
 #undef Py_INCREF
 #undef Py_XINCREF
+#undef PyList_GET_ITEM
+#undef PyTuple_GET_ITEM
 #ifdef PYTHON_REFCOUNT_DEBUG
 #define Py_DECREF(obj) Impl_Py_DECREF(__FILE__, __LINE__, obj)
 #define Py_XDECREF(obj) Impl_Py_XDECREF(__FILE__, __LINE__, obj)
 #define Py_INCREF(obj) Impl_Py_INCREF(__FILE__, __LINE__, obj)
 #define Py_XINCREF(obj) Impl_Py_XINCREF(__FILE__, __LINE__, obj)
+#define PyList_New(args...) Impl_PyList_New(__FILE__, __LINE__, args)
+#define PyTuple_New(args...) Impl_PyTuple_New(__FILE__, __LINE__, args)
+#define PyDict_New(...) Impl_PyDict_New(__FILE__, __LINE__)
+#define PyString_FromString(str) Impl_PyString_FromString(__FILE__, __LINE__, str)
+#define PyInt_FromLong(val) Impl_PyInt_FromLong(__FILE__, __LINE__, val)
+#define PyLong_FromLong(val) Impl_PyLong_FromLong(__FILE__, __LINE__, val)
+#define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(__FILE__, __LINE__, val)
+#define PyLong_FromLongLong(val) Impl_PyLong_FromLongLong(__FILE__, __LINE__, val)
+#define NEW_TestObj(...) Impl_New_TestObj(__FILE__, __LINE__)
+#define PyList_GET_ITEM(list, pos) Impl_PyList_GET_ITEM(__FILE__, __LINE__, list, pos)
+#define PyTuple_GET_ITEM(list, pos) Impl_PyTuple_GET_ITEM(__FILE__, __LINE__, list, pos)
 #else
 #define Py_DECREF(obj) Impl_Py_DECREF(obj)
 #define Py_XDECREF(obj) Impl_Py_XDECREF(obj)
 #define Py_INCREF(obj) Impl_Py_INCREF(obj)
 #define Py_XINCREF(obj) Impl_Py_XINCREF(obj)
+#define PyList_New(args...) Impl_PyList_New(args)
+#define PyTuple_New(args...) Impl_PyTuple_New(args)
+#define PyDict_New(...) Impl_PyDict_New()
+#define PyString_FromString(str) Impl_PyString_FromString(str)
+#define PyInt_FromLong(val) Impl_PyInt_FromLong(val)
+#define PyLong_FromLong(val) Impl_PyLong_FromLong(val)
+#define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(val)
+#define PyLong_FromLongLong(val) Impl_PyLong_FromLongLong(val)
+#define NEW_TestObj(...) Impl_New_TestObj()
+#define PyList_GET_ITEM(list, pos) Impl_PyList_GET_ITEM(list, pos)
+#define PyTuple_GET_ITEM(list, pos) Impl_PyTuple_GET_ITEM(list, pos)
 #endif
 
 class ePython
