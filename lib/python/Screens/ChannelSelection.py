@@ -459,7 +459,7 @@ class ChannelSelectionEdit:
 			if self.entry_marked:
 				self.toggleMoveMarked() # unmark current entry
 			self.movemode = False
-			self.pathChangedDisabled = False # re-enable path change
+			self.pathChangeDisabled = False # re-enable path change
 			self.mutableList.flushChanges() # FIXME add check if changes was made
 			self.mutableList = None
 			self.setTitle(self.saved_title)
@@ -469,7 +469,7 @@ class ChannelSelectionEdit:
 		else:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
-			self.pathChangedDisabled = True # no path change allowed in movemode
+			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.instance.getTitle()
 			new_title = self.saved_title
 			pos = self.saved_title.find(')')
@@ -522,7 +522,7 @@ class ChannelSelectionBase(Screen):
 
 		self.mode = MODE_TV
 
-		self.pathChangedDisabled = False
+		self.pathChangeDisabled = False
 
 		self.bouquetNumOffsetCache = { }
 
@@ -720,7 +720,7 @@ class ChannelSelectionBase(Screen):
 		return False
 
 	def showAllServices(self):
-		if not self.pathChangedDisabled:
+		if not self.pathChangeDisabled:
 			refstr = '%s ORDER BY name'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -730,7 +730,7 @@ class ChannelSelectionBase(Screen):
 					self.enterPath(ref)
 
 	def showSatellites(self):
-		if not self.pathChangedDisabled:
+		if not self.pathChangeDisabled:
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -784,7 +784,7 @@ class ChannelSelectionBase(Screen):
 							self.setCurrentSelection(prev)
 
 	def showProviders(self):
-		if not self.pathChangedDisabled:
+		if not self.pathChangeDisabled:
 			refstr = '%s FROM PROVIDERS ORDER BY name'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
@@ -797,9 +797,14 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(ref)
 
 	def changeBouquet(self, direction):
-		if not self.pathChangedDisabled:
-			if self.isBasePathEqual(self.bouquet_root):
-				self.pathUp()
+		if not self.pathChangeDisabled:
+			if len(self.servicePath) > 1:
+				#when enter satellite root list we must do some magic stuff..
+				ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types))
+				if self.isBasePathEqual(ref):
+					self.showSatellites()
+				else:
+					self.pathUp()
 				if direction < 0:
 					self.moveUp()
 				else:
@@ -823,7 +828,7 @@ class ChannelSelectionBase(Screen):
 		self.changeBouquet(-1)
 
 	def showFavourites(self):
-		if not self.pathChangedDisabled:
+		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_rootstr):
 				if self.isBasePathEqual(self.bouquet_root):
 					self.pathUp()
