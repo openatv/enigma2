@@ -3,6 +3,7 @@ from GUIComponent import *
 from config import KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_OK, KEY_TIMEOUT, ConfigElement
 from Components.ActionMap import NumberActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eTimer
+from Screens.MessageBox import MessageBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
@@ -94,6 +95,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def timeout(self):
 		self.handleKey(KEY_TIMEOUT)
 
+	def isChanged(self):
+		is_changed = False
+		for x in self.list:
+			is_changed |= x[1].isChanged()
+
+		return is_changed
+
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "TextInputActions"],
@@ -139,3 +147,23 @@ class ConfigListScreen:
 		self["config"].handleKey(KEY_0 + number)
 		self.__changed()
 
+	# keySave and keyCancel are just provided in case you need them.
+	# you have to call them by yourself.
+	def keySave(self):
+		for x in self["config"].list:
+			x[1].save()
+		self.close()
+	
+	def cancelConfirm(self, result):
+		if not result:
+			return
+
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()

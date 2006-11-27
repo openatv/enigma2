@@ -1,5 +1,4 @@
 from Screen import Screen
-from MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_OK
 from Components.ConfigList import ConfigList, ConfigListScreen
@@ -124,32 +123,6 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				list.append( (item_text, item) )
-
-	def keySave(self):
-		print "save requested"
-		for x in self["config"].list:
-			x[1].save()
-		self.close()
-	
-	def cancelConfirm(self, result):
-		if not result:
-			return
-
-		print "cancel requested"
-		
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		is_changed = False
-		for x in self["config"].list:
-			is_changed |= x[1].isChanged()
-		
-		if is_changed:
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
 
 def getSetupTitle(id):
 	xmldata = setupdom.childNodes[0].childNodes
