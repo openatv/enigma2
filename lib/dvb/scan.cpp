@@ -376,12 +376,13 @@ void eDVBScan::channelDone()
 	if (m_ready & validNIT)
 	{
 		int system;
+		std::list<ePtr<iDVBFrontendParameters> > m_ch_toScan_backup;
 		m_ch_current->getSystem(system);
 		SCAN_eDebug("dumping NIT");
 		if (m_flags & clearToScanOnFirstNIT)
 		{
+			m_ch_toScan_backup = m_ch_toScan;
 			m_ch_toScan.clear();
-			m_flags &= ~clearToScanOnFirstNIT;
 		}
 		std::vector<NetworkInformationSection*>::const_iterator i;
 		for (i = m_NIT->getSections().begin(); i != m_NIT->getSections().end(); ++i)
@@ -474,9 +475,25 @@ void eDVBScan::channelDone()
 						break;
 					}
 				}
-				
 			}
+			
 		}
+
+			/* a pitfall is to have the clearToScanOnFirstNIT-flag set, and having channels which have
+			   no or invalid NIT. this code will not erase the toScan list unless at least one valid entry
+			   has been found.
+
+			   This is not a perfect solution, as the channel could contain a partial NIT. Life's bad.
+			*/
+		if (m_flags & clearToScanOnFirstNIT)
+		{
+			if (m_ch_toScan.empty())
+			{
+				eWarning("clearToScanOnFirstNIT was set, but NIT is invalid. Refusing to stop scan.");
+				m_ch_toScan = m_ch_toScan_backup;
+			} else
+	 			m_flags &= ~clearToScanOnFirstNIT;
+ 		}
 		m_ready &= ~validNIT;
 	}
 	
