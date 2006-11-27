@@ -10,11 +10,11 @@ void eListboxServiceContent::addService(const eServiceReference &service, bool b
 	if (beforeCurrent && m_size)
 	{
 		m_list.insert(m_cursor, service);
-		++m_size;
 		--m_cursor;
 	}
 	else
 		m_list.push_back(service);
+	++m_size;
 }
 
 void eListboxServiceContent::removeCurrent()

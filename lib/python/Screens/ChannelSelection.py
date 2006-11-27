@@ -185,7 +185,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def addCurrentServiceToBouquet(self, dest):
-		self.csel.addCurrentServiceToBouquet(dest)
+		self.csel.addServiceToBouquet(dest)
 		if self.bsel is not None:
 			self.bsel.close(True)
 		else:
@@ -321,7 +321,6 @@ class ChannelSelectionEdit:
 				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			new_bouquet_ref = eServiceReference(str)
 			if not mutableBouquetList.addService(new_bouquet_ref):
-				self.bouquetNumOffsetCache = { }
 				mutableBouquetList.flushChanges()
 				eDVBDB.getInstance().reloadBouquets()
 				mutableBouquet = serviceHandler.list(new_bouquet_ref).startEdit()
@@ -331,10 +330,6 @@ class ChannelSelectionEdit:
 						for service in services:
 							if mutableBouquet.addService(service):
 								print "add", service.toString(), "to new bouquet failed"
-							else:
-								current = self.servicelist.getCurrent()
-								if current and current.toString() == self.bouquet_rootstr:
-									self.servicelist.addService(service, True)
 					mutableBouquet.flushChanges()
 				else:
 					print "get mutable list for new created bouquet failed"
@@ -344,7 +339,7 @@ class ChannelSelectionEdit:
 				pos1 = str1.find("FROM BOUQUET")
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
-					self.setRoot(self.bouquet_root)
+					self.servicelist.addService(new_bouquet_ref)
 			else:
 				print "add", str, "to bouquets failed"
 		else:
@@ -442,12 +437,22 @@ class ChannelSelectionEdit:
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.servicelist.removeCurrent()
 
-	def addCurrentServiceToBouquet(self, dest):
+	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
 		if not mutableList is None:
-			if not mutableList.addService(self.servicelist.getCurrent()):
+			if service is None: #use current selected service
+				service = self.servicelist.getCurrent()
+			if not mutableList.addService(service):
 				self.bouquetNumOffsetCache = { }
 				mutableList.flushChanges()
+				# do some voodoo to check if current_root is equal to dest
+				cur_root = self.getRoot();
+				str1 = cur_root.toString()
+				str2 = dest.toString()
+				pos1 = str1.find("FROM BOUQUET")
+				pos2 = str2.find("FROM BOUQUET")
+				if pos1 != -1 and pos2 != -1 and str1[pos1:] == str2[pos2:]:
+					self.servicelist.addService(service)
 
 	def toggleMoveMode(self):
 		if self.movemode:
@@ -552,13 +557,12 @@ class ChannelSelectionBase(Screen):
 		return ref
 
 	def getBouquetNumOffset(self, bouquet):
-		if config.usage.multibouquet.value:
+		if not config.usage.multibouquet.value:
 			return 0
 		bouquet = self.appendDVBTypes(bouquet)
-		try:
-			return self.bouquetNumOffsetCache[bouquet.toString()]
-		except:
-			offsetCount = 0
+		str = bouquet.toString()
+		offsetCount = 0
+		if not self.bouquetNumOffsetCache.has_key(str):
 			serviceHandler = eServiceCenter.getInstance()
 			bouquetlist = serviceHandler.list(self.bouquet_root)
 			if not bouquetlist is None:
@@ -578,7 +582,7 @@ class ChannelSelectionBase(Screen):
 							if serviceIterator.flags: #playable services have no flags
 								continue
 							offsetCount += 1
-		return self.bouquetNumOffsetCache.get(bouquet.toString(), offsetCount)
+		return self.bouquetNumOffsetCache.get(str, offsetCount)
 
 	def recallBouquetMode(self):
 		if self.mode == MODE_TV:
