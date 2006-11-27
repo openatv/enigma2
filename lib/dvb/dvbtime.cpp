@@ -76,7 +76,7 @@ void TDT::ready(int error)
 	eDVBLocalTimeHandler::getInstance()->updateTime(error, chan, ++update_count);
 }
 
-int TDT::createTable(int nr, const __u8 *data, unsigned int max)
+int TDT::createTable(unsigned int nr, const __u8 *data, unsigned int max)
 {
 	if ( data && data[0] == 0x70 || data[0] == 0x73 )
 	{
