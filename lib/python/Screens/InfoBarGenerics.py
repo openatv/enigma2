@@ -221,7 +221,7 @@ class InfoBarNumberZap:
 		bouquet = self.servicelist.bouquet_root
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
-		if bouquet.toString().find('FROM BOUQUET "bouquets.') == -1: #FIXME HACK
+		if not config.usage.multibouquet.value:
 			service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		else:
 			bouquetlist = serviceHandler.list(bouquet)
@@ -1519,21 +1519,7 @@ class InfoBarSubserviceSelection:
 			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
 
 	def addSubserviceToBouquet(self, dest):
-		serviceHandler = eServiceCenter.getInstance()
-		list = dest and serviceHandler.list(dest)
-		mutableList = dest and list and list.startEdit()
-		if mutableList:
-			if not mutableList.addService(self.selectedSubservice[1]):
-				mutableList.flushChanges()
-				# do some voodoo to check if the subservice is added to the
-				# current selected bouquet in channellist
-				cur_root = self.servicelist.getRoot();
-				str1 = cur_root.toString()
-				str2 = dest.toString()
-				pos1 = str1.find("FROM BOUQUET")
-				pos2 = str2.find("FROM BOUQUET")
-				if pos1 != -1 and pos2 != -1 and str1[pos1:] == str2[pos2:]:
-					self.servicelist.setMode()
+		self.servicelist.addServiceToBouquet(dest, self.selectedSubservice[1])
 		if self.bsel:
 			self.bsel.close(True)
 		else:
