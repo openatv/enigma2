@@ -153,11 +153,6 @@ class NimSetup(Screen, ConfigListScreen):
 		self.run()
 		self.close()
 
-	def keyCancel(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
 	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
 		self.list = [ ]
@@ -198,4 +193,3 @@ class NimSelection(Screen):
 		selection = self["nimlist"].getCurrent()
 		if selection[1].nimType != -1:	#unknown/empty
 			self.session.open(NimSetup, selection[1].slotid)
-	
