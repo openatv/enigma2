@@ -421,7 +421,7 @@ class NimManager:
 		return self.cablesList[0]
 	
 	def getCableTrustNit(self, nim):
-		return (config.Nims[nim].cabletype.value == "quick")
+		return config.Nims[nim].cabletype.value == "quick"
 
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
@@ -794,7 +794,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
 
 		elif slot.nimType == nimmgr.nimType["DVB-C"]:
-			nim.cabletype = ConfigSelection(choices = [("quick", _("Quick")), ("complete", _("Complete"))])
+			nim.cabletype = ConfigSelection(choices = [("quick", _("Quick")), ("complete", _("Complete"))], default = "complete")
 		elif slot.nimType == nimmgr.nimType["DVB-T"]:
 			list = []
 			n = 0
