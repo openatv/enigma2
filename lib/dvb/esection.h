@@ -19,7 +19,7 @@ private:
 	void timeout();
 	ePtr<eConnection> m_sectionRead_conn;
 protected:
-	virtual int createTable(int nr, const __u8 *data, unsigned int max)=0;
+	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
 public:
 	Signal1<void, int> tableReady;
 	eGTable();
@@ -38,7 +38,7 @@ private:
 	std::vector<Section*> sections;
 	std::set<int> avail;
 protected:
-	int createTable(int nr, const __u8 *data, unsigned int max)
+	int createTable(unsigned int nr, const __u8 *data, unsigned int max)
 	{
 		unsigned int ssize = sections.size();
 		if (max < ssize || nr >= max)

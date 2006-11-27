@@ -32,7 +32,7 @@ class TDT: public eGTable
 	eDVBChannel *chan;
 	ePtr<iDVBDemux> demux;
 	eTimer m_interval_timer;
-	int createTable(int nr, const __u8 *data, unsigned int max);
+	int createTable(unsigned int nr, const __u8 *data, unsigned int max);
 	void ready(int);
 	int update_count;
 public:
