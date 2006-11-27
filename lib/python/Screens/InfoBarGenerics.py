@@ -1512,10 +1512,11 @@ class InfoBarSubserviceSelection:
 				self.addSubserviceToBouquet(self.bouquets[0][1])
 				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO)
 
-	def bouquetSelClosed(self, **args):
+	def bouquetSelClosed(self, confirmed):
 		self.bsel = None
 		del self.selectedSubservice
-		self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
+		if confirmed:
+			self.session.open(MessageBox, _("Service has been added to the selected bouquet."), MessageBox.TYPE_INFO)
 
 	def addSubserviceToBouquet(self, dest):
 		serviceHandler = eServiceCenter.getInstance()
@@ -1534,7 +1535,7 @@ class InfoBarSubserviceSelection:
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == str2[pos2:]:
 					self.servicelist.setMode()
 		if self.bsel:
-			self.bsel.close()
+			self.bsel.close(True)
 		else:
 			del self.selectedSubservice
 
