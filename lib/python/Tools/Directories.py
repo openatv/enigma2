@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 SCOPE_TRANSPONDERDATA = 0
@@ -94,6 +93,15 @@ def resolveFilename(scope, base = "", path_prefix = None):
 def pathExists(path):
 	return os.path.exists(path)
 
+def createDir(path):
+	try:
+		os.mkdir(path)
+	except:
+		ret = 0
+	else:
+		ret = 1
+	return ret
+
 def fileExists(f):
 	try:
 		file = open(f)
@@ -130,3 +138,5 @@ def getRecordingFilename(basename):
 def InitFallbackFiles():
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.tv")
 	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
+	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.radio")
+	resolveFilename(SCOPE_CONFIG, "bouquets.radio")
