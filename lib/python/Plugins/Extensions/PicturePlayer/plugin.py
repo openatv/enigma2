@@ -9,13 +9,12 @@ from Components.Label import Label
 from Components.ConfigList import ConfigList
 from Components.config import *
 
-from Tools.Directories import resolveFilename, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, pathExists, createDir, SCOPE_MEDIA
 from Components.FileList import FileEntryComponent, FileList
 from Components.AVSwitch import AVSwitch
 
 from Plugins.Plugin import PluginDescriptor
 
-import os
 
 config.pic = ConfigSubsection()
 config.pic.slidetime = ConfigInteger(default=10, limits=(5, 60))
@@ -153,9 +152,10 @@ class ThumbView(Screen):
 			cachefile = ""
 			if config.pic.cache.value:
 				cachedir = self.path + ".Thumbnails/"
-				if not os.path.exists(cachedir):
-					os.mkdir(cachedir)
 				cachefile = cachedir + self.thumblist[self.thumbindex] + str(180) + str(160) + str(self.aspect)
+				if not pathExists(cachedir):
+					if not createDir(cachedir):
+						cachefile = ""
 
 			ptr = loadPic(self.path + self.thumblist[self.thumbindex], 180, 160, self.aspect, int(config.pic.resize.value), int(config.pic.rotate.value),1, cachefile)
 			if ptr != None:
@@ -451,9 +451,9 @@ class picmain(Screen):
 		
 		self.aspect = getAspect()
 		currDir = config.pic.lastDir.value
-		if not os.path.exists(currDir):
+		if not pathExists(currDir):
 			currDir = "/"
-		
+
 		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|png|bmp)")
 		self["filelist"] = self.filelist
 		self["thumbnail"] = Pixmap()
@@ -480,15 +480,15 @@ class picmain(Screen):
 
 	def showThumb(self):
 		if not self.filelist.canDescent():
-			print self.filelist.getCurrentDirectory()
 			cachefile = ""
 			if config.pic.cache.value:
 				cachedir = self.filelist.getCurrentDirectory() + ".Thumbnails/"
-				if not os.path.exists(cachedir):
-					os.mkdir(cachedir)
-				cachefile = cachedir + self.filelist.getSelection()[0] + str(180) + str(160) + str(self.aspect)
+				cachefile = cachedir + self.filelist.getFilename() + str(180) + str(160) + str(self.aspect)
+				if not pathExists(cachedir):
+					if not createDir(cachedir):
+						cachefile = ""
 
-			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getSelection()[0], 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
+			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getFilename(), 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
 			if ptr != None:
 				self["thumbnail"].show()
 				self["thumbnail"].instance.setPixmap(ptr.__deref__())
@@ -499,10 +499,10 @@ class picmain(Screen):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 		else:
-			self.session.openWithCallback(self.returnVal, PicView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.filelist.getCurrentDirectory())
+			self.session.openWithCallback(self.returnVal, PicView, self.filelist.getFileList(), self.filelist.getFilename(), self.filelist.getCurrentDirectory())
 			
 	def StartThumb(self):
-		self.session.openWithCallback(self.returnVal, ThumbView, self.filelist.getFileList(), self.filelist.getSelection()[0], self.filelist.getCurrentDirectory())
+		self.session.openWithCallback(self.returnVal, ThumbView, self.filelist.getFileList(), self.filelist.getFilename(), self.filelist.getCurrentDirectory())
 
 	def returnVal(self, val=0):
 		if val > 0:
@@ -513,7 +513,7 @@ class picmain(Screen):
 
 	def StartExif(self):
 		if not self.filelist.canDescent():
-			self.session.open(ExifView, self.filelist.getCurrentDirectory() + self.filelist.getFilename(), self.filelist.getSelection()[0])
+			self.session.open(ExifView, self.filelist.getCurrentDirectory() + self.filelist.getFilename(), self.filelist.getFilename())
 
 	def Settings(self):
 		self.session.open(PicSetup)
@@ -523,6 +523,7 @@ class picmain(Screen):
 			config.pic.lastDir.value = "/"
 		else:
 			config.pic.lastDir.value = self.filelist.getCurrentDirectory()
+
 		config.pic.save()
 		self.close()
 
