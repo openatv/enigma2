@@ -86,6 +86,10 @@ void bsodFatal()
 		std::string buffer = getLogBuffer();
 		fwrite(buffer.c_str(), buffer.size(), 1, f);
 		fclose(f);
+		
+		char cmd[256];
+		sprintf(cmd, "find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum >> %s", logfile);
+		system(cmd);
 	}
 	
 	ePtr<gFBDC> my_dc;
