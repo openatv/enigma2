@@ -431,8 +431,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			/* get service information */
 		ePtr<iStaticServiceInformation> service_info;
 		m_service_center->info(*m_cursor, service_info);
+		eServiceReference ref = *m_cursor;
+		bool checkPlayable =
+			(ref.flags & eServiceReference::flagDirectory) != eServiceReference::flagDirectory ||
+			(ref.flags & eServiceReference::isGroup);
 
-		if (m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (checkPlayable && m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 			painter.setForegroundColor(gRGB(0xbbbbbb));
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol
