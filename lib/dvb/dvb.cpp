@@ -529,7 +529,7 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 
 int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
 {
-	bool ret=true;
+	bool ret=3000;
 	if (m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
@@ -615,14 +615,14 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 	if (!m_list)
 	{
 		eDebug("no channel list set!");
-		ret = false;
+		ret = 0;
 		goto error;
 	}
 
 	if (m_list->getChannelFrontendData(channelid, feparm))
 	{
 		eDebug("channel not found!");
-		ret = false;
+		ret = 0;
 		goto error;
 	}
 

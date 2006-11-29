@@ -268,4 +268,15 @@ private:
 	void radioTextUpdated();
 };
 
+class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceDVBBouquetInformation);
+	eServiceReference m_playable_service;
+public:
+	eServiceReference &getPlayableService() { return m_playable_service; }
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+};
+
 #endif
