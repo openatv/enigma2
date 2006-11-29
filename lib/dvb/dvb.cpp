@@ -511,7 +511,7 @@ RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &
 	return 0;
 }
 
-bool eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm)
+int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm)
 {
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
@@ -524,10 +524,10 @@ bool eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepa
 				bestval = c;
 		}
 
-	return bestval>0;
+	return bestval;
 }
 
-bool eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
+int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
 {
 	bool ret=true;
 	if (m_cached_channel)

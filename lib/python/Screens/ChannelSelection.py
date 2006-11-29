@@ -3,8 +3,9 @@ from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.MenuList import MenuList
+from Components.ServiceEventTracker import ServiceEventTracker
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eServiceCenterPtr, iMutableServiceListPtr, iStaticServiceInformationPtr, eTimer, eDVBDB, iPlayableService, iServiceInformation
 from Components.config import config, ConfigSubsection, ConfigText
 from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
@@ -866,22 +867,39 @@ class ChannelSelectionBase(Screen):
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			list = serviceHandler.list(self.bouquet_root)
-			if not list is None:
+			if list:
 				while True:
 					s = list.getNext()
 					if not s.valid():
 						break
-					if ((s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory):
+					if (s.flags & eServiceReference.isGroup):
+						continue
+					if (s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 						info = serviceHandler.info(s)
-						if not info is None:
+						if info:
 							bouquets.append((info.getName(s), s))
 				return bouquets
 		else:
 			info = serviceHandler.info(self.bouquet_root)
-			if not info is None:
+			if info:
 				bouquets.append((info.getName(self.bouquet_root), self.bouquet_root))
 			return bouquets
 		return None
+
+	def getGroupList(self):
+		groups = [ ]
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(self.bouquet_root)
+		if list:
+			while True:
+				s = list.getNext()
+				if not s.valid():
+					break
+				if (s.flags & eServiceReference.isGroup) and (s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+					info = serviceHandler.info(s)
+					if info:
+						groups.append((info.getName(s), s))
+		return groups
 
 	def keyNumber0(self, num):
 		if len(self.servicePath) > 1:
@@ -936,7 +954,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyTV": self.setModeTv,
 			})
 
-		self.onShown.append(self.__onShown)
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__evServiceStart,
+				iPlayableService.evEnd: self.__evServiceEnd
+			})
 
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.timeout.get().append(self.__onCreate)
@@ -950,6 +972,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
 		self.revertMode = None
+
+	def __evServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		if service:
+			info = service.info()
+			if info:
+				refstr = info.getInfoString(iServiceInformation.sServiceref)
+				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+
+	def __evServiceEnd(self):
+		self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def setMode(self):
 		self.restoreRoot()
@@ -989,14 +1022,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		lastservice=eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.zap()
-
-	def __onShown(self):
-		self.recallBouquetMode()
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		if ref is not None and ref.valid() and ref.getPath() == "":
-			self.servicelist.setPlayableIgnoreService(ref)
-		else:
-			self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -1183,6 +1208,23 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				"ok": self.channelSelected,
 			})
 
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__evServiceStart,
+				iPlayableService.evEnd: self.__evServiceEnd
+			})
+
+	def __evServiceStart(self):
+		service = self.session.nav.getCurrentService()
+		if service:
+			info = service.info()
+			if info:
+				refstr = info.getInfoString(iServiceInformation.sServiceref)
+				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+
+	def __evServiceEnd(self):
+		self.servicelist.setPlayableIgnoreService(eServiceReference())
+
 	def saveRoot(self):
 		path = ''
 		for i in self.servicePathRadio:
@@ -1225,7 +1267,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
-			self.servicelist.setPlayableIgnoreService(lastservice)
 		self.info.show()
 
 	def channelSelected(self): # just return selected service
@@ -1240,7 +1281,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 			if playingref is None or playingref != ref:
 				self.session.nav.playService(ref)
-				self.servicelist.setPlayableIgnoreService(ref)
 				config.radio.lastservice.value = ref.toString()
 				config.radio.lastservice.save()
 			self.saveRoot()

@@ -39,7 +39,8 @@ public:
 		shouldSort=8,			// should be ASCII-sorted according to service_name. great for directories.
 		hasSortKey=16,		// has a sort key in data[3]. not having a sort key implies 0.
 		sort1=32,					// sort key is 1 instead of 0
-		isMarker=64			// Marker
+		isMarker=64,			// Marker
+		isGroup=128			// is a group of services
 	};
 	int flags; // flags will NOT be compared.
 
@@ -238,7 +239,7 @@ public:
 	virtual int getLength(const eServiceReference &ref);
 	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=-1);
 		// returns true when not implemented
-	virtual bool isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+	virtual int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);

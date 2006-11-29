@@ -171,9 +171,9 @@ int iStaticServiceInformation::getLength(const eServiceReference &ref)
 	return -1;
 }
 
-bool iStaticServiceInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int iStaticServiceInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
 {
-	return true;
+	return 0;
 }
 
 RESULT iServiceInformation::getEvent(ePtr<eServiceEvent> &evt, int m_nownext)

@@ -175,7 +175,7 @@ class eDVBResourceManager: public iObject, public Object
 
 	Signal1<void,eDVBChannel*> m_channelAdded;
 
-	bool canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
+	int canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 
 	eUsePtr<iDVBChannel> m_cached_channel;
 	Connection m_cached_channel_state_changed_conn;
@@ -199,7 +199,7 @@ public:
 	};
 
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-	bool canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
+	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
