@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-16 03:49+0100\n"
-"PO-Revision-Date: 2006-11-05 17:19+0100\n"
+"POT-Creation-Date: 2006-11-29 11:14+0100\n"
+"PO-Revision-Date: 2006-11-28 19:20+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -153,23 +153,25 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
+"Právě se nahrává pořad. Prosím, zastavte nahrávání před konfigurováním "
+"positioneru."
 
 msgid ""
 "A sleep timer want's to set your\n"
 "Dreambox to standby. Do that now?"
-msgstr ""
+msgstr "Časovač chce přepnout váš Dreambox do standby módu. Má to udělat?"
 
 msgid ""
 "A sleep timer want's to shut down\n"
 "your Dreambox. Shutdown now?"
-msgstr ""
+msgstr "Časovač chce vypnout váš Dreambox. Má to udělat?"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
 "Selhalo časované nahrávání!\n"
-"Vypněte TV a zkuste to znova.\n"
+"Vypnout TV a zkusit to znova?\n"
 
 msgid "A/V Settings"
 msgstr "Nastavení A/V"
@@ -202,19 +204,25 @@ msgid "Add"
 msgstr "Přidat"
 
 msgid "Add a mark"
-msgstr ""
+msgstr "Přidat značku"
 
 msgid "Add alternative"
-msgstr ""
+msgstr "Přidat alternativu"
 
 msgid "Add files to playlist"
 msgstr "Přidat soubor do playlistu"
 
 msgid "Add service"
-msgstr ""
+msgstr "Přidat kanál"
 
 msgid "Add timer"
 msgstr "Přidat časování"
+
+msgid "Add to bouquet"
+msgstr ""
+
+msgid "Add to favourites"
+msgstr ""
 
 msgid "Advanced"
 msgstr "Rozšířené"
@@ -251,7 +259,7 @@ msgid "Artist:"
 msgstr "Herec:"
 
 msgid "Ask before shutdown:"
-msgstr ""
+msgstr "Zeptat se před vypnutím:"
 
 msgid "Aspect Ratio"
 msgstr "Poměr"
@@ -321,14 +329,20 @@ msgstr "CVBS"
 msgid "Cable"
 msgstr "Kabel"
 
-msgid "Call monitoring"
+msgid "Cache Thumbnails"
 msgstr ""
+
+msgid "Call monitoring"
+msgstr "Monitorovat volání (???)"
 
 msgid "Cancel"
 msgstr "Zrušit"
 
 msgid "Capacity: "
 msgstr "Kapacita:"
+
+msgid "Card"
+msgstr ""
 
 msgid "Catalan"
 msgstr "Katalánsky"
@@ -393,6 +407,9 @@ msgstr ""
 msgid "Common Interface"
 msgstr "Common Interface"
 
+msgid "Compact Flash"
+msgstr ""
+
 msgid "Compact flash card"
 msgstr "Compact flash karta"
 
@@ -406,10 +423,10 @@ msgid "Conflicting timer"
 msgstr "Konfliktní časování"
 
 msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "Připojeno k Fritz!Box!"
 
 msgid "Connecting to Fritz!Box..."
-msgstr ""
+msgstr "Připojuji se k Fritz!Box..."
 
 #, python-format
 msgid ""
@@ -417,6 +434,9 @@ msgid ""
 "failed! (%s)\n"
 "retrying..."
 msgstr ""
+"Připojení k Fritz!Box\n"
+"se nezdařilo (%s)\n"
+"opakování..."
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -428,7 +448,7 @@ msgid "Creating partition failed"
 msgstr "Vytváření oddílu selhalo"
 
 msgid "Croatian"
-msgstr ""
+msgstr "Chorvatsky"
 
 msgid "Current version:"
 msgstr "Nynější verze:"
@@ -437,13 +457,13 @@ msgid "Customize"
 msgstr "Přizpůsobit"
 
 msgid "Cut"
-msgstr ""
+msgstr "Stříh"
 
 msgid "Cutlist editor..."
-msgstr ""
+msgstr "Editor střihu..."
 
 msgid "Czech"
-msgstr ""
+msgstr "Česky"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -509,7 +529,7 @@ msgid "Disable Subtitles"
 msgstr "Zakázat titulky"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #, python-format
 msgid ""
@@ -517,6 +537,9 @@ msgid ""
 "Fritz!Box! (%s)\n"
 "retrying..."
 msgstr ""
+"Odpojeno od\n"
+"Fritz!Box! (%s)\n"
+"opakování..."
 
 msgid "Dish"
 msgstr ""
@@ -625,7 +648,7 @@ msgid "Enable parental control"
 msgstr "Povolit rodičkovský zámek"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Povoleno"
 
 msgid "End"
 msgstr "Konec"
@@ -644,6 +667,12 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
+"Enigma2 Skinselector v0.5 BETA\n"
+"\n"
+"Jestliže s ním máte nějaké problémy prosím kontaktujte\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
 
 msgid "Enter main menu..."
 msgstr "Vstoupit do menu..."
@@ -664,7 +693,7 @@ msgid "Execution finished!!"
 msgstr "Konec programu!"
 
 msgid "Exit editor"
-msgstr ""
+msgstr "Ukončit editor"
 
 msgid "Exit the wizard"
 msgstr "Ukončit průvodce"
@@ -703,7 +732,7 @@ msgid "Friday"
 msgstr "Pátek"
 
 msgid "Fritz!Box FON IP address"
-msgstr ""
+msgstr "Fritz!Box FON IP adresu"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -716,6 +745,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"Pro aplikování skinu je potřeba restart GUI\n"
+"Chcete nyní restartovat GUI?"
 
 msgid "Games / Plugins"
 msgstr "Hry / Pluginy"
@@ -739,7 +770,7 @@ msgid "Goto position"
 msgstr "Jdi na pozici"
 
 msgid "Guard interval mode"
-msgstr ""
+msgstr "Hlídat interval mód"
 
 msgid "Harddisk"
 msgstr "Pevný disk ..."
@@ -775,7 +806,7 @@ msgstr "Aktualizace image"
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
-"Aby mohlo být nahráný načasovaný pogram TV byla na tento kanál přepnuta!\n"
+"Aby mohl být nahráný načasovaný pogram bylo přepnuto na nahrávaný kanál.\n"
 
 msgid "Increased voltage"
 msgstr "Zvýšit napětí"
@@ -806,6 +837,9 @@ msgstr "Vstup"
 
 msgid "Instant Record..."
 msgstr "Okamžité nahrávání..."
+
+msgid "Internal Flash"
+msgstr ""
 
 msgid "Inversion"
 msgstr "Inverze"
@@ -864,8 +898,14 @@ msgstr "Vypnout limit"
 msgid "Limits on"
 msgstr "Zapnout limit"
 
+msgid "List of Storage Devices"
+msgstr ""
+
 msgid "Longitude"
 msgstr "Zeměpsiná délka"
+
+msgid "MMC Card"
+msgstr ""
 
 msgid "MORE"
 msgstr "VÍCE"
@@ -877,13 +917,13 @@ msgid "Mainmenu"
 msgstr "Hlavní menu"
 
 msgid "Make this mark an 'in' point"
-msgstr ""
+msgstr "Udělat z této značky 'in' bod"
 
 msgid "Make this mark an 'out' point"
-msgstr ""
+msgstr "Udělat z této značky 'out' point"
 
 msgid "Make this mark just a mark"
-msgstr ""
+msgstr "Udat z toho jen značku"
 
 msgid "Manual Scan"
 msgstr "Manuální prohledávání"
@@ -980,6 +1020,9 @@ msgstr "DNS (nameserver)"
 
 msgid "Netmask"
 msgstr "Síťová maska"
+
+msgid "Network Mount"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Nastavení sítě"
@@ -1085,7 +1128,7 @@ msgid "PIDs"
 msgstr "PIDy"
 
 msgid "Packet management"
-msgstr ""
+msgstr "Správa paketů"
 
 msgid "Page"
 msgstr "Strana"
@@ -1127,13 +1170,16 @@ msgid "Please enter the old pin code"
 msgstr "Prosím zadejte starý PIN"
 
 msgid "Please press OK!"
-msgstr ""
+msgstr "Prosím stiskněte OK!"
 
 msgid "Please select a subservice to record..."
 msgstr "Prosím vyberte subkanál pro nahrávání..."
 
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podkanál..."
+
+msgid "Please select keyword to filter..."
+msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Prosím, nastav tuner B"
@@ -1175,13 +1221,13 @@ msgid "Positioner"
 msgstr "Positioner"
 
 msgid "Positioner fine movement"
-msgstr ""
+msgstr "Jemné doladění"
 
 msgid "Positioner movement"
-msgstr ""
+msgstr "Otáčení motoru"
 
 msgid "Positioner setup"
-msgstr ""
+msgstr "Nastavení positioneru"
 
 msgid "Positioner storage"
 msgstr ""
@@ -1229,6 +1275,9 @@ msgid "RGB"
 msgstr "RGB"
 
 msgid "RSS Feed URI"
+msgstr "URI RSS zdroje"
+
+msgid "Ram Disk"
 msgstr ""
 
 msgid "Really close without saving settings?"
@@ -1249,6 +1298,9 @@ msgstr "Nastavení příjmu"
 msgid "Record"
 msgstr "Náhrát"
 
+msgid "Recorded files..."
+msgstr ""
+
 msgid "Recording"
 msgstr "Nahrávání"
 
@@ -1262,13 +1314,13 @@ msgid "Remove Plugins"
 msgstr "Odebrat plugin"
 
 msgid "Remove a mark"
-msgstr ""
+msgstr "Odebrat značku"
 
 msgid "Remove plugins"
 msgstr "Odebrat plugin"
 
 msgid "Remove service"
-msgstr ""
+msgstr "Odebrat kanál"
 
 msgid "Repeat"
 msgstr "Opakování"
@@ -1286,7 +1338,7 @@ msgid "Restart"
 msgstr "Restart"
 
 msgid "Restart GUI now?"
-msgstr ""
+msgstr "Restart nyní GUI?"
 
 msgid "Restore"
 msgstr "Obnovit"
@@ -1322,10 +1374,13 @@ msgid "Satellites"
 msgstr "Satelity"
 
 msgid "Satfinder"
-msgstr ""
+msgstr "Vyhledávání satelitu"
 
 msgid "Saturday"
 msgstr "Sobota"
+
+msgid "Scaling Mode"
+msgstr ""
 
 msgid "Scan NIM"
 msgstr "Proskenuj NIM"
@@ -1346,7 +1401,7 @@ msgid "Select a movie"
 msgstr "Výběr filmu"
 
 msgid "Select alternative service"
-msgstr ""
+msgstr "Vybrat alternativní službu"
 
 msgid "Select audio mode"
 msgstr "Výběr zvukového módu"
@@ -1358,7 +1413,7 @@ msgid "Select channel to record from"
 msgstr "Vyberat kanál pro nahrávání"
 
 msgid "Select reference service"
-msgstr ""
+msgstr "Vybrat referenční službu (???)"
 
 msgid "Sequence repeat"
 msgstr "Opakovat sekvenci"
@@ -1371,6 +1426,12 @@ msgstr "Prohledávání"
 
 msgid "Service Searching"
 msgstr "Prohledávání stanic"
+
+msgid "Service has been added to the favourites."
+msgstr ""
+
+msgid "Service has been added to the selected bouquet."
+msgstr ""
 
 msgid "Service scan"
 msgstr "Vyhledávání kanálů"
@@ -1412,7 +1473,7 @@ msgid "Show the tv player..."
 msgstr "Zobrazit TV..."
 
 msgid "Shutdown Dreambox after"
-msgstr ""
+msgstr "Vypnout Dreambox po"
 
 msgid "Similar"
 msgstr "Podobné"
@@ -1433,9 +1494,12 @@ msgid "Single transponder"
 msgstr "Jediný transpodér"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Časovač usínání"
 
 msgid "Sleep timer action:"
+msgstr "Akce časovače:"
+
+msgid "Slideshow Interval (sec.)"
 msgstr ""
 
 msgid "Slot "
@@ -1562,7 +1626,7 @@ msgid "Test mode"
 msgstr "Testovací mód"
 
 msgid "Test-Messagebox?"
-msgstr ""
+msgstr "Vzkaz"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1584,7 +1648,7 @@ msgid "The pin codes you entered are different."
 msgstr "Zadané PINy se neshodují."
 
 msgid "The sleep timer has been activated."
-msgstr ""
+msgstr "Časovač byl aktivován."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1642,7 +1706,7 @@ msgid "Timer selection"
 msgstr "Sekce časovače"
 
 msgid "Timer status:"
-msgstr ""
+msgstr "Stav časovače:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -1912,6 +1976,12 @@ msgstr ""
 "instrukcí na té stránce se vás váš dreambox zeptá na obnovu nastavení."
 
 msgid ""
+"You need to define some keywords first!\n"
+"Press the menu-key to define keywords.\n"
+"Do you want to define keywords now?"
+msgstr ""
+
+msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
@@ -1941,10 +2011,10 @@ msgstr ""
 "Stiskněte OK pro aktualizaci."
 
 msgid "Zap back to service before positioner setup?"
-msgstr ""
+msgstr "Přepnout zpět na kanál před nastavováním positioneru?"
 
 msgid "Zap back to service before satfinder?"
-msgstr ""
+msgstr "Přepnout zpět na kanál před vyhledáváním satelitu?"
 
 msgid "[bouquet edit]"
 msgstr "[editovat buket]"
@@ -2007,8 +2077,14 @@ msgstr ""
 msgid "back"
 msgstr "Zpět"
 
+msgid "better"
+msgstr ""
+
 msgid "blacklist"
 msgstr "černá listina"
+
+msgid "by Exif"
+msgstr ""
 
 msgid "change recording (duration)"
 msgstr "Změnit nahrávání (dobu)"
@@ -2031,8 +2107,8 @@ msgstr "Konfigurační menu"
 msgid "continue"
 msgstr "Pokračovat"
 
-msgid "copy to favourites"
-msgstr "Zkopírovat do oblíbených"
+msgid "copy to bouquets"
+msgstr ""
 
 msgid "daily"
 msgstr "denně"
@@ -2041,7 +2117,7 @@ msgid "delete"
 msgstr "smazat"
 
 msgid "delete cut"
-msgstr ""
+msgstr "smazat střih"
 
 msgid "delete..."
 msgstr "Smazat...."
@@ -2080,7 +2156,7 @@ msgid "end bouquet edit"
 msgstr "Ukončit úpravu buketu"
 
 msgid "end cut here"
-msgstr ""
+msgstr "ukončit střih zde"
 
 msgid "end favourites edit"
 msgstr "Ukončit úpravu oblíbené"
@@ -2120,12 +2196,14 @@ msgid ""
 "incoming call!\n"
 "%s calls on %s!"
 msgstr ""
+"příchozí hovor!\n"
+"%s vyzývá %s! (???)"
 
 msgid "init module"
 msgstr "inicializační modul"
 
 msgid "insert mark here"
-msgstr ""
+msgstr "vložit sem popisovač"
 
 msgid "leave movie player..."
 msgstr "opustit přehrávač"
@@ -2171,6 +2249,9 @@ msgstr "ne"
 
 msgid "no HDD found"
 msgstr "HDD nenalezen"
+
+msgid "no Picture found"
+msgstr ""
 
 msgid "no module found"
 msgstr "Modul nenalezen"
@@ -2220,6 +2301,9 @@ msgstr "Pauza"
 msgid "please press OK when ready"
 msgstr "stiskněte OK až budete připraveni"
 
+msgid "please wait, loading picture..."
+msgstr ""
+
 msgid "previous channel"
 msgstr "Předchozí kanál"
 
@@ -2233,13 +2317,13 @@ msgid "recording..."
 msgstr "nahrávání.."
 
 msgid "remove after this position"
-msgstr ""
+msgstr "odebrat po této pozici"
 
 msgid "remove all new found flags"
 msgstr "Vyčistit \"nově nalezeno\""
 
 msgid "remove before this position"
-msgstr ""
+msgstr "odebrat před touto pozicí"
 
 msgid "remove entry"
 msgstr "Odebrat položku"
@@ -2251,7 +2335,7 @@ msgid "remove new found flag"
 msgstr "Odebrat z \"nově nalezeno\""
 
 msgid "remove this mark"
-msgstr ""
+msgstr "Odebrat popisovač"
 
 msgid "repeated"
 msgstr "opakování"
@@ -2320,7 +2404,7 @@ msgid "show event details"
 msgstr "zobraz podrobnosti události"
 
 msgid "shutdown"
-msgstr ""
+msgstr "vypnout"
 
 msgid "simple"
 msgstr "jednoduché"
@@ -2332,10 +2416,10 @@ msgid "skip forward"
 msgstr "Posun vpřed"
 
 msgid "standby"
-msgstr ""
+msgstr "standby"
 
 msgid "start cut here"
-msgstr ""
+msgstr "začít střih zde"
 
 msgid "start timeshift"
 msgstr "Spustit časový posun"
@@ -2444,3 +2528,6 @@ msgstr "přepnutý"
 
 #~ msgid "Transpondertype"
 #~ msgstr "Typ transpodéru"
+
+#~ msgid "copy to favourites"
+#~ msgstr "Zkopírovat do oblíbených"
