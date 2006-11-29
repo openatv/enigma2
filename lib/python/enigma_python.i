@@ -45,6 +45,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/event.h>
+#include <lib/service/servicedvb.h>
 #include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
@@ -98,6 +99,14 @@ extern int getPrevAsciiCode();
 extern int isUTF8(const std::string &);
 extern std::string convertUTF8DVB(const std::string &, int);
 extern std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid);
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore)
+{
+	eStaticServiceDVBBouquetInformation info;
+	if (info.isPlayable(bouquet_ref, ignore))
+		return New_eServiceReference(info.getPlayableService());
+	Py_INCREF(Py_None);
+	return Py_None;
+}
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -273,6 +282,7 @@ int getPrevAsciiCode();
 void runMainloop();
 void quitMainloop(int exit_code);
 eApplication *getApplication();
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore);
 %{
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 {	
