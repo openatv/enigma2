@@ -153,7 +153,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			/* endianness, however, is not required to be set anymore. */
 		if (flt)
 		{
-			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", /* "endianness", G_TYPE_INT, 4321, */ "depth", G_TYPE_INT, 16, "width", G_TYPE_INT, 16, (char*)0);
+			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", /* "endianness", G_TYPE_INT, 4321, */ "depth", G_TYPE_INT, 16, "width", G_TYPE_INT, 16, "channels", G_TYPE_INT, 2, (char*)0);
 			g_object_set (G_OBJECT (flt), "caps", caps, (char*)0);
 			gst_caps_unref(caps);
 		}
