@@ -115,11 +115,17 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	m_state = stIdle;
 	eDebug("SERVICEMP3 construct!");
 	
-	
 		/* FIXME: currently, decodebin isn't possible for 
 		   video streams. in that case, make a manual pipeline. */
 
-	int is_video = !!strstr(filename, "mpg"); /* fixme */
+	const char *ext = strrchr(filename, '.');
+	if (!ext)
+		ext = filename;
+
+	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin"));
+	int is_mpeg_ts = !strcasecmp(ext, ".ts");
+	int is_video = is_mpeg_ps || is_mpeg_ts;
+	int is_streaming = !strncmp(filename, "http://", 7);
 	
 	int use_decodebin = !is_video;
 	
@@ -129,9 +135,22 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!m_gst_pipeline)
 		eWarning("failed to create pipeline");
 
-	source = gst_element_factory_make ("filesrc", "file-source");
-	if (!source)
-		eWarning("failed to create filesrc");
+	if (!is_streaming)
+	{
+		source = gst_element_factory_make ("filesrc", "file-source");
+		if (!source)
+			eWarning("failed to create filesrc");
+				/* configure source */
+		g_object_set (G_OBJECT (source), "location", filename, NULL);
+	} else
+	{
+		source = gst_element_factory_make ("neonhttpsrc", "http-source");
+		if (!source)
+			eWarning("failed to create neonhttpsrc");
+				/* configure source */
+		g_object_set (G_OBJECT (source), "uri", filename, NULL);
+	}
+		
 	
 	if (use_decodebin)
 	{
@@ -175,7 +194,16 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		video = gst_element_factory_make("dvbvideosink", "video");
 		queue_video = gst_element_factory_make("queue", "queue_video");
 		
-		mpegdemux = gst_element_factory_make("mpegdemux", "mpegdemux");
+		if (is_mpeg_ps)
+			mpegdemux = gst_element_factory_make("flupsdemux", "mpegdemux");
+		else
+			mpegdemux = gst_element_factory_make("flutsdemux", "mpegdemux");
+			
+		if (!mpegdemux)
+		{
+			eDebug("fluendo mpegdemux not available, falling back to mpegdemux\n");
+			mpegdemux = gst_element_factory_make("mpegdemux", "mpegdemux");
+		}
 		
 		eDebug("audio: %p, queue_audio %p, video %p, queue_video %p, mpegdemux %p", audio, queue_audio, video, queue_video, mpegdemux);
 		if (audio && queue_audio && video && queue_video && mpegdemux)
@@ -186,9 +214,6 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	{
 		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline)), gstBusSyncHandler, this);
 
-				/* configure source */
-		g_object_set (G_OBJECT (source), "location", filename, NULL);
-		
 		if (use_decodebin)
 		{
 			g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
@@ -509,10 +534,12 @@ std::string eServiceMP3::getInfoString(int w)
 
 void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 {
-	gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
-	eDebug("gst_message: %s", string);
-	g_free(string);
-	
+	if (msg)
+	{
+		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
+		eDebug("gst_message: %s", string);
+		g_free(string);
+	}
 	
 	switch (GST_MESSAGE_TYPE (msg))
 	{
@@ -565,9 +592,9 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 	gchar *name;
 	name = gst_pad_get_name (pad);
 	g_print ("A new pad %s was created\n", name);
-	if (!strcmp(name, "audio_00"))
+	if (!strncmp(name, "audio_", 6)) // mpegdemux uses video_nn with n=0,1,.., flupsdemux uses stream id
 		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_audioqueue, "sink"));
-	if (!strcmp(name, "video_00"))
+	if (!strncmp(name, "video_", 6))
 		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_videoqueue, "sink"));
 	g_free (name);
 	
