@@ -2002,5 +2002,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		ASSERT(!feparm->getDVBS(sat_parm));
 		return m_sec->canTune(sat_parm, this, 1 << m_fe);
 	}
+	else if (m_type == eDVBFrontend::feCable)
+		return 2;  // more prio for cable frontends
 	return 1;
 }

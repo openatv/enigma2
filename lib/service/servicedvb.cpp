@@ -39,6 +39,7 @@ class eStaticServiceDVBInformation: public iStaticServiceInformation
 public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 };
 
 DEFINE_REF(eStaticServiceDVBInformation);
@@ -90,12 +91,30 @@ int eStaticServiceDVBInformation::getLength(const eServiceReference &ref)
 	return -1;
 }
 
+int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+{
+	ePtr<eDVBResourceManager> res_mgr;
+	if ( eDVBResourceManager::getInstance( res_mgr ) )
+		eDebug("isPlayble... no res manager!!");
+	else
+	{
+		eDVBChannelID chid, chid_ignore;
+		((const eServiceReferenceDVB&)ref).getChannelID(chid);
+		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
+		return res_mgr->canAllocateChannel(chid, chid_ignore);
+	}
+	return false;
+}
+
+
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBBouquetInformation);
 public:
+	eServiceReference m_playable_service;
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
 };
 
 DEFINE_REF(eStaticServiceDVBBouquetInformation);
@@ -131,6 +150,46 @@ RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref
 	}
 	else
 		return -1;
+}
+
+int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+{
+	if (ref.flags & eServiceReference::isGroup)
+	{
+		ePtr<iDVBChannelList> db;
+		ePtr<eDVBResourceManager> res;
+
+		if (eDVBResourceManager::getInstance(res))
+		{
+			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. no resource manager!");
+			return false;
+		}
+
+		if (res->getChannelList(db))
+		{
+			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. no channel list!");
+			return false;
+		}
+
+		eBouquet *bouquet=0;
+		if (db->getBouquet(ref, bouquet))
+		{
+			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. getBouquet failed!");
+			return false;
+		}
+
+		eDVBChannelID chid, chid_ignore;
+		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
+		for (std::list<eServiceReference>::iterator it(bouquet->m_services.begin()); it != bouquet->m_services.end(); ++it)
+		{
+			m_playable_service = *it;
+			((const eServiceReferenceDVB&)*it).getChannelID(chid);
+			if (res->canAllocateChannel(chid, chid_ignore))
+				return true;
+		}
+	}
+	m_playable_service = eServiceReference();
+	return false;
 }
 
 int eStaticServiceDVBBouquetInformation::getLength(const eServiceReference &ref)
@@ -1211,6 +1270,7 @@ int eDVBServicePlay::getInfo(int w)
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
 	case sNamespace: return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
 	case sProvider: if (!m_dvb_service) return -1; return -2;
+	case sServiceref: return resIsString;
 	default:
 		return -1;
 	}
@@ -1223,6 +1283,8 @@ std::string eDVBServicePlay::getInfoString(int w)
 	case sProvider:
 		if (!m_dvb_service) return "";
 		return m_dvb_service->m_provider_name;
+	case sServiceref:
+		return m_reference.toString();
 	default:
 		break;
 	}

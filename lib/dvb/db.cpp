@@ -168,7 +168,7 @@ RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &
 	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
 }
 
-bool eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
@@ -180,7 +180,7 @@ bool eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferen
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 		return res_mgr->canAllocateChannel(chid, chid_ignore);
 	}
-	return false;
+	return 0;
 }
 
 int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query)
