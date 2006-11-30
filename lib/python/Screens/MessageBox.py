@@ -98,8 +98,6 @@ class MessageBox(Screen):
 	def left(self):
 		self.move(self["list"].instance.pageUp)
 		
-
-		
 	def right(self):
 		self.move(self["list"].instance.pageDown)
 
