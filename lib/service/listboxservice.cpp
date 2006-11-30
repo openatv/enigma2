@@ -432,11 +432,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		ePtr<iStaticServiceInformation> service_info;
 		m_service_center->info(*m_cursor, service_info);
 		eServiceReference ref = *m_cursor;
-		bool checkPlayable =
-			(ref.flags & eServiceReference::flagDirectory) != eServiceReference::flagDirectory ||
-			(ref.flags & eServiceReference::isGroup);
+		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || ref.flags & eServiceReference::isMarker);
 
-		if (checkPlayable && m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (isPlayable && m_is_playable_ignore.valid() && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 			painter.setForegroundColor(gRGB(0xbbbbbb));
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol
@@ -549,7 +547,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					eRect area = m_element_position[p];
 					int correction = (area.height() - pixmap_size.height()) / 2;
 
-					if (m_cursor->flags & eServiceReference::flagDirectory)
+					if (isPlayable)
+					{
+						if (e != celServiceTypePixmap)
+							continue;
+						m_element_position[celServiceInfo] = area;
+						m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
+						m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
+					}
+					else if (m_cursor->flags & eServiceReference::isDirectory)
 					{
 						if (e != celFolderPixmap)
 							continue;
@@ -561,13 +567,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							continue;
 					}
 					else
-					{
-						if (e != celServiceTypePixmap)
-							continue;
-						m_element_position[celServiceInfo] = area;
-						m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + 8);
-						m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
-					}
+						eFatal("unknown service type in listboxservice");
 
 					area.moveBy(offset);
 					painter.clip(area);

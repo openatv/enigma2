@@ -144,12 +144,14 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
 						rotor = true;
 
-					ret = 1000;
+					ret=10000;
+					if (rotor && curRotorPos != -1)
+						ret -= abs(curRotorPos-sat.orbital_position);
 				}
 				else
 				{
 					csw = band;
-					ret = 2000;
+					ret = 15000;
 				}
 
 				while (linked_prev_ptr != -1)  // check for linked tuners..

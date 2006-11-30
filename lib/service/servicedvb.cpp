@@ -172,8 +172,9 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 		for (std::list<eServiceReference>::iterator it(bouquet->m_services.begin()); it != bouquet->m_services.end(); ++it)
 		{
-			int tmp=res->canAllocateChannel(chid, chid_ignore);
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
+			int tmp=res->canAllocateChannel(chid, chid_ignore);
+			eDebug("%d %s", tmp, it->toString().c_str());
 			if (tmp > cur)
 			{
 				m_playable_service = *it;
@@ -545,7 +546,7 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 {
-	if (m_parent.flags & eServiceReference::flagDirectory) // bouquet
+	if (m_parent.flags & eServiceReference::canDescent) // bouquet
 	{
 		ePtr<iDVBChannelList> db;
 		ePtr<eDVBResourceManager> resm;
@@ -639,7 +640,7 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 RESULT eServiceFactoryDVB::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
 	/* is a listable service? */
-	if ((ref.flags & eServiceReference::flagDirectory) == eServiceReference::flagDirectory) // bouquet
+	if (ref.flags & eServiceReference::canDescent) // bouquet
 	{
 		if ( !ref.name.empty() )  // satellites or providers list
 			ptr = m_StaticServiceDVBInfo;

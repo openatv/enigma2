@@ -230,7 +230,7 @@ class InfoBarNumberZap:
 					bouquet = self.servicelist.appendDVBTypes(bouquetlist.getNext())
 					if not bouquet.valid(): #check end of list
 						break
-					if (bouquet.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+					if not (bouquet.flags & eServiceReference.isDirectory):
 						continue
 					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:

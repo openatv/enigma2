@@ -81,7 +81,7 @@ RESULT eBouquet::flushChanges()
 	{
 		eServiceReference tmp = *i;
 		std::string str = tmp.path;
-		if ( (i->flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
+		if ( i->flags&eServiceReference::canDescent )
 		{
 			unsigned int p1 = str.find("FROM BOUQUET \"");
 			if (p1 == std::string::npos)
@@ -642,7 +642,7 @@ void eDVBDB::loadBouquet(const char *path)
 					eDebug("only DVB Bouquets supported");
 					continue;
 				}
-				if ( (tmp.flags&eServiceReference::flagDirectory) == eServiceReference::flagDirectory )
+				if ( tmp.flags&eServiceReference::canDescent )
 				{
 					unsigned int pos = tmp.path.rfind('/');
 					if ( pos != std::string::npos )
@@ -679,6 +679,8 @@ void eDVBDB::loadBouquet(const char *path)
 void eDVBDB::reloadBouquets()
 {
 	m_bouquets.clear();
+	loadBouquet("groups.tv");
+	loadBouquet("groups.radio");
 	loadBouquet("bouquets.tv");
 	loadBouquet("bouquets.radio");
 // create default bouquets when missing
