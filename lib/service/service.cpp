@@ -45,7 +45,7 @@ std::string eServiceReference::toString() const
 	ret += getNum(flags);
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
 		ret+=":"+ getNum(data[i], 0x10);
-	ret+=":"+path;
+	ret+=":"+path; /* we absolutely have a problem when the path contains a ':' (for example: http://). we need an encoding here. */
 	if (name.length())
 		ret+=":"+name;
 	return ret;
