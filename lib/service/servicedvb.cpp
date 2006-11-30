@@ -174,7 +174,6 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		{
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
 			int tmp=res->canAllocateChannel(chid, chid_ignore);
-			eDebug("%d %s", tmp, it->toString().c_str());
 			if (tmp > cur)
 			{
 				m_playable_service = *it;
