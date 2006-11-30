@@ -127,6 +127,8 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	int is_video = is_mpeg_ps || is_mpeg_ts;
 	int is_streaming = !strncmp(filename, "http://", 7);
 	
+	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming);
+	
 	int use_decodebin = !is_video;
 	
 	int all_ok = 0;
@@ -136,22 +138,16 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		eWarning("failed to create pipeline");
 
 	if (!is_streaming)
-	{
 		source = gst_element_factory_make ("filesrc", "file-source");
-		if (!source)
-			eWarning("failed to create filesrc");
+	else
+		source = gst_element_factory_make ("neonhttpsrc", "http-source");
+
+	if (!source)
+		eWarning("failed to create %s", is_streaming ? "neonhttpsrc" : "filesrc");
+	else
 				/* configure source */
 		g_object_set (G_OBJECT (source), "location", filename, NULL);
-	} else
-	{
-		source = gst_element_factory_make ("neonhttpsrc", "http-source");
-		if (!source)
-			eWarning("failed to create neonhttpsrc");
-				/* configure source */
-		g_object_set (G_OBJECT (source), "uri", filename, NULL);
-	}
-		
-	
+
 	if (use_decodebin)
 	{
 			/* filesrc -> decodebin -> audioconvert -> capsfilter -> alsasink */
