@@ -1,4 +1,3 @@
-from HTMLComponent import *
 from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
@@ -10,7 +9,7 @@ from enigma import eServiceReference, eServiceCenter, \
 	eServiceCenterPtr, iListableServicePtr, \
 	iStaticServiceInformationPtr
 
-class MovieList(HTMLComponent, GUIComponent):
+class MovieList(GUIComponent):
 	def __init__(self, root):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
