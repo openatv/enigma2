@@ -425,7 +425,7 @@ class InfoBarEPG:
 				service = servicelist.getNext()
 				if not service.valid(): #check if end of list
 					break
-				if service.flags: #ignore non playable services
+				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker): #ignore non playable services
 					continue
 				services.append(ServiceReference(service))
 		return services

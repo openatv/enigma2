@@ -1043,7 +1043,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if ref is None or ref != nref:
 			self.session.nav.playService(nref)
 			self.saveRoot()
-			self.saveChannel()
+			self.saveChannel(nref)
 			config.servicelist.lastmode.save()
 			self.addToHistory(nref)
 
@@ -1086,7 +1086,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setRoot(root)
 		self.session.nav.playService(ref)
 		self.setCurrentSelection(ref)
-		self.saveChannel()
+		self.saveChannel(ref)
 
 	def saveRoot(self):
 		path = ''
@@ -1123,8 +1123,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				return True
 		return False
 
-	def saveChannel(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+	def saveChannel(self, ref):
 		if ref is not None:
 			refstr = ref.toString()
 		else:

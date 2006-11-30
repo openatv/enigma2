@@ -21,6 +21,30 @@ descriptorMap eventData::descriptors;
 __u8 eventData::data[4108];
 extern const uint32_t crc32_table[256];
 
+const eServiceReference &handleGroup(const eServiceReference &ref)
+{
+	if (ref.flags & eServiceReference::isGroup)
+	{
+		ePtr<eDVBResourceManager> res;
+		if (!eDVBResourceManager::getInstance(res))
+		{
+			ePtr<iDVBChannelList> db;
+			if (!res->getChannelList(db))
+			{
+				eBouquet *bouquet=0;
+				if (!db->getBouquet(ref, bouquet))
+				{
+					std::list<eServiceReference>::iterator it(bouquet->m_services.begin());
+					if (it != bouquet->m_services.end())
+						return *it;
+				}
+			}
+		}
+	}
+	return ref;
+}
+
+
 eventData::eventData(const eit_event_struct* e, int size, int type)
 	:ByteSize(size&0xFF), type(type&0xFF)
 {
@@ -1317,7 +1341,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 // if t == -1 we search the current event...
 {
 	singleLock s(cache_lock);
-	uniqueEPGKey key(service);
+	uniqueEPGKey key(handleGroup(service));
 
 	// check if EPG for this service is ready...
 	eventCache::iterator It = eventDB.find( key );
@@ -1393,7 +1417,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, const eventData *&result )
 {
 	singleLock s(cache_lock);
-	uniqueEPGKey key( service );
+	uniqueEPGKey key(handleGroup(service));
 
 	eventCache::iterator It = eventDB.find( key );
 	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached?
@@ -1450,7 +1474,7 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 
 RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
-	eventCache::iterator It = eventDB.find( service );
+	eventCache::iterator It = eventDB.find(handleGroup(service));
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
 		m_timemap_end = minutes != -1 ? It->second.second.upper_bound(begin+minutes*60) : It->second.second.end();
@@ -1474,7 +1498,7 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 		else
 			m_timemap_cursor = It->second.second.begin();
-		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
+		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		return 0;
 	}
@@ -1732,7 +1756,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						break;
 				}
 			}
-			eServiceReference ref(PyString_AS_STRING(service));
+			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
 			if (ref.type != eServiceReference::idDVB)
 			{
 				eDebug("service reference for epg query is not valid");
@@ -2110,7 +2134,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 	if (descridx > -1)
 	{
 		int maxcount=maxmatches;
-		eServiceReferenceDVB ref(refstr?refstr:"");
+		eServiceReferenceDVB ref(refstr?(const eServiceReferenceDVB&)handleGroup(eServiceReference(refstr)):eServiceReferenceDVB(""));
 		// ref is only valid in SIMILAR_BROADCASTING_SEARCH
 		// in this case we start searching with the base service
 		bool first = ref.valid() ? true : false;

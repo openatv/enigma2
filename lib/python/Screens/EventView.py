@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
-from enigma import eServiceEventPtr, eEPGCache, eTimer
+from enigma import eServiceEventPtr, eEPGCache, eTimer, eServiceReference
 from ServiceReference import ServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
@@ -14,7 +14,7 @@ class EventViewBase:
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
 		self.currentService=Ref
-		self.isRecording = len(Ref.ref.getPath())
+		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and len(Ref.ref.getPath())
 		self.event = Event
 		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()

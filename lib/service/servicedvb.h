@@ -277,6 +277,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 };
 
 #endif

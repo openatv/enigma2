@@ -7,7 +7,7 @@ from Components.config import config, ConfigYesNo
 import timer
 import xml.dom.minidom
 
-from enigma import quitMainloop, eEPGCache
+from enigma import quitMainloop, eEPGCache, getBestPlayableServiceReference, eServiceReference
 
 from Screens.MessageBox import MessageBox
 import NavigationInstance
@@ -106,37 +106,47 @@ class RecordTimerEntry(timer.TimerEntry):
 			return True
 		else:
 			self.calculateFilename()
-			self.record_service = NavigationInstance.instance.recordService(self.service_ref)
-			if self.record_service == None:
+			rec_ref = self.service_ref and self.service_ref.ref
+			if rec_ref and rec_ref.flags & eServiceReference.isGroup:
+				rec_ref = getBestPlayableServiceReference(rec_ref, eServiceReference())
+				if not rec_ref:
+					self.log(1, "'get best playable service for group... record' failed")
+					return False
+				
+			self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref)
+			if not self.record_service:
 				self.log(1, "'record service' failed")
 				return False
-			else:
-				event_id = self.eit
-				if event_id is None:
-					event_id = -1
-				prep_res = self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id )
-				if prep_res:
-					self.log(2, "'prepare' failed: error %d" % prep_res)
-					self.record_service = None
-					return False
-
-				if self.repeated:
-					epgcache = eEPGCache.getInstance()
-					queryTime=self.begin+(self.end-self.begin)/2
-					evt = epgcache.lookupEventTime(self.service_ref.ref, queryTime)
-					if evt:
-						self.description = evt.getShortDescription()
-				self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
-				try:
-					f = open(self.Filename + ".ts.meta", "w")
-					f.write(str(self.service_ref) + "\n")
-					f.write(self.name + "\n")
-					f.write(self.description + "\n")
-					f.write(str(self.begin) + "\n")
-					f.close()
-				except IOError:
-					self.log(4, "failed to write meta information")
-				return True
+				
+			event_id = self.eit
+			if event_id is None:
+				event_id = -1
+				
+			if self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id):
+				self.log(2, "'prepare' failed: error %d" % prep_res)
+				self.record_service = None
+				return False
+				
+			if self.repeated:
+				epgcache = eEPGCache.getInstance()
+				queryTime=self.begin+(self.end-self.begin)/2
+				evt = epgcache.lookupEventTime(rec_ref, queryTime)
+				if evt:
+					self.description = evt.getShortDescription()
+				
+			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
+			try:
+				f = open(self.Filename + ".ts.meta", "w")
+				f.write(str(rec_ref) + "\n")
+				f.write(self.name + "\n")
+				f.write(self.description + "\n")
+				f.write(str(self.begin) + "\n")
+				f.close()
+			except IOError:
+				self.log(4, "failed to write meta information")
+				self.record_service = None
+				return False
+			return True
 
 	def do_backoff(self):
 		if self.backoff == 0:
@@ -340,7 +350,7 @@ class RecordTimer(timer.Timer):
 			list.append('<timer')
 			list.append(' begin="' + str(int(timer.begin)) + '"')
 			list.append(' end="' + str(int(timer.end)) + '"')
-			list.append(' serviceref="' + str(timer.service_ref) + '"')
+			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
