@@ -31,7 +31,16 @@ class PluginBrowser(Screen):
 			"red": self.delete,
 			"green": self.download
 		})
-		
+		self.onExecBegin.append(self.checkWarnings)
+	
+	def checkWarnings(self):
+		if len(plugins.warnings):
+			text = _("Some plugins are not available:\n")
+			for (pluginname, error) in plugins.warnings:
+				text += _("%s (%s)\n") % (pluginname, error)
+			plugins.resetWarnings()
+			self.session.open(MessageBox, text = text, type = MessageBox.TYPE_WARNING)
+
 	def save(self):
 		#self.close()
 		self.run()
