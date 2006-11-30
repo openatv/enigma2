@@ -11,24 +11,25 @@ class PluginComponent:
 		self.plugins = {}
 		self.pluginList = [ ]
 		self.setPluginPrefix("Plugins.")
-		
+		self.resetWarnings()
+
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
-	
+
 	def addPlugin(self, plugin):
 		self.pluginList.append(plugin)
 		for x in plugin.where:
 			self.plugins.setdefault(x, []).append(plugin)
 			if x == PluginDescriptor.WHERE_AUTOSTART:
 				plugin(reason=0)
-	
+
 	def removePlugin(self, plugin):
 		self.pluginList.remove(plugin)
 		for x in plugin.where:
 			self.plugins[x].remove(plugin)
 			if x == PluginDescriptor.WHERE_AUTOSTART:
 				plugin(reason=1)
-	
+
 	def readPluginList(self, directory):
 		"""enumerates plugins"""
 		
@@ -41,22 +42,23 @@ class PluginComponent:
 			if not os.path.isdir(directory_category):
 				continue
 			open(directory_category + "/__init__.py", "a").close()
-			for x in os.listdir(directory_category):
-				path = directory_category + "/" + x
+			for pluginname in os.listdir(directory_category):
+				path = directory_category + "/" + pluginname
 				if os.path.isdir(path):
 					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.py"):
 						try:
-							plugin = my_import('.'.join(["Plugins", c, x, "plugin"]))
+							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
 
 							if not plugin.__dict__.has_key("Plugins"):
-								print "Plugin %s doesn't have 'Plugin'-call." % (x)
+								print "Plugin %s doesn't have 'Plugin'-call." % (pluginname)
 								continue
 
 							plugins = plugin.Plugins(path=path)
 						except Exception, exc:
-							print "Plugin ", path, "failed to load:", exc
+							print "Plugin ", c + "/" + pluginname, "failed to load:", exc
 							traceback.print_exc(file=sys.stdout)
 							print "skipping plugin."
+							self.warnings.append( (c + "/" + pluginname, str(exc)) )
 							continue
 
 						# allow single entry not to be a list
@@ -66,21 +68,21 @@ class PluginComponent:
 						for p in plugins:
 							p.updateIcon(path)
 							new_plugins.append(p)
-		
+
 		# build a diff between the old list of plugins and the new one
 		# internally, the "fnc" argument will be compared with __eq__
 		plugins_added = [p for p in new_plugins if p not in self.pluginList]
 		plugins_removed = [p for p in self.pluginList if p not in new_plugins]
-		
+
 		for p in plugins_removed:
 			self.removePlugin(p)
-		
+
 		for p in plugins_added:
 			self.addPlugin(p)
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
-		
+
 		if type(where) is not list:
 			where = [ where ]
 		res = [ ]
@@ -102,5 +104,8 @@ class PluginComponent:
 	def shutdown(self):
 		for p in self.pluginList[:]:
 			self.removePlugin(p)
+
+	def resetWarnings(self):
+		self.warnings = [ ]
 
 plugins = PluginComponent()
