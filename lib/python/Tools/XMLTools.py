@@ -24,4 +24,4 @@ def mergeText(nodelist):
 	return rc
 
 def stringToXML(text):
-		return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;').replace('"', '&quot;')
+	return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace("'", '&apos;').replace('"', '&quot;')

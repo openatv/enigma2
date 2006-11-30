@@ -18,17 +18,5 @@ class ServiceReference(eServiceReference):
 		info = self.info()
 		return info and info.getName(self.ref) or ""
 
-	def play(self):
-		return self.serviceHandler.info(self.ref)
-	
-	def record(self):
-		return self.serviceHandler.record(self.ref)
-	
-	def list(self):
-		return self.serviceHandler.list(self.ref)
-	
 	def info(self):
 		return self.serviceHandler.info(self.ref)
-
-	def offlineOperations(self):
-		return self.serviceHandler.offlineOperations(self.ref)

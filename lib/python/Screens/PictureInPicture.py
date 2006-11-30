@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from enigma import ePoint, eSize, eServiceCenter
+from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition
 
@@ -46,14 +46,19 @@ class PictureInPicture(Screen):
 		return (self.instance.size().width(), self.instance.size().height())
 		
 	def playService(self, service):
-		self.pipservice = eServiceCenter.getInstance().play(service)
-		if self.pipservice and not self.pipservice.setTarget(1):
-			self.pipservice.start()
-			self.currentService = service
-			return True
+		if service and (service.flags & eServiceReference.isGroup):
+			ref = getBestPlayableServiceReference(service, eServiceReference())
 		else:
-			self.pipservice = None
-			return False
+			ref = service
+		if ref:
+			self.pipservice = eServiceCenter.getInstance().play(ref)
+			if self.pipservice and not self.pipservice.setTarget(1):
+				self.pipservice.start()
+				self.currentService = service
+				return True
+			else:
+				self.pipservice = None
+		return False
 		
 	def getCurrentService(self):
 		return self.currentService

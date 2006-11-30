@@ -43,15 +43,24 @@ class Navigation:
 			x(rec_service, event)
 
 	def playService(self, ref, checkParentalControl = True):
+		oldref = self.currentlyPlayingServiceReference
 		print "playing", ref and ref.toString()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
 		if ref is None:
 			self.stopService()
 			return 0
-		
 		if not checkParentalControl or parentalControl.isServicePlayable(ref.toCompareString(), boundFunction(self.playService, checkParentalControl = False)):
-			if self.pnav and not self.pnav.playService(ref):
+			if ref.flags & eServiceReference.isGroup:
+				if not oldref:
+					oldref = eServiceReference()
+				playref = getBestPlayableServiceReference(ref, oldref)
+				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref.toCompareString(), boundFunction(self.playService, checkParentalControl = False))):
+					self.stopService()
+					return 0
+			else:
+				playref = ref
+			if self.pnav and not self.pnav.playService(playref):
 				self.currentlyPlayingServiceReference = ref
 				return 0
 		else:
@@ -62,16 +71,17 @@ class Navigation:
 		return self.currentlyPlayingServiceReference
 	
 	def recordService(self, ref):
+		service = None
 		print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
-		service = self.pnav and self.pnav.recordService(ref)
-		
-		if service is None:
-			print "record returned non-zero"
-			return None
-		else:
-			return service
+		if ref:
+			if ref.flags & eServiceReference.isGroup:
+				ref = getBestPlayableServiceReference(ref, eServiceReference())
+			service = ref and self.pnav and self.pnav.recordService(ref)
+			if service is None:
+				print "record returned non-zero"
+		return service
 
 	def stopRecordService(self, service):
 		ret = self.pnav and self.pnav.stopRecordService(service)

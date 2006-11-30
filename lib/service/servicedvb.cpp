@@ -192,6 +192,13 @@ int eStaticServiceDVBBouquetInformation::getLength(const eServiceReference &ref)
 	return -1;
 }
 
+#include <lib/dvb/epgcache.h>
+
+RESULT eStaticServiceDVBBouquetInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time)
+{
+	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
+}
+
 class eStaticServiceDVBPVRInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBPVRInformation);
