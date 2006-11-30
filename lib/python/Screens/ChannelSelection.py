@@ -78,7 +78,9 @@ class ChannelContextMenu(Screen):
 
 		if not csel.bouquet_mark_edit and not csel.movemode:
 			if not inBouquetRootList:
-				if (csel.getCurrentSelection().flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory:
+				flags = csel.getCurrentSelection().flags
+				isPlayable = not ((flags & eServiceReference.isMarker) or (flags & eServiceReference.isDirectory))
+				if isPlayable:
 					if config.ParentalControl.configured.value:
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							menu.append((_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
@@ -572,7 +574,7 @@ class ChannelSelectionBase(Screen):
 					if not bouquetIterator.valid(): #end of list
 						break
 					self.bouquetNumOffsetCache[bouquetIterator.toString()]=offsetCount
-					if ((bouquetIterator.flags & eServiceReference.flagDirectory) != eServiceReference.flagDirectory):
+					if not (bouquetIterator.flags & eServiceReference.isDirectory):
 						continue
 					servicelist = serviceHandler.list(bouquetIterator)
 					if not servicelist is None:
@@ -872,9 +874,7 @@ class ChannelSelectionBase(Screen):
 					s = list.getNext()
 					if not s.valid():
 						break
-					if (s.flags & eServiceReference.isGroup):
-						continue
-					if (s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+					if s.flags & eServiceReference.isDirectory:
 						info = serviceHandler.info(s)
 						if info:
 							bouquets.append((info.getName(s), s))
@@ -895,7 +895,7 @@ class ChannelSelectionBase(Screen):
 				s = list.getNext()
 				if not s.valid():
 					break
-				if (s.flags & eServiceReference.isGroup) and (s.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+				if (s.flags & eServiceReference.isGroup) and (s.flags & eServiceReference.mustDescent):
 					info = serviceHandler.info(s)
 					if info:
 						groups.append((info.getName(s), s))
