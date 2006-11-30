@@ -138,12 +138,12 @@ public:
 		data[3]=data3;
 		data[4]=data4;
 	}
+#endif
 	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
 	{
 		memset(data, 0, sizeof(data));
 	}
-#endif
 	eServiceReference(const std::string &string);
 	std::string toString() const;
 	std::string toCompareString() const;
