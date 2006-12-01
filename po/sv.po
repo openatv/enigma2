@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-29 11:14+0100\n"
-"PO-Revision-Date: 2006-11-16 20:43+0100\n"
+"POT-Creation-Date: 2006-12-01 15:00+0100\n"
+"PO-Revision-Date: 2006-12-01 13:08+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,10 @@ msgid ""
 msgstr ""
 "%s\n"
 "(%s, %d MB ledigt)"
+
+#, python-format
+msgid "%s (%s)\n"
+msgstr ""
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
@@ -225,10 +229,10 @@ msgid "Add timer"
 msgstr "Lägg till timer"
 
 msgid "Add to bouquet"
-msgstr ""
+msgstr "Lägg till i bouquet"
 
 msgid "Add to favourites"
-msgstr ""
+msgstr "Lägg till i favoriter"
 
 msgid "Advanced"
 msgstr "Avancerat"
@@ -336,7 +340,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr ""
+msgstr "Cache Thumbnails"
 
 msgid "Call monitoring"
 msgstr "Samtals monitorering"
@@ -348,7 +352,7 @@ msgid "Capacity: "
 msgstr "Kapacitet: "
 
 msgid "Card"
-msgstr ""
+msgstr "Kort"
 
 msgid "Catalan"
 msgstr "Katalanska"
@@ -414,7 +418,7 @@ msgid "Common Interface"
 msgstr "Common Interface"
 
 msgid "Compact Flash"
-msgstr ""
+msgstr "Compact Flash"
 
 msgid "Compact flash card"
 msgstr "Compact Flash kort"
@@ -844,7 +848,7 @@ msgid "Instant Record..."
 msgstr "Direkt inspelning..."
 
 msgid "Internal Flash"
-msgstr ""
+msgstr "Intern Flash"
 
 msgid "Inversion"
 msgstr "Inversion"
@@ -904,13 +908,13 @@ msgid "Limits on"
 msgstr "Gränser på"
 
 msgid "List of Storage Devices"
-msgstr ""
+msgstr "Lista på Lagringsenheter"
 
 msgid "Longitude"
 msgstr "Longitud"
 
 msgid "MMC Card"
-msgstr ""
+msgstr "MMC Kort"
 
 msgid "MORE"
 msgstr "MER"
@@ -1027,7 +1031,7 @@ msgid "Netmask"
 msgstr "Nätmask"
 
 msgid "Network Mount"
-msgstr ""
+msgstr "Nätverksmontering"
 
 msgid "Network Setup"
 msgstr "Nätverksinställningar"
@@ -1184,7 +1188,7 @@ msgid "Please select a subservice..."
 msgstr "Vänligen välj en underkanal..."
 
 msgid "Please select keyword to filter..."
-msgstr ""
+msgstr "Vänligen välj nyckelord för filter..."
 
 msgid "Please set up tuner B"
 msgstr "Installera Tuner B."
@@ -1284,7 +1288,7 @@ msgid "RSS Feed URI"
 msgstr "RSS Feed URI"
 
 msgid "Ram Disk"
-msgstr ""
+msgstr "Ram Disk"
 
 msgid "Really close without saving settings?"
 msgstr "Verkligen stänga utan spara inställningarna?"
@@ -1305,7 +1309,7 @@ msgid "Record"
 msgstr "Spela in"
 
 msgid "Recorded files..."
-msgstr ""
+msgstr "Inspelade filer..."
 
 msgid "Recording"
 msgstr "Spelar in"
@@ -1387,7 +1391,7 @@ msgid "Saturday"
 msgstr "Lördag"
 
 msgid "Scaling Mode"
-msgstr ""
+msgstr "Scaling Läge"
 
 msgid "Scan NIM"
 msgstr "Scanna NIM"
@@ -1435,10 +1439,10 @@ msgid "Service Searching"
 msgstr "Kanalsökning"
 
 msgid "Service has been added to the favourites."
-msgstr ""
+msgstr "Kanal har lagts till i favoriter."
 
 msgid "Service has been added to the selected bouquet."
-msgstr ""
+msgstr "Kanal har lagts till i vald bouqet."
 
 msgid "Service scan"
 msgstr "Kanalsökning"
@@ -1507,13 +1511,16 @@ msgid "Sleep timer action:"
 msgstr "Sovtimer händelse:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr ""
+msgstr "Slideshow Intervall (sec.)"
 
 msgid "Slot "
 msgstr "Slot "
 
 msgid "Socket "
 msgstr "Sockel "
+
+msgid "Some plugins are not available:\n"
+msgstr ""
 
 msgid "Somewhere else"
 msgstr "Någon annanstans"
@@ -1992,6 +1999,9 @@ msgid ""
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
+"Du måste ange några nyckelord först!\n"
+"Tryck Meny för att ange nyckelord.\n"
+"Vill du ange nyckelord nu?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2090,13 +2100,13 @@ msgid "back"
 msgstr "tillbaka"
 
 msgid "better"
-msgstr ""
+msgstr "bättre"
 
 msgid "blacklist"
 msgstr "svartlist"
 
 msgid "by Exif"
-msgstr ""
+msgstr "av Exif"
 
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
@@ -2120,7 +2130,7 @@ msgid "continue"
 msgstr "forsätt"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "koperia till bouquets"
 
 msgid "daily"
 msgstr "daglig"
@@ -2263,7 +2273,7 @@ msgid "no HDD found"
 msgstr "ingen hårddisk hittad"
 
 msgid "no Picture found"
-msgstr ""
+msgstr "ingen bild funnen"
 
 msgid "no module found"
 msgstr "ingen modul hittad"
@@ -2314,7 +2324,7 @@ msgid "please press OK when ready"
 msgstr "tryck OK när färdig"
 
 msgid "please wait, loading picture..."
-msgstr ""
+msgstr "vänligen vänta, laddar bilder..."
 
 msgid "previous channel"
 msgstr "föregående kanal"
