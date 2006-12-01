@@ -210,9 +210,9 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 				if not serviceIterator.valid(): #check end of list
 					break
-				if serviceIterator.flags: #assume normal dvb service have no flags set
-					continue
-				num -= 1;
+				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
+				if playable:
+					num -= 1;
 			if not num: #found service with searched number ?
 				return serviceIterator, 0
 		return None, num
@@ -230,9 +230,8 @@ class InfoBarNumberZap:
 					bouquet = self.servicelist.appendDVBTypes(bouquetlist.getNext())
 					if not bouquet.valid(): #check end of list
 						break
-					if not (bouquet.flags & eServiceReference.isDirectory):
-						continue
-					service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
+					if bouquet.flags & eServiceReference.isDirectory:
+						service, number = self.searchNumberHelper(serviceHandler, number, bouquet)
 		if not service is None:
 			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()

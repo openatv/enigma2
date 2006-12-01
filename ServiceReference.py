@@ -20,3 +20,6 @@ class ServiceReference(eServiceReference):
 
 	def info(self):
 		return self.serviceHandler.info(self.ref)
+
+	def list(self):
+		return self.serviceHandler.list(self.ref)

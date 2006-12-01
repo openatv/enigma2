@@ -8,19 +8,20 @@
 void eListboxServiceContent::addService(const eServiceReference &service, bool beforeCurrent)
 {
 	if (beforeCurrent && m_size)
-	{
 		m_list.insert(m_cursor, service);
-		--m_cursor;
-	}
 	else
 		m_list.push_back(service);
 	++m_size;
+	++m_cursor_number;
+	if (m_listbox)
+		m_listbox->entryAdded(m_cursor_number-1);
 }
 
 void eListboxServiceContent::removeCurrent()
 {
 	if (m_size && m_listbox)
 	{
+		--m_size;
 		if (m_cursor_number == m_size-1)
 		{
 			m_list.erase(m_cursor--);
@@ -28,8 +29,7 @@ void eListboxServiceContent::removeCurrent()
 		}
 		else
 			m_list.erase(m_cursor++);
-		--m_size;
-		m_listbox->entryRemoved(m_cursor_number);
+		m_listbox->entryRemoved(m_cursor_number+1);
 	}
 }
 
