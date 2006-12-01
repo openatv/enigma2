@@ -679,8 +679,6 @@ void eDVBDB::loadBouquet(const char *path)
 void eDVBDB::reloadBouquets()
 {
 	m_bouquets.clear();
-	loadBouquet("groups.tv");
-	loadBouquet("groups.radio");
 	loadBouquet("bouquets.tv");
 	loadBouquet("bouquets.radio");
 // create default bouquets when missing

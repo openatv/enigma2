@@ -56,6 +56,11 @@ class BouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(False)
 
+# csel.bouquet_mark_edit values
+OFF = 0
+EDIT_BOUQUET = 1
+EDIT_ALTERNATIVES = 2
+
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 		Screen.__init__(self, session)
@@ -76,10 +81,9 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
-		if not csel.bouquet_mark_edit and not csel.movemode:
+		if csel.bouquet_mark_edit == OFF and not csel.movemode:
 			if not inBouquetRootList:
-				flags = csel.getCurrentSelection().flags
-				isPlayable = not ((flags & eServiceReference.isMarker) or (flags & eServiceReference.isDirectory))
+				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
 					if config.ParentalControl.configured.value:
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
@@ -105,24 +109,34 @@ class ChannelContextMenu(Screen):
 					menu.append((_("remove entry"), self.removeBouquet))
 
 		if inBouquet: # current list is editable?
-			if not csel.bouquet_mark_edit:
+			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
-					menu.append((_("add marker"), self.showMarkerInputBox))
 					menu.append((_("enable move mode"), self.toggleMoveMode))
-					if not inBouquetRootList:
+					if not inBouquetRootList and not current_root.flags & eServiceReference.isGroup:
+						menu.append((_("add marker"), self.showMarkerInputBox))
 						if haveBouquets:
 							menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
 						else:
 							menu.append((_("enable favourite edit"), self.bouquetMarkStart))
+						if current_sel_flags & eServiceReference.isGroup:
+							menu.append((_("edit alternatives"), self.editAlternativeServices))
+							menu.append((_("show alternatives"), self.showAlternativeServices))
+							menu.append((_("remove all alternatives"), self.removeAlternativeServices))
+						else:
+							menu.append((_("add alternatives"), self.addAlternativeServices))
 				else:
 					menu.append((_("disable move mode"), self.toggleMoveMode))
-			elif not inBouquetRootList:
-				if haveBouquets:
-					menu.append((_("end bouquet edit"), self.bouquetMarkEnd))
-					menu.append((_("abort bouquet edit"), self.bouquetMarkAbort))
+			else:
+				if csel.bouquet_mark_edit == EDIT_BOUQUET:
+					if haveBouquets:
+						menu.append((_("end bouquet edit"), self.bouquetMarkEnd))
+						menu.append((_("abort bouquet edit"), self.bouquetMarkAbort))
+					else:
+						menu.append((_("end favourites edit"), self.bouquetMarkEnd))
+						menu.append((_("abort favourites edit"), self.bouquetMarkAbort))
 				else:
-					menu.append((_("end favourites edit"), self.bouquetMarkEnd))
-					menu.append((_("abort favourites edit"), self.bouquetMarkAbort))
+						menu.append((_("end alternatives edit"), self.bouquetMarkEnd))
+						menu.append((_("abort alternatives edit"), self.bouquetMarkAbort))
 
 		menu.append((_("back"), self.cancelClick))
 		self["menu"] = MenuList(menu)
@@ -203,7 +217,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def bouquetMarkStart(self):
-		self.csel.startMarkedEdit()
+		self.csel.startMarkedEdit(EDIT_BOUQUET)
 		self.close()
 
 	def bouquetMarkEnd(self):
@@ -229,6 +243,23 @@ class ChannelContextMenu(Screen):
 				eDVBDB.getInstance().removeFlags(FLAG_SERVICE_NEW_FOUND, -1, -1, -1, satpos)
 		self.close()
 
+	def editAlternativeServices(self):
+		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
+		self.close()
+
+	def showAlternativeServices(self):
+		self.csel.enterPath(self.csel.getCurrentSelection())
+		self.close()
+
+	def removeAlternativeServices(self):
+		self.csel.removeAlternativeServices()
+		self.close()
+
+	def addAlternativeServices(self):
+		self.csel.addAlternativeServices()
+		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
+		self.close()
+
 class ChannelSelectionEPG:
 	def __init__(self):
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
@@ -248,7 +279,7 @@ class ChannelSelectionEdit:
 	def __init__(self):
 		self.entry_marked = False
 		self.movemode = False
-		self.bouquet_mark_edit = False
+		self.bouquet_mark_edit = OFF
 		self.mutableList = None
 		self.__marked = [ ]
 		self.saved_title = None
@@ -312,6 +343,38 @@ class ChannelSelectionEdit:
 				break
 			cnt+=1
 
+	def addAlternativeServices(self):
+		cur_service = ServiceReference(self.getCurrentSelection())
+		cur_root = ServiceReference(self.getRoot())
+		mutableBouquet = cur_root.list().startEdit()
+		if mutableBouquet:
+			name = cur_service.getServiceName()
+			print "NAME", name
+			if self.mode == MODE_TV:
+				str = '1:134:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(name))
+			else:
+				str = '1:134:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"alternatives.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(name))
+			new_ref = ServiceReference(str)
+			if not mutableBouquet.addService(new_ref.ref, cur_service.ref):
+				mutableBouquet.removeService(cur_service.ref)
+				mutableBouquet.flushChanges()
+				eDVBDB.getInstance().reloadBouquets()
+				mutableAlternatives = new_ref.list().startEdit()
+				if mutableAlternatives:
+					mutableAlternatives.setListName(name)
+					if mutableAlternatives.addService(cur_service.ref):
+						print "add", cur_service.toString(), "to new alternatives failed"
+					mutableAlternatives.flushChanges()
+					self.servicelist.addService(new_ref.ref, True)
+					self.servicelist.removeCurrent()
+					self.servicelist.moveUp()
+				else:
+					print "get mutable list for new created alternatives failed"
+			else:
+				print "add", str, "to", cur_root.getServiceName(), "failed"
+		else:
+			print "bouquetlist is not editable"
+
 	def addBouquet(self, bName, services):
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
@@ -355,8 +418,28 @@ class ChannelSelectionEdit:
 		services = serviceHandler.list(provider.ref)
 		self.addBouquet(providerName, services and services.getContent('R', True))
 
+	def removeAlternativeServices(self):
+		cur_service = ServiceReference(self.getCurrentSelection())
+		cur_root = ServiceReference(self.getRoot())
+		list = cur_service.list()
+		first_in_alternative = list and list.getNext()
+		if first_in_alternative:
+			edit_root = cur_root.list().startEdit()
+			if edit_root:
+				if not edit_root.addService(first_in_alternative, cur_service.ref):
+					self.servicelist.addService(first_in_alternative, True)
+				else:
+					print "couldn't add first alternative service to current root"
+			else:
+				print "couldn't edit current root!!"
+		else:
+			print "remove empty alternative list !!"
+		self.removeBouquet()
+		self.servicelist.moveUp()
+
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
+		print "removeBouquet", refstr
 		self.bouquetNumOffsetCache = { }
 		pos = refstr.find('FROM BOUQUET "')
 		filename = None
@@ -373,23 +456,29 @@ class ChannelSelectionEdit:
 			print "error during remove of", filename
 
 #  multiple marked entry stuff ( edit mode, later multiepg selection )
-	def startMarkedEdit(self):
+	def startMarkedEdit(self, type):
+		self.savedPath = self.servicePath[:]
+		if type == EDIT_ALTERNATIVES:
+			self.enterPath(self.getCurrentSelection())
 		self.mutableList = self.getMutableList()
 		# add all services from the current list to internal marked set in listboxservicecontent
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
 		self.saved_title = self.instance.getTitle()
 		pos = self.saved_title.find(')')
 		new_title = self.saved_title[:pos+1]
-		if config.usage.multibouquet.value:
-			new_title += ' ' + _("[bouquet edit]")
+		if type == EDIT_ALTERNATIVES:
+			self.bouquet_mark_edit = EDIT_ALTERNATIVES
+			new_title += ' ' + _("[alternative edit]")
 		else:
-			new_title += ' ' + _("[favourite edit]")
+			self.bouquet_mark_edit = EDIT_BOUQUET
+			if config.usage.multibouquet.value:
+				new_title += ' ' + _("[bouquet edit]")
+			else:
+				new_title += ' ' + _("[favourite edit]")
 		self.setTitle(new_title)
-		self.bouquet_mark_edit = True
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:
 			self.servicelist.addMarked(eServiceReference(x))
-		self.savedPath = self.servicePath[:]
 		self.showAllServices()
 
 	def endMarkedEdit(self, abort):
@@ -410,7 +499,7 @@ class ChannelSelectionEdit:
 				self.mutableList.flushChanges()
 		self.__marked = []
 		self.clearMarks()
-		self.bouquet_mark_edit = False
+		self.bouquet_mark_edit = OFF
 		self.mutableList = None
 		self.setTitle(self.saved_title)
 		self.saved_title = None
@@ -483,7 +572,7 @@ class ChannelSelectionEdit:
 		if self.movemode: #movemode active?
 			self.channelSelected() # unmark
 			self.toggleMoveMode() # disable move mode
-		elif self.bouquet_mark_edit:
+		elif self.bouquet_mark_edit != OFF:
 			self.endMarkedEdit(True) # abort edit mode
 
 	def toggleMoveMarked(self):
@@ -582,9 +671,9 @@ class ChannelSelectionBase(Screen):
 							serviceIterator = servicelist.getNext()
 							if not serviceIterator.valid(): #check if end of list
 								break
-							if serviceIterator.flags: #playable services have no flags
-								continue
-							offsetCount += 1
+							playable = not (serviceIterator.flags & (eServiceReference.isDirectory|eServiceReference.isMarker))
+							if playable:
+								offsetCount += 1
 		return self.bouquetNumOffsetCache.get(str, offsetCount)
 
 	def recallBouquetMode(self):
@@ -628,7 +717,7 @@ class ChannelSelectionBase(Screen):
 		path = root.getPath()
 		inBouquetRootList = path.find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 		pos = path.find(' FROM BOUQUET')
-		isBouquet = pos != -1
+		isBouquet = (pos != -1) and (root.flags & eServiceReference.isDirectory)
 		if not inBouquetRootList and isBouquet:
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
 			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
@@ -886,21 +975,6 @@ class ChannelSelectionBase(Screen):
 			return bouquets
 		return None
 
-	def getGroupList(self):
-		groups = [ ]
-		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(self.bouquet_root)
-		if list:
-			while True:
-				s = list.getNext()
-				if not s.valid():
-					break
-				if (s.flags & eServiceReference.isGroup) and (s.flags & eServiceReference.mustDescent):
-					info = serviceHandler.info(s)
-					if info:
-						groups.append((info.getName(s), s))
-		return groups
-
 	def keyNumber0(self, num):
 		if len(self.servicePath) > 1:
 			self.keyGoUp()
@@ -972,6 +1046,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
 		self.revertMode = None
+		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
+
+	def multibouquet_config_changed(self, val):
+		self.recallBouquetMode()
 
 	def __evServiceStart(self):
 		service = self.session.nav.getCurrentService()
@@ -1029,11 +1107,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.toggleMoveMarked()
 		elif (ref.flags & 7) == 7:
 			self.enterPath(ref)
-		elif self.bouquet_mark_edit:
-			self.doMark()
-		elif not (ref.flags & 64): # no marker
-			self.zap()
-			self.close(ref)
+		elif self.bouquet_mark_edit != OFF:
+			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
+				self.doMark()
+		elif not (ref.flags & eServiceReference.isMarker): # no marker
+			if not (self.getRoot().flags & eServiceReference.isGroup):
+				self.zap()
+				self.close(ref)
 
 	#called from infoBar and channelSelected
 	def zap(self):
@@ -1274,15 +1354,17 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			self.toggleMoveMarked()
 		elif (ref.flags & 7) == 7:
 			self.enterPath(ref)
-		elif self.bouquet_mark_edit:
-			self.doMark()
-		elif not (ref.flags & 64): # no marker
-			playingref = self.session.nav.getCurrentlyPlayingServiceReference()
-			if playingref is None or playingref != ref:
-				self.session.nav.playService(ref)
-				config.radio.lastservice.value = ref.toString()
-				config.radio.lastservice.save()
-			self.saveRoot()
+		elif self.bouquet_mark_edit != OFF:
+			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
+				self.doMark()
+		elif not (ref.flags & eServiceReference.isMarker): # no marker
+			if not (self.getRoot().flags & eServiceReference.isGroup):
+				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
+				if playingref is None or playingref != ref:
+					self.session.nav.playService(ref)
+					config.radio.lastservice.value = ref.toString()
+					config.radio.lastservice.save()
+				self.saveRoot()
 
 	def closeRadio(self):
 		self.info.hide()
@@ -1313,7 +1395,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 		ref = self.getCurrentSelection()
 		if (ref.flags & 7) == 7:
 			self.enterPath(ref)
-		elif not (ref.flags & 64):
+		elif not (ref.flags & eServiceReference.isMarker):
 			ref = self.getCurrentSelection()
 			self.close(ref)
 
