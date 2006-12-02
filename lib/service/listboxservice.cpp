@@ -482,7 +482,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				case celServiceInfo:
 				{
 					ePtr<eServiceEvent> evt;
-					if ( !service_info->getEvent(*m_cursor, evt) )
+					if ( service_info && !service_info->getEvent(*m_cursor, evt) )
 					{
 						std::string name = evt->getEventName();
 						if (!name.length())
