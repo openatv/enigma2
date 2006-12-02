@@ -140,7 +140,10 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!is_streaming)
 		source = gst_element_factory_make ("filesrc", "file-source");
 	else
+	{
 		source = gst_element_factory_make ("neonhttpsrc", "http-source");
+		g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
+	}
 
 	if (!source)
 		eWarning("failed to create %s", is_streaming ? "neonhttpsrc" : "filesrc");
