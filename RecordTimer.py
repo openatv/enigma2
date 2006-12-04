@@ -137,7 +137,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
 			try:
 				f = open(self.Filename + ".ts.meta", "w")
-				f.write(str(rec_ref) + "\n")
+				f.write(rec_ref.toString() + "\n")
 				f.write(self.name + "\n")
 				f.write(self.description + "\n")
 				f.write(str(self.begin) + "\n")
