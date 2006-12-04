@@ -186,10 +186,10 @@ class SecConfigure:
 					sec.setLNBLOFH(currLnb.lofh.value * 1000)
 					sec.setLNBThreshold(currLnb.threshold.value * 1000)
 					
-				if currLnb.output_12v.value == "0V":
-					pass # nyi in drivers
-				elif currLnb.output_12v.value == "12V":
-					pass # nyi in drivers
+#				if currLnb.output_12v.value == "0V":
+#					pass # nyi in drivers
+#				elif currLnb.output_12v.value == "12V":
+#					pass # nyi in drivers
 					
 				if currLnb.increased_voltage.value:
 					sec.setLNBIncreasedVoltage(lnbParam.ON)
@@ -768,7 +768,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].lofl = ConfigInteger(default=9750, limits = (0, 99999))
 				nim.advanced.lnb[x].lofh = ConfigInteger(default=10600, limits = (0, 99999))
 				nim.advanced.lnb[x].threshold = ConfigInteger(default=11700, limits = (0, 99999))
-				nim.advanced.lnb[x].output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
+#				nim.advanced.lnb[x].output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
 				nim.advanced.lnb[x].increased_voltage = ConfigYesNo(default=False)
 				nim.advanced.lnb[x].toneburst = ConfigSelection(choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))], default = "none")
 				nim.advanced.lnb[x].diseqcMode = ConfigSelection(choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))], default = "none")
