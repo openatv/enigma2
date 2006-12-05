@@ -123,7 +123,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				event_id = -1
 				
 			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id)
-			if pre_res:
+			if prep_res:
 				self.log(2, "'prepare' failed: error %d" % prep_res)
 				self.record_service = None
 				return False
