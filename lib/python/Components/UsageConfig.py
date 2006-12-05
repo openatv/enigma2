@@ -1,4 +1,5 @@
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection
+from enigma import Misc_Options
 import os
 
 def InitUsageConfig():
@@ -19,8 +20,16 @@ def InitUsageConfig():
 		("60", "5 " + _("minutes")), ("120", "10 " + _("minutes")), ("240", "20 " + _("minutes")),
 		("241", "30 " + _("minutes")), ("242", "1 " + _("hour")), ("244", "2 " + _("hours")),
 		("248", "4 " + _("hours")) ])
-	
+	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
+		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
+
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
+	config.usage.hdd_standby.addNotifier(setHDDStandby)
 
-	config.usage.hdd_standby.addNotifier(setHDDStandby);
+	def set12VOutput(configElement):
+		if configElement.value == "on":
+			Misc_Options.getInstance().set_12V_output(1)
+		elif configElement.value == "off":
+			Misc_Options.getInstance().set_12V_output(0)
+	config.usage.output_12V.addNotifier(set12VOutput)
