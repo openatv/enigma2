@@ -523,9 +523,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				if ( send_mask )
 				{
+					eSecCommand::pair compare;
+					compare.steps = +3;
+					compare.tone = iDVBFrontend::toneOff;
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
-					eSecCommand::pair compare;
 					compare.voltage = iDVBFrontend::voltageOff;
 					compare.steps = +4;
 					// the next is a check if voltage is switched off.. then we first set a voltage :)
@@ -643,12 +646,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 						// voltage was disabled..so we wait a longer time ..
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +8) );  // no need to send stop rotor cmd and recheck voltage
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +9) );  // no need to send stop rotor cmd and recheck voltage
 					}
 					else
 					{
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 750) ); // wait 750ms after send switch cmd
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +8) );  // no need to send stop rotor cmd and recheck voltage
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +9) );  // no need to send stop rotor cmd and recheck voltage
 					}
 
 					eDVBDiseqcCommand diseqc;
@@ -685,19 +688,19 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						eSecCommand::rotor cmd;
 						eSecCommand::pair compare;
 						compare.voltage = VOLTAGE(18);
-						compare.steps = +2;
+						compare.steps = +3;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
 // measure idle power values
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 200) );  // wait 200msec after voltage change
 						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
-						compare.voltage = 1;
+						compare.val = 1;
 						compare.steps = -2;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 200) );  // wait 200msec before measure
 						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
-						compare.voltage = 0;
+						compare.val = 0;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
 ////////////////////////////
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
@@ -737,7 +740,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						eSecCommand::rotor cmd;
 						eSecCommand::pair compare;
 						compare.voltage = VOLTAGE(13);
-						compare.steps = +2;
+						compare.steps = +3;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 200) );  // wait 200msec after voltage change
@@ -752,7 +755,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 2000) );  // wait 2 second before set high voltage
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
 
+						compare.tone = tone;
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 
 						cmd.direction=1;  // check for running rotor
@@ -788,6 +794,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 10) );
 
+				compare.tone = tone;
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 15) );
 			}

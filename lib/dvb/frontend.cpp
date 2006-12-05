@@ -1147,7 +1147,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::IF_VOLTAGE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.voltage == m_curVoltage && setSecSequencePos(compare.steps) )
+				if ( compare.voltage == m_data[CUR_VOLTAGE] && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -1155,7 +1155,23 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::IF_NOT_VOLTAGE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.voltage != m_curVoltage && setSecSequencePos(compare.steps) )
+				if ( compare.voltage != m_data[CUR_VOLTAGE] && setSecSequencePos(compare.steps) )
+					break;
+				++m_sec_sequence.current();
+				break;
+			}
+			case eSecCommand::IF_TONE_GOTO:
+			{
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				if ( compare.tone == m_data[CUR_TONE] && setSecSequencePos(compare.steps) )
+					break;
+				++m_sec_sequence.current();
+				break;
+			}
+			case eSecCommand::IF_NOT_TONE_GOTO:
+			{
+				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
+				if ( compare.tone != m_data[CUR_TONE] && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -1214,7 +1230,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				int idx = compare.voltage;
+				int idx = compare.val;
 				if ( idx == 0 || idx == 1 )
 				{
 					int idle = readInputpower();
@@ -1261,7 +1277,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
 			{
-				int idleInputpower = m_idleInputpower[ (m_curVoltage&1) ? 0 : 1];
+				int idleInputpower = m_idleInputpower[ (m_data[CUR_VOLTAGE]&1) ? 0 : 1];
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
 				const char *txt = cmd.direction ? "running" : "stopped";
 				eDebug("[SEC] waiting for rotor %s %d, idle %d, delta %d",
@@ -1834,7 +1850,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 	bool increased=false;
 	fe_sec_voltage_t vlt;
 #endif
-	m_curVoltage=voltage;
+	m_data[CUR_VOLTAGE]=voltage;
 	switch (voltage)
 	{
 	case voltageOff:
@@ -1889,7 +1905,7 @@ RESULT eDVBFrontend::setTone(int t)
 #else
 	fe_sec_tone_mode_t tone;
 #endif
-
+	m_data[CUR_TONE]=t;
 	switch (t)
 	{
 	case toneOn:
