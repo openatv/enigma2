@@ -21,6 +21,7 @@ public:
 		UPDATE_CURRENT_ROTORPARAMS, INVALIDATE_CURRENT_ROTORPARMS,
 		IF_ROTORPOS_VALID_GOTO,
 		IF_TUNER_LOCKED_GOTO,
+		IF_TONE_GOTO, IF_NOT_TONE_GOTO,
 		START_TUNE_TIMEOUT
 	};
 	int cmd;
@@ -33,7 +34,12 @@ public:
 	};
 	struct pair
 	{
-		int voltage;
+		union
+		{
+			int voltage;
+			int tone;
+			int val;
+		};
 		int steps;
 	};
 	union

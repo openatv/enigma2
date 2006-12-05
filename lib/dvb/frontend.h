@@ -70,6 +70,8 @@ class eDVBFrontend: public iDVBFrontend, public Object
 		LINKED_NEXT_PTR,      // next double linked list (for linked FEs)
 		SATPOS_DEPENDS_PTR,   // pointer to FE with configured rotor (with twin/quattro lnb)
 		FREQ_OFFSET,          // current frequency offset
+		CUR_VOLTAGE,          // current voltage
+		CUR_TONE,             // current continuous tone
 		NUM_DATA_ENTRIES
 	};
 
@@ -80,7 +82,6 @@ class eDVBFrontend: public iDVBFrontend, public Object
 
 	int m_timeoutCount; // needed for timeout
 	int m_retryCount; // diseqc retry for rotor
-	int m_curVoltage;
 
 	void feEvent(int);
 	void timeout();
