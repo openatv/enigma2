@@ -1584,12 +1584,21 @@ class InfoBarNotifications:
 	def checkNotifications(self):
 		if len(Notifications.notifications):
 			n = Notifications.notifications[0]
+			
 			Notifications.notifications = Notifications.notifications[1:]
 			cb = n[0]
 			if cb is not None:
-				self.session.openWithCallback(cb, n[1], *n[2], **n[3])
+				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
 			else:
-				self.session.open(n[1], *n[2], **n[3])
+				dlg = self.session.open(n[1], *n[2], **n[3])
+			
+			# remember that this notification is currently active
+			d = (n[4], dlg)
+			Notifications.current_notifications.append(d)
+			dlg.onClose.append(boundFunction(self.__notificationClosed, d))
+
+	def __notificationClosed(self, d):
+		Notifications.current_notifications.remove(d)
 
 class InfoBarServiceNotifications:
 	def __init__(self):
