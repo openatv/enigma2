@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-29 11:14+0100\n"
-"PO-Revision-Date: 2006-11-24 16:16+0100\n"
+"POT-Creation-Date: 2006-12-07 11:35+0100\n"
+"PO-Revision-Date: 2006-12-04 14:09+0100\n"
 "Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -71,6 +71,10 @@ msgid ""
 msgstr ""
 "%s\n"
 "(%s, %d MB vrij)"
+
+#, python-format
+msgid "%s (%s)\n"
+msgstr ""
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
@@ -216,23 +220,17 @@ msgstr "Toevoegen"
 msgid "Add a mark"
 msgstr "Zet merktpunt"
 
-msgid "Add alternative"
-msgstr "Zet alternatief"
-
 msgid "Add files to playlist"
 msgstr "Voeg files toe aan afspeelijst"
-
-msgid "Add service"
-msgstr "Zet service"
 
 msgid "Add timer"
 msgstr "Timerinstellen"
 
 msgid "Add to bouquet"
-msgstr ""
+msgstr "Boeket toevoegen"
 
 msgid "Add to favourites"
-msgstr ""
+msgstr "Favoriten toevoegen"
 
 msgid "Advanced"
 msgstr "Expert"
@@ -342,7 +340,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr ""
+msgstr "Cache Thumbnails"
 
 msgid "Call monitoring"
 msgstr "Bel monitor"
@@ -354,7 +352,7 @@ msgid "Capacity: "
 msgstr "Grootte van harddisk: "
 
 msgid "Card"
-msgstr ""
+msgstr "Kaart"
 
 msgid "Catalan"
 msgstr "Catalaans"
@@ -420,7 +418,7 @@ msgid "Common Interface"
 msgstr "Common Interface"
 
 msgid "Compact Flash"
-msgstr ""
+msgstr "Compact Flash"
 
 msgid "Compact flash card"
 msgstr "Compact flash kaart"
@@ -799,6 +797,9 @@ msgstr "Hierarchy mode"
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
 
+msgid "Hungarian"
+msgstr ""
+
 msgid "IP Address"
 msgstr "IP-Adres"
 
@@ -850,7 +851,7 @@ msgid "Instant Record..."
 msgstr "Directe Opname..."
 
 msgid "Internal Flash"
-msgstr ""
+msgstr "Interne Flash"
 
 msgid "Inversion"
 msgstr "Inversion"
@@ -910,13 +911,13 @@ msgid "Limits on"
 msgstr "Limieten aan"
 
 msgid "List of Storage Devices"
-msgstr ""
+msgstr "Lijst Opslag Devices"
 
 msgid "Longitude"
 msgstr "Lengtegraad"
 
 msgid "MMC Card"
-msgstr ""
+msgstr "MMC Card"
 
 msgid "MORE"
 msgstr "MEER"
@@ -1033,7 +1034,7 @@ msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Network Mount"
-msgstr ""
+msgstr "Network Mount"
 
 msgid "Network Setup"
 msgstr "Netwerk instellingen"
@@ -1192,7 +1193,7 @@ msgid "Please select a subservice..."
 msgstr "selecteer een subservice aub..."
 
 msgid "Please select keyword to filter..."
-msgstr ""
+msgstr "Selecteer keyword voor filtering..."
 
 msgid "Please set up tuner B"
 msgstr "instellingen voor Tuner B."
@@ -1291,7 +1292,7 @@ msgid "RSS Feed URI"
 msgstr "RSS Feed URI"
 
 msgid "Ram Disk"
-msgstr ""
+msgstr "Ram Disk"
 
 msgid "Really close without saving settings?"
 msgstr "Wilt u echt stoppen zonder saven?"
@@ -1312,7 +1313,7 @@ msgid "Record"
 msgstr "Opnemen"
 
 msgid "Recorded files..."
-msgstr ""
+msgstr "Opgenomen files..."
 
 msgid "Recording"
 msgstr "Opnemen"
@@ -1331,9 +1332,6 @@ msgstr "Verwijder een merkpunt"
 
 msgid "Remove plugins"
 msgstr "Verwijder plugins"
-
-msgid "Remove service"
-msgstr "Verwijder een service"
 
 msgid "Repeat"
 msgstr "Herhaling"
@@ -1394,7 +1392,7 @@ msgid "Saturday"
 msgstr "Zaterdag"
 
 msgid "Scaling Mode"
-msgstr ""
+msgstr "Schaal Mode"
 
 msgid "Scan NIM"
 msgstr "Zoek NIM"
@@ -1414,9 +1412,6 @@ msgstr "Kies Harddisk"
 msgid "Select a movie"
 msgstr "Kies een film"
 
-msgid "Select alternative service"
-msgstr "Kies alternatieve service"
-
 msgid "Select audio mode"
 msgstr "Kies audio modus"
 
@@ -1425,9 +1420,6 @@ msgstr "Kies audio spoor"
 
 msgid "Select channel to record from"
 msgstr "Selecteer een kanaal waarvan u wilt opnemen"
-
-msgid "Select reference service"
-msgstr "Kies referencie service"
 
 msgid "Sequence repeat"
 msgstr "Herhaal Sequence"
@@ -1442,10 +1434,10 @@ msgid "Service Searching"
 msgstr "Kanaal Zoeken"
 
 msgid "Service has been added to the favourites."
-msgstr ""
+msgstr "Service is toegevoegt aan favorieten."
 
 msgid "Service has been added to the selected bouquet."
-msgstr ""
+msgstr "Service is toegevoegd aan geselteerd boeket."
 
 msgid "Service scan"
 msgstr "Kanaal zoeken"
@@ -1514,13 +1506,16 @@ msgid "Sleep timer action:"
 msgstr "Sleep timer actie:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr ""
+msgstr "Slideshow Interval (sec.)"
 
 msgid "Slot "
 msgstr "Slot "
 
 msgid "Socket "
 msgstr "Socket "
+
+msgid "Some plugins are not available:\n"
+msgstr ""
 
 msgid "Somewhere else"
 msgstr "Ergens anders"
@@ -2000,6 +1995,9 @@ msgid ""
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
+"Definieer eerst wat keywoorden !\n"
+"Op Menu-key om keywoorden te definieeren.\n"
+"Wilt u nu keywoorden definieeren?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2036,6 +2034,9 @@ msgstr "Zap back to service before positioner setup?"
 msgid "Zap back to service before satfinder?"
 msgstr "Zap terug naar service voor satfinder?"
 
+msgid "[alternative edit]"
+msgstr ""
+
 msgid "[bouquet edit]"
 msgstr "[Boeket editor]"
 
@@ -2045,6 +2046,9 @@ msgstr "[Favoriet editor]"
 msgid "[move mode]"
 msgstr "[Verplaats modus]"
 
+msgid "abort alternatives edit"
+msgstr ""
+
 msgid "abort bouquet edit"
 msgstr "Boeket edit stoppen"
 
@@ -2053,6 +2057,9 @@ msgstr "Favoriet edit stoppen"
 
 msgid "about to start"
 msgstr "Start direkt"
+
+msgid "add alternatives"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "Boeket toevoegen..."
@@ -2098,13 +2105,13 @@ msgid "back"
 msgstr "Terug"
 
 msgid "better"
-msgstr ""
+msgstr "beter"
 
 msgid "blacklist"
 msgstr "Zwarte lijst"
 
 msgid "by Exif"
-msgstr ""
+msgstr "bij Exif"
 
 msgid "change recording (duration)"
 msgstr "Verander opname (Tijdsduur)"
@@ -2128,7 +2135,7 @@ msgid "continue"
 msgstr "Ga Verder"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "kopieer naar boeketten"
 
 msgid "daily"
 msgstr "Dagelijks"
@@ -2157,6 +2164,9 @@ msgstr "niet opnemen"
 msgid "done!"
 msgstr "Klaar!"
 
+msgid "edit alternatives"
+msgstr ""
+
 msgid "empty/unknown"
 msgstr "leeg/onbekent"
 
@@ -2171,6 +2181,9 @@ msgstr "Favorieten edit aanzetten"
 
 msgid "enable move mode"
 msgstr "Verplaats modus aanzetten"
+
+msgid "end alternatives edit"
+msgstr ""
 
 msgid "end bouquet edit"
 msgstr "Boeket edit stoppen"
@@ -2271,7 +2284,7 @@ msgid "no HDD found"
 msgstr "Geen Harddisk gevonden"
 
 msgid "no Picture found"
-msgstr ""
+msgstr "geen Picture gevonden"
 
 msgid "no module found"
 msgstr "Geen Ci-Modul gevonden"
@@ -2322,7 +2335,7 @@ msgid "please press OK when ready"
 msgstr "Waneer klaar druk O.K aub."
 
 msgid "please wait, loading picture..."
-msgstr ""
+msgstr "moment, loading picture..."
 
 msgid "previous channel"
 msgstr "Vorig Kanaal"
@@ -2338,6 +2351,9 @@ msgstr "opnemen..."
 
 msgid "remove after this position"
 msgstr "verwijder na deze positie"
+
+msgid "remove all alternatives"
+msgstr ""
 
 msgid "remove all new found flags"
 msgstr "verwijder alle nieuw gevonden flags"
@@ -2419,6 +2435,9 @@ msgstr "setup pin"
 
 msgid "show EPG..."
 msgstr "laat EPG zien..."
+
+msgid "show alternatives"
+msgstr ""
 
 msgid "show event details"
 msgstr "laat EPG details zien"
@@ -2510,6 +2529,12 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "Add alternative"
+#~ msgstr "Zet alternatief"
+
+#~ msgid "Add service"
+#~ msgstr "Zet service"
+
 #~ msgid "Ask before zapping"
 #~ msgstr "Vor Umschalten nachfragen"
 
@@ -2585,6 +2610,9 @@ msgstr "zapped"
 #~ msgid "Remember service pin"
 #~ msgstr "Onthoud service pin"
 
+#~ msgid "Remove service"
+#~ msgstr "Verwijder een service"
+
 #~ msgid "Satconfig"
 #~ msgstr "Tuner instellingen"
 
@@ -2593,6 +2621,12 @@ msgstr "zapped"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Tweede kabel van Rotor"
+
+#~ msgid "Select alternative service"
+#~ msgstr "Kies alternatieve service"
+
+#~ msgid "Select reference service"
+#~ msgstr "Kies referencie service"
 
 #~ msgid "Setup Lock"
 #~ msgstr "Setup-Sperre"
