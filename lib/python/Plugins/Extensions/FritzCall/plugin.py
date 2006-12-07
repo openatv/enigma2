@@ -16,9 +16,9 @@ my_global_session = None
 from Components.config import config, ConfigSubsection, ConfigIP, ConfigEnableDisable, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
 
-config.FritzCall = ConfigSubsection()
-config.FritzCall.hostname = ConfigIP(default = [192,168,178,254])
-config.FritzCall.enable = ConfigEnableDisable(default = False)
+config.plugins.FritzCall = ConfigSubsection()
+config.plugins.FritzCall.hostname = ConfigIP(default = [192,168,178,254])
+config.plugins.FritzCall.enable = ConfigEnableDisable(default = False)
 
 class FritzCallSetup(ConfigListScreen, Screen):
 	skin = """
@@ -35,8 +35,8 @@ class FritzCallSetup(ConfigListScreen, Screen):
 		
 		# nun erzeugen wir eine liste von elementen fuer die menu liste.
 		self.list = [ ]
-		self.list.append(getConfigListEntry(_("Call monitoring"), config.FritzCall.enable))
-		self.list.append(getConfigListEntry(_("Fritz!Box FON IP address"), config.FritzCall.hostname))
+		self.list.append(getConfigListEntry(_("Call monitoring"), config.plugins.FritzCall.enable))
+		self.list.append(getConfigListEntry(_("Fritz!Box FON IP address"), config.plugins.FritzCall.hostname))
 		ConfigListScreen.__init__(self, self.list)
 
 		# DO NOT ASK.
@@ -74,16 +74,20 @@ class FritzProtocol(LineReceiver):
 
 		a = line.split(';')
 		(date, event) = a[0:2]
+		line = a[2]
 		
 		if event == "RING":
 			phone = a[4]
 			number = a[3]
 			text = _("incoming call!\n%s calls on %s!") % (number, phone)
 			timeout = 10
+		elif event == "DISCONNECT":
+			Notifications.RemovePopup("FritzCall_%s" % line)
+			return
 		else:	
 			return
 		
-		Notifications.AddNotification(MessageBox, text, type=MessageBox.TYPE_INFO, timeout=timeout)
+		Notifications.AddPopup(text=text, type=MessageBox.TYPE_INFO, timeout=timeout, id="FritzCall_%s" % line)
 
 class FritzClientFactory(ReconnectingClientFactory):
 
@@ -94,20 +98,20 @@ class FritzClientFactory(ReconnectingClientFactory):
 		self.hangup_ok = False
 
 	def startedConnecting(self, connector):
-		Notifications.AddNotification(MessageBox, _("Connecting to Fritz!Box..."), type=MessageBox.TYPE_INFO, timeout=2)
-	
+		Notifications.AddPopup(text=_("Connecting to Fritz!Box..."), type=MessageBox.TYPE_INFO, timeout=2, id="FritzCallConnect")
+
 	def buildProtocol(self, addr):
-		Notifications.AddNotification(MessageBox, _("Connected to Fritz!Box!"), type=MessageBox.TYPE_INFO, timeout=2)
+		Notifications.AddPopup(text=_("Connected to Fritz!Box!"), type=MessageBox.TYPE_INFO, timeout=2, id="FritzCallConnect")
 		self.resetDelay()
 		return FritzProtocol()
-	
+
 	def clientConnectionLost(self, connector, reason):
 		if not self.hangup_ok:
-			Notifications.AddNotification(MessageBox, _("Disconnected from\nFritz!Box! (%s)\nretrying...") % reason.getErrorMessage(), type=MessageBox.TYPE_INFO, timeout=4)
+			Notifications.AddPopup(text=_("Disconnected from\nFritz!Box! (%s)\nretrying...") % reason.getErrorMessage(), type=MessageBox.TYPE_INFO, timeout=4, id="FritzCallConnect")
 		ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
-	
+
 	def clientConnectionFailed(self, connector, reason):
-		Notifications.AddNotification(MessageBox, _("Connection to Fritz!Box\nfailed! (%s)\nretrying...") % reason.getErrorMessage(), type=MessageBox.TYPE_INFO, timeout=4)
+		Notifications.AddPopup(text=_("Connection to Fritz!Box\nfailed! (%s)\nretrying...") % reason.getErrorMessage(), type=MessageBox.TYPE_INFO, timeout=4, id="FritzCallConnect")
 		ReconnectingClientFactory.clientConnectionFailed(self, connector, reason)
 
 class FritzCall:
@@ -118,9 +122,9 @@ class FritzCall:
 		
 	def connect(self):	
 		self.abort()
-		if config.FritzCall.enable.value:
+		if config.plugins.FritzCall.enable.value:
 			f = FritzClientFactory()
-			self.d = (f, reactor.connectTCP("%d.%d.%d.%d" % tuple(config.FritzCall.hostname.value), 1012, f))
+			self.d = (f, reactor.connectTCP("%d.%d.%d.%d" % tuple(config.plugins.FritzCall.hostname.value), 1012, f))
 
 	def shutdown(self):
 		self.abort()
