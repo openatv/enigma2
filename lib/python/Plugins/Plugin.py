@@ -1,4 +1,7 @@
 from enigma import loadPNG
+from Components.config import ConfigSubsection, config
+
+config.plugins = ConfigSubsection()
 
 class PluginDescriptor:
 	"""An object to describe a plugin."""
