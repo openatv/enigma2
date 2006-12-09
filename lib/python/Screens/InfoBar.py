@@ -19,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
@@ -33,7 +33,8 @@ class InfoBar(InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, Screen):
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport,
+	Screen):
 	
 	ALLOW_SUSPEND = True
 
@@ -56,7 +57,7 @@ class InfoBar(InfoBarShowHide,
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarSleepTimer, \
-				InfoBarPlugins:
+				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
@@ -84,7 +85,8 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions, InfoBarTeletextPlugin):
+		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions, InfoBarTeletextPlugin,
+		InfoBarServiceErrorPopupSupport):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -102,7 +104,7 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarSummarySupport, InfoBarSubtitleSupport, InfoBarExtensions, \
-				InfoBarTeletextPlugin:
+				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
