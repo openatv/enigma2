@@ -757,7 +757,6 @@ void eDVBServicePlay::gotNewEvent()
 
 void eDVBServicePlay::serviceEvent(int event)
 {
-	eDebug("service %p: error %d", this, event);
 	m_tune_state = event;
 
 	switch (event)
@@ -1219,8 +1218,6 @@ int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
 	
-	eDebug("get info in %p", this);
-
 	if (w == sCAIDs)
 		return resIsPyObject;
 
@@ -1231,7 +1228,6 @@ int eDVBServicePlay::getInfo(int w)
 	if (h.getProgramInfo(program))
 		no_program_info = 1;
 	
-	eDebug("ok");
 	switch (w)
 	{
 	case sAspect:
