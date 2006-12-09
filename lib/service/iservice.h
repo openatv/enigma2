@@ -299,6 +299,8 @@ public:
 		sVideoType,  // MPEG2 MPEG4
 		
 		sTags,  /* space seperated list of tags */
+		
+		sDVBState, /* states as defined in pmt handler (as events there) */
 	};
 	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
 
