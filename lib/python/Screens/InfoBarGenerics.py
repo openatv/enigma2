@@ -1850,3 +1850,48 @@ class InfoBarSubtitleSupport(object):
 
 	subtitles_enabled = property(lambda self: self.__subtitles_enabled, setSubtitlesEnable)
 	selected_subtitle = property(lambda self: self.__selected_subtitle, setSelectedSubtitle)
+
+class InfoBarServiceErrorPopupSupport:
+	def __init__(self):
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evTuneFailed: self.__tuneFailed,
+				iPlayableService.evStart: self.__serviceStarted
+			})
+		self.__serviceStarted()
+
+	def __serviceStarted(self):
+		self.last_error = None
+		Notifications.RemovePopup(id = "ZapError")
+
+	def __tuneFailed(self):
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		error = info and info.getInfo(iServiceInformation.sDVBState)
+		
+		if error == self.last_error:
+			error = None
+		else:
+			self.last_error = error
+
+		errors = {
+			eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
+			eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
+			eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
+			eDVBServicePMTHandler.eventNoPATEntry: _("Service not found!\n(SID not found in PAT)"),
+			eDVBServicePMTHandler.eventNoPMT: _("Service invalid!\n(Timeout reading PMT)"),
+			eDVBServicePMTHandler.eventNewProgramInfo: None,
+			eDVBServicePMTHandler.eventTuned: None,
+			eDVBServicePMTHandler.eventSOF: None,
+			eDVBServicePMTHandler.eventEOF: None
+		}
+		
+		if error not in errors:
+			error = None
+
+		error = error and errors[error]
+		
+		if error is not None:
+			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
+		else:
+			Notifications.RemovePopup(id = "ZapError")
