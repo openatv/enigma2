@@ -12,13 +12,14 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 	
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False):
 		self.type = type
 		Screen.__init__(self, session)
 		
 		self["text"] = Label(text)
 		
 		self.text = text
+		self.close_on_any_key = close_on_any_key
 		
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
@@ -102,6 +103,9 @@ class MessageBox(Screen):
 		self.move(self["list"].instance.pageDown)
 
 	def move(self, direction):
+		if self.close_on_any_key:
+			self.close(True)
+
 		self["list"].instance.moveSelection(direction)
 		if self.timerRunning:
 			self.timer.stop()
