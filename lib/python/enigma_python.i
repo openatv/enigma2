@@ -83,6 +83,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/frontendparms.h>
 #include <lib/dvb/dvbtime.h>
+#include <lib/dvb/pmt.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/rfmod.h>
 #include <lib/driver/misc_options.h>
@@ -213,6 +214,7 @@ typedef long time_t;
 %include <lib/dvb/dvb.h>
 %include <lib/dvb/idvb.h>
 %include <lib/dvb/frontend.h>
+%include <lib/dvb/pmt.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/rfmod.h>
 %include <lib/driver/misc_options.h>

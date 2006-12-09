@@ -1,6 +1,7 @@
 #ifndef __lib_dvb_dvbmid_h
 #define __lib_dvb_dvbmid_h
 
+#ifndef SWIG
 #include <map>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
@@ -44,8 +45,11 @@ public:
 	void buildCAPMT(eTable<ProgramMapSection> *ptr);
 };
 
+#endif
+
 class eDVBServicePMTHandler: public Object
 {
+#ifndef SWIG
 	friend class eDVBCAService;
 	eServiceReferenceDVB m_reference;
 	ePtr<eDVBService> m_service;
@@ -79,7 +83,14 @@ class eDVBServicePMTHandler: public Object
 public:
 	eDVBServicePMTHandler();
 	~eDVBServicePMTHandler();
-	
+#endif
+
+#ifdef SWIG
+private:
+	eDVBServicePMTHandler();
+public:
+#endif
+
 	enum
 	{
 		eventNoResources,  // a requested resource couldn't be allocated
@@ -93,7 +104,7 @@ public:
 		eventSOF,          // seek pre start
 		eventEOF,          // a file playback did end
 	};
-
+#ifndef SWIG
 	Signal1<void,int> serviceEvent;
 
 	struct videoStream
@@ -171,6 +182,7 @@ public:
 private:
 	bool m_have_cached_program;
 	program m_cached_program;
+#endif
 };
 
 #endif
