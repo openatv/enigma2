@@ -42,4 +42,4 @@ def AddPopup(text, type, timeout, id = None):
 		RemovePopup(id)
 	from Screens.MessageBox import MessageBox
 	print "AddPopup, id =", id
-	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout)
+	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True)
