@@ -729,6 +729,8 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	
 	m_subtitle_widget = 0;
 	
+	m_tune_state = -1;
+	
 	CONNECT(m_subtitle_sync_timer.timeout, eDVBServicePlay::checkSubtitleTiming);
 }
 
@@ -755,6 +757,9 @@ void eDVBServicePlay::gotNewEvent()
 
 void eDVBServicePlay::serviceEvent(int event)
 {
+	eDebug("service %p: error %d", this, event);
+	m_tune_state = event;
+
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
@@ -774,9 +779,12 @@ void eDVBServicePlay::serviceEvent(int event)
 		}
 		break;
 	}
+	case eDVBServicePMTHandler::eventNoPAT:
+	case eDVBServicePMTHandler::eventNoPATEntry:
+	case eDVBServicePMTHandler::eventNoPMT:
 	case eDVBServicePMTHandler::eventTuneFailed:
 	{
-		eDebug("DVB service failed to tune");
+		eDebug("DVB service failed to tune - error %d", event);
 		m_event((iPlayableService*)this, evTuneFailed);
 		break;
 	}
@@ -1210,18 +1218,24 @@ RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
 int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
+	
+	eDebug("get info in %p", this);
 
 	if (w == sCAIDs)
 		return resIsPyObject;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 	
-	if (h.getProgramInfo(program))
-		return -1;
+	int no_program_info = 0;
 	
+	if (h.getProgramInfo(program))
+		no_program_info = 1;
+	
+	eDebug("ok");
 	switch (w)
 	{
 	case sAspect:
+		if (!no_program_info) return -1; 
 		if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
 		{
 			ePtr<eServiceEvent> evt;
@@ -1260,19 +1274,20 @@ int eDVBServicePlay::getInfo(int w)
 			}
 		}
 		return -1;
-	case sIsCrypted: return program.isCrypted();
-	case sVideoPID: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
-	case sVideoType: if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
-	case sAudioPID: if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
-	case sPCRPID: return program.pcrPid;
-	case sPMTPID: return program.pmtPid;
-	case sTXTPID: return program.textPid;
+	case sIsCrypted: if (!no_program_info) return -1; return program.isCrypted();
+	case sVideoPID: if (!no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoType: if (!no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
+	case sAudioPID: if (!no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
+	case sPCRPID: if (!no_program_info) return -1; return program.pcrPid;
+	case sPMTPID: if (!no_program_info) return -1; return program.pmtPid;
+	case sTXTPID: if (!no_program_info) return -1; return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
 	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
 	case sNamespace: return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
 	case sProvider: if (!m_dvb_service) return -1; return -2;
 	case sServiceref: return resIsString;
+	case sDVBState: return m_tune_state;
 	default:
 		return -1;
 	}

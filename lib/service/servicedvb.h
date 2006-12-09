@@ -71,7 +71,7 @@ inline int eDVBServiceList::compareLessEqual(const eServiceReference &a, const e
 class eDVBServiceBase: public iFrontendInformation
 {
 protected:
-	eDVBServicePMTHandler m_service_handler	;
+	eDVBServicePMTHandler m_service_handler;
 public:
 		// iFrontendInformation
 	int getFrontendInfo(int w);
@@ -180,6 +180,7 @@ private:
 	ePtr<iTSMPEGDecoder> m_decoder;
 	int m_is_primary;
 	int m_have_video_pid;
+	int m_tune_state;
 	
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
 	eDVBServicePMTHandler m_service_handler_timeshift;
