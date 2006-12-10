@@ -142,7 +142,7 @@ PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, 
 #define DEBUG
 typedef long time_t;
 %include "typemaps.i"
-%include "stl.i"
+%include "std_string.i"
 %include <lib/python/swig.h>
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
