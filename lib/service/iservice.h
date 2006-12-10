@@ -648,8 +648,10 @@ class iListableService: public iObject
 	~iListableService();
 #endif
 public:
+#ifndef SWIG
 		/* legacy interface: get a list */
 	virtual RESULT getContent(std::list<eServiceReference> &list, bool sorted=false)=0;
+#endif
 	virtual PyObject *getContent(const char* format, bool sorted=false)=0;
 
 		/* new, shiny interface: streaming. */
