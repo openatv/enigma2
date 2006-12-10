@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-01 15:00+0100\n"
-"PO-Revision-Date: 2006-12-01 13:08+0100\n"
+"POT-Creation-Date: 2006-12-10 23:37+0100\n"
+"PO-Revision-Date: 2006-12-09 17:48+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
+msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
@@ -84,9 +84,6 @@ msgstr "/usr/share/enigma2 bibliotek"
 msgid "/var directory"
 msgstr "/var bibliotek"
 
-msgid "0 V"
-msgstr "0 V"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -96,11 +93,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "12 V"
-msgstr "12 V"
-
-msgid "12V Output"
-msgstr "12V Ut"
+msgid "12V output"
+msgstr ""
 
 msgid "13 V"
 msgstr "13 V"
@@ -216,14 +210,8 @@ msgstr "Lägg till"
 msgid "Add a mark"
 msgstr "Lägg till markör"
 
-msgid "Add alternative"
-msgstr "Lägg till alternativ"
-
 msgid "Add files to playlist"
 msgstr "Lägg till i spellista"
-
-msgid "Add service"
-msgstr "Lägg till kanal"
 
 msgid "Add timer"
 msgstr "Lägg till timer"
@@ -797,6 +785,9 @@ msgstr "Hierarkiskt läge"
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
+msgid "Hungarian"
+msgstr ""
+
 msgid "IP Address"
 msgstr "IP Adress"
 
@@ -1066,8 +1057,16 @@ msgstr "Ingen hårddisk funnen eller initialiserad!"
 msgid "No backup needed"
 msgstr "Ingen backup behövs"
 
+msgid ""
+"No data on transponder!\n"
+"(Timeout reading PAT)"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
+
+msgid "No free tuner!"
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr "Ingen positioner kapabel frontend funnet."
@@ -1329,9 +1328,6 @@ msgstr "Ta bort en markör"
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
-msgid "Remove service"
-msgstr "Ta bort kanal"
-
 msgid "Repeat"
 msgstr "Repetera"
 
@@ -1411,9 +1407,6 @@ msgstr "Välj hårddisk"
 msgid "Select a movie"
 msgstr "Välj en film"
 
-msgid "Select alternative service"
-msgstr "Välj alternativ kanal"
-
 msgid "Select audio mode"
 msgstr "Välj ljudläge"
 
@@ -1422,9 +1415,6 @@ msgstr "Välj ljudspår"
 
 msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
-
-msgid "Select reference service"
-msgstr "Välj reference kanal"
 
 msgid "Sequence repeat"
 msgstr "Repetera sekvens"
@@ -1443,6 +1433,16 @@ msgstr "Kanal har lagts till i favoriter."
 
 msgid "Service has been added to the selected bouquet."
 msgstr "Kanal har lagts till i vald bouqet."
+
+msgid ""
+"Service invalid!\n"
+"(Timeout reading PMT)"
+msgstr ""
+
+msgid ""
+"Service not found!\n"
+"(SID not found in PAT)"
+msgstr ""
 
 msgid "Service scan"
 msgstr "Kanalsökning"
@@ -1520,7 +1520,7 @@ msgid "Socket "
 msgstr "Sockel "
 
 msgid "Some plugins are not available:\n"
-msgstr ""
+msgstr "Några plugin är inte tillgängliga:\n"
 
 msgid "Somewhere else"
 msgstr "Någon annanstans"
@@ -1764,6 +1764,9 @@ msgstr "Tisdag"
 
 msgid "Tune"
 msgstr "Tune"
+
+msgid "Tune failed!"
+msgstr ""
 
 msgid "Tuner"
 msgstr "Tuner"
@@ -2038,6 +2041,9 @@ msgstr "Zap bakåt till kanal före positioner installation?"
 msgid "Zap back to service before satfinder?"
 msgstr "Zap bakåt till kanal före satfinder?"
 
+msgid "[alternative edit]"
+msgstr ""
+
 msgid "[bouquet edit]"
 msgstr "[bouquet editor]"
 
@@ -2047,6 +2053,9 @@ msgstr "[favoriter editor]"
 msgid "[move mode]"
 msgstr "[flytt läge]"
 
+msgid "abort alternatives edit"
+msgstr ""
+
 msgid "abort bouquet edit"
 msgstr "avbryt editera bouquet"
 
@@ -2055,6 +2064,9 @@ msgstr "avbryt editera favoriter"
 
 msgid "about to start"
 msgstr "håller på startar"
+
+msgid "add alternatives"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "lägg till bouquet"
@@ -2150,6 +2162,9 @@ msgstr "avaktivera"
 msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
+msgid "do not change"
+msgstr ""
+
 msgid "do nothing"
 msgstr "gör inget"
 
@@ -2158,6 +2173,9 @@ msgstr "spela inte in"
 
 msgid "done!"
 msgstr "klar!"
+
+msgid "edit alternatives"
+msgstr ""
 
 msgid "empty/unknown"
 msgstr "tom/okänd"
@@ -2173,6 +2191,9 @@ msgstr "aktivera favoriter editor"
 
 msgid "enable move mode"
 msgstr "aktivera flyttläge"
+
+msgid "end alternatives edit"
+msgstr ""
 
 msgid "end bouquet edit"
 msgstr "avsluta bouquet editor"
@@ -2341,6 +2362,9 @@ msgstr "spelar in..."
 msgid "remove after this position"
 msgstr "ta bort efter denna position"
 
+msgid "remove all alternatives"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr "ta bort alla ny hittad flagga"
 
@@ -2421,6 +2445,9 @@ msgstr "installation PIN"
 
 msgid "show EPG..."
 msgstr "visa EPG..."
+
+msgid "show alternatives"
+msgstr ""
 
 msgid "show event details"
 msgstr "visa program detaljer"
@@ -2512,6 +2539,15 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "0 V"
+#~ msgstr "0 V"
+
+#~ msgid "12 V"
+#~ msgstr "12 V"
+
+#~ msgid "12V Output"
+#~ msgstr "12V Ut"
+
 #~ msgid "A sleep timer want's to set your"
 #~ msgstr "En sovtimer vill sätta din"
 
@@ -2520,6 +2556,12 @@ msgstr "zapped"
 
 #~ msgid "AGC"
 #~ msgstr "AGC"
+
+#~ msgid "Add alternative"
+#~ msgstr "Lägg till alternativ"
+
+#~ msgid "Add service"
+#~ msgstr "Lägg till kanal"
 
 #~ msgid "Ask before zapping"
 #~ msgstr "Fråga före kanalbyte"
@@ -2602,6 +2644,9 @@ msgstr "zapped"
 #~ msgid "Remember service pin"
 #~ msgstr "Kom ihåg kanal PIN"
 
+#~ msgid "Remove service"
+#~ msgstr "Ta bort kanal"
+
 #~ msgid "SNR"
 #~ msgstr "SNR"
 
@@ -2613,6 +2658,12 @@ msgstr "zapped"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Andra kabeln från Motor"
+
+#~ msgid "Select alternative service"
+#~ msgstr "Välj alternativ kanal"
+
+#~ msgid "Select reference service"
+#~ msgstr "Välj reference kanal"
 
 #~ msgid "Setup Lock"
 #~ msgstr "Inställningslås"
