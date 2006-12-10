@@ -9,20 +9,6 @@
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
 
-#ifndef SWIG
-struct gColor
-{
-	int color;
-	gColor(int color): color(color)
-	{
-	}
-	gColor(): color(0)
-	{
-	}
-	operator int() const { return color; }
-	bool operator==(const gColor &o) const { return o.color==color; }
-};
-
 struct gRGB
 {
 	unsigned char b, g, r, a;
@@ -35,12 +21,12 @@ struct gRGB
 	gRGB(): b(0), g(0), r(0), a(0)
 	{
 	}
-	
+
 	unsigned long argb() const
 	{
 		return (a<<24)|(r<<16)|(g<<8)|b;
 	}
-	
+
 	void operator=(unsigned long val)
 	{
 		b = val&0xFF;
@@ -70,6 +56,20 @@ struct gRGB
 	{
 		return (b == c.b) && (g == c.g) && (r == c.r) && (a == c.a);
 	}
+};
+
+#ifndef SWIG
+struct gColor
+{
+	int color;
+	gColor(int color): color(color)
+	{
+	}
+	gColor(): color(0)
+	{
+	}
+	operator int() const { return color; }
+	bool operator==(const gColor &o) const { return o.color==color; }
 };
 
 struct gPalette
