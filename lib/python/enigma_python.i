@@ -181,7 +181,6 @@ typedef long time_t;
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
-%include <lib/gdi/region.h>
 %include <lib/gui/ewidget.h>
 %include <lib/gui/elabel.h>
 %include <lib/gui/einput.h>

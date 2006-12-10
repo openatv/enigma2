@@ -8,8 +8,8 @@
 #include <lib/base/elock.h>
 #include <lib/gdi/erect.h>
 #include <lib/gdi/fb.h>
-#include <lib/gdi/region.h>
 
+#ifndef SWIG
 struct gColor
 {
 	int color;
@@ -103,6 +103,9 @@ struct gSurface
 	gSurface(eSize size, int bpp, int accel);
 	~gSurface();
 };
+#endif
+
+class gRegion;
 
 class gPixmap: public iObject
 {
