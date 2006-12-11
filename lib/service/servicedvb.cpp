@@ -1231,7 +1231,7 @@ int eDVBServicePlay::getInfo(int w)
 	switch (w)
 	{
 	case sAspect:
-		if (!no_program_info) return -1; 
+		if (no_program_info) return -1; 
 		if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
 		{
 			ePtr<eServiceEvent> evt;
@@ -1270,13 +1270,13 @@ int eDVBServicePlay::getInfo(int w)
 			}
 		}
 		return -1;
-	case sIsCrypted: if (!no_program_info) return -1; return program.isCrypted();
-	case sVideoPID: if (!no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
-	case sVideoType: if (!no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
-	case sAudioPID: if (!no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
-	case sPCRPID: if (!no_program_info) return -1; return program.pcrPid;
-	case sPMTPID: if (!no_program_info) return -1; return program.pmtPid;
-	case sTXTPID: if (!no_program_info) return -1; return program.textPid;
+	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
+	case sVideoPID: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoType: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
+	case sAudioPID: if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
+	case sPCRPID: if (no_program_info) return -1; return program.pcrPid;
+	case sPMTPID: if (no_program_info) return -1; return program.pmtPid;
+	case sTXTPID: if (no_program_info) return -1; return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
 	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
