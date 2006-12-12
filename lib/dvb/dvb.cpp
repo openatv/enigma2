@@ -1203,7 +1203,7 @@ eCueSheet::eCueSheet()
 void eCueSheet::seekTo(int relative, const pts_t &pts)
 {
 	{
-		eSingleLock l(m_lock);
+		eSingleLocker l(m_lock);
 		m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
 	}
 	m_event(evtSeek);
@@ -1211,14 +1211,14 @@ void eCueSheet::seekTo(int relative, const pts_t &pts)
 	
 void eCueSheet::clear()
 {
-	eSingleLock l(m_lock);
+	eSingleLocker l(m_lock);
 	m_spans.clear();
 }
 
 void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 {
 	{
-		eSingleLock l(m_lock);
+		eSingleLocker l(m_lock);
 		m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
 	}
 }
@@ -1231,7 +1231,7 @@ void eCueSheet::commitSpans()
 void eCueSheet::setSkipmode(const pts_t &ratio)
 {
 	{
-		eSingleLock l(m_lock);
+		eSingleLocker l(m_lock);
 		m_skipmode_ratio = ratio;
 	}
 	m_event(evtSkipmode);
