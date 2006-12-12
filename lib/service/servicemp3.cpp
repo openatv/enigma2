@@ -206,7 +206,13 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		
 		eDebug("audio: %p, queue_audio %p, video %p, queue_video %p, mpegdemux %p", audio, queue_audio, video, queue_video, mpegdemux);
 		if (audio && queue_audio && video && queue_video && mpegdemux)
+		{
+			g_object_set (G_OBJECT (queue_audio), "max-size-buffers", 0, NULL);
+			g_object_set (G_OBJECT (queue_audio), "max-size-time", (guint64)0, NULL);
+			g_object_set (G_OBJECT (queue_video), "max-size-buffers", 0, NULL);
+			g_object_set (G_OBJECT (queue_video), "max-size-time", (guint64)0, NULL);
 			all_ok = 1;
+		}
 	}
 	
 	if (m_gst_pipeline && all_ok)
