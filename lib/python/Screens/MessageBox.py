@@ -28,7 +28,7 @@ class MessageBox(Screen):
 		if timeout > 0:
 			self.timer = eTimer()
 			self.timer.timeout.get().append(self.timerTick)
-			self.timer.start(1000)
+			self.onExecBegin.append(self.startTimer)
 			self.origTitle = None
 			self.onShown.append(self.timerTick)
 			self.timerRunning = True
@@ -62,8 +62,10 @@ class MessageBox(Screen):
 				"leftRepeated": self.left,
 				"rightRepeated": self.right
 			}, -1)
-			
-	
+
+	def startTimer(self):
+		self.timer.start(1000)
+
 	def timerTick(self):
 		self.timeout -= 1
 		if self.origTitle is None:
