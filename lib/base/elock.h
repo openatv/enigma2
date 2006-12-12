@@ -22,6 +22,7 @@ class eSingleLock
 {
 	friend class eSingleLocker;
 	pthread_mutex_t m_lock;
+	eSingleLock(eSingleLock &);
 public:
 	eSingleLock()
 	{
