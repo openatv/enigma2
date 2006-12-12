@@ -118,7 +118,8 @@ void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
 	ASSERT(notifiers.find(fd) == notifiers.end());
-	notifiers[fd]=sn;
+	ASSERT(new_notifiers.find(fd) == new_notifiers.end());
+	new_notifiers[fd]=sn;
 }
 
 void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
@@ -128,6 +129,11 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 			++i)
 		if (i->second == sn)
 			return notifiers.erase(i);
+	for (std::map<int,eSocketNotifier*>::iterator i = new_notifiers.find(sn->getFD());
+			i != new_notifiers.end();
+			++i)
+		if (i->second == sn)
+			return new_notifiers.erase(i);
 	eFatal("removed socket notifier which is not present");
 }
 
@@ -164,7 +170,13 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 		poll_timeout = user_timeout;
 		return_reason = 1;
 	}
-	
+
+	for (std::map<int, eSocketNotifier*>::iterator it(new_notifiers.begin()); it != new_notifiers.end();)
+	{
+		notifiers[it->first]=it->second;
+		new_notifiers.erase(it++);
+	}
+
 	int nativecount=notifiers.size(),
 		fdcount=nativecount,
 		ret=0;
