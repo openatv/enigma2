@@ -124,16 +124,13 @@ void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 
 void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 {
-	for (std::map<int,eSocketNotifier*>::iterator i = notifiers.find(sn->getFD());
-			i != notifiers.end();
-			++i)
-		if (i->second == sn)
-			return notifiers.erase(i);
-	for (std::map<int,eSocketNotifier*>::iterator i = new_notifiers.find(sn->getFD());
-			i != new_notifiers.end();
-			++i)
-		if (i->second == sn)
-			return new_notifiers.erase(i);
+	int fd = sn->getFD();
+	std::map<int,eSocketNotifier*>::iterator i(notifiers.find(fd));
+	if (i != notifiers.end())
+		return notifiers.erase(i);
+	i = new_notifiers.find(fd);
+	if (i != new_notifiers.end())
+		return new_notifiers.erase(i);
 	eFatal("removed socket notifier which is not present");
 }
 
