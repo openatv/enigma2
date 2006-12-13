@@ -89,7 +89,7 @@ def InitAVSwitch():
 			"16_10_letterbox": _("16:10 Letterbox"),
 			"16_10_panscan": _("16:10 PanScan")}, 
 			default = "4_3_letterbox")
-	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC")}, default="pal")
+	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.defaultac3 = ConfigYesNo(default = False)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
@@ -105,7 +105,7 @@ def InitAVSwitch():
 		iAVSwitch.setAspectRatio(map[configElement.value])
 
 	def setSystem(configElement):
-		map = {"pal": 0, "ntsc": 1}
+		map = {"pal": 0, "ntsc": 1, "multinorm" : 2}
 		iAVSwitch.setSystem(map[configElement.value])
 
 	def setWSS(configElement):

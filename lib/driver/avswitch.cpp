@@ -94,7 +94,7 @@ void eAVSwitch::setInput(int val)
 	int fd;
 	
 	if((fd = open("/proc/stb/avs/0/input", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/avs/0/input\n");
+		eDebug("cannot open /proc/stb/avs/0/input");
 		return;
 	}
 
@@ -111,7 +111,7 @@ void eAVSwitch::setFastBlank(int val)
 	char *fb[] = {"low", "high", "vcr"};
 
 	if((fd = open("/proc/stb/avs/0/fb", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/avs/0/fb\n");
+		eDebug("cannot open /proc/stb/avs/0/fb");
 		return;
 	}
 
@@ -169,7 +169,7 @@ void eAVSwitch::setAspectRatio(int ratio)
 
 	int fd;
 	if((fd = open("/proc/stb/video/aspect", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/video/aspect\n");
+		eDebug("cannot open /proc/stb/video/aspect");
 		return;
 	}
 //	eDebug("set aspect to %s", aspect[ratio]);
@@ -177,7 +177,7 @@ void eAVSwitch::setAspectRatio(int ratio)
 	close(fd);
 
 	if((fd = open("/proc/stb/video/policy", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/video/policy\n");
+		eDebug("cannot open /proc/stb/video/policy");
 		return;
 	}
 //	eDebug("set ratio to %s", policy[ratio]);
@@ -193,22 +193,44 @@ void eAVSwitch::setVideomode(int mode)
 	
 	if (mode == m_video_mode)
 		return;
-	
-	int fd;
 
-	if((fd = open("/proc/stb/video/videomode", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/video/videomode\n");
-		return;
+	if (mode == 2)
+	{
+		int fd1 = open("/proc/stb/video/videomode_50hz", O_WRONLY);
+		if(fd1 < 0) {
+			eDebug("cannot open /proc/stb/video/videomode_50hz");
+			return;
+		}
+		int fd2 = open("/proc/stb/video/videomode_60hz", O_WRONLY);
+		if(fd2 < 0) {
+			eDebug("cannot open /proc/stb/video/videomode_60hz");
+			close(fd1);
+			return;
+		}
+		write(fd1, pal, strlen(pal));
+		write(fd2, ntsc, strlen(ntsc));
+		close(fd1);
+		close(fd2);
 	}
-	switch(mode) {
-		case 0:
-			write(fd, pal, strlen(pal));
-			break;
-		case 1:
-			write(fd, ntsc, strlen(ntsc));
-			break;
+	else
+	{
+		int fd = open("/proc/stb/video/videomode", O_WRONLY);
+		if(fd < 0) {
+			eDebug("cannot open /proc/stb/video/videomode");
+			return;
+		}
+		switch(mode) {
+			case 0:
+				write(fd, pal, strlen(pal));
+				break;
+			case 1:
+				write(fd, ntsc, strlen(ntsc));
+				break;
+			default:
+				eDebug("unknown videomode %d", mode);
+		}
+		close(fd);
 	}
-	close(fd);
 
 	m_video_mode = mode;
 }
@@ -217,7 +239,7 @@ void eAVSwitch::setWSS(int val) // 0 = auto, 1 = auto(4:3_off)
 {
 	int fd;
 	if((fd = open("/proc/stb/denc/0/wss", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/denc/0/wss\n");
+		eDebug("cannot open /proc/stb/denc/0/wss");
 		return;
 	}
 	char *wss[] = {
@@ -234,7 +256,7 @@ void eAVSwitch::setSlowblank(int val)
 {
 	int fd;
 	if((fd = open("/proc/stb/avs/0/sb", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/avs/0/sb\n");
+		eDebug("cannot open /proc/stb/avs/0/sb");
 		return;
 	}
 	char *sb[] = {"0", "6", "12", "vcr", "auto"};
