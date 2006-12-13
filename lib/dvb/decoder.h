@@ -4,6 +4,8 @@
 #include <lib/base/object.h>
 #include <lib/dvb/demux.h>
 
+class eSocketNotifier;
+
 class eDVBAudio: public iObject
 {
 DECLARE_REF(eDVBAudio);
@@ -28,7 +30,7 @@ public:
 	virtual ~eDVBAudio();
 };
 
-class eDVBVideo: public iObject
+class eDVBVideo: public iObject, public Object
 {
 DECLARE_REF(eDVBVideo);
 private:
@@ -36,6 +38,9 @@ private:
 	int m_fd, m_fd_demux, m_dev;
 	
 	int m_is_slow_motion, m_is_fast_forward;
+	eSocketNotifier *m_sn;
+	void video_event(int what);
+	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
 public:
 	enum { MPEG2, MPEG4_H264 };
 	eDVBVideo(eDVBDemux *demux, int dev);
@@ -52,6 +57,7 @@ public:
 	void unfreeze();
 	int getPTS(pts_t &now);
 	virtual ~eDVBVideo();
+	RESULT connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEvent> &event, ePtr<eConnection> &conn);
 };
 
 class eDVBPCR: public iObject
@@ -104,9 +110,12 @@ private:
 	int m_changed, m_decoder;
 	int m_is_ff, m_is_sm, m_is_trickmode;
 	int setState();
-	ePtr<eConnection> m_demux_event;
+	ePtr<eConnection> m_demux_event_conn;
+	ePtr<eConnection> m_video_event_conn;
 	
 	void demux_event(int event);
+	void video_event(struct videoEvent);
+	Signal1<void, struct videoEvent> m_video_event;
 public:
 	enum { pidNone = -1 };
 	eTSMPEGDecoder(eDVBDemux *demux, int decoder);
@@ -136,6 +145,7 @@ public:
 	RESULT setRadioPic(const std::string &filename);
 		/* what 0=auto, 1=video, 2=audio. */
 	RESULT getPTS(int what, pts_t &pts);
+	RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection);
 };
 
 #endif

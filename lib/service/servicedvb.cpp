@@ -714,6 +714,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
 	m_reference(ref), m_dvb_service(service), m_have_video_pid(0), m_is_paused(0)
 {
+	memset(&m_videoEventData, 0, sizeof(struct iTSMPEGDecoder::videoEvent));
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
 	
@@ -1230,9 +1231,29 @@ int eDVBServicePlay::getInfo(int w)
 	
 	switch (w)
 	{
+#if HAVE_DVB_API_VERSION >= 3
+	case sVideoHeight:
+		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+			return m_videoEventData.height;
+		return -1;
+	case sVideoWidth:
+		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+			return m_videoEventData.width;
+		return -1;
+#else
+#warning "FIXMEE implement sVideoHeight, sVideoWidth for old DVB API"
+#endif
 	case sAspect:
-		if (no_program_info) return -1; 
-		if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
+#if HAVE_DVB_API_VERSION >= 3
+		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+			return m_videoEventData.aspect == VIDEO_FORMAT_4_3 ? 1 : 3;
+		else
+#else
+#warning "FIXMEE implement sAspect for old DVB API"
+#endif
+		if (no_program_info)
+			return -1; 
+		else if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
 		{
 			ePtr<eServiceEvent> evt;
 			if (!m_event_handler.getEvent(evt, 0))
@@ -1828,7 +1849,11 @@ void eDVBServicePlay::updateDecoder()
 	{
 		h.getDecodeDemux(m_decode_demux);
 		if (m_decode_demux)
+		{
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
+			if (m_decoder)
+				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
+		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
 		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
@@ -2406,6 +2431,13 @@ void eDVBServicePlay::setPCMDelay(int delay)
 		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay ? delay : -1);
 	if (m_decoder)
 		m_decoder->setPCMDelay(delay);
+}
+
+void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
+{
+	eDebug("!!!!!!!!!! Video Event type %d, aspect %d, %dx%d", event.type, event.aspect, event.width, event.height);
+	memcpy(&m_videoEventData, &event, sizeof(iTSMPEGDecoder::videoEvent));
+	m_event((iPlayableService*)this, evVideoSizeChanged);
 }
 
 DEFINE_REF(eDVBServicePlay)

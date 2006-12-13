@@ -301,6 +301,9 @@ public:
 		sTags,  /* space seperated list of tags */
 		
 		sDVBState, /* states as defined in pmt handler (as events there) */
+
+		sVideoHeight,
+		sVideoWidth
 	};
 	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
 
@@ -529,7 +532,9 @@ public:
 			/* only when cueSheet is implemented */
 		evCuesheetChanged,
 
-		evUpdatedRadioText
+		evUpdatedRadioText,
+
+		evVideoSizeChanged
 	};
 #ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;

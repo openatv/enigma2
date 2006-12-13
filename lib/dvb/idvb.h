@@ -8,6 +8,7 @@
 #define FRONTENDPARAMETERS FrontendParameters
 #else
 #include <linux/dvb/frontend.h>
+#include <linux/dvb/video.h>
 #define FRONTENDPARAMETERS struct dvb_frontend_parameters
 #endif
 #include <lib/dvb/frontendparms.h>
@@ -646,6 +647,16 @@ public:
 	virtual RESULT showSinglePic(const char *filename) = 0;
 
 	virtual RESULT setRadioPic(const std::string &filename) = 0;
+
+	struct videoEvent
+	{
+		enum { eventUnknown = 0, eventSizeChanged = VIDEO_EVENT_SIZE_CHANGED } type;
+		unsigned char aspect;
+		unsigned short height;
+		unsigned short width;
+	};
+
+	virtual RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
 };
 
 #endif //SWIG

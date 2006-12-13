@@ -23,7 +23,7 @@ class ServiceInfo(Converter, object):
 				self.HAS_TELETEXT: [iPlayableService.evUpdatedInfo],
 				self.IS_MULTICHANNEL: [iPlayableService.evUpdatedInfo],
 				self.IS_CRYPTED: [iPlayableService.evUpdatedInfo],
-				self.IS_WIDESCREEN: [iPlayableService.evUpdatedEventInfo],
+				self.IS_WIDESCREEN: [iPlayableService.evVideoSizeChanged],
 				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo]
 			}[self.type]
 
