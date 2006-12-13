@@ -267,6 +267,10 @@ private:
 	ePtr<eDVBRadioTextParser> m_radiotext_parser;
 	ePtr<eConnection> m_radiotext_updated_connection;
 	void radioTextUpdated();
+
+	ePtr<eConnection> m_video_event_connection;
+	void video_event(struct iTSMPEGDecoder::videoEvent);
+	struct iTSMPEGDecoder::videoEvent m_videoEventData;
 };
 
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation

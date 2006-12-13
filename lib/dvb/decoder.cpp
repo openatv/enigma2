@@ -1,3 +1,4 @@
+#include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
 #if HAVE_DVB_API_VERSION < 3 
@@ -178,7 +179,11 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 	m_fd = ::open(filename, O_RDWR);
 	if (m_fd < 0)
 		eWarning("%s: %m", filename);
-	
+	else
+	{
+		m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Priority);
+		CONNECT(m_sn->activated, eDVBVideo::video_event);
+	}
 	eDebug("Video Device: %s", filename);
 #if HAVE_DVB_API_VERSION < 3
 	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
@@ -281,6 +286,8 @@ int eDVBVideo::getPTS(pts_t &now)
 	
 eDVBVideo::~eDVBVideo()
 {
+	if (m_sn)
+		delete m_sn;
 	if (m_is_slow_motion)
 		setSlowMotion(0);
 	if (m_is_fast_forward)
@@ -289,6 +296,37 @@ eDVBVideo::~eDVBVideo()
 		::close(m_fd);
 	if (m_fd_demux >= 0)
 		::close(m_fd_demux);
+}
+
+void eDVBVideo::video_event(int)
+{
+#if HAVE_DVB_API_VERSION >= 3
+	struct video_event evt;
+	if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
+		eDebug("VIDEO_GET_EVENT failed(%m)");
+	else
+	{
+		if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
+		{
+			struct iTSMPEGDecoder::videoEvent event;
+			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
+			event.aspect = evt.u.size.aspect_ratio;
+			event.height = evt.u.size.h;
+			event.width = evt.u.size.w;
+			/* emit */ m_event(event);
+		}
+		else
+			eDebug("unhandled DVBAPI Video Event %d", evt.type);
+	}
+#else
+#warning "FIXMEE!! Video Events not implemented for old api"
+#endif
+}
+
+RESULT eDVBVideo::connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEvent> &event, ePtr<eConnection> &conn)
+{
+	conn = new eConnection(this, m_event.connect(event));
+	return 0;
 }
 
 DEFINE_REF(eDVBPCR);
@@ -442,6 +480,7 @@ int eTSMPEGDecoder::setState()
 	if (m_changed & changeVideo)
 	{
 		m_video = new eDVBVideo(m_demux, m_decoder);
+		m_video->connectEvent(slot(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
 		if (m_video->startPid(m_vpid))
 		{
 			eWarning("video: startpid failed!");
@@ -489,6 +528,7 @@ int eTSMPEGDecoder::setState()
 		{
 			eDebug("new video");
 			m_video = new eDVBVideo(m_demux, m_decoder);
+			m_video->connectEvent(slot(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
 			if (m_video->startPid(m_vpid, m_vtype))
 			{
 				eWarning("video: startpid failed!");
@@ -549,8 +589,10 @@ RESULT eTSMPEGDecoder::setPCMDelay(int delay)
 			fprintf(fp, "%x", delay*90);
 			fclose(fp);
 			m_pcm_delay = delay;
+			return 0;
 		}
 	}
+	return -1;
 }
 
 RESULT eTSMPEGDecoder::setAC3Delay(int delay)
@@ -563,13 +605,15 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 			fprintf(fp, "%x", delay*90);
 			fclose(fp);
 			m_ac3_delay = delay;
+			return 0;
 		}
 	}
+	return -1;
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0), m_decoder(decoder)
 {
-	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event);
+	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
 	m_is_ff = m_is_sm = m_is_trickmode = 0;
 }
 
@@ -772,6 +816,7 @@ RESULT eTSMPEGDecoder::getPTS(int what, pts_t &pts)
 RESULT eTSMPEGDecoder::setRadioPic(const std::string &filename)
 {
 	m_radio_pic = filename;
+	return 0;
 }
 
 RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
@@ -845,3 +890,15 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 	}
 	return 0;
 }
+
+RESULT eTSMPEGDecoder::connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
+{
+	conn = new eConnection(this, m_video_event.connect(event));
+	return 0;
+}
+
+void eTSMPEGDecoder::video_event(struct videoEvent event)
+{
+	/* emit */ m_video_event(event);
+}
+
