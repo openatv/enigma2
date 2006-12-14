@@ -2240,10 +2240,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 	}
 
 	if (!ret)
-	{
-		Py_INCREF(Py_None);
-		ret=Py_None;
-	}
+		Py_RETURN_NONE;
 
 	return ret;
 }

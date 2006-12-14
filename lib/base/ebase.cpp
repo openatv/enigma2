@@ -334,10 +334,7 @@ PyObject *eMainloop::poll(ePyObject timeout, ePyObject dict)
 	PyObject *res=0;
 	
 	if (app_quit_now)
-	{
-		Py_INCREF(Py_None);
-		return Py_None;
-	}
+		Py_RETURN_NONE;
 	
 	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
 

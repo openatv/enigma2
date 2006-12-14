@@ -195,10 +195,8 @@ void eListboxPythonStringContent::setList(ePyObject list)
 PyObject *eListboxPythonStringContent::getCurrentSelection()
 {
 	if (!(m_list && cursorValid()))
-	{
-		Py_INCREF(Py_None);
-		return Py_None;
-	}
+		Py_RETURN_NONE;
+
 	ePyObject r = PyList_GET_ITEM(m_list, m_cursor);
 	Py_XINCREF(r);
 	return r;

@@ -204,6 +204,15 @@ inline ePyObject Impl_PyString_FromString(const char* file, int line, const char
 	return ePyObject(PyString_FromString(str), file, line);
 }
 
+inline ePyObject Impl_PyString_FromFormat(const char* file, int line, const char *fmt, ...)
+{
+	va_list ap;
+	va_start(ap, fmt);
+	PyObject *ob = PyString_FromFormatV(fmt, ap);
+	va_end(ap);
+	return ePyObject(ob, file, line);
+}
+
 inline ePyObject Impl_PyInt_FromLong(const char* file, int line, long val)
 {
 	return ePyObject(PyInt_FromLong(val), file, line);
@@ -281,6 +290,15 @@ inline ePyObject Impl_PyString_FromString(const char *str)
 	return PyString_FromString(str);
 }
 
+inline ePyObject Impl_PyString_FromFormat(const char *fmt, ...)
+{
+	va_list ap;
+	va_start(ap, fmt);
+	PyObject *ob = PyString_FromFormatV(fmt, ap);
+	va_end(ap);
+	return ePyObject(ob);
+}
+
 inline ePyObject Impl_PyInt_FromLong(long val)
 {
 	return PyInt_FromLong(val);
@@ -337,6 +355,7 @@ inline void Impl_DECREF(PyObject *ob)
 #define PyTuple_New(args...) Impl_PyTuple_New(__FILE__, __LINE__, args)
 #define PyDict_New(...) Impl_PyDict_New(__FILE__, __LINE__)
 #define PyString_FromString(str) Impl_PyString_FromString(__FILE__, __LINE__, str)
+#define PyString_FromFormat(str, args...) Impl_PyString_FromFormat(__FILE__, __LINE__, str, args)
 #define PyInt_FromLong(val) Impl_PyInt_FromLong(__FILE__, __LINE__, val)
 #define PyLong_FromLong(val) Impl_PyLong_FromLong(__FILE__, __LINE__, val)
 #define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(__FILE__, __LINE__, val)
@@ -353,6 +372,7 @@ inline void Impl_DECREF(PyObject *ob)
 #define PyTuple_New(args...) Impl_PyTuple_New(args)
 #define PyDict_New(...) Impl_PyDict_New()
 #define PyString_FromString(str) Impl_PyString_FromString(str)
+#define PyString_FromFormat(str, args...) Impl_PyString_FromFormat(str, args)
 #define PyInt_FromLong(val) Impl_PyInt_FromLong(val)
 #define PyLong_FromLong(val) Impl_PyLong_FromLong(val)
 #define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(val)

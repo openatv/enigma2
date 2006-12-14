@@ -243,7 +243,8 @@ public:
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);
-
+	virtual PyObject *getInfoObject(const eServiceReference &ref, int w);
+	
 	virtual int setInfo(const eServiceReference &ref, int w, int v);
 	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
 };
@@ -303,7 +304,9 @@ public:
 		sDVBState, /* states as defined in pmt handler (as events there) */
 
 		sVideoHeight,
-		sVideoWidth
+		sVideoWidth,
+		
+		sTransponderData /* transponderdata as python dict */
 	};
 	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
 
