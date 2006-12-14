@@ -192,6 +192,11 @@ std::string iStaticServiceInformation::getInfoString(const eServiceReference &re
 	return "";
 }
 
+PyObject *iStaticServiceInformation::getInfoObject(const eServiceReference &ref, int w)
+{
+	Py_RETURN_NONE;
+}
+
 int iServiceInformation::getInfo(int w)
 {
 	return -1;
@@ -204,8 +209,7 @@ std::string iServiceInformation::getInfoString(int w)
 
 PyObject* iServiceInformation::getInfoObject(int w)
 {
-	Py_INCREF(Py_None);
-	return Py_None;
+	Py_RETURN_NONE;
 }
 
 int iStaticServiceInformation::setInfo(const eServiceReference &ref, int w, int v)

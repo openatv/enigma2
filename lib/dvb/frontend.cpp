@@ -1069,10 +1069,8 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 		}
 	}
 	else
-	{
-		Py_INCREF(Py_None);
-		ret = Py_None;
-	}
+		Py_RETURN_NONE;
+
 	return ret;
 }
 

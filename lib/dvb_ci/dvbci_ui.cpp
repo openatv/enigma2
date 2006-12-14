@@ -266,8 +266,7 @@ PyObject *eDVBCI_UI::getMMIScreen(int slot)
 			return data.mmiScreen;
 		}
 	}
-	Py_INCREF(Py_None);
-	return Py_None;
+	Py_RETURN_NONE;
 }
 
 //FIXME: correct "run/startlevel"
