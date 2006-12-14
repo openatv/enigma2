@@ -202,9 +202,9 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 
 //	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 
-	in = new eSocketNotifier(eApp, fd[0], POLLIN|POLLPRI|POLLHUP );
-	out = new eSocketNotifier(eApp, fd[1], POLLOUT, false);  
-	err = new eSocketNotifier(eApp, fd[2], POLLIN|POLLPRI );
+	in = new eSocketNotifier(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
+	out = new eSocketNotifier(eApp, fd[1], eSocketNotifier::Write, false);  
+	err = new eSocketNotifier(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
 	CONNECT(in->activated, eConsoleAppContainer::readyRead);
 	CONNECT(out->activated, eConsoleAppContainer::readyWrite);
 	CONNECT(err->activated, eConsoleAppContainer::readyErrRead);
@@ -281,21 +281,18 @@ void eConsoleAppContainer::closePipes()
 
 void eConsoleAppContainer::readyRead(int what)
 {
-	if (what & POLLPRI|POLLIN)
+	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
 		char buf[2048];
-		int readed = read(fd[0], buf, 2047);
-//		eDebug("%d bytes read", readed);
-		if ( readed != -1 && readed )
+		int rd;
+		while((rd = read(fd[0], buf, 2047)) > 0)
 		{
-/*			for ( int i = 0; i < readed; i++ )
+/*			for ( int i = 0; i < rd; i++ )
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
-			buf[readed]=0;
+			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
 		}
-		else if (readed == -1)
-			eDebug("readerror %d", errno);
 	}
 	if (what & eSocketNotifier::Hungup)
 	{
@@ -307,21 +304,18 @@ void eConsoleAppContainer::readyRead(int what)
 
 void eConsoleAppContainer::readyErrRead(int what)
 {
-	if (what & POLLPRI|POLLIN)
+	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
 		char buf[2048];
-		int readed = read(fd[2], buf, 2047);
-//		eDebug("%d bytes read", readed);
-		if ( readed != -1 && readed )
+		int rd;
+		while((rd = read(fd[2], buf, 2047)) > 0)
 		{
-/*			for ( int i = 0; i < readed; i++ )
+/*			for ( int i = 0; i < rd; i++ )
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
-			buf[readed]=0;
+			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
 		}
-		else if (readed == -1)
-			eDebug("readerror %d", errno);
 	}
 }
 
@@ -335,7 +329,7 @@ void eConsoleAppContainer::write( const char *data, int len )
 
 void eConsoleAppContainer::readyWrite(int what)
 {
-	if (what&POLLOUT && outbuf.size() )
+	if (what&eSocketNotifier::Write && outbuf.size() )
 	{
 		queue_data d = outbuf.front();
 		outbuf.pop();
@@ -354,4 +348,3 @@ void eConsoleAppContainer::readyWrite(int what)
 	if ( !outbuf.size() )
 		out->stop();
 }
-	
