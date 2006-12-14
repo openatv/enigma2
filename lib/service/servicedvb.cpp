@@ -360,7 +360,12 @@ PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r
 										PutCableDataToDict(dict, c);
 										break;
 									}
+									default:
+										eDebug("unknown frontend type %d", system);
+										Py_DECREF(dict);
+										break;
 								}
+								return dict;
 							}
 						}
 					}
