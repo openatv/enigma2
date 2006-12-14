@@ -281,6 +281,7 @@ void eConsoleAppContainer::closePipes()
 
 void eConsoleAppContainer::readyRead(int what)
 {
+	bool hungup = what & eSocketNotifier::Hungup;
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
@@ -292,9 +293,11 @@ void eConsoleAppContainer::readyRead(int what)
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
+			if (!hungup)
+				break;
 		}
 	}
-	if (what & eSocketNotifier::Hungup)
+	if (hungup)
 	{
 		eDebug("child has terminated");
 		closePipes();
