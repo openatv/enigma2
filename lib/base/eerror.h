@@ -135,7 +135,7 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
     inline void eWarning(const char* fmt, ...)
     {
     }
-    #define ASSERT(x) do { x; } while (0)
+    #define ASSERT(x) do { } while (0)
 #endif //DEBUG
 
 void eWriteCrashdump();
