@@ -142,10 +142,6 @@ void eWriteCrashdump();
 
 #endif // SWIG
 
-#ifndef DEBUG
-inline void ePythonOutput(const char *)
-{
-}
-#endif
+void ePythonOutput(const char *);
 
 #endif // __E_ERROR__
