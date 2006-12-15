@@ -2013,7 +2013,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	{
 		ASSERT(m_sec);
 		eDVBFrontendParametersSatellite sat_parm;
-		ASSERT(!feparm->getDVBS(sat_parm));
+		int ret = feparm->getDVBS(sat_parm);
+		ASSERT(!ret);
 		return m_sec->canTune(sat_parm, this, 1 << m_fe);
 	}
 	else if (m_type == eDVBFrontend::feCable)
