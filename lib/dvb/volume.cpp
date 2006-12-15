@@ -1,3 +1,4 @@
+#include <lib/base/eerror.h>
 #include <lib/dvb/volume.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -43,13 +44,11 @@ void eDVBVolumecontrol::closeMixer(int fd)
 
 void eDVBVolumecontrol::volumeUp(int left, int right)
 {
-	printf("[volume.cpp] Volume up\n");
 	setVolume(leftVol + left, rightVol + right);
 }
 
 void eDVBVolumecontrol::volumeDown(int left, int right)
 {
-	printf("[volume.cpp] Volume down\n");
 	setVolume(leftVol - left, rightVol - right);
 }
 
@@ -88,10 +87,10 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	mixer.volume_right = right;
 #endif
 
-	printf("Setvolume: %d %d (raw)\n", leftVol, rightVol);
-	printf("Setvolume: %d %d (-1db)\n", left, right);
+	eDebug("Setvolume: %d %d (raw)", leftVol, rightVol);
+	eDebug("Setvolume: %d %d (-1db)", left, right);
 #if HAVE_DVB_API_VERSION < 3
-	printf("Setvolume: %d %d (lin)\n", mixer.volume_left, mixer.volume_right);
+	eDebug("Setvolume: %d %d (lin)", mixer.volume_left, mixer.volume_right);
 #endif
 
 	int fd = openMixer();
@@ -107,7 +106,7 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	//HACK?
 	FILE *f;
 	if((f = fopen("/proc/stb/avs/0/volume", "wb")) == NULL) {
-		printf("cannot open /proc/stb/avs/0/volume\n");
+		eDebug("cannot open /proc/stb/avs/0/volume(%m)");
 		return;
 	}
 
@@ -139,7 +138,7 @@ void eDVBVolumecontrol::volumeMute()
 	//HACK?
 	FILE *f;
 	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
-		printf("cannot open /proc/stb/audio/j1_mute\n");
+		eDebug("cannot open /proc/stb/audio/j1_mute(%m)");
 		return;
 	}
 	
@@ -160,7 +159,7 @@ void eDVBVolumecontrol::volumeUnMute()
 	//HACK?
 	FILE *f;
 	if((f = fopen("/proc/stb/audio/j1_mute", "wb")) == NULL) {
-		printf("cannot open /proc/stb/audio/j1_mute\n");
+		eDebug("cannot open /proc/stb/audio/j1_mute(%m)");
 		return;
 	}
 	
