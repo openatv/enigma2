@@ -126,15 +126,17 @@ void eWarning(const char* fmt, ...)
 	if (logOutputConsole)
 		fprintf(stderr, "%s\n", buf);
 }
+#endif // DEBUG
 
 void ePythonOutput(const char *string)
 {
+#ifdef DEBUG
 	singleLock s(DebugLock);
 	logOutput(lvlWarning, string);
 	if (logOutputConsole)
 		fwrite(string, 1, strlen(string), stderr);
+#endif
 }
-#endif // DEBUG
 
 void eWriteCrashdump()
 {
