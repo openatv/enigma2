@@ -96,7 +96,7 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
-		eDebug("isPlayble... no res manager!!");
+		eDebug("isPlayable... no res manager!!");
 	else
 	{
 		eDVBChannelID chid, chid_ignore;
@@ -197,9 +197,9 @@ void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial
 	const char *tmp=0;
 	switch (feparm.bandwidth)
 	{
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz: tmp="8 Mhz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz: tmp="7 Mhz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz: tmp="6 Mhz"; break;
+	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz: tmp="8 MHz"; break;
+	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz: tmp="7 MHz"; break;
+	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz: tmp="6 MHz"; break;
 	default:
 	case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto: tmp="AUTO"; break;
 	}
@@ -2706,5 +2706,17 @@ void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 }
 
 DEFINE_REF(eDVBServicePlay)
+
+PyObject *eDVBService::getInfoObject(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTransponderData:
+		return eStaticServiceDVBInformation().getInfoObject(ref, w);
+	default:
+		break;
+	}
+	return iStaticServiceInformation::getInfoObject(ref, w);
+}
 
 eAutoInitPtr<eServiceFactoryDVB> init_eServiceFactoryDVB(eAutoInitNumbers::service+1, "eServiceFactoryDVB");

@@ -274,6 +274,7 @@ public:
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+	PyObject *getInfoObject(const eServiceReference &ref, int);  // implemented in lib/service/servicedvb.h
 
 		/* for filtering: */
 	int checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQuery &query);
