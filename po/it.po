@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-29 11:14+0100\n"
+"POT-Creation-Date: 2006-12-18 00:02+0100\n"
 "PO-Revision-Date: 2006-04-01 02:52+0100\n"
 "Last-Translator: Musicbob <musicbob@satnews.tv.it>\n"
 "Language-Team: none\n"
@@ -71,6 +71,10 @@ msgstr ""
 "%s\n"
 "(%s, %d MB liberi)"
 
+#, python-format
+msgid "%s (%s)\n"
+msgstr ""
+
 msgid "(ZAP)"
 msgstr ""
 
@@ -78,9 +82,6 @@ msgid "/usr/share/enigma2 directory"
 msgstr ""
 
 msgid "/var directory"
-msgstr ""
-
-msgid "0 V"
 msgstr ""
 
 msgid "1.0"
@@ -92,11 +93,8 @@ msgstr ""
 msgid "1.2"
 msgstr ""
 
-msgid "12 V"
+msgid "12V output"
 msgstr ""
-
-msgid "12V Output"
-msgstr "12V Uscita"
 
 msgid "13 V"
 msgstr ""
@@ -207,13 +205,7 @@ msgstr "Aggiungi"
 msgid "Add a mark"
 msgstr ""
 
-msgid "Add alternative"
-msgstr ""
-
 msgid "Add files to playlist"
-msgstr ""
-
-msgid "Add service"
 msgstr ""
 
 msgid "Add timer"
@@ -418,6 +410,9 @@ msgstr "Completo"
 msgid "Configuration Mode"
 msgstr "Configurazione"
 
+msgid "Configuring"
+msgstr ""
+
 msgid "Conflicting timer"
 msgstr "Timer in conflitto"
 
@@ -589,11 +584,12 @@ msgstr ""
 "Vuoi aggiornare il tuo Dreambox?\n"
 "Dopo aver premuto OK, attendi"
 
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
-
 msgid "Do you want to view a tutorial?"
 msgstr "Vuoi vedere una guida utente?"
+
+#, python-format
+msgid "Done - Installed or upgraded %d packages"
+msgstr ""
 
 msgid "Download Plugins"
 msgstr "Scarica Plugins"
@@ -603,6 +599,9 @@ msgstr "Nuovi Plugins scaricabili"
 
 msgid "Downloadable plugins"
 msgstr "Plugins scaricabili"
+
+msgid "Downloading"
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Sto cercando informazioni sui plugins. Attendere prego..."
@@ -663,6 +662,9 @@ msgid "Enter main menu..."
 msgstr ""
 
 msgid "Enter the service pin"
+msgstr ""
+
+msgid "Error"
 msgstr ""
 
 msgid "Eventview"
@@ -770,6 +772,9 @@ msgstr "Modo gerarchico"
 msgid "How many minutes do you want to record?"
 msgstr "Per quanti minuti vuoi registrare?"
 
+msgid "Hungarian"
+msgstr ""
+
 msgid "IP Address"
 msgstr "Indirizzo IP"
 
@@ -813,6 +818,9 @@ msgid "Initializing Harddisk..."
 msgstr "Formatto l'Hard Disk..."
 
 msgid "Input"
+msgstr ""
+
+msgid "Installing"
 msgstr ""
 
 msgid "Instant Record..."
@@ -1039,8 +1047,20 @@ msgstr ""
 msgid "No backup needed"
 msgstr "Backup non necessario"
 
+msgid ""
+"No data on transponder!\n"
+"(Timeout reading PAT)"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Nessuna info sulla durata dell'evento, registrazione illimitata."
+
+msgid "No free tuner!"
+msgstr ""
+
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr ""
@@ -1105,6 +1125,9 @@ msgid "PAL"
 msgstr ""
 
 msgid "PIDs"
+msgstr ""
+
+msgid "Package list update"
 msgstr ""
 
 msgid "Packet management"
@@ -1296,9 +1319,6 @@ msgstr ""
 msgid "Remove plugins"
 msgstr "Rimuovi Plugins"
 
-msgid "Remove service"
-msgstr ""
-
 msgid "Repeat"
 msgstr "Ripeti"
 
@@ -1376,9 +1396,6 @@ msgstr "Seleziona HDD"
 msgid "Select a movie"
 msgstr "Seleziona una registrazione"
 
-msgid "Select alternative service"
-msgstr ""
-
 msgid "Select audio mode"
 msgstr ""
 
@@ -1387,9 +1404,6 @@ msgstr ""
 
 msgid "Select channel to record from"
 msgstr "Seleziona il canale da cui registrare"
-
-msgid "Select reference service"
-msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Ripetizione sequenza"
@@ -1407,6 +1421,16 @@ msgid "Service has been added to the favourites."
 msgstr ""
 
 msgid "Service has been added to the selected bouquet."
+msgstr ""
+
+msgid ""
+"Service invalid!\n"
+"(Timeout reading PMT)"
+msgstr ""
+
+msgid ""
+"Service not found!\n"
+"(SID not found in PAT)"
 msgstr ""
 
 msgid "Service scan"
@@ -1483,6 +1507,9 @@ msgstr "Slot "
 
 msgid "Socket "
 msgstr "Tuner "
+
+msgid "Some plugins are not available:\n"
+msgstr ""
 
 msgid "Somewhere else"
 msgstr "Altrove"
@@ -1727,6 +1754,9 @@ msgstr "Martedi"
 msgid "Tune"
 msgstr "Sintonia"
 
+msgid "Tune failed!"
+msgstr ""
+
 msgid "Tuner"
 msgstr ""
 
@@ -1775,6 +1805,9 @@ msgstr "LNB universale"
 msgid "Unmount failed"
 msgstr ""
 
+msgid "Updates your receiver's software"
+msgstr ""
+
 msgid "Updating finished. Here is the result:"
 msgstr "Aggiornamento finito. Risultato:"
 
@@ -1782,6 +1815,12 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aggiornamento in corso... Attendere prego... Puo' durarealcuni minuti."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Upgrading"
+msgstr ""
+
+msgid "Upgrading Dreambox... Please wait"
 msgstr ""
 
 msgid "Use DHCP"
@@ -1982,6 +2021,11 @@ msgstr ""
 "Attendere prego...."
 
 msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -1994,6 +2038,9 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 
+msgid "[alternative edit]"
+msgstr ""
+
 msgid "[bouquet edit]"
 msgstr "[Editor Bouquet]"
 
@@ -2003,6 +2050,9 @@ msgstr "[Editor Preferiti]"
 msgid "[move mode]"
 msgstr "[Modalità muovi]"
 
+msgid "abort alternatives edit"
+msgstr ""
+
 msgid "abort bouquet edit"
 msgstr "Esci dall'editor bouquet"
 
@@ -2011,6 +2061,9 @@ msgstr "Esci dall'editor preferiti"
 
 msgid "about to start"
 msgstr "Sto per iniziare"
+
+msgid "add alternatives"
+msgstr ""
 
 msgid "add bouquet"
 msgstr ""
@@ -2106,6 +2159,9 @@ msgstr ""
 msgid "disable move mode"
 msgstr "Esci dalla modalità muovi"
 
+msgid "do not change"
+msgstr ""
+
 msgid "do nothing"
 msgstr "Non fare nulla"
 
@@ -2114,6 +2170,9 @@ msgstr "Esci, non registrare"
 
 msgid "done!"
 msgstr "Fatto!"
+
+msgid "edit alternatives"
+msgstr ""
 
 msgid "empty/unknown"
 msgstr "vuoto/sconosciuto"
@@ -2129,6 +2188,9 @@ msgstr "Abilita modifica preferiti"
 
 msgid "enable move mode"
 msgstr "Abilita modalità muovi"
+
+msgid "end alternatives edit"
+msgstr ""
 
 msgid "end bouquet edit"
 msgstr "Termina modifica bouquet"
@@ -2209,6 +2271,9 @@ msgid "minutes"
 msgstr ""
 
 msgid "minutes and"
+msgstr ""
+
+msgid "multinorm"
 msgstr ""
 
 msgid "never"
@@ -2295,6 +2360,9 @@ msgstr "registrazione..."
 msgid "remove after this position"
 msgstr ""
 
+msgid "remove all alternatives"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr ""
 
@@ -2375,6 +2443,9 @@ msgstr ""
 
 msgid "show EPG..."
 msgstr "Mostra EPG..."
+
+msgid "show alternatives"
+msgstr ""
 
 msgid "show event details"
 msgstr "Mostra dettagli evento"
@@ -2460,6 +2531,11 @@ msgstr "si"
 msgid "yes (keep feeds)"
 msgstr ""
 
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
+msgstr ""
+
 msgid "zap"
 msgstr ""
 
@@ -2468,6 +2544,9 @@ msgstr ""
 
 #~ msgid "%s (%s, %d MB free)"
 #~ msgstr "%s (%s, %d MB frei)"
+
+#~ msgid "12V Output"
+#~ msgstr "12V Uscita"
 
 #~ msgid "Add Timer"
 #~ msgstr "Timer hinzuf."

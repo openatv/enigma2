@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-29 11:14+0100\n"
+"POT-Creation-Date: 2006-12-18 00:02+0100\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -64,6 +64,10 @@ msgid ""
 "(%s, %d MB free)"
 msgstr ""
 
+#, python-format
+msgid "%s (%s)\n"
+msgstr ""
+
 msgid "(ZAP)"
 msgstr ""
 
@@ -71,9 +75,6 @@ msgid "/usr/share/enigma2 directory"
 msgstr ""
 
 msgid "/var directory"
-msgstr ""
-
-msgid "0 V"
 msgstr ""
 
 msgid "1.0"
@@ -85,10 +86,7 @@ msgstr ""
 msgid "1.2"
 msgstr ""
 
-msgid "12 V"
-msgstr ""
-
-msgid "12V Output"
+msgid "12V output"
 msgstr ""
 
 msgid "13 V"
@@ -196,13 +194,7 @@ msgstr ""
 msgid "Add a mark"
 msgstr ""
 
-msgid "Add alternative"
-msgstr ""
-
 msgid "Add files to playlist"
-msgstr ""
-
-msgid "Add service"
 msgstr ""
 
 msgid "Add timer"
@@ -407,6 +399,9 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr ""
 
+msgid "Configuring"
+msgstr ""
+
 msgid "Conflicting timer"
 msgstr ""
 
@@ -570,10 +565,11 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
-msgid "Do you want to view a cutlist tutorial?"
+msgid "Do you want to view a tutorial?"
 msgstr ""
 
-msgid "Do you want to view a tutorial?"
+#, python-format
+msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
 msgid "Download Plugins"
@@ -583,6 +579,9 @@ msgid "Downloadable new plugins"
 msgstr ""
 
 msgid "Downloadable plugins"
+msgstr ""
+
+msgid "Downloading"
 msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
@@ -644,6 +643,9 @@ msgid "Enter main menu..."
 msgstr ""
 
 msgid "Enter the service pin"
+msgstr ""
+
+msgid "Error"
 msgstr ""
 
 msgid "Eventview"
@@ -751,6 +753,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr ""
 
+msgid "Hungarian"
+msgstr ""
+
 msgid "IP Address"
 msgstr "IP Address"
 
@@ -794,6 +799,9 @@ msgid "Initializing Harddisk..."
 msgstr ""
 
 msgid "Input"
+msgstr ""
+
+msgid "Installing"
 msgstr ""
 
 msgid "Instant Record..."
@@ -1018,7 +1026,19 @@ msgstr ""
 msgid "No backup needed"
 msgstr ""
 
+msgid ""
+"No data on transponder!\n"
+"(Timeout reading PAT)"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
+msgstr ""
+
+msgid "No free tuner!"
+msgstr ""
+
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
 msgid "No positioner capable frontend found."
@@ -1084,6 +1104,9 @@ msgid "PAL"
 msgstr ""
 
 msgid "PIDs"
+msgstr ""
+
+msgid "Package list update"
 msgstr ""
 
 msgid "Packet management"
@@ -1275,9 +1298,6 @@ msgstr ""
 msgid "Remove plugins"
 msgstr ""
 
-msgid "Remove service"
-msgstr ""
-
 msgid "Repeat"
 msgstr ""
 
@@ -1355,9 +1375,6 @@ msgstr ""
 msgid "Select a movie"
 msgstr ""
 
-msgid "Select alternative service"
-msgstr ""
-
 msgid "Select audio mode"
 msgstr ""
 
@@ -1365,9 +1382,6 @@ msgid "Select audio track"
 msgstr ""
 
 msgid "Select channel to record from"
-msgstr ""
-
-msgid "Select reference service"
 msgstr ""
 
 msgid "Sequence repeat"
@@ -1386,6 +1400,16 @@ msgid "Service has been added to the favourites."
 msgstr ""
 
 msgid "Service has been added to the selected bouquet."
+msgstr ""
+
+msgid ""
+"Service invalid!\n"
+"(Timeout reading PMT)"
+msgstr ""
+
+msgid ""
+"Service not found!\n"
+"(SID not found in PAT)"
 msgstr ""
 
 msgid "Service scan"
@@ -1461,6 +1485,9 @@ msgid "Slot "
 msgstr ""
 
 msgid "Socket "
+msgstr ""
+
+msgid "Some plugins are not available:\n"
 msgstr ""
 
 msgid "Somewhere else"
@@ -1700,6 +1727,9 @@ msgstr ""
 msgid "Tune"
 msgstr ""
 
+msgid "Tune failed!"
+msgstr ""
+
 msgid "Tuner"
 msgstr ""
 
@@ -1745,6 +1775,9 @@ msgstr ""
 msgid "Unmount failed"
 msgstr ""
 
+msgid "Updates your receiver's software"
+msgstr ""
+
 msgid "Updating finished. Here is the result:"
 msgstr ""
 
@@ -1752,6 +1785,12 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Upgrading"
+msgstr ""
+
+msgid "Upgrading Dreambox... Please wait"
 msgstr ""
 
 msgid "Use DHCP"
@@ -1922,6 +1961,11 @@ msgid "Your dreambox is shutting down. Please stand by..."
 msgstr ""
 
 msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+
+msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -1930,6 +1974,9 @@ msgid "Zap back to service before positioner setup?"
 msgstr ""
 
 msgid "Zap back to service before satfinder?"
+msgstr ""
+
+msgid "[alternative edit]"
 msgstr ""
 
 msgid "[bouquet edit]"
@@ -1941,6 +1988,9 @@ msgstr ""
 msgid "[move mode]"
 msgstr ""
 
+msgid "abort alternatives edit"
+msgstr ""
+
 msgid "abort bouquet edit"
 msgstr ""
 
@@ -1948,6 +1998,9 @@ msgid "abort favourites edit"
 msgstr ""
 
 msgid "about to start"
+msgstr ""
+
+msgid "add alternatives"
 msgstr ""
 
 msgid "add bouquet"
@@ -2042,6 +2095,9 @@ msgstr ""
 msgid "disable move mode"
 msgstr ""
 
+msgid "do not change"
+msgstr ""
+
 msgid "do nothing"
 msgstr ""
 
@@ -2049,6 +2105,9 @@ msgid "don't record"
 msgstr ""
 
 msgid "done!"
+msgstr ""
+
+msgid "edit alternatives"
 msgstr ""
 
 msgid "empty/unknown"
@@ -2064,6 +2123,9 @@ msgid "enable favourite edit"
 msgstr ""
 
 msgid "enable move mode"
+msgstr ""
+
+msgid "end alternatives edit"
 msgstr ""
 
 msgid "end bouquet edit"
@@ -2145,6 +2207,9 @@ msgid "minutes"
 msgstr ""
 
 msgid "minutes and"
+msgstr ""
+
+msgid "multinorm"
 msgstr ""
 
 msgid "never"
@@ -2231,6 +2296,9 @@ msgstr ""
 msgid "remove after this position"
 msgstr ""
 
+msgid "remove all alternatives"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr ""
 
@@ -2302,6 +2370,9 @@ msgid "setup pin"
 msgstr ""
 
 msgid "show EPG..."
+msgstr ""
+
+msgid "show alternatives"
 msgstr ""
 
 msgid "show event details"
@@ -2386,6 +2457,11 @@ msgid "yes"
 msgstr ""
 
 msgid "yes (keep feeds)"
+msgstr ""
+
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
 msgstr ""
 
 msgid "zap"
