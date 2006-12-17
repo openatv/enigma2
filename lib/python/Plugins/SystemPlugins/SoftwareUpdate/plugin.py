@@ -252,7 +252,7 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = Label("Upgrading Dreambox... Please wait")
+		self.status = Label(_("Upgrading Dreambox... Please wait"))
 		self["status"] = self.status
 		self.package = Label()
 		self["package"] = self.package
@@ -269,7 +269,7 @@ class UpdatePlugin(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		
 		self.updating = True
-		self.package.setText("Package list update")
+		self.package.setText(_("Package list update"))
 		self.ipkg.cmdUpdate()
 			
 		self["actions"] = ActionMap(["WizardActions"], 
