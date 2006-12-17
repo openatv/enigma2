@@ -199,7 +199,7 @@ class TimerSanityConflict(Screen):
 		if len(timer) > 1:
 			self["timer2"] = TimerList(self.getTimerList(timer[1]))
 		else:
-			self["timer2"] = Button("No conflict")
+			self["timer2"] = TimerList([])
 		
 		self.list = []
 		count = 0

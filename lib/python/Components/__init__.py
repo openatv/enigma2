@@ -8,4 +8,4 @@ __all__ = ["ActionMap", "Button", "Clock", "ConfigList",
 	"IPNameserver", "Network", "RFmon", "DiskInfo", "NimManager", "TimerEntry",
 	"Lcd", "EpgList" "ScrollLabel", "Timezones", "HelpMenuList", "TimerSanityCheck",
 	"FileList", "MultiContent", "TunerInfo", "ChoiceList", "Playlist",
-	"ParentalControl" ]
+	"ParentalControl", "NIMSimulator" ]
