@@ -105,3 +105,9 @@ class Ipkg:
 		
 	def getFetchedList(self):
 		return self.fetchedList
+	
+	def stop(self):
+		self.cmd.kill()
+		
+	def isRunning(self):
+		return self.cmd.running()

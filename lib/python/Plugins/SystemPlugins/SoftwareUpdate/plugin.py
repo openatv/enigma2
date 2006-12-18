@@ -327,10 +327,11 @@ class UpdatePlugin(Screen):
 		pass
 	
 	def exit(self):
-		if self.packages != 0 and self.error == 0:
-			self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your Dreambox?"))
-		else:
-			self.close()
+		if not self.ipkg.isRunning():
+			if self.packages != 0 and self.error == 0:
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished. Do you want to reboot your Dreambox?"))
+			else:
+				self.close()
 			
 	def exitAnswer(self, result):
 		if result is not None and result:
