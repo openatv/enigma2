@@ -85,6 +85,7 @@ lib/python/Plugins/Extensions/WebInterface/web-data/Makefile
 lib/python/Plugins/Extensions/FileManager/Makefile
 lib/python/Plugins/Extensions/FritzCall/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
+lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
 lib/python/Tools/Makefile
