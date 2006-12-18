@@ -396,7 +396,7 @@ class ScanSetup(ConfigListScreen, Screen):
 			for slot in nimmanager.nimslots:
 				if (nimmanager.getNimType(slot.slotid) == nimmanager.nimType["DVB-S"]):
 					print str(slot.slotid) + " : " + str(self.satList)
-					self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"],self.satList[slot.slotid]))
+					self.scan_satselection.append(getConfigSatlist(int(defaultSat["orbpos"]), self.satList[slot.slotid]))
 				else:
 					self.scan_satselection.append(None)
 
