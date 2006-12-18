@@ -532,5 +532,26 @@ class picmain(Screen):
 def main(session, **kwargs):
 	session.open(picmain)
 
+def filescan_open(list, session, **kwargs):
+	session.open(picmain) # list
+
+def filescan():
+	# we expect not to be called if the MediaScanner plugin is not available,
+	# thus we don't catch an ImportError exception here
+	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath
+	return \
+		Scanner(extensions = ["jpg", "jpe", "jpeg"], 
+			paths_to_scan = 
+				[
+					ScanPath(path = "DCIM", with_subdirs = True),
+					ScanPath(path = "", with_subdirs = False),
+				],
+			name = "Pictures", 
+			description = "View Photos...",
+			openfnc = filescan_open,
+		)
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name="PicturePlayer", description="Picture Viewer (BMP, PNG, JPG)", icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+	return \
+		[PluginDescriptor(name="PicturePlayer", description="Picture Viewer (BMP, PNG, JPG)", icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+		 PluginDescriptor(name="PicturePlayer", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
