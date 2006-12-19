@@ -206,6 +206,12 @@
 	<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
 	</screen>
+	<screen name="Ipkg" position="100,100" size="550,200" title="Installing Software..." >
+			<widget name="activityslider" position="0,0" size="550,5"  />
+			<widget name="slider" position="0,100" size="550,30"  />
+			<widget name="package" position="10,30" size="550,20" font="Regular;18"/>
+			<widget name="status" position="10,60" size="550,45" font="Regular;18"/>
+		</screen>
 	<screen name="Volume" flags="wfNoBorder" position="450,50" size="180,60" title="Volume" zPosition="1" >
 		<ePixmap position="0,0" zPosition="0" size="180,60" pixmap="volumeslider-fs8.png" />
 		<widget name="Volume" zPosition="1" position="8,38" size="164,11" backgroundColor="dark" />

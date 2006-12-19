@@ -1,6 +1,6 @@
 from enigma import eConsoleAppContainer
 
-class Ipkg:
+class IpkgComponent:
 	EVENT_INSTALL = 0
 	EVENT_DOWNLOAD = 1
 	EVENT_INFLATING = 2
@@ -35,25 +35,24 @@ class Ipkg:
 		print "executing", self.ipkg, cmd
 		self.cmd.execute(self.ipkg + " " + cmd)
 		
-	def cmdFetchList(self, installed_only = False):
-		self.fetchedList = []
-		if installed_only:
-			self.runCmd("list_installed")
-		else:
-			self.runCmd("list")
-		self.setCurrentCommand(self.CMD_LIST)
-		
-	def cmdUpgrade(self, test_only = False):
-		append = ""
-		if test_only:
-			append = " -test"
-		self.runCmd("upgrade" + append)
-		self.setCurrentCommand(self.CMD_UPGRADE)
-		
-	def cmdUpdate(self):
-		self.runCmd("update")
-		self.setCurrentCommand(self.CMD_UPDATE)
-		
+	def startCmd(self, cmd, args = None):
+		if cmd == self.CMD_UPDATE:
+			self.runCmd("update")
+		elif cmd == self.CMD_UPGRADE:
+			append = ""
+			if args["test_only"]:
+				append = " -test"
+			self.runCmd("upgrade" + append)
+		elif cmd == self.CMD_LIST:
+			self.fetchedList = []
+			if args['installed_only']:
+				self.runCmd("list_installed")
+			else:
+				self.runCmd("list")
+		elif cmd == self.CMD_INSTALL:
+			self.runCmd("install " + args['package'])
+		self.setCurrentCommand(cmd)
+	
 	def cmdFinished(self, retval):
 		self.callCallbacks(self.EVENT_DONE)
 	
