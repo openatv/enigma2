@@ -1,5 +1,4 @@
-from enigma import *
-
+from enigma import eTimer, loadPic, getExif
 from Screens.Screen import Screen
 from Screens.ServiceInfo import ServiceInfoList, ServiceInfoListEntry
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -14,7 +13,6 @@ from Components.FileList import FileEntryComponent, FileList
 from Components.AVSwitch import AVSwitch
 
 from Plugins.Plugin import PluginDescriptor
-
 
 config.pic = ConfigSubsection()
 config.pic.slidetime = ConfigInteger(default=10, limits=(5, 60))

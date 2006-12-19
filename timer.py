@@ -1,7 +1,7 @@
-import bisect
-import time
-import calendar
-from enigma import *
+from bisect import insort
+from time import strftime, time, localtime, gmtime, mktime
+from calendar import timegm
+from enigma import eTimer
 
 class TimerEntry:
 	StateWaiting  = 0
@@ -33,15 +33,15 @@ class TimerEntry:
 	def processRepeated(self):
 		print "ProcessRepeated"
 		if (self.repeated != 0):
-			now = int(time.time()) + 1
+			now = int(time()) + 1
 
 			#to avoid problems with daylight saving, we need to calculate with localtime, in struct_time representation
-			localbegin = time.localtime(self.begin)
-			localend = time.localtime(self.end)
-			localnow = time.localtime(now)
+			localbegin = localtime(self.begin)
+			localend = localtime(self.end)
+			localnow = localtime(now)
 
-			print time.strftime("%c", localbegin)
-			print time.strftime("%c", localend)
+			print strftime("%c", localbegin)
+			print strftime("%c", localend)
 
 			day = []
 			flags = self.repeated
@@ -53,21 +53,21 @@ class TimerEntry:
 					day.append(1)
 				flags = flags >> 1
 
-			print time.strftime("%c", localnow)
+			print strftime("%c", localnow)
 			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and localend < localnow)):
-				print time.strftime("%c", localbegin)
-				print time.strftime("%c", localend)
+				print strftime("%c", localbegin)
+				print strftime("%c", localend)
 				#add one day to the struct_time, we have to convert using gmt functions, because the daylight saving flag might change after we add our 86400 seconds
-				localbegin = time.gmtime(calendar.timegm(localbegin) + 86400)
-				localend = time.gmtime(calendar.timegm(localend) + 86400)
+				localbegin = gmtime(timegm(localbegin) + 86400)
+				localend = gmtime(timegm(localend) + 86400)
 
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
-			self.begin = int(time.mktime(localbegin))
-			self.end = int(time.mktime(localend)) + 1
+			self.begin = int(mktime(localbegin))
+			self.end = int(mktime(localend)) + 1
 
 			print "ProcessRepeated result"
-			print time.strftime("%c", time.localtime(self.begin))
-			print time.strftime("%c", time.localtime(self.end))
+			print strftime("%c", localtime(self.begin))
+			print strftime("%c", localtime(self.end))
 
 			self.timeChanged()
 
@@ -84,10 +84,10 @@ class TimerEntry:
 
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
-		return self.end <= time.time() and self.state == TimerEntry.StateWaiting
+		return self.end <= time() and self.state == TimerEntry.StateWaiting
 
 	def abort(self):
-		self.end = time.time()
+		self.end = time()
 		
 		# in case timer has not yet started, but gets aborted (so it's preparing),
 		# set begin to now.
@@ -124,7 +124,7 @@ class Timer:
 		
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.calcNextActivation)
-		self.lastActivation = time.time()
+		self.lastActivation = time()
 		
 		self.calcNextActivation()
 		self.on_state_change = [ ]
@@ -152,22 +152,22 @@ class Timer:
 			print "shouldSkip:", entry.shouldSkip()
 			print "state == ended", entry.state == TimerEntry.StateEnded
 			print "waiting && disabled:", (entry.state == TimerEntry.StateWaiting and entry.disabled)
-			bisect.insort(self.processed_timers, entry)
+			insort(self.processed_timers, entry)
 			entry.state = TimerEntry.StateEnded
 		else:
-			bisect.insort(self.timer_list, entry)
+			insort(self.timer_list, entry)
 			if not noRecalc:
 				self.calcNextActivation()
 	
 	def setNextActivation(self, when):
-		delay = int((when - time.time()) * 1000)
+		delay = int((when - time()) * 1000)
 		print "[timer.py] next activation: %d (in %d ms)" % (when, delay)
 		
 		self.timer.start(delay, 1)
 		self.next = when
 
 	def calcNextActivation(self):
-		if self.lastActivation > time.time():
+		if self.lastActivation > time():
 			print "[timer.py] timewarp - re-evaluating all processed timers."
 			tl = self.processed_timers
 			self.processed_timers = [ ]
@@ -177,9 +177,9 @@ class Timer:
 				self.addTimerEntry(x, noRecalc=1)
 		
 		self.processActivation()
-		self.lastActivation = time.time()
+		self.lastActivation = time()
 	
-		min = int(time.time()) + self.MaxWaitTime
+		min = int(time()) + self.MaxWaitTime
 		
 		# calculate next activation point
 		if len(self.timer_list):
@@ -219,7 +219,7 @@ class Timer:
 		# did this timer reached the last state?
 		if w.state < TimerEntry.StateEnded:
 			# no, sort it into active list
-			bisect.insort(self.timer_list, w)
+			insort(self.timer_list, w)
 		else:
 			# yes. Process repeated, and re-add.
 			if w.repeated:
@@ -227,13 +227,13 @@ class Timer:
 				w.state = TimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
-				bisect.insort(self.processed_timers, w)
+				insort(self.processed_timers, w)
 		
 		self.stateChanged(w)
 
 	def processActivation(self):
-		print "It's now ", time.strftime("%c", time.localtime(time.time()))
-		t = int(time.time()) + 1
+		print "It's now ", strftime("%c", localtime(time()))
+		t = int(time()) + 1
 		
 		# we keep on processing the first entry until it goes into the future.
 		while len(self.timer_list) and self.timer_list[0].getNextActivation() < t:

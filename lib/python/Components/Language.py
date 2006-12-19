@@ -1,7 +1,6 @@
 import gettext
-import os
 
-from Tools.Directories import *
+from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
 class Language:
 	def __init__(self):

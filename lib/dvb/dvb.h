@@ -125,9 +125,9 @@ private:
 	eSmartPtrList<eDVBFrontend> m_frontend;
 	eSmartPtrList<eDVBDemux>    m_demux;
 };
-
 #endif // SWIG
 
+SWIG_IGNORE(eDVBResourceManager);
 class eDVBResourceManager: public iObject, public Object
 {
 	DECLARE_REF(eDVBResourceManager);
@@ -197,23 +197,30 @@ public:
 		errNoDemux    = -2,
 		errChidNotFound = -3
 	};
-
+	
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
 	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
+	static SWIG_VOID(RESULT) getInstance(ePtr<eDVBResourceManager> &SWIG_OUTPUT);
 #ifdef SWIG
 public:
 #endif
 	PSignal1<void,int> frontendUseMaskChanged;
-	RESULT allocateRawChannel(eUsePtr<iDVBChannel> &, int frontend_index);
-	static RESULT getInstance(ePtr<eDVBResourceManager> &);
+	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int frontend_index);
 };
-TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManagerPtr);
-#ifndef SWIG
+SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eDVBResourceManager>, eDVBResourceManager);
+SWIG_EXTEND(ePtr<eDVBResourceManager>,
+	static ePtr<eDVBResourceManager> getInstance()
+	{
+		extern ePtr<eDVBResourceManager> NewResourceManagerPtr(void);
+		return NewResourceManagerPtr();
+	}
+);
 
+#ifndef SWIG
 	/* iDVBPVRChannel includes iDVBChannel. don't panic. */
 class eDVBChannel: public iDVBPVRChannel, public iFilePushScatterGather, public Object
 {
@@ -289,6 +296,6 @@ private:
 	void AddUse();
 	void ReleaseUse();
 };
-
 #endif // SWIG
+
 #endif

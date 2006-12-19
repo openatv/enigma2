@@ -36,14 +36,14 @@ from Screens.SleepTimerEdit import SleepTimerEdit
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import *
+from Tools.Directories import SCOPE_HDD, resolveFilename
 
-#from enigma import eTimer, eDVBVolumecontrol, quitMainloop
-from enigma import *
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
+	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation
 
-import time
-import os
-import bisect
+from time import time
+from os import stat as os_stat
+from bisect import insort
 
 # hack alert!
 from Menu import MainMenu, mdom
@@ -953,7 +953,6 @@ class InfoBarTimeshift:
 			print "hu, timeshift already enabled?"
 		else:
 			if not ts.startTimeshift():
-				import time
 				self.timeshift_enabled = 1
 
 				# we remove the "relative time" for now.
@@ -1240,8 +1239,8 @@ class InfoBarInstantRecord:
 		except:
 			pass
 
-		begin = time.time()
-		end = time.time() + 3600 * 10
+		begin = time()
+		end = time() + 3600 * 10
 		name = "instant record"
 		description = ""
 		eventid = None
@@ -1320,7 +1319,7 @@ class InfoBarInstantRecord:
 
 	def instantRecord(self):
 		try:
-			stat = os.stat(resolveFilename(SCOPE_HDD))
+			stat = os_stat(resolveFilename(SCOPE_HDD))
 		except:
 			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
@@ -1536,8 +1535,8 @@ class InfoBarAdditionalInfo:
 		self["ExtensionsAvailable"] = Boolean(fixed=1)
 
 		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
-		res_mgr = eDVBResourceManagerPtr()
-		if eDVBResourceManager.getInstance(res_mgr) == 0:
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr:
 			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 
 	def tunerUseMaskChanged(self, mask):
@@ -1729,7 +1728,7 @@ class InfoBarCueSheetSupport:
 			return None
 
 	def addMark(self, point):
-		bisect.insort(self.cut_list, point)
+		insort(self.cut_list, point)
 		self.uploadCuesheet()
 
 	def removeMark(self, point):

@@ -1,4 +1,4 @@
-from Tools.Directories import *
+from Tools.Directories import resolveFilename, SCOPE_SYSETC
 
 class About:
 	def __init__(self):

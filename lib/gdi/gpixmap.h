@@ -107,17 +107,18 @@ struct gSurface
 
 class gRegion;
 
+SWIG_IGNORE(gPixmap);
 class gPixmap: public iObject
 {
 	DECLARE_REF(gPixmap);
 public:
+#ifndef SWIG
 	enum
 	{
 		blitAlphaTest=1,
 		blitAlphaBlend=2
 	};
 
-#ifndef SWIG
 	gPixmap(gSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
 
@@ -128,14 +129,12 @@ public:
 	
 	gPixmap *lock();
 	void unlock();
+	inline bool needClut() const { return surface && surface->bpp <= 8; }
 #endif
 	virtual ~gPixmap();
-	
 	eSize size() const { return eSize(surface->x, surface->y); }
-	inline bool needClut() const { return surface && surface->bpp <= 8; }
 private:
 	bool must_delete_surface;
-#ifndef SWIG
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
@@ -144,12 +143,10 @@ private:
 	
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
-#else
+#ifdef SWIG
 	gPixmap();
 #endif
-
 };
-
-TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<gPixmap>, gPixmapPtr);
 
 #endif

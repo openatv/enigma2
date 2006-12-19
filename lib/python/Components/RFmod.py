@@ -1,5 +1,5 @@
-from config import *
-from enigma import *
+from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider
+from enigma import eRFmod
 
 # CHECK ME.
 RFMOD_CHANNEL_MIN = 21
@@ -24,7 +24,7 @@ class RFmod:
 
 def InitRFmod():
 
-	config.rfmod = ConfigSubsection();
+	config.rfmod = ConfigSubsection()
 	config.rfmod.enable = ConfigOnOff(default=False)
 	config.rfmod.test = ConfigOnOff(default=False)
 	config.rfmod.sound = ConfigOnOff(default=True)

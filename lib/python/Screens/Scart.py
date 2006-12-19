@@ -1,9 +1,6 @@
 from Screen import Screen
 from MessageBox import MessageBox
-
 from Components.AVSwitch import AVSwitch
-
-from enigma import *
 
 class Scart(Screen):
 	def __init__(self, session, start_visible=True):

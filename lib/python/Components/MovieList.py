@@ -1,13 +1,10 @@
 from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
-from Components.MultiContent import MultiContentEntryText, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
+from Components.MultiContent import MultiContentEntryText
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation
-
-from enigma import eServiceReference, eServiceCenter, \
-	eServiceCenterPtr, iListableServicePtr, \
-	iStaticServiceInformationPtr
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
 
 class MovieList(GUIComponent):
 	def __init__(self, root):

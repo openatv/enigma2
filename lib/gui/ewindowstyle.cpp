@@ -9,6 +9,13 @@ eWindowStyle::~eWindowStyle() {}
 
 DEFINE_REF(eWindowStyleManager);
 
+ePtr<eWindowStyleManager> NewWindowStylePtr(void)
+{
+	ePtr<eWindowStyleManager> ptr;
+	eWindowStyleManager::getInstance(ptr);
+	return ptr;
+}
+
 eWindowStyleManager::eWindowStyleManager()
 {
 	m_instance = this;

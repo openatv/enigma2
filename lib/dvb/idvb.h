@@ -391,32 +391,31 @@ public:
 class iDVBSatelliteEquipmentControl;
 class eSecCommandList;
 
-class iDVBFrontend: public iObject
+class iDVBFrontend_ENUMS
+{
+#ifdef SWIG
+	iDVBFrontend_ENUMS();
+	~iDVBFrontend_ENUMS();
+#endif
+public:
+	enum { feSatellite, feCable, feTerrestrial };
+	enum { stateIdle, stateTuning, stateFailed, stateLock, stateLostLock };
+	enum { toneOff, toneOn };
+	enum { voltageOff, voltage13, voltage18, voltage13_5, voltage18_5 };
+	enum { bitErrorRate, signalPower, signalQuality, locked, synced, frontendNumber };
+};
+
+SWIG_IGNORE(iDVBFrontend);
+class iDVBFrontend: public iDVBFrontend_ENUMS, public iObject
 {
 public:
-	enum {
-		feSatellite, feCable, feTerrestrial
-	};
 	virtual RESULT getFrontendType(int &SWIG_OUTPUT)=0;
 	virtual RESULT tune(const iDVBFrontendParameters &where)=0;
 #ifndef SWIG
 	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
 #endif
-	enum {
-		stateIdle = 0,
-		stateTuning = 1,
-		stateFailed = 2,
-		stateLock = 3,
-		stateLostLock = 4,
-	};
 	virtual RESULT getState(int &SWIG_OUTPUT)=0;
-	enum {
-		toneOff, toneOn
-	};
 	virtual RESULT setTone(int tone)=0;
-	enum {
-		voltageOff, voltage13, voltage18, voltage13_5, voltage18_5
-	};
 	virtual RESULT setVoltage(int voltage)=0;
 	virtual RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc)=0;
 	virtual RESULT sendToneburst(int burst)=0;
@@ -424,12 +423,8 @@ public:
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 #endif
-	enum {
-		bitErrorRate, signalPower, signalQuality, locked, synced, frontendNumber
-	};
 	virtual int readFrontendData(int type)=0;
 	virtual PyObject *readTransponderData(bool original)=0;
-
 #ifndef SWIG
 	virtual RESULT getData(int num, int &data)=0;
 	virtual RESULT setData(int num, int val)=0;
@@ -437,7 +432,7 @@ public:
 	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
 #endif
 };
-TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 
 #ifndef SWIG
 class iDVBSatelliteEquipmentControl: public iObject
@@ -454,9 +449,13 @@ struct eDVBCIRouting
 };
 #endif // SWIG
 
+SWIG_IGNORE(iDVBChannel);
 class iDVBChannel: public iObject
 {
 public:
+		/* direct frontend access for raw channels and/or status inquiries. */
+	virtual SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
+#ifndef SWIG
 	enum
 	{
 		state_idle,        /* not yet tuned */
@@ -467,12 +466,8 @@ public:
 		state_last_instance, /* just one reference to this channel is left */
 		state_release      /* channel is being shut down. */
 	};
-	virtual RESULT getState(int &SWIG_OUTPUT)=0;	
+	virtual RESULT getState(int &SWIG_OUTPUT)=0;
 
-		/* direct frontend access for raw channels and/or status inquiries. */
-	virtual RESULT getFrontend(ePtr<iDVBFrontend> &)=0;
-
-#ifndef SWIG
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum 
 	{
@@ -495,10 +490,9 @@ public:
 	virtual void ReleaseUse() = 0;
 #endif
 };
-TEMPLATE_TYPEDEF(eUsePtr<iDVBChannel>, iDVBChannelPtr);
+SWIG_TEMPLATE_TYPEDEF(eUsePtr<iDVBChannel>, iDVBChannelPtr);
 
 #ifndef SWIG
-
 	/* signed, so we can express deltas. */
 	
 typedef long long pts_t;

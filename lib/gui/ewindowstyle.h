@@ -7,13 +7,22 @@ class gFont;
 
 #include <lib/base/object.h>
 
+SWIG_IGNORE(eWindowStyle);
 class eWindowStyle: public iObject
 {
+#ifdef SWIG
+	eWindowStyle();
+#endif
 public:
+#ifndef SWIG
 	virtual void handleNewSize(eWindow *wnd, eSize &size, eSize &offset) = 0;
 	virtual void paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title) = 0;
 	virtual void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size) = 0;
 	virtual void setStyle(gPainter &painter, int what) = 0;
+	virtual void drawFrame(gPainter &painter, const eRect &frame, int type) = 0;
+	virtual RESULT getFont(int what, ePtr<gFont> &font) = 0;
+#endif
+	virtual ~eWindowStyle() = 0;
 	enum {
 		styleLabel,
 		styleListboxSelected,
@@ -21,8 +30,6 @@ public:
 		styleListboxMarked,
 		styleListboxMarkedAndSelected
 	};
-	
-	virtual void drawFrame(gPainter &painter, const eRect &frame, int type) = 0;
 	
 	enum {
 		frameButton,
@@ -34,11 +41,10 @@ public:
 		fontButton,
 		fontTitlebar
 	};
-	
-	virtual RESULT getFont(int what, ePtr<gFont> &font) = 0;
-	virtual ~eWindowStyle() = 0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<eWindowStyle>, eWindowStylePtr);
 
+SWIG_IGNORE(eWindowStyleManager);
 class eWindowStyleManager: public iObject
 {
 	DECLARE_REF(eWindowStyleManager);
@@ -51,16 +57,23 @@ public:
 	eWindowStyleManager();
 	~eWindowStyleManager();
 #endif
-	void getStyle(int style_id, ePtr<eWindowStyle> &style);
+	void getStyle(int style_id, ePtr<eWindowStyle> &SWIG_OUTPUT);
 	void setStyle(int style_id, eWindowStyle *style);
-	static int getInstance(ePtr<eWindowStyleManager> &mgr) { mgr = m_instance; if (!mgr) return -1; return 0; }
+	static SWIG_VOID(int) getInstance(ePtr<eWindowStyleManager> &SWIG_NAMED_OUTPUT(mgr)) { mgr = m_instance; if (!mgr) return -1; return 0; }
 private:
 	static eWindowStyleManager *m_instance;
 	std::map<int, ePtr<eWindowStyle> > m_current_style;
 };
+SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eWindowStyleManager>, eWindowStyleManager);
+SWIG_EXTEND(ePtr<eWindowStyleManager>,
+	static ePtr<eWindowStyleManager> getInstance()
+	{
+		extern ePtr<eWindowStyleManager> NewWindowStylePtr(void);
+		return NewWindowStylePtr();
+	}
+);
 
-TEMPLATE_TYPEDEF(ePtr<eWindowStyleManager>, eWindowStyleManagerPtr);
-
+#ifndef SWIG
 class eWindowStyleSimple: public eWindowStyle
 {
 	DECLARE_REF(eWindowStyleSimple);
@@ -78,5 +91,6 @@ public:
 	void drawFrame(gPainter &painter, const eRect &frame, int what);
 	RESULT getFont(int what, ePtr<gFont> &font);
 };
+#endif
 
 #endif

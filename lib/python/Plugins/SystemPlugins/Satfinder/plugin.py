@@ -1,4 +1,4 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBResourceManagerPtr, iDVBChannelPtr, iDVBFrontendPtr, iDVBFrontend, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
 from Screens.MessageBox import MessageBox
@@ -56,12 +56,12 @@ class Satfinder(ScanSetup):
 		</screen>"""
 
 	def openFrontend(self):
-		res_mgr = eDVBResourceManagerPtr()
-		if eDVBResourceManager.getInstance(res_mgr) == 0:
-			self.raw_channel = iDVBChannelPtr()
-			if res_mgr.allocateRawChannel(self.raw_channel, self.feid) == 0:
-				self.frontend = iDVBFrontendPtr()
-				if self.raw_channel.getFrontend(self.frontend) == 0:
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr:
+			self.raw_channel = res_mgr.allocateRawChannel(self.feid)
+			if self.raw_channel:
+				self.frontend = self.raw_channel.getFrontend()
+				if self.frontend:
 					return True
 				else:
 					print "getFrontend failed"

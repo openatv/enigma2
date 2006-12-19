@@ -6,9 +6,9 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
-from Components.MultiContent import MultiContentEntryText, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_WRAP
+from Components.MultiContent import MultiContentEntryText
 from Plugins.Plugin import PluginDescriptor
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_WRAP
 
 from twisted.web import server
 from twisted.web.resource import Resource

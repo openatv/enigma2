@@ -1,20 +1,8 @@
 from HTMLComponent import *
 from GUIComponent import *
-
 from MenuList import MenuList
-
-from Tools.Directories import *
-
-from enigma import *
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eListbox, gFont, loadPNG
 
 def ChoiceEntryComponent(key, text):
 	res = [ text ]

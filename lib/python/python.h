@@ -157,7 +157,7 @@ public:
 	TestObj();
 	~TestObj();
 };
-TEMPLATE_TYPEDEF(ePtr<TestObj>, TestObjPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<TestObj>, TestObjPtr);
 
 #ifndef SWIG
 extern PyObject *New_TestObj();

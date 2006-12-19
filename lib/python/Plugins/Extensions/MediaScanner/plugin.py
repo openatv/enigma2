@@ -1,6 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
-import os
-import string
+from os import path as os_path, walk as os_walk
+from string import lower
 
 def getExtension(file):
 	p = file.rfind('.')
@@ -9,7 +9,7 @@ def getExtension(file):
 	else:
 		ext = file[p+1:]
 
-	return string.lower(ext)
+	return lower(ext)
 
 class Scanner:
 	def __init__(self, name, extensions = [], paths_to_scan = [], description = "", openfnc = None):
@@ -128,12 +128,12 @@ def ScanDevice(mountpoint):
 
 	# now scan the paths	
 	for p in paths_to_scan:
-		path = os.path.join(mountpoint, p.path)
+		path = os_path.join(mountpoint, p.path)
 
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in os_walk(path):
 			for f in files:
 				ext = getExtension(f)
-				pathname = os.path.join(root, f)
+				pathname = os_path.join(root, f)
 				for s in scanner:
 					s.handleFile(res, pathname, ext)
 

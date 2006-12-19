@@ -1,6 +1,6 @@
-import os
+from os import system
 
-from Tools.Directories import *
+from Tools.Directories import SCOPE_HDD, resolveFilename
 
 def tryOpen(filename):
 	try:
@@ -105,7 +105,7 @@ class Harddisk:
 
 	def unmount(self):
 		cmd = "/bin/umount " + self.devidex + "part*"
-		res = os.system(cmd)
+		res = system(cmd)
 		return (res >> 8)
 
 	def createPartition(self):
@@ -117,16 +117,16 @@ class Harddisk:
 
 	def mkfs(self):
 		cmd = "/sbin/mkfs.ext3 -T largefile -m0 " + self.devidex + "part1"
-		res = os.system(cmd)
+		res = system(cmd)
 		return (res >> 8)
 
 	def mount(self):
 		cmd = "/bin/mount -t ext3 " + self.devidex + "part1 /hdd"
-		res = os.system(cmd)
+		res = system(cmd)
 		return (res >> 8)
 
 	def createMovieFolder(self):
-		res = os.system("mkdir " + resolveFilename(SCOPE_HDD))
+		res = system("mkdir " + resolveFilename(SCOPE_HDD))
 		return (res >> 8)
 		
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]

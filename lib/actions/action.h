@@ -13,6 +13,7 @@
 
 class eWidget;
 
+SWIG_IGNORE(eActionMap);
 class eActionMap: public iObject
 {
 DECLARE_REF(eActionMap);
@@ -35,8 +36,8 @@ public:
 	
 	void keyPressed(const std::string &device, int key, int flags);
 	
-	static RESULT getInstance(ePtr<eActionMap> &ptr);
 #ifndef SWIG
+	static RESULT getInstance(ePtr<eActionMap> &);
 private:
 	static eActionMap *instance;
 	struct eActionBinding
@@ -78,5 +79,13 @@ private:
 	std::multimap<std::string, ePythonKeyBinding> m_python_keys;
 #endif
 };
+SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eActionMap>, eActionMap);
+SWIG_EXTEND(ePtr<eActionMap>,
+	static ePtr<eActionMap> getInstance()
+	{
+		extern ePtr<eActionMap> NewActionMapPtr(void);
+		return NewActionMapPtr();
+	}
+);
 
 #endif

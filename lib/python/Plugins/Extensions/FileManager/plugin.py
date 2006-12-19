@@ -1,15 +1,8 @@
-from enigma import *
 from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
-from Components.Input import Input
-from Components.GUIComponent import *
 from Components.Pixmap import Pixmap
 from Components.FileList import FileEntryComponent, FileList
 from Plugins.Plugin import PluginDescriptor
-
-import os
 
 class FileManager(Screen):
 	skin = """
@@ -52,7 +45,7 @@ class FileManager(Screen):
 		self["text"].right()
 	
 	def ok(self):
-		
+	
 		if self["list"].canDescent(): # isDir
 			self["list"].descent()
 		else:

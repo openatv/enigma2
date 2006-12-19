@@ -10,7 +10,8 @@ libenigma_python_a_SOURCES = \
 	python.cpp enigma_python_wrap.cxx connections.cpp
 
 enigma_python_wrap.cxx: enigma_python.i
-	swig -I$(top_srcdir)/ -c++ -python enigma_python.i
+	swig -I$(top_srcdir)/ -c++ -python -O -nortti -nothreads enigma_python.i
+	python enigma_py_patcher.py
 
 installdir = $(LIBDIR)/enigma2/python
 

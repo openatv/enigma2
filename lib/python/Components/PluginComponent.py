@@ -1,8 +1,8 @@
-import os
-import traceback
-import sys
+from os import path as os_path, listdir as os_listdir
+from traceback import print_exc
+from sys import stdout
 
-from Tools.Directories import *
+from Tools.Directories import fileExists
 from Tools.Import import my_import
 from Plugins.Plugin import PluginDescriptor
 
@@ -33,18 +33,18 @@ class PluginComponent:
 	def readPluginList(self, directory):
 		"""enumerates plugins"""
 		
-		categories = os.listdir(directory)
+		categories = os_listdir(directory)
 		
 		new_plugins = [ ]
 		
 		for c in categories:
 			directory_category = directory + c
-			if not os.path.isdir(directory_category):
+			if not os_path.isdir(directory_category):
 				continue
 			open(directory_category + "/__init__.py", "a").close()
-			for pluginname in os.listdir(directory_category):
+			for pluginname in os_listdir(directory_category):
 				path = directory_category + "/" + pluginname
-				if os.path.isdir(path):
+				if os_path.isdir(path):
 					if fileExists(path + "/plugin.pyc") or fileExists(path + "/plugin.py"):
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
@@ -56,7 +56,7 @@ class PluginComponent:
 							plugins = plugin.Plugins(path=path)
 						except Exception, exc:
 							print "Plugin ", c + "/" + pluginname, "failed to load:", exc
-							traceback.print_exc(file=sys.stdout)
+							print_exc(file=stdout)
 							print "skipping plugin."
 							self.warnings.append( (c + "/" + pluginname, str(exc)) )
 							continue

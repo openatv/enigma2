@@ -72,4 +72,15 @@ private:
 	std::map<int, ePtr<gFont> > m_font;
 };
 
+#ifdef SWIG
+#define RT_HALIGN_LEFT 0
+#define RT_HALIGN_RIGHT 1
+#define RT_HALIGN_CENTER 2
+#define RT_HALIGN_BLOCK 4
+#define RT_VALIGN_TOP 0
+#define RT_VALIGN_CENTER 8
+#define RT_VALIGN_BOTTOM 16
+#define RT_WRAP 32
+#endif // SWIG
+
 #endif

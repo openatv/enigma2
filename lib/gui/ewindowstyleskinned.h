@@ -8,12 +8,14 @@ class eWindowStyleSkinned: public eWindowStyle
 	DECLARE_REF(eWindowStyleSkinned);
 public:
 	eWindowStyleSkinned();
+#ifndef SWIG
 	void handleNewSize(eWindow *wnd, eSize &size, eSize &offset);
 	void paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title);
 	void paintBackground(gPainter &painter, const ePoint &offset, const eSize &size);
-	void setStyle(gPainter &painter, int what);
 	void drawFrame(gPainter &painter, const eRect &frame, int what);
 	RESULT getFont(int what, ePtr<gFont> &font);
+#endif
+	void setStyle(gPainter &painter, int what);
 	
 	enum {
 		bsWindow,

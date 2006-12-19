@@ -1,6 +1,7 @@
 #ifndef __ebase_h
 #define __ebase_h
 
+#ifndef SWIG
 #include <vector>
 #include <map>
 #include <sys/poll.h>
@@ -9,8 +10,10 @@
 #include <time.h>
 
 #include <lib/base/eptrlist.h>
-#include <lib/python/connections.h>
 #include <libsig_comp.h>
+#endif
+
+#include <lib/python/connections.h>
 
 class eApplication;
 

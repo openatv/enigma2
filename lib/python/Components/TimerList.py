@@ -4,21 +4,10 @@ from GUIComponent import *
 from Tools.FuzzyDate import FuzzyTime
 import time
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG
+from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG, \
+	RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
-
-RT_WRAP = 32
-
 
 #
 #  | <Service>     <Name of the Timer>  |

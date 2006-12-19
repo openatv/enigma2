@@ -1,4 +1,4 @@
-from enigma import eTimer, quitMainloop
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -14,7 +14,7 @@ from Components.Ipkg import Ipkg
 from Components.Slider import Slider
 from Components.Label import Label
 
-import os
+from os import popen
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -125,15 +125,6 @@ class IPKGSource(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
-
 def PacketEntryComponent(packet):
 	res = [ packet ]
 	
@@ -189,13 +180,13 @@ class Ipkg2(Screen):
 		
 
 	def fillPacketList(self):
-		lines = os.popen("ipkg list", "r").readlines()
+		lines = popen("ipkg list", "r").readlines()
 		packetlist = []
 		for x in lines:
 			split = x.split(' - ')
 			packetlist.append([split[0].strip(), split[1].strip()])
 		
-		lines = os.popen("ipkg list_installed", "r").readlines()
+		lines = popen("ipkg list_installed", "r").readlines()
 		
 		installedlist = {}
 		for x in lines:
@@ -218,7 +209,7 @@ class Ipkg2(Screen):
 			self.close()
 	
 	def doUpdateDelay(self):
-		lines = os.popen("ipkg update && ipkg upgrade", "r").readlines()
+		lines = popen("ipkg update && ipkg upgrade", "r").readlines()
 		string = ""
 		for x in lines:
 			string += x

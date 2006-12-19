@@ -1,6 +1,6 @@
 from PerServiceDisplay import PerServiceDisplay, PerServiceBase
 from Components.GUIComponent import GUIComponent
-from enigma import eTimer, iPlayableService, iSeekableServicePtr, ePositionGauge
+from enigma import eTimer, iPlayableService, ePositionGauge
 import time
 
 class ServicePosition(PerServiceDisplay, object):

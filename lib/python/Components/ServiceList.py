@@ -1,7 +1,7 @@
 from HTMLComponent import *
 from GUIComponent import *
 
-from enigma import *
+from enigma import loadPNG, eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 
 from string import upper
 

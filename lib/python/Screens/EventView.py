@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
-from enigma import eServiceEventPtr, eEPGCache, eTimer, eServiceReference
+from enigma import eEPGCache, eTimer, eServiceReference
 from ServiceReference import ServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry

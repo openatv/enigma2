@@ -4,7 +4,6 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
-from Components.GUIComponent import *
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.FileList import FileEntryComponent, FileList

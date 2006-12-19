@@ -2,7 +2,9 @@
 from HTMLComponent import *
 from GUIComponent import *
 
-from enigma import *
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, loadPNG, \
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+
 from re import *
 from time import localtime, time
 from ServiceReference import ServiceReference
@@ -11,17 +13,6 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
 EPG_TYPE_SIMILAR = 2
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
-
-RT_WRAP = 32
 
 class Rect:
 	def __init__(self, x, y, width, height):

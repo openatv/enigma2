@@ -7,7 +7,7 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Screens.EventView import EventViewSimple
 from TimeDateInput import TimeDateInput
-from enigma import eServiceReference, eServiceEventPtr
+from enigma import eServiceReference
 from Screens.FixedMenu import FixedMenu
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEdit import TimerEditList

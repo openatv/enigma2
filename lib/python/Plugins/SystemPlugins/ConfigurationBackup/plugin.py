@@ -1,9 +1,7 @@
-from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import *
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -13,10 +11,9 @@ from Plugins.Plugin import PluginDescriptor
 
 from Tools.NumericalTextInput import *
 from Tools.Directories import *
-import os
-import string
-import time
-import datetime
+from os import path, makedirs, listdir
+from time import localtime
+from datetime import date
 
 plugin_path = ""
 
@@ -116,8 +113,8 @@ class BackupSetup(Screen):
 	def createBackupfolders(self):
 		self.path = BackupPath[self.backup.location.value]
 		print "Creating Backup Folder if not already there..."
-		if (os.path.exists(self.path) == False):
-			os.makedirs(self.path)
+		if (path.exists(self.path) == False):
+			makedirs(self.path)
 
 	def Backup(self):
 		print "this will start the backup now!"
@@ -129,10 +126,10 @@ class BackupSetup(Screen):
 
 	def runBackup(self, result):
 		if result:
-			if os.path.ismount(MountPoints[self.backup.location.value]):
+			if path.ismount(MountPoints[self.backup.location.value]):
 				self.createBackupfolders()
-				d = time.localtime()
-				dt = datetime.date(d.tm_year, d.tm_mon, d.tm_mday)
+				d = localtime()
+				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
 				self.path = BackupPath[self.backup.location.value]
 				if self.backup.type.value == "full":
 					print "Backup Mode: Full"
@@ -194,9 +191,9 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = BackupPath[self.backup.location.value]
-		if (os.path.exists(self.path) == False):
-			os.makedirs(self.path)
-		for file in os.listdir(self.path):
+		if (path.exists(self.path) == False):
+			makedirs(self.path)
+		for file in listdir(self.path):
 			if (file.endswith(".tar.gz")):
 				self.flist.append((file))
 				self.entry = True

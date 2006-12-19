@@ -1,4 +1,3 @@
-from enigma import *
 import time
 import sys
 

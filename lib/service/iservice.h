@@ -224,8 +224,9 @@ typedef long long pts_t;
 	   
 	   Hide the result only if there is another way to check for failure! */
 	   
-TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
-	
+SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
+
+SWIG_IGNORE(iStaticServiceInformation);
 class iStaticServiceInformation: public iObject
 {
 #ifdef SWIG
@@ -234,7 +235,7 @@ class iStaticServiceInformation: public iObject
 #endif
 public:
 	virtual SWIG_VOID(RESULT) getName(const eServiceReference &ref, std::string &SWIG_OUTPUT)=0;
-	
+
 		// doesn't need to be implemented, should return -1 then.
 	virtual int getLength(const eServiceReference &ref);
 	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=-1);
@@ -244,14 +245,84 @@ public:
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);
 	virtual PyObject *getInfoObject(const eServiceReference &ref, int w);
-	
+
 	virtual int setInfo(const eServiceReference &ref, int w, int v);
 	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iStaticServiceInformation>, iStaticServiceInformationPtr);
+class iServiceInformation_ENUMS
+{
+#ifdef SWIG
+	iServiceInformation_ENUMS();
+	~iServiceInformation_ENUMS();
+#endif
+public:
+	enum {
+		sIsCrypted, 		/* is encrypted (no indication if decrypt was possible) */
+		sAspect,    		/* aspect ratio: 0=4:3, 1=16:9, 2=whatever we need */
+		sIsMultichannel, 	/* multichannel *available* (probably not selected) */
 
-class iServiceInformation: public iObject
+			/* "user serviceable info" - they are not reliable. Don't use them for anything except the service menu!
+			   that's also the reason why they are so globally defined.
+			   again - if somebody EVER tries to use this information for anything else than simply displaying it,
+			   i will change this to return a user-readable text like "zero x zero three three" (and change the
+			   exact spelling in every version) to stop that! */
+
+		sVideoPID,
+		sAudioPID,
+		sPCRPID,
+		sPMTPID,
+		sTXTPID,
+
+		sSID,
+		sONID,
+		sTSID,
+		sNamespace,
+		sProvider,
+
+		sDescription,
+		sServiceref,
+		sTimeCreate, 		/* unix time or string */
+
+		sTitle,
+		sArtist,
+		sAlbum,
+		sComment,
+		sTracknumber,
+		sGenre,
+		sCAIDs,
+		sVideoType, 		/* MPEG2 MPEG4 */
+
+		sTags,  			/* space seperated list of tags */
+
+		sDVBState, 			/* states as defined in pmt handler (as events there) */
+
+		sVideoHeight,
+		sVideoWidth,
+
+		sTransponderData 	/* transponderdata as python dict */
+	};
+	enum {
+		resNA = -1,
+		resIsString = -2,
+		resIsPyObject = -3
+	};
+};
+
+/* some words to structs like struct iServiceInformation_ENUMS
+For some classes we need in python just the SmartPointer Variants.
+So we prevent building wrapper classes for the non smart pointer classes with the SWIG_IGNORE makro.
+But now we have the problem that swig do not export enums for smart pointer classes (i dont know why).
+So we move all enum's to own classes (with _ENUMS as name ending) and let our real
+class inherit from the *_ENUMS class. This *_ENUMS classes are normally exportet via swig to python.
+But in the python code we doesn't like to write iServiceInformation_ENUMS.sVideoType....
+we like to write iServiceInformation.sVideoType.
+So until swig have no Solution for this Problem we call in lib/python/Makefile.am a python script named
+enigma_py_patcher.py to remove the "_ENUMS" strings in enigma.py at all needed locations. */
+
+SWIG_IGNORE(iServiceInformation);
+class iServiceInformation: public iServiceInformation_ENUMS, public iObject
 {
 #ifdef SWIG
 	iServiceInformation();
@@ -261,70 +332,20 @@ public:
 	virtual SWIG_VOID(RESULT) getName(std::string &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) getEvent(ePtr<eServiceEvent> &SWIG_OUTPUT, int nownext);
 
-	enum {
-		sIsCrypted,  /* is encrypted (no indication if decrypt was possible) */
-		sAspect,     /* aspect ratio: 0=4:3, 1=16:9, 2=whatever we need */
-		sIsMultichannel, /* multichannel *available* (probably not selected) */
-		
-			/* "user serviceable info" - they are not reliable. Don't use them for anything except the service menu!
-			   that's also the reason why they are so globally defined. 
-			   
-			   
-			   again - if somebody EVER tries to use this information for anything else than simply displaying it,
-			   i will change this to return a user-readable text like "zero x zero three three" (and change the
-			   exact spelling in every version) to stop that!
-			*/
-		sVideoPID,
-		sAudioPID,
-		sPCRPID,
-		sPMTPID,
-		sTXTPID,
-		
-		sSID,
-		sONID,
-		sTSID,
-		sNamespace,
-		sProvider,
-		
-		sDescription,
-		sServiceref,
-		sTimeCreate,	// unix time or string
-		
-		sTitle,
-		sArtist,
-		sAlbum,
-		sComment,
-		sTracknumber,
-		sGenre,
-		sCAIDs,
-		sVideoType,  // MPEG2 MPEG4
-		
-		sTags,  /* space seperated list of tags */
-		
-		sDVBState, /* states as defined in pmt handler (as events there) */
-
-		sVideoHeight,
-		sVideoWidth,
-		
-		sTransponderData /* transponderdata as python dict */
-	};
-	enum { resNA = -1, resIsString = -2, resIsPyObject = -3 };
-
 	virtual int getInfo(int w);
 	virtual std::string getInfoString(int w);
 	virtual PyObject *getInfoObject(int w);
-	
+
 	virtual int setInfo(int w, int v);
 	virtual int setInfoString(int w, const char *v);
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iServiceInformation>, iServiceInformationPtr);
-
-class iFrontendInformation: public iObject
+class iFrontendInformation_ENUMS
 {
 #ifdef SWIG
-	iFrontendInformation();
-	~iFrontendInformation();
+	iFrontendInformation_ENUMS();
+	~iFrontendInformation_ENUMS();
 #endif
 public:
 	enum {
@@ -335,12 +356,22 @@ public:
 		syncState,
 		frontendNumber
 	};
+};
+
+SWIG_IGNORE(iFrontendInformation);
+class iFrontendInformation: public iFrontendInformation_ENUMS, public iObject
+{
+#ifdef SWIG
+	iFrontendInformation();
+	~iFrontendInformation();
+#endif
+public:
 	virtual int getFrontendInfo(int w)=0;
 	virtual PyObject *getFrontendData(bool original=false)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iFrontendInformation>, iFrontendInformationPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iFrontendInformation>, iFrontendInformationPtr);
-
+SWIG_IGNORE(iPauseableService);
 class iPauseableService: public iObject
 {
 #ifdef SWIG
@@ -350,15 +381,25 @@ class iPauseableService: public iObject
 public:
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
-	
+
 		/* hm. */
 	virtual RESULT setSlowMotion(int ratio=0)=0;
 	virtual RESULT setFastForward(int ratio=0)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);
 
-TEMPLATE_TYPEDEF(ePtr<iPauseableService>, iPauseableServicePtr);
+class iSeekableService_ENUMS
+{
+#ifdef SWIG
+	iSeekableService_ENUMS();
+	~iSeekableService_ENUMS();
+#endif
+public:
+	enum { dirForward = +1, dirBackward = -1 };
+};
 
-class iSeekableService: public iObject
+SWIG_IGNORE(iSeekableService);
+class iSeekableService: public iSeekableService_ENUMS, public iObject
 {
 #ifdef SWIG
 	iSeekableService();
@@ -367,16 +408,14 @@ class iSeekableService: public iObject
 public:
 	virtual RESULT getLength(pts_t &SWIG_OUTPUT)=0;
 	virtual RESULT seekTo(pts_t to)=0;
-	enum { dirForward = +1, dirBackward = -1 };
 	virtual RESULT seekRelative(int direction, pts_t to)=0;
 	virtual RESULT getPlayPosition(pts_t &SWIG_OUTPUT)=0;
-		/* if you want to do several seeks in a row, you can enable the trickmode. 
+		/* if you want to do several seeks in a row, you can enable the trickmode.
 		   audio will be switched off, sync will be disabled etc. */
 	virtual RESULT setTrickmode(int trick=0)=0;
 	virtual RESULT isCurrentlySeekable()=0;
 };
-
-TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
 struct iAudioTrackInfo
 {
@@ -387,9 +426,9 @@ struct iAudioTrackInfo
 	std::string getDescription() { return m_description; }
 	std::string getLanguage() { return m_language; }
 };
-
 SWIG_ALLOW_OUTPUT_SIMPLE(iAudioTrackInfo);
 
+SWIG_IGNORE(iAudioTrackSelection);
 class iAudioTrackSelection: public iObject
 {
 #ifdef SWIG
@@ -401,23 +440,32 @@ public:
 	virtual RESULT selectTrack(unsigned int i)=0;
 	virtual SWIG_VOID(RESULT) getTrackInfo(struct iAudioTrackInfo &SWIG_OUTPUT, unsigned int n)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
+class iAudioChannelSelection_ENUMS
+{
+#ifdef SWIG
+	iAudioChannelSelection_ENUMS();
+	~iAudioChannelSelection_ENUMS();
+#endif
+public:
+	enum { LEFT, STEREO, RIGHT };
+};
 
-class iAudioChannelSelection: public iObject
+SWIG_IGNORE(iAudioChannelSelection);
+class iAudioChannelSelection: public iAudioChannelSelection_ENUMS, public iObject
 {
 #ifdef SWIG
 	iAudioChannelSelection();
 	~iAudioChannelSelection();
 #endif
 public:
-	enum { LEFT, STEREO, RIGHT };
 	virtual int getCurrentChannel()=0;
 	virtual RESULT selectChannel(int i)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iAudioChannelSelection>, iAudioChannelSelectionPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iAudioChannelSelection>, iAudioChannelSelectionPtr);
-
+SWIG_IGNORE(iAudioDelay);
 class iAudioDelay: public iObject
 {
 #ifdef SWIG
@@ -430,9 +478,9 @@ public:
 	virtual void setAC3Delay(int)=0;
 	virtual void setPCMDelay(int)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iAudioDelay>, iAudioDelayPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iAudioDelay>, iAudioDelayPtr);
-
+SWIG_IGNORE(iRadioText);
 class iRadioText: public iObject
 {
 #ifdef SWIG
@@ -442,9 +490,9 @@ class iRadioText: public iObject
 public:
 	virtual std::string getRadioText(int x=0)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iRadioText>, iRadioTextPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iRadioText>, iRadioTextPtr);
-
+SWIG_IGNORE(iSubserviceList);
 class iSubserviceList: public iObject
 {
 #ifdef SWIG
@@ -455,9 +503,9 @@ public:
 	virtual int getNumberOfSubservices()=0;
 	virtual SWIG_VOID(RESULT) getSubservice(eServiceReference &SWIG_OUTPUT, unsigned int n)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iSubserviceList>, iSubserviceListPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iSubserviceList>, iSubserviceListPtr);
-
+SWIG_IGNORE(iTimeshiftService);
 class iTimeshiftService: public iObject
 {
 #ifdef SWIG
@@ -467,34 +515,44 @@ class iTimeshiftService: public iObject
 public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift()=0;
-	
+
 	virtual int isTimeshiftActive()=0;
 			/* this essentially seeks to the relative end of the timeshift buffer */
 	virtual RESULT activateTimeshift()=0;
 };
-
-TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
 	/* not related to eCueSheet */
-class iCueSheet: public iObject
+
+class iCueSheet_ENUMS
+{
+#ifdef SWIG
+	iCueSheet_ENUMS();
+	~iCueSheet_ENUMS();
+#endif
+public:
+	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
+};
+
+SWIG_IGNORE(iCueSheet);
+class iCueSheet: public iCueSheet_ENUMS, public iObject
 {
 #ifdef SWIG
 	iCueSheet();
 	~iCueSheet();
 #endif
 public:
-			/* returns a list of (pts, what)-tuples */
+	/* returns a list of (pts, what)-tuples */
 	virtual PyObject *getCutList() = 0;
 	virtual void setCutList(SWIG_PYOBJECT(ePyObject) list) = 0;
 	virtual void setCutListEnable(int enable) = 0;
-	enum { cutIn = 0, cutOut = 1, cutMark = 2 };
 };
-
-TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
 
 class eWidget;
 class PyList;
 
+SWIG_IGNORE(iSubtitleOutput);
 class iSubtitleOutput: public iObject
 {
 public:
@@ -503,10 +561,127 @@ public:
 	virtual PyObject *getSubtitleList()=0;
 	virtual PyObject *getCachedSubtitle()=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);
 
-TEMPLATE_TYPEDEF(ePtr<iSubtitleOutput>, iSubtitleOutputPtr);
+SWIG_IGNORE(iMutableServiceList);
+class iMutableServiceList: public iObject
+{
+#ifdef SWIG
+	iMutableServiceList();
+	~iMutableServiceList();
+#endif
+public:
+		/* flush changes */
+	virtual RESULT flushChanges()=0;
+		/* adds a service to a list */
+	virtual RESULT addService(eServiceReference &ref, eServiceReference before=eServiceReference())=0;
+		/* removes a service from a list */
+	virtual RESULT removeService(eServiceReference &ref)=0;
+		/* moves a service in a list, only if list suppports a specific sort method. */
+		/* pos is the new, absolute position from 0..size-1 */
+	virtual RESULT moveService(eServiceReference &ref, int pos)=0;
+		/* set name of list, for bouquets this is the visible bouquet name */
+	virtual RESULT setListName(const std::string &name)=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iMutableServiceList>, iMutableServiceListPtr);
 
-class iPlayableService: public iObject
+SWIG_IGNORE(iListableService);
+class iListableService: public iObject
+{
+#ifdef SWIG
+	iListableService();
+	~iListableService();
+#endif
+public:
+#ifndef SWIG
+		/* legacy interface: get a list */
+	virtual RESULT getContent(std::list<eServiceReference> &list, bool sorted=false)=0;
+#endif
+	virtual PyObject *getContent(const char* format, bool sorted=false)=0;
+
+		/* new, shiny interface: streaming. */
+	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;
+
+		/* use this for sorting. output is not sorted because of either
+		 - performance reasons: the whole list must be buffered or
+		 - the interface would be restricted to a list. streaming
+		   (as well as a future "active" extension) won't be possible.
+		*/
+	virtual int compareLessEqual(const eServiceReference &, const eServiceReference &)=0;
+
+	virtual SWIG_VOID(RESULT) startEdit(ePtr<iMutableServiceList> &SWIG_OUTPUT)=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
+
+#ifndef SWIG
+	/* a helper class which can be used as argument to stl's sort(). */
+class iListableServiceCompare
+{
+	ePtr<iListableService> m_list;
+public:
+	iListableServiceCompare(iListableService *list): m_list(list) { }
+	bool operator()(const eServiceReference &a, const eServiceReference &b)
+	{
+		return m_list->compareLessEqual(a, b);
+	}
+};
+#endif
+
+SWIG_IGNORE(iServiceOfflineOperations);
+class iServiceOfflineOperations: public iObject
+{
+#ifdef SWIG
+	iServiceOfflineOperations();
+	~iServiceOfflineOperations();
+#endif
+public:
+		/* to delete a service, forever. */
+	virtual RESULT deleteFromDisk(int simulate=1)=0;
+
+		/* for transferring a service... */
+	virtual SWIG_VOID(RESULT) getListOfFilenames(std::list<std::string> &SWIG_OUTPUT)=0;
+
+		// TODO: additional stuff, like a conversion interface?
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
+
+class iPlayableService_ENUMS
+{
+#ifdef SWIG
+	iPlayableService_ENUMS();
+	~iPlayableService_ENUMS();
+#endif
+public:
+	enum {
+			/* these first two events are magical, and should only
+			   be generated if you know what you're doing. */
+		evStart,
+		evEnd,
+
+		evTuneFailed,
+
+			/* when iServiceInformation is implemented:*/
+		evUpdatedEventInfo,
+		evUpdatedInfo,
+
+			/* when seek() is implemented: */
+		evSeekableStatusChanged, /* for example when timeshifting */
+
+		evEOF,
+		evSOF, /* bounced against start of file (when seeking backwards) */
+
+			/* when cueSheet is implemented */
+		evCuesheetChanged,
+
+			/* when radioText is implemented */
+		evUpdatedRadioText,
+
+		evVideoSizeChanged
+	};
+};
+
+SWIG_IGNORE(iPlayableService);
+class iPlayableService: public iPlayableService_ENUMS, public iObject
 {
 #ifdef SWIG
 	iPlayableService();
@@ -514,31 +689,6 @@ class iPlayableService: public iObject
 #endif
 	friend class iServiceHandler;
 public:
-	enum
-	{
-			/* these first two events are magical, and should only
-			   be generated if you know what you're doing. */
-		evStart,
-		evEnd,
-		
-		evTuneFailed,
-			// when iServiceInformation is implemented:
-		evUpdatedEventInfo,
-		evUpdatedInfo,
-
-			/* when seek() is implemented: */		
-		evSeekableStatusChanged, /* for example when timeshifting */
-		
-		evEOF,
-		evSOF, /* bounced against start of file (when seeking backwards) */
-		
-			/* only when cueSheet is implemented */
-		evCuesheetChanged,
-
-		evUpdatedRadioText,
-
-		evVideoSizeChanged
-	};
 #ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
 #endif
@@ -559,18 +709,16 @@ public:
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) radioText(ePtr<iRadioText> &SWIG_OUTPUT)=0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 
-TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
-
-class iRecordableService: public iObject
+class iRecordableService_ENUMS
 {
 #ifdef SWIG
-	iRecordableService();
-	~iRecordableService();
+	iRecordableService_ENUMS();
+	~iRecordableService_ENUMS();
 #endif
 public:
-	enum
-	{
+	enum {
 		evStart,
 		evStop,
 		evTunedIn,
@@ -579,10 +727,9 @@ public:
 		evRecordStopped,
 		evNewProgramInfo,
 		evRecordFailed
-//		evDiskFull
+		/*evDiskFull*/
 	};
-	enum
-	{
+	enum {
 		NoError=0,
 		errOpenRecordFile=-1,
 		errNoDemuxAvailable=-2,
@@ -590,6 +737,16 @@ public:
 		errDiskFull=-4,
 		errTuneFailed=-255
 	};
+};
+
+SWIG_IGNORE(iRecordableService);
+class iRecordableService: public iRecordableService_ENUMS, public iObject
+{
+#ifdef SWIG
+	iRecordableService();
+	~iRecordableService();
+#endif
+public:
 #ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
 #endif
@@ -599,8 +756,7 @@ public:
 	virtual RESULT stop()=0;
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 };
-
-TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
 extern PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ref); // defined in enigma_python.i
 
@@ -625,90 +781,7 @@ inline ePyObject Impl_New_iRecordableServicePtr(const ePtr<iRecordableService> &
 #endif
 #endif // SWIG
 
-// TEMPLATE_TYPEDEF(std::list<eServiceReference>, eServiceReferenceList);
-
-class iMutableServiceList: public iObject
-{
-#ifdef SWIG
-	iMutableServiceList();
-	~iMutableServiceList();
-#endif
-public:
-		/* flush changes */
-	virtual RESULT flushChanges()=0;
-		/* adds a service to a list */
-	virtual RESULT addService(eServiceReference &ref, eServiceReference before=eServiceReference())=0;
-		/* removes a service from a list */
-	virtual RESULT removeService(eServiceReference &ref)=0;
-		/* moves a service in a list, only if list suppports a specific sort method. */
-		/* pos is the new, absolute position from 0..size-1 */
-	virtual RESULT moveService(eServiceReference &ref, int pos)=0;
-		/* set name of list, for bouquets this is the visible bouquet name */
-	virtual RESULT setListName(const std::string &name)=0;
-};
-
-TEMPLATE_TYPEDEF(ePtr<iMutableServiceList>, iMutableServiceListPtr);
-
-class iListableService: public iObject
-{
-#ifdef SWIG
-	iListableService();
-	~iListableService();
-#endif
-public:
-#ifndef SWIG
-		/* legacy interface: get a list */
-	virtual RESULT getContent(std::list<eServiceReference> &list, bool sorted=false)=0;
-#endif
-	virtual PyObject *getContent(const char* format, bool sorted=false)=0;
-
-		/* new, shiny interface: streaming. */
-	virtual SWIG_VOID(RESULT) getNext(eServiceReference &SWIG_OUTPUT)=0;
-	
-		/* use this for sorting. output is not sorted because of either
-		 - performance reasons: the whole list must be buffered or
-		 - the interface would be restricted to a list. streaming
-		   (as well as a future "active" extension) won't be possible.
-		*/
-	virtual int compareLessEqual(const eServiceReference &, const eServiceReference &)=0;
-	
-	virtual SWIG_VOID(RESULT) startEdit(ePtr<iMutableServiceList> &SWIG_OUTPUT)=0;
-};
-
-TEMPLATE_TYPEDEF(ePtr<iListableService>, iListableServicePtr);
-
-#ifndef SWIG
-	/* a helper class which can be used as argument to stl's sort(). */
-class iListableServiceCompare
-{
-	ePtr<iListableService> m_list;
-public:
-	iListableServiceCompare(iListableService *list): m_list(list) { }
-	bool operator()(const eServiceReference &a, const eServiceReference &b)
-	{
-		return m_list->compareLessEqual(a, b);
-	}
-};
-#endif
-
-class iServiceOfflineOperations: public iObject
-{
-#ifdef SWIG
-	iServiceOfflineOperations();
-	~iServiceOfflineOperations();
-#endif
-public:
-		/* to delete a service, forever. */
-	virtual RESULT deleteFromDisk(int simulate=1)=0;
-	
-		/* for transferring a service... */
-	virtual SWIG_VOID(RESULT) getListOfFilenames(std::list<std::string> &SWIG_OUTPUT)=0;
-	
-		// TODO: additional stuff, like a conversion interface?
-};
-
-TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
-
+SWIG_IGNORE(iServiceHandler);
 class iServiceHandler: public iObject
 {
 #ifdef SWIG
@@ -722,7 +795,6 @@ public:
 	virtual SWIG_VOID(RESULT) info(const eServiceReference &, ePtr<iStaticServiceInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &SWIG_OUTPUT)=0;
 };
-
-TEMPLATE_TYPEDEF(ePtr<iServiceHandler>, iServiceHandlerPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceHandler>, iServiceHandlerPtr);
 
 #endif
