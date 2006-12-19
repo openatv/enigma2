@@ -38,6 +38,9 @@ class PluginDescriptor:
 	# start as teletext plugin. arguments: session, serviceref
 	WHERE_TELETEXT = 8
 	
+	# file-scanner, fnc must return a list of Scanners
+	WHERE_FILESCAN = 9
+	
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None):
 		self.name = name
 		if type(where) is list:
