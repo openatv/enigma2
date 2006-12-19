@@ -1,20 +1,20 @@
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.ScrollLabel import ScrollLabel
-from Components.GUIComponent import *
-from Components.MenuList import MenuList
+from Components.GUIComponent import GUIComponent
 from Components.Input import Input
-from Screens.Console import Console
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-from Screens.ImageWizard import ImageWizard
-from Components.Ipkg import Ipkg
-from Components.Slider import Slider
+from Components.Ipkg import IpkgComponent
 from Components.Label import Label
-
+from Components.MenuList import MenuList
+from Components.ScrollLabel import ScrollLabel
+from Components.Slider import Slider
+from Plugins.Plugin import PluginDescriptor
+from Screens.Console import Console
+from Screens.ImageWizard import ImageWizard
+from Screens.MessageBox import MessageBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
 from os import popen
+
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -256,12 +256,12 @@ class UpdatePlugin(Screen):
 		self.activityTimer.timeout.get().append(self.doActivityTimer)
 		self.activityTimer.start(100, False)
 				
-		self.ipkg = Ipkg()
+		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 		
 		self.updating = True
 		self.package.setText(_("Package list update"))
-		self.ipkg.cmdUpdate()
+		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 			
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
@@ -276,27 +276,27 @@ class UpdatePlugin(Screen):
 		self.activityslider.setValue(self.activity)
 		
 	def ipkgCallback(self, event, param):
-		if event == Ipkg.EVENT_DOWNLOAD:
+		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
-		elif event == Ipkg.EVENT_UPGRADE:
+		elif event == IpkgComponent.EVENT_UPGRADE:
 			if self.sliderPackages.has_key(param):
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
 			self.status.setText(_("Upgrading"))
 			self.packages += 1
-		elif event == Ipkg.EVENT_INSTALL:
+		elif event == IpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
 			self.packages += 1
-		elif event == Ipkg.EVENT_CONFIGURING:
+		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
-		elif event == Ipkg.EVENT_ERROR:
+		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
-		elif event == Ipkg.EVENT_DONE:
+		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.cmdUpgrade(test_only = False)
+				self.ipkg.startCmd(Ipkg.CMD_UPGRADE, args = {'test_only': False})
 			elif self.error == 0:
 				self.slider.setValue(4)
 				

@@ -78,6 +78,7 @@ lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
+lib/python/Plugins/Extensions/IpkgInstaller/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/WebInterface/Makefile
 lib/python/Plugins/Extensions/WebInterface/web/Makefile
