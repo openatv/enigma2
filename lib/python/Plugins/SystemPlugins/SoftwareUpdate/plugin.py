@@ -229,8 +229,8 @@ class UpdatePlugin(Screen):
 		<screen position="100,100" size="550,200" title="Software Update..." >
 			<widget name="activityslider" position="0,0" size="550,5"  />
 			<widget name="slider" position="0,100" size="550,30"  />
-			<widget name="package" position="10,30" size="420,20" font="Regular;18"/>
-			<widget name="status" position="10,60" size="420,45" font="Regular;18"/>
+			<widget name="package" position="10,30" size="540,20" font="Regular;18"/>
+			<widget name="status" position="10,60" size="540,45" font="Regular;18"/>
 		</screen>"""
 		
 	def __init__(self, session, args = None):
@@ -296,7 +296,7 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.startCmd(Ipkg.CMD_UPGRADE, args = {'test_only': False})
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 			elif self.error == 0:
 				self.slider.setValue(4)
 				
