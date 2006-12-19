@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
-from enigma import eDVBVolumecontrol, eDBoxLCD
+from enigma import eDVBVolumecontrol, eDBoxLCD, eServiceReference
 
 class Standby(Screen):
 	def Power(self):
