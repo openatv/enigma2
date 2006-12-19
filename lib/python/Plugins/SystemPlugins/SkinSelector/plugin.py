@@ -12,6 +12,7 @@ from Tools.Directories import SCOPE_SKIN
 from Components.config import config
 
 from os import path, walk
+from enigma import quitMainloop
 
 class SkinSelector(Screen):
 	# for i18n:
