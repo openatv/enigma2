@@ -7,8 +7,35 @@ class gFont;
 
 #include <lib/base/object.h>
 
+class eWindowStyle_ENUMS
+{
+#ifdef SWIG
+	eWindowStyle_ENUMS();
+	~eWindowStyle_ENUMS();
+#endif
+public:
+	enum {
+		styleLabel,
+		styleListboxSelected,
+		styleListboxNormal,
+		styleListboxMarked,
+		styleListboxMarkedAndSelected
+	};
+
+	enum {
+		frameButton,
+		frameListboxEntry
+	};
+
+	enum {
+		fontStatic,
+		fontButton,
+		fontTitlebar
+	};
+};
+
 SWIG_IGNORE(eWindowStyle);
-class eWindowStyle: public iObject
+class eWindowStyle: public eWindowStyle_ENUMS, public iObject
 {
 #ifdef SWIG
 	eWindowStyle();
@@ -23,24 +50,6 @@ public:
 	virtual RESULT getFont(int what, ePtr<gFont> &font) = 0;
 #endif
 	virtual ~eWindowStyle() = 0;
-	enum {
-		styleLabel,
-		styleListboxSelected,
-		styleListboxNormal,
-		styleListboxMarked,
-		styleListboxMarkedAndSelected
-	};
-	
-	enum {
-		frameButton,
-		frameListboxEntry
-	};
-	
-	enum {
-		fontStatic,
-		fontButton,
-		fontTitlebar
-	};
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eWindowStyle>, eWindowStylePtr);
 
@@ -56,10 +65,10 @@ public:
 #ifndef SWIG
 	eWindowStyleManager();
 	~eWindowStyleManager();
+	static SWIG_VOID(int) getInstance(ePtr<eWindowStyleManager> &SWIG_NAMED_OUTPUT(mgr)) { mgr = m_instance; if (!mgr) return -1; return 0; }
 #endif
 	void getStyle(int style_id, ePtr<eWindowStyle> &SWIG_OUTPUT);
 	void setStyle(int style_id, eWindowStyle *style);
-	static SWIG_VOID(int) getInstance(ePtr<eWindowStyleManager> &SWIG_NAMED_OUTPUT(mgr)) { mgr = m_instance; if (!mgr) return -1; return 0; }
 private:
 	static eWindowStyleManager *m_instance;
 	std::map<int, ePtr<eWindowStyle> > m_current_style;

@@ -114,18 +114,6 @@ void ePyObject::decref(const char *file, int line)
 #include <lib/python/python.h>
 #undef SKIP_PART1
 
-DEFINE_REF(TestObj);
-
-TestObj::TestObj()
-{
-	eDebug("create %p", this);
-}
-
-TestObj::~TestObj()
-{
-	eDebug("destroy %p", this);
-}
-
 ePython::ePython()
 {
 //	Py_VerboseFlag = 1;
