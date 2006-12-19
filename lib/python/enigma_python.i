@@ -92,27 +92,10 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
 #include <lib/gdi/picload.h>
-
-extern void runMainloop();
-extern void quitMainloop(int exit_code);
-extern eApplication *getApplication();
-extern int getPrevAsciiCode();
-extern int isUTF8(const std::string &);
-extern std::string convertUTF8DVB(const std::string &, int);
-extern std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid);
-PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore)
-{
-	eStaticServiceDVBBouquetInformation info;
-	if (info.isPlayable(bouquet_ref, ignore))
-		return New_eServiceReference(info.getPlayableService());
-	Py_INCREF(Py_None);
-	return Py_None;
-}
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
 %feature("unref") iObject "$this->Release(); /* eDebug(\"Release! %s:%d\", __FILE__, __LINE__); */ "
-
 
 /* this magic allows smartpointer to be used as OUTPUT arguments, i.e. call-by-reference-styled return value. */
 
@@ -265,21 +248,6 @@ public:
 	$1 = $input->get();
 }
 
-/************** temp *****************/
-
-	/* need a better place for this, i agree. */
-%{
-void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement); 
-%}
-void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
-
-/**************  debug  **************/
-
-int getPrevAsciiCode();
-void runMainloop();
-void quitMainloop(int exit_code);
-eApplication *getApplication();
-PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore);
 %{
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 {	
@@ -310,3 +278,34 @@ PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ptr)
     return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_ePtrTiRecordableService_t, 1);
 }
 %}
+
+/* needed for service groups */
+
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore);
+%{
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore)
+{
+	eStaticServiceDVBBouquetInformation info;
+	if (info.isPlayable(bouquet_ref, ignore))
+		return New_eServiceReference(info.getPlayableService());
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+%}
+
+/************** temp *****************/
+
+	/* need a better place for this, i agree. */
+%{
+extern void runMainloop();
+extern void quitMainloop(int exit_code);
+extern eApplication *getApplication();
+extern int getPrevAsciiCode();
+extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+%}
+
+extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+extern int getPrevAsciiCode();
+extern void runMainloop();
+extern void quitMainloop(int exit_code);
+extern eApplication *getApplication();

@@ -236,10 +236,3 @@ void quitMainloop(int exitCode)
 	exit_code = exitCode;
 	eApp->quit(0);
 }
-
-void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement)
-{
-	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor);
-	if (is_replacement)
-		eTextPara::setReplacementFont(alias);
-}
