@@ -1,4 +1,6 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager,\
+	eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
 from Screens.MessageBox import MessageBox

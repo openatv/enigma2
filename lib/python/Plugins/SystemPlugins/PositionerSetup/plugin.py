@@ -1,4 +1,6 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager, \
+	eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
 from Screens.MessageBox import MessageBox
@@ -144,7 +146,7 @@ class PositionerSetup(Screen):
 		if res_mgr:
 			self.raw_channel = res_mgr.allocateRawChannel(self.feid)
 			if self.raw_channel:
-				self.frontend = self.raw_channel.getFrontend(self.frontend)
+				self.frontend = self.raw_channel.getFrontend()
 				if self.frontend:
 					return True
 				else:
