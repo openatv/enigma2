@@ -96,4 +96,5 @@ class Ipkg(Screen):
 			self.runNextCmd()
 	
 	def exit(self):
-		self.close()
+		if not self.ipkg.isRunning():
+			self.close()
