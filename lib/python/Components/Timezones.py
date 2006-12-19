@@ -4,8 +4,6 @@ from xml.sax.handler import ContentHandler
 import os
 import time
 
-from enigma import *
-
 class Timezones:
 	class parseTimezones(ContentHandler):
 		def __init__(self, timezones):
@@ -42,7 +40,8 @@ class Timezones:
 		try:
 			time.tzset()
 		except:
-			etimezone()
+			from enigma import e_tzset
+			e_tzset()
 		
 	def getTimezoneList(self):
 		list = []

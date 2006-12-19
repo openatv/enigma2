@@ -52,6 +52,13 @@ RESULT eDVBResourceManager::getInstance(ePtr<eDVBResourceManager> &ptr)
 	return -1;
 }
 
+ePtr<eDVBResourceManager> NewResourceManagerPtr(void)
+{
+	ePtr<eDVBResourceManager> ptr;
+	eDVBResourceManager::getInstance(ptr);
+	return ptr;
+}
+
 eDVBResourceManager::eDVBResourceManager()
 	:m_releaseCachedChannelTimer(eApp)
 {

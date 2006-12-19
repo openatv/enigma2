@@ -1,13 +1,9 @@
-from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.GUIComponent import *
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
-
-import os
 
 class ChoiceBox(Screen):
 	def __init__(self, session, title = "", list = [], keys = None, selection = 0):

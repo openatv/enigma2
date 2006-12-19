@@ -1,22 +1,17 @@
 # -*- coding: iso-8859-1 -*-
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
-
-from enigma import *
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
-from Components.GUIComponent import *
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
-
 from Components.config import config
 from Tools.Directories import SCOPE_SKIN
-
 from Components.config import config
 
-import os, sys
+from os import path, walk
 
 class SkinSelector(Screen):
 	# for i18n:
@@ -40,7 +35,7 @@ class SkinSelector(Screen):
 		self.session = session
 		self.previewPath = ""
 
-		os.path.walk(self.root, self.find, "")
+		path.walk(self.root, self.find, "")
 
 		self.skinlist.sort()
 		self["SkinList"] = MenuList(self.skinlist)
@@ -107,7 +102,7 @@ class SkinSelector(Screen):
 		else:
 			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
 
-		if not os.path.exists(pngpath):
+		if not path.exists(pngpath):
 			# FIXME: don't use hardcoded path
 			pngpath = "/usr/lib/enigma2/python/Plugins/SystemPlugins/SkinSelector/noprev.png"
 

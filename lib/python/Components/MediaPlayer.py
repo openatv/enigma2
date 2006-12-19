@@ -3,19 +3,10 @@ from GUIComponent import *
 
 from MenuList import MenuList
 
-from Tools.Directories import *
-import os
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from os import path
 
-from enigma import *
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
+from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, loadPNG, gFont
 
 STATE_PLAY = 0
 STATE_PAUSE = 1
@@ -32,7 +23,7 @@ ForwardIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_forward.png"))
 
 def PlaylistEntryComponent(serviceref, state):
 	res = [ serviceref ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, os.path.split(serviceref.getPath().split('/')[-1])[1]))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, path.split(serviceref.getPath().split('/')[-1])[1]))
 	png = None
 	if state == STATE_PLAY:
 		png = PlayIcon

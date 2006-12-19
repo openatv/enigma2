@@ -4,10 +4,9 @@ from Screens.MovieSelection import MovieSelection
 from Screens.ChannelSelection import ChannelSelectionRadio
 from Screens.MessageBox import MessageBox
 from Screens.Ci import CiHandler
-from ServiceReference import ServiceReference
 
 from Components.Sources.Clock import Clock
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
 
 from Tools.Notifications import AddNotificationWithCallback
@@ -22,10 +21,6 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
-
-from enigma import *
-
-import time
 
 class InfoBar(InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRadioText,

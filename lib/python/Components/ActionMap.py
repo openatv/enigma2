@@ -1,16 +1,15 @@
-from enigma import *
+from enigma import eActionMap
 
 class ActionMap:
 	def __init__(self, contexts = [ ], actions = { }, prio=0):
 		self.actions = actions
 		self.contexts = contexts
 		self.prio = prio
-		self.p = eActionMapPtr()
+		self.p = eActionMap.getInstance()
 		self.bound = False
 		self.exec_active = False
 		self.enabled = True
-		eActionMap.getInstance(self.p)
-	
+
 	def setEnabled(self, enabled):
 		self.enabled = enabled
 		self.checkBind()

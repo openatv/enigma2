@@ -3,18 +3,9 @@ from GUIComponent import *
 
 from MenuList import MenuList
 from Components.ParentalControl import parentalControl
-from Tools.Directories import *
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import *
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
+from enigma import loadPNG, eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 
 lockPicture = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "lock-fs8.png"))
 

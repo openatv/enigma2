@@ -1,8 +1,7 @@
 #include "etimezone.h"
-
 #include <time.h>
 
-etimezone::etimezone()
+void e_tzset()
 {
 	tzset();
 }

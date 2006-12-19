@@ -7,13 +7,15 @@
 
 class eServiceCenter;
 
+#ifndef SWIG
 typedef ePtr<eServiceCenter> eServiceCenterPtr;
+#endif
 
 class eServiceCenter: public iServiceHandler
 {
 DECLARE_REF(eServiceCenter);
 private:
-	std::map<int,iServiceHandlerPtr> handler;
+	std::map<int,ePtr<iServiceHandler> > handler;
 	static eServiceCenter *instance;
 #ifdef SWIG
 	eServiceCenter();
@@ -23,19 +25,20 @@ public:
 #ifndef SWIG
 	eServiceCenter();
 	virtual ~eServiceCenter();
-#endif
+
 		// iServiceHandler
-	RESULT play(const eServiceReference &, iPlayableServicePtr &ptr);
-	RESULT record(const eServiceReference &, iRecordableServicePtr &ptr);
-	RESULT list(const eServiceReference &, iListableServicePtr &ptr);
+	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
+	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
+	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
 	
 		// eServiceCenter
-	static RESULT getPrivInstance(eServiceCenterPtr &ptr) { ptr = instance; return 0; }
-	static SWIG_VOID(RESULT) getInstance(iServiceHandlerPtr &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
+	static RESULT getPrivInstance(ePtr<eServiceCenter> &ptr) { ptr = instance; return 0; }
 	RESULT addServiceFactory(int id, iServiceHandler *hnd);
 	RESULT removeServiceFactory(int id);
+#endif
+	static SWIG_VOID(RESULT) getInstance(ePtr<iServiceHandler> &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
 };
 
 #endif

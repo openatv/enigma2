@@ -2,10 +2,7 @@ from HTMLComponent import *
 from GUIComponent import *
 from VariableText import *
 
-#from enigma import eTimer
-#from enigma import eLabel
-
-from enigma import *
+from enigma import eTimer, eLabel
 
 import time
 # now some "real" components:

@@ -41,13 +41,6 @@ RESULT eActionMap::getInstance(ePtr<eActionMap> &ptr)
 	return 0;
 }
 
-#if 0
-void eActionMap::getInstance(eActionMap **ptr)
-{
-	*ptr = instance;
-}
-#endif
-
 void eActionMap::bindAction(const std::string &context, int priority, int id, eWidget *widget)
 {
 	eActionBinding bnd;
@@ -219,6 +212,13 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 				res = i->m_widget->event(eWidget::evtAction, (void*)i->m_widget_arg, (void*)i->m_widget_arg2 );
 		}
 	}
+}
+
+ePtr<eActionMap> NewActionMapPtr(void)
+{
+	ePtr<eActionMap> ptr;
+	eActionMap::getInstance(ptr);
+	return ptr;
 }
 
 eAutoInitPtr<eActionMap> init_eActionMap(eAutoInitNumbers::actions, "eActionMap");

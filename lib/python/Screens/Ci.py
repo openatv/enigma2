@@ -6,8 +6,6 @@ from Components.Header import Header
 from Components.Button import Button
 from Components.Label import Label
 
-from Components.HTMLComponent import *
-from Components.GUIComponent import *
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
 from Components.ConfigList import ConfigList
 

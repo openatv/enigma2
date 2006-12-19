@@ -2,8 +2,8 @@
 #define __db_h
 
 #ifndef SWIG
-#include <lib/base/eptrlist.h>
 #include <lib/dvb/idvb.h>
+#include <lib/base/eptrlist.h>
 #include <set>
 class ServiceDescriptionSection;
 #endif

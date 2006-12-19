@@ -3,13 +3,15 @@
 
 #ifndef SWIG
 #include <time.h>
-#include <lib/base/object.h>
-#include <lib/service/iservice.h>
 #include <list>
 #include <string>
 class Event;
 #endif
 
+#include <lib/base/object.h>
+#include <lib/service/iservice.h>
+
+SWIG_IGNORE(eComponentData);
 struct eComponentData
 {
 DECLARE_REF(eComponentData);
@@ -26,9 +28,9 @@ DECLARE_REF(eComponentData);
 	std::string getIso639LanguageCode(void) const { return m_iso639LanguageCode; }
 	std::string getText(void) const { return m_text; }
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<eComponentData>, eComponentDataPtr);
 
-TEMPLATE_TYPEDEF(ePtr<eComponentData>, eComponentDataPtr);
-
+SWIG_IGNORE(eServiceEvent);
 class eServiceEvent: public iObject
 {
 	DECLARE_REF(eServiceEvent);
@@ -58,10 +60,10 @@ public:
 	int getNumOfLinkageServices() const { return m_linkage_services.size(); }
 	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, eServiceReference &parent, int num) const;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 
-TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
 #ifndef SWIG
-
+SWIG_IGNORE(eDebugClass);
 class eDebugClass: public iObject
 {
 	DECLARE_REF(eDebugClass);
@@ -71,8 +73,7 @@ public:
 	eDebugClass(int i) { printf("build debug class %d\n", i); x = i; }
 	~eDebugClass() { printf("remove debug class %d\n", x); }
 };
-
-// TEMPLATE_TYPEDEF(ePtr<eDebugClass>, eDebugClassPtr);
+SWIG_TEMPLATE_TYPEDEF(ePtr<eDebugClass>, eDebugClassPtr);
 #endif
 
 #endif

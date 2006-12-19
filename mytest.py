@@ -1,5 +1,6 @@
 from Tools import RedirectOutput
-from enigma import *
+from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
+	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow
 from tools import *
 
 from Components.Language import language
@@ -10,12 +11,11 @@ def setEPGLanguage():
 	
 language.addCallback(setEPGLanguage)
 
-import traceback
+from traceback import print_exc
 import Screens.InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
-import sys
-import time
+from sys import stdout, exc_info
 
 import ServiceReference
 
@@ -27,7 +27,7 @@ from Navigation import Navigation
 from skin import readSkin, applyAllAttributes
 
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from Components.config import config, ConfigText, configfile, ConfigSubsection, ConfigInteger
+from Components.config import config, configfile, ConfigText, ConfigSubsection, ConfigInteger
 InitFallbackFiles()
 eDVBDB.getInstance().reloadBouquets()
 
@@ -191,9 +191,9 @@ class Session:
 		try:
 			return screen(self, *arguments, **kwargs)
 		except:
-			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), sys.exc_info()[0])
+			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), exc_info()[0])
 			print errstr
-			traceback.print_exc(file=sys.stdout)
+			print_exc(file=stdout)
 			quitMainloop(5)
 	
 	def instantiateDialog(self, screen, *arguments, **kwargs):
@@ -214,7 +214,7 @@ class Session:
 		except:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
 			print '-'*60
-			traceback.print_exc(file=sys.stdout)
+			print_exc(file=stdout)
 			quitMainloop(5)
 			print '-'*60
 		
@@ -493,9 +493,9 @@ def runScreenTest():
 	runReactor()
 	
 	configfile.save()
-	
-	from Tools.DreamboxHardware import setFPWakeuptime
+
 	from time import time
+	from Tools.DreamboxHardware import setFPWakeuptime
 	nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
 	if nextRecordingTime != -1:
 		if (nextRecordingTime - time() < 330): # no time to switch box back on
@@ -553,6 +553,6 @@ try:
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
-	traceback.print_exc(file=sys.stdout)
+	print_exc(file=stdout)
 	quitMainloop(5)
 	print '-'*60

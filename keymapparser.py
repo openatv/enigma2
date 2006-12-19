@@ -9,8 +9,7 @@ from Tools.KeyBindings import addKeyBinding
 
 def readKeymap():
 
-	p = enigma.eActionMapPtr()
-	enigma.eActionMap.getInstance(p)
+	p = enigma.eActionMap.getInstance()
 	assert p
 	
 	filename1 = "data/keymap.xml"

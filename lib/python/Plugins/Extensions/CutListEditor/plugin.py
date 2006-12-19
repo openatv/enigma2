@@ -5,11 +5,11 @@ from Screens.MessageBox import MessageBox
 from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, RT_HALIGN_RIGHT
+from Components.MultiContent import MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Components.GUIComponent import GUIComponent
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
 import bisect
 

@@ -1,4 +1,4 @@
-from enigma import *
+from enigma import eServiceCenter, eServiceReference, pNavigation
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 import RecordTimer

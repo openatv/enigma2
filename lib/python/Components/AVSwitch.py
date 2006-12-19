@@ -1,6 +1,6 @@
 from config import config, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
 import os
-from enigma import *
+from enigma import eAVSwitch
 
 class AVSwitch:
 	INPUT = { "ENCODER": (0, 4), "SCART": (1, 3), "AUX": (2, 4) }

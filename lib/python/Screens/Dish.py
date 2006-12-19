@@ -5,7 +5,7 @@ from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.config import config
 
-from enigma import *
+from enigma import eDVBSatelliteEquipmentControl
 
 class Dish(Screen):
 	def __init__(self, session):

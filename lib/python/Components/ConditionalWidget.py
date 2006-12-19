@@ -1,7 +1,5 @@
-import skin
 from GUIComponent import *
-
-from enigma import *
+from enigma import eTimer
 
 class ConditionalWidget(GUIComponent):
 	def __init__(self, withTimer = True):
@@ -61,7 +59,7 @@ class BlinkingWidget(GUIComponent):
 		if self.visible:
 			self.hide()
 		self.timer.stop()
-		
+
 class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 	def __init__(self):
 		BlinkingWidget.__init__(self)

@@ -2,21 +2,14 @@ from HTMLComponent import *
 from GUIComponent import *
 import re
 
+from os import path as os_path, listdir
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import *
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import *
-
-RT_HALIGN_LEFT = 0
-RT_HALIGN_RIGHT = 1
-RT_HALIGN_CENTER = 2
-RT_HALIGN_BLOCK = 4
-
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 8
-RT_VALIGN_BOTTOM = 16
+from enigma import RT_HALIGN_LEFT, loadPNG, eListbox, eListboxPythonMultiContent, \
+	eServiceReference, eServiceCenter, gFont
 
 EXTENSIONS = {
 		"mp3": "music",
@@ -111,11 +104,11 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 			directories.sort()
 			files.sort()
 		else:
-			files = os.listdir(directory)
+			files = listdir(directory)
 			files.sort()
 			tmpfiles = files[:]
 			for x in tmpfiles:
-				if os.path.isdir(directory + x):
+				if os_path.isdir(directory + x):
 					directories.append(directory + x + "/")
 					files.remove(x)
 		

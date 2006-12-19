@@ -1,13 +1,15 @@
-from enigma import *
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
-from Tools.Import import my_import
-import os
+from os import path
+
+from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
+	loadPNG, addFont, gRGB, eWindowStyleSkinned
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Element import Element
 from Components.Converter.Converter import Converter
-
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
+from Tools.Import import my_import
 from Tools.XMLTools import elementsWithTag, mergeText
 
 colorNames = dict()
@@ -19,8 +21,6 @@ def dump(x, i=0):
 			dump(n, i + 1)
 	except:
 		None
-
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 
 class SkinError(Exception):
 	def __init__(self, message):
@@ -34,8 +34,8 @@ dom_skins = [ ]
 def loadSkin(name):
 	# read the skin
 	filename = resolveFilename(SCOPE_SKIN, name)
-	path = os.path.dirname(filename) + "/"
-	dom_skins.append((path, xml.dom.minidom.parse(filename)))
+	mpath = path.dirname(filename) + "/"
+	dom_skins.append((mpath, xml.dom.minidom.parse(filename)))
 
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
@@ -262,8 +262,7 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 			except:
 				raise ("Unknown color %s" % (type))
 			
-		x = eWindowStyleManagerPtr()
-		eWindowStyleManager.getInstance(x)
+		x = eWindowStyleManager.getInstance()
 		x.setStyle(id, style)
 
 def loadSkinData(desktop):

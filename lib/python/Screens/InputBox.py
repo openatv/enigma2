@@ -1,14 +1,11 @@
-from enigma import *
+from enigma import eRCInput, getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Input import Input
-from Components.GUIComponent import *
 from Tools.BoundFunction import boundFunction
 from time import time
-
-import os
 
 class InputBox(Screen):
 	def __init__(self, session, title = "", windowTitle = _("Input"), **kwargs):

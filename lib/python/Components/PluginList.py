@@ -4,9 +4,9 @@ from GUIComponent import *
 from MenuList import MenuList
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-from Components.MultiContent import RT_HALIGN_LEFT, MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
-from enigma import *
+from enigma import loadPNG, eListboxPythonMultiContent, RT_HALIGN_LEFT, eListbox, gFont
 
 def PluginEntryComponent(plugin):
 	res = [ plugin ]

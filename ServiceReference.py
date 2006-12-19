@@ -1,5 +1,4 @@
-
-from enigma import *
+from enigma import eServiceReference, eServiceCenter
 
 import NavigationInstance
 

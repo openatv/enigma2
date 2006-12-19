@@ -9,12 +9,10 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox, Input, PinInput
 from Screens.ChannelSelection import service_types_tv
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceCenter, eServiceReference, eTimer
-import os
-import operator
+from operator import itemgetter
 
 class ProtectedScreen:
 	def __init__(self):
@@ -192,7 +190,7 @@ class ParentalControlEditor(Screen):
 			else:
 				x = (x, x)
 			mylist.append(x)
-		mylist.sort(key=operator.itemgetter(1))
+		mylist.sort(key=itemgetter(1))
 		sel = ord(self.currentLetter) - SPECIAL_CHAR
 		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=mylist, keys = [], selection = sel)
 

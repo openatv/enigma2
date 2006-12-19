@@ -91,7 +91,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/lcd.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
-#include <lib/gdi/picexif.h>
 #include <lib/gdi/picload.h>
 
 extern void runMainloop();
@@ -153,8 +152,6 @@ typedef long time_t;
 %include <lib/base/smartptr.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
-
-%template(eServiceCenterPtr) ePtr<eServiceCenter>;
 %include <lib/service/event.h>
 
 // TODO: embed these...
@@ -222,11 +219,8 @@ typedef long time_t;
 %include <lib/dvb_ci/dvbci_ui.h>
 %include <lib/dvb/db.h>
 %include <lib/python/python.h>
-%include <lib/gdi/picexif.h>
 %include <lib/gdi/picload.h>
 /**************  eptr  **************/
-
-%template(eActionMapPtr) ePtr<eActionMap>;
 
 /**************  signals  **************/
 
