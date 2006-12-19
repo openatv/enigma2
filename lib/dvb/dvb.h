@@ -204,7 +204,7 @@ public:
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
-	static SWIG_VOID(RESULT) getInstance(ePtr<eDVBResourceManager> &SWIG_OUTPUT);
+	static RESULT getInstance(ePtr<eDVBResourceManager> &);
 #ifdef SWIG
 public:
 #endif
