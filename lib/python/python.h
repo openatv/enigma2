@@ -149,18 +149,7 @@ inline void ePyObject::decref()
 #endif  // !SWIG && !SKIP_PART1
 
 #ifndef SKIP_PART2
-
-class TestObj
-{
-DECLARE_REF(TestObj);
-public:
-	TestObj();
-	~TestObj();
-};
-SWIG_TEMPLATE_TYPEDEF(ePtr<TestObj>, TestObjPtr);
-
 #ifndef SWIG
-extern PyObject *New_TestObj();
 #ifdef PYTHON_REFCOUNT_DEBUG
 inline void Impl_Py_DECREF(const char* file, int line, const ePyObject &obj)
 {
@@ -231,11 +220,6 @@ inline ePyObject Impl_PyLong_FromUnsignedLong(const char* file, int line, unsign
 inline ePyObject Impl_PyLong_FromLongLong(const char* file, int line, long long val)
 {
 	return ePyObject(PyLong_FromLongLong(val), file, line);
-}
-
-inline ePyObject Impl_New_TestObj(const char* file, int line)
-{
-	return ePyObject(New_TestObj(), file, line);
 }
 
 inline ePyObject Impl_PyList_GET_ITEM(const char *file, int line, ePyObject list, unsigned int pos)
@@ -319,11 +303,6 @@ inline ePyObject Impl_PyLong_FromLongLong(long long val)
 	return PyLong_FromLongLong(val);
 }
 
-inline ePyObject Impl_New_TestObj()
-{
-	return New_TestObj();
-}
-
 inline ePyObject Impl_PyList_GET_ITEM(ePyObject list, unsigned int pos)
 {
 	return PyList_GET_ITEM(list, pos);
@@ -360,7 +339,6 @@ inline void Impl_DECREF(PyObject *ob)
 #define PyLong_FromLong(val) Impl_PyLong_FromLong(__FILE__, __LINE__, val)
 #define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(__FILE__, __LINE__, val)
 #define PyLong_FromLongLong(val) Impl_PyLong_FromLongLong(__FILE__, __LINE__, val)
-#define NEW_TestObj(...) Impl_New_TestObj(__FILE__, __LINE__)
 #define PyList_GET_ITEM(list, pos) Impl_PyList_GET_ITEM(__FILE__, __LINE__, list, pos)
 #define PyTuple_GET_ITEM(list, pos) Impl_PyTuple_GET_ITEM(__FILE__, __LINE__, list, pos)
 #else
@@ -377,7 +355,6 @@ inline void Impl_DECREF(PyObject *ob)
 #define PyLong_FromLong(val) Impl_PyLong_FromLong(val)
 #define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(val)
 #define PyLong_FromLongLong(val) Impl_PyLong_FromLongLong(val)
-#define NEW_TestObj(...) Impl_New_TestObj()
 #define PyList_GET_ITEM(list, pos) Impl_PyList_GET_ITEM(list, pos)
 #define PyTuple_GET_ITEM(list, pos) Impl_PyTuple_GET_ITEM(list, pos)
 #endif

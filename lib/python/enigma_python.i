@@ -262,11 +262,6 @@ RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 	result = *res;
 	return 0;
 }
-PyObject *New_TestObj()
-{
-    TestObj *result = (TestObj *)new TestObj();
-    return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_TestObj, 1);
-}
 PyObject *New_eServiceReference(const eServiceReference &ref)
 {
     eServiceReference *result = new eServiceReference(ref);
