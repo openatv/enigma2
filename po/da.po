@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 08:30+0100\n"
-"PO-Revision-Date: 2006-11-29 16:53+0100\n"
+"POT-Creation-Date: 2006-12-19 22:29+0100\n"
+"PO-Revision-Date: 2006-12-19 19:37+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
+msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
@@ -89,7 +89,7 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "12V output"
-msgstr ""
+msgstr "12V Output"
 
 msgid "13 V"
 msgstr "13 V"
@@ -415,7 +415,7 @@ msgid "Configuration Mode"
 msgstr "Konfigurations Type"
 
 msgid "Configuring"
-msgstr ""
+msgstr "Konfigurerer"
 
 msgid "Conflicting timer"
 msgstr "Timer konflikt"
@@ -596,16 +596,19 @@ msgstr ""
 "Vil du opdatere din Dreambox?\n"
 "Efter tryk på OK, vent venligst!"
 
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vil du se en klipliste oversigt?"
+
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en oversigt?"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr ""
+msgstr "Færdig - Installerede og opgraderede %d pakker"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr ""
+msgstr "Færdig - Installerede og opgraderede %d pakker med %d fejl"
 
 msgid "Download Plugins"
 msgstr "Downloade Plugins"
@@ -617,7 +620,7 @@ msgid "Downloadable plugins"
 msgstr "Plugins der kan downloades"
 
 msgid "Downloading"
-msgstr ""
+msgstr "Downloader"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Downloader plugin informationer. Vent venligst..."
@@ -687,7 +690,7 @@ msgid "Enter the service pin"
 msgstr "Skriv service koden"
 
 msgid "Error"
-msgstr ""
+msgstr "Fejl"
 
 msgid "Eventview"
 msgstr "Programoversigt"
@@ -711,7 +714,7 @@ msgid "Exit wizard"
 msgstr "Afslut guide"
 
 msgid "Extensions"
-msgstr "Udvidelser"
+msgstr "Ekstra Menu"
 
 msgid "FEC"
 msgstr "FEC"
@@ -797,7 +800,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du optage?"
 
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungarsk"
 
 msgid "IP Address"
 msgstr "IP-Adresse"
@@ -847,10 +850,10 @@ msgid "Input"
 msgstr "Indgang"
 
 msgid "Installing"
-msgstr ""
+msgstr "Indstalerer"
 
 msgid "Installing Software..."
-msgstr ""
+msgstr "Indstalerer Software..."
 
 msgid "Instant Record..."
 msgstr "Hurtig Optagelse..."
@@ -1080,16 +1083,19 @@ msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
+"Ingen data på transponder!\n"
+"(Timeout læsning i PAT)"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen EPG-Data fundet, optagelse startet."
 
 msgid "No free tuner!"
-msgstr ""
+msgstr "Ingen fri tuner!"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
+"Ingen pakker opgraderet endnu. Tjek venligst dit netværk igen og prøv igen."
 
 msgid "No positioner capable frontend found."
 msgstr "Ingen brugbar Motor frontend fundet."
@@ -1159,7 +1165,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "Package list update"
-msgstr ""
+msgstr "Pakke liste opdatering"
 
 msgid "Packet management"
 msgstr "Pakke redigering"
@@ -1270,7 +1276,7 @@ msgid "Predefined transponder"
 msgstr "Predefineret transponder"
 
 msgid "Preparing... Please wait"
-msgstr ""
+msgstr "Forbereder... Vent venligst"
 
 msgid "Press OK to activate the settings."
 msgstr "Tryk OK for at aktivere indstilling."
@@ -1464,11 +1470,15 @@ msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
+"Kanal fejl!\n"
+"(Timeout læsning i PMT)"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
+"Kanal ikke fundet!\n"
+"(SID ikke fundet i PAT)"
 
 msgid "Service scan"
 msgstr "Kanal søgning"
@@ -1546,7 +1556,7 @@ msgid "Socket "
 msgstr "Sokkel "
 
 msgid "Some plugins are not available:\n"
-msgstr ""
+msgstr "Nogle plugins er ikke tilstede:\n"
 
 msgid "Somewhere else"
 msgstr "Andet steds"
@@ -1793,7 +1803,7 @@ msgid "Tune"
 msgstr "Tune"
 
 msgid "Tune failed!"
-msgstr ""
+msgstr "Tuning fejlede!"
 
 msgid "Tuner"
 msgstr "Tuner"
@@ -1844,7 +1854,7 @@ msgid "Unmount failed"
 msgstr "Unmount fejlede"
 
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Opdaterer din Dreambox's software"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Opdatering er udført. Her er resultatet:"
@@ -1856,10 +1866,10 @@ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Opgradering færdig. Vil du Genstarte din DreamBox?"
 
 msgid "Upgrading"
-msgstr ""
+msgstr "Opdaterer"
 
 msgid "Upgrading Dreambox... Please wait"
-msgstr ""
+msgstr "Opdaterer Dreambox... Vent venligst"
 
 msgid "Use DHCP"
 msgstr "Brug (DHCP)"
@@ -2065,6 +2075,8 @@ msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
 "try again."
 msgstr ""
+"Din Dreambox er ikke korrekt tilsluttet internet. Tjek venligst dette og "
+"prøv igen."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -2080,7 +2092,7 @@ msgid "Zap back to service before satfinder?"
 msgstr "Zap tilbage til kanal før sat søger?"
 
 msgid "[alternative edit]"
-msgstr ""
+msgstr "[Alternativ redigering]"
 
 msgid "[bouquet edit]"
 msgstr "[Pakke redigering]"
@@ -2092,19 +2104,19 @@ msgid "[move mode]"
 msgstr "[Flytte type]"
 
 msgid "abort alternatives edit"
-msgstr ""
+msgstr "Afbryd alternativ redigering"
 
 msgid "abort bouquet edit"
-msgstr "Fortryd pakkeredigering"
+msgstr "Fortryd pakke redigering"
 
 msgid "abort favourites edit"
-msgstr "Fortryd favoritredigering"
+msgstr "Fortryd favorit redigering"
 
 msgid "about to start"
 msgstr "Ved at starte"
 
 msgid "add alternatives"
-msgstr ""
+msgstr "Tilføj alternativer"
 
 msgid "add bouquet"
 msgstr "Tilføj pakke..."
@@ -2201,7 +2213,7 @@ msgid "disable move mode"
 msgstr "Slå flytte type fra"
 
 msgid "do not change"
-msgstr ""
+msgstr "Ikke ændre"
 
 msgid "do nothing"
 msgstr "Gør intet"
@@ -2213,7 +2225,7 @@ msgid "done!"
 msgstr "færdig!"
 
 msgid "edit alternatives"
-msgstr ""
+msgstr "Redigere alternativer"
 
 msgid "empty/unknown"
 msgstr "Tom/ukendt"
@@ -2225,13 +2237,13 @@ msgid "enable bouquet edit"
 msgstr "Åbne pakke redigering"
 
 msgid "enable favourite edit"
-msgstr "Åbne favoritredigering"
+msgstr "Åbne favorit redigering"
 
 msgid "enable move mode"
 msgstr "Åbne flytte type"
 
 msgid "end alternatives edit"
-msgstr ""
+msgstr "Afslut alternativ redigering"
 
 msgid "end bouquet edit"
 msgstr "Afslut pakke redigering"
@@ -2317,7 +2329,7 @@ msgid "minutes and"
 msgstr "minutter og"
 
 msgid "multinorm"
-msgstr ""
+msgstr "Multinorm"
 
 msgid "never"
 msgstr "Aldrig"
@@ -2404,7 +2416,7 @@ msgid "remove after this position"
 msgstr "Fjerne efter denne position"
 
 msgid "remove all alternatives"
-msgstr ""
+msgstr "Fjerne alle alternativer"
 
 msgid "remove all new found flags"
 msgstr "Fjerne alle nye fundne flag"
@@ -2488,7 +2500,7 @@ msgid "show EPG..."
 msgstr "Vis EPG..."
 
 msgid "show alternatives"
-msgstr ""
+msgstr "Vis alternativer"
 
 msgid "show event details"
 msgstr "Vis program detaljer"
@@ -2578,6 +2590,8 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
+"Din Dreambox kan være ubrugelig nu. Se venligst i Manualen for assistance "
+"før du rebooter din dreambox."
 
 msgid "zap"
 msgstr "zap"
@@ -2599,9 +2613,6 @@ msgstr "zappet"
 
 #~ msgid "Add service"
 #~ msgstr "Tilføj kanal"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vil du se en klipliste oversigt?"
 
 #~ msgid "Remove service"
 #~ msgstr "Fjerne kanal"
