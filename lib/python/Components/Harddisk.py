@@ -1,4 +1,4 @@
-from os import system
+from os import system, listdir, statvfs, popen
 
 from Tools.Directories import SCOPE_HDD, resolveFilename
 
@@ -82,7 +82,7 @@ class Harddisk:
 			if line.startswith(self.devidex):
 				parts = line.strip().split(" ")
 				try:
-					stat = os.statvfs(parts[1])
+					stat = statvfs(parts[1])
 				except OSError:
 					continue
 				free = stat.f_bfree/1000 * stat.f_bsize/1000
@@ -92,7 +92,7 @@ class Harddisk:
 
 	def numPartitions(self):
 		try:
-			idedir = os.listdir(self.devidex)
+			idedir = listdir(self.devidex)
 		except OSError:
 			return -1
 		numPart = -1
@@ -110,7 +110,7 @@ class Harddisk:
 
 	def createPartition(self):
 		cmd = "/sbin/sfdisk -f " + self.devidex + "disc"
-		sfdisk = os.popen(cmd, "w")
+		sfdisk = popen(cmd, "w")
 		sfdisk.write("0,\n;\n;\n;\ny\n")
 		sfdisk.close()
 		return 0
@@ -168,7 +168,7 @@ class Partition:
 		self.description = description
 
 	def stat(self):
-		return os.statvfs(self.mountpoint)
+		return statvfs(self.mountpoint)
 
 	def free(self):
 		try:
