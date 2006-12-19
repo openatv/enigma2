@@ -75,8 +75,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/epng.h>
 #include <lib/dvb/db.h>
-#include <lib/dvb/dvb.h>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/volume.h>
 #include <lib/dvb/sec.h>
@@ -190,8 +190,8 @@ typedef long time_t;
 %include <lib/dvb/epgcache.h>
 %include <lib/dvb/frontendparms.h>
 %include <lib/dvb/dvbtime.h>
-%include <lib/dvb/dvb.h>
 %include <lib/dvb/idvb.h>
+%include <lib/dvb/dvb.h>
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
 %include <lib/driver/avswitch.h>
