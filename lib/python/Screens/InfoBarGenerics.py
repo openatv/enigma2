@@ -596,6 +596,7 @@ class InfoBarSeek:
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, "InfobarSeekActions", 
 			{
+				"playpauseService": (self.playpauseService, _("pause")),
 				"pauseService": (self.pauseService, _("pause")),
 				"unPauseService": (self.unPauseService, _("continue")),
 				
@@ -692,6 +693,12 @@ class InfoBarSeek:
 		self.checkSkipShowHideLock()
 
 		return True
+	
+	def playpauseService(self):
+		if self.seekstate != self.SEEK_STATE_PLAY:
+			self.unPauseService()
+		else:
+			self.pauseService()
 
 	def pauseService(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
