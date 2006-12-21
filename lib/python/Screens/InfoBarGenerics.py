@@ -39,7 +39,7 @@ from Tools import Notifications
 from Tools.Directories import SCOPE_HDD, resolveFilename
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
-	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation
+	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation, eEPGCache
 
 from time import time
 from os import stat as os_stat
