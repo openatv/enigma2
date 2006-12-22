@@ -15,6 +15,7 @@ from Components.Input import Input
 from Components.ParentalControl import parentalControl
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
+from Screens.ServiceInfo import ServiceInfo
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from re import *
@@ -81,6 +82,8 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
+		if not (len(current_sel_path) or current_sel_flags & eServiceReference.isDirectory):
+			menu.append((_("show transponder info"), self.showServiceInformations))
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
@@ -146,7 +149,10 @@ class ChannelContextMenu(Screen):
 
 	def cancelClick(self):
 		self.close(False)
-		
+
+	def showServiceInformations(self):
+		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+
 	def showBouquetInputBox(self):
 		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, type=Input.TEXT)
 
