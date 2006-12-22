@@ -1321,7 +1321,7 @@ class InfoBarInstantRecord:
 	def inputCallback(self, value):
 		if value is not None:
 			print "stopping recording after", int(value), "minutes."
-			self.recording[self.selectedEntry].end = time.time() + 60 * int(value)
+			self.recording[self.selectedEntry].end = time() + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def instantRecord(self):
