@@ -30,8 +30,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		elif valueType == TYPE_VALUE_HEX_DEC:
 			b = ("0x%0" + str(param) + "x (%dd)") % (b, b)
 		else:
-			b = str(b)		
-	
+			b = str(b)
 	
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 220, 0, 350, 25, 0, RT_HALIGN_LEFT, b))
 
@@ -102,9 +101,15 @@ class ServiceInfo(Screen):
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 			else:
 				name = "N/A"
-			Labels = ( ("Name",  name, TYPE_TEXT),
+			aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
+			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+				aspect = "4:3"
+			else:
+				aspect = "16:9"
+			Labels = ( ("Name", name, TYPE_TEXT),
 					   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-					   ("Videoformat", self.getServiceInfoValue(iServiceInformation.sAspect), TYPE_TEXT),
+					   ("Videoformat", aspect, TYPE_TEXT),
+					   ("Videosize", "%dx%d" %(self.getServiceInfoValue(iServiceInformation.sVideoWidth), self.getServiceInfoValue(iServiceInformation.sVideoHeight)), TYPE_TEXT),
 					   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
 			self.fillList(Labels)
 		else:
@@ -192,7 +197,7 @@ class ServiceInfo(Screen):
 					   ("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
 					   ("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
 					   ("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT),
-				   		)
+						)
 		
 	def fillList(self, Labels):
 		tlist = [ ]
