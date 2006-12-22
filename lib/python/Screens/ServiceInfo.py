@@ -109,23 +109,23 @@ class ServiceInfo(Screen):
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
-				conv = { "type" 			: _("Transponder Type:"),
-						 "frequency"		: _("Frequency:"),
-						 "symbolrate"		: _("Symbolrate:"),
-						 "orbital position" : _("Orbital Position:"),
-						 "inversion"		: _("Inversion:"),
-						 "fec inner"		: _("FEC:"),
-						 "modulation"		: _("Modulation:"),
-						 "polarization"		: _("Polarization:"),
-						 "roll off"			: _("Rolloff:"),
-						 "system"			: _("System:"),
-						 "bandwidth"		: _("Bandwidth:"),
-						 "code rate lp"		: _("Coderate LP:"),
-						 "code rate hp"		: _("Coderate HP:"),
-						 "constellation"	: _("Constellation:"),
-						 "transmission mode": _("Transmission Mode:"),
-						 "guard interval" 	: _("Guard Interval:"),
-						 "hierarchy"		: _("Hierarchy Information:") }
+				conv = { "type" 			: _("Transponder Type"),
+						 "frequency"		: _("Frequency"),
+						 "symbolrate"		: _("Symbolrate"),
+						 "orbital position" : _("Orbital Position"),
+						 "inversion"		: _("Inversion"),
+						 "fec inner"		: _("FEC"),
+						 "modulation"		: _("Modulation"),
+						 "polarization"		: _("Polarization"),
+						 "roll off"			: _("Rolloff"),
+						 "system"			: _("System"),
+						 "bandwidth"		: _("Bandwidth"),
+						 "code rate lp"		: _("Coderate LP"),
+						 "code rate hp"		: _("Coderate HP"),
+						 "constellation"	: _("Constellation"),
+						 "transmission mode": _("Transmission Mode"),
+						 "guard interval" 	: _("Guard Interval"),
+						 "hierarchy"		: _("Hierarchy Information") }
 				Labels = [ ]
 				for i in self.transponder_info.keys():
 					Labels.append( (conv[i], self.transponder_info[i], TYPE_TEXT) )
