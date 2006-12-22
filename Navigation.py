@@ -1,4 +1,4 @@
-from enigma import eServiceCenter, eServiceReference, pNavigation
+from enigma import eServiceCenter, eServiceReference, pNavigation, getBestPlayableServiceReference
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 import RecordTimer
