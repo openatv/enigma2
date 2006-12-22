@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 08:30+0100\n"
-"PO-Revision-Date: 2006-12-09 17:48+0100\n"
+"POT-Creation-Date: 2006-12-22 03:10+0100\n"
+"PO-Revision-Date: 2006-12-21 21:11+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "12V output"
-msgstr ""
+msgstr "12V utgång"
 
 msgid "13 V"
 msgstr "13 V"
@@ -418,7 +418,7 @@ msgid "Configuration Mode"
 msgstr "Inställningar"
 
 msgid "Configuring"
-msgstr ""
+msgstr "Konfigurering"
 
 msgid "Conflicting timer"
 msgstr "Timerkonflikt"
@@ -599,16 +599,19 @@ msgstr ""
 "Vill du uppdatera din Dreambox?\n"
 "Tryck OK och vänligen vänta!"
 
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Vill du visa cutlist guiden?"
+
 msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr ""
+msgstr "Klar - Installerat eller uppgraderat %d paket"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr ""
+msgstr "klar - Installerat eller uppgraderat %d paket med %d fel"
 
 msgid "Download Plugins"
 msgstr "Ladda ner Plugins"
@@ -620,7 +623,7 @@ msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
 
 msgid "Downloading"
-msgstr ""
+msgstr "Laddar ner"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laddar ner information om pluginet. Var vänlig vänta..."
@@ -690,7 +693,7 @@ msgid "Enter the service pin"
 msgstr "Ange service PIN"
 
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 msgid "Eventview"
 msgstr "Programöversikt"
@@ -800,7 +803,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungerska"
 
 msgid "IP Address"
 msgstr "IP Adress"
@@ -850,10 +853,10 @@ msgid "Input"
 msgstr "Ingång"
 
 msgid "Installing"
-msgstr ""
+msgstr "Installera"
 
 msgid "Installing Software..."
-msgstr ""
+msgstr "Installera Mjukvara..."
 
 msgid "Instant Record..."
 msgstr "Direkt inspelning..."
@@ -1081,16 +1084,18 @@ msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
+"Ingen data på transponder!\n"
+"(Timeout vid läsning av PAT)"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
 
 msgid "No free tuner!"
-msgstr ""
+msgstr "Ingen ledig tuner!"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
+msgstr "Inag paket uppgraderade. Undersök ditt nätverk och prova igen."
 
 msgid "No positioner capable frontend found."
 msgstr "Ingen positioner kapabel frontend funnet."
@@ -1160,7 +1165,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "Package list update"
-msgstr ""
+msgstr "Paketlista uppdatering"
 
 msgid "Packet management"
 msgstr "Pakethantering"
@@ -1272,7 +1277,7 @@ msgid "Predefined transponder"
 msgstr "Fördefinerad transponder"
 
 msgid "Preparing... Please wait"
-msgstr ""
+msgstr "Förbereder... Vänligen vänta"
 
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för aktivera inställningarna."
@@ -1468,11 +1473,15 @@ msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
+"Service ogiltig!\n"
+"(Timeout vid läsning av PMT)"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
+"Service inte funnen!\n"
+"(SID inte funnen i PAT)"
 
 msgid "Service scan"
 msgstr "Kanalsökning"
@@ -1796,7 +1805,7 @@ msgid "Tune"
 msgstr "Tune"
 
 msgid "Tune failed!"
-msgstr ""
+msgstr "Tuning misslyckades!"
 
 msgid "Tuner"
 msgstr "Tuner"
@@ -1847,7 +1856,7 @@ msgid "Unmount failed"
 msgstr "Avmontering misslyckades"
 
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Uppdaterar din mottagares mjukvara"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Uppdatering utförd. Här är resultatet:"
@@ -1859,10 +1868,10 @@ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Uppgradering klar. Vill du starta om din Dreambox?"
 
 msgid "Upgrading"
-msgstr ""
+msgstr "Uppgradering"
 
 msgid "Upgrading Dreambox... Please wait"
-msgstr ""
+msgstr "Uppgraderar Dreambox... Vänligen vänta"
 
 msgid "Use DHCP"
 msgstr "Använd DHCP"
@@ -2071,6 +2080,8 @@ msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
 "try again."
 msgstr ""
+"Din dreambox är inte ansluten till Internet på korrekt sätt. Åtgärda och "
+"försök igen."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -2086,7 +2097,7 @@ msgid "Zap back to service before satfinder?"
 msgstr "Zap bakåt till kanal före satfinder?"
 
 msgid "[alternative edit]"
-msgstr ""
+msgstr "[ändra alternativ]"
 
 msgid "[bouquet edit]"
 msgstr "[bouquet editor]"
@@ -2098,7 +2109,7 @@ msgid "[move mode]"
 msgstr "[flytt läge]"
 
 msgid "abort alternatives edit"
-msgstr ""
+msgstr "avbryt ändra alternativ"
 
 msgid "abort bouquet edit"
 msgstr "avbryt editera bouquet"
@@ -2110,7 +2121,7 @@ msgid "about to start"
 msgstr "håller på startar"
 
 msgid "add alternatives"
-msgstr ""
+msgstr "lägg till alternativ"
 
 msgid "add bouquet"
 msgstr "lägg till bouquet"
@@ -2207,7 +2218,7 @@ msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
 msgid "do not change"
-msgstr ""
+msgstr "ändra inte"
 
 msgid "do nothing"
 msgstr "gör inget"
@@ -2219,7 +2230,7 @@ msgid "done!"
 msgstr "klar!"
 
 msgid "edit alternatives"
-msgstr ""
+msgstr "ändra alternativ"
 
 msgid "empty/unknown"
 msgstr "tom/okänd"
@@ -2237,7 +2248,7 @@ msgid "enable move mode"
 msgstr "aktivera flyttläge"
 
 msgid "end alternatives edit"
-msgstr ""
+msgstr "avsluta ändra alternativ"
 
 msgid "end bouquet edit"
 msgstr "avsluta bouquet editor"
@@ -2323,7 +2334,7 @@ msgid "minutes and"
 msgstr "minuter och"
 
 msgid "multinorm"
-msgstr ""
+msgstr "multinorm"
 
 msgid "never"
 msgstr "aldrig"
@@ -2410,7 +2421,7 @@ msgid "remove after this position"
 msgstr "ta bort efter denna position"
 
 msgid "remove all alternatives"
-msgstr ""
+msgstr "ta bort alla alternativ"
 
 msgid "remove all new found flags"
 msgstr "ta bort alla ny hittad flagga"
@@ -2494,7 +2505,7 @@ msgid "show EPG..."
 msgstr "visa EPG..."
 
 msgid "show alternatives"
-msgstr ""
+msgstr "visa alternativ"
 
 msgid "show event details"
 msgstr "visa program detaljer"
@@ -2584,6 +2595,8 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
+"din dreambox kanske inte fungerar längre. Vänligen läs manualen hur du får "
+"hjälp innan du startar om din dreambox."
 
 msgid "zap"
 msgstr "zap"
@@ -2641,9 +2654,6 @@ msgstr "zapped"
 
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "Vill du verkligen ta bort den här inspelningen?"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa cutlist guiden?"
 
 #~ msgid "Dreambox to standby. Do that now?"
 #~ msgstr "Dreambox till viloläge. Utföra det nu?"
