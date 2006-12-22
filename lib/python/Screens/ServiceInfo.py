@@ -106,11 +106,19 @@ class ServiceInfo(Screen):
 				aspect = "4:3"
 			else:
 				aspect = "16:9"
-			Labels = ( ("Name", name, TYPE_TEXT),
-					   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-					   ("Videoformat", aspect, TYPE_TEXT),
-					   ("Videosize", "%dx%d" %(self.getServiceInfoValue(iServiceInformation.sVideoWidth), self.getServiceInfoValue(iServiceInformation.sVideoHeight)), TYPE_TEXT),
-					   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
+			width = self.info.getInfo(iServiceInformation.sVideoWidth)
+			height = self.info.getInfo(iServiceInformation.sVideoHeight)
+			if width != -1 and height != -1:
+				Labels = ( ("Name", name, TYPE_TEXT),
+						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+						   ("Videoformat", aspect, TYPE_TEXT),
+						   ("Videosize", "%dx%d" %(width, height), TYPE_TEXT),
+						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
+			else:
+				Labels = ( ("Name", name, TYPE_TEXT),
+						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+						   ("Videoformat", aspect, TYPE_TEXT),
+						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
