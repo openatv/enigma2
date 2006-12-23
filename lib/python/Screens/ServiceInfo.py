@@ -75,6 +75,9 @@ class ServiceInfo(Screen):
 			self["blue"] = Label()
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
+			# info is a iStaticServiceInformation, not a iServiceInformation
+			self.info = None
+			self.feinfo = None
 		else:
 			self.type = TYPE_SERVICE_INFO
 			self["red"] = Label(_("Serviceinfo"))
@@ -106,8 +109,8 @@ class ServiceInfo(Screen):
 				aspect = "4:3"
 			else:
 				aspect = "16:9"
-			width = self.info.getInfo(iServiceInformation.sVideoWidth)
-			height = self.info.getInfo(iServiceInformation.sVideoHeight)
+			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
+			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
 			if width != -1 and height != -1:
 				Labels = ( ("Name", name, TYPE_TEXT),
 						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
