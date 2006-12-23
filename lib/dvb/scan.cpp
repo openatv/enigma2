@@ -120,16 +120,7 @@ RESULT eDVBScan::nextChannel()
 		return -ENOTSUP;
 	}
 
-	int fetype;
-	fe->getFrontendType(fetype);
-	if ( fetype == iDVBFrontend::feSatellite)
-	{
-		eDVBFrontendParametersSatellite p;
-		m_ch_current->getDVBS(p);
-		m_chid_current = eDVBChannelID(p.orbital_position << 16, -1, -1);
-	}
-	else
-		m_chid_current = eDVBChannelID();
+	m_chid_current = eDVBChannelID();
 
 	m_channel_state = iDVBChannel::state_idle;
 	if (fe->tune(*m_ch_current))
@@ -454,18 +445,18 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersSatellite sat;
 						sat.set(d);
 						feparm->setDVBS(sat);
-						unsigned long hash=0;
-						feparm->getHash(hash);
-						
-						eDVBNamespace ns = buildNamespace(onid, tsid, hash);
-						
-						if ( m_chid_current.dvbnamespace.get() != -1 &&
-							((ns.get() ^ m_chid_current.dvbnamespace.get()) & 0xFFFF0000))
+
+						eDVBFrontendParametersSatellite p;
+						m_ch_current->getDVBS(p);
+
+						if ( p.orbital_position != sat.orbital_position )
 							SCAN_eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
+							unsigned long hash=0;
+							feparm->getHash(hash);
 							addChannelToScan(
-									eDVBChannelID(ns, tsid, onid),
+									eDVBChannelID(buildNamespace(onid, tsid, hash), tsid, onid),
 									feparm);
 						}
 						break;
@@ -521,27 +512,25 @@ void eDVBScan::channelDone()
 		   These are the reasons for adding the transponder
 		   here, and not before.
 		*/
-
+	
 	if (!m_chid_current)
 		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
-	{
 		addKnownGoodChannel(m_chid_current, m_ch_current);
 	
-		m_ch_scanned.push_back(m_ch_current);
-
-		for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
+	m_ch_scanned.push_back(m_ch_current);
+	
+	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
+	{
+		if (sameChannel(*i, m_ch_current))
 		{
-			if (sameChannel(*i, m_ch_current))
-			{
-				eDebug("remove dupe 2");
-				m_ch_toScan.erase(i++);
-				continue;
-			}
-			++i;
+			eDebug("remove dupe 2");
+			m_ch_toScan.erase(i++);
+			continue;
 		}
+		++i;
 	}
-
+	
 	nextChannel();
 }
 
