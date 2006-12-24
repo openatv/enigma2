@@ -763,7 +763,7 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 		bool remove=true;
 		int system;
 		it->second.m_frontendParameters->getSystem(system);
-		if ( orbpos != 0xFFFFFFFF && system == iDVBFrontend::feSatellite )
+		if ( system == iDVBFrontend::feSatellite )
 		{
 			eDVBFrontendParametersSatellite sat;
 			it->second.m_frontendParameters->getDVBS(sat);
