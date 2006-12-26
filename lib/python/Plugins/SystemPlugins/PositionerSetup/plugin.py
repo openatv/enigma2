@@ -373,6 +373,7 @@ class Diseqc:
 			print "diseqc command:",
 			print string
 			cmd.setCommandString(string)
+			self.frontend.setTone(iDVBFrontend.toneOff)
 			self.frontend.sendDiseqc(cmd)
 			if string == 'e03160': #positioner stop
 				sleep(0.05)
