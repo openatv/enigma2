@@ -374,6 +374,7 @@ class Diseqc:
 			print string
 			cmd.setCommandString(string)
 			self.frontend.setTone(iDVBFrontend.toneOff)
+			sleep(0.015) # wait 15msec after disable tone
 			self.frontend.sendDiseqc(cmd)
 			if string == 'e03160': #positioner stop
 				sleep(0.05)
