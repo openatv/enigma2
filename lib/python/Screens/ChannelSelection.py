@@ -105,7 +105,7 @@ class ChannelContextMenu(Screen):
 						menu.append((_("remove all new found flags"), self.removeAllNewFoundFlags))
 				if inBouquet:
 					menu.append((_("remove entry"), self.removeCurrentService))
-				if current_root is not None and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					menu.append((_("remove new found flag"), self.removeNewFoundFlag))
 			else:
 					menu.append((_("add bouquet"), self.showBouquetInputBox))
@@ -115,7 +115,7 @@ class ChannelContextMenu(Screen):
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
 					menu.append((_("enable move mode"), self.toggleMoveMode))
-					if not inBouquetRootList and not current_root.flags & eServiceReference.isGroup:
+					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						menu.append((_("add marker"), self.showMarkerInputBox))
 						if haveBouquets:
 							menu.append((_("enable bouquet edit"), self.bouquetMarkStart))
@@ -351,7 +351,8 @@ class ChannelSelectionEdit:
 
 	def addAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
-		cur_root = ServiceReference(self.getRoot())
+		root = self.getRoot()
+		cur_root = root and ServiceReference(root)
 		mutableBouquet = cur_root.list().startEdit()
 		if mutableBouquet:
 			name = cur_service.getServiceName()
@@ -407,8 +408,8 @@ class ChannelSelectionEdit:
 					print "get mutable list for new created bouquet failed"
 				# do some voodoo to check if current_root is equal to bouquet_root
 				cur_root = self.getRoot();
-				str1 = cur_root.toString()
-				pos1 = str1.find("FROM BOUQUET")
+				str1 = cur_root and cur_root.toString()
+				pos1 = str1 and str1.find("FROM BOUQUET") or -1
 				pos2 = self.bouquet_rootstr.find("FROM BOUQUET")
 				if pos1 != -1 and pos2 != -1 and str1[pos1:] == self.bouquet_rootstr[pos2:]:
 					self.servicelist.addService(new_bouquet_ref)
@@ -426,11 +427,12 @@ class ChannelSelectionEdit:
 
 	def removeAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
-		cur_root = ServiceReference(self.getRoot())
+		root = self.getRoot()
+		cur_root = root and ServiceReference(root)
 		list = cur_service.list()
 		first_in_alternative = list and list.getNext()
 		if first_in_alternative:
-			edit_root = cur_root.list().startEdit()
+			edit_root = cur_root and cur_root.list().startEdit()
 			if edit_root:
 				if not edit_root.addService(first_in_alternative, cur_service.ref):
 					self.servicelist.addService(first_in_alternative, True)
@@ -545,7 +547,7 @@ class ChannelSelectionEdit:
 				mutableList.flushChanges()
 				# do some voodoo to check if current_root is equal to dest
 				cur_root = self.getRoot();
-				str1 = cur_root.toString()
+				str1 = cur_root and cur_root.toString() or -1
 				str2 = dest.toString()
 				pos1 = str1.find("FROM BOUQUET")
 				pos2 = str2.find("FROM BOUQUET")
@@ -562,7 +564,8 @@ class ChannelSelectionEdit:
 			self.mutableList = None
 			self.setTitle(self.saved_title)
 			self.saved_title = None
-			if self.getRoot() == self.bouquet_root:
+			cur_root = self.getRoot()
+			if cur_root and cur_root == self.bouquet_root:
 				self.bouquetNumOffsetCache = { }
 		else:
 			self.mutableList = self.getMutableList()
@@ -1117,7 +1120,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
-			if not (self.getRoot().flags & eServiceReference.isGroup):
+			root = self.getRoot()
+			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap()
 				self.close(ref)
 
@@ -1168,7 +1172,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.saveRoot()
 		plen = len(path)
 		root = path[plen-1]
-		if self.getRoot() != root:
+		cur_root = self.getRoot()
+		if cur_root and cur_root != root:
 			self.setRoot(root)
 		self.session.nav.playService(ref)
 		self.setCurrentSelection(ref)
@@ -1364,7 +1369,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
 				self.doMark()
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
-			if not (self.getRoot().flags & eServiceReference.isGroup):
+			cur_root = self.getRoot()
+			if not cur_root or not (cur_root.flags & eServiceReference.isGroup):
 				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 				if playingref is None or playingref != ref:
 					self.session.nav.playService(ref)
