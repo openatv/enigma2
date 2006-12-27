@@ -466,6 +466,7 @@ int eTSMPEGDecoder::setState()
 	{
 		m_video->stop();
 		m_video=0;
+		m_video_event_conn=0;
 	}
 	if (m_changed & changePCR)
 	{
@@ -522,8 +523,9 @@ int eTSMPEGDecoder::setState()
 		{
 			eDebug("STOP");
 			m_video->stop();
+			m_video = 0;
+			m_video_event_conn = 0;
 		}
-		m_video = 0;
 		if ((m_vpid >= 0) && (m_vpid < 0x1FFF))
 		{
 			eDebug("new video");
