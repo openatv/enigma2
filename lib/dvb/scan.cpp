@@ -444,12 +444,22 @@ void eDVBScan::channelDone()
 						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 						eDVBFrontendParametersSatellite sat;
 						sat.set(d);
-						feparm->setDVBS(sat);
 
 						eDVBFrontendParametersSatellite p;
 						m_ch_current->getDVBS(p);
 
-						if ( p.orbital_position != sat.orbital_position )
+						if ( abs(p.orbital_position - sat.orbital_position) < 5 )
+							sat.orbital_position = p.orbital_position;
+
+						if ( abs(abs(3600 - p.orbital_position) - sat.orbital_position) < 5 )
+						{
+							eDebug("found transponder with incorrect west/east flag ... correct this");
+							sat.orbital_position = p.orbital_position;
+						}
+
+						feparm->setDVBS(sat);
+
+						if ( p.orbital_position != sat.orbital_position)
 							SCAN_eDebug("dropping this transponder, it's on another satellite.");
 						else
 						{
