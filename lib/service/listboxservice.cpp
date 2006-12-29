@@ -195,16 +195,18 @@ int eListboxServiceContent::lookupService(const eServiceReference &ref)
 
 void eListboxServiceContent::setVisualMode(int mode)
 {
+	for (int i=0; i < celElements; ++i)
+	{
+		m_element_position[i] = eRect();
+		m_element_font[i] = 0;
+	}
+
 	m_visual_mode = mode;
-	
+
 	if (m_visual_mode == visModeSimple)
 	{
 		m_element_position[celServiceName] = eRect(ePoint(0, 0), m_itemsize);
 		m_element_font[celServiceName] = new gFont("Regular", 23);
-		m_element_position[celServiceNumber] = eRect();
-		m_element_font[celServiceNumber] = 0;
-		m_element_position[celServiceInfo] = eRect();
-		m_element_font[celServiceInfo] = 0;
 	}
 }
 
@@ -411,7 +413,8 @@ int eListboxServiceContent::size()
 void eListboxServiceContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
-	setVisualMode(m_visual_mode);
+	if (m_visual_mode == visModeSimple)
+		setVisualMode(m_visual_mode);
 }
 
 void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
