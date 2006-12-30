@@ -1108,8 +1108,8 @@ RESULT eDVBServicePlay::start()
 		   to start recording from the data demux. */
 	if (m_is_pvr)
 		m_cue = new eCueSheet();
-
-	m_event(this, evStart);
+	else
+		m_event(this, evStart);
 
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
@@ -1131,7 +1131,10 @@ RESULT eDVBServicePlay::start()
 	}
 
 	if (m_is_pvr)
+	{
 		loadCuesheet();
+		m_event(this, evStart);
+	}
 
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
