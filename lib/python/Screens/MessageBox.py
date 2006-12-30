@@ -67,15 +67,16 @@ class MessageBox(Screen):
 		self.timer.start(1000)
 
 	def timerTick(self):
-		self.timeout -= 1
-		if self.origTitle is None:
-			self.origTitle = self.instance.getTitle()
-		self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
-		if self.timeout == 0:
-			self.timer.stop()
-			self.timerRunning = False
-			self.timeoutCallback()
-			
+		if self.execing:
+			self.timeout -= 1
+			if self.origTitle is None:
+				self.origTitle = self.instance.getTitle()
+			self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
+			if self.timeout == 0:
+				self.timer.stop()
+				self.timerRunning = False
+				self.timeoutCallback()
+
 	def timeoutCallback(self):
 		print "Timeout!"
 		self.ok()

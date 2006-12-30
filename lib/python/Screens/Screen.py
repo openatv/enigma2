@@ -30,29 +30,36 @@ class Screen(dict, HTMLSkin, GUISkin):
 		# we need the list in every screen. how ironic.
 		self.helpList = [ ]
 		
+		self.close_on_next_exec = None
+
 	def execBegin(self):
 		self.active_components = [ ]
+		if self.close_on_next_exec is not None:
+			tmp = self.close_on_next_exec
+			self.close_on_next_exec = None
+			self.execing = True
+			self.close(tmp)
+		else:
+			single = self.onFirstExecBegin
+			self.onFirstExecBegin = []
+			for x in self.onExecBegin + single:
+				x()
+				if self.session.current_dialog != self:
+					return
 
-		single = self.onFirstExecBegin
-		self.onFirstExecBegin = []
-		for x in self.onExecBegin + single:
-			x()
-			if self.session.current_dialog != self:
-				return
+#			assert self.session == None, "a screen can only exec once per time"
+#			self.session = session
 
-#		assert self.session == None, "a screen can only exec once per time"
-#		self.session = session
+			for val in self.values() + self.renderer:
+				val.execBegin()
+				if self.session.current_dialog != self:
+					return
+				self.active_components.append(val)
 
-		for val in self.values() + self.renderer:
-			val.execBegin()
-			if self.session.current_dialog != self:
-				return
-			self.active_components.append(val)
-
-		self.execing = True
+			self.execing = True
 	
-		for x in self.onShown:
-			x()
+			for x in self.onShown:
+				x()
 	
 	def execEnd(self):
 #		for (name, val) in self.items():
@@ -94,7 +101,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.__dict__.clear()
 	
 	def close(self, *retval):
-		self.session.close(self, *retval)
+		if not self.execing:
+			self.close_on_next_exec = retval
+		else:
+			self.session.close(self, *retval)
 
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)

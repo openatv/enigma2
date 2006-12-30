@@ -544,7 +544,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		}
 	} else
 	{
-		serviceEvent(eventTuneFailed);
+		serviceEvent(eventNoResources);
 		return res;
 	}
 

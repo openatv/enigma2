@@ -3,7 +3,6 @@ notifications = [ ]
 
 notificationAdded = [ ]
 
-
 # notifications which are currently on screen (and might be closed by similiar notifications)
 current_notifications = [ ]
 
@@ -37,9 +36,10 @@ def RemovePopup(id):
 			print "(found in current notifications)"
 			x[1].close()
 
+from Screens.MessageBox import MessageBox
+
 def AddPopup(text, type, timeout, id = None):
 	if id is not None:
 		RemovePopup(id)
-	from Screens.MessageBox import MessageBox
 	print "AddPopup, id =", id
 	AddNotificationWithID(id, MessageBox, text = text, type = type, timeout = timeout, close_on_any_key = True)

@@ -1049,6 +1049,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		}
 		break;
 	}
+	case eDVBServicePMTHandler::eventNoResources:
 	case eDVBServicePMTHandler::eventNoPAT:
 	case eDVBServicePMTHandler::eventNoPATEntry:
 	case eDVBServicePMTHandler::eventNoPMT:
@@ -1108,6 +1109,8 @@ RESULT eDVBServicePlay::start()
 	if (m_is_pvr)
 		m_cue = new eCueSheet();
 
+	m_event(this, evStart);
+
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
 	r = m_service_handler.tune(service, m_is_pvr, m_cue);
@@ -1130,7 +1133,6 @@ RESULT eDVBServicePlay::start()
 	if (m_is_pvr)
 		loadCuesheet();
 
-	m_event(this, evStart);
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
 }
