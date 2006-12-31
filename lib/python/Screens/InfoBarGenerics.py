@@ -860,15 +860,15 @@ class InfoBarSeek:
 from Screens.PVRState import PVRState, TimeshiftState
 
 class InfoBarPVRState:
-	def __init__(self, screen=PVRState, show_always=False):
-		self.show_always = show_always
+	def __init__(self, screen=PVRState, show_always_in_timeshift=False):
+		self.show_always_in_timeshift = show_always_in_timeshift
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
 		self.onShow.append(self.__mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
-	
+
 	def __mayShow(self):
-		if self.execing and (self.show_always or self.seekstate != self.SEEK_STATE_PLAY):
+		if self.execing and ((self.show_always_in_timeshift and self.timeshift_enabled) or self.seekstate != self.SEEK_STATE_PLAY):
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
@@ -878,7 +878,7 @@ class InfoBarPVRState:
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
-		InfoBarPVRState.__init__(self, screen=TimeshiftState, show_always=True)
+		InfoBarPVRState.__init__(self, screen=TimeshiftState, show_always_in_timeshift=True)
 
 class InfoBarShowMovies:
 
