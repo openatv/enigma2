@@ -29,6 +29,7 @@ eBackgroundFileEraser::~eBackgroundFileEraser()
 	messages.send(Message::quit);
 	if (instance==this)
 		instance=0;
+	kill();  // i dont understand why this is needed .. in ~eThread::eThread is a kill() to..
 }
 
 void eBackgroundFileEraser::thread()
