@@ -1870,7 +1870,7 @@ RESULT eDVBServicePlay::stopTimeshift()
 	
 	close(m_timeshift_fd);
 	eDebug("remove timeshift file");
-	remove(m_timeshift_file.c_str());
+	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file.c_str());
 	
 	return 0;
 }
@@ -1985,6 +1985,11 @@ void eDVBServicePlay::updateTimeshiftPids()
 			i != program.audioStreams.end(); ++i)
 				pids_to_record.insert(i->pid);
 
+		for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
+			i(program.subtitleStreams.begin());
+			i != program.subtitleStreams.end(); ++i)
+				pids_to_record.insert(i->pid);
+
 		std::set<int> new_pids, obsolete_pids;
 		
 		std::set_difference(pids_to_record.begin(), pids_to_record.end(), 
@@ -2019,6 +2024,7 @@ void eDVBServicePlay::switchToLive()
 	m_new_dvb_subtitle_page_connection = 0;
 	m_new_subtitle_page_connection = 0;
 	m_radiotext_updated_connection = 0;
+	m_video_event_connection = 0;
 
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
@@ -2042,10 +2048,9 @@ void eDVBServicePlay::switchToTimeshift()
 	m_new_subtitle_page_connection = 0;
 	m_new_dvb_subtitle_page_connection = 0;
 	m_radiotext_updated_connection = 0;
+	m_video_event_connection = 0;
 
 	m_timeshift_active = 1;
-
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
 
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
@@ -2053,6 +2058,8 @@ void eDVBServicePlay::switchToTimeshift()
 	m_cue = new eCueSheet();
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
 	updateDecoder(); /* mainly to switch off PCR */
+
+	m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
 void eDVBServicePlay::updateDecoder()
@@ -2705,7 +2712,6 @@ void eDVBServicePlay::setPCMDelay(int delay)
 
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 {
-	eDebug("!!!!!!!!!! Video Event type %d, aspect %d, %dx%d", event.type, event.aspect, event.width, event.height);
 	memcpy(&m_videoEventData, &event, sizeof(iTSMPEGDecoder::videoEvent));
 	m_event((iPlayableService*)this, evVideoSizeChanged);
 }
