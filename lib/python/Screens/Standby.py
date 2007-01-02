@@ -3,6 +3,8 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from enigma import eDVBVolumecontrol, eDBoxLCD, eServiceReference
+from Components.Sources.Clock import Clock
+
 
 class Standby(Screen):
 	def Power(self):
@@ -35,7 +37,8 @@ class Standby(Screen):
 	def __init__(self, session, infobar):
 		Screen.__init__(self, session)
 		self.infobar = infobar
-		self. avswitch = AVSwitch()
+		self.avswitch = AVSwitch()
+
 		print "enter standby"
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
@@ -51,3 +54,18 @@ class Standby(Screen):
 		self.avswitch.setInput("SCART")
 		#set lcd brightness to standby value
 		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
+
+	def createSummary(self):
+		return StandbySummary
+
+class StandbySummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
+			<convert type="ClockToText" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+		self["CurrentTime"] = Clock()
