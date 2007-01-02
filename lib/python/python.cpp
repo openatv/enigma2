@@ -121,7 +121,8 @@ ePython::ePython()
 //	Py_OptimizeFlag = 1;
 	
 	Py_Initialize();
-	
+	PyEval_InitThreads();
+
 	init_enigma();
 }
 

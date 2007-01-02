@@ -200,8 +200,16 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 			pfd[i++].events = PyInt_AsLong(val);
 		}
 	}
-	
-	ret = ::poll(pfd, fdcount, poll_timeout);
+
+	if (this == eApp)
+	{
+		Py_BEGIN_ALLOW_THREADS
+		ret = ::poll(pfd, fdcount, poll_timeout);
+		Py_END_ALLOW_THREADS
+	}
+	else
+		ret = ::poll(pfd, fdcount, poll_timeout);
+
 			/* ret > 0 means that there are some active poll entries. */
 	if (ret > 0)
 	{
