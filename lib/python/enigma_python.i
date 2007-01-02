@@ -41,6 +41,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/eerror.h>
 #include <lib/base/console.h>
 #include <lib/base/nconfig.h>
+#include <lib/base/message.h>
 #include <lib/driver/rc.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
@@ -151,7 +152,8 @@ typedef long time_t;
 %immutable eDVBCI_UI::ciStateChanged;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
-
+%immutable ePythonMessagePump::recv_msg;
+%include <lib/base/message.h>
 %include <lib/base/console.h>
 %include <lib/base/nconfig.h>
 %include <lib/driver/rc.h>
