@@ -62,9 +62,11 @@ RESULT eNavigation::stopService(void)
 			/* send stop event */
 	m_event(iPlayableService::evEnd);
 
-	m_runningService->stop();
+	ePtr<iPlayableService> tmp = m_runningService;
+	m_runningService=0;
+	tmp->stop();
+
 		/* kill service. */
-	m_runningService = 0;
 	m_service_event_conn = 0;
 	return 0;
 }
