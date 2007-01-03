@@ -410,7 +410,10 @@ AC_DEFUN([AC_PYTHON_DEVEL],[
 
         # Check for Python include path
         AC_MSG_CHECKING([for Python include path])
-        python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
+        # FIXME:
+        # we hardcode for i686 host and mipsel target here.
+        # the whole thing is broken. fix this.
+        python_path=`echo $PYTHON | sed "s,/bin.*$,," | sed "s,i686,mipsel,"`
         for i in "$python_path/include/python$PYTHON_VERSION/" "$python_path/include/python/" "$python_path/" ; do
                 python_path=`find $i -type f -name Python.h -print | sed "1q"`
                 if test -n "$python_path" ; then
