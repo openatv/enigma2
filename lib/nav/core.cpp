@@ -59,12 +59,13 @@ RESULT eNavigation::stopService(void)
 		/* check if there is a running service... */
 	if (!m_runningService)
 		return 1;
-			/* send stop event */
-	m_event(iPlayableService::evEnd);
 
 	ePtr<iPlayableService> tmp = m_runningService;
 	m_runningService=0;
 	tmp->stop();
+
+	/* send stop event */
+	m_event(iPlayableService::evEnd);
 
 		/* kill service. */
 	m_service_event_conn = 0;
