@@ -28,12 +28,10 @@ class Navigation:
 		self.record_event = [ ]
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
-		self.state = 0
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def dispatchEvent(self, i):
-		self.state = i != 1
 		for x in self.event:
 			x(i)
 
@@ -91,11 +89,9 @@ class Navigation:
 		return self.pnav and self.pnav.getRecordings()
 
 	def getCurrentService(self):
-		if self.state:
-			if not self.currentlyPlayingService:
-				self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()
-			return self.currentlyPlayingService
-		return None
+		if not self.currentlyPlayingService:
+			self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()
+		return self.currentlyPlayingService
 
 	def stopService(self):
 		print "stopService"
