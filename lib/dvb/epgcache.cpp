@@ -83,6 +83,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 		*pdescr++=crc;
 		descriptors_length -= descr_len;
 	}
+	ASSERT(pdescr <= &descr[65]);
 	ByteSize = 12+((pdescr-descr)*4);
 	EITdata = new __u8[ByteSize];
 	CacheSize+=ByteSize;
@@ -108,6 +109,7 @@ const eit_event_struct* eventData::get() const
 		}
 		tmp-=4;
 	}
+	ASSERT(pos <= 4108);
 
 	return (const eit_event_struct*)data;
 }
@@ -133,6 +135,8 @@ eventData::~eventData()
 					descriptors.erase(it);	// remove entry from descriptor map
 				}
 			}
+			else
+				eFatal("[descriptor not found in descriptor cache!!!!!!");
 			ByteSize-=4;
 		}
 		delete [] EITdata;
@@ -2131,6 +2135,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 		return NULL;
 	}
 
+	ASSERT(descridx <= 512);
+
 	if (descridx > -1)
 	{
 		int maxcount=maxmatches;
@@ -2439,6 +2445,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 			ptr += descr_len;
 		}
 	}
+	ASSERT(pdescr <= &descriptors[65])
 	__u8 event[4098];
 	eit_event_struct *ev_struct = (eit_event_struct*) event;
 	ev_struct->running_status = 0;
@@ -2452,6 +2459,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		ptr+=(*d++)[1];
 		ptr+=2;
 	}
+	ASSERT(ptr <= 4098);
 	for ( std::map< date_time, std::list<uniqueEPGKey> >::iterator it(start_times.begin()); it != start_times.end(); ++it )
 	{
 		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
