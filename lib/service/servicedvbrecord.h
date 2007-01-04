@@ -19,7 +19,7 @@ public:
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);
 	RESULT start();
 	RESULT stop();
-	RESULT getError(int &error) { error = m_error; m_error = 0; return 0; }
+	RESULT getError(int &error) { error = m_error; return 0; }
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	int m_state, m_want_record;
