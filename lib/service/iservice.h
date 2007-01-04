@@ -750,7 +750,7 @@ public:
 #ifndef SWIG
 	virtual RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
 #endif
-	virtual RESULT getError(int &)=0;
+	virtual SWIG_VOID(RESULT) getError(int &SWIG_OUTPUT)=0;
 	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1)=0;
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
