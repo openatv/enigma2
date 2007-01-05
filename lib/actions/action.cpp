@@ -130,20 +130,19 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 	std::list<call_entry> call_list;
 	
 		/* iterate active contexts. */
-	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin()); c != m_bindings.end();)
+	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin());
+		c != m_bindings.end(); ++c)
 	{
-		std::multimap<int,eActionBinding>::const_iterator i = c;
-		++c;
 			/* is this a native context? */
-		if (i->second.m_widget)
+		if (c->second.m_widget)
 		{
 				/* is this a named context, i.e. not the wildcard? */
-			if (i->second.m_context.size())
+			if (c->second.m_context.size())
 			{
 				std::multimap<std::string,eNativeKeyBinding>::const_iterator
-					k = m_native_keys.lower_bound(i->second.m_context),
-					e = m_native_keys.upper_bound(i->second.m_context);
-				
+					k = m_native_keys.lower_bound(c->second.m_context),
+					e = m_native_keys.upper_bound(c->second.m_context);
+
 				for (; k != e; ++k)
 				{
 					if (
@@ -151,23 +150,23 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 							(k->second.m_flags & (1<<flags)) &&
 						  ((k->second.m_device == device) || (k->second.m_device == "generic"))
 						  )
-						call_list.push_back(call_entry(i->second.m_widget, (void*)i->second.m_id, (void*)k->second.m_action));
+						call_list.push_back(call_entry(c->second.m_widget, (void*)c->second.m_id, (void*)k->second.m_action));
 				}
 			} else
 			{
 					/* wildcard - get any keys. */
-				if (i->second.m_widget->event(eWidget::evtKey, (void*)key, (void*)flags))
+				if (c->second.m_widget->event(eWidget::evtKey, (void*)key, (void*)flags))
 					return;
 			}
-		} else if (i->second.m_fnc)
+		} else if (c->second.m_fnc)
 		{
-			if (i->second.m_context.size())
+			if (c->second.m_context.size())
 			{
 				std::multimap<std::string,ePythonKeyBinding>::const_iterator
-					k = m_python_keys.lower_bound(i->second.m_context),
-					e = m_python_keys.upper_bound(i->second.m_context);
-				
-				for (; k != e;)
+					k = m_python_keys.lower_bound(c->second.m_context),
+					e = m_python_keys.upper_bound(c->second.m_context);
+
+				for (; k != e; ++k)
 				{
 					if (
 						(k->second.m_key == key) &&
@@ -178,11 +177,9 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 						ePyObject pArgs = PyTuple_New(2);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));
 						PyTuple_SET_ITEM(pArgs, 1, PyString_FromString(k->second.m_action.c_str()));
-						++k;
-						Py_INCREF(i->second.m_fnc);
-						call_list.push_back(call_entry(i->second.m_fnc, pArgs));
-					} else
-						++k;
+						Py_INCREF(c->second.m_fnc);
+						call_list.push_back(call_entry(c->second.m_fnc, pArgs));
+					}
 				}
 			} else
 			{
@@ -190,8 +187,8 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 				ePyObject pArgs = PyTuple_New(2);
 				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
-				Py_INCREF(i->second.m_fnc);
-				call_list.push_back(call_entry(i->second.m_fnc, pArgs));
+				Py_INCREF(c->second.m_fnc);
+				call_list.push_back(call_entry(c->second.m_fnc, pArgs));
 			}
 		}
 	}
@@ -206,11 +203,8 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 				res = ePython::call(i->m_fnc, i->m_arg);
 			Py_DECREF(i->m_fnc);
 			Py_DECREF(i->m_arg);
-		} else if (i->m_widget)
-		{
-			if (!res)
-				res = i->m_widget->event(eWidget::evtAction, (void*)i->m_widget_arg, (void*)i->m_widget_arg2 );
-		}
+		} else if (i->m_widget && !res)
+			res = i->m_widget->event(eWidget::evtAction, (void*)i->m_widget_arg, (void*)i->m_widget_arg2 );
 	}
 }
 
