@@ -13,6 +13,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
+	m_streaming = 0;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -50,6 +51,8 @@ void eDVBServiceRecord::serviceEvent(int event)
 RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id)
 {
 	m_filename = filename;
+	m_streaming = 0;
+	
 	if (m_state == stateIdle)
 	{
 		int ret = doPrepare();
@@ -100,6 +103,14 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 	}
 	else
 		return -1;
+}
+
+RESULT eDVBServiceRecord::prepareStreaming()
+{
+	m_filename = "";
+	m_streaming = 1;
+	if (m_state == stateIdle)
+		return doPrepare();
 }
 
 RESULT eDVBServiceRecord::start()
@@ -162,7 +173,7 @@ int eDVBServiceRecord::doRecord()
 	if (!m_tuned)
 		return 0; /* try it again when we are tuned in */
 	
-	if (!m_record && m_tuned)
+	if (!m_record && m_tuned && !m_streaming)
 	{
 		eDebug("Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());
@@ -174,10 +185,10 @@ int eDVBServiceRecord::doRecord()
 			m_event((iRecordableService*)this, evRecordFailed);
 			return errOpenRecordFile;
 		}
-		
+
 			/* turn off kernel caching strategies */
 		posix_fadvise(fd, 0, 0, POSIX_FADV_RANDOM);
-		
+
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
@@ -198,115 +209,124 @@ int eDVBServiceRecord::doRecord()
 		m_record->setTargetFilename(m_filename.c_str());
 		m_target_fd = fd;
 	}
-	eDebug("starting recording..");
 	
-	eDVBServicePMTHandler::program program;
-	if (m_service_handler.getProgramInfo(program))
-		eDebug("getting program info failed.");
-	else
+	if (m_streaming)
 	{
-		std::set<int> pids_to_record;
-		
-		pids_to_record.insert(0); // PAT
-		
-		if (program.pmtPid != -1)
-			pids_to_record.insert(program.pmtPid); // PMT
-		
-		int timing_pid = -1;
-		
-		eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
-		if (!program.videoStreams.empty())
-		{
-			eDebugNoNewLine(" (");
-			for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
-				i(program.videoStreams.begin()); 
-				i != program.videoStreams.end(); ++i)
-			{
-				pids_to_record.insert(i->pid);
-				
-				if (timing_pid == -1)
-					timing_pid = i->pid;
-				
-				if (i != program.videoStreams.begin())
-					eDebugNoNewLine(", ");
-				eDebugNoNewLine("%04x", i->pid);
-			}
-			eDebugNoNewLine(")");
-		}
-		eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
-		if (!program.audioStreams.empty())
-		{
-			eDebugNoNewLine(" (");
-			for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
-				i(program.audioStreams.begin()); 
-				i != program.audioStreams.end(); ++i)
-			{
-				pids_to_record.insert(i->pid);
+		m_state = stateRecording;
+		eDebug("start streaming...");
+	} else
+	{
+		eDebug("start recording...");
 
-				if (timing_pid == -1)
-					timing_pid = i->pid;
-				
-				if (i != program.audioStreams.begin())
-					eDebugNoNewLine(", ");
-				eDebugNoNewLine("%04x", i->pid);
-			}
-			eDebugNoNewLine(")");
-		}
-		if (!program.subtitleStreams.empty())
+		eDVBServicePMTHandler::program program;
+		if (m_service_handler.getProgramInfo(program))
+			eDebug("getting program info failed.");
+		else
 		{
-			eDebugNoNewLine(" (");
-			for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
-				i(program.subtitleStreams.begin());
-				i != program.subtitleStreams.end(); ++i)
+			std::set<int> pids_to_record;
+
+			pids_to_record.insert(0); // PAT
+
+			if (program.pmtPid != -1)
+				pids_to_record.insert(program.pmtPid); // PMT
+
+			int timing_pid = -1;
+
+			eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
+			if (!program.videoStreams.empty())
 			{
-				pids_to_record.insert(i->pid);
-
-				if (i != program.subtitleStreams.begin())
-					eDebugNoNewLine(", ");
-				eDebugNoNewLine("%04x", i->pid);
+				eDebugNoNewLine(" (");
+				for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
+					i(program.videoStreams.begin()); 
+					i != program.videoStreams.end(); ++i)
+				{
+					pids_to_record.insert(i->pid);
+					
+					if (timing_pid == -1)
+						timing_pid = i->pid;
+					
+					if (i != program.videoStreams.begin())
+							eDebugNoNewLine(", ");
+					eDebugNoNewLine("%04x", i->pid);
+				}
+				eDebugNoNewLine(")");
 			}
-			eDebugNoNewLine(")");
-		}
-		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
-		if (program.pcrPid != 0x1fff)
-			pids_to_record.insert(program.pcrPid);
-		eDebug(", and the text pid is %04x", program.textPid);
-		if (program.textPid != -1)
-			pids_to_record.insert(program.textPid); // Videotext
+			eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
+			if (!program.audioStreams.empty())
+			{
+				eDebugNoNewLine(" (");
+				for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
+					i(program.audioStreams.begin()); 
+					i != program.audioStreams.end(); ++i)
+				{
+					pids_to_record.insert(i->pid);
+	
+					if (timing_pid == -1)
+						timing_pid = i->pid;
+				
+					if (i != program.audioStreams.begin())
+						eDebugNoNewLine(", ");
+					eDebugNoNewLine("%04x", i->pid);
+				}
+				eDebugNoNewLine(")");
+			}
+			if (!program.subtitleStreams.empty())
+			{
+				eDebugNoNewLine(" (");
+				for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
+					i(program.subtitleStreams.begin());
+					i != program.subtitleStreams.end(); ++i)
+				{
+					pids_to_record.insert(i->pid);
+	
+					if (i != program.subtitleStreams.begin())
+						eDebugNoNewLine(", ");
+					eDebugNoNewLine("%04x", i->pid);
+				}
+				eDebugNoNewLine(")");
+			}
+			eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
+			if (program.pcrPid != 0x1fff)
+				pids_to_record.insert(program.pcrPid);
+			eDebug(", and the text pid is %04x", program.textPid);
+			if (program.textPid != -1)
+				pids_to_record.insert(program.textPid); // Videotext
 
-			/* find out which pids are NEW and which pids are obsolete.. */
-		std::set<int> new_pids, obsolete_pids;
-		
-		std::set_difference(pids_to_record.begin(), pids_to_record.end(), 
-				m_pids_active.begin(), m_pids_active.end(),
-				std::inserter(new_pids, new_pids.begin()));
-		
-		std::set_difference(
-				m_pids_active.begin(), m_pids_active.end(),
-				pids_to_record.begin(), pids_to_record.end(), 
-				std::inserter(new_pids, new_pids.begin())
-				);
-		
-		for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
-		{
-			eDebug("ADD PID: %04x", *i);
-			m_record->addPID(*i);
-		}
-		for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
-		{
-			eDebug("REMOVED PID: %04x", *i);
-			m_record->removePID(*i);
-		}
-		
-		if (timing_pid != -1)
-			m_record->setTimingPID(timing_pid);
-		
-		m_pids_active = pids_to_record;
-		
-		if (m_state != stateRecording)
-		{
-			m_record->start();
-			m_state = stateRecording;
+				/* find out which pids are NEW and which pids are obsolete.. */
+			std::set<int> new_pids, obsolete_pids;
+
+			std::set_difference(pids_to_record.begin(), pids_to_record.end(), 
+					m_pids_active.begin(), m_pids_active.end(),
+					std::inserter(new_pids, new_pids.begin()));
+
+			std::set_difference(
+					m_pids_active.begin(), m_pids_active.end(),
+					pids_to_record.begin(), pids_to_record.end(), 
+					std::inserter(new_pids, new_pids.begin())
+					);
+			
+			for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
+			{
+				eDebug("ADD PID: %04x", *i);
+				m_record->addPID(*i);
+			}
+
+			for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
+			{
+				eDebug("REMOVED PID: %04x", *i);
+				m_record->removePID(*i);
+			}
+
+			if (timing_pid != -1)
+				m_record->setTimingPID(timing_pid);
+
+			m_pids_active = pids_to_record;
+
+			if (m_state != stateRecording)
+			{
+				m_record->start();
+				m_state = stateRecording;
+			}
 		}
 	}
 	m_error = 0;
@@ -325,3 +345,40 @@ RESULT eDVBServiceRecord::connectEvent(const Slot2<void,iRecordableService*,int>
 	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;
 }
+
+static PyObject *createTuple(int pid, const char *type)
+{
+	PyObject *r = PyTuple_New(2);
+	PyTuple_SetItem(r, 0, PyInt_FromLong(pid));
+	PyTuple_SetItem(r, 1, PyString_FromString(type));
+	return r;
+}
+
+RESULT eDVBServiceRecord::stream(ePtr<iStreamableService> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+PyObject *eDVBServiceRecord::getStreamingData()
+{
+	eDVBServicePMTHandler::program program;
+	if (!m_tuned || m_service_handler.getProgramInfo(program))
+	{
+		Py_INCREF(Py_None);
+		return Py_None;
+	}
+
+	PyObject *r = program.createPythonObject();
+	ePtr<iDVBDemux> demux;
+	if (!m_service_handler.getDataDemux(demux))
+	{
+		uint8_t demux_id;
+		demux->getCADemuxID(demux_id);
+		
+		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+	}
+
+	return r;
+}
+
