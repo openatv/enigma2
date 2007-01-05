@@ -865,36 +865,42 @@ static PyObject *createTuple(int pid, const char *type)
 	return r;
 }
 
+static inline PyList_AppendSteal(PyObject *list, PyObject *item)
+{
+	PyList_Append(list, item);
+	Py_DECREF(item);
+}
+
 PyObject *eDVBServicePMTHandler::program::createPythonObject()
 {
 	PyObject *r = PyDict_New();
 
 	PyObject *l = PyList_New(0);
 	
-	PyList_Append(l, createTuple(0, "pat"));
+	PyList_AppendSteal(l, createTuple(0, "pat"));
 
 	if (pmtPid != -1)
-		PyList_Append(l, createTuple(pmtPid, "pmt"));
+		PyList_AppendSteal(l, createTuple(pmtPid, "pmt"));
 	
 	for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
 			i(videoStreams.begin()); 
 			i != videoStreams.end(); ++i)
-		PyList_Append(l, createTuple(i->pid, "video"));
+		PyList_AppendSteal(l, createTuple(i->pid, "video"));
 
 	for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
 			i(audioStreams.begin()); 
 			i != audioStreams.end(); ++i)
-		PyList_Append(l, createTuple(i->pid, "audio"));
+		PyList_AppendSteal(l, createTuple(i->pid, "audio"));
 
 	for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
 			i(subtitleStreams.begin());
 			i != subtitleStreams.end(); ++i)
-		PyList_Append(l, createTuple(i->pid, "subtitle"));
+		PyList_AppendSteal(l, createTuple(i->pid, "subtitle"));
 
-	PyList_Append(l, createTuple(pcrPid, "pcr"));
+	PyList_AppendSteal(l, createTuple(pcrPid, "pcr"));
 
 	if (textPid != -1)
-		PyList_Append(l, createTuple(textPid, "text"));
+		PyList_AppendSteal(l, createTuple(textPid, "text"));
 		
 	PyDict_SetItemString(r, "pids", l);
 	return r;
