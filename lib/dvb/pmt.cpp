@@ -856,3 +856,46 @@ void eDVBCAService::sendCAPMT()
 		++m_sendstate;
 	}
 }
+
+static PyObject *createTuple(int pid, const char *type)
+{
+	PyObject *r = PyTuple_New(2);
+	PyTuple_SetItem(r, 0, PyInt_FromLong(pid));
+	PyTuple_SetItem(r, 1, PyString_FromString(type));
+	return r;
+}
+
+PyObject *eDVBServicePMTHandler::program::createPythonObject()
+{
+	PyObject *r = PyDict_New();
+
+	PyObject *l = PyList_New(0);
+	
+	PyList_Append(l, createTuple(0, "pat"));
+
+	if (pmtPid != -1)
+		PyList_Append(l, createTuple(pmtPid, "pmt"));
+	
+	for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
+			i(videoStreams.begin()); 
+			i != videoStreams.end(); ++i)
+		PyList_Append(l, createTuple(i->pid, "video"));
+
+	for (std::vector<eDVBServicePMTHandler::audioStream>::const_iterator
+			i(audioStreams.begin()); 
+			i != audioStreams.end(); ++i)
+		PyList_Append(l, createTuple(i->pid, "audio"));
+
+	for (std::vector<eDVBServicePMTHandler::subtitleStream>::const_iterator
+			i(subtitleStreams.begin());
+			i != subtitleStreams.end(); ++i)
+		PyList_Append(l, createTuple(i->pid, "subtitle"));
+
+	PyList_Append(l, createTuple(pcrPid, "pcr"));
+
+	if (textPid != -1)
+		PyList_Append(l, createTuple(textPid, "text"));
+		
+	PyDict_SetItemString(r, "pids", l);
+	return r;
+}

@@ -163,6 +163,8 @@ public:
 		int pmtPid;
 		int textPid;
 		bool isCrypted() { return !caids.empty(); }
+		
+		PyObject *createPythonObject();
 	};
 
 	int getProgramInfo(struct program &program);
