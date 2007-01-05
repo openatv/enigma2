@@ -11,10 +11,9 @@ class Standby(Screen):
 		print "leave standby"
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
-		#start last played service
-		#self.infobar.servicelist.zap()
-		self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
-		
+		#restart last played service
+		if self.prev_running_service:
+			self.session.nav.playService(self.prev_running_service)
 		#unmute adc
 		self.leaveMute()
 		#set brightness of lcd
@@ -48,6 +47,8 @@ class Standby(Screen):
 
 		#mute adc
 		self.setMute()
+		#get currently playing service reference
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceReference()
 		#stop actual played dvb-service
 		self.session.nav.stopService()
 		#set input to vcr scart
