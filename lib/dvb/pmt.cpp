@@ -865,7 +865,7 @@ static PyObject *createTuple(int pid, const char *type)
 	return r;
 }
 
-static inline PyObject PyList_AppendSteal(PyObject *list, PyObject *item)
+static inline void PyList_AppendSteal(PyObject *list, PyObject *item)
 {
 	PyList_Append(list, item);
 	Py_DECREF(item);
