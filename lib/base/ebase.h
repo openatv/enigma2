@@ -141,6 +141,7 @@ class eMainloop;
  */
 class eSocketNotifier
 {
+	friend class eMainloop;
 public:
 	enum { Read=POLLIN, Write=POLLOUT, Priority=POLLPRI, Error=POLLERR, Hungup=POLLHUP };
 private:
@@ -178,7 +179,7 @@ class eMainloop
 {
 	friend class eTimer;
 	friend class eSocketNotifier;
-	std::map<int, eSocketNotifier*> notifiers, new_notifiers;
+	std::map<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> m_timer_list;
 	bool app_quit_now;
 	int loop_level;

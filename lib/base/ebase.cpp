@@ -24,7 +24,7 @@ void eSocketNotifier::start()
 		stop();
 
 	context.addSocketNotifier(this);
-	state=1;
+	state=2;  // running but not in poll yet
 }
 
 void eSocketNotifier::stop()
@@ -118,8 +118,7 @@ void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
 	ASSERT(notifiers.find(fd) == notifiers.end());
-	ASSERT(new_notifiers.find(fd) == new_notifiers.end());
-	new_notifiers[fd]=sn;
+	notifiers[fd]=sn;
 }
 
 void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
@@ -128,9 +127,6 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	std::map<int,eSocketNotifier*>::iterator i(notifiers.find(fd));
 	if (i != notifiers.end())
 		return notifiers.erase(i);
-	i = new_notifiers.find(fd);
-	if (i != new_notifiers.end())
-		return new_notifiers.erase(i);
 	eFatal("removed socket notifier which is not present");
 }
 
@@ -168,12 +164,6 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 		return_reason = 1;
 	}
 
-	for (std::map<int, eSocketNotifier*>::iterator it(new_notifiers.begin()); it != new_notifiers.end();)
-	{
-		notifiers[it->first]=it->second;
-		new_notifiers.erase(it++);
-	}
-
 	int nativecount=notifiers.size(),
 		fdcount=nativecount,
 		ret=0;
@@ -187,6 +177,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 	int i=0;
 	for (; i < nativecount; ++i, ++it)
 	{
+		it->second->state = 1; // running and in poll
 		pfd[i].fd = it->first;
 		pfd[i].events = it->second->getRequested();
 	}
@@ -202,11 +193,9 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 	}
 
 	if (this == eApp)
-	{
 		Py_BEGIN_ALLOW_THREADS
 		ret = ::poll(pfd, fdcount, poll_timeout);
 		Py_END_ALLOW_THREADS
-	}
 	else
 		ret = ::poll(pfd, fdcount, poll_timeout);
 
@@ -215,20 +204,19 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 	{
 		int i=0;
 		return_reason = 0;
-		for (; i < nativecount ; ++i)
+		for (; i < nativecount; ++i)
 		{
 			if (pfd[i].revents)
 			{
-				int handled = 0;
 				it = notifiers.find(pfd[i].fd);
-				if (it != notifiers.end())
+				if (it != notifiers.end()
+					&& it->second->state == 1) // added and in poll
 				{
 					int req = it->second->getRequested();
-					handled |= req;
 					if (pfd[i].revents & req)
-						it->second->activate(pfd[i].revents);
+						it->second->activate(pfd[i].revents & req);
+					pfd[i].revents &= ~req;
 				}
-				pfd[i].revents &= ~handled;
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
 					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
