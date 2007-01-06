@@ -30,7 +30,7 @@ class TimerEntry:
 		return self.state == self.StateRunning
 		
 	# update self.begin and self.end according to the self.repeated-flags
-	def processRepeated(self):
+	def processRepeated(self, findRunningEvent = True):
 		print "ProcessRepeated"
 		if (self.repeated != 0):
 			now = int(time()) + 1
@@ -54,9 +54,10 @@ class TimerEntry:
 				flags = flags >> 1
 
 			print strftime("%c", localnow)
-			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and localend < localnow)):
-				print strftime("%c", localbegin)
-				print strftime("%c", localend)
+
+			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
+				print "localbegin:", strftime("%c", localbegin)
+				print "localend:", strftime("%c", localend)
 				#add one day to the struct_time, we have to convert using gmt functions, because the daylight saving flag might change after we add our 86400 seconds
 				localbegin = gmtime(timegm(localbegin) + 86400)
 				localend = gmtime(timegm(localend) + 86400)

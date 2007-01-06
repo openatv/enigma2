@@ -1,15 +1,17 @@
-from Screen import Screen
-from Components.TimerList import TimerList, TimerEntryComponent
-from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
-from Components.Label import Label
 from Components.Button import Button
-from Screens.MessageBox import MessageBox
-from TimerEntry import TimerEntry, TimerLog
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from time import *
-from ServiceReference import ServiceReference
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.TimerList import TimerList, TimerEntryComponent
 from Components.TimerSanityCheck import TimerSanityCheck
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
+from Screen import Screen
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from ServiceReference import ServiceReference
+from TimerEntry import TimerEntry, TimerLog
+from Tools.BoundFunction import boundFunction
+from time import *
 
 class TimerEditList(Screen):
 	def __init__(self, session):
@@ -66,10 +68,31 @@ class TimerEditList(Screen):
 		
 			if t.disabled:
 				t.enable()
-			else:
-				t.disable()
+				self.session.nav.RecordTimer.timeChanged(t)
 
+			else:
+				if t.isRunning() and t.repeated:
+					list = []
+					list.append((_("Stop current event but not coming events"), "stoponlycurrent"))
+					list.append((_("Stop current event and disable coming events"), "stopall"))
+					list.append((_("Don't stop current event but disable coming events"), "stoponlycoming"))
+					self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+				else:
+					t.disable()
+					self.session.nav.RecordTimer.timeChanged(t)
+			self.updateState()
+			self.refill()
+
+	def runningEventCallback(self, t, result):
+		if result is not None:
+			if result[1] == "stoponlycurrent" or result[1] == "stopall":
+				t.enable()
+				t.processRepeated(findRunningEvent = False)
+				self.session.nav.RecordTimer.doActivate(t)
+			if result[1] == "stoponlycoming" or result[1] == "stopall":
+				t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
+
 			self.updateState()
 			self.refill()
 		
