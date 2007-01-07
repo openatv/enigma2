@@ -650,17 +650,9 @@ class ChannelSelectionBase(Screen):
 			})
 		self.recallBouquetMode()
 
-	def appendDVBTypes(self, ref):
-		path = ref.getPath()
-		pos = path.find(' FROM BOUQUET')
-		if pos != -1:
-			return eServiceReference(self.service_types + path[pos:])
-		return ref
-
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
 			return 0
-		bouquet = self.appendDVBTypes(bouquet)
 		str = bouquet.toString()
 		offsetCount = 0
 		if not self.bouquetNumOffsetCache.has_key(str):
@@ -668,7 +660,7 @@ class ChannelSelectionBase(Screen):
 			bouquetlist = serviceHandler.list(self.bouquet_root)
 			if not bouquetlist is None:
 				while True:
-					bouquetIterator = self.appendDVBTypes(bouquetlist.getNext())
+					bouquetIterator = bouquetlist.getNext()
 					if not bouquetIterator.valid(): #end of list
 						break
 					self.bouquetNumOffsetCache[bouquetIterator.toString()]=offsetCount
@@ -689,13 +681,13 @@ class ChannelSelectionBase(Screen):
 		if self.mode == MODE_TV:
 			self.service_types = service_types_tv
 			if config.usage.multibouquet.value:
-				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 			else:
 				self.bouquet_rootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(self.service_types)
 		else:
 			self.service_types = service_types_radio
 			if config.usage.multibouquet.value:
-				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
+				self.bouquet_rootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
 			else:
 				self.bouquet_rootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(self.service_types)
 		self.bouquet_root = eServiceReference(self.bouquet_rootstr)
@@ -725,13 +717,11 @@ class ChannelSelectionBase(Screen):
 	def setRoot(self, root, justSet=False):
 		path = root.getPath()
 		inBouquetRootList = path.find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
-		pos = path.find(' FROM BOUQUET')
+		pos = path.find('FROM BOUQUET')
 		isBouquet = (pos != -1) and (root.flags & eServiceReference.isDirectory)
 		if not inBouquetRootList and isBouquet:
 			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
 			self.servicelist.setNumberOffset(self.getBouquetNumOffset(root))
-			refstr = self.service_types + path[pos:]
-			root = eServiceReference(refstr)
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)

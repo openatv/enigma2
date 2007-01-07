@@ -81,24 +81,6 @@ RESULT eBouquet::flushChanges()
 	{
 		eServiceReference tmp = *i;
 		std::string str = tmp.path;
-		if ( i->flags&eServiceReference::canDescent )
-		{
-			unsigned int p1 = str.find("FROM BOUQUET \"");
-			if (p1 == std::string::npos)
-			{
-				eDebug("doof... kaputt");
-				continue;
-			}
-			str.erase(0, p1+14);
-			p1 = str.find("\"");
-			if (p1 == std::string::npos)
-			{
-				eDebug("doof2... kaputt");
-				continue;
-			}
-			str.erase(p1);
-			tmp.path=str;
-		}
 		if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
 			goto err;
 		if ( i->name.length() )
@@ -645,17 +627,35 @@ void eDVBDB::loadBouquet(const char *path)
 				if ( tmp.flags&eServiceReference::canDescent )
 				{
 					unsigned int pos = tmp.path.rfind('/');
+					char buf[256];
+					std::string path = tmp.path;
 					if ( pos != std::string::npos )
-						tmp.path.erase(0, pos+1);
-					if (tmp.path.empty())
+						path.erase(0, pos+1);
+					if (path.empty())
 					{
 						eDebug("Bouquet load failed.. no filename given..");
 						continue;
 					}
-					loadBouquet(tmp.path.c_str());
-					char buf[256];
-					snprintf(buf, 256, "(type == %d) FROM BOUQUET \"%s\" ORDER BY bouquet", tmp.data[0], tmp.path.c_str());
-					tmp.path = buf;
+					pos = path.find("FROM BOUQUET ");
+					if (pos != std::string::npos)
+					{
+						char endchr = path[pos+13];
+						if (endchr != '"')
+						{
+							eDebug("ignore invalid bouquet '%s' (only \" are allowed)",
+								tmp.toString().c_str());
+							continue;
+						}
+						char *beg = &path[pos+14];
+						char *end = strchr(beg, endchr);
+						path.assign(beg, end - beg);
+					}
+					else
+					{
+						snprintf(buf, 256, "FROM BOUQUET \"%s\" ORDER BY bouquet", path.c_str());
+						tmp.path = buf;
+					}
+					loadBouquet(path.c_str());
 				}
 				list.push_back(tmp);
 				e = &list.back();
@@ -693,7 +693,7 @@ void eDVBDB::reloadBouquets()
 		ref.type=1;
 		ref.flags=7;
 		ref.data[0]=1;
-		ref.path="(type == 1) FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet";
+		ref.path="FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet";
 		eBouquet &parent = m_bouquets["bouquets.tv"];
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
@@ -709,7 +709,7 @@ void eDVBDB::reloadBouquets()
 		ref.type=1;
 		ref.flags=7;
 		ref.data[0]=2;
-		ref.path="(type == 2) FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet";
+		ref.path="FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet";
 		eBouquet &parent = m_bouquets["bouquets.radio"];
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
@@ -1262,10 +1262,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 	std::list<std::string>::const_iterator end_of_exp;
 	
 	if (begin == end)
-	{
-		eDebug("empty expression!");
 		return 0;
-	}
 	
 	if (*begin == "(")
 	{
