@@ -676,7 +676,9 @@ public:
 			/* when radioText is implemented */
 		evUpdatedRadioText,
 
-		evVideoSizeChanged
+		evVideoSizeChanged,
+
+		evStopped
 	};
 };
 
@@ -739,7 +741,7 @@ class iRecordableService_ENUMS
 public:
 	enum {
 		evStart,
-		evStop,
+		evEnd,
 		evTunedIn,
 		evTuneFailed,
 		evRecordRunning,

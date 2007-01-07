@@ -1177,7 +1177,7 @@ RESULT eDVBServicePlay::stop()
 		if (!::stat(m_reference.path.c_str(), &s))
 			saveCuesheet();
 	}
-	
+	m_event((iPlayableService*)this, evStopped);
 	return 0;
 }
 

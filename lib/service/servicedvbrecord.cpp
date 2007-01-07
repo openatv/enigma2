@@ -125,7 +125,6 @@ RESULT eDVBServiceRecord::start()
 RESULT eDVBServiceRecord::stop()
 {
 	eDebug("stop recording!!");
-	m_event((iRecordableService*)this, evStop);
 	if (m_state == stateRecording)
 	{
 		if (m_record)
@@ -137,7 +136,6 @@ RESULT eDVBServiceRecord::stop()
 		}
 		m_state = statePrepared;
 	}
-	
 	if (m_state == statePrepared)
 	{
 		m_record = 0;
