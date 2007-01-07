@@ -4,9 +4,9 @@
 
 void eNavigation::serviceEvent(iPlayableService* service, int event)
 {
-	if (service != m_runningService)
+	if (m_runningService && service != m_runningService)
 	{
-		eDebug("nav: event for other service");
+		eDebug("nav: event %d for other service", event);
 		return;
 	}
 	m_event(event);
@@ -96,8 +96,11 @@ RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 	if (it != m_recordings.end())
 	{
 		m_recordings.erase(it);
+		/* send stop event */
+		m_record_event(service, iRecordableService::evEnd);
 		return 0;
 	}
+
 	eDebug("try to stop non running recording!!");  // this should not happen
 	return -1;
 }
