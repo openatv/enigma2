@@ -109,10 +109,32 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		print "current selection:", self["config"].l.getCurrentSelection()
 		self.createSetup()
 
+	def SetupPinMessageCallback(self, value):
+		if value:
+			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.setuppin, _("setup pin"))
+		else:
+			config.ParentalControl.setuppinactive.value = False
+			self.keyCancel()
+
+	def ServicePinMessageCallback(self, value):
+		if value:
+			self.session.openWithCallback(self.cancelCB, ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service pin"))
+		else:
+			config.ParentalControl.servicepinactive.value = False
+			self.keyCancel()
+
+	def cancelCB(self,value):
+		self.keyCancel()
+
 	def keyCancel(self):
-		for x in self["config"].list:
-			x[1].save()
-		self.close()
+		if config.ParentalControl.setuppinactive.value and config.ParentalControl.setuppin.value == 'aaaa':
+			self.session.openWithCallback(self.SetupPinMessageCallback, MessageBox, _("No valid setup PIN found!\nDo you like to change the setup PIN now?\nWhen you say 'No' here the setup protection stay disabled!"), MessageBox.TYPE_YESNO)
+		elif config.ParentalControl.servicepinactive.value and config.ParentalControl.servicepin[0].value == 'aaaa':
+			self.session.openWithCallback(self.ServicePinMessageCallback, MessageBox, _("No valid service PIN found!\nDo you like to change the service PIN now?\nWhen you say 'No' here the service protection stay disabled!"), MessageBox.TYPE_YESNO)
+		else:
+			for x in self["config"].list:
+				x[1].save()
+			self.close()
 
 	def keyNumberGlobal(self, number):
 		pass
