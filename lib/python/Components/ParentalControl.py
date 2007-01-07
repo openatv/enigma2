@@ -63,7 +63,7 @@ class ParentalControl:
 			self.serviceLevel.remove(service)
 				
 	def isServicePlayable(self, service, callback):
-		if not config.ParentalControl.configured.value:
+		if not config.ParentalControl.configured.value or not config.ParentalControl.setuppinactive.value:
 			return True
 		#print "whitelist:", self.whitelist
 		#print "blacklist:", self.blacklist
