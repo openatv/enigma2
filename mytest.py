@@ -387,7 +387,7 @@ class VolumeControl:
 				self.muteDialog.hide()
 				self.volumeDialog.setValue(vol)
 
-from Screens.Standby import Standby
+from Screens.Standby import Standby, TryQuitMainloop, inTryQuitMainloop
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -409,7 +409,9 @@ class PowerKey:
 
 	def powertimer(self):	
 		print "PowerOff - Now!"
-		self.quit()
+		global inTryQuitMainloop
+		if not inTryQuitMainloop:
+			self.session.open(TryQuitMainloop, 1)
 	
 	def powerdown(self):
 		self.standbyblocked = 0
@@ -423,11 +425,7 @@ class PowerKey:
 
 	def standby(self):
 		if self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			self.session.open(Standby, self)
-
-	def quit(self):
-		# halt
-		quitMainloop(1)
+			self.session.open(Standby)
 
 from Screens.Scart import Scart
 
@@ -489,7 +487,7 @@ def runScreenTest():
 
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
-	
+
 	runReactor()
 	
 	configfile.save()

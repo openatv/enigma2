@@ -2,14 +2,12 @@ import timer
 import time
 import math
 
-from enigma import quitMainloop
-
 from Tools import Notifications
 
 from Components.config import config, ConfigYesNo, ConfigSelection, ConfigSubsection
 
 from Screens.MessageBox import MessageBox
-from Screens.Standby import Standby
+from Screens.Standby import Standby, TryQuitMainloop, inStandby, inTryQuitMainloop
 
 class SleepTimerEntry(timer.TimerEntry):
 	def __init__(self, begin):
@@ -23,12 +21,14 @@ class SleepTimerEntry(timer.TimerEntry):
 	def activate(self):
 		if self.state == self.StateRunning:
 			if config.SleepTimer.action.value == "shutdown":
-				if config.SleepTimer.ask.value:
+				global inTryQuitMainloop
+				if config.SleepTimer.ask.value and not inTryQuitMainloop:
 					Notifications.AddNotificationWithCallback(self.shutdown, MessageBox, _("A sleep timer want's to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 				else:
 					self.shutdown(True)
 			elif config.SleepTimer.action.value == "standby":
-				if config.SleepTimer.ask.value:
+				global inStandby
+				if config.SleepTimer.ask.value and not inStandby:
 					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer want's to set your\nDreambox to standby. Do that now?"), timeout = 20)
 				else:
 					self.standby(True)
@@ -39,14 +39,16 @@ class SleepTimerEntry(timer.TimerEntry):
 		return False
 	
 	def shutdown(self, answer):
+		global inTryQuitMainloop
 		if answer is not None:
-			if answer:
-				quitMainloop(1)
+			if answer and not inTryQuitMainloop:
+				Notifications.AddNotification(TryQuitMainloop, 1)
 
 	def standby(self, answer):
 		if answer is not None:
-			if answer:
-				Notifications.AddNotification(Standby, self)
+			global inStandby
+			if answer and not inStandby:
+				Notifications.AddNotification(Standby)
 		
 class SleepTimer(timer.Timer):
 	def __init__(self):
