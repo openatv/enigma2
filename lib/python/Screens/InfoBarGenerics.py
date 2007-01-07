@@ -1336,9 +1336,21 @@ class InfoBarInstantRecord:
 			return
 
 		if self.isInstantRecordRunning():
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("A recording is currently running.\nWhat do you want to do?"), list=[(_("stop recording"), "stop"), (_("change recording (duration)"), "changeduration"), (_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"), (_("do nothing"), "no")])
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
+				title=_("A recording is currently running.\nWhat do you want to do?"), \
+				list=[(_("stop recording"), "stop"), \
+				(_("change recording (duration)"), "changeduration"), \
+				(_("add recording (indefinitely)"), "indefinitely"), \
+				(_("add recording (stop after current event)"), "event"), \
+				(_("add recording (enter recording duration)"), "manualduration"), \
+				(_("do nothing"), "no")])
 		else:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Start recording?"), list=[(_("add recording (indefinitely)"), "indefinitely"), (_("add recording (stop after current event)"), "event"), (_("add recording (enter recording duration)"), "manualduration"),(_("don't record"), "no")])
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
+				title=_("Start recording?"), \
+				list=[(_("add recording (indefinitely)"), "indefinitely"), \
+				(_("add recording (stop after current event)"), "event"), \
+				(_("add recording (enter recording duration)"), "manualduration"), \
+				(_("don't record"), "no")])
 
 from Tools.ISO639 import LanguageCodes
 
