@@ -124,12 +124,8 @@ class MessageBox(Screen):
 	def move(self, direction):
 		if self.close_on_any_key:
 			self.close(True)
-
 		self["list"].instance.moveSelection(direction)
-		if self.timerRunning:
-			self.timer.stop()
-			self.setTitle(self.origTitle)
-			self.timerRunning = False
+		self.stopTimer()
 
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"

@@ -215,12 +215,20 @@ class RecordTimerEntry(timer.TimerEntry):
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				global inStandby
 				if not inStandby:
-					Notifications.AddNotification(Standby)
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A record timer want's to set your\nDreambox to standby. Do that now?"), timeout = 20)
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				global inTryQuitMainloop
 				if not inTryQuitMainloop:
-					Notifications.AddNotification(TryQuitMainloop, 1)
+					Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A record timer want's to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 			return True
+
+	def sendStandbyNotification(self, answer):
+		if answer:
+			Notifications.AddNotification(Standby)
+
+	def sendTryQuitMainloopNotification(self, answer):
+		if answer:
+			Notifications.AddNotification(TryQuitMainloop, 1)
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded:
