@@ -5,10 +5,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Icelandic translation v.1.22b\n"
+"Project-Id-Version: Icelandic translation v.1.23\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 08:30+0100\n"
-"PO-Revision-Date: 2006-11-18 22:50-0000\n"
+"POT-Creation-Date: 2007-01-07 22:19+0100\n"
+"PO-Revision-Date: 2007-01-07 20:37-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Polar Team <baddi@oreind.is>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
+msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(STÖKK)"
@@ -93,7 +93,7 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "12V output"
-msgstr ""
+msgstr "12V út"
 
 msgid "13 V"
 msgstr "13 V"
@@ -138,6 +138,16 @@ msgid "A"
 msgstr "A"
 
 msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
+
+msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
@@ -159,18 +169,14 @@ msgstr ""
 "gervihnattaleit."
 
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Búið er að stilla tímann núna til\n"
-"að setja á biðstöðu. Gera það núna?"
 
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Búið er að stilla tímann núna til að\n"
-"slökkva á boxinu. Gera það núna?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -219,10 +225,10 @@ msgid "Add timer"
 msgstr "Bæta við tímastillingu"
 
 msgid "Add to bouquet"
-msgstr ""
+msgstr "Bæta við rásavönd"
 
 msgid "Add to favourites"
-msgstr ""
+msgstr "Bæta við uppáhaldsrásir"
 
 msgid "Advanced"
 msgstr "Sérfæði"
@@ -332,7 +338,7 @@ msgid "Cable"
 msgstr "Kapalkerfi"
 
 msgid "Cache Thumbnails"
-msgstr ""
+msgstr "Taka nyndir í skyndiminni"
 
 msgid "Call monitoring"
 msgstr "Fylgist með hringingum"
@@ -344,7 +350,7 @@ msgid "Capacity: "
 msgstr "Stærð:"
 
 msgid "Card"
-msgstr ""
+msgstr "Kort"
 
 msgid "Catalan"
 msgstr "Catalan"
@@ -397,6 +403,12 @@ msgstr "Gagna hraði, hár"
 msgid "Code rate low"
 msgstr "Gagna hraði, lár"
 
+msgid "Coderate HP"
+msgstr ""
+
+msgid "Coderate LP"
+msgstr ""
+
 msgid "Color Format"
 msgstr "Lita kerfi"
 
@@ -410,7 +422,7 @@ msgid "Common Interface"
 msgstr "Afruglara tengi"
 
 msgid "Compact Flash"
-msgstr ""
+msgstr "Compact Flash"
 
 msgid "Compact flash card"
 msgstr "Compact flash kort"
@@ -422,22 +434,28 @@ msgid "Configuration Mode"
 msgstr "Stillingar"
 
 msgid "Configuring"
-msgstr ""
+msgstr "Stilli"
 
 msgid "Conflicting timer"
 msgstr "Tímastilling skarast"
 
 msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "Tengi við Fritz!Box!"
 
 msgid "Connecting to Fritz!Box..."
-msgstr ""
+msgstr "Tengi við Fritz!Box..."
 
 #, python-format
 msgid ""
 "Connection to Fritz!Box\n"
 "failed! (%s)\n"
 "retrying..."
+msgstr ""
+"Tenging við Fritz!Box\n"
+"tókst ekki! (%s)\n"
+"retrying..."
+
+msgid "Constellation"
 msgstr ""
 
 msgid "Contrast"
@@ -539,6 +557,9 @@ msgid ""
 "Fritz!Box! (%s)\n"
 "retrying..."
 msgstr ""
+"Aftengist\n"
+"Fritz!Box! (%s)\n"
+"retrying..."
 
 msgid "Dish"
 msgstr "Diskur"
@@ -597,16 +618,22 @@ msgstr ""
 "Viltu uppfæra Dreamboxið þitt?\n"
 "Þú þarft að bíða eftir að hafa ýtt á OK!"
 
+msgid "Do you want to view a cutlist tutorial?"
+msgstr "Viltu horfa á leiðbeinungar um klippingar?"
+
 msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
-#, python-format
-msgid "Done - Installed or upgraded %d packages"
+msgid "Don't stop current event but disable coming events"
 msgstr ""
 
 #, python-format
+msgid "Done - Installed or upgraded %d packages"
+msgstr "Búinn - %d pakkar settir inn eða uppfærðir"
+
+#, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr ""
+msgstr "Búinn - %d pakkar settir inn eða upp færðir með %d villum"
 
 msgid "Download Plugins"
 msgstr "Hala niður innskotum"
@@ -618,7 +645,7 @@ msgid "Downloadable plugins"
 msgstr "Niðurhalanleg innskot"
 
 msgid "Downloading"
-msgstr ""
+msgstr "Hleð  niður"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hala niður innskots upplýsingum. Vinsamlega bíðið..."
@@ -688,7 +715,7 @@ msgid "Enter the service pin"
 msgstr "Sláðu inn kóða"
 
 msgid "Error"
-msgstr ""
+msgstr "Villa"
 
 msgid "Eventview"
 msgstr "Skoða atriði"
@@ -742,7 +769,7 @@ msgid "Friday"
 msgstr "Föstudagur"
 
 msgid "Fritz!Box FON IP address"
-msgstr ""
+msgstr "Fritz!Box FON IP address"
 
 #, python-format
 msgid "Frontprocessor version: %d"
@@ -779,6 +806,9 @@ msgstr "Fara 0"
 msgid "Goto position"
 msgstr "Fara á staðsetningu"
 
+msgid "Guard Interval"
+msgstr ""
+
 msgid "Guard interval mode"
 msgstr "Guard millibils hamur"
 
@@ -791,6 +821,9 @@ msgstr "Uppsetning harða disks"
 msgid "Harddisk standby after"
 msgstr "Harði diskur í biðstöðu eftir"
 
+msgid "Hierarchy Information"
+msgstr ""
+
 msgid "Hierarchy mode"
 msgstr "Flokkunar hamur"
 
@@ -798,7 +831,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Í hvað margar mínútur viltu taka upp?"
 
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungverska"
 
 msgid "IP Address"
 msgstr "IP Netfang"
@@ -849,16 +882,16 @@ msgid "Input"
 msgstr "Inntak"
 
 msgid "Installing"
-msgstr ""
+msgstr "Set inn"
 
 msgid "Installing Software..."
-msgstr ""
+msgstr "Set inn hugbúnað"
 
 msgid "Instant Record..."
 msgstr "Skyndi upptaka..."
 
 msgid "Internal Flash"
-msgstr ""
+msgstr "Innra Flash minni"
 
 msgid "Inversion"
 msgstr "Umbreyting"
@@ -918,13 +951,13 @@ msgid "Limits on"
 msgstr "Mörk á"
 
 msgid "List of Storage Devices"
-msgstr ""
+msgstr "Listi minnis hluta"
 
 msgid "Longitude"
 msgstr "Lengdargráða"
 
 msgid "MMC Card"
-msgstr ""
+msgstr "MMC kort"
 
 msgid "MORE"
 msgstr "MEIRA"
@@ -1041,7 +1074,7 @@ msgid "Netmask"
 msgstr "Netmaski"
 
 msgid "Network Mount"
-msgstr ""
+msgstr "Tengingar við netkerfi"
 
 msgid "Network Setup"
 msgstr "Stilla netkerfi"
@@ -1080,16 +1113,19 @@ msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
+"Engin gögn á sendi!\n"
+"(Rann út á tíma við lestur PAT)"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
 
 msgid "No free tuner!"
-msgstr ""
+msgstr "Enginn laus móttakari!"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
+"Enginn hugbúnaðar pakki uppfærður enn. Athugðu netkerfi og reyndu aftur."
 
 msgid "No positioner capable frontend found."
 msgstr "Það fannst ekki móttakari sem styður staðsetjara."
@@ -1099,6 +1135,18 @@ msgstr "Það fannst ekki gervihnattamóttakari!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Enginn móttakari er stilltur til að nota með staðsetjara!"
+
+msgid ""
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
+msgstr ""
+
+msgid ""
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
+msgstr ""
 
 msgid "No, do nothing."
 msgstr "Nei, ekki gera neitt."
@@ -1149,6 +1197,9 @@ msgstr "Einn"
 msgid "Online-Upgrade"
 msgstr "Uppfærsla frá neti"
 
+msgid "Orbital Position"
+msgstr ""
+
 msgid "Other..."
 msgstr "Annað..."
 
@@ -1159,7 +1210,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "Package list update"
-msgstr ""
+msgstr "Listi uppfærðra pakka"
 
 msgid "Packet management"
 msgstr "Pakka meðhöndlun"
@@ -1213,7 +1264,7 @@ msgid "Please select a subservice..."
 msgstr "Vinsamlega veldu undirrás..."
 
 msgid "Please select keyword to filter..."
-msgstr ""
+msgstr "Veldu orð til að leita út..."
 
 msgid "Please set up tuner B"
 msgstr "Vinsamlega settu upp móttakara B"
@@ -1270,7 +1321,7 @@ msgid "Predefined transponder"
 msgstr "Fyrirfram forritaður sendir"
 
 msgid "Preparing... Please wait"
-msgstr ""
+msgstr "Undirbý...vinsamlega bíðið"
 
 msgid "Press OK to activate the settings."
 msgstr "Ýtið á OK til að virkja stillingar."
@@ -1315,7 +1366,7 @@ msgid "RSS Feed URI"
 msgstr "RSS strauma URI"
 
 msgid "Ram Disk"
-msgstr ""
+msgstr "Ram Diskur"
 
 msgid "Really close without saving settings?"
 msgstr "Viltu loka án þess að vista stillingar?"
@@ -1336,10 +1387,25 @@ msgid "Record"
 msgstr "Upptaka"
 
 msgid "Recorded files..."
-msgstr ""
+msgstr "Uppteknar skrár..."
 
 msgid "Recording"
 msgstr "Upptaka"
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really reboot "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really restart "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"now?"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Upptaka hefur alltaf forgang"
@@ -1361,6 +1427,9 @@ msgstr "Endurtaka"
 
 msgid "Repeat Type"
 msgstr "Gerð endurtekningar"
+
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
 
 msgid "Replace current playlist"
 msgstr "Skipta út núverandi spilunarlista"
@@ -1385,6 +1454,9 @@ msgstr ""
 
 msgid "Right"
 msgstr "Hægri"
+
+msgid "Rolloff"
+msgstr ""
 
 msgid "Running"
 msgstr "Keyri"
@@ -1414,7 +1486,7 @@ msgid "Saturday"
 msgstr "Laugardagur"
 
 msgid "Scaling Mode"
-msgstr ""
+msgstr "Kvörðunar aðferð"
 
 msgid "Scan NIM"
 msgstr "Leita NIM"
@@ -1456,20 +1528,24 @@ msgid "Service Searching"
 msgstr "Leita að rásum"
 
 msgid "Service has been added to the favourites."
-msgstr ""
+msgstr "Rás hefur verið bætt við uppáhaldslista."
 
 msgid "Service has been added to the selected bouquet."
-msgstr ""
+msgstr "Rás hefur verið bætt við valinn rásavöndul."
 
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
+"Rás ógild!\n"
+"(Rann út á tíma við lestur PMT)"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
+"Rás fannst ekki!\n"
+"(SID fannst ekki í PAT)"
 
 msgid "Service scan"
 msgstr "Rása leit"
@@ -1538,7 +1614,7 @@ msgid "Sleep timer action:"
 msgstr "Tíma aðgerð:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr ""
+msgstr "Tími milli mynda (sek.)"
 
 msgid "Slot "
 msgstr "Hólf"
@@ -1547,7 +1623,7 @@ msgid "Socket "
 msgstr "Tengi"
 
 msgid "Some plugins are not available:\n"
-msgstr ""
+msgstr "Sum innskot eru ekki til:\n"
 
 msgid "Somewhere else"
 msgstr "Einhversstaðar annarstaðar"
@@ -1609,6 +1685,12 @@ msgstr "Stopp"
 msgid "Stop Timeshift?"
 msgstr "Stoppa tímafærslu?"
 
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+msgid "Stop current event but not coming events"
+msgstr ""
+
 msgid "Stop playing this movie?"
 msgstr "Stoppa spilun?"
 
@@ -1650,6 +1732,9 @@ msgstr "Skipta á fyrri undirrás"
 
 msgid "Symbol Rate"
 msgstr "Gagnahraði"
+
+msgid "Symbolrate"
+msgstr ""
 
 msgid "System"
 msgstr "Kerfi"
@@ -1773,11 +1858,20 @@ msgstr "Tónstýring"
 msgid "Toneburst A/B"
 msgstr "Tón stýring A/B"
 
+msgid "Transmission Mode"
+msgstr ""
+
 msgid "Transmission mode"
 msgstr "Sendi stilling"
 
 msgid "Transponder"
 msgstr "Sendir"
+
+msgid "Transponder Type"
+msgstr ""
+
+msgid "Transpondertype"
+msgstr "Gerð sendis"
 
 msgid "Tries left:"
 msgstr "Tilraunir eftir:"
@@ -1792,7 +1886,7 @@ msgid "Tune"
 msgstr "Stilla"
 
 msgid "Tune failed!"
-msgstr ""
+msgstr "Tókst ekki að stilla inn!"
 
 msgid "Tuner"
 msgstr "Móttakari"
@@ -1843,7 +1937,7 @@ msgid "Unmount failed"
 msgstr "Aftenging tókst ekki"
 
 msgid "Updates your receiver's software"
-msgstr ""
+msgstr "Uppfærir forrit móttakarans"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Uppfærslu er lokið. Hér er útkoman:"
@@ -1855,10 +1949,10 @@ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Uppfærslu lokið. Viltu endurræsa Dreamboxinu þínu?"
 
 msgid "Upgrading"
-msgstr ""
+msgstr "Uppfæri"
 
 msgid "Upgrading Dreambox... Please wait"
-msgstr ""
+msgstr "Uppfæri Dreamboxið...vinsamlegast bíðið"
 
 msgid "Use DHCP"
 msgstr "Nota DHCP"
@@ -2035,6 +2129,9 @@ msgid ""
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
+"Þú þarft að velja einhver orð fyrst!\n"
+"Ýttu á menu lykilinn til að setja inn orð.\n"
+"Viltu setja inn orð núna?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2059,7 +2156,7 @@ msgstr "Dreamboxið er að slökkva á sér. Vinsamlega bíðið..."
 msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
 "try again."
-msgstr ""
+msgstr "Dreamboxið er ekki tengt við internetið. Athugaðu það og reyndu aftur."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -2075,7 +2172,7 @@ msgid "Zap back to service before satfinder?"
 msgstr "Fara aftur á rás fyrir rásaleitun?"
 
 msgid "[alternative edit]"
-msgstr ""
+msgstr "[breyta valkostum]"
 
 msgid "[bouquet edit]"
 msgstr "[breyta fléttu]"
@@ -2087,7 +2184,7 @@ msgid "[move mode]"
 msgstr "[færslu staða]"
 
 msgid "abort alternatives edit"
-msgstr ""
+msgstr "hætta við að breyta valkostum"
 
 msgid "abort bouquet edit"
 msgstr "hætta við að breyta fléttu"
@@ -2099,7 +2196,7 @@ msgid "about to start"
 msgstr "er að byrja"
 
 msgid "add alternatives"
-msgstr ""
+msgstr "bæta við valkosti"
 
 msgid "add bouquet"
 msgstr "bæta rásavendi við"
@@ -2145,13 +2242,13 @@ msgid "back"
 msgstr "til baka"
 
 msgid "better"
-msgstr ""
+msgstr "betra"
 
 msgid "blacklist"
 msgstr "svarti listi"
 
 msgid "by Exif"
-msgstr ""
+msgstr "by Exif"
 
 msgid "change recording (duration)"
 msgstr "breyta upptöku (tíma)"
@@ -2175,7 +2272,7 @@ msgid "continue"
 msgstr "halda áfram"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "afrita til rásavanda"
 
 msgid "daily"
 msgstr "daglega"
@@ -2196,7 +2293,7 @@ msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
 msgid "do not change"
-msgstr ""
+msgstr "ekki breyta"
 
 msgid "do nothing"
 msgstr "ekki gera neitt"
@@ -2208,7 +2305,7 @@ msgid "done!"
 msgstr "búinn!"
 
 msgid "edit alternatives"
-msgstr ""
+msgstr "breyta valkosti"
 
 msgid "empty/unknown"
 msgstr "tómur/óþekkt"
@@ -2226,7 +2323,7 @@ msgid "enable move mode"
 msgstr "virkja færlsu stöðu"
 
 msgid "end alternatives edit"
-msgstr ""
+msgstr "hætta breytingum valkosta"
 
 msgid "end bouquet edit"
 msgstr "hætta að breyta fléttu"
@@ -2248,6 +2345,9 @@ msgstr "alla /etc möppuna"
 
 msgid "go to deep standby"
 msgstr "fara í djúpsvefn"
+
+msgid "go to standby"
+msgstr ""
 
 msgid "hear radio..."
 msgstr "hlusta á útvarp...."
@@ -2312,7 +2412,7 @@ msgid "minutes and"
 msgstr "mínútur og"
 
 msgid "multinorm"
-msgstr ""
+msgstr "fjölkerfa"
 
 msgid "never"
 msgstr "aldrei"
@@ -2330,7 +2430,7 @@ msgid "no HDD found"
 msgstr "fann ekki harða disk"
 
 msgid "no Picture found"
-msgstr ""
+msgstr "fannst engin mynd"
 
 msgid "no module found"
 msgstr "fann ekki einingu"
@@ -2381,7 +2481,7 @@ msgid "please press OK when ready"
 msgstr "vinsamlega ýtið á OK þegar tilbúið"
 
 msgid "please wait, loading picture..."
-msgstr ""
+msgstr "hleð inn mynd, vinsamlegast bíðið.."
 
 msgid "previous channel"
 msgstr "fyrri rás"
@@ -2399,7 +2499,7 @@ msgid "remove after this position"
 msgstr "eyða fyrir aftan þetta"
 
 msgid "remove all alternatives"
-msgstr ""
+msgstr "taka út alla valkosti"
 
 msgid "remove all new found flags"
 msgstr "eyða öllum merkingum um nýfundna rás"
@@ -2483,10 +2583,13 @@ msgid "show EPG..."
 msgstr "sýna EPG"
 
 msgid "show alternatives"
-msgstr ""
+msgstr "súna valkosti"
 
 msgid "show event details"
 msgstr "sýna atriði nánar"
+
+msgid "show transponder info"
+msgstr ""
 
 msgid "shutdown"
 msgstr "slökkva"
@@ -2573,6 +2676,8 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
+"Dreamboxið þitt gæti verið óstöðugt núna.  Athugaðu leiðbeiningar um aðstoð "
+"með að endurræsa Dreamboxið."
 
 msgid "zap"
 msgstr "stökk"
@@ -2610,8 +2715,22 @@ msgstr "stokkið"
 #~ msgid "A sleep timer want's to set your"
 #~ msgstr "Tíma stilling vill stilla "
 
+#~ msgid ""
+#~ "A sleep timer want's to set your\n"
+#~ "Dreambox to standby. Do that now?"
+#~ msgstr ""
+#~ "Búið er að stilla tímann núna til\n"
+#~ "að setja á biðstöðu. Gera það núna?"
+
 #~ msgid "A sleep timer want's to shut down"
 #~ msgstr "Tíma stilling vill slökkva á boxinu"
+
+#~ msgid ""
+#~ "A sleep timer want's to shut down\n"
+#~ "your Dreambox. Shutdown now?"
+#~ msgstr ""
+#~ "Búið er að stilla tímann núna til að\n"
+#~ "slökkva á boxinu. Gera það núna?"
 
 #~ msgid "AGC"
 #~ msgstr "AGC"
@@ -2661,9 +2780,6 @@ msgstr "stokkið"
 #~ msgstr ""
 #~ "Viltu hætta þessari þessari\n"
 #~ "(skyndi) upptöku?"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Viltu horfa á leiðbeinungar um klippingar?"
 
 #~ msgid "Dreambox to standby. Do that now?"
 #~ msgstr "Fara í biðstöðu. Gera það núna?"
@@ -2763,9 +2879,6 @@ msgstr "stokkið"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Lifandi pása"
-
-#~ msgid "Transpondertype"
-#~ msgstr "Gerð sendis"
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF Mótari"
