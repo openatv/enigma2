@@ -122,6 +122,7 @@ class TryQuitMainloop(MessageBox):
 				rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 				if rec_time > 0 and (rec_time - time()) < 360:
 					self.initTimeout(360) # wait for next starting timer
+					self.startTimer()
 				else:
 					self.close(True) # immediate shutdown
 		elif event == iRecordableService.evStart:
