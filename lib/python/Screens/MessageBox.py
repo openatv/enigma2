@@ -25,15 +25,8 @@ class MessageBox(Screen):
 		self["QuestionPixmap"] = Pixmap()
 		self["InfoPixmap"] = Pixmap()
 		self.timerRunning = False
-		if timeout > 0:
-			self.timer = eTimer()
-			self.timer.timeout.get().append(self.timerTick)
-			self.onExecBegin.append(self.startTimer)
-			self.origTitle = None
-			self.onShown.append(self.timerTick)
-			self.timerRunning = True
-		self.timeout = timeout
-		
+		self.initTimeout(timeout)
+
 		self.list = []
 		if type != self.TYPE_ERROR:
 			self["ErrorPixmap"].hide()
@@ -44,7 +37,6 @@ class MessageBox(Screen):
 			
 		if type == self.TYPE_YESNO:
 			self.list = [ (_("yes"), 0), (_("no"), 1) ]
-
 
 		self["list"] = MenuList(self.list)
 		
@@ -63,8 +55,32 @@ class MessageBox(Screen):
 				"rightRepeated": self.right
 			}, -1)
 
+	def initTimeout(self, timeout):
+		self.timeout = timeout
+		if timeout > 0:
+			self.timer = eTimer()
+			self.timer.timeout.get().append(self.timerTick)
+			self.onExecBegin.append(self.startTimer)
+			self.origTitle = None
+			try:
+				if self.instance and self.instance.isVisible():
+					self.timerTick()
+				else:
+					self.onShown.append(self.timerTick)
+			except AttributeError:
+				self.onShown.append(self.timerTick)
+			self.timerRunning = True
+		else:
+			self.timerRunning = False
+
 	def startTimer(self):
 		self.timer.start(1000)
+
+	def stopTimer(self):
+		if self.timerRunning:
+			del self.timer
+			self.setTitle(self.origTitle)
+			self.onShown.remove(self.timerTick)
 
 	def timerTick(self):
 		if self.execing:
