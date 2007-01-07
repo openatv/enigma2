@@ -23,13 +23,13 @@ class SleepTimerEntry(timer.TimerEntry):
 			if config.SleepTimer.action.value == "shutdown":
 				global inTryQuitMainloop
 				if config.SleepTimer.ask.value and not inTryQuitMainloop:
-					Notifications.AddNotificationWithCallback(self.shutdown, MessageBox, _("A sleep timer want's to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
+					Notifications.AddNotificationWithCallback(self.shutdown, MessageBox, _("A sleep timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 				else:
 					self.shutdown(True)
 			elif config.SleepTimer.action.value == "standby":
 				global inStandby
 				if config.SleepTimer.ask.value and not inStandby:
-					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer want's to set your\nDreambox to standby. Do that now?"), timeout = 20)
+					Notifications.AddNotificationWithCallback(self.standby, MessageBox, _("A sleep timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
 				else:
 					self.standby(True)
 
