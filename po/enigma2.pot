@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-07 01:58+0100\n"
+"POT-Creation-Date: 2007-01-07 11:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,18 @@ msgstr ""
 msgid "A"
 msgstr ""
 
+#: ../RecordTimer.py:218
+msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+
+#: ../RecordTimer.py:222
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
+
 #: ../lib/python/Screens/InfoBarGenerics.py:1340
 msgid ""
 "A recording is currently running.\n"
@@ -152,13 +164,13 @@ msgstr ""
 
 #: ../SleepTimer.py:32
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
 
 #: ../SleepTimer.py:26
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
 
@@ -184,7 +196,7 @@ msgstr ""
 msgid "Activate Picture in Picture"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:25
+#: ../lib/python/Screens/TimerEdit.py:27
 msgid "Add"
 msgstr ""
 
@@ -221,8 +233,8 @@ msgstr ""
 msgid "Album:"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:609
-#: ../lib/python/Screens/ChannelSelection.py:758
+#: ../lib/python/Screens/ChannelSelection.py:646
+#: ../lib/python/Screens/ChannelSelection.py:795
 msgid "All"
 msgstr ""
 
@@ -314,7 +326,7 @@ msgstr ""
 msgid "CVBS"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:871
+#: ../lib/python/Screens/ChannelSelection.py:908
 msgid "Cable"
 msgstr ""
 
@@ -345,7 +357,7 @@ msgstr ""
 msgid "Catalan"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:169
+#: ../lib/python/Screens/ChannelSelection.py:200
 #: ../lib/python/Screens/ParentalControlSetup.py:20 ../data/
 msgid "Change pin code"
 msgstr ""
@@ -374,7 +386,7 @@ msgstr ""
 msgid "Choose source"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:27
+#: ../lib/python/Screens/TimerEdit.py:29
 msgid "Cleanup"
 msgstr ""
 
@@ -435,7 +447,7 @@ msgstr ""
 msgid "Configuring"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:208
+#: ../lib/python/Screens/TimerEdit.py:231
 msgid "Conflicting timer"
 msgstr ""
 
@@ -507,7 +519,7 @@ msgstr ""
 msgid "Deep Standby"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:24
+#: ../lib/python/Screens/TimerEdit.py:26
 msgid "Delete"
 msgstr ""
 
@@ -551,7 +563,7 @@ msgstr ""
 msgid "DiSEqC repeats"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:81
+#: ../lib/python/Screens/TimerEdit.py:104
 msgid "Disable"
 msgstr ""
 
@@ -617,6 +629,10 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
+#: ../lib/python/Screens/TimerEdit.py:78
+msgid "Don't stop current event but disable coming events"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:307
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -648,7 +664,7 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:879
+#: ../lib/python/Screens/ChannelSelection.py:916
 msgid "E"
 msgstr ""
 
@@ -666,7 +682,8 @@ msgstr ""
 msgid "Edit services list"
 msgstr ""
 
-#: ../lib/python/Screens/Subtitles.py:31 ../lib/python/Screens/TimerEdit.py:79
+#: ../lib/python/Screens/Subtitles.py:31
+#: ../lib/python/Screens/TimerEdit.py:102
 msgid "Enable"
 msgstr ""
 
@@ -710,7 +727,7 @@ msgstr ""
 msgid "Enter main menu..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:169
+#: ../lib/python/Screens/ChannelSelection.py:200
 msgid "Enter the service pin"
 msgstr ""
 
@@ -747,7 +764,7 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:612
+#: ../lib/python/Screens/ChannelSelection.py:649
 msgid "Favourites"
 msgstr ""
 
@@ -1096,7 +1113,7 @@ msgstr ""
 msgid "Network scan"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:863
+#: ../lib/python/Screens/ChannelSelection.py:900
 msgid "New"
 msgstr ""
 
@@ -1245,11 +1262,11 @@ msgstr ""
 msgid "Please choose an extension..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:157
+#: ../lib/python/Screens/ChannelSelection.py:188
 msgid "Please enter a name for the new bouquet"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:203
+#: ../lib/python/Screens/ChannelSelection.py:234
 msgid "Please enter a name for the new marker"
 msgstr ""
 
@@ -1370,12 +1387,12 @@ msgstr ""
 msgid "Protect setup"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:611
-#: ../lib/python/Screens/ChannelSelection.py:754
+#: ../lib/python/Screens/ChannelSelection.py:648
+#: ../lib/python/Screens/ChannelSelection.py:791
 msgid "Provider"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:861
+#: ../lib/python/Screens/ChannelSelection.py:898
 msgid "Providers"
 msgstr ""
 
@@ -1405,11 +1422,11 @@ msgstr ""
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:105
+#: ../lib/python/Screens/TimerEdit.py:128
 msgid "Really delete done timers?"
 msgstr ""
 
-#: ../lib/python/Screens/TimerEdit.py:113
+#: ../lib/python/Screens/TimerEdit.py:136
 msgid "Really delete this timer?"
 msgstr ""
 
@@ -1463,6 +1480,10 @@ msgstr ""
 msgid "Repeat Type"
 msgstr ""
 
+#: ../lib/python/Screens/TimerEdit.py:79
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
+
 #: ../lib/python/Screens/MediaPlayer.py:396
 msgid "Replace current playlist"
 msgstr ""
@@ -1511,8 +1532,8 @@ msgstr ""
 msgid "Satellite"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:610
-#: ../lib/python/Screens/ChannelSelection.py:756
+#: ../lib/python/Screens/ChannelSelection.py:647
+#: ../lib/python/Screens/ChannelSelection.py:793
 msgid "Satellites"
 msgstr ""
 
@@ -1587,7 +1608,7 @@ msgstr ""
 msgid "Serviceinfo"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:865
+#: ../lib/python/Screens/ChannelSelection.py:902
 msgid "Services"
 msgstr ""
 
@@ -1726,6 +1747,14 @@ msgstr ""
 msgid "Stop Timeshift?"
 msgstr ""
 
+#: ../lib/python/Screens/TimerEdit.py:77
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+#: ../lib/python/Screens/TimerEdit.py:76
+msgid "Stop current event but not coming events"
+msgstr ""
+
 #: ../lib/python/Screens/InfoBar.py:110
 msgid "Stop playing this movie?"
 msgstr ""
@@ -1784,7 +1813,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:873
+#: ../lib/python/Screens/ChannelSelection.py:910
 msgid "Terrestrial"
 msgstr ""
 
@@ -1801,7 +1830,7 @@ msgstr ""
 msgid "The pin code has been changed successfully."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:176
+#: ../lib/python/Screens/ChannelSelection.py:207
 #: ../lib/python/Screens/ParentalControlSetup.py:38
 #: ../lib/python/Components/ParentalControl.py:141
 msgid "The pin code you entered is wrong."
@@ -2021,7 +2050,7 @@ msgstr ""
 msgid "Voltage mode"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:877
+#: ../lib/python/Screens/ChannelSelection.py:914
 msgid "W"
 msgstr ""
 
@@ -2096,31 +2125,31 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:479
+#: ../lib/python/Screens/ChannelSelection.py:516
 msgid "[alternative edit]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:483
+#: ../lib/python/Screens/ChannelSelection.py:520
 msgid "[bouquet edit]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:485
+#: ../lib/python/Screens/ChannelSelection.py:522
 msgid "[favourite edit]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:577
+#: ../lib/python/Screens/ChannelSelection.py:614
 msgid "[move mode]"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:142
+#: ../lib/python/Screens/ChannelSelection.py:173
 msgid "abort alternatives edit"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:136
+#: ../lib/python/Screens/ChannelSelection.py:167
 msgid "abort bouquet edit"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:139
+#: ../lib/python/Screens/ChannelSelection.py:170
 msgid "abort favourites edit"
 msgstr ""
 
@@ -2128,11 +2157,11 @@ msgstr ""
 msgid "about to start"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:129
+#: ../lib/python/Screens/ChannelSelection.py:160
 msgid "add alternatives"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:111
+#: ../lib/python/Screens/ChannelSelection.py:142
 msgid "add bouquet"
 msgstr ""
 
@@ -2144,7 +2173,7 @@ msgstr ""
 msgid "add file to playlist"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:119
+#: ../lib/python/Screens/ChannelSelection.py:150
 msgid "add marker"
 msgstr ""
 
@@ -2163,15 +2192,15 @@ msgstr ""
 msgid "add recording (stop after current event)"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:97
+#: ../lib/python/Screens/ChannelSelection.py:128
 msgid "add service to bouquet"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:99
+#: ../lib/python/Screens/ChannelSelection.py:130
 msgid "add service to favourites"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:93
+#: ../lib/python/Screens/ChannelSelection.py:124
 msgid "add to parental protection"
 msgstr ""
 
@@ -2186,7 +2215,7 @@ msgid ""
 "following backup:\n"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:144
+#: ../lib/python/Screens/ChannelSelection.py:175
 #: ../lib/python/Screens/MovieSelection.py:25
 #: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:50
 msgid "back"
@@ -2228,7 +2257,7 @@ msgstr ""
 msgid "continue"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:103
+#: ../lib/python/Screens/ChannelSelection.py:134
 msgid "copy to bouquets"
 msgstr ""
 
@@ -2253,7 +2282,7 @@ msgstr ""
 msgid "disable"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:131
+#: ../lib/python/Screens/ChannelSelection.py:162
 msgid "disable move mode"
 msgstr ""
 
@@ -2274,7 +2303,7 @@ msgstr ""
 msgid "done!"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:125
+#: ../lib/python/Screens/ChannelSelection.py:156
 msgid "edit alternatives"
 msgstr ""
 
@@ -2286,23 +2315,23 @@ msgstr ""
 msgid "enable"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:121
+#: ../lib/python/Screens/ChannelSelection.py:152
 msgid "enable bouquet edit"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:123
+#: ../lib/python/Screens/ChannelSelection.py:154
 msgid "enable favourite edit"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:117
+#: ../lib/python/Screens/ChannelSelection.py:148
 msgid "enable move mode"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:141
+#: ../lib/python/Screens/ChannelSelection.py:172
 msgid "end alternatives edit"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:135
+#: ../lib/python/Screens/ChannelSelection.py:166
 msgid "end bouquet edit"
 msgstr ""
 
@@ -2311,7 +2340,7 @@ msgstr ""
 msgid "end cut here"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:138
+#: ../lib/python/Screens/ChannelSelection.py:169
 msgid "end favourites edit"
 msgstr ""
 
@@ -2547,11 +2576,11 @@ msgstr ""
 msgid "remove after this position"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:127
+#: ../lib/python/Screens/ChannelSelection.py:158
 msgid "remove all alternatives"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:105
+#: ../lib/python/Screens/ChannelSelection.py:136
 msgid "remove all new found flags"
 msgstr ""
 
@@ -2559,16 +2588,16 @@ msgstr ""
 msgid "remove before this position"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:107
-#: ../lib/python/Screens/ChannelSelection.py:112
+#: ../lib/python/Screens/ChannelSelection.py:138
+#: ../lib/python/Screens/ChannelSelection.py:143
 msgid "remove entry"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:95
+#: ../lib/python/Screens/ChannelSelection.py:126
 msgid "remove from parental protection"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:109
+#: ../lib/python/Screens/ChannelSelection.py:140
 msgid "remove new found flag"
 msgstr ""
 
@@ -2645,7 +2674,7 @@ msgstr ""
 msgid "show EPG..."
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:126
+#: ../lib/python/Screens/ChannelSelection.py:157
 msgid "show alternatives"
 msgstr ""
 
@@ -2653,7 +2682,7 @@ msgstr ""
 msgid "show event details"
 msgstr ""
 
-#: ../lib/python/Screens/ChannelSelection.py:86
+#: ../lib/python/Screens/ChannelSelection.py:117
 msgid "show transponder info"
 msgstr ""
 
