@@ -2,6 +2,7 @@
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
 from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
@@ -12,7 +13,6 @@ from Tools.Directories import SCOPE_SKIN
 from Components.config import config
 
 from os import path, walk
-from enigma import quitMainloop
 
 class SkinSelector(Screen):
 	# for i18n:
@@ -33,7 +33,6 @@ class SkinSelector(Screen):
 		Screen.__init__(self, session)
 
 		self.skinlist = []
-		self.session = session
 		self.previewPath = ""
 
 		path.walk(self.root, self.find, "")
@@ -114,7 +113,7 @@ class SkinSelector(Screen):
 
 	def restartGUI(self, answer):
 		if answer is True:
-			quitMainloop(3)
+			self.session.open(TryQuitMainloop, 3)
 
 def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)

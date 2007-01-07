@@ -74,7 +74,8 @@
 		<menu text="Standby / Restart">
 			<id val="shutdown" />
 			<!--<item text="Standby"><code>quitMainloop(0)</code></item>-->
-			<item text="Restart"><code>quitMainloop(2)</code></item>
-			<item text="Deep Standby"><code>quitMainloop(1)</code></item>
+			<item text="Standby"><screen module="Standby" screen="Standby"/></item>
+			<item text="Restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+			<item text="Deep Standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		</menu>
 </menu>

@@ -7,9 +7,11 @@ from Components.config import config, ConfigYesNo
 import timer
 import xml.dom.minidom
 
-from enigma import quitMainloop, eEPGCache, getBestPlayableServiceReference, eServiceReference
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference
 
 from Screens.MessageBox import MessageBox
+from Screens.Standby import Standby, TryQuitMainloop, inStandby, inTryQuitMainloop
+
 import NavigationInstance
 from time import localtime
 
@@ -69,7 +71,6 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.start_prepare = 0
 		self.justplay = justplay
 		self.afterEvent = afterEvent
-		self.session = None
 		
 		self.log_entries = []
 		self.resetState()
@@ -212,10 +213,13 @@ class RecordTimerEntry(timer.TimerEntry):
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
-				if self.session is not None:
-					self.session.open(Standby, self)
-			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
-				quitMainloop(1)
+				global inStandby
+				if not inStandby:
+					Notifications.AddNotification(Standby)
+			if self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+				global inTryQuitMainloop
+				if not inTryQuitMainloop:
+					Notifications.AddNotification(TryQuitMainloop, 1)
 			return True
 
 	def getNextActivation(self):

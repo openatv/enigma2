@@ -11,8 +11,6 @@ from Components.PluginComponent import plugins
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
-from enigma import quitMainloop
-
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
