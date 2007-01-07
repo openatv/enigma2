@@ -112,9 +112,7 @@ class Satfinder(ScanSetup):
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
 		self.statusTimer.start(50, False)
-		
 		self.initcomplete = True
-		self.session = session
 
 	def updateStatus(self):
 		self["snr_percentage"].update()
