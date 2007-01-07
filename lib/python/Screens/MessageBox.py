@@ -62,16 +62,17 @@ class MessageBox(Screen):
 			self.timer.timeout.get().append(self.timerTick)
 			self.onExecBegin.append(self.startTimer)
 			self.origTitle = None
-			try:
-				if self.instance and self.instance.isVisible():
-					self.timerTick()
-				else:
-					self.onShown.append(self.timerTick)
-			except AttributeError:
-				self.onShown.append(self.timerTick)
+			if self.execing:
+				self.timerTick()
+			else:
+				self.onShown.append(self.__onShown)
 			self.timerRunning = True
 		else:
 			self.timerRunning = False
+
+	def __onShown(self):
+		self.onShown.remove(self.__onShown)
+		self.timerTick()
 
 	def startTimer(self):
 		self.timer.start(1000)
@@ -80,7 +81,6 @@ class MessageBox(Screen):
 		if self.timerRunning:
 			del self.timer
 			self.setTitle(self.origTitle)
-			self.onShown.remove(self.timerTick)
 
 	def timerTick(self):
 		if self.execing:
