@@ -58,7 +58,7 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 	int ptr=10;
 	int descriptors_length = (data[ptr++]&0x0F) << 8;
 	descriptors_length |= data[ptr++];
-	while ( descriptors_length > 0 )
+	while ( descriptors_length )
 	{
 		__u8 *descr = data+ptr;
 		int descr_len = descr[1]+2;
@@ -93,9 +93,11 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 
 const eit_event_struct* eventData::get() const
 {
-	int pos = 12;
+	int pos = 10;
 	int tmp = ByteSize-12;
 	memcpy(data, EITdata, 12);
+	int descriptors_length = (data[pos++]&0x0F) << 8;
+	descriptors_length |= data[pos++];
 	__u32 *p = (__u32*)(EITdata+12);
 	while(tmp>0)
 	{
@@ -107,10 +109,12 @@ const eit_event_struct* eventData::get() const
 			memcpy(data+pos, it->second.second, b );
 			pos += b;
 		}
+		else
+			eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(p-1));
 		tmp-=4;
 	}
 	ASSERT(pos <= 4108);
-
+	ASSERT((pos-12) == descriptors_length);
 	return (const eit_event_struct*)data;
 }
 
@@ -119,15 +123,17 @@ eventData::~eventData()
 	if ( ByteSize )
 	{
 		CacheSize-=ByteSize;
-		ByteSize-=12;
+		int descriptors_length = (EITdata[10]&0x0F) << 8;
+		descriptors_length |= EITdata[11];
 		__u32 *d = (__u32*)(EITdata+12);
-		while(ByteSize)
+		while(descriptors_length)
 		{
 			descriptorMap::iterator it =
 				descriptors.find(*d++);
 			if ( it != descriptors.end() )
 			{
 				descriptorPair &p = it->second;
+				descriptors_length -= (it->second.second[1]+2);
 				if (!--p.first) // no more used descriptor
 				{
 					CacheSize -= it->second.second[1];
@@ -136,10 +142,10 @@ eventData::~eventData()
 				}
 			}
 			else
-				eFatal("[descriptor not found in descriptor cache!!!!!!");
-			ByteSize-=4;
+				eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(d-1));
 		}
 		delete [] EITdata;
+		ASSERT(!descriptors_length);
 	}
 }
 
@@ -869,7 +875,7 @@ void eEPGCache::load()
 			}
 			char text1[13];
 			fread( text1, 13, 1, f);
-			if ( !strncmp( text1, "ENIGMA_EPG_V5", 13) )
+			if ( !strncmp( text1, "ENIGMA_EPG_V6", 13) )
 			{
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
@@ -972,7 +978,7 @@ void eEPGCache::save()
 	{
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
-		const char *text = "ENIGMA_EPG_V5";
+		const char *text = "ENIGMA_EPG_V6";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
