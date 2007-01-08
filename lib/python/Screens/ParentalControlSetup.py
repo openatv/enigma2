@@ -51,7 +51,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		}, -2)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value
+		return config.ParentalControl.setuppinactive.value and config.ParentalControl.configured.value
 	
 	def createSetup(self):
 		self.editListEntry = None
