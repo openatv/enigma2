@@ -1908,9 +1908,7 @@ class InfoBarServiceErrorPopupSupport:
 			eDVBServicePMTHandler.eventEOF: None
 		}
 
-		if error is not None:
-			if error in errors:
-				error = errors[error]
+		error = errors.get(error) #this returns None when the key not exist in the dict
 
 		if error is not None:
 			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
