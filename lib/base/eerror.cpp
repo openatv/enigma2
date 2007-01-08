@@ -74,6 +74,8 @@ int logOutputConsole=1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+extern void bsodFatal();
+
 void eFatal(const char* fmt, ...)
 {
 	char buf[1024];
@@ -84,7 +86,7 @@ void eFatal(const char* fmt, ...)
 	singleLock s(DebugLock);
 	logOutput(lvlFatal, buf);
 	fprintf(stderr, "FATAL: %s\n",buf );
-	_exit(0);
+	bsodFatal();
 }
 
 #ifdef DEBUG
