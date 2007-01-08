@@ -1911,7 +1911,7 @@ class InfoBarServiceErrorPopupSupport:
 		if error not in errors:
 			error = None
 
-		error = error is not None and errors[error]
+		error = error and errors[error]
 
 		if error is not None:
 			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
