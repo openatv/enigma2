@@ -715,7 +715,7 @@ void eEPGCache::cleanLoop()
 					content_time_tables.find( DBIt->first );
 				if ( x != content_time_tables.end() )
 				{
-					timeMap &tmMap = eventDB[DBIt->first].second;
+					timeMap &tmMap = DBIt->second.second;
 					for ( contentMap::iterator i = x->second.begin(); i != x->second.end(); )
 					{
 						for ( contentTimeMap::iterator it(i->second.begin());
@@ -782,6 +782,7 @@ void eEPGCache::gotMessage( const Message &msg )
 #ifdef ENABLE_PRIVATE_EPG
 		case Message::got_private_pid:
 		{
+			singleLock s(channel_map_lock);
 			for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
 			{
 				eDVBChannel *channel = (eDVBChannel*) it->first;
@@ -1478,6 +1479,7 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 
 RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
+	Lock();
 	eventCache::iterator It = eventDB.find(handleGroup(service));
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
@@ -1504,8 +1506,10 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 			m_timemap_cursor = It->second.second.begin();
 		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
+		Unlock();
 		return 0;
 	}
+	Unlock();
 	return -1;
 }
 
@@ -2525,7 +2529,7 @@ void eEPGCache::channel_data::startPrivateReader()
 
 void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 {
-	if ( seenPrivateSections.find( data[6] ) == seenPrivateSections.end() )
+	if ( seenPrivateSections.find(data[6]) == seenPrivateSections.end() )
 	{
 		cache->privateSectionRead(m_PrivateService, data);
 		seenPrivateSections.insert(data[6]);
@@ -2602,19 +2606,21 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	putenv("TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
 	tzset();
 
-	tm *localnow = localtime( &dt );
+	tm localnow;
+	localtime_r(&dt, &localnow);
 
 	if (day == 7)
 		day = 0;
-	if ( day + 1 < localnow->tm_wday )		// day + 1 to prevent old events to show for next week.
+	if ( day + 1 < localnow.tm_wday )		// day + 1 to prevent old events to show for next week.
 		day += 7;
 	if (local_hours <= 5)
 		day++;
 
-	dt += 3600*24*(day - localnow->tm_wday);	// Shift dt to the recording date (local time zone).
-	dt += 3600*(local_hours - localnow->tm_hour);  // Shift dt to the recording hour.
+	dt += 3600*24*(day - localnow.tm_wday);	// Shift dt to the recording date (local time zone).
+	dt += 3600*(local_hours - localnow.tm_hour);  // Shift dt to the recording hour.
 
-	tm *recdate = gmtime( &dt );   // This will also take care of DST.
+	tm recdate;
+	gmtime_r( &dt, &recdate );   // This will also take care of DST.
 
 	if ( old_tz == NULL )
 		unsetenv( "TZ" );
@@ -2624,15 +2630,15 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 
 	// Calculate MJD according to annex in ETSI EN 300 468
 	int l=0;
-	if ( recdate->tm_mon <= 1 )	// Jan or Feb
+	if ( recdate.tm_mon <= 1 )	// Jan or Feb
 		l=1;
-	int mjd = 14956 + recdate->tm_mday + int( (recdate->tm_year - l) * 365.25) +
-		int( (recdate->tm_mon + 2 + l * 12) * 30.6001);
+	int mjd = 14956 + recdate.tm_mday + int( (recdate.tm_year - l) * 365.25) +
+		int( (recdate.tm_mon + 2 + l * 12) * 30.6001);
 
 	return_time[0] = (mjd & 0xFF00)>>8;
 	return_time[1] = mjd & 0xFF;
 
-	timeMHW2DVB( recdate->tm_hour, minutes, return_time+2 );
+	timeMHW2DVB( recdate.tm_hour, minutes, return_time+2 );
 }
 
 void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data)
