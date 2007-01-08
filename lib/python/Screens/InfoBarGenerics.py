@@ -1908,10 +1908,9 @@ class InfoBarServiceErrorPopupSupport:
 			eDVBServicePMTHandler.eventEOF: None
 		}
 
-		if error not in errors:
-			error = None
-
-		error = error and errors[error]
+		if error is not None:
+			if error in errors:
+				error = errors[error]
 
 		if error is not None:
 			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
