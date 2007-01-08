@@ -387,7 +387,7 @@ class VolumeControl:
 				self.muteDialog.hide()
 				self.volumeDialog.setValue(vol)
 
-from Screens.Standby import Standby, TryQuitMainloop, inTryQuitMainloop
+from Screens.Standby import Standby, inStandby, TryQuitMainloop, inTryQuitMainloop
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -398,7 +398,7 @@ class PowerKey:
 		self.powerKeyTimer.timeout.get().append(self.powertimer)
 		globalActionMap.actions["powerdown"]=self.powerdown
 		globalActionMap.actions["powerup"]=self.powerup
-		self.standbyblocked = 0
+		self.standbyblocked = 1
 #		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
 			#{
 				#"powerdown": self.powerdown,
@@ -424,7 +424,8 @@ class PowerKey:
 			self.standby()
 
 	def standby(self):
-		if self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+		global inStandby
+		if not inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			self.session.open(Standby)
 
 from Screens.Scart import Scart
