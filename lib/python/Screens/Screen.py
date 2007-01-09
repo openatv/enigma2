@@ -31,6 +31,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.helpList = [ ]
 		
 		self.close_on_next_exec = None
+		
+		# stand alone screens (for example web screens)
+		# don't care about having or not having focus.
+		self.stand_alone = False
 
 	def execBegin(self):
 		self.active_components = [ ]
@@ -44,7 +48,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 			self.onFirstExecBegin = []
 			for x in self.onExecBegin + single:
 				x()
-				if self.session.current_dialog != self:
+				if not self.stand_alone and self.session.current_dialog != self:
 					return
 
 #			assert self.session == None, "a screen can only exec once per time"
@@ -52,7 +56,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 			for val in self.values() + self.renderer:
 				val.execBegin()
-				if self.session.current_dialog != self:
+				if not self.stand_alone and self.session.current_dialog != self:
 					return
 				self.active_components.append(val)
 
