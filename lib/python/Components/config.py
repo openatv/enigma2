@@ -440,11 +440,15 @@ class ConfigSequence(ConfigElement):
 		return str(v)
 
 	def fromstring(self, value):
-		return [int(x) for x in self.saved_value.split(self.seperator)]
+		return [int(x) for x in value.split(self.seperator)]
 
 class ConfigIP(ConfigSequence):
 	def __init__(self, default):
 		ConfigSequence.__init__(self, seperator = ".", limits = [(0,255),(0,255),(0,255),(0,255)], default = default)
+	
+	def getHTML(self, id):
+		# we definitely don't want leading zeros
+		return '.'.join(["%d" % d for d in self.value])
 
 class ConfigMAC(ConfigSequence):
 	def __init__(self, default):
