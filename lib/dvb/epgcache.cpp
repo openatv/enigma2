@@ -15,6 +15,7 @@
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/db.h>
 #include <lib/python/python.h>
+#include <dvbsi++/descriptor_tag.h>
 
 int eventData::CacheSize=0;
 descriptorMap eventData::descriptors;
@@ -55,51 +56,67 @@ eventData::eventData(const eit_event_struct* e, int size, int type)
 	__u32 *pdescr=descr;
 
 	__u8 *data = (__u8*)e;
-	int ptr=10;
-	int descriptors_length = (data[ptr++]&0x0F) << 8;
-	descriptors_length |= data[ptr++];
-	while ( descriptors_length )
+	int ptr=12;
+	size -= 12;
+
+	while(size > 1)
 	{
 		__u8 *descr = data+ptr;
-		int descr_len = descr[1]+2;
-
-		__u32 crc = 0;
-		int cnt=0;
-		while(cnt++ < descr_len)
-			crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
-
-		descriptorMap::iterator it =
-			descriptors.find(crc);
-		if ( it == descriptors.end() )
+		int descr_len = descr[1];
+		descr_len += 2;
+		if (size >= descr_len)
 		{
-			CacheSize+=descr_len;
-			__u8 *d = new __u8[descr_len];
-			memcpy(d, descr, descr_len);
-			descriptors[crc] = descriptorPair(1, d);
+			switch (descr[0])
+			{
+				case EXTENDED_EVENT_DESCRIPTOR:
+				case SHORT_EVENT_DESCRIPTOR:
+				case LINKAGE_DESCRIPTOR:
+				case COMPONENT_DESCRIPTOR:
+				{
+					__u32 crc = 0;
+					int cnt=0;
+					while(cnt++ < descr_len)
+						crc = (crc << 8) ^ crc32_table[((crc >> 24) ^ data[ptr++]) & 0xFF];
+	
+					descriptorMap::iterator it =
+						descriptors.find(crc);
+					if ( it == descriptors.end() )
+					{
+						CacheSize+=descr_len;
+						__u8 *d = new __u8[descr_len];
+						memcpy(d, descr, descr_len);
+						descriptors[crc] = descriptorPair(1, d);
+					}
+					else
+						++it->second.first;
+					*pdescr++=crc;
+					break;
+				}
+				default: // do not cache all other descriptors
+					ptr += descr_len;
+					break;
+			}
+			size -= descr_len;
 		}
 		else
-			++it->second.first;
-
-		*pdescr++=crc;
-		descriptors_length -= descr_len;
+			break;
 	}
 	ASSERT(pdescr <= &descr[65]);
-	ByteSize = 12+((pdescr-descr)*4);
+	ByteSize = 10+((pdescr-descr)*4);
 	EITdata = new __u8[ByteSize];
 	CacheSize+=ByteSize;
-	memcpy(EITdata, (__u8*) e, 12);
-	memcpy(EITdata+12, descr, ByteSize-12);
+	memcpy(EITdata, (__u8*) e, 10);
+	memcpy(EITdata+10, descr, ByteSize-10);
 }
 
 const eit_event_struct* eventData::get() const
 {
-	int pos = 10;
-	int tmp = ByteSize-12;
-	memcpy(data, EITdata, 12);
-	int descriptors_length = (data[pos++]&0x0F) << 8;
-	descriptors_length |= data[pos++];
-	__u32 *p = (__u32*)(EITdata+12);
-	while(tmp>0)
+	int pos = 12;
+	int tmp = ByteSize-10;
+	memcpy(data, EITdata, 10);
+	int descriptors_length=0;
+	__u32 *p = (__u32*)(EITdata+10);
+	while(tmp>3)
 	{
 		descriptorMap::iterator it =
 			descriptors.find(*p++);
@@ -108,32 +125,32 @@ const eit_event_struct* eventData::get() const
 			int b = it->second.second[1]+2;
 			memcpy(data+pos, it->second.second, b );
 			pos += b;
+			descriptors_length += b;
 		}
 		else
 			eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(p-1));
 		tmp-=4;
 	}
 	ASSERT(pos <= 4108);
-	ASSERT((pos-12) == descriptors_length);
-	return (const eit_event_struct*)data;
+	data[10] = (descriptors_length >> 8) & 0x0F;
+	data[11] = descriptors_length & 0xFF;
+	return (eit_event_struct*)data;
 }
 
 eventData::~eventData()
 {
 	if ( ByteSize )
 	{
-		CacheSize-=ByteSize;
-		int descriptors_length = (EITdata[10]&0x0F) << 8;
-		descriptors_length |= EITdata[11];
-		__u32 *d = (__u32*)(EITdata+12);
-		while(descriptors_length)
+		CacheSize -= ByteSize;
+		__u32 *d = (__u32*)(EITdata+10);
+		ByteSize -= 10;
+		while(ByteSize>3)
 		{
 			descriptorMap::iterator it =
 				descriptors.find(*d++);
 			if ( it != descriptors.end() )
 			{
 				descriptorPair &p = it->second;
-				descriptors_length -= (it->second.second[1]+2);
 				if (!--p.first) // no more used descriptor
 				{
 					CacheSize -= it->second.second[1];
@@ -143,9 +160,9 @@ eventData::~eventData()
 			}
 			else
 				eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(d-1));
+			ByteSize -= 4;
 		}
 		delete [] EITdata;
-		ASSERT(!descriptors_length);
 	}
 }
 
@@ -539,7 +556,6 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 					prevEventIt=servicemap.first.end();
 				}
 			}
-
 			evt = new eventData(eit_event, eit_event_size, source);
 #ifdef EPG_DEBUG
 			bool consistencyCheck=true;
@@ -875,7 +891,7 @@ void eEPGCache::load()
 			}
 			char text1[13];
 			fread( text1, 13, 1, f);
-			if ( !strncmp( text1, "ENIGMA_EPG_V6", 13) )
+			if ( !strncmp( text1, "ENIGMA_EPG_V7", 13) )
 			{
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
@@ -978,7 +994,7 @@ void eEPGCache::save()
 	{
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
-		const char *text = "ENIGMA_EPG_V6";
+		const char *text = "ENIGMA_EPG_V7";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
@@ -2002,10 +2018,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 						if (evData)
 						{
 							__u8 *data = evData->EITdata;
-							int tmp = evData->ByteSize-12;
-							__u32 *p = (__u32*)(data+12);
+							int tmp = evData->ByteSize-10;
+							__u32 *p = (__u32*)(data+10);
 								// search short and extended event descriptors
-							while(tmp>0)
+							while(tmp>3)
 							{
 								__u32 crc = *p++;
 								descriptorMap::iterator it =
@@ -2399,60 +2415,67 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 
 	int descriptors_length = (data[ptr++]&0x0F) << 8;
 	descriptors_length |= data[ptr++];
-	while ( descriptors_length > 0 )
+	while ( descriptors_length > 1 )
 	{
 		int descr_type = data[ptr];
 		int descr_len = data[ptr+1];
-		descriptors_length -= (descr_len+2);
-		if ( descr_type == 0xf2 )
+		descriptors_length -= 2;
+		if (descriptors_length >= descr_len)
 		{
-			ptr+=2;
-			int tsid = data[ptr++] << 8;
-			tsid |= data[ptr++];
-			int onid = data[ptr++] << 8;
-			onid |= data[ptr++];
-			int sid = data[ptr++] << 8;
-			sid |= data[ptr++];
+			descriptors_length -= descr_len;
+			if ( descr_type == 0xf2 && descr_len > 5)
+			{
+				ptr+=2;
+				int tsid = data[ptr++] << 8;
+				tsid |= data[ptr++];
+				int onid = data[ptr++] << 8;
+				onid |= data[ptr++];
+				int sid = data[ptr++] << 8;
+				sid |= data[ptr++];
 
 // WORKAROUND for wrong transmitted epg data (01.08.2006)
-			if ( onid == 0x85 )
-			{
-				switch( (tsid << 16) | sid )
+				if ( onid == 0x85 )
 				{
-					case 0x01030b: sid = 0x1b; tsid = 4; break;  // Premiere Win
-					case 0x0300f0: sid = 0xe0; tsid = 2; break;
-					case 0x0300f1: sid = 0xe1; tsid = 2; break;
-					case 0x0300f5: sid = 0xdc; break;
-					case 0x0400d2: sid = 0xe2; tsid = 0x11; break;
-					case 0x1100d3: sid = 0xe3; break;
+					switch( (tsid << 16) | sid )
+					{
+						case 0x01030b: sid = 0x1b; tsid = 4; break;  // Premiere Win
+						case 0x0300f0: sid = 0xe0; tsid = 2; break;
+						case 0x0300f1: sid = 0xe1; tsid = 2; break;
+						case 0x0300f5: sid = 0xdc; break;
+						case 0x0400d2: sid = 0xe2; tsid = 0x11; break;
+						case 0x1100d3: sid = 0xe3; break;
+					}
 				}
-			}
 ////////////////////////////////////////////
 
-			uniqueEPGKey service( sid, onid, tsid );
-			descr_len -= 6;
-			while( descr_len > 0 )
-			{
-				__u8 datetime[5];
-				datetime[0] = data[ptr++];
-				datetime[1] = data[ptr++];
-				int tmp_len = data[ptr++];
-				descr_len -= 3;
-				while( tmp_len > 0 )
+				uniqueEPGKey service( sid, onid, tsid );
+				descr_len -= 6;
+				while( descr_len > 2 )
 				{
-					memcpy(datetime+2, data+ptr, 3);
-					ptr+=3;
+					__u8 datetime[5];
+					datetime[0] = data[ptr++];
+					datetime[1] = data[ptr++];
+					int tmp_len = data[ptr++];
 					descr_len -= 3;
-					tmp_len -= 3;
-					start_times[datetime].push_back(service);
+					if (descr_len >= tmp_len)
+					{
+						descr_len -= tmp_len;
+						while( tmp_len > 2 )
+						{
+							memcpy(datetime+2, data+ptr, 3);
+							ptr += 3;
+							tmp_len -= 3;
+							start_times[datetime].push_back(service);
+						}
+					}
 				}
 			}
-		}
-		else
-		{
-			*pdescr++=data+ptr;
-			ptr += 2;
-			ptr += descr_len;
+			else
+			{
+				*pdescr++=data+ptr;
+				ptr += 2;
+				ptr += descr_len;
+			}
 		}
 	}
 	ASSERT(pdescr <= &descriptors[65])
@@ -2509,6 +2532,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 		eventData *d = new eventData( ev_struct, bptr, PRIVATE );
 		evMap[event_id] = d;
 		tmMap[stime] = d;
+		ASSERT(bptr <= 4098);
 	}
 }
 
