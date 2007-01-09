@@ -28,10 +28,15 @@ import time
 
 # prototype of the new web frontend template system.
 
-# a test screen
-class TestScreen(InfoBarServiceName, InfoBarEvent, Screen):
+class WebScreen(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.stand_alone = True
+
+# a test screen
+class TestScreen(InfoBarServiceName, InfoBarEvent, WebScreen):
+	def __init__(self, session):
+		WebScreen.__init__(self, session)
 		InfoBarServiceName.__init__(self)
 		InfoBarEvent.__init__(self)
 		self["CurrentTime"] = Clock()
@@ -48,6 +53,12 @@ class TestScreen(InfoBarServiceName, InfoBarEvent, Screen):
 
 	def zapTo(self, reftozap):
 		self.session.nav.playService(reftozap)
+
+class Streaming(WebScreen):
+	def __init__(self, session):
+		WebScreen.__init__(self, session)
+		from Components.Sources.StreamService import StreamService
+		self["StreamService"] = StreamService(self.session.nav)
 
 # implements the 'render'-call.
 # this will act as a downstream_element, like a renderer.
@@ -67,6 +78,18 @@ class OneTimeElement(Element):
 			t = t.encode("utf-8")
 		stream.write(t)
 
+	def execBegin(self):
+		pass
+	
+	def execEnd(self):
+		pass
+	
+	def onShow(self):
+		pass
+
+	def onHide(self):
+		pass
+	
 	def destroy(self):
 		pass
 
@@ -235,9 +258,14 @@ class webifHandler(ContentHandler):
 	def startEntity(self, name):
 		self.res.append('&' + name + ';');
 
+	def execBegin(self):
+		for screen in self.screens:
+			screen.execBegin()
+
 	def cleanup(self):
 		print "screen cleanup!"
 		for screen in self.screens:
+			screen.execEnd()
 			screen.doClose()
 		self.screens = [ ]
 
@@ -282,6 +310,8 @@ def renderPage(stream, path, req, session):
 		if isinstance(x, Element):
 			x.handleCommand(req.args)
 
+	handler.execBegin()
+
 	# now, we have a list with static texts mixed
 	# with non-static Elements.
 	# flatten this list, write into the stream.
@@ -296,7 +326,7 @@ def renderPage(stream, path, req, session):
 
 	def ping(s):
 		from twisted.internet import reactor
-		s.write("PING<br/>\n");
+		s.write("\n");
 		reactor.callLater(3, ping, s)
 
 	# if we met a "StreamingElement", there is at least one
@@ -313,5 +343,5 @@ def renderPage(stream, path, req, session):
 		# in order to detect disconnected clients.
 		# i agree that this "ping" sucks terrible, so better be sure to have something 
 		# similar. A "CurrentTime" is fine. Or anything that creates *some* output.
-#		ping(stream)
+		ping(stream)
 		stream.closed_callback = lambda: handler.cleanup()
