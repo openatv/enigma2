@@ -218,10 +218,6 @@ public:
 			flush,
 			startChannel,
 			leaveChannel,
-			pause,
-			restart,
-			updated,
-			isavail,
 			quit,
 			got_private_pid,
 			timeChanged
