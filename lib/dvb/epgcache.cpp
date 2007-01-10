@@ -1162,7 +1162,7 @@ void eEPGCache::channel_data::startEPG()
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
-//	abortTimer.start(7000,true);
+	abortTimer.start(7000,true);
 }
 
 void eEPGCache::channel_data::abortNonAvail()
@@ -1285,7 +1285,6 @@ void eEPGCache::channel_data::abortEPG()
 
 void eEPGCache::channel_data::readData( const __u8 *data)
 {
-#if 0
 	int source;
 	int map;
 	iDVBSectionReader *reader=NULL;
@@ -1368,7 +1367,6 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			cache->sectionRead(data, source, this);
 		}
 	}
-#endif
 }
 
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
