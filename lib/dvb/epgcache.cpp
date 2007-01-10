@@ -516,10 +516,11 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 					if ( tm_it_tmp->first == TM ) // just update eventdata
 					{
 						// exempt memory
-						delete ev_it->second;
+						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
 							new eventData(eit_event, eit_event_size, source);
 						FixOverlapping(servicemap, TM, duration, tm_it_tmp, service);
+						delete tmp;
 						goto next;
 					}
 					else  // event has new event begin time
@@ -562,25 +563,29 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 #endif
 			if (ev_erase_count > 0 && tm_erase_count > 0) // 2 different pairs have been removed
 			{
-				// exempt memory
-				delete ev_it->second;
-				delete tm_it->second;
+				eventData *tmp1 = ev_it->second,
+						*tmp2 = tm_it->second;
 				ev_it->second=evt;
 				tm_it->second=evt;
+				// exempt memory
+				delete tmp1;
+				delete tmp2;
 			}
 			else if (ev_erase_count == 0 && tm_erase_count > 0)
 			{
-				// exempt memory
-				delete ev_it->second;
+				eventData *tmp = ev_it->second;
 				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 				ev_it->second=evt;
+				// exempt memory
+				delete tmp;
 			}
 			else if (ev_erase_count > 0 && tm_erase_count == 0)
 			{
-				// exempt memory
-				delete tm_it->second;
+				eventData *tmp = tm_it->second;
 				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
 				tm_it->second=evt;
+				// exempt memory
+				delete tmp;
 			}
 			else // added new eventData
 			{
