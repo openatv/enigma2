@@ -1563,8 +1563,6 @@ class InfoBarAdditionalInfo:
 			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 
 	def tunerUseMaskChanged(self, mask):
-		if mask == 0:
-			self.checkTunerState(None)
 		if mask&1:
 			self["NimA_Active"].show()
 		else:
@@ -1589,7 +1587,7 @@ class InfoBarAdditionalInfo:
 
 	def gotServiceEvent(self, ev):
 		service = self.session.nav.getCurrentService()
-		if ev == iPlayableService.evUpdatedInfo:
+		if ev == iPlayableService.evUpdatedInfo or ev == iPlayableService.evEnd:
 			self.checkTunerState(service)
 
 class InfoBarNotifications:
