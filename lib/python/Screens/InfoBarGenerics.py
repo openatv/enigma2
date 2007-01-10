@@ -1587,7 +1587,7 @@ class InfoBarAdditionalInfo:
 
 	def gotServiceEvent(self, ev):
 		service = self.session.nav.getCurrentService()
-		if ev == iPlayableService.evNewProgramInfo:
+		if ev == iPlayableService.evUpdatedInfo:
 			self.checkTunerState(service)
 
 class InfoBarNotifications:
