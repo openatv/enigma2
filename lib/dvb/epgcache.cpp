@@ -1162,7 +1162,7 @@ void eEPGCache::channel_data::startEPG()
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
-	abortTimer.start(7000,true);
+//	abortTimer.start(7000,true);
 }
 
 void eEPGCache::channel_data::abortNonAvail()
@@ -1285,6 +1285,7 @@ void eEPGCache::channel_data::abortEPG()
 
 void eEPGCache::channel_data::readData( const __u8 *data)
 {
+#if 0
 	int source;
 	int map;
 	iDVBSectionReader *reader=NULL;
@@ -1367,6 +1368,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			cache->sectionRead(data, source, this);
 		}
 	}
+#endif
 }
 
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
@@ -2166,8 +2168,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 		return NULL;
 	}
 
-	ASSERT(descridx <= 512);
-
 	if (descridx > -1)
 	{
 		int maxcount=maxmatches;
@@ -2195,11 +2195,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 				if ( evid == eventid)
 					continue;
 				__u8 *data = evit->second->EITdata;
-				int tmp = evit->second->ByteSize-12;
-				__u32 *p = (__u32*)(data+12);
+				int tmp = evit->second->ByteSize-10;
+				__u32 *p = (__u32*)(data+10);
 				// check if any of our descriptor used by this event
 				int cnt=-1;
-				while(tmp>0)
+				while(tmp>3)
 				{
 					__u32 crc32 = *p++;
 					for ( int i=0; i <= descridx; ++i)
