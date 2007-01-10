@@ -1563,6 +1563,8 @@ class InfoBarAdditionalInfo:
 			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 
 	def tunerUseMaskChanged(self, mask):
+		if mask == 0:
+			self.checkTunerState(None)
 		if mask&1:
 			self["NimA_Active"].show()
 		else:
@@ -1573,7 +1575,7 @@ class InfoBarAdditionalInfo:
 			self["NimB_Active"].hide()
 
 	def checkTunerState(self, service):
-		info = service.frontendInfo()
+		info = service and service.frontendInfo()
 		feNumber = info and info.getFrontendInfo(iFrontendInformation.frontendNumber)
 		if feNumber is None:
 			self["NimA"].hide()
