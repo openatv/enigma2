@@ -81,6 +81,7 @@ class MessageBox(Screen):
 		if self.timerRunning:
 			del self.timer
 			self.setTitle(self.origTitle)
+			self.timerRunning = False
 
 	def timerTick(self):
 		if self.execing:
