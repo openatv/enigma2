@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "eerror.h"
 
+std::string buildShortName( const std::string &str );
+
 int strnicmp(const char*, const char*, int);
 
 std::string getNum(int num, int base=10);

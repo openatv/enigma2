@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
@@ -27,7 +28,7 @@ class ServiceName(Converter, object):
 			return ""
 		
 		if self.type == self.NAME:
-			return info.getName()
+			return info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider)
 

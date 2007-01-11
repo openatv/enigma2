@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from HTMLComponent import *
 from GUIComponent import *
 
@@ -164,25 +163,16 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
 		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service) > ((duration/10)*8))
-		sname = service_name
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
 		res = [ None ] # no private data needed
-		re = compile('\xc2\x86.*?\xc2\x87')
-		list = re.findall(sname)
-		if len(list):
-			sname=''
-			for substr in list:
-				sname+=substr[2:len(substr)-2]
-			if len(sname) == 0:
-				sname = service_name;
 		if rec:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, sname))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, service_name))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, sname))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, service_name))
 		if begTime is not None:
 			if nowTime < begTime:
 				begin = localtime(begTime)
@@ -207,7 +197,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillMultiEPG(self, services, stime=-1):
 		t = time()
-		test = [ '0RIBDTCN' ]
+		test = [ '0RIBDTCn' ]
 		for service in services:
 			tuple = (service.ref.toString(), 0, stime)
 			test.append( tuple )
@@ -218,7 +208,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def updateMultiEPG(self, direction):
 		t = time()
-		test = [ 'RIBDTCN' ]
+		test = [ 'RIBDTCn' ]
 		for x in self.list:
 			service = x[1]
 			begTime = x[3]

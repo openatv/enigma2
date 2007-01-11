@@ -5,6 +5,24 @@
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
 
+std::string buildShortName( const std::string &str )
+{
+	std::string tmp;
+	static char stropen[3] = { 0xc2, 0x86, 0x00 };
+	static char strclose[3] = { 0xc2, 0x87, 0x00 };
+	unsigned int open=std::string::npos-1;
+	while ( (open = str.find(stropen, open+2)) != std::string::npos )
+	{
+		unsigned int close = str.find(strclose, open);
+		if ( close != std::string::npos )
+		{
+			tmp+=str.substr( open+2, close-(open+2) );
+			eDebug("now %s", tmp.c_str());
+		}
+	}
+	return tmp.length() ? tmp : str;
+}
+
 std::string getNum(int val, int sys)
 {
 //	Returns a string that contain the value val as string

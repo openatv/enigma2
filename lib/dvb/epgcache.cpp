@@ -12,6 +12,7 @@
 #include <sys/vfs.h> // for statfs
 // #include <libmd5sum.h>
 #include <lib/base/eerror.h>
+#include <lib/base/estring.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/db.h>
 #include <lib/python/python.h>
@@ -1619,6 +1620,7 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 				tmp = service;
 				inc_refcount = true;
 				break;
+			case 'n': // short service name
 			case 'N': // service name
 				tmp = service_name;
 				inc_refcount = true;
@@ -1678,6 +1680,7 @@ int handleEvent(ePtr<eServiceEvent> &ptr, ePyObject dest_list, char* argstring, 
 //   C = Current Time
 //   R = Service Reference
 //   N = Service Name
+//   n = Short Service Name
 // then for each service follows a tuple
 //   first tuple entry is the servicereference (as string... use the ref.toString() function)
 //   the second is the type of query
@@ -1740,7 +1743,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 		PyLong_FromLong(eDVBLocalTimeHandler::getInstance()->nowTime()) :
 		ePyObject();
 
-	bool must_get_service_name = strchr(argstring, 'N') ? true : false;
+	int must_get_service_name = strchr(argstring, 'N') ? 1 : strchr(argstring, 'n') ? 2 : 0;
 
 	// create dest list
 	ePyObject dest_list=PyList_New(0);
@@ -1828,6 +1831,19 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					{
 						std::string name;
 						sptr->getName(ref, name);
+
+						if (must_get_service_name == 1)
+						{
+							unsigned int pos;
+							// filter short name brakets
+							while((pos = name.find("\xc2\x86")) != std::string::npos)
+								name.erase(pos,2);
+							while((pos = name.find("\xc2\x87")) != std::string::npos)
+								name.erase(pos,2);
+						}
+						else
+							name = buildShortName(name);
+
 						if (name.length())
 							service_name = PyString_FromString(name.c_str());
 					}
@@ -1920,6 +1936,7 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 				tmp = service_reference;
 				inc_refcount = true;
 				break;
+			case 'n': // short service name
 			case 'N': // service name
 				tmp = service_name;
 				inc_refcount = true;
@@ -1946,6 +1963,7 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 //   E = Event Extended Description
 //   R = Service Reference
 //   N = Service Name
+//   n = Short Service Name
 //  the second tuple entry is the MAX matches value
 //  the third tuple entry is the type of query
 //     0 = search for similar broadcastings (SIMILAR_BROADCASTINGS_SEARCH)
@@ -2224,24 +2242,41 @@ PyObject *eEPGCache::search(ePyObject arg)
 								eDebug("event not found !!!!!!!!!!!");
 						}
 					// create service name
-						if (!service_name && strchr(argstring,'N'))
+						if (!service_name)
 						{
-							ePtr<iStaticServiceInformation> sptr;
-							eServiceCenterPtr service_center;
-							eServiceCenter::getPrivInstance(service_center);
-							if (service_center)
+							int must_get_service_name = strchr(argstring, 'N') ? 1 : strchr(argstring, 'n') ? 2 : 0;
+							if (must_get_service_name)
 							{
-								service_center->info(ref, sptr);
-								if (sptr)
+								ePtr<iStaticServiceInformation> sptr;
+								eServiceCenterPtr service_center;
+								eServiceCenter::getPrivInstance(service_center);
+								if (service_center)
 								{
-									std::string name;
-									sptr->getName(ref, name);
-									if (name.length())
-										service_name = PyString_FromString(name.c_str());
+									service_center->info(ref, sptr);
+									if (sptr)
+									{
+										std::string name;
+										sptr->getName(ref, name);
+
+										if (must_get_service_name == 1)
+										{
+											unsigned int pos;
+											// filter short name brakets
+											while((pos = name.find("\xc2\x86")) != std::string::npos)
+												name.erase(pos,2);
+											while((pos = name.find("\xc2\x87")) != std::string::npos)
+												name.erase(pos,2);
+										}
+										else
+											name = buildShortName(name);
+
+										if (name.length())
+											service_name = PyString_FromString(name.c_str());
+									}
 								}
+								if (!service_name)
+									service_name = PyString_FromString("<n/a>");
 							}
-							if (!service_name)
-								service_name = PyString_FromString("<n/a>");
 						}
 					// create servicereference string
 						if (!service_reference && strchr(argstring,'R'))
