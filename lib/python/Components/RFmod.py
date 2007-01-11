@@ -14,7 +14,7 @@ class RFmod:
 	def setTestmode(self, value):
 		eRFmod.getInstance().setTestmode(value)
 	def setSoundFunction(self, value):
-		eRFmod.getInstance().setSoundFunction(value)
+		eRFmod.getInstance().setSoundFunction(not value)
 	def setSoundCarrier(self, value):
 		eRFmod.getInstance().setSoundCarrier(value)
 	def setChannel(self, value):
