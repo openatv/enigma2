@@ -65,16 +65,7 @@ RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::
 				if (!service_center->info(parent, service_info))
 				{
 					if (!service_info->getName(parent, name))
-					{
-						// just show short name
-						unsigned int pos = name.find("\xc2\x86");
-						if ( pos != std::string::npos )
-							name.erase(0, pos+2);
-						pos = name.find("\xc2\x87");
-						if ( pos != std::string::npos )
-							name.erase(pos);
-						name+=" - ";
-					}
+						name=buildShortName(name) + " - ";
 				}
 			}
 		}
@@ -730,6 +721,7 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sort
 //   S = Service Reference (as python string object .. same as ref.toString())
 //   C = Service Reference (as python string object .. same as ref.toCompareString())
 //   N = Service Name (as python string object)
+//   n = Short Service Name (short name brakets used) (as python string object)
 //   when exactly one return value per service is selected in the format string,
 //   then each value is directly a list entry
 //   when more than one value is returned per service, then the list is a list of
@@ -750,7 +742,7 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 		ePtr<iStaticServiceInformation> sptr;
 		eServiceCenterPtr service_center;
 
-		if (strchr(format, 'N'))
+		if (strchr(format, 'N') || strchr(format, 'n'))
 			eServiceCenter::getPrivInstance(service_center);
 
 		ret = PyList_New(services);
@@ -782,6 +774,30 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 						{
 							std::string name;
 							sptr->getName(ref, name);
+
+							// filter short name brakets
+							unsigned int pos;
+							while((pos = name.find("\xc2\x86")) != std::string::npos)
+								name.erase(pos,2);
+							while((pos = name.find("\xc2\x87")) != std::string::npos)
+								name.erase(pos,2);
+
+							if (name.length())
+								tmp = PyString_FromString(name.c_str());
+						}
+					}
+					if (!tmp)
+						tmp = PyString_FromString("<n/a>");
+					break;
+				case 'n':  // short service name
+					if (service_center)
+					{
+						service_center->info(ref, sptr);
+						if (sptr)
+						{
+							std::string name;
+							sptr->getName(ref, name);
+							name = buildShortName(name);
 							if (name.length())
 								tmp = PyString_FromString(name.c_str());
 						}
