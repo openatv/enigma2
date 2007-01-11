@@ -12,6 +12,7 @@
 
 class PSignal
 {
+protected:
 	ePyObject m_list;
 public:
 	PSignal();
@@ -36,9 +37,12 @@ class PSignal0: public PSignal, public Signal0<R>
 public:
 	R operator()()
 	{
-		PyObject *pArgs = PyTuple_New(0);
-		callPython(pArgs);
-		Org_Py_DECREF(pArgs);
+		if (m_list)
+		{
+			PyObject *pArgs = PyTuple_New(0);
+			callPython(pArgs);
+			Org_Py_DECREF(pArgs);
+		}
 		return Signal0<R>::operator()();
 	}
 };
@@ -49,10 +53,13 @@ class PSignal1: public PSignal, public Signal1<R,V0>
 public:
 	R operator()(V0 a0)
 	{
-		PyObject *pArgs = PyTuple_New(1);
-		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
-		callPython(pArgs);
-		Org_Py_DECREF(pArgs);
+		if (m_list)
+		{
+			PyObject *pArgs = PyTuple_New(1);
+			PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+			callPython(pArgs);
+			Org_Py_DECREF(pArgs);
+		}
 		return Signal1<R,V0>::operator()(a0);
 	}
 };
@@ -63,11 +70,14 @@ class PSignal2: public PSignal, public Signal2<R,V0,V1>
 public:
 	R operator()(V0 a0, V1 a1)
 	{
-		PyObject *pArgs = PyTuple_New(2);
-		PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
-		PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
-		callPython(pArgs);
-		Org_Py_DECREF(pArgs);
+		if (m_list)
+		{
+			PyObject *pArgs = PyTuple_New(2);
+			PyTuple_SET_ITEM(pArgs, 0, PyFrom(a0));
+			PyTuple_SET_ITEM(pArgs, 1, PyFrom(a1));
+			callPython(pArgs);
+			Org_Py_DECREF(pArgs);
+		}
 		return Signal2<R,V0,V1>::operator()(a0, a1);
 	}
 };
