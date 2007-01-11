@@ -15,10 +15,7 @@ std::string buildShortName( const std::string &str )
 	{
 		unsigned int close = str.find(strclose, open);
 		if ( close != std::string::npos )
-		{
 			tmp+=str.substr( open+2, close-(open+2) );
-			eDebug("now %s", tmp.c_str());
-		}
 	}
 	return tmp.length() ? tmp : str;
 }
