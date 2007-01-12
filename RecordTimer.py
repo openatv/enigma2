@@ -7,12 +7,15 @@ from Components.config import config, ConfigYesNo
 import timer
 import xml.dom.minidom
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference
+from enigma import eEPGCache, getBestPlayableServiceReference, \
+	eServiceReference, iRecordableService, quitMainloop
 
 from Screens.MessageBox import MessageBox
-from Screens.Standby import Standby, TryQuitMainloop, inStandby, inTryQuitMainloop
 
 import NavigationInstance
+
+import Screens.Standby
+
 from time import localtime
 
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
@@ -48,6 +51,47 @@ class AFTEREVENT:
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry):
+######### the following static methods and members are only in use when the box is in (soft) standby
+	receiveRecordEvents = False
+
+	@staticmethod
+	def shutdown():
+		quitMainloop(1)
+
+	@staticmethod
+	def gotRecordEvent(recservice, event):
+		if event == iRecordableService.evEnd:
+			print "RecordTimer.gotRecordEvent(iRecordableService.evEnd)"
+			recordings = NavigationInstance.instance.getRecordings()
+			if not len(recordings): # no more recordings exist
+				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+				if rec_time > 0 and (rec_time - time.time()) < 360:
+					print "another recording starts in", rec_time - time.time(), "seconds... do not shutdown yet"
+				else:
+					print "no starting records in the next 360 seconds... immediate shutdown"
+					RecordTimerEntry.shutdown() # immediate shutdown
+		elif event == iRecordableService.evStart:
+			print "RecordTimer.gotRecordEvent(iRecordableService.evStart)"
+
+	@staticmethod
+	def stopTryQuitMainloop():
+		print "RecordTimer.stopTryQuitMainloop"
+		NavigationInstance.instance.record_event.remove(RecordTimerEntry.gotRecordEvent)
+		RecordTimerEntry.receiveRecordEvents = False
+
+	@staticmethod
+	def TryQuitMainloop():
+		if not RecordTimerEntry.receiveRecordEvents:
+			print "RecordTimer.TryQuitMainloop"
+			NavigationInstance.instance.record_event.append(RecordTimerEntry.gotRecordEvent)
+			RecordTimerEntry.receiveRecordEvents = True
+			# send fake event.. to check if another recordings are running or
+			# other timers start in a few seconds
+			RecordTimerEntry.gotRecordEvent(None, iRecordableService.evEnd)
+			# send normal notification for the case the user leave the standby now..
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop)
+#################################################################
+
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		
@@ -213,22 +257,23 @@ class RecordTimerEntry(timer.TimerEntry):
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
-				global inStandby
-				if not inStandby:
+				if not Screen.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY:
-				global inTryQuitMainloop
-				if not inTryQuitMainloop:
-					Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					if Screens.Standby.inStandby: # not in standby
+						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+					else:
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 			return True
 
 	def sendStandbyNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Standby)
+			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(TryQuitMainloop, 1)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded:
