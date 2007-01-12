@@ -83,6 +83,7 @@ class PluginDownloadBrowser(Screen):
 		self["list"] = PluginList(self.list)
 		self.pluginlist = []
 		self.expanded = []
+		self.installedplugins = []
 		
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
@@ -139,21 +140,28 @@ class PluginDownloadBrowser(Screen):
 		if self.run == 0:
 			self.run = 1
 			if self.type == self.DOWNLOAD:
-				self.container.execute("ipkg list enigma2-plugin-*")
+				self.container.execute("ipkg list_installed enigma2-plugin-*")
+		elif self.run == 1 and self.type == self.DOWNLOAD:
+			self.run = 2
+			self.container.execute("ipkg list enigma2-plugin-*")
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
 				self["list"].instance.show()
 			else:
-				self["text"].setText("No plugins found")
+				self["text"].setText("No new plugins found")
 
 	def dataAvail(self, str):
 		for x in str.split('\n'):
 			plugin = x.split(" - ")
 			if len(plugin) == 3:
-				plugin.append(plugin[0][15:])
+				if self.run == 1 and self.type == self.DOWNLOAD:
+					self.installedplugins.append(plugin[0])
+				else:
+					if plugin[0] not in self.installedplugins:
+						plugin.append(plugin[0][15:])
 
-				self.pluginlist.append(plugin)
+						self.pluginlist.append(plugin)
 	
 	def updateList(self):
 		self.list = []
