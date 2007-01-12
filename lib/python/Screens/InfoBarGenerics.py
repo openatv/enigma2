@@ -1609,6 +1609,11 @@ class InfoBarNotifications:
 			
 			Notifications.notifications = Notifications.notifications[1:]
 			cb = n[0]
+
+			if n[3].has_key("onSessionOpenCallback"):
+				n[3]["onSessionOpenCallback"]()
+				del n[3]["onSessionOpenCallback"]
+
 			if cb is not None:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
 			else:
