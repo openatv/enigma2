@@ -46,7 +46,6 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 	return ref;
 }
 
-
 eventData::eventData(const eit_event_struct* e, int size, int type)
 	:ByteSize(size&0xFF), type(type&0xFF)
 {
@@ -564,29 +563,25 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 #endif
 			if (ev_erase_count > 0 && tm_erase_count > 0) // 2 different pairs have been removed
 			{
-				eventData *tmp1 = ev_it->second,
-						*tmp2 = tm_it->second;
+				// exempt memory
+				delete ev_it->second;
+				delete tm_it->second;
 				ev_it->second=evt;
 				tm_it->second=evt;
-				// exempt memory
-				delete tmp1;
-				delete tmp2;
 			}
 			else if (ev_erase_count == 0 && tm_erase_count > 0)
 			{
-				eventData *tmp = ev_it->second;
+				// exempt memory
+				delete ev_it->second;
 				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 				ev_it->second=evt;
-				// exempt memory
-				delete tmp;
 			}
 			else if (ev_erase_count > 0 && tm_erase_count == 0)
 			{
-				eventData *tmp = tm_it->second;
+				// exempt memory
+				delete tm_it->second;
 				ev_it=prevEventIt=servicemap.first.insert( prevEventIt, std::pair<const __u16, eventData*>( event_id, evt) );
 				tm_it->second=evt;
-				// exempt memory
-				delete tmp;
 			}
 			else // added new eventData
 			{
