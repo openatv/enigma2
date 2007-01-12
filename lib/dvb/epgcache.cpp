@@ -1507,8 +1507,9 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 
 RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
+	const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 	Lock();
-	eventCache::iterator It = eventDB.find(handleGroup(service));
+	eventCache::iterator It = eventDB.find(ref);
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
 		m_timemap_end = minutes != -1 ? It->second.second.upper_bound(begin+minutes*60) : It->second.second.end();
@@ -1532,7 +1533,6 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 		else
 			m_timemap_cursor = It->second.second.begin();
-		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		Unlock();
 		return 0;
