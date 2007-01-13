@@ -72,7 +72,7 @@ std::string ISOtbl[MAX_LANG][2] =
 bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 {
 	bool retval=0;
-	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
+	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end() && !retval; ++desc)
 	{
 		switch ((*desc)->getTag())
 		{
@@ -268,6 +268,11 @@ RESULT eServiceEvent::getLinkageService(eServiceReference &service, eServiceRefe
 	}
 	service.type = eServiceReference::idInvalid;
 	return -1;
+}
+
+void setServiceEventLanguage(const std::string language)
+{
+	eServiceEvent::setEPGLanguage(language);
 }
 
 DEFINE_REF(eDebugClass);

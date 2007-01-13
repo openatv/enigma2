@@ -224,7 +224,7 @@ typedef long long pts_t;
 	   
 	   Hide the result only if there is another way to check for failure! */
 	   
-SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEventPtr);
+class eServiceEvent;
 
 SWIG_IGNORE(iStaticServiceInformation);
 class iStaticServiceInformation: public iObject
