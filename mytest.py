@@ -1,6 +1,6 @@
 from Tools import RedirectOutput
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
-	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow
+	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow, eServiceEvent
 from tools import *
 
 from Components.Language import language

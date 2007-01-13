@@ -43,9 +43,9 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/nconfig.h>
 #include <lib/base/message.h>
 #include <lib/driver/rc.h>
+#include <lib/service/event.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
-#include <lib/service/event.h>
 #include <lib/service/servicedvb.h>
 #include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
@@ -134,9 +134,9 @@ typedef long time_t;
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
 %include <lib/base/smartptr.h>
+%include <lib/service/event.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
-%include <lib/service/event.h>
 
 // TODO: embed these...
 %immutable eConsoleAppContainer::appClosed;
