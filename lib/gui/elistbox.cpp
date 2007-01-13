@@ -394,7 +394,9 @@ void eListbox::setSelectionEnable(int en)
 
 void eListbox::entryAdded(int index)
 {
-		/* manage our local pointers. when the entry was added before the current position, we have to advance. */
+	if (m_content && (m_content->size() % m_items_per_page) == 1)
+		m_content_changed=true;
+	/* manage our local pointers. when the entry was added before the current position, we have to advance. */
 		
 		/* we need to check <= - when the new entry has the (old) index of the cursor, the cursor was just moved down. */
 	if (index <= m_selected)
@@ -416,7 +418,10 @@ void eListbox::entryAdded(int index)
 
 void eListbox::entryRemoved(int index)
 {
-	 if (index == m_selected && m_content)
+	if (m_content && !(m_content->size() % m_items_per_page))
+		m_content_changed=true;
+
+	if (index == m_selected && m_content)
 		m_selected = m_content->cursorGet();
 
 	moveSelection(justCheck);
