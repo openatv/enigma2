@@ -79,7 +79,7 @@ private:
 	std::multimap<std::string, ePythonKeyBinding> m_python_keys;
 #endif
 };
-SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eActionMap>, eActionMap);
+SWIG_TEMPLATE_TYPEDEF(ePtr<eActionMap>, eActionMap);
 SWIG_EXTEND(ePtr<eActionMap>,
 	static ePtr<eActionMap> getInstance()
 	{

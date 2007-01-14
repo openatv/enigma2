@@ -211,7 +211,7 @@ public:
 	PSignal1<void,int> frontendUseMaskChanged;
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int frontend_index);
 };
-SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eDVBResourceManager>, eDVBResourceManager);
+SWIG_TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManager);
 SWIG_EXTEND(ePtr<eDVBResourceManager>,
 	static ePtr<eDVBResourceManager> getInstance()
 	{
