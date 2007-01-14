@@ -11,7 +11,6 @@ line=1
 for str in source.readlines():
 	oldstr = str[:]
 	str = str.replace('_ENUMS)', ')')
-	str = str.replace('_REPLACE)', ')')
 
 	pos = str.find('_ENUMS')
 	if pos != -1:
@@ -21,16 +20,6 @@ for str in source.readlines():
 		tmpstr = str[spacepos:pos]
 		if tmpstr.find('_enigma.') == -1:
 			str = str[:pos]+str[pos+6:]
-
-	pos = str.find('_REPLACE')
-	if pos != -1:
-		spacepos = pos
-		while spacepos > 0 and str[spacepos] != ' ':
-			spacepos -= 1
-		tmpstr = str[spacepos:pos]
-		if tmpstr.find('_enigma.') == -1:
-			str = str[:pos]+str[pos+8:]
-
 
 	if oldstr != str:
 		print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)

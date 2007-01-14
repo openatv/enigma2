@@ -73,7 +73,7 @@ private:
 	static eWindowStyleManager *m_instance;
 	std::map<int, ePtr<eWindowStyle> > m_current_style;
 };
-SWIG_TEMPLATE_TYPEDEF_REPLACE(ePtr<eWindowStyleManager>, eWindowStyleManager);
+SWIG_TEMPLATE_TYPEDEF(ePtr<eWindowStyleManager>, eWindowStyleManager);
 SWIG_EXTEND(ePtr<eWindowStyleManager>,
 	static ePtr<eWindowStyleManager> getInstance()
 	{

@@ -5,7 +5,6 @@
 #define SWIG_IGNORE(x) %ignore x
 #define SWIG_EXTEND(x, code) %extend x { code }
 #define SWIG_TEMPLATE_TYPEDEF(x, y) %template(y) x; %typemap_output_ptr(x)
-#define SWIG_TEMPLATE_TYPEDEF_REPLACE(x, y) %template(y##_REPLACE) x; %typemap_output_ptr(x)
 #define SWIG_ALLOW_OUTPUT_SIMPLE(x) %typemap_output_simple(x)
 #define SWIG_INPUT INPUT
 #define SWIG_OUTPUT OUTPUT
@@ -16,7 +15,6 @@
 #define SWIG_IGNORE(x)
 #define SWIG_EXTEND(x, code)
 #define SWIG_TEMPLATE_TYPEDEF(x, y)
-#define SWIG_TEMPLATE_TYPEDEF_REPLACE(x, y)
 #define SWIG_ALLOW_OUTPUT_SIMPLE(x)
 #define SWIG_INPUT
 #define SWIG_OUTPUT
