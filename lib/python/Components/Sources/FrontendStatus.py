@@ -16,7 +16,6 @@ class FrontendStatus(Source):
 		self.snr = self.agc = self.ber = self.lock = None
 
 	def updateFrontendStatus(self):
-		print "updateFrontendStatus"
 		status = self.getFrontendStatus()
 		if not status:
 			self.invalidate()
