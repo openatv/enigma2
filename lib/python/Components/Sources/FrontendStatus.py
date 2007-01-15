@@ -16,25 +16,27 @@ class FrontendStatus(Source):
 		self.snr = self.agc = self.ber = self.lock = None
 
 	def updateFrontendStatus(self):
-		feinfo = self.getFrontendInfo()
-		if feinfo is None:
+		print "updateFrontendStatus"
+		status = self.getFrontendStatus()
+		if not status:
 			self.invalidate()
 		else:
-			(self.snr, self.agc, self.ber, self.lock) = \
-				[feinfo.getFrontendInfo(x) \
-					for x in [iFrontendInformation.signalPower, 
-						iFrontendInformation.signalQuality, 
-						iFrontendInformation.bitErrorRate, 
-						iFrontendInformation.lockState] ]
-
+			self.snr = status.get("tuner_signal_power")
+			self.agc = status.get("tuner_signal_quality")
+			self.ber = status.get("tuner_bit_error_rate")
+			self.lock = status.get("tuner_locked")
 		self.changed((self.CHANGED_ALL, ))
 
-	def getFrontendInfo(self):
+	def getFrontendStatus(self):
 		if self.frontend_source:
-			return self.frontend_source()
+			frontend = self.frontend_source()
+			if frontend:
+				dict = { }
+				frontend.getFrontendStatus(dict)
 		elif self.service_source:
 			service = self.service_source()
-			return service and service.frontendInfo()
+			feinfo = service and service.frontendInfo()
+			return feinfo and feinfo.getFrontendStatus()
 		else:
 			return None
 

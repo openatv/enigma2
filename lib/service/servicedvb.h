@@ -75,7 +75,10 @@ protected:
 public:
 		// iFrontendInformation
 	int getFrontendInfo(int w);
-	PyObject *getFrontendData(bool);
+	PyObject *getFrontendData();
+	PyObject *getFrontendStatus();
+	PyObject *getTransponderData(bool);
+	PyObject *getAll(bool original); // a sum of getFrontendData/Status/TransponderData
 };
 
 class eSubtitleWidget; 

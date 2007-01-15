@@ -465,7 +465,9 @@ public:
 	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
 #endif
 	virtual int readFrontendData(int type)=0;
-	virtual PyObject *readTransponderData(bool original)=0;
+	virtual void getFrontendStatus(SWIG_PYOBJECT(ePyObject) dest)=0;
+	virtual void getTransponderData(SWIG_PYOBJECT(ePyObject) dest, bool original)=0;
+	virtual void getFrontendData(SWIG_PYOBJECT(ePyObject) dest)=0;
 #ifndef SWIG
 	virtual RESULT getData(int num, int &data)=0;
 	virtual RESULT setData(int num, int val)=0;

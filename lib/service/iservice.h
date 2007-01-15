@@ -367,7 +367,10 @@ class iFrontendInformation: public iFrontendInformation_ENUMS, public iObject
 #endif
 public:
 	virtual int getFrontendInfo(int w)=0;
-	virtual PyObject *getFrontendData(bool original=false)=0;
+	virtual PyObject *getFrontendData()=0;
+	virtual PyObject *getFrontendStatus()=0;
+	virtual PyObject *getTransponderData(bool original)=0;
+	virtual PyObject *getAll(bool original)=0; // a sum of getFrontendData/Status/TransponderData
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iFrontendInformation>, iFrontendInformationPtr);
 

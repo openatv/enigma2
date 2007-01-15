@@ -9,7 +9,6 @@ class TunerInfo(GUIComponent):
 	AGC = 1
 	BER = 2
 	LOCK = 3
-	
 	SNR_PERCENTAGE = 0
 	AGC_PERCENTAGE = 1
 	BER_VALUE = 2
@@ -18,34 +17,35 @@ class TunerInfo(GUIComponent):
 	BER_BAR = 5
 	LOCK_STATE = 6
 	SYNC_STATE = 7
-	def __init__(self, type, servicefkt = None, frontendfkt = None):
+
+	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
 		GUIComponent.__init__(self)
 		self.instance = None
 		self.message = None
 		self.value = None
-		
 		self.servicefkt = servicefkt
 		self.frontendfkt = frontendfkt
+		self.statusDict = statusDict
 		self.type = type
 		self.update()
-	
+
 	def setText(self, text):
 		self.message = text
 		if self.instance:
 			self.instance.setText(self.message)
-	
+
 	def setValue(self, value):
 		self.value = value
 		if self.instance:
 			self.instance.setValue(self.value)		
-			
+
 	def calc(self,val):
 		if not val:
 			return 0
 		if val < 2500:
 			return (long)(log(val)/log(2))
 		return val*100/65535
-	
+
 	def update(self):
 		if self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
 			value = self.getValue(self.SNR) * 100 / 65536
@@ -69,9 +69,18 @@ class TunerInfo(GUIComponent):
 				self.setText(_("locked"))
 			else:
 				self.setText(_("not locked"))
-				
+
 	def getValue(self, what):
-		if self.servicefkt is not None:
+		if self.statusDict:
+			if what == self.SNR:
+				return self.statusDict.get("tuner_signal_power", 0)
+			elif what == self.AGC:
+				return self.statusDict.get("tuner_signal_quality", 0)
+			elif what == self.BER:
+				return self.statusDict.get("tuner_bit_error_rate", 0)
+			elif what == self.LOCK:
+				return self.statusDict.get("tuner_locked", 0)
+		elif self.servicefkt:
 			service = self.servicefkt()
 			if service is not None:
 				feinfo = service.frontendInfo()
@@ -84,7 +93,7 @@ class TunerInfo(GUIComponent):
 						return feinfo.getFrontendInfo(iFrontendInformation.bitErrorRate)
 					elif what == self.LOCK:
 						return feinfo.getFrontendInfo(iFrontendInformation.lockState)
-		elif self.frontendfkt is not None:
+		elif self.frontendfkt:
 			frontend = self.frontendfkt()
 			if frontend:
 				if what == self.SNR:
@@ -96,7 +105,7 @@ class TunerInfo(GUIComponent):
 				elif what == self.LOCK:
 					return frontend.readFrontendData(iFrontendInformation.lockState)
 		return 0
-				
+
 	def createWidget(self, parent):
 		if self.SNR_PERCENTAGE <= self.type <= self.BER_VALUE or self.type == self.LOCK_STATE:
 			return eLabel(parent)
@@ -104,7 +113,7 @@ class TunerInfo(GUIComponent):
 			self.g = eSlider(parent)
 			self.g.setRange(0, 100)
 			return self.g
-		
+
 	def postWidgetCreate(self, instance):
 		if self.message is not None:
 			instance.setText(self.message)

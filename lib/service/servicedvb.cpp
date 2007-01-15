@@ -1770,19 +1770,54 @@ int eDVBServiceBase::getFrontendInfo(int w)
 	return fe->readFrontendData(w);
 }
 
-PyObject *eDVBServiceBase::getFrontendData(bool original)
+PyObject *eDVBServiceBase::getFrontendData()
 {
-	ePyObject ret;
-
-	eUsePtr<iDVBChannel> channel;
-	if(!m_service_handler.getChannel(channel))
+	ePyObject ret = PyDict_New();
+	if (ret)
 	{
-		ePtr<iDVBFrontend> fe;
-		if(!channel->getFrontend(fe))
+		eUsePtr<iDVBChannel> channel;
+		if(!m_service_handler.getChannel(channel))
 		{
-			ret = fe->readTransponderData(original);
-			if (ret)
+			ePtr<iDVBFrontend> fe;
+			if(!channel->getFrontend(fe))
+				fe->getFrontendData(ret);
+		}
+	}
+	else
+		Py_RETURN_NONE;
+	return ret;
+}
+
+PyObject *eDVBServiceBase::getFrontendStatus()
+{
+	ePyObject ret = PyDict_New();
+	if (ret)
+	{
+		eUsePtr<iDVBChannel> channel;
+		if(!m_service_handler.getChannel(channel))
+		{
+			ePtr<iDVBFrontend> fe;
+			if(!channel->getFrontend(fe))
+				fe->getFrontendStatus(ret);
+		}
+	}
+	else
+		Py_RETURN_NONE;
+	return ret;
+}
+
+PyObject *eDVBServiceBase::getTransponderData(bool original)
+{
+	ePyObject ret = PyDict_New();
+	if (ret)
+	{
+		eUsePtr<iDVBChannel> channel;
+		if(!m_service_handler.getChannel(channel))
+		{
+			ePtr<iDVBFrontend> fe;
+			if(!channel->getFrontend(fe))
 			{
+				fe->getTransponderData(ret, original);
 				ePtr<iDVBFrontendParameters> feparm;
 				channel->getCurrentFrontendParameters(feparm);
 				if (feparm)
@@ -1808,8 +1843,27 @@ PyObject *eDVBServiceBase::getFrontendData(bool original)
 			}
 		}
 	}
-	if (!ret)
+	else
 		Py_RETURN_NONE;
+	return ret;
+}
+
+PyObject *eDVBServiceBase::getAll(bool original)
+{
+	ePyObject ret = getTransponderData(original);
+	if (ret != Py_None)
+	{
+		eUsePtr<iDVBChannel> channel;
+		if(!m_service_handler.getChannel(channel))
+		{
+			ePtr<iDVBFrontend> fe;
+			if(!channel->getFrontend(fe))
+			{
+				fe->getFrontendData(ret);
+				fe->getFrontendStatus(ret);
+			}
+		}
+	}
 	return ret;
 }
 

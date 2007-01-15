@@ -61,8 +61,9 @@ class PositionerSetup(Screen):
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
-						self.getFrontend = None
-		
+
+		self.frontendStatus = { }
+
 		self.diseqc = Diseqc(self.frontend)
 		self.tuner = Tuner(self.frontend)
 		self.tuner.tune((0,0,0,0,0,0))
@@ -89,13 +90,13 @@ class PositionerSetup(Screen):
 		self["agc"] = Label()
 		self["ber"] = Label()
 		self["lock"] = Label()
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, frontendfkt = self.getFrontend)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, frontendfkt = self.getFrontend)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, frontendfkt = self.getFrontend)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, frontendfkt = self.getFrontend)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.getFrontend)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.getFrontend)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.getFrontend)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
+		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, statusDict = self.frontendStatus)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
+		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
+		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, statusDict = self.frontendStatus)
+		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
+		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
 
 		self["frequency"] = Label()
 		self["symbolrate"] = Label()
@@ -138,9 +139,6 @@ class PositionerSetup(Screen):
 			self.session.openWithCallback(self.restartPrevService, MessageBox, _("Zap back to service before positioner setup?"), MessageBox.TYPE_YESNO)
 		else:
 			self.restartPrevService(False)
-
-	def getFrontend(self):
-		return self.frontend
 
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
@@ -324,6 +322,8 @@ class PositionerSetup(Screen):
 		self.tuner.retune()
 
 	def updateStatus(self):
+		if self.frontend:
+			self.frontend.getFrontendStatus(self.frontendStatus)
 		self["snr_percentage"].update()
 		self["agc_percentage"].update()
 		self["ber_value"].update()
@@ -332,10 +332,10 @@ class PositionerSetup(Screen):
 		self["ber_bar"].update()
 		self["lock_state"].update()
 		transponderdata = self.tuner.getTransponderData()
-		self["frequency_value"].setText(str(transponderdata["frequency"]))
-		self["symbolrate_value"].setText(str(transponderdata["symbol_rate"]))
-		self["fec_value"].setText(str(transponderdata["fec_inner"]))
-		if transponderdata["tuner_locked"] == 1 and self.isMoving and self.stopOnLock:
+		self["frequency_value"].setText(str(transponderdata.get("frequency")))
+		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
+		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
+		if self.frontendStatus.get("tuner_locked", 0) == 1 and self.isMoving and self.stopOnLock:
 			self.diseqccommand("stop")
 			self.isMoving = False
 			self.stopOnLock = False
@@ -407,9 +407,10 @@ class Tuner:
 			self.frontend.tune(self.lastparm)
 
 	def getTransponderData(self):
+		ret = { }
 		if self.frontend:
-			return self.frontend.readTransponderData(True)
-		return None
+			self.frontend.getTransponderData(ret, True)
+		return ret
 
 tuning = None
 
@@ -573,3 +574,4 @@ def PositionerSetupStart(menuid):
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Positioner setup"), description="Setup your positioner", where = PluginDescriptor.WHERE_SETUP, fnc=PositionerSetupStart)
+	
