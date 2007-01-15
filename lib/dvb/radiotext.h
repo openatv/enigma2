@@ -18,11 +18,13 @@ public:
 	void connectUpdatedRadiotext(const Slot0<void> &slot, ePtr<eConnection> &connection);
 	const char *getCurrentText() { return msgPtr ? (const char*)message : ""; }
 private:
+	void abortNonAvail();
 	void processPESPacket(__u8 *pkt, int len);
 	void gotAncillaryByte(__u8 data);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	Signal0<void> m_updated_radiotext;
+	eTimer m_abortTimer;
 };
 
 #endif

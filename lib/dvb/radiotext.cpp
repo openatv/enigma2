@@ -7,6 +7,7 @@ DEFINE_REF(eDVBRadioTextParser);
 
 eDVBRadioTextParser::eDVBRadioTextParser(iDVBDemux *demux)
 	:bytesread(0), ptr(0), p1(-1), p2(-1), msgPtr(0), state(0)
+	,m_abortTimer(eApp)
 {
 	setStreamID(0xC0, 0xC0);
 
@@ -14,6 +15,7 @@ eDVBRadioTextParser::eDVBRadioTextParser(iDVBDemux *demux)
 		eDebug("failed to create PES reader!");
 	else
 		m_pes_reader->connectRead(slot(*this, &eDVBRadioTextParser::processData), m_read_connection);
+	CONNECT(m_abortTimer.timeout, eDVBRadioTextParser::abortNonAvail);
 }
 
 #define SWAP(x)	((x<<8)|(x>>8))
@@ -125,6 +127,7 @@ void eDVBRadioTextParser::processPESPacket(__u8 *data, int len)
 
 		if (data[offs] == 0xFD)
 		{
+			m_abortTimer.stop();
 			int ancillary_len = 1 + data[offs - 1];
 			offs -= ancillary_len;
 			while(offs < pos)
@@ -259,9 +262,15 @@ void eDVBRadioTextParser::gotAncillaryByte(__u8 data)
 
 int eDVBRadioTextParser::start(int pid)
 {
-	if (m_pes_reader)
-		return m_pes_reader->start(pid);
-	else
-		return -1;
+	int ret = -1;
+	if (m_pes_reader && !(ret = m_pes_reader->start(pid)))
+		m_abortTimer.startLongTimer(20);
+	return ret;
 }
 
+void eDVBRadioTextParser::abortNonAvail()
+{
+	eDebug("no ancillary data in audio stream... abort radiotext pes parser");
+	if (m_pes_reader)
+		m_pes_reader->stop();
+}
