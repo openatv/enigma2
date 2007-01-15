@@ -1,4 +1,4 @@
-from Tools import RedirectOutput
+from Tools import RedirectOutput, RedirectTime
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
 	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow, eServiceEvent
 from tools import *
