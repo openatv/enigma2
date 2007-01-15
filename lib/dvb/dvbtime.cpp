@@ -129,7 +129,18 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 	if (!res_mgr)
 		eDebug("[eDVBLocalTimerHandler] no resource manager !!!!!!!");
 	else
+	{
 		res_mgr->connectChannelAdded(slot(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
+		time_t now = time(0);
+		if ( now < 1072224000 ) // 01.01.2004
+			eDebug("RTC not ready... wait for transponder time");
+		else // inform all who's waiting for valid system time..
+		{
+			eDebug("Use valid Linux Time :) (RTC?)");
+			m_time_ready = true;
+			/*emit*/ m_timeUpdated();
+		}
+	}
 }
 
 eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
