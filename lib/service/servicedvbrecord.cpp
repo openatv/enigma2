@@ -111,6 +111,7 @@ RESULT eDVBServiceRecord::prepareStreaming()
 	m_streaming = 1;
 	if (m_state == stateIdle)
 		return doPrepare();
+	return -1;
 }
 
 RESULT eDVBServiceRecord::start()
@@ -342,14 +343,6 @@ RESULT eDVBServiceRecord::connectEvent(const Slot2<void,iRecordableService*,int>
 {
 	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;
-}
-
-static PyObject *createTuple(int pid, const char *type)
-{
-	PyObject *r = PyTuple_New(2);
-	PyTuple_SetItem(r, 0, PyInt_FromLong(pid));
-	PyTuple_SetItem(r, 1, PyString_FromString(type));
-	return r;
 }
 
 RESULT eDVBServiceRecord::stream(ePtr<iStreamableService> &ptr)
