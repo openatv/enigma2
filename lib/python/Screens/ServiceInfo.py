@@ -161,7 +161,7 @@ class ServiceInfo(Screen):
 	
 	def showFrontendData(self, real):
 		if self.type == TYPE_SERVICE_INFO:
-			frontendData = self.feinfo and self.feinfo.getFrontendData(real)
+			frontendData = self.feinfo and self.feinfo.getAll(real)
 			Labels = self.getFEData(frontendData)
 			self.fillList(Labels)
 	

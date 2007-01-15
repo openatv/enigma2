@@ -135,7 +135,7 @@ class ScanSetup(ConfigListScreen, Screen):
 		frontendData = None
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
-			frontendData = self.feinfo and self.feinfo.getFrontendData(True)
+			frontendData = self.feinfo and self.feinfo.getAll(True)
 		self.createConfig(frontendData)
 		del self.feinfo
 		del self.service

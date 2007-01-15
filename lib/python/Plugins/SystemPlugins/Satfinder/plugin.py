@@ -73,13 +73,11 @@ class Satfinder(ScanSetup):
 			print "getResourceManager instance failed"
 		return False
 
-	def getFrontend(self):
-		return self.frontend
-
 	def __init__(self, session, feid):
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
+		self.frontendStatus = { }
 		
 		if not self.openFrontend():
 			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
@@ -90,7 +88,6 @@ class Satfinder(ScanSetup):
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
-						self.getFrontend = None
 		
 		ScanSetup.__init__(self, session)
 		self.tuner = Tuner(self.frontend)
@@ -99,13 +96,13 @@ class Satfinder(ScanSetup):
 		self["agc"] = Label()
 		self["ber"] = Label()
 		self["lock"] = Label()
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, frontendfkt = self.getFrontend)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, frontendfkt = self.getFrontend)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, frontendfkt = self.getFrontend)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, frontendfkt = self.getFrontend)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, frontendfkt = self.getFrontend)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, frontendfkt = self.getFrontend)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, frontendfkt = self.getFrontend)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
+		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, statusDict = self.frontendStatus)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
+		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
+		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, statusDict = self.frontendStatus)
+		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
+		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
 		
 		self["introduction"].setText("")
 		
@@ -115,6 +112,10 @@ class Satfinder(ScanSetup):
 		self.initcomplete = True
 
 	def updateStatus(self):
+		if self.frontend:
+			self.frontend.getFrontendStatus(self.frontendStatus)
+		else:
+			self.frontendStatus.clear()
 		self["snr_percentage"].update()
 		self["agc_percentage"].update()
 		self["ber_value"].update()

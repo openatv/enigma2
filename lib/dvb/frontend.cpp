@@ -971,17 +971,97 @@ void fillDictWithTerrestrialData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 	PutToDict(dict, "hierarchy_information", tmp);
 }
 
-PyObject *eDVBFrontend::readTransponderData(bool original)
+void eDVBFrontend::getFrontendStatus(ePyObject dest)
 {
-	ePyObject ret=PyDict_New();
-
-	if (ret)
+	if (dest && PyDict_Check(dest))
 	{
-		bool read=m_fd != -1;
+		const char *tmp = "UNKNOWN";
+		switch(m_state)
+		{
+			case stateIdle:
+				tmp="IDLE";
+				break;
+			case stateTuning:
+				tmp="TUNING";
+				break;
+			case stateFailed:
+				tmp="FAILED";
+				break;
+			case stateLock:
+				tmp="LOCKED";
+				break;
+			case stateLostLock:
+				tmp="LOSTLOCK";
+				break;
+			default:
+				break;
+		}
+		PutToDict(dest, "tuner_state", tmp);
+		PutToDict(dest, "tuner_locked", readFrontendData(locked));
+		PutToDict(dest, "tuner_synced", readFrontendData(synced));
+		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
+		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
+		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
+	}
+}
+
+void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
+{
+	if (m_fd != -1 && dest && PyDict_Check(dest))
+	{
+		switch(m_type)
+		{
+			case feSatellite:
+			case feCable:
+			case feTerrestrial:
+			{
+				FRONTENDPARAMETERS front;
+				if (!original && ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
+					eDebug("FE_GET_FRONTEND (%m)");
+				else
+				{
+					const FRONTENDPARAMETERS &parm = original ? this->parm : front;
+					const char *tmp = "INVERSION_AUTO";
+					switch(parm_inversion)
+					{
+						case INVERSION_ON:
+							tmp = "INVERSION_ON";
+							break;
+						case INVERSION_OFF:
+							tmp = "INVERSION_OFF";
+							break;
+						default:
+							break;
+					}
+					if (tmp)
+						PutToDict(dest, "inversion", tmp);
+
+					switch(m_type)
+					{
+						case feSatellite:
+							fillDictWithSatelliteData(dest, original?parm:front, this);
+							break;
+						case feCable:
+							fillDictWithCableData(dest, original?parm:front);
+							break;
+						case feTerrestrial:
+							fillDictWithTerrestrialData(dest, original?parm:front);
+							break;
+					}
+				}
+			}
+			default:
+				break;
+		}
+	}
+}
+
+void eDVBFrontend::getFrontendData(ePyObject dest)
+{
+	if (dest && PyDict_Check(dest))
+	{
 		const char *tmp=0;
-
-		PutToDict(ret, "tuner_number", m_fe);
-
+		PutToDict(dest, "tuner_number", m_fe);
 		switch(m_type)
 		{
 			case feSatellite:
@@ -995,83 +1075,10 @@ PyObject *eDVBFrontend::readTransponderData(bool original)
 				break;
 			default:
 				tmp = "UNKNOWN";
-				read=false;
 				break;
 		}
-		PutToDict(ret, "tuner_type", tmp);
-
-		if (read)
-		{
-			FRONTENDPARAMETERS front;
-
-			tmp = "UNKNOWN";
-			switch(m_state)
-			{
-				case stateIdle:
-					tmp="IDLE";
-					break;
-				case stateTuning:
-					tmp="TUNING";
-					break;
-				case stateFailed:
-					tmp="FAILED";
-					break;
-				case stateLock:
-					tmp="LOCKED";
-					break;
-				case stateLostLock:
-					tmp="LOSTLOCK";
-					break;
-				default:
-					break;
-			}
-			PutToDict(ret, "tuner_state", tmp);
-
-			PutToDict(ret, "tuner_locked", readFrontendData(locked));
-			PutToDict(ret, "tuner_synced", readFrontendData(synced));
-			PutToDict(ret, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
-			PutToDict(ret, "tuner_signal_power", readFrontendData(signalPower));
-			PutToDict(ret, "tuner_signal_quality", readFrontendData(signalQuality));
-
-			if (!original && ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
-				eDebug("FE_GET_FRONTEND (%m)");
-			else
-			{
-				const FRONTENDPARAMETERS &parm = original ? this->parm : front;
-				tmp = "INVERSION_AUTO";
-				switch(parm_inversion)
-				{
-					case INVERSION_ON:
-						tmp = "INVERSION_ON";
-						break;
-					case INVERSION_OFF:
-						tmp = "INVERSION_OFF";
-						break;
-					default:
-						break;
-				}
-				if (tmp)
-					PutToDict(ret, "inversion", tmp);
-
-				switch(m_type)
-				{
-					case feSatellite:
-						fillDictWithSatelliteData(ret, original?parm:front, this);
-						break;
-					case feCable:
-						fillDictWithCableData(ret, original?parm:front);
-						break;
-					case feTerrestrial:
-						fillDictWithTerrestrialData(ret, original?parm:front);
-						break;
-				}
-			}
-		}
+		PutToDict(dest, "tuner_type", tmp);
 	}
-	else
-		Py_RETURN_NONE;
-
-	return ret;
 }
 
 #ifndef FP_IOCTL_GET_ID
