@@ -226,7 +226,11 @@ eEPGCache::eEPGCache()
 	if (!res_mgr)
 		eDebug("[eEPGCache] no resource manager !!!!!!!");
 	else
+	{
 		res_mgr->connectChannelAdded(slot(*this,&eEPGCache::DVBChannelAdded), m_chanAddedConn);
+		if (eDVBLocalTimeHandler::getInstance()->ready())
+			timeUpdated();
+	}
 	instance=this;
 }
 
