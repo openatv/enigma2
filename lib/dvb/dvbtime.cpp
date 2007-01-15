@@ -148,6 +148,11 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	instance=0;
 	for (std::map<iDVBChannel*, channel_data>::iterator it=m_knownChannels.begin(); it != m_knownChannels.end(); ++it)
 		delete it->second.tdt;
+	if (ready())
+	{
+		eDebug("set RTC to previous valid time");
+		setRTC(nowTime());
+	}
 }
 
 void eDVBLocalTimeHandler::readTimeOffsetData( const char* filename )

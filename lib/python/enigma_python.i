@@ -153,6 +153,7 @@ typedef long time_t;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
 %immutable ePythonMessagePump::recv_msg;
+%immutable eDVBLocalTimeHandler::m_timeUpdated;
 %include <lib/base/message.h>
 %include <lib/base/console.h>
 %include <lib/base/nconfig.h>
