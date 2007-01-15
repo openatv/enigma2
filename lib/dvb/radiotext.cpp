@@ -136,7 +136,7 @@ void eDVBRadioTextParser::processPESPacket(__u8 *data, int len)
 	}
 }
 
-void eDVBRadioTextParser::gotAncillaryByte(__u8 data)
+inline void eDVBRadioTextParser::gotAncillaryByte(__u8 data)
 {
 	buf[bytesread]=data;
 	bytesread+=1;

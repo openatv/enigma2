@@ -20,7 +20,7 @@ public:
 private:
 	void abortNonAvail();
 	void processPESPacket(__u8 *pkt, int len);
-	void gotAncillaryByte(__u8 data);
+	inline void gotAncillaryByte(__u8 data);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	Signal0<void> m_updated_radiotext;
