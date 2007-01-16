@@ -19,7 +19,7 @@ class About:
 					month = version[8:10]
 					day = version[10:12]
 					
-					return '-'.join(["2.1", year, month, day])
+					return '-'.join(["dev", year, month, day])
 			file.close()
 		except IOError:
 			pass
