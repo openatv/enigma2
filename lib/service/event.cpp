@@ -72,7 +72,7 @@ std::string ISOtbl[MAX_LANG][2] =
 bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 {
 	bool retval=0;
-	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end() && !retval; ++desc)
+	for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
 	{
 		switch ((*desc)->getTag())
 		{
@@ -84,7 +84,9 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				const ShortEventDescriptor *sed = (ShortEventDescriptor*)*desc;
 				const std::string &cc = sed->getIso639LanguageCode();
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if (lang.empty() || cc == lang)
+				if (lang.empty())
+					lang = cc;  // use first found language
+				if (cc == lang)
 				{
 					m_event_name = convertDVBUTF8(sed->getEventName(), table, tsidonid);
 					m_short_description = convertDVBUTF8(sed->getText(), table, tsidonid);
@@ -97,7 +99,9 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				const ExtendedEventDescriptor *eed = (ExtendedEventDescriptor*)*desc;
 				const std::string &cc = eed->getIso639LanguageCode();
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
-				if (lang.empty() || cc == lang)
+				if (lang.empty())
+					lang = cc;  // use first found language
+				if (cc == lang)
 				{
 					m_extended_description += convertDVBUTF8(eed->getText(), table, tsidonid);
 					retval=1;
