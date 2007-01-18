@@ -1,6 +1,6 @@
 from Source import Source
 from Components.Element import cached
-from enigma import eServiceReference, getBestPlayableServiceReference
+from enigma import eServiceReference
 
 class StreamService(Source):
 	def __init__(self, navcore):
@@ -30,10 +30,6 @@ class StreamService(Source):
 
 	def execBegin(self):
 		print "StreamService execBegin", self.ref.toString()
-		if self.ref.flags & eServiceReference.isGroup:
-			playref = getBestPlayableServiceReference(self.ref, eServiceReference())
-			if playref:
-				self.ref = playref
 		self.__service = self.navcore.recordService(self.ref)
 		self.navcore.record_event.append(self.recordEvent)
 		if self.__service is not None:
