@@ -74,7 +74,11 @@ class ChoiceBox(Screen):
 
 	# runs the current selected entry
 	def go(self):
-		self.goEntry(self["list"].l.getCurrentSelection()[0])
+		cursel = self["list"].l.getCurrentSelection()
+		if cursel:
+			self.goEntry(cursel[0])
+		else:
+			self.cancel()
 
 	# runs a specific entry
 	def goEntry(self, entry):
