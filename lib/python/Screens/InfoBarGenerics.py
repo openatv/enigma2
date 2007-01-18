@@ -66,7 +66,7 @@ class InfoBarShowHide:
 			{
 				"toggleShow": self.toggleShow,
 				"hide": self.hide,
-			})
+			}, 1) # lower prio to make it possible to override ok and cancel..
 
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
@@ -608,6 +608,8 @@ class InfoBarSeek:
 				"seekBackUp": self.seekBackUp,
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
+
+		self["SeekActions"].setEnabled(False)
 
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.onClose.append(self.delTimer)
