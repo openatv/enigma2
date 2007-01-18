@@ -42,6 +42,9 @@ class Navigation:
 
 	def playService(self, ref, checkParentalControl = True):
 		oldref = self.currentlyPlayingServiceReference
+		if ref and oldref and ref == oldref:
+			print "ignore request to play already running service"
+			return 0
 		print "playing", ref and ref.toString()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
