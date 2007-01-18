@@ -363,9 +363,9 @@ class ChannelSelectionEdit:
 			name = cur_service.getServiceName()
 			print "NAME", name
 			if self.mode == MODE_TV:
-				str = '1:134:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(name))
+				str = '1:134:1:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(name))
 			else:
-				str = '1:134:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"alternatives.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(name))
+				str = '1:134:2:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(name))
 			new_ref = ServiceReference(str)
 			if not mutableBouquet.addService(new_ref.ref, cur_service.ref):
 				mutableBouquet.removeService(cur_service.ref)
