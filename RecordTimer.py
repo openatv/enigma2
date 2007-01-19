@@ -257,7 +257,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
-				if not Screen.Standby.inStandby: # not already in standby
+				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
