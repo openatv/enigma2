@@ -30,6 +30,8 @@ DECLARE_REF(eComponentData);
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eComponentData>, eComponentDataPtr);
 
+SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);  // needed for SWIG_OUTPUT in eServiceEvent::getLinkageService
+
 SWIG_IGNORE(eServiceEvent);
 class eServiceEvent: public iObject
 {
