@@ -36,9 +36,7 @@ class BouquetSelector(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-		entrys = [ ]
-		for x in bouquets:
-			entrys.append((x[0], x[1]))
+		entrys = [ (x[0], x[1]) for x in bouquets ]
 		self["menu"] = MenuList(entrys, enableWrapAround)
 
 	def getCurrent(self):
