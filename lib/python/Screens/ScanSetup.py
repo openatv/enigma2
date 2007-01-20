@@ -315,21 +315,24 @@ class ScanSetup(ConfigListScreen, Screen):
 			defaultSat = { "orbpos": 192, "system": "dvb-s", "frequency": 11836, "inversion": "auto", "symbolrate": 27500, "polarization": "horizontal", "fec": "auto", "fec_s2": "9_10", "modulation": "qpsk" }
 			defaultCab = {"frequency": 466, "inversion": "auto", "modulation": "64qam", "fec": "auto", "symbolrate": 6900}
 			if frontendData is not None:
-				if frontendData["tuner_type"] == "DVB-S":
-					defaultSat["system"] = {"DVB-S": "dvb-s", "DVB-S2": "dvb-s2"}[frontendData["system"]]
-					defaultSat["frequency"] = int(frontendData["frequency"] / 1000)
-					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData["inversion"]]
-					defaultSat["symbolrate"] = int(frontendData["symbol_rate"] / 1000)
-					defaultSat["polarization"] = {"HORIZONTAL": "horizontal", "VERTICAL": "vertical", "CIRCULAR_LEFT": "circular_left", "CIRCULAR_RIGHT": "circular_right", "UNKNOWN": None}[frontendData["polarization"]]
-					defaultSat["fec"] = {"DVB-S": {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_NONE": "none"}, "DVB-S2": {"FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_4_5": "4_5", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_9_10": "9_10"}}[frontendData["system"]][frontendData["fec_inner"]]
-					defaultSat["modulation"] = {"QPSK": "qpsk", "8PSK": "8psk"}[frontendData["modulation"]]
-					defaultSat["orbpos"] = frontendData["orbital_position"]
-				elif frontendData["tuner_type"] == "DVB-C":
-					defaultCab["frequency"] = int(frontendData["frequency"] / 1000)
-					defaultCab["symbolrate"] = int(frontendData["symbol_rate"] / 1000)
-					defaultCab["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData["inversion"]]
-					defaultCab["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_NONE": "none"}[frontendData["fec_inner"]]
-					defaultCab["modulation"] = {"QAM_AUTO": "auto", "QAM_16": "16qam", "QAM_32": "32qam", "QAM_64": "64qam", "QAM_128": "128qam", "QAM_256": "256qam"}[frontendData["modulation"]]
+				ttype = frontendData.get("tuner_type", "UNKNOWN")
+				if ttype == "DVB-S":
+					defaultSat["system"] = {"DVB-S": "dvb-s", "DVB-S2": "dvb-s2"}[frontendData.get("system", "DVB-S")]
+					defaultSat["frequency"] = int(frontendData.get("frequency", 0) / 1000)
+					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData.get("inversion", "INVERSION_AUTO")]
+					defaultSat["symbolrate"] = int(frontendData.get("symbol_rate", 0) / 1000)
+					defaultSat["polarization"] = {"HORIZONTAL": "horizontal", "VERTICAL": "vertical", "CIRCULAR_LEFT": "circular_left", "CIRCULAR_RIGHT": "circular_right", "UNKNOWN": None}[frontendData.get("polarization", "HORIZONTAL")]
+					defaultSat["fec"] = {"DVB-S": {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_NONE": "none"}, \
+										"DVB-S2": {"FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_4_5": "4_5", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_9_10": "9_10"}} \
+										[frontendData.get("system", "DVB-S")][frontendData.get("fec_inner", "FEC_AUTO")]
+					defaultSat["modulation"] = {"QPSK": "qpsk", "8PSK": "8psk"}[frontendData.get("modulation", "QPSK")]
+					defaultSat["orbpos"] = frontendData.get("orbital_position", 0)
+				elif ttype == "DVB-C":
+					defaultCab["frequency"] = int(frontendData.get("frequency", 0) / 1000)
+					defaultCab["symbolrate"] = int(frontendData.get("symbol_rate", 0) / 1000)
+					defaultCab["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData.get("inversion", "INVERSION_AUTO")]
+					defaultCab["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_NONE": "none"}[frontendData.get("fec_inner", "FEC_AUTO")]
+					defaultCab["modulation"] = {"QAM_AUTO": "auto", "QAM_16": "16qam", "QAM_32": "32qam", "QAM_64": "64qam", "QAM_128": "128qam", "QAM_256": "256qam"}[frontendData.get("modulation", "QAM_16")]
 
 			self.scan_sat = ConfigSubsection()
 			self.scan_cab = ConfigSubsection()
