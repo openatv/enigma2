@@ -110,10 +110,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		return self.currPlaying
 	
 	def getServiceRefList(self):
-		list = []
-		for x in self.list:
-			list.append(x[0])
-		return list
+		return [ x[0] for x in self.list ]
 	
 	def __len__(self):
 		return len(self.list)
