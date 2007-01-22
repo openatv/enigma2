@@ -27,6 +27,7 @@ POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 class E2SharedPoll:
 	def __init__(self):
 		self.dict = { }
+		self.eApp = getApplication()
 
 	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
@@ -35,7 +36,7 @@ class E2SharedPoll:
 		del self.dict[fd]
 	
 	def poll(self, timeout = None):
-		r = getApplication().poll(timeout, self.dict)
+		r = self.eApp.poll(timeout, self.dict)
 		return r
 
 poller = E2SharedPoll()
@@ -58,7 +59,8 @@ class PollReactor(posixbase.PosixReactorBase):
 		else:
 			if selectables.has_key(fd): del selectables[fd]
 		
-		getApplication().interruptPoll()
+		
+		poller.eApp.interruptPoll()
 
 	def _dictRemove(self, selectable, mdict):
 		try:
@@ -188,7 +190,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			self._disconnectSelectable(selectable, why, inRead)
 
 	def callLater(self, *args, **kwargs):
-		getApplication().interruptPoll()
+		poller.eApp.interruptPoll()
 		return posixbase.PosixReactorBase.callLater(self, *args, **kwargs)
 
 def install():
