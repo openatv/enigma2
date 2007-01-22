@@ -153,9 +153,8 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 			/* if current timer already passed, don't delay infinite. */
 		if (poll_timeout < 0)
 			poll_timeout = 0;
-			
-			/* convert us to ms */
-		poll_timeout /= 1000;
+		else /* convert us to ms */
+			poll_timeout /= 1000;
 	}
 	
 	if ((user_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > user_timeout))
@@ -234,18 +233,14 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 				Py_DECREF(it);
 			}
 		}
-			
-		ret = 1; /* poll did not timeout. */
-	} else if (ret < 0)
+	}
+	else if (ret < 0)
 	{
 			/* when we got a signal, we get EINTR. */
 		if (errno != EINTR)
 			eDebug("poll made error (%m)");
 		else
-		{
-			return_reason = 2;
-			ret = -1; /* don't assume the timeout has passed when we got a signal */
-		}
+			return_reason = 2; /* don't assume the timeout has passed when we got a signal */
 	}
 	
 		/* when we not processed anything, check timers. */
@@ -256,7 +251,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 
 		if (ret || m_now_is_invalid)
 			gettimeofday(&now, 0);
-		else
+		else // poll timeoutet
 			now += poll_timeout;
 
 			/* process all timers which are ready. first remove them out of the list. */
@@ -280,7 +275,7 @@ void eMainloop::removeTimer(eTimer* e)
 int eMainloop::iterate(unsigned int user_timeout, PyObject **res, ePyObject dict)
 {
 	int ret = 0;
-	
+
 	timeval user_timer;
 	gettimeofday(&user_timer, 0);
 	user_timer += user_timeout;
@@ -293,22 +288,22 @@ int eMainloop::iterate(unsigned int user_timeout, PyObject **res, ePyObject dict
 			m_interrupt_requested = 0;
 			return 0;
 		}
-		if (app_quit_now) return -1;
-		timeval now, timeout;
-		gettimeofday(&now, 0);
-		timeout = user_timer - now;
-		
-		if (user_timeout && (user_timer <= now))
-			return 0;
-		
+
+		if (app_quit_now)
+			return -1;
+
 		int to = 0;
 		if (user_timeout)
+		{
+			timeval now, timeout;
+			gettimeofday(&now, 0);
+			if (user_timer<=now) // timeout
+				return 0;
+			timeout = user_timer - now;
 			to = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
-		
+		}
 		ret = processOneEvent(to, res, dict);
-		if (res && *res)
-			return ret;
-	} while (ret == 0);
+	} while ( !ret && !(res && *res) );
 	
 	return ret;
 }
@@ -335,12 +330,10 @@ PyObject *eMainloop::poll(ePyObject timeout, ePyObject dict)
 	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
 
 	iterate(user_timeout, &res, dict);
-	ePyObject ret(res);
-	
-	if (!ret) /* return empty list on timeout */
-		return PyList_New(0);
-	
-	return ret;
+	if (res)
+		return res;
+
+	return PyList_New(0); /* return empty list on timeout */
 }
 
 void eMainloop::interruptPoll()
