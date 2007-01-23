@@ -138,7 +138,7 @@ struct gOpcode
 	} parm;
 };
 
-#define MAXSIZE 1024
+#define MAXSIZE 2048
 
 		/* gRC is the singleton which controls the fifo and dispatches commands */
 class gRC: public iObject, public Object
