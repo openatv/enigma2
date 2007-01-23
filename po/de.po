@@ -2,12 +2,12 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 08:30+0100\n"
+"POT-Creation-Date: 2007-01-23 17:04+0100\n"
 "PO-Revision-Date: 2006-12-19 08:29+0100\n"
 "Last-Translator: Stefan Pluecken <stefanpl@baer.rwth-aachen.de>\n"
 "Language-Team: none\n"
@@ -141,6 +141,20 @@ msgid "A"
 msgstr "A"
 
 msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+"Ein Aufnahmetimer will Ihre Dreambox in den Standby-Modus schalten.\n"
+"Jetzt ausführen?"
+
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
+"Ein Aufnahmetimer will Ihre Dreambox ausschalten.\n"
+"Jetzt ausschalten?"
+
+msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
@@ -151,8 +165,8 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"Es läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das Rotor "
-"Setup ausführen."
+"Zur Zeit läuft eine Aufnahme. Bitte beenden Sie die Aufnahme bevor Sie das "
+"Rotor Setup ausführen."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
@@ -162,18 +176,14 @@ msgstr ""
 "den Sat-Finder starten."
 
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Ein Ausschalt-Timer will Ihre Dreambox in den\n"
-"Standby-Modus versetzen. Wirklich durchführen?"
 
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Ein Ausschalt-Timer will Ihre Dreambox\n"
-"ausschalten. Wirklich durchführen?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -213,7 +223,7 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 msgid "Add a mark"
-msgstr ""
+msgstr "Marker hinzufügen"
 
 msgid "Add files to playlist"
 msgstr "Dateien zur Wiedergabeliste hinzufügen"
@@ -263,7 +273,7 @@ msgid "Artist:"
 msgstr "Künstler:"
 
 msgid "Ask before shutdown:"
-msgstr "Vor runterfahren fragen:"
+msgstr "Vor dem Ausschalten fragen:"
 
 msgid "Aspect Ratio"
 msgstr "Seitenverhältnis"
@@ -320,7 +330,7 @@ msgstr "Bus:"
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "Um die Infobar anzuzeigen, drücken sie OK."
+msgstr "Um die Infobar anzuzeigen, drücken Sie OK."
 
 msgid "C-Band"
 msgstr "C-Band"
@@ -365,7 +375,7 @@ msgid "Change service pins"
 msgstr "Kanal-Pincodes ändern"
 
 msgid "Change setup pin"
-msgstr "Einstellungs-Pincode ändern"
+msgstr "Einstellungen-Pincode ändern"
 
 msgid "Channel"
 msgstr "Kanal"
@@ -399,6 +409,12 @@ msgstr "Empfangsrate hoch"
 
 msgid "Code rate low"
 msgstr "Empfangsrate niedrig"
+
+msgid "Coderate HP"
+msgstr ""
+
+msgid "Coderate LP"
+msgstr ""
 
 msgid "Color Format"
 msgstr "Farbformat"
@@ -445,6 +461,9 @@ msgstr ""
 "Verbindung zur Fritz!Box\n"
 "fehlgeschlagen! (%s)\n"
 "Erneuter Versuch..."
+
+msgid "Constellation"
+msgstr ""
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -606,6 +625,9 @@ msgstr ""
 msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
+msgid "Don't stop current event but disable coming events"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Beendet - %d Installierte oder upgedatete Pakete"
@@ -755,6 +777,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"Das System muss neu gestartet werden\n"
+"um einen neuen skin aktivieren zu können.Wollen Sie jetzt neu starten?"
 
 msgid "Games / Plugins"
 msgstr "Spiele / Erweiterungen"
@@ -777,6 +801,9 @@ msgstr "Gehe zu 0"
 msgid "Goto position"
 msgstr "Auf Position drehen"
 
+msgid "Guard Interval"
+msgstr ""
+
 msgid "Guard interval mode"
 msgstr "Guard Interval Modus"
 
@@ -788,6 +815,9 @@ msgstr "Festplatten-Einstellungen"
 
 msgid "Harddisk standby after"
 msgstr "Festplatten-Standby nach"
+
+msgid "Hierarchy Information"
+msgstr ""
 
 msgid "Hierarchy mode"
 msgstr "Hierarchy"
@@ -1087,7 +1117,7 @@ msgid "No event info found, recording indefinitely."
 msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 
 msgid "No free tuner!"
-msgstr ""
+msgstr "Kein freier Tuner"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -1099,10 +1129,28 @@ msgid "No positioner capable frontend found."
 msgstr "Keinen rotortauglichen Tuner gefunden."
 
 msgid "No satellite frontend found!!"
-msgstr ""
+msgstr "Kein Satellit-Tuner gefunden"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Es wurde kein Tuner für die Benutzung eines Diseqc-Rotors eingestellt."
+
+msgid ""
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
+msgstr ""
+"Kein gültiger Service-PIN gefunden!\n"
+"Wollen Sie den Service-PIN jetzt ändern?\n"
+"Wenn Sie 'NEIN' wählen, bleibt der Senderschutz deaktiviert!"
+
+msgid ""
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
+msgstr ""
+"Kein gültiger Service-PIN gefunden!\n"
+"Wollen Sie den Service-PIN jetzt ändern?\n"
+"Wenn Sie 'NEIN' wählen, bleibt der Einstellungen-Schutz deaktiviert!"
 
 msgid "No, do nothing."
 msgstr "Nein, nichts tun"
@@ -1152,6 +1200,9 @@ msgstr "Eins"
 
 msgid "Online-Upgrade"
 msgstr "Online-Aktualisierung"
+
+msgid "Orbital Position"
+msgstr ""
 
 msgid "Other..."
 msgstr ""
@@ -1208,7 +1259,7 @@ msgid "Please enter the old pin code"
 msgstr "Bitte den alten Pincode eingeben"
 
 msgid "Please press OK!"
-msgstr ""
+msgstr "Bitte OK drücken"
 
 msgid "Please select a subservice to record..."
 msgstr "Bitte einen Unterkanal zur Aufnahme auswählen..."
@@ -1217,7 +1268,7 @@ msgid "Please select a subservice..."
 msgstr "Bitte einen Unterkanal auswählen..."
 
 msgid "Please select keyword to filter..."
-msgstr ""
+msgstr "Bitte wählen Sie ein Schlüsselwort zum Filtern"
 
 msgid "Please set up tuner B"
 msgstr "Einstellungen für Tuner B."
@@ -1331,7 +1382,7 @@ msgid "Really delete this timer?"
 msgstr "Diesen Timer wirklich löschen?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "Wirklich den Subservices-Schnellumschalter beenden?"
+msgstr "Den Subservices-Schnellumschalter wirklich beenden?"
 
 msgid "Reception Settings"
 msgstr "Empfangs-Einstellungen"
@@ -1340,10 +1391,31 @@ msgid "Record"
 msgstr "Aufnahme"
 
 msgid "Recorded files..."
-msgstr ""
+msgstr "Aufnahmen"
 
 msgid "Recording"
 msgstr "Aufnahmen"
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really reboot "
+"now?"
+msgstr ""
+"Zur Zeit sind Aufnahmen aktiv oder starten gleich... \n"
+"Wollen Sie die Dreambox trotzdem neu starten?"
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really restart "
+"now?"
+msgstr ""
+"Zur Zeit sind Aufnahmen aktiv oder starten gleich... \n"
+"Wollen Sie die Dreambox trotzdem neu starten?"
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"now?"
+msgstr ""
+"Zur Zeit sind Aufnahmen aktiv oder starten gleich... \n"
+"Wollen Sie die Dreambox trotzdem ausschalten?"
 
 msgid "Recordings always have priority"
 msgstr "Aufnahmen haben immer Vorrang"
@@ -1365,6 +1437,11 @@ msgstr "Wiederholung"
 
 msgid "Repeat Type"
 msgstr "Wiederholungstyp"
+
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
+"Wiederholender-Aufnahmetimer ist zur Zeit aktiv...\n"
+"Was wollen Sie machen?"
 
 msgid "Replace current playlist"
 msgstr "Aktuelle Wiedergabeliste ersetzen"
@@ -1390,6 +1467,9 @@ msgstr ""
 
 msgid "Right"
 msgstr "Rechts"
+
+msgid "Rolloff"
+msgstr ""
 
 msgid "Running"
 msgstr ""
@@ -1461,10 +1541,10 @@ msgid "Service Searching"
 msgstr "Kanalsuche"
 
 msgid "Service has been added to the favourites."
-msgstr ""
+msgstr "Kanal wurde zu Favoriten hinzugefügt."
 
 msgid "Service has been added to the selected bouquet."
-msgstr ""
+msgstr "Kanal wurde zum gewählten Bouquet hinzugefügt."
 
 msgid ""
 "Service invalid!\n"
@@ -1474,7 +1554,7 @@ msgstr ""
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
-msgstr ""
+msgstr "Kanal nicht gefunden"
 
 msgid "Service scan"
 msgstr "Kanalsuche"
@@ -1543,7 +1623,7 @@ msgid "Sleep timer action:"
 msgstr "Ausschalt-Timer-Aktion:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr ""
+msgstr "Diaschau Intervall (sek.)"
 
 msgid "Slot "
 msgstr "Slot "
@@ -1614,6 +1694,12 @@ msgstr "Stop"
 msgid "Stop Timeshift?"
 msgstr "Timeshift beenden?"
 
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+msgid "Stop current event but not coming events"
+msgstr ""
+
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
 
@@ -1656,6 +1742,9 @@ msgstr "Zum vorhergehenden Unterkanal schalten"
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
+msgid "Symbolrate"
+msgstr ""
+
 msgid "System"
 msgstr "System"
 
@@ -1696,7 +1785,7 @@ msgid "The pin codes you entered are different."
 msgstr "Die Pincodes unterscheiden sich."
 
 msgid "The sleep timer has been activated."
-msgstr ""
+msgstr "Der Ausschalt-Timer wurde aktiviert"
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1782,11 +1871,20 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+msgid "Transmission Mode"
+msgstr ""
+
 msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
 msgid "Transponder"
 msgstr "Transponder"
+
+msgid "Transponder Type"
+msgstr ""
+
+msgid "Transpondertype"
+msgstr "Transponder type"
 
 msgid "Tries left:"
 msgstr "Übrige Versuche:"
@@ -2052,6 +2150,9 @@ msgid ""
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
+"Sie müssen zunächst Schlüsselwörter anlegen!\n"
+"Drücken Sie zum Anlegen die OK-Taste.\n"
+"Wollen Sie dies jetzt machen?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2073,7 +2174,7 @@ msgstr ""
 "Aktualisierungs-Prozess erklären."
 
 msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Ihre Dreambox fährt nun herunter. Bitte warten Sie einen Moment..."
+msgstr "Ihre Dreambox schaltet sich nun aus. Bitte warten Sie einen Moment..."
 
 msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
@@ -2096,7 +2197,7 @@ msgid "Zap back to service before satfinder?"
 msgstr ""
 
 msgid "[alternative edit]"
-msgstr ""
+msgstr "Alternativen-Bearbeitung"
 
 msgid "[bouquet edit]"
 msgstr "[Bouquet Editor]"
@@ -2108,7 +2209,7 @@ msgid "[move mode]"
 msgstr "[Verschiebemodus]"
 
 msgid "abort alternatives edit"
-msgstr ""
+msgstr "Alternativen-Bearbeitung abbrechen"
 
 msgid "abort bouquet edit"
 msgstr "Bouqueteditieren abbrechen"
@@ -2120,7 +2221,7 @@ msgid "about to start"
 msgstr "startet gleich"
 
 msgid "add alternatives"
-msgstr ""
+msgstr "Alternativen hinzufügen"
 
 msgid "add bouquet"
 msgstr "Bouquet einfügen"
@@ -2196,7 +2297,7 @@ msgid "continue"
 msgstr "Weiter"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "in Bouquets kopieren"
 
 msgid "daily"
 msgstr "täglich"
@@ -2217,7 +2318,7 @@ msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
 msgid "do not change"
-msgstr ""
+msgstr "Nicht ändern"
 
 msgid "do nothing"
 msgstr "Nichts tun"
@@ -2229,7 +2330,7 @@ msgid "done!"
 msgstr "erledigt!"
 
 msgid "edit alternatives"
-msgstr ""
+msgstr "Alternativen bearbeiten"
 
 msgid "empty/unknown"
 msgstr "leer/unbekannt"
@@ -2247,7 +2348,7 @@ msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
 
 msgid "end alternatives edit"
-msgstr ""
+msgstr "Alternativen-Bearbeitung beenden"
 
 msgid "end bouquet edit"
 msgstr "Bouqueteditieren beenden"
@@ -2269,6 +2370,9 @@ msgstr "komplettes /etc Verzeichnis"
 
 msgid "go to deep standby"
 msgstr "Box abschalten"
+
+msgid "go to standby"
+msgstr "schalte in standby"
 
 msgid "hear radio..."
 msgstr "Radio hören"
@@ -2349,7 +2453,7 @@ msgid "no HDD found"
 msgstr "keine Festplatte gefunden"
 
 msgid "no Picture found"
-msgstr ""
+msgstr "kein Bild gefunden"
 
 msgid "no module found"
 msgstr "Kein Modul gefunden"
@@ -2400,7 +2504,7 @@ msgid "please press OK when ready"
 msgstr "bitte OK drücken wenn bereit"
 
 msgid "please wait, loading picture..."
-msgstr ""
+msgstr "Bitte warten, Bild wird geladen..."
 
 msgid "previous channel"
 msgstr "Vorheriger Kanal"
@@ -2418,7 +2522,7 @@ msgid "remove after this position"
 msgstr ""
 
 msgid "remove all alternatives"
-msgstr ""
+msgstr "entferne alle Alternativen"
 
 msgid "remove all new found flags"
 msgstr "Entfernen aller Neu gefunden Kennzeichnungen"
@@ -2481,7 +2585,7 @@ msgid "second"
 msgstr "Sekunde"
 
 msgid "second cable of motorized LNB"
-msgstr ""
+msgstr "Zweites Kabel vom Rotor"
 
 msgid "seconds"
 msgstr "Sekunden"
@@ -2502,10 +2606,13 @@ msgid "show EPG..."
 msgstr "Zeige EPG..."
 
 msgid "show alternatives"
-msgstr ""
+msgstr "Zeige Alternativen"
 
 msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
+
+msgid "show transponder info"
+msgstr "Zeige Transponder Info"
 
 msgid "shutdown"
 msgstr "Ausschalten"
@@ -2600,177 +2707,3 @@ msgstr "Umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#~ msgid "0 V"
-#~ msgstr "0 V"
-
-#~ msgid "12 V"
-#~ msgstr "12 V"
-
-#~ msgid "12V Output"
-#~ msgstr "12V Ausgang"
-
-#~ msgid "A sleep timer want's to set your"
-#~ msgstr "Ein Ausschalttimer will Ihre Dreambox"
-
-#~ msgid "A sleep timer want's to shut down"
-#~ msgstr "Ein Ausschalt-Timer will Ihre Dreambox"
-
-#~ msgid "Ask before zapping"
-#~ msgstr "Vor Umschalten nachfragen"
-
-#~ msgid "Audio / Video"
-#~ msgstr "Audio / Video"
-
-#~ msgid "Auto show inforbar"
-#~ msgstr "Automatisch die Infobar anzeigen"
-
-#~ msgid "Cable provider"
-#~ msgstr "Kabelanbieter"
-
-#~ msgid "Classic"
-#~ msgstr "klassisch"
-
-#~ msgid "Default"
-#~ msgstr "Standard"
-
-#~ msgid "Disable subtitles"
-#~ msgstr "Untertitel abschalten"
-
-#~ msgid "Dreambox to standby. Do that now?"
-#~ msgstr "in den Standby-Modus setzen. Wirklich ausführen?"
-
-#~ msgid "Enigma1 like radiomode"
-#~ msgstr "Enigma1 ähnlicher Radio Modus"
-
-#~ msgid "Equal to Socket A"
-#~ msgstr "Wie Tuner A"
-
-#~ msgid "Expert Setup"
-#~ msgstr "Experteneinstellungen"
-
-#~ msgid "Fast zapping"
-#~ msgstr "Schnelles Umschalten"
-
-#~ msgid "Harddisk..."
-#~ msgstr "Festplatte..."
-
-#~ msgid "Hide error windows"
-#~ msgstr "Fehlerfenster verstecken"
-
-#~ msgid "Initialization"
-#~ msgstr "Initialisierung"
-
-#~ msgid "Invert"
-#~ msgstr "Invertieren"
-
-#~ msgid "LCD"
-#~ msgstr "LCD"
-
-#~ msgid "Language"
-#~ msgstr "Sprache"
-
-#~ msgid "Loopthrough to Socket A"
-#~ msgstr "Verbunden mit Tuner A"
-
-#~ msgid "Multi bouquets"
-#~ msgstr "Mehrere Bouquets"
-
-#~ msgid "Network"
-#~ msgstr "Netzwerk"
-
-#~ msgid "Nothing connected"
-#~ msgstr "Nichts angeschlossen"
-
-#~ msgid "Parental Control"
-#~ msgstr "Jugendschutz"
-
-#~ msgid "Parental Lock"
-#~ msgstr "Jugendschutz"
-
-#~ msgid "Predefined satellite"
-#~ msgstr "Vordefinierte Satelliten"
-
-#~ msgid "Record Splitsize"
-#~ msgstr "Splitgrösse der Aufnamen"
-
-#~ msgid "Remember service pin"
-#~ msgstr "Kanal-Pincode merken"
-
-#~ msgid "Satconfig"
-#~ msgstr "Sateinstellung"
-
-#~ msgid "Satelliteconfig"
-#~ msgstr "Satelliteneinstellungen"
-
-#~ msgid "Secondary cable from motorized LNB"
-#~ msgstr "Zweites Kabel vom Rotor"
-
-#~ msgid "Setup Lock"
-#~ msgstr "Setup-Sperre"
-
-#~ msgid "Show Satposition"
-#~ msgstr "Zeige Satposition"
-
-#~ msgid "Simple"
-#~ msgstr "Einfach"
-
-#~ msgid "Skip confirmations"
-#~ msgstr "Bestätigungen überspringen"
-
-#~ msgid "Subservices quickzap"
-#~ msgstr "Unterkanäle-Schnellumschalter"
-
-#~ msgid "Swap services"
-#~ msgstr "Tausche Bilder"
-
-#~ msgid "The sleep timer has been acitvated."
-#~ msgstr "Der Ausschalt-Timer wurde aktiviert."
-
-#~ msgid "Timeshifting"
-#~ msgstr "Timeshift"
-
-#~ msgid "Transpondertype"
-#~ msgstr "Transponder type"
-
-#~ msgid "Tuner Setup"
-#~ msgstr "Tuner-Einstellungen"
-
-#~ msgid "Tuner config"
-#~ msgstr "Tuner-Einstellungen"
-
-#~ msgid "UHF Modulator"
-#~ msgstr "UHF-Modulator"
-
-#~ msgid "Usage Settings"
-#~ msgstr "Bedieneinstellungen"
-
-#~ msgid "Usage settings"
-#~ msgstr "Bedieneinstellungen"
-
-#~ msgid "Visualize positioner movement"
-#~ msgstr "Rotorbewegungen anzeigen"
-
-#~ msgid "You have to wait for about "
-#~ msgstr "Sie müssen noch für ungefähr"
-
-#~ msgid "add bouquet..."
-#~ msgstr "Bouquet hinzufügen..."
-
-#~ msgid "copy to favourites"
-#~ msgstr "In Favoriten kopieren"
-
-#~ msgid "open service list"
-#~ msgstr "Kanalliste öffnen"
-
-#~ msgid "remove bouquet"
-#~ msgstr "Bouquet entfernen"
-
-#~ msgid "remove service"
-#~ msgstr "Kanal löschen"
-
-#~ msgid "use power delta"
-#~ msgstr "Stromdelta verwenden"
-
-#~ msgid "your Dreambox. Shutdown now?"
-#~ msgstr "ausschalten. Wirklich ausschalten?"
