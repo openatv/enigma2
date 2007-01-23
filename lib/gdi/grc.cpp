@@ -63,6 +63,7 @@ void gRC::submit(const gOpcode &o)
 		if ( tmp == rp )
 		{
 #ifndef SYNC_PAINT
+			pthread_cond_signal(&cond);  // wakeup gdi thread
 			pthread_mutex_unlock(&mutex);
 #else
 			thread();
