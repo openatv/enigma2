@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-22 03:10+0100\n"
-"PO-Revision-Date: 2006-12-21 21:11+0100\n"
+"POT-Creation-Date: 2007-01-25 07:42+0100\n"
+"PO-Revision-Date: 2007-01-24 12:15+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -139,6 +139,16 @@ msgid "A"
 msgstr "A"
 
 msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
+
+msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
@@ -157,18 +167,14 @@ msgstr ""
 "En inspelning pågår. Vänligen avbryt inspelningen före du startar satfinder."
 
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"En sovtimer vill försätta din\n"
-"Dreambox i viloläge. Utföra det nu?"
 
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"En sovtimer vill stänga av\n"
-"din Dreambox. Stänga av nu?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -393,6 +399,12 @@ msgstr "Code rate hög"
 msgid "Code rate low"
 msgstr "Code rate låg"
 
+msgid "Coderate HP"
+msgstr ""
+
+msgid "Coderate LP"
+msgstr ""
+
 msgid "Color Format"
 msgstr "Färgformat"
 
@@ -438,6 +450,9 @@ msgstr ""
 "Anslutning till Fritz!Box\n"
 "misslyckades! (%s)\n"
 "försöker igen..."
+
+msgid "Constellation"
+msgstr ""
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -604,6 +619,9 @@ msgstr "Vill du visa cutlist guiden?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
+
+msgid "Don't stop current event but disable coming events"
+msgstr ""
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -784,6 +802,9 @@ msgstr "Gå till 0"
 msgid "Goto position"
 msgstr "Gå till position"
 
+msgid "Guard Interval"
+msgstr ""
+
 msgid "Guard interval mode"
 msgstr "Guard interval läge"
 
@@ -795,6 +816,9 @@ msgstr "Hårddisk installation"
 
 msgid "Harddisk standby after"
 msgstr "Viloläge för hårddisk efter"
+
+msgid "Hierarchy Information"
+msgstr ""
 
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
@@ -1106,6 +1130,18 @@ msgstr "Ingen satellit frontend funnen!!"
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
 
+msgid ""
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
+msgstr ""
+
+msgid ""
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
+msgstr ""
+
 msgid "No, do nothing."
 msgstr "Nej, gör inget."
 
@@ -1154,6 +1190,9 @@ msgstr "En"
 
 msgid "Online-Upgrade"
 msgstr "Online Uppgradering"
+
+msgid "Orbital Position"
+msgstr ""
 
 msgid "Other..."
 msgstr "Annat..."
@@ -1348,6 +1387,21 @@ msgstr "Inspelade filer..."
 msgid "Recording"
 msgstr "Spelar in"
 
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really reboot "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really restart "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"now?"
+msgstr ""
+
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
 
@@ -1368,6 +1422,9 @@ msgstr "Repetera"
 
 msgid "Repeat Type"
 msgstr "Repeat Typ"
+
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
 
 msgid "Replace current playlist"
 msgstr "Byt ut nuvarande spellista"
@@ -1393,6 +1450,9 @@ msgstr ""
 
 msgid "Right"
 msgstr "Höger"
+
+msgid "Rolloff"
+msgstr ""
 
 msgid "Running"
 msgstr "Körandes"
@@ -1586,10 +1646,10 @@ msgid "Spanish"
 msgstr "Spanska"
 
 msgid "Standby"
-msgstr "Avstängd"
+msgstr "Viloläge"
 
 msgid "Standby / Restart"
-msgstr "Stäng av / Omstart"
+msgstr "Viloläge / Omstart"
 
 msgid "Start"
 msgstr "Start"
@@ -1620,6 +1680,12 @@ msgstr "Stopp"
 
 msgid "Stop Timeshift?"
 msgstr "Stoppa Timeshift?"
+
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+msgid "Stop current event but not coming events"
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Stoppa uppspelningen?"
@@ -1662,6 +1728,9 @@ msgstr "Byt till föregående underkanal"
 
 msgid "Symbol Rate"
 msgstr "Symbolrate"
+
+msgid "Symbolrate"
+msgstr ""
 
 msgid "System"
 msgstr "System"
@@ -1786,11 +1855,20 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+msgid "Transmission Mode"
+msgstr ""
+
 msgid "Transmission mode"
 msgstr "Sändningstyp"
 
 msgid "Transponder"
 msgstr "Transponder"
+
+msgid "Transponder Type"
+msgstr ""
+
+msgid "Transpondertype"
+msgstr "Transponertyp"
 
 msgid "Tries left:"
 msgstr "Försök kvar:"
@@ -2271,6 +2349,9 @@ msgstr "fullt /etc bibliotek"
 msgid "go to deep standby"
 msgstr "Stäng av mottagaren"
 
+msgid "go to standby"
+msgstr ""
+
 msgid "hear radio..."
 msgstr "lyssna på radio..."
 
@@ -2510,6 +2591,9 @@ msgstr "visa alternativ"
 msgid "show event details"
 msgstr "visa program detaljer"
 
+msgid "show transponder info"
+msgstr ""
+
 msgid "shutdown"
 msgstr "stäng av"
 
@@ -2603,183 +2687,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
-
-#~ msgid "0 V"
-#~ msgstr "0 V"
-
-#~ msgid "12 V"
-#~ msgstr "12 V"
-
-#~ msgid "12V Output"
-#~ msgstr "12V Ut"
-
-#~ msgid "A sleep timer want's to set your"
-#~ msgstr "En sovtimer vill sätta din"
-
-#~ msgid "A sleep timer want's to shut down"
-#~ msgstr "En sovtimer vill stänga av"
-
-#~ msgid "AGC"
-#~ msgstr "AGC"
-
-#~ msgid "Add alternative"
-#~ msgstr "Lägg till alternativ"
-
-#~ msgid "Add service"
-#~ msgstr "Lägg till kanal"
-
-#~ msgid "Ask before zapping"
-#~ msgstr "Fråga före kanalbyte"
-
-#~ msgid "Audio / Video"
-#~ msgstr "Audio / Video"
-
-#~ msgid "Auto show inforbar"
-#~ msgstr "Automatisk visning av infobalk"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "Cable provider"
-#~ msgstr "KabelTV leverantör"
-
-#~ msgid "Classic"
-#~ msgstr "Klassisk"
-
-#~ msgid "Default"
-#~ msgstr "Standard"
-
-#~ msgid "Disable subtitles"
-#~ msgstr "Avaktivera textning"
-
-#~ msgid "Do you really want to delete this recording?"
-#~ msgstr "Vill du verkligen ta bort den här inspelningen?"
-
-#~ msgid "Dreambox to standby. Do that now?"
-#~ msgstr "Dreambox till viloläge. Utföra det nu?"
-
-#~ msgid "Equal to Socket A"
-#~ msgstr "Likadant som Tuner A"
-
-#~ msgid "Expert Setup"
-#~ msgstr "Expert Inställningar"
-
-#~ msgid "Fast zapping"
-#~ msgstr "Snabbt kanalbyte"
-
-#~ msgid "Harddisk..."
-#~ msgstr "Hårddisk..."
-
-#~ msgid "Hide error windows"
-#~ msgstr "Göm felmeddelande fönster"
-
-#~ msgid "Invert"
-#~ msgstr "Invertera"
-
-#~ msgid "LCD"
-#~ msgstr "LCD"
-
-#~ msgid "Language"
-#~ msgstr "Språk"
-
-#~ msgid "Loopthrough to Socket A"
-#~ msgstr "Loopa igenom till Tuner A"
-
-#~ msgid "Multi bouquets"
-#~ msgstr "Flera bouquets"
-
-#~ msgid "Network"
-#~ msgstr "Nätverk"
-
-#~ msgid "Nothing connected"
-#~ msgstr "Ingenting är anslutet"
-
-#~ msgid "Parental Control"
-#~ msgstr "Föräldrakontroll"
-
-#~ msgid "Parental Lock"
-#~ msgstr "Barnlås"
-
-#~ msgid "Predefined satellite"
-#~ msgstr "Fördefinerad satelliter"
-
-#~ msgid "Record Splitsize"
-#~ msgstr "Inspelning Delningsstorlek"
-
-#~ msgid "Remember service pin"
-#~ msgstr "Kom ihåg kanal PIN"
-
-#~ msgid "Remove service"
-#~ msgstr "Ta bort kanal"
-
-#~ msgid "SNR"
-#~ msgstr "SNR"
-
-#~ msgid "Satconfig"
-#~ msgstr "Satkonfig"
-
-#~ msgid "Satelliteconfig"
-#~ msgstr "Satellitinställning"
-
-#~ msgid "Secondary cable from motorized LNB"
-#~ msgstr "Andra kabeln från Motor"
-
-#~ msgid "Select alternative service"
-#~ msgstr "Välj alternativ kanal"
-
-#~ msgid "Select reference service"
-#~ msgstr "Välj reference kanal"
-
-#~ msgid "Setup Lock"
-#~ msgstr "Inställningslås"
-
-#~ msgid "Show Satposition"
-#~ msgstr "Visa Satposition"
-
-#~ msgid "Simple"
-#~ msgstr "Enkelt"
-
-#~ msgid "Skip confirmations"
-#~ msgstr "Konfirmera inte"
-
-#~ msgid "Swap services"
-#~ msgstr "Byt kanal"
-
-#~ msgid "The sleep timer has been acitvated."
-#~ msgstr "Sovtimern har aktiverats"
-
-#~ msgid "Timeshifting"
-#~ msgstr "Timeshifting"
-
-#~ msgid "Transpondertype"
-#~ msgstr "Transponertyp"
-
-#~ msgid "UHF Modulator"
-#~ msgstr "UHF Modulator"
-
-#~ msgid "Usage Settings"
-#~ msgstr "Användarinställningar"
-
-#~ msgid "Usage settings"
-#~ msgstr "Användarinställning"
-
-#~ msgid "Visualize positioner movement"
-#~ msgstr "Visualisera motorkörning"
-
-#~ msgid "add bouquet..."
-#~ msgstr "lägg till bouquet..."
-
-#~ msgid "copy to favourites"
-#~ msgstr "kopiera till favoriter"
-
-#~ msgid "remove bouquet"
-#~ msgstr "ta bort bouquet"
-
-#~ msgid "remove service"
-#~ msgstr "ta bort kanal"
-
-#~ msgid "use power delta"
-#~ msgstr "använd ström delta"
-
-#~ msgid "your Dreambox. Shutdown now?"
-#~ msgstr "din Dreambox. Stäng av nu?"
