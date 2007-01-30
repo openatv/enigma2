@@ -96,12 +96,13 @@ int eThread::sync(void)
 	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
 }
 
-void eThread::sendSignal(int sig)
+int eThread::sendSignal(int sig)
 {
 	if (m_alive)
-		pthread_kill(the_thread, sig);
+		return pthread_kill(the_thread, sig);
 	else
 		eDebug("send signal to non running thread");
+	return -1;
 }
 
 void eThread::kill(bool sendcancel)
