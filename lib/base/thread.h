@@ -51,7 +51,7 @@ public:
 		/* result: 0 - thread is not alive
 		           1 - thread state unknown */
 	int sync();
-	void sendSignal(int sig);
+	int sendSignal(int sig);
 
 		/* join the thread, i.e. busywait until thread has finnished. */
 	void kill(bool sendcancel=false);

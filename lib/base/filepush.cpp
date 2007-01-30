@@ -176,7 +176,15 @@ void eFilePushThread::stop()
 		return;
 
 	m_stop = 1;
-	sendSignal(SIGUSR1);
+
+	// fixmee.. here we need a better solution to ensure
+	// that the thread context take notice of the signal
+	// even when no syscall is in progress
+	while(!sendSignal(SIGUSR1))
+	{
+		eDebug("send SIGUSR1 to thread context");
+		usleep(5000); // wait msek
+	}
 	kill();
 }
 
