@@ -134,17 +134,6 @@ class Timer:
 		for f in self.on_state_change:
 			f(entry)
 
-	def getNextRecordingTime(self):
-		llen = len(self.timer_list)
-		idx = 0
-		while idx < llen:
-			timer = self.timer_list[idx]
-			if timer.justplay:
-				idx += 1
-			else:
-				return timer.begin
-		return -1
-
 	def cleanup(self):
 		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
 	
