@@ -45,29 +45,29 @@ class SleepTimerEntry(timer.TimerEntry):
 		if answer is not None:
 			if answer and not Screens.Standby.inStandby:
 				Notifications.AddNotification(Screens.Standby.Standby)
-		
+
 class SleepTimer(timer.Timer):
 	def __init__(self):
 		config.SleepTimer = ConfigSubsection()
 		config.SleepTimer.ask = ConfigYesNo(default = True)
 		config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("shutdown")), ("standby", _("standby"))])
-		
 		timer.Timer.__init__(self)
 		self.defaultTime = 30
-		
+
 	def setSleepTime(self, sleeptime):
 		self.clear()
 		self.addTimerEntry(SleepTimerEntry(time.time() + 60 * sleeptime))
 
 	def clear(self):
 		self.timer_list = []
-		
+
 	def getCurrentSleepTime(self):
-		if (self.getNextRecordingTime() == -1):
-			return self.defaultTime
-		return int(math.ceil((self.getNextRecordingTime() - time.time()) / 60))
+		llen = len(self.timer_list)
+		idx = 0
+		while idx < llen:
+			timer = self.timer_list[idx]
+			return int(math.ceil((timer.begin - time.time()) / 60))
+		return self.defaultTime
 
 	def isActive(self):
 		return len(self.timer_list) > 0
-	
-	

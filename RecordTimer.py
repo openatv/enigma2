@@ -437,6 +437,17 @@ class RecordTimer(timer.Timer):
 			file.write(x)
 		file.close()
 
+	def getNextRecordingTime(self):
+		llen = len(self.timer_list)
+		idx = 0
+		while idx < llen:
+			timer = self.timer_list[idx]
+			if timer.justplay:
+				idx += 1
+			else:
+				return timer.begin
+		return -1
+
 	def record(self, entry):
 		entry.timeChanged()
 		print "[Timer] Record " + str(entry)
