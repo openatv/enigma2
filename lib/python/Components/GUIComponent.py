@@ -36,8 +36,18 @@ class GUIComponent(object):
 
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes)
 
-	def move(self, x, y):
-		self.instance.move(ePoint(int(x), int(y)))
+	def move(self, x, y = None):
+		# we assume, that x is already an ePoint
+		if y is None:
+			self.instance.move(x)
+		else:
+			self.instance.move(ePoint(int(x), int(y)))
+		
+	def resize(self, size):
+		self.instance.resize(size)
+		
+	def setZPosition(self, z):
+		self.instance.setZPosition(z)
 
 	def show(self):
 		self.__visible = 1
