@@ -153,7 +153,7 @@ class ParentalControl:
 			file = open(resolveFilename(SCOPE_CONFIG, "whitelist"), 'r')
 			lines = file.readlines()
 			for x in lines:
-				self.whitelist.append(x.strip())
+				self.whitelist.append(x.strip().upper())
 			file.close
 		except:
 			pass
@@ -170,7 +170,7 @@ class ParentalControl:
 			file = open(resolveFilename(SCOPE_CONFIG, "blacklist"), 'r')
 			lines = file.readlines()
 			for x in lines:
-				self.blacklist.append(x.strip())
+				self.blacklist.append(x.strip().upper())
 			file.close
 		except:
 			pass
