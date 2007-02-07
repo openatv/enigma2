@@ -51,12 +51,12 @@ class Navigation:
 		if ref is None:
 			self.stopService()
 			return 0
-		if not checkParentalControl or parentalControl.isServicePlayable(ref.toCompareString(), boundFunction(self.playService, checkParentalControl = False)):
+		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl = False)):
 			if ref.flags & eServiceReference.isGroup:
 				if not oldref:
 					oldref = eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
-				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref.toCompareString(), boundFunction(self.playService, checkParentalControl = False))):
+				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
 					self.stopService()
 					return 0
 			else:

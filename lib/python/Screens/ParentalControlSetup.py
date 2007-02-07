@@ -192,10 +192,7 @@ class ParentalControlEditor(Screen):
 		if list is not None:
 			services = list.getContent("CN", True) #(servicecomparestring, name)
 			for s in services:
-				if ord(s[1][0])==0xc2 and ord(s[1][1])==0x86: # ignore shortname brackets
-					key = s[1].lower()[2]
-				else:
-					key = s[1].lower()[0]
+				key = s[1].lower()[0]
 				if key < 'a' or key > 'z':
 					key = chr(SPECIAL_CHAR)
 				#key = str(key)
