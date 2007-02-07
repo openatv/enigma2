@@ -61,15 +61,16 @@ class ParentalControl:
 		self.blacklist.remove(service)
 		if self.serviceLevel.has_key(service):
 			self.serviceLevel.remove(service)
-				
-	def isServicePlayable(self, service, callback):
+
+	def isServicePlayable(self, ref, callback):
 		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
 		#print "whitelist:", self.whitelist
 		#print "blacklist:", self.blacklist
 		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
 		#print "not in whitelist:", (service not in self.whitelist)
-		#print "checking parental control for service:", service
+		#print "checking parental control for service:", ref.toString()
+		service = ref.toCompareString()
 		if (config.ParentalControl.type.value == "whitelist" and service not in self.whitelist) or (config.ParentalControl.type.value == "blacklist" and service in self.blacklist):
 			self.callback = callback
 			#print "service:", ServiceReference(service).getServiceName()
@@ -77,7 +78,7 @@ class ParentalControl:
 			if self.serviceLevel.has_key(service):
 				levelNeeded = self.serviceLevel[service]
 			pinList = self.getPinList()[:levelNeeded + 1]
-			Notifications.AddNotificationWithCallback(boundFunction(self.servicePinEntered, service), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(service).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
+			Notifications.AddNotificationWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry = config.ParentalControl.retries.servicepin, pinList = pinList, service = ServiceReference(ref).getServiceName(), title = _("this service is protected by a parental control pin"), windowTitle = _("Parental control"))
 			return False
 		else:
 			return True
@@ -135,7 +136,7 @@ class ParentalControl:
 		#if pin is not None and int(pin) in pinList:
 		if result is not None and result:
 			#print "pin ok, playing service"
-			self.callback(ref = ServiceReference(service).ref)
+			self.callback(ref = service)
 		else:
 			if result is not None:
 				Notifications.AddNotification(MessageBox,  _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
@@ -153,7 +154,8 @@ class ParentalControl:
 			file = open(resolveFilename(SCOPE_CONFIG, "whitelist"), 'r')
 			lines = file.readlines()
 			for x in lines:
-				self.whitelist.append(x.strip().upper())
+				ref = ServiceReference(x.strip())
+				self.whitelist.append(str(ref))
 			file.close
 		except:
 			pass
@@ -170,7 +172,8 @@ class ParentalControl:
 			file = open(resolveFilename(SCOPE_CONFIG, "blacklist"), 'r')
 			lines = file.readlines()
 			for x in lines:
-				self.blacklist.append(x.strip().upper())
+				ref = ServiceReference(x.strip())
+				self.blacklist.append(str(ref))
 			file.close
 		except:
 			pass
