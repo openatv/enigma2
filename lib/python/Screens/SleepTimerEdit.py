@@ -20,6 +20,7 @@ class SleepTimerEdit(Screen):
 		self["green_text"] = Label()
 		self["yellow_text"] = Label()
 		self["blue_text"] = Label()
+		self.is_active = self.session.nav.SleepTimer.isActive()
 		self.updateColors()
 		
 		self["pretext"] = Label(_("Shutdown Dreambox after"))
@@ -28,7 +29,7 @@ class SleepTimerEdit(Screen):
 		
 		self["actions"] = NumberActionMap(["SleepTimerEditorActions"], 
 		{
-			"exit": self.close,
+			"exit": self.cancel,
 			"select": self.select,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -46,51 +47,57 @@ class SleepTimerEdit(Screen):
 			"toggleAction": self.toggleAction,
 			"toggleAsk": self.toggleAsk
 		}, -1)
-		
+
 	def updateColors(self):
-		if self.session.nav.SleepTimer.isActive():
+		if self.is_active:
 			self["red_text"].setText(_("Timer status:") + " " + _("Enabled"))
 		else:
 			self["red_text"].setText(_("Timer status:") + " " + _("Disabled"))
+		
 		if config.SleepTimer.action.value == "shutdown":
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Deep Standby"))
 		elif config.SleepTimer.action.value == "standby":
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Standby"))
-
+		
 		if config.SleepTimer.ask.value:
 			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("yes"))
 		else:
 			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("no"))
 		self["blue_text"].setText(_("Settings"))
-		
-		
+
+	def cancel(self):
+		config.SleepTimer.ask.cancel()
+		config.SleepTimer.action.cancel()
+		self.close()
+
 	def select(self):
-		self.session.nav.SleepTimer.setSleepTime(int(self["input"].getText()))
-		self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
-	
+		if self.is_active:
+			self.session.nav.SleepTimer.setSleepTime(int(self["input"].getText()))
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
+		else:
+			self.session.nav.SleepTimer.clear()
+			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been disabled."), MessageBox.TYPE_INFO)
+
 	def keyNumberGlobal(self, number):
 		self["input"].number(number)
-		
+
 	def selectLeft(self):
 		self["input"].left()
 
 	def selectRight(self):
 		self["input"].right()
-	
+
 	def disableTimer(self):
-		if self.session.nav.SleepTimer.isActive():
-			self.session.nav.SleepTimer.clear()
-		else:
-			self.session.nav.SleepTimer.setSleepTime(int(self["input"].getText()))
+		self.is_active = not self.is_active
 		self.updateColors()
-		
+
 	def toggleAction(self):
 		if config.SleepTimer.action.value == "shutdown":
 			config.SleepTimer.action.value = "standby"
 		elif config.SleepTimer.action.value == "standby":
 			config.SleepTimer.action.value = "shutdown"
 		self.updateColors()
-		
+
 	def toggleAsk(self):
 		config.SleepTimer.ask.value = not config.SleepTimer.ask.value
 		self.updateColors()
