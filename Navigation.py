@@ -62,7 +62,7 @@ class Navigation:
 			else:
 				playref = ref
 			if self.pnav and not self.pnav.playService(playref):
-				self.currentlyPlayingServiceReference = ref
+				self.currentlyPlayingServiceReference = playref
 				return 0
 		else:
 			self.stopService()
