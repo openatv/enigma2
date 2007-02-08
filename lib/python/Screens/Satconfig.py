@@ -60,7 +60,11 @@ class NimSetup(Screen, ConfigListScreen):
 				# SATs
 				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 				self.list.append(self.advancedSatsEntry)
-				currSat = self.nimConfig.advanced.sat[self.nimConfig.advanced.sats.orbital_position]
+				cur_orb_pos = self.nimConfig.advanced.sats.orbital_position
+				satlist = self.nimConfig.advanced.sat.keys()
+				if cur_orb_pos not in satlist:
+					cur_orb_pos = satlist[0]
+				currSat = self.nimConfig.advanced.sat[cur_orb_pos]
 				self.fillListWithAdvancedSatEntrys(currSat)
 			self.have_advanced = True
 		elif self.nim_type == nimmanager.nimType["DVB-C"]:
