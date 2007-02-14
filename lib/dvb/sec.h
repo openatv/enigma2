@@ -240,6 +240,23 @@ class eDVBRegisteredFrontend;
 
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
+public:
+	enum {
+		DELAY_AFTER_CONT_TONE=0,  // delay after continuous tone change
+		DELAY_AFTER_FINAL_VOLTAGE_CHANGE, // delay after voltage change at end of complete sequence
+		DELAY_BETWEEN_DISEQC_REPEATS, // delay between repeated diseqc commands
+		DELAY_AFTER_LAST_DISEQC_CMD, // delay after last diseqc command
+		DELAY_AFTER_TONEBURST, // delay after toneburst
+		DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, // delay after enable voltage before transmit toneburst/diseqc
+		DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, // delay after transmit toneburst / diseqc and before transmit motor command
+		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, // delay after voltage change before measure idle input power
+		DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, // delay after enable voltage before transmit motor command
+		DELAY_AFTER_MOTOR_STOP_CMD, // delay after transmit motor stop
+		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, // delay after voltage change before transmit motor command
+		MOTOR_RUNNING_TIMEOUT, // max motor running time before timeout
+		MAX_PARAMS
+	};
+private:
 #ifndef SWIG
 	static eDVBSatelliteEquipmentControl *instance;
 	eDVBSatelliteLNBParameters m_lnbs[128]; // i think its enough
@@ -252,6 +269,7 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	eDVBSatelliteEquipmentControl();
 	~eDVBSatelliteEquipmentControl();
 #endif
+	static int m_params[MAX_PARAMS];
 public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
@@ -261,6 +279,7 @@ public:
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
 #endif
 	static eDVBSatelliteEquipmentControl *getInstance() { return instance; }
+	static void setParam(int param, int value);
 	RESULT clear();
 /* LNB Specific Parameters */
 	RESULT addLNB();

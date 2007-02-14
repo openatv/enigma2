@@ -1,6 +1,6 @@
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff
 
-from enigma import eDVBSatelliteEquipmentControl, \
+from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
@@ -92,7 +92,7 @@ class SecConfigure:
 		return self.satList
 
 	def update(self):
-		sec = eDVBSatelliteEquipmentControl.getInstance()
+		sec = secClass.getInstance()
 		sec.clear() ## this do unlinking NIMs too !!
 		print "sec config cleared"
 		self.satList = []
@@ -640,7 +640,60 @@ class NimManager:
 		#print "nimDiseqcD set to " + str(val)
 		pass
 
+def InitSecParams():
+	config.sec = ConfigSubsection()
+
+	x = ConfigInteger(default=15)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_CONT_TONE, configElement.value))
+	config.sec.delay_after_continuous_tone_change = x
+
+	x = ConfigInteger(default=10)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_VOLTAGE_CHANGE, configElement.value))
+	config.sec.delay_after_final_voltage_change = x
+
+	x = ConfigInteger(default=120)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_DISEQC_REPEATS, configElement.value))
+	config.sec.delay_between_diseqc_repeats = x
+
+	x = ConfigInteger(default=50)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_LAST_DISEQC_CMD, configElement.value))
+	config.sec.delay_after_last_diseqc_command = x
+
+	x = ConfigInteger(default=50)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
+	config.sec.delay_after_toneburst = x
+
+	x = ConfigInteger(default=200)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
+	config.sec.delay_after_enable_voltage_before_switch_command = x
+
+	x = ConfigInteger(default=700)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
+	config.sec.delay_between_switch_and_motor_command = x
+
+	x = ConfigInteger(default=150)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
+	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
+
+	x = ConfigInteger(default=750)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
+	config.sec.delay_after_enable_voltage_before_motor_command = x
+
+	x = ConfigInteger(default=150)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
+	config.sec.delay_after_motor_stop_command = x
+
+	x = ConfigInteger(default=150)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
+	config.sec.delay_after_voltage_change_before_motor_command = x
+
+	x = ConfigInteger(default=120)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
+	config.sec.motor_running_timeout = x
+
 def InitNimManager(nimmgr):
+	InitSecParams()
+
 	config.Nims = ConfigSubList()
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
