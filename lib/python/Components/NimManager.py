@@ -691,6 +691,11 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
 	config.sec.motor_running_timeout = x
 
+	x = ConfigInteger(default=2)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
+	config.sec.motor_command_retries = x
+
+
 def InitNimManager(nimmgr):
 	InitSecParams()
 
