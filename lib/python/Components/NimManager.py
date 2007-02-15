@@ -643,51 +643,51 @@ class NimManager:
 def InitSecParams():
 	config.sec = ConfigSubsection()
 
-	x = ConfigInteger(default=15, limits = (0, 999))
+	x = ConfigInteger(default=15, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_CONT_TONE, configElement.value))
 	config.sec.delay_after_continuous_tone_change = x
 
-	x = ConfigInteger(default=10, limits = (0, 999))
+	x = ConfigInteger(default=10, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_VOLTAGE_CHANGE, configElement.value))
 	config.sec.delay_after_final_voltage_change = x
 
-	x = ConfigInteger(default=120, limits = (0, 999))
+	x = ConfigInteger(default=120, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_DISEQC_REPEATS, configElement.value))
 	config.sec.delay_between_diseqc_repeats = x
 
-	x = ConfigInteger(default=50, limits = (0, 999))
+	x = ConfigInteger(default=50, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_LAST_DISEQC_CMD, configElement.value))
 	config.sec.delay_after_last_diseqc_command = x
 
-	x = ConfigInteger(default=50, limits = (0, 999))
+	x = ConfigInteger(default=50, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
 	config.sec.delay_after_toneburst = x
 
-	x = ConfigInteger(default=120, limits = (0, 999))
+	x = ConfigInteger(default=120, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
 	config.sec.delay_after_enable_voltage_before_switch_command = x
 
-	x = ConfigInteger(default=700, limits = (0, 999))
+	x = ConfigInteger(default=700, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
 	config.sec.delay_between_switch_and_motor_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 999))
+	x = ConfigInteger(default=150, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
 	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
 
-	x = ConfigInteger(default=750, limits = (0, 999))
+	x = ConfigInteger(default=750, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_enable_voltage_before_motor_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 999))
+	x = ConfigInteger(default=150, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
 	config.sec.delay_after_motor_stop_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 999))
+	x = ConfigInteger(default=150, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_voltage_change_before_motor_command = x
 
-	x = ConfigInteger(default=120, limits = (0, 999))
+	x = ConfigInteger(default=120, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
 	config.sec.motor_running_timeout = x
 
@@ -702,12 +702,12 @@ def InitNimManager(nimmgr):
 	config.Nims = ConfigSubList()
 	for x in range(nimmgr.nimCount):
 		config.Nims.append(ConfigSubsection())
-		
+
 #	def nimConfigModeChanged(slotid, configElement):
 #		nimmgr.nimConfigModeChanged(slotid, configElement.value)
 	def nimDiseqcModeChanged(slotid, configElement):
 		nimmgr.nimDiseqcModeChanged(slotid, configElement.value)
-		
+
 	def nimPortAChanged(slotid, configElement):
 		nimmgr.nimPortAChanged(slotid, configElement.value)
 	def nimPortBChanged(slotid, configElement):
@@ -721,7 +721,7 @@ def InitNimManager(nimmgr):
 		x = slot.slotid
 		cname = nimmgr.getConfigPrefix(x)
 		nim = config.Nims[x]
-		
+
 		if slot.nimType == nimmgr.nimType["DVB-S"]:
 			if slot.slotid == 0:
 				nim.configMode = ConfigSelection(
@@ -785,7 +785,7 @@ def InitNimManager(nimmgr):
 				nim.equalTo = ConfigSelection(choices = satNimListNames)
 				nim.linkedTo = ConfigSelection(choices = satNimListNames)
 				nim.satposDependsTo = ConfigSelection(choices = satNimListNames)
-			
+
 			#perhaps the instance of the slot is more useful?
 #			nim.configMode.addNotifier(boundFunction(nimConfigModeChanged,x))
 			nim.diseqcMode.addNotifier(boundFunction(nimDiseqcModeChanged,x))
@@ -793,7 +793,7 @@ def InitNimManager(nimmgr):
 			nim.diseqcB.addNotifier(boundFunction(nimPortBChanged,x))
 			nim.diseqcC.addNotifier(boundFunction(nimPortCChanged,x))
 			nim.diseqcD.addNotifier(boundFunction(nimPortDChanged,x))
-			
+
 			# advanced config:
 			nim.advanced = ConfigSubsection()
 			nim.advanced.sats = getConfigSatlist(192,nimmgr.satList)
@@ -813,11 +813,11 @@ def InitNimManager(nimmgr):
 			csw = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
 			for y in range(0, 16):
 				csw.append((str(0xF0|y), "Input " + str(y+1)))
-			
+
 			ucsw = [("0", _("None"))]
 			for y in range(1, 17):
 				ucsw.append((str(y), "Input " + str(y)))
-			
+
 			nim.advanced.lnb = ConfigSubList()
 			nim.advanced.lnb.append(ConfigNothing())
 			for x in range(1, 33):
@@ -835,11 +835,11 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].sequenceRepeat = ConfigYesNo(default=False)
 				nim.advanced.lnb[x].commandOrder1_0 = ConfigSelection(choices = [("ct", "committed, toneburst"), ("tc", "toneburst, committed")], default = "ct")
 				nim.advanced.lnb[x].commandOrder = ConfigSelection(choices = [
-						("ct", "committed, toneburst"), 
-						("tc", "toneburst, committed"), 
-						("cut", "committed, uncommitted, toneburst"), 
-						("tcu", "toneburst, committed, uncommitted"), 
-						("uct", "uncommitted, committed, toneburst"), 
+						("ct", "committed, toneburst"),
+						("tc", "toneburst, committed"),
+						("cut", "committed, uncommitted, toneburst"),
+						("tcu", "toneburst, committed, uncommitted"),
+						("uct", "uncommitted, committed, toneburst"),
 						("tuc", "toneburst, uncommitted, commmitted")],
 						default="ct")
 				nim.advanced.lnb[x].uncommittedDiseqcCommand = ConfigSelection(choices = ucsw)
