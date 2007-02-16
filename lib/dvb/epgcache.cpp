@@ -861,11 +861,10 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
-	unlink("/hdd/epg.dat.$$$");
-	rename("/hdd/epg.dat", "/hdd/epg.dat.$$$");
-	FILE *f = fopen("/hdd/epg.dat.$$$", "r");
+	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
+		unlink("/hdd/epg.dat");
 		int size=0;
 		int cnt=0;
 #if 0
@@ -893,7 +892,6 @@ void eEPGCache::load()
 			{
 				eDebug("[EPGC] epg file has incorrect byte order.. dont read it");
 				fclose(f);
-				unlink("/hdd/epg.dat.$$$");
 				return;
 			}
 			char text1[13];
@@ -972,7 +970,6 @@ void eEPGCache::load()
 			fclose(f);
 		}
 	}
-	unlink("/hdd/epg.dat.$$$");
 }
 
 void eEPGCache::save()
