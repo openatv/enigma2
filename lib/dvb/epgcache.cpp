@@ -861,8 +861,9 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
-	singleLock s(cache_lock);
-	FILE *f = fopen("/hdd/epg.dat", "r");
+	unlink("/hdd/epg.dat.$$$");
+	rename("/hdd/epg.dat", "/hdd/epg.dat.$$$");
+	FILE *f = fopen("/hdd/epg.dat.$$$", "r");
 	if (f)
 	{
 		int size=0;
@@ -892,12 +893,14 @@ void eEPGCache::load()
 			{
 				eDebug("[EPGC] epg file has incorrect byte order.. dont read it");
 				fclose(f);
+				unlink("/hdd/epg.dat.$$$");
 				return;
 			}
 			char text1[13];
 			fread( text1, 13, 1, f);
 			if ( !strncmp( text1, "ENIGMA_EPG_V7", 13) )
 			{
+				singleLock s(cache_lock);
 				fread( &size, sizeof(int), 1, f);
 				while(size--)
 				{
@@ -969,6 +972,7 @@ void eEPGCache::load()
 			fclose(f);
 		}
 	}
+	unlink("/hdd/epg.dat.$$$");
 }
 
 void eEPGCache::save()
