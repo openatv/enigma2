@@ -5,7 +5,7 @@ from Components.AVSwitch import AVSwitch
 from enigma import eDVBVolumecontrol, eDBoxLCD, eServiceReference
 from Components.Sources.Clock import Clock
 
-inStandby = False
+inStandby = None
 
 class Standby(Screen):
 	def Power(self):
@@ -63,12 +63,11 @@ class Standby(Screen):
 
 	def __onShow(self):
 		global inStandby
-		inStandby = True
+		inStandby = self
 
 	def __onHide(self):
 		global inStandby
-		inStandby = False
-
+		inStandby = None
 
 class StandbySummary(Screen):
 	skin = """

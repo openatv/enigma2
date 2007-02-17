@@ -493,13 +493,21 @@ def runScreenTest():
 
 	from time import time
 	from Tools.DreamboxHardware import setFPWakeuptime
+	#get next record timer start time
 	nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
-	if nextRecordingTime != -1:
-		if (nextRecordingTime - time() < 330): # no time to switch box back on
-			setFPWakeuptime(time() + 30) # so switch back on in 30 seconds
+	#get next zap timer start time
+	nextZapTime = session.nav.RecordTimer.getNextZapTime()
+	#get currentTime
+	nowTime = time()
+	if nextZapTime != -1 and nextRecordingTime != -1:
+		startTime = nextZapTime < nextRecordingTime and nextZapTime or nextRecordingTime
+	else:
+		startTime = nextZapTime != -1 and nextZapTime or nextRecordingTime
+	if startTime != -1:
+		if (startTime - nowTime < 330): # no time to switch box back on
+			setFPWakeuptime(nowTime + 30) # so switch back on in 30 seconds
 		else:
-			setFPWakeuptime(nextRecordingTime - (300))
-	
+			setFPWakeuptime(startTime - 300)
 	session.nav.stopService()
 	session.nav.shutdown()
 	

@@ -236,8 +236,15 @@ class RecordTimerEntry(timer.TimerEntry):
 				return True
 
 			if self.justplay:
-				self.log(11, "zapping")
-				NavigationInstance.instance.playService(self.service_ref.ref)
+				if Screens.Standby.inStandby:
+					self.log(11, "wakeup and zap")
+					#set service to zap after standby
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					#wakeup standby
+					Screens.Standby.inStandby.Power()
+				else:
+					self.log(11, "zapping")
+					NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "start recording")
@@ -437,12 +444,25 @@ class RecordTimer(timer.Timer):
 			file.write(x)
 		file.close()
 
+	def getNextZapTime(self):
+		llen = len(self.timer_list)
+		idx = 0
+		now = time.time()
+		while idx < llen:
+			timer = self.timer_list[idx]
+			if not timer.justplay or timer.begin < now:
+				idx += 1
+			else:
+				return timer.begin
+		return -1
+
 	def getNextRecordingTime(self):
 		llen = len(self.timer_list)
 		idx = 0
+		now = time.time()
 		while idx < llen:
 			timer = self.timer_list[idx]
-			if timer.justplay:
+			if timer.justplay or timer.begin < now:
 				idx += 1
 			else:
 				return timer.begin
