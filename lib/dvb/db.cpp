@@ -668,11 +668,8 @@ void eDVBDB::loadBouquet(const char *path)
 				e->name = line+offs;
 				read_descr=false;
 			}
-			else if (!strncmp(line, "#NAME ", 6) || !strncmp(line, "#NAME: ", 7))
-			{
-				int offs = line[5] == ':' ? 7 : 6;
-				bouquet.m_bouquet_name=line+offs;
-			}
+			else if (!strncmp(line, "#NAME ", 6))
+				bouquet.m_bouquet_name=line+6;
 			continue;
 		}
 	}
