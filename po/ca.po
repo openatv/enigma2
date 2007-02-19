@@ -1,16 +1,16 @@
 # translation of ca.po to
 # Copyright (C) 2006 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
-#
+# 
 # Automatically generated, 2006.
-# Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006.
+# Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-05 10:01+0100\n"
-"PO-Revision-Date: 2006-12-19 09:56+0100\n"
-"Last-Translator: Oriol Pellicer i Sabrià <oriol@elsud.org>\n"
+"POT-Creation-Date: 2007-02-19 23:12+0100\n"
+"PO-Revision-Date: 2007-02-07 13:36+0100\n"
+"Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,6 +145,16 @@ msgid "A"
 msgstr "Un"
 
 msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
+
+msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
@@ -166,18 +176,14 @@ msgstr ""
 "de posar en marxa el satfinder."
 
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Una programació d'apagada\n"
-"vol adormir la Dreambox. Fer-ho ara?"
 
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Una programació d'apagada\n"
-"vol aturar la Dreambox. Fer-ho ara?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -397,17 +403,21 @@ msgstr "Netejar abans de buscar"
 msgid "Clear log"
 msgstr "Esborrar log"
 
+#, fuzzy
 msgid "Code rate high"
-msgstr "Velocitat de codi alta"
+msgstr "\"Code rate\" alt"
 
+#, fuzzy
 msgid "Code rate low"
-msgstr "Velocitat de codi baixa"
+msgstr "\"Code rate\" baix"
 
+#, fuzzy
 msgid "Coderate HP"
-msgstr ""
+msgstr "\"Coderate\" HP"
 
+#, fuzzy
 msgid "Coderate LP"
-msgstr ""
+msgstr "\"Coderate\" LP"
 
 msgid "Color Format"
 msgstr "Format de color"
@@ -456,7 +466,7 @@ msgstr ""
 "Reintentant..."
 
 msgid "Constellation"
-msgstr ""
+msgstr "Constel·lació"
 
 msgid "Contrast"
 msgstr "Contrast"
@@ -619,10 +629,13 @@ msgstr ""
 "Després de prémer OK, espera!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
+msgstr "Vols veure un manual d'edició?"
 
 msgid "Do you want to view a tutorial?"
-msgstr "Vols veure un tutorial?"
+msgstr "Vols veure un manual?"
+
+msgid "Don't stop current event but disable coming events"
+msgstr ""
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -804,7 +817,7 @@ msgid "Goto position"
 msgstr "Anar a la posició"
 
 msgid "Guard Interval"
-msgstr ""
+msgstr "Interval de guarda"
 
 msgid "Guard interval mode"
 msgstr "Mode interval segur"
@@ -819,7 +832,7 @@ msgid "Harddisk standby after"
 msgstr "Posar el disc dur en repòs després de"
 
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Informació jeràrquica"
 
 msgid "Hierarchy mode"
 msgstr "Mode jeràrquic"
@@ -1135,6 +1148,18 @@ msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
 "No hi ha cap sintonitzador configurat per a utilitzar amb un motor diseqc!"
 
+msgid ""
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
+msgstr ""
+
+msgid ""
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
+msgstr ""
+
 msgid "No, do nothing."
 msgstr "No, no cal."
 
@@ -1185,7 +1210,7 @@ msgid "Online-Upgrade"
 msgstr "Actualització online"
 
 msgid "Orbital Position"
-msgstr ""
+msgstr "Posició orbital"
 
 msgid "Other..."
 msgstr "Altres..."
@@ -1229,6 +1254,9 @@ msgstr "Reproduir pel·lícules gravades..."
 
 msgid "Please choose an extension..."
 msgstr "Sisplau escull una extensió..."
+
+msgid "Please do not change values when you not know what you do!"
+msgstr ""
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Introdueix un nom per a la nova llista"
@@ -1380,6 +1408,21 @@ msgstr "Arxius gravats..."
 msgid "Recording"
 msgstr "Gravant"
 
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really reboot "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really restart "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"now?"
+msgstr ""
+
 msgid "Recordings always have priority"
 msgstr "Les gravacions tenen prioritat"
 
@@ -1400,6 +1443,9 @@ msgstr "Repetir"
 
 msgid "Repeat Type"
 msgstr "Tipus de repetició"
+
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
 
 msgid "Replace current playlist"
 msgstr "Substituïr la llista actual"
@@ -1424,8 +1470,9 @@ msgstr "S'ha restaurat la configuració. Prem OK per a activar-la."
 msgid "Right"
 msgstr "Dreta"
 
+#, fuzzy
 msgid "Rolloff"
-msgstr ""
+msgstr "Rolloff"
 
 msgid "Running"
 msgstr "Mostrant"
@@ -1444,6 +1491,9 @@ msgstr "Configuració antena"
 
 msgid "Satellite"
 msgstr "Satèl·lit"
+
+msgid "Satellite Equipment Setup"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Satèl·lits"
@@ -1659,6 +1709,12 @@ msgstr "Parar"
 msgid "Stop Timeshift?"
 msgstr "Cancel·lar la pausa?"
 
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+msgid "Stop current event but not coming events"
+msgstr ""
+
 msgid "Stop playing this movie?"
 msgstr "Aturar la reproducció de la pel·lícula?"
 
@@ -1698,11 +1754,13 @@ msgstr "Canviar al següent subservei"
 msgid "Switch to previous subservice"
 msgstr "Canviar al subservei anterior"
 
+#, fuzzy
 msgid "Symbol Rate"
-msgstr "Velocitat de símbol"
+msgstr "Symbol rate"
 
+#, fuzzy
 msgid "Symbolrate"
-msgstr ""
+msgstr "Symbolrate"
 
 msgid "System"
 msgstr "Sistema"
@@ -1744,6 +1802,9 @@ msgstr "Els pins entrats són diferents"
 
 msgid "The sleep timer has been activated."
 msgstr "S'ha activat la programació d'aturada."
+
+msgid "The sleep timer has been disabled."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1832,19 +1893,19 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Mode Transmissió"
 
 msgid "Transmission mode"
-msgstr "Mode trasmissió"
+msgstr "Mode transmissió"
 
 msgid "Transponder"
 msgstr "Transponedor"
 
 msgid "Transponder Type"
-msgstr ""
+msgstr "Tipus Transponedor"
 
 msgid "Transpondertype"
-msgstr ""
+msgstr "Tipustransponedor"
 
 msgid "Tries left:"
 msgstr "Intents:"
@@ -2326,6 +2387,9 @@ msgstr "tot el directori /etc"
 msgid "go to deep standby"
 msgstr "aturar completament"
 
+msgid "go to standby"
+msgstr ""
+
 msgid "hear radio..."
 msgstr "escoltar la ràdio..."
 
@@ -2569,7 +2633,7 @@ msgid "show event details"
 msgstr "mostrar detalls del programa"
 
 msgid "show transponder info"
-msgstr ""
+msgstr "mostrar info del transponedor"
 
 msgid "shutdown"
 msgstr "apagar"
@@ -2664,3 +2728,17 @@ msgstr "zappejar"
 
 msgid "zapped"
 msgstr "zappejat"
+
+#~ msgid ""
+#~ "A sleep timer want's to set your\n"
+#~ "Dreambox to standby. Do that now?"
+#~ msgstr ""
+#~ "Una programació d'apagada\n"
+#~ "vol adormir la Dreambox. Fer-ho ara?"
+
+#~ msgid ""
+#~ "A sleep timer want's to shut down\n"
+#~ "your Dreambox. Shutdown now?"
+#~ msgstr ""
+#~ "Una programació d'apagada\n"
+#~ "vol aturar la Dreambox. Fer-ho ara?"
