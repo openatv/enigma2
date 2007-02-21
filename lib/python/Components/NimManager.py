@@ -470,6 +470,7 @@ class NimManager:
 			
 		lastsocket = -1
 
+		entries = {}
 		while 1:		
 			line = nimfile.readline()
 			if line == "":
@@ -478,17 +479,24 @@ class NimManager:
 				parts = line.strip().split(" ")
 				id = int(parts[2][:1])
 				lastsocket = int(id)
-				self.nimSocketCount += 1
+				entries[lastsocket] = {}
 			elif line.strip().startswith("Type:"):
-				self.nimTypes[lastsocket] = str(line.strip()[6:])
-				#self.nimTypes[lastsocket] = str("DVB-T")
+				entries[lastsocket]["type"] = str(line.strip()[6:])
+				#entries[lastsocket]["type"] = str("DVB-S2")
 			elif line.strip().startswith("Name:"):
-				self.nimNames[lastsocket] = str(line.strip()[6:])
+				entries[lastsocket]["name"] = str(line.strip()[6:])
 			elif line.strip().startswith("empty"):
-				self.nimNames[lastsocket] = _("N/A")
-				self.nimTypes[lastsocket] = "empty/unknown"
-
+				entries[lastsocket]["type"] = "empty/unknown"
+				entries[lastsocket]["name"] = _("N/A")
 		nimfile.close()
+		
+		for id,entry  in entries.items():
+			if not(entry.has_key("name") and entry.has_key("type") and self.nimType.has_key(entry["type"])):
+				entry["name"] =  _("N/A")
+				entry["type"] = "empty/unknown"
+			self.nimNames[id] = entry["name"]
+			self.nimTypes[id] = entry["type"]
+			self.nimSocketCount += 1
 
 	def getNimType(self, slotID):
 		if slotID >= self.nimCount:
