@@ -10,6 +10,8 @@ class Ipkg(Screen):
 		Screen.__init__(self, session)
 		
 		self.cmdList = cmdList
+
+		self.sliderPackages = {}
 		
 		self.slider = Slider(0, len(cmdList))
 		self["slider"] = self.slider
