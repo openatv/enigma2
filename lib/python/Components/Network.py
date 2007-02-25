@@ -1,11 +1,11 @@
-from config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubsection, ConfigMAC
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubsection, ConfigMAC
 
 import os
 from socket import *
-
+print "[WLAN] imported modified Network.py"
 class Network:
-	def __init__(self):
-		pass
+	def __init__(self, iface = "eth0"):
+		self.iface = iface
 		
 	def writeNetworkConfig(self):
 		# fixme restarting and updating the network too often. possible fix: check current config and execute only if changed :/
@@ -13,11 +13,11 @@ class Network:
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
-		fp.write("auto eth0\n")
+		fp.write("auto "+self.iface+"\n")
 		if config.network.dhcp.value:
-			fp.write("iface eth0 inet dhcp\n")
+			fp.write("iface "+self.iface+" inet dhcp\n")
 		else:
-			fp.write("iface eth0 inet static\n")
+			fp.write("iface "+self.iface+" inet static\n")
 			fp.write("	address %d.%d.%d.%d\n" % tuple(config.network.ip.value))
 			fp.write("	netmask %d.%d.%d.%d\n" % tuple(config.network.netmask.value))
 			fp.write("	gateway %d.%d.%d.%d\n" % tuple(config.network.gateway.value))
@@ -69,24 +69,26 @@ class Network:
 		
 		try:
 			# set this config
-			if (ifaces.has_key("eth0")):
-				if (ifaces["eth0"]["dhcp"] == "yes"):
+			if (ifaces.has_key(self.iface)):
+				if (ifaces[self.iface]["dhcp"] == "yes"):
 					config.network.dhcp.value = 1
 				else:
 					config.network.dhcp.value = 0
-				if (ifaces["eth0"].has_key("address")): config.network.ip.value = ifaces["eth0"]["address"]
-				if (ifaces["eth0"].has_key("netmask")): config.network.netmask.value = ifaces["eth0"]["netmask"]
-				if (ifaces["eth0"].has_key("gateway")): config.network.gateway.value = ifaces["eth0"]["gateway"]
+				if (ifaces[self.iface].has_key("address")): config.network.ip.value = ifaces[self.iface]["address"]
+				if (ifaces[self.iface].has_key("netmask")): config.network.netmask.value = ifaces[self.iface]["netmask"]
+				if (ifaces[self.iface].has_key("gateway")): config.network.gateway.value = ifaces[self.iface]["gateway"]
 		except:
 			print "[Network.py] parsing network failed"
 
 	def deactivateNetworkConfig(self):
-		os.system("ip addr flush eth0")
+		import os
+		os.system("ip addr flush"+self.iface)
 		os.system("/etc/init.d/networking stop")
 		os.system("killall -9 udhcpc")
 		os.system("rm /var/run/udhcpc*")
 
 	def activateNetworkConfig(self):
+		import os
 		os.system("/etc/init.d/networking start")
 		config.network.ip.value = self.getCurrentIP()
 		config.network.ip.save()
@@ -132,7 +134,7 @@ class Network:
 
 	def getCurrentIP(self):
 		ipstr = [0,0,0,0]
-		for x in os.popen("ifconfig eth0 | grep 'inet addr:'", "r").readline().split(' '):
+		for x in os.popen("ifconfig "+self.iface+" | grep 'inet addr:'", "r").readline().split(' '):
 			if x.split(':')[0] == "addr":
 				ipstr = x.split(':')[1].split('.')
 		ip = []
