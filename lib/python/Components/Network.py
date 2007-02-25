@@ -2,7 +2,7 @@ from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubse
 
 import os
 from socket import *
-print "[WLAN] imported modified Network.py"
+
 class Network:
 	def __init__(self, iface = "eth0"):
 		self.iface = iface
