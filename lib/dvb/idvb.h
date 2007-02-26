@@ -621,6 +621,10 @@ public:
 	virtual RESULT flush()=0;
 };
 
+#if HAVE_DVB_API_VERSION < 3 && !defined(VIDEO_EVENT_SIZE_CHANGED)
+#define VIDEO_EVENT_SIZE_CHANGED 1
+#endif
+
 class iTSMPEGDecoder: public iObject
 {
 public:

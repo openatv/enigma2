@@ -106,7 +106,7 @@ public:
 				if (!ref) \
 					delete this; \
 			}
-	#elif defined(__ppc__)
+	#elif defined(__ppc__) || defined(__powerpc__)
 		#define DECLARE_REF(x) 			\
 			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
