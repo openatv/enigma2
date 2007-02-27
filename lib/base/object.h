@@ -149,14 +149,14 @@ public:
 			void c::AddRef() \
 			{ \
 				__asm__ __volatile__( \
-				"		incl	%0	\n" \
+				"		lock ; incl	%0	\n" \
 				: "=m" (ref.count) \
 				: "m" (ref.count); \
 			} \
 			void c::Release() \
 			{ \
 				__asm__ __volatile__( \
-				"		decl	%0	\n" \
+				"		lock ; decl	%0	\n" \
 				: "=m" (ref.count) \
 				: "m" (ref.count); \
 				if (!ref) \
