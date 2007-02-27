@@ -140,6 +140,28 @@ public:
 				if (!ref) \
 					delete this; \
 			}
+	#elif defined(__i386__)
+		#define DECLARE_REF(x) 			\
+			private: oRefCount ref; 	\
+			public: void AddRef(); 		\
+					void Release();
+		#define DEFINE_REF(c) \
+			void c::AddRef() \
+			{ \
+				__asm__ __volatile__( \
+				"		incl	%0	\n" \
+				: "=m" (ref.count) \
+				: "m" (ref.count); \
+			} \
+			void c::Release() \
+			{ \
+				__asm__ __volatile__( \
+				"		decl	%0	\n" \
+				: "=m" (ref.count) \
+				: "m" (ref.count); \
+				if (!ref) \
+					delete this; \
+			}
 	#else
 		#warning use non optimized implementation of refcounting.
 		#define DECLARE_REF(x) 			\
