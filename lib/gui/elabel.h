@@ -28,6 +28,7 @@ public:
 	void setForegroundColor(const gRGB &col);
 	void setShadowColor(const gRGB &col);
 	void setShadowOffset(const ePoint &offset);
+	void setNoWrap(int nowrap);
 	void clearForegroundColor();
 	
 	eSize calculateSize();
@@ -41,6 +42,7 @@ private:
 	int m_have_foreground_color, m_have_shadow_color;
 	gRGB m_foreground_color, m_shadow_color;
 	ePoint m_shadow_offset;
+	int m_nowrap;
 	
 	enum eLabelEvent
 	{

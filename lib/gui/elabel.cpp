@@ -15,6 +15,8 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	
 	m_have_foreground_color = 0;
 	m_have_shadow_color = 0;
+	
+	m_nowrap = 0;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -89,7 +91,8 @@ int eLabel::event(int event, void *data, void *data2)
 			else if (m_halign == alignBlock)
 				flags |= gPainter::RT_HALIGN_BLOCK;
 			
-			flags |= gPainter::RT_WRAP;
+			if (!m_nowrap)
+				flags |= gPainter::RT_WRAP;
 			
 				/* if we don't have shadow, m_shadow_offset will be 0,0 */
 			painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags);
@@ -180,6 +183,15 @@ void eLabel::setShadowOffset(const ePoint &offset)
 	m_shadow_offset = offset;
 }
 
+void eLabel::setNoWrap(int nowrap)
+{
+	if (m_nowrap != nowrap)
+	{
+		m_nowrap = nowrap;
+		invalidate();
+	}
+}
+
 void eLabel::clearForegroundColor()
 {
 	if (m_have_foreground_color)
@@ -194,7 +206,7 @@ eSize eLabel::calculateSize()
 	ePtr<eTextPara> p = new eTextPara(eRect(0, 0, size().width(), size().height()));
 	
 	p->setFont(m_font);
-	p->renderString(m_text.empty()?0:m_text.c_str(), RS_WRAP);
+	p->renderString(m_text.empty()?0:m_text.c_str(), m_nowrap ? 0 : RS_WRAP);
 	
 	eRect bbox = p->getBoundBox();
 	return bbox.size();
