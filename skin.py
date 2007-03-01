@@ -10,6 +10,7 @@ from Components.Element import Element
 from Components.Converter.Converter import Converter
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 from Tools.Import import my_import
+
 from Tools.XMLTools import elementsWithTag, mergeText
 
 colorNames = dict()
@@ -192,6 +193,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr.__deref__(), pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
+		elif attrib == 'noWrap':
+			guiObject.setNoWrap(1)
 		else:
 			raise "unsupported attribute " + attrib + "=" + value
 	except int:
@@ -281,6 +284,7 @@ def lookupScreen(name):
 	return None, None
 
 def readSkin(screen, skin, name, desktop):
+	
 	myscreen, path = lookupScreen(name)
 	
 	# otherwise try embedded skin
@@ -301,6 +305,8 @@ def readSkin(screen, skin, name, desktop):
 	screen.additionalWidgets = [ ]
 	screen.renderer = [ ]
 	
+	visited_components = set()
+	
 	# now walk all widgets
 	for widget in elementsWithTag(myscreen.childNodes, "widget"):
 		# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped 
@@ -309,11 +315,14 @@ def readSkin(screen, skin, name, desktop):
 		wname = widget.getAttribute('name')
 		wsource = widget.getAttribute('source')
 		
+
 		if wname is None and wsource is None:
 			print "widget has no name and no source!"
 			continue
 		
 		if wname:
+			visited_components.add(wname)
+
 			# get corresponding 'gui' object
 			try:
 				attributes = screen[wname].skinAttributes = [ ]
@@ -321,7 +330,7 @@ def readSkin(screen, skin, name, desktop):
 				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 
 #			assert screen[wname] is not Source
-		
+
 			# and collect attributes for this
 			collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
 		elif wsource:
@@ -365,6 +374,11 @@ def readSkin(screen, skin, name, desktop):
 			collectAttributes(attributes, widget, skin_path_prefix, ignore=['render', 'source'])
 			
 			screen.renderer.append(renderer)
+
+	from Components.GUIComponent import GUIComponent
+	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
+	
+	assert not nonvisited_components, "the following components in %s don't have a skin entry: %s" % (name, ', '.join(nonvisited_components))
 
 	# now walk additional objects
 	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
