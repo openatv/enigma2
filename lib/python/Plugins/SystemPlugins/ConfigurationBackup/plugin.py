@@ -105,7 +105,7 @@ class BackupSetup(Screen):
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
-		self.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))])
+		self.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
 		self.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
 		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
 		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
