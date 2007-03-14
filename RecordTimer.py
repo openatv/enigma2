@@ -170,6 +170,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id)
 			if prep_res:
 				self.log(2, "'prepare' failed: error %d" % prep_res)
+				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 				return False
 				
@@ -190,6 +191,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				f.close()
 			except IOError:
 				self.log(4, "failed to write meta information")
+				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 				return False
 			return True
