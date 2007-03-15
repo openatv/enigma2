@@ -18,7 +18,7 @@ public:
 	eDVBTSTools();
 	~eDVBTSTools();
 
-	int openFile(const char *filename);
+	int openFile(const char *filename, int nostreaminfo = 0);
 	void closeFile();
 	
 	void setSyncPID(int pid);
@@ -52,6 +52,7 @@ public:
 	int calcBitrate(); /* in bits/sec */
 	
 	void takeSamples();
+	int eDVBTSTools::takeSample(off_t off, pts_t &p);
 	
 	int findPMT(int &pmt_pid, int &service_id);
 private:
