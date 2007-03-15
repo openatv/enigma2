@@ -26,11 +26,12 @@ eDVBTSTools::~eDVBTSTools()
 	closeFile();
 }
 
-int eDVBTSTools::openFile(const char *filename)
+int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 {
 	closeFile();
 	
-	m_streaminfo.load((std::string(filename) + ".ap").c_str());
+	if (!nostreaminfo)
+		m_streaminfo.load((std::string(filename) + ".ap").c_str());
 	
 	if (!m_streaminfo.empty())
 		m_use_streaminfo = 1;
@@ -134,7 +135,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			pts |= ((unsigned long long)(pes[12]&0xFF)) << 7;
 			pts |= ((unsigned long long)(pes[13]&0xFE)) >> 1;
 			offset -= 188;
-			
+
 //			eDebug("found pts %08llx at %08llx", pts, offset);
 			
 				/* convert to zero-based */
@@ -186,36 +187,75 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 	} else
 	{
 //		eDebug("get offset");
+		calcBegin(); calcEnd();
 		if (!m_samples_taken)
 			takeSamples();
 		
 		if (!m_samples.empty())
 		{
-//		eDebug("ok, samples ok");
-				/* search entry before and after */
-			std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(pts);
-			std::map<pts_t, off_t>::const_iterator u = l;
-
-			if (l != m_samples.begin())
-				--l;
-		
-			if ((u != m_samples.end()) && (l != m_samples.end()))
+			int maxtries = 5;
+			pts_t p = -1;
+			
+			while (maxtries--)
 			{
-				pts_t pts_diff = u->first - l->first;
-				off_t offset_diff = u->second - l->second;
-//		eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
-	
-				if (pts_diff)
+					/* search entry before and after */
+				std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(pts);
+				std::map<pts_t, off_t>::const_iterator u = l;
+
+				if (l != m_samples.begin())
+					--l;
+				
+					/* we could have seeked beyond the end */
+				if (u == m_samples.end())
 				{
-					int bitrate = offset_diff * 90000 * 8 / pts_diff;
-					if (bitrate > 0)
+						/* use last segment for interpolation. */
+					if (l != m_samples.begin())
 					{
-						offset = l->second;
-						offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
-						offset -= offset % 188;
-						return 0;
+						--u;
+						--l;
 					}
 				}
+				
+				pts_t pts_diff = u->first - l->first;
+				off_t offset_diff = u->second - l->second;
+
+//				eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
+
+				int bitrate;
+				
+				if (pts_diff)
+					bitrate = offset_diff * 90000 * 8 / pts_diff;
+				else
+					bitrate = 0;
+
+				offset = l->second;
+				offset += ((pts - l->first) * (pts_t)bitrate) / 8ULL / 90000ULL;
+				offset -= offset % 188;
+				
+				p = pts;
+			
+				if (!takeSample(offset, p))
+				{
+					int diff = (p - pts) / 90;
+			
+					eDebug("calculated diff %d ms", diff);
+					if (abs(diff) > 300)
+					{
+						eDebug("diff to big, refining");
+						continue;
+					}
+				} else
+					eDebug("no sample taken, refinement not possible.");
+
+				break;
+			}
+			
+				/* if even the first sample couldn't be taken, fall back. */
+				/* otherwise, return most refined result. */
+			if (p != -1)
+			{
+				pts = p;
+				return 0;
 			}
 		}
 		
@@ -223,7 +263,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		offset -= offset % 188;
-
+		
 		return 0;
 	}
 }
@@ -348,24 +388,31 @@ void eDVBTSTools::takeSamples()
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
-	if (bytes_per_sample < 40*1024*1024)
-		bytes_per_sample = 40*1024*1024;
+//	if (bytes_per_sample < 40*1024*1024)
+//		bytes_per_sample = 40*1024*1024;
 	
 	bytes_per_sample -= bytes_per_sample % 188;
 	
 	for (off_t offset = m_offset_begin; offset < m_offset_end; offset += bytes_per_sample)
 	{
-		off_t o = offset;
 		pts_t p;
-		if (!eDVBTSTools::getPTS(o, p, 1))
-		{
-//			eDebug("sample: %llx, %llx", o, p);
-			m_samples[p] = o;
-		}
+		takeSample(offset, p);
 	}
 	m_samples[m_pts_begin] = m_offset_begin;
 	m_samples[m_pts_end] = m_offset_end;
 //	eDebug("begin, end: %llx %llx", m_offset_begin, m_offset_end); 
+}
+
+	/* returns 0 when a sample was taken. */
+int eDVBTSTools::takeSample(off_t off, pts_t &p)
+{
+	if (!eDVBTSTools::getPTS(off, p, 1))
+	{
+		eDebug("sample: %llx, %llx", off, p);
+		m_samples[p] = off;
+		return 0;
+	}
+	return 1;
 }
 
 int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
