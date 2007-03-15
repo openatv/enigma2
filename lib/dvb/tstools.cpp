@@ -81,8 +81,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	
 	while (left >= 188)
 	{
-		unsigned char block[188];
-		if (m_file.read(block, 188) != 188)
+		unsigned char packet[188];
+		if (m_file.read(packet, 188) != 188)
 		{
 			eDebug("read error");
 			break;
@@ -90,12 +90,12 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		left -= 188;
 		offset += 188;
 		
-		if (block[0] != 0x47)
+		if (packet[0] != 0x47)
 		{
 			int i = 0;
 			while (i < 188)
 			{
-				if (block[i] == 0x47)
+				if (packet[i] == 0x47)
 					break;
 				++i;
 			}
@@ -103,10 +103,38 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			continue;
 		}
 		
-		int pid = ((block[1] << 8) | block[2]) & 0x1FFF;
-		int pusi = !!(block[1] & 0x40);
+		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
+		int pusi = !!(packet[1] & 0x40);
 		
 //		printf("PID %04x, PUSI %d\n", pid, pusi);
+
+		unsigned char *payload;
+		
+			/* check for adaption field */
+		if (packet[3] & 0x20)
+		{
+			if (packet[4] >= 183)
+				continue;
+			if (packet[4])
+			{
+				if (packet[5] & 0x10) /* PCR present */
+				{
+					pts  = ((unsigned long long)(packet[ 6]&0xFF)) << 25;
+					pts |= ((unsigned long long)(packet[ 7]&0xFF)) << 17;
+					pts |= ((unsigned long long)(packet[ 8]&0xFE)) << 9;
+					pts |= ((unsigned long long)(packet[ 9]&0xFF)) << 1;
+					pts |= ((unsigned long long)(packet[10]&0x80)) >> 7;
+					offset -= 188;
+					eDebug("PCR  found: %16llx", pts);
+					if (fixed && fixupPTS(offset, pts))
+						return -1;
+					return 0;
+				}
+			}
+			payload = packet + packet[4] + 4 + 1;
+		} else
+			payload = packet + 4;
+
 		
 		if (m_pid >= 0)
 			if (pid != m_pid)
@@ -114,33 +142,31 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		if (!pusi)
 			continue;
 		
-			/* ok, now we have a PES header */
-		unsigned char *pes;
-		
-			/* check for adaption field */
-		if (block[3] & 0x20)
-			pes = block + block[4] + 4 + 1;
-		else
-			pes = block + 4;
 		
 			/* somehow not a startcode. (this is invalid, since pusi was set.) ignore it. */
-		if (pes[0] || pes[1] || (pes[2] != 1))
+		if (payload[0] || payload[1] || (payload[2] != 1))
 			continue;
 		
-		if (pes[7] & 0x80) /* PTS */
+			/* drop non-audio, non-video packets because other streams
+			   can be non-compliant.*/
+		if (((payload[3] & 0xE0) != 0xC0) &&  // audio
+		    ((payload[3] & 0xF0) != 0xE0))    // video
+			continue;
+		
+		if (payload[7] & 0x80) /* PTS */
 		{
-			pts  = ((unsigned long long)(pes[ 9]&0xE))  << 29;
-			pts |= ((unsigned long long)(pes[10]&0xFF)) << 22;
-			pts |= ((unsigned long long)(pes[11]&0xFE)) << 14;
-			pts |= ((unsigned long long)(pes[12]&0xFF)) << 7;
-			pts |= ((unsigned long long)(pes[13]&0xFE)) >> 1;
+			pts  = ((unsigned long long)(payload[ 9]&0xE))  << 29;
+			pts |= ((unsigned long long)(payload[10]&0xFF)) << 22;
+			pts |= ((unsigned long long)(payload[11]&0xFE)) << 14;
+			pts |= ((unsigned long long)(payload[12]&0xFF)) << 7;
+			pts |= ((unsigned long long)(payload[13]&0xFE)) >> 1;
 			offset -= 188;
 
-//			eDebug("found pts %08llx at %08llx", pts, offset);
+			eDebug("found pts %08llx at %08llx pid %02x stream: %02x", pts, offset, pid, payload[3]);
 			
 				/* convert to zero-based */
-			if (fixed)
-				fixupPTS(offset, pts);
+			if (fixed && fixupPTS(offset, pts))
+					return -1;
 			return 0;
 		}
 	}
@@ -186,8 +212,14 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 		return 0;
 	} else
 	{
-//		eDebug("get offset");
+		eDebug("get offset: pts=%llx", pts);
 		calcBegin(); calcEnd();
+		
+		if (!m_begin_valid)
+			return -1;
+		if (!m_end_valid)
+			return -1;
+
 		if (!m_samples_taken)
 			takeSamples();
 		
@@ -215,11 +247,15 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 						--l;
 					}
 				}
+					
+					/* if we don't have enough points */
+				if (u == m_samples.end())
+					break;
 				
 				pts_t pts_diff = u->first - l->first;
 				off_t offset_diff = u->second - l->second;
 
-//				eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
+				eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
 
 				int bitrate;
 				
@@ -233,6 +269,8 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 				offset -= offset % 188;
 				
 				p = pts;
+				
+				eDebug("so next guess at %llx", offset);
 			
 				if (!takeSample(offset, p))
 				{
@@ -388,9 +426,9 @@ void eDVBTSTools::takeSamples()
 	
 	int nr_samples = 30;
 	off_t bytes_per_sample = (m_offset_end - m_offset_begin) / (long long)nr_samples;
-//	if (bytes_per_sample < 40*1024*1024)
-//		bytes_per_sample = 40*1024*1024;
-	
+	if (bytes_per_sample < 40*1024*1024)
+		bytes_per_sample = 40*1024*1024;
+
 	bytes_per_sample -= bytes_per_sample % 188;
 	
 	for (off_t offset = m_offset_begin; offset < m_offset_end; offset += bytes_per_sample)
@@ -398,17 +436,19 @@ void eDVBTSTools::takeSamples()
 		pts_t p;
 		takeSample(offset, p);
 	}
-	m_samples[m_pts_begin] = m_offset_begin;
-	m_samples[m_pts_end] = m_offset_end;
+	m_samples[0] = m_offset_begin;
+	m_samples[m_pts_end - m_pts_begin] = m_offset_end;
+	
 //	eDebug("begin, end: %llx %llx", m_offset_begin, m_offset_end); 
 }
 
 	/* returns 0 when a sample was taken. */
 int eDVBTSTools::takeSample(off_t off, pts_t &p)
 {
+	eDebug("take sample: %llx", off);
 	if (!eDVBTSTools::getPTS(off, p, 1))
 	{
-		eDebug("sample: %llx, %llx", off, p);
+		eDebug("took sample: %llx, %llx", off, p);
 		m_samples[p] = off;
 		return 0;
 	}
@@ -434,20 +474,20 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 	
 	while (left >= 188)
 	{
-		unsigned char block[188];
-		if (m_file.read(block, 188) != 188)
+		unsigned char packet[188];
+		if (m_file.read(packet, 188) != 188)
 		{
 			eDebug("read error");
 			break;
 		}
 		left -= 188;
 		
-		if (block[0] != 0x47)
+		if (packet[0] != 0x47)
 		{
 			int i = 0;
 			while (i < 188)
 			{
-				if (block[i] == 0x47)
+				if (packet[i] == 0x47)
 					break;
 				++i;
 			}
@@ -455,9 +495,9 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			continue;
 		}
 		
-		int pid = ((block[1] << 8) | block[2]) & 0x1FFF;
+		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 		
-		int pusi = !!(block[1] & 0x40);
+		int pusi = !!(packet[1] & 0x40);
 		
 		if (!pusi)
 			continue;
@@ -466,10 +506,13 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 		unsigned char *sec;
 		
 			/* check for adaption field */
-		if (block[3] & 0x20)
-			sec = block + block[4] + 4 + 1;
-		else
-			sec = block + 4;
+		if (packet[3] & 0x20)
+		{
+			if (packet[4] >= 183)
+				continue;
+			sec = packet + packet[4] + 4 + 1;
+		} else
+			sec = packet + 4;
 		
 		if (sec[0])	/* table pointer, assumed to be 0 */
 			continue;
