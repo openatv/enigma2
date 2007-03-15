@@ -52,7 +52,7 @@ public:
 	int calcBitrate(); /* in bits/sec */
 	
 	void takeSamples();
-	int eDVBTSTools::takeSample(off_t off, pts_t &p);
+	int takeSample(off_t off, pts_t &p);
 	
 	int findPMT(int &pmt_pid, int &service_id);
 private:
