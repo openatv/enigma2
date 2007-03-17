@@ -142,7 +142,8 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	else
 	{
 		source = gst_element_factory_make ("neonhttpsrc", "http-source");
-		g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
+		if (source)
+			g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
 	}
 
 	if (!source)
