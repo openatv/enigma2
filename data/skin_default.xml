@@ -142,9 +142,21 @@
 		<widget name="cancel" position="240,365" size="100,30" pixmap="cancel.png" />
 		<widget name="canceltext" position="240,365" size="100,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
-	<screen name="NetworkSetup" position="130,148" size="460,280" title="Network Setup">
+	<screen name="NetworkSetup" position="100,150" size="540,100" title="Network Setup">
+		<widget name="menu" position="20,10" size="500,75" />
+	</screen>
+	<screen name="AdapterSetup" position="130,148" size="460,280" title="Network Setup">
+		<widget name="iface" position="10,10" size="380,30" zPosition="1" font="Regular;20" />
 		<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,230" size="400,30" font="Regular;23" />
+	</screen>
+	<screen name="NameserverSetup" position="130,148" size="460,280" title="Nameserver Setup">
+		<widget name="red" position="0,0" size="230,40" backgroundColor="red" halign="center" valign="center" font="Regular;21" />
+		<widget name="green" position="230,0" size="230,40" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
+		<widget name="config" position="10,50" size="420,175" scrollbarMode="showOnDemand" />
+	</screen>
+	<screen name="NetworkAdapterSelection" position="100,150" size="540,100" title="Select Network Adapter">
+		<widget name="adapterlist" position="20,10" size="500,75" />
 	</screen>
 	<screen name="About" position="180,163" size="360,250" title="About">
 		<widget name="text" position="10,30" size="420,20" font="Regular;18"/>
