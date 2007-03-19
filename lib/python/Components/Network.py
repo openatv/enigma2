@@ -113,6 +113,9 @@ class Network:
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
 					if iface.has_key('gateway'):
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
+						
+			if iface.has_key("configStrings"):
+				fp.write("\n" + iface["configStrings"] + "\n")
 			fp.write("\n")
 		fp.close()
 		self.writeNameserverConfig()
@@ -211,6 +214,7 @@ class Network:
 		return None
 	
 	def setAdapterAttribute(self, iface, attribute, value):
+		print "setting for adapter", iface, "attribute", attribute, " to value", value
 		if self.ifaces.has_key(iface):
 			self.ifaces[iface][attribute] = value
 

@@ -138,9 +138,14 @@ class AdapterSetup(Screen, ConfigListScreen):
 		
 		self.extended = None
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
-			callFnc = p.__call__(self.iface)
+			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
 				self.extended = callFnc
+				print p.__call__
+				if p.__call__.has_key("configStrings"):
+					self.configStrings = p.__call__["configStrings"]
+				else:
+					self.configStrings = None
 				self.extendedSetup = getConfigListEntry(_('Extended Setup...'), NoSave(ConfigNothing()))
 				self.list.append(self.extendedSetup)
 
@@ -172,8 +177,12 @@ class AdapterSetup(Screen, ConfigListScreen):
 				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
-					
-					
+			
+			print "self.extended:", self.extended
+			print "self.configStrings:", self.configStrings
+			if self.extended is not None and self.configStrings is not None:
+				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
+
 			iNetwork.deactivateNetworkConfig()
 			iNetwork.writeNetworkConfig()    
 			iNetwork.activateNetworkConfig()
