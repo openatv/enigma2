@@ -76,7 +76,6 @@ lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
-lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
