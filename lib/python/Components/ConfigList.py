@@ -45,6 +45,9 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 	
+	def getCurrentIndex(self):
+		return self.l.getCurrentSelectionIndex()
+	
 	def invalidateCurrent(self):
 		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
 

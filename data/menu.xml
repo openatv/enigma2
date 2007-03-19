@@ -62,7 +62,11 @@
 				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item><setup id="lcd" /></item>
-				<item text="Network..."><screen module="NetworkSetup" screen="NetworkSetup" /></item>
+				<menu text="Network...">
+					<id val="network" />
+					<item text="Device Setup..."><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item text="Nameserver Setup..."><screen module="NetworkSetup" screen="NameserverSetup"/></item>
+				</menu>
 			</menu>
 			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
 			<item text="Parental control"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>

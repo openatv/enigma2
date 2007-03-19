@@ -41,6 +41,10 @@ class PluginDescriptor:
 	# file-scanner, fnc must return a list of Scanners
 	WHERE_FILESCAN = 9
 	
+	# fnc must take an interface name as parameter and return None if the plugin supports an extended setup
+	# or return a function which is called with session and the interface name for extended setup of this interface
+	WHERE_NETWORKSETUP = 10
+	
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None):
 		self.name = name
 		if type(where) is list:
