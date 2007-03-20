@@ -45,6 +45,7 @@ void eTimer::start(long msek, bool singleShot)
 	bSingleShot = singleShot;
 	interval = msek;
 	gettimeofday(&nextActivation, 0);
+	nextActivation.tv_sec -= context.getTimeOffset();
 //	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
 	nextActivation += (msek<0 ? 0 : msek);
 //	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
@@ -59,6 +60,7 @@ void eTimer::startLongTimer( int seconds )
 	bActive = bSingleShot = true;
 	interval = 0;
 	gettimeofday(&nextActivation, 0);
+	nextActivation.tv_sec -= context.getTimeOffset();
 //	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_usec, seconds);
 	if ( seconds > 0 )
 		nextActivation.tv_sec += seconds;
@@ -130,36 +132,40 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	eFatal("removed socket notifier which is not present");
 }
 
-int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObject additional)
+int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePyObject additional)
 {
 	int return_reason = 0;
 		/* get current time */
-	timeval now;
-	gettimeofday(&now, 0);
-	m_now_is_invalid = 0;
-		
+
 	if (additional && !PyDict_Check(additional))
 		eFatal("additional, but it's not dict");
-		
+
 	if (additional && !res)
 		eFatal("additional, but no res");
-		
-	int poll_timeout = -1; /* infinite in case of empty timer list */
-		
-	if (m_timer_list)
+
+	long poll_timeout = -1; /* infinite in case of empty timer list */
+
+	if (!m_timer_list.empty() || twisted_timeout > 0)
 	{
-		singleLock s(recalcLock);
-		poll_timeout = timeval_to_usec(m_timer_list.begin()->getNextActivation() - now);
-			/* if current timer already passed, don't delay infinite. */
-		if (poll_timeout < 0)
-			poll_timeout = 0;
-		else /* convert us to ms */
-			poll_timeout /= 1000;
+		applyTimeOffset();
+		if (!m_timer_list.empty())
+		{
+			/* process all timers which are ready. first remove them out of the list. */
+			while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
+			{
+				m_timer_list.begin()->activate();
+				applyTimeOffset();
+			}
+			if (poll_timeout < 0)
+				poll_timeout = 0;
+			else /* convert us to ms */
+				poll_timeout /= 1000;
+		}
 	}
-	
-	if ((user_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > user_timeout))
+
+	if ((twisted_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > twisted_timeout))
 	{
-		poll_timeout = user_timeout;
+		poll_timeout = twisted_timeout;
 		return_reason = 1;
 	}
 
@@ -169,7 +175,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 
 	if (additional)
 		fdcount += PyDict_Size(additional);
-		
+
 		// build the poll aray
 	pollfd pfd[fdcount];  // make new pollfd array
 	std::map<int,eSocketNotifier*>::iterator it = notifiers.begin();
@@ -180,7 +186,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 		pfd[i].fd = it->first;
 		pfd[i].events = it->second->getRequested();
 	}
-	
+
 	if (additional)
 	{
 		PyObject *key, *val;
@@ -242,23 +248,7 @@ int eMainloop::processOneEvent(unsigned int user_timeout, PyObject **res, ePyObj
 		else
 			return_reason = 2; /* don't assume the timeout has passed when we got a signal */
 	}
-	
-		/* when we not processed anything, check timers. */
-	if (!m_timer_list.empty())
-	{
-			/* we know that this time has passed. */
-		singleLock s(recalcLock);
 
-		if (ret || m_now_is_invalid)
-			gettimeofday(&now, 0);
-		else // poll timeoutet
-			now += poll_timeout;
-
-			/* process all timers which are ready. first remove them out of the list. */
-		while ((!m_timer_list.empty()) && (m_timer_list.begin()->getNextActivation() <= now))
-			m_timer_list.begin()->activate();
-	}
-	
 	return return_reason;
 }
 
@@ -272,13 +262,15 @@ void eMainloop::removeTimer(eTimer* e)
 	m_timer_list.remove(e);
 }
 
-int eMainloop::iterate(unsigned int user_timeout, PyObject **res, ePyObject dict)
+int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject dict)
 {
 	int ret = 0;
 
-	timeval user_timer;
-	gettimeofday(&user_timer, 0);
-	user_timer += user_timeout;
+	if (twisted_timeout)
+	{
+		gettimeofday(&m_twisted_timer, 0);
+		m_twisted_timer += twisted_timeout;
+	}
 
 		/* TODO: this code just became ugly. fix that. */
 	do
@@ -293,18 +285,19 @@ int eMainloop::iterate(unsigned int user_timeout, PyObject **res, ePyObject dict
 			return -1;
 
 		int to = 0;
-		if (user_timeout)
+		if (twisted_timeout)
 		{
 			timeval now, timeout;
 			gettimeofday(&now, 0);
-			if (user_timer<=now) // timeout
+			m_twisted_timer -= time_offset;
+			if (m_twisted_timer<=now) // timeout
 				return 0;
-			timeout = user_timer - now;
+			timeout = m_twisted_timer - now;
 			to = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
 		}
 		ret = processOneEvent(to, res, dict);
 	} while ( !ret && !(res && *res) );
-	
+
 	return ret;
 }
 
@@ -323,13 +316,13 @@ void eMainloop::reset()
 PyObject *eMainloop::poll(ePyObject timeout, ePyObject dict)
 {
 	PyObject *res=0;
-	
+
 	if (app_quit_now)
 		Py_RETURN_NONE;
-	
-	int user_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
 
-	iterate(user_timeout, &res, dict);
+	int twisted_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
+
+	iterate(twisted_timeout, &res, dict);
 	if (res)
 		return res;
 
@@ -349,13 +342,33 @@ void eMainloop::quit(int ret)
 
 void eMainloop::addTimeOffset(int offset)
 {
-	for (ePtrList<eMainloop>::iterator it(eMainloop::existing_loops)
-		;it != eMainloop::existing_loops.end(); ++it)
+	for (ePtrList<eMainloop>::iterator it(existing_loops.begin()); it != existing_loops.end(); ++it )
+		it->addInstanceTimeOffset(offset);
+}
+
+void eMainloop::addInstanceTimeOffset(int offset)
+{
+	singleLock s(recalcLock);
+	if (m_timer_list.empty())
+		time_offset=0;
+	else
 	{
-		singleLock s(it->recalcLock);
-		it->m_now_is_invalid = 1;
-		for (ePtrList<eTimer>::iterator tit = it->m_timer_list.begin(); tit != it->m_timer_list.end(); ++tit )
-			tit->addTimeOffset(offset);
+		if ( time_offset )
+			eDebug("time_offset %d avail.. add new offset %d than new is %d",
+			time_offset, offset, time_offset+offset);
+		time_offset+=offset;
+	}
+}
+
+void eMainloop::applyTimeOffset()
+{
+	singleLock s(recalcLock);
+	if ( time_offset )
+	{
+		for (ePtrList<eTimer>::iterator it(m_timer_list.begin()); it != m_timer_list.end(); ++it )
+			it->addTimeOffset( time_offset );
+		m_twisted_timer += time_offset;
+		time_offset=0;
 	}
 }
 

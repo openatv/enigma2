@@ -123,10 +123,15 @@ static inline timeval operator-=( timeval &t1, const long msek )
 	return t1;
 }
 
-static inline int timeval_to_usec(const timeval &t1)
+static inline long timeout_usec ( const timeval & orig )
 {
-	return t1.tv_sec*1000000 + t1.tv_usec;
+	timeval now;
+	gettimeofday(&now,0);
+	if ( (orig-now).tv_sec > 2000 )
+		return 2000*1000*1000;
+	return (orig-now).tv_sec*1000000 + (orig-now).tv_usec;
 }
+
 #endif
 
 class eMainloop;
@@ -185,16 +190,21 @@ class eMainloop
 	int loop_level;
 	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
+	int time_offset;
 	pthread_mutex_t recalcLock;
 	
-	int m_now_is_invalid;
 	int m_interrupt_requested;
- 	void addSocketNotifier(eSocketNotifier *sn);
+	timeval m_twisted_timer; // twisted timer
+	
+	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
 	void removeTimer(eTimer* e);
+	void applyTimeOffset();
 public:
 	static void addTimeOffset(int offset);
+	void addInstanceTimeOffset(int offset);
+	int getTimeOffset() { return time_offset; }
 
 #ifndef SWIG
 	static ePtrList<eMainloop> existing_loops;
@@ -203,7 +213,6 @@ public:
 	eMainloop()
 		:app_quit_now(0),loop_level(0),retval(0), m_interrupt_requested(0)
 	{
-		m_now_is_invalid = 0;
 		existing_loops.push_back(this);
 		pthread_mutex_init(&recalcLock, 0);
 	}
