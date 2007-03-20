@@ -17,7 +17,7 @@ from Plugins.Plugin import PluginDescriptor
 
 from Wlan import Wlan, WlanList, wpaSupplicant
 
-plugin_path = "/usr/lib/enigma2/python/Plugins/SystemPlugins/WirelessLAN"
+plugin_path = "/usr/lib/enigma2/python/Plugins/SystemPlugins/WirelessLan"
 
 class WlanSelection(Screen):
 	skin = """
