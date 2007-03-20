@@ -289,11 +289,13 @@ int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject d
 		{
 			timeval now, timeout;
 			gettimeofday(&now, 0);
-			m_twisted_timer -= time_offset;
+			m_twisted_timer += time_offset;  // apply pending offset
 			if (m_twisted_timer<=now) // timeout
 				return 0;
 			timeout = m_twisted_timer - now;
 			to = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
+			// remove pending offset .. it is re-applied in next call of processOneEvent.. applyTimeOffset
+			m_twisted_timer -= time_offset;  
 		}
 		ret = processOneEvent(to, res, dict);
 	} while ( !ret && !(res && *res) );
