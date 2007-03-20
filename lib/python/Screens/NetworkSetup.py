@@ -146,7 +146,12 @@ class AdapterSetup(Screen, ConfigListScreen):
 					self.configStrings = p.__call__["configStrings"]
 				else:
 					self.configStrings = None
-				self.extendedSetup = getConfigListEntry(_('Extended Setup...'), NoSave(ConfigNothing()))
+				
+				if p.__call__.has_key(menuEntryName):
+					menuEntryName = p.__call__["menuEntryName"](self.iface)
+				else:
+					menuEntryName = _('Extended Setup...')
+				self.extendedSetup = getConfigListEntry(menuEntryName, NoSave(ConfigNothing()))
 				self.list.append(self.extendedSetup)
 
 		self["config"].list = self.list
