@@ -5,6 +5,11 @@ eSlider::eSlider(eWidget *parent)
 {
 }
 
+void eSlider::setPixmap(ePtr<gPixmap> &pixmap)
+{
+	setPixmap(pixmap.operator->());
+}
+
 void eSlider::setPixmap(gPixmap *pixmap)
 {
 	m_pixmap = pixmap;

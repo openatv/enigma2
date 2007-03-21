@@ -214,6 +214,11 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	return 0;
 }
 
+void eWindowStyleSkinned::setPixmap(int bs, int bp, ePtr<gPixmap> &ptr)
+{
+	setPixmap(bs, bp, *(ptr.operator->()));
+}
+
 void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 {
 	if ((bs >= bsMax) || (bs < 0))

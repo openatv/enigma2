@@ -119,9 +119,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setZPosition(int(value))
 		elif attrib == "pixmap":
 			ptr = loadPixmap(value) # this should already have been filename-resolved.
-			# that __deref__ still scares me!
-			desktop.makeCompatiblePixmap(ptr.__deref__())
-			guiObject.setPixmap(ptr.__deref__())
+			desktop.makeCompatiblePixmap(ptr)
+			guiObject.setPixmap(ptr)
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
 			guiObject.setAlphatest(
@@ -189,8 +188,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos)
 			ptr = loadPixmap(name)
-			desktop.makeCompatiblePixmap(ptr.__deref__())
-			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr.__deref__(), pos)
+			desktop.makeCompatiblePixmap(ptr)
+			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr, pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
 		elif attrib == 'noWrap':
@@ -253,8 +252,8 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix))
 				
 				# adapt palette
-				desktop.makeCompatiblePixmap(png.__deref__())
-				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png.__deref__())
+				desktop.makeCompatiblePixmap(png)
+				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 
 		for color in elementsWithTag(windowstyle.childNodes, "color"):
 			type = str(color.getAttribute("name"))

@@ -15,6 +15,7 @@ public:
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
 	void setPixmap(gPixmap *pixmap);
+	void setPixmap(ePtr<gPixmap> &pixmap);
 protected:
 	int event(int event, void *data=0, void *data2=0);
 private:

@@ -52,6 +52,7 @@ public:
 		bpiBottomRight =  8,
 	};
 	
+	void setPixmap(int bs, int bp, ePtr<gPixmap> &pixmap);
 	void setPixmap(int bs, int bp, gPixmap &pixmap);
 	
 	enum {

@@ -158,7 +158,7 @@ class ThumbView(Screen):
 			ptr = loadPic(self.path + self.thumblist[self.thumbindex], 180, 160, self.aspect, int(config.pic.resize.value), int(config.pic.rotate.value),1, cachefile)
 			if ptr != None:
 				self["thumb"+str(self.thumbindex)].show()
-				self["thumb"+str(self.thumbindex)].instance.setPixmap(ptr.__deref__())
+				self["thumb"+str(self.thumbindex)].instance.setPixmap(ptr)
 			
 			self.thumbindex += 1
 			if self.thumbindex < 6:
@@ -297,7 +297,7 @@ class PicView(Screen):
 		if self.currPic != None:
 			self.old = self.index
 			self["file"].setText(self.list[self.old][0] + "  (" + str(self.old+1) + "/" + str(self.maxentry+1) + ")")
-			self["picture"].instance.setPixmap(self.currPic.__deref__())
+			self["picture"].instance.setPixmap(self.currPic)
 
 		self.next()
 		self["point"].show()
@@ -489,7 +489,7 @@ class picmain(Screen):
 			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getFilename(), 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
 			if ptr != None:
 				self["thumbnail"].show()
-				self["thumbnail"].instance.setPixmap(ptr.__deref__())
+				self["thumbnail"].instance.setPixmap(ptr)
 		else:
 			self["thumbnail"].hide()
 

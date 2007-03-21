@@ -54,7 +54,8 @@ public:
 	void setPalette(gPixmap &pm);
 	
 	void setRedrawTask(eMainloop &ml);
-	
+
+	void makeCompatiblePixmap(ePtr<gPixmap> &pm);
 	void makeCompatiblePixmap(gPixmap &pm);
 	
 	enum {
