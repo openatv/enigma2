@@ -205,10 +205,14 @@ void eWidget::setZPosition(int z)
 
 void eWidget::setTransparent(int transp)
 {
-	if (transp)
-		m_vis |= wVisTransparent;
-	else
-		m_vis &=~wVisTransparent;
+	if (isTransparent() != transp)
+	{
+		if (transp)
+			m_vis |= wVisTransparent;
+		else
+			m_vis &=~wVisTransparent;
+		recalcClipRegionsWhenVisible();
+	}
 }
 
 ePoint eWidget::getAbsolutePosition()
