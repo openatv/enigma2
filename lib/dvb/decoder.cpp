@@ -846,20 +846,20 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				{
 					int rd;
 					fseek(f, 0, SEEK_SET);
+					if (!cnt)
+					{
+						buffer[pos++]=0;
+						buffer[pos++]=0;
+						buffer[pos++]=1;
+						buffer[pos++]=0xE0;
+						buffer[pos++]=(length*3)>>8;
+						buffer[pos++]=(length*3)&0xFF;
+						buffer[pos++]=0x80;
+						buffer[pos++]=0;
+						buffer[pos++]=0;
+					}
 					while(1)
 					{
-						if (!cnt)
-						{
-							buffer[pos++]=0;
-							buffer[pos++]=0;
-							buffer[pos++]=1;
-							buffer[pos++]=0xE0;
-							buffer[pos++]=(length*3)>>8;
-							buffer[pos++]=(length*3)&0xFF;
-							buffer[pos++]=0x80;
-							buffer[pos++]=0;
-							buffer[pos++]=0;
-						}
 						rd = fread(buffer+pos, 1, length, f);
 						if (rd > 0)
 							pos += rd;
