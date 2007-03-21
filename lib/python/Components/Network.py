@@ -190,7 +190,7 @@ class Network:
 
 	def deactivateNetworkConfig(self):
 		for iface in self.ifaces.keys():
-			os.system("ip addr flush" + iface)
+			os.system("ip addr flush " + iface)
 		os.system("/etc/init.d/networking stop")
 		os.system("killall -9 udhcpc")
 		os.system("rm /var/run/udhcpc*")
