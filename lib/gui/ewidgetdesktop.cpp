@@ -287,6 +287,11 @@ void eWidgetDesktop::setRedrawTask(eMainloop &ml)
 		m_timer->start(0, 1);
 }
 
+void eWidgetDesktop::makeCompatiblePixmap(ePtr<gPixmap> &pm)
+{
+	makeCompatiblePixmap(*(pm.operator->()));
+}
+
 void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 {
 	if (m_comp_mode != cmImmediate)

@@ -3,22 +3,24 @@ from Components.Element import cached
 from enigma import iPlayableService
 from Source import Source
 
-class RadioText(PerServiceBase, Source, object):
+class RdsDecoder(PerServiceBase, Source, object):
 	def __init__(self, navcore):
 		Source.__init__(self)
 		PerServiceBase.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.gotEvent,
 				iPlayableService.evUpdatedRadioText: self.gotEvent,
+				iPlayableService.evUpdatedRtpText: self.gotEvent,
+				iPlayableService.evUpdatedRassInteractivePicMask: self.gotEvent,
 				iPlayableService.evEnd: self.gotEvent
 			}, with_event=True)
 
 	@cached
-	def getText(self):
+	def getDecoder(self):
 		service = self.navcore.getCurrentService()
-		return service and service.radioText()
+		return service and service.rdsDecoder()
 
-	radiotext = property(getText)
+	decoder = property(getDecoder)
 
 	def gotEvent(self, what):
 		if what in [iPlayableService.evStart, iPlayableService.evEnd]:
