@@ -10,6 +10,7 @@ public:
 	ePixmap(eWidget *parent);
 	
 	void setPixmap(gPixmap *pixmap);
+	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setPixmapFromFile(const char *filename);
 	void setAlphatest(bool alphatest);
 protected:

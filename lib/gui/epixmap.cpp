@@ -19,6 +19,12 @@ void ePixmap::setPixmap(gPixmap *pixmap)
 	event(evtChangedPixmap);
 }
 
+void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
+{
+	m_pixmap = pixmap;
+	event(evtChangedPixmap);
+}
+
 void ePixmap::setPixmapFromFile(const char *filename)
 {
 	loadPNG(m_pixmap, filename);
