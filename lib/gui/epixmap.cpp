@@ -40,6 +40,17 @@ void ePixmap::setPixmapFromFile(const char *filename)
 	event(evtChangedPixmap);
 }
 
+void ePixmap::checkSize()
+{
+			/* when we have no pixmap, or a pixmap of different size, we need 
+	   to enable transparency in any case. */
+	if (m_pixmap && m_pixmap->size() == size() && !m_alphatest)
+		setTransparent(0);
+	else
+		setTransparent(1);
+		/* fall trough. */
+}
+
 int ePixmap::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -49,8 +60,11 @@ int ePixmap::event(int event, void *data, void *data2)
 		ePtr<eWindowStyle> style;
 		
 		getStyle(style);
-		
-//		eWidget::event(event, data, data2);
+
+//	we don't clear the background before because of performance reasons.
+//	when the pixmap is too small to fix the whole widget area, the widget is
+//	transparent anyway, so the background is already painted.
+//		eWidget::event(event, data, data2); 
 		
 		gPainter &painter = *(gPainter*)data2;
 		if (m_pixmap)
@@ -59,8 +73,12 @@ int ePixmap::event(int event, void *data, void *data2)
 		return 0;
 	}
 	case evtChangedPixmap:
+		checkSize();
 		invalidate();
 		return 0;
+	case evtChangedSize:
+		checkSize();
+			/* fall trough. */
 	default:
 		return eWidget::event(event, data, data2);
 	}
