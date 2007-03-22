@@ -43,6 +43,11 @@ void ePositionGauge::setInColor(const gRGB &color)
 	invalidate();
 }
 
+void ePositionGauge::setPointer(int which, ePtr<gPixmap> &pixmap, const ePoint &center)
+{
+	setPointer(which, pixmap.operator->(), center);
+}
+
 void ePositionGauge::setPointer(int which, gPixmap *pixmap, const ePoint &center)
 {
 	if (which == 0)
