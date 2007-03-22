@@ -71,8 +71,6 @@ class InfoBarShowHide:
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 		
-		self.onExecBegin.append(self.show)
-		
 		self.hideTimer = eTimer()
 		self.hideTimer.timeout.get().append(self.doTimerHide)
 		self.hideTimer.start(5000, True)

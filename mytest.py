@@ -155,11 +155,11 @@ class Session:
 		if callback is not None:
 			callback(*retval)
 
-	def execBegin(self, first=True):
+	def execBegin(self, first=True, do_show = True):
 		assert not self.in_exec 
 		self.in_exec = True
 		c = self.current_dialog
-		
+
 		# when this is an execbegin after a execend of a "higher" dialog,
 		# popSummary already did the right thing.
 		if first:
@@ -172,7 +172,7 @@ class Session:
 		c.execBegin()
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
-		if c == self.current_dialog:
+		if c == self.current_dialog and do_show:
 			c.show()
 		
 	def execEnd(self, last=True):
@@ -246,13 +246,13 @@ class Session:
 	 
 	def pushCurrent(self):
 		if self.current_dialog is not None:
-			self.dialog_stack.append(self.current_dialog)
+			self.dialog_stack.append((self.current_dialog, self.current_dialog.shown))
 			self.execEnd(last=False)
-	
+
 	def popCurrent(self):
 		if len(self.dialog_stack):
-			self.current_dialog = self.dialog_stack.pop()
-			self.execBegin(first=False)
+			(self.current_dialog, do_show) = self.dialog_stack.pop()
+			self.execBegin(first=False, do_show=do_show)
 		else:
 			self.current_dialog = None
 
