@@ -18,6 +18,7 @@ public:
 	
 	void setInColor(const gRGB &color); /* foreground? */
 	void setPointer(int which, gPixmap *pixmap, const ePoint &center);
+	void setPointer(int which, ePtr<gPixmap> &pixmap, const ePoint &center);
 	
 	void setInOutList(SWIG_PYOBJECT(ePyObject) list);
 	void setForegroundColor(const gRGB &col);
