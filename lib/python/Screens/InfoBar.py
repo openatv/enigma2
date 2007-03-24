@@ -12,7 +12,7 @@ from Components.config import config
 from Tools.Notifications import AddNotificationWithCallback
 
 from Screens.InfoBarGenerics import InfoBarShowHide, \
-	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRadioText, \
+	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
@@ -23,7 +23,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 from Screens.HelpMenu import HelpableScreen, HelpMenu
 
 class InfoBar(InfoBarShowHide,
-	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRadioText,
+	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
 	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
@@ -47,7 +47,7 @@ class InfoBar(InfoBarShowHide,
 		
 		for x in HelpableScreen, \
 				InfoBarShowHide, \
-				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRadioText, \
+				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
 				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
@@ -67,7 +67,11 @@ class InfoBar(InfoBarShowHide,
 		if config.usage.e1like_radio_mode.value:
 			self.showRadioChannelList(True)
 		else:
-			self.session.open(ChannelSelectionRadio)
+			self.rds_display.hide() # in InfoBarRdsDecoder
+			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
+
+	def ChannelSelectionRadioClosed(self, *arg):
+		self.rds_display.show()  # in InfoBarRdsDecoder
 
 	def showMovies(self):
 		self.session.openWithCallback(self.movieSelected, MovieSelection)

@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
-from Components.ActionMap import NumberActionMap, ActionMap
+from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker
 from EpgSelection import EPGSelection
@@ -11,11 +11,13 @@ from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
 from Components.Sources.Clock import Clock
+from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Input import Input
 from Components.ParentalControl import parentalControl
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
+from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from re import *
@@ -1256,32 +1258,30 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 		self.close(None)
 
-from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarRadioText
+from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName
 
-class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord):
+class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		InfoBarEvent.__init__(self)
 		InfoBarServiceName.__init__(self)
-		InfoBarInstantRecord.__init__(self)
 		self["CurrentTime"] = Clock()
+		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 
-class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarRadioText):
-
+class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	ALLOW_SUSPEND = True
 
-	def __init__(self, session):
+	def __init__(self, session, infobar):
 		ChannelSelectionBase.__init__(self, session)
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
-		InfoBarRadioText.__init__(self)
-
+		self.infobar = infobar
 		config.radio = ConfigSubsection();
 		config.radio.lastservice = ConfigText()
 		config.radio.lastroot = ConfigText()
 		self.onLayoutFinish.append(self.onCreate)
 
-		self.info = session.instantiateDialog(RadioInfoBar)
+		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -1296,6 +1296,37 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				iPlayableService.evStart: self.__evServiceStart,
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
+
+########## RDS Radiotext / Rass Support BEGIN
+		self.infobar = infobar # reference to real infobar (the one and only)
+		self["RdsDecoder"] = self.info["RdsDecoder"]
+		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
+		{
+			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
+		},-1)
+		self["RdsActions"].setEnabled(False)
+		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
+
+	def startRassInteractive(self):
+		self.info.hide();
+		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
+
+	def RassInteractiveClosed(self):
+		self.info.show()
+		self.infobar.rass_interactive = None
+		self.infobar.RassSlidePicChanged()
+
+	def RassInteractivePossibilityChanged(self, state):
+		self["RdsActions"].setEnabled(state)
+########## RDS Radiotext / Rass Support END
+
+	def closeRadio(self):
+		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
+		self.info.hide()
+		#set previous tv service
+		lastservice=eServiceReference(config.tv.lastservice.value)
+		self.session.nav.playService(lastservice)
+		self.close(None)
 
 	def __evServiceStart(self):
 		service = self.session.nav.getCurrentService()
@@ -1370,13 +1401,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 					config.radio.lastservice.value = ref.toString()
 					config.radio.lastservice.save()
 				self.saveRoot()
-
-	def closeRadio(self):
-		self.info.hide()
-		#set previous tv service
-		lastservice=eServiceReference(config.tv.lastservice.value)
-		self.session.nav.playService(lastservice)
-		self.close(None)
 
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):

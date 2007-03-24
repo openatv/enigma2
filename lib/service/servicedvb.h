@@ -89,7 +89,7 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
-		public iRadioText
+		public iRdsDecoder
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -112,7 +112,7 @@ public:
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
-	RESULT radioText(ePtr<iRadioText> &ptr);
+	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr);
 
 		// iPauseableService
 	RESULT pause();
@@ -144,8 +144,11 @@ public:
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
 
-		// iRadioText
-	std::string getRadioText(int i=0);
+		// iRdsDecoder
+	std::string getText(int i=0);
+	void showRassSlidePicture();
+	void showRassInteractivePic(int page, int subpage);
+	ePyObject getRassInteractiveMask();
 
 		// iSubserviceList
 	int getNumberOfSubservices();
@@ -267,9 +270,9 @@ private:
 	void checkSubtitleTiming();
 
 		/* radiotext */
-	ePtr<eDVBRadioTextParser> m_radiotext_parser;
-	ePtr<eConnection> m_radiotext_updated_connection;
-	void radioTextUpdated();
+	ePtr<eDVBRdsDecoder> m_rds_decoder;
+	ePtr<eConnection> m_rds_decoder_event_connection;
+	void rdsDecoderEvent(int);
 
 	ePtr<eConnection> m_video_event_connection;
 	void video_event(struct iTSMPEGDecoder::videoEvent);

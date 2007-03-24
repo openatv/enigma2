@@ -483,17 +483,30 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iAudioDelay>, iAudioDelayPtr);
 
-SWIG_IGNORE(iRadioText);
-class iRadioText: public iObject
+class iRdsDecoder_ENUMS
 {
 #ifdef SWIG
-	iRadioText();
-	~iRadioText();
+	iRdsDecoder_ENUMS();
+	~iRdsDecoder_ENUMS();
 #endif
 public:
-	virtual std::string getRadioText(int x=0)=0;
+	enum { RadioText, RtpText };
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<iRadioText>, iRadioTextPtr);
+
+SWIG_IGNORE(iRdsDecoder);
+class iRdsDecoder: public iObject, public iRdsDecoder_ENUMS
+{
+#ifdef SWIG
+	iRdsDecoder();
+	~iRdsDecoder();
+#endif
+public:
+	virtual std::string getText(int x=RadioText)=0;
+	virtual void showRassSlidePicture()=0;
+	virtual void showRassInteractivePic(int page, int subpage)=0;
+	virtual SWIG_PYOBJECT(ePyObject) getRassInteractiveMask()=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iRdsDecoder>, iRdsDecoderPtr);
 
 SWIG_IGNORE(iSubserviceList);
 class iSubserviceList: public iObject
@@ -676,8 +689,13 @@ public:
 			/* when cueSheet is implemented */
 		evCuesheetChanged,
 
-			/* when radioText is implemented */
+			/* when rdsDecoder is implemented */
 		evUpdatedRadioText,
+		evUpdatedRtpText,
+
+			/* Radio Screenshow Support */
+		evUpdatedRassSlidePic,
+		evUpdatedRassInteractivePicMask,
 
 		evVideoSizeChanged,
 
@@ -712,7 +730,7 @@ public:
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
-	virtual SWIG_VOID(RESULT) radioText(ePtr<iRadioText> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) rdsDecoder(ePtr<iRdsDecoder> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 

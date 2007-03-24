@@ -5,4 +5,4 @@ SUBDIRS = countries fonts defaults extensions
 installdir = $(DATADIR)/enigma2
 
 install_DATA = \
-	*.xml *.png encoding.conf
+	*.xml *.png encoding.conf radio.mvi
