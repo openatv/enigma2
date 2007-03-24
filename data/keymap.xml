@@ -300,6 +300,18 @@
 		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
 	</map>
 
+	<map context="InfobarRdsActions">
+		<key id="KEY_TEXT" mapto="startRassInteractive" flags="m" />
+	</map>
+
+	<map context="RassInteractiveActions">
+		<key id="KEY_LEFT" mapto="prevSubPage" flags="mr" />
+		<key id="KEY_RIGHT" mapto="nextSubPage" flags="mr" />
+		<key id="KEY_UP" mapto="prevPage" flags="mr" />
+		<key id="KEY_DOWN" mapto="nextPage" flags="mr" />
+		<key id="KEY_EXIT" mapto="exit" flags="m" />
+	</map>
+
 	<map context="ChannelSelectBaseActions">
 		<key id="KEY_RED" mapto="showAllServices" flags="m" />
 		<key id="KEY_GREEN" mapto="showSatellites" flags="m" />

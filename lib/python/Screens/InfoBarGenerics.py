@@ -12,7 +12,6 @@ from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.CurrentService import CurrentService
 from Components.Sources.EventInfo import EventInfo
-from Components.Sources.RadioText import RadioText
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
@@ -32,6 +31,7 @@ from Screens.MinuteInput import MinuteInput
 from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
 from Screens.SubtitleDisplay import SubtitleDisplay
+from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.SleepTimerEdit import SleepTimerEdit
 from ServiceReference import ServiceReference
 
@@ -538,10 +538,53 @@ class InfoBarEvent:
 		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.NOW)
 		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.NEXT)
 
-class InfoBarRadioText:
-	"""provides radio (RDS) text info display"""
+class InfoBarRdsDecoder:
+	"""provides RDS and Rass support/display"""
 	def __init__(self):
-		self["RadioText"] = RadioText(self.session.nav)
+		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
+		self.rass_interactive = None
+		
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evEnd: self.__serviceStopped,
+				iPlayableService.evUpdatedRassSlidePic: self.RassSlidePicChanged
+			})
+		
+		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
+		{
+			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
+		},-1)
+
+		self["RdsActions"].setEnabled(False)
+
+		self.onLayoutFinish.append(self.rds_display.show)
+		self.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
+
+	def RassInteractivePossibilityChanged(self, state):
+		self["RdsActions"].setEnabled(state)
+
+	def RassSlidePicChanged(self):
+		if not self.rass_interactive:
+			service = self.session.nav.getCurrentService()
+			decoder = service and service.rdsDecoder()
+			if decoder:
+				decoder.showRassSlidePicture()
+
+	def __serviceStopped(self):
+		if self.rass_interactive is not None:
+			rass_interactive = self.rass_interactive
+			self.rass_interactive = None
+			rass_interactive.close()
+
+	def startRassInteractive(self):
+		self.rds_display.hide()
+		self.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
+
+	def RassInteractiveClosed(self, *val):
+		if self.rass_interactive is not None:
+			self.rass_interactive = None
+			self.RassSlidePicChanged()
+		self.rds_display.show()
 
 class InfoBarServiceName:
 	def __init__(self):

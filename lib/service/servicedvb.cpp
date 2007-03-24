@@ -1475,7 +1475,7 @@ RESULT eDVBServicePlay::audioDelay(ePtr<iAudioDelay> &ptr)
 	return 0;
 }
 
-RESULT eDVBServicePlay::radioText(ePtr<iRadioText> &ptr)
+RESULT eDVBServicePlay::rdsDecoder(ePtr<iRdsDecoder> &ptr)
 {
 	ptr = this;
 	return 0;
@@ -1705,8 +1705,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
 		return -4;
 
-	if (m_radiotext_parser)
-		m_radiotext_parser->start(program.audioStreams[i].pid);
+	if (m_rds_decoder)
+		m_rds_decoder->start(program.audioStreams[i].pid);
 
 	if (m_dvb_service && !m_is_pvr)
 	{
@@ -1743,20 +1743,81 @@ RESULT eDVBServicePlay::selectChannel(int i)
 	return 0;
 }
 
-std::string eDVBServicePlay::getRadioText(int x)
+std::string eDVBServicePlay::getText(int x)
 {
-	if (m_radiotext_parser)
+	if (m_rds_decoder)
 		switch(x)
 		{
-			case 0:
-				return convertLatin1UTF8(m_radiotext_parser->getCurrentText());
+			case RadioText:
+				return convertLatin1UTF8(m_rds_decoder->getRadioText());
+			case RtpText:
+				return convertLatin1UTF8(m_rds_decoder->getRtpText());
 		}
 	return "";
 }
 
-void eDVBServicePlay::radioTextUpdated()
+void eDVBServicePlay::rdsDecoderEvent(int what)
 {
-	m_event((iPlayableService*)this, evUpdatedRadioText);
+	switch(what)
+	{
+		case eDVBRdsDecoder::RadioTextChanged:
+			m_event((iPlayableService*)this, evUpdatedRadioText);
+			break;
+		case eDVBRdsDecoder::RtpTextChanged:
+			m_event((iPlayableService*)this, evUpdatedRtpText);
+			break;
+		case eDVBRdsDecoder::RassInteractivePicMaskChanged:
+			m_event((iPlayableService*)this, evUpdatedRassInteractivePicMask);
+			break;
+		case eDVBRdsDecoder::RecvRassSlidePic:
+			m_event((iPlayableService*)this, evUpdatedRassSlidePic);
+			break;
+	}
+}
+
+void eDVBServicePlay::showRassSlidePicture()
+{
+	if (m_rds_decoder)
+	{
+		if (m_decoder)
+		{
+			std::string rass_slide_pic = m_rds_decoder->getRassSlideshowPicture();
+			if (rass_slide_pic.length())
+				m_decoder->showSinglePic(rass_slide_pic.c_str());
+			else
+				eDebug("empty filename for rass slide picture received!!");
+		}
+		else
+			eDebug("no MPEG Decoder to show iframes avail");
+	}
+	else
+		eDebug("showRassSlidePicture called.. but not decoder");
+}
+
+void eDVBServicePlay::showRassInteractivePic(int page, int subpage)
+{
+	if (m_rds_decoder)
+	{
+		if (m_decoder)
+		{
+			std::string rass_interactive_pic = m_rds_decoder->getRassPicture(page, subpage);
+			if (rass_interactive_pic.length())
+				m_decoder->showSinglePic(rass_interactive_pic.c_str());
+			else
+				eDebug("empty filename for rass interactive picture %d/%d received!!", page, subpage);
+		}
+		else
+			eDebug("no MPEG Decoder to show iframes avail");
+	}
+	else
+		eDebug("showRassInteractivePic called.. but not decoder");
+}
+
+ePyObject eDVBServicePlay::getRassInteractiveMask()
+{
+	if (m_rds_decoder)
+		return m_rds_decoder->getRassPictureMask();
+	Py_RETURN_NONE;
 }
 
 int eDVBServiceBase::getFrontendInfo(int w)
@@ -2089,11 +2150,11 @@ void eDVBServicePlay::switchToLive()
 	m_decoder = 0;
 	m_decode_demux = 0;
 	m_teletext_parser = 0;
-	m_radiotext_parser = 0;
+	m_rds_decoder = 0;
 	m_subtitle_parser = 0;
 	m_new_dvb_subtitle_page_connection = 0;
 	m_new_subtitle_page_connection = 0;
-	m_radiotext_updated_connection = 0;
+	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
 
 		/* free the timeshift service handler, we need the resources */
@@ -2113,11 +2174,11 @@ void eDVBServicePlay::switchToTimeshift()
 	m_decode_demux = 0;
 	m_decoder = 0;
 	m_teletext_parser = 0;
-	m_radiotext_parser = 0;
+	m_rds_decoder = 0;
 	m_subtitle_parser = 0;
 	m_new_subtitle_page_connection = 0;
 	m_new_dvb_subtitle_page_connection = 0;
-	m_radiotext_updated_connection = 0;
+	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
 
 	m_timeshift_active = 1;
@@ -2259,9 +2320,9 @@ void eDVBServicePlay::updateDecoder()
 				ePtr<iDVBDemux> data_demux;
 				if (!h.getDataDemux(data_demux))
 				{
-					m_radiotext_parser = new eDVBRadioTextParser(data_demux);
-					m_radiotext_parser->connectUpdatedRadiotext(slot(*this, &eDVBServicePlay::radioTextUpdated), m_radiotext_updated_connection);
-					m_radiotext_parser->start(apid);
+					m_rds_decoder = new eDVBRdsDecoder(data_demux);
+					m_rds_decoder->connectEvent(slot(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
+					m_rds_decoder->start(apid);
 				}
 			}
 		}

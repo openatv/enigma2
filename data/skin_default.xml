@@ -3,8 +3,7 @@
 		<font filename="lcd.ttf" name="LCD" scale="100" />
 	</fonts>
 
-	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby">
-	</screen>
+	<screen name="Standby" flags="wfNoBorder" position="0,0" size="720,576" title="Standby" />
 	<screen name="Menu" position="210,150" size="300,285" title="Main menu">
 		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
 		<!--<widget name="menu" position="10,55" size="280,150" font="Regular;23" />-->
@@ -18,8 +17,7 @@
 	<screen name="ChannelContextMenu" position="210,150" size="300,250" title="Channellist menu">
 		<widget name="menu" position="10,10" size="300,230" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="Scart" position="0,0" size="720,576">
-	</screen>
+	<screen name="Scart" position="0,0" size="720,576" />
 	<screen name="MediaPlayer" position="104,83" size="512,442" title="MediaPlayer">
 		<eLabel position="11,9" zPosition="1" size="359,78" backgroundColor="#182C40" />
 		<widget name="artisttext" position="13,11" zPosition="3" size="65,17" font="Regular;16" valign="top" foregroundColor="#cccccc" backgroundColor="#33294a6b" shadowColor="#000000" shadowOffset="-2,-2"/>
@@ -75,7 +73,7 @@
 		<widget name="model" position="20,10" size="380,25" font="Regular;23"  />
 		<widget name="capacity" position="20,40" size="380,25" font="Regular;23"  />
 		<widget name="bus" position="20,70" size="380,25" font="Regular;23"  />
-		<widget name="initialize" position="150,120" zPosition="1" size="120,30" pixmap="init.png"  transparent="1" alphatest="on" />
+		<widget name="initialize" position="150,120" zPosition="1" size="120,30" pixmap="init.png" transparent="1" alphatest="on" />
 		<widget name="initializetext" position="150,120" size="120,30" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" />
 	</screen>
 	<screen name="Setup" position="90,148" size="540,280" title="Setup">
@@ -248,41 +246,43 @@
 		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 		<widget name="list" position="0,45" size="560,196" scrollbarMode="showOnDemand" />
-		<widget source="RadioText" render="Label" position="0,241" size="560,66" font="LCD;25" >
-			<convert type="RadioText">RadioText</convert>
+		<widget source="RdsDecoder" render="Label" position="0,241" size="560,66" font="LCD;25" >
+			<convert type="RdsInfo">RadioText</convert>
 		</widget>
 	</screen>
 	<screen name="RadioInfoBar" position="90,420" size="560,105" zPosition="-1">
 		<widget source="CurrentService" render="Label" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget name="BlinkingPoint" pixmap="record.png" position="400,0" zPosition="2" size="58,25" />
 		<widget source="CurrentTime" render="Label" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 		<widget source="Event_Now" render="Progress" position="465,27" size="90,9" zPosition="1" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="Event_Now" render="Label" position="0,44" size="60,22" font="Regular;20" backgroundColor="dark" >
+		<widget source="RdsDecoder" render="Pixmap" pixmap="rass_logo.png" position="0,27" size="50,21" >
+			<convert type="RdsInfo">RasInteractiveAvailable</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="Event_Now" render="Label" position="0,49" size="60,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="0,74" size="60,22" font="Regular;20" backgroundColor="dark" >
-			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText">Default</convert>
-		</widget>
-		<widget source="Event_Now" render="Label" position="80,44" size="380,22" font="Regular;20" backgroundColor="dark" >
+		<widget source="Event_Now" render="Label" position="80,49" size="380,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="80,74" size="380,22" font="Regular;20" backgroundColor="dark" >
-			<convert type="EventName">Name</convert>
-		</widget>
-
-		<widget source="Event_Now" render="Label" position="470,44" size="150,22" font="Regular;20" backgroundColor="dark" >
+		<widget source="Event_Now" render="Label" position="470,49" size="150,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="470,74" size="150,22" font="Regular;20" backgroundColor="dark" >
+		<widget source="Event_Next" render="Label" position="80,79" size="380,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="0,79" size="60,22" font="Regular;20" backgroundColor="dark" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="470,79" size="150,22" font="Regular;20" backgroundColor="dark" >
 			<convert type="EventTime">Duration</convert>
 			<convert type="ClockToText">InMinutes</convert>
 		</widget>
@@ -331,11 +331,50 @@
 	<screen name="PictureInPicture" position="400,60" size="240,192" zPosition="-1" flags="wfNoBorder" >
 		<widget name="video" position="0,0" size="240,192" />
 	</screen>
-	<screen name="SubtitleDisplay" position="0,0" size="720,568" zPosition="-1" flags="wfNoBorder" >
+
+	<screen name="SubtitleDisplay" position="0,0" size="720,568" zPosition="-1" flags="wfNoBorder" />
+
+	<colors>
+		<color name="rds_bg" value="#77ffffff" />
+		<color name="rds_fg" value="#000000" />
+		<color name="rds_text_bg" value="#003258" />
+	</colors>
+
+	<screen name="RdsInfoDisplay" backgroundColor="transparent" position="0,0" size="720,568" zPosition="-2" flags="wfNoBorder" >
+		<widget name="RadioText" backgroundColor="rds_text_bg" position="50,481" size="620,29" font="Regular;21" noWrap="1" shadowOffset="-2,-2" shadowColor="transpBlack" />
+		<widget name="RtpText" backgroundColor="rds_text_bg" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" shadowOffset="-2,-2" shadowColor="transpBlack" />
+		<widget name="RassLogo" pixmap="rass_logo.png" position="50,445" size="50,21" />
 	</screen>
+
+	<screen name="RassInteractive" backgroundColor="rds_bg" position="50,180" size="100,275" flags="wfNoBorder" >
+		<ePixmap pixmap="rass_logo.png" position="0,0" size="100,21" />
+		<eLabel text="Index" position="36,25" size="60,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<eLabel text="0" position="5,25" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="Marker" position="21,25" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<eLabel text="1" position="5,50" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_1" position="35,50" size="36,20" alphatest="on" />
+		<eLabel text="2" position="5,75" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_2" position="35,75" size="36,20" alphatest="on" />
+		<eLabel text="3" position="5,100" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_3" position="35,100" size="36,20" alphatest="on" />
+		<eLabel text="4" position="5,125" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_4" position="35,125" size="36,20" alphatest="on" />
+		<eLabel text="5" position="5,150" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_5" position="35,150" size="36,20" alphatest="on" />
+		<eLabel text="6" position="5,175" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_6" position="35,175" size="36,20" alphatest="on" />
+		<eLabel text="7" position="5,200" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_7" position="35,200" size="36,20" alphatest="on" />
+		<eLabel text="8" position="5,225" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_8" position="35,225" size="36,20" alphatest="on" />
+		<eLabel text="9" position="5,250" size="16,25" font="Regular;21" foregroundColor="rds_fg" backgroundColor="rds_bg" />
+		<widget name="subpages_9" position="35,250" size="36,20" alphatest="on" />
+	</screen>
+
 	<screen name="PiPSetup" backgroundColor="transparent" position="70,400" size="600,150" title="PiPSetup" flags="wfNoBorder">
 		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
 	</screen>
+
 	<screen name="MovieSelection" position="90,78" size="560,455" title="Select a movie">
 		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
 		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
