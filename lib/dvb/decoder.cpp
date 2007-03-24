@@ -833,7 +833,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 			{
 				fseek(f, 0, SEEK_END);
 				int length = ftell(f);
-				unsigned char *buffer = new unsigned char[length*3+9];
+				unsigned char *buffer = new unsigned char[length*2+9];
 				if (ioctl(vfd, VIDEO_FAST_FORWARD, 1) < 0)
 					eDebug("VIDEO_FAST_FORWARD failed (%m)");
 				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
@@ -842,7 +842,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					eDebug("VIDEO_PLAY failed (%m)");
 				int cnt=0;
 				int pos=0;
-				while(cnt<3)
+				while(cnt<2)
 				{
 					int rd;
 					fseek(f, 0, SEEK_SET);
@@ -852,8 +852,8 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 						buffer[pos++]=0;
 						buffer[pos++]=1;
 						buffer[pos++]=0xE0;
-						buffer[pos++]=(length*3)>>8;
-						buffer[pos++]=(length*3)&0xFF;
+						buffer[pos++]=(length*2)>>8;
+						buffer[pos++]=(length*2)&0xFF;
 						buffer[pos++]=0x80;
 						buffer[pos++]=0;
 						buffer[pos++]=0;
