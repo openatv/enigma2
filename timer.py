@@ -31,29 +31,9 @@ class TimerEntry:
 	def isRunning(self):
 		return self.state == self.StateRunning
 		
-	def addOneDay(self, timedatestruct):	
-		day = timedatestruct.tm_mday
-		month = timedatestruct.tm_mon
-		year = timedatestruct.tm_year
+	def addOneDay(self, timedatestruct):
+		return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		
-		if calendar.isleap(year):
-			leap = 29
-		else:
-			leap = 28
-		monthdays = [0, 31, leap, 31, 30, 31, 30, 31, 31,30, 31,30, 31]
-		day += 1
-		
-		# check for sane dates and correct if needed
-		if day > monthdays[month]:
-			day = 1
-			month += 1
-		if month > 12:
-			month = 1
-			year += 1
-		
-		newdate = datetime.datetime(year, month, day, timedatestruct.tm_hour,  timedatestruct.tm_min, timedatestruct.tm_sec)
-		return newdate.timetuple()
-	
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
 		print "ProcessRepeated"
