@@ -25,8 +25,10 @@ class eTimer:
 	def __init__(self):
 		self.timeout = slot()
 		self.next_activation = None
+		print "NEW TIMER"
 	
 	def start(self, msec, singleshot = False):
+		print "start timer", msec
 		self.next_activation = time.time() + msec / 1000.0
 		self.msec = msec
 		self.singleshot = singleshot
@@ -48,6 +50,8 @@ def runIteration():
 	running_timers = list(timers)
 	assert len(running_timers), "no running timers, so nothing will ever happen!"
 	running_timers.sort(key=lambda x: x.next_activation)
+	
+	print "running:", running_timers
 	
 	next_timer = running_timers[0]
 
@@ -126,6 +130,9 @@ class pNavigation:
 	@eventfnc
 	def playService(self, service):
 		return None
+
+	def __repr__(self):
+		return "pNavigation"
 
 eRCInput = None
 getPrevAsciiCode = None
@@ -276,7 +283,9 @@ eServiceCenter()
 
 ##################### ENIGMA CHROOT
 
+print "import directories"
 import Tools.Directories
+print "done"
 
 chroot="."
 
@@ -288,7 +297,9 @@ Tools.Directories.defaultPaths[Tools.Directories.SCOPE_CONFIG] = ("/etc/enigma2/
 
 ##################### ENIGMA CONFIG
 
+print "import config"
 import Components.config
+print "done"
 
 my_config = [
 "config.skin.primary_skin=None\n"
@@ -306,14 +317,17 @@ class eActionMap:
 ##################### ENIGMA STARTUP:
 
 def init_nav():
+	print "init nav"
 	import Navigation, NavigationInstance
 	NavigationInstance.instance = Navigation.Navigation()
 
 def init_record_config():
+	print "init recording"
 	import Components.RecordingConfig
 	Components.RecordingConfig.InitRecordingConfig()
 
 def init_parental_control():
+	print "init parental"
 	from Components.ParentalControl import InitParentalControl
 	InitParentalControl()
 

@@ -45,7 +45,7 @@ def end_log(test_name):
 		f.write(results)
 		f.close()
 	
-	print expected, results
+	print results
 	
 	if expected is not None:
 		print "expected:"
