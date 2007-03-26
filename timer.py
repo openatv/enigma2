@@ -2,6 +2,8 @@ from bisect import insort
 from time import strftime, time, localtime, gmtime, mktime
 from calendar import timegm
 from enigma import eTimer
+import calendar
+import datetime
 
 class TimerEntry:
 	StateWaiting  = 0
@@ -29,6 +31,29 @@ class TimerEntry:
 	def isRunning(self):
 		return self.state == self.StateRunning
 		
+	def addOneDay(self, timedatestruct):	
+		day = timedatestruct.tm_mday
+		month = timedatestruct.tm_mon
+		year = timedatestruct.tm_year
+		
+		if calendar.isleap(year):
+			leap = 29
+		else:
+			leap = 28
+		monthdays = [0, 31, leap, 31, 30, 31, 30, 31, 31,30, 31,30, 31]
+		day += 1
+		
+		# check for sane dates and correct if needed
+		if day > monthdays[month]:
+			day = 1
+			month += 1
+		if month > 12:
+			month = 1
+			year += 1
+		
+		newdate = datetime.datetime(year, month, day, timedatestruct.tm_hour,  timedatestruct.tm_min, timedatestruct.tm_sec)
+		return newdate.timetuple()
+	
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
 		print "ProcessRepeated"
@@ -58,9 +83,8 @@ class TimerEntry:
 			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
 				print "localbegin:", strftime("%c", localbegin)
 				print "localend:", strftime("%c", localend)
-				#add one day to the struct_time, we have to convert using gmt functions, because the daylight saving flag might change after we add our 86400 seconds
-				localbegin = gmtime(timegm(localbegin) + 86400)
-				localend = gmtime(timegm(localend) + 86400)
+				localbegin = self.addOneDay(localbegin)
+				localend = self.addOneDay(localend)
 
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
 			self.begin = int(mktime(localbegin))
