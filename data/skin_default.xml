@@ -254,6 +254,7 @@
 		<widget source="CurrentService" render="Label" position="0,0" size="390,26" font="Regular;22" backgroundColor="dark" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
+		<widget name="BlinkingPoint" pixmap="record.png" position="400,0" zPosition="2" size="58,25" />
 		<widget source="CurrentTime" render="Label" position="465,0" size="95,28" font="Regular;22" backgroundColor="dark" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
