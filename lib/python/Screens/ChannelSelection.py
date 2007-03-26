@@ -14,7 +14,7 @@ from Components.Sources.Clock import Clock
 from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Input import Input
 from Components.ParentalControl import parentalControl
-from Components.Pixmap import BlinkingPixmapConditional
+from Components.Pixmap import PixmapConditional
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
