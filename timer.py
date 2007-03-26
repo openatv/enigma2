@@ -32,7 +32,11 @@ class TimerEntry:
 		return self.state == self.StateRunning
 		
 	def addOneDay(self, timedatestruct):
-		return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		oldHour = timedatestruct.tm_hour
+		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		if localtime(mktime(newdate)).tm_hour != oldHour:
+			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()			
+		return newdate
 		
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
@@ -45,8 +49,8 @@ class TimerEntry:
 			localend = localtime(self.end)
 			localnow = localtime(now)
 
-			print strftime("%c", localbegin)
-			print strftime("%c", localend)
+			print "localbegin:", strftime("%c", localbegin)
+			print "localend:", strftime("%c", localend)
 
 			day = []
 			flags = self.repeated
@@ -61,11 +65,11 @@ class TimerEntry:
 			print strftime("%c", localnow)
 
 			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
-				print "localbegin:", strftime("%c", localbegin)
-				print "localend:", strftime("%c", localend)
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
-
+				print "localbegin after addOneDay:", strftime("%c", localbegin)
+				print "localend after addOneDay:", strftime("%c", localend)
+				
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
 			self.begin = int(mktime(localbegin))
 			self.end = int(mktime(localend)) + 1
