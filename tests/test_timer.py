@@ -2,13 +2,19 @@ import enigma
 import sys
 import time
 
+import tests
+
 #enigma.reset()
-def test_timer(repeat = 0, timer_start = 10, timer_length = 100):
+def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length = 86400 * 7):
+
+	print "loading RecordTimer"
 	import RecordTimer
+	print "ok"
 	
 	at = time.time()
 	
 	t = RecordTimer.RecordTimer()
+	t.MaxWaitTime = 86400 * 1000
 
 	# generate a timer to test
 	import xml.dom.minidom
@@ -32,7 +38,7 @@ def test_timer(repeat = 0, timer_start = 10, timer_length = 100):
 	t.record(timer)
 
 	# run virtual environment
-	enigma.run(4 * 86400)
+	enigma.run(sim_length)
 	
 	print "done."
 	
@@ -54,16 +60,18 @@ def test_timer(repeat = 0, timer_start = 10, timer_length = 100):
 		print t_initial
 		print t_repeated
 		
-#		assert t_initial[3:6] == t_repeated[3:6], "repeated timer time of day does not match"
+	if t_initial[3:6] != t_repeated[3:6]:
+		raise tests.TestError("repeated timer time of day does not match")
+
+import FakeNotifications
+#sys.modules["Tools.Notifications"] = FakeNotifications
+#sys.modules["Tools.NumericalTextInput.NumericalTextInput"] = FakeNotifications
 
 # required stuff for timer (we try to keep this minimal)
 enigma.init_nav()
 enigma.init_record_config()
 enigma.init_parental_control()
 
-
-import FakeNotifications
-sys.modules["Notifications"] = FakeNotifications
 
 from events import log
 
@@ -75,5 +83,5 @@ import os
 os.environ['TZ'] = 'CET'
 time.tzset()
 
-log(test_timer, base_time = calendar.timegm((2007, 3, 24, 12, 0, 0)), repeat=0x7f)
-#log(test_timer, base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), repeat=0x7f)
+#log(test_timer, test_name = "test_timer_repeating", base_time = calendar.timegm((2007, 3, 1, 12, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
+log(test_timer, test_name = "test_timer_repeating_dst_start", base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
