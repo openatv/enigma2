@@ -66,8 +66,8 @@ stopped = False
 
 def stop():
 	global stopped
-#	print "STOP NOW"
-#	stopped = True
+	print "STOP NOW"
+	stopped = True
 
 def run():
 	stoptimer = eTimer()
@@ -90,6 +90,48 @@ loadPNG = None
 addFont = None
 gRGB = None
 eWindowStyleSkinned = None
+eButton = None
+eListboxPythonStringContent = None
+eListbox = None
+eEPGCache = None
+getBestPlayableServiceReference = None
+
+class eServiceReference:
+
+	isDirectory=1
+	mustDescent=2
+	canDescent=4
+	flagDirectory=isDirectory|mustDescent|canDescent
+	shouldSort=8
+	hasSortKey=16
+	sort1=32
+	isMarker=64
+	isGroup=128
+
+	def __init__(self, ref):
+		self.ref = ref
+		self.flags = 0
+
+iRecordableService = None
+quitMainloop = None
+eAVSwitch = None
+eDVBVolumecontrol = None
+eDBoxLCD = None
+
+class eServiceCenter:
+	@classmethod
+	def getInstance(self):
+		return self.instance
+
+	instance = None
+
+	def __init__(self):
+		eServiceCenter.instance = self
+
+	def info(self, ref):
+		return None
+
+eServiceCenter()
 
 ##################### ENIGMA CONFIG
 
@@ -100,4 +142,22 @@ my_config = [
 ]
 
 Components.config.config.unpickle(my_config)
+
+##################### ENIGMA CHROOT
+
+import Tools.Directories
+
+chroot="."
+
+for (x, (y, z)) in Tools.Directories.defaultPaths.items():
+	Tools.Directories.defaultPaths[x] = (chroot + y, z)
+
+Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKIN] = ("../data/", Tools.Directories.PATH_DONTCREATE)
+
+##################### ENIGMA ACTIONS
+
+class eActionMap:
+	def __init__(self):
+		pass
+
 
