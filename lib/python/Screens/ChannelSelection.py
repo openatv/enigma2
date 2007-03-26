@@ -14,7 +14,7 @@ from Components.Sources.Clock import Clock
 from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Input import Input
 from Components.ParentalControl import parentalControl
-from Components.Pixmap import PixmapConditional
+from Components.Pixmap import Pixmap
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
@@ -1268,7 +1268,7 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName):
 		InfoBarServiceName.__init__(self)
 		self["CurrentTime"] = Clock()
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
-		self["BlinkingPoint"] = PixmapConditional(False)
+		self["BlinkingPoint"] = Pixmap()
 		self["BlinkingPoint"].hide()
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
