@@ -274,16 +274,6 @@ class eServiceCenter:
 
 eServiceCenter()
 
-##################### ENIGMA CONFIG
-
-import Components.config
-
-my_config = [
-"config.skin.primary_skin=None\n"
-]
-
-Components.config.config.unpickle(my_config)
-
 ##################### ENIGMA CHROOT
 
 import Tools.Directories
@@ -295,7 +285,16 @@ for (x, (y, z)) in Tools.Directories.defaultPaths.items():
 
 Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKIN] = ("../data/", Tools.Directories.PATH_DONTCREATE)
 Tools.Directories.defaultPaths[Tools.Directories.SCOPE_CONFIG] = ("/etc/enigma2/", Tools.Directories.PATH_DONTCREATE)
-                
+
+##################### ENIGMA CONFIG
+
+import Components.config
+
+my_config = [
+"config.skin.primary_skin=None\n"
+]
+
+Components.config.config.unpickle(my_config)
 
 ##################### ENIGMA ACTIONS
 
