@@ -7,17 +7,25 @@ import tests
 #enigma.reset()
 def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length = 86400 * 7):
 
-	print "loading RecordTimer"
-	import RecordTimer
-	print "ok"
+	import NavigationInstance
 	
 	at = time.time()
 	
-	t = RecordTimer.RecordTimer()
+	t = NavigationInstance.instance.RecordTimer
+	print t
+	print "old mwt:", t.MaxWaitTime
 	t.MaxWaitTime = 86400 * 1000
+	
+	# hack:
+	NavigationInstance.instance.SleepTimer.MaxWaitTime = 86400 * 1000
+
+	t.processed_timers = [ ]
+	t.timer_list = [ ]
+
 
 	# generate a timer to test
 	import xml.dom.minidom
+	import RecordTimer
 
 	timer = RecordTimer.createTimer(xml.dom.minidom.parseString(
 	"""
@@ -84,4 +92,5 @@ os.environ['TZ'] = 'CET'
 time.tzset()
 
 #log(test_timer, test_name = "test_timer_repeating", base_time = calendar.timegm((2007, 3, 1, 12, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
-log(test_timer, test_name = "test_timer_repeating_dst_start", base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
+log(test_timer, test_name = "test_timer_repeating_dst_skip", base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), timer_start = 3600, repeat=0x7f, sim_length = 86400 * 7)
+#log(test_timer, test_name = "test_timer_repeating_dst_start", base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), timer_start = 10000, repeat=0x7f, sim_length = 86400 * 7)
