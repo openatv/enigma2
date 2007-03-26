@@ -1268,7 +1268,7 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName):
 		InfoBarServiceName.__init__(self)
 		self["CurrentTime"] = Clock()
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
-		self["BlinkingPoint"] = BlinkingPixmapConditional()
+		self["BlinkingPoint"] = PixmapConditional()
 		self["BlinkingPoint"].hide()
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
