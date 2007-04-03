@@ -97,7 +97,10 @@ class InfoBarShowHide:
 	def __serviceStarted(self):
 		self.current_begin_time=0
 		if config.usage.show_infobar_on_zap.value:
-			self.doShow()
+			service = self.session.nav.getCurrentlyPlayingServiceReference()
+			service_type = service and service.type:
+			if service_type and service_type == eServiceReference.idDVB and not len(service.getPath()):
+				self.doShow()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
