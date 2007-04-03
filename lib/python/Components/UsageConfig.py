@@ -14,6 +14,7 @@ def InitUsageConfig():
 		("8", "8 " + _("seconds")), ("9", "9 " + _("seconds")), ("10", "10 " + _("seconds"))])
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
+	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
 	config.usage.hdd_standby = ConfigSelection(default = "120", choices = [
 		("0", _("no standby")), ("2", "10 " + _("seconds")), ("6", "30 " + _("seconds")),
 		("12", "1 " + _("minute")), ("24", "2 " + _("minutes")),

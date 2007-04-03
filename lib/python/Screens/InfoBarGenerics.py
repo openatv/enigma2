@@ -70,7 +70,8 @@ class InfoBarShowHide:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evStart: self.__serviceStarted
+				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
 			})
 
 		self.__state = self.STATE_SHOWN
@@ -83,7 +84,19 @@ class InfoBarShowHide:
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
+	def __eventInfoChanged(self):
+		old_begin_time = self.current_begin_time
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		ptr = info and info.getEvent(0)
+		if ptr:
+			self.current_begin_time = ptr.getBeginTime()
+		if config.usage.show_infobar_on_event_change.value:
+			if old_begin_time and old_begin_time != self.current_begin_time:
+				self.doShow()
+
 	def __serviceStarted(self):
+		self.current_begin_time=0
 		if config.usage.show_infobar_on_zap.value:
 			self.doShow()
 
