@@ -68,6 +68,11 @@ class InfoBarShowHide:
 				"hide": self.hide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__serviceStarted
+			})
+
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 		
@@ -77,6 +82,10 @@ class InfoBarShowHide:
 		
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+
+	def __serviceStarted(self):
+		if config.usage.show_infobar_on_zap.value:
+			self.doShow()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -191,8 +200,6 @@ class InfoBarNumberZap:
 #		print "You pressed number " + str(number)
 		if number == 0:
 			self.servicelist.recallPrevService()
-			if config.usage.show_infobar_on_zap.value:
-				self.doShow()
 		else:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -313,8 +320,6 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.moveUp()
 		self.servicelist.zap()
-		if config.usage.show_infobar_on_zap.value:
-			self.doShow()
 
 	def zapDown(self):
 		if self.servicelist.inBouquet():
@@ -332,8 +337,6 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.moveDown()
 		self.servicelist.zap()
-		if config.usage.show_infobar_on_zap.value:
-			self.doShow()
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -1517,8 +1520,6 @@ class InfoBarSubserviceSelection:
 				if newservice.valid():
 					del subservices
 					del service
-					if config.usage.show_infobar_on_zap.value:
-						self.doShow()
 					self.session.nav.playService(newservice)
 
 	def subserviceSelection(self):
@@ -1559,8 +1560,6 @@ class InfoBarSubserviceSelection:
 					self.session.open(SubservicesQuickzap, service[2])
 			else:
 				self["SubserviceQuickzapAction"].setEnabled(True)
-				if config.usage.show_infobar_on_zap.value:
-					self.doShow()
 				self.session.nav.playService(service[1])
 
 	def addSubserviceToBouquetCallback(self, service):
