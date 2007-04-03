@@ -89,8 +89,7 @@ class InfoBarShowHide:
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		ptr = info and info.getEvent(0)
-		if ptr:
-			self.current_begin_time = ptr.getBeginTime()
+		self.current_begin_time = ptr and ptr.getBeginTime() or 0
 		if config.usage.show_infobar_on_event_change.value:
 			if old_begin_time and old_begin_time != self.current_begin_time:
 				self.doShow()
