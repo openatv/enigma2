@@ -6,6 +6,51 @@
 #include <lib/base/init.h>
 #include <lib/python/python.h>
 
+static std::string encode(const std::string s)
+{
+	int len = s.size();
+	std::string res;
+	int i;
+	for (i=0; i<len; ++i)
+	{
+		unsigned char c = s[i];
+		if ((c == ':') || (c < 32) || (c == '%'))
+		{
+			res += "%";
+			char hex[8];
+			snprintf(hex, 8, "%02x", c);
+			res += hex;
+		} else
+			res += c;
+	}
+	return res;
+}
+
+static std::string decode(const std::string s)
+{
+	int len = s.size();
+	std::string res;
+	int i;
+	for (i=0; i<len; ++i)
+	{
+		unsigned char c = s[i];
+		if (c != '%')
+			res += c;
+		else
+		{
+			i += 2;
+			if (i >= len)
+				break;
+			char s[3] = {s[i - 1], s[i], 0};
+			unsigned char r = strtoul(s, 0, 0x10);
+			if (r)
+				res += r;
+		}
+	}
+	return res;
+}
+
+
 eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c=string.c_str();
@@ -35,6 +80,9 @@ eServiceReference::eServiceReference(const std::string &string)
 		else
 			path=pathstr;
 	}
+	
+	path = decode(path);
+	name = decode(name);
 }
 
 std::string eServiceReference::toString() const
@@ -45,9 +93,9 @@ std::string eServiceReference::toString() const
 	ret += getNum(flags);
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
 		ret+=":"+ getNum(data[i], 0x10);
-	ret+=":"+path; /* we absolutely have a problem when the path contains a ':' (for example: http://). we need an encoding here. */
+	ret+=":"+encode(path); /* we absolutely have a problem when the path contains a ':' (for example: http://). we need an encoding here. */
 	if (name.length())
-		ret+=":"+name;
+		ret+=":"+encode(name);
 	return ret;
 }
 
@@ -58,7 +106,7 @@ std::string eServiceReference::toCompareString() const
 	ret += ":0";
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
 		ret+=":"+getNum(data[i], 0x10);
-	ret+=":"+path;
+	ret+=":"+encode(path);
 	return ret;
 }
 
