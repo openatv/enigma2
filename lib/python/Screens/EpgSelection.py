@@ -1,4 +1,5 @@
 from Screen import Screen
+from Components.config import config, ConfigClock
 from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.Label import Label
@@ -16,6 +17,8 @@ from ServiceReference import ServiceReference
 from time import localtime, time
 
 import xml.dom.minidom
+
+mepg_config_initialized = False
 
 class EPGSelection(Screen):
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None):
@@ -90,7 +93,11 @@ class EPGSelection(Screen):
 
 	def enterDateTime(self):
 		if self.type == EPG_TYPE_MULTI:
-			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput)
+			global mepg_config_initialized
+			if not mepg_config_initialized:
+				config.misc.prev_mepg_time=ConfigClock(default = time())
+				mepg_config_initialized = True
+			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time )
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:

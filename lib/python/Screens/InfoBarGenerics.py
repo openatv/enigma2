@@ -83,11 +83,10 @@ class InfoBarShowHide:
 		
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+		self.current_begin_time=0
 
 	def __eventInfoChanged(self):
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		service_type = ref and ref.type
-		if service_type and service_type == eServiceReference.idDVB and not len(ref.getPath()):
+		if self.execing:
 			service = self.session.nav.getCurrentService()
 			old_begin_time = self.current_begin_time
 			info = service and service.info()
@@ -98,11 +97,9 @@ class InfoBarShowHide:
 					self.doShow()
 
 	def __serviceStarted(self):
-		self.current_begin_time=0
-		if config.usage.show_infobar_on_zap.value:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			ref_type = ref and ref.type
-			if ref_type and ref_type == eServiceReference.idDVB and not len(ref.getPath()):
+		if self.execing:
+			self.current_begin_time=0
+			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 
 	def __onShow(self):
