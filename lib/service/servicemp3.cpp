@@ -576,6 +576,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			m_stream_tags = result;
 		}
 		gst_tag_list_free(tags);
+		
+		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
 	default:
