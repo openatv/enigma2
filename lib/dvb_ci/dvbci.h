@@ -29,6 +29,11 @@ struct queueData
 	}
 };
 
+enum data_source
+{
+	TUNER_A, TUNER_B, TUNER_C, TUNER_D, CI_A, CI_B, CI_C, CI_D
+};
+
 class eDVBCISlot: public iObject, public Object
 {
 DECLARE_REF(eDVBCISlot);
@@ -47,6 +52,9 @@ private:
 public:
 	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	int use_count;
+	eDVBCISlot *linked_next; // needed for linked CI handling
+	data_source current_source;
+	int current_tuner;
 
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
@@ -73,9 +81,7 @@ public:
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	void removeService(uint16_t program_number=0xFFFF);
 	int getNumOfServices() { return running_services.size(); }
-	
-	int enableTS(int enable, int tuner=0);
-
+	int setSource(data_source source);
 };
 
 struct CIPmtHandler
@@ -103,7 +109,6 @@ DECLARE_REF(eDVBCIInterfaces);
 private:
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
-
 	PMTHandlerList m_pmt_handlers; 
 public:
 	eDVBCIInterfaces();
@@ -126,8 +131,8 @@ public:
 	int answerEnq(int slot, char *value);
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
-	int enableTS(int slot, int enable);
 	int sendCAPMT(int slot);
+	int setInputSource(int tunerno, data_source source);
 };
 
 #endif
