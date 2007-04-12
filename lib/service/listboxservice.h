@@ -72,6 +72,10 @@ public:
 	int setCurrentMarked(bool);
 
 	void setNumberOffset(int offset) { m_numberoffset = offset; }
+	
+	int getItemHeight() { return m_itemheight; }
+	int setItemHeight(int height);
+	
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -120,6 +124,8 @@ private:
 	int m_numberoffset;
 
 	eServiceReference m_is_playable_ignore;
+
+	int m_itemheight;
 };
 
 #endif

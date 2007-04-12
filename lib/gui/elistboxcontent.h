@@ -38,11 +38,14 @@ protected:
 	
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	
+	int getItemHeight() { return m_itemheight; }
 
 protected:
 	ePyObject m_list;
 	int m_cursor, m_saved_cursor;
 	eSize m_itemsize;
+	int m_itemheight;
 #endif
 };
 
@@ -68,6 +71,7 @@ public:
 	
 	void setFont(int fnt, gFont *fnt);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
+	void setItemHeight(int height);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };

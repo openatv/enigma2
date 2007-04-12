@@ -48,6 +48,8 @@ protected:
 		/* the following functions always refer to the selected item */
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)=0;
 	
+	virtual int getItemHeight()=0;
+	
 	eListbox *m_listbox;
 #endif
 };
@@ -95,7 +97,7 @@ public:
 		pageDown,
 		justCheck
 	};
-	
+
 	void setItemHeight(int h);
 	void setSelectionEnable(int en);
 #ifndef SWIG
