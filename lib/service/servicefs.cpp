@@ -142,17 +142,17 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 			if (extension == ".ts")
 				type = eServiceFactoryDVB::id;
 			else if (extension == ".mp3")
-				type = 4097;
+				type = 0x1001;
 			else if (extension == ".ogg")
-				type = 4097;
+				type = 0x1001;
 			else if (extension == ".mpg")
-				type = 4097;
+				type = 0x1001;
 			else if (extension == ".vob")
-				type = 4097;
+				type = 0x1001;
 			else if (extension == ".wav" || extension == ".wave")
-				type = 4097;
+				type = 0x1001;
 			else if (extension == ".m3u" || extension == ".pls" || extension == ".e2pls")
-				type = 4098;
+				type = 4098; // ?? this id is not defined in any service handler, just in python code.
 			
 			if (type != -1)
 			{
