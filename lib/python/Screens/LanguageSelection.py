@@ -10,14 +10,14 @@ from Components.config import config
 class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self.oldActiveLanguage = language.getActiveLanguage()
-		
+
 		self.list = []
 		self["list"] = LanguageList(self.list)
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
-				
+
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], 
 		{
 			"ok": self.save,
@@ -27,7 +27,7 @@ class LanguageSelection(Screen):
 			"left": self.left,
 			"right": self.right
 		}, -1)
-		
+
 	def selectActiveLanguage(self):
 		activeLanguage = language.getActiveLanguage()
 		pos = 0
@@ -36,15 +36,15 @@ class LanguageSelection(Screen):
 				self["list"].instance.moveSelectionTo(pos)
 				break
 			pos += 1
-		
+
 	def save(self):
 		self.run()
 		self.close()
-	
+
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
 		self.close()
-	
+
 	def run(self):
 		language.activateLanguage(self["list"].l.getCurrentSelection()[0])
 		config.osd.language.value = self["list"].l.getCurrentSelection()[0]
@@ -67,7 +67,7 @@ class LanguageSelection(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveUp)
 		self.run()
 		self.updateList()
-		
+
 	def down(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.run()
@@ -77,7 +77,7 @@ class LanguageSelection(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
 		self.run()
 		self.updateList()
-		
+
 	def right(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageDown)
 		self.run()
