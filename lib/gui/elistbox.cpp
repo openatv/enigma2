@@ -58,6 +58,9 @@ void eListbox::setContent(iListboxContent *content)
 	if (content)
 		m_content->setListbox(this);
 	entryReset();
+			/* if oldsel != m_selected, selectionChanged was already 
+			   emitted in entryReset. we want it in any case, so otherwise,
+			   emit it now. */
 	if (oldsel == m_selected)
 		/* emit */ selectionChanged();
 }
