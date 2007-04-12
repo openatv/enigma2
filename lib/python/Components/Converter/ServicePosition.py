@@ -68,7 +68,14 @@ class ServicePosition(Converter, Poll, object):
 				l = self.length - self.position
 			
 			l /= 90000
-			return "%d:%02d" % (l/60, l%60)
+			
+			if l > 0:
+				sign = ""
+			else:
+				l = -l
+				sign = "-"
+			
+			return sign + "%d:%02d" % (l/60, l%60)
 
 	position = property(getPosition)
 	length = property(getLength)
