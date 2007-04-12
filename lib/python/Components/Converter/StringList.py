@@ -6,9 +6,12 @@ class StringList(Converter):
 	"""Turns a simple python list into a list which can be used in a listbox."""
 	def __init__(self, type):
 		Converter.__init__(self, type)
+		self.content = None
 
 	def changed(self, what):
-		self.content = eListboxPythonStringContent()
+		if not self.content:
+			self.content = eListboxPythonStringContent()
+
 		if self.source:
 			self.content.setList(self.source.list)
 		self.downstream_elements.changed(what)
