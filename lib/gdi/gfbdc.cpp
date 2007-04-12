@@ -53,7 +53,8 @@ gFBDC::gFBDC()
 		m_enable_double_buffering = 0;
 	
 	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
-	
+	eDebug("resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
+
 	if (gAccel::getInstance())
 		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
 	
