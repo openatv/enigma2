@@ -361,7 +361,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 				dstptr+=surface->stride;
 			}
 		} else
-			eFatal("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 	}
 }
 
