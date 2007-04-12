@@ -43,12 +43,12 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.list = source
 		self.l.setList(self.list)
 		self.l.setFont(0, gFont("Regular", 23))
+		self.l.setItemHeight(25)
 
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		self.instance.setContent(self.l)
-		self.instance.setItemHeight(25)
 
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
