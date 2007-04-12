@@ -52,9 +52,9 @@ class PluginList(MenuList, HTMLComponent, GUIComponent):
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
+		self.l.setItemHeight(50)
 
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(50)

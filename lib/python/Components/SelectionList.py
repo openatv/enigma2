@@ -19,12 +19,12 @@ class SelectionList(MenuList, GUIComponent):
 		self.list = list
 		self.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setItemHeight(30)
 
 	GUI_WIDGET = eListbox
 		
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(30)
 
 	def addSelection(self, description, value, index, selected = True):
 		self.list.append(SelectionEntryComponent(description, value, index, selected))
