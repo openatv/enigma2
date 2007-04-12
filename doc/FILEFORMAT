@@ -13,6 +13,12 @@ They don't have a private header.
 <description>
 <recording time>
 
+The service reference contains the Service-ID of the recorded service. With
+that ID, you can find the PMT and the elementary streams.
+
+As a backup method, just find the first available PMT and use that.
+
+Strings are always UTF-8 encoded.
 
 == .ap FILES ==
 
@@ -44,3 +50,8 @@ implicit 'in' point at zero.
 If the there is no final 'out' point, the end-of-file is an implicit
 'out'-point.
 
+Note that the PTS values are zero-based and continouus. If you want absolute
+PTS values, you can either:
+ - use the .ap file, find discontinuities, and interpolate between the APs
+ - or just use the first PTS value as an offset, and work around PTS
+   wraparounds. (simple method)
