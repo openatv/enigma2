@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.Sources.MenuList import MenuList
+from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.Header import Header
 from Components.Button import Button
@@ -209,7 +209,7 @@ class Menu(Screen):
 			for l in plugins.getPluginsForMenu(menuID):
 				list.append((l[0], boundFunction(l[1], self.session)))
 
-		self["menu"] = MenuList(list)	
+		self["menu"] = List(list)	
 							
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
