@@ -847,6 +847,18 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("seekTo: getCurrentPosition failed!");
 				continue;
 			}
+		} else if (pts < 0) /* seek relative to end */
+		{
+			pts_t len;
+			if (!getLength(len))
+			{
+				eDebug("seeking relative to end. len=%lld, seek = %lld", len, pts);
+				pts += len;
+			} else
+			{
+				eWarning("getLength failed - can't seek relative to end!");
+				continue;
+			}
 		}
 		
 		if (relative == 1) /* pts relative */
@@ -877,7 +889,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		
 		off_t offset = 0;
 		if (m_tstools.getOffset(offset, pts))
+		{
+			eDebug("get offset for pts=%lld failed!", pts);
 			continue;
+		}
 
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = offset;
