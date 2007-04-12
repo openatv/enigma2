@@ -111,6 +111,8 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
 	
+	ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo);
+	
 	if ((screeninfo.xres!=nxRes) && (screeninfo.yres!=nyRes) && (screeninfo.bits_per_pixel!=nbpp))
 	{
 		eDebug("SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",
