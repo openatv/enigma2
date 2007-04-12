@@ -186,6 +186,7 @@ class Partition:
 
 	def mounted(self):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
+		# TODO: can os.path.ismount be used?
 		procfile = tryOpen("/proc/mounts")
 		for n in procfile.readlines():
 			if n.split(' ')[1] == self.mountpoint:
