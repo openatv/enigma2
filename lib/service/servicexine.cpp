@@ -106,7 +106,8 @@ eServiceXine::eServiceXine(const char *filename): m_filename(filename), m_pump(e
 	vo_port = 0;
 	
 	
-	if ((vo_port = xine_open_video_driver(xine, "fb", XINE_VISUAL_TYPE_FB, NULL)) == NULL)
+//	if ((vo_port = xine_open_video_driver(xine, "fb", XINE_VISUAL_TYPE_FB, NULL)) == NULL)
+	if ((vo_port = xine_open_video_driver(xine, "none", XINE_VISUAL_TYPE_NONE, NULL)) == NULL)
 	{
 		eWarning("cannot open xine video driver");
 	}
@@ -128,16 +129,22 @@ eServiceXine::~eServiceXine()
 	if (m_state == stRunning)
 		stop();
 
+	eDebug("close stream");
 	if (stream)
 		xine_close(stream);
+	eDebug("dispose queue");
 	if (event_queue)
 		xine_event_dispose_queue(event_queue);
+	eDebug("dispose stream");
 	if (stream)
 		xine_dispose(stream);
+	eDebug("dispose ao_port");
 	if (ao_port)
-		xine_close_audio_driver(xine, ao_port);	
+		xine_close_audio_driver(xine, ao_port);
+	eDebug("dispose vo port");
 	if (vo_port)
 		xine_close_video_driver(xine, vo_port);	
+	eDebug("done.");
 }
 
 DEFINE_REF(eServiceXine);	
@@ -229,12 +236,13 @@ RESULT eServiceXine::setFastForward(int ratio)
 		// iPausableService
 RESULT eServiceXine::pause()
 {
-	// PAUSE
+	//SPEED_PAUSE
 	return 0;
 }
 
 RESULT eServiceXine::unpause()
 {
+	//SPEED_NORMAL
 	// PLAY
 	return 0;
 }
@@ -248,7 +256,23 @@ RESULT eServiceXine::seek(ePtr<iSeekableService> &ptr)
 
 RESULT eServiceXine::getLength(pts_t &pts)
 {
-		// LENGTH
+	pts = -1;
+	if (m_state == stError)
+		return 1;
+	assert(stream);
+	
+	int pos_stream, pos_time, length_time;
+	
+	if (!xine_get_pos_length(stream, &pos_stream, &pos_time, &length_time))
+	{
+		eDebug("xine_get_pos_length failed!");
+		return 1;
+	}
+	
+	eDebug("length: %d ms", length_time);
+	
+	pts = length_time * 90;
+	
 	return 0;
 }
 
@@ -266,6 +290,19 @@ RESULT eServiceXine::seekRelative(int direction, pts_t to)
 
 RESULT eServiceXine::getPlayPosition(pts_t &pts)
 {
+	pts = -1;
+	if (m_state == stError)
+		return 1;
+	assert(stream);
+	
+	int pos_stream, pos_time, length_time;
+	
+	if (!xine_get_pos_length(stream, &pos_stream, &pos_time, &length_time))
+		return 1;
+	
+	eDebug("pos_time: %d", pos_time);
+	pts = pos_time * 90;
+	
 		// GET POSITION
 	return 0;
 }
