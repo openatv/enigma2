@@ -12,7 +12,7 @@ install_PYTHON = \
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py           \
 	AVSwitch.py Network.py RFmod.py DiskInfo.py NimManager.py Lcd.py        \
 	EpgList.py ScrollLabel.py Timezones.py Language.py HelpMenuList.py      \
-	BlinkingPixmap.py Pixmap.py ConditionalWidget.py Slider.py LanguageList.py  \
+	BlinkingPixmap.py Pixmap.py ConditionalWidget.py Slider.py              \
 	PluginList.py PluginComponent.py RecordingConfig.py About.py UsageConfig.py \
 	FIFOList.py ServiceEventTracker.py Input.py TimerSanityCheck.py FileList.py \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
