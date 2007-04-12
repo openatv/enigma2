@@ -71,6 +71,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
+		self.l.setItemHeight(70)
 	
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -79,7 +80,6 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(70)
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)

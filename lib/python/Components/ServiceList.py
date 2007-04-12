@@ -160,13 +160,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = mode
 
 		if mode == self.MODE_NORMAL:
-			self.instance.setItemHeight(28)
+			self.l.setItemHeight(28)
 			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 			self.l.setElementFont(self.l.celServiceName, gFont("Regular", 22))
 			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), 28))
 			self.l.setElementFont(self.l.celServiceInfo, gFont("Regular", 18))
 		else:
-			self.instance.setItemHeight(28)
+			self.l.setItemHeight(28)
 			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 			self.l.setElementFont(self.l.celServiceNumber, gFont("Regular", 20))
 			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, 50, 28))

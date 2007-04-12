@@ -24,11 +24,11 @@ class ChoiceList(MenuList, HTMLComponent, GUIComponent):
 		self.list = list
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setItemHeight(25)
 		self.selection = selection
 
 	GUI_WIDGET = eListbox
 		
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(25)
 		self.moveToIndex(self.selection)

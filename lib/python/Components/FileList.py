@@ -58,7 +58,8 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		self.changeDir(directory)
 
 		self.l.setFont(0, gFont("Regular", 18))
-		
+		self.l.setItemHeight(23)
+
 	def getSelection(self):
 		if self.l.getCurrentSelection() is None:
 			return None
@@ -186,4 +187,3 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(23)

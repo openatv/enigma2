@@ -23,6 +23,7 @@ class ParentalControlList(MenuList, HTMLComponent, GUIComponent):
 		self.list = list
 		self.l.setList(list)
 		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setItemHeight(32)
 
 	GUI_WIDGET = eListbox
 	
@@ -32,7 +33,6 @@ class ParentalControlList(MenuList, HTMLComponent, GUIComponent):
 		
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(32)
 
 	def toggleSelectedLock(self):
 		print "self.l.getCurrentSelection():", self.l.getCurrentSelection()

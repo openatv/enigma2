@@ -17,6 +17,7 @@ class MovieList(GUIComponent):
 		self.l.setFont(1, gFont("Regular", 18))
 		self.l.setFont(2, gFont("Regular", 16))
 		self.l.setBuildFunc(self.buildMovieListEntry)
+		self.l.setItemHeight(75)
 
 	#
 	# | name of movie              |
@@ -68,7 +69,6 @@ class MovieList(GUIComponent):
 	
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(75)
 	
 	def reload(self, root = None, filter_tags = None):
 		if root is not None:

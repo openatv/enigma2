@@ -48,6 +48,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		self.list = []
 		self.l.setList(self.list)
 		self.l.setFont(0, gFont("Regular", 18))
+		self.l.setItemHeight(22)
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 	
@@ -61,7 +62,6 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		instance.setItemHeight(22)
 
 	def getSelection(self):
 		return self.l.getCurrentSelection()[0]
