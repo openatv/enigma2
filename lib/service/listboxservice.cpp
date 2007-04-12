@@ -260,7 +260,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0)
+	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0), m_itemheight(25)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
@@ -605,4 +605,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 void eListboxServiceContent::setIgnoreService( const eServiceReference &service )
 {
 	m_is_playable_ignore=service;
+}
+
+int eListboxServiceContent::setItemHeight(int height)
+{
+	m_itemheight = height;
+	if (m_listbox)
+		m_listbox->setItemHeight(height);
 }

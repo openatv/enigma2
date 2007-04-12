@@ -37,6 +37,7 @@ iListboxContent::iListboxContent(): m_listbox(0)
 void iListboxContent::setListbox(eListbox *lb)
 {
 	m_listbox = lb;
+	m_listbox->setItemHeight(getItemHeight());
 }
 
 int iListboxContent::currentCursorSelectable()
@@ -48,7 +49,7 @@ int iListboxContent::currentCursorSelectable()
 
 DEFINE_REF(eListboxPythonStringContent);
 
-eListboxPythonStringContent::eListboxPythonStringContent()
+eListboxPythonStringContent::eListboxPythonStringContent(): m_itemheight(25)
 {
 }
 
@@ -660,4 +661,11 @@ void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
 		m_font[fnt] = font;
 	else
 		m_font.erase(fnt);
+}
+
+void eListboxPythonMultiContent::setItemHeight(int height)
+{
+	m_itemheight = height;
+	if (m_listbox)
+		m_listbox->setItemHeight(height);
 }
