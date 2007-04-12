@@ -53,7 +53,7 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 					timeout = 5;
 				}
 			}
-			else if (timeout>1)
+			else if (d[3] > 1)
 				eDebug("mmi close tag incorrect.. byte 4 should be 0 or 1");
 			eDVBCI_UI::getInstance()->mmiScreenClose(slot->getSlotID(), timeout);
 			break;

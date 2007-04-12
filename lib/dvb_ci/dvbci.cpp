@@ -90,37 +90,6 @@ int eDVBCIInterfaces::reset(int slotid)
 	return slot->reset();
 }
 
-int eDVBCIInterfaces::enableTS(int slotid, int enable)
-{
-	eDVBCISlot *slot;
-
-	if( (slot = getSlot(slotid)) == 0 )
-		return -1;
-
-	int tunernum = 0;
-	PMTHandlerList::iterator it = m_pmt_handlers.begin();
-	while (it != m_pmt_handlers.end())
-	{
-		if ( it->cislot == slot )
-		{
-			eDVBServicePMTHandler *pmthandler = it->pmthandler;
-			eUsePtr<iDVBChannel> channel;
-			if (!pmthandler->getChannel(channel))
-			{
-				ePtr<iDVBFrontend> frontend;
-				if (!channel->getFrontend(frontend))
-				{
-					eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
-					tunernum = fe->getID();
-				}
-			}
-			break;
-		}
-		++it;
-	}
-	return slot->enableTS(enable, tunernum);
-}
-
 int eDVBCIInterfaces::initialize(int slotid)
 {
 	eDVBCISlot *slot;
@@ -143,8 +112,14 @@ int eDVBCIInterfaces::sendCAPMT(int slotid)
 	PMTHandlerList::iterator it = m_pmt_handlers.begin();
 	while (it != m_pmt_handlers.end())
 	{
-		if ( it->cislot == slot )
-			slot->sendCAPMT(it->pmthandler);  // send capmt
+		eDVBCISlot *tmp = it->cislot;
+		while (tmp != slot)
+			tmp = tmp->linked_next;
+		if (tmp)
+		{
+			tmp->sendCAPMT(it->pmthandler);  // send capmt
+			break;
+		}
 		++it;
 	}
 
@@ -206,14 +181,30 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 		it != m_pmt_handlers.end(); ++it)
 	{
-		if (it->cislot == slot)
+		eServiceReferenceDVB ref;
+		it->pmthandler->getServiceReference(ref);
+		slot->removeService(ref.getServiceID().get());
+		if (slot->use_count && !--slot->use_count)
 		{
-			eServiceReferenceDVB ref;
-			it->pmthandler->getServiceReference(ref);
-			slot->removeService(ref.getServiceID().get());
-			if (!--slot->use_count)
-				enableTS(slot->getSlotID(), 0);
-			it->cislot=0;
+			if (slot->linked_next)
+				slot->linked_next->setSource(slot->current_source);
+			else
+				setInputSource(slot->current_tuner, slot->current_source);
+
+			if (it->cislot == slot) // remove the base slot
+				it->cislot = slot->linked_next;
+			else
+			{
+				if (slot->linked_next)
+				{
+					eDVBCISlot *tmp = it->cislot;
+					while(tmp->linked_next != slot)
+						tmp = tmp->linked_next;
+					ASSERT(tmp);
+					tmp->linked_next = slot->linked_next;
+				}
+			}
+			slot->linked_next=0;
 		}
 	}
 }
@@ -258,9 +249,6 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 				service->m_ca = caids;
 		}
 
-		if (it->cislot)
-			continue; // already running
-
 		if (service)
 			caids = service->m_ca;
 
@@ -279,7 +267,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 							std::lower_bound(ci_caids.begin(), ci_caids.end(), *ca);
 						if ( z != ci_caids.end() && *z == *ca )
 						{
-							eDebug("found ci for caid %04x", *z);
+//							eDebug("found ci for caid %04x", *z);
 							useThis=true;
 							break;
 						}
@@ -288,13 +276,13 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 
 				if (useThis)
 				{
-					bool send_ca_pmt = false;
 					if (ci_it->use_count)  // check if this CI can descramble more than one service
 					{
+						useThis = false;
 						PMTHandlerList::iterator tmp = m_pmt_handlers.begin();
 						while (tmp != m_pmt_handlers.end())
 						{
-							if ( tmp->cislot )
+							if ( tmp->cislot == ci_it && it != tmp )
 							{
 								eServiceReferenceDVB ref2;
 								tmp->pmthandler->getServiceReference(ref2);
@@ -306,26 +294,80 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								}
 								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(ci_it->getSlotID())))
 								{
-									it->cislot = tmp->cislot;
-									++it->cislot->use_count;
-									send_ca_pmt = true;
-//									eDebug("usecount now %d", it->cislot->use_count);
+									useThis = true;
 									break;
 								}
 							}
 							++tmp;
 						}
 					}
-					else
+					if (useThis)
 					{
-						ci_it->use_count=1;
+						// check if this CI is already assigned to this pmthandler
+						eDVBCISlot *tmp = it->cislot;
+						while(tmp)
+						{
+							if (tmp == ci_it)
+								break;
+						}
+
+						if (tmp) // ignore already assigned cislots...
+							continue;
+
+						++ci_it->use_count;
+//						eDebug("usecount now %d", ci_it->use_count);
+
+						data_source ci_source=CI_A;
+						switch(ci_it->getSlotID())
+						{
+							case 0: ci_source = CI_A; break;
+							case 1: ci_source = CI_B; break;
+							case 2: ci_source = CI_C; break;
+							case 3: ci_source = CI_D; break;
+							default:
+								eDebug("try to get source for CI %d!!\n", ci_it->getSlotID());
+								break;
+						}
+
+						if (!it->cislot)
+						{
+							int tunernum = -1;
+							eUsePtr<iDVBChannel> channel;
+							if (!pmthandler->getChannel(channel))
+							{
+								ePtr<iDVBFrontend> frontend;
+								if (!channel->getFrontend(frontend))
+								{
+									eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
+									tunernum = fe->getID();
+								}
+							}
+							ASSERT(tunernum != -1);
+							data_source tuner_source = TUNER_A;
+							switch (tunernum)
+							{
+								case 0: tuner_source = TUNER_A; break;
+								case 1: tuner_source = TUNER_B; break;
+								case 2: tuner_source = TUNER_C; break;
+								case 3: tuner_source = TUNER_D; break;
+								default:
+									eDebug("try to get source for tuner %d!!\n", tunernum);
+									break;
+							}
+							ci_it->current_tuner = tunernum;
+							setInputSource(tunernum, ci_source);
+							ci_it->setSource(tuner_source);
+						}
+						else
+						{
+							ci_it->current_tuner = it->cislot->current_tuner;
+							ci_it->linked_next = it->cislot;
+							ci_it->setSource(ci_it->linked_next->current_source);
+							ci_it->linked_next->setSource(ci_source);
+						}
 						it->cislot = ci_it;
-//						eDebug("usecount now %d", it->cislot->use_count);
-						enableTS(ci_it->getSlotID(), 1);
-						send_ca_pmt = true;
-					}
-					if (send_ca_pmt)
 						gotPMT(pmthandler);
+					}
 				}
 			}
 		}
@@ -377,23 +419,46 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 			}
 		}
 
-		if (slot && !sameServiceExist)
+		while(slot)
 		{
-			if (slot->getNumOfServices() > 1)
+			if (!sameServiceExist)
 			{
-				eDebug("[eDVBCIInterfaces] remove last pmt handler for service %s send empty capmt",
-					service_to_remove.toString().c_str());
-				std::vector<uint16_t> caids;
-				caids.push_back(0xFFFF);
-				slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
+				if (slot->getNumOfServices() > 1)
+				{
+					eDebug("[eDVBCIInterfaces] remove last pmt handler for service %s send empty capmt",
+						service_to_remove.toString().c_str());
+						std::vector<uint16_t> caids;
+					caids.push_back(0xFFFF);
+					slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
+				}
+				slot->removeService(service_to_remove.getServiceID().get());
 			}
-			slot->removeService(service_to_remove.getServiceID().get());
-		}
 
-		if (slot && !--slot->use_count)
-		{
-			ASSERT(!slot->getNumOfServices());
-			enableTS(slot->getSlotID(),0);
+			eDVBCISlot *next = slot->linked_next;
+			if (!--slot->use_count)
+			{
+				if (slot->linked_next)
+					slot->linked_next->setSource(slot->current_source);
+				else
+					setInputSource(slot->current_tuner, slot->current_source);
+
+				if (it->cislot == slot) // remove the base slot
+					it->cislot = slot->linked_next;
+				else
+				{
+					if (slot->linked_next)
+					{
+						eDVBCISlot *tmp = it->cislot;
+						while(tmp->linked_next != slot)
+							tmp = tmp->linked_next;
+						ASSERT(tmp);
+						tmp->linked_next = slot->linked_next;
+					}
+				}
+				slot->linked_next=0;
+			}
+//			eDebug("use_count is now %d", slot->use_count);
+			slot = next;
 		}
 	}
 	// check if another service is waiting for the CI
@@ -405,7 +470,14 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 	eDebug("[eDVBCIInterfaces] gotPMT");
 	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(), m_pmt_handlers.end(), pmthandler);
 	if (it != m_pmt_handlers.end() && it->cislot)
-		it->cislot->sendCAPMT(pmthandler);
+	{
+		eDVBCISlot *tmp = it->cislot;
+		while(tmp)
+		{
+			tmp->sendCAPMT(pmthandler);
+			tmp = tmp->linked_next;
+		}
+	}
 }
 
 int eDVBCIInterfaces::getMMIState(int slotid)
@@ -417,6 +489,91 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 	
 	return slot->getMMIState();
 }
+
+int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
+{
+//	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//	eDebug("eDVBCIInterfaces::setInputSource(%d %d)", tuner_no, (int)source);
+#if defined(DM8000)
+	char buf[64];
+	snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
+
+	FILE *input=0;
+	if((input = fopen(buf, "wb")) == NULL) {
+		eDebug("cannot open %s", buf);
+		return 0;
+	}
+
+	if (input > 3)
+		eDebug("setInputSource(%d, %d) failed... dm8000 just have four inputs", tuner_no, (int)source);
+
+	switch(source)
+	{
+		case CI_A:
+			fprintf(input, "CI0");
+			break;
+		case CI_B:
+			fprintf(input, "CI1");
+			break;
+		case CI_C:
+			fprintf(input, "CI2");
+			break;
+		case CI_D:
+			fprintf(input, "CI3");
+			break;
+		case TUNER_A:
+			fprintf(input, "A");
+			break;
+		case TUNER_B:
+			fprintf(input, "B");
+			break;
+		case TUNER_C:
+			fprintf(input, "C");
+			break;
+		case TUNER_D:
+			fprintf(input, "D");
+			break;
+		default:
+			eDebug("setInputSource for input %d failed!!!\n", (int)source);
+			break;
+	}
+
+	fclose(input);
+#else // force DM7025
+	char buf[64];
+	snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
+
+	if (tuner_no > 1)
+		eDebug("setInputSource(%d, %d) failed... dm7025 just have two inputs", tuner_no, (int)source);
+
+	FILE *input=0;
+	if((input = fopen(buf, "wb")) == NULL) {
+		eDebug("cannot open %s", buf);
+		return 0;
+	}
+
+	switch(source)
+	{
+		case CI_A:
+			fprintf(input, "CI");
+			break;
+		case TUNER_A:
+			fprintf(input, "A");
+			break;
+		case TUNER_B:
+			fprintf(input, "B");
+			break;
+		default:
+			eDebug("setInputSource for input %d failed!!!\n", (int)source);
+			break;
+	}
+
+	fclose(input);
+#endif
+	eDebug("eDVBCIInterfaces->setInputSource(%d, %d)", tuner_no, (int)source);
+	return 0;
+}
+
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
@@ -511,6 +668,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	mmi_session = 0;
 	ca_manager = 0;
 	use_count = 0;
+	linked_next = 0;
 	
 	slotid = nr;
 
@@ -529,8 +687,6 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	{
 		perror(filename);
 	}
-
-	enableTS(0, 0);
 }
 
 eDVBCISlot::~eDVBCISlot()
@@ -665,7 +821,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 			(pmt_version == it->second) &&
 			!(caids.size() == 1 && caids[0] == 0xFFFF) )
 		{
-			eDebug("[eDVBCISlot] dont sent self capmt version twice");
+			eDebug("[eDVBCISlot] dont send self capmt version twice");
 			return -1;
 		}
 
@@ -738,32 +894,59 @@ void eDVBCISlot::removeService(uint16_t program_number)
 		running_services.erase(program_number);  // remove single service
 }
 
-int eDVBCISlot::enableTS(int enable, int tuner)
+int eDVBCISlot::setSource(data_source source)
 {
+	current_source = source;
+#if defined(DM8000)
+	char buf[64];
+	snprintf(buf, 64, "/proc/stb/tsmux/ci%d_input", slotid);
+	FILE *ci = fopen(buf, "wb");
+	switch(source)
+	{
+		case CI_A:
+			fprintf(ci, "CI0");
+			break;
+		case CI_B:
+			fprintf(ci, "CI1");
+			break;
+		case CI_C:
+			fprintf(ci, "CI2");
+			break;
+		case CI_D:
+			fprintf(ci, "CI3");
+			break;
+		case TUNER_A:
+			fprintf(ci, "A");
+			break;
+		case TUNER_B:
+			fprintf(ci, "B");
+			break;
+		case TUNER_C:
+			fprintf(ci, "C");
+			break;
+		case TUNER_D:
+			fprintf(ci, "D");
+			break;
+		default:
+			eDebug("setSource %d failed!!!\n", (int)source);
+			break;
+	}
+	fclose(ci);
+#else // force DM7025
 //	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//	eDebug("eDVBCISlot::enableTS(%d %d)", enable, tuner);
-
-	FILE *input0, *input1, *ci;
-	if((input0 = fopen("/proc/stb/tsmux/input0", "wb")) == NULL) {
-		eDebug("cannot open /proc/stb/tsmux/input0");
-		return 0;
-	}
-	if((input1 = fopen("/proc/stb/tsmux/input1", "wb")) == NULL) {
-		eDebug("cannot open /proc/stb/tsmux/input1");
-		return 0;
-	}
-	if((ci = fopen("/proc/stb/tsmux/input2", "wb")) == NULL) {
+//	eDebug("eDVBCISlot::enableTS(%d %d)", enable, (int)source);
+	FILE *ci = fopen("/proc/stb/tsmux/input2", "wb");
+	if(ci == NULL) {
 		eDebug("cannot open /proc/stb/tsmux/input2");
 		return 0;
 	}
-
-	fprintf(ci, "%s", tuner==0 ? "A" : "B");  // configure CI data source (TunerA, TunerB)
-	fprintf(input0, "%s", tuner==0 && enable ? "CI" : "A"); // configure ATI input 0 data source
-	fprintf(input1, "%s", tuner==1 && enable ? "CI" : "B"); // configure ATI input 1 data source
-
-	fclose(input0);
-	fclose(input1);
+	if (source != TUNER_A && source != TUNER_B)
+		eDebug("setSource %d failed!!!\n", (int)source);
+	else
+		fprintf(ci, "%s", source==TUNER_A ? "A" : "B");  // configure CI data source (TunerA, TunerB)
 	fclose(ci);
+#endif
+	eDebug("eDVBCISlot->setSource(%d)", (int)source);
 	return 0;
 }
 
