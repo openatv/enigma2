@@ -221,7 +221,7 @@ private:
 	void switchToLive();
 	void switchToTimeshift();
 	
-	void updateDecoder();
+	void updateDecoder(int intopause=0);
 	
 	int m_skipmode;
 	

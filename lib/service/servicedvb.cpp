@@ -1151,8 +1151,6 @@ RESULT eDVBServicePlay::start()
 		loadCuesheet();
 		m_event(this, evStart);
 	}
-
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
 	return 0;
 }
 
@@ -2188,12 +2186,12 @@ void eDVBServicePlay::switchToTimeshift()
 
 	m_cue = new eCueSheet();
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
-	updateDecoder(); /* mainly to switch off PCR */
-
+	updateDecoder(1); /* mainly to switch off PCR, and to set pause */
+	
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
-void eDVBServicePlay::updateDecoder()
+void eDVBServicePlay::updateDecoder(int intopause)
 {
 	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
 
