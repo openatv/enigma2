@@ -451,6 +451,8 @@ class AutoScartControl:
 			else:
 				self.scartDialog.switchToTV()
 
+from enigma import eDVBCIInterfaces
+
 def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
@@ -466,6 +468,12 @@ def runScreenTest():
 	screensToRun.append(Screens.InfoBar.InfoBar)
 
 	ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
+
+#	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
+#		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
+#			["PREMIERE"], #provider_list,
+#			[] #caid_list
+#		));
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:

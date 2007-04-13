@@ -1,8 +1,11 @@
 #ifndef __dvbci_dvbci_h
 #define __dvbci_dvbci_h
 
-#include <lib/base/ebase.h>
+#ifndef SWIG
 
+#include <lib/base/ebase.h>
+#include <lib/service/iservice.h>
+#include <lib/python/python.h>
 #include <set>
 #include <queue>
 
@@ -12,6 +15,7 @@ class eDVBCICAManagerSession;
 class eDVBCIMMISession;
 class eDVBServicePMTHandler;
 class eDVBCISlot;
+class eDVBCIInterfaces;
 
 struct queueData
 {
@@ -36,26 +40,28 @@ enum data_source
 
 class eDVBCISlot: public iObject, public Object
 {
+	friend class eDVBCIInterfaces;
 DECLARE_REF(eDVBCISlot);
 private:
 	int slotid;
 	int fd;
-	void data(int);
 	eSocketNotifier *notifier;
-
 	int state;
 	std::map<uint16_t, uint8_t> running_services;
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
 	eDVBCIMMISession *mmi_session;
 	std::priority_queue<queueData> sendqueue;
-public:
-	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
+	std::set<uint16_t> possible_caids;
+	std::set<eServiceReference> possible_services;
+	std::set<std::string> possible_providers;
 	int use_count;
 	eDVBCISlot *linked_next; // needed for linked CI handling
 	data_source current_source;
 	int current_tuner;
-
+	void data(int);
+public:
+	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
 	
@@ -102,6 +108,8 @@ struct CIPmtHandler
 
 typedef std::list<CIPmtHandler> PMTHandlerList;
 
+#endif // SWIG
+
 class eDVBCIInterfaces
 {
 DECLARE_REF(eDVBCIInterfaces);
@@ -110,7 +118,9 @@ private:
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
 	PMTHandlerList m_pmt_handlers; 
+#ifndef SWIG
 public:
+#endif
 	eDVBCIInterfaces();
 	~eDVBCIInterfaces();
 
@@ -121,8 +131,6 @@ public:
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 
-	static eDVBCIInterfaces *getInstance();
-	
 	int reset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);
@@ -133,6 +141,13 @@ public:
 	int getMMIState(int slot);
 	int sendCAPMT(int slot);
 	int setInputSource(int tunerno, data_source source);
+#ifdef SWIG
+public:
+#endif
+	static eDVBCIInterfaces *getInstance();
+	int getNumOfSlots() { return m_slots.size(); }
+	PyObject *getDescrambleRules(int slotid);
+	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
 };
 
 #endif
