@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.Sources.MenuList import MenuList
+from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.Header import Header
 
@@ -11,7 +11,7 @@ class FixedMenu(Screen):
 	def __init__(self, session, title, list):
 		Screen.__init__(self, session)
 
-		self["menu"] = MenuList(list)	
+		self["menu"] = List(list)	
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{
