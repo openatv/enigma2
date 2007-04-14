@@ -2,7 +2,6 @@ from Screen import Screen
 
 from Components.ActionMap import ActionMap
 from Components.Language import language
-from Components.LanguageList import *
 from Components.config import config
 from Components.Sources.List import List
 
