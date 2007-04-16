@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-07 22:19+0100\n"
-"PO-Revision-Date: 2007-01-07 10:21+0100\n"
+"POT-Creation-Date: 2007-04-16 19:21+0200\n"
+"PO-Revision-Date: 2007-04-16 18:47+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,9 @@ msgstr "\" ?"
 msgid "#000000"
 msgstr ""
 
+msgid "#003258"
+msgstr ""
+
 msgid "#0064c7"
 msgstr ""
 
@@ -34,6 +37,9 @@ msgid "#33294a6b"
 msgstr ""
 
 msgid "#389416"
+msgstr ""
+
+msgid "#77ffffff"
 msgstr ""
 
 msgid "#80000000"
@@ -79,6 +85,12 @@ msgstr "/usr/share/enigma2 direktorie"
 msgid "/var directory"
 msgstr "/var direktorie"
 
+msgid "0"
+msgstr "0"
+
+msgid "1"
+msgstr "1"
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -109,8 +121,17 @@ msgstr "16:9 Altid"
 msgid "18 V"
 msgstr "18 V"
 
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
 msgid "30 minutes"
 msgstr "30 minutter"
+
+msgid "4"
+msgstr "4"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 BrevBox"
@@ -118,11 +139,26 @@ msgstr "4:3 BrevBox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
+msgid "5"
+msgstr "5"
+
 msgid "5 minutes"
 msgstr "5 minutter"
 
+msgid "6"
+msgstr "6"
+
 msgid "60 minutes"
 msgstr "60 minutter"
+
+msgid "7"
+msgstr "7"
+
+msgid "8"
+msgstr "8"
+
+msgid "9"
+msgstr "9"
 
 msgid "<unknown>"
 msgstr "<Ukendt>"
@@ -133,15 +169,21 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+#, fuzzy
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Sleep timeren ønsker at sætte din\n"
+"Dreambox til standby. Vil du det nu?"
 
+#, fuzzy
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"Sleep timeren ønske at slukke\n"
+"din Dreambox. Slukke nu?"
 
 msgid ""
 "A recording is currently running.\n"
@@ -163,15 +205,21 @@ msgid ""
 msgstr ""
 "En optagelse er igang. Stop, venligst denne optagelse før start af Satfinder."
 
+#, fuzzy
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Sleep timeren ønsker at sætte din\n"
+"Dreambox til standby. Vil du det nu?"
 
+#, fuzzy
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"Sleep timeren ønske at slukke\n"
+"din Dreambox. Slukke nu?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -514,6 +562,10 @@ msgstr "HDD fundet:"
 msgid "Detected NIMs:"
 msgstr "TUNERE fundet:"
 
+#, fuzzy
+msgid "Device Setup..."
+msgstr "Underkanal liste..."
+
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
@@ -612,13 +664,13 @@ msgstr ""
 "Efter tryk på OK, vent venligst!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr "Vil du se en klipliste oversigt?"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en oversigt?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "Stop ikke nuværende event men kommende events"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -730,6 +782,9 @@ msgstr "Afslut guiden"
 
 msgid "Exit wizard"
 msgstr "Afslut guide"
+
+msgid "Extended Setup..."
+msgstr "Udvidet Opsætning..."
 
 msgid "Extensions"
 msgstr "Ekstra Menu"
@@ -848,6 +903,9 @@ msgstr "For at optage via timer, er TV skiftet til optage kanal!\n"
 
 msgid "Increased voltage"
 msgstr "Øget spænding"
+
+msgid "Index"
+msgstr "Index"
 
 msgid "InfoBar"
 msgstr "InfoBjælke"
@@ -1062,6 +1120,18 @@ msgstr "Navn"
 msgid "Nameserver"
 msgstr "Navneserver"
 
+#, fuzzy, python-format
+msgid "Nameserver %d"
+msgstr "Navneserver"
+
+#, fuzzy
+msgid "Nameserver Setup"
+msgstr "Navneserver"
+
+#, fuzzy
+msgid "Nameserver Setup..."
+msgstr "Navneserver"
+
 msgid "Netmask"
 msgstr "Netmaske"
 
@@ -1135,12 +1205,18 @@ msgid ""
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Ingen gyldig kanal PIN fundet!\n"
+"Vil du skifte kanal PIN nu?\n"
+"Hvis du siger 'Nej' her vil kanal beskyttelsen være slået fra!"
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Ingen gyldig setup PIN fundet!\n"
+"Vil du gerne ændre opsætning af PIN nu?\n"
+"Hvis du siger 'Nej' her vil opsætnings beskyttelsen være slået fra!"
 
 msgid "No, do nothing."
 msgstr "Nej, gør intet."
@@ -1235,6 +1311,9 @@ msgstr "Afspil optagede film..."
 
 msgid "Please choose an extension..."
 msgstr "Vælg venligst en udvidelse..."
+
+msgid "Please do not change values when you not know what you do!"
+msgstr "Venligst skift ikke værdier når du ikke ved hvad du gør!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Indtast venligst navn for ny pakke"
@@ -1428,8 +1507,11 @@ msgstr "Gentag"
 msgid "Repeat Type"
 msgstr "Gentage type"
 
+#, fuzzy
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr ""
+"En optagelse er i gang.\n"
+"Hvad vil du gøre?"
 
 msgid "Replace current playlist"
 msgstr "Skifte nuværende spilleliste"
@@ -1475,6 +1557,9 @@ msgstr "Sat / Parabol Indstilling"
 msgid "Satellite"
 msgstr "Satellit"
 
+msgid "Satellite Equipment Setup"
+msgstr "Satellit Udstyrs Opsætning"
+
 msgid "Satellites"
 msgstr "Satellitter"
 
@@ -1501,6 +1586,9 @@ msgstr "Søg"
 
 msgid "Select HDD"
 msgstr "Vælg HDD"
+
+msgid "Select Network Adapter"
+msgstr "Vælg Netværks Adapter "
 
 msgid "Select a movie"
 msgstr "Vælg en film"
@@ -1568,6 +1656,10 @@ msgid "Setup"
 msgstr "Indstillinger"
 
 msgid "Show infobar on channel change"
+msgstr "Vis Infobar ved kanal skifte"
+
+#, fuzzy
+msgid "Show infobar on event change"
 msgstr "Vis Infobar ved kanal skifte"
 
 msgid "Show infobar on skip forward/backward"
@@ -1685,10 +1777,10 @@ msgid "Stop Timeshift?"
 msgstr "Stoppe Timeskift?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Stoppe nuværende event og slå kommende events fra"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Stoppe nuværende event men ikke kommende events"
 
 msgid "Stop playing this movie?"
 msgstr "Stoppe afspilning af denne film?"
@@ -1773,6 +1865,10 @@ msgid "The pin codes you entered are different."
 msgstr "De indtastede pin koder er forskellige."
 
 msgid "The sleep timer has been activated."
+msgstr "Sleep timeren er blevet aktiveret."
+
+#, fuzzy
+msgid "The sleep timer has been disabled."
 msgstr "Sleep timeren er blevet aktiveret."
 
 msgid ""
@@ -1958,6 +2054,9 @@ msgstr "Opdaterer Dreambox... Vent venligst"
 msgid "Use DHCP"
 msgstr "Brug (DHCP)"
 
+msgid "Use a gateway"
+msgstr "Bruge gateway"
+
 msgid "Use power measurement"
 msgstr "Brug power måling"
 
@@ -1990,6 +2089,9 @@ msgstr "Video Omskifter"
 
 msgid "VCR scart"
 msgstr "Scart / Video"
+
+msgid "View Rass interactive..."
+msgstr "Se Rass interactive..."
 
 msgid "View teletext..."
 msgstr "Se teletekst..."
@@ -2684,45 +2786,7 @@ msgstr ""
 "før du rebooter din dreambox."
 
 msgid "zap"
-msgstr "zap"
+msgstr "skift"
 
 msgid "zapped"
-msgstr "zappet"
-
-#~ msgid "0 V"
-#~ msgstr "0 V"
-
-#~ msgid "12 V"
-#~ msgstr "12 V"
-
-#~ msgid "12V Output"
-#~ msgstr "12V Udgang"
-
-#~ msgid ""
-#~ "A sleep timer want's to set your\n"
-#~ "Dreambox to standby. Do that now?"
-#~ msgstr ""
-#~ "Sleep timeren ønsker at sætte din\n"
-#~ "Dreambox til standby. Vil du det nu?"
-
-#~ msgid ""
-#~ "A sleep timer want's to shut down\n"
-#~ "your Dreambox. Shutdown now?"
-#~ msgstr ""
-#~ "Sleep timeren ønske at slukke\n"
-#~ "din Dreambox. Slukke nu?"
-
-#~ msgid "Add alternative"
-#~ msgstr "Tilføj alternativ"
-
-#~ msgid "Add service"
-#~ msgstr "Tilføj kanal"
-
-#~ msgid "Remove service"
-#~ msgstr "Fjerne kanal"
-
-#~ msgid "Select alternative service"
-#~ msgstr "Vælg alternativ kanal"
-
-#~ msgid "Select reference service"
-#~ msgstr "Vælg reference kanal"
+msgstr "skiftet"
