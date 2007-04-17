@@ -33,6 +33,9 @@ public:
 	void flush();
 	void enablePVRCommit(int);
 	
+		/* stream mode will wait on EOF until more data is available. */
+	void setStreamMode(int);
+	
 	void setScatterGather(iFilePushScatterGather *);
 	
 	enum { evtEOF, evtReadError, evtWriteError, evtUser };
@@ -52,7 +55,8 @@ private:
 	int m_buf_start, m_buf_end;
 	int m_fd_dest;
 	int m_send_pvr_commit;
-	
+	int m_stream_mode;
+
 	eRawFile m_raw_source;
 	
 	eFixedMessagePump<int> m_messagepump;
