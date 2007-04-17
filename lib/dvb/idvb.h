@@ -655,35 +655,37 @@ public:
 		/** Set Sync mode to either audio or video master */
 	virtual RESULT setSyncMaster(int who)=0;
 
-		/** Apply settings */
+		/** Apply settings with starting video */
 	virtual RESULT start()=0;
-	
+		/** Apply settings but don't start yet */
+	virtual RESULT preroll()=0;
+
 		/** Freeze frame. Either continue decoding (without display) or halt. */
 	virtual RESULT freeze(int cont)=0;
 		/** Continue after freeze. */
 	virtual RESULT unfreeze()=0;
-	
+
 		/** fast forward by skipping frames. 0 is disabled, 2 is twice-the-speed, ... */
 	virtual RESULT setFastForward(int skip=0)=0;
-	
+
 		// stop on .. Picture
 	enum { spm_I, spm_Ref, spm_Any };
 		/** Stop on specific decoded picture. For I-Frame display. */
 	virtual RESULT setSinglePictureMode(int when)=0;
-	
+
 	enum { pkm_B, pkm_PB };
 		/** Fast forward by skipping either B or P/B pictures */
 	virtual RESULT setPictureSkipMode(int what)=0;
-	
+
 		/** Slow Motion by repeating pictures */
 	virtual RESULT setSlowMotion(int repeat)=0;
 	
 	enum { zoom_Normal, zoom_PanScan, zoom_Letterbox, zoom_Fullscreen };
 		/** Set Zoom. mode *must* be fitting. */
 	virtual RESULT setZoom(int what)=0;
-	
+
 	virtual RESULT setTrickmode(int what) = 0;
-	
+
 	virtual RESULT getPTS(int what, pts_t &pts) = 0;
 
 	virtual RESULT showSinglePic(const char *filename) = 0;
