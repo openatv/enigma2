@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-19 08:30+0100\n"
+"POT-Creation-Date: 2007-04-17 14:39+0200\n"
 "PO-Revision-Date: 2006-11-07 19:34+0200\n"
 "Last-Translator: Sauli Halttu <salde@salde.net>\n"
 "Language-Team: none\n"
@@ -26,6 +26,9 @@ msgstr "\"?"
 msgid "#000000"
 msgstr ""
 
+msgid "#003258"
+msgstr ""
+
 msgid "#0064c7"
 msgstr ""
 
@@ -33,6 +36,9 @@ msgid "#33294a6b"
 msgstr ""
 
 msgid "#389416"
+msgstr ""
+
+msgid "#77ffffff"
 msgstr ""
 
 msgid "#80000000"
@@ -78,6 +84,12 @@ msgstr "/usr/share/enigma2 hakemisto"
 msgid "/var directory"
 msgstr "/var hakemisto"
 
+msgid "0"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -108,8 +120,17 @@ msgstr "16:9 aina"
 msgid "18 V"
 msgstr "18 V"
 
+msgid "2"
+msgstr ""
+
+msgid "3"
+msgstr ""
+
 msgid "30 minutes"
 msgstr "30 minuuttia"
+
+msgid "4"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Kirjelaatikko"
@@ -117,11 +138,26 @@ msgstr "4:3 Kirjelaatikko"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
+msgid "5"
+msgstr ""
+
 msgid "5 minutes"
 msgstr "5 minuuttia"
 
+msgid "6"
+msgstr ""
+
 msgid "60 minutes"
 msgstr "60 minuuttia"
+
+msgid "7"
+msgstr ""
+
+msgid "8"
+msgstr ""
+
+msgid "9"
+msgstr ""
 
 msgid "<unknown>"
 msgstr "<tuntematon>"
@@ -131,6 +167,16 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
+
+msgid ""
+"A finished record timer wants to set your\n"
+"Dreambox to standby. Do that now?"
+msgstr ""
+
+msgid ""
+"A finished record timer wants to shut down\n"
+"your Dreambox. Shutdown now?"
+msgstr ""
 
 msgid ""
 "A recording is currently running.\n"
@@ -152,12 +198,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"A sleep timer want's to set your\n"
+"A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
 
 msgid ""
-"A sleep timer want's to shut down\n"
+"A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
 
@@ -383,6 +429,12 @@ msgstr "Koodin taso korkea"
 msgid "Code rate low"
 msgstr "Koodin taso alhainen"
 
+msgid "Coderate HP"
+msgstr ""
+
+msgid "Coderate LP"
+msgstr ""
+
 msgid "Color Format"
 msgstr "Väriformaatti"
 
@@ -424,6 +476,9 @@ msgid ""
 "Connection to Fritz!Box\n"
 "failed! (%s)\n"
 "retrying..."
+msgstr ""
+
+msgid "Constellation"
 msgstr ""
 
 msgid "Contrast"
@@ -488,6 +543,9 @@ msgstr "Löytyi kiintolevy:"
 
 msgid "Detected NIMs:"
 msgstr "Löytyneet NIMit:"
+
+msgid "Device Setup..."
+msgstr ""
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -583,8 +641,14 @@ msgstr ""
 "Haluatko varmasti päivittää Dreamboxin?\n"
 "Paina OK ja odota!"
 
+msgid "Do you want to view a cutlist tutorial?"
+msgstr ""
+
 msgid "Do you want to view a tutorial?"
 msgstr "Haluatko katsoa opasohjelman?"
+
+msgid "Don't stop current event but disable coming events"
+msgstr ""
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -691,6 +755,9 @@ msgstr "Poistu velhosta"
 msgid "Exit wizard"
 msgstr "Poistu Velhosta"
 
+msgid "Extended Setup..."
+msgstr ""
+
 msgid "Extensions"
 msgstr "Laajennukset"
 
@@ -757,6 +824,9 @@ msgstr "Goto 0"
 msgid "Goto position"
 msgstr "Mene sijaintiin"
 
+msgid "Guard Interval"
+msgstr ""
+
 msgid "Guard interval mode"
 msgstr "Suoja-aika asetus"
 
@@ -768,6 +838,9 @@ msgstr "Kiintolevyn asetukset"
 
 msgid "Harddisk standby after"
 msgstr "Kiintolevyn valmiustila"
+
+msgid "Hierarchy Information"
+msgstr ""
 
 msgid "Hierarchy mode"
 msgstr "Hierarkia-tila"
@@ -800,6 +873,9 @@ msgstr "Tallennuksen onnistumiseksi, vaihdettiin tallennettavalle kanavalle!\n"
 
 msgid "Increased voltage"
 msgstr "Korotettu jännite"
+
+msgid "Index"
+msgstr ""
 
 msgid "InfoBar"
 msgstr "Tietopalkki"
@@ -1014,6 +1090,16 @@ msgstr "Nimi"
 msgid "Nameserver"
 msgstr "Nimipalvelin"
 
+#, python-format
+msgid "Nameserver %d"
+msgstr ""
+
+msgid "Nameserver Setup"
+msgstr ""
+
+msgid "Nameserver Setup..."
+msgstr ""
+
 msgid "Netmask"
 msgstr "Verkkomaski"
 
@@ -1079,6 +1165,18 @@ msgstr ""
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Yhtään viritintä ei ole määritetty käyttämään diseqc-moottoria!"
 
+msgid ""
+"No valid service PIN found!\n"
+"Do you like to change the service PIN now?\n"
+"When you say 'No' here the service protection stay disabled!"
+msgstr ""
+
+msgid ""
+"No valid setup PIN found!\n"
+"Do you like to change the setup PIN now?\n"
+"When you say 'No' here the setup protection stay disabled!"
+msgstr ""
+
 msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
 
@@ -1128,6 +1226,9 @@ msgstr "Yksi"
 msgid "Online-Upgrade"
 msgstr "Online-päivitys"
 
+msgid "Orbital Position"
+msgstr ""
+
 msgid "Other..."
 msgstr "Muu..."
 
@@ -1169,6 +1270,9 @@ msgstr "Toista tallennetut elokuvat..."
 
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
+
+msgid "Please do not change values when you not know what you do!"
+msgstr ""
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Anna uuden kanavanipun nimi"
@@ -1320,6 +1424,21 @@ msgstr ""
 msgid "Recording"
 msgstr "Tallennetaan"
 
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really reboot "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really restart "
+"now?"
+msgstr ""
+
+msgid ""
+"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"now?"
+msgstr ""
+
 msgid "Recordings always have priority"
 msgstr "Tallennuksilla on aina etuoikeus"
 
@@ -1340,6 +1459,9 @@ msgstr "Toista"
 
 msgid "Repeat Type"
 msgstr "Toiston tyyppi"
+
+msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
 
 msgid "Replace current playlist"
 msgstr "Korvaa nykyinen soittolista"
@@ -1366,6 +1488,9 @@ msgstr ""
 msgid "Right"
 msgstr "Oikea"
 
+msgid "Rolloff"
+msgstr ""
+
 msgid "Running"
 msgstr "Käytössä"
 
@@ -1383,6 +1508,9 @@ msgstr "Antenniasetukset"
 
 msgid "Satellite"
 msgstr "Satelliitti"
+
+msgid "Satellite Equipment Setup"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Satelliitit"
@@ -1410,6 +1538,9 @@ msgstr "Etsi"
 
 msgid "Select HDD"
 msgstr "Valitse kiintolevy"
+
+msgid "Select Network Adapter"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Valitse elokuva"
@@ -1474,6 +1605,9 @@ msgstr "Käyttöasetukset"
 
 msgid "Show infobar on channel change"
 msgstr "Näytä tietopalkki kanavanvaihdossa"
+
+msgid "Show infobar on event change"
+msgstr ""
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Näytä tietopalkki hypätessä ed./seur."
@@ -1589,6 +1723,12 @@ msgstr "Pysäytä"
 msgid "Stop Timeshift?"
 msgstr "Pysäytä aikasiirto?"
 
+msgid "Stop current event and disable coming events"
+msgstr ""
+
+msgid "Stop current event but not coming events"
+msgstr ""
+
 msgid "Stop playing this movie?"
 msgstr "Pysäytä elokuvan toistaminen?"
 
@@ -1631,6 +1771,9 @@ msgstr "Vaihda edelliseen alipalveluun"
 msgid "Symbol Rate"
 msgstr "Symboolinopeus"
 
+msgid "Symbolrate"
+msgstr ""
+
 msgid "System"
 msgstr "Järjestelmä"
 
@@ -1669,6 +1812,9 @@ msgid "The pin codes you entered are different."
 msgstr "Syöttämäsi pin-koodit eroavat toisistaan."
 
 msgid "The sleep timer has been activated."
+msgstr ""
+
+msgid "The sleep timer has been disabled."
 msgstr ""
 
 msgid ""
@@ -1755,11 +1901,20 @@ msgstr "Äänipurske"
 msgid "Toneburst A/B"
 msgstr "Äänipurske A/B"
 
+msgid "Transmission Mode"
+msgstr ""
+
 msgid "Transmission mode"
 msgstr "Lähetystapa"
 
 msgid "Transponder"
 msgstr "Transponderi"
+
+msgid "Transponder Type"
+msgstr ""
+
+msgid "Transpondertype"
+msgstr ""
 
 msgid "Tries left:"
 msgstr "Yrityksiä jäljellä:"
@@ -1845,6 +2000,9 @@ msgstr ""
 msgid "Use DHCP"
 msgstr "Käytä DHCP"
 
+msgid "Use a gateway"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Käytä tehonmittausta"
 
@@ -1878,6 +2036,9 @@ msgstr "VCR Vaihto"
 
 msgid "VCR scart"
 msgstr "VCR scart"
+
+msgid "View Rass interactive..."
+msgstr ""
 
 msgid "View teletext..."
 msgstr "näytä tekstitv..."
@@ -2232,6 +2393,9 @@ msgstr "täysi /etc hakemisto"
 msgid "go to deep standby"
 msgstr "mene syvään valmiustilaan"
 
+msgid "go to standby"
+msgstr ""
+
 msgid "hear radio..."
 msgstr "kuuntele radiota..."
 
@@ -2468,6 +2632,9 @@ msgstr ""
 
 msgid "show event details"
 msgstr "näytä ohjelman tarkemmat tiedot"
+
+msgid "show transponder info"
+msgstr ""
 
 msgid "shutdown"
 msgstr ""

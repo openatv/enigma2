@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-25 07:42+0100\n"
-"PO-Revision-Date: 2007-01-24 12:15+0100\n"
+"POT-Creation-Date: 2007-04-17 14:39+0200\n"
+"PO-Revision-Date: 2007-04-17 14:27+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,9 @@ msgstr "\"?"
 msgid "#000000"
 msgstr ""
 
+msgid "#003258"
+msgstr ""
+
 msgid "#0064c7"
 msgstr ""
 
@@ -39,6 +42,9 @@ msgid "#33294a6b"
 msgstr ""
 
 msgid "#389416"
+msgstr ""
+
+msgid "#77ffffff"
 msgstr ""
 
 msgid "#80000000"
@@ -84,6 +90,12 @@ msgstr "/usr/share/enigma2 bibliotek"
 msgid "/var directory"
 msgstr "/var bibliotek"
 
+msgid "0"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -114,8 +126,17 @@ msgstr "16:9 alltid"
 msgid "18 V"
 msgstr "18 V"
 
+msgid "2"
+msgstr ""
+
+msgid "3"
+msgstr ""
+
 msgid "30 minutes"
 msgstr "30 minuter"
+
+msgid "4"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -123,11 +144,26 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
+msgid "5"
+msgstr ""
+
 msgid "5 minutes"
 msgstr "5 minuter"
 
+msgid "6"
+msgstr ""
+
 msgid "60 minutes"
 msgstr "60 minuter"
+
+msgid "7"
+msgstr ""
+
+msgid "8"
+msgstr ""
+
+msgid "9"
+msgstr ""
 
 msgid "<unknown>"
 msgstr "<okänd>"
@@ -142,11 +178,15 @@ msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"En utförd inspelningstimer vill försätta din\n"
+"Dreambox i standby. Utföra det nu?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"En utförd inspelningstimer vill stänga av\n"
+"din Dreambox. Stänga av nu?"
 
 msgid ""
 "A recording is currently running.\n"
@@ -170,11 +210,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"En sovtimer vill försätta din\n"
+"Dreambox i standby. Utföra det?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"En sovtimer vill stänga av\n"
+"din Dreambox. Stänga av nu?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -400,10 +444,10 @@ msgid "Code rate low"
 msgstr "Code rate låg"
 
 msgid "Coderate HP"
-msgstr ""
+msgstr "Coderate HP"
 
 msgid "Coderate LP"
-msgstr ""
+msgstr "Coderate LP"
 
 msgid "Color Format"
 msgstr "Färgformat"
@@ -452,7 +496,7 @@ msgstr ""
 "försöker igen..."
 
 msgid "Constellation"
-msgstr ""
+msgstr "Konstellation"
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -516,6 +560,9 @@ msgstr "Hittad Hårddisk:"
 
 msgid "Detected NIMs:"
 msgstr "Hittad NIMs:"
+
+msgid "Device Setup..."
+msgstr ""
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -621,7 +668,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "Avsluta inte pågående händelse men avaktivera följande"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -734,6 +781,9 @@ msgstr "Avsluta guiden"
 msgid "Exit wizard"
 msgstr "Avsluta guiden"
 
+msgid "Extended Setup..."
+msgstr ""
+
 msgid "Extensions"
 msgstr "Utökningar"
 
@@ -803,7 +853,7 @@ msgid "Goto position"
 msgstr "Gå till position"
 
 msgid "Guard Interval"
-msgstr ""
+msgstr "Guard Intervall"
 
 msgid "Guard interval mode"
 msgstr "Guard interval läge"
@@ -818,7 +868,7 @@ msgid "Harddisk standby after"
 msgstr "Viloläge för hårddisk efter"
 
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Hierarkisk Information "
 
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
@@ -851,6 +901,9 @@ msgstr "För att göra en timerinspelning, var TV växlad till inspelad kanal!\n
 
 msgid "Increased voltage"
 msgstr "Ökad spänning"
+
+msgid "Index"
+msgstr ""
 
 msgid "InfoBar"
 msgstr "InfoBalk"
@@ -1065,6 +1118,16 @@ msgstr "Namn"
 msgid "Nameserver"
 msgstr "Namnserver"
 
+#, python-format
+msgid "Nameserver %d"
+msgstr ""
+
+msgid "Nameserver Setup"
+msgstr ""
+
+msgid "Nameserver Setup..."
+msgstr ""
+
 msgid "Netmask"
 msgstr "Nätmask"
 
@@ -1135,12 +1198,18 @@ msgid ""
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Ingen giltig kanal PIN hittad!\n"
+"Vill du ändra kanal PIN nu?\n"
+"Om du anger 'Nej' här kommer kanalskyddet vara avaktiverat!"
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Ingen giltig installations PIN hittad!\n"
+"Vill du ändra installations PIN nu?\n"
+"Om du anger 'Nej' här kommer installationsskyddet vara avaktiverat!"
 
 msgid "No, do nothing."
 msgstr "Nej, gör inget."
@@ -1192,7 +1261,7 @@ msgid "Online-Upgrade"
 msgstr "Online Uppgradering"
 
 msgid "Orbital Position"
-msgstr ""
+msgstr "Orbital Position"
 
 msgid "Other..."
 msgstr "Annat..."
@@ -1235,6 +1304,9 @@ msgstr "Spela inspelade filmer..."
 
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
+
+msgid "Please do not change values when you not know what you do!"
+msgstr ""
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Ange namn för den nya bouquet"
@@ -1390,17 +1462,19 @@ msgstr "Spelar in"
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really reboot "
 "now?"
-msgstr ""
+msgstr "Inspelning(ar) pågår eller ska snart påbörjas... verkligen reboot nu?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really restart "
 "now?"
 msgstr ""
+"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really shutdown "
 "now?"
 msgstr ""
+"Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
 
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
@@ -1424,7 +1498,7 @@ msgid "Repeat Type"
 msgstr "Repeat Typ"
 
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr ""
+msgstr "Upprepande händelse spela in... Vad vill du göra?"
 
 msgid "Replace current playlist"
 msgstr "Byt ut nuvarande spellista"
@@ -1452,7 +1526,7 @@ msgid "Right"
 msgstr "Höger"
 
 msgid "Rolloff"
-msgstr ""
+msgstr "Rolloff"
 
 msgid "Running"
 msgstr "Körandes"
@@ -1471,6 +1545,9 @@ msgstr "Sat / Parabol Installation"
 
 msgid "Satellite"
 msgstr "Satellit"
+
+msgid "Satellite Equipment Setup"
+msgstr ""
 
 msgid "Satellites"
 msgstr "Satelliter"
@@ -1498,6 +1575,9 @@ msgstr "Sök"
 
 msgid "Select HDD"
 msgstr "Välj hårddisk"
+
+msgid "Select Network Adapter"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Välj en film"
@@ -1566,6 +1646,9 @@ msgstr "Installation"
 
 msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
+
+msgid "Show infobar on event change"
+msgstr ""
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Visa infobalk vid hopp framåt/bakåt"
@@ -1682,10 +1765,10 @@ msgid "Stop Timeshift?"
 msgstr "Stoppa Timeshift?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Avsluta nuvarande händelse och följande"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Avsluta nuvarande händelse men inte kommande"
 
 msgid "Stop playing this movie?"
 msgstr "Stoppa uppspelningen?"
@@ -1730,7 +1813,7 @@ msgid "Symbol Rate"
 msgstr "Symbolrate"
 
 msgid "Symbolrate"
-msgstr ""
+msgstr "Symbolrate"
 
 msgid "System"
 msgstr "System"
@@ -1771,6 +1854,9 @@ msgstr "PIN koderna du angav är olika."
 
 msgid "The sleep timer has been activated."
 msgstr "Sovtimer har aktiverats."
+
+msgid "The sleep timer has been disabled."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1856,7 +1942,7 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Transmissions Läge"
 
 msgid "Transmission mode"
 msgstr "Sändningstyp"
@@ -1865,7 +1951,7 @@ msgid "Transponder"
 msgstr "Transponder"
 
 msgid "Transponder Type"
-msgstr ""
+msgstr "Transponder Typ"
 
 msgid "Transpondertype"
 msgstr "Transponertyp"
@@ -1954,6 +2040,9 @@ msgstr "Uppgraderar Dreambox... Vänligen vänta"
 msgid "Use DHCP"
 msgstr "Använd DHCP"
 
+msgid "Use a gateway"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
 
@@ -1986,6 +2075,9 @@ msgstr "Video switch"
 
 msgid "VCR scart"
 msgstr "Video scart"
+
+msgid "View Rass interactive..."
+msgstr ""
 
 msgid "View teletext..."
 msgstr "Visa teletext..."
@@ -2350,7 +2442,7 @@ msgid "go to deep standby"
 msgstr "Stäng av mottagaren"
 
 msgid "go to standby"
-msgstr ""
+msgstr "inta standby"
 
 msgid "hear radio..."
 msgstr "lyssna på radio..."
@@ -2592,7 +2684,7 @@ msgid "show event details"
 msgstr "visa program detaljer"
 
 msgid "show transponder info"
-msgstr ""
+msgstr "visa transponder info"
 
 msgid "shutdown"
 msgstr "stäng av"
