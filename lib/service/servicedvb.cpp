@@ -1111,7 +1111,8 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventEOF:
-		switchToLive();
+		if (!m_is_paused)
+			switchToLive();
 		break;
 	}
 }
@@ -1159,7 +1160,7 @@ RESULT eDVBServicePlay::stop()
 		/* add bookmark for last play position */
 	if (m_is_pvr)
 	{
-		pts_t play_position;
+		pts_t play_position, length;
 		if (!getPlayPosition(play_position))
 		{
 				/* remove last position */
@@ -1174,7 +1175,14 @@ RESULT eDVBServicePlay::stop()
 					++i;
 			}
 			
-			m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
+			if (getLength(length))
+				length = 0;
+
+			int perc = play_position * 100LL / length;
+			
+				/* only store last play position when between 5% and 95% */
+			if ((5 < perc) && (perc < 95))
+				m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
 			m_cuesheet_changed = 1;
 		}
 	}
@@ -2186,12 +2194,15 @@ void eDVBServicePlay::switchToTimeshift()
 
 	m_cue = new eCueSheet();
 	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
-	updateDecoder(1); /* mainly to switch off PCR, and to set pause */
+
+	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
+	pause();
+	updateDecoder(); /* mainly to switch off PCR, and to set pause */
 	
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
-void eDVBServicePlay::updateDecoder(int intopause)
+void eDVBServicePlay::updateDecoder()
 {
 	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
 
@@ -2334,7 +2345,10 @@ void eDVBServicePlay::updateDecoder(int intopause)
 		if (!m_is_primary)
 			m_decoder->setTrickmode(1);
 
-		m_decoder->start();
+		if (m_is_paused)
+			m_decoder->preroll();
+		else
+			m_decoder->start();
 
 		if (vpid > 0 && vpid < 0x2000)
 			;
