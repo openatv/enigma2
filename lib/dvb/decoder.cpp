@@ -99,6 +99,8 @@ int eDVBAudio::startPid(int pid, int type)
 	if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
 		eWarning("audio: AUDIO_SET_BYPASS_MODE: %m");
 
+	freeze();
+
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eWarning("audio: AUDIO_PLAY: %m");
 	return 0;
@@ -225,6 +227,10 @@ int eDVBVideo::startPid(int pid, int type)
 		eWarning("video: DMX_START: %m");
 		return -errno;
 	}
+
+	eDebug("FREEZE.\n");
+	freeze();
+
 	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
 		eWarning("video: VIDEO_PLAY: %m");
 	return 0;
@@ -257,12 +263,14 @@ void eDVBVideo::flush()
 
 void eDVBVideo::freeze()
 {
+	eDebug("VIDEO_FREEZE");
 	if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
 		eDebug("video: VIDEO_FREEZE: %m");
 }
 
 void eDVBVideo::unfreeze()
 {
+	eDebug("VIDEO_CONTINUE");
 	if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
 		eDebug("video: VIDEO_CONTINUE: %m");
 }
@@ -698,6 +706,16 @@ RESULT eTSMPEGDecoder::setSyncMaster(int who)
 }
 
 RESULT eTSMPEGDecoder::start()
+{
+	RESULT r;
+	r = setState();
+	if (r)
+		return r;
+	return unfreeze();
+}
+
+	/* preroll is start in freezed mode. */
+RESULT eTSMPEGDecoder::preroll()
 {
 	return setState();
 }
