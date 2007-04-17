@@ -811,17 +811,17 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		eDebug("getNextSourceSpan, no decoding demux. forcing normal play");
 		return;
 	}
-	
+
 	if (m_skipmode_n)
 	{
 		eDebug("skipmode %d:%d", m_skipmode_m, m_skipmode_n);
 		max = m_skipmode_n;
 	}
-	
+
 	eDebug("getNextSourceSpan, current offset is %08llx!", current_offset);
-	
+
 	current_offset += m_skipmode_m;
-	
+
 	while (!m_cue->m_seek_requests.empty())
 	{
 		std::pair<int, pts_t> seek = m_cue->m_seek_requests.front();
@@ -1113,6 +1113,7 @@ RESULT eDVBChannel::playFile(const char *file)
 
 	m_pvr_thread = new eFilePushThread();
 	m_pvr_thread->enablePVRCommit(1);
+	m_pvr_thread->setStreamMode(1);
 	m_pvr_thread->setScatterGather(this);
 
 	if (m_pvr_thread->start(file, m_pvr_fd_dst))
