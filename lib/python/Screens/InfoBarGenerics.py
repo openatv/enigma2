@@ -629,7 +629,9 @@ class InfoBarSeek:
 	SEEK_STATE_SM_HALF = (0, 0, 2, "/2")
 	SEEK_STATE_SM_QUARTER = (0, 0, 4, "/4")
 	SEEK_STATE_SM_EIGHTH = (0, 0, 8, "/8")
-	
+
+	SEEK_STATE_EOF = (1, 0, 0, "END")
+
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -646,6 +648,7 @@ class InfoBarSeek:
 				self.screen = screen
 				
 			def action(self, contexts, action):
+				print "action:", action
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.seekRelative(time * 90000)
@@ -684,7 +687,7 @@ class InfoBarSeek:
 		self.onPlayStateChanged = [ ]
 		
 		self.lockedBecauseOfSkipping = False
-	
+
 	def up(self):
 		pass
 	
@@ -724,6 +727,7 @@ class InfoBarSeek:
 
 	def __serviceStarted(self):
 		self.seekstate = self.SEEK_STATE_PLAY
+		self.__seekableStatusChanged()
 
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
@@ -734,23 +738,23 @@ class InfoBarSeek:
 		if not self.isSeekable():
 			if state not in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
 				state = self.SEEK_STATE_PLAY
-		
+
 		pauseable = service.pause()
 
 		if pauseable is None:
 			print "not pauseable."
 			state = self.SEEK_STATE_PLAY
-		
+
 		oldstate = self.seekstate
 		self.seekstate = state
-		
+
 		for i in range(3):
 			if oldstate[i] != self.seekstate[i]:
 				(self.session.nav.pause, pauseable.setFastForward, pauseable.setSlowMotion)[i](self.seekstate[i])
 
 		for c in self.onPlayStateChanged:
 			c(self.seekstate)
-		
+
 		self.checkSkipShowHideLock()
 
 		return True
@@ -824,7 +828,8 @@ class InfoBarSeek:
 				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
 				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
 				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER,
+				self.SEEK_STATE_EOF: self.SEEK_STATE_EOF,
 			}
 		self.setSeekState(lookup[self.seekstate])
 	
@@ -851,7 +856,8 @@ class InfoBarSeek:
 				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
 				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
 				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE
+				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE,
+				self.SEEK_STATE_EOF: self.SEEK_STATE_BACK_16X,
 			}
 		self.setSeekState(lookup[self.seekstate])
 		
@@ -896,13 +902,14 @@ class InfoBarSeek:
 				self.lockedBecauseOfSkipping = True
 
 	def __evEOF(self):
-		if self.seekstate != self.SEEK_STATE_PLAY:
-			self.setSeekState(self.SEEK_STATE_PAUSE)
-			# HACK
-			#self.getSeek().seekRelative(1, -90000)
-			self.setSeekState(self.SEEK_STATE_PLAY)
+		if self.seekstate == self.SEEK_STATE_EOF:
+			return
+		# if we are seeking, we try to end up ~1s before the end, and pause there.
+		if not self.seekstate in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+			self.setSeekState(self.SEEK_STATE_EOF)
+			self.seekRelativeToEnd(-90000)
 		else:
-			self.setSeekState(self.SEEK_STATE_PAUSE)
+			self.setSeekState(self.SEEK_STATE_EOF)
 	
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -911,7 +918,21 @@ class InfoBarSeek:
 	def seekRelative(self, diff):
 		seekable = self.getSeek()
 		if seekable is not None:
-			seekable.seekRelative(1, diff)
+			print "seekRelative: res:", seekable.seekRelative(1, diff)
+		else:
+			print "seek failed!"
+
+	def seekRelativeToEnd(self, diff):
+		assert diff <= 0, "diff is expected to be negative!"
+
+		# might sound like an evil hack, but:
+		# if we seekRelativeToEnd(0), we expect to be at the end, which is what we want,
+		# and we don't get that by passing 0 here (it would seek to begin).
+		if diff == 0:
+			diff = -1
+
+		# relative-to-end seeking is implemented as absolutes seeks with negative time
+		self.seekAbsolute(diff)
 
 	def seekAbsolute(self, abs):
 		seekable = self.getSeek()
@@ -1008,7 +1029,7 @@ class InfoBarTimeshift:
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged
 			})
-	
+
 	def getTimeshift(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
@@ -1020,7 +1041,7 @@ class InfoBarTimeshift:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
 			print "no ts interface"
 			return 0;
-		
+
 		if self.timeshift_enabled:
 			print "hu, timeshift already enabled?"
 		else:
@@ -1029,10 +1050,10 @@ class InfoBarTimeshift:
 
 				# we remove the "relative time" for now.
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
-					
+
 				# PAUSE.
 				self.setSeekState(self.SEEK_STATE_PAUSE)
-				
+
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
 				self.__seekableStatusChanged()
@@ -1061,38 +1082,41 @@ class InfoBarTimeshift:
 
 		# disable actions
 		self.__seekableStatusChanged()
-	
+
 	# activates timeshift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self):
 		ts = self.getTimeshift()
-		
+		print "activateTimeshiftEnd"
+
 		if ts is None:
 			return
-		
+
 		if ts.isTimeshiftActive():
 			print "!! activate timeshift called - but shouldn't this be a normal pause?"
 			self.pauseService()
 		else:
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			ts.activateTimeshift()
-			self.seekRelative(0)
-	
+			print "play, ..."
+			ts.activateTimeshift() # activate timeshift will automatically pause
+			self.setSeekState(self.SEEK_STATE_PAUSE)
+			self.seekRelativeToEnd(-90000) # seek approx. 1 sec before end
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
+		print "activateTimeshiftEndAndPause"
 		state = self.seekstate
 		self.activateTimeshiftEnd()
-		
-		# well, this is "andPause", but it could be pressed from pause,
-		# when pausing on the (fake-)"live" picture, so an un-pause
-		# is perfectly ok.
-		
-		print "now, pauseService"
-		if state == self.SEEK_STATE_PLAY:
-			print "is PLAYING, start pause timer"
-			self.ts_pause_timer.start(200, 1)
-		else:
-			print "unpause"
-			self.unPauseService()
+
+		## well, this is "andPause", but it could be pressed from pause,
+		## when pausing on the (fake-)"live" picture, so an un-pause
+		## is perfectly ok.
+
+		#print "now, pauseService"
+		#if state == self.SEEK_STATE_PLAY:
+		#	print "is PLAYING, start pause timer"
+		#	self.ts_pause_timer.start(200, 1)
+		#else:
+		#	print "unpause"
+		#	self.unPauseService()
 	
 	def __seekableStatusChanged(self):
 		enabled = False
