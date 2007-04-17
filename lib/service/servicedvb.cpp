@@ -1111,7 +1111,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventEOF:
-		if (!m_is_paused)
+		if ((!m_is_paused) && (m_skipmode >= 0))
 			switchToLive();
 		break;
 	}

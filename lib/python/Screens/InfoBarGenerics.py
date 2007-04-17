@@ -904,6 +904,10 @@ class InfoBarSeek:
 	def __evEOF(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
+		if self.seekstate[1] < 0: # SEEK_STATE_BACK_*X
+			print "end of stream while seeking back, ignoring."
+			return
+
 		# if we are seeking, we try to end up ~1s before the end, and pause there.
 		if not self.seekstate in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
 			self.setSeekState(self.SEEK_STATE_EOF)
@@ -1015,14 +1019,14 @@ class InfoBarTimeshift:
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
-				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "pause key"
-				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "backward key"
+				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
+				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
 			}, prio=-1) # priority over record
 
 		self.timeshift_enabled = 0
 		self.timeshift_state = 0
-		self.ts_pause_timer = eTimer()
-		self.ts_pause_timer.timeout.get().append(self.pauseService)
+		self.ts_rewind_timer = eTimer()
+		self.ts_rewind_timer.timeout.get().append(self.rewindService)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -1040,7 +1044,7 @@ class InfoBarTimeshift:
 		if ts is None:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR)
 			print "no ts interface"
-			return 0;
+			return 0
 
 		if self.timeshift_enabled:
 			print "hu, timeshift already enabled?"
@@ -1084,7 +1088,7 @@ class InfoBarTimeshift:
 		self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self):
+	def activateTimeshiftEnd(self, back = True):
 		ts = self.getTimeshift()
 		print "activateTimeshiftEnd"
 
@@ -1100,23 +1104,17 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 			self.seekRelativeToEnd(-90000) # seek approx. 1 sec before end
 
+		if back:
+			self.ts_rewind_timer.start(200, 1)
+
+	def rewindService(self):
+		self.setSeekState(self.SEEK_STATE_BACK_16X)
+
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		print "activateTimeshiftEndAndPause"
-		state = self.seekstate
-		self.activateTimeshiftEnd()
-
-		## well, this is "andPause", but it could be pressed from pause,
-		## when pausing on the (fake-)"live" picture, so an un-pause
-		## is perfectly ok.
-
-		#print "now, pauseService"
-		#if state == self.SEEK_STATE_PLAY:
-		#	print "is PLAYING, start pause timer"
-		#	self.ts_pause_timer.start(200, 1)
-		#else:
-		#	print "unpause"
-		#	self.unPauseService()
+		#state = self.seekstate
+		self.activateTimeshiftEnd(False)
 	
 	def __seekableStatusChanged(self):
 		enabled = False
