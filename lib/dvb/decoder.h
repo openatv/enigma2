@@ -132,6 +132,7 @@ public:
 	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);
 	RESULT start();
+	RESULT preroll();
 	RESULT freeze(int cont);
 	RESULT unfreeze();
 	RESULT setSinglePictureMode(int when);
