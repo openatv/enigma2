@@ -11,6 +11,8 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level)
 {
 	m_stop = 0;
 	m_sg = 0;
+	m_send_pvr_commit = 0;
+	m_stream_mode = 0;
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -128,7 +130,19 @@ void eFilePushThread::thread()
 						/* well check again */
 				continue;
 			}
+			
+				/* in stream_mode, we are sending EOF events 
+				   over and over until somebody responds.
+				   
+				   in stream_mode, think of evtEOF as "buffer underrun occured". */
 			sendEvent(evtEOF);
+
+			if (m_stream_mode)
+			{
+				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");
+				sleep(1);
+				continue;
+			}
 #if 0
 			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
 			if (!m_raw_source.lseek(0, SEEK_SET))
@@ -212,6 +226,11 @@ void eFilePushThread::flush()
 void eFilePushThread::enablePVRCommit(int s)
 {
 	m_send_pvr_commit = s;
+}
+
+void eFilePushThread::setStreamMode(int s)
+{
+	m_stream_mode = s;
 }
 
 void eFilePushThread::setScatterGather(iFilePushScatterGather *sg)
