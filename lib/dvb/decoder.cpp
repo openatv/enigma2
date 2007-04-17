@@ -40,7 +40,7 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
-	sprintf(filename, "/dev/dvb/card%d/audio%d", demux->adapter, dev);	
+	sprintf(filename, "/dev/dvb/card%d/audio%d", demux->adapter, dev);
 #else
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux->adapter, dev);
 #endif
@@ -51,14 +51,14 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 	sprintf(filename, "/dev/dvb/card%d/demux%d", demux->adapter, demux->demux);
 #else
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
-#endif	
+#endif
 	m_fd_demux = ::open(filename, O_RDWR);
 	if (m_fd_demux < 0)
 		eWarning("%s: %m", filename);
 }
-	
+
 int eDVBAudio::startPid(int pid, int type)
-{	
+{
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
@@ -78,9 +78,9 @@ int eDVBAudio::startPid(int pid, int type)
 		eWarning("audio: DMX_START: %m");
 		return -errno;
 	}
-	
+
 	int bypass = 0;
-	
+
 	switch (type)
 	{
 	case aMPEG:
@@ -95,15 +95,15 @@ int eDVBAudio::startPid(int pid, int type)
 		break;
 		*/
 	}
-	
+
 	if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
 		eWarning("audio: AUDIO_SET_BYPASS_MODE: %m");
-	
+
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eWarning("audio: AUDIO_PLAY: %m");
 	return 0;
 }
-	
+
 void eDVBAudio::stop()
 {
 	if (::ioctl(m_fd, AUDIO_STOP) < 0)
@@ -113,7 +113,7 @@ void eDVBAudio::stop()
 		eWarning("audio: DMX_STOP: %m");
 #endif
 }
-	
+
 #if HAVE_DVB_API_VERSION < 3
 void eDVBAudio::stopPid()
 {
@@ -201,7 +201,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 #define VIDEO_STREAMTYPE_MPEG4_H264 1
 
 int eDVBVideo::startPid(int pid, int type)
-{	
+{
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
@@ -229,7 +229,7 @@ int eDVBVideo::startPid(int pid, int type)
 		eWarning("video: VIDEO_PLAY: %m");
 	return 0;
 }
-	
+
 void eDVBVideo::stop()
 {
 #if HAVE_DVB_API_VERSION > 2
@@ -254,19 +254,19 @@ void eDVBVideo::flush()
 	if (::ioctl(m_fd, VIDEO_CLEAR_BUFFER) < 0)
 		eDebug("video: VIDEO_CLEAR_BUFFER: %m");
 }
-	
+
 void eDVBVideo::freeze()
 {
 	if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
 		eDebug("video: VIDEO_FREEZE: %m");
 }
-	
+
 void eDVBVideo::unfreeze()
 {
 	if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
 		eDebug("video: VIDEO_CONTINUE: %m");
 }
-	
+
 int eDVBVideo::setSlowMotion(int repeat)
 {
 	m_is_slow_motion = repeat;
@@ -283,7 +283,7 @@ int eDVBVideo::getPTS(pts_t &now)
 {
 	return ::ioctl(m_fd, VIDEO_GET_PTS, &now);
 }
-	
+
 eDVBVideo::~eDVBVideo()
 {
 	if (m_sn)
@@ -436,13 +436,13 @@ DEFINE_REF(eTSMPEGDecoder);
 int eTSMPEGDecoder::setState()
 {
 	int res = 0;
-	
+
 	int noaudio = m_is_sm || m_is_ff || m_is_trickmode;
 	int nott = noaudio; /* actually same conditions */
-	
+
 	if ((noaudio && m_audio) || (!m_audio && !noaudio))
 		m_changed |= changeAudio;
-	
+
 	if ((nott && m_text) || (!m_text && !nott))
 		m_changed |= changeText;
 
@@ -709,7 +709,7 @@ RESULT eTSMPEGDecoder::freeze(int cont)
 
 	if (m_audio)
 		m_audio->freeze();
-	
+
 	return 0;
 }
 
@@ -720,7 +720,7 @@ RESULT eTSMPEGDecoder::unfreeze()
 
 	if (m_audio)
 		m_audio->unfreeze();
-	
+
 	return 0;
 }
 
@@ -737,9 +737,9 @@ RESULT eTSMPEGDecoder::setPictureSkipMode(int what)
 RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 {
 	m_is_ff = frames_to_skip != 0;
-	
+
 	setState();
-	
+
 	if (m_video)
 		return m_video->setFastForward(frames_to_skip);
 	else
@@ -749,9 +749,9 @@ RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 {
 	m_is_sm = repeat != 0;
-	
+
 	setState();
-	
+
 	if (m_video)
 		return m_video->setSlowMotion(repeat);
 	else
@@ -903,4 +903,3 @@ void eTSMPEGDecoder::video_event(struct videoEvent event)
 {
 	/* emit */ m_video_event(event);
 }
-
