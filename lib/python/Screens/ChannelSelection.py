@@ -910,7 +910,9 @@ class ChannelSelectionBase(Screen):
 				self.enterPath(ref)
 
 	def inBouquet(self):
-		return self.isBasePathEqual(self.bouquet_root)
+		if len(self.servicePath) > 0 and self.servicePath[0] == self.bouquet_root:
+			return True
+		return False
 
 	def atBegin(self):
 		return self.servicelist.atBegin()
