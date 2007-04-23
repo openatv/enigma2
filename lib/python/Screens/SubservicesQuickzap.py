@@ -76,7 +76,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 		self.updateSubservices()
 		for x in range(self.n):
 			if service == self.subservices.getSubservice(x):
-				return self.n
+				return x
 	
 	def keyNumberGlobal(self, number):
 		print number, "pressed"
