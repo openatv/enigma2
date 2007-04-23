@@ -22,7 +22,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.onHide = [ ]
 
 		self.execing = False
-		self.shown = False
+		self.shown = True
 
 		self.renderer = [ ]
 
@@ -113,8 +113,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
 
-	def show(self):
-		if self.shown or not self.instance:
+	def show(self, force = False):
+		if (self.shown and not force) or not self.instance:
 			return
 		self.shown = True
 		self.instance.show()
