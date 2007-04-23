@@ -11,6 +11,7 @@
 
 extern "C" {
 #include <jpeglib.h>
+#include <gif_lib.h>
 //#include "transupp.h"
 }
 #include <setjmp.h>
@@ -197,9 +198,29 @@ static int jpeg_load(const char *filename, int *x, int *y)
 
 #define fill4B(a) ((4 - ((a) % 4 )) & 0x03)
 
+struct color {
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
+};
+
+static void fetch_pallete(int fd, struct color pallete[], int count)
+{
+	unsigned char buff[4];
+	lseek(fd, BMP_COLOR_OFFSET, SEEK_SET);
+	for (int i = 0; i < count; i++)
+	{
+		read(fd, buff, 4);
+		pallete[i].red = buff[2];
+		pallete[i].green = buff[1];
+		pallete[i].blue = buff[0];
+	}
+}
+
 static int bmp_load(const char *filename,  int *x, int *y)
 {
 	unsigned char buff[4];
+	struct color pallete[256];
 
 	int fd = open(filename, O_RDONLY);
 	if (fd == -1) return 0;
@@ -215,23 +236,80 @@ static int bmp_load(const char *filename,  int *x, int *y)
 	read(fd, buff, 2);
 	int bpp = buff[0] + (buff[1] << 8);
 
-	//printf("x=%d, y=%d,bpp=%d\n",*x, *y, bpp);
 	pic_buffer = new unsigned char[(*x) * (*y) * 3];
 	unsigned char *wr_buffer = pic_buffer + (*x) * ((*y) - 1) * 3;
 	
 	switch (bpp)
 	{
+		case 4:
+		{
+			int skip = fill4B((*x) / 2 + (*x) % 2);
+			fetch_pallete(fd, pallete, 16);
+			lseek(fd, raster, SEEK_SET);
+			unsigned char * tbuffer = new unsigned char[*x / 2 + 1];
+			if (tbuffer == NULL)
+				return 0;
+			for (int i = 0; i < *y; i++) 
+			{
+				read(fd, tbuffer, (*x) / 2 + *x % 2);
+				int j;
+				for (j = 0; j < (*x) / 2; j++)
+				{
+					unsigned char c1 = tbuffer[j] >> 4;
+					unsigned char c2 = tbuffer[j] & 0x0f;
+					*wr_buffer++ = pallete[c1].red;
+					*wr_buffer++ = pallete[c1].green;
+					*wr_buffer++ = pallete[c1].blue;
+					*wr_buffer++ = pallete[c2].red;
+					*wr_buffer++ = pallete[c2].green;
+					*wr_buffer++ = pallete[c2].blue;
+				}
+				if ((*x) % 2)
+				{
+					unsigned char c1 = tbuffer[j] >> 4;
+					*wr_buffer++ = pallete[c1].red;
+					*wr_buffer++ = pallete[c1].green;
+					*wr_buffer++ = pallete[c1].blue;
+				}
+				if (skip)
+					read(fd, buff, skip);
+				wr_buffer -= (*x) * 6;
+			}
+			break;
+		}
+		case 8:
+		{
+			int skip = fill4B(*x);
+			fetch_pallete(fd, pallete, 256);
+			lseek(fd, raster, SEEK_SET);
+			unsigned char * tbuffer = new unsigned char[*x];
+			if (tbuffer == NULL)
+				return 0;
+			for (int i = 0; i < *y; i++)
+			{
+				read(fd, tbuffer, *x);
+				for (int j = 0; j < *x; j++)
+				{
+					wr_buffer[j * 3] = pallete[tbuffer[j]].red;
+					wr_buffer[j * 3 + 1] = pallete[tbuffer[j]].green;
+					wr_buffer[j * 3 + 2] = pallete[tbuffer[j]].blue;
+				}
+				if (skip)
+					read(fd, buff, skip);
+				wr_buffer -= (*x) * 3;
+			}
+			break;
+		}
 		case 24:
 		{
 			int skip = fill4B((*x) * 3);
 			lseek(fd, raster, SEEK_SET);
-			unsigned char c;
-			for (int i = 0; i < (*y); i++) 
+			for (int i = 0; i < (*y); i++)
 			{
 				read(fd, wr_buffer, (*x) * 3);
 				for (int j = 0; j < (*x) * 3 ; j = j + 3)
 				{
-					c = wr_buffer[j];
+					unsigned char c = wr_buffer[j];
 					wr_buffer[j] = wr_buffer[j + 2];
 					wr_buffer[j + 2] = c;
 				}
@@ -332,6 +410,118 @@ static int png_load(const char *filename,  int *x, int *y)
 	return 1;
 }
 
+//-------------------------------------------------------------------
+
+inline void m_rend_gif_decodecolormap(unsigned char *cmb, unsigned char *rgbb, ColorMapObject *cm, int s, int l)
+{
+	GifColorType *cmentry;
+	int i;
+	for (i = 0; i < l; i++)
+	{
+		cmentry = &cm->Colors[cmb[i]];
+		*(rgbb++) = cmentry->Red;
+		*(rgbb++) = cmentry->Green;
+		*(rgbb++) = cmentry->Blue;
+	}
+}
+
+static int gif_load(const char *filename, int *x, int *y)
+{
+	int px, py, i, j, ibxs;
+	unsigned char *fbptr;
+	unsigned char *lb=NULL;
+	unsigned char *slb=NULL;
+	GifFileType *gft;
+	GifRecordType rt;
+	GifByteType *extension;
+	ColorMapObject *cmap;
+	int cmaps;
+	int extcode;
+	
+	gft = DGifOpenFileName(filename);
+	if (gft == NULL) 
+		return 0;
+	do
+	{
+		if (DGifGetRecordType(gft, &rt) == GIF_ERROR)
+			goto ERROR_R;
+		switch(rt)
+		{
+			case IMAGE_DESC_RECORD_TYPE:
+				if (DGifGetImageDesc(gft) == GIF_ERROR)
+					goto ERROR_R;
+				*x = px = gft->Image.Width;
+				*y = py = gft->Image.Height;
+				pic_buffer = new unsigned char[px * py * 3];
+				lb = (unsigned char *)malloc(px * 3);
+				slb = (unsigned char *) malloc(px);
+
+				if (lb != NULL && slb != NULL)
+				{
+					cmap = (gft->Image.ColorMap ? gft->Image.ColorMap : gft->SColorMap);
+					cmaps = cmap->ColorCount;
+
+					ibxs = ibxs * 3;
+					fbptr = pic_buffer;
+					if (!(gft->Image.Interlace))
+					{
+						for (i = 0; i < py; i++, fbptr += px * 3)
+						{
+							if (DGifGetLine(gft, slb, px) == GIF_ERROR)
+								goto ERROR_R;
+							m_rend_gif_decodecolormap(slb, lb, cmap, cmaps, px);
+							memcpy(fbptr, lb, px * 3);
+						}
+					}
+					else
+					{
+						for (j = 0; j < 4; j++)
+						{
+							fbptr = pic_buffer;
+							for (i = 0; i < py; i++, fbptr += px * 3)
+							{
+								if (DGifGetLine(gft, slb, px) == GIF_ERROR)
+									goto ERROR_R;
+								m_rend_gif_decodecolormap(slb, lb, cmap, cmaps, px);
+								memcpy(fbptr, lb, px * 3);
+							}
+						}
+					}
+				}
+				if (lb)
+				{
+					free(lb);
+					lb=NULL;
+				}
+				if (slb)
+				{
+					free(slb);
+					slb=NULL;
+				}
+				break;
+			case EXTENSION_RECORD_TYPE:
+				if (DGifGetExtension(gft, &extcode, &extension) == GIF_ERROR)
+					goto ERROR_R;
+				while (extension != NULL)
+					if (DGifGetExtensionNext(gft, &extension) == GIF_ERROR)
+						goto ERROR_R;
+				break;
+			default:
+				break;
+		}
+	}
+	while (rt != TERMINATE_RECORD_TYPE);
+
+	DGifCloseFile(gft);
+	return 1;
+ERROR_R:
+	eDebug("[GIF] Error");
+	if (lb) 	free(lb);
+	if (slb) 	free(slb);
+	DGifCloseFile(gft);
+	return 0;
+}
+
 //---------------------------------------------------------------------------------------------
 
 PyObject *getExif(const char *filename)
@@ -393,6 +583,29 @@ PyObject *getExif(const char *filename)
 }
 
 //---------------------------------------------------------------------------------------------
+enum {F_NONE, F_PNG, F_JPEG, F_BMP, F_GIF};
+
+static int pic_id(const char *name)
+{
+	unsigned char id[10];
+	int fd = open(name, O_RDONLY); 
+	if (fd == -1) 
+		return F_NONE;
+	read(fd, id, 10);
+	close(fd);
+
+	if(id[1] == 'P' && id[2] == 'N' && id[3] == 'G')
+		return F_PNG;
+	else if(id[6] == 'J' && id[7] == 'F' && id[8] == 'I' && id[9] == 'F')
+		return F_JPEG;
+	else if(id[0] == 0xff && id[1] == 0xd8 && id[2] == 0xff) 
+		return F_JPEG;
+	else if(id[0] == 'B' && id[1] == 'M' )
+		return F_BMP;
+	else if(id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
+		return F_GIF;
+	return F_NONE;
+}
 
 int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspect, int resize_mode, int rotate, int background, std::string cachefile)
 {
@@ -410,21 +623,15 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 
 	if(pic_buffer==NULL)
 	{
-		unsigned int pos = filename.find_last_of(".");
-		if (pos == std::string::npos)
-			pos = filename.length() - 1;
-		std::string ext = filename.substr(pos);
-		std::transform(ext.begin(), ext.end(), ext.begin(), (int(*)(int)) toupper);
-		if(ext == ".JPEG" || ext == ".JPG")
-			jpeg_load(filename.c_str(), &ox, &oy);
-		else if(ext == ".BMP")
-			bmp_load(filename.c_str(), &ox, &oy);
-		else if(ext == ".PNG")
-			png_load(filename.c_str(), &ox, &oy);
-		else
+		switch(pic_id(filename.c_str()))
 		{
-			eDebug("[PIC] <format not supportet>");
-			return 0;
+			case F_PNG:	png_load(filename.c_str(), &ox, &oy); break;
+			case F_JPEG:	jpeg_load(filename.c_str(), &ox, &oy); break;
+			case F_BMP:	bmp_load(filename.c_str(), &ox, &oy); break;
+			case F_GIF:	gif_load(filename.c_str(), &ox, &oy); break;
+			default:
+				eDebug("[PIC] <format not supportet>");
+				return 0;
 		}
 	
 		eDebug("[FULLPIC] x-size=%d, y-size=%d", ox, oy);
