@@ -403,46 +403,84 @@ AC_DEFUN([AC_PROG_EGREP],
 ])
 
 AC_DEFUN([AC_PYTHON_DEVEL],[
-        #
-        # should allow for checking of python version here...
-        #
-        AC_REQUIRE([AM_PATH_PYTHON])
+	#
+	# should allow for checking of python version here...
+	#
+	if test $cross_compiling = "yes"; then
+		# Check for Python include path
+		AC_MSG_CHECKING([for Python include path])
+		
+		# FIXME: yes, this is wrong. sorry about that. (tmbinc)
+		cross_PYTHON_VERSION=$PYTHON_VERSION
+		python_path=
+		for i in $CPPFLAGS ; do
+			p=`echo $i | sed "s,^-I,,"`
+			if test -f "$p/python$cross_PYTHON_VERSION/Python.h"; then
+				python_path="$p/python$cross_PYTHON_VERSION"
+				break
+			fi
+		done
+		AC_MSG_RESULT([$python_path])
+		if test -z "$python_path" ; then
+						AC_MSG_ERROR([cannot find Python include path])
+		fi
+		AC_SUBST([PYTHON_CPPFLAGS],[-I$python_path])
 
-        # Check for Python include path
-        AC_MSG_CHECKING([for Python include path])
-        # FIXME:
-        # we hardcode for i686 host and mipsel target here.
-        # the whole thing is broken. fix this.
-        python_path=`echo $PYTHON | sed "s,/bin.*$,," | sed "s,i686,mipsel,"`
-        for i in "$python_path/include/python$PYTHON_VERSION/" "$python_path/include/python/" "$python_path/" ; do
-                python_path=`find $i -type f -name Python.h -print | sed "1q"`
-                if test -n "$python_path" ; then
-                        break
-                fi
-        done
-        python_path=`echo $python_path | sed "s,/Python.h$,,"`
-        AC_MSG_RESULT([$python_path])
-        if test -z "$python_path" ; then
-                AC_MSG_ERROR([cannot find Python include path])
-        fi
-        AC_SUBST([PYTHON_CPPFLAGS],[-I$python_path])
+		# Check for Python library path
+		AC_MSG_CHECKING([for Python library path])
+		python_path=
+		for i in $LDFLAGS; do
+			l=`echo $i | sed "s,^-L,,"`
+			python_path=`find $l -type f -name libpython$cross_PYTHON_VERSION.* -print | sed "1q"`
+			if test -n "$python_path" ; then
+				break
+			fi
+		done
+		python_path=`echo $python_path | sed "s,/libpython.*$,,"`
+		AC_MSG_RESULT([$python_path])
+		if test -z "$python_path" ; then
+						AC_MSG_ERROR([cannot find Python library path])
+		fi
+		AC_SUBST([PYTHON_LDFLAGS],["-L$python_path -lpython$cross_PYTHON_VERSION"])
+		#
+		python_site=`echo $python_path | sed "s/config/site-packages/"`
+		AC_SUBST([PYTHON_SITE_PKG],[$python_site])
+	else
+		AC_REQUIRE([AM_PATH_PYTHON])
 
-        # Check for Python library path
-        AC_MSG_CHECKING([for Python library path])
-        python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
-        for i in "$python_path/lib/python$PYTHON_VERSION/config/" "$python_path/lib/python$PYTHON_VERSION/" "$python_path/lib/python/config/" "$python_path/lib/python/" "$python_path/" ; do
-                python_path=`find $i -type f -name libpython$PYTHON_VERSION.* -print | sed "1q"`
-                if test -n "$python_path" ; then
-                        break
-                fi
-        done
-        python_path=`echo $python_path | sed "s,/libpython.*$,,"`
-        AC_MSG_RESULT([$python_path])
-        if test -z "$python_path" ; then
-                AC_MSG_ERROR([cannot find Python library path])
-        fi
-        AC_SUBST([PYTHON_LDFLAGS],["-L$python_path -lpython$PYTHON_VERSION"])
-        #
-        python_site=`echo $python_path | sed "s/config/site-packages/"`
-        AC_SUBST([PYTHON_SITE_PKG],[$python_site])
+		# Check for Python include path
+		AC_MSG_CHECKING([for Python include path])
+		python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
+		for i in "$python_path/include/python$PYTHON_VERSION/" "$python_path/include/python/" "$python_path/" ; do
+			python_path=`find $i -type f -name Python.h -print | sed "1q"`
+			if test -n "$python_path" ; then
+				break
+			fi
+		done
+		python_path=`echo $python_path | sed "s,/Python.h$,,"`
+		AC_MSG_RESULT([$python_path])
+		if test -z "$python_path" ; then
+			AC_MSG_ERROR([cannot find Python include path])
+		fi
+		AC_SUBST([PYTHON_CPPFLAGS],[-I$python_path])
+
+		# Check for Python library path
+		AC_MSG_CHECKING([for Python library path])
+		python_path=`echo $PYTHON | sed "s,/bin.*$,,"`
+		for i in "$python_path/lib/python$PYTHON_VERSION/config/" "$python_path/lib/python$PYTHON_VERSION/" "$python_path/lib/python/config/" "$python_path/lib/python/" "$python_path/" ; do
+			python_path=`find $i -type f -name libpython$PYTHON_VERSION.* -print | sed "1q"`
+			if test -n "$python_path" ; then
+				break
+			fi
+		done
+		python_path=`echo $python_path | sed "s,/libpython.*$,,"`
+		AC_MSG_RESULT([$python_path])
+		if test -z "$python_path" ; then
+			AC_MSG_ERROR([cannot find Python library path])
+		fi
+		AC_SUBST([PYTHON_LDFLAGS],["-L$python_path -lpython$PYTHON_VERSION"])
+		#
+		python_site=`echo $python_path | sed "s/config/site-packages/"`
+		AC_SUBST([PYTHON_SITE_PKG],[$python_site])
+	fi
 ])
