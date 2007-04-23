@@ -12,26 +12,26 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.skinName = self.__class__.__name__
 		self.session = session
 		GUISkin.__init__(self)
-		
+
 		self.onClose = [ ]
 		self.onFirstExecBegin = [ ]
 		self.onExecBegin = [ ]
 		self.onShown = [ ]
-		
+
 		self.onShow = [ ]
 		self.onHide = [ ]
-		
+
 		self.execing = False
 		self.shown = False
-		
+
 		self.renderer = [ ]
-		
+
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
 		self.helpList = [ ]
-		
+
 		self.close_on_next_exec = None
-		
+
 		# stand alone screens (for example web screens)
 		# don't care about having or not having focus.
 		self.stand_alone = False
@@ -114,7 +114,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.instance.setFocus(o.instance)
 
 	def show(self):
-		if self.shown:
+		if self.shown or not self.instance:
 			return
 		self.shown = True
 		self.instance.show()
@@ -125,7 +125,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 				val.onShow()
 
 	def hide(self):
-		if not self.shown:
+		if not self.shown or not self.instance:
 			return
 		self.shown = False
 		self.instance.hide()
