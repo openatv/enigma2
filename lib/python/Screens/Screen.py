@@ -22,7 +22,10 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.onHide = [ ]
 
 		self.execing = False
+		
 		self.shown = True
+		# already shown is false until the screen is really shown (after creation)
+		self.already_shown = False
 
 		self.renderer = [ ]
 
@@ -113,10 +116,11 @@ class Screen(dict, HTMLSkin, GUISkin):
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
 
-	def show(self, force = False):
-		if (self.shown and not force) or not self.instance:
+	def show(self):
+		if (self.shown and self.already_shown) or not self.instance:
 			return
 		self.shown = True
+		self.already_shown = True
 		self.instance.show()
 		for x in self.onShow:
 			x()
