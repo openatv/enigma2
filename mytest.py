@@ -173,11 +173,7 @@ class Session:
 
 		# when execBegin opened a new dialog, don't bother showing the old one.
 		if c == self.current_dialog and do_show:
-			# this is the first show() for each screen.
-			# screen.shown is already true, because that resembles the state 
-			# ("not-yet-shown-but-will-be-shown") best, so c.show() would just do nothing.
-			# show(force=True) will show in any case.
-			c.show(force = True)
+			c.show()
 
 	def execEnd(self, last=True):
 		assert self.in_exec
