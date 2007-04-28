@@ -671,7 +671,7 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
 	config.sec.delay_after_toneburst = x
 
-	x = ConfigInteger(default=120, limits = (0, 9999))
+	x = ConfigInteger(default=750, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
 	config.sec.delay_after_enable_voltage_before_switch_command = x
 
