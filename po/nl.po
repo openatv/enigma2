@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
-"PO-Revision-Date: 2006-12-22 14:02+0100\n"
-"Last-Translator: Kees Aerts <aerts11@planet.nl>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2007-04-29 20:24+0200\n"
+"PO-Revision-Date: 2007-04-20 00:01+0100\n"
+"Last-Translator: Michel Weeren <michel@weeren.net>\n"
+"Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,18 +23,16 @@ msgid ""
 "Enigma2 will restart after the restore"
 msgstr ""
 "\n"
-"Enigma2 moet herstarten na de restore."
+"Enigma2 zal na herstelling herstarten."
 
 msgid "\"?"
-msgstr ""
-"\" echt\n"
-"downloaden?"
+msgstr "\" downloaden?"
 
 msgid "#000000"
 msgstr "#000000"
 
 msgid "#003258"
-msgstr ""
+msgstr "#003258"
 
 msgid "#0064c7"
 msgstr "#0064c7"
@@ -46,7 +44,7 @@ msgid "#389416"
 msgstr "#389416"
 
 msgid "#77ffffff"
-msgstr ""
+msgstr "#77ffffff"
 
 msgid "#80000000"
 msgstr "#80000000"
@@ -86,16 +84,16 @@ msgid "(ZAP)"
 msgstr "(ZAP)"
 
 msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 Directory"
+msgstr "/usr/share/enigma2 map"
 
 msgid "/var directory"
-msgstr "/var Directory"
+msgstr "/var map"
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 msgid "1"
-msgstr ""
+msgstr "1"
 
 msgid "1.0"
 msgstr "1.0"
@@ -122,22 +120,22 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 always"
-msgstr "16:9 altijd"
+msgstr "Altijd 16:9"
 
 msgid "18 V"
 msgstr "18 V"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
 msgid "30 minutes"
 msgstr "30 minuten"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -146,25 +144,25 @@ msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "5"
-msgstr ""
+msgstr "5"
 
 msgid "5 minutes"
 msgstr "5 minuten"
 
 msgid "6"
-msgstr ""
+msgstr "6"
 
 msgid "60 minutes"
 msgstr "60 minuten"
 
 msgid "7"
-msgstr ""
+msgstr "7"
 
 msgid "8"
-msgstr ""
+msgstr "8"
 
 msgid "9"
-msgstr ""
+msgstr "9"
 
 msgid "<unknown>"
 msgstr "<onbekend>"
@@ -179,11 +177,15 @@ msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Een afgelopen timer opname wil uw dreambox\n"
+"in standby-stand schakelen. Wilt u dit toestaan?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"Een afgelopen timer opname wil uw dreambox\n"
+"in slaapstand schakelen. Wilt u dit toestaan?"
 
 msgid ""
 "A recording is currently running.\n"
@@ -196,34 +198,39 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"Er is een opname bezig. Stop die eerst aub voordat u probeert de rotor "
-"settings te wijzigen."
+"U bent aan het opnemen. Stop eerst de opname voordat u probeert de rotor "
+"instellingen te wijzigen."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"U bent aan het opnemen. Stop alstublieft de opname voor u de satfinder start."
+"U bent aan het opnemen. Stop eerst de opname voordat u de signaalmeting "
+"start."
 
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"De slaaptimer wil uw dreambox in standby\n"
+"stand schakelen. Wilt u dit toestaan?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"De slaaptimer wil uw dreambox uit-\n"
+"schakelen. Wilt u dit toestaan?"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
 "Timer opname mislukt!\n"
-"Verander van TV programma en probeer opnieuw?\n"
+"Verander van zender en probeer opnieuw.\n"
 
 msgid "A/V Settings"
-msgstr "AV Instellingen"
+msgstr "AV instellingen"
 
 msgid "AA"
 msgstr "AA"
@@ -232,40 +239,40 @@ msgid "AB"
 msgstr "AB"
 
 msgid "AC3 default"
-msgstr "AC3 default"
+msgstr "Standaard AC3"
 
 msgid "AGC:"
 msgstr "AGC:"
 
 msgid "About"
-msgstr "Over"
+msgstr "Uw Dreambox"
 
 msgid "About..."
-msgstr "Over..."
+msgstr "Uw Dreambox"
 
 msgid "Activate Picture in Picture"
-msgstr "Activeer PIP"
+msgstr "Activeer Picture In Picture"
 
 msgid "Activate network settings"
-msgstr "Activeer netwerk instellingen"
+msgstr "Activeer netwerkinstellingen"
 
 msgid "Add"
 msgstr "Toevoegen"
 
 msgid "Add a mark"
-msgstr "Zet merktpunt"
+msgstr "Plaats markering"
 
 msgid "Add files to playlist"
-msgstr "Voeg bestanden toe aan afspeellijst"
+msgstr "Voeg bestanden toe aan de afspeellijst"
 
 msgid "Add timer"
-msgstr "Instellen timer"
+msgstr "Timer"
 
 msgid "Add to bouquet"
-msgstr "Boeket toevoegen"
+msgstr "Aan boeket toevoegen"
 
 msgid "Add to favourites"
-msgstr "Favorieten toevoegen"
+msgstr "Aan favorieten toevoegen"
 
 msgid "Advanced"
 msgstr "Expert"
@@ -277,8 +284,8 @@ msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
-"Wanneer de start wizard klaar is, kan u een kanaal beveiligen. Kijk in de "
-"dreambox handleiding hoe dat moet."
+"Zodra de installatiewizard gereed is, kunt u een zender beveiligen. "
+"Raadpleeg de handleiding voor aanwijzigingen."
 
 msgid "Album:"
 msgstr "Album:"
@@ -293,19 +300,19 @@ msgid "Alpha"
 msgstr "Transparantie"
 
 msgid "Alternative radio mode"
-msgstr "Alternative radio mode"
+msgstr "Alternative radio modus"
 
 msgid "Arabic"
 msgstr "Arabisch"
 
 msgid "Artist:"
-msgstr "Artist:"
+msgstr "Artiest:"
 
 msgid "Ask before shutdown:"
-msgstr "Eerst vragen om uit te zetten:"
+msgstr "Slaaptimer actie bevestigen:"
 
 msgid "Aspect Ratio"
-msgstr "Aspect ratio"
+msgstr "Beeldverhouding"
 
 msgid "Audio"
 msgstr "Audio"
@@ -335,13 +342,13 @@ msgid "Backup"
 msgstr "Backup"
 
 msgid "Backup Location"
-msgstr "Backup Locatie"
+msgstr "Backup locatie"
 
 msgid "Backup Mode"
-msgstr "Backup Mode"
+msgstr "Backup modus"
 
 msgid "Backup is done. Please press OK to see the result."
-msgstr "Backup is gemaakt. Druk op OK om de resultaten te zien."
+msgstr "Backup is voltooid. Druk op OK om de resultaten te zien."
 
 msgid "Band"
 msgstr "Band"
@@ -359,7 +366,7 @@ msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
 msgstr ""
-"Door op de OK Knop van de afstandsbediening te drukken, word de infobar "
+"Door op de OK Knop van de afstandsbediening te drukken, word de infobalk "
 "zichtbaar."
 
 msgid "C-Band"
@@ -375,16 +382,16 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr "Cache Thumbnails"
+msgstr "Miniatuurafbeeldingen cachen"
 
 msgid "Call monitoring"
 msgstr "Bel monitor"
 
 msgid "Cancel"
-msgstr "Stoppen"
+msgstr "Annuleren"
 
 msgid "Capacity: "
-msgstr "Grootte schijf: "
+msgstr "Capaciteit: "
 
 msgid "Card"
 msgstr "Kaart"
@@ -393,31 +400,31 @@ msgid "Catalan"
 msgstr "Catalaans"
 
 msgid "Change bouquets in quickzap"
-msgstr "Verander van boeket in quickzap"
+msgstr "Verander van boeket tijdens zappen"
 
 msgid "Change pin code"
 msgstr "Verander pincode"
 
 msgid "Change service pin"
-msgstr "Verander service pin"
+msgstr "Wijzig zender pincode"
 
 msgid "Change service pins"
-msgstr "Verander service pins"
+msgstr "Wijzig zender pincode"
 
 msgid "Change setup pin"
-msgstr "Verander setup pin"
+msgstr "Wijzig menu pincode"
 
 msgid "Channel"
 msgstr "Kanaal"
 
 msgid "Channel Selection"
-msgstr "Kanaallijst"
+msgstr "Zenderkeuze"
 
 msgid "Channel:"
-msgstr "Kanaal:"
+msgstr "Zender:"
 
 msgid "Channellist menu"
-msgstr "Kanaallijst menu"
+msgstr "Zenderlijst menu"
 
 msgid "Choose bouquet"
 msgstr "Kies boeket"
@@ -429,7 +436,7 @@ msgid "Cleanup"
 msgstr "Opruimen"
 
 msgid "Clear before scan"
-msgstr "Wissen, voor zoeken?"
+msgstr "Vóór zoeken alle zenders wissen?"
 
 msgid "Clear log"
 msgstr "Log wissen"
@@ -441,13 +448,13 @@ msgid "Code rate low"
 msgstr "Lage ontvangst rate"
 
 msgid "Coderate HP"
-msgstr ""
+msgstr "Coderate HP"
 
 msgid "Coderate LP"
-msgstr ""
+msgstr "Coderate LP"
 
 msgid "Color Format"
-msgstr "Kleur formaat"
+msgstr "Beeldinstelling"
 
 msgid "Command order"
 msgstr "Commando volgorde"
@@ -468,10 +475,10 @@ msgid "Complete"
 msgstr "Compleet"
 
 msgid "Configuration Mode"
-msgstr "Configuratie mode"
+msgstr "Configuratie modus"
 
 msgid "Configuring"
-msgstr "Configuring"
+msgstr "Configureren"
 
 msgid "Conflicting timer"
 msgstr "Timer conflict!"
@@ -493,16 +500,16 @@ msgstr ""
 "probeer opnieuw..."
 
 msgid "Constellation"
-msgstr ""
+msgstr "Constellatie"
 
 msgid "Contrast"
 msgstr "Contrast"
 
 msgid "Create movie folder failed"
-msgstr "Maken van film folder is mislukt"
+msgstr "Aanmaken van de film map is mislukt"
 
 msgid "Creating partition failed"
-msgstr "Maken van partitie is mislukt"
+msgstr "Aanmaken van de partitie is mislukt"
 
 msgid "Croatian"
 msgstr "Kroatisch"
@@ -535,7 +542,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Deep Standby"
-msgstr "Uitzetten"
+msgstr "Slaapstand"
 
 msgid "Delay"
 msgstr "Vertraging"
@@ -550,16 +557,16 @@ msgid "Delete failed!"
 msgstr "Verwijderen mislukt!"
 
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "Omschrijving"
 
 msgid "Detected HDD:"
-msgstr "Gevonden harde schijf:"
+msgstr "Gedetecteerde harde schijf:"
 
 msgid "Detected NIMs:"
-msgstr "Gevonden Tuners:"
+msgstr "Gedetecteerde tuners:"
 
 msgid "Device Setup..."
-msgstr ""
+msgstr "Device Setup..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -571,10 +578,10 @@ msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
 msgid "DiSEqC Mode"
-msgstr "DiSEqC-Mode"
+msgstr "DiSEqC-modus"
 
 msgid "DiSEqC mode"
-msgstr "DiSEqC-Mode"
+msgstr "DiSEqC-modus"
 
 msgid "DiSEqC repeats"
 msgstr "DiSEqC herhaling"
@@ -583,13 +590,13 @@ msgid "Disable"
 msgstr "Uit"
 
 msgid "Disable Picture in Picture"
-msgstr "Deactiveer PIP"
+msgstr "Picture In Picture uitschakelen"
 
 msgid "Disable Subtitles"
-msgstr "Ondertitels Uit"
+msgstr "Ondertitels uit"
 
 msgid "Disabled"
-msgstr "Uitgeschakeld"
+msgstr "Gedeactiveerd"
 
 #, python-format
 msgid ""
@@ -597,65 +604,68 @@ msgid ""
 "Fritz!Box! (%s)\n"
 "retrying..."
 msgstr ""
-"Verbinding verbroken met\n"
-"Fritz!Box! (%s)\n"
+"Verbinding metFritz!Box\n"
+"verbroken! (%s)\n"
 "probeer opnieuw..."
 
 msgid "Dish"
 msgstr "Schotel"
 
+msgid "Display Setup"
+msgstr ""
+
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
 msgstr ""
-"Wilt u werkelijk de PLUGIN\n"
-"verwijderen \""
+"Wilt u deze applicatie echt\n"
+"verwijderen? \""
 
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr "Wilt u echt %s wissen?"
+msgstr "Wilt u %s echt wissen?"
 
 msgid ""
 "Do you really want to download\n"
 "the plugin \""
 msgstr ""
-"Wilt u de Plugin met de\n"
-"Naam \""
+"Wilt u dit bestand echt\n"
+"downloaden \""
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Wilt u echt de harde schijf formatteren?\n"
-"Alle data op de harde schijf gaat dan verloren!"
+"Weet u zeker dat u de harde schijf wilt formatteren?\n"
+"Alle gegevens op de harde schijf gaat dan verloren!"
 
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Wilt u nu een backup maken?\n"
-"Druk op OK, en een ogenblik geduld!"
+"Druk op OK en een ogenblik geduld!"
 
 msgid "Do you want to do a service scan?"
-msgstr "Wilt u nu naar kanalen zoeken?"
+msgstr "Wilt u nu zenders zoeken?"
 
 msgid "Do you want to do another manual service scan?"
 msgstr "Wilt u opnieuw handmatig zoeken?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "Wilt u het kinderslot aanzetten op uw dreambox?"
+msgstr "Wilt u het kinderslot van uw dreambox activeren?"
 
 msgid "Do you want to restore your settings?"
-msgstr "Wilt u uw settings nu terugzetten?"
+msgstr "Wilt u uw instelingen nu terugzetten?"
 
 msgid "Do you want to resume this playback?"
-msgstr "Wilt u deze opname verder afspelen?"
+msgstr "Wilt u het afspelen vervolgen?"
 
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Wilt u de Dreambox opwaarderen?\n"
+"Wilt u de Dreambox software vernieuwen?\n"
 "Druk op OK en een ogenblik geduld!"
 
 msgid "Do you want to view a cutlist tutorial?"
@@ -665,30 +675,30 @@ msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr "Klaar - %d paket(ten) geinstalleerd of opgewaardeerd"
+msgstr "Klaar - %d paket(ten) geïnstalleerd of vervangen"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Klaar - %d paket(ten) geinstalleerd of opgewaardeerd met %d fouten"
+msgstr "Klaar - %d paket(ten) geïnstalleerd of vervangen. %d fout(en)"
 
 msgid "Download Plugins"
-msgstr "Download Plugins"
+msgstr "Downloaden"
 
 msgid "Downloadable new plugins"
-msgstr "Downloadbare nieuwe plugins"
+msgstr "Beschikbare nieuwe applicaties"
 
 msgid "Downloadable plugins"
-msgstr "Downloadbare plugins"
+msgstr "Beschikbare applicaties"
 
 msgid "Downloading"
 msgstr "Downloading"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Binnenhalen plugin informatie. Een ogenblik aub..."
+msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 msgid "Dutch"
 msgstr "Nederlands"
@@ -697,7 +707,7 @@ msgid "E"
 msgstr "O"
 
 msgid "EPG Selection"
-msgstr "EPG Selectie"
+msgstr "EPG selectie"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -707,16 +717,16 @@ msgid "East"
 msgstr "Oost"
 
 msgid "Edit services list"
-msgstr "Wijzig kanaallijst"
+msgstr "Wijzig zenderlijst"
 
 msgid "Enable"
 msgstr "Aan"
 
 msgid "Enable 5V for active antenna"
-msgstr "5V aan voor actieve antenne"
+msgstr "5V voor actieve antenne aanschakelen"
 
 msgid "Enable multiple bouquets"
-msgstr "Laat meerdere boeketten toe"
+msgstr "Meerdere boeketten toestaan"
 
 msgid "Enable parental control"
 msgstr "Zet kinderslot aan"
@@ -743,16 +753,16 @@ msgid ""
 msgstr ""
 "Enigma2 Skinselector v0.5 BETA\n"
 "\n"
-"Als u problemen heeft kunt u kontakt opnemen met\n"
-"stephan@reichholf.net\n"
+"Als u problemen ondervind kunt u kontakt opnemen\n"
+"via e-mail: stephan@reichholf.net\n"
 "\n"
-"© 2006 - Stephan Reichholf"
+"© 2007 - Stephan Reichholf"
 
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
 
 msgid "Enter the service pin"
-msgstr "Voer de service pin in"
+msgstr "Voer de zender pincode in"
 
 msgid "Error"
 msgstr "Fout"
@@ -761,28 +771,28 @@ msgid "Eventview"
 msgstr "Programma overzicht"
 
 msgid "Everything is fine"
-msgstr "Alles is ok"
+msgstr "Alles is in orde"
 
 msgid "Execution Progress:"
-msgstr "Uitvoeren extern Commando:"
+msgstr "Voortgang extern commando:"
 
 msgid "Execution finished!!"
-msgstr "Uitvoering gestopt!!"
+msgstr "Voortgang voltooid!"
 
 msgid "Exit editor"
-msgstr "Stop editor"
+msgstr "Editor afsluiten"
 
 msgid "Exit the wizard"
-msgstr "Stop de wizard"
+msgstr "Wizard afsluiten"
 
 msgid "Exit wizard"
-msgstr "Wizard stoppen"
+msgstr "Wizard afsluiten"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Extended Setup..."
 
 msgid "Extensions"
-msgstr "Uitbreidingen"
+msgstr "Applicaties"
 
 msgid "FEC"
 msgstr "FEC"
@@ -797,7 +807,7 @@ msgid "Finetune"
 msgstr "Fijn afst."
 
 msgid "Finnish"
-msgstr "Fins"
+msgstr "Afronden"
 
 msgid "French"
 msgstr "Frans"
@@ -819,17 +829,17 @@ msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor versie: %d"
 
 msgid "Function not yet implemented"
-msgstr "Nog niet ingebouwde functie"
+msgstr "Functie nog niet geïmplementeerd"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"De GUI heeft een herstart nodig voor de nieuwe skin\n"
-"Wilt u de GUI nu herstarten?"
+"Het gebruikersinterface moet herstart worden om de\n"
+"de nieuwe skin te activeren. Nu herstarten?"
 
 msgid "Games / Plugins"
-msgstr "Spelletjes / Plugins"
+msgstr "Spelletjes & Applicaties"
 
 msgid "Gateway"
 msgstr "Gateway"
@@ -841,34 +851,34 @@ msgid "German"
 msgstr "Duits"
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Ophalen plugin info. Een ogenblikje geduld..."
+msgstr "Gegevens worden opgehaald. Een ogenblikje geduld a.u.b..."
 
 msgid "Goto 0"
-msgstr "Goto 0"
+msgstr "Naar 0 positie"
 
 msgid "Goto position"
 msgstr "Naar positie draaien"
 
 msgid "Guard Interval"
-msgstr ""
+msgstr "Guard interval"
 
 msgid "Guard interval mode"
-msgstr "Guard Interval mode"
+msgstr "Guard interval modus"
 
 msgid "Harddisk"
 msgstr "Harde schijf"
 
 msgid "Harddisk setup"
-msgstr "Harde schijf setup"
+msgstr "Harde schijf instellingen"
 
 msgid "Harddisk standby after"
 msgstr "Harde schijf standby na"
 
 msgid "Hierarchy Information"
-msgstr ""
+msgstr "Hiërarchie informatie"
 
 msgid "Hierarchy mode"
-msgstr "Hiërarchie mode"
+msgstr "Hiërarchie modus"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
@@ -877,7 +887,7 @@ msgid "Hungarian"
 msgstr "Hongaars"
 
 msgid "IP Address"
-msgstr "IP-Adres"
+msgstr "IP Adres"
 
 msgid "Icelandic"
 msgstr "Ijslands"
@@ -890,35 +900,35 @@ msgstr ""
 "scart aansluiting. Druk op OK om terug te keren."
 
 msgid "Image-Upgrade"
-msgstr "Image-Opwaarderen"
+msgstr "Image vernieuwen"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "Voor een timer opname , is de TV naar opname service geswitcht!\n"
+msgstr "Voor een timer opname, is nu de juiste zender ingeschakelt!\n"
 
 msgid "Increased voltage"
 msgstr "Verhoogd voltage"
 
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 msgid "InfoBar"
-msgstr "Infobar"
+msgstr "Infobalk"
 
 msgid "Infobar timeout"
-msgstr "Infobar timeout"
+msgstr "Infobalk weergavetijd"
 
 msgid "Information"
 msgstr "Informatie"
 
 msgid "Init"
-msgstr "Initializeren"
+msgstr "Initialiseren"
 
 msgid "Initialization..."
 msgstr "Formatteren..."
 
 msgid "Initialize"
-msgstr "Format HDD"
+msgstr "Formatteer"
 
 msgid "Initializing Harddisk..."
 msgstr "Formatteren harde schijf..."
@@ -927,16 +937,16 @@ msgid "Input"
 msgstr "Invoer"
 
 msgid "Installing"
-msgstr "Installing"
+msgstr "Installeert"
 
 msgid "Installing Software..."
-msgstr "Installing Software..."
+msgstr "Software wordt geïnstalleerd..."
 
 msgid "Instant Record..."
-msgstr "Directe Opname..."
+msgstr "Directe opname..."
 
 msgid "Internal Flash"
-msgstr "Interne Flash"
+msgstr "Intern geheugen"
 
 msgid "Inversion"
 msgstr "Inversie"
@@ -956,9 +966,6 @@ msgstr "Toetsenbord instelling"
 msgid "Keymap"
 msgstr "Toetsenbord layout"
 
-msgid "LCD Setup"
-msgstr "LCD Instellingen"
-
 msgid "LNB"
 msgstr "LNB"
 
@@ -972,7 +979,7 @@ msgid "LOF/L"
 msgstr "LOF/L"
 
 msgid "Language selection"
-msgstr "Taal keuze"
+msgstr "Taalkeuze"
 
 msgid "Language..."
 msgstr "Taal..."
@@ -996,13 +1003,13 @@ msgid "Limits on"
 msgstr "Limieten aan"
 
 msgid "List of Storage Devices"
-msgstr "Lijst Opslag Devices"
+msgstr "Lijst van opslagmedia"
 
 msgid "Longitude"
 msgstr "Lengtegraad"
 
 msgid "MMC Card"
-msgstr "MMC Card"
+msgstr "MMC kaart"
 
 msgid "MORE"
 msgstr "MEER"
@@ -1014,31 +1021,31 @@ msgid "Mainmenu"
 msgstr "Hoofdmenu"
 
 msgid "Make this mark an 'in' point"
-msgstr "Maak dit merkteken een 'in' punt"
+msgstr "Markeer dit als 'in' punt"
 
 msgid "Make this mark an 'out' point"
-msgstr "Maak dit merkteken een 'uit' punt"
+msgstr "Markeer dit als 'uit' punt"
 
 msgid "Make this mark just a mark"
-msgstr "Maak dit merkteken enkel een punt"
+msgstr "Universele markering"
 
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
 
 msgid "Manual transponder"
-msgstr "Handmatige transponder"
+msgstr "Transponder handmatig"
 
 msgid "Margin after record"
-msgstr "Marge na opnemen (minuten)"
+msgstr "Marge na afloop opname (minuten)"
 
 msgid "Margin before record (minutes)"
 msgstr "Marge voor opname (minuten)"
 
 msgid "Media player"
-msgstr "Media Player"
+msgstr "Mediaspeler"
 
 msgid "MediaPlayer"
-msgstr "MediaPlayer"
+msgstr "Mediaspeler"
 
 msgid "Menu"
 msgstr "Menu"
@@ -1047,7 +1054,7 @@ msgid "Message"
 msgstr "Bericht"
 
 msgid "Mkfs failed"
-msgstr "Mkfs mislukt"
+msgstr "MakeFileSystem mislukt"
 
 msgid "Model: "
 msgstr "Model: "
@@ -1062,7 +1069,7 @@ msgid "Mon"
 msgstr "Ma"
 
 msgid "Mon-Fri"
-msgstr "Maandag tot Vrijdag"
+msgstr "Ma t/m Vr"
 
 msgid "Monday"
 msgstr "Maandag"
@@ -1071,7 +1078,7 @@ msgid "Mount failed"
 msgstr "Mount mislukt"
 
 msgid "Move Picture in Picture"
-msgstr "Verplaats Picture in Picture"
+msgstr "Verplaats Picture In Picture"
 
 msgid "Move east"
 msgstr "Draai naar oost"
@@ -1080,22 +1087,22 @@ msgid "Move west"
 msgstr "Draai naar west"
 
 msgid "Movie Menu"
-msgstr "Film Menu"
+msgstr "Film menu"
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "Multiple service support"
-msgstr "Kan meerdere zenders decoderen"
+msgstr "Geschikt voor meervoudig decoderen"
 
 msgid "Multisat"
 msgstr "Multisat"
 
 msgid "Mute"
-msgstr "Mute"
+msgstr "Geluid uit"
 
 msgid "N/A"
-msgstr "Niet Aanwezig"
+msgstr "Niet beschikbaar"
 
 msgid "NEXT"
 msgstr "VOLGENDE"
@@ -1117,22 +1124,22 @@ msgstr "Nameserver"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr ""
+msgstr "Nameserver %d"
 
 msgid "Nameserver Setup"
-msgstr ""
+msgstr "Nameserver instellingen"
 
 msgid "Nameserver Setup..."
-msgstr ""
+msgstr "Nameserver instellingen"
 
 msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Network Mount"
-msgstr "Netwerk Mount"
+msgstr "Netwerk mount"
 
 msgid "Network Setup"
-msgstr "Netwerk Instellingen"
+msgstr "Netwerk instellingen"
 
 msgid "Network scan"
 msgstr "Netwerk zoeken"
@@ -1147,7 +1154,7 @@ msgid "New"
 msgstr "Nieuw"
 
 msgid "New pin"
-msgstr "Nieuwe pin"
+msgstr "Nieuwe pincode"
 
 msgid "New version:"
 msgstr "Nieuwe versie:"
@@ -1161,10 +1168,10 @@ msgstr "Nee"
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Geen harde schijf gevonden of\n"
-"harde schijf niet geformateerd."
+"De harde schijf is niet geformatteerd."
 
 msgid "No backup needed"
-msgstr "Geen backup nodig"
+msgstr "Backup niet benodigd"
 
 msgid ""
 "No data on transponder!\n"
@@ -1182,38 +1189,44 @@ msgstr "Geen vrije tuner!"
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
-"Op dit ogenblik zijn geen pakketten bijgewerkt. Controleer uw netwerk en "
-"probeer opnieuw."
+"Er zijn geen softwarepakketjes gevonden. Controleer uw netwerk en probeer "
+"opnieuw."
 
 msgid "No positioner capable frontend found."
-msgstr "Geen geschikte positioner voor frontend gevonden."
+msgstr "Geen geschikte positioner gevonden."
 
 msgid "No satellite frontend found!!"
-msgstr "Geen satelliet frontend gevonden!"
+msgstr "Geen satelliet tuner gevonden!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Er is geen tuner ingesteld voor een diseqc motor!"
+msgstr "Er is geen tuner ingesteld voor gebruik van een DiSEqC motor!"
 
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Ongeldige pincode!\n"
+"Wilt u de pincode nu wijzigen?\n"
+"Indien u 'nee' kiest, blijft de zender onbeveiligd!"
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Ongeldige menu pincode!\n"
+"Wilt u de menu pincode nu wijzigen?\n"
+"Indien u 'nee' kiest, blijft het menu onbeveiligd!"
 
 msgid "No, do nothing."
-msgstr "Doe niks"
+msgstr "nee, geen actie."
 
 msgid "No, just start my dreambox"
-msgstr "Nee, alleen mijn Dreambox starten"
+msgstr "Nee, uitsluitend Dreambox starten"
 
 msgid "No, scan later manually"
-msgstr "Nee, Later zoeken."
+msgstr "Nee, later handmatig zoeken."
 
 msgid "None"
 msgstr "Geen"
@@ -1228,8 +1241,8 @@ msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Niks Gevonden!\n"
-"Stel u tuner settings in aub voor u een zoek opdracht geeft."
+"Niets gevonden!\n"
+"Vóór het zoeken, dient uw tuner correct ingesteld te zijn."
 
 msgid "Now Playing"
 msgstr "Film weergave loopt"
@@ -1238,10 +1251,10 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK, guide me through the upgrade process"
-msgstr "OK, loods me door het opwaardeer proces"
+msgstr "OK, mij tijdens de software update begeleiden"
 
 msgid "OSD Settings"
-msgstr "OSD-instellingen"
+msgstr "OSD instellingen"
 
 msgid "Off"
 msgstr "Uit"
@@ -1253,10 +1266,10 @@ msgid "One"
 msgstr "Een"
 
 msgid "Online-Upgrade"
-msgstr "Online-Opwaarderen"
+msgstr "Online software update"
 
 msgid "Orbital Position"
-msgstr ""
+msgstr "Orbit positie"
 
 msgid "Other..."
 msgstr "Anders..."
@@ -1268,7 +1281,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "Package list update"
-msgstr "Opwaarderen pakettenlijst  "
+msgstr "Pakketlijst vernieuwen"
 
 msgid "Packet management"
 msgstr "Pakket beheer"
@@ -1280,70 +1293,71 @@ msgid "Parental control"
 msgstr "Kinderslot"
 
 msgid "Parental control services Editor"
-msgstr "Kinderslot kanaaleditor"
+msgstr "Kinderslot zender-editor"
 
 msgid "Parental control setup"
-msgstr "Kinderslot instelling"
+msgstr "Kinderslot instellingen"
 
 msgid "Parental control type"
 msgstr "Kinderslot type"
 
 msgid "PiPSetup"
-msgstr "PIP Instellingen"
+msgstr "PiP Instellingen"
 
 msgid "Pin code needed"
-msgstr "Pincode is nodig"
+msgstr "Pincode benodigd"
 
 msgid "Play recorded movies..."
-msgstr "Opgenomen film afspelen..."
+msgstr "Opname afspelen..."
 
 msgid "Please choose an extension..."
-msgstr "Kies een uitbreiding aub..."
+msgstr "Kies een applicatie a.u.b..."
 
 msgid "Please do not change values when you not know what you do!"
 msgstr ""
+"Verander deze instellingen niet als je niet weet waar je mee bezig bent!"
 
 msgid "Please enter a name for the new bouquet"
-msgstr "Voer naam in voor nieuw boeket"
+msgstr "Voer de naam voor uw nieuwe boeket in"
 
 msgid "Please enter a name for the new marker"
-msgstr "Geef aub een naam in voor de nieuwe Marker"
+msgstr "Voer de naam voor uw nieuwe markeerpunt in"
 
 msgid "Please enter the correct pin code"
-msgstr "Gelieve juiste pincode in te voeren"
+msgstr "Gelieve de juiste pincode in te voeren"
 
 msgid "Please enter the old pin code"
-msgstr "Oude pincode invoeren aub"
+msgstr "Oude pincode invoeren a.u.b."
 
 msgid "Please press OK!"
-msgstr "Druk op OK aub!"
+msgstr "Druk op OK a.u.b!"
 
 msgid "Please select a subservice to record..."
-msgstr "Selecteer een subservice voor opname aub..."
+msgstr "Selecteer een subzender voor opname a.u.b..."
 
 msgid "Please select a subservice..."
-msgstr "Selecteer een subservice..."
+msgstr "Selecteer een subzender..."
 
 msgid "Please select keyword to filter..."
-msgstr "Selecteer sleutelwoord voor filtering..."
+msgstr "Selecteer te filteren sleutelwoord..."
 
 msgid "Please set up tuner B"
-msgstr "Instellingen voor Tuner B."
+msgstr "Instellingen voor Tuner B"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
-"Gebruik de pijl toetsen voor verplaatsen  PiP window.\n"
-"Druk op Boeket +/- om PIP window te vergroten of te verkleinen.\n"
-"Druk op OK om terug te gaan naar TV mode of EXIT om verplaatsen te stoppen."
+"Gebruik de pijltoetsen om het PiP venster te verplaatsen.\n"
+"Druk op Boeket +/- om PiP venster te vergroten of verkleinen.\n"
+"Druk op OK om terug te gaan naar TV modus of EXIT na verplaatsen."
 
 msgid "Please wait... Loading list..."
-msgstr "Mom... Lijst word geladen..."
+msgstr "Ogenblik a.u.b. De lijst wordt geladen..."
 
 msgid "Plugin browser"
-msgstr "Plugin browser"
+msgstr "Spelletjes & Applicaties"
 
 msgid "Polarity"
 msgstr "Polariteit"
@@ -1367,28 +1381,28 @@ msgid "Positioner"
 msgstr "Rotor"
 
 msgid "Positioner fine movement"
-msgstr "Fijn afstelling Positioner"
+msgstr "Rotor fijnafstelling"
 
 msgid "Positioner movement"
-msgstr "Rotor beweging"
+msgstr "Rotor draaien"
 
 msgid "Positioner setup"
-msgstr "Positioner setup"
+msgstr "Rotor instellingen"
 
 msgid "Positioner storage"
-msgstr "Rotor positie opslag"
+msgstr "Rotor positie opslaan"
 
 msgid "Predefined transponder"
 msgstr "Vooraf ingestelde transponder"
 
 msgid "Preparing... Please wait"
-msgstr "Voorbereiden... Een ogenblik aub."
+msgstr "Voorbereiden... Een ogenblik a.u.b."
 
 msgid "Press OK to activate the settings."
-msgstr "Druk OK om settings te activeren"
+msgstr "Druk OK om de instellingen te activeren"
 
 msgid "Press OK to scan"
-msgstr "Druk OK om te Zoeken."
+msgstr "Druk OK om te zoeken."
 
 msgid "Press OK to start the scan"
 msgstr "Druk OK om te zoeken."
@@ -1397,10 +1411,10 @@ msgid "Prev"
 msgstr "Vorige"
 
 msgid "Protect services"
-msgstr "Beveilig kanalen"
+msgstr "Beveilig zenders"
 
 msgid "Protect setup"
-msgstr "Beveilig setup"
+msgstr "Beveilig menu"
 
 msgid "Provider"
 msgstr "Provider"
@@ -1412,7 +1426,7 @@ msgid "Quick"
 msgstr "Snel"
 
 msgid "Quickzap"
-msgstr "Snelzappen"
+msgstr "Snelzap"
 
 msgid "RC Menu"
 msgstr "Afstandsbediening menu"
@@ -1430,25 +1444,25 @@ msgid "Ram Disk"
 msgstr "Ram Disk"
 
 msgid "Really close without saving settings?"
-msgstr "Wilt u echt stoppen zonder te bewaren?"
+msgstr "Afsluiten zonder opslaan?"
 
 msgid "Really delete done timers?"
 msgstr "Wilt u de gebruikte timers echt wissen?"
 
 msgid "Really delete this timer?"
-msgstr "Wilt u echte deze timer verwijderen?"
+msgstr "Wilt u deze timer echt verwijderen?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "Subservices snelzappen verlaten?"
+msgstr "Subzenders snelzap verlaten?"
 
 msgid "Reception Settings"
-msgstr "Ontvangst Settings"
+msgstr "Ontvangstinstellingen"
 
 msgid "Record"
 msgstr "Opname"
 
 msgid "Recorded files..."
-msgstr "Opgenomen files..."
+msgstr "Opgenomen bestanden..."
 
 msgid "Recording"
 msgstr "Opnemen"
@@ -1457,71 +1471,77 @@ msgid ""
 "Recording(s) are in progress or comming up in few seconds... really reboot "
 "now?"
 msgstr ""
+"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+"echt herstarten?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really restart "
 "now?"
 msgstr ""
+"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+"Enigma2 echt herstarten?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really shutdown "
 "now?"
 msgstr ""
+"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+"echt afsluiten?"
 
 msgid "Recordings always have priority"
-msgstr "Opnamen hebben altijd voorang"
+msgstr "Een opname heeft te allen tijde voorang"
 
 msgid "Reenter new pin"
-msgstr "Voer nieuwe pin in"
+msgstr "Voer nieuwe pincode nogmaals in"
 
 msgid "Remove Plugins"
-msgstr "Verwijder Plugins"
+msgstr "Verwijderen"
 
 msgid "Remove a mark"
-msgstr "Verwijder een merkpunt"
+msgstr "Verwijder een markeerpunt"
 
 msgid "Remove plugins"
-msgstr "Verwijder plugins"
+msgstr "Verwijderen"
 
 msgid "Repeat"
 msgstr "Herhaling"
 
 msgid "Repeat Type"
-msgstr "Herhaal Type"
+msgstr "Timer frequentie"
 
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr ""
+msgstr "Een herhaalde timer maakt nu een opname... Wat wilt u doen?"
 
 msgid "Replace current playlist"
 msgstr "Vervang huidige afspeellijst"
 
 msgid "Reset"
-msgstr "Reset"
+msgstr "Herladen"
 
 msgid "Restart"
-msgstr "Herstart"
+msgstr "Herstarten"
 
 msgid "Restart GUI now?"
-msgstr "Herstart GUI nu?"
+msgstr "Herstart Enigma2 nu?"
 
 msgid "Restore"
-msgstr "Herstel"
+msgstr "Herstellen"
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
 "settings now."
 msgstr ""
-"Terugzetten van de settings is klaar. Druk op OK om de terug gezette "
-"settings te activeren."
+"Herstellen van de instellingen is gereed. Druk op OK om de instellingen te "
+"activeren."
 
 msgid "Right"
 msgstr "Rechts"
 
 msgid "Rolloff"
-msgstr ""
+msgstr "Rolloff"
 
 msgid "Running"
-msgstr "Running"
+msgstr "In behandeling"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1539,19 +1559,19 @@ msgid "Satellite"
 msgstr "Satelliet"
 
 msgid "Satellite Equipment Setup"
-msgstr ""
+msgstr "Satellietapparatuur instellingen"
 
 msgid "Satellites"
 msgstr "Satellieten"
 
 msgid "Satfinder"
-msgstr "Satfinder"
+msgstr "Signaalzoeker"
 
 msgid "Saturday"
 msgstr "Zaterdag"
 
 msgid "Scaling Mode"
-msgstr "Schaal Mode"
+msgstr "Schaalmodus"
 
 msgid "Scan NIM"
 msgstr "Zoek tuner"
@@ -1569,7 +1589,7 @@ msgid "Select HDD"
 msgstr "Kies harde schijf"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "Selecteer netwerk adapter"
 
 msgid "Select a movie"
 msgstr "Kies een film"
@@ -1581,111 +1601,111 @@ msgid "Select audio track"
 msgstr "Kies audiospoor"
 
 msgid "Select channel to record from"
-msgstr "Selecteer een kanaal waarvan u wilt opnemen"
+msgstr "Selecteer een zender voor opname"
 
 msgid "Sequence repeat"
-msgstr "Herhaal Sequence"
+msgstr "Herhaal sequence"
 
 msgid "Service"
-msgstr "Streaminfo"
+msgstr "Stream informatie"
 
 msgid "Service Scan"
-msgstr "Kanaal zoeken"
+msgstr "Zenders zoeken"
 
 msgid "Service Searching"
-msgstr "Kanaal zoeken"
+msgstr "Zenders zoeken"
 
 msgid "Service has been added to the favourites."
-msgstr "Kanaal is toegevoegd aan favorieten."
+msgstr "De zender is toegevoegd aan favorieten."
 
 msgid "Service has been added to the selected bouquet."
-msgstr "Kanaal is toegevoegd aan geselecteerd boeket."
+msgstr "De zender is toegevoegd aan geselecteerd boeket."
 
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Service ongeldig!\n"
+"Zender ongeldig!\n"
 "(Timeout reading PMT)"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
-"Service niet gevonden!\n"
+"Zender niet gevonden!\n"
 "(SID not found in PAT)"
 
 msgid "Service scan"
-msgstr "Kanaal zoeken"
+msgstr "Zenders zoeken"
 
 msgid "Service scan type needed"
-msgstr "Kanaal zoek type"
+msgstr "Zender zoekmodus"
 
 msgid "Serviceinfo"
-msgstr "Service informatie"
+msgstr "Zender"
 
 msgid "Services"
-msgstr "Kanalen"
+msgstr "Zenders"
 
 msgid "Set limits"
-msgstr "Zet Limieten"
+msgstr "Limieten instellen"
 
 msgid "Settings"
-msgstr "Settings"
+msgstr "Instellingen"
 
 msgid "Setup"
 msgstr "Instellingen"
 
 msgid "Show infobar on channel change"
-msgstr "Laat infobar zien bij zappen naar ander kanaal"
+msgstr "Infobalk zichtbaar na zenderwissel"
 
 msgid "Show infobar on event change"
-msgstr ""
+msgstr "Infobalk zichtbaar na programma-afloop"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "Laat infobar zien bij skip vooruit/achteruit"
+msgstr "Infobalk zichtbaar na overslaan, vooruit/achteruit"
 
 msgid "Show positioner movement"
-msgstr "Laat rotor beweging zien"
+msgstr "Rotor bewegingen zichtbaar"
 
 msgid "Show services beginning with"
-msgstr "Laat kanalen zien die beginnen met"
+msgstr "Laat zenders zien die beginnen met"
 
 msgid "Show the radio player..."
-msgstr "Radio weergave mode..."
+msgstr "Radio weergave modus..."
 
 msgid "Show the tv player..."
-msgstr "TV weergave mode..."
+msgstr "TV weergave modus..."
 
 msgid "Shutdown Dreambox after"
-msgstr "Zet Dreambox uit na"
+msgstr "Slaaptimer activeren na"
 
 msgid "Similar"
-msgstr "Gelijkaardig"
+msgstr "Gelijkwaardig"
 
 msgid "Similar broadcasts:"
-msgstr "Gelijkaardige uitzendingen:"
+msgstr "Gelijkwaardige uitzendingen:"
 
 msgid "Single"
 msgstr "Enkel"
 
 msgid "Single EPG"
-msgstr "Simpel EPG"
+msgstr "EPG"
 
 msgid "Single satellite"
-msgstr "Een satelliet"
+msgstr "Één satelliet"
 
 msgid "Single transponder"
-msgstr "Een transponder"
+msgstr "Één transponder"
 
 msgid "Sleep Timer"
-msgstr "Sleep Timer"
+msgstr "Slaaptimer"
 
 msgid "Sleep timer action:"
-msgstr "Sleep timer actie:"
+msgstr "Slaaptimer actie:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr "Slideshow Interval (sec.)"
+msgstr "Diavoorstelling interval (sec.)"
 
 msgid "Slot "
 msgstr "Slot "
@@ -1694,7 +1714,7 @@ msgid "Socket "
 msgstr "Socket "
 
 msgid "Some plugins are not available:\n"
-msgstr "Sommige plugins zijn niet aanwezig:\n"
+msgstr "Applicaties die niet beschikbaar zijn:\n"
 
 msgid "Somewhere else"
 msgstr "Ergens anders"
@@ -1704,9 +1724,9 @@ msgid ""
 "\n"
 "Please choose an other one."
 msgstr ""
-"Sorry uw Backup locatie bestaat niet\n"
+"Sorry uw backup locatie is ongeldig\n"
 "\n"
-"Kies een ander aub..."
+"Kies een andere loactie a.u.b..."
 
 msgid "Sound"
 msgstr "Geluid"
@@ -1724,28 +1744,28 @@ msgid "Standby"
 msgstr "Standby"
 
 msgid "Standby / Restart"
-msgstr "Standby / Herstart"
+msgstr "Afsluiten"
 
 msgid "Start"
 msgstr "Start"
 
 msgid "Start recording?"
-msgstr "Start opnemen?"
+msgstr "Start opname?"
 
 msgid "StartTime"
 msgstr "Starttijd"
 
 msgid "Startwizard"
-msgstr "Startwizard"
+msgstr "Installatiewizard"
 
 msgid "Step "
 msgstr "Stap "
 
 msgid "Step east"
-msgstr "Stap naar oost"
+msgstr "Stap > oost"
 
 msgid "Step west"
-msgstr "Stap naar west"
+msgstr "Stap > west"
 
 msgid "Stereo"
 msgstr "Stereo"
@@ -1754,16 +1774,16 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop Timeshift?"
-msgstr "Timeshift Stoppen?"
+msgstr "Timeshift annuleren?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Stop huidige timer en volgende timers annuleren"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Stop huidige timer, maar volgende timers toestaan"
 
 msgid "Stop playing this movie?"
-msgstr "Stoppen met afspelen van deze film?"
+msgstr "Stop afspelen van deze film?"
 
 msgid "Store position"
 msgstr "Sla positie op"
@@ -1772,10 +1792,10 @@ msgid "Stored position"
 msgstr "Opgeslagen positie"
 
 msgid "Subservice list..."
-msgstr "Subservice lijst..."
+msgstr "Subzenderlijst..."
 
 msgid "Subservices"
-msgstr "Subservices"
+msgstr "Subzenders"
 
 msgid "Subtitle selection"
 msgstr "Ondertitel selectie"
@@ -1790,22 +1810,22 @@ msgid "Sunday"
 msgstr "Zondag"
 
 msgid "Swap Services"
-msgstr "Swap Services"
+msgstr "Zenders omwisselen"
 
 msgid "Swedish"
 msgstr "Zweeds"
 
 msgid "Switch to next subservice"
-msgstr "Ga naar volgende subservice"
+msgstr "Ga naar volgende subzender"
 
 msgid "Switch to previous subservice"
-msgstr "Ga naar vorige subservice"
+msgstr "Ga naar vorige subzender"
 
 msgid "Symbol Rate"
 msgstr "Symbolrate"
 
 msgid "Symbolrate"
-msgstr ""
+msgstr "Symbolrate"
 
 msgid "System"
 msgstr "Systeem"
@@ -1814,49 +1834,48 @@ msgid "TV System"
 msgstr "TV Systeem"
 
 msgid "Terrestrial"
-msgstr "Terrestrial"
+msgstr "Terrestrisch"
 
 msgid "Terrestrial provider"
 msgstr "Regio"
 
 msgid "Test mode"
-msgstr "Test mode"
+msgstr "Test modus"
 
 msgid "Test-Messagebox?"
-msgstr "Test-Messagebox?"
+msgstr "Test-berichtbox?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
 msgstr ""
-"De wizard is klaar. U kunt uw Dreambox nu gebruiken.\n"
-"Druk OK om de wizard te verlaten."
+"De wizard is gereed. U kunt uw Dreambox nu gebruiken.\n"
+"Druk OK om de installatiewizard te verlaten."
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Backup is mislukt. Kies een andere backup locatie AUB."
+msgstr "Backup is mislukt. Kies een andere backup locatie a.u.b."
 
 msgid "The pin code has been changed successfully."
-msgstr "De pincode is met succes veranderd."
+msgstr "De pincode is succesvol gewijzigd."
 
 msgid "The pin code you entered is wrong."
-msgstr "De ingevoerde pincode is fout."
+msgstr "De ingevoerde pincode is onjuist."
 
 msgid "The pin codes you entered are different."
-msgstr "De pincodes zijn verschillend."
+msgstr "De ingevoerde pincodes komen niet overeen."
 
 msgid "The sleep timer has been activated."
-msgstr "De sleep timer is geactiveerd."
+msgstr "De slaaptimer is geactiveerd."
 
 msgid "The sleep timer has been disabled."
-msgstr ""
+msgstr "De slaaptimer is gedeactiveerd"
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"De wizard kan u huidige settings backuppen. Wilt u nu een backup maken?"
+msgstr "De wizard kan uw huidige settings opslaan. Wilt u nu een backup maken?"
 
 msgid "The wizard is finished now."
-msgstr "De wizard is nu klaar."
+msgstr "De wizard is nu gereed."
 
 msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
@@ -1868,7 +1887,7 @@ msgid "Three"
 msgstr "Drie"
 
 msgid "Threshold"
-msgstr "Drempel"
+msgstr "Drempelwaarde"
 
 msgid "Thu"
 msgstr "Do"
@@ -1880,13 +1899,13 @@ msgid "Time"
 msgstr "Tijd"
 
 msgid "Time/Date Input"
-msgstr "Tijd/Datum Invoer"
+msgstr "Tijd/Datum invoer"
 
 msgid "Timer"
 msgstr "Timer"
 
 msgid "Timer Edit"
-msgstr "Timer gestuurde opname"
+msgstr "Timer bewerken"
 
 msgid "Timer Editor"
 msgstr "Timer Editor"
@@ -1901,7 +1920,7 @@ msgid "Timer log"
 msgstr "Timer log"
 
 msgid "Timer sanity error"
-msgstr "Timer sanity error"
+msgstr "Timerlogica fout"
 
 msgid "Timer selection"
 msgstr "Timer selectie"
@@ -1925,7 +1944,7 @@ msgid "Today"
 msgstr "Vandaag"
 
 msgid "Tone mode"
-msgstr "Tone Mode"
+msgstr "Tone modus"
 
 msgid "Toneburst"
 msgstr "Toneburst"
@@ -1934,16 +1953,16 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Transmissie modus"
 
 msgid "Transmission mode"
-msgstr "Overdragings type"
+msgstr "Transmissie modus"
 
 msgid "Transponder"
 msgstr "Transponder"
 
 msgid "Transponder Type"
-msgstr ""
+msgstr "Transponder type"
 
 msgid "Transpondertype"
 msgstr "Transponder type"
@@ -1958,7 +1977,7 @@ msgid "Tuesday"
 msgstr "Dinsdag"
 
 msgid "Tune"
-msgstr "Tune"
+msgstr "Afstemmen"
 
 msgid "Tune failed!"
 msgstr "Afstemmen mislukt!"
@@ -1973,7 +1992,7 @@ msgid "Tuner configuration"
 msgstr "Tuner configuratie"
 
 msgid "Tuner status"
-msgstr "Tuner status"
+msgstr "Tuner"
 
 msgid "Turkish"
 msgstr "Turks"
@@ -1982,7 +2001,7 @@ msgid "Two"
 msgstr "Twee"
 
 msgid "Type of scan"
-msgstr "Type voor zoeken"
+msgstr "Zoekmodus"
 
 msgid "USALS"
 msgstr "USALS"
@@ -1998,12 +2017,12 @@ msgid ""
 "Please refer to the user manual.\n"
 "Error: "
 msgstr ""
-"Kan harde schijf niet formatteren.\n"
-"Lees handboek na AUB.\n"
+"De harde schijf kan niet geformatteerd worden.\n"
+"Raadpleeg de handleiding a.u.b.\n"
 "Fout:  "
 
 msgid "Uncommitted DiSEqC command"
-msgstr "Uncommitted DiSEqC command"
+msgstr "Uncommitted DiSEqC commando"
 
 msgid "Universal LNB"
 msgstr "Universeel LNB"
@@ -2012,56 +2031,58 @@ msgid "Unmount failed"
 msgstr "Unmount mislukt"
 
 msgid "Updates your receiver's software"
-msgstr "Opwaardeer uw ontvanger's software"
+msgstr "Dreambox software vernieuwen"
 
 msgid "Updating finished. Here is the result:"
-msgstr "Klaar met Opwaarderen. Dit is het Resultaat:"
+msgstr "Software update gereed. Dit is het Resultaat:"
 
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr "Opwaarderen is bezig. Wacht AUB. Dit kan enkele minuten duren."
+msgstr ""
+"Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten "
+"duren."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Klaar met opwaarderen. Wilt u nu uw Dreambox herstarten?"
+msgstr "Software update gereed. Uw Dreambox herstarten?"
 
 msgid "Upgrading"
-msgstr "Upgrading"
+msgstr "Bezig met update"
 
 msgid "Upgrading Dreambox... Please wait"
-msgstr "Upgrading Dreambox... Een ogenblik aub."
+msgstr "Deambox update bezig... Een ogenblik geduld a.u.b."
 
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
 
 msgid "Use a gateway"
-msgstr ""
+msgstr "Gateway gebruiken"
 
 msgid "Use power measurement"
-msgstr "Meet Stroomopname"
+msgstr "Meet stroomopname"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
 "\n"
 "Please set up tuner A"
 msgstr ""
-"U kunt met linker en rechter toets een optie veranderen .\n"
+"U kunt met de links/rechts toets een optie kiezen .\n"
 "\n"
-"Setup voor tuner A"
+"Instellingen voor tuner A"
 
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
 msgstr ""
-"U kunt met de omhoog/omlaag Toetsen op uw afstands- bediening een optie "
-"uitkiezen. En  daarna op OK drukken."
+"U kunt met de omhoog/omlaag toets op uw afstandsbediening een optie kiezen. "
+"Druk daarna op OK."
 
 msgid "Use usals for this sat"
-msgstr "Gebruik USALS voor deze Sat"
+msgstr "USALS aanschakelen"
 
 msgid "Use wizard to set up basic features"
-msgstr "Gebruik wizard voor basic instellingen"
+msgstr "Start de wizard voor basisinstellingen"
 
 msgid "User defined"
-msgstr "Gebruikers mode"
+msgstr "Door u ingesteld"
 
 msgid "VCR Switch"
 msgstr "VCR Switch"
@@ -2070,16 +2091,16 @@ msgid "VCR scart"
 msgstr "VCR scart"
 
 msgid "View Rass interactive..."
-msgstr ""
+msgstr "Rass interactive bekijken"
 
 msgid "View teletext..."
-msgstr "Laat teletekst zien..."
+msgstr "Teletekst weergeven..."
 
 msgid "Voltage mode"
-msgstr "Spannings mode"
+msgstr "Spanningsmodus"
 
 msgid "Volume"
-msgstr "Geluidssterkte"
+msgstr "Volume"
 
 msgid "W"
 msgstr "W"
@@ -2101,9 +2122,9 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Welkom bij de Image opwaardeer wizard. De wizard zal u assisteren bij het "
-"opwaarderen van de firmware in uw Dreambox, een backup mogelijkheid voor uw "
-"huidige instellingen en een korte uitleg hoe de firmware op te waarderen."
+"Welkom bij de software update wizard. De wizard bied u hulp bij het "
+"vernieuwen van de software in uw Dreambox, het maken van een backup van uw "
+"huidige instellingen en geeft u een korte uitleg over dit proces."
 
 msgid ""
 "Welcome.\n"
@@ -2113,21 +2134,20 @@ msgid ""
 msgstr ""
 "Welkom.\n"
 "\n"
-"De start wizard leid u door de basic instellingen van uw Dreambox.\n"
-"Druk op de OK toets van de afstandsbediening om naar de volgende stap te "
-"gaan."
+"De installatiewizard bied u hulp bij de basisinstellingen van uw Dreambox.\n"
+"Druk op de OK toets van de afstandsbediening om door te gaan."
 
 msgid "West"
 msgstr "West"
 
 msgid "What do you want to scan?"
-msgstr "Wilt u nu zoeken?"
+msgstr "Wat wilt u zoeken?"
 
 msgid "Where do you want to backup your settings?"
-msgstr "Waar wilt u de gegevens opslaan?"
+msgstr "Waar wilt u de instellingen opslaan?"
 
 msgid "YPbPr"
-msgstr "YPbPr"
+msgstr "Component"
 
 msgid "Year:"
 msgstr "Jaar:"
@@ -2136,25 +2156,25 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Yes, backup my settings!"
-msgstr "Ja, backup mijn gegevens!"
+msgstr "Ja, mijn instellingen opslaan!"
 
 msgid "Yes, do a manual scan now"
-msgstr "Ja, doe nu een handmatige scan"
+msgstr "Ja, voer nu de handmatige zoekfunctie uit"
 
 msgid "Yes, do an automatic scan now"
-msgstr "Ja, doe nu een automatische scan"
+msgstr "Ja, voer nu de automatische zoekfunctie uit"
 
 msgid "Yes, do another manual scan now"
-msgstr "Ja, doe nog een handmatige scan"
+msgstr "Ja, ik wil nogmaals handmatig zoeken"
 
 msgid "Yes, perform a shutdown now."
-msgstr "Ja, Nu afsluiten."
+msgstr "Ja, ik wil nu afsluiten."
 
 msgid "Yes, restore the settings now"
-msgstr "Ja, zet de gegevens nu terug"
+msgstr "Ja, de gegevens nu terugplaatsen"
 
 msgid "Yes, view the tutorial"
-msgstr "Ja, laat de handleiding zien"
+msgstr "Ja, de handleiding weergeven"
 
 msgid "You cannot delete this!"
 msgstr "U kunt dit niet wissen!"
@@ -2163,8 +2183,8 @@ msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
 "harddisk is not an option for you."
 msgstr ""
-"U heeft schijnbaar geen harde schijf in uw Dreambox. Backup naar een harde "
-"schijf  is niet mogelijk voor u."
+"Er bevind zich waarschijnlijk geen harde schijf in uw Dreambox. U kunt de "
+"instellingen in dit geval niet naar de harde schijf opslaan."
 
 msgid ""
 "You have chosen to backup to a compact flash card. The card must be in the "
@@ -2172,25 +2192,25 @@ msgid ""
 "to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U heeft gekozen om te backuppen naar compact flash kaart. De CF kaart moet "
-"in het slot zitten. Er word niet gecontroleerd of er wat op staat. Daarom  "
-"is het beter te backuppen naar u harde schijf!\n"
+"U heeft gekozen om de instellingen op een compact flash kaart op te slaan. "
+"De kaart moet in het slot zitten. De inhoud van de kaart wordt overschreven. "
+"Mogelijk is het beter de instellingen op de harde schijf op te slaan!\n"
 "Druk op OK om de backup te starten."
 
 msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"U heeft gekozen te backuppen naar usb stick. U kunt beter naar een harde "
-"schijf backuppen!\n"
+"U heeft gekozen uw instellingen op een USB stick op te slaan. Gebruik van "
+"een harde schijf voor dit doel wordt aangeraden!\n"
 "Druk op OK om de backup te starten."
 
 msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
 msgstr ""
-"U heeft gekozen om te backuppen naar harde schijf. Druk op OK om de backup "
-"te starten."
+"U heeft gekozen uw instellingen op de harde schijf op te slaan. Druk op OK "
+"om de backup te starten."
 
 msgid "You have to wait for"
 msgstr "Wacht op"
@@ -2202,20 +2222,20 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"U moet een PC verbonden hebben met u Dreambox. Als u meer informatie wilt "
-"hebben, dan kunt u naar  Website http://www.dm7025.de.\n"
-"De dreambox word nu uitgezet. Nadat u het opwaarderen  hebt uitgevoerd zoals "
-"op de website beschreven is, de nieuwe firmware zal u vragen of u de "
-"settings terug wilt zetten."
+"U dient uw PC met uw Dreambox te verbinden. Voor meer informatie verwijzen "
+"wij u naar de website http://www.dm7025.de.\n"
+"De dreambox word nu uitgeschakelt. Indien u deze aanwijzingen nauwgezet "
+"volgt, zal de Dreambox u na de update vragen of u uw instellingen terug wilt "
+"plaatsen."
 
 msgid ""
 "You need to define some keywords first!\n"
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
-"Definieer eerst wat keywoorden !\n"
-"Druk op Menu-key om keywoorden te definieeren.\n"
-"Wilt u nu keywoorden definieëren?"
+"Definieer eerst een aantal sleutelwoorden!\n"
+"Druk op MENU om sleutelwoorden te definiëren.\n"
+"Wilt u nu sleutelwoorden definiëren?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2224,7 +2244,7 @@ msgid ""
 msgstr ""
 "Voer nu een pincode in en verberg het voor uw kinderen.\n"
 "\n"
-"Wilt u nu een pin instellen?"
+"Wilt u nu een pincode instellen?"
 
 msgid "You selected a playlist"
 msgstr "U heeft een afspeellijst gekozen"
@@ -2233,113 +2253,113 @@ msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"De backup is geslaagd. We gaan nu verder met uitleggen hoe het  opwaardeer "
-"proces werkt."
+"De backup is geslaagd. U krijgt nu een korte uitleg over het vervolg van het "
+"update proces."
 
 msgid "Your dreambox is shutting down. Please stand by..."
-msgstr "Uw Dreambox is nu aan het afsluiten. Een ogenblik aub..."
+msgstr "Uw Dreambox wordt nu afgesloten. Een ogenblik a.u.b..."
 
 msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
 "try again."
 msgstr ""
-"Uw Dreambox is niet goed met het internet verbonden. Controleer het en "
-"probeer opnieuw."
+"Uw Dreambox heeft geen verbinding met het internet kunnen maken. Controleer "
+"instellingen en kabels en probeer opnieuw."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"De Frontprozessor-Firmware moet worden geopwaardeerd.\n"
-"Druk op OK, om het opwaarderen te starten."
+"De frontprocessor firmware moet vernieuwd worden.\n"
+"Druk op OK, om dit proces te starten."
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Zap terug naar service voor rotor setup?"
+msgstr "Wilt u terugkeren naar de vorige zender?"
 
 msgid "Zap back to service before satfinder?"
-msgstr "Zap terug naar service voor satfinder?"
+msgstr "Wilt u terugkeren naar de vorige zender?"
 
 msgid "[alternative edit]"
-msgstr "[alternatieve edit]"
+msgstr "[alternatieven bewerken]"
 
 msgid "[bouquet edit]"
-msgstr "[Boeket editor]"
+msgstr "[boeketten bewerken]"
 
 msgid "[favourite edit]"
-msgstr "[Favoriet editor]"
+msgstr "[favorieten bewerken]"
 
 msgid "[move mode]"
-msgstr "[Verplaats modus]"
+msgstr "[verplaats modus]"
 
 msgid "abort alternatives edit"
-msgstr "alternatieven edit afbreken"
+msgstr "alternatieven bewerken afsluiten"
 
 msgid "abort bouquet edit"
-msgstr "Boeket edit stoppen"
+msgstr "Boeket bewerken afsluiten"
 
 msgid "abort favourites edit"
-msgstr "Favoriet edit stoppen"
+msgstr "Favorieten bewerken afsluiten"
 
 msgid "about to start"
-msgstr "Start direct"
+msgstr "start direct"
 
 msgid "add alternatives"
 msgstr "alternatieven toevoegen"
 
 msgid "add bouquet"
-msgstr "Boeket toevoegen..."
+msgstr "boeket toevoegen"
 
 msgid "add directory to playlist"
-msgstr "Voeg directory toe aan afspeellijst"
+msgstr "voeg map toe aan afspeellijst"
 
 msgid "add file to playlist"
-msgstr "Voeg bestand toe aan afspeellijst"
+msgstr "voeg bestand toe aan afspeellijst"
 
 msgid "add marker"
-msgstr "Marker invoegen"
+msgstr "markeerpunt invoegen"
 
 msgid "add recording (enter recording duration)"
-msgstr "Voeg opname toe (geef opnametijd aan)"
+msgstr "Start opname en voer opnameduur in"
 
 msgid "add recording (indefinitely)"
-msgstr "Voeg opname toe (direct)"
+msgstr "Start een onbeperkte opname"
 
 msgid "add recording (stop after current event)"
-msgstr "Voeg opname toe (stop na huidige opname)"
+msgstr "Start opname en stop na huidige uitzending"
 
 msgid "add service to bouquet"
-msgstr "Toevoegen aan boeket"
+msgstr "zender toevoegen aan boeket"
 
 msgid "add service to favourites"
-msgstr "Kanaal aan Favorieten toevoegen"
+msgstr "zender toevoegen aan favorieten"
 
 msgid "add to parental protection"
-msgstr "Voeg toe aan het kinderslot"
+msgstr "zender op kinderslot zetten"
 
 msgid "advanced"
-msgstr "Geavanceerd"
+msgstr "geavanceerd"
 
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
-"weet u zeker dat u deze backup wilt\n"
-"terugzetten:\n"
+"weet u zeker dat u deze instellingen terug\n"
+"wilt zetten:\n"
 
 msgid "back"
-msgstr "Terug"
+msgstr "terug"
 
 msgid "better"
 msgstr "beter"
 
 msgid "blacklist"
-msgstr "Zwarte lijst"
+msgstr "zwarte lijst"
 
 msgid "by Exif"
-msgstr "bij Exif"
+msgstr "door Exif"
 
 msgid "change recording (duration)"
-msgstr "Verander opname (Tijdsduur)"
+msgstr "Wijzig opnameduur"
 
 msgid "circular left"
 msgstr "circular links"
@@ -2348,94 +2368,94 @@ msgid "circular right"
 msgstr "circular rechts"
 
 msgid "clear playlist"
-msgstr "Maak afspeellijst leeg"
+msgstr "afspeellijst legen"
 
 msgid "complex"
 msgstr "complex"
 
 msgid "config menu"
-msgstr "Configuratie menu"
+msgstr "configuratiemenu"
 
 msgid "continue"
-msgstr "Ga Verder"
+msgstr "Doorgaan"
 
 msgid "copy to bouquets"
 msgstr "kopieer naar boeketten"
 
 msgid "daily"
-msgstr "Dagelijks"
+msgstr "dagelijks"
 
 msgid "delete"
-msgstr "Verwijder"
+msgstr "wissen"
 
 msgid "delete cut"
-msgstr "verwijder cut"
+msgstr "wis snijpunt"
 
 msgid "delete..."
-msgstr "Verwijderen..."
+msgstr "wissen..."
 
 msgid "disable"
-msgstr "zet uit"
+msgstr "deactiveren"
 
 msgid "disable move mode"
-msgstr "Verplaats modus uitzetten"
+msgstr "verplaats modus deactiveren"
 
 msgid "do not change"
-msgstr "niet veranderen"
+msgstr "niet schakelen"
 
 msgid "do nothing"
-msgstr "doe niks"
+msgstr "geen actie"
 
 msgid "don't record"
-msgstr "niet opnemen"
+msgstr "Niet opnemen"
 
 msgid "done!"
-msgstr "Klaar!"
+msgstr "gereed!"
 
 msgid "edit alternatives"
-msgstr "edit alternatieven"
+msgstr "alternatieven bewerken"
 
 msgid "empty/unknown"
 msgstr "leeg/onbekend"
 
 msgid "enable"
-msgstr "zet aan"
+msgstr "activeren"
 
 msgid "enable bouquet edit"
-msgstr "Boeket edit aanzetten"
+msgstr "boeket bewerken activeren"
 
 msgid "enable favourite edit"
-msgstr "Favorieten edit aanzetten"
+msgstr "favorieten bewerken activeren"
 
 msgid "enable move mode"
-msgstr "Verplaats modus aanzetten"
+msgstr "verplaatsmodus activeren"
 
 msgid "end alternatives edit"
-msgstr "stop alternatieven edit"
+msgstr "alternatieven bewerken deactiveren"
 
 msgid "end bouquet edit"
-msgstr "Boeket edit stoppen"
+msgstr "boeket bewerken deactiveren"
 
 msgid "end cut here"
-msgstr "stop cut hier"
+msgstr "stop snijpunt hier"
 
 msgid "end favourites edit"
-msgstr "stop favorieten edit "
+msgstr "favorieten bewerken deactiveren "
 
 msgid "equal to Socket A"
-msgstr "Gelijk aan Socket A"
+msgstr "gelijk aan socket A"
 
 msgid "free diskspace"
-msgstr "vrije ruimte op harde schijf"
+msgstr "ruimte vrij op de harde schijf"
 
 msgid "full /etc directory"
-msgstr "komplete /etc directory"
+msgstr "complete map /etc "
 
 msgid "go to deep standby"
-msgstr "Box Uitzetten"
+msgstr "slaapstand"
 
 msgid "go to standby"
-msgstr ""
+msgstr "standby-stand"
 
 msgid "hear radio..."
 msgstr "Luister naar radio..."
@@ -2464,13 +2484,13 @@ msgstr ""
 "%s gesprek met %s!"
 
 msgid "init module"
-msgstr "CI-Module initializeren"
+msgstr "CI module initializeren"
 
 msgid "insert mark here"
-msgstr "hier merkteken invoegen"
+msgstr "makeerpunt invoegen"
 
 msgid "leave movie player..."
-msgstr "Afspelen stoppen..."
+msgstr "filmweergave afsluiten"
 
 msgid "left"
 msgstr "links"
@@ -2479,13 +2499,13 @@ msgid "list"
 msgstr "lijst"
 
 msgid "locked"
-msgstr "op slot"
+msgstr "Ja"
 
 msgid "loopthrough to socket A"
-msgstr "Doorgelust naar socket A"
+msgstr "doorgelust naar socket A"
 
 msgid "manual"
-msgstr "Handmatig"
+msgstr "handmatig"
 
 msgid "mins"
 msgstr "min"
@@ -2506,22 +2526,22 @@ msgid "never"
 msgstr "nooit"
 
 msgid "next channel"
-msgstr "volgend kanaal"
+msgstr "Volgende zender"
 
 msgid "next channel in history"
-msgstr "zet volgend kanaal in historie"
+msgstr "Volgende zender in geschiedenis"
 
 msgid "no"
 msgstr "nee"
 
 msgid "no HDD found"
-msgstr "Geen harde schijf gevonden"
+msgstr "geen harde schijf gevonden"
 
 msgid "no Picture found"
 msgstr "geen foto gevonden"
 
 msgid "no module found"
-msgstr "Geen CI-Module gevonden"
+msgstr "geen CI module gevonden"
 
 msgid "no standby"
 msgstr "geen standby"
@@ -2533,10 +2553,10 @@ msgid "none"
 msgstr "geen"
 
 msgid "not locked"
-msgstr "niet op slot"
+msgstr "Nee"
 
 msgid "nothing connected"
-msgstr "niks aangesloten"
+msgstr "niets aangesloten"
 
 msgid "off"
 msgstr "uit"
@@ -2545,37 +2565,37 @@ msgid "on"
 msgstr "aan"
 
 msgid "once"
-msgstr "Eenmalig"
+msgstr "éénmalig"
 
 msgid "only /etc/enigma2 directory"
-msgstr "alleen /etc/enigma2 directory"
+msgstr "alleen map /etc/enigma2"
 
 msgid "open servicelist"
-msgstr "open kanaallijst"
+msgstr "Open zenderlijst"
 
 msgid "open servicelist(down)"
-msgstr "open kanaallijst(naar beneden)"
+msgstr "Open zenderlijst (omlaag)"
 
 msgid "open servicelist(up)"
-msgstr "open kanaallijst(naar boven)"
+msgstr "Open zenderlijst (omhoog)"
 
 msgid "pass"
-msgstr "Passage"
+msgstr "passage"
 
 msgid "pause"
-msgstr "Pause"
+msgstr "pause"
 
 msgid "please press OK when ready"
-msgstr "Wanneer klaar druk OK aub."
+msgstr "indien gereed, druk dan op OK a.u.b."
 
 msgid "please wait, loading picture..."
-msgstr "ogenblik, laden foto..."
+msgstr "ogenblik, de foto wordt geladen..."
 
 msgid "previous channel"
-msgstr "vorig kanaal"
+msgstr "Vorige zender"
 
 msgid "previous channel in history"
-msgstr "zet vorig kanaal in historie"
+msgstr "Vorige zender in geschiedenis"
 
 msgid "record"
 msgstr "opname"
@@ -2584,31 +2604,31 @@ msgid "recording..."
 msgstr "opnemen..."
 
 msgid "remove after this position"
-msgstr "verwijder na deze positie"
+msgstr "verwijder achter deze positie"
 
 msgid "remove all alternatives"
 msgstr "verwijder alle alternatieven"
 
 msgid "remove all new found flags"
-msgstr "verwijder alle nieuw gevonden flags"
+msgstr "verwijder alle 'nieuw gevonden' vlaggetjes"
 
 msgid "remove before this position"
 msgstr "verwijder voor deze positie"
 
 msgid "remove entry"
-msgstr "Invoer verwijderen"
+msgstr "invoer verwijderen"
 
 msgid "remove from parental protection"
-msgstr "Verwijder beveiliging van kinderslot"
+msgstr "verwijder kinderslot"
 
 msgid "remove new found flag"
-msgstr "verwijder nieuw gevonden flag"
+msgstr "verwijder 'nieuw gevonden' vlag"
 
 msgid "remove this mark"
 msgstr "verwijder dit merkteken"
 
 msgid "repeated"
-msgstr "Herhalen"
+msgstr "herhalen"
 
 msgid "right"
 msgstr "rechts"
@@ -2618,33 +2638,33 @@ msgid ""
 "scan done!\n"
 "%d services found!"
 msgstr ""
-"Klaar met zoeken.\n"
-"%d kanalen gevonden."
+"Zoeken gereed!\n"
+"Er zijn %d zenders gevonden."
 
 msgid ""
 "scan done!\n"
 "No service found!"
 msgstr ""
-"Klaar met zoeken.\n"
-"geen kanalen gevonden."
+"Zoeken gereed!\n"
+"Geen zenders gevonden."
 
 msgid ""
 "scan done!\n"
 "One service found!"
 msgstr ""
-"Zoeken gestopt.\n"
-"Een kanaal gevonden."
+"Zoeken gereed!\n"
+"Één zender gevonden."
 
 #, python-format
 msgid ""
 "scan in progress - %d %% done!\n"
 "%d services found!"
 msgstr ""
-"Zoeken loopt - %d %% klaar!\n"
-"%d kanalen gevonden!"
+"Zoekt...  Voortgang: %d %%\n"
+"%d zenders gevonden."
 
 msgid "scan state"
-msgstr "Status"
+msgstr "status"
 
 msgid "second"
 msgstr "seconde"
@@ -2659,34 +2679,34 @@ msgid "seconds."
 msgstr "seconden."
 
 msgid "select Slot"
-msgstr "kies slot"
+msgstr "Tunerkeuze"
 
 msgid "service pin"
-msgstr "service pin"
+msgstr "zender pincode"
 
 msgid "setup pin"
-msgstr "setup pin"
+msgstr "menu pincode"
 
 msgid "show EPG..."
-msgstr "laat EPG zien..."
+msgstr "EPG weergeven..."
 
 msgid "show alternatives"
-msgstr "laat alternatieven zien"
+msgstr "alternatieven weergeven"
 
 msgid "show event details"
-msgstr "laat EPG details zien"
+msgstr "EPG details weergeven"
 
 msgid "show transponder info"
-msgstr ""
+msgstr "Transponder info weergeven"
 
 msgid "shutdown"
-msgstr "uitzetten"
+msgstr "slaapstand"
 
 msgid "simple"
-msgstr "simpel"
+msgstr "eenvoudig"
 
 msgid "skip backward"
-msgstr "Acteruit spoelen"
+msgstr "Achteruit spoelen"
 
 msgid "skip forward"
 msgstr "Vooruit spoelen"
@@ -2695,7 +2715,7 @@ msgid "standby"
 msgstr "standby"
 
 msgid "start cut here"
-msgstr "start cut hier"
+msgstr "start knippen hier"
 
 msgid "start timeshift"
 msgstr "Timeshift starten"
@@ -2707,7 +2727,7 @@ msgid "stop recording"
 msgstr "stop opname"
 
 msgid "stop timeshift"
-msgstr "Timeshift stoppen"
+msgstr "Stop timeshift"
 
 msgid "switch to filelist"
 msgstr "Ga naar bestandenlijst"
@@ -2722,37 +2742,37 @@ msgid "this recording"
 msgstr "deze opname"
 
 msgid "this service is protected by a parental control pin"
-msgstr "Dit kanaal is beveiligd d.m.v. een kinderslot pin"
+msgstr "dit kanaal is beveiligd d.m.v. een kinderslot pincode"
 
 msgid "unknown service"
-msgstr "onbekende Service"
+msgstr "onbekende zender"
 
 msgid "until restart"
 msgstr "tot herstart"
 
 msgid "user defined"
-msgstr "gebruikers mode"
+msgstr "door u gedefinieerd"
 
 msgid "vertical"
 msgstr "vertikaal"
 
 msgid "view extensions..."
-msgstr "Laat uitbreidingen zien..."
+msgstr "Applicaties weergeven..."
 
 msgid "view recordings..."
-msgstr "Laat opnames zien..."
+msgstr "Opnames weergeven..."
 
 msgid "wait for ci..."
-msgstr "wacht voor ci..."
+msgstr "wacht op CI..."
 
 msgid "waiting"
-msgstr "wachten"
+msgstr "een moment"
 
 msgid "weekly"
 msgstr "wekelijks"
 
 msgid "whitelist"
-msgstr "Witte lijst"
+msgstr "witte lijst"
 
 msgid "yes"
 msgstr "ja"
@@ -2764,14 +2784,14 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
-"uw Dreambox is mischien nu onbruikbaar. Raadpleeg de handleiding voordat u "
+"uw Dreambox is nu mogelijk onbruikbaar. Raadpleeg de handleiding voordat u "
 "de Dreambox herstart."
 
 msgid "zap"
 msgstr "zap"
 
 msgid "zapped"
-msgstr "zapped"
+msgstr "zapte"
 
 #~ msgid "0 V"
 #~ msgstr "0 V"
@@ -2846,6 +2866,9 @@ msgstr "zapped"
 
 #~ msgid "LCD"
 #~ msgstr "LCD"
+
+#~ msgid "LCD Setup"
+#~ msgstr "LCD Instellingen"
 
 #~ msgid "Language"
 #~ msgstr "Sprache"
