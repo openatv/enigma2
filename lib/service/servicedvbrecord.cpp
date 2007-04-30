@@ -207,6 +207,8 @@ int eDVBServiceRecord::doRecord()
 		}
 		m_record->setTargetFD(fd);
 		m_record->setTargetFilename(m_filename.c_str());
+		m_record->connectEvent(slot(*this, &eDVBServiceRecord::recordEvent), m_con_record_event);
+
 		m_target_fd = fd;
 	}
 	
@@ -374,3 +376,16 @@ PyObject *eDVBServiceRecord::getStreamingData()
 	return r;
 }
 
+void eDVBServiceRecord::recordEvent(int event)
+{
+	switch (event)
+	{
+	case iDVBTSRecorder::eventWriteError:
+		eWarning("[eDVBServiceRecord] record write error");
+		stop();
+		m_event((iRecordableService*)this, evRecordWriteError);
+		return;
+	default:
+		eDebug("unhandled record event %d", event);
+	}
+}

@@ -38,6 +38,7 @@ private:
 	eServiceReferenceDVB m_ref;
 	
 	ePtr<iDVBTSRecorder> m_record;
+	ePtr<eConnection>	m_con_record_event;
 	
 	int m_recording, m_tuned, m_error;
 	std::set<int> m_pids_active;
@@ -51,6 +52,9 @@ private:
 			/* events */
 	void serviceEvent(int event);
 	Signal2<void,iRecordableService*,int> m_event;
+	
+			/* recorder events */
+	void recordEvent(int event);
 };
 
 #endif

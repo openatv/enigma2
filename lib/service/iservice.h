@@ -768,8 +768,8 @@ public:
 		evRecordRunning,
 		evRecordStopped,
 		evNewProgramInfo,
-		evRecordFailed
-		/*evDiskFull*/
+		evRecordFailed,
+		evRecordWriteError
 	};
 	enum {
 		NoError=0,

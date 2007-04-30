@@ -443,6 +443,7 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
 	m_running = 0;
 	m_target_fd = -1;
 	m_thread = new eDVBRecordFileThread();
+  CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 #ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 1;
 #endif
@@ -647,4 +648,14 @@ void eDVBTSRecorder::stopPID(int pid)
 	}
 #endif
 	m_pids[pid] = -1;
+}
+
+void eDVBTSRecorder::filepushEvent(int event)
+{
+	switch (event)
+	{
+	case eFilePushThread::evtWriteError:
+		m_event(eventWriteError);
+		break;
+	}
 }

@@ -109,6 +109,7 @@ private:
 	void stopPID(int pid);
 	
 	eDVBRecordFileThread *m_thread;
+	void filepushEvent(int event);
 	
 	std::map<int,int> m_pids;
 	Signal1<void,int> m_event;
