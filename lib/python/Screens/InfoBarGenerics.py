@@ -652,6 +652,7 @@ class InfoBarSeek:
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.seekRelative(time * 90000)
+					self.screen.doShow()
 					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
