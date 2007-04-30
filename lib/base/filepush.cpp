@@ -61,6 +61,8 @@ void eFilePushThread::thread()
 			{
 				if (errno == EINTR)
 					continue;
+				eDebug("eFilePushThread WRITE ERROR");
+				sendEvent(evtWriteError);
 				break;
 				// ... we would stop the thread
 			}
