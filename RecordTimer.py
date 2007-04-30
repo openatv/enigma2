@@ -50,7 +50,7 @@ class AFTEREVENT:
 	DEEPSTANDBY = 2
 
 # please do not translate log messages
-class RecordTimerEntry(timer.TimerEntry):
+class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
 	receiveRecordEvents = False
 
@@ -59,9 +59,9 @@ class RecordTimerEntry(timer.TimerEntry):
 		quitMainloop(1)
 
 	@staticmethod
-	def gotRecordEvent(recservice, event):
+	def staticGotRecordEvent(recservice, event):
 		if event == iRecordableService.evEnd:
-			print "RecordTimer.gotRecordEvent(iRecordableService.evEnd)"
+			print "RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)"
 			recordings = NavigationInstance.instance.getRecordings()
 			if not len(recordings): # no more recordings exist
 				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
@@ -71,30 +71,30 @@ class RecordTimerEntry(timer.TimerEntry):
 					print "no starting records in the next 360 seconds... immediate shutdown"
 					RecordTimerEntry.shutdown() # immediate shutdown
 		elif event == iRecordableService.evStart:
-			print "RecordTimer.gotRecordEvent(iRecordableService.evStart)"
+			print "RecordTimer.staticGotRecordEvent(iRecordableService.evStart)"
 
 	@staticmethod
 	def stopTryQuitMainloop():
 		print "RecordTimer.stopTryQuitMainloop"
-		NavigationInstance.instance.record_event.remove(RecordTimerEntry.gotRecordEvent)
+		NavigationInstance.instance.record_event.remove(RecordTimerEntry.staticGotRecordEvent)
 		RecordTimerEntry.receiveRecordEvents = False
 
 	@staticmethod
 	def TryQuitMainloop():
 		if not RecordTimerEntry.receiveRecordEvents:
 			print "RecordTimer.TryQuitMainloop"
-			NavigationInstance.instance.record_event.append(RecordTimerEntry.gotRecordEvent)
+			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
 			RecordTimerEntry.receiveRecordEvents = True
 			# send fake event.. to check if another recordings are running or
 			# other timers start in a few seconds
-			RecordTimerEntry.gotRecordEvent(None, iRecordableService.evEnd)
+			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 			# send normal notification for the case the user leave the standby now..
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
-		
+
 		if checkOldTimers == True:
 			if self.begin < time.time() - 1209600:
 				self.begin = int(time.time())
@@ -111,7 +111,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.description = description
 		self.disabled = disabled
 		self.timer = None
-		self.record_service = None
+		self.__record_service = None
 		self.start_prepare = 0
 		self.justplay = justplay
 		self.afterEvent = afterEvent
@@ -145,7 +145,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.Filename = Directories.getRecordingFilename(filename)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
-	
+
 	def tryPrepare(self):
 		if self.justplay:
 			return True
@@ -159,10 +159,11 @@ class RecordTimerEntry(timer.TimerEntry):
 					return False
 				
 			self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref)
+
 			if not self.record_service:
 				self.log(1, "'record service' failed")
 				return False
-				
+
 			event_id = self.eit
 			if event_id is None:
 				event_id = -1
@@ -180,7 +181,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					self.description = evt.getShortDescription()
-				
+
 			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
 			try:
 				f = open(self.Filename + ".ts.meta", "w")
@@ -258,7 +259,7 @@ class RecordTimerEntry(timer.TimerEntry):
 					# retry
 					self.begin = time.time() + self.backoff
 					return False
-				
+
 				return True
 		elif next_state == self.StateEnded:
 			self.log(12, "stop recording")
@@ -309,6 +310,38 @@ class RecordTimerEntry(timer.TimerEntry):
 		
 		if int(old_prepare) != int(self.start_prepare):
 			self.log(15, "record time changed, start prepare is now: %s" % time.ctime(self.start_prepare))
+
+	def gotRecordEvent(self, record, event):
+		# TODO: this is not working (never true), please fix. (comparing two swig wrapped ePtrs)
+		if self.__record_service != record:
+			return
+		self.log(16, "record event %d" % event)
+		if event == iRecordableService.evRecordWriteError:
+			print "WRITE ERROR on recording, disk full?"
+			# show notification. the 'id' will make sure that it will be
+			# displayed only once, even if more timers are failing at the
+			# same time. (which is very likely in case of disk fullness)
+			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
+			# ok, the recording has been stopped. we need to properly note 
+			# that in our state, with also keeping the possibility to re-try.
+			# TODO: this has to be done.
+		elif event == iRecordableService.evStart:
+			# maybe this should be configurable?
+			Notifications.AddPopup(text = _("A record has been started:\n%s") % self.description, type = MessageBox.TYPE_INFO, timeout = 3)
+
+	# we have record_service as property to automatically subscribe to record service events
+	def setRecordService(self, service):
+		if self.__record_service is not None:
+			print "[remove callback]"
+			NavigationInstance.instance.record_event.remove(self.gotRecordEvent)
+
+		self.__record_service = service
+
+		if self.__record_service is not None:
+			print "[add callback]"
+			NavigationInstance.instance.record_event.append(self.gotRecordEvent)
+
+	record_service = property(lambda self: self.__record_service, setRecordService)
 
 def createTimer(xml):
 	begin = int(xml.getAttribute("begin"))
