@@ -19,7 +19,7 @@ class eFilePushThread: public eThread, public Object
 {
 	int prio_class, prio;
 public:
-	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0);
+	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188);
 	void thread();
 	void stop();
 	void start(int sourcefd, int destfd);
@@ -47,15 +47,16 @@ public:
 		/* you can send private events if you want */
 	void sendEvent(int evt);
 protected:
-	virtual void filterRecordData(const unsigned char *data, int len);
+	virtual int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
 	unsigned char m_buffer[65536];
-	int m_buf_start, m_buf_end;
+	int m_buf_start, m_buf_end, m_filter_end;
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;
+	int m_blocksize;
 
 	eRawFile m_raw_source;
 	
