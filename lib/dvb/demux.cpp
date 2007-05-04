@@ -144,11 +144,14 @@ RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 	
 	if (ioctl(fd, DMX_GET_STC, &stc) < 0)
 	{
+		eDebug("DMX_GET_STC failed!");
 		::close(fd);
 		return -1;
 	}
 	
 	pts = stc.stc;
+	
+	eDebug("DMX_GET_STC - %lld", pts);
 	
 	::close(fd);
 	return 0;
@@ -405,7 +408,7 @@ public:
 	
 	void saveTimingInformation(const std::string &filename);
 protected:
-	void filterRecordData(const unsigned char *data, int len);
+	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	eMPEGStreamInformation m_stream_info;
@@ -429,11 +432,13 @@ void eDVBRecordFileThread::saveTimingInformation(const std::string &filename)
 	m_stream_info.save(filename.c_str());
 }
 
-void eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len)
+int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
 {
 	m_ts_parser.parseData(m_current_offset, data, len);
 	
 	m_current_offset += len;
+	
+	return len;
 }
 
 DEFINE_REF(eDVBTSRecorder);

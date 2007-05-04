@@ -6,13 +6,16 @@
 
 #define PVR_COMMIT 1
 
-eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level)
+FILE *f = fopen("/log.ts", "wb");
+
+eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize)
 	:prio_class(io_prio_class), prio(io_prio_level), m_messagepump(eApp, 0)
 {
 	m_stop = 0;
 	m_sg = 0;
 	m_send_pvr_commit = 0;
 	m_stream_mode = 0;
+	m_blocksize = blocksize;
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -53,9 +56,56 @@ void eFilePushThread::thread()
 			/* first try flushing the bufptr */
 		if (m_buf_start != m_buf_end)
 		{
-				// TODO: take care of boundaries.
-			filterRecordData(m_buffer + m_buf_start, m_buf_end - m_buf_start);
+				/* filterRecordData wants to work on multiples of blocksize.
+				   if it returns a negative result, it means that this many bytes should be skipped
+				   *in front* of the buffer. Then, it will be called again. with the newer, shorter buffer.
+				   if filterRecordData wants to skip more data then currently available, it must do that internally.
+				   Skipped bytes will also not be output.
+
+				   if it returns a positive result, that means that only these many bytes should be used
+				   in the buffer. 
+				   
+				   In either case, current_span_remaining is given as a reference and can be modified. (Of course it 
+				   doesn't make sense to decrement it to a non-zero value unless you return 0 because that would just
+				   skip some data). This is probably a very special application for fast-forward, where the current
+				   span is to be cancelled after a complete iframe has been output.
+
+				   we always call filterRecordData with our full buffer (otherwise we couldn't easily strip from the end)
+				   
+				   we filter data only once, of course, but it might not get immediately written.
+				   that's what m_filter_end is for - it points to the start of the unfiltered data.
+				*/
+			
+			int filter_res;
+			
+			do
+			{
+				filter_res = filterRecordData(m_buffer + m_filter_end, m_buf_end - m_filter_end, current_span_remaining);
+
+				if (filter_res < 0)
+				{
+					eDebug("[eFilePushThread] filterRecordData re-syncs and skips %d bytes", -filter_res);
+					m_buf_start = m_filter_end + -filter_res;  /* this will also drop unwritten data */
+					ASSERT(m_buf_start <= m_buf_end); /* otherwise filterRecordData skipped more data than available. */
+					continue; /* try again */
+				}
+				
+					/* adjust end of buffer to strip dropped tail bytes */
+				m_buf_end = m_filter_end + filter_res;
+					/* mark data as filtered. */
+				m_filter_end = m_buf_end;
+			} while (0);
+			
+			ASSERT(m_filter_end == m_buf_end);
+			
+			if (m_buf_start == m_buf_end)
+				continue;
+
+				/* now write out data. it will be 'aligned' (according to filterRecordData). 
+				   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
+				*/
 			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+			fwrite(m_buffer + m_buf_start, 1, m_buf_end - m_buf_start, f);
 //			eDebug("wrote %d bytes", w);
 			if (w <= 0)
 			{
@@ -89,6 +139,7 @@ void eFilePushThread::thread()
 		if (m_sg && !current_span_remaining)
 		{
 			m_sg->getNextSourceSpan(source_pos, bytes_read, current_span_offset, current_span_remaining);
+			ASSERT(!(current_span_remaining % m_blocksize));
 
 			if (source_pos != current_span_offset)
 				source_pos = m_raw_source.lseek(current_span_offset, SEEK_SET);
@@ -101,7 +152,11 @@ void eFilePushThread::thread()
 		if (m_sg && maxread > current_span_remaining)
 			maxread = current_span_remaining;
 
+			/* align to blocksize */
+		maxread -= maxread % m_blocksize;
+
 		m_buf_start = 0;
+		m_filter_end = 0;
 		m_buf_end = 0;
 		
 		if (maxread)
@@ -222,7 +277,7 @@ void eFilePushThread::resume()
 
 void eFilePushThread::flush()
 {
-	m_buf_start = m_buf_end = 0;
+	m_buf_start = m_buf_end = m_filter_end = 0;
 }
 
 void eFilePushThread::enablePVRCommit(int s)
@@ -250,8 +305,7 @@ void eFilePushThread::recvEvent(const int &evt)
 	m_event(evt);
 }
 
-void eFilePushThread::filterRecordData(const unsigned char *data, int len)
+int eFilePushThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
 {
-	/* do nothing */
+	return len;
 }
-
