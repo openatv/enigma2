@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
-"PO-Revision-Date: 2007-01-07 13:27+0100\n"
+"POT-Creation-Date: 2007-05-05 10:40+0200\n"
+"PO-Revision-Date: 2007-04-28 12:21+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "#000000"
 msgstr "#000000"
 
 msgid "#003258"
-msgstr ""
+msgstr "#003258"
 
 msgid "#0064c7"
 msgstr "#0064c7"
@@ -41,7 +41,7 @@ msgid "#389416"
 msgstr "#389416"
 
 msgid "#77ffffff"
-msgstr ""
+msgstr "#77ffffff"
 
 msgid "#80000000"
 msgstr "#80000000"
@@ -75,7 +75,7 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
+msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(Přepnout)"
@@ -87,10 +87,10 @@ msgid "/var directory"
 msgstr "/var adresář"
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 msgid "1"
-msgstr ""
+msgstr "1"
 
 msgid "1.0"
 msgstr "1.0"
@@ -116,6 +116,9 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
+msgid "16:9 Letterbox"
+msgstr ""
+
 msgid "16:9 always"
 msgstr "vždy 16:9"
 
@@ -123,16 +126,16 @@ msgid "18 V"
 msgstr "18 V"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
 msgid "30 minutes"
 msgstr "30 minut"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -141,25 +144,25 @@ msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "5"
-msgstr ""
+msgstr "5"
 
 msgid "5 minutes"
 msgstr "5 minut"
 
 msgid "6"
-msgstr ""
+msgstr "6"
 
 msgid "60 minutes"
 msgstr "60 minut"
 
 msgid "7"
-msgstr ""
+msgstr "7"
 
 msgid "8"
-msgstr ""
+msgstr "8"
 
 msgid "9"
-msgstr ""
+msgstr "9"
 
 msgid "<unknown>"
 msgstr "<neznámý>"
@@ -174,10 +177,17 @@ msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Dokončený časovač chce přepnout váš Dreambox do standby módu. Má to udělat?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
+msgstr "Dokončený časovač chce vypnout váš Dreambox. Má to udělat?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
 msgstr ""
 
 msgid ""
@@ -203,12 +213,12 @@ msgstr ""
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
-msgstr ""
+msgstr "Časovač chce přepnout váš Dreambox do standby módu. Má to udělat?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
-msgstr ""
+msgstr "Časovač chce vypnout váš Dreambox. Má to udělat?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -552,7 +562,7 @@ msgid "Detected NIMs:"
 msgstr "Detekován NIMs:"
 
 msgid "Device Setup..."
-msgstr ""
+msgstr "Nastavení zařízení..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -595,6 +605,9 @@ msgstr ""
 "opakování..."
 
 msgid "Dish"
+msgstr ""
+
+msgid "Display Setup"
 msgstr ""
 
 msgid ""
@@ -652,13 +665,13 @@ msgstr ""
 "Po stisku OK počkejte!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr "Chcete zobrazit "
+msgstr "Chcete zobrazit tutorial pro střih?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Chcete zobrazit tutorial?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "Nezastavovat aktuální událost, ale zakázat následující události"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -772,7 +785,7 @@ msgid "Exit wizard"
 msgstr "Ukončit průvodce"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Rozšířené nastavení..."
 
 msgid "Extensions"
 msgstr "Rozšíření"
@@ -894,7 +907,7 @@ msgid "Increased voltage"
 msgstr "Zvýšit napětí"
 
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 msgid "InfoBar"
 msgstr "InfoBar"
@@ -949,9 +962,6 @@ msgstr "Nastavení klávesnice"
 
 msgid "Keymap"
 msgstr "Rozložení kláves"
-
-msgid "LCD Setup"
-msgstr "Nastavení LCD"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1111,13 +1121,13 @@ msgstr "DNS (nameserver)"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr ""
+msgstr "DNS (nameserver) %d"
 
 msgid "Nameserver Setup"
-msgstr ""
+msgstr "Nastavení DNS (nameserver)"
 
 msgid "Nameserver Setup..."
-msgstr ""
+msgstr "Nastavení DNS (nameserver)..."
 
 msgid "Netmask"
 msgstr "Síťová maska"
@@ -1191,12 +1201,18 @@ msgid ""
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Nebyl nalezen platný PIN služby!\n"
+"Chcete nyní změnit PIN?\n"
+"Pokud 'Ne' tak ochrana služby zůstane vypnuta!"
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Nebyl nalezen platný PIN nastavení!\n"
+"Chcete nyní změnit PIN?\n"
+"Pokud 'Ne' tak ochrana nastavení zůstane vypnuta!"
 
 msgid "No, do nothing."
 msgstr "Ne, nic nedělej."
@@ -1293,7 +1309,7 @@ msgid "Please choose an extension..."
 msgstr "Prosím vyberte si z nabídky možností"
 
 msgid "Please do not change values when you not know what you do!"
-msgstr ""
+msgstr "Prosíme neměňte hodnoty pokud nevíte co děláte!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Prosím zadejte název pro nový buklet"
@@ -1449,16 +1465,22 @@ msgid ""
 "Recording(s) are in progress or comming up in few seconds... really reboot "
 "now?"
 msgstr ""
+"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
+"rebootovat?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really restart "
 "now?"
 msgstr ""
+"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
+"restartovat?"
 
 msgid ""
 "Recording(s) are in progress or comming up in few seconds... really shutdown "
 "now?"
 msgstr ""
+"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
+"vypnout?"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
@@ -1482,7 +1504,7 @@ msgid "Repeat Type"
 msgstr "Druh opakování"
 
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr ""
+msgstr "Právě se nahrává opakovaná událost... Co chcete udělat?"
 
 msgid "Replace current playlist"
 msgstr "Nahradit tento playlist"
@@ -1530,7 +1552,7 @@ msgid "Satellite"
 msgstr "Satelit"
 
 msgid "Satellite Equipment Setup"
-msgstr ""
+msgstr "Nastavení vybavení satelitu"
 
 msgid "Satellites"
 msgstr "Satelity"
@@ -1560,7 +1582,7 @@ msgid "Select HDD"
 msgstr "Vyber HDD"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "Vyberte síťový adaptér"
 
 msgid "Select a movie"
 msgstr "Výběr filmu"
@@ -1628,10 +1650,10 @@ msgid "Setup"
 msgstr "Nastavení"
 
 msgid "Show infobar on channel change"
-msgstr "Zobrazit infobar při změně programu"
+msgstr "Zobrazit infobar při změně programu (channel)"
 
 msgid "Show infobar on event change"
-msgstr ""
+msgstr "Zobrazit infobar při změně programu (event)"
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Zobrazit infobar při přeskočení dopředu / zpět"
@@ -1748,10 +1770,10 @@ msgid "Stop Timeshift?"
 msgstr "Zastavit časový posun?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Zastavit aktuální událost a zakázat následující události"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Zastavit aktuální událost, ale nezakazovat následující události"
 
 msgid "Stop playing this movie?"
 msgstr "Zastavit přehrávání toho filmu?"
@@ -1839,7 +1861,7 @@ msgid "The sleep timer has been activated."
 msgstr "Časovač byl aktivován."
 
 msgid "The sleep timer has been disabled."
-msgstr ""
+msgstr "Časovač byl deaktivován."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2023,7 +2045,7 @@ msgid "Use DHCP"
 msgstr "Použit DHCP"
 
 msgid "Use a gateway"
-msgstr ""
+msgstr "Použít bárnu (gateway)"
 
 msgid "Use power measurement"
 msgstr "Použít sílu měření (???)"
@@ -2113,6 +2135,9 @@ msgstr "Co chcete prohledat?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kam chcete zazálohovat vaše nastavení?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2266,7 +2291,7 @@ msgid "abort favourites edit"
 msgstr "přerušit úpravu oblíbených"
 
 msgid "about to start"
-msgstr "jak začít"
+msgstr "právě začne"
 
 msgid "add alternatives"
 msgstr "Přidat alternativy"
@@ -2420,7 +2445,7 @@ msgid "go to deep standby"
 msgstr "přejít do hlubokého spánku"
 
 msgid "go to standby"
-msgstr ""
+msgstr "přejít do pohotovostního režimu"
 
 msgid "hear radio..."
 msgstr "Poslouchat rádio..."
@@ -2485,7 +2510,7 @@ msgid "minutes and"
 msgstr "minuty a"
 
 msgid "multinorm"
-msgstr ""
+msgstr "multinorma"
 
 msgid "never"
 msgstr "nikdy"
@@ -2660,7 +2685,7 @@ msgid "show event details"
 msgstr "zobraz podrobnosti události"
 
 msgid "show transponder info"
-msgstr "zobraz info o transpondéru"
+msgstr "Zobraz info o transpondéru"
 
 msgid "shutdown"
 msgstr "vypnout"
@@ -2779,7 +2804,7 @@ msgstr "přepnutý"
 #~ msgstr "Přidat alternativu"
 
 #~ msgid "Add service"
-#~ msgstr "Přidat kanál"
+#~ msgstr "Přidat službu"
 
 #~ msgid "Cable provider"
 #~ msgstr "Kabelový poskytovatel"
@@ -2794,7 +2819,10 @@ msgstr "přepnutý"
 #~ msgstr "Rovno slotu A"
 
 #~ msgid "Harddisk..."
-#~ msgstr "Pevný disk..."
+#~ msgstr "Pevný disk ..."
+
+#~ msgid "LCD Setup"
+#~ msgstr "Nastavení LCD"
 
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Smyčka přes slot A"
@@ -2806,7 +2834,7 @@ msgstr "přepnutý"
 #~ msgstr "Předdefinovaný satelit"
 
 #~ msgid "Remove service"
-#~ msgstr "Odebrat kanál"
+#~ msgstr "Odebrat službu"
 
 #~ msgid "Satconfig"
 #~ msgstr "Nastavení satelitu"
@@ -2821,10 +2849,10 @@ msgstr "přepnutý"
 #~ msgstr "Vybrat referenční službu (???)"
 
 #~ msgid "Simple"
-#~ msgstr "Jednoduché"
+#~ msgstr "jednoduché"
 
 #~ msgid "Swap services"
-#~ msgstr "Vyměnit programy"
+#~ msgstr "Prohodit kanály"
 
 #~ msgid "copy to favourites"
 #~ msgstr "Zkopírovat do oblíbených"
