@@ -221,6 +221,9 @@ SWIG_EXTEND(ePtr<eDVBResourceManager>,
 );
 
 #ifndef SWIG
+
+class eDVBChannelFilePush;
+
 	/* iDVBPVRChannel includes iDVBChannel. don't panic. */
 class eDVBChannel: public iDVBPVRChannel, public iFilePushScatterGather, public Object
 {
@@ -272,7 +275,7 @@ private:
 	ePtr<eConnection> m_conn_frontendStateChanged;
 	
 		/* for PVR playback */
-	eFilePushThread *m_pvr_thread;
+	eDVBChannelFilePush *m_pvr_thread;
 	void pvrEvent(int event);
 	
 	int m_pvr_fd_dst;
