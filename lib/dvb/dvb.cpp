@@ -644,6 +644,100 @@ error:
 	return ret;
 }
 
+class eDVBChannelFilePush: public eFilePushThread
+{
+public:
+	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
+protected:
+	int m_iframe_search, m_iframe_state, m_pid;
+	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
+};
+
+int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, size_t &current_span_remaining)
+{
+#if 0 /* not yet */
+	if (!m_iframe_search)
+		return len;
+
+	unsigned char *data = (unsigned char*)_data; /* remove that const. we know what we are doing. */
+
+	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
+	
+	unsigned char *d = data;
+	while ((d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
+	{
+		int offset = d - data;
+		int ts_offset = offset - offset % 188; /* offset to the start of TS packet */
+		unsigned char *ts = data + ts_offset;
+		int pid = ((ts[1] << 8) | ts[2]) & 0x1FFF;
+
+		if ((d[3] == 0) && (m_pid == pid))  /* picture start */
+		{
+			int picture_type = (d[5] >> 3) & 7;
+			d += 4;
+			
+			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
+
+			if (m_iframe_state == 1)
+			{
+					/* we are allowing data, and stop allowing data on the next frame. 
+					   we now found a frame. so stop here. */
+				memset(data + offset, 188 - (offset%188), 0xFF); /* zero out rest of TS packet */
+				current_span_remaining = 0;
+				m_iframe_state = 0;
+				unsigned char *fts = ts + 188;
+				while (fts < (data + len))
+				{
+					fts[1] |= 0x1f;
+					fts[2] |= 0xff; /* drop packet */
+					fts += 188;
+				}
+				
+				return len; // ts_offset + 188; /* deliver this packet, but not more. */
+			} else
+			{
+				if (picture_type != 1) /* we are only interested in I frames */
+					continue;
+			
+				unsigned char *fts = data;
+				while (fts < ts)
+				{
+					fts[1] |= 0x1f;
+					fts[2] |= 0xff; /* drop packet */
+				
+					fts += 188;
+				}
+				
+						/* force payload only */
+				ts[3] &= ~0x30;
+				ts[3] |=  0x10;
+				
+				memset(ts + 4, ts_offset - 4, 0xFF);
+
+				m_iframe_state = 1;
+			}
+		} else if ((d[3] & 0xF0) == 0xE0) /* video stream */
+		{
+			if (m_pid != pid)
+			{
+				eDebug("now locked to pid %04x", pid);
+				m_pid = pid;
+			}
+			m_pid = 0x6e;
+			d += 4;
+		} else
+			d += 4; /* ignore */
+	}
+
+	if (m_iframe_state == 1)
+		return len;
+	else
+		return 0; /* we need find an iframe first */
+#else
+	return len;
+#endif
+}
+
 DEFINE_REF(eDVBChannel);
 
 eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend): m_state(state_idle), m_mgr(mgr)
@@ -766,7 +860,10 @@ void eDVBChannel::cueSheetEvent(int event)
 				m_skipmode_n = m_skipmode_m = 0;
 			}
 		}
+		m_pvr_thread->setIFrameSearch(m_skipmode_n != 0);
+		eDebug("flush pvr");
 		flushPVR(m_cue->m_decoding_demux);
+		eDebug("done");
 		break;
 	}
 	case eCueSheet::evtSpanChanged:
@@ -789,10 +886,28 @@ void eDVBChannel::cueSheetEvent(int event)
 	}
 }
 
+	/* align toward zero */
+static inline int align(long long x, int align)
+{
+	int sign = x < 0;
+
+	if (sign)
+		x = -x;
+
+	x -= x % align;
+
+	if (sign)
+		x = -x;
+
+	return x;
+}
+
 	/* remember, this gets called from another thread. */
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
 {
-	unsigned int max = 10*1024*1024;
+	const int blocksize = 188;
+	unsigned int max = align(10*1024*1024, blocksize);
+	current_offset = align(current_offset, blocksize);
 	
 	if (!m_cue)
 	{
@@ -815,12 +930,12 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	if (m_skipmode_n)
 	{
 		eDebug("skipmode %d:%d", m_skipmode_m, m_skipmode_n);
-		max = m_skipmode_n;
+		max = align(m_skipmode_n, blocksize);
 	}
 
 	eDebug("getNextSourceSpan, current offset is %08llx!", current_offset);
 
-	current_offset += m_skipmode_m;
+	current_offset += align(m_skipmode_m, blocksize);
 
 	while (!m_cue->m_seek_requests.empty())
 	{
@@ -897,21 +1012,24 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = offset;
 	}
-	
+
 	for (std::list<std::pair<off_t, off_t> >::const_iterator i(m_source_span.begin()); i != m_source_span.end(); ++i)
 	{
-		if ((current_offset >= i->first) && (current_offset < i->second))
+		int aligned_start = align(i->first, blocksize);
+		int aligned_end = align(i->second, blocksize);
+		
+		if ((current_offset >= aligned_start) && (current_offset < aligned_end))
 		{
 			start = current_offset;
-				/* max can not exceed max(size_t). i->second - current_offset, however, can. */
-			if ((i->second - current_offset) > max)
+				/* max can not exceed max(size_t). aligned_end - current_offset, however, can. */
+			if ((aligned_end - current_offset) > max)
 				size = max;
 			else
-				size = i->second - current_offset;
+				size = aligned_end - current_offset;
 			eDebug("HIT, %lld < %lld < %lld, size: %d", i->first, current_offset, i->second, size);
 			return;
 		}
-		if (current_offset < i->first)
+		if (current_offset < aligned_start)
 		{
 				/* ok, our current offset is in an 'out' zone. */
 			if ((m_skipmode_m >= 0) || (i == m_source_span.begin()))
@@ -923,7 +1041,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				if ((i->second - i->first) > max)
 					size = max;
 				else
-					size = i->second - i->first;
+					size = aligned_end - aligned_start;
 
 				eDebug("skip");
 				if (m_skipmode_m < 0)
@@ -943,9 +1061,9 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				if ((i->second - i->first) > max)
 					len = max;
 				else
-					len = i->second - i->first;
+					len = aligned_end - aligned_start;
 
-				start = i->second - len;
+				start = aligned_end - len;
 				eDebug("skipping to %llx, %d", start, len);
 			}
 			return;
@@ -960,7 +1078,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	}
 	
 	start = current_offset;
-	size = max;
+	size = blocksize;
+
 	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
 	return;
 }
@@ -1111,7 +1230,7 @@ RESULT eDVBChannel::playFile(const char *file)
 		return -ENODEV;
 	}
 
-	m_pvr_thread = new eFilePushThread();
+	m_pvr_thread = new eDVBChannelFilePush();
 	m_pvr_thread->enablePVRCommit(1);
 	m_pvr_thread->setStreamMode(1);
 	m_pvr_thread->setScatterGather(this);
