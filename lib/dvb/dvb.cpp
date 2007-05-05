@@ -662,7 +662,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	unsigned char *data = (unsigned char*)_data; /* remove that const. we know what we are doing. */
 
 	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
-	
+
 	unsigned char *d = data;
 	while ((d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
 	{
@@ -682,7 +682,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			{
 					/* we are allowing data, and stop allowing data on the next frame. 
 					   we now found a frame. so stop here. */
-				memset(data + offset, 188 - (offset%188), 0xFF); /* zero out rest of TS packet */
+				memset(data + offset, 0, 188 - (offset%188)); /* zero out rest of TS packet */
 				current_span_remaining = 0;
 				m_iframe_state = 0;
 				unsigned char *fts = ts + 188;
@@ -692,7 +692,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 					fts[2] |= 0xff; /* drop packet */
 					fts += 188;
 				}
-				
+
 				return len; // ts_offset + 188; /* deliver this packet, but not more. */
 			} else
 			{
@@ -707,12 +707,11 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 				
 					fts += 188;
 				}
-				
 						/* force payload only */
 				ts[3] &= ~0x30;
 				ts[3] |=  0x10;
 				
-				memset(ts + 4, ts_offset - 4, 0xFF);
+//				memset(ts + 4, 0xFF, (offset % 188) - 4);
 
 				m_iframe_state = 1;
 			}
@@ -727,6 +726,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			d += 4;
 		} else
 			d += 4; /* ignore */
+
 	}
 
 	if (m_iframe_state == 1)
