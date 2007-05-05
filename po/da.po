@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-16 20:36+0200\n"
-"PO-Revision-Date: 2007-04-16 20:28+0100\n"
+"POT-Creation-Date: 2007-05-05 10:40+0200\n"
+"PO-Revision-Date: 2007-04-30 18:33+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj@satandream.com>\n"
 "MIME-Version: 1.0\n"
@@ -80,10 +80,10 @@ msgid "(ZAP)"
 msgstr "(ZAP)"
 
 msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 direktorie"
+msgstr "/usr/share/enigma2 mappe"
 
 msgid "/var directory"
-msgstr "/var direktorie"
+msgstr "/var mappe"
 
 msgid "0"
 msgstr "0"
@@ -114,6 +114,9 @@ msgstr "16:10 PanScan"
 
 msgid "16:9"
 msgstr "16:9"
+
+msgid "16:9 Letterbox"
+msgstr ""
 
 msgid "16:9 always"
 msgstr "16:9 Altid"
@@ -182,6 +185,12 @@ msgid ""
 msgstr ""
 "En afsluttet optagelses timer vil gerne slukke\n"
 "din Dreambox. Slukke nu?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
+msgstr ""
 
 msgid ""
 "A recording is currently running.\n"
@@ -559,7 +568,7 @@ msgid "Detected NIMs:"
 msgstr "TUNERE fundet:"
 
 msgid "Device Setup..."
-msgstr "Device Opsætning..."
+msgstr "Netværks Opsætning..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -603,6 +612,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Parabol"
+
+msgid "Display Setup"
+msgstr "Display Indstillinger"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -659,7 +671,7 @@ msgstr ""
 "Efter tryk på OK, vent venligst!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
+msgstr "Vil du gerne se en cutlist oversigt?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en oversigt?"
@@ -832,7 +844,7 @@ msgid "Games / Plugins"
 msgstr "Spil / Plugins"
 
 msgid "Gateway"
-msgstr "Gateway"
+msgstr "Router Adresse"
 
 msgid "Genre:"
 msgstr "Genre:"
@@ -900,7 +912,7 @@ msgid "Increased voltage"
 msgstr "Øget spænding"
 
 msgid "Index"
-msgstr ""
+msgstr "Oversigt"
 
 msgid "InfoBar"
 msgstr "InfoBjælke"
@@ -955,9 +967,6 @@ msgstr "Tastatur Indstilling"
 
 msgid "Keymap"
 msgstr "Tastelayout"
-
-msgid "LCD Setup"
-msgstr "LCD Indstillinger"
 
 msgid "LNB"
 msgstr "LNB"
@@ -2043,7 +2052,7 @@ msgid "Use DHCP"
 msgstr "Brug (DHCP)"
 
 msgid "Use a gateway"
-msgstr "Bruge en gateway"
+msgstr "Brug af router"
 
 msgid "Use power measurement"
 msgstr "Brug power måling"
@@ -2133,6 +2142,9 @@ msgstr "Hvad vil du søge?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lave en backup af dine indstillinger?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "Komponent"
@@ -2778,3 +2790,6 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zappet"
+
+#~ msgid "LCD Setup"
+#~ msgstr "Display Indstillinger"
