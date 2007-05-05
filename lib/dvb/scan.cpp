@@ -84,7 +84,7 @@ RESULT eDVBScan::nextChannel()
 {
 	ePtr<iDVBFrontend> fe;
 
-	m_SDT = 0; m_BAT = 0; m_NIT = 0;
+	m_SDT = 0; m_PAT = 0; m_BAT = 0; m_NIT = 0;
 
 	m_ready = 0;
 
