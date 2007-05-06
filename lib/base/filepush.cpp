@@ -6,7 +6,7 @@
 
 #define PVR_COMMIT 1
 
-FILE *f = fopen("/log.ts", "wb");
+//FILE *f = fopen("/log.ts", "wb");
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize)
 	:prio_class(io_prio_class), prio(io_prio_level), m_messagepump(eApp, 0)
@@ -105,7 +105,7 @@ void eFilePushThread::thread()
 				   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
 				*/
 			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
-			fwrite(m_buffer + m_buf_start, 1, m_buf_end - m_buf_start, f);
+//			fwrite(m_buffer + m_buf_start, 1, m_buf_end - m_buf_start, f);
 //			eDebug("wrote %d bytes", w);
 			if (w <= 0)
 			{
