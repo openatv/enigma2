@@ -568,9 +568,9 @@ class InfoBarRdsDecoder:
 				iPlayableService.evUpdatedRassSlidePic: self.RassSlidePicChanged
 			})
 		
-		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
+		self["RdsActions"] = ActionMap(["InfobarRdsActions"],
 		{
-			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
+			"startRassInteractive": self.startRassInteractive
 		},-1)
 
 		self["RdsActions"].setEnabled(False)
