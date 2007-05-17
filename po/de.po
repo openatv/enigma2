@@ -2,12 +2,12 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-29 20:24+0200\n"
+"POT-Creation-Date: 2007-05-17 19:09+0200\n"
 "PO-Revision-Date: 2007-04-28 21:11+0200\n"
 "Last-Translator: Stefan Pluecken <stefanpl@baer.rwth-aachen.de>\n"
 "Language-Team: none\n"
@@ -118,6 +118,9 @@ msgstr ""
 msgid "16:9"
 msgstr "16:9"
 
+msgid "16:9 Letterbox"
+msgstr ""
+
 msgid "16:9 always"
 msgstr "immer 16:9"
 
@@ -185,6 +188,14 @@ msgid ""
 msgstr ""
 "Ein Aufnahmetimer will Ihre Dreambox ausschalten.\n"
 "Jetzt ausschalten?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
+msgstr ""
+"Eine Aufnahme wurde gestartet:\n"
+"%s"
 
 msgid ""
 "A recording is currently running.\n"
@@ -2156,6 +2167,9 @@ msgstr "Was wollen Sie scannen?"
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin möchten Sie die Einstellungen sichern?"
 
+msgid "Write error while recording. Disk full?\n"
+msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -2337,7 +2351,7 @@ msgid "add recording (indefinitely)"
 msgstr "Aufnahme hinzufügen (unbegrenzt)"
 
 msgid "add recording (stop after current event)"
-msgstr "Aufnahme hinzufügen (nach aktuellem Ereignis anhalten)"
+msgstr "Aufnahme hinzufügen (aktuelle Sendung)"
 
 msgid "add service to bouquet"
 msgstr "Zu Bouquet hinzufügen"
@@ -2622,7 +2636,7 @@ msgid "remove all alternatives"
 msgstr "entferne alle Alternativen"
 
 msgid "remove all new found flags"
-msgstr "Entfernen aller neu gefundenen Kennzeichnungen"
+msgstr "Entfernen aller 'neu gefundenen'-Kennzeichnungen"
 
 msgid "remove before this position"
 msgstr "Vor dieser Position entfernen"
@@ -2634,7 +2648,7 @@ msgid "remove from parental protection"
 msgstr "Jugendschutz ausschalten"
 
 msgid "remove new found flag"
-msgstr "Entfernen der neu gefunden Kennzeichnung"
+msgstr "Entfernen der 'neu gefunden'-Kennzeichnung"
 
 msgid "remove this mark"
 msgstr "Diese Markierung entfernen"
