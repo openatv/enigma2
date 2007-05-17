@@ -722,7 +722,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 				eDebug("now locked to pid %04x", pid);
 				m_pid = pid;
 			}
-			m_pid = 0x6e;
+//			m_pid = 0x6e;
 			d += 4;
 		} else
 			d += 4; /* ignore */
@@ -1078,7 +1078,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	}
 	
 	start = current_offset;
-	size = blocksize;
+	size = max;
 
 	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
 	return;
