@@ -887,7 +887,7 @@ void eDVBChannel::cueSheetEvent(int event)
 }
 
 	/* align toward zero */
-static inline int align(long long x, int align)
+static inline long long align(long long x, int align)
 {
 	int sign = x < 0;
 
