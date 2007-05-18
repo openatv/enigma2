@@ -883,6 +883,7 @@ def InitNimManager(nimmgr):
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
+			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
 			print "pls add support for this frontend type!"		
 #			assert False
 
