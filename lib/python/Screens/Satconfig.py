@@ -41,9 +41,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.advancedLof = None
 		self.advancedPowerMeasurement = None
 		
-		self.nim_type = nimmanager.getNimType(self.nim.slotid)
-
-		if self.nim_type == nimmanager.nimType["DVB-S"]:
+		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
 			
@@ -67,10 +65,10 @@ class NimSetup(Screen, ConfigListScreen):
 				currSat = self.nimConfig.advanced.sat[cur_orb_pos]
 				self.fillListWithAdvancedSatEntrys(currSat)
 			self.have_advanced = True
-		elif self.nim_type == nimmanager.nimType["DVB-C"]:
+		elif self.nim.isCompatible("DVB-C"):
 			self.list.append(getConfigListEntry(_("Service scan type needed"), self.nimConfig.cabletype))
 			self.have_advanced = False
-		elif self.nim_type == nimmanager.nimType["DVB-T"]:
+		elif self.nim.isCompatible("DVB-T"):
 			self.have_advanced = False
 			self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
 			self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.terrestrial_5V))
@@ -87,7 +85,7 @@ class NimSetup(Screen, ConfigListScreen):
 				self.createSetup()
 
 	def run(self):
-		if self.have_advanced and config.Nims[self.nim.slotid].configMode.value == "advanced":
+		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self["config"].list:
 			x[1].save()
@@ -169,8 +167,8 @@ class NimSetup(Screen, ConfigListScreen):
 			"cancel": self.keyCancel,
 		}, -2)
 
-		self.nim = nimmanager.nimList()[slotid][1]
-		self.nimConfig = config.Nims[self.nim.slotid]
+		self.nim = nimmanager.nim_slots[slotid]
+		self.nimConfig = self.nim.config
 		self.createSetup()
 
 	def keyLeft(self):
@@ -184,8 +182,12 @@ class NimSetup(Screen, ConfigListScreen):
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		
+		menu = [ ]
+		for x in nimmanager.nim_slots:
+			menu.append((x.friendly_full_description, x))
 
-		self["nimlist"] = MenuList(nimmanager.nimList())
+		self["nimlist"] = MenuList(menu)
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -194,6 +196,7 @@ class NimSelection(Screen):
 		}, -2)
 
 	def okbuttonClick(self):
-		selection = self["nimlist"].getCurrent()
-		if selection[1].nimType != -1:	#unknown/empty
-			self.session.open(NimSetup, selection[1].slotid)
+		nim = self["nimlist"].getCurrent()
+		nim = nim and nim[1]
+		if nim is not None and not nim.empty:
+			self.session.open(NimSetup, nim.slot)
