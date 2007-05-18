@@ -65,6 +65,9 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 			return None
 		return self.l.getCurrentSelection()[0]
 	
+	def getSelectionIndex(self):
+		return self.l.getCurrentSelectionIndex()
+
 	def getFileList(self):
 		return self.list
 	
