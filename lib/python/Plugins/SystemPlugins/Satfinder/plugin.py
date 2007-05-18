@@ -88,7 +88,7 @@ class Satfinder(ScanSetup):
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
-		
+
 		ScanSetup.__init__(self, session)
 		self.tuner = Tuner(self.frontend)
 		
@@ -105,7 +105,7 @@ class Satfinder(ScanSetup):
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
 		
 		self["introduction"].setText("")
-		
+
 		self.statusTimer = eTimer()
 		self.statusTimer.timeout.get().append(self.updateStatus)
 		self.statusTimer.start(50, False)
@@ -248,11 +248,11 @@ class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		nimlist = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
-			nimMenuList.append((_("NIM ") + (["A", "B", "C", "D"][x]) + ": " + nimmanager.getNimName(x) + " (" + nimmanager.getNimTypeName(x) + ")", x))
-		
+			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
+
 		self["nimlist"] = MenuList(nimMenuList)
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -262,11 +262,11 @@ class NimSelection(Screen):
 		}, -1)
 
 	def okbuttonClick(self):
-		selection = self["nimlist"].getCurrent()
-		self.session.open(Satfinder, selection[1])
+		selection = self["nimlist"].getCurrent()[1]
+		self.session.open(Satfinder, selection)
 
 def SatfinderMain(session, **kwargs):
-	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+	nimList = nimmanager.getNimListOfType("DVB-S")
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 	else:

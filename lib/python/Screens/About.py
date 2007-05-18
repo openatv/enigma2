@@ -25,10 +25,9 @@ class About(Screen):
 		self["fpVersion"] = Label(fp_version)
 		
 		nims = nimmanager.nimList()
-		for count in range(2):
-			print "count:", nimmanager.nimCount
-			if count < nimmanager.nimCount:
-				self["tuner" + str(count)] = Label(nims[count][0])
+		for count in range(4):
+			if count < len(nims):
+				self["tuner" + str(count)] = Label(nims[count])
 			else:
 				self["tuner" + str(count)] = Label("")
 

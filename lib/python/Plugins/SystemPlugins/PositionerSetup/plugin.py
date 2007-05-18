@@ -532,7 +532,8 @@ class NimSelection(Screen):
 		nimlist = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
 		nimMenuList = []
 		for x in nimlist:
-			nimMenuList.append((_("NIM ") + (["A", "B", "C", "D"][x]) + ": " + nimmanager.getNimName(x) + " (" + nimmanager.getNimTypeName(x) + ")", x))
+			n = nimmanager.nim_slots[x]
+			nimMenuList.append((n.friendly_full_name, x))
 		
 		self["nimlist"] = MenuList(nimMenuList)
 
@@ -547,7 +548,7 @@ class NimSelection(Screen):
 		self.session.open(PositionerSetup, selection[1])
 
 def PositionerMain(session, **kwargs):
-	nimList = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+	nimList = nimmanager.getNimListOfType("DVB-S")
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No positioner capable frontend found."), MessageBox.TYPE_ERROR)
 	else:
@@ -574,4 +575,3 @@ def PositionerSetupStart(menuid):
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Positioner setup"), description="Setup your positioner", where = PluginDescriptor.WHERE_SETUP, fnc=PositionerSetupStart)
-	

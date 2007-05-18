@@ -52,14 +52,17 @@ def SecSetupMain(Session, **kwargs):
 
 def SecSetupStart(menuid):
 	show = False
-	for slot in nimmgr.nimslots:
-		if slot.nimType == nimmgr.nimType["DVB-S"]:
-			show = True
-			break
-	if show and menuid == "scan":
-		return [(_("Satellite Equipment Setup"), SecSetupMain)]
-	else:
-		return []
+	
+	# other menu than "scan"?
+	if menuid != "scan": 
+		return [ ]
+
+	# only show if DVB-S frontends are available
+	for slot in nimmgr.nim_slots:
+		if slot.isCompatible("DVB-S"):
+			return [(_("Satellite Equipment Setup"), SecSetupMain)]
+
+	return [ ]
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Satellite Equipment Setup"), description="Setup your satellite equipment", where = PluginDescriptor.WHERE_SETUP, fnc=SecSetupStart)
