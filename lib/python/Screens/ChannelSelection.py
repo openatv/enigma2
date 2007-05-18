@@ -854,27 +854,27 @@ class ChannelSelectionBase(Screen):
 								break
 							orbpos = service.getUnsignedData(4) >> 16
 							if service.getPath().find("FROM PROVIDER") != -1:
-								service_name = _("Providers")
+								service_type = _("Providers")
 							elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
-								service_name = _("New")
+								service_type = _("New")
 							else:
-								service_name = _("Services")
+								service_type = _("Services")
 							try:
-								service_name += str(' - %s'%(nimmanager.getSatDescription(orbpos)))
-								service.setName(service_name) # why we need this cast?
+								# why we need this cast?
+								service_name = str(nimmanager.getSatDescription(orbpos))
 							except:
 								if orbpos == 0xFFFF: #Cable
-									n = ("%s (%s)") % (service_name, _("Cable"))
+									service_name = _("Cable")
 								elif orbpos == 0xEEEE: #Terrestrial
-									n = ("%s (%s)") % (service_name, _("Terrestrial"))
+									service_name = _("Terrestrial")
 								else:
 									if orbpos > 1800: # west
 										orbpos = 3600 - orbpos
 										h = _("W")
 									else:
 										h = _("E")
-									n = ("%s (%d.%d" + h + ")") % (service_name, orbpos / 10, orbpos % 10)
-								service.setName(n)
+									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+							service.setName("%s - %s" % (service_name, service_type))
 							self.servicelist.addService(service)
 						self.servicelist.finishFill()
 						if prev is not None:
