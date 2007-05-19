@@ -30,7 +30,7 @@ self["rc"].startMoving()
 		<step id="nima">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = not nimmanager.nim_slots[0].empty
+self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].empty
 			</condition>
 			<text value="Use the left and right buttons to change an option.\n\nPlease set up tuner A" />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
@@ -48,7 +48,7 @@ self["arrowdown"].startMoving()
 		<step id="nimb">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = not nimmanager.nim_slots[1].empty
+self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].empty
 			</condition>
 			<text value="Please set up tuner B" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
@@ -66,7 +66,7 @@ self["arrowdown"].startMoving()
 		<step id="nimc">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = not nimmanager.nim_slots[2].empty
+self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty
 			</condition>
 			<text value="Please set up tuner C" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
@@ -84,7 +84,7 @@ self["arrowdown"].startMoving()
 		<step id="nimd">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = not nimmanager.nim_slots[3].empty
+self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty
 			</condition>
 			<text value="Please set up tuner D" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
