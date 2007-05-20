@@ -61,17 +61,17 @@
 -->
 
 <!-- ............................................................................. -->
-			<eLabel text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" />
+<!--			<eLabel text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" /> -->
 			<eLabel text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
 			<eLabel text="BER:" position="355,0" size="40,22" font="Regular;15" transparent="1" />
 			
-			<widget source="FrontendStatus" render="Label" position="232,0" size="40,22" font="Regular;15" transparent="1" >
-				<convert type="FrontendInfo">SNR</convert>
+			<widget source="FrontendStatus" render="Label" position="195,0" size="77,22" font="Regular;15" transparent="1" >
+				<convert type="FrontendInfo">SNRdB</convert>
 			</widget>
 			<widget source="FrontendStatus" render="Label" position="314,0" size="40,22" font="Regular;15" transparent="1" >
 				<convert type="FrontendInfo">AGC</convert>
 			</widget>
-			<widget source="FrontendStatus" render="Label" position="392,0" size="53,22" font="Regular;15" transparent="1" >
+			<widget source="FrontendStatus" render="Label" position="392,2"	size="53,20" font="Regular;13" transparent="1" >
 				<convert type="FrontendInfo">BER</convert>
 			</widget>
 			
