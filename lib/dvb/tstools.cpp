@@ -1,3 +1,4 @@
+#define _ISOC99_SOURCE /* for llabs */
 #include <lib/dvb/tstools.h>
 #include <lib/base/eerror.h>
 #include <unistd.h>
@@ -75,8 +76,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 	offset -= offset % 188;
 	
 	if (m_file.lseek(offset, SEEK_SET) < 0)
+	{
+		eDebug("lseek failed");
 		return -1;
-
+	}
+	
 	int left = m_maxrange;
 	
 	while (left >= 188)
@@ -92,6 +96,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		
 		if (packet[0] != 0x47)
 		{
+			eDebug("resync");
 			int i = 0;
 			while (i < 188)
 			{
@@ -125,7 +130,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 					pts |= ((unsigned long long)(packet[ 9]&0xFF)) << 1;
 					pts |= ((unsigned long long)(packet[10]&0x80)) >> 7;
 					offset -= 188;
-					eDebug("PCR  found: %16llx", pts);
+					eDebug("PCR  found at %llx: %16llx", offset, pts);
 					if (fixed && fixupPTS(offset, pts))
 						return -1;
 					return 0;
@@ -162,7 +167,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			pts |= ((unsigned long long)(payload[13]&0xFE)) >> 1;
 			offset -= 188;
 
-			eDebug("found pts %08llx at %08llx pid %02x stream: %02x", pts, offset, pid, payload[3]);
+//			eDebug("found pts %08llx at %08llx pid %02x stream: %02x", pts, offset, pid, payload[3]);
 			
 				/* convert to zero-based */
 			if (fixed && fixupPTS(offset, pts))
@@ -212,7 +217,6 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 		return 0;
 	} else
 	{
-		eDebug("get offset: pts=%llx", pts);
 		calcBegin(); calcEnd();
 		
 		if (!m_begin_valid)
@@ -270,8 +274,6 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 				
 				p = pts;
 				
-				eDebug("so next guess at %llx", offset);
-			
 				if (!takeSample(offset, p))
 				{
 					int diff = (p - pts) / 90;
@@ -297,7 +299,6 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 			}
 		}
 		
-		eDebug("falling back");
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
 		offset -= offset % 188;
@@ -339,7 +340,7 @@ void eDVBTSTools::calcEnd()
 	
 	off_t end = m_file.lseek(0, SEEK_END);
 	
-	if (abs(end - m_last_filelength) > 1*1024*1024)
+	if (llabs(end - m_last_filelength) > 1*1024*1024)
 	{
 		m_last_filelength = end;
 		m_end_valid = 0;
@@ -445,10 +446,8 @@ void eDVBTSTools::takeSamples()
 	/* returns 0 when a sample was taken. */
 int eDVBTSTools::takeSample(off_t off, pts_t &p)
 {
-	eDebug("take sample: %llx", off);
 	if (!eDVBTSTools::getPTS(off, p, 1))
 	{
-		eDebug("took sample: %llx, %llx", off, p);
 		m_samples[p] = off;
 		return 0;
 	}
