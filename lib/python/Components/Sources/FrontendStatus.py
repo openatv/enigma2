@@ -13,7 +13,7 @@ class FrontendStatus(Source):
 		self.poll_timer.start(1000)
 
 	def invalidate(self):
-		self.snr = self.agc = self.ber = self.lock = None
+		self.snr = self.agc = self.ber = self.lock = self.snr_db = None
 
 	def updateFrontendStatus(self):
 		status = self.getFrontendStatus()
@@ -21,6 +21,7 @@ class FrontendStatus(Source):
 			self.invalidate()
 		else:
 			self.snr = status.get("tuner_signal_power")
+			self.snr_db = status.get("tuner_signal_power_db")
 			self.agc = status.get("tuner_signal_quality")
 			self.ber = status.get("tuner_bit_error_rate")
 			self.lock = status.get("tuner_locked")

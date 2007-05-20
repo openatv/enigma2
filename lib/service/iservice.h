@@ -354,7 +354,8 @@ public:
 		signalQuality,
 		lockState,
 		syncState,
-		frontendNumber
+		frontendNumber,
+		signalPowerdB,
 	};
 };
 
