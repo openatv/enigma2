@@ -20,6 +20,8 @@ merge:
 		msgmerge --no-location -s -N -U $$lang.po enigma2.pot; \
 	done
 
+
+# the TRANSLATORS: allows putting translation comments before the to-be-translated line.
 enigma2.pot:
 	$(GETTEXT) -L python --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
 			../lib/python/Tools/*.py \
