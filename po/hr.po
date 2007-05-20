@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-16 17:17+0200\n"
-"PO-Revision-Date: 2007-05-06 21:40+0100\n"
+"POT-Creation-Date: 2007-05-20 23:14+0200\n"
+"PO-Revision-Date: 2007-05-20 21:06+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <jurica@clarkdigital.com>\n"
 "MIME-Version: 1.0\n"
@@ -77,6 +77,9 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 direktorij"
 
@@ -114,7 +117,7 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Letterbox"
-msgstr ""
+msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "uvijek 16:9 "
@@ -189,6 +192,8 @@ msgid ""
 "A record has been started:\n"
 "%s"
 msgstr ""
+"Snimanje je započeto:\n"
+"%s"
 
 msgid ""
 "A recording is currently running.\n"
@@ -429,6 +434,9 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Izbornik liste kanala"
 
+msgid "Choose Tuner to Configure..."
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Odaberi paket"
 
@@ -615,7 +623,7 @@ msgid "Dish"
 msgstr "Antena"
 
 msgid "Display Setup"
-msgstr ""
+msgstr "Postavke prednjeg zaslona"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -682,11 +690,11 @@ msgstr "Ne zaustavljaj trenutni događaj ali onemogući nadolazeće događaje"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr "Učinjeno - Instalirani i nadograđeni %d paketi"
+msgstr "Učinjeno - Instalirano i nadograđeno %d paketa"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Učinjeno - Instalirani i nadograđeni %d paketi sa %d greškama"
+msgstr "Učinjeno - Instalirano i nadograđeno %d paketa sa %d greška"
 
 msgid "Download Plugins"
 msgstr "Skini dodatak"
@@ -957,7 +965,7 @@ msgid "Inversion"
 msgstr "Inverzija"
 
 msgid "Invert display"
-msgstr "Invertiraj display"
+msgstr "Invertiraj prednji zaslon"
 
 msgid "Italian"
 msgstr "Talijanski"
@@ -1112,9 +1120,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "SLJEDEĆE"
 
-msgid "NIM "
-msgstr "NIM"
-
 msgid "NOW"
 msgstr "SADA"
 
@@ -1203,6 +1208,11 @@ msgstr "Nije pronađen Satelitski tuner!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ni ti jedan Tuner nije konfiguriran za rad s DiSEqC motorom!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1345,6 +1355,12 @@ msgstr "Molim odaberite ključne riječi za filtraciju..."
 
 msgid "Please set up tuner B"
 msgstr "Molim postavite tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1575,8 +1591,8 @@ msgstr "Subota"
 msgid "Scaling Mode"
 msgstr "Mod razmjera"
 
-msgid "Scan NIM"
-msgstr "Skeniraj NIM"
+msgid "Scan "
+msgstr ""
 
 msgid "Search east"
 msgstr "Pretraži istok"
@@ -1708,12 +1724,6 @@ msgstr "Akcija tajmera spavanja:"
 
 msgid "Slideshow Interval (sec.)"
 msgstr "Interval pokaz.prezentacije(sek.)"
-
-msgid "Slot "
-msgstr "Utor"
-
-msgid "Socket "
-msgstr "Utor"
 
 msgid "Some plugins are not available:\n"
 msgstr "Neki dodaci nisu dostupni:\n"
@@ -1969,9 +1979,6 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr "Tip Transpondera"
 
-msgid "Transpondertype"
-msgstr "TipTranspondera"
-
 msgid "Tries left:"
 msgstr "Pokušaja ostalo:"
 
@@ -1989,6 +1996,9 @@ msgstr "Greška tunera!"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Utor Tunera"
@@ -2046,7 +2056,7 @@ msgstr ""
 "Nadograđujem... Molim pričekajte... To može potrajati nekoliko minuta..."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Nadogradnja uspješna. Želite li sada reboot-ati Dreambox?"
+msgstr "Nadogradnja uspješna. Želite li sada restartati Dreambox?"
 
 msgid "Upgrading"
 msgstr "Nadograđujem"
@@ -2154,7 +2164,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Gdje želite pohraniti ovu sigurnosnu kopiju liste kanala?"
 
 msgid "Write error while recording. Disk full?\n"
-msgstr ""
+msgstr "Greška tijekom snimanja. Disk Pun?\n"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2410,6 +2420,9 @@ msgstr "onemogući"
 msgid "disable move mode"
 msgstr "onemoguće mod premještanja"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "ne mijenjaj"
 
@@ -2425,8 +2438,8 @@ msgstr "Učinjeno!"
 msgid "edit alternatives"
 msgstr "editiraj alternative"
 
-msgid "empty/unknown"
-msgstr "prazno/nepoznato"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "omogući"
@@ -2439,6 +2452,9 @@ msgstr "omogući editiranje favorita"
 
 msgid "enable move mode"
 msgstr "uključi mod za premještanje"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "kraj editiranja alternativa"
@@ -2688,9 +2704,6 @@ msgstr "sekundi"
 msgid "seconds."
 msgstr "sekundi."
 
-msgid "select Slot"
-msgstr "odaberi Tuner"
-
 msgid "service pin"
 msgstr "pin usluge"
 
@@ -2752,7 +2765,7 @@ msgid "this recording"
 msgstr "ovo snimanje"
 
 msgid "this service is protected by a parental control pin"
-msgstr "ova usluga je zaštićena s pin kodom roditeljske kontrole"
+msgstr "usluga je zaštićena s pin kodom roditeljske kontrole"
 
 msgid "unknown service"
 msgstr "Nepoznata usluga"
@@ -2886,6 +2899,9 @@ msgstr "prebačen"
 #~ msgid "Multi bouquets"
 #~ msgstr "ViA!estruki paketi"
 
+#~ msgid "NIM "
+#~ msgstr "NIM"
+
 #~ msgid "Network"
 #~ msgstr "MreA3a"
 
@@ -2916,6 +2932,9 @@ msgstr "prebačen"
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelitskakonfig"
 
+#~ msgid "Scan NIM"
+#~ msgstr "Skeniraj NIM"
+
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Sekundarni kabel od motoriziranog LNB-a"
 
@@ -2937,8 +2956,17 @@ msgstr "prebačen"
 #~ msgid "Skip confirmations"
 #~ msgstr "Presko?i potvrde"
 
+#~ msgid "Slot "
+#~ msgstr "Utor"
+
+#~ msgid "Socket "
+#~ msgstr "Utor"
+
 #~ msgid "Timeshifting"
 #~ msgstr "Vremeski pomak"
+
+#~ msgid "Transpondertype"
+#~ msgstr "TipTranspondera"
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF modulator"
@@ -2958,11 +2986,17 @@ msgstr "prebačen"
 #~ msgid "copy to favourites"
 #~ msgstr "kopiraj u favorite"
 
+#~ msgid "empty/unknown"
+#~ msgstr "prazno/nepoznato"
+
 #~ msgid "remove bouquet"
 #~ msgstr "obriA!i paket"
 
 #~ msgid "remove service"
 #~ msgstr "obriA!i uslugu"
+
+#~ msgid "select Slot"
+#~ msgstr "odaberi Tuner"
 
 #~ msgid "use power delta"
 #~ msgstr "koristite power delta"
