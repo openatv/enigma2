@@ -623,6 +623,39 @@ int eDVBFrontend::readFrontendData(int type)
 			uint16_t snr=0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
 				eDebug("FE_READ_SNR failed (%m)");
+
+#if defined(DM8000)
+			unsigned int SDS_SNRE = snr << 16;
+			
+			static float SNR_COEFF[6] = {
+				100.0 / 4194304.0,
+				-7136.0 / 4194304.0,
+				197418.0 / 4194304.0,
+				-2602183.0 / 4194304.0,
+				20377212.0 / 4194304.0,
+				-37791203.0 / 4194304.0,
+			};
+			
+			float fval1, fval2, snr_in_db;
+			int i;
+			fval1 = 12.44714 - (2.0 * log10(SDS_SNRE / 256.0));
+			fval2 = pow(10.0, fval1)-1;
+			fval1 = 10.0 * log10(fval2);
+			
+			if (fval1 < 10.0)
+			{
+				fval2 = SNR_COEFF[0];
+				for (i=0; i<6; ++i)
+				{
+					fval2 *= fval1;
+					fval2 += SNR_COEFF[i];
+				}
+				fval1 = fval2;
+			}
+			snr_in_db = fval1;
+			
+			return (int)(snr_in_db * 100.0);
+#endif
 			return snr;
 		}
 		case signalQuality:
