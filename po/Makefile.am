@@ -21,7 +21,7 @@ merge:
 	done
 
 enigma2.pot:
-	$(GETTEXT)	-d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
+	$(GETTEXT) -L python --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
 			../lib/python/Tools/*.py \
 			../*.py \
 			../lib/python/Plugins/*/*/*.py
