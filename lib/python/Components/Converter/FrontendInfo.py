@@ -6,6 +6,7 @@ class FrontendInfo(Converter, object):
 	SNR = 1
 	AGC = 2
 	LOCK = 3
+	SNRdB = 4
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -13,6 +14,8 @@ class FrontendInfo(Converter, object):
 			self.type = self.BER
 		elif type == "SNR":
 			self.type = self.SNR
+		elif type == "SNRdB":
+			self.type = self.SNRdB
 		elif type == "AGC":
 			self.type = self.AGC
 		else:
@@ -31,7 +34,10 @@ class FrontendInfo(Converter, object):
 			percent = self.source.agc
 		elif self.type == self.SNR:
 			percent = self.source.snr
-		
+		elif self.type == self.SNRdB:
+			if self.source.snr is None:
+				return "N/A"
+			return "%3.02f dB" % (self.source.snr / 100.0)
 		if percent is None:
 			return "N/A"
 
