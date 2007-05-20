@@ -933,7 +933,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		max = align(m_skipmode_n, blocksize);
 	}
 
-	eDebug("getNextSourceSpan, current offset is %08llx!", current_offset);
+	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
 
 	current_offset += align(m_skipmode_m, blocksize);
 
@@ -1010,14 +1010,14 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
-		current_offset = offset;
+		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
 	}
 
 	for (std::list<std::pair<off_t, off_t> >::const_iterator i(m_source_span.begin()); i != m_source_span.end(); ++i)
 	{
-		int aligned_start = align(i->first, blocksize);
-		int aligned_end = align(i->second, blocksize);
-		
+		long long aligned_start = align(i->first, blocksize);
+		long long aligned_end = align(i->second, blocksize);
+	
 		if ((current_offset >= aligned_start) && (current_offset < aligned_end))
 		{
 			start = current_offset;
