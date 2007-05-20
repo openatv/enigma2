@@ -35,9 +35,9 @@ class FrontendInfo(Converter, object):
 		elif self.type == self.SNR:
 			percent = self.source.snr
 		elif self.type == self.SNRdB:
-			if self.source.snr is None:
+			if self.source.snr_db is None:
 				return "N/A"
-			return "%3.02f dB" % (self.source.snr / 100.0)
+			return "%3.02f dB" % (self.source.snr_db / 100.0)
 		if percent is None:
 			return "N/A"
 

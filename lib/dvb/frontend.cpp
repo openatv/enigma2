@@ -623,8 +623,13 @@ int eDVBFrontend::readFrontendData(int type)
 			uint16_t snr=0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
 				eDebug("FE_READ_SNR failed (%m)");
-
-#if defined(DM8000)
+			return snr;
+		}
+		case signalPowerdB: /* this will move into the driver */
+		{
+			uint16_t snr=0;
+			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
+				eDebug("FE_READ_SNR failed (%m)");
 			unsigned int SDS_SNRE = snr << 16;
 			
 			static float SNR_COEFF[6] = {
@@ -655,8 +660,6 @@ int eDVBFrontend::readFrontendData(int type)
 			snr_in_db = fval1;
 			
 			return (int)(snr_in_db * 100.0);
-#endif
-			return snr;
 		}
 		case signalQuality:
 		{
@@ -1034,6 +1037,7 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 		PutToDict(dest, "tuner_synced", readFrontendData(synced));
 		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
 		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
+		PutToDict(dest, "tuner_signal_power_db", readFrontendData(signalPowerdB));
 		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
 	}
 }
