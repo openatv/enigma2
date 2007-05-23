@@ -162,6 +162,7 @@ int eDVBAudio::getPTS(pts_t &now)
 
 eDVBAudio::~eDVBAudio()
 {
+	unfreeze();
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -300,6 +301,7 @@ eDVBVideo::~eDVBVideo()
 		setSlowMotion(0);
 	if (m_is_fast_forward)
 		setFastForward(0);
+	unfreeze();
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
