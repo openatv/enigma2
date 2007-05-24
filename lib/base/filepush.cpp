@@ -174,6 +174,15 @@ void eFilePushThread::thread()
 			}
 			eDebug("eFilePushThread *read error* (%m) - not yet handled");
 		}
+
+			/* a read might be mis-aligned in case of a short read. */
+		int d = m_buf_end % m_blocksize;
+		if (d)
+		{
+			m_raw_source.lseek(-d, SEEK_CUR);
+			m_buf_end -= d;
+		}
+
 		if (m_buf_end == 0)
 		{
 				/* on EOF, try COMMITting once. */
