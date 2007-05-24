@@ -99,17 +99,22 @@ class PluginDownloadBrowser(Screen):
 		})
 		
 	def go(self):
-		if type(self["list"].l.getCurrentSelection()[0]) is str: # category
-			if self["list"].l.getCurrentSelection()[0] in self.expanded:
-				self.expanded.remove(self["list"].l.getCurrentSelection()[0])
+		sel = self["list"].l.getCurrentSelection()
+
+		if sel is None:
+			return
+
+		if type(sel[0]) is str: # category
+			if sel[0] in self.expanded:
+				self.expanded.remove(sel[0])
 			else:
-				self.expanded.append(self["list"].l.getCurrentSelection()[0])
+				self.expanded.append(sel[0])
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + self["list"].l.getCurrentSelection()[0].name + "\"?"))
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + sel[0].name + "\"?"))
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + self["list"].l.getCurrentSelection()[0].name + "\"?"))
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + sel[0].name + "\"?"))
 
 	def runInstall(self, val):
 		if val:
