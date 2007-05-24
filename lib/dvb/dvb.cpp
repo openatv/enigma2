@@ -1066,6 +1066,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				start = aligned_end - len;
 				eDebug("skipping to %llx, %d", start, len);
 			}
+			
+			eDebug("result: %llx, %x (%llx %llx)", start, size, aligned_start, aligned_end);
 			return;
 		}
 	}
