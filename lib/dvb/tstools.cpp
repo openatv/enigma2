@@ -258,6 +258,14 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 				
 				pts_t pts_diff = u->first - l->first;
 				off_t offset_diff = u->second - l->second;
+				
+				if (offset_diff < 0)
+				{
+					eDebug("something went wrong when taking samples.");
+					m_samples.clear();
+					takeSamples();
+					continue;
+				}
 
 				eDebug("using: %llx:%llx -> %llx:%llx", l->first, u->first, l->second, u->second);
 
@@ -295,12 +303,14 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
 			if (p != -1)
 			{
 				pts = p;
+				eDebug("aborting. Taking %llx as offset for %lld", offset, pts);
 				return 0;
 			}
 		}
 		
 		int bitrate = calcBitrate();
 		offset = pts * (pts_t)bitrate / 8ULL / 90000ULL;
+		eDebug("fallback, bitrate=%d, results in %016llx", bitrate, offset);
 		offset -= offset % 188;
 		
 		return 0;
@@ -448,6 +458,29 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 {
 	if (!eDVBTSTools::getPTS(off, p, 1))
 	{
+			/* as we are happily mixing PTS and PCR values (no comment, please), we might
+			   end up with some "negative" segments. 
+			   
+			   so check if this new sample is between the previous and the next field*/
+
+		std::map<pts_t, off_t>::const_iterator l = m_samples.lower_bound(p);
+		std::map<pts_t, off_t>::const_iterator u = l;
+
+		if (l != m_samples.begin())
+		{
+			--l;
+			if (u != m_samples.end())
+			{
+				if ((l->second > off) || (u->second < off))
+				{
+					eDebug("ignoring sample %llx %llx %llx (%lld %lld %lld)",
+						l->second, off, u->second, l->first, p, u->first);
+					return 1;
+				}
+			}
+		}
+
+		
 		m_samples[p] = off;
 		return 0;
 	}
