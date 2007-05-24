@@ -990,7 +990,7 @@ class InfoBarShowMovies:
 # Timeshift works the following way:
 #                                         demux0   demux1                    "TimeshiftActions" "TimeshiftActivateActions" "SeekActions"
 # - normal playback                       TUNER    unused      PLAY               enable                disable              disable
-# - user presses "yellow" button.         TUNER    record      PAUSE              enable                disable              enable
+# - user presses "yellow" button.         FILE     record      PAUSE              enable                disable              enable
 # - user presess pause again              FILE     record      PLAY               enable                disable              enable
 # - user fast forwards                    FILE     record      FF                 enable                disable              enable
 # - end of timeshift buffer reached       TUNER    record      PLAY               enable                enable               disable
@@ -1057,7 +1057,8 @@ class InfoBarTimeshift:
 				#self.pvrStateDialog["timeshift"].setRelative(time.time())
 
 				# PAUSE.
-				self.setSeekState(self.SEEK_STATE_PAUSE)
+				#self.setSeekState(self.SEEK_STATE_PAUSE)
+				self.activateTimeshiftEnd(False)
 
 				# enable the "TimeshiftEnableActions", which will override
 				# the startTimeshift actions
