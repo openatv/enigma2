@@ -496,8 +496,9 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 	} else
 	{
 		eDVBMetaParser parser;
-		
-		if (parser.parseFile(ref.path))
+
+		int ret=parser.parseFile(ref.path);
+		if (ret || !parser.m_ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
 		{
 			eWarning("no .meta file found, trying to find PMT pid");
 			eDVBTSTools tstools;
