@@ -8,6 +8,8 @@ class ServiceInfo(Converter, object):
 	IS_CRYPTED = 2
 	IS_WIDESCREEN = 3
 	SUBSERVICES_AVAILABLE = 4
+	XRES = 5
+	YRES = 6
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -17,6 +19,8 @@ class ServiceInfo(Converter, object):
 				"IsCrypted": self.IS_CRYPTED,
 				"IsWidescreen": self.IS_WIDESCREEN,
 				"SubservicesAvailable": self.SUBSERVICES_AVAILABLE,
+				"VideoWidth": self.XRES,
+				"VideoHeight": self.YRES,
 			}[type]
 
 		self.interesting_events = {
@@ -24,15 +28,18 @@ class ServiceInfo(Converter, object):
 				self.IS_MULTICHANNEL: [iPlayableService.evUpdatedInfo],
 				self.IS_CRYPTED: [iPlayableService.evUpdatedInfo],
 				self.IS_WIDESCREEN: [iPlayableService.evVideoSizeChanged],
-				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo]
+				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo],
+				self.XRES: [iPlayableService.evVideoSizeChanged],
+				self.YRES: [iPlayableService.evVideoSizeChanged],
 			}[self.type]
 
-	@cached
-	def getServiceInfoValue(self, info, what):
+	def getServiceInfoString(self, info, what):
 		v = info.getInfo(what)
-		if v != -2:
+		if v == -1:
 			return "N/A"
-		return info.getInfoString(what)
+		if v == -2:
+			return info.getInfoString(what)
+		return "%d" % v
 
 	@cached
 	def getBoolean(self):
@@ -64,6 +71,37 @@ class ServiceInfo(Converter, object):
 			return subservices and subservices.getNumberOfSubservices() > 0
 
 	boolean = property(getBoolean)
+	
+	@cached
+	def getText(self):
+		service = self.source.service
+		info = service and service.info()
+		if not info:
+			return ""
+
+		if self.type == self.XRES:
+			return self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
+		if self.type == self.YRES:
+			return self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
+		return ""
+
+	text = property(getText)
+
+	@cached
+	def getValue(self):
+		service = self.source.service
+		info = service and service.info()
+		if not info:
+			return -1
+
+		if self.type == self.XRES:
+			return info.getInfo(iServiceInformation.sVideoWidth)
+		if self.type == self.YRES:
+			return info.getInfo(iServiceInformation.sVideoHeight)
+
+		return -1
+
+	value = property(getValue)
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
