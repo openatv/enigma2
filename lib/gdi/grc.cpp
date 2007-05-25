@@ -167,8 +167,9 @@ void *gRC::thread()
 
 				if (!idle)
 				{
+					if (!m_spinner_enabled)
+						eDebug("main thread is non-idle! display spinner!");
 					enableSpinner();
-					eDebug("main thread is non-idle! display spinner!");
 				} else
 					disableSpinner();
 			}
