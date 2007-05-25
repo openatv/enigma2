@@ -197,12 +197,17 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		}
 	}
 
+	m_is_idle = 1;
+
 	if (this == eApp)
+	{
 		Py_BEGIN_ALLOW_THREADS
 		ret = ::poll(pfd, fdcount, poll_timeout);
 		Py_END_ALLOW_THREADS
-	else
+	} else
 		ret = ::poll(pfd, fdcount, poll_timeout);
+	
+	m_is_idle = 0;
 
 			/* ret > 0 means that there are some active poll entries. */
 	if (ret > 0)
