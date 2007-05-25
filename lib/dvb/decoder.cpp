@@ -860,6 +860,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
 				if (ioctl(vfd, VIDEO_PLAY) < 0)
 					eDebug("VIDEO_PLAY failed (%m)");
+				if (ioctl(vfd, VIDEO_CLEAR_BUFFER) < 0)
+					eDebug("VIDEO_CLEAR_BUFFER failed (%m)");
+				if (::ioctl(vfd, VIDEO_CONTINUE) < 0)
+					eDebug("video: VIDEO_CONTINUE: %m");
 				int cnt=0;
 				int pos=0;
 				while(cnt<2)
