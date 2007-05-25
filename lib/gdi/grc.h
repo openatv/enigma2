@@ -58,6 +58,8 @@ struct gOpcode
 		flip,
 		notify,
 		
+		enableSpinner, disableSpinner, incrementSpinner,
+		
 		shutdown
 	} opcode;
 
@@ -161,6 +163,13 @@ private:
 
 	eFixedMessagePump<int> m_notify_pump;
 	void recv_notify(const int &i);
+
+	ePtr<gDC> m_spinner_dc;
+	int m_spinner_enabled;
+	
+	void enableSpinner();
+	void disableSpinner();
+
 public:
 	gRC();
 	virtual ~gRC();
@@ -168,7 +177,9 @@ public:
 	void submit(const gOpcode &o);
 
 	Signal0<void> notify;
-
+	
+	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
+	
 	static gRC *getInstance();
 };
 

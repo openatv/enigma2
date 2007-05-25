@@ -32,6 +32,7 @@ gRC::gRC(): rp(0), wp(0)
 	else
 		eDebug("RC thread created successfully");
 #endif
+	m_spinner_enabled = 0;
 }
 
 DEFINE_REF(gRC);
@@ -131,8 +132,46 @@ void *gRC::thread()
 			}
 #ifndef SYNC_PAINT
 			while(rp == wp)
-				pthread_cond_wait(&cond, &mutex);
-			pthread_mutex_unlock(&mutex);
+			{
+			
+					/* when the main thread is non-idle for a too long time without any display output,
+					   we want to display a spinner. */
+
+				struct timeval time;
+				struct timespec timeout;
+				gettimeofday(&time, NULL);
+				timeout.tv_sec = time.tv_sec;
+				timeout.tv_nsec = time.tv_usec * 1000;
+				
+				if (m_spinner_enabled)
+					timeout.tv_nsec += 100*1000*1000;
+				else
+					timeout.tv_nsec += 500*1000*1000;
+
+					/* yes, this is required. */
+				if (timeout.tv_nsec > 1000*1000*1000)
+				{
+					timeout.tv_nsec -= 1000*1000*1000;
+					timeout.tv_sec++;
+				}
+
+				int idle = 1;
+
+				if (pthread_cond_timedwait(&cond, &mutex, &timeout) == ETIMEDOUT)
+				{
+					if (eApp && !eApp->isIdle())
+						idle = 0;
+				}
+				
+				pthread_mutex_unlock(&mutex);
+
+				if (!idle)
+				{
+					enableSpinner();
+					eDebug("main thread is non-idle! display spinner!");
+				} else
+					disableSpinner();
+			}
 #endif
 		}
 	}
@@ -150,6 +189,39 @@ void gRC::recv_notify(const int &i)
 gRC *gRC::getInstance()
 {
 	return instance;
+}
+
+void gRC::enableSpinner()
+{
+	if (!m_spinner_dc)
+	{
+		eDebug("no spinner DC!");
+		return;
+	}
+
+	m_spinner_enabled = 1;
+
+	gOpcode o;
+	o.opcode = m_spinner_enabled ? gOpcode::incrementSpinner : gOpcode::enableSpinner;
+	m_spinner_dc->exec(&o);
+}
+
+void gRC::disableSpinner()
+{
+	if (!m_spinner_enabled)
+		return;
+
+	if (!m_spinner_dc)
+	{
+		eDebug("no spinner DC!");
+		return;
+	}
+
+	m_spinner_enabled = 0;
+	
+	gOpcode o;
+	o.opcode = gOpcode::disableSpinner;
+	m_spinner_dc->exec(&o);
 }
 
 static int gPainter_instances;
@@ -677,6 +749,12 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::flip:
 		break;
 	case gOpcode::flush:
+		break;
+	case gOpcode::enableSpinner:
+		break;
+	case gOpcode::disableSpinner:
+		break;
+	case gOpcode::incrementSpinner:
 		break;
 	default:
 		eFatal("illegal opcode %d. expect memory leak!", o->opcode);

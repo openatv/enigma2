@@ -191,6 +191,7 @@ class eMainloop
 	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
 	int time_offset;
+	int m_is_idle;
 	pthread_mutex_t recalcLock;
 	
 	int m_interrupt_requested;
@@ -211,7 +212,7 @@ public:
 #endif
 
 	eMainloop()
-		:app_quit_now(0),loop_level(0),retval(0), m_interrupt_requested(0)
+		:app_quit_now(0),loop_level(0),retval(0), m_is_idle(0), m_interrupt_requested(0)
 	{
 		existing_loops.push_back(this);
 		pthread_mutex_init(&recalcLock, 0);
@@ -242,6 +243,9 @@ public:
 	PyObject *poll(SWIG_PYOBJECT(ePyObject) dict, SWIG_PYOBJECT(ePyObject) timeout);
 	void interruptPoll();
 	void reset();
+	
+		/* m_is_idle needs to be atomic, but it doesn't really matter much, as it's read-only from outside */
+	int isIdle() { return m_is_idle; }
 };
 
 /**
