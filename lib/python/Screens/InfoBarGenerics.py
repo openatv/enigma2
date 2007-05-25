@@ -1919,6 +1919,7 @@ class InfoBarSubtitleSupport(object):
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
 			})
 		self.cached_subtitle_checked = False
+		self.__selected_subtitle = None
 
 	def __serviceStopped(self):
 		self.subtitle_window.hide()
@@ -1929,8 +1930,7 @@ class InfoBarSubtitleSupport(object):
 		if not self.cached_subtitle_checked:
 			subtitle = self.getCurrentServiceSubtitle()
 			self.cached_subtitle_checked = True
-			if subtitle:
-				self.__selected_subtitle = subtitle.getCachedSubtitle()
+			self.__selected_subtitle = subtitle and subtitle.getCachedSubtitle()
 			if self.__selected_subtitle:
 				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 				self.subtitle_window.show()
