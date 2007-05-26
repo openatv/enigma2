@@ -270,6 +270,9 @@ protected:
 	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;
 	
+	ePtr<gPixmap> m_spinner_saved;
+	eRect m_spinner_pos;
+	
 public:
 	virtual void exec(gOpcode *opcode);
 	gDC(gPixmap *pixmap);
@@ -280,6 +283,11 @@ public:
 	gRGB getRGB(gColor col);
 	virtual eSize size() { return m_pixmap->size(); }
 	virtual int islocked() { return 0; }
+	
+	void enableSpinner();
+	void disableSpinner();
+	void incrementSpinner();
+	void setSpinner(eRect pos);
 };
 
 #endif

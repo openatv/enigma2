@@ -106,6 +106,9 @@ void *gRC::thread()
 #endif
 		if ( rp != wp )
 		{
+				/* make sure the spinner is not displayed when we something is painted */
+			disableSpinner();
+
 			gOpcode o(queue[rp++]);
 			if ( rp == MAXSIZE )
 				rp=0;
@@ -200,11 +203,11 @@ void gRC::enableSpinner()
 		return;
 	}
 
-	m_spinner_enabled = 1;
-
 	gOpcode o;
 	o.opcode = m_spinner_enabled ? gOpcode::incrementSpinner : gOpcode::enableSpinner;
 	m_spinner_dc->exec(&o);
+	m_spinner_enabled = 1;
+
 }
 
 void gRC::disableSpinner()
@@ -752,10 +755,13 @@ void gDC::exec(gOpcode *o)
 	case gOpcode::flush:
 		break;
 	case gOpcode::enableSpinner:
+		enableSpinner();
 		break;
 	case gOpcode::disableSpinner:
+		disableSpinner();
 		break;
 	case gOpcode::incrementSpinner:
+		incrementSpinner();
 		break;
 	default:
 		eFatal("illegal opcode %d. expect memory leak!", o->opcode);
@@ -772,6 +778,52 @@ gRGB gDC::getRGB(gColor col)
 		return gRGB(0, 0, 0, 0xFF);
 	}
 	return m_pixmap->surface->clut.data[col];
+}
+
+void gDC::enableSpinner()
+{
+	ASSERT(m_spinner_saved);
+	
+		/* save the background to restore it later. We need to negative position because we want to blit from the middle of the screen. */
+	m_spinner_saved->blit(*m_pixmap, -m_spinner_pos.topLeft(), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0);
+	
+	incrementSpinner();
+}
+
+void gDC::disableSpinner()
+{
+	ASSERT(m_spinner_saved);
+
+		/* restore background */
+	m_pixmap->blit(*m_spinner_saved, m_spinner_pos.topLeft(), gRegion(m_spinner_pos), 0);
+}
+
+void gDC::incrementSpinner()
+{
+	ASSERT(m_spinner_saved);
+	
+	static int blub;
+	blub++;
+	
+	int i;
+	
+	for (i = 0; i < 5; ++i)
+	{
+		int x = i * 20 + m_spinner_pos.left();
+		int y = m_spinner_pos.top();
+		
+		int col = ((blub - i) * 30) % 256;
+
+		m_pixmap->fill(eRect(x, y, 10, 10), gRGB(col, col, col));
+	}
+}
+
+void gDC::setSpinner(eRect pos)
+{
+	ASSERT(m_pixmap);
+	ASSERT(m_pixmap->surface);
+	m_spinner_saved = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_pos = pos;
 }
 
 DEFINE_REF(gDC);
