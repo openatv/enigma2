@@ -124,7 +124,7 @@ int eDVBCIInterfaces::sendCAPMT(int slotid)
 	while (it != m_pmt_handlers.end())
 	{
 		eDVBCISlot *tmp = it->cislot;
-		while (tmp != slot)
+		while (tmp && tmp != slot)
 			tmp = tmp->linked_next;
 		if (tmp)
 		{
