@@ -155,7 +155,6 @@ int main(int argc, char **argv)
 	eTextPara::forceReplacementGlyph(0xfdf2);
 	for (int i = 0xfe80; i < 0xff00; ++i)
 		eTextPara::forceReplacementGlyph(i);
-	
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	eWidgetDesktop dsk_lcd(eSize(132, 64));
@@ -190,7 +189,25 @@ int main(int argc, char **argv)
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 	
-	my_dc->setSpinner(eRect(100, 100, 120, 40));
+	
+	eDebug("Loading spinners...");
+	
+	{
+		int i;
+		ePtr<gPixmap> wait[4];
+		for (i=0; i<4; ++i)
+		{
+			char filename[strlen(DATADIR) + 20];
+			sprintf(filename, DATADIR "/enigma2/wait%d.png", i + 1);
+			if (loadPNG(wait[i], filename))
+			{
+				eDebug("failed to load %s! (%m)", filename);
+				continue;
+			}
+		}
+		my_dc->setSpinner(eRect(100, 100, 105, 105), wait, 4);
+	}
+	
 	gRC::getInstance()->setSpinnerDC(my_dc);
 
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
