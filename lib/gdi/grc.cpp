@@ -572,14 +572,17 @@ void gPainter::end()
 
 gDC::gDC()
 {
+	m_spinner_pic = 0;
 }
 
 gDC::gDC(gPixmap *pixmap): m_pixmap(pixmap)
 {
+	m_spinner_pic = 0;
 }
 
 gDC::~gDC()
 {
+	delete[] m_spinner_pic;
 }
 
 void gDC::exec(gOpcode *o)
@@ -804,7 +807,8 @@ void gDC::incrementSpinner()
 	
 	static int blub;
 	blub++;
-	
+
+#if 0
 	int i;
 	
 	for (i = 0; i < 5; ++i)
@@ -816,14 +820,37 @@ void gDC::incrementSpinner()
 
 		m_pixmap->fill(eRect(x, y, 10, 10), gRGB(col, col, col));
 	}
+#endif
+
+	m_spinner_temp->blit(*m_spinner_saved, ePoint(0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()));
+
+	if (m_spinner_pic[m_spinner_i])
+		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], ePoint(0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), gPixmap::blitAlphaTest);
+
+	m_pixmap->blit(*m_spinner_temp, m_spinner_pos.topLeft(), gRegion(m_spinner_pos), 0);
+	m_spinner_i++;
+	m_spinner_i %= m_spinner_num;
 }
 
-void gDC::setSpinner(eRect pos)
+void gDC::setSpinner(eRect pos, ePtr<gPixmap> *pic, int len)
 {
 	ASSERT(m_pixmap);
 	ASSERT(m_pixmap->surface);
 	m_spinner_saved = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_temp = new gPixmap(pos.size(), m_pixmap->surface->bpp);
 	m_spinner_pos = pos;
+	
+	m_spinner_i = 0;
+	m_spinner_num = len;
+	
+	int i;
+	if (m_spinner_pic)
+		delete[] m_spinner_pic;
+	
+	m_spinner_pic = new ePtr<gPixmap>[len];
+	
+	for (i = 0; i < len; ++i)
+		m_spinner_pic[i] = pic[i];
 }
 
 DEFINE_REF(gDC);

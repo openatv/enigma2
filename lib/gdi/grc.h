@@ -270,9 +270,10 @@ protected:
 	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;
 	
-	ePtr<gPixmap> m_spinner_saved;
+	ePtr<gPixmap> m_spinner_saved, m_spinner_temp;
+	ePtr<gPixmap> *m_spinner_pic;
 	eRect m_spinner_pos;
-	
+	int m_spinner_num, m_spinner_i;
 public:
 	virtual void exec(gOpcode *opcode);
 	gDC(gPixmap *pixmap);
@@ -287,7 +288,7 @@ public:
 	void enableSpinner();
 	void disableSpinner();
 	void incrementSpinner();
-	void setSpinner(eRect pos);
+	void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
 };
 
 #endif
