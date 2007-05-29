@@ -273,6 +273,12 @@ class CiSelection(Screen):
 		menuList.list = self.list
 		menuList.l.setList(self.list)
 		self["entries"] = menuList
+		self["entries"].onSelectionChanged.append(self.selectionChanged)
+		self["text"] = Label(_("Slot %d")%(1))
+
+	def selectionChanged(self):
+		cur_idx = self["entries"].getCurrentIndex()
+		self["text"].setText(_("Slot %d")%((cur_idx / 4)+1))
 
 	def keyConfigEntry(self, key):
 		try:
