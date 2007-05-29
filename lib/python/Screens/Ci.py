@@ -265,7 +265,6 @@ class CiSelection(Screen):
 
 		for slot in range(MAX_NUM_CI):
 			state = eDVBCI_UI.getInstance().getState(slot)
-			print "slot", slot, "state", state
 			if state != -1:
 				self.appendEntries(slot, state)
 				CiHandler.registerCIMessageHandler(slot, self.ciStateChanged)
@@ -309,7 +308,7 @@ class CiSelection(Screen):
 		self.state[slot] = state
 
 		slotidx=0
-		while self.list[slotidx][3] != slot:
+		while len(self.list[slotidx]) < 3 or self.list[slotidx][3] != slot:
 			slotidx += 1
 
 		slotidx += 1 # do not change Reset
