@@ -828,6 +828,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		
 		skip = self.nim_iter
 		self.nim_iter = 0
+		flags = 0
 		
 		for n in self.nim_enable:
 			self.nim_iter += 1
