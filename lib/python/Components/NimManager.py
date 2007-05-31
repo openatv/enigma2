@@ -372,10 +372,7 @@ class NIM(object):
 	friendly_full_description = property(getFriendlyFullDescription)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
-	
 	empty = property(lambda self: self.type is None)
-	
-	cable_trust_nit = property(lambda self: self.config.cabletype.value == "quick")
 
 class NimManager:
 	class parseSats(ContentHandler):
@@ -413,24 +410,29 @@ class NimManager:
 		def __init__(self, cablesList, transponders):
 			self.isPointsElement, self.isReboundsElement = 0, 0
 			self.cablesList = cablesList
+			for x in self.cablesList:
+				self.cablesList.remove(x)
 			self.transponders = transponders
 	
 		def startElement(self, name, attrs):
 			if (name == "cable"):
 				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
 				tname = attrs.get('name',"").encode("UTF-8")
-				self.cablesList.append(str(tname))
-				self.parsedCab = str(tname)
+				tflags = int(attrs.get('flags',"0"))
+				self.cablesList.append((tname, tflags))
+				self.parsedCab = tname
 			elif (name == "transponder"):
 				freq = int(attrs.get('frequency',""))
-				#sr = int(attrs.get('symbol_rate',""))
-				#mod = int(attrs.get('modulation',"3")) # QAM64 default
-				#fec = int(attrs.get('fec_inner',"0")) # AUTO default
+				while freq > 999999:
+					freq /= 10
+				sr = int(attrs.get('symbol_rate',"0"))
+				mod = int(attrs.get('modulation',"3")) # QAM64 default
+				fec = int(attrs.get('fec_inner',"0")) # AUTO default
 				if self.parsedCab in self.transponders:
 					pass
 				else:
 					self.transponders[self.parsedCab] = [ ]
-				self.transponders[self.parsedCab].append((1, freq))
+				self.transponders[self.parsedCab].append((1, freq, sr, mod, fec))
 
 	class parseTerrestrials(ContentHandler):
 		def __init__(self, terrestrialsList, transponders):
@@ -473,15 +475,21 @@ class NimManager:
 		else:
 			return []
 
-	def getTranspondersCable(self, cable):
-		return self.transponderscable[cable]
+	def getTranspondersCable(self, nim):
+		nimConfig = config.Nims[nim]
+		if nimConfig.configMode.value != "nothing" and nimConfig.cable.scan_type.value == "provider":
+			return self.transponderscable[self.cablesList[nimConfig.cable.scan_provider.index][0]]
+		return [ ]
 
 	def getTranspondersTerrestrial(self, region):
 		return self.transpondersterrestrial[region]
 	
 	def getCableDescription(self, nim):
-		return self.cablesList[0]
-	
+		return self.cablesList[config.Nims[nim].scan_provider.index][0]
+
+	def getCableFlags(self, nim):
+		return self.cablesList[config.Nims[nim].scan_provider.index][1]
+
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
 
@@ -717,7 +725,6 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
 
-
 def InitNimManager(nimmgr):
 	InitSecParams()
 
@@ -861,13 +868,45 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
 
 		elif slot.isCompatible("DVB-C"):
-			nim.cabletype = ConfigSelection(choices = [("quick", _("Quick")), ("complete", _("Complete"))], default = "complete")
 			nim.configMode = ConfigSelection(
 				choices = {
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
 				default = "enabled")
+			list = [ ]
+			n = 0
+			for x in nimmgr.cablesList:
+				list.append((str(n), x[0]))
+				n += 1
+			nim.cable = ConfigSubsection()
+			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
+			if n:
+				possible_scan_types.append(("provider", _("Provider")))
+			nim.cable.scan_type = ConfigSelection(default = "bands", choices = possible_scan_types)
+			nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
+			nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_MID = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_VHF_III = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_UHF_IV = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_UHF_V = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_SUPER = ConfigYesNo(default = True)
+			nim.cable.scan_band_EU_HYPER = ConfigYesNo(default = True)
+			nim.cable.scan_band_US_LOW = ConfigYesNo(default = False)
+			nim.cable.scan_band_US_MID = ConfigYesNo(default = False)
+			nim.cable.scan_band_US_HIGH = ConfigYesNo(default = False)
+			nim.cable.scan_band_US_SUPER = ConfigYesNo(default = False)
+			nim.cable.scan_band_US_HYPER = ConfigYesNo(default = False)
+			nim.cable.scan_frequency_steps = ConfigInteger(default = 1000, limits = (1000, 10000))
+			nim.cable.scan_mod_qam16 = ConfigYesNo(default = False)
+			nim.cable.scan_mod_qam32 = ConfigYesNo(default = False)
+			nim.cable.scan_mod_qam64 = ConfigYesNo(default = True)
+			nim.cable.scan_mod_qam128 = ConfigYesNo(default = False)
+			nim.cable.scan_mod_qam256 = ConfigYesNo(default = True)
+			nim.cable.scan_sr_6900 = ConfigYesNo(default = True)
+			nim.cable.scan_sr_6875 = ConfigYesNo(default = True)
+			nim.cable.scan_sr_ext1 = ConfigInteger(default = 0, limits = (0, 15000))
+			nim.cable.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 15000))
 		elif slot.isCompatible("DVB-T"):
 			nim.configMode = ConfigSelection(
 				choices = {
