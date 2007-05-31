@@ -828,13 +828,13 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		
 		skip = self.nim_iter
 		self.nim_iter = 0
-		flags = 0
-		
+
 		for n in self.nim_enable:
 			self.nim_iter += 1
 			if skip > 0:
 				skip -= 1
 			elif n.value: # check if nim is enabled
+				flags = 0
 				nim = nimmanager.nim_slots[n.nim_index]
 				networks = set(self.getNetworksForNim(nim))
 
