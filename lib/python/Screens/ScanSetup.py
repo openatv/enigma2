@@ -207,7 +207,7 @@ class CableTransponderSearchSupport:
 		cmd = "tda1002x --scan --verbose --wakeup --bus="
 		cmd += str(nim_idx)
 		if cableConfig.scan_type.value == "bands":
-			cmd += " --scan_bands="
+			cmd += " --scan-bands="
 			bands = 0
 			if cableConfig.scan_band_EU_VHF_I.value:
 				bands |= cable_bands["DVBC_BAND_EU_VHF_I"]
@@ -235,7 +235,7 @@ class CableTransponderSearchSupport:
 				bands |= cable_bands["DVBC_BAND_US_HYPER"]
 			cmd += str(bands)
 		else:
-			cmd += " --scan_stepsize="
+			cmd += " --scan-stepsize="
 			cmd += str(cableConfig.scan_frequency_steps.value)
 		if cableConfig.scan_mod_qam16.value:
 			cmd += " --mod 16"
@@ -251,11 +251,11 @@ class CableTransponderSearchSupport:
 			cmd += " --sr 6900000"
 		if cableConfig.scan_sr_6875.value:
 			cmd += " --sr 6875000"
-		if cableConfig.scan_sr_ext1.value > 1000:
+		if cableConfig.scan_sr_ext1.value > 450:
 			cmd += " --sr "
 			cmd += str(cableConfig.scan_sr_ext1.value)
 			cmd += "000"
-		if cableConfig.scan_sr_ext2.value > 1000:
+		if cableConfig.scan_sr_ext2.value > 450:
 			cmd += " --sr "
 			cmd += str(cableConfig.scan_sr_ext2.value)
 			cmd += "000"

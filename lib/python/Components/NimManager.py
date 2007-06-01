@@ -905,8 +905,8 @@ def InitNimManager(nimmgr):
 			nim.cable.scan_mod_qam256 = ConfigYesNo(default = True)
 			nim.cable.scan_sr_6900 = ConfigYesNo(default = True)
 			nim.cable.scan_sr_6875 = ConfigYesNo(default = True)
-			nim.cable.scan_sr_ext1 = ConfigInteger(default = 0, limits = (0, 15000))
-			nim.cable.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 15000))
+			nim.cable.scan_sr_ext1 = ConfigInteger(default = 0, limits = (0, 7230))
+			nim.cable.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 7230))
 		elif slot.isCompatible("DVB-T"):
 			nim.configMode = ConfigSelection(
 				choices = {
