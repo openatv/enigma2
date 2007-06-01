@@ -368,6 +368,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 					{
 						if (tmp == ci_it)
 							break;
+						tmp=tmp->linked_next;
 					}
 
 					if (tmp) // ignore already assigned cislots...
@@ -1040,9 +1041,9 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 		{
 			unsigned char raw_data[2048];
 
-//			eDebug("send %s capmt for service %04x",
+//			eDebug("send %s capmt for service %04x to slot %d",
 //				it != running_services.end() ? "UPDATE" : running_services.empty() ? "ONLY" : "ADD",
-//				program_number);
+//				program_number, slotid);
 
 			CaProgramMapSection capmt(*i++,
 				it != running_services.end() ? 0x05 /*update*/ : running_services.empty() ? 0x03 /*only*/ : 0x04 /*add*/, 0x01, caids );
