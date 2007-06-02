@@ -825,59 +825,58 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		APPEND_NOW = 0
 		SEARCH_CABLE_TRANSPONDERS = 1
 		action = APPEND_NOW
-		
-		skip = self.nim_iter
-		self.nim_iter = 0
 
-		for n in self.nim_enable:
-			self.nim_iter += 1
-			if skip > 0:
-				skip -= 1
-			elif n.value: # check if nim is enabled
-				flags = 0
-				nim = nimmanager.nim_slots[n.nim_index]
-				networks = set(self.getNetworksForNim(nim))
+		n = self.nim_iter < len(self.nim_enable) and self.nim_enable[self.nim_iter] or None
+		self.nim_iter += 1
+		if n and n.value: # check if nim is enabled
+			flags = 0
+			nim = nimmanager.nim_slots[n.nim_index]
+			networks = set(self.getNetworksForNim(nim))
 
-				# don't scan anything twice
-				networks.discard(self.known_networks)
+			# don't scan anything twice
+			networks.discard(self.known_networks)
 
-				tlist = [ ]
-				if nim.isCompatible("DVB-S"):
-					# get initial transponders for each satellite to be scanned
-					for sat in networks:
-						getInitialTransponderList(tlist, sat[0])
-				elif nim.isCompatible("DVB-C"):
-					if config.Nims[nim.slot].cable.scan_type.value == "provider":
-						getInitialCableTransponderList(tlist, nim.slot)
-					else:
-						action = SEARCH_CABLE_TRANSPONDERS
-				elif nim.isCompatible("DVB-T"):
-					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
+			tlist = [ ]
+			if nim.isCompatible("DVB-S"):
+				# get initial transponders for each satellite to be scanned
+				for sat in networks:
+					getInitialTransponderList(tlist, sat[0])
+			elif nim.isCompatible("DVB-C"):
+				if config.Nims[nim.slot].cable.scan_type.value == "provider":
+					getInitialCableTransponderList(tlist, nim.slot)
 				else:
-					assert False
+					action = SEARCH_CABLE_TRANSPONDERS
+			elif nim.isCompatible("DVB-T"):
+				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
+			else:
+				assert False
 
-				flags |= eComponentScan.scanNetworkSearch
-				tmp = self.scan_clearallservices.value
-				if tmp == "yes":
-					flags |= eComponentScan.scanRemoveServices
-				elif tmp == "yes_hold_feeds":
-					flags |= eComponentScan.scanRemoveServices
-					flags |= eComponentScan.scanDontRemoveFeeds
+			flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
+			tmp = self.scan_clearallservices.value
+			if tmp == "yes":
+				flags |= eComponentScan.scanRemoveServices
+			elif tmp == "yes_hold_feeds":
+				flags |= eComponentScan.scanRemoveServices
+				flags |= eComponentScan.scanDontRemoveFeeds
 
-				if action == APPEND_NOW:
-					self.scanList.append({"transponders": tlist, "feid": nim.slot, "flags": flags})
-				elif action == SEARCH_CABLE_TRANSPONDERS:
-					self.flags = flags
-					self.feid = nim.slot
-					self.startCableTransponderSearch(nim.slot)
-					return
-				else:
-					assert False
+			if action == APPEND_NOW:
+				self.scanList.append({"transponders": tlist, "feid": nim.slot, "flags": flags})
+			elif action == SEARCH_CABLE_TRANSPONDERS:
+				self.flags = flags
+				self.feid = nim.slot
+				self.startCableTransponderSearch(nim.slot)
+				return
+			else:
+				assert False
+			self.buildTransponderList() # recursive call of this function !!!
+			return
+		# when we are here, then the recursion is finished and all enabled nims are checked
+		# so we now start the real transponder scan
 		self.startScan(self.scanList)
 
 	def startScan(self, scanList):
 		if len(scanList):
-			self.session.openWithCallback(self.doNothing, ServiceScan, scanList = scanList)
+			self.session.open(ServiceScan, scanList = scanList)
 		else:
 			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
@@ -886,9 +885,6 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 	def cableTransponderSearchFinished(self):
 		self.buildTransponderList()
-
-	def doNothing(self):
-		pass
 
 	def keyCancel(self):
 		self.close()
