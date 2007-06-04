@@ -159,14 +159,16 @@
 	<screen name="NetworkAdapterSelection" position="100,150" size="540,100" title="Select Network Adapter">
 		<widget name="adapterlist" position="20,10" size="500,75" />
 	</screen>
-	<screen name="About" position="180,163" size="360,250" title="About">
+	<screen name="About" position="180,143" size="360,290" title="About">
 		<widget name="text" position="10,30" size="420,20" font="Regular;18"/>
 		<widget name="fpVersion" position="10,50" size="420,20" font="Regular;18"/>
 		<widget name="tuner" position="10,90" size="420,20" font="Regular;18"/>
 		<widget name="tuner0" position="10,110" size="420,20" font="Regular;18"/>
 		<widget name="tuner1" position="10,130" size="420,20" font="Regular;18"/>
-		<widget name="hdd" position="10,170" size="420,20" font="Regular;18"/>
-		<widget name="hddA" position="10,190" size="420,40" font="Regular;18"/>
+		<widget name="tuner2" position="10,150" size="420,20" font="Regular;18"/>
+		<widget name="tuner3" position="10,170" size="420,20" font="Regular;18"/>
+		<widget name="hdd" position="10,210" size="420,20" font="Regular;18"/>
+		<widget name="hddA" position="10,230" size="420,40" font="Regular;18"/>
 	</screen>
 	<screen name="configOSD" position="130,113" size="460,350" title="OSD Settings">
 		<widget name="okbutton" position="20,270" size="205,40" />
