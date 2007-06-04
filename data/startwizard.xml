@@ -69,7 +69,7 @@ from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty
 			</condition>
 			<text value="Please set up tuner C" />
-			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
+			<config screen="NimSetup" module="Satconfig" args="2" type="ConfigList" />
 			<code>
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
@@ -87,7 +87,7 @@ from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty
 			</condition>
 			<text value="Please set up tuner D" />
-			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
+			<config screen="NimSetup" module="Satconfig" args="3" type="ConfigList" />
 			<code>
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
