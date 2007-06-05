@@ -213,7 +213,7 @@ class CableTransponderSearchSupport:
 			else:
 				cmd += "4" # second nim socket on DM8000 use /dev/i2c/4
 		if cableConfig.scan_type.value == "bands":
-			cmd += " --scan-bands="
+			cmd += " --scan-bands "
 			bands = 0
 			if cableConfig.scan_band_EU_VHF_I.value:
 				bands |= cable_bands["DVBC_BAND_EU_VHF_I"]
