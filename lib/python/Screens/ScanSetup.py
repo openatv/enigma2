@@ -204,8 +204,14 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.appClosed.get().append(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.get().append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
-		cmd = "tda1002x --scan --verbose --wakeup --bus="
-		cmd += str(nim_idx)
+		cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
+		if nim_idx < 2:
+			cmd += str(nim_idx)
+		else: # FIXMEE DM8000
+			if nim_idx == 2:
+				cmd += "2" # first nim socket on DM8000 use /dev/i2c/2
+			else:
+				cmd += "4" # second nim socket on DM8000 use /dev/i2c/4
 		if cableConfig.scan_type.value == "bands":
 			cmd += " --scan-bands="
 			bands = 0
@@ -235,7 +241,7 @@ class CableTransponderSearchSupport:
 				bands |= cable_bands["DVBC_BAND_US_HYPER"]
 			cmd += str(bands)
 		else:
-			cmd += " --scan-stepsize="
+			cmd += " --scan-stepsize "
 			cmd += str(cableConfig.scan_frequency_steps.value)
 		if cableConfig.scan_mod_qam16.value:
 			cmd += " --mod 16"
@@ -822,52 +828,55 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.buildTransponderList()
 
 	def buildTransponderList(self): # this method is called multiple times because of asynchronous stuff
+		print "buildTransponderList"
 		APPEND_NOW = 0
 		SEARCH_CABLE_TRANSPONDERS = 1
 		action = APPEND_NOW
 
 		n = self.nim_iter < len(self.nim_enable) and self.nim_enable[self.nim_iter] or None
 		self.nim_iter += 1
-		if n and n.value: # check if nim is enabled
-			flags = 0
-			nim = nimmanager.nim_slots[n.nim_index]
-			networks = set(self.getNetworksForNim(nim))
+		if n:
+			if n.value: # check if nim is enabled
+				flags = 0
+				nim = nimmanager.nim_slots[n.nim_index]
+				networks = set(self.getNetworksForNim(nim))
 
-			# don't scan anything twice
-			networks.discard(self.known_networks)
+				# don't scan anything twice
+				networks.discard(self.known_networks)
 
-			tlist = [ ]
-			if nim.isCompatible("DVB-S"):
-				# get initial transponders for each satellite to be scanned
-				for sat in networks:
-					getInitialTransponderList(tlist, sat[0])
-			elif nim.isCompatible("DVB-C"):
-				if config.Nims[nim.slot].cable.scan_type.value == "provider":
-					getInitialCableTransponderList(tlist, nim.slot)
+				tlist = [ ]
+				if nim.isCompatible("DVB-S"):
+					# get initial transponders for each satellite to be scanned
+					for sat in networks:
+						getInitialTransponderList(tlist, sat[0])
+				elif nim.isCompatible("DVB-C"):
+					if config.Nims[nim.slot].cable.scan_type.value == "provider":
+						getInitialCableTransponderList(tlist, nim.slot)
+					else:
+						action = SEARCH_CABLE_TRANSPONDERS
+				elif nim.isCompatible("DVB-T"):
+					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
 				else:
-					action = SEARCH_CABLE_TRANSPONDERS
-			elif nim.isCompatible("DVB-T"):
-				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
-			else:
-				assert False
+					assert False
 
-			flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
-			tmp = self.scan_clearallservices.value
-			if tmp == "yes":
-				flags |= eComponentScan.scanRemoveServices
-			elif tmp == "yes_hold_feeds":
-				flags |= eComponentScan.scanRemoveServices
-				flags |= eComponentScan.scanDontRemoveFeeds
+				flags |= eComponentScan.scanNetworkSearch #FIXMEEE.. use flags from cables / satellites / terrestrial.xml
+				tmp = self.scan_clearallservices.value
+				if tmp == "yes":
+					flags |= eComponentScan.scanRemoveServices
+				elif tmp == "yes_hold_feeds":
+					flags |= eComponentScan.scanRemoveServices
+					flags |= eComponentScan.scanDontRemoveFeeds
 
-			if action == APPEND_NOW:
-				self.scanList.append({"transponders": tlist, "feid": nim.slot, "flags": flags})
-			elif action == SEARCH_CABLE_TRANSPONDERS:
-				self.flags = flags
-				self.feid = nim.slot
-				self.startCableTransponderSearch(nim.slot)
-				return
-			else:
-				assert False
+				if action == APPEND_NOW:
+					self.scanList.append({"transponders": tlist, "feid": nim.slot, "flags": flags})
+				elif action == SEARCH_CABLE_TRANSPONDERS:
+					self.flags = flags
+					self.feid = nim.slot
+					self.startCableTransponderSearch(nim.slot)
+					return
+				else:
+					assert False
+
 			self.buildTransponderList() # recursive call of this function !!!
 			return
 		# when we are here, then the recursion is finished and all enabled nims are checked
