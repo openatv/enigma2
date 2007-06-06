@@ -277,6 +277,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self.finished_cb = None
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
 		self.feinfo = None
@@ -306,7 +307,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self["introduction"] = Label(_("Press OK to start the scan"))
 
-	def run(self):
+	def runAsync(self, finished_cb):
+		self.finished_cb = finished_cb
 		self.keyGo()
 
 	def updateSatList(self):
@@ -735,9 +737,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def startScan(self, tlist, flags, feid):
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
-			self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+			if self.finished_cb:
+				self.session.openWithCallback(self.finished_cb, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+			else:
+				self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
 		else:
-			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+			if self.finished_cb:
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+			else:
+				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
 		for x in self["config"].list:
@@ -781,6 +789,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		known_networks = [ ]
 		nims_to_scan = [ ]
+		self.finished_cb = None
 
 		for nim in nimmanager.nim_slots:
 			# collect networks provided by this tuner
@@ -819,7 +828,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self["header"] = Label(_("Automatic Scan"))
 		self["footer"] = Label(_("Press OK to scan"))
 
-	def run(self):
+	def runAsync(self, finished_cb):
+		self.finished_cb = finished_cb
 		self.keyGo()
 
 	def keyGo(self):
@@ -886,9 +896,15 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 	def startScan(self, scanList):
 		if len(scanList):
-			self.session.open(ServiceScan, scanList = scanList)
+			if self.finished_cb:
+				self.session.openWithCallback(self.finished_cb, ServiceScan, scanList = scanList)
+			else:
+				self.session.open(ServiceScan, scanList = scanList)
 		else:
-			self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+			if self.finished_cb:
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+			else:
+				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def setCableTransponderSearchResult(self, tlist):
 		self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
