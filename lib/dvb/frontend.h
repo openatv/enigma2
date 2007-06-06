@@ -39,9 +39,12 @@ class eDVBFrontend: public iDVBFrontend, public Object
 {
 	DECLARE_REF(eDVBFrontend);
 	int m_type;
-	int m_fe;
+	int m_dvbid;
+	int m_slotid;
 	int m_fd;
+	bool m_need_rotor_workaround;
 	char m_filename[128];
+	char m_description[128];
 #if HAVE_DVB_API_VERSION < 3
 	int m_secfd;
 	char m_sec_filename[128];
@@ -115,7 +118,9 @@ public:
 	void getFrontendData(ePyObject dest);
 
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
-	int getID() { return m_fe; }
+	int getDVBID() { return m_dvbid; }
+	int getSlotID() { return m_slotid; }
+	void setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
 
 	int openFrontend();
 	int closeFrontend();

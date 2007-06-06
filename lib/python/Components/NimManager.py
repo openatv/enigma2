@@ -4,7 +4,8 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
-	eDVBSatelliteRotorParameters as rotorParam
+	eDVBSatelliteRotorParameters as rotorParam, \
+	eDVBResourceManager
 
 import xml.dom.minidom
 from xml.dom import EMPTY_NAMESPACE
@@ -732,11 +733,16 @@ def InitNimManager(nimmgr):
 	for x in range(len(nimmgr.nim_slots)):
 		config.Nims.append(ConfigSubsection())
 
+	used_nim_slots = [ ]
+
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
 		
 		# HACK: currently, we can only looptrough to socket A
+
+		if slot.type is not None:
+			used_nim_slots.append((slot.slot, slot.description))
 
 		if slot.isCompatible("DVB-S"):
 			if slot.slot == 0:
@@ -925,6 +931,8 @@ def InitNimManager(nimmgr):
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
 			print "pls add support for this frontend type!"		
 #			assert False
+
+	eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 	nimmgr.sec = SecConfigure(nimmgr)
 

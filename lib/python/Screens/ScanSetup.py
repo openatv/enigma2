@@ -205,9 +205,10 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.dataAvail.get().append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
 		cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
+		#FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
 		if nim_idx < 2:
 			cmd += str(nim_idx)
-		else: # FIXMEE DM8000
+		else:
 			if nim_idx == 2:
 				cmd += "2" # first nim socket on DM8000 use /dev/i2c/2
 			else:

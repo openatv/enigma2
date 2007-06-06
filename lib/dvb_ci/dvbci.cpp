@@ -402,7 +402,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 							if (!channel->getFrontend(frontend))
 							{
 								eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
-								tunernum = fe->getID();
+								tunernum = fe->getSlotID();
 							}
 						}
 						ASSERT(tunernum != -1);
