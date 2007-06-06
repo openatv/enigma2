@@ -153,7 +153,7 @@ class Wizard(Screen, HelpableScreen):
 			count += 1
 		return 0
 
-	def finished(self, **args):
+	def finished(self, *args, **kwargs):
 		print "finished"
 		currStep = self.currStep
 
