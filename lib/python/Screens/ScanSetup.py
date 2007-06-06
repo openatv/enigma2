@@ -839,7 +839,6 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.buildTransponderList()
 
 	def buildTransponderList(self): # this method is called multiple times because of asynchronous stuff
-		print "buildTransponderList"
 		APPEND_NOW = 0
 		SEARCH_CABLE_TRANSPONDERS = 1
 		action = APPEND_NOW
