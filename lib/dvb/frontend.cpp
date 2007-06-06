@@ -383,7 +383,8 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
-	:m_type(-1), m_fe(fe), m_fd(-1), m_sn(0), m_timeout(0), m_tuneTimer(0)
+	:m_type(-1), m_dvbid(fe), m_slotid(fe), m_need_rotor_workaround(false)
+	,m_fd(-1), m_sn(0), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -428,12 +429,12 @@ int eDVBFrontend::openFrontend()
 		}
 	}
 	else
-		eWarning("sec %d already opened", m_fe);
+		eWarning("sec %d already opened", m_dvbid);
 	FrontendInfo fe_info;
 #else
 	dvb_frontend_info fe_info;
 #endif
-	eDebug("opening frontend %d", m_fe);
+	eDebug("opening frontend %d", m_dvbid);
 	if (m_fd < 0)
 	{
 		m_fd = ::open(m_filename, O_RDWR|O_NONBLOCK);
@@ -448,7 +449,7 @@ int eDVBFrontend::openFrontend()
 		}
 	}
 	else
-		eWarning("frontend %d already opened", m_fe);
+		eWarning("frontend %d already opened", m_dvbid);
 	if (m_type == -1)
 	{
 		if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
@@ -503,15 +504,15 @@ int eDVBFrontend::closeFrontend()
 	{
 		if (linked_fe->m_inuse)
 		{
-			eDebug("dont close frontend %d until the linked frontend %d is still in use",
-				m_fe, linked_fe->m_frontend->getID());
+			eDebug("dont close frontend %d until the linked frontend %d in slot %d is still in use",
+				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
 			return -1;
 		}
 		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, (int&)linked_fe);
 	}
 	if (m_fd >= 0)
 	{
-		eDebug("close frontend %d", m_fe);
+		eDebug("close frontend %d", m_dvbid);
 		m_tuneTimer->stop();
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
@@ -520,7 +521,7 @@ int eDVBFrontend::closeFrontend()
 		if (!::close(m_fd))
 			m_fd=-1;
 		else
-			eWarning("couldnt close frontend %d", m_fe);
+			eWarning("couldnt close frontend %d", m_dvbid);
 		m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1;
 	}
 #if HAVE_DVB_API_VERSION < 3
@@ -529,7 +530,7 @@ int eDVBFrontend::closeFrontend()
 		if (!::close(m_secfd))
 			m_secfd=-1;
 		else
-			eWarning("couldnt close sec %d", m_fe);
+			eWarning("couldnt close sec %d", m_dvbid);
 	}
 #endif
 	delete m_sn;
@@ -573,7 +574,7 @@ void eDVBFrontend::feEvent(int w)
 #if HAVE_DVB_API_VERSION < 3
 		if (event.type == FE_COMPLETION_EV)
 #else
-		eDebug("(%d)fe event: status %x, inversion %s", m_fe, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
+		eDebug("(%d)fe event: status %x, inversion %s", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
 		if (event.status & FE_HAS_LOCK)
 #endif
 		{
@@ -691,7 +692,7 @@ int eDVBFrontend::readFrontendData(int type)
 			return !!(status&FE_HAS_SYNC);
 		}
 		case frontendNumber:
-			return m_fe;
+			return m_slotid;
 	}
 	return 0;
 }
@@ -1098,7 +1099,7 @@ void eDVBFrontend::getFrontendData(ePyObject dest)
 	if (dest && PyDict_Check(dest))
 	{
 		const char *tmp=0;
-		PutToDict(dest, "tuner_number", m_fe);
+		PutToDict(dest, "tuner_number", m_dvbid);
 		switch(m_type)
 		{
 			case feSatellite:
@@ -1123,7 +1124,7 @@ void eDVBFrontend::getFrontendData(ePyObject dest)
 #endif
 int eDVBFrontend::readInputpower()
 {
-	int power=m_fe;  // this is needed for read inputpower from the correct tuner !
+	int power=m_slotid;  // this is needed for read inputpower from the correct tuner !
 
 	// open front prozessor
 	int fp=::open("/dev/dbox/fp0", O_RDWR);
@@ -1383,9 +1384,19 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
-				int fd = m_fe ?
-					::open("/dev/i2c/1", O_RDWR) :
-					::open("/dev/i2c/0", O_RDWR);
+				if (!m_need_rotor_workaround)
+					break;
+
+				char dev[16];
+
+				// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
+				if (m_slotid < 2)
+					sprintf(dev, "/dev/i2c/%d", m_slotid);
+				else if (m_slotid == 2)
+					sprintf(dev, "/dev/i2c/2"); // first nim socket on DM8000 use /dev/i2c/2
+				else if (m_slotid == 3)
+					sprintf(dev, "/dev/i2c/4"); // second nim socket on DM8000 use /dev/i2c/4
+				int fd = ::open(dev, O_RDWR);
 
 				unsigned char data[2];
 				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
@@ -1418,7 +1429,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 
 void eDVBFrontend::setFrontend()
 {
-	eDebug("setting frontend %d", m_fe);
+	eDebug("setting frontend %d", m_dvbid);
 	m_sn->start();
 	feEvent(-1);
 	if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
@@ -1444,7 +1455,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
-	res = m_sec->prepare(*this, parm, feparm, 1 << m_fe);
+	res = m_sec->prepare(*this, parm, feparm, 1 << m_slotid);
 	if (!res)
 	{
 		eDebug("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d",
@@ -1775,7 +1786,7 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 
 RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
-	eDebug("(%d)tune", m_fe);
+	eDebug("(%d)tune", m_dvbid);
 
 	m_timeout->stop();
 
@@ -1846,7 +1857,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 		std::string enable_5V;
 		char configStr[255];
-		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_fe);
+		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_slotid);
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
 		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
 		if (enable_5V == "True")
@@ -2059,9 +2070,32 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		eDVBFrontendParametersSatellite sat_parm;
 		int ret = feparm->getDVBS(sat_parm);
 		ASSERT(!ret);
-		return m_sec->canTune(sat_parm, this, 1 << m_fe);
+		return m_sec->canTune(sat_parm, this, 1 << m_slotid);
 	}
 	else if (m_type == eDVBFrontend::feCable)
 		return 2;  // more prio for cable frontends
 	return 1;
+}
+
+void eDVBFrontend::setSlotInfo(ePyObject obj)
+{
+	ePyObject Id, Descr;
+	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 2)
+		goto arg_error;
+	Id = PyTuple_GET_ITEM(obj, 0);
+	Descr = PyTuple_GET_ITEM(obj, 1);
+	if (!PyInt_Check(Id) || !PyString_Check(Descr))
+		goto arg_error;
+	strcpy(m_description, PyString_AS_STRING(Descr));
+	m_slotid = PyInt_AsLong(Id);
+
+	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
+	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") || !!strstr(m_description, "Alps -S");
+
+	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s",
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No");
+	return;
+arg_error:
+	PyErr_SetString(PyExc_StandardError,
+		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid and second param slot description");
 }

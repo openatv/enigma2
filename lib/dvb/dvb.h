@@ -149,7 +149,7 @@ class eDVBResourceManager: public iObject, public Object
 			   combinations. this will be evaluated here. */
 			   
 	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm);
-	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int index);
+	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
 	
 			/* allocate a demux able to filter on the selected frontend. */
 	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
@@ -209,7 +209,8 @@ public:
 public:
 #endif
 	PSignal1<void,int> frontendUseMaskChanged;
-	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int frontend_index);
+	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);
+	void setFrontendSlotInformations(SWIG_PYOBJECT(ePyObject) list);
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManager);
 SWIG_EXTEND(ePtr<eDVBResourceManager>,

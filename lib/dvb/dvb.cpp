@@ -90,7 +90,7 @@ void eDVBResourceManager::feStateChanged()
 	int mask=0;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (i->m_inuse)
-			mask |= ( 1 << i->m_frontend->getID() );
+			mask |= ( 1 << i->m_frontend->getSlotID() );
 	/* emit */ frontendUseMaskChanged(mask);
 }
 
@@ -248,6 +248,29 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 	}
 }
 
+void eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
+{
+	if (!PyList_Check(list))
+	{
+		PyErr_SetString(PyExc_StandardError, "eDVBResourceManager::setFrontendSlotInformations argument should be a python list");
+		return;
+	}
+	if (PyList_Size(list) != m_frontend.size())
+	{
+		char blasel[256];
+		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations list size incorrect %d frontends avail, but %d entries in slotlist",
+			m_frontend.size(), PyList_Size(list));
+		PyErr_SetString(PyExc_StandardError, blasel);
+		return;
+	}
+	int pos=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		ePyObject obj = PyList_GET_ITEM(list, pos++);
+		i->m_frontend->setSlotInfo(obj);
+	}
+}
+
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm)
 {
 	ePtr<eDVBRegisteredFrontend> best;
@@ -275,10 +298,10 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	return -1;
 }
 
-RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int nr)
+RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index)
 {
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i, --nr)
-		if ((!nr) && !i->m_inuse)
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+		if (!i->m_inuse && i->m_frontend->getSlotID() == slot_index)
 		{
 			fe = new eDVBAllocatedFrontend(i);
 			return 0;
@@ -323,7 +346,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			
 			demux = new eDVBAllocatedDemux(i);
 			if (fe)
-				demux->get().setSourceFrontend(fe->m_frontend->getID());
+				demux->get().setSourceFrontend(fe->m_frontend->getDVBID());
 			else
 				demux->get().setSourcePVR(0);
 			return 0;
@@ -447,7 +470,7 @@ void eDVBResourceManager::releaseCachedChannel()
 	m_cached_channel=0;
 }
 
-RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, int frontend_index)
+RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, int slot_index)
 {
 	ePtr<eDVBAllocatedFrontend> fe;
 
@@ -458,7 +481,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 		m_releaseCachedChannelTimer.stop();
 	}
 
-	if (allocateFrontendByIndex(fe, frontend_index))
+	if (allocateFrontendByIndex(fe, slot_index))
 		return errNoFrontend;
 	
 	eDVBChannel *ch;

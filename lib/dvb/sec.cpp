@@ -1151,8 +1151,8 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 					p2 = (eDVBRegisteredFrontend*)tmp2;
 				if (p1 != p2)
 				{
-					int tu1_mask = 1 << p1->m_frontend->getID(),
-						tu2_mask = 1 << p2->m_frontend->getID();
+					int tu1_mask = 1 << p1->m_frontend->getSlotID(),
+						tu2_mask = 1 << p2->m_frontend->getSlotID();
 					std::set<sat_compare> tu1sats, tu2sats;
 					std::list<sat_compare> tu1difference, tu2difference;
 					std::insert_iterator<std::list<sat_compare> > insert1(tu1difference, tu1difference.begin()),
