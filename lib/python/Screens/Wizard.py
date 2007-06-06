@@ -152,19 +152,14 @@ class Wizard(Screen, HelpableScreen):
 				return count
 			count += 1
 		return 0
-		
-	def ok(self):
-		print "OK"
+
+	def finished(self, **args):
+		print "finished"
 		currStep = self.currStep
-		
-		if self.showConfig:
-			if (self.wizard[currStep]["config"]["screen"] != None):
-				# TODO: don't die, if no run() is available
-				# there was a try/except here, but i can't see a reason
-				# for this. If there is one, please do a more specific check
-				# and/or a comment in which situation there is no run()
-				self.configInstance.run()
-		
+
+		if self.updateValues not in self.onShown:
+			self.onShown.append(self.updateValues)
+
 		if self.showList:
 			if (len(self.wizard[currStep]["list"]) > 0):
 				nextStep = self.wizard[currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
@@ -179,8 +174,27 @@ class Wizard(Screen, HelpableScreen):
 				self.currStep = self.getStepWithID(self.wizard[currStep]["nextstep"])
 			self.currStep += 1
 			self.updateValues()
-			
+
 		print "Now: " + str(self.currStep)
+
+
+	def ok(self):
+		print "OK"
+		currStep = self.currStep
+		
+		if self.showConfig:
+			if (self.wizard[currStep]["config"]["screen"] != None):
+				# TODO: don't die, if no run() is available
+				# there was a try/except here, but i can't see a reason
+				# for this. If there is one, please do a more specific check
+				# and/or a comment in which situation there is no run()
+				if callable(getattr(self.configInstance, "runAsync", None)):
+					self.onShown.remove(self.updateValues)
+					self.configInstance.runAsync(self.finished)
+					return
+				else:
+					self.configInstance.run()
+		self.finished()
 
 	def keyNumberGlobal(self, number):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
