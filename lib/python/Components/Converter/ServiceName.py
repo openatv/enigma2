@@ -6,11 +6,14 @@ from Components.Element import cached
 class ServiceName(Converter, object):
 	NAME = 0
 	PROVIDER = 1
+	REFERENCE = 2
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "Provider":
 			self.type = self.PROVIDER
+		elif type == "Reference":
+			self.type = self.REFERENCE
 		else:
 			self.type = self.NAME
 
@@ -31,7 +34,9 @@ class ServiceName(Converter, object):
 			return info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider)
-
+		elif self.type == self.REFERENCE:
+			return self.getServiceInfoValue(info, iServiceInformation.sServiceref)
+		
 	text = property(getText)
 
 	def changed(self, what):
