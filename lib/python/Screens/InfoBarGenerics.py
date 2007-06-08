@@ -16,8 +16,7 @@ from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
 from Components.TimerList import TimerEntryComponent
-from Components.config import config, ConfigBoolean
-
+from Components.config import config, ConfigBoolean, ConfigClock
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -33,6 +32,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.SleepTimerEdit import SleepTimerEdit
+from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -41,7 +41,7 @@ from Tools.Directories import SCOPE_HDD, resolveFilename
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation, eEPGCache
 
-from time import time
+from time import time, localtime, strftime
 from os import stat as os_stat
 from bisect import insort
 
@@ -1386,21 +1386,38 @@ class InfoBarInstantRecord:
 				self.changeDuration(0)
 			else:
 				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
+		elif answer[1] == "changeendtime":
+			if len(self.recording) == 1:
+				self.setEndtime(0)
+			else:
+				self.session.openWithCallback(self.setEndTime, TimerSelection, list)
 		elif answer[1] == "stop":
 			if len(self.recording) == 1:
 				self.stopCurrentRecording(0)
 			else:
 				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
-		if answer[1] == "indefinitely" or answer[1] == "manualduration" or answer[1] == "event":
-			limitEvent = False
-			if answer[1] == "event":
-				limitEvent = True
+		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
+			self.startInstantRecording(limitEvent = answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
-				self.selectedEntry = len(self.recording)
-				self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
-			self.startInstantRecording(limitEvent = limitEvent)
-			
+				self.changeDuration(len(self.recording)-1)
+			elif answer[1] == "manualendtime":
+				self.setEndtime(len(self.recording)-1)
 		print "after:\n", self.recording
+
+	def setEndtime(self, entry):
+		if entry is not None:
+			self.selectedEntry = entry
+			self.endtime=ConfigClock(default = self.recording[self.selectedEntry].end)
+			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
+			dlg.setTitle(_("Please change recording endtime"))
+
+	def TimeDateInputClosed(self, ret):
+		if len(ret) > 1:
+			if ret[0]:
+				localendtime = localtime(ret[1])
+				print "stopping recording at", strftime("%c", localendtime)
+				self.recording[self.selectedEntry].end = ret[1]
+				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None:
@@ -1425,9 +1442,11 @@ class InfoBarInstantRecord:
 				title=_("A recording is currently running.\nWhat do you want to do?"), \
 				list=[(_("stop recording"), "stop"), \
 				(_("change recording (duration)"), "changeduration"), \
+				(_("change recording (endtime)"), "changeendtime"), \
 				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("add recording (stop after current event)"), "event"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
+				(_("add recording (enter recording endtime)"), "manualendtime"), \
 				(_("do nothing"), "no")])
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
@@ -1435,6 +1454,7 @@ class InfoBarInstantRecord:
 				list=[(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("add recording (stop after current event)"), "event"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
+				(_("add recording (enter recording endtime)"), "manualendtime"), \
 				(_("don't record"), "no")])
 
 from Tools.ISO639 import LanguageCodes
