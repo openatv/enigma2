@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 19:09+0200\n"
+"POT-Creation-Date: 2007-06-08 19:29+0200\n"
 "PO-Revision-Date: 2007-04-28 21:11+0200\n"
 "Last-Translator: Stefan Pluecken <stefanpl@baer.rwth-aachen.de>\n"
 "Language-Team: none\n"
@@ -81,6 +81,9 @@ msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
+
+msgid "(empty)"
+msgstr "(leer)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 Verzeichnis"
@@ -436,6 +439,9 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanallisten-Menü"
 
+msgid "Choose Tuner"
+msgstr "Tuner wählen"
+
 msgid "Choose bouquet"
 msgstr "Bouquet wählen"
 
@@ -678,9 +684,6 @@ msgstr ""
 "Möchten Sie Ihre Dreambox updaten?\n"
 "Nach dem Druck auf OK bitte warten!"
 
-msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
-
 msgid "Do you want to view a tutorial?"
 msgstr "Wollen Sie ein Tutorial sehen?"
 
@@ -825,6 +828,15 @@ msgstr "Französisch"
 msgid "Frequency"
 msgstr "Frequenz"
 
+msgid "Frequency bands"
+msgstr "Frequenzbänder"
+
+msgid "Frequency scan step size(khz)"
+msgstr "Frequenz Schrittweite(kHz)"
+
+msgid "Frequency steps"
+msgstr "Frequenz Schritte"
+
 msgid "Fri"
 msgstr "Fr"
 
@@ -964,6 +976,9 @@ msgstr "Interner Flash"
 
 msgid "Inversion"
 msgstr "Inversion"
+
+msgid "Inversions"
+msgstr ""
 
 msgid "Invert display"
 msgstr "Display invertieren"
@@ -1121,9 +1136,6 @@ msgstr "Nicht verfügbar"
 msgid "NEXT"
 msgstr "NÄCHSTE"
 
-msgid "NIM "
-msgstr "NIM "
-
 msgid "NOW"
 msgstr "JETZT"
 
@@ -1214,6 +1226,13 @@ msgstr "Kein Satellit-Tuner gefunden"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Es wurde kein Tuner für die Benutzung eines DiSEqC-Rotors eingestellt."
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
+"Kein Tuner angeschaltet!\n"
+"Bitte die Tuner konfigurieren bevor die Kanalsuche gestartet wird."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1324,6 +1343,9 @@ msgstr "Pincode benötigt"
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen ..."
 
+msgid "Please change recording endtime"
+msgstr "Bitte Aufnahmeendzeit ändern"
+
 msgid "Please choose an extension..."
 msgstr "Bitte eine Erweiterung auswählen ..."
 
@@ -1356,6 +1378,12 @@ msgstr "Bitte wählen Sie ein Schlüsselwort zum Filtern"
 
 msgid "Please set up tuner B"
 msgstr "Einstellungen für Tuner B."
+
+msgid "Please set up tuner C"
+msgstr "Einstellungen für Tuner C."
+
+msgid "Please set up tuner D"
+msgstr "Einstellungen für Tuner D."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1432,11 +1460,11 @@ msgstr "Einstellungen schützen"
 msgid "Provider"
 msgstr "Provider"
 
+msgid "Provider to scan"
+msgstr "Anbieter zu durchsuchen"
+
 msgid "Providers"
 msgstr "Anbieter"
-
-msgid "Quick"
-msgstr "Schnell"
 
 msgid "Quickzap"
 msgstr "Schnellumschalter"
@@ -1481,21 +1509,21 @@ msgid "Recording"
 msgstr "Aufnahmen"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
 "Wollen Sie trotzdem neu starten?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
 "Wollen Sie trotzdem neu starten?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
@@ -1561,9 +1589,6 @@ msgstr ""
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Sa"
 
@@ -1588,8 +1613,68 @@ msgstr "Samstag"
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
 
-msgid "Scan NIM"
-msgstr "Scanne Tuner"
+msgid "Scan "
+msgstr "Suche "
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Östlich suchen"
@@ -1652,9 +1737,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Kanalsuche"
-
-msgid "Service scan type needed"
-msgstr "Benötige Kanalsuchart"
 
 msgid "Serviceinfo"
 msgstr "Kanal-Infos"
@@ -1722,11 +1804,9 @@ msgstr "Ausschalt-Timer-Aktion:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Diaschau-Intervall (sek.)"
 
-msgid "Slot "
-msgstr "Slot "
-
-msgid "Socket "
-msgstr "Sockel "
+#, python-format
+msgid "Slot %d"
+msgstr "Steckplatz %d"
 
 msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
@@ -1983,11 +2063,14 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr "Transponder-Typ"
 
-msgid "Transpondertype"
-msgstr "Transponder-Typ"
-
 msgid "Tries left:"
 msgstr "Übrige Versuche:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr "Suche benutzte Transponder im Kabel Netzwerk.. bitte warten..."
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr "Suche benutzte Transponder im Kabel Netzwerk.. bitte warten..."
 
 msgid "Tue"
 msgstr "Di"
@@ -1999,10 +2082,13 @@ msgid "Tune"
 msgstr "Tunen"
 
 msgid "Tune failed!"
-msgstr ""
+msgstr "Tunen fehlgeschlagen!"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Tuner-Slot"
@@ -2099,6 +2185,9 @@ msgstr "USALS für diesen Sat benutzen"
 
 msgid "Use wizard to set up basic features"
 msgstr "Grundeinstellungen jetzt vornehmen"
+
+msgid "Used service scan type"
+msgstr "Typ der Kanalsuche"
 
 msgid "User defined"
 msgstr "Benutzerdefiniert"
@@ -2347,6 +2436,9 @@ msgstr "Marker einfügen"
 msgid "add recording (enter recording duration)"
 msgstr "Aufnahme hinzufügen (Aufnahmelänge eingeben)"
 
+msgid "add recording (enter recording endtime)"
+msgstr "Aufnahme hinzufügen (Aufnahmeendzeit eingeben)"
+
 msgid "add recording (indefinitely)"
 msgstr "Aufnahme hinzufügen (unbegrenzt)"
 
@@ -2387,6 +2479,9 @@ msgstr ""
 msgid "change recording (duration)"
 msgstr "Aufnahme ändern (Aufnahmelänge)"
 
+msgid "change recording (endtime)"
+msgstr "Aufnahme ändern (Aufnahmeendzeit)"
+
 msgid "circular left"
 msgstr "links-zirkulär"
 
@@ -2426,6 +2521,9 @@ msgstr "aus"
 msgid "disable move mode"
 msgstr "Verschiebemodus ausschalten"
 
+msgid "disabled"
+msgstr "abgeschaltet"
+
 msgid "do not change"
 msgstr "Nicht ändern"
 
@@ -2441,8 +2539,8 @@ msgstr "erledigt!"
 msgid "edit alternatives"
 msgstr "Alternativen bearbeiten"
 
-msgid "empty/unknown"
-msgstr "leer/unbekannt"
+msgid "empty"
+msgstr "leer"
 
 msgid "enable"
 msgstr "an"
@@ -2455,6 +2553,9 @@ msgstr "Favoriteneditor anschalten"
 
 msgid "enable move mode"
 msgstr "Verschiebemodus aktivieren"
+
+msgid "enabled"
+msgstr "angeschaltet"
 
 msgid "end alternatives edit"
 msgstr "Alternativen-Bearbeitung beenden"
@@ -2520,9 +2621,6 @@ msgstr "Abspielmodus verlassen ..."
 
 msgid "left"
 msgstr "links"
-
-msgid "list"
-msgstr ""
 
 msgid "locked"
 msgstr "Signal"
@@ -2704,9 +2802,6 @@ msgstr "Sekunden"
 msgid "seconds."
 msgstr "Sekunden warten."
 
-msgid "select Slot"
-msgstr "wähle Slot"
-
 msgid "service pin"
 msgstr "Kanal-Pincode"
 
@@ -2818,3 +2913,54 @@ msgstr "Umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
+
+#~ msgid "NIM "
+#~ msgstr "NIM "
+
+#~ msgid "Quick"
+#~ msgstr "Schnell"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
+#~ "Wollen Sie trotzdem neu starten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
+#~ "Wollen Sie trotzdem neu starten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
+#~ "Wollen Sie trotzdem ausschalten?"
+
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Scanne Tuner"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Benötige Kanalsuchart"
+
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#~ msgid "Socket "
+#~ msgstr "Sockel "
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transponder-Typ"
+
+#~ msgid "empty/unknown"
+#~ msgstr "leer/unbekannt"
+
+#~ msgid "select Slot"
+#~ msgstr "wähle Slot"
