@@ -222,7 +222,7 @@ public:
 #ifndef SWIG
 	t_12V_relais_state m_12V_relais_state;	// 12V relais output on/off
 
-	__u8 tuner_mask; // useable by tuner ( 1 | 2 | 4...)
+	__u8 slot_mask; // useable by slot ( 1 | 2 | 4...)
 
 	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
 				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
@@ -265,6 +265,7 @@ private:
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
 	bool m_rotorMoving;
+	int m_not_linked_slot_mask;
 #endif
 #ifdef SWIG
 	eDVBSatelliteEquipmentControl();
@@ -284,7 +285,7 @@ public:
 	RESULT clear();
 /* LNB Specific Parameters */
 	RESULT addLNB();
-	RESULT setLNBTunerMask(int tunermask);
+	RESULT setLNBSlotMask(int slotmask);
 	RESULT setLNBLOFL(int lofl);
 	RESULT setLNBLOFH(int lofh);
 	RESULT setLNBThreshold(int threshold);
@@ -313,6 +314,7 @@ public:
 /* Tuner Specific Parameters */
 	RESULT setTunerLinked(int from, int to);
 	RESULT setTunerDepends(int from, int to);
+	void setSlotNotLinked(int tuner_no);
 
 	PyObject *get_exclusive_satellites(int tu1, int tu2);
 	void setRotorMoving(bool); // called from the frontend's

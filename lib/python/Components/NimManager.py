@@ -79,7 +79,7 @@ class SecConfigure:
 				sec.setRotorPosNum(0) # USALS
 				self.satList.append(int(x[0]))
 
-		sec.setLNBTunerMask(tunermask)
+		sec.setLNBSlotMask(tunermask)
 
 	def setSatposDepends(self, sec, nim1, nim2):
 		print "tuner", nim1, "depends on satpos of", nim2
@@ -125,38 +125,42 @@ class SecConfigure:
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
 				print "diseqcmode: ", nim.configMode.value
-				if nim.configMode.value in [ "loopthrough", "satposdepends", "equal", "nothing" ]:
+				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
 					pass
-				elif nim.configMode.value == "simple":		#simple config
-					if nim.diseqcMode.value == "single":			#single
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
-					elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
-					elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-					elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
-						self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
-					elif nim.diseqcMode.value == "positioner":		#Positioner
-						if nim.latitudeOrientation.value == "north":
-							laValue = rotorParam.NORTH
-						else:
-							laValue = rotorParam.SOUTH
-						if nim.longitudeOrientation.value == "east":
-							loValue = rotorParam.EAST
-						else:
-							loValue = rotorParam.WEST
-						self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
-							longitude = nim.longitude.float,
-							loDirection = loValue,
-							latitude = nim.latitude.float,
-							laDirection = laValue)
-				elif nim.configMode.value == "advanced": #advanced config
-					self.updateAdvanced(sec, x)
+				else:
+					sec.setSlotNotLinked(x)
+					if nim.configMode.value == "equal":
+						pass
+					elif nim.configMode.value == "simple":		#simple config
+						if nim.diseqcMode.value == "single":			#single
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
+						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
+						elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+						elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
+						elif nim.diseqcMode.value == "positioner":		#Positioner
+							if nim.latitudeOrientation.value == "north":
+								laValue = rotorParam.NORTH
+							else:
+								laValue = rotorParam.SOUTH
+							if nim.longitudeOrientation.value == "east":
+								loValue = rotorParam.EAST
+							else:
+								loValue = rotorParam.WEST
+							self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
+								longitude = nim.longitude.float,
+								loDirection = loValue,
+								latitude = nim.latitude.float,
+								laDirection = laValue)
+					elif nim.configMode.value == "advanced": #advanced config
+						self.updateAdvanced(sec, x)
 		print "sec config completed"
 
 	def updateAdvanced(self, sec, slotid):
@@ -285,7 +289,7 @@ class SecConfigure:
 				else:
 					sec.setUseInputpower(False)
 
-				sec.setLNBTunerMask(tunermask)
+				sec.setLNBSlotMask(tunermask)
 
 				# finally add the orbital positions
 				for y in lnbSat[x]:
@@ -725,6 +729,12 @@ def InitSecParams():
 	x = ConfigInteger(default=1, limits = (0, 5))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
+
+# TODO add support for satpos depending nims to advanced nim configuration
+# so a second/third/fourth cable from a motorized lnb can used behind a
+# diseqc 1.0 / diseqc 1.1 / toneburst switch
+# the C(++) part should can handle this
+# the configElement should be only visible when diseqc 1.2 is disabled
 
 def InitNimManager(nimmgr):
 	InitSecParams()
