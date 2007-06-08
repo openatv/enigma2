@@ -92,6 +92,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	void setFrontend();
 	int readInputpower();
 	bool setSecSequencePos(int steps);
+	void setRotorData(int pos, int cmd);
 public:
 	eDVBFrontend(int adap, int fe, int &ok);	
 	virtual ~eDVBFrontend();

@@ -383,8 +383,8 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
-	:m_type(-1), m_dvbid(fe), m_slotid(fe), m_need_rotor_workaround(false)
-	,m_fd(-1), m_sn(0), m_timeout(0), m_tuneTimer(0)
+	:m_type(-1), m_dvbid(fe), m_slotid(fe)
+	,m_fd(-1), m_need_rotor_workaround(false), m_sn(0), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -1164,6 +1164,35 @@ bool eDVBFrontend::setSecSequencePos(int steps)
 	return true;
 }
 
+void eDVBFrontend::setRotorData(int pos, int cmd)
+{
+	m_data[ROTOR_CMD] = cmd;
+	m_data[ROTOR_POS] = pos;
+	if ( m_data[SATPOS_DEPENDS_PTR] != -1 )
+	{
+		eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) m_data[SATPOS_DEPENDS_PTR];
+		satpos_depends_to_fe->m_frontend->m_data[ROTOR_CMD] = cmd;
+		satpos_depends_to_fe->m_frontend->m_data[ROTOR_POS] = pos;
+	}
+	else
+	{
+		eDVBRegisteredFrontend *next = (eDVBRegisteredFrontend *)m_data[LINKED_NEXT_PTR];
+		while ( (int)next != -1 )
+		{
+			next->m_frontend->m_data[ROTOR_CMD] = cmd;
+			next->m_frontend->m_data[ROTOR_POS] = pos;
+			next = (eDVBRegisteredFrontend *)next->m_frontend->m_data[LINKED_NEXT_PTR];
+		}
+		eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)m_data[LINKED_PREV_PTR];
+		while ( (int)prev != -1 )
+		{
+			prev->m_frontend->m_data[ROTOR_CMD] = cmd;
+			prev->m_frontend->m_data[ROTOR_POS] = pos;
+			prev = (eDVBRegisteredFrontend *)prev->m_frontend->m_data[LINKED_PREV_PTR];
+		}
+	}
+}
+
 void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 {
 	int delay=0;
@@ -1359,14 +1388,13 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
-				m_data[ROTOR_CMD] = m_data[ROTOR_POS] = -1;
 				eDebug("[SEC] invalidate current rotorparams");
+				setRotorData(-1,-1);	
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
-				m_data[ROTOR_CMD] = m_data[NEW_ROTOR_CMD];
-				m_data[ROTOR_POS] = m_data[NEW_ROTOR_POS];
-				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[5], m_data[6]);
+				setRotorData(m_data[NEW_ROTOR_POS], m_data[NEW_ROTOR_CMD]);
+				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[ROTOR_CMD], m_data[ROTOR_POS]);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_DISEQC_RETRYS:

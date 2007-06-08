@@ -37,7 +37,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 // ASTRA
 	addLNB();
-	setLNBTunerMask(3);
+	setLNBSlotMask(3);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11700000);
 	setLNBLOFH(10607000);
@@ -54,7 +54,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 // Hotbird
 	addLNB();
-	setLNBTunerMask(3);
+	setLNBSlotMask(3);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11700000);
 	setLNBLOFH(10600000);
@@ -71,7 +71,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 
 // Rotor
 	addLNB();
-	setLNBTunerMask(3);
+	setLNBSlotMask(3);
 	setLNBLOFL(9750000);
 	setLNBThreshold(11700000);
 	setLNBLOFH(10600000);
@@ -105,11 +105,9 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setRotorPosNum(1); // stored pos 1
 }
 
-static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eDVBFrontendParametersSatellite &sat, int csw, int ucsw, int toneburst, bool diseqc, bool rotor)
+static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eDVBFrontendParametersSatellite &sat, int csw, int ucsw, int toneburst, bool diseqc, bool rotor, int RotorPos)
 {
 	eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_ptr;
-	int oRotorPos = -1;
-	linked_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, oRotorPos);
 	if (linked_fe->m_inuse)
 	{
 		int ocsw = -1,
@@ -130,7 +128,7 @@ static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eD
 #endif
 		if ( (csw != ocsw) ||
 			( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
-			( rotor && oRotorPos != sat.orbital_position ) )
+			( rotor && RotorPos != sat.orbital_position ) )
 		{
 //			eDebug("can not tune this transponder with linked tuner in use!!");
 			ret=0;
@@ -138,15 +136,10 @@ static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eD
 //		else
 //			eDebug("OK .. can tune this transponder with linked tuner in use :)");
 	}
-	else if (rotor && oRotorPos != -1)
-	{
-		ret -= abs(oRotorPos-sat.orbital_position);
-//		eDebug("decrement rotor pos for linked tuner!!");
-	}
 	linked_fe->m_frontend->getData(direction, linked_ptr);
 }
 
-int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int frontend_id )
+int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id )
 {
 	int ret=0, satcount=0;
 
@@ -154,7 +147,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	{
 		bool rotor=false;
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
-		if ( lnb_param.tuner_mask & frontend_id ) // lnb for correct tuner?
+		if ( lnb_param.slot_mask & slot_id ) // lnb for correct tuner?
 		{
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 
@@ -208,10 +201,10 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				}
 
 				while (ret && linked_prev_ptr != -1)  // check for linked tuners..
-					checkLinkedParams(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr, ret, sat, csw, ucsw, toneburst, diseqc, rotor);
+					checkLinkedParams(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr, ret, sat, csw, ucsw, toneburst, diseqc, rotor, curRotorPos);
 
 				while (ret && linked_next_ptr != -1)  // check for linked tuners..
-					checkLinkedParams(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr, ret, sat, csw, ucsw, toneburst, diseqc, rotor);
+					checkLinkedParams(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr, ret, sat, csw, ucsw, toneburst, diseqc, rotor, curRotorPos);
 
 				if (ret)
 					if (satpos_depends_ptr != -1)
@@ -219,9 +212,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
 						if ( satpos_depends_to_fe->m_inuse )
 						{
-							int oRotorPos = -1;
-							satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, oRotorPos);
-							if (!rotor || oRotorPos != sat.orbital_position)
+							if (!rotor || curRotorPos != sat.orbital_position)
 							{
 //								eDebug("can not tune this transponder ... rotor on other tuner is positioned to %d", oRotorPos);
 								ret=0;
@@ -249,20 +240,19 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	}
 	if (ret && satcount)
 		ret -= (satcount-1);
+	if (ret && m_not_linked_slot_mask & slot_id)
+		ret += 5; // increase score for tuners with direct sat connection
 	return ret;
 }
 
 #define VOLTAGE(x) (lnb_param.m_increased_voltage ? iDVBFrontend::voltage##x##_5 : iDVBFrontend::voltage##x)
 
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id)
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int slot_id)
 {
-	bool linked=false;
-	bool depend_satpos_mode=false;
-
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
-		if (!(lnb_param.tuner_mask & frontend_id)) // lnb for correct tuner?
+		if (!(lnb_param.slot_mask & slot_id)) // lnb for correct tuner?
 			continue;
 		eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 		eDVBSatelliteRotorParameters &rotor_param = lnb_param.m_rotor_parameters;
@@ -272,12 +262,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		if ( sit != lnb_param.m_satellites.end())
 		{
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
-			bool doSetVoltageToneFrontend = true;
 			bool doSetFrontend = true;
+			bool doSetVoltageToneFrontend = m_not_linked_slot_mask & slot_id;
+			bool allowDiseqc1_2 = true;
 			int band=0,
-				linked_prev_ptr=-1, // linked tuner
-				linked_next_ptr=-1, // linked tuner
-				satpos_depends_ptr=-1,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
 				csw = di_param.m_committed_cmd,
@@ -287,52 +275,20 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				lastucsw = -1,
 				lastToneburst = -1,
 				lastRotorCmd = -1,
-				curRotorPos = -1;
+				curRotorPos = -1,
+				satposDependPtr = -1;
 
 			frontend.getData(eDVBFrontend::CSW, lastcsw);
 			frontend.getData(eDVBFrontend::UCSW, lastucsw);
 			frontend.getData(eDVBFrontend::TONEBURST, lastToneburst);
 			frontend.getData(eDVBFrontend::ROTOR_CMD, lastRotorCmd);
 			frontend.getData(eDVBFrontend::ROTOR_POS, curRotorPos);
-			frontend.getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
-			frontend.getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
-			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
+			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
-			while (linked_prev_ptr != -1)  // check for linked tuners..
+			if (satposDependPtr != -1 && !doSetVoltageToneFrontend)
 			{
-				eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
-				if (linked_fe->m_inuse)
-				{
-					eDebug("[SEC] frontend is linked with another and the other one is in use.. so we dont do SEC!!");
-					linked=true;
-					break;
-				}
-				linked_fe->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
-			}
-
-			if (!linked)
-				while (linked_next_ptr != -1)  // check for linked tuners..
-				{
-					eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_next_ptr;
-					if (linked_fe->m_inuse)
-					{
-						eDebug("[SEC] frontend is linked with another and the other one is in use.. so we dont do SEC!!");
-						linked=true;
-						break;
-					}
-					linked_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
-				}
-
-			if (satpos_depends_ptr != -1)
-			{
-				eDVBRegisteredFrontend *satpos_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
-				if (satpos_fe->m_inuse)
-				{
-					if ( di_param.m_diseqc_mode != eDVBSatelliteDiseqcParameters::V1_2 )
-						continue;
-					eDebug("[SEC] frontend is depending on satpos of other one.. so we dont turn rotor!!");
-					depend_satpos_mode=true;
-				}
+				allowDiseqc1_2 = false;
+				doSetVoltageToneFrontend = true;
 			}
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
@@ -440,15 +396,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				eDebug("");
 #endif
 
-				int RotorCmd=-1;
-				bool useGotoXX = false;
-				if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
-					&& !sat.no_rotor_command_on_tune )
+				if (doSetVoltageToneFrontend)
 				{
-					if (depend_satpos_mode || linked)
-						// in this both modes we dont really turn the rotor.... but in canTune we need the satpos
-						frontend.setData(eDVBFrontend::ROTOR_POS, sat.orbital_position);
-					else
+					int RotorCmd=-1;
+					bool useGotoXX = false;
+					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
+						&& !sat.no_rotor_command_on_tune
+						&& allowDiseqc1_2 )
 					{
 						if (sw_param.m_rotorPosNum) // we have stored rotor pos?
 							RotorCmd=sw_param.m_rotorPosNum;
@@ -456,30 +410,30 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						{
 							eDebug("Entry for %d,%d? not in Rotor Table found... i try gotoXX?", sat.orbital_position / 10, sat.orbital_position % 10 );
 							useGotoXX = true;
-
+	
 							double	SatLon = abs(sat.orbital_position)/10.00,
 									SiteLat = rotor_param.m_gotoxx_parameters.m_latitude,
 									SiteLon = rotor_param.m_gotoxx_parameters.m_longitude;
-
+	
 							if ( rotor_param.m_gotoxx_parameters.m_la_direction == eDVBSatelliteRotorParameters::SOUTH )
 								SiteLat = -SiteLat;
-
+	
 							if ( rotor_param.m_gotoxx_parameters.m_lo_direction == eDVBSatelliteRotorParameters::WEST )
 								SiteLon = 360 - SiteLon;
-
+	
 							eDebug("siteLatitude = %lf, siteLongitude = %lf, %lf degrees", SiteLat, SiteLon, SatLon );
 							double satHourAngle =
 								calcSatHourangle( SatLon, SiteLat, SiteLon );
 							eDebug("PolarmountHourAngle=%lf", satHourAngle );
-
+	
 							static int gotoXTable[10] =
 								{ 0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E };
-
+	
 							if (SiteLat >= 0) // Northern Hemisphere
 							{
 								int tmp=(int)round( fabs( 180 - satHourAngle ) * 10.0 );
 								RotorCmd = (tmp/10)*0x10 + gotoXTable[ tmp % 10 ];
-
+	
 								if (satHourAngle < 180) // the east
 									RotorCmd |= 0xE000;
 								else					// west
@@ -503,266 +457,267 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							eDebug("RotorCmd = %04x", RotorCmd);
 						}
 					}
-				}
 
-				if ( send_mask )
-				{
-					eSecCommand::pair compare;
-					compare.steps = +3;
-					compare.tone = iDVBFrontend::toneOff;
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
-					compare.voltage = iDVBFrontend::voltageOff;
-					compare.steps = +3;
-					// the next is a check if voltage is switched off.. then we first set a voltage :)
-					// else we set voltage after all diseqc stuff..
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
-
-					if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
+					if ( send_mask )
 					{
-						if (rotor_param.m_inputpower_parameters.m_use)
-							compare.voltage = VOLTAGE(18);  // in input power mode set 18V for measure input power
-						else
-							compare.voltage = VOLTAGE(13);  // in normal mode start turning with 13V
-					}
-					else
-						compare.voltage = voltage;
-
-					sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
-
-					// voltage was disabled..so we wait a longer time .. for normal switches 250ms should be enough
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
-
-					for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
-					{
-						if ( send_mask & 4 )
-						{
-							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
-						}
-
-						int loops=0;
-
-						if ( send_mask & 1 )
-							++loops;
-						if ( send_mask & 2 )
-							++loops;
-
-						loops <<= di_param.m_repeats;
-
-						for ( int i = 0; i < loops;)  // fill commands...
-						{
-							eDVBDiseqcCommand diseqc;
-							diseqc.len = 4;
-							diseqc.data[0] = i ? 0xE1 : 0xE0;
-							diseqc.data[1] = 0x10;
-							if ( (send_mask & 2) && (di_param.m_command_order & 4) )
-							{
-								diseqc.data[2] = 0x39;
-								diseqc.data[3] = ucsw;
-							}
-							else if ( send_mask & 1 )
-							{
-								diseqc.data[2] = 0x38;
-								diseqc.data[3] = csw;
-							}
-							else  // no committed command confed.. so send uncommitted..
-							{
-								diseqc.data[2] = 0x39;
-								diseqc.data[3] = ucsw;
-							}
-							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-
-							i++;
-							if ( i < loops )
-							{
-								int cmd=0;
-								if (diseqc.data[2] == 0x38 && (send_mask & 2))
-									cmd=0x39;
-								else if (diseqc.data[2] == 0x39 && (send_mask & 1))
-									cmd=0x38;
-								int tmp = m_params[DELAY_BETWEEN_DISEQC_REPEATS];
-								if (cmd)
-								{
-									int delay = di_param.m_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
-									diseqc.data[2]=cmd;
-									diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
-									sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-									++i;
-									if ( i < loops )
-										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
-									else
-										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
-								}
-								else  // delay 120msek when no command is in repeat gap
-									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, tmp) );
-							}
-							else
-								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
-						}
-
-						if ( send_mask & 8 )  // toneburst at end of sequence
-						{
-							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
-						}
-					}
-				}
-
-				if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
-				{
-					eSecCommand::pair compare;
-					if (!send_mask)
-					{
+						eSecCommand::pair compare;
 						compare.steps = +3;
 						compare.tone = iDVBFrontend::toneOff;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
-
 						compare.voltage = iDVBFrontend::voltageOff;
-						compare.steps = +4;
+						compare.steps = +3;
 						// the next is a check if voltage is switched off.. then we first set a voltage :)
 						// else we set voltage after all diseqc stuff..
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 
-						if (rotor_param.m_inputpower_parameters.m_use)
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) ); // set 18V for measure input power
+						if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
+						{
+							if (rotor_param.m_inputpower_parameters.m_use)
+								compare.voltage = VOLTAGE(18);  // in input power mode set 18V for measure input power
+							else
+								compare.voltage = VOLTAGE(13);  // in normal mode start turning with 13V
+						}
 						else
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // in normal mode start turning with 13V
+							compare.voltage = voltage;
 
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD]) ); // wait 750ms when voltage was disabled
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +9) );  // no need to send stop rotor cmd and recheck voltage
-					}
-					else
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD]) ); // wait 700ms when diseqc changed
-
-					eDVBDiseqcCommand diseqc;
-					diseqc.len = 3;
-					diseqc.data[0] = 0xE0;
-					diseqc.data[1] = 0x31;	// positioner
-					diseqc.data[2] = 0x60;	// stop
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_ROTORPOS_VALID_GOTO, +5) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-					// wait 150msec after send rotor stop cmd
-					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_MOTOR_STOP_CMD]) );
-
-					diseqc.data[0] = 0xE0;
-					diseqc.data[1] = 0x31;		// positioner
-					if ( useGotoXX )
-					{
-						diseqc.len = 5;
-						diseqc.data[2] = 0x6E;	// drive to angular position
-						diseqc.data[3] = ((RotorCmd & 0xFF00) / 0x100);
-						diseqc.data[4] = RotorCmd & 0xFF;
-					}
-					else
-					{
-						diseqc.len = 4;
-						diseqc.data[2] = 0x6B;	// goto stored sat position
-						diseqc.data[3] = RotorCmd;
-						diseqc.data[4] = 0x00;
-					}
-
-					if ( rotor_param.m_inputpower_parameters.m_use )
-					{ // use measure rotor input power to detect rotor state
-						eSecCommand::rotor cmd;
-						eSecCommand::pair compare;
-						compare.voltage = VOLTAGE(18);
-						compare.steps = +3;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
+
+							// voltage was disabled..so we wait a longer time .. for normal switches 250ms should be enough
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
+
+						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
+						{
+							if ( send_mask & 4 )
+							{
+								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
+							}
+
+							int loops=0;
+
+							if ( send_mask & 1 )
+								++loops;
+							if ( send_mask & 2 )
+								++loops;
+
+							loops <<= di_param.m_repeats;
+
+							for ( int i = 0; i < loops;)  // fill commands...
+							{
+								eDVBDiseqcCommand diseqc;
+								diseqc.len = 4;
+								diseqc.data[0] = i ? 0xE1 : 0xE0;
+								diseqc.data[1] = 0x10;
+								if ( (send_mask & 2) && (di_param.m_command_order & 4) )
+								{
+									diseqc.data[2] = 0x39;
+									diseqc.data[3] = ucsw;
+								}
+								else if ( send_mask & 1 )
+								{
+									diseqc.data[2] = 0x38;
+									diseqc.data[3] = csw;
+								}
+								else  // no committed command confed.. so send uncommitted..
+								{
+									diseqc.data[2] = 0x39;
+									diseqc.data[3] = ucsw;
+								}
+								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+								i++;
+								if ( i < loops )
+								{
+									int cmd=0;
+									if (diseqc.data[2] == 0x38 && (send_mask & 2))
+										cmd=0x39;
+									else if (diseqc.data[2] == 0x39 && (send_mask & 1))
+										cmd=0x38;
+									int tmp = m_params[DELAY_BETWEEN_DISEQC_REPEATS];
+									if (cmd)
+									{
+										int delay = di_param.m_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
+										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
+										diseqc.data[2]=cmd;
+										diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
+										sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+										++i;
+										if ( i < loops )
+											sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay ) );
+										else
+											sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
+									}
+									else  // delay 120msek when no command is in repeat gap
+										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, tmp) );
+								}
+								else
+									sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
+							}
+
+							if ( send_mask & 8 )  // toneburst at end of sequence
+							{
+								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
+							}
+						}
+					}
+
+					eDebug("RotorCmd %02x, lastRotorCmd %02x", RotorCmd, lastRotorCmd);
+					if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
+					{
+						eSecCommand::pair compare;
+						if (!send_mask)
+						{
+							compare.steps = +3;
+							compare.tone = iDVBFrontend::toneOff;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+
+							compare.voltage = iDVBFrontend::voltageOff;
+							compare.steps = +4;
+							// the next is a check if voltage is switched off.. then we first set a voltage :)
+							// else we set voltage after all diseqc stuff..
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
+
+							if (rotor_param.m_inputpower_parameters.m_use)
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) ); // set 18V for measure input power
+							else
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) ); // in normal mode start turning with 13V
+
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD]) ); // wait 750ms when voltage was disabled
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +9) );  // no need to send stop rotor cmd and recheck voltage
+						}
+						else
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD]) ); // wait 700ms when diseqc changed
+
+						eDVBDiseqcCommand diseqc;
+						diseqc.len = 3;
+						diseqc.data[0] = 0xE0;
+						diseqc.data[1] = 0x31;	// positioner
+						diseqc.data[2] = 0x60;	// stop
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_ROTORPOS_VALID_GOTO, +5) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+						// wait 150msec after send rotor stop cmd
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_MOTOR_STOP_CMD]) );
+
+						diseqc.data[0] = 0xE0;
+						diseqc.data[1] = 0x31;		// positioner
+						if ( useGotoXX )
+						{
+							diseqc.len = 5;
+							diseqc.data[2] = 0x6E;	// drive to angular position
+							diseqc.data[3] = ((RotorCmd & 0xFF00) / 0x100);
+							diseqc.data[4] = RotorCmd & 0xFF;
+						}
+						else
+						{
+							diseqc.len = 4;
+							diseqc.data[2] = 0x6B;	// goto stored sat position
+							diseqc.data[3] = RotorCmd;
+							diseqc.data[4] = 0x00;
+						}
+
+						if ( rotor_param.m_inputpower_parameters.m_use )
+						{ // use measure rotor input power to detect rotor state
+							eSecCommand::rotor cmd;
+							eSecCommand::pair compare;
+							compare.voltage = VOLTAGE(18);
+							compare.steps = +3;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
 // measure idle power values
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec after voltage change
-						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
-						compare.val = 1;
-						compare.steps = -2;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec before measure
-						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
-						compare.val = 0;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec after voltage change
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
+							compare.val = 1;
+							compare.steps = -2;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec before measure
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
+							compare.val = 0;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
 ////////////////////////////
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_DISEQC_RETRYS, m_params[MOTOR_COMMAND_RETRIES]) );  // 2 retries
-						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 40) );  // 2 seconds rotor start timout
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_DISEQC_RETRYS, m_params[MOTOR_COMMAND_RETRIES]) );  // 2 retries
+							sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, 40) );  // 2 seconds rotor start timout
 // rotor start loop
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // 50msec delay
-						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-						cmd.direction=1;  // check for running rotor
-						cmd.deltaA=rotor_param.m_inputpower_parameters.m_delta;
-						cmd.steps=+5;
-						cmd.okcount=0;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, +10 ) );  // timeout .. we assume now the rotor is already at the correct position
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // 50msec delay
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+							cmd.direction=1;  // check for running rotor
+							cmd.deltaA=rotor_param.m_inputpower_parameters.m_delta;
+							cmd.steps=+5;
+							cmd.okcount=0;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, +10 ) );  // timeout .. we assume now the rotor is already at the correct position
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 ////////////////////
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
 // rotor running loop
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
-						sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
-						cmd.direction=0;  // check for stopped rotor
-						cmd.steps=+4;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +4 ) );  // timeout ? this should never happen
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
+							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
+							cmd.direction=0;  // check for stopped rotor
+							cmd.steps=+4;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +4 ) );  // timeout ? this should never happen
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+						}
+						else
+						{  // use normal turning mode
+							doSetVoltageToneFrontend=false;
+							doSetFrontend=false;
+							eSecCommand::rotor cmd;
+							eSecCommand::pair compare;
+							compare.voltage = VOLTAGE(13);
+							compare.steps = +3;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
+
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+							compare.voltage = voltage;
+							compare.steps = +3;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // correct final voltage?
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 2000) );  // wait 2 second before set high voltage
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
+
+							compare.tone = tone;
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+
+							cmd.direction=1;  // check for running rotor
+							cmd.deltaA=0;
+							cmd.steps=+3;
+							cmd.okcount=0;
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*4) );  // 2 minutes running timeout
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) ); 
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
+							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+						}
+						frontend.setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
+						frontend.setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 					}
-					else
-					{  // use normal turning mode
-						doSetVoltageToneFrontend=false;
-						doSetFrontend=false;
-						eSecCommand::rotor cmd;
-						eSecCommand::pair compare;
-						compare.voltage = VOLTAGE(13);
-						compare.steps = +3;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
-
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-
-						compare.voltage = voltage;
-						compare.steps = +3;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // correct final voltage?
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 2000) );  // wait 2 second before set high voltage
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
-
-						compare.tone = tone;
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
-
-						cmd.direction=1;  // check for running rotor
-						cmd.deltaA=0;
-						cmd.steps=+3;
-						cmd.okcount=0;
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*4) );  // 2 minutes running timeout
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) ); 
-						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
-						sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-					}
-					frontend.setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
-					frontend.setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 				}
 			}
 			else
@@ -772,7 +727,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			frontend.setData(eDVBFrontend::UCSW, ucsw);
 			frontend.setData(eDVBFrontend::TONEBURST, di_param.m_toneburst_param);
 
-			if (!linked && doSetVoltageToneFrontend)
+			if (doSetVoltageToneFrontend)
 			{
 				eSecCommand::pair compare;
 				compare.voltage = voltage;
@@ -806,16 +761,20 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 	for (int i=0; i <= m_lnbidx; ++i)
 	{
 		m_lnbs[i].m_satellites.clear();
-		m_lnbs[i].tuner_mask = 0;
+		m_lnbs[i].slot_mask = 0;
 	}
 	m_lnbidx=-1;
 
-// clear linked tuner configuration
+	m_not_linked_slot_mask=0;
+
+	//reset some tuner configuration
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 	{
 		it->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, -1);
 		it->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, -1);
 		it->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, -1);
+		it->m_frontend->setData(eDVBFrontend::ROTOR_POS, -1);
+		it->m_frontend->setData(eDVBFrontend::ROTOR_CMD, -1);
 	}
 
 	return 0;
@@ -834,10 +793,10 @@ RESULT eDVBSatelliteEquipmentControl::addLNB()
 	return 0;
 }
 
-RESULT eDVBSatelliteEquipmentControl::setLNBTunerMask(int tunermask)
+RESULT eDVBSatelliteEquipmentControl::setLNBSlotMask(int slotmask)
 {
 	if ( currentLNBValid() )
-		m_lnbs[m_lnbidx].tuner_mask = tunermask;
+		m_lnbs[m_lnbidx].slot_mask = slotmask;
 	else
 		return -ENOENT;
 	return 0;
@@ -1163,9 +1122,9 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 						for (std::map<int, eDVBSatelliteSwitchParameters>::iterator sit(lnb_param.m_satellites.begin());
 							sit != lnb_param.m_satellites.end(); ++sit)
 						{
-							if ( lnb_param.tuner_mask & tu1_mask )
+							if ( lnb_param.slot_mask & tu1_mask )
 								tu1sats.insert(sat_compare(sit->first, lnb_param.m_lof_lo, lnb_param.m_lof_hi));
-							if ( lnb_param.tuner_mask & tu2_mask )
+							if ( lnb_param.slot_mask & tu2_mask )
 								tu2sats.insert(sat_compare(sit->first, lnb_param.m_lof_lo, lnb_param.m_lof_hi));
 						}
 					}
@@ -1247,6 +1206,11 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 		return 0;
 	}
 	return -1;
+}
+
+void eDVBSatelliteEquipmentControl::setSlotNotLinked(int slot_no)
+{
+	m_not_linked_slot_mask |= (1 << slot_no);
 }
 
 bool eDVBSatelliteEquipmentControl::isRotorMoving()

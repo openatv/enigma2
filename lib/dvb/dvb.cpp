@@ -255,7 +255,7 @@ void eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		PyErr_SetString(PyExc_StandardError, "eDVBResourceManager::setFrontendSlotInformations argument should be a python list");
 		return;
 	}
-	if (PyList_Size(list) != m_frontend.size())
+	if ((unsigned int)PyList_Size(list) != m_frontend.size())
 	{
 		char blasel[256];
 		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations list size incorrect %d frontends avail, but %d entries in slotlist",
@@ -303,10 +303,46 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (!i->m_inuse && i->m_frontend->getSlotID() == slot_index)
 		{
+			// check if another slot linked to this is in use
+			eDVBRegisteredFrontend *satpos_depends_to_fe =
+				(eDVBRegisteredFrontend*) i->m_frontend->m_data[eDVBFrontend::SATPOS_DEPENDS_PTR];
+			if ( (int)satpos_depends_to_fe != -1 )
+			{
+				if (satpos_depends_to_fe->m_inuse)
+				{
+					eDebug("another satpos depending frontend is in use.. so allocateFrontendByIndex not possible!");
+					goto alloc_fe_by_id_not_possible;
+				}
+			}
+			else // check linked tuners
+			{
+				eDVBRegisteredFrontend *next =
+					(eDVBRegisteredFrontend *) i->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
+				while ( (int)next != -1 )
+				{
+					if (next->m_inuse)
+					{
+						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
+						goto alloc_fe_by_id_not_possible;
+					}
+					next = (eDVBRegisteredFrontend *)next->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
+				}
+				eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)
+					i->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
+				while ( (int)prev != -1 )
+				{
+					if (prev->m_inuse)
+					{
+						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
+						goto alloc_fe_by_id_not_possible;
+					}
+					prev = (eDVBRegisteredFrontend *)prev->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
+				}
+			}
 			fe = new eDVBAllocatedFrontend(i);
 			return 0;
 		}
-	
+alloc_fe_by_id_not_possible:
 	fe = 0;
 	return -1;
 }
@@ -553,7 +589,6 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 			if (c > bestval)
 				bestval = c;
 		}
-
 	return bestval;
 }
 
