@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tr 01\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2006-06-16 12:51+0200\n"
 "Last-Translator: koksal <goksel@goksel.com>\n"
 "Language-Team: GökselD& <gok_68@hotmail.com>\n"
@@ -81,6 +81,9 @@ msgstr ""
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 Klasörü"
 
@@ -115,6 +118,9 @@ msgid "16:10 PanScan"
 msgstr ""
 
 msgid "16:9"
+msgstr ""
+
+msgid "16:9 Letterbox"
 msgstr ""
 
 msgid "16:9 always"
@@ -179,6 +185,12 @@ msgstr ""
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
 msgstr ""
 
 msgid ""
@@ -408,6 +420,9 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanal Menü  Liste"
 
+msgid "Choose Tuner"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Buket Seç"
 
@@ -586,6 +601,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Çanak"
+
+msgid "Display Setup"
+msgstr ""
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -780,6 +798,15 @@ msgstr "Fransızca"
 msgid "Frequency"
 msgstr "Frekans"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Fri"
 
@@ -927,9 +954,6 @@ msgstr "Klavye Ayarları"
 msgid "Keymap"
 msgstr "Genel Harita"
 
-msgid "LCD Setup"
-msgstr "LCD Kurulum"
-
 msgid "LNB"
 msgstr "LNB"
 
@@ -1071,9 +1095,6 @@ msgstr "N/A Tanımsız"
 msgid "NEXT"
 msgstr "Sonraki"
 
-msgid "NIM "
-msgstr "NIM "
-
 msgid "NOW"
 msgstr "Şimdi"
 
@@ -1158,6 +1179,11 @@ msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Hiçbir Tuner diseqc pozisyonu için ayarlanmadı !"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1260,6 +1286,9 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "Kayıtdaki Filmleri Oynat..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Lütfen Bir İlave Seçin..."
 
@@ -1292,6 +1321,12 @@ msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Lütfen Ayarla  tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1365,11 +1400,11 @@ msgstr ""
 msgid "Provider"
 msgstr "Yayıncı"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Yayıncılar"
-
-msgid "Quick"
-msgstr ""
 
 msgid "Quickzap"
 msgstr ""
@@ -1414,17 +1449,17 @@ msgid "Recording"
 msgstr "Kaydetme"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
 
@@ -1485,9 +1520,6 @@ msgstr ""
 msgid "S-Video"
 msgstr ""
 
-msgid "SNR:"
-msgstr "Sinyal:"
-
 msgid "Sat"
 msgstr "Uydu"
 
@@ -1512,8 +1544,68 @@ msgstr "Cumartesi"
 msgid "Scaling Mode"
 msgstr ""
 
-msgid "Scan NIM"
-msgstr "NIM  Ara"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Doğuyu Raraştır"
@@ -1572,9 +1664,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Servis Taram"
-
-msgid "Service scan type needed"
-msgstr ""
 
 msgid "Serviceinfo"
 msgstr "Servis Bilgisi"
@@ -1642,11 +1731,9 @@ msgstr ""
 msgid "Slideshow Interval (sec.)"
 msgstr ""
 
-msgid "Slot "
-msgstr "Yuva"
-
-msgid "Socket "
-msgstr "Soket"
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr ""
@@ -1777,9 +1864,6 @@ msgstr "Karasal Yayıncı"
 msgid "Test mode"
 msgstr "Tset Kipi"
 
-msgid "Test-Messagebox?"
-msgstr ""
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1899,10 +1983,13 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr ""
 
-msgid "Transpondertype"
-msgstr "Transponder Yaz"
-
 msgid "Tries left:"
+msgstr ""
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 
 msgid "Tue"
@@ -1919,6 +2006,9 @@ msgstr ""
 
 msgid "Tuner"
 msgstr "Tüner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Tüner Yuvası"
@@ -2012,6 +2102,9 @@ msgstr "Kullanıcı İçin Bir USALS Uydu"
 msgid "Use wizard to set up basic features"
 msgstr ""
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Kullanıcı Tanımlı"
 
@@ -2076,6 +2169,9 @@ msgstr "Neyi Taramak İstiyorsunuz!"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Nerden Yedekleme ve Seting  Yapmak Sitersiniz ?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr ""
@@ -2231,6 +2327,9 @@ msgstr ""
 msgid "add recording (enter recording duration)"
 msgstr "Yeni Kayıt (Kaydederken Süre Gir)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "Kayıt ekle ( Süresiz olarak )"
 
@@ -2271,6 +2370,9 @@ msgstr ""
 msgid "change recording (duration)"
 msgstr "Kaydederek Değiştir    (Süre)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "Dairevi Kalan"
 
@@ -2310,6 +2412,9 @@ msgstr ""
 msgid "disable move mode"
 msgstr "Taşıma Modunu Kapat"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr ""
 
@@ -2325,8 +2430,8 @@ msgstr "Bitti!"
 msgid "edit alternatives"
 msgstr ""
 
-msgid "empty/unknown"
-msgstr "Boş/Tanımsız"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr ""
@@ -2339,6 +2444,9 @@ msgstr "Etkinleştir Favori Düzenlemeyi"
 
 msgid "enable move mode"
 msgstr "Taşıma Listesini Aç"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr ""
@@ -2402,9 +2510,6 @@ msgstr "Film Oynatıcıdan Çık"
 
 msgid "left"
 msgstr ""
-
-msgid "list"
-msgstr "Liste"
 
 msgid "locked"
 msgstr ""
@@ -2586,9 +2691,6 @@ msgstr ""
 msgid "seconds."
 msgstr ""
 
-msgid "select Slot"
-msgstr "Yuva Seç"
-
 msgid "service pin"
 msgstr ""
 
@@ -2744,6 +2846,9 @@ msgstr ""
 #~ msgid "LCD"
 #~ msgstr "LCD"
 
+#~ msgid "LCD Setup"
+#~ msgstr "LCD Kurulum"
+
 #~ msgid "Language"
 #~ msgstr "Lisan"
 
@@ -2752,6 +2857,9 @@ msgstr ""
 
 #~ msgid "Multi bouquets"
 #~ msgstr "Çoklu buketler"
+
+#~ msgid "NIM "
+#~ msgstr "NIM "
 
 #~ msgid "Network"
 #~ msgstr "Ağ"
@@ -2771,11 +2879,17 @@ msgstr ""
 #~ msgid "Record Splitsize"
 #~ msgstr "Kayıt Aralıkları"
 
+#~ msgid "SNR:"
+#~ msgstr "Sinyal:"
+
 #~ msgid "Satconfig"
 #~ msgstr "Uydu Ayarları"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Uydu Yapılandırma"
+
+#~ msgid "Scan NIM"
+#~ msgstr "NIM  Ara"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "İkinci kablo LBN den motorize"
@@ -2792,11 +2906,20 @@ msgstr ""
 #~ msgid "Skip confirmations"
 #~ msgstr "Ayarları geç"
 
+#~ msgid "Slot "
+#~ msgstr "Yuva"
+
+#~ msgid "Socket "
+#~ msgstr "Soket"
+
 #~ msgid "Swap services"
 #~ msgstr "Servis değiştir"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Zaman Duraksat"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transponder Yaz"
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF Birimi"
@@ -2816,11 +2939,20 @@ msgstr ""
 #~ msgid "copy to favourites"
 #~ msgstr "Favoriyi Kopyala"
 
+#~ msgid "empty/unknown"
+#~ msgstr "Boş/Tanımsız"
+
+#~ msgid "list"
+#~ msgstr "Liste"
+
 #~ msgid "remove bouquet"
 #~ msgstr "Buketi Sil"
 
 #~ msgid "remove service"
 #~ msgstr "servis Sil"
+
+#~ msgid "select Slot"
+#~ msgstr "Yuva Seç"
 
 #~ msgid "use power delta"
 #~ msgstr "Güç kullanma Deltası"

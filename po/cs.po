@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-05 10:40+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-04-28 12:21+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
@@ -79,6 +79,9 @@ msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(Přepnout)"
+
+msgid "(empty)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 adresář"
@@ -421,6 +424,9 @@ msgstr "Kanál:"
 
 msgid "Channellist menu"
 msgstr "Menu seznamu kanálů"
+
+msgid "Choose Tuner"
+msgstr ""
 
 msgid "Choose bouquet"
 msgstr "Vybrat buket"
@@ -811,6 +817,15 @@ msgstr "Francouzsky"
 msgid "Frequency"
 msgstr "Frekvence"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Pá"
 
@@ -1104,9 +1119,6 @@ msgstr "Není k dispozici"
 msgid "NEXT"
 msgstr "DALŠÍ"
 
-msgid "NIM "
-msgstr "NIM"
-
 msgid "NOW"
 msgstr "NYNÍ"
 
@@ -1195,6 +1207,11 @@ msgstr "Žádný satelitní frontend nenalezen!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Žádný tuner není nakofigurovat pro použití s diseqc positionerem!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1305,6 +1322,9 @@ msgstr "Je vyžadován kód PIN"
 msgid "Play recorded movies..."
 msgstr "Přehrát nahrané pořady..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Prosím vyberte si z nabídky možností"
 
@@ -1337,6 +1357,12 @@ msgstr "Prosím vyberte klíčové slovo pro filtr..."
 
 msgid "Please set up tuner B"
 msgstr "Prosím, nastav tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1413,11 +1439,11 @@ msgstr "Nastavení ochrany"
 msgid "Provider"
 msgstr "Poskytovatel"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Poskytovatelé"
-
-msgid "Quick"
-msgstr "Rychle"
 
 msgid "Quickzap"
 msgstr "Rychlé přepínání"
@@ -1462,25 +1488,19 @@ msgid "Recording"
 msgstr "Nahrávání"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"rebootovat?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"restartovat?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"vypnout?"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
@@ -1539,9 +1559,6 @@ msgstr "Zobrazuji"
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "So"
 
@@ -1566,8 +1583,68 @@ msgstr "Sobota"
 msgid "Scaling Mode"
 msgstr "Nastavovací mód"
 
-msgid "Scan NIM"
-msgstr "Proskenuj NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Hledej východ"
@@ -1630,9 +1707,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Vyhledávání kanálů"
-
-msgid "Service scan type needed"
-msgstr "Je potřeba naskenovat typ služby"
 
 msgid "Serviceinfo"
 msgstr "Informace o kanálu"
@@ -1700,11 +1774,9 @@ msgstr "Akce časovače:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Slideshow interval (sek.)"
 
-msgid "Slot "
-msgstr "Slot "
-
-msgid "Socket "
-msgstr "Patice"
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Některé pluginy nejsou dostupné:\n"
@@ -1835,9 +1907,6 @@ msgstr "Pozemní poskytovatel"
 msgid "Test mode"
 msgstr "Testovací mód"
 
-msgid "Test-Messagebox?"
-msgstr "Vzkaz"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1957,11 +2026,14 @@ msgstr "Transpondér"
 msgid "Transponder Type"
 msgstr "Typ transpodéru"
 
-msgid "Transpondertype"
-msgstr "Typ transpodéru"
-
 msgid "Tries left:"
 msgstr "Zbývá pokusů:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Út"
@@ -1977,6 +2049,9 @@ msgstr "Ladění selhalo"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Slot tuneru"
@@ -2070,6 +2145,9 @@ msgstr "Použít USUALS pro tento satelit"
 
 msgid "Use wizard to set up basic features"
 msgstr "Použít průvodce pro nastavení základních vlastností"
+
+msgid "Used service scan type"
+msgstr ""
 
 msgid "User defined"
 msgstr "Uživatelsky definované"
@@ -2311,6 +2389,9 @@ msgstr "Přidat popisovač"
 msgid "add recording (enter recording duration)"
 msgstr "Přidat nahrávání (zadat nahrávací dobu)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "Přidat nahrávání (nekonečno)"
 
@@ -2351,6 +2432,9 @@ msgstr "podle exif"
 msgid "change recording (duration)"
 msgstr "Změnit nahrávání (dobu)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "levá kruhová (polarizace)"
 
@@ -2390,6 +2474,9 @@ msgstr "zakázat"
 msgid "disable move mode"
 msgstr "Vypnout přesunovací mód"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "neměnit"
 
@@ -2405,8 +2492,8 @@ msgstr "Hotovo!"
 msgid "edit alternatives"
 msgstr "upravit alternativy"
 
-msgid "empty/unknown"
-msgstr "prázdné / neznámé"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "povolit"
@@ -2419,6 +2506,9 @@ msgstr "Povolit úpravu oblíbené"
 
 msgid "enable move mode"
 msgstr "Povolit přesunovací mód"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "ukončit úpravu alternativ"
@@ -2484,9 +2574,6 @@ msgstr "opustit přehrávač"
 
 msgid "left"
 msgstr "vlevo"
-
-msgid "list"
-msgstr "seznam"
 
 msgid "locked"
 msgstr "zamknuto"
@@ -2666,9 +2753,6 @@ msgstr "sekund(y)"
 msgid "seconds."
 msgstr "sekundy."
 
-msgid "select Slot"
-msgstr "výběr slotu"
-
 msgid "service pin"
 msgstr "PIN programu"
 
@@ -2827,17 +2911,50 @@ msgstr "přepnutý"
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "Smyčka přes slot A"
 
+#~ msgid "NIM "
+#~ msgstr "NIM"
+
 #~ msgid "Nothing connected"
 #~ msgstr "Nic není připojeno"
 
 #~ msgid "Predefined satellite"
 #~ msgstr "Předdefinovaný satelit"
 
+#~ msgid "Quick"
+#~ msgstr "Rychle"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní rebootovat?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní restartovat?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní vypnout?"
+
 #~ msgid "Remove service"
 #~ msgstr "Odebrat službu"
 
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
 #~ msgid "Satconfig"
 #~ msgstr "Nastavení satelitu"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Proskenuj NIM"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Druhý kabel z motorizovaného LNB"
@@ -2848,11 +2965,35 @@ msgstr "přepnutý"
 #~ msgid "Select reference service"
 #~ msgstr "Vybrat referenční službu (???)"
 
+#~ msgid "Service scan type needed"
+#~ msgstr "Je potřeba naskenovat typ služby"
+
 #~ msgid "Simple"
 #~ msgstr "jednoduché"
+
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#~ msgid "Socket "
+#~ msgstr "Patice"
 
 #~ msgid "Swap services"
 #~ msgstr "Prohodit kanály"
 
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Vzkaz"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Typ transpodéru"
+
 #~ msgid "copy to favourites"
 #~ msgstr "Zkopírovat do oblíbených"
+
+#~ msgid "empty/unknown"
+#~ msgstr "prázdné / neznámé"
+
+#~ msgid "list"
+#~ msgstr "seznam"
+
+#~ msgid "select Slot"
+#~ msgstr "výběr slotu"

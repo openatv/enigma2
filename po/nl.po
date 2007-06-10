@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-29 20:24+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-04-20 00:01+0100\n"
 "Last-Translator: Michel Weeren <michel@weeren.net>\n"
 "Language-Team: none <michel@weeren.net>\n"
@@ -83,6 +83,9 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 map"
 
@@ -118,6 +121,9 @@ msgstr "16:10 PanScan"
 
 msgid "16:9"
 msgstr "16:9"
+
+msgid "16:9 Letterbox"
+msgstr ""
 
 msgid "16:9 always"
 msgstr "Altijd 16:9"
@@ -186,6 +192,12 @@ msgid ""
 msgstr ""
 "Een afgelopen timer opname wil uw dreambox\n"
 "in slaapstand schakelen. Wilt u dit toestaan?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
+msgstr ""
 
 msgid ""
 "A recording is currently running.\n"
@@ -425,6 +437,9 @@ msgstr "Zender:"
 
 msgid "Channellist menu"
 msgstr "Zenderlijst menu"
+
+msgid "Choose Tuner"
+msgstr ""
 
 msgid "Choose bouquet"
 msgstr "Kies boeket"
@@ -815,6 +830,15 @@ msgstr "Frans"
 msgid "Frequency"
 msgstr "Frequentie"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Vr"
 
@@ -1107,9 +1131,6 @@ msgstr "Niet beschikbaar"
 msgid "NEXT"
 msgstr "VOLGENDE"
 
-msgid "NIM "
-msgstr "Tuner "
-
 msgid "NOW"
 msgstr "NU"
 
@@ -1200,6 +1221,11 @@ msgstr "Geen satelliet tuner gevonden!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Er is geen tuner ingesteld voor gebruik van een DiSEqC motor!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1310,6 +1336,9 @@ msgstr "Pincode benodigd"
 msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Kies een applicatie a.u.b..."
 
@@ -1343,6 +1372,12 @@ msgstr "Selecteer te filteren sleutelwoord..."
 
 msgid "Please set up tuner B"
 msgstr "Instellingen voor Tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1419,11 +1454,11 @@ msgstr "Beveilig menu"
 msgid "Provider"
 msgstr "Provider"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Providers"
-
-msgid "Quick"
-msgstr "Snel"
 
 msgid "Quickzap"
 msgstr "Snelzap"
@@ -1468,25 +1503,19 @@ msgid "Recording"
 msgstr "Opnemen"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
-"echt herstarten?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
-"Enigma2 echt herstarten?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
-"echt afsluiten?"
 
 msgid "Recordings always have priority"
 msgstr "Een opname heeft te allen tijde voorang"
@@ -1546,9 +1575,6 @@ msgstr "In behandeling"
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Za"
 
@@ -1573,8 +1599,68 @@ msgstr "Zaterdag"
 msgid "Scaling Mode"
 msgstr "Schaalmodus"
 
-msgid "Scan NIM"
-msgstr "Zoek tuner"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Zoek oost"
@@ -1637,9 +1723,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Zenders zoeken"
-
-msgid "Service scan type needed"
-msgstr "Zender zoekmodus"
 
 msgid "Serviceinfo"
 msgstr "Zender"
@@ -1707,11 +1790,9 @@ msgstr "Slaaptimer actie:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Diavoorstelling interval (sec.)"
 
-msgid "Slot "
-msgstr "Slot "
-
-msgid "Socket "
-msgstr "Socket "
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
@@ -1842,9 +1923,6 @@ msgstr "Regio"
 msgid "Test mode"
 msgstr "Test modus"
 
-msgid "Test-Messagebox?"
-msgstr "Test-berichtbox?"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1964,11 +2042,14 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr "Transponder type"
 
-msgid "Transpondertype"
-msgstr "Transponder type"
-
 msgid "Tries left:"
 msgstr "Aantal pogingen over:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Di"
@@ -1984,6 +2065,9 @@ msgstr "Afstemmen mislukt!"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Tuner Slot"
@@ -2081,6 +2165,9 @@ msgstr "USALS aanschakelen"
 msgid "Use wizard to set up basic features"
 msgstr "Start de wizard voor basisinstellingen"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Door u ingesteld"
 
@@ -2145,6 +2232,9 @@ msgstr "Wat wilt u zoeken?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u de instellingen opslaan?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "Component"
@@ -2321,6 +2411,9 @@ msgstr "markeerpunt invoegen"
 msgid "add recording (enter recording duration)"
 msgstr "Start opname en voer opnameduur in"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "Start een onbeperkte opname"
 
@@ -2361,6 +2454,9 @@ msgstr "door Exif"
 msgid "change recording (duration)"
 msgstr "Wijzig opnameduur"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "circular links"
 
@@ -2400,6 +2496,9 @@ msgstr "deactiveren"
 msgid "disable move mode"
 msgstr "verplaats modus deactiveren"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "niet schakelen"
 
@@ -2415,8 +2514,8 @@ msgstr "gereed!"
 msgid "edit alternatives"
 msgstr "alternatieven bewerken"
 
-msgid "empty/unknown"
-msgstr "leeg/onbekend"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "activeren"
@@ -2429,6 +2528,9 @@ msgstr "favorieten bewerken activeren"
 
 msgid "enable move mode"
 msgstr "verplaatsmodus activeren"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "alternatieven bewerken deactiveren"
@@ -2494,9 +2596,6 @@ msgstr "filmweergave afsluiten"
 
 msgid "left"
 msgstr "links"
-
-msgid "list"
-msgstr "lijst"
 
 msgid "locked"
 msgstr "Ja"
@@ -2677,9 +2776,6 @@ msgstr "seconden"
 
 msgid "seconds."
 msgstr "seconden."
-
-msgid "select Slot"
-msgstr "Tunerkeuze"
 
 msgid "service pin"
 msgstr "zender pincode"
@@ -2879,6 +2975,9 @@ msgstr "zapte"
 #~ msgid "Multi bouquets"
 #~ msgstr "Mehrere Bouquets"
 
+#~ msgid "NIM "
+#~ msgstr "Tuner "
+
 #~ msgid "Network"
 #~ msgstr "Netzwerk"
 
@@ -2894,8 +2993,32 @@ msgstr "zapte"
 #~ msgid "Predefined satellite"
 #~ msgstr "Vooraf bepaalde satellite"
 
+#~ msgid "Quick"
+#~ msgstr "Snel"
+
 #~ msgid "Record Splitsize"
 #~ msgstr "Splitgrösse der Aufnamen"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+#~ "echt herstarten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+#~ "Enigma2 echt herstarten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Op dit moment is een opname gaande, of start in enkele seconden... Wilt u "
+#~ "echt afsluiten?"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Onthoud service pin"
@@ -2903,11 +3026,17 @@ msgstr "zapte"
 #~ msgid "Remove service"
 #~ msgstr "Verwijder een service"
 
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
 #~ msgid "Satconfig"
 #~ msgstr "Tuner instellingen"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelliteneinstellungen"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Zoek tuner"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Tweede kabel van Rotor"
@@ -2917,6 +3046,9 @@ msgstr "zapte"
 
 #~ msgid "Select reference service"
 #~ msgstr "Kies referencie service"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Zender zoekmodus"
 
 #~ msgid "Setup Lock"
 #~ msgstr "Setup-Sperre"
@@ -2930,11 +3062,23 @@ msgstr "zapte"
 #~ msgid "Skip confirmations"
 #~ msgstr "Bestätigungen überspringen"
 
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#~ msgid "Socket "
+#~ msgstr "Socket "
+
 #~ msgid "Swap services"
 #~ msgstr "Swap services"
 
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Test-berichtbox?"
+
 #~ msgid "Timeshifting"
 #~ msgstr "Timeshift"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transponder type"
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF-Modulator"
@@ -2954,6 +3098,12 @@ msgstr "zapte"
 #~ msgid "copy to favourites"
 #~ msgstr "Naar favorieten copieeren"
 
+#~ msgid "empty/unknown"
+#~ msgstr "leeg/onbekend"
+
+#~ msgid "list"
+#~ msgstr "lijst"
+
 #~ msgid "open service list"
 #~ msgstr "Kanalliste öffnen"
 
@@ -2962,6 +3112,9 @@ msgstr "zapte"
 
 #~ msgid "remove service"
 #~ msgstr "Kanal löschen"
+
+#~ msgid "select Slot"
+#~ msgstr "Tunerkeuze"
 
 #~ msgid "use power delta"
 #~ msgstr "Stromdelta verwenden"

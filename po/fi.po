@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-07 23:49+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-06-07 15:00+0200\n"
 "Last-Translator: Jukka Aho <jukka.aho@iki.fi>\n"
 "Language-Team: none\n"
@@ -267,6 +267,9 @@ msgstr "Lisää"
 #  PALAA TÄHÄN
 msgid "Add a mark"
 msgstr "Lisää merkki"
+
+msgid "Add files to playlist"
+msgstr "Lisää tiedostot soittolistalle"
 
 msgid "Add timer"
 msgstr "Lisää uusi ajastus"
@@ -680,11 +683,6 @@ msgstr ""
 "viime kerralla jäi?"
 
 msgid ""
-"Do you want to resume this playback?\n"
-"\n"
-msgstr ""
-
-msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
@@ -989,9 +987,6 @@ msgstr "Sisäinen flash-muisti"
 
 msgid "Inversion"
 msgstr "Inversio"
-
-msgid "Inversions"
-msgstr ""
 
 msgid "Invert display"
 msgstr "Käänteinen tekstin ja taustan väritys"
@@ -1353,6 +1348,9 @@ msgstr "Tarvitaan tunnusluku"
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
 
@@ -1374,16 +1372,6 @@ msgstr "Syötä vanha tunnusluku"
 msgid "Please press OK!"
 msgstr "Paina OK."
 
-msgid ""
-"Please select a playlist to delete...\n"
-"\n"
-msgstr ""
-
-msgid ""
-"Please select a playlist...\n"
-"\n"
-msgstr ""
-
 msgid "Please select a subservice to record..."
 msgstr "Valitse tallennettava alipalvelu..."
 
@@ -1392,14 +1380,6 @@ msgstr "Valitse alipalvelu..."
 
 msgid "Please select keyword to filter..."
 msgstr "Valitse hakusana..."
-
-msgid "Please select mountpoint for movies...\n"
-msgstr ""
-
-msgid ""
-"Please select path for movies...\n"
-"\n"
-msgstr ""
 
 #  Ohjatun asennuksen (Startup Wizard) nelosruudun ohjeteksti
 msgid "Please set up tuner B"
@@ -1574,6 +1554,9 @@ msgstr "Tallennus toistetaan"
 
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr ""
+
+msgid "Replace current playlist"
+msgstr "Korvaa nykyinen soittolista"
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
@@ -2409,6 +2392,9 @@ msgstr ""
 "\n"
 "Haluatko asettaa tunnusluvun nyt?"
 
+msgid "You selected a playlist"
+msgstr "Valitsit soittolistan"
+
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -2472,14 +2458,17 @@ msgstr "Lisää uusi suosikkilista"
 msgid "add directory to playlist"
 msgstr "Lisää hakemisto soittolistalle"
 
-msgid "add files to playlist"
-msgstr ""
+msgid "add file to playlist"
+msgstr "Lisää tiedosto soittolistalle"
 
 msgid "add marker"
 msgstr "Lisää väliotsikko"
 
 msgid "add recording (enter recording duration)"
 msgstr "Tallenna (Syötä tallennuksen kesto)"
+
+msgid "add recording (enter recording endtime)"
+msgstr ""
 
 msgid "add recording (indefinitely)"
 msgstr "Tallenna (Jatkuva tallennus)"
@@ -2514,11 +2503,6 @@ msgstr "Takaisin"
 msgid "better"
 msgstr ""
 
-msgid ""
-"bitte Dateiname eingeben\n"
-"Leer = akuelles Datum"
-msgstr ""
-
 msgid "blacklist"
 msgstr "kielletyt"
 
@@ -2527,6 +2511,9 @@ msgstr "EXIF-tietojen mukaan"
 
 msgid "change recording (duration)"
 msgstr "Aseta tallennuksen kesto"
+
+msgid "change recording (endtime)"
+msgstr ""
 
 msgid "circular left"
 msgstr "Kiertopolarisaatio vasen"
@@ -2556,9 +2543,6 @@ msgid "delete"
 msgstr "poista"
 
 msgid "delete cut"
-msgstr ""
-
-msgid "delete saved playlist"
 msgstr ""
 
 #  Teksti esiintyy vain tallenteiden käsittelyvalikossa
@@ -2673,9 +2657,6 @@ msgstr "poistu videotoistimesta..."
 
 msgid "left"
 msgstr "vasen"
-
-msgid "load playlist"
-msgstr ""
 
 msgid "locked"
 msgstr "lukittu"
@@ -2813,12 +2794,6 @@ msgstr "toistuva"
 
 msgid "right"
 msgstr "oikea"
-
-msgid "save Playlist"
-msgstr ""
-
-msgid "save playlist"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -2992,9 +2967,6 @@ msgstr "vaihdettu"
 #~ "Uniajastimeen asetettu aika on kulunut umpeen.\n"
 #~ "Sammutetaanko Dreambox nyt?"
 
-#~ msgid "Add files to playlist"
-#~ msgstr "Lisää tiedostot soittolistalle"
-
 #~ msgid "LCD Setup"
 #~ msgstr "Etupaneelin näyttö"
 
@@ -3003,9 +2975,6 @@ msgstr "vaihdettu"
 
 #~ msgid "Quick"
 #~ msgstr "Nopea"
-
-#~ msgid "Replace current playlist"
-#~ msgstr "Korvaa nykyinen soittolista"
 
 #~ msgid "SNR:"
 #~ msgstr "SNR:"
@@ -3025,12 +2994,6 @@ msgstr "vaihdettu"
 
 #~ msgid "Test-Messagebox?"
 #~ msgstr "Testiviesti-ikkuna?"
-
-#~ msgid "You selected a playlist"
-#~ msgstr "Valitsit soittolistan"
-
-#~ msgid "add file to playlist"
-#~ msgstr "Lisää tiedosto soittolistalle"
 
 #~ msgid "empty/unknown"
 #~ msgstr "tyhjä/tuntematon"

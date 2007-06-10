@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-05 03:44+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-04-17 19:26+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -86,6 +86,9 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(ZAPPEJAR)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "directori /usr/share/enigma2"
 
@@ -123,6 +126,9 @@ msgstr "16:10 PanScan"
 
 msgid "16:9"
 msgstr "16:9"
+
+msgid "16:9 Letterbox"
+msgstr ""
 
 msgid "16:9 always"
 msgstr "16:9 sempre"
@@ -193,6 +199,12 @@ msgid ""
 msgstr ""
 "Una gravació acabada pretén apagar\n"
 "la Dreambox ara. Vols apagar-la?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
+msgstr ""
 
 msgid ""
 "A recording is currently running.\n"
@@ -372,7 +384,8 @@ msgstr "Bus: "
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "Prement el botó OK del comandament, la barra d'informació es farà visible."
+msgstr ""
+"Prement el botó OK del comandament, la barra d'informació es farà visible."
 
 msgid "C-Band"
 msgstr "Banda-C"
@@ -430,6 +443,9 @@ msgstr "Canal:"
 
 msgid "Channellist menu"
 msgstr "Menú de llista de canals"
+
+msgid "Choose Tuner"
+msgstr ""
 
 msgid "Choose bouquet"
 msgstr "Escollir llista"
@@ -619,6 +635,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Antena"
+
+msgid "Display Setup"
+msgstr ""
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -821,6 +840,15 @@ msgstr "Francès"
 msgid "Frequency"
 msgstr "Freqüència"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Div"
 
@@ -908,8 +936,10 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Actualització imatge"
 
-msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "Per a poder fer una gravació programada, s'ha canviat al canal adequat!\n"
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
+"Per a poder fer una gravació programada, s'ha canviat al canal adequat!\n"
 
 msgid "Increased voltage"
 msgstr "Voltatge incrementat"
@@ -970,9 +1000,6 @@ msgstr "Configuració teclat"
 
 msgid "Keymap"
 msgstr "Mapa de teclat"
-
-msgid "LCD Setup"
-msgstr "Configuració LCD"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1115,9 +1142,6 @@ msgstr "N/D"
 msgid "NEXT"
 msgstr "SEGÜENT"
 
-msgid "NIM "
-msgstr "NIM "
-
 msgid "NOW"
 msgstr "ARA"
 
@@ -1193,7 +1217,8 @@ msgstr "No hi ha info del programa, gravant indefinidament."
 msgid "No free tuner!"
 msgstr "No hi ha cap sintonitzador lliure!"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
 msgstr "No s'ha actualitzat cap paquet. Comprova la xarxa i torna-ho a provar."
 
 msgid "No positioner capable frontend found."
@@ -1204,7 +1229,13 @@ msgid "No satellite frontend found!!"
 msgstr "No s'ha trobat cap 'frontend' de satèŀlit!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "No hi ha cap sintonitzador configurat per a utilitzar amb un motor diseqc!"
+msgstr ""
+"No hi ha cap sintonitzador configurat per a utilitzar amb un motor diseqc!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1316,6 +1347,9 @@ msgstr "Cal un codi pin"
 msgid "Play recorded movies..."
 msgstr "Reproduir pel·lícules gravades..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Sisplau escull una extensió..."
 
@@ -1348,6 +1382,12 @@ msgstr "Sisplau selecciona la paraula a filtrar..."
 
 msgid "Please set up tuner B"
 msgstr "Configura el sintonitzador B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1424,11 +1464,11 @@ msgstr "Protegir configuració"
 msgid "Provider"
 msgstr "Proveïdor"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Proveïdors"
-
-msgid "Quick"
-msgstr "Ràpid"
 
 msgid "Quickzap"
 msgstr "Zappeig ràpid"
@@ -1473,23 +1513,19 @@ msgid "Recording"
 msgstr "Gravant"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols reiniciar "
-"ara?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols tornar a "
-"arrancar ara?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
-msgstr "Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols apagar ara?"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Les gravacions tenen prioritat"
@@ -1548,9 +1584,6 @@ msgstr "Mostrant"
 msgid "S-Video"
 msgstr "S-Vídeo"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Dis"
 
@@ -1575,8 +1608,68 @@ msgstr "Dissabte"
 msgid "Scaling Mode"
 msgstr "Mode d'escalat"
 
-msgid "Scan NIM"
-msgstr "Escanejar NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Buscar a l'est"
@@ -1641,9 +1734,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Buscar canals"
-
-msgid "Service scan type needed"
-msgstr "Cal el tipus de recerca de canal"
 
 msgid "Serviceinfo"
 msgstr "Info del canal"
@@ -1711,13 +1801,9 @@ msgstr "Acció de la programació d'apagada"
 msgid "Slideshow Interval (sec.)"
 msgstr "Segons entre diapositives"
 
-#, fuzzy
-msgid "Slot "
-msgstr "Slot "
-
-#, fuzzy
-msgid "Socket "
-msgstr "Socket "
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 #, fuzzy
 msgid "Some plugins are not available:\n"
@@ -1851,9 +1937,6 @@ msgstr "Proveïdor terrestre"
 msgid "Test mode"
 msgstr "Mode test"
 
-msgid "Test-Messagebox?"
-msgstr "Provar el Messagebox?"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1880,7 +1963,8 @@ msgstr "S'ha activat la programació d'aturada."
 msgid "The sleep timer has been disabled."
 msgstr "S'ha desactivat la programació d'aturada."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
 "L'assistent pot fer un backup de la teva configuració actual. Vols fer-lo "
 "ara?"
@@ -1977,11 +2061,14 @@ msgstr "Transponedor"
 msgid "Transponder Type"
 msgstr "Tipus Transponedor"
 
-msgid "Transpondertype"
-msgstr "Tipustransponedor"
-
 msgid "Tries left:"
 msgstr "Intents:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Dim"
@@ -1997,6 +2084,9 @@ msgstr "Ha fallat la sintonització!"
 
 msgid "Tuner"
 msgstr "Sintonitzador"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Slot del sintonitzador"
@@ -2092,6 +2182,9 @@ msgstr "Utilitzar usals per a aquest sat"
 msgid "Use wizard to set up basic features"
 msgstr "Utilitzar l'assistent per a la configuració bàsica"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Definit per l'usuari"
 
@@ -2160,6 +2253,9 @@ msgstr "Què vols buscar?"
 msgid "Where do you want to backup your settings?"
 msgstr "On vols guardar el backup de la configuració?"
 
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -2222,7 +2318,8 @@ msgstr ""
 msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
-msgstr "Has escollit fer un backup al disc dur. Prem OK per a començar el backup ara."
+msgstr ""
+"Has escollit fer un backup al disc dur. Prem OK per a començar el backup ara."
 
 msgid "You have to wait for"
 msgstr "Has d'esperar"
@@ -2264,7 +2361,8 @@ msgstr "Has seleccionat una llista"
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
-msgstr "El backup ha acabat. Ara continuarem explicant el procés d'actualització."
+msgstr ""
+"El backup ha acabat. Ara continuarem explicant el procés d'actualització."
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "La dreambox s'està reiniciant. Espera un moment..."
@@ -2331,6 +2429,9 @@ msgstr "afegir marcador"
 msgid "add recording (enter recording duration)"
 msgstr "afegir gravació (introdueix la durada)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "afegir gravació (indefinidament)"
 
@@ -2371,6 +2472,9 @@ msgstr "per Exif"
 msgid "change recording (duration)"
 msgstr "canviar la gravació (durada)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "circular esq."
 
@@ -2410,6 +2514,9 @@ msgstr "deshabilitar"
 msgid "disable move mode"
 msgstr "desactivar mode moviment"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "no canviar"
 
@@ -2425,8 +2532,8 @@ msgstr "fet!"
 msgid "edit alternatives"
 msgstr "editar alternatives"
 
-msgid "empty/unknown"
-msgstr "buit/desconegut"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "habilitar"
@@ -2439,6 +2546,9 @@ msgstr "activar l'edició dels preferits"
 
 msgid "enable move mode"
 msgstr "activar mode moviment"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "fi de l'edició d'alternatives"
@@ -2504,9 +2614,6 @@ msgstr "sortir del reproductor de pel·lícules..."
 
 msgid "left"
 msgstr "esquerra"
-
-msgid "list"
-msgstr "llista"
 
 msgid "locked"
 msgstr "bloquejat"
@@ -2691,9 +2798,6 @@ msgstr "segons"
 msgid "seconds."
 msgstr "segons."
 
-msgid "select Slot"
-msgstr "seleccionar Slot"
-
 msgid "service pin"
 msgstr "pin del canal"
 
@@ -2805,3 +2909,65 @@ msgstr "zappejar"
 
 msgid "zapped"
 msgstr "zappejat"
+
+#~ msgid "LCD Setup"
+#~ msgstr "Configuració LCD"
+
+#~ msgid "NIM "
+#~ msgstr "NIM "
+
+#~ msgid "Quick"
+#~ msgstr "Ràpid"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols "
+#~ "reiniciar ara?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols tornar "
+#~ "a arrancar ara?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en curs o que s'iniciaran en breu. Realment vols apagar "
+#~ "ara?"
+
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Escanejar NIM"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Cal el tipus de recerca de canal"
+
+#, fuzzy
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#, fuzzy
+#~ msgid "Socket "
+#~ msgstr "Socket "
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Provar el Messagebox?"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Tipustransponedor"
+
+#~ msgid "empty/unknown"
+#~ msgstr "buit/desconegut"
+
+#~ msgid "list"
+#~ msgstr "llista"
+
+#~ msgid "select Slot"
+#~ msgstr "seleccionar Slot"

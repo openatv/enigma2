@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2006-06-13 18:14+0200\n"
 "Last-Translator: DonHora <donhora@myrealbox.com>\n"
 "Language-Team: french\n"
@@ -82,6 +82,9 @@ msgstr ""
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "répertoire /usr/share/enigma2"
 
@@ -116,6 +119,9 @@ msgid "16:10 PanScan"
 msgstr ""
 
 msgid "16:9"
+msgstr ""
+
+msgid "16:9 Letterbox"
 msgstr ""
 
 msgid "16:9 always"
@@ -180,6 +186,12 @@ msgstr ""
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
 msgstr ""
 
 msgid ""
@@ -414,6 +426,9 @@ msgstr "Chaîne : "
 msgid "Channellist menu"
 msgstr "Liste des chaînes"
 
+msgid "Choose Tuner"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Choisir le bouquet"
 
@@ -594,6 +609,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Parabole"
+
+msgid "Display Setup"
+msgstr ""
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -791,6 +809,15 @@ msgstr "Français"
 msgid "Frequency"
 msgstr "Fréquence"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Ven"
 
@@ -942,9 +969,6 @@ msgstr "Paramétrage du clavier"
 msgid "Keymap"
 msgstr "Agencement clavier"
 
-msgid "LCD Setup"
-msgstr "Paramétrage LCD"
-
 msgid "LNB"
 msgstr "LNB"
 
@@ -1087,9 +1111,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "SUIVANT"
 
-msgid "NIM "
-msgstr "NIM "
-
 msgid "NOW"
 msgstr "MAINTENANT"
 
@@ -1176,6 +1197,11 @@ msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Aucun tuner n'est configuré pour utiliser un positionneur DiSEqC !"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1281,6 +1307,9 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "Lire les films enregistrés..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Veuillez choisir une extension..."
 
@@ -1315,6 +1344,12 @@ msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Veuillez paramétrer le tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1388,11 +1423,11 @@ msgstr ""
 msgid "Provider"
 msgstr "Fournisseur"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Fournisseurs"
-
-msgid "Quick"
-msgstr ""
 
 msgid "Quickzap"
 msgstr ""
@@ -1438,17 +1473,17 @@ msgid "Recording"
 msgstr "Enregistrement"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
 
@@ -1510,9 +1545,6 @@ msgstr ""
 msgid "S-Video"
 msgstr ""
 
-msgid "SNR:"
-msgstr "SNR :"
-
 msgid "Sat"
 msgstr "Sam"
 
@@ -1537,8 +1569,68 @@ msgstr "Samedi"
 msgid "Scaling Mode"
 msgstr ""
 
-msgid "Scan NIM"
-msgstr "Analyse NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Rechercher à l'est"
@@ -1598,9 +1690,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Recherche des chaînes"
-
-msgid "Service scan type needed"
-msgstr ""
 
 msgid "Serviceinfo"
 msgstr "Infos chaîne"
@@ -1668,10 +1757,8 @@ msgstr ""
 msgid "Slideshow Interval (sec.)"
 msgstr ""
 
-msgid "Slot "
-msgstr ""
-
-msgid "Socket "
+#, python-format
+msgid "Slot %d"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1808,9 +1895,6 @@ msgstr "Opérateur terrestre"
 msgid "Test mode"
 msgstr "Mode test"
 
-msgid "Test-Messagebox?"
-msgstr ""
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1937,10 +2021,13 @@ msgstr "Transpondeur"
 msgid "Transponder Type"
 msgstr ""
 
-msgid "Transpondertype"
-msgstr "Type de transpondeur"
-
 msgid "Tries left:"
+msgstr ""
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 
 msgid "Tue"
@@ -1958,6 +2045,9 @@ msgstr ""
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 # TODO: Voir si il faut franciser slot
 msgid "Tuner Slot"
@@ -2056,6 +2146,9 @@ msgstr "Utiliser USALS pour ce satellite"
 msgid "Use wizard to set up basic features"
 msgstr "Utiliser l'assistant pour effectuer les réglages de base"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Défini par l'utilisateur"
 
@@ -2126,6 +2219,9 @@ msgstr "Que voulez-vous rechercher ?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres ?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr ""
@@ -2294,6 +2390,9 @@ msgstr ""
 msgid "add recording (enter recording duration)"
 msgstr "ajout d'enregistrement (entrer la durée d'enregistrement)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "ajout d'enregistrement (indéfiniment)"
 
@@ -2336,6 +2435,9 @@ msgstr ""
 msgid "change recording (duration)"
 msgstr "modifier un enregistrement (durée)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 # TODO: À vérifier
 msgid "circular left"
 msgstr "circulaire à gauche"
@@ -2377,6 +2479,9 @@ msgstr ""
 msgid "disable move mode"
 msgstr "désactiver le mode déplacement"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr ""
 
@@ -2392,8 +2497,8 @@ msgstr "terminé !"
 msgid "edit alternatives"
 msgstr ""
 
-msgid "empty/unknown"
-msgstr "vide/inconnu"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr ""
@@ -2406,6 +2511,9 @@ msgstr "activer l'édition des favoris"
 
 msgid "enable move mode"
 msgstr "activer le mode déplacement"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr ""
@@ -2469,9 +2577,6 @@ msgstr "quitter le lecteur..."
 
 msgid "left"
 msgstr "gauche"
-
-msgid "list"
-msgstr "liste"
 
 msgid "locked"
 msgstr ""
@@ -2656,10 +2761,6 @@ msgstr ""
 msgid "seconds."
 msgstr ""
 
-# TODO: Voir si il faut franciser slot
-msgid "select Slot"
-msgstr "sélectionnez l'emplacement"
-
 msgid "service pin"
 msgstr ""
 
@@ -2825,6 +2926,9 @@ msgstr "zappé"
 #~ msgid "LCD"
 #~ msgstr "LCD"
 
+#~ msgid "LCD Setup"
+#~ msgstr "Paramétrage LCD"
+
 #~ msgid "Language"
 #~ msgstr "Langue"
 
@@ -2833,6 +2937,9 @@ msgstr "zappé"
 
 #~ msgid "Multi bouquets"
 #~ msgstr "Multi bouquets"
+
+#~ msgid "NIM "
+#~ msgstr "NIM "
 
 #~ msgid "Network"
 #~ msgstr "Réseau"
@@ -2856,12 +2963,18 @@ msgstr "zappé"
 #~ msgid "SNR"
 #~ msgstr "SNR"
 
+#~ msgid "SNR:"
+#~ msgstr "SNR :"
+
 # TODO: À vérifier
 #~ msgid "Satconfig"
 #~ msgstr "Config satellite"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Configuration satellite"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Analyse NIM"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Second câble depuis un LNB motorisé"
@@ -2886,6 +2999,9 @@ msgstr "zappé"
 #~ msgid "Timeshifting"
 #~ msgstr "Pause du direct"
 
+#~ msgid "Transpondertype"
+#~ msgstr "Type de transpondeur"
+
 #~ msgid "UHF Modulator"
 #~ msgstr "Modulateur UHF"
 
@@ -2905,6 +3021,12 @@ msgstr "zappé"
 #~ msgid "copy to favourites"
 #~ msgstr "copier dans les favoris"
 
+#~ msgid "empty/unknown"
+#~ msgstr "vide/inconnu"
+
+#~ msgid "list"
+#~ msgstr "liste"
+
 #~ msgid "open service list"
 #~ msgstr "afficher la liste des chaînes"
 
@@ -2913,6 +3035,10 @@ msgstr "zappé"
 
 #~ msgid "remove service"
 #~ msgstr "enlever la chaîne"
+
+# TODO: Voir si il faut franciser slot
+#~ msgid "select Slot"
+#~ msgstr "sélectionnez l'emplacement"
 
 # TODO: À vérifier
 #~ msgid "use power delta"

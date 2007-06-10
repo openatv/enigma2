@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-04-17 14:27+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none\n"
@@ -84,6 +84,9 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 bibliotek"
 
@@ -119,6 +122,9 @@ msgstr "16:10 PanScan"
 
 msgid "16:9"
 msgstr "16:9"
+
+msgid "16:9 Letterbox"
+msgstr ""
 
 msgid "16:9 always"
 msgstr "16:9 alltid"
@@ -187,6 +193,12 @@ msgid ""
 msgstr ""
 "En utförd inspelningstimer vill stänga av\n"
 "din Dreambox. Stänga av nu?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
+msgstr ""
 
 msgid ""
 "A recording is currently running.\n"
@@ -422,6 +434,9 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanallista meny"
 
+msgid "Choose Tuner"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Välj bouquet"
 
@@ -606,6 +621,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Parabol"
+
+msgid "Display Setup"
+msgstr ""
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -808,6 +826,15 @@ msgstr "Franska"
 msgid "Frequency"
 msgstr "Frekvens"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Fre"
 
@@ -959,9 +986,6 @@ msgstr "Tangentbords inställning"
 msgid "Keymap"
 msgstr "Tangentlayout"
 
-msgid "LCD Setup"
-msgstr "LCD Inställning"
-
 msgid "LNB"
 msgstr "LNB"
 
@@ -1103,9 +1127,6 @@ msgstr "Inte Tillgänglig"
 msgid "NEXT"
 msgstr "NÄSTA"
 
-msgid "NIM "
-msgstr "NIM "
-
 msgid "NOW"
 msgstr "NU"
 
@@ -1192,6 +1213,11 @@ msgstr "Ingen satellit frontend funnen!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för diseqc positioner!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1302,6 +1328,9 @@ msgstr "PIN kod behövs"
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
@@ -1334,6 +1363,12 @@ msgstr "Vänligen välj nyckelord för filter..."
 
 msgid "Please set up tuner B"
 msgstr "Installera Tuner B."
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1411,11 +1446,11 @@ msgstr "Skydda inställningar"
 msgid "Provider"
 msgstr "Leverantör"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Leverantörer"
-
-msgid "Quick"
-msgstr "Snabb"
 
 msgid "Quickzap"
 msgstr "Quickzap"
@@ -1460,21 +1495,19 @@ msgid "Recording"
 msgstr "Spelar in"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
-"now?"
-msgstr "Inspelning(ar) pågår eller ska snart påbörjas... verkligen reboot nu?"
-
-msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
+
+msgid ""
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
+"now?"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
@@ -1534,9 +1567,6 @@ msgstr "Körandes"
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Lör"
 
@@ -1561,8 +1591,68 @@ msgstr "Lördag"
 msgid "Scaling Mode"
 msgstr "Scaling Läge"
 
-msgid "Scan NIM"
-msgstr "Scanna NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Sök öst"
@@ -1625,9 +1715,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Kanalsökning"
-
-msgid "Service scan type needed"
-msgstr "Kanalsöknings typ krävs"
 
 msgid "Serviceinfo"
 msgstr "Serviceinfo"
@@ -1695,11 +1782,9 @@ msgstr "Sovtimer händelse:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Slideshow Intervall (sec.)"
 
-msgid "Slot "
-msgstr "Slot "
-
-msgid "Socket "
-msgstr "Sockel "
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Några plugin är inte tillgängliga:\n"
@@ -1830,9 +1915,6 @@ msgstr "Terrestrial leverantör"
 msgid "Test mode"
 msgstr "Testläge"
 
-msgid "Test-Messagebox?"
-msgstr "Test-Meddelandebox?"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1953,11 +2035,14 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr "Transponder Typ"
 
-msgid "Transpondertype"
-msgstr "Transponertyp"
-
 msgid "Tries left:"
 msgstr "Försök kvar:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Tis"
@@ -1973,6 +2058,9 @@ msgstr "Tuning misslyckades!"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Tuner Slot"
@@ -2067,6 +2155,9 @@ msgstr "Använd USALS för denna sat"
 msgid "Use wizard to set up basic features"
 msgstr "Använd guiden för grundinställningarna"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Användardefinierat"
 
@@ -2132,6 +2223,9 @@ msgstr "Vad vill du söka efter?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2308,6 +2402,9 @@ msgstr "lägg till markör"
 msgid "add recording (enter recording duration)"
 msgstr "lägg till inspelning (ange inspelningslängd)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "lägg till inspelning (oändlig)"
 
@@ -2348,6 +2445,9 @@ msgstr "av Exif"
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "cirkulär vänster"
 
@@ -2387,6 +2487,9 @@ msgstr "avaktivera"
 msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "ändra inte"
 
@@ -2402,8 +2505,8 @@ msgstr "klar!"
 msgid "edit alternatives"
 msgstr "ändra alternativ"
 
-msgid "empty/unknown"
-msgstr "tom/okänd"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "aktivera"
@@ -2416,6 +2519,9 @@ msgstr "aktivera favoriter editor"
 
 msgid "enable move mode"
 msgstr "aktivera flyttläge"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "avsluta ändra alternativ"
@@ -2481,9 +2587,6 @@ msgstr "lämna videospelare..."
 
 msgid "left"
 msgstr "vänster"
-
-msgid "list"
-msgstr "list"
 
 msgid "locked"
 msgstr "låst"
@@ -2665,9 +2768,6 @@ msgstr "sekunder"
 msgid "seconds."
 msgstr "sekunder."
 
-msgid "select Slot"
-msgstr "välj Slot"
-
 msgid "service pin"
 msgstr "kanal PIN"
 
@@ -2779,3 +2879,60 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
+
+#~ msgid "LCD Setup"
+#~ msgstr "LCD Inställning"
+
+#~ msgid "NIM "
+#~ msgstr "NIM "
+
+#~ msgid "Quick"
+#~ msgstr "Snabb"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen reboot nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
+
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Scanna NIM"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Kanalsöknings typ krävs"
+
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#~ msgid "Socket "
+#~ msgstr "Sockel "
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Test-Meddelandebox?"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transponertyp"
+
+#~ msgid "empty/unknown"
+#~ msgstr "tom/okänd"
+
+#~ msgid "list"
+#~ msgstr "list"
+
+#~ msgid "select Slot"
+#~ msgstr "välj Slot"
