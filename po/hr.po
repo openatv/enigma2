@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-20 23:14+0200\n"
-"PO-Revision-Date: 2007-05-20 21:06+0100\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
+"PO-Revision-Date: 2007-06-03 19:04+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <jurica@clarkdigital.com>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgid "(ZAP)"
 msgstr "(ZAP)"
 
 msgid "(empty)"
-msgstr ""
+msgstr "(prazno)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 direktorij"
@@ -141,7 +141,7 @@ msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
 
 msgid "4:3 PanScan"
-msgstr "4:3 Letterbox"
+msgstr "4:3 PanScan"
 
 msgid "5"
 msgstr "5"
@@ -220,14 +220,14 @@ msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Tajmer snimanja želi postaviti vaš\n"
+"Tajmer spavanja želi postaviti vaš\n"
 "Dreambox u stanje pripravnosti. Učiniti sada?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Tajmer snimanja želi isključiti vaš\n"
+"Tajmer spavanja želi isključiti vaš\n"
 "Dreambox. Isključiti sada?"
 
 msgid ""
@@ -235,7 +235,7 @@ msgid ""
 "Disable TV and try again?\n"
 msgstr ""
 "Tajmer je neuspjelo pokušao snimiti!\n"
-"Onemogućite TV i probati ponovno?\n"
+"Onemogućite TV i pokušati ponovno?\n"
 
 msgid "A/V Settings"
 msgstr "Postavke TV-a"
@@ -262,7 +262,7 @@ msgid "Activate Picture in Picture"
 msgstr "Aktiviraj Sliku u Slici"
 
 msgid "Activate network settings"
-msgstr "Aktivne mrežne postavke"
+msgstr "Aktiviraj mrežne postavke"
 
 msgid "Add"
 msgstr "Dodaj"
@@ -375,7 +375,7 @@ msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
 msgstr ""
-"Pritiskom na tipku OK bežičnom upravljača, info traka bit će prikazana."
+"Pritiskom na tipku OK bežičnog upravljača, info traka bit će prikazana."
 
 msgid "C-Band"
 msgstr "C-Band"
@@ -390,7 +390,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr "učitaj sličice"
+msgstr "Učitaj sličice"
 
 msgid "Call monitoring"
 msgstr "praćenje poziva"
@@ -434,7 +434,7 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Izbornik liste kanala"
 
-msgid "Choose Tuner to Configure..."
+msgid "Choose Tuner"
 msgstr ""
 
 msgid "Choose bouquet"
@@ -483,7 +483,7 @@ msgid "Compact flash card"
 msgstr "Kompakt flash kartica"
 
 msgid "Complete"
-msgstr "Završeno"
+msgstr "Kompletno"
 
 msgid "Configuration Mode"
 msgstr "Mod Konfiguracije"
@@ -565,13 +565,13 @@ msgid "Delete entry"
 msgstr "Obriši unos"
 
 msgid "Delete failed!"
-msgstr "Brisanje neuspješno"
+msgstr "Brisanje neuspješno!"
 
 msgid "Description"
 msgstr "Opis"
 
 msgid "Detected HDD:"
-msgstr "Detektirani HDD:"
+msgstr "Detektirani Disk:"
 
 msgid "Detected NIMs:"
 msgstr "Detektirani NIMs:"
@@ -647,8 +647,8 @@ msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Jeste li SIGURNI da želite formatirati ovaj disk ?\n"
-"Svi podaci bit će izgubljeni !"
+"Jeste li sigurni da želite formatirati ovaj disk ?\n"
+"Svi podaci na disku bit će izgubljeni !"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -743,7 +743,7 @@ msgid "Enable parental control"
 msgstr "Uključi roditeljsku zaštitu"
 
 msgid "Enabled"
-msgstr "Uključi"
+msgstr "Omogući"
 
 msgid "End"
 msgstr "Kraj"
@@ -826,6 +826,15 @@ msgstr "Francuski"
 msgid "Frequency"
 msgstr "Frekvencija"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Pet"
 
@@ -874,7 +883,7 @@ msgid "Guard Interval"
 msgstr "Interval Zaštite"
 
 msgid "Guard interval mode"
-msgstr "Zaštitni intervalni mod"
+msgstr "Mod zaštitnog intervala"
 
 msgid "Harddisk"
 msgstr "Tvrdi disk"
@@ -944,7 +953,7 @@ msgid "Initialize"
 msgstr "Inicijaliziraj"
 
 msgid "Initializing Harddisk..."
-msgstr "Inicijaliziram harddisk..."
+msgstr "Inicijaliziram tvrdi disk..."
 
 msgid "Input"
 msgstr "Ulaz "
@@ -1046,13 +1055,13 @@ msgid "Manual Scan"
 msgstr "Ručno skeniranje"
 
 msgid "Manual transponder"
-msgstr "Manualni transponder"
+msgstr "Ručno uneseni transponder"
 
 msgid "Margin after record"
-msgstr "rub nakon snimanja"
+msgstr "Rub nakon snimanja"
 
 msgid "Margin before record (minutes)"
-msgstr "Granica prije snimanja (u minutama)"
+msgstr "Rub prije snimanja (u minutama)"
 
 msgid "Media player"
 msgstr "Preglednik Medija"
@@ -1088,7 +1097,7 @@ msgid "Monday"
 msgstr "Ponedeljak"
 
 msgid "Mount failed"
-msgstr "Mount neuspjelo"
+msgstr "Mount neuspješan"
 
 msgid "Move Picture in Picture"
 msgstr "Premjesti Sliku u Slici"
@@ -1106,7 +1115,7 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "Multiple service support"
-msgstr "podrška za višestruke usluge"
+msgstr "Podrška za višestruke usluge"
 
 msgid "Multisat"
 msgstr "Multisat"
@@ -1189,7 +1198,7 @@ msgstr ""
 "(Isteklo vrijeme čitanja PAT)"
 
 msgid "No event info found, recording indefinitely."
-msgstr "informacije o događaju nisu pronađene, snimanje nedefinirano."
+msgstr "Informacije o događaju nisu pronađene, snimanje nedefinirano."
 
 msgid "No free tuner!"
 msgstr "Nema slobodnog tunera!"
@@ -1197,22 +1206,24 @@ msgstr "Nema slobodnog tunera!"
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
-"Ni ti jedan paket nije nadograđen još.Tako da možete provjeriti postavke "
+"Niti jedan paket nije nadograđen još.Tako da možete provjeriti postavke "
 "mreže i pokušajte ponovno."
 
 msgid "No positioner capable frontend found."
-msgstr "Ni ti jedan kompatibilan motor nije pronađen."
+msgstr "Niti jedan kompatibilan motor nije pronađen."
 
 msgid "No satellite frontend found!!"
 msgstr "Nije pronađen Satelitski tuner!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Ni ti jedan Tuner nije konfiguriran za rad s DiSEqC motorom!"
+msgstr "Niti jedan Tuner nije konfiguriran za rad s DiSEqC motorom!"
 
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Niti jedan Tuner nije uključen!\n"
+"Molim podesite postavke tunera prije nego počnete pretragu usluga."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1323,11 +1334,14 @@ msgstr "Pin kod je potreban"
 msgid "Play recorded movies..."
 msgstr "Pokreni snimljene filmove..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Molim odaberite ekstenziju..."
 
 msgid "Please do not change values when you not know what you do!"
-msgstr "Molim ne mijenjate vrijednosti ukoliko neznate što radite!"
+msgstr "Molim ne mijenjate vrijednosti ukoliko ne znate što radite!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Unesi ime za novi paket "
@@ -1351,23 +1365,23 @@ msgid "Please select a subservice..."
 msgstr "Molim odaberite poduslugu..."
 
 msgid "Please select keyword to filter..."
-msgstr "Molim odaberite ključne riječi za filtraciju..."
+msgstr "Molim odaberite kljućnu riječ za filtraciju..."
 
 msgid "Please set up tuner B"
-msgstr "Molim postavite tuner B"
+msgstr "Molim podesite tuner B"
 
 msgid "Please set up tuner C"
-msgstr ""
+msgstr "Molim podesite tuner C"
 
 msgid "Please set up tuner D"
-msgstr ""
+msgstr "Molim podesite tuner D"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
-"Molim koristite tipke s smjernicama za premjestanje PiP prozora.\n"
+"Molim koristite tipke s smjernicama za premještanje PiP prozora.\n"
 "Pritisnite Bouquet +/- tipke za promjenu prozora.\n"
 "Pitisnite OK za povratak u TV mod ili EXIT za prekid premještanja."
 
@@ -1387,7 +1401,7 @@ msgid "Port A"
 msgstr "Port A"
 
 msgid "Port B"
-msgstr "Port A"
+msgstr "Port B"
 
 msgid "Port C"
 msgstr "Port C"
@@ -1420,10 +1434,10 @@ msgid "Press OK to activate the settings."
 msgstr "Pritisnite OK za aktiviranje postavki."
 
 msgid "Press OK to scan"
-msgstr "pritisnite ok za skeniranje"
+msgstr "Pritisnite ok za skeniranje"
 
 msgid "Press OK to start the scan"
-msgstr "pritisnite ok za početak skeniranja"
+msgstr "Pritisnite ok za početak skeniranja"
 
 msgid "Prev"
 msgstr "Pred"
@@ -1437,11 +1451,11 @@ msgstr "Zaštićene postavke"
 msgid "Provider"
 msgstr "Pružatelj"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Pružatelji"
-
-msgid "Quick"
-msgstr "Brzo"
 
 msgid "Quickzap"
 msgstr "Brzizap"
@@ -1471,7 +1485,7 @@ msgid "Really delete this timer?"
 msgstr "Želite li stvarno obrisati ovaj tajmer?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "Želite li stvarno izaći iz podusluge brzogzap-a"
+msgstr "Želite li stvarno izaći iz podusluge brzogzap-a?"
 
 msgid "Reception Settings"
 msgstr "Postavke prijema"
@@ -1480,31 +1494,25 @@ msgid "Record"
 msgstr "Snimi  "
 
 msgid "Recorded files..."
-msgstr "Snimam datoteke..."
+msgstr "Snimljene datoteke..."
 
 msgid "Recording"
 msgstr "Snimanje"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
-"reboot sada ?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
-"restartati?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
-"isključiti?"
 
 msgid "Recordings always have priority"
 msgstr "Snimanje uvijek ima prioritet"
@@ -1516,10 +1524,10 @@ msgid "Remove Plugins"
 msgstr "Obriši dodatak"
 
 msgid "Remove a mark"
-msgstr "Izbriši oznaku"
+msgstr "Obriši oznaku"
 
 msgid "Remove plugins"
-msgstr "Obriši dodatak"
+msgstr "Obriši dodatke"
 
 msgid "Repeat"
 msgstr "Ponovi"
@@ -1543,7 +1551,7 @@ msgid "Restart GUI now?"
 msgstr "Restart GUI sada?"
 
 msgid "Restore"
-msgstr "Obnovi"
+msgstr "Vrati u poč.stanje"
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -1563,9 +1571,6 @@ msgstr "Pokrenuto"
 
 msgid "S-Video"
 msgstr "S-Video"
-
-msgid "SNR:"
-msgstr "SNR:"
 
 msgid "Sat"
 msgstr "Sat"
@@ -1592,6 +1597,66 @@ msgid "Scaling Mode"
 msgstr "Mod razmjera"
 
 msgid "Scan "
+msgstr "Skeniraj"
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
 msgstr ""
 
 msgid "Search east"
@@ -1604,7 +1669,7 @@ msgid "Seek"
 msgstr "Traži"
 
 msgid "Select HDD"
-msgstr "Odaberi HDD"
+msgstr "Odaberi Tvrdi Disk"
 
 msgid "Select Network Adapter"
 msgstr "Odaberi Mrežni adapter"
@@ -1613,10 +1678,10 @@ msgid "Select a movie"
 msgstr "Odaberi film"
 
 msgid "Select audio mode"
-msgstr "Odaberite audio mod"
+msgstr "Odaberite zvučni mod"
 
 msgid "Select audio track"
-msgstr "odaberi zvučni nosioc"
+msgstr "Odaberi zvučni nosioc"
 
 msgid "Select channel to record from"
 msgstr "Odaberi Kanal za snimanje od"
@@ -1656,9 +1721,6 @@ msgstr ""
 msgid "Service scan"
 msgstr "Pretraga usluga"
 
-msgid "Service scan type needed"
-msgstr "Potrebna vrsta pretraživanja usluga"
-
 msgid "Serviceinfo"
 msgstr "Info Usluge"
 
@@ -1672,7 +1734,7 @@ msgid "Settings"
 msgstr "Postavke "
 
 msgid "Setup"
-msgstr "Postavke"
+msgstr "Postavi"
 
 msgid "Show infobar on channel change"
 msgstr "Prikaži infobar na promjeni kanala"
@@ -1725,6 +1787,10 @@ msgstr "Akcija tajmera spavanja:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Interval pokaz.prezentacije(sek.)"
 
+#, python-format
+msgid "Slot %d"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Neki dodaci nisu dostupni:\n"
 
@@ -1765,7 +1831,7 @@ msgid "Start recording?"
 msgstr "Započeti Snimanje?"
 
 msgid "StartTime"
-msgstr "Poćetno vrijeme "
+msgstr "Početno vrijeme "
 
 msgid "Startwizard"
 msgstr "Početni Čarobnjak"
@@ -1777,7 +1843,7 @@ msgid "Step east"
 msgstr "Koran na istok"
 
 msgid "Step west"
-msgstr "jedan korak na zapad"
+msgstr "Korak na zapad"
 
 msgid "Stereo"
 msgstr "Stereo"
@@ -1843,7 +1909,7 @@ msgid "System"
 msgstr "Sistem "
 
 msgid "TV System"
-msgstr "TV sistem"
+msgstr "TV Sistem"
 
 msgid "Terrestrial"
 msgstr "Zemaljski"
@@ -1853,9 +1919,6 @@ msgstr "Zemaljski pružatelj"
 
 msgid "Test mode"
 msgstr "Test mod"
-
-msgid "Test-Messagebox?"
-msgstr "Test-Poruka?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1982,6 +2045,12 @@ msgstr "Tip Transpondera"
 msgid "Tries left:"
 msgstr "Pokušaja ostalo:"
 
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
+
 msgid "Tue"
 msgstr "Uto"
 
@@ -1998,7 +2067,7 @@ msgid "Tuner"
 msgstr "Tuner"
 
 msgid "Tuner "
-msgstr ""
+msgstr "Tuner"
 
 msgid "Tuner Slot"
 msgstr "Utor Tunera"
@@ -2049,7 +2118,7 @@ msgid "Updates your receiver's software"
 msgstr "Nadograđuje softver vašeg prijemnika"
 
 msgid "Updating finished. Here is the result:"
-msgstr "Nadogradnja uspješna. Ovdje su rezultati:"
+msgstr "Nadogradnja uspješna. Ovo su rezultati:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
@@ -2080,7 +2149,7 @@ msgid ""
 msgstr ""
 "Koristite lijeve i desne tipke za promjenu opcija.\n"
 "\n"
-"Molim postavite tuner A"
+"Molim podesite tuner A"
 
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
@@ -2095,6 +2164,9 @@ msgstr "Koristi USALS za ovaj satelit"
 msgid "Use wizard to set up basic features"
 msgstr "Čarobnjaka za postavljanje osnovnih postavki"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Korisnički def"
 
@@ -2108,7 +2180,7 @@ msgid "View Rass interactive..."
 msgstr "Gledaj Rass interaktivno..."
 
 msgid "View teletext..."
-msgstr "Gledanj teleteksta..."
+msgstr "Pregled teleteksta..."
 
 msgid "Voltage mode"
 msgstr "Mod Napona"
@@ -2194,7 +2266,7 @@ msgid "Yes, restore the settings now"
 msgstr "Da, vratite pohranjene postavke sada"
 
 msgid "Yes, view the tutorial"
-msgstr "Da, prikaži vodič?"
+msgstr "Da, prikaži vodič"
 
 msgid "You cannot delete this!"
 msgstr "Ne možete obrisati ovo!"
@@ -2327,7 +2399,7 @@ msgid "add alternatives"
 msgstr "dodaj alternative"
 
 msgid "add bouquet"
-msgstr "dodaj favorite"
+msgstr "dodaj paket"
 
 msgid "add directory to playlist"
 msgstr "dodaj direktorij u playlistu"
@@ -2340,6 +2412,9 @@ msgstr "dodaj oznaku"
 
 msgid "add recording (enter recording duration)"
 msgstr "dodaj snimanje (unesite dužinu snimanja)"
+
+msgid "add recording (enter recording endtime)"
+msgstr ""
 
 msgid "add recording (indefinitely)"
 msgstr "dodaj snimanje (nedefinirano)"
@@ -2379,7 +2454,10 @@ msgid "by Exif"
 msgstr "od Exif"
 
 msgid "change recording (duration)"
-msgstr "promjeni snimanje (dužinu)"
+msgstr "promjeni dužinu snimanja"
+
+msgid "change recording (endtime)"
+msgstr ""
 
 msgid "circular left"
 msgstr "lijevi cirkularni"
@@ -2421,7 +2499,7 @@ msgid "disable move mode"
 msgstr "onemoguće mod premještanja"
 
 msgid "disabled"
-msgstr ""
+msgstr "onemogućeno"
 
 msgid "do not change"
 msgstr "ne mijenjaj"
@@ -2439,7 +2517,7 @@ msgid "edit alternatives"
 msgstr "editiraj alternative"
 
 msgid "empty"
-msgstr ""
+msgstr "prazno"
 
 msgid "enable"
 msgstr "omogući"
@@ -2454,7 +2532,7 @@ msgid "enable move mode"
 msgstr "uključi mod za premještanje"
 
 msgid "enabled"
-msgstr ""
+msgstr "omogućeno"
 
 msgid "end alternatives edit"
 msgstr "kraj editiranja alternativa"
@@ -2521,11 +2599,8 @@ msgstr "napusti video ..."
 msgid "left"
 msgstr "lijevi"
 
-msgid "list"
-msgstr "lista"
-
 msgid "locked"
-msgstr "zaključano"
+msgstr "prihvaćen"
 
 msgid "loopthrough to socket A"
 msgstr "prolaz na utor A"
@@ -2537,10 +2612,10 @@ msgid "mins"
 msgstr "mins"
 
 msgid "minute"
-msgstr "minute"
+msgstr "minuta"
 
 msgid "minutes"
-msgstr "minuta"
+msgstr "minute"
 
 msgid "minutes and"
 msgstr "minuta i"
@@ -2573,13 +2648,13 @@ msgid "no standby"
 msgstr "ne stanje pripravnosti"
 
 msgid "no timeout"
-msgstr "nema vremeskog ograničenja"
+msgstr "nema vremenskog ograničenja"
 
 msgid "none"
 msgstr "prazno"
 
 msgid "not locked"
-msgstr "nije zaključan"
+msgstr "nije prihvaćen"
 
 msgid "nothing connected"
 msgstr "ništa nije spojeno"
@@ -2645,13 +2720,13 @@ msgid "remove entry"
 msgstr "obriši unos"
 
 msgid "remove from parental protection"
-msgstr "Izbriši iz roditeljske zaštite"
+msgstr "obriši iz roditeljske zaštite"
 
 msgid "remove new found flag"
 msgstr "obriši novo nađenu zastavu"
 
 msgid "remove this mark"
-msgstr "Izbriši ovu oznaku"
+msgstr "obriši ovu oznaku"
 
 msgid "repeated"
 msgstr "ponavljam"
@@ -2717,7 +2792,7 @@ msgid "show alternatives"
 msgstr "prikaži alternative"
 
 msgid "show event details"
-msgstr "prikažii proširene infor. "
+msgstr "prikaži proširene infor. "
 
 msgid "show transponder info"
 msgstr "prikaži info transpondera"
@@ -2780,7 +2855,7 @@ msgid "vertical"
 msgstr "vertikala"
 
 msgid "view extensions..."
-msgstr "gledaj eksterzije..."
+msgstr "gledaj ekstenzije..."
 
 msgid "view recordings..."
 msgstr "gledaj snimke..."
@@ -2863,6 +2938,9 @@ msgstr "prebačen"
 #~ msgid "Cable provider"
 #~ msgstr "Kabel pruA3atelj"
 
+#~ msgid "Choose Tuner to Configure..."
+#~ msgstr "Odaberi Tuner koji želiš konfigurirati..."
+
 #~ msgid "Classic"
 #~ msgstr "Klasi?na "
 
@@ -2917,14 +2995,41 @@ msgstr "prebačen"
 #~ msgid "Predefined satellite"
 #~ msgstr "Predefinirani sateliti"
 
+#~ msgid "Quick"
+#~ msgstr "Brzo"
+
 #~ msgid "Record Splitsize"
 #~ msgstr "Vel.Dat. kod Snimanja"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
+#~ "reboot sada ?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
+#~ "restartati?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
+#~ "isključiti sada?"
 
 #~ msgid "Remove service"
 #~ msgstr "Izbriši uslugu"
 
 #~ msgid "SNR"
 #~ msgstr "SNR"
+
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
 
 #~ msgid "Satconfig"
 #~ msgstr "Satkonfig"
@@ -2944,6 +3049,9 @@ msgstr "prebačen"
 #~ msgid "Select reference service"
 #~ msgstr "Odaberite referentnu uslugu"
 
+#~ msgid "Service scan type needed"
+#~ msgstr "Potrebna vrsta pretraživanja usluga"
+
 #~ msgid "Setup Lock"
 #~ msgstr "Postavke zaA!tite "
 
@@ -2960,7 +3068,10 @@ msgstr "prebačen"
 #~ msgstr "Utor"
 
 #~ msgid "Socket "
-#~ msgstr "Utor"
+#~ msgstr "Utori"
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Test-Poruka?"
 
 #~ msgid "Timeshifting"
 #~ msgstr "Vremeski pomak"
@@ -2989,6 +3100,9 @@ msgstr "prebačen"
 #~ msgid "empty/unknown"
 #~ msgstr "prazno/nepoznato"
 
+#~ msgid "list"
+#~ msgstr "lista"
+
 #~ msgid "remove bouquet"
 #~ msgstr "obriA!i paket"
 
@@ -2996,7 +3110,7 @@ msgstr "prebačen"
 #~ msgstr "obriA!i uslugu"
 
 #~ msgid "select Slot"
-#~ msgstr "odaberi Tuner"
+#~ msgstr "odaberi Utor"
 
 #~ msgid "use power delta"
 #~ msgstr "koristite power delta"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-16 17:23+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-01-07 22:40+0100\n"
 "Last-Translator: Jose Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -83,6 +83,9 @@ msgstr ""
 
 msgid "(ZAP)"
 msgstr "(ZAPEAR)"
+
+msgid "(empty)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 directorio"
@@ -434,6 +437,9 @@ msgstr "Canal:"
 
 msgid "Channellist menu"
 msgstr "Menú lista de canales"
+
+msgid "Choose Tuner"
+msgstr ""
 
 msgid "Choose bouquet"
 msgstr "Elegir lista"
@@ -824,6 +830,15 @@ msgstr "Francés"
 msgid "Frequency"
 msgstr "Frecuencia"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Vie"
 
@@ -1116,9 +1131,6 @@ msgstr "N/D"
 msgid "NEXT"
 msgstr "SIGUIENTE"
 
-msgid "NIM "
-msgstr ""
-
 msgid "NOW"
 msgstr "AHORA"
 
@@ -1207,6 +1219,11 @@ msgstr "No he encontrado ningún sintonizador de satélite"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "¡No hay sintonizador configurado para usar con un motor diseqc!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1317,6 +1334,9 @@ msgstr "Necesario código pin"
 msgid "Play recorded movies..."
 msgstr "Reproducir películas grabadas..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Por favor, elija una extensión..."
 
@@ -1349,6 +1369,12 @@ msgstr "Por favor selecciones una palabra para filtrar..."
 
 msgid "Please set up tuner B"
 msgstr "Por favor, configure tuner B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1425,11 +1451,11 @@ msgstr "Proteger configuración"
 msgid "Provider"
 msgstr "Proveedor"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Proveedores"
-
-msgid "Quick"
-msgstr "Rápido"
 
 msgid "Quickzap"
 msgstr "Zapeo rápido"
@@ -1474,25 +1500,19 @@ msgid "Recording"
 msgstr "Grabando"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Hay grabaciones que están en proceso o que van a comenzar pronto... "
-"realmente reiniciar "
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Hay grabaciones que están en proceso o que van a comenzar pronto... "
-"realmente reiniciar "
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Hay grabaciones que están en proceso o que van a comenzar pronto... "
-"realmente apagar "
 
 msgid "Recordings always have priority"
 msgstr "Las grabaciones siempre tienen prioridad"
@@ -1552,9 +1572,6 @@ msgstr "Ejecutando"
 msgid "S-Video"
 msgstr ""
 
-msgid "SNR:"
-msgstr ""
-
 msgid "Sat"
 msgstr "Sáb"
 
@@ -1579,8 +1596,68 @@ msgstr "Sábado"
 msgid "Scaling Mode"
 msgstr "Modo de búsqueda"
 
-msgid "Scan NIM"
-msgstr "Escanear NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Buscar este"
@@ -1643,9 +1720,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Buscar canales"
-
-msgid "Service scan type needed"
-msgstr "Tipo de escaneo de canal necesario"
 
 msgid "Serviceinfo"
 msgstr "Info del canal"
@@ -1713,10 +1787,8 @@ msgstr "Acción del apagado automático:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Intervalo de diapositivas (seg.)"
 
-msgid "Slot "
-msgstr ""
-
-msgid "Socket "
+#, python-format
+msgid "Slot %d"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1848,9 +1920,6 @@ msgstr "Proveedor terrestre"
 msgid "Test mode"
 msgstr "Modo test"
 
-msgid "Test-Messagebox?"
-msgstr "¿Testear-Messagebox?"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1972,11 +2041,14 @@ msgstr "Transpondedor"
 msgid "Transponder Type"
 msgstr "Tipo de Transpondedor"
 
-msgid "Transpondertype"
-msgstr "Tipo de Transpondedor"
-
 msgid "Tries left:"
 msgstr "Intentos que quedan:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Mar"
@@ -1992,6 +2064,9 @@ msgstr "¡Falló la sintonización!"
 
 msgid "Tuner"
 msgstr "Sintonizador"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Slot del sintonizador"
@@ -2086,6 +2161,9 @@ msgstr "Usar usals para este sat"
 
 msgid "Use wizard to set up basic features"
 msgstr "Use el asistente para configuración básica"
+
+msgid "Used service scan type"
+msgstr ""
 
 msgid "User defined"
 msgstr "Definido por el usuario"
@@ -2330,6 +2408,9 @@ msgstr "añadir marcador"
 msgid "add recording (enter recording duration)"
 msgstr "añadir grabación (introduzca duración)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "añadir grabación (indefinidamente)"
 
@@ -2370,6 +2451,9 @@ msgstr "por Exif"
 msgid "change recording (duration)"
 msgstr "cambiar la grabación (duración)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "circular izda"
 
@@ -2409,6 +2493,9 @@ msgstr "desactivar"
 msgid "disable move mode"
 msgstr "quitar modo movimiento"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "no cambiar"
 
@@ -2424,8 +2511,8 @@ msgstr "¡hecho!"
 msgid "edit alternatives"
 msgstr "editar alternativas"
 
-msgid "empty/unknown"
-msgstr "vacío/desconocido"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "activar"
@@ -2438,6 +2525,9 @@ msgstr "habilitar edición de favoritos"
 
 msgid "enable move mode"
 msgstr "habilitar modo movimiento"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "terminar edición de alternativas"
@@ -2503,9 +2593,6 @@ msgstr "salir del reproductor de películas..."
 
 msgid "left"
 msgstr "izquierda"
-
-msgid "list"
-msgstr "lista"
 
 msgid "locked"
 msgstr "bloqueado"
@@ -2687,9 +2774,6 @@ msgstr "segundos"
 msgid "seconds."
 msgstr "segundos."
 
-msgid "select Slot"
-msgstr "seleccionar Slot"
-
 msgid "service pin"
 msgstr "pin del canal"
 
@@ -2801,3 +2885,48 @@ msgstr "zapear"
 
 msgid "zapped"
 msgstr "zapeado"
+
+#~ msgid "Quick"
+#~ msgstr "Rápido"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Hay grabaciones que están en proceso o que van a comenzar pronto... "
+#~ "realmente reiniciar "
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Hay grabaciones que están en proceso o que van a comenzar pronto... "
+#~ "realmente reiniciar "
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Hay grabaciones que están en proceso o que van a comenzar pronto... "
+#~ "realmente apagar "
+
+#~ msgid "Scan NIM"
+#~ msgstr "Escanear NIM"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Tipo de escaneo de canal necesario"
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "¿Testear-Messagebox?"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Tipo de Transpondedor"
+
+#~ msgid "empty/unknown"
+#~ msgstr "vacío/desconocido"
+
+#~ msgid "list"
+#~ msgstr "lista"
+
+#~ msgid "select Slot"
+#~ msgstr "seleccionar Slot"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-05 03:44+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -77,6 +77,9 @@ msgstr ""
 msgid "(ZAP)"
 msgstr ""
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr ""
 
@@ -111,6 +114,9 @@ msgid "16:10 PanScan"
 msgstr ""
 
 msgid "16:9"
+msgstr ""
+
+msgid "16:9 Letterbox"
 msgstr ""
 
 msgid "16:9 always"
@@ -175,6 +181,12 @@ msgstr ""
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
 msgstr ""
 
 msgid ""
@@ -400,6 +412,9 @@ msgstr ""
 msgid "Channellist menu"
 msgstr ""
 
+msgid "Choose Tuner"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr ""
 
@@ -577,6 +592,9 @@ msgid ""
 msgstr ""
 
 msgid "Dish"
+msgstr ""
+
+msgid "Display Setup"
 msgstr ""
 
 msgid ""
@@ -764,6 +782,15 @@ msgstr ""
 msgid "Frequency"
 msgstr "Frequency"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr ""
 
@@ -911,9 +938,6 @@ msgstr ""
 msgid "Keymap"
 msgstr ""
 
-msgid "LCD Setup"
-msgstr ""
-
 msgid "LNB"
 msgstr ""
 
@@ -1055,9 +1079,6 @@ msgstr ""
 msgid "NEXT"
 msgstr ""
 
-msgid "NIM "
-msgstr ""
-
 msgid "NOW"
 msgstr ""
 
@@ -1141,6 +1162,11 @@ msgid "No satellite frontend found!!"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
+msgstr ""
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
 msgstr ""
 
 msgid ""
@@ -1244,6 +1270,9 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr ""
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr ""
 
@@ -1275,6 +1304,12 @@ msgid "Please select keyword to filter..."
 msgstr ""
 
 msgid "Please set up tuner B"
+msgstr ""
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
 msgstr ""
 
 msgid ""
@@ -1349,10 +1384,10 @@ msgstr ""
 msgid "Provider"
 msgstr ""
 
-msgid "Providers"
+msgid "Provider to scan"
 msgstr ""
 
-msgid "Quick"
+msgid "Providers"
 msgstr ""
 
 msgid "Quickzap"
@@ -1398,17 +1433,17 @@ msgid "Recording"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
 
@@ -1468,9 +1503,6 @@ msgstr ""
 msgid "S-Video"
 msgstr ""
 
-msgid "SNR:"
-msgstr ""
-
 msgid "Sat"
 msgstr ""
 
@@ -1495,7 +1527,67 @@ msgstr ""
 msgid "Scaling Mode"
 msgstr ""
 
-msgid "Scan NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
 msgstr ""
 
 msgid "Search east"
@@ -1554,9 +1646,6 @@ msgid ""
 msgstr ""
 
 msgid "Service scan"
-msgstr ""
-
-msgid "Service scan type needed"
 msgstr ""
 
 msgid "Serviceinfo"
@@ -1625,10 +1714,8 @@ msgstr ""
 msgid "Slideshow Interval (sec.)"
 msgstr ""
 
-msgid "Slot "
-msgstr ""
-
-msgid "Socket "
+#, python-format
+msgid "Slot %d"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1757,9 +1844,6 @@ msgstr ""
 msgid "Test mode"
 msgstr ""
 
-msgid "Test-Messagebox?"
-msgstr ""
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1877,10 +1961,13 @@ msgstr ""
 msgid "Transponder Type"
 msgstr ""
 
-msgid "Transpondertype"
+msgid "Tries left:"
 msgstr ""
 
-msgid "Tries left:"
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 
 msgid "Tue"
@@ -1896,6 +1983,9 @@ msgid "Tune failed!"
 msgstr ""
 
 msgid "Tuner"
+msgstr ""
+
+msgid "Tuner "
 msgstr ""
 
 msgid "Tuner Slot"
@@ -1984,6 +2074,9 @@ msgstr ""
 msgid "Use wizard to set up basic features"
 msgstr ""
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr ""
 
@@ -2040,6 +2133,9 @@ msgid "What do you want to scan?"
 msgstr ""
 
 msgid "Where do you want to backup your settings?"
+msgstr ""
+
+msgid "Write error while recording. Disk full?\n"
 msgstr ""
 
 msgid "YPbPr"
@@ -2189,6 +2285,9 @@ msgstr ""
 msgid "add recording (enter recording duration)"
 msgstr ""
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr ""
 
@@ -2225,6 +2324,9 @@ msgid "by Exif"
 msgstr ""
 
 msgid "change recording (duration)"
+msgstr ""
+
+msgid "change recording (endtime)"
 msgstr ""
 
 msgid "circular left"
@@ -2266,6 +2368,9 @@ msgstr ""
 msgid "disable move mode"
 msgstr ""
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr ""
 
@@ -2281,7 +2386,7 @@ msgstr ""
 msgid "edit alternatives"
 msgstr ""
 
-msgid "empty/unknown"
+msgid "empty"
 msgstr ""
 
 msgid "enable"
@@ -2294,6 +2399,9 @@ msgid "enable favourite edit"
 msgstr ""
 
 msgid "enable move mode"
+msgstr ""
+
+msgid "enabled"
 msgstr ""
 
 msgid "end alternatives edit"
@@ -2357,9 +2465,6 @@ msgid "leave movie player..."
 msgstr ""
 
 msgid "left"
-msgstr ""
-
-msgid "list"
 msgstr ""
 
 msgid "locked"
@@ -2532,9 +2637,6 @@ msgid "seconds"
 msgstr ""
 
 msgid "seconds."
-msgstr ""
-
-msgid "select Slot"
 msgstr ""
 
 msgid "service pin"

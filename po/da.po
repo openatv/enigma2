@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-05 10:40+0200\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
 "PO-Revision-Date: 2007-04-30 18:33+0100\n"
 "Last-Translator: Gaj1 <gaj1@satandream.com>\n"
 "Language-Team: The Polar Team <Gaj@satandream.com>\n"
@@ -78,6 +78,9 @@ msgstr "%s (%s)\n"
 
 msgid "(ZAP)"
 msgstr "(ZAP)"
+
+msgid "(empty)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 mappe"
@@ -427,6 +430,9 @@ msgstr "Kanal:"
 
 msgid "Channellist menu"
 msgstr "Kanalliste menu"
+
+msgid "Choose Tuner"
+msgstr ""
 
 msgid "Choose bouquet"
 msgstr "Vælg pakke"
@@ -817,6 +823,15 @@ msgstr "Fransk"
 msgid "Frequency"
 msgstr "Frekvens"
 
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
+
 msgid "Fri"
 msgstr "Fre"
 
@@ -1109,9 +1124,6 @@ msgstr "Ikke tilgængelig"
 msgid "NEXT"
 msgstr "NÆSTE"
 
-msgid "NIM "
-msgstr "TUNER"
-
 msgid "NOW"
 msgstr "NU"
 
@@ -1201,6 +1213,11 @@ msgstr "Ingen satellit frontend fundet!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen Tuner er konfigureret til brug af diseqc Motor!"
+
+msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1311,6 +1328,9 @@ msgstr "Pin kode nødvendig"
 msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Vælg venligst en udvidelse..."
 
@@ -1343,6 +1363,12 @@ msgstr "Vælg venligst et nøgleord til filter..."
 
 msgid "Please set up tuner B"
 msgstr "Venligst indstil Tuner B."
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1419,11 +1445,11 @@ msgstr "Beskyt opsætning"
 msgid "Provider"
 msgstr "Udbyder"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Udbydere"
-
-msgid "Quick"
-msgstr "Hurtig"
 
 msgid "Quickzap"
 msgstr "Hurtigzap"
@@ -1468,25 +1494,19 @@ msgid "Recording"
 msgstr "Optager"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
-"virkelig reboote nu?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
-"virkelig genstarte nu?"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
-"virkelig slukke nu?"
 
 msgid "Recordings always have priority"
 msgstr "Optagelser har altid prioritet"
@@ -1544,9 +1564,6 @@ msgstr "Aktiveret"
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Lør"
 
@@ -1571,8 +1588,68 @@ msgstr "Lørdag"
 msgid "Scaling Mode"
 msgstr "Skalerings Type"
 
-msgid "Scan NIM"
-msgstr "Søg TUNER"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Søg Øst"
@@ -1635,9 +1712,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "Kanal søgning"
-
-msgid "Service scan type needed"
-msgstr "Kanal søgnings type nødvendig"
 
 msgid "Serviceinfo"
 msgstr "Kanalinfo"
@@ -1705,11 +1779,9 @@ msgstr "Sleep timer aktion:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Slideshow Interval (sek.)"
 
-msgid "Slot "
-msgstr "Slot "
-
-msgid "Socket "
-msgstr "Sokkel "
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Nogle plugins er ikke tilstede:\n"
@@ -1840,9 +1912,6 @@ msgstr "DVB T udbyder"
 msgid "Test mode"
 msgstr "Test type"
 
-msgid "Test-Messagebox?"
-msgstr "Test-Beskedbox?"
-
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
@@ -1964,11 +2033,14 @@ msgstr "Transponder"
 msgid "Transponder Type"
 msgstr "Transmitter Type"
 
-msgid "Transpondertype"
-msgstr "Transpondertype"
-
 msgid "Tries left:"
 msgstr "Forsøg tilbage:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Tir"
@@ -1984,6 +2056,9 @@ msgstr "Tuning fejlede!"
 
 msgid "Tuner"
 msgstr "Tuner"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Tuner Slot"
@@ -2077,6 +2152,9 @@ msgstr "Brug USALS til denne position"
 
 msgid "Use wizard to set up basic features"
 msgstr "Brug guide til grundopsætning"
+
+msgid "Used service scan type"
+msgstr ""
 
 msgid "User defined"
 msgstr "Brugerdefineret"
@@ -2319,6 +2397,9 @@ msgstr "Tilføj mærke"
 msgid "add recording (enter recording duration)"
 msgstr "Tilføj optagelse ( skriv optagelses længde) "
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "Tilføj optagelse (nu)"
 
@@ -2359,6 +2440,9 @@ msgstr "Via Exif"
 msgid "change recording (duration)"
 msgstr "Skifte optagelse (længde)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "venstre-cirkulær"
 
@@ -2398,6 +2482,9 @@ msgstr "Afbryd"
 msgid "disable move mode"
 msgstr "Slå flytte type fra"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "Ikke ændre"
 
@@ -2413,8 +2500,8 @@ msgstr "færdig!"
 msgid "edit alternatives"
 msgstr "Redigere alternativer"
 
-msgid "empty/unknown"
-msgstr "Tom/ukendt"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "Tilslut"
@@ -2427,6 +2514,9 @@ msgstr "Åbne favorit redigering"
 
 msgid "enable move mode"
 msgstr "Åbne flytte type"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "Afslut alternativ redigering"
@@ -2492,9 +2582,6 @@ msgstr "Forlad film afspiller..."
 
 msgid "left"
 msgstr "Venstre"
-
-msgid "list"
-msgstr "Liste"
 
 msgid "locked"
 msgstr "Låst "
@@ -2676,9 +2763,6 @@ msgstr "sekunder"
 msgid "seconds."
 msgstr "sekunder."
 
-msgid "select Slot"
-msgstr "Vælg Slot"
-
 msgid "service pin"
 msgstr "Kanal kode"
 
@@ -2793,3 +2877,60 @@ msgstr "zappet"
 
 #~ msgid "LCD Setup"
 #~ msgstr "Display Indstillinger"
+
+#~ msgid "NIM "
+#~ msgstr "TUNER"
+
+#~ msgid "Quick"
+#~ msgstr "Hurtig"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
+#~ "virkelig reboote nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
+#~ "virkelig genstarte nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
+#~ "virkelig slukke nu?"
+
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Søg TUNER"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Kanal søgnings type nødvendig"
+
+#~ msgid "Slot "
+#~ msgstr "Slot "
+
+#~ msgid "Socket "
+#~ msgstr "Sokkel "
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Test-Beskedbox?"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Transpondertype"
+
+#~ msgid "empty/unknown"
+#~ msgstr "Tom/ukendt"
+
+#~ msgid "list"
+#~ msgstr "Liste"
+
+#~ msgid "select Slot"
+#~ msgstr "Vælg Slot"

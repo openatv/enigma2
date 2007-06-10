@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Icelandic translation v.1.23\n"
+"Project-Id-Version: Icelandic translation v.1.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:39+0200\n"
-"PO-Revision-Date: 2007-01-07 20:37-0000\n"
-"Last-Translator: Baldur Þór Sveinsson <baddi@oreind.is>\n"
+"POT-Creation-Date: 2007-06-10 22:28+0200\n"
+"PO-Revision-Date: 2007-06-08 12:41-0000\n"
+"Last-Translator: Baldur Sveinsson <baldur@oreind.is>\n"
 "Language-Team: Polar Team <baddi@oreind.is>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgid "#000000"
 msgstr "#000000"
 
 msgid "#003258"
-msgstr ""
+msgstr "#003258"
 
 msgid "#0064c7"
 msgstr "#0064c7"
@@ -44,7 +44,7 @@ msgid "#389416"
 msgstr "#389416"
 
 msgid "#77ffffff"
-msgstr ""
+msgstr "#77ffffff"
 
 msgid "#80000000"
 msgstr "#80000000"
@@ -83,6 +83,9 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(STÖKK)"
 
+msgid "(empty)"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 mappa"
 
@@ -90,10 +93,10 @@ msgid "/var directory"
 msgstr "/var mappa"
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 msgid "1"
-msgstr ""
+msgstr "1"
 
 msgid "1.0"
 msgstr "1.0"
@@ -119,6 +122,9 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
+msgid "16:9 Letterbox"
+msgstr ""
+
 msgid "16:9 always"
 msgstr "16:9 alltaf"
 
@@ -126,16 +132,16 @@ msgid "18 V"
 msgstr "18 V"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
 msgid "30 minutes"
 msgstr "30 mínútur"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -144,25 +150,25 @@ msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "5"
-msgstr ""
+msgstr "5"
 
 msgid "5 minutes"
 msgstr "5 mínútur"
 
 msgid "6"
-msgstr ""
+msgstr "6"
 
 msgid "60 minutes"
 msgstr "60 mínútur"
 
 msgid "7"
-msgstr ""
+msgstr "7"
 
 msgid "8"
-msgstr ""
+msgstr "8"
 
 msgid "9"
-msgstr ""
+msgstr "9"
 
 msgid "<unknown>"
 msgstr "<óþekktur>"
@@ -177,10 +183,20 @@ msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Tímastilling vill setja Dreamboxið í\n"
+"biðstöðu. Viltu gera það núna?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
+msgstr ""
+"Tímastilling vill slökkva á Dreamboxinu.\n"
+"Viltu gera það núna?"
+
+#, python-format
+msgid ""
+"A record has been started:\n"
+"%s"
 msgstr ""
 
 msgid ""
@@ -208,11 +224,15 @@ msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"Tímastilling vill setja Dreamboxið í\n"
+"biðstöðu. Viltu gera það núna?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"Tímastilling vill slökkva á Dreamboxinu.\n"
+"Viltu gera það núna?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -258,7 +278,7 @@ msgid "Add files to playlist"
 msgstr "Bæta skrám við spilunarlista"
 
 msgid "Add timer"
-msgstr "Bæta við tímastillingu"
+msgstr "Bæta við tíma"
 
 msgid "Add to bouquet"
 msgstr "Bæta við rásavönd"
@@ -418,6 +438,9 @@ msgstr "Rás:"
 msgid "Channellist menu"
 msgstr "Valmynd rásalista"
 
+msgid "Choose Tuner"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Veldu fléttu"
 
@@ -440,10 +463,10 @@ msgid "Code rate low"
 msgstr "Gagna hraði, lár"
 
 msgid "Coderate HP"
-msgstr ""
+msgstr "Gagnahraði HP"
 
 msgid "Coderate LP"
-msgstr ""
+msgstr "Gagnahraði LP"
 
 msgid "Color Format"
 msgstr "Lita kerfi"
@@ -558,7 +581,7 @@ msgid "Detected NIMs:"
 msgstr "Fann NIM:"
 
 msgid "Device Setup..."
-msgstr ""
+msgstr "Uppsetning tækja..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -602,6 +625,9 @@ msgstr ""
 
 msgid "Dish"
 msgstr "Diskur"
+
+msgid "Display Setup"
+msgstr ""
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -664,7 +690,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Viltu horfa á kennslu?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "Ekki stoppa núverandi atriði en hætta við næsta"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -778,7 +804,7 @@ msgid "Exit wizard"
 msgstr "Hætta í álfi"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Meiri stillingar..."
 
 msgid "Extensions"
 msgstr "Viðbætur"
@@ -803,6 +829,15 @@ msgstr "Franska"
 
 msgid "Frequency"
 msgstr "Tíðni"
+
+msgid "Frequency bands"
+msgstr ""
+
+msgid "Frequency scan step size(khz)"
+msgstr ""
+
+msgid "Frequency steps"
+msgstr ""
 
 msgid "Fri"
 msgstr "Fös"
@@ -900,7 +935,7 @@ msgid "Increased voltage"
 msgstr "Aukin spenna"
 
 msgid "Index"
-msgstr ""
+msgstr "Yfirlit"
 
 msgid "InfoBar"
 msgstr "Upplýsingar"
@@ -955,9 +990,6 @@ msgstr "Uppsetning lyklaborðs"
 
 msgid "Keymap"
 msgstr "Lyklaborðsstilling"
-
-msgid "LCD Setup"
-msgstr "LCD uppsetning"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1083,7 +1115,7 @@ msgid "Movie Menu"
 msgstr "Bíómynda valmynd"
 
 msgid "Multi EPG"
-msgstr "Marg rása EPG"
+msgstr "Mörg EPG"
 
 msgid "Multiple service support"
 msgstr "Styður margar rásir"
@@ -1100,9 +1132,6 @@ msgstr "Ekki til"
 msgid "NEXT"
 msgstr "NÆST"
 
-msgid "NIM "
-msgstr "NIM"
-
 msgid "NOW"
 msgstr "NÚNA"
 
@@ -1117,13 +1146,13 @@ msgstr "Nafnaþjónn"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr ""
+msgstr "Nafnaþjónn %d"
 
 msgid "Nameserver Setup"
-msgstr ""
+msgstr "Uppsetning nafnaþjóns"
 
 msgid "Nameserver Setup..."
-msgstr ""
+msgstr "Uppsetning nafnaþjóns..."
 
 msgid "Netmask"
 msgstr "Netmaski"
@@ -1192,16 +1221,27 @@ msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Enginn móttakari er stilltur til að nota með staðsetjara!"
 
 msgid ""
+"No tuner is enabled!\n"
+"Please setup your tuner settings before you start a service scan."
+msgstr ""
+
+msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Enginn virkur kóði fyrir rásalæsingu fannst!\n"
+"Viltu búa til nýjan kóða núna?\n"
+"Ef þú svarar \"Nei\" þá er engin læsing virk."
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Enginn virkur kóði fyrir uppsetningu fannst!\n"
+"Viltu búa til nýjan kóða núna?\n"
+"Ef þú svarar \"Nei\" þá er engin læsing virk."
 
 msgid "No, do nothing."
 msgstr "Nei, ekki gera neitt."
@@ -1253,7 +1293,7 @@ msgid "Online-Upgrade"
 msgstr "Uppfærsla frá neti"
 
 msgid "Orbital Position"
-msgstr ""
+msgstr "Staðsetnging gervihnattar"
 
 msgid "Other..."
 msgstr "Annað..."
@@ -1294,11 +1334,14 @@ msgstr "Kóða vantar"
 msgid "Play recorded movies..."
 msgstr "Spila uppteknar myndir..."
 
+msgid "Please change recording endtime"
+msgstr ""
+
 msgid "Please choose an extension..."
 msgstr "Vinsamlega veldu viðbót.."
 
 msgid "Please do not change values when you not know what you do!"
-msgstr ""
+msgstr "Ekki breyta gildum ef þú veist ekki hvað þú ert að gera!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Settu inn nafn á nýjum rása vendi"
@@ -1326,6 +1369,12 @@ msgstr "Veldu orð til að leita út..."
 
 msgid "Please set up tuner B"
 msgstr "Vinsamlega settu upp móttakara B"
+
+msgid "Please set up tuner C"
+msgstr ""
+
+msgid "Please set up tuner D"
+msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1402,11 +1451,11 @@ msgstr "Læsa valmynd"
 msgid "Provider"
 msgstr "Sendandi"
 
+msgid "Provider to scan"
+msgstr ""
+
 msgid "Providers"
 msgstr "Sendendur"
-
-msgid "Quick"
-msgstr "Hratt"
 
 msgid "Quickzap"
 msgstr "Hraðstökk"
@@ -1451,17 +1500,17 @@ msgid "Recording"
 msgstr "Upptaka"
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really reboot "
+"Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really restart "
+"Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
 
 msgid ""
-"Recording(s) are in progress or comming up in few seconds... really shutdown "
+"Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
 
@@ -1487,7 +1536,7 @@ msgid "Repeat Type"
 msgstr "Gerð endurtekningar"
 
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr ""
+msgstr "Endurtaka atriði sem er í upptöku.. hvað viltu gera núna?"
 
 msgid "Replace current playlist"
 msgstr "Skipta út núverandi spilunarlista"
@@ -1522,9 +1571,6 @@ msgstr "Keyri"
 msgid "S-Video"
 msgstr "S-Video"
 
-msgid "SNR:"
-msgstr "SNR:"
-
 msgid "Sat"
 msgstr "Lau"
 
@@ -1535,7 +1581,7 @@ msgid "Satellite"
 msgstr "Gervihnöttur"
 
 msgid "Satellite Equipment Setup"
-msgstr ""
+msgstr "Uppsetning Gervihnattabúnaðar"
 
 msgid "Satellites"
 msgstr "Gervihnettir"
@@ -1549,8 +1595,68 @@ msgstr "Laugardagur"
 msgid "Scaling Mode"
 msgstr "Kvörðunar aðferð"
 
-msgid "Scan NIM"
-msgstr "Leita NIM"
+msgid "Scan "
+msgstr ""
+
+msgid "Scan QAM128"
+msgstr ""
+
+msgid "Scan QAM16"
+msgstr ""
+
+msgid "Scan QAM256"
+msgstr ""
+
+msgid "Scan QAM32"
+msgstr ""
+
+msgid "Scan QAM64"
+msgstr ""
+
+msgid "Scan SR6875"
+msgstr ""
+
+msgid "Scan SR6900"
+msgstr ""
+
+msgid "Scan additional SR"
+msgstr ""
+
+msgid "Scan band EU HYPER"
+msgstr ""
+
+msgid "Scan band EU MID"
+msgstr ""
+
+msgid "Scan band EU SUPER"
+msgstr ""
+
+msgid "Scan band EU UHF IV"
+msgstr ""
+
+msgid "Scan band EU UHF V"
+msgstr ""
+
+msgid "Scan band EU VHF I"
+msgstr ""
+
+msgid "Scan band EU VHF III"
+msgstr ""
+
+msgid "Scan band US HIGH"
+msgstr ""
+
+msgid "Scan band US HYPER"
+msgstr ""
+
+msgid "Scan band US LOW"
+msgstr ""
+
+msgid "Scan band US MID"
+msgstr ""
+
+msgid "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Leita austur"
@@ -1565,7 +1671,7 @@ msgid "Select HDD"
 msgstr "Veldu harðadisk"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "Veldu Netkort"
 
 msgid "Select a movie"
 msgstr "Veldu mynd"
@@ -1614,9 +1720,6 @@ msgstr ""
 msgid "Service scan"
 msgstr "Rása leit"
 
-msgid "Service scan type needed"
-msgstr "Vantar gerð rásaleitar"
-
 msgid "Serviceinfo"
 msgstr "Upplýsingar"
 
@@ -1636,7 +1739,7 @@ msgid "Show infobar on channel change"
 msgstr "Sýna upplýsingaborða við að skipta um stöð"
 
 msgid "Show infobar on event change"
-msgstr ""
+msgstr "Sýna upplýsinga borða við breytingu á atriði"
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Sýna upplýsingaborða við stökk fram eða aftur"
@@ -1683,11 +1786,9 @@ msgstr "Tíma aðgerð:"
 msgid "Slideshow Interval (sec.)"
 msgstr "Tími milli mynda (sek.)"
 
-msgid "Slot "
-msgstr "Hólf"
-
-msgid "Socket "
-msgstr "Tengi"
+#, python-format
+msgid "Slot %d"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Sum innskot eru ekki til:\n"
@@ -1753,10 +1854,10 @@ msgid "Stop Timeshift?"
 msgstr "Stoppa tímafærslu?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Stoppa núverandi atriði og hætta við komandi atriði"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Stoppa núverandi atriði en halda komandi atriðum"
 
 msgid "Stop playing this movie?"
 msgstr "Stoppa spilun?"
@@ -1801,7 +1902,7 @@ msgid "Symbol Rate"
 msgstr "Gagnahraði"
 
 msgid "Symbolrate"
-msgstr ""
+msgstr "Gagnahraði"
 
 msgid "System"
 msgstr "Kerfi"
@@ -1817,9 +1918,6 @@ msgstr "Sendandi á landi"
 
 msgid "Test mode"
 msgstr "Prufu hamur"
-
-msgid "Test-Messagebox?"
-msgstr "Prófa skilaboðaskjóðu?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -1844,7 +1942,7 @@ msgid "The sleep timer has been activated."
 msgstr "Tíma stilling fyrir svefn er virk."
 
 msgid "The sleep timer has been disabled."
-msgstr ""
+msgstr "Tímastilling til að slökkva er óvirkur."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -1929,7 +2027,7 @@ msgid "Toneburst A/B"
 msgstr "Tón stýring A/B"
 
 msgid "Transmission Mode"
-msgstr ""
+msgstr "Sendi aðferð"
 
 msgid "Transmission mode"
 msgstr "Sendi stilling"
@@ -1938,13 +2036,16 @@ msgid "Transponder"
 msgstr "Sendir"
 
 msgid "Transponder Type"
-msgstr ""
-
-msgid "Transpondertype"
 msgstr "Gerð sendis"
 
 msgid "Tries left:"
 msgstr "Tilraunir eftir:"
+
+msgid "Try to find used Transponders in cable network.. please wait..."
+msgstr ""
+
+msgid "Try to find used transponders in cable network.. please wait..."
+msgstr ""
 
 msgid "Tue"
 msgstr "Þri"
@@ -1960,6 +2061,9 @@ msgstr "Tókst ekki að stilla inn!"
 
 msgid "Tuner"
 msgstr "Móttakari"
+
+msgid "Tuner "
+msgstr ""
 
 msgid "Tuner Slot"
 msgstr "Móttakara tengi"
@@ -2028,7 +2132,7 @@ msgid "Use DHCP"
 msgstr "Nota DHCP"
 
 msgid "Use a gateway"
-msgstr ""
+msgstr "Nota beini"
 
 msgid "Use power measurement"
 msgstr "Nota aflmælingu"
@@ -2053,6 +2157,9 @@ msgstr "Nota usals fyrir þennan hnött"
 msgid "Use wizard to set up basic features"
 msgstr "Nota álfinn til að setja upp grunnstillingar"
 
+msgid "Used service scan type"
+msgstr ""
+
 msgid "User defined"
 msgstr "Stillt af notanda"
 
@@ -2063,7 +2170,7 @@ msgid "VCR scart"
 msgstr "Vídeó scart"
 
 msgid "View Rass interactive..."
-msgstr ""
+msgstr "Skoða gagnvirkt Útvarp"
 
 msgid "View teletext..."
 msgstr "Skoða textavarp..."
@@ -2117,6 +2224,9 @@ msgstr "Að hverju viltu leita?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Hvar viltu vista afritið?"
+
+msgid "Write error while recording. Disk full?\n"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2289,6 +2399,9 @@ msgstr "bæta við merki"
 msgid "add recording (enter recording duration)"
 msgstr "bæta við upptöku (stilla tíma á upptöku)"
 
+msgid "add recording (enter recording endtime)"
+msgstr ""
+
 msgid "add recording (indefinitely)"
 msgstr "bæta við upptöku (endalaus)"
 
@@ -2329,6 +2442,9 @@ msgstr "by Exif"
 msgid "change recording (duration)"
 msgstr "breyta upptöku (tíma)"
 
+msgid "change recording (endtime)"
+msgstr ""
+
 msgid "circular left"
 msgstr "hringpólun vinstri"
 
@@ -2368,6 +2484,9 @@ msgstr "óvirkt"
 msgid "disable move mode"
 msgstr "hætta í færslu stöðu"
 
+msgid "disabled"
+msgstr ""
+
 msgid "do not change"
 msgstr "ekki breyta"
 
@@ -2383,8 +2502,8 @@ msgstr "búinn!"
 msgid "edit alternatives"
 msgstr "breyta valkosti"
 
-msgid "empty/unknown"
-msgstr "tómur/óþekkt"
+msgid "empty"
+msgstr ""
 
 msgid "enable"
 msgstr "virkt"
@@ -2397,6 +2516,9 @@ msgstr "byrja breytingu uppáhalds lista"
 
 msgid "enable move mode"
 msgstr "virkja færlsu stöðu"
+
+msgid "enabled"
+msgstr ""
 
 msgid "end alternatives edit"
 msgstr "hætta breytingum valkosta"
@@ -2423,7 +2545,7 @@ msgid "go to deep standby"
 msgstr "fara í djúpsvefn"
 
 msgid "go to standby"
-msgstr ""
+msgstr "fara í biðstöðu"
 
 msgid "hear radio..."
 msgstr "hlusta á útvarp...."
@@ -2462,9 +2584,6 @@ msgstr "hætta í spilara"
 
 msgid "left"
 msgstr "vinstri"
-
-msgid "list"
-msgstr "listi"
 
 msgid "locked"
 msgstr "læst"
@@ -2646,9 +2765,6 @@ msgstr "sekúndur"
 msgid "seconds."
 msgstr "sekúndur."
 
-msgid "select Slot"
-msgstr "veldu hólf"
-
 msgid "service pin"
 msgstr "rása kóði"
 
@@ -2665,7 +2781,7 @@ msgid "show event details"
 msgstr "sýna atriði nánar"
 
 msgid "show transponder info"
-msgstr ""
+msgstr "sýna upplýsingar um sendi"
 
 msgid "shutdown"
 msgstr "slökkva"
@@ -2881,6 +2997,9 @@ msgstr "stokkið"
 #~ msgid "LCD"
 #~ msgstr "LCD"
 
+#~ msgid "LCD Setup"
+#~ msgstr "LCD uppsetning"
+
 #~ msgid "Language"
 #~ msgstr "Tungumál"
 
@@ -2889,6 +3008,9 @@ msgstr "stokkið"
 
 #~ msgid "Multi bouquets"
 #~ msgstr "Margar fléttur"
+
+#~ msgid "NIM "
+#~ msgstr "NIM"
 
 #~ msgid "Network"
 #~ msgstr "Netkerfi"
@@ -2908,8 +3030,32 @@ msgstr "stokkið"
 #~ msgid "Predefined satellite"
 #~ msgstr "Fyrirfram stilltur gervihnöttur"
 
+#~ msgid "Quick"
+#~ msgstr "Hratt"
+
 #~ msgid "Record Splitsize"
 #~ msgstr "Stærð upptökuhluta"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "reboot now?"
+#~ msgstr ""
+#~ "Upptaka er í gangi eða fljótlega fyrirhuguð... viltu virkilega endurræsa "
+#~ "núna?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Upptaka er í gangi eða fljótlega fyrirhuguð... viltu virkilega endurræsa "
+#~ "núna?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or comming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Upptaka er í gangi eða fljótlega fyrirhuguð... viltu virkilega slökkva "
+#~ "núna?"
 
 #~ msgid "Remember service pin"
 #~ msgstr "Muna kóða fyrir rásir"
@@ -2920,11 +3066,17 @@ msgstr "stokkið"
 #~ msgid "SNR"
 #~ msgstr "SNR"
 
+#~ msgid "SNR:"
+#~ msgstr "SNR:"
+
 #~ msgid "Satconfig"
 #~ msgstr "Stilla gervihnetti"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Stilling gervihnatta"
+
+#~ msgid "Scan NIM"
+#~ msgstr "Leita NIM"
 
 #~ msgid "Secondary cable from motorized LNB"
 #~ msgstr "Seinni kapall frá mótorstýrðum nema"
@@ -2934,6 +3086,9 @@ msgstr "stokkið"
 
 #~ msgid "Select reference service"
 #~ msgstr "Velja viðmiðunarrás"
+
+#~ msgid "Service scan type needed"
+#~ msgstr "Vantar gerð rásaleitar"
 
 #~ msgid "Setup Lock"
 #~ msgstr "Setja upp læsingu"
@@ -2947,14 +3102,26 @@ msgstr "stokkið"
 #~ msgid "Skip confirmations"
 #~ msgstr "Sleppa staðfestingum"
 
+#~ msgid "Slot "
+#~ msgstr "Hólf"
+
+#~ msgid "Socket "
+#~ msgstr "Tengi"
+
 #~ msgid "Swap services"
 #~ msgstr "Skipta á milli rása"
+
+#~ msgid "Test-Messagebox?"
+#~ msgstr "Prófa skilaboðaskjóðu?"
 
 #~ msgid "The sleep timer has been acitvated."
 #~ msgstr "Tímastilling fyrir biðstöðu er virkur."
 
 #~ msgid "Timeshifting"
 #~ msgstr "Lifandi pása"
+
+#~ msgid "Transpondertype"
+#~ msgstr "Gerð sendis"
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF Mótari"
@@ -2977,11 +3144,20 @@ msgstr "stokkið"
 #~ msgid "copy to favourites"
 #~ msgstr "bæta við uppáhalds lista"
 
+#~ msgid "empty/unknown"
+#~ msgstr "tómur/óþekkt"
+
+#~ msgid "list"
+#~ msgstr "listi"
+
 #~ msgid "remove bouquet"
 #~ msgstr "eyða fléttu"
 
 #~ msgid "remove service"
 #~ msgstr "eyða rás"
+
+#~ msgid "select Slot"
+#~ msgstr "veldu hólf"
 
 #~ msgid "use power delta"
 #~ msgstr "nota afl delta"
