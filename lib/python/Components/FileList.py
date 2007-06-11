@@ -190,3 +190,16 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
+
+	def execBegin(self):
+		harddiskmanager.on_partition_list_change.append(self.partitionListChanged)
+		
+	def execEnd(self):
+		harddiskmanager.on_partition_list_change.remove(self.partitionListChanged)
+
+	def refresh(self):
+		self.changeDir(self.current_directory, self.getFilename())
+
+	def partitionListChanged(self, action, device):
+		if self.current_directory is None:
+			self.refresh()

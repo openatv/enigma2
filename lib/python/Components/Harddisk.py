@@ -1,6 +1,7 @@
 from os import system, listdir, statvfs, popen
 
 from Tools.Directories import SCOPE_HDD, resolveFilename
+from Tools.CList import CList
 
 def tryOpen(filename):
 	try:
@@ -163,9 +164,10 @@ def existHDD(num):
 	return -1
 
 class Partition:
-	def __init__(self, mountpoint, description = ""):
+	def __init__(self, mountpoint, description = "", force_mounted = False):
 		self.mountpoint = mountpoint
 		self.description = description
+		self.force_mounted = force_mounted
 
 	def stat(self):
 		return statvfs(self.mountpoint)
@@ -187,6 +189,8 @@ class Partition:
 	def mounted(self):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
 		# TODO: can os.path.ismount be used?
+		if self.force_mounted:
+			return True
 		procfile = tryOpen("/proc/mounts")
 		for n in procfile.readlines():
 			if n.split(' ')[1] == self.mountpoint:
@@ -199,6 +203,8 @@ class HarddiskManager:
 		self.hdd = [ ]
 		
 		self.partitions = [ ]
+		
+		self.on_partition_list_change = CList()
 		
 		for hddNum in range(8):
 			if existHDD(hddNum):
@@ -223,6 +229,21 @@ class HarddiskManager:
 		
 		for x in p:
 			self.partitions.append(Partition(mountpoint = x[0], description = x[1]))
+
+	def getAutofsMountpoint(self, device):
+		return "/autofs/%s/" % (device)
+
+	def addHotplugPartition(self, device, description):
+		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True)
+		self.partitions.append(p)
+		self.on_partition_list_change("add", p)
+
+	def removeHotplugPartition(self, device):
+		mountpoint = self.getAutofsMountpoint(device)
+		for x in self.partitions[:]:
+			if x.mountpoint == mountpoint:
+				self.partitions.remove(x)
+				self.on_partition_list_change("remove", x)
 
 	def HDDCount(self):
 		return len(self.hdd)
