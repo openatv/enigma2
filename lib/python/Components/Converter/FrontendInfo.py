@@ -24,6 +24,7 @@ class FrontendInfo(Converter, object):
 	@cached
 	def getText(self):
 		assert self.type != self.LOCK, "the text output of FrontendInfo cannot be used for lock info"
+		percent = None
 		if self.type == self.BER: # as count
 			count = self.source.ber
 			if count is not None:
@@ -35,9 +36,11 @@ class FrontendInfo(Converter, object):
 		elif self.type == self.SNR:
 			percent = self.source.snr
 		elif self.type == self.SNRdB:
-			if self.source.snr_db is None:
-				return "N/A"
-			return "%3.02f dB" % (self.source.snr_db / 100.0)
+			if self.source.snr_db is not None:
+				return "%3.02f dB" % (self.source.snr_db / 100.0)
+			elif self.source.snr is not None: #fallback to normal SNR...
+				percent = self.source.snr
+				return "SNR:%d %%" % (percent * 100 / 65536)
 		if percent is None:
 			return "N/A"
 
