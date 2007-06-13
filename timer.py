@@ -72,7 +72,9 @@ class TimerEntry:
 				
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
 			self.begin = int(mktime(localbegin))
-			self.end = int(mktime(localend)) + 1
+			self.end = int(mktime(localend))
+			if self.begin == self.end:
+				self.end += 1
 
 			print "ProcessRepeated result"
 			print strftime("%c", localtime(self.begin))
