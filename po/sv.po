@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-10 22:28+0200\n"
-"PO-Revision-Date: 2007-04-17 14:27+0100\n"
+"POT-Creation-Date: 2007-06-14 19:28+0200\n"
+"PO-Revision-Date: 2007-06-14 13:53+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
-"Language-Team: none\n"
+"Language-Team: none <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -85,7 +85,7 @@ msgid "(ZAP)"
 msgstr "(ZAP)"
 
 msgid "(empty)"
-msgstr ""
+msgstr "(tom)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 bibliotek"
@@ -124,7 +124,7 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Letterbox"
-msgstr ""
+msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "16:9 alltid"
@@ -199,6 +199,8 @@ msgid ""
 "A record has been started:\n"
 "%s"
 msgstr ""
+"En inspelning har påbörjats:\n"
+"%s"
 
 msgid ""
 "A recording is currently running.\n"
@@ -328,7 +330,7 @@ msgid "Audio"
 msgstr "Ljud"
 
 msgid "Audio Options..."
-msgstr "Ljud optioner..."
+msgstr "Ljud Optioner..."
 
 msgid "Auto"
 msgstr "Auto"
@@ -435,7 +437,7 @@ msgid "Channellist menu"
 msgstr "Kanallista meny"
 
 msgid "Choose Tuner"
-msgstr ""
+msgstr "Välj Tuner"
 
 msgid "Choose bouquet"
 msgstr "Välj bouquet"
@@ -535,7 +537,7 @@ msgid "Cut"
 msgstr "Klipp"
 
 msgid "Cutlist editor..."
-msgstr "Klipplist editor"
+msgstr "Klipplist editor..."
 
 msgid "Czech"
 msgstr "Tjeckiska"
@@ -577,7 +579,7 @@ msgid "Detected NIMs:"
 msgstr "Hittad NIMs:"
 
 msgid "Device Setup..."
-msgstr ""
+msgstr "Utrustning Installation..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -623,7 +625,7 @@ msgid "Dish"
 msgstr "Parabol"
 
 msgid "Display Setup"
-msgstr ""
+msgstr "Display Installation"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -770,7 +772,7 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 msgid "Enter main menu..."
-msgstr "Gå till huvudmeny"
+msgstr "Gå till huvudmeny..."
 
 msgid "Enter the service pin"
 msgstr "Ange service PIN"
@@ -800,7 +802,7 @@ msgid "Exit wizard"
 msgstr "Avsluta guiden"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Utökad Installation..."
 
 msgid "Extensions"
 msgstr "Utökningar"
@@ -827,13 +829,13 @@ msgid "Frequency"
 msgstr "Frekvens"
 
 msgid "Frequency bands"
-msgstr ""
+msgstr "Frekvensband"
 
 msgid "Frequency scan step size(khz)"
-msgstr ""
+msgstr "Frekvenssökningssteg (khz)"
 
 msgid "Frequency steps"
-msgstr ""
+msgstr "Frekvenssteg"
 
 msgid "Fri"
 msgstr "Fre"
@@ -930,7 +932,7 @@ msgid "Increased voltage"
 msgstr "Ökad spänning"
 
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 msgid "InfoBar"
 msgstr "InfoBalk"
@@ -1141,13 +1143,13 @@ msgstr "Namnserver"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr ""
+msgstr "Namnserver %d"
 
 msgid "Nameserver Setup"
-msgstr ""
+msgstr "Namnserver Installation"
 
 msgid "Nameserver Setup..."
-msgstr ""
+msgstr "Namnserver Installation..."
 
 msgid "Netmask"
 msgstr "Nätmask"
@@ -1218,6 +1220,8 @@ msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Ingen tuner är aktiverad!\n"
+"Vänligen installera tuner före scanning för kanaler."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1329,13 +1333,13 @@ msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
 msgid "Please change recording endtime"
-msgstr ""
+msgstr "Vänligen ändra inspelnings sluttid"
 
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
 msgid "Please do not change values when you not know what you do!"
-msgstr ""
+msgstr "Vänligen ändra inte om du inte vet vad du gör!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Ange namn för den nya bouquet"
@@ -1365,10 +1369,10 @@ msgid "Please set up tuner B"
 msgstr "Installera Tuner B."
 
 msgid "Please set up tuner C"
-msgstr ""
+msgstr "Vänligen installera tuner C"
 
 msgid "Please set up tuner D"
-msgstr ""
+msgstr "Vänligen installera tuner D"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1447,7 +1451,7 @@ msgid "Provider"
 msgstr "Leverantör"
 
 msgid "Provider to scan"
-msgstr ""
+msgstr "Leverantör att scanna"
 
 msgid "Providers"
 msgstr "Leverantörer"
@@ -1498,16 +1502,19 @@ msgid ""
 "Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
+"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
+"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
+"Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
 
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
@@ -1564,6 +1571,9 @@ msgstr "Rolloff"
 msgid "Running"
 msgstr "Körandes"
 
+msgid "Russian"
+msgstr ""
+
 msgid "S-Video"
 msgstr "S-Video"
 
@@ -1577,7 +1587,7 @@ msgid "Satellite"
 msgstr "Satellit"
 
 msgid "Satellite Equipment Setup"
-msgstr ""
+msgstr "Satellit Utrustning Installation"
 
 msgid "Satellites"
 msgstr "Satelliter"
@@ -1592,67 +1602,67 @@ msgid "Scaling Mode"
 msgstr "Scaling Läge"
 
 msgid "Scan "
-msgstr ""
+msgstr "Söka"
 
 msgid "Scan QAM128"
-msgstr ""
+msgstr "Söka QAM128"
 
 msgid "Scan QAM16"
-msgstr ""
+msgstr "Söka QAM16"
 
 msgid "Scan QAM256"
-msgstr ""
+msgstr "Söka QAM256"
 
 msgid "Scan QAM32"
-msgstr ""
+msgstr "Söka QAM32"
 
 msgid "Scan QAM64"
-msgstr ""
+msgstr "Söka QAM64"
 
 msgid "Scan SR6875"
-msgstr ""
+msgstr "Söka SR6875"
 
 msgid "Scan SR6900"
-msgstr ""
+msgstr "Söka SR6900"
 
 msgid "Scan additional SR"
-msgstr ""
+msgstr "Sök ytterligare SR"
 
 msgid "Scan band EU HYPER"
-msgstr ""
+msgstr "Sök EU HYPER band"
 
 msgid "Scan band EU MID"
-msgstr ""
+msgstr "Sök EU MID band"
 
 msgid "Scan band EU SUPER"
-msgstr ""
+msgstr "Sök EU SUPER band"
 
 msgid "Scan band EU UHF IV"
-msgstr ""
+msgstr "Sök EU UHF IV band"
 
 msgid "Scan band EU UHF V"
-msgstr ""
+msgstr "Sök EU UHF V band"
 
 msgid "Scan band EU VHF I"
-msgstr ""
+msgstr "Sök EU VHF I band"
 
 msgid "Scan band EU VHF III"
-msgstr ""
+msgstr "Sök EU VHF III band"
 
 msgid "Scan band US HIGH"
-msgstr ""
+msgstr "Sök US HIGH band"
 
 msgid "Scan band US HYPER"
-msgstr ""
+msgstr "Sök US HYPER band"
 
 msgid "Scan band US LOW"
-msgstr ""
+msgstr "Sök US LOW band"
 
 msgid "Scan band US MID"
-msgstr ""
+msgstr "Sök US MID band"
 
 msgid "Scan band US SUPER"
-msgstr ""
+msgstr "Sök US SUPER band"
 
 msgid "Search east"
 msgstr "Sök öst"
@@ -1667,7 +1677,7 @@ msgid "Select HDD"
 msgstr "Välj hårddisk"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "Välj Nätverk Adapter"
 
 msgid "Select a movie"
 msgstr "Välj en film"
@@ -1735,7 +1745,7 @@ msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
 
 msgid "Show infobar on event change"
-msgstr ""
+msgstr "Visa infobar vid händelseändring"
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Visa infobalk vid hopp framåt/bakåt"
@@ -1784,7 +1794,7 @@ msgstr "Slideshow Intervall (sec.)"
 
 #, python-format
 msgid "Slot %d"
-msgstr ""
+msgstr "Slot %d"
 
 msgid "Some plugins are not available:\n"
 msgstr "Några plugin är inte tillgängliga:\n"
@@ -1938,7 +1948,7 @@ msgid "The sleep timer has been activated."
 msgstr "Sovtimer har aktiverats."
 
 msgid "The sleep timer has been disabled."
-msgstr ""
+msgstr "Sovtimer är deaktiverad."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2039,10 +2049,10 @@ msgid "Tries left:"
 msgstr "Försök kvar:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr ""
+msgstr "Försöker hitta Transponders i kabelnätverket... vänligen vänta..."
 
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr ""
+msgstr "Försöker hitta transponders i kabelnätverket... vänligen vänta..."
 
 msgid "Tue"
 msgstr "Tis"
@@ -2060,7 +2070,7 @@ msgid "Tuner"
 msgstr "Tuner"
 
 msgid "Tuner "
-msgstr ""
+msgstr "Tuner"
 
 msgid "Tuner Slot"
 msgstr "Tuner Slot"
@@ -2129,7 +2139,7 @@ msgid "Use DHCP"
 msgstr "Använd DHCP"
 
 msgid "Use a gateway"
-msgstr ""
+msgstr "Använd en gateway"
 
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
@@ -2156,7 +2166,7 @@ msgid "Use wizard to set up basic features"
 msgstr "Använd guiden för grundinställningarna"
 
 msgid "Used service scan type"
-msgstr ""
+msgstr "Använd kanal söktyp"
 
 msgid "User defined"
 msgstr "Användardefinierat"
@@ -2168,7 +2178,7 @@ msgid "VCR scart"
 msgstr "Video scart"
 
 msgid "View Rass interactive..."
-msgstr ""
+msgstr "Visa Rass interaktivitet..."
 
 msgid "View teletext..."
 msgstr "Visa teletext..."
@@ -2225,7 +2235,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
 
 msgid "Write error while recording. Disk full?\n"
-msgstr ""
+msgstr "Skrivfel under inspelning. Disken full?\n"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2403,7 +2413,7 @@ msgid "add recording (enter recording duration)"
 msgstr "lägg till inspelning (ange inspelningslängd)"
 
 msgid "add recording (enter recording endtime)"
-msgstr ""
+msgstr "lägg till inspelning (ange inspelningssluttid)"
 
 msgid "add recording (indefinitely)"
 msgstr "lägg till inspelning (oändlig)"
@@ -2446,7 +2456,7 @@ msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
 
 msgid "change recording (endtime)"
-msgstr ""
+msgstr "ändra inspelning (sluttid)"
 
 msgid "circular left"
 msgstr "cirkulär vänster"
@@ -2488,7 +2498,7 @@ msgid "disable move mode"
 msgstr "avaktivera flyttläge"
 
 msgid "disabled"
-msgstr ""
+msgstr "avaktiverad"
 
 msgid "do not change"
 msgstr "ändra inte"
@@ -2506,7 +2516,7 @@ msgid "edit alternatives"
 msgstr "ändra alternativ"
 
 msgid "empty"
-msgstr ""
+msgstr "tom"
 
 msgid "enable"
 msgstr "aktivera"
@@ -2521,7 +2531,7 @@ msgid "enable move mode"
 msgstr "aktivera flyttläge"
 
 msgid "enabled"
-msgstr ""
+msgstr "aktiverad"
 
 msgid "end alternatives edit"
 msgstr "avsluta ändra alternativ"
@@ -2844,7 +2854,7 @@ msgid "vertical"
 msgstr "vertikal"
 
 msgid "view extensions..."
-msgstr "visa utökningar"
+msgstr "visa utökningar..."
 
 msgid "view recordings..."
 msgstr "visa inspelningar..."
