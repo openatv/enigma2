@@ -1054,6 +1054,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastroot = config.tv.lastroot
 		self.revertMode = None
 		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
+		self.new_service_played = False
 
 	def multibouquet_config_changed(self, val):
 		self.recallBouquetMode()
@@ -1129,11 +1130,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		nref = self.getCurrentSelection()
 		if ref is None or ref != nref:
+			self.new_service_played = True
 			self.session.nav.playService(nref)
 			self.saveRoot()
 			self.saveChannel(nref)
 			config.servicelist.lastmode.save()
 			self.addToHistory(nref)
+
+	def newServicePlayed(self):
+		ret = self.new_service_played
+		self.new_service_played = False
+		return ret
 
 	def addToHistory(self, ref):
 		if self.servicePath is not None:
