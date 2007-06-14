@@ -891,8 +891,10 @@ void eDVBChannel::cueSheetEvent(int event)
 	case eCueSheet::evtSkipmode:
 	{
 		{
-			eSingleLocker l(m_cue->m_lock);
+			m_cue->m_lock.WrLock();
 			m_cue->m_seek_requests.push_back(std::pair<int, pts_t>(1, 0)); /* resync */
+			m_cue->m_lock.Unlock();
+			eRdLocker l(m_cue->m_lock);
 			if (m_cue->m_skipmode_ratio)
 			{
 				int bitrate = m_tstools.calcBitrate(); /* in bits/s */
@@ -975,13 +977,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		return;
 	}
 
-	eSingleLocker l(m_cue->m_lock);
-	
+	m_cue->m_lock.RdLock();
 	if (!m_cue->m_decoding_demux)
 	{
 		start = current_offset;
 		size = max;
 		eDebug("getNextSourceSpan, no decoding demux. forcing normal play");
+		m_cue->m_lock.Unlock();
 		return;
 	}
 
@@ -998,7 +1000,11 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	while (!m_cue->m_seek_requests.empty())
 	{
 		std::pair<int, pts_t> seek = m_cue->m_seek_requests.front();
+		m_cue->m_lock.Unlock();
+		m_cue->m_lock.WrLock();
 		m_cue->m_seek_requests.pop_front();
+		m_cue->m_lock.Unlock();
+		m_cue->m_lock.RdLock();
 		int relative = seek.first;
 		pts_t pts = seek.second;
 
@@ -1070,6 +1076,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
 	}
+
+	m_cue->m_lock.Unlock();
 
 	for (std::list<std::pair<off_t, off_t> >::const_iterator i(m_source_span.begin()); i != m_source_span.end(); ++i)
 	{
@@ -1404,25 +1412,24 @@ eCueSheet::eCueSheet()
 
 void eCueSheet::seekTo(int relative, const pts_t &pts)
 {
-	{
-		eSingleLocker l(m_lock);
-		m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
-	}
+	m_lock.WrLock();
+	m_seek_requests.push_back(std::pair<int, pts_t>(relative, pts));
+	m_lock.Unlock();
 	m_event(evtSeek);
 }
 	
 void eCueSheet::clear()
 {
-	eSingleLocker l(m_lock);
+	m_lock.WrLock();
 	m_spans.clear();
+	m_lock.Unlock();
 }
 
 void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 {
-	{
-		eSingleLocker l(m_lock);
-		m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
-	}
+	m_lock.WrLock();
+	m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
+	m_lock.Unlock();
 }
 
 void eCueSheet::commitSpans()
@@ -1432,10 +1439,9 @@ void eCueSheet::commitSpans()
 
 void eCueSheet::setSkipmode(const pts_t &ratio)
 {
-	{
-		eSingleLocker l(m_lock);
-		m_skipmode_ratio = ratio;
-	}
+	m_lock.WrLock();
+	m_skipmode_ratio = ratio;
+	m_lock.Unlock();
 	m_event(evtSkipmode);
 }
 
