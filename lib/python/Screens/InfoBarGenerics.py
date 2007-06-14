@@ -96,11 +96,18 @@ class InfoBarShowHide:
 				if old_begin_time and old_begin_time != self.current_begin_time:
 					self.doShow()
 
-	def __serviceStarted(self):
-		if self.execing:
+	def __serviceStarted(self, force=False):
+		new = self.servicelist.newServicePlayed()
+		if self.execing or force:
 			self.current_begin_time=0
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
+		elif not self.__checkServiceStarted in self.onExecBegin and new:
+			self.onExecBegin.append(self.__checkServiceStarted)
+
+	def __checkServiceStarted(self):
+		self.__serviceStarted(True)
+		self.onExecBegin.remove(self.__checkServiceStarted)
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
