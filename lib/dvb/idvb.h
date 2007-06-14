@@ -564,7 +564,7 @@ public:
 	void setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder);
 	
 			/* frontend and backend */
-	eSingleLock m_lock;
+	eRdWrLock m_lock;
 	
 			/* backend */
 	enum { evtSeek, evtSkipmode, evtSpanChanged };

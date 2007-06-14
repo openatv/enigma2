@@ -18,6 +18,65 @@ public:
 	}
 };
 
+class eRdWrLock
+{
+	friend class eRdLocker;
+	friend class eWrLocker;
+	pthread_rwlock_t m_lock;
+	eRdWrLock(eRdWrLock &);
+public:
+	eRdWrLock()
+	{
+		pthread_rwlock_init(&m_lock, 0);
+	}
+	~eRdWrLock()
+	{
+		pthread_rwlock_destroy(&m_lock);
+	}
+	void RdLock()
+	{
+		pthread_rwlock_rdlock(&m_lock);
+	}
+	void WrLock()
+	{
+		pthread_rwlock_wrlock(&m_lock);
+	}
+	void Unlock()
+	{
+		pthread_rwlock_unlock(&m_lock);
+	}
+};
+
+class eRdLocker
+{
+	eRdWrLock &m_lock;
+public:
+	eRdLocker(eRdWrLock &m)
+		: m_lock(m)
+	{
+		pthread_rwlock_rdlock(&m_lock.m_lock);
+	}
+	~eRdLocker()
+	{
+		pthread_rwlock_unlock(&m_lock.m_lock);
+	}
+};
+
+class eWrLocker
+{
+	eRdWrLock &m_lock;
+public:
+	eWrLocker(eRdWrLock &m)
+		: m_lock(m)
+	{
+		pthread_rwlock_wrlock(&m_lock.m_lock);
+	}
+	~eWrLocker()
+	{
+		pthread_rwlock_unlock(&m_lock.m_lock);
+	}
+};
+
 class eSingleLock
 {
 	friend class eSingleLocker;
