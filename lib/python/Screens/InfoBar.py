@@ -8,6 +8,7 @@ from Screens.Ci import CiHandler
 from Components.Sources.Clock import Clock
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
+from Components.ServiceEventTracker import ServiceEventTracker
 
 from Tools.Notifications import AddNotificationWithCallback
 
@@ -21,6 +22,8 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
 from Screens.HelpMenu import HelpableScreen, HelpMenu
+
+from enigma import iPlayableService
 
 class InfoBar(InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
@@ -59,6 +62,40 @@ class InfoBar(InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("hear radio..."))]))
 
 		self["CurrentTime"] = Clock()
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
+			})
+
+		self.current_begin_time=0
+
+	def __eventInfoChanged(self):
+		if self.execing:
+			service = self.session.nav.getCurrentService()
+			old_begin_time = self.current_begin_time
+			info = service and service.info()
+			ptr = info and info.getEvent(0)
+			self.current_begin_time = ptr and ptr.getBeginTime() or 0
+			if config.usage.show_infobar_on_event_change.value:
+				if old_begin_time and old_begin_time != self.current_begin_time:
+					self.doShow()
+
+	def __checkServiceStarted(self):
+		self.__serviceStarted(True)
+		self.onExecBegin.remove(self.__checkServiceStarted)
+
+	def serviceStarted(self):  #override from InfoBarShowHide
+		new = self.servicelist.newServicePlayed()
+		if self.execing:
+			InfoBarShowHide.serviceStarted(self)
+			self.current_begin_time=0
+		elif not self.__checkServiceStarted in self.onShown and new:
+			self.onShown.append(self.__checkServiceStarted)
+
+	def __checkServiceStarted(self):
+		self.serviceStarted()
+		self.onShown.remove(self.__checkServiceStarted)
 
 	def showTv(self):
 		self.showTvChannelList(True)
