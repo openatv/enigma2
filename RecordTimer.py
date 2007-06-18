@@ -327,7 +327,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			# maybe this should be configurable?
-			Notifications.AddPopup(text = _("A record has been started:\n%s") % self.description, type = MessageBox.TYPE_INFO, timeout = 3)
+			Notifications.AddPopup(text = _("A record has been started:\n%s") % self.name, type = MessageBox.TYPE_INFO, timeout = 3)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
