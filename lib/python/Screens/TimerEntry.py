@@ -97,6 +97,8 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
+			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+
 			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
 			self.timerentry_day = ConfigSubList()
@@ -138,6 +140,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		else: # repeated
 			self.frequencyEntry = getConfigListEntry(_("Frequency"), self.timerentry_repeated)
 			self.list.append(self.frequencyEntry)
+			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
+			self.list.append(self.repeatedbegindateEntry)
 			if self.timerentry_repeated.value == "daily":
 				pass
 			if self.timerentry_repeated.value == "weekdays":
@@ -249,6 +253,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
 		if self.timerentry_type.value == "repeated":
+			self.timer.repeatedbegindate = self.timerentry_repeatedbegindate.value
 			if self.timerentry_repeated.value == "daily":
 				for x in range(0,7):
 					self.timer.setRepeated(x)

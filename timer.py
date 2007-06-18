@@ -17,6 +17,9 @@ class TimerEntry:
 		self.end = end
 		self.state = 0
 		self.resetRepeated()
+		#begindate = localtime(self.begin)
+		#newdate = datetime.datetime(begindate.tm_year, begindate.tm_mon, begindate.tm_mday 0, 0, 0);
+		self.repeatedbegindate = begin
 		self.backoff = 0
 		
 		self.disabled = False
@@ -45,6 +48,7 @@ class TimerEntry:
 			now = int(time()) + 1
 
 			#to avoid problems with daylight saving, we need to calculate with localtime, in struct_time representation
+			localrepeatedbegindate = localtime(self.repeatedbegindate)
 			localbegin = localtime(self.begin)
 			localend = localtime(self.end)
 			localnow = localtime(now)
@@ -64,7 +68,9 @@ class TimerEntry:
 
 			print strftime("%c", localnow)
 
-			while ((day[localbegin.tm_wday] != 0) or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
+			# if day is NOT in the list of repeated days
+			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event
+			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
 				print "localbegin after addOneDay:", strftime("%c", localbegin)
