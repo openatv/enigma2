@@ -149,7 +149,7 @@ void *gRC::thread()
 				if (m_spinner_enabled)
 					timeout.tv_nsec += 100*1000*1000;
 				else
-					timeout.tv_nsec += 500*1000*1000;
+					timeout.tv_sec += 2;
 
 					/* yes, this is required. */
 				if (timeout.tv_nsec > 1000*1000*1000)
