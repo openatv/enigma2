@@ -89,7 +89,7 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
-		public iRdsDecoder
+		public iRdsDecoder, public iStreamableService
 {
 DECLARE_REF(eDVBServicePlay);
 public:
@@ -176,7 +176,10 @@ public:
 	int getPCMDelay();
 	void setAC3Delay(int);
 	void setPCMDelay(int);
-
+	
+		// iStreamableService
+	RESULT stream(ePtr<iStreamableService> &ptr);
+	PyObject *getStreamingData();
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
