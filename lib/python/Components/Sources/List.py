@@ -31,7 +31,7 @@ to generate HTML."""
 	def selectionChanged(self, index):
 		if self.disable_callbacks:
 			return
-			
+
 		for x in self.onSelectionChanged:
 			x()
 
