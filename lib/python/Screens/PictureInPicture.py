@@ -31,20 +31,20 @@ class PictureInPicture(Screen):
 		config.av.pip.value[1] = y
 		config.av.pip.save()
 		self.instance.move(ePoint(x, y))
-		
+
 	def resize(self, w, h):
 		config.av.pip.value[2] = w
 		config.av.pip.value[3] = h
 		config.av.pip.save()
 		self.instance.resize(eSize(*(w, h)))
 		self["video"].instance.resize(eSize(*(w, h)))
-		
+
 	def getPosition(self):
 		return ((self.instance.position().x(), self.instance.position().y()))
-		
+
 	def getSize(self):
 		return (self.instance.size().width(), self.instance.size().height())
-		
+
 	def playService(self, service):
 		if service and (service.flags & eServiceReference.isGroup):
 			ref = getBestPlayableServiceReference(service, eServiceReference())
@@ -59,7 +59,7 @@ class PictureInPicture(Screen):
 			else:
 				self.pipservice = None
 		return False
-		
+
 	def getCurrentService(self):
 		return self.currentService
-	
+
