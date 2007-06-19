@@ -4,24 +4,30 @@ from enigma import iPlayableService
 from Components.Element import cached
 
 class ServicePosition(Converter, Poll, object):
-	TYPE_LENGTH = 0,
-	TYPE_POSITION = 1,
-	TYPE_REMAINING = 2,
+	TYPE_LENGTH = 0
+	TYPE_POSITION = 1
+	TYPE_REMAINING = 2
 	TYPE_GAUGE = 3
+	TYPE_POSITION_DETAILED = 4
 
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
+
+		self.poll_interval = 500
+
 		if type == "Length":
 			self.type = self.TYPE_LENGTH
 		elif type == "Position":
 			self.type = self.TYPE_POSITION
+		elif type == "PositionDetailed":
+			self.type = self.TYPE_POSITION_DETAILED
+			self.poll_interval = 100
 		elif type == "Remaining":
 			self.type = self.TYPE_REMAINING
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
 
-		self.poll_interval = 500
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 
 	def getSeek(self):
@@ -62,12 +68,13 @@ class ServicePosition(Converter, Poll, object):
 		else:
 			if self.type == self.TYPE_LENGTH:
 				l = self.length
-			elif self.type == self.TYPE_POSITION:
+			elif self.type in [self.TYPE_POSITION, self.TYPE_POSITION_DETAILED]:
 				l = self.position
 			elif self.type == self.TYPE_REMAINING:
 				l = self.length - self.position
 
-			l /= 90000
+			if self.type != self.TYPE_POSITION_DETAILED:
+				l /= 90000
 
 			if l > 0:
 				sign = ""
@@ -75,7 +82,10 @@ class ServicePosition(Converter, Poll, object):
 				l = -l
 				sign = "-"
 
-			return sign + "%d:%02d" % (l/60, l%60)
+			if self.type != self.TYPE_POSITION_DETAILED:
+				return sign + "%d:%02d" % (l/60, l%60)
+			else:
+				return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
 
 	position = property(getPosition)
 	length = property(getLength)
