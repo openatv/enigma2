@@ -5,6 +5,7 @@ from sys import stdout
 from Tools.Directories import fileExists
 from Tools.Import import my_import
 from Plugins.Plugin import PluginDescriptor
+import keymapparser
 
 class PluginComponent:
 	def __init__(self):
@@ -32,11 +33,11 @@ class PluginComponent:
 
 	def readPluginList(self, directory):
 		"""enumerates plugins"""
-		
+
 		categories = os_listdir(directory)
-		
+
 		new_plugins = [ ]
-		
+
 		for c in categories:
 			directory_category = directory + c
 			if not os_path.isdir(directory_category):
@@ -68,6 +69,13 @@ class PluginComponent:
 						for p in plugins:
 							p.updateIcon(path)
 							new_plugins.append(p)
+
+						if fileExists(path + "/keymap.xml"):
+							try:
+								keymapparser.readKeymap(path + "/keymap.xml")
+							except Exception, exc:
+								print "keymap for plugin %s/%s failed to load: " % (c, pluginname), exc
+								self.warnings.append( (c + "/" + pluginname, str(exc)) )
 
 		# build a diff between the old list of plugins and the new one
 		# internally, the "fnc" argument will be compared with __eq__
