@@ -25,7 +25,7 @@ class StringList(Converter):
 
 	@cached
 	def getCurrent(self):
-		if self.source is None:
+		if self.source is None or self.index >= len(self.source.list):
 			return None
 		return self.source.list[self.index]
 
@@ -41,5 +41,5 @@ class StringList(Converter):
 	def setIndex(self, index):
 		if self.master is not None:
 			self.master.index = index
-	
+
 	index = property(getIndex, setIndex)
