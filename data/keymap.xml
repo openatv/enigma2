@@ -455,17 +455,6 @@
 		<!--key id="KEY_BLUE" mapto="settings" flags="mr" /-->
 		
 	</map>	
-	<map context="CutListEditorActions">
-		<key id="KEY_NEXT" mapto="setIn" flags="m" />
-		<key id="KEY_PREVIOUS" mapto="setOut" flags="m" />
-		<key id="KEY_0" mapto="setMark" flags="m" />
-		<key id="KEY_CHANNELUP" mapto="addMark" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" />
-		<key id="KEY_EXIT" mapto="leave" flags="m" />
-		<key id="KEY_ESC" mapto="leave" flags="m" />
-		<key id="KEY_OK" mapto="showMenu" flags="m" />
-		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
-	</map>
 	
 	<map context="CiSelectionActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
