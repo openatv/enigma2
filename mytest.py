@@ -8,7 +8,7 @@ from Components.Language import language
 def setEPGLanguage():
 	print "language set to", language.getLanguage()
 	eServiceEvent.setEPGLanguage(language.getLanguage())
-	
+
 language.addCallback(setEPGLanguage)
 
 from traceback import print_exc
@@ -36,12 +36,12 @@ config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"r
 try:
 	import e2reactor
 	e2reactor.install()
-	
+
 	import twisted.python.runtime
 	twisted.python.runtime.platform.supportsThreads = lambda: False
-	
+
 	from twisted.internet import reactor
-	
+
 	def runReactor():
 		reactor.run()
 except ImportError:
@@ -127,18 +127,18 @@ class Session:
 		self.nav = navigation
 		self.delay_timer = eTimer()
 		self.delay_timer.timeout.get().append(self.processDelay)
-		
+
 		self.current_dialog = None
-		
+
 		self.dialog_stack = [ ]
 		self.summary_stack = [ ]
 		self.summary = None
-		
+
 		self.in_exec = False
-		
+
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			p(reason=0, session=self)
-	
+
 	def processDelay(self):
 		callback = self.current_dialog.callback
 
@@ -150,7 +150,7 @@ class Session:
 			del self.current_dialog
 		else:
 			del self.current_dialog.callback
-		
+
 		self.popCurrent()
 		if callback is not None:
 			callback(*retval)
@@ -181,11 +181,11 @@ class Session:
 
 		self.current_dialog.execEnd()
 		self.current_dialog.hide()
-		
+
 		if last:
 			self.current_dialog.removeSummary(self.summary)
 			self.popSummary()
-	
+
 	def create(self, screen, arguments, **kwargs):
 		# creates an instance of 'screen' (which is a class)
 		try:
@@ -195,20 +195,20 @@ class Session:
 			print errstr
 			print_exc(file=stdout)
 			quitMainloop(5)
-	
+
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
-	
+
 	def deleteDialog(self, screen):
 		screen.hide()
 		screen.doClose()
-	
+
 	def instantiateSummaryDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.summary_desktop)
-	
+
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		# create dialog
-		
+
 		try:
 			dlg = self.create(screen, arguments, **kwargs)
 		except:
@@ -217,7 +217,7 @@ class Session:
 			print_exc(file=stdout)
 			quitMainloop(5)
 			print '-'*60
-		
+
 		if dlg is None:
 			return
 
@@ -226,7 +226,7 @@ class Session:
 
 		# create GUI view of this dialog
 		assert desktop is not None
-		
+
 		z = 0
 		title = ""
 		for (key, value) in dlg.skinAttributes:
@@ -234,16 +234,16 @@ class Session:
 				z = int(value)
 			elif key == "title":
 				title = value
-		
+
 		dlg.instance = eWindow(desktop, z)
 		dlg.title = title
 		applyAllAttributes(dlg.instance, desktop, dlg.skinAttributes)
 		gui = GUIOutputDevice()
 		gui.parent = dlg.instance
 		gui.create(dlg, desktop)
-		
+
 		return dlg
-	 
+
 	def pushCurrent(self):
 		if self.current_dialog is not None:
 			self.dialog_stack.append((self.current_dialog, self.current_dialog.shown))
@@ -272,7 +272,7 @@ class Session:
 		if len(self.dialog_stack) and not self.in_exec:
 			raise "modal open are allowed only from a screen which is modal!"
 			# ...unless it's the very first screen.
-		
+
 		self.pushCurrent()
 		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
@@ -284,7 +284,7 @@ class Session:
 		if not self.in_exec:
 			print "close after exec!"
 			return
-		
+
 		# be sure that the close is for the right dialog!
 		# if it's not, you probably closed after another dialog
 		# was opened. this can happen if you open a dialog
@@ -293,7 +293,7 @@ class Session:
 		# gain focus again (for a short time), thus triggering
 		# the onExec, which opens the dialog again, closing the loop.
 		assert screen == self.current_dialog
-		
+
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
 		self.execEnd()
@@ -391,7 +391,7 @@ import Screens.Standby
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
-	
+
 	def __init__(self, session):
 		self.session = session
 		self.powerKeyTimer = eTimer()
@@ -407,11 +407,11 @@ class PowerKey:
 				#"discretePowerOff": (self.quit, "Go to deep standby"),
 			#})
 
-	def powertimer(self):	
+	def powertimer(self):
 		print "PowerOff - Now!"
 		if not Screens.Standby.inTryQuitMainloop:
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
-	
+
 	def powerdown(self):
 		self.standbyblocked = 0
 		self.powerKeyTimer.start(3000, True)
@@ -457,14 +457,14 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
-	
+
 	screensToRun = [ ]
-	
+
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
 		screensToRun.append(p.__call__)
-	
+
 	screensToRun += wizardManager.getWizards()
-	
+
 	screensToRun.append(Screens.InfoBar.InfoBar)
 
 	ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
@@ -479,16 +479,16 @@ def runScreenTest():
 		if result:
 			quitMainloop(*result)
 			return
-	
+
 		screen = screensToRun[0]
-		
+
 		if len(screensToRun):
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)
 		else:
 			session.open(screen)
-	
+
 	runNextScreen(session, screensToRun)
-	
+
 	vol = VolumeControl(session)
 	power = PowerKey(session)
 
@@ -496,7 +496,7 @@ def runScreenTest():
 	session.scart = AutoScartControl(session)
 
 	runReactor()
-	
+
 	configfile.save()
 
 	from time import time
@@ -518,7 +518,7 @@ def runScreenTest():
 			setFPWakeuptime(startTime - 300)
 	session.nav.stopService()
 	session.nav.shutdown()
-	
+
 	return 0
 
 import keymapparser
@@ -560,7 +560,7 @@ try:
 	runScreenTest()
 
 	plugins.shutdown()
-	
+
 	from Components.ParentalControl import parentalControl
 	parentalControl.save()
 except:
