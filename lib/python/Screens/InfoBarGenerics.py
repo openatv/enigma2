@@ -618,7 +618,7 @@ class InfoBarSeek:
 
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
-	def __init__(self):
+	def __init__(self, actionmap = "InfobarSeekActions"):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -644,7 +644,7 @@ class InfoBarSeek:
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
-		self["SeekActions"] = InfoBarSeekActionMap(self, "InfobarSeekActions", 
+		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, 
 			{
 				"playpauseService": (self.playpauseService, _("pause")),
 				"pauseService": (self.pauseService, _("pause")),
@@ -1822,7 +1822,7 @@ class InfoBarCueSheetSupport:
 		nearest = None
 		for cp in self.cut_list:
 			diff = cmp(cp[0] - pts)
-			if diff >= 0 and (nearest is None or cmp(nearest[0] - pts) > diff):
+			if cp[1] == self.CUT_TYPE_MARK and diff >= 0 and (nearest is None or cmp(nearest[0] - pts) > diff):
 				nearest = cp
 		return nearest
 
