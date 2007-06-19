@@ -638,7 +638,8 @@ class InfoBarSeek:
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.seekRelative(time * 90000)
-					self.screen.doShow()
+					if isinstance(self.screen, InfoBarShowHide):
+						self.screen.doShow()
 					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
@@ -674,6 +675,8 @@ class InfoBarSeek:
 		self.onPlayStateChanged = [ ]
 
 		self.lockedBecauseOfSkipping = False
+
+		self.__seekableStatusChanged()
 
 	def up(self):
 		pass
