@@ -2,6 +2,7 @@
 
 eVideoWidget::eVideoWidget(eWidget *parent): eWidget(parent)
 {
+	m_decoder = 1;
 	parent->setPositionNotifyChild(1);
 }
 
@@ -18,17 +19,24 @@ int eVideoWidget::event(int event, void *data, void *data2)
 	return eWidget::event(event, data, data2);
 }
 
-
-void eVideoWidget::updatePosition()
+eVideoWidget::~eVideoWidget()
 {
-	ePoint abspos = getAbsolutePosition();
-	eDebug("position is %d %d -> %d %d", abspos.x(), abspos.y(), size().width(), size().height());
-	
+	updatePosition(1);
+}
+
+void eVideoWidget::updatePosition(int disable)
+{
+	eRect pos(0, 0, 0, 0);
+	if (!disable)
+		pos = eRect(getAbsolutePosition(), size());
+
+	eDebug("position is %d %d -> %d %d", pos.left(), pos.top(), pos.width(), pos.height());
+
 	for (int i=0; i<4; ++i)
 	{
 		char *targets[]={"left", "top", "width", "height"};
 		char filename[128];
-		snprintf(filename, 128, "/proc/stb/vmpeg/%d/dst_%s", 1, targets[i]);
+		snprintf(filename, 128, "/proc/stb/vmpeg/%d/dst_%s", m_decoder, targets[i]);
 		FILE *f = fopen(filename, "w");
 		if (!f)
 		{
@@ -38,13 +46,18 @@ void eVideoWidget::updatePosition()
 		int val = 0;
 		switch (i)
 		{
-		case 0: val = abspos.x(); break;
-		case 1: val = abspos.y(); break;
-		case 2: val = size().width(); break;
-		case 3: val = size().height(); break;
+		case 0: val = pos.left(); break;
+		case 1: val = pos.top(); break;
+		case 2: val = pos.width(); break;
+		case 3: val = pos.height(); break;
 		}
 		fprintf(f, "%08x\n", val);
 		fclose(f);
 		eDebug("%s %08x", filename, val);
 	}
+}
+
+void eVideoWidget::setDecoder(int decoder)
+{
+	m_decoder = decoder;
 }
