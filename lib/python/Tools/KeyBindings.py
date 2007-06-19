@@ -27,18 +27,20 @@ keyDescriptions = {
 		KEYIDS["KEY_PREVIOUS"]: ("prev", 559, 203)
 	}
 
-def addKeyBinding(key, context, action):
-	if (context, action) in keyBindings:
-		keyBindings[(context, action)].append(key)
-	else:
-		keyBindings[(context, action)] = [key]
+def addKeyBinding(domain, key, context, action):
+	keyBindings.setdefault((context, action), []).append((key, domain))
 
 def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
-		return keyBindings[(context, action)]
+		return [x[0] for x in keyBindings[(context, action)]]
 	else:
 		return [ ]
 
 def getKeyDescription(key):
 	if key in keyDescriptions:
 		return keyDescriptions.get(key, [ ])
+
+def removeKeyBindings(domain):
+	# remove all entries of domain 'domain'
+	for x in keyBindings:
+		keyBindings[x] = filter(lambda e: e[1] != domain, keyBindings[x])
