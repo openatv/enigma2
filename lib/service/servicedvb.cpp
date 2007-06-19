@@ -1277,7 +1277,7 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 
 	return m_decoder->setFastForward(ffratio);
 }
-    
+
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
 	if (m_is_pvr || m_timeshift_enabled)
@@ -2861,6 +2861,35 @@ void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 	memcpy(&m_videoEventData, &event, sizeof(iTSMPEGDecoder::videoEvent));
 	m_event((iPlayableService*)this, evVideoSizeChanged);
 }
+
+RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+PyObject *eDVBServicePlay::getStreamingData()
+{
+	eDVBServicePMTHandler::program program;
+	if (m_service_handler.getProgramInfo(program))
+	{
+		Py_INCREF(Py_None);
+		return Py_None;
+	}
+
+	PyObject *r = program.createPythonObject();
+	ePtr<iDVBDemux> demux;
+	if (!m_service_handler.getDataDemux(demux))
+	{
+		uint8_t demux_id;
+		demux->getCADemuxID(demux_id);
+		
+		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+	}
+
+	return r;
+}
+
 
 DEFINE_REF(eDVBServicePlay)
 
