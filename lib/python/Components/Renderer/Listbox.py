@@ -46,7 +46,7 @@ class Listbox(Renderer, object):
 		self.__wrap_around = wrap_around
 		if self.instance is not None:
 			self.instance.setWrapAround(self.__wrap_around)
-	
+
 	wrap_around = property(lambda self: self.__wrap_around, setWrapAround)
 
 	def selectionChanged(self):
@@ -56,14 +56,14 @@ class Listbox(Renderer, object):
 		if self.instance is None:
 			return None
 		return self.instance.getCurrentIndex()
-		
+
 	def moveToIndex(self, index):
 		if self.instance is None:
 			return
 		self.instance.moveSelectionTo(index)
 
 	index = property(getIndex, moveToIndex)
-	
+
 	def move(self, direction):
 		if self.instance is not None:
 			self.instance.moveSelection(direction)
