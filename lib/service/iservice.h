@@ -704,6 +704,8 @@ public:
 	};
 };
 
+class iStreamableService;
+
 SWIG_IGNORE(iPlayableService);
 class iPlayableService: public iPlayableService_ENUMS, public iObject
 {
@@ -732,6 +734,7 @@ public:
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) rdsDecoder(ePtr<iRdsDecoder> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 
