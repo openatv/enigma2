@@ -1057,7 +1057,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			pts_t nextap;
 			if (m_tstools.getNextAccessPoint(nextap, now, pts))
 			{
-				pts = now;
+				pts = now - 90000; /* approx. 1s */
 				eDebug("AP relative seeking failed!");
 			} else
 			{
@@ -1102,7 +1102,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			{
 					/* in normal playback, just start at the next zone. */
 				start = i->first;
-				
+
 					/* size is not 64bit! */
 				if ((i->second - i->first) > max)
 					size = max;
@@ -1123,8 +1123,11 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				--i;
 				eDebug("skip to previous block, which is %llx..%llx", i->first, i->second);
 				size_t len;
-				
-				if ((i->second - i->first) > max)
+
+				aligned_start = align(i->first, blocksize);
+				aligned_end = align(i->second, blocksize);
+
+				if ((aligned_end - aligned_start) > max)
 					len = max;
 				else
 					len = aligned_end - aligned_start;
@@ -1132,19 +1135,19 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				start = aligned_end - len;
 				eDebug("skipping to %llx, %d", start, len);
 			}
-			
+
 			eDebug("result: %llx, %x (%llx %llx)", start, size, aligned_start, aligned_end);
 			return;
 		}
 	}
-	
+
 	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
 	{
 		eDebug("reached SOF");
 		m_skipmode_m = 0;
 		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 	}
-	
+
 	start = current_offset;
 	size = max;
 
