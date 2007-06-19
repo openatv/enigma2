@@ -31,8 +31,9 @@ public:
 
 	void bindAction(const std::string &context, int priority, SWIG_PYOBJECT(ePyObject) function);
 	void unbindAction(const std::string &context, SWIG_PYOBJECT(ePyObject) function);
-	
-	void bindKey(const std::string &device, int key, int flags, const std::string &context, const std::string &action);
+
+	void bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action);
+	void unbindKeyDomain(const std::string &domain);
 	
 	void keyPressed(const std::string &device, int key, int flags);
 	
@@ -44,6 +45,7 @@ private:
 	{
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
+		std::string m_domain;
 		
 		ePyObject m_fnc;
 		
@@ -57,6 +59,7 @@ private:
 	struct eNativeKeyBinding
 	{
 		std::string m_device;
+		std::string m_domain;
 		int m_key;
 		int m_flags;
 		
@@ -70,6 +73,7 @@ private:
 	struct ePythonKeyBinding
 	{
 		std::string m_device;
+		std::string m_domain;
 		int m_key;
 		int m_flags;
 		

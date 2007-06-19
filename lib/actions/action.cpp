@@ -87,7 +87,7 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 }
 
 
-void eActionMap::bindKey(const std::string &device, int key, int flags, const std::string &context, const std::string &action)
+void eActionMap::bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action)
 {
 		// first, search the actionlist table
 	unsigned int i;
@@ -101,6 +101,7 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 			bind.m_key = key;
 			bind.m_flags = flags;
 			bind.m_action = actions[i].m_id;
+			bind.m_domain = domain;
 			m_native_keys.insert(std::pair<std::string,eNativeKeyBinding>(context, bind));
 			return;
 		}
@@ -113,7 +114,25 @@ void eActionMap::bindKey(const std::string &device, int key, int flags, const st
 	bind.m_key = key;
 	bind.m_flags = flags;
 	bind.m_action = action;
+	bind.m_domain = domain;
 	m_python_keys.insert(std::pair<std::string,ePythonKeyBinding>(context, bind));
+}
+
+void eActionMap::unbindKeyDomain(const std::string &domain)
+{
+	for (std::multimap<std::string, eNativeKeyBinding>::iterator i(m_native_keys.begin()); i != m_native_keys.end(); ++i)
+		if (i->second.m_domain == domain)
+		{
+			m_native_keys.erase(i);
+			i = m_native_keys.begin();
+		}
+
+	for (std::multimap<std::string, ePythonKeyBinding>::iterator i(m_python_keys.begin()); i != m_python_keys.end(); ++i)
+		if (i->second.m_domain == domain)
+		{
+			m_python_keys.erase(i);
+			i = m_python_keys.begin();
+		}
 }
 
 struct call_entry
