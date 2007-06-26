@@ -33,7 +33,7 @@ def readKeymap(filename = "/usr/share/enigma2/keymap.xml"):
 				id = x.getAttribute("id")
 				flags = x.getAttribute("flags")
 
-				flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4}[x]
+				flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
 
 #				try:
 				flags = sum(map(flag_ascii_to_id, flags))
