@@ -651,26 +651,15 @@ class InfoBarSeek:
 				"unPauseService": (self.unPauseService, _("continue")),
 
 				"seekFwd": (self.seekFwd, _("skip forward")),
-				"seekFwdDown": self.seekFwdDown,
-				"seekFwdUp": self.seekFwdUp,
+				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
-				"seekBackDown": self.seekBackDown,
-				"seekBackUp": self.seekBackUp,
+				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
 		self["SeekActions"].setEnabled(False)
 
 		self.seekstate = self.SEEK_STATE_PLAY
-		self.onClose.append(self.delTimer)
-
-		self.fwdtimer = False
-		self.fwdKeyTimer = eTimer()
-		self.fwdKeyTimer.timeout.get().append(self.fwdTimerFire)
-
-		self.rwdtimer = False
-		self.rwdKeyTimer = eTimer()
-		self.rwdKeyTimer.timeout.get().append(self.rwdTimerFire)
 
 		self.onPlayStateChanged = [ ]
 
@@ -683,10 +672,6 @@ class InfoBarSeek:
 
 	def down(self):
 		pass
-
-	def delTimer(self):
-		del self.fwdKeyTimer
-		del self.rwdKeyTimer
 
 	def getSeek(self):
 		service = self.session.nav.getCurrentService()
@@ -785,23 +770,6 @@ class InfoBarSeek:
 
 		seekable.seekTo(90 * seektime)
 
-	def seekFwdDown(self):
-		print "start fwd timer"
-		self.fwdtimer = True
-		self.fwdKeyTimer.start(1000)
-
-	def seekBackDown(self):
-		print "start rewind timer"
-		self.rwdtimer = True
-		self.rwdKeyTimer.start(1000)
-
-	def seekFwdUp(self):
-		print "seekFwdUp"
-		if self.fwdtimer:
-			self.fwdKeyTimer.stop()
-			self.fwdtimer = False
-			self.seekFwd()
-
 	def seekFwd(self):
 		lookup = {
 				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
@@ -822,13 +790,6 @@ class InfoBarSeek:
 				self.SEEK_STATE_EOF: self.SEEK_STATE_EOF,
 			}
 		self.setSeekState(lookup[self.seekstate])
-
-	def seekBackUp(self):
-		print "seekBackUp"
-		if self.rwdtimer:
-			self.rwdKeyTimer.stop()
-			self.rwdtimer = False
-			self.seekBack()
 
 	def seekBack(self):
 		lookup = {
@@ -856,10 +817,7 @@ class InfoBarSeek:
 			if seekable is not None:
 				seekable.seekRelative(-1, 3)
 
-	def fwdTimerFire(self):
-		print "Display seek fwd"
-		self.fwdKeyTimer.stop()
-		self.fwdtimer = False
+	def seekFwdManual(self):
 		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def fwdSeekTo(self, minutes):
@@ -869,10 +827,7 @@ class InfoBarSeek:
 			if seekable is not None:
 				seekable.seekRelative(1, minutes * 60 * 90000)
 
-	def rwdTimerFire(self):
-		print "rwdTimerFire"
-		self.rwdKeyTimer.stop()
-		self.rwdtimer = False
+	def seekBackManual(self):
 		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
 	def rwdSeekTo(self, minutes):
