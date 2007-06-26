@@ -58,8 +58,26 @@ int getPrevAsciiCode()
 
 void keyEvent(const eRCKey &key)
 {
+	static eRCKey last(0, 0, 0);
+	static int num_repeat;
+
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
+
+	if ((key.code == last.code) && (key.producer == last.producer) && key.flags & eRCKey::flagRepeat)
+		num_repeat++;
+	else
+	{
+		num_repeat = 0;
+		last = key;
+	}
+
+	if (num_repeat == 4)
+	{
+		ptr->keyPressed(key.producer->getIdentifier(), key.code, eRCKey::flagLong);
+		num_repeat++;
+	}
+
 	if (key.flags & eRCKey::flagAscii)
 	{
 		prev_ascii_code = key.code;
