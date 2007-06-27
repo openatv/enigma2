@@ -128,7 +128,8 @@ public:
 	{
 		flagBreak=1,
 		flagRepeat=2,
-		flagAscii=4
+		flagAscii=4,
+		flagLong=8
 	};
 	
 	bool operator<(const eRCKey &r) const
