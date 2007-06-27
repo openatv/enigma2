@@ -20,6 +20,7 @@ class Language:
 		self.addLanguage(_("Dutch"), "nl", "NL")
 		self.addLanguage(_("Finnish"), "fi", "FI")
 		self.addLanguage(_("French"), "fr", "FR")
+		self.addLanguage(_("Greek"), "el", "GR")
 		self.addLanguage(_("Hungarian"), "hu", "HU")
 		self.addLanguage(_("Icelandic"), "is", "IS")
 		self.addLanguage(_("Italian"), "it", "IT")
@@ -29,7 +30,7 @@ class Language:
 		self.addLanguage(_("Spanish"), "es", "ES")
 		self.addLanguage(_("Swedish"), "sv", "SE")
 		self.addLanguage(_("Turkish"), "tr", "TR")
-		
+
 		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
