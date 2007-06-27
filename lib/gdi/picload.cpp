@@ -393,7 +393,16 @@ static int png_load(const char *filename,  int *x, int *y)
 		eDebug("[PNG] Error processing");
 		return 0;
 	}
-	
+
+	if (width * height > 1000000) // 1000x1000 or equiv.
+	{
+		eDebug("[png_load] image size is %d x %d, which is \"too large\".", width, height);
+		png_read_end(png_ptr, info_ptr);
+		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+		fclose(fh);
+		return 0;
+	}
+
 	pic_buffer = new unsigned char[width * height * 3];
 	*x=width;
 	*y=height;
