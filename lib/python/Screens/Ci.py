@@ -236,6 +236,7 @@ class CiMessageHandler:
 
 	def dlgClosed(self, slot):
 		del self.dlgs[slot]
+		self.dlgs.remove(slot)
 
 	def registerCIMessageHandler(self, slot, func):
 		self.unregisterCIMessageHandler(slot)
