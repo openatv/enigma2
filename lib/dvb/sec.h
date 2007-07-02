@@ -255,6 +255,7 @@ public:
 		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, // delay after voltage change before transmit motor command
 		MOTOR_COMMAND_RETRIES, // max transmit tries of rotor command when the rotor dont start turning (with power measurement)
 		MOTOR_RUNNING_TIMEOUT, // max motor running time before timeout
+		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, // delay after change voltage before transmit toneburst/diseqc
 		MAX_PARAMS
 	};
 private:
