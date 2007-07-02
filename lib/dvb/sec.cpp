@@ -460,31 +460,41 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 					if ( send_mask )
 					{
+						int vlt = iDVBFrontend::voltageOff;
 						eSecCommand::pair compare;
 						compare.steps = +3;
 						compare.tone = iDVBFrontend::toneOff;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
-						compare.voltage = iDVBFrontend::voltageOff;
-						compare.steps = +3;
-						// the next is a check if voltage is switched off.. then we first set a voltage :)
-						// else we set voltage after all diseqc stuff..
-						sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 
 						if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 						{
 							if (rotor_param.m_inputpower_parameters.m_use)
-								compare.voltage = VOLTAGE(18);  // in input power mode set 18V for measure input power
+								vlt = VOLTAGE(18);  // in input power mode set 18V for measure input power
 							else
-								compare.voltage = VOLTAGE(13);  // in normal mode start turning with 13V
+								vlt = VOLTAGE(13);  // in normal mode start turning with 13V
 						}
 						else
-							compare.voltage = voltage;
+							vlt = voltage;
 
-						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
+						// check if voltage is already correct..
+						compare.voltage = vlt;
+						compare.steps = +7;
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 
-							// voltage was disabled..so we wait a longer time .. for normal switches 250ms should be enough
+						// check if voltage is disabled
+						compare.voltage = iDVBFrontend::voltageOff;
+						compare.steps = +4;
+						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
+
+						// voltage is changed... use DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, vlt) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +3) );
+
+						// voltage was disabled.. use DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS
+						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, vlt) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
 
 						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)

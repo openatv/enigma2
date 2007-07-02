@@ -28,6 +28,7 @@ class SecParameterSetup(Screen, ConfigListScreen):
 			("Delay between diseqc commands", config.sec.delay_between_diseqc_repeats),
 			("Delay after last diseqc command", config.sec.delay_after_last_diseqc_command),
 			("Delay after toneburst", config.sec.delay_after_toneburst),
+			("Delay after change voltage before switch command", config.sec.delay_after_change_voltage_before_switch_command),
 			("Delay after enable voltage before switch command", config.sec.delay_after_enable_voltage_before_switch_command),
 			("Delay between switch and motor command", config.sec.delay_between_switch_and_motor_command),
 			("Delay after set voltage before measure motor power", config.sec.delay_after_voltage_change_before_measure_idle_inputpower),
