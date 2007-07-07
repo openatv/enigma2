@@ -33,7 +33,7 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = 0, diseqcpos = 0, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0):
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0):
 		#simple defaults
 		sec.addLNB()
 		tunermask = 1 << slotid
@@ -56,6 +56,7 @@ class SecConfigure:
 		sec.setDiSEqCMode(diseqcmode)
 		sec.setToneburst(toneburstmode)
 		sec.setCommittedCommand(diseqcpos)
+		sec.setUncommittedCommand(0) # SENDNO
 		#print "set orbpos to:" + str(orbpos)
 
 		if 0 <= diseqcmode < 3:
