@@ -11,6 +11,14 @@
 #endif
 #include <lib/base/eerror.h>
 
+//#define SEC_DEBUG
+
+#ifdef SEC_DEBUG
+#define eSecDebug(arg...) eDebug(arg)
+#else
+#define eSecDebug(arg...)
+#endif
+
 DEFINE_REF(eDVBSatelliteEquipmentControl);
 
 eDVBSatelliteEquipmentControl *eDVBSatelliteEquipmentControl::instance;
@@ -767,6 +775,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 RESULT eDVBSatelliteEquipmentControl::clear()
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::clear()");
 	for (int i=0; i <= m_lnbidx; ++i)
 	{
 		m_lnbs[i].m_satellites.clear();
@@ -799,11 +808,13 @@ RESULT eDVBSatelliteEquipmentControl::addLNB()
 		eDebug("no more LNB free... cnt is %d", m_lnbidx);
 		return -ENOSPC;
 	}
+	eSecDebug("eDVBSatelliteEquipmentControl::addLNB(%d)", m_lnbidx-1);
 	return 0;
 }
 
 RESULT eDVBSatelliteEquipmentControl::setLNBSlotMask(int slotmask)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSlotMask(%d)", slotmask);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].slot_mask = slotmask;
 	else
@@ -813,6 +824,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSlotMask(int slotmask)
 
 RESULT eDVBSatelliteEquipmentControl::setLNBLOFL(int lofl)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBLOFL(%d)", lofl);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_lof_lo = lofl;
 	else
@@ -822,6 +834,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBLOFL(int lofl)
 
 RESULT eDVBSatelliteEquipmentControl::setLNBLOFH(int lofh)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBLOFH(%d)", lofh);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_lof_hi = lofh;
 	else
@@ -831,6 +844,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBLOFH(int lofh)
 
 RESULT eDVBSatelliteEquipmentControl::setLNBThreshold(int threshold)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBThreshold(%d)", threshold);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_lof_threshold = threshold;
 	else
@@ -840,6 +854,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBThreshold(int threshold)
 
 RESULT eDVBSatelliteEquipmentControl::setLNBIncreasedVoltage(bool onoff)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBIncreasedVoltage(%d)", onoff);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_increased_voltage = onoff;
 	else
@@ -850,6 +865,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBIncreasedVoltage(bool onoff)
 /* DiSEqC Specific Parameters */
 RESULT eDVBSatelliteEquipmentControl::setDiSEqCMode(int diseqcmode)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setDiSEqcMode(%d)", diseqcmode);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_diseqc_mode = (eDVBSatelliteDiseqcParameters::t_diseqc_mode)diseqcmode;
 	else
@@ -859,6 +875,7 @@ RESULT eDVBSatelliteEquipmentControl::setDiSEqCMode(int diseqcmode)
 
 RESULT eDVBSatelliteEquipmentControl::setToneburst(int toneburst)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setToneburst(%d)", toneburst);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_toneburst_param = (eDVBSatelliteDiseqcParameters::t_toneburst_param)toneburst;
 	else
@@ -868,6 +885,7 @@ RESULT eDVBSatelliteEquipmentControl::setToneburst(int toneburst)
 
 RESULT eDVBSatelliteEquipmentControl::setRepeats(int repeats)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setRepeats(%d)", repeats);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_repeats=repeats;
 	else
@@ -877,6 +895,7 @@ RESULT eDVBSatelliteEquipmentControl::setRepeats(int repeats)
 
 RESULT eDVBSatelliteEquipmentControl::setCommittedCommand(int command)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setCommittedCommand(%d)", command);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_committed_cmd=command;
 	else
@@ -886,6 +905,7 @@ RESULT eDVBSatelliteEquipmentControl::setCommittedCommand(int command)
 
 RESULT eDVBSatelliteEquipmentControl::setUncommittedCommand(int command)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setUncommittedCommand(%d)", command);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_uncommitted_cmd = command;
 	else
@@ -895,6 +915,7 @@ RESULT eDVBSatelliteEquipmentControl::setUncommittedCommand(int command)
 
 RESULT eDVBSatelliteEquipmentControl::setCommandOrder(int order)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setCommandOrder(%d)", order);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_command_order=order;
 	else
@@ -904,6 +925,7 @@ RESULT eDVBSatelliteEquipmentControl::setCommandOrder(int order)
 
 RESULT eDVBSatelliteEquipmentControl::setFastDiSEqC(bool onoff)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setFastDiSEqc(%d)", onoff);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_use_fast=onoff;
 	else
@@ -913,6 +935,7 @@ RESULT eDVBSatelliteEquipmentControl::setFastDiSEqC(bool onoff)
 
 RESULT eDVBSatelliteEquipmentControl::setSeqRepeat(bool onoff)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setSeqRepeat(%d)", onoff);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_diseqc_parameters.m_seq_repeat = onoff;
 	else
@@ -923,6 +946,7 @@ RESULT eDVBSatelliteEquipmentControl::setSeqRepeat(bool onoff)
 /* Rotor Specific Parameters */
 RESULT eDVBSatelliteEquipmentControl::setLongitude(float longitude)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLongitude(%f)", longitude);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_gotoxx_parameters.m_longitude=longitude;
 	else
@@ -932,6 +956,7 @@ RESULT eDVBSatelliteEquipmentControl::setLongitude(float longitude)
 
 RESULT eDVBSatelliteEquipmentControl::setLatitude(float latitude)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLatitude(%f)", latitude);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_gotoxx_parameters.m_latitude=latitude;
 	else
@@ -941,6 +966,7 @@ RESULT eDVBSatelliteEquipmentControl::setLatitude(float latitude)
 
 RESULT eDVBSatelliteEquipmentControl::setLoDirection(int direction)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLoDirection(%d)", direction);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_gotoxx_parameters.m_lo_direction=direction;
 	else
@@ -950,6 +976,7 @@ RESULT eDVBSatelliteEquipmentControl::setLoDirection(int direction)
 
 RESULT eDVBSatelliteEquipmentControl::setLaDirection(int direction)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setLaDirection(%d)", direction);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_gotoxx_parameters.m_la_direction=direction;
 	else
@@ -959,6 +986,7 @@ RESULT eDVBSatelliteEquipmentControl::setLaDirection(int direction)
 
 RESULT eDVBSatelliteEquipmentControl::setUseInputpower(bool onoff)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setUseInputpower(%d)", onoff);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_inputpower_parameters.m_use=onoff;
 	else
@@ -968,6 +996,7 @@ RESULT eDVBSatelliteEquipmentControl::setUseInputpower(bool onoff)
 
 RESULT eDVBSatelliteEquipmentControl::setInputpowerDelta(int delta)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setInputpowerDelta(%d)", delta);
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].m_rotor_parameters.m_inputpower_parameters.m_delta=delta;
 	else
@@ -978,6 +1007,7 @@ RESULT eDVBSatelliteEquipmentControl::setInputpowerDelta(int delta)
 /* Satellite Specific Parameters */
 RESULT eDVBSatelliteEquipmentControl::addSatellite(int orbital_position)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::addSatellite(%d)", orbital_position);
 	if ( currentLNBValid() )
 	{
 		std::map<int, eDVBSatelliteSwitchParameters>::iterator it =
@@ -1003,6 +1033,7 @@ RESULT eDVBSatelliteEquipmentControl::addSatellite(int orbital_position)
 
 RESULT eDVBSatelliteEquipmentControl::setVoltageMode(int mode)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setVoltageMode(%d)", mode);
 	if ( currentLNBValid() && m_curSat != m_lnbs[m_lnbidx].m_satellites.end() )
 		m_curSat->second.m_voltage_mode = (eDVBSatelliteSwitchParameters::t_voltage_mode)mode;
 	else
@@ -1013,6 +1044,7 @@ RESULT eDVBSatelliteEquipmentControl::setVoltageMode(int mode)
 
 RESULT eDVBSatelliteEquipmentControl::setToneMode(int mode)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setToneMode(%d)", mode);
 	if ( currentLNBValid() )
 	{
 		if ( m_curSat != m_lnbs[m_lnbidx].m_satellites.end() )
@@ -1027,6 +1059,7 @@ RESULT eDVBSatelliteEquipmentControl::setToneMode(int mode)
 
 RESULT eDVBSatelliteEquipmentControl::setRotorPosNum(int rotor_pos_num)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setRotorPosNum(%d)", rotor_pos_num);
 	if ( currentLNBValid() )
 	{
 		if ( m_curSat != m_lnbs[m_lnbidx].m_satellites.end() )
@@ -1171,6 +1204,7 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 
 RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setTunerLinked(%d, %d)", tu1, tu2);
 	if (tu1 != tu2)
 	{
 		eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
@@ -1195,6 +1229,7 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 
 RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setTunerDepends(%d, %d)", tu1, tu2);
 	if (tu1 == tu2)
 		return -1;
 
@@ -1219,6 +1254,7 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 
 void eDVBSatelliteEquipmentControl::setSlotNotLinked(int slot_no)
 {
+	eSecDebug("eDVBSatelliteEquipmentControl::setSlotNotLinked(%d)", slot_no);
 	m_not_linked_slot_mask |= (1 << slot_no);
 }
 
