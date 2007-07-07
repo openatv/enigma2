@@ -667,11 +667,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, +10 ) );  // timeout .. we assume now the rotor is already at the correct position
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, +9 ) );  // timeout .. we assume now the rotor is already at the correct position
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 ////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
 // rotor running loop
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
@@ -679,11 +678,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							cmd.direction=0;  // check for stopped rotor
 							cmd.steps=+4;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +4 ) );  // timeout ? this should never happen
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) );  // timeout ? this should never happen
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 						}
 						else
 						{  // use normal turning mode
