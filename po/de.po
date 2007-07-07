@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-19 00:20+0200\n"
+"POT-Creation-Date: 2007-07-08 01:27+0200\n"
 "PO-Revision-Date: 2007-06-19 00:21+0100\n"
 "Last-Translator: Stefan Pluecken <stefanpl@baer.rwth-aachen.de>\n"
 "Language-Team: none\n"
@@ -58,6 +58,9 @@ msgid "#ffffff"
 msgstr ""
 
 msgid "#ffffffff"
+msgstr ""
+
+msgid "%H:%M"
 msgstr ""
 
 #, python-format
@@ -357,6 +360,9 @@ msgstr "Band"
 msgid "Bandwidth"
 msgstr "Bandbreite"
 
+msgid "Begin time"
+msgstr "Startzeit"
+
 msgid "Brightness"
 msgstr "Helligkeit"
 
@@ -612,7 +618,7 @@ msgid "Dish"
 msgstr "Schüssel"
 
 msgid "Display Setup"
-msgstr ""
+msgstr "Display Einstellungen"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -734,6 +740,9 @@ msgstr "Eingeschaltet"
 msgid "End"
 msgstr "Ende"
 
+msgid "End time"
+msgstr "Endzeit"
+
 msgid "EndTime"
 msgstr "Endzeit"
 
@@ -794,8 +803,14 @@ msgstr "Erweiterungen"
 msgid "FEC"
 msgstr "FEC"
 
+msgid "Fast"
+msgstr "Schnell"
+
 msgid "Fast DiSEqC"
 msgstr "Schnelles DiSEqC"
+
+msgid "Fast epoch"
+msgstr "Schnell Zeitraum"
 
 msgid "Favourites"
 msgstr "Favoriten"
@@ -865,6 +880,9 @@ msgstr "Gehe zu 0"
 
 msgid "Goto position"
 msgstr "Auf Position drehen"
+
+msgid "Greek"
+msgstr "Griechisch"
 
 msgid "Guard Interval"
 msgstr ""
@@ -1411,6 +1429,9 @@ msgstr "Rotor-Einstellungen"
 msgid "Positioner storage"
 msgstr "Positionsspeicher"
 
+msgid "Power threshold in mA"
+msgstr "Strom Schwellwert in mA"
+
 msgid "Predefined transponder"
 msgstr "Vordefinierte Transponder"
 
@@ -1551,11 +1572,14 @@ msgstr "Rechts"
 msgid "Rolloff"
 msgstr ""
 
+msgid "Rotor turning speed"
+msgstr "Rotor Drehgeschwindigkeit"
+
 msgid "Running"
-msgstr ""
+msgstr "Aktiviert"
 
 msgid "Russian"
-msgstr ""
+msgstr "Russisch"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1588,64 +1612,64 @@ msgid "Scan "
 msgstr "Suche "
 
 msgid "Scan QAM128"
-msgstr ""
+msgstr "Durchsuche QAM128"
 
 msgid "Scan QAM16"
-msgstr ""
+msgstr "Durchsuche QAM16"
 
 msgid "Scan QAM256"
-msgstr ""
+msgstr "Durchsuche QAM256"
 
 msgid "Scan QAM32"
-msgstr ""
+msgstr "Durchsuche QAM32"
 
 msgid "Scan QAM64"
-msgstr ""
+msgstr "Durchsuche QAM64"
 
 msgid "Scan SR6875"
-msgstr ""
+msgstr "Durchsuche SR6875"
 
 msgid "Scan SR6900"
-msgstr ""
+msgstr "Durchsuche SR6900"
 
 msgid "Scan additional SR"
-msgstr ""
+msgstr "Durchsuche weitere SR"
 
 msgid "Scan band EU HYPER"
-msgstr ""
+msgstr "Durchsuche EU HYPER"
 
 msgid "Scan band EU MID"
-msgstr ""
+msgstr "Durchsuche EU MID"
 
 msgid "Scan band EU SUPER"
-msgstr ""
+msgstr "Durchsuche EU SUPER"
 
 msgid "Scan band EU UHF IV"
-msgstr ""
+msgstr "Durchsuche EU UHF IV"
 
 msgid "Scan band EU UHF V"
-msgstr ""
+msgstr "Durchsuche EU UHF V"
 
 msgid "Scan band EU VHF I"
-msgstr ""
+msgstr "Durchsuche EU VHF I"
 
 msgid "Scan band EU VHF III"
-msgstr ""
+msgstr "Durchsucher EU VHF III"
 
 msgid "Scan band US HIGH"
-msgstr ""
+msgstr "Durchsuche US HIGH"
 
 msgid "Scan band US HYPER"
-msgstr ""
+msgstr "Durchsuche US HYPER"
 
 msgid "Scan band US LOW"
-msgstr ""
+msgstr "Durchsucher US LOW"
 
 msgid "Scan band US MID"
-msgstr ""
+msgstr "Durchsuche US MID"
 
 msgid "Scan band US SUPER"
-msgstr ""
+msgstr "Durchsuche US SUPER"
 
 msgid "Search east"
 msgstr "Östlich suchen"
@@ -1697,7 +1721,7 @@ msgid ""
 "(Timeout reading PMT)"
 msgstr ""
 "Kanal ist ungültig!\n"
-"(Zeit lief beim Lesen von PMT ab)"
+"(Zeit lief beim Lesen der PMT ab)"
 
 msgid ""
 "Service not found!\n"
@@ -1779,6 +1803,9 @@ msgstr "Diaschau-Intervall (sek.)"
 msgid "Slot %d"
 msgstr "Steckplatz %d"
 
+msgid "Slow"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
 
@@ -1846,10 +1873,10 @@ msgid "Stop Timeshift?"
 msgstr "Timeshift beenden?"
 
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "Laufendes Ereigniss abbrechen und kommende ignorieren"
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Laufendes Ereigniss abbrechen aber kommende ausführen"
 
 msgid "Stop playing this movie?"
 msgstr "Das Abspielen dieses Films beenden?"
@@ -2162,7 +2189,7 @@ msgid "VCR scart"
 msgstr "Scart-Videorekorder"
 
 msgid "View Rass interactive..."
-msgstr ""
+msgstr "Rass Interaktiv anzeigen..."
 
 msgid "View teletext..."
 msgstr "Videotext anzeigen ..."
@@ -2316,9 +2343,13 @@ msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr ""
+"Zurück schalten zum Sender der vor dem\n"
+"öffnen der Motor Einstellungen lief?"
 
 msgid "Zap back to service before satfinder?"
 msgstr ""
+"Zurück schalten zum Sender der vor dem\n"
+"öffnen des Satfinders lief?"
 
 msgid "[alternative edit]"
 msgstr "[Alternativen-Bearbeitung]"
@@ -2755,8 +2786,14 @@ msgstr "einfach"
 msgid "skip backward"
 msgstr "Rückwärts spulen"
 
+msgid "skip backward (enter time)"
+msgstr "Rückwärts springen (Zeit eingeben)"
+
 msgid "skip forward"
 msgstr "Vorwärts spulen"
+
+msgid "skip forward (enter time)"
+msgstr "Vorwärts springen (Zeit eingeben)"
 
 msgid "standby"
 msgstr "Standby"

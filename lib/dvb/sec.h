@@ -180,6 +180,7 @@ class eDVBSatelliteRotorParameters
 #endif
 public:
 	enum { NORTH, SOUTH, EAST, WEST };
+	enum { FAST, SLOW };
 #ifndef SWIG
 	eDVBSatelliteRotorParameters() { setDefaultOptions(); }
 
@@ -187,6 +188,7 @@ public:
 	{
 		bool m_use;	// can we use rotor inputpower to detect rotor running state ?
 		__u8 m_delta;	// delta between running and stopped rotor
+		unsigned int m_turning_speed; // SLOW, FAST, or fast turning epoch
 	};
 	eDVBSatelliteRotorInputpowerParameters m_inputpower_parameters;
 
@@ -201,6 +203,7 @@ public:
 
 	void setDefaultOptions() // set default rotor options
 	{
+		m_inputpower_parameters.m_turning_speed = FAST; // fast turning
 		m_inputpower_parameters.m_use = true;
 		m_inputpower_parameters.m_delta = 60;
 		m_gotoxx_parameters.m_lo_direction = EAST;
@@ -307,6 +310,7 @@ public:
 	RESULT setLaDirection(int direction);
 	RESULT setUseInputpower(bool onoff);
 	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
+	RESULT setRotorTurningSpeed(int speed);  // set turning speed..
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);
 	RESULT setVoltageMode(int mode);
