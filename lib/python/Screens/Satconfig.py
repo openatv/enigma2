@@ -5,6 +5,9 @@ from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing
 
+from time import mktime, localtime
+from datetime import datetime
+
 class NimSetup(Screen, ConfigListScreen):
 	def createSimpleSetup(self, list, mode):
 		if mode == "single":
@@ -25,6 +28,14 @@ class NimSetup(Screen, ConfigListScreen):
 		list.append(getConfigListEntry(" ", self.nimConfig.longitudeOrientation))
 		list.append(getConfigListEntry(_("Latitude"), self.nimConfig.latitude))
 		list.append(getConfigListEntry(" ", self.nimConfig.latitudeOrientation))
+		self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), self.nimConfig.turningSpeed)
+		self.list.append(self.turningSpeed)
+		if self.nimConfig.turningSpeed.value == "fast epoch":
+			self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), self.nimConfig.fastTurningBegin)
+			self.turnFastEpochEnd = getConfigListEntry(_("End time"), self.nimConfig.fastTurningEnd)
+			self.list.append(self.turnFastEpochBegin)
+			self.list.append(self.turnFastEpochEnd)
+
 #		elif self.nimConfig.positionerMode.value == "manual": # manual
 #			pass
 
@@ -40,13 +51,16 @@ class NimSetup(Screen, ConfigListScreen):
 		self.advancedUsalsEntry = None
 		self.advancedLof = None
 		self.advancedPowerMeasurement = None
+		self.turningSpeed = None
+		self.turnFastEpochBegin = None
+		self.turnFastEpochEnd = None
 
 		self.cableScanType = None
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
-			
+
 			if self.nimConfig.configMode.value == "simple":			#simple setup
 				self.diseqcModeEntry = getConfigListEntry(_("DiSEqC Mode"), self.nimConfig.diseqcMode)
 				self.list.append(self.diseqcModeEntry)
@@ -115,7 +129,7 @@ class NimSetup(Screen, ConfigListScreen):
 	def newConfig(self):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
-			self.advancedLof, self.advancedPowerMeasurement, self.cableScanType)
+			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, self.cableScanType)
 		for x in checkList:
 			if self["config"].getCurrent() == x:
 				self.createSetup()
@@ -124,6 +138,12 @@ class NimSetup(Screen, ConfigListScreen):
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self["config"].list:
+			if x in [self.turnFastEpochBegin, self.turnFastEpochEnd]:
+				# workaround for storing only hour*3600+min*60 value in configfile
+				# not really needed.. just for cosmetics..
+				tm = localtime(x[1].value)
+				dt = datetime(1970, 1, 1, tm.tm_hour, tm.tm_min)
+				x[1].value = int(mktime(dt.timetuple()))
 			x[1].save()
 		nimmanager.sec.update()
 
@@ -165,8 +185,15 @@ class NimSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
 					self.advancedPowerMeasurement = getConfigListEntry("Use Power Measurement", currLnb.powerMeasurement)
 					self.list.append(self.advancedPowerMeasurement)
-					if currLnb.powerMeasurement.value == "yes":
-						self.list.append(getConfigListEntry("Power Threshold in mA", currLnb.powerThreshold))
+					if currLnb.powerMeasurement.value:
+						self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
+						self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), currLnb.turningSpeed)
+						self.list.append(self.turningSpeed)
+						if currLnb.turningSpeed.value == "fast epoch":
+							self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), currLnb.fastTurningBegin)
+							self.turnFastEpochEnd = getConfigListEntry(_("End time"), currLnb.fastTurningEnd)
+							self.list.append(self.turnFastEpochBegin)
+							self.list.append(self.turnFastEpochEnd)
 			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":

@@ -1,4 +1,4 @@
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -16,6 +16,8 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 from Tools.BoundFunction import boundFunction
+from time import localtime, mktime
+from datetime import datetime
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -33,7 +35,7 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0):
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST):
 		#simple defaults
 		sec.addLNB()
 		tunermask = 1 << slotid
@@ -71,6 +73,7 @@ class SecConfigure:
 			sec.setLoDirection(loDirection)
 			sec.setUseInputpower(True)
 			sec.setInputpowerDelta(50)
+			sec.setRotorTurningSpeed(turningSpeed)
 
 			for x in self.NimManager.satList:
 				print "Add sat " + str(x[0])
@@ -102,9 +105,9 @@ class SecConfigure:
 		self.linked = { }
 		self.satposdepends = { }
 		self.equal = { }
-		
+
 		nim_slots = self.NimManager.nim_slots
-		
+
 		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
@@ -155,11 +158,20 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
+							turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+							if turn_speed_dict.has_key(nim.turningSpeed.value):
+								turning_speed = turn_speed_dict[nim.turningSpeed.value]
+							else:
+								beg_time = localtime(nim.fastTurningBegin.value)
+								end_time = localtime(nim.fastTurningEnd.value)
+								turning_speed = ((beg_time.tm_hour+1) * 60 + beg_time.tm_min + 1) << 16
+								turning_speed |= (end_time.tm_hour+1) * 60 + end_time.tm_min + 1
 							self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
 								longitude = nim.longitude.float,
 								loDirection = loValue,
 								latitude = nim.latitude.float,
-								laDirection = laValue)
+								laDirection = laValue,
+								turningSpeed = turning_speed)
 					elif nim.configMode.value == "advanced": #advanced config
 						self.updateAdvanced(sec, x)
 		print "sec config completed"
@@ -196,18 +208,18 @@ class SecConfigure:
 					sec.setLNBLOFL(currLnb.lofl.value * 1000)
 					sec.setLNBLOFH(currLnb.lofh.value * 1000)
 					sec.setLNBThreshold(currLnb.threshold.value * 1000)
-					
+
 #				if currLnb.output_12v.value == "0V":
 #					pass # nyi in drivers
 #				elif currLnb.output_12v.value == "12V":
 #					pass # nyi in drivers
-					
+
 				if currLnb.increased_voltage.value:
 					sec.setLNBIncreasedVoltage(lnbParam.ON)
 				else:
 					sec.setLNBIncreasedVoltage(lnbParam.OFF)
-				
-				dm = currLnb.diseqcMode.value 
+
+				dm = currLnb.diseqcMode.value
 				if dm == "none":
 					sec.setDiSEqCMode(diseqcParam.NONE)
 				elif dm == "1_0":
@@ -227,10 +239,10 @@ class SecConfigure:
 						sec.setToneburst(diseqcParam.A)
 					elif currLnb.toneburst.value == "B":
 						sec.setToneburst(diseqcParam.B)
-					
+
 					# Committed Diseqc Command
 					cdc = currLnb.commitedDiseqcCommand.value
-					
+
 					c = { "none": diseqcParam.SENDNO,
 						"AA": diseqcParam.AA,
 						"AB": diseqcParam.AB,
@@ -243,9 +255,9 @@ class SecConfigure:
 						sec.setCommittedCommand(long(cdc))
 
 					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
-						
+
 					sec.setSeqRepeat(currLnb.sequenceRepeat.value)
-						
+
 					if currLnb.diseqcMode.value == "1_0":
 						currCO = currLnb.commandOrder1_0.value
 					else:
@@ -260,9 +272,9 @@ class SecConfigure:
 						sec.setRepeats({"none": 0, "one": 1, "two": 2, "three": 3}[currLnb.diseqcRepeats.value])
 
 					setCommandOrder = False
-					
-					# 0 "committed, toneburst", 
-					# 1 "toneburst, committed", 
+
+					# 0 "committed, toneburst",
+					# 1 "toneburst, committed",
 					# 2 "committed, uncommitted, toneburst",
 					# 3 "toneburst, committed, uncommitted",
 					# 4 "uncommitted, committed, toneburst"
@@ -283,10 +295,19 @@ class SecConfigure:
 						sec.setLoDirection(rotorParam.EAST)
 					else:
 						sec.setLoDirection(rotorParam.WEST)
-						
+
 				if currLnb.powerMeasurement.value:
 					sec.setUseInputpower(True)
 					sec.setInputpowerDelta(currLnb.powerThreshold.value)
+					turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+					if turn_speed_dict.has_key(currLnb.turningSpeed.value):
+						turning_speed = turn_speed_dict[currLnb.turningSpeed.value]
+					else:
+						beg_time = localtime(currLnb.fastTurningBegin.value)
+						end_time = localtime(currLnb.fastTurningEnd.value)
+						turning_speed = ((beg_time.tm_hour + 1) * 60 + beg_time.tm_min + 1) << 16
+						turning_speed |= (end_time.tm_hour + 1) * 60 + end_time.tm_min + 1
+					sec.setRotorTurningSpeed(turning_speed)
 				else:
 					sec.setUseInputpower(False)
 
@@ -817,7 +838,11 @@ def InitNimManager(nimmgr):
 			nim.longitudeOrientation = ConfigSelection(choices={"east": _("East"), "west": _("West")}, default = "east")
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(choices={"north": _("North"), "south": _("South")}, default="north")
-			
+			nim.turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch")) ], default = "fast")
+			btime = datetime(1970, 1, 1, 7, 0);
+			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
+			etime = datetime(1970, 1, 1, 19, 0);
+			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			# get other frontends of the same type
 			satNimList = nimmgr.getNimListOfType(slot.type, slot.slot)
 			satNimListNames = {}
@@ -887,7 +912,11 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].latitudeOrientation = ConfigSelection(choices = [("north", _("North")), ("south", _("South"))], default = "north")
 				nim.advanced.lnb[x].powerMeasurement = ConfigYesNo(default=True)
 				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
-
+				nim.advanced.lnb[x].turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))], default = "fast")
+				btime = datetime(1970, 1, 1, 7, 0);
+				nim.advanced.lnb[x].fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 600)
+				etime = datetime(1970, 1, 1, 19, 0);
+				nim.advanced.lnb[x].fastTurningEnd = ConfigDateTime(default=mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 600)
 		elif slot.isCompatible("DVB-C"):
 			nim.configMode = ConfigSelection(
 				choices = {

@@ -1,6 +1,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/rotor_calc.h>
+#include <lib/dvb/dvbtime.h>
 
 #include <set>
 
@@ -251,6 +252,30 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	if (ret && m_not_linked_slot_mask & slot_id)
 		ret += 5; // increase score for tuners with direct sat connection
 	return ret;
+}
+
+bool need_turn_fast(int turn_speed)
+{
+	if (turn_speed == eDVBSatelliteRotorParameters::FAST)
+		return true;
+	else if (turn_speed != eDVBSatelliteRotorParameters::SLOW)
+	{
+		int begin = turn_speed >> 16; // high word is start time
+		int end = turn_speed&0xFFFF; // low word is end time
+		time_t now_time = eDVBLocalTimeHandler::getInstance()->nowTime();
+		tm nowTime;
+		localtime_r(&now_time, &nowTime);
+		int now = (nowTime.tm_hour + 1) * 60 + nowTime.tm_min + 1;
+		bool neg = end <= begin;
+		if (neg) {
+			int tmp = begin;
+			begin = end;
+			end = tmp;
+		}
+		if ((now >= begin && now < end) ^ neg)
+			return true;
+	}
+	return false;
 }
 
 #define VOLTAGE(x) (lnb_param.m_increased_voltage ? iDVBFrontend::voltage##x##_5 : iDVBFrontend::voltage##x)
@@ -678,7 +703,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, +9 ) );  // timeout .. we assume now the rotor is already at the correct position
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 ////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
+							if (need_turn_fast(rotor_param.m_inputpower_parameters.m_turning_speed))
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
 // rotor running loop
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
@@ -1067,6 +1093,16 @@ RESULT eDVBSatelliteEquipmentControl::setRotorPosNum(int rotor_pos_num)
 		else
 			return -EPERM;
 	}
+	else
+		return -ENOENT;
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::setRotorTurningSpeed(int speed)
+{
+	eSecDebug("eDVBSatelliteEquipmentControl::setRotorTurningSpeed(%d)", speed);
+	if ( currentLNBValid() )
+		m_lnbs[m_lnbidx].m_rotor_parameters.m_inputpower_parameters.m_turning_speed = speed;
 	else
 		return -ENOENT;
 	return 0;
