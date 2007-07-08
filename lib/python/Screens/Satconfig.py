@@ -183,7 +183,7 @@ class NimSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
 					self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
 					self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
-					self.advancedPowerMeasurement = getConfigListEntry("Use Power Measurement", currLnb.powerMeasurement)
+					self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), currLnb.powerMeasurement)
 					self.list.append(self.advancedPowerMeasurement)
 					if currLnb.powerMeasurement.value:
 						self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
