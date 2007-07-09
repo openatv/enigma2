@@ -110,9 +110,6 @@ class MovieSelection(Screen):
 			})
 		self["actions"].csel = self
 		self.onShown.append(self.go)
-		
-		self.lengthTimer = eTimer()
-		self.lengthTimer.timeout.get().append(self.updateLengthData)
 		self.inited = False
 
 	def showEventInformation(self):
@@ -139,12 +136,6 @@ class MovieSelection(Screen):
 
 		self.updateTags()
 
-	def updateLengthData(self):
-		self.list.updateLengthOfIndex(self.lengthPosition)
-		self.lengthPosition += 1
-		if self.lengthPosition < self.lengthLength:
-			self.lengthTimer.start(10, 1)
-
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
 
@@ -152,7 +143,6 @@ class MovieSelection(Screen):
 		return self["list"].getCurrent()
 
 	def movieSelected(self):
-		self.lengthTimer.stop()
 		current = self.getCurrent()
 		if current is not None:
 			self.close(current)
@@ -197,15 +187,9 @@ class MovieSelection(Screen):
 
 	def reloadList(self):
 		self["list"].reload(self.current_ref, self.selected_tags)
-		self.lengthTimer.start(10, 1)
-		self.lengthPosition = 0
-		self.lengthLength = len(self["list"])
-		
 		title = _("Recorded files...")
-		
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
-		
 		self.setTitle(title)
 
 	def showAll(self):

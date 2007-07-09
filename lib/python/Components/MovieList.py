@@ -26,6 +26,12 @@ class MovieList(GUIComponent):
 		if serviceref.flags & eServiceReference.mustDescent:
 			return None
 
+		if len <= 0: #recalc len when not already done
+			cur_idx = self.l.getCurrentSelectionIndex()
+			x = self.list[cur_idx]
+			len = x[1].getLength(x[0]) #recalc the movie length...
+			self.list[cur_idx] = (x[0], x[1], x[2], len) #update entry in list... so next time we don't need to recalc
+
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
@@ -85,12 +91,6 @@ class MovieList(GUIComponent):
 
 	def __len__(self):
 		return len(self.list)
-
-	def updateLengthOfIndex(self, index):
-		if len(self.list) > index:
-			x = self.list[index]
-			self.list[index] = (x[0], x[1], x[2], x[1].getLength(x[0]))
-			self.l.invalidateEntry(index)
 
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a 
