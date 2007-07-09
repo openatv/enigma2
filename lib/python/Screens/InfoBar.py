@@ -121,7 +121,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarExtensions, InfoBarTeletextPlugin,
+		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport):
 
 	ENABLE_RESUME_SUPPORT = True
@@ -139,7 +139,7 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
-				InfoBarSummarySupport, InfoBarSubtitleSupport, InfoBarExtensions, \
+				InfoBarSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
