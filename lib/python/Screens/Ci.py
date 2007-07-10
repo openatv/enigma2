@@ -235,8 +235,8 @@ class CiMessageHandler:
 					print "no session"
 
 	def dlgClosed(self, slot):
-		del self.dlgs[slot]
-		self.dlgs.remove(slot)
+		if slot in self.dlgs:
+			del self.dlgs[slot]
 
 	def registerCIMessageHandler(self, slot, func):
 		self.unregisterCIMessageHandler(slot)
