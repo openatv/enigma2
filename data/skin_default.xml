@@ -436,36 +436,36 @@ from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()
 orgpos = self.instance.position()
-textsize = self["text"].getSize()
+textsize = self[&quot;text&quot;].getSize()
 
 # y size still must be fixed in font stuff...
 textsize = (textsize[0] + 50, textsize[1] + 50)
 count = len(self.list)
-if count > 10:
+if count &gt; 10:
 	count = 10
 offset = 25 * count
 wsizex = textsize[0] + 60
 wsizey = textsize[1] + offset
 
-if (450 > wsizex):
-	wsizex = 450
+if (520 &gt; wsizex):
+	wsizex = 520
 wsize = (wsizex, wsizey)
-
 
 # resize
 self.instance.resize(eSize(*wsize))
 
 # resize label
-self["text"].instance.resize(eSize(*textsize))
+self[&quot;text&quot;].instance.resize(eSize(*textsize))
 
 # move list
 listsize = (wsizex, 25 * count)
-self["list"].instance.move(ePoint(0, textsize[1]))
-self["list"].instance.resize(eSize(*listsize))
+self[&quot;list&quot;].instance.move(ePoint(0, textsize[1]))
+self[&quot;list&quot;].instance.resize(eSize(*listsize))
 
 # center window
 newwidth = wsize[0]
-#self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
+self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)))
+
 		</applet>
 	</screen>
 	<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
@@ -514,7 +514,7 @@ from enigma import eSize, ePoint
 
 orgwidth = self.instance.size().width()
 orgpos = self.instance.position()
-textsize = self["text"].getSize()
+textsize = self[&quot;text&quot;].getSize()
 
 # y size still must be fixed in font stuff...
 textsize = (textsize[0] + 50, textsize[1] + 50)
@@ -523,7 +523,7 @@ if self.type == self.TYPE_YESNO:
 	offset = 60
 wsizex = textsize[0] + 60
 wsizey = textsize[1] + offset
-if (280 > wsizex):
+if (280 &gt; wsizex):
 	wsizex = 280
 wsize = (wsizex, wsizey)
 
@@ -532,12 +532,12 @@ wsize = (wsizex, wsizey)
 self.instance.resize(eSize(*wsize))
 
 # resize label
-self["text"].instance.resize(eSize(*textsize))
+self[&quot;text&quot;].instance.resize(eSize(*textsize))
 
 # move list
 listsize = (wsizex, 50)
-self["list"].instance.move(ePoint(0, textsize[1]))
-self["list"].instance.resize(eSize(*listsize))
+self[&quot;list&quot;].instance.move(ePoint(0, textsize[1]))
+self[&quot;list&quot;].instance.resize(eSize(*listsize))
 
 # center window
 newwidth = wsize[0]
