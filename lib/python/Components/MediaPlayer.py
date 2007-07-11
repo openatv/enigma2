@@ -6,7 +6,7 @@ from MenuList import MenuList
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from os import path
 
-from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, loadPNG, gFont
+from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, loadPNG, gFont, eServiceCenter
 
 STATE_PLAY = 0
 STATE_PAUSE = 1
@@ -51,6 +51,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		self.l.setItemHeight(22)
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
+		self.serviceHandler = eServiceCenter.getInstance()
 	
 	def clear(self):
 		del self.list[:]
@@ -108,6 +109,14 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 		
 	def getCurrentIndex(self):
 		return self.currPlaying
+
+	def getCurrentEvent(self):
+		l = self.l.getCurrentSelection()
+		return l and self.serviceHandler.info(l[0]).getEvent(l[0])
+
+	def getCurrent(self):
+		l = self.l.getCurrentSelection()
+		return l and l[0]
 	
 	def getServiceRefList(self):
 		return [ x[0] for x in self.list ]
