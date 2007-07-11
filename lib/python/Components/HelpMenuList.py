@@ -21,6 +21,10 @@ class HelpMenuList(GUIComponent):
 
 				buttons = queryKeyBinding(context, action)
 
+				# do not display entries which are not accessible from keys
+				if not len(buttons):
+					continue
+
 				name = None
 				flags = 0
 
