@@ -62,7 +62,7 @@ def readKeymap(filename = "/usr/share/enigma2/keymap.xml"):
 
 #				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
 				p.bindKey(filename, device, keyid, flags, context, mapto)
-				addKeyBinding(filename, keyid, context, mapto)
+				addKeyBinding(filename, keyid, context, mapto, flags)
 
 		parseKeys("generic", cmap)
 
