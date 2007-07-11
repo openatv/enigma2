@@ -1803,13 +1803,23 @@ class InfoBarCueSheetSupport:
 		if onlyreturn:
 			return None
 
+	def showAfterCuesheetOperation(self):
+		if isinstance(self, InfoBarShowHide):
+			self.doShow()
+
 	def addMark(self, point):
 		insort(self.cut_list, point)
 		self.uploadCuesheet()
+		self.showAfterCuesheetOperation()
 
 	def removeMark(self, point):
 		self.cut_list.remove(point)
 		self.uploadCuesheet()
+		self.showAfterCuesheetOperation()
+
+	def showAfterCuesheetOperation(self):
+		if isinstance(self, InfoBarShowHide):
+			self.doShow()
 
 	def __getCuesheet(self):
 		service = self.session.nav.getCurrentService()
@@ -1829,9 +1839,10 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-			print "upload failed, no cuesheet interface"
-			return
-		self.cut_list = cue.getCutList()
+			print "download failed, no cuesheet interface"
+			self.cut_list = [ ]
+		else:
+			self.cut_list = cue.getCutList()
 
 class InfoBarSummary(Screen):
 	skin = """
