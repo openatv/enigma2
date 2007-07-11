@@ -12,6 +12,7 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport, InfoBar
 from Components.GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
+from Screens.HelpMenu import HelpableScreen
 import bisect
 
 def CutListEntry(where, what):
@@ -140,7 +141,7 @@ class CutList(GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 
-class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceName):
+class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceName, HelpableScreen):
 	skin = """
 		<screen position="0,0" size="720,576" flags="wfNoBorder" backgroundColor="#444444">
 			<eLabel position="360,0" size="360,313" backgroundColor="#ffffff" />
@@ -157,8 +158,8 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 				<convert type="ServicePosition">PositionDetailed</convert>
 			</widget>
 
-			<widget name="Timeline" position="50,500" size="620,40" transparent="1"
-				pointer="/usr/share/enigma2/position_pointer.png:3,5" foregroundColor="#225b7395" />
+			<widget name="Timeline" position="50,500" size="620,40" backgroundColor="#000000"
+				pointer="/usr/share/enigma2/position_pointer.png:3,5" foregroundColor="#ffffff" />
 			<widget name="Cutlist" position="50,325" size="620,175" scrollbarMode="showOnDemand" transparent="1" />
 		</screen>"""
 	def __init__(self, session, service):
@@ -167,6 +168,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
 		InfoBarServiceName.__init__(self)
+		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 
@@ -193,7 +195,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor")),
-				"showMenu": self.showMenu,
+				"showMenu": (self.showMenu, _("menu")),
 			}, prio=-4)
 
 		self.tutorial_seen = False
@@ -212,7 +214,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 		if not self.tutorial_seen:
 			self.tutorial_seen = True
 			self.session.open(MessageBox, 
-				"""Welcome to the Cutlist editor. It's still a bit strange to use, but anyway:
+				"""Welcome to the Cutlist editor. 
 
 Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.
 
