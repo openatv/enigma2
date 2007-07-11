@@ -39,8 +39,8 @@ class HelpMenuList(GUIComponent):
 
 		self.l.setList(l)
 
-		self.l.setFont(0, gFont("Regular", 26))
-		self.l.setItemHeight(42)
+		self.l.setFont(0, gFont("Regular", 24))
+		self.l.setItemHeight(38)
 
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...
