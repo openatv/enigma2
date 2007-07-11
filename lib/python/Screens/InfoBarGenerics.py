@@ -1698,9 +1698,9 @@ class InfoBarCueSheetSupport:
 	def __init__(self):
 		self["CueSheetActions"] = HelpableActionMap(self, "InfobarCueSheetActions", 
 			{
-				"jumpPreviousMark": (self.jumpPreviousMark, "jump to next marked position"),
-				"jumpNextMark": (self.jumpNextMark, "jump to previous marked position"),
-				"toggleMark": (self.toggleMark, "toggle a cut mark at the current position")
+				"jumpPreviousMark": (self.jumpPreviousMark, _("jump to next marked position")),
+				"jumpNextMark": (self.jumpNextMark, _("jump to previous marked position")),
+				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
 			}, prio=1) 
 
 		self.cut_list = [ ]
