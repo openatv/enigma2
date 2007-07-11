@@ -667,8 +667,8 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def showAfterSeek(self):
-		if isinstance(self.screen, InfoBarShowHide):
-			self.screen.doShow()
+		if isinstance(self, InfoBarShowHide):
+			self.doShow()
 
 	def up(self):
 		pass
