@@ -922,9 +922,9 @@ class InfoBarShowMovies:
 	def __init__(self):
 		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", 
 			{
-				"movieList": (self.showMovies, "movie list"),
-				"up": (self.showMovies, "movie list"),
-				"down": (self.showMovies, "movie list")
+				"movieList": (self.showMovies, _("movie list")),
+				"up": (self.showMovies, _("movie list")),
+				"down": (self.showMovies, _("movie list"))
 			})
 
 # InfoBarTimeshift requires InfoBarSeek, instantiated BEFORE!
