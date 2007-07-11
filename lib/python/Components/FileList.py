@@ -59,6 +59,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 
 		self.l.setFont(0, gFont("Regular", 18))
 		self.l.setItemHeight(23)
+		self.serviceHandler = eServiceCenter.getInstance()
 
 	def getSelection(self):
 		if self.l.getCurrentSelection() is None:
@@ -67,7 +68,14 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 	
 	def getSelectionIndex(self):
 		return self.l.getCurrentSelectionIndex()
-
+	
+	def getCurrentEvent(self):
+		l = self.l.getCurrentSelection()
+		if not l or l[0][1] == True:
+			return None
+		else:
+			return self.serviceHandler.info(l[0][0]).getEvent(l[0][0])
+	
 	def getFileList(self):
 		return self.list
 	
