@@ -480,6 +480,8 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="list" position="50,100" size="450,378" scrollbarMode="showOnDemand" />
 		<widget name="rc" pixmap="rc.png" position="540,50" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 		<widget name="arrowup" pixmap="arrowup.png" position="585,425" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		<widget name="sh_arrowup" pixmap="arrowup.png" position="580,75" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+		<widget name="long_key" position="320,520" zPosition="3" size="350,50" font="Regular;25" halign="right" foregroundColor="yellow" />
 		<eLabel position="400,40" size="220,60" text="help..." font="Regular;50" />
 	</screen>
 	<screen name="PVRState" flags="wfNoBorder" position="70,70" size="150,30" backgroundColor="transpBlack" zPosition="2">
