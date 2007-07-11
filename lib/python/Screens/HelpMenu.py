@@ -16,22 +16,35 @@ class HelpMenu(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		self.onSelChanged = [ ]
-		
 		self["list"] = HelpMenuList(list, self.close)
 		self["list"].onSelChanged.append(self.SelectionChanged)
-		
 		self["rc"] = Pixmap()
 		self["arrowup"] = MovingPixmap()
+		self["arrowup"].hide()
+		self["sh_arrowup"] = Pixmap()
+		self["sh_arrowup"].hide()
+		self["long_key"] = Label("")
 
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self["list"].ok,
 			"back": self.close,
 		}, -1)
-		
+
 	def SelectionChanged(self):
 		selection = self["list"].getCurrent()[3]
 		arrow = self["arrowup"]
+		sh_arrow = self["sh_arrowup"]
+
+		if selection[0][:3] == "sh_":
+			sh_arrow.show()
+		else:
+			sh_arrow.hide()
+
+		if selection[0][:2] == "l_":
+			self["long_key"].setText(_("Long Keypress"))
+		else:
+			self["long_key"].setText("")
 
 		if selection is None:
 			arrow.hide()
