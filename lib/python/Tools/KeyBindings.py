@@ -38,12 +38,13 @@ keyDescriptions = {
 		KEYIDS["KEY_RECORD"]: ("sh_radio", 585, 425)
 	}
 
-def addKeyBinding(domain, key, context, action):
-	keyBindings.setdefault((context, action), []).append((key, domain))
+def addKeyBinding(domain, key, context, action, flags):
+	keyBindings.setdefault((context, action), []).append((key, domain, flags))
 
+# returns a list of (key, flags) for a specified action
 def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
-		return [x[0] for x in keyBindings[(context, action)]]
+		return [(x[0], x[2]) for x in keyBindings[(context, action)]]
 	else:
 		return [ ]
 

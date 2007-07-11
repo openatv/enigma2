@@ -22,11 +22,15 @@ class HelpMenuList(GUIComponent):
 				buttons = queryKeyBinding(context, action)
 
 				name = None
+				flags = 0
 
 				for n in buttons:
-					name = getKeyDescription(n)
+					(name, flags) = (getKeyDescription(n[0]), n[1])
 					if name is not None:
 						break
+
+				if flags & 8: # for long keypresses, prepend l_ into the key name.
+					name = ("l_" + name[0], name[1], name[2])
 
 				entry.append( (actionmap, context, action, name ) )
 				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
