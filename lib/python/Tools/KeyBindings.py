@@ -24,7 +24,18 @@ keyDescriptions = {
 		KEYIDS["KEY_RADIO"]: ("radio", 585, 425),
 		KEYIDS["KEY_TEXT"]: ("text", 610, 425),
 		KEYIDS["KEY_NEXT"]: ("next", 635, 203),
-		KEYIDS["KEY_PREVIOUS"]: ("prev", 559, 203)
+		KEYIDS["KEY_PREVIOUS"]: ("prev", 559, 203),
+		KEYIDS["KEY_PREVIOUSSONG"]: ("sh_blue", 640, 390),
+		KEYIDS["KEY_PLAYPAUSE"]: ("sh_yellow", 610, 390),
+		KEYIDS["KEY_PLAY"]: ("sh_green", 585, 390),
+		KEYIDS["KEY_NEXTSONG"]: ("sh_red", 555, 390),
+		KEYIDS["KEY_CHANNELUP"]: ("ch_up", 645, 245),
+		KEYIDS["KEY_CHANNELDOWN"]: ("ch_down", 630, 270),
+		KEYIDS["KEY_0"]: ("0", 598, 203),
+		KEYIDS["KEY_8"]: ("8", 598, 180),
+		KEYIDS["KEY_EXIT"]: ("exit", 598, 255),
+		KEYIDS["KEY_STOP"]: ("sh_tv", 560, 425),
+		KEYIDS["KEY_RECORD"]: ("sh_radio", 585, 425)
 	}
 
 def addKeyBinding(domain, key, context, action):
