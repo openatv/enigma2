@@ -2,6 +2,7 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/actions/actionids.h>
+#include <lib/driver/rc.h>
 
 /*
 
@@ -149,9 +150,14 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 	std::list<call_entry> call_list;
 	
 		/* iterate active contexts. */
-	for (std::multimap<int,eActionBinding>::const_iterator c(m_bindings.begin());
+	for (std::multimap<int,eActionBinding>::iterator c(m_bindings.begin());
 		c != m_bindings.end(); ++c)
 	{
+		if (flags == eRCKey::flagMake)
+			c->second.m_prev_seen_make_key = key;
+		else if (c->second.m_prev_seen_make_key != key)  // ignore repeat or break when the make code for this key was not visible
+			continue;
+
 			/* is this a native context? */
 		if (c->second.m_widget)
 		{

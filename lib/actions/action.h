@@ -43,6 +43,9 @@ private:
 	static eActionMap *instance;
 	struct eActionBinding
 	{
+		eActionBinding()
+			:m_prev_seen_make_key(-1)
+		{}
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
 		std::string m_domain;
@@ -51,6 +54,7 @@ private:
 		
 		eWidget *m_widget;
 		int m_id;
+		int m_prev_seen_make_key;
 	};
 	
 	std::multimap<int, eActionBinding> m_bindings;
