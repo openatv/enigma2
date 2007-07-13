@@ -100,6 +100,9 @@ void eWidget::show()
 		return;
 
 	m_vis |= wVisShow;
+	eDebug("show widget %p", this);
+	notifyShowHide();
+
 		/* TODO: optimize here to only recalc what's required. possibly merge with hide. */
 	eWidget *root = this;
 	ePoint abspos = position();
@@ -133,10 +136,12 @@ void eWidget::hide()
 	if (!(m_vis & wVisShow))
 		return;
 	m_vis &= ~wVisShow;
+
 		/* this is a workaround to the above problem. when we are in the delete phase, 
 		   don't hide childs. */
 	if (!(m_parent || m_desktop))
 		return;
+	notifyShowHide();
 
 		/* TODO: optimize here to only recalc what's required. possibly merge with show. */
 	eWidget *root = this;
@@ -361,3 +366,9 @@ void eWidget::setFocus(eWidget *focus)
 		m_current_focus->event(evtFocusGot, this);
 }
 
+void eWidget::notifyShowHide()
+{
+	event(evtParentVisibilityChanged);
+	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
+		i->notifyShowHide();
+}
