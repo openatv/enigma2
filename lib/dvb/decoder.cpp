@@ -57,6 +57,88 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 		eWarning("%s: %m", filename);
 }
 
+#if HAVE_DVB_API_VERSION < 3
+int eDVBAudio::setPid(int pid, int type)
+{
+	if ((m_fd < 0) || (m_fd_demux < 0))
+		return -1;
+
+	int bypass = 0;
+
+	switch (type)
+	{
+	case aMPEG:
+		bypass = 1;
+		break;
+	case aAC3:
+		bypass = 0;
+		break;
+		/*
+	case aDTS:
+		bypass = 2;
+		break;
+		*/
+	}
+
+	if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
+		eWarning("audio: AUDIO_SET_BYPASS_MODE: %m");
+
+	dmx_pes_filter_params pes;
+
+	pes.pid      = pid;
+	pes.input    = DMX_IN_FRONTEND;
+	pes.output   = DMX_OUT_DECODER;
+	pes.pes_type = m_dev ? DMX_PES_AUDIO1 : DMX_PES_AUDIO0; /* FIXME */
+	pes.flags    = 0;
+	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
+	{
+		eWarning("audio: DMX_SET_PES_FILTER: %m");
+		return -errno;
+	}
+
+	return 0;
+}
+
+int eDVBAudio::startPid()
+{
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
+	{
+		eWarning("audio: DMX_START: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBAudio::start()
+{
+	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
+	{
+		eWarning("audio: AUDIO_PLAY: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBAudio::stopPid()
+{
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+	{
+		eWarning("audio: DMX_STOP: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBAudio::setAVSync(int val)
+{
+	if (::ioctl(m_fd, AUDIO_SET_AV_SYNC, val) < 0)
+	{
+		eWarning("audio: AUDIO_SET_AV_SYNC: %m");
+		return -errno;
+	}
+	return 0;
+}
+#else
 int eDVBAudio::startPid(int pid, int type)
 {
 	if ((m_fd < 0) || (m_fd_demux < 0))
@@ -105,10 +187,13 @@ int eDVBAudio::startPid(int pid, int type)
 		eWarning("audio: AUDIO_PLAY: %m");
 	return 0;
 }
+#endif
 
 void eDVBAudio::stop()
 {
+#if HAVE_DVB_API_VERSION > 2
 	flush();
+#endif
 	if (::ioctl(m_fd, AUDIO_STOP) < 0)
 		eWarning("audio: AUDIO_STOP: %m");
 #if HAVE_DVB_API_VERSION > 2
@@ -116,14 +201,6 @@ void eDVBAudio::stop()
 		eWarning("audio: DMX_STOP: %m");
 #endif
 }
-
-#if HAVE_DVB_API_VERSION < 3
-void eDVBAudio::stopPid()
-{
-	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-		eWarning("audio: DMX_STOP: %m");
-}
-#endif
 
 void eDVBAudio::flush()
 {
@@ -204,6 +281,56 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 #define VIDEO_STREAMTYPE_MPEG2 0
 #define VIDEO_STREAMTYPE_MPEG4_H264 1
 
+#if HAVE_DVB_API_VERSION < 3
+int eDVBVideo::setPid(int pid)
+{
+	if ((m_fd < 0) || (m_fd_demux < 0))
+		return -1;
+	dmx_pes_filter_params pes;
+
+	pes.pid      = pid;
+	pes.input    = DMX_IN_FRONTEND;
+	pes.output   = DMX_OUT_DECODER;
+	pes.pes_type = m_dev ? DMX_PES_VIDEO1 : DMX_PES_VIDEO0; /* FIXME */
+	pes.flags    = 0;
+	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
+	{
+		eWarning("video: DMX_SET_PES_FILTER: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBVideo::startPid()
+{
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
+	{
+		eWarning("video: DMX_START: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBVideo::start()
+{
+	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
+	{
+		eWarning("video: VIDEO_PLAY: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBVideo::stopPid()
+{
+	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
+	{
+		eWarning("video: DMX_STOP: %m");
+		return -errno;
+	}
+	return 0;
+}
+#else
 int eDVBVideo::startPid(int pid, int type)
 {
 	if ((m_fd < 0) || (m_fd_demux < 0))
@@ -237,6 +364,7 @@ int eDVBVideo::startPid(int pid, int type)
 		eWarning("video: VIDEO_PLAY: %m");
 	return 0;
 }
+#endif
 
 void eDVBVideo::stop()
 {
@@ -248,14 +376,6 @@ void eDVBVideo::stop()
 	if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
 		eWarning("video: VIDEO_STOP: %m");
 }
-
-#if HAVE_DVB_API_VERSION < 3
-void eDVBVideo::stopPid()
-{
-	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-		eWarning("video: DMX_STOP: %m");
-}
-#endif
 
 void eDVBVideo::flush()
 {
@@ -355,6 +475,38 @@ eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
 		eWarning("%s: %m", filename);
 }
 
+#if HAVE_DVB_API_VERSION < 3
+int eDVBPCR::setPid(int pid)
+{
+	if (m_fd_demux < 0)
+		return -1;
+	dmx_pes_filter_params pes;
+
+	pes.pid      = pid;
+	pes.input    = DMX_IN_FRONTEND;
+	pes.output   = DMX_OUT_DECODER;
+	pes.pes_type = DMX_PES_PCR;
+	pes.flags    = 0;
+	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
+	{
+		eWarning("video: DMX_SET_PES_FILTER: %m");
+		return -errno;
+	}
+	return 0;
+}
+
+int eDVBPCR::startPid()
+{
+	if (m_fd_demux < 0)
+		return -1;
+	if (::ioctl(m_fd_demux, DMX_START) < 0)
+	{
+		eWarning("video: DMX_START: %m");
+		return -errno;
+	}
+	return 0;
+}
+#else
 int eDVBPCR::startPid(int pid)
 {
 	if (m_fd_demux < 0)
@@ -378,6 +530,7 @@ int eDVBPCR::startPid(int pid)
 	}
 	return 0;
 }
+#endif
 
 void eDVBPCR::stop()
 {
@@ -479,35 +632,47 @@ int eTSMPEGDecoder::setState()
 		m_video=0;
 		m_video_event_conn=0;
 	}
-	if (m_changed & changePCR)
-	{
-		m_pcr = new eDVBPCR(m_demux);
-		if (m_pcr->startPid(m_pcrpid))
-		{
-			eWarning("pcr: startpid failed!");
-			res = -1;
-		}
-		m_changed &= ~changePCR;
-	}
 	if (m_changed & changeVideo)
 	{
 		m_video = new eDVBVideo(m_demux, m_decoder);
 		m_video->connectEvent(slot(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
-		if (m_video->startPid(m_vpid))
-		{
-			eWarning("video: startpid failed!");
+		if (m_video->setPid(m_vpid))
+			res -1;
+	}
+	if (m_changed & changePCR)
+	{
+		m_pcr = new eDVBPCR(m_demux);
+		if (m_pcr->setPid(m_pcrpid))
 			res = -1;
-		}
-		m_changed &= ~changeVideo;
 	}
 	if (m_changed & changeAudio)
 	{
 		m_audio = new eDVBAudio(m_demux, m_decoder);
-		if (m_audio->startPid(m_apid, m_atype))
-		{
-			eWarning("audio: startpid failed!");
+		if (m_audio->setPid(m_apid, m_atype))
 			res = -1;
-		}
+	}
+	if (m_changed & changePCR && m_pcrpid != -1)
+	{
+		if (m_pcr->startPid())
+			res = -1;
+		m_changed &= ~changePCR;
+	}
+	else if (m_apid != -1 && m_vpid != -1)   // playback
+	{
+		if (m_audio->setAVSync(1))
+			res = -1;
+	}
+	
+	if (m_changed & changeVideo)
+	{
+		if (m_video->startPid() || m_video->start())
+			res = -1;
+		m_changed &= ~changeVideo;
+	}
+	if (m_changed & changeAudio)
+	{
+		if (m_audio->start() || m_audio->startPid())
+			res = -1;
 		m_changed &= ~changeAudio;
 	}
 #else

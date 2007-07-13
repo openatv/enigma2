@@ -15,13 +15,17 @@ private:
 public:
 	enum { aMPEG, aAC3, aDTS, aAAC };
 	eDVBAudio(eDVBDemux *demux, int dev);
-	int startPid(int pid, int type);
 	enum { aMonoLeft, aStereo, aMonoRight };
 	void setChannel(int channel);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
-	void start();
-	void stopPid();
+	int setPid(int pid, int type);
+	int startPid();
+	int start();
+	int stopPid();
+	int setAVSync(int val);
+#else
+	int startPid(int pid, int type);
 #endif
 	void flush();
 	void freeze();
@@ -44,11 +48,14 @@ private:
 public:
 	enum { MPEG2, MPEG4_H264 };
 	eDVBVideo(eDVBDemux *demux, int dev);
-	int startPid(int pid, int type=MPEG2);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
-	void start();
-	void stopPid();
+	int setPid(int pid);
+	int startPid();
+	int start();
+	int stopPid();
+#else
+	int startPid(int pid, int type=MPEG2);
 #endif
 	void flush();
 	void freeze();
@@ -68,7 +75,12 @@ private:
 	int m_fd_demux;
 public:
 	eDVBPCR(eDVBDemux *demux);
+#if HAVE_DVB_API_VERSION < 3
+	int setPid(int pid);
+	int startPid();
+#else
 	int startPid(int pid);
+#endif
 	void stop();
 	virtual ~eDVBPCR();
 };
