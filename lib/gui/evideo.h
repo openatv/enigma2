@@ -12,6 +12,7 @@ public:
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void updatePosition(int disable = 0);
+	eRect m_cur_pos;
 
 	int m_decoder;
 };
