@@ -178,8 +178,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	if ( m_service && !m_service->cacheEmpty() )
 	{
 		cached_vpid = m_service->getCacheEntry(eDVBService::cVPID);
-		cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cAC3PID);
-		cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAPID);
+		cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cAPID);
+		cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAC3PID);
 		cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
 	}
 
