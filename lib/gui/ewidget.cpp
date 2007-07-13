@@ -9,12 +9,9 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_desktop = 0;
 	m_have_background_color = 0;
 	m_z_position = 0;
-	
 	m_client_offset = eSize(0, 0);
-	
 	if (m_parent)
 		m_vis = wVisShow;
-	
 	if (m_parent)
 	{
 		insertIntoParent();
@@ -23,14 +20,12 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 
 	m_current_focus = 0;
 	m_focus_owner = 0;
-	
 	m_notify_child_on_position_change = 1;
 }
 
 void eWidget::move(ePoint pos)
 {
 	pos = pos + m_client_offset;
-	
 	if (m_position == pos)
 		return;
 
@@ -38,15 +33,11 @@ void eWidget::move(ePoint pos)
 	invalidate();
 
 	m_position = pos;
-	
 	event(evtChangedPosition);
-	
 	if (m_notify_child_on_position_change)
 		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
 			i->event(evtParentChangedPosition);
-		
-	recalcClipRegionsWhenVisible();
-	
+		recalcClipRegionsWhenVisible();
 		/* try native move if supported. */
 	if ((m_vis & wVisShow) && ((!m_desktop) || m_desktop->movedWidget(this)))
 		invalidate();
@@ -66,9 +57,7 @@ void eWidget::resize(eSize size)
 	event(evtWillChangeSize, &size, &m_client_offset);
 	if (old_size == m_size)
 		return;
-	
 	move(position() - old_offset);
-	
 	invalidate();
 	event(evtChangedSize);
 
@@ -76,8 +65,7 @@ void eWidget::resize(eSize size)
 		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
 			i->event(evtParentChangedPosition); /* position/size is the same here */
 
-	recalcClipRegionsWhenVisible();	
-	invalidate();
+	recalcClipRegionsWhenVisible();	invalidate();
 }
 
 void eWidget::invalidate(const gRegion &region)
@@ -92,7 +80,6 @@ void eWidget::invalidate(const gRegion &region)
 
 	if (res.empty())
 		return;
-	
 	eWidget *root = this;
 	ePoint abspos = position();
 	while (root && !root->m_desktop)
@@ -101,7 +88,6 @@ void eWidget::invalidate(const gRegion &region)
 		assert(root);
 		abspos += root->position();
 	}
-	
 	res.moveBy(abspos);
 //	eDebug("region to invalidate:");
 //	dumpRegion(res);
@@ -114,7 +100,6 @@ void eWidget::show()
 		return;
 
 	m_vis |= wVisShow;
-	
 		/* TODO: optimize here to only recalc what's required. possibly merge with hide. */
 	eWidget *root = this;
 	ePoint abspos = position();
@@ -126,8 +111,7 @@ void eWidget::show()
 				/* oops: our root widget does not have a desktop associated. 
 					probably somebody already erased the root, but tries some
 					operations on a child window. 
-					
-					ignore them for now. */
+									ignore them for now. */
 			/* assert(root); */
 			return;
 		}
@@ -149,7 +133,6 @@ void eWidget::hide()
 	if (!(m_vis & wVisShow))
 		return;
 	m_vis &= ~wVisShow;
-	
 		/* this is a workaround to the above problem. when we are in the delete phase, 
 		   don't hide childs. */
 	if (!(m_parent || m_desktop))
@@ -197,9 +180,7 @@ void eWidget::setZPosition(int z)
 	m_z_position = z;
 	if (!m_parent)
 		return;
-	
 	m_parent->m_childs.remove(this);
-	
 	insertIntoParent(); /* now at the new Z position */
 }
 
@@ -241,7 +222,6 @@ void eWidget::mayKillFocus()
 eWidget::~eWidget()
 {
 	hide();
-	
 	if (m_parent)
 		m_parent->m_childs.remove(this);
 
@@ -259,7 +239,6 @@ eWidget::~eWidget()
 void eWidget::insertIntoParent()
 {
 	ePtrList<eWidget>::iterator i = m_parent->m_childs.begin();
-	
 	for(;;)
 	{
 		if ((i == m_parent->m_childs.end()) || (i->m_z_position > m_z_position))
@@ -275,16 +254,12 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 {
 	if (m_visible_with_childs.empty())
 		return;
-	
 	gRegion region = r, childs = r;
 			/* we were in parent's space, now we are in local space */
 	region.moveBy(-position());
-	
 	painter.moveOffset(position());
-	
 		/* check if there's anything for us to paint */
 	region &= m_visible_region;
-	
 	if (!region.empty())
 	{
 		painter.resetClip(region);
@@ -295,7 +270,6 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 		/* walk all childs */
 	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
 		i->doPaint(painter, childs);
-	
 	painter.moveOffset(-position());
 }
 
@@ -328,8 +302,7 @@ int eWidget::event(int event, void *data, void *data2)
 	case evtPaint:
 	{
 		gPainter &painter = *(gPainter*)data2;
-		
-//		eDebug("eWidget::evtPaint");
+	//		eDebug("eWidget::evtPaint");
 //		dumpRegion(*(gRegion*)data);
 		if (!isTransparent())
 		{
@@ -346,8 +319,7 @@ int eWidget::event(int event, void *data, void *data2)
 		} else
 		{
 			eWidget *w = this;
-			
-			while (w && !w->m_have_background_color)
+					while (w && !w->m_have_background_color)
 				w = w->m_parent;
 
 			if (w)
@@ -383,7 +355,6 @@ void eWidget::setFocus(eWidget *focus)
 {
 	if (m_current_focus)
 		m_current_focus->event(evtFocusLost, this);
-	
 	m_current_focus = focus;
 
 	if (m_current_focus)
