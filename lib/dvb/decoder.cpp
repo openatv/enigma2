@@ -537,7 +537,7 @@ void eDVBVideo::video_event(int)
 {
 #if HAVE_DVB_API_VERSION >= 3
 	struct video_event evt;
-	eDebugNoNewLine("VIDEO_GET_EVENT - "
+	eDebugNoNewLine("VIDEO_GET_EVENT - ");
 	if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
 		eDebug("failed (%m)");
 	else
@@ -696,7 +696,7 @@ int eDVBTText::startPid(int pid)
 		return -errno;
 	}
 	eDebug("ok");
-	eDebugNoNewLine("DEMUX_START - pcr - ", pid);
+	eDebugNoNewLine("DEMUX_START - pcr - ");
 	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eDebug("failed(%m)");
