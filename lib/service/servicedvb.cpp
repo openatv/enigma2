@@ -2277,13 +2277,18 @@ void eDVBServicePlay::updateDecoder()
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 			if (m_decoder)
 				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
+			m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
+			m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
+			m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
+			m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
+		} else
+		{
+			m_teletext_parser = 0;
+			m_subtitle_parser = 0;
 		}
+
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
-		m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
-		m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
-		m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
-		m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 	}
 
 	if (m_decoder)
@@ -2367,7 +2372,7 @@ void eDVBServicePlay::updateDecoder()
 // how we can do this better?
 // update cache pid when the user changed the audio track or video track
 // TODO handling of difference audio types.. default audio types..
-				
+
 		/* don't worry about non-existing services, nor pvr services */
 		if (m_dvb_service && !m_is_pvr)
 		{
