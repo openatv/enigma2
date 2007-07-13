@@ -13,8 +13,9 @@ int eVideoWidget::event(int event, void *data, void *data2)
 	case evtChangedPosition:
 	case evtChangedSize:
 	case evtParentChangedPosition:
-		eDebug("position is now ...");
-		updatePosition();
+	case evtParentVisibilityChanged:
+		updatePosition(!isVisible());
+		break;
 	}
 	return eWidget::event(event, data, data2);
 }
@@ -29,6 +30,11 @@ void eVideoWidget::updatePosition(int disable)
 	eRect pos(0, 0, 0, 0);
 	if (!disable)
 		pos = eRect(getAbsolutePosition(), size());
+
+	if (m_cur_pos == pos)
+		return;
+
+	m_cur_pos = pos;
 
 	eDebug("position is %d %d -> %d %d", pos.left(), pos.top(), pos.width(), pos.height());
 

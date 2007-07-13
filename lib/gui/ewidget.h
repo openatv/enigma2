@@ -101,8 +101,7 @@ public:
 		
 		evtParentChangedPosition,
 		
-		evtWillShow,
-		evtWillHide,
+		evtParentVisibilityChanged,
 		evtWillChangePosition, /* new size is eRect *data */
 		evtWillChangeSize,
 		
@@ -118,6 +117,8 @@ public:
 
 		/* enable this if you need the absolute position of the widget */
 	void setPositionNotifyChild(int n) { m_notify_child_on_position_change = 1; }
+
+	void notifyShowHide();
 };
 
 extern eWidgetDesktop *getDesktop(int which);
