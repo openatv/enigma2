@@ -7,8 +7,7 @@ from keyids import KEYIDS;
 # these are only informational (for help)...
 from Tools.KeyBindings import addKeyBinding
 
-def readKeymap(filename = "/usr/share/enigma2/keymap.xml"):
-
+def readKeymap(filename):
 	p = enigma.eActionMap.getInstance()
 	assert p
 

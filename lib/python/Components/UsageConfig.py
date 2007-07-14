@@ -1,4 +1,4 @@
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText
 from enigma import Misc_Options
 import os
 
@@ -34,3 +34,5 @@ def InitUsageConfig():
 		elif configElement.value == "off":
 			Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput)
+
+	config.usage.keymap = ConfigText(default = "/usr/share/enigma2/keymap.xml")
