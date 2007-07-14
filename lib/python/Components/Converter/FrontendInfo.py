@@ -40,7 +40,7 @@ class FrontendInfo(Converter, object):
 				return "%3.02f dB" % (self.source.snr_db / 100.0)
 			elif self.source.snr is not None: #fallback to normal SNR...
 				percent = self.source.snr
-				return "SNR:%d %%" % (percent * 100 / 65536)
+				return "%d %%" % (percent * 100 / 65536)
 		if percent is None:
 			return "N/A"
 
