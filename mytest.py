@@ -521,8 +521,6 @@ def runScreenTest():
 
 	return 0
 
-import keymapparser
-keymapparser.readKeymap()
 import skin
 skin.loadSkinData(getDesktop(0))
 
@@ -537,6 +535,9 @@ Components.RecordingConfig.InitRecordingConfig()
 
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
+
+import keymapparser
+keymapparser.readKeymap(config.usage.keymap.value)
 
 import Components.Network
 Components.Network.InitNetwork()
