@@ -100,7 +100,7 @@ void eWidget::show()
 		return;
 
 	m_vis |= wVisShow;
-	eDebug("show widget %p", this);
+//	eDebug("show widget %p", this);
 	notifyShowHide();
 
 		/* TODO: optimize here to only recalc what's required. possibly merge with hide. */
