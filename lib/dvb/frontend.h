@@ -38,6 +38,7 @@ class eSecCommandList;
 class eDVBFrontend: public iDVBFrontend, public Object
 {
 	DECLARE_REF(eDVBFrontend);
+	bool m_enabled;
 	int m_type;
 	int m_dvbid;
 	int m_slotid;

@@ -108,6 +108,8 @@ class SecConfigure:
 
 		nim_slots = self.NimManager.nim_slots
 
+		used_nim_slots = [ ]
+
 		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
@@ -122,6 +124,11 @@ class SecConfigure:
 				elif nim.configMode.value == "satposdepends":
 					self.setSatposDepends(sec, x, int(nim.satposDependsTo.value))
 					self.satposdepends[int(nim.satposDependsTo.value)]=x
+
+			if slot.type is not None:
+				used_nim_slots.append((slot.slot, slot.description, nim.configMode.value != "nothing" and True or False))
+
+		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 		for slot in nim_slots:
 			x = slot.slot
@@ -975,8 +982,6 @@ def InitNimManager(nimmgr):
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
 			print "pls add support for this frontend type!"		
 #			assert False
-
-	eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
