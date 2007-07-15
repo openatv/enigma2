@@ -383,7 +383,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 DEFINE_REF(eDVBFrontend);
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
-	:m_type(-1), m_dvbid(fe), m_slotid(fe)
+	:m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_need_rotor_workaround(false), m_sn(0), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
@@ -2115,7 +2115,7 @@ RESULT eDVBFrontend::setData(int num, int val)
 int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
 	int type;
-	if (feparm->getSystem(type) || type != m_type)
+	if (feparm->getSystem(type) || type != m_type || !m_enabled)
 		return 0;
 
 	if (m_type == eDVBFrontend::feSatellite)
@@ -2133,21 +2133,23 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 
 void eDVBFrontend::setSlotInfo(ePyObject obj)
 {
-	ePyObject Id, Descr;
-	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 2)
+	ePyObject Id, Descr, Enabled;
+	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 3)
 		goto arg_error;
 	Id = PyTuple_GET_ITEM(obj, 0);
 	Descr = PyTuple_GET_ITEM(obj, 1);
-	if (!PyInt_Check(Id) || !PyString_Check(Descr))
+	Enabled = PyTuple_GET_ITEM(obj, 2);
+	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled))
 		goto arg_error;
 	strcpy(m_description, PyString_AS_STRING(Descr));
 	m_slotid = PyInt_AsLong(Id);
+	m_enabled = Enabled == Py_True;
 
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") || !!strstr(m_description, "Alps -S");
 
-	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s",
-		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No");
+	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s",
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No" );
 	return;
 arg_error:
 	PyErr_SetString(PyExc_StandardError,
