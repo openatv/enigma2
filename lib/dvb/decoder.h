@@ -40,7 +40,9 @@ DECLARE_REF(eDVBVideo);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev;
-	
+#if HAVE_DVB_API_VERSION < 3
+	m_fd_video;
+#endif
 	int m_is_slow_motion, m_is_fast_forward, m_is_freezed;
 	eSocketNotifier *m_sn;
 	void video_event(int what);

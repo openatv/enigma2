@@ -305,6 +305,9 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
 	sprintf(filename, "/dev/dvb/card%d/video%d", demux->adapter, dev);
+	m_fd_video = ::open("/dev/video", O_RDWR);
+	if (m_fd_video < 0)
+		eWarning("/dev/video: %m");
 #else
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux->adapter, dev);
 #endif
@@ -509,12 +512,17 @@ int eDVBVideo::setFastForward(int skip)
 
 int eDVBVideo::getPTS(pts_t &now)
 {
-	eDebugNoNewLine("VIDEO_GET_PTS - ");
+#if HAVE_DVB_API_VERSION < 3
+	#define VIDEO_GET_PTS_OLD           _IOR('o', 1, unsigned int*)
+	unsigned int pts;
+	int ret = ::ioctl(m_fd_video, VIDEO_GET_PTS_OLD, &pts);
+	now = pts;
+	now *= 2;
+#else
 	int ret = ::ioctl(m_fd, VIDEO_GET_PTS, &now);
+#endif
 	if (ret < 0)
-		eDebug("failed(%m)");
-	else
-		eDebug("ok");
+		eDebug("VIDEO_GET_PTS failed(%m)");
 	return ret;
 }
 
@@ -531,6 +539,10 @@ eDVBVideo::~eDVBVideo()
 		::close(m_fd);
 	if (m_fd_demux >= 0)
 		::close(m_fd_demux);
+#if HAVE_DVB_API_VERSION < 3
+	if (m_fd_video >= 0)
+		::close(m_fd_video);
+#endif
 }
 
 void eDVBVideo::video_event(int)
