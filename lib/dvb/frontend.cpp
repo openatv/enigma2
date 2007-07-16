@@ -449,21 +449,6 @@ int eDVBFrontend::openFrontend()
 		{
 		case FE_QPSK:
 			m_type = iDVBFrontend::feSatellite;
-#if HAVE_DVB_API_VERSION < 3
-			if (m_secfd < 0)
-			{
-				m_secfd = ::open(m_sec_filename, O_RDWR);
-				if (m_secfd < 0)
-				{
-					eWarning("failed! (%s) %m", m_sec_filename);
-					::close(m_fd);
-					m_fd=-1;
-					return -1;
-				}
-			}
-			else
-				eWarning("sec %d already opened", m_dvbid);
-#endif
 			break;
 		case FE_QAM:
 			m_type = iDVBFrontend::feCable;
@@ -479,6 +464,25 @@ int eDVBFrontend::openFrontend()
 		}
 		eDebug("detected %s frontend", "satellite\0cable\0    terrestrial"+fe_info.type*10);
 	}
+
+#if HAVE_DVB_API_VERSION < 3
+	if (m_type == iDVBFrontend::feSatellite)
+	{
+			if (m_secfd < 0)
+			{
+				m_secfd = ::open(m_sec_filename, O_RDWR);
+				if (m_secfd < 0)
+				{
+					eWarning("failed! (%s) %m", m_sec_filename);
+					::close(m_fd);
+					m_fd=-1;
+					return -1;
+				}
+			}
+			else
+				eWarning("sec %d already opened", m_dvbid);
+	}
+#endif
 
 	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
