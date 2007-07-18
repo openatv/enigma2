@@ -56,8 +56,6 @@ class ServiceScan:
 		self.scanList = scanList
 		self.run = 0
 		
-		self.doRun()
-		
 	def doRun(self):
 		self.scan = eComponentScan()
 		
@@ -75,6 +73,7 @@ class ServiceScan:
 			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(self.scanList[self.run]["feid"]) + ")")
 		
 	def execBegin(self):
+		self.doRun()
 		self.updatePass()
 		self.scan.statusChanged.get().append(self.scanStatusChanged)
 		self.scan.newService.get().append(self.newService)
