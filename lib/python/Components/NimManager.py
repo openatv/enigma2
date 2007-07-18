@@ -118,7 +118,7 @@ class SecConfigure:
 				# this is stored in the *value* (not index!) of the config list
 				if nim.configMode.value == "equal":
 					self.equal[int(nim.equalTo.value)]=x
-				if nim.configMode.value == "loopthrough":
+				elif nim.configMode.value == "loopthrough":
 					self.linkNIMs(sec, x, int(nim.linkedTo.value))
 					self.linked[int(nim.linkedTo.value)]=x
 				elif nim.configMode.value == "satposdepends":
@@ -776,16 +776,11 @@ def InitNimManager(nimmgr):
 	for x in range(len(nimmgr.nim_slots)):
 		config.Nims.append(ConfigSubsection())
 
-	used_nim_slots = [ ]
-
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
 		
 		# HACK: currently, we can only looptrough to socket A
-
-		if slot.type is not None:
-			used_nim_slots.append((slot.slot, slot.description))
 
 		if slot.isCompatible("DVB-S"):
 			if slot.slot == 0:
@@ -851,7 +846,8 @@ def InitNimManager(nimmgr):
 			etime = datetime(1970, 1, 1, 19, 0);
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			# get other frontends of the same type
-			satNimList = nimmgr.getNimListOfType(slot.type, slot.slot)
+
+			satNimList = nimmgr.getNimListOfType("DVB-S", slot.slot)
 			satNimListNames = {}
 
 			for x in satNimList:
