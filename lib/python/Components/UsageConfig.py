@@ -1,4 +1,4 @@
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigInteger
 from enigma import Misc_Options
 import os
 
@@ -23,6 +23,7 @@ def InitUsageConfig():
 		("248", "4 " + _("hours")) ])
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
+	config.usage.self_defined_seek = ConfigInteger(default=10, limits=(1,9999))
 
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")

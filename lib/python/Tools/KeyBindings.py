@@ -32,6 +32,8 @@ keyDescriptions = {
 		KEYIDS["KEY_CHANNELUP"]: ("ch_up", 645, 245),
 		KEYIDS["KEY_CHANNELDOWN"]: ("ch_down", 630, 270),
 		KEYIDS["KEY_0"]: ("0", 598, 203),
+		KEYIDS["KEY_1"]: ("1", 559, 134),
+		KEYIDS["KEY_3"]: ("3", 635, 134),
 		KEYIDS["KEY_8"]: ("8", 598, 180),
 		KEYIDS["KEY_EXIT"]: ("exit", 598, 255),
 		KEYIDS["KEY_STOP"]: ("sh_tv", 560, 425),

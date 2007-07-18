@@ -235,12 +235,36 @@
 
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
 		
-		<key id="KEY_2" mapto="seek:-10" flags="m" />
-		<key id="KEY_5" mapto="seek:10" flags="m" />
-		<key id="KEY_1" mapto="seek:-30" flags="m" />
-		<key id="KEY_3" mapto="seek:30" flags="m" />
-		<key id="KEY_4" mapto="seek:-90" flags="m" />
-		<key id="KEY_6" mapto="seek:90" flags="m" />
+		<key id="KEY_1" mapto="seek:-15" flags="b" />
+		<key id="KEY_3" mapto="seek:15" flags="b" />
+		<key id="KEY_1" mapto="seekBackDef" flags="l" />
+		<key id="KEY_3" mapto="seekFwdDef" flags="l" />
+		<key id="KEY_4" mapto="seek:-60" flags="m" />
+		<key id="KEY_6" mapto="seek:60" flags="m" />
+		<key id="KEY_7" mapto="seek:-300" flags="m" />
+		<key id="KEY_9" mapto="seek:300" flags="m" />
+	</map>
+
+	<map context="MediaPlayerSeekActions">
+		<device name="dreambox remote control (native)">
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
+			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
+			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
+			<key id="KEY_PREVIOUSSONG" mapto="seekBackManual" flags="l" />
+			<key id="KEY_NEXTSONG" mapto="seekFwdManual" flags="l" />
+		</device>
+		
+		<key id="KEY_1" mapto="seek:-15" flags="m" />
+		<key id="KEY_3" mapto="seek:15" flags="m" />
+		<key id="KEY_1" mapto="seekBackDef" flags="l" />
+		<key id="KEY_3" mapto="seekFwdDef" flags="l" />
+		<key id="KEY_4" mapto="seek:-60" flags="m" />
+		<key id="KEY_6" mapto="seek:60" flags="m" />
 		<key id="KEY_7" mapto="seek:-300" flags="m" />
 		<key id="KEY_9" mapto="seek:300" flags="m" />
 	</map>
@@ -286,6 +310,21 @@
 	</map>
 	
 	<map context="InfobarCueSheetActions">
+		<device name="dreambox remote control (native)">
+			<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="m" />
+			<key id="KEY_NEXT" mapto="jumpNextMark" flags="m" />
+			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
+			<key id="KEY_PLAYPAUSE" mapto="toggleMark" flags="m" />
+			<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="m" />
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_RED" mapto="jumpPreviousMark" flags="m" />
+			<key id="KEY_YELLOW" mapto="toggleMark" flags="m" />
+			<key id="KEY_BLUE" mapto="jumpNextMark" flags="m" />
+		</device>
+	</map>
+	
+	<map context="MediaPlayerCueSheetActions">
 		<device name="dreambox remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
 			<key id="KEY_PLAYPAUSE" mapto="toggleMark" flags="m" />

@@ -653,7 +653,7 @@ class InfoBarSeek:
 
 		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, 
 			{
-				"playpauseService": (self.playpauseService, _("pause")),
+				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("pause")),
 				"unPauseService": (self.unPauseService, _("continue")),
 
@@ -661,6 +661,9 @@ class InfoBarSeek:
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
 				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
+				
+				"seekFwdDef": (self.seekFwdDef, _("skip forward (self defined)")),
+				"seekBackDef": (self.seekBackDef, _("skip backward (self defined)"))
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
@@ -828,6 +831,20 @@ class InfoBarSeek:
 			if seekable is not None:
 				seekable.seekRelative(-1, 3)
 
+	def seekFwdDef(self):
+		seconds = config.usage.self_defined_seek.value
+		print "Seek", seconds, "seconds self defined forward"
+		seekable = self.getSeek()
+		if seekable is not None:
+			seekable.seekRelative(1, seconds * 90000)
+		
+	def seekBackDef(self):
+		seconds = config.usage.self_defined_seek.value
+		print "Seek", seconds, "seconds self defined backward"
+		seekable = self.getSeek()
+		if seekable is not None:
+			seekable.seekRelative(1, 0 - seconds * 90000)
+		
 	def seekFwdManual(self):
 		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
@@ -1707,11 +1724,11 @@ class InfoBarCueSheetSupport:
 
 	ENABLE_RESUME_SUPPORT = False
 
-	def __init__(self):
-		self["CueSheetActions"] = HelpableActionMap(self, "InfobarCueSheetActions", 
+	def __init__(self, actionmap = "InfobarCueSheetActions"):
+		self["CueSheetActions"] = HelpableActionMap(self, actionmap, 
 			{
-				"jumpPreviousMark": (self.jumpPreviousMark, _("jump to next marked position")),
-				"jumpNextMark": (self.jumpNextMark, _("jump to previous marked position")),
+				"jumpPreviousMark": (self.jumpPreviousMark, _("jump to previous marked position")),
+				"jumpNextMark": (self.jumpNextMark, _("jump to next marked position")),
 				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
 			}, prio=1) 
 
@@ -1744,6 +1761,11 @@ class InfoBarCueSheetSupport:
 			seekable = self.__getSeekable()
 			if seekable is not None:
 				seekable.seekTo(self.resume_point)
+		self.hideAfterResume()
+	
+	def hideAfterResume(self):
+		if isinstance(self, InfoBarShowHide):
+			self.hide()
 
 	def __getSeekable(self):
 		service = self.session.nav.getCurrentService()
@@ -1811,10 +1833,6 @@ class InfoBarCueSheetSupport:
 
 		if onlyreturn:
 			return None
-
-	def showAfterCuesheetOperation(self):
-		if isinstance(self, InfoBarShowHide):
-			self.doShow()
 
 	def addMark(self, point):
 		insort(self.cut_list, point)
