@@ -95,9 +95,9 @@ class ScanPath:
 
 def ScanDevice(mountpoint):
 	from Components.PluginComponent import plugins
-	
+
 	scanner = [ ]
-	
+
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
 		if not isinstance(l, list):
@@ -105,14 +105,14 @@ def ScanDevice(mountpoint):
 		scanner += l
 
 	print "scanner:", scanner
-	
+
 	res = { }
-	
+
 	# merge all to-be-scanned paths, with priority to 
 	# with_subdirs.
-	
+
 	paths_to_scan = set()
-	
+
 	# first merge them all...
 	for s in scanner:
 		paths_to_scan.update(set(s.paths_to_scan))
@@ -122,11 +122,11 @@ def ScanDevice(mountpoint):
 	for p in set(paths_to_scan):
 		if p.with_subdirs == True and ScanPath(path=p.path) in paths_to_scan:
 			paths_to_scan.remove(ScanPath(path=p.path))
-	
+
 	# convert to list
 	paths_to_scan = list(paths_to_scan)
 
-	# now scan the paths	
+	# now scan the paths
 	for p in paths_to_scan:
 		path = os_path.join(mountpoint, p.path)
 
@@ -148,7 +148,7 @@ def execute(option):
 	print "execute", option
 	if option is None:
 		return
-	
+
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
 
@@ -156,13 +156,13 @@ def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
 	# HARDCODED - need to scan all mountpoints
 	res = ScanDevice("/hdd/")
-	
+
 	list = [ (r.description, r, res[r], session) for r in res ]
-	
+
 	if list == [ ]:
 		print "nothing found"
 		return
-	
+
 	session.openWithCallback(execute, ChoiceBox, 
 		title = "The following files were found...",
 		list = list)
