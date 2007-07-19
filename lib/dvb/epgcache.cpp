@@ -2713,6 +2713,7 @@ void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator 
 // data is borrowed from calling proc to save memory space.
 {
 	__u8 name[34];
+
 	// For each title a separate EIT packet will be sent to eEPGCache::sectionRead()
 	bool isMHW2 = itTitle->second.mhw2_mjd_hi || itTitle->second.mhw2_mjd_lo ||
 		itTitle->second.mhw2_duration_hi || itTitle->second.mhw2_duration_lo;
@@ -2720,6 +2721,7 @@ void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator 
 	eit_t *packet = (eit_t *) data;
 	packet->table_id = 0x50;
 	packet->section_syntax_indicator = 1;
+
 	packet->service_id_hi = m_channels[ itTitle->second.channel_id - 1 ].channel_id_hi;
 	packet->service_id_lo = m_channels[ itTitle->second.channel_id - 1 ].channel_id_lo;
 	packet->version_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
@@ -2904,10 +2906,11 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		int record_size = sizeof( mhw_channel_name_t );
 		int nbr_records = int (len/record_size);
 
+		m_channels.resize(nbr_records);
 		for ( int i = 0; i < nbr_records; i++ )
 		{
 			mhw_channel_name_t *channel = (mhw_channel_name_t*) &data[4 + i*record_size];
-			m_channels.push_back( *channel );
+			m_channels[i]=*channel;
 		}
 		haveData |= MHW;
 
@@ -2973,7 +2976,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 				m_titles[ title_id ] = *title;
 				if ( (title->ms.summary_available) && (m_program_ids.find(program_id) == m_program_ids.end()) )
 					// program_ids will be used to gather summaries.
-					m_program_ids[ program_id ] = title_id;
+					m_program_ids.insert(std::pair<__u32,__u32>(program_id,title_id));
 				return;	// Continue reading of the current table.
 			}
 			else if (!checkTimeout())
@@ -3006,7 +3009,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		memcpy(&tmp, &data, sizeof(void*));
 		tmp[len+3] = 0;	// Terminate as a string.
 
-		std::map<__u32, __u32>::iterator itProgid( m_program_ids.find( program_id ) );
+		std::multimap<__u32, __u32>::iterator itProgid( m_program_ids.find( program_id ) );
 		if ( itProgid == m_program_ids.end() )
 		{ /*	This part is to prevent to looping forever if some summaries are not received yet.
 			There is a timeout of 4 sec. after the last successfully read summary. */
@@ -3065,10 +3068,11 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 	else if (m_MHWFilterMask2.pid == 0x231 && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
 	// Channels table
 	{
-		int num_channels = data[120];
-		if(dataLen > 120)
+		int num_channels = data[119];
+		m_channels.resize(num_channels);
+		if(dataLen > 119)
 		{
-			int ptr = 121 + 6 * num_channels;
+			int ptr = 120 + 8 * num_channels;
 			if( dataLen > ptr )
 			{
 				for( int chid = 0; chid < num_channels; ++chid )
@@ -3084,18 +3088,17 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		else
 			goto abort;
 		// data seems consistent...
-		const __u8 *tmp = data+121;
+		const __u8 *tmp = data+120;
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;
+			channel.network_id_hi = *(tmp++);
+			channel.network_id_lo = *(tmp++);
 			channel.transport_stream_id_hi = *(tmp++);
 			channel.transport_stream_id_lo = *(tmp++);
 			channel.channel_id_hi = *(tmp++);
 			channel.channel_id_lo = *(tmp++);
-#warning FIXME hardcoded network_id in mhw2 epg
-			channel.network_id_hi = 0; // hardcoded astra 19.2
-			channel.network_id_lo = 1;
-			m_channels.push_back(channel);
+			m_channels[i]=channel;
 			tmp+=2;
 		}
 		for (int i=0; i < num_channels; ++i)
@@ -3174,7 +3177,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			__u8 slen = data[pos+10] & 0x3f;
 			__u8 *dest = ((__u8*)title.title)-4;
 			memcpy(dest, &data[pos+11], slen>33 ? 33 : slen);
-			memset(dest+slen, 0x20, 33-slen);
+			memset(dest+slen, 0, 33-slen);
 			pos += 11 + slen;
 //			not used theme id (data[7] & 0x3f) + (data[pos] & 0x3f);
 			__u32 summary_id = (data[pos+1] << 8) | data[pos+2];
@@ -3182,19 +3185,27 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			// Create unique key per title
 			__u32 title_id = (title.channel_id<<16) | (title.program_id_ml<<8) | title.program_id_lo;
 
-//			eDebug("program_id: %08x, %s", program_id,
-//				std::string((const char *)title.title, (int)(slen > 23 ? 23 : slen)).c_str());
-
 			pos += 4;
 
-			if ( m_titles.find( title_id ) == m_titles.end() )
+			std::map<__u32, mhw_title_t>::iterator it = m_titles.find( title_id );
+			if ( it == m_titles.end() )
 			{
-				startTimeout(4000);
+				startTimeout(5000);
 				m_titles[ title_id ] = title;
-				if (summary_id != 0xFFFF &&  // no summary avail
-					m_program_ids.find(summary_id) == m_program_ids.end())
+				if (summary_id != 0xFFFF)
 				{
-					m_program_ids[ summary_id ] = title_id;
+					bool add=true;
+					std::multimap<__u32, __u32>::iterator it(m_program_ids.lower_bound(summary_id));
+					while (it != m_program_ids.end() && it->first == summary_id)
+					{
+						if (it->second == title_id) {
+							add=false;
+							break;
+						}
+						++it;
+					}
+					if (add)
+						m_program_ids.insert(std::pair<__u32,__u32>(summary_id,title_id));
 				}
 			}
 			else
@@ -3214,7 +3225,7 @@ start_summary:
 				// Titles table has been read, there are summaries to read.
 				// Start reading summaries, store corresponding titles on the fly.
 				startMHWReader2(0x236, 0x96);
-				startTimeout(4000);
+				startTimeout(15000);
 				return;
 			}
 		}
@@ -3224,84 +3235,91 @@ start_summary:
 	else if (m_MHWFilterMask2.pid == 0x236 && m_MHWFilterMask2.data[0] == 0x96)
 	// Summaries table
 	{
-		int len, loop, pos, lenline;
-		bool valid;
-		valid = true;
-		if( dataLen > 18 )
+		if (!checkTimeout())
 		{
-			loop = data[12];
-			pos = 13 + loop;
-			if( dataLen > pos )
+			int len, loop, pos, lenline;
+			bool valid;
+			valid = true;
+			if( dataLen > 15 )
 			{
-				loop = data[pos] & 0x0f;
-				pos += 1;
+				loop = data[14];
+				pos = 15 + loop;
 				if( dataLen > pos )
 				{
-					len = 0;
-					for( ; loop > 0; --loop )
+					loop = data[pos] & 0x0f;
+					pos += 1;
+					if( dataLen > pos )
 					{
-						if( dataLen > (pos+len) )
+						len = 0;
+						for( ; loop > 0; --loop )
 						{
-							lenline = data[pos+len];
-							len += lenline + 1;
+							if( dataLen > (pos+len) )
+							{
+								lenline = data[pos+len];
+								len += lenline + 1;
+							}
+							else
+								valid=false;
 						}
-						else
-							valid=false;
 					}
 				}
 			}
-		}
-		else if (!checkTimeout())
-			return;  // continue reading
-		if (valid && !checkTimeout())
-		{
-			// data seems consistent...
-			__u32 summary_id = (data[3]<<8)|data[4];
-
-			// ugly workaround to convert const __u8* to char*
-			char *tmp=0;
-			memcpy(&tmp, &data, sizeof(void*));
-
-			len = 0;
-			loop = data[12];
-			pos = 13 + loop;
-			loop = tmp[pos] & 0x0f;
-			pos += 1;
-			for( ; loop > 0; loop -- )
-			{
-				lenline = tmp[pos+len];
-				tmp[pos+len] = ' ';
-				len += lenline + 1;
-			}
-			if( len > 0 )
-			    tmp[pos+len] = 0;
 			else
-				tmp[pos+1] = 0;
-
-			std::map<__u32, __u32>::iterator itProgid( m_program_ids.find( summary_id ) );
-			if ( itProgid == m_program_ids.end() )
-			{ /*	This part is to prevent to looping forever if some summaries are not received yet.
-				There is a timeout of 4 sec. after the last successfully read summary. */
-	
-				if ( !m_program_ids.empty() && !checkTimeout() )
-					return;	// Continue reading of the current table.
-			}
-			else
+				return;  // continue reading
+			if (valid)
 			{
-				startTimeout(4000);
-				std::string the_text = (char *) (data + pos + 1);
+				// data seems consistent...
+				__u32 summary_id = (data[3]<<8)|data[4];
 
-				// Find corresponding title, store title and summary in epgcache.
-				std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgid->second ) );
-				if ( itTitle != m_titles.end() )
+				// ugly workaround to convert const __u8* to char*
+				char *tmp=0;
+				memcpy(&tmp, &data, sizeof(void*));
+
+				len = 0;
+				loop = data[14];
+				pos = 15 + loop;
+				loop = tmp[pos] & 0x0f;
+				pos += 1;
+				for( ; loop > 0; loop -- )
 				{
-					storeTitle( itTitle, the_text, data );
-					m_titles.erase( itTitle );
+					lenline = tmp[pos+len];
+					tmp[pos+len] = ' ';
+					len += lenline + 1;
 				}
-				m_program_ids.erase( itProgid );
-				if ( !m_program_ids.empty() )
-					return;	// Continue reading of the current table.
+				if( len > 0 )
+				    tmp[pos+len] = 0;
+				else
+					tmp[pos+1] = 0;
+
+				std::multimap<__u32, __u32>::iterator itProgId( m_program_ids.lower_bound(summary_id) );
+				if ( itProgId == m_program_ids.end() || itProgId->first != summary_id)
+				{ /*	This part is to prevent to looping forever if some summaries are not received yet.
+					There is a timeout of 4 sec. after the last successfully read summary. */
+					if ( !m_program_ids.empty() )
+						return;	// Continue reading of the current table.
+				}
+				else
+				{
+					startTimeout(15000);
+					std::string the_text = (char *) (data + pos + 1);
+
+					while( itProgId != m_program_ids.end() && itProgId->first == summary_id )
+					{
+						// Find corresponding title, store title and summary in epgcache.
+						std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgId->second ) );
+						if ( itTitle != m_titles.end() )
+						{
+							storeTitle( itTitle, the_text, data );
+							m_titles.erase( itTitle );
+						}
+						m_program_ids.erase( itProgId++ );
+					}
+					if ( !m_program_ids.empty() )
+						return;	// Continue reading of the current table.
+				}
 			}
+			else
+				return;  // continue reading
 		}
 	}
 	if (isRunning & eEPGCache::MHW)
