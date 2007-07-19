@@ -452,7 +452,7 @@ class picmain(Screen):
 		if not pathExists(currDir):
 			currDir = "/"
 
-		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|png|bmp)")
+		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)")
 		self["filelist"] = self.filelist
 		self["thumbnail"] = Pixmap()
 		
