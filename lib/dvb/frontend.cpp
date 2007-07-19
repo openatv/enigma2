@@ -2135,7 +2135,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	return 1;
 }
 
-void eDVBFrontend::setSlotInfo(ePyObject obj)
+bool eDVBFrontend::setSlotInfo(ePyObject obj)
 {
 	ePyObject Id, Descr, Enabled;
 	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 3)
@@ -2148,14 +2148,13 @@ void eDVBFrontend::setSlotInfo(ePyObject obj)
 	strcpy(m_description, PyString_AS_STRING(Descr));
 	m_slotid = PyInt_AsLong(Id);
 	m_enabled = Enabled == Py_True;
-
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") || !!strstr(m_description, "Alps -S");
-
 	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No" );
-	return;
+	return true;
 arg_error:
 	PyErr_SetString(PyExc_StandardError,
-		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid and second param slot description");
+		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid, second param slot description and third param enabled boolean");
+	return false;
 }

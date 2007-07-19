@@ -122,7 +122,7 @@ public:
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
-	void setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
+	bool setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
 
 	int openFrontend();
 	int closeFrontend();
