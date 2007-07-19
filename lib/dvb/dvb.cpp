@@ -248,12 +248,12 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 	}
 }
 
-void eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
+PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 {
 	if (!PyList_Check(list))
 	{
 		PyErr_SetString(PyExc_StandardError, "eDVBResourceManager::setFrontendSlotInformations argument should be a python list");
-		return;
+		return NULL;
 	}
 	if ((unsigned int)PyList_Size(list) != m_frontend.size())
 	{
@@ -261,14 +261,16 @@ void eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations list size incorrect %d frontends avail, but %d entries in slotlist",
 			m_frontend.size(), PyList_Size(list));
 		PyErr_SetString(PyExc_StandardError, blasel);
-		return;
+		return NULL;
 	}
 	int pos=0;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 	{
 		ePyObject obj = PyList_GET_ITEM(list, pos++);
-		i->m_frontend->setSlotInfo(obj);
+		if (!i->m_frontend->setSlotInfo(obj))
+			return NULL;
 	}
+	Py_RETURN_NONE;
 }
 
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm)
