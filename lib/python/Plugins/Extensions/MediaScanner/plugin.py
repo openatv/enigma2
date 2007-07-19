@@ -93,7 +93,7 @@ class ScanPath:
 #		),
 #	]
 
-def ScanDevice(mountpoint):
+def scanDevice(mountpoint):
 	from Components.PluginComponent import plugins
 
 	scanner = [ ]
@@ -152,10 +152,15 @@ def execute(option):
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
 
-def scan(session):
+
+def mountpoint_choosen(option):
+	if option is None:
+		return
+
 	from Screens.ChoiceBox import ChoiceBox
-	# HARDCODED - need to scan all mountpoints
-	res = ScanDevice("/hdd/")
+
+	(description, mountpoint, session) = option
+	res = scanDevice(mountpoint)
 
 	list = [ (r.description, r, res[r], session) for r in res ]
 
@@ -166,6 +171,14 @@ def scan(session):
 	session.openWithCallback(execute, ChoiceBox, 
 		title = "The following files were found...",
 		list = list)
+
+def scan(session):
+	from Screens.ChoiceBox import ChoiceBox
+
+	from Components.Harddisk import harddiskmanager
+
+	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions() ]
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = "Please Select Medium to be Scanned", list = parts)
 
 def main(session, **kwargs):
 	scan(session)
