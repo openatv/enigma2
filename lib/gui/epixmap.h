@@ -1,4 +1,4 @@
-#ifndef __lib_gui_epximap_h
+#ifndef __lib_gui_epixmap_h
 #define __lib_gui_epixmap_h
 
 #include <lib/gui/ewidget.h>
@@ -8,7 +8,7 @@ class ePixmap: public eWidget
 	bool m_alphatest;
 public:
 	ePixmap(eWidget *parent);
-	
+
 	void setPixmap(gPixmap *pixmap);
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setPixmapFromFile(const char *filename);
