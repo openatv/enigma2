@@ -670,6 +670,8 @@ class InfoBarSeek:
 		self["SeekActions"].setEnabled(False)
 
 		self.seekstate = self.SEEK_STATE_PLAY
+		
+		self.seek_flag = True
 
 		self.onPlayStateChanged = [ ]
 
@@ -832,6 +834,7 @@ class InfoBarSeek:
 				seekable.seekRelative(-1, 3)
 
 	def seekFwdDef(self):
+		self.seek_flag = False
 		seconds = config.usage.self_defined_seek.value
 		print "Seek", seconds, "seconds self defined forward"
 		seekable = self.getSeek()
@@ -839,6 +842,7 @@ class InfoBarSeek:
 			seekable.seekRelative(1, seconds * 90000)
 		
 	def seekBackDef(self):
+		self.seek_flag = False
 		seconds = config.usage.self_defined_seek.value
 		print "Seek", seconds, "seconds self defined backward"
 		seekable = self.getSeek()
@@ -893,11 +897,14 @@ class InfoBarSeek:
 		self.doSeek(0)
 
 	def seekRelative(self, diff):
-		seekable = self.getSeek()
-		if seekable is not None:
-			print "seekRelative: res:", seekable.seekRelative(1, diff)
+		if self.seek_flag == True:
+			seekable = self.getSeek()
+			if seekable is not None:
+				print "seekRelative: res:", seekable.seekRelative(1, diff)
+			else:
+				print "seek failed!"
 		else:
-			print "seek failed!"
+			self.seek_flag = True
 
 	def seekRelativeToEnd(self, diff):
 		assert diff <= 0, "diff is expected to be negative!"
