@@ -1,12 +1,13 @@
 from GUIComponent import *
 from skin import applyAllAttributes
+from Tools.CList import CList
 
 class GUISkin:
 	__module__ = __name__
 
 	def __init__(self):
 		self.onLayoutFinish = [ ]
-		self.summaries = [ ]
+		self.summaries = CList()
 
 	def createGUIScreen(self, parent, desktop):
 		for val in self.values() + self.renderer:
@@ -18,7 +19,7 @@ class GUISkin:
 			w.instance = w.widget(parent)
 			# w.instance.thisown = 0
 			applyAllAttributes(w.instance, desktop, w.skinAttributes)
-		
+
 		for f in self.onLayoutFinish:
 			if type(f) is not type(self.close): # is this the best way to do this?
 				exec(f) in globals(), locals()
@@ -45,6 +46,4 @@ class GUISkin:
 	def setTitle(self, title):
 		self.instance.setTitle(title)
 		self.title = title
-		
-		for x in self.summaries:
-			x.setTitle(title)
+		self.summaries.setTitle(title)
