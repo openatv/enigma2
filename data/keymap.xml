@@ -515,7 +515,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
 	</map>
 	
-	<map context="MediaPlayerSeekActions">
+	<map context="MediaPlayerActions">
 		<device name="dreambox remote control (native)">
 			<key id="KEY_YELLOW" mapto="pause" flags="m" />
 			<key id="KEY_GREEN" mapto="play" flags="m" />
@@ -532,5 +532,13 @@
 		<key id="KEY_NEXT" mapto="next" flags="mr" />
 		
 		<key id="KEY_MENU" mapto="menu" flags="m" />
+
+		<key id="KEY_0" mapto="skipListbegin" flags="m" />
+		<key id="KEY_8" mapto="skipListend" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
+		<key id="KEY_VIDEO" mapto="delete" flags="m" />
+		<key id="KEY_STOP" mapto="shift_stop" flags="m" />
+		<key id="KEY_RECORD" mapto="shift_record" flags="m" />
 	</map>
 </keymap>
