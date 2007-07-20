@@ -44,7 +44,6 @@ class ServiceScan:
 				self.foundServices += self.scan.getNumServices()
 				self.execEnd()
 				self.run += 1
-				self.doRun()
 				self.execBegin()
 	
 	def __init__(self, progressbar, text, servicelist, passNumber, scanList):
