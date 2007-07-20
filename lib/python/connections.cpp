@@ -23,10 +23,7 @@ void PSignal::callPython(ePyObject tuple)
 PyObject *PSignal::get()
 {
 	if (!m_list)
-	{
 		m_list = PyList_New(0);
-		Py_INCREF(m_list);
-	}
 	Py_INCREF(m_list);
 	return m_list;
 }
