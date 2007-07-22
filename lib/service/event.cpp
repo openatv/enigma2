@@ -240,6 +240,23 @@ RESULT eServiceEvent::getComponentData(ePtr<eComponentData> &dest, int tagnum) c
 	return -1;
 }
 
+PyObject *eServiceEvent::getComponentData() const
+{
+	ePyObject ret = PyList_New(m_component_data.size());
+	int cnt=0;
+	for (std::list<eComponentData>::const_iterator it(m_component_data.begin()); it != m_component_data.end(); ++it)
+	{
+		ePyObject tuple = PyTuple_New(5);
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->m_componentTag));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->m_componentType));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(it->m_streamContent));
+		PyTuple_SET_ITEM(tuple, 3, PyString_FromString(it->m_iso639LanguageCode.c_str()));
+		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(it->m_text.c_str()));
+		PyList_SET_ITEM(ret, cnt++, tuple);
+	}
+	return ret;
+}
+
 RESULT eServiceEvent::getLinkageService(eServiceReference &service, eServiceReference &parent, int num) const
 {
 	std::list<eServiceReference>::const_iterator it =
