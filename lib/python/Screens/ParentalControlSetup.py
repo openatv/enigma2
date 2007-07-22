@@ -1,17 +1,15 @@
 from Screen import Screen
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
-from Components.ServiceList import ServiceList
 from Components.ParentalControlList import ParentalControlEntryComponent, ParentalControlList 
 from Components.ParentalControl import parentalControl
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox, Input, PinInput
+from Screens.InputBox import PinInput
 from Screens.ChannelSelection import service_types_tv
 from Tools.BoundFunction import boundFunction
-from ServiceReference import ServiceReference
-from enigma import eServiceCenter, eServiceReference, eTimer
+from enigma import eServiceCenter, eTimer
 from operator import itemgetter
 
 class ProtectedScreen:

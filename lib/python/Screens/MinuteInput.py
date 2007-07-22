@@ -1,11 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
-from Components.Button import Button
-from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
 from Components.Input import Input
-from enigma import eSize, ePoint
 
 class MinuteInput(Screen):
 		def __init__(self, session, basemins = 5):

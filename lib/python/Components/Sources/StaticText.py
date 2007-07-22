@@ -1,5 +1,4 @@
 from Source import Source
-from Components.Element import cached
 
 class StaticText(Source):
 	# filter is a function which filters external, untrusted strings

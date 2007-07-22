@@ -7,7 +7,7 @@ from Components.Sources.List import List
 
 from Tools.Directories import *
 
-from enigma import eListboxPythonMultiContent, loadPNG, eListbox, gFont, RT_HALIGN_LEFT
+from enigma import eListboxPythonMultiContent, loadPNG, gFont, RT_HALIGN_LEFT
 
 def LanguageEntryComponent(file, name, index):
 	res = [ index ]

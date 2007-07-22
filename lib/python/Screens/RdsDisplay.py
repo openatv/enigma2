@@ -1,6 +1,5 @@
-from enigma import iPlayableService, loadPNG, iRdsDecoder, ePoint, gRGB
+from enigma import iPlayableService, loadPNG, iRdsDecoder
 from Screens.Screen import Screen
-from Components.Sources.RdsDecoder import RdsDecoder
 from Components.ActionMap import NumberActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap

@@ -1,18 +1,16 @@
-import os
-import time
-from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation, eSize
+for os import path as os_path, os_remove, os_listdir
+from time import strftime
+from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
-from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
+from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
-from Components.Input import Input
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from Components.FileList import FileEntryComponent, FileList
-from Components.MediaPlayer import PlayList, PlaylistEntryComponent
-from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_MEDIA, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
+from Components.FileList import FileList
+from Components.MediaPlayer import PlayList
+from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
@@ -20,7 +18,6 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarC
 from ServiceReference import ServiceReference
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
-from bisect import insort
 import random
 
 class MyPlayList(PlayList):
@@ -237,9 +234,9 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		# Get rid of this...by finding the first "/"
 		# FIXME: this should be fixed in the servicemp3.cpp handler
 		filename = filename[filename.find("/"):]
-		path = os.path.dirname(filename)
+		path = os_path.dirname(filename)
 		pngname = path + "/" + "folder.png"
-		if not os.path.exists(pngname):
+		if not os_path.exists(pngname):
 			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
 		if self.coverArtFileName != pngname:
 			self.coverArtFileName = pngname
@@ -347,7 +344,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 				if r is None:
 					return
 				text = r.getPath()
-				self["currenttext"].setText(os.path.basename(text))
+				self["currenttext"].setText(os_path.basename(text))
 
 		if self.currList == "playlist":
 			t = self.playlist.getSelection()
@@ -419,7 +416,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		elif choice[1] == "copyfiles":
 			self.stopEntry()
 			self.playlist.clear()
-			self.copyDirectory(os.path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
+			self.copyDirectory(os_path.dirname(self.filelist.getSelection()[0].getPath()) + "/", recursive = False)
 			self.playServiceRefEntry(self.filelist.getServiceRef())
 		elif choice[1] == "playlist":
 			self.switchToPlayList()
@@ -484,7 +481,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		if name is not None:
 			name = name.strip()
 			if name == "":
-				name = time.strftime("%y%m%d_%H%M%S")
+				name = strftime("%y%m%d_%H%M%S")
 			name += ".e2pls"
 			self.playlistIOInternal.clear()
 			for x in self.playlist.list:
@@ -495,7 +492,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		listpath = []
 		playlistdir = resolveFilename(SCOPE_PLAYLIST)
 		try:
-			for i in os.listdir(playlistdir):
+			for i in os_listdir(playlistdir):
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
@@ -515,7 +512,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		listpath = []
 		playlistdir = resolveFilename(SCOPE_PLAYLIST)
 		try:
-			for i in os.listdir(playlistdir):
+			for i in os_listdir(playlistdir):
 				listpath.append((i,playlistdir + i))
 		except IOError,e:
 			print "Error while scanning subdirs ",e
@@ -528,7 +525,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 
 	def deleteConfirmed(self, confirmed):
 		if confirmed:
-			os.remove(self.delname)
+			os_remove(self.delname)
 
 	def clear_playlist(self):
 		self.stopEntry()

@@ -2,11 +2,9 @@ from Screen import Screen
 
 from enigma import eConsoleAppContainer, loadPNG
 
-from Components.MenuList import MenuList
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
-from Components.config import config
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console

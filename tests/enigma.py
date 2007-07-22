@@ -359,7 +359,5 @@ def init_all():
 	import Components.RFmod
 	Components.RFmod.InitRFmod()
 
-	import Components.NimManager
-
 	import Screens.Ci
 	Screens.Ci.InitCiConfig()

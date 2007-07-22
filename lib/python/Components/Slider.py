@@ -1,7 +1,6 @@
-from HTMLComponent import *
-from GUIComponent import *
-from VariableValue import *
-from VariableText import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
+from VariableValue import VariableValue
 
 from enigma import eSlider
 

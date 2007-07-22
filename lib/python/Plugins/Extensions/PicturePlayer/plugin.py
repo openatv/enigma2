@@ -9,7 +9,7 @@ from Components.ConfigList import ConfigList
 from Components.config import *
 
 from Tools.Directories import resolveFilename, pathExists, createDir, SCOPE_MEDIA
-from Components.FileList import FileEntryComponent, FileList
+from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 
 from Plugins.Plugin import PluginDescriptor

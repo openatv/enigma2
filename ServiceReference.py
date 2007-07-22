@@ -1,7 +1,5 @@
 from enigma import eServiceReference, eServiceCenter
 
-import NavigationInstance
-
 class ServiceReference(eServiceReference):
 	def __init__(self, ref):
 		if not isinstance(ref, eServiceReference):

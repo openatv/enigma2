@@ -1,5 +1,5 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 from MenuList import MenuList
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eListbox, gFont, loadPNG

@@ -7,15 +7,9 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteRotorParameters as rotorParam, \
 	eDVBResourceManager
 
-import xml.dom.minidom
-from xml.dom import EMPTY_NAMESPACE
-from skin import elementsWithTag
-from Tools import XMLTools
-
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
-from Tools.BoundFunction import boundFunction
 from time import localtime, mktime
 from datetime import datetime
 

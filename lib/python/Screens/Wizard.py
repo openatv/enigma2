@@ -6,8 +6,7 @@ from Screens.HelpMenu import HelpableScreen
 from Components.config import config
 from Components.Label import Label
 from Components.Slider import Slider
-from Components.ActionMap import HelpableActionMap, NumberActionMap
-from Components.Pixmap import *
+from Components.ActionMap import NumberActionMap
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
 

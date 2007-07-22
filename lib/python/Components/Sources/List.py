@@ -1,5 +1,4 @@
 from Source import Source
-from Tools.Event import Event
 from Components.Element import cached
 
 class List(Source, object):

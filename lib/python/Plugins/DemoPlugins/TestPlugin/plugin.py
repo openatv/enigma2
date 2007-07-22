@@ -1,10 +1,9 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
 from Components.Input import Input
 from Components.Pixmap import Pixmap
-from Components.FileList import FileEntryComponent, FileList
+from Components.FileList import FileList
 from Screens.ChoiceBox import ChoiceBox
 from Plugins.Plugin import PluginDescriptor
 

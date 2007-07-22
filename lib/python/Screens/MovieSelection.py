@@ -1,6 +1,5 @@
 from Screen import Screen
 from Components.Button import Button
-from Components.ServiceList import ServiceList
 from Components.ActionMap import ActionMap
 from Components.MovieList import MovieList
 from Components.DiskInfo import DiskInfo

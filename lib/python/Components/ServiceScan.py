@@ -1,4 +1,4 @@
-from enigma import eComponentScan, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
+from enigma import eComponentScan
 
 class ServiceScan:
 	

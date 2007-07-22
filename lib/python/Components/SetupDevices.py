@@ -1,4 +1,4 @@
-from config import config, ConfigSlider, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
+from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
 from Components.Timezones import timezones
 from Components.Language import language
 

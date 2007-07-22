@@ -4,7 +4,6 @@ from Components.Input import Input
 from Components.Ipkg import IpkgComponent
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.ScrollLabel import ScrollLabel
 from Components.Slider import Slider
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
+from os import path as os_path, mkdir, system
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -49,7 +49,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if base[0:2] == "~/":
 		# you can only use the ~/ if we have a prefix directory
 		assert path_prefix is not None
-		base = os.path.join(path_prefix, base[2:])
+		base = os_path.join(path_prefix, base[2:])
 
 	# don't resolve absolute paths
 	if base[0:1] == '/':
@@ -59,7 +59,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 
 	if path[1] == PATH_CREATE:
 		if (not pathExists(defaultPaths[scope][0])):
-			os.mkdir(path[0])
+			mkdir(path[0])
 			
 	#if len(base) > 0 and base[0] == '/':
 		#path = ("", None)
@@ -70,21 +70,21 @@ def resolveFilename(scope, base = "", path_prefix = None):
 			for x in fallbackPaths[scope]:
 				if x[1] == FILE_COPY:
 					if fileExists(x[0] + base):
-						os.system("cp " + x[0] + base + " " + path[0] + base)
+						system("cp " + x[0] + base + " " + path[0] + base)
 						break
 				elif x[1] == FILE_MOVE:
 					if fileExists(x[0] + base):
-						os.system("mv " + x[0] + base + " " + path[0] + base)
+						system("mv " + x[0] + base + " " + path[0] + base)
 						break
 				elif x[1] == PATH_COPY:
 					if pathExists(x[0]):
 						if not pathExists(defaultPaths[scope][0]):
-							os.mkdir(path[0])
-						os.system("cp -a " + x[0] + "* " + path[0])
+							mkdir(path[0])
+						system("cp -a " + x[0] + "* " + path[0])
 						break
 				elif x[1] == PATH_MOVE:
 					if pathExists(x[0]):
-						os.system("mv " + x[0] + " " + path[0])
+						system("mv " + x[0] + " " + path[0])
 						break
 
 	
@@ -94,11 +94,11 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	# this is only the BASE - an extension must be added later.
 	
 def pathExists(path):
-	return os.path.exists(path)
+	return os_path.exists(path)
 
 def createDir(path):
 	try:
-		os.mkdir(path)
+		mkdir(path)
 	except:
 		ret = 0
 	else:

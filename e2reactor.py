@@ -11,7 +11,7 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 import select, errno, sys
 
 # Twisted imports
-from twisted.python import log, threadable, failure
+from twisted.python import log, failure
 from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 

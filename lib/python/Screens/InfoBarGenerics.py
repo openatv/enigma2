@@ -5,10 +5,9 @@ from Components.ActionMap import NumberActionMap
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
-from Components.Label import *
-from Components.Pixmap import Pixmap, PixmapConditional
+from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
-from Components.ProgressBar import *
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.CurrentService import CurrentService
 from Components.Sources.EventInfo import EventInfo

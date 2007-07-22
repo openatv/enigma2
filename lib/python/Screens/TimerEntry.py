@@ -1,15 +1,13 @@
 from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import ConfigSelection, ConfigText, ConfigSubList, ConfigSubsection, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.config import ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
+from Components.ActionMap import NumberActionMap
+from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
-from Components.NimManager import nimmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
 from enigma import eEPGCache

@@ -1,6 +1,5 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList, TimerEntryComponent
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -11,7 +10,7 @@ from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
 from TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
-from time import *
+from time import time
 
 class TimerEditList(Screen):
 	def __init__(self, session):

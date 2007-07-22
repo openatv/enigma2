@@ -1,5 +1,5 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 from config import KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_OK, KEY_TIMEOUT, ConfigElement
 from Components.ActionMap import NumberActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eTimer

@@ -1,5 +1,5 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 
 from enigma import eListboxPythonStringContent, eListbox
 

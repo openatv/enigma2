@@ -1,4 +1,3 @@
-from Tools import RedirectOutput, RedirectTime
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
 	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow, eServiceEvent
 from tools import *
@@ -16,8 +15,6 @@ import Screens.InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
-
-import ServiceReference
 
 from Components.ParentalControl import InitParentalControl
 InitParentalControl()
@@ -550,8 +547,6 @@ Components.SetupDevices.InitSetupDevices()
 
 import Components.RFmod
 Components.RFmod.InitRFmod()
-
-import Components.NimManager
 
 import Screens.Ci
 Screens.Ci.InitCiConfig()

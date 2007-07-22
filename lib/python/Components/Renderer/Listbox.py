@@ -1,7 +1,4 @@
-from Components.VariableText import VariableText
 from Renderer import Renderer
-from Tools.Event import Event
-
 from enigma import eListbox
 
 # the listbox renderer is the listbox, but no listbox content.

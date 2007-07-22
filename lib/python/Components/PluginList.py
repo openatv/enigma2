@@ -1,12 +1,12 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 
 from MenuList import MenuList
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
-from enigma import loadPNG, eListboxPythonMultiContent, RT_HALIGN_LEFT, eListbox, gFont
+from enigma import loadPNG, eListboxPythonMultiContent, eListbox, gFont
 
 def PluginEntryComponent(plugin):
 	res = [ plugin ]

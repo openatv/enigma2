@@ -1,9 +1,6 @@
 from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 
 # this is not so great.
 MAX_X = 720

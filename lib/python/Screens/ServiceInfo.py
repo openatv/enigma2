@@ -1,9 +1,8 @@
-from Components.HTMLComponent import *
-from Components.GUIComponent import *
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
 

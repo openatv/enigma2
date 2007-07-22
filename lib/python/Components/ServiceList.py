@@ -1,11 +1,11 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 
 from enigma import loadPNG, eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 
 from string import upper
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 class ServiceList(HTMLComponent, GUIComponent):
 	MODE_NORMAL = 0

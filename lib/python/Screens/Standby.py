@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
-from enigma import eDVBVolumecontrol, eDBoxLCD, eServiceReference
+from enigma import eDVBVolumecontrol, eDBoxLCD
 from Components.Sources.Clock import Clock
 
 inStandby = None

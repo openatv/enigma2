@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing

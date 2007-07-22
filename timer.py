@@ -1,8 +1,6 @@
 from bisect import insort
-from time import strftime, time, localtime, gmtime, mktime
-from calendar import timegm
+from time import strftime, time, localtime, mktime
 from enigma import eTimer
-import calendar
 import datetime
 
 class TimerEntry:

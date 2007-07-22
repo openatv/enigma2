@@ -3,7 +3,6 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
-from Components.MenuList import MenuList
 from Components.About import about
 
 from Tools.DreamboxHardware import getFPVersion

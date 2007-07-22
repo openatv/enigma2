@@ -9,7 +9,6 @@ from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
-from Tools.Directories import SCOPE_SKIN
 from Components.config import config
 
 from os import path, walk

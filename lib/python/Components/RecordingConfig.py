@@ -1,5 +1,4 @@
 from config import ConfigInteger, ConfigYesNo, ConfigSubsection, config
-import os
 
 def InitRecordingConfig():
 	config.recording = ConfigSubsection();

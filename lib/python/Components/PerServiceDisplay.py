@@ -1,6 +1,6 @@
-from GUIComponent import *
-from VariableText import *
-from VariableValue import *
+from GUIComponent import GUIComponent
+from VariableText import VariableText
+from VariableValue import VariableValue
 
 from enigma import iPlayableService
 from enigma import eLabel, eSlider, eTimer

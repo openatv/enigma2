@@ -1,7 +1,7 @@
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
-from Components.FileList import FileEntryComponent, FileList
+from Components.FileList import FileList
 from Plugins.Plugin import PluginDescriptor
 
 class FileManager(Screen):

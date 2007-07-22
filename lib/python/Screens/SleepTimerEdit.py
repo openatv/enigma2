@@ -5,8 +5,6 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config
-from SleepTimer import SleepTimerEntry
-import time
 
 class SleepTimerEdit(Screen):
 	def __init__(self, session):
