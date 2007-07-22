@@ -3,7 +3,7 @@ from Components.config import config, ConfigClock
 from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from Components.EpgList import EPGList
+from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI
 from Components.ActionMap import ActionMap
 from Screens.EventView import EventViewSimple
 from TimeDateInput import TimeDateInput
