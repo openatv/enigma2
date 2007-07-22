@@ -1042,6 +1042,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 
+		self["CurrentTime"] = Clock()
+
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
