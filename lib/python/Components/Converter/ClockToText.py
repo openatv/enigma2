@@ -7,6 +7,7 @@ class ClockToText(Converter, object):
 	WITH_SECONDS = 1
 	IN_MINUTES = 2
 	DATE = 3
+	FORMAT = 4
 	
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
@@ -19,6 +20,9 @@ class ClockToText(Converter, object):
 			self.type = self.IN_MINUTES
 		elif type == "Date":
 			self.type = self.DATE
+		elif type.find("Format") != -1:
+			self.type = self.FORMAT
+			self.fmt_string = type[7:]
 		else:
 			self.type = self.DEFAULT
 
@@ -40,6 +44,14 @@ class ClockToText(Converter, object):
 			return "%02d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
 			return strftime("%A %B %d, %Y", t)
+		elif self.type == self.FORMAT:
+			spos = self.fmt_string.find('%')
+			if spos > 0:
+				s1 = self.fmt_string[:spos]
+				s2 = strftime(self.fmt_string[spos:], t)
+				return str(s1+s2)
+			else:
+				return strftime(self.fmt_string, t)
 		else:
 			return "???"
 

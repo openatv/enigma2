@@ -41,6 +41,19 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
+		self.onSelectionChanged = [ ]
+
+	def connectSelChanged(self, fnc):
+		if not fnc in self.onSelectionChanged:
+			self.onSelectionChanged.append(fnc)
+
+	def disconnectSelChanged(self, fnc):
+		if fnc in self.onSelectionChanged:
+			self.onSelectionChanged.remove(fnc)
+
+	def selectionChanged(self):
+		for x in self.onSelectionChanged:
+			x()
 
 	def setCurrent(self, ref):
 		self.l.setCurrent(ref)
@@ -93,6 +106,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.setContent(self.l)
+		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setMode(self.mode)
 
 	def getRoot(self):
@@ -122,6 +136,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setRoot(root, justSet)
 		if not justSet:
 			self.l.sort()
+		self.selectionChanged()
 
 	def removeCurrent(self):
 		self.l.removeCurrent()

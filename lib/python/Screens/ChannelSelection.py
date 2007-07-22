@@ -11,6 +11,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
 from Components.Sources.Clock import Clock
 from Components.Sources.RdsDecoder import RdsDecoder
+from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Input import Input
 from Components.ParentalControl import parentalControl
 from Components.Pixmap import Pixmap
@@ -268,6 +269,22 @@ class ChannelContextMenu(Screen):
 		self.csel.addAlternativeServices()
 		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
 		self.close()
+
+class SelectionEventInfo:
+	def __init__(self):
+		self["ServiceEvent"] = ServiceEvent()
+		self.servicelist.connectSelChanged(self.__selectionChanged)
+		self.timer = eTimer()
+		self.timer.timeout.get().append(self.updateEventInfo)
+		self.onShown.append(self.__selectionChanged)
+
+	def __selectionChanged(self):
+		if self.execing:
+			self.timer.start(100, True)
+
+	def updateEventInfo(self):
+		cur = self.getCurrentSelection()
+		self["ServiceEvent"].newService(cur)
 
 class ChannelSelectionEPG:
 	def __init__(self):
@@ -1018,11 +1035,12 @@ config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default = "tv")
 
-class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
+class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self,session)
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
+		SelectionEventInfo.__init__(self)
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
