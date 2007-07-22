@@ -204,7 +204,6 @@ class TimerEditList(Screen):
 		self.finishedAdd(answer)
 
 	def leave(self):
-		self.session.nav.RecordTimer.saveTimer()
 		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
 		self.close()
 
