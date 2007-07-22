@@ -35,6 +35,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
+		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_service_group-fs8.png"))
+		if pic:
+			self.l.setPixmap(self.l.picServiceGroup, pic)
+
 		self.root = None
 		self.mode = self.MODE_NORMAL
 

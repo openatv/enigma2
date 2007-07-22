@@ -58,6 +58,7 @@ public:
 		picDVB_S,
 		picDVB_T,
 		picDVB_C,
+		picServiceGroup,
 		picFolder,
 		picMarker,
 		picElements
