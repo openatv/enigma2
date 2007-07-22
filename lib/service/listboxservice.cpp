@@ -552,6 +552,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				ePtr<gPixmap> &pixmap =
 					(e == celFolderPixmap) ? m_pixmaps[picFolder] :
 					(e == celMarkerPixmap) ? m_pixmaps[picMarker] :
+					(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
 					(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
 					(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
 				if (pixmap)
