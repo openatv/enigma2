@@ -1,4 +1,4 @@
-for os import path as os_path, os_remove, os_listdir
+from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
 from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation
 from Screens.Screen import Screen
