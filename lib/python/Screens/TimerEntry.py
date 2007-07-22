@@ -291,12 +291,18 @@ class TimerEntry(Screen, ConfigListScreen):
 						tlist.append((i.getName(), i))
 					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list = tlist, selection = selection)
 					return
+
+		self.saveTimer()
 		self.close((True, self.timer))
 
 	def subserviceSelected(self, service):
 		if not service is None:
 			self.timer.service_ref = ServiceReference(service[1])
+		self.saveTimer()
 		self.close((True, self.timer))
+
+	def saveTimer(self):
+		self.session.nav.RecordTimer.saveTimer()
 
 	def keyCancel(self):
 		self.close((False,))
