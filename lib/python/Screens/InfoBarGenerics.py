@@ -405,6 +405,7 @@ class InfoBarEPG:
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
+				"showSingleServiceEPG": (self.openSingleServiceEPG, _("show single service EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 

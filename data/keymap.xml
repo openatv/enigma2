@@ -67,7 +67,8 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_INFO" mapto="showEventInfo" flags="m" />
+		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
+		<key id="KEY_INFO" mapto="showSingleServiceEPG" flags="l" />
 	</map>
 	
 	<map context="InfobarInstantRecord">
