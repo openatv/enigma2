@@ -23,8 +23,9 @@ class ServiceEvent(VariableText, GUIComponent, Source, object):
 	event = property(getCurrentEvent)
 
 	def newService(self, ref):
-		self.cur_ref = ref
-		if not ref or (ref.flags & Ref.flagDirectory) == Ref.flagDirectory or ref.flags & Ref.isMarker:
-			self.changed((self.CHANGED_CLEAR,))
-		else:
-			self.changed((self.CHANGED_ALL,))
+		if not self.cur_ref or self.cur_ref != ref:
+			self.cur_ref = ref
+			if not ref or (ref.flags & Ref.flagDirectory) == Ref.flagDirectory or ref.flags & Ref.isMarker:
+				self.changed((self.CHANGED_CLEAR,))
+			else:
+				self.changed((self.CHANGED_ALL,))
