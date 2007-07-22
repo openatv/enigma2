@@ -1,8 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry, ConfigNothing
-from Components.Label import Label
 
 from Tools.ISO639 import LanguageCodes
 

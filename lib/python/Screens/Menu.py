@@ -2,9 +2,7 @@ from Screen import Screen
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.Header import Header
-from Components.Button import Button
 from Components.Label import Label
-from Components.ProgressBar import ProgressBar
 from Components.config import configfile
 from Components.Sources.Clock import Clock
 from Components.PluginComponent import plugins
@@ -12,8 +10,6 @@ from Components.PluginComponent import plugins
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
 import xml.dom.minidom
-from xml.dom import EMPTY_NAMESPACE
-from skin import elementsWithTag
 
 from Screens.Setup import Setup, getSetupTitle
 

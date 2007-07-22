@@ -1,5 +1,4 @@
 from config import config, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
-import os
 from enigma import eAVSwitch
 
 class AVSwitch:

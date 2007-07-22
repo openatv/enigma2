@@ -1,10 +1,8 @@
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
-from Tools.Event import Event
 from enigma import iPlayableService
 from Source import Source
 
-from time import time
 
 class EventInfo(PerServiceBase, Source, object):
 	NOW = 0

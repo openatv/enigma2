@@ -1,11 +1,11 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry
 from Components.Network import iNetwork
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubsection, ConfigNothing
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigNothing
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 

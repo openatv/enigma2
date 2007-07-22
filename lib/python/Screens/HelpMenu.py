@@ -1,16 +1,8 @@
 from Screen import Screen
-
-from Components.Pixmap import *
-from Components.Pixmap import Pixmap
-from Components.Pixmap import MovingPixmap
+from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Label import Label
-from Components.Slider import Slider
 from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
-import string
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
-from Components.MenuList import MenuList
 
 class HelpMenu(Screen):
 	def __init__(self, session, list):

@@ -1,4 +1,3 @@
-from Tools.Event import Event
 from Components.Element import cached
 from enigma import eTimer
 import time

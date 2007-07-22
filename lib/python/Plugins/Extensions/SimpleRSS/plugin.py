@@ -5,13 +5,10 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.GUIComponent import GUIComponent
-from Components.Label import Label
 from Components.MultiContent import MultiContentEntryText
 from Plugins.Plugin import PluginDescriptor
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_WRAP
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_WRAP
 
-from twisted.web import server
-from twisted.web.resource import Resource
 from twisted.web.client import getPage
 import xml.dom.minidom
 
@@ -25,7 +22,7 @@ my_global_session = None
 urls = ["http://www.heise.de/newsticker/heise.rdf", "http://rss.slashdot.org/Slashdot/slashdot/to"]
 
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 config.simpleRSS = ConfigSubsection()
 config.simpleRSS.hostname = ConfigSelection(choices = urls)
 
@@ -36,8 +33,6 @@ class SimpleRSS(ConfigListScreen, Screen):
 		</screen>"""
 
 	def __init__(self, session, args = None):
-		from Tools.BoundFunction import boundFunction
-		
 		print "screen init"
 		Screen.__init__(self, session)
 		self.skin = SimpleRSS.skin

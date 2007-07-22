@@ -1,9 +1,8 @@
 import time
-import codecs
 #from time import datetime
 from Tools import Directories, Notifications
 
-from Components.config import config, ConfigYesNo
+from Components.config import config
 import timer
 import xml.dom.minidom
 

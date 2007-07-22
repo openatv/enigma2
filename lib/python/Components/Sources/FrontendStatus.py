@@ -1,5 +1,5 @@
 from Source import Source
-from enigma import eTimer, iFrontendInformation
+from enigma import eTimer
 
 class FrontendStatus(Source):
 	def __init__(self, service_source = None, frontend_source = None):

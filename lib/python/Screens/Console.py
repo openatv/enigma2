@@ -1,6 +1,6 @@
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 
 class Console(Screen):

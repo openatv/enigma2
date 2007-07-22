@@ -1,10 +1,9 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
-from enigma import eSize, ePoint, eTimer
+from enigma import eTimer
 
 class MessageBox(Screen):
 	TYPE_YESNO = 0

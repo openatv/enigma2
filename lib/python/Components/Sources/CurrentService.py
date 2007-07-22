@@ -3,8 +3,6 @@ from enigma import iPlayableService
 from Source import Source
 from Components.Element import cached
 
-from time import time
-
 class CurrentService(PerServiceBase, Source):
 	def __init__(self, navcore):
 		Source.__init__(self)

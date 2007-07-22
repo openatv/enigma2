@@ -1,5 +1,3 @@
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigSubsection, ConfigMAC
-
 import os
 import re
 from socket import *

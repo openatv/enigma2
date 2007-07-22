@@ -7,7 +7,6 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eTimer, eDVBDB, iPlayableService, iServiceInformation
 from Components.config import config, ConfigSubsection, ConfigText
-from Screens.FixedMenu import FixedMenu
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
 from Components.Sources.Clock import Clock
@@ -21,12 +20,10 @@ from Screens.ServiceInfo import ServiceInfo
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
-from re import *
+from re import compile
 from os import remove
 
 FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
-
-import xml.dom.minidom
 
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):

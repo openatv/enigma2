@@ -4,10 +4,9 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from enigma import eEPGCache, eTimer, eServiceReference
-from ServiceReference import ServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
-from time import localtime, asctime
+from time import localtime
 
 class EventViewBase:
 	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):

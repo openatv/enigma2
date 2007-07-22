@@ -1,8 +1,7 @@
 from Screen import Screen
-from Components.config import *
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.Button import Button
+from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
+from Components.ActionMap import NumberActionMap
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 import time

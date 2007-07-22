@@ -1,5 +1,3 @@
-import skin
-
 class VariableText(object):
 	"""VariableText can be used for components which have a variable text, based on any widget with setText call"""
 	

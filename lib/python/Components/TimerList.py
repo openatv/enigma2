@@ -1,11 +1,10 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 
 from Tools.FuzzyDate import FuzzyTime
-import time
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG, \
-	RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 

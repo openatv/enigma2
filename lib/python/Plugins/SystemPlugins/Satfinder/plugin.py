@@ -1,5 +1,5 @@
-from enigma import eTimer, eDVBSatelliteEquipmentControl, eDVBResourceManager,\
-	eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBFrontendParameters
+from enigma import eTimer, eDVBResourceManager,\
+	eDVBFrontendParametersSatellite, eDVBFrontendParameters
 
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
@@ -7,12 +7,11 @@ from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
 from Components.Label import Label
-from Components.ConfigList import ConfigList
 from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.MenuList import MenuList
-from Components.config import ConfigSelection, ConfigSatlist, getConfigListEntry
+from Components.config import ConfigSelection, getConfigListEntry
 
 class Tuner:
 	def __init__(self, frontend):

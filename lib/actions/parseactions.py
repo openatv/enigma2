@@ -1,6 +1,6 @@
 # takes a header file, outputs action ids
 
-import token, tokenize, os, sys, string
+import tokenize, sys, string
 
 def filter(g):
 	while 1:

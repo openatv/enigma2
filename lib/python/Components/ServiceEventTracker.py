@@ -1,5 +1,3 @@
-from enigma import pNavigation
-
 class ServiceEventTracker:
 	"""Tracks service events into a screen"""
 	

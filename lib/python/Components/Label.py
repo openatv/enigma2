@@ -1,8 +1,8 @@
-from HTMLComponent import *
-from GUIComponent import *
-from VariableText import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
+from VariableText import VariableText
 
-from ConditionalWidget import *
+from ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
 
 from enigma import eLabel
 

@@ -3,20 +3,15 @@ from Components.config import config, ConfigClock
 from Components.Button import Button
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from Components.EpgList import *
+from Components.EpgList import EPGList
 from Components.ActionMap import ActionMap
-from Components.ScrollLabel import ScrollLabel
 from Screens.EventView import EventViewSimple
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference
-from Screens.FixedMenu import FixedMenu
 from RecordTimer import RecordTimerEntry, parseEvent
-from TimerEdit import TimerEditList
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from time import localtime, time
-
-import xml.dom.minidom
 
 mepg_config_initialized = False
 

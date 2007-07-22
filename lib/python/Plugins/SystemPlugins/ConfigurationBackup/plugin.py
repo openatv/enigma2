@@ -9,7 +9,6 @@ from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_R
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
-from Tools.NumericalTextInput import *
 from Tools.Directories import *
 from os import path, makedirs, listdir
 from time import localtime

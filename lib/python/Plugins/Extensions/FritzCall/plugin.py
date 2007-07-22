@@ -1,7 +1,6 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
-from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 from Tools import Notifications
 
@@ -9,12 +8,10 @@ from twisted.internet import reactor
 from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.protocols.basic import LineReceiver
 
-from enigma import eTimer
-
 my_global_session = None
 
 from Components.config import config, ConfigSubsection, ConfigIP, ConfigEnableDisable, getConfigListEntry
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 
 config.plugins.FritzCall = ConfigSubsection()
 config.plugins.FritzCall.hostname = ConfigIP(default = [192,168,178,254])
@@ -28,8 +25,6 @@ class FritzCallSetup(ConfigListScreen, Screen):
 
 
 	def __init__(self, session, args = None):
-		from Tools.BoundFunction import boundFunction
-		
 		Screen.__init__(self, session)
 		self.onClose.append(self.abort)
 		

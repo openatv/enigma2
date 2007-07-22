@@ -1,12 +1,11 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_OK
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.config import config
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 
 import xml.dom.minidom
-from xml.dom import EMPTY_NAMESPACE
 from skin import elementsWithTag
 
 from Tools import XMLTools

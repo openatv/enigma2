@@ -1,8 +1,7 @@
-from Components.HTMLSkin import *
-from Components.GUISkin import *
+from Components.HTMLSkin import HTMLSkin
+from Components.GUISkin import GUISkin
 from Components.Sources.Source import Source
-
-import sys
+from Components.GUIComponent import GUIComponent
 
 class Screen(dict, HTMLSkin, GUISkin):
 

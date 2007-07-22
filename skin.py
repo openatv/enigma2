@@ -1,12 +1,10 @@
 import xml.dom.minidom
-from xml.dom import EMPTY_NAMESPACE
 from os import path
 
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
 	loadPNG, addFont, gRGB, eWindowStyleSkinned
 
 from Components.config import ConfigSubsection, ConfigText, config
-from Components.Element import Element
 from Components.Converter.Converter import Converter
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 from Tools.Import import my_import

@@ -1,9 +1,7 @@
 from Wizard import Wizard, wizardManager
 
 from Components.config import ConfigBoolean, config
-from Components.Pixmap import *
-
-from LanguageSelection import LanguageSelection
+from Components.Pixmap import MovingPixmap
 
 config.misc.firstruntutorial = ConfigBoolean(default = True)
 

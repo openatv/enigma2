@@ -1,15 +1,12 @@
-from Screen import *
-from Components.MenuList import MenuList
+from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ActionMap import NumberActionMap
-from Components.Header import Header
-from Components.Button import Button
 from Components.Label import Label
 
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
 from Components.ConfigList import ConfigList
 
-from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
+from enigma import eTimer, eDVBCI_UI
 
 MAX_NUM_CI = 4
 

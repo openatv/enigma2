@@ -1,4 +1,4 @@
-from GUIComponent import *
+from GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
 

@@ -1,6 +1,6 @@
 from Wizard import Wizard, wizardManager
 
-from Components.Pixmap import *
+from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile
 
 from LanguageSelection import LanguageSelection

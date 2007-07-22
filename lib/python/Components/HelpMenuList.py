@@ -1,4 +1,4 @@
-from GUIComponent import *
+from GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 

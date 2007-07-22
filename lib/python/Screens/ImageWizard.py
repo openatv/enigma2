@@ -1,8 +1,5 @@
 from Wizard import Wizard, wizardManager
 
-from Components.Pixmap import *
-
-from LanguageSelection import LanguageSelection
 from Tools.Directories import fileExists
 
 import os

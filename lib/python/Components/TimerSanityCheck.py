@@ -1,4 +1,3 @@
-from Components.NimManager import nimmanager
 from time import localtime
 
 class TimerSanityCheck:

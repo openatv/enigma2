@@ -1,13 +1,9 @@
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, eTimer, gFont
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
-from Components.Label import Label
-from Components.GUIComponent import *
-from Components.MenuList import MenuList
-from Components.Input import Input
-from Screens.Console import Console
+from Components.GUIComponent import GUIComponent
 from Plugins.Plugin import PluginDescriptor
 
 from os import popen

@@ -10,8 +10,6 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
 
-from Tools.Notifications import AddNotificationWithCallback
-
 from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, \
 	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
@@ -21,7 +19,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
-from Screens.HelpMenu import HelpableScreen, HelpMenu
+from Screens.HelpMenu import HelpableScreen
 
 from enigma import iPlayableService
 

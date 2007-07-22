@@ -1,10 +1,9 @@
-from HTMLComponent import *
-from GUIComponent import *
+from HTMLComponent import HTMLComponent
+from GUIComponent import GUIComponent
 
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, loadPNG, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 
-from re import *
 from time import localtime, time
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
