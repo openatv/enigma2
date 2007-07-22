@@ -22,7 +22,7 @@ class EventName(Converter, object):
 	def getText(self):
 		event = self.source.event
 		if event is None:
-			return "N/A"
+			return ""
 			
 		if self.type == self.NAME:
 			return event.getEventName()
