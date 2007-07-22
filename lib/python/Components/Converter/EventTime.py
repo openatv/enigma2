@@ -60,7 +60,12 @@ class EventTime(Poll, Converter, object):
 
 		event = self.source.event
 		if event is None:
+			if len(self.downstream_elements) and self.downstream_elements[0].visible:
+				self.downstream_elements[0].visible = False
 			return None
+
+		if len(self.downstream_elements) and not self.downstream_elements[0].visible:
+			self.downstream_elements[0].visible = True
 
 		now = int(time())
 		start_time = event.getBeginTime()
