@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-30 13:49+0200\n"
-"PO-Revision-Date: 2007-06-30 12:23+0100\n"
+"POT-Creation-Date: 2007-07-22 20:42+0200\n"
+"PO-Revision-Date: 2007-07-22 15:28+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,9 @@ msgid "#ffffff"
 msgstr ""
 
 msgid "#ffffffff"
+msgstr ""
+
+msgid "%H:%M"
 msgstr ""
 
 #, python-format
@@ -272,16 +275,13 @@ msgid "Add a mark"
 msgstr "Tilføj et mærke"
 
 msgid "Add a new title"
-msgstr ""
-
-msgid "Add files to playlist"
-msgstr "Tilføj filer til spilleliste"
+msgstr "Tilføje en ny titel"
 
 msgid "Add timer"
 msgstr "Tilføj timer"
 
 msgid "Add title..."
-msgstr ""
+msgstr "Tilføj titel..."
 
 msgid "Add to bouquet"
 msgstr "Tilføj til pakke..."
@@ -371,17 +371,20 @@ msgstr "Bånd"
 msgid "Bandwidth"
 msgstr "Båndbredde"
 
+msgid "Begin time"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Lysstyrke"
 
 msgid "Burn"
-msgstr ""
+msgstr "Brænde"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "Brænde DVD"
 
 msgid "Burn DVD..."
-msgstr ""
+msgstr "Brænde DVD..."
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -542,6 +545,9 @@ msgstr "Croatisk"
 msgid "Current version:"
 msgstr "Aktuel Version:"
 
+msgid "Custom skip time for 1/3 keys"
+msgstr ""
+
 msgid "Customize"
 msgstr "Bruger Indstillinger"
 
@@ -657,6 +663,9 @@ msgstr ""
 "Vil du virkelig downloade\n"
 "dette plugin \""
 
+msgid "Do you really want to exit?"
+msgstr ""
+
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -742,13 +751,13 @@ msgid "East"
 msgstr "Øst"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "Ændre nuværende titel"
 
 msgid "Edit services list"
 msgstr "Editere kanallister"
 
 msgid "Edit title..."
-msgstr ""
+msgstr "Ændre title..."
 
 msgid "Enable"
 msgstr "Starte"
@@ -767,6 +776,9 @@ msgstr "Tilsluttet"
 
 msgid "End"
 msgstr "Slut"
+
+msgid "End time"
+msgstr ""
 
 msgid "EndTime"
 msgstr "SlutTid"
@@ -828,8 +840,14 @@ msgstr "Ekstra Menu"
 msgid "FEC"
 msgstr "FEC"
 
+msgid "Fast"
+msgstr ""
+
 msgid "Fast DiSEqC"
 msgstr "Hurtig DiSEqC"
+
+msgid "Fast epoch"
+msgstr ""
 
 msgid "Favourites"
 msgstr "Favoritter"
@@ -838,7 +856,7 @@ msgid "Finetune"
 msgstr "Fin tuning"
 
 msgid "Finnish"
-msgstr "Finland"
+msgstr "Finsk"
 
 msgid "French"
 msgstr "Fransk"
@@ -900,7 +918,7 @@ msgid "Goto position"
 msgstr "Drej til position"
 
 msgid "Greek"
-msgstr ""
+msgstr "Græsk"
 
 msgid "Guard Interval"
 msgstr "Guard Interval"
@@ -1048,6 +1066,9 @@ msgstr "Limits on"
 msgid "List of Storage Devices"
 msgstr "Liste med Memory Muligheder"
 
+msgid "Long Keypress"
+msgstr ""
+
 msgid "Longitude"
 msgstr "Længdegrad"
 
@@ -1194,7 +1215,7 @@ msgid "New"
 msgstr "Ny"
 
 msgid "New DVD"
-msgstr ""
+msgstr "Ny DVD"
 
 msgid "New pin"
 msgstr "Ny kode"
@@ -1374,6 +1395,9 @@ msgstr "Indtast venligst navn for ny pakke"
 msgid "Please enter a name for the new marker"
 msgstr "Indtast venligst navn for ny marker"
 
+msgid "Please enter filename (empty = use current date)"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr "Indtast venligst korrekt pin kode"
 
@@ -1382,6 +1406,12 @@ msgstr "Indtast venligst den gamle pin kode"
 
 msgid "Please press OK!"
 msgstr "Tryk venligst OK!"
+
+msgid "Please select a playlist to delete..."
+msgstr ""
+
+msgid "Please select a playlist..."
+msgstr ""
 
 msgid "Please select a subservice to record..."
 msgstr "Vælg en underkanal til at optagelse..."
@@ -1435,7 +1465,7 @@ msgid "Port D"
 msgstr "Port D"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugisisk"
 
 msgid "Positioner"
 msgstr "Motor"
@@ -1451,6 +1481,9 @@ msgstr "Motor Opsætning"
 
 msgid "Positioner storage"
 msgstr "Gem position"
+
+msgid "Power threshold in mA"
+msgstr ""
 
 msgid "Predefined transponder"
 msgstr "Predefineret transponder"
@@ -1561,13 +1594,13 @@ msgid "Remove a mark"
 msgstr "Fjerne et mærke"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Fjerne nuværende valgte titel"
 
 msgid "Remove plugins"
 msgstr "Fjerne plugins"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Fjerne titel"
 
 msgid "Repeat"
 msgstr "Gentag"
@@ -1577,9 +1610,6 @@ msgstr "Gentage type"
 
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Gentage event optagelse som er igang... Hvad vil du foretage dig?"
-
-msgid "Replace current playlist"
-msgstr "Skifte nuværende spilleliste"
 
 msgid "Reset"
 msgstr "Reset"
@@ -1604,11 +1634,14 @@ msgstr "Højre"
 msgid "Rolloff"
 msgstr "Rulle af"
 
+msgid "Rotor turning speed"
+msgstr ""
+
 msgid "Running"
 msgstr "Aktiveret"
 
 msgid "Russian"
-msgstr ""
+msgstr "Russisk"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1634,11 +1667,14 @@ msgstr "Sat Søger"
 msgid "Saturday"
 msgstr "Lørdag"
 
-msgid "Save current project to disk"
+msgid "Save Playlist"
 msgstr ""
 
+msgid "Save current project to disk"
+msgstr "Gemme nuværende projekt på disk"
+
 msgid "Save..."
-msgstr ""
+msgstr "Gemme..."
 
 msgid "Scaling Mode"
 msgstr "Skalerings Type"
@@ -1838,6 +1874,9 @@ msgstr "Slideshow Interval (sek.)"
 msgid "Slot %d"
 msgstr "Slot %d"
 
+msgid "Slow"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Nogle plugins er ikke tilstede:\n"
 
@@ -1881,7 +1920,7 @@ msgid "StartTime"
 msgstr "StartTid"
 
 msgid "Starting on"
-msgstr ""
+msgstr "Starter på"
 
 msgid "Startwizard"
 msgstr "Start Guide"
@@ -2184,6 +2223,9 @@ msgstr "Opdaterer Dreambox... Vent venligst"
 msgid "Use DHCP"
 msgstr "Brug (DHCP)"
 
+msgid "Use Power Measurement"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Brug af router"
 
@@ -2380,9 +2422,6 @@ msgstr ""
 "\n"
 "Vil du opsætte pin kode nu?"
 
-msgid "You selected a playlist"
-msgstr "Du valgte en spilleliste"
-
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -2448,6 +2487,9 @@ msgstr "Tilføj direktorie til spilleliste"
 
 msgid "add file to playlist"
 msgstr "Tilføj fil til spilleliste"
+
+msgid "add files to playlist"
+msgstr ""
 
 msgid "add marker"
 msgstr "Tilføj mærke"
@@ -2531,6 +2573,12 @@ msgstr "Slet"
 msgid "delete cut"
 msgstr "Slet klip"
 
+msgid "delete playlist entry"
+msgstr ""
+
+msgid "delete saved playlist"
+msgstr ""
+
 msgid "delete..."
 msgstr "Slet..."
 
@@ -2591,6 +2639,9 @@ msgstr "Afslut favorit redigering"
 msgid "equal to Socket A"
 msgstr "Som Tuner A"
 
+msgid "exit mediaplayer"
+msgstr ""
+
 msgid "free diskspace"
 msgstr "Fri HDD plads"
 
@@ -2635,11 +2686,26 @@ msgstr "Initialiser modul"
 msgid "insert mark here"
 msgstr "Indsæt mærke her"
 
+msgid "jump to listbegin"
+msgstr ""
+
+msgid "jump to listend"
+msgstr ""
+
+msgid "jump to next marked position"
+msgstr ""
+
+msgid "jump to previous marked position"
+msgstr ""
+
 msgid "leave movie player..."
 msgstr "Forlad film afspiller..."
 
 msgid "left"
 msgstr "Venstre"
+
+msgid "load playlist"
+msgstr ""
 
 msgid "locked"
 msgstr "Låst "
@@ -2649,6 +2715,9 @@ msgstr "Forbundet til Tuner A"
 
 msgid "manual"
 msgstr "Manuelt"
+
+msgid "menu"
+msgstr ""
 
 msgid "mins"
 msgstr "min"
@@ -2661,6 +2730,9 @@ msgstr "minutter"
 
 msgid "minutes and"
 msgstr "minutter og"
+
+msgid "movie list"
+msgstr ""
 
 msgid "multinorm"
 msgstr "Multinorm"
@@ -2728,6 +2800,15 @@ msgstr "Ok"
 msgid "pause"
 msgstr "Pause"
 
+msgid "play entry"
+msgstr ""
+
+msgid "play next playlist entry"
+msgstr ""
+
+msgid "play previous playlist entry"
+msgstr ""
+
 msgid "please press OK when ready"
 msgstr "Tryk venligst OK når du er klar"
 
@@ -2775,6 +2856,9 @@ msgstr "Gentaget"
 
 msgid "right"
 msgstr "Højre"
+
+msgid "save playlist"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -2836,8 +2920,14 @@ msgstr "Vis alternativer"
 msgid "show event details"
 msgstr "Vis program detaljer"
 
+msgid "show single service EPG..."
+msgstr ""
+
 msgid "show transponder info"
 msgstr "Vis transmitter info"
+
+msgid "shuffle playlist"
+msgstr ""
 
 msgid "shutdown"
 msgstr "Slukke"
@@ -2849,12 +2939,18 @@ msgid "skip backward"
 msgstr "Drop tilbage"
 
 msgid "skip backward (enter time)"
+msgstr "skip bagud (skriv tiden)"
+
+msgid "skip backward (self defined)"
 msgstr ""
 
 msgid "skip forward"
 msgstr "Drop fremad"
 
 msgid "skip forward (enter time)"
+msgstr "skip fremaf (skriv tiden)"
+
+msgid "skip forward (self defined)"
 msgstr ""
 
 msgid "standby"
@@ -2868,6 +2964,9 @@ msgstr "Start timeskift"
 
 msgid "stereo"
 msgstr "Stereo"
+
+msgid "stop entry"
+msgstr ""
 
 msgid "stop recording"
 msgstr "Stop optagelse"
@@ -2889,6 +2988,9 @@ msgstr "Denne optagelse"
 
 msgid "this service is protected by a parental control pin"
 msgstr "Denne service er beskyttet af forældre kontrol "
+
+msgid "toggle a cut mark at the current position"
+msgstr ""
 
 msgid "unknown service"
 msgstr "Ukendt kanal"
@@ -2939,6 +3041,9 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappet"
 
+#~ msgid "Add files to playlist"
+#~ msgstr "Tilføj filer til spilleliste"
+
 #~ msgid "LCD Setup"
 #~ msgstr "Display Indstillinger"
 
@@ -2969,6 +3074,9 @@ msgstr "zappet"
 #~ "Optagelse(r) er igang eller går igang indenfor få sekunder... vil du "
 #~ "virkelig slukke nu?"
 
+#~ msgid "Replace current playlist"
+#~ msgstr "Skifte nuværende spilleliste"
+
 #~ msgid "SNR:"
 #~ msgstr "SNR:"
 
@@ -2989,6 +3097,9 @@ msgstr "zappet"
 
 #~ msgid "Transpondertype"
 #~ msgstr "Transpondertype"
+
+#~ msgid "You selected a playlist"
+#~ msgstr "Du valgte en spilleliste"
 
 #~ msgid "empty/unknown"
 #~ msgstr "Tom/ukendt"
