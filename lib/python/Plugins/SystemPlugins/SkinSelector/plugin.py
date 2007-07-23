@@ -9,7 +9,6 @@ from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
-from Components.config import config
 
 from os import path, walk
 
@@ -51,7 +50,20 @@ class SkinSelector(Screen):
 			"info": self.info,
 		}, -1)
 		
-		self.onLayoutFinish.append(self.loadPreview)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		tmp = config.skin.primary_skin.value.find('/skin.xml')
+		if tmp != -1:
+			tmp = config.skin.primary_skin.value[:tmp]
+			idx = 0
+			for skin in self.skinlist:
+				if skin == tmp:
+					break
+				idx += 1
+			if idx < len(self.skinlist):
+				self["SkinList"].moveToIndex(idx)
+		self.loadPreview()
 
 	def up(self):
 		self["SkinList"].up()
