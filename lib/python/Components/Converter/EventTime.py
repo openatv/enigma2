@@ -60,12 +60,7 @@ class EventTime(Poll, Converter, object):
 
 		event = self.source.event
 		if event is None:
-			if len(self.downstream_elements) and self.downstream_elements[0].visible:
-				self.downstream_elements[0].visible = False
 			return None
-
-		if len(self.downstream_elements) and not self.downstream_elements[0].visible:
-			self.downstream_elements[0].visible = True
 
 		now = int(time())
 		start_time = event.getBeginTime()
@@ -78,3 +73,11 @@ class EventTime(Poll, Converter, object):
 	time = property(getTime)
 	value = property(getValue)
 	range = 1000
+
+	def changed(self, what):
+		Converter.changed(self, what)
+		if self.type == self.PROGRESS and len(self.downstream_elements):
+			if not self.source.event and self.downstream_elements[0].visible:
+				self.downstream_elements[0].visible = False
+			elif self.source.event and not self.downstream_elements[0].visible:
+				self.downstream_elements[0].visible = True
