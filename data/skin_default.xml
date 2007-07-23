@@ -250,11 +250,11 @@
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="ServiceEvent" render="Label" position="62,322" size="65,22" font="Regular;19" >
+		<widget source="ServiceEvent" render="Label" position="62,322" size="70,22" font="Regular;19" >
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="ServiceEvent" render="Progress" position="134,326" size="100,13" borderWidth="2" >
+		<widget source="ServiceEvent" render="Progress" position="140,326" size="100,13" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="CurrentTime" render="Label" position="495,322" size="65,28" font="Regular;19" >
