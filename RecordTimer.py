@@ -518,7 +518,24 @@ class RecordTimer(timer.Timer):
 		chktimecmp_end = None
 		end = begin + duration
 		for x in self.timer_list:
-			if str(x.service_ref) == str(service):
+			check = x.service_ref.ref.toCompareString() == str(service)
+			if not check:
+				sref = x.service_ref.ref
+				parent_sid = sref.getUnsignedData(5)
+				parent_tsid = sref.getUnsignedData(6)
+				if parent_sid and parent_tsid: # check for subservice
+					sid = sref.getUnsignedData(1)
+					tsid = sref.getUnsignedData(2)
+					sref.setUnsignedData(1, parent_sid)
+					sref.setUnsignedData(2, parent_tsid)
+					sref.setUnsignedData(5, 0)
+					sref.setUnsignedData(6, 0)
+					check = x.service_ref.ref.toCompareString() == str(service)
+					sref.setUnsignedData(1, sid)
+					sref.setUnsignedData(2, tsid)
+					sref.setUnsignedData(5, parent_sid)
+					sref.setUnsignedData(6, parent_tsid)
+			if check:
 				#if x.eit is not None and x.repeated == 0:
 				#	if x.eit == eventid:
 				#		return duration
