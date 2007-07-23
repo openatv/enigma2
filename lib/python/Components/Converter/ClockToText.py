@@ -20,7 +20,7 @@ class ClockToText(Converter, object):
 			self.type = self.IN_MINUTES
 		elif type == "Date":
 			self.type = self.DATE
-		elif type.find("Format") != -1:
+		elif str(type).find("Format") != -1:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
 		else:
