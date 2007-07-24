@@ -66,4 +66,7 @@ def SecSetupStart(menuid):
 	return [ ]
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Satellite Equipment Setup"), description="Setup your satellite equipment", where = PluginDescriptor.WHERE_SETUP, fnc=SecSetupStart)
+	if (nimmanager.hasNimType("DVB-S")):
+		return PluginDescriptor(name=_("Satellite Equipment Setup"), description="Setup your satellite equipment", where = PluginDescriptor.WHERE_SETUP, fnc=SecSetupStart)
+	else:
+		return []
