@@ -228,8 +228,6 @@ class CiMessageHandler:
 			elif eDVBCI_UI.getInstance().availableMMI(slot) == 1:
 				if self.session:
 					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, 3)
-				else:
-					print "no session"
 
 	def dlgClosed(self, slot):
 		if slot in self.dlgs:
@@ -248,7 +246,6 @@ CiHandler = CiMessageHandler()
 class CiSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self["actions"] = ActionMap(["OkCancelActions", "CiSelectionActions"],
 			{
 				"left": self.keyLeft,
@@ -357,5 +354,8 @@ class CiSelection(Screen):
 				self.dlg = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, action)
 
 	def cancel(self):
-		CiHandler.unregisterCIMessageHandler(0)
+		for slot in range(MAX_NUM_CI):
+			state = eDVBCI_UI.getInstance().getState(slot)
+			if state != -1:
+				CiHandler.unregisterCIMessageHandler(slot)
 		self.close()
