@@ -284,4 +284,7 @@ def SatfinderStart(menuid):
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Satfinder"), description="Helps setting up your dish", where = PluginDescriptor.WHERE_SETUP, fnc=SatfinderStart)
+	if (nimmanager.hasNimType("DVB-T")):
+		return PluginDescriptor(name=_("Satfinder"), description="Helps setting up your dish", where = PluginDescriptor.WHERE_SETUP, fnc=SatfinderStart)
+	else:
+		return []
