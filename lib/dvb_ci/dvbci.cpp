@@ -45,6 +45,9 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		++num_ci;
 	}
 
+	for (eSmartPtrList<eDVBCISlot>::iterator it(m_slots.begin()); it != m_slots.end(); ++it)
+		it->setSource(TUNER_A);
+
 	if (num_ci > 1) // // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		setInputSource(0, TUNER_A);
@@ -202,21 +205,21 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 		{
 			if (slot->linked_next)
 				slot->linked_next->setSource(slot->current_source);
-			else
+			else // last CI in chain
 				setInputSource(slot->current_tuner, slot->current_source);
 
 			if (it->cislot == slot) // remove the base slot
 				it->cislot = slot->linked_next;
 			else
 			{
+				eDVBCISlot *tmp = it->cislot;
+				while(tmp->linked_next != slot)
+					tmp = tmp->linked_next;
+				ASSERT(tmp);
 				if (slot->linked_next)
-				{
-					eDVBCISlot *tmp = it->cislot;
-					while(tmp->linked_next != slot)
-						tmp = tmp->linked_next;
-					ASSERT(tmp);
 					tmp->linked_next = slot->linked_next;
-				}
+				else
+					tmp->linked_next = 0;
 			}
 			slot->linked_next=0;
 		}
@@ -508,14 +511,14 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 					it->cislot = slot->linked_next;
 				else
 				{
+					eDVBCISlot *tmp = it->cislot;
+					while(tmp->linked_next != slot)
+						tmp = tmp->linked_next;
+					ASSERT(tmp);
 					if (slot->linked_next)
-					{
-						eDVBCISlot *tmp = it->cislot;
-						while(tmp->linked_next != slot)
-							tmp = tmp->linked_next;
-						ASSERT(tmp);
 						tmp->linked_next = slot->linked_next;
-					}
+					else
+						tmp->linked_next = 0;
 				}
 				slot->linked_next=0;
 			}
@@ -901,7 +904,6 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	{
 		perror(filename);
 	}
-	setSource(TUNER_A);
 }
 
 eDVBCISlot::~eDVBCISlot()
