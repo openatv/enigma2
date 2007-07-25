@@ -108,7 +108,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	GstElement *source = 0;
 	
-	GstElement *decoder = 0, *conv = 0, *flt = 0, *sink = 0; /* for audio */
+	GstElement *filter = 0, *decoder = 0, *conv = 0, *flt = 0, *sink = 0; /* for audio */
 	
 	GstElement *audio = 0, *queue_audio = 0, *video = 0, *queue_video = 0, *mpegdemux = 0;
 	
@@ -124,12 +124,13 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin"));
 	int is_mpeg_ts = !strcasecmp(ext, ".ts");
+	int is_mp3 = !strcasecmp(ext, ".mp3"); /* force mp3 instead of decodebin */
 	int is_video = is_mpeg_ps || is_mpeg_ts;
 	int is_streaming = !strncmp(filename, "http://", 7);
 	
-	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming);
+	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3);
 	
-	int use_decodebin = !is_video;
+	int is_audio = !is_video;
 	
 	int all_ok = 0;
 
@@ -152,14 +153,23 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				/* configure source */
 		g_object_set (G_OBJECT (source), "location", filename, NULL);
 
-	if (use_decodebin)
+	if (is_audio)
 	{
 			/* filesrc -> decodebin -> audioconvert -> capsfilter -> alsasink */
-		
-		decoder = gst_element_factory_make ("decodebin", "decoder");
+		const char *decodertype = is_mp3 ? "mad" : "decodebin";
+
+		decoder = gst_element_factory_make (decodertype, "decoder");
 		if (!decoder)
-			eWarning("failed to create decodebin decoder");
-	
+			eWarning("failed to create %s decoder", decodertype);
+
+			/* mp3 decoding needs id3demux to extract ID3 data. 'decodebin' would do that internally. */
+		if (is_mp3)
+		{
+			filter = gst_element_factory_make ("id3demux", "filter");
+			if (!filter)
+				eWarning("failed to create id3demux");
+		}
+
 		conv = gst_element_factory_make ("audioconvert", "converter");
 		if (!conv)
 			eWarning("failed to create audioconvert");
@@ -180,7 +190,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		sink = gst_element_factory_make ("alsasink", "alsa-output");
 		if (!sink)
 			eWarning("failed to create osssink");
-		
+
 		if (source && decoder && conv && sink)
 			all_ok = 1;
 	} else /* is_video */
@@ -220,25 +230,43 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	{
 		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline)), gstBusSyncHandler, this);
 
-		if (use_decodebin)
+		if (is_audio)
 		{
-			g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
-			g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
+			if (!is_mp3)
+			{
+					/* decodebin has dynamic pads. When they get created, we connect them to the audio bin */
+				g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
+				g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
+			}
 
 				/* gst_bin will take the 'floating references' */
 			gst_bin_add_many (GST_BIN (m_gst_pipeline),
 						source, decoder, NULL);
-			gst_element_link(source, decoder);
 
-			/* create audio bin */
+			if (filter)
+			{
+					/* id3demux also has dynamic pads, which need to be connected to the decoder (this is done in the 'gstCBfilterPadAdded' CB) */
+				gst_bin_add(GST_BIN(m_gst_pipeline), filter);
+				gst_element_link(source, filter);
+				m_decoder = decoder;
+				g_signal_connect (filter, "pad-added", G_CALLBACK(gstCBfilterPadAdded), this);
+			} else
+					/* in decodebin's case we can just connect the source with the decodebin, and decodebin will take care about id3demux (or whatever is required) */
+				gst_element_link(source, decoder);
+
+				/* create audio bin with the audioconverter, the capsfilter and the audiosink */
 			m_gst_audio = gst_bin_new ("audiobin");
+
 			GstPad *audiopad = gst_element_get_pad (conv, "sink");
-		
 			gst_bin_add_many(GST_BIN(m_gst_audio), conv, flt, sink, (char*)0);
 			gst_element_link_many(conv, flt, sink, (char*)0);
 			gst_element_add_pad(m_gst_audio, gst_ghost_pad_new ("sink", audiopad));
 			gst_object_unref(audiopad);
 			gst_bin_add (GST_BIN(m_gst_pipeline), m_gst_audio);
+
+				/* in mad's case, we can directly connect the decoder to the audiobin. otherwise, we do this in gstCBnewPad */
+			if (is_mp3)
+				gst_element_link(decoder, m_gst_audio);
 		} else
 		{
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, mpegdemux, audio, queue_audio, video, queue_video, NULL);
@@ -607,14 +635,20 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 	g_free (name);
 	
 }
-  
+
+void eServiceMP3::gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	gst_pad_link(pad, gst_element_get_pad (_this->m_decoder, "sink"));
+}
+
 void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	GstCaps *caps;
 	GstStructure *str;
 	GstPad *audiopad;
-	
+
 	/* only link once */
 	audiopad = gst_element_get_pad (_this->m_gst_audio, "sink");
 	if (GST_PAD_IS_LINKED (audiopad)) {
@@ -642,7 +676,7 @@ void eServiceMP3::gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	GstStructure *str;
-	
+
 	/* check media type */
 	caps = gst_pad_get_caps (pad);
 	str = gst_caps_get_structure (caps, 0);
