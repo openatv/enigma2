@@ -1587,7 +1587,7 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	return -1;
 }
 
-void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service, ePtr<eServiceEvent> &ptr, ePyObject nowTime, ePyObject service_name )
+void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service, eServiceEvent *ptr, ePyObject nowTime, ePyObject service_name )
 {
 	ePyObject tmp;
 	int pos=0;
@@ -1641,7 +1641,7 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 	}
 }
 
-int handleEvent(ePtr<eServiceEvent> &ptr, ePyObject dest_list, char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
+int handleEvent(eServiceEvent *ptr, ePyObject dest_list, char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
 {
 	if (convertFunc)
 	{
@@ -1861,10 +1861,12 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				Lock();
 				if (!startTimeQuery(ref, stime, minutes))
 				{
-					ePtr<eServiceEvent> ptr;
-					while (!getNextTimeEntry(ptr))
+					while ( m_timemap_cursor != m_timemap_end )
 					{
-						if (handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						Event ev((uint8_t*)m_timemap_cursor++->second->get());
+						eServiceEvent evt;
+						evt.parseFrom(&ev, currentQueryTsidOnid);
+						if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
 						{
 							Unlock();
 							return 0;  // error
@@ -1875,15 +1877,21 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			}
 			else
 			{
-				ePtr<eServiceEvent> ptr;
+				eServiceEvent evt;
+				Event *ev=0;
 				if (stime)
 				{
 					if (type == 2)
-						lookupEventId(ref, event_id, ptr);
+						lookupEventId(ref, event_id, ev);
 					else
-						lookupEventTime(ref, stime, ptr, type);
+						lookupEventTime(ref, stime, ev, type);
+					if (ev)
+					{
+						const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
+						evt.parseFrom(ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+					}
 				}
-				if (handleEvent(ptr, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				if (handleEvent(ev ? &evt : 0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
 					return 0; // error
 			}
 			if (service_changed)
@@ -1901,7 +1909,7 @@ skip_entry:
 	return dest_list;
 }
 
-void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData *evData, ePtr<eServiceEvent> &ptr, ePyObject service_name, ePyObject service_reference)
+void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData *evData, eServiceEvent *ptr, ePyObject service_name, ePyObject service_reference)
 {
 	ePyObject tmp;
 	int pos=0;
@@ -2239,11 +2247,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 					if (ref.valid())
 					{
 					// create servive event
-						ePtr<eServiceEvent> ptr;
+						eServiceEvent ptr;
+						Event *ev=0;
 						if (needServiceEvent)
 						{
-							lookupEventId(ref, evid, ptr);
-							if (!ptr)
+							if (lookupEventId(ref, evid, ev))
 								eDebug("event not found !!!!!!!!!!!");
 						}
 					// create service name
@@ -2292,7 +2300,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					// create tuple
 						ePyObject tuple = PyTuple_New(argcount);
 					// fill tuple
-						fillTuple2(tuple, argstring, argcount, evit->second, ptr, service_name, service_reference);
+						fillTuple2(tuple, argstring, argcount, evit->second, ev ? &ptr : 0, service_name, service_reference);
 						PyList_Append(ret, tuple);
 						Py_DECREF(tuple);
 						--maxcount;
