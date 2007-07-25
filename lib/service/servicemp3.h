@@ -97,13 +97,14 @@ private:
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_pipeline, *m_gst_audio, *m_gst_videoqueue, *m_gst_audioqueue;
+	GstElement *m_gst_pipeline, *m_gst_audio, *m_gst_videoqueue, *m_gst_audioqueue, *m_decoder;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 	
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
+	static void gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data); /* for id3demux */
 	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
 	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
 	void gstPoll(const int&);
