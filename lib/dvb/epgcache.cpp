@@ -1386,13 +1386,13 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 			It->second.second.upper_bound(t); // just >
 		if ( i != It->second.second.end() )
 		{
-			if ( direction < 0 || (direction == 0 && i->second->getStartTime() > t) )
+			if ( direction < 0 || (direction == 0 && i->first > t) )
 			{
 				timeMap::iterator x = i;
 				--x;
 				if ( x != It->second.second.end() )
 				{
-					time_t start_time = x->second->getStartTime();
+					time_t start_time = x->first;
 					if (direction >= 0)
 					{
 						if (t < start_time)
@@ -1512,19 +1512,18 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 	eventCache::iterator It = eventDB.find(ref);
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
-		m_timemap_end = minutes != -1 ? It->second.second.upper_bound(begin+minutes*60) : It->second.second.end();
 		if ( begin != -1 )
 		{
 			m_timemap_cursor = It->second.second.lower_bound(begin);
 			if ( m_timemap_cursor != It->second.second.end() )
 			{
-				if ( m_timemap_cursor->second->getStartTime() != begin )
+				if ( m_timemap_cursor->first != begin )
 				{
 					timeMap::iterator x = m_timemap_cursor;
 					--x;
 					if ( x != It->second.second.end() )
 					{
-						time_t start_time = x->second->getStartTime();
+						time_t start_time = x->first;
 						if ( begin > start_time && begin < (start_time+x->second->getDuration()))
 							m_timemap_cursor = x;
 					}
@@ -1533,6 +1532,12 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 		else
 			m_timemap_cursor = It->second.second.begin();
+
+		if (minutes != -1 && m_timemap_cursor != It->second.second.end())
+			m_timemap_end = It->second.second.upper_bound(m_timemap_cursor->first+minutes*60);
+		else
+			m_timemap_end = It->second.second.end();
+
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		Unlock();
 		return 0;
@@ -1690,7 +1695,7 @@ int handleEvent(ePtr<eServiceEvent> &ptr, ePyObject dest_list, char* argstring, 
 //    +1 = event after given start_time
 //   the third
 //      when type is eventid it is the event_id
-//      when type is time then it is the start_time ( 0 for now_time )
+//      when type is time then it is the start_time ( -1 for now_time )
 //   the fourth is the end_time .. ( optional .. for query all events in time range)
 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
