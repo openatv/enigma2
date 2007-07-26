@@ -1508,36 +1508,29 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
 	const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
+	if (begin == -1)
+		begin = eDVBLocalTimeHandler::getInstance()->nowTime();
 	Lock();
 	eventCache::iterator It = eventDB.find(ref);
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
-		if ( begin != -1 )
+		m_timemap_cursor = It->second.second.lower_bound(begin);
+		if ( m_timemap_cursor != It->second.second.end() )
 		{
-			m_timemap_cursor = It->second.second.lower_bound(begin);
-			if ( m_timemap_cursor != It->second.second.end() )
+			if ( m_timemap_cursor->first != begin )
 			{
-				if ( m_timemap_cursor->first != begin )
+				timeMap::iterator x = m_timemap_cursor;
+				--x;
+				if ( x != It->second.second.end() )
 				{
-					timeMap::iterator x = m_timemap_cursor;
-					--x;
-					if ( x != It->second.second.end() )
-					{
-						time_t start_time = x->first;
-						if ( begin > start_time && begin < (start_time+x->second->getDuration()))
-							m_timemap_cursor = x;
-					}
+					time_t start_time = x->first;
+					if ( begin > start_time && begin < (start_time+x->second->getDuration()))
+						m_timemap_cursor = x;
 				}
 			}
 		}
-		else
-			m_timemap_cursor = It->second.second.begin();
 
-		if (minutes != -1 && m_timemap_cursor != It->second.second.end())
-			m_timemap_end = It->second.second.upper_bound(m_timemap_cursor->first+minutes*60);
-		else
-			m_timemap_end = It->second.second.end();
-
+		m_timemap_end = It->second.second.upper_bound(begin+minutes*60);
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		Unlock();
 		return 0;
@@ -1799,6 +1792,10 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						break;
 				}
 			}
+
+			if (minutes && stime == -1)
+				stime = eDVBLocalTimeHandler::getInstance()->nowTime();
+
 			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
 			if (ref.type != eServiceReference::idDVB)
 			{
