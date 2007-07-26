@@ -1530,7 +1530,11 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 			}
 		}
 
-		m_timemap_end = It->second.second.upper_bound(begin+minutes*60);
+		if (minutes != -1)
+			m_timemap_end = It->second.second.upper_bound(begin+minutes*60);
+		else
+			m_timemap_end = It->second.second.end();
+
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		Unlock();
 		return 0;
