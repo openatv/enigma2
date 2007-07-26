@@ -479,7 +479,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 			
-			ePyObject px, py, pwidth, pheight, pfnt, pstring, pflags, pcolor, pfillColor, pborderWidth, pborderColor;
+			ePyObject px, py, pwidth, pheight, pfnt, pstring, pflags, pcolor, pbackColor, pbackColorSelected, pborderWidth, pborderColor;
 		
 			/*
 				we have a list of tuples:
@@ -531,14 +531,20 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				if (size > 9)
 				{
-					pfillColor = PyTuple_GET_ITEM(item, 9);
-					if (pfillColor == Py_None)
-						pfillColor=ePyObject();
+					pbackColor = PyTuple_GET_ITEM(item, 9);
+					if (pbackColor == Py_None)
+						pbackColor=ePyObject();
 				}
 				if (size > 10)
-					pborderWidth = PyTuple_GET_ITEM(item, 10);
+				{
+					pbackColorSelected = PyTuple_GET_ITEM(item, 10);
+					if (pbackColorSelected == Py_None)
+						pbackColorSelected=ePyObject();
+				}
 				if (size > 11)
-					pborderColor = PyTuple_GET_ITEM(item, 11);
+					pborderWidth = PyTuple_GET_ITEM(item, 11);
+				if (size > 12)
+					pborderColor = PyTuple_GET_ITEM(item, 12);
 			}
 			
 			switch (type)
@@ -577,9 +583,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				rc &= itemrect;
 				painter.clip(rc);
 
-				if (pfillColor && !selected)
+				if (pbackColor && !selected)
 				{
-					int color = PyInt_AsLong(pfillColor);
+					int color = PyInt_AsLong(pbackColor);
+					painter.setBackgroundColor(gRGB(color));
+					painter.clear();
+				}
+				else if (pbackColorSelected && selected)
+				{
+					int color = PyInt_AsLong(pbackColorSelected);
 					painter.setBackgroundColor(gRGB(color));
 					painter.clear();
 				}
@@ -600,7 +612,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						int color = PyInt_AsLong(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
-					else if (pcolor)
+					else if (pcolor) // reset to normal color
 						style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 
 					rc.setRect(x, y, width, bwidth);
@@ -704,7 +716,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 			
-			if (pcolor || pborderColor || pfillColor)
+			if (pcolor || pborderColor || pbackColor || pbackColorSelected)
 				style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 		}
 	}
