@@ -62,6 +62,8 @@ private:
 class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
 	ePyObject m_buildFunc;
+	eRect m_selection_clip;
+	eRect m_temp_clip;
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
@@ -72,6 +74,7 @@ public:
 	void setFont(int fnt, gFont *fnt);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setItemHeight(int height);
+	void setSelectionClip(eRect &rect, bool update=true);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };
