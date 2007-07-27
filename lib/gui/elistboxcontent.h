@@ -63,7 +63,7 @@ class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
 	ePyObject m_buildFunc;
 	eRect m_selection_clip;
-	eRect m_temp_clip;
+	gRegion m_temp_clip;
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
