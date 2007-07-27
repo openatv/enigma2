@@ -28,7 +28,7 @@ class EventTime(Poll, Converter, object):
 			self.poll_interval = 30*1000
 			self.poll_enabled = True
 		else:
-			raise str("'%s' is not <StartTime|EndTime|Remaining|Duration> for EventTime converter" % type)
+			raise str("'%s' is not <StartTime|EndTime|Remaining|Duration|Progress> for EventTime converter" % type)
 
 	@cached
 	def getTime(self):
