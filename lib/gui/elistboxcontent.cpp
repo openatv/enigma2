@@ -385,6 +385,7 @@ int eListboxPythonConfigContent::currentCursorSelectable()
 RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 eListboxPythonMultiContent::eListboxPythonMultiContent()
+	:m_temp_clip(gRegion::invalidRegion())
 {
 }
 
@@ -398,17 +399,11 @@ void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
 {
 	if (update && m_selection_clip.valid())
 	{
-// redraw old selection
 		m_temp_clip = m_selection_clip;
-		m_selection_clip = eRect();
-		if (m_listbox)
-			m_listbox->entryChanged(m_cursor);
-// redraw new selection
+		m_temp_clip |= rect;
 		m_selection_clip = rect;
-		m_temp_clip = rect;
 		if (m_listbox)
 			m_listbox->entryChanged(m_cursor);
-		m_temp_clip = eRect();
 	}
 	else
 		m_selection_clip = rect;
@@ -416,26 +411,20 @@ void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	eRect itemrect(offset, m_itemsize);
+	gRegion itemregion(eRect(offset, m_itemsize));
+
+	eRect sel_clip(m_selection_clip);
+	if (sel_clip.valid())
+		sel_clip.moveBy(offset);
+
 	if (m_temp_clip.valid())
 	{
-		eRect tmp = m_temp_clip;
-		tmp.moveBy(offset);
-		itemrect &= tmp;
+		m_temp_clip.moveBy(offset);
+		itemregion &= m_temp_clip;
+		m_temp_clip = eRect();
 	}
 
-	painter.clip(itemrect);
-	style.setStyle(painter, selected && !m_selection_clip.valid() ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-	painter.clear();
-	if (selected && m_selection_clip.valid())
-	{
-		eRect tmp = m_selection_clip;
-		tmp.moveBy(offset);
-		painter.clip(tmp);
-		style.setStyle(painter, eWindowStyle::styleListboxSelected );
-		painter.clear();
-		painter.clippop();
-	}
+	painter.clip(itemregion);
 
 	ePyObject items;
 
@@ -461,40 +450,24 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
 			goto error_out;
 		}
-		
+
 		if (!PyList_Check(items))
 		{
 			eDebug("eListboxPythonMultiContent: list entry %d is not a list", m_cursor);
 			goto error_out;
 		}
-		
+
 		int size = PyList_Size(items);
 		for (int i = 1; i < size; ++i)
 		{
 			ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
-			
+
 			if (!item)
 			{
 				eDebug("eListboxPythonMultiContent: ?");
 				goto error_out;
 			}
-			
-			ePyObject px, py, pwidth, pheight, pfnt, pstring, pflags, pcolor, pbackColor, pbackColorSelected, pborderWidth, pborderColor;
-		
-			/*
-				we have a list of tuples:
-				
-				(0, x, y, width, height, fnt, flags, "bla"[, color] ),
 
-				or, for a progress:
-				(1, x, y, width, height, filled_percent )
-
-				or, for a pixmap:
-				
-				(2, x, y, width, height, pixmap )
-				
-			 */
-			
 			if (!PyTuple_Check(item))
 			{
 				eDebug("eListboxPythonMultiContent did not receive a tuple.");
@@ -511,23 +484,33 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			int type = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
 
-			if (size > 5)
+			switch (type)
 			{
-				px = PyTuple_GET_ITEM(item, 1);
-				py = PyTuple_GET_ITEM(item, 2);
-				pwidth = PyTuple_GET_ITEM(item, 3);
-				pheight = PyTuple_GET_ITEM(item, 4);
-				pfnt = PyTuple_GET_ITEM(item, 5); /* could also be an pixmap or an int (progress filled percent) */
-				if (size > 7)
+			case TYPE_TEXT: // text
+			{
+			/*
+				(0, x, y, width, height, fnt, flags, "bla" [, color] )
+			*/
+				ePyObject px = PyTuple_GET_ITEM(item, 1),
+							py = PyTuple_GET_ITEM(item, 2),
+							pwidth = PyTuple_GET_ITEM(item, 3),
+							pheight = PyTuple_GET_ITEM(item, 4),
+							pfnt = PyTuple_GET_ITEM(item, 5),
+							pflags = PyTuple_GET_ITEM(item, 6),
+							pstring = PyTuple_GET_ITEM(item, 7),
+							pforeColor, pbackColor, pbackColorSelected, pborderWidth, pborderColor;
+
+				if (!(px && py && pwidth && pheight && pfnt && pflags && pstring))
 				{
-					pflags = PyTuple_GET_ITEM(item, 6);
-					pstring = PyTuple_GET_ITEM(item, 7);
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string, [color, ]...])");
+					goto error_out;
 				}
+
 				if (size > 8)
 				{
-					pcolor = PyTuple_GET_ITEM(item, 8);
-					if (pcolor == Py_None)
-						pcolor=ePyObject();
+					pforeColor = PyTuple_GET_ITEM(item, 8);
+					if (pforeColor == Py_None)
+						pforeColor=ePyObject();
 				}
 				if (size > 9)
 				{
@@ -545,32 +528,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pborderWidth = PyTuple_GET_ITEM(item, 11);
 				if (size > 12)
 					pborderColor = PyTuple_GET_ITEM(item, 12);
-			}
-			
-			switch (type)
-			{
-			case TYPE_TEXT: // text
-			{
-				if (!(px && py && pwidth && pheight && pfnt && pstring))
-				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_TEXT, x, y, width, height, fnt, flags, string, [color, ]...])");
-					goto error_out;
-				}
-				
+
 				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
-				int x = PyInt_AsLong(px);
-				int y = PyInt_AsLong(py);
+				int x = PyInt_AsLong(px) + offset.x();
+				int y = PyInt_AsLong(py) + offset.y();
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
 				int flags = PyInt_AsLong(pflags);
 				int fnt = PyInt_AsLong(pfnt);
 				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 0;
-
-				if (pcolor)
-				{
-					int color = PyInt_AsLong(pcolor);
-					painter.setForegroundColor(gRGB(color));
-				}
 
 				if (m_font.find(fnt) == m_font.end())
 				{
@@ -578,105 +544,161 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					goto error_out;
 				}
 
-				eRect rc = eRect(x+bwidth, y+bwidth, width-bwidth*2, height-bwidth*2);
-				rc.moveBy(offset);
-				rc &= itemrect;
+				eRect rect(x+bwidth, y+bwidth, width-bwidth*2, height-bwidth*2);
+				gRegion rc(rect);
+				rc &= itemregion;
 				painter.clip(rc);
-
-				if (pbackColor && !selected)
+				itemregion -= rc;
+				if (selected && sel_clip.valid())
 				{
-					int color = PyInt_AsLong(pbackColor);
-					painter.setBackgroundColor(gRGB(color));
+					painter.clip(rc-sel_clip);
+					if (pbackColor)
+					{
+						int color = PyInt_AsLong(pbackColor);
+						painter.setBackgroundColor(gRGB(color));
+					}
+					else
+						style.setStyle(painter, eWindowStyle::styleListboxNormal);
+					painter.clear();
+					painter.clippop();
+					painter.clip(rc&sel_clip);
+					style.setStyle(painter, eWindowStyle::styleListboxSelected);
+					if (pbackColorSelected)
+					{
+						int color = PyInt_AsLong(pbackColorSelected);
+						painter.setBackgroundColor(gRGB(color));
+					}
+					painter.clear();
+					painter.clippop();
+				}
+				else
+				{
+					if (selected)
+					{
+						style.setStyle(painter, eWindowStyle::styleListboxSelected);
+						if (pbackColorSelected)
+						{
+							int color = PyInt_AsLong(pbackColorSelected);
+							painter.setBackgroundColor(gRGB(color));
+						}
+					}
+					else
+					{
+						style.setStyle(painter, eWindowStyle::styleListboxNormal);
+						if (pbackColor)
+						{
+							int color = PyInt_AsLong(pbackColor);
+							painter.setBackgroundColor(gRGB(color));
+						}
+					}
 					painter.clear();
 				}
-				else if (pbackColorSelected && selected)
+
+				if (pforeColor)
 				{
-					int color = PyInt_AsLong(pbackColorSelected);
-					painter.setBackgroundColor(gRGB(color));
-					painter.clear();
+					int color = PyInt_AsLong(pforeColor);
+					painter.setForegroundColor(gRGB(color));
 				}
 
 				painter.setFont(m_font[fnt]);
-				painter.renderText(rc, string, flags);
+				painter.renderText(rect, string, flags);
 				painter.clippop();
 
 				// draw border
 				if (bwidth)
 				{
-					rc.setRect(x, y, width, height);
-					rc.moveBy(offset);
-					rc &= itemrect;
+					eRect rect(eRect(x, y, width, height));
+					gRegion rc(rect);
+					rc &= itemregion;
 					painter.clip(rc);
+					itemregion -= rc;
 					if (pborderColor)
 					{
 						int color = PyInt_AsLong(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
-					else if (pcolor) // reset to normal color
+					else if (pforeColor) // reset to normal color
 						style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 
-					rc.setRect(x, y, width, bwidth);
-					rc.moveBy(offset);
-					painter.fill(rc);
+					rect.setRect(x, y, width, bwidth);
+					painter.fill(rect);
 
-					rc.setRect(x, y+bwidth, bwidth, height-bwidth);
-					rc.moveBy(offset);
-					painter.fill(rc);
+					rect.setRect(x, y+bwidth, bwidth, height-bwidth);
+					painter.fill(rect);
 
-					rc.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
-					rc.moveBy(offset);
-					painter.fill(rc);
+					rect.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
+					painter.fill(rect);
 
-					rc.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
-					rc.moveBy(offset);
-					painter.fill(rc);
+					rect.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
+					painter.fill(rect);
 
 					painter.clippop();
 				}
-
 				break;
 			}
 			case TYPE_PROGRESS: // Progress
 			{
-				if (!(px && py && pwidth && pheight && pfnt))
+			/*
+				(1, x, y, width, height, filled_percent )
+			*/
+				ePyObject px = PyTuple_GET_ITEM(item, 1),
+							py = PyTuple_GET_ITEM(item, 2),
+							pwidth = PyTuple_GET_ITEM(item, 3),
+							pheight = PyTuple_GET_ITEM(item, 4),
+							pfilled_perc = PyTuple_GET_ITEM(item, 5);
+
+				if (!(px && py && pwidth && pheight && pfilled_perc))
 				{
 					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent))");
 					goto error_out;
 				}
-				int x = PyInt_AsLong(px);
-				int y = PyInt_AsLong(py);
+
+				int x = PyInt_AsLong(px) + offset.x();
+				int y = PyInt_AsLong(py) + offset.y();
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
-				int filled = PyInt_AsLong(pfnt);
+				int filled = PyInt_AsLong(pfilled_perc);
 
-				eRect rc = eRect(x, y, width, height);
-				rc.moveBy(offset);
-				rc &= itemrect;
-
+				eRect rect(x, y, width, height);
+				gRegion rc(rect);
+				rc &= itemregion;
 				painter.clip(rc);
+				itemregion -= rc;
+				if (selected && sel_clip.valid())
+				{
+					painter.clip(rc-sel_clip);
+					style.setStyle(painter, eWindowStyle::styleListboxNormal);
+					painter.clear();
+					painter.clippop();
+					painter.clip(rc&sel_clip);
+					style.setStyle(painter, eWindowStyle::styleListboxSelected);
+					painter.clear();
+					painter.clippop();
+				}
+				else
+				{
+					style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+					painter.clear();
+				}
+
 				int bwidth=2;  // borderwidth hardcoded yet
 
 				// border
-				rc.setRect(x, y, width, bwidth);
-				rc.moveBy(offset);
-				painter.fill(rc);
+				rect.setRect(x, y, width, bwidth);
+				painter.fill(rect);
 
-				rc.setRect(x, y+bwidth, bwidth, height-bwidth);
-				rc.moveBy(offset);
-				painter.fill(rc);
+				rect.setRect(x, y+bwidth, bwidth, height-bwidth);
+				painter.fill(rect);
 
-				rc.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
-				rc.moveBy(offset);
-				painter.fill(rc);
+				rect.setRect(x+bwidth, y+height-bwidth, width-bwidth, bwidth);
+				painter.fill(rect);
 
-				rc.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
-				rc.moveBy(offset);
-				painter.fill(rc);
+				rect.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
+				painter.fill(rect);
 
 				// progress
-				rc.setRect(x+bwidth, y+bwidth, (width-bwidth*2) * filled / 100, height-bwidth*2);
-				rc.moveBy(offset);
-				painter.fill(rc);
+				rect.setRect(x+bwidth, y+bwidth, (width-bwidth*2) * filled / 100, height-bwidth*2);
+				painter.fill(rect);
 
 				painter.clippop();
 
@@ -685,28 +707,57 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			case TYPE_PIXMAP_ALPHATEST:
 			case TYPE_PIXMAP: // pixmap
 			{
-				if (!(px && py && pwidth && pheight && pfnt))
+			/*
+				(2, x, y, width, height, pixmap )
+			*/
+
+				ePyObject px = PyTuple_GET_ITEM(item, 1),
+							py = PyTuple_GET_ITEM(item, 2),
+							pwidth = PyTuple_GET_ITEM(item, 3),
+							pheight = PyTuple_GET_ITEM(item, 4),
+							ppixmap = PyTuple_GET_ITEM(item, 5);
+
+				if (!(px && py && pwidth && pheight && ppixmap))
 				{
 					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap))");
 					goto error_out;
 				}
-				int x = PyInt_AsLong(px);
-				int y = PyInt_AsLong(py);
+
+				int x = PyInt_AsLong(px) + offset.x();
+				int y = PyInt_AsLong(py) + offset.y();
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
 				ePtr<gPixmap> pixmap;
-				if (SwigFromPython(pixmap, pfnt))
+				if (SwigFromPython(pixmap, ppixmap))
 				{
 					eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
 					goto error_out;
 				}
 
-				eRect r = eRect(x, y, width, height);
-				r.moveBy(offset);
-				r &= itemrect;
-				
-				painter.clip(r);
-				painter.blit(pixmap, r.topLeft(), r, (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : 0);
+				eRect rect(x, y, width, height);
+				gRegion rc(rect);
+				rc &= itemregion;
+				painter.clip(rc);
+				itemregion -= rc;
+
+				if (selected && sel_clip.valid())
+				{
+					painter.clip(rc-sel_clip);
+					style.setStyle(painter, eWindowStyle::styleListboxNormal);
+					painter.clear();
+					painter.clippop();
+					painter.clip(rc&sel_clip);
+					style.setStyle(painter, eWindowStyle::styleListboxSelected);
+					painter.clear();
+					painter.clippop();
+				}
+				else
+				{
+					style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+					painter.clear();
+				}
+
+				painter.blit(pixmap, rect.topLeft(), rect, (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : 0);
 				painter.clippop();
 
 				break;
@@ -715,12 +766,29 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eWarning("eListboxPythonMultiContent received unknown type (%d)", type);
 				goto error_out;
 			}
-			
-			if (pcolor || pborderColor || pbackColor || pbackColorSelected)
-				style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 		}
 	}
-	
+
+	if (selected && sel_clip.valid())
+	{
+		painter.clip(itemregion-sel_clip);
+		style.setStyle(painter, eWindowStyle::styleListboxNormal);
+		painter.clear();
+		painter.clippop();
+		itemregion &= sel_clip;
+		painter.clip(itemregion);
+		style.setStyle(painter, eWindowStyle::styleListboxSelected);
+		painter.clear();
+		painter.clippop();
+	}
+	else
+	{
+		painter.clip(itemregion);
+		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+		painter.clear();
+		painter.clippop();
+	}
+
 	if (selected)
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
