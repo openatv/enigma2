@@ -1204,9 +1204,7 @@ class InfoBarPlugins:
 		return list
 
 	def runPlugin(self, plugin):
-		self.session.servicelist = self.servicelist
-		plugin(session = self.session)
-		del self.session.servicelist
+		plugin(session = self.session, servicelist = self.servicelist)
 
 # depends on InfoBarExtensions
 class InfoBarSleepTimer:
