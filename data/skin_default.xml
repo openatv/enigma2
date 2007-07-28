@@ -245,7 +245,7 @@
 		<widget name="key_blue" position="420,0" size="140,30" backgroundColor="blue" font="Regular;21" />
 		<widget name="list" position="0,35" size="560,280" scrollbarMode="showOnDemand" />
 		<ePixmap position="0,316" size="560,101" pixmap="border_eventinfo-fs8.png" zPosition="1" transparent="1" alphatest="on" />
-		<widget source="ServiceEvent" render="Label" position="4,322" size="55,22" font="Regular;19" >
+		<widget source="ServiceEvent" render="Label" position="0,322" size="55,22" font="Regular;19" halign="right" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText"></convert>
 		</widget>
