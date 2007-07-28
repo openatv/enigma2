@@ -277,7 +277,7 @@ def SatfinderMain(session, **kwargs):
 			else:
 				session.open(NimSelection)
 
-def SatfinderStart(menuid):
+def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Satfinder"), SatfinderMain)]
 	else:

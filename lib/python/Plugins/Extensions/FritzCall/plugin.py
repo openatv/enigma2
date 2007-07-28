@@ -131,7 +131,7 @@ class FritzCall:
 			self.d[1].disconnect()
 			self.d = None
 
-def main(session):
+def main(session, **kwargs):
 	session.open(FritzCallSetup)
 
 fritz_call = None
