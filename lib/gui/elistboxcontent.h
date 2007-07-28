@@ -74,7 +74,7 @@ public:
 	void setFont(int fnt, gFont *fnt);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setItemHeight(int height);
-	void setSelectionClip(eRect &rect, bool update=true);
+	void setSelectionClip(eRect &rect, bool update=false);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };
