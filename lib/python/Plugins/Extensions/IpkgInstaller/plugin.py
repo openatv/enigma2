@@ -49,7 +49,7 @@ class IpkgInstaller(Screen):
 def filescan_open(list, session, **kwargs):
 	session.open(IpkgInstaller, list) # list
 
-def filescan():
+def filescan(**kwargs):
 	# we expect not to be called if the MediaScanner plugin is not available,
 	# thus we don't catch an ImportError exception here
 	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath
@@ -62,8 +62,7 @@ def filescan():
 				], 
 			name = "Ipkg", 
 			description = "Install software updates...", 
-			openfnc = filescan_open, 
-																																																																)
-		
+			openfnc = filescan_open, )
+
 def Plugins(**kwargs):
 	return [ PluginDescriptor(name="Ipkg", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan) ]

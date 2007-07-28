@@ -129,7 +129,7 @@ class SkinSelector(Screen):
 def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)
 
-def SkinSelSetup(menuid):
+def SkinSelSetup(menuid, **kwargs):
 	if menuid == "system":
 		return [("Skin...", SkinSelMain)]
 	else:

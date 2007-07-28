@@ -567,7 +567,7 @@ def PositionerMain(session, **kwargs):
 			else:
 				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
-def PositionerSetupStart(menuid):
+def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Positioner setup"), PositionerMain)]
 	else:

@@ -533,7 +533,7 @@ def main(session, **kwargs):
 def filescan_open(list, session, **kwargs):
 	session.open(picmain) # list
 
-def filescan():
+def filescan(**kwargs):
 	# we expect not to be called if the MediaScanner plugin is not available,
 	# thus we don't catch an ImportError exception here
 	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath

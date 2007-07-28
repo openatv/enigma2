@@ -19,7 +19,8 @@ from sets import Set
 
 my_global_session = None
 
-urls = ["http://www.heise.de/newsticker/heise.rdf", "http://rss.slashdot.org/Slashdot/slashdot/to"]
+#urls = ["http://www.heise.de/newsticker/heise.rdf", "http://rss.slashdot.org/Slashdot/slashdot/to"]
+urls = ["http://mastermaq.podcastspot.com/episodes/rss/mpg1"]
 
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
@@ -233,7 +234,7 @@ class RSSPoller:
 		self.poll_timer.timeout.get().remove(self.poll)
 		self.poll_timer = None
 
-def main(session):
+def main(session, **kwargs):
 	print "session.open"
 	session.open(SimpleRSS)
 	print "done"
