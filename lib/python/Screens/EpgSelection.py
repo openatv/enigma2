@@ -36,6 +36,8 @@ class EPGSelection(Screen):
 			self["key_blue"] = Button()
 			self.currentService=ServiceReference(service)
 			self.zapFunc = None
+			self.sort_type = 0
+			self.setSortDescription()
 		else:
 			self.skinName = "EPGSelectionMulti"
 			self.type = EPG_TYPE_MULTI
@@ -156,6 +158,21 @@ class EPGSelection(Screen):
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
 			self["list"].updateMultiEPG(-1)
+		elif self.type == EPG_TYPE_SINGLE:
+			if self.sort_type == 0:
+				self.sort_type = 1
+			else:
+				self.sort_type = 0
+			self["list"].sortSingleEPG(self.sort_type)
+			self.setSortDescription()
+
+	def setSortDescription(self):
+		if self.sort_type == 1:
+			# TRANSLATORS: This must fit into the header button in the EPG-List
+			self["key_yellow"].setText(_("Sort Time"))
+		else:
+			# TRANSLATORS: This must fit into the header button in the EPG-List
+			self["key_yellow"].setText(_("Sort A-Z"))
 
 	def blueButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
