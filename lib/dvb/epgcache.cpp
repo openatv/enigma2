@@ -1874,6 +1874,8 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						}
 					}
 				}
+				else
+					handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
 				Unlock();
 			}
 			else
