@@ -247,7 +247,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			return
 		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
 		if l and len(l):
-			l.sort(self.sort_func)
+			l.sort(key=lambda x: x[2])
 		self.l.setList(l)
 		self.selectionChanged()
 		print time() - t
