@@ -391,8 +391,8 @@ eListboxPythonMultiContent::eListboxPythonMultiContent()
 
 eListboxPythonMultiContent::~eListboxPythonMultiContent()
 {
-	if (m_buildFunc)
-		Py_DECREF(m_buildFunc);
+	Py_XDECREF(m_buildFunc);
+	Py_XDECREF(m_callableFunc);
 }
 
 void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
@@ -801,11 +801,16 @@ error_out:
 
 void eListboxPythonMultiContent::setBuildFunc(ePyObject cb)
 {
-	if (m_buildFunc)
-		Py_DECREF(m_buildFunc);
+	Py_XDECREF(m_buildFunc);
 	m_buildFunc=cb;
-	if (cb)
-		Py_INCREF(m_buildFunc);
+	Py_XINCREF(m_buildFunc);
+}
+
+void eListboxPythonMultiContent::setCallableFunc(ePyObject cb)
+{
+	Py_XDECREF(m_callableFunc);
+	m_callableFunc=cb;
+	Py_XINCREF(m_callableFunc);
 }
 
 int eListboxPythonMultiContent::currentCursorSelectable()
@@ -813,16 +818,31 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 	/* each list-entry is a list of tuples. if the first of these is none, it's not selectable */
 	if (m_list && cursorValid())
 	{
-		ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
-		if (PyList_Check(item))
+		if (m_callableFunc && PyCallable_Check(m_callableFunc))
 		{
-			item = PyList_GET_ITEM(item, 0);
-			if (item != Py_None)
+			ePyObject args = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+			if (PyTuple_Check(args))
+			{
+				ePyObject ret = PyObject_CallObject(m_callableFunc, args);
+				if (ret)
+					return ret == Py_True;
+				eDebug("call m_callableFunc failed!!! assume not callable");
+			}
+			else
+				eDebug("m_list[m_cursor] is not a tuple!!! assume not callable");
+		}
+		else
+		{
+			ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
+			if (PyList_Check(item))
+			{
+				item = PyList_GET_ITEM(item, 0);
+				if (item != Py_None)
+					return 1;
+			}
+			else if (m_buildFunc && PyCallable_Check(m_buildFunc))
 				return 1;
 		}
-		else if (m_buildFunc && PyCallable_Check(m_buildFunc))
-		// FIXME .. how we can detect non selectable entrys when we have a buildFunc callback
-			return 1;
 	}
 	return 0;
 }
