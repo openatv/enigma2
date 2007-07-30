@@ -62,6 +62,7 @@ private:
 class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
 	ePyObject m_buildFunc;
+	ePyObject m_callableFunc;
 	eRect m_selection_clip;
 	gRegion m_temp_clip;
 public:
@@ -73,6 +74,7 @@ public:
 	
 	void setFont(int fnt, gFont *fnt);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
+	void setCallableFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setItemHeight(int height);
 	void setSelectionClip(eRect &rect, bool update=false);
 private:
