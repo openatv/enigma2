@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-30 00:02+0200\n"
+"POT-Creation-Date: 2007-07-30 23:48+0200\n"
 "PO-Revision-Date: 2007-06-19 00:21+0100\n"
 "Last-Translator: Stefan Pluecken <stefanpl@baer.rwth-aachen.de>\n"
 "Language-Team: none\n"
@@ -23,6 +23,8 @@ msgid ""
 "\n"
 "Enigma2 will restart after the restore"
 msgstr ""
+"\n"
+"Enigma2 wird nach dem Restore neustarten"
 
 msgid "\"?"
 msgstr ""
@@ -279,13 +281,13 @@ msgid "Add a mark"
 msgstr "Marker hinzufügen"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Füge neuen Titel hinzu"
 
 msgid "Add timer"
 msgstr "Timer setzen"
 
 msgid "Add title..."
-msgstr ""
+msgstr "Füge Titel hinzu"
 
 msgid "Add to bouquet"
 msgstr "Zum Bouquet hinzufügen"
@@ -384,13 +386,13 @@ msgid "Brightness"
 msgstr "Helligkeit"
 
 msgid "Burn"
-msgstr ""
+msgstr "brenne"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "brenne DVD"
 
 msgid "Burn DVD..."
-msgstr ""
+msgstr "brenne DVD..."
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -552,7 +554,7 @@ msgid "Current version:"
 msgstr "Aktuelle Version:"
 
 msgid "Custom skip time for 1/3 keys"
-msgstr ""
+msgstr "Benutzerspezifische Sprungzeit für 1/3 Tasten"
 
 msgid "Customize"
 msgstr "Anpassen"
@@ -670,7 +672,7 @@ msgstr ""
 "dem Namen \""
 
 msgid "Do you really want to exit?"
-msgstr ""
+msgstr "Wollen Sie wirklich beenden?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -757,13 +759,13 @@ msgid "East"
 msgstr "Ost"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "aktuellen Titel editieren"
 
 msgid "Edit services list"
 msgstr "Kanalliste bearbeiten"
 
 msgid "Edit title..."
-msgstr ""
+msgstr "Titel editieren..."
 
 msgid "Enable"
 msgstr "Ein"
@@ -1077,10 +1079,10 @@ msgid "List of Storage Devices"
 msgstr "Speichergeräteliste"
 
 msgid "Lithuanian"
-msgstr ""
+msgstr "litauisch"
 
 msgid "Long Keypress"
-msgstr ""
+msgstr "langer Tastendruck"
 
 msgid "Longitude"
 msgstr "Längengrad"
@@ -1228,7 +1230,7 @@ msgid "New"
 msgstr "Neu"
 
 msgid "New DVD"
-msgstr ""
+msgstr "neue DVD"
 
 msgid "New pin"
 msgstr "Neuer Pincode"
@@ -1410,7 +1412,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Bitte einen Namen für den neuen Marker eingeben"
 
 msgid "Please enter filename (empty = use current date)"
-msgstr ""
+msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten Pincode eingeben"
@@ -1422,10 +1424,10 @@ msgid "Please press OK!"
 msgstr "Bitte OK drücken"
 
 msgid "Please select a playlist to delete..."
-msgstr ""
+msgstr "Bitte wählen Sie eine Wiedergabeliste zum Löschen..."
 
 msgid "Please select a playlist..."
-msgstr ""
+msgstr "Bitte wählen Sie eine Wiedergabeliste..."
 
 msgid "Please select a subservice to record..."
 msgstr "Bitte einen Unterkanal zur Aufnahme auswählen ..."
@@ -1479,7 +1481,7 @@ msgid "Port D"
 msgstr "Port D"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "portugiesisch"
 
 msgid "Positioner"
 msgstr "Rotor"
@@ -1608,13 +1610,13 @@ msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "entferne aktuell ausgewählten Titel"
 
 msgid "Remove plugins"
 msgstr "Plugins entfernen"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Titel entfernen"
 
 msgid "Repeat"
 msgstr "Wiederholung"
@@ -1686,13 +1688,13 @@ msgid "Saturday"
 msgstr "Samstag"
 
 msgid "Save Playlist"
-msgstr ""
+msgstr "Wiedergabeliste speichern"
 
 msgid "Save current project to disk"
-msgstr ""
+msgstr "Speichere aktuelles Projekt auf Festplatte"
 
 msgid "Save..."
-msgstr ""
+msgstr "speichern"
 
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
@@ -1909,6 +1911,14 @@ msgstr ""
 "Der Sicherungsort existiert nicht.\n"
 "\n"
 "Bitte einen anderen auswählen!"
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort A-Z"
+msgstr "Sort. A-Z"
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort Time"
+msgstr "Sort. Zeit"
 
 msgid "Sound"
 msgstr "Ton"
@@ -2522,7 +2532,7 @@ msgid "add file to playlist"
 msgstr "Datei zur Wiedergabeliste hinzufügen"
 
 msgid "add files to playlist"
-msgstr ""
+msgstr "Dateien zur Wiedergabeliste hinzufügen"
 
 msgid "add marker"
 msgstr "Marker einfügen"
@@ -2607,10 +2617,10 @@ msgid "delete cut"
 msgstr "Schnitt löschen"
 
 msgid "delete playlist entry"
-msgstr ""
+msgstr "Wiedergabelisteeintrag löschen"
 
 msgid "delete saved playlist"
-msgstr ""
+msgstr "gespeicherte Wiedergabeliste löschen"
 
 msgid "delete..."
 msgstr "löschen ..."
@@ -2673,7 +2683,7 @@ msgid "equal to Socket A"
 msgstr "Wie Tuner A"
 
 msgid "exit mediaplayer"
-msgstr ""
+msgstr "Mediaplayer beenden"
 
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
@@ -2720,16 +2730,16 @@ msgid "insert mark here"
 msgstr "Markierung hier einfügen"
 
 msgid "jump to listbegin"
-msgstr ""
+msgstr "springe zum Listenanfang"
 
 msgid "jump to listend"
-msgstr ""
+msgstr "springe zum Listenende"
 
 msgid "jump to next marked position"
-msgstr ""
+msgstr "springe zur nächsten Markerposition"
 
 msgid "jump to previous marked position"
-msgstr ""
+msgstr "springe zur vorherigen Markerposition"
 
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen ..."
@@ -2738,7 +2748,7 @@ msgid "left"
 msgstr "links"
 
 msgid "load playlist"
-msgstr ""
+msgstr "Wiedergabeliste laden"
 
 msgid "locked"
 msgstr "Signal"
@@ -2750,7 +2760,7 @@ msgid "manual"
 msgstr "manuell"
 
 msgid "menu"
-msgstr ""
+msgstr "Menü"
 
 msgid "mins"
 msgstr "min"
@@ -2765,7 +2775,7 @@ msgid "minutes and"
 msgstr "Minuten und"
 
 msgid "movie list"
-msgstr ""
+msgstr "Filmliste"
 
 msgid "multinorm"
 msgstr ""
@@ -2834,13 +2844,13 @@ msgid "pause"
 msgstr "Pause"
 
 msgid "play entry"
-msgstr ""
+msgstr "Eintrag abspielen"
 
 msgid "play next playlist entry"
-msgstr ""
+msgstr "nächsten Wiedergabelisteneintrag abspielen"
 
 msgid "play previous playlist entry"
-msgstr ""
+msgstr "vorherigen Wiedergabelisteneintrag abspielen"
 
 msgid "please press OK when ready"
 msgstr "Bitte OK drücken wenn bereit"
@@ -2891,7 +2901,7 @@ msgid "right"
 msgstr "rechts"
 
 msgid "save playlist"
-msgstr ""
+msgstr "Wiedergabeliste speichern"
 
 #, python-format
 msgid ""
@@ -2954,13 +2964,13 @@ msgid "show event details"
 msgstr "Sendungs-Details anzeigen"
 
 msgid "show single service EPG..."
-msgstr ""
+msgstr "Zeige einfaches Sender-EPG"
 
 msgid "show transponder info"
 msgstr "Zeige Transponder-Info"
 
 msgid "shuffle playlist"
-msgstr ""
+msgstr "Wiedergabeliste mischen"
 
 msgid "shutdown"
 msgstr "Ausschalten"
@@ -2975,7 +2985,7 @@ msgid "skip backward (enter time)"
 msgstr "Rückwärts springen (Zeit eingeben)"
 
 msgid "skip backward (self defined)"
-msgstr ""
+msgstr "Rückwärts springen (benutzerdefiniert)"
 
 msgid "skip forward"
 msgstr "Vorwärts spulen"
@@ -2984,7 +2994,7 @@ msgid "skip forward (enter time)"
 msgstr "Vorwärts springen (Zeit eingeben)"
 
 msgid "skip forward (self defined)"
-msgstr ""
+msgstr "Vorwärts springen (benutzerdefiniert)"
 
 msgid "standby"
 msgstr "Standby"
@@ -2999,7 +3009,7 @@ msgid "stereo"
 msgstr "stereo"
 
 msgid "stop entry"
-msgstr ""
+msgstr "Wiedergabe anhalten"
 
 msgid "stop recording"
 msgstr "Aufnahme anhalten"
@@ -3023,7 +3033,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "Dieser Kanal ist durch einen Jugendschutz-Pincode geschützt."
 
 msgid "toggle a cut mark at the current position"
-msgstr ""
+msgstr "Toggle Marker an der aktuellen Position"
 
 msgid "unknown service"
 msgstr "unbekannter Service"
@@ -3073,63 +3083,3 @@ msgstr "Umschalten"
 
 msgid "zapped"
 msgstr "umgeschaltet"
-
-#~ msgid "Add files to playlist"
-#~ msgstr "Dateien zur Wiedergabeliste hinzufügen"
-
-#~ msgid "NIM "
-#~ msgstr "NIM "
-
-#~ msgid "Quick"
-#~ msgstr "Schnell"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "reboot now?"
-#~ msgstr ""
-#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
-#~ "Wollen Sie trotzdem neu starten?"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "restart now?"
-#~ msgstr ""
-#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
-#~ "Wollen Sie trotzdem neu starten?"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "shutdown now?"
-#~ msgstr ""
-#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
-#~ "Wollen Sie trotzdem ausschalten?"
-
-#~ msgid "Replace current playlist"
-#~ msgstr "Aktuelle Wiedergabeliste ersetzen"
-
-#~ msgid "SNR:"
-#~ msgstr "SNR:"
-
-#~ msgid "Scan NIM"
-#~ msgstr "Scanne Tuner"
-
-#~ msgid "Service scan type needed"
-#~ msgstr "Benötige Kanalsuchart"
-
-#~ msgid "Slot "
-#~ msgstr "Slot "
-
-#~ msgid "Socket "
-#~ msgstr "Sockel "
-
-#~ msgid "Transpondertype"
-#~ msgstr "Transponder-Typ"
-
-#~ msgid "You selected a playlist"
-#~ msgstr "Sie haben eine Wiedergabeliste ausgewählt"
-
-#~ msgid "empty/unknown"
-#~ msgstr "leer/unbekannt"
-
-#~ msgid "select Slot"
-#~ msgstr "wähle Slot"
