@@ -223,17 +223,22 @@ class EPGList(HTMLComponent, GUIComponent):
 	def fillSingleEPG(self, service):
 		t = time()
 		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
-		self.l.setList(self.queryEPG(test))
+		self.list = self.queryEPG(test)
+		self.l.setList(self.list)
 		print time() - t
 		self.selectionChanged()
 
-	def sort_func(self,x,y):
-		if x[2] < y[2]:
-			return -1
-		elif x[2] == y[2]:
-			return 0
-		else:
-			return 1
+	def sortSingleEPG(self, type):
+		if len(self.list):
+			if type == 1:
+				self.list.sort(key=lambda x: (x[4].lower(), x[2]))
+				self.l.setList(self.list)
+				self.selectionChanged()
+			else:
+				assert(type == 0)
+				self.list.sort(key=lambda x: x[2])
+				self.l.setList(self.list)
+				self.selectionChanged()
 
 	def fillSimilarList(self, refstr, event_id):
 		t = time()
