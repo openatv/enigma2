@@ -91,6 +91,7 @@ lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
+lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile

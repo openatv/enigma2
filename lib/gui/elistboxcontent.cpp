@@ -726,11 +726,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							pwidth = PyTuple_GET_ITEM(item, 3),
 							pheight = PyTuple_GET_ITEM(item, 4),
 							ppixmap = PyTuple_GET_ITEM(item, 5),
-							pforeColor, pbackColor, pbackColorSelected;
+							pbackColor, pbackColorSelected;
 
 				if (!(px && py && pwidth && pheight && ppixmap))
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, foreColor, backColor, backColorSelected] ))");
+					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected] ))");
 					goto error_out;
 				}
 
@@ -747,29 +747,23 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (size > 6)
 				{
-					pforeColor = PyTuple_GET_ITEM(item, 6);
-					if (pforeColor == Py_None)
-						pforeColor=ePyObject();
-				}
-				if (size > 7)
-				{
-					pbackColor = PyTuple_GET_ITEM(item, 7);
+					pbackColor = PyTuple_GET_ITEM(item, 6);
 					if (pbackColor == Py_None)
 						pbackColor=ePyObject();
 				}
-				if (size > 8)
+				if (size > 7)
 				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 8);
+					pbackColorSelected = PyTuple_GET_ITEM(item, 7);
 					if (pbackColorSelected == Py_None)
 						pbackColorSelected=ePyObject();
 				}
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
-				if (pbackColor || pbackColorSelected || pforeColor)
+				if (pbackColor || pbackColorSelected)
 				{
 					gRegion rc(rect);
-					clearRegion(painter, style, pforeColor, pbackColor, pbackColorSelected, selected, rc, sel_clip);
+					clearRegion(painter, style, ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip);
 					reset_colors=true;
 				}
 				
