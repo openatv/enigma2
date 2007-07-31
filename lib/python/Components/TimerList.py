@@ -8,72 +8,73 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG, \
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
+class TimerList(HTMLComponent, GUIComponent, object):
 #
 #  | <Service>     <Name of the Timer>  |
 #  | <start, end>              <state>  |
 #
-def TimerEntryComponent(timer, processed):
-	res = [ timer ]
-	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 560, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.service_ref.getServiceName()))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, 560, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
-	
-	repeatedtext = ""
-	days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
-	if timer.repeated:
-		flags = timer.repeated
-		count = 0
-		for x in range(0, 7):
-				if (flags & 1 == 1):
-					if (count != 0):
-						repeatedtext += ", "
-					repeatedtext += days[x]
-					count += 1
-				flags = flags >> 1
-		if timer.justplay:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
-		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
-	else:
-		if timer.justplay:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
-		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
+	def buildTimerEntry(self, timer, processed):
+		width = self.l.getItemSize().width()
+		res = [ None ]
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.service_ref.getServiceName()))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, width, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
 
-	if not processed:
-		if timer.state == TimerEntry.StateWaiting:
-			state = _("waiting")
-		elif timer.state == TimerEntry.StatePrepared:
-			state = _("about to start")
-		elif timer.state == TimerEntry.StateRunning:
+		repeatedtext = ""
+		days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+		if timer.repeated:
+			flags = timer.repeated
+			count = 0
+			for x in range(0, 7):
+					if (flags & 1 == 1):
+						if (count != 0):
+							repeatedtext += ", "
+						repeatedtext += days[x]
+						count += 1
+					flags = flags >> 1
 			if timer.justplay:
-				state = _("zapped")
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
 			else:
-				state = _("recording...")
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
 		else:
-			state = _("<unknown>")
-	else:
-		state = _("done!")
-	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 320, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
+			if timer.justplay:
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
+			else:
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
 
-	if timer.disabled:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "redx.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
-	
-	return res
+		if not processed:
+			if timer.state == TimerEntry.StateWaiting:
+				state = _("waiting")
+			elif timer.state == TimerEntry.StatePrepared:
+				state = _("about to start")
+			elif timer.state == TimerEntry.StateRunning:
+				if timer.justplay:
+					state = _("zapped")
+				else:
+					state = _("recording...")
+			else:
+				state = _("<unknown>")
+		else:
+			state = _("done!")
 
-class TimerList(HTMLComponent, GUIComponent, object):
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-240, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
+
+		if timer.disabled:
+			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "redx.png"))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
+		return res
+
 	def __init__(self, list):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
-		self.l.setList(list)
+		self.l.setBuildFunc(self.buildTimerEntry)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
 		self.l.setItemHeight(70)
+		self.l.setList(list)
 	
 	def getCurrent(self):
-		return self.l.getCurrentSelection()
+		cur = self.l.getCurrentSelection()
+		return cur and cur[0]
 	
 	GUI_WIDGET = eListbox
 	

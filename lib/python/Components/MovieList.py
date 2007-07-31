@@ -25,6 +25,7 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, len):
 		if serviceref.flags & eServiceReference.mustDescent:
 			return None
+		width = self.entry_width
 
 		if len <= 0: #recalc len when not already done
 			cur_idx = self.l.getCurrentSelectionIndex()
@@ -39,10 +40,10 @@ class MovieList(GUIComponent):
 
 		res = [ None ]
 
-		res.append(MultiContentEntryText(pos=(0, 0), size=(420, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
+		res.append(MultiContentEntryText(pos=(0, 0), size=(width-140, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
 		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 		if service is not None:
-			res.append(MultiContentEntryText(pos=(420, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			res.append(MultiContentEntryText(pos=(width-140, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 
 		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 
@@ -51,9 +52,9 @@ class MovieList(GUIComponent):
 			t = FuzzyTime(begin)
 			begin_string = t[0] + ", " + t[1]
 
-		res.append(MultiContentEntryText(pos=(0, 30), size=(560, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
-		res.append(MultiContentEntryText(pos=(0, 50), size=(270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-		res.append(MultiContentEntryText(pos=(290, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+		res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
+		res.append(MultiContentEntryText(pos=(0, 50), size=(width-270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+		res.append(MultiContentEntryText(pos=(width, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 
 		return res
 
@@ -75,19 +76,22 @@ class MovieList(GUIComponent):
 	
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-	
+		self.entry_width = self.l.getItemSize().width()
+
 	def reload(self, root = None, filter_tags = None):
 		if root is not None:
 			self.load(root, filter_tags)
 		else:
 			self.load(self.root, filter_tags)
 		self.l.setList(self.list)
+		self.entry_width = self.l.getItemSize().width()
 
 	def removeService(self, service):
 		for l in self.list[:]:
 			if l[0] == service:
 				self.list.remove(l)
 		self.l.setList(self.list)
+		self.entry_width = self.l.getItemSize().width()
 
 	def __len__(self):
 		return len(self.list)
