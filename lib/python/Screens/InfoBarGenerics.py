@@ -14,7 +14,6 @@ from Components.Sources.EventInfo import EventInfo
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
-from Components.TimerList import TimerEntryComponent
 from Components.config import config, ConfigBoolean, ConfigClock
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -1359,7 +1358,7 @@ class InfoBarInstantRecord:
 			if not x in self.session.nav.RecordTimer.timer_list:
 				self.recording.remove(x)
 			elif x.dontSave and x.isRunning():
-				list.append(TimerEntryComponent(x, False))
+				list.append((x, False))
 
 		if answer[1] == "changeduration":
 			if len(self.recording) == 1:

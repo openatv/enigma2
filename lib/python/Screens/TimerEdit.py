@@ -1,7 +1,7 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.MenuList import MenuList
-from Components.TimerList import TimerList, TimerEntryComponent
+from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screen import Screen
@@ -63,7 +63,7 @@ class TimerEditList(Screen):
 	def toggleDisabledState(self):
 		cur=self["timerlist"].getCurrent()
 		if cur:
-			t = cur[0]
+			t = cur
 		
 			if t.disabled:
 				t.enable()
@@ -97,7 +97,7 @@ class TimerEditList(Screen):
 		
 	def updateState(self):
 		if len(self.list) > 0:
-			if self["timerlist"].getCurrent()[0].disabled:
+			if self["timerlist"].getCurrent().disabled:
 				self["key_yellow"].setText(_("Enable"))
 			else:
 				self["key_yellow"].setText(_("Disable"))
@@ -107,21 +107,21 @@ class TimerEditList(Screen):
 		del self.list[:]
 		
 		for timer in self.session.nav.RecordTimer.timer_list:
-			self.list.append(TimerEntryComponent(timer, processed=False))
+			self.list.append((timer, False))
 		
 		for timer in self.session.nav.RecordTimer.processed_timers:
-			self.list.append(TimerEntryComponent(timer, processed=True))
+			self.list.append((timer, True))
 		self.list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerLog, cur[0])
+			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
 
 	def openEdit(self):
 		cur=self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur[0])
+			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
 	def cleanupQuestion(self):
 		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
@@ -140,7 +140,7 @@ class TimerEditList(Screen):
 		list = self["timerlist"]
 		cur = list.getCurrent()
 		if cur:
-			timer = cur[0]
+			timer = cur
 			timer.afterEvent = AFTEREVENT.NONE
 			self.session.nav.RecordTimer.removeEntry(timer)
 			self.refill()
@@ -209,7 +209,7 @@ class TimerEditList(Screen):
 
 	def onStateChange(self, entry):
 		self.refill()
-		
+
 class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -252,10 +252,10 @@ class TimerSanityConflict(Screen):
 			}, -1)
 
 	def getTimerList(self, timer):
-		return [TimerEntryComponent(timer, processed=False)]
+		return [(timer, False)]
 
 	def editTimer1(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent()[0])
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent())
 
 	def disableTimer1(self):
 		self.timer[0].disabled = True
@@ -266,10 +266,8 @@ class TimerSanityConflict(Screen):
 
 	def up(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveUp)
-		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()[1]))
+		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()))
 		
 	def down(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
-		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()[1]))
-			
-		
+		self["timer2"].l.setList(self.getTimerList(self["list"].getCurrent()))
