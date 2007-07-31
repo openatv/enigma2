@@ -1,6 +1,6 @@
 from Components.config import config, ConfigClock, ConfigInteger
-from Components.Button import Button
 from Components.Pixmap import Pixmap
+from Components.Button import Button
 from Components.ActionMap import ActionMap
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
