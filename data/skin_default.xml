@@ -342,6 +342,33 @@
 		<widget name="date" position="410,40" size="140,40" valign="center" halign="right" font="Regular;24" />
 		<widget name="list" position="00,85" size="560,325" scrollbarMode="showOnDemand" />
 	</screen>
+	<screen name="GraphMultiEPG" position="90,95" size="560,430" title="Electronic Program Guide">
+		<widget name="key_red" position="0,0" size="140,30" backgroundColor="red" font="Regular;21" />
+		<widget name="key_green" position="140,0" size="140,30" backgroundColor="green" font="Regular;21" />
+		<widget source="Clock" render="Label" position="420,0" size="130,30" font="Regular;21" valign="center" halign="right" >
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget name="timeline_text" position="0,35" size="560,25" />
+		<widget name="list" position="0,60" size="560,324" scrollbarMode="showOnDemand" />
+		<widget name="timeline0" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline1" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline2" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline3" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline4" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline5" position="0,55" size="1,334" pixmap="timeline-fs8.png" zPosition="1" />
+		<widget name="timeline_now" position="0,55" size="1,334" pixmap="timeline-now-fs8.png" zPosition="1" />
+		<widget source="Event" render="Label" position="0,395" size="55,30" font="Regular;19" halign="right" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText"></convert>
+		</widget>
+		<widget source="Event" render="Label" position="62,395" size="70,30" font="Regular;19" >
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget source="Event" render="Label" position="135,395" size="425,30" font="Regular;19" >
+			<convert type="EventName"></convert>
+		</widget>
+	</screen>
 	<screen name="EventView" position="100,100" size="520,380" title="Eventview">
 		<widget name="key_red" position="0,0" size="130,30" backgroundColor="red" font="Regular;21" />
 		<widget name="key_green" position="130,0" size="130,30" backgroundColor="green" font="Regular;21" />
