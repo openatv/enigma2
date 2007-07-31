@@ -54,7 +54,7 @@ class MovieList(GUIComponent):
 
 		res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
 		res.append(MultiContentEntryText(pos=(0, 50), size=(width-270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-		res.append(MultiContentEntryText(pos=(width, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+		res.append(MultiContentEntryText(pos=(width-270, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 
 		return res
 
