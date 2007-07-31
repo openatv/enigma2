@@ -11,6 +11,7 @@ from Screens.Screen import Screen
 from Screens.EventView import EventViewSimple
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
+from Screens.EpgSelection import EPGSelection
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from RecordTimer import RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
@@ -175,7 +176,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, left+xpos+ewidth-22, top+height-22, 21, 21, self.clock_pixmap, 0x586d88, 0x808080))
 		return res
 
-	def selEntry(self, dir):
+	def selEntry(self, dir, visible=True):
 		cur_service = self.cur_service #(service, service_name, events)
 		if not self.entry_rect:
 			self.recalcEntrySize()
@@ -184,28 +185,28 @@ class EPGList(HTMLComponent, GUIComponent):
 			entries = cur_service[2]
 			if dir == 0: #current
 				update = False
-				pass
 			elif dir == +1: #next
 				if self.cur_event+1 < len(entries):
 					self.cur_event+=1
 				else:
 					self.offs += 1
 					self.fillMultiEPG(None) # refill
-					return
+					return True
 			elif dir == -1: #prev
 				if self.cur_event-1 >= 0:
 					self.cur_event-=1
 				elif self.offs > 0:
 					self.offs -= 1
 					self.fillMultiEPG(None) # refill
-					return
+					return True
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base+self.offs*self.time_epoch*60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.height()), update)
+			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.height()), visible and update)
 		else:
 			self.l.setSelectionClip(eRect(self.event_rect.left(), self.event_rect.top(), self.event_rect.width(), self.event_rect.height()), False)
 		self.selectionChanged()
+		return False
 
 	def queryEPG(self, list, buildFunc=None):
 		if self.epgcache is not None:
@@ -252,7 +253,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.time_epoch
 
 	def getTimeBase(self):
-		return self.time_base
+		return self.time_base + (self.offs * self.time_epoch * 60)
 
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
@@ -318,8 +319,8 @@ class GraphMultiEPG(Screen):
 
 		self["input_actions"] = ActionMap(["InputActions"],
 			{
-				"left": self.prevEvent,
-				"right": self.nextEvent,
+				"left": self.leftPressed,
+				"right": self.rightPressed,
 				"1": self.key1,
 				"2": self.key2,
 				"3": self.key3,
@@ -332,11 +333,21 @@ class GraphMultiEPG(Screen):
 		self.updateTimelineTimer.start(60*1000)
 		self.onLayoutFinish.append(self.onCreate)
 
-	def nextEvent(self):
-		self["list"].selEntry(+1)
+	def leftPressed(self):
+		self.prevEvent()
 
-	def prevEvent(self):
-		self["list"].selEntry(-1)
+	def rightPressed(self):
+		self.nextEvent()
+
+	def nextEvent(self, visible=True):
+		ret = self["list"].selEntry(+1, visible)
+		if ret:
+			self.moveTimeLines(True)
+
+	def prevEvent(self, visible=True):
+		ret = self["list"].selEntry(-1, visible)
+		if ret:
+			self.moveTimeLines(True)
 
 	def key1(self):
 		self["list"].setEpoch(60)
@@ -407,9 +418,9 @@ class GraphMultiEPG(Screen):
 		l = self["list"]
 		old = l.getCurrent()
 		if val == -1:
-			l.selEntry(-1)
+			self.prevEvent(False)
 		elif val == +1:
-			self.selEntry(+1)
+			self.nextEvent(False)
 		cur = l.getCurrent()
 		if cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
@@ -454,7 +465,7 @@ class GraphMultiEPG(Screen):
 			else:
 				self["key_red"].setText("")
 
-	def moveTimeLines(self):
+	def moveTimeLines(self, force=False):
 		l = self["list"]
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
@@ -483,7 +494,7 @@ class GraphMultiEPG(Screen):
 			x += 1
 			pos += incWidth
 
-		if changecount:
+		if changecount or force:
 			self["timeline_text"].setEntries(timeline_entries)
 
 		now=time()
