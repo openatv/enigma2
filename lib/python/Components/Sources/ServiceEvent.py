@@ -23,7 +23,7 @@ class ServiceEvent(Source, object):
 	info = property(getInfo)
 
 	def newService(self, ref):
-		if not self.service or self.service != ref:
+		if not self.service or not ref or self.service != ref:
 			self.service = ref
 			if not ref or (ref.flags & Ref.flagDirectory) == Ref.flagDirectory or ref.flags & Ref.isMarker:
 				self.changed((self.CHANGED_CLEAR,))
