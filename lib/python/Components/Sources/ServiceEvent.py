@@ -1,30 +1,30 @@
-from Components.VariableText import VariableText
 from Components.Element import cached
-from Components.GUIComponent import GUIComponent
-from enigma import eEPGCache, eServiceReference as Ref, eLabel
+from enigma import eServiceCenter, eServiceReference as Ref
 from Source import Source
 
-class ServiceEvent(VariableText, GUIComponent, Source, object):
+class ServiceEvent(Source, object):
 	def __init__(self):
 		Source.__init__(self)
-		GUIComponent.__init__(self)
-		VariableText.__init__(self)
-		self.cur_ref = None
+		self.service = None 
 
-	GUI_WIDGET = eLabel
+	@cached
+	def getCurrentService(self):
+		return self.service
 
-#TODO Add a timer to get every minute the actual event..
-#but this just make sense when the Servicelist do the same thing..
 	@cached
 	def getCurrentEvent(self):
-		epg = eEPGCache.getInstance()
-		return epg and self.cur_ref and epg.startTimeQuery(self.cur_ref) != -1 and epg.getNextTimeEntry() or None
+		return self.service and self.info and self.info.getEvent(self.service)
+
+	@cached
+	def getInfo(self):
+		return self.service and eServiceCenter.getInstance().info(self.service)
 
 	event = property(getCurrentEvent)
+	info = property(getInfo)
 
 	def newService(self, ref):
-		if not self.cur_ref or self.cur_ref != ref:
-			self.cur_ref = ref
+		if not self.service or self.service != ref:
+			self.service = ref
 			if not ref or (ref.flags & Ref.flagDirectory) == Ref.flagDirectory or ref.flags & Ref.isMarker:
 				self.changed((self.CHANGED_CLEAR,))
 			else:
