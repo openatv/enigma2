@@ -1,6 +1,6 @@
 from Components.Element import cached
 from enigma import eTimer
-import time
+from time import time as getTime
 
 from Source import Source
 
@@ -13,7 +13,7 @@ class Clock(Source):
 
 	@cached
 	def getClock(self):
-		return time.time()
+		return getTime()
 
 	time = property(getClock)
 
