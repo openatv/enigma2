@@ -8,6 +8,7 @@ class ClockToText(Converter, object):
 	IN_MINUTES = 2
 	DATE = 3
 	FORMAT = 4
+	AS_LENGTH = 5
 	
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
@@ -20,6 +21,8 @@ class ClockToText(Converter, object):
 			self.type = self.IN_MINUTES
 		elif type == "Date":
 			self.type = self.DATE
+		elif type == "AsLength":
+			self.type = self.AS_LENGTH
 		elif str(type).find("Format") != -1:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
@@ -35,6 +38,8 @@ class ClockToText(Converter, object):
 		# handle durations
 		if self.type == self.IN_MINUTES:
 			return "%d min" % (time / 60)
+		elif self.type == self.AS_LENGTH:
+			return "%d:%02d" % (time / 60, time % 60)
 		
 		t = localtime(time)
 		
