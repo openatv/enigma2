@@ -1,16 +1,9 @@
-from Components.VariableText import VariableText
-from Components.GUIComponent import GUIComponent
-from enigma import eLabel
 from Source import Source
 
-class Event(VariableText, GUIComponent, Source, object):
+class Event(Source, object):
 	def __init__(self):
 		Source.__init__(self)
-		GUIComponent.__init__(self)
-		VariableText.__init__(self)
 		self.evt = None
-
-	GUI_WIDGET = eLabel
 
 	def getCurrentEvent(self):
 		return self.evt
