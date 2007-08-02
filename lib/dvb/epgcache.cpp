@@ -2256,6 +2256,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 						{
 							if (lookupEventId(ref, evid, ev))
 								eDebug("event not found !!!!!!!!!!!");
+							else
+							{
+								const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
+								ptr.parseFrom(ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+							}
 						}
 					// create service name
 						if (!service_name)
