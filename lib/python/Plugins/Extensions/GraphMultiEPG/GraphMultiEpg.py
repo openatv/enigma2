@@ -255,6 +255,9 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getTimeBase(self):
 		return self.time_base + (self.offs * self.time_epoch * 60)
 
+	def resetOffset(self):
+		self.offs = 0
+
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -389,7 +392,9 @@ class GraphMultiEPG(Screen):
 		if len(ret) > 1:
 			if ret[0]:
 				self.ask_time=ret[1]
-				self["list"].fillMultiEPG(self.services, ret[1])
+				l = self["list"]
+				l.resetOffset()
+				l.fillMultiEPG(self.services, ret[1])
 				self.moveTimeLines(True)
 
 	def closeScreen(self):
