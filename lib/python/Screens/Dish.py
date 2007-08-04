@@ -14,7 +14,11 @@ class Dish(Screen):
 		self["transparent"] = Button("")
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		#self["Dishpixmap"] = Pixmap()
-		if not config.usage.showdish.value:
+		config.usage.showdish.addNotifier(self.configChanged)
+		self.configChanged(config.usage.showdish)
+
+	def configChanged(self, configElement):
+		if not configElement.value:
 			self["Dishpixmap"].setConnect(lambda: False)
 		else:
 			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
