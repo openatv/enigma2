@@ -24,13 +24,10 @@ class ConditionalWidget(GUIComponent):
 	def update(self):
 		if (self.conditionalFunction != None):
 			try:
-				self.conditionalFunction() # check, if the conditionalfunction is still valid
 				self.activateCondition(self.conditionalFunction())
 			except:
 				self.conditionalFunction = None
 				self.activateCondition(False)
-			
-import time
 
 class BlinkingWidget(GUIComponent):
 	def __init__(self):
