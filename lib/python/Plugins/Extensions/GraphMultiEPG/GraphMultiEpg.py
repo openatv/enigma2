@@ -40,7 +40,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
-		self.entry_rect = None
+		self.event_rect = None
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
@@ -178,7 +178,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def selEntry(self, dir, visible=True):
 		cur_service = self.cur_service #(service, service_name, events)
-		if not self.entry_rect:
+		if not self.event_rect:
 			self.recalcEntrySize()
 		if cur_service and self.cur_event is not None:
 			update = True
@@ -390,7 +390,7 @@ class GraphMultiEPG(Screen):
 			if ret[0]:
 				self.ask_time=ret[1]
 				self["list"].fillMultiEPG(self.services, ret[1])
-				self.moveTimeLines()
+				self.moveTimeLines(True)
 
 	def closeScreen(self):
 		self.close(self.closeRecursive)
