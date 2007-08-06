@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-30 00:02+0200\n"
-"PO-Revision-Date: 2007-06-24 15:15+0100\n"
+"POT-Creation-Date: 2007-08-06 13:41+0200\n"
+"PO-Revision-Date: 2007-07-31 10:48+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: none <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgid "#ffffffff"
 msgstr ""
 
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #, python-format
 msgid "%d min"
@@ -197,6 +197,9 @@ msgstr ""
 "En utförd inspelningstimer vill stänga av\n"
 "din Dreambox. Stänga av nu?"
 
+msgid "A graphical EPG for all services of an specific bouquet"
+msgstr ""
+
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -215,13 +218,16 @@ msgstr ""
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
-msgstr "En inspelning pågår. Vänligen avbryt den innan du konfigurerar motorn."
+msgstr ""
+"En inspelning pågår. Vänligen avbryt den innan du försöker konfigurerar "
+"motorn."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"En inspelning pågår. Vänligen avbryt inspelningen före du startar satfinder."
+"En inspelning pågår. Vänligen avbryt inspelningen före du försöker startar "
+"satfinder."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -278,13 +284,13 @@ msgid "Add a mark"
 msgstr "Lägg till markör"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Lägg till ny titel"
 
 msgid "Add timer"
 msgstr "Lägg till timer"
 
 msgid "Add title..."
-msgstr ""
+msgstr "Lägg till titel..."
 
 msgid "Add to bouquet"
 msgstr "Lägg till i bouquet"
@@ -302,8 +308,8 @@ msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
-"Efter guiden avslutad, behöver du skydda enskild kanal. Läs i din manual för "
-"Dreambox om hur du utför det."
+"Efter startguiden är avslutad, behöver du skydda enskilda kanaler. Läs i din "
+"manual för Dreambox om hur du utför det."
 
 msgid "Album:"
 msgstr "Album:"
@@ -375,19 +381,19 @@ msgid "Bandwidth"
 msgstr "Bandbredd"
 
 msgid "Begin time"
-msgstr ""
+msgstr "Starttid"
 
 msgid "Brightness"
 msgstr "Ljusstyrka"
 
 msgid "Burn"
-msgstr ""
+msgstr "Skapa"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "Skapa DVD"
 
 msgid "Burn DVD..."
-msgstr ""
+msgstr "Skapa DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -410,10 +416,10 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr "Cache Thumbnails"
+msgstr "Cacha Thumbnails"
 
 msgid "Call monitoring"
-msgstr "Samtals monitorering"
+msgstr "Samtalsmonitorering"
 
 msgid "Cancel"
 msgstr "Avbryt"
@@ -437,7 +443,7 @@ msgid "Change service pin"
 msgstr "Ändra service PIN"
 
 msgid "Change service pins"
-msgstr "Ändra serive PIN"
+msgstr "Ändra service PIN"
 
 msgid "Change setup pin"
 msgstr "Ändra installations PIN"
@@ -506,7 +512,7 @@ msgid "Complete"
 msgstr "Komplett"
 
 msgid "Configuration Mode"
-msgstr "Inställningar"
+msgstr "Konfigurationsläge"
 
 msgid "Configuring"
 msgstr "Konfigurering"
@@ -549,10 +555,10 @@ msgid "Current version:"
 msgstr "Aktuell Version:"
 
 msgid "Custom skip time for 1/3 keys"
-msgstr ""
+msgstr "Inställbar hopptid för 1/3 tangent"
 
 msgid "Customize"
-msgstr "Inställningar"
+msgstr "Anpassningar"
 
 msgid "Cut"
 msgstr "Klipp"
@@ -600,7 +606,7 @@ msgid "Detected NIMs:"
 msgstr "Hittad NIMs:"
 
 msgid "Device Setup..."
-msgstr "Utrustning Installation..."
+msgstr "Nätverk Installation..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -667,7 +673,7 @@ msgstr ""
 "pluginen \""
 
 msgid "Do you really want to exit?"
-msgstr ""
+msgstr "Vill du verkligen avsluta?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -706,7 +712,7 @@ msgstr ""
 "Tryck OK och vänligen vänta!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr "Vill du visa cutlist guiden?"
+msgstr "Vill du visa klipplist guiden?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
@@ -754,12 +760,15 @@ msgid "East"
 msgstr "Öst"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "Ändra nuvarande titel"
 
 msgid "Edit services list"
 msgstr "Ändra kanallista"
 
 msgid "Edit title..."
+msgstr "Ändra titel..."
+
+msgid "Electronic Program Guide"
 msgstr ""
 
 msgid "Enable"
@@ -781,7 +790,7 @@ msgid "End"
 msgstr "Slut"
 
 msgid "End time"
-msgstr ""
+msgstr "Sluttid"
 
 msgid "EndTime"
 msgstr "SlutTid"
@@ -844,13 +853,13 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Fast"
-msgstr ""
+msgstr "Snabb"
 
 msgid "Fast DiSEqC"
 msgstr "Fast DiSEqC"
 
 msgid "Fast epoch"
-msgstr ""
+msgstr "Snabb epoch"
 
 msgid "Favourites"
 msgstr "Favoriter"
@@ -920,8 +929,11 @@ msgstr "Gå till 0"
 msgid "Goto position"
 msgstr "Gå till position"
 
-msgid "Greek"
+msgid "Graphical Multi EPG"
 msgstr ""
+
+msgid "Greek"
+msgstr "Grekiska"
 
 msgid "Guard Interval"
 msgstr "Guard Intervall"
@@ -1070,10 +1082,10 @@ msgid "List of Storage Devices"
 msgstr "Lista på Lagringsenheter"
 
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litauiska"
 
 msgid "Long Keypress"
-msgstr ""
+msgstr "Lång knapptryckning"
 
 msgid "Longitude"
 msgstr "Longitud"
@@ -1112,7 +1124,7 @@ msgid "Margin before record (minutes)"
 msgstr "Marginal innan inspelning (i minuter)"
 
 msgid "Media player"
-msgstr "Media spelare"
+msgstr "Mediaspelare"
 
 msgid "MediaPlayer"
 msgstr "MediaSpelare"
@@ -1203,16 +1215,16 @@ msgid "Netmask"
 msgstr "Nätmask"
 
 msgid "Network Mount"
-msgstr "Nätverksmontering"
+msgstr "Nätverk Montering"
 
 msgid "Network Setup"
-msgstr "Nätverksinställningar"
+msgstr "Nätverk Inställningar"
 
 msgid "Network scan"
 msgstr "Sök Nätverk"
 
 msgid "Network setup"
-msgstr "Nätverks inställningar"
+msgstr "Nätverk inställningar"
 
 msgid "Network..."
 msgstr "Nätverk..."
@@ -1221,7 +1233,7 @@ msgid "New"
 msgstr "Ny"
 
 msgid "New DVD"
-msgstr ""
+msgstr "Ny DVD"
 
 msgid "New pin"
 msgstr "Ny PIN"
@@ -1236,7 +1248,7 @@ msgid "No"
 msgstr "Nej"
 
 msgid "No HDD found or HDD not initialized!"
-msgstr "Ingen hårddisk funnen eller initialiserad!"
+msgstr "Ingen hårddisk hittad eller initialiserad!"
 
 msgid "No backup needed"
 msgstr "Ingen backup behövs"
@@ -1318,7 +1330,7 @@ msgstr ""
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
 msgid "Now Playing"
-msgstr "Spelas nu"
+msgstr "Spelas Nu"
 
 msgid "OK"
 msgstr "OK"
@@ -1372,7 +1384,7 @@ msgid "Parental control setup"
 msgstr "Föräldrarkontroll installation"
 
 msgid "Parental control type"
-msgstr "Föräldrarkontroll"
+msgstr "Föräldrarkontroll typ"
 
 msgid "PiPSetup"
 msgstr "BiB konfiguration"
@@ -1399,7 +1411,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Vänligen ange namn för ny markör"
 
 msgid "Please enter filename (empty = use current date)"
-msgstr ""
+msgstr "Vänligen ange filnamn (tomt = använd dagens datum)"
 
 msgid "Please enter the correct pin code"
 msgstr "Vänligen ange korrekt PIN kod"
@@ -1411,10 +1423,10 @@ msgid "Please press OK!"
 msgstr "Vänligen tryck OK!"
 
 msgid "Please select a playlist to delete..."
-msgstr ""
+msgstr "Vänligen välj en spellista för borttagning..."
 
 msgid "Please select a playlist..."
-msgstr ""
+msgstr "Vänligen välj en spellista..."
 
 msgid "Please select a subservice to record..."
 msgstr "Vänligen välj en underkanal för inspelning..."
@@ -1426,7 +1438,7 @@ msgid "Please select keyword to filter..."
 msgstr "Vänligen välj nyckelord för filter..."
 
 msgid "Please set up tuner B"
-msgstr "Installera Tuner B."
+msgstr "Vänligen installera tuner B"
 
 msgid "Please set up tuner C"
 msgstr "Vänligen installera tuner C"
@@ -1456,6 +1468,9 @@ msgstr "Polaritet"
 msgid "Polarization"
 msgstr "Polarisation"
 
+msgid "Polish"
+msgstr ""
+
 msgid "Port A"
 msgstr "Port A"
 
@@ -1469,7 +1484,7 @@ msgid "Port D"
 msgstr "Port D"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugisiska"
 
 msgid "Positioner"
 msgstr "Motor"
@@ -1481,13 +1496,13 @@ msgid "Positioner movement"
 msgstr "Motor rörelse"
 
 msgid "Positioner setup"
-msgstr "Positioner installation"
+msgstr "Motor installation"
 
 msgid "Positioner storage"
 msgstr "Motor lagring"
 
 msgid "Power threshold in mA"
-msgstr ""
+msgstr "Ström gränsvärde i mA"
 
 msgid "Predefined transponder"
 msgstr "Fördefinerad transponder"
@@ -1508,7 +1523,7 @@ msgid "Prev"
 msgstr "Föregående"
 
 msgid "Protect services"
-msgstr "Skyddade kanaler"
+msgstr "Skydda kanaler"
 
 msgid "Protect setup"
 msgstr "Skydda inställningar"
@@ -1595,13 +1610,13 @@ msgid "Remove a mark"
 msgstr "Ta bort en markör"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Ta bort vald titel"
 
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Ta bort titel"
 
 msgid "Repeat"
 msgstr "Repetera"
@@ -1638,7 +1653,7 @@ msgid "Rolloff"
 msgstr "Rolloff"
 
 msgid "Rotor turning speed"
-msgstr ""
+msgstr "Rotor rotationsfart"
 
 msgid "Running"
 msgstr "Körandes"
@@ -1671,13 +1686,13 @@ msgid "Saturday"
 msgstr "Lördag"
 
 msgid "Save Playlist"
-msgstr ""
+msgstr "Spara Spellista"
 
 msgid "Save current project to disk"
-msgstr ""
+msgstr "Spara nuvarande projekt till disk"
 
 msgid "Save..."
-msgstr ""
+msgstr "Spara..."
 
 msgid "Scaling Mode"
 msgstr "Scaling Läge"
@@ -1808,7 +1823,7 @@ msgid "Service scan"
 msgstr "Kanalsökning"
 
 msgid "Serviceinfo"
-msgstr "Serviceinfo"
+msgstr "Kanalinfo"
 
 msgid "Services"
 msgstr "Kanaler"
@@ -1878,7 +1893,7 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 msgid "Slow"
-msgstr ""
+msgstr "Sakta"
 
 msgid "Some plugins are not available:\n"
 msgstr "Några plugin är inte tillgängliga:\n"
@@ -1895,11 +1910,19 @@ msgstr ""
 "\n"
 "Vänligen ange annan."
 
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort A-Z"
+msgstr ""
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort Time"
+msgstr ""
+
 msgid "Sound"
 msgstr "Ljud"
 
 msgid "Soundcarrier"
-msgstr "Ljudläge"
+msgstr "Ljudbärare"
 
 msgid "South"
 msgstr "Syd"
@@ -1923,7 +1946,7 @@ msgid "StartTime"
 msgstr "StartTid"
 
 msgid "Starting on"
-msgstr ""
+msgstr "Startar på"
 
 msgid "Startwizard"
 msgstr "Start guide"
@@ -1941,10 +1964,10 @@ msgid "Stereo"
 msgstr "Stereo"
 
 msgid "Stop"
-msgstr "Stopp"
+msgstr "Avsluta"
 
 msgid "Stop Timeshift?"
-msgstr "Stoppa Timeshift?"
+msgstr "Avsluta Timeshift?"
 
 msgid "Stop current event and disable coming events"
 msgstr "Avsluta nuvarande händelse och följande"
@@ -1953,7 +1976,7 @@ msgid "Stop current event but not coming events"
 msgstr "Avsluta nuvarande händelse men inte kommande"
 
 msgid "Stop playing this movie?"
-msgstr "Stoppa uppspelningen?"
+msgstr "Avsluta uppspelningen?"
 
 msgid "Store position"
 msgstr "Lagra position"
@@ -1965,7 +1988,7 @@ msgid "Subservice list..."
 msgstr "Underkanalslista..."
 
 msgid "Subservices"
-msgstr "Underkanal"
+msgstr "Underkanaler"
 
 msgid "Subtitle selection"
 msgstr "Textningsval"
@@ -2226,7 +2249,7 @@ msgid "Use DHCP"
 msgstr "Använd DHCP"
 
 msgid "Use Power Measurement"
-msgstr ""
+msgstr "Använd Strömmätning"
 
 msgid "Use a gateway"
 msgstr "Använd en gateway"
@@ -2494,7 +2517,7 @@ msgid "add file to playlist"
 msgstr "lägg till fil i playlist"
 
 msgid "add files to playlist"
-msgstr ""
+msgstr "lägg till fil till spellista"
 
 msgid "add marker"
 msgstr "lägg till markör"
@@ -2579,10 +2602,10 @@ msgid "delete cut"
 msgstr "ta bort klipp"
 
 msgid "delete playlist entry"
-msgstr ""
+msgstr "ta bort post i spellista"
 
 msgid "delete saved playlist"
-msgstr ""
+msgstr "ta bort sparad spellista"
 
 msgid "delete..."
 msgstr "ta bort..."
@@ -2645,7 +2668,7 @@ msgid "equal to Socket A"
 msgstr "samma som Ingång A"
 
 msgid "exit mediaplayer"
-msgstr ""
+msgstr "avsluta mediaspelare"
 
 msgid "free diskspace"
 msgstr "ledigt diskutrymme"
@@ -2654,7 +2677,7 @@ msgid "full /etc directory"
 msgstr "fullt /etc bibliotek"
 
 msgid "go to deep standby"
-msgstr "Stäng av mottagaren"
+msgstr "stäng av mottagaren"
 
 msgid "go to standby"
 msgstr "inta standby"
@@ -2692,16 +2715,16 @@ msgid "insert mark here"
 msgstr "infoga markör här"
 
 msgid "jump to listbegin"
-msgstr ""
+msgstr "hoppa till liststart"
 
 msgid "jump to listend"
-msgstr ""
+msgstr "hoppa till listslut"
 
 msgid "jump to next marked position"
-msgstr ""
+msgstr "hoppa till nästa markerad position"
 
 msgid "jump to previous marked position"
-msgstr ""
+msgstr "hoppa till föregående markerad position"
 
 msgid "leave movie player..."
 msgstr "lämna videospelare..."
@@ -2710,7 +2733,7 @@ msgid "left"
 msgstr "vänster"
 
 msgid "load playlist"
-msgstr ""
+msgstr "ladda spellista"
 
 msgid "locked"
 msgstr "låst"
@@ -2722,7 +2745,7 @@ msgid "manual"
 msgstr "manuell"
 
 msgid "menu"
-msgstr ""
+msgstr "meny"
 
 msgid "mins"
 msgstr "min"
@@ -2737,7 +2760,7 @@ msgid "minutes and"
 msgstr "minuter och"
 
 msgid "movie list"
-msgstr ""
+msgstr "film lista"
 
 msgid "multinorm"
 msgstr "multinorm"
@@ -2806,13 +2829,13 @@ msgid "pause"
 msgstr "paus"
 
 msgid "play entry"
-msgstr ""
+msgstr "spela angivet"
 
 msgid "play next playlist entry"
-msgstr ""
+msgstr "spela nästa spellistpost"
 
 msgid "play previous playlist entry"
-msgstr ""
+msgstr "spela föregående spellistpost"
 
 msgid "please press OK when ready"
 msgstr "tryck OK när färdig"
@@ -2863,7 +2886,7 @@ msgid "right"
 msgstr "höger"
 
 msgid "save playlist"
-msgstr ""
+msgstr "spara spellista"
 
 #, python-format
 msgid ""
@@ -2926,13 +2949,13 @@ msgid "show event details"
 msgstr "visa program detaljer"
 
 msgid "show single service EPG..."
-msgstr ""
+msgstr "visa singel kanal EPG"
 
 msgid "show transponder info"
 msgstr "visa transponder info"
 
 msgid "shuffle playlist"
-msgstr ""
+msgstr "blanda spellista"
 
 msgid "shutdown"
 msgstr "stäng av"
@@ -2944,19 +2967,19 @@ msgid "skip backward"
 msgstr "hoppa bakåt"
 
 msgid "skip backward (enter time)"
-msgstr ""
+msgstr "hoppa bakåt (ange tid)"
 
 msgid "skip backward (self defined)"
-msgstr ""
+msgstr "hoppa bakåt (självangivet)"
 
 msgid "skip forward"
 msgstr "hoppa framåt"
 
 msgid "skip forward (enter time)"
-msgstr ""
+msgstr "hoppa framåt (ange tid)"
 
 msgid "skip forward (self defined)"
-msgstr ""
+msgstr "hoppa framåt (självangivet)"
 
 msgid "standby"
 msgstr "viloläge"
@@ -2971,7 +2994,7 @@ msgid "stereo"
 msgstr "stereo"
 
 msgid "stop entry"
-msgstr ""
+msgstr "slutpost"
 
 msgid "stop recording"
 msgstr "stoppa inspelning"
@@ -2995,7 +3018,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "denna kanal är skyddad av föräldrarskydds PIN kod"
 
 msgid "toggle a cut mark at the current position"
-msgstr ""
+msgstr "toggle ett cut markör på nuvarand position"
 
 msgid "unknown service"
 msgstr "okänd kanal"
