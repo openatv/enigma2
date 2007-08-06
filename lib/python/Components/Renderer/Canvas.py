@@ -29,7 +29,6 @@ class Canvas(Renderer):
 
 	def draw(self, list):
 		for l in list:
-			print "drawing ..", l
 			self.instance.fillRect(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]))
 
 	def changed(self, what):
@@ -37,4 +36,15 @@ class Canvas(Renderer):
 
 	def postWidgetCreate(self, instance):
 		self.sequence = None
+
+		from enigma import eSize
+
+		def parseSize(str):
+			x, y = str.split(',')
+			return eSize(int(x), int(y))
+
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "size":
+				self.instance.setSize(parseSize(value))
+
 		self.pull_updates()
