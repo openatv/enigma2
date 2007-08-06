@@ -426,16 +426,34 @@
 		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
 	</screen>
 
+	<screen name="MovieContextMenu" position="150,150" size="400,250" title="Movielist menu">
+		<widget name="menu" position="10,10" size="390,230" scrollbarMode="showOnDemand" />
+	</screen>
+
 	<screen name="MovieSelection" position="90,78" size="560,455" title="Select a movie">
 		<widget name="key_red" position="0,0" size="140,40" backgroundColor="red" font="Regular;21" />
 		<widget name="key_green" position="140,0" size="140,40" backgroundColor="green" font="Regular;21" />
 		<widget name="key_yellow" position="280,0" size="140,40" backgroundColor="yellow" font="Regular;21" />
 		<widget name="key_blue" position="420,0" size="140,40" backgroundColor="blue" font="Regular;21" />
 
-		<widget name="waitingtext" position="0,40" size="500,335" zPosition="2" font="Regular;22" />
-		<widget name="list" position="0,40" size="560,375" zPosition="1" scrollbarMode="showOnDemand" />
+		<widget name="waitingtext" position="0,40" size="500,335" zPosition="4" font="Regular;22" />
+		<widget name="list" position="0,40" size="560,375" zPosition="2" scrollbarMode="showOnDemand" />
 		<widget name="freeDiskSpace" position="10,420" size="510,30" font="Regular;22" />
 		<ePixmap position="520,430" zPosition="1" size="36,20" pixmap="key_menu-fs8.png" transparent="1" alphatest="on" />
+		<widget name="DescriptionBorder" position="0,316" size="560,101" pixmap="border_eventinfo-fs8.png" zPosition="1" transparent="1" alphatest="on" />
+		<widget source="Service" render="Label" position="4,318" size="326,22" font="Regular;17" zPosition="1" >
+			<convert type="MovieInfo">ShortDescription</convert>
+		</widget>
+		<widget source="Service" render="Label" position="330,319" size="155,22" font="Regular;15" zPosition="1" halign="right" >
+			<convert type="MovieInfo">RecordServiceName</convert>
+		</widget>
+		<widget source="Service" render="Label" position="487,319" size="60,22" font="Regular;15" zPosition="1" halign="right" >
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
+		</widget>
+		<widget source="Service" render="Label" position="4,344" size="552,66" font="Regular;19" zPosition="1" >
+			<convert type="EventName">ExtendedDescription</convert>
+		</widget>
 	</screen>
 	<screen name="ServiceScan" position="200,100" size="300,330" title="Service Scan">
 		<widget name="pass" position="10,10" size="280,30" font="Regular;20" />
