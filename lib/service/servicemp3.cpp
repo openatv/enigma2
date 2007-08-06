@@ -495,7 +495,10 @@ RESULT eServiceMP3::info(ePtr<iServiceInformation>&i)
 
 RESULT eServiceMP3::getName(std::string &name)
 {
-	name = "MP3 File: " + m_filename;
+	name = m_filename;
+	int n = name.rfind('/');
+	if (n != std::string::npos)
+		name = name.substr(n + 1);
 	return 0;
 }
 
