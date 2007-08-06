@@ -29,7 +29,7 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST):
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
 		#simple defaults
 		sec.addLNB()
 		tunermask = 1 << slotid
@@ -65,8 +65,8 @@ class SecConfigure:
 			sec.setLaDirection(laDirection)
 			sec.setLongitude(longitude)
 			sec.setLoDirection(loDirection)
-			sec.setUseInputpower(True)
-			sec.setInputpowerDelta(50)
+			sec.setUseInputpower(useInputPower)
+			sec.setInputpowerDelta(inputPowerDelta)
 			sec.setRotorTurningSpeed(turningSpeed)
 
 			for x in self.NimManager.satList:
@@ -159,20 +159,28 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
-							if turn_speed_dict.has_key(nim.turningSpeed.value):
-								turning_speed = turn_speed_dict[nim.turningSpeed.value]
-							else:
-								beg_time = localtime(nim.fastTurningBegin.value)
-								end_time = localtime(nim.fastTurningEnd.value)
-								turning_speed = ((beg_time.tm_hour+1) * 60 + beg_time.tm_min + 1) << 16
-								turning_speed |= (end_time.tm_hour+1) * 60 + end_time.tm_min + 1
+							inputPowerDelta=50
+							useInputPower=False
+							turning_speed=0
+							if nim.powerMeasurement.value:
+								useInputPower=True
+								inputPowerDelta=nim.powerThreshold.value
+								turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+								if turn_speed_dict.has_key(nim.turningSpeed.value):
+									turning_speed = turn_speed_dict[nim.turningSpeed.value]
+								else:
+									beg_time = localtime(nim.fastTurningBegin.value)
+									end_time = localtime(nim.fastTurningEnd.value)
+									turning_speed = ((beg_time.tm_hour+1) * 60 + beg_time.tm_min + 1) << 16
+									turning_speed |= (end_time.tm_hour+1) * 60 + end_time.tm_min + 1
 							self.addLNBSimple(sec, slotid = x, diseqcmode = 3,
 								longitude = nim.longitude.float,
 								loDirection = loValue,
 								latitude = nim.latitude.float,
 								laDirection = laValue,
-								turningSpeed = turning_speed)
+								turningSpeed = turning_speed,
+								useInputPower = useInputPower,
+								inputPowerDelta = inputPowerDelta)
 					elif nim.configMode.value == "advanced": #advanced config
 						self.updateAdvanced(sec, x)
 		print "sec config completed"
@@ -834,6 +842,8 @@ def InitNimManager(nimmgr):
 			nim.longitudeOrientation = ConfigSelection(choices={"east": _("East"), "west": _("West")}, default = "east")
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(choices={"north": _("North"), "south": _("South")}, default="north")
+			nim.powerMeasurement = ConfigYesNo(default=True)
+			nim.powerThreshold = ConfigInteger(default=50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch")) ], default = "fast")
 			btime = datetime(1970, 1, 1, 7, 0);
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
