@@ -486,7 +486,15 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	ASSERT(ref == m_ref);
-	name = m_parser.m_name.size() ? m_parser.m_name : ref.path;
+	if (m_parser.m_name.size())
+		name = m_parser.m_name;
+	else
+	{
+		name = ref.path;
+		size_t n = name.rfind('/');
+		if (n != std::string::npos)
+			name = name.substr(n + 1);
+	}
 	return 0;
 }
 
