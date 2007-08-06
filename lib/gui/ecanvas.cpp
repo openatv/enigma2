@@ -11,28 +11,29 @@ void eCanvas::setSize(eSize size)
 
 void eCanvas::clear(gRGB color)
 {
-#if 0
 	if (!m_pixmap)
 		return;
 
 	ePtr<gDC> d = new gDC(m_pixmap);
 	gPainter p(d, eRect());
+	p.resetClip(eRect(ePoint(0,0), m_pixmap->size()));
 	p.setBackgroundColor(color);
 	p.clear();
 
 	invalidate();
-#endif
 }
 
 void eCanvas::fillRect(eRect rect, gRGB color)
 {
-	eDebug("draw into canvas... %d %d, %d %d", rect.left(), rect.top(), rect.width(), rect.height());
-#if 0
-	ePtr<gDC> d = new gDC(m_pixmap);
-	gPainter p(d, eRect());
+	if (!m_pixmap)
+		return;
+
+	ePtr<gDC> dc = new gDC(m_pixmap);
+
+	gPainter p(dc);
+	p.resetClip(eRect(ePoint(0,0), m_pixmap->size()));
 	p.setForegroundColor(color);
 	p.fill(rect);
 
 	invalidate(rect);
-#endif
 }
