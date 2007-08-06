@@ -7,17 +7,69 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformat
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
 
 class MovieList(GUIComponent):
-	def __init__(self, root):
+	SORT_ALPHANUMERIC = 1
+	SORT_RECORDED = 2
+
+	LISTTYPE_ORIGINAL = 0
+	LISTTYPE_COMPACT_DESCRIPTION = 1
+	LISTTYPE_COMPACT = 2
+	LISTTYPE_MINIMAL = 3
+
+	HIDE_DESCRIPTION = 0
+	SHOW_DESCRIPTION = 1
+
+	def __init__(self, root, list_type, sort_type, descr_state):
 		GUIComponent.__init__(self)
+		self.list_type = list_type
+		self.descr_state = descr_state
+		self.sort_type = sort_type
+
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
+		
 		if root is not None:
 			self.reload(root)
-		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 18))
-		self.l.setFont(2, gFont("Regular", 16))
+		
+		self.redrawList()
 		self.l.setBuildFunc(self.buildMovieListEntry)
-		self.l.setItemHeight(75)
+		
+		self.onSelectionChanged = [ ]
+
+	def connectSelChanged(self, fnc):
+		if not fnc in self.onSelectionChanged:
+			self.onSelectionChanged.append(fnc)
+
+	def disconnectSelChanged(self, fnc):
+		if fnc in self.onSelectionChanged:
+			self.onSelectionChanged.remove(fnc)
+
+	def selectionChanged(self):
+		for x in self.onSelectionChanged:
+			x()
+
+	def setListType(self, type):
+		self.list_type = type
+
+	def setDescriptionState(self, val):
+		self.descr_state = val
+
+	def setSortType(self, type):
+		self.sort_type = type
+
+	def redrawList(self):
+		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
+			self.l.setFont(0, gFont("Regular", 22))
+			self.l.setFont(1, gFont("Regular", 18))
+			self.l.setFont(2, gFont("Regular", 16))
+			self.l.setItemHeight(75)
+		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION or self.list_type == MovieList.LISTTYPE_COMPACT:
+			self.l.setFont(0, gFont("Regular", 20))
+			self.l.setFont(1, gFont("Regular", 14))
+			self.l.setItemHeight(37)
+		else:
+			self.l.setFont(0, gFont("Regular", 20))
+			self.l.setFont(1, gFont("Regular", 16))
+			self.l.setItemHeight(25)
 
 	#
 	# | name of movie              |
@@ -25,37 +77,60 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, len):
 		if serviceref.flags & eServiceReference.mustDescent:
 			return None
-		width = self.entry_width
+
+		width = self.l.getItemSize().width()
 
 		if len <= 0: #recalc len when not already done
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]
 			len = x[1].getLength(x[0]) #recalc the movie length...
 			self.list[cur_idx] = (x[0], x[1], x[2], len) #update entry in list... so next time we don't need to recalc
-
+		
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = "?:??"
-
+		
 		res = [ None ]
-
-		res.append(MultiContentEntryText(pos=(0, 0), size=(width-140, 30), font = 0, flags = RT_HALIGN_LEFT, text = info.getName(serviceref)))
+		
+		txt = info.getName(serviceref)
 		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
-		if service is not None:
-			res.append(MultiContentEntryText(pos=(width-140, 0), size=(140, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
-
 		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
-
+		
 		begin_string = ""
 		if begin > 0:
 			t = FuzzyTime(begin)
 			begin_string = t[0] + ", " + t[1]
-
-		res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
-		res.append(MultiContentEntryText(pos=(0, 50), size=(width-270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-		res.append(MultiContentEntryText(pos=(width-270, 50), size=(270, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
-
+		
+		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
+			res.append(MultiContentEntryText(pos=(0, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=txt))
+			if service is not None:
+				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
+			res.append(MultiContentEntryText(pos=(0, 50), size=(width-270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+			res.append(MultiContentEntryText(pos=(width-200, 50), size=(200, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
+			res.append(MultiContentEntryText(pos=(0, 0), size=(width-120, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			if service is not None:
+				res.append(MultiContentEntryText(pos=(width-212, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			res.append(MultiContentEntryText(pos=(0, 20), size=(width-212, 17), font=1, flags=RT_HALIGN_LEFT, text=description))
+			res.append(MultiContentEntryText(pos=(width-120, 6), size=(120, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+			res.append(MultiContentEntryText(pos=(width-58, 20), size=(58, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+		elif self.list_type == MovieList.LISTTYPE_COMPACT:
+			res.append(MultiContentEntryText(pos=(0, 0), size=(width-77, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			if service is not None:
+				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			res.append(MultiContentEntryText(pos=(0, 20), size=(width-200, 17), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+			res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
+		else:
+			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
+			if self.descr_state == MovieList.SHOW_DESCRIPTION:
+				res.append(MultiContentEntryText(pos=(0, 0), size=(width-146, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+			else:
+				res.append(MultiContentEntryText(pos=(0, 0), size=(width-77, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
+		
 		return res
 
 	def moveToIndex(self, index):
@@ -73,10 +148,10 @@ class MovieList(GUIComponent):
 		return l and l[0]
 
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
-		self.entry_width = self.l.getItemSize().width()
+		instance.selectionChanged.get().append(self.selectionChanged)
 
 	def reload(self, root = None, filter_tags = None):
 		if root is not None:
@@ -84,14 +159,12 @@ class MovieList(GUIComponent):
 		else:
 			self.load(self.root, filter_tags)
 		self.l.setList(self.list)
-		self.entry_width = self.l.getItemSize().width()
 
 	def removeService(self, service):
 		for l in self.list[:]:
 			if l[0] == service:
 				self.list.remove(l)
 		self.l.setList(self.list)
-		self.entry_width = self.l.getItemSize().width()
 
 	def __len__(self):
 		return len(self.list)
@@ -101,57 +174,66 @@ class MovieList(GUIComponent):
 		# nice list
 		
 		self.list = [ ]
-		self.root = root
-		
 		self.serviceHandler = eServiceCenter.getInstance()
-		list = self.serviceHandler.list(root)
 		
+		self.root = root
+		list = self.serviceHandler.list(root)
+		if list is None:
+			print "listing of movies failed"
+			list = [ ]	
+			return
 		tags = set()
 		
-		if list is None:
-			raise "listing of movies failed"
-
 		while 1:
 			serviceref = list.getNext()
 			if not serviceref.valid():
 				break
 			if serviceref.flags & eServiceReference.mustDescent:
 				continue
+		
 			info = self.serviceHandler.info(serviceref)
 			if info is None:
 				continue
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
-			
+		
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			if this_tags == ['']:
 				this_tags = []
 			this_tags = set(this_tags)
-			
+		
 			# filter_tags is either None (which means no filter at all), or 
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.			
 			if filter_tags is not None and not this_tags.issuperset(filter_tags):
 				continue
-			
+		
 			tags |= this_tags
 			self.list.append((serviceref, info, begin, -1))
 		
-		# sort: key is 'begin'
-		self.list.sort(key=lambda x: -x[2])
+		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
+			self.list.sort(key=self.buildAlphaNumericSortKey)
+		else:
+			# sort: key is 'begin'
+			self.list.sort(key=lambda x: -x[2])
 		
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
 		self.tags = tags
 
+	def buildAlphaNumericSortKey(self, x):
+		ref = x[0]
+		info = self.serviceHandler.info(ref)
+		name = info and info.getName(ref)
+		return name and name.lower() or ""
+
 	def moveTo(self, serviceref):
-		found = 0
 		count = 0
 		for x in self.list:
 			if x[0] == serviceref:
-				found = count
+				self.instance.moveSelectionTo(count)
+				break
 			count += 1
-		self.instance.moveSelectionTo(found)
 
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
