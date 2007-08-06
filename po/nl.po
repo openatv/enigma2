@@ -1,13 +1,13 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-30 00:02+0200\n"
-"PO-Revision-Date: 2007-06-11 18:16+0100\n"
+"POT-Creation-Date: 2007-08-06 13:10+0200\n"
+"PO-Revision-Date: 2007-08-06 12:44+0100\n"
 "Last-Translator: Michel Weeren <michel@weeren.net>\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
@@ -193,8 +193,11 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Een afgelopen timer opname wil uw dreambox\n"
-"uitschakelen. Wilt u dit toestaan?"
+"Een afgelopen timer tracht uw dreambox uit te schakelen\n"
+"Wilt u dit toestaan?"
+
+msgid "A graphical EPG for all services of an specific bouquet"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -459,7 +462,7 @@ msgid "Channellist menu"
 msgstr "Zenderlijst menu"
 
 msgid "Choose Tuner"
-msgstr "Kies een tuner"
+msgstr "Selecteer een tuner"
 
 msgid "Choose bouquet"
 msgstr "Kies boeket"
@@ -580,7 +583,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Deep Standby"
-msgstr "Dreambox uitschakelen"
+msgstr "Uitschakelen"
 
 msgid "Delay"
 msgstr "Vertraging"
@@ -650,7 +653,7 @@ msgid "Dish"
 msgstr "Schotel"
 
 msgid "Display Setup"
-msgstr "LC-Display"
+msgstr "LCD-scherm"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -766,6 +769,9 @@ msgstr "Wijzig zenderlijst"
 msgid "Edit title..."
 msgstr ""
 
+msgid "Electronic Program Guide"
+msgstr ""
+
 msgid "Enable"
 msgstr "Aan"
 
@@ -872,13 +878,13 @@ msgid "Frequency"
 msgstr "Frequentie"
 
 msgid "Frequency bands"
-msgstr "Frequentie band"
+msgstr ""
 
 msgid "Frequency scan step size(khz)"
-msgstr "Frequentie scan stap in khz"
+msgstr ""
 
 msgid "Frequency steps"
-msgstr "Frequentie stappen"
+msgstr ""
 
 msgid "Fri"
 msgstr "Vr"
@@ -924,6 +930,9 @@ msgstr "Naar 0 positie"
 msgid "Goto position"
 msgstr "Naar positie draaien"
 
+msgid "Graphical Multi EPG"
+msgstr ""
+
 msgid "Greek"
 msgstr ""
 
@@ -934,7 +943,7 @@ msgid "Guard interval mode"
 msgstr "Guard interval modus"
 
 msgid "Harddisk"
-msgstr "Harde schijf"
+msgstr "Harde schijf..."
 
 msgid "Harddisk setup"
 msgstr "Harde schijf instellingen"
@@ -1050,7 +1059,7 @@ msgid "Language selection"
 msgstr "Taalkeuze"
 
 msgid "Language..."
-msgstr "Taal"
+msgstr "Taal..."
 
 msgid "Latitude"
 msgstr "Breedtegraad"
@@ -1219,7 +1228,7 @@ msgid "Network setup"
 msgstr "Netwerk instellingen"
 
 msgid "Network..."
-msgstr "Netwerk"
+msgstr "Netwerk..."
 
 msgid "New"
 msgstr "Nieuw"
@@ -1255,7 +1264,7 @@ msgstr ""
 "(Timeout reading PAT)"
 
 msgid "No event info found, recording indefinitely."
-msgstr "Geen EPG-DATA  gevonden. Opname voor onbepaalde tijd."
+msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 
 msgid "No free tuner!"
 msgstr "Geen vrije tuner!"
@@ -1280,7 +1289,7 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Geen tuner geactiveerd!\n"
-"A.u.b. een tuner instellen voordat u zenders kunt zoeken."
+"Controleer uw tunerinstellingen alvorens zenders te zoeken."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1392,7 +1401,7 @@ msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
 
 msgid "Please change recording endtime"
-msgstr "Eindtijd invoeren a.u.b."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Kies een applicatie a.u.b..."
@@ -1438,10 +1447,10 @@ msgid "Please set up tuner B"
 msgstr "Instellingen voor Tuner B"
 
 msgid "Please set up tuner C"
-msgstr "A.u.b. tuner C instellen"
+msgstr "Instellingen voor Tuner C"
 
 msgid "Please set up tuner D"
-msgstr "A.u.b. tuner D instellen"
+msgstr "Instellingen voor Tuner D"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1463,6 +1472,9 @@ msgstr "Polariteit"
 
 msgid "Polarization"
 msgstr "Polarisatie"
+
+msgid "Polish"
+msgstr ""
 
 msgid "Port A"
 msgstr "Poort A"
@@ -1525,7 +1537,7 @@ msgid "Provider"
 msgstr "Provider"
 
 msgid "Provider to scan"
-msgstr "Zoek op provider"
+msgstr ""
 
 msgid "Providers"
 msgstr "Providers"
@@ -1576,22 +1588,16 @@ msgid ""
 "Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
 msgstr ""
-"Er is een opname bezig of deze start in enkele seconden... Wilt u echt "
-"herstarten?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
 msgstr ""
-"Er is een opname bezig of deze start in enkele seconden... Wilt u echt "
-"herstarten?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
 msgstr ""
-"Er is een opname bezig of deze start in enkele seconden... Wilt u echt "
-"uitschakelen?"
 
 msgid "Recordings always have priority"
 msgstr "Een opname heeft te allen tijde voorang"
@@ -1697,64 +1703,64 @@ msgid "Scan "
 msgstr "Zoeken"
 
 msgid "Scan QAM128"
-msgstr "Scan QAM128"
+msgstr ""
 
 msgid "Scan QAM16"
-msgstr "Scan QAM16"
+msgstr ""
 
 msgid "Scan QAM256"
-msgstr "Scan QAM256"
+msgstr ""
 
 msgid "Scan QAM32"
-msgstr "Scan QAM32"
+msgstr ""
 
 msgid "Scan QAM64"
-msgstr "Scan QAM64"
+msgstr ""
 
 msgid "Scan SR6875"
-msgstr "Scan SR6875"
+msgstr ""
 
 msgid "Scan SR6900"
-msgstr "Scan SR6900"
+msgstr ""
 
 msgid "Scan additional SR"
-msgstr "Scan op extra SR"
+msgstr ""
 
 msgid "Scan band EU HYPER"
-msgstr "Scan band EU HYPER"
+msgstr ""
 
 msgid "Scan band EU MID"
-msgstr "Scan band EU MID"
+msgstr ""
 
 msgid "Scan band EU SUPER"
-msgstr "Scan band EU SUPER"
+msgstr ""
 
 msgid "Scan band EU UHF IV"
-msgstr "Scan band EU UHF IV"
+msgstr ""
 
 msgid "Scan band EU UHF V"
-msgstr "Scan band EU UHF V"
+msgstr ""
 
 msgid "Scan band EU VHF I"
-msgstr "Scan band EU VHF I"
+msgstr ""
 
 msgid "Scan band EU VHF III"
-msgstr "Scan band EU VHF III"
+msgstr ""
 
 msgid "Scan band US HIGH"
-msgstr "Scan band US HIGH"
+msgstr ""
 
 msgid "Scan band US HYPER"
-msgstr "Scan band US HYPER"
+msgstr ""
 
 msgid "Scan band US LOW"
-msgstr "Scan band US LOW"
+msgstr ""
 
 msgid "Scan band US MID"
-msgstr "Scan band US MID"
+msgstr ""
 
 msgid "Scan band US SUPER"
-msgstr "Scan band US SUPER"
+msgstr ""
 
 msgid "Search east"
 msgstr "Zoek oost"
@@ -1769,7 +1775,7 @@ msgid "Select HDD"
 msgstr "Kies harde schijf"
 
 msgid "Select Network Adapter"
-msgstr "Netwerp adapter selecteren"
+msgstr "Netwerk adapter selecteren"
 
 msgid "Select a movie"
 msgstr "Kies een film"
@@ -1867,7 +1873,7 @@ msgid "Single"
 msgstr "Enkel"
 
 msgid "Single EPG"
-msgstr "EPG"
+msgstr "Zender EPG"
 
 msgid "Single satellite"
 msgstr "Één satelliet"
@@ -1886,7 +1892,7 @@ msgstr "Diavoorstelling interval (sec.)"
 
 #, python-format
 msgid "Slot %d"
-msgstr "Slot %d"
+msgstr ""
 
 msgid "Slow"
 msgstr ""
@@ -1905,6 +1911,14 @@ msgstr ""
 "Sorry uw backup locatie is ongeldig\n"
 "\n"
 "Kies een andere loactie a.u.b..."
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort A-Z"
+msgstr ""
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort Time"
+msgstr ""
 
 msgid "Sound"
 msgstr "Geluid"
@@ -2146,10 +2160,10 @@ msgid "Tries left:"
 msgstr "Aantal pogingen over:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr "Zoek een transponder op het kabelnetwerk... Een ogenblik a.u.b."
+msgstr ""
 
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Zoek transponders op het kabelnetwerk... Een ogenblik a.u.b."
+msgstr ""
 
 msgid "Tue"
 msgstr "Di"
@@ -2232,7 +2246,7 @@ msgid "Upgrading"
 msgstr "Bezig met update"
 
 msgid "Upgrading Dreambox... Please wait"
-msgstr "Deambox update bezig... Een ogenblik geduld a.u.b."
+msgstr "Dreambox update bezig... Een ogenblik geduld a.u.b."
 
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
@@ -2269,7 +2283,7 @@ msgid "Use wizard to set up basic features"
 msgstr "Start de wizard voor basisinstellingen"
 
 msgid "Used service scan type"
-msgstr "Gebruikte zoekmethode"
+msgstr ""
 
 msgid "User defined"
 msgstr "Door u ingesteld"
@@ -2515,7 +2529,7 @@ msgid "add recording (enter recording duration)"
 msgstr "Start opname en voer opnameduur in"
 
 msgid "add recording (enter recording endtime)"
-msgstr "Start opname en voer eindtijd in"
+msgstr ""
 
 msgid "add recording (indefinitely)"
 msgstr "Start een onbeperkte opname"
@@ -2558,7 +2572,7 @@ msgid "change recording (duration)"
 msgstr "Wijzig opnameduur"
 
 msgid "change recording (endtime)"
-msgstr "Wijzig opname eindtijd"
+msgstr ""
 
 msgid "circular left"
 msgstr "circular links"
@@ -2612,7 +2626,7 @@ msgid "do not change"
 msgstr "niet schakelen"
 
 msgid "do nothing"
-msgstr "Geen actie"
+msgstr "geen actie"
 
 msgid "don't record"
 msgstr "Niet opnemen"
@@ -2660,13 +2674,13 @@ msgid "exit mediaplayer"
 msgstr ""
 
 msgid "free diskspace"
-msgstr "ruimte vrij op de harde schijf"
+msgstr "ruimte vrij..."
 
 msgid "full /etc directory"
 msgstr "complete map /etc "
 
 msgid "go to deep standby"
-msgstr "Dreambox uitschakelen"
+msgstr "uitschakelen"
 
 msgid "go to standby"
 msgstr "standby-stand"
@@ -2986,7 +3000,7 @@ msgid "stop entry"
 msgstr ""
 
 msgid "stop recording"
-msgstr "Stop opname"
+msgstr "stop opname"
 
 msgid "stop timeshift"
 msgstr "Stop timeshift"
@@ -3057,12 +3071,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid "Add files to playlist"
-#~ msgstr "Voeg bestanden toe aan de afspeellijst"
-
-#~ msgid "Replace current playlist"
-#~ msgstr "Vervang huidige afspeellijst"
-
-#~ msgid "You selected a playlist"
-#~ msgstr "U heeft een afspeellijst gekozen"
