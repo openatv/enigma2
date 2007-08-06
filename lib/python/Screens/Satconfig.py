@@ -22,22 +22,23 @@ class NimSetup(Screen, ConfigListScreen):
 				list.append(getConfigListEntry(_("Port D"), self.nimConfig.diseqcD))
 
 	def createPositionerSetup(self, list):
-#		list.append(getConfigListEntry(_("Positioner mode"), self.nimConfig.positionerMode))
-#		if self.nimConfig.positionerMode.value == "usals": # USALS
-		list.append(getConfigListEntry(_("Longitude"), self.nimConfig.longitude))
-		list.append(getConfigListEntry(" ", self.nimConfig.longitudeOrientation))
-		list.append(getConfigListEntry(_("Latitude"), self.nimConfig.latitude))
-		list.append(getConfigListEntry(" ", self.nimConfig.latitudeOrientation))
-		self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), self.nimConfig.turningSpeed)
-		self.list.append(self.turningSpeed)
-		if self.nimConfig.turningSpeed.value == "fast epoch":
-			self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), self.nimConfig.fastTurningBegin)
-			self.turnFastEpochEnd = getConfigListEntry(_("End time"), self.nimConfig.fastTurningEnd)
-			self.list.append(self.turnFastEpochBegin)
-			self.list.append(self.turnFastEpochEnd)
+		nim = self.nimConfig
+		list.append(getConfigListEntry(_("Longitude"), nim.longitude))
+		list.append(getConfigListEntry(" ", nim.longitudeOrientation))
+		list.append(getConfigListEntry(_("Latitude"), nim.latitude))
+		list.append(getConfigListEntry(" ", nim.latitudeOrientation))
 
-#		elif self.nimConfig.positionerMode.value == "manual": # manual
-#			pass
+		self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), nim.powerMeasurement)
+		list.append(self.advancedPowerMeasurement)
+		if nim.powerMeasurement.value:
+			list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold))
+			self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), nim.turningSpeed)
+			list.append(self.turningSpeed)
+			if nim.turningSpeed.value == "fast epoch":
+				self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), nim.fastTurningBegin)
+				self.turnFastEpochEnd = getConfigListEntry(_("End time"), nim.fastTurningEnd)
+				list.append(self.turnFastEpochBegin)
+				list.append(self.turnFastEpochEnd)
 
 	def createSetup(self):
 		print "Creating setup"
