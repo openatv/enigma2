@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-29 19:24+0200\n"
-"PO-Revision-Date: 2007-07-29 13:54+0200\n"
+"POT-Creation-Date: 2007-08-07 22:05+0200\n"
+"PO-Revision-Date: 2007-08-07 22:06+0200\n"
 "Last-Translator: Adga <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "#ffffffff"
 msgstr "#ffffffff"
 
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #, python-format
 msgid "%d min"
@@ -82,7 +82,7 @@ msgid "(ZAP)"
 msgstr "(JUNGTI)"
 
 msgid "(empty)"
-msgstr ""
+msgstr "(laisva)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 direktoriją"
@@ -121,7 +121,7 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Letterbox"
-msgstr ""
+msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "16:9 visada"
@@ -191,11 +191,16 @@ msgstr ""
 "Baigtas įrašymas pagal laikmatį nori išjungti Jūsų\n"
 "imtuvą. Išjungti dabar?"
 
+msgid "A graphical EPG for all services of an specific bouquet"
+msgstr ""
+
 #, python-format
 msgid ""
 "A record has been started:\n"
 "%s"
 msgstr ""
+"Įrašymas prasidės:\n"
+"%s"
 
 msgid ""
 "A recording is currently running.\n"
@@ -261,7 +266,7 @@ msgid "About..."
 msgstr "Apie..."
 
 msgid "Activate Picture in Picture"
-msgstr "Įjungti paveikslėlį paveikslėlyje"
+msgstr "Aktyvuoti paveikslėlį paveikslėlyje"
 
 msgid "Activate network settings"
 msgstr "Aktyvuoti tinklo nustatymus"
@@ -273,19 +278,19 @@ msgid "Add a mark"
 msgstr "Pridėti žymeklį"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Pridėti naują antraštę"
 
 msgid "Add timer"
 msgstr "Laikmatis"
 
 msgid "Add title..."
-msgstr ""
+msgstr "Pridėti antraštę..."
 
 msgid "Add to bouquet"
-msgstr "pridėti į paketą"
+msgstr "Pridėti į paketą"
 
 msgid "Add to favourites"
-msgstr "pridėti į mėgstamiausius"
+msgstr "Pridėti į mėgstamiausius"
 
 msgid "Advanced"
 msgstr "Išplėstinis"
@@ -313,7 +318,7 @@ msgid "Alpha"
 msgstr "Permatoma"
 
 msgid "Alternative radio mode"
-msgstr "Alternatyvus radijo režimas"
+msgstr "Kitoks radijo režimas"
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -370,19 +375,19 @@ msgid "Bandwidth"
 msgstr "Diapazono plotis"
 
 msgid "Begin time"
-msgstr ""
+msgstr "Pradėjimo laikas"
 
 msgid "Brightness"
 msgstr "Šviesumas"
 
 msgid "Burn"
-msgstr ""
+msgstr "Kurti"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "Kurti DVD"
 
 msgid "Burn DVD..."
-msgstr ""
+msgstr "Kurti DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -450,7 +455,7 @@ msgid "Channellist menu"
 msgstr "Kanalų meniu sąrašas"
 
 msgid "Choose Tuner"
-msgstr ""
+msgstr "Pasirinkite imtuvą"
 
 msgid "Choose bouquet"
 msgstr "Pasirinkite paketą"
@@ -544,10 +549,10 @@ msgid "Current version:"
 msgstr "Dabartinė versija:"
 
 msgid "Custom skip time for 1/3 keys"
-msgstr ""
+msgstr "Praleisti laiką pasirinktinai dėl 1/3 mygtukų"
 
 msgid "Customize"
-msgstr "Nustatymai"
+msgstr "Vartotojo nustatymai"
 
 msgid "Cut"
 msgstr "Iškirpti"
@@ -641,7 +646,7 @@ msgid "Dish"
 msgstr "Lėkštė"
 
 msgid "Display Setup"
-msgstr ""
+msgstr "Displėjaus nustatymas"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -662,7 +667,7 @@ msgstr ""
 "priedą \""
 
 msgid "Do you really want to exit?"
-msgstr ""
+msgstr "Jūs tikrai norite išeiti?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -701,7 +706,7 @@ msgstr ""
 "Paspauskite OK ir palaukite!"
 
 msgid "Do you want to view a cutlist tutorial?"
-msgstr ""
+msgstr "Jūs norite peržiūrėti iškirptą sąrašą?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Ar norite peržiūrėti aprašymą?"
@@ -749,12 +754,15 @@ msgid "East"
 msgstr "Rytai"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "Redaguoti dabartinę antraštę"
 
 msgid "Edit services list"
 msgstr "Redaguoti kanalų sąrašą"
 
 msgid "Edit title..."
+msgstr "Redaguoti antraštę"
+
+msgid "Electronic Program Guide"
 msgstr ""
 
 msgid "Enable"
@@ -776,7 +784,7 @@ msgid "End"
 msgstr "Pabaiga"
 
 msgid "End time"
-msgstr ""
+msgstr "Pabaigos laikas"
 
 msgid "EndTime"
 msgstr "Pabaigos laikas"
@@ -839,13 +847,13 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Fast"
-msgstr ""
+msgstr "Greitas"
 
 msgid "Fast DiSEqC"
 msgstr "Greitas DiSEqC"
 
 msgid "Fast epoch"
-msgstr ""
+msgstr "Greita epocha"
 
 msgid "Favourites"
 msgstr "Mėgstamiausi"
@@ -863,13 +871,13 @@ msgid "Frequency"
 msgstr "Dažnis"
 
 msgid "Frequency bands"
-msgstr ""
+msgstr "Dažnio diapazonai"
 
 msgid "Frequency scan step size(khz)"
-msgstr ""
+msgstr "Skanavimo dažnio žingsnio dydis(khz)"
 
 msgid "Frequency steps"
-msgstr ""
+msgstr "Dažnio žingsniai"
 
 msgid "Fri"
 msgstr "Pen"
@@ -915,8 +923,11 @@ msgstr "Eiti į poziciją 0"
 msgid "Goto position"
 msgstr "Eiti į poziciją"
 
-msgid "Greek"
+msgid "Graphical Multi EPG"
 msgstr ""
+
+msgid "Greek"
+msgstr "Graikų"
 
 msgid "Guard Interval"
 msgstr "Apsaugos intervalas"
@@ -983,7 +994,7 @@ msgid "Information"
 msgstr "Informacija"
 
 msgid "Init"
-msgstr "Inicializacija"
+msgstr "Inic"
 
 msgid "Initialization..."
 msgstr "Inicializacija..."
@@ -1067,10 +1078,10 @@ msgid "List of Storage Devices"
 msgstr "Išsaugotų įrenginių sąrašas"
 
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lietuvių"
 
 msgid "Long Keypress"
-msgstr ""
+msgstr "Ilgas mygtuko spaudimas"
 
 msgid "Longitude"
 msgstr "Ilguma"
@@ -1218,7 +1229,7 @@ msgid "New"
 msgstr "Nauji"
 
 msgid "New DVD"
-msgstr ""
+msgstr "Naujas DVD"
 
 msgid "New pin"
 msgstr "Naujas PIN"
@@ -1270,6 +1281,8 @@ msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Imtuvas neįjungtas!\n"
+"Prašome nustatyti Jūsų imtuvą, prieš pradedant ieškoti kanalų."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1383,7 +1396,7 @@ msgid "Play recorded movies..."
 msgstr "Rodyti įrašytus filmus..."
 
 msgid "Please change recording endtime"
-msgstr ""
+msgstr "Prašome pakeisti įrašymo pabaigos laiką"
 
 msgid "Please choose an extension..."
 msgstr "Prašome išsirinkti papildymus..."
@@ -1398,7 +1411,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Prašome įrašyti naujo žymeklio pavadinimą"
 
 msgid "Please enter filename (empty = use current date)"
-msgstr ""
+msgstr "Prašome įrašyti failo pavadinimą (tuščias = dabartiniai duomenys)"
 
 msgid "Please enter the correct pin code"
 msgstr "Prašome įrašyti teisingą PIN kodą"
@@ -1410,10 +1423,10 @@ msgid "Please press OK!"
 msgstr "Prašome paspausti OK!"
 
 msgid "Please select a playlist to delete..."
-msgstr ""
+msgstr "Prašome išsirinkti ką norite trinti iš grojaraščio..."
 
 msgid "Please select a playlist..."
-msgstr ""
+msgstr "Prašome išsirinkti grojaraštį"
 
 msgid "Please select a subservice to record..."
 msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
@@ -1422,16 +1435,16 @@ msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
 
 msgid "Please select keyword to filter..."
-msgstr "Prašome pasirinkti raktinį žodį dėl filtravimo..."
+msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
 
 msgid "Please set up tuner B"
 msgstr "Prašome atlikti imtuvo B nustatymą."
 
 msgid "Please set up tuner C"
-msgstr ""
+msgstr "Prašome nustatyti imtuvą C"
 
 msgid "Please set up tuner D"
-msgstr ""
+msgstr "Prašome nustatyti imtuvą D"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -1454,6 +1467,9 @@ msgstr "Poliariškumas"
 msgid "Polarization"
 msgstr "Poliarizacija"
 
+msgid "Polish"
+msgstr ""
+
 msgid "Port A"
 msgstr "Jungtist A"
 
@@ -1467,7 +1483,7 @@ msgid "Port D"
 msgstr "Jungtis D"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalų"
 
 msgid "Positioner"
 msgstr "Pozicionierius"
@@ -1485,7 +1501,7 @@ msgid "Positioner storage"
 msgstr "Pozicionieriaus išsaugojimas"
 
 msgid "Power threshold in mA"
-msgstr ""
+msgstr "Įtampos galia mA"
 
 msgid "Predefined transponder"
 msgstr "Nenustatytas transponderis"
@@ -1515,7 +1531,7 @@ msgid "Provider"
 msgstr "Transliuotojas"
 
 msgid "Provider to scan"
-msgstr ""
+msgstr "Transliuotojas kurį norite skanuoti"
 
 msgid "Providers"
 msgstr "Transliuotojai"
@@ -1565,17 +1581,17 @@ msgstr "Įrašymas"
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really reboot "
 "now?"
-msgstr ""
+msgstr "Vyksta įrašymas arba tuoj prasidės... tikrai norite perkrauti dabar?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really restart "
 "now?"
-msgstr ""
+msgstr "Vyksta įrašymas arba tuoj prasidės... tikrai norite perkrauti dabar?"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds... really shutdown "
 "now?"
-msgstr ""
+msgstr "Vyksta įrašymas arba tuoj prasidės... tikrai norite išjungti dabar?"
 
 msgid "Recordings always have priority"
 msgstr "Įrašai visada turi pirmenybę"
@@ -1590,13 +1606,13 @@ msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Pašalinti dabar pasirinktą antraštę"
 
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Pašalinti antraštę"
 
 msgid "Repeat"
 msgstr "Pakartoti"
@@ -1633,13 +1649,13 @@ msgid "Rolloff"
 msgstr "Rolloff"
 
 msgid "Rotor turning speed"
-msgstr ""
+msgstr "Pozicionieriaus sukimosi greitis"
 
 msgid "Running"
 msgstr "Veikiantis"
 
 msgid "Russian"
-msgstr ""
+msgstr "Rusų"
 
 msgid "S-Video"
 msgstr "S-Video"
@@ -1654,7 +1670,7 @@ msgid "Satellite"
 msgstr "Palydovas"
 
 msgid "Satellite Equipment Setup"
-msgstr "Palydovinės įrangos nustatymas"
+msgstr "Palydovo nustatymai"
 
 msgid "Satellites"
 msgstr "Palydovai"
@@ -1666,79 +1682,79 @@ msgid "Saturday"
 msgstr "Šeštadienis"
 
 msgid "Save Playlist"
-msgstr ""
+msgstr "Išsaugoti grojaraštį"
 
 msgid "Save current project to disk"
-msgstr ""
+msgstr "Išsaugoti dabartinį projektą į diską"
 
 msgid "Save..."
-msgstr ""
+msgstr "Išsaugoti..."
 
 msgid "Scaling Mode"
 msgstr "Skalės režimas"
 
 msgid "Scan "
-msgstr ""
+msgstr "Skanuoti"
 
 msgid "Scan QAM128"
-msgstr ""
+msgstr "Skanuoti QAM128"
 
 msgid "Scan QAM16"
-msgstr ""
+msgstr "Skanuoti QAM16"
 
 msgid "Scan QAM256"
-msgstr ""
+msgstr "Skanuoti QAM256"
 
 msgid "Scan QAM32"
-msgstr ""
+msgstr "Skanuoti QAM32"
 
 msgid "Scan QAM64"
-msgstr ""
+msgstr "Skanuoti QAM64"
 
 msgid "Scan SR6875"
-msgstr ""
+msgstr "Skanuoti SR6875"
 
 msgid "Scan SR6900"
-msgstr ""
+msgstr "Skanuoti SR6900"
 
 msgid "Scan additional SR"
-msgstr ""
+msgstr "Papildomai skanuoti SR"
 
 msgid "Scan band EU HYPER"
-msgstr ""
+msgstr "Skanuoti diapazoną EU HYPER"
 
 msgid "Scan band EU MID"
-msgstr ""
+msgstr "Skanuoti diapazoną EU MID"
 
 msgid "Scan band EU SUPER"
-msgstr ""
+msgstr "Skanuoti diapazoną EU SUPER"
 
 msgid "Scan band EU UHF IV"
-msgstr ""
+msgstr "Skanuoti diapazoną EU UHF IV"
 
 msgid "Scan band EU UHF V"
-msgstr ""
+msgstr "Skanuoti diapazoną EU UHF V"
 
 msgid "Scan band EU VHF I"
-msgstr ""
+msgstr "Skanuoti diapazoną EU VHF I"
 
 msgid "Scan band EU VHF III"
-msgstr ""
+msgstr "Skanuoti diapazoną EU VHF III"
 
 msgid "Scan band US HIGH"
-msgstr ""
+msgstr "Skanuoti diapazoną US HIGH"
 
 msgid "Scan band US HYPER"
-msgstr ""
+msgstr "Skanuoti diapazoną US HYPER"
 
 msgid "Scan band US LOW"
-msgstr ""
+msgstr "Skanuoti diapazoną US LOW"
 
 msgid "Scan band US MID"
-msgstr ""
+msgstr "Skanuoti diapazoną US MID"
 
 msgid "Scan band US SUPER"
-msgstr ""
+msgstr "Skanuoti diapazoną US SUPER"
 
 msgid "Search east"
 msgstr "Paieška rytai"
@@ -1870,10 +1886,10 @@ msgstr "Paveikslėlių rodymo intervalas (sеk.)"
 
 #, python-format
 msgid "Slot %d"
-msgstr ""
+msgstr "Kortelių skaitytuvas %d"
 
 msgid "Slow"
-msgstr ""
+msgstr "Lėtas"
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių priedų nėra:\n"
@@ -1889,6 +1905,14 @@ msgstr ""
 "Nurodytos atsarginės kopijos čia nėra.\n"
 "\n"
 "Pasirinkite prašome kitą!"
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort A-Z"
+msgstr ""
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort Time"
+msgstr ""
 
 msgid "Sound"
 msgstr "Garsas"
@@ -1918,7 +1942,7 @@ msgid "StartTime"
 msgstr "Paleidimo pradžia"
 
 msgid "Starting on"
-msgstr ""
+msgstr "Paleidimas įjungtas"
 
 msgid "Startwizard"
 msgstr "Nustatymų vedlys"
@@ -2134,9 +2158,13 @@ msgstr "Bandymas kairėn:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
 msgstr ""
+"Pabandykite surasti Transponderius kabeliniuose tinkluose.. prašome "
+"palaukti..."
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
+"Pabandykite surasti Transponderius kabeliniuose tinkluose.. prašome "
+"palaukti..."
 
 msgid "Tue"
 msgstr "Ant"
@@ -2154,7 +2182,7 @@ msgid "Tuner"
 msgstr "Imtuvas"
 
 msgid "Tuner "
-msgstr ""
+msgstr "Imtuvas"
 
 msgid "Tuner Slot"
 msgstr "Kortelių skaitytuvas"
@@ -2223,7 +2251,7 @@ msgid "Use DHCP"
 msgstr "Naudoti DHCP"
 
 msgid "Use Power Measurement"
-msgstr ""
+msgstr "Naudoti Įtampos matavimą"
 
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
@@ -2254,7 +2282,7 @@ msgid "Use wizard to set up basic features"
 msgstr "Naudokite vedlį pagrindiniams nustatymams"
 
 msgid "Used service scan type"
-msgstr ""
+msgstr "Naudojamas kanalo skanavimo būdas"
 
 msgid "User defined"
 msgstr "Vartotojo nustatyta"
@@ -2322,7 +2350,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
 
 msgid "Write error while recording. Disk full?\n"
-msgstr ""
+msgstr "Įrašymo klaida. Diskas pilnas?\n"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -2489,7 +2517,7 @@ msgid "add file to playlist"
 msgstr "pridėti failą į grojaraštį"
 
 msgid "add files to playlist"
-msgstr ""
+msgstr "pridėti failus į grojaraštį"
 
 msgid "add marker"
 msgstr "pridėti žymeklį"
@@ -2498,7 +2526,7 @@ msgid "add recording (enter recording duration)"
 msgstr "pridėti įrašą (įrašykite įrašo ilgį)"
 
 msgid "add recording (enter recording endtime)"
-msgstr ""
+msgstr "pridėti įrašymą (įrašykite įrašymo pabaigos laiką) "
 
 msgid "add recording (indefinitely)"
 msgstr "pridėti įrašą (identišką)"
@@ -2541,7 +2569,7 @@ msgid "change recording (duration)"
 msgstr "pakeisti įrašymą (trukmė)"
 
 msgid "change recording (endtime)"
-msgstr ""
+msgstr "keisti įrašymą (pabaigos laikas)"
 
 msgid "circular left"
 msgstr "apskritiminė kairė"
@@ -2574,10 +2602,10 @@ msgid "delete cut"
 msgstr "trinti iškirpimą"
 
 msgid "delete playlist entry"
-msgstr ""
+msgstr "trinti įrašą iš grojaraščio "
 
 msgid "delete saved playlist"
-msgstr ""
+msgstr "trinti išsaugotą grojaraštį"
 
 msgid "delete..."
 msgstr "trinti..."
@@ -2589,7 +2617,7 @@ msgid "disable move mode"
 msgstr "išjungti perkėlimą"
 
 msgid "disabled"
-msgstr ""
+msgstr "išjungtas"
 
 msgid "do not change"
 msgstr "nieko nekeisti"
@@ -2607,7 +2635,7 @@ msgid "edit alternatives"
 msgstr "redaguoti kitus"
 
 msgid "empty"
-msgstr ""
+msgstr "tuščias"
 
 msgid "enable"
 msgstr "įjungti"
@@ -2622,7 +2650,7 @@ msgid "enable move mode"
 msgstr "įjungti perkėlimą"
 
 msgid "enabled"
-msgstr ""
+msgstr "įjungtas"
 
 msgid "end alternatives edit"
 msgstr "baigti kitų redagavimą"
@@ -2640,7 +2668,7 @@ msgid "equal to Socket A"
 msgstr "lygus į Socket A"
 
 msgid "exit mediaplayer"
-msgstr ""
+msgstr "išjungti media grotuvą"
 
 msgid "free diskspace"
 msgstr "laisvos vietos diske"
@@ -2658,7 +2686,7 @@ msgid "hear radio..."
 msgstr "Klausytis radijo..."
 
 msgid "help..."
-msgstr "pagalba..."
+msgstr "Pagalba..."
 
 msgid "hide player"
 msgstr "slėpti grotuvą"
@@ -2687,16 +2715,16 @@ msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
 
 msgid "jump to listbegin"
-msgstr ""
+msgstr "šuolis į pradžios sąrašą"
 
 msgid "jump to listend"
-msgstr ""
+msgstr "šuolis į pabaigos sąrašą"
 
 msgid "jump to next marked position"
-msgstr ""
+msgstr "šuolis į sekančią pažymėtą vietą"
 
 msgid "jump to previous marked position"
-msgstr ""
+msgstr "šuolis į ankstesnę pažymėtą vietą"
 
 msgid "leave movie player..."
 msgstr "palikti grotuvą..."
@@ -2705,7 +2733,7 @@ msgid "left"
 msgstr "kairys"
 
 msgid "load playlist"
-msgstr ""
+msgstr "užkraunamas grojaraštis"
 
 msgid "locked"
 msgstr "užrakinta"
@@ -2717,7 +2745,7 @@ msgid "manual"
 msgstr "rankinis"
 
 msgid "menu"
-msgstr ""
+msgstr "meniu"
 
 msgid "mins"
 msgstr "min (ių)"
@@ -2732,7 +2760,7 @@ msgid "minutes and"
 msgstr "minučių ir"
 
 msgid "movie list"
-msgstr ""
+msgstr "filmų sąrašas"
 
 msgid "multinorm"
 msgstr "multinorma"
@@ -2798,16 +2826,16 @@ msgid "pass"
 msgstr "perduoti"
 
 msgid "pause"
-msgstr "pauzė"
+msgstr "Pauzė"
 
 msgid "play entry"
-msgstr ""
+msgstr "leisti įrašą"
 
 msgid "play next playlist entry"
-msgstr ""
+msgstr "leisti sekantį įrašą iš grojaraščio"
 
 msgid "play previous playlist entry"
-msgstr ""
+msgstr "leisti ankstesnį įrašą iš grojaraščio"
 
 msgid "please press OK when ready"
 msgstr "prašome paspausti OK, kai būsite pasiruošę"
@@ -2858,7 +2886,7 @@ msgid "right"
 msgstr "dešinys"
 
 msgid "save playlist"
-msgstr ""
+msgstr "išsaugoti grojaraštį"
 
 #, python-format
 msgid ""
@@ -2921,13 +2949,13 @@ msgid "show event details"
 msgstr "rodyti užduočių detales"
 
 msgid "show single service EPG..."
-msgstr ""
+msgstr "Rodyti vieno kanalo EPG..."
 
 msgid "show transponder info"
 msgstr "rodyti transponderio informaciją"
 
 msgid "shuffle playlist"
-msgstr ""
+msgstr "pakeisti vietomis grojaraštį"
 
 msgid "shutdown"
 msgstr "išjungti"
@@ -2939,19 +2967,19 @@ msgid "skip backward"
 msgstr "praleisti sukimą atgal"
 
 msgid "skip backward (enter time)"
-msgstr ""
+msgstr "Praleisti atgal (įrašykite laiką)"
 
 msgid "skip backward (self defined)"
-msgstr ""
+msgstr "Praleisti atgal (pasirinkti pačiam)"
 
 msgid "skip forward"
 msgstr "praleisti sukimą į priekį"
 
 msgid "skip forward (enter time)"
-msgstr ""
+msgstr "Praleisti pirmyn (įrašykite laiką)"
 
 msgid "skip forward (self defined)"
-msgstr ""
+msgstr "Praleisti pirmyn (pačio pasirinkimas)"
 
 msgid "standby"
 msgstr "išjungimas"
@@ -2966,7 +2994,7 @@ msgid "stereo"
 msgstr "stereo"
 
 msgid "stop entry"
-msgstr ""
+msgstr "stabdyti įrašą"
 
 msgid "stop recording"
 msgstr "stabdyti įrašymą"
@@ -2990,7 +3018,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "šis kanalas apsaugotas tėvų kontrolės PIN kodu"
 
 msgid "toggle a cut mark at the current position"
-msgstr ""
+msgstr "Iškirpti žymeklį dabartinėje pozicijoje"
 
 msgid "unknown service"
 msgstr "nežinomas kanalas"
@@ -3040,4 +3068,3 @@ msgstr "Jungti"
 
 msgid "zapped"
 msgstr "įjungta"
-
