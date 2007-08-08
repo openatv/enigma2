@@ -10,19 +10,19 @@ class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
 
-	LISTTYPE_ORIGINAL = 0
-	LISTTYPE_COMPACT_DESCRIPTION = 1
-	LISTTYPE_COMPACT = 2
-	LISTTYPE_MINIMAL = 3
+	LISTTYPE_ORIGINAL = 1
+	LISTTYPE_COMPACT_DESCRIPTION = 2
+	LISTTYPE_COMPACT = 3
+	LISTTYPE_MINIMAL = 4
 
-	HIDE_DESCRIPTION = 0
-	SHOW_DESCRIPTION = 1
+	HIDE_DESCRIPTION = 1
+	SHOW_DESCRIPTION = 2
 
-	def __init__(self, root, list_type, sort_type, descr_state):
+	def __init__(self, root, list_type=None, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
-		self.list_type = list_type
-		self.descr_state = descr_state
-		self.sort_type = sort_type
+		self.list_type = list_type or self.LISTTYPE_ORIGINAL
+		self.descr_state = descr_state or self.HIDE_DESCRIPTION
+		self.sort_type = sort_type or self.SORT_RECORDED
 
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
