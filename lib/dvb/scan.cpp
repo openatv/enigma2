@@ -680,7 +680,8 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 		else
 		{
 			db->addService(service->first, service->second);
-			service->second->m_flags |= eDVBService::dxNewFound;
+			if (!(m_flags & scanRemoveServices))
+				service->second->m_flags |= eDVBService::dxNewFound;
 		}
 	}
 }
