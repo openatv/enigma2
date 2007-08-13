@@ -198,7 +198,10 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 #		print "You pressed number " + str(number)
 		if number == 0:
-			self.servicelist.recallPrevService()
+			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
+				self.pipDoHandle0Action()
+			else:
+				self.servicelist.recallPrevService()
 		else:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -1234,6 +1237,9 @@ class InfoBarPiP:
 	def pipShown(self):
 		return self.session.pipshown
 
+	def pipHandles0Action(self):
+		return self.pipShown() and config.usage.pip_zero_button.value != "standard"
+
 	def getShowHideName(self):
 		if self.session.pipshown:
 			return _("Disable Picture in Picture")
@@ -1277,6 +1283,16 @@ class InfoBarPiP:
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
+
+	def pipDoHandle0Action(self):
+		use = config.usage.pip_zero_button.value
+		if "swap" == use:
+			self.swapPiP()
+		elif "swapstop" == use:
+			self.swapPiP()
+			self.showPiP()
+		elif "stop" == use:
+			self.showPiP()
 
 from RecordTimer import parseEvent
 

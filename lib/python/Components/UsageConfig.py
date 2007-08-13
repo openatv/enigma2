@@ -25,6 +25,10 @@ def InitUsageConfig():
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 	config.usage.self_defined_seek = ConfigInteger(default=10, limits=(1,9999))
 
+	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
+		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
+		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
+
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
 	config.usage.hdd_standby.addNotifier(setHDDStandby)
