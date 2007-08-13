@@ -231,14 +231,28 @@ class EPGList(HTMLComponent, GUIComponent):
 	def sortSingleEPG(self, type):
 		if len(self.list):
 			if type == 1:
+				event_id = self.getSelectedEventId()
 				self.list.sort(key=lambda x: (x[4].lower(), x[2]))
 				self.l.setList(self.list)
-				self.selectionChanged()
+				self.moveToEventId(event_id)
 			else:
 				assert(type == 0)
+				event_id = self.getSelectedEventId()
 				self.list.sort(key=lambda x: x[2])
 				self.l.setList(self.list)
-				self.selectionChanged()
+				self.moveToEventId(event_id)
+
+	def getSelectedEventId(self):
+		x = self.l.getCurrentSelection()
+		return x and x[1]
+
+	def moveToEventId(self, eventId):
+		index = 0
+		for x in self.list:
+			if x[1] == eventId:
+				self.instance.moveSelectionTo(index)
+				break
+			index += 1
 
 	def fillSimilarList(self, refstr, event_id):
 		t = time()
