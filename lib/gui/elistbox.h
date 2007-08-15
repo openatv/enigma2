@@ -54,6 +54,23 @@ protected:
 #endif
 };
 
+struct eListboxStyle
+{
+	ePtr<gPixmap> m_background, m_selection;
+	int m_transparent_background;
+	gRGB m_background_color, m_foreground_color;
+	int m_background_color_set, m_foreground_color_set;
+
+		/*
+			{m_transparent_background m_background_color_set m_background}
+			{0 0 0} use global background color
+			{0 1 x} use background color
+			{0 0 p} use background picture
+			{1 x 0} use transparent background
+			{1 x p} use transparent background picture
+		*/
+};
+
 class eListbox: public eWidget
 {
 	void updateScrollBar();
@@ -72,7 +89,7 @@ public:
 	void setWrapAround(bool);
 
 	void setContent(iListboxContent *content);
-	
+
 /*	enum Movement {
 		moveUp,
 		moveDown,
@@ -100,6 +117,14 @@ public:
 
 	void setItemHeight(int h);
 	void setSelectionEnable(int en);
+
+	void setBackgroundColor(gRGB &col);
+	void setForegroundColor(gRGB &col);
+	void setTransparent(int t);
+	void setBackgroundPicture(gPixmap *pm);
+	void setSelectionPicture(gPixmap *pm);
+
+	struct eListboxStyle *getLocalStyle(void);
 #ifndef SWIG
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */
 	void entryAdded(int index);
@@ -125,6 +150,7 @@ private:
 	int m_selection_enabled;
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
+	eListboxStyle m_style;
 #endif
 };
 

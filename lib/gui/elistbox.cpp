@@ -471,3 +471,32 @@ void eListbox::entryReset(bool selectionHome)
 	moveSelection(justCheck);
 	invalidate();
 }
+
+void eListbox::setBackgroundColor(gRGB &col)
+{
+	m_style.m_background_color = col;
+	m_style.m_background_color_set = 1;
+}
+
+void eListbox::setForegroundColor(gRGB &col)
+{
+	m_style.m_foreground_color = col;
+	m_style.m_foreground_color_set = 1;
+}
+
+void eListbox::setBackgroundPicture(gPixmap *pm)
+{
+	m_style.m_background = pm;
+}
+
+void eListbox::setSelectionPicture(gPixmap *pm)
+{
+	m_style.m_selection = pm;
+}
+
+struct eListboxStyle *eListbox::getLocalStyle(void)
+{
+		/* transparency is set directly in the widget */
+	m_style.m_transparent_background = isTransparent();
+	return &m_style;
+}
