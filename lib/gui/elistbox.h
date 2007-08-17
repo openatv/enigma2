@@ -120,7 +120,6 @@ public:
 
 	void setBackgroundColor(gRGB &col);
 	void setForegroundColor(gRGB &col);
-	void setTransparent(int t);
 	void setBackgroundPicture(gPixmap *pm);
 	void setSelectionPicture(gPixmap *pm);
 
