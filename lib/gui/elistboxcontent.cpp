@@ -140,7 +140,34 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	ePtr<gFont> fnt = new gFont("Regular", 20);
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-	painter.clear();
+
+	eListboxStyle *local_style = 0;
+
+		/* get local listbox style, if present */
+	if (m_listbox)
+		local_style = m_listbox->getLocalStyle();
+
+		/* if we have a local background color set, use that. */
+	if (local_style && local_style->m_background_color_set)
+		painter.setBackgroundColor(local_style->m_background_color);
+
+		/* same for foreground */
+	if (local_style && local_style->m_foreground_color_set)
+		painter.setBackgroundColor(local_style->m_foreground_color);
+
+		/* if we have no transparent background */
+	if (!local_style || !local_style->m_transparent_background)
+	{
+			/* blit background picture, if available (otherwise, clear only) */
+		if (local_style && local_style->m_background)
+			painter.blit(local_style->m_background, offset, eRect(), 0);
+		else
+			painter.clear();
+	} else
+	{
+		if (local_style && local_style->m_background)
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+	}
 
 	if (m_list && cursorValid())
 	{
@@ -155,11 +182,14 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				gray = 1;
 			item = PyTuple_GET_ITEM(item, 0);
 		}
-		
+
+		if (selected && local_style && local_style->m_selection)
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
+
 		if (item == Py_None)
 		{
+				/* seperator */
 			int half_height = m_itemsize.height() / 2;
-			
 			painter.fill(eRect(offset.x() + half_height, offset.y() + half_height - 2, m_itemsize.width() - m_itemsize.height(), 4));
 		} else
 		{
@@ -169,11 +199,11 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.setForegroundColor(gRGB(0x808080));
 			painter.renderText(eRect(text_offset, m_itemsize), string);
 		}
-		
-		if (selected)
+
+		if (selected && (!local_style || !local_style->m_selection))
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 	}
-	
+
 	painter.clippop();
 }
 
