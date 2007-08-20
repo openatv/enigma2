@@ -1,7 +1,7 @@
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
-import os
+from os import environ, unlink, symlink
 import time
 
 class Timezones:
@@ -36,7 +36,12 @@ class Timezones:
 		if len(self.timezones) <= index:
 			return
 		
-		os.environ['TZ'] = self.timezones[index][1]
+		environ['TZ'] = self.timezones[index][1]
+		try:
+			unlink("/etc/localtime")
+		except OSError:
+			pass
+		symlink("/usr/share/zoneinfo/%s" %(self.timezones[index][1]), "/etc/localtime")
 		try:
 			time.tzset()
 		except:
