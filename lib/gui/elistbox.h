@@ -120,8 +120,8 @@ public:
 
 	void setBackgroundColor(gRGB &col);
 	void setForegroundColor(gRGB &col);
-	void setBackgroundPicture(gPixmap *pm);
-	void setSelectionPicture(gPixmap *pm);
+	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
+	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 
 	struct eListboxStyle *getLocalStyle(void);
 #ifndef SWIG

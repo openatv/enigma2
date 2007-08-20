@@ -88,7 +88,7 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 		# TODO: localization? as in e1?
 		value = a.value.encode("utf-8")
 		
-		if attrib in ["pixmap", "pointer", "seek_pointer"]:
+		if attrib in ["pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap"]:
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 		
 		if attrib not in ignore:
@@ -115,10 +115,15 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setFont(parseFont(value))
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
-		elif attrib == "pixmap":
+		elif attrib in ["pixmap", "backgroundPixmap", "selectionPixmap"]:
 			ptr = loadPixmap(value) # this should already have been filename-resolved.
 			desktop.makeCompatiblePixmap(ptr)
-			guiObject.setPixmap(ptr)
+			if attrib == "pixmap":
+				guiObject.setPixmap(ptr)
+			elif attrib == "backgroundPixmap":
+				guiObject.setBackgroundPicture(ptr)
+			elif attrib == "selectionPixmap":
+				guiObject.setSelectionPicture(ptr)
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
 			guiObject.setAlphatest(

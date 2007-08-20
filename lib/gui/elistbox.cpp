@@ -8,6 +8,7 @@ eListbox::eListbox(eWidget *parent) :
 	m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25),
 	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
+	memset(&m_style, 0, sizeof(m_style));
 //	setContent(new eListboxStringContent());
 
 	ePtr<eActionMap> ptr;
@@ -484,12 +485,12 @@ void eListbox::setForegroundColor(gRGB &col)
 	m_style.m_foreground_color_set = 1;
 }
 
-void eListbox::setBackgroundPicture(gPixmap *pm)
+void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
 {
 	m_style.m_background = pm;
 }
 
-void eListbox::setSelectionPicture(gPixmap *pm)
+void eListbox::setSelectionPicture(ePtr<gPixmap> &pm)
 {
 	m_style.m_selection = pm;
 }
