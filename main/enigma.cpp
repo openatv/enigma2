@@ -218,7 +218,9 @@ int main(int argc, char **argv)
 		{
 			char filename[strlen(DATADIR) + 20];
 			sprintf(filename, DATADIR "/enigma2/wait%d.png", i + 1);
-			if (loadPNG(wait[i], filename))
+			loadPNG(wait[i], filename);
+			
+			if (!wait[i])
 			{
 				if (!i)
 					eDebug("failed to load %s! (%m)", filename);
