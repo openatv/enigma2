@@ -212,18 +212,23 @@ int main(int argc, char **argv)
 	
 	{
 		int i;
-		ePtr<gPixmap> wait[4];
-		for (i=0; i<4; ++i)
+#define MAX_SPINNER 64
+		ePtr<gPixmap> wait[MAX_SPINNER];
+		for (i=0; i<MAX_SPINNER; ++i)
 		{
 			char filename[strlen(DATADIR) + 20];
 			sprintf(filename, DATADIR "/enigma2/wait%d.png", i + 1);
 			if (loadPNG(wait[i], filename))
 			{
-				eDebug("failed to load %s! (%m)", filename);
-				continue;
+				if (!i)
+					eDebug("failed to load %s! (%m)", filename);
+				else
+					eDebug("found %d spinner!\n", i);
+				break;
 			}
 		}
-		my_dc->setSpinner(eRect(100, 100, 105, 105), wait, 4);
+		if (i)
+			my_dc->setSpinner(eRect(ePoint(100, 100), wait[0]->size()), wait, i);
 	}
 	
 	gRC::getInstance()->setSpinnerDC(my_dc);
