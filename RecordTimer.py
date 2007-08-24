@@ -512,6 +512,7 @@ class RecordTimer(timer.Timer):
 		self.addTimerEntry(entry)
 		
 	def isInTimer(self, eventid, begin, duration, service):
+		print "isInTimer"
 		time_match = 0
 		chktime = None
 		chktimecmp = None
@@ -531,10 +532,20 @@ class RecordTimer(timer.Timer):
 					sref.setUnsignedData(5, 0)
 					sref.setUnsignedData(6, 0)
 					check = x.service_ref.ref.toCompareString() == str(service)
+					num = 0
+					if check:
+						check = False
+						event = eEPGCache.getInstance().lookupEventId(sref, eventid)
+						num = event and event.getNumOfLinkageServices() or 0
 					sref.setUnsignedData(1, sid)
 					sref.setUnsignedData(2, tsid)
 					sref.setUnsignedData(5, parent_sid)
 					sref.setUnsignedData(6, parent_tsid)
+					for cnt in range(num):
+						subservice = event.getLinkageService(sref, cnt)
+						if sref.toCompareString() == subservice.toCompareString():
+							check = True
+							break
 			if check:
 				#if x.eit is not None and x.repeated == 0:
 				#	if x.eit == eventid:
