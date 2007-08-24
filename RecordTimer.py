@@ -512,7 +512,6 @@ class RecordTimer(timer.Timer):
 		self.addTimerEntry(entry)
 		
 	def isInTimer(self, eventid, begin, duration, service):
-		print "isInTimer"
 		time_match = 0
 		chktime = None
 		chktimecmp = None
