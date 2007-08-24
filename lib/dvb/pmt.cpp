@@ -174,6 +174,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;
+	program.defaultAudioStream = 0;
 
 	if ( m_service && !m_service->cacheEmpty() )
 	{
@@ -318,12 +319,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						audio.pid = (*es)->getPid();
 						if ( !program.audioStreams.empty() &&
 							( audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg) )
-						{
-							program.audioStreams.push_back(program.audioStreams[0]);
-							program.audioStreams[0] = audio;
-						}
-						else
-							program.audioStreams.push_back(audio);
+							program.defaultAudioStream = program.audioStreams.size();
+						program.audioStreams.push_back(audio);
 					}
 					else if (isvideo)
 					{
