@@ -6,7 +6,6 @@
 #include <lib/base/estring.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
-#include <lib/base/nconfig.h> // access to python config
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
@@ -17,6 +16,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
+#include <lib/base/nconfig.h> // access to python config
 
 		/* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -1730,7 +1730,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (h.getProgramInfo(program))
 		return -1;
 
-	if ((unsigned int)i >= program.audioStreams.size())
+	if ((i != -1) && ((unsigned int)i >= program.audioStreams.size()))
 		return -2;
 
 	if (!m_decoder)
@@ -1740,16 +1740,37 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (stream == -1)
 		stream = program.defaultAudioStream;
 
-	m_current_audio_pid = program.audioStreams[stream].pid;
+	int apid = -1, apidtype = -1;
 
-	if (m_decoder->setAudioPID(program.audioStreams[stream].pid, program.audioStreams[stream].type))
+	if (((unsigned int)stream) < program.audioStreams.size())
+	{
+		apid = program.audioStreams[stream].pid;
+		apidtype = apidtype;
+	}
+
+	m_current_audio_pid = apid;
+
+	if (m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
 		return -4;
 	}
 
+		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
+	if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
+		if (!m_rds_decoder)
+		{
+			ePtr<iDVBDemux> data_demux;
+			if (!h.getDataDemux(data_demux))
+			{
+				m_rds_decoder = new eDVBRdsDecoder(data_demux);
+				m_rds_decoder->connectEvent(slot(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
+			}
+		}
+
+		/* if we decided that we need one, update the pid */
 	if (m_rds_decoder)
-		m_rds_decoder->start(program.audioStreams[stream].pid);
+		m_rds_decoder->start(apid);
 
 			/* store new pid as default only when:
 				a.) we have an entry in the service db for the current service,
@@ -1760,15 +1781,15 @@ int eDVBServicePlay::selectAudioStream(int i)
 			*/
 	if (m_dvb_service && !m_is_pvr && (i != -1))
 	{
-		if (program.audioStreams[stream].type == eDVBAudio::aMPEG)
+		if (apidtype == eDVBAudio::aMPEG)
 		{
-			m_dvb_service->setCacheEntry(eDVBService::cAPID, program.audioStreams[stream].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, apid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
 		else
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[stream].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
 		}
 	}
 
@@ -2248,15 +2269,9 @@ void eDVBServicePlay::switchToTimeshift()
 
 void eDVBServicePlay::updateDecoder()
 {
-	int vpid = -1, vpidtype = -1, apid = -1, apidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
+	int vpid = -1, vpidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
-
-	bool defaultac3=false;
-	std::string default_ac3;
-
-	if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
-		defaultac3 = default_ac3 == "True";
 
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
@@ -2290,14 +2305,6 @@ void eDVBServicePlay::updateDecoder()
 				i(program.audioStreams.begin());
 				i != program.audioStreams.end(); ++i)
 			{
-				if (apid == -1 || (apidtype == eDVBAudio::aMPEG && defaultac3))
-				{
-					if ( apid == -1 || (i->type != eDVBAudio::aMPEG) )
-					{
-						apid = i->pid;
-						apidtype = i->type;
-					}
-				}
 				if (i != program.audioStreams.begin())
 					eDebugNoNewLine(", ");
 				eDebugNoNewLine("%04x", i->pid);
@@ -2372,19 +2379,7 @@ void eDVBServicePlay::updateDecoder()
 		selectAudioStream();
 
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
-		{
 			m_decoder->setSyncPCR(pcrpid);
-			if (apid != -1)
-			{
-				ePtr<iDVBDemux> data_demux;
-				if (!h.getDataDemux(data_demux))
-				{
-					m_rds_decoder = new eDVBRdsDecoder(data_demux);
-					m_rds_decoder->connectEvent(slot(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
-					m_rds_decoder->start(apid);
-				}
-			}
-		}
 		else
 			m_decoder->setSyncPCR(-1);
 
@@ -2411,23 +2406,10 @@ void eDVBServicePlay::updateDecoder()
 
 		m_decoder->setAudioChannel(achannel);
 
-// how we can do this better?
-// update cache pid when the user changed the audio track or video track
-// TODO handling of difference audio types.. default audio types..
-
 		/* don't worry about non-existing services, nor pvr services */
 		if (m_dvb_service && !m_is_pvr)
 		{
-			if (apidtype == eDVBAudio::aMPEG)
-			{
-				m_dvb_service->setCacheEntry(eDVBService::cAPID, apid);
-				m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
-			}
-			else
-			{
-				m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
-				m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
-			}
+				/* (audio pid will be set in selectAudioTrack */
 			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
 			m_dvb_service->setCacheEntry(eDVBService::cVTYPE, vpidtype == eDVBVideo::MPEG2 ? -1 : vpidtype);
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
