@@ -14,6 +14,7 @@
 #include <dvbsi++/stream_identifier_descriptor.h>
 #include <dvbsi++/subtitling_descriptor.h>
 #include <dvbsi++/teletext_descriptor.h>
+#include <lib/base/nconfig.h> // access to python config
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -174,6 +175,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;
+
+	int first_ac3 = -1;
 	program.defaultAudioStream = 0;
 
 	if ( m_service && !m_service->cacheEmpty() )
@@ -317,9 +320,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					if (isaudio)
 					{
 						audio.pid = (*es)->getPid();
-						if ( !program.audioStreams.empty() &&
-							( audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg) )
+
+							/* if we find the cached pids, this will be our default stream */
+						if (audio.pid == cached_apid_ac3 || audio.pid == cached_apid_mpeg)
 							program.defaultAudioStream = program.audioStreams.size();
+
+							/* also, we need to know the first non-mpeg (i.e. "ac3"/dts/...) stream */
+						if ((audio.type != audioStream::atMPEG) && ((first_ac3 == -1) || (audio.pid == cached_apid_ac3)))
+							first_ac3 = program.audioStreams.size();
+
 						program.audioStreams.push_back(audio);
 					}
 					else if (isvideo)
@@ -347,6 +356,21 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				}
 			}
 			ret = 0;
+
+
+			/* finally some fixup: if our default audio stream is an MPEG audio stream, 
+			   and we have 'defaultac3' set, use the first available ac3 stream instead.
+			   (note: if an ac3 audio stream was selected before, this will be also stored
+			   in 'fisrt_ac3', so we don't need to worry. */
+			bool defaultac3 = false;
+			std::string default_ac3;
+
+			if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
+				defaultac3 = default_ac3 == "True";
+
+			if (defaultac3 && (first_ac3 != -1))
+				program.defaultAudioStream = first_ac3;
+
 			m_cached_program = program;
 			m_have_cached_program = true;
 		}
