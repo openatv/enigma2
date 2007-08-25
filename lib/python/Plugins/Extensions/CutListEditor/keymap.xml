@@ -3,18 +3,18 @@
 		<device name="dreambox remote control (native)">
 			<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
 			<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
-			<key id="KEY_RED" mapto="seekBackDown" flags="m" />
-			<key id="KEY_RED" mapto="seekBackUp" flags="b" />
-			<key id="KEY_BLUE" mapto="seekFwdDown" flags="m" />
-			<key id="KEY_BLUE" mapto="seekFwdUp" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
+			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 			<!--key id="KEY_GREEN" mapto="unPauseService" flags="m" /-->
-			<key id="KEY_PREVIOUSSONG" mapto="seekBackDown" flags="m" />
-			<key id="KEY_PREVIOUSSONG" mapto="seekBackUp" flags="b" />
-			<key id="KEY_NEXTSONG" mapto="seekFwdDown" flags="m" />
-			<key id="KEY_NEXTSONG" mapto="seekFwdUp" flags="b" />
+			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
+			<key id="KEY_PREVIOUSSONG" mapto="seekBackManual" flags="l" />
+			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
+			<key id="KEY_NEXTSONG" mapto="seekFwdManual" flags="l" />
 		</device>
 		
 		<key id="KEY_LEFT" mapto="seek:-1" flags="m" />
