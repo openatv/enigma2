@@ -139,6 +139,7 @@ public:
 	int getNumberOfTracks();
 	RESULT selectTrack(unsigned int i);
 	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
+	int getCurrentTrack();
 
 		// iAudioChannelSelection	
 	int getCurrentChannel();
@@ -194,6 +195,7 @@ private:
 		/* in timeshift mode, we essentially have two channels, and thus pmt handlers. */
 	eDVBServicePMTHandler m_service_handler_timeshift;
 	eDVBServiceEITHandler m_event_handler;
+	int m_current_audio_pid;
 	
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
 	
@@ -214,7 +216,7 @@ private:
 	ePtr<iDVBDemux> m_decode_demux;
 
 	int m_current_audio_stream;
-	int selectAudioStream(int n);
+	int selectAudioStream(int n = -1);
 	
 		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;

@@ -1656,6 +1656,23 @@ int eDVBServicePlay::getNumberOfTracks()
 	return program.audioStreams.size();
 }
 
+int eDVBServicePlay::getCurrentTrack()
+{
+	eDVBServicePMTHandler::program program;
+	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	if (h.getProgramInfo(program))
+		return 0;
+
+	int max = program.audioStreams.size();
+	int i;
+
+	for (i = 0; i < max; ++i)
+		if (program.audioStreams[i].pid == m_current_audio_pid)
+			return i;
+
+	return 0;
+}
+
 RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
 	int ret = selectAudioStream(i);
@@ -1712,30 +1729,46 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	if (h.getProgramInfo(program))
 		return -1;
-	
+
 	if ((unsigned int)i >= program.audioStreams.size())
 		return -2;
-	
+
 	if (!m_decoder)
 		return -3;
-	
-	if (m_decoder->setAudioPID(program.audioStreams[i].pid, program.audioStreams[i].type))
+
+	int stream = i;
+	if (stream == -1)
+		stream = program.defaultAudioStream;
+
+	m_current_audio_pid = program.audioStreams[stream].pid;
+
+	if (m_decoder->setAudioPID(program.audioStreams[stream].pid, program.audioStreams[stream].type))
+	{
+		eDebug("set audio pid failed");
 		return -4;
+	}
 
 	if (m_rds_decoder)
-		m_rds_decoder->start(program.audioStreams[i].pid);
+		m_rds_decoder->start(program.audioStreams[stream].pid);
 
-	if (m_dvb_service && !m_is_pvr)
+			/* store new pid as default only when:
+				a.) we have an entry in the service db for the current service,
+				b.) we are not playing back something,
+				c.) we are not selecting the default entry. (we wouldn't change 
+				    anything in the best case, or destroy the default setting in
+				    case the real default is not yet available.)
+			*/
+	if (m_dvb_service && !m_is_pvr && (i != -1))
 	{
-		if (program.audioStreams[i].type == eDVBAudio::aMPEG)
+		if (program.audioStreams[stream].type == eDVBAudio::aMPEG)
 		{
-			m_dvb_service->setCacheEntry(eDVBService::cAPID, program.audioStreams[i].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, program.audioStreams[stream].pid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
 		else
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
-			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[i].pid);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, program.audioStreams[stream].pid);
 		}
 	}
 
@@ -2336,7 +2369,8 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
-		m_decoder->setAudioPID(apid, apidtype);
+		selectAudioStream();
+
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
 		{
 			m_decoder->setSyncPCR(pcrpid);
