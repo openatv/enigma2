@@ -1468,7 +1468,6 @@ class InfoBarAudioSelection:
 		n = audio and audio.getNumberOfTracks() or 0
 		keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 		tlist = []
-		print "tlist:", tlist
 		if n > 0:
 			self.audioChannel = service.audioChannel()
 
@@ -1487,8 +1486,8 @@ class InfoBarAudioSelection:
 
 				tlist.append((description, x))
 
-			selectedAudio = tlist[0][1]
-			tlist.sort(lambda x,y : cmp(x[0], y[0]))
+			selectedAudio = audio.getCurrentTrack()
+			tlist.sort(key=lambda x: x[0])
 
 			selection = 2
 			for x in tlist:
