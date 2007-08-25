@@ -651,10 +651,10 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 		double aspect_ratio;
 		switch(aspect)
 		{
-			case 1:		aspect_ratio = 1.778 / ((double)720/576); break; //16:9
-			case 2:		aspect_ratio = 1.600 / ((double)720/576); break; //16:10
-			//case 3:	aspect_ratio = 1.250 / ((double)720/576); break; //5:4
-			default:	aspect_ratio = 1.333 / ((double)720/576); //4:3
+			case 1:		aspect_ratio = 1.778 / ((double)702/576); break; //16:9
+			case 2:		aspect_ratio = 1.600 / ((double)702/576); break; //16:10
+			//case 3:	aspect_ratio = 1.250 / ((double)702/576); break; //5:4
+			default:	aspect_ratio = 1.333 / ((double)702/576); //4:3
 		}
 
 		if((aspect_ratio * oy * w / ox) <= h)
