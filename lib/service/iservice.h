@@ -443,6 +443,7 @@ public:
 	virtual int getNumberOfTracks()=0;
 	virtual RESULT selectTrack(unsigned int i)=0;
 	virtual SWIG_VOID(RESULT) getTrackInfo(struct iAudioTrackInfo &SWIG_OUTPUT, unsigned int n)=0;
+	virtual int getCurrentTrack()=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iAudioTrackSelection>, iAudioTrackSelectionPtr);
 
