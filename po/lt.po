@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-07 22:05+0200\n"
-"PO-Revision-Date: 2007-08-07 22:06+0200\n"
+"POT-Creation-Date: 2007-08-26 21:49+0000\n"
+"PO-Revision-Date: 2007-08-26 20:59+0200\n"
 "Last-Translator: Adga <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -12,16 +12,6 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-Country: LITHUANIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 bus paleista po atkūrimo"
-
-msgid "\"?"
-msgstr "\"?"
 
 msgid "#000000"
 msgstr "#000000"
@@ -192,7 +182,7 @@ msgstr ""
 "imtuvą. Išjungti dabar?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
-msgstr ""
+msgstr "Grafinis EPG visiems kanalams iš specifinio paketo"
 
 #, python-format
 msgid ""
@@ -277,14 +267,8 @@ msgstr "Pridėti"
 msgid "Add a mark"
 msgstr "Pridėti žymeklį"
 
-msgid "Add a new title"
-msgstr "Pridėti naują antraštę"
-
 msgid "Add timer"
 msgstr "Laikmatis"
-
-msgid "Add title..."
-msgstr "Pridėti antraštę..."
 
 msgid "Add to bouquet"
 msgstr "Pridėti į paketą"
@@ -377,17 +361,11 @@ msgstr "Diapazono plotis"
 msgid "Begin time"
 msgstr "Pradėjimo laikas"
 
+msgid "Behaviour of 0 key in PiP-mode"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Šviesumas"
-
-msgid "Burn"
-msgstr "Kurti"
-
-msgid "Burn DVD"
-msgstr "Kurti DVD"
-
-msgid "Burn DVD..."
-msgstr "Kurti DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -705,9 +683,6 @@ msgstr ""
 "Jūs tikrai norite atnaujinti Jūsų imtuvą?\n"
 "Paspauskite OK ir palaukite!"
 
-msgid "Do you want to view a cutlist tutorial?"
-msgstr "Jūs norite peržiūrėti iškirptą sąrašą?"
-
 msgid "Do you want to view a tutorial?"
 msgstr "Ar norite peržiūrėti aprašymą?"
 
@@ -753,17 +728,11 @@ msgstr "KLAIDA - nenuskanuota (%s)!"
 msgid "East"
 msgstr "Rytai"
 
-msgid "Edit current title"
-msgstr "Redaguoti dabartinę antraštę"
-
 msgid "Edit services list"
 msgstr "Redaguoti kanalų sąrašą"
 
-msgid "Edit title..."
-msgstr "Redaguoti antraštę"
-
 msgid "Electronic Program Guide"
-msgstr ""
+msgstr "Elektroninis programų gidas"
 
 msgid "Enable"
 msgstr "Įjungti"
@@ -924,7 +893,7 @@ msgid "Goto position"
 msgstr "Eiti į poziciją"
 
 msgid "Graphical Multi EPG"
-msgstr ""
+msgstr "Grafinis kelių kanalų EPG"
 
 msgid "Greek"
 msgstr "Graikų"
@@ -1164,8 +1133,8 @@ msgstr "Sukti į rytus"
 msgid "Move west"
 msgstr "Sukti į vakarus"
 
-msgid "Movie Menu"
-msgstr "Filmų meniu"
+msgid "Movielist menu"
+msgstr ""
 
 msgid "Multi EPG"
 msgstr "Kelių kanalų EPG"
@@ -1227,9 +1196,6 @@ msgstr "Tinklas..."
 
 msgid "New"
 msgstr "Nauji"
-
-msgid "New DVD"
-msgstr "Naujas DVD"
 
 msgid "New pin"
 msgstr "Naujas PIN"
@@ -1468,7 +1434,7 @@ msgid "Polarization"
 msgstr "Poliarizacija"
 
 msgid "Polish"
-msgstr ""
+msgstr "Lenkų"
 
 msgid "Port A"
 msgstr "Jungtist A"
@@ -1605,14 +1571,8 @@ msgstr "Pašalinti priedus"
 msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
 
-msgid "Remove currently selected title"
-msgstr "Pašalinti dabar pasirinktą antraštę"
-
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
-
-msgid "Remove title"
-msgstr "Pašalinti antraštę"
 
 msgid "Repeat"
 msgstr "Pakartoti"
@@ -1683,12 +1643,6 @@ msgstr "Šeštadienis"
 
 msgid "Save Playlist"
 msgstr "Išsaugoti grojaraštį"
-
-msgid "Save current project to disk"
-msgstr "Išsaugoti dabartinį projektą į diską"
-
-msgid "Save..."
-msgstr "Išsaugoti..."
 
 msgid "Scaling Mode"
 msgstr "Skalės režimas"
@@ -1908,11 +1862,11 @@ msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
-msgstr ""
+msgstr "Rūšiuoti A-Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr ""
+msgstr "Rūšiuoti laiką"
 
 msgid "Sound"
 msgstr "Garsas"
@@ -2030,6 +1984,9 @@ msgstr "Antžeminis transliuotojas"
 
 msgid "Test mode"
 msgstr "Testuoti"
+
+msgid "Test-Messagebox?"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2546,6 +2503,9 @@ msgstr "pridėti į tėvų kontrolę"
 msgid "advanced"
 msgstr "Išplėstas"
 
+msgid "alphabetic sort"
+msgstr ""
+
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -2670,6 +2630,9 @@ msgstr "lygus į Socket A"
 msgid "exit mediaplayer"
 msgstr "išjungti media grotuvą"
 
+msgid "exit movielist"
+msgstr ""
+
 msgid "free diskspace"
 msgstr "laisvos vietos diske"
 
@@ -2687,6 +2650,9 @@ msgstr "Klausytis radijo..."
 
 msgid "help..."
 msgstr "Pagalba..."
+
+msgid "hide extended description"
+msgstr ""
 
 msgid "hide player"
 msgstr "slėpti grotuvą"
@@ -2732,6 +2698,18 @@ msgstr "palikti grotuvą..."
 msgid "left"
 msgstr "kairys"
 
+msgid "list style compact"
+msgstr ""
+
+msgid "list style compact with description"
+msgstr ""
+
+msgid "list style default"
+msgstr ""
+
+msgid "list style single line"
+msgstr ""
+
 msgid "load playlist"
 msgstr "užkraunamas grojaraštis"
 
@@ -2758,6 +2736,9 @@ msgstr "minučių"
 
 msgid "minutes and"
 msgstr "minučių ir"
+
+msgid "move PiP to main picture"
+msgstr ""
 
 msgid "movie list"
 msgstr "filmų sąrašas"
@@ -2933,6 +2914,9 @@ msgstr "Sekundžių"
 msgid "seconds."
 msgstr "sekundžių."
 
+msgid "select movie"
+msgstr ""
+
 msgid "service pin"
 msgstr "kanalo PIN"
 
@@ -2942,14 +2926,29 @@ msgstr "nustatymų PIN"
 msgid "show EPG..."
 msgstr "Rodyti EPG..."
 
+msgid "show all"
+msgstr ""
+
 msgid "show alternatives"
 msgstr "rodyti kitus"
 
 msgid "show event details"
 msgstr "rodyti užduočių detales"
 
+msgid "show extended description"
+msgstr ""
+
+msgid "show first tag"
+msgstr ""
+
+msgid "show second tag"
+msgstr ""
+
 msgid "show single service EPG..."
 msgstr "Rodyti vieno kanalo EPG..."
+
+msgid "show tag menu"
+msgstr ""
 
 msgid "show transponder info"
 msgstr "rodyti transponderio informaciją"
@@ -2981,6 +2980,12 @@ msgstr "Praleisti pirmyn (įrašykite laiką)"
 msgid "skip forward (self defined)"
 msgstr "Praleisti pirmyn (pačio pasirinkimas)"
 
+msgid "sort by date"
+msgstr ""
+
+msgid "standard"
+msgstr ""
+
 msgid "standby"
 msgstr "išjungimas"
 
@@ -2993,6 +2998,9 @@ msgstr "Pradėti vaizdo stabdymą"
 msgid "stereo"
 msgstr "stereo"
 
+msgid "stop PiP"
+msgstr ""
+
 msgid "stop entry"
 msgstr "stabdyti įrašą"
 
@@ -3001,6 +3009,9 @@ msgstr "stabdyti įrašymą"
 
 msgid "stop timeshift"
 msgstr "išjungti vaizdo stabdymą"
+
+msgid "swap PiP and main picture"
+msgstr ""
 
 msgid "switch to filelist"
 msgstr "perjungti į failų sąrašą"
@@ -3068,3 +3079,55 @@ msgstr "Jungti"
 
 msgid "zapped"
 msgstr "įjungta"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 bus paleista po atkūrimo"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
+
+#~ msgid "Add a new title"
+#~ msgstr "Pridėti naują antraštę"
+
+#~ msgid "Add title..."
+#~ msgstr "Pridėti antraštę..."
+
+#~ msgid "Burn"
+#~ msgstr "Kurti"
+
+#~ msgid "Burn DVD"
+#~ msgstr "Kurti DVD"
+
+#~ msgid "Burn DVD..."
+#~ msgstr "Kurti DVD..."
+
+#~ msgid "Do you want to view a cutlist tutorial?"
+#~ msgstr "Jūs norite peržiūrėti iškirptą sąrašą?"
+
+#~ msgid "Edit current title"
+#~ msgstr "Redaguoti dabartinę antraštę"
+
+#~ msgid "Edit title..."
+#~ msgstr "Redaguoti antraštę"
+
+#~ msgid "Movie Menu"
+#~ msgstr "Filmų meniu"
+
+#~ msgid "New DVD"
+#~ msgstr "Naujas DVD"
+
+#~ msgid "Remove currently selected title"
+#~ msgstr "Pašalinti dabar pasirinktą antraštę"
+
+#~ msgid "Remove title"
+#~ msgstr "Pašalinti antraštę"
+
+#~ msgid "Save current project to disk"
+#~ msgstr "Išsaugoti dabartinį projektą į diską"
+
+#~ msgid "Save..."
+#~ msgstr "Išsaugoti..."
