@@ -426,9 +426,11 @@ struct iAudioTrackInfo
 #ifndef SWIG
 	std::string m_description;
 	std::string m_language; /* iso639 */
+	int m_pid; /* for association with the stream. */
 #endif
 	std::string getDescription() { return m_description; }
 	std::string getLanguage() { return m_language; }
+	int getPID() { return m_pid; }
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(iAudioTrackInfo);
 

@@ -1694,6 +1694,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 	if (i >= program.audioStreams.size())
 		return -2;
 	
+	info.m_pid = program.audioStreams[i].pid;
+
 	if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atMPEG)
 		info.m_description = "MPEG";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAC3)
