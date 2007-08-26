@@ -1745,7 +1745,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	if (((unsigned int)stream) < program.audioStreams.size())
 	{
 		apid = program.audioStreams[stream].pid;
-		apidtype = apidtype;
+		apidtype = program.audioStreams[stream].type;
 	}
 
 	m_current_audio_pid = apid;
