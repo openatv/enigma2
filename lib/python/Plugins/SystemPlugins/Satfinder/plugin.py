@@ -7,7 +7,7 @@ from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
 from Components.Label import Label
-from Components.TunerInfo import TunerInfo
+from Components.Sources.FrontendStatus import FrontendStatus
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.MenuList import MenuList
@@ -43,17 +43,40 @@ class Satfinder(ScanSetup):
 		<screen position="90,100" size="520,400" title="Tune">
 			<widget name="config" position="20,10" size="460,240" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="20,360" zPosition="-10" size="350,30" font="Regular;23" />
-			<widget name="snr" text="SNR:" position="0,245" size="60,22" font="Regular;21" />
-			<widget name="agc" text="AGC:" position="0,270" size="60,22" font="Regular;21" />
-			<widget name="ber" text="BER:" position="0,295" size="60,22" font="Regular;21" />
-			<widget name="lock" text="Lock:" position="0,320" size="60,22" font="Regular;21" />
-			<widget name="snr_percentage" position="220,245" size="60,22" font="Regular;21" />
-			<widget name="agc_percentage" position="220,270" size="60,22" font="Regular;21" />
-			<widget name="ber_value" position="220,295" size="60,22" font="Regular;21" />
-			<widget name="lock_state" position="60,320" size="150,22" font="Regular;21" />
-			<widget name="snr_bar" position="60,245" size="150,22" />
-			<widget name="agc_bar" position="60,270" size="150,22" />
-			<widget name="ber_bar" position="60,295" size="150,22" />
+			<eLabel text="dB:" position="23,230" size="60,22" font="Regular;21" />
+			<eLabel text="SNR:" position="23,255" size="60,22" font="Regular;21" />
+			<eLabel text="AGC:" position="23,280" size="60,22" font="Regular;21" />
+			<eLabel text="BER:" position="23,305" size="60,22" font="Regular;21" />
+			<eLabel text="Lock:" position="23,330" size="60,22" font="Regular;21" />
+			<widget source="Frontend" render="Label" position="295,230" size="60,22" font="Regular;21" >
+				<convert type="FrontendInfo">SNRdB</convert>
+			</widget>
+			<widget source="Frontend" render="Label" position="295,255" size="60,22" font="Regular;21" >
+				<convert type="FrontendInfo">SNR</convert>
+			</widget>
+			<widget source="Frontend" render="Label" position="295,280" size="60,22" font="Regular;21" >
+				<convert type="FrontendInfo">AGC</convert>
+			</widget>
+			<widget source="Frontend" render="Label" position="295,305" size="60,22" font="Regular;21" >
+				<convert type="FrontendInfo">BER</convert>
+			</widget>
+			<widget source="Frontend" render="Progress" position="85,257" size="200,22" >
+				<convert type="FrontendInfo">SNR</convert>
+			</widget>
+			<widget source="Frontend" render="Progress" position="85,282" size="200,22" >
+				<convert type="FrontendInfo">AGC</convert>
+			</widget>
+			<widget source="Frontend" render="Progress" position="85,307" size="200,22" >
+				<convert type="FrontendInfo">BER</convert>
+			</widget>
+			<widget source="Frontend" render="Pixmap" pixmap="key_green-fs8.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
+				<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide" />
+			</widget>
+			<widget source="Frontend" render="Pixmap" pixmap="key_red-fs8.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
+				<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+			</widget>
 		</screen>"""
 
 	def openFrontend(self):
@@ -76,8 +99,7 @@ class Satfinder(ScanSetup):
 		self.initcomplete = False
 		self.feid = feid
 		self.oldref = None
-		self.frontendStatus = { }
-		
+
 		if not self.openFrontend():
 			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
 			session.nav.stopService() # try to disable foreground service
@@ -90,38 +112,9 @@ class Satfinder(ScanSetup):
 
 		ScanSetup.__init__(self, session)
 		self.tuner = Tuner(self.frontend)
-		
-		self["snr"] = Label()
-		self["agc"] = Label()
-		self["ber"] = Label()
-		self["lock"] = Label()
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, statusDict = self.frontendStatus)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, statusDict = self.frontendStatus)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
-		
 		self["introduction"].setText("")
-
-		self.statusTimer = eTimer()
-		self.statusTimer.timeout.get().append(self.updateStatus)
-		self.statusTimer.start(50, False)
+		self["Frontend"] = FrontendStatus(frontend_source = self.frontend, update_interval = 100)
 		self.initcomplete = True
-
-	def updateStatus(self):
-		if self.frontend:
-			self.frontend.getFrontendStatus(self.frontendStatus)
-		else:
-			self.frontendStatus.clear()
-		self["snr_percentage"].update()
-		self["agc_percentage"].update()
-		self["ber_value"].update()
-		self["snr_bar"].update()
-		self["agc_bar"].update()
-		self["ber_bar"].update()
-		self["lock_state"].update()
 
 	def createSetup(self):
 		self.typeOfTuningEntry = None
