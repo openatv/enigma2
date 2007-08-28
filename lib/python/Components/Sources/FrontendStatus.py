@@ -2,15 +2,15 @@ from Source import Source
 from enigma import eTimer
 
 class FrontendStatus(Source):
-	def __init__(self, service_source = None, frontend_source = None):
+	def __init__(self, service_source = None, frontend_source = None, update_interval = 1000):
 		Source.__init__(self)
+		self.update_interval = update_interval
 		self.service_source = service_source
 		self.frontend_source = frontend_source
 		self.invalidate()
-		
 		self.poll_timer = eTimer()
 		self.poll_timer.timeout.get().append(self.updateFrontendStatus)
-		self.poll_timer.start(1000)
+		self.poll_timer.start(update_interval)
 
 	def invalidate(self):
 		self.snr = self.agc = self.ber = self.lock = self.snr_db = None
@@ -33,6 +33,7 @@ class FrontendStatus(Source):
 			if frontend:
 				dict = { }
 				frontend.getFrontendStatus(dict)
+				return dict
 		elif self.service_source:
 			service = self.service_source()
 			feinfo = service and service.frontendInfo()
@@ -44,5 +45,5 @@ class FrontendStatus(Source):
 		if suspended:
 			self.poll_timer.stop()
 		else:
-			self.poll_timer.start(1000)
+			self.poll_timer.start(self.update_interval)
 
