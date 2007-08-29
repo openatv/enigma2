@@ -113,6 +113,11 @@ class Setup(ConfigListScreen, Screen):
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
 			elif x.tagName == 'item':
+				item_level = int(x.getAttribute("level") or "0")
+
+				if item_level > config.usage.setup_level.index:
+					continue
+
 				item_text = _(x.getAttribute("text").encode("UTF-8") or "??")
 				b = eval(XMLTools.mergeText(x.childNodes));
 				if b == "":

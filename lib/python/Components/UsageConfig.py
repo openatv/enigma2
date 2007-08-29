@@ -29,6 +29,11 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
+	config.usage.setup_level = ConfigSelection(default = "intermediate", choices = [
+		("simple", _("Simple")),
+		("intermediate", _("Intermediate")),
+		("expert", _("Expert")) ])
+
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
 	config.usage.hdd_standby.addNotifier(setHDDStandby)
