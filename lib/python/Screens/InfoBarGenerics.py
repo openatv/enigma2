@@ -648,7 +648,8 @@ class InfoBarSeek:
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.seekRelative(time * 90000)
-					self.screen.showAfterSeek()
+					if config.usage.show_infobar_on_skip.value:
+						self.screen.showAfterSeek()
 					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
@@ -871,7 +872,7 @@ class InfoBarSeek:
 	def checkSkipShowHideLock(self):
 		wantlock = self.seekstate != self.SEEK_STATE_PLAY
 
-		if config.usage.show_infobar_on_zap.value:
+		if config.usage.show_infobar_on_skip.value:
 			if self.lockedBecauseOfSkipping and not wantlock:
 				self.unlockShow()
 				self.lockedBecauseOfSkipping = False
