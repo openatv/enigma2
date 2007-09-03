@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-30 00:02+0200\n"
-"PO-Revision-Date: 2007-06-11 17:14+0200\n"
+"POT-Creation-Date: 2007-09-03 14:28+0000\n"
+"PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,16 +20,6 @@ msgstr ""
 "X-Poedit-Country: CATALONIA\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 "X-Generator: KBabel 1.11.4\n"
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 tornarà a arrencar després de la restauració"
-
-msgid "\"?"
-msgstr "\"?"
 
 msgid "#000000"
 msgstr "#000000"
@@ -65,7 +55,7 @@ msgid "#ffffffff"
 msgstr "#ffffffff"
 
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
 #, python-format
 msgid "%d min"
@@ -204,6 +194,9 @@ msgstr ""
 "Una gravació acabada pretén apagar\n"
 "la Dreambox ara. Vols apagar-la?"
 
+msgid "A graphical EPG for all services of an specific bouquet"
+msgstr ""
+
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -287,14 +280,8 @@ msgstr "Afegir"
 msgid "Add a mark"
 msgstr "Afegir una marca"
 
-msgid "Add a new title"
-msgstr ""
-
 msgid "Add timer"
 msgstr "Gravar"
-
-msgid "Add title..."
-msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Afegir a la llista"
@@ -385,19 +372,13 @@ msgid "Bandwidth"
 msgstr "Ample de banda"
 
 msgid "Begin time"
+msgstr "Hora d'inici"
+
+msgid "Behaviour of 0 key in PiP-mode"
 msgstr ""
 
 msgid "Brightness"
 msgstr "Brillantor"
-
-msgid "Burn"
-msgstr ""
-
-msgid "Burn DVD"
-msgstr ""
-
-msgid "Burn DVD..."
-msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -483,21 +464,17 @@ msgstr "Netejar abans de buscar"
 msgid "Clear log"
 msgstr "Esborrar log"
 
-#, fuzzy
 msgid "Code rate high"
-msgstr "\"Code rate\" alt"
+msgstr "Velocitat de codi alta"
 
-#, fuzzy
 msgid "Code rate low"
-msgstr "\"Code rate\" baix"
+msgstr "Velocitat de codi baixa"
 
-#, fuzzy
 msgid "Coderate HP"
-msgstr "\"Coderate\" HP"
+msgstr "Velocitat de codi HP"
 
-#, fuzzy
 msgid "Coderate LP"
-msgstr "\"Coderate\" LP"
+msgstr "Velocitat de codi LP"
 
 msgid "Color Format"
 msgstr "Format de color"
@@ -564,7 +541,7 @@ msgid "Current version:"
 msgstr "Versió actual:"
 
 msgid "Custom skip time for 1/3 keys"
-msgstr ""
+msgstr "Configura el temps a avançar per a les tecles 1/3"
 
 msgid "Customize"
 msgstr "Personalitzar"
@@ -660,9 +637,8 @@ msgstr ""
 msgid "Dish"
 msgstr "Antena"
 
-#, fuzzy
 msgid "Display Setup"
-msgstr "Configuració LCD"
+msgstr "Configurar Display"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -683,7 +659,7 @@ msgstr ""
 "el plugin \""
 
 msgid "Do you really want to exit?"
-msgstr ""
+msgstr "Segur que vols sortir?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -720,9 +696,6 @@ msgid ""
 msgstr ""
 "Vols actualitzar la Dreambox?\n"
 "Després de prémer OK, espera!"
-
-msgid "Do you want to view a cutlist tutorial?"
-msgstr "Vols veure un manual d'edició?"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vols veure un manual?"
@@ -769,13 +742,10 @@ msgstr "ERROR - ha fallat la recerca (%s)!"
 msgid "East"
 msgstr "Est"
 
-msgid "Edit current title"
-msgstr ""
-
 msgid "Edit services list"
 msgstr "Editar llista de canals"
 
-msgid "Edit title..."
+msgid "Electronic Program Guide"
 msgstr ""
 
 msgid "Enable"
@@ -797,7 +767,7 @@ msgid "End"
 msgstr "Fi"
 
 msgid "End time"
-msgstr ""
+msgstr "Hora final"
 
 msgid "EndTime"
 msgstr "HoraFi"
@@ -850,6 +820,9 @@ msgstr "Sortir de l'assistent"
 msgid "Exit wizard"
 msgstr "Sortir de l'assistent"
 
+msgid "Expert"
+msgstr ""
+
 msgid "Extended Setup..."
 msgstr "Configuració avançada..."
 
@@ -860,13 +833,14 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Fast"
-msgstr ""
+msgstr "Ràpid"
 
 msgid "Fast DiSEqC"
 msgstr "DiSEqC ràpid"
 
+#, fuzzy
 msgid "Fast epoch"
-msgstr ""
+msgstr "Època ràpida"
 
 msgid "Favourites"
 msgstr "Preferits"
@@ -883,13 +857,11 @@ msgstr "Francès"
 msgid "Frequency"
 msgstr "Freqüència"
 
-#, fuzzy
 msgid "Frequency bands"
 msgstr "Bandes de freqüència"
 
-#, fuzzy
 msgid "Frequency scan step size(khz)"
-msgstr "Mida dels passos de l'escaneig de freqüència(khz)"
+msgstr "Mida de pas de freqüència(khz)"
 
 #, fuzzy
 msgid "Frequency steps"
@@ -939,8 +911,11 @@ msgstr "Anar a 0"
 msgid "Goto position"
 msgstr "Anar a la posició"
 
-msgid "Greek"
+msgid "Graphical Multi EPG"
 msgstr ""
+
+msgid "Greek"
+msgstr "Grec"
 
 msgid "Guard Interval"
 msgstr "Interval de guarda"
@@ -1029,6 +1004,9 @@ msgstr "Instal·lant programari..."
 msgid "Instant Record..."
 msgstr "Gravació instantània..."
 
+msgid "Intermediate"
+msgstr ""
+
 msgid "Internal Flash"
 msgstr "Flash interna"
 
@@ -1090,10 +1068,11 @@ msgid "List of Storage Devices"
 msgstr "Dispositius d'emmagatzematge"
 
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lituà"
 
+#, fuzzy
 msgid "Long Keypress"
-msgstr ""
+msgstr "Prémer tecla llarg"
 
 msgid "Longitude"
 msgstr "Longitud"
@@ -1176,8 +1155,8 @@ msgstr "Moure a l'est"
 msgid "Move west"
 msgstr "Moure a l'oest"
 
-msgid "Movie Menu"
-msgstr "Menú de pel·lícules"
+msgid "Movielist menu"
+msgstr ""
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -1240,9 +1219,6 @@ msgstr "Xarxa..."
 msgid "New"
 msgstr "Nou"
 
-msgid "New DVD"
-msgstr ""
-
 msgid "New pin"
 msgstr "Nou pin"
 
@@ -1282,9 +1258,8 @@ msgstr "No s'ha actualitzat cap paquet. Comprova la xarxa i torna-ho a provar."
 msgid "No positioner capable frontend found."
 msgstr "No s'ha trobat cap motor."
 
-#, fuzzy
 msgid "No satellite frontend found!!"
-msgstr "No s'ha trobat cap 'frontend' de satèŀlit!!"
+msgstr "No s'ha trobat cap sintonitzador de satèŀlit!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
@@ -1423,7 +1398,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Introdueix un nom per al nou marcador"
 
 msgid "Please enter filename (empty = use current date)"
-msgstr ""
+msgstr "Sisplau introdueix el nom (buit=data actual)"
 
 msgid "Please enter the correct pin code"
 msgstr "Sisplau introdueix el pin"
@@ -1435,10 +1410,10 @@ msgid "Please press OK!"
 msgstr "Sisplau prem OK!"
 
 msgid "Please select a playlist to delete..."
-msgstr ""
+msgstr "Sisplau selecciona una llista per eliminar..."
 
 msgid "Please select a playlist..."
-msgstr ""
+msgstr "Sisplau selecciona una llista..."
 
 msgid "Please select a subservice to record..."
 msgstr "Sisplau selecciona un subservei a gravar..."
@@ -1479,6 +1454,9 @@ msgstr "Polaritat"
 msgid "Polarization"
 msgstr "Polarització"
 
+msgid "Polish"
+msgstr ""
+
 msgid "Port A"
 msgstr "Port A"
 
@@ -1492,7 +1470,7 @@ msgid "Port D"
 msgstr "Port D"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portuguès"
 
 msgid "Positioner"
 msgstr "Motor"
@@ -1510,7 +1488,7 @@ msgid "Positioner storage"
 msgstr "Emmagatzemar posició del motor"
 
 msgid "Power threshold in mA"
-msgstr ""
+msgstr "Llindar de corrent en mA"
 
 msgid "Predefined transponder"
 msgstr "Transponedor predefinit"
@@ -1623,14 +1601,8 @@ msgstr "Esborrar plugins"
 msgid "Remove a mark"
 msgstr "Esborrar una marca"
 
-msgid "Remove currently selected title"
-msgstr ""
-
 msgid "Remove plugins"
 msgstr "Esborrar plugins"
-
-msgid "Remove title"
-msgstr ""
 
 msgid "Repeat"
 msgstr "Repetir"
@@ -1666,13 +1638,13 @@ msgid "Rolloff"
 msgstr "Rolloff"
 
 msgid "Rotor turning speed"
-msgstr ""
+msgstr "Velocitat de rotació del motor"
 
 msgid "Running"
 msgstr "Mostrant"
 
 msgid "Russian"
-msgstr ""
+msgstr "Rus"
 
 msgid "S-Video"
 msgstr "S-Vídeo"
@@ -1699,13 +1671,7 @@ msgid "Saturday"
 msgstr "Dissabte"
 
 msgid "Save Playlist"
-msgstr ""
-
-msgid "Save current project to disk"
-msgstr ""
-
-msgid "Save..."
-msgstr ""
+msgstr "Grava llista de reproducció"
 
 msgid "Scaling Mode"
 msgstr "Mode d'escalat"
@@ -1852,6 +1818,9 @@ msgstr "Configuracions"
 msgid "Setup"
 msgstr "Configuració"
 
+msgid "Setup Mode"
+msgstr ""
+
 msgid "Show infobar on channel change"
 msgstr "Mostrar la barra d'info canviant de canal"
 
@@ -1882,6 +1851,9 @@ msgstr "Similar"
 msgid "Similar broadcasts:"
 msgstr "Emisions similars:"
 
+msgid "Simple"
+msgstr ""
+
 msgid "Single"
 msgstr "Senzill"
 
@@ -1908,7 +1880,7 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 msgid "Slow"
-msgstr ""
+msgstr "Lent"
 
 #, fuzzy
 msgid "Some plugins are not available:\n"
@@ -1925,6 +1897,14 @@ msgstr ""
 "El destí del backup no existeix\n"
 "\n"
 "Sisplau, escull-ne un altre."
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort A-Z"
+msgstr ""
+
+#. TRANSLATORS: This must fit into the header button in the EPG-List
+msgid "Sort Time"
+msgstr ""
 
 msgid "Sound"
 msgstr "So"
@@ -1954,7 +1934,7 @@ msgid "StartTime"
 msgstr "Hora inici"
 
 msgid "Starting on"
-msgstr ""
+msgstr "Començar el"
 
 msgid "Startwizard"
 msgstr "Assistent d'inici"
@@ -2022,13 +2002,11 @@ msgstr "Canviar al següent subservei"
 msgid "Switch to previous subservice"
 msgstr "Canviar al subservei anterior"
 
-#, fuzzy
 msgid "Symbol Rate"
-msgstr "Symbol rate"
+msgstr "Velocitat de símbol"
 
-#, fuzzy
 msgid "Symbolrate"
-msgstr "Symbolrate"
+msgstr "Velocitat de símbol"
 
 msgid "System"
 msgstr "Sistema"
@@ -2044,6 +2022,9 @@ msgstr "Proveïdor terrestre"
 
 msgid "Test mode"
 msgstr "Mode test"
+
+msgid "Test-Messagebox?"
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2174,7 +2155,7 @@ msgstr "Intents:"
 
 #, fuzzy
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr "Buscant Transponedors a la xarxa de cable... sisplau espera..."
+msgstr "Buscant transponedors a la xarxa de cable... sisplau espera..."
 
 #, fuzzy
 msgid "Try to find used transponders in cable network.. please wait..."
@@ -2266,7 +2247,7 @@ msgid "Use DHCP"
 msgstr "Utilitzar DHCP"
 
 msgid "Use Power Measurement"
-msgstr ""
+msgstr "Utilitzar mesura de corrent"
 
 msgid "Use a gateway"
 msgstr "Utilitzar una porta d'enllaç"
@@ -2535,7 +2516,7 @@ msgid "add file to playlist"
 msgstr "afegir el fitxer a la llista"
 
 msgid "add files to playlist"
-msgstr ""
+msgstr "afegir fitxers a la llista"
 
 msgid "add marker"
 msgstr "afegir marcador"
@@ -2563,6 +2544,9 @@ msgstr "afegir a la protecció parental"
 
 msgid "advanced"
 msgstr "avançat"
+
+msgid "alphabetic sort"
+msgstr ""
 
 msgid ""
 "are you sure you want to restore\n"
@@ -2620,10 +2604,10 @@ msgid "delete cut"
 msgstr "esborrar tall"
 
 msgid "delete playlist entry"
-msgstr ""
+msgstr "esborrar entrada de la llista"
 
 msgid "delete saved playlist"
-msgstr ""
+msgstr "esborrar llista gravada"
 
 msgid "delete..."
 msgstr "esborrar..."
@@ -2686,6 +2670,9 @@ msgid "equal to Socket A"
 msgstr "igual al Socket A"
 
 msgid "exit mediaplayer"
+msgstr "sortir del reproductor"
+
+msgid "exit movielist"
 msgstr ""
 
 msgid "free diskspace"
@@ -2705,6 +2692,9 @@ msgstr "escoltar la ràdio..."
 
 msgid "help..."
 msgstr "ajuda..."
+
+msgid "hide extended description"
+msgstr ""
 
 msgid "hide player"
 msgstr "amagar reproductor"
@@ -2733,16 +2723,16 @@ msgid "insert mark here"
 msgstr "inserir marca aquí"
 
 msgid "jump to listbegin"
-msgstr ""
+msgstr "salta al principi de la llista"
 
 msgid "jump to listend"
-msgstr ""
+msgstr "salta al final de la llista"
 
 msgid "jump to next marked position"
-msgstr ""
+msgstr "salta a la següent posició marcada"
 
 msgid "jump to previous marked position"
-msgstr ""
+msgstr "salta a l'anterior posició marcada"
 
 msgid "leave movie player..."
 msgstr "sortir del reproductor de pel·lícules..."
@@ -2750,8 +2740,20 @@ msgstr "sortir del reproductor de pel·lícules..."
 msgid "left"
 msgstr "esquerra"
 
-msgid "load playlist"
+msgid "list style compact"
 msgstr ""
+
+msgid "list style compact with description"
+msgstr ""
+
+msgid "list style default"
+msgstr ""
+
+msgid "list style single line"
+msgstr ""
+
+msgid "load playlist"
+msgstr "carregar llista"
 
 msgid "locked"
 msgstr "bloquejat"
@@ -2763,7 +2765,7 @@ msgid "manual"
 msgstr "manual"
 
 msgid "menu"
-msgstr ""
+msgstr "menú"
 
 msgid "mins"
 msgstr "minuts"
@@ -2777,8 +2779,11 @@ msgstr "minuts"
 msgid "minutes and"
 msgstr "minuts i"
 
-msgid "movie list"
+msgid "move PiP to main picture"
 msgstr ""
+
+msgid "movie list"
+msgstr "llista de pel·lícules"
 
 #, fuzzy
 msgid "multinorm"
@@ -2850,13 +2855,13 @@ msgid "pause"
 msgstr "pausa"
 
 msgid "play entry"
-msgstr ""
+msgstr "reprodueix l'entrada"
 
 msgid "play next playlist entry"
-msgstr ""
+msgstr "reprodueix la següent de la llista"
 
 msgid "play previous playlist entry"
-msgstr ""
+msgstr "reprodueix l'anterior de la llista"
 
 msgid "please press OK when ready"
 msgstr "prem OK quan estiguis a punt"
@@ -2907,7 +2912,7 @@ msgid "right"
 msgstr "dreta"
 
 msgid "save playlist"
-msgstr ""
+msgstr "grava llista"
 
 #, python-format
 msgid ""
@@ -2954,6 +2959,9 @@ msgstr "segons"
 msgid "seconds."
 msgstr "segons."
 
+msgid "select movie"
+msgstr ""
+
 msgid "service pin"
 msgstr "pin del canal"
 
@@ -2963,20 +2971,35 @@ msgstr "pin de la configuració"
 msgid "show EPG..."
 msgstr "mostrar EPG..."
 
+msgid "show all"
+msgstr ""
+
 msgid "show alternatives"
 msgstr "mostrar alternatives"
 
 msgid "show event details"
 msgstr "mostrar detalls del programa"
 
+msgid "show extended description"
+msgstr ""
+
+msgid "show first tag"
+msgstr ""
+
+msgid "show second tag"
+msgstr ""
+
 msgid "show single service EPG..."
+msgstr "mostrar EPG d'un sol canal..."
+
+msgid "show tag menu"
 msgstr ""
 
 msgid "show transponder info"
 msgstr "mostrar info del transponedor"
 
 msgid "shuffle playlist"
-msgstr ""
+msgstr "llista aleatòria"
 
 msgid "shutdown"
 msgstr "apagar"
@@ -2988,18 +3011,24 @@ msgid "skip backward"
 msgstr "saltar endarrere"
 
 msgid "skip backward (enter time)"
-msgstr ""
+msgstr "saltar enrere (introduint el temps)"
 
 msgid "skip backward (self defined)"
-msgstr ""
+msgstr "saltar enrere (definir)"
 
 msgid "skip forward"
 msgstr "saltar endavant"
 
 msgid "skip forward (enter time)"
-msgstr ""
+msgstr "saltar endavant (introduint el temps)"
 
 msgid "skip forward (self defined)"
+msgstr "saltar endavant (definir)"
+
+msgid "sort by date"
+msgstr ""
+
+msgid "standard"
 msgstr ""
 
 msgid "standby"
@@ -3014,14 +3043,20 @@ msgstr "activar pausa"
 msgid "stereo"
 msgstr "stèreo"
 
-msgid "stop entry"
+msgid "stop PiP"
 msgstr ""
+
+msgid "stop entry"
+msgstr "aturar entrada"
 
 msgid "stop recording"
 msgstr "aturar gravació"
 
 msgid "stop timeshift"
 msgstr "cancel·lar pausa"
+
+msgid "swap PiP and main picture"
+msgstr ""
 
 msgid "switch to filelist"
 msgstr "canviar a la llista de fitxers"
@@ -3039,7 +3074,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "aquest canal està protegit per un pin de control parental"
 
 msgid "toggle a cut mark at the current position"
-msgstr ""
+msgstr "posar una marca de tall en l'actual posició"
 
 msgid "unknown service"
 msgstr "canal desconegut"
@@ -3090,11 +3125,54 @@ msgstr "zappejar"
 msgid "zapped"
 msgstr "zappejat"
 
-#~ msgid "Add files to playlist"
-#~ msgstr "Afegir fitxers a la llista"
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 tornarà a arrencar després de la restauració"
 
-#~ msgid "Replace current playlist"
-#~ msgstr "Substituïr la llista actual"
+#~ msgid "\"?"
+#~ msgstr "\"?"
 
-#~ msgid "You selected a playlist"
-#~ msgstr "Has seleccionat una llista"
+#~ msgid "Add a new title"
+#~ msgstr "Afegir un nou títol"
+
+#~ msgid "Add title..."
+#~ msgstr "Afegir títol..."
+
+#~ msgid "Burn"
+#~ msgstr "Gravar"
+
+#~ msgid "Burn DVD"
+#~ msgstr "Gravar DVD"
+
+#~ msgid "Burn DVD..."
+#~ msgstr "Gravar DVD..."
+
+#~ msgid "Do you want to view a cutlist tutorial?"
+#~ msgstr "Vols veure un manual d'edició?"
+
+#~ msgid "Edit current title"
+#~ msgstr "Editar títol actual"
+
+#~ msgid "Edit title..."
+#~ msgstr "Editar títol..."
+
+#~ msgid "Movie Menu"
+#~ msgstr "Menú de pel·lícules"
+
+#~ msgid "New DVD"
+#~ msgstr "Nou DVD"
+
+#~ msgid "Remove currently selected title"
+#~ msgstr "Esborra el títol seleccionat"
+
+#~ msgid "Remove title"
+#~ msgstr "Esborra títol"
+
+#~ msgid "Save current project to disk"
+#~ msgstr "Grava el projecte actual al disc"
+
+#~ msgid "Save..."
+#~ msgstr "Gravar..."
