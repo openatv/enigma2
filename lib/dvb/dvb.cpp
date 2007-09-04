@@ -922,6 +922,7 @@ void eDVBChannel::cueSheetEvent(int event)
 				m_skipmode_n = m_skipmode_m = 0;
 			}
 		}
+		ASSERT(m_pvr_thread);
 		m_pvr_thread->setIFrameSearch(m_skipmode_n != 0);
 		eDebug("flush pvr");
 		flushPVR(m_cue->m_decoding_demux);
