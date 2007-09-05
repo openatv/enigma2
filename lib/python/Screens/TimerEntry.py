@@ -224,6 +224,11 @@ class TimerEntry(Screen, ConfigListScreen):
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
 		return int(time.mktime(dt.timetuple()))
 
+	def buildRepeatedBegin(self, rep_time, start_time):
+		d = time.localtime(rep_time)
+		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, start_time[0], start_time[1])
+		return int(time.mktime(dt.timetuple()))
+
 	def getBeginEnd(self):
 		enddate = self.timerentry_enddate.value
 		endtime = self.timerentry_endtime.value
@@ -251,7 +256,6 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
 		if self.timerentry_type.value == "repeated":
-			self.timer.repeatedbegindate = self.timerentry_repeatedbegindate.value
 			if self.timerentry_repeated.value == "daily":
 				for x in range(0,7):
 					self.timer.setRepeated(x)
@@ -268,6 +272,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					if self.timerentry_day[x].value:
 						self.timer.setRepeated(x)
 
+			self.timer.repeatedbegindate = self.buildRepeatedBegin(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
 			self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
 			self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
 			
