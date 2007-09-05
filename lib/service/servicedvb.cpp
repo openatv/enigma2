@@ -2810,26 +2810,26 @@ void eDVBServicePlay::checkSubtitleTiming()
 		int diff =  show_time - pos;
 		if (diff < 0)
 		{
-			eDebug("[late (%d ms)]", -diff / 90);
+//			eDebug("[late (%d ms)]", -diff / 90);
 			diff = 0;
 		}
-		if (diff > 900000)
-		{
-			eDebug("[invalid]");
-			diff = 0;
-		}
+//		if (diff > 900000)
+//		{
+//			eDebug("[invalid]");
+//			diff = 0;
+//		}
 	
 		if (!diff)
 		{
 			if (type == TELETEXT)
 			{
-				eDebug("display teletext subtitle page");
+//				eDebug("display teletext subtitle page");
 				m_subtitle_widget->setPage(page);
 				m_subtitle_pages.pop_front();
 			}
 			else
 			{
-				eDebug("display dvb subtitle Page");
+//				eDebug("display dvb subtitle Page %lld", show_time);
 				m_subtitle_widget->setPage(dvb_page);
 				m_dvb_subtitle_pages.pop_front();
 			}

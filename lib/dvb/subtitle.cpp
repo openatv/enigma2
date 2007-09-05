@@ -290,9 +290,9 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		return segment_length + 6;
 	if (page_id != m_composition_page_id && page_id != m_ancillary_page_id)
 		return segment_length + 6;
-//	//eDebug("have %d bytes of segment data", segment_length);
+	//eDebug("have %d bytes of segment data", segment_length);
 
-//	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
+	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
 
 	subtitle_page *page, **ppage;
 
@@ -345,19 +345,28 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 		}
 
-//		eDebug("page updated: old: %d, new: %d", page->page_version_number, page_version_number);
+		//eDebug("page updated: old: %d, new: %d", page->page_version_number, page_version_number);
 			// when acquisition point or mode change: remove all displayed pages.
 		if ((page_state == 1) || (page_state == 2))
 		{
 			while (page->page_regions)
 			{
 				subtitle_page_region *p = page->page_regions->next;
+				//eDebug("delete page_region %d", page->page_regions->region_id);
 				delete page->page_regions;
 				page->page_regions = p;
 			}
+			while (page->regions)
+			{
+				subtitle_region *p = page->regions->next;
+				//eDebug("delete region %d", page->regions->region_id);
+				delete page->regions;
+				page->regions = p;
+			}
+
 		}
 
-//		eDebug("new page.. (%d)", page_state);
+		//eDebug("new page.. (%d)", page_state);
 
 		page->page_time_out = page_time_out;
 
@@ -370,6 +379,12 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			// go to last entry
 		while (*r)
 			r = &(*r)->next;
+
+		if (processed_length == segment_length && !page->page_regions)
+		{
+			//eDebug("no regions in page.. clear screen!!");
+			subtitle_redraw(page->page_id);
+		}
 
 		while (processed_length < segment_length)
 		{
@@ -428,6 +443,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (!region)
 		{
+			//eDebug("create region !!!!!!!!!!");
 			*pregion = region = new subtitle_region;
 			region->next = 0;
 			region->committed = false;
@@ -443,7 +459,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 			if (region->region_buffer)
 			{
-//				eDebug("no more need of region_buffer %p", &(*region->region_buffer));
+				//eDebug("no more need of region_buffer %p", &(*region->region_buffer));
 				region->region_buffer=0;
 			}
 			region->committed = false;
@@ -465,7 +481,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		processed_length += 2;
 
 		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8);
-//		eDebug("new region_buffer %p", &(*region->region_buffer));
+		//eDebug("new region_buffer %p", &(*region->region_buffer));
 
 		int region_level_of_compatibility, region_depth;
 
@@ -492,7 +508,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (region_fill_flag)
 		{
-//			eDebug("region fill region_buffer %p", &(*region->region_buffer));
+			//eDebug("region fill region_buffer %p", &(*region->region_buffer));
 			if (region_depth == 1)
 				memset(region->region_buffer->surface->data, region_2bit_pixel_code, region->region_height * region->region_width);
 			else if (region_depth == 2)
@@ -669,7 +685,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 			bottom_field_data_blocklength  = *segment++ << 8;
 			bottom_field_data_blocklength |= *segment++;
-			//eDebug("%d / %d bytes", top_field_data_blocklength, bottom_field_data_blocklength);
+			eDebug("%d / %d bytes", top_field_data_blocklength, bottom_field_data_blocklength);
 			processed_length += 4;
 
 			i = 0;
@@ -718,7 +734,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	}
 	case 0x80: // end of display set segment
 	{
-//		eDebug("end of display set segment");
+		//eDebug("end of display set segment");
 		subtitle_redraw_all();
 	}
 	case 0xFF: // stuffing
@@ -732,9 +748,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
-//	eDebug("subtitle_process_pes");
+	//eDebugNoNewLine("subtitle_process_pes");
 	if (!extract_pts(m_show_time, pkt))
 	{
+		//eDebug(" %lld", m_show_time);
 		pkt += 6; len -= 6;
 		// skip PES header
 		pkt++; len--;
@@ -766,11 +783,11 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 			pkt += l;
 			len -= l;
 		}
-	//	if (len && *pkt != 0xFF)
-	//		eDebug("strange data at the end");
+		if (len && *pkt != 0xFF)
+			eDebug("strange data at the end");
 	}
-	else
-		eDebug("dvb subtitle packet without PTS.. ignore!!");
+	//else
+		//eDebug("\ndvb subtitle packet without PTS.. ignore!!");
 }
 
 void eDVBSubtitleParser::subtitle_redraw_all()
@@ -784,36 +801,36 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 	}
 #else
 	subtitle_page *page = m_pages;
-	//eDebug("----------- end of display set");
-	//eDebug("active pages:");
+	eDebug("----------- end of display set");
+	eDebug("active pages:");
 	while (page)
 	{
-		//eDebug("  page_id %02x", page->page_id);
-		//eDebug("  page_version_number: %d", page->page_version_number);
-		//eDebug("  active regions:");
+		eDebug("  page_id %02x", page->page_id);
+		eDebug("  page_version_number: %d", page->page_version_number);
+		eDebug("  active regions:");
 		{
 			subtitle_page_region *region = page->page_regions;
 			while (region)
 			{
-				//eDebug("    region_id: %04x", region->region_id);
-				//eDebug("    region_horizontal_address: %d", region->region_horizontal_address);
-				//eDebug("    region_vertical_address: %d", region->region_vertical_address);
+				eDebug("    region_id: %04x", region->region_id);
+				eDebug("    region_horizontal_address: %d", region->region_horizontal_address);
+				eDebug("    region_vertical_address: %d", region->region_vertical_address);
 
 				region = region->next;
 			}
 		}
 
 		subtitle_redraw(page->page_id);
-		//eDebug("defined regions:");
+		eDebug("defined regions:");
 		subtitle_region *region = page->regions;
 		while (region)
 		{
-			//eDebug("  region_id %04x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
+			eDebug("  region_id %04x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
 
 			subtitle_region_object *object = region->region_objects;
 			while (object)
 			{
-				//eDebug("  object %02x, type %d, %d:%d", object->object_id, object->object_type, object->object_horizontal_position, object->object_vertical_position);
+				eDebug("  object %02x, type %d, %d:%d", object->object_id, object->object_type, object->object_horizontal_position, object->object_vertical_position);
 				object = object->next;
 			}
 			region = region->next;
