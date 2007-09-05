@@ -51,8 +51,10 @@ class TimerEntry:
 			localend = localtime(self.end)
 			localnow = localtime(now)
 
+			print "localrepeatedbegindate:", strftime("%c", localrepeatedbegindate)
 			print "localbegin:", strftime("%c", localbegin)
 			print "localend:", strftime("%c", localend)
+			print "localnow:", strftime("%c", localnow)
 
 			day = []
 			flags = self.repeated
@@ -64,11 +66,10 @@ class TimerEntry:
 					day.append(1)
 				flags = flags >> 1
 
-			print strftime("%c", localnow)
-
 			# if day is NOT in the list of repeated days
 			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event
-			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or ((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
+			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or
+				((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
 				print "localbegin after addOneDay:", strftime("%c", localbegin)
@@ -196,6 +197,8 @@ class Timer:
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
+			else:
+				print "next real activation is", strftime("%c", localtime(w))
 		
 		self.setNextActivation(min)
 	
