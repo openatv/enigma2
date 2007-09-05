@@ -482,27 +482,19 @@ class RecordTimer(timer.Timer):
 		file.close()
 
 	def getNextZapTime(self):
-		llen = len(self.timer_list)
-		idx = 0
 		now = time.time()
-		while idx < llen:
-			timer = self.timer_list[idx]
+		for timer in self.timer_list:
 			if not timer.justplay or timer.begin < now:
-				idx += 1
-			else:
-				return timer.begin
+				continue
+			return timer.begin
 		return -1
 
 	def getNextRecordingTime(self):
-		llen = len(self.timer_list)
-		idx = 0
 		now = time.time()
-		while idx < llen:
-			timer = self.timer_list[idx]
+		for timer in self.timer_list:
 			if timer.justplay or timer.begin < now:
-				idx += 1
-			else:
-				return timer.begin
+				continue
+			return timer.begin
 		return -1
 
 	def record(self, entry):
