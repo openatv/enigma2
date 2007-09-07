@@ -31,11 +31,11 @@ eDVBDB.getInstance().reloadBouquets()
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 
 try:
-	import e2reactor
-	e2reactor.install()
-
 	import twisted.python.runtime
 	twisted.python.runtime.platform.supportsThreads = lambda: False
+
+	import e2reactor
+	e2reactor.install()
 
 	from twisted.internet import reactor
 
