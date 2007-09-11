@@ -1,2 +1,2 @@
-SUBDIRS = TuxboxPlugins FileManager CutListEditor FritzCall PicturePlayer MediaScanner IpkgInstaller GraphMultiEPG
+SUBDIRS = TuxboxPlugins FileManager CutListEditor PicturePlayer MediaScanner IpkgInstaller GraphMultiEPG
 # SimpleRSS is still not finished

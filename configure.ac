@@ -86,7 +86,6 @@ lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/IpkgInstaller/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/FileManager/Makefile
-lib/python/Plugins/Extensions/FritzCall/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
