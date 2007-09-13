@@ -234,7 +234,7 @@
 	<screen name="Mute" flags="wfNoBorder" position="100,100" size="59,80" title="Mute" zPosition="-1">
 		<ePixmap position="0,0" size="59,80" pixmap="mute-fs8.png" />
 	</screen>
-	<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish" zPosition="-1" transparent="1" >
+	<screen name="Dish" flags="wfNoBorder" position="300,100" size="100,107" title="Dish" zPosition="-1" backgroundColor="transparent" >
 		<widget name="Dishpixmap" pixmap="dish.png" position="0,0" size="100,107" />
 	</screen>
 	<screen name="ChannelSelection" position="90,98" size="560,417" title="Channel Selection">
