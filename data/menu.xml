@@ -14,72 +14,72 @@
 		"exec"s code
 -->
 		<!--<item text="Standby debug">quitMainloop(0)</item>
-		<item text="Network setup">self.openSetup("network")</item>-->
+		<item text="Network setup" entryID="network_setup">self.openSetup("network")</item>-->
 		<!--<item text="CI"><screen module="Ci" screen="CiSelection" /></item>-->
 		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
-		<item text="Subtitles"><screen module="Subtitles" screen="Subtitles" /></item>
-		<item text="Media player"><screen module="MediaPlayer" screen="MediaPlayer" /></item>
-		<item text="Timer"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		<item text="VCR scart"><code>self.session.scart.VCRSbChanged(3)</code></item>
+		<item text="Subtitles" entryID="subtitle_selection"><screen module="Subtitles" screen="Subtitles" /></item>
+		<item text="Media player" entryID="media_player"><screen module="MediaPlayer" screen="MediaPlayer" /></item>
+		<item text="Timer" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+		<item text="VCR scart" entryID="scart_switch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
-		<menu text="Information">
+		<menu text="Information" entryID="info_screen">
 			<id val="information" />
-			<item text="Service"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-			<item text="About..."><screen module="About" /></item>
+			<item text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
+			<item text="About..." entryID="about_screen"><screen module="About" /></item>
 		</menu>
 
-		<item text="Games / Plugins"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
-		<menu text="Setup" flushConfigOnClose="1" >
+		<item text="Games / Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
+		<menu text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup" />
 			<!--<menu text="Service Organising">
 				<item text="New Bouquets"></item>
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
 			</menu>-->
-			<menu text="Service Searching">
+			<menu text="Service Searching" entryID="service_searching_selection">
 				<id val="scan" />
-				<item text="Tuner configuration"><screen module="Satconfig" screen="NimSelection" /></item>
-				<item text="Automatic Scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
+				<item text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
+				<item text="Automatic Scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
-				<item text="Manual Scan"><screen module="ScanSetup" /></item>
+				<item text="Manual Scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 				<!--<item text="Rotor Control"></item>
-				<item text="Edit Transponder"></item>-->
-				<!--<item text="Satfinder"></item>-->
+				<item text="Edit Transponder"></item>
+				<item text="Satfinder"></item>-->
 			</menu>
-			<menu text="System">
+			<menu text="System" entryID="system_selection">
 				<id val="system" />
-				<item text="Language..."><screen module="LanguageSelection" /></item>
-				<item><setup id="usage" /></item>
-				<item><setup id="timezone" /></item>
-				<item><setup id="avsetup" /></item>
-				<item><setup id="RFmod" /></item>
-				<menu text="Harddisk">
+				<item text="Language..." entryID="language_setup"><screen module="LanguageSelection" /></item>
+				<item entryID="usage_setup"><setup id="usage" /></item>
+				<item entryID="timezone_setup"><setup id="timezone"/></item>
+				<item entryID="av_setup"><setup id="avsetup"/></item>
+				<item entryID="rfmod_setup"><setup id="RFmod"/></item>
+				<menu text="Harddisk" entryID="hardisk_selection">
 					<id val="harddisk" />
-					<item><setup id="harddisk" /></item>
-					<item text="Initialization..."><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+					<item entryID="harddisk_setup"><setup id="harddisk"/></item>
+					<item text="Initialization..." entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				</menu>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item><setup id="lcd" /></item>
-				<menu text="Network...">
+				<menu text="Network..." entryID="network_setup">
 					<id val="network" />
-					<item text="Device Setup..."><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					<item text="Nameserver Setup..."><screen module="NetworkSetup" screen="NameserverSetup"/></item>
+					<item text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
 				</menu>
 			</menu>
-			<item text="Common Interface"><screen module="Ci" screen="CiSelection" /></item>
-			<item text="Parental control"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
-			<item text="Startwizard"><screen module="StartWizard" screen="StartWizard" /></item>
+			<item text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
+			<item text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
+			<item text="Startwizard" entryID="startwizzard"><screen module="StartWizard" screen="StartWizard" /></item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
 		</menu>
 		<!--<item text="Unser Setup">self.openSetup("Blaselfasel")</item>-->
-		<menu text="Standby / Restart">
+		<menu text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<!--<item text="Standby"><code>quitMainloop(0)</code></item>-->
-			<item text="Standby"><screen module="Standby" screen="Standby"/></item>
-			<item text="Restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-			<item text="Deep Standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
+			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+			<item text="Deep Standby" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		</menu>
 </menu>
