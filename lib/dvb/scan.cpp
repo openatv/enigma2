@@ -775,3 +775,11 @@ void eDVBScan::getLastServiceName(std::string &last_service_name)
 	else
 		last_service_name = m_last_service->second->m_service_name;
 }
+
+RESULT eDVBScan::getFrontend(ePtr<iDVBFrontend> &fe)
+{
+	if (m_channel)
+		return m_channel->getFrontend(fe);
+	fe = 0;
+	return -1;
+}

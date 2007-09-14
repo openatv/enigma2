@@ -86,6 +86,7 @@ public:
 	
 	void getStats(int &transponders_done, int &transponders_total, int &services);
 	void getLastServiceName(std::string &name);
+	RESULT getFrontend(ePtr<iDVBFrontend> &);
 };
 
 #endif
