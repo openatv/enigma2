@@ -205,8 +205,14 @@ class Menu(Screen):
 			for l in plugins.getPluginsForMenu(menuID):
 				list.append((l[0], boundFunction(l[1], self.session)))
 
+		# for the skin: first try a menu_<menuID>, then Menu
+		self.skinName = [ ]
+		if menuID is not None:
+			self.skinName.append("menu_" + menuID)
+		self.skinName.append("Menu")
+
 		self["menu"] = List(list)	
-							
+
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
 				"ok": self.okbuttonClick,
@@ -233,5 +239,5 @@ class MainMenu(Menu):
 	#add file load functions for the xml-file
 	
 	def __init__(self, *x):
-		Menu.__init__(self, *x)
 		self.skinName = "Menu"
+		Menu.__init__(self, *x)
