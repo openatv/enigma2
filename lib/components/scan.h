@@ -46,7 +46,8 @@ public:
 	
 		/* please keep the flags in sync with lib/dvb/scan.h ! */
 	enum { scanNetworkSearch=1, scanRemoveServices=4, scanDontRemoveFeeds=8, clearToScanOnFirstNIT = 16 };
-	int start(int feid, int flags=0);
+	int start(int feid, int flags=0 );
+	SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT);
 };
 
 #endif

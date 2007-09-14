@@ -29,11 +29,11 @@ class FrontendStatus(Source):
 
 	def getFrontendStatus(self):
 		if self.frontend_source:
-			frontend = self.frontend_source
+			frontend = self.frontend_source()
+			dict = { }
 			if frontend:
-				dict = { }
 				frontend.getFrontendStatus(dict)
-				return dict
+			return dict
 		elif self.service_source:
 			service = self.service_source()
 			feinfo = service and service.frontendInfo()

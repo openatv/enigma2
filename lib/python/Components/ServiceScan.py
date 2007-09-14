@@ -46,18 +46,19 @@ class ServiceScan:
 				self.run += 1
 				self.execBegin()
 	
-	def __init__(self, progressbar, text, servicelist, passNumber, scanList):
+	def __init__(self, progressbar, text, servicelist, passNumber, scanList, frontendInfo):
 		self.foundServices = 0
 		self.progressbar = progressbar
 		self.text = text
 		self.servicelist = servicelist
 		self.passNumber = passNumber
 		self.scanList = scanList
+		self.frontendInfo = frontendInfo
 		self.run = 0
-		
+
 	def doRun(self):
 		self.scan = eComponentScan()
-		
+		self.frontendInfo.frontend_source = lambda : self.scan.getFrontend()
 		self.feid = self.scanList[self.run]["feid"]
 		self.flags = self.scanList[self.run]["flags"]
 		self.state = self.Idle
@@ -79,10 +80,10 @@ class ServiceScan:
 		self.servicelist.clear()
 		self.state = self.Running
 		err = self.scan.start(self.feid, self.flags)
+		self.frontendInfo.updateFrontendData()
 		if err:
 			self.state = self.Error
 			self.errorcode = 0
-
 		self.scanStatusChanged()
 	
 	def execEnd(self):

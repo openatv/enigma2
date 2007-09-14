@@ -113,7 +113,7 @@ class Satfinder(ScanSetup):
 		ScanSetup.__init__(self, session)
 		self.tuner = Tuner(self.frontend)
 		self["introduction"].setText("")
-		self["Frontend"] = FrontendStatus(frontend_source = self.frontend, update_interval = 100)
+		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 		self.initcomplete = True
 
 	def createSetup(self):

@@ -114,6 +114,14 @@ int eComponentScan::start(int feid, int flags)
 	return 0;
 }
 
+RESULT eComponentScan::getFrontend(ePtr<iDVBFrontend> &fe)
+{
+	if (m_scan)
+		return m_scan->getFrontend(fe);
+	fe = 0;
+	return -1;
+}
+
 int eComponentScan::getProgress()
 {
 	if (!m_scan)

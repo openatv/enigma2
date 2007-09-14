@@ -86,6 +86,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/frontendparms.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/pmt.h>
+#include <lib/components/scan.h>
+#include <lib/components/file_eraser.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/rfmod.h>
 #include <lib/driver/misc_options.h>
@@ -185,8 +187,6 @@ typedef long time_t;
 %include <lib/gui/ewidgetanimation.h>
 %include <lib/gui/evideo.h>
 %include <lib/service/listboxservice.h>
-%include <lib/components/scan.h>
-%include <lib/components/file_eraser.h>
 %include <lib/nav/pcore.h>
 %include <lib/actions/action.h>
 %include <lib/gdi/gfont.h>
@@ -200,6 +200,8 @@ typedef long time_t;
 %include <lib/dvb/dvb.h>
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
+%include <lib/components/scan.h>
+%include <lib/components/file_eraser.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/rfmod.h>
 %include <lib/driver/misc_options.h>
