@@ -8,8 +8,8 @@ class ValueRange(Converter, object):
 
 	@cached
 	def getBoolean(self):
-		if self.lower < self.upper:
-			return self.lower < self.source.value < self.upper
+		if self.lower <= self.upper:
+			return self.lower <= self.source.value <= self.upper
 		else:
 			return not (self.upper < self.source.value < self.lower)
 
