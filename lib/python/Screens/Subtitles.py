@@ -1,7 +1,9 @@
 from Screen import Screen
+from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry, ConfigNothing
+from enigma import iPlayableService
 
 from Tools.ISO639 import LanguageCodes
 
@@ -18,6 +20,18 @@ class Subtitles(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.infobar = self.session.infobar
+		self.fillList()
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedInfo: self.__updatedInfo
+			})
+		self.cached_subtitle_checked = False
+		self.__selected_subtitle = None
+
+	def fillList(self):
+		del self.list[:]
+		print "self.list", self.list
 		if self.subtitlesEnabled():
 			self.list.append(getConfigListEntry(_("Disable Subtitles"), ConfigNothing(), None))
 			sel = self.infobar.selected_subtitle
@@ -44,6 +58,9 @@ class Subtitles(Screen, ConfigListScreen):
 #		return _("Disable subtitles")
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
+
+	def __updatedInfo(self):
+		self.fillList()
 
 	def getSubtitleList(self):
 		s = self.infobar and self.infobar.getCurrentServiceSubtitle()
