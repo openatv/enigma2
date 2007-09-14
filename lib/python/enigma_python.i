@@ -70,8 +70,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/service/listboxservice.h>
-#include <lib/components/scan.h>
-#include <lib/components/file_eraser.h>
 #include <lib/nav/pcore.h>
 #include <lib/actions/action.h>
 #include <lib/gdi/gfont.h>
