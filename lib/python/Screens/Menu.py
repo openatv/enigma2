@@ -117,13 +117,14 @@ class Menu(Screen):
 
 	def addMenu(self, destList, node):
 		MenuTitle = _(node.getAttribute("text").encode("UTF-8") or "??")
+		entryID = node.getAttribute("entryID") or "undefined"
 		x = node.getAttribute("flushConfigOnClose")
 		if x:
 			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
 		else:
 			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
 		#TODO add check if !empty(node.childNodes)
-		destList.append((MenuTitle, a))
+		destList.append((MenuTitle, a, entryID))
 
 	def menuClosedWithConfigFlush(self, *res):
 		configfile.save()
@@ -135,6 +136,7 @@ class Menu(Screen):
 
 	def addItem(self, destList, node):
 		item_text = node.getAttribute("text").encode("UTF-8")
+		entryID = node.getAttribute("entryID") or "undefined"
 		for x in node.childNodes:
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
@@ -150,16 +152,16 @@ class Menu(Screen):
 					module = "Screens." + module
 				else:
 					module = ""
-				
-				# check for arguments. they will be appended to the 
+
+				# check for arguments. they will be appended to the
 				# openDialog call
 				args = XMLTools.mergeText(x.childNodes)
 				screen += ", " + args
-					
-				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen))))
+
+				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID))
 				return
 			elif x.tagName == 'code':
-				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes))))
+				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes)), entryID))
 				return
 			elif x.tagName == 'setup':
 				id = x.getAttribute("id")
@@ -167,10 +169,9 @@ class Menu(Screen):
 					item_text = _(getSetupTitle(id)) + "..."
 				else:
 					item_text = _(item_text)
-				destList.append((item_text, boundFunction(self.openSetup, id)))
+				destList.append((item_text, boundFunction(self.openSetup, id), entryID))
 				return
-		
-		destList.append((item_text,self.nothing))
+		destList.append((item_text, self.nothing, entryID))
 
 
 	def __init__(self, session, parent, childNode):
@@ -211,7 +212,7 @@ class Menu(Screen):
 			self.skinName.append("menu_" + menuID)
 		self.skinName.append("Menu")
 
-		self["menu"] = List(list)	
+		self["menu"] = List(list)
 
 		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
 			{
