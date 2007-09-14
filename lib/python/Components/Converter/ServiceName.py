@@ -35,7 +35,9 @@ class ServiceName(Converter, object):
 		if info is None:
 			return ""
 		if self.type == self.NAME:
-			name = ref and info.getName(ref) or info.getName()
+			name = ref and info.getName(ref)
+			if name is None:
+				name = info.getName()
 			return name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 		elif self.type == self.PROVIDER:
 			return self.getServiceInfoValue(info, iServiceInformation.sProvider, ref)
