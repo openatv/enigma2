@@ -10,10 +10,18 @@ class GUISkin:
 		self.summaries = CList()
 
 	def createGUIScreen(self, parent, desktop):
-		for val in self.values() + self.renderer:
+		for val in self.renderer:
 			if isinstance(val, GUIComponent):
 				val.GUIcreate(parent)
-				val.applySkin(desktop)
+				if not val.applySkin(desktop):
+					print "warning, skin is missing renderer", val, "in", self
+
+		for key in self:
+			val = self[key]
+			if isinstance(val, GUIComponent):
+				val.GUIcreate(parent)
+				if not val.applySkin(desktop):
+					print "warning, skin is missing element", key, "in", self
 
 		for w in self.additionalWidgets:
 			w.instance = w.widget(parent)

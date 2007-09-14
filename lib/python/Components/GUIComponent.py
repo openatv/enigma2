@@ -31,10 +31,10 @@ class GUIComponent(object):
 			self.instance.hide()
 		
 		if self.skinAttributes is None:
-			print "warning, skin is missing some elements."
-			return
+			return False
 
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes)
+		return True
 
 	def move(self, x, y = None):
 		# we assume, that x is already an ePoint
