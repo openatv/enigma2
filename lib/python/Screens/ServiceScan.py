@@ -22,10 +22,13 @@ class ServiceScan(Screen):
 		
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
+		self["network"] = Label()
+		self["transponder"] = Label()
+
 		self["pass"] = Label("")
 		self["servicelist"] = FIFOList(len=7)
 		self["FrontendInfo"] = FrontendInfo()
-		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], scanList, self["FrontendInfo"])
+		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], scanList, self["network"], self["transponder"], self["FrontendInfo"])
 
 		self["actions"] = ActionMap(["OkCancelActions"], 
 			{

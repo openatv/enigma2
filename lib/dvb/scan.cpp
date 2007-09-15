@@ -123,13 +123,10 @@ RESULT eDVBScan::nextChannel()
 	m_chid_current = eDVBChannelID();
 
 	m_channel_state = iDVBChannel::state_idle;
+
 	if (fe->tune(*m_ch_current))
-	{
 		return nextChannel();
-		m_event(evtFail);
-		return -EINVAL;
-	}
-		
+
 	m_event(evtUpdate);
 	return 0;
 }
@@ -781,5 +778,16 @@ RESULT eDVBScan::getFrontend(ePtr<iDVBFrontend> &fe)
 	if (m_channel)
 		return m_channel->getFrontend(fe);
 	fe = 0;
+	return -1;
+}
+
+RESULT eDVBScan::getCurrentTransponder(ePtr<iDVBFrontendParameters> &tp)
+{
+	if (m_ch_current)
+	{
+		tp = m_ch_current;
+		return 0;
+	}
+	tp = 0;
 	return -1;
 }

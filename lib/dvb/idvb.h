@@ -409,6 +409,7 @@ public:
 	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const = 0;
 	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendParameters>, iDVBFrontendParametersPtr);
 
 #define MAX_DISEQC_LENGTH  16
 
@@ -509,7 +510,7 @@ public:
 		state_last_instance, /* just one reference to this channel is left */
 		state_release      /* channel is being shut down. */
 	};
-	virtual RESULT getState(int &SWIG_OUTPUT)=0;
+	virtual RESULT getState(int &)=0;
 
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum 

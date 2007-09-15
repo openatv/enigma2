@@ -10,42 +10,42 @@ void eComponentScan::scanEvent(int evt)
 {
 //	eDebug("scan event %d!", evt);
 	
-	if (evt == eDVBScan::evtFinish)
+	switch(evt)
 	{
-		m_done = 1;
-		ePtr<iDVBChannelList> db;
-		ePtr<eDVBResourceManager> res;
-		
-		int err;
-		if ((err = eDVBResourceManager::getInstance(res)) != 0)
+		case eDVBScan::evtFinish:
 		{
-			eDebug("no resource manager");
-			m_failed = 2;
-		} else if ((err = res->getChannelList(db)) != 0)
-		{
-			m_failed = 3;
-			eDebug("no channel list");
-		} else
-		{
-			m_scan->insertInto(db);
-			db->flush();
-			eDebug("scan done!");
+			m_done = 1;
+			ePtr<iDVBChannelList> db;
+			ePtr<eDVBResourceManager> res;
+			
+			int err;
+			if ((err = eDVBResourceManager::getInstance(res)) != 0)
+			{
+				eDebug("no resource manager");
+				m_failed = 2;
+			} else if ((err = res->getChannelList(db)) != 0)
+			{
+				m_failed = 3;
+				eDebug("no channel list");
+			} else
+			{
+				m_scan->insertInto(db);
+				db->flush();
+				eDebug("scan done!");
+			}
+			break;
 		}
+		case eDVBScan::evtNewService:
+			newService();
+			return;
+		case eDVBScan::evtFail:
+			eDebug("scan failed.");
+			m_failed = 1;
+			m_done = 1;
+			break;
+		case eDVBScan::evtUpdate:
+			break;
 	}
-	
-	if (evt == eDVBScan::evtNewService)
-	{
-		newService();
-		return;
-	}
-	
-	if (evt == eDVBScan::evtFail)
-	{
-		eDebug("scan failed.");
-		m_failed = 1;
-		m_done = 1;
-	}
-	
 	statusChanged();
 }
 
@@ -122,7 +122,7 @@ int eComponentScan::start(int feid, int flags)
 		{
 			if (m_initial.size() > 1)
 			{
-				iDVBFrontendParameters *tp = m_initial.first();
+				ePtr<iDVBFrontendParameters> tp = m_initial.first();
 				int type;
 				if (tp && !tp->getSystem(type))
 				{
@@ -149,14 +149,6 @@ int eComponentScan::start(int feid, int flags)
 	m_scan->start(m_initial, flags);
 
 	return 0;
-}
-
-RESULT eComponentScan::getFrontend(ePtr<iDVBFrontend> &fe)
-{
-	if (m_scan)
-		return m_scan->getFrontend(fe);
-	fe = 0;
-	return -1;
 }
 
 int eComponentScan::getProgress()
@@ -195,3 +187,20 @@ void eComponentScan::getLastServiceName(std::string &string)
 		return;
 	m_scan->getLastServiceName(string);
 }
+
+RESULT eComponentScan::getFrontend(ePtr<iDVBFrontend> &fe)
+{
+	if (m_scan)
+		return m_scan->getFrontend(fe);
+	fe = 0;
+	return -1;
+}
+
+RESULT eComponentScan::getCurrentTransponder(ePtr<iDVBFrontendParameters> &tp)
+{
+	if (m_scan)
+		return m_scan->getCurrentTransponder(tp);
+	tp = 0;
+	return -1;
+}
+
