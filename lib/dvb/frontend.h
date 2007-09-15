@@ -16,18 +16,18 @@ public:
 	eDVBFrontendParameters();
 	~eDVBFrontendParameters() {}
 	
-	RESULT getSystem(int &type) const;
-	RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
-	RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
-	RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
-
 	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
-	
-	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const;
-	
-	RESULT getHash(unsigned long &SWIG_OUTPUT) const;
+
+#ifndef SWIG
+	RESULT getSystem(int &type) const;
+	RESULT getDVBS(eDVBFrontendParametersSatellite &) const;
+	RESULT getDVBC(eDVBFrontendParametersCable &) const;
+	RESULT getDVBT(eDVBFrontendParametersTerrestrial &) const;
+	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const;
+	RESULT getHash(unsigned long &) const;
+#endif
 };
 
 #ifndef SWIG
