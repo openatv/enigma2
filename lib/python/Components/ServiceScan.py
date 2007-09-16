@@ -78,9 +78,9 @@ class ServiceScan:
 							tp = transponder.getDVBT()
 							if not tp[0]:
 								tp = tp[1]
-								tp_text = ("DVB-T %s %d / %d") %( { 0 : "QPSK", 1 : "QAM16", 2 : "QAM64", 3 : "AUTO"}[tp.modulation],
+								tp_text = ("DVB-T %s %d %s") %( { 0 : "QPSK", 1 : "QAM16", 2 : "QAM64", 3 : "AUTO"}[tp.modulation],
 									tp.frequency,
-									tp.symbol_rate/1000)
+									{ 0 : "Bw 8MHz", 1 : "Bw 7MHz", 2 : "Bw 6MHz", 3 : "Bw Auto" }[tp.bandwidth])
 						else:
 							print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
