@@ -1377,9 +1377,18 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 	}
 	
 	res->m_string = val;
-	res->m_int = atoi(val.c_str());
-//	res->m_channelid = eDVBChannelID(val);
-	
+
+	if (res->m_type == eDVBChannelQuery::tChannelID)
+	{
+		int ns, tsid, onid;
+		if (sscanf(val.c_str(), "%08x%04x%04x", &ns, &tsid, &onid) == 3)
+			res->m_channelid = eDVBChannelID(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid));
+		else
+			eDebug("couldn't parse channelid !! format should be hex NNNNNNNNTTTTOOOO (namespace, tsid, onid)");
+	}
+	else
+		res->m_int = atoi(val.c_str());
+
 	return 0;
 }
 
