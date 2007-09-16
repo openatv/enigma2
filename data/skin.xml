@@ -1,194 +1,281 @@
 <skin>
+	<!-- Screwed Stone II skin (skin.xml) /Nemesis -->
+	<!-- Colors (#AARRGGBB) -->
 	<colors>
-		<color name="white" 	value="#ffffff" />
-		<color name="black" 	value="#000000" />
-		<color name="dark"  	value="#33294a6b" />
-
-		<color name="red" 	value="#f23d21" />
-		<color name="green" 	value="#389416" />
-		<color name="blue" 	value="#0064c7" />
-		<color name="yellow"	value="#bab329" />
-		<color name="transparent" 	value="#ffffffff" />
-
+		<color name="white"	value="#ffffff" />
+		<color name="black"	value="#000000" />
+		<color name="dark" value="#25062748" />
+		<color name="menu" value="#25062748" />
+		<color name="red" value="#f23d21" />
+		<color name="green" value="#389416" />
+		<color name="blue" value="#0064c7" />
+		<color name="yellow" value="#bab329" />
+		<color name="transparent" value="#ffffffff" />
 		<color name="transpBlack" value="#80000000" />
+		<color name="transpWhite" value="#80ffffff" />
+		<color name="background" value="#25062748" />
+		<color name="foreground" value="#ffffff" />
 	</colors>
-	
-		<!-- this is for the main screen -->
+	<!-- Main screen colors (id=0 for Menu's, id=1 for LCD) -->
 	<windowstyle type="skinned" id="0">
-		<title offset="20,5" font="Regular;20" />
-		<color name="Background" color="#33294a6b" />
+		<title offset="33,14" font="Regular;20" />
+		<color name="Background" color="#25062748" />
 		<color name="LabelForeground" color="#ffffff" />
-		<color name="ListboxBackground" color="#33294a6b" />
+		<color name="ListboxBackground" color="#25062748" />
 		<color name="ListboxForeground" color="#ffffff" />
-		<color name="ListboxSelectedBackground" color="#225b7395" />
+		<color name="ListboxSelectedBackground" color="#254f7497" />
 		<color name="ListboxSelectedForeground" color="#ffffff" />
 		<color name="ListboxMarkedBackground" color="#ff0000" />
 		<color name="ListboxMarkedForeground" color="#ffffff" />
 		<color name="ListboxMarkedAndSelectedBackground" color="#800000" />
 		<color name="ListboxMarkedAndSelectedForeground" color="#ffffff" />
 		<color name="WindowTitleForeground" color="#ffffff" />
-		<color name="WindowTitleBackground" color="#33294a6b" />
+		<color name="WindowTitleBackground" color="#25062748" />
+		<!-- Main screen border png's -->
 		<borderset name="bsWindow">
-			<pixmap pos="bpTopLeft"     filename="b_w_tl.png" />
-			<pixmap pos="bpTop"         filename="b_w_t.png"  />
-			<pixmap pos="bpTopRight"    filename="b_w_tr.png" />
-			<pixmap pos="bpLeft"        filename="b_w_l.png"  />
-			<pixmap pos="bpRight"       filename="b_w_r.png"  />
-			<pixmap pos="bpBottomLeft"  filename="b_w_bl.png" />
-			<pixmap pos="bpBottom"      filename="b_w_b.png"  />
-			<pixmap pos="bpBottomRight" filename="b_w_br.png" />
+			<pixmap pos="bpTopLeft" filename="skin_default/b_w_tl.png" />
+			<pixmap pos="bpTop" filename="skin_default/b_w_t.png"  />
+			<pixmap pos="bpTopRight" filename="skin_default/b_w_tr.png" />
+			<pixmap pos="bpLeft" filename="skin_default/b_w_l.png"  />
+			<pixmap pos="bpRight" filename="skin_default/b_w_r.png"  />
+			<pixmap pos="bpBottomLeft" filename="skin_default/b_w_bl.png" />
+			<pixmap pos="bpBottom" filename="skin_default/b_w_b.png"  />
+			<pixmap pos="bpBottomRight" filename="skin_default/b_w_br.png" />
 		</borderset>
 	</windowstyle>
-		
+	<!-- Fonts -->
 	<fonts>
-		<font filename="md_khmurabi_10.ttf" name="Regular" scale="100" />
+		<font filename="nmsbd.ttf" name="Regular" scale="90" />
+		<font filename="lcd.ttf" name="LCD" scale="100" />
 		<font filename="ae_AlMateen.ttf" name="Replacement" scale="90" replacement="1" />
 	</fonts>
-
-		<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,148" title="InfoBar" backgroundColor="transparent" >
-			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
-<!-- not used in this skin yet -->			
-			<widget name="NimA" position="0,0" size="0,0" />
-			<widget name="NimB" position="0,0" size="0,0" />
-			<widget name="NimA_Active" position="0,0" size="0,0" />
-			<widget name="NimB_Active" position="0,0" size="0,0" />
-
-<!--			'teletext available'
-			<widget source="CurrentService" render="Pixmap" pixmap="format.png" position="613,40" size="28,15">
-				<convert type="ServiceInfo">TeletextAvailable</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
--->
-
-<!-- ............................................................................. -->
-<!--			<eLabel text="SNR:" position="195,0" size="40,22" font="Regular;15" transparent="1" /> -->
-			<eLabel text="AGC:" position="275,0" size="40,22" font="Regular;15" transparent="1" />
-			<eLabel text="BER:" position="355,0" size="40,22" font="Regular;15" transparent="1" />
-			
-			<widget source="FrontendStatus" render="Label" position="195,0" size="77,22" font="Regular;15" transparent="1" >
-				<convert type="FrontendInfo">SNRdB</convert>
-			</widget>
-			<widget source="FrontendStatus" render="Label" position="314,0" size="40,22" font="Regular;15" transparent="1" >
-				<convert type="FrontendInfo">AGC</convert>
-			</widget>
-			<widget source="FrontendStatus" render="Label" position="392,2"	size="53,20" font="Regular;13" transparent="1" >
-				<convert type="FrontendInfo">BER</convert>
-			</widget>
-			
-			<widget source="FrontendStatus" render="Progress" position="447,1" size="88,6" pixmap="rtgbar.png" >
-				<convert type="FrontendInfo">SNR</convert>
-			</widget>
-			<widget source="FrontendStatus" render="Progress" position="447,8" size="88,6" pixmap="rtgbar.png" >
-				<convert type="FrontendInfo">AGC</convert>
-			</widget> 
-			<widget source="FrontendStatus" render="Progress" position="447,15" size="88,6" >
-				<convert type="FrontendInfo">BER</convert>
-			</widget>
-
-			<widget name="BlinkingPoint" pixmap="record.png" position="430,31" zPosition="2" size="58,25" alphatest="on" />
-			
-				<!-- show 'is crypted' icon when service is crypted. -->
-			<widget source="CurrentService" render="Pixmap" pixmap="crypt.png" position="570,40" size="12,15" >
-				<convert type="ServiceInfo">IsCrypted</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
-				<!-- show 'multichannel' icon when service has multichannel 
-				     audio. -->
-			<widget source="CurrentService" render="Pixmap" pixmap="dolby.png" position="585,40" size="25,15">
-				<convert type="ServiceInfo">IsMultichannel</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
-			<widget source="CurrentService" render="Pixmap" pixmap="format.png" position="613,40" size="28,15">
-				<convert type="ServiceInfo">IsWidescreen</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-
-			<widget source="CurrentService" render="Label" position="69,26" size="427,34" font="Regular;22" backgroundColor="#101258" >
-				<convert type="ServiceName">Name</convert>
-				<!-- <convert type="ServiceName">Provider</convert> -->
-			</widget>
-			
-			<widget source="CurrentTime" render="Label" position="575,10" size="90,30" backgroundColor="dark" font="Regular;19" >
-				<convert type="ClockToText">WithSeconds</convert>
-			</widget>
-			
-			<widget source="Event_Now" render="Label" position="210,68" size="60,22" font="Regular;20" backgroundColor="dark">
-				<convert type="EventTime">StartTime</convert>
-				<convert type="ClockToText">Default</convert>
-			</widget>
-			<widget source="Event_Next" render="Label" position="210,98" size="60,22" font="Regular;20" backgroundColor="dark">
-				<convert type="EventTime">StartTime</convert>
-				<convert type="ClockToText">Default</convert>
-			</widget>
-			<widget source="Event_Now" render="Label" position="273,68" size="282,22" font="Regular;20" backgroundColor="dark">
-				<convert type="EventName">Name</convert>
-			</widget>
-			<widget source="Event_Next" render="Label" position="273,98" size="282,22" font="Regular;20" backgroundColor="dark">
-				<convert type="EventName">Name</convert>
-			</widget>
-			<widget source="Event_Now" render="Label" position="555,68" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
-				<convert type="EventTime">Remaining</convert>
-				<convert type="RemainingToText">InMinutes</convert>
-			</widget>
-			<widget source="Event_Next" render="Label" position="555,98" size="100,26" font="Regular;22" backgroundColor="dark" halign="right">
-				<convert type="EventTime">Duration</convert>
-				<convert type="ClockToText">InMinutes</convert>
-			</widget>
-			<widget source="Event_Now" render="Progress" position="304,60" size="121,8" zPosition="1">
-				<convert type="EventTime">Progress</convert>
-			</widget>
-
-				<!-- red button: is recording possible? -->
-			<widget source="RecordingPossible" render="Pixmap" pixmap="button_red.png" position="210,132" size="27,12" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
-			<widget source="RecordingPossible" render="FixedLabel" text="Record" position="240,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1">
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
-			<widget source="CurrentService" render="Pixmap" pixmap="button_green.png" position="320,132" size="27,12" >
-				<convert type="ServiceInfo">SubservicesAvailable</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="CurrentService" render="FixedLabel" text="Subservices" position="350,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
-				<convert type="ServiceInfo">SubservicesAvailable</convert> 
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
-			<widget source="TimeshiftPossible" render="Pixmap" pixmap="button_yellow.png" position="430,132" size="27,12" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="TimeshiftPossible" render="FixedLabel" text="Timeshift" position="460,130" size="85,22" font="Regular;14" backgroundColor="blue" transparent="1" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="ExtensionsAvailable" render="Pixmap" pixmap="button_blue.png" position="540,132" size="27,12" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="ExtensionsAvailable" render="FixedLabel" text="Extensions" position="570,130" size="95,22" font="Regular;14" backgroundColor="blue" transparent="1" >
-				<convert type="ConditionalShowHide" />
-			</widget>
-		</screen>
-
-		<screen name="MoviePlayer" flags="wfNoBorder" position="0,370" size="720,148" title="InfoBar">
-			<ePixmap position="0,0" zPosition="-1" size="720,148" pixmap="info-bg.png" />
-			<ePixmap position="210,83" zPosition="0" size="433,42" pixmap="dvr-buttons.png" />
-
-			<widget source="CurrentService" render="Label" position="69,25" size="427,26" font="Regular;22" backgroundColor="#101258" >
-				<convert type="ServiceName">Name</convert>
-			</widget>
-
-			<widget source="CurrentService" render="Label" position="575,10" size="90,25" backgroundColor="dark" font="Regular;19" >
-				<convert type="ServicePosition">Position</convert>
-			</widget>
-
-			<widget source="CurrentService" render="Label" position="475,60" size="75,20" halign="left" backgroundColor="dark" font="Regular;18">
-				<convert type="ServicePosition">Remaining</convert>
-			</widget>
-			<widget source="CurrentService" render="PositionGauge" position="247,60" size="225,20" zPosition="2" pointer="position_pointer.png:3,5" foregroundColor="#225b7395">
-				<convert type="ServicePosition">Gauge</convert>
-			</widget>
-		</screen>
+	<!-- Main infobar -->
+	<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent" >
+		<!-- Background -->
+		<ePixmap position="0,0" zPosition="-1" size="720,160" pixmap="skin_default/info-bg.png" alphatest="off" />
+		<ePixmap position="27,73" zPosition="0" size="665,71" pixmap="skin_default/screws.png" alphatest="on" transparent="1" />
+		<!-- Signal Quality -->
+		<eLabel text="SNR" position="205,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#cccccc" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" />
+		<widget source="FrontendStatus" render="Label" position="242,3" size="80,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#e7e7e7" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" >
+			<convert type="FrontendInfo">SNRdB</convert>
+		</widget>
+		<!-- Signal Strength -->
+		<eLabel text="AGC" position="317,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#cccccc" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" />
+		<widget source="FrontendStatus" render="Label" position="355,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#e7e7e7" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" >
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<!-- Bit error rate -->
+		<eLabel text="BER" position="403,3" size="40,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#cccccc" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" />
+		<widget source="FrontendStatus" render="Label" position="440,3" size="43,22" font="Regular;16" backgroundColor="#102e59" foregroundColor="#e7e7e7" shadowColor="#27384f" shadowOffset="-1,-1" transparent="1" >
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<!-- Signal Icons -->
+		<ePixmap position="487,4" zPosition="1" size="55,15" pixmap="skin_default/led_off.png" alphatest="on" />
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_red.png" position="488,4" zPosition="2" size="15,15" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">SNR</convert>
+			<convert type="ValueRange">0,39699</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_yellow.png" position="488,4" zPosition="2" size="15,15" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">SNR</convert>
+			<convert type="ValueRange">36700,45875</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_green.png" position="488,4" zPosition="2" size="15,15" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">SNR</convert>
+			<convert type="ValueRange">45876,65536</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_yellow.png" position="508,4" zPosition="2" size="15,15" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">AGC</convert>
+			<convert type="ValueRange">0,39699</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_green.png" position="508,4" zPosition="2" size="15,15" transparent="1" alphatest="on">
+			<convert type="FrontendInfo">AGC</convert>
+			<convert type="ValueRange">36700,65536</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<ePixmap pixmap="skin_default/led_green.png" position="528,4" zPosition="2" size="15,15" alphatest="on" />		
+		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_red.png" position="528,4" zPosition="3" size="15,15" transparent="1" alphatest="on" >
+			<convert type="FrontendInfo">BER</convert>		
+			<convert type="ConditionalShowHide" />
+		</widget>	
+		<ePixmap position="47,2" zPosition="1" size="74,57" pixmap="skin_default/enigma2.png" alphatest="on" />
+		<!-- Uncomment for Picon use
+		<widget name="picon" position="76,69" zPosition="2" size="70,53" pixmap="skin_default/enigma2.png" />
+		-->
+		<!-- Service name -->
+		<widget source="CurrentService" render="Label" position="130,30" size="360,27" font="Regular;21" valign="center" halign="right" noWrap="1" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<!-- Time -->
+		<ePixmap pixmap="skin_default/clock.png" position="600,23" zPosition="0" size="14,14" alphatest="on"/>
+		<widget source="CurrentTime" render="Label" position="615,21" size="55,24" font="Regular;21" halign="right" backgroundColor="#4e5a74" transparent="1" >
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<!-- tuners in use? -->
+		<widget name="NimA_Active" position="129,6" zPosition="1" size="9,9" pixmap="skin_default/nim_a.png" alphatest="on" />
+		<widget name="NimB_Active" position="129,20" zPosition="1" size="9,9" pixmap="skin_default/nim_b.png" alphatest="on" />
+		<widget name="NimA" position="142,6" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" />
+		<widget name="NimB" position="142,20" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" />		
+		<!-- Crypt icon (encrypted service?) -->
+		<ePixmap position="563,48" zPosition="0" size="107,15" pixmap="skin_default/icons_off.png" alphatest="off"/>
+		<widget source="CurrentService" render="Pixmap" pixmap="skin_default/icon_crypt.png" position="563,48" zPosition="1" size="12,16" alphatest="on" >
+			<convert type="ServiceInfo">IsCrypted</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Teletext icon (is teletext available?) -->
+		<widget source="CurrentService" render="Pixmap" pixmap="skin_default/icon_txt.png" position="580,48" zPosition="1" size="26,16" alphatest="on" >
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Videoformat icon (16:9?) -->
+		<widget source="CurrentService" render="Pixmap" pixmap="skin_default/icon_format.png" position="611,48" zPosition="1" size="29,16" alphatest="on" >
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Audio icon (is there multichannel audio?) -->
+		<widget source="CurrentService" render="Pixmap" pixmap="skin_default/icon_dolby.png" position="645,48" zPosition="1" size="26,16" alphatest="on" >
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Progressbar (current event duration)-->
+		<ePixmap pixmap="skin_default/progress_bg.png" position="48,77" zPosition="0" size="84,7" transparent="1" alphatest="on" />
+		<widget source="Event_Now" render="Progress" pixmap="skin_default/progress_small.png" position="50,78" zPosition="1" size="80,5" transparent="1" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<!-- Blinking pixmap (recording in progress?) -->
+		<widget name="BlinkingPoint" pixmap="skin_default/icon_rec.png" position="561,21" zPosition="2" size="34,21" alphatest="off" />
+		<!-- Event (now) -->
+		<ePixmap pixmap="skin_default/icon_event.png" position="182,78" zPosition="1" size="15,10" alphatest="on" />
+		<widget source="Event_Now" render="Label" position="205,73" size="60,24" font="Regular;20" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="Event_Now" render="Label" position="265,73" size="310,24" font="Regular;20" noWrap="1" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="Event_Now" render="Label" position="580,73" size="90,24" font="Regular;20" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" halign="right" transparent="1" >
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<!-- Event (next) -->
+		<widget source="Event_Next" render="Label" position="205,97" size="60,24" font="Regular;20" backgroundColor="#071f38" foregroundColor="#c3c3c9" transparent="1" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="265,97" size="310,24" font="Regular;20" noWrap="1" backgroundColor="#071f38" foregroundColor="#c3c3c9" transparent="1" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="Event_Next" render="Label" position="580,97" size="90,24" font="Regular;20" backgroundColor="#071f38" foregroundColor="#c3c3c9" halign="right" transparent="1" >
+			<convert type="EventTime">Duration</convert>
+			<convert type="ClockToText">InMinutes</convert>
+		</widget>
+		<!-- Red button (is recording possible?) -->
+		<ePixmap position="212,130" zPosition="1" size="15,16" pixmap="skin_default/button_red_off.png" transparent="1" alphatest="on" />
+		<widget source="RecordingPossible" render="Pixmap" pixmap="skin_default/button_red.png" position="212,130" zPosition="2" size="15,16" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel text="Record" position="232,130" size="80,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<widget source="RecordingPossible" render="FixedLabel" text="Record" position="232,130" zPosition="1" size="80,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Green button (is subservices available?) -->
+		<ePixmap position="315,130" zPosition="1" size="15,16" pixmap="skin_default/button_green_off.png" transparent="1" alphatest="on" />
+		<widget source="CurrentService" render="Pixmap" pixmap="skin_default/button_green.png" position="315,130" zPosition="2" size="15,16" transparent="1" alphatest="on" >
+			<convert type="ServiceInfo">SubservicesAvailable</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel text="Subservices" position="335,130" size="100,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<widget source="CurrentService" render="FixedLabel" text="Subservices" position="335,130" zPosition="1" size="100,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ServiceInfo">SubservicesAvailable</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Yellow button (is timeshift possible?) -->
+		<ePixmap position="440,130" zPosition="1" size="15,16" pixmap="skin_default/button_yellow_off.png" transparent="1" alphatest="on" />
+		<widget source="TimeshiftPossible" render="Pixmap" pixmap="skin_default/button_yellow.png" position="440,130" zPosition="2" size="15,16" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel text="Timeshift" position="460,130" size="85,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<widget source="TimeshiftPossible" render="FixedLabel" text="Timeshift" position="460,130" zPosition="1" size="85,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- Blue button (is extensions available?) -->
+		<ePixmap position="545,130" zPosition="1" size="15,16" pixmap="skin_default/button_blue_off.png" transparent="1" alphatest="on" />
+		<widget source="ExtensionsAvailable" render="Pixmap" pixmap="skin_default/button_blue.png" position="545,130" zPosition="2" size="15,16" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel text="Extensions" position="565,130" size="110,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<widget source="ExtensionsAvailable" render="FixedLabel" text="Extensions" position="565,130" zPosition="1" size="110,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<!-- Main menu -->
+	<screen name="menu_mainmenu" position="150,150" size="420,285" title="Main menu" >
+		<widget name="title" position="170,10" size="280,35" font="Regular;23" />
+		<widget source="menu" render="Listbox" position="170,55" size="230,225" scrollbarMode="showOnDemand" >
+			<convert type="StringList" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-8.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">standby_restart_list</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-7.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">setup_selection</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-6.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">plugin_selection</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-5.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">info_screen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-4.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">scart_switch</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-3.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">timer_edit</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-2.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">media_player</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-1.png" position="20,20" size="128,128" >
+			<convert type="MenuEntryCompare">subtitle_selection</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+	</screen>
+	<!-- Movieplayer infobar -->
+	<screen name="MoviePlayer" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent" >
+		<!-- Background -->
+		<ePixmap position="0,0" zPosition="-2" size="720,160" pixmap="skin_default/info-bg_mp.png" alphatest="off" />
+		<ePixmap position="29,40" zPosition="0" size="665,104" pixmap="skin_default/screws_mp.png" alphatest="on" transparent="1" />
+		<!-- colorbuttons -->
+		<ePixmap position="48,70" zPosition="0" size="108,13" pixmap="skin_default/mp_buttons.png" alphatest="on" />
+		<!-- Servicename -->
+		<ePixmap pixmap="skin_default/icon_event.png" position="207,78" zPosition="1" size="15,10" alphatest="on" />
+		<widget source="CurrentService" render="Label" position="230,73" size="360,40" font="Regular;20" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="CurrentService" render="Label" position="590,73" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1" >
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+		<!-- Elapsed time -->
+		<widget source="CurrentService" render="Label" position="205,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<!-- Progressbar (movie position)-->
+		<widget source="CurrentService" render="PositionGauge" position="300,133" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" >
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<!-- Remaining time -->
+		<widget source="CurrentService" render="Label" position="576,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+	</screen>
 </skin>

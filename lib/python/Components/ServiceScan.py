@@ -29,7 +29,7 @@ class ServiceScan:
 				self.network.setText("")
 				self.transponder.setText("")
 			else:
-				self.text.setText(_("scan in progress - %d %% done!\n%d services found!") % (self.scan.getProgress(), self.foundServices + self.scan.getNumServices()))
+				self.text.setText(_("scan in progress - %d %% done! %d services found!") % (self.scan.getProgress(), self.foundServices + self.scan.getNumServices()))
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
 				tp_text = ""
@@ -88,11 +88,11 @@ class ServiceScan:
 		
 		if self.state == self.Done:
 			if self.scan.getNumServices() == 1:
-				self.text.setText(_("scan done!\nOne service found!"))
+				self.text.setText(_("scan done! One service found!"))
 			elif self.scan.getNumServices() == 0:
-				self.text.setText(_("scan done!\nNo service found!"))
+				self.text.setText(_("scan done! No service found!"))
 			else:
-				self.text.setText(_("scan done!\n%d services found!") % (self.foundServices + self.scan.getNumServices()))
+				self.text.setText(_("scan done! %d services found!") % (self.foundServices + self.scan.getNumServices()))
 		
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
