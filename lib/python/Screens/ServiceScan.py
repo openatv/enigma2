@@ -26,7 +26,7 @@ class ServiceScan(Screen):
 		self["transponder"] = Label()
 
 		self["pass"] = Label("")
-		self["servicelist"] = FIFOList(len=7)
+		self["servicelist"] = FIFOList(len=10)
 		self["FrontendInfo"] = FrontendInfo()
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], scanList, self["network"], self["transponder"], self["FrontendInfo"])
 
