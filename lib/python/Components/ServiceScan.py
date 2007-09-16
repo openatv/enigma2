@@ -48,7 +48,7 @@ class ServiceScan:
 								except KeyError:
 									sat_name = ""
 								if orb_pos > 1800: # west
-									orb_pos = 3600 - orbpos
+									orb_pos = 3600 - orb_pos
 									h = _("W")
 								else:
 									h = _("E")
