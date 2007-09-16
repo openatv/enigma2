@@ -890,6 +890,17 @@ class ChannelSelectionBase(Screen):
 									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 							service.setName("%s - %s" % (service_name, service_type))
 							self.servicelist.addService(service)
+						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+						if cur_ref:
+							pos = self.service_types.rfind(':')
+							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
+								cur_ref.getUnsignedData(4), # NAMESPACE
+								cur_ref.getUnsignedData(2), # TSID
+								cur_ref.getUnsignedData(3), # ONID
+								self.service_types[pos+1:])
+							ref = eServiceReference(refstr)
+							ref.setName(_("Current Transponder"))
+							self.servicelist.addService(ref)
 						self.servicelist.finishFill()
 						if prev is not None:
 							self.setCurrentSelection(prev)
