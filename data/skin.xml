@@ -217,35 +217,35 @@
 		<widget source="menu" render="Listbox" position="170,55" size="230,225" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-8.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/shutdown.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">standby_restart_list</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-7.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/setup.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">setup_selection</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-6.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/plugins.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">plugin_selection</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-5.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/information.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">info_screen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-4.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/scart.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">scart_switch</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-3.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/timer.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">timer_edit</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-2.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/media_player.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">media_player</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/menuIcon-1.png" position="20,20" size="128,128" >
+		<widget source="menu" render="Pixmap" pixmap="skin_default/menu/subtitles.png" position="20,20" size="128,128" >
 			<convert type="MenuEntryCompare">subtitle_selection</convert>
 			<convert type="ConditionalShowHide"/>
 		</widget>
