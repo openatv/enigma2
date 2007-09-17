@@ -36,7 +36,6 @@ class Picon(Renderer):
 				pngname = self.nameCache.get("default", "")
 				if pngname == "": # no default yet in cache..
 					pngname = self.findPicon("picon_default")
-					self.nameCache[sname] = pngname
 					if pngname == "": # Fallback to enigma2 logo
 						pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/enigma2.png")
 					self.nameCache["default"] = pngname
