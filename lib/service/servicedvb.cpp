@@ -1025,7 +1025,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_subtitle_widget = 0;
 	
 	m_tune_state = -1;
-	
+
 	CONNECT(m_subtitle_sync_timer.timeout, eDVBServicePlay::checkSubtitleTiming);
 }
 
@@ -2775,6 +2775,10 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 {
 	if (m_subtitle_widget)
 	{
+		pts_t pos = 0;
+		if (m_decoder)
+			m_decoder->getPTS(0, pos);
+		eDebug("got new subtitle page %lld %lld %d", pos, page.m_pts, page.m_have_pts);
 		m_subtitle_pages.push_back(page);
 		checkSubtitleTiming();
 	}
@@ -2782,7 +2786,7 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 
 void eDVBServicePlay::checkSubtitleTiming()
 {
-//	eDebug("checkSubtitleTiming");
+	eDebug("checkSubtitleTiming");
 	if (!m_subtitle_widget)
 		return;
 	while (1)
@@ -2811,11 +2815,11 @@ void eDVBServicePlay::checkSubtitleTiming()
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
 
-//		eDebug("%lld %lld", pos, show_time);
+		eDebug("%lld %lld", pos, show_time);
 		int diff =  show_time - pos;
 		if (diff < 0)
 		{
-//			eDebug("[late (%d ms)]", -diff / 90);
+			eDebug("[late (%d ms)]", -diff / 90);
 			diff = 0;
 		}
 //		if (diff > 900000)
@@ -2834,13 +2838,13 @@ void eDVBServicePlay::checkSubtitleTiming()
 			}
 			else
 			{
-//				eDebug("display dvb subtitle Page %lld", show_time);
+				eDebug("display dvb subtitle Page %lld", show_time);
 				m_subtitle_widget->setPage(dvb_page);
 				m_dvb_subtitle_pages.pop_front();
 			}
 		} else
 		{
-//			eDebug("start subtitle delay %d", diff / 90);
+			eDebug("start subtitle delay %d", diff / 90);
 			m_subtitle_sync_timer.start(diff / 90, 1);
 			break;
 		}
@@ -2851,6 +2855,10 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 {
 	if (m_subtitle_widget)
 	{
+		pts_t pos = 0;
+		if (m_decoder)
+			m_decoder->getPTS(0, pos);
+		eDebug("got new subtitle page %lld %lld", pos, p.m_show_time);
 		m_dvb_subtitle_pages.push_back(p);
 		checkSubtitleTiming();
 	}
