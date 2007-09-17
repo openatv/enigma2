@@ -52,13 +52,13 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 
 void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 {
-//	eDebug("setPage");
+	eDebug("setPage");
 	m_dvb_page = p;
 	invalidate(m_visible_region);  // invalidate old visible regions
 	m_visible_region.rects.clear();
 	for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 	{
-//		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
+		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
 		m_visible_region.rects.push_back(eRect(it->m_position, it->m_pixmap->size()));
 	}
 	m_dvb_page_ok = 1;

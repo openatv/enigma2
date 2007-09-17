@@ -748,10 +748,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
-	//eDebugNoNewLine("subtitle_process_pes");
+	eDebugNoNewLine("subtitle_process_pes");
 	if (!extract_pts(m_show_time, pkt))
 	{
-		//eDebug(" %lld", m_show_time);
+		eDebug(" %lld", m_show_time);
 		pkt += 6; len -= 6;
 		// skip PES header
 		pkt++; len--;
@@ -786,8 +786,8 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 		if (len && *pkt != 0xFF)
 			eDebug("strange data at the end");
 	}
-	//else
-		//eDebug("\ndvb subtitle packet without PTS.. ignore!!");
+	else
+		eDebug("\ndvb subtitle packet without PTS.. ignore!!");
 }
 
 void eDVBSubtitleParser::subtitle_redraw_all()
