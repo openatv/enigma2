@@ -29,7 +29,7 @@ class Picon(Renderer):
 					sname = sname[:pos].rstrip(':')
 				pngname = self.nameCache.get(sname, "")
 				if pngname == "":
-					pngname = self.findPicon(self.source.text)
+					pngname = self.findPicon(sname)
 					if pngname != "":
 						self.nameCache[sname] = pngname
 			if pngname == "": # no picon for service found
