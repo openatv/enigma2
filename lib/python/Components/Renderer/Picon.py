@@ -5,10 +5,7 @@ from Renderer import Renderer
 from enigma import ePixmap
 from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, resolveFilename
 
-from time import time
-
 class Picon(Renderer):
-	visible = True
 	pngname = ""
 	nameCache = { }
 	searchPaths = ['/etc/picon/',
@@ -41,16 +38,9 @@ class Picon(Renderer):
 					if pngname == "": # Fallback to enigma2 logo
 						pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/enigma2.png")
 					self.nameCache["default"] = pngname
-			if pngname != "":
-				if self.pngname != pngname:
-					self.instance.setPixmapFromFile(pngname)
-					if not self.visible:
-						self.instance.show()
-						self.visible=True
-			elif self.visible:
-				self.instance.hide()
-				self.visible = False
-			self.pngname = pngname
+			if self.pngname != pngname:
+				self.instance.setPixmapFromFile(pngname)
+				self.pngname = pngname
 
 	def findPicon(self, serviceName):
 		for path in self.searchPaths:
