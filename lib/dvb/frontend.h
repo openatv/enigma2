@@ -2,6 +2,7 @@
 #define __dvb_frontend_h
 
 #include <lib/dvb/idvb.h>
+
 class eDVBFrontendParameters: public iDVBFrontendParameters
 {
 	DECLARE_REF(eDVBFrontendParameters);
@@ -14,20 +15,22 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 	int m_type;
 public:
 	eDVBFrontendParameters();
-	~eDVBFrontendParameters() {}
-	
-	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
-	RESULT setDVBC(const eDVBFrontendParametersCable &p);
-	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
+	~eDVBFrontendParameters()
+	{
+	}
 
-#ifndef SWIG
 	RESULT getSystem(int &type) const;
 	RESULT getDVBS(eDVBFrontendParametersSatellite &) const;
 	RESULT getDVBC(eDVBFrontendParametersCable &) const;
 	RESULT getDVBT(eDVBFrontendParametersTerrestrial &) const;
+
+	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
+	RESULT setDVBC(const eDVBFrontendParametersCable &p);
+	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
+
 	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const;
+
 	RESULT getHash(unsigned long &) const;
-#endif
 };
 
 #ifndef SWIG
