@@ -26,7 +26,7 @@ class Picon(Renderer):
 				# strip all after last :
 				pos = sname.rfind(':')
 				if pos != -1:
-					sname = sname[:pos].rstrip(':')
+					sname = sname[:pos].rstrip(':').replace(':','_')
 				pngname = self.nameCache.get(sname, "")
 				if pngname == "":
 					pngname = self.findPicon(sname)
