@@ -8,7 +8,7 @@ from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, resolveF
 class Picon(Renderer):
 	pngname = ""
 	nameCache = { }
-	searchPaths = ['/etc/picon/',
+	searchPaths = ['/usr/share/enigma2/picon/',
 				'/media/cf/picon/',
 				'/media/usb/picon/',
 				'/media/hdd/picon/']
