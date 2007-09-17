@@ -1345,6 +1345,9 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 		return -1;
 	
 	m_cue->seekTo(0, to);
+	m_dvb_subtitle_pages.clear();
+	m_subtitle_pages.clear();
+
 	return 0;
 }
 
@@ -1372,6 +1375,8 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 		return 0;
 	
 	m_cue->seekTo(mode, to);
+	m_dvb_subtitle_pages.clear();
+	m_subtitle_pages.clear();
 	return 0;
 }
 
