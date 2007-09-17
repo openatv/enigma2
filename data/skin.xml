@@ -103,7 +103,7 @@
 		</widget>	
 		<!-- Channellogo (Picon) -->
 		<widget source="CurrentService" render="Picon" position="47,2" zPosition="2" size="74,57" >
-			<convert type="ServiceName">Name</convert>
+			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<!-- Service name -->
 		<widget source="CurrentService" render="Label" position="130,30" size="360,27" font="Regular;21" valign="center" halign="right" noWrap="1" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >

@@ -23,12 +23,14 @@ class Picon(Renderer):
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
 				sname = self.source.text
+				# strip all after last :
+				pos = sname.rfind(':')
+				if pos != -1:
+					sname = sname[:pos].rstrip(':')
 				pngname = self.nameCache.get(sname, "")
 				if pngname == "":
 					pngname = self.findPicon(self.source.text)
-					if pngname == "":
-						self.nameCache[sname] = pngname
-					else:
+					if pngname != "":
 						self.nameCache[sname] = pngname
 			if pngname == "": # no picon for service found
 				pngname = self.nameCache.get("default", "")
@@ -44,18 +46,7 @@ class Picon(Renderer):
 
 	def findPicon(self, serviceName):
 		for path in self.searchPaths:
-			if pathExists(path):
-				png = self.findFile(path, serviceName)
-				if png != "":
-					return png
+			pngname = path + serviceName + ".png"
+			if fileExists(pngname):
+				return pngname
 		return ""
-
-	def findFile(self, path, serviceName):
-		pngname = path + serviceName + ".png"
-		if fileExists(pngname):
-			return pngname
-		else:
-			for i in range(len(serviceName), 1, -1):
-				if fileExists(path + serviceName[0:i] + ".png"):
-					return path + serviceName[0:i] + ".png"
-			return ""
