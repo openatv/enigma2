@@ -96,15 +96,15 @@
 			<convert type="ValueRange">36700,65536</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<ePixmap pixmap="skin_default/led_green.png" position="528,4" zPosition="2" size="15,15" alphatest="on" />		
+		<ePixmap pixmap="skin_default/led_green.png" position="528,4" zPosition="2" size="15,15" alphatest="on" />
 		<widget source="FrontendStatus" render="Pixmap" pixmap="skin_default/led_red.png" position="528,4" zPosition="3" size="15,15" transparent="1" alphatest="on" >
 			<convert type="FrontendInfo">BER</convert>		
 			<convert type="ConditionalShowHide" />
 		</widget>	
-		<ePixmap position="47,2" zPosition="1" size="74,57" pixmap="skin_default/enigma2.png" alphatest="on" />
-		<!-- Uncomment for Picon use
-		<widget name="picon" position="76,69" zPosition="2" size="70,53" pixmap="skin_default/enigma2.png" />
-		-->
+		<!-- Channellogo (Picon) -->
+		<widget source="CurrentService" render="Picon" position="47,2" zPosition="2" size="74,57" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
 		<!-- Service name -->
 		<widget source="CurrentService" render="Label" position="130,30" size="360,27" font="Regular;21" valign="center" halign="right" noWrap="1" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
 			<convert type="ServiceName">Name</convert>
