@@ -262,7 +262,8 @@
 		<widget source="CurrentService" render="Label" position="230,73" size="360,40" font="Regular;20" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="CurrentService" render="Label" position="590,73" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1" >
+		<!-- movie length -->
+		<widget source="CurrentService" render="Label" position="580,73" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1" >
 			<convert type="ServicePosition">Length</convert>
 		</widget>
 		<!-- Elapsed time -->
