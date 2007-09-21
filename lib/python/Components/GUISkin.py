@@ -43,7 +43,6 @@ class GUISkin:
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
 		if seenFakeSource:
-			print "DEL FAKE SOURCE"
 			del self["fake"]
 
 	def close(self):
