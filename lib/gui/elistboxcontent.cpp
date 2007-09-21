@@ -748,7 +748,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			case TYPE_PIXMAP: // pixmap
 			{
 			/*
-				(2, x, y, width, height, pixmap [, foreColor, backColor, backColorSelected] )
+				(2, x, y, width, height, pixmap [, backColor, backColorSelected] )
 			*/
 
 				ePyObject px = PyTuple_GET_ITEM(item, 1),
