@@ -348,7 +348,13 @@ def readSkin(screen, skin, name, desktop):
 			# get corresponding source
 			source = screen.get(wsource)
 			if source is None:
-				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
+				if wsource == "fake":
+					if screen.get("fake"):
+						raise SkinError("screen '" + name + "has a element named 'fake' but its not a Source!!")
+					source = Source()
+					screen["fake"] = source
+				else:
+					raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
 			
 			wrender = widget.getAttribute('render')
 			

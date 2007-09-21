@@ -35,9 +35,14 @@ class GUISkin:
 				f()
 
 	def deleteGUIScreen(self):
+		seenFakeSource = False
 		for (name, val) in self.items():
+			if name == "fake":
+				seenFakeSource = True
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
+		if seenFakeSource:
+			del self["fake"]
 
 	def close(self):
 		self.deleteGUIScreen()
