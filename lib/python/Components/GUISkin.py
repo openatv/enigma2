@@ -1,6 +1,7 @@
 from GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
+from Sources.Source import Source
 
 class GUISkin:
 	__module__ = __name__
@@ -37,11 +38,12 @@ class GUISkin:
 	def deleteGUIScreen(self):
 		seenFakeSource = False
 		for (name, val) in self.items():
-			if name == "fake":
+			if name == "fake" and isinstance(val, Source):
 				seenFakeSource = True
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
 		if seenFakeSource:
+			print "DEL FAKE SOURCE"
 			del self["fake"]
 
 	def close(self):

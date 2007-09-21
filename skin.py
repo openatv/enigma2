@@ -6,6 +6,7 @@ from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleM
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
+from Components.Sources.Source import Source
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 from Tools.Import import my_import
 
