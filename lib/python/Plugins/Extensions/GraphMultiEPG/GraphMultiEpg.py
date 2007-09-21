@@ -1,3 +1,4 @@
+from skin import queryColor
 from Components.config import config, ConfigClock, ConfigInteger
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -41,6 +42,27 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.time_epoch = time_epoch
 		self.list = None
 		self.event_rect = None
+
+		#query skin colors
+		col = queryColor("GraphEpg.Foreground")
+		self.foreColor = col and col.argb()
+
+		col = queryColor("GraphEpg.Border")
+		self.borderColor = col and col.argb()
+
+		col = queryColor("GraphEpg.Background")
+		if col is None:
+			self.backColor = 0x586d88
+		else:
+			self.backColor = col.argb()
+
+		col = queryColor("GraphEpg.BackgroundSelected")
+		if col is None:
+			self.backColorSelected = 0x808080
+		else:
+			self.backColorSelected = col.argb()
+
+		print "foreColor", self.foreColor, "borderColor", self.borderColor, "backColor", self.backColor, "backColorSel", self.backColorSelected
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
@@ -161,19 +183,28 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2=self.event_rect
 		res = [ None ] # no private data needed
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
-		start = self.time_base+self.offs*self.time_epoch*60
-		end = start + self.time_epoch * 60
-		left = r2.left()
-		top = r2.top()
-		width = r2.width()
-		height = r2.height()
+
 		if events:
+			start = self.time_base+self.offs*self.time_epoch*60
+			end = start + self.time_epoch * 60
+			left = r2.left()
+			top = r2.top()
+			width = r2.width()
+			height = r2.height()
+			foreColor = self.foreColor
+			backColor = self.backColor
+			backColorSelected = self.backColorSelected
+			borderColor = self.borderColor
+
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				rec=self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, left+xpos, top, ewidth, height, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, ev[1], None, 0x586d88, 0x808080, 1))
+				if self.borderColor is None:
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, left+xpos, top, ewidth, height, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, ev[1], foreColor, backColor, backColorSelected, 1))
+				else:
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, left+xpos, top, ewidth, height, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, ev[1], foreColor, backColor, backColorSelected, 1, borderColor))
 				if rec and ewidth > 23:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, left+xpos+ewidth-22, top+height-22, 21, 21, self.clock_pixmap, 0x586d88, 0x808080))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, left+xpos+ewidth-22, top+height-22, 21, 21, self.clock_pixmap, backColor, backColorSelected))
 		return res
 
 	def selEntry(self, dir, visible=True):
