@@ -278,7 +278,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.findBestEvent()
 
 	def getEventRect(self):
-		return self.event_rect
+		rc = self.event_rect
+		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
 
 	def getTimeEpoch(self):
 		return self.time_epoch
