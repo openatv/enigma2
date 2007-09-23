@@ -7,9 +7,12 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 	ALLOW_SUSPEND = False
 
-	def __init__(self, session):
+	global_scren = None
+
+	def __init__(self, session, parent = None):
 		self.skinName = self.__class__.__name__
 		self.session = session
+		self.parent = parent
 		GUISkin.__init__(self)
 
 		self.onClose = [ ]
@@ -140,3 +143,13 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 	def __repr__(self):
 		return str(type(self))
+
+	def getRelatedScreen(self, name):
+		if name == "session":
+			return self.session.screen
+		elif name == "parent":
+			return self.parent
+		elif name == "global":
+			return self.global_screen
+		else:
+			return None

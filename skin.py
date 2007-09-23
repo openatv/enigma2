@@ -6,7 +6,7 @@ from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleM
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
-from Components.Sources.Source import Source
+from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 from Tools.Import import my_import
 
@@ -297,15 +297,17 @@ def readSkin(screen, skin, name, desktop):
 	for n in name:
 		myscreen, path = lookupScreen(n)
 		if myscreen is not None:
+			# use this name for debug output
+			name = n
 			break
 
 	# otherwise try embedded skin
 	myscreen = myscreen or getattr(screen, "parsedSkin", None)
-	
+
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
 		myscreen = screen.parsedSkin = xml.dom.minidom.parseString(screen.skin).childNodes[0]
-	
+
 	assert myscreen is not None, "no skin for screen '" + repr(name) + "' found!"
 
 	screen.skinAttributes = [ ]
@@ -347,15 +349,39 @@ def readSkin(screen, skin, name, desktop):
 			collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
 		elif wsource:
 			# get corresponding source
-			source = screen.get(wsource)
-			if source is None:
-				if wsource == "fake":
-					if screen.get("fake"):
-						raise SkinError("screen '" + name + "has a element named 'fake' but its not a Source!!")
-					source = Source()
-					screen["fake"] = source
+
+			while True: # until we found a non-obsolete source
+
+				# parse our current "wsource", which might specifiy a "related screen" before the dot,
+				# for example to reference a parent, global or session-global screen.
+				scr = screen
+
+				# resolve all path components
+				path = wsource.split('.')
+				while len(path) > 1:
+					scr = screen.getRelatedScreen(path[0])
+					if scr is None:
+						print wsource
+						print name
+						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
+					path = path[1:]
+
+				# resolve the source.
+				source = scr.get(path[0])
+				if isinstance(source, ObsoleteSource):
+					# however, if we found an "obsolete source", issue warning, and resolve the real source.
+					print "WARNING: SKIN '%s' USES OBSOLETE SOURCE '%s', USE '%s' INSTEAD!" % (name, wsource, source.new_source)
+					print "OBSOLETE SOURCE WILL BE REMOVED %s, PLEASE UPDATE!" % (source.removal_date)
+					if source.description:
+						print source.description
+
+					wsource = source.new_source
 				else:
-					raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
+					# otherwise, use that source.
+					break
+
+			if source is None:
+				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
 			
 			wrender = widget.getAttribute('render')
 			
@@ -379,7 +405,7 @@ def readSkin(screen, skin, name, desktop):
 					c = converter_class(parms)
 					c.connect(source)
 				else:
-					print "reused conveter!"
+					print "reused converter!"
 	
 				source = c
 			
