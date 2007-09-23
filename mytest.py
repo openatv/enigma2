@@ -92,6 +92,12 @@ class GUIOutputDevice(OutputDevice):
 	def create(self, comp, desktop):
 		comp.createGUIScreen(self.parent, desktop)
 
+from Screens.Globals import Globals
+from Screens.SessionGlobals import SessionGlobals
+from Screens.Screen import Screen
+
+Screen.global_screen = Globals()
+
 # Session.open:
 # * push current active dialog ('current_dialog') onto stack
 # * call execEnd for this dialog
@@ -132,6 +138,8 @@ class Session:
 		self.summary = None
 
 		self.in_exec = False
+
+		self.screen = SessionGlobals(self)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			p(reason=0, session=self)
