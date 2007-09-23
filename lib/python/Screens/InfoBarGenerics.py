@@ -9,9 +9,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.CurrentService import CurrentService
-from Components.Sources.EventInfo import EventInfo
-from Components.Sources.FrontendStatus import FrontendStatus
+from Components.Sources.Source import ObsoleteSource
 from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
 from Components.config import config, ConfigBoolean, ConfigClock
@@ -544,13 +542,13 @@ class InfoBarEPG:
 class InfoBarTuner:
 	"""provides a snr/agc/ber display"""
 	def __init__(self):
-		self["FrontendStatus"] = FrontendStatus(service_source = self.session.nav.getCurrentService)
+		self["FrontendStatus"] = ObsoleteSource(new_source = "session.FrontendStatus", removal_date = "2008-01")
 
 class InfoBarEvent:
 	"""provides a current/next event info display"""
 	def __init__(self):
-		self["Event_Now"] = EventInfo(self.session.nav, EventInfo.NOW)
-		self["Event_Next"] = EventInfo(self.session.nav, EventInfo.NEXT)
+		self["Event_Now"] = ObsoleteSource(new_source = "session.Event_Now", removal_date = "2008-01")
+		self["Event_Next"] = ObsoleteSource(new_source = "session.Event_Next", removal_date = "2008-01")
 
 class InfoBarRdsDecoder:
 	"""provides RDS and Rass support/display"""
@@ -602,7 +600,7 @@ class InfoBarRdsDecoder:
 
 class InfoBarServiceName:
 	def __init__(self):
-		self["CurrentService"] = CurrentService(self.session.nav)
+		self["CurrentService"] = ObsoleteSource(new_source = "session.CurrentService", removal_date = "2008-01")
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
@@ -1908,18 +1906,16 @@ class InfoBarCueSheetSupport:
 class InfoBarSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
+		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget source="CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
+		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["CurrentService"] = CurrentService(self.session.nav)
-		self["CurrentTime"] = Clock()
 
 class InfoBarSummarySupport:
 	def __init__(self):
