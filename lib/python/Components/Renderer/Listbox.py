@@ -51,7 +51,7 @@ class Listbox(Renderer, object):
 
 	def getIndex(self):
 		if self.instance is None:
-			return None
+			return 0
 		return self.instance.getCurrentIndex()
 
 	def moveToIndex(self, index):
