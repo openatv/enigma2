@@ -10,8 +10,7 @@ class Picon(Renderer):
 	nameCache = { }
 	searchPaths = ['/usr/share/enigma2/picon/',
 				'/media/cf/picon/',
-				'/media/usb/picon/',
-				'/media/hdd/picon/']
+				'/media/usb/picon/']
 
 	def __init__(self):
 		Renderer.__init__(self)
