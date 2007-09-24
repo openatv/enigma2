@@ -20,6 +20,7 @@ class MenuEntryCompare(Converter, object):
 
 	boolean = property(getBool)
 
-	def changed(self, *args, **kwargs):
-		if args[0][0] == self.CHANGED_DEFAULT:
+	def changed(self, what):
+		if what[0] == self.CHANGED_DEFAULT:
 			self.source.onSelectionChanged.append(self.selChanged)
+		Converter.changed(self, what)
