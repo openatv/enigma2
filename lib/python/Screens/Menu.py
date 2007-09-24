@@ -50,37 +50,24 @@ class MenuUpdater:
 	
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
-	
+
 menuupdater = MenuUpdater()
 
 class MenuSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
 		<widget name="MenuTitle" position="6,4" size="120,21" font="Regular;18" />
-		<widget name="MenuEntry" position="6,25" size="120,21" font="Regular;16" />
-		<widget source="CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
+		<widget source="parent.menu" render="Label" position="6,25" size="120,21" font="Regular;16">
+			<convert type="StringListSelection" />
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, parent)
 		self["MenuTitle"] = Label(parent.menu_title)
-		self["MenuEntry"] = Label("")
-		self["CurrentTime"] = Clock()
-		self.parent = parent
-		self.onShow.append(self.addWatcher)
-		self.onHide.append(self.removeWatcher)
-	
-	def addWatcher(self):
-		self.parent["menu"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-	
-	def removeWatcher(self):
-		self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
-
-	def selectionChanged(self):
-		self["MenuEntry"].setText(self.parent["menu"].getCurrent()[0])
 
 class Menu(Screen):
 
