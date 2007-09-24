@@ -213,7 +213,7 @@
 	</screen>
 	<!-- Main menu -->
 	<screen name="menu_mainmenu" position="150,150" size="420,285" title="Main menu" >
-		<widget name="title" position="170,10" size="280,35" font="Regular;23" />
+		<widget source="title" render="Label" position="170,10" size="280,35" font="Regular;23" />
 		<widget source="menu" render="Listbox" position="170,55" size="230,225" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>

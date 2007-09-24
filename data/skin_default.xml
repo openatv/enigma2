@@ -315,7 +315,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 	</screen>
 	<!-- Menu screens -->
 	<screen name="Menu" position="210,150" size="300,285" title="Main menu" >
-		<widget name="title" position="10,10" size="280,35" font="Regular;23" />
+		<widget source="title" render="Label" position="10,10" size="280,35" font="Regular;23" />
 		<widget source="menu" render="Listbox" position="10,55" size="290,225" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
