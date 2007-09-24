@@ -7,7 +7,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 	ALLOW_SUSPEND = False
 
-	global_scren = None
+	global_screen = None
 
 	def __init__(self, session, parent = None):
 		self.skinName = self.__class__.__name__
