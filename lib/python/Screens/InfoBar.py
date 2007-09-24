@@ -16,7 +16,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
 	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
-	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
+	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
 from Screens.HelpMenu import HelpableScreen
@@ -119,7 +119,7 @@ class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
-		InfoBarSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
+		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport):
 
 	ENABLE_RESUME_SUPPORT = True
@@ -137,7 +137,7 @@ class MoviePlayer(InfoBarShowHide, \
 				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
-				InfoBarSummarySupport, InfoBarSubtitleSupport, \
+				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
