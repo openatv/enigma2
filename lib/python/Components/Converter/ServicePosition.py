@@ -27,6 +27,8 @@ class ServicePosition(Converter, Poll, object):
 			self.type = self.TYPE_REMAINING
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
+		else:
+			raise "type must be {Length|Position|PositionDetaileed|Remaining|Gauge}"
 
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 
@@ -87,10 +89,22 @@ class ServicePosition(Converter, Poll, object):
 			else:
 				return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
 
+	# range/value are for the Progress renderer
+	range = 10000
+
+	@cached
+	def getValue(self):
+		pos = self.position
+		len = self.length
+		if pos is None or len is None or len <= 0:
+			return None
+		return pos * 10000 / len
+
 	position = property(getPosition)
 	length = property(getLength)
 	cutlist = property(getCutlist)
 	text = property(getText)
+	value = property(getValue)
 
 	def changed(self, what):
 		cutlist_refresh = what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evCuesheetChanged]
