@@ -1924,6 +1924,30 @@ class InfoBarSummarySupport:
 	def createSummary(self):
 		return InfoBarSummary
 
+class InfoBarMoviePlayerSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,46" size="56,18" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+
+class InfoBarMoviePlayerSummarySupport:
+	def __init__(self):
+		pass
+
+	def createSummary(self):
+		return InfoBarMoviePlayerSummary
+
 class InfoBarTeletextPlugin:
 	def __init__(self):
 		self.teletext_plugin = None
