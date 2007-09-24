@@ -1,10 +1,8 @@
 from Screen import Screen
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
-from Components.Header import Header
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.config import configfile
-from Components.Sources.Clock import Clock
 from Components.PluginComponent import plugins
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
@@ -56,7 +54,7 @@ menuupdater = MenuUpdater()
 class MenuSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="MenuTitle" position="6,4" size="120,21" font="Regular;18" />
+		<widget source="parent.title" render="Label" position="6,4" size="120,21" font="Regular;18" />
 		<widget source="parent.menu" render="Label" position="6,25" size="120,21" font="Regular;16">
 			<convert type="StringListSelection" />
 		</widget>
@@ -67,7 +65,6 @@ class MenuSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self["MenuTitle"] = Label(parent.menu_title)
 
 class Menu(Screen):
 
@@ -211,7 +208,7 @@ class Menu(Screen):
 		a = parent.getAttribute("title").encode("UTF-8") or None
 		if a is None:
 			a = _(parent.getAttribute("text").encode("UTF-8"))
-		self["title"] = Header(a)
+		self["title"] = StaticText(a)
 		self.menu_title = a
 
 	def closeNonRecursive(self):
