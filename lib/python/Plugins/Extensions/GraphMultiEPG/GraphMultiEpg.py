@@ -62,8 +62,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.backColorSelected = col.argb()
 
-		print "foreColor", self.foreColor, "borderColor", self.borderColor, "backColor", self.backColor, "backColorSel", self.backColorSelected
-
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
 
