@@ -12,6 +12,8 @@ from enigma import eTimer
 class Boolean(Source, object):
 	def __init__(self, fixed = False, function = None, poll = 0):
 		Source.__init__(self)
+		self.function = function
+		self.fixed = fixed
 		if poll > 0:
 			self.poll_timer = eTimer()
 			self.poll_timer.timeout.get().append(self.poll)
