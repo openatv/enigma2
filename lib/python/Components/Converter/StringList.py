@@ -25,7 +25,7 @@ class StringList(Converter):
 
 	@cached
 	def getCurrent(self):
-		if self.source is None or self.index >= len(self.source.list):
+		if self.source is None or self.index is None or self.index >= len(self.source.list):
 			return None
 		return self.source.list[self.index]
 
