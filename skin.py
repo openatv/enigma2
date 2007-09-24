@@ -289,12 +289,14 @@ def lookupScreen(name):
 				return x, path
 	return None, None
 
-def readSkin(screen, skin, name, desktop):
-	if not isinstance(name, list):
-		name = [name]
+def readSkin(screen, skin, names, desktop):
+	if not isinstance(names, list):
+		names = [names]
+
+	name = "<embedded-in-'%s'>" % screen.__class__.__name__
 
 	# try all skins, first existing one have priority
-	for n in name:
+	for n in names:
 		myscreen, path = lookupScreen(n)
 		if myscreen is not None:
 			# use this name for debug output
@@ -308,7 +310,7 @@ def readSkin(screen, skin, name, desktop):
 	if myscreen is None and getattr(screen, "skin", None):
 		myscreen = screen.parsedSkin = xml.dom.minidom.parseString(screen.skin).childNodes[0]
 
-	assert myscreen is not None, "no skin for screen '" + repr(name) + "' found!"
+	assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 
 	screen.skinAttributes = [ ]
 	
