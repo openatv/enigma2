@@ -49,7 +49,7 @@ to generate HTML."""
 		if self.master is not None:
 			return self.master.index
 		else:
-			return -1
+			return None
 
 	setCurrentIndex = setIndex
 
