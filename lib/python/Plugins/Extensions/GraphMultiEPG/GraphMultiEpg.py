@@ -159,7 +159,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos += w;
 		w = width/10*8;
 		self.event_rect = Rect(xpos, 0, w, height)
-		self.l.setSelectionClip(eRect(xpos, 0, w, height), False)
+		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)

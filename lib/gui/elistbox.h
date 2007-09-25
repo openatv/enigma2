@@ -26,6 +26,7 @@ public:
 protected:
 	iListboxContent();
 	friend class eListbox;
+	virtual void updateClip(gRegion &){ };
 	virtual void cursorHome()=0;
 	virtual void cursorEnd()=0;
 	virtual int cursorMove(int count=1)=0;
@@ -134,6 +135,8 @@ public:
 		/* the complete list changed. you should not attemp to keep the current index. */
 	void entryReset(bool cursorHome=true);
 
+	int getEntryTop();
+	void invalidate(const gRegion &region = gRegion::invalidRegion());
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void recalcSize();

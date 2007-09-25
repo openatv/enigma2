@@ -64,19 +64,20 @@ class eListboxPythonMultiContent: public eListboxPythonStringContent
 	ePyObject m_buildFunc;
 	ePyObject m_selectableFunc;
 	eRect m_selection_clip;
-	gRegion m_temp_clip;
+	gRegion m_clip, m_old_clip;
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
 	enum { TYPE_TEXT, TYPE_PROGRESS, TYPE_PIXMAP, TYPE_PIXMAP_ALPHATEST };
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	int currentCursorSelectable();
-	
+	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setFont(int fnt, gFont *fnt);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setSelectableFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setItemHeight(int height);
 	void setSelectionClip(eRect &rect, bool update=false);
+	void updateClip(gRegion &);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };

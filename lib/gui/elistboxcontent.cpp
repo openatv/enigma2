@@ -445,7 +445,7 @@ int eListboxPythonConfigContent::currentCursorSelectable()
 RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 eListboxPythonMultiContent::eListboxPythonMultiContent()
-	:m_temp_clip(gRegion::invalidRegion())
+	:m_clip(gRegion::invalidRegion()), m_old_clip(gRegion::invalidRegion())
 {
 }
 
@@ -457,42 +457,42 @@ eListboxPythonMultiContent::~eListboxPythonMultiContent()
 
 void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
 {
-	if (update && m_selection_clip.valid())
-	{
-		m_temp_clip = m_selection_clip;
-		m_temp_clip |= rect;
-		m_selection_clip = rect;
-		if (m_listbox)
-			m_listbox->entryChanged(m_cursor);
-	}
+	m_selection_clip = rect;
+	if (m_listbox)
+		rect.moveBy(ePoint(0, m_listbox->getEntryTop()));
+	if (m_clip.valid())
+		m_clip |= rect;
 	else
-		m_selection_clip = rect;
+		m_clip = rect;
+	if (update && m_listbox)
+		m_listbox->entryChanged(m_cursor);
 }
 
 static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *local_style, ePyObject pforeColor, ePyObject pbackColor, ePyObject pbackColorSelected, int selected, gRegion &rc, eRect &sel_clip)
 {
-		/* if we have a local background color set, use that. */
-	if (local_style && local_style->m_background_color_set)
-		painter.setBackgroundColor(local_style->m_background_color);
-
 	if (selected && sel_clip.valid())
 	{
-		/* if we have no transparent background */
-		if (!local_style || !local_style->m_transparent_background)
+		bool clear=true;
+		painter.clip(rc-sel_clip);
+		if (pbackColor)
 		{
-			painter.clip(rc-sel_clip);
-			if (pbackColor)
-			{
-				int color = PyInt_AsLong(pbackColor);
-				painter.setBackgroundColor(gRGB(color));
-			}/* if we have a local background color set, use that. */
-			else if (local_style && local_style->m_background_color_set)
-				painter.setBackgroundColor(local_style->m_background_color);
-			else
-				style.setStyle(painter, eWindowStyle::styleListboxNormal);
-			painter.clear();
-			painter.clippop();
+			int color = PyInt_AsLong(pbackColor);
+			painter.setBackgroundColor(gRGB(color));
 		}
+		else if (local_style)
+		{
+			// transparent background?
+			if (local_style->m_transparent_background) 
+				clear=false;
+			// if we have a local background color set, use that. 
+			else if (local_style->m_background_color_set)
+				painter.setBackgroundColor(local_style->m_background_color);
+		}
+		else
+			style.setStyle(painter, eWindowStyle::styleListboxNormal);
+		if (clear)
+			painter.clear();
+		painter.clippop();
 		painter.clip(rc&sel_clip);
 		style.setStyle(painter, eWindowStyle::styleListboxSelected);
 		if (pbackColorSelected)
@@ -517,16 +517,22 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		}
 		else
 		{
+			bool clear=true;
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
 				int color = PyInt_AsLong(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			}/* if we have a local background color set, use that. */
-			else if (local_style && local_style->m_background_color_set)
-				painter.setBackgroundColor(local_style->m_background_color);
+			else if (local_style)
+			{
+				if (local_style->m_transparent_background)
+					clear=false;
+				else if (local_style->m_background_color_set)
+					painter.setBackgroundColor(local_style->m_background_color);
+			}
 			/* if we have no transparent background */
-			if (!local_style || !local_style->m_transparent_background)
+			if (clear)
 				painter.clear();
 		}
 	}
@@ -546,13 +552,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	eRect sel_clip(m_selection_clip);
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
-
-	if (m_temp_clip.valid())
-	{
-		m_temp_clip.moveBy(offset);
-		itemregion &= m_temp_clip;
-		m_temp_clip = eRect();
-	}
 
 		/* get local listbox style, if present */
 	if (m_listbox)
@@ -932,4 +931,23 @@ void eListboxPythonMultiContent::setItemHeight(int height)
 	m_itemheight = height;
 	if (m_listbox)
 		m_listbox->setItemHeight(height);
+}
+
+void eListboxPythonMultiContent::setList(ePyObject list)
+{
+	m_old_clip = m_clip = gRegion::invalidRegion();
+	eListboxPythonStringContent::setList(list);
+}
+
+void eListboxPythonMultiContent::updateClip(gRegion &clip)
+{
+	if (m_clip.valid())
+	{
+		clip &= m_clip;
+		if (m_old_clip.valid() && !(m_clip-m_old_clip).empty())
+			m_clip -= m_old_clip;
+		m_old_clip = m_clip;
+	}
+	else
+		m_old_clip = m_clip = gRegion::invalidRegion();
 }
