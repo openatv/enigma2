@@ -478,16 +478,12 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		{
 			int color = PyInt_AsLong(pbackColor);
 			painter.setBackgroundColor(gRGB(color));
-		}
-		else if (local_style)
-		{
-			// transparent background?
-			if (local_style->m_transparent_background) 
-				clear=false;
-			// if we have a local background color set, use that. 
-			else if (local_style->m_background_color_set)
-				painter.setBackgroundColor(local_style->m_background_color);
-		}
+		} // transparent background?
+		else if (local_style && local_style->m_transparent_background) 
+			clear=false;
+		// if we have a local background color set, use that. 
+		else if (local_style && local_style->m_background_color_set)
+			painter.setBackgroundColor(local_style->m_background_color);
 		else
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 		if (clear)
