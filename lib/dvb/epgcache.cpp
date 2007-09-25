@@ -1531,7 +1531,7 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 		}
 
 		if (minutes != -1)
-			m_timemap_end = It->second.second.upper_bound(begin+minutes*60);
+			m_timemap_end = It->second.second.lower_bound(begin+minutes*60);
 		else
 			m_timemap_end = It->second.second.end();
 
