@@ -153,7 +153,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 
 		/* same for foreground */
 	if (local_style && local_style->m_foreground_color_set)
-		painter.setBackgroundColor(local_style->m_foreground_color);
+		painter.setForegroundColor(local_style->m_foreground_color);
 
 		/* if we have no transparent background */
 	if (!local_style || !local_style->m_transparent_background)
@@ -272,7 +272,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 		/* same for foreground */
 	if (local_style && local_style->m_foreground_color_set)
-		painter.setBackgroundColor(local_style->m_foreground_color);
+		painter.setForegroundColor(local_style->m_foreground_color);
 
 	if (!local_style || !local_style->m_transparent_background)
 		/* if we have no transparent background */
@@ -538,7 +538,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		painter.setForegroundColor(gRGB(color));
 	}/* if we have a local foreground color set, use that. */
 	else if (local_style && local_style->m_foreground_color_set)
-		painter.setBackgroundColor(local_style->m_foreground_color);
+		painter.setForegroundColor(local_style->m_foreground_color);
 }
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
