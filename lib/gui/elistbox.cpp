@@ -226,7 +226,6 @@ void eListbox::moveSelection(int dir)
    /* redraw the old and newly selected */
 		gRegion inv = eRect(0, m_itemheight * (m_selected-m_top), size().width(), m_itemheight);
 		inv |= eRect(0, m_itemheight * (oldsel-m_top), size().width(), m_itemheight);
-		
 		invalidate(inv);
 	}
 }
@@ -294,6 +293,11 @@ void eListbox::updateScrollBar()
 	}
 }
 
+int eListbox::getEntryTop()
+{
+	return (m_selected - m_top) * m_itemheight;
+}
+
 int eListbox::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -318,7 +322,7 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		gRegion entryrect = eRect(0, 0, size().width(), m_itemheight);
 		const gRegion &paint_region = *(gRegion*)data;
-		
+
 		for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
 		{
 			gRegion entry_clip_rect = paint_region & entryrect;
@@ -493,6 +497,14 @@ void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
 void eListbox::setSelectionPicture(ePtr<gPixmap> &pm)
 {
 	m_style.m_selection = pm;
+}
+
+void eListbox::invalidate(const gRegion &region)
+{
+	gRegion tmp(region);
+	if (m_content)
+		m_content->updateClip(tmp);
+	eWidget::invalidate(tmp);
 }
 
 struct eListboxStyle *eListbox::getLocalStyle(void)
