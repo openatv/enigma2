@@ -14,9 +14,6 @@ from Tools.XMLTools import elementsWithTag, mergeText
 
 colorNames = dict()
 
-def queryColor(colorName):
-	return colorNames.get(colorName)
-
 def dump(x, i=0):
 	print " " * i + str(x)
 	try:

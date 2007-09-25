@@ -1,4 +1,4 @@
-from skin import queryColor
+from skin import parseColor
 from Components.config import config, ConfigClock, ConfigInteger
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -43,24 +43,26 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.list = None
 		self.event_rect = None
 
-		#query skin colors
-		col = queryColor("GraphEpg.Foreground")
-		self.foreColor = col and col.argb()
+		self.foreColor = None
+		self.borderColor = None
+		self.backColor = 0x586d88
+		self.backColorSelected = 0x808080
 
-		col = queryColor("GraphEpg.Border")
-		self.borderColor = col and col.argb()
-
-		col = queryColor("GraphEpg.Background")
-		if col is None:
-			self.backColor = 0x586d88
-		else:
-			self.backColor = col.argb()
-
-		col = queryColor("GraphEpg.BackgroundSelected")
-		if col is None:
-			self.backColorSelected = 0x808080
-		else:
-			self.backColorSelected = col.argb()
+	def applySkin(self, desktop):
+		attribs = [ ]
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "EntryForegroundColor":
+				self.foreColor = parseColor(value).argb()
+			elif attrib == "EntryBorderColor":
+				self.borderColor = parseColor(value).argb()
+			elif attrib == "EntryBackgroundColor":
+				self.backColor = parseColor(value).argb()
+			elif attrib == "EntryBackgroundColorSelected":
+				self.backColorSelected = parseColor(value).argb()
+			else:
+				attribs.append((attrib,value))
+		self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop)
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
