@@ -1911,8 +1911,13 @@ class InfoBarSummary(Screen):
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
-		</widget>
+		</widget> 
 	</screen>"""
+
+# for picon:  (path="piconlcd" will use LCD picons)
+#		<widget source="session.CurrentService" render="Picon" position="6,0" size="120,64" path="piconlcd" >
+#			<convert type="ServiceName">Reference</convert>
+#		</widget>
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
