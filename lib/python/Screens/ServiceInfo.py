@@ -101,8 +101,10 @@ class ServiceInfo(Screen):
 		if self.type == TYPE_SERVICE_INFO:
 			if self.session.nav.getCurrentlyPlayingServiceReference():
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 			else:
 				name = "N/A"
+				refstr = "N/A"
 			aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
 				aspect = "4:3"
@@ -115,12 +117,14 @@ class ServiceInfo(Screen):
 						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 						   ("Videoformat", aspect, TYPE_TEXT),
 						   ("Videosize", "%dx%d" %(width, height), TYPE_TEXT),
-						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
+						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+						   ("Service Reference", refstr, TYPE_TEXT))
 			else:
 				Labels = ( ("Name", name, TYPE_TEXT),
 						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 						   ("Videoformat", aspect, TYPE_TEXT),
-						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
+						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+						   ("Service Reference", refstr, TYPE_TEXT))
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
