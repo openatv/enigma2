@@ -6,18 +6,31 @@ from enigma import ePixmap
 from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, resolveFilename
 
 class Picon(Renderer):
-	pngname = ""
-	nameCache = { }
-	searchPaths = ['/usr/share/enigma2/picon/',
-				'/media/cf/picon/',
-				'/media/usb/picon/']
+	searchPaths = ['/usr/share/enigma2/%s/',
+				'/media/cf/%s/',
+				'/media/usb/%s/']
 
 	def __init__(self):
 		Renderer.__init__(self)
+		self.path = "picon"
+		self.nameCache = { }
+		self.pngname = ""
+
+	def applySkin(self, desktop):
+		print "-> Picon, applySkin:", self.skinAttributes
+		attribs = [ ]
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "path":
+				self.path = value
+			else:
+				attribs.append((attrib,value))
+		self.skinAttributes = attribs
+		return Renderer.applySkin(self, desktop)
 
 	GUI_WIDGET = ePixmap
 
 	def changed(self, what):
+		print "PICON: path=%s" % self.path
 		if self.instance:
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
@@ -44,7 +57,7 @@ class Picon(Renderer):
 
 	def findPicon(self, serviceName):
 		for path in self.searchPaths:
-			pngname = path + serviceName + ".png"
+			pngname = (path % self.path) + serviceName + ".png"
 			if fileExists(pngname):
 				return pngname
 		return ""
