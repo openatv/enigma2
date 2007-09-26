@@ -41,7 +41,7 @@ class Tuner:
 class Satfinder(ScanSetup):
 	skin = """
 		<screen position="90,100" size="520,400" title="Tune">
-			<widget name="config" position="20,10" size="460,240" scrollbarMode="showOnDemand" />
+			<widget name="config" position="20,10" size="460,210" scrollbarMode="showOnDemand" />
 			<widget name="introduction" position="20,360" zPosition="-10" size="350,30" font="Regular;23" />
 			<eLabel text="dB:" position="23,230" size="60,22" font="Regular;21" />
 			<eLabel text="SNR:" position="23,255" size="60,22" font="Regular;21" />
