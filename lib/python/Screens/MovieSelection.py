@@ -23,7 +23,7 @@ from enigma import eServiceReference, eServiceCenter, eTimer, eSize
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
-config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_COMPACT_DESCRIPTION)
+config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_ORIGINAL)
 config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
 
 class MovieContextMenu(Screen):
