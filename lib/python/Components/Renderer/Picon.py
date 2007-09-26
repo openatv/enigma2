@@ -17,7 +17,6 @@ class Picon(Renderer):
 		self.pngname = ""
 
 	def applySkin(self, desktop):
-		print "-> Picon, applySkin:", self.skinAttributes
 		attribs = [ ]
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
@@ -30,7 +29,6 @@ class Picon(Renderer):
 	GUI_WIDGET = ePixmap
 
 	def changed(self, what):
-		print "PICON: path=%s" % self.path
 		if self.instance:
 			pngname = ""
 			if what[0] != self.CHANGED_CLEAR:
