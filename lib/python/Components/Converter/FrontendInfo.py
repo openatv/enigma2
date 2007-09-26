@@ -56,9 +56,15 @@ class FrontendInfo(Converter, object):
 	def getBool(self):
 		assert self.type in [self.LOCK, self.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
 		if self.type == self.LOCK:
-			return self.source.lock
+			lock = self.source.lock
+			if lock is None:
+				lock = False
+			return lock
 		else:
-			return self.source.ber > 0
+			ber = self.source.ber
+			if ber is None:
+				ber = 0
+			return ber > 0
 
 	text = property(getText)
 
