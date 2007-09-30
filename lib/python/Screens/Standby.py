@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from enigma import eDVBVolumecontrol, eDBoxLCD
-from Components.Sources.Clock import Clock
+from Components.Sources.Source import ObsoleteSource
 
 inStandby = None
 
@@ -72,14 +72,14 @@ class Standby(Screen):
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["CurrentTime"] = Clock()
+		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox

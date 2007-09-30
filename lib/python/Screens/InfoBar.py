@@ -5,7 +5,7 @@ from Screens.ChannelSelection import ChannelSelectionRadio
 from Screens.MessageBox import MessageBox
 from Screens.Ci import CiHandler
 
-from Components.Sources.Clock import Clock
+from Components.Sources.Source import ObsoleteSource
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -59,7 +59,7 @@ class InfoBar(InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("hear radio..."))]))
 
-		self["CurrentTime"] = Clock()
+		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
