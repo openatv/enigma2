@@ -4,7 +4,7 @@ from Components.Sources.Source import ObsoleteSource
 class SimpleSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="global.CurrentTime" position="56,46" size="82,18" font="Regular;16">
+		<widget source="global.CurrentTime" position="56,46" size="82,18" font="Regular;16">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 		<widget name="Title" position="6,4" size="120,42" font="Regular;18" />
