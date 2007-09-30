@@ -11,7 +11,6 @@ from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Source import ObsoleteSource
 from Components.Sources.Boolean import Boolean
-from Components.Sources.Clock import Clock
 from Components.config import config, ConfigBoolean, ConfigClock
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor

@@ -9,7 +9,7 @@ from enigma import eServiceReference, eEPGCache, eServiceCenter, eTimer, eDVBDB,
 from Components.config import config, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
-from Components.Sources.Clock import Clock
+from Components.Sources.Source import ObsoleteSource
 from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Input import Input
@@ -1053,7 +1053,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 
-		self["CurrentTime"] = Clock()
+		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -1303,7 +1303,7 @@ class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName):
 		Screen.__init__(self, session)
 		InfoBarEvent.__init__(self)
 		InfoBarServiceName.__init__(self)
-		self["CurrentTime"] = Clock()
+		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 		self["BlinkingPoint"] = Pixmap()
 		self["BlinkingPoint"].hide()

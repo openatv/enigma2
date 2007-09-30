@@ -47,7 +47,7 @@
 			<convert type="EventName">Name</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/clock.png" position="483,329" zPosition="1" size="14,14" alphatest="on"/>
-		<widget source="CurrentTime" render="Label" position="500,327" zPosition="1" size="50,20" font="Regular;19" halign="right" >
+		<widget source="global.CurrentTime" render="Label" position="500,327" zPosition="1" size="50,20" font="Regular;19" halign="right" >
 			<convert type="ClockToText"></convert>
 		</widget>
 		<widget source="ServiceEvent" render="Label" position="210,347" zPosition="1" size="340,20" font="Regular;19" halign="right" noWrap="1" >
@@ -216,7 +216,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 		<ePixmap pixmap="skin_default/clock.png" position="452,13" zPosition="0" size="14,14" alphatest="on"/>
-		<widget source="Clock" render="Label" position="420,0" size="130,40" font="Regular;21" valign="center" halign="right" >
+		<widget source="global.CurrentTime" render="Label" position="420,0" size="130,40" font="Regular;21" valign="center" halign="right" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 		<widget name="timeline_text" position="0,41" size="560,20" />
@@ -503,7 +503,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="Event_Now" render="Progress" pixmap="skin_default/progress_medium.png" position="395,5" zPosition="2" size="71,11" borderWidth="2" borderColor="#cccccc" transparent="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="CurrentTime" render="Label" position="500,1" size="55,28" font="Regular;20" halign="right" transparent="1" >
+		<widget source="global.CurrentTime" render="Label" position="500,1" size="55,28" font="Regular;20" halign="right" transparent="1" >
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget source="Event_Now" render="Label" position="5,25" size="60,22" font="Regular;20" transparent="1" >
