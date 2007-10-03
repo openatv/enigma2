@@ -2492,7 +2492,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 				int sid = data[ptr++] << 8;
 				sid |= data[ptr++];
 
-// WORKAROUND for wrong transmitted epg data (01.08.2006)
+// WORKAROUND for wrong transmitted epg data (01.10.2007)
 				if ( onid == 0x85 )
 				{
 					switch( (tsid << 16) | sid )
@@ -2503,6 +2503,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 						case 0x0300f5: sid = 0xdc; break;
 						case 0x0400d2: sid = 0xe2; tsid = 0x11; break;
 						case 0x1100d3: sid = 0xe3; break;
+						case 0x0100e4: sid = 0xe4; break;
 					}
 				}
 ////////////////////////////////////////////
