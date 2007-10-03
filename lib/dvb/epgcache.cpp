@@ -2503,7 +2503,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 						case 0x0300f5: sid = 0xdc; break;
 						case 0x0400d2: sid = 0xe2; tsid = 0x11; break;
 						case 0x1100d3: sid = 0xe3; break;
-						case 0x0100e4: sid = 0xe4; break;
+						case 0x0100d4: sid = 0xe4; tsid = 4; break;
 					}
 				}
 ////////////////////////////////////////////
