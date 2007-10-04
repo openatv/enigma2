@@ -5,7 +5,10 @@ from Plugins.Plugin import PluginDescriptor
 
 def getUpgradeVersion():
 	import os
-	r = os.popen("fpupgrade --version").read()
+	try:
+		r = os.popen("fpupgrade --version").read()
+	except IOError:
+		return None
 	if r[:16] != "FP update tool v":
 		return None
 	else:
