@@ -1786,7 +1786,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 				    anything in the best case, or destroy the default setting in
 				    case the real default is not yet available.)
 			*/
-	if (m_dvb_service && !m_is_pvr && (i != -1))
+	if (m_dvb_service && !m_is_pvr && ((i != -1)
+		|| ((m_dvb_service->getCacheEntry(eDVBService::cAPID) == -1) && (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)==-1))))
 	{
 		if (apidtype == eDVBAudio::aMPEG)
 		{
