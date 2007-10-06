@@ -99,19 +99,17 @@ void keyEvent(const eRCKey &key)
 class eMain: public eApplication, public Object
 {
 	eInit init;
-	
-	ePtr<eDVBResourceManager> m_mgr;
+
 	ePtr<eDVBDB> m_dvbdb;
+	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
-	ePtr<eComponentScan> m_scan;
 	ePtr<eEPGCache> m_epgcache;
 
 public:
 	eMain()
 	{
 		init.setRunlevel(eAutoInitNumbers::main);
-
-				/* TODO: put into init */
+		/* TODO: put into init */
 		m_dvbdb = new eDVBDB();
 		m_mgr = new eDVBResourceManager();
 		m_locale_time_handler = new eDVBLocalTimeHandler();
@@ -122,7 +120,7 @@ public:
 	~eMain()
 	{
 		m_dvbdb->saveServicelist();
-		m_scan = 0;
+		m_mgr->releaseCachedChannel();
 	}
 };
 
@@ -150,7 +148,7 @@ int main(int argc, char **argv)
 
 	ePython python;
 	eMain main;
-	
+
 #if 1
 #ifdef SDLDC
 	ePtr<gSDLDC> my_dc;

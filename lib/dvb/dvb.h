@@ -181,11 +181,11 @@ class eDVBResourceManager: public iObject, public Object
 	Connection m_cached_channel_state_changed_conn;
 	eTimer m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
-	void releaseCachedChannel();
 	void feStateChanged();
 #ifndef SWIG
 public:
 #endif
+	void releaseCachedChannel();
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();
 
