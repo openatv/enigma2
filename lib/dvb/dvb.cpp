@@ -2,6 +2,7 @@
 #include <lib/base/filepush.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
+#include <lib/dvb/pmt.h>
 #include <lib/dvb/sec.h>
 
 #include <errno.h>
@@ -81,6 +82,8 @@ eDVBResourceManager::eDVBResourceManager()
 	
 	eDebug("found %d adapter, %d frontends and %d demux", 
 		m_adapter.size(), m_frontend.size(), m_demux.size());
+
+	eDVBCAService::registerChannelCallback(this);
 
 	CONNECT(m_releaseCachedChannelTimer.timeout, eDVBResourceManager::releaseCachedChannel);
 }

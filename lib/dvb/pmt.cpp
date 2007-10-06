@@ -616,7 +616,9 @@ void eDVBServicePMTHandler::free()
 	m_demux = 0;
 }
 
-std::map<eServiceReferenceDVB, eDVBCAService*> eDVBCAService::exist;
+CAServiceMap eDVBCAService::exist;
+ChannelMap eDVBCAService::exist_channels;
+ePtr<eConnection> eDVBCAService::m_chanAddedConn;
 
 eDVBCAService::eDVBCAService()
 	:m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eApp)
@@ -632,6 +634,7 @@ eDVBCAService::~eDVBCAService()
 	::close(m_sock);
 }
 
+// begin static methods
 RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice )
 {
 	CAServiceMap::iterator it = exist.find(ref);
@@ -722,6 +725,89 @@ RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int d
 	return 0;
 }
 
+void eDVBCAService::registerChannelCallback(eDVBResourceManager *res_mgr)
+{
+	res_mgr->connectChannelAdded(slot(&DVBChannelAdded), m_chanAddedConn);
+}
+
+void eDVBCAService::DVBChannelAdded(eDVBChannel *chan)
+{
+	if ( chan )
+	{
+		eDebug("[eDVBCAService] new channel %p!", chan);
+		channel_data *data = new channel_data();
+		data->m_channel = chan;
+		data->m_prevChannelState = -1;
+		data->m_dataDemux = -1;
+		exist_channels[chan] = data;
+		chan->connectStateChange(slot(&DVBChannelStateChanged), data->m_stateChangedConn);
+	}
+}
+
+void eDVBCAService::DVBChannelStateChanged(iDVBChannel *chan)
+{
+	ChannelMap::iterator it =
+		exist_channels.find(chan);
+	if ( it != exist_channels.end() )
+	{
+		int state=0;
+		chan->getState(state);
+		if ( it->second->m_prevChannelState != state )
+		{
+			switch (state)
+			{
+				case iDVBChannel::state_ok:
+				{
+					eDebug("[eDVBCAService] channel %p running", chan);
+					break;
+				}
+				case iDVBChannel::state_release:
+				{
+					eDebug("[eDVBCAService] remove channel %p", chan);
+					unsigned char msg[8] = { 0x9f,0x80,0x3f,0x04,0x83,0x02,0x00,0x00 };
+					msg[7] = it->second->m_dataDemux & 0xFF;
+					int sock, clilen;
+					struct sockaddr_un servaddr;
+					memset(&servaddr, 0, sizeof(struct sockaddr_un));
+					servaddr.sun_family = AF_UNIX;
+					strcpy(servaddr.sun_path, "/tmp/camd.socket");
+					clilen = sizeof(servaddr.sun_family) + strlen(servaddr.sun_path);
+					sock = socket(PF_UNIX, SOCK_STREAM, 0);
+					if (sock > -1)
+					{
+						connect(sock, (struct sockaddr *) &servaddr, clilen);
+						fcntl(sock, F_SETFL, O_NONBLOCK);
+						int val=1;
+						setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
+						if (write(sock, msg, 8) != 8)
+							eDebug("[eDVBCAService] write leave transponder failed!!");
+						close(sock);
+					}
+					exist_channels.erase(it);
+					delete it->second;
+					it->second=0;
+					break;
+				}
+				default: // ignore all other events
+					return;
+			}
+			if (it->second)
+				it->second->m_prevChannelState = state;
+		}
+	}
+}
+
+channel_data *eDVBCAService::getChannelData(eDVBChannelID &chid)
+{
+	for (ChannelMap::iterator it(exist_channels.begin()); it != exist_channels.end(); ++it)
+	{
+		if (chid == it->second->m_channel->getChannelID())
+			return it->second;
+	}
+	return 0;
+}
+// end static methods
+
 void eDVBCAService::Connect()
 {
 	memset(&m_servaddr, 0, sizeof(struct sockaddr_un));
@@ -769,7 +855,7 @@ void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 	eDebug("demux %d mask %02x prevhash %08x", data_demux, demux_mask, m_prev_build_hash);
 
-	unsigned int build_hash = (pmtpid << 16);
+	unsigned int build_hash = ( pmtpid << 16);
 	build_hash |= (demux_mask << 8);
 	build_hash |= (pmt_version&0xFF);
 
@@ -855,6 +941,14 @@ void eDVBCAService::sendCAPMT()
 	{
 		m_sendstate=0xFFFFFFFF;
 		eDebug("[eDVBCAService] send %d bytes",wp);
+		eDVBChannelID chid;
+		m_service.getChannelID(chid);
+		channel_data *data = getChannelData(chid);
+		if (data)
+		{
+			int lenbytes = m_capmt[3] & 0x80 ? m_capmt[3] & ~0x80 : 0;
+			data->m_dataDemux = m_capmt[24+lenbytes];
+		}
 #if 1
 		for(int i=0;i<wp;i++)
 			eDebugNoNewLine("%02x ", m_capmt[i]);
