@@ -20,7 +20,18 @@
 class eDVBCAService;
 class eDVBScan;
 
+struct channel_data: public Object
+{
+	ePtr<eDVBChannel> m_channel;
+	ePtr<eConnection> m_stateChangedConn;
+	int m_prevChannelState;
+	int m_dataDemux;
+};
+
+// TODO .. put all static stuff into a 'eDVBCAServiceHandler class'
+
 typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
+typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
 
 class eDVBCAService: public Object
 {
@@ -36,10 +47,17 @@ class eDVBCAService: public Object
 	void sendCAPMT();
 	void Connect();
 
+	static void DVBChannelAdded(eDVBChannel*);
+	static void DVBChannelStateChanged(iDVBChannel*);
 	static CAServiceMap exist;
+	static ChannelMap exist_channels;
+	static ePtr<eConnection> m_chanAddedConn;
+	static channel_data *getChannelData(eDVBChannelID &chid);
+
 	eDVBCAService();
 	~eDVBCAService();
 public:
+	static void registerChannelCallback(eDVBResourceManager *res_mgr);
 	static RESULT register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice );
 	static RESULT unregister_service( const eServiceReferenceDVB &ref, int demux_nums[2], eTable<ProgramMapSection> *ptr );
 	void buildCAPMT(eTable<ProgramMapSection> *ptr);
