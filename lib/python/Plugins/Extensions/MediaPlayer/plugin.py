@@ -707,7 +707,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [(_("Media player"), main, "media_player", None)]
+		return [(_("Media player"), main, "media_player", 45)]
 	return []
 
 def filescan_open(list, session, **kwargs):
