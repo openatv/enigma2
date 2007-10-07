@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/python/Plugins/Extensions/MediaPlayer
+installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/MediaPlayer
 
 install_PYTHON = \
 	__init__.py \
