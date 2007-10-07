@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.ConfigList import ConfigList
 from Components.config import *
 
-from Tools.Directories import resolveFilename, pathExists, createDir, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, fileExists, pathExists, createDir, SCOPE_MEDIA
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 
@@ -537,8 +537,14 @@ def filescan_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
+
+	# Overwrite checkFile to only detect local
+	class LocalScanner(Scanner):
+		def checkFile(self, file):
+			return fileExists(file.path)
+
 	return \
-		Scanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],
+		LocalScanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],
 			paths_to_scan = 
 				[
 					ScanPath(path = "DCIM", with_subdirs = True),
