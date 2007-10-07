@@ -717,7 +717,7 @@ def filescan_open(list, session, **kwargs):
 
 	mp.switchToPlayList()
 	for file in list:
-		ref = eServiceReference(4097, 0, file)
+		ref = eServiceReference(4097, 0, file.path)
 		mp.playlist.addFile(ref)
 
 	# TODO: rather play first than last file?
@@ -725,9 +725,7 @@ def filescan_open(list, session, **kwargs):
 	mp.playlist.updateList()
 
 def filescan(**kwargs):
-	# we expect not to be called if the MediaScanner plugin is not available,
-	# thus we don't catch an ImportError exception here
-	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath
+	from Components.Scanner import Scanner, ScanPath
 	return [
 		Scanner(mimetypes = ["video/mpeg"],
 			paths_to_scan =
