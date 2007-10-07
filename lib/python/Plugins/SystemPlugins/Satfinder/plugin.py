@@ -272,7 +272,7 @@ def SatfinderMain(session, **kwargs):
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Satfinder"), SatfinderMain, "satfinder")]
+		return [(_("Satfinder"), SatfinderMain, "satfinder", None)]
 	else:
 		return []
 

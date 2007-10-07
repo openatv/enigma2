@@ -22,7 +22,7 @@ class PluginDescriptor:
 	WHERE_PLUGINMENU  = 2
 	# argument: session, serviceref (currently selected)
 	WHERE_MOVIELIST = 3
-	# argument: menuid. Fnc must return list with menuitems (3-tuple of name, fnc to call, entryid or None)
+	# argument: menuid. Fnc must return list with menuitems (4-tuple of name, fnc to call, entryid or None, weight or None)
 	WHERE_MENU = 4
 	
 	# reason (0: start, 1: end)

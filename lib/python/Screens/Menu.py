@@ -35,13 +35,13 @@ class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
 	
-	def addMenuItem(self, id, pos, text, module, screen):
+	def addMenuItem(self, id, pos, text, module, screen, weight):
 		if not self.updatedMenuAvailable(id):
 			self.updatedMenuItems[id] = []
-		self.updatedMenuItems[id].append([text, pos, module, screen])
+		self.updatedMenuItems[id].append([text, pos, module, screen, weight])
 	
-	def delMenuItem(self, id, pos, text, module, screen):
-		self.updatedMenuItems[id].remove([text, pos, module, screen])
+	def delMenuItem(self, id, pos, text, module, screen, weight):
+		self.updatedMenuItems[id].remove([text, pos, module, screen, weight])
 	
 	def updatedMenuAvailable(self, id):
 		return self.updatedMenuItems.has_key(id)
@@ -102,13 +102,14 @@ class Menu(Screen):
 	def addMenu(self, destList, node):
 		MenuTitle = _(node.getAttribute("text").encode("UTF-8") or "??")
 		entryID = node.getAttribute("entryID") or "undefined"
+		weight = node.getAttribute("weight") or 50
 		x = node.getAttribute("flushConfigOnClose")
 		if x:
 			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
 		else:
 			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
 		#TODO add check if !empty(node.childNodes)
-		destList.append((MenuTitle, a, entryID))
+		destList.append((MenuTitle, a, entryID, weight))
 
 	def menuClosedWithConfigFlush(self, *res):
 		configfile.save()
@@ -121,6 +122,7 @@ class Menu(Screen):
 	def addItem(self, destList, node):
 		item_text = node.getAttribute("text").encode("UTF-8")
 		entryID = node.getAttribute("entryID") or "undefined"
+		weight = node.getAttribute("weight") or 50
 		for x in node.childNodes:
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
@@ -142,10 +144,10 @@ class Menu(Screen):
 				args = XMLTools.mergeText(x.childNodes)
 				screen += ", " + args
 
-				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID))
+				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
 				return
 			elif x.tagName == 'code':
-				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes)), entryID))
+				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes)), entryID, weight))
 				return
 			elif x.tagName == 'setup':
 				id = x.getAttribute("id")
@@ -153,9 +155,9 @@ class Menu(Screen):
 					item_text = _(getSetupTitle(id)) + "..."
 				else:
 					item_text = _(item_text)
-				destList.append((item_text, boundFunction(self.openSetup, id), entryID))
+				destList.append((item_text, boundFunction(self.openSetup, id), entryID, weight))
 				return
-		destList.append((item_text, self.nothing, entryID))
+		destList.append((item_text, self.nothing, entryID, weight))
 
 
 	def __init__(self, session, parent, childNode):
@@ -182,19 +184,23 @@ class Menu(Screen):
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
-							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", "))))
+							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
 							count += 1
 
 		if menuID is not None:
 			# plugins
 			for l in plugins.getPluginsForMenu(menuID):
-				list.append((l[0], boundFunction(l[1], self.session), l[2]))
+				list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
+					
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
 		if menuID is not None:
 			self.skinName.append("menu_" + menuID)
 		self.skinName.append("Menu")
+
+		# Sort by Weight
+		list.sort(key=lambda x: int(x[3]))
 
 		self["menu"] = List(list)
 
