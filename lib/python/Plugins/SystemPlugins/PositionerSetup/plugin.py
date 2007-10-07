@@ -569,7 +569,7 @@ def PositionerMain(session, **kwargs):
 
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Positioner setup"), PositionerMain)]
+		return [(_("Positioner setup"), PositionerMain, "positioner_setup")]
 	else:
 		return []
 

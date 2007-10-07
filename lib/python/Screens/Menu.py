@@ -188,7 +188,7 @@ class Menu(Screen):
 		if menuID is not None:
 			# plugins
 			for l in plugins.getPluginsForMenu(menuID):
-				list.append((l[0], boundFunction(l[1], self.session)))
+				list.append((l[0], boundFunction(l[1], self.session), l[2]))
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
