@@ -101,7 +101,7 @@ class PluginComponent:
 
 	def getPluginsForMenu(self, menuid):
 		res = [ ]
-		for p in self.getPlugins(PluginDescriptor.WHERE_SETUP):
+		for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
 			res += p(menuid)
 		return res
 

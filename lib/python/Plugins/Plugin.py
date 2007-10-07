@@ -22,8 +22,8 @@ class PluginDescriptor:
 	WHERE_PLUGINMENU  = 2
 	# argument: session, serviceref (currently selected)
 	WHERE_MOVIELIST = 3
-	# ...
-	WHERE_SETUP    = 4
+	# argument: menuid. Fnc must return list with menuitems (2-tuple of name, fnc to call)
+	WHERE_MENU = 4
 	
 	# reason (0: start, 1: end)
 	WHERE_AUTOSTART = 5
