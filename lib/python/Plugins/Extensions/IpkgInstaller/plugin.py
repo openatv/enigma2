@@ -20,7 +20,7 @@ class IpkgInstaller(Screen):
 	def __init__(self, session, list):
 		self.skin = IpkgInstaller.skin
 		Screen.__init__(self, session)
-		
+
 		self.list = SelectionList()
 		self["list"] = self.list
 		for listindex in range(len(list)):
@@ -47,14 +47,13 @@ class IpkgInstaller(Screen):
 		self.session.open(Ipkg, cmdList = cmdList)
 
 def filescan_open(list, session, **kwargs):
-	session.open(IpkgInstaller, list) # list
+	filelist = [x.path for x in list]
+	session.open(IpkgInstaller, filelist) # list
 
 def filescan(**kwargs):
-	# we expect not to be called if the MediaScanner plugin is not available,
-	# thus we don't catch an ImportError exception here
-	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath
+	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(extensions = ["ipk"], 
+		Scanner(mimetypes = ["application/x-debian-package"], 
 			paths_to_scan = 
 				[
 					ScanPath(path = "ipk", with_subdirs = True), 

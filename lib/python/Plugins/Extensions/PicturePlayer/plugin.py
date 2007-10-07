@@ -531,14 +531,14 @@ def main(session, **kwargs):
 	session.open(picmain)
 
 def filescan_open(list, session, **kwargs):
-	session.open(picmain) # list
+	# Recreate List as expected by PicView
+	filelist = [((file.path, False), None) for file in list]
+	session.open(PicView, filelist, "", "")
 
 def filescan(**kwargs):
-	# we expect not to be called if the MediaScanner plugin is not available,
-	# thus we don't catch an ImportError exception here
-	from Plugins.Extensions.MediaScanner.plugin import Scanner, ScanPath
+	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(extensions = ["jpg", "jpe", "jpeg"], 
+		Scanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],
 			paths_to_scan = 
 				[
 					ScanPath(path = "DCIM", with_subdirs = True),
