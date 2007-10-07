@@ -10,6 +10,6 @@ install_PYTHON = \
 	Dish.py LanguageSelection.py StartWizard.py PiPSetup.py Subtitles.py \
 	TutorialWizard.py PluginBrowser.py MinuteInput.py Scart.py PVRState.py \
 	Console.py InputBox.py ChoiceBox.py SimpleSummary.py ImageWizard.py \
-	MediaPlayer.py TimerSelection.py PictureInPicture.py TimeDateInput.py \
+	TimerSelection.py PictureInPicture.py TimeDateInput.py \
 	SubtitleDisplay.py SubservicesQuickzap.py ParentalControlSetup.py NumericalTextInputHelpDialog.py \
 	SleepTimerEdit.py Ipkg.py RdsDisplay.py Globals.py SessionGlobals.py
