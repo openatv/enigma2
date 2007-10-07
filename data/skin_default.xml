@@ -787,7 +787,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- Timeshift state -->
 	<screen name="TimeshiftState" flags="wfNoBorder" position="70,70" size="150,60" backgroundColor="transpBlack" zPosition="2">
 		<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" backgroundColor="transpBlack" />
-		<widget source="CurrentService" render="Label" position="0,30" size="150,30" font="Regular;25" halign="center" backgroundColor="transpBlack" foregroundColor="white" >
+		<widget source="session.CurrentService" render="Label" position="0,30" size="150,30" font="Regular;25" halign="center" backgroundColor="transpBlack" foregroundColor="white" >
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
 	</screen>
