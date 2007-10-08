@@ -1,12 +1,14 @@
-Right now, the exact LICENSE to be used for enigma2 is undecided.
+The 'enigma2 core' is licensed under a proprietary license.
 
-enigma2 will be licensed with a proprietary, not-yet decided license.
+The 'enigma2 core' contains all files in this sourcetree except plugins in
+lib/python/Plugins which carry their own LICENSE file. Those plugins are
+licensed under their own license.
 
-This proprietary license will not allow you to compile, modify or do
+This proprietary license does not allow you to compile, modify or do
 anything with this sources. You are allowed, however, to distribute
 an unmodified version of the sources, including all license statements.
 
-The proprietary license will essentially allow you one thing:
+Additionally, this proprietary license will essentially allow you one thing:
 
 You are free to take *THIS* version of enigma2, and derive a version 
 which will be licensed under the GPLv2. If you're doing this,
@@ -19,17 +21,24 @@ source form if you are distributing a binary version. Exact details
 can be read in the GPLv2.
 
 If you wish do send us patches to be included in the "official 
-release", which will be based on the proprietary license, you have to
+sourcetree", which will be based on the proprietary license, you have to
 agree that your code will be licensed under the proprietary license.
 
-Note that "official release" just means the version which is shipped
-with the Dreambox hardware.
+Note that "official sourcetree" just means the version which is 
+included in the main developer CVS hosted at, or on behalf of,
+Dream Multimedia TV.
 
 You are, of course, free to make patches to a GPL-only version. These
 changes won't show up in the "official release" then, though.
 
-The same goes for plugins. You can decide wheter you want your plugins
+Additionally, this license allows Dream Multimedia to change terms of this
+license. If you don't like a change in this license, you are free to derive
+a GPL version from a previous version, of course.
+
+The same goes for plugins. You can decide whether you want your plugins
 to be compatible to the "official release" (so you must explicitely
 allow "linking" code licensed under the proprietary license to your
 code), or you can decide that your code should be only linked to
-the GPL'ed ("free") version of enigma2.
+the GPL'ed ("free") version of enigma2. Your plugins are also allowed 
+to be closed-source, though we strongly discourage this for technical
+reasons.
