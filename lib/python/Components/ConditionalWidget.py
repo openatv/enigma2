@@ -11,7 +11,10 @@ class ConditionalWidget(GUIComponent):
 			self.conditionCheckTimer = eTimer()
 			self.conditionCheckTimer.timeout.get().append(self.update)
 			self.conditionCheckTimer.start(1000)
-		
+
+	def postWidgetCreate(self, instance):
+		self.visible = 0
+
 	def setConnect(self, conditionalFunction):
 		self.conditionalFunction = conditionalFunction
 		
@@ -32,11 +35,8 @@ class ConditionalWidget(GUIComponent):
 class BlinkingWidget(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
-		
-		self.blinking = True
-		
+		self.blinking = False
 		self.setBlinkTime(500)
-
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.blink)
 	

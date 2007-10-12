@@ -10,9 +10,9 @@ from enigma import eDVBSatelliteEquipmentControl
 class Dish(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
 		self["transparent"] = Button("")
 		self["Dishpixmap"] = BlinkingPixmapConditional()
+		self["Dishpixmap"].onVisibilityChange.append(self.DishpixmapVisibilityChanged)
 		#self["Dishpixmap"] = Pixmap()
 		config.usage.showdish.addNotifier(self.configChanged)
 		self.configChanged(config.usage.showdish)
@@ -22,3 +22,9 @@ class Dish(Screen):
 			self["Dishpixmap"].setConnect(lambda: False)
 		else:
 			self["Dishpixmap"].setConnect(eDVBSatelliteEquipmentControl.getInstance().isRotorMoving)
+
+	def DishpixmapVisibilityChanged(self, state):
+		if state:
+			self.show() # show complete screen
+		else:
+			self.hide() # hide complete screen
