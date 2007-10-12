@@ -7,6 +7,8 @@ class GUIComponent(object):
 	
 	def __init__(self):
 		self.instance = None
+		self.onVisibilityChange = [ ]
+		self.__visible = 0
 		self.visible = 1
 		self.skinAttributes = None
 	
@@ -50,14 +52,22 @@ class GUIComponent(object):
 		self.instance.setZPosition(z)
 
 	def show(self):
+		old = self.__visible
 		self.__visible = 1
 		if self.instance is not None:
 			self.instance.show()
+		if old != self.__visible:
+			for fnc in self.onVisibilityChange:
+				fnc(True)
 
 	def hide(self):
+		old = self.__visible
 		self.__visible = 0
 		if self.instance is not None:
 			self.instance.hide()
+		if old != self.__visible:
+			for fnc in self.onVisibilityChange:
+				fnc(False)
 
 	def getVisible(self):
 		return self.__visible
