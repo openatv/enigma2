@@ -10,7 +10,7 @@ def FuzzyTime(t):
 		date = _("Today")
 	elif ((t - nt) < 7*86400) and (nt < t):
 		# same week
-		date = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[d[6]]
+		date = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))[d[6]]
 	elif d[0] == n[0]:
 		# same year
 		date = "%d.%d." % (d[2], d[1])
