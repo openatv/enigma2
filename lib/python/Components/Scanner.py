@@ -72,7 +72,7 @@ class ScanFile:
 	def __init__(self, path, mimetype = None, size = None, autodetect = True):
 		self.path = path
 		if mimetype is None and autodetect:
-			(self.mimetype, _) = guess_type(path)
+			self.mimetype = getType(path)
 		else:
 			self.mimetype = mimetype
 		self.size = size
