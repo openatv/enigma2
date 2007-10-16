@@ -1932,13 +1932,13 @@ class InfoBarSummarySupport:
 class InfoBarMoviePlayerSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
+		<widget source="global.CurrentTime" render="Label" position="62,46" size="64,18" font="Regular;16" halign="right" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,46" size="56,18" >
+		<widget source="session.CurrentService" render="Progress" position="6,46" size="56,18" borderWidth="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 	</screen>"""
