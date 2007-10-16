@@ -529,11 +529,10 @@ class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		nimlist = nimmanager.getNimListOfType(nimmanager.nimType["DVB-S"])
+		nimlist = nimmanager.getNimListOfType("DVB-S")
 		nimMenuList = []
 		for x in nimlist:
-			n = nimmanager.nim_slots[x]
-			nimMenuList.append((n.friendly_full_name, x))
+			nimMenuList.append((nimmanager.nim_slots[x].friendly_full_description, x))
 		
 		self["nimlist"] = MenuList(nimMenuList)
 
