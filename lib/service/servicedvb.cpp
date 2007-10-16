@@ -2829,11 +2829,11 @@ void eDVBServicePlay::checkSubtitleTiming()
 //			diff = 0;
 //		}
 	
-		if (!diff)
+		if ((diff/90)<20)
 		{
 			if (type == TELETEXT)
 			{
-//				eDebug("display teletext subtitle page");
+				eDebug("display teletext subtitle page %lld", show_time);
 				m_subtitle_widget->setPage(page);
 				m_subtitle_pages.pop_front();
 			}
