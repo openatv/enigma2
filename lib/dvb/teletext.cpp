@@ -428,8 +428,6 @@ void eDVBTeletextParser::handlePageStart()
 {
 	if (m_C & (1<<4)) /* erase flag set */
 	{
-		/* we are always erasing the page, 
-		   even when the erase flag is not set. */
 		m_subtitle_page.clear();
 		m_modifications.clear();
 //		eDebug("erase page!");
