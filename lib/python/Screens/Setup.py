@@ -133,3 +133,4 @@ def getSetupTitle(id):
 	for x in elementsWithTag(xmldata, "setup"):
 		if x.getAttribute("key") == id:
 			return x.getAttribute("title").encode("UTF-8")
+	raise "unknown setup id '%s'!" % repr(id)
