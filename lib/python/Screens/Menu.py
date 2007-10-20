@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.Sources.List import List
-from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import configfile
 from Components.PluginComponent import plugins
@@ -204,18 +204,36 @@ class Menu(Screen):
 
 		self["menu"] = List(list)
 
-		self["actions"] = ActionMap(["OkCancelActions", "MenuActions"], 
+		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.closeNonRecursive,
-				"menu": self.closeRecursive
+				"menu": self.closeRecursive,
+				"1": self.keyNumberGlobal,
+				"2": self.keyNumberGlobal,
+				"3": self.keyNumberGlobal,
+				"4": self.keyNumberGlobal,
+				"5": self.keyNumberGlobal,
+				"6": self.keyNumberGlobal,
+				"7": self.keyNumberGlobal,
+				"8": self.keyNumberGlobal,
+				"9": self.keyNumberGlobal
 			})
-		
+
 		a = parent.getAttribute("title").encode("UTF-8") or None
 		if a is None:
 			a = _(parent.getAttribute("text").encode("UTF-8"))
 		self["title"] = StaticText(a)
 		self.menu_title = a
+
+	def keyNumberGlobal(self, number):
+		print "menu keyNumber:", number
+		# Calculate index
+		number -= 1
+
+ 		if len(self["menu"].list) > number:
+			self["menu"].setIndex(number)
+			self.okbuttonClick()
 
 	def closeNonRecursive(self):
 		self.close(False)
