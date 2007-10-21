@@ -17,7 +17,7 @@ while len(f):
 
 	name = name.replace('\xc2\x87', '').replace('\xc2\x86', '')
 
-	refstr = "1:0:%d:%X:%X:%d:%X:%d:0:0" % (ref[4], ref[0], ref[2], ref[3], ref[1], ref[5])
+	refstr = "1:0:%d:%X:%X:%X:%X:%d:0:0" % (ref[4], ref[0], ref[2], ref[3], ref[1], ref[5])
 	refstr = refstr.replace(':', '_')
 
 	filename = name + ".png"
