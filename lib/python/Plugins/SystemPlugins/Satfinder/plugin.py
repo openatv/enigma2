@@ -189,6 +189,8 @@ class Satfinder(ScanSetup):
 					pol = "CL"
 				elif x[3] == 3:
 					pol = "CR"
+				else:
+					pol = "??"
 				if x[4] == 0:
 					fec = "FEC_AUTO"
 				elif x[4] == 1:
@@ -205,6 +207,8 @@ class Satfinder(ScanSetup):
 					fec = "FEC_8_9"
 				elif x[4] == 6:
 					fec = "FEC_None"
+				else:
+					fec = "FEC_Unknown"
 				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			self.tuning_transponder = ConfigSelection(choices = list)
 			self.tuning_transponder.addNotifier(self.retune, initial_call = False)
