@@ -30,6 +30,17 @@ class MyPlayList(PlayList):
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 
+class MediaPixmap(Pixmap):
+	def applySkin(self, desktop):
+		self.default_pixmap = None
+		for (attrib, value) in self.skinAttributes:
+			if attrib == "pixmap":
+				self.default_pixmap = value
+				break
+		if self.default_pixmap is None:
+			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
+		return Pixmap.applySkin(self, desktop)
+
 class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
@@ -73,7 +84,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		self["year"] = Label("")
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
-		self["coverArt"] = Pixmap()
+		self["coverArt"] = MediaPixmap()
 
 		self.seek_target = None
 
@@ -237,7 +248,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		path = os_path.dirname(filename)
 		pngname = path + "/" + "folder.png"
 		if not os_path.exists(pngname):
-			pngname = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
+			pngname = self["coverArt"].default_pixmap
 		if self.coverArtFileName != pngname:
 			self.coverArtFileName = pngname
 			self["coverArt"].instance.setPixmapFromFile(self.coverArtFileName)
