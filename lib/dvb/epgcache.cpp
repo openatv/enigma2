@@ -372,8 +372,9 @@ void eEPGCache::DVBChannelStateChanged(iDVBChannel *chan)
 	}
 }
 
-void eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
+bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service)
 {
+	bool ret = false;
 	timeMap::iterator tmp = tm_it;
 	while ((tmp->first+tmp->second->getDuration()-300) > TM)
 	{
@@ -406,6 +407,7 @@ void eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 			}
 			else
 				servicemap.second.erase(tmp--);
+			ret = true;
 		}
 		else
 		{
@@ -434,12 +436,14 @@ void eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 #endif
 			delete tmp->second;
 			servicemap.second.erase(tmp++);
+			ret = true;
 		}
 		else
 			++tmp;
 		if (tmp == servicemap.second.end())
 			break;
 	}
+	return ret;
 }
 
 void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
@@ -523,7 +527,11 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 						eventData *tmp = ev_it->second;
 						ev_it->second = tm_it_tmp->second =
 							new eventData(eit_event, eit_event_size, source);
-						FixOverlapping(servicemap, TM, duration, tm_it_tmp, service);
+						if (FixOverlapping(servicemap, TM, duration, tm_it_tmp, service))
+						{
+							prevEventIt = servicemap.first.end();
+							prevTimeIt = servicemap.second.end();
+						}
 						delete tmp;
 						goto next;
 					}
@@ -596,8 +604,6 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 				tm_it=prevTimeIt=servicemap.second.insert( prevTimeIt, std::pair<const time_t, eventData*>( TM, evt ) );
 			}
 
-			FixOverlapping(servicemap, TM, duration, tm_it, service);
-
 #ifdef EPG_DEBUG
 			if ( consistencyCheck )
 			{
@@ -617,6 +623,11 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 						ev_it->first, event_id );
 			}
 #endif
+			if (FixOverlapping(servicemap, TM, duration, tm_it, service))
+			{
+				prevEventIt = servicemap.first.end();
+				prevTimeIt = servicemap.second.end();
+			}
 		}
 next:
 #ifdef EPG_DEBUG
