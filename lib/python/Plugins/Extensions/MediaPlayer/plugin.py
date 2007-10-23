@@ -164,10 +164,6 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		self.leftKeyTimer = eTimer()
 		self.leftKeyTimer.timeout.get().append(self.leftTimerFire)
 
-		self.infoTimer = eTimer()
-		self.infoTimer.timeout.get().append(self.infoTimerFire)
-		self.infoTimer.start(500)
-
 		self.currList = "filelist"
 
 		self.coverArtFileName = ""
@@ -208,9 +204,8 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 	def delMPTimer(self):
 		del self.rightKeyTimer
 		del self.leftKeyTimer
-		del self.infoTimer
 
-	def infoTimerFire(self):
+	def readTitleInformation(self):
 		currPlay = self.session.nav.getCurrentService()
 		if currPlay is not None:
 			stitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
@@ -222,10 +217,8 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 										 album = currPlay.info().getInfoString(iServiceInformation.sAlbum),
 										 genre = currPlay.info().getInfoString(iServiceInformation.sGenre),
 										 clear = True)
-			self.updateCoverArtPixmap( currPlay.info().getName() )
 		else:
 			self.updateMusicInformation()
-			self.updateCoverArtPixmap( "" )
 
 	def updateMusicInformation(self, artist = "", title = "", album = "", year = "", genre = "", clear = False):
 		self.updateSingleMusicInformation("artist", artist, clear)
@@ -239,14 +232,11 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 			if self[name].getText() != info:
 				self[name].setText(info)
 
-	def updateCoverArtPixmap(self, currentServiceName):
-		filename = currentServiceName
-		# The "getName" usually adds something like "MP3 File:" infront of filename
-		# Get rid of this...by finding the first "/"
-		# FIXME: this should be fixed in the servicemp3.cpp handler
-		filename = filename[filename.find("/"):]
-		path = os_path.dirname(filename)
-		pngname = path + "/" + "folder.png"
+	def updateCoverArtPixmap(self, path):
+		while not path.endswith("/"):
+			path = path[:-1]
+		pngname = path + "folder.png"
+		
 		if not os_path.exists(pngname):
 			pngname = self["coverArt"].default_pixmap
 		if self.coverArtFileName != pngname:
@@ -603,6 +593,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 
 	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
+			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
 			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
 				self.session.nav.playService(self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()])
@@ -620,6 +611,8 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
 				if ext not in ["mp3", "wav", "ogg"]:
 					self.hide()
+				else:
+					needsInfoUpdate = True
 				self.summaries.setText(text,1)
 
 				# get the next two entries
@@ -647,7 +640,17 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 				ext = text[-3:].lower()
 				if ext not in ["mp3", "wav", "ogg"]:
 					self.hide()
+				else:
+					needsInfoUpdate = True
+
 			self.unPauseService()
+			if needsInfoUpdate == True:
+				self.updateCoverArtPixmap(currref.getPath())
+			else:
+				pngname = self["coverArt"].default_pixmap
+				self.coverArtFileName = pngname
+				self["coverArt"].instance.setPixmapFromFile(self.coverArtFileName)
+			self.readTitleInformation()
 
 	def updatedSeekState(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
