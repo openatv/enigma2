@@ -55,28 +55,36 @@ class Setup(ConfigListScreen, Screen):
 
 	ALLOW_SUSPEND = True
 
-	def __init__(self, session, setup):
-		Screen.__init__(self, session)
+	def removeNotifier(self):
+		config.usage.setup_level.notifiers.remove(self.levelChanged)
 
-		xmldata = setupdom.childNodes[0]
-		
-		entries = xmldata.childNodes
-
-		self.onChangedEntry = [ ]
+	def levelChanged(self, configElement):
 		list = []
-				
+		self.refill(list)
+		self["config"].setList(list)
+
+	def refill(self, list):
+		xmldata = setupdom.childNodes[0]
+		entries = xmldata.childNodes
 		for x in entries:             #walk through the actual nodelist
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 				continue
 			elif x.tagName == 'setup':
-				if x.getAttribute("key") != setup:
+				if x.getAttribute("key") != self.setup:
 					continue
 				self.addItems(list, x.childNodes);
-				myTitle = x.getAttribute("title").encode("UTF-8")
+				self.setup_title = x.getAttribute("title").encode("UTF-8")
+
+	def __init__(self, session, setup):
+		Screen.__init__(self, session)
+
+		self.onChangedEntry = [ ]
+
+		self.setup = setup
+		list = []
+		self.refill(list)
 
 		#check for list.entries > 0 else self.close
-		
-		self.setup_title = myTitle
 		self["title"] = Label(_(self.setup_title))
 
 		self["oktext"] = Label(_("OK"))
@@ -114,6 +122,10 @@ class Setup(ConfigListScreen, Screen):
 				continue
 			elif x.tagName == 'item':
 				item_level = int(x.getAttribute("level") or "0")
+
+				if not self.levelChanged in config.usage.setup_level.notifiers:
+					config.usage.setup_level.notifiers.append(self.levelChanged)
+					self.onClose.append(self.removeNotifier)
 
 				if item_level > config.usage.setup_level.index:
 					continue
