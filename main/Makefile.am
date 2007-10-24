@@ -31,7 +31,8 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/gui/libenigma_gui.a \
 	$(top_builddir)/lib/python/libenigma_python.a \
 	$(top_builddir)/lib/nav/libenigma_nav.a \
-	$(top_builddir)/lib/service/libenigma_service.a
+	$(top_builddir)/lib/service/libenigma_service.a \
+	$(top_builddir)/lib/xml/libenigma_xml.a
 
 enigma2_LDADD = \
 	@FREETYPE_LIBS@ \
@@ -44,7 +45,7 @@ enigma2_LDADD = \
 	@GSTREAMER_LIBS@ \
 	@JPEG_LIBS@ \
 	@LIBUNGIF_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv
+	-ldl -lpthread -lcrypt -lresolv -lxml2
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)
