@@ -38,6 +38,9 @@ public:
 	RESULT removeService(const eServiceReference &service);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
+	PyObject *readSatellites(SWIG_PYOBJECT(ePyObject) sat_list, SWIG_PYOBJECT(ePyObject) sat_dict, SWIG_PYOBJECT(ePyObject) tp_dict);
+	PyObject *readTerrestrials(SWIG_PYOBJECT(ePyObject) ter_list, SWIG_PYOBJECT(ePyObject) tp_dict);
+	PyObject *readCables(SWIG_PYOBJECT(ePyObject) cab_list, SWIG_PYOBJECT(ePyObject) tp_dict);
 #ifndef SWIG
 	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
 	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);

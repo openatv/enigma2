@@ -5,6 +5,7 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
+#include <lib/xml/xmlccwrap.h>
 #include <dvbsi++/service_description_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
@@ -719,10 +720,396 @@ void eDVBDB::reloadBouquets()
 
 eDVBDB *eDVBDB::instance;
 
+using namespace xmlcc;
+
 eDVBDB::eDVBDB()
 {
 	instance = this;
 	reloadServicelist();
+}
+
+PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObject tp_dict)
+{
+	if (!PyDict_Check(tp_dict)) {
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 2 is not a python dict");
+		return NULL;
+	}
+	else if (!PyDict_Check(sat_dict))
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 1 is not a python dict");
+		return NULL;
+	}
+	else if (!PyList_Check(sat_list))
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 0 is not a python list");
+		return NULL;
+	}
+	XMLTree tree;
+	tree.setFilename("/etc/tuxbox/satellites.xml");
+	tree.read();
+	Element *root = tree.getRoot();
+	if (!root)
+	{
+		eDebug("couldn't open /etc/tuxbox/satellites.xml!!");
+		Py_INCREF(Py_False);
+		return Py_False;
+	}
+	int tmp, *dest,
+		modulation, system, freq, sr, pol, fec;
+	char *end_ptr;
+	const Attribute *at;
+	std::string name;
+	const ElementList &root_elements = root->getElementList();
+	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+	{
+//		eDebug("element: %s", (*it)->name().c_str());
+		const Element *el = *it;
+		const ElementList &sat_elements = el->getElementList();
+		const AttributeList &sat_attributes = el->getAttributeList();
+		ePyObject sat_name;
+		ePyObject sat_pos;
+		ePyObject sat_flags;
+		for (AttributeConstIterator it(sat_attributes.begin()); it != sat_attributes.end(); ++it)
+		{
+//			eDebug("\tattr: %s", at->name().c_str());
+			at = *it;
+			name = at->name();
+			if (name == "name")
+				sat_name = PyString_FromString(at->value().c_str());
+			else if (name == "flags")
+			{
+				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				if (!*end_ptr)
+					sat_flags = PyInt_FromLong(tmp);
+			}
+			else if (name == "position")
+			{
+				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				if (!*end_ptr)
+				{
+					if (tmp < 0)
+						tmp = 3600 + tmp;
+					sat_pos = PyInt_FromLong(tmp);
+				}
+			}
+		}
+		if (sat_pos && sat_name)
+		{
+			ePyObject tplist = PyList_New(0);
+			ePyObject tuple = PyTuple_New(3);
+			if (!sat_flags)
+				sat_flags = PyInt_FromLong(0);
+			PyTuple_SET_ITEM(tuple, 0, sat_pos);
+			PyTuple_SET_ITEM(tuple, 1, sat_name);
+			PyTuple_SET_ITEM(tuple, 2, sat_flags);
+			PyList_Append(sat_list, tuple);
+			Py_DECREF(tuple);
+			PyDict_SetItem(sat_dict, sat_pos, sat_name);
+			PyDict_SetItem(tp_dict, sat_pos, tplist);
+			for (ElementConstIterator it(sat_elements.begin()); it != sat_elements.end(); ++it)
+			{
+//				eDebug("\telement: %s", (*it)->name().c_str());
+				const AttributeList &tp_attributes = (*it)->getAttributeList();
+				AttributeConstIterator end = tp_attributes.end();
+				modulation = 1; // QPSK default
+				system = 0; // DVB-S default
+				freq = 0;
+				sr = 0;
+				pol = -1;
+				fec = 0; // AUTO default
+				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				{
+//					eDebug("\t\tattr: %s", at->name().c_str());
+					at = *it;
+					name = at->name();
+					if (name == "modulation") dest = &modulation;
+					else if (name == "system") dest = &system;
+					else if (name == "frequency") dest = &freq;
+					else if (name == "symbol_rate") dest = &sr;
+					else if (name == "polarization") dest = &pol;
+					else if (name == "fec_inner") dest = &fec;
+					if (dest)
+					{
+						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						if (!*end_ptr)
+							*dest = tmp;
+					}
+				}
+				if (freq && sr && pol != -1)
+				{
+					tuple = PyTuple_New(7);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
+					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
+					PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(pol));
+					PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(fec));
+					PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong(system));
+					PyTuple_SET_ITEM(tuple, 6, PyInt_FromLong(modulation));
+					PyList_Append(tplist, tuple);
+					Py_DECREF(tuple);
+				}
+			}
+			Py_DECREF(tplist);
+		}
+		else
+		{
+			if (sat_pos)
+				Py_DECREF(sat_pos);
+			if (sat_name)
+				Py_DECREF(sat_name);
+		}
+	}
+	Py_INCREF(Py_True);
+	return Py_True;
+}
+
+PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
+{
+	if (!PyDict_Check(tp_dict)) {
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 1 is not a python dict");
+		return NULL;
+	}
+	else if (!PyList_Check(cab_list))
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 0 is not a python list");
+		return NULL;
+	}
+	XMLTree tree;
+	tree.setFilename("/etc/tuxbox/cables.xml");
+	tree.read();
+	Element *root = tree.getRoot();
+	if (!root)
+	{
+		eDebug("couldn't open /etc/tuxbox/cables.xml!!");
+		Py_INCREF(Py_False);
+		return Py_False;
+	}
+	const Attribute *at;
+	int tmp, *dest,
+		modulation, fec, freq, sr;
+	std::string name;
+	char *end_ptr;
+	const ElementList &root_elements = root->getElementList();
+	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+	{
+//		eDebug("element: %s", el->name().c_str());
+		const Element *el = *it;
+		const ElementList &cab_elements = el->getElementList();
+		const AttributeList &cab_attributes = el->getAttributeList();
+		ePyObject cab_name;
+		ePyObject cab_flags;
+		for (AttributeConstIterator it(cab_attributes.begin()); it != cab_attributes.end(); ++it)
+		{
+//			eDebug("\tattr: %s", at->name().c_str());
+			at = *it;
+			name = at->name();
+			if (name == "name")
+				cab_name = PyString_FromString(at->value().c_str());
+			else if (name == "flags")
+			{
+				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				if (!*end_ptr)
+					cab_flags = PyInt_FromLong(tmp);
+			}
+		}
+		if (cab_name)
+		{
+			ePyObject tplist = PyList_New(0);
+			ePyObject tuple = PyTuple_New(2);
+			if (!cab_flags)
+				cab_flags = PyInt_FromLong(0);
+			PyTuple_SET_ITEM(tuple, 0, cab_name);
+			PyTuple_SET_ITEM(tuple, 1, cab_flags);
+			PyList_Append(cab_list, tuple);
+			Py_DECREF(tuple);
+			PyDict_SetItem(tp_dict, cab_name, tplist);
+			for (ElementConstIterator it(cab_elements.begin()); it != cab_elements.end(); ++it)
+			{
+//				eDebug("\telement: %s", (*it)->name().c_str());
+				const AttributeList &tp_attributes = (*it)->getAttributeList();
+				AttributeConstIterator end = tp_attributes.end();
+				modulation = 3; // QAM64 default
+				fec = 0; // AUTO default
+				freq = 0;
+				sr = 0;
+				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				{
+//					eDebug("\t\tattr: %s", at->name().c_str());
+					at = *it;
+					dest = 0;
+					name = at->name();
+					if (name == "modulation") dest = &modulation;
+					else if (name == "frequency") dest = &freq;
+					else if (name == "symbol_rate") dest = &sr;
+					else if (name == "fec_inner") dest = &fec;
+					if (dest)
+					{
+						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						if (!*end_ptr)
+							*dest = tmp;
+					}
+				}
+				if (freq && sr)
+				{
+					while (freq > 999999)
+						freq /= 10;
+					tuple = PyTuple_New(5);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
+					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
+					PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(modulation));
+					PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(fec));
+					PyList_Append(tplist, tuple);
+					Py_DECREF(tuple);
+				}
+			}
+			Py_DECREF(tplist);
+		}
+		else if (cab_flags)
+			Py_DECREF(cab_flags);
+	}
+	Py_INCREF(Py_True);
+	return Py_True;
+}
+
+PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
+{
+	if (!PyDict_Check(tp_dict)) {
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 1 is not a python dict");
+		return NULL;
+	}
+	else if (!PyList_Check(ter_list))
+	{
+		PyErr_SetString(PyExc_StandardError,
+			"type error");
+			eDebug("arg 0 is not a python list");
+		return NULL;
+	}
+	XMLTree tree;
+	tree.setFilename("/etc/tuxbox/terrestrial.xml");
+	tree.read();
+	Element *root = tree.getRoot();
+	if (!root)
+	{
+		eDebug("couldn't open /etc/tuxbox/terrestrial.xml!!");
+		Py_INCREF(Py_False);
+		return Py_False;
+	}
+	const Attribute *at;
+	std::string name;
+	int tmp, *dest,
+		freq, bw, constellation, crh = 5, crl = 5, guard = 4, transm, hierarchy, inv = 2;
+	char *end_ptr;
+	const ElementList &root_elements = root->getElementList();
+	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+	{
+//		eDebug("element: %s", el->name().c_str());
+		const Element *el = *it;
+		const ElementList &ter_elements = el->getElementList();
+		const AttributeList &ter_attributes = el->getAttributeList();
+		ePyObject ter_name;
+		ePyObject ter_flags;
+		for (AttributeConstIterator it(ter_attributes.begin()); it != ter_attributes.end(); ++it)
+		{
+//			eDebug("\tattr: %s", at->name().c_str());
+			at = *it;
+			name = at->name();
+			if (name == "name")
+				ter_name = PyString_FromString(at->value().c_str());
+			else if (name == "flags")
+			{
+				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				if (!*end_ptr)
+					ter_flags = PyInt_FromLong(tmp);
+			}
+		}
+		if (ter_name)
+		{
+			ePyObject tplist = PyList_New(0);
+			ePyObject tuple = PyTuple_New(2);
+			if (!ter_flags)
+				ter_flags = PyInt_FromLong(0);
+			PyTuple_SET_ITEM(tuple, 0, ter_name);
+			PyTuple_SET_ITEM(tuple, 1, ter_flags);
+			PyList_Append(ter_list, tuple);
+			Py_DECREF(tuple);
+			PyDict_SetItem(tp_dict, ter_name, tplist);
+			for (ElementConstIterator it(ter_elements.begin()); it != ter_elements.end(); ++it)
+			{
+//				eDebug("\telement: %s", (*it)->name().c_str());
+				const AttributeList &tp_attributes = (*it)->getAttributeList();
+				AttributeConstIterator end = tp_attributes.end();
+				freq = 0;
+				bw = 3; // AUTO
+				constellation = 1; // AUTO
+				crh = 5; // AUTO
+				crl = 5; // AUTO
+				guard = 4; // AUTO
+				transm = 2; // AUTO
+				hierarchy = 4; // AUTO
+				inv = 2; // AUTO
+				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				{
+//					eDebug("\t\tattr: %s", at->name().c_str());
+					at = *it;
+					dest = 0;
+					name = at->name();
+					if (name == "centre_frequency") dest = &freq;
+					else if (name == "bandwidth") dest = &bw;
+					else if (name == "constellation") dest = &constellation;
+					else if (name == "code_rate_hp") dest = &crh;
+					else if (name == "code_rate_lp") dest = &crl;
+					else if (name == "guard_interval") dest = &guard;
+					else if (name == "transmission_mode") dest = &transm;
+					else if (name == "hierarchy_information") dest = &hierarchy;
+					else if (name == "inversion") dest = &inv;
+					if (dest)
+					{
+						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						if (!*end_ptr)
+							*dest = tmp;
+					}
+				}
+				if (freq)
+				{
+					if (crh > 5) // our terrestrial.xml is buggy... 6 for AUTO
+						crh = 5;
+					if (crl > 5) // our terrestrial.xml is buggy... 6 for AUTO
+						crl = 5;
+					tuple = PyTuple_New(10);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
+					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(bw));
+					PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(constellation));
+					PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(crh));
+					PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong(crl));
+					PyTuple_SET_ITEM(tuple, 6, PyInt_FromLong(guard));
+					PyTuple_SET_ITEM(tuple, 7, PyInt_FromLong(transm));
+					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(hierarchy));
+					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(inv));
+					PyList_Append(tplist, tuple);
+					Py_DECREF(tuple);
+				}
+			}
+			Py_DECREF(tplist);
+		}
+		else if (ter_flags)
+			Py_DECREF(ter_flags);
+	}
+	Py_INCREF(Py_True);
+	return Py_True;
 }
 
 eDVBDB::~eDVBDB()
