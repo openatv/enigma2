@@ -49,19 +49,20 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorSelected = 0x808080
 
 	def applySkin(self, desktop):
-		attribs = [ ]
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "EntryForegroundColor":
-				self.foreColor = parseColor(value).argb()
-			elif attrib == "EntryBorderColor":
-				self.borderColor = parseColor(value).argb()
-			elif attrib == "EntryBackgroundColor":
-				self.backColor = parseColor(value).argb()
-			elif attrib == "EntryBackgroundColorSelected":
-				self.backColorSelected = parseColor(value).argb()
-			else:
-				attribs.append((attrib,value))
-		self.skinAttributes = attribs
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "EntryForegroundColor":
+					self.foreColor = parseColor(value).argb()
+				elif attrib == "EntryBorderColor":
+					self.borderColor = parseColor(value).argb()
+				elif attrib == "EntryBackgroundColor":
+					self.backColor = parseColor(value).argb()
+				elif attrib == "EntryBackgroundColorSelected":
+					self.backColorSelected = parseColor(value).argb()
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop)
 
 	def isSelectable(self, service, sname, event_list):
