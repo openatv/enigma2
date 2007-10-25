@@ -232,7 +232,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if len(self.list):
 			if type == 1:
 				event_id = self.getSelectedEventId()
-				self.list.sort(key=lambda x: (x[4].lower(), x[2]))
+				self.list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
 				self.l.setList(self.list)
 				self.moveToEventId(event_id)
 			else:
