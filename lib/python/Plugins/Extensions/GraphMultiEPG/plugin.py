@@ -42,8 +42,8 @@ def cleanup():
 
 def closed(ret=False):
 	closedScreen = dlg_stack.pop()
+	global bouquetSel
 	if bouquetSel and closedScreen == bouquetSel:
-		global bouquetSel
 		bouquetSel = None
 	dlgs=len(dlg_stack)
 	if ret and dlgs > 0: # recursive close wished
