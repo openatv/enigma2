@@ -33,10 +33,11 @@ class MyPlayList(PlayList):
 class MediaPixmap(Pixmap):
 	def applySkin(self, desktop):
 		self.default_pixmap = None
-		for (attrib, value) in self.skinAttributes:
-			if attrib == "pixmap":
-				self.default_pixmap = value
-				break
+		if self.skinAttributes is not None:
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "pixmap":
+					self.default_pixmap = value
+					break
 		if self.default_pixmap is None:
 			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
 		return Pixmap.applySkin(self, desktop)
