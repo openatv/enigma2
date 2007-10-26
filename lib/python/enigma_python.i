@@ -304,6 +304,7 @@ extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern int getPrevAsciiCode();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+extern const char *getEnigmaVersionString();
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
@@ -311,3 +312,4 @@ extern int getPrevAsciiCode();
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
+extern const char *getEnigmaVersionString();
