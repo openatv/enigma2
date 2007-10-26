@@ -343,7 +343,10 @@ class TimerLog(Screen):
 		}, -1)
 
 	def deleteEntry(self):
-		self.log_entries.remove(self["loglist"].getCurrent()[1])
+		cur = self["loglist"].getCurrent()
+		if cur is None:
+			return 
+		self.log_entries.remove(cur[1])
 		self.fillLogList()
 		self["loglist"].l.setList(self.list)
 		self.updateText()
