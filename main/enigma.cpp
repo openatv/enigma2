@@ -281,3 +281,16 @@ void quitMainloop(int exitCode)
 	exit_code = exitCode;
 	eApp->quit(0);
 }
+
+#include "version.h"
+
+const char *getEnigmaVersionString()
+{
+	return 
+#ifdef ENIGMA2_CHECKOUT_TAG
+		ENIGMA2_CHECKOUT_TAG
+#else
+		"HEAD"
+#endif
+			"-" __DATE__;
+}
