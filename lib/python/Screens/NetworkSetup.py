@@ -14,7 +14,7 @@ class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["adapterlist"] = MenuList(iNetwork.getAdapterList())
+		self["adapterlist"] = MenuList([(self.getFriendlyName(x),x) for x in iNetwork.getAdapterList()])
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -22,11 +22,19 @@ class NetworkAdapterSelection(Screen):
 			"cancel": self.close
 		})
 
+	def getFriendlyName(self, x):
+		# maybe this needs to be replaced by an external list.
+		friendlyNames = {
+			"eth0": _("Integrated Ethernet"),
+			"wlan0": _("Wireless")
+		}
+
+		return friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+
 	def okbuttonClick(self):
 		selection = self["adapterlist"].getCurrent()
-		print "selection:", selection
 		if selection is not None:
-			self.session.open(AdapterSetup, selection)
+			self.session.open(AdapterSetup, selection[1])
 
 class NameserverSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
