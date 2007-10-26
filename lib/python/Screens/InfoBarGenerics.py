@@ -155,7 +155,7 @@ class NumberZap(Screen):
 
 		self["number"] = Label(self.field)
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ], 
+		self["actions"] = NumberActionMap( [ "SetupActions" ],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -249,7 +249,7 @@ class InfoBarNumberZap:
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
 class InfoBarChannelSelection:
-	""" ChannelSelection - handles the channelSelection dialog and the initial 
+	""" ChannelSelection - handles the channelSelection dialog and the initial
 	channelChange actions which open the channelSelection dialog """
 	def __init__(self):
 		#instantiate forever
@@ -341,7 +341,7 @@ class InfoBarChannelSelection:
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
-		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions", 
+		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
 			})
@@ -402,7 +402,7 @@ class InfoBarEPG:
 		self.dlg_stack = [ ]
 		self.bouquetSel = None
 		self.eventView = None
-		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
 				"showEventInfo": (self.openEventView, _("show EPG...")),
 				"showSingleServiceEPG": (self.openSingleServiceEPG, _("show single service EPG...")),
@@ -483,7 +483,7 @@ class InfoBarEPG:
 				self.dlg_stack.append(self.bouquetSel)
 			else:
 				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
-		elif cnt == 1: 
+		elif cnt == 1:
 			self.openBouquetEPG(bouquets[0][1], withCallback)
 
 	def openSingleServiceEPG(self):
@@ -656,7 +656,7 @@ class InfoBarSeek:
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
-		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap, 
+		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("pause")),
@@ -666,7 +666,7 @@ class InfoBarSeek:
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
 				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
-				
+
 				"seekFwdDef": (self.seekFwdDef, _("skip forward (self defined)")),
 				"seekBackDef": (self.seekBackDef, _("skip backward (self defined)"))
 			}, prio=-1)
@@ -675,7 +675,7 @@ class InfoBarSeek:
 		self["SeekActions"].setEnabled(False)
 
 		self.seekstate = self.SEEK_STATE_PLAY
-		
+
 		self.seek_flag = True
 
 		self.onPlayStateChanged = [ ]
@@ -853,7 +853,7 @@ class InfoBarSeek:
 		seekable = self.getSeek()
 		if seekable is not None:
 			seekable.seekRelative(1, seconds * 90000)
-		
+
 	def seekBackDef(self):
 		self.seek_flag = False
 		seconds = config.usage.self_defined_seek.value
@@ -861,7 +861,7 @@ class InfoBarSeek:
 		seekable = self.getSeek()
 		if seekable is not None:
 			seekable.seekRelative(1, 0 - seconds * 90000)
-		
+
 	def seekFwdManual(self):
 		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
@@ -964,11 +964,11 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 
 class InfoBarShowMovies:
 
-	# i don't really like this class. 
+	# i don't really like this class.
 	# it calls a not further specified "movie list" on up/down/movieList,
 	# so this is not more than an action map
 	def __init__(self):
-		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", 
+		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions",
 			{
 				"movieList": (self.showMovies, _("movie list")),
 				"up": (self.showMovies, _("movie list")),
@@ -1005,7 +1005,7 @@ class InfoBarShowMovies:
 
 class InfoBarTimeshift:
 	def __init__(self):
-		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", 
+		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
 				"timeshiftStart": (self.startTimeshift, _("start timeshift")),  # the "yellow key"
 				"timeshiftStop": (self.stopTimeshift, _("stop timeshift"))      # currently undefined :), probably 'TV'
@@ -1308,7 +1308,7 @@ class InfoBarPiP:
 from RecordTimer import parseEvent
 
 class InfoBarInstantRecord:
-	"""Instant Record - handles the instantRecord action in order to 
+	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
@@ -1467,7 +1467,7 @@ from Tools.ISO639 import LanguageCodes
 
 class InfoBarAudioSelection:
 	def __init__(self):
-		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", 
+		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
 				"audioSelection": (self.audioSelection, _("Audio Options...")),
 			})
@@ -1757,12 +1757,12 @@ class InfoBarCueSheetSupport:
 	ENABLE_RESUME_SUPPORT = False
 
 	def __init__(self, actionmap = "InfobarCueSheetActions"):
-		self["CueSheetActions"] = HelpableActionMap(self, actionmap, 
+		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
 			{
 				"jumpPreviousMark": (self.jumpPreviousMark, _("jump to previous marked position")),
 				"jumpNextMark": (self.jumpNextMark, _("jump to next marked position")),
 				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
-			}, prio=1) 
+			}, prio=1)
 
 		self.cut_list = [ ]
 		self.is_closing = False
@@ -1794,7 +1794,7 @@ class InfoBarCueSheetSupport:
 			if seekable is not None:
 				seekable.seekTo(self.resume_point)
 		self.hideAfterResume()
-	
+
 	def hideAfterResume(self):
 		if isinstance(self, InfoBarShowHide):
 			self.hide()
@@ -1906,12 +1906,15 @@ class InfoBarCueSheetSupport:
 class InfoBarSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16" >
+		<widget source="global.CurrentTime" render="Label" position="62,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
-		</widget> 
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="6,46" size="46,18" borderWidth="1" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
 	</screen>"""
 
 # for picon:  (path="piconlcd" will use LCD picons)
