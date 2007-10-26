@@ -13,9 +13,9 @@ from Plugins.Plugin import PluginDescriptor
 class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self["adapterlist"] = MenuList(iNetwork.getAdapterList())
-		
+
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.okbuttonClick ,
@@ -27,18 +27,18 @@ class NetworkAdapterSelection(Screen):
 		print "selection:", selection
 		if selection is not None:
 			self.session.open(AdapterSetup, selection)
-			
+
 class NameserverSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
 		print "backup-list:", self.backupNameserverList
-		
+
 		self["red"] = Label(_("Delete"))
 		self["green"] = Label(_("Add"))
-		
+
 		self.createConfig()
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.ok,
@@ -50,21 +50,21 @@ class NameserverSetup(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
-		
+
 	def createConfig(self):
 		self.nameservers = iNetwork.getNameserverList()
 		self.nameserverEntries = []
-		
+
 		for nameserver in self.nameservers:
 			self.nameserverEntries.append(NoSave(ConfigIP(default=nameserver)))
-			
+
 	def createSetup(self):
 		self.list = []
 
 		#self.nameserverConfigEntries = []
 		for i in range(len(self.nameserverEntries)):
 			self.list.append(getConfigListEntry(_("Nameserver %d") % (i + 1), self.nameserverEntries[i]))
-		
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -74,33 +74,33 @@ class NameserverSetup(Screen, ConfigListScreen):
 			iNetwork.addNameserver(nameserver.value)
 		iNetwork.writeNameserverConfig()
 		self.close()
-	
+
 	def cancel(self):
 		iNetwork.clearNameservers()
 		print "backup-list:", self.backupNameserverList
 		for nameserver in self.backupNameserverList:
 			iNetwork.addNameserver(nameserver)
 		self.close()
-	
+
 	def add(self):
 		iNetwork.addNameserver([0,0,0,0])
 		self.createConfig()
 		self.createSetup()
-	
+
 	def remove(self):
 		print "currentIndex:", self["config"].getCurrentIndex()
-		
+
 		index = self["config"].getCurrentIndex()
 		if index < len(self.nameservers):
 			iNetwork.removeNameserver(self.nameservers[index])
 			self.createConfig()
 			self.createSetup()
 
-		
+
 class AdapterSetup(Screen, ConfigListScreen):
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
-		
+
 		self.iface = iface
 
 		print iNetwork.getAdapterAttribute(self.iface, "dhcp")
@@ -109,9 +109,9 @@ class AdapterSetup(Screen, ConfigListScreen):
 		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")))
 		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask")))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway")))
-        
+	
 		self["iface"] = Label(iNetwork.getAdapterName(self.iface))
-		        
+
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"ok": self.ok,
@@ -135,7 +135,7 @@ class AdapterSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry))
 			if self.hasGatewayConfigEntry.value:
 				self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-		
+
 		self.extended = None
 		self.extendedSetup = None
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
@@ -147,7 +147,7 @@ class AdapterSetup(Screen, ConfigListScreen):
 					self.configStrings = p.__call__["configStrings"]
 				else:
 					self.configStrings = None
-				
+
 				if p.__call__.has_key("menuEntryName"):
 					menuEntryName = p.__call__["menuEntryName"](self.iface)
 				else:
@@ -183,12 +183,12 @@ class AdapterSetup(Screen, ConfigListScreen):
 				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
-			
+
 			if self.extended is not None and self.configStrings is not None:
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 
 			iNetwork.deactivateNetworkConfig()
-			iNetwork.writeNetworkConfig()    
+			iNetwork.writeNetworkConfig()
 			iNetwork.activateNetworkConfig()
 			self.close()
 
