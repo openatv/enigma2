@@ -165,8 +165,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			painter.clear();
 	} else
 	{
-		if (local_style && local_style->m_background)
+		if (local_style->m_background)
 			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+		else if (selected && !local_style->m_selection)
+			painter.clear();
 	}
 
 	if (m_list && cursorValid())
@@ -284,8 +286,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			painter.clear();
 	} else
 	{
-		if (local_style && local_style->m_background)
+		if (local_style->m_background)
 			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+		else if (selected && !local_style->m_selection)
+			painter.clear();
 	}
 
 	if (m_list && cursorValid())
