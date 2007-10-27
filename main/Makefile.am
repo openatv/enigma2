@@ -8,7 +8,7 @@ enigma2_SOURCES = \
 
 bsod.o: version.h
 
-main.o: version.h
+enigma.o: version.h
 
 # when there is no ../CVS/Entries, don't worry.
 ../CVS/Entries:
