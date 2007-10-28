@@ -48,6 +48,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 	
+	def setCurrentIndex(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
+	
 	def invalidateCurrent(self):
 		self.l.invalidateEntry(self.l.getCurrentSelectionIndex())
 

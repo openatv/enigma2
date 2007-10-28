@@ -328,6 +328,8 @@ class ConfigSequence(ConfigElement):
 		
 		self.default = default
 		self.value = copy.copy(default)
+		
+		self.endNotifier = []
 
 	def validate(self):
 		max_pos = 0
@@ -344,6 +346,8 @@ class ConfigSequence(ConfigElement):
 			num += 1
 
 		if self.marked_pos >= max_pos:
+			for x in self.endNotifier:
+				x(self)
 			self.marked_pos = max_pos - 1
 
 		if self.marked_pos < 0:
@@ -357,6 +361,9 @@ class ConfigSequence(ConfigElement):
 
 		if self.marked_pos >= total_len:
 			self.marked_pos = total_len - 1
+			
+	def addEndNotifier(self, notifier):
+		self.endNotifier.append(notifier)
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:

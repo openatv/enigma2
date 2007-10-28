@@ -230,6 +230,8 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.list = []
 		self.pin1 = ConfigPIN(default = 1111, censor = "*")
 		self.pin2 = ConfigPIN(default = 1112, censor = "*")
+		self.pin1.addEndNotifier(boundFunction(self.valueChanged, 1))
+		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append(getConfigListEntry(_("New pin"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter new pin"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
@@ -242,6 +244,12 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		{
 			"cancel": self.cancel,
 		}, -1)
+
+	def valueChanged(self, pin, value):
+		if pin == 1:
+			self["config"].setCurrentIndex(1)
+		elif pin == 2:
+			self.keyOK()
 
 	def getPinText(self):
 		return _("Please enter the old pin code")
