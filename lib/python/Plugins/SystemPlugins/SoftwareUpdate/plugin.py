@@ -290,6 +290,12 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
+		elif event == IpkgComponent.EVENT_MODIFIED:
+			self.session.openWithCallback(
+				self.modificationCallback,
+				MessageBox,
+				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+			)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
 		elif event == IpkgComponent.EVENT_DONE:
@@ -315,7 +321,10 @@ class UpdatePlugin(Screen):
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
-	
+
+	def modificationCallback(self, res):
+		self.ipkg.write(res and "N" or "Y")
+
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:

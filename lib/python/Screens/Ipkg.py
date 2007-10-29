@@ -3,6 +3,7 @@ from Components.Ipkg import IpkgComponent
 from Components.Label import Label
 from Components.Slider import Slider
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from enigma import eTimer
 
 class Ipkg(Screen):
@@ -96,7 +97,16 @@ class Ipkg(Screen):
 			self.error += 1
 		elif event == IpkgComponent.EVENT_DONE:
 			self.runNextCmd()
-	
+		elif event == IpkgComponent.EVENT_MODIFIED:
+			self.session.openWithCallback(
+                                self.modificationCallback,
+                                MessageBox,
+                                _("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+                        )
+
+	def modificationCallback(self, res):
+		self.ipkg.write(res and "N" or "Y")
+
 	def exit(self):
 		if not self.ipkg.isRunning():
 			self.close()
