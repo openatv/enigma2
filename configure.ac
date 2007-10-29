@@ -97,7 +97,6 @@ lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
-lib/xml/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
