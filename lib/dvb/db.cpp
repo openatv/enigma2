@@ -5,7 +5,7 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
-#include <lib/xml/xmlccwrap.h>
+#include <xmlccwrap/xmlccwrap.h>
 #include <dvbsi++/service_description_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
