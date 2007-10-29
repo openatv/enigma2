@@ -10,7 +10,6 @@ from enigma import eDVBSatelliteEquipmentControl
 class Dish(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["transparent"] = Button("")
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		self["Dishpixmap"].onVisibilityChange.append(self.DishpixmapVisibilityChanged)
 		#self["Dishpixmap"] = Pixmap()
