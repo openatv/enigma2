@@ -10,6 +10,7 @@ class IpkgComponent:
 	EVENT_LISTITEM = 9
 	EVENT_DONE = 10
 	EVENT_ERROR = 11
+	EVENT_MODIFIED = 12
 	
 	CMD_INSTALL = 0
 	CMD_LIST = 1
@@ -95,6 +96,9 @@ class IpkgComponent:
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.find('ipkg_download: ERROR:') == 0:
 				self.callCallbacks(self.EVENT_ERROR, None)
+			elif data.find('    Configuration file') == 0:
+				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 1)[1][:-1])
+
 	def callCallbacks(self, event, param = None):
 		for callback in self.callbackList:
 			callback(event, param)
@@ -110,3 +114,9 @@ class IpkgComponent:
 		
 	def isRunning(self):
 		return self.cmd.running()
+
+	def write(self, what):
+		if what:
+			# We except unterminated commands
+			what += "\n"
+			self.cmd.write(what, len(what))
