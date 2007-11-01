@@ -115,10 +115,30 @@
 			<convert type="ClockToText">Default</convert>
 		</widget>
 		<!-- tuners in use? -->
-		<widget name="NimA_Active" position="129,6" zPosition="1" size="9,9" pixmap="skin_default/nim_a.png" alphatest="on" />
-		<widget name="NimB_Active" position="129,20" zPosition="1" size="9,9" pixmap="skin_default/nim_b.png" alphatest="on" />
-		<widget name="NimA" position="142,6" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" />
-		<widget name="NimB" position="142,20" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" />		
+		<!-- DEPRECATED widget name="NimA_Active" position="129,6" zPosition="1" size="9,9" pixmap="skin_default/nim_a.png" alphatest="on" /-->
+		<widget source="session.FrontendInfo" render="Pixmap" position="129,6" zPosition="1" size="9,9" pixmap="skin_default/nim_a.png" alphatest="on" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- DEPRECATED widget name="NimB_Active" position="129,20" zPosition="1" size="9,9" pixmap="skin_default/nim_b.png" alphatest="on" /-->
+		<widget source="session.FrontendInfo" render="Pixmap" position="129,6" zPosition="1" size="9,9" pixmap="skin_default/nim_b.png" alphatest="on" >
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- DEPRECATED widget name="NimA" position="142,6" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" /-->
+		<widget source="session.GlobalInfo" render="Pixmap" position="142,6" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" >
+			<convert type="Misc">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- DEPRECATED widget name="NimB" position="142,20" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" /-->
+		<widget source="session.GlobalInfo" render="Pixmap" position="142,20" zPosition="1" size="8,9" pixmap="skin_default/nim_active.png" alphatest="on" >
+			<convert type="Misc">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<!-- Crypt icon (encrypted service?) -->
 		<ePixmap position="563,48" zPosition="0" size="107,15" pixmap="skin_default/icons_off.png" alphatest="off"/>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icon_crypt.png" position="563,48" zPosition="1" size="12,16" alphatest="on" >
@@ -146,7 +166,11 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<!-- Blinking pixmap (recording in progress?) -->
-		<widget name="BlinkingPoint" pixmap="skin_default/icon_rec.png" position="561,21" zPosition="2" size="34,21" alphatest="off" />
+		<!-- DEPRECATED widget name="BlinkingPoint" pixmap="skin_default/icon_rec.png" position="561,21" zPosition="2" size="34,21" alphatest="off" /-->
+		<widget source="session.GlobalInfo" render="Pixmap" pixmap="skin_default/icon_rec.png" position="561,21" zPosition="2" size="34,21" alphatest="off">
+			<convert type="Misc">RecordRunning</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 		<!-- Event (now) -->
 		<ePixmap pixmap="skin_default/icon_event.png" position="182,78" zPosition="1" size="15,10" alphatest="on" />
 		<widget source="session.Event_Now" render="Label" position="205,73" size="60,24" font="Regular;20" backgroundColor="#34406f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
