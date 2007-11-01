@@ -1,9 +1,32 @@
+from enigma import eTimer
 from Converter import Converter
 
 class ConditionalShowHide(Converter, object):
-	def __init__(self, type):
+	def __init__(self, argstr):
 		Converter.__init__(self, type)
-		self.invert = type == "Invert"
+		args = argstr.split(',')
+		self.invert = "Invert" in args
+		self.blink = "Blink" in args
+		if self.blink:
+			self.blinktime = 500
+			self.timer = eTimer()
+			self.timer.timeout.get().append(self.blinkFunc)
+
+	def blinkFunc(self):
+		if self.blinking == True:
+			for x in self.downstream_elements:
+				x.visible = not x.visible
+
+	def startBlinking(self):
+		self.blinking = True
+		self.timer.start(self.blinktime)
+
+	def stopBlinking(self):
+		self.blinking = False
+		for x in self.downstream_elements:
+			if x.visible:
+				x.hide()
+		self.timer.stop()
 
 	def calcVisibility(self):
 		b = self.source.boolean
@@ -14,9 +37,22 @@ class ConditionalShowHide(Converter, object):
 
 	def changed(self, what):
 		vis = self.calcVisibility()
-		for x in self.downstream_elements:
-			x.visible = vis
+		if self.blink:
+			if vis:
+				self.startBlinking()
+			else:
+				self.stopBlinking()
+		else:
+			for x in self.downstream_elements:
+				x.visible = vis
 
 	def connectDownstream(self, downstream):
 		Converter.connectDownstream(self, downstream)
-		downstream.visible = self.calcVisibility()
+		vis = self.calcVisibility()
+		if self.blink:
+			if vis:
+				self.startBlinking()
+			else:
+				self.stopBlinking()
+		else:
+			downstream.visible = self.calcVisibility()
