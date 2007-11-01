@@ -1915,6 +1915,10 @@ class InfoBarSummary(Screen):
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
+		<widget source="session.GlobalInfo" render="FixedLabel" text=" " position="62,46" size="82,18" zPosition="1" >
+			<convert type="Misc">RecordRunning</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -1943,6 +1947,10 @@ class InfoBarMoviePlayerSummary(Screen):
 	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="64,18" font="Regular;16" halign="right" >
 			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="session.GlobalInfo" render="FixedLabel" text=" " position="62,46" size="64,18" zPosition="1" >
+			<convert type="Misc">RecordRunning</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>

@@ -75,6 +75,10 @@ class StandbySummary(Screen):
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
+		<widget source="session.GlobalInfo" render="FixedLabel" text=" " position="0,0" size="132,64" zPosition="1" >
+			<convert type="Global">RecordRunning</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 	</screen>"""
 
 	def __init__(self, session, parent):
