@@ -92,7 +92,8 @@ class FrontendInfo(Converter, object):
 				return 2
 			return -1
 		elif self.type == self.SLOT_NUMBER:
-			return self.source.slot_number or -1
+			num = self.source.slot_number
+			return num is None and -1 or num
 
 	range = 65536
 	value = property(getValue)
