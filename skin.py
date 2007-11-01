@@ -76,7 +76,7 @@ def parseColor(str):
 		try:
 			return colorNames[str]
 		except:
-			raise ("color '%s' must be #aarrggbb or valid named color" % (str))
+			raise SkinError("color '%s' must be #aarrggbb or valid named color" % (str))
 	return gRGB(int(str[1:], 0x10))
 
 def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
@@ -98,7 +98,7 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 def loadPixmap(path):
 	ptr = loadPNG(path)
 	if ptr is None:
-		raise "pixmap file %s not found!" % (path)
+		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
 
 def applySingleAttribute(guiObject, desktop, attrib, value):
@@ -199,7 +199,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'noWrap':
 			guiObject.setNoWrap(1)
 		else:
-			raise "unsupported attribute " + attrib + "=" + value
+			raise SkinError("unsupported attribute " + attrib + "=" + value)
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
