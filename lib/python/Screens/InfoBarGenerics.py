@@ -1315,9 +1315,10 @@ class InfoBarInstantRecord:
 				"instantRecord": (self.instantRecord, _("Instant Record...")),
 			})
 		self.recording = []
+#### DEPRECATED CODE ####
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
-		self["BlinkingPoint"].hide()
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
+#########################
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
@@ -1363,7 +1364,9 @@ class InfoBarInstantRecord:
 		recording.dontSave = True
 		self.recording.append(recording)
 
-		#self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
+#### DEPRECATED CODE ####
+		self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
+#########################
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording
@@ -1653,19 +1656,22 @@ class InfoBarSubserviceSelection:
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
-		self["NimA"] = Pixmap()
-		self["NimB"] = Pixmap()
-		self["NimA_Active"] = Pixmap()
-		self["NimB_Active"] = Pixmap()
 
 		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
 		self["TimeshiftPossible"] = self["RecordingPossible"]
 		self["ExtensionsAvailable"] = Boolean(fixed=1)
 
-		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
+######### DEPRECATED CODE ##########
+		self["NimA"] = Pixmap()
+		self["NimB"] = Pixmap()
+		self["NimA_Active"] = Pixmap()
+		self["NimB_Active"] = Pixmap()
+
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
 			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
+
+		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
 
 	def tunerUseMaskChanged(self, mask):
 		if mask&1:
@@ -1694,6 +1700,7 @@ class InfoBarAdditionalInfo:
 		service = self.session.nav.getCurrentService()
 		if ev == iPlayableService.evUpdatedInfo or ev == iPlayableService.evEnd:
 			self.checkTunerState(service)
+####################################
 
 class InfoBarNotifications:
 	def __init__(self):
