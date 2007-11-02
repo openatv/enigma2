@@ -5,6 +5,7 @@ from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
 
 class ScrollLabel(HTMLComponent, GUIComponent):
 	def __init__(self, text=""):
+		GUIComponent.__init__(self)
 		self.message = text
 		self.instance = None
 		self.long_text = None
