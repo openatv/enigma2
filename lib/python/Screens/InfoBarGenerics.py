@@ -1318,6 +1318,9 @@ class InfoBarInstantRecord:
 #### DEPRECATED CODE ####
 		self["BlinkingPoint"] = BlinkingPixmapConditional()
 		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
+		self["BlinkingPoint"].deprecationInfo = (
+			"session.RecordState source, Pixmap renderer and "
+			"ConditionalShowHide/Blink Converter", "2008-02")
 #########################
 
 	def stopCurrentRecording(self, entry = -1):
@@ -1663,9 +1666,21 @@ class InfoBarAdditionalInfo:
 
 ######### DEPRECATED CODE ##########
 		self["NimA"] = Pixmap()
+		self["NimA"].deprecationInfo = (
+			"session.TunerInfo source, Pixmap renderer, TunerInfo/UseMask Converter"
+			", ValueBitTest(1) Converter and ConditionalShowHide Converter", "2008-02")
 		self["NimB"] = Pixmap()
+		self["NimB"].deprecationInfo = (
+			"session.TunerInfo source, Pixmap renderer, TunerInfo/UseMask Converter"
+			", ValueBitTest(2) Converter and ConditionalShowHide Converter", "2008-02")
 		self["NimA_Active"] = Pixmap()
+		self["NimA_Active"].deprecationInfo = (
+			"session.FrontendInfo source, Pixmap renderer, FrontendInfo/NUMBER Converter"
+			", ValueRange(1,1) Converter and ConditionalShowHide Converter", "2008-02")
 		self["NimB_Active"] = Pixmap()
+		self["NimB_Active"].deprecationInfo = (
+			"session.FrontendInfo source, Pixmap renderer, FrontendInfo/NUMBER Converter"
+			", ValueRange(1,1) Converter and ConditionalShowHide Converter", "2008-02")
 
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
@@ -1915,8 +1930,7 @@ class InfoBarSummary(Screen):
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="82,18" font="Regular;16" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget source="session.GlobalInfo" render="FixedLabel" text=" " position="62,46" size="82,18" zPosition="1" >
-			<convert type="Misc">RecordRunning</convert>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="62,46" size="82,18" zPosition="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >
@@ -1948,8 +1962,7 @@ class InfoBarMoviePlayerSummary(Screen):
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="64,18" font="Regular;16" halign="right" >
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget source="session.GlobalInfo" render="FixedLabel" text=" " position="62,46" size="64,18" zPosition="1" >
-			<convert type="Misc">RecordRunning</convert>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="62,46" size="64,18" zPosition="1" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="6,4" size="120,42" font="Regular;18" >

@@ -20,7 +20,12 @@ class GUISkin:
 			val = self[key]
 			if isinstance(val, GUIComponent):
 				val.GUIcreate(parent)
-				if not val.applySkin(desktop):
+				depr = val.deprecationInfo
+				if val.applySkin(desktop):
+					if depr:
+						print "WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0])
+						print "OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % (depr[1])
+				elif not depr:
 					print "warning, skin is missing element", key, "in", self
 
 		for w in self.additionalWidgets:

@@ -11,6 +11,7 @@ class GUIComponent(object):
 		self.__visible = 0
 		self.visible = 1
 		self.skinAttributes = None
+		self.deprecationInfo = None
 	
 	def execBegin(self):
 		pass
