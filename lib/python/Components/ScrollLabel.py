@@ -14,7 +14,10 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.total = None
 
 	def applySkin(self, desktop):
-		skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes)
+		ret = False
+		if self.skinAttributes is not None:
+			skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes)
+			ret = True
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
 		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
@@ -29,10 +32,11 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.long_text.move(ePoint(0,0))
 		self.long_text.resize(eSize(s.width()-30, self.pageHeight*16))
 		self.setText(self.message)
+		return ret
 
 	def setText(self, text):
 		self.message = text
-		if self.long_text is not None:
+		if self.long_text is not None and self.pageHeight:
 			self.long_text.move(ePoint(0,0))
 			self.long_text.setText(self.message)
 			text_height=self.long_text.calculateSize().height()
