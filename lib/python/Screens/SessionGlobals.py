@@ -5,7 +5,8 @@ from Components.Sources.EventInfo import EventInfo
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.Sources.Source import Source
-from Components.Sources.Misc import Misc
+from Components.Sources.TunerInfo import TunerInfo
+from Components.Sources.RecordState import RecordState
 
 class SessionGlobals(Screen):
 	def __init__(self, session):
@@ -16,7 +17,8 @@ class SessionGlobals(Screen):
 		self["FrontendStatus"] = FrontendStatus(service_source = session.nav.getCurrentService)
 		self["FrontendInfo"] = FrontendInfo(service_source = session.nav.getCurrentService)
 		self["VideoPicture"] = Source()
-		self["GlobalInfo"] = Misc(session)
+		self["TunerInfo"] = TunerInfo()
+		self["RecordState"] = RecordState(session)
 		session.nav.event.append(self.serviceEvent)
 		self.service_state = 0
 
