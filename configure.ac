@@ -37,6 +37,12 @@ AC_CHECK_LIB(ungif, DGifOpenFileName, HAVE_LIBUNGIF="yes", HAVE_LIBUNGIF="no")
 LIBUNGIF_LIBS="-lungif"
 AC_SUBST(LIBUNGIF_LIBS)
 
+TUXBOX_APPS_LIB_PKGCONFIG(XML2,libxml-2.0)
+
+# ok, we are in trouble: XMLCCWRAP only defines C++ symbols. So let's just check if linking works,
+# and assume everything will be ok. Then just check for the "exit" symbol, which should be always there.
+TUXBOX_APPS_LIB_SYMBOL(XMLCCWRAP, xmlccwrap, exit)
+
 if test "$withsdl" = "yes" ; then
 	TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
 	AC_DEFINE_UNQUOTED([WITH_SDL],[$withsdl],[With SDL])
