@@ -46,7 +46,9 @@ enigma2_LDADD = \
 	@GSTREAMER_LIBS@ \
 	@JPEG_LIBS@ \
 	@LIBUNGIF_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv -lxml2 -lxmlccwrap
+	@XML2_LIBS@ \
+	@XMLCCWRAP_LIBS@ \
+	-ldl -lpthread -lcrypt -lresolv
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)
