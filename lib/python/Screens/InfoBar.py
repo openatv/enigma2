@@ -2,7 +2,7 @@ from Screen import Screen
 
 from Screens.MovieSelection import MovieSelection
 from Screens.ChannelSelection import ChannelSelectionRadio
-from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Ci import CiHandler
 
 from Components.Sources.Source import ObsoleteSource
@@ -146,13 +146,22 @@ class MoviePlayer(InfoBarShowHide, \
 
 	def leavePlayer(self):
 		self.is_closing = True
-		self.session.openWithCallback(self.leavePlayerConfirmed, MessageBox, _("Stop playing this movie?"))
-	
+
+		list = []
+		list.append((_("Yes"), "quit"))
+		list.append((_("No"), "continue"))
+		if config.usage.setup_level.index >= 2: # expert+
+			list.append((_("No, but restart from begin"), "restart"))
+		self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+
 	def leavePlayerConfirmed(self, answer):
-		if answer == True:
+		answer = answer and answer[1]
+		if answer == "quit":
 			self.session.nav.playService(self.lastservice)
 			self.close()
-			
+		elif answer == "restart":
+			self.doSeek(0)
+
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
