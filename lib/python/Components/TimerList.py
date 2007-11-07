@@ -56,6 +56,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			state = _("done!")
 
+		if timer.disabled:
+			state = _("disabled")
+
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-240, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 
 		if timer.disabled:
