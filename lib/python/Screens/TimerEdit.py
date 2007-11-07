@@ -130,10 +130,12 @@ class TimerEditList(Screen):
 		if delete:
 			self.session.nav.RecordTimer.cleanup()
 			self.refill()
-	
+
 	def removeTimerQuestion(self):
+		if not self["timerlist"].getCurrent():
+			return
 		self.session.openWithCallback(self.removeTimer, MessageBox, _("Really delete this timer?"))
-		
+
 	def removeTimer(self, result):
 		if not result:
 			return
