@@ -4,6 +4,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import configfile
 from Components.PluginComponent import plugins
+from Components.config import config
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -170,8 +171,10 @@ class Menu(Screen):
 			if x.nodeType != xml.dom.minidom.Element.nodeType:
 			    continue
 			elif x.tagName == 'item':
-				self.addItem(list, x)
-				count += 1
+				item_level = int(x.getAttribute("level") or "0")
+				if item_level <= config.usage.setup_level.index:
+					self.addItem(list, x)
+					count += 1
 			elif x.tagName == 'menu':
 				self.addMenu(list, x)
 				count += 1
