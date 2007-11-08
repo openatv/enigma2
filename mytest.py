@@ -393,36 +393,51 @@ class VolumeControl:
 				self.volumeDialog.setValue(vol)
 
 import Screens.Standby
+from Screens.Menu import MainMenu, mdom
+import xml.dom.minidom
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
 
 	def __init__(self, session):
 		self.session = session
-		self.powerKeyTimer = eTimer()
-		self.powerKeyTimer.timeout.get().append(self.powertimer)
-		globalActionMap.actions["powerdown"]=self.powerdown
-		globalActionMap.actions["powerup"]=self.powerup
+		globalActionMap.actions["power_down"]=self.powerdown
+		globalActionMap.actions["power_up"]=self.powerup
+		globalActionMap.actions["power_long"]=self.powerlong
 		self.standbyblocked = 1
-#		self["PowerKeyActions"] = HelpableActionMap(self, "PowerKeyActions",
-			#{
-				#"powerdown": self.powerdown,
-				#"powerup": self.powerup,
-				#"discreteStandby": (self.standby, "Go standby"),
-				#"discretePowerOff": (self.quit, "Go to deep standby"),
-			#})
 
-	def powertimer(self):
-		print "PowerOff - Now!"
-		if not Screens.Standby.inTryQuitMainloop:
-			self.session.open(Screens.Standby.TryQuitMainloop, 1)
+	def MenuClosed(self, *val):
+		self.session.infobar = None
+
+	def powerlong(self):
+		self.standbyblocked = 1
+		action = config.usage.on_long_powerpress.value
+		if action == "shutdown":
+			print "PowerOff - Now!"
+			if not Screens.Standby.inTryQuitMainloop:
+				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+		elif action == "show_menu":
+			print "Show shutdown Menu"
+			menu = mdom.childNodes[0]
+			for x in menu.childNodes:
+				if x.nodeType != xml.dom.minidom.Element.nodeType:
+				    continue
+				elif x.tagName == 'menu':
+					for y in x.childNodes:
+						if y.nodeType != xml.dom.minidom.Element.nodeType:
+							continue
+						elif y.tagName == 'id':
+							id = y.getAttribute("val")
+							if id and id == "shutdown":
+								self.session.infobar = self
+								menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, menu, x.childNodes)
+								menu_screen.setTitle(_("Standby Menu"))
+								return
 
 	def powerdown(self):
 		self.standbyblocked = 0
-		self.powerKeyTimer.start(3000, True)
 
 	def powerup(self):
-		self.powerKeyTimer.stop()
 		if self.standbyblocked == 0:
 			self.standbyblocked = 1
 			self.standby()
