@@ -34,6 +34,10 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
 
+	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
+		("show_menu", _("show shutdown menu")),
+		("shutdown", _("immediate shutdown")) ] )
+
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
 	config.usage.hdd_standby.addNotifier(setHDDStandby)

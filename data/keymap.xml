@@ -187,8 +187,9 @@
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
-		<key id="KEY_POWER" mapto="powerdown" flags="m" />
-		<key id="KEY_POWER" mapto="powerup" flags="b" />
+		<key id="KEY_POWER" mapto="power_down" flags="m" />
+		<key id="KEY_POWER" mapto="power_up" flags="b" />
+		<key id="KEY_POWER" mapto="power_long" flags="l" />
 	</map>
 	
 	<map context="PowerKeyActions">
