@@ -430,8 +430,8 @@ class PowerKey:
 							id = y.getAttribute("val")
 							if id and id == "shutdown":
 								self.session.infobar = self
-								menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, menu, x.childNodes)
-								menu_screen.setTitle(_("Standby Menu"))
+								menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, x, x.childNodes)
+								menu_screen.setTitle(_("Standby / Restart"))
 								return
 
 	def powerdown(self):
