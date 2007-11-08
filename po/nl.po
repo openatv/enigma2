@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-08 13:00+0100\n"
-"PO-Revision-Date: 2007-09-17 16:54+0100\n"
-"Last-Translator: Michel Weeren <michel@weeren.net>\n"
+"POT-Creation-Date: 2007-11-08 22:20+0100\n"
+"PO-Revision-Date: 2007-11-08 20:50+0100\n"
+"Last-Translator: Michel Weeren <michel@satellietland.nl>\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,6 +174,8 @@ msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
+"Een configuratiebestand (%s) is sinds installatie gewijzigd.\n"
+"Wilt u uw versie behouden?"
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -376,10 +378,10 @@ msgid "Begin time"
 msgstr "Starttijd"
 
 msgid "Behaviour of 0 key in PiP-mode"
-msgstr "Functie van 0-toets in PiP modus"
+msgstr "Functie van 0-toets in PiP"
 
 msgid "Brightness"
-msgstr "Helderheid"
+msgstr "Verlichting"
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -549,7 +551,7 @@ msgid "Current version:"
 msgstr "Actuele versie:"
 
 msgid "Custom skip time for '1'/'3'-keys"
-msgstr ""
+msgstr "Aangepaste spoeltijd voor de '1'/'3'-toetsen"
 
 msgid "Customize"
 msgstr "Diversen"
@@ -1010,10 +1012,10 @@ msgid "Instant Record..."
 msgstr "Directe opname..."
 
 msgid "Integrated Ethernet"
-msgstr ""
+msgstr "Geïntegreerde ethernet"
 
 msgid "Intermediate"
-msgstr "Midden"
+msgstr "Uitgebreid"
 
 msgid "Internal Flash"
 msgstr "Intern geheugen"
@@ -1160,10 +1162,10 @@ msgid "Move Picture in Picture"
 msgstr "Verplaats Picture In Picture"
 
 msgid "Move east"
-msgstr "Draai naar oost"
+msgstr "Draai oost"
 
 msgid "Move west"
-msgstr "Draai naar west"
+msgstr "Draai west"
 
 msgid "Movielist menu"
 msgstr "Opname menu"
@@ -1303,7 +1305,7 @@ msgstr ""
 "Indien u 'nee' kiest, blijft het menu onbeveiligd!"
 
 msgid "No, but restart from begin"
-msgstr ""
+msgstr "Nee, vanaf begin herstarten"
 
 msgid "No, do nothing."
 msgstr "nee, geen actie."
@@ -1464,7 +1466,7 @@ msgid "Plugin browser"
 msgstr "Spelletjes & Applicaties"
 
 msgid "Plugins"
-msgstr ""
+msgstr "Spelletjes en applicaties"
 
 msgid "Polarity"
 msgstr "Polariteit"
@@ -1635,7 +1637,7 @@ msgid "Restart"
 msgstr "Dreambox herstarten"
 
 msgid "Restart GUI"
-msgstr ""
+msgstr "GUI herstarten"
 
 msgid "Restart GUI now?"
 msgstr "Herstart Enigma2 nu?"
@@ -1875,7 +1877,7 @@ msgid "Similar broadcasts:"
 msgstr "Gelijkwaardige uitzendingen:"
 
 msgid "Simple"
-msgstr "Simpel"
+msgstr "Eenvoudig"
 
 msgid "Single"
 msgstr "Enkel"
@@ -1922,11 +1924,11 @@ msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
-msgstr "Alfabetisch"
+msgstr "Sorteer A/Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr "op tijd"
+msgstr "Sorteer tijd"
 
 msgid "Sound"
 msgstr "Geluid"
@@ -2036,6 +2038,11 @@ msgstr "Systeem"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
+"Vertaling door M. Weeren\n"
+"www.satellietland.nl\n"
+"\n"
+"Officieel distributeur van\n"
+"Dream Multimedia producten"
 
 msgid "TV System"
 msgstr "TV Systeem"
@@ -2370,7 +2377,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u de instellingen opslaan?"
 
 msgid "Wireless"
-msgstr ""
+msgstr "Draadloos"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
@@ -2806,7 +2813,7 @@ msgid "minutes and"
 msgstr "minuten en"
 
 msgid "move PiP to main picture"
-msgstr "Verplaats PiP naar hoofdbeeld"
+msgstr "PiP naar hoofdbeeld"
 
 msgid "movie list"
 msgstr "Opname menu"
@@ -2939,17 +2946,17 @@ msgstr "Afspeellijst opslaan"
 
 #, python-format
 msgid "scan done! %d services found!"
-msgstr "Zoeken voltooit. %d zenders gevonden"
+msgstr "Zoeken voltooid. %d zenders gevonden"
 
 msgid "scan done! No service found!"
-msgstr "Zoeken voltooit. Geen zenders gevonden"
+msgstr "Zoeken voltooid. Geen zenders gevonden"
 
 msgid "scan done! One service found!"
-msgstr "Zoeken voltooit. 1 zender gevonden"
+msgstr "Zoeken voltooid. 1 zender gevonden"
 
 #, python-format
 msgid "scan in progress - %d %% done! %d services found!"
-msgstr "Bezig met zoeken - %d %% voltooit. %d zenders gevonden"
+msgstr "Bezig met zoeken - %d %% voltooid. %d zenders gevonden"
 
 msgid "scan state"
 msgstr "status"
@@ -2958,7 +2965,7 @@ msgid "second"
 msgstr "seconde"
 
 msgid "second cable of motorized LNB"
-msgstr "tweede kabel van gemotoriseerde LNB"
+msgstr "2e kabel van gemotoriseerde LNB"
 
 msgid "seconds"
 msgstr "seconden"
@@ -3063,7 +3070,7 @@ msgid "stop timeshift"
 msgstr "Stop timeshift"
 
 msgid "swap PiP and main picture"
-msgstr "PiP en hoofdbeeld omwisselen"
+msgstr "PiP/hoofdbeeld omwisselen"
 
 msgid "switch to filelist"
 msgstr "Ga naar bestandenlijst"
@@ -3131,9 +3138,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-
-#~ msgid "Custom skip time for 1/3 keys"
-#~ msgstr "Standaard spoeltijd voor 1-3 toetsen"
-
-#~ msgid "Games / Plugins"
-#~ msgstr "Spelletjes & Applicaties"
