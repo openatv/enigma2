@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-15 23:22+0200\n"
-"PO-Revision-Date: 2007-08-13 10:40+0100\n"
+"POT-Creation-Date: 2007-11-08 11:51+0100\n"
+"PO-Revision-Date: 2007-10-28 16:19+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.eu>\n"
 "Language-Team:  <jurica@clarkdigital.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgid "#0064c7"
 msgstr "#0064c7"
 
 msgid "#25062748"
-msgstr ""
+msgstr "#25062748"
 
 msgid "#389416"
 msgstr "#389416"
@@ -28,7 +28,7 @@ msgid "#80000000"
 msgstr "#80000000"
 
 msgid "#80ffffff"
-msgstr ""
+msgstr "#80ffffff"
 
 msgid "#bab329"
 msgstr "#bab329"
@@ -163,6 +163,12 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+#, python-format
+msgid ""
+"A configuration file (%s) was modified since Installation.\n"
+"Do you want to keep your version?"
+msgstr ""
+
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -178,7 +184,7 @@ msgstr ""
 "Dreambox sada. Isključiti sada?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
-msgstr ""
+msgstr "Grafički EPG za sve usluge od specifičnog paketa"
 
 #, python-format
 msgid ""
@@ -310,7 +316,7 @@ msgid "Artist:"
 msgstr "Izvođač:"
 
 msgid "Ask before shutdown:"
-msgstr "Pitaj prije isključivanja"
+msgstr "Pitaj prije isključivanja:"
 
 msgid "Aspect Ratio"
 msgstr "Omjer slike"
@@ -365,7 +371,7 @@ msgid "Begin time"
 msgstr "Početno vrijeme"
 
 msgid "Behaviour of 0 key in PiP-mode"
-msgstr ""
+msgstr "Uloga tipke 0 u PIP-modu"
 
 msgid "Brightness"
 msgstr "Svjetlost"
@@ -446,7 +452,7 @@ msgid "Choose source"
 msgstr "Odaberi izvor"
 
 msgid "Choose your Skin"
-msgstr ""
+msgstr "Odaberite vaše sučelje"
 
 msgid "Cleanup"
 msgstr "Čišćenje"
@@ -531,13 +537,13 @@ msgid "Croatian"
 msgstr "Hrvatski"
 
 msgid "Current Transponder"
-msgstr ""
+msgstr "Trenutni transponder"
 
 msgid "Current version:"
 msgstr "Trenutna verzija:"
 
-msgid "Custom skip time for 1/3 keys"
-msgstr "Podesivo vrijeme preskoka za 1/3 ključa"
+msgid "Custom skip time for '1'/'3'-keys"
+msgstr ""
 
 msgid "Customize"
 msgstr "Prilagodi"
@@ -742,7 +748,7 @@ msgid "Edit services list"
 msgstr "Editiraj list usluga"
 
 msgid "Electronic Program Guide"
-msgstr ""
+msgstr "Elektronički Programski Vodič"
 
 msgid "Enable"
 msgstr "Omogući"
@@ -757,7 +763,7 @@ msgid "Enable parental control"
 msgstr "Uključi roditeljsku zaštitu"
 
 msgid "Enabled"
-msgstr "Omogući"
+msgstr "Omogućeno"
 
 msgid "End"
 msgstr "Kraj"
@@ -817,7 +823,7 @@ msgid "Exit wizard"
 msgstr "Izlaz iz čarobnjaka"
 
 msgid "Expert"
-msgstr ""
+msgstr "Ekspert"
 
 msgid "Extended Setup..."
 msgstr "Proširene postavke..."
@@ -884,9 +890,6 @@ msgstr ""
 "GUI se treba restartati da se primjeni novo sučelje\n"
 " Želite li restartati GUI sada ?"
 
-msgid "Games / Plugins"
-msgstr "Igre / Dodaci"
-
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -906,7 +909,7 @@ msgid "Goto position"
 msgstr "Goto pozicija"
 
 msgid "Graphical Multi EPG"
-msgstr ""
+msgstr "Grafički Multi EPG"
 
 msgid "Greek"
 msgstr "Grčki"
@@ -925,6 +928,9 @@ msgstr "Postavke tvrdog diska"
 
 msgid "Harddisk standby after"
 msgstr "Isključi tvrdi disk nakon"
+
+msgid "Hello!"
+msgstr ""
 
 msgid "Hierarchy Information"
 msgstr "Informacije hierhije"
@@ -999,8 +1005,11 @@ msgstr "Instaliram Softver..."
 msgid "Instant Record..."
 msgstr "Trenutno Snimanje..."
 
-msgid "Intermediate"
+msgid "Integrated Ethernet"
 msgstr ""
+
+msgid "Intermediate"
+msgstr "Srednje"
 
 msgid "Internal Flash"
 msgstr "Unutarnji Flash"
@@ -1066,7 +1075,7 @@ msgid "Lithuanian"
 msgstr "Litvanski"
 
 msgid "Lock:"
-msgstr ""
+msgstr "Lock:"
 
 msgid "Long Keypress"
 msgstr "Dugi pritis tipke"
@@ -1153,7 +1162,7 @@ msgid "Move west"
 msgstr "Pokreći na zapad"
 
 msgid "Movielist menu"
-msgstr ""
+msgstr "Meni izbornika filmova"
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -1286,6 +1295,9 @@ msgstr ""
 "Ispravan PIN za 'Postavke' nije pronađene!\n"
 "Želite li promjeniti PIN sada?\n"
 "Ukoliko kažete 'Ne' ovdje, Postavke uređaja ostaju nezaštićene."
+
+msgid "No, but restart from begin"
+msgstr ""
 
 msgid "No, do nothing."
 msgstr "Ne, ništa ne čini "
@@ -1436,13 +1448,16 @@ msgid ""
 msgstr ""
 "Molim koristite tipke s smjernicama za premještanje PiP prozora.\n"
 "Pritisnite Bouquet +/- tipke za promjenu prozora.\n"
-"Pitisnite OK za povratak u TV mod ili EXIT za prekid premještanja."
+"Pritisnite OK za povratak u TV mod ili EXIT za prekid premještanja."
 
 msgid "Please wait... Loading list..."
 msgstr "Molim pričekajte... Učitavam listu..."
 
 msgid "Plugin browser"
 msgstr "Preglednik dodataka"
+
+msgid "Plugins"
+msgstr ""
 
 msgid "Polarity"
 msgstr "Polaritet"
@@ -1451,7 +1466,7 @@ msgid "Polarization"
 msgstr "Polarizacija"
 
 msgid "Polish"
-msgstr ""
+msgstr "Poljski"
 
 msgid "Port A"
 msgstr "Port A"
@@ -1511,7 +1526,7 @@ msgid "Protect setup"
 msgstr "Zaštićene postavke"
 
 msgid "Provider"
-msgstr "Pružatelj"
+msgstr "Pružatelji"
 
 msgid "Provider to scan"
 msgstr "Pružatelj usluga za skeniranje"
@@ -1535,7 +1550,7 @@ msgid "RSS Feed URI"
 msgstr "RSS Feed URI"
 
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 msgid "Ram Disk"
 msgstr "Ram Disk"
@@ -1614,6 +1629,9 @@ msgstr "Resetiraj"
 
 msgid "Restart"
 msgstr "Restart"
+
+msgid "Restart GUI"
+msgstr ""
 
 msgid "Restart GUI now?"
 msgstr "Restart GUI sada?"
@@ -1820,7 +1838,7 @@ msgid "Setup"
 msgstr "Postavi"
 
 msgid "Setup Mode"
-msgstr ""
+msgstr "Mod Postavki"
 
 msgid "Show infobar on channel change"
 msgstr "Prikaži infobar na promjeni kanala"
@@ -1900,11 +1918,11 @@ msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
-msgstr ""
+msgstr "Sortiraj A-Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr ""
+msgstr "Vrijeme Sortiranja"
 
 msgid "Sound"
 msgstr "Zvuk"
@@ -1991,7 +2009,7 @@ msgid "Sunday"
 msgstr "Nedelja"
 
 msgid "Swap Services"
-msgstr "Swap usluge"
+msgstr "Zamjeni prozore"
 
 msgid "Swedish"
 msgstr "Švedski"
@@ -2055,7 +2073,7 @@ msgstr "Tajmer je onemogućen."
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Čarobnjak može napraviti sigurnosnu kopiju postavki. Želite li napraviti "
+"Čarobnjak može napraviti sigurnosnu kopiju postavki. Želite li je napraviti "
 "sada?"
 
 msgid "The wizard is finished now."
@@ -2348,6 +2366,9 @@ msgstr "Što želite skenirati?"
 msgid "Where do you want to backup your settings?"
 msgstr "Gdje želite pohraniti ovu sigurnosnu kopiju liste kanala?"
 
+msgid "Wireless"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Greška tijekom snimanja. Disk Pun?\n"
 
@@ -2548,7 +2569,7 @@ msgid "advanced"
 msgstr "napredno"
 
 msgid "alphabetic sort"
-msgstr ""
+msgstr "sortiraj abecedno"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -2675,7 +2696,7 @@ msgid "exit mediaplayer"
 msgstr "Izađi iz preglednika medija"
 
 msgid "exit movielist"
-msgstr ""
+msgstr "izađi iz izbornika filmova"
 
 msgid "free diskspace"
 msgstr "slobodan prostor na disku"
@@ -2696,7 +2717,7 @@ msgid "help..."
 msgstr "pomoć..."
 
 msgid "hide extended description"
-msgstr ""
+msgstr "sakrij prošireni opis"
 
 msgid "hide player"
 msgstr "sakri player"
@@ -2743,16 +2764,16 @@ msgid "left"
 msgstr "lijevi"
 
 msgid "list style compact"
-msgstr ""
+msgstr "kompaktni stil liste"
 
 msgid "list style compact with description"
-msgstr ""
+msgstr "kompaktni stil liste sa opisom"
 
 msgid "list style default"
-msgstr ""
+msgstr "standardne postavke stila liste"
 
 msgid "list style single line"
-msgstr ""
+msgstr "Kompaktni jednostruki stil liste"
 
 msgid "load playlist"
 msgstr "učitaj playlistu"
@@ -2782,7 +2803,7 @@ msgid "minutes and"
 msgstr "minuta i"
 
 msgid "move PiP to main picture"
-msgstr ""
+msgstr "premjesti PiP na glavnu sliku"
 
 msgid "movie list"
 msgstr "lista filmova"
@@ -2915,17 +2936,17 @@ msgstr "pohrani playlistu"
 
 #, python-format
 msgid "scan done! %d services found!"
-msgstr ""
+msgstr "pretraživanje završeno! %d usluga pronađeno!"
 
 msgid "scan done! No service found!"
-msgstr ""
+msgstr "pretraživanje završeno! Nijedna usluga nije pronađena!"
 
 msgid "scan done! One service found!"
-msgstr ""
+msgstr "pretraživanje završeno! Jedna usluga pronađena!"
 
 #, python-format
 msgid "scan in progress - %d %% done! %d services found!"
-msgstr ""
+msgstr "pretraživanje u tijeku - %d %% gotovo! %d usluga pronađeno!"
 
 msgid "scan state"
 msgstr "status skeniranja"
@@ -2943,7 +2964,7 @@ msgid "seconds."
 msgstr "sekundi."
 
 msgid "select movie"
-msgstr ""
+msgstr "odaberi film"
 
 msgid "service pin"
 msgstr "pin usluge"
@@ -2955,7 +2976,7 @@ msgid "show EPG..."
 msgstr "prikaži EPG..."
 
 msgid "show all"
-msgstr ""
+msgstr "prikaži sve"
 
 msgid "show alternatives"
 msgstr "prikaži alternative"
@@ -2964,19 +2985,19 @@ msgid "show event details"
 msgstr "prikaži proširene infor. "
 
 msgid "show extended description"
-msgstr ""
+msgstr "prikaži proširene informacije"
 
 msgid "show first tag"
-msgstr ""
+msgstr "prikaži prvi citat"
 
 msgid "show second tag"
-msgstr ""
+msgstr "prikaži sljedeći citat"
 
 msgid "show single service EPG..."
 msgstr "prikaži jednostruku EPG uslugu"
 
 msgid "show tag menu"
-msgstr ""
+msgstr "prikaži citat menia"
 
 msgid "show transponder info"
 msgstr "prikaži info transpondera"
@@ -3009,10 +3030,10 @@ msgid "skip forward (self defined)"
 msgstr "preskoči naprijed (definirano)"
 
 msgid "sort by date"
-msgstr ""
+msgstr "sortiraj po datumu"
 
 msgid "standard"
-msgstr ""
+msgstr "standardno"
 
 msgid "standby"
 msgstr "stanje pripravnosti"
@@ -3027,7 +3048,7 @@ msgid "stereo"
 msgstr "stereo"
 
 msgid "stop PiP"
-msgstr ""
+msgstr "zaustavi PiP"
 
 msgid "stop entry"
 msgstr "zaustavi unos"
@@ -3039,7 +3060,7 @@ msgid "stop timeshift"
 msgstr "zaustavi vrem.pomak"
 
 msgid "swap PiP and main picture"
-msgstr ""
+msgstr "zamijeni PiP sa glavnom slikom"
 
 msgid "switch to filelist"
 msgstr "prebaci u datoteknu listu"
@@ -3192,6 +3213,9 @@ msgstr "prebačen"
 #~ msgid "Classic"
 #~ msgstr "Klasi?na "
 
+#~ msgid "Custom skip time for 1/3 keys"
+#~ msgstr "Podesivo vrijeme preskoka za 1/3 ključa"
+
 #~ msgid "Default"
 #~ msgstr "Tvorni?ko"
 
@@ -3212,6 +3236,9 @@ msgstr "prebačen"
 
 #~ msgid "Fast zapping"
 #~ msgstr "Brzo prebacivanje"
+
+#~ msgid "Games / Plugins"
+#~ msgstr "Igre / Dodaci"
 
 #~ msgid "Hide error windows"
 #~ msgstr "Sakrij prozor greA!ke"
