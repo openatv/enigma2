@@ -1,5 +1,6 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
+from skin import parseColor
 
 from enigma import loadPNG, eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 
@@ -42,6 +43,26 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.onSelectionChanged = [ ]
+
+	def applySkin(self, desktop):
+		attribs = [ ]
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundColorMarked":
+					self.l.setColor(eListboxServiceContent.markedForeground, parseColor(value))
+				elif attrib == "foregroundColorMarkedSelected":
+					self.l.setColor(eListboxServiceContent.markedForegroundSelected, parseColor(value))
+				elif attrib == "backgroundColorMarked":
+					self.l.setColor(eListboxServiceContent.markedBackground, parseColor(value))
+				elif attrib == "backgroundColorMarkedSelected":
+					self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
+				elif attrib == "foregroundColorServiceNotAvail":
+					self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+				else:
+					attribs.append((attrib, value))
+		self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop)
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:

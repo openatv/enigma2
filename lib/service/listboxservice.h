@@ -1,6 +1,7 @@
 #ifndef __lib_service_listboxservice_h
 #define __lib_service_listboxservice_h
 
+#include <lib/gdi/gpixmap.h>
 #include <lib/gui/elistbox.h>
 #include <lib/service/iservice.h>
 #include <set>
@@ -76,7 +77,17 @@ public:
 	
 	int getItemHeight() { return m_itemheight; }
 	int setItemHeight(int height);
+
+	enum {
+		markedForeground,
+		markedForegroundSelected,
+		markedBackground,
+		markedBackgroundSelected,
+		serviceNotAvail,
+		colorElements
+	};
 	
+	void setColor(int color, gRGB &col);
 protected:
 	void cursorHome();
 	void cursorEnd();
@@ -100,6 +111,8 @@ protected:
 	eRect m_element_position[celElements];
 	ePtr<gFont> m_element_font[celElements];
 	ePtr<gPixmap> m_pixmaps[picElements];
+	gRGB m_color[colorElements];
+	bool m_color_set[colorElements];
 private:
 	typedef std::list<eServiceReference> list;
 	
