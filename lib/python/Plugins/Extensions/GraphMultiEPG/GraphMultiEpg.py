@@ -8,6 +8,7 @@ from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
 from Components.Sources.Source import ObsoleteSource
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Screens.Screen import Screen
 from Screens.EventView import EventViewSimple
 from Screens.TimeDateInput import TimeDateInput
@@ -16,7 +17,7 @@ from Screens.EpgSelection import EPGSelection
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from RecordTimer import RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, loadPNG, \
+from enigma import eEPGCache, eListbox, gFont, loadPNG, eListboxPythonMultiContent, \
 	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
 
 from time import localtime, time, strftime
@@ -44,6 +45,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.event_rect = None
 
 		self.foreColor = None
+		self.foreColorSelected = None
 		self.borderColor = None
 		self.backColor = 0x586d88
 		self.backColorSelected = 0x808080
@@ -54,6 +56,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "EntryForegroundColor":
 					self.foreColor = parseColor(value).argb()
+				elif attrib == "EntryForegroundColorSelected":
+					self.foreColorSelected = parseColor(value).argb()
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColor":
@@ -182,8 +186,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events):
 		r1=self.service_rect
 		r2=self.event_rect
-		res = [ None ] # no private data needed
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
+		res = [ None, MultiContentEntryText(pos = (r1.left(),r1.top()), size = (r1.width(), r1.height()), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = service_name) ]
 
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
@@ -193,6 +196,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			width = r2.width()
 			height = r2.height()
 			foreColor = self.foreColor
+			foreColorSelected = self.foreColorSelected
 			backColor = self.backColor
 			backColorSelected = self.backColorSelected
 			borderColor = self.borderColor
@@ -200,12 +204,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				rec=self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
-				if self.borderColor is None:
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, left+xpos, top, ewidth, height, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, ev[1], foreColor, backColor, backColorSelected, 1))
-				else:
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, left+xpos, top, ewidth, height, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, ev[1], foreColor, backColor, backColorSelected, 1, borderColor))
+				res.append(MultiContentEntryText(pos = (left+xpos, top), size = (ewidth, height), font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP, text = ev[1], color = foreColor, color_sel = foreColorSelected, backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
 				if rec and ewidth > 23:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, left+xpos+ewidth-22, top+height-22, 21, 21, self.clock_pixmap, backColor, backColorSelected))
+					res.append(MultiContentEntryPixmapAlphaTest(pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21), png = self.clock_pixmap, backcolor = backColor, backcolor_selected = backColorSelected))
 		return res
 
 	def selEntry(self, dir, visible=True):

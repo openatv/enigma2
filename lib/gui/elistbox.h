@@ -59,8 +59,8 @@ struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection;
 	int m_transparent_background;
-	gRGB m_background_color, m_foreground_color;
-	int m_background_color_set, m_foreground_color_set;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected;
+	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
 
 		/*
 			{m_transparent_background m_background_color_set m_background}
@@ -120,7 +120,9 @@ public:
 	void setSelectionEnable(int en);
 
 	void setBackgroundColor(gRGB &col);
+	void setBackgroundColorSelected(gRGB &col);
 	void setForegroundColor(gRGB &col);
+	void setForegroundColorSelected(gRGB &col);
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 
