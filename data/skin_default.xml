@@ -14,6 +14,12 @@
 		<widget source="hddA" render="Label" position="10,230" size="340,40" font="Regular;18"/>
 		<ePixmap pixmap="skin_default/dmm_logo.png" position="250,285" zPosition="1" size="98,53" alphatest="on" />
 	</screen>
+	<!-- Translator Info -->
+	<screen name="TranslationInfo" position="180,123" size="360,340" title="Translation" >
+		<eLabel position="10,30" size="100,20" font="Regular;18" text="Translation:" />
+		<widget source="TranslatorName" render="Label" position="110,30" size="350,20" font="Regular;18"/>
+		<widget source="TranslationInfo" render="Label" position="10,60" size="340,140" font="Regular;18"/>
+	</screen>
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="130,140" size="460,330" title="Network Setup" >
 		<widget name="iface" position="10,10" size="440,30" zPosition="1" font="Regular;20" />
