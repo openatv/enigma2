@@ -446,10 +446,17 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 {
 	painter.clip(eRect(offset, m_itemsize));
 
-	bool marked = m_current_marked || (cursorValid() && isMarked(*m_cursor));
+	int marked = 0;
 
-	if (marked)
-		style.setStyle(painter, selected ? eWindowStyle::styleListboxMarkedAndSelected : eWindowStyle::styleListboxMarked);
+	if (m_current_marked && selected)
+		marked = 2;
+	else if (cursorValid() && isMarked(*m_cursor))
+	{
+		if (selected)
+			marked = 2;
+		else
+			marked = 1;
+	}
 	else
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 
@@ -459,22 +466,21 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
 
-	if (marked)
+	if (marked == 1)  // marked
 	{
-		if (selected)
-		{
-			if (m_color_set[markedForegroundSelected])
-				painter.setForegroundColor(m_color[markedForegroundSelected]);
-			if (m_color_set[markedBackgroundSelected])
-				painter.setBackgroundColor(m_color[markedBackgroundSelected]);
-		}
-		else
-		{
-			if (m_color_set[markedForeground])
-				painter.setForegroundColor(m_color[markedForeground]);
-			if (m_color_set[markedBackground])
-				painter.setBackgroundColor(m_color[markedBackground]);
-		}
+		style.setStyle(painter, eWindowStyle::styleListboxMarked);
+		if (m_color_set[markedForeground])
+			painter.setForegroundColor(m_color[markedForeground]);
+		if (m_color_set[markedBackground])
+			painter.setBackgroundColor(m_color[markedBackground]);
+	}
+	else if (marked == 2) // marked and selected
+	{
+		style.setStyle(painter, eWindowStyle::styleListboxMarkedAndSelected);
+		if (m_color_set[markedForegroundSelected])
+			painter.setForegroundColor(m_color[markedForegroundSelected]);
+		if (m_color_set[markedBackgroundSelected])
+			painter.setBackgroundColor(m_color[markedBackgroundSelected]);
 	}
 	else if (local_style)
 	{
@@ -514,8 +520,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.clear();
 	}
 
-	painter.clear();
-	
 	if (cursorValid())
 	{
 			/* get service information */
