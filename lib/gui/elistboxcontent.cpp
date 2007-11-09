@@ -504,33 +504,42 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 {
 	if (selected && sel_clip.valid())
 	{
-		painter.clip(rc-sel_clip);
-		if (pbackColor)
+		gRegion part = rc - sel_clip;
+		if (!part.empty())
 		{
-			int color = PyInt_AsLong(pbackColor);
-			painter.setBackgroundColor(gRGB(color));
-		} // transparent background?
-		// if we have a local background color set, use that. 
-		else if (local_style && local_style->m_background_color_set)
-			painter.setBackgroundColor(local_style->m_background_color);
-		else
+			painter.clip(part);
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
-		if (local_style && local_style->m_transparent_background)
-			;
-		else
-			painter.clear();
-		painter.clippop();
-		painter.clip(rc&sel_clip);
-		style.setStyle(painter, eWindowStyle::styleListboxSelected);
-		if (pbackColorSelected)
-		{
-			int color = PyInt_AsLong(pbackColorSelected);
-			painter.setBackgroundColor(gRGB(color));
+			if (pbackColor)
+			{
+				int color = PyInt_AsLong(pbackColor);
+				painter.setBackgroundColor(gRGB(color));
+			} // transparent background?
+			// if we have a local background color set, use that. 
+			else if (local_style && local_style->m_background_color_set)
+				painter.setBackgroundColor(local_style->m_background_color);
+			if (!pbackColor && local_style && local_style->m_transparent_background)
+				;
+			else
+				painter.clear();
+			painter.clippop();
+			selected = 0;
 		}
-		else if (local_style && local_style->m_background_color_selected_set)
-			painter.setBackgroundColor(local_style->m_background_color_selected);
-		painter.clear();
-		painter.clippop();
+		part = rc & sel_clip;
+		if (!part.empty())
+		{
+			painter.clip(part);
+			style.setStyle(painter, eWindowStyle::styleListboxSelected);
+			if (pbackColorSelected)
+			{
+				int color = PyInt_AsLong(pbackColorSelected);
+				painter.setBackgroundColor(gRGB(color));
+			}
+			else if (local_style && local_style->m_background_color_selected_set)
+				painter.setBackgroundColor(local_style->m_background_color_selected);
+			painter.clear();
+			painter.clippop();
+			selected = 1;
+		}
 	}
 	else
 	{
@@ -557,7 +566,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			else if (local_style && local_style->m_background_color_set)
 				painter.setBackgroundColor(local_style->m_background_color);
 			/* if we have no transparent background */
-			if (local_style && local_style->m_transparent_background)
+			if (!pbackColor && local_style && local_style->m_transparent_background)
 				;
 			else
 				painter.clear();
@@ -600,7 +609,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		local_style = m_listbox->getLocalStyle();
 
 	painter.clip(itemregion);
-
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip);
 
 	ePyObject items;
@@ -638,7 +646,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		for (int i = 1; i < size; ++i)
 		{
 			ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
-			bool reset_colors=false;
 
 			if (!item)
 			{
@@ -738,11 +745,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect rect(x+bwidth, y+bwidth, width-bwidth*2, height-bwidth*2);
 				painter.clip(rect);
-				if (pbackColor || pbackColorSelected || pforeColor || pforeColorSelected)
+
 				{
 					gRegion rc(rect);
 					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip);
-					reset_colors=true;
 				}
 
 				painter.setFont(m_font[fnt]);
@@ -836,11 +842,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
-				if (pbackColor || pbackColorSelected || pforeColor || pforeColorSelected)
+
 				{
 					gRegion rc(rect);
 					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip);
-					reset_colors=true;
 				}
 
 				// border
@@ -910,13 +915,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
-				if (pbackColor || pbackColorSelected)
+
 				{
 					gRegion rc(rect);
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip);
-					reset_colors=true;
 				}
-				
+
 				painter.blit(pixmap, rect.topLeft(), rect, (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : 0);
 				painter.clippop();
 				break;
@@ -925,8 +929,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				eWarning("eListboxPythonMultiContent received unknown type (%d)", type);
 				goto error_out;
 			}
-			if (reset_colors)
-				style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 		}
 	}
 
