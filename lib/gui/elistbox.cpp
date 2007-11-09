@@ -483,10 +483,22 @@ void eListbox::setBackgroundColor(gRGB &col)
 	m_style.m_background_color_set = 1;
 }
 
+void eListbox::setBackgroundColorSelected(gRGB &col)
+{
+	m_style.m_background_color_selected = col;
+	m_style.m_background_color_selected_set = 1;
+}
+
 void eListbox::setForegroundColor(gRGB &col)
 {
 	m_style.m_foreground_color = col;
 	m_style.m_foreground_color_set = 1;
+}
+
+void eListbox::setForegroundColorSelected(gRGB &col)
+{
+	m_style.m_foreground_color_selected = col;
+	m_style.m_foreground_color_selected_set = 1;
 }
 
 void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)

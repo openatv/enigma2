@@ -168,8 +168,12 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 					print "illegal flag %s!" % f
 		elif attrib == "backgroundColor":
 			guiObject.setBackgroundColor(parseColor(value))
+		elif attrib == "backgroundColorSelected":
+			guiObject.setBackgroundColorSelected(parseColor(value))
 		elif attrib == "foregroundColor":
 			guiObject.setForegroundColor(parseColor(value))
+		elif attrib == "foregroundColorSelected":
+			guiObject.setForegroundColorSelected(parseColor(value))
 		elif attrib == "shadowColor":
 			guiObject.setShadowColor(parseColor(value))
 		elif attrib == "selectionDisabled":
