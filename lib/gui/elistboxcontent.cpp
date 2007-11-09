@@ -504,21 +504,20 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 {
 	if (selected && sel_clip.valid())
 	{
-		bool clear=true;
 		painter.clip(rc-sel_clip);
 		if (pbackColor)
 		{
 			int color = PyInt_AsLong(pbackColor);
 			painter.setBackgroundColor(gRGB(color));
 		} // transparent background?
-		else if (local_style && local_style->m_transparent_background) 
-			clear=false;
 		// if we have a local background color set, use that. 
 		else if (local_style && local_style->m_background_color_set)
 			painter.setBackgroundColor(local_style->m_background_color);
 		else
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
-		if (clear)
+		if (local_style && local_style->m_transparent_background)
+			;
+		else
 			painter.clear();
 		painter.clippop();
 		painter.clip(rc&sel_clip);
@@ -549,22 +548,18 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		}
 		else
 		{
-			bool clear=true;
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
 				int color = PyInt_AsLong(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			}/* if we have a local background color set, use that. */
-			else if (local_style)
-			{
-				if (local_style->m_transparent_background)
-					clear=false;
-				else if (local_style->m_background_color_set)
-					painter.setBackgroundColor(local_style->m_background_color);
-			}
+			else if (local_style && local_style->m_background_color_set)
+				painter.setBackgroundColor(local_style->m_background_color);
 			/* if we have no transparent background */
-			if (clear)
+			if (local_style && local_style->m_transparent_background)
+				;
+			else
 				painter.clear();
 		}
 	}
