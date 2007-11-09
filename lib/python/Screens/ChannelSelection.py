@@ -1316,9 +1316,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 		self.infobar = infobar
-		config.radio = ConfigSubsection();
-		config.radio.lastservice = ConfigText()
-		config.radio.lastroot = ConfigText()
 		self.onLayoutFinish.append(self.onCreate)
 
 		self.info = session.instantiateDialog(RadioInfoBar) # our simple infobar
@@ -1421,6 +1418,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
+		else:
+			self.session.nav.stopService()
 		self.info.show()
 
 	def channelSelected(self): # just return selected service
