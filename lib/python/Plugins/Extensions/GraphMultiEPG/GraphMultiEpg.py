@@ -49,6 +49,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.borderColor = None
 		self.backColor = 0x586d88
 		self.backColorSelected = 0x808080
+		self.foreColorService = None
+		self.backColorService = None
 
 	def applySkin(self, desktop):
 		if self.skinAttributes is not None:
@@ -64,6 +66,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColor = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorSelected":
 					self.backColorSelected = parseColor(value).argb()
+				elif attrib == "ServiceNameForegroundColor":
+					self.foreColorService = parseColor(value).argb()
+				elif attrib == "ServiceNameBackgroundColor":
+					self.backColorService = parseColor(value).argb()
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -192,7 +198,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events):
 		r1=self.service_rect
 		r2=self.event_rect
-		res = [ None, MultiContentEntryText(pos = (r1.left(),r1.top()), size = (r1.width(), r1.height()), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = service_name) ]
+		res = [ None, MultiContentEntryText(pos = (r1.left(),r1.top()), size = (r1.width(), r1.height()), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = service_name, color = self.foreColorService, backcolor = self.backColorService) ]
 
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
