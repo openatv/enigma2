@@ -262,8 +262,18 @@ DEFINE_REF(eListboxServiceContent);
 eListboxServiceContent::eListboxServiceContent()
 	:m_visual_mode(visModeSimple), m_size(0), m_current_marked(false), m_numberoffset(0), m_itemheight(25)
 {
+	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
+}
+
+void eListboxServiceContent::setColor(int color, gRGB &col)
+{
+	if ((color >= 0) && (color < colorElements))
+	{
+		m_color_set[color] = true;
+		m_color[color] = col;
+	}
 }
 
 void eListboxServiceContent::cursorHome()
@@ -436,12 +446,74 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 {
 	painter.clip(eRect(offset, m_itemsize));
 
-	if (m_current_marked && selected)
-		style.setStyle(painter, eWindowStyle::styleListboxMarked);
-	else if (cursorValid() && isMarked(*m_cursor))
+	bool marked = m_current_marked || (cursorValid() && isMarked(*m_cursor));
+
+	if (marked)
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxMarkedAndSelected : eWindowStyle::styleListboxMarked);
 	else
 		style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
+
+	eListboxStyle *local_style = 0;
+
+		/* get local listbox style, if present */
+	if (m_listbox)
+		local_style = m_listbox->getLocalStyle();
+
+	if (marked)
+	{
+		if (selected)
+		{
+			if (m_color_set[markedForegroundSelected])
+				painter.setForegroundColor(m_color[markedForegroundSelected]);
+			if (m_color_set[markedBackgroundSelected])
+				painter.setBackgroundColor(m_color[markedBackgroundSelected]);
+		}
+		else
+		{
+			if (m_color_set[markedForeground])
+				painter.setForegroundColor(m_color[markedForeground]);
+			if (m_color_set[markedBackground])
+				painter.setBackgroundColor(m_color[markedBackground]);
+		}
+	}
+	else if (local_style)
+	{
+		if (selected)
+		{
+			/* if we have a local background color set, use that. */
+			if (local_style->m_background_color_selected_set)
+				painter.setBackgroundColor(local_style->m_background_color_selected);
+			/* same for foreground */
+			if (local_style->m_foreground_color_selected_set)
+				painter.setForegroundColor(local_style->m_foreground_color_selected);
+		}
+		else
+		{
+			/* if we have a local background color set, use that. */
+			if (local_style->m_background_color_set)
+				painter.setBackgroundColor(local_style->m_background_color);
+			/* same for foreground */
+			if (local_style->m_foreground_color_set)
+				painter.setForegroundColor(local_style->m_foreground_color);
+		}
+	}
+
+	if (!local_style || !local_style->m_transparent_background)
+		/* if we have no transparent background */
+	{
+		/* blit background picture, if available (otherwise, clear only) */
+		if (local_style && local_style->m_background)
+			painter.blit(local_style->m_background, offset, eRect(), 0);
+		else
+			painter.clear();
+	} else
+	{
+		if (local_style->m_background)
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+		else if (selected && !local_style->m_selection)
+			painter.clear();
+	}
+
 	painter.clear();
 	
 	if (cursorValid())
@@ -452,8 +524,16 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || ref.flags & eServiceReference::isMarker);
 
-		if (isPlayable && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
-			painter.setForegroundColor(gRGB(0xbbbbbb));
+		if (!marked && isPlayable && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		{
+			if (m_color_set[serviceNotAvail])
+				painter.setForegroundColor(m_color[serviceNotAvail]);
+			else
+				painter.setForegroundColor(gRGB(0xbbbbbb));
+		}
+
+		if (selected && local_style && local_style->m_selection)
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol
 
@@ -596,7 +676,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			}
 		}
 		
-		if (selected)
+		if (selected && (!local_style || !local_style->m_selection))
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 	}
 	
