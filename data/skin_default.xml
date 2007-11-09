@@ -498,7 +498,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Radio infobar -->
 	<screen name="RadioInfoBar" position="85,408" size="560,120" zPosition="-1" title="Radio" >
-		<widget source="CurrentService" render="Label" position="5,1" size="325,26" font="Regular;20" noWrap="1" transparent="1" >
+		<widget source="session.CurrentService" render="Label" position="5,1" size="325,26" font="Regular;20" noWrap="1" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="RdsDecoder" render="Pixmap" pixmap="skin_default/rass_logo.png" position="330,1" size="50,21" alphatest="on" >
@@ -506,32 +506,32 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget name="BlinkingPoint" pixmap="skin_default/record.png" position="480,3" zPosition="2" size="14,14" alphatest="on" />
-		<ePixmap pixmap="skin_default/clock.png" position="480,3" zPosition="1" size="14,14" alphatest="on"/>		
-		<widget source="Event_Now" render="Progress" pixmap="skin_default/progress_medium.png" position="395,5" zPosition="2" size="71,11" borderWidth="2" borderColor="#cccccc" transparent="1" >
+		<ePixmap pixmap="skin_default/clock.png" position="480,3" zPosition="1" size="14,14" alphatest="on"/>
+		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/progress_medium.png" position="395,5" zPosition="2" size="71,11" borderWidth="2" borderColor="#cccccc" transparent="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="500,1" size="55,28" font="Regular;20" halign="right" transparent="1" >
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="Event_Now" render="Label" position="5,25" size="60,22" font="Regular;20" transparent="1" >
+		<widget source="session.Event_Now" render="Label" position="5,25" size="60,22" font="Regular;20" transparent="1" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="Event_Now" render="Label" position="73,25" size="390,22" font="Regular;20" valign="top" noWrap="1" transparent="1" >
+		<widget source="session.Event_Now" render="Label" position="73,25" size="390,22" font="Regular;20" valign="top" noWrap="1" transparent="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event_Now" render="Label" position="465,25" size="90,22" font="Regular;20" halign="right" transparent="1" >
+		<widget source="session.Event_Now" render="Label" position="465,25" size="90,22" font="Regular;20" halign="right" transparent="1" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="5,47" size="60,22" font="Regular;20" transparent="1" >
+		<widget source="session.Event_Next" render="Label" position="5,47" size="60,22" font="Regular;20" transparent="1" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="73,47" size="390,22" font="Regular;20" valign="top" noWrap="1" transparent="1" >
+		<widget source="session.Event_Next" render="Label" position="73,47" size="390,22" font="Regular;20" valign="top" noWrap="1" transparent="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
-		<widget source="Event_Next" render="Label" position="465,47" size="90,22" font="Regular;20" halign="right" transparent="1" >
+		<widget source="session.Event_Next" render="Label" position="465,47" size="90,22" font="Regular;20" halign="right" transparent="1" >
 			<convert type="EventTime">Duration</convert>
 			<convert type="ClockToText">InMinutes</convert>
 		</widget>
