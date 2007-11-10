@@ -55,6 +55,7 @@ protected:
 #endif
 };
 
+#ifndef SWIG
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection;
@@ -71,6 +72,7 @@ struct eListboxStyle
 			{1 x p} use transparent background picture
 		*/
 };
+#endif
 
 class eListbox: public eWidget
 {
@@ -126,8 +128,9 @@ public:
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 
-	struct eListboxStyle *getLocalStyle(void);
 #ifndef SWIG
+	struct eListboxStyle *getLocalStyle(void);
+
 		/* entryAdded: an entry was added *before* the given index. it's index is the given number. */
 	void entryAdded(int index);
 		/* entryRemoved: an entry with the given index was removed. */
