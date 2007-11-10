@@ -9,6 +9,13 @@
 
 gFBDC *gFBDC::instance;
 
+ePtr<gFBDC> NewgFBDCPtr(void)
+{
+	ePtr<gFBDC> ptr;
+	gFBDC::getInstance(ptr);
+	return ptr;
+}
+
 gFBDC::gFBDC()
 {
 	instance=this;

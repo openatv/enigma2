@@ -7,8 +7,7 @@
 
 class gFBDC;
 
-SWIG_TEMPLATE_TYPEDEF(ePtr<gFBDC>, gFBDCPtr);
-
+SWIG_IGNORE(gFBDC);
 class gFBDC: public gDC
 {
 #ifndef SWIG
@@ -22,8 +21,13 @@ class gFBDC: public gDC
 	gSurface surface, surface_back;
 	int m_enable_double_buffering;
 	int m_xres, m_yres;
+#else
+	gFBDC();
+	virtual ~gFBDC();
 #endif
 public:
+	void setResolution(int xres, int yres);
+#ifndef SWIG
 	void reloadSettings();
 	void setAlpha(int alpha);
 	void setBrightness(int brightness);
@@ -35,14 +39,21 @@ public:
 
 	int haveDoubleBuffering() { return m_enable_double_buffering; }
 
-	void setResolution(int xres, int yres);
-
 	void saveSettings();
 
 	gFBDC();
 	virtual ~gFBDC();
-	static SWIG_VOID(int) getInstance(ePtr<gFBDC> &SWIG_NAMED_OUTPUT(ptr)) { if (!instance) return -1; ptr = instance; return 0; }
+	static int getInstance(ePtr<gFBDC> &ptr) { if (!instance) return -1; ptr = instance; return 0; }
 	int islocked() { return fb->islocked(); }
+#endif
 };
+SWIG_TEMPLATE_TYPEDEF(ePtr<gFBDC>, gFBDC);
+SWIG_EXTEND(ePtr<gFBDC>,
+	static ePtr<gFBDC> getInstance()
+	{
+		extern ePtr<gFBDC> NewgFBDCPtr(void);
+		return NewgFBDCPtr();
+	}
+);
 
 #endif
