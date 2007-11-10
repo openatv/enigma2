@@ -225,25 +225,27 @@ class EPGList(HTMLComponent, GUIComponent):
 		cur_service = self.cur_service #(service, service_name, events)
 		if not self.event_rect:
 			self.recalcEntrySize()
-		if cur_service and self.cur_event is not None:
+		valid_event = self.cur_event is not None
+		if cur_service:
 			update = True
 			entries = cur_service[2]
 			if dir == 0: #current
 				update = False
 			elif dir == +1: #next
-				if self.cur_event+1 < len(entries):
+				if valid_event and self.cur_event+1 < len(entries):
 					self.cur_event+=1
 				else:
 					self.offs += 1
 					self.fillMultiEPG(None) # refill
 					return True
 			elif dir == -1: #prev
-				if self.cur_event-1 >= 0:
+				if valid_event and self.cur_event-1 >= 0:
 					self.cur_event-=1
 				elif self.offs > 0:
 					self.offs -= 1
 					self.fillMultiEPG(None) # refill
 					return True
+		if cur_service and valid_event:
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base+self.offs*self.time_epoch*60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
@@ -280,13 +282,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		for x in epg_data:
 			if service != x[0]:
 				if tmp_list is not None:
-					self.list.append((service, sname, tmp_list[0][0] and tmp_list))
+					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None))
 				service = x[0]
 				sname = x[1]
 				tmp_list = [ ]
 			tmp_list.append((x[2], x[3], x[4], x[5]))
 		if tmp_list and len(tmp_list):
-			self.list.append((service, sname, tmp_list[0][0] and tmp_list))
+			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None))
 
 		self.l.setList(self.list)
 		self.findBestEvent()
