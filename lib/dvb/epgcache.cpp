@@ -1548,7 +1548,7 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
 		Unlock();
-		return 0;
+		return -(m_timemap_cursor == m_timemap_end);
 	}
 	Unlock();
 	return -1;
