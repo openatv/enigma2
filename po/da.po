@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-08 22:13+0100\n"
-"PO-Revision-Date: 2007-11-08 17:01+0100\n"
+"POT-Creation-Date: 2007-11-10 11:23+0100\n"
+"PO-Revision-Date: 2007-11-09 20:56+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -263,6 +263,9 @@ msgstr "Info"
 msgid "About..."
 msgstr "Info..."
 
+msgid "Action on long powerbutton press"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "Start Billed i Billed"
 
@@ -273,7 +276,7 @@ msgid "Add"
 msgstr "Tilføj"
 
 msgid "Add a mark"
-msgstr "Tilføj et mærke"
+msgstr "Tilføj en markør"
 
 msgid "Add timer"
 msgstr "Tilføj timer"
@@ -355,7 +358,7 @@ msgid "Backup"
 msgstr "Kopi"
 
 msgid "Backup Location"
-msgstr "Backup Lokation"
+msgstr "Kopi Lokation"
 
 msgid "Backup Mode"
 msgstr "Kopi Type"
@@ -930,9 +933,6 @@ msgstr "Harddisk Indstilling"
 msgid "Harddisk standby after"
 msgstr "Harddisk Standby efter"
 
-msgid "Hello!"
-msgstr "Goddag!"
-
 msgid "Hierarchy Information"
 msgstr "Hiraki Information"
 
@@ -1331,7 +1331,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK, guide me through the upgrade process"
-msgstr "OK, hjælp mig igennem opdaterinsprocessen"
+msgstr "OK, hjælp mig igennem opdateringsprocessen"
 
 msgid "OSD Settings"
 msgstr "OSD Indstilling"
@@ -1403,7 +1403,7 @@ msgid "Please enter a name for the new bouquet"
 msgstr "Indtast venligst navn for ny pakke"
 
 msgid "Please enter a name for the new marker"
-msgstr "Indtast venligst navn for ny marker"
+msgstr "Indtast venligst navn for ny markør"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Skriv venligst filnavn (tom = brug nuværende dato)"
@@ -1508,7 +1508,7 @@ msgid "Preparing... Please wait"
 msgstr "Forbereder... Vent venligst"
 
 msgid "Press OK to activate the settings."
-msgstr "Tryk OK for at aktivere indstilling."
+msgstr "Tryk OK for at aktivere indstillinger."
 
 msgid "Press OK to scan"
 msgstr "Tryk OK for at søge"
@@ -2030,9 +2030,9 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste oversættelse er udført af: Gaj1 08. November 2007\n"
-"Har du ændringer, forslag eller andet, så kontakt mig venligst her:\n"
-"jagg@tdcadsl.dk "
+"Sidste opdatering: 10. November 2007\n"
+"\n"
+"Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
 msgid "TV System"
 msgstr "TV System"
@@ -2157,6 +2157,12 @@ msgstr "Toneburst"
 
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
+
+msgid "Translation"
+msgstr "Sprog Info"
+
+msgid "Translation:"
+msgstr "Oversætter:"
 
 msgid "Transmission Mode"
 msgstr "Transmissions Type"
@@ -2724,6 +2730,9 @@ msgstr "Time"
 msgid "hours"
 msgstr "Timer"
 
+msgid "immediate shutdown"
+msgstr ""
+
 #, python-format
 msgid ""
 "incoming call!\n"
@@ -2986,6 +2995,9 @@ msgstr "Vis første mærke"
 msgid "show second tag"
 msgstr "Vis andet mærke"
 
+msgid "show shutdown menu"
+msgstr ""
+
 msgid "show single service EPG..."
 msgstr "Vis enkelt kanal EPG..."
 
@@ -3017,7 +3029,7 @@ msgid "skip forward"
 msgstr "Drop fremad"
 
 msgid "skip forward (enter time)"
-msgstr "Skip fremaf (skriv tiden)"
+msgstr "Skip fremad (skriv tiden)"
 
 msgid "skip forward (self defined)"
 msgstr "Skip frem (bruger defineret)"
@@ -3071,7 +3083,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "Denne service er beskyttet af forældre kontrol "
 
 msgid "toggle a cut mark at the current position"
-msgstr "Flytte et cut mærke til nuværende position"
+msgstr "Flytte en klippe markør til nuværende position"
 
 msgid "unknown service"
 msgstr "Ukendt kanal"
@@ -3127,3 +3139,6 @@ msgstr "Zappet"
 
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
+
+#~ msgid "Hello!"
+#~ msgstr "Goddag!"
