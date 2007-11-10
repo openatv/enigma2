@@ -23,6 +23,7 @@
 #include <lib/gdi/region.h>
 #include <lib/gdi/gfont.h>
 
+#ifndef SWIG
 class eTextPara;
 
 class gDC;
@@ -255,10 +256,12 @@ public:
 	void flip();
 	void notify();
 };
+#endif
 
 class gDC: public iObject
 {
 DECLARE_REF(gDC);
+#ifndef SWIG
 protected:
 	ePtr<gPixmap> m_pixmap;
 
@@ -276,6 +279,9 @@ protected:
 	int m_spinner_num, m_spinner_i;
 public:
 	virtual void exec(gOpcode *opcode);
+#else
+public:
+#endif
 	gDC(gPixmap *pixmap);
 	gDC();
 	virtual ~gDC();
