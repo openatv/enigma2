@@ -17,62 +17,15 @@ gFBDC::gFBDC()
 	if (!fb->Available())
 		eFatal("no framebuffer available");
 
-	fb->SetMode(720, 576, 32);
+	surface.clut.data = 0;
+	setResolution(720, 576); // default res
 
-	for (int y=0; y<576; y++)																		 // make whole screen transparent
-		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
-
-	surface.type = 0;
-	surface.x = 720;
-	surface.y = 576;
-	surface.bpp = 32;
-	surface.bypp = 4;
-	surface.stride = fb->Stride();
-	surface.data = fb->lfb;
-	surface.offset = 0;
-	
-	surface.data_phys = 50*1024*1024; // FIXME
-	
-	int fb_size = surface.stride * surface.y;
-
-	if (fb->getNumPages() > 1)
-	{
-		m_enable_double_buffering = 1;
-		surface_back.type = 0;
-		surface_back.x = 720;
-		surface_back.y = 576;
-		surface_back.bpp = 32;
-		surface_back.bypp = 4;
-		surface_back.stride = fb->Stride();
-		surface_back.offset = surface.y;
-		surface_back.data = fb->lfb + fb_size;
-		surface_back.data_phys = surface.data_phys + fb_size;
-	
-		fb_size *= 2;
-	} else
-		m_enable_double_buffering = 0;
-	
-	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
-	eDebug("resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
-
-	if (gAccel::getInstance())
-		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
-	
-	surface.clut.colors = 256;
-	surface.clut.data = new gRGB[surface.clut.colors];
-	
-	surface_back.clut = surface.clut;
-	
-	m_pixmap = new gPixmap(&surface);
-	
-	memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
 	reloadSettings();
 }
 
 gFBDC::~gFBDC()
 {
 	delete fb;
-	
 	delete[] surface.clut.data;
 	instance=0;
 }
@@ -94,7 +47,7 @@ void gFBDC::calcRamp()
 		if (d > 255)
 			d=255;
 		ramp[i]=d;
-		
+
 		rampalpha[i]=i*alpha/256;
 	}
 #endif
@@ -120,7 +73,7 @@ void gFBDC::setPalette()
 {
 	if (!surface.clut.data)
 		return;
-	
+
 	for (int i=0; i<256; ++i)
 	{
 		fb->CMAP()->red[i]=ramp[surface.clut.data[i].r]<<8;
@@ -148,7 +101,7 @@ void gFBDC::exec(gOpcode *o)
 			gSurface s(surface);
 			surface = surface_back;
 			surface_back = s;
-		
+
 			fb->setOffset(surface_back.offset);
 		}
 		break;
@@ -158,19 +111,19 @@ void gFBDC::exec(gOpcode *o)
 		static timeval l;
 		static int t;
 		timeval now;
-		
+
 		if (t == 1000)
 		{
 			gettimeofday(&now, 0);
-		
+
 			int diff = (now.tv_sec - l.tv_sec) * 1000 + (now.tv_usec - l.tv_usec) / 1000;
 			eDebug("%d ms latency (%d fps)", diff, t * 1000 / (diff ? diff : 1));
 			l = now;
 			t = 0;
 		}
-		
+
 		++t;
-		
+
 		fb->waitVSync();
 		break;
 	}
@@ -202,6 +155,66 @@ void gFBDC::setGamma(int g)
 
 	calcRamp();
 	setPalette();
+}
+
+void gFBDC::setResolution(int xres, int yres)
+{
+	if ((m_xres == xres) && (m_yres == yres))
+		return;
+
+	m_xres = xres; m_yres = yres;
+
+	fb->SetMode(m_xres, m_yres, 32);
+
+	for (int y=0; y<m_yres; y++)	// make whole screen transparent
+		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
+
+	surface.type = 0;
+	surface.x = m_xres;
+	surface.y = m_yres;
+	surface.bpp = 32;
+	surface.bypp = 4;
+	surface.stride = fb->Stride();
+	surface.data = fb->lfb;
+	surface.offset = 0;
+
+	surface.data_phys = 50*1024*1024; // FIXME
+
+	int fb_size = surface.stride * surface.y;
+
+	if (fb->getNumPages() > 1)
+	{
+		m_enable_double_buffering = 1;
+		surface_back.type = 0;
+		surface_back.x = m_xres;
+		surface_back.y = m_yres;
+		surface_back.bpp = 32;
+		surface_back.bypp = 4;
+		surface_back.stride = fb->Stride();
+		surface_back.offset = surface.y;
+		surface_back.data = fb->lfb + fb_size;
+		surface_back.data_phys = surface.data_phys + fb_size;
+
+		fb_size *= 2;
+	} else
+		m_enable_double_buffering = 0;
+
+	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
+	eDebug("resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
+
+	if (gAccel::getInstance())
+		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
+
+	if (!surface.clut.data)
+	{
+		surface.clut.colors = 256;
+		surface.clut.data = new gRGB[surface.clut.colors];
+		memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
+	}
+
+	surface_back.clut = surface.clut;
+
+	m_pixmap = new gPixmap(&surface);
 }
 
 void gFBDC::saveSettings()

@@ -50,6 +50,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
+#include <lib/gdi/grc.h>
+#include <lib/gdi/gfbdc.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/einput.h>
@@ -163,6 +165,8 @@ typedef long time_t;
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
+%include <lib/gdi/grc.h>
+%include <lib/gdi/gfbdc.h>
 %include <lib/gdi/epoint.h>
 %include <lib/gdi/erect.h>
 %include <lib/gdi/esize.h>
