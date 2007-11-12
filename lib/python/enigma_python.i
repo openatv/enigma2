@@ -297,6 +297,14 @@ PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, 
 }
 %}
 
+void setTunerTypePriorityOrder(int);
+%{
+void setTunerTypePriorityOrder(int order)
+{
+	eDVBFrontend::setTypePriorityOrder(order);
+}
+%}
+
 /************** temp *****************/
 
 	/* need a better place for this, i agree. */

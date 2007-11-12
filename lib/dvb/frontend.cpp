@@ -382,6 +382,8 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 
 DEFINE_REF(eDVBFrontend);
 
+int eDVBFrontend::PriorityOrder=0;
+
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 	:m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_need_rotor_workaround(false), m_sn(0), m_timeout(0), m_tuneTimer(0)

@@ -428,13 +428,38 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 			return 0;
 		}
 
+		int prio_order = eDVBFrontend::getTypePriorityOrder();
 		int cur=0;
 		eDVBChannelID chid, chid_ignore;
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 		for (std::list<eServiceReference>::iterator it(bouquet->m_services.begin()); it != bouquet->m_services.end(); ++it)
 		{
+			static unsigned char prio_map[6][3] = {
+				{ 3, 2, 1 }, // -S -C -T
+				{ 3, 1, 2 }, // -S -T -C
+				{ 2, 3, 1 }, // -C -S -T
+				{ 1, 3, 2 }, // -C -T -S
+				{ 1, 2, 3 }, // -T -C -S
+				{ 2, 1, 3 }  // -T -S -C
+			};
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
 			int tmp=res->canAllocateChannel(chid, chid_ignore);
+			switch(tmp)
+			{
+				case 0:
+					break;
+				case 30000: // cached DVB-T channel
+				case 1: // DVB-T frontend
+					tmp = prio_map[prio_order][2];
+					break;
+				case 40000: // cached DVB-C channel
+				case 2:
+					tmp = prio_map[prio_order][1];
+					break;
+				default: // DVB-S
+					tmp = prio_map[prio_order][0];
+					break;
+			}
 			if (tmp > cur)
 			{
 				m_playable_service = *it;
