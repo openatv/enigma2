@@ -1,5 +1,5 @@
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigInteger
-from enigma import Misc_Options
+from enigma import Misc_Options, setTunerTypePriorityOrder;
 import os
 
 def InitUsageConfig():
@@ -37,6 +37,18 @@ def InitUsageConfig():
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
 		("show_menu", _("show shutdown menu")),
 		("shutdown", _("immediate shutdown")) ] )
+
+	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [
+		("0", "DVB-S/-C/-T"),
+		("1", "DVB-S/-T/-C"),
+		("2", "DVB-C/-S/-T"),
+		("3", "DVB-C/-T/-S"),
+		("4", "DVB-T/-C/-S"),
+		("5", "DVB-T/-S/-C") ])
+
+	def TunerTypePriorityOrderChanged(configElement):
+		setTunerTypePriorityOrder(int(configElement.value))
+	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged)
 
 	def setHDDStandby(configElement):
 		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")

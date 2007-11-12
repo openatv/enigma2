@@ -597,14 +597,41 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	return bestval;
 }
 
+int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBChannelID &chid)
+{
+	if (channellist)
+	{
+		ePtr<iDVBFrontendParameters> feparm;
+		if (!channellist->getChannelFrontendData(chid, feparm))
+		{
+			int system;
+			if (!feparm->getSystem(system))
+			{
+				switch(system)
+				{
+					case iDVBFrontend::feSatellite:
+						return 50000;
+					case iDVBFrontend::feCable:
+						return 40000;
+					case iDVBFrontend::feTerrestrial:
+						return 30000;
+					default:
+						break;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
 int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
 {
-	int ret=30000;
+	int ret=0;
 	if (m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
 		if(channelid==cache_chan->getChannelID())
-			return ret;
+			return tuner_type_channel_default(m_list, channelid);
 	}
 
 		/* first, check if a channel is already existing. */
@@ -615,7 +642,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 		if (i->m_channel_id == channelid)
 		{
 //			eDebug("found shared channel..");
-			return ret;
+			return tuner_type_channel_default(m_list, channelid);
 		}
 	}
 
@@ -685,14 +712,12 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 	if (!m_list)
 	{
 		eDebug("no channel list set!");
-		ret = 0;
 		goto error;
 	}
 
 	if (m_list->getChannelFrontendData(channelid, feparm))
 	{
 		eDebug("channel not found!");
-		ret = 0;
 		goto error;
 	}
 

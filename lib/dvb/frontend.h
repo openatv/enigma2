@@ -97,6 +97,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	int readInputpower();
 	bool setSecSequencePos(int steps);
 	void setRotorData(int pos, int cmd);
+	static int PriorityOrder;
 public:
 	eDVBFrontend(int adap, int fe, int &ok);	
 	virtual ~eDVBFrontend();
@@ -126,6 +127,8 @@ public:
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
 	bool setSlotInfo(ePyObject obj); // get a tuple (slotid, slotdescr)
+	static void setTypePriorityOrder(int val) { PriorityOrder = val; }
+	static int getTypePriorityOrder() { return PriorityOrder; }
 
 	int openFrontend();
 	int closeFrontend();
