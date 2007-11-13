@@ -576,7 +576,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColorSelected)
 		{
-			int color = PyInt_AsLong(pforeColor);
+			int color = PyInt_AsLong(pforeColorSelected);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -765,8 +765,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						int color = PyInt_AsLong(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
-					else if (pforeColor) // reset to normal color
-						style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
 
 					rect.setRect(x, y, width, bwidth);
 					painter.fill(rect);
