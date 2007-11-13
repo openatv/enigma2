@@ -187,9 +187,12 @@
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
+		<key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
 		<key id="KEY_POWER" mapto="power_up" flags="b" />
-		<key id="KEY_POWER" mapto="power_long" flags="l" />
+		<device name="dreambox front panel">
+			<key id="KEY_POWER" mapto="deepstandby" flags="l" />
+		</device>
 	</map>
 	
 	<map context="PowerKeyActions">
