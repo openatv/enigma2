@@ -217,7 +217,23 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 	
 	skin = dom_skin.childNodes[0]
 	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
-	
+
+	for c in elementsWithTag(skin.childNodes, "output"):
+		id = int(c.getAttribute("id") or "0")
+		if id == 0: # framebuffer
+			for res in elementsWithTag(c.childNodes, "resolution"):
+				xres = int(res.getAttribute("xres" or "720"))
+				yres = int(res.getAttribute("yres" or "576"))
+				bpp = int(res.getAttribute("bpp" or "32"))
+
+				from enigma import gFBDC
+				i = gFBDC.getInstance()
+				i.setResolution(xres, yres)
+
+				if bpp != 32:
+					# load palette (not yet implemented)
+					pass
+
 	for c in elementsWithTag(skin.childNodes, "colors"):
 		for color in elementsWithTag(c.childNodes, "color"):
 			name = str(color.getAttribute("name"))
