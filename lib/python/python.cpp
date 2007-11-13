@@ -188,6 +188,7 @@ int ePython::call(ePyObject pFunc, ePyObject pArgs)
 		} else
 		{
 		 	PyErr_Print();
+		 	eDebug("(PyObject_CallObject failed)");
 		 	bsodFatal();
 		}
 	}

@@ -20,7 +20,7 @@
 #include <lib/gdi/sdl.h>
 #endif
 #include <lib/gdi/epng.h>
-#include <lib/gdi/font.h> 
+#include <lib/gdi/font.h>
 #include <lib/gui/ebutton.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/elistboxcontent.h>
@@ -30,7 +30,7 @@
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
 
-#include "bsod.h" 
+#include "bsod.h"
 
 #ifdef HAVE_GSTREAMER
 #include <gst/gst.h>
@@ -246,7 +246,10 @@ int main(int argc, char **argv)
 	python.execute("mytest", "__main__");
 	
 	if (exit_code == 5) /* python crash */
+	{
+		eDebug("(exit code 5)");
 		bsodFatal();
+	}
 	
 	dsk.paint();
 	dsk_lcd.paint();
