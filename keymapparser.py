@@ -63,10 +63,10 @@ def readKeymap(filename):
 				p.bindKey(filename, device, keyid, flags, context, mapto)
 				addKeyBinding(filename, keyid, context, mapto, flags)
 
-		parseKeys("generic", cmap)
-
 		for device in elementsWithTag(cmap.childNodes, "device"):
 			parseKeys(str(device.getAttribute("name")), device)
+
+		parseKeys("generic", cmap)
 
 def removeKeymap(filename):
 	p = enigma.eActionMap.getInstance()

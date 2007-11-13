@@ -404,18 +404,22 @@ class PowerKey:
 		globalActionMap.actions["power_down"]=self.powerdown
 		globalActionMap.actions["power_up"]=self.powerup
 		globalActionMap.actions["power_long"]=self.powerlong
+		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
 		self.session.infobar = None
 
+	def shutdown(self):
+		print "PowerOff - Now!"
+		if not Screens.Standby.inTryQuitMainloop:
+			self.session.open(Screens.Standby.TryQuitMainloop, 1)
+		
 	def powerlong(self):
 		self.standbyblocked = 1
 		action = config.usage.on_long_powerpress.value
 		if action == "shutdown":
-			print "PowerOff - Now!"
-			if not Screens.Standby.inTryQuitMainloop:
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			self.shutdown()
 		elif action == "show_menu":
 			print "Show shutdown Menu"
 			menu = mdom.childNodes[0]
