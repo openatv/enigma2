@@ -1,5 +1,8 @@
 <skin>
 	<!-- Screwed Stone II skin (skin.xml) /Nemesis -->
+	<output id="0">
+		<resolution xres="720" yres="576" bpp="32" />
+	</output>
 	<!-- Colors (#AARRGGBB) -->
 	<colors>
 		<color name="white"	value="#ffffff" />
@@ -16,7 +19,7 @@
 		<color name="background" value="#25062748" />
 		<color name="foreground" value="#ffffff" />
 	</colors>
-	<!-- Main screen colors (id=0 for Menu's, id=1 for LCD) -->
+	<!-- Main screen colors (id=0 for Framebuffer, id=1 for LCD) -->
 	<windowstyle type="skinned" id="0">
 		<title offset="33,14" font="Regular;20" />
 		<color name="Background" color="#25062748" />
