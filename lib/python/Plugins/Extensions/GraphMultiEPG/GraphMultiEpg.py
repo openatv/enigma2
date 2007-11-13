@@ -165,11 +165,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.serviceChanged)
 		instance.setContent(self.l)
+		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setFont(1, gFont("Regular", 14))
+		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
 		width = esize.width()
 		height = esize.height()
 		xpos = 0;
@@ -178,7 +179,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos += w;
 		w = width/10*8;
 		self.event_rect = Rect(xpos, 0, w, height)
-		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -223,8 +223,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def selEntry(self, dir, visible=True):
 		cur_service = self.cur_service #(service, service_name, events)
-		if not self.event_rect:
-			self.recalcEntrySize()
+		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
 		if cur_service:
 			update = True
