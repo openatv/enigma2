@@ -33,8 +33,11 @@ public:
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
 		:disable(new eTimer(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
 	{
-		disable = new eTimer(eApp);
 		CONNECT(disable->timeout, eDVBRegisteredFrontend::closeFrontend);
+	}
+	~eDVBRegisteredFrontend()
+	{
+		delete disable;
 	}
 	void dec_use()
 	{
