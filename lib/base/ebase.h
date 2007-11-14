@@ -217,13 +217,7 @@ public:
 		existing_loops.push_back(this);
 		pthread_mutex_init(&recalcLock, 0);
 	}
-	virtual ~eMainloop()
-	{
-		existing_loops.remove(this);
-		pthread_mutex_destroy(&recalcLock);
-		for (std::map<int, eSocketNotifier*>::iterator it(notifiers.begin());it != notifiers.end();++it)
-			it->second->stop();
-	}
+	virtual ~eMainloop();
 
 	int looplevel() { return loop_level; }
 

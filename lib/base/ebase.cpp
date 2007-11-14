@@ -116,6 +116,16 @@ void eTimer::addTimeOffset( int offset )
 // mainloop
 ePtrList<eMainloop> eMainloop::existing_loops;
 
+eMainloop::~eMainloop()
+{
+	existing_loops.remove(this);
+	pthread_mutex_destroy(&recalcLock);
+	for (std::map<int, eSocketNotifier*>::iterator it(notifiers.begin());it != notifiers.end();++it)
+		it->second->stop();
+	while(m_timer_list.begin() != m_timer_list.end())
+		m_timer_list.begin()->stop();
+}
+
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
