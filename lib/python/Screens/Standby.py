@@ -76,6 +76,7 @@ class StandbySummary(Screen):
 			<convert type="ClockToText" />
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,0" size="132,64" zPosition="1" >
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>"""
