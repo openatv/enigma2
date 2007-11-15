@@ -218,7 +218,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
 				res.append(MultiContentEntryText(pos = (left+xpos, top), size = (ewidth, height), font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP, text = ev[1], color = foreColor, color_sel = foreColorSelected, backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
 				if rec and ewidth > 23:
-					res.append(MultiContentEntryPixmapAlphaTest(pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21), png = self.clock_pixmap, backcolor = backColor, backcolor_selected = backColorSelected))
+					res.append(MultiContentEntryPixmapAlphaTest(pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21), png = self.clock_pixmap, backcolor = backColor, backcolor_sel = backColorSelected))
 		return res
 
 	def selEntry(self, dir, visible=True):
