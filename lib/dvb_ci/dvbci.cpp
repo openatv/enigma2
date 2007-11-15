@@ -908,6 +908,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
+	delete notifier;
 }
 
 void eDVBCISlot::setAppManager( eDVBCIApplicationManagerSession *session )
