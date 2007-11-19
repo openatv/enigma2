@@ -148,8 +148,15 @@ class TimerEditList(Screen):
 			self.refill()
 	
 	def refill(self):
+		oldsize = len(self.list)
 		self.fillTimerList()
-		self["timerlist"].invalidate()
+		lst = self["timerlist"]
+		newsize = len(self.list)
+		if oldsize and oldsize != newsize:
+			idx = lst.getCurrentIndex()
+			lst.entryRemoved(idx)
+		else:
+			lst.invalidate()
 	
 	def addCurrentTimer(self):
 		event = None
