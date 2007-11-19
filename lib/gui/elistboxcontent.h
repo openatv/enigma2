@@ -78,6 +78,7 @@ public:
 	void setItemHeight(int height);
 	void setSelectionClip(eRect &rect, bool update=false);
 	void updateClip(gRegion &);
+	void entryRemoved(int idx);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };

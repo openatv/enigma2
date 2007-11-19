@@ -262,7 +262,8 @@ void eListboxPythonStringContent::invalidate()
 		int s = size();
 		if ( m_cursor >= s )
 			m_listbox->moveSelectionTo(s?s-1:0);
-		m_listbox->invalidate();
+		else
+			m_listbox->invalidate();
 	}
 }
 
@@ -1020,4 +1021,10 @@ void eListboxPythonMultiContent::updateClip(gRegion &clip)
 	}
 	else
 		m_old_clip = m_clip = gRegion::invalidRegion();
+}
+
+void eListboxPythonMultiContent::entryRemoved(int idx)
+{
+	if (m_listbox)
+		m_listbox->entryRemoved(idx);
 }

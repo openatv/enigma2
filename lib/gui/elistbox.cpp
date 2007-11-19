@@ -432,7 +432,10 @@ void eListbox::entryRemoved(int index)
 	if (index == m_selected && m_content)
 		m_selected = m_content->cursorGet();
 
-	moveSelection(justCheck);
+	if (m_content && m_content->cursorGet() >= m_content->size())
+		moveSelection(moveUp);
+	else
+		moveSelection(justCheck);
 
 	if ((m_top <= index) && (index < (m_top + m_items_per_page)))
 	{

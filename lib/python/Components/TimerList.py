@@ -98,3 +98,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 	def invalidate(self):
 		self.l.invalidate()
+
+	def entryRemoved(self, idx):
+		self.l.entryRemoved(idx)
+
