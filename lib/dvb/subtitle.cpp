@@ -360,6 +360,13 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			{
 				subtitle_region *p = page->regions->next;
 				//eDebug("delete region %d", page->regions->region_id);
+				while(page->regions->region_objects)
+				{
+					//eDebug("delete region object");
+					subtitle_region_object *ob = page->regions->region_objects->next;
+					delete page->regions->region_objects;
+					page->regions->region_objects = ob;
+				}
 				delete page->regions;
 				page->regions = p;
 			}
@@ -451,6 +458,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		else if (region->region_version_number != region_version_number)
 		{
 			subtitle_region_object *objects = region->region_objects;
+			//eDebug("unequal version %p %p", objects, objects?objects->next:objects);
 			while (objects)
 			{
 				subtitle_region_object *n = objects->next;
