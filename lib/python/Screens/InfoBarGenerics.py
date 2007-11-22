@@ -1948,7 +1948,7 @@ class InfoBarSummary(Screen):
 #		</widget>
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, parent = parent)
 
 class InfoBarSummarySupport:
 	def __init__(self):
