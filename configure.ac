@@ -72,6 +72,7 @@ lib/dvb/Makefile
 lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
+lib/mmi/Makefile
 lib/nav/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
