@@ -2,7 +2,8 @@
 
 #include <lib/dvb_ci/dvbci_mmi.h>
 #include <lib/dvb_ci/dvbci_ui.h>
-#include <lib/base/estring.h>
+
+#include <string>
 
 /*
 PyObject *list = PyList_New(len);
@@ -36,113 +37,12 @@ int eDVBCIMMISession::receivedAPDU(const unsigned char *tag, const void *data, i
 	eDebug("");
 
 	if ((tag[0]==0x9f) && (tag[1]==0x88))
-	{
-		switch (tag[2])
+		if (eDVBCI_UI::getInstance()->processMMIData(slot->getSlotID(), tag, data, len) == 1)
 		{
-		case 0x00:		//Tmmi_close
-		{
-			unsigned char *d=(unsigned char*)data;
-			int timeout=0;
-			if (d[3] == 1)
-			{
-				if (len > 4)
-					timeout = d[4];
-				else
-				{
-					eDebug("mmi close tag incorrect.. no timeout given.. assume 5 seconds");
-					timeout = 5;
-				}
-			}
-			else if (d[3] > 1)
-				eDebug("mmi close tag incorrect.. byte 4 should be 0 or 1");
-			eDVBCI_UI::getInstance()->mmiScreenClose(slot->getSlotID(), timeout);
-			break;
-		}
-		case 0x01:
-			eDebug("MMI display control");
-			if (((unsigned char*)data)[0] != 1)
-				eDebug("kann ich nicht. aber das sag ich dem modul nicht.");
 			state=stateDisplayReply;
 			return 1;
-		case 0x07:		//Tmenu_enq
-		{
-			unsigned char *d=(unsigned char*)data;
-			unsigned char *max=((unsigned char*)d) + len;
-			int textlen = len - 2;
-
-			eDebug("in enq");
-			
-			if ((d+2) > max)
-				break;
-				
-			int blind = *d++ & 1;
-			int alen = *d++;
-
-			eDebug("%d bytes text", textlen);
-			if ((d+textlen) > max)
-				break;
-			
-			char str[textlen + 1];
-			memcpy(str, ((char*)d), textlen);
-			str[textlen] = '\0';
-			
-			eDebug("enq-text: %s",str);
-			
-			eDVBCI_UI::getInstance()->mmiScreenEnq(slot->getSlotID(), blind, alen, (char*)convertDVBUTF8(str).c_str());
-
-			break;		
 		}
-		case 0x09:		//Tmenu_last
-		case 0x0c:		//Tlist_last
-		{
-			unsigned char *d=(unsigned char*)data;
-			unsigned char *max=((unsigned char*)d) + len;
-			int pos = 0;
-			eDebug("Tmenu_last");
-			if (d > max)
-				break;
-			int n=*d++;
-			
-			if(tag[2] == 0x09)	//menu
-				eDVBCI_UI::getInstance()->mmiScreenBegin(slot->getSlotID(), 0);
-			else								//list
-				eDVBCI_UI::getInstance()->mmiScreenBegin(slot->getSlotID(), 1);
-			
-			if (n == 0xFF)
-				n=0;
-			else
-				n++;
-			eDebug("%d texts", n);
-			for (int i=0; i < (n+3); ++i)
-			{
-				int textlen;
-				if ((d+3) > max)
-					break;
-				eDebug("text tag: %02x %02x %02x", d[0], d[1], d[2]);
-				d+=3;
-				d+=parseLengthField(d, textlen);
-				eDebug("%d bytes text", textlen);
-				if ((d+textlen) > max)
-					break;
-					
-				char str[textlen + 1];
-				memcpy(str, ((char*)d), textlen);
-				str[textlen] = '\0';
-				
-				eDVBCI_UI::getInstance()->mmiScreenAddText(slot->getSlotID(), pos++, (char*)convertDVBUTF8(str).c_str());
-					
-				while (textlen--)
-					eDebugNoNewLine("%c", *d++);
-				eDebug("");
-			}
-			eDVBCI_UI::getInstance()->mmiScreenFinish(slot->getSlotID());
-			break;
-		}
-		default:
-			eDebug("unknown APDU tag 9F 88 %02x", tag[2]);
-			break;
-		}
-	}
+
 	return 0;
 }
 

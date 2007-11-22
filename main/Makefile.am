@@ -27,6 +27,7 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/base/libenigma_base.a \
 	$(top_builddir)/lib/components/libenigma_components.a \
 	$(top_builddir)/lib/driver/libenigma_driver.a \
+	$(top_builddir)/lib/mmi/libenigma_mmi.a \
 	$(top_builddir)/lib/dvb/libenigma_dvb.a \
 	$(top_builddir)/lib/dvb_ci/libenigma_dvb_ci.a \
 	$(top_builddir)/lib/gdi/libenigma_gdi.a \
