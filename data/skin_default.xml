@@ -75,6 +75,14 @@
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 	</screen>
+  <screen name="ChannelSelection_summary" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="6,4" size="120,42" font="Regular;18" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+  </screen>
 	<!-- Channel selection - Radio -->
 	<screen name="ChannelSelectionRadio" position="85,95" size="560,298" title="Channel Selection" >
 		<ePixmap pixmap="skin_default/key-red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
