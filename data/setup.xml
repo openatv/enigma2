@@ -12,8 +12,8 @@
 			<item level="0" text="Aspect Ratio">config.av.aspectratio</item>
 			<item level="0" text="TV System">config.av.tvsystem</item>
 			<item level="1" text="WSS on 4:3">config.av.wss</item>
-			<item level="0" text="AC3 default">config.av.defaultac3</item>
-			<item level="0" text="VCR Switch">config.av.vcrswitch</item>
+			<item level="1" text="AC3 default">config.av.defaultac3</item>
+			<item level="1" text="VCR Switch">config.av.vcrswitch</item>
 		</setup>
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -48,12 +48,12 @@
 			<item text="Activate network settings">config.network.activate</item>
 		</setup>
 		<setup key="RFmod" title="RF output">
-			<item level="0" text="Modulator">config.rfmod.enable</item>
-			<item level="1" text="Test mode">config.rfmod.test</item>
-			<item level="1" text="Sound">config.rfmod.sound</item>
-			<item level="1" text="Soundcarrier">config.rfmod.soundcarrier</item>
-			<item level="0" text="Channel">config.rfmod.channel</item>
-			<item level="0" text="Finetune">config.rfmod.finetune</item>
+			<item level="1" text="Modulator">config.rfmod.enable</item>
+			<item level="2" text="Test mode">config.rfmod.test</item>
+			<item level="2" text="Sound">config.rfmod.sound</item>
+			<item level="2" text="Soundcarrier">config.rfmod.soundcarrier</item>
+			<item level="1" text="Channel">config.rfmod.channel</item>
+			<item level="1" text="Finetune">config.rfmod.finetune</item>
 		</setup>
 		<setup key="keyboard" title="Keyboard Setup">
 			<item level="0" text="Keyboard Map">config.keyboard.keymap</item>
@@ -67,7 +67,7 @@
 			<item level="0" text="Brightness">config.lcd.bright</item>
 			<item level="0" text="Contrast">config.lcd.contrast</item>
 			<item level="0" text="Standby">config.lcd.standby</item>
-			<item level="1" text="Invert display">config.lcd.invert</item>
+			<item level="2" text="Invert display">config.lcd.invert</item>
 		</setup>
 		<setup key="satconfig" title="Sat / Dish Setup">
 			<item text="Tuner Slot">config.sat.tunerslot</item>

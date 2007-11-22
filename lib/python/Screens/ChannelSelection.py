@@ -61,8 +61,8 @@ OFF = 0
 EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
-def append_when_current_valid(current, menu, args):
-	if current and current.valid():
+def append_when_current_valid(current, menu, args, level = 0):
+	if current and current.valid() and level <= config.usage.setup_level.index:
 		menu.append(args)
 
 class ChannelContextMenu(Screen):
@@ -88,63 +88,63 @@ class ChannelContextMenu(Screen):
 		haveBouquets = config.usage.multibouquet.value
 
 		if not (len(current_sel_path) or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
-			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations))
+			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
 					if config.ParentalControl.configured.value:
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
+							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
 						else:
-							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
+							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level = 0)
 					if haveBouquets:
-						append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected))
+						append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level = 0)
 					else:
-						append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected))
+						append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 				else:
 					if haveBouquets:
 						if not inBouquet and current_sel_path.find("PROVIDERS") == -1:
-							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList))
+							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level = 0)
 					if current_sel_path.find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
-						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags))
+						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level = 0)
 				if inBouquet:
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService))
+					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
-					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag))
+					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
 					menu.append((_("add bouquet"), self.showBouquetInputBox))
-					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet))
+					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode))
+					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						menu.append((_("add marker"), self.showMarkerInputBox))
 						if haveBouquets:
-							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart))
+							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level = 0)
 						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart))
+							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level = 0)
 						if current_sel_flags & eServiceReference.isGroup:
-							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices))
-							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices))
-							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices))
+							append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level = 2)
+							append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level = 2)
+							append_when_current_valid(current, menu, (_("remove all alternatives"), self.removeAlternativeServices), level = 2)
 						elif not current_sel_flags & eServiceReference.isMarker:
-							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices))
+							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level = 2)
 				else:
-					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode))
+					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level = 0)
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
-						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd))
-						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort))
+						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd), level = 0)
+						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort), level = 0)
 					else:
-						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd))
-						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort))
+						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level = 0)
+						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level = 0)
 				else:
-						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd))
-						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort))
+						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
+						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
 		menu.append((_("back"), self.cancelClick))
 		self["menu"] = MenuList(menu)
