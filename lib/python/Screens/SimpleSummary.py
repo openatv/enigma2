@@ -9,11 +9,17 @@ class SimpleSummary(Screen):
 		</widget>
 		<widget name="Title" position="6,4" size="120,42" font="Regular;18" />
 	</screen>"""
-	def __init__(self, session, root_screen):
+	def __init__(self, session, parent):
 		from Components.Label import Label
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, parent = parent)
+
+		names = parent.skinName
+		if not isinstance(names, list):
+		  names = [names]
+
+		self.skinName = [ x + "_summary" for x in names ]
 		self["Clock"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
-		self["Title"] = Label(root_screen.title)
+		self["Title"] = Label(parent.title)
 
 	def setTitle(self, title):
 		self["Title"].setText(title)
