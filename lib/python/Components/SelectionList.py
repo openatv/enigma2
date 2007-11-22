@@ -13,11 +13,11 @@ def SelectionEntryComponent(description, value, index, selected):
 	return res
 
 class SelectionList(MenuList, GUIComponent):
-	def __init__(self, list = []):
+	def __init__(self, list = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
-		self.list = list
-		self.setList(list)
+		self.list = list or []
+		self.setList(self.list)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(30)
 
