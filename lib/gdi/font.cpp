@@ -277,7 +277,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	int nx=cursor.x();
 
 	nx+=glyph->xadvance;
-	
+
 	if (
 			(rflags&RS_WRAP) && 
 			(nx >= area.right())
@@ -285,33 +285,43 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	{
 		int cnt = 0;
 		glyphString::reverse_iterator i(glyphs.rbegin());
+			/* find first possibility (from end to begin) to break */
 		while (i != glyphs.rend())
 		{
-			if (i->flags&(GS_ISSPACE|GS_ISFIRST))
+			if (i->flags&(GS_CANBREAK|GS_ISFIRST)) /* stop on either space/hyphen/shy or start of line (giving up) */
 				break;
 			cnt++;
 			++i;
-		} 
-		if (i != glyphs.rend()
-			&& ((i->flags&(GS_ISSPACE|GS_ISFIRST))==GS_ISSPACE)
-			&& cnt )
+		}
+
+			/* if ... */
+		if (i != glyphs.rend()  /* ... we found anything */
+			&& (i->flags&GS_CANBREAK) /* ...and this is a space/hyphen/soft-hyphen */
+			&& (!(i->flags & GS_ISFIRST)) /* ...and this is not an start of line (line with just a single space/hyphen) */
+			&& cnt ) /* ... and there are actual non-space characters after this */
 		{
-			--i;
+				/* if we have a soft-hyphen, and used that for breaking, turn it into a real hyphen */
+			if (i->flags & GS_SOFTHYPHEN)
+			{
+				i->flags &= ~GS_SOFTHYPHEN;
+				i->flags |= GS_HYPHEN;
+			}
+			--i; /* skip the space/hypen/softhyphen */
 			int linelength=cursor.x()-i->x;
-			i->flags|=GS_ISFIRST;
+			i->flags|=GS_ISFIRST; /* make this a line start */
 			ePoint offset=ePoint(i->x, i->y);
 			newLine(rflags);
 			offset-=cursor;
+
+				/* and move everything to the end into the next line. */
 			do
 			{
 				i->x-=offset.x();
 				i->y-=offset.y();
 				i->bbox.moveBy(-offset.x(), -offset.y());
-			}
-			while (i-- != glyphs.rbegin()); // rearrange them into the next line
+			} while (i-- != glyphs.rbegin()); // rearrange them into the next line
 			cursor+=ePoint(linelength, 0);  // put the cursor after that line
-		}
-		else
+		} else
 		{
 			if (cnt)
 			{
@@ -322,7 +332,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	}
 
 	int xadvance=glyph->xadvance, kern=0;
-	
+
 	if (previous && use_kerning)
 	{
 		FT_Vector delta;
@@ -347,7 +357,9 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.flags = flags;
 	glyphs.push_back(ng);
 
-	cursor += ePoint(xadvance, 0);
+		/* when we have a SHY, don't xadvance. It will either be the last in the line (when used for breaking), or not displayed. */
+	if (!(flags & GS_SOFTHYPHEN))
+		cursor += ePoint(xadvance, 0);
 	previous = glyphIndex;
 	return 0;
 }
@@ -370,7 +382,7 @@ void eTextPara::calc_bbox()
 
 	for (; i != glyphs.end(); ++i)
 	{
-		if ( i->flags & GS_ISSPACE )
+		if (i->flags & (GS_ISSPACE|GS_SOFTHYPHEN))
 			continue;
 		if ( i->bbox.left() < boundBox.left() )
 			boundBox.setLeft( i->bbox.left() );
@@ -548,9 +560,11 @@ int eTextPara::renderString(const char *string, int rflags)
 		int isprintable=1;
 		int flags = nextflags;
 		nextflags = 0;
+		unsigned long chr = *i;
+
 		if (!(rflags&RS_DIRECT))
 		{
-			switch (*i)
+			switch (chr)
 			{
 			case '\\':
 			{
@@ -588,6 +602,14 @@ newline:isprintable=0;
 			case 0x87: case 0xE087:
 nprint:	isprintable=0;
 				break;
+			case 0xAD: // soft-hyphen
+				flags |= GS_SOFTHYPHEN;
+				chr = 0x2010; /* hyphen */
+				break;
+			case 0x2010:
+			case '-':
+				flags |= GS_HYPHEN;
+				break;
 			case ' ':
 				flags|=GS_ISSPACE;
 			default:
@@ -597,17 +619,21 @@ nprint:	isprintable=0;
 		if (isprintable)
 		{
 			FT_UInt index = 0;
-			
-			if (forced_replaces.find(*i) == forced_replaces.end())
-				index=(rflags&RS_DIRECT)? *i : FT_Get_Char_Index(current_face, *i);
+
+				/* FIXME: our font doesn't seem to have a hyphen, so use hyphen-minus for it. */
+			if (chr == 0x2010)
+				chr = '-';
+
+			if (forced_replaces.find(chr) == forced_replaces.end())
+				index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(current_face, chr);
 
 			if (!index)
 			{
 				if (replacement_face)
-					index=(rflags&RS_DIRECT)? *i : FT_Get_Char_Index(replacement_face, *i);
+					index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(replacement_face, chr);
 
 				if (!index)
-					eDebug("unicode %d ('%c') not present", *i, *i);
+					eDebug("unicode U+%4lx not present", chr);
 				else
 					appendGlyph(replacement_font, replacement_face, index, flags, rflags);
 			} else
@@ -697,6 +723,9 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	{
 		for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 		{
+			if (i->flags & GS_SOFTHYPHEN)
+				continue;
+
 			if (!(i->flags & GS_INVERT))
 			{
 				lookup8 = lookup8_normal;

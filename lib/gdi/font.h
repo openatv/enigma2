@@ -74,8 +74,10 @@ public:
 #define GS_ISSPACE  1
 #define GS_ISFIRST  2
 #define GS_USED			4
-
 #define GS_INVERT   8
+#define GS_SOFTHYPHEN 16
+#define GS_HYPHEN   32
+#define GS_CANBREAK (GS_ISSPACE|GS_SOFTHYPHEN|GS_HYPHEN)
 
 struct pGlyph
 {
