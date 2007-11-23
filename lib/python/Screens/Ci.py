@@ -16,11 +16,11 @@ def InitCiConfig():
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "auto")
 
-class CiMmi(Screen):
-	def __init__(self, session, slotid, action):
+class MMIDialog(Screen):
+	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = _("wait for ci...") ):
 		Screen.__init__(self, session)
 
-		print "ciMMI with action" + str(action)
+		print "MMIDialog with action" + str(action)
 
 		self.tag = None
 		self.slotid = slotid
@@ -55,8 +55,11 @@ class CiMmi(Screen):
 
 		self.action = action
 
+		self.handler = handler
+		self.wait_text = wait_text
+
 		if action == 2:		#start MMI
-			eDVBCI_UI.getInstance().startMMI(self.slotid)
+			handler.startMMI(self.slotid)
 			self.showWait()
 		elif action == 3:		#mmi already there (called from infobar)
 			self.showScreen()
@@ -86,14 +89,14 @@ class CiMmi(Screen):
 			print "answer MENU"
 			cur = self["entries"].getCurrent()
 			if cur:
-				eDVBCI_UI.getInstance().answerMenu(self.slotid, cur[2])
+				self.handler.answerMenu(self.slotid, cur[2])
 			else:
-				eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
-			self.showWait()	
+				self.handler.answerMenu(self.slotid, 0)
+			self.showWait()
 		elif self.tag == "LIST":
 			print "answer LIST"
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
-			self.showWait()	
+			self.handler.answerMenu(self.slotid, 0)
+			self.showWait()
 		elif self.tag == "ENQ":
 			cur = self["entries"].getCurrent()
 			answer = str(cur[1].value)
@@ -101,7 +104,7 @@ class CiMmi(Screen):
 			while length < cur[1].getLength():
 				answer = '0'+answer
 				length+=1
-			eDVBCI_UI.getInstance().answerEnq(self.slotid, answer)
+			self.handler.answerEnq(self.slotid, answer)
 			self.showWait()
 
 	def closeMmi(self):
@@ -111,20 +114,21 @@ class CiMmi(Screen):
 	def keyCancel(self):
 		self.timer.stop()
 		if not self.tag:
+			self.closeMmi()
 			return
 		if self.tag == "WAIT":
-			eDVBCI_UI.getInstance().stopMMI(self.slotid)
+			self.handler.stopMMI(self.slotid)
 			self.closeMmi()
 		elif self.tag in [ "MENU", "LIST" ]:
 			print "cancel list"
-			eDVBCI_UI.getInstance().answerMenu(self.slotid, 0)
+			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
 		elif self.tag == "ENQ":
 			print "cancel enq"
-			eDVBCI_UI.getInstance().cancelEnq(self.slotid)
+			self.handler.cancelEnq(self.slotid)
 			self.showWait()
 		else:
-			print "give cancel action to ci"	
+			print "give cancel action to ci"
 
 	def keyConfigEntry(self, key):
 		self.timer.stop()
@@ -159,12 +163,12 @@ class CiMmi(Screen):
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
 		list = [ ]
-		list.append( (_("wait for ci..."), ConfigNothing()) )
+		list.append( (self.wait_text, ConfigNothing()) )
 		self.updateList(list)
 
 	def showScreen(self):
-		screen = eDVBCI_UI.getInstance().getMMIScreen(self.slotid)
-	
+		screen = self.handler.getMMIScreen(self.slotid)
+
 		list = [ ]
 
 		self.timer.stop()
@@ -191,23 +195,26 @@ class CiMmi(Screen):
 			self.updateList(list)
 
 	def ciStateChanged(self):
+		do_close = False
 		if self.action == 0:			#reset
-			self.closeMmi()
+			do_close = True
 		if self.action == 1:			#init
-			self.closeMmi()
+			do_close = True
 
-		#module still there ?			
-		if eDVBCI_UI.getInstance().getState(self.slotid) != 2:
-			self.closeMmi()
+		#module still there ?
+		if self.handler.getState(self.slotid) != 2:
+			do_close = True
 
-		#mmi session still active ?			
-		if eDVBCI_UI.getInstance().getMMIState(self.slotid) != 1:
-			self.closeMmi()
+		#mmi session still active ?
+		if self.handler.getMMIState(self.slotid) != 1:
+			do_close = True
 
-		if self.action > 1 and eDVBCI_UI.getInstance().availableMMI(self.slotid) == 1:
+		if do_close:
+			self.closeMmi()
+		elif self.action > 1 and self.handler.availableMMI(self.slotid) == 1:
 			self.showScreen()
 
-		#FIXME: check for mmi-session closed	
+		#FIXME: check for mmi-session closed
 
 class CiMessageHandler:
 	def __init__(self):
@@ -227,7 +234,7 @@ class CiMessageHandler:
 				self.dlgs[slot].ciStateChanged()
 			elif eDVBCI_UI.getInstance().availableMMI(slot) == 1:
 				if self.session:
-					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, 3)
+					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3)
 
 	def dlgClosed(self, slot):
 		if slot in self.dlgs:
@@ -351,7 +358,7 @@ class CiSelection(Screen):
 			elif action == 1:		#init
 				eDVBCI_UI.getInstance().setInit(slot)
 			elif self.state[slot] == 2:
-				self.dlg = self.session.openWithCallback(self.dlgClosed, CiMmi, slot, action)
+				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
 
 	def cancel(self):
 		for slot in range(MAX_NUM_CI):

@@ -138,7 +138,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		</applet>
 	</screen>
 	<!-- Common interface -->
-	<screen name="CiMmi" position="135,153" size="450,270" >
+	<screen name="MMIDialog" position="135,153" size="450,270" >
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
 		<widget name="subtitle" position="10,35" size="430,25" font="Regular;23" />
 		<widget name="entries" position="10,70" size="430,150" scrollbarMode="showOnDemand" />
@@ -148,10 +148,6 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 	<screen name="CiSelection" position="140,226" size="440,160" title="Common Interface" >
 		<widget name="text" position="10,5" size="440,25" font="Regular;23" />
 		<widget name="entries" position="10,45" size="420,100" scrollbarMode="showOnDemand" />
-	</screen>
-	<!-- Common interface - wait -->
-	<screen name="CiWait" position="180,263" size="360,50" title="Common Interface" >
-		<widget name="message" position="20,10" size="320,25" font="Regular;23" />
 	</screen>
 	<!-- Clock display -->
 	<screen name="clockDisplay" position="300,100" size="300,300" >

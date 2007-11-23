@@ -40,17 +40,17 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 	{
 		unsigned char *d=(unsigned char*)data;
 		int timeout=0;
-		if (d[3] == 1)
+		if (d[0] == 1)
 		{
-			if (len > 4)
-				timeout = d[4];
+			if (len > 1)
+				timeout = d[1];
 			else
 			{
 				eDebug("mmi close tag incorrect.. no timeout given.. assume 5 seconds");
 				timeout = 5;
 			}
 		}
-		else if (d[3] > 1)
+		else if (d[0] > 1)
 			eDebug("mmi close tag incorrect.. byte 4 should be 0 or 1");
 		mmiScreenClose(slot_id, timeout);
 		break;
@@ -295,7 +295,7 @@ int eMMI_UI::mmiScreenFinish(int slot)
 
 void eMMI_UI::mmiSessionDestroyed(int slot)
 {
-	stateChanged(slot);
+	mmiScreenClose(slot, 0);
 }
 
 PyObject *eMMI_UI::getMMIScreen(int slot)
