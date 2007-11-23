@@ -13,7 +13,7 @@
 
 #define MAX_LENGTH_BYTES 4
 #define MIN_LENGTH_BYTES 1
-#define MMIDEBUG
+//#define MMIDEBUG
 
 eSocket_UI *eSocket_UI::instance;
 
