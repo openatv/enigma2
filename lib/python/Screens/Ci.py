@@ -22,6 +22,7 @@ class MMIDialog(Screen):
 
 		print "MMIDialog with action" + str(action)
 
+		self.mmiclosed = False
 		self.tag = None
 		self.slotid = slotid
 
@@ -113,10 +114,9 @@ class MMIDialog(Screen):
 
 	def keyCancel(self):
 		self.timer.stop()
-		if not self.tag:
+		if not self.tag or self.mmiclosed:
 			self.closeMmi()
-			return
-		if self.tag == "WAIT":
+		elif self.tag == "WAIT":
 			self.handler.stopMMI(self.slotid)
 			self.closeMmi()
 		elif self.tag in [ "MENU", "LIST" ]:
@@ -174,11 +174,13 @@ class MMIDialog(Screen):
 		self.timer.stop()
 		if len(screen) > 0 and screen[0][0] == "CLOSE":
 			timeout = screen[0][1]
+			self.mmiclosed = True
 			if timeout > 0:
 				self.timer.start(timeout*1000, True)
 			else:
 				self.keyCancel()
 		else:
+			self.mmiclosed = False
 			self.tag = screen[0][0]
 			for entry in screen:
 				if entry[0] == "PIN":
