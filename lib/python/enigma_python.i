@@ -93,6 +93,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/driver/etimezone.h>
 #include <lib/gdi/lcd.h>
 #include <lib/mmi/mmi_ui.h>
+#include <lib/mmi/socket_mmi.h>
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/python/python.h>
@@ -154,6 +155,7 @@ typedef long time_t;
 %immutable pNavigation::m_record_event;
 %immutable eListbox::selectionChanged;
 %immutable eDVBCI_UI::ciStateChanged;
+%immutable eSocket_UI::socketStateChanged;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
 %immutable ePythonMessagePump::recv_msg;
@@ -209,6 +211,7 @@ typedef long time_t;
 %include <lib/driver/etimezone.h>
 %include <lib/gdi/lcd.h>
 %include <lib/mmi/mmi_ui.h>
+%include <lib/mmi/socket_mmi.h>
 %include <lib/dvb_ci/dvbci.h>
 %include <lib/dvb_ci/dvbci_ui.h>
 %include <lib/dvb/db.h>

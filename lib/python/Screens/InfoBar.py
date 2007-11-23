@@ -3,7 +3,6 @@ from Screen import Screen
 from Screens.MovieSelection import MovieSelection
 from Screens.ChannelSelection import ChannelSelectionRadio
 from Screens.ChoiceBox import ChoiceBox
-from Screens.Ci import CiHandler
 
 from Components.Sources.Source import ObsoleteSource
 from Components.ActionMap import HelpableActionMap
@@ -36,8 +35,6 @@ class InfoBar(InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
-		CiHandler.setSession(session)
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{

@@ -476,11 +476,14 @@ class AutoScartControl:
 				self.scartDialog.switchToTV()
 
 from enigma import eDVBCIInterfaces
+from Screens.Ci import CiHandler
 
 def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
+
+	CiHandler.setSession(session)
 
 	screensToRun = [ ]
 
