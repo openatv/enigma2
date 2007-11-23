@@ -37,6 +37,8 @@ class Screen(dict, HTMLSkin, GUISkin):
 
 		self.close_on_next_exec = None
 
+		self.in_close = False
+
 		# stand alone screens (for example web screens)
 		# don't care about having or not having focus.
 		self.stand_alone = False
@@ -47,7 +49,7 @@ class Screen(dict, HTMLSkin, GUISkin):
 			tmp = self.close_on_next_exec
 			self.close_on_next_exec = None
 			self.execing = True
-			self.close(tmp)
+			self.close(*tmp)
 		else:
 			single = self.onFirstExecBegin
 			self.onFirstExecBegin = []
@@ -110,10 +112,12 @@ class Screen(dict, HTMLSkin, GUISkin):
 		self.__dict__.clear()
 	
 	def close(self, *retval):
-		if not self.execing:
-			self.close_on_next_exec = retval
-		else:
-			self.session.close(self, *retval)
+		if not self.in_close:
+			if not self.execing:
+				self.close_on_next_exec = retval
+			else:
+				self.in_close = True
+				self.session.close(self, *retval)
 
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
