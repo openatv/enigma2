@@ -23,6 +23,8 @@ class HelpMenu(Screen):
 			"back": self.close,
 		}, -1)
 
+		self.onLayoutFinish.append(self.SelectionChanged)
+
 	def SelectionChanged(self):
 		selection = self["list"].getCurrent()
 		selection = selection and selection[3]
