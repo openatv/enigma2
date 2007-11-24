@@ -29,6 +29,9 @@ class StreamService(Source):
 		self.changed((self.CHANGED_ALL, ))
 
 	def execBegin(self):
+		if self.ref is None:
+			print "StreamService has no service ref set."
+			return
 		print "StreamService execBegin", self.ref.toString()
 		self.__service = self.navcore.recordService(self.ref)
 		self.navcore.record_event.append(self.recordEvent)
