@@ -74,7 +74,8 @@ class Menu(Screen):
 	def okbuttonClick(self):
 		print "okbuttonClick"
 		selection = self["menu"].getCurrent()
-		selection[1]()
+		if selection is not None:
+			selection[1]()
 
 	def execText(self, text):
 		exec text
