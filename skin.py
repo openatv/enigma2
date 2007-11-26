@@ -56,7 +56,9 @@ try:
 except (SkinError, IOError, AssertionError), err:
 	print "SKIN ERROR:", err
 	print "defaulting to standard skin..."
+	config.skin.primary_skin.value = 'skin.xml'
 	loadSkin('skin.xml')
+
 loadSkin('skin_default.xml')
 
 def parsePosition(str):
