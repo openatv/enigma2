@@ -128,6 +128,15 @@ class AdapterSetup(Screen, ConfigListScreen):
 		self.createSetup()
 
 		self["introduction"] = Label(_("Press OK to activate the settings."))
+		self["introduction2"] = Label(_("Current settings:"))
+		
+		self["IPtext"] = Label(_("IP Address"))
+		self["Netmasktext"] = Label(_("Netmask"))
+		self["Gatewaytext"] = Label(_("Gateway"))
+		
+		self["IP"] = Label(self.ipConfigEntry.getText())
+		self["Mask"] = Label(self.netmaskConfigEntry.getText())
+		self["Gateway"] = Label(self.gatewayConfigEntry.getText())
 
 	def createSetup(self):
 		self.list = []
