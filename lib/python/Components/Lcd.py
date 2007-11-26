@@ -1,4 +1,4 @@
-from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo
+from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing
 
 from enigma import eDBoxLCD
 
@@ -25,14 +25,10 @@ class LCD:
 			value = 255
 		eDBoxLCD.getInstance().setInverted(value)
 
-def InitLcd():
-	config.lcd = ConfigSubsection();
-	config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
-	config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
-	config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
-	config.lcd.invert = ConfigYesNo(default=False)
+	def isOled(self):
+		return eDBoxLCD.getInstance().isOled()
 
-	ilcd = LCD()
+def InitLcd():
 
 	def setLCDbright(configElement):
 		ilcd.setBright(configElement.value);
@@ -43,6 +39,22 @@ def InitLcd():
 	def setLCDinverted(configElement):
 		ilcd.setInverted(configElement.value);
 
+	ilcd = LCD()
+
+	config.lcd = ConfigSubsection();
+
+	config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
 	config.lcd.bright.addNotifier(setLCDbright);
-	config.lcd.contrast.addNotifier(setLCDcontrast);
+	config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+
+	if not ilcd.isOled():
+		config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
+		config.lcd.contrast.addNotifier(setLCDcontrast);
+	else:
+		config.lcd.contrast = ConfigNothing()
+
+	config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
+	config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+
+	config.lcd.invert = ConfigYesNo(default=False)
 	config.lcd.invert.addNotifier(setLCDinverted);

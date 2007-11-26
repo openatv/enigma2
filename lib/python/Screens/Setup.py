@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.config import config
+from Components.config import config, ConfigNothing
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -138,7 +138,8 @@ class Setup(ConfigListScreen, Screen):
 				item = b
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
-				list.append( (item_text, item) )
+				if not isinstance(item, ConfigNothing):
+					list.append( (item_text, item) )
 
 def getSetupTitle(id):
 	xmldata = setupdom.childNodes[0].childNodes

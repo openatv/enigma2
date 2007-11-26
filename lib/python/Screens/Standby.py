@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
-from enigma import eDVBVolumecontrol, eDBoxLCD
+from enigma import eDVBVolumecontrol
 from Components.Sources.Source import ObsoleteSource
 
 inStandby = None
@@ -18,7 +18,7 @@ class Standby(Screen):
 		#unmute adc
 		self.leaveMute()
 		#set brightness of lcd
-		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.bright.value * 20)
+		config.lcd.bright.apply()
 		#kill me
 		self.close(True)
 
@@ -54,7 +54,7 @@ class Standby(Screen):
 		#set input to vcr scart
 		self.avswitch.setInput("SCART")
 		#set lcd brightness to standby value
-		eDBoxLCD.getInstance().setLCDBrightness(config.lcd.standby.value * 20)
+		config.lcd.standby.apply()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
