@@ -3,6 +3,7 @@
 ##
 from Renderer import Renderer
 from enigma import ePixmap
+from Components.config import config
 from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, resolveFilename
 
 class Picon(Renderer):
@@ -46,8 +47,15 @@ class Picon(Renderer):
 				pngname = self.nameCache.get("default", "")
 				if pngname == "": # no default yet in cache..
 					pngname = self.findPicon("picon_default")
-					if pngname == "": # Fallback to enigma2 logo
-						pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/enigma2.png")
+					if pngname == "":
+						pos = config.skin.primary_skin.value.rfind('/')
+						if pos != -1:
+							str = config.skin.primary_skin.value[:pos+1]
+							str += 'picon_default.png'
+							if fileExists(str):
+								pngname = str
+						if pngname == "": # Fallback to enigma2 logo
+							pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/enigma2.png")
 					self.nameCache["default"] = pngname
 			if self.pngname != pngname:
 				self.instance.setPixmapFromFile(pngname)
