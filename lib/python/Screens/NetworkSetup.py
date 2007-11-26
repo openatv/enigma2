@@ -27,7 +27,6 @@ class NetworkAdapterSelection(Screen):
 
 	def okbuttonClick(self):
 		selection = self["adapterlist"].getCurrent()
-		print "SELECTION", selection
 		if selection is not None:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, selection[1])
 
