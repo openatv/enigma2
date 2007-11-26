@@ -1,4 +1,4 @@
-from enigma import eTimer, eDVBResourceManager,\
+from enigma import eDVBResourceManager,\
 	eDVBFrontendParametersSatellite, eDVBFrontendParameters
 
 from Screens.Screen import Screen

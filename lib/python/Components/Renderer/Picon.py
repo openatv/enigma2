@@ -3,7 +3,7 @@
 ##
 from Renderer import Renderer
 from enigma import ePixmap
-from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, resolveFilename
 
 class Picon(Renderer):
 	searchPaths = ['/usr/share/enigma2/%s/',
