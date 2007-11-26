@@ -12,6 +12,7 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux)
 	setStreamID(0xC0, 0xC0);
 
 	memset(rass_picture_mask, 0, sizeof(rass_picture_mask));
+	memset(rtp_item, 0, sizeof(rtp_item));
 
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create PES reader!");
