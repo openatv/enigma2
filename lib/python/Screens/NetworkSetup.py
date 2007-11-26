@@ -9,32 +9,31 @@ from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigNothi
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 
-
 class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["adapterlist"] = MenuList([(self.getFriendlyName(x),x) for x in iNetwork.getAdapterList()])
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 
+		self["adapterlist"] = MenuList(self.adapters)
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
-			"ok": self.okbuttonClick ,
+			"ok": self.okbuttonClick,
 			"cancel": self.close
 		})
 
-	def getFriendlyName(self, x):
-		# maybe this needs to be replaced by an external list.
-		friendlyNames = {
-			"eth0": _("Integrated Ethernet"),
-			"wlan0": _("Wireless")
-		}
-
-		return friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+		if len(self.adapters) == 1:
+			self.onFirstExecBegin.append(self.okbuttonClick)
 
 	def okbuttonClick(self):
 		selection = self["adapterlist"].getCurrent()
+		print "SELECTION", selection
 		if selection is not None:
-			self.session.open(AdapterSetup, selection[1])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, selection[1])
+
+	def AdapterSetupClosed(self, *ret):
+		if len(self.adapters) == 1: # just one network adapter.. close selection
+			self.close()
 
 class NameserverSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -104,7 +103,6 @@ class NameserverSetup(Screen, ConfigListScreen):
 			self.createConfig()
 			self.createSetup()
 
-
 class AdapterSetup(Screen, ConfigListScreen):
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
@@ -118,7 +116,7 @@ class AdapterSetup(Screen, ConfigListScreen):
 		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask")))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway")))
 	
-		self["iface"] = Label(iNetwork.getAdapterName(self.iface))
+		self["iface"] = Label(iNetwork.getFriendlyAdapterName(self.iface))
 
 		self["actions"] = ActionMap(["SetupActions"],
 		{

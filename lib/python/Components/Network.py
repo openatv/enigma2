@@ -198,7 +198,15 @@ class Network:
 		
 	def getNumberOfAdapters(self):
 		return len(self.ifaces)
-	
+
+	def getFriendlyAdapterName(self, x):
+		# maybe this needs to be replaced by an external list.
+		friendlyNames = {
+			"eth0": _("Integrated Ethernet"),
+			"wlan0": _("Wireless")
+		}
+		return friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+
 	def getAdapterName(self, iface):
 		return iface
 	
