@@ -56,6 +56,7 @@ public:
 	int setLCDContrast(int contrast);
 	int setLCDBrightness(int brightness);
 	void setInverted( unsigned char );
+	bool isOled() const { return !!is_oled; }
 	void update();
 };
 
