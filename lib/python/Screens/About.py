@@ -1,7 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Source import ObsoleteSource
 from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about

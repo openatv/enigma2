@@ -1,5 +1,5 @@
 from Screens.Ci import MMIDialog
-from enigma import eTimer, eSocket_UI
+from enigma import eSocket_UI
 
 class SocketMMIMessageHandler:
 	def __init__(self):

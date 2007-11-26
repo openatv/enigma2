@@ -1,5 +1,4 @@
 from Source import Source
-from enigma import eTimer
 
 class FrontendInfo(Source):
 	def __init__(self, service_source = None, frontend_source = None):

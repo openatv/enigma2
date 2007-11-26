@@ -2,7 +2,6 @@ from Screen import Screen
 
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Pixmap import Pixmap
-from Components.Button import Button
 from Components.config import config
 
 from enigma import eDVBSatelliteEquipmentControl
