@@ -51,7 +51,20 @@ int eLabel::event(int event, void *data, void *data2)
 
 			int glyphs = para->size();
 
-			if ((m_pos < 0) || (m_pos >= glyphs))
+			if (m_pos == -2) {  /* All glyphs inverted */
+				eRect bbox;
+				int left = 0, right = 0;
+				for (int i=0; i<glyphs; i++)
+					para->setGlyphFlag(i, GS_INVERT);
+				if (glyphs > 0) {
+					bbox = para->getGlyphBBox(0);
+					left = bbox.left();
+					bbox = para->getGlyphBBox(glyphs-1);
+					right = bbox.left() + bbox.width();
+				}
+				bbox = eRect(left, 0, right-left, size().height());
+				painter.fill(bbox);
+			} else if ((m_pos < 0) || (m_pos >= glyphs))
 				eWarning("glyph index %d in eLabel out of bounds!", m_pos);
 			else
 			{

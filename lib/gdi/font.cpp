@@ -843,9 +843,6 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 			num++;
 		}
 
-		if (!num)		// line mit nur einem space
-			continue;
-
 		switch (dir)
 		{
 		case dirRight:

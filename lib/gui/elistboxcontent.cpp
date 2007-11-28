@@ -431,6 +431,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						if (plist && PyList_Check(plist))
 							entries = PyList_Size(plist);
 						
+						int left=0, right=0, last=-1;
+						eRect bbox;
 						for (int i = 0; i < entries; ++i)
 						{
 							ePyObject entry = PyList_GET_ITEM(plist, i);
@@ -440,15 +442,23 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								eWarning("glyph index %d in PythonConfigList out of bounds!", num);
 							else
 							{
+								if (last+1 != num && last != -1) {
+									bbox = eRect(left, offset.y(), right-left, m_itemsize.height());
+									painter.fill(bbox);
+								}
 								para->setGlyphFlag(num, GS_INVERT);
-								eRect bbox;
 								bbox = para->getGlyphBBox(num);
-								bbox = eRect(bbox.left(), offset.y(), bbox.width(), m_itemsize.height());
-								painter.fill(bbox);
+								if (last+1 != num || last == -1)
+									left = bbox.left();
+								right = bbox.left() + bbox.width();
+								last = num;
 							}
 								/* entry is borrowed */
 						}
-						
+						if (last != -1) {
+							bbox = eRect(left, offset.y(), right-left, m_itemsize.height());
+							painter.fill(bbox);
+						}
 						painter.renderPara(para, ePoint(0, 0));
 							/* pvalue is borrowed */
 							/* plist is 0 or borrowed */

@@ -1,4 +1,5 @@
 import time
+from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 import copy
@@ -104,7 +105,12 @@ KEY_LEFT = 0
 KEY_RIGHT = 1
 KEY_OK = 2
 KEY_DELETE = 3
-KEY_TIMEOUT = 4
+KEY_BACKSPACE = 4
+KEY_HOME = 5
+KEY_END = 6
+KEY_TOGGLEOW = 7
+KEY_ASCII = 8
+KEY_TIMEOUT = 9
 KEY_NUMBERS = range(12, 12+10)
 KEY_0 = 12
 KEY_9 = 12+9
@@ -192,6 +198,10 @@ class ConfigSelection(ConfigElement):
 			self.value = self.choices[(i + nchoices - 1) % nchoices]
 		elif key == KEY_RIGHT:
 			self.value = self.choices[(i + 1) % nchoices]
+		elif key == KEY_HOME:
+			self.value = self.choices[0]
+		elif key == KEY_END:
+			self.value = self.choices[nchoices - 1]
 
 	def getText(self):
 		descr = self.description[self.value]
@@ -233,6 +243,10 @@ class ConfigBoolean(ConfigElement):
 	def handleKey(self, key):
 		if key in [KEY_LEFT, KEY_RIGHT]:
 			self.value = not self.value
+		elif key == KEY_HOME:
+			self.value = False
+		elif key == KEY_END:
+			self.value = True
 
 	def getText(self):
 		descr = self.descriptions[self.value]
@@ -294,8 +308,10 @@ class ConfigDateTime(ConfigElement):
 	def handleKey(self, key):
 		if key == KEY_LEFT:
 			self.value = self.value - self.increment
-		if key == KEY_RIGHT:
+		elif key == KEY_RIGHT:
 			self.value = self.value + self.increment
+		elif key == KEY_HOME or key == KEY_END:
+			self.value = self.default
 
 	def getText(self):
 		return time.strftime(self.formatstring, time.localtime(self.value))
@@ -374,7 +390,28 @@ class ConfigSequence(ConfigElement):
 			self.marked_pos += 1
 			self.validatePos()
 		
-		if key in KEY_NUMBERS:
+		if key == KEY_HOME:
+			self.marked_pos = 0
+			self.validatePos()
+
+		if key == KEY_END:
+			max_pos = 0
+			num = 0
+			for i in self._value:
+				max_pos += len(str(self.limits[num][1]))
+				num += 1
+			self.marked_pos = max_pos - 1
+			self.validatePos()
+		
+		if key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				number = code - 48
+			else:
+				number = getKeyNumber(key)
+			
 			block_len = []
 			for x in self.limits:
 				block_len.append(len(str(x[1])))
@@ -392,8 +429,6 @@ class ConfigSequence(ConfigElement):
 				else:
 					blocknumber += 1
 
-			number = getKeyNumber(key)
-			
 			# length of numberblock
 			number_len = len(str(self.limits[blocknumber][1]))
 
@@ -513,37 +548,124 @@ class ConfigFloat(ConfigSequence):
 
 # an editable text...
 class ConfigText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", fixed_size = True):
+	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
 		
 		self.marked_pos = 0
+		self.allmarked = (default != "")
 		self.fixed_size = fixed_size
+		self.visible_width = visible_width
+		self.offset = 0
+		self.overwrite = fixed_size
 
 		self.value = self.default = default
 
 	def validateMarker(self):
-		if self.marked_pos >= len(self.text):
-			self.marked_pos = len(self.text) - 1
+		if self.fixed_size:
+			if self.marked_pos > len(self.text)-1:
+				self.marked_pos = len(self.text)-1
+		else:
+			if self.marked_pos > len(self.text):
+				self.marked_pos = len(self.text)
 		if self.marked_pos < 0:
 			self.marked_pos = 0
+		if self.visible_width:
+			if self.marked_pos < self.offset:
+				self.offset = self.marked_pos
+			if self.marked_pos >= self.offset + self.visible_width:
+				if self.marked_pos == len(self.text):
+					self.offset = self.marked_pos - self.visible_width
+				else:
+					self.offset = self.marked_pos - self.visible_width + 1
+			if self.offset > 0 and self.offset + self.visible_width > len(self.text):
+				self.offset = max(0, len(self.text) - self.visible_width)
 
-	#def nextEntry(self):
-	#	self.vals[1](self.getConfigPath())
+	def insertChar(self, ch, pos, owr):
+		if owr or self.overwrite:
+			self.text = self.text[0:pos] + ch + self.text[pos + 1:]
+		elif self.fixed_size:
+			self.text = self.text[0:pos] + ch + self.text[pos:-1]
+		else:
+			self.text = self.text[0:pos] + ch + self.text[pos:]
+
+	def deleteChar(self, pos):
+		if not self.fixed_size:
+			self.text = self.text[0:pos] + self.text[pos + 1:]
+		elif self.overwrite:
+			self.text = self.text[0:pos] + " " + self.text[pos + 1:]
+		else:
+			self.text = self.text[0:pos] + self.text[pos + 1:] + " "
+
+	def deleteAllChars(self):
+		if self.fixed_size:
+			self.text = " " * len(self.text)
+		else:
+			self.text = ""
+		self.marked_pos = 0
 
 	def handleKey(self, key):
 		# this will no change anything on the value itself
 		# so we can handle it here in gui element
 		if key == KEY_DELETE:
-			self.text = self.text[0:self.marked_pos] + self.text[self.marked_pos + 1:]
+			self.timeout()
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			else:
+				self.deleteChar(self.marked_pos)
+				if self.fixed_size and self.overwrite:
+					self.marked_pos += 1
+		elif key == KEY_BACKSPACE:
+			self.timeout()
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			elif self.marked_pos > 0:
+				self.deleteChar(self.marked_pos-1)
+				if not self.fixed_size and self.offset > 0:
+					self.offset -= 1
+				self.marked_pos -= 1
 		elif key == KEY_LEFT:
-			self.marked_pos -= 1
+			self.timeout()
+			if self.allmarked:
+				self.marked_pos = len(self.text)
+				self.allmarked = False
+			else:
+				self.marked_pos -= 1
 		elif key == KEY_RIGHT:
+			self.timeout()
+			if self.allmarked:
+				self.marked_pos = 0
+				self.allmarked = False
+			else:
+				self.marked_pos += 1
+		elif key == KEY_HOME:
+			self.timeout()
+			self.allmarked = False
+			self.marked_pos = 0
+		elif key == KEY_END:
+			self.timeout()
+			self.allmarked = False
+			self.marked_pos = len(self.text)
+		elif key == KEY_TOGGLEOW:
+			self.timeout()
+			self.overwrite = not self.overwrite
+		elif key == KEY_ASCII:
+  			self.timeout()
+  			newChar = unichr(getPrevAsciiCode())
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			self.insertChar(newChar, self.marked_pos, False)
 			self.marked_pos += 1
-			self.maybeExpand()
 		elif key in KEY_NUMBERS:
-			number = self.getKey(getKeyNumber(key))
-			self.text = self.text[0:self.marked_pos] + unicode(number) + self.text[self.marked_pos + 1:]
+			owr = self.lastKey == getKeyNumber(key)
+			newChar = self.getKey(getKeyNumber(key))
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			self.insertChar(newChar, self.marked_pos, owr)
 		elif key == KEY_TIMEOUT:
 			self.timeout()
 			return
@@ -551,14 +673,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.validateMarker()
 		self.changed()
 
-	def maybeExpand(self):
-		if not self.fixed_size:
-			if self.marked_pos >= len(self.text):
-				self.text = self.text.ljust(len(self.text) + 1)
-
 	def nextFunc(self):
 		self.marked_pos += 1
-		self.maybeExpand()
 		self.validateMarker()
 		self.changed()
 
@@ -579,7 +695,18 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		return self.value
 
 	def getMulti(self, selected):
-		return ("mtext"[1-selected:], self.value, [self.marked_pos])
+		if self.visible_width:
+			if self.allmarked:
+				mark = range(0, min(self.visible_width, len(self.text)))
+			else:
+				mark = [self.marked_pos-self.offset]
+			return ("mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark)
+		else:
+			if self.allmarked:
+				mark = range(0, len(self.text))
+			else:
+				mark = [self.marked_pos]
+			return ("mtext"[1-selected:], self.value+" ", mark)
 
 	def helpWindow(self):
 		from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
@@ -612,6 +739,10 @@ class ConfigSlider(ConfigElement):
 			self.value -= self.increment
 		elif key == KEY_RIGHT:
 			self.value += self.increment
+		elif key == KEY_HOME:
+			self.value = self.min
+		elif key == KEY_END:
+			self.value = self.max
 		else:
 			return
 
