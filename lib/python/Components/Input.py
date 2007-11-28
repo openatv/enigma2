@@ -11,25 +11,51 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 	PIN = 1
 	NUMBER = 2
 
-	def __init__(self, text="", maxSize = False, type = TEXT):
+	def __init__(self, text="", maxSize = False, visible_width = False, type = TEXT):
 		NumericalTextInput.__init__(self, self.right)
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type
+		self.allmarked = (text != "") and (type != self.PIN)
 		self.maxSize = maxSize
 		self.currPos = 0
-		self.overwrite = 0
+		self.visible_width = visible_width
+		self.offset = 0
+		self.overwrite = maxSize
 		self.setText(text)
 		
 	def __len__(self):
 		return len(self.text)
 
 	def update(self):
-		self.setMarkedPos(self.currPos)
-		if self.type == self.PIN:
-			self.text = "*" * len(self.Text)
+		if self.visible_width:
+			if self.currPos < self.offset:
+				self.offset = self.currPos
+			if self.currPos >= self.offset + self.visible_width:
+				if self.currPos == len(self.Text):
+					self.offset = self.currPos - self.visible_width
+				else:
+					self.offset = self.currPos - self.visible_width + 1
+			if self.offset > 0 and self.offset + self.visible_width > len(self.Text):
+				self.offset = max(0, len(self.Text) - self.visible_width)
+		if self.allmarked:
+			self.setMarkedPos(-2)
 		else:
-			self.text = self.Text.encode("utf-8")
+			self.setMarkedPos(self.currPos-self.offset)
+		if self.visible_width:
+			if self.type == self.PIN:
+				self.text = ""
+				for x in self.Text[self.offset:self.offset+self.visible_width]:
+					self.text += (x==" " and " " or "*")
+			else:
+				self.text = self.Text[self.offset:self.offset+self.visible_width].encode("utf-8") + " "
+		else:
+			if self.type == self.PIN:
+				self.text = ""
+				for x in self.Text:
+					self.text += (x==" " and " " or "*")
+			else:
+				self.text = self.Text.encode("utf-8") + " "
 
 	def setText(self, text):
 		if not len(text):
@@ -47,27 +73,46 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		return self.Text.encode("utf-8")
 
 	def createWidget(self, parent):
-		return eLabel(parent, self.currPos)
+		if self.allmarked:
+			return eLabel(parent, -2)
+		else:
+			return eLabel(parent, self.currPos-self.offset)
 
 	def getSize(self):
 		s = self.instance.calculateSize()
 		return (s.width(), s.height())
 	
 	def right(self):
-		self.currPos += 1
-		if self.currPos == len(self.Text):
-			if self.maxSize:
-				self.currPos -= 1
-			else:
-				self.Text = self.Text + " "
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.currPos = 0
+			self.allmarked = False
+		elif self.maxSize:
+			if self.currPos < len(self.Text)-1:
+				self.currPos += 1
+		else:
+			if self.currPos < len(self.Text):
+				self.currPos += 1
 		self.update()
 
 	def left(self):
-		if self.currPos > 0:
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			if self.maxSize:
+				self.currPos = len(self.Text) - 1
+			else:
+				self.currPos = len(self.Text)
+			self.allmarked = False
+		elif self.currPos > 0:
 			self.currPos -= 1
-			self.update()
+		self.update()
 
 	def up(self):
+		self.allmarked = False
+		if self.type == self.TEXT:
+			self.timeout()
 		if self.Text[self.currPos] == "9" or self.Text[self.currPos] == " ":
 			newNumber = "0"
 		else:
@@ -76,6 +121,9 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def down(self):
+		self.allmarked = False
+		if self.type == self.TEXT:
+			self.timeout()
 		if self.Text[self.currPos] == "0" or self.Text[self.currPos] == " ":
 			newNumber = "9"
 		else:
@@ -84,51 +132,110 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.update()
 		
 	def home(self):
+		self.allmarked = False
+		if self.type == self.TEXT:
+			self.timeout()
 		self.currPos = 0
 		self.update()
 	
 	def end(self):
-		self.currPos = len(self.Text) - 1
+		self.allmarked = False
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.maxSize:
+			self.currPos = len(self.Text) - 1
+		else:
+			self.currPos = len(self.Text)
 		self.update()
 
-	def tab(self):
-		if self.currPos == len(self.Text) - 1:
-			self.Text=self.Text+ " "
-			self.end()
+	def insertChar(self, ch, pos, owr, ins):
+		if ins and not self.maxSize:
+			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
+		elif owr or self.overwrite:
+			self.Text = self.Text[0:pos] + ch + self.Text[pos + 1:]
+		elif self.maxSize:
+			self.Text = self.Text[0:pos] + ch + self.Text[pos:-1]
 		else:
-			self.Text = self.Text[0:self.currPos] + " " + self.Text[self.currPos:]
+			self.Text = self.Text[0:pos] + ch + self.Text[pos:]
+
+	def deleteChar(self, pos):
+		if not self.maxSize:
+			self.Text = self.Text[0:pos] + self.Text[pos + 1:]
+		elif self.overwrite:
+			self.Text = self.Text[0:pos] + " " + self.Text[pos + 1:]
+		else:
+			self.Text = self.Text[0:pos] + self.Text[pos + 1:] + " "
+
+	def deleteAllChars(self):
+		if self.maxSize:
+			self.Text = " " * len(self.Text)
+		else:
+			self.Text = ""
+		self.currPos = 0
+
+	def tab(self):
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		else:
+			self.insertChar(" ", self.currPos, False, True);
+			self.currPos += 1
 		self.update()
 
 	def delete(self):
-		self.Text = self.Text[:self.currPos] + self.Text[self.currPos + 1:]
-		self.update()
-
-	def toggleOverwrite(self):
-		if self.overwrite==1:
-			self.overwrite=0
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
 		else:
-			self.overwrite=1
+			self.deleteChar(self.currPos);
+			if self.maxSize and self.overwrite:
+				self.currPos += 1
 		self.update()
 
 	def deleteBackward(self):
-		self.Text = self.Text[:self.currPos - 1] + self.Text[self.currPos:]
-		self.left()
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		else:
+			if self.currPos > 0:
+				self.deleteChar(self.currPos-1);
+				if not self.maxSize and self.offset > 0:
+					self.offset -= 1
+				self.currPos -= 1
+		self.update()
+
+	def toggleOverwrite(self):
+		if self.type == self.TEXT:
+			self.timeout()
+		self.overwrite = not self.overwrite
 		self.update()
 
 	def handleAscii(self, code):
-		newChar = unichr(code)
-		if self.overwrite==1:
-			self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos + 1:]
-		else:
-			self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos:]
+		if self.type == self.TEXT:
+			self.timeout()
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		self.insertChar(unichr(code), self.currPos, False, False);
 		self.right()
 
 	def number(self, number):
 		if self.type == self.TEXT:
+			owr = self.lastKey == number
 			newChar = self.getKey(number)
 		elif self.type == self.PIN or self.type == self.NUMBER:
+			owr = False
 			newChar = str(number)
-		self.Text = self.Text[0:self.currPos] + newChar + self.Text[self.currPos + 1:]
+		if self.allmarked:
+			self.deleteAllChars()
+			self.allmarked = False
+		self.insertChar(newChar, self.currPos, owr, False);
 		if self.type == self.PIN or self.type == self.NUMBER:
 			self.right()
 		self.update()

@@ -38,7 +38,9 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_GREEN" mapto="save" flags="m" />
-		<key id="KEY_MUTE" mapto="delete" flags="mr" />
+		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
 		<key id="KEY_2" mapto="2" flags="m" />
 		<key id="KEY_3" mapto="3" flags="m" />
@@ -118,7 +120,9 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 		<key id="KEY_ESC" mapto="back" flags="m" />
-		<key id="KEY_MUTE" mapto="delete" flags="mr" />
+		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
 		<key id="KEY_2" mapto="2" flags="m" />
 		<key id="KEY_3" mapto="3" flags="m" />
@@ -214,7 +218,9 @@
 	</map>
 
 	<map context="TextEntryActions">
-		<key id="KEY_MUTE" mapto="delete" flags="mr" />
+		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
+		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 	</map>	
 
 	<map context="InfobarSeekActions">

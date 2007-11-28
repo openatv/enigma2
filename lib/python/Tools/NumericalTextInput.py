@@ -31,6 +31,17 @@ class NumericalTextInput:
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
+		if self.lang in ['sv_SE', 'fi_FI']:
+			self.mapping.append (u".,?'\"0-()@/:_") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"abcåä2ABCÅÄ") # 2
+			self.mapping.append (u"defé3DEFÉ") # 3
+			self.mapping.append (u"ghi4GHI") # 4
+			self.mapping.append (u"jkl5JKL") # 5
+			self.mapping.append (u"mnoö6MNOÖ") # 6
+			self.mapping.append (u"pqrs7PQRS") # 7
+			self.mapping.append (u"tuv8TUV") # 8
+			self.mapping.append (u"wxyz9WXYZ") # 9
 		else:
 			self.mapping.append (u".,?'\"0-()@/:_") # 0
 			self.mapping.append (u" 1") # 1
@@ -56,11 +67,13 @@ class NumericalTextInput:
 
 	def getKey(self, num):
 		cnt=0
-		if self.timer is not None:
-			self.timer.start(1000, True)
 		if self.lastKey != num:
+			if self.lastKey != -1:
+				self.nextChar()
 			self.lastKey = num
 			self.pos = -1
+		if self.timer is not None:
+			self.timer.start(1000, True)
 		while True:
 			self.pos += 1
 			if len(self.mapping[num]) <= self.pos:
@@ -87,4 +100,5 @@ class NumericalTextInput:
 			self.nextFunction()
 
 	def timeout(self):
-		self.nextChar()
+		if self.lastKey != -1:
+			self.nextChar()

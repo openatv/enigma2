@@ -1,8 +1,8 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-from config import KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_OK, KEY_TIMEOUT, ConfigElement
+from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement
 from Components.ActionMap import NumberActionMap
-from enigma import eListbox, eListboxPythonConfigContent, eTimer
+from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
@@ -18,9 +18,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.setHelpWindowSession(session)
 
 	def execBegin(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
 		self.timer.timeout.get().append(self.timeout)
 
 	def execEnd(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.timer.timeout.get().remove(self.timeout)
 
 	def setHelpWindowSession(self, session):
@@ -39,7 +43,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 			self.invalidateCurrent()
 			if self.help_window:
 				self.help_window.update(selection[1])
-			if key not in [KEY_TIMEOUT, KEY_LEFT, KEY_RIGHT, KEY_DELETE, KEY_OK]:
+			if key in KEY_NUMBERS:
 				self.timer.start(1000, 1)
 
 	def getCurrent(self):
@@ -111,12 +115,20 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
-		self["config_actions"] = NumberActionMap(["SetupActions", "TextInputActions"],
+		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
+			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.keyOK,
+			"accept": self.keyOK,
 			"left": self.keyLeft,
 			"right": self.keyRight,
-			"delete": self.keyDelete,
+			"moveLeft": self.keyLeft,
+			"moveRight": self.keyRight,
+			"moveHome": self.keyHome,
+			"moveEnd": self.keyEnd,
+			"deleteForward": self.keyDelete,
+			"deleteBackward": self.keyBackspace,
+			"toggleOverwrite": self.keyToggleOW,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -146,8 +158,28 @@ class ConfigListScreen:
 		self["config"].handleKey(KEY_RIGHT)
 		self.__changed()
 
+	def keyHome(self):
+		self["config"].handleKey(KEY_HOME)
+		self.__changed()
+
+	def keyEnd(self):
+		self["config"].handleKey(KEY_END)
+		self.__changed()
+
 	def keyDelete(self):
 		self["config"].handleKey(KEY_DELETE)
+		self.__changed()
+
+	def keyBackspace(self):
+		self["config"].handleKey(KEY_BACKSPACE)
+		self.__changed()
+
+	def keyToggleOW(self):
+		self["config"].handleKey(KEY_TOGGLEOW)
+		self.__changed()
+
+	def keyGotAscii(self):
+		self["config"].handleKey(KEY_ASCII)
 		self.__changed()
 
 	def keyNumberGlobal(self, number):

@@ -22,7 +22,6 @@ class InputBox(Screen):
 			"back": self.cancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
-			"delete": self.keyDelete,
 			"moveLeft": self.keyLeft,
 			"moveRight": self.keyRight,
 			"moveHome": self.keyHome,
@@ -88,7 +87,7 @@ class InputBox(Screen):
 
 class PinInput(InputBox):
 	def __init__(self, session, service = "", triesEntry = None, pinList = [], *args, **kwargs):
-		InputBox.__init__(self, session = session, text="9876", maxSize=True, type=Input.PIN, *args, **kwargs)
+		InputBox.__init__(self, session = session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
 		
 		self.waitTime = 15
 		
@@ -117,7 +116,7 @@ class PinInput(InputBox):
 			InputBox.keyNumberGlobal(self, number)
 		
 	def checkPin(self, pin):
-		if pin is not None and int(pin) in self.pinList:
+		if pin is not None and pin.find(" ") == -1 and int(pin) in self.pinList:
 			return True
 		return False
 		
@@ -136,18 +135,22 @@ class PinInput(InputBox):
 				pass
 	
 	def closePinWrong(self, *args):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		print "args:", args
 		self.close(False)
 		
 	def closePinCorrect(self, *args):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(True)
 		
 	def closePinCancel(self, *args):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close(None)
 			
 	def cancel(self):
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.closePinCancel()
 		
 	def getTries(self):
