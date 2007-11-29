@@ -38,15 +38,6 @@ int eLCD::lock()
 
 void eLCD::unlock()
 {
-	read( lcdfd, NULL, 0);
-	if ( errno == 9 )
-	{
-		eDebug("reopen lcd");
-		lcdfd=open("/dev/dbox/lcd0", O_RDWR);  // reopen device
-	}
-	else
-		eDebug("do not reopen lcd.. errno = %d", errno);
-    
 	locked=0;
 }
 
