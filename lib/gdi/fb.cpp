@@ -13,6 +13,10 @@
 #define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
 #endif
 
+#ifndef FBIO_BLIT
+#define FBIO_SET_MANUAL_BLIT _IOW('F', 0x21, __u8)
+#define FBIO_BLIT 0x22
+#endif
 
 fbClass *fbClass::instance;
 
@@ -23,6 +27,7 @@ fbClass *fbClass::getInstance()
 
 fbClass::fbClass(const char *fb)
 {
+	m_manual_blit=0;
 	instance=this;
 	locked=0;
 	available=0;
@@ -39,6 +44,8 @@ fbClass::fbClass(const char *fb)
 		perror(fb);
 		goto nolfb;
 	}
+
+
 	if (ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo)<0)
 	{
 		perror("FBIOGET_VSCREENINFO");
@@ -64,6 +71,8 @@ fbClass::fbClass(const char *fb)
 	}
 
 	showConsole(0);
+
+	enableManualBlit();
 	return;
 nolfb:
 	lfb=0;
@@ -146,6 +155,14 @@ int fbClass::waitVSync()
 	return ioctl(fd, FBIO_WAITFORVSYNC, &c);
 }
 
+void fbClass::blit()
+{
+	if (m_manual_blit) {
+		if (ioctl(fd, FBIO_BLIT) < 0)
+			perror("FBIO_BLIT");
+	}
+}
+
 fbClass::~fbClass()
 {
 	if (available)
@@ -153,6 +170,7 @@ fbClass::~fbClass()
 	if (lfb)
 		munmap(lfb, available);
 	showConsole(1);
+	disableManualBlit();
 }
 
 int fbClass::PutCMAP()
@@ -176,3 +194,22 @@ void fbClass::unlock()
 	SetMode(xRes, yRes, bpp);
 	PutCMAP();
 }
+
+void fbClass::enableManualBlit()
+{
+	unsigned char tmp = 1;
+	if (ioctl(fd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
+		perror("FBIO_SET_MANUAL_BLIT");
+	else
+		m_manual_blit = 1;
+}
+
+void fbClass::disableManualBlit()
+{
+	unsigned char tmp = 0;
+	if (ioctl(fd,FBIO_SET_MANUAL_BLIT, &tmp)<0) 
+		perror("FBIO_SET_MANUAL_BLIT");
+	else
+		m_manual_blit = 0;
+}
+

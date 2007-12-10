@@ -227,7 +227,6 @@ void eWidgetDesktop::paintBackground(eWidgetDesktopCompBuffer *comp)
 	painter.resetClip(comp->m_dirty_region);
 	painter.setBackgroundColor(comp->m_background_color);
 	painter.clear();
-	painter.flush();
 	
 	comp->m_dirty_region = gRegion();
 }
