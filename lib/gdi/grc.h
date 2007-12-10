@@ -249,8 +249,6 @@ public:
 	void clip(const gRegion &clip);
 	void clippop();
 
-	void flush();
-	
 	void waitVSync();
 	void flip();
 	void notify();

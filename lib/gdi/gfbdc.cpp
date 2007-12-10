@@ -134,6 +134,9 @@ void gFBDC::exec(gOpcode *o)
 		fb->waitVSync();
 		break;
 	}
+	case gOpcode::flush:
+		fb->blit();
+		break;
 	default:
 		gDC::exec(o);
 		break;

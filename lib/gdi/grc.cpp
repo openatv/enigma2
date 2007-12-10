@@ -207,7 +207,8 @@ void gRC::enableSpinner()
 	o.opcode = m_spinner_enabled ? gOpcode::incrementSpinner : gOpcode::enableSpinner;
 	m_spinner_dc->exec(&o);
 	m_spinner_enabled = 1;
-
+	o.opcode = gOpcode::flush;
+	m_spinner_dc->exec(&o);
 }
 
 void gRC::disableSpinner()
@@ -225,6 +226,8 @@ void gRC::disableSpinner()
 	
 	gOpcode o;
 	o.opcode = gOpcode::disableSpinner;
+	m_spinner_dc->exec(&o);
+	o.opcode = gOpcode::flush;
 	m_spinner_dc->exec(&o);
 }
 
@@ -516,16 +519,6 @@ void gPainter::clippop()
 		return;
 	gOpcode o;
 	o.opcode = gOpcode::popClip;
-	o.dc = m_dc.grabRef();
-	m_rc->submit(o);
-}
-
-void gPainter::flush()
-{
-	if ( m_dc->islocked() )
-		return;
-	gOpcode o;
-	o.opcode = gOpcode::flush;
 	o.dc = m_dc.grabRef();
 	m_rc->submit(o);
 }

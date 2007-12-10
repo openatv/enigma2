@@ -136,7 +136,6 @@ void bsodFatal()
 	
 		p.renderText(usable_area, 
 			lines.substr(start), gPainter::RT_HALIGN_LEFT);
-		p.flush();
 		sleep(10);
 	}
 

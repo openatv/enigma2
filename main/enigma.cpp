@@ -258,7 +258,6 @@ int main(int argc, char **argv)
 		gPainter p(my_lcd_dc);
 		p.resetClip(eRect(0, 0, 132, 64));
 		p.clear();
-		p.flush();
 	}
 
 	return exit_code;
