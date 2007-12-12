@@ -3,6 +3,10 @@
 #include <lib/gdi/epng.h>
 #include <unistd.h>
 
+extern "C" {
+#include <jpeglib.h>
+}
+
 int loadPNG(ePtr<gPixmap> &result, const char *filename)
 {
 	__u8 header[8];
@@ -118,6 +122,103 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 
 	png_destroy_read_struct(&png_ptr, &info_ptr,&end_info);
 	fclose(fp);
+	return 0;
+}
+
+struct my_error_mgr {
+	struct jpeg_error_mgr pub;
+	jmp_buf setjmp_buffer;
+};
+
+typedef struct my_error_mgr * my_error_ptr;
+
+static void
+my_error_exit (j_common_ptr cinfo)
+{
+	my_error_ptr myerr = (my_error_ptr) cinfo->err;
+	(*cinfo->err->output_message) (cinfo);
+	longjmp(myerr->setjmp_buffer, 1);
+}
+
+int loadJPG(ePtr<gPixmap> &result, const char *filename, gPixmap *alpha)
+{
+	struct jpeg_decompress_struct cinfo;
+	struct my_error_mgr jerr;
+	FILE *infile;
+	JSAMPARRAY buffer;
+	int row_stride;
+	infile = fopen(filename, "r");
+	result = 0;
+
+	if (alpha)
+	{
+		if (alpha->surface->bpp != 8)
+		{
+			eWarning("alpha channel for jpg must be 8bit");
+			alpha = 0;
+		}
+	}
+
+	if (!infile)
+		return -1;
+	cinfo.err = jpeg_std_error(&jerr.pub);
+	jerr.pub.error_exit = my_error_exit;
+	if (setjmp(jerr.setjmp_buffer)) {
+		result = 0;
+		jpeg_destroy_decompress(&cinfo);
+		fclose(infile);
+		return -1;
+	}
+	jpeg_create_decompress(&cinfo);
+	jpeg_stdio_src(&cinfo, infile);
+	(void) jpeg_read_header(&cinfo, TRUE);
+
+	int grayscale = cinfo.output_components == 1;
+
+	if (alpha)
+	{
+		if (((int)cinfo.output_width != alpha->surface->x) || ((int)cinfo.output_height != alpha->surface->y))
+		{
+			eWarning("alpha channel size (%dx%d) must match jpeg size (%dx%d)", alpha->surface->x, alpha->surface->y, cinfo.output_width, cinfo.output_height);
+			alpha = 0;
+		}
+		if (grayscale)
+		{
+			eWarning("we don't support grayscale + alpha at the moment");
+			alpha = 0;
+		}
+	}
+
+	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32);
+
+	(void) jpeg_start_decompress(&cinfo);
+	row_stride = cinfo.output_width * cinfo.output_components;
+	buffer = (*cinfo.mem->alloc_sarray)((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
+	while (cinfo.output_scanline < cinfo.output_height) {
+		(void) jpeg_read_scanlines(&cinfo, buffer, 1);
+		unsigned char *dst = ((unsigned char*)result->surface->data) + result->surface->stride * cinfo.output_scanline;
+		unsigned char *src = (unsigned char*)buffer[0];
+		unsigned char *palpha = alpha ? ((unsigned char*)alpha->surface->data + alpha->surface->stride * cinfo.output_scanline) : 0;
+		if (grayscale)
+			memcpy(dst, src, row_stride);
+		else
+		{
+			int x;
+			for (x = 0; x < (int)cinfo.output_width; ++x)
+			{
+				*dst++ = *src++;
+				*dst++ = *src++;
+				*dst++ = *src++;
+				if (alpha)
+					*dst++ = *palpha++;
+				else
+					*dst++ = 0xFF;
+			}
+		}
+	}
+	(void) jpeg_finish_decompress(&cinfo);
+	jpeg_destroy_decompress(&cinfo);
+	fclose(infile);
 	return 0;
 }
 
