@@ -2,13 +2,14 @@ import xml.dom.minidom
 from os import path
 
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
-	loadPNG, addFont, gRGB, eWindowStyleSkinned
+	addFont, gRGB, eWindowStyleSkinned
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS
 from Tools.Import import my_import
+from Tools.LoadPixmap import LoadPixmap
 
 from Tools.XMLTools import elementsWithTag, mergeText
 
@@ -97,8 +98,8 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 		if attrib not in ignore:
 			skinAttributes.append((attrib, value))
 
-def loadPixmap(path):
-	ptr = loadPNG(path)
+def loadPixmap(path, desktop):
+	ptr = LoadPixmap(path, desktop)
 	if ptr is None:
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
@@ -119,8 +120,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
 		elif attrib in ["pixmap", "backgroundPixmap", "selectionPixmap"]:
-			ptr = loadPixmap(value) # this should already have been filename-resolved.
-			desktop.makeCompatiblePixmap(ptr)
+			ptr = loadPixmap(value, desktop) # this should already have been filename-resolved.
 			if attrib == "pixmap":
 				guiObject.setPixmap(ptr)
 			elif attrib == "backgroundPixmap":
@@ -198,8 +198,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 		elif attrib == "pointer" or attrib == "seek_pointer":
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos)
-			ptr = loadPixmap(name)
-			desktop.makeCompatiblePixmap(ptr)
+			ptr = loadPixmap(name, desktop)
 			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr, pos)
 		elif attrib == 'shadowOffset':
 			guiObject.setShadowOffset(parsePosition(value))
@@ -276,10 +275,7 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 				bpName = str(pixmap.getAttribute("pos"))
 				filename = str(pixmap.getAttribute("filename"))
 				
-				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix))
-				
-				# adapt palette
-				desktop.makeCompatiblePixmap(png)
+				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
 				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 
 		for color in elementsWithTag(windowstyle.childNodes, "color"):
