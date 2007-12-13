@@ -207,6 +207,54 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 	}
 }
 
+static void blit_8i_to_32(__u32 *dst, __u8 *src, __u32 *pal, int width)
+{
+	while (width--)
+		*dst++=pal[*src++];
+}
+
+static void blit_8i_to_32_at(__u32 *dst, __u8 *src, __u32 *pal, int width)
+{
+	while (width--)
+	{
+		if (!(pal[*src]&0x80000000))
+		{
+			src++;
+			dst++;
+		} else
+			*dst++=pal[*src++];
+	}
+}
+
+		/* WARNING, this function is not endian safe! */
+static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
+{
+	while (width--)
+	{
+#define BLEND(x, y, a) (y + (((x-y) * a)>>8))
+		__u32 srccol = pal[*src++];
+		__u32 dstcol = *dst;
+		unsigned char sb = srccol & 0xFF;
+		unsigned char sg = (srccol >> 8) & 0xFF;
+		unsigned char sr = (srccol >> 16) & 0xFF;
+		unsigned char sa = (srccol >> 24) & 0xFF;
+
+		unsigned char db = dstcol & 0xFF;
+		unsigned char dg = (dstcol >> 8) & 0xFF;
+		unsigned char dr = (dstcol >> 16) & 0xFF;
+		unsigned char da = (dstcol >> 24) & 0xFF;
+
+		da = BLEND(0xFF, da, sa) & 0xFF;
+		dr = BLEND(sr, dr, sa) & 0xFF;
+		dg = BLEND(sg, dg, sa) & 0xFF;
+		db = BLEND(sb, db, sa) & 0xFF;
+
+#undef BLEND
+		*dst++ = db | (dg << 8) | (dr << 16) | (da << 24);
+	}
+}
+
+
 void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag)
 {
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
@@ -305,6 +353,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 						dst[2] = BLEND(sr, dr, sa);
 						dst[1] = BLEND(sg, dg, sa);
 						dst[0] = BLEND(sb, db, sa);
+#undef BLEND
 
 						src += 4; dst += 4;
 					}
@@ -332,30 +381,15 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			for (int y=0; y<area.height(); y++)
 			{
+				int width=area.width();
+				unsigned char *psrc=(unsigned char*)srcptr;
+				__u32 *dst=(__u32*)dstptr;
 				if (flag & blitAlphaTest)
-				{
-	  	      // no real alphatest yet
-					int width=area.width();
-					unsigned char *src=(unsigned char*)srcptr;
-					__u32 *dst=(__u32*)dstptr;
-						// use duff's device here!
-					while (width--)
-					{
-						if (!(pal[*src]&0x80000000))
-						{
-							src++;
-							dst++;
-						} else
-							*dst++=pal[*src++];
-					}
-				} else
-				{
-					int width=area.width();
-					unsigned char *src=(unsigned char*)srcptr;
-					__u32 *dst=(__u32*)dstptr;
-					while (width--)
-						*dst++=pal[*src++];
-				}
+					blit_8i_to_32_at(dst, psrc, pal, width);
+				else if (flag & blitAlphaBlend)
+					blit_8i_to_32_ab(dst, psrc, pal, width);
+				else
+					blit_8i_to_32(dst, psrc, pal, width);
 				srcptr+=src.surface->stride;
 				dstptr+=surface->stride;
 			}
