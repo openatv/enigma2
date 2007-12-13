@@ -2,7 +2,8 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from MenuList import MenuList
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
-from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eListbox, gFont, loadPNG
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eListbox, gFont
+from Tools.LoadPixmap import LoadPixmap
 
 def ChoiceEntryComponent(key, text):
 	res = [ text ]
@@ -11,7 +12,7 @@ def ChoiceEntryComponent(key, text):
 	else:
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 32, 00, 800, 25, 0, RT_HALIGN_LEFT, text[0]))
 	
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "key_" + key + "-fs8.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "key_" + key + "-fs8.png"))
 		if png is not None:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 30, 20, png))
 	

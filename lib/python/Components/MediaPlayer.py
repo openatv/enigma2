@@ -6,7 +6,10 @@ from MenuList import MenuList
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from os import path
 
-from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, loadPNG, gFont, eServiceCenter
+from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, gFont, eServiceCenter
+
+from Tools.LoadPixmap import LoadPixmap
+
 
 STATE_PLAY = 0
 STATE_PAUSE = 1
@@ -15,11 +18,11 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
-PlayIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_play.png"))
-PauseIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_pause.png"))
-StopIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_stop.png"))
-RewindIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_rewind.png"))
-ForwardIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_forward.png"))
+PlayIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_play.png"))
+PauseIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_pause.png"))
+StopIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_stop.png"))
+RewindIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_rewind.png"))
+ForwardIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_mp_forward.png"))
 
 def PlaylistEntryComponent(serviceref, state):
 	res = [ serviceref ]

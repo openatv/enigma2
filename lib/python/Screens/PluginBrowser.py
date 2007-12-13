@@ -1,6 +1,6 @@
 from Screen import Screen
 
-from enigma import eConsoleAppContainer, loadPNG
+from enigma import eConsoleAppContainer
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
@@ -10,6 +10,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Tools.LoadPixmap import LoadPixmap
+
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -168,9 +170,9 @@ class PluginDownloadBrowser(Screen):
 	
 	def updateList(self):
 		self.list = []
-		expandableIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "expandable-plugins.png"))
-		expandedIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "expanded-plugins.png"))
-		verticallineIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "verticalline-plugins.png"))
 		
 		self.plugins = {}
 		for x in self.pluginlist:

@@ -3,8 +3,9 @@ from GUIComponent import GUIComponent
 
 from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, loadPNG, \
+from enigma import eListboxPythonMultiContent, eListbox, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
+from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
@@ -62,7 +63,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-240, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 
 		if timer.disabled:
-			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "redx.png"))
+			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "redx.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
 		return res
 

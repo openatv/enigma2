@@ -1,8 +1,10 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, loadPNG, \
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+
+from Tools.LoadPixmap import LoadPixmap
 
 from time import localtime, time
 from ServiceReference import ServiceReference
@@ -49,7 +51,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			assert(type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))
+		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))
 
 	def getEventFromId(self, service, eventid):
 		event = None

@@ -17,7 +17,8 @@ from Screens.EpgSelection import EPGSelection
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from RecordTimer import RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
-from enigma import eEPGCache, eListbox, gFont, loadPNG, eListboxPythonMultiContent, \
+from Tools.LoadPixmap import LoadPixmap
+from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
 	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
 
 from time import localtime, time, strftime
@@ -38,7 +39,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))
+		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None

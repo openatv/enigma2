@@ -7,14 +7,15 @@ from Components.Sources.List import List
 
 from Tools.Directories import *
 
-from enigma import eListboxPythonMultiContent, loadPNG, gFont, RT_HALIGN_LEFT
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Tools.LoadPixmap import LoadPixmap
 
 def LanguageEntryComponent(file, name, index):
 	res = [ index ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT ,name))
-	png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "countries/" + file + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/" + file + ".png"))
 	if png == None:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
 	res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 5, 60, 40, png))
 	
 	return res
