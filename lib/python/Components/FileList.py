@@ -8,8 +8,10 @@ from Components.Harddisk import harddiskmanager
 
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import RT_HALIGN_LEFT, loadPNG, eListbox, eListboxPythonMultiContent, \
+from enigma import RT_HALIGN_LEFT, eListbox, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
+from Tools.LoadPixmap import LoadPixmap
+
 
 EXTENSIONS = {
 		"mp3": "music",
@@ -29,12 +31,12 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	res = [ (absolute, isDir) ]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/directory.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if EXTENSIONS.has_key(extension):
-			png = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:

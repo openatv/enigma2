@@ -1,9 +1,10 @@
 from GUIComponent import GUIComponent
 from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-from enigma import eListboxPythonMultiContent, loadPNG, eListbox, gFont, RT_HALIGN_LEFT
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
+from Tools.LoadPixmap import LoadPixmap
 
-selectionpng = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "selectioncross-fs8.png"))
+selectionpng = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "selectioncross-fs8.png"))
 
 def SelectionEntryComponent(description, value, index, selected):
 	res = [ (description, value, index, selected) ]

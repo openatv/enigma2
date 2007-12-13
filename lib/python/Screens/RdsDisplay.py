@@ -1,10 +1,11 @@
-from enigma import iPlayableService, loadPNG, iRdsDecoder
+from enigma import iPlayableService, iRdsDecoder
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.LoadPixmap import LoadPixmap
 
 class RdsInfoDisplay(Screen):
 	ALLOW_SUSPEND = True
@@ -121,10 +122,10 @@ class RassInteractive(Screen):
 			9 : self["subpages_9"] }
 
 		self.subpage_png = {
-			1 : loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page1.png")),
-			2 : loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page2.png")),
-			3 : loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page3.png")),
-			4 : loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page4.png")) }
+			1 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page1.png")),
+			2 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page2.png")),
+			3 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page3.png")),
+			4 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page4.png")) }
 
 		self.current_page=0;
 		self.current_subpage=0;

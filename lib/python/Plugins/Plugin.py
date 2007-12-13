@@ -1,5 +1,5 @@
-from enigma import loadPNG
 from Components.config import ConfigSubsection, config
+from Tools.LoadPixmap import LoadPixmap
 
 config.plugins = ConfigSubsection()
 
@@ -63,7 +63,7 @@ class PluginDescriptor:
 
 	def updateIcon(self, path):
 		if type(self.iconstr) is str:
-			self.icon = loadPNG(path + "/" + self.iconstr)
+			self.icon = LoadPixmap(path + "/" + self.iconstr)
 		else:
 			self.icon = None
 

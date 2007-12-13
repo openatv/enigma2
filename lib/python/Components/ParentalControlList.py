@@ -5,9 +5,9 @@ from MenuList import MenuList
 from Components.ParentalControl import parentalControl
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import loadPNG, eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from enigma import LoadPixmap, eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 
-lockPicture = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "lock-fs8.png"))
+lockPicture = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "lock-fs8.png"))
 
 def ParentalControlEntryComponent(service, name, locked = True):
 	res = [ (service, name, locked) ]

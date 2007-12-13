@@ -2,7 +2,8 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from skin import parseColor
 
-from enigma import loadPNG, eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
+from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
+from Tools.LoadPixmap import LoadPixmap
 
 from string import upper
 
@@ -16,27 +17,27 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "folder.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "marker-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "marker-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_s-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_s-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_c-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_c-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_t-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_dvb_t-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "ico_service_group-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "ico_service_group-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
