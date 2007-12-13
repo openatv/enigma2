@@ -130,8 +130,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
 			guiObject.setAlphatest(
-				{ "on": True,
-				  "off": False
+				{ "on": 1,
+				  "off": 0,
+				  "blend": 2,
 				}[value])
 		elif attrib == "orientation": # used by eSlider
 			try:
