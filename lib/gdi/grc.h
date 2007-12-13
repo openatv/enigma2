@@ -230,7 +230,8 @@ public:
 
 	enum
 	{
-		BT_ALPHATEST = 1
+		BT_ALPHATEST = 1,
+		BT_ALPHABLEND = 2
 	};
 
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &what=eRect(), int flags=0);
