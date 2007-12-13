@@ -220,17 +220,16 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 
 		eRect srcarea=area;
 		srcarea.moveBy(-pos.x(), -pos.y());
-		
+
 		if ((surface->data_phys && src.surface->data_phys) && (gAccel::getInstance()))
 			if (!gAccel::getInstance()->blit(surface, src.surface, area.topLeft(), srcarea, flag))
 				continue;
-		flag &= ~ blitAlphaBlend;
-		
+
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data;
-	
+
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			for (int y=0; y<area.height(); y++)
@@ -260,7 +259,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 		{
 			__u32 *srcptr=(__u32*)src.surface->data;
 			__u32 *dstptr=(__u32*)surface->data;
-	
+
 			srcptr+=srcarea.left()+srcarea.top()*src.surface->stride/4;
 			dstptr+=area.left()+area.top()*surface->stride/4;
 			for (int y=0; y<area.height(); y++)
@@ -283,7 +282,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 				} else if (flag & blitAlphaBlend)
 				{
 					// uh oh. this is only until hardware accel is working.
-					
+
 					int width=area.width();
 							// ARGB color space!
 					unsigned char *src=(unsigned char*)srcptr;
@@ -301,12 +300,12 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 						unsigned char dr = dst[2];
 						unsigned char dg = dst[1];
 						unsigned char db = dst[0];
-						
+
 						dst[3] = BLEND(0xFF, da, sa);
 						dst[2] = BLEND(sr, dr, sa);
 						dst[1] = BLEND(sg, dg, sa);
 						dst[0] = BLEND(sb, db, sa);
-						
+
 						src += 4; dst += 4;
 					}
 				} else
@@ -328,7 +327,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 					pal[i]=0x010101*i;
 				pal[i]^=0xFF000000;
 			}
-	
+
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 			for (int y=0; y<area.height(); y++)

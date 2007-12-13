@@ -7,7 +7,7 @@ ePixmap::ePixmap(eWidget *parent)
 {
 }
 
-void ePixmap::setAlphatest(bool alphatest)
+void ePixmap::setAlphatest(int alphatest)
 {
 	m_alphatest = alphatest;
 	setTransparent(alphatest);
@@ -62,14 +62,23 @@ int ePixmap::event(int event, void *data, void *data2)
 		getStyle(style);
 
 //	we don't clear the background before because of performance reasons.
-//	when the pixmap is too small to fix the whole widget area, the widget is
+//	when the pixmap is too small to fit the whole widget area, the widget is
 //	transparent anyway, so the background is already painted.
 //		eWidget::event(event, data, data2); 
-		
+
 		gPainter &painter = *(gPainter*)data2;
 		if (m_pixmap)
-			painter.blit(m_pixmap, ePoint(0, 0), eRect(), m_alphatest?gPainter::BT_ALPHATEST:0);
-		
+		{
+			int flags = 0;
+			if (m_alphatest == 0)
+				flags = 0;
+			else if (m_alphatest == 1)
+				flags = gPainter::BT_ALPHATEST;
+			else if (m_alphatest == 2)
+				flags = gPainter::BT_ALPHABLEND;
+			painter.blit(m_pixmap, ePoint(0, 0), eRect(), flags);
+		}
+
 		return 0;
 	}
 	case evtChangedPixmap:
