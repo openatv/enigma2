@@ -140,14 +140,14 @@ my_error_exit (j_common_ptr cinfo)
 	longjmp(myerr->setjmp_buffer, 1);
 }
 
-int loadJPG(ePtr<gPixmap> &result, const char *filename, gPixmap *alpha)
+int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
 	FILE *infile;
 	JSAMPARRAY buffer;
 	int row_stride;
-	infile = fopen(filename, "r");
+	infile = fopen(filename, "rb");
 	result = 0;
 
 	if (alpha)
@@ -172,6 +172,10 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, gPixmap *alpha)
 	jpeg_create_decompress(&cinfo);
 	jpeg_stdio_src(&cinfo, infile);
 	(void) jpeg_read_header(&cinfo, TRUE);
+	cinfo.out_color_space = JCS_RGB;
+	cinfo.scale_denom = 1;
+
+	(void) jpeg_start_decompress(&cinfo);
 
 	int grayscale = cinfo.output_components == 1;
 
@@ -191,16 +195,16 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, gPixmap *alpha)
 
 	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32);
 
-	(void) jpeg_start_decompress(&cinfo);
 	row_stride = cinfo.output_width * cinfo.output_components;
 	buffer = (*cinfo.mem->alloc_sarray)((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
 	while (cinfo.output_scanline < cinfo.output_height) {
+		int y = cinfo.output_scanline;
 		(void) jpeg_read_scanlines(&cinfo, buffer, 1);
-		unsigned char *dst = ((unsigned char*)result->surface->data) + result->surface->stride * cinfo.output_scanline;
+		unsigned char *dst = ((unsigned char*)result->surface->data) + result->surface->stride * y;
 		unsigned char *src = (unsigned char*)buffer[0];
-		unsigned char *palpha = alpha ? ((unsigned char*)alpha->surface->data + alpha->surface->stride * cinfo.output_scanline) : 0;
+		unsigned char *palpha = alpha ? ((unsigned char*)alpha->surface->data + alpha->surface->stride * y) : 0;
 		if (grayscale)
-			memcpy(dst, src, row_stride);
+			memcpy(dst, src, cinfo.output_width);
 		else
 		{
 			int x;
@@ -209,9 +213,9 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, gPixmap *alpha)
 				*dst++ = *src++;
 				*dst++ = *src++;
 				*dst++ = *src++;
-				if (alpha)
+				if (palpha)
 					*dst++ = *palpha++;
-				else
+				else 
 					*dst++ = 0xFF;
 			}
 		}
