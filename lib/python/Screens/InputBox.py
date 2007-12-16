@@ -108,6 +108,13 @@ class PinInput(InputBox):
 		self["tries"] = Label("")
 		self.onShown.append(self.showTries)
 
+	def gotAsciiCode(self):
+		if self["input"].currPos == len(self["input"]) - 1:
+			InputBox.gotAsciiCode(self)
+			self.go()
+		else:
+			InputBox.gotAsciiCode(self)
+
 	def keyNumberGlobal(self, number):
 		if self["input"].currPos == len(self["input"]) - 1:
 			InputBox.keyNumberGlobal(self, number)
