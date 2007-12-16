@@ -16,6 +16,7 @@ eDBoxLCD *eDBoxLCD::instance;
 
 eLCD::eLCD(eSize size): res(size)
 {
+	lcdfd = -1;
 	locked=0;
 	_buffer=new unsigned char[res.height()*res.width()];
 	memset(_buffer, 0, res.height()*res.width());
@@ -111,10 +112,10 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 
 eDBoxLCD::~eDBoxLCD()
 {
-	if (lcdfd>0)
+	if (lcdfd>=0)
 	{
 		close(lcdfd);
-		lcdfd=0;
+		lcdfd=-1;
 	}
 }
 
@@ -141,7 +142,7 @@ void eDBoxLCD::update()
 				raw[y*132+x]=(pix^inverted);
 			}
 		}
-		if (lcdfd>0)
+		if (lcdfd >= 0)
 			write(lcdfd, raw, 132*8);
 	} else
 	{
@@ -153,7 +154,7 @@ void eDBoxLCD::update()
 			for (x=0; x<128 / 2; x++)
 				raw[y*64+x] = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
 		}
-		if (lcdfd > 0)
+		if (lcdfd >= 0)
 			write(lcdfd, raw, 64*64);
 	}
 }
