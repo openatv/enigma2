@@ -109,6 +109,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				servicename = str(self.timer.service_ref.getServiceName())
 			except:
 				pass
+			self.timerentry_service_ref = self.timer.service_ref
 			self.timerentry_service = ConfigSelection([servicename])
 			
 			self.timerentry_startdate.addNotifier(self.checkDate)
@@ -215,8 +216,8 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def finishedChannelSelection(self, *args):
 		if len(args):
-			self.timer.service_ref = ServiceReference(args[0])
-			self.timerentry_service.setCurrentText(self.timer.service_ref.getServiceName())
+			self.timerentry_service_ref = ServiceReference(args[0])
+			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
 
 	def getTimestamp(self, date, mytime):
@@ -252,7 +253,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
-		
+		self.timer.service_ref = self.timerentry_service_ref
+
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
 		if self.timerentry_type.value == "repeated":
