@@ -502,6 +502,7 @@ class RecordTimer(timer.Timer):
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
+		self.saveTimer()
 		
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
@@ -583,6 +584,7 @@ class RecordTimer(timer.Timer):
 		print "in running: ", entry in self.timer_list
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
+		self.saveTimer()
 
 	def shutdown(self):
 		self.saveTimer()
