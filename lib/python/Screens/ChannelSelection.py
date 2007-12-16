@@ -867,7 +867,10 @@ class ChannelSelectionBase(Screen):
 							service = servicelist.getNext()
 							if not service.valid(): #check if end of list
 								break
-							orbpos = service.getUnsignedData(4) >> 16
+							unsigned_orbpos = service.getUnsignedData(4) >> 16
+							orbpos = service.getData(4) >> 16
+							if orbpos < 0:
+								orbpos += 3600
 							if service.getPath().find("FROM PROVIDER") != -1:
 								service_type = _("Providers")
 							elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
@@ -878,9 +881,9 @@ class ChannelSelectionBase(Screen):
 								# why we need this cast?
 								service_name = str(nimmanager.getSatDescription(orbpos))
 							except:
-								if orbpos == 0xFFFF: #Cable
+								if unsigned_orbpos == 0xFFFF: #Cable
 									service_name = _("Cable")
-								elif orbpos == 0xEEEE: #Terrestrial
+								elif unsigned_orbpos == 0xEEEE: #Terrestrial
 									service_name = _("Terrestrial")
 								else:
 									if orbpos > 1800: # west
