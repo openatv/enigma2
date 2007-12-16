@@ -707,7 +707,24 @@ public:
 	};
 };
 
-class iStreamableService;
+SWIG_IGNORE(iStreamableService);
+class iStreamableService: public iObject
+{
+#ifdef SWIG
+	iStreamableService();
+	~iStreamableService();
+#endif
+public:
+		/* returns a dict:
+			{ "demux": <n>,
+			  "pids": [(x,type),(y,type),(z,type),..],
+			  ...
+			}
+			with type being "video", "audio", "pmt", "pat"...
+		*/
+	virtual PyObject *getStreamingData()=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
 
 SWIG_IGNORE(iPlayableService);
 class iPlayableService: public iPlayableService_ENUMS, public iObject
@@ -740,25 +757,6 @@ public:
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
-
-SWIG_IGNORE(iStreamableService);
-class iStreamableService: public iObject
-{
-#ifdef SWIG
-	iStreamableService();
-	~iStreamableService();
-#endif
-public:
-		/* returns a dict:
-			{ "demux": <n>,
-			  "pids": [(x,type),(y,type),(z,type),..],
-			  ...
-			}
-			with type being "video", "audio", "pmt", "pat"...
-		*/
-	virtual PyObject *getStreamingData()=0;
-};
-SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
 
 class iRecordableService_ENUMS
 {
