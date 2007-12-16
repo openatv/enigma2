@@ -82,9 +82,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		s = self.instance.calculateSize()
 		return (s.width(), s.height())
 	
-	def right(self):
-		if self.type == self.TEXT:
-			self.timeout()
+	def innerright(self):
 		if self.allmarked:
 			self.currPos = 0
 			self.allmarked = False
@@ -94,6 +92,11 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		else:
 			if self.currPos < len(self.Text):
 				self.currPos += 1
+
+	def right(self):
+		if self.type == self.TEXT:
+			self.timeout()
+		self.innerright()
 		self.update()
 
 	def left(self):
@@ -181,7 +184,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.allmarked = False
 		else:
 			self.insertChar(" ", self.currPos, False, True);
-			self.currPos += 1
+			self.innerright()
 		self.update()
 
 	def delete(self):
@@ -193,7 +196,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		else:
 			self.deleteChar(self.currPos);
 			if self.maxSize and self.overwrite:
-				self.currPos += 1
+				self.innerright()
 		self.update()
 
 	def deleteBackward(self):
@@ -223,7 +226,8 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.deleteAllChars()
 			self.allmarked = False
 		self.insertChar(unichr(code), self.currPos, False, False);
-		self.right()
+		self.innerright()
+		self.update()
 
 	def number(self, number):
 		if self.type == self.TEXT:
@@ -237,5 +241,5 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.allmarked = False
 		self.insertChar(newChar, self.currPos, owr, False);
 		if self.type == self.PIN or self.type == self.NUMBER:
-			self.right()
+			self.innerright()
 		self.update()
