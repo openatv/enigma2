@@ -91,7 +91,9 @@ class PluginDownloadBrowser(Screen):
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
 		
 		self.run = 0
-				
+
+		self.remainingdata = ""
+
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.go,
@@ -142,6 +144,7 @@ class PluginDownloadBrowser(Screen):
 		self.close()
 		
 	def runFinished(self, retval):
+		self.remainingdata = ""
 		if self.run == 0:
 			self.run = 1
 			if self.type == self.DOWNLOAD:
@@ -157,7 +160,19 @@ class PluginDownloadBrowser(Screen):
 				self["text"].setText("No new plugins found")
 
 	def dataAvail(self, str):
-		for x in str.split('\n'):
+		#prepend any remaining data from the previous call
+		str = self.remainingdata + str
+		#split in lines
+		lines = str.split('\n')
+		#'str' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
+		if len(lines[-1]):
+			#remember this data for next time
+			self.remainingdata = lines[-1]
+			lines = lines[0:-1]
+		else:
+			self.remainingdata = ""
+
+		for x in lines:
 			plugin = x.split(" - ")
 			if len(plugin) == 3:
 				if self.run == 1 and self.type == self.DOWNLOAD:
