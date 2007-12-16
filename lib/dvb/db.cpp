@@ -323,7 +323,7 @@ void eDVBDB::reloadServicelist()
 					system=eDVBFrontendParametersSatellite::System::DVB_S,
 					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
 					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_auto;
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff);
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff);
 				sat.frequency = frequency;
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
@@ -339,7 +339,7 @@ void eDVBDB::reloadServicelist()
 			{
 				eDVBFrontendParametersTerrestrial ter;
 				int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode, guard_interval, hierarchy, inversion;
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation, &transmission_mode, &guard_interval, &hierarchy, &inversion);
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation, &transmission_mode, &guard_interval, &hierarchy, &inversion);
 				ter.frequency = frequency;
 				ter.bandwidth = bandwidth;
 				ter.code_rate_HP = code_rate_HP;
@@ -357,7 +357,7 @@ void eDVBDB::reloadServicelist()
 					inversion=eDVBFrontendParametersCable::Inversion::Unknown,
 					modulation=eDVBFrontendParametersCable::Modulation::Auto,
 					fec_inner=eDVBFrontendParametersCable::FEC::fAuto;
-				sscanf(line+2, "%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner);
+				sscanf(line+3, "%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner);
 				cab.frequency = frequency;
 				cab.fec_inner = fec_inner;
 				cab.inversion = inversion;
@@ -497,14 +497,14 @@ void eDVBDB::saveServicelist()
 					sat.inversion);
 			}
 		}
-		if (!ch.m_frontendParameters->getDVBT(ter))
+		else if (!ch.m_frontendParameters->getDVBT(ter))
 		{
 			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 				ter.frequency, ter.bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
 				ter.guard_interval, ter.hierarchy, ter.inversion);
 		}
-		if (!ch.m_frontendParameters->getDVBC(cab))
+		else if (!ch.m_frontendParameters->getDVBC(cab))
 		{
 			fprintf(f, "\tc %d:%d:%d:%d:%d\n",
 				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation, cab.fec_inner);
