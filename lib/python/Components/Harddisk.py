@@ -1,4 +1,4 @@
-from os import system, listdir, statvfs, popen
+from os import system, listdir, statvfs, popen, makedirs
 
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
@@ -17,8 +17,8 @@ class Harddisk:
 	def __init__(self, index):
 		self.index = index
 
-		host = self.index / 4
-		bus = (self.index & 2)
+		host = (self.index & 2) >> 1
+		bus = 0
 		target = (self.index & 1)
 
 		self.prochdx = num2prochdx(index)
@@ -122,14 +122,17 @@ class Harddisk:
 		return (res >> 8)
 
 	def mount(self):
-		cmd = "/bin/mount -t ext3 " + self.devidex + "part1 /hdd"
+		cmd = "/bin/mount -t ext3 " + self.devidex + "part1"
 		res = system(cmd)
 		return (res >> 8)
 
 	def createMovieFolder(self):
-		res = system("mkdir " + resolveFilename(SCOPE_HDD))
-		return (res >> 8)
-		
+		try:
+			makedirs(resolveFilename(SCOPE_HDD))
+		except OSError:
+			return -1
+		return 0
+
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]
 
 	def initialize(self):
@@ -144,7 +147,8 @@ class Harddisk:
 		if self.mount() != 0:
 			return -3
 
-		if self.createMovieFolder() != 0:
+		#only create a movie folder on the internal hdd
+		if not self.index & 2 and self.createMovieFolder() != 0:
 			return -4
 		
 		return 0
