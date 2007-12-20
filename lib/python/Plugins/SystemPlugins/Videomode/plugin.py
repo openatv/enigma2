@@ -7,6 +7,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
+from Screens.Setup import SetupSummary
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, ConfigSubDict
 
@@ -160,14 +161,16 @@ class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
+		self.setup_title = "Videomode Setup"
 		self.hw = hw
+		self.onChangedEntry = [ ]
 
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
 		self.onHide.append(self.stopHotplug)
 
 		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list)
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
@@ -233,6 +236,20 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 5, default = False)
 		else:
 			self.keySave()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def createSummary(self):
+		return SetupSummary
 
 #class VideomodeHotplug:
 #	def __init__(self, hw):
