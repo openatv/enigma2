@@ -11,7 +11,7 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = 0):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True):
 		self.type = type
 		Screen.__init__(self, session)
 
@@ -35,7 +35,10 @@ class MessageBox(Screen):
 			self["InfoPixmap"].hide()
 
 		if type == self.TYPE_YESNO:
-			self.list = [ (_("yes"), 0), (_("no"), 1) ]
+			if default == True:
+				self.list = [ (_("yes"), 0), (_("no"), 1) ]
+			else:
+				self.list = [ (_("no"), 1), (_("yes"), 0) ]
 
 		self["list"] = MenuList(self.list)
 
