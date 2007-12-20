@@ -256,10 +256,10 @@ void eWindowStyleSkinned::setPixmap(int bs, int bp, gPixmap &pixmap)
 	else
 		m_border[bs].m_border_right = 0;
 
-	eDebug("recalced border size for %d: %d:%d %d:%d",
+/*	eDebug("recalced border size for %d: %d:%d %d:%d",
 		bs, 
 		m_border[bs].m_border_left, m_border[bs].m_border_top, 
-		m_border[bs].m_border_right, m_border[bs].m_border_bottom); 
+		m_border[bs].m_border_right, m_border[bs].m_border_bottom);  */
 }
 
 void eWindowStyleSkinned::setColor(int what, const gRGB &col)
