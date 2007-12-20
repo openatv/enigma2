@@ -82,6 +82,7 @@ private:
 	{
 		ePtr<gPixmap> m_pixmap[9];
 		int m_border_top, m_border_left, m_border_right, m_border_bottom;
+		borderSet() { m_border_top = m_border_left = m_border_right = m_border_bottom = 0; }
 	};
 	
 	borderSet m_border[bsMax];
