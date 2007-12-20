@@ -8,8 +8,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing
-from Components.config import ConfigSelection
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, ConfigSubDict
 
 from Tools.CList import CList
 
@@ -53,6 +52,8 @@ class VideoHardware:
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
+
+		self.on_hotplug.append(self.createConfig)
 		self.ignore_preferred = False   # "edid override"
 
 		self.readAvailableModes()
@@ -137,6 +138,22 @@ class VideoHardware:
 				res.append( (mode, rates) )
 		return res
 
+	def createConfig(self, *args):
+		# create list of output ports
+		portlist = self.getPortList()
+
+		# create list of available modes
+		config.av.videoport = ConfigSelection(choices = [(port, _(port)) for port in portlist])
+		config.av.videomode = ConfigSubDict()
+		config.av.videorate = ConfigSubDict()
+
+		for port in portlist:
+			modes = self.getModeList(port)
+			if len(modes):
+				config.av.videomode[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
+			for (mode, rates) in modes:
+				config.av.videorate[mode] = ConfigSelection(choices = rates)
+
 video_hw = VideoHardware()
 
 class VideoSetup(Screen, ConfigListScreen):
@@ -145,14 +162,18 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.skinName = "Setup"
 		self.hw = hw
 
+		# handle hotplug by re-creating setup
+		self.onShow.append(self.startHotplug)
+		self.onHide.append(self.stopHotplug)
+
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["SetupActions"], 
 			{
-				"ok": self.ok,
-				"cancel": self.cancel
-			},-1)
+				"cancel": self.keyCancel,
+				"save": self.apply,
+			}, -2)
 
 		self["title"] = Label(_("Video-Setup"))
 
@@ -161,34 +182,24 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
 
-		# the following data is static for user selection, however not static for different attached hardware.
-
-		# create list of output ports
-		portlist = self.hw.getPortList()
-
-		# create list of available modes
-		self.config_port = ConfigSelection(choices = [(port, _(port)) for port in portlist])
-		self.config_mode = { }
-		self.config_rate = { }
-
-		for port in portlist:
-			modes = self.hw.getModeList(port)
-			print "port:", port, "modes:", modes
-			if len(modes):
-				self.config_mode[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
-			for (mode, rates) in modes:
-				self.config_rate[mode] = ConfigSelection(choices = rates)
 		self.createSetup()
+		self.grabLastGoodMode()
+
+	def startHotplug(self):
+		self.hw.on_hotplug.append(self.createSetup)
+
+	def stopHotplug(self):
+		self.hw.on_hotplug.remove(self.createSetup)
 
 	def createSetup(self):
 		self.list = [ ]
-		self.list.append(getConfigListEntry(_("Output Type"), self.config_port))
+		self.list.append(getConfigListEntry(_("Output Type"), config.av.videoport))
 
 		# if we have modes for this port:
-		if self.config_port.value in self.config_mode:
+		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(_("Mode"), self.config_mode[self.config_port.value]))
-			self.list.append(getConfigListEntry(_("Rate"), self.config_rate[self.config_mode[self.config_port.value].value]))
+			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
+			self.list.append(getConfigListEntry(_("Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -201,21 +212,27 @@ class VideoSetup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.createSetup()
 
-	def cancel(self):
-		self.close()
-
-	def confirm(self, do_revert):
-		if do_revert:
-			print "cannot revert yet :)"
+	def confirm(self, confirmed):
+		if not confirmed:
+			self.hw.setMode(*self.last_good)
 		else:
-			self.close()
+			self.keySave()
 
-	def ok(self):
-		port = self.config_port.value
-		mode = self.config_mode[port].value
-		rate = self.config_rate[mode].value
-		self.hw.setMode(port, mode, rate)
-		self.session.openWithCallback(self.confirm, MessageBox, "Revert to old settings?", MessageBox.TYPE_YESNO, timeout = 5)
+	def grabLastGoodMode(self):
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+		self.last_good = (port, mode, rate)
+
+	def apply(self):
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+		if (port, mode, rate) != self.last_good or True:
+			self.hw.setMode(port, mode, rate)
+			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 5, default = False)
+		else:
+			self.keySave()
 
 #class VideomodeHotplug:
 #	def __init__(self, hw):
