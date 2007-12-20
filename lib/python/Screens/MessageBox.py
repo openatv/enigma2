@@ -10,16 +10,16 @@ class MessageBox(Screen):
 	TYPE_INFO = 1
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
-	
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False):
+
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = 0):
 		self.type = type
 		Screen.__init__(self, session)
-		
+
 		self["text"] = Label(text)
-		
+
 		self.text = text
 		self.close_on_any_key = close_on_any_key
-		
+
 		self["ErrorPixmap"] = Pixmap()
 		self["QuestionPixmap"] = Pixmap()
 		self["InfoPixmap"] = Pixmap()
@@ -33,12 +33,12 @@ class MessageBox(Screen):
 			self["QuestionPixmap"].hide()
 		if type != self.TYPE_INFO:
 			self["InfoPixmap"].hide()
-			
+
 		if type == self.TYPE_YESNO:
 			self.list = [ (_("yes"), 0), (_("no"), 1) ]
 
 		self["list"] = MenuList(self.list)
-		
+
 		self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
 			{
 				"cancel": self.cancel,
@@ -96,10 +96,10 @@ class MessageBox(Screen):
 	def timeoutCallback(self):
 		print "Timeout!"
 		self.ok()
-	
+
 	def cancel(self):
 		self.close(False)
-	
+
 	def ok(self):
 		if self.type == self.TYPE_YESNO:
 			self.close(self["list"].getCurrent()[1] == 0)
@@ -111,13 +111,13 @@ class MessageBox(Screen):
 
 	def up(self):
 		self.move(self["list"].instance.moveUp)
-		
+
 	def down(self):
 		self.move(self["list"].instance.moveDown)
 
 	def left(self):
 		self.move(self["list"].instance.pageUp)
-		
+
 	def right(self):
 		self.move(self["list"].instance.pageDown)
 
