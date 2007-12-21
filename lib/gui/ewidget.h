@@ -6,6 +6,8 @@
 #include <lib/gui/ewindowstyle.h> /* for eWindowStyle */
 #include <lib/gui/ewidgetanimation.h>
 
+#define MAX_LAYER 16
+
 class eWidgetDesktop;class eWidgetDesktop;
 
 class eWidget
@@ -62,6 +64,8 @@ private:
 	
 	int m_vis;	
 
+	int m_layer;
+
 	ePtrList<eWidget> m_childs;
 	ePoint m_position;
 	eSize m_size;
@@ -72,7 +76,7 @@ private:
 	ePtr<eWindowStyle> m_style;
 	
 	void insertIntoParent();
-	void doPaint(gPainter &painter, const gRegion &region);
+	void doPaint(gPainter &painter, const gRegion &region, int layer);
 	void recalcClipRegionsWhenVisible();
 	
 	void parentRemoved();
@@ -90,7 +94,7 @@ public:
 
 		// all in local space!
 	gRegion	m_clip_region, m_visible_region, m_visible_with_childs;
-	struct eWidgetDesktopCompBuffer *m_comp_buffer;
+	struct eWidgetDesktopCompBuffer *m_comp_buffer[MAX_LAYER];
 	
 	enum eWidgetEvent
 	{

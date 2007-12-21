@@ -44,7 +44,10 @@ public:
 	
 	void recalcClipRegions(eWidget *root);
 	
-	void invalidate(const gRegion &region);
+	void invalidateWidgetLayer(const gRegion &region, const eWidget *widget, int layer);
+	void invalidateWidget(const gRegion &region, const eWidget *widget, int layer = -1);
+	void invalidate(const gRegion &region, const eWidget *widget = 0, int layer = -1);
+	void paintLayer(eWidget *widget, int layer);
 	void paint();
 	void setDC(gDC *dc);
 	
@@ -80,8 +83,8 @@ private:
 	
 	eWidgetDesktopCompBuffer m_screen;
 	
-	void createBufferForWidget(eWidget *widget);
-	void removeBufferForWidget(eWidget *widget);
+	void createBufferForWidget(eWidget *widget, int layer);
+	void removeBufferForWidget(eWidget *widget, int layer);
 	
 	void redrawComposition(int notifed);
 	void notify();
