@@ -6,6 +6,7 @@ extern void dumpRegion(const gRegion &region);
 eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->child() : 0)
 {
 	m_vis = 0;
+	m_layer = 0;
 	m_desktop = 0;
 	m_have_background_color = 0;
 	m_z_position = 0;
@@ -82,16 +83,20 @@ void eWidget::invalidate(const gRegion &region)
 		return;
 	eWidget *root = this;
 	ePoint abspos = position();
+	int target_layer = m_layer;
+
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
 		assert(root);
+		if (root->m_layer != -1)
+			target_layer = root->m_layer;
 		abspos += root->position();
 	}
 	res.moveBy(abspos);
 //	eDebug("region to invalidate:");
 //	dumpRegion(res);
-	root->m_desktop->invalidate(res);
+	root->m_desktop->invalidate(res, this, target_layer);
 }
 
 void eWidget::show()
@@ -106,6 +111,8 @@ void eWidget::show()
 		/* TODO: optimize here to only recalc what's required. possibly merge with hide. */
 	eWidget *root = this;
 	ePoint abspos = position();
+	int target_layer = m_layer;
+
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
@@ -118,6 +125,8 @@ void eWidget::show()
 			/* assert(root); */
 			return;
 		}
+		if (root->m_layer != -1)
+			target_layer = root->m_layer;
 		abspos += root->position();
 	}
 
@@ -125,7 +134,7 @@ void eWidget::show()
 
 	gRegion abs = m_visible_with_childs;
 	abs.moveBy(abspos);
-	root->m_desktop->invalidate(abs);
+	root->m_desktop->invalidate(abs, this, target_layer);
 }
 
 void eWidget::hide()
@@ -255,7 +264,7 @@ void eWidget::insertIntoParent()
 	}
 }
 
-void eWidget::doPaint(gPainter &painter, const gRegion &r)
+void eWidget::doPaint(gPainter &painter, const gRegion &r, int layer)
 {
 	if (m_visible_with_childs.empty())
 		return;
@@ -264,17 +273,20 @@ void eWidget::doPaint(gPainter &painter, const gRegion &r)
 	region.moveBy(-position());
 	painter.moveOffset(position());
 		/* check if there's anything for us to paint */
-	region &= m_visible_region;
-	if (!region.empty())
+	if (layer == m_layer)
 	{
-		painter.resetClip(region);
-		event(evtPaint, &region, &painter);
+		region &= m_visible_region;
+		if (!region.empty())
+		{
+			painter.resetClip(region);
+			event(evtPaint, &region, &painter);
+		}
 	}
 
 	childs.moveBy(-position());
 		/* walk all childs */
 	for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
-		i->doPaint(painter, childs);
+		i->doPaint(painter, childs, layer);
 	painter.moveOffset(-position());
 }
 
