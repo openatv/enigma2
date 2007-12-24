@@ -5,7 +5,8 @@ from MenuList import MenuList
 from Components.ParentalControl import parentalControl
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import LoadPixmap, eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from enigma import eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Tools.LoadPixmap import LoadPixmap
 
 lockPicture = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "lock-fs8.png"))
 
