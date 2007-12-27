@@ -107,7 +107,7 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 
 		self["MediaPlayerActions"] = HelpableActionMap(self, "MediaPlayerActions", 
 			{
-				"play": (self.playEntry, _("play entry")),
+				"play": (self.xplayEntry, _("play entry")),
 				"pause": (self.pauseEntry, _("pause")),
 				"stop": (self.stopEntry, _("stop entry")),
 				"previous": (self.previousEntry, _("play previous playlist entry")),
@@ -591,7 +591,24 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 			if serviceRefList[count] == serviceref:
 				self.changeEntry(count)
 				break
-
+			
+	def xplayEntry(self):
+		if self.currList == "playlist":
+			self.playEntry()
+		else:
+			self.stopEntry()
+			self.playlist.clear()
+			sel = self.filelist.getSelection()
+			if sel:
+				if sel[1]: # can descent
+					# add directory to playlist
+					self.copyDirectory(sel[0])
+				else:
+					# add files to playlist
+					self.copyDirectory(os_path.dirname(sel[0].getPath()) + "/", recursive = False)
+			if len(self.playlist) > 0:
+				self.changeEntry(0)
+	
 	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
 			needsInfoUpdate = False
