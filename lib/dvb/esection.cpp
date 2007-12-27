@@ -37,7 +37,7 @@ void eGTable::sectionRead(const __u8 *d)
 
 void eGTable::timeout()
 {
-	eDebug("timeout!");
+	eDebug("timeout %04x!", m_table.pid);
 	if (m_reader)
 	{
 		m_reader->stop();
