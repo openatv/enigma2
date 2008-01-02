@@ -621,7 +621,7 @@ ChannelMap eDVBCAService::exist_channels;
 ePtr<eConnection> eDVBCAService::m_chanAddedConn;
 
 eDVBCAService::eDVBCAService()
-	:m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eApp)
+	:m_sn(0), m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eApp)
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(m_retryTimer.timeout, eDVBCAService::sendCAPMT);
@@ -632,6 +632,7 @@ eDVBCAService::~eDVBCAService()
 {
 	eDebug("[eDVBCAService] free service %s", m_service.toString().c_str());
 	::close(m_sock);
+	delete m_sn;
 }
 
 // begin static methods
@@ -808,17 +809,49 @@ channel_data *eDVBCAService::getChannelData(eDVBChannelID &chid)
 }
 // end static methods
 
+void eDVBCAService::socketCB(int what)
+{
+	if (what & eSocketNotifier::Read)
+		/*eDebug("[eDVBCAService] data to read\n")*/;
+	if (what & eSocketNotifier::Priority)
+		/*eDebug("[eDVBCAService] priority data to read\n")*/;
+	if (what & eSocketNotifier::Hungup) {
+		/*eDebug("[eDVBCAService] connection closed\n")*/;
+		m_sendstate=1;
+		sendCAPMT();
+	}
+	if (what & eSocketNotifier::Error)
+		/*eDebug("[eDVBCAService] connection error\n")*/;
+}
+
 void eDVBCAService::Connect()
 {
+	if (m_sn) {
+		delete m_sn;
+		m_sn=0;
+	}
 	memset(&m_servaddr, 0, sizeof(struct sockaddr_un));
 	m_servaddr.sun_family = AF_UNIX;
 	strcpy(m_servaddr.sun_path, "/tmp/camd.socket");
 	m_clilen = sizeof(m_servaddr.sun_family) + strlen(m_servaddr.sun_path);
 	m_sock = socket(PF_UNIX, SOCK_STREAM, 0);
-	connect(m_sock, (struct sockaddr *) &m_servaddr, m_clilen);
-	fcntl(m_sock, F_SETFL, O_NONBLOCK);
-	int val=1;
-	setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
+	if (m_sock != -1)
+	{
+		if (!connect(m_sock, (struct sockaddr *) &m_servaddr, m_clilen))
+		{
+			int val=1;
+			fcntl(m_sock, F_SETFL, O_NONBLOCK);
+			setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
+			m_sn = new eSocketNotifier(eApp, m_sock,
+				eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
+			CONNECT(m_sn->activated, eDVBCAService::socketCB);
+			
+		}
+//		else
+//			eDebug("[eDVBCAService] connect failed %m");
+	}
+	else
+		eDebug("[eDVBCAService] create socket failed %m");
 }
 
 void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
