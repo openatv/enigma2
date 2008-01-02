@@ -45,7 +45,7 @@ class PluginDescriptor:
 	# or return a function which is called with session and the interface name for extended setup of this interface
 	WHERE_NETWORKSETUP = 10
 	
-	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None):
+	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None):
 		self.name = name
 		if type(where) is list:
 			self.where = where
@@ -59,6 +59,8 @@ class PluginDescriptor:
 		else:
 			self.icon = icon
 
+		self.wakeupfnc = wakeupfnc
+
 		self.__call__ = fnc
 
 	def updateIcon(self, path):
@@ -66,6 +68,9 @@ class PluginDescriptor:
 			self.icon = LoadPixmap(path + "/" + self.iconstr)
 		else:
 			self.icon = None
+
+	def getWakeupTime(self):
+		return self.wakeupfnc and self.wakeupfnc() or -1
 
 	def __eq__(self, other):
 		return self.__call__ == other.__call__
