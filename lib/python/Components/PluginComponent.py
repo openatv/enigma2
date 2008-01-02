@@ -116,4 +116,12 @@ class PluginComponent:
 	def resetWarnings(self):
 		self.warnings = [ ]
 
+	def getNextWakeupTime(self):
+		wakeup = -1
+		for p in self.pluginList:
+			current = p.getWakeupTime()
+			if current > -1 and wakeup < current:
+				wakeup = current
+		return int(wakeup)
+
 plugins = PluginComponent()
