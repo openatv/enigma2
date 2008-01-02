@@ -35,6 +35,7 @@ typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
 
 class eDVBCAService: public Object
 {
+	eSocketNotifier *m_sn;
 	eServiceReferenceDVB m_service;
 	uint8_t m_used_demux[32];
 	unsigned int m_prev_build_hash;
@@ -46,6 +47,7 @@ class eDVBCAService: public Object
 	eTimer m_retryTimer;
 	void sendCAPMT();
 	void Connect();
+	void socketCB(int what);
 
 	static void DVBChannelAdded(eDVBChannel*);
 	static void DVBChannelStateChanged(iDVBChannel*);
