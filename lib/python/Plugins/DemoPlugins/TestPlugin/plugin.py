@@ -25,7 +25,7 @@ class Test(Screen):
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions"],
 		{
-			"ok": self.ok,
+			"ok": self.openTest,
 			"back": self.close,
 #			"left": self.keyLeft,
 #			"right": self.keyRight,
@@ -41,14 +41,14 @@ class Test(Screen):
 			"0": self.keyNumberGlobal
 		}, -1)
 		
-		self.onShown.append(self.openTest)
+		#self.onShown.append(self.openTest)
 
 	def openTest(self):
-		self.session.openWithCallback(self.callback, MessageBox, _("Test-Messagebox?"))
+		self.session.openWithCallback(self.mycallback, MessageBox, _("Test-Messagebox?"))
 
 #		self.session.open(InputBox)
 	
-	def callback(self, answer):
+	def mycallback(self, answer):
 		print "answer:", answer
 		self.close()
 	
@@ -70,7 +70,8 @@ class Test(Screen):
 		self["text"].number(number)
 
 def main(session, **kwargs):
-	session.openWithCallback(test, MessageBox, _("Test-Messagebox?"), timeout = 10)
+	session.open(Test)
+	#session.openWithCallback(test, MessageBox, _("Test-Messagebox?"), timeout = 10)
 	#session.openWithCallback(test, ChoiceBox, title="Delete everything on this Dreambox?", list=[(_("yes"), "yes"), (_("no"), "no"), (_("perhaps"), "perhaps"), (_("ask me tomorrow"), "ask me tomorrow"), (_("leave me alone with this!"), "yes")])
 	
 def test(returnValue):
