@@ -18,7 +18,7 @@ int bidirpipe(int pfd[], char *cmd , char *argv[])
 	if ( pipe(pfdin) == -1 || pipe(pfdout) == -1 || pipe(pfderr) == -1)
 		return(-1);
 
-	if ( ( pid = fork() ) == -1 )
+	if ( ( pid = vfork() ) == -1 )
 		return(-1);
 	else if (pid == 0) /* child process */
 	{
@@ -57,148 +57,95 @@ eConsoleAppContainer::eConsoleAppContainer()
 		fd[i]=-1;
 }
 
-int eConsoleAppContainer::execute( const std::string &cmd )
+static char brakets[][2] = {
+	{ '\'','\'' },
+	{'"','"'},
+	{'`','`'},
+	{'(',')'},
+	{'{','}'},
+	{'[',']'},
+	{'<','>'}
+};
+
+static char *find_bracket(char ch)
+{
+	size_t idx=0;
+	while (idx < sizeof(brakets)/2) {
+		if (brakets[idx][0] == ch)
+			return &brakets[idx][0];
+		++idx;
+	}
+	return NULL;
+}
+
+int eConsoleAppContainer::execute( const char *cmd )
 {
 	if (running())
 		return -1;
 	pid=-1;
 	killstate=0;
-//	eDebug("cmd = %s", cmd.c_str() );
-	int cnt=2; // path to app + terminated 0
-	std::string str(cmd.length()?cmd:"");
+
+	int cnt=0, slen=strlen(cmd);
+	char buf[slen+1];
+	char *tmp=0, *argv[64], *path=buf, *cmds = buf;
+	memcpy(buf, cmd, slen+1);
+
+//	printf("cmd = %s, len %d\n", cmd, slen);
 
 	// kill spaces at beginning
-	unsigned int pos = str.find_first_not_of(' ');
-	if (pos != std::string::npos && pos)
-		str = str.substr(pos);
+	while(path[0] == ' ') {
+		++path;
+		++cmds;
+		--slen;
+	}
 
 	// kill spaces at the end
-	pos = str.find_last_not_of(' ');
-	if (pos != std::string::npos && (pos+1) < str.length())
-		str = str.erase(pos+1);
+	while(slen && path[slen-1] == ' ') {
+		path[slen-1] = 0;
+		--slen;
+	}
 
-	unsigned int slen=str.length();
 	if (!slen)
 		return -2;
 
-	std::map<char,char> brackets;
-	brackets.insert(std::pair<char,char>('\'','\''));
-	brackets.insert(std::pair<char,char>('"','"'));
-	brackets.insert(std::pair<char,char>('`','`'));
-	brackets.insert(std::pair<char,char>('(',')'));
-	brackets.insert(std::pair<char,char>('{','}'));
-	brackets.insert(std::pair<char,char>('[',']'));
-	brackets.insert(std::pair<char,char>('<','>'));
+	tmp = strchr(path, ' ');
+	if (!tmp)
+		return -3;
 
-	unsigned int idx=str.find(' ');
-	std::string path = str.substr(0, idx != std::string::npos ? idx : slen );
-//	eDebug("path = %s", path.c_str() );
-	unsigned int plen = path.length();
+	*tmp = 0;
+	cmds = tmp+1;
 
-	std::string cmds = slen > plen ? str.substr( plen+1 ) : "";
-	unsigned int clen = cmds.length();
-//	eDebug("cmds = %s", cmds.c_str() );
+	memset(argv, 0, sizeof(argv));
+	argv[cnt++] = path;
 
-	idx = 0;
-	std::map<char,char>::iterator it = brackets.find(cmds[idx]);
-	while ( (idx = cmds.find(' ',idx) ) != std::string::npos )  // count args
-	{
-		if (it != brackets.end())
-		{
-			if (cmds[idx-1] == it->second)
-				it = brackets.end();
-		}
-		if (it == brackets.end())
-		{
-			cnt++;
-			it = brackets.find(cmds[idx+1]);
-		}
-		idx++;
-	}
-
-//	eDebug("idx = %d, %d counted spaces", idx, cnt-2);
-
-	if ( clen )
-	{
-		cnt++;
-//		eDebug("increase cnt");
-	}
-
-//	eDebug("%d args", cnt-2);
-	char **argv = new char*[cnt];  // min two args... path and terminating 0
-//	eDebug("%d args", cnt);
-	argv[0] = new char[ plen+1 ];
-//	eDebug("new argv[0] %d bytes (%s)", plen+1, path.c_str());
-	strcpy( argv[0], path.c_str() );
-	argv[cnt-1] = 0;               // set terminating null
-
-	if ( cnt > 2 )  // more then default args?
-	{
-		cnt=1;  // do not overwrite path in argv[0]
-
-		it = brackets.find(cmds[0]);
-		idx=0;
-		while ( (idx = cmds.find(' ',idx)) != std::string::npos )  // parse all args..
-		{
-			bool bracketClosed=false;
-			if ( it != brackets.end() )
-			{
-				if (cmds[idx-1]==it->second)
-				{
-					it = brackets.end();
-					bracketClosed=true;
-				}
+	if (slen) {
+		char *argb=NULL;
+		char *it = find_bracket(*cmds);
+		while ( (tmp = strchr(cmds, ' ')) ) {
+			if (!argb) // not arg begin
+				argb = cmds;
+			if (it && *(tmp-1) == it[1]) {
+				it = 0;
 			}
-			if ( it == brackets.end() )
-			{
-				std::string tmp = cmds.substr(0, idx);
-				if (bracketClosed)
-				{
-					tmp.erase(0,1);
-					tmp.erase(tmp.length()-1, 1);
-					bracketClosed=false;
-				}
-//				eDebug("new argv[%d] %d bytes (%s)", cnt, tmp.length()+1, tmp.c_str());
-				argv[cnt] = new char[ tmp.length()+1 ];
-//				eDebug("idx=%d, arg = %s", idx, tmp.c_str() );
-				strcpy( argv[cnt++], tmp.c_str() );
-				cmds.erase(0, idx+1);
-//				eDebug("str = %s", cmds.c_str() );
-				it = brackets.find(cmds[0]);
-				idx=0;
+			if (!it) { // end of arg
+				argv[cnt++] = argb;
+				argb=0; // reset arg begin
+				it = find_bracket(*(tmp+1));
+				*tmp = 0;
 			}
-			else
-				idx++;
+			cmds = tmp+1;
 		}
-		if ( it != brackets.end() )
-		{
-			cmds.erase(0,1);
-			cmds.erase(cmds.length()-1, 1);
-		}
-		// store the last arg
-//		eDebug("new argv[%d] %d bytes (%s)", cnt, cmds.length()+1, cmds.c_str());
-		argv[cnt] = new char[ cmds.length()+1 ];
-		strcpy( argv[cnt], cmds.c_str() );
+		argv[cnt++] = argb ? argb : cmds;
 	}
-	else
-		cnt=1;
 
-  // get one read ,one write and the err pipe to the prog..
+	// get one read ,one write and the err pipe to the prog..
 
 //	int tmp=0;
 //	while(argv[tmp])
 //		eDebug("%d is %s", tmp, argv[tmp++]);
-  
+
 	pid = bidirpipe(fd, argv[0], argv);
 
-	while ( cnt >= 0 )  // release heap memory
-	{
-//		eDebug("delete argv[%d]", cnt);
-		delete [] argv[cnt--];
-	}
-//	eDebug("delete argv");
-	delete [] argv;
-	
 	if ( pid == -1 )
 		return -3;
 
@@ -210,6 +157,7 @@ int eConsoleAppContainer::execute( const std::string &cmd )
 	CONNECT(in->activated, eConsoleAppContainer::readyRead);
 	CONNECT(out->activated, eConsoleAppContainer::readyWrite);
 	CONNECT(err->activated, eConsoleAppContainer::readyErrRead);
+
 	return 0;
 }
 

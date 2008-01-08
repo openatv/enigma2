@@ -33,7 +33,7 @@ class eConsoleAppContainer: public Object
 #endif
 public:
 	eConsoleAppContainer();
-	int execute( const std::string &str );
+	int execute( const char *str );
 	~eConsoleAppContainer();
 	int getPID() { return pid; }
 	void kill();
