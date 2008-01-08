@@ -18,8 +18,10 @@ class SimpleSummary(Screen):
 		  names = [names]
 
 		self.skinName = [ x + "_summary" for x in names ]
+		self.skinName.append("SimpleSummary")
+
 		self["Clock"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
-		self["Title"] = Label(parent.title)
+		self["Title"] = Label(parent.title or "")
 
 	def setTitle(self, title):
 		self["Title"].setText(title)
