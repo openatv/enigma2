@@ -132,7 +132,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		rec=(self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
+		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -148,7 +148,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		rec=(self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
+		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.service_rect

@@ -215,7 +215,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			borderColor = self.borderColor
 
 			for ev in events:  #(event_id, event_title, begin_time, duration)
-				rec=self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
+				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
 				res.append(MultiContentEntryText(pos = (left+xpos, top), size = (ewidth, height), font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP, text = ev[1], color = foreColor, color_sel = foreColorSelected, backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
 				if rec and ewidth > 23:
