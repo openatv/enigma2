@@ -200,7 +200,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def fillMultiEPG(self, services, stime=-1):
 		t = time()
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
-		test.insert(0, '0RIBDTCn')
+		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		print time() - t
@@ -209,7 +209,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def updateMultiEPG(self, direction):
 		t = time()
 		test = [ x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list ]
-		test.insert(0, 'RIBDTCn')
+		test.insert(0, 'XRIBDTCn')
 		tmp = self.queryEPG(test)
 		cnt=0
 		for x in tmp:
