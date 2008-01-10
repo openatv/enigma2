@@ -272,7 +272,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.cur_service = None
 			self.time_base = int(stime)
 			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
-		test.insert(0, 'RnITBD')
+		test.insert(0, 'XRnITBD')
 		epg_data = self.queryEPG(test)
 
 		self.list = [ ]

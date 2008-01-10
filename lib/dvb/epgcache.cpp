@@ -1518,10 +1518,10 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 
 RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin, int minutes)
 {
+	singleLock s(cache_lock);
 	const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 	if (begin == -1)
 		begin = eDVBLocalTimeHandler::getInstance()->nowTime();
-	Lock();
 	eventCache::iterator It = eventDB.find(ref);
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
@@ -1547,10 +1547,8 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 			m_timemap_end = It->second.second.end();
 
 		currentQueryTsidOnid = (ref.getTransportStreamID().get()<<16) | ref.getOriginalNetworkID().get();
-		Unlock();
-		return -(m_timemap_cursor == m_timemap_end);
+		return m_timemap_cursor == m_timemap_end ? -1 : 0;
 	}
-	Unlock();
 	return -1;
 }
 
@@ -1598,11 +1596,12 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service, eServiceEvent *ptr, ePyObject nowTime, ePyObject service_name )
 {
 	ePyObject tmp;
-	int pos=0;
-	while(pos < argcount)
+	int spos=0, tpos=0;
+	char c;
+	while(spos < argcount)
 	{
 		bool inc_refcount=false;
-		switch(argstring[pos])
+		switch((c=argstring[spos++]))
 		{
 			case '0': // PyLong 0
 				tmp = PyLong_FromLong(0);
@@ -1637,6 +1636,12 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 			case 'N': // service name
 				tmp = service_name;
 				inc_refcount = true;
+				break;
+			case 'X':
+				++argcount;
+				continue;
+			default:  // ignore unknown
+				eDebug("fillTuple unknown '%c'... insert 'None' in result", c);
 		}
 		if (!tmp)
 		{
@@ -1645,7 +1650,7 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 		}
 		if (inc_refcount)
 			Py_INCREF(tmp);
-		PyTuple_SET_ITEM(tuple, pos++, tmp);
+		PyTuple_SET_ITEM(tuple, tpos++, tmp);
 	}
 }
 
@@ -1694,6 +1699,9 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, char* argstring, int ar
 //   R = Service Reference
 //   N = Service Name
 //   n = Short Service Name
+//   X = Return a minimum of one tuple per service in the result list... even when no event was found.
+//       The returned tuple is filled with all available infos... non avail is filled as None
+//       The position and existence of 'X' in the format string has no influence on the result tuple... its completely ignored..
 // then for each service follows a tuple
 //   first tuple entry is the servicereference (as string... use the ref.toString() function)
 //   the second is the type of query
@@ -1740,6 +1748,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 		argcount = strlen(argstring);
 //		eDebug("have %d args('%s')", argcount, argstring);
 	}
+
+	bool forceReturnOne = strchr(argstring, 'X') ? true : false;
+	if (forceReturnOne)
+		--argcount;
+
 	if (convertFunc)
 	{
 		if (!PyCallable_Check(convertFunc))
@@ -1870,7 +1883,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			}
 			if (minutes)
 			{
-				Lock();
+				singleLock s(cache_lock);
 				if (!startTimeQuery(ref, stime, minutes))
 				{
 					while ( m_timemap_cursor != m_timemap_end )
@@ -1879,15 +1892,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						eServiceEvent evt;
 						evt.parseFrom(&ev, currentQueryTsidOnid);
 						if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
-						{
-							Unlock();
 							return 0;  // error
-						}
 					}
 				}
-				else
-					handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs);
-				Unlock();
+				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+					return 0;  // error
 			}
 			else
 			{
@@ -1895,6 +1904,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				Event *ev=0;
 				if (stime)
 				{
+					singleLock s(cache_lock);
 					if (type == 2)
 						lookupEventId(ref, event_id, ev);
 					else
@@ -1905,7 +1915,12 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 						evt.parseFrom(ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
 					}
 				}
-				if (handleEvent(ev ? &evt : 0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				if (ev)
+				{
+					if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						return 0; // error
+				}
+				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
 					return 0; // error
 			}
 			if (service_changed)
@@ -1968,6 +1983,8 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 				tmp = service_name;
 				inc_refcount = true;
 				break;
+			default:  // ignore unknown
+				eDebug("fillTuple2 unknown '%c'... insert None in Result", argstring[pos]);
 		}
 		if (!tmp)
 		{
@@ -2095,16 +2112,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 					}
 					else
 					{
-						PyErr_SetString(PyExc_StandardError,
-							"type error");
+						PyErr_SetString(PyExc_StandardError, "type error");
 						eDebug("tuple arg 4 is not a valid service reference string");
 						return NULL;
 					}
 				}
 				else
 				{
-					PyErr_SetString(PyExc_StandardError,
-					"type error");
+					PyErr_SetString(PyExc_StandardError, "type error");
 					eDebug("tuple arg 4 is not a string");
 					return NULL;
 				}
