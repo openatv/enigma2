@@ -305,7 +305,7 @@ void eDVBPESReader::data(int)
 			return;
 		if(r < 0)
 		{
-			if (errno == EAGAIN) /* ok */
+			if (errno == EAGAIN || errno == EINTR) /* ok */
 				return;
 			eWarning("ERROR reading PES (fd=%d) - %m", m_fd);
 			return;
