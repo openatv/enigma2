@@ -43,12 +43,14 @@ class Console(Screen):
 	def startRun(self):
 		self["text"].setText(_("Execution Progress:") + "\n\n")
 		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
-		self.container.execute(self.cmdlist[self.run])
+		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+			self.runFinished(-1) # so we must call runFinished manual
 
 	def runFinished(self, retval):
 		self.run += 1
 		if self.run != len(self.cmdlist):
-			self.container.execute(self.cmdlist[self.run])
+			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			str = self["text"].getText()
 			str += _("Execution finished!!");
