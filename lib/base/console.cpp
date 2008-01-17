@@ -109,41 +109,48 @@ int eConsoleAppContainer::execute( const char *cmd )
 		return -2;
 
 	tmp = strchr(path, ' ');
-	if (!tmp)
-		return -3;
-
-	*tmp = 0;
-	cmds = tmp+1;
+	if (tmp) {
+		*tmp = 0;
+		cmds = tmp+1;
+		while(*cmds && *cmds == ' ')
+			++cmds;
+	}
+	else
+		cmds = path+slen;
 
 	memset(argv, 0, sizeof(argv));
 	argv[cnt++] = path;
 
-	if (slen) {
-		char *argb=NULL;
-		char *it = find_bracket(*cmds);
+	if (*cmds) {
+		char *argb=NULL, *it=NULL;
 		while ( (tmp = strchr(cmds, ' ')) ) {
+			if (!it && *cmds && (it = find_bracket(*cmds)) )
+				*cmds = 'X'; // replace open braket...
 			if (!argb) // not arg begin
 				argb = cmds;
 			if (it && *(tmp-1) == it[1]) {
+				*argb = it[0]; // set old char for open braket
 				it = 0;
 			}
 			if (!it) { // end of arg
+				*tmp = 0;
 				argv[cnt++] = argb;
 				argb=0; // reset arg begin
-				it = find_bracket(*(tmp+1));
-				*tmp = 0;
 			}
 			cmds = tmp+1;
+			while (*cmds && *cmds == ' ')
+				++cmds;
 		}
 		argv[cnt++] = argb ? argb : cmds;
+		if (it)
+		    *argv[cnt-1] = it[0]; // set old char for open braket
 	}
-
-	// get one read ,one write and the err pipe to the prog..
 
 //	int tmp=0;
 //	while(argv[tmp])
 //		eDebug("%d is %s", tmp, argv[tmp++]);
 
+	// get one read ,one write and the err pipe to the prog..
 	pid = bidirpipe(fd, argv[0], argv);
 
 	if ( pid == -1 )
