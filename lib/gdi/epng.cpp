@@ -210,9 +210,10 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 			int x;
 			for (x = 0; x < (int)cinfo.output_width; ++x)
 			{
-				*dst++ = *src++;
-				*dst++ = *src++;
-				*dst++ = *src++;
+				*dst++ = src[2];
+				*dst++ = src[1];
+				*dst++ = src[0];
+				src += 3;
 				if (palpha)
 					*dst++ = *palpha++;
 				else 
