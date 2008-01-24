@@ -9,11 +9,9 @@ from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 from Screens.Setup import SetupSummary
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, ConfigSubDict
+from Components.config import getConfigListEntry, config
 from VideoWizard import VideoWizard
 from Components.config import config
-
-from Tools.CList import CList
 
 from VideoHardware import video_hw
 
@@ -64,6 +62,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
 			self.list.append(getConfigListEntry(_("Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
+#		if config.av.videoport.value == "DVI":
+#			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -93,7 +94,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		rate = config.av.videorate[mode].value
 		if (port, mode, rate) != self.last_good or True:
 			self.hw.setMode(port, mode, rate)
-			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 5, default = False)
+			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
 			self.keySave()
 
@@ -111,37 +112,55 @@ class VideoSetup(Screen, ConfigListScreen):
 	def createSummary(self):
 		return SetupSummary
 
-#class VideomodeHotplug:
-#	def __init__(self, hw):
-#		self.hw = hw
-#		self.hw.on_hotplug.append(self.hotplug)
-#
-#	def hotplug(self, what):
-#		print "hotplug detected on port '%s'" % (what)
-# ...
-#
-#hotplug = None
-#
-#def startHotplug(self):
-#	global hotplug
-#	hotplug = VideomodeHotplug()
-#	hotplug.start()
-#
-#def stopHotplug(self):
-#	global hotplug
-#	hotplug.stop()
-#
-#
-#def autostart(reason, session = None, **kwargs):
-#	if session is not None:
-#		global my_global_session
-#		my_global_session = session
-#		return
-#
-#	if reason == 0:
-#		startHotplug()
-#	elif reason == 1:
-#		stopHotplug()
+class VideomodeHotplug:
+	def __init__(self, hw):
+		self.hw = hw
+
+	def start(self):
+		self.hw.on_hotplug.append(self.hotplug)
+
+	def stop(self):
+		self.hw.on_hotplug.remove(self.hotplug)
+
+	def hotplug(self, what):
+		print "hotplug detected on port '%s'" % (what)
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+
+		if not self.hw.isModeAvailable(port, mode, rate):
+			print "mode %s/%s/%s went away!" % (port, mode, rate)
+			modelist = self.hw.getModeList(port)
+			if not len(modelist):
+				print "sorry, no other mode is available (unplug?). Doing nothing."
+				return
+			mode = modelist[0][0]
+			rate = modelist[0][1]
+			print "setting %s/%s/%s" % (port, mode, rate)
+			self.hw.setMode(port, mode, rate)
+
+hotplug = None
+
+def startHotplug():
+	global hotplug, video_hw
+	hotplug = VideomodeHotplug(video_hw)
+	hotplug.start()
+
+def stopHotplug():
+	global hotplug
+	hotplug.stop()
+
+
+def autostart(reason, session = None, **kwargs):
+	if session is not None:
+		global my_global_session
+		my_global_session = session
+		return
+
+	if reason == 0:
+		startHotplug()
+	elif reason == 1:
+		stopHotplug()
 
 def videoSetupMain(session, **kwargs):
 	session.open(VideoSetup, video_hw)
@@ -153,8 +172,10 @@ def startSetup(menuid):
 	return [(_("Video Setup"), videoSetupMain, "video_setup", None)]
 
 def Plugins(**kwargs):
-	list = []
-	list.append(PluginDescriptor(name=_("Video Setup"), description=_("Advanced Video Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup))
+	list = [
+#		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
+		PluginDescriptor(name=_("Video Setup"), description=_("Advanced Video Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup) 
+	]
 	if config.misc.firstrun.value:
 		list.append(PluginDescriptor(name=_("Video Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=VideoWizard))
  	return list
