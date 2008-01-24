@@ -16,6 +16,7 @@ to generate HTML."""
 		self.item_height = item_height
 		self.fonts = fonts
 		self.disable_callbacks = False
+		self.enableWrapAround = enableWrapAround
 
 	def setList(self, list):
 		self.__list = list
@@ -57,6 +58,20 @@ to generate HTML."""
 	setCurrentIndex = setIndex
 
 	index = property(getIndex, setIndex)
+	
+	def selectNext(self):
+		if self.getIndex() + 1 >= self.count():
+			if self.enableWrapAround:
+				self.index = 0
+		else:
+			self.index += 1
+
+	def selectPrevious(self):
+		if self.getIndex() - 1 < 0:
+			if self.enableWrapAround:
+				self.index = self.count() - 1
+		else:
+			self.index -= 1
 
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
