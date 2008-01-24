@@ -1,0 +1,49 @@
+<wizard>
+	<step id="inputselection" nextstep="modeselection" timeout="10" timeoutaction="selectnext">
+		<text value="Video input selction\n\nPlease press OK if you can see this page on your TV (or select a different input port).\n\nThe next input port will be automatically probed in 10 seconds." />
+		<displaytext value="Select video input" />
+		<list type="dynamic" source="listInputChannels" evaluation="inputSelectionMade" onselect="inputSelectionMoved" />
+		<code>
+self["arrowdown"].moveTo(557, 232, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="modeselection" nextstep="rateselection" timeout="10" timeoutaction="selectnext">
+		<text value="Video mode selection." />
+		<displaytext value="Select video mode" />
+		<list type="dynamic" source="listModes" evaluation="modeSelectionMade" onselect="modeSelectionMoved" />
+		<code>
+self["arrowup2"].moveTo(800, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(557, 200, 1)
+self["arrowup"].moveTo(557, 355, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="rateselection" nextstep="end" timeout="10" timeoutaction="selectnext">
+		<text value="Rate selection." />
+		<displaytext value="Select video mode rate" />
+		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
+		<code>
+self["arrowup2"].moveTo(800, 320, 1)
+self["arrowup2"].startMoving()
+self["arrowdown"].moveTo(557, 200, 1)
+self["arrowup"].moveTo(557, 355, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="end">
+			<text value="The input port should be configured now." />
+			<displaytext value="No picture on TV? Press EXIT and retry." />
+		</step>
+</wizard>
