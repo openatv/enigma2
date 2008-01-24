@@ -280,31 +280,42 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 {
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
+	int foundone = 0;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		int c = i->m_frontend->isCompatibleWith(feparm);
+
+		if (c)	/* if we have at least one frontend which is compatible with the source, flag this. */
+			foundone = 1;
+
 		if (!i->m_inuse)
 		{
-			int c = i->m_frontend->isCompatibleWith(feparm);
 			if (c > bestval)
 			{
 				bestval = c;
 				best = i;
 			}
 		}
+	}
 
 	if (best)
 	{
 		fe = new eDVBAllocatedFrontend(best);
 		return 0;
 	}
-	
+
 	fe = 0;
-	
-	return -1;
+
+	if (foundone)
+		return errAllSourcesBusy;
+	else
+		return errNoSourceFound;
 }
 
 RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index)
 {
+	int err = errNoSourceFound;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 		if (!i->m_inuse && i->m_frontend->getSlotID() == slot_index)
 		{
@@ -316,6 +327,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 				if (satpos_depends_to_fe->m_inuse)
 				{
 					eDebug("another satpos depending frontend is in use.. so allocateFrontendByIndex not possible!");
+					err = errAllSourcesBusy;
 					goto alloc_fe_by_id_not_possible;
 				}
 			}
@@ -328,6 +340,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 					if (next->m_inuse)
 					{
 						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
+						err = errAllSourcesBusy;
 						goto alloc_fe_by_id_not_possible;
 					}
 					next = (eDVBRegisteredFrontend *)next->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
@@ -339,6 +352,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 					if (prev->m_inuse)
 					{
 						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
+						err = errAllSourcesBusy;
 						goto alloc_fe_by_id_not_possible;
 					}
 					prev = (eDVBRegisteredFrontend *)prev->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
@@ -349,7 +363,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 		}
 alloc_fe_by_id_not_possible:
 	fe = 0;
-	return -1;
+	return err;
 }
 
 RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap)
@@ -447,22 +461,23 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	if (!m_list)
 	{
 		eDebug("no channel list set!");
-		return -ENOENT;
+		return errNoChannelList;
 	}
 
 	ePtr<iDVBFrontendParameters> feparm;
 	if (m_list->getChannelFrontendData(channelid, feparm))
 	{
 		eDebug("channel not found!");
-		return -ENOENT;
+		return errChannelNotInList;
 	}
 
 	/* allocate a frontend. */
 	
 	ePtr<eDVBAllocatedFrontend> fe;
-	
-	if (allocateFrontend(fe, feparm))
-		return errNoFrontend;
+
+	int err = allocateFrontend(fe, feparm);
+	if (err)
+		return err;
 
 	RESULT res;
 	ePtr<eDVBChannel> ch;
@@ -522,9 +537,10 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 		m_releaseCachedChannelTimer.stop();
 	}
 
-	if (allocateFrontendByIndex(fe, slot_index))
-		return errNoFrontend;
-	
+	int err = allocateFrontendByIndex(fe, slot_index);
+	if (err)
+		return err;
+
 	eDVBChannel *ch;
 	ch = new eDVBChannel(this, fe);
 

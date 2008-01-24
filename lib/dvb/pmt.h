@@ -123,6 +123,8 @@ public:
 		
 		eventSOF,          // seek pre start
 		eventEOF,          // a file playback did end
+		
+		eventMisconfiguration, // a channel was not found in any list, or no frontend was found which could provide this channel
 	};
 #ifndef SWIG
 	Signal1<void,int> serviceEvent;

@@ -1103,6 +1103,7 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventNoPATEntry:
 	case eDVBServicePMTHandler::eventNoPMT:
 	case eDVBServicePMTHandler::eventTuneFailed:
+	case eDVBServicePMTHandler::eventMisconfiguration:
 	{
 		eDebug("DVB service failed to tune - error %d", event);
 		m_event((iPlayableService*)this, evTuneFailed);

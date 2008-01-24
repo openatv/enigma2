@@ -196,9 +196,13 @@ public:
 	RESULT getChannelList(ePtr<iDVBChannelList> &list);
 	
 	enum {
-		errNoFrontend = -1,
+			/* errNoFrontend = -1 replaced by more spcific messages */
 		errNoDemux    = -2,
-		errChidNotFound = -3
+		errChidNotFound = -3,
+		errNoChannelList = -4,
+		errChannelNotInList = -5,
+		errAllSourcesBusy = -6,
+		errNoSourceFound = -7,
 	};
 	
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);

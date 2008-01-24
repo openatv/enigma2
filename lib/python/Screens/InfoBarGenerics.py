@@ -2087,7 +2087,8 @@ class InfoBarServiceErrorPopupSupport:
 			eDVBServicePMTHandler.eventNewProgramInfo: None,
 			eDVBServicePMTHandler.eventTuned: None,
 			eDVBServicePMTHandler.eventSOF: None,
-			eDVBServicePMTHandler.eventEOF: None
+			eDVBServicePMTHandler.eventEOF: None,
+			eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
 		}
 
 		error = errors.get(error) #this returns None when the key not exist in the dict
