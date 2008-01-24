@@ -194,8 +194,14 @@ class Menu(Screen):
 		if menuID is not None:
 			# plugins
 			for l in plugins.getPluginsForMenu(menuID):
+				# check if a plugin overrides an existing menu
+				plugin_menuid = l[2]
+				for x in list:
+					print x[2], plugin_menuid
+					if x[2] == plugin_menuid:
+						list.remove(x)
+						break
 				list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
-					
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
