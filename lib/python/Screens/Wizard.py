@@ -9,9 +9,41 @@ from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
+from Components.Sources.List import List
+
+from enigma import eTimer
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+
+class WizardSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget name="text" position="6,4" size="120,42" font="Regular;14" />
+		<widget source="parent.list" render="Label" position="6,25" size="120,21" font="Regular;16">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>"""
+	
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent)
+		
+		#names = parent.skinName
+		#if not isinstance(names, list):
+			#names = [names]
+#			
+		#self.skinName = [x + "_summary" for x in names ]
+		#self.skinName.append("Wizard")
+		#print "*************+++++++++++++++++****************++++++++++******************* WizardSummary", self.skinName
+			#
+		self["text"] = Label("")
+		self.onShow.append(self.setCallback)
+		
+	def setCallback(self):
+		self.parent.setLCDTextCallback(self.setText)
+		
+	def setText(self, text):
+		self["text"].setText(text)
 
 class Wizard(Screen, HelpableScreen):
 
@@ -21,6 +53,10 @@ class Wizard(Screen, HelpableScreen):
 			self.wizard = wizard
 			self.currContent = ""
 			self.lastStep = 0
+			
+		def createSummary(self):
+			print "WizardCreateSummary"
+			return WizardSummary
 		
 		def startElement(self, name, attrs):
 			print "startElement", name
@@ -35,9 +71,27 @@ class Wizard(Screen, HelpableScreen):
 					nextstep = str(attrs.get('nextstep'))
 				else:
 					nextstep = None
-				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "nextstep": nextstep}
+				if attrs.has_key('timeout'):
+					timeout = int(attrs.get('timeout'))
+				else:
+					timeout = None
+				if attrs.has_key('timeoutaction'):
+					timeoutaction = str(attrs.get('timeoutaction'))
+				else:
+					timeoutaction = 'nextpage'
+				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "timeout": timeout, "timeoutaction": timeoutaction, "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "nextstep": nextstep}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
+			elif (name == "displaytext"):
+				self.wizard[self.lastStep]["displaytext"] = string.replace(str(attrs.get('value')), "\\n", "\n")
+			elif (name == "list"):
+				if (attrs.has_key('type')):
+					self.wizard[self.lastStep]["dynamiclist"] = attrs.get("source")
+					#self.wizard[self.lastStep]["list"].append(("Hallo", "test"))
+				if (attrs.has_key("evaluation")):
+					self.wizard[self.lastStep]["listevaluation"] = attrs.get("evaluation")
+				if (attrs.has_key("onselect")):
+					self.wizard[self.lastStep]["onselect"] = attrs.get("onselect")			
 			elif (name == "listentry"):
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif (name == "config"):
@@ -84,7 +138,10 @@ class Wizard(Screen, HelpableScreen):
 		print "Reading " + self.xmlfile
 		wizardHandler = self.parseWizard(self.wizard)
 		parser.setContentHandler(wizardHandler)
-		parser.parse('/usr/share/enigma2/' + self.xmlfile)
+		if self.xmlfile[0] != '/':
+			parser.parse('/usr/share/enigma2/' + self.xmlfile)
+		else:
+			parser.parse(self.xmlfile)
 
 		self.showSteps = showSteps
 		self.showStepSlider = showStepSlider
@@ -93,6 +150,9 @@ class Wizard(Screen, HelpableScreen):
 
 		self.numSteps = len(self.wizard)
 		self.currStep = 1
+		
+		self.timeoutTimer = eTimer()
+		self.timeoutTimer.timeout.get().append(self.timeoutCounterFired)
 
 		self["text"] = Label()
 
@@ -107,11 +167,15 @@ class Wizard(Screen, HelpableScreen):
 		
 		if self.showList:
 			self.list = []
-			self["list"] = MenuList(self.list)
+			self["list"] = List(self.list, enableWrapAround = True)
+			self["list"].onSelectionChanged.append(self.selChanged)
+			#self["list"] = MenuList(self.list, enableWrapAround = True)
 
 		self.onShown.append(self.updateValues)
 
 		self.configInstance = None
+		
+		self.lcdCallbacks = []
 		
 		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
 		{
@@ -119,8 +183,8 @@ class Wizard(Screen, HelpableScreen):
 			"back": self.back,
 			"left": self.left,
 			"right": self.right,
-			"up": self.up,
-			"down": self.down,
+			#"up": self.up,
+			#"down": self.down,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -132,6 +196,9 @@ class Wizard(Screen, HelpableScreen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+
+	def setLCDTextCallback(self, callback):
+		self.lcdCallbacks.append(callback)
 
 	def back(self):
 		if len(self.stepHistory) > 1:
@@ -160,9 +227,13 @@ class Wizard(Screen, HelpableScreen):
 			self.onShown.append(self.updateValues)
 
 		if self.showList:
-			if (len(self.wizard[currStep]["list"]) > 0):
-				nextStep = self.wizard[currStep]["list"][self["list"].l.getCurrentSelectionIndex()][1]
-				self.currStep = self.getStepWithID(nextStep)
+			if (len(self.wizard[currStep]["evaluatedlist"]) > 0):
+				print "current:", self["list"].current
+				nextStep = self["list"].current[1]
+				if (self.wizard[currStep].has_key("listevaluation")):
+					exec("self." + self.wizard[self.currStep]["listevaluation"] + "('" + nextStep + "')")
+				else:
+					self.currStep = self.getStepWithID(nextStep)
 
 		if (currStep == self.numSteps): # wizard finished
 			self.markDone()
@@ -200,36 +271,75 @@ class Wizard(Screen, HelpableScreen):
 			self.configInstance.keyNumberGlobal(number)
 		
 	def left(self):
+		self.resetCounter()
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyLeft()
 		print "left"
 	
 	def right(self):
+		self.resetCounter()
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyRight()
 		print "right"
 
 	def up(self):
+		self.resetCounter()
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
 				self["config"].instance.moveSelection(self["config"].instance.moveUp)
-		elif (self.showList and len(self.wizard[self.currStep]["list"]) > 0):
+		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			self["list"].instance.moveSelection(self["list"].instance.moveUp)
+			if self.wizard[self.currStep].has_key("onselect"):
+				self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
+				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "up"
 		
 	def down(self):
+		self.resetCounter()
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
-		elif (self.showList and len(self.wizard[self.currStep]["list"]) > 0):
-			self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
+			#self["list"].instance.moveSelection(self["list"].instance.moveDown)
+			if self["list"].index + 1 >= self["list"].count():
+				self["list"].index = 0
+			else:
+				self["list"].index += 1
+			if self.wizard[self.currStep].has_key("onselect"):
+				print "current:", self["list"].current
+				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
+				#exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "down"
+		
+	def selChanged(self):
+		self.resetCounter()
+		
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
+				self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
+			if self.wizard[self.currStep].has_key("onselect"):
+				self.selection = self["list"].current[1]
+				print "self.selection:", self.selection
+				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+		
+	def resetCounter(self):
+		self.timeoutCounter = self.wizard[self.currStep]["timeout"]
 		
 	def runCode(self, code):
 		if code != "":
 			print "code", code
 			exec(code)
+			
+	def updateText(self, firstset = False):
+		text = _(self.wizard[self.currStep]["text"])
+		if text.find("[timeout]") != -1:
+			text = text.replace("[timeout]", str(self.timeoutCounter))
+			self["text"].setText(text)
+		else:
+			if firstset:
+				self["text"].setText(text)
 		
 	def updateValues(self):
 		print "Updating values in step " + str(self.currStep)
+		self.timeoutTimer.stop()
 		
 		self.stepHistory.append(self.currStep)
 		
@@ -241,25 +351,55 @@ class Wizard(Screen, HelpableScreen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if self.condition:
+			print "wizard step:", self.wizard[self.currStep]
+			
 			if self.showSteps:
 				self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 			if self.showStepSlider:
 				self["stepslider"].setValue(self.currStep)
 		
+			if self.wizard[self.currStep]["timeout"] is not None:
+				self.resetCounter() 
+				self.timeoutTimer.start(1000)
+			
 			print "wizard text", _(self.wizard[self.currStep]["text"])
-			self["text"].setText(_(self.wizard[self.currStep]["text"]))
-	
+			self.updateText(firstset = True)
+			if self.wizard[self.currStep].has_key("displaytext"):
+				displaytext = self.wizard[self.currStep]["displaytext"]
+				print "set LCD text"
+				for x in self.lcdCallbacks:
+					x(displaytext)
+				
 			self.runCode(self.wizard[self.currStep]["code"])
 			
 			if self.showList:
-				self["list"].instance.setZPosition(1)
+				print "showing list,", self.currStep
+				for renderer in self.renderer:
+					rootrenderer = renderer
+					while renderer.source is not None:
+						print "self.list:", self["list"]
+						if renderer.source is self["list"]:
+							print "setZPosition"
+							rootrenderer.instance.setZPosition(1)
+						renderer = renderer.source
+						
+				#self["list"].instance.setZPosition(1)
 				self.list = []
+				if (self.wizard[self.currStep].has_key("dynamiclist")):
+					print "dynamic list, calling",  self.wizard[self.currStep]["dynamiclist"]
+					newlist = eval("self." + self.wizard[self.currStep]["dynamiclist"] + "()")
+					#self.wizard[self.currStep]["evaluatedlist"] = []
+					for entry in newlist:
+						#self.wizard[self.currStep]["evaluatedlist"].append(entry)
+						self.list.append(entry)
+					#del self.wizard[self.currStep]["dynamiclist"]
 				if (len(self.wizard[self.currStep]["list"]) > 0):
-					self["list"].instance.setZPosition(2)
+					#self["list"].instance.setZPosition(2)
 					for x in self.wizard[self.currStep]["list"]:
-						self.list.append((_(x[0]), None))
-				self["list"].l.setList(self.list)
-				self["list"].moveToIndex(0)
+						self.list.append((_(x[0]), x[1]))
+				self.wizard[self.currStep]["evaluatedlist"] = self.list
+				self["list"].list = self.list
+				self["list"].index = 0
 	
 			if self.showConfig:
 				self["config"].instance.setZPosition(1)
@@ -282,6 +422,15 @@ class Wizard(Screen, HelpableScreen):
 		else: # condition false
 				self.currStep += 1
 				self.updateValues()
+				
+	def timeoutCounterFired(self):
+		self.timeoutCounter -= 1
+		print "timeoutCounter:", self.timeoutCounter
+		if self.timeoutCounter == 0:
+			if self.wizard[self.currStep]["timeoutaction"] == "selectnext":
+				print "selection next item"
+				self.down()
+		self.updateText()
 
 class WizardManager:
 	def __init__(self):
