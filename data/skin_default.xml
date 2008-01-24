@@ -680,8 +680,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,50" size="520,200" scrollbarMode="showOnDemand" />
 		<widget name="cancel" pixmap="skin_default/key-red.png" position="10,265" zPosition="1" size="140,40" transparent="1" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/key-green.png" position="390,265" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="canceltext" position="10,265" zPosition="2" size="140,40" font="Regular;20" valign="center" halign="center" transparent="1" />
-		<widget name="oktext" position="390,265" zPosition="2" size="140,40" font="Regular;20" valign="center" halign="center" transparent="1" />
+		<widget name="canceltext" position="10,265" zPosition="2" size="140,40" font="Regular;20" valign="center" halign="center" transparent="1" backgroundColor="#d21c31" />
+		<widget name="oktext" position="390,265" zPosition="2" size="140,40" font="Regular;20" valign="center" halign="center" transparent="1" backgroundColor="#4da539" />
 	</screen>
 	<!-- Simple channelselection -->
 	<screen name="SimpleChannelSelection" position="90,98" size="560,417" title="Channel Selection">
