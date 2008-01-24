@@ -36,7 +36,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				"save": self.apply,
 			}, -2)
 
-		self["title"] = Label(_("Video-Setup"))
+		self["title"] = Label(_("A/V Settings"))
 
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
@@ -53,8 +53,10 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.hw.on_hotplug.remove(self.createSetup)
 
 	def createSetup(self):
+		level = config.usage.setup_level.index
+
 		self.list = [ ]
-		self.list.append(getConfigListEntry(_("Output Type"), config.av.videoport))
+		self.list.append(getConfigListEntry(_("Video Output"), config.av.videoport))
 
 		# if we have modes for this port:
 		if config.av.videoport.value in config.av.videomode:
@@ -64,6 +66,14 @@ class VideoSetup(Screen, ConfigListScreen):
 
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
+		if config.av.videoport.value == "Scart":
+			self.list.append(getConfigListEntry(_("Color Format"), config.av.colorformat))
+			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspectratio))
+			if level >= 1:
+				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss))
+
+		if level >= 1:
+			self.list.append(getConfigListEntry(_("AC3 default"), config.av.defaultac3))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -92,7 +102,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
 		rate = config.av.videorate[mode].value
-		if (port, mode, rate) != self.last_good or True:
+		if (port, mode, rate) != self.last_good:
 			self.hw.setMode(port, mode, rate)
 			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
@@ -169,7 +179,7 @@ def startSetup(menuid):
 	if menuid != "system": 
 		return [ ]
 
-	return [(_("Video Setup"), videoSetupMain, "video_setup", None)]
+	return [(_("A/V Settings") + "...", videoSetupMain, "av_setup", 40)]
 
 def Plugins(**kwargs):
 	list = [
