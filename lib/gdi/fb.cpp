@@ -27,11 +27,10 @@ fbClass *fbClass::getInstance()
 
 fbClass::fbClass(const char *fb)
 {
-	lfb=0;
-	fb_fix_screeninfo fix;
 	m_manual_blit=-1;
 	instance=this;
 	locked=0;
+	available=0;
 	cmap.start=0;
 	cmap.len=256;
 	cmap.red=red;
@@ -41,25 +40,43 @@ fbClass::fbClass(const char *fb)
 
 	fd=open(fb, O_RDWR);
 	if (fd<0)
-		perror(fb);
-	else if (ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo)<0)
-		perror("FBIOGET_VSCREENINFO");
-	else if (ioctl(fd, FBIOGET_FSCREENINFO, &fix)<0)
-		perror("FBIOGET_FSCREENINFO");
-	else
 	{
-		memcpy(&oldscreen, &screeninfo, sizeof(screeninfo));
-		available=fix.smem_len;
-		lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fd, 0);
-		if (!lfb)
-			perror("mmap");
-		else
-		{
-			showConsole(0);
-			enableManualBlit();
-			stride=fix.line_length;
-		}
+		perror(fb);
+		goto nolfb;
 	}
+
+
+	if (ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo)<0)
+	{
+		perror("FBIOGET_VSCREENINFO");
+		goto nolfb;
+	}
+	
+	memcpy(&oldscreen, &screeninfo, sizeof(screeninfo));
+
+	fb_fix_screeninfo fix;
+	if (ioctl(fd, FBIOGET_FSCREENINFO, &fix)<0)
+	{
+		perror("FBIOGET_FSCREENINFO");
+		goto nolfb;
+	}
+
+	available=fix.smem_len;
+	eDebug("%dk video mem", available/1024);
+	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fd, 0);
+	if (!lfb)
+	{
+		perror("mmap");
+		goto nolfb;
+	}
+
+	showConsole(0);
+
+	enableManualBlit();
+	return;
+nolfb:
+	lfb=0;
+	printf("framebuffer not available.\n");
 	return;
 }
 
@@ -85,12 +102,7 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
 	screeninfo.bits_per_pixel=nbpp;
-
-	if (lfb) {
-		munmap(lfb, available);
-		lfb = 0;
-	}
-
+	
 	if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
 		// try single buffering
@@ -119,31 +131,15 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	xRes=screeninfo.xres;
 	yRes=screeninfo.yres;
 	bpp=screeninfo.bits_per_pixel;
-
 	fb_fix_screeninfo fix;
 	if (ioctl(fd, FBIOGET_FSCREENINFO, &fix)<0)
 	{
 		perror("FBIOGET_FSCREENINFO");
 		printf("fb failed\n");
-		goto nolfb;
 	}
-
-	available=fix.smem_len;
-	eDebug("%dk video mem", available/1024);
-	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fd, 0);
-	if (!lfb)
-	{
-		perror("mmap");
-		goto nolfb;
-	}
-
 	stride=fix.line_length;
-
+	memset(lfb, 0, stride*yRes);
 	return 0;
-nolfb:
-	lfb=0;
-	eFatal("framebuffer no more ready after SetMode(%d, %d, %d)", nxRes, nyRes, nbpp);
-	return -1;
 }
 
 int fbClass::setOffset(int off)
