@@ -9,7 +9,7 @@ from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 from Screens.Setup import SetupSummary
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, ConfigSubDict
+from Components.config import getConfigListEntry, config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
 
@@ -43,6 +43,9 @@ class VideoHardware:
 		"1920x1080": { 60: "1920x1080"},
 		"1920x1080 multi": { 50: "1920x1080", 60: "1920x1080_50"},
 		"1280x1024" : { 60: "1280x1024"},
+		"1366x768" : { 60: "1366x768"},
+		"1366x768 multi" : { 50: "1366x768", 60: "1366x768_50"},
+		"1280x768": { 60: "1280x768"},
 		"640x480" : { 60: "640x480"} 
 	}
 
@@ -55,15 +58,14 @@ class VideoHardware:
 		self.on_hotplug = CList()
 
 		self.on_hotplug.append(self.createConfig)
-		self.ignore_preferred = False   # "edid override"
 
 		self.readAvailableModes()
 		self.readPreferredModes()
 
 		# until we have the hotplug poll socket
-		self.timer = eTimer()
-		self.timer.timeout.get().append(self.readAvailableModes)
-		self.timer.start(1000)
+#		self.timer = eTimer()
+#		self.timer.timeout.get().append(self.readPreferredModes)
+#		self.timer.start(1000)
 
 	def readAvailableModes(self):
 		try:
@@ -84,30 +86,35 @@ class VideoHardware:
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
+			print "hotplug on dvi"
 			self.on_hotplug("DVI") # must be DVI
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
+		print "isModeAvailable:", port, mode, rate, 
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
 			# DVI modes must be in "modes_preferred"
-			if port == "DVI":
-				if mode not in self.modes_preferred and not self.ignore_preferred:
-					return False
+#			if port == "DVI":
+#				if mode not in self.modes_preferred and not config.av.edid_override.value:
+#					print "no, not preferred"
+#					return False
 			if mode not in self.modes_available:
+				print "no, not available"
 				return False
+		print "yes"
 		return True
 
-	def setMode(self, port, mode, rate):
+	def setMode(self, port, mode, rate, force = None):
 		# we can ignore "port"
 		self.current_mode = mode
 		modes = self.rates[mode][rate]
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
-		if mode_50 is None:
+		if mode_50 is None or force == 60:
 			mode_50 = mode_60
-		if mode_60 is None:
+		if mode_60 is None or force == 50: 
 			mode_60 = mode_50
 
 		try:
@@ -155,4 +162,5 @@ class VideoHardware:
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices = rates)
 
+config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
