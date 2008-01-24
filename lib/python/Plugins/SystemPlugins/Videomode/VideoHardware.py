@@ -91,7 +91,6 @@ class VideoHardware:
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
-		print "isModeAvailable:", port, mode, rate, 
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
 			# DVI modes must be in "modes_preferred"
@@ -100,9 +99,7 @@ class VideoHardware:
 #					print "no, not preferred"
 #					return False
 			if mode not in self.modes_available:
-				print "no, not available"
 				return False
-		print "yes"
 		return True
 
 	def setMode(self, port, mode, rate, force = None):
@@ -130,6 +127,13 @@ class VideoHardware:
 	def isPortAvailable(self, port):
 		# fixme
 		return True
+
+	def isPortUsed(self, port):
+		if port == "DVI":
+			self.readPreferredModes()
+			return len(self.modes_preferred) != 0
+		else:
+			return True
 
 	def getPortList(self):
 		return [port for port in self.modes if self.isPortAvailable(port)]
