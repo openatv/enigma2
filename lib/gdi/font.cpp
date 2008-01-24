@@ -693,18 +693,23 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	} else if (surface->bpp == 32)
 	{
 		opcode=3;
-		if (surface->clut.data)
+
+		for (int i=0; i<16; ++i)
 		{
-			lookup8=getColor(surface->clut, background, foreground).lookup;
-			for (int i=0; i<16; ++i)
-				lookup32_normal[i]=((surface->clut.data[lookup8[i]].a<<24)|
-					(surface->clut.data[lookup8[i]].r<<16)|
-					(surface->clut.data[lookup8[i]].g<<8)|
-					(surface->clut.data[lookup8[i]].b))^0xFF000000;
-		} else
-		{
-			for (int i=0; i<16; ++i)
-				lookup32_normal[i]=(0x010101*i)|0xFF000000;
+#define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+
+			unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
+			int sa = i * 16;
+			if (sa < 256)
+			{
+				da = BLEND(background.a, foreground.a, sa) & 0xFF;
+				dr = BLEND(background.r, foreground.r, sa) & 0xFF;
+				dg = BLEND(background.g, foreground.g, sa) & 0xFF;
+				db = BLEND(background.b, foreground.b, sa) & 0xFF;
+			}
+#undef BLEND
+			da ^= 0xFF;
+			lookup32_normal[i]=db | (dg << 8) | (dr << 16) | (da << 24);;
 		}
 		for (int i=0; i<16; ++i)
 			lookup32_invert[i]=lookup32_normal[i^0xF];
