@@ -566,7 +566,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		}
 	} else
 	{
-		serviceEvent(eventNoResources);
+		if (res == eDVBResourceManager::errAllSourcesBusy)
+			serviceEvent(eventNoResources);
+		else /* errChidNotFound, errNoChannelList, errChannelNotInList, errNoSourceFound */
+			serviceEvent(eventMisconfiguration);
 		return res;
 	}
 
