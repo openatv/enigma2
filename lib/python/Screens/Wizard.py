@@ -183,8 +183,8 @@ class Wizard(Screen, HelpableScreen):
 			"back": self.back,
 			"left": self.left,
 			"right": self.right,
-			#"up": self.up,
-			#"down": self.down,
+			"up": self.up,
+			"down": self.down,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -287,7 +287,7 @@ class Wizard(Screen, HelpableScreen):
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
 				self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
-			self["list"].instance.moveSelection(self["list"].instance.moveUp)
+			self["list"].selectPrevious()
 			if self.wizard[self.currStep].has_key("onselect"):
 				self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
@@ -299,10 +299,7 @@ class Wizard(Screen, HelpableScreen):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			#self["list"].instance.moveSelection(self["list"].instance.moveDown)
-			if self["list"].index + 1 >= self["list"].count():
-				self["list"].index = 0
-			else:
-				self["list"].index += 1
+			self["list"].selectNext()
 			if self.wizard[self.currStep].has_key("onselect"):
 				print "current:", self["list"].current
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
@@ -400,6 +397,8 @@ class Wizard(Screen, HelpableScreen):
 				self.wizard[self.currStep]["evaluatedlist"] = self.list
 				self["list"].list = self.list
 				self["list"].index = 0
+			else:
+				self["list"].hide()
 	
 			if self.showConfig:
 				self["config"].instance.setZPosition(1)
@@ -419,6 +418,8 @@ class Wizard(Screen, HelpableScreen):
 						self.configInstance["config"] = self["config"]
 				else:
 					self["config"].l.setList([])
+			else:
+				self["config"].hide()
 		else: # condition false
 				self.currStep += 1
 				self.updateValues()
