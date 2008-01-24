@@ -16,5 +16,10 @@ class CanvasSource(Source):
 	drawlist = property(get_drawlist)
 
 	def fill(self, x, y, width, height, color):
-		self.drawlist[1].append( (1, x, y, width, height, color) )
-		self.changed()
+		self.drawlist[1].append((1, x, y, width, height, color))
+
+	def writeText(self, x, y, width, height, fg, bg, font, text, flags = 0):
+		self.drawlist[1].append((2, x, y, width, height, fg, bg, font, text, flags))
+
+	def flush(self):
+		self.changed((self.CHANGED_DEFAULT,))

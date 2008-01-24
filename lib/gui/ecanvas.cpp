@@ -37,3 +37,17 @@ void eCanvas::fillRect(eRect rect, gRGB color)
 
 	invalidate(rect);
 }
+
+void eCanvas::writeText(eRect rect, gRGB fg, gRGB bg, gFont *font, const char *string, int flags)
+{
+	ePtr<gDC> dc = new gDC(m_pixmap);
+
+	gPainter p(dc);
+	p.setFont(font);
+	p.resetClip(eRect(ePoint(0,0), m_pixmap->size()));
+	p.setForegroundColor(fg);
+	p.setBackgroundColor(bg);
+	p.renderText(rect, string, flags);
+
+	invalidate(rect);
+}
