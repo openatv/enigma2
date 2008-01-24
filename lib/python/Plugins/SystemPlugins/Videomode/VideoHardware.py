@@ -50,7 +50,7 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["YPrPb"] = ["720p", "1080i"]
+	modes["YPbPr"] = ["720p", "1080i"]
 	modes["DVI"] = ["720p", "1080i", "PC"]
 
 	def __init__(self):
