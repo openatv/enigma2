@@ -29,7 +29,13 @@ class Canvas(Renderer):
 
 	def draw(self, list):
 		for l in list:
-			self.instance.fillRect(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]))
+			if l[0] == 1:
+				self.instance.fillRect(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]))
+			elif l[0] == 2:
+				self.instance.writeText(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]), gRGB(l[6]), l[7], l[8], l[9])
+			else:
+				print "drawlist entry:", l
+				raise "invalid drawlist entry"
 
 	def changed(self, what):
 		self.pull_updates()
