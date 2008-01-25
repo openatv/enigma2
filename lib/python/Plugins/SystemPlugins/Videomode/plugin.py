@@ -62,7 +62,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
 			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
-			self.list.append(getConfigListEntry(_("Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
+			self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
