@@ -137,7 +137,7 @@ self["arrowup2"].startMoving()
 				<listentry caption="No" step="end" />
 			</list>
 			<code pos="after">
-if self["list"].getSelectedIndex() == 0:
+if self["list"].index == 0:
 	config.ParentalControl.configured.value = True
 else:
 	config.ParentalControl.configured.value = False
@@ -152,7 +152,7 @@ config.ParentalControl.configured.save()
 			</list>
 			<code pos="after">
 from ParentalControlSetup import ParentalControlChangePin
-if self["list"].getSelectedIndex() == 0:
+if self["list"].index == 0:
 	self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("parental control pin"))
 			</code>
 		</step>
