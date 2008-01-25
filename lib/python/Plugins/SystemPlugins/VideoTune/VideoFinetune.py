@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
 from Components.ActionMap import ActionMap
 from enigma import gFont
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP
 
 def RGB(r,g,b):
 	return (r<<16)|(g<<8)|b
@@ -82,7 +82,7 @@ class VideoFinetune(Screen):
 		c.writeText(xres / 10, yres / 6, xres * 4 / 7, yres / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", 20),
 			("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
 				"set it to standard. Adjust the backlight level to your favourite value. "
-				"Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as"
+				"Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as "
 				"low as possible, but make sure that the two lowermost shades of gray are still distinguishable.\n"
 				"Do not care for the bright shades now, they will be set up in the next step.\n"
 				"If you are happy with the result, press OK."),
@@ -247,14 +247,17 @@ class VideoFinetune(Screen):
 			c.fill(offset_x, offset_y + y, width/2, 2, RGB(255,255,255))
 
 		l = 0
+		fnt = gFont("Regular", height / 14)
 		import math
-		for i in xrange(1, 14):
+		for i in xrange(1, 15):
 			y = i * height / 14
 			h = y - l
-			l = y
 			gamma = 0.6 + i * 0.2
 			col = int(math.pow(.5, 1.0/gamma) * 256.0)
-			c.fill(offset_x + width/2, offset_y + y, width/2, h, RGB(col,col,col))
+			c.fill(offset_x + width/2, offset_y + l, width/2, h, RGB(col,col,col))
+
+			c.writeText(offset_x + width/2, offset_y + l, width/2, h, RGB(0,0,0), RGB(col,col,col), fnt, "%1.2f" % gamma, RT_WRAP|RT_HALIGN_RIGHT)
+			l = y
 
 		c.flush()
 
