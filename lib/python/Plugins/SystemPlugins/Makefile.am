@@ -1,1 +1,1 @@
-SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup Satfinder SkinSelector SatelliteEquipmentControl Videomode
+SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup Satfinder SkinSelector SatelliteEquipmentControl Videomode VideoTune
