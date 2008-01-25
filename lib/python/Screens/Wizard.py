@@ -212,11 +212,14 @@ class Wizard(Screen, HelpableScreen):
 		pass
 	
 	def getStepWithID(self, id):
+		print "getStepWithID:", id
 		count = 0
 		for x in self.wizard:
 			if self.wizard[x]["id"] == id:
+				print "result:", count
 				return count
 			count += 1
+		print "result: nothing"
 		return 0
 
 	def finished(self, *args, **kwargs):
@@ -343,8 +346,6 @@ class Wizard(Screen, HelpableScreen):
 		print "Updating values in step " + str(self.currStep)
 		self.timeoutTimer.stop()
 		
-		self.stepHistory.append(self.currStep)
-		
 		if self.configInstance is not None:
 			del self.configInstance["config"]
 			self.configInstance.doClose()
@@ -353,6 +354,7 @@ class Wizard(Screen, HelpableScreen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if self.condition:
+			self.stepHistory.append(self.currStep)
 			print "wizard step:", self.wizard[self.currStep]
 			
 			if self.showSteps:
@@ -436,6 +438,9 @@ class Wizard(Screen, HelpableScreen):
 			if self.wizard[self.currStep]["timeoutaction"] == "selectnext":
 				print "selection next item"
 				self.down()
+			else:
+				if self.wizard[self.currStep]["timeoutaction"] == "nextstep":
+					self.finished()
 		self.updateText()
 
 class WizardManager:
