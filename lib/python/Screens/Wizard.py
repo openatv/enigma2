@@ -67,6 +67,7 @@ class Wizard(Screen, HelpableScreen):
 					id = str(attrs.get('id'))
 				else:
 					id = ""
+				print "id:", id
 				if attrs.has_key('nextstep'):
 					nextstep = str(attrs.get('nextstep'))
 				else:
@@ -79,16 +80,23 @@ class Wizard(Screen, HelpableScreen):
 					timeoutaction = str(attrs.get('timeoutaction'))
 				else:
 					timeoutaction = 'nextpage'
-				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "timeout": timeout, "timeoutaction": timeoutaction, "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "nextstep": nextstep}
+
+				if attrs.has_key('timeoutstep'):
+					timeoutstep = str(attrs.get('timeoutstep'))
+				else:
+					timeoutstep = ''
+				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "timeout": timeout, "timeoutaction": timeoutaction, "timeoutstep": timeoutstep, "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "nextstep": nextstep}
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "displaytext"):
 				self.wizard[self.lastStep]["displaytext"] = string.replace(str(attrs.get('value')), "\\n", "\n")
 			elif (name == "list"):
 				if (attrs.has_key('type')):
-					self.wizard[self.lastStep]["dynamiclist"] = attrs.get("source")
+					if attrs["type"] == "dynamic":
+						self.wizard[self.lastStep]["dynamiclist"] = attrs.get("source")
 					#self.wizard[self.lastStep]["list"].append(("Hallo", "test"))
 				if (attrs.has_key("evaluation")):
+					print "evaluation"
 					self.wizard[self.lastStep]["listevaluation"] = attrs.get("evaluation")
 				if (attrs.has_key("onselect")):
 					self.wizard[self.lastStep]["onselect"] = attrs.get("onselect")			
@@ -117,6 +125,8 @@ class Wizard(Screen, HelpableScreen):
 					self.wizard[self.lastStep]["code"] = self.wizard[self.lastStep]["code"].strip()
 			elif name == 'condition':
 				self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"].strip()
+			elif name == 'step':
+				print "Step number", self.lastStep, ":", self.wizard[self.lastStep]
 								
 		def characters(self, ch):
 			if self.currContent == "code":
@@ -222,7 +232,7 @@ class Wizard(Screen, HelpableScreen):
 		print "result: nothing"
 		return 0
 
-	def finished(self, *args, **kwargs):
+	def finished(self, gotoStep = None, *args, **kwargs):
 		print "finished"
 		currStep = self.currStep
 
@@ -245,6 +255,8 @@ class Wizard(Screen, HelpableScreen):
 			self.runCode(self.wizard[currStep]["codeafter"])
 			if self.wizard[currStep]["nextstep"] is not None:
 				self.currStep = self.getStepWithID(self.wizard[currStep]["nextstep"])
+			if gotoStep is not None:
+				self.currStep = self.getStepWithID(gotoStep)
 			self.currStep += 1
 			self.updateValues()
 
@@ -439,8 +451,8 @@ class Wizard(Screen, HelpableScreen):
 				print "selection next item"
 				self.down()
 			else:
-				if self.wizard[self.currStep]["timeoutaction"] == "nextstep":
-					self.finished()
+				if self.wizard[self.currStep]["timeoutaction"] == "changestep":
+					self.finished(gotoStep = self.wizard[self.currStep]["timeoutstep"])
 		self.updateText()
 
 class WizardManager:
