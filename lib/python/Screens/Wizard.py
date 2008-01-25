@@ -289,7 +289,9 @@ class Wizard(Screen, HelpableScreen):
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			self["list"].selectPrevious()
 			if self.wizard[self.currStep].has_key("onselect"):
+				print "current:", self["list"].current
 				self.selection = self["list"].current[1]
+				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "up"
 		
@@ -304,6 +306,9 @@ class Wizard(Screen, HelpableScreen):
 				print "current:", self["list"].current
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				#exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+				self.selection = self["list"].current[1]
+				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
+				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "down"
 		
 	def selChanged(self):
