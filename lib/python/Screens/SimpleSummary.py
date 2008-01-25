@@ -20,6 +20,9 @@ class SimpleSummary(Screen):
 		self.skinName = [ x + "_summary" for x in names ]
 		self.skinName.append("SimpleSummary")
 
+		# if parent has a "skin_summary" defined, use that as default
+		self.skin = parent.__dict__.get("skin_summary", self.skin)
+
 		self["Clock"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 		self["Title"] = Label(parent.title or "")
 
