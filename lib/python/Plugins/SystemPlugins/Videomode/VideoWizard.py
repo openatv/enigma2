@@ -48,7 +48,8 @@ class VideoWizard(Wizard):
 		list = []
 
 		for port in self.hw.getPortList():
-			list.append((port, port))
+			if self.hw.isPortUsed(port):
+				list.append((port, port))
 		return list
 
 	def inputSelectionMade(self, index):
