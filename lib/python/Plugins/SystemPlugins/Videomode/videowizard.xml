@@ -49,7 +49,7 @@ self["rc"].startMoving()
 		<condition>
 self.condition = (self.port == "DVI")
 		</condition>
-		<text value="In the next step, the refresh rates are probed. Your screen can go black while probing.\nPlease press OK to begin." />
+		<text value="We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\nPlease press OK to begin." />
 		<displaytext value="Please follow the instructions on the TV" />
 		<code>
 self["arrowdown"].moveTo(557, 232, 1)
@@ -60,16 +60,45 @@ self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 		</code>
 	</step>
-	<step id="dvirateselection" nextstep="end" timeout="10" timeoutaction="selectnext">
+	<step id="dvirateselection" timeout="10" timeoutaction="changestep" timeoutstep="notworking50Hz">
 		<condition>
 self.condition = (self.port == "DVI")
 		</condition>
-		<text value="The refresh rates are probed right now. If you can see this screen with 50 Hz selected, you should use this as the preferred option for best picture quality." />
-		<displaytext value="Select video mode rate" />
-		<list evaluation="rateSelectionMade" onselect="rateSelectionMoved">
-			<listentry caption="50 Hz" step="50 Hz" />
-			<listentry caption="60 Hz" step="60 Hz" />
+		<text value="If you can see this page, please press OK." />
+		<displaytext value="" />
+		<list>
+			<listentry caption="50 Hz" step="working50Hz" />
 		</list>
+		<code>
+self["arrowdown"].moveTo(557, 232, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="notworking50Hz" nextstep="end">
+		<condition>
+self.condition = (self.port == "DVI")
+		</condition>
+		<text value="No 50 Hz, sorry. :(" />
+		<displaytext value="" />
+		<code>
+self["arrowdown"].moveTo(557, 232, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="working50Hz" nextstep="end" timeout="10" timeoutaction="nextstep">
+		<condition>
+self.condition = (self.port == "DVI")
+		</condition>
+		<text value="Your TV works with 50 Hz. Good!" />
+		<displaytext value="" />
 		<code>
 self["arrowdown"].moveTo(557, 232, 1)
 self["arrowdown"].startMoving()
