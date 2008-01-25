@@ -197,7 +197,6 @@ class Menu(Screen):
 				# check if a plugin overrides an existing menu
 				plugin_menuid = l[2]
 				for x in list:
-					print x[2], plugin_menuid
 					if x[2] == plugin_menuid:
 						list.remove(x)
 						break
