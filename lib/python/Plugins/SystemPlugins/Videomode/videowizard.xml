@@ -27,8 +27,11 @@ self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
 		</code>
 	</step>
-	<step id="rateselection" nextstep="end" timeout="10" timeoutaction="selectnext">
-		<text value="Rate selection." />
+	<step id="rateselection" nextstep="dvirateintroduction" timeout="10" timeoutaction="selectnext">
+		<condition>
+self.condition = (self.port != "DVI")
+		</condition>		
+		<text value="Refresh rate selection." />
 		<displaytext value="Select video mode rate" />
 		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
 		<code>
@@ -37,6 +40,40 @@ self["arrowup2"].startMoving()
 self["arrowdown"].moveTo(557, 200, 1)
 self["arrowup"].moveTo(557, 355, 1)
 self["arrowdown"].startMoving()
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="dvirateintroduction" nextstep="dvirateselection">
+		<condition>
+self.condition = (self.port == "DVI")
+		</condition>
+		<text value="In the next step, the refresh rates are probed. Your screen can go black while probing.\nPlease press OK to begin." />
+		<displaytext value="Please follow the instructions on the TV" />
+		<code>
+self["arrowdown"].moveTo(557, 232, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
+self["arrowup"].startMoving()
+self["rc"].moveTo(500, 50, 1)
+self["rc"].startMoving()
+		</code>
+	</step>
+	<step id="dvirateselection" nextstep="end" timeout="10" timeoutaction="selectnext">
+		<condition>
+self.condition = (self.port == "DVI")
+		</condition>
+		<text value="The refresh rates are probed right now. If you can see this screen with 50 Hz selected, you should use this as the preferred option for best picture quality." />
+		<displaytext value="Select video mode rate" />
+		<list evaluation="rateSelectionMade" onselect="rateSelectionMoved">
+			<listentry caption="50 Hz" step="50 Hz" />
+			<listentry caption="60 Hz" step="60 Hz" />
+		</list>
+		<code>
+self["arrowdown"].moveTo(557, 232, 1)
+self["arrowdown"].startMoving()
+self["arrowup"].moveTo(800, 232, 1)
 self["arrowup"].startMoving()
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
