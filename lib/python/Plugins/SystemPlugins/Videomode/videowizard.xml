@@ -80,7 +80,11 @@ self["rc"].startMoving()
 		</code>
 	</step>
 	<step id="end">
-			<text value="The input port should be configured now." />
-			<displaytext value="No picture on TV? Press EXIT and retry." />
+		<text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" />
+		<displaytext value="No picture on TV? Press EXIT and retry." />
+		<list evaluation="rateSelectionMade" onselect="rateSelectionMoved">
+			<listentry caption="Yes" step="yes" />
+			<listentry caption="No" step="no" />
+		</list>
 		</step>
 </wizard>
