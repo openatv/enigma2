@@ -14,6 +14,9 @@ TYPE_VALUE_DEC = 2
 TYPE_VALUE_HEX_DEC = 3
 TYPE_SLIDER = 4
 
+def to_unsinged(x):
+	return x & 0xFFFFFFFF
+
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	res = [ ]
 
@@ -23,11 +26,11 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	print "b:", b
 	if type(b) is not str:
 		if valueType == TYPE_VALUE_HEX:
-			b = ("0x%0" + str(param) + "x") % b
+			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
 		elif valueType == TYPE_VALUE_DEC:
 			b = str(b)
 		elif valueType == TYPE_VALUE_HEX_DEC:
-			b = ("0x%0" + str(param) + "x (%dd)") % (b, b)
+			b = ("0x%0" + str(param) + "x (%dd)") % (to_unsigned(b), b)
 		else:
 			b = str(b)
 	
