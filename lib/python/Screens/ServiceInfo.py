@@ -14,7 +14,7 @@ TYPE_VALUE_DEC = 2
 TYPE_VALUE_HEX_DEC = 3
 TYPE_SLIDER = 4
 
-def to_unsinged(x):
+def to_unsigned(x):
 	return x & 0xFFFFFFFF
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
