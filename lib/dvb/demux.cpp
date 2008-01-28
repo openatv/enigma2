@@ -632,10 +632,18 @@ RESULT eDVBTSRecorder::startPID(int pid)
 	}
 	m_pids[pid] = fd;
 #else
-	if (::ioctl(m_source_fd, DMX_ADD_PID, pid))
-		perror("DMX_ADD_PID");
-	else
-		m_pids[pid] = 1;
+	bool retry=false;
+	while(true) {
+		if (::ioctl(m_source_fd, DMX_ADD_PID, pid) < 0) {
+			perror("DMX_ADD_PID");
+			if (errno == EAGAIN || errno == EINTR) {
+				eDebug("retry!");
+				continue;
+			}
+		} else
+			m_pids[pid] = 1;
+		break;
+	}
 #endif
 	return 0;
 }
@@ -648,8 +656,16 @@ void eDVBTSRecorder::stopPID(int pid)
 #else
 	if (m_pids[pid] != -1)
 	{
-		if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid))
-			perror("DMX_REMOVE_PID");
+		while(true) {
+			if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid) < 0) {
+				perror("DMX_REMOVE_PID");
+				if (errno == EAGAIN || errno == EINTR) {
+					eDebug("retry!");
+					continue;
+				}
+			}
+			break;
+		}
 	}
 #endif
 	m_pids[pid] = -1;
