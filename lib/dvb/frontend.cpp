@@ -2151,7 +2151,9 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 	m_slotid = PyInt_AsLong(Id);
 	m_enabled = Enabled == Py_True;
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
-	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") || !!strstr(m_description, "Alps -S");
+	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
+		!!strstr(m_description, "Alps BSBE2") ||
+		!!strstr(m_description, "Alps -S");
 	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No" );
 	return true;
