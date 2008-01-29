@@ -1401,7 +1401,7 @@ class InfoBarInstantRecord:
 			if len(self.recording) == 1:
 				self.setEndtime(0)
 			else:
-				self.session.openWithCallback(self.setEndTime, TimerSelection, list)
+				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "stop":
 			if len(self.recording) == 1:
 				self.stopCurrentRecording(0)
