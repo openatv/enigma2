@@ -57,9 +57,12 @@ class VideoHardware:
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
 
-		self.on_hotplug.append(self.createConfig)
 
 		self.readAvailableModes()
+
+		self.createConfig()
+#		self.on_hotplug.append(self.createConfig)
+
 		self.readPreferredModes()
 
 		# until we have the hotplug poll socket
