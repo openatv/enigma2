@@ -57,7 +57,6 @@ class VideoHardware:
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
 
-
 		self.readAvailableModes()
 
 		self.createConfig()
@@ -127,6 +126,11 @@ class VideoHardware:
 			except IOError:
 				print "setting videomode failed."
 
+		try:
+			open("/etc/videomode", "w").write(mode_50) # use 50Hz mode (if available) for booting
+		except IOError:
+			print "writing initial videomode to /etc/videomode failed."
+
 	def isPortAvailable(self, port):
 		# fixme
 		return True
@@ -169,5 +173,21 @@ class VideoHardware:
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices = rates)
 
+	def setConfiguredMode(self):
+		port = config.av.videoport.value
+		if port not in config.av.videomode:
+			print "current port not available, not setting videomode"
+			return
+
+		mode = config.av.videomode[port].value
+
+		if mode not in config.av.videorate:
+			print "current mode not available, not setting videomode"
+			return
+
+		rate = config.av.videorate[mode].value
+		self.setMode(port, mode, rate)
+
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
+video_hw.setConfiguredMode()
