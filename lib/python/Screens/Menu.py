@@ -5,6 +5,7 @@ from Components.Sources.StaticText import StaticText
 from Components.config import configfile
 from Components.PluginComponent import plugins
 from Components.config import config
+from Components.SystemInfo import SystemInfo
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
@@ -102,6 +103,9 @@ class Menu(Screen):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def addMenu(self, destList, node):
+		requires = node.getAttribute("requires")
+		if requires and not SystemInfo.get(requires, False):
+			return
 		MenuTitle = _(node.getAttribute("text").encode("UTF-8") or "??")
 		entryID = node.getAttribute("entryID") or "undefined"
 		weight = node.getAttribute("weight") or 50
@@ -122,6 +126,9 @@ class Menu(Screen):
 			self.close(True)
 
 	def addItem(self, destList, node):
+		requires = node.getAttribute("requires")
+		if requires and not SystemInfo.get(requires, False):
+			return
 		item_text = node.getAttribute("text").encode("UTF-8")
 		entryID = node.getAttribute("entryID") or "undefined"
 		weight = node.getAttribute("weight") or 50
@@ -173,6 +180,7 @@ class Menu(Screen):
 			    continue
 			elif x.tagName == 'item':
 				item_level = int(x.getAttribute("level") or "0")
+				
 				if item_level <= config.usage.setup_level.index:
 					self.addItem(list, x)
 					count += 1

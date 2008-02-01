@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <string.h>
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -79,6 +80,19 @@ eAVSwitch::~eAVSwitch()
 eAVSwitch *eAVSwitch::getInstance()
 {
 	return instance;
+}
+
+bool eAVSwitch::haveScartSwitch()
+{
+	char tmp[255];
+	int fd = open("/proc/stb/avs/0/input_choices", O_RDONLY);
+	if(fd < 0) {
+		eDebug("cannot open /proc/stb/avs/0/input_choices");
+		return false;
+	}
+	read(fd, tmp, 255);
+	close(fd);
+	return !!strstr(tmp, "scart");
 }
 
 void eAVSwitch::setInput(int val)

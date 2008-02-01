@@ -1,5 +1,6 @@
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigInteger
 from enigma import Misc_Options, setTunerTypePriorityOrder;
+from SystemInfo import SystemInfo
 import os
 
 def InitUsageConfig():
@@ -62,5 +63,7 @@ def InitUsageConfig():
 		elif configElement.value == "off":
 			Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput)
+
+	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = "/usr/share/enigma2/keymap.xml")

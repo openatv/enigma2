@@ -19,7 +19,7 @@
 		<!--<item text="Radio"><code>print "radio mode"</code></item>-->
 		<item level="0" text="Subtitles" entryID="subtitle_selection" weight="40"><screen module="Subtitles" screen="Subtitles" /></item>
 		<item level="0" text="Timer" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
-		<item level="1" text="VCR scart" entryID="scart_switch"><code>self.session.scart.VCRSbChanged(3)</code></item>
+		<item level="1" text="VCR scart" entryID="scart_switch" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
 		<menu level="0" text="Information" entryID="info_screen">
 			<id val="information" />
@@ -52,8 +52,8 @@
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
-				<item level="1" entryID="rfmod_setup"><setup id="RFmod"/></item>
-				<menu level="0" text="Harddisk" entryID="hardisk_selection">
+				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<menu level="0" text="Harddisk" entryID="hardisk_selection" requires="Harddisc">
 					<id val="harddisk" />
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization..." entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
@@ -68,7 +68,7 @@
 					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
 				</menu>
 			</menu>
-			<item level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
+			<item level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			<item level="0" text="Startwizard" entryID="startwizzard"><screen module="StartWizard" screen="StartWizard" /></item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
