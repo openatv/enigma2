@@ -39,6 +39,18 @@ int Misc_Options::set_12V_output(int state)
 	return 0;
 }
 
+bool Misc_Options::detected_12V_output()
+{
+	int fd = open("/proc/stb/misc/12V_output", O_WRONLY);
+	if (fd < 0)
+	{
+		eDebug("couldn't open /proc/stb/misc/12V_output");
+		return false;
+	}
+	close(fd);
+	return true;
+}
+
 Misc_Options *Misc_Options::getInstance()
 {
 	return instance;

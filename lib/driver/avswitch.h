@@ -24,6 +24,7 @@ public:
 	~eAVSwitch();
 #endif
 	static eAVSwitch *getInstance();
+	bool haveScartSwitch();
 	int getVCRSlowBlanking();
 	void setFastBlank(int val);
 	void setColorFormat(int format);

@@ -1,5 +1,6 @@
 from config import config, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
 from enigma import eAVSwitch
+from SystemInfo import SystemInfo
 
 class AVSwitch:
 	INPUT = { "ENCODER": (0, 4), "SCART": (1, 3), "AUX": (2, 4) }
@@ -120,3 +121,5 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
+	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+

@@ -16,7 +16,7 @@ public:
 	~eRFmod();
 #endif
 	static eRFmod *getInstance();
-
+	bool detected() { return fd >= 0; }
 	void setFunction(int val);						//0=Enable 1=Disable
 	void setTestmode(int val);						//0=Enable 1=Disable
 	void setSoundFunction(int val);				//0=Enable 1=Disable

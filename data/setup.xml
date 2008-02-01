@@ -13,7 +13,7 @@
 			<item level="0" text="TV System">config.av.tvsystem</item>
 			<item level="1" text="WSS on 4:3">config.av.wss</item>
 			<item level="1" text="AC3 default">config.av.defaultac3</item>
-			<item level="1" text="VCR Switch">config.av.vcrswitch</item>
+			<item level="1" text="VCR Switch" requires="ScartSwitch">config.av.vcrswitch</item>
 		</setup>
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
@@ -27,7 +27,7 @@
 			<item level="1" text="Alternative radio mode">config.usage.e1like_radio_mode</item>
 			<item level="1" text="Action on long powerbutton press">config.usage.on_long_powerpress</item>
 			<item level="0" text="Infobar timeout">config.usage.infobar_timeout</item>
-			<item level="1" text="12V output">config.usage.output_12V</item>
+			<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
 			<item level="2" text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 			<item level="2" text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
 			<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
@@ -35,7 +35,7 @@
 			<item level="2" text="Behaviour of 0 key in PiP-mode">config.usage.pip_zero_button</item>
 			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
 		</setup>
-		<setup key="harddisk" title="Harddisk setup">
+		<setup key="harddisk" title="Harddisk setup" >
 			<item level="0" text="Harddisk standby after">config.usage.hdd_standby</item>
 		</setup>
 		<setup key="network" title="Network setup">

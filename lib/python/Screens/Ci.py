@@ -6,7 +6,9 @@ from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN
 from Components.ConfigList import ConfigList
 
-from enigma import eTimer, eDVBCI_UI
+from Components.SystemInfo import SystemInfo
+
+from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
 MAX_NUM_CI = 4
 
@@ -224,6 +226,7 @@ class CiMessageHandler:
 		self.ci = { }
 		self.dlgs = { }
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
+		SystemInfo["CommonInterface"]= eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
 
 	def setSession(self, session):
 		self.session = session

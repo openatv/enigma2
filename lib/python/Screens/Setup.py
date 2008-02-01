@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing
+from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -132,6 +133,10 @@ class Setup(ConfigListScreen, Screen):
 
 				if item_level > config.usage.setup_level.index:
 					continue
+
+				requires = x.getAttribute("requires")
+				if requires and not SystemInfo.get(requires, False):
+					continue;
 
 				item_text = _(x.getAttribute("text").encode("UTF-8") or "??")
 				b = eval(XMLTools.mergeText(x.childNodes));

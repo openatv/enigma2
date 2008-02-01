@@ -3,6 +3,8 @@ from os import system, listdir, statvfs, popen, makedirs
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
 
+from SystemInfo import SystemInfo
+
 def tryOpen(filename):
 	try:
 		procFile = open(filename)
@@ -214,6 +216,8 @@ class HarddiskManager:
 			if existHDD(hddNum):
 				hdd = Harddisk(hddNum)
 				self.hdd.append(hdd)
+
+		SystemInfo["Harddisc"] = len(self.hdd) > 0
 
 		# currently, this is just an enumeration of what's possible,
 		# this probably has to be changed to support automount stuff.
