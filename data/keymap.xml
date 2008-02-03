@@ -85,6 +85,7 @@
 	<map context="InfobarInstantRecord">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+			<key id="KEY_STOP" mapto="instantRecord" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
@@ -211,6 +212,9 @@
 		<device name="dreambox remote control (native)">
 			<key id="KEY_TV" mapto="exit" flags="m" />
 		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_TV" mapto="exit" flags="m" />
+		</device>
 	</map>
 
 	<map context="GlobalActions">
@@ -266,6 +270,7 @@
 			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 			<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
@@ -331,6 +336,7 @@
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		</device>
@@ -348,6 +354,7 @@
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="timeshiftActivateEnd" flags="m" />
+			<key id="KEY_PLAY" mapto="timeshiftActivateEndAndPause" flags="m" />
 			<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
@@ -372,7 +379,7 @@
 			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
+			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
@@ -389,6 +396,9 @@
 			<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="m" />
 			<key id="KEY_0" mapto="toggleMark" flags="m" />
 			<key id="KEY_NEXT" mapto="jumpNextMark" flags="m" />
+			<key id="KEY_RED" mapto="jumpPreviousMark" flags="m" />
+			<key id="KEY_YELLOW" mapto="toggleMark" flags="m" />
+			<key id="KEY_BLUE" mapto="jumpNextMark" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="m" />
@@ -407,6 +417,9 @@
 			<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="b" />
 			<key id="KEY_0" mapto="toggleMark" flags="m" />
 			<key id="KEY_NEXT" mapto="jumpNextMark" flags="b" />
+			<key id="KEY_RED" mapto="jumpPreviousMark" flags="m" />
+			<key id="KEY_YELLOW" mapto="toggleMark" flags="m" />
+			<key id="KEY_BLUE" mapto="jumpNextMark" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="b" />
