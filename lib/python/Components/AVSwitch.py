@@ -50,7 +50,10 @@ class AVSwitch:
 		if aspect is None:
 			aspect = self.getAspectRatioSetting()
 		if aspect == 0 or aspect == 1: # letterbox or panscan
-			value = 3 # 4:3_full_format
+			if not config.av.wss.value:
+				value = 0 # wss off
+			else:
+				value = 3 # 4:3_full_format
 		elif aspect == 2: # 16:9
 			if not config.av.wss.value:
 				value = 2 # auto(4:3_off)
