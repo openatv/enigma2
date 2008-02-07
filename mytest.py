@@ -1,6 +1,12 @@
+from Tools.Profile import profile, profile_final
+
+profile("PYTHON_START")
+
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
 	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow, eServiceEvent
 from tools import *
+
+profile("LANGUAGE")
 
 from Components.Language import language
 
@@ -11,25 +17,33 @@ def setEPGLanguage():
 language.addCallback(setEPGLanguage)
 
 from traceback import print_exc
+profile("LOAD:InfoBar")
 import Screens.InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
 
+profile("ParentalControl")
 from Components.ParentalControl import InitParentalControl
 InitParentalControl()
 
+profile("LOAD:Navigation")
 from Navigation import Navigation
 
+profile("LOAD:skin")
 from skin import readSkin, applyAllAttributes
 
+profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Components.config import config, configfile, ConfigText, ConfigSubsection, ConfigInteger
 InitFallbackFiles()
+
+profile("ReloadProfiles")
 eDVBDB.getInstance().reloadBouquets()
 
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 
+profile("Twisted")
 try:
 	import twisted.python.runtime
 	twisted.python.runtime.platform.supportsThreads = lambda: False
@@ -46,9 +60,12 @@ except ImportError:
 	def runReactor():
 		runMainloop()
 
+profile("LOAD:Plugin")
+
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
 
+profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
 from Screens.ImageWizard import *
 from Screens.StartWizard import *
@@ -56,6 +73,7 @@ from Screens.TutorialWizard import *
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
+profile("misc")
 had = dict()
 
 def dump(dir, p = ""):
@@ -79,23 +97,17 @@ def dump(dir, p = ""):
 class OutputDevice:
 	def create(self, screen): pass
 
-# display: HTML
-
-class HTMLOutputDevice(OutputDevice):
-	def create(self, comp):
-		print comp.produceHTML()
-
-html = HTMLOutputDevice()
-
 class GUIOutputDevice(OutputDevice):
 	parent = None
 	def create(self, comp, desktop):
 		comp.createGUIScreen(self.parent, desktop)
 
+profile("LOAD:ScreenGlobals")
 from Screens.Globals import Globals
 from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
 
+profile("Screen")
 Screen.global_screen = Globals()
 
 # Session.open:
@@ -320,6 +332,7 @@ from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
 
+profile("VolumeControl")
 #TODO .. move this to a own .py file
 class VolumeControl:
 	"""Volume control, handles volUp, volDown, volMute actions and display
@@ -392,6 +405,7 @@ class VolumeControl:
 				self.muteDialog.hide()
 				self.volumeDialog.setValue(vol)
 
+profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 import xml.dom.minidom
@@ -450,6 +464,7 @@ class PowerKey:
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			self.session.open(Screens.Standby.Standby)
 
+profile("Scart")
 from Screens.Scart import Scart
 
 class AutoScartControl:
@@ -475,12 +490,15 @@ class AutoScartControl:
 			else:
 				self.scartDialog.switchToTV()
 
+profile("Load:CI")
 from enigma import eDVBCIInterfaces
 from Screens.Ci import CiHandler
 
 def runScreenTest():
+	profile("readPluginList")
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
+	profile("Init:Session")
 	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
 
 	CiHandler.setSession(session)
@@ -490,6 +508,7 @@ def runScreenTest():
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
 		screensToRun.append(p.__call__)
 
+	profile("wizards")
 	screensToRun += wizardManager.getWizards()
 
 	screensToRun.append(Screens.InfoBar.InfoBar)
@@ -516,16 +535,21 @@ def runScreenTest():
 
 	runNextScreen(session, screensToRun)
 
+	profile("Init:VolumeControl")
 	vol = VolumeControl(session)
+	profile("Init:PowerKey")
 	power = PowerKey(session)
 
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
 
+	profile("RunReactor")
+	profile_final()
 	runReactor()
-
+	profile("configfile.save")
 	configfile.save()
 
+	profile("wakeup")
 	from time import time
 	from Tools.DreamboxHardware import setFPWakeuptime
 	#get currentTime
@@ -544,41 +568,54 @@ def runScreenTest():
 			setFPWakeuptime(nowTime + 30) # so switch back on in 30 seconds
 		else:
 			setFPWakeuptime(startTime - 300)
+	profile("stopService")
 	session.nav.stopService()
+	profile("nav shutdown")
 	session.nav.shutdown()
 
 	return 0
 
+profile("Init:skin")
 import skin
 skin.loadSkinData(getDesktop(0))
 
+profile("InputDevice")
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 
+profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
 
+profile("RecordingConfig")
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 
+profile("UsageConfig")
 import Components.UsageConfig
 Components.UsageConfig.InitUsageConfig()
 
+profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
 
+profile("Network")
 import Components.Network
 Components.Network.InitNetwork()
 
+profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 
+profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
+profile("RFMod")
 import Components.RFmod
 Components.RFmod.InitRFmod()
 
+profile("Init:CI")
 import Screens.Ci
 Screens.Ci.InitCiConfig()
 
