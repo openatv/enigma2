@@ -76,7 +76,7 @@ class LanguageSelection(Screen):
 			self.list.append(LanguageEntryComponent("en", _("English"), "en_EN"))
 		else:
 			for x in language.getLanguageList():
-				self.list.append(LanguageEntryComponent(file = x[1][3].lower(), name = _(x[1][0]), index = x[0]))
+				self.list.append(LanguageEntryComponent(file = x[1][2].lower(), name = _(x[1][0]), index = x[0]))
 		#self.list.sort(key=lambda x: x[1][7])
 		
 		print "updateList"
