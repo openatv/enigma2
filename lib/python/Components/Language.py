@@ -37,15 +37,16 @@ class Language:
 
 	def addLanguage(self, name, lang, country):
 		try:
-			self.lang[str(lang + "_" + country)] = ((_(name), gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang]), lang, country))
+			self.lang[str(lang + "_" + country)] = ((_(name), lang, country))
 			self.langlist.append(str(lang + "_" + country))
 		except:
 			print "Language " + str(name) + " not found"
 
 	def activateLanguage(self, index):
 		try:
-			print "Activating language " + str(self.lang[index][0])
-			self.lang[index][1].install()
+			lang = self.lang[index]
+			print "Activating language " + lang[0]
+			gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[lang[1]]).install()
 			self.activeLanguage = index
 			for x in self.callbacks:
 				x()
@@ -63,7 +64,7 @@ class Language:
 
 	def getLanguage(self):
 		try:
-			return str(self.lang[self.activeLanguage][2]) + "_" + str(self.lang[self.activeLanguage][3])
+			return str(self.lang[self.activeLanguage][1]) + "_" + str(self.lang[self.activeLanguage][2])
 		except:
 			return ''
 
