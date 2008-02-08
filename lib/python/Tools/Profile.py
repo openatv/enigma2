@@ -1,6 +1,6 @@
 # the implementation here is a bit crappy.
 import time
-from Directories import resolveFilename, SCOPE_SYSETC
+from Directories import resolveFilename, SCOPE_CONFIG
 
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100
@@ -11,7 +11,7 @@ profile_data = {}
 total_time = 1
 
 try:
-	profile_old = open(resolveFilename(SCOPE_SYSETC, "profile"), "r").readlines()
+	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile"), "r").readlines()
 
 	t = None
 	for line in profile_old:
@@ -22,7 +22,7 @@ try:
 except:
 	print "no profile data available"
 
-profile_file = open(resolveFilename(SCOPE_SYSETC, "profile"), "w")
+profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
 
 def profile(id):
 	now = time.time() - profile_start
