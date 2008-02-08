@@ -1,3 +1,4 @@
+# the implementation here is a bit crappy.
 import time
 from Directories import resolveFilename, SCOPE_SYSETC
 
@@ -27,13 +28,14 @@ def profile(id):
 	now = time.time() - profile_start
 	if profile_file:
 		profile_file.write("%.2f\t%s\n" % (now, id))
-	if id in profile_data:
-		t = profile_data[id]
-		perc = t * (PERCENTAGE_END - PERCENTAGE_START) / total_time + PERCENTAGE_START
-		try:
-			open("/proc/progress", "w").write("%d \n" % perc)
-		except IOError:
-			pass
+
+		if id in profile_data:
+			t = profile_data[id]
+			perc = t * (PERCENTAGE_END - PERCENTAGE_START) / total_time + PERCENTAGE_START
+			try:
+				open("/proc/progress", "w").write("%d \n" % perc)
+			except IOError:
+				pass
 
 def profile_final():
 	global profile_file
