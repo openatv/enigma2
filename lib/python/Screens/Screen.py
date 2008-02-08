@@ -1,9 +1,13 @@
-from Components.HTMLSkin import HTMLSkin
+from Tools.Profile import profile, profile_final
+
+profile("LOAD:GUISkin")
 from Components.GUISkin import GUISkin
+profile("LOAD:Source")
 from Components.Sources.Source import Source
+profile("LOAD:GUIComponent")
 from Components.GUIComponent import GUIComponent
 
-class Screen(dict, HTMLSkin, GUISkin):
+class Screen(dict, GUISkin):
 
 	ALLOW_SUSPEND = False
 

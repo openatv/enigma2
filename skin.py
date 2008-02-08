@@ -1,6 +1,10 @@
+from Tools.Profile import profile, profile_final
+
+profile("LOAD:minidom")
 import xml.dom.minidom
 from os import path
 
+profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
 	addFont, gRGB, eWindowStyleSkinned
 
@@ -52,6 +56,7 @@ def loadSkin(name):
 config.skin = ConfigSubsection()
 config.skin.primary_skin = ConfigText(default = "skin.xml")
 
+profile("LoadSkin")
 try:
 	loadSkin(config.skin.primary_skin.value)
 except (SkinError, IOError, AssertionError), err:
@@ -60,7 +65,9 @@ except (SkinError, IOError, AssertionError), err:
 	config.skin.primary_skin.value = 'skin.xml'
 	loadSkin('skin.xml')
 
+profile("LoadSkinDefault")
 loadSkin('skin_default.xml')
+profile("LoadSkinDefaultDone")
 
 def parsePosition(str):
 	x, y = str.split(',')
