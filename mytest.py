@@ -511,7 +511,9 @@ def runScreenTest():
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
 
-	screensToRun.append(Screens.InfoBar.InfoBar)
+	screensToRun.append((100, Screens.InfoBar.InfoBar))
+
+	screensToRun.sort()
 
 	ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
@@ -526,7 +528,7 @@ def runScreenTest():
 			quitMainloop(*result)
 			return
 
-		screen = screensToRun[0]
+		screen = screensToRun[0][1]
 
 		if len(screensToRun):
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)

@@ -30,4 +30,4 @@ class TutorialWizard(Wizard):
 		config.misc.firstruntutorial.value = False
 		config.misc.firstruntutorial.save()
 
-#wizardManager.registerWizard(TutorialWizard, config.misc.firstruntutorial.value)
+#wizardManager.registerWizard(TutorialWizard, config.misc.firstruntutorial.value, priority = 30)

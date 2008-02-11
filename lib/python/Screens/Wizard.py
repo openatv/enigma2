@@ -459,14 +459,14 @@ class WizardManager:
 	def __init__(self):
 		self.wizards = []
 	
-	def registerWizard(self, wizard, precondition):
-		self.wizards.append((wizard, precondition))
+	def registerWizard(self, wizard, precondition, priority = 0):
+		self.wizards.append((wizard, precondition, priority))
 	
 	def getWizards(self):
 		list = []
 		for x in self.wizards:
 			if x[1] == 1: # precondition
-				list.append(x[0])
+				list.append((x[2], x[0]))
 		return list
 
 wizardManager = WizardManager()
