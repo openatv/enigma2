@@ -1,16 +1,8 @@
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 
-from enigma import eTimer
-
-from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Screens.MessageBox import MessageBox
-from Screens.Setup import SetupSummary
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config
-from VideoWizard import VideoWizard
 from Components.config import config
 
 from VideoHardware import video_hw
@@ -30,16 +22,20 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 
+		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions"], 
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
 			}, -2)
 
+		from Components.Label import Label
 		self["title"] = Label(_("A/V Settings"))
 
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
+
+		from Components.Pixmap import Pixmap
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
 
@@ -104,6 +100,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		rate = config.av.videorate[mode].value
 		if (port, mode, rate) != self.last_good:
 			self.hw.setMode(port, mode, rate)
+			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
 			self.keySave()
@@ -120,6 +117,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		return str(self["config"].getCurrent()[1].getText())
 
 	def createSummary(self):
+		from Screens.Setup import SetupSummary
 		return SetupSummary
 
 class VideomodeHotplug:
@@ -180,6 +178,10 @@ def startSetup(menuid):
 		return [ ]
 
 	return [(_("A/V Settings") + "...", videoSetupMain, "av_setup", 40)]
+
+def VideoWizard(*args, **kwargs):
+	from VideoWizard import VideoWizard
+	return VideoWizard(*args, **kwargs)
 
 def Plugins(**kwargs):
 	list = [
