@@ -25,7 +25,7 @@ class SleepTimerEdit(Screen):
 		self["input"] = Input(text = str(self.session.nav.SleepTimer.getCurrentSleepTime()), maxSize = False, type = Input.NUMBER)
 		self["aftertext"] = Label(_("minutes"))
 		
-		self["actions"] = NumberActionMap(["SleepTimerEditorActions"], 
+		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"], 
 		{
 			"exit": self.cancel,
 			"select": self.select,
@@ -41,6 +41,12 @@ class SleepTimerEdit(Screen):
 			"0": self.keyNumberGlobal,
 			"selectLeft": self.selectLeft,
 			"selectRight": self.selectRight,
+			"left": self.selectLeft,
+			"right": self.selectRight,
+			"home": self.selectHome,
+			"end": self.selectEnd,
+			"deleteForward": self.deleteForward,
+			"deleteBackward": self.deleteBackward,
 			"disableTimer": self.disableTimer,
 			"toggleAction": self.toggleAction,
 			"toggleAsk": self.toggleAsk
@@ -85,6 +91,18 @@ class SleepTimerEdit(Screen):
 	def selectRight(self):
 		self["input"].right()
 
+	def selectHome(self):
+		self["input"].home()
+	
+	def selectEnd(self):
+		self["input"].end()
+	
+	def deleteForward(self):
+		self["input"].delete()
+	
+	def deleteBackward(self):
+		self["input"].deleteBackward()
+	
 	def disableTimer(self):
 		self.is_active = not self.is_active
 		self.updateColors()

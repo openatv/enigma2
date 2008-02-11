@@ -90,12 +90,16 @@ class IPKGSource(Screen):
 		
 		self["text"] = Input(sources[0], maxSize=False, type=Input.TEXT)
 				
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions"], 
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions"], 
 		{
 			"ok": self.go,
 			"back": self.close,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"home": self.keyHome,
+			"end": self.keyEnd,
+			"deleteForward": self.deleteForward,
+			"deleteBackward": self.deleteBackward,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -119,6 +123,18 @@ class IPKGSource(Screen):
 	
 	def keyRight(self):
 		self["text"].right()
+	
+	def keyHome(self):
+		self["text"].home()
+	
+	def keyEnd(self):
+		self["text"].end()
+	
+	def keyDeleteForward(self):
+		self["text"].delete()
+	
+	def keyDeleteBackward(self):
+		self["text"].deleteBackward()
 	
 	def keyNumberGlobal(self, number):
 		print "pressed", number

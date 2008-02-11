@@ -18,17 +18,16 @@
 	</map>
 	
 	<map context="KeyboardInputActions">
-		<key id="KEY_LEFT" mapto="moveLeft" flags="mr" />
-		<key id="KEY_RIGHT" mapto="moveRight" flags="mr" />
-		<key id="KEY_HOME" mapto="moveHome" flags="mr" />
-		<key id="KEY_END" mapto="moveEnd" flags="mr" />
-		<key id="KEY_BACK" mapto="moveHome" flags="mr" />
-		<key id="KEY_FORWARD" mapto="moveEnd" flags="mr" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_HOME" mapto="home" flags="mr" />
+		<key id="KEY_END" mapto="end" flags="mr" />
+		<key id="KEY_BACK" mapto="home" flags="mr" />
+		<key id="KEY_FORWARD" mapto="end" flags="mr" />
 		<key id="KEY_DELETE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_BACKSPACE" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_TAB" mapto="tab" flags="mr" />
 		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
-		<key id="KEY_ENTER" mapto="accept" flags="m" />
 	</map>
 
 	<map context="SetupActions">
@@ -122,7 +121,9 @@
 	</map>
 
 	<map context="InputAsciiActions">
-		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
+		<device name="dreambox ir keyboard">
+			<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
+		</device>
 	</map>
 
 	<map context="InputBoxActions">

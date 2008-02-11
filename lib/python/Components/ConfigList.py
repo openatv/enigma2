@@ -14,8 +14,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.list = list
 		self.onSelectionChanged = [ ]
 		self.current = None
-		self.help_window = None
-		self.setHelpWindowSession(session)
+		self.session = session
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
@@ -27,10 +26,6 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.timer.timeout.get().remove(self.timeout)
 
-	def setHelpWindowSession(self, session):
-		assert self.help_window is None, "you can't move a help window to another session"
-		self.session = session
-
 	def toggle(self):
 		selection = self.getCurrent()
 		selection[1].toggle()
@@ -41,8 +36,6 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		if selection and selection[1].enabled:
 			selection[1].handleKey(key)
 			self.invalidateCurrent()
-			if self.help_window:
-				self.help_window.update(selection[1])
 			if key in KEY_NUMBERS:
 				self.timer.start(1000, 1)
 
@@ -68,25 +61,21 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 	
 	def selectionChanged(self):
-		n = self.getCurrent()
-		
-		if self.help_window:
-			self.session.deleteDialog(self.help_window)
-		
-		nh = n and n[1].helpWindow()
-		if nh is not None and self.session is not None:
-			self.help_window = self.session.instantiateDialog(*nh)
-			self.help_window.show()
-
-		self.current = n
+		if self.current:
+			self.current[1].onDeselect(self.session)
+		self.current = self.getCurrent()
+		if self.current:
+			self.current[1].onSelect(self.session)
 		for x in self.onSelectionChanged:
 			x()
 
 	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
 	
 	def preWidgetRemove(self, instance):
+		if self.current:
+			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 	
 	def setList(self, l):
@@ -119,13 +108,10 @@ class ConfigListScreen:
 		{
 			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.keyOK,
-			"accept": self.keyOK,
 			"left": self.keyLeft,
 			"right": self.keyRight,
-			"moveLeft": self.keyLeft,
-			"moveRight": self.keyRight,
-			"moveHome": self.keyHome,
-			"moveEnd": self.keyEnd,
+			"home": self.keyHome,
+			"end": self.keyEnd,
 			"deleteForward": self.keyDelete,
 			"deleteBackward": self.keyBackspace,
 			"toggleOverwrite": self.keyToggleOW,
