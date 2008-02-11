@@ -22,15 +22,12 @@ class InputBox(Screen):
 			"back": self.cancel,
 			"left": self.keyLeft,
 			"right": self.keyRight,
-			"moveLeft": self.keyLeft,
-			"moveRight": self.keyRight,
-			"moveHome": self.keyHome,
-			"moveEnd": self.keyEnd,
+			"home": self.keyHome,
+			"end": self.keyEnd,
 			"deleteForward": self.keyDelete,
 			"deleteBackward": self.keyBackspace,
 			"tab": self.keyTab,
 			"toggleOverwrite": self.keyInsert,
-			"accept": self.go,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -42,8 +39,9 @@ class InputBox(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
+		if self["input"].type == Input.TEXT:
+			rcinput = eRCInput.getInstance()
+			rcinput.setKeyboardMode(rcinput.kmAscii)
 
 	def gotAsciiCode(self):
 		self["input"].handleAscii(getPrevAsciiCode())

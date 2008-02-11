@@ -8,7 +8,7 @@ class MinuteInput(Screen):
 						
 			self["minutes"] = Input(str(basemins), type=Input.NUMBER)
 			
-			self["actions"] = NumberActionMap([ "InputActions" , "MinuteInputActions" ],
+			self["actions"] = NumberActionMap([ "InputActions" , "MinuteInputActions", "TextEntryActions", "KeyboardInputActions" ],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -22,6 +22,10 @@ class MinuteInput(Screen):
 				"0": self.keyNumberGlobal,
 				"left": self.left,
 				"right": self.right,
+				"home": self.home,
+				"end": self.end,
+				"deleteForward": self.deleteForward,
+				"deleteBackward": self.deleteBackward,
 				"up": self.up,
 				"down": self.down,
 				"ok": self.ok,
@@ -37,7 +41,19 @@ class MinuteInput(Screen):
 			
 		def right(self):
 			self["minutes"].right()
-			
+
+		def home(self):
+			self["minutes"].home()
+
+		def end(self):
+			self["minutes"].end()
+
+		def deleteForward(self):
+			self["minutes"].delete()
+
+		def deleteBackward(self):
+			self["minutes"].deleteBackward()
+
 		def up(self):
 			self["minutes"].up()
 		

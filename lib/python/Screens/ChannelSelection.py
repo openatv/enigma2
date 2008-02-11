@@ -5,7 +5,7 @@ from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eTimer, eDVBDB, iPlayableService, iServiceInformation
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
 from Components.config import config, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.NimManager import nimmanager
@@ -648,7 +648,7 @@ class ChannelSelectionBase(Screen):
 
 		self.bouquetNumOffsetCache = { }
 
-		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions"],
+		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
 				"showFavourites": self.showFavourites,
 				"showAllServices": self.showAllServices,
@@ -658,6 +658,7 @@ class ChannelSelectionBase(Screen):
 				"prevBouquet": self.prevBouquet,
 				"nextMarker": self.nextMarker,
 				"prevMarker": self.prevMarker,
+				"gotAsciiCode": self.keyAsciiCode,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -972,6 +973,12 @@ class ChannelSelectionBase(Screen):
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
 
+	def keyAsciiCode(self):
+		unichar = unichr(getPrevAsciiCode())
+		charstr = unichar.encode("utf-8")
+		if len(charstr) == 1:
+			self.servicelist.moveToChar(charstr[0])
+
 	def getRoot(self):
 		return self.servicelist.getRoot()
 
@@ -1087,6 +1094,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
 		self.new_service_played = False
+		self.onExecBegin.append(self.asciiOn)
+
+	def asciiOn(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
+	def asciiOff(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 
 	def multibouquet_config_changed(self, val):
 		self.recallBouquetMode()
@@ -1154,6 +1170,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
 				self.zap()
+				self.asciiOff()
 				self.close(ref)
 
 	#called from infoBar and channelSelected
@@ -1298,6 +1315,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif self.revertMode == MODE_RADIO:
 			self.setModeRadio()
 		self.revertMode = None
+		self.asciiOff()
 		self.close(None)
 
 from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName
